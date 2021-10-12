@@ -2,69 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39301429AB5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 03:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB45429AB8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 03:05:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232063AbhJLBGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 21:06:52 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:35611 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbhJLBGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 21:06:51 -0400
-Received: by mail-ot1-f41.google.com with SMTP id w12-20020a056830410c00b0054e7ceecd88so6001602ott.2;
-        Mon, 11 Oct 2021 18:04:51 -0700 (PDT)
+        id S230060AbhJLBHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 21:07:55 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:46616 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231199AbhJLBHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 21:07:54 -0400
+Received: by mail-ot1-f53.google.com with SMTP id u20-20020a9d7214000000b0054e170300adso23780189otj.13
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 18:05:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LQhuTohxiMBS7vgNzsE16/ddOgS0nDCEvrxLWN9UJbU=;
-        b=o/TPWAfSA98O9bme+OxYfnz/qgLCg1HIXG0eTeEqYMaxkmExDc/BsgoWNrn4U/lzdO
-         6t9B9BBxrhCXrNwtBV3BFhpu89aWMhRbggGuRFrHvVdqwJICvNQfX/HIyUsKMwrJecfb
-         3MMrp82rizhMpypMZg3g2cMukEwoBEBEJm5dwypnZ/elASYwp95BUTOJ4d18b4sHhw6Q
-         rmf8mVGHZfxXgiWKjftZ3P6hHJb+qZSMNsi7mIunRGVNkRkLA1jm2XTyZnqTS0ovsqUA
-         gtFvLgB+PS/tgNG7eWjDzSnjxhz9+A76v2JH5LDfvplXJEyuOV0bnbb40um/FesRuoIA
-         Ztuw==
-X-Gm-Message-State: AOAM531IcuwuFKMIyDKhEIRFtMuY9OgW0q6OzQ+D9BEGZFrYL9Xo1fmr
-        GuHyQnfRg0Tdm5LtNeJR8Q==
-X-Google-Smtp-Source: ABdhPJzlgJahdsMtNXbZ+/xje5QalLPp9GMiSr8yI4Kgx1H7ZqWAJXJCmElJKP+v3mOFiuKde/nUjg==
-X-Received: by 2002:a9d:5d15:: with SMTP id b21mr23336948oti.356.1634000690716;
-        Mon, 11 Oct 2021 18:04:50 -0700 (PDT)
+        bh=VjdYNK7OQ7hv3OxllKfXVmVGKMwQu3mEkE/Q9mo5ta0=;
+        b=Fy2Guv4nvwyn6B7eVyiDMMq0rQm4dPfbATWE/HVEPh2o/ylZRc7nUvJYzzooQyfbDQ
+         aDjfF25mgZEHyDp8AAB4IWAi2A7CZnKYo2cwH+13ECWoFt75GRG/O3mwin/0o62kpY1L
+         WU4pLmP3MCPqH6O7mEdfxamVYQ/GpBo//oE4Y3k403SPceRHjLgGGy5ElS6lK9LUS22w
+         9d8UX+qfvn2xQ+yKl0uCTfqQeGlbVFE2YQOz+qYy7L7p+xMTygvs51xg5NYgCFTehpGl
+         ZmHiZR1PR1nf4RWctS/1NYhjMvFRxzyl6oJkc6rLTwJPG15Yp8+DMiXrFtVuTd/kwFdA
+         aH9w==
+X-Gm-Message-State: AOAM532ULHsb6DaOshUNqexpaW8MYweA6dAbEAbIqzF52rA7PiQGdL4K
+        MuKHQQFPA4h/Gq5EH8V7zg==
+X-Google-Smtp-Source: ABdhPJxPZmvk4gqoyqDn3+CCwopf9IfMsBPzmI+VY99BWhzrp7o3kCdoLZS+LpvgtPHt7npOpmadVw==
+X-Received: by 2002:a05:6830:3184:: with SMTP id p4mr4257859ots.219.1634000753686;
+        Mon, 11 Oct 2021 18:05:53 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c9sm2150812ots.30.2021.10.11.18.04.49
+        by smtp.gmail.com with ESMTPSA id e7sm1029343otq.4.2021.10.11.18.05.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 18:04:49 -0700 (PDT)
-Received: (nullmailer pid 1510904 invoked by uid 1000);
-        Tue, 12 Oct 2021 01:04:49 -0000
-Date:   Mon, 11 Oct 2021 20:04:49 -0500
+        Mon, 11 Oct 2021 18:05:53 -0700 (PDT)
+Received: (nullmailer pid 1512514 invoked by uid 1000);
+        Tue, 12 Oct 2021 01:05:52 -0000
+Date:   Mon, 11 Oct 2021 20:05:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chukun Pan <amadeus@jmu.edu.cn>
-Cc:     Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lin Huang <hl@rock-chips.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: devfreq: rk3399_dmc: fix clocks in example
-Message-ID: <YWTfMaBMrKeXTy/x@robh.at.kernel.org>
-References: <20211001150024.18672-1-amadeus@jmu.edu.cn>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     robh+dt@kernel.org, neil@brown.name, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: memory: add binding for Mediatek's MT7621
+ SDRAM memory controller
+Message-ID: <YWTfcJoKNpIBc4kl@robh.at.kernel.org>
+References: <20211002060910.30613-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211001150024.18672-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20211002060910.30613-1-sergio.paracuellos@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 01 Oct 2021 23:00:24 +0800, Chukun Pan wrote:
-> The clocks in the example use 'SCLK_DDRCLK', which does not exist in
-> the rk3399-cru.h, correct it to 'SCLK_DDRC'.
+On Sat, 02 Oct 2021 08:09:10 +0200, Sergio Paracuellos wrote:
+> Add binding documentation for Mediatek's SDRAM memory controller present on
+> MT7621 SoC.
 > 
-> Ref: commit 7fbdfcd68783 ("clk: rockchip: add SCLK_DDRC id for rk3399 ddrc")
-> Fixes: c1ceb8f7c167 ("Documentation: bindings: add dt documentation for rk3399 dmc")
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../mediatek,mt7621-memc.yaml                 | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,mt7621-memc.yaml
 > 
 
 Applied, thanks!
