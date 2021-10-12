@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70DC8429F51
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CD46429F58
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234623AbhJLIFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:05:48 -0400
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:57034 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S234867AbhJLIEs (ORCPT
+        id S234847AbhJLIFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 04:05:52 -0400
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:43202 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234899AbhJLIE6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 04:04:48 -0400
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C4UWes024001;
-        Tue, 12 Oct 2021 01:01:51 -0700
-Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2171.outbound.protection.outlook.com [104.47.59.171])
-        by mx0a-0016f401.pphosted.com with ESMTP id 3bn3d58see-1
+        Tue, 12 Oct 2021 04:04:58 -0400
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C0gWXE031571;
+        Tue, 12 Oct 2021 01:02:12 -0700
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam08lp2041.outbound.protection.outlook.com [104.47.74.41])
+        by mx0b-0016f401.pphosted.com with ESMTP id 3bmpv4ukf5-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 12 Oct 2021 01:01:51 -0700
+        Tue, 12 Oct 2021 01:02:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KG4Fvvsvnb8fcMJQBVm7LpT6YPgo3AoKiSxTKzKprGZMwFpkZd92jgm3bTX3TVB9wrjAS6Xn8vCEecSdeyFZ6A2DYME+ON93HM+hHvd7LiiAky5lrbDeH+jTNgxeABdSxpwlNwgaVjyj+N9rpN/FiAFFgqI1hQcs2vO6WouenQ/sr6hsQrXm/4Qf2P7Ebf87abDDlaA2H3KyiSMBFKaLa1S+SCvlpL0j0oBz72elP3c9+0vNLXDpKqruOktBGIUioYwYOj74/YmSX9sVs3T41bpxjIBRfSwTPIkYdV7pRfk++RrTEtmBClo327wjKvCWdvz8eMJjjuxsOBNKXKJbrA==
+ b=jgpVjKuYZWZGbe23+SsfqyMz00yerxAyt/VzKCpW/e8eAA2bk4u3Gw2NamThCpQPNb8XekOy6CunkLyVmIylq7eLxI5zFFe8rtYJmADHh4nCwbouowAQVo9Lf9HSdxlngJWG2FSRYArMi6YuJN45WuFRRFsOrImqPTTtbuR/5z9HPnJLrW6mC6dnW5oNqJmsWVEgkhfW103QjNcXWhCBFQUs/ALO/LQWwVwR9Ndv4vMneKIx2kqXN30heLGKb2EnMEb+mgstv7iGwPG8xuFYwhhyxXsxnqGOcOd6J4r9NeKYQpRBFlaNmf8npZ2cgyMaobDyW5Fujit9FSX52MfRzw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3QYMtwIdITUvQUlfsMzvOwEV6/V7N8VoCpsuvIThEmE=;
- b=K1yoC+o/AHRDPNhupyKigsmqtHAdKgLbOCic4mQ1Fe4j4mWeNMnX9uooXV5cwaVYBCsgH1y8lS44HLuknPzYXPn7ULk1HF6fk+eR4WHgnjJ8KhvOQdHYlQlKK1cDTZ4qbILYVfoL9sNB/fxek/5t9NLFpSVcoWS9TfcNzy6nczjUWIOCPAfh8sG0iiYyH/fIbpoyrHJUB/p6vFghbxI9KdEW0EukCvtyY+tghJYmDxGZkPRcKiJRt30SZU5lmxRuCmlJBPRmBpDfLyBbqmHJwSuA+Leityzr7PEiNiSCQGgiJ9Y0dbXIePrVhoUaeBJjbzlbFmdOxMV7d3tlUcsE6Q==
+ bh=cTlmD9Kpgv/ABeTdXnkBkpuO2V3upfqHd4nX2a/g5E0=;
+ b=XvBNKrOpuoFL5ysZUMg0GCknIAxDpsisgnDd7NmUTwhfusfq0dZjdtZDO+Y04TBW5g44Ac7FkRIOwX2l8kn3yiRLl+nSqkZDbHE8AW35RAsV0pQUU1+M1yPltoWR6/AZnOy2A9SiK7se1F98xKEWAgVwh/UyyFeqzWkN+iCnfW2kkXRX5lOYbTjV7Zac8ANxZVXvlvigoSES5kqREZbnqVbutNcDFQGaKXLYptFycaKUxFhWQV4pud4NMg5jJv60clymHzmWp6RcMEDnwxM5GojKuFfuyHCYMMLlHuZ8Lh1s/ZQ82Ztp0b/MOcKUbHQ2BPnLcKHYPX5W30TqMgbdrg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
  dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3QYMtwIdITUvQUlfsMzvOwEV6/V7N8VoCpsuvIThEmE=;
- b=CNV2O4yZqIxLY7sJ4sYO3SGGoIOlsKK1vu084sYZpgZp6XvsTpAlBibTVeczTfITRMy/Uxokq09uepJlAEJwRIDbZQGeXoqLTpH/Pi/+JQU7yBdJw/aERLfLCA/NO07gU8AsCYD91gIBtgsBUavFBRWvnxV4qGC79Iv9Ty3/Rqc=
+ bh=cTlmD9Kpgv/ABeTdXnkBkpuO2V3upfqHd4nX2a/g5E0=;
+ b=DUu1Ms2S9wtGL/UTz2ZSRwCrBj47uggrnQUsTRriux+yKRW0cvW+pBKBd9GNE+n37JR2XyUTYqgCB0u7MdulSjB6fRwbVVgF2iMORpqH1ZdeF8b8H4QPb+tGDIm+XI1esS3+dt2YElssG5dh6BlRncmtUGN6tXwyP9ZAY9DNMmA=
 Received: from CO6PR18MB4465.namprd18.prod.outlook.com (2603:10b6:303:13b::10)
- by CO1PR18MB4697.namprd18.prod.outlook.com (2603:10b6:303:e4::15) with
+ by CO1PR18MB4731.namprd18.prod.outlook.com (2603:10b6:303:ea::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Tue, 12 Oct
- 2021 08:01:49 +0000
+ 2021 08:02:10 +0000
 Received: from CO6PR18MB4465.namprd18.prod.outlook.com
  ([fe80::9da7:4d20:98ff:e441]) by CO6PR18MB4465.namprd18.prod.outlook.com
  ([fe80::9da7:4d20:98ff:e441%6]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 08:01:49 +0000
+ 08:02:10 +0000
 From:   Bharat Bhushan <bbhushan2@marvell.com>
 To:     Bharat Bhushan <bbhushan2@marvell.com>,
         "will@kernel.org" <will@kernel.org>,
@@ -53,71 +53,69 @@ To:     Bharat Bhushan <bbhushan2@marvell.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Bhaskara Budiredla <bbudiredla@marvell.com>
-Subject: RE: [PATCH v4 3/4] perf/marvell: cn10k DDR perfmon event overflow
- handling
-Thread-Topic: [PATCH v4 3/4] perf/marvell: cn10k DDR perfmon event overflow
- handling
-Thread-Index: AQHXrd2VR4ab2xjTt0KWsAYlbSj/lKvPIwag
-Date:   Tue, 12 Oct 2021 08:01:49 +0000
-Message-ID: <CO6PR18MB4465D37CFC942E0CD3C47A70E3B69@CO6PR18MB4465.namprd18.prod.outlook.com>
+Subject: RE: [PATCH v4 4/4] perf/marvell: cn10k DDR perf event core ownership
+Thread-Topic: [PATCH v4 4/4] perf/marvell: cn10k DDR perf event core ownership
+Thread-Index: AQHXrd2Xcorcgtmsy0+X5+eU/Myu66vPIx5w
+Date:   Tue, 12 Oct 2021 08:02:10 +0000
+Message-ID: <CO6PR18MB44654A1AF5A02C120892F476E3B69@CO6PR18MB4465.namprd18.prod.outlook.com>
 References: <20210920050823.10853-1-bbhushan2@marvell.com>
- <20210920050823.10853-4-bbhushan2@marvell.com>
-In-Reply-To: <20210920050823.10853-4-bbhushan2@marvell.com>
+ <20210920050823.10853-5-bbhushan2@marvell.com>
+In-Reply-To: <20210920050823.10853-5-bbhushan2@marvell.com>
 Accept-Language: en-IN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b1a57abd-c5e8-4b60-68c7-08d98d568b65
-x-ms-traffictypediagnostic: CO1PR18MB4697:
+x-ms-office365-filtering-correlation-id: c2048006-3438-4ac9-9814-08d98d569823
+x-ms-traffictypediagnostic: CO1PR18MB4731:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO1PR18MB46979BB5358A10E55C083B73E3B69@CO1PR18MB4697.namprd18.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:345;
+x-microsoft-antispam-prvs: <CO1PR18MB47310EE1C65A5F515BDAA7DDE3B69@CO1PR18MB4731.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wvxtBwW5Vz8Dbq3H4IyDVH/AcmI+oMUhUyJDSFcmqI4A261Q7Mv3RqfqI5aePT44OWeABbQoYwDwtE5/tntHLL0dd0QoYH2kHBEREKpPx+5EnZh+LdhZI0WxGjRQ9K9mnJrV8lIZAuBBiS4WjnGQP+QzyeP9vcjD3i/ZpIlYtJiJkalk0Hpks2sE3OCU6q18crcgIFxbf+Kb12fAy/+VRIO3sy8A1cGQuFnxKukF8IJ8P0LwGj1knVPn6JBAgfTGG0L6xJ0wINfO/H39D1BzR/eWTeQKIDYfik4yF4AGgKxT4KUmKFmIgQG/plnPBaDPgUS9Is+7kyXU5kmprPLHRXwEgKK0VEYnByxo+zkTYgvqpXZvlgEr/rkLsdf6ZpSqzuWkIEqfjLffILGOU7j8q7CaBO98BdjmNVwu6IJC28gGcetVPNsC+PgiqWs9JabqgJLWWYn2wlfFS0HHqzSeeJZfl5XdDwrdfnoQYmSjeqGA68oZYeRtVkwW3ujGG7gW10hFay5AtWutXysis0hTMoLSqwjy7Yw6lKv5mTFPBjGv/3ivD0MwWKXsHQ2lwYPbDq1UQ3jzSQ7IyY8FxSTATCtJAL4HW8Yp+JJQoILQxWTnvm1EFgm/YB6A1OZhNQ9/mWAtUPGoRQ+xgEpkVFpOf4JEWpseM/eaw/pOwaK1if6g/XY3ZA1r9M2qp+i4CAm0YhOaO7787CXrpJODzgZAYg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4465.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8936002)(83380400001)(66946007)(66476007)(66556008)(64756008)(66446008)(8676002)(71200400001)(186003)(2906002)(76116006)(508600001)(7696005)(52536014)(86362001)(316002)(5660300002)(38100700002)(55016002)(53546011)(6506007)(38070700005)(6636002)(26005)(33656002)(9686003)(110136005)(122000001);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: R4Wvyp/pM04UeXynAwXK317FY6X1qvRLZIaJxQpS/dCYp+1poeN7fdCXKjGuZ8gQrm0SUXGMO76uD/1H+1PEN2rjOBi2CS/NzIlEL8nRMMEJVJNByh25Pv5m90OA2K6yoD/mvmSfGRsO5HwRr3aQjqMHDt9FGR1I5nEXGcpZigANVzk0P8yk8mMD2SfnvZTRyn7ziIqvvcuSCADhypZO2PVmlMuYIuJd/auVGlihx6jnbVaH5FooyIh2MErSQKm+544qXhVb9tbKtsT+Z9gefCb39N56olnbmw3Bmh6tppX4jNbtD8n0oYupHG1fZl/p2KXgFz05IrKC5SidXnq+yoEknSCT3sQGfR2H/AbOHxxoXc5M1eI9SzhrNBhC25fimm64WD6p7KMl1KrZEgA0/awQ+TTJAAzesH+VHoDZrxlUzedEtCKELdZritS9J8dHAIqn+X8VRrYOV9mITB3fduAMNVby6GhOmNTBYbiJW4TLJZVzsiHru+HGtDioh2spLxgNFjxN1U7YxYsnE/9UoC5tRlIZrpYa835+cNfm15+iZByf2tyED1/0BJtqbNEcabcoAjtuxSeYFN9jfgQeoLHusC4D8WBIEM3FL4nqGL6CDY6t54zfoQy8oC83xleQ9MVfgTHYL3aFf+gdAhIBLIswesW7qLZCEcuLk43uj+DCX9GX/CHeyUrD128AC5tsJHpnO0HP15Hq0QnV7HNbiw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4465.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(76116006)(66446008)(64756008)(66476007)(66556008)(38070700005)(66946007)(122000001)(71200400001)(86362001)(38100700002)(9686003)(55016002)(83380400001)(5660300002)(26005)(33656002)(6506007)(8936002)(186003)(53546011)(508600001)(7696005)(52536014)(2906002)(110136005)(6636002)(316002)(8676002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?JdVMO2uFe5AsKZBJrlVcRp1aiMbqKtUE85eT2c4mvM75vhCZIKifni0swdRN?=
- =?us-ascii?Q?24tkMoJVIXGC02mIwV9gEfbCkMtF6rVewdlVRJ9/oXJC395mXsgQJfa49Nct?=
- =?us-ascii?Q?fi0lAGzOot+1yBtHFriFo25qiUyx5hNR3m60Z+n4vm39pjhcAlyRUVyDa8wH?=
- =?us-ascii?Q?KXKA6gIYb99LhzgQsF6bV2jAWVMR9xSN7zv1ovCSijwOAcGH/alEJacrLs0Z?=
- =?us-ascii?Q?aWImmCYJh5IAmAMgJ04KLa+7Awi2kEWgt+TATeMOhZE82CSVDpeWJGtVNQDO?=
- =?us-ascii?Q?pDCJaBlnh8iA4JTJGNFkgT4vDaftXpvrKgBWbwSIWjiD1xo6rjp3QHHSv+l7?=
- =?us-ascii?Q?ZTEswzmEFcWA/AwUzBF7W0FGkwattinxq+BVgbPGZJCeq27x0hqleetkdDyL?=
- =?us-ascii?Q?jgu8YY40Lben/PlVThYoQqVGW1fFeQCDqD+xtefnusGHDo8SYfuUZ7Xl+ZI8?=
- =?us-ascii?Q?vdSP9xazb7LTEmYqInV/BhUSW16MBBPL2HqYnBkSISpD6CT1Myz/mbTHqwQr?=
- =?us-ascii?Q?A6JSY5i4zFnAUIOJJ0EmQPFinP391YDQqeaFDNKXr3NkmqxGQaf+5OXBE8YG?=
- =?us-ascii?Q?widH3afVr1znoONKMTLWP3zF2Trvs6xnjo+gRDlP1rZtYh6nDr1KNcBOIssb?=
- =?us-ascii?Q?BkmvnTlZ7Kl7up5rUoVlF+d8Sf1KCeyfAYTRLL5HwxAUl0zMxbPCajLzou21?=
- =?us-ascii?Q?qdgKQOAcMIPHUQsKo7GRY0x7VYhLrcSV2o9jymrEzBQ1lehheiHmVwjEYphT?=
- =?us-ascii?Q?ijzu4XkjPqTUcbuyzPbmgz0oezshURE76Y4VOpM6EocB0xtg1l6D4XXjHD4N?=
- =?us-ascii?Q?ECLR9VQ8g0faNh0a4QAqiHnZxLn07isNB8HVZ6Q9xvFUBusm/Xc62lnY/0hw?=
- =?us-ascii?Q?KlJDInKPnTa6or+0UAiaHv0sz7SR6cI9XzoPOP1o+1frMkXGp+2HhBL/CtHS?=
- =?us-ascii?Q?MBglJ6MX0B8oZKXIce8c3YSL4pLAgLFBUz2dy7Q8nghgqb+31yP3FbqOO1BL?=
- =?us-ascii?Q?Ny45eyGvTFbgZPyS0cJclwPhTedBdzCzBd/jJLRCa8+2BP3WqdUfMwjnSmQ9?=
- =?us-ascii?Q?2XtADHfhORydq8hZFXFeOj7/kYfX7i7BdR8SWjgUPqf+pbtHfu0rWFW5WeqP?=
- =?us-ascii?Q?/7FEGfS+qY5/49PaEEHxezP/bHq1ygQoGkyx4JTQdXec9X1+NC2lww9uNAqv?=
- =?us-ascii?Q?tuQpVMpQjWn5J2rfEG56X1l+ACTDDNjRot0anjupw+PZHyfOo5bL3nPgnHjY?=
- =?us-ascii?Q?wOuBHZ84tySnNToqAXVzzrhQpNcGAvxfl0hBK8ljXL/SqYrydQ1/UnjyhRLE?=
- =?us-ascii?Q?h3oL1cf/OtYI9exhslR2kE3k?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?urSg7xt7mT2sboFPJO9nLskhcowGKG/zCqxigLvWcvr8F108iTq65fQbAqwl?=
+ =?us-ascii?Q?vDtTCgwzD9201GCHo9d2fYaWoNVBp9E9/eIdHV02iPuIYSP8baYCg/uHj968?=
+ =?us-ascii?Q?AG4olE4ccqlUBi+MKOVP+u7vqLO2rwg4Q4fNGc1y0i4hVrdLX1d7LkUqXW6j?=
+ =?us-ascii?Q?avGK4Nd2d3/HPFt5YOKkDuvnR58cwzCLyJ9BcAWIBvvuLzb1V0lLbZwbJkhi?=
+ =?us-ascii?Q?JkLXgOrnCT/lEN4GrNvyKPuaGp+7AynjTEXd/OYi92rysTB2JKomYUUdqZzD?=
+ =?us-ascii?Q?oMiqdkgmYB5EZBBcBOKXsLTcSI831nYiHwTwTfR9Cyx2zf36RMf/g1uKFq/Z?=
+ =?us-ascii?Q?4iw8lHzVf2RUDALSxl4oLXyKLoNbs8vB+RVFOHT1HC+HlrTnM6RdWYEOuNIM?=
+ =?us-ascii?Q?psddTTPLb008Aa1qjkaVqsBsEVP3qV6a6MFIpy1xiCJBKNeghzptW7K1yfuk?=
+ =?us-ascii?Q?wDxYbqSC1h2y/nmCL/0COhSBR3rEGL4HI3vbcx/FiWfA9nfoWyK5LVz1Murl?=
+ =?us-ascii?Q?lHYmcIueySB8TYC86McJIz7EF/QnGsCcwtSDvQ1pihoVvbNCH8kcK7S8lnFB?=
+ =?us-ascii?Q?xymvrwQD9J0PaVPOFwlyt1qbzVnZpQhNmE1a3sN7Okm+Yj6eH376kdp6YS7x?=
+ =?us-ascii?Q?B+RRjpUjAg1UeEd3jtsySaquH1YNkZBAwduF/aOYLp3PDVPkEG9ECOjgE6PD?=
+ =?us-ascii?Q?lV3bGtuUeYaB0+Phyis0dHtqPO2bi1gMxkPKmXdGfdOpnhWaby65N84ZVBXi?=
+ =?us-ascii?Q?x4K2iMY8lPAd/5ZcU2XpHTzpDpBlvUojExiecMwhUMms3C21PtEIDsEXhdac?=
+ =?us-ascii?Q?0cd41eA4m4atW81XGRrmJjf4blXpj//rUKRSI3ocJ5VOfVZRARyW1eMqRX8f?=
+ =?us-ascii?Q?YaiYg2GQD7JW0r2w++A+1eEXe/+DpzEugnO9vrfjGt4WiMZt4TPJLuCpQcPz?=
+ =?us-ascii?Q?q2fCc8QUriP8yPlnuYQ/XnKhaj97kO10dfc7BqJUKydfiGy3w6Yrbr7YEFFf?=
+ =?us-ascii?Q?2c0rZxCRvT91qunR4gYjW9r0L+5HSvfhcxRruueGDseS9qym/xPgIMNx0w7s?=
+ =?us-ascii?Q?B2XgjVClc3R7Do2SYGg7XTadZheDUNp4qoVnSiXqffFr8giXAuaTCyDl9GrJ?=
+ =?us-ascii?Q?BzoPaLj1ILChV/Oao6O99UWaO13yDfiGXYkUx9mBms9QHWpUx7UaTbXiOMsi?=
+ =?us-ascii?Q?quXiqTiOskuMwPOAFZXlBSrN7CBqdPXP15+OamvpkRaCKmJacWNlbak7KNMF?=
+ =?us-ascii?Q?haaxmvr09KW2ElAhTBlwHPRJhTjopnDQWsZ0Q4jWZeGARJsaNYsEnHtRuUBJ?=
+ =?us-ascii?Q?GW559A7HNlKtIFEnTacZKzQo?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: marvell.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB4465.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1a57abd-c5e8-4b60-68c7-08d98d568b65
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 08:01:49.2778
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2048006-3438-4ac9-9814-08d98d569823
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 08:02:10.6837
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XG0m+9g36OmiExxpZcpVyFUjNWiY/ZhHV5qrM89cc22+1TWLAvFuavUcYM70lufGI9o8K+IwBNkXBWGuJMbQQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR18MB4697
-X-Proofpoint-ORIG-GUID: bLgi-t7BSzQdutL0H57GNFS2JReEIxoL
-X-Proofpoint-GUID: bLgi-t7BSzQdutL0H57GNFS2JReEIxoL
+X-MS-Exchange-CrossTenant-userprincipalname: pKXYqSiS/QClRcxSVEAoW7QXenQkj+dKMHrqgsNsrkZGooRB1El4LPfK/+fi1KA+LGUDCV/BmHpMlBHw8YC9Nw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR18MB4731
+X-Proofpoint-ORIG-GUID: kEfAwcmnp-VIEEctrAkb-jHzcQtfPv-d
+X-Proofpoint-GUID: kEfAwcmnp-VIEEctrAkb-jHzcQtfPv-d
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
  definitions=2021-10-12_01,2021-10-11_01,2020-04-07_01
@@ -134,214 +132,142 @@ Adding Bhaskara
 > kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
 > kernel@vger.kernel.org
 > Cc: Bharat Bhushan <bbhushan2@marvell.com>
-> Subject: [PATCH v4 3/4] perf/marvell: cn10k DDR perfmon event overflow
-> handling
+> Subject: [PATCH v4 4/4] perf/marvell: cn10k DDR perf event core ownership
 >=20
-> CN10k DSS h/w perfmon does not support event overflow interrupt, so perio=
-dic
-> timer is being used. Each event counter is 48bit, which in worst case sce=
-nario can
-> increment at maximum 5.6 GT/s. At this rate it may take many hours to ove=
-rflow
-> these counters. Therefore polling period for overflow is set to 100 sec, =
-which can
-> be changed using sysfs parameter.
->=20
-> Two fixed event counters starts counting from zero on overflow, so overfl=
-ow
-> condition is when new count less than previous count. While eight
-> programmable event counters freezes at maximum value. Also individual cou=
-nter
-> cannot be restarted, so need to restart all eight counters.
+> As DDR perf event counters are not per core, so they should be accessed o=
+nly by
+> one core at a time. Select new core when previously owning core is going =
+offline.
 >=20
 > Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
 > ---
-> v3->v4:
->  - No Change
+> v1->v2->v3->v4:
+>  - No change
 >=20
-> v2->v3:
->  - uintXX_t -> uXX
->=20
-> v1->v2:
->  - No Change
->=20
->  drivers/perf/marvell_cn10k_ddr_pmu.c | 111 +++++++++++++++++++++++++++
->  1 file changed, 111 insertions(+)
+>  drivers/perf/marvell_cn10k_ddr_pmu.c | 50 ++++++++++++++++++++++++++--
+>  include/linux/cpuhotplug.h           |  1 +
+>  2 files changed, 49 insertions(+), 2 deletions(-)
 >=20
 > diff --git a/drivers/perf/marvell_cn10k_ddr_pmu.c
 > b/drivers/perf/marvell_cn10k_ddr_pmu.c
-> index 9b6d5e716b94..21fccb9090c5 100644
+> index 21fccb9090c5..bef0cee3a46a 100644
 > --- a/drivers/perf/marvell_cn10k_ddr_pmu.c
 > +++ b/drivers/perf/marvell_cn10k_ddr_pmu.c
-> @@ -11,6 +11,7 @@
->  #include <linux/of_address.h>
->  #include <linux/of_device.h>
->  #include <linux/perf_event.h>
-> +#include <linux/hrtimer.h>
->=20
->  /* Performance Counters Operating Mode Control Registers */
->  #define DDRC_PERF_CNT_OP_MODE_CTRL	0x8020
-> @@ -127,6 +128,7 @@ struct cn10k_ddr_pmu {
->  	struct	device *dev;
+> @@ -129,6 +129,7 @@ struct cn10k_ddr_pmu {
 >  	int active_events;
 >  	struct perf_event *events[DDRC_PERF_NUM_COUNTERS];
-> +	struct hrtimer hrtimer;
+>  	struct hrtimer hrtimer;
+> +	struct hlist_node node;
 >  };
 >=20
 >  #define to_cn10k_ddr_pmu(p)	container_of(p, struct cn10k_ddr_pmu, pmu)
-> @@ -251,6 +253,18 @@ static const struct attribute_group *cn10k_attr_grou=
-ps[]
-> =3D {
->  	NULL,
->  };
->=20
-> +/* Default poll timeout is 100 sec, which is very sufficient for
-> + * 48 bit counter incremented max at 5.6 GT/s, which may take many
-> + * hours to overflow.
-> + */
-> +static unsigned long cn10k_ddr_pmu_poll_period_sec =3D 100;
-> +module_param_named(poll_period_sec, cn10k_ddr_pmu_poll_period_sec,
-> +ulong, 0644);
-> +
-> +static ktime_t cn10k_ddr_pmu_timer_period(void) {
-> +	return ms_to_ktime((u64)cn10k_ddr_pmu_poll_period_sec *
-> USEC_PER_SEC);
-> +}
-> +
->  static int ddr_perf_get_event_bitmap(int eventid, u64 *event_bitmap)  {
->  	switch (eventid) {
-> @@ -433,6 +447,10 @@ static int cn10k_ddr_perf_event_add(struct perf_even=
-t
-> *event, int flags)
->  	pmu->active_events++;
->  	hwc->idx =3D counter;
->=20
-> +	if (pmu->active_events =3D=3D 1)
-> +		hrtimer_start(&pmu->hrtimer, cn10k_ddr_pmu_timer_period(),
-> +			      HRTIMER_MODE_REL_PINNED);
-> +
->  	if (counter < DDRC_PERF_NUM_GEN_COUNTERS) {
->  		/* Generic counters, configure event id */
->  		reg_offset =3D DDRC_PERF_CFG(counter);
-> @@ -484,6 +502,10 @@ static void cn10k_ddr_perf_event_del(struct perf_eve=
-nt
-> *event, int flags)
->  	cn10k_ddr_perf_free_counter(pmu, counter);
->  	pmu->active_events--;
->  	hwc->idx =3D -1;
-> +
-> +	/* Cancel timer when no events to capture */
-> +	if (pmu->active_events =3D=3D 0)
-> +		hrtimer_cancel(&pmu->hrtimer);
+> @@ -610,6 +611,24 @@ static enum hrtimer_restart
+> cn10k_ddr_pmu_timer_handler(struct hrtimer *hrtimer)
+>  	return HRTIMER_RESTART;
 >  }
 >=20
->  static void cn10k_ddr_perf_pmu_enable(struct pmu *pmu) @@ -502,6 +524,92
-> @@ static void cn10k_ddr_perf_pmu_disable(struct pmu *pmu)
->  		       DDRC_PERF_CNT_END_OP_CTRL);
->  }
->=20
-> +static void cn10k_ddr_perf_event_update_all(struct cn10k_ddr_pmu *pmu)
-> +{
-> +	struct hw_perf_event *hwc;
-> +	int i;
-> +
-> +	for (i =3D 0; i < DDRC_PERF_NUM_GEN_COUNTERS; i++) {
-> +		if (pmu->events[i] =3D=3D NULL)
-> +			continue;
-> +
-> +		cn10k_ddr_perf_event_update(pmu->events[i]);
-> +	}
-> +
-> +	/* Reset previous count as h/w counter are reset */
-> +	for (i =3D 0; i < DDRC_PERF_NUM_GEN_COUNTERS; i++) {
-> +		if (pmu->events[i] =3D=3D NULL)
-> +			continue;
-> +
-> +		hwc =3D &pmu->events[i]->hw;
-> +		local64_set(&hwc->prev_count, 0);
-> +	}
-> +}
-> +
-> +static irqreturn_t cn10k_ddr_pmu_overflow_handler(struct cn10k_ddr_pmu
-> +*pmu) {
-> +	struct perf_event *event;
-> +	struct hw_perf_event *hwc;
-> +	u64 prev_count, new_count;
-> +	u64 value;
-> +	int i;
-> +
-> +	event =3D pmu->events[DDRC_PERF_READ_COUNTER_IDX];
-> +	if (event) {
-> +		hwc =3D &event->hw;
-> +		prev_count =3D local64_read(&hwc->prev_count);
-> +		new_count =3D cn10k_ddr_perf_read_counter(pmu, hwc->idx);
-> +
-> +		/* Overflow condition is when new count less than
-> +		 * previous count
-> +		 */
-> +		if (new_count < prev_count)
-> +			cn10k_ddr_perf_event_update(event);
-> +	}
-> +
-> +	event =3D pmu->events[DDRC_PERF_WRITE_COUNTER_IDX];
-> +	if (event) {
-> +		hwc =3D &event->hw;
-> +		prev_count =3D local64_read(&hwc->prev_count);
-> +		new_count =3D cn10k_ddr_perf_read_counter(pmu, hwc->idx);
-> +
-> +		/* Overflow condition is when new count less than
-> +		 * previous count
-> +		 */
-> +		if (new_count < prev_count)
-> +			cn10k_ddr_perf_event_update(event);
-> +	}
-> +
-> +	for (i =3D 0; i < DDRC_PERF_NUM_GEN_COUNTERS; i++) {
-> +		if (pmu->events[i] =3D=3D NULL)
-> +			continue;
-> +
-> +		value =3D cn10k_ddr_perf_read_counter(pmu, i);
-> +		if (value =3D=3D DDRC_PERF_CNT_MAX_VALUE) {
-> +			pr_info("Counter-(%d) reached max value\n", i);
-> +			cn10k_ddr_perf_event_update_all(pmu);
-> +			cn10k_ddr_perf_pmu_disable(&pmu->pmu);
-> +			cn10k_ddr_perf_pmu_enable(&pmu->pmu);
-> +		}
-> +	}
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static enum hrtimer_restart cn10k_ddr_pmu_timer_handler(struct hrtimer
-> +*hrtimer) {
-> +	struct cn10k_ddr_pmu *pmu =3D container_of(hrtimer, struct
+> +static int cn10k_ddr_pmu_offline_cpu(unsigned int cpu, struct
+> +hlist_node *node) {
+> +	struct cn10k_ddr_pmu *pmu =3D hlist_entry_safe(node, struct
 > cn10k_ddr_pmu,
-> +						 hrtimer);
-> +	unsigned long flags;
+> +						     node);
+> +	unsigned int target;
 > +
-> +	local_irq_save(flags);
-> +	cn10k_ddr_pmu_overflow_handler(pmu);
-> +	local_irq_restore(flags);
+> +	if (cpu !=3D pmu->cpu)
+> +		return 0;
 > +
-> +	hrtimer_forward_now(hrtimer, cn10k_ddr_pmu_timer_period());
-> +	return HRTIMER_RESTART;
+> +	target =3D cpumask_any_but(cpu_online_mask, cpu);
+> +	if (target >=3D nr_cpu_ids)
+> +		return 0;
+> +
+> +	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
+> +	pmu->cpu =3D target;
+> +	return 0;
 > +}
 > +
 >  static int cn10k_ddr_perf_probe(struct platform_device *pdev)  {
 >  	struct cn10k_ddr_pmu *ddr_pmu;
-> @@ -550,6 +658,9 @@ static int cn10k_ddr_perf_probe(struct platform_devic=
-e
-> *pdev)
->  	if (!name)
->  		return -ENOMEM;
->=20
-> +	hrtimer_init(&ddr_pmu->hrtimer, CLOCK_MONOTONIC,
+> @@ -661,18 +680,31 @@ static int cn10k_ddr_perf_probe(struct
+> platform_device *pdev)
+>  	hrtimer_init(&ddr_pmu->hrtimer, CLOCK_MONOTONIC,
 > HRTIMER_MODE_REL);
-> +	ddr_pmu->hrtimer.function =3D cn10k_ddr_pmu_timer_handler;
+>  	ddr_pmu->hrtimer.function =3D cn10k_ddr_pmu_timer_handler;
+>=20
+> +	cpuhp_state_add_instance_nocalls(
+> +
+> 	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
+> +				&ddr_pmu->node);
 > +
 >  	ret =3D perf_pmu_register(&ddr_pmu->pmu, name, -1);
 >  	if (ret)
->  		return ret;
+> -		return ret;
+> +		goto error;
+>=20
+>  	pr_info("CN10K DDR PMU Driver for ddrc@%llx\n", res->start);
+>  	return 0;
+> +error:
+> +	cpuhp_state_remove_instance_nocalls(
+> +
+> 	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
+> +				&ddr_pmu->node);
+> +	return ret;
+>  }
+>=20
+>  static int cn10k_ddr_perf_remove(struct platform_device *pdev)  {
+>  	struct cn10k_ddr_pmu *ddr_pmu =3D platform_get_drvdata(pdev);
+>=20
+> +	cpuhp_state_remove_instance_nocalls(
+> +
+> 	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
+> +				&ddr_pmu->node);
+> +
+>  	perf_pmu_unregister(&ddr_pmu->pmu);
+>  	return 0;
+>  }
+> @@ -695,12 +727,26 @@ static struct platform_driver cn10k_ddr_pmu_driver =
+=3D {
+>=20
+>  static int __init cn10k_ddr_pmu_init(void)  {
+> -	return platform_driver_register(&cn10k_ddr_pmu_driver);
+> +	int ret;
+> +
+> +	ret =3D cpuhp_setup_state_multi(
+> +
+> 	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
+> +				"perf/marvell/cn10k/ddr:online", NULL,
+> +				cn10k_ddr_pmu_offline_cpu);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D platform_driver_register(&cn10k_ddr_pmu_driver);
+> +	if (ret)
+> +		cpuhp_remove_multi_state(
+> +
+> 	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
+> +	return ret;
+>  }
+>=20
+>  static void __exit cn10k_ddr_pmu_exit(void)  {
+>  	platform_driver_unregister(&cn10k_ddr_pmu_driver);
+> +
+> 	cpuhp_remove_multi_state(CPUHP_AP_PERF_ARM_MARVELL_CN10K_D
+> DR_ONLINE);
+>  }
+>=20
+>  module_init(cn10k_ddr_pmu_init);
+> diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h inde=
+x
+> 832d8a74fa59..a4b521f12b58 100644
+> --- a/include/linux/cpuhotplug.h
+> +++ b/include/linux/cpuhotplug.h
+> @@ -227,6 +227,7 @@ enum cpuhp_state {
+>  	CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE,
+>  	CPUHP_AP_PERF_ARM_APM_XGENE_ONLINE,
+>  	CPUHP_AP_PERF_ARM_CAVIUM_TX2_UNCORE_ONLINE,
+> +	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
+>  	CPUHP_AP_PERF_POWERPC_NEST_IMC_ONLINE,
+>  	CPUHP_AP_PERF_POWERPC_CORE_IMC_ONLINE,
+>  	CPUHP_AP_PERF_POWERPC_THREAD_IMC_ONLINE,
 > --
 > 2.17.1
 
