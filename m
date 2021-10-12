@@ -2,412 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4853A429FCD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36AF8429FD2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234611AbhJLIbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:31:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234484AbhJLIbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 04:31:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8014FC061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:29:14 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1maD9r-0004k7-1F; Tue, 12 Oct 2021 10:29:11 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1maD9o-0004Ur-OT; Tue, 12 Oct 2021 10:29:08 +0200
-Date:   Tue, 12 Oct 2021 10:29:08 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     alexandru.tachici@analog.com
-Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
-        hkallweit1@gmail.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, robh+dt@kernel.org,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: Re: [PATCH v3 4/8] net: phy: adin1100: Add initial support for
- ADIN1100 industrial PHY
-Message-ID: <20211012082908.GD938@pengutronix.de>
-References: <20211011142215.9013-1-alexandru.tachici@analog.com>
- <20211011142215.9013-5-alexandru.tachici@analog.com>
+        id S234713AbhJLIbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 04:31:36 -0400
+Received: from mail-eopbgr80043.outbound.protection.outlook.com ([40.107.8.43]:42525
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234549AbhJLIbf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 04:31:35 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oQWXE/lb8hk+ZKcjmh2payF7hPQgf2mztF8oqvgKByJFjsx+NFPDfHQG+zLAmPxaBlpS1d44hXQqYhqQAzMDwAnmC6tsSiJnC6nGoRHUH6OEGXPGJDJkFLjy7gX/RUpdW/8JJCUf4sZulw9YqWWIrWI7vGS/NCjFpEZ7Z+889o9LucK3n2+bFREYNbH/zFsSI4zRu0j3xiTCP2k92EPfgwcWCHF9rcFfSiy59O9olkTU+1hEIY2WloEx8WJs5R9xFKlBNG9SviBsPXqUhM52+vTu1GY4gmpEjM4RUmlpSWG+iLCqUmnFx28y4hH1wG3vAVVL22tkZRHbQ/8q4Op5yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=epjkbmIIhkl2yxbGEvfEILltIavqxX2X2JLqKjrjZKU=;
+ b=SDf6yiAXXpTizHie17eTQ3QdJkywyNwNWUWODOHiYpMVr4bOm5pUy1BZEx9VgChoxEyz1MmbMvun+ZWHnLG8CIpQeEeVCTzI3m5oA1Bki8pvJw18thLZA+55IXEdGhEtP3DDqUWDr3DiMbR63mm5j5pzen/iVluwl1N96UCdiozNQZ3xownEoiYwly/WJwROyS/wm4uEY1Nfn9OfQpnBfn7epeuu0tjIkHKFBH80uekIvY2LFGhtL2u4WriS5TPdZxePcvV60YyfImPat8ge/gmESUfxHa2QQvT7SsREIJCR66hM+m9YWkNcuv3t5IH0sntDlMMQYgPRadIp42918Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=epjkbmIIhkl2yxbGEvfEILltIavqxX2X2JLqKjrjZKU=;
+ b=KGpaiXopNlY9Yir804o0zbIvfoW3IwrV9f6w0MezQ1JHqe/nJqn7vZld8YKiEB8RACM2aZRBzNpdiegL3nHB0K0shqJee/A41hOJkANEPuaMxP/Ef03IRLX6kYRzvtkMBNrSS8jiiWl6WRjwzPRXCJ29BaJDRPAJYarCnX4mzQ4=
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by AS8PR04MB9141.eurprd04.prod.outlook.com (2603:10a6:20b:448::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Tue, 12 Oct
+ 2021 08:29:30 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::551d:cc86:4d67:587]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::551d:cc86:4d67:587%3]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
+ 08:29:30 +0000
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+CC:     Adam Ford <aford173@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kw@linux.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: RE: [PATCH 0/6] Add IMX8M Mini PCI support
+Thread-Topic: [PATCH 0/6] Add IMX8M Mini PCI support
+Thread-Index: AQHXhIed1aByXd/Pa0GD1Q7Hp2a0Y6tauTPAgBunrICAV8w/AIAAAWKAgAAx+gCAAKNrgA==
+Date:   Tue, 12 Oct 2021 08:29:30 +0000
+Message-ID: <AS8PR04MB8676E06CA5642DC75B2E8FA78CB69@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <20210723204958.7186-1-tharvey@gateworks.com>
+ <36070609-9f1f-00c8-ccf5-8ed7877b29da@pengutronix.de>
+ <VI1PR04MB58533AF76EA4DFD8AD6CDA158CEC9@VI1PR04MB5853.eurprd04.prod.outlook.com>
+ <CAJ+vNU1tgVsQWtxa0E8SArO=hA2K8OkqiSPrRSpx0Q5XS4gUWA@mail.gmail.com>
+ <CAHCN7xLC1ob_nxRsZezgYQ9p-me7hNd+1MNFQt2wtcRqU+z9Sw@mail.gmail.com>
+ <2eee557db84087acca4665603ba3d2716199f842.camel@pengutronix.de>
+ <CAJ+vNU2MCV9oVru5wPqCMJUwAxHtS8ANv=K2kW4TryOGQXxybA@mail.gmail.com>
+In-Reply-To: <CAJ+vNU2MCV9oVru5wPqCMJUwAxHtS8ANv=K2kW4TryOGQXxybA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: gateworks.com; dkim=none (message not signed)
+ header.d=none;gateworks.com; dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e56559ba-6ffe-4ab3-147e-08d98d5a6947
+x-ms-traffictypediagnostic: AS8PR04MB9141:
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AS8PR04MB914136AFBB8C616F79B966768CB69@AS8PR04MB9141.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7W3Ixn6sLN8RzDHtMLfcFjLl2funpxaCNvmKnNeNHvnsustWrTXUbii2C3KK3fv7lr5Th1SPop4yd6sW1/h5UxQq4TEw2qqMzO5c2jVgpFrUvJ9QcbOcStAfxqIuoLJzECjGr3VrMKTzK8abv+r2FZkb81GYhIkmfvvpLFsGFHKA7kBOtooimJngPxLvXJwq9YAsRfL/jzb/aoX2KwhKOckhHUR95iUbbdBJApExsehwQiI/yRy7sBLjQb4LFgTqLXXvryqZI2R6WPT0B6T6fX3SK/l0tEewL2Eeb8tJVfrG186l/VSpd4wvhCM150h33KVh0v/ygqFRle1LUUtaw94UKtWY9f8QZVvGhFqfv1fMja0UbCnsbnUr63Wf2X4DdSlCbdqVU4jK7/9l7QgGs+29rAm0FVqsVaqVzCsR1u7mEqo/sevqQj9Egtrb1RSLwocRiRjDL4RlZXHk4qkPpF54jtejwEgQrRu6qY45ppkPqzZ08pvq8xWbZA7jQQmjOBVQKn6QL+cn1pCfnGNpqNM7jMR9Z3BllzEkIpKqgLfIFtPvDua4goJtbPkdaYP+UKjrkDSCEa+QTWdAo9qi509FGNfRh36LPWAg/+aCg91TYnBSpQMIm4QLNtc1rc+Lts4JZ5j7K275GPXiEiqDAHZS5KUl0APbQwuz+vKAmELhu9HXHXXs9JUP8WjeQcZdRB0subC1F/buDP0l76WMir2iCwAVIywcX6ICiKkv0Yk3HmGT3ZSlVgbKI9gm6qNU6Nr6p1r0bhLycFFwXJ9NJhHVnXTq9S/4GVQK+VzJG0ruZak19eAeJsL3ALsarcTN
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66556008)(64756008)(71200400001)(66446008)(316002)(66574015)(53546011)(26005)(54906003)(186003)(110136005)(2906002)(66476007)(6506007)(7416002)(76116006)(7696005)(38070700005)(66946007)(9686003)(4326008)(45080400002)(38100700002)(86362001)(8676002)(966005)(5660300002)(55016002)(52536014)(508600001)(122000001)(33656002)(83380400001)(8936002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?YIQZ0FeG4kCAUerTfjCPW2a+OdHs+kBn5HvS4Imb/3Hb1rKHEIkXcOyNgM?=
+ =?iso-8859-2?Q?O5cV0VE/I9bJ3Qem34WyClKDHkTWuNPMXo9CvOVoREe+Iw9XKx7eqnOziD?=
+ =?iso-8859-2?Q?T7grpuK/eIz3vWv+hVkBX00ibG8zA0kGUITp3oqpPyZK5Wv3lTxmhtvzVH?=
+ =?iso-8859-2?Q?HDzlu5jUmJ0Q5k3IQX6tQhyBBviWMFuNHCRKfb+oa5Z0uyRyJzTidWXJZR?=
+ =?iso-8859-2?Q?Zy/+GeSxMbAACWPz0V/1vzsJ+kfNsZcYtf/8gqOPEqz2FfBDUGh6qWcmtQ?=
+ =?iso-8859-2?Q?Lcr+9wO8RKAfiyAjlsgTEfR5vgMyQAupkH1c+iEN8wNT96DXx8EBGdWnv9?=
+ =?iso-8859-2?Q?6ZR86QniIZiDfESyxFqbqXU4fuk3wOiR8ng72nqnbeGgP4Frl7Hcv2G2Tu?=
+ =?iso-8859-2?Q?2JgypdeBi4zyBXHaH7nYs1hzBaKBwFjdwSkmBWAu1vyZQhN+KrBYt9sCtN?=
+ =?iso-8859-2?Q?UQUo700hS54776g8j6eWWJiqphK32pYminrVdkCNuGSlBmAsniV/AKrxI8?=
+ =?iso-8859-2?Q?fjto6b4gZyy9P43T3yHTGuSuSCfJ+M9oWl6wSszSbGqNJasjhe2rjFdC1P?=
+ =?iso-8859-2?Q?0w3oCkI2dEFLp+4B7zspAYhbEsFQUIumjO4AaqAbOWqgBN9p+5RC/99x0q?=
+ =?iso-8859-2?Q?FxuYZLNXFXTUZXd5lFkMEqEx15MW+GbJt7tow0JfTxZC6sx69cL7MPeVZH?=
+ =?iso-8859-2?Q?KLpJaIxVHQiYUfPrND/8UIBDFMNm4CY+ph5qSToMtS+RF/r0HmW+AxuAME?=
+ =?iso-8859-2?Q?HnqWVbbTeDH4uahbMNh1qF2VJgQIrxrf/LVnahbbnW+yGIUAbNbUfoNTLw?=
+ =?iso-8859-2?Q?S9q18BQeTjY7ObVjqShg/imdHus+E3n7nZ5CIZ0W+Nbl7YV4+H61VKv5QN?=
+ =?iso-8859-2?Q?1PJi9aXLmSxREKKEv0Ursq1smYHRVwyyLEfm/VOzi1/mpwABRPm5dPGDtn?=
+ =?iso-8859-2?Q?cLVmQntiS1lWEJKbnv6cePJOu9NCjiLm+CTKPVixcDFigmqVc2vQyI5ZSa?=
+ =?iso-8859-2?Q?508755uovjR1vuuayCyBU+PDaYxIAJTlTeeX3nZ+faZR8mqaZQNGkfomAm?=
+ =?iso-8859-2?Q?+/61UfFd8grtw1L/Y8MFzhU/TQyv7spTltj9fUJn54nZWbkXUpZRjkeazm?=
+ =?iso-8859-2?Q?sAI2NA8mE1sQ2hHShz90GVPeB0qhwT+C7iPAnQi1tnQr+ysGS1faqtNxr4?=
+ =?iso-8859-2?Q?7QPXoGM6fL61dS+9bjdvvPoq2TMqLFZtI4rlmkJun120F7eIh+hZvnh1pM?=
+ =?iso-8859-2?Q?WAkRYjv0900oC8dy2bO6KjOwA0g36MlgTFBp7pVsEgioQPYXR//QOnAOWW?=
+ =?iso-8859-2?Q?ytsA3hHsEz6CQH24L0y5UcJj/dN4g9Q/z0IEDbFaZ4cE0XOHLlupBh16cl?=
+ =?iso-8859-2?Q?fLWsq3mZoj?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211011142215.9013-5-alexandru.tachici@analog.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:19:51 up 236 days, 10:43, 125 users,  load average: 0.12, 0.19,
- 0.23
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e56559ba-6ffe-4ab3-147e-08d98d5a6947
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 08:29:30.1529
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wEEE9zhehlh7i+/2PPMQMJbw39lNfCtkpAqAJgSWVNfbxlW5dzHTg2mB2DIE4hnGip64aD+WtcNS1c7wB34/xw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9141
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 05:22:11PM +0300, alexandru.tachici@analog.com wrote:
-> From: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> 
-> The ADIN1100 is a low power single port 10BASE-T1L transceiver designed for
-> industrial Ethernet applications and is compliant with the IEEE 802.3cg
-> Ethernet standard for long reach 10 Mb/s Single Pair Ethernet.
-> 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> ---
->  drivers/net/phy/Kconfig    |   7 +
->  drivers/net/phy/Makefile   |   1 +
->  drivers/net/phy/adin1100.c | 279 +++++++++++++++++++++++++++++++++++++
->  3 files changed, 287 insertions(+)
->  create mode 100644 drivers/net/phy/adin1100.c
-> 
-> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> index 902495afcb38..2f65d39e0f2c 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -83,6 +83,13 @@ config ADIN_PHY
->  	  - ADIN1300 - Robust,Industrial, Low Latency 10/100/1000 Gigabit
->  	    Ethernet PHY
->  
-> +config ADIN1100_PHY
-> +	tristate "Analog Devices Industrial Ethernet T1L PHYs"
-> +	help
-> +	  Adds support for the Analog Devices Industrial T1L Ethernet PHYs.
-> +	  Currently supports the:
-> +	  - ADIN1100 - Robust,Industrial, Low Power 10BASE-T1L Ethernet PHY
-> +
->  config AQUANTIA_PHY
->  	tristate "Aquantia PHYs"
->  	help
-> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> index b2728d00fc9a..b82651b57043 100644
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -31,6 +31,7 @@ sfp-obj-$(CONFIG_SFP)		+= sfp-bus.o
->  obj-y				+= $(sfp-obj-y) $(sfp-obj-m)
->  
->  obj-$(CONFIG_ADIN_PHY)		+= adin.o
-> +obj-$(CONFIG_ADIN1100_PHY)	+= adin1100.o
->  obj-$(CONFIG_AMD_PHY)		+= amd.o
->  aquantia-objs			+= aquantia_main.o
->  ifdef CONFIG_HWMON
-> diff --git a/drivers/net/phy/adin1100.c b/drivers/net/phy/adin1100.c
-> new file mode 100644
-> index 000000000000..dc5c1987dc43
-> --- /dev/null
-> +++ b/drivers/net/phy/adin1100.c
-> @@ -0,0 +1,279 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + *  Driver for Analog Devices Industrial Ethernet T1L PHYs
-> + *
-> + * Copyright 2020 Analog Devices Inc.
-> + */
-> +#include <linux/kernel.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/errno.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/mii.h>
-> +#include <linux/phy.h>
-> +#include <linux/property.h>
-> +
-> +#define PHY_ID_ADIN1100				0x0283bc81
-> +
-> +static const int phy_10_features_array[] = {
-> +	ETHTOOL_LINK_MODE_10baseT1L_Full_BIT,
-> +};
-> +
-> +#define ADIN_CRSM_SFT_RST			0x8810
-> +#define   ADIN_CRSM_SFT_RST_EN			BIT(0)
-> +
-> +#define ADIN_CRSM_SFT_PD_CNTRL			0x8812
-> +#define   ADIN_CRSM_SFT_PD_CNTRL_EN		BIT(0)
-> +
-> +#define ADIN_CRSM_STAT				0x8818
-> +#define   ADIN_CRSM_SFT_PD_RDY			BIT(1)
-> +#define   ADIN_CRSM_SYS_RDY			BIT(0)
-> +
-> +/**
-> + * struct adin_priv - ADIN PHY driver private data
-> + * tx_level_2v4_able		set if the PHY supports 2.4V TX levels (10BASE-T1L)
-> + * tx_level_2v4			set if the PHY requests 2.4V TX levels (10BASE-T1L)
-> + * tx_level_prop_present	set if the TX level is specified in DT
-> + */
-> +struct adin_priv {
-> +	unsigned int		tx_level_2v4_able:1;
-> +	unsigned int		tx_level_2v4:1;
-> +	unsigned int		tx_level_prop_present:1;
-> +};
-> +
-> +static void adin_mii_adv_m_to_ethtool_adv_t(unsigned long *advertising, u32 adv)
-> +{
-> +	if (adv & MDIO_AN_T1_ADV_M_B10L)
-> +		linkmode_set_bit(ETHTOOL_LINK_MODE_10baseT1L_Full_BIT, advertising);
-> +}
 
-Please extend genphy_c45_pma_read_abilities() to set 10baseT1L_Full_BIT.
+> -----Original Message-----
+> From: Tim Harvey <tharvey@gateworks.com>
+> Sent: Monday, October 11, 2021 11:29 PM
+> To: Lucas Stach <l.stach@pengutronix.de>; Richard Zhu
+> <hongxing.zhu@nxp.com>
+> Cc: Adam Ford <aford173@gmail.com>; Ahmad Fatoum
+> <a.fatoum@pengutronix.de>; Bjorn Helgaas <bhelgaas@google.com>; Rob
+> Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> Hauer <s.hauer@pengutronix.de>; Pengutronix Kernel Team
+> <kernel@pengutronix.de>; Fabio Estevam <festevam@gmail.com>;
+> dl-linux-imx <linux-imx@nxp.com>; linux-pci@vger.kernel.org;
+> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
+> linux-kernel@vger.kernel.org; Krzysztof Wilczy=F1ski <kw@linux.com>; Lore=
+nzo
+> Pieralisi <lorenzo.pieralisi@arm.com>
+> Subject: Re: [PATCH 0/6] Add IMX8M Mini PCI support
+>=20
+> On Mon, Oct 11, 2021 at 5:30 AM Lucas Stach <l.stach@pengutronix.de>
+> wrote:
+> >
+> > Hi Adam,
+> >
+> > Am Montag, dem 11.10.2021 um 07:25 -0500 schrieb Adam Ford:
+> > > On Mon, Aug 16, 2021 at 10:45 AM Tim Harvey <tharvey@gateworks.com>
+> wrote:
+> > > >
+> > > > On Thu, Jul 29, 2021 at 6:28 PM Richard Zhu <hongxing.zhu@nxp.com>
+> wrote:
+> > > > >
+> > > > > Hi Tim:
+> > > > > Just as Ahmad mentioned, Lucas had issue one patch-set to support
+> i.MX8MM PCIe.
+> > > > > Some comments in the review cycle.
+> > > > > - One separate PHY driver should be used for i.MX8MM PCIe driver.
+> > > > > - Schema file should be used I think, otherwise the .txt file in =
+the
+> dt-binding.
+> > > > >
+> > > > > I'm preparing one patch-set, but it's relied on the yaml file exc=
+hanges
+> and power-domain changes(block control and so on).
+> > > > > Up to now, I only walking on the first step, trying to exchange t=
+he
+> dt-binding files to schema yaml file.
+> > > > >
+> > > > > Best Regards
+> > > > > Richard Zhu
+> > > >
+> > > > Richard / Ahmad,
+> > > >
+> > > > Thanks for your response - I did not see the series from Lucas. I
+> > > > will drop this and wait for him to complete his work.
+> > > >
+> > >
+> > > Tim,
+> > >
+> > > It appears that the power domain changes have been applied to
+> > > Shawn's for-next branch:
+> > > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fg=
+i
+> > >
+> t.kernel.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fshawnguo%2Flinux.
+> g
+> > >
+> it%2Flog%2F%3Fh%3Dfor-next&amp;data=3D04%7C01%7Chongxing.zhu%40nx
+> p.com
+> > > %7C1e298d5c31594e5a09df08d98ccbef7a%7C686ea1d3bc2b4c6fa92cd9
+> 9c5c3016
+> > >
+> 35%7C0%7C0%7C637695629794787625%7CUnknown%7CTWFpbGZsb3d8ey
+> JWIjoiMC4w
+> > >
+> LjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&a
+> mp;sd
+> > >
+> ata=3DPY2%2Bvr3s6K5O18lQ9SLY5YCqZHR7Fa%2F2RrbJ%2B041CBU%3D&amp;
+> reserve
+> > > d=3D0
+> > >
+> > > Is there any chance you could rebase and resend this series?
+> >
+> > This wasn't about the power domain series. I also tried to get i.MX8M
+> > PCIe upstream, but the feedback was that we need to split out the PHY
+> > functionality, Richard is currently working on this. There is no point
+> > in resending this series.
+> >
+>=20
+> Lucas,
+>=20
+> Thanks for the update.
+>=20
+> Richard - please Cc me when you submit as I have several boards to test
+> IMX8MM PCI with, some with PCI bridges and some without.
+[Richard Zhu] Ok, no problem. I would CC you when I issued the v3 patch-set=
+ later.
+Thanks.
 
-It is already doing most of needed work:
-..
-  if (val & MDIO_PMA_STAT2_EXTABLE) {
-          val = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_EXTABLE);
-	  // This is 45.2.1.10 PMA/PMD extended ability register (Register 1.11)
-	  // You should test for bit 1.11.11 and read register register 1.18
-	  // to set missing abilities.
-
-> +static int adin_read_lpa(struct phy_device *phydev)
-> +{
-> +	int val;
-> +
-> +	linkmode_zero(phydev->lp_advertising);
-> +
-> +	val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_STAT);
-> +	if (val < 0)
-> +		return val;
-> +
-> +	if (!(val & MDIO_AN_STAT1_COMPLETE)) {
-> +		phydev->pause = 0;
-> +		phydev->asym_pause = 0;
-> +
-> +		return 0;
-> +	}
-> +
-> +	linkmode_set_bit(ETHTOOL_LINK_MODE_Autoneg_BIT,
-> +			 phydev->lp_advertising);
-> +
-> +	/* Read the link partner's base page advertisement */
-> +	val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_LP_L);
-> +	if (val < 0)
-> +		return val;
-> +
-> +	phydev->pause = val & MDIO_AN_T1_LP_L_PAUSE_CAP ? 1 : 0;
-> +	phydev->asym_pause = val & MDIO_AN_T1_LP_L_PAUSE_ASYM ? 1 : 0;
-> +
-> +	val = phy_read_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_LP_M);
-> +	if (val < 0)
-> +		return val;
-> +
-> +	adin_mii_adv_m_to_ethtool_adv_t(phydev->lp_advertising, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int adin_read_status(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = genphy_c45_read_link(phydev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phydev->speed = SPEED_UNKNOWN;
-> +	phydev->duplex = DUPLEX_UNKNOWN;
-> +	phydev->pause = 0;
-> +	phydev->asym_pause = 0;
-> +
-> +	if (phydev->autoneg == AUTONEG_ENABLE) {
-> +		ret = adin_read_lpa(phydev);
-> +		if (ret)
-> +			return ret;
-> +
-> +		phy_resolve_aneg_linkmode(phydev);
-> +	} else {
-> +		/* Only one mode & duplex supported */
-> +		linkmode_zero(phydev->lp_advertising);
-> +		phydev->speed = SPEED_10;
-> +		phydev->duplex = DUPLEX_FULL;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int adin_config_aneg(struct phy_device *phydev)
-> +{
-> +	struct adin_priv *priv = phydev->priv;
-> +	int ret;
-> +
-> +	/* No sense to continue if auto-neg is disabled,
-> +	 * only one link-mode supported.
-> +	 */
-> +	if (phydev->autoneg == AUTONEG_DISABLE)
-> +		return 0;
-> +
-> +	/* Request increased transmit level from LP. */
-> +	if (priv->tx_level_prop_present && priv->tx_level_2v4) {
-> +		ret = phy_set_bits_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_ADV_H,
-> +				       MDIO_AN_T1_ADV_H_10L_TX_HI |
-> +				       MDIO_AN_T1_ADV_H_10L_TX_HI_REQ);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	/* Disable 2.4 Vpp transmit level. */
-> +	if ((priv->tx_level_prop_present && !priv->tx_level_2v4) || !priv->tx_level_2v4_able) {
-> +		ret = phy_clear_bits_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_ADV_H,
-> +					 MDIO_AN_T1_ADV_H_10L_TX_HI |
-> +					 MDIO_AN_T1_ADV_H_10L_TX_HI_REQ);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return phy_set_bits_mmd(phydev, MDIO_MMD_AN, MDIO_AN_T1_CTRL, BMCR_ANRESTART);
-> +}
->
-> +static int adin_set_powerdown_mode(struct phy_device *phydev, bool en)
-> +{
-> +	int ret;
-> +	int val;
-> +
-> +	if (en)
-> +		val = ADIN_CRSM_SFT_PD_CNTRL_EN;
-> +	else
-> +		val = 0;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> +			    ADIN_CRSM_SFT_PD_CNTRL, val);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, ADIN_CRSM_STAT, ret,
-> +					 (ret & ADIN_CRSM_SFT_PD_RDY) == val,
-> +					 1000, 30000, true);
-> +}
-> +
-> +static int adin_suspend(struct phy_device *phydev)
-> +{
-> +	return adin_set_powerdown_mode(phydev, true);
-> +}
-> +
-> +static int adin_resume(struct phy_device *phydev)
-> +{
-> +	return adin_set_powerdown_mode(phydev, false);
-> +}
-> +
-> +static int adin_set_loopback(struct phy_device *phydev, bool enable)
-> +{
-> +	if (enable)
-> +		return phy_set_bits_mmd(phydev, MDIO_MMD_PCS, MDIO_PCS_10T1L_CTRL,
-> +					BMCR_LOOPBACK);
-> +
-> +	/* PCS loopback (according to 10BASE-T1L spec) */
-> +	return phy_clear_bits_mmd(phydev, MDIO_MMD_PCS, MDIO_PCS_10T1L_CTRL,
-> +				 BMCR_LOOPBACK);
-> +}
-> +
-> +static int adin_soft_reset(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = phy_set_bits_mmd(phydev, MDIO_MMD_VEND1, ADIN_CRSM_SFT_RST, ADIN_CRSM_SFT_RST_EN);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1, ADIN_CRSM_STAT, ret,
-> +					 (ret & ADIN_CRSM_SYS_RDY),
-> +					 10000, 30000, true);
-> +}
-> +
-> +static int adin_get_features(struct phy_device *phydev)
-> +{
-> +	struct adin_priv *priv = phydev->priv;
-> +	struct device *dev = &phydev->mdio.dev;
-> +	int ret;
-> +	u8 val;
-> +
-> +	ret = phy_read_mmd(phydev, MDIO_MMD_PMAPMD, MDIO_PMA_10T1L_STAT);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* This depends on the voltage level from the power source */
-> +	priv->tx_level_2v4_able = !!(ret & MDIO_PMA_10T1L_STAT_2V4_ABLE);
-> +
-> +	phydev_dbg(phydev, "PHY supports 2.4V TX level: %s\n",
-> +		   priv->tx_level_2v4_able ? "yes" : "no");
-> +
-> +	priv->tx_level_prop_present = device_property_present(dev, "10base-t1l-2.4vpp");
-> +	if (priv->tx_level_prop_present) {
-> +		ret = device_property_read_u8(dev, "10base-t1l-2.4vpp", &val);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		priv->tx_level_2v4 = val;
-> +		if (!priv->tx_level_2v4 && priv->tx_level_2v4_able)
-> +			phydev_info(phydev,
-> +				    "PHY supports 2.4V TX level, but disabled via config\n");
-> +	}
-> +
-> +	linkmode_set_bit_array(phy_basic_ports_array, ARRAY_SIZE(phy_basic_ports_array),
-> +			       phydev->supported);
-> +
-> +	linkmode_set_bit_array(phy_10_features_array, ARRAY_SIZE(phy_10_features_array),
-> +			       phydev->supported);
-> +
-> +	return 0;
-> +}
-> +
-> +static int adin_probe(struct phy_device *phydev)
-> +{
-> +	struct device *dev = &phydev->mdio.dev;
-> +	struct adin_priv *priv;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	phydev->priv = priv;
-> +
-> +	return 0;
-> +}
-> +
-
-Without spending too much time on review right now, I would expect that
-most of this code should got to the drivers/net/phy/phy-c45.c
-
-> +static struct phy_driver adin_driver[] = {
-> +	{
-> +		PHY_ID_MATCH_MODEL(PHY_ID_ADIN1100),
-> +		.name			= "ADIN1100",
-> +		.get_features		= adin_get_features,
-> +		.soft_reset		= adin_soft_reset,
-> +		.probe			= adin_probe,
-> +		.config_aneg		= adin_config_aneg,
-> +		.read_status		= adin_read_status,
-> +		.set_loopback		= adin_set_loopback,
-> +		.suspend		= adin_suspend,
-> +		.resume			= adin_resume,
-> +	},
-> +};
-> +
-> +module_phy_driver(adin_driver);
-> +
-> +static struct mdio_device_id __maybe_unused adin_tbl[] = {
-> +	{ PHY_ID_MATCH_MODEL(PHY_ID_ADIN1100) },
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(mdio, adin_tbl);
-> +MODULE_DESCRIPTION("Analog Devices Industrial Ethernet T1L PHY driver");
-> +MODULE_LICENSE("Dual BSD/GPL");
-> -- 
-> 2.25.1
-> 
-
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Best Regards
+Richard Zhu>=20
+> Best regards,
+>=20
+> Tim
