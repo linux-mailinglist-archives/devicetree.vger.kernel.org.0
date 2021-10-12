@@ -2,125 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A598429FF5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A87C42A09B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235061AbhJLIeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:34:50 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:40122
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235084AbhJLIet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 04:34:49 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9575B3FFFC
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:32:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634027567;
-        bh=rxpJUqkEVuFsAxhh0zAsqbW2aumtYMUwejgjgmIhak4=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=uoI55WidR1GHHfUqTl2VIUbfiKyWRpWVDsZWROzMsJk7hwsPAYccQw1TX+yk9wKEl
-         RQJzZ4Se5nO0fO3jPPkIAVpZbPaglFBRiIY8AKMZhXijSG+EAWNNPRvxa24WHO0FUD
-         nUEEKnGrygeTPDzWek0yMOKkPCl4DKQav6OKe8zKDruuK5QhTmapYY4/VZfnwzs3yB
-         2qlz6w2GGML4gDrThupZBXRChxBvpcRSrreaVeVAh7CeUN6LrcVXxWKKwoBBSSCT6k
-         EpIE+RUoMrlFDYpJh/vK/FnW0X/360SGkFEtIoi2ytClHez8aE4hqdovamJIyqp0Z4
-         GJXD12/tLDKXQ==
-Received: by mail-lf1-f71.google.com with SMTP id i6-20020a056512318600b003fd8c8c2677so4369334lfe.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:32:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rxpJUqkEVuFsAxhh0zAsqbW2aumtYMUwejgjgmIhak4=;
-        b=GOqf7KxGEfZhuBsVVwsBcni1C/mox5V5L62/Czyk7Cm7jDbYrU+WhRVeJR8fhPGAaz
-         Fj+kFz1yX7pflAGDz0L/y8imHwJ3HVByWLB5Q+jFQrrt3hLfMl0dzGbcDrizHGChGMn+
-         08sTQISxcWELwPV63v9sQK1b1KqNrnjlOqQ8GLH9qmgBimMOOCZ7SDwTpmpcVptfNAXm
-         Ul0kO582RG+aIKBfHgR2UW/HIRQAxjJvU/LF3kVZ2/yqbuFYBmL8plTw9QmlFyg7o040
-         bYzzyrTK3+A2F9G/fN4y3StlUhpF/VHidWQ+00HE9VvMV4o6HBAHaeDM1Ziow/zDDIIP
-         P9PA==
-X-Gm-Message-State: AOAM532geU5sAAIXIyIvieF7GXz5xrUcJRxu0vFcC+S+oJfJGwK4hMyN
-        jcjUXmECpR1ywx7NHhGlf10I40s4qazJES38lEIjD72ustAAm2zUmrY8WAPrKfEtWD60WhTPYJq
-        XmswTB6js6TZiXTTyZ+G4H8gmG+Poa5rXD0Vn+uo=
-X-Received: by 2002:a2e:bf28:: with SMTP id c40mr28374555ljr.127.1634027566893;
-        Tue, 12 Oct 2021 01:32:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyJx050qTkZ1ZsS32VRk99r1cu/L1Up0p9CveWPlBdkJAuC2Wh/kH0zOSMzK0MEQG0M19ACzw==
-X-Received: by 2002:a2e:bf28:: with SMTP id c40mr28374534ljr.127.1634027566708;
-        Tue, 12 Oct 2021 01:32:46 -0700 (PDT)
-Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id p18sm965940lfc.6.2021.10.12.01.32.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 01:32:46 -0700 (PDT)
-Subject: Re: [PATCH 6/8] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-References: <20211011155615.257529-1-luca@lucaceresoli.net>
- <20211011155615.257529-7-luca@lucaceresoli.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <b2355acf-94a5-1acf-122b-d661c6d9bb1b@canonical.com>
-Date:   Tue, 12 Oct 2021 10:32:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211011155615.257529-7-luca@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S235534AbhJLJIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 05:08:14 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:45362 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235343AbhJLJIL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 05:08:11 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 753431A1D1C;
+        Tue, 12 Oct 2021 11:06:05 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3B6C91A1D11;
+        Tue, 12 Oct 2021 11:06:05 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9B2AE183AD14;
+        Tue, 12 Oct 2021 17:06:03 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     l.stach@pengutronix.de, tharvey@gateworks.com, kishon@ti.com,
+        vkoul@kernel.org, robh@kernel.org, galak@kernel.crashing.org,
+        shawnguo@kernel.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: [PATCH v3 0/9] add the imx8m pcie phy driver and imx8mm pcie support
+Date:   Tue, 12 Oct 2021 16:41:09 +0800
+Message-Id: <1634028078-2387-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2021 17:56, Luca Ceresoli wrote:
-> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
-> watchdog only.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> ---
->  MAINTAINERS                  |   2 +
->  drivers/mfd/Kconfig          |  14 ++++
->  drivers/mfd/Makefile         |   1 +
->  drivers/mfd/max77714.c       | 151 +++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max77714.h |  68 ++++++++++++++++
->  5 files changed, 236 insertions(+)
->  create mode 100644 drivers/mfd/max77714.c
->  create mode 100644 include/linux/mfd/max77714.h
-> 
+refer to the discussion [1] when try to enable i.MX8MM PCIe support,
+one standalone PCIe PHY driver should be seperated from i.MX PCIe
+driver when enable i.MX8MM PCIe support.
 
-(...)
+This patch-set adds the standalone PCIe PHY driver suport[1-5], and i.MX8MM
+PCIe support[6-9] to have whole view to review this patch-set.
 
-> +
-> +static const struct of_device_id max77714_dt_match[] = {
-> +	{ .compatible = "maxim,max77714" },
-> +	{},
-> +};
+The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
+[2] and this PHY driver patch-set.
 
-When converting to module - don't forget the MODULE_DEVICE_TABLE
+[1] https://patchwork.ozlabs.org/project/linux-pci/patch/20210510141509.929120-3-l.stach@pengutronix.de/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210910202640.980366-1-l.stach@pengutronix.de/
 
-> +
-> +static struct i2c_driver max77714_driver = {
-> +	.driver = {
-> +		.name = "max77714",
-> +		.of_match_table = of_match_ptr(max77714_dt_match),
+Main changes v2 --> v3:
+- Regarding Lucas' comments.
+ - to have a whole view to review the patches, send out the i.MX8MM PCIe support too.
+ - move the PHY related bits manipulations of the GPR/SRC to standalone PHY driver.
+ - split the dts changes to SOC and board DT, and use the enum instead of raw value.
+ - update the license of the dt-binding header file.
 
-Kbuild robot pointed it out - of_matc_ptr should not be needed, even for
-compile testing without OF.
+Changes v1 --> v2:
+- Update the license of the dt-binding header file to make the license
+  compatible with dts files.
+- Fix the dt_binding_check errors.
 
-> +	},
-> +	.probe_new = max77714_probe,
-> +};
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  79 +++++++++++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  53 ++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |  46 ++++++++++++++++-
+drivers/pci/controller/dwc/pci-imx6.c                        |  63 ++++++++++++++++++++++-
+drivers/phy/freescale/Kconfig                                |   9 ++++
+drivers/phy/freescale/Makefile                               |   1 +
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 218 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+include/dt-bindings/phy/phy-imx8-pcie.h                      |  14 ++++++
+9 files changed, 486 insertions(+), 3 deletions(-)
 
-Best regards,
-Krzysztof
+[PATCH v3 1/9] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+[PATCH v3 2/9] dt-bindings: phy: add imx8 pcie phy driver support
+[PATCH v3 3/9] arm64: dts: imx8mm: add the pcie phy support
+[PATCH v3 4/9] arm64: dts: imx8mm-evk: add the pcie phy support
+[PATCH v3 5/9] phy: freescale: pcie: initialize the imx8 pcie
+[PATCH v3 6/9] dt-bindings: imx6q-pcie: Add PHY phandles and name
+[PATCH v3 7/9] arm64: dts: imx8mm: add the pcie support
+[PATCH v3 8/9] arm64: dts: imx8mm-evk: add the pcie support on imx8mm
+[PATCH v3 9/9] PCI: imx: add the imx8mm pcie support
