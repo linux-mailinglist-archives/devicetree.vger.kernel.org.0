@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD015429F52
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0518429F57
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:05:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234660AbhJLIFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:05:49 -0400
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:34396 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234809AbhJLIE0 (ORCPT
+        id S234751AbhJLIFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 04:05:51 -0400
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:7130 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S234831AbhJLIE0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Tue, 12 Oct 2021 04:04:26 -0400
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C0XeQj028248;
-        Tue, 12 Oct 2021 01:01:05 -0700
-Received: from nam10-dm6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2100.outbound.protection.outlook.com [104.47.58.100])
-        by mx0b-0016f401.pphosted.com with ESMTP id 3bmpv4ukbn-1
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C4UeSk024079;
+        Tue, 12 Oct 2021 01:01:19 -0700
+Received: from nam04-bn8-obe.outbound.protection.outlook.com (mail-bn8nam08lp2043.outbound.protection.outlook.com [104.47.74.43])
+        by mx0a-0016f401.pphosted.com with ESMTP id 3bn3d58sd0-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 12 Oct 2021 01:01:05 -0700
+        Tue, 12 Oct 2021 01:01:18 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dcsrXlvYn46Yg5+YDV+cX0FSRRzqk4GHZJg5skSdtoJNkH9fp5vk7n7U4Y+MK75EMGw67jo0MBTNgb/yFOwTdjYrDX1+aU0Uem7spqWfll9lclMHq2uHuFNU6Nn3xd9PQ7efE3+3ImOSIIrjR93A9BYa8SS3e5QflIN3h43YiW8acKTtQyMrZKE1LKeueA8xqOkCxHWtzckKKiVzbH/6RxagZ+GpMFnyFV+8SapxEIMlOjljYQQYfTKp3ebwIXLAKY6BCO+AWMQP3FCVYIKyX3TlVzQI+Vc/eApRXBhCwoaWZIa5gywZ31cLDICC5ncrP7tn6n6U3/BiipywpYzDeQ==
+ b=TlHwqMwRdvpP9Cs9VjIceQM/ooECZHurt1efV9mbP0CRWN7Wvb7Wfjt8ppDHVw3eMkPGVhMd/sEu+kK/r7nt1FPIBthVGin46pS/cuS6CY/3vZKARyoURd+zq0fxNvawHJuNhWNifNRfbuDJXfi1AW5KU8CeHlPdlYDa+lMQ2X/BipDkRvjqWNzrp2zXRmnVIJTX44wTkQCP56hRSqd9QpTbpaNQkufEdhfE9vpckXhtCj6j/txG1J1fcecGgL/wlwyVEZJBpT78CFzF9Q/uvVuvgDuTZAdKE2l0Aiwayw06HBWJC9pRq7dLZMqt954sdkH6mAbLjDVj37GfLaxKZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ccjmDVSbOgHrN6MuoDcmDD10wsD9kY+N/CkHN3ge8eU=;
- b=W5/+U6eNcR6mCLyPPiFbhKYpFWZJMhrdY9MVYGfYfq9KakXYRwP09bLh85MJfoAf/Z5qoIIUU30XaiAlBbpKV1GWOJn7wCCIxYwcl2Mu/1UjROsGYogBFpvBCFCnsMPau1O3KndWQJ4JLkKCELb4Z9LFEbewhgXlAgQGjEEDao3e5yO3LgCQZ2ArlQRZjom10K4a/QOaumlrTv+gqeyxeiINpDnUfybznH/BCQ1fxdQloMMp75sGUTA0W9cF1nzeQo5023Puc1DTxy4B3e0dqRl5sxbqXWVDOFCpzrDnJjALDA1WbYZmb5FuTV4Rq2ZojOIN5C7B88CcLYRh/8BO+Q==
+ bh=3HHAOHPoK0m03bIuBX1soeFD6sG4WnSXyUJv1OKLrLE=;
+ b=i6w/tgBSA71+gYYS0zINSh9jhFn0BsLD0bC9t+ZeQQ+F8iym1R4lgi0QMAaiWaUQCsgks0EPyfJpN1wXCp2v5RDpM2dIYfY6q+rPYA/xsbzfcWisVPdYzB24YlHSjbRTlDcLNmUKDhnr+A8bGNt6FHBf/89dCNXwbtCORRShzOWJurkDw8Fx3HymPYppkLupXtGTwH7zqUz0XrW3xjA8c2vX1sS96lIwBY0GPGxcGvi8/O/axnNjZJzZBmuuXWU64ybfJLTz/7E9q4ghqbzQdCETFEjfNQ7AnxK3hI5iPLKytqPSNGOu1Yb+niEMMxIlQWXN+EISd/HOdCtKIds3Nw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
  dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ccjmDVSbOgHrN6MuoDcmDD10wsD9kY+N/CkHN3ge8eU=;
- b=Pk8XaQ92+8DVRk60uqNvJZ1UIPcURvkSBoFPo0g2j05TOBysHIGOHV71MfwjSkyT+rQoy/GiZ0K7EraSmZOgwl/tORVf6DCyE5yvbr15hLkTrVF1SCABsKN47ziipK/ekROtfiziiNQkhHDyvj97Ta7BZnV7t9GO92Dtck0NKEc=
+ bh=3HHAOHPoK0m03bIuBX1soeFD6sG4WnSXyUJv1OKLrLE=;
+ b=o/7/Pvb+zcGQsGWqfnkkwUnkjlGartfFtOYx4t6P9R3lnNnWLE8o5GbI9a8E1MYY9ls3EarlcwlHLt+4I6gGk6vqvgqDgQAN2CJ+GozFwmA+SdYoZlOpxkIyRwymX+3fyl7oAsDRuhMkl0xTUooXLsedU9T2PqYjoe0YPYWWY8E=
 Received: from CO6PR18MB4465.namprd18.prod.outlook.com (2603:10b6:303:13b::10)
  by CO1PR18MB4731.namprd18.prod.outlook.com (2603:10b6:303:ea::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Tue, 12 Oct
- 2021 08:01:01 +0000
+ 2021 08:01:17 +0000
 Received: from CO6PR18MB4465.namprd18.prod.outlook.com
  ([fe80::9da7:4d20:98ff:e441]) by CO6PR18MB4465.namprd18.prod.outlook.com
  ([fe80::9da7:4d20:98ff:e441%6]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 08:01:01 +0000
+ 08:01:17 +0000
 From:   Bharat Bhushan <bbhushan2@marvell.com>
 To:     Bharat Bhushan <bbhushan2@marvell.com>,
         "will@kernel.org" <will@kernel.org>,
@@ -53,68 +53,71 @@ To:     Bharat Bhushan <bbhushan2@marvell.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Bhaskara Budiredla <bbudiredla@marvell.com>
-Subject: RE: [PATCH v4 0/4] cn10k DDR Performance monitor support
-Thread-Topic: [PATCH v4 0/4] cn10k DDR Performance monitor support
-Thread-Index: AQHXrd2PjHFr6VjFMUaBh2+kP4e3PqvPIrrA
-Date:   Tue, 12 Oct 2021 08:01:00 +0000
-Message-ID: <CO6PR18MB4465BC28C193E2CF9954B251E3B69@CO6PR18MB4465.namprd18.prod.outlook.com>
+Subject: RE: [PATCH v4 1/4] dt-bindings: perf: marvell: cn10k ddr performance
+ monitor
+Thread-Topic: [PATCH v4 1/4] dt-bindings: perf: marvell: cn10k ddr performance
+ monitor
+Thread-Index: AQHXrd2QAeaFlYZ6v0i1CQLBIKe2qKvPIuMg
+Date:   Tue, 12 Oct 2021 08:01:16 +0000
+Message-ID: <CO6PR18MB4465DED5DCC796015DC59006E3B69@CO6PR18MB4465.namprd18.prod.outlook.com>
 References: <20210920050823.10853-1-bbhushan2@marvell.com>
-In-Reply-To: <20210920050823.10853-1-bbhushan2@marvell.com>
+ <20210920050823.10853-2-bbhushan2@marvell.com>
+In-Reply-To: <20210920050823.10853-2-bbhushan2@marvell.com>
 Accept-Language: en-IN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a4b59a5e-5414-4774-c488-08d98d566ea0
+x-ms-office365-filtering-correlation-id: 4e92416d-1196-4c1d-7e9b-08d98d56782b
 x-ms-traffictypediagnostic: CO1PR18MB4731:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CO1PR18MB473126BB8F74F673F44936EEE3B69@CO1PR18MB4731.namprd18.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
+x-microsoft-antispam-prvs: <CO1PR18MB4731A0F67784A0EBAE87CDB8E3B69@CO1PR18MB4731.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:962;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AMKWJVMhQaBO57TDKzQ8SIZsuvwYTQRZPQSUhqSPfAd83LWVHQHAHHO+OPNbxk2AuScfdmp2cQuroR1i2vKVvvjfu9ScLD24nYPiNxizDu0fg4bscrQGG7XOGFxTN+HN1Ph0CUtddaA5jEUiQtmN6NQxvNwHGT2SwvtuQOuI7QF8GNs0pmfc8Jni+vgvB5+4Wp92DmSfXvq4fbocSRoxFquGgMGX6JrgyJJ/HZtW8AG4WhLPcFYK1FqWM+GP0m41XESZ058S5As7YIharXkpecM2Djsm00gUAbU7gMvJCJCl5Mpj8GQatOEILATSmZ4zahhYu55zrNRQyQEepxO06rtAgXe3fPN/FAUbpf9f7KS+pli5a6SMMg8pHzHMozPP0hrOMV34Yp4IIOvVinTJRG5SOUW0HSqTB05wIoaruVZ//uwz2kphScgeSJDdrxcRhLUtlyKFNnnSCOhLTAl2F688cZUOg0SRAd4LkuNjlO5AwBbfsIMSPzlTHg/O95EDQH9xdiYGbO1O/JJAOYfuAa0Je7SnNyNng119yV1U0DnyfDtD9voGmVGHnt1WTQnBGZl7czCrJRt425oaTirmJD20qyk3q2qiOptXRbRtBMSEVzUgY78Ta/s4jrFNHqy9Ujh6C0PkfFMzb3ECXtDf2Z8szGePP9aG7UkRv65fg6LWSRVlhob9g+pT1RiyavTLt7QI2469Dg0uf0YZqJXlbg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4465.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(76116006)(66446008)(64756008)(66476007)(66556008)(38070700005)(66946007)(122000001)(71200400001)(86362001)(38100700002)(9686003)(55016002)(83380400001)(5660300002)(26005)(33656002)(6506007)(8936002)(186003)(53546011)(508600001)(7696005)(52536014)(2906002)(110136005)(6636002)(316002)(8676002);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: +5OYdMd6of1EbP8ekp/W/H0cdShheCm7blanjKglkemGWsu0wYv1Cb8R5RPtdaC9PzSb7NPVP7DuMq+KQG71ME0FkSbtC2cy3MH1qzyMcIyZa/f+fVEc0wmWdu0Mh8vMNVLrnf7s52/h0VFwbeahWyOdDxruzGcwByd8VUnls2/EPy6XqbT/ANDFjObewr/PP06H7gz9EjSgZYg8sHXE4Krv4Wpok4xGsTmKFXBUlJD8Hc1nDzyRGvkkd3+RyBYNMIPR2Tz/vvmdXRW07lJKSbDFxPj0NnA+BF1T2SIFhJI4zEyPdBHfHuvgVDxeKwLfQSzdQlZeTuS57IC0/6x1PBhZ9Wcx9W94zcVmmdOWcFI40ipDTRsSxfz6LDmVEVZGxihm7/7pPVyVREu3oeCKZO7U/7dL6tjLTpQO7IK10J0053phsVQPplVwu/2j4QPpfK6E6gcHGCRn/Luy5bFy9TrhnYmvkKh6YBfiNfkWsgOtyhbKBp00eTA6a+hIciTd/kBWxllCldAZR52V+ZxtuHnvecUDyeh98mz2wkYX1iCDEpfh5yeZsVn0EUXM1tiDb6s5OE/n5G75kZ8B/LzZOyk2/eCnTfL1cvr7M6GwLVZFiZxAw3CXvxTZWtBJXQiigx5DapMIo1Va2wNM8IzrG20heIzj2QiSeA5ZzLj6rgG1lYkUI1xEf+JwXxUaBd39jRtJN9EvwLv6Os6Tw7VrNHQ+TN6t8WQBERW014modUWUEc1H4isnczW2dUSG83YpfGwZkYLFe8IUL9NpC4VFDTxdZvzLALddFmbdxaWDBQXuzPPc1nQoX2J9EhMcL/kMishE5h19LXXifnfiKpIcfg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR18MB4465.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(76116006)(66446008)(64756008)(66476007)(66556008)(38070700005)(66946007)(122000001)(71200400001)(86362001)(38100700002)(9686003)(55016002)(83380400001)(5660300002)(966005)(26005)(33656002)(6506007)(8936002)(186003)(53546011)(508600001)(7696005)(52536014)(2906002)(110136005)(6636002)(316002)(8676002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?05s7muAlznI1nUWwLeUiK/S4c6Zw7Qv+S1g6bYzae37nBZH3wd7l6vQlpX2U?=
- =?us-ascii?Q?zdClrqfDgMlj2W9gu2qo3J83s1XhB9HJkRoYQrlnqgJJIujY1pqERwv0ldxm?=
- =?us-ascii?Q?fO1dD3KgNx/agTpb80cdiHs7lGimgHYQc0sJZu70pqyT+RFkzbYwwIIJjZ4H?=
- =?us-ascii?Q?Q0D347ccnecrfAf8BDXoeVQ0awEY2aP06MPKhiHZaSGZAT/Sc3WJ7hqNkLPR?=
- =?us-ascii?Q?vT5b19c0Ab6WViZ8gpwNJrkrQ7FDAymoIR8Qo9TGOt6pEkEdvdxZhhDZe5bq?=
- =?us-ascii?Q?XM8lQx4Ff7tR5EEWB6YPimWjvfbC7SKqgm/SLw3mQI6HDE5k2yBl0pFTzW82?=
- =?us-ascii?Q?hTERZoKl7O9k51hBbUH1p2PVkY41Apu6NZpGMj2PdDbDovUvsMPOJ/oA7+5N?=
- =?us-ascii?Q?3eDngG+GnocHtoczAd35bFyORw81/x8/tJ80gaKIXW7lRYs97jK29LD+4aNh?=
- =?us-ascii?Q?2v5AJWUxSlxzl4PqivDNE+DULzsoCxXkrHbJHAFreCJs29Rc3+wNdfXGIfUM?=
- =?us-ascii?Q?2LMbftSYbPkrZ74kBm6lPvFdM8g/kKGv/p3fnP6/8Vas4icsGuuoVHNSpROU?=
- =?us-ascii?Q?RYN4HWWB53qNA24zqUdX2CoffsonGlV1bEtNfTCZFxrFWBkZ3Pb/7tmlgGn7?=
- =?us-ascii?Q?lEYrb3KMTRzEL0wI8GPAuCsD2CHQ04lIWjamd8xz/J5l9TTx2rMxj/+pnRxf?=
- =?us-ascii?Q?EaTDXVqYwBi/Za/KM99oadT0GG7iiMXqtkYN6Hc8aQbK6KpXw73l0ZqJSCxJ?=
- =?us-ascii?Q?9G95HRJc7R46LMXvEAf8WgAv8epE0R2TmkKpanLlMzhkLX+GlDzOeNhYpoYy?=
- =?us-ascii?Q?R/FyjWk07f9gg3hfcirB2Bd0uj4QkmBtsEGjUFMEMIxL1rzGdIq6xepe+NH+?=
- =?us-ascii?Q?3qyzbwWt1YD+71NaTBtYClHc4N672foWkjZoN2hYWEddhSXAd4Jd8YjhHkgI?=
- =?us-ascii?Q?tHFZMzHCCgWsPPj291sQCeRxJQkN6q5rKygDLM0InvtElziZOSymyysXky04?=
- =?us-ascii?Q?HoXbnBqhe7djQFh3hHlyu4f28dsWUbE84ykFSokrfPgQhVMinlGbpofVBmaV?=
- =?us-ascii?Q?ojd55N36h3ZVAg0zPlmx/PNOkk4rCRbpgL26lj10DlEmu2tz9G0b9yzkxY3w?=
- =?us-ascii?Q?tlZ75nSAERa7VMY2TzIq3Zl8A39315iTLtWKFrJrY+6uEdCFfiJpiCvRvmlA?=
- =?us-ascii?Q?H673T6bhEnyCYBWUUWiErcViQI0JgQu1yu7UpI9Q6p/L1CExhXTc1bcjJxCA?=
- =?us-ascii?Q?0OHsoCcQNTOsv79yCpVwIDv7S8S/ZgqhmBA39e23GxgKufegA5gAEL7pDFpR?=
- =?us-ascii?Q?1OLqPuBiizKUpopAJcQes6sF?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lVJX19wBc5gUHpkpdncaAMaVhXw26znz5zUvlo5Moi1WWegbq3pDP2dsXoio?=
+ =?us-ascii?Q?O3+mfZ2tRNqjDqWf3CosI2wTlPxd6BXTy+RH9DMtzZptGnDBXjWSwkvrS1dU?=
+ =?us-ascii?Q?pnr3tGh/UcwgphAC4RlLRtOgrlHV+/mMEnR9yLxkHR7btZv224iXE+p4HOwB?=
+ =?us-ascii?Q?BtYfHcn3bPY5N0+b8pnOZgI+83rMFkS23YvOR9hyi3vF1YohtblALCGwTwME?=
+ =?us-ascii?Q?6PYMCDrKoDAej9EeFPo3QM6l/815W0a5IWFPv7va8g0VOK5nS8v6NJ3/ZLMa?=
+ =?us-ascii?Q?HKk6VjSWNtPX4vrSXAJjpKqNDcQFziKyTPWY0U+5OPXVrTl5ylT4PxI9CKzY?=
+ =?us-ascii?Q?yZySsh+yz23Dg2kMUGV2qMfBMrOAHxttcphz5CBWAwZ4vlwpP3nUA8eLbmit?=
+ =?us-ascii?Q?rG0PKTY20rt+EZ4l0UEOBs1xgW4iu1snHkLbSyZmdsVZTxECjIeGns2lucmQ?=
+ =?us-ascii?Q?Xw3v/vG3ceH+Zb5WAwuBFzwShqRGXD+8N7EdBLAKTf6nz7f2VCBuK2MHEp9a?=
+ =?us-ascii?Q?Ozso6Su/WGWtjBAxhK2iOpni8CTK4yQ5/CvOtgzP0jaUaNdCLg5B8FLIB/Km?=
+ =?us-ascii?Q?ayFLGQOS7Qo3ONQxNRLYqlWtOwBs+v1589HKxehJuhw8WRZFTKOJGaKWIdGJ?=
+ =?us-ascii?Q?tngB/ip/iSHgO4gsC09FTHYWd536ZDBdo4bvE6E9KVsYD248hcF6splp41Pp?=
+ =?us-ascii?Q?lNesv6aEW2zPwvGzefae63ZkHFECHP2uHqOnETykQUwX5SGyaRC9rEZJBP0s?=
+ =?us-ascii?Q?A371OKDTC0q1sFJGpcgnzMrDiz3PUvSDtDgZiX10/lbInzYTwuNrnrVbNlhn?=
+ =?us-ascii?Q?BOjKKHfIENAgRDid6egypjxVsNS+QjEpgaa58+QvCF0OjDQimWTYJaRSHB1V?=
+ =?us-ascii?Q?yz1yo7aQceVmyMhKZIZbMN5klQ2fb7rF1OOWZuUaPIZlFE75K37tJFMtqAGS?=
+ =?us-ascii?Q?689cE/l3p3eyKg/pIpOq1nm6U5Zlf/zKcfeDKlWA4AoUW3r+28KFqU1Cr9R4?=
+ =?us-ascii?Q?asSB0+Dnus/vj4gZmZvv6VPIgdUMlK6K0Pr2isQEWbzpYPzaW1AIlQbgH+BT?=
+ =?us-ascii?Q?QIlHrMiXBPNtot9fkmsmlMY4OCtTsEcLoh8RUS84KVHoh0iiuXZNXoAzLbeM?=
+ =?us-ascii?Q?Ir0ZrMmPZd53XnYwFvCZp2a9rw/32j76e3JWbgESwWiUxjBHmfeN/WZvBTod?=
+ =?us-ascii?Q?giFhKgOEHkTQnk58qN0fjxY1HFfkeyAVand4usR1sALzGZlTB7IP6do5plvp?=
+ =?us-ascii?Q?mgVs0+U4roQy+p42i9pg5MmrT4O/uP3BD9CjLe8Ht41I5T75lXJ92C0VtR+m?=
+ =?us-ascii?Q?RFtIYAQSBW/20RJUJp8tyDyL?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: marvell.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CO6PR18MB4465.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4b59a5e-5414-4774-c488-08d98d566ea0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 08:01:00.9502
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e92416d-1196-4c1d-7e9b-08d98d56782b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 08:01:16.9708
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: J7FNTNyTcf6X6mqBS4obrAgNi9qgzXpwwP/zpH7qQvlyUICkNfaYAV6LRxPV5B1I62/M90OxbfD7h7f03IlObA==
+X-MS-Exchange-CrossTenant-userprincipalname: SvLFty9wsM8EanZnSACQJi1Tkh8gyjqToeH3VS/zFRzpQLMAd7+A8kFB8mQka/iKeHGNI7dv97akASFXD14neA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR18MB4731
-X-Proofpoint-ORIG-GUID: 1of367NkmV-8YcfZ6jV3NR9iJZ25esVG
-X-Proofpoint-GUID: 1of367NkmV-8YcfZ6jV3NR9iJZ25esVG
+X-Proofpoint-ORIG-GUID: nMgyWkJ6I_C6faHHJlLeTfSBYWOEvIRB
+X-Proofpoint-GUID: nMgyWkJ6I_C6faHHJlLeTfSBYWOEvIRB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
  definitions=2021-10-12_01,2021-10-11_01,2020-04-07_01
@@ -131,51 +134,73 @@ Adding Bhaskara
 > kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
 > kernel@vger.kernel.org
 > Cc: Bharat Bhushan <bbhushan2@marvell.com>
-> Subject: [PATCH v4 0/4] cn10k DDR Performance monitor support
+> Subject: [PATCH v4 1/4] dt-bindings: perf: marvell: cn10k ddr performance
+> monitor
 >=20
-> This patch series adds DDR performance monitor support on Marvell cn10k
-> series of processor.
+> Add binding documentation for the Marvell CN10k DDR performance monitor
+> unit.
 >=20
-> First patch adds device tree binding changes.
-> Second patch add basic support (without overflow and event ownership). Th=
-ird
-> and fourth patch adds overflow and event ownership respectively.
->=20
-> Seems like 4th patch can be merged in second patch, For easy review it is
-> currently separate
->=20
+> Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
 > v3->v4:
->  - Added Rob Herring reviewed-by for dt-binding patch
+>  - Added Rob Herring reviewed-by
 >=20
 > v2->v3:
 >  - dt-binding, ddrcpmu@1 -> pmu@87e1c0000000
->  - Add COMPILE_TEST as a dependency
->  - Switch to sysfs_emit()
->  - Error propagation when invalif event requested
->  - Switch to devm_platform_get_and_ioremap_resource()
->  - Other review comments on v2.
 >=20
 > v1->v2:
 >  - DT binding changed to new DT Schema
->  - writeq/readq changed to respective relaxed
->  - Using PMU_EVENT_ATTR_ID
 >=20
-> Bharat Bhushan (4):
->   dt-bindings: perf: marvell: cn10k ddr performance monitor
->   perf/marvell: CN10k DDR performance monitor support
->   perf/marvell: cn10k DDR perfmon event overflow handling
->   perf/marvell: cn10k DDR perf event core ownership
->=20
->  .../bindings/perf/marvell-cn10k-ddr.yaml      |  37 +
->  drivers/perf/Kconfig                          |   7 +
->  drivers/perf/Makefile                         |   1 +
->  drivers/perf/marvell_cn10k_ddr_pmu.c          | 756 ++++++++++++++++++
->  include/linux/cpuhotplug.h                    |   1 +
->  5 files changed, 802 insertions(+)
+>  .../bindings/perf/marvell-cn10k-ddr.yaml      | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-
 > ddr.yaml
->  create mode 100644 drivers/perf/marvell_cn10k_ddr_pmu.c
 >=20
+> diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yam=
+l
+> b/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
+> new file mode 100644
+> index 000000000000..a18dd0a8c43a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-ddr.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/marvell-cn10k-ddr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell CN10K DDR performance monitor
+> +
+> +maintainers:
+> +  - Bharat Bhushan <bbhushan2@marvell.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - marvell,cn10k-ddr-pmu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells =3D <2>;
+> +        #size-cells =3D <2>;
+> +
+> +        pmu@87e1c0000000 {
+> +            compatible =3D "marvell,cn10k-ddr-pmu";
+> +            reg =3D <0x87e1 0xc0000000 0x0 0x10000>;
+> +        };
+> +    };
 > --
 > 2.17.1
 
