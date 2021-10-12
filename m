@@ -2,101 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 996A742A3C6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:03:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F1D42A45C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236281AbhJLMFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 08:05:15 -0400
-Received: from www.zeus03.de ([194.117.254.33]:43256 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236322AbhJLMFO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 08:05:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=7O0H5EJxVRUljGYlAvs6NTuwkAAs
-        L0Ejam/d5Je6CfY=; b=pe7NEqDuo5mLStb5UvIdR9sJLUtT/CjmM5BKvrZUKI19
-        7KAKOQhuMrfBuSkdFeWUfuZUCSZt8+mFboRWGL5ELyJT890yj1p0Dc3GiDcCHTAs
-        eDKgQFEl+4WKAjNEhPYFjQi57OprbwELBlx/VgyW6ZhZckx1GMeEHx6yAnqFNp8=
-Received: (qmail 204041 invoked from network); 12 Oct 2021 14:03:11 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 12 Oct 2021 14:03:11 +0200
-X-UD-Smtp-Session: l3s3148p1@JcEsoSbOorQgAwDPXw9GANTxpJbLr/qt
-Date:   Tue, 12 Oct 2021 14:03:11 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Duc Nguyen <duc.nguyen.ub@renesas.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH] dt-bindings: pwm: tpu: Add R-Car V3U device tree bindings
-Message-ID: <YWV5f/DOH3tHN6V9@kunai>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Duc Nguyen <duc.nguyen.ub@renesas.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20210901090719.35375-1-wsa+renesas@sang-engineering.com>
- <YTE71AmRgTzhW2PZ@robh.at.kernel.org>
+        id S233053AbhJLM1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:27:16 -0400
+Received: from m13110.mail.163.com ([220.181.13.110]:31634 "EHLO
+        m13110.mail.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236386AbhJLM1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:27:15 -0400
+X-Greylist: delayed 921 seconds by postgrey-1.27 at vger.kernel.org; Tue, 12 Oct 2021 08:27:14 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=TIAtM
+        D8zyP353QHxeXQD98xSxRsX+TO8B1XwJMBwpm8=; b=lNlwDqSkP48DKBslxpfVY
+        pDopDyJVhq+ioz7oLmik5CgVjnlOuubGVZtEv10ZeoTh0ISBR82V00P364wVqJOy
+        A0R1kqXuA12t/Ix2cvwzqjv06QppYE2LGZtKzy9nyks3S1hqKo4Zwo4IO8g4yzNw
+        6qbZnWZOYK9BN+ShD+JKwA=
+Received: from zhanglyra$163.com ( [120.244.194.206] ) by
+ ajax-webmail-wmsvr110 (Coremail) ; Tue, 12 Oct 2021 20:09:02 +0800 (CST)
+X-Originating-IP: [120.244.194.206]
+Date:   Tue, 12 Oct 2021 20:09:02 +0800 (CST)
+From:   ChunyanZhang <zhanglyra@163.com>
+To:     "Chunyan Zhang" <zhang.lyra@gmail.com>
+Cc:     "Stephen Boyd" <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, "Baolin Wang" <baolin.wang7@gmail.com>,
+        "Orson Zhai" <orsonzhai@gmail.com>,
+        "Chunyan Zhang" <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "Lee Jones" <lee.jones@linaro.org>
+Subject: Re:[PATCH v4 0/4] Add Unisoc's UMS512 clock support
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20210622(1d4788a8)
+ Copyright (c) 2002-2021 www.mailtech.cn 163com
+In-Reply-To: <20210923064137.60722-1-zhang.lyra@gmail.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Nvp/hY2zytipy8RT"
-Content-Disposition: inline
-In-Reply-To: <YTE71AmRgTzhW2PZ@robh.at.kernel.org>
+Message-ID: <6bebbd44.428e.17c7467f4fd.Coremail.zhanglyra@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: bsGowACXW5reemVhRS3TAA--.6986W
+X-CM-SenderInfo: x2kd0wpo1utqqrwthudrp/1tbioxQq41UMZQngjQACsk
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---Nvp/hY2zytipy8RT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Rob,=20
-
-> > Add device tree bindings for TPU with the PWM controller found
-> > on R-Car V3U SoCs.
-> >=20
-> > Signed-off-by: Duc Nguyen <duc.nguyen.ub@renesas.com>
-> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > ---
-> >  Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
->=20
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Could you kindly apply this one (like the one for M3-W+), too?
-
-Thanks,
-
-   Wolfram
-
-
---Nvp/hY2zytipy8RT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmFleX8ACgkQFA3kzBSg
-KbYUwhAAmDtM8pNsZMGKV9mFkszYLvGdXGLuuAWq63lN03mmv9Tm9gS18vCg02mX
-pCfNmEYWrc8dwTr4sAJPTZiHpO5QADh41pBBQSxmOADMO7cLhf9kqv6S+T09F6+2
-+ouTMGhUL4dIboxlxlSaBCqup0BkI5eaU0krzcgHnTPHMzvmlow1CL0urM2EfuBZ
-cqVGD2Tgt2tozT8micnm8b5RNt04p0XlMjzSch/i9KV1IzRcnbItXSUzX+nxgnJg
-Br/JbrR1lhP3/OaKuaNvusrEHLufftVFcFBs/NlW59/OC0O4nf36wikfGzBx506d
-C59M70pne69XZVHfBpAmiRN8VkbjqKuOKDBbYJF1/tUTUun9xzOWmv5x5PtL2JvE
-HJkyF4lJvh1RYW6/gbvhNeVWA+O3BpGCAInJAveIYVV2NFQjtsF9sAQlqLtJtPBh
-MnQ7l78Q+KoWl3qbP3uHIpTgTu8c40mt28bg+HP3sssoKjkfjmx7ItcoyRgnuvpH
-9/mUK5Zz75UfNwIpHZEBhOR89c1dMghih1TyUYI0vVJI9To3r+9A9khcLQngWCcD
-/uHqW111Ftc5ZvHm4YONS61ACDfapySEEIRr9FimpGNenedIpJTlJfhaXIRris+F
-NxrLUQMZDkpxJM1LxhzIQl5w/aAbg6Q1ODD+/G/FrcYta2bLnWc=
-=is8t
------END PGP SIGNATURE-----
-
---Nvp/hY2zytipy8RT--
+SGkgU3RlcGhlbiwKCkNvdWxkIHlvdSBwbGVhc2UgaGVscCB0byBhcHBseSB0aGlzIHdob2xlIHBh
+dGNoLXNldCBpZiBubyBtb3JlIGNvbW1lbnRzPwoKVGhhbmtzLApDaHVueWFuCgpBdCAyMDIxLTA5
+LTIzIDE0OjQxOjMzLCAiQ2h1bnlhbiBaaGFuZyIgPHpoYW5nLmx5cmFAZ21haWwuY29tPiB3cm90
+ZToKPkZyb206IENodW55YW4gWmhhbmcgPGNodW55YW4uemhhbmdAdW5pc29jLmNvbT4KPgo+Q2hh
+bmdlcyBzaW5jZSB2MzoKPiogQWRkZWQgYmFjayAncmVnJyBwcm9wZXJ0eSBhcyByZXF1aXJlZDsK
+PiogQWRkZWQgUm9iJ3MgUmV2aWV3ZWQtYnkgb24gcGF0Y2ggMi80Owo+KiBDaGFuZ2VkIHRvIGR1
+YWwgbGljZW5zZSBmb3Igc3ByZCx1bXM1MTItY2xrLmg7Cj4KPkNoYW5nZXMgc2luY2UgdjI6Cj4q
+IEZpeGVkIGJpbmRpbmdzIGNoZWNrIGVycm9yczsKPiogQWRkcmVzc2VkIFJvYidzIGNvbW1lbnRz
+Owo+KiBBZGRlZCBhbiBleGFtcGxlIG9mIHN5c2NvbiB3aGljaCBkb2Vzbid0IGluY2x1ZGUgIiNh
+ZGRyZXNzLWNlbGxzIiwKPiAiI3NpemUtY2VsbHMiLCAicmFuZ2VzIiBwcm9wZXJ0aWVzLCBzbyBy
+ZW1vdmVkIHRoZXNlIHRocmVlCj4gIHByb3BlcnRpZXMgZnJvbSAicmVxdWlyZWQiLgo+Cj5DaGFu
+Z2VzIHNpbmNlIHYxOgo+KiBGaXhlZCBlcnJvcnMgZm91bmRlZCBvbiBzcHJkLHVtczUxMi1jbGsu
+eWFtbDsKPiogQWRkZWQgYSBuZXcgYmluZGluZ3MgZmlsZSBmb3IgZ2xvYmFsIHJlZ2lzdGVyIHdo
+aWNoIHdvdWxkIHByb3ZpZGUgcmVnaXN0ZXIgbWFwIGZvciBjbG9ja3MuCj4KPkNodW55YW4gWmhh
+bmcgKDIpOgo+ICBkdC1iaW5kaW5nczogY2xrOiBzcHJkOiBBZGQgYmluZGluZ3MgZm9yIHVtczUx
+MiBjbG9jayBjb250cm9sbGVyCj4gIGR0LWJpbmRpbmdzOiBtZmQ6IHNwcmQ6IEFkZCBiaW5kaW5n
+cyBmb3IgdW1zNTEyIGdsb2JhbCByZWdpc3RlcnMKPgo+WGlvbmdwZW5nIFd1ICgyKToKPiAgY2xr
+OiBzcHJkOiBBZGQgZHQtYmluZGluZ3MgaW5jbHVkZSBmaWxlIGZvciBVTVM1MTIKPiAgY2xrOiBz
+cHJkOiBBZGQgVW5pc29jJ3MgVU1TNTEyIGNsb2NrIGRyaXZlcgo+Cj4gLi4uL2JpbmRpbmdzL2Ns
+b2NrL3NwcmQsdW1zNTEyLWNsay55YW1sICAgICAgIHwgICA3MiArCj4gLi4uL2JpbmRpbmdzL21m
+ZC9zcHJkLHVtczUxMi1nbGJyZWcueWFtbCAgICAgIHwgICA2OCArCj4gZHJpdmVycy9jbGsvc3By
+ZC9LY29uZmlnICAgICAgICAgICAgICAgICAgICAgIHwgICAgOCArCj4gZHJpdmVycy9jbGsvc3By
+ZC9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAgIHwgICAgMSArCj4gZHJpdmVycy9jbGsvc3By
+ZC91bXM1MTItY2xrLmMgICAgICAgICAgICAgICAgIHwgMjE5NyArKysrKysrKysrKysrKysrKwo+
+IGluY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svc3ByZCx1bXM1MTItY2xrLmggICB8ICAzOTYgKysr
+Cj4gNiBmaWxlcyBjaGFuZ2VkLCAyNzQyIGluc2VydGlvbnMoKykKPiBjcmVhdGUgbW9kZSAxMDA2
+NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Nsb2NrL3NwcmQsdW1zNTEyLWNs
+ay55YW1sCj4gY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9tZmQvc3ByZCx1bXM1MTItZ2xicmVnLnlhbWwKPiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJp
+dmVycy9jbGsvc3ByZC91bXM1MTItY2xrLmMKPiBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9k
+dC1iaW5kaW5ncy9jbG9jay9zcHJkLHVtczUxMi1jbGsuaAo+Cj4tLSAKPjIuMjUuMQo=
