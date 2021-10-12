@@ -2,103 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF167429B2F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 03:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 522FB429B9E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 04:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230358AbhJLBzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 21:55:00 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:61793 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230331AbhJLBzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 21:55:00 -0400
-X-UUID: 81e02e0e5e284b3ea8e6c931329358d0-20211012
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=uNQhKUvX6znaQDjpBxvpN1tm6No5kIlEywKVEAQ11v4=;
-        b=N2sDzpN4FSxItgFkjFiL8w+RVbG+Wc/tn8HhWOWcSsszJq/fzguDVtqfFgfGHx/UQUYUc2I2OROVm1sIZml8aUD0LbtkpIj2Ze4VeVHVJ7yD9Yg5LCfnJcs8ZOqvmsMBflb+TQ4tS9V0zAhzgzDUaRURDX5uJcuJLKcpbWezdo4=;
-X-UUID: 81e02e0e5e284b3ea8e6c931329358d0-20211012
-Received: from mtkcas34.mediatek.inc [(172.27.6.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1240200781; Tue, 12 Oct 2021 09:52:56 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 12 Oct
- 2021 09:52:49 +0800
-Received: from mhfsdcap04 (10.17.3.154) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 12 Oct 2021 09:52:49 +0800
-Message-ID: <0f620925d20a14c8f5f198241e4a136f9d48e206.camel@mediatek.com>
-Subject: Re: [PATCH v1 1/4] dt-bindings: phy: Add binding for Mediatek
- MT8195 HDMI PHY
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Guillaume Ranquet <granquet@baylibre.com>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Tue, 12 Oct 2021 09:52:52 +0800
-In-Reply-To: <20210929094425.745-2-granquet@baylibre.com>
-References: <20210929094425.745-1-granquet@baylibre.com>
-         <20210929094425.745-2-granquet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S231873AbhJLCtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 22:49:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231682AbhJLCtW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 22:49:22 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2258BC061570;
+        Mon, 11 Oct 2021 19:47:18 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id t9so80015908lfd.1;
+        Mon, 11 Oct 2021 19:47:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9O4Co6QBwLVOkBI0LJyrQRb8YZ+pNiYDkLLMY/zEjBE=;
+        b=BPWH55iRUxci7MR/86u3p9ZBkTXEiXRs1966jxUBGPt2ZpQBJ6vcQ6djbwnokaj3Xy
+         7FakdsnV5ugQuv+YXKBYlCwk8p6QMKe6PKP2iWoYi1anPw3TLAyTb9dKdPhR2891pqjn
+         M3gX5JnXK4Y2SPlncSrRAl++Bp5eAuMJVqeD5nF9pJtW256stWh/agix4RBq/tPp5O+M
+         qp5l7csNZ6ZfWORQXstkHUKGrYZ+Q9FlAgN3vscsTL7gq+pFcpoKb9mNqkNxw/Djin4d
+         tDESlUHAqL8w9eVxuadpbwJvHPt0LzdPOgMDfh6QmYbQ3L6OoJzssneGsstfMiI0F6pQ
+         g6Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9O4Co6QBwLVOkBI0LJyrQRb8YZ+pNiYDkLLMY/zEjBE=;
+        b=0Gv2GazC90fm6B8GzGqYpEUxJUVo69TgOJGXFKarolWa+8X5McK577KMFjRV57lZeX
+         4oNYeyzTyAywoDkXURbulxA11Vb/kTGbIIvLp+c+CndrBdB6kG58nuCbBNckV3lGLYbD
+         Sw03YvoO/oiHMddVvSm/C6NqB0L4WJDGC3j5AkUBeQ6gCIURtAhZY1dEIZzPP/hSXF/r
+         uTD9ToQ7bCM5NVU/xoERE+wW5LNLoUo10kLvHj7YTF6ZG7kmso6EJ8O5NmE2YUT+ZoLW
+         uysYxqb86ghzv2hgU46s8tTvblAxh7PQgBo7HGIJKL16tOf2DqzptWecQl5KQRyDwpMU
+         eTAQ==
+X-Gm-Message-State: AOAM532jgwPM1gTMXpBTvPgTv+5658qsS47HrqeACXu975kupm0D/iC8
+        56zqKc29qwXl6zQ9B+dCLw7SS+qdd1eDoy7RRK0=
+X-Google-Smtp-Source: ABdhPJwL4hjIpyRx3qZJw+omSMkewzzTqEhB8DRkSJ7/FNh1tjRo/86P8DJiEw9D9gEUPczClE18Z9uuXFKUH8TOrBY=
+X-Received: by 2002:a2e:9e50:: with SMTP id g16mr20606392ljk.183.1634006836365;
+ Mon, 11 Oct 2021 19:47:16 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: B45878DFBBAE411D00B78F558FF34CA1F8FC152D9CF13DAD6C17EDE2272C44542000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <1633668612-25524-1-git-send-email-u0084500@gmail.com>
+ <1633668612-25524-3-git-send-email-u0084500@gmail.com> <YWA+ykStTEyzRbEy@sirena.org.uk>
+In-Reply-To: <YWA+ykStTEyzRbEy@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 12 Oct 2021 10:47:05 +0800
+Message-ID: <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] ASoC: rt9120: Add rt9210 audio amplifier support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     oder_chiou@realtek.com, perex@perex.cz, tiwai@suse.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        alsa-devel@alsa-project.org, lkml <linux-kernel@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, allen lin <allen_lin@richtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA5LTI5IGF0IDExOjQ0ICswMjAwLCBHdWlsbGF1bWUgUmFucXVldCB3cm90
-ZToNCj4gQWRkIGJpbmRpbmdzIHRvIGRlc2NyaWJlIE1lZGlhdGVrIE1UODE5NSBIRE1JIFBIWQ0K
-PiANCj4gU2lnbmVkLW9mZi1ieTogR3VpbGxhdW1lIFJhbnF1ZXQgPGdyYW5xdWV0QGJheWxpYnJl
-LmNvbT4NCj4gLS0tDQo+ICAuLi4vcGh5L21lZGlhdGVrLG10azgxOTUtaGRtaS1waHkueWFtbCAg
-ICAgICAgfCA3MA0KPiArKysrKysrKysrKysrKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNzAg
-aW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+IERvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9waHkvbWVkaWF0ZWssbXRrODE5NS1oZG1pLXBoeS55YW1sDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRp
-YXRlayxtdGs4MTk1LQ0KPiBoZG1pLXBoeS55YW1sDQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxtdGs4MTk1LWhkbWktDQo+IHBoeS55YW1sDQo+IG5l
-dyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMDAuLjZiMzliYjhjOWRmZTcN
-Cj4gLS0tIC9kZXYvbnVsbA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
-Z3MvcGh5L21lZGlhdGVrLG10azgxOTUtaGRtaS0NCj4gcGh5LnlhbWwNCj4gQEAgLTAsMCArMSw3
-MCBAQA0KPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0Qt
-Mi1DbGF1c2UpDQo+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRlaw0KPiArJVlBTUwgMS4y
-DQo+ICstLS0NCj4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvcGh5L21lZGlh
-dGVrLGhkbWktcGh5LnlhbWwjDQo+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0
-YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gKw0KPiArdGl0bGU6IE1lZGlhVGVrIEhpZ2ggRGVmaW5p
-dGlvbiBNdWx0aW1lZGlhIEludGVyZmFjZSAoSERNSSkgUEhZDQo+IGJpbmRpbmcgZm9yIG10ODE5
-NQ0KPiArDQo+ICttYWludGFpbmVyczoNCj4gKyAgLSBDaHVuLUt1YW5nIEh1IDxjaHVua3Vhbmcu
-aHVAa2VybmVsLm9yZz4NCj4gKyAgLSBQaGlsaXBwIFphYmVsIDxwLnphYmVsQHBlbmd1dHJvbml4
-LmRlPg0KPiArICAtIENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNvbT4NCj4g
-Kw0KPiArZGVzY3JpcHRpb246IHwNCj4gKyAgVGhlIEhETUkgUEhZIHNlcmlhbGl6ZXMgdGhlIEhE
-TUkgZW5jb2RlcidzIHRocmVlIGNoYW5uZWwgMTAtYml0DQo+IHBhcmFsbGVsDQo+ICsgIG91dHB1
-dCBhbmQgZHJpdmVzIHRoZSBIRE1JIHBhZHMuDQo+ICsNCj4gK3Byb3BlcnRpZXM6DQo+ICsgICRu
-b2RlbmFtZToNCj4gKyAgICBwYXR0ZXJuOiAiXmhkbWktcGh5QFswLTlhLWZdKyQiDQo+ICsNCj4g
-KyAgY29tcGF0aWJsZToNCj4gKyAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDgxOTUtaGRtaS1waHkN
-Cj4gKw0KPiArICByZWc6DQo+ICsgICAgbWF4SXRlbXM6IDENCj4gKw0KPiArICBjbG9ja3M6DQo+
-ICsgICAgaXRlbXM6DQo+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBQTEwgcmVmZXJlbmNlIGNsb2Nr
-DQo+ICsNCj4gKyAgY2xvY2stbmFtZXM6DQo+ICsgICAgaXRlbXM6DQo+ICsgICAgICAtIGNvbnN0
-OiBoZG1pX3h0YWxfc2VsDQpObyBuZWVkIHByZWZpeCAiaGRtaV8iLA0KQWZ0ZXIgeW91IG1lcmdl
-IG10ODE5NS1oZG1pLXBoeSBkcml2ZXIgaW50byBwaHktbXRrLWhkbWkuYywgdGhpcw0KYmluZGlu
-ZyB3aWxsIGFsc28gYmUgbWVyZ2VkIGludG8gbWVkaWF0ZWssaGRtaS1waHkueWFtbCBhcyBzdWdn
-ZXN0ZWQgYnkNCkNodW4tS3VhbmcuDQoNClRoYW5rcyBhIGxvdA0KIA0KPiArDQo+ICsgIGNsb2Nr
-LW91dHB1dC1uYW1lczoNCj4gKyAgICBpdGVtczoNCj4gKyAgICAgIC0gY29uc3Q6IGhkbWlfdHhw
-bGwNCj4gKw0KPiArICAiI3BoeS1jZWxscyI6DQo+ICsgICAgY29uc3Q6IDANCj4gKw0KPiArICAi
-I2Nsb2NrLWNlbGxzIjoNCj4gKyAgICBjb25zdDogMA0KPiArDQo+ICtyZXF1aXJlZDoNCj4gKyAg
-LSBjb21wYXRpYmxlDQo+ICsgIC0gcmVnDQo+ICsgIC0gY2xvY2tzDQo+ICsgIC0gY2xvY2stbmFt
-ZXMNCj4gKyAgLSBjbG9jay1vdXRwdXQtbmFtZXMNCj4gKyAgLSAiI3BoeS1jZWxscyINCj4gKyAg
-LSAiI2Nsb2NrLWNlbGxzIg0KPiArDQo+ICthZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4g
-Kw0KPiArZXhhbXBsZXM6DQo+ICsgIC0gfA0KPiArICAgIGhkbWlfcGh5OiBoZG1pLXBoeUAxMWQ1
-ZjAwMCB7DQo+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1LWhkbWktcGh5
-IjsNCj4gKyAgICAgICAgcmVnID0gPDAgMHgxMWQ1ZjAwMCAwIDB4MTAwPjsNCj4gKyAgICAgICAg
-Y2xvY2tzID0gPCZ0b3Bja2dlbiA3Nz47DQo+ICsgICAgICAgIGNsb2NrLW5hbWVzID0gImhkbWlf
-eHRhbF9zZWwiOw0KPiArICAgICAgICBjbG9jay1vdXRwdXQtbmFtZXMgPSAiaGRtaV90eHBsbCI7
-DQo+ICsgICAgICAgICNjbG9jay1jZWxscyA9IDwwPjsNCj4gKyAgICAgICAgI3BoeS1jZWxscyA9
-IDwwPjsNCj4gKyAgICB9Ow0KPiArDQo+ICsuLi4NCg==
+Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=888=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:51=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Fri, Oct 08, 2021 at 12:50:12PM +0800, cy_huang wrote:
+>
+> > +static const struct snd_kcontrol_new rt9120_snd_controls[] =3D {
+> > +     SOC_SINGLE_TLV("MS Volume", RT9120_REG_MSVOL, 0, 2047, 1, digital=
+_gain),
+> > +     SOC_SINGLE("SPK Gain", RT9120_REG_SPKGAIN, 0, 7, 0),
+>
+> Volume controls should end in Volume even if they don't have TLV
+> information so applications know how to render them.  I'll fix
+> this up as I apply.
 
+It's not linear mapping analog gain and cannot use the TLV as you said.
+Mappling table is listed like as below
+0 -> 6dB
+1 -> 8dB
+2 -> 10dB
+3 -> 12dB
+4 -> 13dB
+5 -> 14dB
+6 -> 15dB
+7 -> 16dB
+
+Do I just need to change it to 'SPK Gain Volume' to present this control it=
+em?
+Or is there any table mapping for the nonlinear TLV information?
