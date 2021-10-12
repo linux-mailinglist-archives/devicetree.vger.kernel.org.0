@@ -2,144 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56C7442A093
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F9AC42A0B4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:06:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235528AbhJLJHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 05:07:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41724 "EHLO
+        id S235009AbhJLJIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 05:08:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235496AbhJLJHa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 05:07:30 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF21C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:05:29 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id r10so64763638wra.12
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:05:29 -0700 (PDT)
+        with ESMTP id S235868AbhJLJIl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 05:08:41 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2AF6C06176E
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:06:37 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id t9so83514017lfd.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:06:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wr/2NPJuS3pCGpcja/YdLD+ws/Bsmb2EvXsaz8P7nBk=;
-        b=c7IxciNHtOvpD93/zJf8U7mD2WwzdWpgTLDmu07hiDi8Wfl4HHdL5aazSay0mgUrPd
-         BWzDgu9hbnY2dGuy8OC0n3CwQ/ckOB/bp1oEq17L0WVFtWSNaCDnEglLBNyvWl/Kznaf
-         ZPrfxdOfTlZkRlH1ShlbVnyxdcezK92VgTpHJfxf5P4h4MpN4PyHW7X5z3J57bFA3D/k
-         0a7pM7AphUImc2xHdrzCi1W2mgUL4wUUI0l26dK0ui35nDLRs5y7lEuFuM+5GaQf1e/S
-         TyoUmr5kGUgu3QJCDo0dmCtANxufQAL/hEbl51pzlD34dt9/RqbDdat9+jOUND9oGuVL
-         Cbpw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ChqUlAKdsiUWbRik4asROZltsnHtV5wLFR2z9t60VnA=;
+        b=qgowPwZS3BxR5Tc9pIDtOjb2YztzYenn/ptRVoacfkw/O+kQF94PA9JyOfsrINtOuY
+         VDbnxHOuLl3B80mghrXZttK+a/ol2xOvcdqt/cdBc40rpL0q18L/CdNoKbluJS0Cqzfx
+         VENn4+S9RKPV4vnNKtFmr2Y7nqNSyQ4jXt9BFOfZqMLHuCbN9uWQwJEknCkuE/hm1JLD
+         /HuhO3toNxz+nPvKizRPZxJpraGLF69eBIdofyOjgT47qovEjGat2q1Chb16NguYyZ3m
+         pQVz0SWFRsPbdm31aQo72Dq8z7RDkTR52zc928IT5cGlhfR9+TUW1VFjtW3XqJnwtRUf
+         dPnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wr/2NPJuS3pCGpcja/YdLD+ws/Bsmb2EvXsaz8P7nBk=;
-        b=Ie3vdejgKFxuNOahpcHG86zCTVA/stR+EHgI8f/vZPBgvLctidYPM5IjdAD5LVZx7G
-         vVABKvBUe5hRyLw+gP5PGVt/+oR2+G7ldqAfY0zItidebM+GnVQjBwtph6lpua57yYju
-         BVnceB6cTjSGyBcAH/x7d3p+3poHfgwFRmc+FtcivnmwZIosCq4AKuhFaL+MoFlEaUTk
-         +qlBwvzE3PePdakFcGRbKbgX3cqeNjiS54CkyOXtC7ESv/6KMbHT43ifxiMZUDjMLol3
-         uT2noLDkP8JhJjdv0YuaI9+k0p1xmsoCl4ZK/vk7bpiw+s+OBzJjatlc0+MLu8tArLol
-         hhhQ==
-X-Gm-Message-State: AOAM532bd7dO39iue0yDh2e39A8+TTInPppW8HPbdUE9KK6DUmI7m7YZ
-        omgBPkY1iZ2p9Y6R4svJ3DJkdQ==
-X-Google-Smtp-Source: ABdhPJzaM6vlGT8UtCZ7Hx0Ajh7TCVZxn9HXjngx99Nxx4cftOosPSp98BNwQTw4tPX0u8Kke6EvkQ==
-X-Received: by 2002:adf:a34c:: with SMTP id d12mr30919653wrb.267.1634029527864;
-        Tue, 12 Oct 2021 02:05:27 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id p8sm1892712wmg.15.2021.10.12.02.05.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 02:05:27 -0700 (PDT)
-Subject: Re: [PATCH v3 1/5] ASoC: qcom: Add compatible names in va,wsa,rx,tx
- codec drivers for sc7280
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633702144-19017-1-git-send-email-srivasam@codeaurora.org>
- <1633702144-19017-2-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <8886b174-f3d3-7bad-a2b9-ea7def2a36e4@linaro.org>
-Date:   Tue, 12 Oct 2021 10:05:26 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ChqUlAKdsiUWbRik4asROZltsnHtV5wLFR2z9t60VnA=;
+        b=z1gentTq3kGpKAJ8LZ16cLwGD53QuogAmMuwCCvUme+/HI9Twg0Coooj7VNsRUQ0f8
+         7c7Hca2vUeKtCGgl8jeGvytb8WFSA/MNLTia2Ht5AwEJfTpo37Qi7FbztHbBqM0KW6zj
+         FKTcVw8gV3s7lGo5mf8Pu+iVHHvLmHpdD6MbEK1p6Ixa66Q+Nk/01Y7e+/NvAqC61+Yi
+         VLeqGP6V1BuBeOcN/WBlWPKw/ci/c+SaiUXWCGfpKCz3i///X3dIYkcpHEVTpYJ451Xz
+         caOGbq1kyQHpSgL1FnIoQ2AuVUox1FNU96q5o/wqXvmGLG/bE6aXZF/uViO3Vk8TXzmE
+         J0/g==
+X-Gm-Message-State: AOAM533oYwCHJ4T63I89YMGU7XPJ/nHJqLmmyZD+T+5J1+UdAHBPPX9z
+        hT4qor+S90dZNlUfa/q/sFypkyPD6Ys/wlLpWIOxdw==
+X-Google-Smtp-Source: ABdhPJyLeCSuVo8IR/cNrsuAUgzCRzHZ4PRZTzuS9/kNqGM9IWATvv/qeFDtJz4/Wo8P2L/q8i/AIXLko0u/Dloj3MY=
+X-Received: by 2002:a05:6512:4029:: with SMTP id br41mr17875247lfb.233.1634029595999;
+ Tue, 12 Oct 2021 02:06:35 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1633702144-19017-2-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210930065733.31943-1-tony@atomide.com> <20210930065733.31943-5-tony@atomide.com>
+ <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com> <YWPKXvPCTIir+TzG@atomide.com>
+In-Reply-To: <YWPKXvPCTIir+TzG@atomide.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 12 Oct 2021 11:05:59 +0200
+Message-ID: <CAPDyKFo-pmxG7EfxagqANJzCemf_Y96jdCnzzen=iOdPq-rJBA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] mmc: sdhci-omap: Implement PM runtime functions
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 11 Oct 2021 at 07:23, Tony Lindgren <tony@atomide.com> wrote:
+>
+> * Ulf Hansson <ulf.hansson@linaro.org> [211008 14:44]:
+> > On Thu, 30 Sept 2021 at 08:57, Tony Lindgren <tony@atomide.com> wrote:
+> > >
+> > > Implement PM runtime functions and enable MMC_CAP_AGGRESSIVE_PM.
+> >
+> > I suggest you split this change into two pieces. MMC_CAP_AGGRESSIVE_PM
+> > is about enabling runtime PM management for the eMMC/SD card device,
+> > which is perfectly fine to use independently of whether runtime PM is
+> > supported for the host device.
+>
+> OK
+>
+> > > @@ -1350,6 +1357,11 @@ static int sdhci_omap_probe(struct platform_device *pdev)
+> > >         if (ret)
+> > >                 goto err_cleanup_host;
+> > >
+> > > +       sdhci_omap_context_save(omap_host);
+> > > +       omap_host->context_valid = 1;
+> >
+> > Looks like you can remove this flag, it's not being used.
+>
+> Hmm I think it is needed as otherwise we end up trying to restore
+> an invalid context on probe on the first pm_runtime_get(). Do you
+> have some nicer solution for that in mind?
 
+Right, I didn't notice that, my apologies.
 
-On 08/10/2021 15:09, Srinivasa Rao Mandadapu wrote:
-> Add compatible names for sc7280 based targets in digital codec drivers
-> va,wsa,rx and tx.
-> 
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
+In any case, an option is to bring the device into full power, without
+calling pm_runtime_resume_and_get() from ->probe(). In principle,
+running the same operations as the ->runtime_resume() callback does,
+except for restoring the context then. When this is done, the
+following calls to runtime PM should do the trick (I extended it to
+support autosuspend as well):
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+pm_runtime_get_noresume()
+pm_runtime_set_active()
+pm_runtime_set_autosuspend_delay()
+pm_runtime_use_autosuspend()
+pm_runtime_enable()
 
+Note that, this means that the omaps PM domain's ->runtime_resume()
+callback doesn't get invoked when powering on the device for the first
+time. Can this be a problem?
 
->   sound/soc/codecs/lpass-rx-macro.c  | 1 +
->   sound/soc/codecs/lpass-tx-macro.c  | 1 +
->   sound/soc/codecs/lpass-va-macro.c  | 1 +
->   sound/soc/codecs/lpass-wsa-macro.c | 1 +
->   4 files changed, 4 insertions(+)
-> 
-> diff --git a/sound/soc/codecs/lpass-rx-macro.c b/sound/soc/codecs/lpass-rx-macro.c
-> index 196b068..c2b9333 100644
-> --- a/sound/soc/codecs/lpass-rx-macro.c
-> +++ b/sound/soc/codecs/lpass-rx-macro.c
-> @@ -3577,6 +3577,7 @@ static int rx_macro_remove(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id rx_macro_dt_match[] = {
-> +	{ .compatible = "qcom,sc7280-lpass-rx-macro" },
->   	{ .compatible = "qcom,sm8250-lpass-rx-macro" },
->   	{ }
->   };
-> diff --git a/sound/soc/codecs/lpass-tx-macro.c b/sound/soc/codecs/lpass-tx-macro.c
-> index 27a0d5d..5dcae73 100644
-> --- a/sound/soc/codecs/lpass-tx-macro.c
-> +++ b/sound/soc/codecs/lpass-tx-macro.c
-> @@ -1843,6 +1843,7 @@ static int tx_macro_remove(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id tx_macro_dt_match[] = {
-> +	{ .compatible = "qcom,sc7280-lpass-tx-macro" },
->   	{ .compatible = "qcom,sm8250-lpass-tx-macro" },
->   	{ }
->   };
-> diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
-> index 56c93f4..70f09b4 100644
-> --- a/sound/soc/codecs/lpass-va-macro.c
-> +++ b/sound/soc/codecs/lpass-va-macro.c
-> @@ -1472,6 +1472,7 @@ static int va_macro_remove(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id va_macro_dt_match[] = {
-> +	{ .compatible = "qcom,sc7280-lpass-va-macro" },
->   	{ .compatible = "qcom,sm8250-lpass-va-macro" },
->   	{}
->   };
-> diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
-> index d3ac318..75baf8e 100644
-> --- a/sound/soc/codecs/lpass-wsa-macro.c
-> +++ b/sound/soc/codecs/lpass-wsa-macro.c
-> @@ -2445,6 +2445,7 @@ static int wsa_macro_remove(struct platform_device *pdev)
->   }
->   
->   static const struct of_device_id wsa_macro_dt_match[] = {
-> +	{.compatible = "qcom,sc7280-lpass-wsa-macro"},
->   	{.compatible = "qcom,sm8250-lpass-wsa-macro"},
->   	{}
->   };
-> 
+>
+> > > +
+> > > +       pm_runtime_put_sync(dev);
+> >
+> > I recommend to use the PM runtime autosuspend feature, as to avoid an
+> > initial latency for every I/O request to the host driver. The mmc core
+> > already supports that, see mmc_release_host().
+> >
+> > The typical default timeout value for autosuspend, is usually set
+> > ~50-200ms, by host drivers (if I recall correctly).
+>
+> OK I have a patch to also enable autosuspend too, I'll add that
+> too for the next revision.
+>
+> > > @@ -1371,6 +1383,7 @@ static int sdhci_omap_remove(struct platform_device *pdev)
+> > >         struct device *dev = &pdev->dev;
+> > >         struct sdhci_host *host = platform_get_drvdata(pdev);
+> > >
+> > > +       pm_runtime_get_sync(dev);
+> > >         sdhci_remove_host(host, true);
+> > >         pm_runtime_put_sync(dev);
+> >
+> > There is no guarantee that this triggers a call to
+> > ->sdhci_omap_runtime_suspend(), which I guess is what we want.
+> > Userspace via sysfs may have increase the RPM usage count
+> > (pm_runtime_forbid(), for example.
+> >
+> > To address this, I would call pm_runtime_disable() first and then
+> > explicitly put the device into low power state, rather than relying on
+> > runtime PM to do it. Another option could be to use
+> > pm_runtime_force_suspend().
+>
+> OK I'll take a look.
+>
+> > > @@ -1402,42 +1415,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
+> > >         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
+> > >  }
+> > >
+> > > -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> > > +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
+> > >  {
+> > >         struct sdhci_host *host = dev_get_drvdata(dev);
+> > >         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > >         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> > >
+> > > -       sdhci_suspend_host(host);
+> > > -
+> >
+> > Shouldn't you call sdhci_runtime_suspend_host() somewhere here?
+>
+> I'm pretty sure I tried, but runtime resume did not seem to work after
+> doing that.. I'll take a look again.
+>
+> > > +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> > > +{
+> > > +       struct sdhci_host *host = dev_get_drvdata(dev);
+> > > +       struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> > > +       struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
+> > > +
+> > > +       if (omap_host->is_runtime_suspended)
+> > > +               return 0;
+> >
+> > So if the host is already runtime suspended, it's okay to just leave it as is?
+>
+> Ideally yeah there should not be anything left to do for suspesnd at
+> that point. But sounds like I may be missing something.
+>
+> > In a way that sounds like you could call pm_runtime_force_suspend()
+> > instead, assuming the sdhci_omap_runtime_suspend() can be extended to
+> > do the right thing for system suspend as well.
+>
+> OK I'll check.
+>
+> > It looks a bit odd that sdhci_suspend_host() is called only when the
+> > host is runtime resumed. Perhaps you can elaborate a bit more on why
+> > this is, so I can understand better what you want to achieve here.
+>
+> I guess I'm not clear on what's left for sdhci_suspend_host() to do if
+> the host is already runtime suspended :)
+
+I think what boils down to that is that, sdhci_suspend|resume_host()
+adds some special treatment for system wakeups (for SDIO irqs). I am
+not sure whether you may need that.
+
+Some host drivers doesn't use sdhci_suspend|resume_host, but sticks to
+the sdhci_runtime_suspend|resume()_host() functions. Like
+sdhci-sprd.c, for example.
+
+Kind regards
+Uffe
