@@ -2,86 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F5F342B0AB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 01:59:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D89B542B0B4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 02:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234294AbhJMABv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 20:01:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233903AbhJMABu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 20:01:50 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1067C061746
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:59:47 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id a25so2592748edx.8
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:59:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pA/RLR0KfHQo0D8Z/6AcxihH5fdEamebhyEqoCoH4js=;
-        b=NgLAwMaGbmUpS08qwcfFBxXGk97MvrDJzl+Zy9GxbMz2FgHsuLSjIoLw29SgHz0bae
-         9e9QKK7XDIYQSljiJg1Z2S1XkPpGL4PizP+l+uzo73L5GL/Lzhx7AuHHJLSVKt5Pp+x/
-         nFCrSmi4+L5gStAt3H06UFjMdRUI9sBX7bYOI0zbH3BJ67b75khA7bizEA83aiHrB64i
-         CbJl2UHuxXGEcxCTTJ9VoBoiPDE+SYy6fGMu5L4FlyCOHxqlCgZfxhB4onKVCgDgAmlf
-         HCBk/c3Pv809yvj759/8HZvIeipZswDs9pI0ZLXPbmJhW7V+iVUfFWuvVbgKAcwZwR8k
-         5iyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pA/RLR0KfHQo0D8Z/6AcxihH5fdEamebhyEqoCoH4js=;
-        b=tYLPtAfUl984K+BUDWgYxbnQjl673rx0EiASBJI3fS3RR1mOLkYoqLjMKxK4vpGO27
-         21ppbPrbZXBgDk0F0KI6Jy7qTQH5n5kgUeI4UkK5VOewD4OoSPAW2XbqDFr75F6Vn2eM
-         j1DJMUt3ruBiH5O34RSLaRGUO5i5n1TTAh2jPdvs5rVwxncUYveYBA2J4+ugxPDPixZU
-         NiN6n8WcDgD5T6rrlRrMRv3CJ2e9/bS9SvqR+7ANYnKcB5XKdPpjSrUB5jS0bJ+kM08z
-         uW3IGivnAKWrYwMp0xP8WLs+jcSnqQMgnox8L0T656TSLq6bnmfsjNiEVpnshby/3j7o
-         O/Jw==
-X-Gm-Message-State: AOAM533PkJC9gzWaYFq9zhI9rSZ6z9bOxTHXpeEQrRC0cHfA69UdPxIN
-        /VbYQnihRugsY01hSj6Ig5aAn75pXYxH63n9BERXxQ==
-X-Google-Smtp-Source: ABdhPJxbTyvOlEME29e2j+RkbfPt0NEPM4IQeMGrTtrmsNasAnyXtTpQbfSjPAEtbeGr0KaEdx7nUJlQAMiUSRr8oeU=
-X-Received: by 2002:a05:6402:410:: with SMTP id q16mr4556268edv.286.1634083186495;
- Tue, 12 Oct 2021 16:59:46 -0700 (PDT)
+        id S236259AbhJMAI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 20:08:26 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:33140 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232243AbhJMAIZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 20:08:25 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 336F4201F28;
+        Wed, 13 Oct 2021 02:06:21 +0200 (CEST)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id EF88B2001AA;
+        Wed, 13 Oct 2021 02:06:20 +0200 (CEST)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.142])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 3984A40A77;
+        Tue, 12 Oct 2021 17:06:20 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH v3 00/17] Cleanup of LS1021a device trees
+Date:   Tue, 12 Oct 2021 18:58:06 -0500
+Message-Id: <20211012235824.31096-1-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
 MIME-Version: 1.0
-References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 13 Oct 2021 01:59:35 +0200
-Message-ID: <CACRpkda_hW7vbvC1jizRa05ZdgeL-FkU3_zF+rvCfRBuRB3+VQ@mail.gmail.com>
-Subject: Re:
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 3:25 AM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+This is a series of patches trying to cleanup the LS1021a based device
+trees including:
+- Add missing nodes
+- Update to use SPDX tags
+- Fix existing schema check issues in dts
+- Update related bindings to deal with some check issues
 
-> In 2019 (in kernel 5.4) spmi-gpio and ssbi-gpio drivers were converted
-> to hierarchical IRQ helpers, however MPP drivers were not converted at
-> that moment. Complete this by converting MPP drivers.
->
-> Changes since v2:
->  - Add patches fixing/updating mpps nodes in the existing device trees
+Changes in V2
+- Spin-off the IFC binding related patches into a separate series due to
+  its dependency on driver changes
+- Added two more fixes about thermal-zones node and flash compatible
+- Remove copyright updates
+- Updated description in i2c binding patch to clarify the intension
+- Added Acked-by tag
 
-Thanks a *lot* for being thorough and fixing all this properly!
+Changes in V3
+- Remove the flash label and num-cs
+- Drop the i2c-imx binding change, instead update the DTS to remove
+  clock-names and re-order DMA channels
 
-I am happy to apply the pinctrl portions to the pinctrl tree, I'm
-uncertain about Rob's syntax checker robot here, are there real
-problems? Sometimes it complains about things being changed
-in the DTS files at the same time.
+Li Yang (17):
+  dt-bindings: arm: fsl: add ls1021a-tsn board
+  ARM: dts: ls1021a: remove clock-names property for i2c nodes
+  ARM: dts: ls1021a: change dma channels order to match schema
+  ARM: dts: ls1021a: change to use SPDX identifiers
+  ARM: dts: ls1021a-qds: Add node for QSPI flash
+  ARM: dts: ls1021a: update pcie nodes for dt-schema check
+  ARM: dts: ls1021a: fix board compatible to follow binding schema
+  ARM: dts: ls1021a: breakup long values in thermal node
+  ARM: dts: ls1021a: disable ifc node by default
+  ARM: dts: ls1021a: remove regulators simple-bus
+  ARM: dts: ls1021a: fix memory node for schema check
+  ARM: dts: ls1021a: add #dma-cells to qdma node
+  ARM: dts: ls1021a: add #power-domain-cells for power-controller node
+  ARM: dts: ls1021a-qds: change fpga to simple-mfd device
+  ARM: dts: ls1021a-tsn: remove undocumented property "position" from
+    mma8452 node
+  ARM: dts: ls1021a: move thermal-zones node out of soc/
+  ARM: dts: ls1021a-tsn: use generic "jedec,spi-nor" compatible for
+    flash
 
-I could apply all of this (including DTS changes) to an immutable
-branch and offer to Bjorn if he is fine with the patches and
-the general approach.
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm/boot/dts/ls1021a-qds.dts             |  85 ++-----
+ arch/arm/boot/dts/ls1021a-tsn.dts             |   4 +-
+ arch/arm/boot/dts/ls1021a-twr.dts             |  63 +----
+ arch/arm/boot/dts/ls1021a.dtsi                | 219 +++++++-----------
+ 5 files changed, 123 insertions(+), 249 deletions(-)
 
-Yours,
-Linus Walleij
+-- 
+2.25.1
+
