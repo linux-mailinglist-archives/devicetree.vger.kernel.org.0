@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F63442B093
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 01:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35C9642B09D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 01:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234252AbhJLXue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 19:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46454 "EHLO
+        id S236300AbhJLXyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 19:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232772AbhJLXue (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 19:50:34 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB158C061746
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:48:31 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id i20so2473891edj.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:48:31 -0700 (PDT)
+        with ESMTP id S235711AbhJLXyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 19:54:13 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF189C061749
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:52:10 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id i20so2498061edj.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 16:52:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Vc3CH5v4CBSXLkSVO9jLX0r7Nwhcrzxe9j4W7AySQ0A=;
-        b=YiYwmX9uZwhLPGxi7YYAyH1b7YCNSdYLJBQQQo8XkaUlp5MBhCvNlkmvNNKwGAVb/h
-         XLZ/+Bt5Y7JVQQG6o5ysOyO1NeB32cFZWCLGBzYvXDwmeCLZMH9TW2eHtHUN2esOJrBc
-         1nJr05dIxcDvBSDU2wE4relg4p6aNfdPOQyL2G3b2l1HRHJXL29/LA6zeQreq3Yevwzn
-         3vR9BCW23XkQZRExUHQsvigdweyc2Y2gXO032aEFxF2dXmT4lDEolY/k4LIFNU92ZCjo
-         q43xIbAHyyosboB4j+OEMwt1RJjxoqn4dY9xb4SilxHsQz12Cz6WGSD+vUIsfwepnire
-         DWsg==
+        bh=cbR0fYQwEzzPnCNSZ2ICWQZko1+pYoFdiGN6U0UHQwc=;
+        b=xGQWQl+Rhu5wc1pookDpIpkj5pCLuttrBc/yXvjFsnnJT7q4Pc+AqreFLXb9frSAtV
+         g+m12d9PJuw5aFPIVGI1DH3Z/LxUFCP3JDOhQ/QMnVhKm8pCSzj7dSa9J5HfXtCpDLBn
+         Oax0yqSgmK1iXRZgCqNT0gYq7qRSJkpv4RIiM2uqoNpUdNvIq1cnGVA6Jiu4U21TgAjM
+         WG9OZYzMwG9I6pRNj+8+O4a1xZ5PczLu/bmxs0yciQhettLEZgYHloJ9EwZZ+Hq9w52W
+         snn15hSloMgqG14PY/X5UtPVikd3uCCsHKQAT0RWNxa8rzpnTFc6kTGuJPdmbm+d+/8t
+         pe7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Vc3CH5v4CBSXLkSVO9jLX0r7Nwhcrzxe9j4W7AySQ0A=;
-        b=cPecIZGdM0IEc4VYLTexTpBnor65qTzzyrlnbCEcQa6XcGzMzZiNb5ZB6t+zKdi8iD
-         OQ1Lac4TnBV7RT+2qy3ePlk0H/FRh5xnl7II0SS+9wT2jrt0dxjIS31kuN/vg64M0Lu8
-         jnFHiD8PbOYYC32rcTpjMxFuzcJ6MuXtII0wy2sPifu20YKPk7Qapk8rb6rsCwTbCpae
-         IotqvBrELgQ2WMLACJ4l44cP3GrT64x42+vKn15fIo5C/8NS36geLivxemUyXYao5m+N
-         MnXuNX9BKh6+Mgx3jeRzKvB8awgsngRGwNadgDsnc5KJgDySrRpOIvR6aq6Cx4C7qFlj
-         D8Nw==
-X-Gm-Message-State: AOAM530Vb+gMdZajSlijCet5xTJDVM3d1fl8zOjdiEGHLHZLH4MzxKcy
-        qFkA796dzTlWj3YU9GZDXxUO0kqrJBBD9gNzV4waS9cbywY=
-X-Google-Smtp-Source: ABdhPJz5Gqo2ypBZPFh79sWzBRrMyiHHhGRW+TvFqxOmmo8tMMyafTzE6U4WIDqmviR4WoadTP4iD5T4YS9aBr8UrDQ=
-X-Received: by 2002:a17:906:5e52:: with SMTP id b18mr23544441eju.560.1634082510434;
- Tue, 12 Oct 2021 16:48:30 -0700 (PDT)
+        bh=cbR0fYQwEzzPnCNSZ2ICWQZko1+pYoFdiGN6U0UHQwc=;
+        b=tWDyyQpZUM0+KcipmvFIH3+LSD0frgZOFJ+rPY8wXwgjwJ5WAbLzJqLogemtzBSCjM
+         295IwNledDPr8cmVhIF/dwx6SqagnYQAHndLqCDH3YuOHXmVrdfx4Fx+qTTHVjJZdmXQ
+         LY0UA2r1hpAwUJMndicjGHQ7dQONBTgNDwrOoAqc2rHLGDTXL4T15yyb/1y+aQSNFDcP
+         yzLqrYa3SiiXNn//EQDVe0Hyl9PzAe1HuXr4waYeEjsM3ROvNu/tLn4zR0uLoTCu5Z50
+         vwz4p2VqRBkOxB+BYN+QtmTyCpDj1R64LzCRV0zhsYo9Dc7noBATBG4WBWJf26M0pZ3c
+         Xvcg==
+X-Gm-Message-State: AOAM533qxOttNXSwGXiUoqXXjpZh7wHFhkOjggBYvo5QalI+1FaviefN
+        1ewRGqSiWhIOaliqkjm1G3aWXY2U7ZQJLqZBWHzOtw==
+X-Google-Smtp-Source: ABdhPJxMAqC/9xf+4Ig3GYpEod8yl4nK4RsazuqtIkK0qfl4kAfDsXmJeks3/H6i+HVOnzNz5Q2XqvqQamIzMGXchIc=
+X-Received: by 2002:a17:907:2156:: with SMTP id rk22mr36680106ejb.64.1634082729262;
+ Tue, 12 Oct 2021 16:52:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211007212444.328034-1-luca@z3ntu.xyz> <20211007212444.328034-5-luca@z3ntu.xyz>
-In-Reply-To: <20211007212444.328034-5-luca@z3ntu.xyz>
+References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
+ <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
+ <20210304091025.ny52qjm7wbfvmjgl@mobilestation> <CACRpkdZroi+_oHqipS71MAGif190y7jWU5Myf55vz=_um4w5cQ@mail.gmail.com>
+ <CAK9rFnzDZ4MNm68AJ75g7zegLD-7UMHyoVR-4ssitYTTEeQm5g@mail.gmail.com>
+ <CACRpkdZEURRTe15HGf93SvyHej=_6qhfP9KWPSQbCM=SLUVKmA@mail.gmail.com> <CAK9rFnxuiAX2-5TFhfyTdpaY3BRysX_Q2sJkca4LhOLzapB83Q@mail.gmail.com>
+In-Reply-To: <CAK9rFnxuiAX2-5TFhfyTdpaY3BRysX_Q2sJkca4LhOLzapB83Q@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 13 Oct 2021 01:48:19 +0200
-Message-ID: <CACRpkdYPh-fHi-MkZRn4jq4J9oaAiHDSe-0vTokJZCfv4osnLA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/11] dt-bindings: pinctrl: qcom,pmic-gpio: Add
- compatible for PM6350
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Wed, 13 Oct 2021 01:51:58 +0200
+Message-ID: <CACRpkdbF3oXec-8Z-1fNVL47mfYo2TW8WTDxzpwaR2YqLaTdAQ@mail.gmail.com>
+Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
+To:     Brad Larson <brad@pensando.io>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 7, 2021 at 11:25 PM Luca Weiss <luca@z3ntu.xyz> wrote:
+On Mon, Oct 4, 2021 at 6:46 PM Brad Larson <brad@pensando.io> wrote:
 
-> Add pmic-gpio compatible string for pm6350 pmic.
->
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Yes that works, please see the diff below where the file
+> gpio-elba-spics.c goes away.  The original implementation was
+> motivated by gpio-spear-spics.c.
 
-Patch applied as obviously uncontroversial.
-No need to resend this one.
+This looks good to me :)
 
 Yours,
 Linus Walleij
