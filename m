@@ -2,244 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8723429BE2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56711429C6D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 06:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232216AbhJLDYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 23:24:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232222AbhJLDY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:24:26 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9450DC06161C
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:22:25 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id n63so27219325oif.7
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:22:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kFWCWKAWWoaL3SV5gzB8CEd18a1l6a6FD7ldIFD7Pw4=;
-        b=H1RfEtfl628J9zd0S0kNDOa95V8Wemjo6fWE24pMxl3rr4x6vq+gSRWq1uKpWq8gv+
-         t3MNe5F+IoGr8j4ixeJzkXPMU/cfpzUPuqd3KYP/lUwTDsPk0CePJjb4E0Zpf7amrw5g
-         0Lm3rpE/iqXtfIS6H7Tn+fyRkAAVl1xsGij6Yeydf46bw6zfFg7Ka6WsijCz0aK0NGC3
-         wERRBAjgCivkm9LIb1W1DE7flexUm6omx092fj85tRxGYcE9k6WpDXth0cXkbo7U/cQd
-         /p9svKOkZWNq3p4HK9FysAeKdk9jAzMuO18dhi6pACikv+e+YOrXqCiKSHxZEWbfQrsV
-         JBew==
+        id S232281AbhJLEbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 00:31:24 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48026
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232254AbhJLEbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 00:31:24 -0400
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A51583F2FF
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:29:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634012962;
+        bh=j5GNvlDgAlpbmrfI4AhEJkka1LKpKihb4cfJWgaespQ=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=o2d/EIT9pjX/s8yapFXXI2flCqLaI3JaWWEzA4Xt1+VjSgNq8pjCEaN5O9vEzK6QI
+         412ZdWBViwJ/1CBnV5BSA2WmjshqlmvwKHkGy1ls1DgfvtUddsNLo6/r0qoV0ou77i
+         wlypT6mQTNlpCYPMQa8SATFoTS7tjK1z2dL3X7kOtOG2T0M/GDX+Djfi/KayuPh14U
+         ZVrNRzDTXtNQCRRI2YrqYXCZ8HLBmsTfdds3oJ13XyQM7BeeDbKjKxuV/WAO+f/fxD
+         5zUcs2fhj9cy/z1+FNYHocsxOv+YlYA70iVPh9iGQZn5sFnJkMyqS8TvFkXpAI2Qlf
+         qDdjJkmylPl8g==
+Received: by mail-ed1-f70.google.com with SMTP id v9-20020a50d849000000b003db459aa3f5so15146658edj.15
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 21:29:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kFWCWKAWWoaL3SV5gzB8CEd18a1l6a6FD7ldIFD7Pw4=;
-        b=Z28nl6j/w6mpD7HgjDP45nHQWyG0Q6G4TIMdLGDGeRQCa3tK2mHDww0R4cFu5tbyvk
-         iwv2aVZXqhGaudwBgoPHfMAVER7EkZQC4lcGIYsw8k20CVxZYVxX+doVBldUJ/1t4t+r
-         NEO7d9cXG9xJ20uUYwGCWeTd57La/mvvZvlgL832iSO1nIiEHBjPUlPqElWs9cmAL4Bo
-         eJFKfYTgdqHuLrI0xOpQLzCVMItdyNzKzKV2lj0PsdBgScpprRWTY1n5b3VqRDMVyQHi
-         gjqCa2BFr0VbcyoCy8gR2Iiwq+oW6ETOgXTzqKVAvzvLdpP+wD+blWGcPogCwESbKM9E
-         ILYg==
-X-Gm-Message-State: AOAM531lpIdctypNjzxSeol6biQ3zLc1HCMpihABOa1yEar/ETrb3/5A
-        hJckA1gMKHZnRPaMdWT7me9+og==
-X-Google-Smtp-Source: ABdhPJyXQxggU4Zx7haQPwT/hy0aC9lAGeEMnTLcMvco6zQgl82Zj6qAV9dmwbaEucOMPvuLc3GCkg==
-X-Received: by 2002:aca:e004:: with SMTP id x4mr1905158oig.155.1634008944889;
-        Mon, 11 Oct 2021 20:22:24 -0700 (PDT)
-Received: from yoga ([2600:1700:a0:3dc8:c84c:8eff:fe1e:256f])
-        by smtp.gmail.com with ESMTPSA id s10sm2104750oib.58.2021.10.11.20.22.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 20:22:24 -0700 (PDT)
-Date:   Mon, 11 Oct 2021 22:22:22 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     schowdhu@codeaurora.org
-Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
-        Greg KH <greg@kroah.com>, linux-kernel@vger.kernel.org,
-        ckadabi@codeaurora.org, tsoni@codeaurora.org,
-        bryanh@codeaurora.org, psodagud@codeaurora.org,
-        satyap@codeaurora.org, pheragu@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH V0 1/7] dt-bindings: connector: Add property for eud type
- c connector
-Message-ID: <YWT/buCujyK3D0WE@yoga>
-References: <cover.1633343547.git.schowdhu@codeaurora.org>
- <246c9d24da27b6ce91d5f1e536fa96ac5656a0b2.1633343547.git.schowdhu@codeaurora.org>
- <YVsttQySDnaXxOuI@robh.at.kernel.org>
- <b3d10d7b874c11462604a5f78bc0e8cf@codeaurora.org>
- <YVx/U+w8zS6/P6oa@ripper>
- <ad4f944d1166882c80a91b3fbbd15fc5@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j5GNvlDgAlpbmrfI4AhEJkka1LKpKihb4cfJWgaespQ=;
+        b=UrilY6cO7iXAu0j9Eokp+XeEzInWsDgAudyaDP2Kud2K5VdPoFBoQt+ANSnjaGonlI
+         3xQlZhAABxxLcqM85d4XEPzQXv8YW5/lPYRZMcYYBnyZQCmVrpO9hHjfHSBJstNXUmbR
+         rEDMeP6AaP6zQPa92KjBQ3EaM3dAORAseeOVV+3VSvn8o+HKVqiKWdBy3GSm+wtqdKfR
+         dHz42/RvSMrZR0mvBCqOCmvBQBvUlnXjJBUqJZ7Y59+3beZGQOaKf6pqKxlRHU3HcE/t
+         oLdMpjARMxhY5f6u/THjJxJY+VYhtg+jPoQOOGRAx7F3ZZEcVrT7bBvi5tU9CmI1G0Lx
+         z8Nw==
+X-Gm-Message-State: AOAM532d5a33Z5e5T0NXTqwluLsQk3gYVaqtNFvLQMi2rHxGD0JibPR2
+        Q6hw6ZiM/xs7XM3wqoidcvRtps+BDmPdMcN0tZxfgUaye8DPYFXMcQMHvylBi80OCKHnjKWQ6x0
+        d4/WBnPGCEGBC5C+XAtuDKh3VUszDYtECmPfZyEYG4cUCVzNPkseITP0=
+X-Received: by 2002:a17:906:ed1:: with SMTP id u17mr30550102eji.304.1634012962264;
+        Mon, 11 Oct 2021 21:29:22 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx1ksJYjK/aiihSiZEfvwLRPik2LJg90bitpHrZfMyTVNB23tXG2VJI1i1iMS2CddkouS6IqXMkzMJJbVhtgTw=
+X-Received: by 2002:a17:906:ed1:: with SMTP id u17mr30550085eji.304.1634012962057;
+ Mon, 11 Oct 2021 21:29:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad4f944d1166882c80a91b3fbbd15fc5@codeaurora.org>
+References: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com>
+From:   Alexandre Ghiti <alexandre.ghiti@canonical.com>
+Date:   Tue, 12 Oct 2021 06:29:10 +0200
+Message-ID: <CA+zEjCtTbJnvmrM1g-CR8ZUtT375Wd-4dt0YR1zLG5nOvtDyGg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 1/5] riscv: dts: sifive: use only generic JEDEC
+ SPI NOR flash compatible
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 07 Oct 04:25 CDT 2021, schowdhu@codeaurora.org wrote:
+hi Krzysztof,
 
-> On 2021-10-05 22:07, Bjorn Andersson wrote:
-> > On Tue 05 Oct 06:11 PDT 2021, schowdhu@codeaurora.org wrote:
-> > 
-> > > On 2021-10-04 22:07, Rob Herring wrote:
-> > > > On Mon, Oct 04, 2021 at 04:46:19PM +0530, Souradeep Chowdhury wrote:
-> > > > > Added the property for EUD(Embedded USB Debug) connector.Added
-> > > > > the "reg" and "interrupts" property which is needed for EUD.
-> > > >
-> > > > You are going to need a better explanation of this h/w.
-> > > 
-> > > Ack. Will update this with the detailed hardware description
-> > > in the next version.
-> > > 
-> > > >
-> > > > >
-> > > > > Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
-> > > > > ---
-> > > > >  .../devicetree/bindings/connector/usb-connector.yaml      | 15
-> > > > > +++++++++++++++
-> > > > >  1 file changed, 15 insertions(+)
-> > > > >
-> > > > > diff --git
-> > > > > a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > > > b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > > > index 7eb8659..908129f 100644
-> > > > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > > > @@ -30,6 +30,21 @@ properties:
-> > > > >            - const: samsung,usb-connector-11pin
-> > > > >            - const: usb-b-connector
-> > > > >
-> > > > > +      - items:
-> > > > > +          - enum:
-> > > > > +              - qcom,sc7280-usb-connector-eud
-> > > > > +          - const: qcom,usb-connector-eud
-> > > > > +          - const: usb-c-connector
-> > > > > +
-> > > > > +  reg:
-> > > > > +    items:
-> > > > > +      - description: EUD Base Register Region
-> > > > > +      - description: EUD Mode Manager Region
-> > > >
-> > > > A connector node represents the physical connector on a board. That
-> > > > can't really be an MMIO peripheral. Maybe you need a node for EUD and
-> > > > then it should have a connector child node? Don't really know without
-> > > > understanding this h/w.
-> > > 
-> > > As per the previous discussion on the EUD, it was agreed upon to map
-> > > EUD
-> > > as a type C connector and use Role-Switch to change the USB role
-> > > instead
-> > > of extcon interface that was being used previously. The link for the
-> > > same
-> > > is as follows:-
-> > > 
-> > > https://lore.kernel.org/lkml/5db1a666-62ec-c850-6626-ad33d337b452@codeaurora.org/
-> > > 
-> > 
-> > Not using extcon is the right thing, but perhaps we should make the EUD
-> > a role_switch provider and client, so that we can describe how it sits
-> > inbetween the connector and the controller.
-> > 
-> > That way it has the power to pass through or override requests from the
-> > upstream role-switcher, based on the status of EUD.
-> > 
-> > 
-> > That said, I'm still curious to what happens if I renegotiate the roles
-> > dynamically in a Type-C environment, while enabling EUD. How would the
-> > device on the other end of the cable know that it's supposed to be a
-> > host? Or there's simply a reset of the link when this happens?
-> > 
-> > Thanks,
-> > Bjorn
-> 
-> Hi Bjorn,
-> 
+On Mon, Sep 20, 2021 at 3:05 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> The compatible "issi,is25wp256" is undocumented and instead only a
+> generic jedec,spi-nor should be used (if appropriate).
 
-Hi Souradeep
+Why not do it the other way around? I mean adding this compatible to
+the expected list: don't we lose information using the generic
+compatible?
 
-> By making EUD Role-Switch provider and client do you mean that
-> we should have a EUD node which will have a connector node as
-> child and this connector node will have a port that points towards
-> the drd role-switch?
-> 
-> So that my device tree node will look like the following in that case
-> 
-> eud@88e0000 {
->         compatible = "qcom,usb-connector-eud";
->         reg = <0 0x88e0000 0 0x2000>,
->               <0 0x88e2000 0 0x1000>;
->         interrupt-parent = <&pdc>;
->         interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
->         usb_con: connector {
->                 compatible = "usb-c-connector";
->                 label = "USB-C";
->                 port {
->                       eud_usb_output: endpoint {
->                       remote-endpoint = <&eud_usb3_input>;
->                  };
->         };
-> 
-> };
-> 
-> 
-> @usb2 {
->     dwc3 {
->        usb-role-switch;
->        port {
->              eud_usb3_input: endpoint {
->                    remote-endpoint = <&eud_usb_output>;
->              };
->      };
-> };
+Thanks,
 
-While your "output" and "input" matches the direction of the role
-switching, I think the connection should be describe in the other
-direction.
+Alex
 
-Also my suggestion was that EUD is both connector for the dwc3 and has a
-reference to the connector described in the TypeC controller - to
-properly describe the relationship:
-
-  DWC -> EUD -> connector
-
-With the role switching request going from the connector (pmic_glink
-driver) to DWC through the EUD, which can override the vote.
-
-
-That said, this is just my suggestion. You need to ensure that Rob
-understands the hardware design well enough to approve your proposed
-binding.
-
-
-E.g. The connector in the EUD isn't a usb-c-connector, it's some
-type of internal connection, the next step in that chain is the actual
-usb-c-connector.
-
-Regards,
-Bjorn
-
-> 
-> Also EUD functions only in device mode, so when the role-switch is done by
-> the controller
-> to set the device mode, the PC on the other end becomes the host.
-> 
-> Thanks,
-> Souradeep
-> 
-> > 
-> > > >
-> > > > > +
-> > > > > +  interrupts:
-> > > > > +    description:
-> > > > > +      EUD interrupt
-> > > > > +
-> > > > >    label:
-> > > > >      description: Symbolic name for the connector.
-> > > > >
-> > > > > --
-> > > > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a
-> > > > > member
-> > > > > of Code Aurora Forum, hosted by The Linux Foundation
-> > > > >
-> > > > >
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+> ---
+>
+> Changes since v1:
+> 1. New patch
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 2 +-
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> index 60846e88ae4b..633b31b6e25c 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -63,7 +63,7 @@ &i2c0 {
+>  &qspi0 {
+>         status = "okay";
+>         flash@0 {
+> -               compatible = "issi,is25wp256", "jedec,spi-nor";
+> +               compatible = "jedec,spi-nor";
+>                 reg = <0>;
+>                 spi-max-frequency = <50000000>;
+>                 m25p,fast-read;
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 2e4ea84f27e7..9b0b9b85040e 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -211,7 +211,7 @@ vdd_ldo11: ldo11 {
+>  &qspi0 {
+>         status = "okay";
+>         flash@0 {
+> -               compatible = "issi,is25wp256", "jedec,spi-nor";
+> +               compatible = "jedec,spi-nor";
+>                 reg = <0>;
+>                 spi-max-frequency = <50000000>;
+>                 m25p,fast-read;
+> --
+> 2.30.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
