@@ -2,120 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A570429BDF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:21:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8723429BE2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232145AbhJLDXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 23:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
+        id S232216AbhJLDYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 23:24:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232106AbhJLDXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:23:48 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E76C061745
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id ls14-20020a17090b350e00b001a00e2251c8so1459269pjb.4
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
+        with ESMTP id S232222AbhJLDY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:24:26 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9450DC06161C
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:22:25 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id n63so27219325oif.7
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:22:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mindqxxsMB6gVGzm2IFNuF4jPvZILQH7yCXhl2T6zNY=;
-        b=QZJA/iS3B13DGkdmHHQotUlufTPmZqEGPTk+YGQR9U9cZt52XOM0UkmxMY/C1/lbjo
-         J3YW4Msr9PuEL5PUrM/pEs5lIYJBFuufQQruMV5zgAOkX8ePRf5NVRb/5CO9XJ0u1siO
-         1tBQkFEmWxax2bPkxeAH7diqEYZO8Kzeruq2cuHv67l3HiGT7x8b+Ug/DRNRnno0T39b
-         Q04SyzYt4oTHgnlDHgFq5wZYj7mPmVHjbAMVBQ2OKQWyPw+lKmSm/65N1iaaZH4pNwT1
-         kslCi4b8X6bgbbpgMQwptWWKFwkwaepWmMpTUpyxZqwssknfAwBZWmedud53BqzfT5Jj
-         PzeQ==
+         :content-disposition:in-reply-to;
+        bh=kFWCWKAWWoaL3SV5gzB8CEd18a1l6a6FD7ldIFD7Pw4=;
+        b=H1RfEtfl628J9zd0S0kNDOa95V8Wemjo6fWE24pMxl3rr4x6vq+gSRWq1uKpWq8gv+
+         t3MNe5F+IoGr8j4ixeJzkXPMU/cfpzUPuqd3KYP/lUwTDsPk0CePJjb4E0Zpf7amrw5g
+         0Lm3rpE/iqXtfIS6H7Tn+fyRkAAVl1xsGij6Yeydf46bw6zfFg7Ka6WsijCz0aK0NGC3
+         wERRBAjgCivkm9LIb1W1DE7flexUm6omx092fj85tRxGYcE9k6WpDXth0cXkbo7U/cQd
+         /p9svKOkZWNq3p4HK9FysAeKdk9jAzMuO18dhi6pACikv+e+YOrXqCiKSHxZEWbfQrsV
+         JBew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mindqxxsMB6gVGzm2IFNuF4jPvZILQH7yCXhl2T6zNY=;
-        b=zi4VnaTBtap0ITuzBv1JaWmLaJH1ywE7SQhdexDkQlPHaf52mqYT58Qg/GwBT+2zbj
-         87noY0+xaWp190JEi5XrJ8J5BXSlva0YqJc0R18DWq6krkRzH5kya3UhirqTHsEXKxvb
-         GLuj3CCxn/xRDPGdI8yijXuo62Jo5yCLwpjhKqGgt7CakQFWY9xT9wIX+lXB1lEbtZ3v
-         RCvBHpcm9ITQwSo6JSe8A4CXnOiUE10KuNtuj05cuAhxtbbrkWKyPoeoAdkMOGDEcB/l
-         Aqlrl+u0Q9HD+IJ2jJGDsttNMKX9JgrxDO6lrE1uEa7xZWuTP5y8jhTYacsu61hp8s2W
-         r8PA==
-X-Gm-Message-State: AOAM532j8xoI2mru0h98jvu5Sy2Wqw4LeGySSsFor+aHq+QNnXaKWDpq
-        lVfCwSgsHWmfse9yhf8FTycSxQ==
-X-Google-Smtp-Source: ABdhPJy+1lpNhmLNBJe3RH5BEItdUMqGMbgnXp9vZo25wQRTtyx7yUrY2QLo0Yap+EDx7zbe8I8/hw==
-X-Received: by 2002:a17:90a:578e:: with SMTP id g14mr3268069pji.184.1634008907137;
-        Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
-Received: from localhost ([106.201.113.61])
-        by smtp.gmail.com with ESMTPSA id u17sm810195pjn.30.2021.10.11.20.21.45
+         :mime-version:content-disposition:in-reply-to;
+        bh=kFWCWKAWWoaL3SV5gzB8CEd18a1l6a6FD7ldIFD7Pw4=;
+        b=Z28nl6j/w6mpD7HgjDP45nHQWyG0Q6G4TIMdLGDGeRQCa3tK2mHDww0R4cFu5tbyvk
+         iwv2aVZXqhGaudwBgoPHfMAVER7EkZQC4lcGIYsw8k20CVxZYVxX+doVBldUJ/1t4t+r
+         NEO7d9cXG9xJ20uUYwGCWeTd57La/mvvZvlgL832iSO1nIiEHBjPUlPqElWs9cmAL4Bo
+         eJFKfYTgdqHuLrI0xOpQLzCVMItdyNzKzKV2lj0PsdBgScpprRWTY1n5b3VqRDMVyQHi
+         gjqCa2BFr0VbcyoCy8gR2Iiwq+oW6ETOgXTzqKVAvzvLdpP+wD+blWGcPogCwESbKM9E
+         ILYg==
+X-Gm-Message-State: AOAM531lpIdctypNjzxSeol6biQ3zLc1HCMpihABOa1yEar/ETrb3/5A
+        hJckA1gMKHZnRPaMdWT7me9+og==
+X-Google-Smtp-Source: ABdhPJyXQxggU4Zx7haQPwT/hy0aC9lAGeEMnTLcMvco6zQgl82Zj6qAV9dmwbaEucOMPvuLc3GCkg==
+X-Received: by 2002:aca:e004:: with SMTP id x4mr1905158oig.155.1634008944889;
+        Mon, 11 Oct 2021 20:22:24 -0700 (PDT)
+Received: from yoga ([2600:1700:a0:3dc8:c84c:8eff:fe1e:256f])
+        by smtp.gmail.com with ESMTPSA id s10sm2104750oib.58.2021.10.11.20.22.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 20:21:46 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 08:51:44 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 4/9] opp: core: Don't warn if required OPP device
- does not exist
-Message-ID: <20211012032144.2ltlpat7orrsyr6k@vireshk-i7>
-References: <20211011165707.138157-1-marcan@marcan.st>
- <20211011165707.138157-5-marcan@marcan.st>
+        Mon, 11 Oct 2021 20:22:24 -0700 (PDT)
+Date:   Mon, 11 Oct 2021 22:22:22 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     schowdhu@codeaurora.org
+Cc:     Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
+        Greg KH <greg@kroah.com>, linux-kernel@vger.kernel.org,
+        ckadabi@codeaurora.org, tsoni@codeaurora.org,
+        bryanh@codeaurora.org, psodagud@codeaurora.org,
+        satyap@codeaurora.org, pheragu@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: Re: [PATCH V0 1/7] dt-bindings: connector: Add property for eud type
+ c connector
+Message-ID: <YWT/buCujyK3D0WE@yoga>
+References: <cover.1633343547.git.schowdhu@codeaurora.org>
+ <246c9d24da27b6ce91d5f1e536fa96ac5656a0b2.1633343547.git.schowdhu@codeaurora.org>
+ <YVsttQySDnaXxOuI@robh.at.kernel.org>
+ <b3d10d7b874c11462604a5f78bc0e8cf@codeaurora.org>
+ <YVx/U+w8zS6/P6oa@ripper>
+ <ad4f944d1166882c80a91b3fbbd15fc5@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211011165707.138157-5-marcan@marcan.st>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <ad4f944d1166882c80a91b3fbbd15fc5@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-10-21, 01:57, Hector Martin wrote:
-> When required-opps is used in CPU OPP tables, there is no parent power
-> domain to drive it. Squelch this error, to allow a clock driver to
-> handle this directly instead.
+On Thu 07 Oct 04:25 CDT 2021, schowdhu@codeaurora.org wrote:
+
+> On 2021-10-05 22:07, Bjorn Andersson wrote:
+> > On Tue 05 Oct 06:11 PDT 2021, schowdhu@codeaurora.org wrote:
+> > 
+> > > On 2021-10-04 22:07, Rob Herring wrote:
+> > > > On Mon, Oct 04, 2021 at 04:46:19PM +0530, Souradeep Chowdhury wrote:
+> > > > > Added the property for EUD(Embedded USB Debug) connector.Added
+> > > > > the "reg" and "interrupts" property which is needed for EUD.
+> > > >
+> > > > You are going to need a better explanation of this h/w.
+> > > 
+> > > Ack. Will update this with the detailed hardware description
+> > > in the next version.
+> > > 
+> > > >
+> > > > >
+> > > > > Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> > > > > ---
+> > > > >  .../devicetree/bindings/connector/usb-connector.yaml      | 15
+> > > > > +++++++++++++++
+> > > > >  1 file changed, 15 insertions(+)
+> > > > >
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > > > b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > > > index 7eb8659..908129f 100644
+> > > > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > > > @@ -30,6 +30,21 @@ properties:
+> > > > >            - const: samsung,usb-connector-11pin
+> > > > >            - const: usb-b-connector
+> > > > >
+> > > > > +      - items:
+> > > > > +          - enum:
+> > > > > +              - qcom,sc7280-usb-connector-eud
+> > > > > +          - const: qcom,usb-connector-eud
+> > > > > +          - const: usb-c-connector
+> > > > > +
+> > > > > +  reg:
+> > > > > +    items:
+> > > > > +      - description: EUD Base Register Region
+> > > > > +      - description: EUD Mode Manager Region
+> > > >
+> > > > A connector node represents the physical connector on a board. That
+> > > > can't really be an MMIO peripheral. Maybe you need a node for EUD and
+> > > > then it should have a connector child node? Don't really know without
+> > > > understanding this h/w.
+> > > 
+> > > As per the previous discussion on the EUD, it was agreed upon to map
+> > > EUD
+> > > as a type C connector and use Role-Switch to change the USB role
+> > > instead
+> > > of extcon interface that was being used previously. The link for the
+> > > same
+> > > is as follows:-
+> > > 
+> > > https://lore.kernel.org/lkml/5db1a666-62ec-c850-6626-ad33d337b452@codeaurora.org/
+> > > 
+> > 
+> > Not using extcon is the right thing, but perhaps we should make the EUD
+> > a role_switch provider and client, so that we can describe how it sits
+> > inbetween the connector and the controller.
+> > 
+> > That way it has the power to pass through or override requests from the
+> > upstream role-switcher, based on the status of EUD.
+> > 
+> > 
+> > That said, I'm still curious to what happens if I renegotiate the roles
+> > dynamically in a Type-C environment, while enabling EUD. How would the
+> > device on the other end of the cable know that it's supposed to be a
+> > host? Or there's simply a reset of the link when this happens?
+> > 
+> > Thanks,
+> > Bjorn
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  drivers/opp/core.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> Hi Bjorn,
 > 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 04b4691a8aac..89e616721f70 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -873,12 +873,13 @@ static int _set_required_opp(struct device *dev, struct device *pd_dev,
->  		return 0;
->  
->  	ret = dev_pm_genpd_set_performance_state(pd_dev, pstate);
-> -	if (ret) {
-> +	if (ret && ret != -ENODEV) {
->  		dev_err(dev, "Failed to set performance rate of %s: %d (%d)\n",
->  			dev_name(pd_dev), pstate, ret);
-> +		return ret;
->  	}
->  
-> -	return ret;
-> +	return 0;
->  }
->  
->  /* This is only called for PM domain for now */
 
-I am not sure why you need this, since _set_required_opps() has this check:
+Hi Souradeep
 
-	if (unlikely(!required_opp_tables[0]->is_genpd)) {
-		dev_err(dev, "required-opps don't belong to a genpd\n");
-		return -ENOENT;
-	}
+> By making EUD Role-Switch provider and client do you mean that
+> we should have a EUD node which will have a connector node as
+> child and this connector node will have a port that points towards
+> the drd role-switch?
+> 
+> So that my device tree node will look like the following in that case
+> 
+> eud@88e0000 {
+>         compatible = "qcom,usb-connector-eud";
+>         reg = <0 0x88e0000 0 0x2000>,
+>               <0 0x88e2000 0 0x1000>;
+>         interrupt-parent = <&pdc>;
+>         interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
+>         usb_con: connector {
+>                 compatible = "usb-c-connector";
+>                 label = "USB-C";
+>                 port {
+>                       eud_usb_output: endpoint {
+>                       remote-endpoint = <&eud_usb3_input>;
+>                  };
+>         };
+> 
+> };
+> 
+> 
+> @usb2 {
+>     dwc3 {
+>        usb-role-switch;
+>        port {
+>              eud_usb3_input: endpoint {
+>                    remote-endpoint = <&eud_usb_output>;
+>              };
+>      };
+> };
 
--- 
-viresh
+While your "output" and "input" matches the direction of the role
+switching, I think the connection should be describe in the other
+direction.
+
+Also my suggestion was that EUD is both connector for the dwc3 and has a
+reference to the connector described in the TypeC controller - to
+properly describe the relationship:
+
+  DWC -> EUD -> connector
+
+With the role switching request going from the connector (pmic_glink
+driver) to DWC through the EUD, which can override the vote.
+
+
+That said, this is just my suggestion. You need to ensure that Rob
+understands the hardware design well enough to approve your proposed
+binding.
+
+
+E.g. The connector in the EUD isn't a usb-c-connector, it's some
+type of internal connection, the next step in that chain is the actual
+usb-c-connector.
+
+Regards,
+Bjorn
+
+> 
+> Also EUD functions only in device mode, so when the role-switch is done by
+> the controller
+> to set the device mode, the PC on the other end becomes the host.
+> 
+> Thanks,
+> Souradeep
+> 
+> > 
+> > > >
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    description:
+> > > > > +      EUD interrupt
+> > > > > +
+> > > > >    label:
+> > > > >      description: Symbolic name for the connector.
+> > > > >
+> > > > > --
+> > > > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a
+> > > > > member
+> > > > > of Code Aurora Forum, hosted by The Linux Foundation
+> > > > >
+> > > > >
