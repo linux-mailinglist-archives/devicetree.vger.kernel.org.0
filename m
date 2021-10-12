@@ -2,145 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CEB42ABD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:24:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AF142AC5A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232844AbhJLS0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 14:26:22 -0400
-Received: from mail-eopbgr1410134.outbound.protection.outlook.com ([40.107.141.134]:6072
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232281AbhJLS0V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 14:26:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TRR02SfALY3UmOGytETexd5rF/whJFGFy22J9nJP/RAJSGlFmyR94pVR4RyljNzywBcBJKVxZiFXHOfM8+xHHYC1CBO5NEydGhLoUYHNZPblRrWGuw8sEDJuyZPzLnIC5ugv52XRnNrvpxmu8Ce8KTykR8jzMS0gxxaQaYhb9uv5+NOniwRiEw1yP1UVCfE7+yihBoLo6U7K7K63tU5LNdDhUNV9KvS8LfsekCb60qM8/6aizXuLOADiPML3yJHFROxmHYqh3VLwDL0tmzJB1iIL1+TD2piV/44KgUe3PFlljJjkIVaKJQdSgw6yzLDTXgjs/8TR2pPoF7al/0+rFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=llYmBrIAWSilj4ykia/JI3+8X+ze9phjOb8zVTS/aBQ=;
- b=BGF9KSClKp5wQDbvAuh7AhQaoiF2jUMSly44sJ1zXPWkRHc5y94xiZ0Ss8LG4MXDShJdBlJgQWaASdAyL5aIg4Nsu0MS+j8JNoPhC36Oq9/zpcmFg7OGClE68YOpC2xjr3Q4ay2ob/Vwabj3AEM1FmtJ6J+O+AtkXtxlP1Ama/9BYv2NeSSo58E1cgj6zasYOkKdg/h3nLT5QSoVjFoXpuA/q4o/B5BWa36cniwlOxwVwjOahjjHdO2zJzob40nak6RVNYIjaH5oZ/6Gnt8NMUzoMOTXTAhZ2Iz/X0Cegp2FUGXMrIcA7SbyB7C5DsLQG73TTvYNyg3Qe0cWCaLT9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=llYmBrIAWSilj4ykia/JI3+8X+ze9phjOb8zVTS/aBQ=;
- b=cfZ+nywzjLj6LZuFqCGBwiZHKTyOx9kvdxHBhkpN0qqQE53uy+t8UvxYUIyaLkR1Pag0iEZsmGqYjmlrDuiEtmbN7g2tVjhUTQULnmnrYYA2E08EXq7/LiicvL49TmlYT/RcGekjvQvWMdclCz4uLJNCnO2OT51e94of1i1FoRg=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSAPR01MB1700.jpnprd01.prod.outlook.com (2603:1096:603:31::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.18; Tue, 12 Oct
- 2021 18:24:17 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::9ca6:1cf:5:9fc1]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::9ca6:1cf:5:9fc1%3]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 18:24:17 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Add GbEthernet nodes
-Thread-Topic: [PATCH 1/2] arm64: dts: renesas: r9a07g044: Add GbEthernet nodes
-Thread-Index: AQHXv4l2B2qMWEZAG02ycvsbXJKvUqvPqMSAgAAEvOA=
-Date:   Tue, 12 Oct 2021 18:24:17 +0000
-Message-ID: <OS0PR01MB5922A6EA74DC696B8564DABE86B69@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20211012165144.30350-1-biju.das.jz@bp.renesas.com>
- <20211012165144.30350-2-biju.das.jz@bp.renesas.com>
- <f37fb863-92bc-79b1-26e4-1336874041d1@gmail.com>
-In-Reply-To: <f37fb863-92bc-79b1-26e4-1336874041d1@gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a11bb137-7b3d-41b3-f4db-08d98dad8065
-x-ms-traffictypediagnostic: OSAPR01MB1700:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSAPR01MB170087197BF01477347B5D1B86B69@OSAPR01MB1700.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1265;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: eDa5p8UXBVSgJI+5HEmOF+O/x/5P9YHJjQmdzrcJormCxCj/3iqnGyjiSgqFu5LJI9M3G5IlHKxLfAJ7p9PCL+w3yRWogGvuOyB2iJ5+C13RXf6kTZTEKHiPV8kjT+Wo2IG2h+qngWMhG3jN9Fzv1pJW1brY4dQSsPBH1BimwTl0ClYH0eYVSMzRTHdHYbFjazpP+WLTne7KpHwMv57/gpSRLFVCkroMxktjSgIzmhqrjfb+NAQFUKjNAI61Uvhcbiw3JvpIKQvRUNkuMwqUlELNDyRCp5LP3zQvlRtf2DmjJ1lppsZLVTe2D+LhqcqnSlRrC2DSEaSwBMuG83QaOq8gWi9fe/4fda1eCFsqOYK93qMDqsdBWyP3DUSP84LORHoCv411l3h4IvNuqEk/xOYH2QfTXQ/LeF08I54f80c4E4pHlA7oFqt4AxiLI2dyqguBoUR8Ej663zTHCXe1YNnhtto0iauNYZP7opE95IiLZFL5QHTYGMj49IMHlGtBtziF0B1Rbdstl7dRKszQBLN7v/i+afGVa9WG6X9XFstpsRyYlJdVTiXBKBqTSoq4T5rIiLXLAPgYacckolToZtKhq1QU420L7Nm/kR0c741ZRZzgy6/SjJ+q+49nGEOecfb+L7u6s5bEyRrkJII/5QmwbKm9SVvS2NcUWw5OcQTkd3HxcZdCDzM61jD3pBxPM8UJafkgLPG7wPGWA2tTGQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(366004)(8936002)(86362001)(26005)(66946007)(83380400001)(38070700005)(53546011)(107886003)(76116006)(5660300002)(8676002)(6506007)(186003)(122000001)(38100700002)(52536014)(7696005)(4744005)(33656002)(55016002)(64756008)(66556008)(66446008)(9686003)(54906003)(2906002)(110136005)(508600001)(66476007)(71200400001)(4326008)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VVhCVUR6TFRpNTQ2Ykd6K1ZkZHZVWkpNdEdYN3VSSjRuZVJLNmNPY05jLzAy?=
- =?utf-8?B?TFdaWXJjQVlqeXQvdmZSejVFRjRNeVFQVVE1OHRhalIvaGFrVmsySlFweVMz?=
- =?utf-8?B?emVXV0JIcUppdm5vTnZlNTUwTzRjTGpydng0VHRHYjljUkw0MFVHZHFBUkt6?=
- =?utf-8?B?SDQxT2dMZXhsY044MmNGZVZ3eW5mQ1RDL0Z6aUwyM1NLTkIzK0l2alpjSlB2?=
- =?utf-8?B?K0RnZnByRU1lc2dUUkgwd2diTUpZSmZuMEJnOVovaitkbXdVaTBhMmVhOVp4?=
- =?utf-8?B?Z0pZK0s1MjZuOHoyQzdiT1JFVVJpZTJYWG9HZ2xWTkRsY0lkTk1mbVkwcVM3?=
- =?utf-8?B?VEEzMk54bVVYVTFqU24vLzZySVJ3MUFXZ3lXdmlNMlVuVjlqSzdjbGtvTzAx?=
- =?utf-8?B?ZWpyWDN1cmc0ZHRPK3pQTTk4UUFiQ1J5NmExZFNDdi9LMFd6UzJ3NXJkWTFC?=
- =?utf-8?B?UWNlRVd5SjBjWjNUV0Q2V1c4Y1pqaXFkeWdRUE1CU1gzczlEcUhNYU5UV0FI?=
- =?utf-8?B?WXVENmtPOHkvd2NLbnVFZkpsNmNtQkozd0Z6bzJKQWhqZkNsZGdhSGEyMDhv?=
- =?utf-8?B?VHBDOW83b1BvMVZPdEF6TDZ2R0RFdnRkL3ZyVEtWRTMyWFd5SjA1VUJDUUhC?=
- =?utf-8?B?TUJ6Uit0cEFocW5aMlEvOFlFT3VFTlQ0MDRpK0w2amJMZW51cUtyTDFBUUht?=
- =?utf-8?B?UUxjMGZLbElNM0o4MWNRMmlTN2VOcU1obHd2RzUxRzJMeEt2ZmFva29FVU5r?=
- =?utf-8?B?UFRPcGZvL0RIZS9iYW5mNkFRb2Zhei9odU1vM2pJNlEvT0lMNVJFUGhkdUNI?=
- =?utf-8?B?WlBrRy9hZjhwVnB5TDdkN0Z4Tkp3QlNEWlduUDhZMytBLzFUSlVPaWRzUDJC?=
- =?utf-8?B?OFFpdS9DdU1BTE45Kzd2RFYramVWWjl2NVRYenl6RzR5MU9iR2RYVE45VjA5?=
- =?utf-8?B?R2U5R1hVUGJYaEtJN2xiMERuL09qcTZwU3R6MHhZOGY5YUw0RVlhd24wTE12?=
- =?utf-8?B?RWtzd2loM3RVc0xlK2RFNVFJQTdtMFFHWFMzVEcvNmdzcVVtSW9ETzRzcDR5?=
- =?utf-8?B?a2Y0TUtsNEFDWnFwRldjeUlNQmNKcUl6RTJnNGo0VGVRSkdQa3AxU0dNbWFZ?=
- =?utf-8?B?NkZjTE9ZaXBDTHNOaVlmblVsNnlWeU5ReUE3TUNyc3dqUUQwMDZuVG9BZURr?=
- =?utf-8?B?UFBsTDZmaGlxM1R5K2E1MEgzdUtGcDJVVXpUNEphdWdITlducDh5WFUwYmJY?=
- =?utf-8?B?NG5UcGxsTDZLMmRob2crOE5xMzFFRGdFNEpTSXIwdVkvUWlCaENOY2dqeHBO?=
- =?utf-8?B?cGJBbHJ4dmtUY2V5aExFNm1YUUJmcHNTZTF4NlJFeU9SM0xTeWJRODR3YTE5?=
- =?utf-8?B?VVJaSDNzK1lCTEo4SGtUV001MTBiRURJbG5pZll3V3hVODAvdk9VOXMyZy91?=
- =?utf-8?B?bmFVd0FFbFg3TUpudEVNaGZlcVdTRmo2YmErOGFJL242d1dUbWJQbkVWYXEw?=
- =?utf-8?B?djZiWnJVMDBMSWRINk9lNFkvOUVCV29odE0xYWtrN3ZsKy8ybHpyMUU1OXU3?=
- =?utf-8?B?bnlVS0o1WERwNDg2VXFERjZ1SUh2VEFDeVhpaUgvRml4OXpLbFB0ZEw2K2ZL?=
- =?utf-8?B?NGhPcDc3V2doVVpyOUhxVE16RWEwOElRM1JoazNGM2VWbmNGWTBsM3c1RjVE?=
- =?utf-8?B?cHJjcDJBRkVGb2VoNXJrdHNjQm8wTEMrUmZadllJUkJkbnpuaHFlSkt2cFRK?=
- =?utf-8?Q?3+ViiEGw6AVWCLqWxc=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S234913AbhJLSud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 14:50:33 -0400
+Received: from newton.telenet-ops.be ([195.130.132.45]:46846 "EHLO
+        newton.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235460AbhJLSuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:50:32 -0400
+X-Greylist: delayed 866 seconds by postgrey-1.27 at vger.kernel.org; Tue, 12 Oct 2021 14:50:31 EDT
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by newton.telenet-ops.be (Postfix) with ESMTPS id 4HTPdx4v6CzMr9GB
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 20:41:57 +0200 (CEST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:9c93:91ff:d58:ecfb])
+        by andre.telenet-ops.be with bizsmtp
+        id 56ZW2600f0KW32a016ZWBo; Tue, 12 Oct 2021 20:33:33 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1maMag-004RTk-HA; Tue, 12 Oct 2021 20:33:30 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1maMaf-002j54-Jt; Tue, 12 Oct 2021 20:33:29 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Miguel Ojeda <ojeda@kernel.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v7 00/21] auxdisplay: ht16k33: Add character display support
+Date:   Tue, 12 Oct 2021 20:33:06 +0200
+Message-Id: <20211012183327.649865-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a11bb137-7b3d-41b3-f4db-08d98dad8065
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 18:24:17.1126
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4XXr1vry7cAeLBBqYJt/HTThUYBJDbDftrgl9yPHg2JbBCqHUYNbf4hPfvoPsyB2RxkXsbajo3B/Nv27H0ZLyqwJ4Qr9+tiKHcGfX7MwgRE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSAPR01MB1700
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2VyZ2V5LA0KDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMS8yXSBhcm02NDogZHRzOiByZW5l
-c2FzOiByOWEwN2cwNDQ6IEFkZCBHYkV0aGVybmV0DQo+IG5vZGVzDQo+IA0KPiBPbiAxMC8xMi8y
-MSA3OjUxIFBNLCBCaWp1IERhcyB3cm90ZToNCj4gDQo+ID4gQWRkIEdpZ2FiaXQgRXRoZXJuZXR7
-MCwxfSBub2RlcyB0byBTb0MgRFRTSS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpanUgRGFz
-IDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gPiAtLS0NCj4gPiAgYXJjaC9hcm02NC9i
-b290L2R0cy9yZW5lc2FzL3I5YTA3ZzA0NC5kdHNpIHwgNDAgKysrKysrKysrKysrKysrKysrKysr
-Kw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNDAgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yOWEwN2cwNDQuZHRzaQ0KPiBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yOWEwN2cwNDQuZHRzaQ0KPiA+IGluZGV4IDBiMDM3
-MmEwMjUxNS4uOTNlMWVjMjcxZmYxIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvcmVuZXNhcy9yOWEwN2cwNDQuZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMv
-cmVuZXNhcy9yOWEwN2cwNDQuZHRzaQ0KPiA+IEBAIC00ODgsNiArNDg4LDQ2IEBADQo+ID4gIAkJ
-CXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ID4gIAkJfTsNCj4gPg0KPiA+ICsJCWV0aDA6IGV0aGVy
-bmV0QDExYzIwMDAwIHsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJyZW5lc2FzLHI5YTA3ZzA0NC1n
-YmV0aCIsDQo+ID4gKwkJCQkgICAgICJyZW5lc2FzLHJ6ZzJsLWdiZXRoIjsNCj4gPiArCQkJcmVn
-ID0gPDAgMHgxMWMyMDAwMCAwIDB4MTAwMDA+Ow0KPiA+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19T
-UEkgODQgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ID4gKwkJCQkgICAgIDxHSUNfU1BJIDg1IElS
-UV9UWVBFX0xFVkVMX0hJR0g+LA0KPiA+ICsJCQkJICAgICA8R0lDX1NQSSA4NiBJUlFfVFlQRV9M
-RVZFTF9ISUdIPjsNCj4gPiArCQkJaW50ZXJydXB0LW5hbWVzID0gIm11eCIsICJmaWwiLCAgImFy
-cF9ucyI7DQo+IA0KPiAgICBXaHkgMiBzcGFjZXMgYmVmb3JlICJhcnBfbnMiPw0KDQpPaywgd2ls
-bCBmaXggdGhpcyBpbiBuZXh0IHZlcnNpb24uDQoNClJlZ2FyZHMsDQpCaWp1DQoNCj4gDQo+IFsu
-Li5dDQo+IA0KPiBNQlIsIFNlcmdleQ0K
+	Hi Miguel et al,
+
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
+
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
+
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-17 contain a bug fixes, cleanups and improvements for the
+    HT16K33 driver, to prepare for segment display support,
+  - Patch 18 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 19 updates the HT16K33 DT bindings to document an LED subnode,
+  - Patch 20 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color,
+  - Patch 21 converts the HT16K33 driver to use device properties.
+
+Changes compared to v6[1]:
+  - Add Acked-by, Reviewed-by,
+  - New patch "auxdisplay: ht16k33: Fix frame buffer device blanking",
+  - Add linux,default-trigger to example,
+  - Add missing call to ht16k33_brightness_set() in
+    ht16k33_fbdev_probe(), to make sure brightness and blinking are set
+    to a sane state,
+  - Integrate "auxdisplay: ht16k33: Make use of device properties" into
+    this series.
+
+Changes compared to v5[2]:
+  - Add Reviewed-by,
+  - Reorder operations in ht16k33_led_probe() to ease future conversion
+    to device properties.
+
+Changes compared to v4[3]:
+  - Add Reviewed-by,
+  - Add missing select NEW_LEDS.
+
+Changes compared to v3[4]:
+  - Combine compatible values for 7/14 segment displays into an enum,
+  - Add Reviewed-by,
+  - Add missing select LEDS_CLASS.
+
+Changes compared to v2[5]:
+  - Drop color property from display node,
+  - Use compat_only_sysfs_link_entry_to_kobj() instead of cooking our
+    own helper on top of kernfs_create_link(),
+  - Use "err" instead of "error" to be consistent with existing driver
+    naming style,
+  - Pass "dev" instead of "client" to ht16k33_fbdev_probe() and
+    ht16k33_seg_probe(),
+  - Drop local variable "node",
+  - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+  - Document LED subnode,
+  - Remove unneeded C++ comment,
+  - Make the creation of the LED device dependent on the presence of the
+    "led" subnode in DT, so it can be used in dot-matrix mode too.
+  - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
+    all LED properties from DT, instead of manual LED name construction
+    based on just the "color" property.
+
+Changes compared to v1[6]:
+  - Fix type of color to uint32,
+  - "refresh-rate-hz" is still required for dot-matrix displays.
+  - Move "select LINEDISP" for HT16K33 symbol to correct patch,
+  - Add backwards compatibility "message" symlink to img-ascii-lcd,
+  - Connect backlight to fbdev in ht16k33 dot-matrix mode,
+  - Set "err = -EINVAL" in switch() case that cannot happen,
+  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
+
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, connected to an OrangeCrab ECP5 FPGA board
+running a 64 MHz VexRiscv RISC-V softcore.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
+
+Thanks for applying!
+
+[1] "[PATCH v6 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210914143835.511051-1-geert@linux-m68k.org/
+[2] "[PATCH v5 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210811095759.1281480-1-geert@linux-m68k.org
+[2] "[PATCH v4 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210727140459.3767788-1-geert@linux-m68k.org/
+[3] "[PATCH v3 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210714151130.2531831-1-geert@linux-m68k.org/
+[4] "[PATCH v2 00/18] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210625125902.1162428-1-geert@linux-m68k.org/
+[5] "[PATCH 00/17] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210322144848.1065067-1-geert@linux-m68k.org/
+
+Geert Uytterhoeven (21):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Connect backlight to fbdev
+  auxdisplay: ht16k33: Fix frame buffer device blanking
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  dt-bindings: auxdisplay: ht16k33: Document LED subnode
+  auxdisplay: ht16k33: Add LED support
+  auxdisplay: ht16k33: Make use of device properties
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  32 +-
+ drivers/auxdisplay/Kconfig                    |  12 +-
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 500 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 205 ++-----
+ drivers/auxdisplay/line-display.c             | 261 +++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 239 +++++++++
+ 8 files changed, 1017 insertions(+), 276 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
