@@ -2,102 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3635A42A78E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:44:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E44F42A799
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235422AbhJLOqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 10:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35098 "EHLO
+        id S235355AbhJLOs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230195AbhJLOqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:46:30 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C62CC061570;
-        Tue, 12 Oct 2021 07:44:28 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id z11so29379559oih.1;
-        Tue, 12 Oct 2021 07:44:28 -0700 (PDT)
+        with ESMTP id S237183AbhJLOst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:48:49 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03FB0C061749
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:46:48 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id e3so34074318wrc.11
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9/iIZPSLxMWDFPWE4UcVTRmLPVNWNWoXNz3B2fxKuGU=;
-        b=LtvnceVCNTzdot3yb9ylvBm2NFIFBOZu4o9Q8VNOYWN2E3TKQyh2kAkv8sGoou3owH
-         caakymqEsCRueNqPrDRDeXuDB8co/tPp/RShcvoRseRYH5GPNu/hvd3fkHbwUmIePuQN
-         auL/o+ZBxRIP43EuNcNwCmREwiXZc9rx3xsWgpKOLRqBF9CEX1YPtuge/sKELAJoUkYc
-         OLBaFYB1Jr3etEwyJ+fmTgw+kNgkmiI7zAXq8xJ4li4zyR6ApjIXNU+PmxCpyBzyWLn9
-         jt+mWThOxEPzCC9pQJmqh5HmKEJsWXT2C/WQYM/GsESX5V0aZiF4NknoZsdbJmHVdFxG
-         2mNQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=RbIVq/UEdcc303XkmHmHl8p3Hwos0Z4AAzrjzZdBALI=;
+        b=DU9GCSdjmbQDH4t2pDu84NBnFqarQaZSsu55xSBMjG9CuOeHu0S+r8gzFr7IuIvQnc
+         sz3qWc0KiqJMIf1/O5UHJF/ZQyT9FSyiPvDTjThe/lPMMoVWQP94D7a3eb/Ed6O/gOzC
+         qCrXwhx587iVKnxlmWxcYurRTQBfv8gZ/WC6qJX3EbBGc89eXNQfHo+VdRJSfGq2WyLT
+         3DwUq/WNRTHFdnECHj5IphjGV/RrwTkdZ8tXxbTUmOiRf7EwEQGO5NBS8Gy6TCK6o7VC
+         x/ND7fepNo8yjbelB1nDSrrx2+h3Zg5625L4ntpq//PcOSzpmeJ8Ym8ZKe+6SpxYGJzm
+         NSqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9/iIZPSLxMWDFPWE4UcVTRmLPVNWNWoXNz3B2fxKuGU=;
-        b=LV82bvBJG3SsuAxdwvtJULk5HuP+SLSvCW3KGfO9L8g1J3OPhM6Dv7+UoaAmcf1a+q
-         Gq4yCIh+bxAgZH90zTCZw11eiZnz8IQXnaCgm7e8dohG7nS6rBzEmdpuTq1y/r0YVwi+
-         VFgVZfwQxWQrGoCj3lz+AnLgzqhbYZI/tPWuYPpFTH/fftqNitAQfUJZNH9udj2gW3iJ
-         oF5f2K5nhgf5/CujPbUognZ+5vCibenmTivYausy+XMX5IW2oazbIEjpVw4t4F9+YwQH
-         qGyezZODXNX/XZKOComR5WsW+MrDFfb5BWZnSSVXU/GlATwc2rzf50cVpuhv1kPUNVvO
-         ojDg==
-X-Gm-Message-State: AOAM53241fppQTtkEJFS/0mhZgvwBAslCKmZjmYrXvZrfYRjMbEXwSLZ
-        OhVAdwOZYubvSDouAk1NEkZC6cxNTi4=
-X-Google-Smtp-Source: ABdhPJxB6uycq4rkWw1TQKiWoVq4KUZm5CtSN7+tMK8gkj9ZSDKPJcIEdjlmkwYqK4mzsHXTMyfK0A==
-X-Received: by 2002:aca:5c55:: with SMTP id q82mr3885558oib.104.1634049867511;
-        Tue, 12 Oct 2021 07:44:27 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d7sm2378926otl.19.2021.10.12.07.44.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 07:44:26 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v4 09/10] hwmon: (tmp421) ignore non-channel related DT
- nodes
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1634029538.git.krzysztof.adamski@nokia.com>
- <8835efd6cc7ce6791056b7fbce92a16f72d63598.1634029538.git.krzysztof.adamski@nokia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <1a45d1fe-f387-333b-bf73-dfe2b3faadf4@roeck-us.net>
-Date:   Tue, 12 Oct 2021 07:44:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=RbIVq/UEdcc303XkmHmHl8p3Hwos0Z4AAzrjzZdBALI=;
+        b=GDSTC4LGtRBNd92CH701ZCkLS/3LN20thJTKjUsWKe/Dk0ATgJrISbNroaJ7PKsjJS
+         eDK+pDuSF3z1Hn+Nbf4X7jNGjuk2iiZgJhz+I3GbW5hoOWFfqHM5OAHLs4CG5RSWZh9l
+         sA9HwQ5n3zDaFZlVNJOcFtYKPIMEWTOR+R5dX+mT+Pv/Dm3I8gA0LUgANA61lq669s54
+         /GFlZ5paqm81TCOp7Xyjgi+F470gOxVjuwKRdEyocg5UbOszg4+AZtaBeu/e10CILDvt
+         PzgTm6fOeOQBYoPjyYQnlV0AK+Mrkz5SQ9UZJpS96v6cgyZdPYKBGYoixFCJRDjYs13w
+         W9PA==
+X-Gm-Message-State: AOAM532SyrrkA1QQ2gqoXgYXE21UbSNVlPeQEgpOR8/A1I8VgmpTAWa2
+        Jm0zUgamKAJm7myNJbcf8aT9xw==
+X-Google-Smtp-Source: ABdhPJxncDBh31Ae/0zMNyUymugMmwtXjQ3mNw2WOuxjxw1IkmIyhIycZL34TQNU5ljpM7BBpBo+Cw==
+X-Received: by 2002:adf:bd8a:: with SMTP id l10mr32155651wrh.159.1634050006604;
+        Tue, 12 Oct 2021 07:46:46 -0700 (PDT)
+Received: from google.com ([95.148.6.175])
+        by smtp.gmail.com with ESMTPSA id d24sm2570330wmb.35.2021.10.12.07.46.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 07:46:46 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 15:46:43 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] mfd: qcom-spmi-pmic: Document eight more PMICs to
+ binding
+Message-ID: <YWWfkyoV0rF4C4PP@google.com>
+References: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <8835efd6cc7ce6791056b7fbce92a16f72d63598.1634029538.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211005024812.2038249-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/12/21 2:30 AM, Krzysztof Adamski wrote:
-> In case the DT contains some nodes not describing the input channels,
-> ignore them instead of exiting with error.
+On Mon, 04 Oct 2021, Bjorn Andersson wrote:
+
+> Update the binding with eitght more SPMI PMIC compatibles found in the
+
+Spell check.
+
+> PMIC info list in the Qualcomm socinfo driver.
 > 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-
-For my reference:
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->   drivers/hwmon/tmp421.c | 3 +++
->   1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index 133eca1f2650..d44112fe2a14 100644
-> --- a/drivers/hwmon/tmp421.c
-> +++ b/drivers/hwmon/tmp421.c
-> @@ -411,6 +411,9 @@ static int tmp421_probe_from_dt(struct i2c_client *client, struct tmp421_data *d
->   	int err;
->   
->   	for_each_child_of_node(np, child) {
-> +		if (strcmp(child->name, "channel"))
-> +			continue;
-> +
->   		err = tmp421_probe_child_from_dt(client, child, data);
->   		if (err)
->   			return err;
-> 
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> index 5ef79bf3d035..1d2b5f067556 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> @@ -29,6 +29,8 @@ Required properties:
+>                     "qcom,pm8916",
+>                     "qcom,pm8004",
+>                     "qcom,pm8909",
+> +                   "qcom,pm8028",
+> +                   "qcom,pm8901",
+>                     "qcom,pm8950",
+>                     "qcom,pmi8950",
+>                     "qcom,pm8998",
+> @@ -38,6 +40,12 @@ Required properties:
+>                     "qcom,pmk8350",
+>                     "qcom,pm7325",
+>                     "qcom,pmr735a",
+> +                   "qcom,pm8150",
+> +                   "qcom,pm8150l",
+> +                   "qcom,pm8150b",
+> +                   "qcom,pmk8002",
+> +                   "qcom,pm8150c",
+> +                   "qcom,smb2351",
+>                     or generalized "qcom,spmi-pmic".
+>  - reg:             Specifies the SPMI USID slave address for this device.
+>                     For more information see:
 
+Is there any reason why these can't be in lexicographical order?
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
