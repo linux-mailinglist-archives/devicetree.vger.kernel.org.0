@@ -2,88 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80C7D42A2FA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 13:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB9F42A32B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 13:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236137AbhJLLTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 07:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43348 "EHLO
+        id S236219AbhJLL0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 07:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236161AbhJLLTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 07:19:15 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D794C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:17:14 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id r7so65892811wrc.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:17:13 -0700 (PDT)
+        with ESMTP id S236190AbhJLL0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 07:26:33 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AA8C06161C;
+        Tue, 12 Oct 2021 04:24:31 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id z11so77435417lfj.4;
+        Tue, 12 Oct 2021 04:24:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=lL1m8ubOE4rJ9x4Cnwu+s3E9xFxm3dGNjo3CZSr7LdI=;
-        b=snB8vHN4P3c/+1If++iQbj27PlHrmOwweXgC6HkVm3Yb8os74JgB8kB/1HbieZiyON
-         UtO/6l3zjWtO/Btya7tN0aemUEsauX0+4hlrT2ByaBl3YZSeo2HJY3KF888KNmfbCNby
-         2vTVEEZlnsQ1FAfa+qEivWj3wP7JT+XMl5e+4XIyStq/5TgI/yJay0TB7GS+G/dHhlwR
-         whjPEHdrYS+UNu26JQkoKPmK6DCVf2Wae706XLa2gBYgt3Myjzec7/BSZYogmbAzJ/5A
-         +hBMf16fY6lufyaOJYS06XbWz7ug4WK++sTYD+3hGQr1e9SrwPgiy9vjiqqKSPg8yFXl
-         ZwYg==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=XVOm5FGSYg3Wq94ChxX1Do2Ep5eV8n1vjTJF2QVl0/0=;
+        b=BWZ+p8qDQDxGbNrPcN16gX5ktfYM5CuLC9Yl7J9QByxYXfR9WKt69BG9hhcogYnIB4
+         ds+KDyyHEAaeP4dnmIxfDKyYfB5I3DpcyH4hxOamp8KzS79SQuKO8hFnUzGZM4C4YqS1
+         wLK8yANYm2DetRPmP22pYyNOi61V1SagzxWblNXKTPkSrnu+YdgP1e8s2sjeIv/c7uGy
+         gcJ5ZEZpkcQnomPsmexcxqb4peUv12VVCf6Hfb77i/czvGtUzGe+TVKuOCS3AacNsYdc
+         p2aBWMKkn3NkzQlXUI8LZGWGBK2OFQSSWo4VlSFjNq+LP1Q8I+C1VIZHujCb9hyZYx72
+         G0EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=lL1m8ubOE4rJ9x4Cnwu+s3E9xFxm3dGNjo3CZSr7LdI=;
-        b=L6fWBrSMzwcIj3Rp2RbT9zJ+BVY4XqZq/6CdX19mhioTAcz5UhXpDXSNmJrJtOXjps
-         sDSCkinNYXwGC3cuICLXlZll67qNjJn06PrQ+jNAxd+CWm9GmLe1KNB/O1/20wxZ+V8R
-         SO0KhIIZZDG0eJpswc8IKLH93Sy2s6ajDOoqu9vsvRGUVAgoLv0hSzmrSlH2dU1qMvkV
-         LilRwi6d6CZkmLkHtV1nvPRe8BoEa76txSUEVObizUUk165nfMdZOf+lGtPD9gEEcoc0
-         qR4PFYPegMUrqelA6d6y/vrROtjej6yqp9BAQSpXR2ZF92bTaxzadkUzyLItNS29Td1s
-         5W/g==
-X-Gm-Message-State: AOAM533hrqhUU75KIO5XDEGxBD8KHQEO+L6BIhxUp/S9iyyDq7SFNW0N
-        THyKydmIZ9mf3P9p+rAJAGcEiQ==
-X-Google-Smtp-Source: ABdhPJwwgGCTLSD2FwWK23w/DgmWmq2KbPBQiBQLf7DRHtZSbPuxVoje3euWrasIyd3G8poK6PSQEw==
-X-Received: by 2002:adf:a745:: with SMTP id e5mr30974809wrd.406.1634037432625;
-        Tue, 12 Oct 2021 04:17:12 -0700 (PDT)
-Received: from google.com ([95.148.6.175])
-        by smtp.gmail.com with ESMTPSA id v10sm10955743wri.29.2021.10.12.04.17.11
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=XVOm5FGSYg3Wq94ChxX1Do2Ep5eV8n1vjTJF2QVl0/0=;
+        b=UkWVowkgfvcd0zkmiUqlBreHvDDXSWPoNDnxsSQJXf50UIsjP3tLEeHHz6WqLBq5aj
+         hGaud38YqKuo0ScL9VPNkia9e8cmXfGpklSnZ7nElaLchn5qoTuGAxC97mfi8lKUeXQj
+         VH5IN9H1UzDfuXl7UdnWLfaq930PJ4NeyjEUINa/1xuQlQq6+3r+9iGYfU/tk3CO5FkW
+         Mx4YIEBaALlOOIfK9Ml6fgXIF3ZdyeaaSOqqcim+Pk//fflvPlo7V6lbnPknok+e/Xvu
+         vW9FMdmzj4eCnn1/up/Bj7I3rbUBBRXXL7puvYuB0MgMTLwbrrEPJ88Dx8OornDUW1zw
+         hBlA==
+X-Gm-Message-State: AOAM531CkYhzhrL9amIJauxh/dSTGpbgAExYZ+an3YJMDTVt7gkg4W7Y
+        Nn7zr3vMSum8pFBi0xLgVx8=
+X-Google-Smtp-Source: ABdhPJzcjto+YCbFvFXmN/xZUnyBv5qEou5lZu159EZ2ncRvDB3X9yyFRAhPMnFi5b6nrSOvNQ9DYg==
+X-Received: by 2002:a05:651c:1615:: with SMTP id f21mr28174162ljq.318.1634037870108;
+        Tue, 12 Oct 2021 04:24:30 -0700 (PDT)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id o6sm157218lfr.19.2021.10.12.04.24.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 04:17:11 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 12:17:10 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     robh+dt@kernel.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: mfd: syscon: Add rk3368 QoS register
- compatible
-Message-ID: <YWVutkR1lHe7DEy9@google.com>
-References: <20210925090405.2601792-1-heiko@sntech.de>
- <20210925090405.2601792-2-heiko@sntech.de>
+        Tue, 12 Oct 2021 04:24:29 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        vkoul@kernel.org, michael.riesch@wolfvision.net,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de
+Subject: Re: [PATCH v1 3/3] arm64: dts: rockchip: add naneng combo phy nodes for rk3568
+Date:   Tue, 12 Oct 2021 13:24:27 +0200
+Message-ID: <13667811.Il6DKqvvJ9@archbook>
+In-Reply-To: <20210826123844.8464-4-yifeng.zhao@rock-chips.com>
+References: <20210826123844.8464-1-yifeng.zhao@rock-chips.com> <20210826123844.8464-4-yifeng.zhao@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210925090405.2601792-2-heiko@sntech.de>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 25 Sep 2021, Heiko Stuebner wrote:
-
-> Document rk3368 compatible for QoS registers.
+On Thursday, 26. August 2021 14:38:44 CEST Yifeng Zhao wrote:
+> Add the core dt-node for the rk3568's naneng combo phys.
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
 > ---
-> changes in v2:
-> - new patch
 > 
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 68 ++++++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi index d89831bee1eb..b421e3d52412
+> 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -214,11 +214,31 @@
+>  		};
+>  	};
+> 
+> [...]
+> 
+> +	combphy0_us: phy@fe820000 {
+> +		compatible = "rockchip,rk3568-naneng-combphy";
+> +		reg = <0x0 0xfe820000 0x0 0x100>;
+> +		#phy-cells = <1>;
+> +		clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
+> +			 <&cru PCLK_PIPE>;
+> +		clock-names = "ref", "apb", "pipe";
+> +		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
+> +		assigned-clock-rates = <100000000>;
+> +		resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
+> +		reset-names = "combphy-apb", "combphy";
+> +		rockchip,pipe-grf = <&pipegrf>;
+> +		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
+> +		status = "disabled";
+> +	};
 
-Applied, thanks.
+RK3566 doesn't have this PHY I believe so it shouldn't be in the
+rk356x.dtsi file. It needs to be moved to rk3568.dtsi.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+The other two combphy nodes are shared between the two SoCs so
+they can stay here.
+
+> +
+> +	combphy1_usq: phy@fe830000 {
+> +		compatible = "rockchip,rk3568-naneng-combphy";
+> +		reg = <0x0 0xfe830000 0x0 0x100>;
+> +		#phy-cells = <1>;
+> +		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
+> +			 <&cru PCLK_PIPE>;
+> +		clock-names = "ref", "apb", "pipe";
+> +		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
+> +		assigned-clock-rates = <100000000>;
+> +		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
+> +		reset-names = "combphy-apb", "combphy";
+> +		rockchip,pipe-grf = <&pipegrf>;
+> +		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
+> +		status = "disabled";
+> +	};
+> +
+> +	combphy2_psq: phy@fe840000 {
+> +		compatible = "rockchip,rk3568-naneng-combphy";
+> +		reg = <0x0 0xfe840000 0x0 0x100>;
+> +		#phy-cells = <1>;
+> +		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
+> +			 <&cru PCLK_PIPE>;
+> +		clock-names = "ref", "apb", "pipe";
+> +		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
+> +		assigned-clock-rates = <100000000>;
+> +		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
+> +		reset-names = "combphy-apb", "combphy";
+> +		rockchip,pipe-grf = <&pipegrf>;
+> +		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
+> +		status = "disabled";
+> +	};
+> +
+>  	pinctrl: pinctrl {
+>  		compatible = "rockchip,rk3568-pinctrl";
+>  		rockchip,grf = <&grf>;
+
+
+Regards,
+Nicolas Frattaroli
+
+
