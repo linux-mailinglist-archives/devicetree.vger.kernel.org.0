@@ -2,205 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B7042A11D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3885042A11F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235599AbhJLJcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 05:32:53 -0400
-Received: from mail-eopbgr30098.outbound.protection.outlook.com ([40.107.3.98]:29326
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232657AbhJLJcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 05:32:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OaUWFMUEhkY04EOB8vkDVhB2llm15oo0zPCMhPj/4NS5wrgWus5RMBTVeSgmm4Ep29cFviN7jMlDXS/9McF3v0hShuN5IvjXdJjBlZbuqIEsJuB8Ms0fD6az+J7YWqBxan98/9gaeQXk1Ud1hLi3/RmQNiyoOAw947VGmBuUTQXVL/Roo00gZyh+7ojfmm+941SkWlr0EtTHMGjkJMq7bMkr/GPr97pOOCO63CCEp+I69DnaWwcRjCaBJ7wTQ3i2INIfIOXfXz1gDY6hGZy4cp8j+9VwRvU9FxjMVR2Qs4Bn2gnlZiUxKInR/Eu9ZPEnQ/b7LdZoV1ghhEh6ObEOaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/HW7MvCvkbWKARFWbaqT5XpatFvbmhHgkUkm9/u5nTI=;
- b=DpdrnCQFHKtY8RjsgUCZibhFjtLBA5D6Fm+5tUsnVqemnyCqb4kgyertqU6ntJ94bjJNIZ5SNeRTZc2UbhSSKQUcFORF0h+AYmx12JOpxFKnBpLclbsc/wK/Bp7OEeKUuEq8kHCarkP7sdPtxeKUhystOInbnxEfSJEVEc+DDBdIYV8OnzmSC0PNMyIBPr+LmqJ1gXQor99SR23CRvq+G9JDDOrqSqusJwZXa6Jf1HKt8FS7H6FXNRNc0UET5x9Yul+3b4Vc+hXGZyGMxl24pxWZM5QuXHBYtPcpOhW6OklV/dzGEADF/PhqeEEckjXqkKn+b38WINKVzFnuPUw3ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
- dkim=pass header.d=nokia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
- s=selector1-nokia-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/HW7MvCvkbWKARFWbaqT5XpatFvbmhHgkUkm9/u5nTI=;
- b=qG2rfPbtVICNS3VBSzfDQJ9KQNoxMeHLBNn0u+dWCns51xrKLDo3Sjoyb2Pvsv8F8VIGzDo9SojRuCu/BKahGfGU+3zqbQ/kZiMwmIOvBeBqA+dCHAn0uJ+dPDZSW+ig4idzpJ3tLHnQrI/atKfC7hDM8oTyH5I9ZiD5siGv9ik=
-Authentication-Results: roeck-us.net; dkim=none (message not signed)
- header.d=none;roeck-us.net; dmarc=none action=none header.from=nokia.com;
-Received: from AS8PR07MB8104.eurprd07.prod.outlook.com (2603:10a6:20b:373::6)
- by AS8PR07MB8328.eurprd07.prod.outlook.com (2603:10a6:20b:443::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4544.6; Tue, 12 Oct
- 2021 09:30:48 +0000
-Received: from AS8PR07MB8104.eurprd07.prod.outlook.com
- ([fe80::bd6d:55f0:170c:e342]) by AS8PR07MB8104.eurprd07.prod.outlook.com
- ([fe80::bd6d:55f0:170c:e342%6]) with mapi id 15.20.4523.026; Tue, 12 Oct 2021
- 09:30:48 +0000
-Date:   Tue, 12 Oct 2021 11:30:43 +0200
-From:   Krzysztof Adamski <krzysztof.adamski@nokia.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v4 10/10] dt-bindings: hwmon: allow specifying channels for
- tmp421
-Message-ID: <88fcceedd14b9411209e9c70b10540832aa97da3.1634029538.git.krzysztof.adamski@nokia.com>
-References: <cover.1634029538.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1634029538.git.krzysztof.adamski@nokia.com>
-X-ClientProxiedBy: HE1PR0102CA0011.eurprd01.prod.exchangelabs.com
- (2603:10a6:7:14::24) To AS8PR07MB8104.eurprd07.prod.outlook.com
- (2603:10a6:20b:373::6)
+        id S235547AbhJLJdb convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Oct 2021 05:33:31 -0400
+Received: from marcansoft.com ([212.63.210.85]:49154 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232657AbhJLJda (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 05:33:30 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 429AA425CB;
+        Tue, 12 Oct 2021 09:31:25 +0000 (UTC)
+Date:   Tue, 12 Oct 2021 18:31:18 +0900
+From:   "Hector Martin \"marcan\"" <marcan@marcan.st>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+CC:     Sibi Sankar <sibis@codeaurora.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BRFC_PATCH_4/9=5D_opp=3A_core=3A_Don=27t_wa?= =?US-ASCII?Q?rn_if_required_OPP_device_does_not_exist?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20211012092603.lkmhhjoo5v67wh44@vireshk-i7>
+References: <20211011165707.138157-1-marcan@marcan.st> <20211011165707.138157-5-marcan@marcan.st> <20211012032144.2ltlpat7orrsyr6k@vireshk-i7> <b7cd51ec-38e5-11d8-5193-1170c9d60ac9@marcan.st> <20211012055143.xmkbvhbnolspgjin@vireshk-i7> <caf16a6c-f127-7f27-ed17-0522d9f1fb9e@marcan.st> <20211012092603.lkmhhjoo5v67wh44@vireshk-i7>
+Message-ID: <049FC437-EC38-4FE5-891E-5E25960892CF@marcan.st>
 MIME-Version: 1.0
-Received: from localhost.localdomain (131.228.2.15) by HE1PR0102CA0011.eurprd01.prod.exchangelabs.com (2603:10a6:7:14::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.25 via Frontend Transport; Tue, 12 Oct 2021 09:30:47 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 50d9bcec-56fa-498f-8c10-08d98d62f955
-X-MS-TrafficTypeDiagnostic: AS8PR07MB8328:
-X-Microsoft-Antispam-PRVS: <AS8PR07MB8328C07B39D1D530C88B5D18EFB69@AS8PR07MB8328.eurprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7H99n4DNInxvZUL8nSW7HfipW+QZaRLRLcj4kC280yd5P7f8lbbPVZsHwO8KxyCILIlpWvby1dfHSYogxEkaFPwf6HzIxbo/gJgt2Yi5qBbvRCPNcPrkwdg3Irdx7Orz9cmpP8M+24qBzSVPHvmyS99Ie8QTALOrFROae3tcD3GD5zopDP9At2J2boNc+uHOUKGGZJqD2UgNSovzf+nbcaA5uvI2UR70d4V9w2UcHNvX8OfUrwhuVpwCcgtuTLlUNNjmivKd6BVqouajS5hvA31jBjQmWc5DPslfzc/12DNBVDUSWZbYpDyCrKVUvko7APSxDinjWteRBQdb8vzz1rdOUPPHjGRzn/CGrTMq7AAtZXqrfAKymTfBNb/2WNStFcLzf1ugLN7BijiSaHYiGATjUG1qnJLgJwOtBdvo9+mPJfzYIfO6w8sDhdrzg9J7quB9UOPDEmWMe/guqGH7HlcmQ72Z69mp3YA+mAsj7w1vvHgXgU589WHl/70CGRIrv2AO9o8MJmLFCHby0brGeIZ5T5g31CiPuiILrOxyXoNe3IkaQC8Y6vXNxOvo9iZy9Hc19s6//fvJzV7bqzb1ZnFSBEj8pIACaYV+Q7xgbEtrJ2RTsEtKPnVsXm0+SswkKpRTr9cyNJXF7jVjrm+ez/D/M2y3xOjPggKjJPFhjffyFhbkZrdllpOtjasCbkZY
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR07MB8104.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66476007)(38350700002)(186003)(26005)(956004)(316002)(110136005)(66556008)(83380400001)(38100700002)(6506007)(2616005)(4326008)(6486002)(6512007)(2906002)(8936002)(8676002)(44832011)(5660300002)(508600001)(52116002)(66946007)(86362001)(6666004)(36756003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Fhnmh5mGzn8l75UIHjAO0N99Eo43mBiFFjpgygS4/sGjwtjfLyICNifqhWnM?=
- =?us-ascii?Q?hx4WG42RFhBCqpiKvodJYX6FnBKaJkGak138Ku8ecHxxWzxGLH/hV8BJ7OlS?=
- =?us-ascii?Q?PoM+So9L8gjzCKuBK8Plzmjl9sbBQWE2x0325Xe0hP+l9F8Y0skktXmPi+Nk?=
- =?us-ascii?Q?ZmfE0IIhpzKWkBpbUUoQ9kQvQJKT0satDMGRJ1ZI3REsPlhiQ89nrkMVXyjn?=
- =?us-ascii?Q?HLgvteffZmpbY96jfcDn0HEZytQ569+Wzakg9BKyICz1M0YMmUtnFQt1wCCl?=
- =?us-ascii?Q?+lRAuvA/sYPfHu7GgyRHxqcd8sW1qeLzbDbNb50IgzGwow7zoIBqgOwQn6yC?=
- =?us-ascii?Q?HPdFPV/RM8tQHe/YkNYb4deQMu0p9PeV2TNHVhudfgZlH59YGeAcL0hbNr1u?=
- =?us-ascii?Q?d8nogC6Mc9EtrMi0Eknoy5P6XHD1CP2Z4BJdEzGopbH1s8X35LR+NYEZB22I?=
- =?us-ascii?Q?PADM3YUOKO6FfonLnsOW/I6F5bCpY0UOfzcYT3g1TAHGXS9VlS0FtTKAZX1T?=
- =?us-ascii?Q?W1TNjbfcohQtRKb+OGCONN64w3PskbEePNDT4X7JmqP2foc/gva97SYdHhVr?=
- =?us-ascii?Q?Gs3Y+Z2V/JsWqwseTz+/JJZvwhGUrpwMblCUyzEo21HZM110EJUadF1J0cNw?=
- =?us-ascii?Q?PRwhlsDBkYuwMUna49docf0pta+JAKuPhw4fWldpP0aH89fG8mJ8NQfSp+Yp?=
- =?us-ascii?Q?5euVTOkzOmiUqUNpcmDNhip0WXm0PwozXC/AlifnmjRdECiZINR67NmOaI4B?=
- =?us-ascii?Q?QQVQVsHFmr/GY9WMBNlGDUKoxLiusZ4CTNskXVd6WOkyry1jSZJxjZYYG9NX?=
- =?us-ascii?Q?JV63JqEbPKsZ44tB0NxaRfp3cGcE15DheyS2EYP/JmAhM5yShvbbcHCQP4Ox?=
- =?us-ascii?Q?CnA5S0xQeeNsDhlpGwM/aqeV4zN/y/gDNN5Xc1HTM4l60NbyKDLPnbH/j76W?=
- =?us-ascii?Q?geclrCgLCa/RQ66NUweHT3Bv9v12/5TjU+XMRnQ5ALE3b4m9+g0X/Fb2tysd?=
- =?us-ascii?Q?PpsqKyACTigYksoJsOY+vP0sbnUmDRuMTCT0f2G+0MEYtBKx99OHDMN9U6Dj?=
- =?us-ascii?Q?q2aN9ytYbzpPCfLUp9riFIGWSG1XXhTrMkMHtJcKODVImxKTpcN79zXzSI1p?=
- =?us-ascii?Q?+2hAPZLiS9dqPTFHCXEFB/4D/ngKrzN79826l6uTkJiNYqxPm35BngZWqLlH?=
- =?us-ascii?Q?fY2HYag+eZLUd4HUy8J/LRhnyhx5MIWiiUTabAUDDbPBJkpv/7LPlojBGEQY?=
- =?us-ascii?Q?sXJIQ1bRbm0Rn/zvCPkefVxjRIC7dI6aWYtguULKEE/dnDUkFV0dxPA+XiM8?=
- =?us-ascii?Q?K19P/OjhPGiomPgpI9pjVRBY?=
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 50d9bcec-56fa-498f-8c10-08d98d62f955
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR07MB8104.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2021 09:30:48.0105
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: X8K1ZIwEiC+wJmj0zxwp/Z97jl89fG++9v2LuPslS87tpMyHzXRNVTSdq8C3DNLAUFY246TlzLeLB74h7jsmjEYHN82u+LxmQc8dFpF3Xq0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR07MB8328
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding description for the per temperature channel configuration
-like labels and n-factor.
 
-Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
----
- .../devicetree/bindings/hwmon/ti,tmp421.yaml  | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-index 47040ace4f73..36f649938fb7 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp421.yaml
-@@ -24,12 +24,50 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
- required:
-   - compatible
-   - reg
- 
- additionalProperties: false
- 
-+patternProperties:
-+  "^channel@([0-3])$":
-+    type: object
-+    description: |
-+      Represents channels of the device and their specific configuration.
-+
-+    properties:
-+      reg:
-+        description: |
-+          The channel number. 0 is local channel, 1-3 are remote channels
-+        items:
-+          minimum: 0
-+          maximum: 3
-+
-+      label:
-+        description: |
-+          A descriptive name for this channel, like "ambient" or "psu".
-+
-+      ti,n-factor:
-+        description: |
-+          The value (two's complement) to be programmed in the channel specific N correction register.
-+          For remote channels only.
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        items:
-+          minimum: 0
-+          maximum: 255
-+
-+    required:
-+      - reg
-+
-+    additionalProperties: false
-+
- examples:
-   - |
-     i2c {
-@@ -41,3 +79,32 @@ examples:
-         reg = <0x4c>;
-       };
-     };
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      sensor@4c {
-+        compatible = "ti,tmp422";
-+        reg = <0x4c>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        channel@0 {
-+          reg = <0x0>;
-+          ti,n-factor = <0x1>;
-+          label = "local";
-+        };
-+
-+        channel@1 {
-+          reg = <0x1>;
-+          ti,n-factor = <0x0>;
-+          label = "somelabel";
-+        };
-+
-+        channel@2 {
-+          reg = <0x2>;
-+          status = "disabled";
-+        };
-+      };
-+    };
+On 2021年10月12日 18:26:03 JST, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>On 12-10-21, 14:57, Hector Martin wrote:
+>> 
+>> This is arguably not entirely representative of how the hardware works,
+>> since technically the cluster switching couldn't care less what the memory
+>> controller is doing; it's a soft dependency, states that should be switched
+>> together but are not interdependent (in fact, the clock code does this
+>> unconditionally after the CPU p-state change, regardless of whether we're
+>> shifting up or down; this is, FWIW, the same order macOS uses, and it
+>> clearly doesn't matter which way you do it).
+>
+>Yeah, I understand what you are doing. But the current patch is
+>incorrect in the sense that it can cause a bug on other platforms. To
+>make this work, you should rather set this genpd as parent of CPU
+>devices (which are doing anyway since you are updating them with CPU's
+>DVFS). With that the clk driver won't be required to do the magic
+>behind the scene.
+>
+
+That doesn't work, though, because the CPUs aren't normal devices with runtime-pm. That was the first thing I tried :).
+
+If you think this *should* be made to work instead then I can try that.
+
+
 -- 
-2.31.1
-
+Hector Martin "marcan" (marcan@marcan.st)
+Public key: https://mrcn.st/pub
