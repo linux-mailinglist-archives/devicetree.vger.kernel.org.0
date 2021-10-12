@@ -2,108 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B4A429EF3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F2A429EE6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:46:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232568AbhJLHu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 03:50:59 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:52747 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232541AbhJLHu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:50:56 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DD8A822205;
-        Tue, 12 Oct 2021 09:48:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1634024927;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=XTY/Z+zotHcX5KpcuZaorS0sZpvLJgkD21qg7w9gSRQ=;
-        b=LWsI1mI6pSamxpDS/0+dFr2odTpKKzNiH6/1yG4SErONEZ2/U+oBsSryCX6kdka0owzZMP
-        DhXdqjh+2CuV/P8auid/ozf8cdDxmpTGrRZc1+gBbUPCEgCMQeKqfe6uxsO40QV3wn5VNG
-        E5LGJih/KiyGiPJztKa8y0OH1XN3seM=
+        id S234410AbhJLHr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 03:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234413AbhJLHrz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:47:55 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E933C061764
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:45:53 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id ls18so15067500pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:45:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wi0c4tUU6/JGllRDmGdUEE9qbUz1Hxlfkgo8Ug//VqI=;
+        b=OUxL16y8OmpzrNyur4IFOl0tTdwiz9ylmxi9Jz2OpNnLfrhiIcxcYNAKAtWNt5nRLP
+         c7ip3cn40UaBwURsC/aeYBU5Xg3qM7yswY4I7N1K6tce9m0PPyjVuLQrwdbTFO2iWs6S
+         O5TcZDGIOg+GE93gGGafo79sbCW61kSV65N8sff/xeVhNe6kQtp3ZeQU9OCtUl6EsdGU
+         4Ypz3M5x1LHJ2ICYAufaJ1YX2k9P30nz41mdEuLU9/JMmYDuUTr8Ck85Om35SwC6S9+L
+         8ZDjqICUBLABNaiQ5kDBjWvI7JgX9cyAjJ+V3CpsLjM6i/guib33L8AzcMJ3KtXdcSNh
+         Fefg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wi0c4tUU6/JGllRDmGdUEE9qbUz1Hxlfkgo8Ug//VqI=;
+        b=KgdkZ0htcnd47Wp9xS38WSSI3N6Tli58SUpMyjYvedW+Ir8ct/NoLWv2ob8z6s5jZP
+         Lke7UaBqPtbfyk5xYFhGbbfIrg0AwsD1DPAG+7VZlpxz2nmydtigU0vvGhnZ9j1EBQWX
+         pYnf0UJI+i0JxyT18QcOXznzR0XQEqEK9y4dTyPRlNLBip+Sf+AOl/yqTgSisKwyp6nN
+         3kcJvQmZS1zhCAn9oqv0pQDKrAgHxx9cwINxZ0Pi5sAl/WsctuVHs8FDCC6clqjbYTba
+         dNKuSKokVMcaMLGwV01T2NpUYVMIjeiJZc3HsHqdwGkEkKfE6VWc3Uxiif/DiJN2FE8S
+         3mmg==
+X-Gm-Message-State: AOAM5324iDTbuHzbkvqsQAV2udvrtZx+fN2gqcz9WhA31v8MDUZYmcO5
+        Yd7+l8X1h4NvyVSXgFfk8YjDgvdGMFnMNTG37+uy7g==
+X-Google-Smtp-Source: ABdhPJwVHKfgQcm4qq1ccDhtz6vH6TbKhIs9LDuLpCHmbkxwmiNRZagXnDeh2jLu9tT+KFW0b0YqHmzObsxOEOl2YqI=
+X-Received: by 2002:a17:90b:370f:: with SMTP id mg15mr4208394pjb.209.1634024752384;
+ Tue, 12 Oct 2021 00:45:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 12 Oct 2021 09:48:46 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-5-stephan@gerhold.net>
+ <YWRPXnzh+NLVqHvo@gerhold.net>
+In-Reply-To: <YWRPXnzh+NLVqHvo@gerhold.net>
+From:   Loic Poulain <loic.poulain@linaro.org>
+Date:   Tue, 12 Oct 2021 09:55:48 +0200
+Message-ID: <CAMZdPi8G5wtcAxTYfzwdJVMauEx+5wk7eqP9VX9QaVqrzsZkEw@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
+ network driver
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nor: Add
- output-driver-strength property
-In-Reply-To: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
-References: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <a347541ba3f8c76912d4afdb6dc64d4d@walle.cc>
-X-Sender: michael@walle.cc
+        Aleksander Morgado <aleksander@aleksander.es>,
+        Network Development <netdev@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2021-10-12 08:17, schrieb Alexander Stein:
-> This property is for optimizing output voltage impedance and is
-> specific to each board. It overwrites the default set by the flash
-> device. Various flash devices support different impedances.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Changes in v2:
-> * Updated the property description and the commit message accordingly
-> 
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index ed590d7c6e37..4c3c506a8853 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -72,6 +72,14 @@ properties:
->        be used on such systems, to denote the absence of a reliable 
-> reset
->        mechanism.
-> 
-> +  output-driver-strength:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Output driver strength in ohms which optimizes the impedance at 
-> Vcc/2
-> +      output voltage. This property overwrites the default set by the 
-> flash
-> +      device. This is board specific and should be determined by the
-> +      manufacturer. Various flash devices support different 
-> impedances.
+Hi Stephan,
 
-Mh, this seems to be very tailored to this flash chip. Eg. the "Vcc/2", 
-is
-this something specific to this flash or is this some kind of common 
-usage?
-For example, Winbond flashes specifies the output driver strength in 
-percent.
-Settings are 25%, 50%, 75%, 100% there.
+On Mon, 11 Oct 2021 at 16:51, Stephan Gerhold <stephan@gerhold.net> wrote:
+> > Like in the RFC version [1], the driver does not currently use the link
+> > management of the WWAN subsystem. Instead, it simply exposes one network
+> > interface for each of the up to 8 channels.
+> >
+> > This setup works out of the box with all available open-source userspace
+> > WWAN implementations, especially ModemManager (no changes needed).
+> > oFono works too although it requires minor changes to support WWAN control
+> > ports (/dev/wwan0qmi0) which are independent of BAM-DMUX (already provided
+> > by the "rpmsg_wwan_ctrl" driver).
+> > It was easy to support because the setup is very similar to ones already
+> > supported for USB modems. Some of them provide multiple network interfaces
+> > and ModemManager can bundle them together to a single modem.
+> >
+> > I believe it is best to keep this setup as-is for now and not add even
+> > more complexity to userspace with another setup that works only in this
+> > particular configuration. I will reply to this patch separately to explain
+> > that a bit more clearly. This patch is already long enough as-is. :)
+> >
+> > [1]: https://lore.kernel.org/netdev/20210719145317.79692-5-stephan@gerhold.net/
+> >
+>
+> The main goal of the WWAN link management is to make the multiplexing
+> setup transparent to userspace. Unfortunately it's still unclear to me
+> how or even if this can be achieved for the many different different
+> setups that exist for Qualcomm modems. To show that more clearly I'll
+> "briefly" list the various currently supported setups in ModemManager
+> (there might be even more that I am not even aware of).
 
-I'd have to ask a hardware guy, if one could convert between these two
-representations of the driver strength.
+The goal is also to have a common hierarchy, with the network link
+being a child of the WWAN device, as for the control ports. Making it
+easier for the user side to find the relation between all these
+devices. Moreover, it allows having a common set of attributes, like
+the LINK ID, and possibly new ones in the future. I mean it's probably
+fine if you create a static set of network devices and do not support
+dynamic link creation, but I think they should be created in some way
+via the WWAN subsystem, and get the same attributes (link id), we can
+have special meaning link ids (-1) for e.g. non context specific
+netdevs (e.g. for rmnet/qmap transport iface).
 
-Rob, do you know how is this case ususally handled? Can there be 
-different
-properties, like:
-
-output-driver-strength-ohms
-output-driver-strength-percent
-
-or similar.
-
--michael
+Regards,
+Loic
