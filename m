@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF8F429C98
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 06:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3A02429CBB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 06:49:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232560AbhJLEiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 00:38:46 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48130
+        id S231243AbhJLEvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 00:51:44 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48324
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232707AbhJLEik (ORCPT
+        by vger.kernel.org with ESMTP id S229593AbhJLEvn (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 00:38:40 -0400
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        Tue, 12 Oct 2021 00:51:43 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B02C83F338
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:36:38 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AA3C93F338
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634013398;
-        bh=cFDVYMnrfSERHChsUSOafRsFEi1MyUR6LNHqzOlq5OI=;
+        s=20210705; t=1634014181;
+        bh=DQTYFgRBjShgCc44LIKsX+ZkXacYI29O6N2UU4NvQ2c=;
         h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
          To:Cc:Content-Type;
-        b=mGWC7i+nYnKJ26isJGMXP4rXSRW2pbFAfkAFCqJ9GBQ0O0itnbo3Ix5dYljYEQ5gC
-         ZFMUA1qOtNv6s10jcZRTfKTxem0MdgxJwNj44r/9mTu5eof5NJ3OUJX5gNyXQF487J
-         GGTcDki+Bj1nCX4ZKDSOW7/401fX4kPzKk+PfQQ+020gaO0sjzrH0yevrOtaIZaWuw
-         RB/nH7/gvcRc/rdNr3J/ww7KXZyoRTzB5WIQXF7+7EgHHXVO7awPf0c49gQq5Erfnk
-         HwIErTAQb8BxrLN8Hf+A9JSb1NymNg9RqLT8iOd8XfxSyPl/PE5rZFiVZp8paUyesl
-         VCBvMFwi/s31g==
-Received: by mail-ed1-f69.google.com with SMTP id c8-20020a50d648000000b003daa53c7518so17716191edj.21
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 21:36:38 -0700 (PDT)
+        b=Q/drEbRHsPt9GqL8MDp6bzq+4McGHUXT0BBYYM9rywGtvw5qpwWFAvs+cYA3SvZHT
+         lChvekrRQZkJceMnS5zpzU8RNLRDSH9UbynTVbHVfBSJ3gBB+fN4ofgtSaVA5yjME1
+         0PAVKtR8TvqwUjo2HutuiUqmqOgA9pZDN+BXzjTM50Xg/SU25IvARY4Aqd6GiikHP5
+         ysbtZZyfJ7D12wW+XuKDuaRRUG1JtmLT40G+nhmkrV+SQIDKHGSRpy0TrTFpYroK1X
+         nnS7/ucDNAbsJfmjGYGDXbbGZI2+MRkqagfUfnVK6C18gibHvjHiOMuAkNpMpxwt7Q
+         dO5syeuCPE7Ow==
+Received: by mail-ed1-f71.google.com with SMTP id t28-20020a508d5c000000b003dad7fc5caeso17755110edt.11
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cFDVYMnrfSERHChsUSOafRsFEi1MyUR6LNHqzOlq5OI=;
-        b=Ky6QaWPbTzk3U66YXO/imgFYU1y1BonJ90c8olk/yMS6oN36xhneSGXnE+X8wfo+Jl
-         wGaTrD4IidUREPCEXutEo0HFjJBPUPfPQY8iaxSEW3rJAshhr2YDuOCA9XE7kp3ecoKo
-         x0lRISzZTS2eMAS4FlujSqUoKfeT/VliIOTj5zzaAzYt4xEUBuc0AIxIxADYLI4Y4zSf
-         RdZr0UQ6XWq8jkbYFS/g+h3DgeGwigs4W7c8bLS4wKs6WPb/S4Jn2ihRzEFvGpplG3tx
-         XmaDjcD8vyGf4dSI66bBcn25e1gurbBsyqbbWlU0QS/LSt/yrFVEY4a9SZ2unrAecdgP
-         uBKg==
-X-Gm-Message-State: AOAM5304WWmFPscD2SJWD27cVOMypVMnv/0szWTziKOsonUkjAwGG5Tc
-        9o2d4EXTVSayLmtSj1gFpnjINrIfgdFakhMTOv2M0OaTQhWY7LhQCXD+Mlz6FGRIB68UEdGvQAS
-        x7Xu36dkhcpTw8pvp1VEjBHZuzpNcMlnK3Q2vY8vKxM/eywBL+J01UGk=
-X-Received: by 2002:a05:6402:190e:: with SMTP id e14mr8901007edz.20.1634013397730;
-        Mon, 11 Oct 2021 21:36:37 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxDAwwNTxVTuAVNY2n7n4y7mjZ5+Vt7PQuywm97RBU9A4oXQFDeAQroJkl9fWjqHzLrLVVabbYnoGObk9MrsVI=
-X-Received: by 2002:a05:6402:190e:: with SMTP id e14mr8900996edz.20.1634013397600;
- Mon, 11 Oct 2021 21:36:37 -0700 (PDT)
+        bh=DQTYFgRBjShgCc44LIKsX+ZkXacYI29O6N2UU4NvQ2c=;
+        b=Elsl8WLFZY1kRgmadbXzuZY8w01xDGW3sKahsWHZntWIu6+wzyI4ff8q+4pFRospUJ
+         C8Sdlb8eYizwV+mDsp5VDeFK47X6VQkEAPC/FULbEzfzRE+RtkpHEkpS4hfj437HUAaF
+         B2jFjb9+pSbraAgKOSFtzRjswF4tc8sRWiy0Te5F0jM0b8mpGp3962wDLQ+fcv6d+gAN
+         fCbwQuH/8n759+vzRMQYvLrzIjsk+8fbNOCtsYql6vq2LwOrXMdesuFLlrKlVw82A/v8
+         JZAoZm+ImLdxFJOlfhiq0llDr5CrfasD1FGWixLQBu26FBAy1iupjkvXgfHnJHy6rU9m
+         HcmA==
+X-Gm-Message-State: AOAM531hS5NxobXY0nCzrdHOi0WDGsNqwh7opBept9R8w8KitlEuIngo
+        ASJc1eJDEa0TJ8QDC7MLxnIhwbSX3v0SmwJBUB6VtZSpXCvPsgrPz9IZigl3iiX7L8qYiwgXr9u
+        uoWQQnL5K+c146nX9ltFFxkiJnJ/nhHitdMgcUzt4chfS64ZgGboDJV4=
+X-Received: by 2002:a17:906:5a8d:: with SMTP id l13mr31820103ejq.95.1634014181399;
+        Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzTsvZiY9lixAtDhIJzHvONlvktGzyfRy9ZhG9KGRllcgbenZcXXrCZUfA21DF2hwyZpsjXAiUDGxByaRarDis=
+X-Received: by 2002:a17:906:5a8d:: with SMTP id l13mr31820091ejq.95.1634014181236;
+ Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com> <20210920130248.145058-2-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210920130248.145058-2-krzysztof.kozlowski@canonical.com>
+References: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com> <20210920130412.145231-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210920130412.145231-2-krzysztof.kozlowski@canonical.com>
 From:   Alexandre Ghiti <alexandre.ghiti@canonical.com>
-Date:   Tue, 12 Oct 2021 06:36:25 +0200
-Message-ID: <CA+zEjCtE6OQEcgV3GG3OxdKL0JB+dBWCij35MMd-XVZnTcbsrA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 2/5] riscv: dts: sifive: fix Unleashed board compatible
+Date:   Tue, 12 Oct 2021 06:49:30 +0200
+Message-ID: <CA+zEjCs6i7H9DWNmG5FDtJM0V5vCMUbUbianFEr+AeLPKnUVNg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 5/5] riscv: dts: sifive: add missing compatible
+ for plic
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -69,15 +70,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 20, 2021 at 3:05 PM Krzysztof Kozlowski
+On Mon, Sep 20, 2021 at 3:06 PM Krzysztof Kozlowski
 <krzysztof.kozlowski@canonical.com> wrote:
 >
-> Add missing sifive,fu540 compatible to fix dtbs_check warnings:
+> Add proper compatible for Platform-Level Interrupt Controller to silence
+> dtbs_check warnings:
 >
->   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml: /: compatible: 'oneOf' conditional failed, one must be fixed:
->   ['sifive,hifive-unleashed-a00', 'sifive,fu540-c000'] is too short
->   'sifive,hifive-unleashed-a00' is not one of ['sifive,hifive-unmatched-a00']
->   'sifive,fu740-c000' was expected
+>   interrupt-controller@c000000: compatible: ['sifive,plic-1.0.0'] is too short
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 >
@@ -86,23 +85,22 @@ On Mon, Sep 20, 2021 at 3:05 PM Krzysztof Kozlowski
 > Changes since v1:
 > 1. None
 > ---
->  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> index 633b31b6e25c..2b4af7b4cc2f 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-> @@ -11,7 +11,8 @@ / {
->         #address-cells = <2>;
->         #size-cells = <2>;
->         model = "SiFive HiFive Unleashed A00";
-> -       compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000";
-> +       compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000",
-> +                    "sifive,fu540";
->
->         chosen {
->                 stdout-path = "serial0";
+> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> index 7db861053483..0655b5c4201d 100644
+> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+> @@ -141,7 +141,7 @@ soc {
+>                 ranges;
+>                 plic0: interrupt-controller@c000000 {
+>                         #interrupt-cells = <1>;
+> -                       compatible = "sifive,plic-1.0.0";
+> +                       compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+>                         reg = <0x0 0xc000000 0x0 0x4000000>;
+>                         riscv,ndev = <53>;
+>                         interrupt-controller;
 > --
 > 2.30.2
 >
