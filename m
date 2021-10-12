@@ -2,119 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 308D542A6D0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A4C242A6CC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237108AbhJLOLA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Oct 2021 10:11:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236607AbhJLOK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:10:57 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8FBC061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:08:56 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maISM-0006W6-Jk; Tue, 12 Oct 2021 16:08:38 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maISL-0002ib-VS; Tue, 12 Oct 2021 16:08:37 +0200
-Message-ID: <ea74ee13d663fdf9df534bb06b5096198aef7920.camel@pengutronix.de>
-Subject: Re: [PATCH v1 08/16] dt-bindings: reset: Add Starfive JH7100 reset
- bindings
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Emil Renner Berthing <kernel@esmil.dk>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        linux-kernel@vger.kernel.org
-Date:   Tue, 12 Oct 2021 16:08:37 +0200
-In-Reply-To: <20211012134027.684712-9-kernel@esmil.dk>
-References: <20211012134027.684712-1-kernel@esmil.dk>
-         <20211012134027.684712-9-kernel@esmil.dk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S230195AbhJLOKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:10:51 -0400
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:34411 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236607AbhJLOKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:10:50 -0400
+Received: by mail-oo1-f41.google.com with SMTP id n15-20020a4ad12f000000b002b6e3e5fd5dso2718097oor.1;
+        Tue, 12 Oct 2021 07:08:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RMaXnYUhymrRYD9WfHd3vRjeCksk/ibqC+WFGIs70ao=;
+        b=kX4osvzTNu5h6I7Oz8ly/McOWwsbv6r49QTPjGd24ttFxIVTeT8hS7SzZPpAlo5UdG
+         1vdnvd2lzJ5p7Qrx5cjyWrZlAUQUAnKyDz4aoZ2haQh0+dQ/513vDZXdthDufXgqp1Zw
+         8XamnN8lBdUfBtzvHcBbWVkqcfu/gOXXLkeCVvBn9bSLWBmIt9Ueue/hTFMpc3P1H7B0
+         MJiFduqha2alNmaCfhVUpTEtro65E/x1H5IB7u4wdDJs88/pfcJrzDWcLDu7Juyb94cP
+         m41UmrQa6X0e3lM6nFzx/q/rJHVRMhS9ct2aHqyjaeYdKx5lKR7vNFkNSUeJ9dN79/K2
+         2Agw==
+X-Gm-Message-State: AOAM533t4Nt0vgVnHwCeMLgwpzOQfJpmsFelE+vpj6u+gqwS+9P5k5+r
+        B0a5R3ISKqmbrKUgMyFi6bW0JH1Eag==
+X-Google-Smtp-Source: ABdhPJzTJvvGTrmKrIm34n8gw9Ui7MkZ61v7NTftC8k97j3d2O33sg9Q7kkFkw07M9HEOZAz1PN20w==
+X-Received: by 2002:a4a:2a51:: with SMTP id x17mr23507999oox.21.1634047723952;
+        Tue, 12 Oct 2021 07:08:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e11sm2330094oii.0.2021.10.12.07.08.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 07:08:43 -0700 (PDT)
+Received: (nullmailer pid 2731186 invoked by uid 1000);
+        Tue, 12 Oct 2021 14:08:42 -0000
+Date:   Tue, 12 Oct 2021 09:08:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-sunxi@lists.linux.dev,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [RESEND v2 1/4] dt-bindings: bluetooth: broadcom: Fix clocks
+ check
+Message-ID: <YWWW6inuh8OIM4Bl@robh.at.kernel.org>
+References: <20210924072756.869731-1-maxime@cerno.tech>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210924072756.869731-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-10-12 at 15:40 +0200, Emil Renner Berthing wrote:
-> Add device tree bindings for the StarFive JH7100 reset controller.
+On Fri, Sep 24, 2021 at 09:27:53AM +0200, Maxime Ripard wrote:
+> The original binding was mentioning that valid values for the clocks and
+> clock-names property were one or two clocks from extclk, txco and lpo,
+> with extclk being deprecated in favor of txco.
 > 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> However, the current binding lists a valid array as extclk, txco and
+> lpo, with either one or two items.
+> 
+> While this looks similar, it actually enforces that all the device trees
+> use either ["extclk"], or ["extclk", "txco"]. That doesn't make much
+> sense, since the two clocks are said to be equivalent, with one
+> superseeding the other.
+> 
+> lpo is also not a valid clock anymore, and would be as the third clock
+> of the list, while we could have only this clock in the previous binding
+> (and in DTs).
+> 
+> Let's rework the clock clause to allow to have either:
+> 
+>  - extclk, and mark it a deprecated
+>  - txco alone
+>  - lpo alone
+>  - txco, lpo
+> 
+> While ["extclk", "lpo"] wouldn't be valid, it wasn't found in any device
+> tree so it's not an issue in practice.
+> 
+> Similarly, ["lpo", "txco"] is still considered invalid, but it's
+> generally considered as a best practice to fix the order of clocks.
+> 
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: netdev@vger.kernel.org
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 > ---
->  .../bindings/reset/starfive,jh7100-reset.yaml | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml b/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
-> new file mode 100644
-> index 000000000000..1985ccaf8605
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/starfive,jh7100-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7100 SoC Reset Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Emil Renner Berthing <kernel@esmil.dk>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - starfive,jh7100-reset
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    rstgen: reset@11840000 {
+>  .../bindings/net/broadcom-bluetooth.yaml        | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
 
-Better call this reset-controller@11840000, same in the .dtsi.
+I've applied this and the rest of the series.
 
-regards
-Philipp
+Rob
