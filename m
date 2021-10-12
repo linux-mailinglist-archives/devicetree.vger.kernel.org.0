@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F81429BBC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A570429BDF
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231951AbhJLDJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 23:09:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46134 "EHLO
+        id S232145AbhJLDXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 23:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231742AbhJLDJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:09:57 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92EE9C061570;
-        Mon, 11 Oct 2021 20:07:56 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id o83so19805894oif.4;
-        Mon, 11 Oct 2021 20:07:56 -0700 (PDT)
+        with ESMTP id S232106AbhJLDXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:23:48 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E76C061745
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id ls14-20020a17090b350e00b001a00e2251c8so1459269pjb.4
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=vVvBHngaWKoiA0++47ZxjHijX6w95ry8pBLW3rnsyKM=;
-        b=H9QwPe1Ga5lUz1oYHLYo1JXPU/nYvZOAWkRMgEQdMGj79GPeGqm9vTqS2PhYSElTeb
-         dKUQWF04Fo4hEOu/O+5K+8jO3EE0iteMyFjRNi+8yvHdvvSwEwLRLY1xuFAF5TeY1OHr
-         zXcrXJtpIye4HG2gHbsswu78EUWdqXmH3sSpfJwQkBf9AAQ/8igFUaNx1fCGhb/JWeUy
-         xyhtmsrfkwBjtnsLO0hFN376XVyHwckh5ohEZ6S2OVK4QqX941k2w9M1n5mjbzE1S04K
-         vu/VnFoSLCmetvsOswr7gR8QR6QnDW7LAmV5DMAgzHmKKpHWAEU7wKeFbEUa4Hy4cYP7
-         ofBQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mindqxxsMB6gVGzm2IFNuF4jPvZILQH7yCXhl2T6zNY=;
+        b=QZJA/iS3B13DGkdmHHQotUlufTPmZqEGPTk+YGQR9U9cZt52XOM0UkmxMY/C1/lbjo
+         J3YW4Msr9PuEL5PUrM/pEs5lIYJBFuufQQruMV5zgAOkX8ePRf5NVRb/5CO9XJ0u1siO
+         1tBQkFEmWxax2bPkxeAH7diqEYZO8Kzeruq2cuHv67l3HiGT7x8b+Ug/DRNRnno0T39b
+         Q04SyzYt4oTHgnlDHgFq5wZYj7mPmVHjbAMVBQ2OKQWyPw+lKmSm/65N1iaaZH4pNwT1
+         kslCi4b8X6bgbbpgMQwptWWKFwkwaepWmMpTUpyxZqwssknfAwBZWmedud53BqzfT5Jj
+         PzeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=vVvBHngaWKoiA0++47ZxjHijX6w95ry8pBLW3rnsyKM=;
-        b=7/Rc2nRmkvgR/ZLVVGj2+T5jl0wlvIddhJm2l8kZin3nSsXXD/x+PtVmIDIAb4b+VN
-         86Wq7OdVNUGEKwGN5T5WoAgnGEePqbfaFngMsn3xC4/6fRuNpPfbr54qt4fACp4EYWlS
-         nUO0qHYb4WVCTglGm19x/2VHGVdAAmsv/+PfByhH6Dy6nCbf+LXm4hgAHA1AqsqWEYL/
-         OFFyAQn10b7GAuWLPEJg8ZYCD4aY/fZIWm6wUoLpv4QlZEz2lkDy1OcFOxa/3+FDmm7L
-         1BU9MZeXrTELfR27HpYqVw54X1S27eObKPot90FannVk4XB56BB+28Pf2C1GpIn6AmEH
-         aNSQ==
-X-Gm-Message-State: AOAM530M5BWRjuLdN2pVz2bdH71G4Fe3JTX0GIk4cJ0eeli1sloR+Zx0
-        5tQtZsDF1NdEos4eJyzfFI6IXR5WDSN7D44MTXQ=
-X-Google-Smtp-Source: ABdhPJxgyBjsHO8t4SthfXn3vCmil4DtjN9T0E5geL0LHORC7tvbOOtT5ExBRj+csc1mPr5d7b3pBuGYbtFvoCflkE8=
-X-Received: by 2002:aca:3e8a:: with SMTP id l132mr1838200oia.95.1634008075820;
- Mon, 11 Oct 2021 20:07:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <1633668612-25524-1-git-send-email-u0084500@gmail.com>
- <1633668612-25524-3-git-send-email-u0084500@gmail.com> <YWA+ykStTEyzRbEy@sirena.org.uk>
- <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
-In-Reply-To: <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 12 Oct 2021 11:07:43 +0800
-Message-ID: <CADiBU39SKqSULSesj060a62YpMp1hD9ftfMPGtdcbOyZh8iPrw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ASoC: rt9120: Add rt9210 audio amplifier support
-To:     Mark Brown <broonie@kernel.org>
-Cc:     oder_chiou@realtek.com, perex@perex.cz, tiwai@suse.com,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mindqxxsMB6gVGzm2IFNuF4jPvZILQH7yCXhl2T6zNY=;
+        b=zi4VnaTBtap0ITuzBv1JaWmLaJH1ywE7SQhdexDkQlPHaf52mqYT58Qg/GwBT+2zbj
+         87noY0+xaWp190JEi5XrJ8J5BXSlva0YqJc0R18DWq6krkRzH5kya3UhirqTHsEXKxvb
+         GLuj3CCxn/xRDPGdI8yijXuo62Jo5yCLwpjhKqGgt7CakQFWY9xT9wIX+lXB1lEbtZ3v
+         RCvBHpcm9ITQwSo6JSe8A4CXnOiUE10KuNtuj05cuAhxtbbrkWKyPoeoAdkMOGDEcB/l
+         Aqlrl+u0Q9HD+IJ2jJGDsttNMKX9JgrxDO6lrE1uEa7xZWuTP5y8jhTYacsu61hp8s2W
+         r8PA==
+X-Gm-Message-State: AOAM532j8xoI2mru0h98jvu5Sy2Wqw4LeGySSsFor+aHq+QNnXaKWDpq
+        lVfCwSgsHWmfse9yhf8FTycSxQ==
+X-Google-Smtp-Source: ABdhPJy+1lpNhmLNBJe3RH5BEItdUMqGMbgnXp9vZo25wQRTtyx7yUrY2QLo0Yap+EDx7zbe8I8/hw==
+X-Received: by 2002:a17:90a:578e:: with SMTP id g14mr3268069pji.184.1634008907137;
+        Mon, 11 Oct 2021 20:21:47 -0700 (PDT)
+Received: from localhost ([106.201.113.61])
+        by smtp.gmail.com with ESMTPSA id u17sm810195pjn.30.2021.10.11.20.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Oct 2021 20:21:46 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 08:51:44 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        alsa-devel@alsa-project.org, lkml <linux-kernel@vger.kernel.org>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, allen lin <allen_lin@richtek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 4/9] opp: core: Don't warn if required OPP device
+ does not exist
+Message-ID: <20211012032144.2ltlpat7orrsyr6k@vireshk-i7>
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-5-marcan@marcan.st>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211011165707.138157-5-marcan@marcan.st>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=8812=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8810:47=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=888=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:51=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Fri, Oct 08, 2021 at 12:50:12PM +0800, cy_huang wrote:
-> >
-> > > +static const struct snd_kcontrol_new rt9120_snd_controls[] =3D {
-> > > +     SOC_SINGLE_TLV("MS Volume", RT9120_REG_MSVOL, 0, 2047, 1, digit=
-al_gain),
-> > > +     SOC_SINGLE("SPK Gain", RT9120_REG_SPKGAIN, 0, 7, 0),
-> >
-> > Volume controls should end in Volume even if they don't have TLV
-> > information so applications know how to render them.  I'll fix
-> > this up as I apply.
->
-> It's not linear mapping analog gain and cannot use the TLV as you said.
-> Mappling table is listed like as below
-> 0 -> 6dB
-> 1 -> 8dB
-> 2 -> 10dB
-> 3 -> 12dB
-> 4 -> 13dB
-> 5 -> 14dB
-> 6 -> 15dB
-> 7 -> 16dB
->
-> Do I just need to change it to 'SPK Gain Volume' to present this control =
-item?
-> Or is there any table mapping for the nonlinear TLV information?
+On 12-10-21, 01:57, Hector Martin wrote:
+> When required-opps is used in CPU OPP tables, there is no parent power
+> domain to drive it. Squelch this error, to allow a clock driver to
+> handle this directly instead.
+> 
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  drivers/opp/core.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index 04b4691a8aac..89e616721f70 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -873,12 +873,13 @@ static int _set_required_opp(struct device *dev, struct device *pd_dev,
+>  		return 0;
+>  
+>  	ret = dev_pm_genpd_set_performance_state(pd_dev, pstate);
+> -	if (ret) {
+> +	if (ret && ret != -ENODEV) {
+>  		dev_err(dev, "Failed to set performance rate of %s: %d (%d)\n",
+>  			dev_name(pd_dev), pstate, ret);
+> +		return ret;
+>  	}
+>  
+> -	return ret;
+> +	return 0;
+>  }
+>  
+>  /* This is only called for PM domain for now */
 
-Finally found there's 'DECLARE_TLV_DB_RANGE' that can meet the requirement.
-I will fix this by the tlv db range and naming it to 'SPK Gain Volume'.
-If there's any changes still needed, please feel free to let me know.
+I am not sure why you need this, since _set_required_opps() has this check:
+
+	if (unlikely(!required_opp_tables[0]->is_genpd)) {
+		dev_err(dev, "required-opps don't belong to a genpd\n");
+		return -ENOENT;
+	}
+
+-- 
+viresh
