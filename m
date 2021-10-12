@@ -2,143 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0C742A0DC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 068EE42A0E5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235175AbhJLJUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 05:20:14 -0400
-Received: from muru.com ([72.249.23.125]:43648 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232502AbhJLJUN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 05:20:13 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 39EA780B3;
-        Tue, 12 Oct 2021 09:18:43 +0000 (UTC)
-Date:   Tue, 12 Oct 2021 12:18:09 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 4/5] mmc: sdhci-omap: Implement PM runtime functions
-Message-ID: <YWVS0bkR7YWiY0yX@atomide.com>
-References: <20210930065733.31943-1-tony@atomide.com>
- <20210930065733.31943-5-tony@atomide.com>
- <CAPDyKFpybVPeYy-FsXnzDXNri+f7rhPmKa6vBF8NMUc3dQCZRw@mail.gmail.com>
- <YWPKXvPCTIir+TzG@atomide.com>
- <CAPDyKFo-pmxG7EfxagqANJzCemf_Y96jdCnzzen=iOdPq-rJBA@mail.gmail.com>
+        id S235462AbhJLJVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 05:21:19 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56104
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235496AbhJLJVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 05:21:19 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D69803F32F
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 09:19:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634030356;
+        bh=r5y5/vVnc4K5UB1TBSz+7rG5tu9PmtPkhFbjFAsJwpg=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=cwImSNq/tDdvmlpRvEiglE/iHCoz4pjnemv5hXDztHO6Orvx+iBICiIFk/FqJNLtX
+         cWLuZwG2bZbrNnBBTR7QFNheDDF72P0kbPxKGsPasrmBo3luZADAmViL18Q4XXqtdD
+         U3a0SqR22Rt+RHXVBL6GSSPaJsPI+mwtNZGFvmk647ygramO1644z7AgEIJmRWNGGE
+         iuprmq3QPRX+ixOi3lRMWIKbELbAAOiQRTo6QQFN0BIh4BbcNhIOCo0d3b4RogKI/C
+         wxlhZBQd2vthfLqoHtGCY7ziPApxBNunQ7cVZGhE4xGa/BqzH5smAuRVz3g6D8pegD
+         VnaUYAMiiC+kQ==
+Received: by mail-lf1-f69.google.com with SMTP id p42-20020a05651213aa00b003fd8935b8d6so4913992lfa.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:19:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=r5y5/vVnc4K5UB1TBSz+7rG5tu9PmtPkhFbjFAsJwpg=;
+        b=AScYEiwNSOZConMnB/1WpGMrjiVRvbIigEhNk4jIiw5+3rP+C3DyYIy8Z59lCeuzyz
+         sEXtIH0+fMjzYCT3aVEhK7UJ0iRI648nAfHRoLnzdkyB9TU68OlvUQbbNNry3Tb0Cpd0
+         XlOP5fRCPbryfgi/6IKo2EbjFP48p9qf+0UAsytc3/zIBFA0y9XxgFXGOwnU/3XFm9A8
+         l45+yNoQrqepc9Y8tY6JgI9MEOiSgdwM5aN6m9joQADxg7GONkemDKyOSiIHkLQJz6BH
+         HazLP5lq3XuTpVvwQhbrnJGbd34kIJ05Fqkr5ZIr9+k56O4+h6q44cS6FYZp2veK7L5N
+         B04g==
+X-Gm-Message-State: AOAM531Djgoywj93jpuUEMhiEEZoqQuKNU359ceQaJWkv77QAESsSNXz
+        UVKWSLz8VeUDqo0sGz+e0a5IHO+l1Z5SCZ33cOk58LGhL7kBnmRI/ytbwo3ji3uIrlcedIYwYLT
+        gME31artp7l/H7kmeIea/6FM3XX/xaB03Hqq6WFU=
+X-Received: by 2002:ac2:4c48:: with SMTP id o8mr27115414lfk.286.1634030356142;
+        Tue, 12 Oct 2021 02:19:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzq4pSLuFbcE7Kzfui9ayq9HU6yRKFDzy2Lesl+hVFgdjVy7SmfrAycDlAL4d25TBxgXwLBng==
+X-Received: by 2002:ac2:4c48:: with SMTP id o8mr27115394lfk.286.1634030355941;
+        Tue, 12 Oct 2021 02:19:15 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s3sm567364lfs.175.2021.10.12.02.19.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 02:19:15 -0700 (PDT)
+To:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-7-marcan@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [RFC PATCH 6/9] memory: apple: Add apple-mcc driver to manage MCC
+ perf in Apple SoCs
+Message-ID: <a9f6898d-bd76-b94e-52fc-98e9da1a04bd@canonical.com>
+Date:   Tue, 12 Oct 2021 11:19:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFo-pmxG7EfxagqANJzCemf_Y96jdCnzzen=iOdPq-rJBA@mail.gmail.com>
+In-Reply-To: <20211011165707.138157-7-marcan@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Ulf Hansson <ulf.hansson@linaro.org> [211012 09:07]:
-> On Mon, 11 Oct 2021 at 07:23, Tony Lindgren <tony@atomide.com> wrote:
-> >
-> > * Ulf Hansson <ulf.hansson@linaro.org> [211008 14:44]:
-> > > On Thu, 30 Sept 2021 at 08:57, Tony Lindgren <tony@atomide.com> wrote:
-> > > >
-> > > > Implement PM runtime functions and enable MMC_CAP_AGGRESSIVE_PM.
-> > >
-> > > I suggest you split this change into two pieces. MMC_CAP_AGGRESSIVE_PM
-> > > is about enabling runtime PM management for the eMMC/SD card device,
-> > > which is perfectly fine to use independently of whether runtime PM is
-> > > supported for the host device.
-> >
-> > OK
-> >
-> > > > @@ -1350,6 +1357,11 @@ static int sdhci_omap_probe(struct platform_device *pdev)
-> > > >         if (ret)
-> > > >                 goto err_cleanup_host;
-> > > >
-> > > > +       sdhci_omap_context_save(omap_host);
-> > > > +       omap_host->context_valid = 1;
-> > >
-> > > Looks like you can remove this flag, it's not being used.
-> >
-> > Hmm I think it is needed as otherwise we end up trying to restore
-> > an invalid context on probe on the first pm_runtime_get(). Do you
-> > have some nicer solution for that in mind?
+On 11/10/2021 18:57, Hector Martin wrote:
+> This driver binds to the memory controller hardware in Apple SoCs such
+> as the Apple M1, and provides a power domain that downstream devices can
+> use to change the performance state of the memory controller.
 > 
-> Right, I didn't notice that, my apologies.
+> Signed-off-by: Hector Martin <marcan@marcan.st>
+> ---
+>  drivers/memory/Kconfig     |   9 +++
+>  drivers/memory/Makefile    |   1 +
+>  drivers/memory/apple-mcc.c | 130 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 140 insertions(+)
+>  create mode 100644 drivers/memory/apple-mcc.c
 > 
-> In any case, an option is to bring the device into full power, without
-> calling pm_runtime_resume_and_get() from ->probe(). In principle,
-> running the same operations as the ->runtime_resume() callback does,
-> except for restoring the context then. When this is done, the
-> following calls to runtime PM should do the trick (I extended it to
-> support autosuspend as well):
+> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
+> index 72c0df129d5c..48ef3d563a1c 100644
+> --- a/drivers/memory/Kconfig
+> +++ b/drivers/memory/Kconfig
+> @@ -30,6 +30,15 @@ config ARM_PL172_MPMC
+>  	  If you have an embedded system with an AMBA bus and a PL172
+>  	  controller, say Y or M here.
+>  
+> +config APPLE_MCC
+> +	tristate "Apple SoC MCC driver"
+> +	default y if ARCH_APPLE
+> +	select PM_GENERIC_DOMAINS
+> +	depends on ARCH_APPLE || COMPILE_TEST
+> +	help
+> +	  This driver manages performance tuning for the memory controller in
+> +	  Apple SoCs, such as the Apple M1.
+> +
+>  config ATMEL_SDRAMC
+>  	bool "Atmel (Multi-port DDR-)SDRAM Controller"
+>  	default y if ARCH_AT91
+> diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
+> index bc7663ed1c25..947840cbd2d4 100644
+> --- a/drivers/memory/Makefile
+> +++ b/drivers/memory/Makefile
+> @@ -8,6 +8,7 @@ ifeq ($(CONFIG_DDR),y)
+>  obj-$(CONFIG_OF)		+= of_memory.o
+>  endif
+>  obj-$(CONFIG_ARM_PL172_MPMC)	+= pl172.o
+> +obj-$(CONFIG_APPLE_MCC)		+= apple-mcc.o
+>  obj-$(CONFIG_ATMEL_SDRAMC)	+= atmel-sdramc.o
+>  obj-$(CONFIG_ATMEL_EBI)		+= atmel-ebi.o
+>  obj-$(CONFIG_BRCMSTB_DPFE)	+= brcmstb_dpfe.o
+> diff --git a/drivers/memory/apple-mcc.c b/drivers/memory/apple-mcc.c
+> new file mode 100644
+> index 000000000000..55959f034b9a
+> --- /dev/null
+> +++ b/drivers/memory/apple-mcc.c
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Apple SoC MCC memory controller performance control driver
+> + *
+> + * Copyright The Asahi Linux Contributors
+
+Copyright date?
+
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_opp.h>
+> +
+> +#define APPLE_MCC_PERF_CONFIG1  0xdc4
+> +#define APPLE_MCC_PERF_CONFIG2  0xdbc
+> +#define APPLE_MCC_CHANNEL(x)	((x) * 0x40000)
+> +
+> +struct apple_mcc {
+> +	struct device *dev;
+> +	struct generic_pm_domain genpd;
+> +	void __iomem *reg_base;
+> +	u32 num_channels;
+> +};
+> +
+> +#define to_apple_mcc(_genpd) container_of(_genpd, struct apple_mcc, genpd)
+> +
+> +static int apple_mcc_set_performance_state(struct generic_pm_domain *genpd, unsigned int state)
+> +{
+> +	struct apple_mcc *mcc = to_apple_mcc(genpd);
+> +	struct dev_pm_opp *opp;
+> +	struct device_node *np;
+> +	u32 perf_config[2];
+> +	unsigned int i;
+> +
+> +	dev_dbg(mcc->dev, "switching to perf state %d\n", state);
+> +
+> +	opp = dev_pm_opp_find_level_exact(&mcc->genpd.dev, state);
+> +	if (IS_ERR(opp))
+> +		return PTR_ERR(opp);
+> +
+> +	np = dev_pm_opp_get_of_node(opp);
+> +	if (of_property_read_u32_array(np, "apple,memory-perf-config",
+> +		perf_config, ARRAY_SIZE(perf_config))) {
+> +		dev_err(mcc->dev, "missing apple,memory-perf-config property");
+> +		of_node_put(np);
+> +		return -EINVAL;
+> +	}
+> +	of_node_put(np);
+> +
+> +	for (i = 0; i < mcc->num_channels; i++) {
+> +		writel_relaxed(perf_config[0],
+> +			       mcc->reg_base + APPLE_MCC_CHANNEL(i) + APPLE_MCC_PERF_CONFIG1);
+> +		writel_relaxed(perf_config[1],
+> +			       mcc->reg_base + APPLE_MCC_CHANNEL(i) + APPLE_MCC_PERF_CONFIG2);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned int apple_mcc_opp_to_performance_state(struct generic_pm_domain *genpd,
+> +						       struct dev_pm_opp *opp)
+> +{
+> +	return dev_pm_opp_get_level(opp);
+> +}
+> +
+> +static int apple_mcc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *node = dev->of_node;
+
+By convention mostly we call the variable "np".
+
+> +	struct apple_mcc *mcc;
+> +	int ret;
+> +
+> +	mcc = devm_kzalloc(dev, sizeof(*mcc), GFP_KERNEL);
+> +	if (!mcc)
+> +		return -ENOMEM;
+> +
+> +	mcc->reg_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(mcc->reg_base))
+> +		return PTR_ERR(mcc->reg_base);
+> +
+> +	if (of_property_read_u32(node, "apple,num-channels", &mcc->num_channels)) {
+
+Don't you have a limit of supported channels? It cannot be any uint32...
+
+> +		dev_err(dev, "missing apple,num-channels property\n");
+
+Use almost everywhere dev_err_probe - less code and you get error msg
+printed.
+
+> +		return -ENOENT;
+> +	}
+> +
+> +	mcc->dev = dev;
+> +	mcc->genpd.name = "apple-mcc-perf";
+> +	mcc->genpd.opp_to_performance_state = apple_mcc_opp_to_performance_state;
+> +	mcc->genpd.set_performance_state = apple_mcc_set_performance_state;
+> +
+> +	ret = pm_genpd_init(&mcc->genpd, NULL, false);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm_genpd_init failed\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = of_genpd_add_provider_simple_noclk(node, &mcc->genpd);
+> +	if (ret < 0) {
+> +		dev_err(dev, "of_genpd_add_provider_simple failed\n");
+> +		return ret;
+> +	}
+> +
+> +	dev_info(dev, "Apple MCC performance driver initialized\n");
+
+Please skip it, or at least make it a dev_dbg, you don't print any
+valuable information here.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id apple_mcc_of_match[] = {
+> +	{ .compatible = "apple,mcc" },
+> +	{}
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, apple_mcc_of_match);
+> +
+> +static struct platform_driver apple_mcc_driver = {
+> +	.probe = apple_mcc_probe,
+> +	.driver = {
+> +		.name = "apple-mcc",
+> +		.of_match_table = apple_mcc_of_match,
+> +	},
+> +};
+
+module_platform_driver() goes here.
+
+> +
+> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
+> +MODULE_DESCRIPTION("MCC memory controller performance tuning driver for Apple SoCs");
+> +MODULE_LICENSE("GPL v2");
+
+I think this will be "Dual MIT/GPL", based on your SPDX.
+
+> +
+> +module_platform_driver(apple_mcc_driver);
 > 
-> pm_runtime_get_noresume()
-> pm_runtime_set_active()
-> pm_runtime_set_autosuspend_delay()
-> pm_runtime_use_autosuspend()
-> pm_runtime_enable()
-> 
-> Note that, this means that the omaps PM domain's ->runtime_resume()
-> callback doesn't get invoked when powering on the device for the first
-> time. Can this be a problem?
 
-Yeah I think that would be a problem as the register access won't work :)
 
-I changed things around to initialize omap_host->con = -ENODEV and then
-check it on resume. Not an ideal solution but avoids the extra flag.
-
-> > > > @@ -1402,42 +1415,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
-> > > >         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
-> > > >  }
-> > > >
-> > > > -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
-> > > > +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
-> > > >  {
-> > > >         struct sdhci_host *host = dev_get_drvdata(dev);
-> > > >         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> > > >         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
-> > > >
-> > > > -       sdhci_suspend_host(host);
-> > > > -
-> > >
-> > > Shouldn't you call sdhci_runtime_suspend_host() somewhere here?
-> >
-> > I'm pretty sure I tried, but runtime resume did not seem to work after
-> > doing that.. I'll take a look again.
-
-Confusion solved for this one and it's working now.. Maybe I tried
-calling sdhci_suspend_host() instead of sdhci_runtime_suspend_host()
-earlier who knows.
-
-> > > It looks a bit odd that sdhci_suspend_host() is called only when the
-> > > host is runtime resumed. Perhaps you can elaborate a bit more on why
-> > > this is, so I can understand better what you want to achieve here.
-> >
-> > I guess I'm not clear on what's left for sdhci_suspend_host() to do if
-> > the host is already runtime suspended :)
-> 
-> I think what boils down to that is that, sdhci_suspend|resume_host()
-> adds some special treatment for system wakeups (for SDIO irqs). I am
-> not sure whether you may need that.
-
-OK, will check.
-
-> Some host drivers doesn't use sdhci_suspend|resume_host, but sticks to
-> the sdhci_runtime_suspend|resume()_host() functions. Like
-> sdhci-sprd.c, for example.
-
-Hmm so is there some helper to figure out if the mmc host is active
-and has a card?
-
-Seems we could skip sdhci_suspend/resume for the inactive mmc host
-instances.
-
-Regards,
-
-Tony
+Best regards,
+Krzysztof
