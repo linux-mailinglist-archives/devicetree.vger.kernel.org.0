@@ -2,103 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2848342A51D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 15:09:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3331642A543
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 15:16:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233883AbhJLNL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 09:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232851AbhJLNL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 09:11:58 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517BDC061570;
-        Tue, 12 Oct 2021 06:09:56 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id d3so53270369edp.3;
-        Tue, 12 Oct 2021 06:09:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=YKueiV6JHnO2SWEg4ednq6nX+YbDshzzDq1vLvlG1cw=;
-        b=SVZka6ezsMJnMKeWlb8qWlQJzKHOERJP+vQLsax2MT+mBK82kltqBKzjoo+0K/dfDN
-         HRqMIXA74pQmlHINDCAHsxyHoACRFDl/WnH7r7DfppzY6yA12USg6fR1NR7tbxP6Tkwl
-         Mntb7UF/C3I7cWETSTxQOQbxBnteHoLlkN4SgIRfK0XjS5FzJduAfLiuRvh5kRU1iwe5
-         t8Asb7Djhmirt180RLLyOOkUkVOWGLLG5bj9WXQpJ4ulgmJtcr8+skoFYPfKBnHrDFQH
-         K5XSfV5QGCHPT/Doxd+FRsHXNijBi4FWKBRs58TwXVnqHyvl3/nX8ObYVfte+yz0Iw9v
-         Y4TQ==
+        id S236559AbhJLNSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 09:18:49 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:33773 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236544AbhJLNSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 09:18:45 -0400
+Received: by mail-oi1-f169.google.com with SMTP id q129so8289175oib.0;
+        Tue, 12 Oct 2021 06:16:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YKueiV6JHnO2SWEg4ednq6nX+YbDshzzDq1vLvlG1cw=;
-        b=al+p5/skozzhggWh5ShDJRGbLUNn1hTgBk5HzayZHRxFUqtjOx+15FMarnwQ/R3RzV
-         1bFT0QG7+bNjJ2loBeZk4NhswSCDVP0ZLuT49hnQTCFeAgsV0ESt9ma9JDCyRM5gsdmm
-         73enaP33mgZrOfi6wCHFYlM2gyYVahM5cvRh7H9IabbCH2pDJdZoTM5Qol46kd3eywSU
-         6bf4zjkI8i4bPOc3MYqo+iuZM+ney4NK3xIS3hqKvaCrVVJvLDDiMAYc/C6EWoPQdCCA
-         jQZVdC13XfV4HmMQXb6GCALabkOys1+0TUN/fGblOdzHguBXyubA+x6gzOZmN8DoMzRC
-         tnaA==
-X-Gm-Message-State: AOAM53292HpMoZnYCnXs7phxgUAFdaEqj1eQZrv/rqNqu0RsHFIP2SuO
-        am0iUIufoAv5LgB7yihwetM=
-X-Google-Smtp-Source: ABdhPJzjqxBA2OJOfJfHdplJCe2+fTtUOt4o9kiCTXs2g+veaaqbTRtkdP0/5j/Ps6X9dpAu/N6GHQ==
-X-Received: by 2002:a05:6402:5113:: with SMTP id m19mr49885819edd.231.1634044192626;
-        Tue, 12 Oct 2021 06:09:52 -0700 (PDT)
-Received: from skbuf ([188.26.53.217])
-        by smtp.gmail.com with ESMTPSA id m23sm4899248eja.6.2021.10.12.06.09.51
+         :mime-version:content-disposition:in-reply-to;
+        bh=H1gCfeZM8D46sKt+LlwE0xSTSKdW6wn+1al3obvMhhw=;
+        b=GOHrE+c0YLe01qmAPk9T9JCm8e52vgrMmc1emIk5kmP2Hs7ZAHXEqSYI8H/D7mCPG8
+         rdC1Xg8pd8cAN4ffF4Uri4w3KgnUxP4/0a+N2lkamDUp9UQwVTL6qD6By9M7ZzygcRyk
+         M0IWXthzC/6YF1EQV6w+27UPWRzMg/rX1N3IRtFWbqCloVGoejeEIJ6zdu0Qjl04Tl5I
+         Lqhloy0tPPQjDA5pLl+OtfHaWiCwaMDh8Nwyokf+H5maMIV8uxYctFA6vp934BuMZULz
+         NVuogrtGpWsdpmkC1crZDlMlo97f3sGUrpvrEVrp+vwOFI1PHBlLPWS7euSHNehq71mh
+         lurg==
+X-Gm-Message-State: AOAM531EPv1vctAKpANRBxVfSzmzCVuC+xsCq91mEXDLwRvrMTIGvINa
+        652E5z7Jj7rHiYrmnri9Lg==
+X-Google-Smtp-Source: ABdhPJzlnDcuhhVI4hiEfqlZ1Pe9A8O6OQwWK9MJEiy48yQsA1yVQVaR3yopwASE2T7I+7qKMSEfiA==
+X-Received: by 2002:a05:6808:3a7:: with SMTP id n7mr3550077oie.45.1634044603773;
+        Tue, 12 Oct 2021 06:16:43 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e28sm1404519oiy.10.2021.10.12.06.16.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 06:09:52 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 16:09:50 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Tue, 12 Oct 2021 06:16:43 -0700 (PDT)
+Received: (nullmailer pid 2655630 invoked by uid 1000);
+        Tue, 12 Oct 2021 13:16:42 -0000
+Date:   Tue, 12 Oct 2021 08:16:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Sean Anderson <sean.anderson@seco.com>
+Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, linux-kernel@vger.kernel.org,
         Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
         Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 1/6] ether: add EtherType for proprietary
- Realtek protocols
-Message-ID: <20211012130950.nlrqoa6qjtvzvfdh@skbuf>
-References: <20211012123557.3547280-1-alvin@pqrs.dk>
- <20211012123557.3547280-2-alvin@pqrs.dk>
+        devicetree@vger.kernel.org
+Subject: Re: [RFC net-next PATCH 01/16] dt-bindings: net: Add pcs property
+Message-ID: <YWWKuhn4FfgbcqO/@robh.at.kernel.org>
+References: <20211004191527.1610759-1-sean.anderson@seco.com>
+ <20211004191527.1610759-2-sean.anderson@seco.com>
+ <YVwdWIJiV1nkJ4A3@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211012123557.3547280-2-alvin@pqrs.dk>
+In-Reply-To: <YVwdWIJiV1nkJ4A3@shell.armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 02:35:50PM +0200, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On Tue, Oct 05, 2021 at 10:39:36AM +0100, Russell King (Oracle) wrote:
+> On Mon, Oct 04, 2021 at 03:15:12PM -0400, Sean Anderson wrote:
+> > Add a property for associating PCS devices with ethernet controllers.
+> > Because PCS has no generic analogue like PHY, I have left off the
+> > -handle suffix.
 > 
-> Add a new EtherType ETH_P_REALTEK to the if_ether.h uapi header. The
-> EtherType 0x8899 is used in a number of different protocols from Realtek
-> Semiconductor Corp [1], so no general assumptions should be made when
-> trying to decode such packets. Observed protocols include:
-> 
->   0x1 - Realtek Remote Control protocol [2]
->   0x2 - Echo protocol [2]
->   0x3 - Loop detection protocol [2]
->   0x4 - RTL8365MB 4- and 8-byte switch CPU tag protocols [3]
->   0x9 - RTL8306 switch CPU tag protocol [4]
->   0xA - RTL8366RB switch CPU tag protocol [4]
-> 
-> [1] https://lore.kernel.org/netdev/CACRpkdYQthFgjwVzHyK3DeYUOdcYyWmdjDPG=Rf9B3VrJ12Rzg@mail.gmail.com/
-> [2] https://www.wireshark.org/lists/ethereal-dev/200409/msg00090.html
-> [3] https://lore.kernel.org/netdev/20210822193145.1312668-4-alvin@pqrs.dk/
-> [4] https://lore.kernel.org/netdev/20200708122537.1341307-2-linus.walleij@linaro.org/
-> 
-> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-> ---
+> For PHYs, we used to have phy and phy-device as property names, but the
+> modern name is "phy-handle". I think we should do the same here, so I
+> would suggest using "pcs-handle".
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+On 1G and up ethernet, we have 2 PHYs. There's the external (typically) 
+ethernet PHY which is what the above properties are for. Then there's 
+the on-chip serdes PHY similar to SATA, PCIe, etc. which includes the 
+PCS part. For this part, we should use the generic PHY binding. I think 
+we already have bindings doing that.
+
+Rob
