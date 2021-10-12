@@ -2,157 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDA7942A7D0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:03:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87E042A7DC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:05:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237351AbhJLPFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 11:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237330AbhJLPFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:05:02 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB207C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:03:00 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id r19so86147914lfe.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:03:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4eJoqAgJlqh2O2nmM1v2NiNOm7MS1e5UJQvxXAIjQYU=;
-        b=yO/CCCIUXu1GwR439kw9FMl2GpN8uaq8YOHapPUnS/luUh6mY1ooc8zLO/l9BmNfIA
-         Vi93nqlyWYmDxfJf7f76NA8zVn0/zM7Ja4/Kegdt2anZbjI+9dgtc6cHi9ZJK7nD7Wop
-         FLNorXOIwVdrklORo9mPs4LSrFcj9Ns0vOk5nXq1YvQi6NJhlCg7bR/cY7iy/tfxndDt
-         S3adSERPQbNw8Cf1xvedzswY1j3kgf0//oJPF4ZYirBIByPDu+rCbkGnaWC3Tkq0ZK+i
-         5aV7q9MLI7ajx1Jr74Eir5ASemy9TYV9xjLOXGra93gJTqz8gBlRd/nBOwMWfl4dPeoR
-         5p4g==
+        id S237374AbhJLPHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 11:07:03 -0400
+Received: from mail-pf1-f177.google.com ([209.85.210.177]:38684 "EHLO
+        mail-pf1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237223AbhJLPHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:07:03 -0400
+Received: by mail-pf1-f177.google.com with SMTP id k26so17810137pfi.5;
+        Tue, 12 Oct 2021 08:05:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=4eJoqAgJlqh2O2nmM1v2NiNOm7MS1e5UJQvxXAIjQYU=;
-        b=YVAjg15If6w4XMPsXTv1wbKSPS0/PZmTeEFhOldZiogOZb0fqznJNRDU4oWjtGFEk9
-         kMGnaBnkSDlgWDtjFy+tzXBG3nAutyyX9pCSoiSKn8ukaoFZ9Sq/TK1a7EayF8f6uBjj
-         /uaxhaHg3oMcWmB3FsQcrMeKnrEWVKk6QOuBiQfIl7Z9yeJg9WCCDyQm4qgrt5KSnQIZ
-         DJV5qDnASo8zypy800f0KQQ03PFN25zAtnkpIghSy6NNRxNUBPfftOMKCjX/QGh2ozdq
-         RnkOKRO3tz4fbCbtO/WRoD4UJDc41HdIdC2WFnBbITxpLeDFb+HGJmeCj10SvYqGPLug
-         Spow==
-X-Gm-Message-State: AOAM5307+Qp50/GJfAMsHdoMo7BJotb9ugYq4JE3vr/O7EqrcuSOHtqo
-        4WXLHmsjyHpTNBlKDlDMRJEEEAISbJar09Qtkt5eFw==
-X-Google-Smtp-Source: ABdhPJybFllB0Syo/nJobMz5ywiRV9EQH+LTVA68dMR3IvZCeiDz/F+aGe9SdEaqW3Me5Yc4dHf751U3woxgC8wPzQg=
-X-Received: by 2002:a05:651c:11c4:: with SMTP id z4mr21552017ljo.463.1634050970182;
- Tue, 12 Oct 2021 08:02:50 -0700 (PDT)
+        bh=hdJDtZAfGIdmZ/ukdHpeB6ObCJRx81CajNUOCsrybQI=;
+        b=PLODMfvtk0akldX2uKuW3OfA8uRa9S2MSPgbhHny7guY2xuIOIBNg2FKgf0F16h9gz
+         1ZQpB58gQrvKlii1NheXBLFGfoOMdCz3R8BkzJhfAMxqeqbSxvS8JcHTOY16lOP3KWgd
+         RWJ3PuIS79mjngoa84d7DwO7U/9nAybKQtf3By4ioA2y9iilbpLA4Vc54zDhE8tUYQ8W
+         s8vE58lrTTKofu460M46eLmO3h1K8BA+6DPvqx6+TtY6F5VKXYiuhp+HWDNKMSKi2Y49
+         RfEewfNDPke9JF6zh0kFOMMNSRdI85BA7K4pCwFS0v5Z42AT3WqH6UI7ehdTpq9hFJ3d
+         FDJw==
+X-Gm-Message-State: AOAM531G6sDhSraynjZ3qRa1fAWYAhd40u4sRhINO2jDYft/lBxLxoQs
+        E+KVX8gAq3WPk2zhWhFqVU31bqxPjAoYpltM7F8=
+X-Google-Smtp-Source: ABdhPJwjzF1OeRyJAl+WVfOcbYpjaH0YTTRuWHlM9SeqDs+4nR3B9BF7FubISuSdaFjCzlSGaxlHolurGeiz3wPpntQ=
+X-Received: by 2002:a63:b11:: with SMTP id 17mr23103923pgl.51.1634051101136;
+ Tue, 12 Oct 2021 08:05:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211012103750.38328-1-tony@atomide.com> <20211012103750.38328-7-tony@atomide.com>
-In-Reply-To: <20211012103750.38328-7-tony@atomide.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 12 Oct 2021 17:02:13 +0200
-Message-ID: <CAPDyKFqXsTCTmqggiN3iDXTu=fZwCwDbFVacN=FLasQVTgFB-g@mail.gmail.com>
-Subject: Re: [PATCH 6/6] mmc: sdhci-omap: Configure optional wakeirq
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
+References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-10-kernel@esmil.dk>
+ <99ddc44924bcb89110a74d3182b1d3eea623dce1.camel@pengutronix.de>
+In-Reply-To: <99ddc44924bcb89110a74d3182b1d3eea623dce1.camel@pengutronix.de>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Tue, 12 Oct 2021 17:04:49 +0200
+Message-ID: <CANBLGcyA3LzRNhR1pFpZmnHPXHSMcxyF93_p2nvVfscZCAO06w@mail.gmail.com>
+Subject: Re: [PATCH v1 09/16] reset: starfive-jh7100: Add StarFive JH7100
+ reset driver
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 at 12:38, Tony Lindgren <tony@atomide.com> wrote:
+On Tue, 12 Oct 2021 at 16:31, Philipp Zabel <p.zabel@pengutronix.de> wrote:
 >
-> Configure optional wakeirq. This may be optionally configured for SDIO
-> dat1 pin for wake-up events for SoCs that support deeper idle states.
+> On Tue, 2021-10-12 at 15:40 +0200, Emil Renner Berthing wrote:
+> > Add a driver for the StarFive JH7100 reset controller.
+> >
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > ---
+> >  MAINTAINERS                           |   7 ++
+> >  drivers/reset/Kconfig                 |   8 ++
+> >  drivers/reset/Makefile                |   1 +
+> >  drivers/reset/reset-starfive-jh7100.c | 164 ++++++++++++++++++++++++++
+> >  4 files changed, 180 insertions(+)
+> >  create mode 100644 drivers/reset/reset-starfive-jh7100.c
+> >
+> [...]
+> > diff --git a/drivers/reset/reset-starfive-jh7100.c b/drivers/reset/reset-starfive-jh7100.c
+> > new file mode 100644
+> > index 000000000000..26bc5b59c1f3
+> > --- /dev/null
+> > +++ b/drivers/reset/reset-starfive-jh7100.c
+> > @@ -0,0 +1,164 @@
+> [...]
+> > +static int jh7100_reset_update(struct reset_controller_dev *rcdev,
+> > +                            unsigned long id, bool assert)
+> > +{
+> > +     struct jh7100_reset *data = jh7100_reset_from(rcdev);
+> > +     unsigned long offset = id / 32;
+> > +     void __iomem *reg_assert = data->base + JH7100_RESET_ASSERT0 + 4 * offset;
+> > +     void __iomem *reg_status = data->base + JH7100_RESET_STATUS0 + 4 * offset;
+> > +     u32 mask = BIT(id % 32);
+> > +     u32 done = jh7100_reset_asserted[offset] & mask;
+> > +     unsigned long flags;
+> > +     u32 value;
+> > +
+> > +     if (!assert)
+> > +             done ^= mask;
+> > +
+> > +     spin_lock_irqsave(&data->lock, flags);
+> > +
+> > +     value = readl(reg_assert);
+> > +     if (assert)
+> > +             value |= mask;
+> > +     else
+> > +             value &= ~mask;
+> > +     writel(value, reg_assert);
+> > +
+> > +     do {
+> > +             value = readl(reg_status) & mask;
+> > +     } while (value != done);
 >
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/mmc/host/sdhci-omap.c | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -12,8 +12,10 @@
->  #include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_irq.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
-> +#include <linux/pm_wakeirq.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/sys_soc.h>
-> @@ -117,6 +119,7 @@ struct sdhci_omap_host {
->
->         struct pinctrl          *pinctrl;
->         struct pinctrl_state    **pinctrl_state;
-> +       int                     wakeirq;
->         bool                    is_tuning;
->
->         /* Offset for omap specific registers from base */
-> @@ -1360,6 +1363,25 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->
->         sdhci_omap_context_save(omap_host);
->
-> +       /*
-> +        * SDIO devices can use the dat1 pin as a wake-up interrupt. Some
-> +        * devices like wl1xxx, use an out-of-band GPIO interrupt instead.
-> +        */
+> Looking at the barebox driver, this could loop indefinitely if the
+> caller forgets to enable the corresponding peripheral clock. Maybe
+> use readl_poll_timeout() as a safety net.
 
-Ah, right I recall this now. Very clever.
+You're right. Asserting without the clock enabled is fine, but
+deasserting will hang forever. At least for the temperature sensor
+clock/resets I tried it with. I'll add the timeout, thanks!
 
-> +       omap_host->wakeirq = of_irq_get_byname(dev->of_node, "wakeup");
-> +       if (omap_host->wakeirq == -EPROBE_DEFER) {
-> +               ret = -EPROBE_DEFER;
-> +               goto err_cleanup_host;
-> +       }
-> +       if (omap_host->wakeirq > 0) {
-> +               device_init_wakeup(dev, true);
-> +               ret = dev_pm_set_dedicated_wake_irq(dev, omap_host->wakeirq);
-> +               if (ret) {
-> +                       device_init_wakeup(dev, false);
-> +                       goto err_cleanup_host;
-> +               }
-> +               host->mmc->pm_caps |= MMC_PM_WAKE_SDIO_IRQ;
-
-To prevent the mmc core from powering off the SDIO card in system
-suspend (which certainly must be prevented if wakeups should be
-delivered), you need to set MMC_PM_KEEP_POWER, too.
-
-FYI: We also have common mmc DT properties for these caps, which are
-being parsed in mmc_of_parse().
-
-These are the DT properties:
-"keep-power-in-suspend" - > MMC_PM_KEEP_POWER
-"wakeup-source" || "enable-sdio-wakeup" (/* legacy */) -> MMC_PM_WAKE_SDIO_IRQ;
-
-> +       }
-> +
->         pm_runtime_mark_last_busy(dev);
->         pm_runtime_put_autosuspend(dev);
->
-> @@ -1387,6 +1409,8 @@ static int sdhci_omap_remove(struct platform_device *pdev)
->
->         pm_runtime_get_sync(dev);
->         sdhci_remove_host(host, true);
-> +       device_init_wakeup(dev, false);
-> +       dev_pm_clear_wake_irq(dev);
->         pm_runtime_dont_use_autosuspend(dev);
->         pm_runtime_put_sync(dev);
->         /* Ensure device gets idled despite userspace sysfs config */
-> --
-> 2.33.0
-
-I now think I better understand what is needed during system
-suspend/resume to support system wakeups. I will comment on patch 4,
-let's see what that brings us to.
-
-Kind regards
-Uffe
+/Emil
