@@ -2,138 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2370042A722
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 237BF42A744
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237250AbhJLO15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 10:27:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236695AbhJLO14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:27:56 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA9B0C06161C;
-        Tue, 12 Oct 2021 07:25:54 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id k2-20020a056830168200b0054e523d242aso16560229otr.6;
-        Tue, 12 Oct 2021 07:25:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8dhO4iKJgpntkSBg2CwwF2girkJ/DIoq3G4792Lm7Pw=;
-        b=m+3urIRZDUaPFt4YAqHZzlAf2Co2G1/u3NpnpQNYHGV0cvqbdmaK/wdBGa5lZP/DmE
-         4whR0NZozjxw8+d6DvFB7E2N/HQPiXIc08eIZvpHwLRHgTMduRKK+eLWEbRksezcZvXZ
-         63v3s32o2czL+ftVsGXKff95y2EJ7cBG3f2Cm1QahTRFz/zFYWf7WDmTwasy/Gx5Cqr4
-         WhND6AcbSpBn5VINXCBytKj9jxwPw8f6yg1tRVSnw7LdcOm1HcQU8jlGrqN5wPcImhCb
-         sadTd7bURwGdeRujqwXjJUl96T6Crtpv7E9+sc9NMnjsdtupWV9cocd0HsilMUSfSp87
-         9ZiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=8dhO4iKJgpntkSBg2CwwF2girkJ/DIoq3G4792Lm7Pw=;
-        b=xTmnNQs5oWmdXuF2Je4eKoLv1OWIXGUwQ6znpQJwZss5+EXtUY4uAXSsUEtMwfdZ6u
-         PEVYZYsRn81Dfwv/ph5K4ArOSvGMvPac/vBjJhUWX4UVraazvse+1aUxhGHu1mvRJ+Sl
-         ar2VZpbe4LzCIKAcdqcsYdj/Ml7m1GWkAJV0YFY/Hwio6ZpuuyhhtP2yl+4dAZEsH9yn
-         LQEiU1w0U2uLc43kr+l+NMzAgl3+PaFzMmWfO2FfZqrYKl3Oh9aWR6hvdfHWoB6hWCdv
-         mmtdFDPnnW/5nYPmZVddz8oblW4vouw08U2LYv7VBNsWhJUceys7R/qodwtCZG9h4cDV
-         vv0w==
-X-Gm-Message-State: AOAM5310BqTLQXAHfhdAGk0EG/T3tRzy6YVChfHB/h1gZExQe9iaJiYg
-        7ul39Zp93NGJ8SH2p2Gp/cU=
-X-Google-Smtp-Source: ABdhPJx4ozkQzNek01O2VmB+tImpR0R5CZaBzO4eIsBUBjj6A1cNXJ2K+ZjsWXl/3XhOXODRWZg20g==
-X-Received: by 2002:a05:6830:828:: with SMTP id t8mr13349324ots.87.1634048752566;
-        Tue, 12 Oct 2021 07:25:52 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s10sm2357827oib.58.2021.10.12.07.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 07:25:52 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 12 Oct 2021 07:25:50 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 02/10] hwmon: (tmp421) introduce a channel struct
-Message-ID: <20211012142550.GA743871@roeck-us.net>
-References: <cover.1634029538.git.krzysztof.adamski@nokia.com>
- <baf34d95983a6b58a3e39e4c098e5979e541572e.1634029538.git.krzysztof.adamski@nokia.com>
+        id S237271AbhJLOe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:34:29 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:53800 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237239AbhJLOe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:34:28 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: andrzej.p)
+        with ESMTPSA id 9B4F61F43B8C
+Subject: Re: [PATCH v7, 00/15] Support multi hardware decode using
+ of_platform_populate
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20211011070247.792-1-yunfei.dong@mediatek.com>
+From:   Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Message-ID: <73f83f00-5d49-ba77-f46d-9c0855dc5268@collabora.com>
+Date:   Tue, 12 Oct 2021 16:27:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <baf34d95983a6b58a3e39e4c098e5979e541572e.1634029538.git.krzysztof.adamski@nokia.com>
+In-Reply-To: <20211011070247.792-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 11:26:55AM +0200, Krzysztof Adamski wrote:
-> This is a preparatory change. Upcoming patches will introduce more
-> per-channel parameters so it's worth organizing them into a struct.
+Hi Yunfei Dong,
+
+W dniu 11.10.2021 o 09:02, Yunfei Dong pisze:
+> This series adds support for multi hardware decode into mtk-vcodec, by first
+> adding use of_platform_populate to manage each hardware information: interrupt,
+> clock, register bases and power. Secondly add core thread to deal with core
+> hardware message, at the same time, add msg queue for different hardware
+> share messages. Lastly, the architecture of different specs are not the same,
+> using specs type to separate them.
 > 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-
-Applied to hwmon-next.
-
-Thanks,
-Guenter
-
-> ---
->  drivers/hwmon/tmp421.c | 14 +++++++++-----
->  1 file changed, 9 insertions(+), 5 deletions(-)
+> This series has been tested with both MT8183 and MT8173. Decoding was working
+> for both chips.
 > 
-> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index 356c96c3588b..707310d616a4 100644
-> --- a/drivers/hwmon/tmp421.c
-> +++ b/drivers/hwmon/tmp421.c
-> @@ -87,6 +87,10 @@ static const struct of_device_id __maybe_unused tmp421_of_match[] = {
->  };
->  MODULE_DEVICE_TABLE(of, tmp421_of_match);
->  
-> +struct tmp421_channel {
-> +	s16 temp;
-> +};
-> +
->  struct tmp421_data {
->  	struct i2c_client *client;
->  	struct mutex update_lock;
-> @@ -98,7 +102,7 @@ struct tmp421_data {
->  	unsigned long last_updated;
->  	unsigned long channels;
->  	u8 config;
-> -	s16 temp[MAX_CHANNELS];
-> +	struct tmp421_channel channel[MAX_CHANNELS];
->  };
->  
->  static int temp_from_raw(u16 reg, bool extended)
-> @@ -133,12 +137,12 @@ static int tmp421_update_device(struct tmp421_data *data)
->  			ret = i2c_smbus_read_byte_data(client, TMP421_TEMP_MSB[i]);
->  			if (ret < 0)
->  				goto exit;
-> -			data->temp[i] = ret << 8;
-> +			data->channel[i].temp = ret << 8;
->  
->  			ret = i2c_smbus_read_byte_data(client, TMP421_TEMP_LSB[i]);
->  			if (ret < 0)
->  				goto exit;
-> -			data->temp[i] |= ret;
-> +			data->channel[i].temp |= ret;
->  		}
->  		data->last_updated = jiffies;
->  		data->valid = true;
-> @@ -167,7 +171,7 @@ static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
->  
->  	switch (attr) {
->  	case hwmon_temp_input:
-> -		*val = temp_from_raw(tmp421->temp[channel],
-> +		*val = temp_from_raw(tmp421->channel[channel].temp,
->  				     tmp421->config & TMP421_CONFIG_RANGE);
->  		return 0;
->  	case hwmon_temp_fault:
-> @@ -175,7 +179,7 @@ static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
->  		 * Any of OPEN or /PVLD bits indicate a hardware mulfunction
->  		 * and the conversion result may be incorrect
->  		 */
-> -		*val = !!(tmp421->temp[channel] & 0x03);
-> +		*val = !!(tmp421->channel[channel].temp & 0x03);
->  		return 0;
->  	default:
->  		return -EOPNOTSUPP;
+> Patches 1~3 rewrite get register bases and power on/off interface.
+> 
+> Patch 4 add to support multi hardware.
+> 
+> Patch 5 separate video encoder and decoder document
+> 
+> Patches 6-15 add interfaces to support core hardware.
+
+Which tree does the series apply to?
+
+Regards,
+
+Andrzej
