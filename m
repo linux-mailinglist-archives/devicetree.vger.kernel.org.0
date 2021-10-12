@@ -2,126 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 231C642A8E6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:56:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6439042A823
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237477AbhJLP6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 11:58:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51470 "EHLO
+        id S237388AbhJLPX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 11:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237386AbhJLP63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:58:29 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A1FC06174E
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:56:28 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id f21so5052917plb.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:56:28 -0700 (PDT)
+        with ESMTP id S234023AbhJLPX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:23:28 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0F9FC061570;
+        Tue, 12 Oct 2021 08:21:26 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id ec8so983514edb.6;
+        Tue, 12 Oct 2021 08:21:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=mePc1vd/EHkCrzmAohlwat8GzWH/E7cD+W9nQvLLIu4=;
-        b=kVgy/+a6lh3I0ZXvFbqdwy4cdixEQ48qJ26ZMs6smSIwYFRMHnCYmK74ep66Sx3NOp
-         5DZI2jgV+ULNul+LewUNEth7jaeoPygVEtuP9gnEsicoqXqHN549VAJManTku0D5jOZh
-         /4aNCfAUh2JFPJN3uU8zI7/CYX+exCFxt+5NJTzB18HiDlKzLS7jZYywMt1OQNIEiGxN
-         xEEx2frxHKz7CMP4DJnzXoKGzi7Eo/4yd4/T/Ru0VxqVdIKOzVQ0f03R0stfXqKLZXFZ
-         zjyxI4X1ikLAAOU48ftSRGNlddJUAgPYuVygYJgHeqI+QI0JbR6wKnd2eJMndpbs23QA
-         +Tmg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Fgwbge5K1EzbR8VI8a8H+Le1NZKMMr2m8pTON2xUTN8=;
+        b=QzV9YbjGsg5t2ZQdqkJweilCwjmv4f72WtizTfjRD1Z69nHKwlfIiVk9MKiRlbEJ3M
+         TIHpw/FxnC/HP+5SA6hgP4KYPicWuytgbi9wK8eIt5nmUVSYpScMPgY+o8EiY28/GHw6
+         N0FLqSe4XHbska7BuYvfFGFuLxwQ5ehC37hDLaiWT7iLXWenpcMsDHXEpDwkNw1UoluY
+         bChBoNeZU/DB1fJvp9iHrNPflFh88J+rkZLx20pNvxo6J434CKGA8xip4fm0zZb645PF
+         duqJZMT7VmJha6C2jowMLglzgpTLnF6hzYtGuX12RQEr/03u8EZDNEWZlzQ1sAhaIRMH
+         /WBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=mePc1vd/EHkCrzmAohlwat8GzWH/E7cD+W9nQvLLIu4=;
-        b=UQuG/o74FDLyihgPemFlo59weFeRHqigrcyk3vS5rhIkb9HKF7mnh3xnoqiLcVe1Aw
-         g1FBirvtQZXAckcp2RHuLX/76jc4PUBeHv/X+gUHR8d+uhR3bmBg5kpVEi3yqOEzx8Zi
-         xM6xNXSYcZxFjx3vV8Tcit0wjpin+1awQKpjgZCNXZeELZAZuFGAMPRtb54ZOJryJGeV
-         CC5yMoSwnQC6O8Uk+1azULsja89tgnziBy5zjyzXeEwHNk6BAOjlSx+XFkAn/bMpJ/2p
-         Poz/zxo3PY/FxRhwLDimrxx6AV/dyDzn2lb+qJtrssaC50b6CERBr1M/3lq3H3jeqr58
-         6hBw==
-X-Gm-Message-State: AOAM532vMydvBLyPRaIaqw61bSmUdZKN5b51UWsYjafgfrDK0Wn3PMpB
-        skACmFc5DAGKiTggW4tC4q3hUw==
-X-Google-Smtp-Source: ABdhPJwyh5YfT0iKf7U16WPgkQZB6l1HXD7/F4XBZ7M7e/LoOYhdxvJgdgxKr+XWtz9DN2Y1ysYK4g==
-X-Received: by 2002:a17:90b:388f:: with SMTP id mu15mr6915883pjb.28.1634054187510;
-        Tue, 12 Oct 2021 08:56:27 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id jz10sm3246547pjb.39.2021.10.12.08.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 08:56:25 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 09:56:23 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        shengjiu.wang@gmail.com
-Subject: Re: [PATCH v6 0/4] Add remoteproc driver for DSP on i.MX
-Message-ID: <20211012155623.GA4010675@p14s>
-References: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Fgwbge5K1EzbR8VI8a8H+Le1NZKMMr2m8pTON2xUTN8=;
+        b=ql1gq/UdrhrACr1IUteuY3VLxmplPBKQ6W7wz143v3hFtUUgBWkbuSema1UN+kB2z8
+         9cMdMtVaY+51VAKEwezmdPOUJNj4NOfNFMf8uZbkGNQCfExrOT4ixrcGJ+dTvTHhcJQM
+         9BkN350mNRCoxEUb/djSlFesBebCPTC6G3U4+fc6mZyiKh2SsJoZkmAiTIbhxs0dikvM
+         beEOWlSnQbF1yuy1yxuzVufAQokh5w0T74y3CJd7gDkdJNk0JMfsvYCBAU6EU8/eA+85
+         1F90qZXadAFWvqcu8fmo8u9j63G+jzyqjuTuEBVoRrTpoxotqfRkQpqeZsWuh9Tzflvg
+         LTJg==
+X-Gm-Message-State: AOAM531n9Uv/bkapCZM1Qbs63HCg+3bBi0KS461YQ4gFar2YNvVB9Ngw
+        bYF+dIkplp0xmVwu3Xh+vj/m37h9QTcOkZWXwroB+vtnfwMhSQ==
+X-Google-Smtp-Source: ABdhPJyH2Cr0E/CmRn2fpGIMT6foljvhODeW0WmDCNiwPWy1V5M7oQBd/zsMp/jE5RFRB/+ZUOCr7c7fggDU4sXQp/0=
+X-Received: by 2002:a05:6402:143b:: with SMTP id c27mr606000edx.224.1634052084925;
+ Tue, 12 Oct 2021 08:21:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
+References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-2-kernel@esmil.dk>
+In-Reply-To: <20211012134027.684712-2-kernel@esmil.dk>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 12 Oct 2021 21:20:37 +0300
+Message-ID: <CAHp75VcCCxPmnzoE5PSxtODdguoKa7VA1r2yrJRLQ=gOAevu2Q@mail.gmail.com>
+Subject: Re: [PATCH v1 01/16] RISC-V: Add StarFive SoC Kconfig option
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 05:20:11PM +0800, Shengjiu Wang wrote:
-> Provide a basic driver to control DSP processor found on NXP i.MX8QM,
-> i.MX8QXP, i.MX8MP and i.MX8ULP.
-> 
-> Currently it is able to resolve addresses between DSP and main CPU,
-> start and stop the processor, suspend and resume.
-> 
-> The communication between DSP and main CPU is based on mailbox, there
-> are three mailbox channels (tx, rx, rxdb).
-> 
-> This driver was tested on NXP i.MX8QM, i.MX8QXP, i.MX8MP and i.MX8ULP.
-> 
-> changes in v6:
-> - fix the apply issue for linux-next
-> - add if/then schema according to Rob's comments
-> 
-> changes in v5:
-> - refine driver according to Mathieu's comments
-> 
-> changes in v4:
-> - merge binding doc to fsl,dsp.yaml for Rob's comments
-> 
-> changes in v3:
-> - Add this cover letter
-> - refine clock-names according to Rob's comments
-> - move common struct from imx_rproc.c to header file
-> - add IMX_RPROC_SCU_API enum item
-> - refine driver according to Mathieu's comments
-> 
-> changes in v2:
-> - change syscon to fsl,dsp-ctrl
-> - add items for clock-names
-> 
-> Shengjiu Wang (4):
->   remoteproc: imx_rproc: Move common structure to header file
->   remoteproc: imx_rproc: Add IMX_RPROC_SCU_API method
->   remoteproc: imx_dsp_rproc: Add remoteproc driver for DSP on i.MX
->   dt-bindings: dsp: fsl: update binding document for remote proc driver
-> 
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      |  123 +-
->  drivers/remoteproc/Kconfig                    |   11 +
->  drivers/remoteproc/Makefile                   |    1 +
->  drivers/remoteproc/imx_dsp_rproc.c            | 1206 +++++++++++++++++
->  drivers/remoteproc/imx_rproc.c                |   28 +-
->  drivers/remoteproc/imx_rproc.h                |   39 +
->  6 files changed, 1375 insertions(+), 33 deletions(-)
->  create mode 100644 drivers/remoteproc/imx_dsp_rproc.c
->  create mode 100644 drivers/remoteproc/imx_rproc.h
+On Tue, Oct 12, 2021 at 4:42 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+>
+> Add StarFive Kconfig option to select SoC specific and common drivers
+> required for these SoCs.
 
-I have applied this set.
+...
 
-Thanks,
-Mathieu
+> +       select SERIAL_8250_DW
 
-> 
-> -- 
-> 2.17.1
-> 
+Is it critical for boot? Why?
+
+-- 
+With Best Regards,
+Andy Shevchenko
