@@ -2,97 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA9242A4EF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975FE42A4F7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236653AbhJLMyW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 08:54:22 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:43935 "EHLO
+        id S236480AbhJLM4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:56:49 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:34631 "EHLO
         mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236652AbhJLMyV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:54:21 -0400
-Received: by mail-oi1-f178.google.com with SMTP id o4so28904852oia.10;
-        Tue, 12 Oct 2021 05:52:20 -0700 (PDT)
+        with ESMTP id S236434AbhJLM4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:56:49 -0400
+Received: by mail-oi1-f178.google.com with SMTP id z11so28969057oih.1;
+        Tue, 12 Oct 2021 05:54:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GH/rUNldGDrQWZbHGHNnv3z7yGjMSKDvdbkj2ZpIpc4=;
-        b=hWQcpbafOqEfhkzZUi+fyaX7CYCmIdeQdqEUayhs6BC7hdkzeTsR/hhzqkio0rpEoU
-         tgdUQSjKI4hwtOMG77C6HoEU4sQBSgMoeKEHe4OrrQO6g5Ms/SDQMrZnPGd1cBKTU8vJ
-         e4dglGMrolzLoTxC/enzyqJ0BS6QxwU86H+sKOaeQfmnng6t+nK3E1SMj7YQHi4Uhhck
-         hj2yQHVHiPAKDkLHB3tSFqbdv1Wv/VgZgmHsYqJ2HCp/T6L3ESNQ2YxeT50j0G1DFduk
-         VLoGXYc/9fkWYakp39Oa+VS7VTlZGH0yHWnvjgt7/1k8m948RPl66A/5Z6oAK82Q2i7h
-         kV2w==
-X-Gm-Message-State: AOAM531ujTCIGfAbG/2K0TEj0CjdydsOcvr516pP5q+3Ud5swqHq7Y/M
-        NPMOmJ8XKE54/8hwkXWaEQ==
-X-Google-Smtp-Source: ABdhPJz8As3l+5i35LUl/3j8/RYdO3uMxHOhk3l3WiuYe0C4KBDwdJpcQI1vNwr1VfPoZj4l4G6kSA==
-X-Received: by 2002:aca:6747:: with SMTP id b7mr3524949oiy.46.1634043139688;
-        Tue, 12 Oct 2021 05:52:19 -0700 (PDT)
+        bh=2ZjQ+qQGEZ88kHDp+LohEN5ZK3Pde3RbjbjGPXQUneY=;
+        b=Wsl1+CA6CW05LDmHu3K7D60bWbd5lDTpG2BGNMTu+58ElXOTDw7GjhCDU98/l6QJc1
+         NmeR6na48DmxUlv9i0y7AQsHA2CsLxaaehn9Y86PcWKmIhwAM3Q4IGwanfWwiLUvJV+k
+         6sgA0FMbQpw5fZGU2AgOYTv6rYuknNIm0G50VEd5ZD4evHRRSXCTlxlsa5iWj2oNI8G/
+         X5xGqMRx8DLMesDYZ11oLEmk1Gbu6Om3rRixLJjLRg1YDbUys7wXfHAFi3ZyTKZx1wFm
+         z6PFxf9aG6clh+kvd8+ockBva1iuFgCjZRioTL+w7g7kXeeh47enxenRmVWxFycJCqW4
+         HTyA==
+X-Gm-Message-State: AOAM532dYYno8IFeNf5tsY0Clovey7HD+f9d6nUCASMHbc1gBhTAM7AH
+        h5WHiBXuoBoKaOGzrew3Btl/QppI7w==
+X-Google-Smtp-Source: ABdhPJyQZyNQHkP7iMZLIGI2e4jrOd2LxQGTc5kfYMxh0k+TIAfkEf3xd9DjfJeK5vFpFA0oE1KYnA==
+X-Received: by 2002:aca:1809:: with SMTP id h9mr3553958oih.51.1634043287509;
+        Tue, 12 Oct 2021 05:54:47 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l45sm2090151ooi.30.2021.10.12.05.52.18
+        by smtp.gmail.com with ESMTPSA id e9sm1987107otr.25.2021.10.12.05.54.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 05:52:18 -0700 (PDT)
-Received: (nullmailer pid 2551195 invoked by uid 1000);
-        Tue, 12 Oct 2021 12:52:17 -0000
-Date:   Tue, 12 Oct 2021 07:52:17 -0500
+        Tue, 12 Oct 2021 05:54:47 -0700 (PDT)
+Received: (nullmailer pid 2555367 invoked by uid 1000);
+        Tue, 12 Oct 2021 12:54:46 -0000
+Date:   Tue, 12 Oct 2021 07:54:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <Alexander.Stein@tq-systems.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: mtd: spi-nor: Add
- output-driver-strength property
-Message-ID: <YWWFAXeekLS80bOR@robh.at.kernel.org>
-References: <20211004111529.211089-1-Alexander.Stein@tq-systems.com>
+To:     Aparna M <a-m1@ti.com>
+Cc:     a-govindraju@ti.com, vigneshr@ti.com, grygorii.strashko@ti.com,
+        linus.walleij@linaro.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, bgolaszewski@baylibre.com
+Subject: Re: [PATCH v2] dt-bindings: gpio: Convert TI TPIC2810 GPIO
+ Controller bindings to YAML
+Message-ID: <YWWFluiECO/Di0ZI@robh.at.kernel.org>
+References: <20211004131500.22100-1-a-m1@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211004111529.211089-1-Alexander.Stein@tq-systems.com>
+In-Reply-To: <20211004131500.22100-1-a-m1@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 04, 2021 at 01:15:28PM +0200, Alexander Stein wrote:
-> From: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Mon, Oct 04, 2021 at 06:45:00PM +0530, Aparna M wrote:
+> Convert gpio-tpic2810 bindings to yaml format and remove outdated
+> bindings in .txt format.
 > 
-> This property is for optimizing output voltage impedance and is
-> specific to each board.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Signed-off-by: Aparna M <a-m1@ti.com>
 > ---
-> I checked Micron and Macronix datasheets. Both have similar but not
-> identical supported values. Also the register locations are different.
-> For those reasons I decided to specify the Ohms value directly and let
-> the device specfic driver figure out if it is supported where to write
-> it to.
-> BTW: Are the Ohm values and the corresponding register bits standardized
-> somewhere?
+>  .../bindings/gpio/gpio-tpic2810.txt           | 16 -------
+>  .../bindings/gpio/gpio-tpic2810.yaml          | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
 > 
->  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+> deleted file mode 100644
+> index 1afc2de7a537..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.txt
+> +++ /dev/null
+> @@ -1,16 +0,0 @@
+> -TPIC2810 GPIO controller bindings
+> -
+> -Required properties:
+> - - compatible		: Should be "ti,tpic2810".
+> - - reg			: The I2C address of the device
+> - - gpio-controller	: Marks the device node as a GPIO controller.
+> - - #gpio-cells		: Should be two. For consumer use see gpio.txt.
+> -
+> -Example:
+> -
+> -	gpio@60 {
+> -		compatible = "ti,tpic2810";
+> -		reg = <0x60>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+> new file mode 100644
+> index 000000000000..811aee483f43
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-tpic2810.yaml
+> @@ -0,0 +1,48 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/gpio-tpic2810.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TPIC2810 GPIO controller bindings
+> +
+> +maintainers:
+> +  - Aswath Govindraju <a-govindraju@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,tpic2810
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: The I2C address of the device
+
+Drop generic descriptions.
+
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c1 {
+
+i2c {
+
+With those changes,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        gpio@60 {
+> +            compatible = "ti,tpic2810";
+> +            reg = <0x60>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +        };
+> +    };
+> -- 
+> 2.17.1
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index ed590d7c6e37..7d7f20a741b5 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -72,6 +72,12 @@ properties:
->        be used on such systems, to denote the absence of a reliable reset
->        mechanism.
->  
-> +  output-driver-strength:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Output driver strength in Ohms which optimizes the impedance at Vcc/2
-> +      output voltage.
-
-Use a standard unit suffix.
-
-Though, specifying 'drive strength' in ohms rather than amps is a bit 
-strange.
+> 
