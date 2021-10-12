@@ -2,61 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A58D442A447
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC5042A44F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:24:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236326AbhJLMYj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Oct 2021 08:24:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236281AbhJLMYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:24:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83231C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:22:37 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maGnj-0000yy-Rk; Tue, 12 Oct 2021 14:22:35 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maGnj-0006rS-Ag; Tue, 12 Oct 2021 14:22:35 +0200
-Message-ID: <c27b83000485f8bce6f3d2a3e43c7cb558c4d84a.camel@pengutronix.de>
-Subject: Re: [PATCH v5 1/3] media: imx6-mipi-csi2: use pre_streamon callback
- to set sensor into LP11
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kernel@pengutronix.de
-Date:   Tue, 12 Oct 2021 14:22:35 +0200
-In-Reply-To: <20211012084150.755160-2-m.tretter@pengutronix.de>
-References: <20211012084150.755160-1-m.tretter@pengutronix.de>
-         <20211012084150.755160-2-m.tretter@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S236401AbhJLM0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:26:39 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48880
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236281AbhJLM0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 08:26:38 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2D49C3FFFC
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 12:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634041476;
+        bh=L8jClsyh1SUVJA0r9XU2zlulqfQRlXLTiZ22Cwei9Ro=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=hCbXjLb+bV6P1zeG/5eedN5ukhyKcnDusbWQkgUG91B7ppj70Kn86vcdE2le9N8rg
+         kf2HPNBd5CxvNNI5Ky5RmJGMnhiDB91TpQMSt9/xLGhCdmflCYQJZhiPjLsE+uz1bS
+         e6MTjH2v1dySdpQg6BTsElVkSnxsg45pufLdNL2h7shDP+RSdFMRrOZd+IzafUj2wz
+         WAbV3IuuZn7VT92Usj2Do6l602AMvOiaGwqlnsjL1RWFjX5SzNp2/UhUz/llA9Ev3n
+         rxf2qy69m0rkMQMG0kB+RE6fefi2mZ9eji1Nhm3XT3/JUgSF5ViKl3GOlB1BNHB+5n
+         P77OAwM0Im06w==
+Received: by mail-lf1-f69.google.com with SMTP id p42-20020a05651213aa00b003fd8935b8d6so5226519lfa.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:24:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=L8jClsyh1SUVJA0r9XU2zlulqfQRlXLTiZ22Cwei9Ro=;
+        b=7cA5U3QdFpCddDdM8WsJEqayEsjcaT3q5uYFpyAM2dlTZkBPJkRXqWAXxNS8p4iGuD
+         ySXu7hnyKjNmKLXcZi2GwdUnqcKWIom8VJ3Nys9HCz1iU48E4KabDi9rnimXl4FVYrV+
+         9u4+u0KZAJouQsaHjTvg+RfKUnuWOA6YlE8hSsPhsp9O995HA0SaOnlaftyYtZkgTCty
+         HsUAUTyQ61ctH37OjwsHdvEjtrTK7t11pqK0VeWpAlIFMCBKk2SsADFwxIzHv4R6dplU
+         c3TUlacKjxDotjt4/1x8XU2miPhZu0LBPAvNgJVIL8J0bEcmTopXnLG5XjLnLBDKws5o
+         JaPw==
+X-Gm-Message-State: AOAM532dEZx+WALw8QM9YFeyCSTRNcsDcZFLdXESiRIIJGXhBcbJelLb
+        TET/QkKp9p2SrauACPz5+20IDlv8qJg6ZziIMlRponNukP+u2ZEFra3SuEYSlir/WABdnEV6hed
+        GdbcYrtK5+sbHqnX5hqUCMgfkgW8b0msQbRLBWNk=
+X-Received: by 2002:a2e:9588:: with SMTP id w8mr2206414ljh.81.1634041475638;
+        Tue, 12 Oct 2021 05:24:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy++vGK4BjPhT4cFirc9aNULQZ6xYYGmV0YyrKSwGQAib7q29vq4Xte62RvzQTSArC95xdUUw==
+X-Received: by 2002:a2e:9588:: with SMTP id w8mr2206398ljh.81.1634041475396;
+        Tue, 12 Oct 2021 05:24:35 -0700 (PDT)
+Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id t22sm1116873ljj.61.2021.10.12.05.24.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 05:24:34 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        devicetree@vger.kernel.org, Tomasz Figa <tomasz.figa@gmail.com>,
+        linux-samsung-soc@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Subject: Re: (subset) [PATCH v4 2/3] arm64: dts: exynos: add initial support for exynosautov9 SoC
+Date:   Tue, 12 Oct 2021 14:23:58 +0200
+Message-Id: <163404143358.133839.7339127354143983906.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211012002314.38965-3-chanho61.park@samsung.com>
+References: <20211012002314.38965-1-chanho61.park@samsung.com> <CGME20211012002533epcas2p1ade9bfee49456149836f2ef1631d5626@epcas2p1.samsung.com> <20211012002314.38965-3-chanho61.park@samsung.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-10-12 at 10:41 +0200, Michael Tretter wrote:
-> Step 5 expects that the sensor is in LP11 mode. Use the new
-> pre_streamon callback to signal the sensor that it should switch into
-> LP11.
+On Tue, 12 Oct 2021 09:23:13 +0900, Chanho Park wrote:
+> Add minimal support for ExynosAuto v9 SoC[1].
 > 
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> - Enumarate all pinctrl nodes
+> - UART with exynos850 compatible
+> - UFS0 HCI + Phy
+> 
+> Like exynos850, this also uses fixed-rate clock nodes until clock driver
+> has been supported. The clock nodes are initialized on bootloader stage
+> thus we don't need to control them so far.
+> 
+> [...]
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Applied, thanks!
 
-regards
-Philipp
+[2/3] arm64: dts: exynos: add initial support for exynosautov9 SoC
+      commit: 31bbac5263aa63dfc8bfed2180bb6a5a3c531681
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
