@@ -2,227 +2,426 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA3A42ACAC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:56:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8431942AC7C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234738AbhJLS6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 14:58:06 -0400
-Received: from leibniz.telenet-ops.be ([195.130.137.77]:34232 "EHLO
-        leibniz.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234576AbhJLS6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:58:06 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4HTPTR061bzMqgqB
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 20:34:35 +0200 (CEST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:9c93:91ff:d58:ecfb])
-        by albert.telenet-ops.be with bizsmtp
-        id 56ZY260060KW32a066ZYkc; Tue, 12 Oct 2021 20:33:34 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1maMah-004RUE-LZ; Tue, 12 Oct 2021 20:33:31 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1maMag-002j7S-9o; Tue, 12 Oct 2021 20:33:30 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Miguel Ojeda <ojeda@kernel.org>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
-        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v7 17/21] auxdisplay: ht16k33: Extract frame buffer probing
-Date:   Tue, 12 Oct 2021 20:33:23 +0200
-Message-Id: <20211012183327.649865-18-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211012183327.649865-1-geert@linux-m68k.org>
-References: <20211012183327.649865-1-geert@linux-m68k.org>
+        id S233488AbhJLSv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 14:51:26 -0400
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:43924 "EHLO
+        mail-lf1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235741AbhJLSvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:51:14 -0400
+Received: by mail-lf1-f53.google.com with SMTP id r19so869905lfe.10
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 11:49:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NsPhwQLI2oaG3F2DZCDWFpjOEOfSkj4Lirf6tYBwqKU=;
+        b=iwwKIy1UpAE9/iVFICD31Kdu8eVPxBpfTZuJPSBHDbpUW0p3YJymUX6XthYXO6CPPD
+         mrbkfLSAvbuEkQkGf9swfjsMqzKrS7sJYrZc5aPxLLjvPJ14lzDA+70nGJjcL28Bdu59
+         8KRZT5b0Q7vvSG4Lxqw8JFZa5aCToF3ZzBvtPtZJkq/X+ZVDE7NnMoRMuOFlWfJCu4/A
+         X9UpQ1XEnLWIAKVVgMCS7c/wCMlESsZQgr1Sb1q6MV6XL+Fxy6DGNNeZqqvxHGGnuNfq
+         zZzkUVhHU2fYlvuULfuINccaafMfWUa5Ia/0puMJOzrH1sbOQc4MJ5jVjGD9TKBrSAvd
+         G6ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NsPhwQLI2oaG3F2DZCDWFpjOEOfSkj4Lirf6tYBwqKU=;
+        b=M5Q3jkwQ4sYKV9YUddZSMe97f2+JzMAwdLmdb/BxyFy1RSBDhlpBYA3saAKTDCfq/A
+         qR9j9AHuvfgB2ICn3vRMWTjoTUGzkGR9MpNUDIBPwsq5T6CnMEY5X9y2tl/2VxhmBKof
+         NOFFnKUgPMuLSSgYAVabZ0x763RZH9sHHYZj/5A0oWfCKNwKiKpQ6RbPok0unomQNc7Z
+         cvGpusEEaoy10QfqhgtnjMgsgSKQ/2iiZndOYUJDnwxF1OktAYIp8nZNcaTePdyNY0nf
+         thBG3NQmggeCC342TD99bunSvHDhuNmX72XIN2fW4mJHjYoCN798rrlO/OkuP9a+LXIy
+         jVpA==
+X-Gm-Message-State: AOAM531yjiMh3Uh99fPZdj8ZPn/TArTIw6ODJz/rSHTeppBYhoP464nr
+        EDf7eK6Q41ingCIRjSMC5I8Hqo/7PCo+hKBG
+X-Google-Smtp-Source: ABdhPJwsys0fnytBaeRkRy387lnlUqW10bBD5QoTXSex2GVsHk+Y+iEQLa61zQVv50TyPnnH7cbI6w==
+X-Received: by 2002:adf:e101:: with SMTP id t1mr35191963wrz.395.1634063621385;
+        Tue, 12 Oct 2021 11:33:41 -0700 (PDT)
+Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
+        by smtp.googlemail.com with ESMTPSA id v3sm11451631wrg.23.2021.10.12.11.33.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 11:33:41 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
+Date:   Tue, 12 Oct 2021 20:33:24 +0200
+Message-Id: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extract all frame buffer (including backlight) probing into
-ht16k33_fbdev_probe().
+Convert ADV748X analog video decoder documentation to json-schema.
 
-Call ht16k33_fbdev_probe() after ht16k33_keypad_probe(), as the latter
-does not need any manual cleanup in the probe error path.
-
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Reviewed-by: Robin van der Gracht <robin@protonic.nl>
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 ---
-v7:
-  - Add Reviewed-by,
+Hello,
 
-v6:
-  - No changes,
+This conversion revealed a problem with the Renesas DTSI files for the 
+adv7482 nodes. A fix for that have been submitted in a separate patch,
 
-v5:
-  - No changes,
+    [PATCH] arm64: dts: renesas: Add ports node to all adv7482 nodes
 
-v4:
-  - No changes,
-
-v3:
-  - Pass "dev" instead of "client" to ht16k33_fbdev_probe(),
-  - Drop local variable "node",
-
-v2:
-  - Rebased.
+Kind Regards,
+Niklas Söderlund
 ---
- drivers/auxdisplay/ht16k33.c | 101 ++++++++++++++++++-----------------
- 1 file changed, 53 insertions(+), 48 deletions(-)
+ .../devicetree/bindings/media/i2c/adv748x.txt | 116 ----------
+ .../bindings/media/i2c/adv748x.yaml           | 211 ++++++++++++++++++
+ 2 files changed, 211 insertions(+), 116 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.yaml
 
-diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-index 60e616c0e932cd84..8993d27909109a98 100644
---- a/drivers/auxdisplay/ht16k33.c
-+++ b/drivers/auxdisplay/ht16k33.c
-@@ -404,33 +404,13 @@ static int ht16k33_keypad_probe(struct i2c_client *client,
- 	return input_register_device(keypad->dev);
- }
- 
--static int ht16k33_probe(struct i2c_client *client)
-+static int ht16k33_fbdev_probe(struct device *dev, struct ht16k33_priv *priv,
-+			       uint32_t brightness)
- {
--	int err;
--	uint32_t dft_brightness;
--	struct backlight_device *bl;
-+	struct ht16k33_fbdev *fbdev = &priv->fbdev;
- 	struct backlight_properties bl_props;
--	struct ht16k33_priv *priv;
--	struct ht16k33_fbdev *fbdev;
--	struct device *dev = &client->dev;
--	struct device_node *node = dev->of_node;
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.txt b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
+deleted file mode 100644
+index 4f91686e54a6b939..0000000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/adv748x.txt
++++ /dev/null
+@@ -1,116 +0,0 @@
+-* Analog Devices ADV748X video decoder with HDMI receiver
 -
--	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
--		dev_err(dev, "i2c_check_functionality error\n");
--		return -EIO;
--	}
+-The ADV7481 and ADV7482 are multi format video decoders with an integrated
+-HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
+-from three input sources HDMI, analog and TTL.
 -
--	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
--	if (!priv)
--		return -ENOMEM;
+-Required Properties:
 -
--	priv->client = client;
--	i2c_set_clientdata(client, priv);
--	fbdev = &priv->fbdev;
+-  - compatible: Must contain one of the following
+-    - "adi,adv7481" for the ADV7481
+-    - "adi,adv7482" for the ADV7482
 -
--	err = ht16k33_initialize(priv);
--	if (err)
--		return err;
-+	struct backlight_device *bl;
-+	int err;
- 
- 	/* Backlight */
- 	memset(&bl_props, 0, sizeof(struct backlight_properties));
-@@ -444,18 +424,7 @@ static int ht16k33_probe(struct i2c_client *client)
- 		return PTR_ERR(bl);
- 	}
- 
--	err = of_property_read_u32(node, "default-brightness-level",
--				   &dft_brightness);
--	if (err) {
--		dft_brightness = MAX_BRIGHTNESS;
--	} else if (dft_brightness > MAX_BRIGHTNESS) {
--		dev_warn(dev,
--			 "invalid default brightness level: %u, using %u\n",
--			 dft_brightness, MAX_BRIGHTNESS);
--		dft_brightness = MAX_BRIGHTNESS;
--	}
+-  - reg: I2C slave addresses
+-    The ADV748x has up to twelve 256-byte maps that can be accessed via the
+-    main I2C ports. Each map has it own I2C address and acts as a standard
+-    slave device on the I2C bus. The main address is mandatory, others are
+-    optional and remain at default values if not specified.
 -
--	bl->props.brightness = dft_brightness;
-+	bl->props.brightness = brightness;
- 	ht16k33_bl_update_status(bl);
- 
- 	/* Framebuffer (2 bytes per column) */
-@@ -476,8 +445,8 @@ static int ht16k33_probe(struct i2c_client *client)
- 		goto err_fbdev_buffer;
- 	}
- 
--	err = of_property_read_u32(node, "refresh-rate-hz",
--		&fbdev->refresh_rate);
-+	err = of_property_read_u32(dev->of_node, "refresh-rate-hz",
-+				   &fbdev->refresh_rate);
- 	if (err) {
- 		dev_err(dev, "refresh rate not specified\n");
- 		goto err_fbdev_info;
-@@ -499,18 +468,9 @@ static int ht16k33_probe(struct i2c_client *client)
- 	if (err)
- 		goto err_fbdev_info;
- 
--	/* Keypad */
--	if (client->irq > 0) {
--		err = ht16k33_keypad_probe(client, &priv->keypad);
--		if (err)
--			goto err_fbdev_unregister;
--	}
+-Optional Properties:
 -
- 	ht16k33_fb_queue(priv);
- 	return 0;
- 
--err_fbdev_unregister:
--	unregister_framebuffer(fbdev->info);
- err_fbdev_info:
- 	framebuffer_release(fbdev->info);
- err_fbdev_buffer:
-@@ -519,6 +479,51 @@ static int ht16k33_probe(struct i2c_client *client)
- 	return err;
- }
- 
-+static int ht16k33_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct ht16k33_priv *priv;
-+	uint32_t dft_brightness;
-+	int err;
+-  - interrupt-names: Should specify the interrupts as "intrq1", "intrq2" and/or
+-		     "intrq3". All interrupts are optional. The "intrq3" interrupt
+-		     is only available on the adv7481
+-  - interrupts: Specify the interrupt lines for the ADV748x
+-  - reg-names : Names of maps with programmable addresses.
+-		It shall contain all maps needing a non-default address.
+-		Possible map names are:
+-		  "main", "dpll", "cp", "hdmi", "edid", "repeater",
+-		  "infoframe", "cbus", "cec", "sdp", "txa", "txb"
+-
+-The device node must contain one 'port' child node per device input and output
+-port, in accordance with the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt. The port nodes
+-are numbered as follows.
+-
+-	  Name		Type		Port
+-	---------------------------------------
+-	  AIN0		sink		0
+-	  AIN1		sink		1
+-	  AIN2		sink		2
+-	  AIN3		sink		3
+-	  AIN4		sink		4
+-	  AIN5		sink		5
+-	  AIN6		sink		6
+-	  AIN7		sink		7
+-	  HDMI		sink		8
+-	  TTL		sink		9
+-	  TXA		source		10
+-	  TXB		source		11
+-
+-The digital output port nodes, when present, shall contain at least one
+-endpoint. Each of those endpoints shall contain the data-lanes property as
+-described in video-interfaces.txt.
+-
+-Required source endpoint properties:
+-  - data-lanes: an array of physical data lane indexes
+-    The accepted value(s) for this property depends on which of the two
+-    sources are described. For TXA 1, 2 or 4 data lanes can be described
+-    while for TXB only 1 data lane is valid. See video-interfaces.txt
+-    for detailed description.
+-
+-Ports are optional if they are not connected to anything at the hardware level.
+-
+-Example:
+-
+-	video-receiver@70 {
+-		compatible = "adi,adv7482";
+-		reg = <0x70 0x71 0x72 0x73 0x74 0x75
+-		       0x60 0x61 0x62 0x63 0x64 0x65>;
+-		reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
+-			    "infoframe", "cbus", "cec", "sdp", "txa", "txb";
+-
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		interrupt-parent = <&gpio6>;
+-		interrupt-names = "intrq1", "intrq2";
+-		interrupts = <30 IRQ_TYPE_LEVEL_LOW>,
+-			     <31 IRQ_TYPE_LEVEL_LOW>;
+-
+-		port@7 {
+-			reg = <7>;
+-
+-			adv7482_ain7: endpoint {
+-				remote-endpoint = <&cvbs_in>;
+-			};
+-		};
+-
+-		port@8 {
+-			reg = <8>;
+-
+-			adv7482_hdmi: endpoint {
+-				remote-endpoint = <&hdmi_in>;
+-			};
+-		};
+-
+-		port@a {
+-			reg = <10>;
+-
+-			adv7482_txa: endpoint {
+-				clock-lanes = <0>;
+-				data-lanes = <1 2 3 4>;
+-				remote-endpoint = <&csi40_in>;
+-			};
+-		};
+-
+-		port@b {
+-			reg = <11>;
+-
+-			adv7482_txb: endpoint {
+-				clock-lanes = <0>;
+-				data-lanes = <1>;
+-				remote-endpoint = <&csi20_in>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.yaml b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+new file mode 100644
+index 0000000000000000..37df0441d8790c6e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+@@ -0,0 +1,211 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/adv748x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-+		dev_err(dev, "i2c_check_functionality error\n");
-+		return -EIO;
-+	}
++title: Analog Devices ADV748X video decoder with HDMI receiver
 +
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
++maintainers:
++  - Kieran Bingham <kieran.bingham@ideasonboard.com>
 +
-+	priv->client = client;
-+	i2c_set_clientdata(client, priv);
++description:
++  The ADV7481 and ADV7482 are multi format video decoders with an integrated
++  HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
++  from three input sources HDMI, analog and TTL.
 +
-+	err = ht16k33_initialize(priv);
-+	if (err)
-+		return err;
++properties:
++  compatible:
++    items:
++      - enum:
++          - adi,adv7481
++          - adi,adv7482
 +
-+	err = of_property_read_u32(dev->of_node, "default-brightness-level",
-+				   &dft_brightness);
-+	if (err) {
-+		dft_brightness = MAX_BRIGHTNESS;
-+	} else if (dft_brightness > MAX_BRIGHTNESS) {
-+		dev_warn(dev,
-+			 "invalid default brightness level: %u, using %u\n",
-+			 dft_brightness, MAX_BRIGHTNESS);
-+		dft_brightness = MAX_BRIGHTNESS;
-+	}
++  reg:
++    minItems: 1
++    maxItems: 12
++    description:
++      The ADV748x has up to twelve 256-byte maps that can be accessed via the
++      main I2C ports. Each map has it own I2C address and acts as a standard
++      slave device on the I2C bus. The main address is mandatory, others are
++      optional and remain at default values if not specified.
 +
-+	/* Keypad */
-+	if (client->irq > 0) {
-+		err = ht16k33_keypad_probe(client, &priv->keypad);
-+		if (err)
-+			return err;
-+	}
++  reg-names:
++    minItems: 1
++    items:
++      - const: main
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
 +
-+	/* Frame Buffer Display */
-+	return ht16k33_fbdev_probe(dev, priv, dft_brightness);
-+}
++  interrupts: true
 +
- static int ht16k33_remove(struct i2c_client *client)
- {
- 	struct ht16k33_priv *priv = i2c_get_clientdata(client);
++  interrupt-names: true
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    patternProperties:
++      "^port@[0-7]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port nodes for analog inputs AIN[0-7].
++
++    properties:
++      port@8:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port node for HDMI.
++
++      port@9:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port node for TTL.
++
++      port@a:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Output port node, single endpoint describing the CSI-2 transmitter TXA.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@b:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Output port node, single endpoint describing the CSI-2 transmitter TXB.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                maxItems: 1
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: adi,adv7481
++    then:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 3
++
++        interrupt-names:
++          minItems: 1
++          items:
++            - enum: [ intrq1, intrq2, intrq3 ]
++            - enum: [ intrq1, intrq2, intrq3 ]
++            - enum: [ intrq1, intrq2, intrq3 ]
++    else:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 2
++
++        interrupt-names:
++          minItems: 1
++          items:
++            - enum: [ intrq1, intrq2 ]
++            - enum: [ intrq1, intrq2 ]
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - ports
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        video-receiver@70 {
++            compatible = "adi,adv7482";
++            reg = <0x70 0x71 0x72 0x73 0x74 0x75 0x60 0x61 0x62 0x63 0x64 0x65>;
++            reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
++                        "infoframe", "cbus", "cec", "sdp", "txa", "txb";
++
++            interrupt-parent = <&gpio6>;
++            interrupts = <30 IRQ_TYPE_LEVEL_LOW>, <31 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-names = "intrq1", "intrq2";
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@7 {
++                    reg = <7>;
++
++                    adv7482_ain7: endpoint {
++                        remote-endpoint = <&cvbs_in>;
++                    };
++                };
++
++                port@8 {
++                    reg = <8>;
++
++                    adv7482_hdmi: endpoint {
++                        remote-endpoint = <&hdmi_in>;
++                    };
++                };
++
++                port@a {
++                    reg = <10>;
++
++                    adv7482_txa: endpoint {
++                        clock-lanes = <0>;
++                        data-lanes = <1 2 3 4>;
++                        remote-endpoint = <&csi40_in>;
++                    };
++                };
++
++                port@b {
++                    reg = <11>;
++
++                    adv7482_txb: endpoint {
++                        clock-lanes = <0>;
++                        data-lanes = <1>;
++                        remote-endpoint = <&csi20_in>;
++                    };
++                };
++            };
++        };
++    };
 -- 
-2.25.1
+2.33.0
 
