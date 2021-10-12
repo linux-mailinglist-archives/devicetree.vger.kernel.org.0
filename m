@@ -2,426 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8431942AC7C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2142142ACB0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 20:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233488AbhJLSv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 14:51:26 -0400
-Received: from mail-lf1-f53.google.com ([209.85.167.53]:43924 "EHLO
-        mail-lf1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235741AbhJLSvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:51:14 -0400
-Received: by mail-lf1-f53.google.com with SMTP id r19so869905lfe.10
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 11:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NsPhwQLI2oaG3F2DZCDWFpjOEOfSkj4Lirf6tYBwqKU=;
-        b=iwwKIy1UpAE9/iVFICD31Kdu8eVPxBpfTZuJPSBHDbpUW0p3YJymUX6XthYXO6CPPD
-         mrbkfLSAvbuEkQkGf9swfjsMqzKrS7sJYrZc5aPxLLjvPJ14lzDA+70nGJjcL28Bdu59
-         8KRZT5b0Q7vvSG4Lxqw8JFZa5aCToF3ZzBvtPtZJkq/X+ZVDE7NnMoRMuOFlWfJCu4/A
-         X9UpQ1XEnLWIAKVVgMCS7c/wCMlESsZQgr1Sb1q6MV6XL+Fxy6DGNNeZqqvxHGGnuNfq
-         zZzkUVhHU2fYlvuULfuINccaafMfWUa5Ia/0puMJOzrH1sbOQc4MJ5jVjGD9TKBrSAvd
-         G6ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NsPhwQLI2oaG3F2DZCDWFpjOEOfSkj4Lirf6tYBwqKU=;
-        b=M5Q3jkwQ4sYKV9YUddZSMe97f2+JzMAwdLmdb/BxyFy1RSBDhlpBYA3saAKTDCfq/A
-         qR9j9AHuvfgB2ICn3vRMWTjoTUGzkGR9MpNUDIBPwsq5T6CnMEY5X9y2tl/2VxhmBKof
-         NOFFnKUgPMuLSSgYAVabZ0x763RZH9sHHYZj/5A0oWfCKNwKiKpQ6RbPok0unomQNc7Z
-         cvGpusEEaoy10QfqhgtnjMgsgSKQ/2iiZndOYUJDnwxF1OktAYIp8nZNcaTePdyNY0nf
-         thBG3NQmggeCC342TD99bunSvHDhuNmX72XIN2fW4mJHjYoCN798rrlO/OkuP9a+LXIy
-         jVpA==
-X-Gm-Message-State: AOAM531yjiMh3Uh99fPZdj8ZPn/TArTIw6ODJz/rSHTeppBYhoP464nr
-        EDf7eK6Q41ingCIRjSMC5I8Hqo/7PCo+hKBG
-X-Google-Smtp-Source: ABdhPJwsys0fnytBaeRkRy387lnlUqW10bBD5QoTXSex2GVsHk+Y+iEQLa61zQVv50TyPnnH7cbI6w==
-X-Received: by 2002:adf:e101:: with SMTP id t1mr35191963wrz.395.1634063621385;
-        Tue, 12 Oct 2021 11:33:41 -0700 (PDT)
-Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
-        by smtp.googlemail.com with ESMTPSA id v3sm11451631wrg.23.2021.10.12.11.33.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 11:33:41 -0700 (PDT)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
+        id S233287AbhJLS6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 14:58:25 -0400
+Received: from leibniz.telenet-ops.be ([195.130.137.77]:34738 "EHLO
+        leibniz.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234845AbhJLS6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 14:58:08 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by leibniz.telenet-ops.be (Postfix) with ESMTPS id 4HTPTR0X76zMqgqv
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 20:34:35 +0200 (CEST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:9c93:91ff:d58:ecfb])
+        by albert.telenet-ops.be with bizsmtp
+        id 56ZY260010KW32a066ZYka; Tue, 12 Oct 2021 20:33:34 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1maMah-004RUL-E5; Tue, 12 Oct 2021 20:33:31 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1maMag-002j7Z-Bk; Tue, 12 Oct 2021 20:33:30 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Miguel Ojeda <ojeda@kernel.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v7 18/21] auxdisplay: ht16k33: Add support for segment displays
 Date:   Tue, 12 Oct 2021 20:33:24 +0200
-Message-Id: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.33.0
+Message-Id: <20211012183327.649865-19-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211012183327.649865-1-geert@linux-m68k.org>
+References: <20211012183327.649865-1-geert@linux-m68k.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert ADV748X analog video decoder documentation to json-schema.
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Add support for 4-digit 7-segment and quad 14-segment alphanumeric
+displays, like the Adafruit 7-segment and 14-segment display backpack
+and FeatherWing expansion boards.  Use the character line display core
+support to display a message, which will be scrolled if it doesn't fit.
+
+Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+Acked-by: Robin van der Gracht <robin@protonic.nl>
 ---
-Hello,
+The 7-segment support is based on schematics, and untested on actual
+hardware.
 
-This conversion revealed a problem with the Renesas DTSI files for the 
-adv7482 nodes. A fix for that have been submitted in a separate patch,
+v7:
+  - Add Acked-by,
+  - Set correct brightness in ht16k33_seg_probe(),
 
-    [PATCH] arm64: dts: renesas: Add ports node to all adv7482 nodes
+v6:
+  - No changes,
 
-Kind Regards,
-Niklas Söderlund
+v5:
+  - No changes,
+
+v4:
+  - No changes,
+
+v3:
+  - Pass "dev" instead of "client" to ht16k33_seg_probe(),
+  - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+
+v2:
+  - Move "select LINEDISP" to this patch,
+  - Set "err = -EINVAL" in switch() case that cannot happen.
 ---
- .../devicetree/bindings/media/i2c/adv748x.txt | 116 ----------
- .../bindings/media/i2c/adv748x.yaml           | 211 ++++++++++++++++++
- 2 files changed, 211 insertions(+), 116 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+ drivers/auxdisplay/Kconfig   |   1 +
+ drivers/auxdisplay/ht16k33.c | 196 +++++++++++++++++++++++++++++++++--
+ 2 files changed, 190 insertions(+), 7 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.txt b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
-deleted file mode 100644
-index 4f91686e54a6b939..0000000000000000
---- a/Documentation/devicetree/bindings/media/i2c/adv748x.txt
-+++ /dev/null
-@@ -1,116 +0,0 @@
--* Analog Devices ADV748X video decoder with HDMI receiver
--
--The ADV7481 and ADV7482 are multi format video decoders with an integrated
--HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
--from three input sources HDMI, analog and TTL.
--
--Required Properties:
--
--  - compatible: Must contain one of the following
--    - "adi,adv7481" for the ADV7481
--    - "adi,adv7482" for the ADV7482
--
--  - reg: I2C slave addresses
--    The ADV748x has up to twelve 256-byte maps that can be accessed via the
--    main I2C ports. Each map has it own I2C address and acts as a standard
--    slave device on the I2C bus. The main address is mandatory, others are
--    optional and remain at default values if not specified.
--
--Optional Properties:
--
--  - interrupt-names: Should specify the interrupts as "intrq1", "intrq2" and/or
--		     "intrq3". All interrupts are optional. The "intrq3" interrupt
--		     is only available on the adv7481
--  - interrupts: Specify the interrupt lines for the ADV748x
--  - reg-names : Names of maps with programmable addresses.
--		It shall contain all maps needing a non-default address.
--		Possible map names are:
--		  "main", "dpll", "cp", "hdmi", "edid", "repeater",
--		  "infoframe", "cbus", "cec", "sdp", "txa", "txb"
--
--The device node must contain one 'port' child node per device input and output
--port, in accordance with the video interface bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt. The port nodes
--are numbered as follows.
--
--	  Name		Type		Port
--	---------------------------------------
--	  AIN0		sink		0
--	  AIN1		sink		1
--	  AIN2		sink		2
--	  AIN3		sink		3
--	  AIN4		sink		4
--	  AIN5		sink		5
--	  AIN6		sink		6
--	  AIN7		sink		7
--	  HDMI		sink		8
--	  TTL		sink		9
--	  TXA		source		10
--	  TXB		source		11
--
--The digital output port nodes, when present, shall contain at least one
--endpoint. Each of those endpoints shall contain the data-lanes property as
--described in video-interfaces.txt.
--
--Required source endpoint properties:
--  - data-lanes: an array of physical data lane indexes
--    The accepted value(s) for this property depends on which of the two
--    sources are described. For TXA 1, 2 or 4 data lanes can be described
--    while for TXB only 1 data lane is valid. See video-interfaces.txt
--    for detailed description.
--
--Ports are optional if they are not connected to anything at the hardware level.
--
--Example:
--
--	video-receiver@70 {
--		compatible = "adi,adv7482";
--		reg = <0x70 0x71 0x72 0x73 0x74 0x75
--		       0x60 0x61 0x62 0x63 0x64 0x65>;
--		reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
--			    "infoframe", "cbus", "cec", "sdp", "txa", "txb";
--
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		interrupt-parent = <&gpio6>;
--		interrupt-names = "intrq1", "intrq2";
--		interrupts = <30 IRQ_TYPE_LEVEL_LOW>,
--			     <31 IRQ_TYPE_LEVEL_LOW>;
--
--		port@7 {
--			reg = <7>;
--
--			adv7482_ain7: endpoint {
--				remote-endpoint = <&cvbs_in>;
--			};
--		};
--
--		port@8 {
--			reg = <8>;
--
--			adv7482_hdmi: endpoint {
--				remote-endpoint = <&hdmi_in>;
--			};
--		};
--
--		port@a {
--			reg = <10>;
--
--			adv7482_txa: endpoint {
--				clock-lanes = <0>;
--				data-lanes = <1 2 3 4>;
--				remote-endpoint = <&csi40_in>;
--			};
--		};
--
--		port@b {
--			reg = <11>;
--
--			adv7482_txb: endpoint {
--				clock-lanes = <0>;
--				data-lanes = <1>;
--				remote-endpoint = <&csi20_in>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.yaml b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-new file mode 100644
-index 0000000000000000..37df0441d8790c6e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-@@ -0,0 +1,211 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/adv748x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/auxdisplay/Kconfig b/drivers/auxdisplay/Kconfig
+index b41fdc5f7bf72a1b..42fc7b155de09dbc 100644
+--- a/drivers/auxdisplay/Kconfig
++++ b/drivers/auxdisplay/Kconfig
+@@ -176,6 +176,7 @@ config HT16K33
+ 	select FB_SYS_IMAGEBLIT
+ 	select INPUT_MATRIXKMAP
+ 	select FB_BACKLIGHT
++	select LINEDISP
+ 	help
+ 	  Say yes here to add support for Holtek HT16K33, RAM mapping 16*8
+ 	  LED controller driver with keyscan.
+diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
+index 8993d27909109a98..9ce9271d5e3d0b31 100644
+--- a/drivers/auxdisplay/ht16k33.c
++++ b/drivers/auxdisplay/ht16k33.c
+@@ -5,6 +5,7 @@
+  * Author: Robin van der Gracht <robin@protonic.nl>
+  *
+  * Copyright: (C) 2016 Protonic Holland.
++ * Copyright (C) 2021 Glider bv
+  */
+ 
+ #include <linux/kernel.h>
+@@ -20,6 +21,13 @@
+ #include <linux/workqueue.h>
+ #include <linux/mm.h>
+ 
++#include <linux/map_to_7segment.h>
++#include <linux/map_to_14segment.h>
 +
-+title: Analog Devices ADV748X video decoder with HDMI receiver
++#include <asm/unaligned.h>
 +
-+maintainers:
-+  - Kieran Bingham <kieran.bingham@ideasonboard.com>
++#include "line-display.h"
 +
-+description:
-+  The ADV7481 and ADV7482 are multi format video decoders with an integrated
-+  HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
-+  from three input sources HDMI, analog and TTL.
+ /* Registers */
+ #define REG_SYSTEM_SETUP		0x20
+ #define REG_SYSTEM_SETUP_OSC_ON		BIT(0)
+@@ -47,6 +55,12 @@
+ #define BYTES_PER_ROW		(HT16K33_MATRIX_LED_MAX_ROWS / 8)
+ #define HT16K33_FB_SIZE		(HT16K33_MATRIX_LED_MAX_COLS * BYTES_PER_ROW)
+ 
++enum display_type {
++	DISP_MATRIX = 0,
++	DISP_QUAD_7SEG,
++	DISP_QUAD_14SEG,
++};
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - adi,adv7481
-+          - adi,adv7482
+ struct ht16k33_keypad {
+ 	struct i2c_client *client;
+ 	struct input_dev *dev;
+@@ -67,11 +81,25 @@ struct ht16k33_fbdev {
+ 	uint8_t *cache;
+ };
+ 
++struct ht16k33_seg {
++	struct linedisp linedisp;
++	union {
++		struct seg7_conversion_map seg7;
++		struct seg14_conversion_map seg14;
++	} map;
++	unsigned int map_size;
++	char curr[4];
++};
 +
-+  reg:
-+    minItems: 1
-+    maxItems: 12
-+    description:
-+      The ADV748x has up to twelve 256-byte maps that can be accessed via the
-+      main I2C ports. Each map has it own I2C address and acts as a standard
-+      slave device on the I2C bus. The main address is mandatory, others are
-+      optional and remain at default values if not specified.
+ struct ht16k33_priv {
+ 	struct i2c_client *client;
+ 	struct delayed_work work;
+ 	struct ht16k33_keypad keypad;
+-	struct ht16k33_fbdev fbdev;
++	union {
++		struct ht16k33_fbdev fbdev;
++		struct ht16k33_seg seg;
++	};
++	enum display_type type;
+ };
+ 
+ static const struct fb_fix_screeninfo ht16k33_fb_fix = {
+@@ -101,6 +129,33 @@ static const struct fb_var_screeninfo ht16k33_fb_var = {
+ 	.vmode = FB_VMODE_NONINTERLACED,
+ };
+ 
++static const SEG7_DEFAULT_MAP(initial_map_seg7);
++static const SEG14_DEFAULT_MAP(initial_map_seg14);
 +
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: main
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
-+      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++static ssize_t map_seg_show(struct device *dev, struct device_attribute *attr,
++			    char *buf)
++{
++	struct ht16k33_priv *priv = dev_get_drvdata(dev);
 +
-+  interrupts: true
++	memcpy(buf, &priv->seg.map, priv->seg.map_size);
++	return priv->seg.map_size;
++}
 +
-+  interrupt-names: true
++static ssize_t map_seg_store(struct device *dev, struct device_attribute *attr,
++			     const char *buf, size_t cnt)
++{
++	struct ht16k33_priv *priv = dev_get_drvdata(dev);
 +
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
++	if (cnt != priv->seg.map_size)
++		return -EINVAL;
 +
-+    patternProperties:
-+      "^port@[0-7]$":
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input port nodes for analog inputs AIN[0-7].
++	memcpy(&priv->seg.map, buf, cnt);
++	return cnt;
++}
 +
-+    properties:
-+      port@8:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input port node for HDMI.
++static DEVICE_ATTR(map_seg7, 0644, map_seg_show, map_seg_store);
++static DEVICE_ATTR(map_seg14, 0644, map_seg_show, map_seg_store);
 +
-+      port@9:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input port node for TTL.
+ static int ht16k33_display_on(struct ht16k33_priv *priv)
+ {
+ 	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
+@@ -335,6 +390,51 @@ static void ht16k33_keypad_stop(struct input_dev *dev)
+ 	disable_irq(keypad->client->irq);
+ }
+ 
++static void ht16k33_linedisp_update(struct linedisp *linedisp)
++{
++	struct ht16k33_priv *priv = container_of(linedisp, struct ht16k33_priv,
++						 seg.linedisp);
 +
-+      port@a:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Output port node, single endpoint describing the CSI-2 transmitter TXA.
++	schedule_delayed_work(&priv->work, 0);
++}
 +
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
++static void ht16k33_seg7_update(struct work_struct *work)
++{
++	struct ht16k33_priv *priv = container_of(work, struct ht16k33_priv,
++						 work.work);
++	struct ht16k33_seg *seg = &priv->seg;
++	char *s = seg->curr;
++	uint8_t buf[9];
 +
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
++	buf[0] = map_to_seg7(&seg->map.seg7, *s++);
++	buf[1] = 0;
++	buf[2] = map_to_seg7(&seg->map.seg7, *s++);
++	buf[3] = 0;
++	buf[4] = 0;
++	buf[5] = 0;
++	buf[6] = map_to_seg7(&seg->map.seg7, *s++);
++	buf[7] = 0;
++	buf[8] = map_to_seg7(&seg->map.seg7, *s++);
 +
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
++	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
++}
 +
-+            required:
-+              - clock-lanes
-+              - data-lanes
++static void ht16k33_seg14_update(struct work_struct *work)
++{
++	struct ht16k33_priv *priv = container_of(work, struct ht16k33_priv,
++						 work.work);
++	struct ht16k33_seg *seg = &priv->seg;
++	char *s = seg->curr;
++	uint8_t buf[8];
 +
-+      port@b:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Output port node, single endpoint describing the CSI-2 transmitter TXB.
++	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf);
++	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 2);
++	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 4);
++	put_unaligned_le16(map_to_seg14(&seg->map.seg14, *s++), buf + 6);
 +
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
++	i2c_smbus_write_i2c_block_data(priv->client, 0, ARRAY_SIZE(buf), buf);
++}
 +
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
+ static int ht16k33_keypad_probe(struct i2c_client *client,
+ 				struct ht16k33_keypad *keypad)
+ {
+@@ -479,9 +579,56 @@ static int ht16k33_fbdev_probe(struct device *dev, struct ht16k33_priv *priv,
+ 	return err;
+ }
+ 
++static int ht16k33_seg_probe(struct device *dev, struct ht16k33_priv *priv,
++			     uint32_t brightness)
++{
++	struct ht16k33_seg *seg = &priv->seg;
++	int err;
 +
-+              data-lanes:
-+                maxItems: 1
++	err = ht16k33_brightness_set(priv, brightness);
++	if (err)
++		return err;
 +
-+            required:
-+              - clock-lanes
-+              - data-lanes
++	switch (priv->type) {
++	case DISP_MATRIX:
++		/* not handled here */
++		err = -EINVAL;
++		break;
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: adi,adv7481
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 1
-+          maxItems: 3
++	case DISP_QUAD_7SEG:
++		INIT_DELAYED_WORK(&priv->work, ht16k33_seg7_update);
++		seg->map.seg7 = initial_map_seg7;
++		seg->map_size = sizeof(seg->map.seg7);
++		err = device_create_file(dev, &dev_attr_map_seg7);
++		break;
 +
-+        interrupt-names:
-+          minItems: 1
-+          items:
-+            - enum: [ intrq1, intrq2, intrq3 ]
-+            - enum: [ intrq1, intrq2, intrq3 ]
-+            - enum: [ intrq1, intrq2, intrq3 ]
-+    else:
-+      properties:
-+        interrupts:
-+          minItems: 1
-+          maxItems: 2
++	case DISP_QUAD_14SEG:
++		INIT_DELAYED_WORK(&priv->work, ht16k33_seg14_update);
++		seg->map.seg14 = initial_map_seg14;
++		seg->map_size = sizeof(seg->map.seg14);
++		err = device_create_file(dev, &dev_attr_map_seg14);
++		break;
++	}
++	if (err)
++		return err;
 +
-+        interrupt-names:
-+          minItems: 1
-+          items:
-+            - enum: [ intrq1, intrq2 ]
-+            - enum: [ intrq1, intrq2 ]
++	err = linedisp_register(&seg->linedisp, dev, 4, seg->curr,
++				ht16k33_linedisp_update);
++	if (err)
++		goto err_remove_map_file;
 +
-+additionalProperties: false
++	return 0;
 +
-+required:
-+  - compatible
-+  - reg
-+  - ports
++err_remove_map_file:
++	device_remove_file(dev, &dev_attr_map_seg7);
++	device_remove_file(dev, &dev_attr_map_seg14);
++	return err;
++}
 +
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
+ static int ht16k33_probe(struct i2c_client *client)
+ {
+ 	struct device *dev = &client->dev;
++	const struct of_device_id *id;
+ 	struct ht16k33_priv *priv;
+ 	uint32_t dft_brightness;
+ 	int err;
+@@ -496,6 +643,9 @@ static int ht16k33_probe(struct i2c_client *client)
+ 		return -ENOMEM;
+ 
+ 	priv->client = client;
++	id = i2c_of_match_device(dev->driver->of_match_table, client);
++	if (id)
++		priv->type = (uintptr_t)id->data;
+ 	i2c_set_clientdata(client, priv);
+ 
+ 	err = ht16k33_initialize(priv);
+@@ -520,8 +670,19 @@ static int ht16k33_probe(struct i2c_client *client)
+ 			return err;
+ 	}
+ 
+-	/* Frame Buffer Display */
+-	return ht16k33_fbdev_probe(dev, priv, dft_brightness);
++	switch (priv->type) {
++	case DISP_MATRIX:
++		/* Frame Buffer Display */
++		err = ht16k33_fbdev_probe(dev, priv, dft_brightness);
++		break;
 +
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++	case DISP_QUAD_7SEG:
++	case DISP_QUAD_14SEG:
++		/* Segment Display */
++		err = ht16k33_seg_probe(dev, priv, dft_brightness);
++		break;
++	}
++	return err;
+ }
+ 
+ static int ht16k33_remove(struct i2c_client *client)
+@@ -530,9 +691,21 @@ static int ht16k33_remove(struct i2c_client *client)
+ 	struct ht16k33_fbdev *fbdev = &priv->fbdev;
+ 
+ 	cancel_delayed_work_sync(&priv->work);
+-	unregister_framebuffer(fbdev->info);
+-	framebuffer_release(fbdev->info);
+-	free_page((unsigned long) fbdev->buffer);
 +
-+        video-receiver@70 {
-+            compatible = "adi,adv7482";
-+            reg = <0x70 0x71 0x72 0x73 0x74 0x75 0x60 0x61 0x62 0x63 0x64 0x65>;
-+            reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
-+                        "infoframe", "cbus", "cec", "sdp", "txa", "txb";
++	switch (priv->type) {
++	case DISP_MATRIX:
++		unregister_framebuffer(fbdev->info);
++		framebuffer_release(fbdev->info);
++		free_page((unsigned long)fbdev->buffer);
++		break;
 +
-+            interrupt-parent = <&gpio6>;
-+            interrupts = <30 IRQ_TYPE_LEVEL_LOW>, <31 IRQ_TYPE_LEVEL_LOW>;
-+            interrupt-names = "intrq1", "intrq2";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@7 {
-+                    reg = <7>;
-+
-+                    adv7482_ain7: endpoint {
-+                        remote-endpoint = <&cvbs_in>;
-+                    };
-+                };
-+
-+                port@8 {
-+                    reg = <8>;
-+
-+                    adv7482_hdmi: endpoint {
-+                        remote-endpoint = <&hdmi_in>;
-+                    };
-+                };
-+
-+                port@a {
-+                    reg = <10>;
-+
-+                    adv7482_txa: endpoint {
-+                        clock-lanes = <0>;
-+                        data-lanes = <1 2 3 4>;
-+                        remote-endpoint = <&csi40_in>;
-+                    };
-+                };
-+
-+                port@b {
-+                    reg = <11>;
-+
-+                    adv7482_txb: endpoint {
-+                        clock-lanes = <0>;
-+                        data-lanes = <1>;
-+                        remote-endpoint = <&csi20_in>;
-+                    };
-+                };
-+            };
-+        };
-+    };
++	case DISP_QUAD_7SEG:
++	case DISP_QUAD_14SEG:
++		linedisp_unregister(&priv->seg.linedisp);
++		device_remove_file(&client->dev, &dev_attr_map_seg7);
++		device_remove_file(&client->dev, &dev_attr_map_seg14);
++		break;
++	}
+ 
+ 	return 0;
+ }
+@@ -544,7 +717,16 @@ static const struct i2c_device_id ht16k33_i2c_match[] = {
+ MODULE_DEVICE_TABLE(i2c, ht16k33_i2c_match);
+ 
+ static const struct of_device_id ht16k33_of_match[] = {
+-	{ .compatible = "holtek,ht16k33", },
++	{
++		/* 0.56" 4-Digit 7-Segment FeatherWing Display (Red) */
++		.compatible = "adafruit,3108", .data = (void *)DISP_QUAD_7SEG,
++	}, {
++		/* 0.54" Quad Alphanumeric FeatherWing Display (Red) */
++		.compatible = "adafruit,3130", .data = (void *)DISP_QUAD_14SEG,
++	}, {
++		/* Generic, assumed Dot-Matrix Display */
++		.compatible = "holtek,ht16k33", .data = (void *)DISP_MATRIX,
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, ht16k33_of_match);
 -- 
-2.33.0
+2.25.1
 
