@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3A02429CBB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 06:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 304B6429CD0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 06:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbhJLEvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 00:51:44 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48324
+        id S231866AbhJLE6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 00:58:53 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48462
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229593AbhJLEvn (ORCPT
+        by vger.kernel.org with ESMTP id S229733AbhJLE6x (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 00:51:43 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        Tue, 12 Oct 2021 00:58:53 -0400
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AA3C93F338
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:49:41 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 894EB3F2FF
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 04:56:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634014181;
-        bh=DQTYFgRBjShgCc44LIKsX+ZkXacYI29O6N2UU4NvQ2c=;
+        s=20210705; t=1634014610;
+        bh=BCyxVEf5Gp0uM4KfbTjyQDlhtbT74n2HOTEb9vV8RKU=;
         h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
          To:Cc:Content-Type;
-        b=Q/drEbRHsPt9GqL8MDp6bzq+4McGHUXT0BBYYM9rywGtvw5qpwWFAvs+cYA3SvZHT
-         lChvekrRQZkJceMnS5zpzU8RNLRDSH9UbynTVbHVfBSJ3gBB+fN4ofgtSaVA5yjME1
-         0PAVKtR8TvqwUjo2HutuiUqmqOgA9pZDN+BXzjTM50Xg/SU25IvARY4Aqd6GiikHP5
-         ysbtZZyfJ7D12wW+XuKDuaRRUG1JtmLT40G+nhmkrV+SQIDKHGSRpy0TrTFpYroK1X
-         nnS7/ucDNAbsJfmjGYGDXbbGZI2+MRkqagfUfnVK6C18gibHvjHiOMuAkNpMpxwt7Q
-         dO5syeuCPE7Ow==
-Received: by mail-ed1-f71.google.com with SMTP id t28-20020a508d5c000000b003dad7fc5caeso17755110edt.11
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
+        b=SGE2u3v0+ZYgbeubZ9KTDjW0yrG6mC96i8C0ZBsJsS+q15cCOlozr07Q2AIlz12/4
+         3smJeJaHRwU6EoHNK5Saa9hcovQONcfmawhiTjXY9cdFeescek9Ui0ZPac7ExcS3n/
+         VrAkMwXyhehTPdZ86XWgwOVn5IH9L1ebvvPVuO/bEApiR1eRfzv8ZAig/hhZcn0Spi
+         n1Oj+cyDrW8n4spZylsIJJOgtRg41wg6Nf0jwWCCBz9pRSnGWk1XfupjVllnIcTQdQ
+         gB8fMSQJo96kHGyZbvlfkKrjlLF02G9HnW4utB0PwEgCVaBlM2+m8Nhhwr4b4yuaso
+         8Yje8La/gG8Ew==
+Received: by mail-ed1-f69.google.com with SMTP id v2-20020a50f082000000b003db24e28d59so17787215edl.5
+        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 21:56:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DQTYFgRBjShgCc44LIKsX+ZkXacYI29O6N2UU4NvQ2c=;
-        b=Elsl8WLFZY1kRgmadbXzuZY8w01xDGW3sKahsWHZntWIu6+wzyI4ff8q+4pFRospUJ
-         C8Sdlb8eYizwV+mDsp5VDeFK47X6VQkEAPC/FULbEzfzRE+RtkpHEkpS4hfj437HUAaF
-         B2jFjb9+pSbraAgKOSFtzRjswF4tc8sRWiy0Te5F0jM0b8mpGp3962wDLQ+fcv6d+gAN
-         fCbwQuH/8n759+vzRMQYvLrzIjsk+8fbNOCtsYql6vq2LwOrXMdesuFLlrKlVw82A/v8
-         JZAoZm+ImLdxFJOlfhiq0llDr5CrfasD1FGWixLQBu26FBAy1iupjkvXgfHnJHy6rU9m
-         HcmA==
-X-Gm-Message-State: AOAM531hS5NxobXY0nCzrdHOi0WDGsNqwh7opBept9R8w8KitlEuIngo
-        ASJc1eJDEa0TJ8QDC7MLxnIhwbSX3v0SmwJBUB6VtZSpXCvPsgrPz9IZigl3iiX7L8qYiwgXr9u
-        uoWQQnL5K+c146nX9ltFFxkiJnJ/nhHitdMgcUzt4chfS64ZgGboDJV4=
-X-Received: by 2002:a17:906:5a8d:: with SMTP id l13mr31820103ejq.95.1634014181399;
-        Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzTsvZiY9lixAtDhIJzHvONlvktGzyfRy9ZhG9KGRllcgbenZcXXrCZUfA21DF2hwyZpsjXAiUDGxByaRarDis=
-X-Received: by 2002:a17:906:5a8d:: with SMTP id l13mr31820091ejq.95.1634014181236;
- Mon, 11 Oct 2021 21:49:41 -0700 (PDT)
+        bh=BCyxVEf5Gp0uM4KfbTjyQDlhtbT74n2HOTEb9vV8RKU=;
+        b=mX472/4D+/zdzGEDAuiaxrzBTZkNw0JQRy9ipDYvdrcSYzi8B2gPv0MjNizJRpO19H
+         NGvgXzIfHrcNl840KlLoyvHiz2iZXLLsgTW6TlEt5CnzqeHB1zTzyBgPGWkfrctHbN8c
+         myA3hrLuQnF2Lt6HQJ7wMIiu9cuz28Sq8e41pegKP+3PhvkbepSehOeAosr9qsJvs7U3
+         uU2XYKwQPVfpfwbjVkxAHck2X0ID7DoTIuYghnW+YgHVVJOpGbUFN8HcjxanXbbxvqgx
+         r2p1vGyrxRVh0PWMId90ZQrvp80Pb4Ye389goyBnFRnn6CiU3eAcFyFyA2eNFL2QJUy9
+         HXfg==
+X-Gm-Message-State: AOAM533TMGF49nAT3nAn8R/42dJJgZ5DT6dJgQ6ixo/EbnvhfPc9ed91
+        DA+Nq/W6scQyMvrK7Xi7h+PEEH74Y+AJSFLRiDCbRx7G2Cb4XUMfVpizYD2khEt01NdrgFSM/fY
+        EMVtruRQpOSfKc/6hrcIaGf9aZ7WfyscE/kKgVbV9v57n+YqyHN/EGog=
+X-Received: by 2002:a17:906:9414:: with SMTP id q20mr31344874ejx.241.1634014609951;
+        Mon, 11 Oct 2021 21:56:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzfX0PyiKdpuHUayAwncldug3i/rdZwjBSq4PyX9ATI6GhXFboX9vjkwh4+o6rNFZcu+ZPtQZmAMuoSunAduXw=
+X-Received: by 2002:a17:906:9414:: with SMTP id q20mr31344867ejx.241.1634014609793;
+ Mon, 11 Oct 2021 21:56:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com> <20210920130412.145231-2-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20210920130412.145231-2-krzysztof.kozlowski@canonical.com>
+References: <20210920130248.145058-1-krzysztof.kozlowski@canonical.com> <20210920130248.145058-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210920130248.145058-3-krzysztof.kozlowski@canonical.com>
 From:   Alexandre Ghiti <alexandre.ghiti@canonical.com>
-Date:   Tue, 12 Oct 2021 06:49:30 +0200
-Message-ID: <CA+zEjCs6i7H9DWNmG5FDtJM0V5vCMUbUbianFEr+AeLPKnUVNg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 5/5] riscv: dts: sifive: add missing compatible
- for plic
+Date:   Tue, 12 Oct 2021 06:56:38 +0200
+Message-ID: <CA+zEjCvhBYW5-QSRtanQjUsbB2Oqx79WaVpmRWnb+qOLU9pZqg@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 3/5] riscv: dts: sifive: drop duplicated nodes
+ and properties in sifive
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -70,13 +70,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 20, 2021 at 3:06 PM Krzysztof Kozlowski
+On Mon, Sep 20, 2021 at 3:05 PM Krzysztof Kozlowski
 <krzysztof.kozlowski@canonical.com> wrote:
 >
-> Add proper compatible for Platform-Level Interrupt Controller to silence
-> dtbs_check warnings:
->
->   interrupt-controller@c000000: compatible: ['sifive,plic-1.0.0'] is too short
+> The DTSI file defines soc node and address/size cells, so there is no
+> point in duplicating it in DTS file.
 >
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 >
@@ -85,22 +83,56 @@ On Mon, Sep 20, 2021 at 3:06 PM Krzysztof Kozlowski
 > Changes since v1:
 > 1. None
 > ---
->  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts | 5 -----
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 -----
+>  2 files changed, 10 deletions(-)
 >
-> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> index 7db861053483..0655b5c4201d 100644
-> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-> @@ -141,7 +141,7 @@ soc {
->                 ranges;
->                 plic0: interrupt-controller@c000000 {
->                         #interrupt-cells = <1>;
-> -                       compatible = "sifive,plic-1.0.0";
-> +                       compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
->                         reg = <0x0 0xc000000 0x0 0x4000000>;
->                         riscv,ndev = <53>;
->                         interrupt-controller;
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> index 2b4af7b4cc2f..ba304d4c455c 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
+> @@ -8,8 +8,6 @@
+>  #define RTCCLK_FREQ            1000000
+>
+>  / {
+> -       #address-cells = <2>;
+> -       #size-cells = <2>;
+>         model = "SiFive HiFive Unleashed A00";
+>         compatible = "sifive,hifive-unleashed-a00", "sifive,fu540-c000",
+>                      "sifive,fu540";
+> @@ -27,9 +25,6 @@ memory@80000000 {
+>                 reg = <0x0 0x80000000 0x2 0x00000000>;
+>         };
+>
+> -       soc {
+> -       };
+> -
+>         hfclk: hfclk {
+>                 #clock-cells = <0>;
+>                 compatible = "fixed-clock";
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 9b0b9b85040e..4f66919215f6 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -8,8 +8,6 @@
+>  #define RTCCLK_FREQ            1000000
+>
+>  / {
+> -       #address-cells = <2>;
+> -       #size-cells = <2>;
+>         model = "SiFive HiFive Unmatched A00";
+>         compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
+>                      "sifive,fu740";
+> @@ -27,9 +25,6 @@ memory@80000000 {
+>                 reg = <0x0 0x80000000 0x4 0x00000000>;
+>         };
+>
+> -       soc {
+> -       };
+> -
+>         hfclk: hfclk {
+>                 #clock-cells = <0>;
+>                 compatible = "fixed-clock";
 > --
 > 2.30.2
 >
