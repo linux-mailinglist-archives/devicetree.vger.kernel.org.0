@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAB0342A49F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:37:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7A842A4A2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236470AbhJLMjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 08:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
+        id S236541AbhJLMjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236462AbhJLMjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:39:06 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883FAC06161C
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:04 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id d3so52937358edp.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:04 -0700 (PDT)
+        with ESMTP id S236484AbhJLMjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:39:10 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A114C061570
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:08 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id p13so81213275edw.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pqrs.dk; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xeVLhBRyOBspSRG3UIrAmdPV82MS6FstyLV9tssi1Dw=;
-        b=RX7Og1JZuqe3FFBh/d5Y+Fctg5kEWRL1VzcgwNZWjsbGK41slNSiB/iK0+nBzp/7Dn
-         SjE4OZysJh06VxXD/gAV9yARLUs+J/a9+P/TwTWnibvEx1yTxSD+BvU5J7BaLDvIMPSS
-         KoLZA0UJ39DiuXp5uVqI/defqoStJeEkfLGJs=
+        bh=p3lLzL0zqi6ZB5S4b/OIa/wFpOGvBCkD/ZfHBofiA8k=;
+        b=LbkszwksaNpF82Q1xU5/HsCYEhQ13RRCJX3dQFLd8Sz5uWBTUhXNfXyLaKksTS926q
+         H+VG8+Pa/hZJR+9+DfQqEh6nMm2KYzB0L6rxb70f+E6XHgsisYfmL1zbUGthgrGTgjt4
+         PG8LI2MGO/J+xmi8Q72o+SoCz49LipGYApkdw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xeVLhBRyOBspSRG3UIrAmdPV82MS6FstyLV9tssi1Dw=;
-        b=bi5z3/FxCAMU9CLCyHUa0b8L8KfdOMpmWYV4i0Dq/ApRh3TSqyNqp9lkdrKj92pfTH
-         saWMp7+B7kHIVL4iux3visVkzj+DvyvwnWWeNeUOjqJQu5zy626XG4XAAwp61GwmY0wZ
-         9efBhqrvLLPTuUojM5wKjRlhR7QVOYnYdl3JaZu3m72nxAAE7vCddodiMEmwlpeopHi5
-         0ssNV2RNOqgbhNvDTRuheX2p1E8N9ybVYro/P6yPkVEMlkuzNof9EOTX633cn4MGxtmu
-         ATV3SqtWpnAHchMyNCg0iDJH6YCiD0MzqtB/bHsMJVBySEBbLLBEHwt53EA20qPj4FSk
-         pTrg==
-X-Gm-Message-State: AOAM532QIaq6Qfqy4x4dbTvhnfwKJQKk3r2h5A8mhmg8DycDwwjmwsvE
-        J3phtIeX/lyidGTqMsrGXzYrKA==
-X-Google-Smtp-Source: ABdhPJxDHvfwbq9bRjGMaMvVHxJMNedzxgx3Z+TVxfZuJaisWVL0MOe89Btc65I2i6CkhBEE9yNJXQ==
-X-Received: by 2002:aa7:db85:: with SMTP id u5mr50211385edt.234.1634042223115;
-        Tue, 12 Oct 2021 05:37:03 -0700 (PDT)
+        bh=p3lLzL0zqi6ZB5S4b/OIa/wFpOGvBCkD/ZfHBofiA8k=;
+        b=kShkiRQLnu6TqckASIDkYscxDQZoMIhcQUkcJtJeCl9tel9lZrTBq5iWmnGQYtHcdO
+         lLXHS0CNlcWTB9Go4thzT3zaPdxf22KEsdrOXd9SxloxNBkytYwb749MPpxMKFoxw4YM
+         WGjpG1YbRhXPpoqBLjF3s17gpAr8lZ4CS1PBJ7y50bMHeBiim8inO27ukqTEbgVNG8GY
+         2/6pv43jPsbNeIPV8sQ3CCCPFtQuJHNaO1dJyLcQpQtnea5s0Lm4Hr9q6ilDecI2pcmr
+         m/hyIvnehdr45+RDgrv9X6oab4RkM566mWmps4o+EtgpS5vy1x+VR89gUeJ4Q12S1MRG
+         YN0w==
+X-Gm-Message-State: AOAM533ZXkHG0e3iylBqebSPSFipnn8RXENnmGycpbmYEionP5uLSWg9
+        YKtiv2uFczQ0I5ngjpQDhX/3aA==
+X-Google-Smtp-Source: ABdhPJwBHd8wJ8UXxcJZ3TPmsZvxGvIxwCSCIyE209v0DNcA0MbXDfReG9g6XRgIh+aR/czDDt4Whw==
+X-Received: by 2002:a05:6402:3512:: with SMTP id b18mr39742155edd.15.1634042226811;
+        Tue, 12 Oct 2021 05:37:06 -0700 (PDT)
 Received: from capella.. (27-reverse.bang-olufsen.dk. [193.89.194.27])
-        by smtp.gmail.com with ESMTPSA id b5sm5763629edu.13.2021.10.12.05.37.01
+        by smtp.gmail.com with ESMTPSA id b5sm5763629edu.13.2021.10.12.05.37.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 05:37:02 -0700 (PDT)
+        Tue, 12 Oct 2021 05:37:06 -0700 (PDT)
 From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Andrew Lunn <andrew@lunn.ch>,
@@ -58,9 +58,9 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
 Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 1/6] ether: add EtherType for proprietary Realtek protocols
-Date:   Tue, 12 Oct 2021 14:35:50 +0200
-Message-Id: <20211012123557.3547280-2-alvin@pqrs.dk>
+Subject: [PATCH net-next 2/6] net: dsa: move NET_DSA_TAG_RTL4_A to right place in Kconfig/Makefile
+Date:   Tue, 12 Oct 2021 14:35:51 +0200
+Message-Id: <20211012123557.3547280-3-alvin@pqrs.dk>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211012123557.3547280-1-alvin@pqrs.dk>
 References: <20211012123557.3547280-1-alvin@pqrs.dk>
@@ -73,22 +73,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-Add a new EtherType ETH_P_REALTEK to the if_ether.h uapi header. The
-EtherType 0x8899 is used in a number of different protocols from Realtek
-Semiconductor Corp [1], so no general assumptions should be made when
-trying to decode such packets. Observed protocols include:
-
-  0x1 - Realtek Remote Control protocol [2]
-  0x2 - Echo protocol [2]
-  0x3 - Loop detection protocol [2]
-  0x4 - RTL8365MB 4- and 8-byte switch CPU tag protocols [3]
-  0x9 - RTL8306 switch CPU tag protocol [4]
-  0xA - RTL8366RB switch CPU tag protocol [4]
-
-[1] https://lore.kernel.org/netdev/CACRpkdYQthFgjwVzHyK3DeYUOdcYyWmdjDPG=Rf9B3VrJ12Rzg@mail.gmail.com/
-[2] https://www.wireshark.org/lists/ethereal-dev/200409/msg00090.html
-[3] https://lore.kernel.org/netdev/20210822193145.1312668-4-alvin@pqrs.dk/
-[4] https://lore.kernel.org/netdev/20200708122537.1341307-2-linus.walleij@linaro.org/
+Move things around a little so that this tag driver is alphabetically
+ordered. The Kconfig file is sorted based on the tristate text.
 
 Suggested-by: Andrew Lunn <andrew@lunn.ch>
 Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
@@ -96,21 +82,60 @@ Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
 
 RFC -> v1: this patch is new
 
- include/uapi/linux/if_ether.h | 1 +
- 1 file changed, 1 insertion(+)
+ net/dsa/Kconfig  | 14 +++++++-------
+ net/dsa/Makefile |  2 +-
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/include/uapi/linux/if_ether.h b/include/uapi/linux/if_ether.h
-index 5f589c7a8382..5da4ee234e0b 100644
---- a/include/uapi/linux/if_ether.h
-+++ b/include/uapi/linux/if_ether.h
-@@ -86,6 +86,7 @@
- 					 * over Ethernet
- 					 */
- #define ETH_P_PAE	0x888E		/* Port Access Entity (IEEE 802.1X) */
-+#define ETH_P_REALTEK	0x8899          /* Multiple proprietary protocols */
- #define ETH_P_AOE	0x88A2		/* ATA over Ethernet		*/
- #define ETH_P_8021AD	0x88A8          /* 802.1ad Service VLAN		*/
- #define ETH_P_802_EX1	0x88B5		/* 802.1 Local Experimental 1.  */
+diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+index bca1b5d66df2..6c7f79e45886 100644
+--- a/net/dsa/Kconfig
++++ b/net/dsa/Kconfig
+@@ -92,13 +92,6 @@ config NET_DSA_TAG_KSZ
+ 	  Say Y if you want to enable support for tagging frames for the
+ 	  Microchip 8795/9477/9893 families of switches.
+ 
+-config NET_DSA_TAG_RTL4_A
+-	tristate "Tag driver for Realtek 4 byte protocol A tags"
+-	help
+-	  Say Y or M if you want to enable support for tagging frames for the
+-	  Realtek switches with 4 byte protocol A tags, sich as found in
+-	  the Realtek RTL8366RB.
+-
+ config NET_DSA_TAG_OCELOT
+ 	tristate "Tag driver for Ocelot family of switches, using NPI port"
+ 	depends on MSCC_OCELOT_SWITCH_LIB || \
+@@ -130,6 +123,13 @@ config NET_DSA_TAG_QCA
+ 	  Say Y or M if you want to enable support for tagging frames for
+ 	  the Qualcomm Atheros QCA8K switches.
+ 
++config NET_DSA_TAG_RTL4_A
++	tristate "Tag driver for Realtek 4 byte protocol A tags"
++	help
++	  Say Y or M if you want to enable support for tagging frames for the
++	  Realtek switches with 4 byte protocol A tags, sich as found in
++	  the Realtek RTL8366RB.
++
+ config NET_DSA_TAG_LAN9303
+ 	tristate "Tag driver for SMSC/Microchip LAN9303 family of switches"
+ 	help
+diff --git a/net/dsa/Makefile b/net/dsa/Makefile
+index 67ea009f242c..f78d537044db 100644
+--- a/net/dsa/Makefile
++++ b/net/dsa/Makefile
+@@ -10,12 +10,12 @@ obj-$(CONFIG_NET_DSA_TAG_DSA_COMMON) += tag_dsa.o
+ obj-$(CONFIG_NET_DSA_TAG_GSWIP) += tag_gswip.o
+ obj-$(CONFIG_NET_DSA_TAG_HELLCREEK) += tag_hellcreek.o
+ obj-$(CONFIG_NET_DSA_TAG_KSZ) += tag_ksz.o
+-obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
+ obj-$(CONFIG_NET_DSA_TAG_LAN9303) += tag_lan9303.o
+ obj-$(CONFIG_NET_DSA_TAG_MTK) += tag_mtk.o
+ obj-$(CONFIG_NET_DSA_TAG_OCELOT) += tag_ocelot.o
+ obj-$(CONFIG_NET_DSA_TAG_OCELOT_8021Q) += tag_ocelot_8021q.o
+ obj-$(CONFIG_NET_DSA_TAG_QCA) += tag_qca.o
++obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
+ obj-$(CONFIG_NET_DSA_TAG_SJA1105) += tag_sja1105.o
+ obj-$(CONFIG_NET_DSA_TAG_TRAILER) += tag_trailer.o
+ obj-$(CONFIG_NET_DSA_TAG_XRS700X) += tag_xrs700x.o
 -- 
 2.32.0
 
