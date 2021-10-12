@@ -2,137 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A7B642A8D3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 231C642A8E6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:56:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237559AbhJLPyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 11:54:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50506 "EHLO
+        id S237477AbhJLP6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 11:58:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237494AbhJLPyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:54:09 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D26ACC061745
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:52:07 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id u18so68495353wrg.5
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:52:07 -0700 (PDT)
+        with ESMTP id S237386AbhJLP63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:58:29 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A1FC06174E
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:56:28 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id f21so5052917plb.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:56:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=9hjlZVhXoXo3FL11esprff5bCUJHk8umIxjYSUWWgeI=;
-        b=kV0X6h2dQAv2MkM2vrW6GjCGiJI0xIG0PHHSVveSz2hyjC8lk8aMORT44wf492yBY1
-         KBPSvLUoNxR8Em6FU6PL5kNNE5AWJ+K4PqUcdQhTiDLmJB6i1afD/q/xuDojGWMjGy6p
-         TteAbpw7kviXf+aoTS45z0NBdEm9eS4jTmflE4qXJdhSuMoQr0zOQGciG1rm7MvDL7Z5
-         FoAmvN/17V1px+kALM8NPM0nrOiNO8Ru15yur/HY4FXwkxFoDY9+a6u/mdLwqu53L9+3
-         l08Rp8EAsF9ryAW7fCBLH8KlIhnVPBOZBVxhzU/VPtTn6nzxPw5uCh1b/vmMn5dvRI73
-         YJzw==
+         :content-disposition:in-reply-to;
+        bh=mePc1vd/EHkCrzmAohlwat8GzWH/E7cD+W9nQvLLIu4=;
+        b=kVgy/+a6lh3I0ZXvFbqdwy4cdixEQ48qJ26ZMs6smSIwYFRMHnCYmK74ep66Sx3NOp
+         5DZI2jgV+ULNul+LewUNEth7jaeoPygVEtuP9gnEsicoqXqHN549VAJManTku0D5jOZh
+         /4aNCfAUh2JFPJN3uU8zI7/CYX+exCFxt+5NJTzB18HiDlKzLS7jZYywMt1OQNIEiGxN
+         xEEx2frxHKz7CMP4DJnzXoKGzi7Eo/4yd4/T/Ru0VxqVdIKOzVQ0f03R0stfXqKLZXFZ
+         zjyxI4X1ikLAAOU48ftSRGNlddJUAgPYuVygYJgHeqI+QI0JbR6wKnd2eJMndpbs23QA
+         +Tmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=9hjlZVhXoXo3FL11esprff5bCUJHk8umIxjYSUWWgeI=;
-        b=WeM/Fu1LboyDSTVY2g5fOG4v3pA9wBW6YQpqXYxP8gU+OCDU/WWVd2VG5DM1LZEQJC
-         bKZVtfLNKTcVLBUD9l5KzzDhZmbxB1uL5eVjRmEBuzT22I9uek4LK9aJMMAaP5dYbp63
-         ukXhiV1Fv3ab1NF09lXawmvzxIMNeH8g8FGrKtc8dEG+qi3j4kH5viQECVXVElQiaEkQ
-         90sEnYzAZK5QSMWmfNTLAPfs9hDHQfkqR7V/t+H5wjqSEzQQBU5SwtbWIEfN76EDun0S
-         h0IOgPZAHGxGHAX5svO3uwWLZlebm3Tg8xEPd3+L+95sbf85MQknjvSLla+MAcparsbq
-         /q3Q==
-X-Gm-Message-State: AOAM5300RouPW5DM9oki0KzmEJQEREVAsvGa0OrMYZIdUKnDG7EdNJpz
-        S+tr+jN3eoCoISR4xttx3Q+HK4CX6Nt7Gw==
-X-Google-Smtp-Source: ABdhPJymeTTqFwbQopH1XYOQsNuPgTZb78WfIdf0kD+JmZX8+BYbhfIbLHpTNtRFuzH7N1t7JtCmgA==
-X-Received: by 2002:a7b:c3d4:: with SMTP id t20mr6390465wmj.10.1634053926395;
-        Tue, 12 Oct 2021 08:52:06 -0700 (PDT)
-Received: from google.com ([95.148.6.175])
-        by smtp.gmail.com with ESMTPSA id s3sm10875737wrm.40.2021.10.12.08.52.05
+         :mime-version:content-disposition:in-reply-to;
+        bh=mePc1vd/EHkCrzmAohlwat8GzWH/E7cD+W9nQvLLIu4=;
+        b=UQuG/o74FDLyihgPemFlo59weFeRHqigrcyk3vS5rhIkb9HKF7mnh3xnoqiLcVe1Aw
+         g1FBirvtQZXAckcp2RHuLX/76jc4PUBeHv/X+gUHR8d+uhR3bmBg5kpVEi3yqOEzx8Zi
+         xM6xNXSYcZxFjx3vV8Tcit0wjpin+1awQKpjgZCNXZeELZAZuFGAMPRtb54ZOJryJGeV
+         CC5yMoSwnQC6O8Uk+1azULsja89tgnziBy5zjyzXeEwHNk6BAOjlSx+XFkAn/bMpJ/2p
+         Poz/zxo3PY/FxRhwLDimrxx6AV/dyDzn2lb+qJtrssaC50b6CERBr1M/3lq3H3jeqr58
+         6hBw==
+X-Gm-Message-State: AOAM532vMydvBLyPRaIaqw61bSmUdZKN5b51UWsYjafgfrDK0Wn3PMpB
+        skACmFc5DAGKiTggW4tC4q3hUw==
+X-Google-Smtp-Source: ABdhPJwyh5YfT0iKf7U16WPgkQZB6l1HXD7/F4XBZ7M7e/LoOYhdxvJgdgxKr+XWtz9DN2Y1ysYK4g==
+X-Received: by 2002:a17:90b:388f:: with SMTP id mu15mr6915883pjb.28.1634054187510;
+        Tue, 12 Oct 2021 08:56:27 -0700 (PDT)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id jz10sm3246547pjb.39.2021.10.12.08.56.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 08:52:06 -0700 (PDT)
-Date:   Tue, 12 Oct 2021 16:52:04 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
- binding to a schema
-Message-ID: <YWWvJKs8K9Z8WIGV@google.com>
-References: <20210924071614.868307-1-maxime@cerno.tech>
- <CAL_JsqL3BUX8jO4X12Au_VAytboisQAoxDYz03rQfDMJjL4EDA@mail.gmail.com>
- <YWWg0PjnuBCKO3Tq@google.com>
- <CAL_JsqKK_ZC95QfDYsKWdFM3bF+DD7wD=R=--6d74DwqHkgexA@mail.gmail.com>
- <YWWu+t487giK/FB2@google.com>
+        Tue, 12 Oct 2021 08:56:25 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 09:56:23 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        shengjiu.wang@gmail.com
+Subject: Re: [PATCH v6 0/4] Add remoteproc driver for DSP on i.MX
+Message-ID: <20211012155623.GA4010675@p14s>
+References: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YWWu+t487giK/FB2@google.com>
+In-Reply-To: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021, Lee Jones wrote:
-
-> On Tue, 12 Oct 2021, Rob Herring wrote:
+On Mon, Oct 11, 2021 at 05:20:11PM +0800, Shengjiu Wang wrote:
+> Provide a basic driver to control DSP processor found on NXP i.MX8QM,
+> i.MX8QXP, i.MX8MP and i.MX8ULP.
 > 
-> > On Tue, Oct 12, 2021 at 9:51 AM Lee Jones <lee.jones@linaro.org> wrote:
-> > >
-> > > On Tue, 12 Oct 2021, Rob Herring wrote:
-> > >
-> > > > On Fri, Sep 24, 2021 at 2:16 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> > > > >
-> > > > > The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
-> > > > > thanks to its device tree binding.
-> > > > >
-> > > > > Now that we have the DT validation in place, let's convert the device
-> > > > > tree bindings for that driver over to a YAML schema.
-> > > > >
-> > > > > Cc: Chen-Yu Tsai <wens@csie.org>
-> > > > > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > > > > Cc: linux-gpio@vger.kernel.org
-> > > > > Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > > > >
-> > > > > ---
-> > > > >
-> > > > > Changes from v1:
-> > > > >   - Removed the example and moved it in the mfd schema
-> > > > > ---
-> > > > >  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
-> > > > >  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
-> > > > >  2 files changed, 55 insertions(+), 75 deletions(-)
-> > > > >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
-> > > > >  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
-> > > >
-> > > > This one not being applied with the rest of the series is also
-> > > > breaking linux-next.
-> > > >
-> > > > b4 am -P_ -sl -o - 20210924071614.868307-1-maxime@cerno.tech | git am
-> > >
-> > > Thanks for the link.
-> > >
-> > > Seeing as there are no *real* dependencies, it would be better for
-> > > Linus to take the patch (if he's okay with it of course).
-> > 
-> > Only that 'make dt_binding_check' is broken for anyone using your
-> > branch (and linux-next ATM). It's as real as a broken build due to a
-> > missing header. If you don't think this is a problem, then don't apply
-> > MFD binding patches.
+> Currently it is able to resolve addresses between DSP and main CPU,
+> start and stop the processor, suspend and resume.
 > 
-> Ah, I missed Bartosz Ack up there.
+> The communication between DSP and main CPU is based on mailbox, there
+> are three mailbox channels (tx, rx, rxdb).
 > 
-> Happy to apply it.
+> This driver was tested on NXP i.MX8QM, i.MX8QXP, i.MX8MP and i.MX8ULP.
+> 
+> changes in v6:
+> - fix the apply issue for linux-next
+> - add if/then schema according to Rob's comments
+> 
+> changes in v5:
+> - refine driver according to Mathieu's comments
+> 
+> changes in v4:
+> - merge binding doc to fsl,dsp.yaml for Rob's comments
+> 
+> changes in v3:
+> - Add this cover letter
+> - refine clock-names according to Rob's comments
+> - move common struct from imx_rproc.c to header file
+> - add IMX_RPROC_SCU_API enum item
+> - refine driver according to Mathieu's comments
+> 
+> changes in v2:
+> - change syscon to fsl,dsp-ctrl
+> - add items for clock-names
+> 
+> Shengjiu Wang (4):
+>   remoteproc: imx_rproc: Move common structure to header file
+>   remoteproc: imx_rproc: Add IMX_RPROC_SCU_API method
+>   remoteproc: imx_dsp_rproc: Add remoteproc driver for DSP on i.MX
+>   dt-bindings: dsp: fsl: update binding document for remote proc driver
+> 
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml      |  123 +-
+>  drivers/remoteproc/Kconfig                    |   11 +
+>  drivers/remoteproc/Makefile                   |    1 +
+>  drivers/remoteproc/imx_dsp_rproc.c            | 1206 +++++++++++++++++
+>  drivers/remoteproc/imx_rproc.c                |   28 +-
+>  drivers/remoteproc/imx_rproc.h                |   39 +
+>  6 files changed, 1375 insertions(+), 33 deletions(-)
+>  create mode 100644 drivers/remoteproc/imx_dsp_rproc.c
+>  create mode 100644 drivers/remoteproc/imx_rproc.h
 
-Linus, Bartosz, do you require a PR?
+I have applied this set.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks,
+Mathieu
+
+> 
+> -- 
+> 2.17.1
+> 
