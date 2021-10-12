@@ -2,117 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F2A429EE6
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:46:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1580B429F23
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234410AbhJLHr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 03:47:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51146 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234413AbhJLHrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:47:55 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E933C061764
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:45:53 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id ls18so15067500pjb.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:45:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Wi0c4tUU6/JGllRDmGdUEE9qbUz1Hxlfkgo8Ug//VqI=;
-        b=OUxL16y8OmpzrNyur4IFOl0tTdwiz9ylmxi9Jz2OpNnLfrhiIcxcYNAKAtWNt5nRLP
-         c7ip3cn40UaBwURsC/aeYBU5Xg3qM7yswY4I7N1K6tce9m0PPyjVuLQrwdbTFO2iWs6S
-         O5TcZDGIOg+GE93gGGafo79sbCW61kSV65N8sff/xeVhNe6kQtp3ZeQU9OCtUl6EsdGU
-         4Ypz3M5x1LHJ2ICYAufaJ1YX2k9P30nz41mdEuLU9/JMmYDuUTr8Ck85Om35SwC6S9+L
-         8ZDjqICUBLABNaiQ5kDBjWvI7JgX9cyAjJ+V3CpsLjM6i/guib33L8AzcMJ3KtXdcSNh
-         Fefg==
+        id S234447AbhJLIBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 04:01:32 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38022
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234071AbhJLIBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 04:01:32 -0400
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 271ED3F31E
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:59:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634025570;
+        bh=udP1IAy8X/njK/g0UuXAT72GSIqy69WCV4uZ074ifeI=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=Kt9cvu9mk9zE+bwt9T1G7PinUsGFGdQVF8qmCQO4acJGbTzybVHA3+qWorCSaKAvY
+         agwyYoQ5b0oHcsfBxhkIqHEWSzF9nTU8+DPIwXJeY4ba0gz3kZJNNsfhZInhfe6ORO
+         jsroSXPWAAdzInxUgTaRyLjh+YmQ5jjayIxHYyuiyyjr5XtrudDDuuDdOzQOZCGV4z
+         2+fNC2muwgspMaUzcU37ZEfSoEQvTcxbPUbSrq7BV4dWLGVy/HU+hT+ISLKfGcvWym
+         LZWpz9VLTAo+Wv1DR7r86EpPZQeWcco0jXk30qj1HfirLMcv4JFwulP/aL4l7bAUSF
+         +2OexUO+v6iMA==
+Received: by mail-lf1-f72.google.com with SMTP id x7-20020a056512130700b003fd1a7424a8so14492497lfu.5
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:59:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Wi0c4tUU6/JGllRDmGdUEE9qbUz1Hxlfkgo8Ug//VqI=;
-        b=KgdkZ0htcnd47Wp9xS38WSSI3N6Tli58SUpMyjYvedW+Ir8ct/NoLWv2ob8z6s5jZP
-         Lke7UaBqPtbfyk5xYFhGbbfIrg0AwsD1DPAG+7VZlpxz2nmydtigU0vvGhnZ9j1EBQWX
-         pYnf0UJI+i0JxyT18QcOXznzR0XQEqEK9y4dTyPRlNLBip+Sf+AOl/yqTgSisKwyp6nN
-         3kcJvQmZS1zhCAn9oqv0pQDKrAgHxx9cwINxZ0Pi5sAl/WsctuVHs8FDCC6clqjbYTba
-         dNKuSKokVMcaMLGwV01T2NpUYVMIjeiJZc3HsHqdwGkEkKfE6VWc3Uxiif/DiJN2FE8S
-         3mmg==
-X-Gm-Message-State: AOAM5324iDTbuHzbkvqsQAV2udvrtZx+fN2gqcz9WhA31v8MDUZYmcO5
-        Yd7+l8X1h4NvyVSXgFfk8YjDgvdGMFnMNTG37+uy7g==
-X-Google-Smtp-Source: ABdhPJwVHKfgQcm4qq1ccDhtz6vH6TbKhIs9LDuLpCHmbkxwmiNRZagXnDeh2jLu9tT+KFW0b0YqHmzObsxOEOl2YqI=
-X-Received: by 2002:a17:90b:370f:: with SMTP id mg15mr4208394pjb.209.1634024752384;
- Tue, 12 Oct 2021 00:45:52 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=udP1IAy8X/njK/g0UuXAT72GSIqy69WCV4uZ074ifeI=;
+        b=i6c5C7copnXecVqLe4eQ8seSq3yKS3vTPU0Zmwi4PA+J94YX5+boUUYoAyMVFw/5/t
+         0ZOLkZegCeYlbcxMvn1wQXOiq+am7w5zfWb2KHC6vQcppPr5wDpzzQsQHDspbwdh9uDd
+         I+xK0hOOSd+lpSHGeEU+UW0ge4G1nRL6ljY65Z8tGcIX8FQ3/BZaLTpiqih26MX7pF7t
+         xecSi7sUKUQTbXCV7WTYUW7sFtg65VjgJSoQVaJPTMdYFXJXKt2eXzBW/4nHUBGf98EG
+         WD1BiqltOlCrnUZwgXDflzJSZkqMnW/Ki4Zt4ZeuJpJl4YnSIqsW7wfOeD9JrBvu8beK
+         WEzg==
+X-Gm-Message-State: AOAM530+XN8bxHq8kNfovKXcqgQFuqRwjLhicA5ymgv6M59iYIx3mdJc
+        R2EFh8Jzzr90tjPo5BQroYPxHm4WPU780SqBNISfr+AX3+jEwxMQ1/nvOu5iyu5IsqZgijaAhpX
+        4l20xsuu/hRDM7jUcDala1QSWQl/Zrr9ofD2D5vo=
+X-Received: by 2002:ac2:58ec:: with SMTP id v12mr5219509lfo.371.1634025569551;
+        Tue, 12 Oct 2021 00:59:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyuGOXu93SUScai/jht0fjObEgFu5dy4JCt5WDgoRepmm92+N4gqDMUlzgRq54ku3YBBsczUg==
+X-Received: by 2002:ac2:58ec:: with SMTP id v12mr5219491lfo.371.1634025569352;
+        Tue, 12 Oct 2021 00:59:29 -0700 (PDT)
+Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id s23sm91126lfi.139.2021.10.12.00.59.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 00:59:28 -0700 (PDT)
+Subject: Re: [PATCH 0/8] Add MAX77714 PMIC minimal driver (RTC and watchdog
+ only)
+To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+References: <20211011155615.257529-1-luca@lucaceresoli.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <f0602023-8d8d-d34a-3bc6-41d969a83837@canonical.com>
+Date:   Tue, 12 Oct 2021 09:59:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-5-stephan@gerhold.net>
- <YWRPXnzh+NLVqHvo@gerhold.net>
-In-Reply-To: <YWRPXnzh+NLVqHvo@gerhold.net>
-From:   Loic Poulain <loic.poulain@linaro.org>
-Date:   Tue, 12 Oct 2021 09:55:48 +0200
-Message-ID: <CAMZdPi8G5wtcAxTYfzwdJVMauEx+5wk7eqP9VX9QaVqrzsZkEw@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 4/4] net: wwan: Add Qualcomm BAM-DMUX WWAN
- network driver
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        Network Development <netdev@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211011155615.257529-1-luca@lucaceresoli.net>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+On 11/10/2021 17:56, Luca Ceresoli wrote:
+> Hi,
+> 
+> this series adds minimal drivers for the Maxim Semiconductor MAX77714
+> (https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
+> Only RTC and watchdog are implemented by these patches.
+> 
+> Note! Something seems wrong in the interrupt management code. Due to the
+> fact that I'm not using interrupts on my hardware and since this is my
+> first addition of an MFD driver, I was unable to understand what is wrong
+> after studying the code for other MFD drivers. More details in reply to
+> patch 8. Advice would be greatly appreciated on this topic.
+> 
+> Except for that, all implemented functionality is tested and working: RTC
+> read/write, watchdog start/stop/ping/set_timeout.
+> 
+> The first 4 patches are trivial cleanups to the max77686 drivers and can
+> probably be applied easily.
+> 
+> Patches 5-8 add: dt bindings, mfd driver, watchdog driver and rtc driver.
+> 
+> Luca
+> 
+> Luca Ceresoli (8):
+>   mfd: max77686: Correct tab-based alignment of register addresses
+>   rtc: max77686: convert comments to kernel-doc format
+>   rtc: max77686: rename day-of-month defines
+>   rtc: max77686: remove useless variable
+>   dt-bindings: mfd: add Maxim MAX77714 PMIC
+>   mfd: max77714: Add driver for Maxim MAX77714 PMIC
+>   watchdog: max77714: add driver for the watchdog in the MAX77714 PMIC
+>   rtc: max77686: add MAX77714 support
+> 
+>  .../bindings/mfd/maxim,max77714.yaml          |  58 ++++++
+>  MAINTAINERS                                   |   8 +
+>  drivers/mfd/Kconfig                           |  14 ++
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/max77714.c                        | 151 ++++++++++++++++
+>  drivers/rtc/Kconfig                           |   2 +-
+>  drivers/rtc/rtc-max77686.c                    |  72 +++++---
+>  drivers/watchdog/Kconfig                      |   9 +
+>  drivers/watchdog/Makefile                     |   1 +
+>  drivers/watchdog/max77714_wdt.c               | 171 ++++++++++++++++++
+>  include/linux/mfd/max77686-private.h          |  28 +--
+>  include/linux/mfd/max77714.h                  |  68 +++++++
+>  12 files changed, 541 insertions(+), 42 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
+>  create mode 100644 drivers/mfd/max77714.c
+>  create mode 100644 drivers/watchdog/max77714_wdt.c
+>  create mode 100644 include/linux/mfd/max77714.h
+> 
 
-On Mon, 11 Oct 2021 at 16:51, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > Like in the RFC version [1], the driver does not currently use the link
-> > management of the WWAN subsystem. Instead, it simply exposes one network
-> > interface for each of the up to 8 channels.
-> >
-> > This setup works out of the box with all available open-source userspace
-> > WWAN implementations, especially ModemManager (no changes needed).
-> > oFono works too although it requires minor changes to support WWAN control
-> > ports (/dev/wwan0qmi0) which are independent of BAM-DMUX (already provided
-> > by the "rpmsg_wwan_ctrl" driver).
-> > It was easy to support because the setup is very similar to ones already
-> > supported for USB modems. Some of them provide multiple network interfaces
-> > and ModemManager can bundle them together to a single modem.
-> >
-> > I believe it is best to keep this setup as-is for now and not add even
-> > more complexity to userspace with another setup that works only in this
-> > particular configuration. I will reply to this patch separately to explain
-> > that a bit more clearly. This patch is already long enough as-is. :)
-> >
-> > [1]: https://lore.kernel.org/netdev/20210719145317.79692-5-stephan@gerhold.net/
-> >
->
-> The main goal of the WWAN link management is to make the multiplexing
-> setup transparent to userspace. Unfortunately it's still unclear to me
-> how or even if this can be achieved for the many different different
-> setups that exist for Qualcomm modems. To show that more clearly I'll
-> "briefly" list the various currently supported setups in ModemManager
-> (there might be even more that I am not even aware of).
+Thanks for the patches.
 
-The goal is also to have a common hierarchy, with the network link
-being a child of the WWAN device, as for the control ports. Making it
-easier for the user side to find the relation between all these
-devices. Moreover, it allows having a common set of attributes, like
-the LINK ID, and possibly new ones in the future. I mean it's probably
-fine if you create a static set of network devices and do not support
-dynamic link creation, but I think they should be created in some way
-via the WWAN subsystem, and get the same attributes (link id), we can
-have special meaning link ids (-1) for e.g. non context specific
-netdevs (e.g. for rmnet/qmap transport iface).
+It's awesome to see extension of existing drivers - max77686 family.
 
-Regards,
-Loic
+Best regards,
+Krzysztof
