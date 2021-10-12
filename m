@@ -2,121 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7F3A42A73A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:31:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50BD742A741
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237312AbhJLOdt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 12 Oct 2021 10:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
+        id S235422AbhJLOeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:34:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237299AbhJLOds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:33:48 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C07EAC061745
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 07:31:46 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maIoT-00014a-Ay; Tue, 12 Oct 2021 16:31:29 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1maIoQ-00049f-J4; Tue, 12 Oct 2021 16:31:26 +0200
-Message-ID: <99ddc44924bcb89110a74d3182b1d3eea623dce1.camel@pengutronix.de>
-Subject: Re: [PATCH v1 09/16] reset: starfive-jh7100: Add StarFive JH7100
- reset driver
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Emil Renner Berthing <kernel@esmil.dk>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        linux-kernel@vger.kernel.org
-Date:   Tue, 12 Oct 2021 16:31:26 +0200
-In-Reply-To: <20211012134027.684712-10-kernel@esmil.dk>
-References: <20211012134027.684712-1-kernel@esmil.dk>
-         <20211012134027.684712-10-kernel@esmil.dk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S235294AbhJLOeN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:34:13 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23B29C061745;
+        Tue, 12 Oct 2021 07:32:12 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id k2-20020a056830168200b0054e523d242aso16583369otr.6;
+        Tue, 12 Oct 2021 07:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=u8APRU0KxIoZbnE8x6adVv19WHZIMrX+SjVjQeNzfHI=;
+        b=Mnb4sedEwGYENrLQHmDezYBerdrIEpQdX976p9952Iv09TeIglrvIT1ZdSxT0UpILj
+         tzTVjxzCKbeT3pbOqAjG8toJKryzuBeL6Meu1OTjo6fs2SXFQdNVwlWzpjKzJgUPXRbe
+         DsunKd/WieDoefBJs2hAibTcSRl6nzcwBBogA9Fje6RRia24NZoRp7DbQ/Sbfxj4/fQQ
+         YYsj+V/4wPfthhRkZTe9WebnlhEKkz7m+eSAPEUuix6m0/IBftu0VdRQyhgRiLZSz+UQ
+         QbWbowUbTyjMy5H+P96YT4qoSaD9sFZ8ozXrgnqqfHLLMt6WRL3HMDKbrSNTvLYZbLsf
+         8O+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=u8APRU0KxIoZbnE8x6adVv19WHZIMrX+SjVjQeNzfHI=;
+        b=hxqsZ161gcpAiHdlaitQjegM114/t0cu4yq4p8793cklsx2w5zOc5gYDU/UsRfpCqV
+         Xj4WnypgOVCc5nxowg6adi6q4hbMeoccF63lZQ/j0vuMXcATBTydtRxIfE36UhufRQ70
+         hvrmHtDd9Ysj+SIjeDFkAKzmueJOiqZaODBWM+p6mmPu/3JMgH6ekoG4Rqu2XJwqPjbe
+         xVQWIMqpEuqbcBJnEqOL66ALj9d4Y6f6MgCc4Ys0UUVU/dqevplSdFKytkCEO1wtzJ2P
+         wN0KbgWIom6/IxitOBYht86e/zGsBYPw6+a+L0vDp26/62LJoUvu1dbvSgSUrDzR3rFQ
+         ZwCQ==
+X-Gm-Message-State: AOAM531sg8qx+AGSrS1oWFukicqorsgqKURe2Z6C8S+8m+gk/aXYpZpE
+        N2L0O6rhwoG1pDiPYflUgNrSrQJ1DF0=
+X-Google-Smtp-Source: ABdhPJxkp2G0leKuJkb0Qym8YQIAgkGJQyeVLIT/JcXcU+tzXdehYwUX0XxadJRMazLQdZ3/IKdCNw==
+X-Received: by 2002:a05:6830:2685:: with SMTP id l5mr26826689otu.9.1634049131313;
+        Tue, 12 Oct 2021 07:32:11 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w141sm2367409oif.20.2021.10.12.07.32.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 07:32:10 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v4 04/10] hwmon: (tmp421) support disabling channels from
+ DT
+To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
+        Jean Delvare <jdelvare@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <cover.1634029538.git.krzysztof.adamski@nokia.com>
+ <8a9571a79408d46de8a0276703a3de28deb0c061.1634029538.git.krzysztof.adamski@nokia.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <e43ac3f8-b183-6fc7-8c05-a6e2f3aa151b@roeck-us.net>
+Date:   Tue, 12 Oct 2021 07:32:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <8a9571a79408d46de8a0276703a3de28deb0c061.1634029538.git.krzysztof.adamski@nokia.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-10-12 at 15:40 +0200, Emil Renner Berthing wrote:
-> Add a driver for the StarFive JH7100 reset controller.
+On 10/12/21 2:27 AM, Krzysztof Adamski wrote:
+> The previous patch introduced per channel subnodes in DT that let us
+> specify some channel specific properties. This built a ground for easily
+> disabling individual channels of the sensor that may not be connected to
+> any external diode and thus are not returning any meaningful data.
 > 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> This patch adds support for parsing the "status" property of channels DT
+> subnodes and makes sure the -ENODATA is returned when disabled channels
+> value is read.
+> 
+> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+
+For my reference:
+
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+
 > ---
->  MAINTAINERS                           |   7 ++
->  drivers/reset/Kconfig                 |   8 ++
->  drivers/reset/Makefile                |   1 +
->  drivers/reset/reset-starfive-jh7100.c | 164 ++++++++++++++++++++++++++
->  4 files changed, 180 insertions(+)
->  create mode 100644 drivers/reset/reset-starfive-jh7100.c
+>   drivers/hwmon/tmp421.c | 10 +++++++++-
+>   1 file changed, 9 insertions(+), 1 deletion(-)
 > 
-[...]
-> diff --git a/drivers/reset/reset-starfive-jh7100.c b/drivers/reset/reset-starfive-jh7100.c
-> new file mode 100644
-> index 000000000000..26bc5b59c1f3
-> --- /dev/null
-> +++ b/drivers/reset/reset-starfive-jh7100.c
-> @@ -0,0 +1,164 @@
-[...]
-> +static int jh7100_reset_update(struct reset_controller_dev *rcdev,
-> +			       unsigned long id, bool assert)
-> +{
-> +	struct jh7100_reset *data = jh7100_reset_from(rcdev);
-> +	unsigned long offset = id / 32;
-> +	void __iomem *reg_assert = data->base + JH7100_RESET_ASSERT0 + 4 * offset;
-> +	void __iomem *reg_status = data->base + JH7100_RESET_STATUS0 + 4 * offset;
-> +	u32 mask = BIT(id % 32);
-> +	u32 done = jh7100_reset_asserted[offset] & mask;
-> +	unsigned long flags;
-> +	u32 value;
+> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
+> index ab64d9825ca4..fffffd671e34 100644
+> --- a/drivers/hwmon/tmp421.c
+> +++ b/drivers/hwmon/tmp421.c
+> @@ -89,6 +89,7 @@ MODULE_DEVICE_TABLE(of, tmp421_of_match);
+>   
+>   struct tmp421_channel {
+>   	const char *label;
+> +	bool enabled;
+>   	s16 temp;
+>   };
+>   
+> @@ -170,6 +171,9 @@ static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
+>   	if (ret)
+>   		return ret;
+>   
+> +	if (!tmp421->channel[channel].enabled)
+> +		return -ENODATA;
 > +
-> +	if (!assert)
-> +		done ^= mask;
+>   	switch (attr) {
+>   	case hwmon_temp_input:
+>   		*val = temp_from_raw(tmp421->channel[channel].temp,
+> @@ -323,6 +327,8 @@ static int tmp421_probe_child_from_dt(struct i2c_client *client,
+>   	if (data->channel[i].label)
+>   		data->temp_config[i] |= HWMON_T_LABEL;
+>   
+> +	data->channel[i].enabled = of_device_is_available(child);
 > +
-> +	spin_lock_irqsave(&data->lock, flags);
-> +
-> +	value = readl(reg_assert);
-> +	if (assert)
-> +		value |= mask;
-> +	else
-> +		value &= ~mask;
-> +	writel(value, reg_assert);
-> +
-> +	do {
-> +		value = readl(reg_status) & mask;
-> +	} while (value != done);
+>   	return 0;
+>   }
+>   
+> @@ -371,8 +377,10 @@ static int tmp421_probe(struct i2c_client *client)
+>   	if (err)
+>   		return err;
+>   
+> -	for (i = 0; i < data->channels; i++)
+> +	for (i = 0; i < data->channels; i++) {
+>   		data->temp_config[i] = HWMON_T_INPUT | HWMON_T_FAULT;
+> +		data->channel[i].enabled = true;
+> +	}
+>   
+>   	err = tmp421_probe_from_dt(client, data);
+>   	if (err)
+> 
 
-Looking at the barebox driver, this could loop indefinitely if the
-caller forgets to enable the corresponding peripheral clock. Maybe
-use readl_poll_timeout() as a safety net.
-
-regards
-Philipp
