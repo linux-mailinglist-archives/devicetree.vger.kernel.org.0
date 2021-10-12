@@ -2,140 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C73BE429F7F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D0C429F8D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:14:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234661AbhJLIQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57732 "EHLO
+        id S234736AbhJLIQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 04:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234635AbhJLIQC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 04:16:02 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172F7C06161C
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:14:01 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id q13so17090967uaq.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:14:01 -0700 (PDT)
+        with ESMTP id S234847AbhJLIQN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 04:16:13 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06186C06161C
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:14:12 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id r10so64320452wra.12
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:14:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gr2/Z0naSLUPb+MayH+nyDEWirany5uxuZ/i7RKgxSU=;
-        b=zcSk6kvpXDQ4j2EK2+y7ray0Na6HdRhS06AgQa+tTZBgcch7omm3zQSiHCXPGqiGS1
-         7EgWFanKh2TZ+n8Bk9pvTHBZR+eGXPXl5KtMb/qnD6CD70WR6hA4vjD9bEoP9mnOdxaa
-         pFeA3uurQzSmU9SoBvGE7xetAmf2nEphLtCOd5HRLdVisRsG+Nru5kNeiut+UgvI0wBC
-         mhzAduWdjAbZX8V3VRBeCKeqhBFo2JNAngpZE8L91QhX2yxmZtRiNN1+CM0FDo+nULQ/
-         lMj/lH15t7Fr6sWKopHhMU1x9nO+VfgJaDXlsP07OujuqQqQGAjthnVNM44c5oWaww/v
-         +B0Q==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=IlFsz1aPNhFHCtd5uM11smI1zJs2IUYy1FrQb3N1O24=;
+        b=iiC7I1lBqyCgLWkN9DTbFfd5ULPoFeXn4vFIy2Q7oaGfE5dZ30rRTyrpF0Hik2PWYn
+         5GWWG0ZZILpRxLBxhPHduMeJ02AAqiORauDCNbBN/B2drY3DY/spEqbp0DBOYoWC2XPd
+         f602aKbkUCddQ8LxqdfQbXwSyZJiGSJfn53R3e88EGiRWW3IRRd6UQ9S9bAtXUbfomIO
+         0wiep9R8/36xVkjxtK0co9tjO55H3Q9xztufLJSgti9IFvNLOJVIXV+8a5XLLjirN7ed
+         5UIimlweMCgkFAaHf5lyDGZu5yeIiBMD0dbMfv/m1JvifH64R0gg20VwcmAQjzAnwDBp
+         YsxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gr2/Z0naSLUPb+MayH+nyDEWirany5uxuZ/i7RKgxSU=;
-        b=f6QZae0OtBX+kgdp0mxWWUwuUqmX8IUok0tK6ogtB2rohctAoWX/rCPdPn9dww3+uM
-         Tx2rcwtfAZrtrTGPSlvvX58KWaLVztIz7z9eqM4Hk1eRckIniaQh3ve2SOEDZwO8/pLo
-         hu5UDoKtyzj3GryYZkmGNJ8WM5TAbJMcVtv2go74IIgQJHQzjvgiasr+QBT59kvM8/J7
-         YutauwWi5EjxIZR7WTpnLaiblIttjdqRIz8EdPnRqzhT7Nczxe9MqeTwczAkLKfIR4ws
-         wQQQz3+tW706UjF9OG1gffzOc17ki0etXaWY2SMjudWbkn1LqVnZFHZb64txkpRuIvh4
-         Zxfg==
-X-Gm-Message-State: AOAM532XaRl+x2GAgz1cvLsBox09dksv6GqpfGTUrCRHW1DuqePqbc0x
-        UYy/VEZe403fkv0LJOLISAfWYCzMiFRwEP3ydbL4ig==
-X-Google-Smtp-Source: ABdhPJzG9Dhgiod/wXzmIVRqNX8CNBE42sQEayZ3zzN4Dobgq28Rkx8L/n7OaxX73qh01VX5dkcbzs9vDVT+VUm8Dtk=
-X-Received: by 2002:ab0:16d4:: with SMTP id g20mr19911620uaf.114.1634026440192;
- Tue, 12 Oct 2021 01:14:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211008154352.19519-1-semen.protsenko@linaro.org>
- <20211008154352.19519-5-semen.protsenko@linaro.org> <7049b3a9-dc8f-2ae9-01e6-eb3b6f461400@kernel.org>
- <CGME20211011101326eucas1p17e6deeaa2449bf3f0d6306fb930cce17@eucas1p1.samsung.com>
- <CAPLW+4kJK=kaiCLDXX1EGLhbKJo5pcHQY9QCj0SVyGQP1n7q0g@mail.gmail.com> <ef781890-76ca-3392-9a17-3856fa1834cf@samsung.com>
-In-Reply-To: <ef781890-76ca-3392-9a17-3856fa1834cf@samsung.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 12 Oct 2021 11:13:48 +0300
-Message-ID: <CAPLW+4mXMLadAi6U3GiXqRHAGnLH79rZeK6w=EcbOccjqH4N9w@mail.gmail.com>
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: Document Exynos850 CMU bindings
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IlFsz1aPNhFHCtd5uM11smI1zJs2IUYy1FrQb3N1O24=;
+        b=GZbg26KgqoiNLhWh8Y7kElydLfN+6Kth4i7DjuSGkoVd1+9wE6p4WsX7E4GI5Ixc15
+         NEx/PC9k6bruh1JMe/mVbSrUaERTe5l3fUrLZm/TKpE7uJLWY3G0R6fmfP0DtSAZ+Fq3
+         v+BT4EPDOHxwva6JDdWoao199lEmRN/Di5vRBTzw6BjhkRja0UNz62KzbKi+cq6REPMG
+         DTh/TI5fbYl+ZA7uhGaDaD8X/SyxhUSeIg9AQhNFgl95s0KZvkvYU9asd8/JebrWtXxw
+         XmXMDQMJn9X9SYUhy92tVXiAl7+H2fOucgRk2LFS0m6kwjPORNTTjckr8XKTU9mJ7F1N
+         FAKg==
+X-Gm-Message-State: AOAM532iqie6RF16YmoqsxBWvR6ldadyeu0KeZw5vXd3E4oKsfPKsczy
+        PtnG37qifYwqHZpsk5O1iKUjeQ==
+X-Google-Smtp-Source: ABdhPJztpqCZWXa1dPpkEFh4twW2SCqLnRyzS5PquHtUfcUrJfPL6qNY1rZIvFhPX2NxaGQkv43a6Q==
+X-Received: by 2002:a5d:67cd:: with SMTP id n13mr9304746wrw.86.1634026450644;
+        Tue, 12 Oct 2021 01:14:10 -0700 (PDT)
+Received: from google.com ([95.148.6.175])
+        by smtp.gmail.com with ESMTPSA id z2sm8906237wrh.44.2021.10.12.01.14.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 01:14:10 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 09:14:09 +0100
+From:   Lee Jones <lee.jones@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
         linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+Message-ID: <YWVD0RXHVLxuXEIN@google.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+ <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com>
+ <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Mon, 11 Oct 2021, Rob Herring wrote:
 
-On Mon, 11 Oct 2021 at 13:42, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
->
-> On 11.10.2021 12:13, Sam Protsenko wrote:
-> > On Sat, 9 Oct 2021 at 23:41, Sylwester Nawrocki <snawrocki@kernel.org> wrote:
-> >>
-> >> On 08.10.2021 17:43, Sam Protsenko wrote:
-> >>> Provide dt-schema documentation for Exynos850 SoC clock controller.
-> >>>
-> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> [...]
-> >>> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-> >>> @@ -0,0 +1,185 @@
-> [...]
-> >>> +
-> >>> +title: Samsung Exynos850 SoC clock controller
-> >>> +
-> >>> +maintainers:
-> >>> +  - Sam Protsenko <semen.protsenko@linaro.org>
-> >>> +  - Chanwoo Choi <cw00.choi@samsung.com>
-> >>> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>> +  - Sylwester Nawrocki <s.nawrocki@samsung.com>
-> >>> +  - Tomasz Figa <tomasz.figa@gmail.com>
-> >>> +
-> >>> +description: |
-> >>> +  Exynos850 clock controller is comprised of several CMU units, generating
-> >>> +  clocks for different domains. Those CMU units are modeled as separate device
-> >>> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
-> >>> +  two external clocks:: OSCCLK (26 MHz) and RTCCLK (32768 Hz). Those external
-> >>> +  clocks must be defined as fixed-rate clocks in dts.
-> >>> +
-> >>> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
-> >>> +  dividers; all other leaf clocks (other CMUs) are usually derived from CMU_TOP.
-> >>> +
-> >>> +  Each clock is assigned an identifier and client nodes can use this identifier
-> >>> +  to specify the clock which they consume. All clocks that available for usage
-> >>
-> >> s/All clocks that available/All clocks available ?
-> >> No need to resend, I can amend it when applying.
-> >>
+> On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
 > >
-> > Yeah, not a native speaker, I tend to do such mistakes sometimes :)
-> > Please fix when applying.
+> > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
 > >
-> > Btw, I can see that you already applied 3 out of 5 patches from this
-> > patch series here: [1]. Can you please also apply the rest, or is
-> > there any outstanding comments that I missed?
->
-> The patches look good to me, I just wanted to allow some for Rob to have
-> a look and provide an Ack.
->
+> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > >
+> > > Add bindings for Unisoc system global register which provide register map
+> > > for clocks.
+> > >
+> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+> > >  1 file changed, 68 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> >
+> > Unapplied v3 and applied this (v4) instead, thanks.
+> 
+> What about the clock binding this depends on:
+> 
+> Unknown file referenced: [Errno 2] No such file or directory:
+> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> xargs: dt-doc-validate: exited with status 255; aborting
+> make[1]: *** Deleting file
+> 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> Unknown file referenced: [Errno 2] No such file or directory:
+> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> make[1]: *** [scripts/Makefile.lib:385:
+> Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
+> Error 255
+> 
+> 
+> Once again, all the components of MFD bindings need to be applied together.
 
-Can you please review this one?
+I can't apply what is not sent to me.
 
-Thanks!
+This patch came in on its own.
 
-> Regards,
-> --
-> Sylwester Nawrocki
-> Samsung R&D Institute Poland
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
