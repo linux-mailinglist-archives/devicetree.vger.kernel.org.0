@@ -2,82 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D34C42A8C0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84C2842A8D0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:51:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237241AbhJLPuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 11:50:52 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:43802 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234892AbhJLPuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:50:52 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 19CFmYxn095048;
-        Tue, 12 Oct 2021 10:48:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1634053714;
-        bh=8rrPQGnqFCUnZxZtTYRofyZNsMnTrSL62XL4Y0etm78=;
-        h=From:To:CC:Subject:Date;
-        b=B9DVrORSVLNawA8+xF9RVzrc8HuD52+88+P34j7wuDeMX2iXKHj7+IhC1e7IprnAl
-         9+JHTwn6zQ5CF61Z493b0VxoXVtwa3HPSf5weqKI2rGxUjgARQfozpBIAuhkgVp+gn
-         fKIamx5kmDeMRqrp5SuzuOxLO1AhdIxLJTx26nfc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 19CFmY77105407
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 12 Oct 2021 10:48:34 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 12
- Oct 2021 10:48:34 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 12 Oct 2021 10:48:34 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 19CFmYZb009701;
-        Tue, 12 Oct 2021 10:48:34 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Suman Anna <s-anna@ti.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
-Subject: [PATCH] dt-bindings: sram: Allow numbers in sram region node name
-Date:   Tue, 12 Oct 2021 10:48:33 -0500
-Message-ID: <20211012154833.14111-1-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S237491AbhJLPxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 11:53:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237536AbhJLPx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:53:28 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB77C061570
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:51:25 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id o20so68112094wro.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=0OhKQIwoghCkVMvy0ntTgm1TZtrtuMJ/Kc4LFr0NMt4=;
+        b=x4Rq60HqtgL8j1SAa7uu6kXxUrAJSrXmrdb15UbqyIRaKYIJpa5WclTIEllT8XQfgM
+         Xxz4A0SKjrfCcEVd58dgbd0IeD+GmvzoLAieZL+g7Q8Qj1wiWfYf//qfiHPmIPloKUyY
+         khzrjGjoPWpTIuR7qTvDqef7TcQ8FaNfF8Fx8HEjmHgDEKq/C/UFqd10CCpQxseydXk2
+         kWiwxLbMHleQ21gNxsSNs3dD8exldIZs0LWWrMcwkhezsJEUelz+a4P7RW3KE2TjPUSb
+         zuTA4HjLbP4wqqyqnPv8l44h0Jk4fU6hR9Xhu26+G8Dg8Csp37jJPuZZDMEMvfwON27t
+         G6uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=0OhKQIwoghCkVMvy0ntTgm1TZtrtuMJ/Kc4LFr0NMt4=;
+        b=a1+KBN1P4A8tWY1hCWlGy56CLt0sWqgAtDKbQ4KFP73Y79DMQ4IChFK8Xhae3wbFx8
+         C/awXHJbli+RT7z1NUpkD8GXwT//I9YFeUGp+WUEKnYm6XZaH+KGW8Yt9q+2DjiQmuqJ
+         T6rij9CBi9tBMLsa5YBkakMaLv3UERgCAa6AgvsV9dlE03gQ7IBPfdFV4UzskvERvyG/
+         9jgyEEvHb53vPZc7QND5NFSZfddV5OiQe2VE2ie68ed5kL0t1vpKmoFDUYelcSYQF5ib
+         bOH6E6jzKt0mm+11FxNKys+9CDEHsrAoOQlnSEd+o2aZ9KIMrXV16PzsxRywjm83hP15
+         KfVA==
+X-Gm-Message-State: AOAM530zTQaZOgPSSZhtrTfzsnE/2haxiNMjKYsb6zl4j+ppITnYi6YF
+        rXBtD7xC1xsctIlG/FbE/rEO1srThJjhMQ==
+X-Google-Smtp-Source: ABdhPJwTgOwYumKhS0NLYNtIZeo86a3d5YpXh9kDlz6oLvzLp9ICnppoWXU865MyyXk/g4O1H/66WA==
+X-Received: by 2002:a1c:2543:: with SMTP id l64mr6415280wml.9.1634053884330;
+        Tue, 12 Oct 2021 08:51:24 -0700 (PDT)
+Received: from google.com ([95.148.6.175])
+        by smtp.gmail.com with ESMTPSA id g2sm11446141wrb.20.2021.10.12.08.51.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 08:51:24 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 16:51:22 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
+ binding to a schema
+Message-ID: <YWWu+t487giK/FB2@google.com>
+References: <20210924071614.868307-1-maxime@cerno.tech>
+ <CAL_JsqL3BUX8jO4X12Au_VAytboisQAoxDYz03rQfDMJjL4EDA@mail.gmail.com>
+ <YWWg0PjnuBCKO3Tq@google.com>
+ <CAL_JsqKK_ZC95QfDYsKWdFM3bF+DD7wD=R=--6d74DwqHkgexA@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAL_JsqKK_ZC95QfDYsKWdFM3bF+DD7wD=R=--6d74DwqHkgexA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sram regions node name describes the region of reserved memory and can
-be names such as l3cache@1000. Permit numbers to be used as part of the
-reserved memory node name.
+On Tue, 12 Oct 2021, Rob Herring wrote:
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- Documentation/devicetree/bindings/sram/sram.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> On Tue, Oct 12, 2021 at 9:51 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Tue, 12 Oct 2021, Rob Herring wrote:
+> >
+> > > On Fri, Sep 24, 2021 at 2:16 AM Maxime Ripard <maxime@cerno.tech> wrote:
+> > > >
+> > > > The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
+> > > > thanks to its device tree binding.
+> > > >
+> > > > Now that we have the DT validation in place, let's convert the device
+> > > > tree bindings for that driver over to a YAML schema.
+> > > >
+> > > > Cc: Chen-Yu Tsai <wens@csie.org>
+> > > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > > Cc: linux-gpio@vger.kernel.org
+> > > > Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > > >
+> > > > ---
+> > > >
+> > > > Changes from v1:
+> > > >   - Removed the example and moved it in the mfd schema
+> > > > ---
+> > > >  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
+> > > >  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
+> > > >  2 files changed, 55 insertions(+), 75 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+> > >
+> > > This one not being applied with the rest of the series is also
+> > > breaking linux-next.
+> > >
+> > > b4 am -P_ -sl -o - 20210924071614.868307-1-maxime@cerno.tech | git am
+> >
+> > Thanks for the link.
+> >
+> > Seeing as there are no *real* dependencies, it would be better for
+> > Linus to take the patch (if he's okay with it of course).
+> 
+> Only that 'make dt_binding_check' is broken for anyone using your
+> branch (and linux-next ATM). It's as real as a broken build due to a
+> missing header. If you don't think this is a problem, then don't apply
+> MFD binding patches.
 
-diff --git a/Documentation/devicetree/bindings/sram/sram.yaml b/Documentation/devicetree/bindings/sram/sram.yaml
-index 3eda5049d183..939cf2418445 100644
---- a/Documentation/devicetree/bindings/sram/sram.yaml
-+++ b/Documentation/devicetree/bindings/sram/sram.yaml
-@@ -60,7 +60,7 @@ properties:
-     type: boolean
- 
- patternProperties:
--  "^([a-z]*-)?sram(-section)?@[a-f0-9]+$":
-+  "^([a-z0-9]*-)?sram(-section)?@[a-f0-9]+$":
-     type: object
-     description:
-       Each child of the sram node specifies a region of reserved memory.
+Ah, I missed Bartosz Ack up there.
+
+Happy to apply it.
+
 -- 
-2.32.0
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
