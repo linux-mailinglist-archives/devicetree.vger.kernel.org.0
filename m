@@ -2,110 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E0F242A4B2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F32FA42A497
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:36:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236609AbhJLMkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 08:40:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236620AbhJLMja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:39:30 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E78FC06174E
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:23 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id d3so52940549edp.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 05:37:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dgfaR6ADJUjKQDS11YfFKaQI7Sj88w9HaVjDkJ1g5CM=;
-        b=V7oXHXKSs+e7huxrifptFlprhFqFwR7VoF63Xh5GipXnUNI73NB4L3GE//HezsRoT5
-         FCjVvHU5YkNbv8+7iG0B8D5pZP8Qxq1N2y/qQf5ONhaAD9UGQ8YZ4xU5cLn//inrxDrX
-         i2xK/BhwNibszjhirgfc5YwTdgTNIEuurPBbY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dgfaR6ADJUjKQDS11YfFKaQI7Sj88w9HaVjDkJ1g5CM=;
-        b=i/SKdzvhrjjQqImh/sqISLE0NMr/vBDu3NKzyXzVfosbV6Vm6RKOXKatOjSuQ1cGZt
-         RmutTVdifHcSaLUJeMkRQcjzSmtqtCwZNFIl7nl+EJThvK7AQOpWGpMaIsAB5ABuIC+y
-         Zyv6eT9+ym5Ab/px0UhelfNiJfjVVfIf/TNpmLCn7b/EgfrruDDfcKdZzk4MF7NrZ6+j
-         aDuYNpUCeO3aMo2Mlc2/zMhwa6i4NxlYCxJ71yiPLMaWhKgTXMKxi21m5Zy6ZwqQIlKN
-         pDX0EIqcHeyuscF4VPouFKgmYsK5NiDKC03BMk13pU8UBMmru/ANg6/21RqPG/NUOh52
-         xIWA==
-X-Gm-Message-State: AOAM533f0VyKkXDD0JzlBA4SMnyyhlY/2UORIkj/QImJpQmJq6WA6CLu
-        huUIsETZ09EJYMGzjyqNzMkXMA==
-X-Google-Smtp-Source: ABdhPJzBy4+KjRu3dtdFX3wA07tO7xxCSpikCE6MauepCTqRQd3C4yNdwLAge44U9w8FijC36UAdDA==
-X-Received: by 2002:a50:e188:: with SMTP id k8mr51904823edl.119.1634042241713;
-        Tue, 12 Oct 2021 05:37:21 -0700 (PDT)
-Received: from capella.. (27-reverse.bang-olufsen.dk. [193.89.194.27])
-        by smtp.gmail.com with ESMTPSA id b5sm5763629edu.13.2021.10.12.05.37.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 05:37:21 -0700 (PDT)
-From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 6/6] net: phy: realtek: add support for RTL8365MB-VC internal PHYs
-Date:   Tue, 12 Oct 2021 14:35:55 +0200
-Message-Id: <20211012123557.3547280-7-alvin@pqrs.dk>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211012123557.3547280-1-alvin@pqrs.dk>
-References: <20211012123557.3547280-1-alvin@pqrs.dk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S236394AbhJLMi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:38:29 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:14002 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236281AbhJLMi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:38:27 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1634042186; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=AyivTPO817+jGaFiIfTU06ugnfXJERP8hq9LXBQNV4Q=; b=nCu8KBcICnyqPRAa4QcvpVGGyFcCeANLvyGtLsh/3llR8EUdEvYb3RTMBLanoFNTkv0br4cK
+ gZ6HJZfxqRqRksIQb9xpvtdqnpyB2KgX0d7gEIhmaVJhKzGR1XibQns5phG7NgNJr4MLt7t9
+ VJLTw8Yn7PB+mNMM8PNuJzC7hNs=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 616581498ea00a941fabcf25 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 12 Oct 2021 12:36:25
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B5D98C4360C; Tue, 12 Oct 2021 12:36:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6000AC4338F;
+        Tue, 12 Oct 2021 12:36:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6000AC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     sanm@codeaurora.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vbadigan@codeaurora.org, manivannan.sadhasivam@linaro.org
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add pcie clock support
+Date:   Tue, 12 Oct 2021 18:06:11 +0530
+Message-Id: <1634042171-31461-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+Add pcie clock phandle for sc7280 SoC
 
-The RTL8365MB-VC ethernet switch controller has 4 internal PHYs for its
-user-facing ports. All that is needed is to let the PHY driver core
-pick up the IRQ made available by the switch driver.
+Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
 
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
+This change is depends on the below patch series.
+https://lkml.org/lkml/2021/10/7/841
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-RFC -> v1: no change; collect Reviewed-by
-
- drivers/net/phy/realtek.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index 11be60333fa8..a5671ab896b3 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -1023,6 +1023,14 @@ static struct phy_driver realtek_drvs[] = {
- 		.resume		= genphy_resume,
- 		.read_page	= rtl821x_read_page,
- 		.write_page	= rtl821x_write_page,
-+	}, {
-+		PHY_ID_MATCH_EXACT(0x001cc942),
-+		.name		= "RTL8365MB-VC Gigabit Ethernet",
-+		/* Interrupt handling analogous to RTL8366RB */
-+		.config_intr	= genphy_no_config_intr,
-+		.handle_interrupt = genphy_handle_interrupt_no_ack,
-+		.suspend	= genphy_suspend,
-+		.resume		= genphy_resume,
- 	},
- };
- 
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 39635da..78694c1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -569,9 +569,10 @@
+ 			reg = <0 0x00100000 0 0x1f0000>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+-				 <0>, <0>, <0>, <0>, <0>, <0>;
++				 <0>, <&pcie1_lane 0>,
++				 <0>, <0>, <0>, <0>;
+ 			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+-				      "pcie_0_pipe_clk", "pcie_1_pipe-clk",
++				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+ 				      "ufs_phy_rx_symbol_0_clk", "ufs_phy_rx_symbol_1_clk",
+ 				      "ufs_phy_tx_symbol_0_clk",
+ 				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
 -- 
-2.32.0
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
