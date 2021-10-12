@@ -2,282 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F098A42A65E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 15:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F71542A666
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 15:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236917AbhJLNsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 09:48:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
+        id S236699AbhJLNuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 09:50:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236773AbhJLNs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 09:48:29 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B50BC06161C
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 06:46:28 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id s17so18562015ioa.13
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 06:46:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s71iYvg4Bu9JFae0fKROIZoPHNw4zhE13M0dbd05RL4=;
-        b=bGiyTyTyubf5G8Qk5CVwSVnsGuYm1NAdkT42UhZRSyzkD4Cgbx7/dp0aEvwHzJC2ke
-         ADY54T2XGMESBwocNuY6/02s54kcG7feiDm8CjQk3Hljo2dQJvvzmhNReG8evIZUgBAg
-         EwyR6WQUB6u0vIW8lqG2tM2cP9lxr9MnzyM+w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=s71iYvg4Bu9JFae0fKROIZoPHNw4zhE13M0dbd05RL4=;
-        b=uw4OOtpLiE0jhv4G61NiX1z8JyhU3l6/gP4s89KeQYAcN6MsA6ZwQN2SxkwFwZhVab
-         cCfGsQIDKQCvBU3LW+q/Jdn1zfHQal3GRUKkcbL56Ms/HI46irtMT2TVufoTaiXKWL7N
-         miaggTsDrTCYywaQPqG3P+gh63XxeU0uFalSfesqhSA4JURSA2tlmneITMiaGoLJIZ+m
-         ktsB9XjdAOKMyJb15BvQdEAyrONvWMi4pK8/vge3QPnrwxEy/0AwBntdItx8tvtRiI3x
-         s9NhpXm6j96w4pzyUZ8hzmqIFedSRbOVQ2F3YSrjxdLNpUna6TRYGBfz45I1pwB4UESC
-         IfkA==
-X-Gm-Message-State: AOAM5328QFHjKXpEiRzyys5kCX1KoJuc/SpiXjame5W8S2h2Wyu7y3UT
-        YCB/BSVMc7cCIjRpRsrRxzA+l7EzX2CYDw==
-X-Google-Smtp-Source: ABdhPJwk9ZbzWuDwASedG8D/wjO4tziTu9Fkx+ys4AXJ5lotRiUej2i+3rOVz2Lw8zNriPUKgeRCKg==
-X-Received: by 2002:a02:cb1e:: with SMTP id j30mr23290683jap.143.1634046387224;
-        Tue, 12 Oct 2021 06:46:27 -0700 (PDT)
-Received: from kiwi.bld.corp.google.com (c-67-190-101-114.hsd1.co.comcast.net. [67.190.101.114])
-        by smtp.gmail.com with ESMTPSA id d12sm5440885ila.79.2021.10.12.06.46.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 06:46:26 -0700 (PDT)
-From:   Simon Glass <sjg@chromium.org>
-To:     devicetree@vger.kernel.org
-Cc:     U-Boot Mailing List <u-boot@lists.denx.de>,
-        Tom Rini <trini@konsulko.com>, Simon Glass <sjg@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: u-boot: Add an initial binding for config
-Date:   Tue, 12 Oct 2021 07:46:18 -0600
-Message-Id: <20211012074608.v2.1.I7733f5a849476e908cc51f0c71b8a594337fbbdf@changeid>
-X-Mailer: git-send-email 2.33.0.882.g93a45727a2-goog
+        with ESMTP id S236678AbhJLNuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 09:50:21 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989EEC061570;
+        Tue, 12 Oct 2021 06:48:19 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 7D39F426A2;
+        Tue, 12 Oct 2021 13:48:12 +0000 (UTC)
+Subject: Re: [RFC PATCH 3/9] dt-bindings: clock: Add apple,cluster-clk binding
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-4-marcan@marcan.st>
+ <0fe602f6-3adc-dfac-beee-2854b01cec5c@canonical.com>
+ <20211012093529.pzzfo44ikq5oc6cl@vireshk-i7>
+ <D0DE08FE-562E-4A48-BCA0-9094DAFCA564@marcan.st>
+ <20211012094302.3cownyzr4phxwifs@vireshk-i7>
+ <64584F8C-D49F-41B5-9658-CF8A25186E67@marcan.st>
+ <20211012095735.mhh2lzu52ohtotl6@vireshk-i7>
+Cc:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <0168a91d-0e7d-41df-8a65-bc739fc50498@marcan.st>
+Date:   Tue, 12 Oct 2021 22:48:09 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211012095735.mhh2lzu52ohtotl6@vireshk-i7>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-U-Boot makes use of the devicetree for its driver model. Devices are bound
-based on the hardware description in the devicetree.
+On 12/10/2021 18.57, Viresh Kumar wrote:
+> I didn't realize earlier that we have moved out of lists :)
 
-Since U-Boot is not an operating system, it has no command line or user
-space to provide configuration and policy information. This must be made
-available in some other way.
+Whoops, sorry, I was on mobile and must've hit the wrong reply button! 
+My apologies.
 
-Therefore U-Boot uses devicetree for configuration and run-time control
-and has done for approximately 9 years. This works extremely well in the
-project and is very flexible. However the bindings have never been
-incorporated in the devicetree bindings in the Linux tree. This could be
-a good time to start this work as we try to create standard bindings for
-communicating between firmware components.
+> On 12-10-21, 18:54, Hector Martin "marcan" wrote:
+>> Typically cpufreq-dt is used with clock drivers that directly take
+>> the clock frequency and do whatever voodoo is necessary to set it
+>> for the CPU. But here, the hardware just wants to know the index,
+>> and does everything itself. So we need to encode that somewhere, to
+>> avoid hardcoding it in the clock driver.
+>>
+>> In general, based on how these SoCs are designed, we're trying to
+>> avoid having tables of volatile information in the drivers, and
+>> instead keep everything in the DT. This means we have a good chance
+>> that these drivers will continue to work with future SoC
+>> generations, since Apple doesn't change register definitions
+>> randomly most of the time.
+> 
+> Yeah I get that and it is actually better this way. I just wanted to
+> point out that we didn't think of it this way earlier :)
 
-Add an initial binding for this node, covering just the config node, which
-is the main requirement. It is similar in concept to the chosen node, but
-used for passing information between firmware components, instead of from
-firmware to operating system.
+Yeah, makes sense. Seems to work fine :)
 
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
-Please be kind in your review. Some words about why this is needed are
-included in the description in config.yaml file.
 
-The last attempt to add just one property needed by U-Boot went into the
-weeds 6 years ago, with what I see as confusion about the role of the
-chosen node in devicetree[1].
-
-I am trying again in the hope of reaching resolution rather than just
-going around in circles with the 'devicetree is a hardware description'
-argument :-)
-
-Quoting from the introduction to latest devicetree spec[2]:
-
->>>
-To initialize and boot a computer system, various software components
-interact. Firmware might perform low-level initialization of the system
-hardware before passing control to software such as an operating system,
-bootloader, or  hypervisor. Bootloaders and hypervisors can, in turn,
-load and transfer control to operating systems. Standard, consistent
-interfaces and conventions facilitate the interactions between these
-software components. In this document the term boot program is used to
-generically refer to a software component that initializes the system
-state and executes another software component referred to as a client
-program.
-<<<
-
-This clearly envisages multiple software components in the firmware
-domain and in fact that is the case today. They need some way to
-communicate configuration data such as memory setup, runtime-feature
-selection and developer conveniences. Devicetree seems ideal, at least for
-components where the performance / memory requirements of devicetree are
-affordable.
-
-I hope that the Linux community (which owns the devicetree bindings) finds
-this initiative valuable and acceptable.
-
-[1] https://lists.denx.de/pipermail/u-boot/2015-July/218585.html
-[2] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
-
-Changes in v2:
-- Update chosen.txt to chosen.yaml
-- Drop quotes on u-boot,config
-- Rename bootdelay to bootdelay-sec and drop type
-- Add default and maximum to bootsecure, silent-console
-
- .../devicetree/bindings/u-boot/config.yaml    | 143 ++++++++++++++++++
- 1 file changed, 143 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/u-boot/config.yaml
-
-diff --git a/Documentation/devicetree/bindings/u-boot/config.yaml b/Documentation/devicetree/bindings/u-boot/config.yaml
-new file mode 100644
-index 00000000000000..fe8ee6ecaf9cd2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/u-boot/config.yaml
-@@ -0,0 +1,143 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/u-boot/config.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: U-Boot configuration node
-+
-+maintainers:
-+  - Simon Glass <sjg@chromium.org>
-+
-+description: |
-+  The config node does not represent a real device, but serves as a place
-+  for passing data between firmware elements, like memory maps. Data in the
-+  config node does not represent the hardware. It is ignored by operating
-+  systems.
-+
-+  Purpose of config node
-+  ----------------------
-+
-+  A common problem with firmware is that many builds are needed to deal with the
-+  slight variations between different, related models. For example, one model
-+  may have a TPM and another may not. Devicetree provides an excellent solution
-+  to this problem, in that the devicetree to actually use on a platform can be
-+  injected in the factory based on which model is being manufactured at the time.
-+
-+  A related problem causing build proliferation is dealing with the differences
-+  between development firmware, developer-friendly firmware (e.g. with all
-+  security features present but with the ability to access the command line),
-+  test firmware (which runs tests used in the factory), final production
-+  firmware (before signing), signed firmware (where the signatures have been
-+  inserted) and the like. Ideally all or most of these should use the same
-+  U-Boot build, with just some options to determine the features available. For
-+  example, being able to control whether the UART console or JTAG are available,
-+  on any image, is a great debugging aid.
-+
-+  When the firmware consists of multiple parts (various U-Boot phases, TF-A,
-+  OP-TEE), it is helpful that all operate the same way at runtime, regardless of
-+  how they were built. This can be achieved by passing the runtime configuration
-+  (e.g. 'enable UART console', 'here are your public keys') along the chain
-+  through each firmware stage. It is frustrating to have to replicate a bug on
-+  production firmware which does happen on developer firmware, because they are
-+  completely different builds.
-+
-+  The config node provides useful functionality for this. It allows the different
-+  controls to be 'factored out' of the U-Boot binary, so they can be controlled
-+  separately from the initial source-code build. The node can be easily updated
-+  by a build or factory tool and can control various features in U-Boot. It is
-+  similar in concept to a Kconfig option, except that it can be changed after
-+  U-Boot is built.
-+
-+  The config node is similar in concept to /chosen (see chosen.yaml) except that
-+  it is for passing information *into* and *between) firmware components,
-+  instead of from firmware to the Operating System. Also, while operating
-+  systems typically have a (sometimes extremely long) command line, U-Boot does
-+  not support this, except with sandbox. The devicetree provides a more
-+  structured approach in any case.
-+
-+properties:
-+
-+  compatible:
-+    enum:
-+      - u-boot,config
-+
-+  bootcmd:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: |
-+      Allows overwriting of the boot command used by U-Boot on startup. If
-+      present, U-Boot uses this command instead. Note that this feature can
-+      work even if loading the environment is disabled, e.g. for security
-+      reasons. See also bootsecure.
-+
-+  bootdelay-sec:
-+    description: |
-+      Allows selecting of the U-Boot bootdelay, to control whether U-Boot
-+      waits on boot or for how long. This allows this option to be configured
-+      by the build system or by a previous-stage binary. For example, if the
-+      images is being packed for testing or a user holds down a button, it may
-+      allow a delay, but disable it for production.
-+
-+      If this property is not present, a default value is used instead.
-+
-+      Note that this uses the 'sec' property unit, even though it allows a
-+      negative value.
-+
-+      Values:
-+
-+      -1: no bootdelay and the user cannot interrupt boot
-+      0: no bootdelay but use user can still interrupt boot by holding down a
-+        key, if enabled
-+      >= 1: delay for this many seconds
-+
-+
-+  bootsecure:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    maximum: 2
-+    description: |
-+      Controls the execution of the boot command in U-Boot, e.g. selecting
-+      between using a special function to run commands, or the normal CLI. This
-+      can be used in production images, to restrict the amount of parsing done
-+      or the options available, to cut back on the available surface for
-+      security attacks.
-+
-+      Values:
-+
-+      0: normal boot using CLI (default if not present)
-+      1: use secure boot mechanism instead to parse and run commands
-+        other values are reserved for future use
-+      2: use simplified command line (e.g. avoid hush)
-+      3... reserved
-+
-+  silent-console:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+    maximum: 2
-+    description: |
-+      This allows the console to be silenced by default on boot. This can allow
-+      easy disabling of console output on a production build, for example. When
-+      suppressed, the console is still active. This feature only suppresses the
-+      console output itself, on all output devices.
-+
-+      Values:
-+
-+      0: console output appears as normal (default)
-+      1: console output is suppressed but console recording still operates (if
-+        enabled)
-+      2: console output is suppressed and not recorded
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    u-boot,config {
-+      compatible = "u-boot,config";
-+      bootcmd = "vboot go auto";
-+      bootdelay-sec = <(-1)>;
-+      bootsecure = <1>;
-+      silent-console = <1>;
-+    };
 -- 
-2.33.0.882.g93a45727a2-goog
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
