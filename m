@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 522FB429B9E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 04:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F81429BBC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 05:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbhJLCtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 22:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
+        id S231951AbhJLDJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 23:09:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231682AbhJLCtW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 22:49:22 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2258BC061570;
-        Mon, 11 Oct 2021 19:47:18 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id t9so80015908lfd.1;
-        Mon, 11 Oct 2021 19:47:18 -0700 (PDT)
+        with ESMTP id S231742AbhJLDJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 23:09:57 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92EE9C061570;
+        Mon, 11 Oct 2021 20:07:56 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id o83so19805894oif.4;
+        Mon, 11 Oct 2021 20:07:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=9O4Co6QBwLVOkBI0LJyrQRb8YZ+pNiYDkLLMY/zEjBE=;
-        b=BPWH55iRUxci7MR/86u3p9ZBkTXEiXRs1966jxUBGPt2ZpQBJ6vcQ6djbwnokaj3Xy
-         7FakdsnV5ugQuv+YXKBYlCwk8p6QMKe6PKP2iWoYi1anPw3TLAyTb9dKdPhR2891pqjn
-         M3gX5JnXK4Y2SPlncSrRAl++Bp5eAuMJVqeD5nF9pJtW256stWh/agix4RBq/tPp5O+M
-         qp5l7csNZ6ZfWORQXstkHUKGrYZ+Q9FlAgN3vscsTL7gq+pFcpoKb9mNqkNxw/Djin4d
-         tDESlUHAqL8w9eVxuadpbwJvHPt0LzdPOgMDfh6QmYbQ3L6OoJzssneGsstfMiI0F6pQ
-         g6Tg==
+        bh=vVvBHngaWKoiA0++47ZxjHijX6w95ry8pBLW3rnsyKM=;
+        b=H9QwPe1Ga5lUz1oYHLYo1JXPU/nYvZOAWkRMgEQdMGj79GPeGqm9vTqS2PhYSElTeb
+         dKUQWF04Fo4hEOu/O+5K+8jO3EE0iteMyFjRNi+8yvHdvvSwEwLRLY1xuFAF5TeY1OHr
+         zXcrXJtpIye4HG2gHbsswu78EUWdqXmH3sSpfJwQkBf9AAQ/8igFUaNx1fCGhb/JWeUy
+         xyhtmsrfkwBjtnsLO0hFN376XVyHwckh5ohEZ6S2OVK4QqX941k2w9M1n5mjbzE1S04K
+         vu/VnFoSLCmetvsOswr7gR8QR6QnDW7LAmV5DMAgzHmKKpHWAEU7wKeFbEUa4Hy4cYP7
+         ofBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9O4Co6QBwLVOkBI0LJyrQRb8YZ+pNiYDkLLMY/zEjBE=;
-        b=0Gv2GazC90fm6B8GzGqYpEUxJUVo69TgOJGXFKarolWa+8X5McK577KMFjRV57lZeX
-         4oNYeyzTyAywoDkXURbulxA11Vb/kTGbIIvLp+c+CndrBdB6kG58nuCbBNckV3lGLYbD
-         Sw03YvoO/oiHMddVvSm/C6NqB0L4WJDGC3j5AkUBeQ6gCIURtAhZY1dEIZzPP/hSXF/r
-         uTD9ToQ7bCM5NVU/xoERE+wW5LNLoUo10kLvHj7YTF6ZG7kmso6EJ8O5NmE2YUT+ZoLW
-         uysYxqb86ghzv2hgU46s8tTvblAxh7PQgBo7HGIJKL16tOf2DqzptWecQl5KQRyDwpMU
-         eTAQ==
-X-Gm-Message-State: AOAM532jgwPM1gTMXpBTvPgTv+5658qsS47HrqeACXu975kupm0D/iC8
-        56zqKc29qwXl6zQ9B+dCLw7SS+qdd1eDoy7RRK0=
-X-Google-Smtp-Source: ABdhPJwL4hjIpyRx3qZJw+omSMkewzzTqEhB8DRkSJ7/FNh1tjRo/86P8DJiEw9D9gEUPczClE18Z9uuXFKUH8TOrBY=
-X-Received: by 2002:a2e:9e50:: with SMTP id g16mr20606392ljk.183.1634006836365;
- Mon, 11 Oct 2021 19:47:16 -0700 (PDT)
+        bh=vVvBHngaWKoiA0++47ZxjHijX6w95ry8pBLW3rnsyKM=;
+        b=7/Rc2nRmkvgR/ZLVVGj2+T5jl0wlvIddhJm2l8kZin3nSsXXD/x+PtVmIDIAb4b+VN
+         86Wq7OdVNUGEKwGN5T5WoAgnGEePqbfaFngMsn3xC4/6fRuNpPfbr54qt4fACp4EYWlS
+         nUO0qHYb4WVCTglGm19x/2VHGVdAAmsv/+PfByhH6Dy6nCbf+LXm4hgAHA1AqsqWEYL/
+         OFFyAQn10b7GAuWLPEJg8ZYCD4aY/fZIWm6wUoLpv4QlZEz2lkDy1OcFOxa/3+FDmm7L
+         1BU9MZeXrTELfR27HpYqVw54X1S27eObKPot90FannVk4XB56BB+28Pf2C1GpIn6AmEH
+         aNSQ==
+X-Gm-Message-State: AOAM530M5BWRjuLdN2pVz2bdH71G4Fe3JTX0GIk4cJ0eeli1sloR+Zx0
+        5tQtZsDF1NdEos4eJyzfFI6IXR5WDSN7D44MTXQ=
+X-Google-Smtp-Source: ABdhPJxgyBjsHO8t4SthfXn3vCmil4DtjN9T0E5geL0LHORC7tvbOOtT5ExBRj+csc1mPr5d7b3pBuGYbtFvoCflkE8=
+X-Received: by 2002:aca:3e8a:: with SMTP id l132mr1838200oia.95.1634008075820;
+ Mon, 11 Oct 2021 20:07:55 -0700 (PDT)
 MIME-Version: 1.0
 References: <1633668612-25524-1-git-send-email-u0084500@gmail.com>
  <1633668612-25524-3-git-send-email-u0084500@gmail.com> <YWA+ykStTEyzRbEy@sirena.org.uk>
-In-Reply-To: <YWA+ykStTEyzRbEy@sirena.org.uk>
+ <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
+In-Reply-To: <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
 From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 12 Oct 2021 10:47:05 +0800
-Message-ID: <CADiBU3-X5n3b-ZUCFf48C=5oD6RC1E9MD+M6demMLoHzZ3CEBA@mail.gmail.com>
+Date:   Tue, 12 Oct 2021 11:07:43 +0800
+Message-ID: <CADiBU39SKqSULSesj060a62YpMp1hD9ftfMPGtdcbOyZh8iPrw@mail.gmail.com>
 Subject: Re: [PATCH v3 2/2] ASoC: rt9120: Add rt9210 audio amplifier support
 To:     Mark Brown <broonie@kernel.org>
 Cc:     oder_chiou@realtek.com, perex@perex.cz, tiwai@suse.com,
@@ -65,31 +66,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=888=E6=97=
+ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=8812=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8810:47=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B410=E6=9C=888=E6=97=
 =A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=888:51=E5=AF=AB=E9=81=93=EF=BC=9A
+> >
+> > On Fri, Oct 08, 2021 at 12:50:12PM +0800, cy_huang wrote:
+> >
+> > > +static const struct snd_kcontrol_new rt9120_snd_controls[] =3D {
+> > > +     SOC_SINGLE_TLV("MS Volume", RT9120_REG_MSVOL, 0, 2047, 1, digit=
+al_gain),
+> > > +     SOC_SINGLE("SPK Gain", RT9120_REG_SPKGAIN, 0, 7, 0),
+> >
+> > Volume controls should end in Volume even if they don't have TLV
+> > information so applications know how to render them.  I'll fix
+> > this up as I apply.
 >
-> On Fri, Oct 08, 2021 at 12:50:12PM +0800, cy_huang wrote:
+> It's not linear mapping analog gain and cannot use the TLV as you said.
+> Mappling table is listed like as below
+> 0 -> 6dB
+> 1 -> 8dB
+> 2 -> 10dB
+> 3 -> 12dB
+> 4 -> 13dB
+> 5 -> 14dB
+> 6 -> 15dB
+> 7 -> 16dB
 >
-> > +static const struct snd_kcontrol_new rt9120_snd_controls[] =3D {
-> > +     SOC_SINGLE_TLV("MS Volume", RT9120_REG_MSVOL, 0, 2047, 1, digital=
-_gain),
-> > +     SOC_SINGLE("SPK Gain", RT9120_REG_SPKGAIN, 0, 7, 0),
->
-> Volume controls should end in Volume even if they don't have TLV
-> information so applications know how to render them.  I'll fix
-> this up as I apply.
+> Do I just need to change it to 'SPK Gain Volume' to present this control =
+item?
+> Or is there any table mapping for the nonlinear TLV information?
 
-It's not linear mapping analog gain and cannot use the TLV as you said.
-Mappling table is listed like as below
-0 -> 6dB
-1 -> 8dB
-2 -> 10dB
-3 -> 12dB
-4 -> 13dB
-5 -> 14dB
-6 -> 15dB
-7 -> 16dB
-
-Do I just need to change it to 'SPK Gain Volume' to present this control it=
-em?
-Or is there any table mapping for the nonlinear TLV information?
+Finally found there's 'DECLARE_TLV_DB_RANGE' that can meet the requirement.
+I will fix this by the tlv db range and naming it to 'SPK Gain Volume'.
+If there's any changes still needed, please feel free to let me know.
