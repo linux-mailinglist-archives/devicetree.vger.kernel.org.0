@@ -2,97 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 821D042EAA9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:54:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 318B642ED83
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236338AbhJOH4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 03:56:11 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41512
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236329AbhJOH4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 03:56:11 -0400
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
+        id S237259AbhJOJ0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 05:26:44 -0400
+Received: from ixit.cz ([94.230.151.217]:58764 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236767AbhJOJ0o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 05:26:44 -0400
+Received: from newone.brmlab.cz (unknown [91.146.121.5])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 896533FFF3
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 07:54:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634284444;
-        bh=FjiBWD6KOGxZjHagQXbhzd7t02HLGEzw8kC0g/03pT0=;
-        h=Subject:To:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=N7kkHNmx7Z3QYzFop+eq5FGv9Nf6e3oIOxcrJLa9N3TPbSVL+vN6TKaaxU9NSF5gC
-         fqRWmOn4qBNUlsZEEg+Yk1WTx3z33KtjOViBRew15gAT9VYYmlINY0NyYYE/l03/vR
-         NCuveaoQbj2qW/P1hN6JleJrPgJ/hU8H8/VeAE4z2n0lnwJ+KVq/wx/hRZivIi2UIf
-         V035jHYKqGdM4vNrtOZ8fdxenosslkPjeI8FtmMzGeUfQuQgY8Vz1FKmCxiEm9sKUU
-         mGWz7y3idKIbcfpjyyzGeut5rbGjZeWLmQYV78e57eKDSy94nu8u1KOWongeeK72D3
-         GqLhOHFf2q8fA==
-Received: by mail-lf1-f72.google.com with SMTP id d12-20020a0565123d0c00b003fdb52f1cdcso4168020lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 00:54:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FjiBWD6KOGxZjHagQXbhzd7t02HLGEzw8kC0g/03pT0=;
-        b=Z5ibgxCqEqpjfn3VFaO/Nivyu6Tbea5jCptpBsanLbq7o98X6ruxgB7WyBELhP134+
-         9trHqTTsQi3cPcpol7rebqgJCcTHS1en5LW0egtMonviC/bNh1XjAkgarzmt+kfd7LA7
-         9Va+lxWwpPKMBpjTCEw3HImoJ0Aak/4FScVfMyPVVd03egy9QFp80Vu+XNHtSTkFouuf
-         Z36yDZwVmItJ3ot3gAc4z1NMOTODs726H/q1/rDD7eEyx+0dZQPfMVQNh7mAM4ftY3uG
-         50ZGeSJdiDmSKuvByCslafljJmrLNhz/IGXhrtEkWbiK2Wgrs2RTLrkcLI88haVCW21Q
-         wGMw==
-X-Gm-Message-State: AOAM533SbAqFhHo32hu/jBrUGQ1v/U0CTLvHuCWk7LZFO2wOtoYpNZUO
-        uBb/i60LowsqNdaVQMUPjshAuFGr2UniK5UizUGAkF9+6pGJMN87UbKZ6KSqlskDJQRUi0u6Y99
-        Yg6EPYHjYQuIldiObDm+axNqbfL1VFW69iF440ec=
-X-Received: by 2002:a05:6512:3341:: with SMTP id y1mr6952809lfd.645.1634284443571;
-        Fri, 15 Oct 2021 00:54:03 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJytuH16ozPDRBURVxxyw+MBmbGvp1XT8IaLvklkb1cqqLUeYlT2L317N/zAHeTSLIGf4sTXcg==
-X-Received: by 2002:a05:6512:3341:: with SMTP id y1mr6952798lfd.645.1634284443418;
-        Fri, 15 Oct 2021 00:54:03 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id a26sm31023ljq.127.2021.10.15.00.54.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Oct 2021 00:54:03 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: memory-controllers: correct path to LPDDR3
- bindings
+        by ixit.cz (Postfix) with ESMTPSA id ED93B20064;
+        Tue, 12 Oct 2021 20:16:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634062607;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SPc2IVyrD8PWJ0VNqHMWOp4R+CLAD6uPKyK1HWCBuvM=;
+        b=NxoDur6Bo0a/HM/iP9MVw4/SB26HAHb85m3Wjb7NR/90kDgKUiaEe4UrSbLj6sHudfwzGL
+        m/5Ll4ToquA6xv2C/tECOo/540dunlpJobgsiLPrB2jRwTt5q+LysokRXlDDZNCwEYQXUe
+        Oba0YvMQWYQLTW8oPHPE6hh+/GhrcjI=
+From:   David Heidelberg <david@ixit.cz>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20211015072857.9770-1-krzysztof.kozlowski@canonical.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <a34f6c91-8e94-e446-31fe-085f1e50b2c0@canonical.com>
-Date:   Fri, 15 Oct 2021 09:54:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH v2 1/4] arm64: dts: qcom: SMxxxx: drop msg-size property from ramoops
+Date:   Tue, 12 Oct 2021 20:14:57 +0200
+Message-Id: <20211012181500.5309-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20211015072857.9770-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2021 09:28, Krzysztof Kozlowski wrote:
-> The LPDDR3 bindings were moved to memory-controllers/ddr.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> 
-> ---
-> 
-> I will fold it into original patch.
-> ---
->  .../devicetree/bindings/memory-controllers/ddr/lpddr3.txt    | 5 +++--
->  .../bindings/memory-controllers/samsung,exynos5422-dmc.yaml  | 3 ++-
->  2 files changed, 5 insertions(+), 3 deletions(-)
-> 
+Invalid property, not supported by ramoops node.
 
-Squashed into "dt-bindings: Relocate DDR bindings".
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 1 -
+ arch/arm64/boot/dts/qcom/sm6350.dtsi                         | 1 -
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi      | 1 -
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi         | 1 -
+ 4 files changed, 4 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+index 58b6b2742d3f..64f1eab99d5e 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+@@ -74,7 +74,6 @@ pstore_mem: ramoops@ffc00000 {
+ 			reg = <0x0 0xffc40000 0x0 0xc0000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 		};
+ 
+ 		cmdline_mem: memory@ffd00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 926d30c57add..513c27895dd5 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -344,7 +344,6 @@ ramoops: ramoops@ffc00000 {
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+ 			ftrace-size = <0x0>;
+-			msg-size = <0x20000 0x20000>;
+ 			cc-size = <0x0>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+index 014fe3a31548..a7eb084932ab 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+@@ -126,7 +126,6 @@ ramoops@ffc00000 {
+ 			reg = <0x0 0xffc00000 0x0 0x100000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 			ecc-size = <16>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+index d63f7a9bc4e9..34cfb8d8d1ad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+@@ -111,7 +111,6 @@ ramoops@ffc00000 {
+ 			reg = <0x0 0xffc00000 0x0 0x100000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 			ecc-size = <16>;
+ 			no-map;
+ 		};
+-- 
+2.33.0
+
