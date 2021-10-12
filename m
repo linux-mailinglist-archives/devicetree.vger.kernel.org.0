@@ -2,177 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6C62429A81
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 02:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5970A429A82
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 02:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbhJLApU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Oct 2021 20:45:20 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:42669 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbhJLApT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 20:45:19 -0400
-Received: by mail-ot1-f54.google.com with SMTP id c26-20020a056830349a00b0054d96d25c1eso23754676otu.9
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 17:43:18 -0700 (PDT)
+        id S229847AbhJLAtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Oct 2021 20:49:24 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:45021 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229456AbhJLAtY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Oct 2021 20:49:24 -0400
+Received: by mail-oi1-f171.google.com with SMTP id y207so23734409oia.11;
+        Mon, 11 Oct 2021 17:47:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=C0veIXD12tRwkmARbIUPpytHwuGDS9GaI5ZCAL0YxtM=;
-        b=mL8JmgZ03hIYWkmHMD9RUkF8FN12X8NgvwrPGcZKpHhSVoDEBLtR5x6VgKM+6/gZp+
-         8CHlJkxTlce/SqG2t2vOG7FUGB+OWnt2FGAIq20YEPlzSWZxe/i8bhBny+yMBOjl1PHS
-         P3YF/57yQ1jBDiC6R40jOHAx+v+Fx24N2K2LhwqC0yqtN0hHg7dwW/rfayu5c10PxeQ5
-         Io5R+s72SE1TYXSU9EAjdkMTY1DtJSwEdO9b8ecoSZoALdsg2Gx8j2Zm54kFOUUQufa6
-         n45p1e/iTbfJSE9w6Wel7zGvKn6s6VFASFCmJT0GJhbRMYK0C61gKQevnnMZXaeY0QnN
-         4Jcw==
-X-Gm-Message-State: AOAM533b32eBwXJt9uu/zLP14y6+YGOozv+SpDkBYzOUyt7PC5rCJ1hh
-        bDGbr3hm62azKF4bqsw1Nw==
-X-Google-Smtp-Source: ABdhPJy8M+f4nFxCTH13TvMUHFxJ1m8soMYBOgZhxmB4w7ZoRNTKIjUDBsh0NAvX07BegYnRBAkEOw==
-X-Received: by 2002:a05:6830:44a9:: with SMTP id r41mr678852otv.230.1633999398628;
-        Mon, 11 Oct 2021 17:43:18 -0700 (PDT)
+        bh=poTvpzF7Q9lxXOwqWE5CBjIxUnl36yVfDL/70ZxDuU0=;
+        b=1OVFrYSHgFQ3vvrh9LaA3PnIcwAUecksJNg3rnkl7hekqWesSVOZbxAiMESTXxROwQ
+         ARqQ+ALngZEZMEvvfZQilOniMchFT63J7ykjlBKM07YYQ4DbYoOsMieAX96h3ukPIa9L
+         k+UYhZ8TeKxcWdHt0i+3JhFZ1k5MdWAUNV26Sz+Ky+Hugiwmd4AAJGnuqHerI4DVHvUN
+         52QUfBfRO0kerwKDuG497DJgOfPXVVFLIzthQE8cAnf5ZubSghUeR20A+etO6TZUbP3V
+         y3Jp6mnsBrTfnuuco8/6Lxm8m3eb/Whuj537NIyiU2cBkGrHUD44riLOhrpaIbXIorMJ
+         r5hA==
+X-Gm-Message-State: AOAM530yYnzhsx9HQm5u8ojnpY8x0eLo9K9n0vwi/Un4mbPqfNLLg/yl
+        LoZL3j0xciBuMu0TYU/E3g==
+X-Google-Smtp-Source: ABdhPJzGSmuSZFEPBJaDjFQZmiYTURhJmygi0uSKOWovmVg93tr6x+ey0AByD0nfa+xwu9bjGJm7IQ==
+X-Received: by 2002:aca:59d5:: with SMTP id n204mr1631076oib.142.1633999638864;
+        Mon, 11 Oct 2021 17:47:18 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p15sm1877611otq.59.2021.10.11.17.43.17
+        by smtp.gmail.com with ESMTPSA id e2sm1796921ooa.20.2021.10.11.17.47.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Oct 2021 17:43:17 -0700 (PDT)
-Received: (nullmailer pid 1474130 invoked by uid 1000);
-        Tue, 12 Oct 2021 00:43:16 -0000
-Date:   Mon, 11 Oct 2021 19:43:16 -0500
+        Mon, 11 Oct 2021 17:47:18 -0700 (PDT)
+Received: (nullmailer pid 1479769 invoked by uid 1000);
+        Tue, 12 Oct 2021 00:47:17 -0000
+Date:   Mon, 11 Oct 2021 19:47:17 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>, Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: mediatek,dp: Add Display Port binding
-Message-ID: <YWTaJOXGgF2bHznv@robh.at.kernel.org>
-References: <20211011094624.3416029-1-msp@baylibre.com>
- <20211011094624.3416029-3-msp@baylibre.com>
+To:     alexandru.tachici@analog.com
+Cc:     andrew@lunn.ch, o.rempel@pengutronix.de, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v3 8/8] dt-bindings: adin1100: Add binding for ADIN1100
+ Ethernet PHY
+Message-ID: <YWTbFfMKk4QQh8fa@robh.at.kernel.org>
+References: <20211011142215.9013-1-alexandru.tachici@analog.com>
+ <20211011142215.9013-9-alexandru.tachici@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211011094624.3416029-3-msp@baylibre.com>
+In-Reply-To: <20211011142215.9013-9-alexandru.tachici@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 11:46:19AM +0200, Markus Schneider-Pargmann wrote:
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
+On Mon, Oct 11, 2021 at 05:22:15PM +0300, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
+> DT bindings for the ADIN1100 10BASE-T1L Ethernet PHY.
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 > ---
->  .../display/mediatek/mediatek,dp.yaml         | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+>  .../devicetree/bindings/net/adi,adin1100.yaml | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1100.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin1100.yaml b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
 > new file mode 100644
-> index 000000000000..f7a35962c23b
+> index 000000000000..7f98ea8fdf51
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> @@ -0,0 +1,89 @@
+> +++ b/Documentation/devicetree/bindings/net/adi,adin1100.yaml
+> @@ -0,0 +1,30 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
+> +$id: http://devicetree.org/schemas/net/adi,adin1100.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Mediatek Display Port Controller
+> +title: Analog Devices ADIN1100 PHY
 > +
 > +maintainers:
-> +  - CK Hu <ck.hu@mediatek.com>
-> +  - Jitao shi <jitao.shi@mediatek.com>
+> +  - Alexandru Tachici <alexandru.tachici@analog.com>
 > +
-> +description: |
-> +  Device tree bindings for the Mediatek (embedded) Display Port controller
-> +  present on some Mediatek SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8195-edp_tx
-> +      - mediatek,mt8195-dp_tx
+> +description:
+> +  Bindings for Analog Devices Industrial Low Power 10BASE-T1L Ethernet PHY
 
-Are these blocks different?
+This schema doesn't do anything. ethernet-phy.yaml is already applied 
+based on the node name and you haven't added any phy specific 
+properties.
 
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: faxi clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: faxi
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input endpoint of the controller, usually dp_intf
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output endpoint of the controller
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ports
-> +
-> +additionalProperties: false
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/mt8195-power.h>
-> +    dp_tx: edp_tx@1c500000 {
-> +        compatible = "mediatek,mt8195-edp_tx";
-> +        reg = <0 0x1c500000 0 0x8000>;
-> +        interrupts = <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        power-domains = <&spm MT8195_POWER_DOMAIN_EPD_TX>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&edp_pin>;
-> +        status = "okay";
-
-Don't show status in examples.
-
+> +    ethernet {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
+> +        10base-t1l-2.4vpp = <0>;
 > +
-> +            port@0 {
-> +                reg = <0>;
-> +                edp_in: endpoint {
-> +                    remote-endpoint = <&dp_intf0_out>;
-> +                };
-> +            };
-> +            port@1 {
-> +                reg = <1>;
-> +                edp_out: endpoint {
-> +                	remote-endpoint = <&panel_in>;
-> +                };
-> +            };
+> +        ethernet-phy@0 {
+> +            compatible = "ethernet-phy-id0283.bc81";
+> +            reg = <0>;
 > +        };
 > +    };
 > -- 
-> 2.33.0
+> 2.25.1
 > 
 > 
