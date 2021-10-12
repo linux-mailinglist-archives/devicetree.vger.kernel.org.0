@@ -2,182 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FAF642A763
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E68042A770
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 16:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237015AbhJLOkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 10:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235294AbhJLOkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:40:02 -0400
-Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A4F5C061570;
-        Tue, 12 Oct 2021 07:38:01 -0700 (PDT)
-Received: by mail-oo1-xc33.google.com with SMTP id i1-20020a4ab241000000b002b7069d0e88so1658833ooo.5;
-        Tue, 12 Oct 2021 07:38:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zEtpO9hq8rB/L5sNcG9D1sqxQOc2Z+aKTsmVJB788Z8=;
-        b=iwCHDg8O/m+iDZ73DL/r+rl/QH5HopwaeL+mdraCbBk9785FD/E0wosD5+ugf77W2K
-         g66gyEsfsDPTAYB9hVuVHn3u4jfkBqm2XVkq+VUfIDEMhgmzIWK5OZg2REEZ9opnBvxl
-         jsDZt9KZVr1q0cghbvooOrZ56jU1D9NfG0uESuYXAdRYHN+LW/YCvchEgauHvkqx+f50
-         Nu+J8XAi1dlYacU+ktGgvKwvwnZ1OZF/3ZzxzFrwSwkuH6zpfc/MFEf33tPtsjdge+Iv
-         TsTl3DcyXB/hAha6PIr0wuQYyaR7EKDBVtDSIU9ADQXLN4TffM2KiP76xrGA/84lmvge
-         dEfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zEtpO9hq8rB/L5sNcG9D1sqxQOc2Z+aKTsmVJB788Z8=;
-        b=o1UNQvpb1G/+6zN7RMAfME4uGXBu0lS13oNSMME28R8PWevbV3WpUR3cWBsTjzcOJe
-         w3zQUeVgzaNrkHBXT2JVjjEqMcgZGDX7JJ5tsOLJk79938aB6VzeEloCcqYaWdd21WD5
-         ZBXmk+uCRjwo23/kJUzDFfBNkCW1wf8CuvfI3eTUFyX0CyHmLpcC+zr2x3NZeX/Nq591
-         yWrKiXsQfYbTt5PFFihPcrwWIBz+XO/bI6GjFA+m6iOdbQpnRNoAWfOtCpGyCW7ksCFK
-         76QuCL2EfaIeRhh96h5xCJVJvUb9hMYnkZv01/iy8CDpck5F620wFOMj7OuoSrplCLTh
-         ERsw==
-X-Gm-Message-State: AOAM531Oz+MBO6k78d9FCHKTdAIAyrma2H/bcxzFrS407yFQCPlEU+TY
-        KF9p3uZxAwULvzsLXaCX+C2gCrCoiD4=
-X-Google-Smtp-Source: ABdhPJw1QOOtNYnr7ENvnd6mfTZkJPOvQcYkdg+3Bi9mwrGljX82Dk50dszTgtTkmsGmUM8hMYwwTQ==
-X-Received: by 2002:a4a:b282:: with SMTP id k2mr23396028ooo.11.1634049480102;
-        Tue, 12 Oct 2021 07:38:00 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id bb39sm2395160oib.28.2021.10.12.07.37.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 07:37:59 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v4 06/10] hwmon: (tmp421) really disable channels
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <cover.1634029538.git.krzysztof.adamski@nokia.com>
- <eaee0947c813b04b77ee8364724d1a406dccc33b.1634029538.git.krzysztof.adamski@nokia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <f3d5de1f-37c6-f897-b504-137699c9de4e@roeck-us.net>
-Date:   Tue, 12 Oct 2021 07:37:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235422AbhJLOl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 10:41:28 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:31911 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237285AbhJLOlX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 10:41:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634049561; x=1665585561;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WtvyiwpQIdZSLb8nnAndMS1Cf2XB7Oc9bMXdt1ZKjI8=;
+  b=x0rK7ip+hRIiP4az1MXhYo7WJNQJ7SnRnPtc5cN7gGZ+I2GMpPpfW7K+
+   +Ec3ORI1H4icEBCsUY7t4619pTZZbc51cOwkesy0W68tkMt8bNJQQQDM9
+   a66qq9LiWKaIiP+0Oro70jfhS3GNsX/02K4HlrBlAyfgxJiJnSVOkP3BY
+   NVRnDke2gR+tAhM9hdjfI1Fh6XcbxDikg7Bn8Cd8ZltnMpnoUVyHyyFhy
+   vP8+rtTx/FMIvuaosQTa5hYYWI4C7cr41w7rDNxis5K65kivrW0iSDXic
+   tHzGnVnNwqX93LuU00LwKmSfVM+wAyG4oqu2eiiP695qgh9AQZC5WRwdA
+   Q==;
+IronPort-SDR: d07ygs5Vjduz6DOM6xDKgqbCuKmg/1GTwqx1wU3Lgl+Ybg81S1Z+7ir49SyqHVhQKSBpWm9ubq
+ 9mAwirrkE/1cPlHmP+/3W89dQvP0sWNewuyDExl3g/Lb2+UaMPttsbZrb6qXTzff9ewlXZLD3Z
+ ebScA9AMtMKjU2ZQg5+5dK34xFS/zyz5mo/JuVRXovvJzBBV29gbWrWoERGO8p0m7pDLy/Cc7G
+ FZMaGWA0E5zihjRtVRGWpH3fU3SvWhIb1nVrTRyZXiQE/9tAEsB4XdI48jkB3sW5GFWzolElmH
+ NY05ZyIzP97C4HlOZVf6Yjxg
+X-IronPort-AV: E=Sophos;i="5.85,367,1624345200"; 
+   d="scan'208";a="147780029"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Oct 2021 07:39:21 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 12 Oct 2021 07:39:20 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Tue, 12 Oct 2021 07:39:20 -0700
+Date:   Tue, 12 Oct 2021 16:40:52 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <robh+dt@kernel.org>, <andrew@lunn.ch>,
+        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Add lan966x support
+Message-ID: <20211012144052.pmn4u3s2j27itwxe@soft-dev3-1.localhost>
+References: <20211012114238.2060101-1-horatiu.vultur@microchip.com>
+ <20211012114238.2060101-2-horatiu.vultur@microchip.com>
+ <91ae922d66b4b8c521142c8030bdd1a9f6d2fad1.camel@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <eaee0947c813b04b77ee8364724d1a406dccc33b.1634029538.git.krzysztof.adamski@nokia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <91ae922d66b4b8c521142c8030bdd1a9f6d2fad1.camel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/12/21 2:29 AM, Krzysztof Adamski wrote:
-> Recent patch added possibility to disable selected channels. That would
-> only make sure that the ENODATA is returned for those channels but would
-> not configure the actual hardware.
+The 10/12/2021 15:35, Philipp Zabel wrote:
+
+Hi Philipp,
 > 
-> With this patch, the config register is written to make sure the
-> channels are disabled also at hardware level.
+> Hi Horatiu,
 > 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> ---
->   drivers/hwmon/tmp421.c | 41 +++++++++++++++++++++++++++++++++++------
->   1 file changed, 35 insertions(+), 6 deletions(-)
+> On Tue, 2021-10-12 at 13:42 +0200, Horatiu Vultur wrote:
+> > This adds support for lan966x.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  .../devicetree/bindings/reset/microchip,rst.yaml   | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > index 370579aeeca1..622cf3d0455d 100644
+> > --- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
+> > @@ -20,7 +20,11 @@ properties:
+> >      pattern: "^reset-controller@[0-9a-f]+$"
+> >
+> >    compatible:
+> > -    const: microchip,sparx5-switch-reset
+> > +    oneOf:
+> > +      - items:
+> > +          - const: microchip,sparx5-switch-reset
+> > +      - items:
+> > +          - const: microchip,lan966x-switch-reset
+> >
+> >    reg:
+> >      items:
+> > @@ -37,6 +41,14 @@ properties:
+> >      $ref: "/schemas/types.yaml#/definitions/phandle"
+> >      description: syscon used to access CPU reset
+> >
+> > +  cuphy-syscon:
+> > +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> > +    description: syscon used to access CuPHY
+> > +
+> > +  gpios:
 > 
-> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index fcd2932a6ddb..45cb197cd277 100644
-> --- a/drivers/hwmon/tmp421.c
-> +++ b/drivers/hwmon/tmp421.c
-> @@ -33,6 +33,9 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
->   /* The TMP421 registers */
->   #define TMP421_STATUS_REG			0x08
->   #define TMP421_CONFIG_REG_1			0x09
-> +#define TMP421_CONFIG_REG_2			0x0A
-> +#define TMP421_CONFIG_REG_REN(x)		(BIT(3 + (x)))
-> +#define TMP421_CONFIG_REG_REN_MASK		GENMASK(6, 3)
->   #define TMP421_CONVERSION_RATE_REG		0x0B
->   #define TMP421_N_FACTOR_REG_1			0x21
->   #define TMP421_MANUFACTURER_ID_REG		0xFE
-> @@ -162,6 +165,31 @@ static int tmp421_update_device(struct tmp421_data *data)
->   	return 0;
->   }
->   
-> +static int tmp421_enable_channels(struct tmp421_data *data)
-> +{
-> +	int err;
-> +	struct i2c_client *client = data->client;
-> +	struct device *dev = &client->dev;
-> +	int cfg = i2c_smbus_read_byte_data(client, TMP421_CONFIG_REG_2);
-> +	int i;
-> +
-> +	if (cfg < 0) {
-> +		dev_err(dev, "error reading register, can't disable channels\n");
-> +		return err;
+> From the description I'd expect this to be called phy-reset-gpios.
 
-		return cfg;
+Yes, I can rename this.
 
-> +	}
-> +
-> +	cfg &= ~TMP421_CONFIG_REG_REN_MASK;
-> +	for (i = 0; i < data->channels; i++)
-> +		if (data->channel[i].enabled)
-> +			cfg |= TMP421_CONFIG_REG_REN(i);
-> +
-> +	err = i2c_smbus_write_byte_data(client, TMP421_CONFIG_REG_2, cfg);
-
-Please make the write optional: It is only necessary if the old register
-value differs from the new register value.
-
-> +	if (err < 0)
-> +		dev_err(dev, "error writing register, can't disable channels\n");
-> +
-> +	return err;
-> +}
-> +
->   static int tmp421_read(struct device *dev, enum hwmon_sensor_types type,
->   		       u32 attr, int channel, long *val)
->   {
-> @@ -217,9 +245,10 @@ static umode_t tmp421_is_visible(const void *data, enum hwmon_sensor_types type,
->   	}
->   }
->   
-> -static int tmp421_init_client(struct i2c_client *client)
-> +static int tmp421_init_client(struct tmp421_data *data)
->   {
->   	int config, config_orig;
-> +	struct i2c_client *client = data->client;
->   
->   	/* Set the conversion rate to 2 Hz */
->   	i2c_smbus_write_byte_data(client, TMP421_CONVERSION_RATE_REG, 0x05);
-> @@ -240,7 +269,7 @@ static int tmp421_init_client(struct i2c_client *client)
->   		i2c_smbus_write_byte_data(client, TMP421_CONFIG_REG_1, config);
->   	}
->   
-> -	return 0;
-> +	return tmp421_enable_channels(data);
->   }
->   
->   static int tmp421_detect(struct i2c_client *client,
-> @@ -389,10 +418,6 @@ static int tmp421_probe(struct i2c_client *client)
->   		data->channels = i2c_match_id(tmp421_id, client)->driver_data;
->   	data->client = client;
->   
-> -	err = tmp421_init_client(client);
-> -	if (err)
-> -		return err;
-> -
->   	for (i = 0; i < data->channels; i++) {
->   		data->temp_config[i] = HWMON_T_INPUT | HWMON_T_FAULT;
->   		data->channel[i].enabled = true;
-> @@ -402,6 +427,10 @@ static int tmp421_probe(struct i2c_client *client)
->   	if (err)
->   		return err;
->   
-> +	err = tmp421_init_client(data);
-> +	if (err)
-> +		return err;
-> +
->   	data->chip.ops = &tmp421_ops;
->   	data->chip.info = data->info;
->   
 > 
+> > +    description: used for release of reset of the external PHY
+> > +    maxItems: 1
+> > +
+> 
+> Shouldn't an external PHY be described as a separate DT node, with its
+> own reset gpio?
 
+I am not sure, this is more board specific than PHY specific. On lan966x
+ung8290 board, the external PHYs are kept in reset until this GPIO is toggled.
+
+> 
+> regards
+> Philipp
+
+-- 
+/Horatiu
