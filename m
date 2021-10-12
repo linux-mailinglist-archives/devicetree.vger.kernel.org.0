@@ -2,145 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E169429DFA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 08:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78F6B429E61
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 09:14:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233161AbhJLGvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 02:51:14 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:22468 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233379AbhJLGvL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 02:51:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634021350; x=1665557350;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PRVemg1TCgZgqoh2zDWu0Su4fQCkOIKQ3XhFew+ehD8=;
-  b=iTZ/ib4nRF0yaXusKorsvGb0vhY7F3CBXYwocAd7juWKNe114aORNU71
-   pNOoUn0gyO60KYANLOxcR01UKYZNXUvDn3CBrtRLPC1jlJpUG5BHtxkvS
-   +5ysf3VVECAotxfzL+N6QIBAZXTqMF0SPyUbR2ZVr67ApyUUzxmwQHUav
-   V5uKSXy03XIT/by2I49NK1gUBecfPrzbxgeoJNIdmX6FwWiHTORAR3HxU
-   GDyC7TsmdIFZPejbn1oZEasxe6eOiR6fCKSx3Bu+mncSFgOvSPCwqzw4q
-   G4c6Bn6g9AQPXq3ONqcKvAuM2H3vpNNyvR0I+LQi3U52ZvFm4m6gjaly9
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
-   d="scan'208";a="19985098"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 12 Oct 2021 08:49:02 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 12 Oct 2021 08:49:02 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 12 Oct 2021 08:49:02 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634021342; x=1665557342;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PRVemg1TCgZgqoh2zDWu0Su4fQCkOIKQ3XhFew+ehD8=;
-  b=kx3Z9JCGDK89LGpC+sHjVIDPofRGv5NGqipgpbJFW+YFIH58R87/lkb8
-   tJHMLeGISZlBJ125b1XBPS4TXfXITxYHLoQ2fU6BesVKuflHRuWPPVLl8
-   JE3CcM49YT7w0LjXbdfmW20PwGUvoFXvOmqCHV9LiZLHiVP/El1x1f/0K
-   5cWCGuPz8UQVhl4n2bEHBbPBvmPlNqVP5CxtPA7NMl9OLWedg6xqjWD37
-   ae3D7XWb2UuznVrMH3U1KM5roMCOrymmHw22EJYtMynaHQ0dPsPUNt9Oc
-   OUvjrg46WUFZlJC+GvfPhnVH+5rOOhlcn9YLRVaZbdHGsp6KWG9vMHCcs
-   A==;
-X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
-   d="scan'208";a="19985097"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 12 Oct 2021 08:49:02 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 30EA0280065;
-        Tue, 12 Oct 2021 08:49:02 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: [PATCH v2 4/4] drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
-Date:   Tue, 12 Oct 2021 08:48:43 +0200
-Message-Id: <20211012064843.298104-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
-References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+        id S233378AbhJLHQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 03:16:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232500AbhJLHQq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 03:16:46 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C49C061570
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 00:14:45 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1maBzk-0002MU-3d; Tue, 12 Oct 2021 09:14:40 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1maBzi-0007ok-Fh; Tue, 12 Oct 2021 09:14:38 +0200
+Date:   Tue, 12 Oct 2021 09:14:38 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     alexandru.tachici@analog.com
+Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
+        hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v3 3/8] net: phy: Add BaseT1 auto-negotiation registers
+Message-ID: <20211012071438.GB938@pengutronix.de>
+References: <20211011142215.9013-1-alexandru.tachici@analog.com>
+ <20211011142215.9013-4-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211011142215.9013-4-alexandru.tachici@analog.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:53:18 up 236 days, 10:17, 115 users,  load average: 0.45, 0.49,
+ 0.41
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VCC needs to be enabled before releasing the enable GPIO.
+On Mon, Oct 11, 2021 at 05:22:10PM +0300, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
+> 
+> Added BASE-T1 AN advertisement register (Registers 7.514, 7.515, and
+> 7.516) and BASE-T1 AN LP Base Page ability register (Registers 7.517,
+> 7.518, and 7.519).
+> 
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> ---
+>  include/uapi/linux/mdio.h | 40 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/include/uapi/linux/mdio.h b/include/uapi/linux/mdio.h
+> index 8ae82fe3aece..58ac5cdf7eb4 100644
+> --- a/include/uapi/linux/mdio.h
+> +++ b/include/uapi/linux/mdio.h
+> @@ -67,6 +67,14 @@
+>  #define MDIO_AN_10GBT_STAT	33	/* 10GBASE-T auto-negotiation status */
+>  #define MDIO_PMA_10T1L_STAT	2295	/* 10BASE-T1L PMA status */
+>  #define MDIO_PCS_10T1L_CTRL	2278	/* 10BASE-T1L PCS control */
+> +#define MDIO_AN_T1_CTRL		512	/* BASE-T1 AN control */
+> +#define MDIO_AN_T1_STAT		513	/* BASE-T1 AN status */
+> +#define MDIO_AN_T1_ADV_L	514	/* BASE-T1 AN advertisement register [15:0] */
+> +#define MDIO_AN_T1_ADV_M	515	/* BASE-T1 AN advertisement register [31:16] */
+> +#define MDIO_AN_T1_ADV_H	516	/* BASE-T1 AN advertisement register [47:32] */
+> +#define MDIO_AN_T1_LP_L		517	/* BASE-T1 AN LP's base page register [15:0] */
+> +#define MDIO_AN_T1_LP_M		518	/* BASE-T1 AN LP's base page register [31:16] */
+> +#define MDIO_AN_T1_LP_H		519	/* BASE-T1 AN LP's base page register [47:32] */
 
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- drivers/gpu/drm/bridge/ti-sn65dsi83.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+Please use same wording as in the spec: "BASE-T1 AN LP Base Page ability
+register".
 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-index 9072342566f3..a6b1fd71dfee 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-@@ -33,6 +33,7 @@
- #include <linux/of_device.h>
- #include <linux/of_graph.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- 
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_bridge.h>
-@@ -143,6 +144,7 @@ struct sn65dsi83 {
- 	struct mipi_dsi_device		*dsi;
- 	struct drm_bridge		*panel_bridge;
- 	struct gpio_desc		*enable_gpio;
-+	struct regulator		*vcc;
- 	int				dsi_lanes;
- 	bool				lvds_dual_link;
- 	bool				lvds_dual_link_even_odd_swap;
-@@ -647,6 +649,12 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
- 
- 	ctx->panel_bridge = panel_bridge;
- 
-+	ctx->vcc = devm_regulator_get(dev, "vcc");
-+	if (IS_ERR(ctx->vcc))
-+		return dev_err_probe(dev, PTR_ERR(ctx->vcc),
-+				     "Failed to get supply 'vcc': %pe\n",
-+				     ctx->vcc);
-+
- 	return 0;
- }
- 
-@@ -691,7 +699,11 @@ static int sn65dsi83_probe(struct i2c_client *client,
- 	ctx->bridge.of_node = dev->of_node;
- 	drm_bridge_add(&ctx->bridge);
- 
--	return 0;
-+	ret = regulator_enable(ctx->vcc);
-+	if (ret)
-+		dev_err(dev, "Failed to enable vcc: %i\n", ret);
-+
-+	return ret;
- }
- 
- static int sn65dsi83_remove(struct i2c_client *client)
-@@ -702,6 +714,7 @@ static int sn65dsi83_remove(struct i2c_client *client)
- 	mipi_dsi_device_unregister(ctx->dsi);
- 	drm_bridge_remove(&ctx->bridge);
- 	of_node_put(ctx->host_node);
-+	regulator_disable(ctx->vcc);
- 
- 	return 0;
- }
+>  /* LASI (Link Alarm Status Interrupt) registers, defined by XENPAK MSA. */
+>  #define MDIO_PMA_LASI_RXCTRL	0x9000	/* RX_ALARM control */
+> @@ -278,6 +286,38 @@
+>  #define MDIO_PCS_10T1L_CTRL_LB		0x4000	/* Enable PCS level loopback mode */
+>  #define MDIO_PCS_10T1L_CTRL_RESET	0x8000	/* PCS reset */
+>  
+> +/* BASE-T1 auto-negotiation advertisement register [15:0] */
+> +#define MDIO_AN_T1_ADV_L_PAUSE_CAP	ADVERTISE_PAUSE_CAP
+> +#define MDIO_AN_T1_ADV_L_PAUSE_ASYM	ADVERTISE_PAUSE_ASYM
+> +#define MDIO_AN_T1_ADV_L_FORCE_MS	0x1000	/* Force Master/slave Configuration */
+> +#define MDIO_AN_T1_ADV_L_REMOTE_FAULT	ADVERTISE_RFAULT
+> +#define MDIO_AN_T1_ADV_L_ACK		ADVERTISE_LPACK
+> +#define MDIO_AN_T1_ADV_L_NEXT_PAGE_REQ	ADVERTISE_NPAGE
+> +
+> +/* BASE-T1 auto-negotiation advertisement register [31:16] */
+> +#define MDIO_AN_T1_ADV_M_B10L		0x4000	/* device is compatible with 10BASE-T1L */
+> +#define MDIO_AN_T1_ADV_M_MST		0x0010	/* advertise master preference */
+
+Hm.. MDIO_AN_T1_ADV_M_MST is T4 of Link codeword Base Page. The spec says:
+"Transmitted Nonce Field (T[4:0]) is a 5-bit wide field whose lower 4
+bits contains a random or pseudorandom number. A new value shall be
+generated for each entry to the Ability Detect state"
+
+Should we actually do it?
+
+> +/* BASE-T1 auto-negotiation advertisement register [47:32] */
+> +#define MDIO_AN_T1_ADV_H_10L_TX_HI_REQ	0x1000	/* 10BASE-T1L High Level Transmit Request */
+> +#define MDIO_AN_T1_ADV_H_10L_TX_HI	0x2000	/* 10BASE-T1L High Level Transmit Ability */
+> +
+> +/* BASE-T1 AN LP's base page register [15:0] */
+> +#define MDIO_AN_T1_LP_L_PAUSE_CAP	LPA_PAUSE_CAP
+> +#define MDIO_AN_T1_LP_L_PAUSE_ASYM	LPA_PAUSE_ASYM
+> +#define MDIO_AN_T1_LP_L_FORCE_MS	0x1000	/* LP Force Master/slave Configuration */
+> +#define MDIO_AN_T1_LP_L_REMOTE_FAULT	LPA_RFAULT
+> +#define MDIO_AN_T1_LP_L_ACK		LPA_LPACK
+> +#define MDIO_AN_T1_LP_L_NEXT_PAGE_REQ	LPA_NPAGE
+> +
+> +/* BASE-T1 AN LP's base page register [31:16] */
+> +#define MDIO_AN_T1_LP_M_MST		0x0080	/* LP master preference */
+
+0x0080 is A2 == 1000BASE-T1 ability. Not master preference (T4).
+
+> +#define MDIO_AN_T1_LP_M_B10L		0x4000	/* LP is compatible with 10BASE-T1L */
+> +
+> +/* BASE-T1 AN LP's base page register [47:32] */
+> +#define MDIO_AN_T1_LP_H_10L_TX_HI_REQ	0x1000	/* 10BASE-T1L High Level LP Transmit Request */
+> +#define MDIO_AN_T1_LP_H_10L_TX_HI	0x2000	/* 10BASE-T1L High Level LP Transmit Ability */
+> +
+>  /* EEE Supported/Advertisement/LP Advertisement registers.
+>   *
+>   * EEE capability Register (3.20), Advertisement (7.60) and
+> -- 
+> 2.25.1
+> 
+> 
+
+Regards,
+Oleksij
 -- 
-2.25.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
