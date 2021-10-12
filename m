@@ -2,279 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4782542A808
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 780D242A83C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 17:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232952AbhJLPTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 11:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42346 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbhJLPTG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 11:19:06 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A7EC061745
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:17:04 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y26so89917828lfa.11
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:17:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mZwXotgdRXbDRTYbxk7Ps+MfiCotYKiewGVd05wCXEg=;
-        b=d0bq8nteJsZ6xxSDWZh6n16JvxPEBzNY5WvwIBJlgi7ugmnFpzYKVm7J2fFQHDYRgN
-         H4fsvyfRdJf0zAVnG/QAYBLmoB2OKTKNPZsXfBQQmEHFdUws6IT3oJb2BWAXn2Xn423d
-         KouB5146/dUf/+8puI1X/H4MkGVV05fsD50y/xUVUFzu5/hig+OrXzv7Zo7Gltw3m6P4
-         0fTWn2z0E1gt4q/RszDsICg3+T0R1fVXfRtUZSCrT8/4y218jmNhfcJhB02ty3QeEATm
-         AAhPkkfN3wpTOLHOGG5WaMVp+Wt9yzlTHmpKTebCkSGJ/DVHT45S0lX/g1ISX2s/s5/9
-         3tXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mZwXotgdRXbDRTYbxk7Ps+MfiCotYKiewGVd05wCXEg=;
-        b=BQp9cZYplp+QCnXneTHMCHrpWT2SLTOePC8gYXFDUbzsx4XPq7RIuITY9H/FQDAz6G
-         95HzVjOGmOOFuGZilJ8UHd0mioJu2+3JKqsrjTX+/gmykqkCV/3gxs4/9o7Xtn5n4XTY
-         SAXk0nXuQVuLg6s+8rt0Nb4dlqjv73XKx62OGQynBzP5ju5ylBX+Lp96as/XVRIHxpjc
-         jXsuxrCfmVHxglbgzhVJgoPJuchFNsLVglCBfr4G3XJ1/Yg8i/ck67ytFA13VUg+dgy7
-         VxDjnV8L+qt8KZfcvKw2INbiNr91T5fzz0Qx0cMz1j0NZ9BARsAsw/rsfrWjD79F7Ed+
-         5JXw==
-X-Gm-Message-State: AOAM5331x2e6DIn+g/K/ehWeMSgFoPBUWXZFKP+w6XO91imhYbl4lNHh
-        DAV8SJf4i/LbikyQZhGgkgqKDhJoXOycfz37Jwc+PJjzKT/Z5w==
-X-Google-Smtp-Source: ABdhPJzzhuOVO5eUQIR6ctxpH9Ml/c2aH/vUGWsenPtNroPFmlr98Po14oVt0BfhHGm+q9XSoWvUW3yOWA2sHZzYFho=
-X-Received: by 2002:a05:651c:4c9:: with SMTP id e9mr30286160lji.229.1634051822985;
- Tue, 12 Oct 2021 08:17:02 -0700 (PDT)
+        id S237413AbhJLP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 11:29:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229633AbhJLP3H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 11:29:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E92EE601FF;
+        Tue, 12 Oct 2021 15:27:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634052425;
+        bh=JHsNRkImaZso/PdEhq7lyB1jAuHIPy/YNePO+70974o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tfz5lBCZzH0JKgOGsRgMim4fgUflHSc+NzJKbYotcGljbTf7PO2CDwWHuLqWloEnD
+         +osAhLbdsiFpEh1r/Ee5+G23epykAedEb9oZuKEzTgjDzoghoVjHwXJaGA6qe+39CA
+         VTpVY+qq6hXn1Xh1On+VUZVHkSEVCdVvR869EEhNbjCe+Vrl9VyIalPm17mWpCeE8i
+         LMFUAV/LGi2azLF3wmzkS73ciOLK8H4QY9vCvh81OLjBJZY+CWsUS3X+u8/Ux0blXz
+         Pv++7boIgmVd1DCPKQUz8qDrke+Hp4zsV0pD9WNp/0emfjx42PgS92v0RZMJ3EBgH4
+         w4EkG51zemCbg==
+Date:   Tue, 12 Oct 2021 08:27:03 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <alvin@pqrs.dk>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
+        Michael Rasmussen <mir@bang-olufsen.dk>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 5/6] net: dsa: realtek-smi: add rtl8365mb
+ subdriver for RTL8365MB-VC
+Message-ID: <20211012082703.7b31e73b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20211012123557.3547280-6-alvin@pqrs.dk>
+References: <20211012123557.3547280-1-alvin@pqrs.dk>
+        <20211012123557.3547280-6-alvin@pqrs.dk>
 MIME-Version: 1.0
-References: <20211012103750.38328-1-tony@atomide.com> <20211012103750.38328-5-tony@atomide.com>
-In-Reply-To: <20211012103750.38328-5-tony@atomide.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 12 Oct 2021 17:16:26 +0200
-Message-ID: <CAPDyKFq_jiYPrm_kcprijFfcceVVGnZpkG+4ZY_XSBXJnCT0LA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] mmc: sdhci-omap: Implement PM runtime functions
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 at 12:38, Tony Lindgren <tony@atomide.com> wrote:
->
-> Implement PM runtime functions and enable autosuspend.
->
-> Note that we save context in probe to avoid restoring invalid context
-> on the first resume. For system suspend, we have the new PM runtime
-> functions do most of the work.
->
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  drivers/mmc/host/sdhci-omap.c | 78 ++++++++++++++++++++++++++++-------
->  1 file changed, 63 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
-> --- a/drivers/mmc/host/sdhci-omap.c
-> +++ b/drivers/mmc/host/sdhci-omap.c
-> @@ -1207,6 +1207,8 @@ static const struct soc_device_attribute sdhci_omap_soc_devices[] = {
->         }
->  };
->
-> +static void sdhci_omap_context_save(struct sdhci_omap_host *omap_host);
-> +
->  static int sdhci_omap_probe(struct platform_device *pdev)
->  {
->         int ret;
-> @@ -1252,6 +1254,7 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->         omap_host->timing = MMC_TIMING_LEGACY;
->         omap_host->flags = data->flags;
->         omap_host->omap_offset = data->omap_offset;
-> +       omap_host->con = -EINVAL;
->         host->ioaddr += offset;
->         host->mapbase = regs->start + offset;
->
-> @@ -1302,6 +1305,8 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->          * SYSCONFIG register of omap devices. The callback will be invoked
->          * as part of pm_runtime_get_sync.
->          */
-> +       pm_runtime_use_autosuspend(dev);
-> +       pm_runtime_set_autosuspend_delay(dev, 50);
->         pm_runtime_enable(dev);
->         ret = pm_runtime_resume_and_get(dev);
->         if (ret) {
-> @@ -1312,7 +1317,7 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->         ret = sdhci_omap_set_capabilities(host);
->         if (ret) {
->                 dev_err(dev, "failed to set system capabilities\n");
-> -               goto err_put_sync;
-> +               goto err_rpm_put;
->         }
->
->         host->mmc_host_ops.start_signal_voltage_switch =
-> @@ -1340,7 +1345,7 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->
->         ret = sdhci_setup_host(host);
->         if (ret)
-> -               goto err_put_sync;
-> +               goto err_rpm_put;
->
->         ret = sdhci_omap_config_iodelay_pinctrl_state(omap_host);
->         if (ret)
-> @@ -1350,15 +1355,21 @@ static int sdhci_omap_probe(struct platform_device *pdev)
->         if (ret)
->                 goto err_cleanup_host;
->
-> +       sdhci_omap_context_save(omap_host);
+On Tue, 12 Oct 2021 14:35:54 +0200 Alvin =C5=A0ipraga wrote:
+> +	{ 0, 4, 2, "dot3StatsFCSErrors" },
+> +	{ 0, 6, 2, "dot3StatsSymbolErrors" },
+> +	{ 0, 8, 2, "dot3InPauseFrames" },
+> +	{ 0, 10, 2, "dot3ControlInUnknownOpcodes" },
+...
 
-Calling sdhci_omap_context_save() here looks unnecessary. The device
-is already runtime resumed at this point.
+You must expose counters via existing standard APIs.
 
-In other words, sdhci_omap_context_save() will be called from the
-->runtime_suspend() callback, next time the device becomes runtime
-suspended. That should be sufficient, right?
+You should implement these ethtool ops:
 
-> +
-> +       pm_runtime_mark_last_busy(dev);
-> +       pm_runtime_put_autosuspend(dev);
-> +
->         return 0;
->
->  err_cleanup_host:
->         sdhci_cleanup_host(host);
->
-> -err_put_sync:
-> -       pm_runtime_put_sync(dev);
-> -
-> +err_rpm_put:
-> +       pm_runtime_mark_last_busy(dev);
-> +       pm_runtime_put_autosuspend(dev);
->  err_rpm_disable:
-> +       pm_runtime_dont_use_autosuspend(dev);
->         pm_runtime_disable(dev);
->
->  err_pltfm_free:
-> @@ -1371,8 +1382,12 @@ static int sdhci_omap_remove(struct platform_device *pdev)
->         struct device *dev = &pdev->dev;
->         struct sdhci_host *host = platform_get_drvdata(pdev);
->
-> +       pm_runtime_get_sync(dev);
->         sdhci_remove_host(host, true);
-> +       pm_runtime_dont_use_autosuspend(dev);
->         pm_runtime_put_sync(dev);
-> +       /* Ensure device gets idled despite userspace sysfs config */
-> +       pm_runtime_force_suspend(dev);
->         pm_runtime_disable(dev);
+	void	(*get_eth_phy_stats)(struct net_device *dev,
+				     struct ethtool_eth_phy_stats *phy_stats);
+	void	(*get_eth_mac_stats)(struct net_device *dev,
+				     struct ethtool_eth_mac_stats *mac_stats);
+	void	(*get_eth_ctrl_stats)(struct net_device *dev,
+				      struct ethtool_eth_ctrl_stats *ctrl_stats);
+	void	(*get_rmon_stats)(struct net_device *dev,
+				  struct ethtool_rmon_stats *rmon_stats,
+				  const struct ethtool_rmon_hist_range **ranges);
 
-The call to pm_runtime_disable() can be removed, as that is taken care
-of in pm_runtime_force_suspend().
-
->         sdhci_pltfm_free(pdev);
->
-> @@ -1402,42 +1417,75 @@ static void sdhci_omap_context_restore(struct sdhci_omap_host *omap_host)
->         sdhci_omap_writel(omap_host, SDHCI_OMAP_ISE, omap_host->ise);
->  }
->
-> -static int __maybe_unused sdhci_omap_suspend(struct device *dev)
-> +static int __maybe_unused sdhci_omap_runtime_suspend(struct device *dev)
->  {
->         struct sdhci_host *host = dev_get_drvdata(dev);
->         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
->
-> -       sdhci_suspend_host(host);
-> +       sdhci_runtime_suspend_host(host);
->
->         sdhci_omap_context_save(omap_host);
->
->         pinctrl_pm_select_idle_state(dev);
->
-> -       pm_runtime_force_suspend(dev);
-> -
->         return 0;
->  }
->
-> -static int __maybe_unused sdhci_omap_resume(struct device *dev)
-> +static int __maybe_unused sdhci_omap_runtime_resume(struct device *dev)
->  {
->         struct sdhci_host *host = dev_get_drvdata(dev);
->         struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
->         struct sdhci_omap_host *omap_host = sdhci_pltfm_priv(pltfm_host);
->
-> -       pm_runtime_force_resume(dev);
-> -
->         pinctrl_pm_select_default_state(dev);
->
-> -       sdhci_omap_context_restore(omap_host);
-> +       if (omap_host->con != -EINVAL)
-> +               sdhci_omap_context_restore(omap_host);
-> +
-> +       sdhci_runtime_resume_host(host, 0);
-> +
-> +       return 0;
-> +}
-> +
-> +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> +static int rtl8365mb_setup(struct dsa_switch *ds)
 > +{
-> +       struct sdhci_host *host = dev_get_drvdata(dev);
-> +       int err;
+> +	struct realtek_smi *smi =3D ds->priv;
+> +	struct rtl8365mb *mb;
+> +	int ret;
+> +	int i;
 > +
-> +       /* Enable for configuring wakeups, paired in resume */
-> +       err = pm_runtime_resume_and_get(dev);
-> +       if (err < 0)
-> +               return err;
-> +
-> +       sdhci_suspend_host(host);
+> +	mb =3D smi->chip_data;
 
-As far as I can tell, sdhci_suspend_host() doesn't really make sense
-for the omap variant. What you need, is to put the device into the
-same low power state as "runtime suspend", that should be sufficient.
-
-The system wakeup will be armed (and later then disarmed) by the PM
-core, when it calls device_wakeup_arm_wake_irqs() from the
-dpm_suspend_noirq() phase.
-
-In other words, pointing the system suspend/resume callbacks to
-pm_runtime_force_suspend|resume() should work fine, I think.
-
-> +
-> +       return pm_runtime_force_suspend(dev);
-> +}
-> +
-> +static int __maybe_unused sdhci_omap_resume(struct device *dev)
-> +{
-> +       struct sdhci_host *host = dev_get_drvdata(dev);
-> +       int err;
-> +
-> +       err = pm_runtime_force_resume(dev);
-> +       if (err < 0)
-> +               dev_warn(dev, "force resume failed: %i\n", err);
->
->         sdhci_resume_host(host);
->
-> +       /* Balance pm_runtime_resume_and_get() done in suspend */
-> +       pm_runtime_put(dev);
-> +
->         return 0;
->  }
->  #endif
-> -static SIMPLE_DEV_PM_OPS(sdhci_omap_dev_pm_ops, sdhci_omap_suspend,
-> -                        sdhci_omap_resume);
-> +
-> +static const struct dev_pm_ops sdhci_omap_dev_pm_ops = {
-> +       SET_RUNTIME_PM_OPS(sdhci_omap_runtime_suspend,
-> +                          sdhci_omap_runtime_resume, NULL)
-> +       SET_SYSTEM_SLEEP_PM_OPS(sdhci_omap_suspend, sdhci_omap_resume)
-> +};
->
->  static struct platform_driver sdhci_omap_driver = {
->         .probe = sdhci_omap_probe,
-> --
-> 2.33.0
-
-Kind regards
-Uffe
+drivers/net/dsa/rtl8365mb.c:1428:20: warning: variable =E2=80=98mb=E2=80=99=
+ set but not used [-Wunused-but-set-variable]
+ 1428 |  struct rtl8365mb *mb;
+      |                    ^~
