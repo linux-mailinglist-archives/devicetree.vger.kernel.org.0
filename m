@@ -2,103 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E21F42A263
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 12:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8A642A2A6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 12:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236038AbhJLKkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 06:40:10 -0400
-Received: from muru.com ([72.249.23.125]:43736 "EHLO muru.com"
+        id S236118AbhJLKxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 06:53:25 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:35194 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236018AbhJLKkK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 06:40:10 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id ABFF88127;
-        Tue, 12 Oct 2021 10:38:38 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Chunyan Zhang <zhang.chunyan@linaro.org>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-mmc@vger.kernel.org, linux-omap@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 6/6] mmc: sdhci-omap: Configure optional wakeirq
-Date:   Tue, 12 Oct 2021 13:37:50 +0300
-Message-Id: <20211012103750.38328-7-tony@atomide.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211012103750.38328-1-tony@atomide.com>
-References: <20211012103750.38328-1-tony@atomide.com>
+        id S235972AbhJLKxJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 06:53:09 -0400
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1maFN1-0004zG-D0; Tue, 12 Oct 2021 12:50:55 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        linux-riscv@lists.infradead.org
+Cc:     Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Anup Patel <anup.patel@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>
+Subject: Re: [PATCH v9 5/8] cpuidle: Factor-out power domain related code from PSCI domain driver
+Date:   Tue, 12 Oct 2021 12:50:54 +0200
+Message-ID: <3552162.bMjzuKGm0O@diego>
+In-Reply-To: <20211012095857.1314214-6-anup.patel@wdc.com>
+References: <20211012095857.1314214-1-anup.patel@wdc.com> <20211012095857.1314214-6-anup.patel@wdc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure optional wakeirq. This may be optionally configured for SDIO
-dat1 pin for wake-up events for SoCs that support deeper idle states.
+Hi Anup,
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/mmc/host/sdhci-omap.c | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Am Dienstag, 12. Oktober 2021, 11:58:54 CEST schrieb Anup Patel:
+> The generic power domain related code in PSCI domain driver is largely
+> independent of PSCI and can be shared with RISC-V SBI domain driver
+> hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
+> 
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-diff --git a/drivers/mmc/host/sdhci-omap.c b/drivers/mmc/host/sdhci-omap.c
---- a/drivers/mmc/host/sdhci-omap.c
-+++ b/drivers/mmc/host/sdhci-omap.c
-@@ -12,8 +12,10 @@
- #include <linux/module.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-+#include <linux/of_irq.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
-+#include <linux/pm_wakeirq.h>
- #include <linux/regulator/consumer.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/sys_soc.h>
-@@ -117,6 +119,7 @@ struct sdhci_omap_host {
- 
- 	struct pinctrl		*pinctrl;
- 	struct pinctrl_state	**pinctrl_state;
-+	int			wakeirq;
- 	bool			is_tuning;
- 
- 	/* Offset for omap specific registers from base */
-@@ -1360,6 +1363,25 @@ static int sdhci_omap_probe(struct platform_device *pdev)
- 
- 	sdhci_omap_context_save(omap_host);
- 
-+	/*
-+	 * SDIO devices can use the dat1 pin as a wake-up interrupt. Some
-+	 * devices like wl1xxx, use an out-of-band GPIO interrupt instead.
-+	 */
-+	omap_host->wakeirq = of_irq_get_byname(dev->of_node, "wakeup");
-+	if (omap_host->wakeirq == -EPROBE_DEFER) {
-+		ret = -EPROBE_DEFER;
-+		goto err_cleanup_host;
-+	}
-+	if (omap_host->wakeirq > 0) {
-+		device_init_wakeup(dev, true);
-+		ret = dev_pm_set_dedicated_wake_irq(dev, omap_host->wakeirq);
-+		if (ret) {
-+			device_init_wakeup(dev, false);
-+			goto err_cleanup_host;
-+		}
-+		host->mmc->pm_caps |= MMC_PM_WAKE_SDIO_IRQ;
-+	}
-+
- 	pm_runtime_mark_last_busy(dev);
- 	pm_runtime_put_autosuspend(dev);
- 
-@@ -1387,6 +1409,8 @@ static int sdhci_omap_remove(struct platform_device *pdev)
- 
- 	pm_runtime_get_sync(dev);
- 	sdhci_remove_host(host, true);
-+	device_init_wakeup(dev, false);
-+	dev_pm_clear_wake_irq(dev);
- 	pm_runtime_dont_use_autosuspend(dev);
- 	pm_runtime_put_sync(dev);
- 	/* Ensure device gets idled despite userspace sysfs config */
--- 
-2.33.0
+
+On a Rockchip rk3399 with "psci_idle" cpuidle driver and states
+"WFI", "cpu-sleep" and "cluster-sleep" I checked that all states
+are entered sucessfully both before and after applying this patch, so
+
+ARM64-side:
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+
+
+Heiko
+
+
+
