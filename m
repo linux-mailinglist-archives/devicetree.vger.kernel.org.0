@@ -2,231 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1564842A05C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 10:51:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C83FA42A087
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 11:04:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235378AbhJLIxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 04:53:22 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:40856
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235039AbhJLIxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 04:53:15 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id AB3E640012
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 08:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634028673;
-        bh=T8ZOZOr5Y4GlENUxX/f29gdurL3ZGpNumPUv/2Px4/g=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=U459DAxIsFx0RgyGEY4/JX9kO/NUjFmpTKsNsVYU8/WQd2cf2rSP91BZ9iN760KsN
-         deKF5bhGs36AB+eLYzveJFAwe8lZYS0aPp/BoOwT6CS5M6l1QfAnTAJKvDSAjwompt
-         0Jhd35HS6/FVBrvQ4kzcawIpZBln7udTznB8vbkvekvaoIzopEns1iJoWSCh6UIWrt
-         eQSBNMDIwy/6Vb3ZPFid6iqWVWC8570sANrnXePNI4qkj+Rz5lKY0JSStzgXxl64Ql
-         TRbjWTiGK/UWYWmRhBph3QZbg7c7hxUA+gKt3lBxy3RHJwH/JkuLmg/CPs+KOeOckO
-         B48Em26ADAFKw==
-Received: by mail-lf1-f69.google.com with SMTP id g9-20020a0565123b8900b003f33a027130so14637808lfv.18
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 01:51:13 -0700 (PDT)
+        id S235306AbhJLJGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 05:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232578AbhJLJGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 05:06:33 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16CFBC061570
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:04:31 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id k7so64544769wrd.13
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 02:04:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nM9ryI+c+NLtTNUZo2AiWUoKoEPFgkQ1TAdM3Mn2iis=;
+        b=OUCqqoYliTYGu9oksn4qZr2MyPWixyHxjPTni2yDBH1kmgpybP40V9gCaPPdkiIr7u
+         PkPxey9VPJZ/TNZS3NiV2AzsmP736DOYJKF8jYVVCsnIwNS3liD1B2gqbNrpyK2YGzto
+         K43oDQU9dxwfR7PVP2cfjhMeILXRQ4bRPoa40Fhgg+IMULk5UksDqwKgdupIdkEGftqm
+         DxRbmQRRSvQzD+ZQRH6D4+AyVbI6CFd2NdISUClrRDtOk2Cm1eTq9OUbznMi9wz3lcam
+         qg7afqFWap7t4DqaiVhLN2ib5AOttDy/YQoMDnggEodqWiZgYxUv6Xw8VxsOYEtvNMrH
+         uq+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=T8ZOZOr5Y4GlENUxX/f29gdurL3ZGpNumPUv/2Px4/g=;
-        b=IZAUX5d9yGW0BzVVX+3U65VLGycHhQBv9nbYq+5x6niAaGrvQhodPCYJDIoSsi2TKh
-         Hg2HURfUa/DnNSdOK2A99m36Ra6HBcDTYxWaZphzxK+kn2A+soggNm5N/DBfdoua/c86
-         /szHnxUp6apODa+H+fsfalgmh6BzYnJpj/Ijx4JZ9siGelTssi11+Ij9YCwHKfMP79pZ
-         iqf2loiq9eaMASJhQAQkaE4MAY7L0w7ZYqZUh+C+QPP3kbAyVopT8ULVYPzYAENzrOfO
-         QYUezoS8zE0ecBC9G+wWmM9kKKYcFK6Zeev0Uwcscz9ZRoLvFFav2YzWR8OLoZcYDgaW
-         vHsw==
-X-Gm-Message-State: AOAM532rKh2OUZwWrq3mHbamhSK4KwfURKIF3dqGDbVxqe1+w8TM5gbm
-        kEo7VKSxgD6zfDrxSFK1zoDuC3PaPvzgjHNb20xP5SbBAupwCNtcDycaRdHNWTY/f6FqbdkIZV5
-        lmJSnYarfm3XWanEQ1YJAbvriMNOVMGIlrFnK+GI=
-X-Received: by 2002:ac2:51cd:: with SMTP id u13mr3993644lfm.200.1634028671208;
-        Tue, 12 Oct 2021 01:51:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJztoea6HkNHM9Wjs5q7o+UVJ+H5Botof8Mx0a9li4apYYpZeNNCRerrFp6ZBW53kj/fYfSWfg==
-X-Received: by 2002:ac2:51cd:: with SMTP id u13mr3993612lfm.200.1634028670990;
-        Tue, 12 Oct 2021 01:51:10 -0700 (PDT)
-Received: from [192.168.0.20] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id c3sm344820lfr.187.2021.10.12.01.51.10
+        bh=nM9ryI+c+NLtTNUZo2AiWUoKoEPFgkQ1TAdM3Mn2iis=;
+        b=llZz8VM35sNVrlewW0KRow8GQuw7HVNaFM9hsPHCG/6ytcZZZ740BYub3vvgjVN4ru
+         lMHf0pDsFQF9CUrF9GOjxp8RYNKzQa6irVD/uFenLGlz8h8s1MzrxlEnQ4lenfBUbgbC
+         ge8AmfmwNuz5AQ+ktwT573gZ9/ib9+uN5yG8O6hVOyxqaKKCePX+TONYI/xl4Ky8T2HQ
+         d8Qp8z1V/k//ahVyQB1kFEuuXWppZAudJcQgD8NvqdWZ7HBNBx37WqGvOMYRA6bYa9Un
+         CbuwCq5P2KA1cHzvaYxo8AODkEnQQAYz55V9hE4I11NGJrr6lymIUPH+FlNvVhF9DF8T
+         16Ww==
+X-Gm-Message-State: AOAM533+aTTO799CQ+AldtMSa7jbChhQbTVKST/tXExRY9ybmXiaM6ZO
+        OSUIu3viVu74azG2kdTBrTZ9uw==
+X-Google-Smtp-Source: ABdhPJzldmhbBry7GuAupyMrQ6kcGWOkrHsnOW8VChM5aqK1EEGJqirPQaDdD4vD8TnhCDjQXD0xLg==
+X-Received: by 2002:a7b:c114:: with SMTP id w20mr4093213wmi.143.1634029470271;
+        Tue, 12 Oct 2021 02:04:30 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id b19sm1987114wmb.1.2021.10.12.02.04.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Oct 2021 01:51:10 -0700 (PDT)
-Subject: Re: [RFC PATCH 3/9] dt-bindings: clock: Add apple,cluster-clk binding
-To:     Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211011165707.138157-1-marcan@marcan.st>
- <20211011165707.138157-4-marcan@marcan.st>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <0fe602f6-3adc-dfac-beee-2854b01cec5c@canonical.com>
-Date:   Tue, 12 Oct 2021 10:51:09 +0200
+        Tue, 12 Oct 2021 02:04:29 -0700 (PDT)
+Subject: Re: [PATCH v3 2/5] ASoC: qcom: dt-bindings: Add compatible names for
+ lpass sc7280 digital codecs
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1633702144-19017-1-git-send-email-srivasam@codeaurora.org>
+ <1633702144-19017-3-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <8e042343-a40e-d00f-31a8-8368160329e4@linaro.org>
+Date:   Tue, 12 Oct 2021 10:04:28 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211011165707.138157-4-marcan@marcan.st>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1633702144-19017-3-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/10/2021 18:57, Hector Martin wrote:
-> This device represents the CPU performance state switching mechanism as
-> a clock controller, to be used with the standard cpufreq-dt
-> infrastructure.
+
+
+On 08/10/2021 15:09, Srinivasa Rao Mandadapu wrote:
+> Update compatible names in va, wsa, rx and tx macro codes for lpass sc7280
 > 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
+
+TBH, I was also expecting the clks that are mandatory for sc7280 in this 
+binding patch.
+
+I think we need this and this will allow us to validate on the dt-entries.
+
+
+
+--srini
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > ---
->  .../bindings/clock/apple,cluster-clk.yaml     | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/apple,cluster-clk.yaml
+>   Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml  | 4 +++-
+>   Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml  | 4 +++-
+>   Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml  | 4 +++-
+>   Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml | 4 +++-
+>   4 files changed, 12 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/apple,cluster-clk.yaml b/Documentation/devicetree/bindings/clock/apple,cluster-clk.yaml
-> new file mode 100644
-> index 000000000000..9a8b863dadc0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/apple,cluster-clk.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/apple,cluster-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: CPU cluster frequency scaling for Apple SoCs
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +description: |
-> +  Apple SoCs control CPU cluster frequencies by using a performance state
-> +  index. This node represents the feature as a clock controller, and uses
-> +  a reference to the CPU OPP table to translate clock frequencies into
-> +  performance states. This allows the CPUs to use the standard cpufreq-dt
-> +  mechanism for frequency scaling.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - apple,t8103-cluster-clk
-> +      - const: apple,cluster-clk
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +  operating-points-v2:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      A reference to the OPP table used for the CPU cluster controlled by this
-> +      device instance. The table should contain an `opp-level` property for
-> +      every OPP, which represents the p-state index used by the hardware to
-> +      represent this performance level.
-> +
-> +      OPPs may also have a `required-opps` property (see power-domains).
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description:
-> +      An optional reference to a power domain provider that links its
-> +      performance state to the CPU cluster performance state. This is typically
-> +      a memory controller. If set, the `required-opps` property in the CPU
-> +      frequency OPP nodes will be used to change the performance state of this
-> +      provider state in tandem with CPU frequency changes.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +  - operating-points-v2
-> +
-> +additionalProperties: false
-> +
-> +
-
-One line break.
-
-> +examples:
-> +  - |
-> +    pcluster_opp: opp-table-1 {
-> +        compatible = "operating-points-v2";
-> +        opp-shared;
-> +
-> +        opp01 {
-> +            opp-hz = /bits/ 64 <600000000>;
-> +            opp-microvolt = <781000>;
-> +            opp-level = <1>;
-> +            clock-latency-ns = <8000>;
-> +            required-opps = <&mcc_lowperf>;
-> +        };
-> +        /* intermediate p-states omitted */
-> +        opp15 {
-> +            opp-hz = /bits/ 64 <3204000000>;
-> +            opp-microvolt = <1081000>;
-> +            opp-level = <15>;
-> +            clock-latency-ns = <56000>;
-> +            required-opps = <&mcc_highperf>;
-> +        };
-> +    };
-> +
-> +    mcc_opp: opp-table-2 {
-> +        compatible = "operating-points-v2";
-
-Wrong compatible.
-
-> +
-> +        mcc_lowperf: opp0 {
-> +            opp-level = <0>;
-> +            apple,memory-perf-config = <0x813057f 0x1800180>;
-> +        };
-> +        mcc_highperf: opp1 {
-> +            opp-level = <1>;
-> +            apple,memory-perf-config = <0x133 0x55555340>;
-> +        };
-> +    };
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        mcc: memory-controller@200200000 {
-> +            compatible = "apple,t8103-mcc", "apple,mcc";
-> +            #power-domain-cells = <0>;
-> +            reg = <0x2 0x200000 0x0 0x200000>;
-> +            operating-points-v2 = <&mcc_opp>;
-> +            apple,num-channels = <8>;
-> +        };
-> +
-> +        clk_pcluster: clock-controller@211e20000 {
-> +            compatible = "apple,t8103-cluster-clk", "apple,cluster-clk";
-> +            #clock-cells = <0>;
-> +            reg = <0x2 0x11e20000 0x0 0x4000>;
-> +            operating-points-v2 = <&pcluster_opp>;
-> +            power-domains = <&mcc>;
-> +        };
-> +    };
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+> index 443d556..bc762b3 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: qcom,sm8250-lpass-rx-macro
+> +    enum:
+> +      - qcom,sc7280-lpass-rx-macro
+> +      - qcom,sm8250-lpass-rx-macro
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+> index 6b5ca02..74f5386 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: qcom,sm8250-lpass-tx-macro
+> +    enum:
+> +      - qcom,sc7280-lpass-tx-macro
+> +      - qcom,sm8250-lpass-tx-macro
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> index 679b49c..99f2c36 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: qcom,sm8250-lpass-va-macro
+> +    enum:
+> +      - qcom,sc7280-lpass-va-macro
+> +      - qcom,sm8250-lpass-va-macro
+>   
+>     reg:
+>       maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+> index 435b019..13cdb8a 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>   
+>   properties:
+>     compatible:
+> -    const: qcom,sm8250-lpass-wsa-macro
+> +    enum:
+> +      - qcom,sc7280-lpass-wsa-macro
+> +      - qcom,sm8250-lpass-wsa-macro
+>   
+>     reg:
+>       maxItems: 1
 > 
-
-
-Best regards,
-Krzysztof
