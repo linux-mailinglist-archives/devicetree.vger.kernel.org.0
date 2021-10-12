@@ -2,88 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F32FA42A497
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6539D42A4C3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 14:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236394AbhJLMi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 08:38:29 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:14002 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236281AbhJLMi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:38:27 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634042186; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=AyivTPO817+jGaFiIfTU06ugnfXJERP8hq9LXBQNV4Q=; b=nCu8KBcICnyqPRAa4QcvpVGGyFcCeANLvyGtLsh/3llR8EUdEvYb3RTMBLanoFNTkv0br4cK
- gZ6HJZfxqRqRksIQb9xpvtdqnpyB2KgX0d7gEIhmaVJhKzGR1XibQns5phG7NgNJr4MLt7t9
- VJLTw8Yn7PB+mNMM8PNuJzC7hNs=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 616581498ea00a941fabcf25 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 12 Oct 2021 12:36:25
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B5D98C4360C; Tue, 12 Oct 2021 12:36:25 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6000AC4338F;
-        Tue, 12 Oct 2021 12:36:21 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6000AC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     sanm@codeaurora.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vbadigan@codeaurora.org, manivannan.sadhasivam@linaro.org
-Cc:     Prasad Malisetty <pmaliset@codeaurora.org>
-Subject: [PATCH v1] arm64: dts: qcom: sc7280: Add pcie clock support
-Date:   Tue, 12 Oct 2021 18:06:11 +0530
-Message-Id: <1634042171-31461-1-git-send-email-pmaliset@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S236454AbhJLMo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 08:44:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34574 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236402AbhJLMo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 08:44:28 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AF4C061570;
+        Tue, 12 Oct 2021 05:42:26 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id r18so80741442edv.12;
+        Tue, 12 Oct 2021 05:42:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=f0gz0/Asq8t/eUGODIPaUfnOamMHCPpxONGQ2bwYsgg=;
+        b=oh5ZHhj7HPMp/m3yehJFBSfgfcNQlkB8b0gAAqyX53lDZvL753KDcBfHW+AFaoj61u
+         9H98FmjAipM3qcY99+2nU9mZ/MWIE3uBl1E2C7fr6fgmThOvLE+dq9+seqDmqJ4b7Ik2
+         LwHVQZCJRz+2PlPEB5mXfVRV1Kqb9yCt7KetZCtCzw+OXFQ0jg+B4IoSQjgB0HRrnGOF
+         SIFeJdpPjAfWbtikzutSxBlfdvDCwmUo/8Ls26GywDjqyYewNmwfDzY4+fzSBNJN46m9
+         stBdt+1Lr4AQmI4pWyECqhON3jki0CU/6Uvb+bPpb6ipVoIBrDmQD8rKtP527CnG2d8U
+         MSXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=f0gz0/Asq8t/eUGODIPaUfnOamMHCPpxONGQ2bwYsgg=;
+        b=BY5oWdOvOlXp+AM7kQPxypb73WyO+kwU163eU0R6kUZgmUFWzJt9A7X0ihQynjvLi9
+         5n5W6iqAKLYyHcBYY9Gcv0C7uOYaZD7bFyOIPh9WBA42+eSi9xg6CWLbSiZoP6EIITXF
+         ZhJe06R/xhR4oXOt9+AY7kVfhPnwUanwp5qNFh25PvnRsQE1e+FTisZEM4faaZbdMUEl
+         Gp3tQNcjGhTEiGaEPzHmjPSci53HFe1O6nUNwDysnSXQAnCScB3mIt/SjjhADA7GoaBg
+         9JJd2r7O8MiY4NxkjGuxfYtToEYEWxlJYJqbGRHyw6P5Q//GDU8yVe2YzAio/ocGLFg3
+         dFAQ==
+X-Gm-Message-State: AOAM532i/ZmGsD0GqBuUKV3BTgYRfl7L7g6Yx4ee542RiMN2xxHVpDlb
+        0+uFZeC+EfhJCcZhR/k0ZbI=
+X-Google-Smtp-Source: ABdhPJxG3HPmOXwcGid5gViw0o4QQqyTWKSLoR1IsTuBkX5hEzaVfcjYdqyo9H7cd3bRyfYEVADWAw==
+X-Received: by 2002:a05:6402:1c85:: with SMTP id cy5mr26022958edb.281.1634042544819;
+        Tue, 12 Oct 2021 05:42:24 -0700 (PDT)
+Received: from skbuf ([188.26.53.217])
+        by smtp.gmail.com with ESMTPSA id v13sm4904358ejh.62.2021.10.12.05.42.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 05:42:24 -0700 (PDT)
+Date:   Tue, 12 Oct 2021 15:42:22 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/6] net: dsa: move NET_DSA_TAG_RTL4_A to right
+ place in Kconfig/Makefile
+Message-ID: <20211012124222.hqbxal4xgelvfve7@skbuf>
+References: <20211012123557.3547280-1-alvin@pqrs.dk>
+ <20211012123557.3547280-3-alvin@pqrs.dk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211012123557.3547280-3-alvin@pqrs.dk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pcie clock phandle for sc7280 SoC
+On Tue, Oct 12, 2021 at 02:35:51PM +0200, Alvin Šipraga wrote:
+> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+> 
+> Move things around a little so that this tag driver is alphabetically
+> ordered. The Kconfig file is sorted based on the tristate text.
+> 
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+> ---
 
-Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
----
-This change is depends on the below patch series.
-https://lkml.org/lkml/2021/10/7/841
----
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Another issue that can be treated separately is that LAN9303 is still
+not in its alphabetic place.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 39635da..78694c1 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -569,9 +569,10 @@
- 			reg = <0 0x00100000 0 0x1f0000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
--				 <0>, <0>, <0>, <0>, <0>, <0>;
-+				 <0>, <&pcie1_lane 0>,
-+				 <0>, <0>, <0>, <0>;
- 			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
--				      "pcie_0_pipe_clk", "pcie_1_pipe-clk",
-+				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
- 				      "ufs_phy_rx_symbol_0_clk", "ufs_phy_rx_symbol_1_clk",
- 				      "ufs_phy_tx_symbol_0_clk",
- 				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+> 
+> RFC -> v1: this patch is new
+> 
+>  net/dsa/Kconfig  | 14 +++++++-------
+>  net/dsa/Makefile |  2 +-
+>  2 files changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+> index bca1b5d66df2..6c7f79e45886 100644
+> --- a/net/dsa/Kconfig
+> +++ b/net/dsa/Kconfig
+> @@ -92,13 +92,6 @@ config NET_DSA_TAG_KSZ
+>  	  Say Y if you want to enable support for tagging frames for the
+>  	  Microchip 8795/9477/9893 families of switches.
+>  
+> -config NET_DSA_TAG_RTL4_A
+> -	tristate "Tag driver for Realtek 4 byte protocol A tags"
+> -	help
+> -	  Say Y or M if you want to enable support for tagging frames for the
+> -	  Realtek switches with 4 byte protocol A tags, sich as found in
+> -	  the Realtek RTL8366RB.
+> -
+>  config NET_DSA_TAG_OCELOT
+>  	tristate "Tag driver for Ocelot family of switches, using NPI port"
+>  	depends on MSCC_OCELOT_SWITCH_LIB || \
+> @@ -130,6 +123,13 @@ config NET_DSA_TAG_QCA
+>  	  Say Y or M if you want to enable support for tagging frames for
+>  	  the Qualcomm Atheros QCA8K switches.
+>  
+> +config NET_DSA_TAG_RTL4_A
+> +	tristate "Tag driver for Realtek 4 byte protocol A tags"
+> +	help
+> +	  Say Y or M if you want to enable support for tagging frames for the
+> +	  Realtek switches with 4 byte protocol A tags, sich as found in
+> +	  the Realtek RTL8366RB.
+> +
+>  config NET_DSA_TAG_LAN9303
+>  	tristate "Tag driver for SMSC/Microchip LAN9303 family of switches"
+>  	help
+> diff --git a/net/dsa/Makefile b/net/dsa/Makefile
+> index 67ea009f242c..f78d537044db 100644
+> --- a/net/dsa/Makefile
+> +++ b/net/dsa/Makefile
+> @@ -10,12 +10,12 @@ obj-$(CONFIG_NET_DSA_TAG_DSA_COMMON) += tag_dsa.o
+>  obj-$(CONFIG_NET_DSA_TAG_GSWIP) += tag_gswip.o
+>  obj-$(CONFIG_NET_DSA_TAG_HELLCREEK) += tag_hellcreek.o
+>  obj-$(CONFIG_NET_DSA_TAG_KSZ) += tag_ksz.o
+> -obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
+>  obj-$(CONFIG_NET_DSA_TAG_LAN9303) += tag_lan9303.o
+>  obj-$(CONFIG_NET_DSA_TAG_MTK) += tag_mtk.o
+>  obj-$(CONFIG_NET_DSA_TAG_OCELOT) += tag_ocelot.o
+>  obj-$(CONFIG_NET_DSA_TAG_OCELOT_8021Q) += tag_ocelot_8021q.o
+>  obj-$(CONFIG_NET_DSA_TAG_QCA) += tag_qca.o
+> +obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
+>  obj-$(CONFIG_NET_DSA_TAG_SJA1105) += tag_sja1105.o
+>  obj-$(CONFIG_NET_DSA_TAG_TRAILER) += tag_trailer.o
+>  obj-$(CONFIG_NET_DSA_TAG_XRS700X) += tag_xrs700x.o
+> -- 
+> 2.32.0
+> 
