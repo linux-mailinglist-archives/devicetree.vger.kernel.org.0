@@ -2,302 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E50B2429D93
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 08:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81053429DB9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 08:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbhJLGTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 02:19:49 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:3020 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232809AbhJLGTs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 12 Oct 2021 02:19:48 -0400
+        id S231190AbhJLGbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 02:31:20 -0400
+Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:37934 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232690AbhJLGbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 02:31:19 -0400
+Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
+        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C07VVW030551;
+        Mon, 11 Oct 2021 23:29:09 -0700
+Received: from nam12-mw2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2041.outbound.protection.outlook.com [104.47.66.41])
+        by mx0b-0016f401.pphosted.com with ESMTP id 3bmpv4u7q1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Oct 2021 23:29:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mk8sqwfJCeZ64HnkWZ8qArwlgjx9aS26AoAP9owdutD/Wr2cye8+QllOTA2fdbStecuOhvuzLlKVypQ7UUmWugHo/ZVH3tJw1Yskogv/2Xh7n8X7P53ZU5dNw6FaaEpXGCTXthJ0pmKyg3PjdTNvS87tz9TvXlMtyvlbLKAS2Zhsky6qP9Z+bruDU28y1xs928YrTqFhn+rCMgSijTCQ3a5SJW9Hubzloqut4GcQbbDep6FFPpqIU/w9sQ1u7veTyQG0EWzk1T8oN1cdHJtqIbZbpq/bhKGP4tumldJY0YKuDlVSUiTKGPsC6bWvk7oJfox2Z0MY3au2Gxb0fKXzaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YS5/yAgZ2AJ/TYDExRCWZxFWcJxKsROhKvlUgBIMkvo=;
+ b=ke4hGM06RPeh/uOFzvyD8BCXdODRPOGP7fYVlCW8zQEfG97XIPKlYhdhP6goqUqjfzrz/r3LLdPuppVqYvuV89xvlGhHUw/9u7coSkCZAAcqvaamJ+j/7EmSohjk0J3SmQbElMub4nUAbDNQjz2JTjQbqpYSjpTxOhx//mdKbzmsGlYcO8x55Q9c1OMp+RyY/5iIIcn/vKBn4T9UYS/o5G4OSzygj6VH3O9wHvG6IRuIx0ZN0KlAwIxVKvk9hXgGKQiGnRvfSTkEu9qGTZR/GrrtJgbM0W31F30YWO9ttVvK0+IqWSEwMZmr5cVs+L7bIcv1rRL4Zu6c1SZ8lDWG8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
+ dkim=pass header.d=marvell.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634019467; x=1665555467;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=L510CHpjo1YY2067LRyVcJ8FsxKVpTHc7AorOe0IHRo=;
-  b=BiNu2CXQ6CGDK76vH2GgqxMPw71hsLMaNF1L5dO+TgZchHIBh42jijnH
-   DXvIBI5N1bzlMmS/Zcj0/d62rtLqLOJpcQvEtiwbO8zwLANDmGRHD6onU
-   4K4J+XNhnoqTGrb9QHdTXE+OyIL2npPABUHIbzIP0z1pMdfpG0TIvhSyg
-   hB2hnoOObWMUR1Ca16tuFbDu/I8/2TdMOrq9FL2WAa2XsN3EsC3r4JQu9
-   UpTrn+zDlSpMaYHr8vqogtcJtOLXWuidSo8xGaR1vmTtOO2c4Sp6nAXP9
-   LfWgog1LKv7CaCvBfa4eYYr/Q6bibAKpg7CITDXVLdgn8S1jrp5O3A2BS
-   A==;
-X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
-   d="scan'208";a="19984098"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 12 Oct 2021 08:17:45 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Tue, 12 Oct 2021 08:17:45 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Tue, 12 Oct 2021 08:17:45 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634019465; x=1665555465;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=L510CHpjo1YY2067LRyVcJ8FsxKVpTHc7AorOe0IHRo=;
-  b=lYWtSDbhLEdIYAa8SlJLQB1tHIrPmI+XYmBIzSnAzFbPiDZll0byHzgF
-   wIDxwfbEdlo2UZMU23pWhggrnCDt/tRczG1bHvTFCzuhu0hlZLuUOX1un
-   UcTGOCktgyZP0T1+pdPUqTjAzXQreI9TipmJXZNkLbBGatd6slX7+O3cl
-   6l+GuQQtZv7QLpp6irQm9QNRYWX+SoMRhavzx50MsB5bB99sL+VWfPkyS
-   hfYjOlwOXPF6NlQ8lEkoJIivPzavnc0BwlSESOcUFx5C6CnTU1JVEDan2
-   f6N216bCROHwRqT1Dofcqq7nTv4z8UmJY/t6a5edTNRDURx7gK/fshA8p
-   g==;
-X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
-   d="scan'208";a="19984097"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 12 Oct 2021 08:17:45 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 802B2280075;
-        Tue, 12 Oct 2021 08:17:45 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] mtd: spi-nor: micron-st: Add support for output-driver-strength for MT25Q
-Date:   Tue, 12 Oct 2021 08:17:04 +0200
-Message-Id: <20211012061704.284214-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
-References: <20211012061704.284214-1-alexander.stein@ew.tq-group.com>
+ d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YS5/yAgZ2AJ/TYDExRCWZxFWcJxKsROhKvlUgBIMkvo=;
+ b=oj94Aj/6FpBySRhfhW167lMtvM7MZszHr/Lsk8eLYkAJEpzTtg3L1RFec7iAigidBI0A1s3IDRMCqNlxUZget92ubBQUfyKjkv/QSB4OgXrplIhJsssUpZ5QT3A96MvzWeFldrBoChXNRL3G8BPqFptX51HWUd7WaC34sv+lilA=
+Received: from CY4PR1801MB2070.namprd18.prod.outlook.com
+ (2603:10b6:910:7e::28) by CY4PR18MB1045.namprd18.prod.outlook.com
+ (2603:10b6:903:a6::11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.19; Tue, 12 Oct
+ 2021 06:29:06 +0000
+Received: from CY4PR1801MB2070.namprd18.prod.outlook.com
+ ([fe80::9de0:2038:e0cd:e491]) by CY4PR1801MB2070.namprd18.prod.outlook.com
+ ([fe80::9de0:2038:e0cd:e491%6]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
+ 06:29:06 +0000
+From:   Bhaskara Budiredla <bbudiredla@marvell.com>
+To:     Will Deacon <will@kernel.org>,
+        Bharat Bhushan <bbhushan2@marvell.com>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH v5 0/2] drivers: perf: Add Marvell CN10K LLC-TAD
+ pmu driver
+Thread-Topic: [EXT] Re: [PATCH v5 0/2] drivers: perf: Add Marvell CN10K
+ LLC-TAD pmu driver
+Thread-Index: AQHXpKmvLbIyd1MMTUy5i5BlP65Pnau8ahDwgArTNACABqrfAIABKBDA
+Date:   Tue, 12 Oct 2021 06:29:06 +0000
+Message-ID: <CY4PR1801MB207066A7007F06D63B753142DEB69@CY4PR1801MB2070.namprd18.prod.outlook.com>
+References: <20210908120425.10084-1-bbudiredla@marvell.com>
+ <CY4PR1801MB207038FD04A714BF15DA88A3DEAA9@CY4PR1801MB2070.namprd18.prod.outlook.com>
+ <CY4PR1801MB2070E39832569F339D8F9439DEB19@CY4PR1801MB2070.namprd18.prod.outlook.com>
+ <20211011120842.GA4297@willie-the-truck>
+In-Reply-To: <20211011120842.GA4297@willie-the-truck>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b5dc3405-6b26-4385-c459-08d98d499795
+x-ms-traffictypediagnostic: CY4PR18MB1045:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR18MB1045272D328A8FD875796A84DEB69@CY4PR18MB1045.namprd18.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: hMDsYNR1r9WO0hjVpt4MM4bTUDihfyLkkQanP1bDRFaZQt3GycsJm93TKUAiJWsAhRooYyFnFemo5GfhIrSYbcmB2n9OGyakVtvs6KCKA1Vrdd62bJlgDrhgCqJfPKW7mfoxNDyCbJLoA1qVaPVqmOgwsypjaej35dKcK1tS7PxOPMNxilev197X/SJw8fqUbzuqPPrVH8ZxUL+7KzymbMQGE+zMRcxsQoGYuvn6ojArwXzxSeVhc9rEoiwdQiW0esNKtuWF88a6J0GAAwK0K0HfoZzmYVJJn5DScuSN5qdVkFH35kM+mjU0rz6S67E67KRDynY791hEApo0fo9OLRF9SVhR5HY3WXG2kJoniRmz+VnLdEqGasnjum/wGdgyonzRUGgi6wzXGtKRKQHHdjSZVFqE/Qlxp9jBv/eC3MJu6hjxw5T99ykwtBLlNI40jwHyYOsLaiz0b8MT3Whz6QO+JJ01IE9fJw6PJ4vBy9zJosD67C6Ouarbx/7USpJwm26V058YyyRw2qqwqBch2Q7XICLpBbekhOm8MOyMTC0BdvP8HTAigGbKbqoEtaqnM8CGS+s1GeVlTIjYDTZwuTz6WWFr2G6GmR8rYIril9XhXOCQKSQKiPV6VPJQakUQMWPXQ88TqOBAFe1+ZvcKWOeDIu3llz9y5TWzgx9Z90SMNRY0NQ/0En9TI+9QrK6xNpaUVBUieU/GiAibNVvwZlxABVOskTI+jA9Pr+1IUqRcLDGfIDRDjIwjFr3geN/0+DrM6mIrsBsG+1KrnLOuka4btExVtmjAgJnjhaP9dVg=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR1801MB2070.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(86362001)(38100700002)(54906003)(316002)(55016002)(508600001)(52536014)(5660300002)(110136005)(33656002)(26005)(7696005)(6506007)(38070700005)(6636002)(4326008)(122000001)(9686003)(2906002)(66556008)(83380400001)(66446008)(64756008)(8936002)(66476007)(66946007)(71200400001)(186003)(76116006)(4744005)(8676002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Du0tMMdB1sEJTcrix3x3Pc/5bughPgVqoPYa8v81t2x8Hv4RKGphYx6RpxGZ?=
+ =?us-ascii?Q?JUc+P4R5ltJOvBpRkk9BhgmwzKPDDceinqQPBfmxqwsx/NajjRbxapPxjgRH?=
+ =?us-ascii?Q?nd7znnOyNT+ZH6gBr/MsmyXBzOss1FhpKmzwtaQDix+5auei+jsS5StYCvU6?=
+ =?us-ascii?Q?dGHi2G03k7aSiK8/cd/no69OZH3T79h2OdtipDfqMqxblgLbajXILYATNYyC?=
+ =?us-ascii?Q?77Dg1D2vg5Z0hqMPsvx00SsMVWLhkF5K46FGE+9fJIDuUl+zUsEYPYr32eND?=
+ =?us-ascii?Q?wM0Bca70NllLbrDiGrWHvsF6DYf9WLgoU4VXyXSQ16Q4KMdKzLbk/PRu6kNd?=
+ =?us-ascii?Q?BI5C0JL1WtwLSudZZY5dlqH+Z1A/prG2VDCXmq054j87AWpKRZr5XRsFTqFn?=
+ =?us-ascii?Q?vHfI1v0YcBPG8TjnQVDr5dKYhaGf3bGWmR8dTPH2Zs8c/u4Uh53qWgicqSSf?=
+ =?us-ascii?Q?qs8OMIphJHK8FhGf99/GKsgtKb8FFVUgT9I1MLkwmrFv4eoxWmu1wI1SnWfA?=
+ =?us-ascii?Q?mbQhR0CDhVUeNk9wtYIkmpNNUuBHFwDDqnQwijlxHltKWEtMspqekadSF2Vf?=
+ =?us-ascii?Q?F8iTap87C/4hNrlq5gePnXwo4WDRsDHIxtBoMC8+fubmc/QavRNYtBA74nOu?=
+ =?us-ascii?Q?lWVf1fhyV9sEskRgw/1Io2RgOMcQP4ugZmrDKrbSyTmaswtfQN1fBL+FUm9I?=
+ =?us-ascii?Q?kDsuSKfJQxSdMj8+ESXVeUFqenaXtcyEMIYkO/hc6cuyjpZR6hAcnheWM9j6?=
+ =?us-ascii?Q?pc0W9wU/HSUC4m/ZsuyIUxGaQywIglmhrAFpRDeNREqMBgfQecp5iDi3HsM0?=
+ =?us-ascii?Q?hczDxzsfXJlbeDq4qK1suAm+trRKDgaUUPiuksveVp2n8O5OXslT++4OsY9C?=
+ =?us-ascii?Q?jnTyfNjSX4PMW8oxa/ALRXEMlrVUhoOpKmFvBqVyyBbgH8yR7LhLx30rtVRb?=
+ =?us-ascii?Q?cpmHSVasFBUHdUjJQzSC3Htn7py9DIpX1pzjKkdeo75EY+zetRjKSd4jeKCq?=
+ =?us-ascii?Q?EaTMKoo1gDRlBdMQMVYUAeKPU+r3ukTmmOmTW7aDKToMmEFLjphGV9300CaI?=
+ =?us-ascii?Q?7HNvlkOUlLsSaI7VKo/Lp0p/F17dABm3aTC/g0yZRgo3ZktMl/hH76bsc9q9?=
+ =?us-ascii?Q?AX2HK4QFlPX7OD47mlJqUr8zn8c9KhchanmfOPn5nj6Hu49ZdasfEhhLnEXH?=
+ =?us-ascii?Q?S4iGkjMAvT8Q8mEigRVsg0nLhS/X1G0t1r4mA5l+goKRIE9FXLwCddwwHa1Y?=
+ =?us-ascii?Q?KSS1BYC/2ZJ3xxdMPLGDNak7KbLdOWumyX/uaL78pWiTpEpHBMlbDsav+x2A?=
+ =?us-ascii?Q?zmR/DTPgQ6W/hVXz5csQZLwY?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: marvell.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR1801MB2070.namprd18.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5dc3405-6b26-4385-c459-08d98d499795
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 06:29:06.3430
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8WAamn8nSGOHm3iLo6+fot8eJ60BR+l37UrpkIPcz5HxWFWshUhj3/U9ZONCqPXf6tKp8ULVcILUlt2Kwtx9ZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR18MB1045
+X-Proofpoint-ORIG-GUID: GJ7KtLNOwUk_dm3VnLiEiMWUDkqPR6yS
+X-Proofpoint-GUID: GJ7KtLNOwUk_dm3VnLiEiMWUDkqPR6yS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-12_01,2021-10-11_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT25Q[UL] Micron flashes support this by the Bits [2:0] in the Enhanced
-Volatile Configuration Register.
-Checked datasheet:
-- mt25t-qljs-L512-xBA-xxT.pdf
+[...]=20
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Various format fixes
-* Apply property only to MT25Q devices (e.g. N25Q devices support a
- different set of impedances)
-* Use spi_nor_spimem_setup_op() before issuing a command
-* Add more return code checking
-* Add a warning if setting drive strength fails at some point
-* Use GENMASK()
+>
+>One big thing you could do to help would be to review this other PMU drive=
+r
+>from your colleague on the mailing list:
+>
+>https://urldefense.proofpoint.com/v2/url?u=3Dhttps-
+>3A__lore.kernel.org_r_20210920050823.10853-2D1-2Dbbhushan2-
+>40marvell.com&d=3DDwIBAg&c=3DnKjWec2b6R0mOyPaz7xtfQ&r=3D9P_lSljSO7KnQ
+>NkCGsgu9x_Op4mstSdqWN3Olr4bUv0&m=3DDJa6Fqm62SzYUy99uDA1B2uVYAl
+>5AzDlLPZXJvnHkiw&s=3DHPRArNqyDRlnLY9DYZVXGjqNhlVOYTD-
+>CKfcYulRJu0&e=3D
+>
+>and vice-versa.
+>
+>Will
 
- drivers/mtd/spi-nor/micron-st.c | 152 ++++++++++++++++++++++++++++++--
- 1 file changed, 146 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/mtd/spi-nor/micron-st.c b/drivers/mtd/spi-nor/micron-st.c
-index c224e59820a1..492805a5a278 100644
---- a/drivers/mtd/spi-nor/micron-st.c
-+++ b/drivers/mtd/spi-nor/micron-st.c
-@@ -16,6 +16,11 @@
- #define SPINOR_MT_OCT_DTR	0xe7	/* Enable Octal DTR. */
- #define SPINOR_MT_EXSPI		0xff	/* Enable Extended SPI (default) */
- 
-+struct micron_drive_strength {
-+	u32 ohms;
-+	u8 val;
-+};
-+
- static int spi_nor_micron_octal_dtr_enable(struct spi_nor *nor, bool enable)
- {
- 	struct spi_mem_op op;
-@@ -118,6 +123,135 @@ static struct spi_nor_fixups mt35xu512aba_fixups = {
- 	.post_sfdp = mt35xu512aba_post_sfdp_fixup,
- };
- 
-+/*
-+ * Read Micron enhanced volatile configuration register
-+ * Return negative if error occurred or configuration register value
-+ */
-+static int micron_read_evcr(struct spi_nor *nor)
-+{
-+	int ret;
-+
-+	if (nor->spimem) {
-+		struct spi_mem_op op =
-+			SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RD_EVCR, 1),
-+				   SPI_MEM_OP_NO_ADDR,
-+				   SPI_MEM_OP_NO_DUMMY,
-+				   SPI_MEM_OP_DATA_IN(1, nor->bouncebuf, 1));
-+
-+		spi_nor_spimem_setup_op(nor, &op, nor->reg_proto);
-+
-+		ret = spi_mem_exec_op(nor->spimem, &op);
-+	} else {
-+		ret = nor->controller_ops->read_reg(nor, SPINOR_OP_RD_EVCR,
-+						    nor->bouncebuf, 1);
-+	}
-+
-+	if (ret < 0) {
-+		dev_err(nor->dev, "error %d reading EVCR\n", ret);
-+		return ret;
-+	}
-+
-+	return nor->bouncebuf[0];
-+}
-+
-+/*
-+ * Write Micron enhanced volatile configuration register
-+ * Return negative if error occurred or configuration register value
-+ */
-+static int micron_write_evcr(struct spi_nor *nor, u8 evcr)
-+{
-+	int ret;
-+
-+	nor->bouncebuf[0] = evcr;
-+
-+	ret = spi_nor_write_enable(nor);
-+	if (ret)
-+		return ret;
-+
-+	if (nor->spimem) {
-+		struct spi_mem_op op =
-+			SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_WD_EVCR, 1),
-+				   SPI_MEM_OP_NO_ADDR,
-+				   SPI_MEM_OP_NO_DUMMY,
-+				   SPI_MEM_OP_DATA_OUT(1, nor->bouncebuf, 1));
-+
-+		spi_nor_spimem_setup_op(nor, &op, nor->reg_proto);
-+
-+		return spi_mem_exec_op(nor->spimem, &op);
-+	}
-+
-+	return nor->controller_ops->write_reg(nor, SPINOR_OP_WD_EVCR,
-+					      nor->bouncebuf, 1);
-+}
-+
-+/*
-+ * Supported values from Enahanced Volatile COnfiguration Register (Bits 2:0)
-+ */
-+static const struct micron_drive_strength drive_strength_data[] = {
-+	{ .ohms = 90, .val = 1 },
-+	{ .ohms = 45, .val = 3 },
-+	{ .ohms = 20, .val = 5 },
-+	{ .ohms = 30, .val = 7 },
-+};
-+
-+static const struct micron_drive_strength *micron_st_find_drive_strength_entry(u32 ohms)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(drive_strength_data); i++) {
-+		if (ohms == drive_strength_data[i].ohms)
-+			return &drive_strength_data[i];
-+	}
-+	return NULL;
-+}
-+
-+static void mt25q_post_sfdp(struct spi_nor *nor)
-+{
-+	struct device_node *np = spi_nor_get_flash_node(nor);
-+	u32 ohms;
-+
-+	if (!np)
-+		return;
-+
-+	if (!of_property_read_u32(np, "output-driver-strength", &ohms)) {
-+		struct micron_drive_strength const *entry =
-+			micron_st_find_drive_strength_entry(ohms);
-+
-+		if (entry) {
-+			int evcrr;
-+			int ret;
-+			u8 evcr;
-+
-+			evcrr = micron_read_evcr(nor);
-+			if (evcrr < 0) {
-+				dev_warn(nor->dev,
-+					 "Reading EVCR failed: %d\n",
-+					 evcrr);
-+				return;
-+			}
-+
-+			evcr = (u8)(evcrr & GENMASK(7, 3)) | entry->val;
-+
-+			ret = micron_write_evcr(nor, evcr);
-+			if (ret)
-+				dev_warn(nor->dev,
-+					 "Setting EVCR failed: %d\n",
-+					 ret);
-+
-+			dev_dbg(nor->dev, "%s: EVCR 0x%x\n", __func__,
-+				(u32)micron_read_evcr(nor));
-+		} else {
-+			dev_warn(nor->dev,
-+				"Invalid output-driver-strength property specified: %u",
-+				ohms);
-+		}
-+	}
-+}
-+
-+static struct spi_nor_fixups mt25q_fixups = {
-+	.post_sfdp = mt25q_post_sfdp,
-+};
-+
- static const struct flash_info micron_parts[] = {
- 	{ "mt35xu512aba", INFO(0x2c5b1a, 0, 128 * 1024, 512,
- 			       SECT_4K | USE_FSR | SPI_NOR_OCTAL_READ |
-@@ -149,25 +283,29 @@ static const struct flash_info st_parts[] = {
- 			      SECT_4K | USE_FSR | SPI_NOR_QUAD_READ) },
- 	{ "mt25ql256a",  INFO6(0x20ba19, 0x104400, 64 * 1024,  512,
- 			       SECT_4K | USE_FSR | SPI_NOR_DUAL_READ |
--			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES) },
-+			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES)
-+	  .fixups = &mt25q_fixups },
- 	{ "n25q256a",    INFO(0x20ba19, 0, 64 * 1024,  512, SECT_4K |
- 			      USE_FSR | SPI_NOR_DUAL_READ |
- 			      SPI_NOR_QUAD_READ) },
- 	{ "mt25qu256a",  INFO6(0x20bb19, 0x104400, 64 * 1024,  512,
- 			       SECT_4K | USE_FSR | SPI_NOR_DUAL_READ |
--			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES) },
-+			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES)
-+	  .fixups = &mt25q_fixups },
- 	{ "n25q256ax1",  INFO(0x20bb19, 0, 64 * 1024,  512,
- 			      SECT_4K | USE_FSR | SPI_NOR_QUAD_READ) },
- 	{ "mt25ql512a",  INFO6(0x20ba20, 0x104400, 64 * 1024, 1024,
- 			       SECT_4K | USE_FSR | SPI_NOR_DUAL_READ |
--			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES) },
-+			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES)
-+	  .fixups = &mt25q_fixups },
- 	{ "n25q512ax3",  INFO(0x20ba20, 0, 64 * 1024, 1024,
- 			      SECT_4K | USE_FSR | SPI_NOR_QUAD_READ |
- 			      SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB |
- 			      SPI_NOR_4BIT_BP | SPI_NOR_BP3_SR_BIT6) },
- 	{ "mt25qu512a",  INFO6(0x20bb20, 0x104400, 64 * 1024, 1024,
- 			       SECT_4K | USE_FSR | SPI_NOR_DUAL_READ |
--			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES) },
-+			       SPI_NOR_QUAD_READ | SPI_NOR_4B_OPCODES)
-+	  .fixups = &mt25q_fixups },
- 	{ "n25q512a",    INFO(0x20bb20, 0, 64 * 1024, 1024,
- 			      SECT_4K | USE_FSR | SPI_NOR_QUAD_READ |
- 			      SPI_NOR_HAS_LOCK | SPI_NOR_HAS_TB |
-@@ -182,10 +320,12 @@ static const struct flash_info st_parts[] = {
- 			      NO_CHIP_ERASE) },
- 	{ "mt25ql02g",   INFO(0x20ba22, 0, 64 * 1024, 4096,
- 			      SECT_4K | USE_FSR | SPI_NOR_QUAD_READ |
--			      NO_CHIP_ERASE) },
-+			      NO_CHIP_ERASE)
-+	  .fixups = &mt25q_fixups },
- 	{ "mt25qu02g",   INFO(0x20bb22, 0, 64 * 1024, 4096,
- 			      SECT_4K | USE_FSR | SPI_NOR_DUAL_READ |
--			      SPI_NOR_QUAD_READ | NO_CHIP_ERASE) },
-+			      SPI_NOR_QUAD_READ | NO_CHIP_ERASE)
-+	  .fixups = &mt25q_fixups },
- 
- 	{ "m25p05",  INFO(0x202010,  0,  32 * 1024,   2, 0) },
- 	{ "m25p10",  INFO(0x202011,  0,  32 * 1024,   4, 0) },
--- 
-2.25.1
+Okay. We have already reviewed these patches internally.
+Bharat, please see if you have any further findings.
 
+Thanks,
+Bhaskara=20
