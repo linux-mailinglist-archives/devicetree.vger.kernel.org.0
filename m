@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8479429DD4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 08:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CA14429DF6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Oct 2021 08:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233005AbhJLGj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 02:39:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35564 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbhJLGjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 02:39:25 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9894C061570
-        for <devicetree@vger.kernel.org>; Mon, 11 Oct 2021 23:37:24 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1maBPY-00073T-Kh; Tue, 12 Oct 2021 08:37:16 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1maBPW-0004VF-72; Tue, 12 Oct 2021 08:37:14 +0200
-Date:   Tue, 12 Oct 2021 08:37:14 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     alexandru.tachici@analog.com
-Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
-        hkallweit1@gmail.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 2/8] net: phy: Add 10-BaseT1L registers
-Message-ID: <20211012063714.GA938@pengutronix.de>
-References: <20211011142215.9013-1-alexandru.tachici@analog.com>
- <20211011142215.9013-3-alexandru.tachici@analog.com>
+        id S232705AbhJLGvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 02:51:09 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:22452 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233267AbhJLGvD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 12 Oct 2021 02:51:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634021342; x=1665557342;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=py28RwQGibErpBHxE3imxv81UcOevlz4rdcJLiTV48E=;
+  b=U4V486lnJaHLrjetinJ9tQagCvXSgTIIiqIvxOeVlocHVzbJ+A80FokR
+   d8NSirEuEOWXLIZD5xLWyBLGcbDVKgXrFcBOPVNV+tF7Ui14m56eSIciq
+   aeYrvkycTOO4bfKB3GuZinH0eV/8SnPVLSoSoJArjMZ8VcSufZTQfr8mV
+   skwMz76CNd/takEFTwogbEQRJIshQmD+oyu5qOlol2ywlVr1sRjJQGExd
+   yyWUHp9UILgVer6MJSSEPbvkcgflRuTSGmuDGHDTy8UrLwJPi7lJSdnIH
+   Fr8Ns2bQzwXPYwgXqUjay9z7JmPeY/JLIruQ5IR7/ya9umIt1vp+xnwoH
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
+   d="scan'208";a="19985090"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 12 Oct 2021 08:49:01 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 12 Oct 2021 08:49:01 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 12 Oct 2021 08:49:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634021341; x=1665557341;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=py28RwQGibErpBHxE3imxv81UcOevlz4rdcJLiTV48E=;
+  b=B6xw377EbkoP+Gf/CKJ/rbg3C/APTjTdhLWEGcHMug0TNTcW33OH6LDl
+   NSEEHM4UYhI4jfdDX55elWjmOub9/bW7LxHIfY3ltAyQbY36My/ChTtnV
+   4ObGHu/mHXmMGf/rSlKMwM/qErEmfUmiyf+q5+DV7j+TBLny9xyJHR1Il
+   fBaxdyNViMmEVo06oZjgaCZK4z+vVgmI/VXoIwAaJzOoLVm1uCWjSmsPT
+   q7VkgD0hFLSSfm/xb3eprWUJvn9yXX3l6yJNEQYakSK8ewbBJgdeuvUCj
+   eUXn+zYRLwZ1ae4eSchfz4ziQ/upeiRFV5mhytHE3pxGZFshd1obl9uX2
+   w==;
+X-IronPort-AV: E=Sophos;i="5.85,366,1624312800"; 
+   d="scan'208";a="19985089"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 12 Oct 2021 08:49:01 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 2DF84280065;
+        Tue, 12 Oct 2021 08:49:01 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/4] ti-sn65dsi83 patches
+Date:   Tue, 12 Oct 2021 08:48:39 +0200
+Message-Id: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211011142215.9013-3-alexandru.tachici@analog.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:31:32 up 236 days,  9:55, 106 users,  load average: 0.16, 0.15,
- 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 05:22:09PM +0300, alexandru.tachici@analog.com wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
-> 
-> The 802.3gc specification defines the 10-BaseT1L link
-> mode for ethernet trafic on twisted wire pair.
-> 
-> PMA status register can be used to detect if the phy supports
-> 2.4 V TX level and PCS control register can be used to
-> enable/disable PCS level loopback.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+Changes in V2 of this set:
+* Add patch from Laurent for fixing the binding regarding optional GPIO
+* Reorder patches so bindings are changed beforehand
+* Add small fixes from Sam's review
 
-Reviewed-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Thank you!
+Alexander Stein (3):
+  drm/bridge: ti-sn65dsi83: Make enable GPIO optional
+  dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc supply bindings
+  drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
 
-Question on maintainers: IEEE 802.3 spec, documents register bits in the
-little-endian order. In the mdio.h we use big-endian, it makes
-comparison with the spec a bit more challenging. May be we should fix
-it?
+Laurent Pinchart (1):
+  dt-bindings: display: bridge: sn65dsi83: Make enable GPIO optional
 
-Regards,
-Oleksij
-
-> ---
->  include/uapi/linux/mdio.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/include/uapi/linux/mdio.h b/include/uapi/linux/mdio.h
-> index bdf77dffa5a4..8ae82fe3aece 100644
-> --- a/include/uapi/linux/mdio.h
-> +++ b/include/uapi/linux/mdio.h
-> @@ -65,6 +65,8 @@
->  #define MDIO_PCS_10GBRT_STAT2	33	/* 10GBASE-R/-T PCS status 2 */
->  #define MDIO_AN_10GBT_CTRL	32	/* 10GBASE-T auto-negotiation control */
->  #define MDIO_AN_10GBT_STAT	33	/* 10GBASE-T auto-negotiation status */
-> +#define MDIO_PMA_10T1L_STAT	2295	/* 10BASE-T1L PMA status */
-> +#define MDIO_PCS_10T1L_CTRL	2278	/* 10BASE-T1L PCS control */
->  
->  /* LASI (Link Alarm Status Interrupt) registers, defined by XENPAK MSA. */
->  #define MDIO_PMA_LASI_RXCTRL	0x9000	/* RX_ALARM control */
-> @@ -262,6 +264,20 @@
->  #define MDIO_AN_10GBT_STAT_MS		0x4000	/* Master/slave config */
->  #define MDIO_AN_10GBT_STAT_MSFLT	0x8000	/* Master/slave config fault */
->  
-> +/* 10BASE-T1L PMA status register. */
-> +#define MDIO_PMA_10T1L_STAT_LINK	0x0001	/* PMA receive link up */
-> +#define MDIO_PMA_10T1L_STAT_FAULT	0x0002	/* Fault condition detected */
-> +#define MDIO_PMA_10T1L_STAT_POLARITY	0x0004	/* Receive polarity is reversed */
-> +#define MDIO_PMA_10T1L_STAT_RECV_FAULT	0x0200	/* Able to detect fault on receive path */
-> +#define MDIO_PMA_10T1L_STAT_EEE		0x0400	/* PHY has EEE ability */
-> +#define MDIO_PMA_10T1L_STAT_LOW_POWER	0x0800	/* PMA has low-power ability */
-> +#define MDIO_PMA_10T1L_STAT_2V4_ABLE	0x1000	/* PHY has 2.4 Vpp operating mode ability */
-> +#define MDIO_PMA_10T1L_STAT_LB_ABLE	0x2000	/* PHY has loopback ability */
-> +
-> +/* 10BASE-T1L PCS control register. */
-> +#define MDIO_PCS_10T1L_CTRL_LB		0x4000	/* Enable PCS level loopback mode */
-> +#define MDIO_PCS_10T1L_CTRL_RESET	0x8000	/* PCS reset */
-> +
->  /* EEE Supported/Advertisement/LP Advertisement registers.
->   *
->   * EEE capability Register (3.20), Advertisement (7.60) and
-> -- 
-> 2.25.1 
-
-
+ .../bindings/display/bridge/ti,sn65dsi83.yaml  |  6 +++++-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c          | 18 ++++++++++++++++--
+ 2 files changed, 21 insertions(+), 3 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.25.1
+
