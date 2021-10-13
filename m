@@ -2,103 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52CAC42CCEB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 23:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5727142CCF4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 23:41:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbhJMVlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 17:41:40 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:49926 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229588AbhJMVlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 17:41:39 -0400
-Received: from [77.244.183.192] (port=64982 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1malyI-002DCh-Aq; Wed, 13 Oct 2021 23:39:34 +0200
-Subject: Re: [PATCH 6/8] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-References: <20211011155615.257529-1-luca@lucaceresoli.net>
- <20211011155615.257529-7-luca@lucaceresoli.net>
- <b2355acf-94a5-1acf-122b-d661c6d9bb1b@canonical.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <5236720c-96b0-3e18-e08f-a5dde982eab5@lucaceresoli.net>
-Date:   Wed, 13 Oct 2021 23:39:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229966AbhJMVnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 17:43:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229641AbhJMVnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 17:43:11 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84290C061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 14:41:07 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id pi19-20020a17090b1e5300b0019fdd3557d3so3280331pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 14:41:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WLc6IrRUzN1NvABbj03b/K9mQI1mZYYIfJGl67UGN1E=;
+        b=jDN/84phO6U6OaSVcThD15QLRd2ZqbAZo/8MbgCsAWe0rbQalRTW6L7kXvj6dKFnDc
+         Y8Z5L1EwDO/zlr8NNf6AXf/6y27lmdnHqn83Kg9p9yWsNj9NmvEFGJpiAZhd60h7stRo
+         G0dcmsDAPKzxg9a4reONasgPPFLjKSOdjl9tmetSamocgxCfsRzWe+vrv4nZlNd5GQmc
+         Um+3J/v85kAxFLVoQOuRDv8vnaxFgPGbhlbSXwg4Jj9Ltdcr0LVqNlNSkhfcvyoY1btE
+         IcnH0RBxKrQn37/gJEwgQbgXtt3BIJvri4wcPXfPvT2ZcyO/HSAgYZMrOSm6lNoONadY
+         dX6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WLc6IrRUzN1NvABbj03b/K9mQI1mZYYIfJGl67UGN1E=;
+        b=Q4s1ZKAvIchLML2vw/AynSwTePlrkgtAJAI9XF3LB737W8cB3tTK1e3x3dnLv+V1ey
+         jn03Hm2r8ncwg3TafQJSP83CG+UvPIrwHC2LxFhGLHi3HVknvVXV3KUG8VtVwcGBeBmw
+         kQ2+iZAhoZ90GlrXU0ivswSoI/gPV0n8i2Gjz8PBtGU+XWyJDBlEJj/ppwJ17A0MdOpM
+         fqIvvI/iOMkB6BHh/uzxer1t/mi5CGzZ6ShuyWRPWBBkNp5pCvViXOZbwXCcsCXm6Cae
+         RVtJ48hB1zZPJKa7xcOzNLFGjxkMC0A5oiC+ybBlMZB9ifJOv87c3chPYKeV0ziAaRjC
+         xVHg==
+X-Gm-Message-State: AOAM533wE7+ACUoRkcLBZVwwWqUVII96FETCmpKSIxOlzFvWDxJiycdj
+        T5PsKm0Fq0p5XCwoNqU5PlWZkg==
+X-Google-Smtp-Source: ABdhPJy9LDPdllIYUeK920uW66OjzrCDW6L9SnC73V58zpH3rwB2+vHPLI64AB5nRJs+sl8PMx6vTg==
+X-Received: by 2002:a17:903:11c9:b0:13b:9a01:aa27 with SMTP id q9-20020a17090311c900b0013b9a01aa27mr1466854plh.46.1634161267013;
+        Wed, 13 Oct 2021 14:41:07 -0700 (PDT)
+Received: from x1 ([2601:1c2:1080:1950:bd36:67b6:1d6:68ff])
+        by smtp.gmail.com with ESMTPSA id n21sm398999pfv.115.2021.10.13.14.41.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Oct 2021 14:41:06 -0700 (PDT)
+Date:   Wed, 13 Oct 2021 14:41:03 -0700
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Benoit Cousson <bcousson@baylibre.com>,
+        Dave Gerlach <d-gerlach@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: am335x: Add rtc node as system-power-controller
+Message-ID: <20211013214103.GA10628@x1>
+References: <20211012191311.879838-1-dfustini@baylibre.com>
+ <YWaJfofs8QAtBnVu@hovoldconsulting.com>
 MIME-Version: 1.0
-In-Reply-To: <b2355acf-94a5-1acf-122b-d661c6d9bb1b@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YWaJfofs8QAtBnVu@hovoldconsulting.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Oct 13, 2021 at 09:23:42AM +0200, Johan Hovold wrote:
+> On Tue, Oct 12, 2021 at 12:13:12PM -0700, Drew Fustini wrote:
+> > From: Keerthy <j-keerthy@ti.com>
+> > 
+> > PMIC_PWR_EN pin of RTC on am335x-evm, bone, and boneblack is connected to
+> > PMIC on board, so flag rtc node as system-power-controller to allow
+> > software to poweroff boards.
+> 
+> The "system-power-controller" property is already set in
+> bone-common.dtsi since
+> 
+> 	2876cc4a773c ("ARM: dts: Move most of am335x-boneblack.dts to am335x-boneblack-common.dtsi")
+> 
+> so this probably only affects am335x-evm and that should be reflected in
+> the commit message.
+> 
+> Also, should you now remove the property from boneblack-common? Or just
+> add it to am335x-evm instead?
 
-On 12/10/21 10:32, Krzysztof Kozlowski wrote:
-> On 11/10/2021 17:56, Luca Ceresoli wrote:
->> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
->> watchdog only.
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->> ---
->>  MAINTAINERS                  |   2 +
->>  drivers/mfd/Kconfig          |  14 ++++
->>  drivers/mfd/Makefile         |   1 +
->>  drivers/mfd/max77714.c       | 151 +++++++++++++++++++++++++++++++++++
->>  include/linux/mfd/max77714.h |  68 ++++++++++++++++
->>  5 files changed, 236 insertions(+)
->>  create mode 100644 drivers/mfd/max77714.c
->>  create mode 100644 include/linux/mfd/max77714.h
->>
-> 
-> (...)
-> 
->> +
->> +static const struct of_device_id max77714_dt_match[] = {
->> +	{ .compatible = "maxim,max77714" },
->> +	{},
->> +};
-> 
-> When converting to module - don't forget the MODULE_DEVICE_TABLE
-> 
->> +
->> +static struct i2c_driver max77714_driver = {
->> +	.driver = {
->> +		.name = "max77714",
->> +		.of_match_table = of_match_ptr(max77714_dt_match),
-> 
-> Kbuild robot pointed it out - of_matc_ptr should not be needed, even for
-> compile testing without OF.
+Thank you for reviewing. Yes, I should improve the commit message as the
+BeagleBone Black is already covered for the rtc system-power-controller
+in am335x-boneblack-common.dtsi.  
 
-I wonder whether it's better to add '#ifdef CONFIG_OF / #endif' around
-the struct of_device_id declaration. I think it's what most drivers do,
-even though I tend to prefer not adding #ifdefs making code less clean
-only for COMPILE_TESTING.
+I believe it would be ok to remove system-power-controller from 
+am335x-boneblack-common.dtsi and have it in am335x-bone-common.dtsi.
 
--- 
-Luca
+These are the files that include am335x-boneblack-common.dtsi:
+arch/arm/boot/dts/am335x-boneblack-wireless.dts
+arch/arm/boot/dts/am335x-boneblack.dts
+arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
+arch/arm/boot/dts/am335x-sancloud-bbe.dts
+
+But they all also include am335x-bone-common.dtsi.
+
+However, I just noticed that am335x-evm.dts does not include either
+am335x-boneblack-common.dtsi or am335x-boneblack-common.dtsi. Thus
+rtc system-power-controller should be directly inserted into
+am335x-evm.dts.
+
+I considered just moving system-power-controller to the rtc node in
+am33xx-l4.dtsi but I don't think that would be correct as this would not
+be valid for all am33xx devices.
+
+Does that seem correct to you?
+
+Thank you,
+Drew
