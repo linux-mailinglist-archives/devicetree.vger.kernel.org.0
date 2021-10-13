@@ -2,346 +2,665 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14ABB42B9DA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB2A42B9E4
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232769AbhJMIHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 04:07:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
+        id S233251AbhJMIJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 04:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233368AbhJMIHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 04:07:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0719EC061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 01:05:33 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1maZGV-0000iH-B5; Wed, 13 Oct 2021 10:05:31 +0200
-Received: from mtr by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1maZGU-0006do-9A; Wed, 13 Oct 2021 10:05:30 +0200
-Date:   Wed, 13 Oct 2021 10:05:30 +0200
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v5 3/3] media: i2c: isl7998x: Add driver for Intersil
- ISL7998x
-Message-ID: <20211013080530.GB31981@pengutronix.de>
-Mail-Followup-To: Michael Tretter <m.tretter@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>, kernel@pengutronix.de
-References: <20211012084150.755160-1-m.tretter@pengutronix.de>
- <20211012084150.755160-4-m.tretter@pengutronix.de>
- <f4fca151a04b1c30fca7b2f40dacb2a3b4b4f2c6.camel@pengutronix.de>
+        with ESMTP id S238743AbhJMIJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 04:09:37 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5189CC061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 01:07:34 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id i24so7942159lfj.13
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 01:07:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/TM5GwDv8NroYF6yRzu2LdJ5UTHqxzCh/VTQkYC9Rtw=;
+        b=RpvgoDVLdHogB/2KR1AXZAAA+FjrBwFLJpDjj+HUp/EVwuNdnl1ZRTT3nSYrDG/t2Z
+         9Mvfl4KKRTwq5ycuWM3k2t6G1c9U8Yd8mddWxuItLKGxKUDHxc77AZnxDef7ls8mxv/+
+         G4hnoZOvD8w4VbJBXku2DWul13ezpThT6/gjJyewG0ElKFnwzKSBKTYdLRX1KZa3tsiZ
+         2TWqEH1/eo7nc8lIs9hSMeAG9v7z73/X35ieA3vN4cbx1LBJ2jk7mYaujv9UZcW3KoQh
+         Pu+As8yr1zVczvFEA10lqwgHAPx8nLG3S9Sc/aw1BFCM/SZNXYMwC2UwoWtgw89HDMLE
+         OudA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/TM5GwDv8NroYF6yRzu2LdJ5UTHqxzCh/VTQkYC9Rtw=;
+        b=IDSloJj1VarhsQtdd1SLUwNpQL2SrAQJD87XHSgMoaPkVju3sVFTKrWas1dTxP6UQH
+         XwgDI+CYjHZg4dz9IsS3OXOTDNqLGPO7X5q7DSt8pqVj6axVZF6jJnL7emqPBm9jCtgl
+         v2qmqfemRg8TJef7h/iWCiqXZBOz3xbS9FQGhZbRz2+wpBBM88x4WQmpgw1lamuq6tf2
+         0qjQKc5TBj94wQgQQApgKHS7/TP7EOf6AfTYGkA2rZDA2i4fxzgMDMwtmJXSQAY76yw2
+         7CUBs+VNKWemJ8f6RxX0NswA1Q1JjDkiMfLcCkgiE7xNUmTd6bWLKySSUMhQSGOot687
+         nBrA==
+X-Gm-Message-State: AOAM532pFjSY7Pdt00INM2yKx6ZNhPURTWxY0PuMpmPDXBFUF8pjVf/N
+        7Lh6n4ApWJhXQrx4cjeuO4jJ74P2KNTZz2eKxeZr2g==
+X-Google-Smtp-Source: ABdhPJwefnvae/S7fmJDSykZmRiuSbFvw3UiA5BoK9O6xt8X4WVonh2ptTDgrrCcKjmgZvefhzK2nnr/LLKtiG3zO5Y=
+X-Received: by 2002:a05:6512:3503:: with SMTP id h3mr37770257lfs.513.1634112451238;
+ Wed, 13 Oct 2021 01:07:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <f4fca151a04b1c30fca7b2f40dacb2a3b4b4f2c6.camel@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:39:33 up 237 days, 11:03, 137 users,  load average: 0.16, 0.20,
- 0.26
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211006071546.2540920-1-jens.wiklander@linaro.org> <20211006071546.2540920-7-jens.wiklander@linaro.org>
+In-Reply-To: <20211006071546.2540920-7-jens.wiklander@linaro.org>
+From:   Sumit Garg <sumit.garg@linaro.org>
+Date:   Wed, 13 Oct 2021 13:37:19 +0530
+Message-ID: <CAFA6WYPB2hNMgdK+BkZFhvEqmyrbYH8i1b97v-6pSWM0hECW8g@mail.gmail.com>
+Subject: Re: [PATCH v6 6/6] optee: add asynchronous notifications
+To:     Jens Wiklander <jens.wiklander@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 15:27:11 +0200, Philipp Zabel wrote:
-> On Tue, 2021-10-12 at 10:41 +0200, Michael Tretter wrote:
-> > From: Marek Vasut <marex@denx.de>
-> > 
-> > Add driver for the Intersil ISL7998x Analog to MIPI CSI-2/BT656 decoder.
-> > This chip supports 1/2/4 analog video inputs and converts them into
-> > 1/2/4 VCs in MIPI CSI2 stream.
-> > 
-> > This driver currently supports ISL79987 and both 720x480 and 720x576
-> > resolutions, however as per specification, all inputs must use the
-> > same resolution and standard. The only supported pixel format is now
-> > YUYV/YUV422. The chip should support RGB565 on the CSI2 as well, but
-> > this is currently unsupported.
-> > 
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > To: linux-media@vger.kernel.org
-> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > ---
-> > Changelog:
-> > 
-> > v5: none
-> > 
-> > v4:
-> > 
-> > - fix lines over 80 chars where applicable
-> > - fix possible NULL pointer access in link_freq
-> > - initialize bus type with CSI2_DPHY
-> > - iterate over pads instead of hard coded 4
-> > - merge power_{on,off} functions into resume,suspend
-> > - switch to v4l2_subdev_state
-> > - report field order based on video standard
-> > - add error message for timeout
-> > - simplify dev_dbg statement in update_std
-> > - call v4l2_ctrl_handler_setup
-> > - don't set control if pm_runtime is not enabled
-> > - fix YUV422 byte order
-> > - switch to pre_streamon callback for LP11 mode
-> > 
-> > v3:
-> > 
-> > - follow dt binding change: pd-gpios -> powerdown-gpios
-> > 
-> > v2:
-> > 
-> > - general cleanup
-> > - remove isl7998x_g_mbus_config function
-> > - implement enum_frame_size function
-> > - replace msleep with usleep_range
-> > - rework set_fmt/get_fmt functions
-> > - calculate number of inputs using number of input ports
-> > - switch to runtime_pm
-> > - add reset gpio
-> > - add adv_debug support
-> > - add MAINTAINERS entry
-> > ---
-> >  MAINTAINERS                  |    8 +
-> >  drivers/media/i2c/Kconfig    |    9 +
-> >  drivers/media/i2c/Makefile   |    1 +
-> >  drivers/media/i2c/isl7998x.c | 1416 ++++++++++++++++++++++++++++++++++
-> >  4 files changed, 1434 insertions(+)
-> >  create mode 100644 drivers/media/i2c/isl7998x.c
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index ee91c5472bc1..60449758d40b 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -9739,6 +9739,14 @@ L:	linux-iio@vger.kernel.org
-> >  F:	Documentation/devicetree/bindings/counter/interrupt-counter.yaml
-> >  F:	drivers/counter/interrupt-cnt.c
-> >  
-> > +INTERSIL ISL7998X VIDEO DECODER DRIVER
-> > +M:	Michael Tretter <m.tretter@pengutronix.de>
-> > +R:	Pengutronix Kernel Team <kernel@pengutronix.de>
-> > +L:	linux-media@vger.kernel.org
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> > +F:	drivers/media/i2c/isl7998x.c
-> > +
-> >  INVENSENSE ICM-426xx IMU DRIVER
-> >  M:	Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>
-> >  L:	linux-iio@vger.kernel.org
-> > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > index adb348aa8396..ab2d9d45af0e 100644
-> > --- a/drivers/media/i2c/Kconfig
-> > +++ b/drivers/media/i2c/Kconfig
-> > @@ -325,6 +325,15 @@ config VIDEO_BT866
-> >  	  To compile this driver as a module, choose M here: the
-> >  	  module will be called bt866.
-> >  
-> > +config VIDEO_ISL7998X
-> > +	tristate "Intersil ISL7998x video decoder"
-> > +	depends on VIDEO_V4L2 && I2C
-> > +	depends on OF_GPIO
-> > +	select VIDEO_V4L2_SUBDEV_API
-> 
-> This is missing a select MEDIA_CONTROLLER, which VIDEO_V4L2_SUBDEV_API
-> depends on. As is, the driver doesn't compile without MEDIA_CONTROLLER
-> enabled.
+On Wed, 6 Oct 2021 at 12:46, Jens Wiklander <jens.wiklander@linaro.org> wrote:
+>
+> Adds support for asynchronous notifications from secure world to normal
+> world. This allows a design with a top half and bottom half type of
+> driver where the top half runs in secure interrupt context and a
+> notifications tells normal world to schedule a yielding call to do the
+> bottom half processing.
+>
+> The protocol is defined in optee_msg.h optee_rpc_cmd.h and optee_smc.h.
+>
+> A notification consists of a 32-bit value which normal world can
+> retrieve using a fastcall into secure world. The value
+> OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF (0) has a special meaning.
+> When this value is sent it means that normal world is supposed to make a
+> yielding call OPTEE_MSG_CMD_DO_BOTTOM_HALF.
+>
+> Notification capability is negotiated while the driver is initialized.
+> If both sides supports these notifications then they are enabled.
+>
+> An interrupt is used to notify the driver that there are asynchronous
+> notifications pending. The maximum needed notification value is
+> communicated at this stage. This allows scaling up when needed.
+>
+> Acked-by: Ard Biesheuvel <ardb@kernel.org>
+> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
+> ---
+>  drivers/tee/optee/call.c          |  27 ++++++++
+>  drivers/tee/optee/core.c          |  83 ++++++++++++++++-------
+>  drivers/tee/optee/notif.c         | 109 ++++++++++++++++++++++++++++--
+>  drivers/tee/optee/optee_msg.h     |   9 +++
+>  drivers/tee/optee/optee_private.h |   6 +-
+>  drivers/tee/optee/optee_smc.h     |  75 +++++++++++++++++++-
+>  6 files changed, 277 insertions(+), 32 deletions(-)
+>
+> diff --git a/drivers/tee/optee/call.c b/drivers/tee/optee/call.c
+> index 945f03da0223..e428e0e9a3af 100644
+> --- a/drivers/tee/optee/call.c
+> +++ b/drivers/tee/optee/call.c
+> @@ -392,6 +392,33 @@ int optee_cancel_req(struct tee_context *ctx, u32 cancel_id, u32 session)
+>         return 0;
+>  }
+>
+> +static int simple_call_with_arg(struct tee_context *ctx, u32 cmd)
+> +{
+> +       struct optee_msg_arg *msg_arg;
+> +       phys_addr_t msg_parg;
+> +       struct tee_shm *shm;
+> +
+> +       shm = get_msg_arg(ctx, 0, &msg_arg, &msg_parg);
+> +       if (IS_ERR(shm))
+> +               return PTR_ERR(shm);
+> +
+> +       msg_arg->cmd = cmd;
+> +       optee_do_call_with_arg(ctx, msg_parg);
+> +
+> +       tee_shm_free(shm);
+> +       return 0;
+> +}
+> +
+> +int optee_do_bottom_half(struct tee_context *ctx)
+> +{
+> +       return simple_call_with_arg(ctx, OPTEE_MSG_CMD_DO_BOTTOM_HALF);
+> +}
+> +
+> +int optee_stop_async_notif(struct tee_context *ctx)
+> +{
+> +       return simple_call_with_arg(ctx, OPTEE_MSG_CMD_STOP_ASYNC_NOTIF);
 
-I will select MEDIA_CONTROLLER in v6.
+Is there any particular reason that this isn't a fast call similar to
+OPTEE_SMC_ENABLE_ASYNC_NOTIF?
 
-> 
-> [...]
-> > diff --git a/drivers/media/i2c/isl7998x.c b/drivers/media/i2c/isl7998x.c
-> > new file mode 100644
-> > index 000000000000..72f5ca63f810
-> > --- /dev/null
-> > +++ b/drivers/media/i2c/isl7998x.c
-> > @@ -0,0 +1,1416 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Intersil ISL7998x analog to MIPI CSI-2 or BT.656 decoder driver.
-> > + *
-> > + * Copyright (C) 2018-2019 Marek Vasut <marex@denx.de>
-> > + * Copyright (C) 2021 Michael Tretter <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/gpio.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/log2.h>
-> 
-> Is this header used for anything?
+> +}
+> +
+>  /**
+>   * optee_enable_shm_cache() - Enables caching of some shared memory allocation
+>   *                           in OP-TEE
+> diff --git a/drivers/tee/optee/core.c b/drivers/tee/optee/core.c
+> index 8531184f98f4..ccafd7151b45 100644
+> --- a/drivers/tee/optee/core.c
+> +++ b/drivers/tee/optee/core.c
+> @@ -8,9 +8,12 @@
+>  #include <linux/arm-smccc.h>
+>  #include <linux/crash_dump.h>
+>  #include <linux/errno.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/io.h>
+> +#include <linux/irqdomain.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+> @@ -355,6 +358,17 @@ static const struct tee_desc optee_supp_desc = {
+>         .flags = TEE_DESC_PRIVILEGED,
+>  };
+>
+> +static int enable_async_notif(optee_invoke_fn *invoke_fn)
+> +{
+> +       struct arm_smccc_res res;
+> +
+> +       invoke_fn(OPTEE_SMC_ENABLE_ASYNC_NOTIF, 0, 0, 0, 0, 0, 0, 0, &res);
+> +
+> +       if (res.a0)
+> +               return -EINVAL;
+> +       return 0;
+> +}
+> +
+>  static bool optee_msg_api_uid_is_optee_api(optee_invoke_fn *invoke_fn)
+>  {
+>         struct arm_smccc_res res;
+> @@ -404,7 +418,7 @@ static bool optee_msg_api_revision_is_compatible(optee_invoke_fn *invoke_fn)
+>  }
+>
+>  static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
+> -                                           u32 *sec_caps)
+> +                                           u32 *sec_caps, u32 *max_notif_value)
+>  {
+>         union {
+>                 struct arm_smccc_res smccc;
+> @@ -427,6 +441,7 @@ static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
+>                 return false;
+>
+>         *sec_caps = res.result.capabilities;
+> +       *max_notif_value = res.result.max_notif_value;
+>         return true;
+>  }
+>
+> @@ -630,6 +645,7 @@ static int optee_probe(struct platform_device *pdev)
+>         struct optee *optee = NULL;
+>         void *memremaped_shm = NULL;
+>         struct tee_device *teedev;
+> +       u32 max_notif_value;
+>         u32 sec_caps;
+>         int rc;
+>
+> @@ -659,7 +675,8 @@ static int optee_probe(struct platform_device *pdev)
+>                 return -EINVAL;
+>         }
+>
+> -       if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps)) {
+> +       if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps,
+> +                                            &max_notif_value)) {
+>                 pr_warn("capabilities mismatch\n");
+>                 return -EINVAL;
+>         }
+> @@ -682,7 +699,7 @@ static int optee_probe(struct platform_device *pdev)
+>         optee = kzalloc(sizeof(*optee), GFP_KERNEL);
+>         if (!optee) {
+>                 rc = -ENOMEM;
+> -               goto err;
+> +               goto err_free_pool;
+>         }
+>
+>         optee->invoke_fn = invoke_fn;
+> @@ -691,24 +708,24 @@ static int optee_probe(struct platform_device *pdev)
+>         teedev = tee_device_alloc(&optee_desc, NULL, pool, optee);
+>         if (IS_ERR(teedev)) {
+>                 rc = PTR_ERR(teedev);
+> -               goto err;
+> +               goto err_free_optee;
+>         }
+>         optee->teedev = teedev;
+>
+>         teedev = tee_device_alloc(&optee_supp_desc, NULL, pool, optee);
+>         if (IS_ERR(teedev)) {
+>                 rc = PTR_ERR(teedev);
+> -               goto err;
+> +               goto err_unreg_teedev;
+>         }
+>         optee->supp_teedev = teedev;
+>
+>         rc = tee_device_register(optee->teedev);
+>         if (rc)
+> -               goto err;
+> +               goto err_unreg_supp_teedev;
+>
+>         rc = tee_device_register(optee->supp_teedev);
+>         if (rc)
+> -               goto err;
+> +               goto err_unreg_supp_teedev;
+>
+>         mutex_init(&optee->call_queue.mutex);
+>         INIT_LIST_HEAD(&optee->call_queue.waiters);
+> @@ -717,10 +734,31 @@ static int optee_probe(struct platform_device *pdev)
+>         optee->pool = pool;
+>
+>         platform_set_drvdata(pdev, optee);
+> -       rc = optee_notif_init(optee, 255);
+> -       if (rc) {
+> -               optee_remove(pdev);
+> -               return rc;
+> +
+> +       if (sec_caps & OPTEE_SMC_SEC_CAP_ASYNC_NOTIF) {
+> +               unsigned int irq;
+> +
+> +               rc = platform_get_irq(pdev, 0);
+> +               if (rc < 0) {
+> +                       pr_err("platform_get_irq: ret %d\n", rc);
+> +                       goto err_unreg_supp_teedev;
+> +               }
+> +               irq = rc;
+> +
+> +               rc = optee_notif_init(optee, max_notif_value, irq);
+> +               if (rc) {
+> +                       irq_dispose_mapping(irq);
+> +                       optee_remove(pdev);
+> +                       return rc;
+> +               }
+> +               enable_async_notif(optee->invoke_fn);
+> +               pr_info("Asynchronous notifications enabled\n");
+> +       } else {
+> +               rc = optee_notif_init(optee, 255, 0);
+> +               if (rc) {
+> +                       optee_remove(pdev);
 
-Currently not. This might be an artifact of a previous version. I will remove
-the header.
+IMO, multiple usage of optee_remove() in the error path makes error
+handling a bit complex. I liked the way you tagged the error paths. So
+can't we get rid of optee_remove() from the error path and handle
+errors based on tagged error paths only?
 
-> 
-> [...]
-> > +struct isl7998x {
-> > +	struct v4l2_subdev		subdev;
-> > +	struct regmap			*regmap;
-> > +	struct gpio_desc		*pd_gpio;
-> > +	struct gpio_desc		*rstb_gpio;
-> > +	unsigned int			nr_mipi_lanes;
-> > +	u32				nr_inputs;
-> > +
-> > +	const struct isl7998x_mode	*mode;
-> > +	const struct isl7998x_datafmt	*fmt;
-> > +#ifdef CONFIG_MEDIA_CONTROLLER
-> 
-> This is not required if the driver selects MEDIA_CONTROLLER.
-> To make it buildable without MEDIA_CONTROLLER, a few more #ifdefs would
-> be required in other places.
+> +                       return rc;
+> +               }
+>         }
+>
+>         /*
+> @@ -745,20 +783,15 @@ static int optee_probe(struct platform_device *pdev)
+>
+>         pr_info("initialized driver\n");
+>         return 0;
+> -err:
+> -       if (optee) {
+> -               /*
+> -                * tee_device_unregister() is safe to call even if the
+> -                * devices hasn't been registered with
+> -                * tee_device_register() yet.
+> -                */
+> -               tee_device_unregister(optee->supp_teedev);
+> -               tee_device_unregister(optee->teedev);
+> -               kfree(optee);
+> -       }
+> -       if (pool)
+> -               tee_shm_pool_free(pool);
+> -       if (memremaped_shm)
+> +err_unreg_supp_teedev:
+> +       tee_device_unregister(optee->supp_teedev);
+> +err_unreg_teedev:
+> +       tee_device_unregister(optee->teedev);
+> +err_free_optee:
+> +       kfree(optee);
+> +err_free_pool:
+> +       tee_shm_pool_free(pool);
+> +       if (optee->memremaped_shm)
+>                 memunmap(memremaped_shm);
+>         return rc;
+>  }
+> diff --git a/drivers/tee/optee/notif.c b/drivers/tee/optee/notif.c
+> index a28fa03dcd0e..2c888ad87451 100644
+> --- a/drivers/tee/optee/notif.c
+> +++ b/drivers/tee/optee/notif.c
+> @@ -7,10 +7,14 @@
+>
+>  #include <linux/arm-smccc.h>
+>  #include <linux/errno.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irqdomain.h>
+>  #include <linux/slab.h>
+>  #include <linux/spinlock.h>
+>  #include <linux/tee_drv.h>
+>  #include "optee_private.h"
+> +#include "optee_smc.h"
+> +#include "optee_rpc_cmd.h"
+>
+>  struct notif_entry {
+>         struct list_head link;
+> @@ -18,6 +22,54 @@ struct notif_entry {
+>         u_int key;
+>  };
+>
+> +static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
+> +                                bool *value_pending)
+> +{
+> +       struct arm_smccc_res res;
+> +
+> +       invoke_fn(OPTEE_SMC_GET_ASYNC_NOTIF_VALUE, 0, 0, 0, 0, 0, 0, 0, &res);
+> +
+> +       if (res.a0)
+> +               return 0;
+> +       *value_valid = (res.a2 & OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID);
+> +       *value_pending = (res.a2 & OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING);
+> +       return res.a1;
+> +}
+> +
+> +static irqreturn_t notif_irq_handler(int irq, void *dev_id)
+> +{
+> +       struct optee *optee = dev_id;
+> +       bool do_bottom_half = false;
+> +       bool value_valid;
+> +       bool value_pending;
+> +       u32 value;
+> +
+> +       do {
+> +               value = get_async_notif_value(optee->invoke_fn, &value_valid,
+> +                                             &value_pending);
+> +               if (!value_valid)
+> +                       break;
+> +
+> +               if (value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF)
+> +                       do_bottom_half = true;
+> +               else
+> +                       optee_notif_send(optee, value);
+> +       } while (value_pending);
+> +
+> +       if (do_bottom_half)
+> +               return IRQ_WAKE_THREAD;
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t notif_irq_thread_fn(int irq, void *dev_id)
+> +{
+> +       struct optee *optee = dev_id;
+> +
+> +       optee_do_bottom_half(optee->notif.ctx);
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+>  static bool have_key(struct optee *optee, u_int key)
+>  {
+>         struct notif_entry *entry;
+> @@ -106,20 +158,69 @@ int optee_notif_send(struct optee *optee, u_int key)
+>         return 0;
+>  }
+>
+> -int optee_notif_init(struct optee *optee, u_int max_key)
+> +int optee_notif_init(struct optee *optee, u_int max_key, u_int irq)
+>  {
+> +       struct tee_context *ctx;
+> +       int rc;
+> +
+> +       if (irq) {
+> +               ctx = teedev_open(optee->teedev);
+> +               if (IS_ERR(ctx))
+> +                       return PTR_ERR(ctx);
+> +
+> +               optee->notif.ctx = ctx;
+> +       }
+> +
+>         spin_lock_init(&optee->notif.lock);
+>         INIT_LIST_HEAD(&optee->notif.db);
+>         optee->notif.bitmap = bitmap_zalloc(max_key, GFP_KERNEL);
+> -       if (!optee->notif.bitmap)
+> -               return -ENOMEM;
+> -
+> +       if (!optee->notif.bitmap) {
+> +               rc = -ENOMEM;
+> +               goto err_close_ctx;
+> +       }
+>         optee->notif.max_key = max_key;
+>
+> +       if (irq) {
+> +               rc = request_threaded_irq(irq, notif_irq_handler,
+> +                                         notif_irq_thread_fn,
+> +                                         0, "optee_notification", optee);
+> +               if (rc)
+> +                       goto err_free_bitmap;
+> +
+> +               optee->notif.irq = irq;
+> +       }
+> +
+>         return 0;
+> +
+> +err_free_bitmap:
+> +       kfree(optee->notif.bitmap);
+> +err_close_ctx:
+> +       teedev_close_context(optee->notif.ctx);
+> +       optee->notif.ctx = NULL;
+> +
+> +       return rc;
+>  }
+>
+>  void optee_notif_uninit(struct optee *optee)
+>  {
+> +       if (optee->notif.ctx) {
+> +               optee_stop_async_notif(optee->notif.ctx);
+> +               if (optee->notif.irq) {
+> +                       free_irq(optee->notif.irq, optee);
+> +                       irq_dispose_mapping(optee->notif.irq);
+> +               }
+> +
+> +               /*
+> +                * The thread normally working with optee->notif.ctx was
+> +                * stopped with free_irq() above.
+> +                *
+> +                * Note we're not using teedev_close_context() or
+> +                * tee_client_close_context() since we have already called
+> +                * tee_device_put() while initializing to avoid a circular
+> +                * reference counting.
+> +                */
+> +               teedev_close_context(optee->notif.ctx);
+> +       }
+> +
+>         kfree(optee->notif.bitmap);
+>  }
+> diff --git a/drivers/tee/optee/optee_msg.h b/drivers/tee/optee/optee_msg.h
+> index e3d72d09c484..3e09c8386e46 100644
+> --- a/drivers/tee/optee/optee_msg.h
+> +++ b/drivers/tee/optee/optee_msg.h
+> @@ -293,6 +293,13 @@ struct optee_msg_arg {
+>   * [in] param[0].u.rmem.shm_ref                holds shared memory reference
+>   * [in] param[0].u.rmem.offs           0
+>   * [in] param[0].u.rmem.size           0
+> + *
+> + * OPTEE_MSG_CMD_DO_BOTTOM_HALF does the scheduled bottom half processing
+> + * of a driver.
+> + *
+> + * OPTEE_MSG_CMD_STOP_ASYNC_NOTIF informs secure world that from now is
+> + * normal world unable to process asynchronous notifications. Typically
+> + * used when the driver is shut down.
+>   */
+>  #define OPTEE_MSG_CMD_OPEN_SESSION     0
+>  #define OPTEE_MSG_CMD_INVOKE_COMMAND   1
+> @@ -300,6 +307,8 @@ struct optee_msg_arg {
+>  #define OPTEE_MSG_CMD_CANCEL           3
+>  #define OPTEE_MSG_CMD_REGISTER_SHM     4
+>  #define OPTEE_MSG_CMD_UNREGISTER_SHM   5
+> +#define OPTEE_MSG_CMD_DO_BOTTOM_HALF   6
+> +#define OPTEE_MSG_CMD_STOP_ASYNC_NOTIF 7
+>  #define OPTEE_MSG_FUNCID_CALL_WITH_ARG 0x0004
+>
+>  #endif /* _OPTEE_MSG_H */
+> diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
+> index 76a16d9b6cf4..f62a16935c49 100644
+> --- a/drivers/tee/optee/optee_private.h
+> +++ b/drivers/tee/optee/optee_private.h
+> @@ -37,6 +37,8 @@ struct optee_call_queue {
+>
+>  struct optee_notif {
+>         u_int max_key;
+> +       unsigned int irq;
+> +       struct tee_context *ctx;
+>         /* Serializes access to the elements below in this struct */
+>         spinlock_t lock;
+>         struct list_head db;
+> @@ -132,7 +134,7 @@ void optee_handle_rpc(struct tee_context *ctx, struct optee_rpc_param *param,
+>                       struct optee_call_ctx *call_ctx);
+>  void optee_rpc_finalize_call(struct optee_call_ctx *call_ctx);
+>
+> -int optee_notif_init(struct optee *optee, u_int max_key);
+> +int optee_notif_init(struct optee *optee, u_int max_key, u_int irq);
+>  void optee_notif_uninit(struct optee *optee);
+>  int optee_notif_wait(struct optee *optee, u_int key);
+>  int optee_notif_send(struct optee *optee, u_int key);
+> @@ -159,6 +161,8 @@ int optee_close_session(struct tee_context *ctx, u32 session);
+>  int optee_invoke_func(struct tee_context *ctx, struct tee_ioctl_invoke_arg *arg,
+>                       struct tee_param *param);
+>  int optee_cancel_req(struct tee_context *ctx, u32 cancel_id, u32 session);
+> +int optee_do_bottom_half(struct tee_context *ctx);
+> +int optee_stop_async_notif(struct tee_context *ctx);
+>
+>  void optee_enable_shm_cache(struct optee *optee);
+>  void optee_disable_shm_cache(struct optee *optee);
+> diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
+> index 80eb763a8a80..c6eec6b6febf 100644
+> --- a/drivers/tee/optee/optee_smc.h
+> +++ b/drivers/tee/optee/optee_smc.h
+> @@ -107,6 +107,12 @@ struct optee_smc_call_get_os_revision_result {
+>  /*
+>   * Call with struct optee_msg_arg as argument
+>   *
+> + * When calling this function normal world has a few responsibilities:
+> + * 1. It must be able to handle eventual RPCs
+> + * 2. Non-secure interrupts should not be masked
+> + * 3. If asynchronous notifications has be negotiated successfully, then
 
-See above.
+nit: s/has be/have been/
 
-> 
-> > +	struct media_pad		pads[ISL7998x_NUM_PADS];
-> > +#endif
-> > +
-> > +	struct v4l2_ctrl_handler	ctrl_handler;
-> > +	/* protect ctrl_handler */
-> > +	struct mutex			ctrl_mutex;
-> > +
-> > +	/* V4L2 Controls */
-> > +	struct v4l2_ctrl		*link_freq;
-> > +	u8				test_pattern;
-> > +	u8				test_pattern_bars;
-> > +	u8				test_pattern_chans;
-> > +	u8				test_pattern_color;
-> > +};
-> [...]
-> > +static int isl7998x_wait_power_on(struct isl7998x *isl7998x)
-> > +{
-> > +	struct device *dev = isl7998x->subdev.dev;
-> > +	unsigned int retry;
-> > +	u32 chip_id;
-> > +	int ret = -ETIMEDOUT;
-> > +
-> > +	for (retry = 10; ret && retry > 0; retry--) {
-> > +		ret = regmap_read(isl7998x->regmap,
-> > +				  ISL7998x_REG_P0_PRODUCT_ID_CODE, &chip_id);
-> > +		usleep_range(1000, 2000);
-> > +	}
-> 
-> Consider using regmap_read_poll_timeout() here.
+> + *    asynchronous notifications should be unmasked during this call.
+> + *
+>   * Call register usage:
+>   * a0  SMC Function ID, OPTEE_SMC*CALL_WITH_ARG
+>   * a1  Upper 32 bits of a 64-bit physical pointer to a struct optee_msg_arg
+> @@ -195,7 +201,8 @@ struct optee_smc_get_shm_config_result {
+>   * Normal return register usage:
+>   * a0  OPTEE_SMC_RETURN_OK
+>   * a1  bitfield of secure world capabilities OPTEE_SMC_SEC_CAP_*
+> - * a2-7        Preserved
+> + * a2  The maximum secure world notification number
+> + * a3-7        Preserved
+>   *
+>   * Error return register usage:
+>   * a0  OPTEE_SMC_RETURN_ENOTAVAIL, can't use the capabilities from normal world
+> @@ -218,6 +225,8 @@ struct optee_smc_get_shm_config_result {
+>  #define OPTEE_SMC_SEC_CAP_VIRTUALIZATION       BIT(3)
+>  /* Secure world supports Shared Memory with a NULL reference */
+>  #define OPTEE_SMC_SEC_CAP_MEMREF_NULL          BIT(4)
+> +/* Secure world supports asynchronous notification of normal world */
+> +#define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF          BIT(5)
+>
+>  #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES 9
+>  #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
+> @@ -226,8 +235,8 @@ struct optee_smc_get_shm_config_result {
+>  struct optee_smc_exchange_capabilities_result {
+>         unsigned long status;
+>         unsigned long capabilities;
+> +       unsigned long max_notif_value;
+>         unsigned long reserved0;
+> -       unsigned long reserved1;
+>  };
+>
+>  /*
+> @@ -319,6 +328,68 @@ struct optee_smc_disable_shm_cache_result {
+>  #define OPTEE_SMC_GET_THREAD_COUNT \
+>         OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_THREAD_COUNT)
+>
+> +/*
+> + * Inform OP-TEE that normal world is able to receive asynchronous
+> + * notifications.
+> + *
+> + * Call requests usage:
+> + * a0  SMC Function ID, OPTEE_SMC_ENABLE_ASYNC_NOTIF
+> + * a1-6        Not used
+> + * a7  Hypervisor Client ID register
+> + *
+> + * Normal return register usage:
+> + * a0  OPTEE_SMC_RETURN_OK
+> + * a1-7        Preserved
+> + *
+> + * Not supported return register usage:
+> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
+> + * a1-7        Preserved
+> + */
+> +#define OPTEE_SMC_FUNCID_ENABLE_ASYNC_NOTIF    16
+> +#define OPTEE_SMC_ENABLE_ASYNC_NOTIF \
+> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_ENABLE_ASYNC_NOTIF)
+> +
+> +/*
+> + * Retrieve a value of notifications pended since the last call of this
 
-Ack. I forgot about this function.
+nit: s/pended/pending/
 
-> 
-> > +	if (ret) {
-> > +		dev_err(dev, "timeout while waiting for ISL7998x\n");
-> > +		return -ETIMEDOUT;
-> > +	}
-> > +
-> > +	dev_dbg(dev, "Found ISL799%x\n", chip_id);
-> > +
-> > +	return 0;
-> > +}
-> [...]
-> > +static int isl7998x_update_std(struct isl7998x *isl7998x)
-> > +{
-> > +#define ISL7998x_INPUTS			4
-> > +	struct device *dev = isl7998x->subdev.dev;
-> > +	unsigned int std_id[ISL7998x_INPUTS];
-> > +	u8 scanning = GENMASK(ISL7998x_INPUTS - 1, 0);
-> > +	unsigned int i;
-> > +	int ret;
-> > +	u32 reg;
-> > +
-> > +	ret = pm_runtime_resume_and_get(dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	while (true) {
-> 
-> Should this timeout, just in case the decoder never leaves the detection
-> state?
+> + * function.
+> + *
+> + * OP-TEE keeps a records of all posted values. When an interrupts is
 
-From what I have seen so far, the detection algorithm in the decoder always
-finishes, even if there is no signal on the input. Adding a timeout doesn't
-hurt, though, and I will do so.
+nit: s/records/record/
 
-> 
-> > +		for (i = 0; i < ISL7998x_INPUTS; i++) {
-> > +			ret = regmap_read(isl7998x->regmap,
-> > +					  ISL7998x_REG_Px_DEC_SDT(i + 1), &reg);
-> > +			if (ret)
-> > +				goto out;
-> > +
-> > +			/* Detection is still in progress, restart. */
-> > +			if (reg & ISL7998x_REG_Px_DEC_SDT_DET) {
-> > +				scanning = GENMASK(ISL7998x_INPUTS - 1, 0);
-> > +				break;
-> > +			}
-> > +
-> > +			scanning &= ~BIT(i);
-> > +			std_id[i] = FIELD_GET(ISL7998x_REG_Px_DEC_SDT_NOW, reg);
-> > +		}
-> > +
-> > +		if (!scanning)
-> > +			break;
-> > +
-> > +		/*
-> > +		 * Duration of standard detection is not documented. Wait for
-> > +		 * an arbitrary time before checking again.
-> > +		 */
-> > +		usleep_range(1000, 2000);
-> > +	}
-> [...]
-> > +static int isl7998x_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev = &client->dev;
-> > +	struct v4l2_fwnode_endpoint endpoint = {
-> > +		.bus_type = V4L2_MBUS_CSI2_DPHY,
-> > +	};
-> > +	struct device_node *ep;
-> > +	struct isl7998x *isl7998x;
-> > +	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);
-> > +	int nr_inputs;
-> > +	int ret;
-> [...]
-> > +	ep = of_graph_get_endpoint_by_regs(dev->of_node, 0, 0);
-> > +	if (!ep)
-> > +		return dev_err_probe(dev, -EINVAL, "Missing endpoint node\n");
-> 
-> I think this should use fwnode_graph_get_endpoint_by_id() instead.
+> + * received which indicates that there are posed values this function
+> + * should be called until all pended values has been retrieved. When a
 
-Ack. This should also use ISL7998x_PAD_OUT instead of hard coded 0.
+nit: s/has/have/
 
-> 
-> > +	ret = v4l2_fwnode_endpoint_parse(of_fwnode_handle(ep), &endpoint);
-> > +	of_node_put(ep);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "Failed to parse endpoint\n");
-> > +
-> > +	if (endpoint.bus.mipi_csi2.num_data_lanes == 0 ||
-> > +	    endpoint.bus.mipi_csi2.num_data_lanes > 2)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				     "Invalid bus type or number of MIPI lanes\n");
-> 
-> This doesn't check bus type, as stated.
+> + * value is retrieved it's cleared from the record in secure world.
+> + *
+> + * Call requests usage:
+> + * a0  SMC Function ID, OPTEE_SMC_GET_ASYNC_NOTIF_VALUE
+> + * a1-6        Not used
+> + * a7  Hypervisor Client ID register
+> + *
+> + * Normal return register usage:
+> + * a0  OPTEE_SMC_RETURN_OK
+> + * a1  value
+> + * a2  Bit[0]: OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID if the value in a1 is
+> + *             valid, else 0 if no values where pending
+> + * a2  Bit[1]: OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING if another value is
+> + *             pending, else 0.
+> + *     Bit[31:2]: MBZ
+> + * a3-7        Preserved
+> + *
+> + * Not supported return register usage:
+> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
+> + * a1-7        Preserved
+> + */
+> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID      BIT(0)
+> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING    BIT(1)
+> +
+> +/*
+> + * Notification that OP-TEE expects a yielding call to do some bottom half
+> + * work in a driver.
+> + */
+> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF     0
+> +
+> +#define OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE 17
+> +#define OPTEE_SMC_GET_ASYNC_NOTIF_VALUE \
+> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE)
+> +
+>  /*
+>   * Resume from RPC (for example after processing a foreign interrupt)
+>   *
 
-Ack. I updated the initialization and check, but missed the error message.
+Apart from comments above, this patch looks good to me in general.
 
-Thanks!
+-Sumit
 
-Michael
+> --
+> 2.31.1
+>
