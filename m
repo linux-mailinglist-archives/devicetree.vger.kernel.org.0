@@ -2,90 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6541D42CF46
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 01:43:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7983242CF65
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 02:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbhJMXpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 19:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbhJMXpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 19:45:30 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849B9C061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:43:26 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id y30so446958edi.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=70WgJz68301W4YAWeUnEt0QpDAyQBF+Qn8eRADlWcZg=;
-        b=tZA9wgJTf8LhUZogPP5QfxAXUuLBr2snIF0TIThAd0bHlqMQg/8FW01FUEIuqdBi5P
-         sqOZmZsU9vrBPGuqMaXAwnnljLuKj+cCGBSN5KqI+oDmc7+7Mc4ivT+v2zMVGgbnqY6R
-         6x+HYqb8EoKh7wvACzBGViDQp2DNhIu/rhZnE+uIsNc/ysxbBZsoRoBAVuVEq7tg/Dcu
-         aUtNBspxTrzkAV8rhuJaKqGKRPdfAY18gY2iZvVF3SGv63AMGLwsW6VrGTrsMb0u0MWT
-         O/O4fkqgv4o4JsR0n/2hco/6stuJ4d1sWpMRRAH0k/Ela+yIYHNedsfxDn+eMaud4bhM
-         /4Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=70WgJz68301W4YAWeUnEt0QpDAyQBF+Qn8eRADlWcZg=;
-        b=QSim/eif3JYoUEO2BVtUzYkAp0x0xFz61uf4DXqH16dgXWlaceSYLUNL4WY2RbOfy6
-         zy0JJ3Qz1OokJz4Pxxslsh/rCBk0fwmUh/00JLYsy7uyrrNMePQ7WvT7QmScr6wL5eag
-         4VSLPJ4Ocz/3173lRpRsw/hyNsGnZI61boIgnE97JJ5Iq0hXMnuImRdtz+mYSuJTqSJf
-         kxaJ6zqV2bHqo6eqA21q6aVJ6qr5lZXHarjViyzNZ4EAkqUswQc0PQlBFnOedtL4G5M+
-         9DTqpjE03C6uGNQjbD+qy41mFHp/WcIBPKbD+8JmtcaQhkJ2+dGkARG9tpflVrVwcaMd
-         U2tQ==
-X-Gm-Message-State: AOAM530JwFmtNk3uatcBjzNC9RUEhmGqXQz8GQtkFN/mLbawOR33tacJ
-        cPNertfoAYW8ThqRRcHhj5jf9MEd2VPil43KJfy7FVyzcGw=
-X-Google-Smtp-Source: ABdhPJxUMstUt73PfXbllHC9NHBVobh37BXe7qV1Bk73wDAlJ9lF1d+353wJ5XQjmhvwV9GfreivHf/BEnZFxTyfbZg=
-X-Received: by 2002:a05:6402:34f:: with SMTP id r15mr3664494edw.111.1634168605027;
- Wed, 13 Oct 2021 16:43:25 -0700 (PDT)
+        id S229834AbhJNAH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 20:07:28 -0400
+Received: from m1390.mail.163.com ([220.181.13.90]:1735 "EHLO
+        m1390.mail.163.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229677AbhJNAH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 20:07:28 -0400
+X-Greylist: delayed 935 seconds by postgrey-1.27 at vger.kernel.org; Wed, 13 Oct 2021 20:07:27 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=BbFum
+        IPt2O0/wUgVCjhIJEV8pEe1M2t/kA6VAymf0rc=; b=QKJpY1AJl9JFFnB2C6MOR
+        nmhxik7dojhyW1NsjHPKE61FFFIuaiYXB4AmPMyCOP5yC+5/TEhCcljXTMI8lkeV
+        msSJgrPdWTVc3T3BtweifjqVMcC4DmcCAm+a7QNh+v2D5iOQVOf98x2ORBGM33fJ
+        EfSXAQHZE+uI764HHy3fjk=
+Received: from zhanglyra$163.com ( [120.244.194.245] ) by
+ ajax-webmail-wmsvr90 (Coremail) ; Thu, 14 Oct 2021 07:49:40 +0800 (CST)
+X-Originating-IP: [120.244.194.245]
+Date:   Thu, 14 Oct 2021 07:49:40 +0800 (CST)
+From:   ChunyanZhang <zhanglyra@163.com>
+To:     "Stephen Boyd" <sboyd@kernel.org>
+Cc:     "Chunyan Zhang" <zhang.lyra@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, "Baolin Wang" <baolin.wang7@gmail.com>,
+        "Orson Zhai" <orsonzhai@gmail.com>,
+        "Chunyan Zhang" <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re:Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for
+ ums512 global registers
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20210622(1d4788a8)
+ Copyright (c) 2002-2021 www.mailtech.cn 163com
+In-Reply-To: <163416267274.936110.2784588823311275089@swboyd.mtv.corp.google.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+ <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <163416267274.936110.2784588823311275089@swboyd.mtv.corp.google.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
 MIME-Version: 1.0
-References: <20211013143810.2101838-1-arnd@kernel.org>
-In-Reply-To: <20211013143810.2101838-1-arnd@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Oct 2021 01:43:14 +0200
-Message-ID: <CACRpkdbbZo1VUk1yBWuuEswiThf5Vrbgq0SFo07Z_FMy4vvibw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] ARM: versatile: remove leading 0 on unit address
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Liviu Dudau <liviu.dudau@arm.com>, SoC Team <soc@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rui Miguel Silva <rui.silva@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <5b8198f8.cc.17c7c0fc3e2.Coremail.zhanglyra@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: WsGowAAXl8WUcGdhfWjTAA--.43112W
+X-CM-SenderInfo: x2kd0wpo1utqqrwthudrp/1tbivwYr41WBv-IejwABs4
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 13, 2021 at 4:38 PM Arnd Bergmann <arnd@kernel.org> wrote:
-
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> dtc now warns for the LED nodes on the versatile-ab board:
->
-> versatile-ab.dts:126.12-132.5: Warning (unit_address_format): /core-module@10000000/led@08.7: unit name should not have leading 0s
-> versatile-ab-ib2.dts:17.12-24.5: Warning (unit_address_format): /syscon@27000000/led@00.4: unit name should not have leading 0s
->
-> Remove the extra zeroes.
->
-> Fixes: 07ebfa59b9db ("ARM: versatile: add the syscon LEDs to the DT")
-> Fixes: 7fbe5f7ff267 ("ARM: dts: Add Versatile IB2 device tree")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-
-Fair enough,
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Can you apply/send this directly to the SoC tree?
-I don't have any other changes for Versatile this merge
-window.
-
-Yours,
-Linus Walleij
+SGkgU3RlcGhlbiwKClRoYW5rcyBmb3IgdGhlIHJldmlldy4KCkF0IDIwMjEtMTAtMTQgMDY6MDQ6
+MzIsICJTdGVwaGVuIEJveWQiIDxzYm95ZEBrZXJuZWwub3JnPiB3cm90ZToKPlF1b3RpbmcgQ2h1
+bnlhbiBaaGFuZyAoMjAyMS0wOS0yMiAyMzo0MTozNSkKPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvc3ByZCx1bXM1MTItZ2xicmVnLnlhbWwgYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWZkL3NwcmQsdW1zNTEyLWdsYnJlZy55
+YW1sCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4+IGluZGV4IDAwMDAwMDAwMDAwMC4uMzUyMmYz
+ZDJkOGRlCj4+IC0tLSAvZGV2L251bGwKPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL21mZC9zcHJkLHVtczUxMi1nbGJyZWcueWFtbAo+PiBAQCAtMCwwICsxLDY4IEBA
+Cj4+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNs
+YXVzZSkKPj4gKyVZQU1MIDEuMgo+PiArLS0tCj4+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9y
+Zy9zY2hlbWFzL21mZC9zcHJkLHVtczUxMi1nbGJyZWcueWFtbCMKPj4gKyRzY2hlbWE6IGh0dHA6
+Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIwo+PiArCj4+ICt0aXRsZTog
+VW5pc29jIFN5c3RlbSBHbG9iYWwgUmVnaXN0ZXIgRGV2aWNlIFRyZWUgQmluZGluZ3MKPj4gKwo+
+PiArbWFpbnRhaW5lcnM6Cj4+ICsgIC0gT3Jzb24gWmhhaSA8b3Jzb256aGFpQGdtYWlsLmNvbT4K
+Pj4gKyAgLSBCYW9saW4gV2FuZyA8YmFvbGluLndhbmc3QGdtYWlsLmNvbT4KPj4gKyAgLSBDaHVu
+eWFuIFpoYW5nIDx6aGFuZy5seXJhQGdtYWlsLmNvbT4KPj4gKwo+PiArZGVzY3JpcHRpb246Cj4+
+ICsgIFVuaXNvYyBzeXN0ZW0gZ2xvYmFsIHJlZ2lzdGVycyBwcm92aWRlIHJlZ2lzdGVyIG1hcAo+
+PiArICBmb3IgY2xvY2tzIGFuZCBzb21lIG11bHRpbWVkaWEgbW9kdWxlcyBvZiB0aGUgU29DLgo+
+PiArCj4+ICtwcm9wZXJ0aWVzOgo+PiArICAiI2FkZHJlc3MtY2VsbHMiOiB0cnVlCj4+ICsgICIj
+c2l6ZS1jZWxscyI6IHRydWUKPj4gKwo+PiArICBjb21wYXRpYmxlOgo+PiArICAgIGl0ZW1zOgo+
+PiArICAgICAgLSBjb25zdDogc3ByZCx1bXM1MTItZ2xicmVncwo+PiArICAgICAgLSBjb25zdDog
+c3lzY29uCj4+ICsgICAgICAtIGNvbnN0OiBzaW1wbGUtbWZkCj4+ICsKPj4gKyAgcmFuZ2VzOgo+
+PiArICAgIG1heEl0ZW1zOiAxCj4+ICsKPj4gKyAgcmVnOgo+PiArICAgIG1heEl0ZW1zOiAxCj4+
+ICsKPj4gK3BhdHRlcm5Qcm9wZXJ0aWVzOgo+PiArICAiXi4qQFswLTlhLWZdKyQiOgo+PiArICAg
+ICMgQ2hpbGQgbm9kZQo+PiArICAgIHR5cGU6IG9iamVjdAo+PiArICAgICRyZWY6ICIuLi9jbG9j
+ay9zcHJkLHVtczUxMi1jbGsueWFtbCIKPj4gKyAgICBkZXNjcmlwdGlvbjoKPj4gKyAgICAgIENs
+b2NrIGNvbnRyb2xsZXIgZm9yIHRoZSBTb0MgY2xvY2tzLgo+PiArCj4+ICtyZXF1aXJlZDoKPj4g
+KyAgLSBjb21wYXRpYmxlCj4+ICsgIC0gcmVnCj4+ICsKPj4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVz
+OiBmYWxzZQo+PiArCj4+ICtleGFtcGxlczoKPj4gKyAgLSB8Cj4+ICsgICAgYXBfYXBiX3JlZ3M6
+IHN5c2NvbkA3MTAwMDAwMCB7Cj4+ICsgICAgICBjb21wYXRpYmxlID0gInNwcmQsdW1zNTEyLWds
+YnJlZ3MiLCAic3lzY29uIiwgInNpbXBsZS1tZmQiOwo+PiArICAgICAgcmVnID0gPDB4NzEwMDAw
+MDAgMHgzMDAwPjsKPj4gKyAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Owo+PiArICAgICAgI3Np
+emUtY2VsbHMgPSA8MT47Cj4+ICsgICAgICByYW5nZXMgPSA8MCAweDcxMDAwMDAwIDB4MzAwMD47
+Cj4+ICsKPj4gKyAgICAgIGNsb2NrLWNvbnRyb2xsZXJAMCB7Cj4+ICsgICAgICAgIGNvbXBhdGli
+bGUgPSAic3ByZCx1bXM1MTItYXBhaGItZ2F0ZSI7Cj4KPldoeSBpcyB0aGlzIGEgc3Vibm9kZSBv
+ZiBhIHN5c2NvbiBhbmQgc2ltcGxlLW1mZD8gV2h5IG5vdCBwdXQgdGhlPmNsb2NrLWNvbnRyb2xs
+ZXJANzEwMDAwMDAgZGlyZWN0bHkgb250byB0aGUgYnVzPyBEb2VzIG1ha2luZyBpdCBhIGNoaWxk
+Cj5ub2RlIGhlbHAgc29tZWhvdz8KClRoZXNlIGNsb2NrcyBhcmUgYXQgdGhlIHNhbWUgcmVnaXN0
+ZXIgcmFuZ2Ugd2l0aCBnbG9iYWwgcmVnaXN0ZXJzLiBJIG9yaWdpbmFsbHkgcHV0IHRoZW0gZGly
+ZWN0bHkgb250byB0aGUgYnVzIGluZGVlZCB3aGVuIHN1Ym1pdHRpbmcgdGhlIHBhdGNoZXMgZm9y
+IFNDOTg2M0EgY2xvY2tzIGxhc3QgeWVhciwgYW5kIGl0IGhhZCBhIHByaXZhdGUgcHJvcGVydHkg
+bmFtZWQgJ3NwcmQsc3lzY29uJyB3aGljaCBjb3VsZCBwcm92aWRlIHJlZ21hcCBmb3IgdGhlc2Ug
+Y2xvY2tzLgoKUm9iIHN1Z2dlc3RlZCBbMV0gdXMgdG8gbWFrZSB0aGVtIGEgY2hpbGQgb2YgdGhl
+IHN5c2NvbiwgYW5kIHdvdWxkIG5vdCBuZWVkIHRoZSBwcml2YXRlIHByb3BlcnR5ICdzcHJkLCBz
+eXNjb24nIHRoZW4uCgpUaGFua3MsCkNodW55YW4KClsxXSBodHRwczovL2xrbWwub3JnL2xrbWwv
+MjAxOS8xMi8yNi8yMTIKCj4KPj4gKyAgICAgICAgcmVnID0gPDB4MCAweDIwMDA+Owo+PiArICAg
+ICAgICAjY2xvY2stY2VsbHMgPSA8MT47Cj4+ICsgICAgICB9Owo+PiArICAgIH07Cg==
