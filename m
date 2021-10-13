@@ -2,247 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 341FE42C5D9
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5991E42C634
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:20:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235949AbhJMQKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 12:10:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        id S229972AbhJMQWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 12:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbhJMQKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 12:10:24 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435F5C061570;
-        Wed, 13 Oct 2021 09:08:21 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id u18so10157346wrg.5;
-        Wed, 13 Oct 2021 09:08:21 -0700 (PDT)
+        with ESMTP id S230212AbhJMQWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 12:22:43 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD94C061749;
+        Wed, 13 Oct 2021 09:20:39 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id i12so10193332wrb.7;
+        Wed, 13 Oct 2021 09:20:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:content-language:to:cc
          :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=eX7yjJefdYC9EkA2tTv7QWyCDc8KjHPONkGSpJrjJ+4=;
-        b=Fh/+e/qKee/OC3Pdz/1y1XxQafvN08plEo51h2csXqSGGDsuhib/3q52O/b2mUKYD5
-         JdebSWNKT6si8Sukw4Qx+8ih9WTKC0gwi3GfkFRbHI6EeyXqJE0FsTGeXUReayK4yE2e
-         TkziOkGTOtRYd4TJa1tLgvOgk9Y6lOsINvu1SdTOMzmCgsASgncB3rl2yUw17BHiX3D3
-         QcRk6HlEJzzMklDt9srpG79X3vXuIGVi1KDfVk/jcoG9zQjuehhUqeZunxOg2qlS6+Hk
-         LfrVu7txywRk6tcN8W9WlMggmH0lj4y0usk1JWUu4Xxcdw+hwptpGNNoa3+H89F21m8B
-         tACg==
+        bh=0WQtejUs0U+1oNTFLhT9yrIgvAfHwe1zgZIDzP381OQ=;
+        b=LIKdnhYCduCXhInUyS5BRlABtNFROrwdW/EsLhswGTImNb51Qv+m7tO7Q+UbNx6d7I
+         D1I4uq3Po+1HPFpssO8o/bCYubjv7OSHBw/7yI6yhb5F9UMdJ1kRqTkE6ProseNlymbD
+         DLH65t2Spme47VNFQY++FPKcfIKkTqvu4YD+WDUEMB3vANa0SUBQ84L+KohX7s8P/Fvq
+         bB2vzf79xwQedrDSPQJALNT2f/u9ZSACdidUPyFJVJHAWXi4j2y+f+O712iYn2awRqCU
+         pxaJDjfSVc8rFNbXPtG1533QKhPfo0AfATriXepb0fbaoFVWBl0Zc3WviK14fmjUXw+I
+         cewQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent
          :content-language:to:cc:references:from:subject:in-reply-to
          :content-transfer-encoding;
-        bh=eX7yjJefdYC9EkA2tTv7QWyCDc8KjHPONkGSpJrjJ+4=;
-        b=RamnbcasvGQ4OTXtjwguAGnvvMYtQ3wisL7ulgmwjvZX1obP54QQkOTL0NeP3i9dsY
-         kCy6+ixgCMGc8qe9+wImQoBJrvjHGoSRhojAm80CT7pdF11UwLNYsLpdg2YHYUT4L7NU
-         /0zRr5J5pIAyQS/eoXS6FD5/o3Qps861YJLQNBBBCpLiyumVZUrH7eJbBZaUa/0vC+iP
-         R7fuzhTQUJvDSLeUyQVvpiSUp5TeqdEjvO12q9Z9pKG6fw5Jtv+zu/VZA+cUpjcw5hVq
-         ybDWj67VP4YM3CNu6XGfZbpzCfG+L8aDaghnUohQ3xiEwsnowpMzy8eYSuzM+kNREmsh
-         DjRA==
-X-Gm-Message-State: AOAM5313GtDGsYgmIxSdjmPoBTA3zf8nuwrag9bIHiwObHtbZg2Bgz3I
-        e+yvraAGn/cBczudnyDCBjI=
-X-Google-Smtp-Source: ABdhPJyc2za+pLb2K8Q2vROq1u9HYfBpwC559+1Sp0MAfUmCphOwF4O3hP79hd0gYRqn2x2KDgvh0Q==
-X-Received: by 2002:adf:aadc:: with SMTP id i28mr44424wrc.320.1634141299580;
-        Wed, 13 Oct 2021 09:08:19 -0700 (PDT)
+        bh=0WQtejUs0U+1oNTFLhT9yrIgvAfHwe1zgZIDzP381OQ=;
+        b=no5lO4BEUVZXZ4f3W3BRq5NFW4fFyE3Sli5nKCAXa31GrOyOw8US1s0W73jVnkTWvR
+         jyaNvMsE2twF3rtWFjpxzfjn3cNcKCgJtd9NtTxm5XxzIM1qI29cZQ6msgwWzvYUZ8kt
+         BDldK35NQJcp4531jzL0OFhPIUEBarM342ztZbMS0BlRuF9V5Q261yWsx4CUdvQh5TO2
+         Fy4n+I/QJab6YQxGyQSVpjT9Ef5FudRDk9om50DyecytmJ3v5cCGIPrjv4jG1tRrCEZh
+         2LnclQ9W1njK9JGivfSCUxVkS+wduwBjHrD8nlqV3UcrQPplIM2hfboKxK3nk6dXASJ+
+         yHAQ==
+X-Gm-Message-State: AOAM533MFinWFdyfSPCOc0u84p0b6JujNvWaifYRCocixJ5UZDI294v+
+        9MTbLxUz9AT7VR6ke/EahJ0=
+X-Google-Smtp-Source: ABdhPJwvK29YiRXmRWUBqDWD4P+uxY6vfiqSKI6fNBN1Oisbb1TTAIl6Xk0ysRuB7CviCTIGY18aDw==
+X-Received: by 2002:adf:a496:: with SMTP id g22mr108648wrb.13.1634142038182;
+        Wed, 13 Oct 2021 09:20:38 -0700 (PDT)
 Received: from ?IPV6:2620:113:80c0:8000:c::779? (nat0.nue.suse.com. [2001:67c:2178:4000::1111])
-        by smtp.gmail.com with ESMTPSA id 25sm5565503wmo.18.2021.10.13.09.08.18
+        by smtp.gmail.com with ESMTPSA id r9sm20051wrn.95.2021.10.13.09.20.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Oct 2021 09:08:18 -0700 (PDT)
-Message-ID: <8348ed3e-c561-ad7e-fe9e-a31ed346d8d0@gmail.com>
-Date:   Wed, 13 Oct 2021 18:08:17 +0200
+        Wed, 13 Oct 2021 09:20:37 -0700 (PDT)
+Message-ID: <d6e47a80-9d35-3236-f631-0e3bf8f9db17@gmail.com>
+Date:   Wed, 13 Oct 2021 18:20:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.1.2
 Content-Language: en-US
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     Ryder.Lee@mediatek.com, devicetree@vger.kernel.org,
-        enric.balletbo@collabora.com, fparent@baylibre.com,
-        gregkh@linuxfoundation.org, herbert@gondor.apana.org.au,
-        hsinyi@chromium.org, john@phrozen.org, linus.walleij@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, mpm@selenic.com, mturquette@baylibre.com,
-        robh+dt@kernel.org, sboyd@kernel.org, sean.wang@kernel.org,
-        seiya.wang@mediatek.com, wim@linux-watchdog.org
-References: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
- <20210924114046.26070-1-sam.shih@mediatek.com>
- <bc29d5bc-9ce7-6147-a708-e6304249b600@gmail.com>
- <315d7823aa108c909a3d36464fe54763b76ab2f4.camel@mediatek.com>
+To:     Luca Weiss <luca@z3ntu.xyz>, linux-mediatek@lists.infradead.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Arnd Bergmann <arnd@arndb.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, soc@kernel.org
+References: <20211005202833.96526-1-luca@z3ntu.xyz>
+ <20211005202833.96526-2-luca@z3ntu.xyz>
+ <686404ce-2e0b-5470-b095-1c1fd7c18250@gmail.com> <5755444.lOV4Wx5bFT@g550jk>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [v3,7/9] dt-bindings: arm64: dts: mediatek: Add mt7986 series
-In-Reply-To: <315d7823aa108c909a3d36464fe54763b76ab2f4.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] arm: dts: mt6589: Add device tree for Fairphone 1
+In-Reply-To: <5755444.lOV4Wx5bFT@g550jk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
 
-On 12/10/2021 12:29, Sam Shih wrote:
-> Hi
+
+On 12/10/2021 19:54, Luca Weiss wrote:
+> Hi Matthias,
 > 
-> On Fri, 2021-10-08 at 15:53 +0200, Matthias Brugger wrote:
->> Hi Sam,
+> On Freitag, 8. Oktober 2021 13:49:25 CEST Matthias Brugger wrote:
+>> On 05/10/2021 22:28, Luca Weiss wrote:
+>>> Add rudimentary support for the Fairphone 1, based on MT6589 to boot to
+>>> UART console.
+>>>
+>>> The recently added SMP support needs to be disabled for this board as
+>>> the kernel panics executing /init with it, even though the CPUs seem to
+>>> start up fine - maybe a stability issue.
+>>>
+>>> [    0.072010] smp: Bringing up secondary CPUs ...
+>>> [    0.131888] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+>>> [    0.191889] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+>>> [    0.251890] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+>>> [    0.251982] smp: Brought up 1 node, 4 CPUs
+>>> [    0.254745] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
+>>> [    0.255582] CPU: All CPU(s) started in SVC mode.
+>>>
+>>> [    0.472039] Run /init as init process
+>>> [    0.473317] Kernel panic - not syncing: Attempted to kill init!
+>>> exitcode=0x00000004
+>> Would be nice to find out why. Did you tried to boot the system with
+>> enable-method set but with bringing up just one or two cpus?
+> 
+> Answered further down.
+> 
 >>
->> I'd advise to split this series in parts for:
->> - basic device support via dts.
->> - pinctrl driver + dts
->> - clk driver + dts
-> 
-> Okay, I will split the patches that are still under review into the
-> above patch series.
-> 
-> But I have a dumb question, currently, we have some patches that have
-> been assigned version numbers.
-> If I want to seprate original patch series, and resend 3 new patch
-> series (basic / pinctrl / clock) according to your comment, if I want
-> to keep the preview change log, tags in the patch set:
-> 
-> like:
-> ---
-> v3: changed 'MT7986' to 'MT7986 series' in the commit message
-> v2: added an Acked-by tag
-> ---
-> 
-> Which version number should I use for these new patch series ?
-> 
-
-I'd use v4 keeping the change-log and adding a link with hint to v3 in the cover 
-letter.
-
-> Does the version number in corver-letter and the version number in each
-> patch need to be the same in the entire patch series ?
-> 
-
-Yes, otherwise the version number doesn't make to much sense.
-
-> // (Original patch series/thread, version number is v3)
-> [PATCH v3 0/3] Add basic SoC support for mediatek mt7986
->    [PATCH v3 1/3] dt-bindings: arm64: dts: mediatek: Add mt7986 series
->    // (the version number has been updated to v5 previously)
->    // (basic part only, not include pinctrl and clock nodes)
->    [PATCH v5 2/3] arm64: dts: mediatek: add mt7986a support
->    [PATCH v5 3/3] arm64: dts: mediatek: add mt7986b support
-
-use v6 explaining where in the mailing list one can find v5.
-
-> 
-> // (New clock driver patch series)
-> [PATCH 0/3] Add clock driver support for mediatek mt7986
->    [PATCH v3,1/3] dt-bindings: clock: mediatek: document clk bindings
-> for mediatek mt7986 SoC
->    // (the version number has been updated to v3 previously)
->    [PATCH v3 2/3] clk: mediatek: add mt7986 clock IDs
->    [PATCH v2 3/3] clk: mediatek: add mt7986 clock support
-> 
-
-Same here, use v4.
-
-> // (New pinctrl driver patch series)
-> [PATCH 0/4] Add pinctrl driver support for mediatek mt7986
->    // (the version number has been updated to v6 previously)
->    [PATCH v6 1/4] dt-bindings: pinctrl: update bindings for MT7986 SoC
->    // (the version number has been updated to v2 previously)
->    [PATCH v2 2/4] pinctrl: mediatek: add support for MT7986 SoC
->    [PATCH 3/4] arm64: dts: mediatek: add mt7986a pinctrl support
->    [PATCH 3/4] arm64: dts: mediatek: add mt7986b pinctrl support
-> 
-
-use v7 here.
-
+>>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+>>> ---
+>>>
+>>>    arch/arm/boot/dts/Makefile                 |  1 +
+>>>    arch/arm/boot/dts/mt6589-fairphone-fp1.dts | 30 ++++++++++++++++++++++
+>>>    2 files changed, 31 insertions(+)
+>>>    create mode 100644 arch/arm/boot/dts/mt6589-fairphone-fp1.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index 7e0934180724..24f402db2613 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1437,6 +1437,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
+>>>
+>>>    	mt2701-evb.dtb \
+>>>    	mt6580-evbp1.dtb \
+>>>    	mt6589-aquaris5.dtb \
+>>>
+>>> +	mt6589-fairphone-fp1.dtb \
+>>>
+>>>    	mt6592-evb.dtb \
+>>>    	mt7623a-rfb-emmc.dtb \
+>>>    	mt7623a-rfb-nand.dtb \
+>>>
+>>> diff --git a/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
+>>> b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts new file mode 100644
+>>> index 000000000000..32c14ecf2244
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
+>>> @@ -0,0 +1,30 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2021, Luca Weiss <luca@z3ntu.xyz>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include "mt6589.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "Fairphone 1";
+>>> +	compatible = "fairphone,fp1", "mediatek,mt6589";
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = &uart3;
+>>> +	};
+>>> +
+>>> +	cpus {
 >>
->> I would also advise to not send new versions of patches as new
->> threads and don't
->> respond in the same thread. At least for me that breaks my workflow
->> as I use b4.
+>> I'd expected "&cpus" why can we overwrite delete the node property like this
+>> here?
 > 
-> If I don't respond to the next patch set in the same thread, should I
-> create an entire new patch series ?
-> 
-
-Respond to any review comments in the thread but once you are ready to send a 
-new version of the patch, send the whole series with an incremented
-
-> For example, if I want to update PATCH 2/3 in the bellows patch series,
-> and my PATCH 1/3 has been accepted by reviewer previously
-> 
-> [PATCH v2 0/3] Add basic SoC support for mediatek mt7986
->    [PATCH v2 1/3] ...   (patch set v1, applied by matainer)
-
-beware: applied != accepted
-reviewer != maintainer
-
-if the patch got applied to some maintainer repo, then in the next version drop 
-that patch (it is already applied) but mention that in the cover letter.
-
->    [PATCH v2 2/3] ...   (patch set v2, need to be upgrade to v3)
->    [PATCH v2 3/3] ...   (patch set v1, waiting for review)
+> Both results in the same, dtc just merges everything together, so as long as
+> the node name is identical, it works.
+> Also I cannot use &cpus because cpus in mt6589.dtsi doesn't have a label set.
 > 
 
-This series would be v3, if 1/3 is applied, drop. 2/3 will have changes and 3/3 
-will be the same as in v2.
+Then I think we should add a label and use &cpus, as this is the standard way to go.
 
-> Is this correct to send patch mail to maintaiers for the above
-> situation ?
+> Regarding SMP:
+> I have tried setting maxcpus=2 in cmdline and that still makes the kernel
+> panic. With maxcpus=1 and leaving the deleting out of the dts the kernel is
+> stable and works properly.
 > 
-> [PATCH v3 0/2] Add basic SoC support for mediatek mt7986
->    [PATCH v3 1/2] ...   (patch set v3)
->    [PATCH v3 2/2] ...   (still patch set v1, waiting for review)
+> So I think it's better to leave this out of the dts and keep maxcpus=1 in
+> cmdline (until this gets fixed).
 > 
 
-yes, that's how is expected you send your patches.
+I'd prefer to disable the enable-method in DTS. You can see the four cores up 
+and running without that, so it seems that is already done in the FW, right?
 
-Let me know if you have any further questions :)
+> I've also heard from the person adding enable-method to mt6589.dtsi that it
+> still works on their board, so something's different, maybe a different SoC
+> revision, different bootloader behavior or whatever.
+> 
 
-Regards,
+Sounds like a different bootloader behaviour.
+
+> If that's fine with you, I'll send a v2 with that fixed.
+> 
+>>> +		/* SMP is not stable on this board, makes the kernel
+> panic */
+>>> +		/delete-property/ enable-method;
+>>> +	};
+>>> +
+>>> +	memory {
+> 
+> Also I was told off-list that this should be called memory@80000000 because of
+> the reg, will fix in v2.
+> 
+
+Correct :)
+
+Thanks,
 Matthias
 
+> Regards
+> Luca
 > 
->>
->> Regards,
->> Matthias
->>
->>
->> On 24/09/2021 13:40, Sam Shih wrote:
->>> MT7986 series is Mediatek's new 4-core SoC, which is mainly for
->>> wifi-router application. The difference between mt7986a and mt7986b
->>> is that some pins do not exist on mt7986b.
->>>
->>> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
->>> Acked-by: Rob Herring <robh@kernel.org>
->>>
->>> ---
->>> v3: changed 'MT7986' to 'MT7986 series' in the commit message
->>> v2: added an Acked-by tag
->>> ---
->>>    Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
->>>    1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> index 80a05f6fee85..a9a778269684 100644
->>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> @@ -76,6 +76,14 @@ properties:
->>>              - enum:
->>>                  - mediatek,mt7629-rfb
->>>              - const: mediatek,mt7629
->>> +      - items:
->>> +          - enum:
->>> +              - mediatek,mt7986a-rfb
->>> +          - const: mediatek,mt7986a
->>> +      - items:
->>> +          - enum:
->>> +              - mediatek,mt7986b-rfb
->>> +          - const: mediatek,mt7986b
->>>          - items:
->>>              - enum:
->>>                  - mediatek,mt8127-moose
->>>
+>>> +		device_type = "memory";
+>>> +		reg = <0x80000000 0x40000000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&uart3 {
+>>> +	status = "okay";
+>>> +};
 > 
-> Thanks,
-> Sam
+> 
+> 
 > 
