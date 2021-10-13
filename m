@@ -2,97 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D8542C456
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 17:01:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D238242C481
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 17:08:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236315AbhJMPD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 11:03:27 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45830
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237763AbhJMPDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 11:03:21 -0400
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4A08A40000
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:01:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634137276;
-        bh=xYuV2MmQladXcPP7bw44n/vAd85hc1wnSNxzKdpoKHU=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=h/QXGNQ6m1uR7tRK3CIgv+bWw+nupVn7pe1kAe5t9gLcWICbqxFktHubqMlefJyXZ
-         r9h/t08O0MBlx3IK3OB0k+exGFDs55Zs+JezlrzE6UtYngOOJQsf6SVXd2+QPql2Ex
-         omo5Zh/p+ywpyP2Z4NPqn0X9bmxlz2Bzi3lDwV4tC5uZ9Vg8Wbs93ORlvyuZRZ20rQ
-         9o69lMx7hNW9oRyHC/o09MJSDcgx8mpp4P/vShDjdMR/yR1U1xyQFxyumsND5uE59I
-         I9+CwOPfynNFba8zHE7e7RDXwvUUBp03k6Le/XRWTqfNbsXtAIR2jD6uK+8cDnHxem
-         T9zFtS9pJZ13w==
-Received: by mail-ed1-f71.google.com with SMTP id r11-20020aa7cfcb000000b003d4fbd652b9so2481331edy.14
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 08:01:16 -0700 (PDT)
+        id S229516AbhJMPLA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Oct 2021 11:11:00 -0400
+Received: from mail-ua1-f49.google.com ([209.85.222.49]:33356 "EHLO
+        mail-ua1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229514AbhJMPK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 11:10:59 -0400
+Received: by mail-ua1-f49.google.com with SMTP id i15so5256367uap.0;
+        Wed, 13 Oct 2021 08:08:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xYuV2MmQladXcPP7bw44n/vAd85hc1wnSNxzKdpoKHU=;
-        b=sRRuV9hdjW9HWXFrXF8NdFy9WClFVH6e53maFZqRGrRHeA9JFG7VSrz8dAgDbtMwrh
-         meLYUfUKjis+QhY4KFI4Lr3AHPQKP8jtu8PLzvQgKl96u6JgRlNvC44J6hAF5J7Vg/Iv
-         qu6bCKGSKKT3iEaDRgetLClHyf0nTvcvAzaJdTL2wVY8mFuvr1+zyIZfBe6qGNLWbNUe
-         y4uOwQzL4lxL0EUU2JIyJPH/Md2B2l2LkOJjvsp4/CzdjPrXs23XndTvchb9wV6w5Enp
-         SQcD8+DuMF6YGtY1DCgwOwe/E/EY3cp/Ag/u/5IYT+ghJv1DDY3/hgIsjgoAtDK3YXcJ
-         4t6g==
-X-Gm-Message-State: AOAM532tzCksQFQECW5pUz9mX3oogvEw0Uz9CfSYUXwHAGPmiQ44jrbL
-        jEYXwdPAN8IP3MfrPWOkJgDgLvJ401lXcK6yzUQnsZd6z6h2Q5homTj7d1AYwwVuD2RsIScC7WX
-        Ho7ezDaJkZdgxxVIwpL8jvuD4zr4mpbTOaSOvuNLRKBCwg6oFZctlq1s=
-X-Received: by 2002:a50:cf87:: with SMTP id h7mr10281325edk.330.1634137275953;
-        Wed, 13 Oct 2021 08:01:15 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwegVNQSzIUZzqwL+kBl/pg71DIpq9sCZIiDU4Wb8xJespMOYwK9v10kYYfIdkQ4bJOR0ucGyI5yMK1rTxX1ro=
-X-Received: by 2002:a50:cf87:: with SMTP id h7mr10281285edk.330.1634137275716;
- Wed, 13 Oct 2021 08:01:15 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=oFBAfPgyMuB17AqaY51r0mJ1e8vUmKj2hXWfsRy5A/I=;
+        b=s1PFQeBjY7ahXzB6d3bs5mW4d1YDM+i4gdPl1PZyicUFV5RD9ownQJlh3swezpAkGz
+         Nfs75+oRdCTxssz+mZjhqMz55GsK5GlGlV/GJCS4QGfgP2p8xWYOQ+tbz2m8+113n+nj
+         1cjUGIAwwfp4+wLRc7agYNrJJ4w1V3IRDzvr+K9yEwNoBTHB+sogqUl2sWU5LANOM8Mm
+         SDFE7t/RLkE8RiytWIcWaN8pOSz4WbYXVE0Gk698aucT0hUmx5kmWsnxpBpbILdScLhw
+         qJG/LWR5eXAQ0SzVWGaEiwLA17jfwQBdvSgabW824yx+jqWEJZQ5k4F3JAN3nj2VbA81
+         C2hg==
+X-Gm-Message-State: AOAM533Begi86te5hqnBHBWc8rqslvScyonWQcXVaVkY+L8MUFPVXI3+
+        DQbOatGWzBszvmgUV5GK16KSzRdIIzprRHGgIU3gul9F5TE=
+X-Google-Smtp-Source: ABdhPJyq/aqaQT5yX/UCK1Tolq/X2MRdqalWJlYJWiRxvS5BF9LwB21plAGTnUadD4q5Mu7TrFEE7lFo7wqtSzWDky0=
+X-Received: by 2002:a67:cb0a:: with SMTP id b10mr39805069vsl.9.1634137735682;
+ Wed, 13 Oct 2021 08:08:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211013143810.2101838-1-arnd@kernel.org> <20211013143810.2101838-2-arnd@kernel.org>
-In-Reply-To: <20211013143810.2101838-2-arnd@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Date:   Wed, 13 Oct 2021 17:01:04 +0200
-Message-ID: <CA+Eumj5Fx6tQv9B9R9iBCP4C=f2dk3szCGcisvPHYfMWpsCCfw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: exynos: fix cpu unit name warnings
-To:     Arnd Bergmann <arnd@kernel.org>
+References: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Oct 2021 17:08:44 +0200
+Message-ID: <CAMuHMdX8LzmksfB85iSMX4+RYq=SYTamw5C3GNgbAV+9f1uAyQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chanho Park <chanho61.park@samsung.com>, soc@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Oct 2021 at 16:38, Arnd Bergmann <arnd@kernel.org> wrote:
->
-> From: Arnd Bergmann <arnd@arndb.de>
->
-> dtc started warning about some of the CPU addresses:
->
-> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:78.20-83.5: Warning (unit_address_format): /cpus/cpu@000000: unit name should not have leading 0s
-> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:85.20-90.5: Warning (unit_address_format): /cpus/cpu@000100: unit name should not have leading 0s
-> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:92.20-97.5: Warning (unit_address_format): /cpus/cpu@000200: unit name should not have leading 0s
-> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:99.20-104.5: Warning (unit_address_format): /cpus/cpu@000300: unit name should not have leading 0s
->
-> Remove the leading zeroes.
->
-> Fixes: f695b3f4c45d ("arm64: dts: exynos: add initial support for exynosautov9 SoC")
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
+Hi Niklas,
 
-Thanks Arnd, but this was fixed with the next version of patchset.
-It's my bad because I did not drop the patch from my next branch after
-spotting it, knowing that Chanho will resubmit the next day and then I
-would replace it. This replacement happened next day but linux next
-got the older/buggy patch.
+Thanks for your patch!
 
+On Tue, Oct 12, 2021 at 8:48 PM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Convert ADV748X analog video decoder documentation to json-schema.
 
-Best regards,
-Krzysztof
+You may want to list what changes you made:
+  - Add missing ports subnode
+  - Anything else I didn't notice? ;-)
+
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+
+> +  reg-names:
+> +    minItems: 1
+> +    items:
+> +      - const: main
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+> +      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
+
+They can really appear in any order?
+
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,adv7481
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          maxItems: 3
+> +
+> +        interrupt-names:
+> +          minItems: 1
+> +          items:
+> +            - enum: [ intrq1, intrq2, intrq3 ]
+> +            - enum: [ intrq1, intrq2, intrq3 ]
+> +            - enum: [ intrq1, intrq2, intrq3 ]
+
+They can really appear in any order?
+
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          minItems: 1
+> +          maxItems: 2
+> +
+> +        interrupt-names:
+> +          minItems: 1
+> +          items:
+> +            - enum: [ intrq1, intrq2 ]
+> +            - enum: [ intrq1, intrq2 ]
+
+They can really appear in any order?
+
+If not, you can merge the entries, and just override maxItems.
+
+The rest looks good to me, but I'm no graph expert.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
