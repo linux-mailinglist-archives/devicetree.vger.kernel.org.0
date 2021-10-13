@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99F7D42CD64
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADF842CD70
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231134AbhJMWL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 18:11:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41400 "EHLO mail.kernel.org"
+        id S231205AbhJMWL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:11:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41910 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230142AbhJMWLZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 18:11:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 229B0610CF;
-        Wed, 13 Oct 2021 22:09:22 +0000 (UTC)
+        id S231200AbhJMWLz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 18:11:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F1F4E610CF;
+        Wed, 13 Oct 2021 22:09:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634162962;
-        bh=eHCSz6m9p8VBeP1Fc64wmbF00PZridKyFYWbVYHrvqw=;
+        s=k20201202; t=1634162992;
+        bh=ALpr/gITzg9Gv5BCBuVIykGKAOkvgRV1x6upf8MB8YI=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=CKqNxgfdPmaezavJ6+gi4+bub6vkQ51HVYr2wlY2kknwmiUps9ADHibh0oEx2aOmr
-         ZaUBqWQlFjZDt8n2XVIGVOHIwIgNTi9zErAuy+iQPJC5CoOoHPI4MIdRiviJNWJIdw
-         oeTUqYqXVUcnvNYmiaT6OQqhLfLxrA+sFV9Br5g7z81hTKJ+DlYLofEaIV6Cdk2+Jp
-         FXRdtnZFdqF3UxnI9KaLLu0EGlCJktPJsxr0F33GNCuQh11puJVd/4FeX+rT88A37E
-         Tp0uOTpIJ51QrwnnZ5bUGMB2d56b48CamccwiGNUTqhT6ull/OrusTZePzM3DbLjoZ
-         8Hf/YQsgZmfnQ==
+        b=e2MtGFGFhOkyHHBAI+aKbtC7PveMWCYRYoD89JJ7ND9CcmimxKDWS6xKDJ+dTzTlO
+         tvP/A3tXjjXoERNfXjFTCEF/QeWcs5IlnAh7Usv2FCZv7SlHZ/9gTrCVWdWZAyoGVA
+         cXoy099bWp2GMIHTGFoGpQPlelby9tOUsfd0NdkAPlKs+MEWRnntAIyIWYJAxmok0d
+         G3DNHf9zuLzHvbnGudcNmeotF5whPTFb7yrRfQubxeaYPd81VzXiuXFxaEajRAwYVT
+         wZljfRqruRAn0FZTEC8r9GBpKx0wnnzgEDFxvCCe8aUcvMym4e3bUg5bjdsN2NHFz8
+         Zva9nJVygADcQ==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210923162645.23257-1-konrad.dybcio@somainline.org>
-References: <20210923162645.23257-1-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v4 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
+In-Reply-To: <20210923162645.23257-4-konrad.dybcio@somainline.org>
+References: <20210923162645.23257-1-konrad.dybcio@somainline.org> <20210923162645.23257-4-konrad.dybcio@somainline.org>
+Subject: Re: [PATCH v4 4/9] clk: qcom: gcc-msm8994: Add missing NoC clocks
 From:   Stephen Boyd <sboyd@kernel.org>
 Cc:     martin.botka@somainline.org,
         angelogioacchino.delregno@somainline.org,
@@ -38,21 +38,20 @@ Cc:     martin.botka@somainline.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         ~postmarketos/upstreaming@lists.sr.ht
-Date:   Wed, 13 Oct 2021 15:09:20 -0700
-Message-ID: <163416296096.936110.1157816048811382134@swboyd.mtv.corp.google.com>
+Date:   Wed, 13 Oct 2021 15:09:50 -0700
+Message-ID: <163416299086.936110.15282577286077846707@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2021-09-23 09:26:34)
-> Add documentation for the MSM8994 GCC driver. While at it, retire its
-> compatible from the old, everyone-get-in-here file.
+Quoting Konrad Dybcio (2021-09-23 09:26:37)
+> Add necessary NoC clocks to provide frequency sources for
+> relevant branch clocks.
 >=20
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
