@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A11D042B22D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 03:18:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 336C542B23B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 03:29:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237576AbhJMBTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 21:19:52 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:33012 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S237675AbhJMBTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 21:19:18 -0400
-X-UUID: 95088808a2954397beafa37b1f51ae8a-20211013
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=t7k1wvNec9YBr9g8AUC0Ax/3BfSKfgXeVcp0+CHknXw=;
-        b=gSOSFIYR15LI3h2XykYFJbMAFA/8uSLSYAH7h1HmaTrx0h7TEpp+GI6pIFqlQ86p6Xa0Uem7ynBZ/hWAK+9BA/FxZ2Sw4p0bw3key4huIN1MZ2KvAirdIJMfVimcr6ogGC+DzbCH9PKR6OPAXy0AXpvUlNG4cWF6MXHATcocpaI=;
-X-UUID: 95088808a2954397beafa37b1f51ae8a-20211013
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 98030683; Wed, 13 Oct 2021 09:17:12 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 13 Oct 2021 09:17:12 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 13 Oct
- 2021 09:17:11 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 13 Oct 2021 09:17:09 +0800
-Message-ID: <b3fa00e8b66658e120279e37261cbdb5db7edf52.camel@mediatek.com>
-Subject: Re: [PATCH v6, 00/15] Using component framework to support multi
- hardware decode
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-CC:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        "Tiffany Lin" <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 13 Oct 2021 09:17:13 +0800
-In-Reply-To: <CAAEAJfCHEBFc8B7C0bu7UxtJdffvDarqgA-rset1wPjLOiV01A@mail.gmail.com>
-References: <20210901083215.25984-1-yunfei.dong@mediatek.com>
-         <CAAEAJfDOt_GyDPojcj5P6Wou9HC2GC8YzRt2wYyqdrCOjfeOog@mail.gmail.com>
-         <3b9463e88d88ce85205da08f8263252da7726ade.camel@mediatek.com>
-         <aba7fb4ffe6e45ac90869b5017468386bce64d28.camel@mediatek.com>
-         <b7ed8b71578a98704e9b8ca29cac63c67cc14b3f.camel@mediatek.com>
-         <CAAEAJfCHEBFc8B7C0bu7UxtJdffvDarqgA-rset1wPjLOiV01A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        id S232801AbhJMBbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 21:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40656 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231337AbhJMBbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 21:31:05 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A9DC061570;
+        Tue, 12 Oct 2021 18:29:02 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id s75so744205pgs.5;
+        Tue, 12 Oct 2021 18:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=IWgl1aq+EmvJ2d1nb99MQFV+HXmaPV8gEoyBP45tPlo=;
+        b=oybon7n1j7VI3+S8Po2yOnHaq7Pl8/cuf4hjNsRkIFikANw1PNe6g9SbSedn5yYxHj
+         bTs6BdxKLRT7CNTL364NGq+G+dSo2qGuT4HHAnS49NkCQjfiyoZLlrxmBBK53o2EjEfQ
+         XeFh8MbAoaobg9rcxFQBYWi1fHSpCuNQwhiOKrQGcmVPmW/qoawLQW/12tdVSU3kvl1E
+         Ki/0+PrAeWOnJwS1O1WOt9x8/cquw8UN0Kz23ffdx10Gt2JoaU4AHIxkOMzIWiOdw58G
+         NR8wZK0MpLVbJG569YPEJVPpzytc5VNX5wg2Y2DZi8WuYRX9YUbuDadmjOaSujBES+By
+         mZMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=IWgl1aq+EmvJ2d1nb99MQFV+HXmaPV8gEoyBP45tPlo=;
+        b=H2XgQiXUOzRiuKjM46bjFJEgF5jUPay7R6Tp7ZBATQiWe6yMyoPP7YGg5f59OPtO+p
+         XdPbrJ3rlV09HuR7C7/lK5C2/PZ0mii/v5eTwru3ZBQUlbYTZqJBACpA/Xx6Ly0Tyo1g
+         nyHOLI6C8NG8wU/Si4U74UHg+zjTEj7iFSWhkL3IjyKUTNvG9xMJ7SZqrBgMoaUeh95k
+         MdHA/L+OZX6ewms6d7YJCfMJMR2BW4Ny7rmJqmDwGQ068dEBVMmMprRWEW48WCGyqSMM
+         65UfZrmZZE7IaF6cq+e5hvbPIzCQhch41nUnCJEeOTAVcP8e+5K2RxYHlsxuB+G5oQWV
+         7OEg==
+X-Gm-Message-State: AOAM532Z+I2YR7/xN9BmpXd/B1gd8Dz+PRyYrrFJtMZSXEA/9jwKq164
+        9I8AV4LkYxB0uWE4K1VxL54=
+X-Google-Smtp-Source: ABdhPJwBrpexdxGh/CJ5RpGs1codruYtlEMm2qAbpV65dApsrHonnuOgePMXfn20uq17VGh/KGZpbQ==
+X-Received: by 2002:aa7:8198:0:b0:44b:e191:7058 with SMTP id g24-20020aa78198000000b0044be1917058mr35290626pfi.39.1634088542216;
+        Tue, 12 Oct 2021 18:29:02 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:578:7fd7:52a:ae77:5bec:efe9])
+        by smtp.gmail.com with ESMTPSA id b11sm12144788pge.57.2021.10.12.18.28.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 12 Oct 2021 18:29:01 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     oder_chiou@realtek.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, robh+dt@kernel.org
+Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, allen_lin@richtek.com
+Subject: [PATCH v4 0/2] ASoC: rt9120: Add Richtek RT9120 supprot
+Date:   Wed, 13 Oct 2021 09:28:37 +0800
+Message-Id: <1634088519-995-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRXplcXVpZWwsDQoNClRoYW5rcyBmb3IgeW91ciBmZWVkYmFjaywNCg0KVGhlIGRyaXZlciBj
-YW4gd29yayB3ZWxsIG5vdyBhY2NvcmRpbmcgdG8geW91ciBhZHZpY2Ugd2l0aA0Kb2ZfcGxhdGZv
-cm1fcG9wdWxhdGUgaW50ZXJmYWNlLg0KDQpJbiBvcmRlciB0byBzZXBhcmF0ZSBwYXJlbnQgbm9k
-ZSB3aXRoIGNoaWxkcmVuIG5vZGUsIHBhcmVudCBub2RlIGlzDQptYXN0ZXIgZGV2aWNlLCBjaGls
-ZHJlbiBub2RlIGlzIGNvbXBvbmVudCBkZXZpY2UuDQoNClRoZSBtYXN0ZXIgYW5kIGNvbXBvbmVu
-dCBhcmUgcmVnaXN0ZXJlZCBwbGF0Zm9ybSBkZXZpY2UuDQoNCg0KQ291bGQgeW91IHBsZWFzZSBo
-ZWxwIHRvIHJldmlldyB0aGUgcGF0Y2ggYWdhaW4gd2hlbiB5b3UgYXJlIGZyZWU6DQoNCmh0dHBz
-Oi8vcGF0Y2h3b3JrLmxpbnV4dHYub3JnL3Byb2plY3QvbGludXgtbWVkaWEvY292ZXIvMjAyMTEw
-MTEwNzAyNDcuNzkyLTEteXVuZmVpLmRvbmdAbWVkaWF0ZWsuY29tLw0KDQpCZXN0IFJlZ2FyZHMs
-DQpZdW5mZWkgRG9uZw0KDQpPbiBTdW4sIDIwMjEtMDktMjYgYXQgMTE6NTEgLTAzMDAsIEV6ZXF1
-aWVsIEdhcmNpYSB3cm90ZToNCj4gT24gU3VuLCAyNiBTZXB0IDIwMjEgYXQgMDU6MjcsIHl1bmZl
-aS5kb25nQG1lZGlhdGVrLmNvbQ0KPiA8eXVuZmVpLmRvbmdAbWVkaWF0ZWsuY29tPiB3cm90ZToN
-Cj4gPiANCj4gPiBIaSBFemVxdWllbCwNCj4gPiANCj4gPiBDb3VsZCB5b3UgcGxlYXNlIGhlbHAg
-dG8gZ2l2ZSBzb21lIGZlZWRiYWNrIHdoZW4geW91IGFyZSBmcmVlIGZvcg0KPiA+IGlvbW11DQo+
-ID4gbGltaXRhdGlvbj8NCj4gPiANCj4gDQo+IEhvdyBhYm91dCB5b3Ugd29yayBvbiB0aGUgYXJj
-aGl0ZWN0dXJlIEkgb3JpZ2luYWxseSBzdWdnZXN0ZWQ/DQo+IA0KPiBBcyB0aGUgc2F5aW5nIGdv
-ZXMsIHRhbGsgaXMgY2hlYXAsIHNob3cgdXMgdGhlIGNvZGUuDQo+IFNvIGxldCdzIHNlZSB0aGUg
-Y29kZSBhbmQgbGV0J3MgZGlzY3VzcyB0aGUgbGltaXRhdGlvbnMNCj4gd2l0aCB0aGUgY29kZS4N
-Cj4gDQo+ID4gQWNjb3JkaW5nIHRvIGdvb2dsZSdzIHN1Z2dlc3Rpb24sIGl0J3MgYmV0dGVyIG5v
-dCB0byB1c2UgdjRsMiBhc3luYw0KPiA+IGFsc28uDQo+IA0KPiBIdW0/IEkgaGF2ZW4ndCBzZWVu
-IHN1Y2ggb2JqZWN0aW9uIG9uIHRoZSBtYWlsaW5nIGxpc3QuDQo+IA0KPiBUaGFua3MsDQo+IEV6
-ZXF1aWVsDQo=
+From: ChiYuan Huang <cy_huang@richtek.com>
+
+This patch series Add the Richtek RT9120 support.
+
+In v4:
+- Add 'classd_tlv' for 'SPK Gain Volume' control item.
+- Unify the tlv declaration to the postfix '_tlv'.
+- Fix 'digital_tlv' mute as 1 to declare the minimum is muted.
+
+In v3:
+- Add dvdd regulator binding to check the dvdd voltage domain.
+- Refine sdo_select_text.
+- Use switch case in 'internal_power_event' function.
+- Remove the volume and mute initially write in component probe.
+- Remove the mute API. It's no need by HW design.
+
+In v2:
+- Add missing #sound-dai-cells property.
+
+ChiYuan Huang (2):
+  ASoC: dt-bindings: rt9120: Add initial bindings
+  ASoC: rt9120: Add rt9210 audio amplifier support
+
+ .../devicetree/bindings/sound/richtek,rt9120.yaml  |  59 +++
+ sound/soc/codecs/Kconfig                           |  10 +
+ sound/soc/codecs/Makefile                          |   2 +
+ sound/soc/codecs/rt9120.c                          | 495 +++++++++++++++++++++
+ 4 files changed, 566 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/richtek,rt9120.yaml
+ create mode 100644 sound/soc/codecs/rt9120.c
+
+-- 
+2.7.4
 
