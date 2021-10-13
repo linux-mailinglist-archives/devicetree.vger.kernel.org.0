@@ -2,121 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7963042BE6F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 13:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A95642BE8C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 13:02:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234248AbhJMLCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 07:02:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
+        id S233140AbhJMLEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 07:04:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233976AbhJMLCI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 07:02:08 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44530C061343
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 03:57:27 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id y1so1527944plk.10
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 03:57:27 -0700 (PDT)
+        with ESMTP id S232278AbhJMLES (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 07:04:18 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09E9C061753
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 04:02:15 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id u21so6833696lff.8
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 04:02:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=05vhPGITK/dB937rYm1EGwoqzkoLVWtPqjC/WL9LiZw=;
-        b=S7V88jjVYtO0IXH6GQgzeyn/ZNIBkw/IeGiok2Aqbs8P0GiGGzyt9qvwqzs7QCrBvz
-         Z08fkLYmeALV/+fwJyo+xUqyllDQBJ+YZVTDu23ToaHzaldpRXvhiSP8QRhxyk0Z+noa
-         0mjgPf8MtRahtooLr2Q4vU1P+VtB8H0XRVA/ig5i9tih2OX2v4haYeu1kTQABafqz7hl
-         n4/qF5qPd7yqlZ8d5rAeKW+OV1qg0MJ7zo/NFgabAf870lbBAI1K0sZY8wuD2aKibKNK
-         Fh8yjgD3mnG99kynyoTG0/9P26LAM2LXd+2drz/Txkr8dv+K3ZNjTF3mZ+xNV93Jgptq
-         e5Tw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=73KxlkdlyI8mXLBvQp61F7Ysreyok1FWDPua3YonDqI=;
+        b=dzUOvMFCFHvCPLA4d4o9RjHZKAsUW8CJ8oRvQYf4LqDiIG7OE6g1KuPgql1kadB3aC
+         XzGQ7f+HgP4YIjgcC++iLXXfad+FBeSMLBstC6LODUf/X8gOn/lKxj5odAm1aUlXVwsn
+         ISQaOFgM6/zv79n2vyS2H4dFk0UrDDDhStQkeMKKM3GRg5N7QEYtl8UYDerp8QxdegiB
+         ATkstm1/7JjmiFB2ZbcpE2NFFe/5mAjWG8z+VH4130qfhXz3HljINzyBbeseSe3eECK9
+         7e/7Ix2eDLLhCfJy7sub3EBFnXZkBY/5uQ442QjVMeD6cic7lyr+lh/HGHKbjFGWajkk
+         q2Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=05vhPGITK/dB937rYm1EGwoqzkoLVWtPqjC/WL9LiZw=;
-        b=RFiGXjzjMbhFSofK1ftuSts/9XvJqkK9ZJJEutH+ktEzckgtAPMQKdK770KbTGBYpu
-         p0M8lrX6bLPFsPqai5FwpSAxNK36G+lw31zQgM3LoZWQtf0bLj8XwogGzMfa3fGNOrYp
-         Kw4okw37LwD1HGucdMdy+nSqht2aCC6raI2jUSm099voC9vMxfxf2K50XCnEX33cs2n8
-         ZndkgOuTerLbxLHOfVtY59CleybPetqi0Jlaxyo7qFD5wMKdoBPYDLm19LV4T6E0t0MX
-         Da3kNux90YBQEQZxWVJGSvfk9h8jaXUlU5VAJXji4ZQHUZiXvqC8QNowqRh4E5WqoApL
-         tV9w==
-X-Gm-Message-State: AOAM533XbJtqnTOaylX3mySi7zBFaGzHSpFT7SoI+anT8D+qOgzdlJtC
-        0ba3oEhBBZfdnOkdP+f+4mCDpw==
-X-Google-Smtp-Source: ABdhPJy7X0JUsQ14mPahK8LxYIB78D5vCGE4viyJztdJsBhPviLXJkoAmf3PKl1cq8YfgDAPbAfZ8g==
-X-Received: by 2002:a17:90a:6a8f:: with SMTP id u15mr12339071pjj.212.1634122646746;
-        Wed, 13 Oct 2021 03:57:26 -0700 (PDT)
-Received: from localhost.name ([122.161.48.68])
-        by smtp.gmail.com with ESMTPSA id b13sm6155351pjl.15.2021.10.13.03.57.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Oct 2021 03:57:26 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
-Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, agross@kernel.org, herbert@gondor.apana.org.au,
-        davem@davemloft.net, Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH v4 20/20] arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
-Date:   Wed, 13 Oct 2021 16:25:41 +0530
-Message-Id: <20211013105541.68045-21-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
-References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=73KxlkdlyI8mXLBvQp61F7Ysreyok1FWDPua3YonDqI=;
+        b=wlcySQLdo7Af39VspNLXkf+qUxn7zCwSPi8L1Z9piGXn6eTaGm3rlEtYNK4YDspql9
+         V6SxwTdb8xWqJkyc5yLMVhZPamIj63RnSzcJ4zrzMPz23CRpy5wI7WtjPsnvIxLV1CT/
+         OzKBC6ptRQ2oVH8uP+vNNWdRDgj68ANNrGDiqfN86u9dmzNqiD3BvVnpVhA08sECUwRv
+         jPH5+mNG/MGCd2CZ6ZT5iyEpwdWe8ogJgH+5YBbVWcCSuAhlIJADpfU7PRQy4VgYUKyh
+         61Bk8pNTkrzK/BU+lvzfG4eYsXT0IJzZe9+NHDIzuWmWzxjXPl0kUKRTb0MNBmO1OsWd
+         67+A==
+X-Gm-Message-State: AOAM532vde4u0n3xHTYgdmb9UCCIEIPlaLa6XDEp4GCW4hoX/80dnkTU
+        mXcs004eWeyFhqBBxcjZ1yeV/3bzww1YUfn0ZT2svg==
+X-Google-Smtp-Source: ABdhPJz2gpDUS4W8/df8P/ssMlsByhqzpK4UIzTghVzZx58NQPyhf6+NIw+RgxaAWRM1G+lZLH7/RTstEmgTzE39ngk=
+X-Received: by 2002:a05:651c:111:: with SMTP id a17mr5578922ljb.145.1634122933990;
+ Wed, 13 Oct 2021 04:02:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211012123557.3547280-1-alvin@pqrs.dk> <20211012123557.3547280-5-alvin@pqrs.dk>
+In-Reply-To: <20211012123557.3547280-5-alvin@pqrs.dk>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 13 Oct 2021 13:02:02 +0200
+Message-ID: <CACRpkdby5Z9yzUFo4_cXtXb-bz6gF60Rt52naqu5yWBM0bC7bw@mail.gmail.com>
+Subject: Re: [PATCH net-next 4/6] net: dsa: tag_rtl8_4: add realtek 8 byte
+ protocol 4 tag
+To:     =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add crypto engine (CE) and CE BAM related nodes and definitions to
-"sm8250.dtsi".
+On Tue, Oct 12, 2021 at 2:37 PM Alvin =C5=A0ipraga <alvin@pqrs.dk> wrote:
 
-Cc: Thara Gopinath <thara.gopinath@linaro.org>
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+>
+> This commit implements a basic version of the 8 byte tag protocol used
+> in the Realtek RTL8365MB-VC unmanaged switch, which carries with it a
+> protocol version of 0x04.
+>
+> The implementation itself only handles the parsing of the EtherType
+> value and Realtek protocol version, together with the source or
+> destination port fields. The rest is left unimplemented for now.
+>
+> The tag format is described in a confidential document provided to my
+> company by Realtek Semiconductor Corp. Permission has been granted by
+> the vendor to publish this driver based on that material, together with
+> an extract from the document describing the tag format and its fields.
+> It is hoped that this will help future implementors who do not have
+> access to the material but who wish to extend the functionality of
+> drivers for chips which use this protocol.
+>
+> In addition, two possible values of the REASON field are specified,
+> based on experiments on my end. Realtek does not specify what value this
+> field can take.
+>
+> Signed-off-by: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 8c15d9fed08f..66cfd0b9c7e3 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4103,6 +4103,34 @@ cpufreq_hw: cpufreq@18591000 {
- 
- 			#freq-domain-cells = <1>;
- 		};
-+
-+		cryptobam: dma-controller@1dc4000 {
-+			compatible = "qcom,bam-v1.7.0";
-+			reg = <0 0x01dc4000 0 0x24000>;
-+			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			qcom,ee = <0>;
-+			qcom,controlled-remotely;
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-+			interconnect-names = "memory";
-+		};
-+
-+		crypto: crypto@1dfa000 {
-+			compatible = "qcom,sm8250-qce";
-+			reg = <0 0x01dfa000 0 0x6000>;
-+			dmas = <&cryptobam 4>, <&cryptobam 5>;
-+			dma-names = "rx", "tx";
-+			iommus = <&apps_smmu 0x584 0x0011>,
-+				 <&apps_smmu 0x586 0x0011>,
-+				 <&apps_smmu 0x594 0x0011>,
-+				 <&apps_smmu 0x596 0x0011>;
-+			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-+			interconnect-names = "memory";
-+		};
- 	};
- 
- 	timer {
--- 
-2.31.1
+The code definately looks good:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Some nitpicky personal preferences below:
+
+> +#define RTL8_4_TAG_LEN                 8
+> +/* 0x04 =3D RTL8365MB DSA protocol
+> + */
+> +#define RTL8_4_PROTOCOL_RTL8365MB      0x04
+
+This is #defined
+
+> +       /* Zero FID_EN, FID, PRI_EN, PRI, KEEP; set LEARN_DIS */
+> +       tag[2] =3D htons(1 << 5);
+
+I would create defines for the flags like this:
+#define RTL8365MB_LEARN_DIS BIT(5)
+
+> +       /* Parse Protocol */
+> +       proto =3D ntohs(tag[1]) >> 8;
+
+In the 4byte header code we have something like this:
+#define RTL8_4_PROTOCOL_SHIFT 8
+
+> +       /* Parse TX (switch->CPU) */
+> +       port =3D ntohs(tag[3]) & 0xf; /* Port number is the LSB 4 bits */
+
+This I think is fair enough. No need to define that mask.
+
+Yours,
+Linus Walleij
