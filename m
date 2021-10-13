@@ -2,86 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8285E42CA8C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 22:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1FFB42CAE0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 22:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239127AbhJMUCc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 16:02:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41144 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239212AbhJMUCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 16:02:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AA93E611CA;
-        Wed, 13 Oct 2021 20:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634155226;
-        bh=4N3yvgen75fiUMMp1UQ7bl6qpKiJf1k2V3H+eS/i6oA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FGPOsxMVdZpNwrDFMRRm3Tq/gevH/3BTBM7lTJv0PHHFl2l6pIQq+O6mp3LPO7B6H
-         XElxQsRr9Gggdst2UnDfY+SvCsBxh+It6KWthsUFkTWxq/yownRRKr9djlNgKq1rCY
-         rSCEURcOtaTPYSJR3/X+oMmmSLEX1TNEE3SnxS9y8VG3WDxNEN4AYe5qIv+QRp03pm
-         FVvJbOCt1i7unVbx1kIquDSJslOYV0Oq3Pw2g9iAf4U3J1OpFJE12B7OMLnnbOo6qj
-         1JRW2nfq3iYx/mzncRtScyYeQZuThCncrhsvH7ndrT7aSNrKgWpo1zQHUcSFWWRwZH
-         /e0aOwTnONBrQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: rockchip: i2s-tdm: Fix rockchip,i2s-[rt]x-route
-Date:   Wed, 13 Oct 2021 20:59:54 +0100
-Message-Id: <163415517074.1358186.8845455508599261985.b4-ty@kernel.org>
+        id S229496AbhJMUXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 16:23:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229524AbhJMUXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 16:23:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61932C061749
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 13:21:14 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id p16so17200433lfa.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 13:21:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RbA7/LD/rhEB29ruXSyNNb5KcRtY+w7Bp+w/XxGwImY=;
+        b=UjmDMbHfkU/Xe4U7o1i1uANVmXdeDB03wJ+7Kcklqh73teRvmJTAo+0pxT7SATRUQF
+         e935YAVvEKaI9lI8v4pYo9mOjG4/+UkADksTp4Omimgdk93OIHriyaVqdEW4ECFUTaVz
+         CesRv/7StRnmmtWt4wFV8qv0YpjoSdhmUohD8doMNDyAVQICkMlGUByFsRHvfSexxpAE
+         /COqrmRn29bOJUCQNy8kUXVFPeKIi6XbG5uindqdzBrZQmSmC438mdHSzfSphaxxztvh
+         grlDcMZ2R9UzyZ6gBK4IN1i+jclJNilh8Gf55OsCDS4QYA65m8nKX7qgfhOP6E0IcTex
+         c/bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RbA7/LD/rhEB29ruXSyNNb5KcRtY+w7Bp+w/XxGwImY=;
+        b=pTPYScF/49TDLfjEr4ZctrtnO92kzlo7xlEawi/1Hvp1y0Vs6cqi0HGMtSs/d9iwP6
+         1+H6cGX2DaAM4txckHFipZlMBffUQDrWAIL1u2RjTBM1WoPO3e9Ux71xkafQNDJHubeB
+         n2etzVzgTyaagjRLSzYLsa6Jajdxyrb7AfTd/5KvkzcylsEKUCTWCEurgSx3m87s2p/U
+         BYlc2G1rVwZnWdorJBvdf3NzTEiSYDa/kcn72heMKdGBVtgFiAscdvzUPoxU6tATU/rC
+         PAOB0GHb3aoQr/Zso6qd2UaIDOwD0geXRa0Nu4kN88s+lesXoZ52ksMG1LSlHpo/2eMC
+         Y5mQ==
+X-Gm-Message-State: AOAM532mGiVJe8m90ro99KlmC10R/ZQInrxoTkW7UOBnCLRLPNCyFEDm
+        /u8VMAguDMHnAlprGPahJEPlpQ==
+X-Google-Smtp-Source: ABdhPJwl4ASfYCFpwJLodrxzX2aNa8b0wg9OwhDDKPSAv00qOBYlfV2LuhoXd0gY6v92EjDf9qtW4w==
+X-Received: by 2002:a05:6512:1399:: with SMTP id p25mr1029026lfa.277.1634156471985;
+        Wed, 13 Oct 2021 13:21:11 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id t2sm52840ljt.88.2021.10.13.13.21.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Oct 2021 13:21:11 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg offsets
+Date:   Wed, 13 Oct 2021 23:21:08 +0300
+Message-Id: <20211013202110.31701-1-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <606809e10db02f92b1e7f90c491cc72dd8e16f79.1634132907.git.geert+renesas@glider.be>
-References: <606809e10db02f92b1e7f90c491cc72dd8e16f79.1634132907.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Oct 2021 15:49:42 +0200, Geert Uytterhoeven wrote:
-> make dt_binding_check:
-> 
->     Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml: properties:rockchip,i2s-rx-route: {'required': ['maxItems']} is not allowed for {'$ref': '/schemas/types.yaml#/definitions/uint32-array', 'description': 'Defines the mapping of I2S RX sdis to I2S data bus lines. By default, they are mapped one-to-one. rockchip,i2s-rx-route = <3> would mean sdi3 is receiving from data0.', 'maxItems': 4, 'items': [{'enum': [0, 1, 2, 3]}]}
-> 	    hint: "maxItems" is not needed with an "items" list
-> 	    from schema $id: http://devicetree.org/meta-schemas/items.yaml#
->     Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml: properties:rockchip,i2s-tx-route: {'required': ['maxItems']} is not allowed for {'$ref': '/schemas/types.yaml#/definitions/uint32-array', 'description': 'Defines the mapping of I2S TX sdos to I2S data bus lines. By default, they are mapped one-to-one. rockchip,i2s-tx-route = <3> would mean sdo3 is sending to data0.', 'maxItems': 4, 'items': [{'enum': [0, 1, 2, 3]}]}
-> 	    hint: "maxItems" is not needed with an "items" list
-> 	    from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> 
-> [...]
+Old Exynos SoCs have both Product ID and Revision ID in one single
+register, while new SoCs tend to have two separate registers for those
+IDs. Implement handling of both cases by passing Revision ID register
+offsets in driver data.
 
-Applied to
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+---
+ drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
+ include/linux/soc/samsung/exynos-chipid.h |  6 +-
+ 2 files changed, 58 insertions(+), 15 deletions(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+index 5c1d0f97f766..7837331fb753 100644
+--- a/drivers/soc/samsung/exynos-chipid.c
++++ b/drivers/soc/samsung/exynos-chipid.c
+@@ -16,6 +16,7 @@
+ #include <linux/errno.h>
+ #include <linux/mfd/syscon.h>
+ #include <linux/of.h>
++#include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/regmap.h>
+ #include <linux/slab.h>
+@@ -24,6 +25,17 @@
+ 
+ #include "exynos-asv.h"
+ 
++struct exynos_chipid_variant {
++	unsigned int rev_reg;		/* revision register offset */
++	unsigned int main_rev_shift;	/* main revision offset in rev_reg */
++	unsigned int sub_rev_shift;	/* sub revision offset in rev_reg */
++};
++
++struct exynos_chipid_info {
++	u32 product_id;
++	u32 revision;
++};
++
+ static const struct exynos_soc_id {
+ 	const char *name;
+ 	unsigned int id;
+@@ -49,31 +61,55 @@ static const char *product_id_to_soc_id(unsigned int product_id)
+ 	int i;
+ 
+ 	for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
+-		if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
++		if (product_id == soc_ids[i].id)
+ 			return soc_ids[i].name;
+ 	return NULL;
+ }
+ 
++static int exynos_chipid_get_chipid_info(struct regmap *regmap,
++		const struct exynos_chipid_variant *data,
++		struct exynos_chipid_info *soc_info)
++{
++	int ret;
++	unsigned int val, main_rev, sub_rev;
++
++	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &val);
++	if (ret < 0)
++		return ret;
++	soc_info->product_id = val & EXYNOS_MASK;
++
++	ret = regmap_read(regmap, data->rev_reg, &val);
++	if (ret < 0)
++		return ret;
++	main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
++	sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
++	soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
++
++	return 0;
++}
++
+ static int exynos_chipid_probe(struct platform_device *pdev)
+ {
++	const struct exynos_chipid_variant *drv_data;
++	struct exynos_chipid_info soc_info;
+ 	struct soc_device_attribute *soc_dev_attr;
+ 	struct soc_device *soc_dev;
+ 	struct device_node *root;
+ 	struct regmap *regmap;
+-	u32 product_id;
+-	u32 revision;
+ 	int ret;
+ 
++	drv_data = of_device_get_match_data(&pdev->dev);
++	if (!drv_data)
++		return -EINVAL;
++
+ 	regmap = device_node_to_regmap(pdev->dev.of_node);
+ 	if (IS_ERR(regmap))
+ 		return PTR_ERR(regmap);
+ 
+-	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &product_id);
++	ret = exynos_chipid_get_chipid_info(regmap, drv_data, &soc_info);
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	revision = product_id & EXYNOS_REV_MASK;
+-
+ 	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
+ 				    GFP_KERNEL);
+ 	if (!soc_dev_attr)
+@@ -86,8 +122,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 	of_node_put(root);
+ 
+ 	soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+-						"%x", revision);
+-	soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
++						"%x", soc_info.revision);
++	soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
+ 	if (!soc_dev_attr->soc_id) {
+ 		pr_err("Unknown SoC\n");
+ 		return -ENODEV;
+@@ -106,7 +142,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+ 
+ 	dev_info(soc_device_to_device(soc_dev),
+ 		 "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
+-		 soc_dev_attr->soc_id, product_id, revision);
++		 soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
+ 
+ 	return 0;
+ 
+@@ -125,9 +161,18 @@ static int exynos_chipid_remove(struct platform_device *pdev)
+ 	return 0;
+ }
+ 
++static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
++	.rev_reg	= 0x0,
++	.main_rev_shift	= 0,
++	.sub_rev_shift	= 4,
++};
++
+ static const struct of_device_id exynos_chipid_of_device_ids[] = {
+-	{ .compatible = "samsung,exynos4210-chipid" },
+-	{}
++	{
++		.compatible	= "samsung,exynos4210-chipid",
++		.data		= &exynos4210_chipid_drv_data,
++	},
++	{ }
+ };
+ 
+ static struct platform_driver exynos_chipid_driver = {
+diff --git a/include/linux/soc/samsung/exynos-chipid.h b/include/linux/soc/samsung/exynos-chipid.h
+index 8bca6763f99c..62f0e2531068 100644
+--- a/include/linux/soc/samsung/exynos-chipid.h
++++ b/include/linux/soc/samsung/exynos-chipid.h
+@@ -9,10 +9,8 @@
+ #define __LINUX_SOC_EXYNOS_CHIPID_H
+ 
+ #define EXYNOS_CHIPID_REG_PRO_ID	0x00
+-#define EXYNOS_SUBREV_MASK		(0xf << 4)
+-#define EXYNOS_MAINREV_MASK		(0xf << 0)
+-#define EXYNOS_REV_MASK			(EXYNOS_SUBREV_MASK | \
+-					 EXYNOS_MAINREV_MASK)
++#define EXYNOS_REV_PART_MASK		0xf
++#define EXYNOS_REV_PART_SHIFT		4
+ #define EXYNOS_MASK			0xfffff000
+ 
+ #define EXYNOS_CHIPID_REG_PKG_ID	0x04
+-- 
+2.30.2
 
-Thanks!
-
-[1/1] ASoC: dt-bindings: rockchip: i2s-tdm: Fix rockchip,i2s-[rt]x-route
-      commit: 51a67d6e28c6e1f10c8ef95b4f5fbf204ebbeb24
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
