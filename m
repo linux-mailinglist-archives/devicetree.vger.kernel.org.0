@@ -2,94 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88C4042B642
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 07:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C061042B651
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 08:04:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbhJMGB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 02:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
+        id S229991AbhJMGGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 02:06:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbhJMGB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 02:01:58 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C39C4C061570
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 22:59:55 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id g125so2361498oif.9
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 22:59:55 -0700 (PDT)
+        with ESMTP id S237864AbhJMGGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 02:06:51 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5823CC061570;
+        Tue, 12 Oct 2021 23:04:49 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id m14so1489562pfc.9;
+        Tue, 12 Oct 2021 23:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=/jfyDf2uGQ0G4PkhWSUViq4lngXtqzf19oHYgswwn6Y=;
-        b=XVuc9LRtD/SGviaZm1DN6OH63u5HavyhLDTSAFaqhsIZFm3oyqi8GhOiEQLMuQRc5B
-         k9zRK3Nl2jWsxnRVF/TmuuZdkU3Pno1lshV/JUbcffjbUECFsCWT9KFU4eyo5iSy0I81
-         P/vUBYnNrNsxhqJE2hn2yy8phOyQn1ls2me2/6gJjPm3tNQRRSRM6dpWe1bezwz9hgTs
-         U9UHpd+UliOZq4xlTL9oNGXVNbJwPU+fVzE5XpXkub3qnfIArz5WUvspltye5kCDEsTB
-         pmCdS0GO2BnvVcyQ8nYHln1Tt5JX/SefWxaAEaRX1nv8cyzDx5Gcd1CwhOU5DdqTaH0T
-         JHew==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MH9z8oRP1WEDSYSBSdmgw7YkHAb/fp8UIslbgmjVY44=;
+        b=jsFSQ/yE1vIMk0ZXSOG9PWuCn5JQscSjwdkdEmx5aOvUYwvASQnDZakuR6eciLBhCD
+         92h6e10Hpbm8ucmaq1aPOmMgftVR0sX95ktsmJ/WiRmU9Ayk7dCoe1VSFlq8ZA2hM2HU
+         y2eKEyPSFUaDIn31Ep4clKCxYx/16sreoichvvDvxip+viqowN5qndQ4XvqcMpnEOqYT
+         cqdDNwZvuF325dM6dDUmzd+ENrmQiCGm3PriDqt57028lAcewW7aWUxCLkdFmXXj6hU2
+         AvAKXTnqjDIbL+YVRDtUrwUJNlqj38bL9KS/5aMy86pwVpw6Ox5HlXfuEsAf8lA6Cwto
+         y7lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=/jfyDf2uGQ0G4PkhWSUViq4lngXtqzf19oHYgswwn6Y=;
-        b=EbOX40jqZxwmR8ra7HzAROVJ0CQZqx1FvjMPuhobJorwP2nVR+WCTNGPwQqae4Stmu
-         EoBCb7KgL8+R8HtcnUIDYVtR31yIYXOishdJhe5y//1iPRMbgJP5mY9ue+rm3ejgwyE2
-         6jcO2seDdZeu/6BKAT/YjgpUtisuJ6ASEgYQGxON2qhV37dM/JWvD3AMefrbDLLDY2cp
-         RVQWp0ec9iuuToxt7ZciMTl4mOqF8dc5rEP+b1X1eKTMWhgTXc9Jxgx1tEFYr3SJKhgP
-         94Ij7mBBC5mfaTb/Yt5sHlUKqDZ1TCkvMusUwQVmqq0PEofnJUK/zGE/oxJUU9d9SbHk
-         0wBQ==
-X-Gm-Message-State: AOAM530nax+O6bh6uKIZ1fayN4Oa3DgfHqF+QU98WKfE4QmMnnFS3Mfb
-        /PsZrcf6Z4wTcFSFfFgOo72kLmBrz5961ddWm/k=
-X-Google-Smtp-Source: ABdhPJykJ1BZlT/TFgipVk97+4GWic00fd6BawwbM4gfjHusEq1iSET1eRz0ftG12VYVzAjNltPpmKqvRUBP7nfBhRI=
-X-Received: by 2002:a05:6808:1387:: with SMTP id c7mr6708975oiw.151.1634104794626;
- Tue, 12 Oct 2021 22:59:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MH9z8oRP1WEDSYSBSdmgw7YkHAb/fp8UIslbgmjVY44=;
+        b=lqMW6GKpmAvCYltbHwBV492tRe5aG/UGvkqceN9gEon1w42tqCfiCVqTnHV7npQPVO
+         +kzkSb2Y7Ij5WY+eFIcRxMJsOnR9i+EYZP23tYc9At4WBFq9YfFdNn6WlupUkBPiMreb
+         1+/pMYxe/epQkEEm812wy7h0ldct/+g5WVrvuYsQeAu7Sr2lmOSjjpZHBjLHjS6o6SOc
+         kfZI2VTs7PddtjplrLtKHP5JZPPPUQsTZWehBwl4b2BSiuDS4oG69IHzMb0J44KYnXUr
+         8dCeMqvdx+RRH5lLCOLdB7lHI1C4nuNnXlXFnuH04vBA+d8latGr4TcioGxg3+78jTAY
+         Rq8g==
+X-Gm-Message-State: AOAM531dnss0FwnHy8ABx7W3jcnpYOXh7dqTXATsJX6pcqnbKUUaq2b9
+        vzKufwCtuulKO1bV0Ewenp4=
+X-Google-Smtp-Source: ABdhPJyqqqSApXRNIzuuH5iQRESjESRbu7jNUNmMjLGTCrUAzRTOBbZ2z4ajKRyTDITgvwz2iFDUkg==
+X-Received: by 2002:a63:f410:: with SMTP id g16mr25875791pgi.201.1634105088816;
+        Tue, 12 Oct 2021 23:04:48 -0700 (PDT)
+Received: from SEL-LT-028891.maxim-ic.internal ([223.62.162.93])
+        by smtp.gmail.com with ESMTPSA id w9sm5003461pjk.28.2021.10.12.23.04.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 23:04:48 -0700 (PDT)
+From:   George Song <georgesong0119@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        george.song@maximintegrated.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     "george.song" <george.song@analog.com>
+Subject: [PATCH 1/2] ALSA SoC MAX98520 dt-bindings : Added device tree binding for max98520 Signed-off-by: George Song <george.song@maximintegrated.com>
+Date:   Wed, 13 Oct 2021 15:04:41 +0900
+Message-Id: <20211013060441.18177-1-georgesong0119@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: by 2002:a4a:88c4:0:0:0:0:0 with HTTP; Tue, 12 Oct 2021 22:59:54
- -0700 (PDT)
-Reply-To: shawnhayden424@gmail.com
-From:   Shawn Hayden <alexaziz900@gmail.com>
-Date:   Wed, 13 Oct 2021 06:59:54 +0100
-Message-ID: <CA+ZonYF_91jOxrNebB7CWwUsgTWgf4AsNejTNOM-Pvk25X2Zjg@mail.gmail.com>
-Subject: OUR PORTFOLIO
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Sir,
+From: "george.song" <george.song@analog.com>
 
-Aseel Islamic finance PJSC is private joint stock company that was
-established in 2006 and has built a leading market position for itself
-in the UAE's Islamic finance market which specializes in loan finance
-and investment activities in real estate, hospitality, industrial &
-sustainable technologies, strategic financial investments, specialized
-education, healthcare services, agriculture, manufacturing,
-mining,energy and additional environmentally sustainable projects.
+---
+ .../bindings/sound/maxim,max98520.yaml        | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98520.yaml
 
-My name is Mr. Ibn Ahmad Mustafa . Do you have projects that require
-funding? We have finance available for your projects with over 2
-trillion private and corporate investment portfolios.  Aseel Islamic
-finance PJSC is looking for equity partners, entrepreneur, fund
-raisers and portfolio managers who will pay up to 4.5% interest and/or
-part equity position with a 5 to 10 year hold. In 2030, we plan on
-acquiring up to 2 trillion in high-quality, low risk assets and
-investments to capitalize on the current market cycle.
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98520.yaml b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+new file mode 100644
+index 000000000000..02481428e2ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98520.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim Integrated MAX98520 Speaker Amplifier Driver
++
++maintainers:
++  - Goerge Song <George.song@maximintegrated.com>
++
++properties:
++  compatible:
++    const: maxim,max98520
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      max98520: amplifier@38 {
++        compatible = "maxim,max98520";
++        reg = <0x38>;
++      };
++    };
+-- 
+2.25.1
 
-Aseel Islamic finance PJSC is acting as a lender and the fund will be
-disbursed on a clear interest rate of 3.5% annually to the equity
-partners and entrepreneurs for their investment projects. We also give
-a 2% commission to brokers, who bring project owners for finance or
-other opportunities.
-
-For further details, kindly send us your business plans or project summary.
-
-Regards,
-
-
-Mr. Ibn Ahmad Mustafa
-International Business Coordinator
-Aseel Islamic Finance PJSC
-Al Mankhool, Dubai C2 Tower,
-Ground floor,P.O 94669 Dubai, UAE
-Abu Dhabi - United Arab Emirates
-Email : ahmadmustafa.7800@gmail.com
