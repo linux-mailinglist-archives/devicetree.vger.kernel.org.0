@@ -2,106 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B74FA42BAB3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E31CC42BAC7
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238760AbhJMInq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 04:43:46 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:19610 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238729AbhJMIno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 04:43:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634114502; x=1665650502;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=2SfxK57vRWHEZrPMMA/I/4JeY6YI1pn+Pq8lPJzvFYk=;
-  b=RXbXkwEUYEM8pQ6TJMWG2AUKxzn8gQU2iHESbkvxzx5haFBRjtfga/kd
-   9Ja/GqmaCgcWjbRJlL4T6MTcrXiBjRR4K18jD+tzEjO8QP2WMsH4WceEi
-   nFWFclQMMKFwhOSvavEEK5cJJFe1PrCQ5yOxVAoKMlIFr0tevwTRox1YR
-   cjYSmlGZ7xsmujWof3kFpF/x6fDiXUqFA5ZNzXxNtfOxNcHlXI70QeWi0
-   Y9z0gjAg0i1kndkKV6G/281OHRzYgR35lSXJ7ihNezS7w0Go82og46EGs
-   bYOImjPdCGH3vJnfBYcINWER3t5dl35Xm4ZZ4wmwDfEDFC1DZTgtbJGBO
-   w==;
-IronPort-SDR: rRB1HVAnKZzbuOFDt3wOq3966HtGLzDXjFNbESo3l/cXxfc/HdD00t6L6fF4JOAUmgZ8FYYAUo
- cbwqE0cYaU0E17QyCDCElV9D+KCjPvTaMnIXcot0mWGaeGolt9K41mIIE7vMUKs7+qWi5qcIu/
- RkrBMK1lcRfZGNxnA5HUXa3fw1EQOqwoZSX67SbrMfNzGdcBlcZjX9kaObZqHsu2t68fDLCml2
- HIPUhyAK/qY8hjHR/hoTrvJbBjJLxAJ6PcDqZf19Joxlqc5yVhL38rm8WKT7ramXTb6orn+Rmm
- mjx5h3xJTp2wmwIm/d2xZfGi
-X-IronPort-AV: E=Sophos;i="5.85,370,1624345200"; 
-   d="scan'208";a="140121183"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Oct 2021 01:41:41 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 13 Oct 2021 01:41:41 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 13 Oct 2021 01:41:39 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
+        id S238899AbhJMItJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 04:49:09 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:25755 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234560AbhJMItI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 04:49:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634114825; x=1665650825;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=pAs91x88z+ajqtkXU1xcpob8J9OK5iJT+zTO2gT1iSo=;
+  b=IeDsCLCaYBqRNw6a8nWeozpJt8XYOwQ7SBTjXp7oWPfUA/W8iv0vSYnC
+   0yTpd7+bdejEDEbQuuo+Lz3/SrMy8UakHGWNb406h/9RhggKBhfmmJToH
+   45Gi/qpAdZAarL2ISwgG87c0UIiBFEXGEqNjhvDu8mYn+7UBRm6PHogtK
+   Gllcg7THZeg4+2XY9MYchvbdaRVNqg7y3KPgQh2qGJwZAsNpnYyzhxIWW
+   yAXMfjyZ7J6/d8PplpxpIu82a+DiS3vntO1YoduWgyB/k7vNCQMi8lDCE
+   bB8chlI/VJ6VoRetAUpHcvLNQV1uyJRqHhRTrDVY/Bz6kiP+oYUUHBPlf
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
+   d="scan'208";a="20016647"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2021 10:47:04 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 13 Oct 2021 10:47:04 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 13 Oct 2021 10:47:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634114824; x=1665650824;
+  h=subject:from:to:cc:date:mime-version:
+   content-transfer-encoding:message-id;
+  bh=pAs91x88z+ajqtkXU1xcpob8J9OK5iJT+zTO2gT1iSo=;
+  b=pS+TCdEXTeT871X7A3AyV7GPgqdefmlmSrHkc64z0Mvm7/QX/5B83d8A
+   LWpGD3Lf4VqfeRYqFMNHHd99uMYpP4L1syiu1VnvyTlOaxBrHcX7XkbUX
+   srUAtyVyMR3VNUaAkThGn90YjgPFptlP4+ito4aqpxA/uhIfNwefSzfnA
+   kyxwh87CpYRuU47/iRR7k8DU59gKjD6nEy3okd8j35Sun/v2+VneGxCXE
+   WSuog9hygkQYnVij37xIMipsK0NJ7JWviZcrL5IKTX/Uz0045LcKWujn+
+   btfR863ngaZ/tpn7b8yQLIXW13ffhzuTojdJbCOy7g6dO+wK58nxYrDNz
+   A==;
+X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
+   d="scan'208";a="20016646"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2021 10:47:04 +0200
+Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTP id 550EF280065;
+        Wed, 13 Oct 2021 10:47:04 +0200 (CEST)
+Received: by vtuxmail01 (kopano-spooler) with MAPI; Wed, 13 Oct 2021 10:47:04
+ +0200
+Subject: AW: (EXT) Re: [PATCH v2 1/2] dt-bindings: mtd: spi-nor: Add
+ output-driver-strength property
+From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
+To:     "Michael Walle" <michael@walle.cc>
+Cc:     "Miquel Raynal" <miquel.raynal@bootlin.com>,
+        "Richard Weinberger" <richard@nod.at>,
+        "Vignesh Raghavendra" <vigneshr@ti.com>,
+        "Rob Herring" <robh@kernel.org>, "Pratyush Yadav" <p.yadav@ti.com>,
+        "Tudor Ambarus" <tudor.ambarus@microchip.com>,
+        =?us-ascii?Q?linux-mtd=40lists=2Einfrad?= =?us-ascii?Q?ead=2Eorg?= 
+        <linux-mtd@lists.infradead.org>,
+        =?us-ascii?Q?devicetree=40vger=2Ekernel=2Eorg?= 
+        <devicetree@vger.kernel.org>,
+        =?us-ascii?Q?linux-kernel=40vger=2Ekernel=2Eorg?= 
         <linux-kernel@vger.kernel.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH v2 2/2] pinctrl: microchip sgpio: use reset driver
-Date:   Wed, 13 Oct 2021 10:42:17 +0200
-Message-ID: <20211013084217.2298553-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013084217.2298553-1-horatiu.vultur@microchip.com>
-References: <20211013084217.2298553-1-horatiu.vultur@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Date:   Wed, 13 Oct 2021 08:47:04 +0000
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Priority: 3 (Normal)
+X-Mailer: Kopano 8.7.82
+Message-Id: <kcEE.9geNR42QRKGTSoedF1sEfQ.ALRP5Q7A1wE@vtuxmail01.tq-net.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On lan966x platform when the switch gets reseted then also the sgpio
-gets reseted. The fix for this is to extend also the sgpio driver to
-call the reset driver which will be reseted only once by the first
-driver that is probed.
+Hello Michael,
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/pinctrl/pinctrl-microchip-sgpio.c | 6 ++++++
- 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/pinctrl/pinctrl-microchip-sgpio.c b/drivers/pinctrl/pinctrl-microchip-sgpio.c
-index 072bccdea2a5..e8a91d0824cb 100644
---- a/drivers/pinctrl/pinctrl-microchip-sgpio.c
-+++ b/drivers/pinctrl/pinctrl-microchip-sgpio.c
-@@ -17,6 +17,7 @@
- #include <linux/pinctrl/pinmux.h>
- #include <linux/platform_device.h>
- #include <linux/property.h>
-+#include <linux/reset.h>
- 
- #include "core.h"
- #include "pinconf.h"
-@@ -803,6 +804,7 @@ static int microchip_sgpio_probe(struct platform_device *pdev)
- 	int div_clock = 0, ret, port, i, nbanks;
- 	struct device *dev = &pdev->dev;
- 	struct fwnode_handle *fwnode;
-+	struct reset_control *reset;
- 	struct sgpio_priv *priv;
- 	struct clk *clk;
- 	u32 val;
-@@ -813,6 +815,10 @@ static int microchip_sgpio_probe(struct platform_device *pdev)
- 
- 	priv->dev = dev;
- 
-+	reset = devm_reset_control_get_shared(&pdev->dev, "switch");
-+	if (!IS_ERR(reset))
-+		reset_control_reset(reset);
-+
- 	clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(clk))
- 		return dev_err_probe(dev, PTR_ERR(clk), "Failed to get clock\n");
--- 
-2.33.0
+Am 2021-10-12 09:48, schrieb Michael Walle:
+> Am 2021-10-12 08:17, schrieb Alexander Stein:
+> > This property is for optimizing output voltage impedance and is
+> > specific to each board. It overwrites the default set by the flash
+> > device. Various flash devices support different impedances.
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > Changes in v2:
+> > * Updated the property description and the commit message accordingly
+> >=20
+> >  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > index ed590d7c6e37..4c3c506a8853 100644
+> > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > @@ -72,6 +72,14 @@ properties:
+> >        be used on such systems, to denote the absence of a reliable=20
+> > reset
+> >        mechanism.
+> >=20
+> > +  output-driver-strength:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Output driver strength in ohms which optimizes the impedance at=20
+> > Vcc/2
+> > +      output voltage. This property overwrites the default set by the=20
+> > flash
+> > +      device. This is board specific and should be determined by the
+> > +      manufacturer. Various flash devices support different=20
+> > impedances.
+>=20
+> Mh, this seems to be very tailored to this flash chip. Eg. the "Vcc/2",=20
+> is
+> this something specific to this flash or is this some kind of common=20
+> usage=3F
+
+"Vcc/2" is taken from the datasheet description.
+
+> For example, Winbond flashes specifies the output driver strength in=20
+> percent.
+> Settings are 25%, 50%, 75%, 100% there.
+>=20
+> I'd have to ask a hardware guy, if one could convert between these two
+> representations of the driver strength.
+
+Well, 100% must map to some actual value. Which then can be used to create
+a discrete value table, which are then supported by the flash driver.
+E.g. for Micron not every flash supports the same set of settings for
+driver strength.
+Macronix uses similar settings (values and bitmask), but in a different
+register. But if some vendors have pretty much incompatible settings, it
+might be feasible to provide vendor specific settings, e.g.
+"micron,drive-strength =3D <45>" (for 45 Ohm) or "winbond,drive-strength =3D <100>"
+(for 100%).
+
+Best regards,
+Alexander
 
