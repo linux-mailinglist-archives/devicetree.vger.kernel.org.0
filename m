@@ -2,333 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A01D342B7EE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 08:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE43642B819
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 08:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232079AbhJMGvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 02:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237889AbhJMGvp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 02:51:45 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C885C061746
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 23:49:42 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id z11so7250988lfj.4
-        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 23:49:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1ZFyXssI7TrFyz6t72UIWjHiVPEaGRTFviZ9B7b1svQ=;
-        b=iPAivlo5uIKBxRfNUXcOVhQG7osPvDAYsKhzpbHwuoQ9aRqJOVq0CIRSJJLsHiVUUR
-         esn/LxUxQJ3bT6IDck5KrRR4XQfGxDdO1QkAnr3Efw+Jbn0XB6gZpc621AyVERubhwWH
-         hl+97CPoXQzYj7hxmpDhOVSF3m6+2E3dxeqPQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1ZFyXssI7TrFyz6t72UIWjHiVPEaGRTFviZ9B7b1svQ=;
-        b=JM1Qdw1Opjgfcva4+XDocnZuzWg17y73Rkbs/uCU36y9qIjQUw1wAdV/hH4TGj+Rn1
-         HDEolblTSJf/w7y3WwXa9L1p2ly9cbDUebjkuQUAgY7cFbThE1rLHWrFhWx2ICI5CPik
-         3IHVAS/3zCd1g9FAbUe+l6RHN49Rwpkp7LfuSwiaFZBNZ6GSVTKhOFh5vCo6NAZuHrDQ
-         UBFzoF0aJp/+1A2LlHKB5/IeAhCh/n9P76RzwwhzPLVSsOJI8glQQQpqLT79NSU8/t2x
-         XHx+znx7yFoc05i9RvwzlPWfExdl3oRh0rzgA3zgKPjqOouhAIZZdJ3YuV7AsRcHUcbW
-         6gEA==
-X-Gm-Message-State: AOAM533ccabNTvo/lXvWbD+4T5RXezJzza5KdT29Nq5CazfpFAdRcIua
-        Pa7si6y6kBJU/BgL/U2FUunkyBq3MROAdgpspOMftg==
-X-Google-Smtp-Source: ABdhPJwFRC8f4YHp1POH1B8FM/bW1GCM0+rzp1dcWUlLDn5NbCrjKKqZDtFyz2PzgznWSPlne39IuFhFg8Pa7ILhz9w=
-X-Received: by 2002:ac2:5627:: with SMTP id b7mr9696386lff.670.1634107780512;
- Tue, 12 Oct 2021 23:49:40 -0700 (PDT)
+        id S238047AbhJMG6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 02:58:04 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:27963 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229905AbhJMG6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 02:58:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1634108138;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=eVaM/sE/W1e6RoqK5iJqALt9ftWlGfTmK4eVBSoXqq8=;
+    b=aeBWkdidVK9WDFiLuDzNXHsJ8n2sbwN26a19NhJ1bk1J4/NmaAqaC9FvMfNZP2iIHi
+    RvQ8Ogy02faojb5PXfQK3GY/S5UBoteOJkybRXJ3ftcGoh0kb3jeEVeyN41NJSDE6mzH
+    8RAfw6o5xAXk34w15i0Kru4Z48mB5kDDSvgzGt3NXOxnOE1/EbLpZh9sKcm4z/JG7SVv
+    ANsg1N7xsW3Kh/Oz/D1zCWyJvmhwEHDbzX05MNwRGw7f4Rn/Q6Ac691BK69w7k6em6c+
+    VfhPXmC9YOOFRrPlnlJm8o/kXilJg6DhHZOwHFgECocssceQVAC6teY205qzyPMF9caJ
+    qcSQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK86+6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.33.8 AUTH)
+    with ESMTPSA id 301038x9D6tb5Ro
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Wed, 13 Oct 2021 08:55:37 +0200 (CEST)
+Date:   Wed, 13 Oct 2021 08:55:31 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Maulik Shah <mkshah@codeaurora.org>
+Cc:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        dianders@chromium.org, linux@roeck-us.net, rnayak@codeaurora.org,
+        lsrao@codeaurora.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v11 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
+Message-ID: <YWaC43o8ZR6zrthh@gerhold.net>
+References: <1633600649-7164-1-git-send-email-mkshah@codeaurora.org>
+ <1633600649-7164-2-git-send-email-mkshah@codeaurora.org>
+ <YV9PN1JNPhVQb8jN@gerhold.net>
+ <b4c26217-67b1-516a-325f-a58e321c4e09@codeaurora.org>
+ <YWAkgdViDtv60PCM@gerhold.net>
+ <c22d57cc-025b-5a8c-91d5-5385292da49f@codeaurora.org>
 MIME-Version: 1.0
-References: <20210924080632.28410-1-zhiyong.tao@mediatek.com>
- <20210924080632.28410-3-zhiyong.tao@mediatek.com> <YVTfDJNW5Pe3iAR/@robh.at.kernel.org>
- <37eac06e20d82c0fe37a5d8e5633cbbc48d4af29.camel@mediatek.com>
-In-Reply-To: <37eac06e20d82c0fe37a5d8e5633cbbc48d4af29.camel@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 13 Oct 2021 14:49:29 +0800
-Message-ID: <CAGXv+5GoXu-Jg6Lhbfjd2an7nzzn2EHqQ7DN6FCB6EBRocavgQ@mail.gmail.com>
-Subject: Re: [PATCH v14 2/5] dt-bindings: pinctrl: mt8195: change pull up/down description
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
-        Biao Huang <biao.huang@mediatek.com>,
-        Hongzhou Yang <hongzhou.yang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c22d57cc-025b-5a8c-91d5-5385292da49f@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 30, 2021 at 9:59 AM zhiyong.tao <zhiyong.tao@mediatek.com> wrote:
->
-> On Wed, 2021-09-29 at 16:47 -0500, Rob Herring wrote:
-> > On Fri, Sep 24, 2021 at 04:06:29PM +0800, Zhiyong Tao wrote:
-> > > For supporting SI units in "bias-pull-down" & "bias-pull-up",
-> > > change pull up/down description
-> > > and add "mediatek,rsel_resistance_in_si_unit" description.
-> > >
-> > > Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > > ---
-> > >  .../bindings/pinctrl/pinctrl-mt8195.yaml      | 86
-> > > ++++++++++++++++++-
-> > >  1 file changed, 84 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-
-> > > mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-
-> > > mt8195.yaml
-> > > index 2f12ec59eee5..5f642bef72af 100644
-> > > --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> > > +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> > > @@ -49,6 +49,12 @@ properties:
-> > >      description: The interrupt outputs to sysirq.
-> > >      maxItems: 1
-> > >
-> > > +  mediatek,rsel_resistance_in_si_unit:
-> >
-> > s/_/-/
->
-> Hi Rob,
->
-> what do you mean?
+Hi Maulik,
 
-He means: replace the hyphens ("-") with underscores ("_").
-(s/X/Y/ is a regular expression.)
+On Wed, Oct 13, 2021 at 11:27:30AM +0530, Maulik Shah wrote:
+> On 10/8/2021 4:29 PM, Stephan Gerhold wrote:
+> > On Fri, Oct 08, 2021 at 02:20:24PM +0530, Maulik Shah wrote:
+> > > On 10/8/2021 1:20 AM, Stephan Gerhold wrote:
+> > > > On Thu, Oct 07, 2021 at 03:27:25PM +0530, Maulik Shah wrote:
+> > > > > From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> > > > > 
+> > > > > Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+> > > > > Sleep stats driver. The driver is used for displaying Sleep statistic maintained
+> > > > > by Always On Processor or Resource Power Manager.
+> > > > > 
+> > > > > Cc: devicetree@vger.kernel.org
+> > > > > Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> > > > > Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> > > > > Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> > > > > ---
+> > > > >    .../bindings/soc/qcom/qcom-sleep-stats.yaml        | 47 ++++++++++++++++++++++
+> > > > >    1 file changed, 47 insertions(+)
+> > > > >    create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> > > > > new file mode 100644
+> > > > > index 0000000..5213daf
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom-sleep-stats.yaml
+> > > > > @@ -0,0 +1,47 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/soc/qcom/qcom-sleep-stats.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Qualcomm Technologies, Inc. (QTI) Sleep stats bindings
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Maulik Shah <mkshah@codeaurora.org>
+> > > > > +
+> > > > > +description:
+> > > > > +  Always On Processor/Resource Power Manager maintains statistics of the SoC
+> > > > > +  sleep modes involving powering down of the rails and oscillator clock.
+> > > > > +
+> > > > > +  Statistics includes SoC sleep mode type, number of times low power mode were
+> > > > > +  entered, time of last entry, time of last exit and accumulated sleep duration.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    enum:
+> > > > > +      - qcom,rpmh-sleep-stats
+> > > > > +      - qcom,rpm-sleep-stats
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  # Example of rpmh sleep stats
+> > > > > +  - |
+> > > > > +    sram@c3f0000 {
+> > > > > +      compatible = "qcom,rpmh-sleep-stats";
+> > > > > +      reg = <0x0c3f0000 0x400>;
+> > > > > +    };
+> > > > > +  # Example of rpm sleep stats
+> > > > > +  - |
+> > > > > +    sram@4690000 {
+> > > > > +      compatible = "qcom,rpm-sleep-stats";
+> > > > > +      reg = <0x04690000 0x400>;
+> > > > > +    };
+> > > > 
+> > > > Does this region really only contain "rpm-*sleep*-stats"? AFAICT this is
+> > > > really a more generic memory region where various offsets are read from.
+> > > 
+> > > Right the area contains all kind of sleep stats/logs.
+> > > 
+> > > > 
+> > > > These are all the offsets in msm8998-pm.dtsi downstream [1]:
+> > > >     ...9000c: rpm-rail-stats offset
+> > > >     ...90014: rpm-sleep-stats offset (RPM_DYNAMIC_ADDR in your driver)
+> > > >     ...90018: rpm-log offset
+> > > >     ...9001c: "RPM FREE HEAP SPACE"
+> > > > 
+> > > > How would you set up any of the other drivers if the entire region
+> > > > is declared as "rpm-sleep-stats"?
+> > > 
+> > > We don't need to setup other drivers.
+> > > The idea is to have single stats driver (qcom_sleep_stats) that can be
+> > > enahanced to to read other stats also on both RPM/ PRMH targets.
+> > > 
+> > > Today this driver reads only sleep stats from offset 0x90014.
+> > > if in future say, we want to read rpm-rail-stats from offset 0x9000c then it
+> > > can be added in the existing driver.
+> > > 
+> > > In the rpm data, add one more entry to indicate reading rpm-rail-stats,
+> > > something like below and add new compatible flag for the target, may be
+> > > "qcom,rpm-sleep-stats-legacy" and should work like,
+> > > 
+> > > #define RPM_RAIL_STATS_ADDR 0xc
+> > > 
+> > > static const struct stats_config rpm_data = {
+> > >          .stats_offset = 0,
+> > >          .num_records = 2,
+> > >          .appended_stats_avail = true,
+> > >          .dynamic_offset = true,
+> > >          .rpm_rail_stats = true,
+> > > };
+> > > 
+> > > and check in driver probe like
+> > > 
+> > >          if (config->rpm_rail_stats) {
+> > > 	//create rpm rail stats related files.
+> > >          }
+> > > 
+> > > Similarly for other rpm-logs / any other stats can be added in same driver.
+> > > 
+> > > Hope this clarifies.
+> > > 
+> > 
+> > Having the same driver for all this sounds good, thanks for clarifying!
+> > 
+> > > > 
+> > > > Perhaps this region should have a more generic name that represents what
+> > > > it actually is and not only one of the information it contains, similar
+> > > > to "qcom,rpm-msg-ram"?
+> > > 
+> > > sram looks good to me. Actually on RPM targets its RPM data ram and RPMH
+> > > targets its msgram. To keep the name common sram is used here.
+> > > 
+> > 
+> > The node name (sram@...) is fine. I was actually referring to the
+> > "compatible". Given what you have written above there is more in that
+> > region than just "qcom,rpm-*sleep*-stats". There are also logs and other
+> > stats there. Perhaps "qcom,rpm(h)-stats" (without -sleep-) would already
+> > be more clear.
+> 
+> ok updated in v12 to name it qcom,rpm(h)-stats. similarly driver name also
+> updated from qcom_sleep_stats to qcom_stats.
+> 
 
-> >
-> > > +    type: boolean
-> > > +    description: |
-> > > +      Identifying i2c pins pull up/down type which is RSEL. It can
-> > > support
-> > > +      RSEL define or si unit value(ohm) to set different
-> > > resistance.
-> >
-> > Aren't the RSEL and ohms disjoint values? 0-207 for RSEL and >1000
-> > for
-> > ohms. Why is this property even needed.
-> >
-> No, they aren't.
-> As we talked in v11. "mediatek,rsel_resistance_in_si_unit" is only a
-> flag.
->
->
->
-> Hi ChenYu,
->
-> In the next version, we provide a solution which we discussed internal
-> to avoid value clashes.
->
-> The solution:
-> 1. We will keep the define "MTK_PULL_SET_RSEL_000 200". It won't
-> change.
->
-> 2. We will add a property in pio dtsi node, for example,
-> the property name is "rsel_resistance_in_si_unit".
-> We will add a flag "rsel_si_unit" in pinctrl device.
-> in probe function, we will identify the property name
-> "rsel_resistance_in_si_unit" to set the flag "rsel_si_unit" value.
-> So it can void value clashes.
->
-> 3.We will provide the define "MTK_PULL_SET_RSEL_000 200" and si unit
-> two solution. users can support which solution by add property
-> "rsel_resistance_in_si_unit" in dts node or not.
+Thanks!
 
-Right. I thought that is what is implemented in this version already?
+> > 
+> > Or, my other suggestion was to not make any assumption about particular
+> > contents of the data RAM in the device tree. The compatible could also
+> > be called simply "qcom,rpm-data-ram" (just like "qcom,rpm-msg-ram") and
+> > the assumption what it contains (e.g. sleep stats) could be made in your
+> > existing driver.
+> > 
+> > This is probably a matter of preference at the end and won't make a big
+> > difference but I just wanted to mention it.
+> > 
+> > For example, to make your driver work on MSM8916 I had to declare a much
+> > larger memory region (e.g. 0x10000 vs 0x400):
+> > 
+> > 		sram@290000 {
+> > 			compatible = "qcom,rpm-sleep-stats";
+> > 			reg = <0x00290000 0x10000>;
+> > 		};
+> > 
+> 
+> the driver can not be as is enabled for MSM8916. Actually on MSM8916 (even
+> though its RPM target) it uses fixed offset 0xdba0 from the base address in
+> the devicetree.
+> 
+> > This is because RPM_DYNAMIC_ADDR contains the offset 0xdba0 instead of
+> > e.g. 0x020c on newer SoCs and the memory region must be large enough to
+> > cover the offset.
+> 
+> On all other RPM targets followed by MSM8916 the address for soc sleep stats
+> is present at offset 0x14 (RPM_DYNAMIC_ADDR ) from the base address but not
+> on MSM8916. so MSM8916 is a special case to enable for for RPM stats
+> 
 
-Also I just realized that this binding is limited in scope to just the
-MT8195, for which we already know that the RSEL values do not overlap
-with MTK_PULL_SET_RSEL_*. I assume that is why Rob thinks the flag
-is unnecessary.
+I already tested it on MSM8916 and this is only partially true. :)
 
-> > > +
-> > >  #PIN CONFIGURATION NODES
-> > >  patternProperties:
-> > >    '-pins$':
-> > > @@ -85,9 +91,85 @@ patternProperties:
-> > >            2/4/6/8/10/12/14/16mA in mt8195.
-> > >          enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> > >
-> > > -      bias-pull-down: true
-> > > +      bias-pull-down:
-> > > +        description: |
-> > > +          For pull down type is normal, it don't need add RSEL &
-> > > R1R0 define
-> > > +          and resistance value.
-> > > +          For pull down type is PUPD/R0/R1 type, it can add R1R0
-> > > define to
-> > > +          set different resistance. It can support
-> > > "MTK_PUPD_SET_R1R0_00" &
-> > > +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
-> > > "MTK_PUPD_SET_R1R0_11"
-> > > +          define in mt8195.
-> > > +          For pull down type is RSEL, it can add RSEL define &
-> > > resistance value(ohm)
-> > > +          to set different resistance by identifying property
-> > > "mediatek,rsel_resistance_in_si_unit".
-> > > +          It can support "MTK_PULL_SET_RSEL_000" &
-> > > "MTK_PULL_SET_RSEL_001"
-> > > +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" &
-> > > "MTK_PULL_SET_RSEL_100"
-> > > +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" &
-> > > "MTK_PULL_SET_RSEL_111"
-> > > +          define in mt8195. It can also support resistance
-> > > value(ohm) "75000" & "5000" in mt8195.
-> > > +          oneOf:
-> >
-> > Because of the indentation, this is all just part of 'description'.
->
-> Can you help to give some suggestion to fix it?
+It looks like the RPM_DYNAMIC_ADDR was added together with some firmware
+update. I tested on several devices and on most of them RPM_DYNAMIC_ADDR
+reads 0xdba0 (that is, there are no changes necessary in the driver).
 
-Unindent it by two spaces, so that it is at the same level with
-"description:".
+So far I have only found one single device with fairly old firmware
+where RPM_DYNAMIC_ADDR reads 0x0.
 
-> > > +            - enum: [100, 101, 102, 103]
-> > > +            - description: mt8195 pull down PUPD/R0/R1 type define
-> > > value.
-> >
-> > This entry is always true.
->
-> why is it always true? we only get define value.
-> "100~104" are means that "#define MTK_PUPD_SET_R1R0_10 102" in
-> include/dt-bindings/pinctrl/mt65xx.h.
+> To enable this for MSM8916, dynamic_offset need to be false and stats_offset
+> need to be given directly as 0xdba0, something similar as RPMH targets.
+> 
+> static const struct stats_config rpm_legacy_data = {
+>         .stats_offset = 0xdba0,
+>         .num_records = 2,
+>         .appended_stats_avail = true,
+>         .dynamic_offset = false,
+>         .subsystem_stats_in_smem = false,
+> };
+> 
+> { .compatible = "qcom,rpm-legacy-stats", .data = &rpm_legacy_data },
+> 
+> and then add
+> 
+>                 sram@290000 {
+>                         compatible = "qcom,rpm-legacy-stats";
+>                         reg = <0x00290000 0x10000>;
+>                 };
+> 
+> which should work fine.
+> 
 
-"description" is not a conditional match, so it always evaluates to true.
-Based on my limited DT schema and YAML knowledge, I think the underlying
-issue is that you have the structure incorrectly defined.
+But yeah, I guess we might need the fixed offset anyway at some point
+for even older targets than MSM8916, so it is probably safer to add it
+like this. Will investigate it some more once your patch is accepted.
 
-"-" denotes a list item. So in your example, you have "enum" and "description"
-as separate associative arrays, each as a list item part of the "oneOf" list.
+> I donot have MSM8916 to validate this but when this driver boots up it
+> should create "vlow" and "vmin" files at /sys/kernel/debug/qcom_sleep_stats/
+> if that is done, it means you are reading stats from correct address since
+> the file name is read from the memory itself.
+> 
 
-What you want is actually:
+Almost, it's "vmin" and "xosd" ("XO Shutdown" I guess) on MSM8916. :)
 
-    oneOf:
-      - enum: [100, 101, 102, 103]
-        description: mt8195 pull down PUPD/R0/R1 type define value.
-      - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-        description: mt8195 pull down RSEL type define value.
-
-So that "enum" and "description" are part of the same associative array.
-Note the lack of a "-" and the extra indentation in front of "description".
-
-
-Regards
-ChenYu
-
-
-> >
-> > > +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-> >
-> > Are these supposed to be hex?
-> yes, it is patch 1/5 define "#define MTK_PULL_SET_RSEL_000  200".
-> >
-> > > +            - description: mt8195 pull down RSEL type define
-> > > value.
-> >
-> > And so is this one. That makes 'oneOf' always false.
->
-> why is it always false? we only get the si unit value.
->
-> >
-> > > +            - enum: [75000, 5000]
-> > > +            - description: mt8195 pull down RSEL type si unit
-> > > value(ohm).
-> > > +
-> > > +          An example of using RSEL define:
-> > > +          pincontroller {
-> > > +            i2c0_pin {
-> > > +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> > > +              bias-pull-down = <MTK_PULL_SET_RSEL_001>;
-> > > +            };
-> > > +          };
-> > > +          An example of using si unit resistance value(ohm):
-> > > +          &pio {
-> > > +            mediatek,rsel_resistance_in_si_unit;
-> > > +          }
-> > > +          pincontroller {
-> > > +            i2c0_pin {
-> > > +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> > > +              bias-pull-down = <75000>;
-> > > +            };
-> > > +          };
-> > >
-> > > -      bias-pull-up: true
-> > > +      bias-pull-up:
-> > > +        description: |
-> > > +          For pull up type is normal, it don't need add RSEL &
-> > > R1R0 define
-> > > +          and resistance value.
-> > > +          For pull up type is PUPD/R0/R1 type, it can add R1R0
-> > > define to
-> > > +          set different resistance. It can support
-> > > "MTK_PUPD_SET_R1R0_00" &
-> > > +          "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
-> > > "MTK_PUPD_SET_R1R0_11"
-> > > +          define in mt8195.
-> > > +          For pull up type is RSEL, it can add RSEL define &
-> > > resistance value(ohm)
-> > > +          to set different resistance by identifying property
-> > > "mediatek,rsel_resistance_in_si_unit".
-> > > +          It can support "MTK_PULL_SET_RSEL_000" &
-> > > "MTK_PULL_SET_RSEL_001"
-> > > +          & "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" &
-> > > "MTK_PULL_SET_RSEL_100"
-> > > +          & "MTK_PULL_SET_RSEL_101" & "MTK_PULL_SET_RSEL_110" &
-> > > "MTK_PULL_SET_RSEL_111"
-> > > +          define in mt8195. It can also support resistance
-> > > value(ohm)
-> > > +          "1000" & "1500" & "2000" & "3000" & "4000" & "5000" &
-> > > "10000" & "75000" in mt8195.
-> > > +          oneOf:
-> > > +            - enum: [100, 101, 102, 103]
-> > > +            - description: mt8195 pull up PUPD/R0/R1 type define
-> > > value.
-> > > +            - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-> > > +            - description: mt8195 pull up RSEL type define value.
-> > > +            - enum: [1000, 1500, 2000, 3000, 4000, 5000, 10000,
-> > > 75000]
-> > > +            - description: mt8195 pull up RSEL type si unit
-> > > value(ohm).
-> >
-> > Same issues here.
-> >
-> > > +          An example of using RSEL define:
-> > > +          pincontroller {
-> > > +            i2c0_pin {
-> > > +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> > > +              bias-pull-up = <MTK_PULL_SET_RSEL_001>;
-> > > +            };
-> > > +          };
-> > > +          An example of using si unit resistance value(ohm):
-> > > +          &pio {
-> > > +            mediatek,rsel_resistance_in_si_unit;
-> > > +          }
-> > > +          pincontroller {
-> > > +            i2c0_pin {
-> > > +              pinmux = <PINMUX_GPIO8__FUNC_SDA0>;
-> > > +              bias-pull-up = <1000>;
-> > > +            };
-> > > +          };
-> > >
-> > >        bias-disable: true
-> > >
-> > > --
-> > > 2.25.1
-> > >
-> > >
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Thanks,
+Stephan
