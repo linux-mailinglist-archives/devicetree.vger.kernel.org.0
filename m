@@ -2,57 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B813642CD7D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:10:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 953A242CDB0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231251AbhJMWMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 18:12:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42334 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231229AbhJMWMQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 18:12:16 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1B29861039;
-        Wed, 13 Oct 2021 22:10:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634163013;
-        bh=SyR96/qkh3mZJMjGgD+4H7RM4fsK8t9JZGJaVb7lo00=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=O3lEeL/RTydm/Ac5PDPgbY+kDQMI0wW7eiB52vVVmx95qGYvYfd0welW3vc8bpI+U
-         igMJmGsxxyyY2v5lm4ij6RTmSVhZO5wx7KTTVtEYip+hEfJSzqQMU8gD9BioYWNfen
-         JrrqIOXjxQCCjT8pVR3v42MM9iHS+n/elxh2TetoyakYMQBRc7plDSTvASgo9rEEot
-         EsvO2k8k9nvFVVHlsGkozX+wPrCY4Hx7iruyjUP/cqw+YypfVfIYp3NZkGRuD02RjI
-         tARk4AvIdIlelSEUulve308ywhlX2if78gqQFPSX7w+6IggOgtDkjBEyFpx0nmPz+m
-         g7Nw2gtgR+xuw==
-Content-Type: text/plain; charset="utf-8"
+        id S230501AbhJMWSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:18:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230515AbhJMWSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:18:45 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4700C061746;
+        Wed, 13 Oct 2021 15:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=+u0puN0sMkyAYkNQMTT8QtUODmKP6eAbIA4yxZYl8WM=; b=Eau9WGW08s+kawzSJ3n5iwHVEP
+        8qUk1k1WwQiUEtMiBwrydbwfly+bEnFmyttCySvY9Er2RHzXycILy3bfwG5JV2b/rrK4CDWJJIL4L
+        pcPW02fVBXAWQLaRFPIkt5kB2j0uiGpnIAEVVb4xAfPmA38znuGbwKUGlwwYxn5ltfCfxV0c03Eve
+        SjTPANcs20EvVSwKCec21Ix31Z+u5f6A0nLaNmFgDLrbbC0ESGMDku+wfZlKPqVdjAa3hfBcAMIaM
+        CqIu899k8CSwJDzcgDEm958WGfc4sz7XwLnkL/dONmiv2kwNDUhM8V4u84sdpK2j2Qa5TqROIO+E8
+        JQvDtMWg==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mamYB-000oAV-Fv; Wed, 13 Oct 2021 22:16:39 +0000
+Subject: Re: [PATCH v10 03/13] media: amphion: add amphion vpu device driver
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1634095309.git.ming.qian@nxp.com>
+ <2a70d55e012874b9a3381e0aca23010edf65b2f4.1634095309.git.ming.qian@nxp.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <591813d6-2633-bc64-110e-8f62ca07044e@infradead.org>
+Date:   Wed, 13 Oct 2021 15:16:38 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210923162645.23257-7-konrad.dybcio@somainline.org>
-References: <20210923162645.23257-1-konrad.dybcio@somainline.org> <20210923162645.23257-7-konrad.dybcio@somainline.org>
-Subject: Re: [PATCH v4 7/9] clk: qcom: gcc-msm8994: Add modem reset
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Date:   Wed, 13 Oct 2021 15:10:11 -0700
-Message-ID: <163416301196.936110.4873624693308718315@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <2a70d55e012874b9a3381e0aca23010edf65b2f4.1634095309.git.ming.qian@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Konrad Dybcio (2021-09-23 09:26:40)
-> This will be required to support the modem.
->=20
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
+On 10/13/21 1:27 AM, Ming Qian wrote:
+> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
+> index d9f90084c2f6..2465a5f7a073 100644
+> --- a/drivers/media/platform/Kconfig
+> +++ b/drivers/media/platform/Kconfig
+> @@ -200,6 +200,25 @@ config VIDEO_TI_CAL_MC
+>   
+>   endif # VIDEO_TI_CAL
+>   
+> +config VIDEO_AMPHION_VPU
+> +	tristate "Amphion VPU(Video Processing Unit) Codec IP"
+> +	depends on ARCH_MXC
+> +	depends on MEDIA_SUPPORT
+> +	depends on VIDEO_DEV
+> +	depends on VIDEO_V4L2
+> +	select V4L2_MEM2MEM_DEV
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select VIDEOBUF2_VMALLOC
+> +	default y
 
-Applied to clk-next
+This should not be "default y" unless it is needed to boot up
+some platform/machine. And even then it should depend on that
+platform/machine if possible.
+
+And there are 2 other drivers in that same Kconfig file that
+have the same problem.
+
+> +	help
+> +	  Amphion VPU Codec IP contains two parts: Windsor and Malone.
+> +	  Windsor is encoder that supports H.264, and Malone is decoder
+> +	  that supports H.264, HEVC, and other video formats.
+> +	  This is a V4L2 driver for NXP MXC 8Q video accelerator hardware.
+> +	  It accelerates encoding and decoding operations on
+> +	  various NXP SoCs.
+> +	  To compile this driver as a module choose m here.
+
+
+-- 
+~Randy
