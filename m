@@ -2,117 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F2342B783
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 08:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEF5442B78D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 08:38:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238026AbhJMGkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 02:40:18 -0400
-Received: from gandalf.ozlabs.org ([150.107.74.76]:40835 "EHLO
-        gandalf.ozlabs.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238003AbhJMGkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 02:40:15 -0400
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        id S238044AbhJMGky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 02:40:54 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:57654 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238045AbhJMGkt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 02:40:49 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1634107126; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=T2wAOWRK+0VDbXZYYl3jGV5WC5BeWBrhpjpJUxdJevQ=; b=oFr8yyRyzETGDAg98teIqG24PU5UrGbwwD4HKM67p691nuzGI6YN4XpxkBHcdRA4PRKcqoGM
+ qNKJWg7dMLzUemR2Q6xfdMfkW9QQpJC2Xt12t/mREOIfjFKJ5swpWz7qILjYcKvJY3/HEx7M
+ dFOYIhHE4EEwpzqPG8Pn618xETk=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 61667ef5ab9da96e64c484c4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 13 Oct 2021 06:38:45
+ GMT
+Sender: mkshah=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 246BFC4338F; Wed, 13 Oct 2021 06:38:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from mkshah-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4HTjXK2t0qz4xbG;
-        Wed, 13 Oct 2021 17:38:09 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
-        s=201702; t=1634107091;
-        bh=vG5wu8rK/bYN0SCJfvAhVNcO15ZTCrwihNZzPlGYioU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tjArxxtiWKW8QOQvHragrEHJbtBkAH6yvJiBrlCtpKo/Jvxv34mapJ9Bk9B7iT5Xu
-         gHv9bYuIQ0YQpAYePJAC42B3GQEACJrC0vFeeJ9jUlGYXru4RHoODwhA6tNYJ1QsE4
-         qIqSxq6Gbx0cjLzqskoflQpITzbv8NeKPLpb1UPueCrm6TM9mVdmJDeKwnMTWLcJ6t
-         8cOA5cuh+NmKK3Jl2D7VAA5VEi0rwAIwx5rTMDnqb8ujb/NjkN2dFC8/TCgJkM6vHJ
-         hDkGDeVBrlYYIEsfAPr1kjfKBJ5KwiGiKyDFlhCIJzNlY5ebt8QmgzkosjPGKGz30m
-         M7qszNN/ZDtXw==
-Date:   Wed, 13 Oct 2021 17:38:08 +1100
-From:   Stephen Rothwell <sfr@canb.auug.org.au>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>,
-        Anatolij Gustschin <agust@denx.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [RFC PATCH] powerpc: dts: Remove MPC5xxx platforms
-Message-ID: <20211013173808.7ab92035@canb.auug.org.au>
-In-Reply-To: <20211012153456.2844193-1-robh@kernel.org>
-References: <20211012153456.2844193-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/hNT9L3ZDbI5k34wFOdCx2dr";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+        (Authenticated sender: mkshah)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 24F39C4360D;
+        Wed, 13 Oct 2021 06:38:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 24F39C4360D
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     swboyd@chromium.org, mka@chromium.org, evgreen@chromium.org,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, dianders@chromium.org, linux@roeck-us.net,
+        rnayak@codeaurora.org, lsrao@codeaurora.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>,
+        devicetree@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
+        Maulik Shah <mkshah@codeaurora.org>
+Subject: [PATCH v12 1/5] dt-bindings: Introduce QCOM Sleep stats bindings
+Date:   Wed, 13 Oct 2021 12:08:20 +0530
+Message-Id: <1634107104-22197-2-git-send-email-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1634107104-22197-1-git-send-email-mkshah@codeaurora.org>
+References: <1634107104-22197-1-git-send-email-mkshah@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/hNT9L3ZDbI5k34wFOdCx2dr
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+From: Mahesh Sivasubramanian <msivasub@codeaurora.org>
 
-Hi Rob,
+Add device binding documentation for Qualcomm Technologies, Inc. (QTI)
+Sleep stats driver. The driver is used for displaying Sleep statistic maintained
+by Always On Processor or Resource Power Manager.
 
-On Tue, 12 Oct 2021 10:34:56 -0500 Rob Herring <robh@kernel.org> wrote:
->
-> The mpc5xxx platforms have had dts warnings for some time which no one
-> seems to care to fix, so let's just remove the dts files.
->=20
-> According to Arnd:
-> "Specifically, MPC5200B has a 15 year lifetime, which ends in
-> 11 months from now. The original bplan/Genesi Efika 5K2 was
-> quite popular at the time it came out, and there are probably
-> still some of those hanging around, but they came with Open
-> Firmware rather than relying on the dts files that ship with the
-> kernel.
->=20
-> Grant Likely was the original maintainer for MPC52xx until 2011,
-> Anatolij Gustschin is still listed as maintainer since then but hasn't
-> been active in it for a while either. Anatolij can probably best judge
-> which of these boards are still in going to be used with future kernels,
-> but I suspect once you start removing bits from 52xx, the newer
-> but less common 512x platform can go away as well."
->=20
-> Cc: Anatolij Gustschin <agust@denx.de>
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Stephen Rothwell <sfr@canb.auug.org.au>
-> Cc: Michael Ellerman <mpe@ellerman.id.au>
-> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
-> Cc: Paul Mackerras <paulus@samba.org>
-> Cc: linuxppc-dev@lists.ozlabs.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Sending this out as a feeler to see if anyone cares. If anyone does,=20
-> please fix the warnings.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../devicetree/bindings/soc/qcom/qcom-stats.yaml   | 47 ++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
 
-Thanks.  However .. :-)
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
+new file mode 100644
+index 0000000..99dff7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/qcom/qcom-stats.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. (QTI) Stats bindings
++
++maintainers:
++  - Maulik Shah <mkshah@codeaurora.org>
++
++description:
++  Always On Processor/Resource Power Manager maintains statistics of the SoC
++  sleep modes involving powering down of the rails and oscillator clock.
++
++  Statistics includes SoC sleep mode type, number of times low power mode were
++  entered, time of last entry, time of last exit and accumulated sleep duration.
++
++properties:
++  compatible:
++    enum:
++      - qcom,rpmh-stats
++      - qcom,rpm-stats
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  # Example of rpmh sleep stats
++  - |
++    sram@c3f0000 {
++      compatible = "qcom,rpmh-stats";
++      reg = <0x0c3f0000 0x400>;
++    };
++  # Example of rpm sleep stats
++  - |
++    sram@4690000 {
++      compatible = "qcom,rpm-stats";
++      reg = <0x04690000 0x10000>;
++    };
++...
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-FATAL ERROR: Couldn't open "mpc5200b.dtsi": No such file or directory
-make[2]: *** [/home/sfr/next/next/scripts/Makefile.lib:358: arch/powerpc/bo=
-ot/dts/digsy_mtc.dtb] Error 1
-
-$ grep -wrl mpc5200b.dtsi
-arch/powerpc/boot/dts/digsy_mtc.dts
-
-missed one :-)
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/hNT9L3ZDbI5k34wFOdCx2dr
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmFmftAACgkQAVBC80lX
-0GySTgf/SwHWqYw3xEIGHbUBCpLmTzIJWw0cXaAN8VFo6Lpsb/H7xKz/Cu3fUYyX
-Z7veE1EKdxvZfcnE4rwSHEL8TvtLp3U3yAls5foblypO301bXEISgNaYxAHKSKeV
-S7D0KIY0U8fcSaM0HrBhwxTECEBGJtSwf2K/I81GlIKO8h+dt6ajec974Ku8mMMc
-LWukJfatx9F0Ex7prCIlJA1S/gnw8RO7x0GTaF8mM4ULay59UQbn2W+5W0MEs58g
-zyQFj8yL5OqaV6ZlzPhGIKQc1DLTPlQLvI7iuF2CxDKomoHvTPSiGqRtd/p3qnrt
-KR+wol1v6zuUZu7DClfczJuiGJ3vnw==
-=oWcO
------END PGP SIGNATURE-----
-
---Sig_/hNT9L3ZDbI5k34wFOdCx2dr--
