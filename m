@@ -2,152 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C10D42BB03
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8EC42BBBD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 11:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233922AbhJMJB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 05:01:27 -0400
-Received: from mx1.tq-group.com ([93.104.207.81]:33090 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230461AbhJMJB1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 05:01:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634115564; x=1665651564;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:message-id;
-  bh=ZlBU797THpcOyV2xk/zMyG8zPnxIHCk4stnE0VSNmfQ=;
-  b=LRO/LmkkydBpvzD1wCw1jrNtfHOCxeCHdcr4ce66hi7ztsYLTTLPJZUt
-   hyyCLwfwuFYKRhAc4KFlm23SXEWWdZ7Cs+5GWCkwq44YZdo7Tgkoy21gk
-   pVUbmzvc3JuKBEZMaV8CBjgk70v/rdCG+ZArt8KUxox8lyKvqo2aNSL9M
-   75kfufIfZ94FbS64z16y0bza2QO8O6NQ+1YtNuIlJINN7SgAwnLYsb701
-   JdrjKA6BSpddQl5uuxBnlABmIUYLd5elyea62ddUNO5c8swSwckOkQlFt
-   VYeobBP4nxdRljf17sbIFpaZXIIQv0PJV06CAk/mcX5osHbX8I22qOjet
-   w==;
-X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
-   d="scan'208";a="20017026"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2021 10:59:22 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 13 Oct 2021 10:59:23 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 13 Oct 2021 10:59:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1634115563; x=1665651563;
-  h=subject:from:to:cc:date:mime-version:
-   content-transfer-encoding:message-id;
-  bh=ZlBU797THpcOyV2xk/zMyG8zPnxIHCk4stnE0VSNmfQ=;
-  b=YxZa/7IcnFgUHgF0ajaCusRbMxm16RD1pYmpgiJNo5gtkBKKfrVHoIFf
-   MsW0R2d84xIu7d35gjA3GiAIhIzEsEm5OpRZ1eYOrhC6gmCdoz3qNfFvN
-   coz2eEZNezqzNDpi9Ct6fRekOB0Swkpi8YHCYCDIt3s0sE+tcivYU2Xc1
-   34KN2zhhiZ83R75r4h+G8QbqzAOB/g3yU0ug2BIbPM88udXR1onzezIlK
-   rQnu25NCVxSjQZbOIYNgRs1lJ0SlruoU/v6yDFyL3dKh8KRpLhdtvPkWL
-   siS+QidF9+Uq45fk9gV1jSc6bau9rz5defTT8Um+c83n1F+OJjse32t2k
-   g==;
-X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
-   d="scan'208";a="20017025"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 13 Oct 2021 10:59:22 +0200
-Received: from vtuxmail01.tq-net.de (localhost [127.0.0.1])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTP id BB4D9280065;
-        Wed, 13 Oct 2021 10:59:22 +0200 (CEST)
-Received: by vtuxmail01 (kopano-spooler) with MAPI; Wed, 13 Oct 2021 10:59:22
- +0200
-Subject: AW: (EXT) Re: [PATCH v2 4/4] drm/bridge: ti-sn65dsi83: Add vcc
- supply regulator support
-From:   "Alexander Stein" <Alexander.Stein@ew.tq-group.com>
-To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
-Cc:     "David Airlie" <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>,
-        "Andrzej Hajda" <a.hajda@samsung.com>,
+        id S239162AbhJMJin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 05:38:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38106 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239124AbhJMJim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 05:38:42 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF974C061570
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 02:36:39 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 689EF291;
+        Wed, 13 Oct 2021 11:36:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634117795;
+        bh=9EqCMeif7UNH+xWm896GqIXZOfGp3Rdm2hHQebpKHZQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M9ZDt+v6jdhFAdnGZx6e1RqVJlYF0txVAL1rRmMmMMLJRxucr2BNg42YRgnJaKkKG
+         cLKg7tQEdQ9vXLfpXylk9aDT/69Sl0dFYymnam0d+IBS3bvX8yin6MrbJTCx95xFEq
+         SVFs24+lnRuHsdd5Vavmaw/nPLpAhYfzEdfS5H5k=
+Date:   Wed, 13 Oct 2021 12:36:21 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexander Stein <Alexander.Stein@ew.tq-group.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        "Robert Foss" <robert.foss@linaro.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Jonas Karlman <jonas@kwiboo.se>,
-        "Jernej Skrabec" <jernej.skrabec@gmail.com>,
-        =?us-ascii?Q?dri-devel=40lists=2Efreedesktop=2Eorg?= 
-        <dri-devel@lists.freedesktop.org>,
-        =?us-ascii?Q?devicetree=40vger=2Eke?= =?us-ascii?Q?rnel=2Eorg?= 
-        <devicetree@vger.kernel.org>, "Sam Ravnborg" <sam@ravnborg.org>
-Date:   Wed, 13 Oct 2021 08:59:22 +0000
-Mime-Version: 1.0
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: (EXT) Re: [PATCH v2 4/4] drm/bridge: ti-sn65dsi83: Add vcc
+ supply regulator support
+Message-ID: <YWaolcNcwUQs6ez/@pendragon.ideasonboard.com>
+References: <kcEE.wBDDeOkQQ0CwJna1+1hciA.AJExnRDA1wE@vtuxmail01.tq-net.de>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3 (Normal)
-X-Mailer: Kopano 8.7.82
-Message-Id: <kcEE.wBDDeOkQQ0CwJna1+1hciA.AJExnRDA1wE@vtuxmail01.tq-net.de>
+Content-Disposition: inline
+In-Reply-To: <kcEE.wBDDeOkQQ0CwJna1+1hciA.AJExnRDA1wE@vtuxmail01.tq-net.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Laurent,
+Hi Alexander,
 
-On Tue, Oct 12, 2021 at 10:43 +0200, Laurent Pinchart wrote:
-> On Tue, Oct 12, 2021 at 08:48:43AM +0200, Alexander Stein wrote:
-> > VCC needs to be enabled before releasing the enable GPIO.
-> >=20
-> > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 15 ++++++++++++++-
-> >  1 file changed, 14 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > index 9072342566f3..a6b1fd71dfee 100644
-> > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
-> > @@ -33,6 +33,7 @@
-> >  #include <linux/of_device.h>
-> >  #include <linux/of_graph.h>
-> >  #include <linux/regmap.h>
-> > +#include <linux/regulator/consumer.h>
-> > =20
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_bridge.h>
-> > @@ -143,6 +144,7 @@ struct sn65dsi83 {
-> >  =09struct mipi_dsi_device=09=09*dsi;
-> >  =09struct drm_bridge=09=09*panel_bridge;
-> >  =09struct gpio_desc=09=09*enable_gpio;
-> > +=09struct regulator=09=09*vcc;
-> >  =09int=09=09=09=09dsi_lanes;
-> >  =09bool=09=09=09=09lvds_dual_link;
-> >  =09bool=09=09=09=09lvds_dual_link_even_odd_swap;
-> > @@ -647,6 +649,12 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx,
-> enum sn65dsi83_model model)
-> > =20
-> >  =09ctx->panel_bridge =3D panel_bridge;
-> > =20
-> > +=09ctx->vcc =3D devm_regulator_get(dev, "vcc");
-> > +=09if (IS_ERR(ctx->vcc))
-> > +=09=09return dev_err_probe(dev, PTR_ERR(ctx->vcc),
-> > +=09=09=09=09     "Failed to get supply 'vcc': %pe\n",
-> > +=09=09=09=09     ctx->vcc);
-> > +
-> >  =09return 0;
-> >  }
-> > =20
-> > @@ -691,7 +699,11 @@ static int sn65dsi83_probe(struct i2c_client *client,
-> >  =09ctx->bridge.of_node =3D dev->of_node;
-> >  =09drm_bridge_add(&ctx->bridge);
-> > =20
-> > -=09return 0;
-> > +=09ret =3D regulator_enable(ctx->vcc);
-> > +=09if (ret)
-> > +=09=09dev_err(dev, "Failed to enable vcc: %i\n", ret);
->=20
-> I think this should move to sn65dsi83_atomic_pre_enable() (and similarly
-> for regulator_disable()) as keeping the regulator enabled at all times
-> will cost power.
+On Wed, Oct 13, 2021 at 08:59:22AM +0000, Alexander Stein wrote:
+> On Tue, Oct 12, 2021 at 10:43 +0200, Laurent Pinchart wrote:
+> > On Tue, Oct 12, 2021 at 08:48:43AM +0200, Alexander Stein wrote:
+> > > VCC needs to be enabled before releasing the enable GPIO.
+> > > 
+> > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > >  drivers/gpu/drm/bridge/ti-sn65dsi83.c | 15 ++++++++++++++-
+> > >  1 file changed, 14 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > index 9072342566f3..a6b1fd71dfee 100644
+> > > --- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > +++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+> > > @@ -33,6 +33,7 @@
+> > >  #include <linux/of_device.h>
+> > >  #include <linux/of_graph.h>
+> > >  #include <linux/regmap.h>
+> > > +#include <linux/regulator/consumer.h>
+> > >  
+> > >  #include <drm/drm_atomic_helper.h>
+> > >  #include <drm/drm_bridge.h>
+> > > @@ -143,6 +144,7 @@ struct sn65dsi83 {
+> > >  	struct mipi_dsi_device		*dsi;
+> > >  	struct drm_bridge		*panel_bridge;
+> > >  	struct gpio_desc		*enable_gpio;
+> > > +	struct regulator		*vcc;
+> > >  	int				dsi_lanes;
+> > >  	bool				lvds_dual_link;
+> > >  	bool				lvds_dual_link_even_odd_swap;
+> > > @@ -647,6 +649,12 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx,
+> > enum sn65dsi83_model model)
+> > >  
+> > >  	ctx->panel_bridge = panel_bridge;
+> > >  
+> > > +	ctx->vcc = devm_regulator_get(dev, "vcc");
+> > > +	if (IS_ERR(ctx->vcc))
+> > > +		return dev_err_probe(dev, PTR_ERR(ctx->vcc),
+> > > +				     "Failed to get supply 'vcc': %pe\n",
+> > > +				     ctx->vcc);
+> > > +
+> > >  	return 0;
+> > >  }
+> > >  
+> > > @@ -691,7 +699,11 @@ static int sn65dsi83_probe(struct i2c_client *client,
+> > >  	ctx->bridge.of_node = dev->of_node;
+> > >  	drm_bridge_add(&ctx->bridge);
+> > >  
+> > > -	return 0;
+> > > +	ret = regulator_enable(ctx->vcc);
+> > > +	if (ret)
+> > > +		dev_err(dev, "Failed to enable vcc: %i\n", ret);
+> > 
+> > I think this should move to sn65dsi83_atomic_pre_enable() (and similarly
+> > for regulator_disable()) as keeping the regulator enabled at all times
+> > will cost power.
+> 
+> I get your idea. The thing is that unless 1V8 is provided the bridge is not
+> even accessible on I2C. So any access to sn65dsi83.regmap without the vcc
+> regulator enabled will fail. AFAICS this is not an issue right now, as regmap
+> is only used in sn65dsi83_atomic_enable(), sn65dsi83_atomic_disable() and
+> sn65dsi83_atomic_pre_enable(), so your sugestion would work, but I'm
+> hestitating a bit. The driver then has to ensure all regmap uses are done
+> only when vcc is enabled.
 
-I get your idea. The thing is that unless 1V8 is provided the bridge is not
-even accessible on I2C. So any access to sn65dsi83.regmap without the vcc
-regulator enabled will fail. AFAICS this is not an issue right now, as regmap
-is only used in sn65dsi83_atomic_enable(), sn65dsi83_atomic_disable() and
-sn65dsi83_atomic_pre_enable(), so your sugestion would work, but I'm
-hestitating a bit. The driver then has to ensure all regmap uses are done
-only when vcc is enabled.
+Correct, and that's the usual pattern, drivers need to call
+pm_runtime_get_sync() before accessing registers. For all you know, even
+if the power to the bridge is on, the I2C controller it is connected to
+could be suspended.
 
-Best regards,
-Alexander
+-- 
+Regards,
 
+Laurent Pinchart
