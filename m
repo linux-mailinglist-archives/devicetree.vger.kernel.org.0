@@ -2,112 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9206D42C280
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242DF42C27B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235716AbhJMOPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 10:15:13 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:5438 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbhJMOPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 10:15:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634134390; x=1665670390;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=XwFxZzbdV+FjwFqNLqNmM3P65mE3OIvnLElxkhz2zRE=;
-  b=hXRKc7FDBxxIkPHroZEibE6KS1YXnZybQxL7BhQx5fxPW5Ad5Rq7HTnz
-   g27xd5/rMR/FCi4ZJZBaBQBG6HghovDeMCdmn+857jvl263Yog5X34Kcq
-   GSEEsbiypNa6kh2zlJR3FsJWLWWTnyiUs1XeKRg/SF4dZQtnPJEsul0O3
-   kpueo9pYE3OVZ/+1Y7MKPkIPGKGB90NeKM6SXzmo/17oUA/ocX4mfbjpo
-   IeJfesOO68gVPOU6golghAHu5T/FVudOeyX6VMDjgmR6pURodbZUTsmGs
-   zixG4EbNTRjj4vfe9wOdD0ibR6OAFLm1zY33JRIKMpHwTbWeR6SztgJkv
-   Q==;
-IronPort-SDR: uutPBZhzUAMA/q7T3VprZA70/jge25CgEEz8VinJFExlOzb7MSRSHwzN9NIix7IUhOincCcFW6
- N3RUmreMhE+mJzEL/1EFblto+EBTOybImZDUvAQQ3sN7N1lSnuY0eoVxaL9PZE8Q5HqA8BMJTW
- KIezk2m0DJSiPMZ5NrNKDNacqCNCFVevxdE5oNdmRLwbcgCj7wpfRKqU2Ai2iSXF0ZK6YUq4Kv
- rlI4DoA7ctSctEnrmhrSOnYgstgPJIx9GxszyItnWkMJSLoQ/Vpd+9Du5RdrFLe+nY98zb6SXH
- 2/6gj7rproxGmcvHK7ZGqSTg
-X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; 
-   d="scan'208";a="72800409"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Oct 2021 07:09:51 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 13 Oct 2021 07:09:51 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 13 Oct 2021 07:09:50 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <peda@axentia.se>, <robh+dt@kernel.org>,
-        <peter.korsgaard@barco.com>, <lars.povlsen@microchip.com>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH 2/2] i2c: i2c-mux-gpio: Add support 'select-delay' property
-Date:   Wed, 13 Oct 2021 16:10:03 +0200
-Message-ID: <20211013141003.2388495-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013141003.2388495-1-horatiu.vultur@microchip.com>
-References: <20211013141003.2388495-1-horatiu.vultur@microchip.com>
+        id S230298AbhJMOOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 10:14:51 -0400
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:43830 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229794AbhJMOOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 10:14:50 -0400
+Received: by mail-ua1-f53.google.com with SMTP id i22so4727393ual.10;
+        Wed, 13 Oct 2021 07:12:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=//wmfsyzKN6sJRRuiRVe+9SYGGdywfnaIIbc8fN2K7Q=;
+        b=oyT3vF27MSFthurAT5RuDd/pFQfLtivjkLhrFCEjqTdFDDCIgsxWDWVXjfLc5MnIyD
+         f7SsTZ/4vNrbfPjZVHNKS7rDrVzcQtBnTFux9Qyh2n3N/Yz9b4ApS8LCF687E4gI8tRA
+         Q88cqVgA/hDWzhX9yVdj4Muh2E7Viwp/F1J3QViBIcGDn2JogvWKiKmUnEZuYTuzRuix
+         GurD9H8Wo5BGxeNf2SbXC1yMa3Iao3mHn8ugKkG8tNHcTQphJeg+qTauVvAnU7CLyEFr
+         zrpCE1FQqUFq5f2KcsAYkYWCUv+P9F7G63cnSlU8FGsQC+tW2TA0lxqg9qgs92+Aw7YN
+         5d9w==
+X-Gm-Message-State: AOAM533/q7dCH9tFjhblk4sJl8jTH8/+mliWCv3lqiYTV5hYnUo6vnxL
+        zpG6plIyCCS+meZ7eFPxkVl3mQQaNtXlV20G1ss=
+X-Google-Smtp-Source: ABdhPJygQZTdnnxtn8/RdCByAxCkJnr3ICGmYP0XCgAaXRUmsyM4Ot4y+nF6DbYBk7d7NqHTmTxXiSc8WNrzdFRyx/8=
+X-Received: by 2002:ab0:311a:: with SMTP id e26mr30390992ual.122.1634134367074;
+ Wed, 13 Oct 2021 07:12:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20210914200539.732093-1-paul.kocialkowski@bootlin.com>
+ <20210914200539.732093-3-paul.kocialkowski@bootlin.com> <YUtBkOFeQWnteG5L@google.com>
+In-Reply-To: <YUtBkOFeQWnteG5L@google.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Oct 2021 16:12:35 +0200
+Message-ID: <CAMuHMdWO2AhtMwtq+QkAO7nLs+AQjt=fQ0JoSag3B+uRQj-o-w@mail.gmail.com>
+Subject: Re: [PATCH v9 2/4] dt-bindings: mfd: logicvc: Add patternProperties
+ for the display
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use select-delay property to add a delay once the mux state is changed.
-This is required on some platforms to allow the GPIO signals to get
-stabilized.
+Hi Lee,
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/i2c/muxes/i2c-mux-gpio.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Wed, Sep 22, 2021 at 4:46 PM Lee Jones <lee.jones@linaro.org> wrote:
+> On Tue, 14 Sep 2021, Paul Kocialkowski wrote:
+> > The LogiCVC multi-function device has a display part which is now
+> > described in its binding. Add a patternProperties match for it.
+> >
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+>
+> Applied, thanks.
 
-diff --git a/drivers/i2c/muxes/i2c-mux-gpio.c b/drivers/i2c/muxes/i2c-mux-gpio.c
-index bac415a52b78..1cc69eb67221 100644
---- a/drivers/i2c/muxes/i2c-mux-gpio.c
-+++ b/drivers/i2c/muxes/i2c-mux-gpio.c
-@@ -13,6 +13,8 @@
- #include <linux/slab.h>
- #include <linux/bits.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/delay.h>
-+
- /* FIXME: stop poking around inside gpiolib */
- #include "../../gpio/gpiolib.h"
- 
-@@ -20,6 +22,7 @@ struct gpiomux {
- 	struct i2c_mux_gpio_platform_data data;
- 	int ngpios;
- 	struct gpio_desc **gpios;
-+	int select_delay;
- };
- 
- static void i2c_mux_gpio_set(const struct gpiomux *mux, unsigned val)
-@@ -29,6 +32,8 @@ static void i2c_mux_gpio_set(const struct gpiomux *mux, unsigned val)
- 	values[0] = val;
- 
- 	gpiod_set_array_value_cansleep(mux->ngpios, mux->gpios, NULL, values);
-+	if (mux->select_delay)
-+		udelay(mux->select_delay);
- }
- 
- static int i2c_mux_gpio_select(struct i2c_mux_core *muxc, u32 chan)
-@@ -153,6 +158,8 @@ static int i2c_mux_gpio_probe_fw(struct gpiomux *mux,
- 	if (fwnode_property_read_u32(dev->fwnode, "idle-state", &mux->data.idle))
- 		mux->data.idle = I2C_MUX_GPIO_NO_IDLE;
- 
-+	fwnode_property_read_u32(dev->fwnode, "select-delay", &mux->select_delay);
-+
- 	return 0;
- }
- 
+Unknown file referenced: [Errno 2] No such file or directory:
+'.../dt-schema/dtschema/schemas/display/xylon,logicvc-display.yaml'
+
+as 1/4 hasn't been applied yet.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.33.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
