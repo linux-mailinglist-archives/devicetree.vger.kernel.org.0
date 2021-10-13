@@ -2,143 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BE2642B972
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:47:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE5942B98C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:50:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238643AbhJMHtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 03:49:40 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:51013 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238577AbhJMHtj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 03:49:39 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 65F465805C3;
-        Wed, 13 Oct 2021 03:47:34 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Wed, 13 Oct 2021 03:47:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=v15lPKXxuQD+O/mquKtYB7JjF4u
-        gAueL/sChMoTCJG8=; b=PUIiLRQJqVtY3Jpq113nXt4rVnoX30/o5V0Rec0fBAs
-        Qn9UDTPsRBsfSxiCGVZtXWNWK72k2rbpMxr+Db81tc+tOvT3wHWJ7Fo+pMz4ALEI
-        zcGiNLMjNp0ApdfTN0rtzAzweVjxDa54wbSiGbCJKCI7eKwjLB/hpOzskEfrGCV+
-        eLhSliX2EELZWiZfCzlC6XP0pRekKGrbwb2BE9U9mJRI2MObZUQsnpSNlh794iQj
-        sAm0xAJbRjmUuaTEyb4oHKoMEo+2oug8+Wl4TviWeFliCVojyr91/ZIlio7YT+3f
-        pul6qvRRxEXefeaE93MkJGIrp4qp0BovdaKz8Yk0R5Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=v15lPK
-        XxuQD+O/mquKtYB7JjF4ugAueL/sChMoTCJG8=; b=YzC2ur6078WJTpNOE9LCOi
-        rOhqjhCqcsAJxzevA1UT6qhpk7lg2yRwzptqdpJO/q8sjCbIK6wPjqDHmJXnf00z
-        F7ekL/9Sk5tp8fBdCdG4rYq42PNGKmSjX1akzyT7LHe/z0WTVodmxAtAQaA8k0ao
-        HSQwjpU7se5Cbgq+Zahmr5yVYLGaOwQy1ehK4t7pUpO7deEC5KMjD5CvzytCKqcG
-        MUq6EJbCF3oZrb88vijVbsbHEIUD0uxAPNON3DIM5hAF+goCou6evWWYzkYqrPdt
-        of8zxTB4uff19vnHUxDVo/I/taqlRamH5PYC1XFbzEC2LLpSiJ5A3HaKdztNOkNw
-        ==
-X-ME-Sender: <xms:DI9mYTHvg9OzL8ZTUQONbHHqSgAwjW0OCZKN2mt5iUgTif5_XfK0aA>
-    <xme:DI9mYQX6NN_7PbBEWLdicGktrZ0KbwioK2Rdu_b04FQUTGA07M10gJMN4HG88nZ33
-    8MGXT1KDdhJhNDFfe0>
-X-ME-Received: <xmr:DI9mYVJKK2x1HGVvKNmYcSkPXk8uFyaq6uLfj0D6gHCz6m_MgDyDqYQNEOISK1AV-15xb-7owgKVX2M1hNLrismpCyUPyD7AQzmS1zBu>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddtledguddulecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:DI9mYRG9r9f79Ym7E2EIBC4zITzYzJhsoXPjmv1n46f_jP7MryXLxQ>
-    <xmx:DI9mYZWKoP8WskL9Ty4je749hu1mcualY9QB3X3GKmVyqBrier4npw>
-    <xmx:DI9mYcN7H4ywQEMpTerT_itaRZGiSFtC6d9ewYx7AHEJxcKrsg-mgg>
-    <xmx:Fo9mYfxInuprPBZRElEi9JzyvKWA35D2z-X5I4-iEl3lNL2xIVKdiQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 13 Oct 2021 03:47:23 -0400 (EDT)
-Date:   Wed, 13 Oct 2021 09:47:22 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
- supply bindings
-Message-ID: <20211013074722.7y7ug3eri4euknza@gilmour>
-References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
- <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
+        id S238666AbhJMHwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 03:52:07 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:49350 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238614AbhJMHwG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 03:52:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634111404; x=1665647404;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=agPO9eYzPna92uLuzqA91jgKv9G3o5aacnBM8C4HeLw=;
+  b=S99tImOswf9zPdLnuBPs51n86OCYVcKgfpV5n/sgMfH+v8jnryyhYuUG
+   9jaW6GFUbWL6ErJbrKhsL7v3skN95xe1zNy6iZ9ys/FXCbnF5pqxJguo1
+   AuALZja+cCfvYiNMtZnzRmpWMT/8hUeM/QRJeDwbZh4930s4tXyVyc2L7
+   YciGZeLOCLn91p6Vg90//hSS6OYcDLqs0tIwigLGI79aweeqfRB0Litny
+   Mq7H9n1CdYKu5F10mXO6wuB+F/4Q5o53vfQ/W4W+7GLBsNJRMgnACsJu7
+   PW4H9qQ5Hlz0z6Cvo80uNT5/LJStdw4QXI9QNxP9KjDHEea8Clp1o0bAX
+   A==;
+X-IronPort-AV: E=Sophos;i="5.85,369,1624312800"; 
+   d="scan'208";a="20014463"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2021 09:50:02 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 13 Oct 2021 09:50:02 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 13 Oct 2021 09:50:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634111402; x=1665647402;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=agPO9eYzPna92uLuzqA91jgKv9G3o5aacnBM8C4HeLw=;
+  b=FZP6szKPaht4Q8vn4N+tkXBMCgHKfYGT+H9/RlCDrpHZ7nU4+w44jXhh
+   8ygLx4pd1B27HWAEVLSeYq7wYbL0n+6Uwh+mam+vF5PRum+Jr033lkAGs
+   q2l2ZCFBC7Jdfu+Ootz7kKLZtRR2FxgvMdYVhYEAC8qd7mFGxoQJe+fQN
+   KQxjrhqBTYtDaSSw/k0IbIUpJZ55I1DwFSI+mK8AgYo9OiLkI4XphtHZ9
+   YbDLyfqX8p0N7brhAbKtky1K/JnjrDX35rvg/2hm019auX3H0ZdDIeHDT
+   mQ+NfwSlo/taRwGILYfRu/FtVjk0z8DUhmiL70XI0DyW2itFqnxdxznV9
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,369,1624312800"; 
+   d="scan'208";a="20014462"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2021 09:50:02 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id D1B5F280065;
+        Wed, 13 Oct 2021 09:50:01 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] rtc: pcf85063: add support for fixed clock
+Date:   Wed, 13 Oct 2021 09:49:54 +0200
+Message-Id: <20211013074954.997445-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="to54f4mrku7omawu"
-Content-Disposition: inline
-In-Reply-To: <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+TQ-Systems' TQMa8Mx module (SoM) uses a pcf85063 as RTC. The default output
+is 32768Hz. This is to provide the i.MX8M CKIL clock. Once the RTC driver
+is probed, the clock is disabled and all i.MX8M functionality depending on
+the 32 KHz clock will halt. In our case the whole system halts and a power
+cycle is required.
 
---to54f4mrku7omawu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Referencing the pcf85063 directly results in a deadlock. The kernel
+will see, that i.MX8M system clock needs the RTC clock and do probe
+deferral. But the i.MX8M I2C module never becomes usable without the
+i.MX8M CKIL clock and thus the RTC's clock will not be probed. So
+from the kernel's perspective this is a chicken-and-egg problem.
 
-Hi,
+Technically everything is fine by not touching anything, since
+the RTC clock correctly enables the clock on reset (i.e. on
+battery backup power loss).
 
-On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
-> Add a VCC regulator which needs to be enabled before the EN pin is
-> released.
->=20
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8=
-3.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> index a5779bf17849..49ace6f312d5 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> @@ -32,6 +32,9 @@ properties:
->      maxItems: 1
->      description: GPIO specifier for bridge_en pin (active high).
-> =20
-> +  vcc-supply:
-> +    description: A 1.8V power supply (see regulator/regulator.yaml).
-> +
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
-> =20
-> @@ -93,6 +96,7 @@ properties:
->  required:
->    - compatible
->    - reg
-> +  - vcc-supply
+A workaround for this issue is describing the square wave pin
+as fixed-clock, which is registered early and basically how
+this pin is used on the i.MX8M.
 
-This isn't a backward-compatible change. All the previous users of that
-binding will now require a vcc-supply property even though it was
-working fine for them before.
+This addresses the exact same issue as in commit f765e349c3e1 ("rtc:
+m41t80: add support for fixed clock").
 
-You handle that nicely in the code, but you can't make that new property
-required.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+As mentioned in the commit message this addesses the same problem as on
+Congatec's board, although we use a different RTC.
+I also shamelessly reused most of the commit message.
 
-Maxime
+ .../devicetree/bindings/rtc/nxp,pcf85063.txt         |  9 +++++++++
+ drivers/rtc/rtc-pcf85063.c                           | 12 ++++++++++++
+ 2 files changed, 21 insertions(+)
 
---to54f4mrku7omawu
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+index 627bb533eff7..6439682c9319 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+@@ -13,10 +13,19 @@ Optional property:
+   expressed in femto Farad (fF). Valid values are 7000 and 12500.
+   Default value (if no value is specified) is 7000fF.
+ 
++Optional child node:
++- clock: Provide this if the square wave pin is used as boot-enabled fixed clock.
++
+ Example:
+ 
+ pcf85063: rtc@51 {
+ 	compatible = "nxp,pcf85063";
+ 	reg = <0x51>;
+ 	quartz-load-femtofarads = <12500>;
++
++		clock {
++			compatible = "fixed-clock";
++			#clock-cells = <0>;
++			clock-frequency = <32768>;
++		};
+ };
+diff --git a/drivers/rtc/rtc-pcf85063.c b/drivers/rtc/rtc-pcf85063.c
+index 14da4ab30104..137ad56f2d71 100644
+--- a/drivers/rtc/rtc-pcf85063.c
++++ b/drivers/rtc/rtc-pcf85063.c
+@@ -479,6 +479,18 @@ static struct clk *pcf85063_clkout_register_clk(struct pcf85063 *pcf85063)
+ 	struct clk *clk;
+ 	struct clk_init_data init;
+ 	struct device_node *node = pcf85063->rtc->dev.parent->of_node;
++	struct device_node *fixed_clock;
++
++	fixed_clock = of_get_child_by_name(node, "clock");
++	if (fixed_clock) {
++		/*
++		 * skip registering square wave clock when a fixed
++		 * clock has been registered. The fixed clock is
++		 * registered automatically when being referenced.
++		 */
++		of_node_put(fixed_clock);
++		return 0;
++	}
+ 
+ 	init.name = "pcf85063-clkout";
+ 	init.ops = &pcf85063_clkout_ops;
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYWaPCgAKCRDj7w1vZxhR
-xURoAQDm8IvPUi5vzyUHpQ1t/FoKSZIKEtor9+FYGCY+QX5naQEAlTcI9cbK61fo
-8MqjindSabWT6jCKa/uGOXOtF3LSNwY=
-=6P+T
------END PGP SIGNATURE-----
-
---to54f4mrku7omawu--
