@@ -2,64 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B29C742C15E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02E0442C179
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbhJMN1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 09:27:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38582 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229535AbhJMN1O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 09:27:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B5176109E;
-        Wed, 13 Oct 2021 13:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634131511;
-        bh=UGcV/mUCdeF23MAlNCj+71r+JKJVmreKKnW9gSNVkpI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=as4GM+yymmKWnuZa+Cd1AjfwLwOcsyUMmBc+1vYOnm2I2ifZeiOKzUf4QLr/WwZpB
-         iCMlEsd6omh7JOqvRZDoCNdNMuFlxEtKqCvVmOCa1Yz+WZKQo+wtKv9mCt10dafUMK
-         Gl00v0aOjB8Sgtk+VQn9+1QOokf5GdRvKFQu6JgD1YE9N0i0298WQG861cUJLFR2sl
-         NnU1wmKFoTIo7rX9zzDoI3MWYlprfaxaJ0J6shhwyVgFaUEvSeKhAtwaseu2EfUYw4
-         R98KQEGXbVowEoi+CD2doEWwJfutvvdpYz3vBjOszdKd2ZemgF0dpLVgwOX+/HBA9/
-         zKYIaefy/dRRw==
-Received: by mail-ed1-f43.google.com with SMTP id p13so10472972edw.0;
-        Wed, 13 Oct 2021 06:25:11 -0700 (PDT)
-X-Gm-Message-State: AOAM532gwkvvdj+uTYsSGBiLpqM78gGX7hx5qJHIZg6NPgxfGX2Femni
-        A5SwQa8TDvr4SB4jarTGu0QNfJ6t7NLjjfdw2g==
-X-Google-Smtp-Source: ABdhPJzaMP5MaQHrWDeZbquEbFJmvW/OITWr+5JKQkAI1+lpde9YiZTx1UaLtUUsXUk9JN9tflZBcGOJOkAkl+A0LJ4=
-X-Received: by 2002:a17:906:c350:: with SMTP id ci16mr12012432ejb.466.1634131509092;
- Wed, 13 Oct 2021 06:25:09 -0700 (PDT)
+        id S234968AbhJMNgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 09:36:42 -0400
+Received: from polaris.svanheule.net ([84.16.241.116]:38010 "EHLO
+        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231644AbhJMNgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 09:36:40 -0400
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:ca:6d5e:c3e3:69a5])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id 628F0260DB5;
+        Wed, 13 Oct 2021 15:29:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1634131750;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=QtAibD/jKHbHT2fZ2hmCY1IBJUZhTrukIpsqol6hjTI=;
+        b=WtUnBWkktvxYEjKD7gb/DqRx5MW4tyxeS9QEHf9ZK8TTdEgtPe3lhf4jiR30SSCrAQZ7fw
+        JYMRXNO5QNSFz+s+LcIvB6SZjFByZYTFnPBvReebDQJ94APLm+H8wb4WVzpvyH9N0bTmYj
+        wq7Y9/Ca8BUqHPH3HMYqtmAOHUm3BA0hRsP2CYGpy4eXlidbymsSQ7BMb8vs9XjJ647RxU
+        PyItgqB2RHWjtd+ySyxTMLf1FfH+S1/7EGaAv/vK4uv2LoW3W0e+Xh6jNWjhtFGfOHi0nH
+        l4amv8i65t7fh5xPfRtkH9VqxLe6TJpGFHgRNXDeboUBXlQAN3uYcluSDb23/Q==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH 0/2] Add Realtek Otto WDT support
+Date:   Wed, 13 Oct 2021 15:28:58 +0200
+Message-Id: <cover.1634131707.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211008234312.61688-1-david@ixit.cz>
-In-Reply-To: <20211008234312.61688-1-david@ixit.cz>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 13 Oct 2021 08:24:56 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ6Br4S-P65K+n+3wyD4FpXYXDBkeXj+TbgFz8p9hetfA@mail.gmail.com>
-Message-ID: <CAL_JsqJ6Br4S-P65K+n+3wyD4FpXYXDBkeXj+TbgFz8p9hetfA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: uartlite: drop $ref for -bits property
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 6:54 PM David Heidelberg <david@ixit.cz> wrote:
->
-> Fixes warning:
-> Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml: properties:xlnx,data-bits: {'const': '$ref'} is not allowed for '$ref'
->         hint: Standard unit suffix properties don't need a type $ref
->         from schema $id: http://devicetree.org/meta-schemas/core.yaml#
->
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  Documentation/devicetree/bindings/serial/xlnx,opb-uartlite.yaml | 1 -
->  1 file changed, 1 deletion(-)
+This watchdog timer found on Realtek's Otto MIPS platforms, including the
+RTL838x and RTL839x series of ethernet switch SoCs. It has a number of reset
+modes (SoC, CPU, software), and can provide pretimeout interrupts.
 
-Thanks for fixing.
+The timer has two timeout phases. Both phases have a maximum duration of 32
+prescaled clock ticks, which is ca. 43s with a clock of 200MHz:
+- Phase 1: During this phase, the WDT can be pinged to reset the timeout.
+- Phase 2: Starts after phase 1 has timed out, and only serves to give the
+  system some time to clean up, or notify others that it's going to reset.
+  During this phase, pinging the WDT has no effect, and a reset is unavoidable.
 
-Acked-by: Rob Herring <robh@kernel.org>
+The driver has been tested on a Zyxel GS1900-8 (RTL8380, mainline kernel and
+OpenWrt), a Zyxel GS1900-48 (RTL8393, mainline), and a Netgear GS110TPPv1
+(RTL8381, mainline).
+
+Sander Vanheule (2):
+  dt-bindings: watchdog: Realtek Otto WDT binding
+  watchdog: Add Realtek Otto watchdog timer
+
+ .../bindings/watchdog/realtek,otto-wdt.yaml   |  89 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/realtek_otto_wdt.c           | 411 ++++++++++++++++++
+ 5 files changed, 521 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+ create mode 100644 drivers/watchdog/realtek_otto_wdt.c
+
+-- 
+2.31.1
+
