@@ -2,665 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB2A42B9E4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D083542BA3C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 10:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233251AbhJMIJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 04:09:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238743AbhJMIJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 04:09:37 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5189CC061746
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 01:07:34 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id i24so7942159lfj.13
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 01:07:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/TM5GwDv8NroYF6yRzu2LdJ5UTHqxzCh/VTQkYC9Rtw=;
-        b=RpvgoDVLdHogB/2KR1AXZAAA+FjrBwFLJpDjj+HUp/EVwuNdnl1ZRTT3nSYrDG/t2Z
-         9Mvfl4KKRTwq5ycuWM3k2t6G1c9U8Yd8mddWxuItLKGxKUDHxc77AZnxDef7ls8mxv/+
-         G4hnoZOvD8w4VbJBXku2DWul13ezpThT6/gjJyewG0ElKFnwzKSBKTYdLRX1KZa3tsiZ
-         2TWqEH1/eo7nc8lIs9hSMeAG9v7z73/X35ieA3vN4cbx1LBJ2jk7mYaujv9UZcW3KoQh
-         Pu+As8yr1zVczvFEA10lqwgHAPx8nLG3S9Sc/aw1BFCM/SZNXYMwC2UwoWtgw89HDMLE
-         OudA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/TM5GwDv8NroYF6yRzu2LdJ5UTHqxzCh/VTQkYC9Rtw=;
-        b=IDSloJj1VarhsQtdd1SLUwNpQL2SrAQJD87XHSgMoaPkVju3sVFTKrWas1dTxP6UQH
-         XwgDI+CYjHZg4dz9IsS3OXOTDNqLGPO7X5q7DSt8pqVj6axVZF6jJnL7emqPBm9jCtgl
-         v2qmqfemRg8TJef7h/iWCiqXZBOz3xbS9FQGhZbRz2+wpBBM88x4WQmpgw1lamuq6tf2
-         0qjQKc5TBj94wQgQQApgKHS7/TP7EOf6AfTYGkA2rZDA2i4fxzgMDMwtmJXSQAY76yw2
-         7CUBs+VNKWemJ8f6RxX0NswA1Q1JjDkiMfLcCkgiE7xNUmTd6bWLKySSUMhQSGOot687
-         nBrA==
-X-Gm-Message-State: AOAM532pFjSY7Pdt00INM2yKx6ZNhPURTWxY0PuMpmPDXBFUF8pjVf/N
-        7Lh6n4ApWJhXQrx4cjeuO4jJ74P2KNTZz2eKxeZr2g==
-X-Google-Smtp-Source: ABdhPJwefnvae/S7fmJDSykZmRiuSbFvw3UiA5BoK9O6xt8X4WVonh2ptTDgrrCcKjmgZvefhzK2nnr/LLKtiG3zO5Y=
-X-Received: by 2002:a05:6512:3503:: with SMTP id h3mr37770257lfs.513.1634112451238;
- Wed, 13 Oct 2021 01:07:31 -0700 (PDT)
+        id S232152AbhJMIa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 04:30:29 -0400
+Received: from mail-eopbgr80048.outbound.protection.outlook.com ([40.107.8.48]:63458
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232147AbhJMIa2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 04:30:28 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GDY0HmghSrCKQJoEdZ2zw8jVhaj8mS46sV0LcxPBzlQ7R3YKW2EUmXhkV4mHUUiIfLVjiiuVwfVsAVpYe7mg43xFxnuNVBaofVoZbp/XxSDu6dq/jkeqVR4Piv5qskqjF6KO7tujtBKLj67KcfDLezNGIL7MyDEJ0g8R0xjE0xwtoPnsaq/rMjte5I+PYFC9EqvtS6FUs734liMjKWnnJ9lmm+5+PnGVBsQ/9nxIT1/X7cEF2T9AW0vKOPtOqPEdaMX7WjEqHXIla+yus3y7Hyv30XkTIkPCvZ2+6BmmLkHFPLlKthyvkbdxCHq0pblV2IJXfI2dcxndUTrskHJnrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I8WfWr9wNO3UXdwAgumP47Yw0i1cY6+Zm/KkGfozz7A=;
+ b=CpiWjQOzh0hYZqd9adnDYjJDZgKWeErUaHMc9UY+UOqdAQXu2jvJw8OBET1gyOrSB6+j7UgrhDv6EuS8vNM6rJVF9bZyVzrigZMZ8zdi4NARvu6h1kAmTzi3MdjPFSZO2hCMlkWXHYkFQxjyi2sCAE9Htza12hQztUXo+SN81FeBY/ozNcXTLw+lc60ONqzh8ulQe4un4E9rrR+WNnVXdT8zySk4kUzUvqDLYH0c3o2uX2iWFetmOd/hyilffqYzTmTrTc7PwU890hOgRNGdppxAVPbrmKm8tDr5sajtj/2f4kzEWqZsYUejiWuPstZBzNhVW85NYpwXSToa1KIDgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=I8WfWr9wNO3UXdwAgumP47Yw0i1cY6+Zm/KkGfozz7A=;
+ b=Edhm7I9NyDwtR4danpDKyYCGnOpaa7NjSJg0iydoptezfckT4hdnSHrPH8sXXF5Y2MOtkNhmWtPn41l7VlKmNm41XVAVdqe+FrtW4a97/FyUzSY5tRYfS2e2fmmUfHAWUJg69CMo5vMKhkm1a9x81ZDigwYNLP3kl8ubQi02viU=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM6PR04MB4789.eurprd04.prod.outlook.com (2603:10a6:20b:7::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.25; Wed, 13 Oct
+ 2021 08:28:23 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::fc3a:8aea:2c92:3886]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::fc3a:8aea:2c92:3886%5]) with mapi id 15.20.4587.026; Wed, 13 Oct 2021
+ 08:28:23 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v10 00/13] amphion video decoder/encoder driver
+Date:   Wed, 13 Oct 2021 16:27:16 +0800
+Message-Id: <cover.1634095309.git.ming.qian@nxp.com>
+X-Mailer: git-send-email 2.33.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR03CA0121.apcprd03.prod.outlook.com
+ (2603:1096:4:91::25) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
-References: <20211006071546.2540920-1-jens.wiklander@linaro.org> <20211006071546.2540920-7-jens.wiklander@linaro.org>
-In-Reply-To: <20211006071546.2540920-7-jens.wiklander@linaro.org>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Wed, 13 Oct 2021 13:37:19 +0530
-Message-ID: <CAFA6WYPB2hNMgdK+BkZFhvEqmyrbYH8i1b97v-6pSWM0hECW8g@mail.gmail.com>
-Subject: Re: [PATCH v6 6/6] optee: add asynchronous notifications
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Received: from lsv11149.swis.cn-sha01.nxp.com (119.31.174.70) by SG2PR03CA0121.apcprd03.prod.outlook.com (2603:1096:4:91::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.12 via Frontend Transport; Wed, 13 Oct 2021 08:28:19 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1a3f7aef-852f-4b7f-fd6e-08d98e236b7f
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4789:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM6PR04MB478963985DC8A8615627129DE7B79@AM6PR04MB4789.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2000;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: BazQqrV2ySORSHcadUdOWxc6Kd1DxmLQNzMbdEyE0x1LF31+Ws/k8IvYdabVm/jVb9VPjzQUdPoGMBB1pvt5U2XrYftyu/sVAw8SYXusH8FBFgcyDPkcWbxJoWPrxF4YZrdrMsNQpOyQCzs6w5qaej/wQ8n3wbWdSLSdA8Q/h4RPY6BA/hib+0y+Ywz2Pm3CEHlcYfb//YE8S7K3TZwwT6aDiBKDx+kNQII9jvw8gp/RnUbhBlKriv6Ly1Zhr9P7jISwuODLC7d33MqreiwIvV4FpIqx4w8aZwuAiCY4CQQIX0uZOYUe6u6z/oHpudfxCcfRxFq5zcMSfgi7d6ddzYhtrGWI4eaJFhpYctJu4VViWAS9wiGtNrLzX+Fz1E/ErlLycnB2gvLaCzFXpMvsgTLzFFA/GoAyBEB/obBHTrCV0TAvGCAJO9VUUxRgTwuIE4aYVt++wMiBK8NZHMpuLQC+PL1TZJT7JRStVYnTOySU7uGpTUDDM+BA/OXUMOXCi8HzTIXwj3yrMHl1BRZzkCm/6D+aJmnczhqXPNfhKzQGs479IBrrBMKKDkOlH9EPQ8AAE73slQPxW1RCgxWxb1RhVGtutOBNj4TcLuG4cCCR9YnOdL3gPxNTUu7YKOVXeRmm33WQbfUFRgGyR+ar/ECXVh9n+2nP7L1alTjO8Ok6KM2Ug67jRwf3mYdeMraePd57y7GL7H54WtL7sf3+baxvW0xzRseFa78CpA3+ohOTWgn209h3+iE9LNmpJ5sBq8wGmoUUdySDs0OGkdqUtLonBH7iUD4pOORvtX7/ayg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(2906002)(36756003)(83380400001)(186003)(966005)(2616005)(66556008)(66946007)(26005)(956004)(66476007)(6486002)(44832011)(316002)(7696005)(86362001)(30864003)(6666004)(508600001)(52116002)(8676002)(4326008)(38100700002)(5660300002)(7416002)(38350700002)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?j8VRHUKYDnl1g+D3mGehaKvt0/DKPepduBsxpcgaF5v7nQzd7bi2xeQ0dY03?=
+ =?us-ascii?Q?kbvEv1u9+ZkVKzqpAnn3JiE8Cz1bOnaCtjazNoGmQ5QtlFoyiQSSlvg2QCIk?=
+ =?us-ascii?Q?uidSVASieU4J9i2nFavgZpezPNTEwUdwsRmFnrbZ8oFb/lbJGH5y7s+fAt5r?=
+ =?us-ascii?Q?/TYVkRIbMoqyqyQYTffwMSb1imZ71voPZRiLm+vuvoaVrw7+113Bsjf42ZWS?=
+ =?us-ascii?Q?2QjZI6yzLc31iTkC4qemYjOhwEk47XO0gpBiRwX2kNrz1Q21U2s3GZx9jS74?=
+ =?us-ascii?Q?/N0lkHM3ZaYPRQ+7pB9fl2Tx2W/PfN83fH3dmFu/TFt5l/k4sQcN+glHiACT?=
+ =?us-ascii?Q?u8xIyUyua5KHQvj1FPzD3mZO5wcPO4nP0zRF9RHZ9rnwLPQ169haWZ68mZcE?=
+ =?us-ascii?Q?heb03B1h2DOKmXinuEyOoE42nXhV9fcJ/MYhrKGhyufh5FuoXEhaBtOdRvHs?=
+ =?us-ascii?Q?eM8ce7BQsSVrEntMkxo8yksbKOn6OpTrYdsnEW4knvsVzCdvMdoJyOpiCmXh?=
+ =?us-ascii?Q?sGBgp8sljnH01m6OXEgAO8vW8/axhkiyOd+Xw+xWZqynQYZncMYNK4cD5FtK?=
+ =?us-ascii?Q?omSpDJa6QVdL7i8yboOmPP6WPdn4ng6qyZFn5UA+5eLKfGpbHGRoK5E36HWh?=
+ =?us-ascii?Q?VpSf9tyiNa5X7uZATP43lknUkKIcVVV4PkkmMpN7OpsRQucDMMuCMi8h/N5s?=
+ =?us-ascii?Q?tXjTUgXFoc+Tf8/p7vG6rywkvEC1/+H7v0kPwmYYcaZ9mcCJpA86cYstCke6?=
+ =?us-ascii?Q?06F9CJPJDrwuO/oQ5pahYzl79b/bJXjIxbxj9ntChw9fhSHavbofPfvcPIEo?=
+ =?us-ascii?Q?RPUalYHUk2MRqA4DuESP6yVFLv6+uyZmwsCccgTo6r22o6xe0bCZA7BCeWz/?=
+ =?us-ascii?Q?SvjCewjmNBmRLLBp0PF4uF7SiyfSoBEGKBjUMgeb6Lj3bSGTyiyM8XbNxJLn?=
+ =?us-ascii?Q?rPr6VvS4dFWO+p7sfsZK6eRKouDus6ifEsd3mzg4aA2+xSk/vODE9cCCqXWe?=
+ =?us-ascii?Q?hbHEPUo9M2S++Ti1FzqRWG23RbmN685UarPgMXvvM1ixHr2F6xNcGb3k817Q?=
+ =?us-ascii?Q?WruQXxpmIF3qPV6p70R1itBC5dWjIP5vDD3s540WmlF76BkQvGOYu4XzpxH9?=
+ =?us-ascii?Q?LrRFOD3gzZKvK6x+6iiGap3WO/BbIiRoWgNA6c5RdwD5S/Wi+TbuGiGylW1E?=
+ =?us-ascii?Q?bZwnfEGteL/6TbMxxZAyvrJA50+6NFbkwXnz99hhetgg4MqQtK8Vl1P4LaZN?=
+ =?us-ascii?Q?thfYKdJ/rqcZEY/VmU+d0ZTiZz2g3HZyyvVmF/XF2VlYA4XYCUPTXzxB5vqd?=
+ =?us-ascii?Q?eBIYQ/rtuMvAV5cXLygWmk6d?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a3f7aef-852f-4b7f-fd6e-08d98e236b7f
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2021 08:28:23.1013
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: JmP3/puJBocgZhbd+2j5JdKsZK8BVcintZJjF5Mq+gMf4oiJkBgmIz5V7zIuJJzA7xLA/Rif0dXp/D5mm7lhOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4789
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 at 12:46, Jens Wiklander <jens.wiklander@linaro.org> wrote:
->
-> Adds support for asynchronous notifications from secure world to normal
-> world. This allows a design with a top half and bottom half type of
-> driver where the top half runs in secure interrupt context and a
-> notifications tells normal world to schedule a yielding call to do the
-> bottom half processing.
->
-> The protocol is defined in optee_msg.h optee_rpc_cmd.h and optee_smc.h.
->
-> A notification consists of a 32-bit value which normal world can
-> retrieve using a fastcall into secure world. The value
-> OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF (0) has a special meaning.
-> When this value is sent it means that normal world is supposed to make a
-> yielding call OPTEE_MSG_CMD_DO_BOTTOM_HALF.
->
-> Notification capability is negotiated while the driver is initialized.
-> If both sides supports these notifications then they are enabled.
->
-> An interrupt is used to notify the driver that there are asynchronous
-> notifications pending. The maximum needed notification value is
-> communicated at this stage. This allows scaling up when needed.
->
-> Acked-by: Ard Biesheuvel <ardb@kernel.org>
-> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
-> ---
->  drivers/tee/optee/call.c          |  27 ++++++++
->  drivers/tee/optee/core.c          |  83 ++++++++++++++++-------
->  drivers/tee/optee/notif.c         | 109 ++++++++++++++++++++++++++++--
->  drivers/tee/optee/optee_msg.h     |   9 +++
->  drivers/tee/optee/optee_private.h |   6 +-
->  drivers/tee/optee/optee_smc.h     |  75 +++++++++++++++++++-
->  6 files changed, 277 insertions(+), 32 deletions(-)
->
-> diff --git a/drivers/tee/optee/call.c b/drivers/tee/optee/call.c
-> index 945f03da0223..e428e0e9a3af 100644
-> --- a/drivers/tee/optee/call.c
-> +++ b/drivers/tee/optee/call.c
-> @@ -392,6 +392,33 @@ int optee_cancel_req(struct tee_context *ctx, u32 cancel_id, u32 session)
->         return 0;
->  }
->
-> +static int simple_call_with_arg(struct tee_context *ctx, u32 cmd)
-> +{
-> +       struct optee_msg_arg *msg_arg;
-> +       phys_addr_t msg_parg;
-> +       struct tee_shm *shm;
-> +
-> +       shm = get_msg_arg(ctx, 0, &msg_arg, &msg_parg);
-> +       if (IS_ERR(shm))
-> +               return PTR_ERR(shm);
-> +
-> +       msg_arg->cmd = cmd;
-> +       optee_do_call_with_arg(ctx, msg_parg);
-> +
-> +       tee_shm_free(shm);
-> +       return 0;
-> +}
-> +
-> +int optee_do_bottom_half(struct tee_context *ctx)
-> +{
-> +       return simple_call_with_arg(ctx, OPTEE_MSG_CMD_DO_BOTTOM_HALF);
-> +}
-> +
-> +int optee_stop_async_notif(struct tee_context *ctx)
-> +{
-> +       return simple_call_with_arg(ctx, OPTEE_MSG_CMD_STOP_ASYNC_NOTIF);
+Hi all,
 
-Is there any particular reason that this isn't a fast call similar to
-OPTEE_SMC_ENABLE_ASYNC_NOTIF?
+This patch series adds support for
+the amphion video encoder and decoder
+via the VPU block present in imx8q platforms.
+Currently, support for IMX8QXP and IMX8QM is included.
 
-> +}
-> +
->  /**
->   * optee_enable_shm_cache() - Enables caching of some shared memory allocation
->   *                           in OP-TEE
-> diff --git a/drivers/tee/optee/core.c b/drivers/tee/optee/core.c
-> index 8531184f98f4..ccafd7151b45 100644
-> --- a/drivers/tee/optee/core.c
-> +++ b/drivers/tee/optee/core.c
-> @@ -8,9 +8,12 @@
->  #include <linux/arm-smccc.h>
->  #include <linux/crash_dump.h>
->  #include <linux/errno.h>
-> +#include <linux/interrupt.h>
->  #include <linux/io.h>
-> +#include <linux/irqdomain.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_irq.h>
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/slab.h>
-> @@ -355,6 +358,17 @@ static const struct tee_desc optee_supp_desc = {
->         .flags = TEE_DESC_PRIVILEGED,
->  };
->
-> +static int enable_async_notif(optee_invoke_fn *invoke_fn)
-> +{
-> +       struct arm_smccc_res res;
-> +
-> +       invoke_fn(OPTEE_SMC_ENABLE_ASYNC_NOTIF, 0, 0, 0, 0, 0, 0, 0, &res);
-> +
-> +       if (res.a0)
-> +               return -EINVAL;
-> +       return 0;
-> +}
-> +
->  static bool optee_msg_api_uid_is_optee_api(optee_invoke_fn *invoke_fn)
->  {
->         struct arm_smccc_res res;
-> @@ -404,7 +418,7 @@ static bool optee_msg_api_revision_is_compatible(optee_invoke_fn *invoke_fn)
->  }
->
->  static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
-> -                                           u32 *sec_caps)
-> +                                           u32 *sec_caps, u32 *max_notif_value)
->  {
->         union {
->                 struct arm_smccc_res smccc;
-> @@ -427,6 +441,7 @@ static bool optee_msg_exchange_capabilities(optee_invoke_fn *invoke_fn,
->                 return false;
->
->         *sec_caps = res.result.capabilities;
-> +       *max_notif_value = res.result.max_notif_value;
->         return true;
->  }
->
-> @@ -630,6 +645,7 @@ static int optee_probe(struct platform_device *pdev)
->         struct optee *optee = NULL;
->         void *memremaped_shm = NULL;
->         struct tee_device *teedev;
-> +       u32 max_notif_value;
->         u32 sec_caps;
->         int rc;
->
-> @@ -659,7 +675,8 @@ static int optee_probe(struct platform_device *pdev)
->                 return -EINVAL;
->         }
->
-> -       if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps)) {
-> +       if (!optee_msg_exchange_capabilities(invoke_fn, &sec_caps,
-> +                                            &max_notif_value)) {
->                 pr_warn("capabilities mismatch\n");
->                 return -EINVAL;
->         }
-> @@ -682,7 +699,7 @@ static int optee_probe(struct platform_device *pdev)
->         optee = kzalloc(sizeof(*optee), GFP_KERNEL);
->         if (!optee) {
->                 rc = -ENOMEM;
-> -               goto err;
-> +               goto err_free_pool;
->         }
->
->         optee->invoke_fn = invoke_fn;
-> @@ -691,24 +708,24 @@ static int optee_probe(struct platform_device *pdev)
->         teedev = tee_device_alloc(&optee_desc, NULL, pool, optee);
->         if (IS_ERR(teedev)) {
->                 rc = PTR_ERR(teedev);
-> -               goto err;
-> +               goto err_free_optee;
->         }
->         optee->teedev = teedev;
->
->         teedev = tee_device_alloc(&optee_supp_desc, NULL, pool, optee);
->         if (IS_ERR(teedev)) {
->                 rc = PTR_ERR(teedev);
-> -               goto err;
-> +               goto err_unreg_teedev;
->         }
->         optee->supp_teedev = teedev;
->
->         rc = tee_device_register(optee->teedev);
->         if (rc)
-> -               goto err;
-> +               goto err_unreg_supp_teedev;
->
->         rc = tee_device_register(optee->supp_teedev);
->         if (rc)
-> -               goto err;
-> +               goto err_unreg_supp_teedev;
->
->         mutex_init(&optee->call_queue.mutex);
->         INIT_LIST_HEAD(&optee->call_queue.waiters);
-> @@ -717,10 +734,31 @@ static int optee_probe(struct platform_device *pdev)
->         optee->pool = pool;
->
->         platform_set_drvdata(pdev, optee);
-> -       rc = optee_notif_init(optee, 255);
-> -       if (rc) {
-> -               optee_remove(pdev);
-> -               return rc;
-> +
-> +       if (sec_caps & OPTEE_SMC_SEC_CAP_ASYNC_NOTIF) {
-> +               unsigned int irq;
-> +
-> +               rc = platform_get_irq(pdev, 0);
-> +               if (rc < 0) {
-> +                       pr_err("platform_get_irq: ret %d\n", rc);
-> +                       goto err_unreg_supp_teedev;
-> +               }
-> +               irq = rc;
-> +
-> +               rc = optee_notif_init(optee, max_notif_value, irq);
-> +               if (rc) {
-> +                       irq_dispose_mapping(irq);
-> +                       optee_remove(pdev);
-> +                       return rc;
-> +               }
-> +               enable_async_notif(optee->invoke_fn);
-> +               pr_info("Asynchronous notifications enabled\n");
-> +       } else {
-> +               rc = optee_notif_init(optee, 255, 0);
-> +               if (rc) {
-> +                       optee_remove(pdev);
+It features decoding for the following formats:
+- H.264
+- HEVC
+- MPEG4
+- MPEG2
+- VC1
+- VP8
 
-IMO, multiple usage of optee_remove() in the error path makes error
-handling a bit complex. I liked the way you tagged the error paths. So
-can't we get rid of optee_remove() from the error path and handle
-errors based on tagged error paths only?
+It features encoding for the following formats:
+- H.264
 
-> +                       return rc;
-> +               }
->         }
->
->         /*
-> @@ -745,20 +783,15 @@ static int optee_probe(struct platform_device *pdev)
->
->         pr_info("initialized driver\n");
->         return 0;
-> -err:
-> -       if (optee) {
-> -               /*
-> -                * tee_device_unregister() is safe to call even if the
-> -                * devices hasn't been registered with
-> -                * tee_device_register() yet.
-> -                */
-> -               tee_device_unregister(optee->supp_teedev);
-> -               tee_device_unregister(optee->teedev);
-> -               kfree(optee);
-> -       }
-> -       if (pool)
-> -               tee_shm_pool_free(pool);
-> -       if (memremaped_shm)
-> +err_unreg_supp_teedev:
-> +       tee_device_unregister(optee->supp_teedev);
-> +err_unreg_teedev:
-> +       tee_device_unregister(optee->teedev);
-> +err_free_optee:
-> +       kfree(optee);
-> +err_free_pool:
-> +       tee_shm_pool_free(pool);
-> +       if (optee->memremaped_shm)
->                 memunmap(memremaped_shm);
->         return rc;
->  }
-> diff --git a/drivers/tee/optee/notif.c b/drivers/tee/optee/notif.c
-> index a28fa03dcd0e..2c888ad87451 100644
-> --- a/drivers/tee/optee/notif.c
-> +++ b/drivers/tee/optee/notif.c
-> @@ -7,10 +7,14 @@
->
->  #include <linux/arm-smccc.h>
->  #include <linux/errno.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irqdomain.h>
->  #include <linux/slab.h>
->  #include <linux/spinlock.h>
->  #include <linux/tee_drv.h>
->  #include "optee_private.h"
-> +#include "optee_smc.h"
-> +#include "optee_rpc_cmd.h"
->
->  struct notif_entry {
->         struct list_head link;
-> @@ -18,6 +22,54 @@ struct notif_entry {
->         u_int key;
->  };
->
-> +static u32 get_async_notif_value(optee_invoke_fn *invoke_fn, bool *value_valid,
-> +                                bool *value_pending)
-> +{
-> +       struct arm_smccc_res res;
-> +
-> +       invoke_fn(OPTEE_SMC_GET_ASYNC_NOTIF_VALUE, 0, 0, 0, 0, 0, 0, 0, &res);
-> +
-> +       if (res.a0)
-> +               return 0;
-> +       *value_valid = (res.a2 & OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID);
-> +       *value_pending = (res.a2 & OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING);
-> +       return res.a1;
-> +}
-> +
-> +static irqreturn_t notif_irq_handler(int irq, void *dev_id)
-> +{
-> +       struct optee *optee = dev_id;
-> +       bool do_bottom_half = false;
-> +       bool value_valid;
-> +       bool value_pending;
-> +       u32 value;
-> +
-> +       do {
-> +               value = get_async_notif_value(optee->invoke_fn, &value_valid,
-> +                                             &value_pending);
-> +               if (!value_valid)
-> +                       break;
-> +
-> +               if (value == OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF)
-> +                       do_bottom_half = true;
-> +               else
-> +                       optee_notif_send(optee, value);
-> +       } while (value_pending);
-> +
-> +       if (do_bottom_half)
-> +               return IRQ_WAKE_THREAD;
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t notif_irq_thread_fn(int irq, void *dev_id)
-> +{
-> +       struct optee *optee = dev_id;
-> +
-> +       optee_do_bottom_half(optee->notif.ctx);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
->  static bool have_key(struct optee *optee, u_int key)
->  {
->         struct notif_entry *entry;
-> @@ -106,20 +158,69 @@ int optee_notif_send(struct optee *optee, u_int key)
->         return 0;
->  }
->
-> -int optee_notif_init(struct optee *optee, u_int max_key)
-> +int optee_notif_init(struct optee *optee, u_int max_key, u_int irq)
->  {
-> +       struct tee_context *ctx;
-> +       int rc;
-> +
-> +       if (irq) {
-> +               ctx = teedev_open(optee->teedev);
-> +               if (IS_ERR(ctx))
-> +                       return PTR_ERR(ctx);
-> +
-> +               optee->notif.ctx = ctx;
-> +       }
-> +
->         spin_lock_init(&optee->notif.lock);
->         INIT_LIST_HEAD(&optee->notif.db);
->         optee->notif.bitmap = bitmap_zalloc(max_key, GFP_KERNEL);
-> -       if (!optee->notif.bitmap)
-> -               return -ENOMEM;
-> -
-> +       if (!optee->notif.bitmap) {
-> +               rc = -ENOMEM;
-> +               goto err_close_ctx;
-> +       }
->         optee->notif.max_key = max_key;
->
-> +       if (irq) {
-> +               rc = request_threaded_irq(irq, notif_irq_handler,
-> +                                         notif_irq_thread_fn,
-> +                                         0, "optee_notification", optee);
-> +               if (rc)
-> +                       goto err_free_bitmap;
-> +
-> +               optee->notif.irq = irq;
-> +       }
-> +
->         return 0;
-> +
-> +err_free_bitmap:
-> +       kfree(optee->notif.bitmap);
-> +err_close_ctx:
-> +       teedev_close_context(optee->notif.ctx);
-> +       optee->notif.ctx = NULL;
-> +
-> +       return rc;
->  }
->
->  void optee_notif_uninit(struct optee *optee)
->  {
-> +       if (optee->notif.ctx) {
-> +               optee_stop_async_notif(optee->notif.ctx);
-> +               if (optee->notif.irq) {
-> +                       free_irq(optee->notif.irq, optee);
-> +                       irq_dispose_mapping(optee->notif.irq);
-> +               }
-> +
-> +               /*
-> +                * The thread normally working with optee->notif.ctx was
-> +                * stopped with free_irq() above.
-> +                *
-> +                * Note we're not using teedev_close_context() or
-> +                * tee_client_close_context() since we have already called
-> +                * tee_device_put() while initializing to avoid a circular
-> +                * reference counting.
-> +                */
-> +               teedev_close_context(optee->notif.ctx);
-> +       }
-> +
->         kfree(optee->notif.bitmap);
->  }
-> diff --git a/drivers/tee/optee/optee_msg.h b/drivers/tee/optee/optee_msg.h
-> index e3d72d09c484..3e09c8386e46 100644
-> --- a/drivers/tee/optee/optee_msg.h
-> +++ b/drivers/tee/optee/optee_msg.h
-> @@ -293,6 +293,13 @@ struct optee_msg_arg {
->   * [in] param[0].u.rmem.shm_ref                holds shared memory reference
->   * [in] param[0].u.rmem.offs           0
->   * [in] param[0].u.rmem.size           0
-> + *
-> + * OPTEE_MSG_CMD_DO_BOTTOM_HALF does the scheduled bottom half processing
-> + * of a driver.
-> + *
-> + * OPTEE_MSG_CMD_STOP_ASYNC_NOTIF informs secure world that from now is
-> + * normal world unable to process asynchronous notifications. Typically
-> + * used when the driver is shut down.
->   */
->  #define OPTEE_MSG_CMD_OPEN_SESSION     0
->  #define OPTEE_MSG_CMD_INVOKE_COMMAND   1
-> @@ -300,6 +307,8 @@ struct optee_msg_arg {
->  #define OPTEE_MSG_CMD_CANCEL           3
->  #define OPTEE_MSG_CMD_REGISTER_SHM     4
->  #define OPTEE_MSG_CMD_UNREGISTER_SHM   5
-> +#define OPTEE_MSG_CMD_DO_BOTTOM_HALF   6
-> +#define OPTEE_MSG_CMD_STOP_ASYNC_NOTIF 7
->  #define OPTEE_MSG_FUNCID_CALL_WITH_ARG 0x0004
->
->  #endif /* _OPTEE_MSG_H */
-> diff --git a/drivers/tee/optee/optee_private.h b/drivers/tee/optee/optee_private.h
-> index 76a16d9b6cf4..f62a16935c49 100644
-> --- a/drivers/tee/optee/optee_private.h
-> +++ b/drivers/tee/optee/optee_private.h
-> @@ -37,6 +37,8 @@ struct optee_call_queue {
->
->  struct optee_notif {
->         u_int max_key;
-> +       unsigned int irq;
-> +       struct tee_context *ctx;
->         /* Serializes access to the elements below in this struct */
->         spinlock_t lock;
->         struct list_head db;
-> @@ -132,7 +134,7 @@ void optee_handle_rpc(struct tee_context *ctx, struct optee_rpc_param *param,
->                       struct optee_call_ctx *call_ctx);
->  void optee_rpc_finalize_call(struct optee_call_ctx *call_ctx);
->
-> -int optee_notif_init(struct optee *optee, u_int max_key);
-> +int optee_notif_init(struct optee *optee, u_int max_key, u_int irq);
->  void optee_notif_uninit(struct optee *optee);
->  int optee_notif_wait(struct optee *optee, u_int key);
->  int optee_notif_send(struct optee *optee, u_int key);
-> @@ -159,6 +161,8 @@ int optee_close_session(struct tee_context *ctx, u32 session);
->  int optee_invoke_func(struct tee_context *ctx, struct tee_ioctl_invoke_arg *arg,
->                       struct tee_param *param);
->  int optee_cancel_req(struct tee_context *ctx, u32 cancel_id, u32 session);
-> +int optee_do_bottom_half(struct tee_context *ctx);
-> +int optee_stop_async_notif(struct tee_context *ctx);
->
->  void optee_enable_shm_cache(struct optee *optee);
->  void optee_disable_shm_cache(struct optee *optee);
-> diff --git a/drivers/tee/optee/optee_smc.h b/drivers/tee/optee/optee_smc.h
-> index 80eb763a8a80..c6eec6b6febf 100644
-> --- a/drivers/tee/optee/optee_smc.h
-> +++ b/drivers/tee/optee/optee_smc.h
-> @@ -107,6 +107,12 @@ struct optee_smc_call_get_os_revision_result {
->  /*
->   * Call with struct optee_msg_arg as argument
->   *
-> + * When calling this function normal world has a few responsibilities:
-> + * 1. It must be able to handle eventual RPCs
-> + * 2. Non-secure interrupts should not be masked
-> + * 3. If asynchronous notifications has be negotiated successfully, then
+The driver creates a separate device node for the encoder and decoder.
 
-nit: s/has be/have been/
+This driver is dependent on vpu firmwares.
+The firmwares have been submitted to linux-firmware.
+The firmware patch is since commit
+b563148fd28623f6b6ce68bb06c3dd3bd138b058:
+linux-firmware: Update firmware file for Intel Bluetooth 9462
+(Fri Oct 8 16:30:14 2021 +0530)
 
-> + *    asynchronous notifications should be unmasked during this call.
-> + *
->   * Call register usage:
->   * a0  SMC Function ID, OPTEE_SMC*CALL_WITH_ARG
->   * a1  Upper 32 bits of a 64-bit physical pointer to a struct optee_msg_arg
-> @@ -195,7 +201,8 @@ struct optee_smc_get_shm_config_result {
->   * Normal return register usage:
->   * a0  OPTEE_SMC_RETURN_OK
->   * a1  bitfield of secure world capabilities OPTEE_SMC_SEC_CAP_*
-> - * a2-7        Preserved
-> + * a2  The maximum secure world notification number
-> + * a3-7        Preserved
->   *
->   * Error return register usage:
->   * a0  OPTEE_SMC_RETURN_ENOTAVAIL, can't use the capabilities from normal world
-> @@ -218,6 +225,8 @@ struct optee_smc_get_shm_config_result {
->  #define OPTEE_SMC_SEC_CAP_VIRTUALIZATION       BIT(3)
->  /* Secure world supports Shared Memory with a NULL reference */
->  #define OPTEE_SMC_SEC_CAP_MEMREF_NULL          BIT(4)
-> +/* Secure world supports asynchronous notification of normal world */
-> +#define OPTEE_SMC_SEC_CAP_ASYNC_NOTIF          BIT(5)
->
->  #define OPTEE_SMC_FUNCID_EXCHANGE_CAPABILITIES 9
->  #define OPTEE_SMC_EXCHANGE_CAPABILITIES \
-> @@ -226,8 +235,8 @@ struct optee_smc_get_shm_config_result {
->  struct optee_smc_exchange_capabilities_result {
->         unsigned long status;
->         unsigned long capabilities;
-> +       unsigned long max_notif_value;
->         unsigned long reserved0;
-> -       unsigned long reserved1;
->  };
->
->  /*
-> @@ -319,6 +328,68 @@ struct optee_smc_disable_shm_cache_result {
->  #define OPTEE_SMC_GET_THREAD_COUNT \
->         OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_THREAD_COUNT)
->
-> +/*
-> + * Inform OP-TEE that normal world is able to receive asynchronous
-> + * notifications.
-> + *
-> + * Call requests usage:
-> + * a0  SMC Function ID, OPTEE_SMC_ENABLE_ASYNC_NOTIF
-> + * a1-6        Not used
-> + * a7  Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0  OPTEE_SMC_RETURN_OK
-> + * a1-7        Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7        Preserved
-> + */
-> +#define OPTEE_SMC_FUNCID_ENABLE_ASYNC_NOTIF    16
-> +#define OPTEE_SMC_ENABLE_ASYNC_NOTIF \
-> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_ENABLE_ASYNC_NOTIF)
-> +
-> +/*
-> + * Retrieve a value of notifications pended since the last call of this
+and it's available in the git repository at:
+    https://github.com/mingqian-0/linux-firmware.git
 
-nit: s/pended/pending/
+for you to fetch changes up to bb3eee4f99589d4910dee4c053a3a685546b5dbb:
+amphion: add VPU firmwares for NXP i.MX8Q SoCs
+(Tue Oct 12 15:09:57 2021 +0800)
 
-> + * function.
-> + *
-> + * OP-TEE keeps a records of all posted values. When an interrupts is
 
-nit: s/records/record/
+Changelog:
 
-> + * received which indicates that there are posed values this function
-> + * should be called until all pended values has been retrieved. When a
+v10
+- refine vpu log, remove custom logging infrastructure
+- support non contiguous planes format nv12m instead of nv12
+- rename V4L2_PIX_FMT_NV12_8L128 to V4L2_PIX_FMT_NV12MT_8L128
+- rename V4L2_PIX_FMT_NV12_10BE_8L128 to V4L2_PIX_FMT_NV12MT_10BE_8L128
+- merge two module into one
+- fix kernel panic in rmmod
 
-nit: s/has/have/
+v9
+- drop V4L2_BUF_FLAG_CODECCONFIG
+- drop V4L2_EVENT_CODEC_ERROR
+- drop V4L2_EVENT_SKIP - use the v4l2_buffer.sequence counter
+- fix some build warnings with W=1 reported by kernel test robot
 
-> + * value is retrieved it's cleared from the record in secure world.
-> + *
-> + * Call requests usage:
-> + * a0  SMC Function ID, OPTEE_SMC_GET_ASYNC_NOTIF_VALUE
-> + * a1-6        Not used
-> + * a7  Hypervisor Client ID register
-> + *
-> + * Normal return register usage:
-> + * a0  OPTEE_SMC_RETURN_OK
-> + * a1  value
-> + * a2  Bit[0]: OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID if the value in a1 is
-> + *             valid, else 0 if no values where pending
-> + * a2  Bit[1]: OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING if another value is
-> + *             pending, else 0.
-> + *     Bit[31:2]: MBZ
-> + * a3-7        Preserved
-> + *
-> + * Not supported return register usage:
-> + * a0  OPTEE_SMC_RETURN_ENOTAVAIL
-> + * a1-7        Preserved
-> + */
-> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_VALID      BIT(0)
-> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_PENDING    BIT(1)
-> +
-> +/*
-> + * Notification that OP-TEE expects a yielding call to do some bottom half
-> + * work in a driver.
-> + */
-> +#define OPTEE_SMC_ASYNC_NOTIF_VALUE_DO_BOTTOM_HALF     0
-> +
-> +#define OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE 17
-> +#define OPTEE_SMC_GET_ASYNC_NOTIF_VALUE \
-> +       OPTEE_SMC_FAST_CALL_VAL(OPTEE_SMC_FUNCID_GET_ASYNC_NOTIF_VALUE)
-> +
->  /*
->   * Resume from RPC (for example after processing a foreign interrupt)
->   *
+v8
+- move driver from driver/media/platform/imx/vpu-8q to
+  driver/media/platform/amphion
+- rename driver name to amphion
+- remove imx_vpu.h
+- move the definition of V4L2_EVENT_CODEC_ERROR to videodev2.h
+- move the definition of V4L2_EVENT_SKIP to videodev2.h
 
-Apart from comments above, this patch looks good to me in general.
+v7
+- fix build warnings with W=1 reported by kernel test robot
 
--Sumit
+v6:
+- rename V4L2_PIX_FMT_NT8 to V4L2_PIX_FMT_NV12_8L128
+- rename V4L2_PIX_FMT_NT10 to V4L2_PIX_FMT_NV12_10BE_8L128
 
-> --
-> 2.31.1
->
+v5:
+- move some definition from imx_vph.h to videodev2.h
+- remove some unnecessary content
+- add some documentation descriptions
+- pass the lateset v4l2-compliance test
+
+v4:
+- redefine the memory-region in devicetree bindings documentation
+- use v4l2's mechanism to implement synchronize queuing ioctl
+- remove the unnecessary mutex ioctl_sync
+- don't notify source change event if the parameters are same as previously established
+- add flag V4L2_FMT_FLAG_DYN_RESOLUTION to decoder's capture format
+
+v3:
+- don't make vpu device node a simple-bus
+- trigger probing vpu core in the driver
+- remove unnecessary vpu core index property
+
+v2:
+- fix dt bindings build error
+- split driver patch into several parts to avoid exceeding bytes limit
+
+Compliance
+==========
+# v4l2-compliance -d /dev/video0
+v4l2-compliance 1.21.0-4838, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 22466798f9a9 2021-08-25 11:05:21
+
+Compliance test for amphion-vpu device /dev/video0:
+
+Driver Info:
+	Driver name      : amphion-vpu
+	Card type        : amphion vpu decoder
+	Bus info         : platform: amphion-vpu
+	Driver version   : 5.14.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected Stateful Decoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video0 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 3 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for amphion-vpu device /dev/video0: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+# v4l2-compliance -d /dev/video1
+v4l2-compliance 1.21.0-4838, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 22466798f9a9 2021-08-25 11:05:21
+
+Compliance test for amphion-vpu device /dev/video1:
+
+Driver Info:
+	Driver name      : amphion-vpu
+	Card type        : amphion vpu encoder
+	Bus info         : platform: amphion-vpu
+	Driver version   : 5.14.0
+	Capabilities     : 0x84204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04204000
+		Video Memory-to-Memory Multiplanar
+		Streaming
+		Extended Pix Format
+	Detected Stateful Encoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/video1 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 20 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Total for amphion-vpu device /dev/video1: 45, Succeeded: 45, Failed: 0, Warnings: 0
+
+Ming Qian (13):
+  dt-bindings: media: amphion: add amphion video codec bindings
+  media:Add nv12mt_8l128 and nv12mt_10be_8l128 video format.
+  media: amphion: add amphion vpu device driver
+  media: amphion: add vpu core driver
+  media: amphion: implement vpu core communication based on mailbox
+  media: amphion: add vpu v4l2 m2m support
+  media: amphion: add v4l2 m2m vpu encoder stateful driver
+  media: amphion: add v4l2 m2m vpu decoder stateful driver
+  media: amphion: implement windsor encoder rpc interface
+  media: amphion: implement malone decoder rpc interface
+  ARM64: dts: freescale: imx8q: add imx vpu codec entries
+  firmware: imx: scu-pd: imx8q: add vpu mu resources
+  MAINTAINERS: add AMPHION VPU CODEC V4L2 driver entry
+
+ .../bindings/media/amphion,vpu.yaml           |  178 ++
+ .../media/v4l/pixfmt-yuv-planar.rst           |   15 +
+ MAINTAINERS                                   |    9 +
+ .../arm64/boot/dts/freescale/imx8-ss-vpu.dtsi |   72 +
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |   17 +
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   24 +
+ drivers/firmware/imx/scu-pd.c                 |    4 +
+ drivers/media/platform/Kconfig                |   19 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/amphion/Makefile       |   20 +
+ drivers/media/platform/amphion/vdec.c         | 1634 ++++++++++++++++
+ drivers/media/platform/amphion/venc.c         | 1370 ++++++++++++++
+ drivers/media/platform/amphion/vpu.h          |  344 ++++
+ drivers/media/platform/amphion/vpu_cmds.c     |  431 +++++
+ drivers/media/platform/amphion/vpu_cmds.h     |   25 +
+ drivers/media/platform/amphion/vpu_codec.h    |   67 +
+ drivers/media/platform/amphion/vpu_color.c    |  190 ++
+ drivers/media/platform/amphion/vpu_core.c     |  906 +++++++++
+ drivers/media/platform/amphion/vpu_core.h     |   16 +
+ drivers/media/platform/amphion/vpu_dbg.c      |  493 +++++
+ drivers/media/platform/amphion/vpu_defs.h     |  186 ++
+ drivers/media/platform/amphion/vpu_drv.c      |  236 +++
+ drivers/media/platform/amphion/vpu_helpers.c  |  429 +++++
+ drivers/media/platform/amphion/vpu_helpers.h  |   71 +
+ drivers/media/platform/amphion/vpu_imx8q.c    |  271 +++
+ drivers/media/platform/amphion/vpu_imx8q.h    |  116 ++
+ drivers/media/platform/amphion/vpu_malone.c   | 1677 +++++++++++++++++
+ drivers/media/platform/amphion/vpu_malone.h   |   42 +
+ drivers/media/platform/amphion/vpu_mbox.c     |  124 ++
+ drivers/media/platform/amphion/vpu_mbox.h     |   16 +
+ drivers/media/platform/amphion/vpu_msgs.c     |  410 ++++
+ drivers/media/platform/amphion/vpu_msgs.h     |   14 +
+ drivers/media/platform/amphion/vpu_rpc.c      |  261 +++
+ drivers/media/platform/amphion/vpu_rpc.h      |  463 +++++
+ drivers/media/platform/amphion/vpu_v4l2.c     |  633 +++++++
+ drivers/media/platform/amphion/vpu_v4l2.h     |   53 +
+ drivers/media/platform/amphion/vpu_windsor.c  | 1222 ++++++++++++
+ drivers/media/platform/amphion/vpu_windsor.h  |   39 +
+ drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
+ include/uapi/linux/videodev2.h                |    2 +
+ 40 files changed, 12103 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amphion,vpu.yaml
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
+ create mode 100644 drivers/media/platform/amphion/Makefile
+ create mode 100644 drivers/media/platform/amphion/vdec.c
+ create mode 100644 drivers/media/platform/amphion/venc.c
+ create mode 100644 drivers/media/platform/amphion/vpu.h
+ create mode 100644 drivers/media/platform/amphion/vpu_cmds.c
+ create mode 100644 drivers/media/platform/amphion/vpu_cmds.h
+ create mode 100644 drivers/media/platform/amphion/vpu_codec.h
+ create mode 100644 drivers/media/platform/amphion/vpu_color.c
+ create mode 100644 drivers/media/platform/amphion/vpu_core.c
+ create mode 100644 drivers/media/platform/amphion/vpu_core.h
+ create mode 100644 drivers/media/platform/amphion/vpu_dbg.c
+ create mode 100644 drivers/media/platform/amphion/vpu_defs.h
+ create mode 100644 drivers/media/platform/amphion/vpu_drv.c
+ create mode 100644 drivers/media/platform/amphion/vpu_helpers.c
+ create mode 100644 drivers/media/platform/amphion/vpu_helpers.h
+ create mode 100644 drivers/media/platform/amphion/vpu_imx8q.c
+ create mode 100644 drivers/media/platform/amphion/vpu_imx8q.h
+ create mode 100644 drivers/media/platform/amphion/vpu_malone.c
+ create mode 100644 drivers/media/platform/amphion/vpu_malone.h
+ create mode 100644 drivers/media/platform/amphion/vpu_mbox.c
+ create mode 100644 drivers/media/platform/amphion/vpu_mbox.h
+ create mode 100644 drivers/media/platform/amphion/vpu_msgs.c
+ create mode 100644 drivers/media/platform/amphion/vpu_msgs.h
+ create mode 100644 drivers/media/platform/amphion/vpu_rpc.c
+ create mode 100644 drivers/media/platform/amphion/vpu_rpc.h
+ create mode 100644 drivers/media/platform/amphion/vpu_v4l2.c
+ create mode 100644 drivers/media/platform/amphion/vpu_v4l2.h
+ create mode 100644 drivers/media/platform/amphion/vpu_windsor.c
+ create mode 100644 drivers/media/platform/amphion/vpu_windsor.h
+
+
+base-commit: 64cdf7e5a3aac0e7c9efdb079e74e22875b0419a
+-- 
+2.33.0
+
