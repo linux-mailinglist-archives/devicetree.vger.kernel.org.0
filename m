@@ -2,204 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B48942BF8A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 14:12:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3BDD42BFD8
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 14:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbhJMMOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 08:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45646 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbhJMMOm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 08:14:42 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7351CC061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 05:12:39 -0700 (PDT)
-Received: from [IPv6:2a01:e0a:4cb:a870:3579:965b:42d9:a065] (unknown [IPv6:2a01:e0a:4cb:a870:3579:965b:42d9:a065])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7936B1F44406;
-        Wed, 13 Oct 2021 13:12:36 +0100 (BST)
-Subject: Re: [PATCH v4 10/18] soc: imx: add i.MX8M blk-ctrl driver
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        Tim Harvey <tharvey@gateworks.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de
-References: <20210910202640.980366-1-l.stach@pengutronix.de>
- <20210910202640.980366-11-l.stach@pengutronix.de>
- <5b5609e9-cbba-79be-218c-0dd508e26ecf@collabora.com>
- <763dff4c948a5c435dc4d51224e825071c0a3cd6.camel@pengutronix.de>
- <24568eb4-11d5-1fd7-e111-382b41cdb4da@collabora.com>
- <6ceb10cf4ada49992979418cb626049fa639d473.camel@pengutronix.de>
- <9dc45d33-0de5-ec9e-8121-a77877e15ccf@collabora.com>
-Message-ID: <dba9b470-a942-7938-178b-4488d05ea0e6@collabora.com>
-Date:   Wed, 13 Oct 2021 14:12:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232491AbhJMM0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 08:26:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34330 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230196AbhJMM0z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 08:26:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9AF6A60F23;
+        Wed, 13 Oct 2021 12:24:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1634127892;
+        bh=4s6wU6xVKQAR878cEXhPsqNrnWGlU/+dyX5KTUREZ18=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S4umREiHN43ck0bJtS5IRQc0Hf0stWqeWleSpMWn3iSIeP/bdGO8xsT0+JWIxLs+N
+         z7t0n7C+46wOreMyY5MtU9w9c1d+JcnbAnT6YWDcQQr6BtwS4UJZEPBRKt6KlwFZfz
+         T++70qYJgZK6yVJod1zvCaGaTM2uPd56fvopHfeg=
+Date:   Wed, 13 Oct 2021 14:24:49 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Christian Gromm <christian.gromm@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
+        linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 23/28] staging: most: dim2: use device tree
+Message-ID: <YWbQEQBYTrfmzq4N@kroah.com>
+References: <1525772716-15742-1-git-send-email-christian.gromm@microchip.com>
+ <1525772716-15742-24-git-send-email-christian.gromm@microchip.com>
+ <alpine.DEB.2.22.394.2110121749450.1045463@ramsan.of.borg>
 MIME-Version: 1.0
-In-Reply-To: <9dc45d33-0de5-ec9e-8121-a77877e15ccf@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.22.394.2110121749450.1045463@ramsan.of.borg>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Oct 12, 2021 at 08:14:14PM +0200, Geert Uytterhoeven wrote:
+> 	Hi Christian, Greg,
+> 
+> CC devicetree, linux-renesas-soc
+> 
+> On Tue, 8 May 2018, Christian Gromm wrote:
+> > This patch removes the dependency to platform specific source files
+> > that do platform specific initialization and supply the IRQ number.
+> > Instead DT code is added
+> > 
+> > Signed-off-by: Christian Gromm <christian.gromm@microchip.com>
+> 
+> This patch bypassed review by the DT people, and ended up in v4.18 as
+> commit 21e57ff086056c01 ("staging: most: dim2: use device tree").
 
-Le 05/10/2021 à 14:36, Benjamin Gaignard a écrit :
->
-> Le 05/10/2021 à 12:03, Lucas Stach a écrit :
->> Hi Benjamin,
->>
->> Am Montag, dem 04.10.2021 um 16:27 +0200 schrieb Benjamin Gaignard:
->>> Le 02/10/2021 à 03:07, Lucas Stach a écrit :
->>>> Hi Benjamin,
->>>>
->>>> Am Dienstag, dem 14.09.2021 um 17:46 +0200 schrieb Benjamin Gaignard:
->>>>> Le 10/09/2021 à 22:26, Lucas Stach a écrit :
->>>>>> This adds a driver for the blk-ctrl blocks found in the i.MX8M* 
->>>>>> line of
->>>>>> SoCs. The blk-ctrl is a top-level peripheral located in the 
->>>>>> various *MIX
->>>>>> power domains and interacts with the GPC power controller to 
->>>>>> provide the
->>>>>> peripherals in the power domain access to the NoC and ensures 
->>>>>> that those
->>>>>> peripherals are properly reset when their respective power domain is
->>>>>> brought back to life.
->>>>>>
->>>>>> Software needs to do different things to make the bus handshake 
->>>>>> happen
->>>>>> after the GPC *MIX domain is powered up and before it is powered 
->>>>>> down.
->>>>>> As the requirements are quite different between the various 
->>>>>> blk-ctrls
->>>>>> there is a callback function provided to hook in the proper 
->>>>>> sequence.
->>>>>>
->>>>>> The peripheral domains are quite uniform, they handle the soft clock
->>>>>> enables and resets in the blk-ctrl address space and sequencing 
->>>>>> with the
->>>>>> upstream GPC power domains.
->>>>> Hi Lucas,
->>>>>
->>>>> I have tried to use your patches for IMX8MQ but it seems that the 
->>>>> hardware
->>>>> have different architecture.
->>>>> On IMX8MQ there is only one VPU domain for G1 and G2 and that 
->>>>> doesn't match
->>>>> with your implementation where it is needed to have "bus" and 
->>>>> devices power domain.
->>>>>    From what I experiment in current IMX8MQ implementation of 
->>>>> blk-ctrl (inside VPU driver)
->>>>> enabling the 3 clocks (bus, G1, G2) is needed to reset the VPUs.
->>>>>
->>>>> Do you think you can update your design to take care of these 
->>>>> hardware variations ?
->>>> The clocking/reset of the blk-ctrl and ADB in the i.MX8MQ VPU power
->>>> domain is really a bit strange, as the ADB reset is tied to the VPU
->>>> resets and the clk-ctrl seem to require all 3 VPU clocks, instead of
->>>> only the bus clock as in newer designs. However I was able to make it
->>>> work with the existing blk-ctrl driver design.
->>>>
->>>> My current WIP patches (only tested with the G1 core so far) on top of
->>>> the v5 of the series I just sent out can be found here:
->>>> https://git.pengutronix.de/cgit/lst/linux/log/?h=imx8mq-vpu-blk-ctrl
->>>>
->>>> Hope this helps.
->>> Hi Lucas,
->>>
->>> I have been able to test your branch on my iMX8MQ.
->>> I confirm that G1 is working fine, I able to decode H264 files.
->>>
->>> I wasn't able to make G2 works, I think it is coming from the reset 
->>> sequence
->>> done before each frame decoding in G2 driver.
->>> I have change imx8mq_runtime_resume() and  imx8m_vpu_reset()
->>> to call pm_runtime_put() and pm_runtime_get() to perform a reset like.
->> I think you need to use the _sync variants of those functions to make
->> sure the domain is going through the reset state. However that seems
->> like a pretty heavy-weight thing to do if the decoder really requires a
->> reset before each frame. Excuse my ignorance about the G2 block, but
->> this sounds like a quite odd requirement. Is this to work around some
->> hardware erratum?
->
-> When using _sync variants kernel stop when probing G2.
-> I don't have any documentation about the link between the control 
-> block and
-> G2. I have done lot of tests and resetting the hardware block between 
-> each frame
-> seems to be mandatory. That also the case in Hantro proprietary stack.
->
->>
->> If we really need to reset the G2 before each frame, I think it would
->> be best to also expose a reset controller from the blk-ctrl driver, to
->> allow the G2 driver to do a light-weight reset, instead of doing this
->> runtime PM transition.
->
-> I do agree and I have already done a attempt in this way:
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=440031&state=%2A&archive=both 
->
-> but Philipp have fairly argue that clocks enabling is not the job of a 
-> reset driver.
->
-> Thanks for the time you spend on this topic.
+Yeah, staging-only dt changes are not usually run by the dt maintainers.
 
-Hi Lucas,
+> 
+> > --- a/drivers/staging/most/dim2/dim2.c
+> > +++ b/drivers/staging/most/dim2/dim2.c
+> > +static const struct of_device_id dim2_of_match[] = {
+> > +	{
+> > +		.compatible = "fsl,imx6q-mlb150",
+> > +		.data = plat_data + FSL_MX6
+> > +	},
+> > +	{
+> > +		.compatible = "renesas,mlp",
+> > +		.data = plat_data + RCAR_H2
+> > +	},
+> > +	{
+> > +		.compatible = "rcar,medialb-dim2",
+> > +		.data = plat_data + RCAR_M3
+> > +	},
+> > +	{
+> > +		.compatible = "xlnx,axi4-os62420_3pin-1.00.a",
+> > +	},
+> > +	{
+> > +		.compatible = "xlnx,axi4-os62420_6pin-1.00.a",
+> > +	},
+> > +	{},
+> > };
+> 
+> There are no documented DT bindings for this hardware block, nor any
+> upstream example users.  Given some compatible values do not follow
+> standard practises (no idea about the other parts), it's very likely
+> these de facto bindings, and all their out-of-tree users, will have to
+> be changed.
 
-I have done more tests with the following condition:
-- no implementation of pm_runtime_* in the IMX part of the driver (i.e. resume and reset functions are empty)
-=> so power domain on/off are called only when the delay set for autosuspend expires not for all frames.
+Great, fix the bindings and anything in-kernel here please.  We don't
+care about out-of-kernel stuff for drivers/staging/ at all.
 
-I have added traces and the board in hanging after calling imx8mq_vpu_power_notifier() when going off.
-Before that I have the power on sequence, few interrupts from G2 and power off occur because of the delay.
+thanks,
 
-If I reset and enable G1 and G2 clocks in imx8mq_vpu_power_notifier() I can see a call to codec run() but that
-hang too.
-I have also try to enable all the clocks (bus, G1, G2) when using only G2 but the results are the same.
-
-I don't if that could help you.
-If you want me to do more tests please tell me.
-
-Regards,
-Benjamin
-
-> Regards,
-> Benjamin
->
->>
->> Regards,
->> Lucas
->>
->>> Without that G2 hangs when decoding the first frame.
->>>
->>> One G1 it seems that doing a reset before each frame decoding is not 
->>> needed.
->>>
->>> On DT I had to assignee G1 and G2 on the both nodes to avoid a 
->>> warning at probe time.
->>> assigned-clocks = <&clk IMX8MQ_CLK_VPU_G1>,
->>>                       <&clk IMX8MQ_CLK_VPU_G2>,
->>>                       <&clk IMX8MQ_VPU_PLL_BYPASS>;
->>>             assigned-clock-parents = <&clk IMX8MQ_VPU_PLL_OUT>,
->>>                          <&clk IMX8MQ_VPU_PLL_OUT>,
->>>                          <&clk IMX8MQ_VPU_PLL>;
->>>             assigned-clock-rates = <600000000>, <300000000>, <0>;
->>>
->>> I also set G2 clock at 300Mhz as specify in the TRM.
->>> Even with all this G2 doesn't fire interrupts.
->>>
->>> Benjamin
->>>
->>>> Regards,
->>>> Lucas
->>>>
->>
+greg k-h
