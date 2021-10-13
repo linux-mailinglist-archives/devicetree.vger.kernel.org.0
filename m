@@ -2,294 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C5A542C169
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BCC342C182
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233962AbhJMNbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 09:31:34 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:37072 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbhJMNbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 09:31:33 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id EC87F1F445B5
-Subject: Re: [PATCH v7 1/5] soc: mediatek: mutex: add support for MDP
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, drinkcat@chromium.org, acourbot@chromium.org,
-        pihsun@chromium.org, menghui.lin@mediatek.com,
-        sj.huang@mediatek.com, ben.lok@mediatek.com, randy.wu@mediatek.com,
-        srv_heupstream@mediatek.com, hsinyi@google.com,
-        benjamin.gaignard@collabora.com
-References: <20210824100027.25989-1-moudy.ho@mediatek.com>
- <20210824100027.25989-2-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <ee3668b3-f84c-fe8d-05bc-40e65c60e24f@collabora.com>
-Date:   Wed, 13 Oct 2021 15:29:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S235152AbhJMNhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 09:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235301AbhJMNhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 09:37:18 -0400
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C38C061570;
+        Wed, 13 Oct 2021 06:35:15 -0700 (PDT)
+Received: by mail-ua1-x929.google.com with SMTP id q13so4538625uaq.2;
+        Wed, 13 Oct 2021 06:35:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2Rz/QnFxuSPhGTlVTlZwY7VpCUitdMoDh4exGgbRPXE=;
+        b=AcnKRVaingRB+kcu/J13G1AKDGGkeUyHxcDVMLJ5f6ULa5KkCp0SXWLY6KHqJQ2zrv
+         zFXBaLzDQhxgyqFCWGYWP9k1l7R+TJIpLibVmR8ZP0QdtrIIksJOIuleMT2pG8kUpeOA
+         Qh4t5PIEoblVy6Hv6pgQX82FgbpTim19sWVNcpB11xyHzA6bOKNVBV1EGZXG9opw8uM+
+         mAh1BexBG7YcKXTkIE89WNuuNz7ewddM783dBrmBkuCbPTaHVx4lroLmdCGUEG0HCEgF
+         ql0F2D/51lQ3BjvTgqWu1ZFwGrs6qvYNCUGmgbQ5N+FN2UtYIlmsYnhlR7io6xr2hFWD
+         qicA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Rz/QnFxuSPhGTlVTlZwY7VpCUitdMoDh4exGgbRPXE=;
+        b=dyn39RwbE9/tKwaancMdSdH1GDTV0ZwX5WGFiw4sAFdk/k2kv2Y2z+H1XzBX30UCEb
+         1m8xRAmQZwiuPPzIOivWW7E5rF9IA6tyibfq9Ac9vCmhSf8Jh52bA8Ql4/YbFXpJ3btu
+         dFclbEGUY3g9XMp6DqavsF7zSjjU/ExtT5URafuO3xJjSPsY1OWWFBaQtGK7XW9TxRgW
+         sMjTjtZpUqO9aqOcsXCZBh4TPRUD0XsKVnbUzp9E0b7+Jm1QiUyKG7uqmgBn+y+1DdCt
+         nXHXI7ByIrJx+O0n0iUboedh5ltdirxZXhDp+15VwI9F5mrLI+XUYI9oFZd/5ShEa20E
+         hqXw==
+X-Gm-Message-State: AOAM531JYHpdgOcRkxT5fh7EBqX30iaeYEU+9FanwXvpsF+XC7F3anlr
+        EllRxY7otTl6KzL0+pQlnTbw7svfuzJCe77LpIs=
+X-Google-Smtp-Source: ABdhPJzvp37V2QEH/eThwzmC9Ld2Laf3bZ1GzgikSbrhs0RvmlSRnCNsOFxgQQ/IxW2vxfDhdehLPPSLfJ3nixBnmZE=
+X-Received: by 2002:ab0:30ce:: with SMTP id c14mr29923067uam.46.1634132114742;
+ Wed, 13 Oct 2021 06:35:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210824100027.25989-2-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
+ <20210922050035.18162-3-sergio.paracuellos@gmail.com> <20211013130511.GB11036@lpieralisi>
+In-Reply-To: <20211013130511.GB11036@lpieralisi>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 13 Oct 2021 15:35:03 +0200
+Message-ID: <CAMhs-H8MV+RdL1cgjhBW=wUJm8Nfhe4h4GSC-DH0eLjbtz6wbg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        John Crispin <john@phrozen.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linux-staging@lists.linux.dev, NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Moudy,
+Hi Lorenzo,
 
-thanks for the patch! Though, there are a few things to improve.
+Thanks for the review. See my comments below.
 
-> Add functions to support MDP:
->    1. Get mutex function
->    2. Enable/disable mutex
->    3. Enable MDP's modules
->    4. Write register via CMDQ
-> 
-> Add MDP related settings for 8183 SoC
->    1. Register settings
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-mutex.c       | 106 +++++++++++++++++++++++--
->   include/linux/soc/mediatek/mtk-mutex.h |   8 ++
->   2 files changed, 108 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index 2e4bcc300576..935f2849a094 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -7,9 +7,11 @@
->   #include <linux/iopoll.h>
->   #include <linux/module.h>
->   #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->   #include <linux/platform_device.h>
->   #include <linux/regmap.h>
->   #include <linux/soc/mediatek/mtk-mmsys.h>
-> +#include <linux/soc/mediatek/mtk-cmdq.h>
->   #include <linux/soc/mediatek/mtk-mutex.h>
->   
->   #define MT2701_MUTEX0_MOD0			0x2c
-> @@ -107,6 +109,10 @@
->   #define MT8183_MUTEX_EOF_DSI0			(MT8183_MUTEX_SOF_DSI0 << 6)
->   #define MT8183_MUTEX_EOF_DPI0			(MT8183_MUTEX_SOF_DPI0 << 6)
->   
-> +#define MT8183_MUTEX_MDP_START			5
-> +#define MT8183_MUTEX_MDP_MOD_MASK		0x07FFFFFF
-> +#define MT8183_MUTEX_MDP_SOF_MASK		0x00000007
-> +
->   struct mtk_mutex {
->   	int id;
->   	bool claimed;
-> @@ -123,11 +129,14 @@ enum mtk_mutex_sof_id {
->   };
->   
->   struct mtk_mutex_data {
-> -	const unsigned int *mutex_mod;
-> -	const unsigned int *mutex_sof;
-> -	const unsigned int mutex_mod_reg;
-> -	const unsigned int mutex_sof_reg;
-> -	const bool no_clk;
-> +	const unsigned int	*mutex_mod;
-> +	const unsigned int	*mutex_sof;
-> +	const unsigned int	mutex_mod_reg;
-> +	const unsigned int	mutex_sof_reg;
-> +	const unsigned int	*mutex_mdp_offset;
-> +	const unsigned int	mutex_mdp_mod_mask;
-> +	const unsigned int	mutex_mdp_sof_mask;
-> +	const bool		no_clk;
+On Wed, Oct 13, 2021 at 3:05 PM Lorenzo Pieralisi
+<lorenzo.pieralisi@arm.com> wrote:
+>
+> On Wed, Sep 22, 2021 at 07:00:34AM +0200, Sergio Paracuellos wrote:
+> > Add driver for the PCIe controller of the MT7621 SoC.
+> >
+> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  arch/mips/ralink/Kconfig                      |   3 +-
+> >  drivers/pci/controller/Kconfig                |   8 ++
+> >  drivers/pci/controller/Makefile               |   1 +
+> >  .../controller}/pci-mt7621.c                  |   0
+> >  drivers/staging/Kconfig                       |   2 -
+> >  drivers/staging/Makefile                      |   1 -
+> >  drivers/staging/mt7621-pci/Kconfig            |   8 --
+> >  drivers/staging/mt7621-pci/Makefile           |   2 -
+> >  drivers/staging/mt7621-pci/TODO               |   4 -
+> >  .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 ------------------
+> >  10 files changed, 11 insertions(+), 122 deletions(-)
+> >  rename drivers/{staging/mt7621-pci => pci/controller}/pci-mt7621.c (100%)
+> >  delete mode 100644 drivers/staging/mt7621-pci/Kconfig
+> >  delete mode 100644 drivers/staging/mt7621-pci/Makefile
+> >  delete mode 100644 drivers/staging/mt7621-pci/TODO
+> >  delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+> >
+> > diff --git a/arch/mips/ralink/Kconfig b/arch/mips/ralink/Kconfig
+> > index c800bf5559b5..120adad51d6a 100644
+> > --- a/arch/mips/ralink/Kconfig
+> > +++ b/arch/mips/ralink/Kconfig
+> > @@ -51,7 +51,8 @@ choice
+> >               select SYS_SUPPORTS_HIGHMEM
+> >               select MIPS_GIC
+> >               select CLKSRC_MIPS_GIC
+> > -             select HAVE_PCI if PCI_MT7621
+> > +             select HAVE_PCI
+> > +             select PCI_DRIVERS_GENERIC
+> >               select SOC_BUS
+> >  endchoice
+> >
+> > diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
+> > index 326f7d13024f..b76404be0360 100644
+> > --- a/drivers/pci/controller/Kconfig
+> > +++ b/drivers/pci/controller/Kconfig
+> > @@ -312,6 +312,14 @@ config PCIE_HISI_ERR
+> >         Say Y here if you want error handling support
+> >         for the PCIe controller's errors on HiSilicon HIP SoCs
+> >
+> > +config PCI_MT7621
+> > +     tristate "MediaTek MT7621 PCI Controller"
+> > +     depends on (RALINK && SOC_MT7621) || (MIPS && COMPILE_TEST)
+>
+> - Is there a chance we can remove the MIPS dependency from the
+>   COMPILE_TEST conditional ?
 
-As a rule of thumb, if you're changing any formatting, not only you should have
-a good reason, but also it's something that shall be done in a different commit,
-so, one for functional changes, one for cosmetic changes (not necessarily in this
-order).
+Driver make use of the following functions to properly configure MIPS
+IO coherency regions for used pci addresses:
+- 'mips_cps_numiocu()'
+- 'write_gcr_reg1_base()'
+- 'write_gcr_reg1_mask()'
 
-This will make it easier for everyone to review your patches.
+Without configuring this, the PCI subsystem won't work.
+These three are a MIPS thing and we want at the very least to make
+COMPILE_TEST available for MIPS. To avoid this I guess we will need
+stubs for all the other architectures and I am not really sure it is
+really worthly and makes sense.
 
->   };
->   
->   struct mtk_mutex_ctx {
-> @@ -136,6 +145,8 @@ struct mtk_mutex_ctx {
->   	void __iomem			*regs;
->   	struct mtk_mutex		mutex[10];
->   	const struct mtk_mutex_data	*data;
-> +	phys_addr_t			addr;
-> +	u8				subsys_id;
->   };
->   
->   static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-> @@ -238,6 +249,14 @@ static const unsigned int mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->   	[MUTEX_SOF_DPI0] = MT8183_MUTEX_SOF_DPI0 | MT8183_MUTEX_EOF_DPI0,
->   };
->   
-> +/* indicate which mutex is used by each pipepline */
-> +static const unsigned int mt8183_mutex_mdp_offset[MDP_PIPE_MAX] = {
-> +	[MDP_PIPE_IMGI] = MT8183_MUTEX_MDP_START,
-> +	[MDP_PIPE_RDMA0] = MT8183_MUTEX_MDP_START + 1,
-> +	[MDP_PIPE_WPEI] = MT8183_MUTEX_MDP_START + 2,
-> +	[MDP_PIPE_WPEI2] = MT8183_MUTEX_MDP_START + 3
-> +};
-> +
->   static const struct mtk_mutex_data mt2701_mutex_driver_data = {
->   	.mutex_mod = mt2701_mutex_mod,
->   	.mutex_sof = mt2712_mutex_sof,
-> @@ -272,6 +291,9 @@ static const struct mtk_mutex_data mt8183_mutex_driver_data = {
->   	.mutex_sof = mt8183_mutex_sof,
->   	.mutex_mod_reg = MT8183_MUTEX0_MOD0,
->   	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
-> +	.mutex_mdp_offset = mt8183_mutex_mdp_offset,
-> +	.mutex_mdp_mod_mask = MT8183_MUTEX_MDP_MOD_MASK,
-> +	.mutex_mdp_sof_mask = MT8183_MUTEX_MDP_SOF_MASK,
->   	.no_clk = true,
->   };
->   
-> @@ -290,6 +312,21 @@ struct mtk_mutex *mtk_mutex_get(struct device *dev)
->   }
->   EXPORT_SYMBOL_GPL(mtk_mutex_get);
->   
-> +struct mtk_mutex *mtk_mutex_mdp_get(struct device *dev,
-> +				    enum mtk_mdp_pipe_id id)
-> +{
-> +	struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
-> +	int i = mtx->data->mutex_mdp_offset[id];
-> +
-> +	if (!mtx->mutex[i].claimed) {
+> - I am not a big fan of "SOC_XXX" config options dependencies, actually
+>   there is none in pci/controller. Is there a way to remove it ?
 
-I'm not sure that tracking the usage of this mutex here is the right thing
-to do: from what I understand, this is being acquired by the MDP driver, at
-mdp_probe(), and only once... so this check may be mostly useless, if not
-in order to avoid possible race conditions due to really bad code.
+I am not a Kconfig expert, so I am not sure :). This PCI driver needs
+only to be available for MIPS RALINK architecture for MT7621 SoCs and
+ideally enabled by default for SOC_MT7621. So I don't know if just
+doing the following is enough:
 
-Can anyone else give an opinion on that?
+config PCI_MT7621
+    tristate "MediaTek MT7621 PCI Controller"
+    depends on RALINK || (MIPS && COMPILE_TEST)
+    select PHY_MT7621_PCI
+    default SOC_MT7621
+    help
+        This selects a driver for the MediaTek MT7621 PCI Controller.
 
-> +		mtx->mutex[i].claimed = true;
-> +		return &mtx->mutex[i];
-> +	}
-> +
-> +	return ERR_PTR(-EBUSY);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_mdp_get);
-> +
->   void mtk_mutex_put(struct mtk_mutex *mutex)
->   {
->   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> @@ -369,6 +406,25 @@ void mtk_mutex_add_comp(struct mtk_mutex *mutex,
->   }
->   EXPORT_SYMBOL_GPL(mtk_mutex_add_comp);
->   
-> +void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
-> +			   struct mmsys_cmdq_cmd *cmd)
-> +{
-> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> +						 mutex[mutex->id]);
-> +	unsigned int offset;
-> +
-> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> +
-> +	offset = DISP_REG_MUTEX_MOD(mtx->data->mutex_mod_reg, mutex->id);
-> +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr + offset,
-> +			    mod, mtx->data->mutex_mdp_mod_mask);
-> +
+Thanks in advance for clarification.
 
-Calls to this function makes this driver to depend on CONFIG_MTK_CMDQ.
-Failing to meet this requirement will make the build to fail with:
-drivers/soc/mediatek/mtk-mutex.c:545: undefined reference to `cmdq_pkt_write_mask'
+Best regards,
+    Sergio Paracuellos
 
-> +	offset = DISP_REG_MUTEX_SOF(mtx->data->mutex_sof_reg, mutex->id);
-> +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr + offset,
-> +			    0, mtx->data->mutex_mdp_sof_mask);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_add_mdp_mod);
-> +
->   void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
->   			   enum mtk_ddp_comp_id id)
->   {
-> @@ -420,6 +476,20 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
->   }
->   EXPORT_SYMBOL_GPL(mtk_mutex_enable);
->   
-> +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-> +			      struct mmsys_cmdq_cmd *cmd)
-> +{
-> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> +						 mutex[mutex->id]);
-> +
-> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> +
-> +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id,
-> +			    mtx->addr + DISP_REG_MUTEX_EN(mutex->id),
-> +			    0x1, 0x00000001);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
-> +
->   void mtk_mutex_disable(struct mtk_mutex *mutex)
->   {
->   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> @@ -431,6 +501,20 @@ void mtk_mutex_disable(struct mtk_mutex *mutex)
->   }
->   EXPORT_SYMBOL_GPL(mtk_mutex_disable);
->   
-> +void mtk_mutex_disable_by_cmdq(struct mtk_mutex *mutex,
-> +			       struct mmsys_cmdq_cmd *cmd)
-> +{
-> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> +						 mutex[mutex->id]);
-> +
-> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> +
-> +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id,
-> +			    mtx->addr + DISP_REG_MUTEX_EN(mutex->id),
-> +			    0x0, 0x00000001);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_disable_by_cmdq);
-> +
->   void mtk_mutex_acquire(struct mtk_mutex *mutex)
->   {
->   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-> @@ -458,7 +542,8 @@ static int mtk_mutex_probe(struct platform_device *pdev)
->   {
->   	struct device *dev = &pdev->dev;
->   	struct mtk_mutex_ctx *mtx;
-> -	struct resource *regs;
-> +	struct cmdq_client_reg cmdq_reg;
-> +	struct resource *regs, addr;
->   	int i;
->   
->   	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
-> @@ -479,6 +564,15 @@ static int mtk_mutex_probe(struct platform_device *pdev)
->   		}
->   	}
->   
-> +	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
-> +		mtx->addr = 0L;
-> +	else
-> +		mtx->addr = addr.start;
-> +
-> +	if (cmdq_dev_get_client_reg(dev, &cmdq_reg, 0) != 0)
-
-... And it's the same here:
-drivers/soc/mediatek/mtk-mutex.c:605: undefined reference to `cmdq_dev_get_client_reg'
-
-Please add the required dependency/select in Kconfig.
-
-Regards,
-- Angelo
-
-
+>
+> Lorenzo
+>
+> > +     select PHY_MT7621_PCI
+> > +     default SOC_MT7621
+> > +     help
+> > +       This selects a driver for the MediaTek MT7621 PCI Controller.
+> > +
+> >  source "drivers/pci/controller/dwc/Kconfig"
+> >  source "drivers/pci/controller/mobiveil/Kconfig"
+> >  source "drivers/pci/controller/cadence/Kconfig"
+> > diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
+> > index aaf30b3dcc14..f42a566353cb 100644
+> > --- a/drivers/pci/controller/Makefile
+> > +++ b/drivers/pci/controller/Makefile
+> > @@ -37,6 +37,7 @@ obj-$(CONFIG_VMD) += vmd.o
+> >  obj-$(CONFIG_PCIE_BRCMSTB) += pcie-brcmstb.o
+> >  obj-$(CONFIG_PCI_LOONGSON) += pci-loongson.o
+> >  obj-$(CONFIG_PCIE_HISI_ERR) += pcie-hisi-error.o
+> > +obj-$(CONFIG_PCI_MT7621) += pci-mt7621.o
+> >  # pcie-hisi.o quirks are needed even without CONFIG_PCIE_DW
+> >  obj-y                                += dwc/
+> >  obj-y                                += mobiveil/
+> > diff --git a/drivers/staging/mt7621-pci/pci-mt7621.c b/drivers/pci/controller/pci-mt7621.c
+> > similarity index 100%
+> > rename from drivers/staging/mt7621-pci/pci-mt7621.c
+> > rename to drivers/pci/controller/pci-mt7621.c
+> > diff --git a/drivers/staging/Kconfig b/drivers/staging/Kconfig
+> > index e03627ad4460..59af251e7576 100644
+> > --- a/drivers/staging/Kconfig
+> > +++ b/drivers/staging/Kconfig
+> > @@ -86,8 +86,6 @@ source "drivers/staging/vc04_services/Kconfig"
+> >
+> >  source "drivers/staging/pi433/Kconfig"
+> >
+> > -source "drivers/staging/mt7621-pci/Kconfig"
+> > -
+> >  source "drivers/staging/mt7621-dma/Kconfig"
+> >
+> >  source "drivers/staging/ralink-gdma/Kconfig"
+> > diff --git a/drivers/staging/Makefile b/drivers/staging/Makefile
+> > index c7f8d8d8dd11..76f413470bc8 100644
+> > --- a/drivers/staging/Makefile
+> > +++ b/drivers/staging/Makefile
+> > @@ -33,7 +33,6 @@ obj-$(CONFIG_KS7010)                += ks7010/
+> >  obj-$(CONFIG_GREYBUS)                += greybus/
+> >  obj-$(CONFIG_BCM2835_VCHIQ)  += vc04_services/
+> >  obj-$(CONFIG_PI433)          += pi433/
+> > -obj-$(CONFIG_PCI_MT7621)     += mt7621-pci/
+> >  obj-$(CONFIG_SOC_MT7621)     += mt7621-dma/
+> >  obj-$(CONFIG_DMA_RALINK)     += ralink-gdma/
+> >  obj-$(CONFIG_SOC_MT7621)     += mt7621-dts/
+> > diff --git a/drivers/staging/mt7621-pci/Kconfig b/drivers/staging/mt7621-pci/Kconfig
+> > deleted file mode 100644
+> > index ce58042f2f21..000000000000
+> > --- a/drivers/staging/mt7621-pci/Kconfig
+> > +++ /dev/null
+> > @@ -1,8 +0,0 @@
+> > -# SPDX-License-Identifier: GPL-2.0
+> > -config PCI_MT7621
+> > -     tristate "MediaTek MT7621 PCI Controller"
+> > -     depends on RALINK
+> > -     select PCI_DRIVERS_GENERIC
+> > -     help
+> > -       This selects a driver for the MediaTek MT7621 PCI Controller.
+> > -
+> > diff --git a/drivers/staging/mt7621-pci/Makefile b/drivers/staging/mt7621-pci/Makefile
+> > deleted file mode 100644
+> > index f4e651cf7ce3..000000000000
+> > --- a/drivers/staging/mt7621-pci/Makefile
+> > +++ /dev/null
+> > @@ -1,2 +0,0 @@
+> > -# SPDX-License-Identifier: GPL-2.0
+> > -obj-$(CONFIG_PCI_MT7621)       += pci-mt7621.o
+> > diff --git a/drivers/staging/mt7621-pci/TODO b/drivers/staging/mt7621-pci/TODO
+> > deleted file mode 100644
+> > index d674a9ac85c1..000000000000
+> > --- a/drivers/staging/mt7621-pci/TODO
+> > +++ /dev/null
+> > @@ -1,4 +0,0 @@
+> > -
+> > -- general code review and cleanup
+> > -
+> > -Cc: NeilBrown <neil@brown.name>
+> > diff --git a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt b/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+> > deleted file mode 100644
+> > index 327a68267309..000000000000
+> > --- a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+> > +++ /dev/null
+> > @@ -1,104 +0,0 @@
+> > -MediaTek MT7621 PCIe controller
+> > -
+> > -Required properties:
+> > -- compatible: "mediatek,mt7621-pci"
+> > -- device_type: Must be "pci"
+> > -- reg: Base addresses and lengths of the PCIe subsys and root ports.
+> > -- bus-range: Range of bus numbers associated with this controller.
+> > -- #address-cells: Address representation for root ports (must be 3)
+> > -- pinctrl-names : The pin control state names.
+> > -- pinctrl-0: The "default" pinctrl state.
+> > -- #size-cells: Size representation for root ports (must be 2)
+> > -- ranges: Ranges for the PCI memory and I/O regions.
+> > -- #interrupt-cells: Must be 1
+> > -- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties.
+> > -  Please refer to the standard PCI bus binding document for a more detailed
+> > -  explanation.
+> > -- status: either "disabled" or "okay".
+> > -- resets: Must contain an entry for each entry in reset-names.
+> > -  See ../reset/reset.txt for details.
+> > -- reset-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
+> > -  root ports.
+> > -- clocks: Must contain an entry for each entry in clock-names.
+> > -  See ../clocks/clock-bindings.txt for details.
+> > -- clock-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
+> > -  root ports.
+> > -- reset-gpios: GPIO specs for the reset pins.
+> > -
+> > -In addition, the device tree node must have sub-nodes describing each PCIe port
+> > -interface, having the following mandatory properties:
+> > -
+> > -Required properties:
+> > -- reg: Only the first four bytes are used to refer to the correct bus number
+> > -      and device number.
+> > -- #address-cells: Must be 3
+> > -- #size-cells: Must be 2
+> > -- ranges: Sub-ranges distributed from the PCIe controller node. An empty
+> > -  property is sufficient.
+> > -- bus-range: Range of bus numbers associated with this port.
+> > -
+> > -Example for MT7621:
+> > -
+> > -     pcie: pcie@1e140000 {
+> > -             compatible = "mediatek,mt7621-pci";
+> > -        reg = <0x1e140000 0x100    /* host-pci bridge registers */
+> > -               0x1e142000 0x100    /* pcie port 0 RC control registers */
+> > -               0x1e143000 0x100    /* pcie port 1 RC control registers */
+> > -               0x1e144000 0x100>;  /* pcie port 2 RC control registers */
+> > -
+> > -             #address-cells = <3>;
+> > -             #size-cells = <2>;
+> > -
+> > -             pinctrl-names = "default";
+> > -             pinctrl-0 = <&pcie_pins>;
+> > -
+> > -             device_type = "pci";
+> > -
+> > -             bus-range = <0 255>;
+> > -             ranges = <
+> > -                     0x02000000 0 0x00000000 0x60000000 0 0x10000000 /* pci memory */
+> > -                     0x01000000 0 0x00000000 0x1e160000 0 0x00010000 /* io space */
+> > -             >;
+> > -
+> > -             #interrupt-cells = <1>;
+> > -             interrupt-map-mask = <0xF0000 0 0 1>;
+> > -             interrupt-map = <0x10000 0 0 1 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
+> > -                             <0x20000 0 0 1 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
+> > -                             <0x30000 0 0 1 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
+> > -
+> > -             status = "disabled";
+> > -
+> > -             resets = <&rstctrl 24 &rstctrl 25 &rstctrl 26>;
+> > -             reset-names = "pcie0", "pcie1", "pcie2";
+> > -             clocks = <&clkctrl 24 &clkctrl 25 &clkctrl 26>;
+> > -             clock-names = "pcie0", "pcie1", "pcie2";
+> > -
+> > -             reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>,
+> > -                             <&gpio 8 GPIO_ACTIVE_LOW>,
+> > -                             <&gpio 7 GPIO_ACTIVE_LOW>;
+> > -
+> > -             pcie@0,0 {
+> > -                     reg = <0x0000 0 0 0 0>;
+> > -                     #address-cells = <3>;
+> > -                     #size-cells = <2>;
+> > -                     ranges;
+> > -                     bus-range = <0x00 0xff>;
+> > -             };
+> > -
+> > -             pcie@1,0 {
+> > -                     reg = <0x0800 0 0 0 0>;
+> > -                     #address-cells = <3>;
+> > -                     #size-cells = <2>;
+> > -                     ranges;
+> > -                     bus-range = <0x00 0xff>;
+> > -             };
+> > -
+> > -             pcie@2,0 {
+> > -                     reg = <0x1000 0 0 0 0>;
+> > -                     #address-cells = <3>;
+> > -                     #size-cells = <2>;
+> > -                     ranges;
+> > -                     bus-range = <0x00 0xff>;
+> > -             };
+> > -     };
+> > -
+> > --
+> > 2.25.1
+> >
