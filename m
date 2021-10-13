@@ -2,206 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA98942CA63
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 21:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D583842CA6A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 21:50:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238337AbhJMTsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 15:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231489AbhJMTsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 15:48:24 -0400
-Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD1DC061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 12:46:20 -0700 (PDT)
-Received: from [IPv6:2a02:a03f:eafe:c901:ca:6d5e:c3e3:69a5] (unknown [IPv6:2a02:a03f:eafe:c901:ca:6d5e:c3e3:69a5])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id E44BE260FB3;
-        Wed, 13 Oct 2021 21:46:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1634154379;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wA07wl10/Wxx93KniNkYOOpdppCfmNy46cigfrikK0k=;
-        b=dptpwuPQhnk1if6Dywk9Kc5UintrlnavCuviOdE78hYfZe8yi+5dKkmrNk2i01Z226KQtb
-        6GDxXnkj+JTdWl1esdn3gjSBOPF4FzqEcAuBfQEz3VutnDsqqbaGMaCyJ6ylbIU3AZR1Vg
-        /dhVgLYAIfeN30heEQ5amP5cI/or8CzvZaz1+VH55dpDGSpC/q4firCD8UaZeO06wdR4cH
-        kauGJelBuZrChBJfmtueA+hTNDgcoHdqCfQt2meDOEGD4XYzQoY3SYdEe0WWU3P05dfalm
-        iC4kK3/JoRRibp79BlWmVUhtaVua7Nyd3b8o89OCkwui/zCavhVMdNYn86tUXg==
-Message-ID: <4cf85218627371e1d07238257d0a89f824606415.camel@svanheule.net>
-Subject: Re: [PATCH 2/2] watchdog: Add Realtek Otto watchdog timer
-From:   Sander Vanheule <sander@svanheule.net>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Date:   Wed, 13 Oct 2021 21:46:16 +0200
-In-Reply-To: <20211013184852.GA955578@roeck-us.net>
-References: <cover.1634131707.git.sander@svanheule.net>
-         <7eb1e3d8a5bd3b221be0408bd6f0272e6d435ade.1634131707.git.sander@svanheule.net>
-         <20211013184852.GA955578@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S230474AbhJMTxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 15:53:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37196 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229529AbhJMTw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 15:52:59 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3164B610A2;
+        Wed, 13 Oct 2021 19:50:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634154656;
+        bh=Qo88RRyOt64j7+08prsyQHVAw/B+SOseGVO3GTYGKnM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=kf0x192TAlcxyRsRJH3n4hsMNu8TYIlvJh0PvW8ohswOZNS1UCcilEtilHdfRc0w4
+         5wWdg/0NZ1nh7AtkoNbYTzMkMQM+B9/OfAM6IzSnEA1UTfcFe9Rsd2Cqjja38vm5Gn
+         3mB5WaXT6rza5O0TTvZ5emyd6RV/W+0b44SfSAJlxhES1yraAha2YHksV355HhN48c
+         Ge1bS2GGUz33zAZ5hUTLcIOG+Sbzmg7HS+0HfpFGjTn6SqZBGmGQbYYSIxa6rOrLUt
+         +GXBrFi0fvG1wTX9KZKn7mD+aGn7q1ANNDqnZWCbrzGaaxTqda9X/TuMsbj0dAYld4
+         53EEgNkAdTI1Q==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <4614587c-b87a-4375-cb6a-6af6f5462c6b@linaro.org>
+References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org> <20210829154757.784699-8-dmitry.baryshkov@linaro.org> <YV8WsQb9H7+CaLjP@ripper> <4614587c-b87a-4375-cb6a-6af6f5462c6b@linaro.org>
+Subject: Re: [PATCH v7 7/8] clk: qcom: dispcc-sm8250: stop using mmcx regulator
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 13 Oct 2021 12:50:54 -0700
+Message-ID: <163415465484.936110.9292145029740247591@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-10-13 at 11:48 -0700, Guenter Roeck wrote:
-> On Wed, Oct 13, 2021 at 03:29:00PM +0200, Sander Vanheule wrote:
-[...]
+Quoting Dmitry Baryshkov (2021-10-07 09:16:13)
+> On 07/10/2021 18:48, Bjorn Andersson wrote:
+> > On Sun 29 Aug 08:47 PDT 2021, Dmitry Baryshkov wrote:
+> >=20
+> >> Now as the common qcom clock controller code has been taught about pow=
+er
+> >> domains, stop mentioning mmcx supply as a way to power up the clock
+> >> controller's gdsc.
+> >>
+> >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >=20
+> > Once we merge these, I expect that the boards will start crashing if
+> > the kernel is booted using an existing DTB?
+> >=20
+> > Is it okay to just merge the first 6 patches in the series now and
+> > postpone these two until we've had the dts change sitting for a while?
+>=20
+> Sure it is.
+>=20
 
-> > 
-> > diff --git a/drivers/watchdog/realtek_otto_wdt.c b/drivers/watchdog/realtek_otto_wdt.c
-> > new file mode 100644
-> > index 000000000000..64c9cba6b0b1
-> > --- /dev/null
-> > +++ b/drivers/watchdog/realtek_otto_wdt.c
-> > @@ -0,0 +1,411 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +/*
-> > + * Realtek Otto MIPS platform watchdog
-> > + *
-> > + * Watchdog timer that will reset the system after timeout, using the selected
-> > + * reset mode.
-> > + *
-> > + * Counter scaling and timeouts:
-> > + * - Base prescale of (2 << 25), providing tick duration T_0: 168ms @ 200MHz
-> > + * - PRESCALE: logarithmic prescaler adding a factor of {1, 2, 4, 8}
-> > + * - Phase 1: Times out after (PHASE1 + 1) × PRESCALE × T_0
-> > + *   Generates an interrupt, WDT cannot be stopped after phase 1
-> > + * - Phase 2: starts after phase 1, times out after (PHASE2 + 1) × PRESCALE × T_0
-> > + *   Resets the system according to RST_MODE
-> 
-> Why is there a phase2 interrupt if phase2 resets the chip ?
-> 
-
-The SoC's reset controller has an interrupt line for phase2, even though then it then the
-WDT also resets the system. I don't have any documentation about this peripheral; just
-some vendor code and there the phase2 interrupt isn't enabled. I mainly added it here for
-completeness.
-
-One thing to note is that after CPU or software reset (not SoC reset) the phase2 flag in
-OTTO_WDT_REG_INTR will be set. That's why I always clear it in otto_wdt_probe(), because
-otherwise enabling the interrupt line would trigger otto_wdt_phase2_isr(). On warm
-restarts this bit could be used to determine if there was a WDT timeout, but not if the
-WDT is configured for cold restarts (i.e. full SoC reset).
-
-> 
-[...]
-> > +
-> > +       raw_spin_lock_irqsave(&ctrl->lock, flags);
-> > +       v = ioread32(ctrl->base + OTTO_WDT_REG_CTRL);
-> > +       v |= OTTO_WDT_CTRL_ENABLE;
-> > +       iowrite32(v, ctrl->base + OTTO_WDT_REG_CTRL);
-> > +       raw_spin_unlock_irqrestore(&ctrl->lock, flags);
-> 
-> Is it really necessary to disable interrupts for those operations ?
-
-The ISR routines only use REG_INTR, which isn't modified anywhere else (outside of probing
-the device). I will replace these with raw_spin_{lock,unlock} throughout.
-
-[...]
-> > +/*
-> > + * The timer asserts the PHASE1/PHASE2 IRQs when the number of ticks exceeds
-> > + * the value stored in those fields. This means the timer will run for at least
-> > + * one tick, so small values need to be clamped to correctly reflect the timeout.
-> > + */
-> > +static inline unsigned int div_round_ticks(unsigned int val, unsigned int
-> > tick_duration,
-> > +               unsigned int min_ticks)
-> > +{
-> > +       return max(min_ticks, DIV_ROUND_CLOSEST(val, tick_duration));
-> 
-> Are you sure that DIV_ROUND_CLOSEST is appropriate in those calculations
-> (instead of DIV_ROUND_UP or DIV_ROUND_DOWN) ?
-> 
-[...]
-
-> > +
-> > +       timeout_ms = total_ticks * tick_ms;
-> > +       ctrl->wdev.timeout = DIV_ROUND_CLOSEST(timeout_ms, 1000);
-> > +
-> 
-> That means the actual timeout (and pretimeout) can be slightly larger
-> than the real timeout. Is this really what you want ?
-
-Is it a problem if the WDT times out later than specified by watchdog_device.(pre)timeout?
-I can see that premature timeouts would be an issue, but I don't suppose it's problematic
-if the WDT is pinged (slightly) sooner than actually required?
-
-The coarsest ticks are 1342 ms, so it is not always possible to provide the requested
-(pre)timeout value, independent of the rounding scheme. Although I think it should be
-possible to replace timeout rounding by DIV_ROUND_UP (of total_ticks_ms), and pretimeout
-rounding by DIV_ROUND_DOWN (of phase2_ticks_ms), and keep stable timeouts when alternating
-between set_timeout/set_pretimeout.
-
-> 
-> > +       pretimeout_ms = phase2_ticks * tick_ms;
-> > +       ctrl->wdev.pretimeout = DIV_ROUND_CLOSEST(pretimeout_ms, 1000);
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static int otto_wdt_set_timeout(struct watchdog_device *wdev, unsigned int val)
-> > +{
-> > +       struct otto_wdt_ctrl *ctrl = watchdog_get_drvdata(wdev);
-> > +       unsigned long flags;
-> > +       unsigned int ret;
-> > +
-> > +       if (watchdog_timeout_invalid(wdev, val))
-> > +               return -EINVAL;
-> 
-> This is not supposed to happen because the calling code already performs
-> range checks.
-
-Right, I will drop the redundant check here and in set_pretimeout.
-
-> 
-[...]
-> > +static int otto_wdt_restart(struct watchdog_device *wdev, unsigned long reboot_mode,
-> > +               void *data)
-> > +{
-> > +       struct otto_wdt_ctrl *ctrl = watchdog_get_drvdata(wdev);
-> > +       u32 reset_mode;
-> > +       u32 v;
-> > +
-> > +       devm_free_irq(ctrl->dev, ctrl->irq_phase1, ctrl);
-> > +
-> 
-> Why is this needed (instead of, say, disabling the interrupt) ?
-
-Disabling the interrupt should actually be enough. I'll replace the devm_free_irq() with
-disable_irq(). Somehow I didn't find disable_irq(), even though that was what I was
-looking for...
-
-[...]
-> > +
-> > +       /*
-> > +        * Since pretimeout cannot be disabled, min_timeout is twice the
-> > +        * subsystem resolution. max_timeout is 44s at a bus clock of 200MHz.
-> > +        */
-> > +       ctrl->wdev.min_timeout = 2;
-> > +       max_tick_ms = otto_wdt_tick_ms(ctrl, OTTO_WDT_PRESCALE_MAX);
-> > +       ctrl->wdev.max_timeout =
-> > +               DIV_ROUND_CLOSEST(max_tick_ms * OTTO_WDT_TIMEOUT_TICKS_MAX, 1000);
-> 
-> Any reason for using max_timeout instead of max_hw_heartbeat_ms ?
-
-I must have missed this when I was looking at watchdog_device. Makes sense to use
-max_hw_heartbeat_ms since that reflects the actual value more accurately.
-
-> 
-
-Thanks for the feedback!
-
-Best,
-Sander
-
+What's the merge strategy? It goes through arm-soc?
