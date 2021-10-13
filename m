@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23DB042B87D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB79542B883
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238263AbhJMHLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 03:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238234AbhJMHLS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 03:11:18 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EB3BC061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 00:09:14 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id y26so7328468lfa.11
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 00:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZMSfqssxjE37wIiOs10lPZQ3BHyZICBiMNu/viO9Wv8=;
-        b=rZwwmSB0O6MunwUzqLxpVbT/59aCAtCIpWayoM9/SWKmDCW6I0WEpsajjGVvLWij2c
-         ybOwVzD3dEoy6ZbDtAZpOKyLcG9zcVpSyrzLlSb4gyFIQX4myh3I2d6WFQJ0nHuTKmKF
-         Kt/IYsB9C+xf8roofhcqu82qEr74K/v9oZukr1+4cw0Ir1uVKVNLYohfCpL9Sxp9KLHy
-         0MfLZEcn+jGWaRBoJ8idinvqrZ0d1GQ82MEo6IqIFTs4xLSFxKS7XAzlcSZSRIr1Cb4v
-         kSXxY7XUQ4LeBMciHeuKduZ186E68TK6Vl9mdFsYuuw9LyiqMrLaPzlvqbLsKzCW3BUD
-         WkJQ==
+        id S232191AbhJMHL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 03:11:57 -0400
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:41602 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238307AbhJMHL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 03:11:56 -0400
+Received: by mail-ua1-f47.google.com with SMTP id r17so2561627uaf.8;
+        Wed, 13 Oct 2021 00:09:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZMSfqssxjE37wIiOs10lPZQ3BHyZICBiMNu/viO9Wv8=;
-        b=Yl+WBiE47vR7Tox3lnUyZCKnEuWq7kocskTkhUtaiLupUFcvrEsRSdAmXt5MiAxcpa
-         2kEJq/5k4d/ruBEQApU2uVykets4DZ6KD1+Pw/uc9Se0ovsFhpR3enajAB3Nfr9oru9J
-         T1xdcPfaK9I5kMnSX4EFmNfACMH6gSIVJxaqvLi+wpDlyNGVnB8j/ZgWoTd5dzJwrUH8
-         aRExC/CMTizaLYhb4hzsNH7Zdb2j5KV6FnCYVhwGcnP7JQxS4AolJVIT/Yvs/BzBrmBn
-         4PnevV/MEeMgj91NMti9mqnuiOkC03kdMv8RubTAcb+fTWrZFsFZVjwOvr4PlEIEjIeI
-         Ys0w==
-X-Gm-Message-State: AOAM531n0jVVZN7DRvzwqACKT1JA+ekMkaUvWKGnBbxLekNPqXnC+dMy
-        kDRtc2nktcHh0XAAre85S8ZwHwRLOCiiNPjzqggcwA==
-X-Google-Smtp-Source: ABdhPJyR2s1TmAgABNpDg6esdyYm384WojAfLAKSbM0DVhqqaxhND78VpPMUiy5ZNLidqHGqJwrDL0N2dAW8NpM+cCs=
-X-Received: by 2002:a05:6512:3b94:: with SMTP id g20mr39470692lfv.119.1634108953052;
- Wed, 13 Oct 2021 00:09:13 -0700 (PDT)
+        bh=n2Vfle/L4DE8NNVonQeF5lDlU0mWpcADJWBKbo+5jlg=;
+        b=mz9AbB+VZ5S4MSVRd37pnKGF9QX3inhO7uiZJHzCpVFRPc1xlwSoya1PXLimE8bmTs
+         ydf+H2FFU0sKFJtJ2U+5K3J50EsEwbPRqbVj6SnSFcRXLtXLVvgOGXbrXmDFvpjdULra
+         4q1zJ5RggOXXcBNTN9EtivGfNGt//OcCeqrKvIGLkwsM2cG5jOZh0JkO9GIPWbSDgVRo
+         K86JAUQRpSg2mOalhpLFSCxpDllpLSxG39Fgz4wKlqTVEhTBUGqwuOgYfGmlt1G0oS9P
+         kYB1xUMrXr3q9723zsUcC1+sSNdwmcl/PsojdZ5pgokzAEqDIOI+WLY2CQQPUJNckEsh
+         +MuQ==
+X-Gm-Message-State: AOAM531OalkE6/NdrHATcOrQ71cZGAAtQ3NHR5sbkbf7I6TGq/lp/gIH
+        70r/1xasB/JYc/ZmAWbhSEDwSYO4D10vHvsy4WE=
+X-Google-Smtp-Source: ABdhPJw9m3bolfmVg7DS3DCFf2Y3Gnn0kQSL4lmvuOhPzzjoHLSBo8TqPmo7TCeoJyzlugmfCsY/y5nnNy0Wk1eojM8=
+X-Received: by 2002:ab0:311a:: with SMTP id e26mr28277722ual.122.1634108992835;
+ Wed, 13 Oct 2021 00:09:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211006071546.2540920-1-jens.wiklander@linaro.org> <20211006071546.2540920-4-jens.wiklander@linaro.org>
-In-Reply-To: <20211006071546.2540920-4-jens.wiklander@linaro.org>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Wed, 13 Oct 2021 12:39:02 +0530
-Message-ID: <CAFA6WYPZ-JbAhfvdWfbcgqBRnA9F-=o5k=ZzR_KYL+rAkVm3PA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/6] tee: fix put order in teedev_close_context()
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-14-kernel@esmil.dk>
+In-Reply-To: <20211012134027.684712-14-kernel@esmil.dk>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Oct 2021 09:09:41 +0200
+Message-ID: <CAMuHMdVq4pKovPsk0cAWSZ3T0-z8uVG1Bf306ya37BZnx0knpw@mail.gmail.com>
+Subject: Re: [PATCH v1 13/16] dt-bindings: serial: snps-dw-apb-uart: Add
+ JH7100 uarts
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 at 12:45, Jens Wiklander <jens.wiklander@linaro.org> wrote:
+On Tue, Oct 12, 2021 at 3:42 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> Add compatibles for the StarFive JH7100 uarts.
 >
-> Prior to this patch was teedev_close_context() calling tee_device_put()
-> before teedev_ctx_put() leading to teedev_ctx_release() accessing
-> ctx->teedev just after the reference counter was decreased on the
-> teedev. Fix this by calling teedev_ctx_put() before tee_device_put().
->
-> Fixes: 217e0250cccb ("tee: use reference counting for tee_context")
-> Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
-> ---
->  drivers/tee/tee_core.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
 
-Reviewed-by: Sumit Garg <sumit.garg@linaro.org>
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
--Sumit
+Gr{oetje,eeting}s,
 
-> diff --git a/drivers/tee/tee_core.c b/drivers/tee/tee_core.c
-> index 2b37bc408fc3..85102d12d716 100644
-> --- a/drivers/tee/tee_core.c
-> +++ b/drivers/tee/tee_core.c
-> @@ -98,8 +98,10 @@ void teedev_ctx_put(struct tee_context *ctx)
->
->  static void teedev_close_context(struct tee_context *ctx)
->  {
-> -       tee_device_put(ctx->teedev);
-> +       struct tee_device *teedev = ctx->teedev;
-> +
->         teedev_ctx_put(ctx);
-> +       tee_device_put(teedev);
->  }
->
->  static int tee_open(struct inode *inode, struct file *filp)
-> --
-> 2.31.1
->
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
