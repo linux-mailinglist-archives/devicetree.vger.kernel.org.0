@@ -2,147 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4369342CD1C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 23:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F3C42CD40
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230287AbhJMVvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 17:51:55 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:40784 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230309AbhJMVvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 17:51:48 -0400
-Received: from [77.244.183.192] (port=65012 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mam86-002HuD-VY; Wed, 13 Oct 2021 23:49:43 +0200
-Subject: Re: [PATCH 6/8] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-References: <20211011155615.257529-1-luca@lucaceresoli.net>
- <20211011155615.257529-7-luca@lucaceresoli.net>
- <79a3c52b-ed4a-dadb-c7e2-2c96c9a58c49@canonical.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <21684e2a-e84c-05ed-e27c-e710c53e3a64@lucaceresoli.net>
-Date:   Wed, 13 Oct 2021 23:49:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230267AbhJMWGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:06:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39436 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229754AbhJMWGh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 18:06:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 12E24610CF;
+        Wed, 13 Oct 2021 22:04:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634162674;
+        bh=Pz99xJwgUWewDS8SG1vh0092WbkfB7AaUfBLNp1rW8w=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=X9z6/fQttyLF/h9MxZe8D69kQI/BbTueoj86dTFnYOyjq7ppzSyp9CtZaCfZbwQAx
+         0Ad8PPb6vN/JujhvZviDsuUe+O1QExqyohHomM34w7HNoXuwtddCO23Z1BhPGo3AWx
+         Jb+qMQLT1kAuPwTTMz/YHmnhmGUODFsh66LoXzLCCskWFJmFfxve5DlB8EnQu3Z8iV
+         xqzgpv9p1hZ8Pf+RRLndcOP/wQEF38Udsden9pshcE8RTKWI27N/EC8Iuxj3X003Fq
+         GvMNko80oPQuOXNvmPhIP0XeB9ww4F36FDvoW/nitoqbIJzRf6xTPo7hOzJrVKHysP
+         b/LRlYY7v15Dg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <79a3c52b-ed4a-dadb-c7e2-2c96c9a58c49@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210923064137.60722-3-zhang.lyra@gmail.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 13 Oct 2021 15:04:32 -0700
+Message-ID: <163416267274.936110.2784588823311275089@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Quoting Chunyan Zhang (2021-09-22 23:41:35)
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yam=
+l b/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> new file mode 100644
+> index 000000000000..3522f3d2d8de
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/sprd,ums512-glbreg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Unisoc System Global Register Device Tree Bindings
+> +
+> +maintainers:
+> +  - Orson Zhai <orsonzhai@gmail.com>
+> +  - Baolin Wang <baolin.wang7@gmail.com>
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +
+> +description:
+> +  Unisoc system global registers provide register map
+> +  for clocks and some multimedia modules of the SoC.
+> +
+> +properties:
+> +  "#address-cells": true
+> +  "#size-cells": true
+> +
+> +  compatible:
+> +    items:
+> +      - const: sprd,ums512-glbregs
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  ranges:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^.*@[0-9a-f]+$":
+> +    # Child node
+> +    type: object
+> +    $ref: "../clock/sprd,ums512-clk.yaml"
+> +    description:
+> +      Clock controller for the SoC clocks.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    ap_apb_regs: syscon@71000000 {
+> +      compatible =3D "sprd,ums512-glbregs", "syscon", "simple-mfd";
+> +      reg =3D <0x71000000 0x3000>;
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <1>;
+> +      ranges =3D <0 0x71000000 0x3000>;
+> +
+> +      clock-controller@0 {
+> +        compatible =3D "sprd,ums512-apahb-gate";
 
-On 12/10/21 10:09, Krzysztof Kozlowski wrote:
-> On 11/10/2021 17:56, Luca Ceresoli wrote:
->> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
->> watchdog only.
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->> ---
->>  MAINTAINERS                  |   2 +
->>  drivers/mfd/Kconfig          |  14 ++++
->>  drivers/mfd/Makefile         |   1 +
->>  drivers/mfd/max77714.c       | 151 +++++++++++++++++++++++++++++++++++
->>  include/linux/mfd/max77714.h |  68 ++++++++++++++++
->>  5 files changed, 236 insertions(+)
->>  create mode 100644 drivers/mfd/max77714.c
->>  create mode 100644 include/linux/mfd/max77714.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4d0134752537..df394192f14e 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -11389,6 +11389,8 @@ MAXIM MAX77714 PMIC MFD DRIVER
->>  M:	Luca Ceresoli <luca@lucaceresoli.net>
->>  S:	Maintained
->>  F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->> +F:	drivers/mfd/max77714.c
->> +F:	include/linux/mfd/max77714.h
->>  
->>  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
->>  M:	Javier Martinez Canillas <javier@dowhile0.org>
->> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->> index ca0edab91aeb..b5f6e6174508 100644
->> --- a/drivers/mfd/Kconfig
->> +++ b/drivers/mfd/Kconfig
->> @@ -853,6 +853,20 @@ config MFD_MAX77693
->>  	  additional drivers must be enabled in order to use the functionality
->>  	  of the device.
->>  
->> +config MFD_MAX77714
->> +	bool "Maxim Semiconductor MAX77714 PMIC Support"
-> 
-> Why it cannot be a tristate (module)?
+Why is this a subnode of a syscon and simple-mfd? Why not put the
+clock-controller@71000000 directly onto the bus? Does making it a child
+node help somehow?
 
-Because it's not done in the driver I initially copied from, I guess. :)
-
-And also because I thought it's appropriate for a PMIC driver since
-regulators tend to be always instantiated. But I understand there are
-valid use cases for that -- will do in v2 unless a good reason pops up
-for not doing it.
-
->> diff --git a/include/linux/mfd/max77714.h b/include/linux/mfd/max77714.h
->> new file mode 100644
->> index 000000000000..ca6b747b73c2
->> --- /dev/null
->> +++ b/include/linux/mfd/max77714.h
->> @@ -0,0 +1,68 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Maxim MAX77714 Register and data structures definition.
->> + *
->> + * Copyright (C) 2021 Luca Ceresoli
->> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
->> + */
->> +
->> +#ifndef _MFD_MAX77714_H_
->> +#define _MFD_MAX77714_H_
-> 
-> Header guard:
-> __LINUX_MFD_MAX77714_H_
-
-OK.
-
->> +
->> +struct max77714 {
->> +	struct device *dev;
->> +	struct regmap *regmap;
->> +	struct regmap_irq_chip_data *irq_data;
->> +
->> +	int irq;
->> +};
-> 
-> Do you have to make it a public structure? If not, please put it in the
-> max77714.c
-
-Good point. Will fix.
-
--- 
-Luca
+> +        reg =3D <0x0 0x2000>;
+> +        #clock-cells =3D <1>;
+> +      };
+> +    };
