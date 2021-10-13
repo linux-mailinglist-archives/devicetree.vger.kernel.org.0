@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F90842C9E7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 21:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB72742C9EB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 21:23:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231725AbhJMTYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 15:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33918 "EHLO
+        id S236935AbhJMTZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 15:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbhJMTYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 15:24:15 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02858C061746
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 12:22:12 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id j21so16733235lfe.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 12:22:11 -0700 (PDT)
+        with ESMTP id S230298AbhJMTZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 15:25:32 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF149C061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 12:23:28 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id y15so16444045lfk.7
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 12:23:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZNqvGfSDUhWxqhwP01MEB8XD1JZ1GH8Z2KHDHZM3Nx8=;
-        b=fiWDlabKcldvXhcH1LFJPBkt7hgjyPu5PaNx7z1jti+e6SONQMaWpq+NAFB9F/h9/7
-         B4NBPeHtxciXGRas3IGykPvvbivLLmu9rxgJvPGYMnJaRdNmw/ArMLdAQSIpaJsYeEQx
-         jgMmSTOCiJSteDCxb4BaisolDhnGl0GQELLCvAMuYPBXmiVFSIevT6MyfT+0nSN7BUzv
-         Obtwd3NrsRs7UpIRAQSxm/jCT8jyLxnv4CL4Q6iXdVJ+C14S0SLCWzydhHQ6zxXPwa7/
-         uh3xnmid7ZC9fQuH1q2MCAJ1GClQNk6rZLa+h0nXuAPxxv+yjy6AbAa+XMXUjLZ2XwtY
-         ntMg==
+        bh=R1hm0iV6UGiIA3c5I3VRdziDFrSzd+si05/EX5oPHGo=;
+        b=MeI+HoRDR1d4pvpj6kbjMhToPkpOhHKDWQ0pNmybbFHrHkZOdDc/vj5BVRNDQD1EL0
+         IB17RhLbb5dqeZmGMwLNt36dwOaEjveuuNZ6lMGKqQJb9KJwZBxEXc0rcuWy8h2gr/We
+         yvdxrwPqnhB5jmXXIWBRuo7dZTRtO30zwtVTwmQRQRfjAzkAEZSpM+cwNtvgsZt1QmNe
+         a44N4b1DP31sBUmWw9GYPL47kWgrt+br7bC9ntSiTUbSOWWyM8OMcP9WuIDZ7OWoaz5R
+         Z920pHsVJelDd/LufC/bUh8qPduGk/7wHyzePJYVGiUnboL/ud7Bu9XnINUtSYzTKHEF
+         n7WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=ZNqvGfSDUhWxqhwP01MEB8XD1JZ1GH8Z2KHDHZM3Nx8=;
-        b=xiAWFWsr7PRfvvJswD7oLtTRyQDc4c6akG86ahXMYoO0J3yT9CMzBWCCEh94tSaSZL
-         dDwzrNkgNyKl3sI5h9TKCaWWgt6s8HCj8x+hOjMyml2MPzuwNbGXrnRAUDIc7TMss7nr
-         yPVUkeqvHlH6/EoHOgM3DB0DTT3mlAV7rlbkbMtM0vmtzbZt6SZwNNxoRZnT6j8ulgbz
-         Ya4MsNCDubgjgexxlpib9zjAS5S9DQvXhzDi4mLYni+4cGBMvji9CaZt+4sWIGF/gsfd
-         Jj6SkIjrnsNzl9z0AAU4XMMzZlYjg7qI0sB1ZiWdiRC2dDgzuDGFNNtO339G/4S2wgFI
-         3EMQ==
-X-Gm-Message-State: AOAM533UhodjGjQF3T3XBMIftWTWd14XnW3i5hwvlspSNJ6GWZdXMIIX
-        1hEZYaPX880EsAvUpBF7YS+HEw==
-X-Google-Smtp-Source: ABdhPJwhQ0Tvi/hWYE2LBkCBSI8GIIWzqEWtNLi+uzns0CmK3K0UJx76rHorqw7uZBMTj8/VSw60pA==
-X-Received: by 2002:a05:651c:a05:: with SMTP id k5mr1273338ljq.288.1634152930415;
-        Wed, 13 Oct 2021 12:22:10 -0700 (PDT)
+        bh=R1hm0iV6UGiIA3c5I3VRdziDFrSzd+si05/EX5oPHGo=;
+        b=VYtaa+o9NnnW3Kcn7Vfu6CHy+2OweDhfpXXKXm0MrxgElNAjfb8j4lOiKIklwi/eVN
+         w7W7d3EPzxIvFadGZqOMbnn9dIRUeB9URnbQGqKfN8SoKBHHJdzrDBeYi8Jmb7rwD52W
+         kRiNCs3lhaoMCRM+v26N9l3AYcDUF7kpfGARCf0l1ppa+cCdv3Iv0ZDmkTPLutzZGEVx
+         fI210M8HUoF7X9iba8ttIdtw9n2CDcCGIaLU+cdBcGwJIGC47XN3gsd8Au7xb2LX6eo6
+         p6H6sfc745hwr/9hKVLxjxYZqEB0v7mPwgf1A+IeXONpXJNYI4UNsmX+CyztDiLTSTBi
+         lilA==
+X-Gm-Message-State: AOAM532NHCRY7hjzokVBsdByMPkVTJu46u3gD+McJlgWVTw/UIW/d4UA
+        E1JgLlvs2ysFWM2CU1tQa7ulRA==
+X-Google-Smtp-Source: ABdhPJzjj5OtFnnJodRRFy4eoq/rtiT+vzfgHxeZ+K9/4BDA3By02/yRNyweQOfvFZm0XhT4Sz81Wg==
+X-Received: by 2002:a2e:aa8b:: with SMTP id bj11mr1284215ljb.180.1634153007181;
+        Wed, 13 Oct 2021 12:23:27 -0700 (PDT)
 Received: from [192.168.1.102] (62-248-207-242.elisa-laajakaista.fi. [62.248.207.242])
-        by smtp.gmail.com with ESMTPSA id m3sm32470lfh.2.2021.10.13.12.22.09
+        by smtp.gmail.com with ESMTPSA id b4sm30366lft.206.2021.10.13.12.23.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Oct 2021 12:22:10 -0700 (PDT)
-Subject: Re: [PATCH v4 15/20] crypto: qce: Add new compatibles for qce crypto
- driver
+        Wed, 13 Oct 2021 12:23:26 -0700 (PDT)
+Subject: Re: [PATCH v4 16/20] crypto: qce: core: Make clocks optional
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
 Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
         herbert@gondor.apana.org.au, davem@davemloft.net,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
+        Thara Gopinath <thara.gopinath@linaro.org>
 References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
- <20211013105541.68045-16-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-17-bhupesh.sharma@linaro.org>
 From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Message-ID: <793685ac-332b-2dbb-ad61-3a31debc2c77@linaro.org>
-Date:   Wed, 13 Oct 2021 22:22:09 +0300
+Message-ID: <5f69019a-86c7-fac5-2758-1be9a9092678@linaro.org>
+Date:   Wed, 13 Oct 2021 22:23:26 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.6.1
 MIME-Version: 1.0
-In-Reply-To: <20211013105541.68045-16-bhupesh.sharma@linaro.org>
+In-Reply-To: <20211013105541.68045-17-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -76,37 +74,52 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hi Bhupesh,
 
 On 10/13/21 1:55 PM, Bhupesh Sharma wrote:
-> Since we decided to use soc specific compatibles for describing
-> the qce crypto IP nodes in the device-trees, adapt the driver
-> now to handle the same.
+> From: Thara Gopinath <thara.gopinath@linaro.org>
 > 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> On certain Snapdragon processors, the crypto engine clocks are enabled by
+> default by security firmware and the driver need not/ should not handle the
+> clocks. Make acquiring of all the clocks optional in crypto enginer driver
+
+typo, s/enginer/engine/
+
+> so that the driver intializes properly even if no clocks are specified in
+
+typo, s/intializes/initializes/
+
+> the dt.
+> 
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 > ---
->   drivers/crypto/qce/core.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/crypto/qce/core.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index 033c7278aa5d..2ab0b97d718c 100644
+> index 2ab0b97d718c..576c416461f9 100644
 > --- a/drivers/crypto/qce/core.c
 > +++ b/drivers/crypto/qce/core.c
-> @@ -298,8 +298,8 @@ static int qce_crypto_remove(struct platform_device *pdev)
->   }
+> @@ -213,19 +213,19 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>   	if (IS_ERR(qce->mem_path))
+>   		return PTR_ERR(qce->mem_path);
 >   
->   static const struct of_device_id qce_crypto_of_match[] = {
-> -	{ .compatible = "qcom,crypto-v5.1", },
-> -	{ .compatible = "qcom,crypto-v5.4", },
-
-This breaks backward compatibility with old/not updated dtbs, I'm not sure, if
-that common rule has to be kept here, but at least it's worth to be mentioned.
-
-> +	{ .compatible = "qcom,ipq6018-qce", },
-> +	{ .compatible = "qcom,sdm845-qce", },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
+> -	qce->core = devm_clk_get(qce->dev, "core");
+> +	qce->core = devm_clk_get_optional(qce->dev, "core");
+>   	if (IS_ERR(qce->core)) {
+>   		ret = PTR_ERR(qce->core);
+>   		goto err_mem_path_put;
+>   	}
+>   
+> -	qce->iface = devm_clk_get(qce->dev, "iface");
+> +	qce->iface = devm_clk_get_optional(qce->dev, "iface");
+>   	if (IS_ERR(qce->iface)) {
+>   		ret = PTR_ERR(qce->iface);
+>   		goto err_mem_path_put;
+>   	}
+>   
+> -	qce->bus = devm_clk_get(qce->dev, "bus");
+> +	qce->bus = devm_clk_get_optional(qce->dev, "bus");
+>   	if (IS_ERR(qce->bus)) {
+>   		ret = PTR_ERR(qce->bus);
+>   		goto err_mem_path_put;
 > 
 
 --
