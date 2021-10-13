@@ -2,152 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B98C942B294
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 04:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD34842B31D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 05:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233544AbhJMCXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 22:23:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbhJMCXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 22:23:19 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE25DC061570;
-        Tue, 12 Oct 2021 19:21:16 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id z24so1236355qtv.9;
-        Tue, 12 Oct 2021 19:21:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8zd2M5Mo8dgVyQJrPteXTghqDfop7iR99NgzdTUTYYg=;
-        b=MK8cN1OuRqHY0cWjM6jkuuTCO31bXWxJs/x7GeFmCNEhj2oig1G6xgJ5f7YVZ+FuHI
-         GKwlkBCnT9z4mBSYexipiFj9ss98R3XfiGPbQO1O9zwNsg2OYoJ2a6q7QlGm9x7l/Qny
-         L9xA/aijQDziTVAGvf6h71mWEq/Ug3Xd6hgAPnsDJcvvZiF31QSKK677NCkT+sXmOHwB
-         zMo5FEJ8aWwgEEFCvSAjw7JYFHnIio/YhIXFT4P88GjaetqGU+j3XXaOzINa7CUFQ0O2
-         qY5dSsZoxo18Gs92nwZriqH+dKM2Kjlkb8VBnbENyQhCkfOMpMFNTNom8gaCB9mbn+wG
-         OQ9w==
+        id S229571AbhJMDKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 23:10:55 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:39869 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230054AbhJMDKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 23:10:54 -0400
+Received: by mail-ot1-f50.google.com with SMTP id k2-20020a056830168200b0054e523d242aso1850687otr.6;
+        Tue, 12 Oct 2021 20:08:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8zd2M5Mo8dgVyQJrPteXTghqDfop7iR99NgzdTUTYYg=;
-        b=YhiddDCeEx/ZCKyYwP64AYAT46vYdy7bMK3OFQUQn+3OSC9Fu5s5dBR0QYro7qUMlQ
-         cHvxIsGJOQEKUbAWllD57Re2ZzMAHP8LMPHwMmjZ5zxp4BFqmFV+FqI3syGNdBcqcpII
-         uRGqd/+Qu2DbNmJRN8+Py3zB2JzOQAKyaoleC72j4tuWGjSUrxnWggh+vB5O+7tEe5IG
-         BO9dmXibDuEdx3ELdyb258zzgVLNJZ6wewW/rcFU7abnKQDvo7U+C9du2rkjjYVEjHDZ
-         4UXTwcwSztJVPItEuNP8YDLGDp1P2/0CetZTkUXWR8r2SB0Ir+RJKskygCj3YAUmWYG8
-         Yz3g==
-X-Gm-Message-State: AOAM532tM+1HsuZXckk8aW1oW979DUPqU1iCyJ5Y9r5eMENPUbZQqYqk
-        QXWqA6JK8nYnNg3Ixlpa+d6LkuS5JirIoEklPADqkhk+08A=
-X-Google-Smtp-Source: ABdhPJwHx5htD99ZV0Vlnxw09358J8aiSKSK5sydDlZS2SAGRJgOrgKQVpZfkWlJdsu27L2KuhNChuxfdlrfvAIHVLk=
-X-Received: by 2002:ac8:1e06:: with SMTP id n6mr25870970qtl.365.1634091675865;
- Tue, 12 Oct 2021 19:21:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <1633944015-789-1-git-send-email-shengjiu.wang@nxp.com>
- <1633944015-789-4-git-send-email-shengjiu.wang@nxp.com> <20211012170601.GB4010675@p14s>
-In-Reply-To: <20211012170601.GB4010675@p14s>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Wed, 13 Oct 2021 10:21:04 +0800
-Message-ID: <CAA+D8AO7+_7xOhoeDCy_WOwrKMvqqL2w+gv=D7PCSD7Aji9jLQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] remoteproc: imx_dsp_rproc: Add remoteproc driver
- for DSP on i.MX
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Ohad Ben Cohen <ohad@wizery.com>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dG7YKVkdDHgU/EVdP5rWldt/Wd4xuXVEeGYHHbyU6pY=;
+        b=WglxSxVgt/9zWvhHSfPuH2OAOHpAGX+Khs0OhpMn7pjFzANsTtnQuP0Mt9UxR/8kWb
+         NHuq0FurjW8AW7hlgZRQ4DfJaVOI4QUWofTQQvS4iudEKhz5ZMIJXe3GQWXYn0bt8E0+
+         PBqz1v4YPNS+P8BBfqvI2g4GlS3yWG0gdqe705pTE+YakxJxgvT6iSBiJaIp1wCmk8nO
+         cpzIujo7yi2bjoh0eRCh6nSfgoqr6kqxa9Aa/amZxxu4g0NxoQD54HCQYPPd75GqA1J1
+         nDAolp2DYMe2xHX89SClcXpeex7qr58sTpR1aAKPdE3vxJfZkKSduu9qWxSLjuyYK7ht
+         ZivQ==
+X-Gm-Message-State: AOAM5329g1lE8Hqre5lBK0OJdYrvOq/wqNbvPAVZTIGXQbATlfz5nH27
+        zhBoaIgVSktRpNC/v377r+C1Ix+LkA==
+X-Google-Smtp-Source: ABdhPJwxbanwesgn/W1Wk639iMVs3dz+D5GBhnB2Y0dX/VfTkAYTB4EguI+MLsLJdXY/BZM8w0/ILA==
+X-Received: by 2002:a9d:61c7:: with SMTP id h7mr4857303otk.21.1634094531056;
+        Tue, 12 Oct 2021 20:08:51 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l45sm2488680ooi.30.2021.10.12.20.08.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Oct 2021 20:08:50 -0700 (PDT)
+Received: (nullmailer pid 3858823 invoked by uid 1000);
+        Wed, 13 Oct 2021 03:08:49 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        netdev@vger.kernel.org, Matthew Hagan <mnhagan88@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Russell King <linux@armlinux.org.uk>
+In-Reply-To: <20211013011622.10537-16-ansuelsmth@gmail.com>
+References: <20211013011622.10537-1-ansuelsmth@gmail.com> <20211013011622.10537-16-ansuelsmth@gmail.com>
+Subject: Re: [net-next PATCH v6 15/16] dt-bindings: net: dsa: qca8k: convert to YAML schema
+Date:   Tue, 12 Oct 2021 22:08:49 -0500
+Message-Id: <1634094529.487895.3858822.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 13, 2021 at 1:06 AM Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
->
-> On Mon, Oct 11, 2021 at 05:20:14PM +0800, Shengjiu Wang wrote:
-> > Provide a basic driver to control DSP processor found on NXP i.MX8QM,
-> > i.MX8QXP, i.MX8MP and i.MX8ULP.
-> >
-> > Currently it is able to resolve addresses between DSP and main CPU,
-> > start and stop the processor, suspend and resume.
-> >
-> > The communication between DSP and main CPU is based on mailbox, there
-> > are three mailbox channels (tx, rx, rxdb).
-> >
-> > This driver was tested on NXP i.MX8QM, i.MX8QXP, i.MX8MP and i.MX8ULP.
-> >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > ---
-> >  drivers/remoteproc/Kconfig         |   11 +
-> >  drivers/remoteproc/Makefile        |    1 +
-> >  drivers/remoteproc/imx_dsp_rproc.c | 1206 ++++++++++++++++++++++++++++
-> >  3 files changed, 1218 insertions(+)
-> >  create mode 100644 drivers/remoteproc/imx_dsp_rproc.c
-> >
-> > diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> > index dcb87a366ec7..f2e961f998ca 100644
-> > --- a/drivers/remoteproc/Kconfig
-> > +++ b/drivers/remoteproc/Kconfig
-> > @@ -34,6 +34,17 @@ config IMX_REMOTEPROC
-> >
-> >         It's safe to say N here.
-> >
-> > +config IMX_DSP_REMOTEPROC
-> > +     tristate "i.MX DSP remoteproc support"
-> > +     depends on ARCH_MXC
-> > +     depends on HAVE_ARM_SMCCC
-> > +     select MAILBOX
-> > +     help
-> > +       Say y here to support iMX's DSP remote processors via the remote
-> > +       processor framework.
-> > +
-> > +       It's safe to say N here.
-> > +
-> >  config INGENIC_VPU_RPROC
-> >       tristate "Ingenic JZ47xx VPU remoteproc support"
-> >       depends on MIPS || COMPILE_TEST
-> > diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> > index ce1abeb30907..0ac256b6c977 100644
-> > --- a/drivers/remoteproc/Makefile
-> > +++ b/drivers/remoteproc/Makefile
-> > @@ -12,6 +12,7 @@ remoteproc-y                                += remoteproc_virtio.o
-> >  remoteproc-y                         += remoteproc_elf_loader.o
-> >  obj-$(CONFIG_REMOTEPROC_CDEV)                += remoteproc_cdev.o
-> >  obj-$(CONFIG_IMX_REMOTEPROC)         += imx_rproc.o
-> > +obj-$(CONFIG_IMX_DSP_REMOTEPROC)     += imx_dsp_rproc.o
-> >  obj-$(CONFIG_INGENIC_VPU_RPROC)              += ingenic_rproc.o
-> >  obj-$(CONFIG_MTK_SCP)                        += mtk_scp.o mtk_scp_ipi.o
-> >  obj-$(CONFIG_OMAP_REMOTEPROC)                += omap_remoteproc.o
-> > diff --git a/drivers/remoteproc/imx_dsp_rproc.c b/drivers/remoteproc/imx_dsp_rproc.c
-> > new file mode 100644
-> > index 000000000000..63749cfcf22f
-> > --- /dev/null
-> > +++ b/drivers/remoteproc/imx_dsp_rproc.c
-> > @@ -0,0 +1,1206 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +// Copyright 2021 NXP
->
-> I just noticed the '//' on the copyright line.  Please send a patch to change
-> that to C style comments.
->
-> Thanks,
-> Mathieu
+On Wed, 13 Oct 2021 03:16:21 +0200, Ansuel Smith wrote:
+> From: Matthew Hagan <mnhagan88@gmail.com>
+> 
+> Convert the qca8k bindings to YAML format.
+> 
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> Co-developed-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/qca8k.txt     | 245 ------------
+>  .../devicetree/bindings/net/dsa/qca8k.yaml    | 362 ++++++++++++++++++
+>  2 files changed, 362 insertions(+), 245 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> 
 
-Ok, will send a patch for it.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-best regards
-Wang Shengjiu
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/qca8k.yaml:362:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.example.dt.yaml: switch@10: 'oneOf' conditional failed, one must be fixed:
+	'ports' is a required property
+	'ethernet-ports' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1540096
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
