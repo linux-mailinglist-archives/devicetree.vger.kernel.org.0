@@ -2,220 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5991E42C634
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2240242C671
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbhJMQWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 12:22:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48114 "EHLO
+        id S229552AbhJMQfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 12:35:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230212AbhJMQWn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 12:22:43 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DD94C061749;
-        Wed, 13 Oct 2021 09:20:39 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id i12so10193332wrb.7;
-        Wed, 13 Oct 2021 09:20:39 -0700 (PDT)
+        with ESMTP id S229529AbhJMQfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 12:35:08 -0400
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC735C061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 09:33:04 -0700 (PDT)
+Received: by mail-ua1-x931.google.com with SMTP id e10so1077420uab.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 09:33:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=0WQtejUs0U+1oNTFLhT9yrIgvAfHwe1zgZIDzP381OQ=;
-        b=LIKdnhYCduCXhInUyS5BRlABtNFROrwdW/EsLhswGTImNb51Qv+m7tO7Q+UbNx6d7I
-         D1I4uq3Po+1HPFpssO8o/bCYubjv7OSHBw/7yI6yhb5F9UMdJ1kRqTkE6ProseNlymbD
-         DLH65t2Spme47VNFQY++FPKcfIKkTqvu4YD+WDUEMB3vANa0SUBQ84L+KohX7s8P/Fvq
-         bB2vzf79xwQedrDSPQJALNT2f/u9ZSACdidUPyFJVJHAWXi4j2y+f+O712iYn2awRqCU
-         pxaJDjfSVc8rFNbXPtG1533QKhPfo0AfATriXepb0fbaoFVWBl0Zc3WviK14fmjUXw+I
-         cewQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Rya4ql+J0pojULrtoj3YzEjPpJS8UxUANMAyi1vST04=;
+        b=Jh5K0PsZ2LwyDqb9kV5ZGOG/Q5D6wNOU0HH/013jDrHVeA01RwJLvC5DbyObGiF15M
+         RCRsVy5KvFKofxp/JQSTbWKqv1/MAt/QIEERdvjgkzvf9TjKTOlpM6HxAGBmhToAK9TI
+         96q1T/JordgUVbYoTNK70Pt5QUlkycLASiHiY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=0WQtejUs0U+1oNTFLhT9yrIgvAfHwe1zgZIDzP381OQ=;
-        b=no5lO4BEUVZXZ4f3W3BRq5NFW4fFyE3Sli5nKCAXa31GrOyOw8US1s0W73jVnkTWvR
-         jyaNvMsE2twF3rtWFjpxzfjn3cNcKCgJtd9NtTxm5XxzIM1qI29cZQ6msgwWzvYUZ8kt
-         BDldK35NQJcp4531jzL0OFhPIUEBarM342ztZbMS0BlRuF9V5Q261yWsx4CUdvQh5TO2
-         Fy4n+I/QJab6YQxGyQSVpjT9Ef5FudRDk9om50DyecytmJ3v5cCGIPrjv4jG1tRrCEZh
-         2LnclQ9W1njK9JGivfSCUxVkS+wduwBjHrD8nlqV3UcrQPplIM2hfboKxK3nk6dXASJ+
-         yHAQ==
-X-Gm-Message-State: AOAM533MFinWFdyfSPCOc0u84p0b6JujNvWaifYRCocixJ5UZDI294v+
-        9MTbLxUz9AT7VR6ke/EahJ0=
-X-Google-Smtp-Source: ABdhPJwvK29YiRXmRWUBqDWD4P+uxY6vfiqSKI6fNBN1Oisbb1TTAIl6Xk0ysRuB7CviCTIGY18aDw==
-X-Received: by 2002:adf:a496:: with SMTP id g22mr108648wrb.13.1634142038182;
-        Wed, 13 Oct 2021 09:20:38 -0700 (PDT)
-Received: from ?IPV6:2620:113:80c0:8000:c::779? (nat0.nue.suse.com. [2001:67c:2178:4000::1111])
-        by smtp.gmail.com with ESMTPSA id r9sm20051wrn.95.2021.10.13.09.20.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Oct 2021 09:20:37 -0700 (PDT)
-Message-ID: <d6e47a80-9d35-3236-f631-0e3bf8f9db17@gmail.com>
-Date:   Wed, 13 Oct 2021 18:20:34 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Rya4ql+J0pojULrtoj3YzEjPpJS8UxUANMAyi1vST04=;
+        b=cbaJMl1M4eETHz+vryJWIiriIdSlyUkoBE9mXB8Gub2kAvOpBxhuQwhEXIvtB2EQWH
+         UesyXCBRUd4iR4yUeI0ZwfYgRWp+xqrKxKIROaapNJpAyiKCUZEjV8Vljin/1ISWWkh5
+         miL5URV+MG3TlfD2AaldSML0+X+E6ZgjGKyfVzvZsUtsvT7YHO0rrpP1FjLYZO4PyTzz
+         XFaX08TPd2KcX+m1zW7nYpkaNftvysYhPLdYrjJQtxhedUHm/JSisFbVNARj+5BJ+sM6
+         y3CQoXm/9jbkkRV0Sfvo0x5tbypARWcDJvIaiSKLMrorop2NIwHWRu5NdxcOeXJcyog2
+         iHNw==
+X-Gm-Message-State: AOAM530QISki/FxXmmSYV+DxuqoQ8ry/P6XlsRJmVC/xJjKZkgRO7/UF
+        WogHDQ7ilyoWTiGRKZmsN7s2+crfH0L9ioWW6MS9pw==
+X-Google-Smtp-Source: ABdhPJyL3+/4aN52X8gHGa+10XBOwIppW1O+lz1l1TRL006MiSuFnrPPhfmoFnW3ldqhq0URp7uYj/NE52TaV/QDEng=
+X-Received: by 2002:a05:6102:3577:: with SMTP id bh23mr113737vsb.8.1634142783521;
+ Wed, 13 Oct 2021 09:33:03 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, linux-mediatek@lists.infradead.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Arnd Bergmann <arnd@arndb.de>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, soc@kernel.org
-References: <20211005202833.96526-1-luca@z3ntu.xyz>
- <20211005202833.96526-2-luca@z3ntu.xyz>
- <686404ce-2e0b-5470-b095-1c1fd7c18250@gmail.com> <5755444.lOV4Wx5bFT@g550jk>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 2/2] arm: dts: mt6589: Add device tree for Fairphone 1
-In-Reply-To: <5755444.lOV4Wx5bFT@g550jk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211003125134.2.I7733f5a849476e908cc51f0c71b8a594337fbbdf@changeid>
+ <YVtWVZDzhwMPnKj0@robh.at.kernel.org> <CAPnjgZ3hUu6AUiMtC8tSQPeeG1aH1bQMcE8SQ_T8Nd-FjY_fGQ@mail.gmail.com>
+ <CAL_JsqLT28Lp6pVYLxheZ=iK9QDOzXcezihR+sru4qLQLoUeWw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLT28Lp6pVYLxheZ=iK9QDOzXcezihR+sru4qLQLoUeWw@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Wed, 13 Oct 2021 10:32:51 -0600
+Message-ID: <CAPnjgZ1accZg-G00xX7HPE8KAoh9NPAkfrb9BFrj3W5Bo_0pKg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: u-boot: Add an initial binding for config
+To:     Rob Herring <robh@kernel.org>
+Cc:     Devicetree Discuss <devicetree@vger.kernel.org>,
+        Tom Rini <trini@konsulko.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        lk <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+"
+Hi Rob,
 
+On Tue, 12 Oct 2021 at 09:05, Rob Herring <robh@kernel.org> wrote:
+>
+>  On Tue, Oct 12, 2021 at 8:41 AM Simon Glass <sjg@chromium.org> wrote:
+> >
+> > Hi Rob,
+> >
+> > On Mon, 4 Oct 2021 at 13:30, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Sun, Oct 03, 2021 at 12:51:53PM -0600, Simon Glass wrote:
+> > > > U-Boot makes use of the devicetree for its driver model. Devices are bound
+> > > > based on the hardware description in the devicetree.
+> > > >
+> > > > Since U-Boot is not an operating system, it has no command line or user
+> > > > space to provide configuration and policy information. This must be made
+> > > > available in some other way.
+> > > >
+> > > > Therefore U-Boot uses devicetree for configuration and run-time control
+> > > > and has done for approximately 9 years. This works extremely well in the
+> > > > project and is very flexible. However the bindings have never been
+> > > > incorporated in the devicetree bindings in the Linux tree. This could be
+> > > > a good time to start this work as we try to create standard bindings for
+> > > > communicating between firmware components.
+> > > >
+> > > > Add an initial binding for this node, covering just the config node, which
+> > > > is the main requirement. It is similar in concept to the chosen node, but
+> > > > used for passing information between firmware components, instead of from
+> > > > firmware to operating system.
+> > > >
+> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > ---
+> > > > Please be kind in your review. Some words about why this is needed are
+> > > > included in the description in config.yaml file.
+> > > >
+> > > > The last attempt to add just one property needed by U-Boot went into the
+> > > > weeds 6 years ago, with what I see as confusion about the role of the
+> > > > chosen node in devicetree[1].
+> > > >
+> > > > I am trying again in the hope of reaching resolution rather than just
+> > > > going around in circles with the 'devicetree is a hardware description'
+> > > > argument :-)
+> > > >
+> > > > Quoting from the introduction to latest devicetree spec[2]:
+> > > >
+> > > > >>>
+> > > > To initialize and boot a computer system, various software components
+> > > > interact. Firmware might perform low-level initialization of the system
+> > > > hardware before passing control to software such as an operating system,
+> > > > bootloader, or  hypervisor. Bootloaders and hypervisors can, in turn,
+> > > > load and transfer control to operating systems. Standard, consistent
+> > > > interfaces and conventions facilitate the interactions between these
+> > > > software components. In this document the term boot program is used to
+> > > > generically refer to a software component that initializes the system
+> > > > state and executes another software component referred to as a client
+> > > > program.
+> > > > <<<
+> > > >
+> > > > This clearly envisages multiple software components in the firmware
+> > > > domain and in fact that is the case today. They need some way to
+> > > > communicate configuration data such as memory setup, runtime-feature
+> > > > selection and developer conveniences. Devicetree seems ideal, at least for
+> > > > components where the performance / memory requirements of devicetree are
+> > > > affordable.
+> > > >
+> > > > I hope that the Linux community (which owns the devicetree bindings) finds
+> > > > this initiative valuable and acceptable.
+> > >
+> > > Owns? I'm having a sale and can make you a good offer. Buy 1 binding,
+> > > get 2000 free. :)
+> >
+> > Yes, it's the price of that first binding that surely puts everyone off.
+> >
+> > (sorry for sitting on this for a week, my spam filter doesn't like
+> > some mailing lists and I'm working on it)
+> >
+> > >
+> > > >
+> > > > [1] https://lists.denx.de/pipermail/u-boot/2015-July/218585.html
+> > > > [2] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+> > > >
+> > > >  .../devicetree/bindings/u-boot/config.yaml    | 137 ++++++++++++++++++
+> > > >  1 file changed, 137 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/u-boot/config.yaml
+> > >
+> > > Might as well put this into dt-schema rather than the kernel. But might
+> > > get more review here first.
+> >
+> > OK, so does that mean a PR to https://github.com/robherring/dt-schema
+>
+> Wrong one: https://github.com/devicetree-org/dt-schema
+>
+> I need to update the readme there for the old one.
 
-On 12/10/2021 19:54, Luca Weiss wrote:
-> Hi Matthias,
-> 
-> On Freitag, 8. Oktober 2021 13:49:25 CEST Matthias Brugger wrote:
->> On 05/10/2021 22:28, Luca Weiss wrote:
->>> Add rudimentary support for the Fairphone 1, based on MT6589 to boot to
->>> UART console.
->>>
->>> The recently added SMP support needs to be disabled for this board as
->>> the kernel panics executing /init with it, even though the CPUs seem to
->>> start up fine - maybe a stability issue.
->>>
->>> [    0.072010] smp: Bringing up secondary CPUs ...
->>> [    0.131888] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
->>> [    0.191889] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
->>> [    0.251890] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
->>> [    0.251982] smp: Brought up 1 node, 4 CPUs
->>> [    0.254745] SMP: Total of 4 processors activated (7982.28 BogoMIPS).
->>> [    0.255582] CPU: All CPU(s) started in SVC mode.
->>>
->>> [    0.472039] Run /init as init process
->>> [    0.473317] Kernel panic - not syncing: Attempted to kill init!
->>> exitcode=0x00000004
->> Would be nice to find out why. Did you tried to boot the system with
->> enable-method set but with bringing up just one or two cpus?
-> 
-> Answered further down.
-> 
->>
->>> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
->>> ---
->>>
->>>    arch/arm/boot/dts/Makefile                 |  1 +
->>>    arch/arm/boot/dts/mt6589-fairphone-fp1.dts | 30 ++++++++++++++++++++++
->>>    2 files changed, 31 insertions(+)
->>>    create mode 100644 arch/arm/boot/dts/mt6589-fairphone-fp1.dts
->>>
->>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->>> index 7e0934180724..24f402db2613 100644
->>> --- a/arch/arm/boot/dts/Makefile
->>> +++ b/arch/arm/boot/dts/Makefile
->>> @@ -1437,6 +1437,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += \
->>>
->>>    	mt2701-evb.dtb \
->>>    	mt6580-evbp1.dtb \
->>>    	mt6589-aquaris5.dtb \
->>>
->>> +	mt6589-fairphone-fp1.dtb \
->>>
->>>    	mt6592-evb.dtb \
->>>    	mt7623a-rfb-emmc.dtb \
->>>    	mt7623a-rfb-nand.dtb \
->>>
->>> diff --git a/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
->>> b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts new file mode 100644
->>> index 000000000000..32c14ecf2244
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/mt6589-fairphone-fp1.dts
->>> @@ -0,0 +1,30 @@
->>> +// SPDX-License-Identifier: BSD-3-Clause
->>> +/*
->>> + * Copyright (c) 2021, Luca Weiss <luca@z3ntu.xyz>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +#include "mt6589.dtsi"
->>> +
->>> +/ {
->>> +	model = "Fairphone 1";
->>> +	compatible = "fairphone,fp1", "mediatek,mt6589";
->>> +
->>> +	chosen {
->>> +		stdout-path = &uart3;
->>> +	};
->>> +
->>> +	cpus {
->>
->> I'd expected "&cpus" why can we overwrite delete the node property like this
->> here?
-> 
-> Both results in the same, dtc just merges everything together, so as long as
-> the node name is identical, it works.
-> Also I cannot use &cpus because cpus in mt6589.dtsi doesn't have a label set.
-> 
+OK thanks.
 
-Then I think we should add a label and use &cpus, as this is the standard way to go.
+>
+> > or is there a mailing list for it? I think I am missing some
+> > understanding here.
+>
+> You can send a PR or to a DT mailing list, but the mail list will get
+> more reviews (hopefully). devicetree-spec is better than devicetree as
+> it is not a firehose.
 
-> Regarding SMP:
-> I have tried setting maxcpus=2 in cmdline and that still makes the kernel
-> panic. With maxcpus=1 and leaving the deleting out of the dts the kernel is
-> stable and works properly.
-> 
-> So I think it's better to leave this out of the dts and keep maxcpus=1 in
-> cmdline (until this gets fixed).
-> 
+OK.
 
-I'd prefer to disable the enable-method in DTS. You can see the four cores up 
-and running without that, so it seems that is already done in the FW, right?
+>
+> > >
+> > > > diff --git a/Documentation/devicetree/bindings/u-boot/config.yaml b/Documentation/devicetree/bindings/u-boot/config.yaml
+> > > > new file mode 100644
+> > > > index 00000000000000..336577a17fdf5a
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/u-boot/config.yaml
+> > > > @@ -0,0 +1,137 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/u-boot/config.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: U-Boot configuration node
+> > > > +
+> > > > +maintainers:
+> > > > +  - Simon Glass <sjg@chromium.org>
+> > > > +
+> > > > +description: |
+> > > > +  The config node does not represent a real device, but serves as a place
+> > > > +  for passing data between firmware elements, like memory maps. Data in the
+> > > > +  config node does not represent the hardware. It is ignored by operating
+> > > > +  systems.
+> > > > +
+> > > > +  Purpose of config node
+> > > > +  ----------------------
+> > > > +
+> > > > +  A common problem with firmware is that many builds are needed to deal with the
+> > > > +  slight variations between different, related models. For example, one model
+> > > > +  may have a TPM and another may not. Devicetree provides an excellent solution
+> > > > +  to this problem, in that the devicetree to actually use on a platform can be
+> > > > +  injected in the factory based on which model is being manufactured at the time.
+> > > > +
+> > > > +  A related problem causing build proliferation is dealing with the differences
+> > > > +  between development firmware, developer-friendly firmware (e.g. with all
+> > > > +  security features present but with the ability to access the command line),
+> > > > +  test firmware (which runs tests used in the factory), final production
+> > > > +  firmware (before signing), signed firmware (where the signatures have been
+> > > > +  inserted) and the like. Ideally all or most of these should use the same
+> > > > +  U-Boot build, with just some options to determine the features available. For
+> > > > +  example, being able to control whether the UART console or JTAG are available,
+> > > > +  on any image, is a great debugging aid.
+> > > > +
+> > > > +  When the firmware consists of multiple parts (various U-Boot phases, TF-A,
+> > > > +  OP-TEE), it is helpful that all operate the same way at runtime, regardless of
+> > > > +  how they were built. This can be achieved by passing the runtime configuration
+> > > > +  (e.g. 'enable UART console', 'here are your public keys') along the chain
+> > > > +  through each firmware stage. It is frustrating to have to replicate a bug on
+> > > > +  production firmware which does happen on developer firmware, because they are
+> > > > +  completely different builds.
+> > > > +
+> > > > +  The config node provides useful functionality for this. It allows the different
+> > > > +  controls to be 'factored out' of the U-Boot binary, so they can be controlled
+> > > > +  separately from the initial source-code build. The node can be easily updated
+> > > > +  by a build or factory tool and can control various features in U-Boot. It is
+> > > > +  similar in concept to a Kconfig option, except that it can be changed after
+> > > > +  U-Boot is built.
+> > > > +
+> > > > +  The config node is similar in concept to /chosen (see chosen.txt) except that
+> > >
+> > > chosen.yaml now (in dt-schema).
+> >
+> > OK
+> >
+> > >
+> > > > +  it is for passing information *into* and *between) firmware components,
+> > > > +  instead of from firmware to the Operating System. Also, while operating
+> > > > +  systems typically have a (sometimes extremely long) command line, U-Boot does
+> > > > +  not support this, except with sandbox. The devicetree provides a more
+> > > > +  structured approach in any case.
+> > >
+> > > What about having a /chosen/u-boot/ node instead?
+> >
+> > What is your rationale for doing that?
+>
+> Simply that /chosen is where the s/w configuration for the next stage
+> consuming the DT goes. Also, we already have bootcmd defined in chosen
+> and don't need it in a whole other place.
 
-> I've also heard from the person adding enable-method to mt6589.dtsi that it
-> still works on their board, so something's different, maybe a different SoC
-> revision, different bootloader behavior or whatever.
-> 
+OK I see.
 
-Sounds like a different bootloader behaviour.
+The spec says "The /chosen node does not represent a real device in
+the system but describes parameters chosen or specified by the system
+firmware at run time. It shall be a child of the root node."
 
-> If that's fine with you, I'll send a v2 with that fixed.
-> 
->>> +		/* SMP is not stable on this board, makes the kernel
-> panic */
->>> +		/delete-property/ enable-method;
->>> +	};
->>> +
->>> +	memory {
-> 
-> Also I was told off-list that this should be called memory@80000000 because of
-> the reg, will fix in v2.
-> 
+To my reading, this is not the same thing. I would prefer something like:
 
-Correct :)
+"The /xxx node does not represent a real device in the system but
+describes parameters used by the system firmware at run time. It shall
+be a child of the root node."
 
-Thanks,
-Matthias
+Anyway, we could use /chosen, and I can see it will make a lot of
+people happy. But I don't think it is a great plan. Here are my
+thoughts:
 
-> Regards
-> Luca
-> 
->>> +		device_type = "memory";
->>> +		reg = <0x80000000 0x40000000>;
->>> +	};
->>> +};
->>> +
->>> +&uart3 {
->>> +	status = "okay";
->>> +};
-> 
-> 
-> 
-> 
+1. This node is built, packaged and set up by and used by U-Boot
+itself, at least in most cases, so U-Boot is not the next stage, but
+the current stage. Conceptually, using /chosen is confusing for U-Boot
+itself.
+
+2.. bootcmd is the Operating System command line, whereas the one here
+is for U-Boot, specifically
+
+3. U-Boot does not and should not change this node, but it does change /chosen.
+
+4. If we move to livetree for writing in U-Boot, we'll want to flatten
+the tree (containing /chosen) before calling Linux. Having the config
+under the /chosen node is an added complication there.
+
+5.  It is slightly more efficient for U-Boot to put this at the top
+level - this matters in SPL. But I don't think this is huge concern.
+
+6.. I very much think of /chosen as an operating system thing. Would
+this be the first use by firmware?
+
+7. If we want to sign the U-Boot config then it is easier if it is in
+a separate node from /chosen, which is, after all, updated by U-Boot.
+
+I'd really like to discuss whether we can break out of the /chosen
+node straightjacket. Perhaps instead we should have something like
+/firmware or /chosen-fw with the U-Boot node under that? I can
+definitely see the concern about having lots of vendor-specific nodes
+at the top level for every component, though.
+
+Do you have any other ideas?
+
+>
+> Arguably, we don't even need another sub-node here. We could just say
+> a given component is responsible for consuming /chosen and then
+> updating it for the next component. The problem with that is if you
+> want all the configuration to coexist at the start. Overlapping
+> properties is also a problem. The only overlap in this case is
+> bootcmd, but you could handle that with a 'u-boot,bootcmd'. Not saying
+> we should do that though given we need to extend things beyond 2
+> components.
+
+Are we trying to conserve nodes? They are not that expensive. I like
+the idea of separating our concerns between firmware and OS, or this
+is going to get mighty confusing. As you say it makes it hard to use a
+mostly static DT.
+
+>
+> > Should we perhaps have a vendor/ directory for vendor-specific tags?
+>
+> In the kernel tree, we already have bindings/soc/<vendor> and vendors
+> like to just dump all their stuff there when it belongs in a directory
+> for the function.
+
+OK so perhaps we should leave this file where it is.
+
+>
+> > Also, thinking ahead, I am interested in how we can add bindings for
+> > firmware-to-firmware communications. There are some settings that
+> > could be defined across projects (such as memory layout, security
+> > level/settings) and these should ideally be harmless to pass to the
+> > kernel (i.e. ignored by the kernel). It is possible that some of these
+> > could be used by the kernel but then we can always recreate them using
+> > kernel bindings as needed (and cross that bridge when we come to it).
+> > So this would be a set of bindings used by firmware components in
+> > general. We would not want to use "u-boot,xxx" in that case.
+>
+> Yes, that is also why I'm thinking about how do we extend /chosen.
+> More generally, it's just one stage to the next. firmware-to-firmware
+> is not really any different than bootloader to OS. /chosen serves that
+> purpose already, so the question is how to make chosen support
+> multiple components.
+
+The problem, as I see it, is that we don't have
+/chosen/operating-system, we just have /chosen
+
+So that namespace is already claimed for the OS. A clean break seems
+better to me.
+
+Just a thought...if we have /chosen-fw we could have subnodes for each
+firmware component, with the 'standard' bindings at the top level?
+
+Regards,
+Simon
