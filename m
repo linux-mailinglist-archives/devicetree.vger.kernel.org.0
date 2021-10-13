@@ -2,104 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C017542CE26
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CCE42CE2C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:32:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231492AbhJMWdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 18:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49152 "EHLO
+        id S230446AbhJMWeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:34:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231549AbhJMWdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:33:09 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488B2C061767
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:31:03 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id d11so1378391ilc.8
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:31:03 -0700 (PDT)
+        with ESMTP id S229883AbhJMWeQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:34:16 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE010C061749
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:32:12 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id g36so1470208lfv.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:32:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=otZN8F+fG9zAX7wVdqQ3N8LhCQgLBn+dCk9vdX4N79k=;
-        b=EuNhCjX6qv4SHl5vGJ6JJNVDiRLzJDAc11ZlKzibulsYq/szMLC5oz1UUjSAcevNWa
-         4wiwPvp2FoWkh/YY66rUNRbZPm2G+bZ2qutdDQfA0jwhdbnMfe/n4pIfsAENt8Wn/meB
-         vnNj6gLX3cVN1/CzuJGEe97w6OyXi8cj24khI=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T/OomM9w2GusTbCVdWitYQJgC9/Z986cg3wMugLDkCc=;
+        b=iIn8C5md7RBiGzfnw2bAipABPt+03zPtv/DOq/HLswL8ElO65blVWNj9Xi0OdYbSVO
+         Eo4zFMFHuevfXEK92pXYjENk6eY1NWcLNe4lFjx75z+2MjgoQUkSqqpAoqRYLhfEJddo
+         5uMzn/mOrXGlBg75XlWecvyBlqKFxEusfRgLWijGHPegycDKaFJbFlOBnqxtQXv31lGb
+         d0X+r94JhCIkuxRKm6yBj/ouq7toJNfJ9SkyJwwK87fhNSxEja+J8JtvsDm5t5fZlr3/
+         8tCIWi0WipX/kw0TTbIFGX0BTole/YW5bn6Vf3U8qbZhUTt3MFm/9LjEEtqjcFKoV/sP
+         +PfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=otZN8F+fG9zAX7wVdqQ3N8LhCQgLBn+dCk9vdX4N79k=;
-        b=X1CBeNat2YRGpnmO/Uzo/3eDoy5u7stVU9DMOS7LXIho6wJNL5c9W1tpJFYhmElzvl
-         8B8v/qd3vFR2Bhq7DZousPk7mzpK4Ks9GOjIAK7Hf4qwm0mqfSnuWgEz7hXNFRiALDcK
-         bMvOvVQNuDElD6e9nxwYpjXVnTjM1+slbr5Im5HS51I+4txevFIaqtDPNyThuoNziNOC
-         NyKLTNWCzoT0D4S1np6X5Z7TXogohqSqWeSNQ+8818berV1TRgu6CV1z+fCvm/ufouFH
-         zI742nL+ki9710/Tv2BYwmL4K1utINUUTIGBPdszyOMtB2+coQ9AATdqjIKuizJzrsyA
-         Mlng==
-X-Gm-Message-State: AOAM533pXDS3fcvwTKGlIvgCEbcnR+WjEjFZo4uHqhMNRg7lwqBk45Qz
-        tYPdY2rlyoDFj20x5oPVikekdcl4VuA0huD1
-X-Google-Smtp-Source: ABdhPJwo3yLSsRZNFqu7UKIUCDgR8yc4ZXmM9i3Tvb+hzqHpIewQsz5A1oY8eYgYcKDR3SvJqyYjRw==
-X-Received: by 2002:a05:6e02:1889:: with SMTP id o9mr1401742ilu.219.1634164262205;
-        Wed, 13 Oct 2021 15:31:02 -0700 (PDT)
-Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id b13sm340163ioq.26.2021.10.13.15.31.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Oct 2021 15:31:01 -0700 (PDT)
-Subject: Re: [RFC PATCH 17/17] dt-bindings: net: qcom,ipa: Add support for
- MSM8953 and MSM8996 IPA
-To:     Sireesh Kodali <sireeshkodali1@gmail.com>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, elder@kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20210920030811.57273-1-sireeshkodali1@gmail.com>
- <20210920030811.57273-18-sireeshkodali1@gmail.com>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <0166e268-5162-95d0-e5c5-8831525b7d84@ieee.org>
-Date:   Wed, 13 Oct 2021 17:31:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T/OomM9w2GusTbCVdWitYQJgC9/Z986cg3wMugLDkCc=;
+        b=ENAB01Jz8JcsuYn6W8TI0jn67DfttU9jmCFTrDNmJ76bS6rjaSiVsqTM8Rzs+bY8FG
+         BrFqxSZ2/ZzNU6WRngDbGIIL6cYdz7dKKCrMgwQNxU5FjdXUr8zSQ/sUVcMs63T/Y69h
+         tZyP8dE4AXc0ylguseFcaLaxyou147Y607mGVY8mMmjG47/TZbrkSwrrivCciY08IIiG
+         ayYVduEMn6Z/VqieZmjU/dHE5QZaQLVbME1dtQ2ZN228LOirRpzl/1SJCGzohGVyqAui
+         /C/jI9vVqdi4PoazMUKRA6VKtdREeJ6m5r8DnnwcaNtNHv1OzLQ7JHlkfGD60vDKwSNI
+         I9yw==
+X-Gm-Message-State: AOAM5336G5OhYqlf6rcajL2J0M7gi7msHM1JmFScGZbRUpR11YxPHXdC
+        D9HmWFfLQfErQgeunjNsJJvqX0G7aoecrq0kku8+zWmPAUk=
+X-Google-Smtp-Source: ABdhPJxBSo+RJ+XSsLVvldxL70PplGkXVK8P4+WfUMNkYtB7Bu45xbhCyoL5p3gR6ii06cEdUwToJESL+JN7cP8U8Pk=
+X-Received: by 2002:a19:c10d:: with SMTP id r13mr1679243lff.339.1634164331067;
+ Wed, 13 Oct 2021 15:32:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210920030811.57273-18-sireeshkodali1@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211007144019.7461-1-jbx6244@gmail.com> <1633661172.660863.1409603.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1633661172.660863.1409603.nullmailer@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 14 Oct 2021 00:31:59 +0200
+Message-ID: <CACRpkdYArdPwEVf_5pwsROKPjbnVAtU3mf9v1z6WXGPoBb=SZg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: convert rockchip,pinctrl.txt
+ to YAML
+To:     Rob Herring <robh@kernel.org>
+Cc:     Johan Jonker <jbx6244@gmail.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/19/21 10:08 PM, Sireesh Kodali wrote:
-> MSM8996 uses IPA v2.5 and MSM8953 uses IPA v2.6l
-> 
-> Signed-off-by: Sireesh Kodali <sireeshkodali1@gmail.com>
+On Fri, Oct 8, 2021 at 4:46 AM Rob Herring <robh@kernel.org> wrote:
 
-This looks good.  And if it's good enough for Rob, it
-*must* be good.
+> On Thu, 07 Oct 2021 16:40:17 +0200, Johan Jonker wrote:
+> > Convert rockchip,pinctrl.txt to YAML
+> >
+> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> > ---
+> >
+> > Changed V3:
+(...)
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 
-					-Alex
+Rob can you tell me how you like me to handle this?
+Do we merge the nice new bindings and deal with the
+aftermath or do we need to fix the DTS files in the same
+patch series?
 
-> ---
->   Documentation/devicetree/bindings/net/qcom,ipa.yaml | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> index b8a0b392b24e..e857827bfa54 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> @@ -44,6 +44,8 @@ description:
->   properties:
->     compatible:
->       enum:
-> +      - qcom,msm8953-ipa
-> +      - qcom,msm8996-ipa
->         - qcom,msm8998-ipa
->         - qcom,sc7180-ipa
->         - qcom,sc7280-ipa
-> 
-
+Thanks,
+Linus Walleij
