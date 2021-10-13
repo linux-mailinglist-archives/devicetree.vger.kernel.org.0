@@ -2,258 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8CF642C5C5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 341FE42C5D9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:08:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236161AbhJMQGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 12:06:17 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49036
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230057AbhJMQGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 12:06:16 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8AB7240015
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:04:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634141052;
-        bh=7Uea0bdproVv4z3WyZyxDDyqLGB33jk6EQEyoqX83Q8=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=GhGe2C8xJfXLwjvHSClyNWeyijKUwgji1j60n/qCdZTI8F0Wb+DaJpXXC6xad3aXE
-         1OB4HlKr8BSooGYfhAv3+ZFxTFka8yuROGvezkyqgs4+/SoWCt30/P9MrF2b63gg1L
-         p9mo81lsHu1WBKyZX+Q1ea18cl5OoPFXBeyFd+dqXUa+Y23MYSxrIjbLqHJLKmAwxA
-         hueOW6O7ZIsXF5GaYCS5mCVPDSqIEc8xZlk19leOcTUbQQ7RHeze4+7dHAX7O8sYOd
-         0sDZWlh29PaEiwT2vyPUXBqAmFco+WlFWsrFqDisTouNqfggFx5GydmqpJt15xWVnR
-         HBpoARgZ4MefQ==
-Received: by mail-lf1-f71.google.com with SMTP id k18-20020a05651210d200b003fd86616d39so2368766lfg.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 09:04:12 -0700 (PDT)
+        id S235949AbhJMQKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 12:10:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229514AbhJMQKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 12:10:24 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 435F5C061570;
+        Wed, 13 Oct 2021 09:08:21 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id u18so10157346wrg.5;
+        Wed, 13 Oct 2021 09:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=eX7yjJefdYC9EkA2tTv7QWyCDc8KjHPONkGSpJrjJ+4=;
+        b=Fh/+e/qKee/OC3Pdz/1y1XxQafvN08plEo51h2csXqSGGDsuhib/3q52O/b2mUKYD5
+         JdebSWNKT6si8Sukw4Qx+8ih9WTKC0gwi3GfkFRbHI6EeyXqJE0FsTGeXUReayK4yE2e
+         TkziOkGTOtRYd4TJa1tLgvOgk9Y6lOsINvu1SdTOMzmCgsASgncB3rl2yUw17BHiX3D3
+         QcRk6HlEJzzMklDt9srpG79X3vXuIGVi1KDfVk/jcoG9zQjuehhUqeZunxOg2qlS6+Hk
+         LfrVu7txywRk6tcN8W9WlMggmH0lj4y0usk1JWUu4Xxcdw+hwptpGNNoa3+H89F21m8B
+         tACg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
          :content-transfer-encoding;
-        bh=7Uea0bdproVv4z3WyZyxDDyqLGB33jk6EQEyoqX83Q8=;
-        b=q3xkH3BrKQFs47x8hHmp0gr5e2VCmcKfI8wTnemnBwSMTC430Ua4yw/zZ1R10ZxyxE
-         a2kytcUGAF3ZLmf86HZ0RKuus/SS4dMg5IUr4VTC5iWHYZXjo0884kPl5iaqGc19XdLK
-         8raBpVlGx/LGGOMuv+2wWH1irMw7Ch6YU7xXZW0rnWjmQhE9kuKzg2fcHZDeK1qjEZTp
-         GLs7mPwUkZVtLQ/sL8vxXSwCBfEXlDwTg0a9h/wL9w+51QmFhX7jlnyfGT1DWNzYQoSg
-         SJVx0xpsVY2jBfkDRh2zHtKdGy/QXNGpF0tv5XRd/vu8EW/h5FWwFK3R63WzgV7pTzY9
-         6sgg==
-X-Gm-Message-State: AOAM531Rf6Uw4Bbt1kzEc+sy8V6wiUyTtc/jyrJYL0pPJFDAmTKgOh42
-        sDMA0h1EsOfDG4f0js/B1A+BSOZunHfeb9BWdbh1cF+VRfZ+E042ev9sy/uwLF/mfTflzBEXb1M
-        W8jmPlil/QhS0B0eUxOcvPV4V6yIpJ83T7RUKUis=
-X-Received: by 2002:a05:651c:17a5:: with SMTP id bn37mr217492ljb.514.1634141051715;
-        Wed, 13 Oct 2021 09:04:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwqeU5lTKPPHhDYtsr9AjlGUCbeSplPdIXbDQSgZed89xJEEMa5nqP3SFKE7uZcDSEN/4aKYQ==
-X-Received: by 2002:a05:651c:17a5:: with SMTP id bn37mr217462ljb.514.1634141051467;
-        Wed, 13 Oct 2021 09:04:11 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id v6sm1505098ljv.96.2021.10.13.09.04.10
+        bh=eX7yjJefdYC9EkA2tTv7QWyCDc8KjHPONkGSpJrjJ+4=;
+        b=RamnbcasvGQ4OTXtjwguAGnvvMYtQ3wisL7ulgmwjvZX1obP54QQkOTL0NeP3i9dsY
+         kCy6+ixgCMGc8qe9+wImQoBJrvjHGoSRhojAm80CT7pdF11UwLNYsLpdg2YHYUT4L7NU
+         /0zRr5J5pIAyQS/eoXS6FD5/o3Qps861YJLQNBBBCpLiyumVZUrH7eJbBZaUa/0vC+iP
+         R7fuzhTQUJvDSLeUyQVvpiSUp5TeqdEjvO12q9Z9pKG6fw5Jtv+zu/VZA+cUpjcw5hVq
+         ybDWj67VP4YM3CNu6XGfZbpzCfG+L8aDaghnUohQ3xiEwsnowpMzy8eYSuzM+kNREmsh
+         DjRA==
+X-Gm-Message-State: AOAM5313GtDGsYgmIxSdjmPoBTA3zf8nuwrag9bIHiwObHtbZg2Bgz3I
+        e+yvraAGn/cBczudnyDCBjI=
+X-Google-Smtp-Source: ABdhPJyc2za+pLb2K8Q2vROq1u9HYfBpwC559+1Sp0MAfUmCphOwF4O3hP79hd0gYRqn2x2KDgvh0Q==
+X-Received: by 2002:adf:aadc:: with SMTP id i28mr44424wrc.320.1634141299580;
+        Wed, 13 Oct 2021 09:08:19 -0700 (PDT)
+Received: from ?IPV6:2620:113:80c0:8000:c::779? (nat0.nue.suse.com. [2001:67c:2178:4000::1111])
+        by smtp.gmail.com with ESMTPSA id 25sm5565503wmo.18.2021.10.13.09.08.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Oct 2021 09:04:11 -0700 (PDT)
-Subject: Re: [PATCH 1/3] soc: samsung: exynos-chipid: Pass revision reg
- offsets
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211012171624.14338-1-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <677711d4-61d6-1bb8-f638-c4911ef5e1cb@canonical.com>
-Date:   Wed, 13 Oct 2021 18:04:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Wed, 13 Oct 2021 09:08:18 -0700 (PDT)
+Message-ID: <8348ed3e-c561-ad7e-fe9e-a31ed346d8d0@gmail.com>
+Date:   Wed, 13 Oct 2021 18:08:17 +0200
 MIME-Version: 1.0
-In-Reply-To: <20211012171624.14338-1-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
 Content-Language: en-US
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     Ryder.Lee@mediatek.com, devicetree@vger.kernel.org,
+        enric.balletbo@collabora.com, fparent@baylibre.com,
+        gregkh@linuxfoundation.org, herbert@gondor.apana.org.au,
+        hsinyi@chromium.org, john@phrozen.org, linus.walleij@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux@roeck-us.net, mpm@selenic.com, mturquette@baylibre.com,
+        robh+dt@kernel.org, sboyd@kernel.org, sean.wang@kernel.org,
+        seiya.wang@mediatek.com, wim@linux-watchdog.org
+References: <9552b0dc-337f-7edc-2997-50603dfe8bcd@gmail.com>
+ <20210924114046.26070-1-sam.shih@mediatek.com>
+ <bc29d5bc-9ce7-6147-a708-e6304249b600@gmail.com>
+ <315d7823aa108c909a3d36464fe54763b76ab2f4.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [v3,7/9] dt-bindings: arm64: dts: mediatek: Add mt7986 series
+In-Reply-To: <315d7823aa108c909a3d36464fe54763b76ab2f4.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2021 19:16, Sam Protsenko wrote:
-> Old Exynos SoCs have both Product ID and Revision ID in one single
-> register, while new SoCs tend to have two separate registers for those
-> IDs. Implement handling of both cases by passing Revision ID register
-> offsets in driver data.
+Hi Sam,
+
+On 12/10/2021 12:29, Sam Shih wrote:
+> Hi
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> On Fri, 2021-10-08 at 15:53 +0200, Matthias Brugger wrote:
+>> Hi Sam,
+>>
+>> I'd advise to split this series in parts for:
+>> - basic device support via dts.
+>> - pinctrl driver + dts
+>> - clk driver + dts
+> 
+> Okay, I will split the patches that are still under review into the
+> above patch series.
+> 
+> But I have a dumb question, currently, we have some patches that have
+> been assigned version numbers.
+> If I want to seprate original patch series, and resend 3 new patch
+> series (basic / pinctrl / clock) according to your comment, if I want
+> to keep the preview change log, tags in the patch set:
+> 
+> like:
 > ---
->  drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
->  include/linux/soc/samsung/exynos-chipid.h |  6 +-
->  2 files changed, 58 insertions(+), 15 deletions(-)
+> v3: changed 'MT7986' to 'MT7986 series' in the commit message
+> v2: added an Acked-by tag
+> ---
 > 
-> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-> index 5c1d0f97f766..1264a18aef97 100644
-> --- a/drivers/soc/samsung/exynos-chipid.c
-> +++ b/drivers/soc/samsung/exynos-chipid.c
-> @@ -16,6 +16,7 @@
->  #include <linux/errno.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
-> @@ -24,6 +25,17 @@
->  
->  #include "exynos-asv.h"
->  
-> +struct exynos_chipid_variant {
-> +	unsigned int rev_reg;		/* revision register offset */
-> +	unsigned int main_rev_bit;	/* main revision offset */
-
-I understand it is offset of a bit within register, so how about:
-
-unsigned int main_rev_shift;	/* main revision offset within rev_reg
-unsigned int sub_rev_shift;	/* sub revision offset within rev_reg */
-
-> +	unsigned int sub_rev_bit;	/* sub revision offset */
-> +};
-> +
-> +struct exynos_chipid_info {
-> +	u32 product_id;
-> +	u32 revision;
-> +};
-> +
->  static const struct exynos_soc_id {
->  	const char *name;
->  	unsigned int id;
-> @@ -49,31 +61,55 @@ static const char *product_id_to_soc_id(unsigned int product_id)
->  	int i;
->  
->  	for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
-> -		if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
-> +		if (product_id == soc_ids[i].id)
->  			return soc_ids[i].name;
->  	return NULL;
->  }
->  
-> +static int exynos_chipid_get_chipid_info(struct regmap *regmap,
-> +		const struct exynos_chipid_variant *data,
-> +		struct exynos_chipid_info *soc_info)
-> +{
-> +	int ret;
-> +	unsigned int val, main_rev, sub_rev;
-> +
-> +	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &val);
-> +	if (ret < 0)
-> +		return ret;
-> +	soc_info->product_id = val & EXYNOS_MASK;
-> +
-> +	ret = regmap_read(regmap, data->rev_reg, &val);
-> +	if (ret < 0)
-> +		return ret;
-> +	main_rev = (val >> data->main_rev_bit) & EXYNOS_REV_PART_LEN;
-> +	sub_rev = (val >> data->sub_rev_bit) & EXYNOS_REV_PART_LEN;
-> +	soc_info->revision = (main_rev << EXYNOS_REV_PART_OFF) | sub_rev;
-> +
-> +	return 0;
-> +}
-> +
->  static int exynos_chipid_probe(struct platform_device *pdev)
->  {
-> +	const struct exynos_chipid_variant *drv_data;
-> +	struct exynos_chipid_info soc_info;
->  	struct soc_device_attribute *soc_dev_attr;
->  	struct soc_device *soc_dev;
->  	struct device_node *root;
->  	struct regmap *regmap;
-> -	u32 product_id;
-> -	u32 revision;
->  	int ret;
->  
-> +	drv_data = of_device_get_match_data(&pdev->dev);
-> +	if (!drv_data)
-> +		return -EINVAL;
-> +
->  	regmap = device_node_to_regmap(pdev->dev.of_node);
->  	if (IS_ERR(regmap))
->  		return PTR_ERR(regmap);
->  
-> -	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &product_id);
-> +	ret = exynos_chipid_get_chipid_info(regmap, drv_data, &soc_info);
->  	if (ret < 0)
->  		return ret;
->  
-> -	revision = product_id & EXYNOS_REV_MASK;
-> -
->  	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
->  				    GFP_KERNEL);
->  	if (!soc_dev_attr)
-> @@ -86,8 +122,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
->  	of_node_put(root);
->  
->  	soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
-> -						"%x", revision);
-> -	soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
-> +						"%x", soc_info.revision);
-> +	soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
->  	if (!soc_dev_attr->soc_id) {
->  		pr_err("Unknown SoC\n");
->  		return -ENODEV;
-> @@ -106,7 +142,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
->  
->  	dev_info(soc_device_to_device(soc_dev),
->  		 "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
-> -		 soc_dev_attr->soc_id, product_id, revision);
-> +		 soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
->  
->  	return 0;
->  
-> @@ -125,9 +161,18 @@ static int exynos_chipid_remove(struct platform_device *pdev)
->  	return 0;
->  }
->  
-> +static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
-> +	.rev_reg	= 0x0,
-> +	.main_rev_bit	= 0,
-> +	.sub_rev_bit	= 4,
-> +};
-> +
->  static const struct of_device_id exynos_chipid_of_device_ids[] = {
-> -	{ .compatible = "samsung,exynos4210-chipid" },
-> -	{}
-> +	{
-> +		.compatible	= "samsung,exynos4210-chipid",
-> +		.data		= &exynos4210_chipid_drv_data,
-> +	},
-> +	{ }
->  };
->  
->  static struct platform_driver exynos_chipid_driver = {
-> diff --git a/include/linux/soc/samsung/exynos-chipid.h b/include/linux/soc/samsung/exynos-chipid.h
-> index 8bca6763f99c..5270725ba408 100644
-> --- a/include/linux/soc/samsung/exynos-chipid.h
-> +++ b/include/linux/soc/samsung/exynos-chipid.h
-> @@ -9,10 +9,8 @@
->  #define __LINUX_SOC_EXYNOS_CHIPID_H
->  
->  #define EXYNOS_CHIPID_REG_PRO_ID	0x00
-> -#define EXYNOS_SUBREV_MASK		(0xf << 4)
-> -#define EXYNOS_MAINREV_MASK		(0xf << 0)
-> -#define EXYNOS_REV_MASK			(EXYNOS_SUBREV_MASK | \
-> -					 EXYNOS_MAINREV_MASK)
-> +#define EXYNOS_REV_PART_LEN		0xf
-
-EXYNOS_REV_PART_MASK
-
-> +#define EXYNOS_REV_PART_OFF		4
-
-define EXYNOS_REV_PART_SHIFT
-
->  #define EXYNOS_MASK			0xfffff000
->  
->  #define EXYNOS_CHIPID_REG_PKG_ID	0x04
+> Which version number should I use for these new patch series ?
 > 
 
+I'd use v4 keeping the change-log and adding a link with hint to v3 in the cover 
+letter.
 
-Best regards,
-Krzysztof
+> Does the version number in corver-letter and the version number in each
+> patch need to be the same in the entire patch series ?
+> 
+
+Yes, otherwise the version number doesn't make to much sense.
+
+> // (Original patch series/thread, version number is v3)
+> [PATCH v3 0/3] Add basic SoC support for mediatek mt7986
+>    [PATCH v3 1/3] dt-bindings: arm64: dts: mediatek: Add mt7986 series
+>    // (the version number has been updated to v5 previously)
+>    // (basic part only, not include pinctrl and clock nodes)
+>    [PATCH v5 2/3] arm64: dts: mediatek: add mt7986a support
+>    [PATCH v5 3/3] arm64: dts: mediatek: add mt7986b support
+
+use v6 explaining where in the mailing list one can find v5.
+
+> 
+> // (New clock driver patch series)
+> [PATCH 0/3] Add clock driver support for mediatek mt7986
+>    [PATCH v3,1/3] dt-bindings: clock: mediatek: document clk bindings
+> for mediatek mt7986 SoC
+>    // (the version number has been updated to v3 previously)
+>    [PATCH v3 2/3] clk: mediatek: add mt7986 clock IDs
+>    [PATCH v2 3/3] clk: mediatek: add mt7986 clock support
+> 
+
+Same here, use v4.
+
+> // (New pinctrl driver patch series)
+> [PATCH 0/4] Add pinctrl driver support for mediatek mt7986
+>    // (the version number has been updated to v6 previously)
+>    [PATCH v6 1/4] dt-bindings: pinctrl: update bindings for MT7986 SoC
+>    // (the version number has been updated to v2 previously)
+>    [PATCH v2 2/4] pinctrl: mediatek: add support for MT7986 SoC
+>    [PATCH 3/4] arm64: dts: mediatek: add mt7986a pinctrl support
+>    [PATCH 3/4] arm64: dts: mediatek: add mt7986b pinctrl support
+> 
+
+use v7 here.
+
+>>
+>> I would also advise to not send new versions of patches as new
+>> threads and don't
+>> respond in the same thread. At least for me that breaks my workflow
+>> as I use b4.
+> 
+> If I don't respond to the next patch set in the same thread, should I
+> create an entire new patch series ?
+> 
+
+Respond to any review comments in the thread but once you are ready to send a 
+new version of the patch, send the whole series with an incremented
+
+> For example, if I want to update PATCH 2/3 in the bellows patch series,
+> and my PATCH 1/3 has been accepted by reviewer previously
+> 
+> [PATCH v2 0/3] Add basic SoC support for mediatek mt7986
+>    [PATCH v2 1/3] ...   (patch set v1, applied by matainer)
+
+beware: applied != accepted
+reviewer != maintainer
+
+if the patch got applied to some maintainer repo, then in the next version drop 
+that patch (it is already applied) but mention that in the cover letter.
+
+>    [PATCH v2 2/3] ...   (patch set v2, need to be upgrade to v3)
+>    [PATCH v2 3/3] ...   (patch set v1, waiting for review)
+> 
+
+This series would be v3, if 1/3 is applied, drop. 2/3 will have changes and 3/3 
+will be the same as in v2.
+
+> Is this correct to send patch mail to maintaiers for the above
+> situation ?
+> 
+> [PATCH v3 0/2] Add basic SoC support for mediatek mt7986
+>    [PATCH v3 1/2] ...   (patch set v3)
+>    [PATCH v3 2/2] ...   (still patch set v1, waiting for review)
+> 
+
+yes, that's how is expected you send your patches.
+
+Let me know if you have any further questions :)
+
+Regards,
+Matthias
+
+> 
+>>
+>> Regards,
+>> Matthias
+>>
+>>
+>> On 24/09/2021 13:40, Sam Shih wrote:
+>>> MT7986 series is Mediatek's new 4-core SoC, which is mainly for
+>>> wifi-router application. The difference between mt7986a and mt7986b
+>>> is that some pins do not exist on mt7986b.
+>>>
+>>> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+>>> Acked-by: Rob Herring <robh@kernel.org>
+>>>
+>>> ---
+>>> v3: changed 'MT7986' to 'MT7986 series' in the commit message
+>>> v2: added an Acked-by tag
+>>> ---
+>>>    Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
+>>>    1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml
+>>> b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>>> index 80a05f6fee85..a9a778269684 100644
+>>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+>>> @@ -76,6 +76,14 @@ properties:
+>>>              - enum:
+>>>                  - mediatek,mt7629-rfb
+>>>              - const: mediatek,mt7629
+>>> +      - items:
+>>> +          - enum:
+>>> +              - mediatek,mt7986a-rfb
+>>> +          - const: mediatek,mt7986a
+>>> +      - items:
+>>> +          - enum:
+>>> +              - mediatek,mt7986b-rfb
+>>> +          - const: mediatek,mt7986b
+>>>          - items:
+>>>              - enum:
+>>>                  - mediatek,mt8127-moose
+>>>
+> 
+> Thanks,
+> Sam
+> 
