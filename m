@@ -2,359 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BCC342C182
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4682842C1A3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 15:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235152AbhJMNhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 09:37:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36994 "EHLO
+        id S235360AbhJMNpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 09:45:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235301AbhJMNhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 09:37:18 -0400
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C38C061570;
-        Wed, 13 Oct 2021 06:35:15 -0700 (PDT)
-Received: by mail-ua1-x929.google.com with SMTP id q13so4538625uaq.2;
-        Wed, 13 Oct 2021 06:35:15 -0700 (PDT)
+        with ESMTP id S233774AbhJMNpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 09:45:09 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35DA9C061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 06:43:06 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id o20so8635253wro.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 06:43:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2Rz/QnFxuSPhGTlVTlZwY7VpCUitdMoDh4exGgbRPXE=;
-        b=AcnKRVaingRB+kcu/J13G1AKDGGkeUyHxcDVMLJ5f6ULa5KkCp0SXWLY6KHqJQ2zrv
-         zFXBaLzDQhxgyqFCWGYWP9k1l7R+TJIpLibVmR8ZP0QdtrIIksJOIuleMT2pG8kUpeOA
-         Qh4t5PIEoblVy6Hv6pgQX82FgbpTim19sWVNcpB11xyHzA6bOKNVBV1EGZXG9opw8uM+
-         mAh1BexBG7YcKXTkIE89WNuuNz7ewddM783dBrmBkuCbPTaHVx4lroLmdCGUEG0HCEgF
-         ql0F2D/51lQ3BjvTgqWu1ZFwGrs6qvYNCUGmgbQ5N+FN2UtYIlmsYnhlR7io6xr2hFWD
-         qicA==
+        bh=i+Y0xyyI1wLmc3f9TlGqhucUogMT+qFqaRbraqD/TSo=;
+        b=v0LSbR00mJZeqwHdD2h5ESrF3UnP8I0vyl7OIhpMgahKvzTvI/9e4nVBnrxMCszkKL
+         p9luteX+Yn5bWVI8RphvikmshhL3NwKYW+P8QPzUoFwv+k2MxUJkyF7BtMswP+PeJqn0
+         7fZHSnwxRQRQZtNbSNSQsXnLd+kYmxgDMo9iMvLRQb33DpntYwM5EJpbcIuzKUTkngda
+         SHN6DNmhk8wzdC6i8lb/k3J/I8i8v11EPggq34p1qq+VLL3wNs0ZK3DRomTc9Qq66fa2
+         0ElEXF0WwPCs6pHMFfb8V8UNWE9Tp9zCzbHrN2vz2BK3WlI4AFntaLL+/XWeL3e+vCrH
+         JxAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2Rz/QnFxuSPhGTlVTlZwY7VpCUitdMoDh4exGgbRPXE=;
-        b=dyn39RwbE9/tKwaancMdSdH1GDTV0ZwX5WGFiw4sAFdk/k2kv2Y2z+H1XzBX30UCEb
-         1m8xRAmQZwiuPPzIOivWW7E5rF9IA6tyibfq9Ac9vCmhSf8Jh52bA8Ql4/YbFXpJ3btu
-         dFclbEGUY3g9XMp6DqavsF7zSjjU/ExtT5URafuO3xJjSPsY1OWWFBaQtGK7XW9TxRgW
-         sMjTjtZpUqO9aqOcsXCZBh4TPRUD0XsKVnbUzp9E0b7+Jm1QiUyKG7uqmgBn+y+1DdCt
-         nXHXI7ByIrJx+O0n0iUboedh5ltdirxZXhDp+15VwI9F5mrLI+XUYI9oFZd/5ShEa20E
-         hqXw==
-X-Gm-Message-State: AOAM531JYHpdgOcRkxT5fh7EBqX30iaeYEU+9FanwXvpsF+XC7F3anlr
-        EllRxY7otTl6KzL0+pQlnTbw7svfuzJCe77LpIs=
-X-Google-Smtp-Source: ABdhPJzvp37V2QEH/eThwzmC9Ld2Laf3bZ1GzgikSbrhs0RvmlSRnCNsOFxgQQ/IxW2vxfDhdehLPPSLfJ3nixBnmZE=
-X-Received: by 2002:ab0:30ce:: with SMTP id c14mr29923067uam.46.1634132114742;
- Wed, 13 Oct 2021 06:35:14 -0700 (PDT)
+        bh=i+Y0xyyI1wLmc3f9TlGqhucUogMT+qFqaRbraqD/TSo=;
+        b=ywnl1WrmSDoY83GAbjQGwuPgUiWzHcDGdynHdB6GzNLmbdfvlb3RBhNh9Cih310p8Q
+         J9zr1Ex52XSkLwpOXCSiWq2P40xfwyu2HR7gAxawL68tje3jycZR3vfxXjKWWxXV/nbi
+         opfMxRWFGy4QDSZyn2dayxGVBRSfc4a2NYk6Npoj94T9bLoUQQ/SX170e7fJUT4xup52
+         5PXwaKZ9zyaCpdtzW8oBlSkUj88GNS9IVpeCHOhDhRqU0PuI0LYuihu500pz0TtD70rm
+         IleE5km1juY0krCLdSIoDmyGWonrBUgrz4G5cj9v1ro7DhkfakMGpH48huq2q9xv7rXM
+         IvLQ==
+X-Gm-Message-State: AOAM531//Qwe1mNf6wF+qMEG//9vXrM1Vw7PIxoeyOkotFWtY3qV10ft
+        PnQYpMIzY3fH1KoxVmuwObJ5tTXzhaZUsVRid4Bs8NNt4Cc=
+X-Google-Smtp-Source: ABdhPJwJ9HbDf8L1dZ2qzc+MlJeIlkxrfEj/wa5d66jDnrlWwI3mSRO5QpF9ovKMRItVh8P6fqQmQNmpT0lzkOB2t1s=
+X-Received: by 2002:a5d:6d86:: with SMTP id l6mr4282849wrs.96.1634132584493;
+ Wed, 13 Oct 2021 06:43:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
- <20210922050035.18162-3-sergio.paracuellos@gmail.com> <20211013130511.GB11036@lpieralisi>
-In-Reply-To: <20211013130511.GB11036@lpieralisi>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 13 Oct 2021 15:35:03 +0200
-Message-ID: <CAMhs-H8MV+RdL1cgjhBW=wUJm8Nfhe4h4GSC-DH0eLjbtz6wbg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
- controller driver
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        John Crispin <john@phrozen.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-staging@lists.linux.dev, NeilBrown <neil@brown.name>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20211006071546.2540920-1-jens.wiklander@linaro.org>
+ <20211006071546.2540920-6-jens.wiklander@linaro.org> <CAFA6WYNdebJKoWZdQRPc=OdmaA=_jiguz12gfyHsdozbdx45vQ@mail.gmail.com>
+In-Reply-To: <CAFA6WYNdebJKoWZdQRPc=OdmaA=_jiguz12gfyHsdozbdx45vQ@mail.gmail.com>
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+Date:   Wed, 13 Oct 2021 15:42:53 +0200
+Message-ID: <CAHUa44E9jLYsMd1LPVJTDXyCkT==EW7s-nHn3rYRx30gyBU8=g@mail.gmail.com>
+Subject: Re: [PATCH v6 5/6] optee: separate notification functions
+To:     Sumit Garg <sumit.garg@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lorenzo,
-
-Thanks for the review. See my comments below.
-
-On Wed, Oct 13, 2021 at 3:05 PM Lorenzo Pieralisi
-<lorenzo.pieralisi@arm.com> wrote:
+On Wed, Oct 13, 2021 at 9:15 AM Sumit Garg <sumit.garg@linaro.org> wrote:
 >
-> On Wed, Sep 22, 2021 at 07:00:34AM +0200, Sergio Paracuellos wrote:
-> > Add driver for the PCIe controller of the MT7621 SoC.
+> On Wed, 6 Oct 2021 at 12:46, Jens Wiklander <jens.wiklander@linaro.org> wrote:
 > >
-> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > Renames struct optee_wait_queue to struct optee_notif and all related
+> > functions to optee_notif_*().
+> >
+> > The implementation is changed to allow sending a notification from an
+> > atomic state, that is from the top half of an interrupt handler.
+> >
+> > Waiting for keys is currently only used when secure world is waiting for
+> > a mutex or condition variable. The old implementation could handle any
+> > 32-bit key while this new implementation is restricted to only 8 bits or
+> > the maximum value 255. A upper value is needed since a bitmap is
+> > allocated to allow an interrupt handler to only set a bit in case the
+> > waiter hasn't had the time yet to allocate and register a completion.
+> >
+> > The keys are currently only representing secure world threads which
+> > number usually are never even close to 255 so it should be safe for now.
+> > In future ABI updates the maximum value of the key will be communicated
+> > while the driver is initializing.
+> >
+> > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
 > > ---
-> >  arch/mips/ralink/Kconfig                      |   3 +-
-> >  drivers/pci/controller/Kconfig                |   8 ++
-> >  drivers/pci/controller/Makefile               |   1 +
-> >  .../controller}/pci-mt7621.c                  |   0
-> >  drivers/staging/Kconfig                       |   2 -
-> >  drivers/staging/Makefile                      |   1 -
-> >  drivers/staging/mt7621-pci/Kconfig            |   8 --
-> >  drivers/staging/mt7621-pci/Makefile           |   2 -
-> >  drivers/staging/mt7621-pci/TODO               |   4 -
-> >  .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 ------------------
-> >  10 files changed, 11 insertions(+), 122 deletions(-)
-> >  rename drivers/{staging/mt7621-pci => pci/controller}/pci-mt7621.c (100%)
-> >  delete mode 100644 drivers/staging/mt7621-pci/Kconfig
-> >  delete mode 100644 drivers/staging/mt7621-pci/Makefile
-> >  delete mode 100644 drivers/staging/mt7621-pci/TODO
-> >  delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+> >  drivers/tee/optee/Makefile        |   1 +
+> >  drivers/tee/optee/core.c          |  12 ++-
+> >  drivers/tee/optee/notif.c         | 125 ++++++++++++++++++++++++++++++
+> >  drivers/tee/optee/optee_private.h |  19 +++--
+> >  drivers/tee/optee/optee_rpc_cmd.h |  31 ++++----
+> >  drivers/tee/optee/rpc.c           |  73 ++---------------
+> >  6 files changed, 170 insertions(+), 91 deletions(-)
+> >  create mode 100644 drivers/tee/optee/notif.c
 > >
-> > diff --git a/arch/mips/ralink/Kconfig b/arch/mips/ralink/Kconfig
-> > index c800bf5559b5..120adad51d6a 100644
-> > --- a/arch/mips/ralink/Kconfig
-> > +++ b/arch/mips/ralink/Kconfig
-> > @@ -51,7 +51,8 @@ choice
-> >               select SYS_SUPPORTS_HIGHMEM
-> >               select MIPS_GIC
-> >               select CLKSRC_MIPS_GIC
-> > -             select HAVE_PCI if PCI_MT7621
-> > +             select HAVE_PCI
-> > +             select PCI_DRIVERS_GENERIC
-> >               select SOC_BUS
-> >  endchoice
-> >
-> > diff --git a/drivers/pci/controller/Kconfig b/drivers/pci/controller/Kconfig
-> > index 326f7d13024f..b76404be0360 100644
-> > --- a/drivers/pci/controller/Kconfig
-> > +++ b/drivers/pci/controller/Kconfig
-> > @@ -312,6 +312,14 @@ config PCIE_HISI_ERR
-> >         Say Y here if you want error handling support
-> >         for the PCIe controller's errors on HiSilicon HIP SoCs
-> >
-> > +config PCI_MT7621
-> > +     tristate "MediaTek MT7621 PCI Controller"
-> > +     depends on (RALINK && SOC_MT7621) || (MIPS && COMPILE_TEST)
 >
-> - Is there a chance we can remove the MIPS dependency from the
->   COMPILE_TEST conditional ?
-
-Driver make use of the following functions to properly configure MIPS
-IO coherency regions for used pci addresses:
-- 'mips_cps_numiocu()'
-- 'write_gcr_reg1_base()'
-- 'write_gcr_reg1_mask()'
-
-Without configuring this, the PCI subsystem won't work.
-These three are a MIPS thing and we want at the very least to make
-COMPILE_TEST available for MIPS. To avoid this I guess we will need
-stubs for all the other architectures and I am not really sure it is
-really worthly and makes sense.
-
-> - I am not a big fan of "SOC_XXX" config options dependencies, actually
->   there is none in pci/controller. Is there a way to remove it ?
-
-I am not a Kconfig expert, so I am not sure :). This PCI driver needs
-only to be available for MIPS RALINK architecture for MT7621 SoCs and
-ideally enabled by default for SOC_MT7621. So I don't know if just
-doing the following is enough:
-
-config PCI_MT7621
-    tristate "MediaTek MT7621 PCI Controller"
-    depends on RALINK || (MIPS && COMPILE_TEST)
-    select PHY_MT7621_PCI
-    default SOC_MT7621
-    help
-        This selects a driver for the MediaTek MT7621 PCI Controller.
-
-Thanks in advance for clarification.
-
-Best regards,
-    Sergio Paracuellos
-
+> Apart from minor nit below:
 >
-> Lorenzo
+> Reviewed-by: Sumit Garg <sumit.garg@linaro.org>
 >
-> > +     select PHY_MT7621_PCI
-> > +     default SOC_MT7621
-> > +     help
-> > +       This selects a driver for the MediaTek MT7621 PCI Controller.
-> > +
-> >  source "drivers/pci/controller/dwc/Kconfig"
-> >  source "drivers/pci/controller/mobiveil/Kconfig"
-> >  source "drivers/pci/controller/cadence/Kconfig"
-> > diff --git a/drivers/pci/controller/Makefile b/drivers/pci/controller/Makefile
-> > index aaf30b3dcc14..f42a566353cb 100644
-> > --- a/drivers/pci/controller/Makefile
-> > +++ b/drivers/pci/controller/Makefile
-> > @@ -37,6 +37,7 @@ obj-$(CONFIG_VMD) += vmd.o
-> >  obj-$(CONFIG_PCIE_BRCMSTB) += pcie-brcmstb.o
-> >  obj-$(CONFIG_PCI_LOONGSON) += pci-loongson.o
-> >  obj-$(CONFIG_PCIE_HISI_ERR) += pcie-hisi-error.o
-> > +obj-$(CONFIG_PCI_MT7621) += pci-mt7621.o
-> >  # pcie-hisi.o quirks are needed even without CONFIG_PCIE_DW
-> >  obj-y                                += dwc/
-> >  obj-y                                += mobiveil/
-> > diff --git a/drivers/staging/mt7621-pci/pci-mt7621.c b/drivers/pci/controller/pci-mt7621.c
-> > similarity index 100%
-> > rename from drivers/staging/mt7621-pci/pci-mt7621.c
-> > rename to drivers/pci/controller/pci-mt7621.c
-> > diff --git a/drivers/staging/Kconfig b/drivers/staging/Kconfig
-> > index e03627ad4460..59af251e7576 100644
-> > --- a/drivers/staging/Kconfig
-> > +++ b/drivers/staging/Kconfig
-> > @@ -86,8 +86,6 @@ source "drivers/staging/vc04_services/Kconfig"
+> > diff --git a/drivers/tee/optee/Makefile b/drivers/tee/optee/Makefile
+> > index 3aa33ea9e6a6..df55e4ad5370 100644
+> > --- a/drivers/tee/optee/Makefile
+> > +++ b/drivers/tee/optee/Makefile
+> > @@ -2,6 +2,7 @@
+> >  obj-$(CONFIG_OPTEE) += optee.o
+> >  optee-objs += core.o
+> >  optee-objs += call.o
+> > +optee-objs += notif.o
+> >  optee-objs += rpc.o
+> >  optee-objs += supp.o
+> >  optee-objs += shm_pool.o
+> > diff --git a/drivers/tee/optee/core.c b/drivers/tee/optee/core.c
+> > index 5ce13b099d7d..8531184f98f4 100644
+> > --- a/drivers/tee/optee/core.c
+> > +++ b/drivers/tee/optee/core.c
+> > @@ -592,6 +592,7 @@ static int optee_remove(struct platform_device *pdev)
+> >          */
+> >         optee_disable_shm_cache(optee);
 > >
-> >  source "drivers/staging/pi433/Kconfig"
+> > +       optee_notif_uninit(optee);
+> >         /*
+> >          * The two devices have to be unregistered before we can free the
+> >          * other resources.
+> > @@ -602,7 +603,6 @@ static int optee_remove(struct platform_device *pdev)
+> >         tee_shm_pool_free(optee->pool);
+> >         if (optee->memremaped_shm)
+> >                 memunmap(optee->memremaped_shm);
+> > -       optee_wait_queue_exit(&optee->wait_queue);
+> >         optee_supp_uninit(&optee->supp);
+> >         mutex_destroy(&optee->call_queue.mutex);
 > >
-> > -source "drivers/staging/mt7621-pci/Kconfig"
-> > -
-> >  source "drivers/staging/mt7621-dma/Kconfig"
+> > @@ -712,11 +712,17 @@ static int optee_probe(struct platform_device *pdev)
 > >
-> >  source "drivers/staging/ralink-gdma/Kconfig"
-> > diff --git a/drivers/staging/Makefile b/drivers/staging/Makefile
-> > index c7f8d8d8dd11..76f413470bc8 100644
-> > --- a/drivers/staging/Makefile
-> > +++ b/drivers/staging/Makefile
-> > @@ -33,7 +33,6 @@ obj-$(CONFIG_KS7010)                += ks7010/
-> >  obj-$(CONFIG_GREYBUS)                += greybus/
-> >  obj-$(CONFIG_BCM2835_VCHIQ)  += vc04_services/
-> >  obj-$(CONFIG_PI433)          += pi433/
-> > -obj-$(CONFIG_PCI_MT7621)     += mt7621-pci/
-> >  obj-$(CONFIG_SOC_MT7621)     += mt7621-dma/
-> >  obj-$(CONFIG_DMA_RALINK)     += ralink-gdma/
-> >  obj-$(CONFIG_SOC_MT7621)     += mt7621-dts/
-> > diff --git a/drivers/staging/mt7621-pci/Kconfig b/drivers/staging/mt7621-pci/Kconfig
-> > deleted file mode 100644
-> > index ce58042f2f21..000000000000
-> > --- a/drivers/staging/mt7621-pci/Kconfig
-> > +++ /dev/null
-> > @@ -1,8 +0,0 @@
-> > -# SPDX-License-Identifier: GPL-2.0
-> > -config PCI_MT7621
-> > -     tristate "MediaTek MT7621 PCI Controller"
-> > -     depends on RALINK
-> > -     select PCI_DRIVERS_GENERIC
-> > -     help
-> > -       This selects a driver for the MediaTek MT7621 PCI Controller.
-> > -
-> > diff --git a/drivers/staging/mt7621-pci/Makefile b/drivers/staging/mt7621-pci/Makefile
-> > deleted file mode 100644
-> > index f4e651cf7ce3..000000000000
-> > --- a/drivers/staging/mt7621-pci/Makefile
-> > +++ /dev/null
-> > @@ -1,2 +0,0 @@
-> > -# SPDX-License-Identifier: GPL-2.0
-> > -obj-$(CONFIG_PCI_MT7621)       += pci-mt7621.o
-> > diff --git a/drivers/staging/mt7621-pci/TODO b/drivers/staging/mt7621-pci/TODO
-> > deleted file mode 100644
-> > index d674a9ac85c1..000000000000
-> > --- a/drivers/staging/mt7621-pci/TODO
-> > +++ /dev/null
-> > @@ -1,4 +0,0 @@
-> > -
-> > -- general code review and cleanup
-> > -
-> > -Cc: NeilBrown <neil@brown.name>
-> > diff --git a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt b/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
-> > deleted file mode 100644
-> > index 327a68267309..000000000000
-> > --- a/drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
-> > +++ /dev/null
-> > @@ -1,104 +0,0 @@
-> > -MediaTek MT7621 PCIe controller
-> > -
-> > -Required properties:
-> > -- compatible: "mediatek,mt7621-pci"
-> > -- device_type: Must be "pci"
-> > -- reg: Base addresses and lengths of the PCIe subsys and root ports.
-> > -- bus-range: Range of bus numbers associated with this controller.
-> > -- #address-cells: Address representation for root ports (must be 3)
-> > -- pinctrl-names : The pin control state names.
-> > -- pinctrl-0: The "default" pinctrl state.
-> > -- #size-cells: Size representation for root ports (must be 2)
-> > -- ranges: Ranges for the PCI memory and I/O regions.
-> > -- #interrupt-cells: Must be 1
-> > -- interrupt-map-mask and interrupt-map: Standard PCI IRQ mapping properties.
-> > -  Please refer to the standard PCI bus binding document for a more detailed
-> > -  explanation.
-> > -- status: either "disabled" or "okay".
-> > -- resets: Must contain an entry for each entry in reset-names.
-> > -  See ../reset/reset.txt for details.
-> > -- reset-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
-> > -  root ports.
-> > -- clocks: Must contain an entry for each entry in clock-names.
-> > -  See ../clocks/clock-bindings.txt for details.
-> > -- clock-names: Must be "pcie0", "pcie1", "pcieN"... based on the number of
-> > -  root ports.
-> > -- reset-gpios: GPIO specs for the reset pins.
-> > -
-> > -In addition, the device tree node must have sub-nodes describing each PCIe port
-> > -interface, having the following mandatory properties:
-> > -
-> > -Required properties:
-> > -- reg: Only the first four bytes are used to refer to the correct bus number
-> > -      and device number.
-> > -- #address-cells: Must be 3
-> > -- #size-cells: Must be 2
-> > -- ranges: Sub-ranges distributed from the PCIe controller node. An empty
-> > -  property is sufficient.
-> > -- bus-range: Range of bus numbers associated with this port.
-> > -
-> > -Example for MT7621:
-> > -
-> > -     pcie: pcie@1e140000 {
-> > -             compatible = "mediatek,mt7621-pci";
-> > -        reg = <0x1e140000 0x100    /* host-pci bridge registers */
-> > -               0x1e142000 0x100    /* pcie port 0 RC control registers */
-> > -               0x1e143000 0x100    /* pcie port 1 RC control registers */
-> > -               0x1e144000 0x100>;  /* pcie port 2 RC control registers */
-> > -
-> > -             #address-cells = <3>;
-> > -             #size-cells = <2>;
-> > -
-> > -             pinctrl-names = "default";
-> > -             pinctrl-0 = <&pcie_pins>;
-> > -
-> > -             device_type = "pci";
-> > -
-> > -             bus-range = <0 255>;
-> > -             ranges = <
-> > -                     0x02000000 0 0x00000000 0x60000000 0 0x10000000 /* pci memory */
-> > -                     0x01000000 0 0x00000000 0x1e160000 0 0x00010000 /* io space */
-> > -             >;
-> > -
-> > -             #interrupt-cells = <1>;
-> > -             interrupt-map-mask = <0xF0000 0 0 1>;
-> > -             interrupt-map = <0x10000 0 0 1 &gic GIC_SHARED 4 IRQ_TYPE_LEVEL_HIGH>,
-> > -                             <0x20000 0 0 1 &gic GIC_SHARED 24 IRQ_TYPE_LEVEL_HIGH>,
-> > -                             <0x30000 0 0 1 &gic GIC_SHARED 25 IRQ_TYPE_LEVEL_HIGH>;
-> > -
-> > -             status = "disabled";
-> > -
-> > -             resets = <&rstctrl 24 &rstctrl 25 &rstctrl 26>;
-> > -             reset-names = "pcie0", "pcie1", "pcie2";
-> > -             clocks = <&clkctrl 24 &clkctrl 25 &clkctrl 26>;
-> > -             clock-names = "pcie0", "pcie1", "pcie2";
-> > -
-> > -             reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>,
-> > -                             <&gpio 8 GPIO_ACTIVE_LOW>,
-> > -                             <&gpio 7 GPIO_ACTIVE_LOW>;
-> > -
-> > -             pcie@0,0 {
-> > -                     reg = <0x0000 0 0 0 0>;
-> > -                     #address-cells = <3>;
-> > -                     #size-cells = <2>;
-> > -                     ranges;
-> > -                     bus-range = <0x00 0xff>;
-> > -             };
-> > -
-> > -             pcie@1,0 {
-> > -                     reg = <0x0800 0 0 0 0>;
-> > -                     #address-cells = <3>;
-> > -                     #size-cells = <2>;
-> > -                     ranges;
-> > -                     bus-range = <0x00 0xff>;
-> > -             };
-> > -
-> > -             pcie@2,0 {
-> > -                     reg = <0x1000 0 0 0 0>;
-> > -                     #address-cells = <3>;
-> > -                     #size-cells = <2>;
-> > -                     ranges;
-> > -                     bus-range = <0x00 0xff>;
-> > -             };
-> > -     };
-> > -
-> > --
-> > 2.25.1
+> >         mutex_init(&optee->call_queue.mutex);
+> >         INIT_LIST_HEAD(&optee->call_queue.waiters);
+> > -       optee_wait_queue_init(&optee->wait_queue);
+> >         optee_supp_init(&optee->supp);
+> >         optee->memremaped_shm = memremaped_shm;
+> >         optee->pool = pool;
 > >
+> > +       platform_set_drvdata(pdev, optee);
+> > +       rc = optee_notif_init(optee, 255);
+>
+> nit: Can you use a macro here instead of a constant with a proper
+> comment similar to the one in commit description?
+
+OK, I'll fix.
+
+Thanks,
+Jens
