@@ -2,97 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D93DC42C6D7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:54:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D8A42C716
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 18:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235884AbhJMQ4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 12:56:10 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:52684 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230118AbhJMQ4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 12:56:10 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19DEdTa3014971;
-        Wed, 13 Oct 2021 18:53:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=YBdX9wdz7iUgzxH36AjVlR6UXTnIlQMVglJrl1+MRJ4=;
- b=la7knO+U0Hs9Qv4w9Pkl8IoPUJFZfODk9dAX12EoA3gPZtrcdwfYWQfypWVIKQUrTHAE
- anG41W+hA1D34BA0KHNiAdJYMtEO66Ku4AOxvcIQ4LCZYh8fVn6g9n5KBZGaHjiEaVow
- T2k1xzg4nGZDgJUEA7ifS2w6UgUI0LN1bWk6y/WklRQmMnh526+kv2r48uHEjOfqtiy2
- Ue1I61/CvTXjiF2Cu4P+JfSjpzOpTwI84kjKoyF8B+whW22ludeoWG79zxoOdEyyEk7r
- Dgb2CX/UsGNNQgM7q6zkv+enSK8X9jFdK/VbPZr/uwWc5wbC+7cqVRJ9g3tuy1SgUj19 tw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bp1dqgnav-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 13 Oct 2021 18:53:57 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id ACF3510002A;
-        Wed, 13 Oct 2021 18:53:56 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id A26D924489A;
-        Wed, 13 Oct 2021 18:53:56 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 13 Oct 2021 18:53:55
- +0200
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <hminas@synopsys.com>, <gregkh@linuxfoundation.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <amelie.delaunay@foss.st.com>,
-        <fabrice.gasnier@foss.st.com>, <alexandre.torgue@foss.st.com>
-Subject: [PATCH] dt-bindings: usb: dwc2: document the port when usb-role-switch is used
-Date:   Wed, 13 Oct 2021 18:53:46 +0200
-Message-ID: <1634144026-3326-1-git-send-email-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.7.4
+        id S238090AbhJMRAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 13:00:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238045AbhJMRAn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 13:00:43 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7D5C061760
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 09:58:39 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id pi19-20020a17090b1e5300b0019fdd3557d3so2732286pjb.5
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 09:58:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CZvmW6gpOIY8Lg6BO5LxT0GXA1DWFikx8MVUy0O3nh8=;
+        b=jZafkBYRZZJL19BVpl8cMT5Fu/VthOYrmwDlAsl618GUnhD7IY3piXwR9KEUvHtA+G
+         P7jCxmWDy90NyrqudklXJ9Ts+DRXY4n2y2YQjLny2i65guTFuED/QohCcNzQzr22oMeH
+         CppHbgGPggCyDMj/IBQi2TexTyMIpRxwY8jqbGVQeXT7UoPiJXDtvpyCd4FAXslkqxbn
+         MuPK/zgpLBWV7IIHSxW6jbaemE24sfDH9QTbVOlWc01Nf+hvdE+3qHnBuSeDwdI9V9nh
+         Pa3MMkZ6G4rRYSIy1RwXvWG72dZFt8LmvmLM3d5opsEfWcUe32JP7gRvGRLVatpjtFbA
+         Y/Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CZvmW6gpOIY8Lg6BO5LxT0GXA1DWFikx8MVUy0O3nh8=;
+        b=07EE9LEQZQ9gYbD4oAe1Hkn2ye4ZSbEGQ2bG9rk1iHSAeTtLjBYoHK1NDO+tnRM45t
+         bkojlxm7w3iVdX7CBnmcAhRvhneSp9tt+eXf/T3AAP1Dl+CPuMr8k6Zft/o1bVqRn/ol
+         nDFJoC3SSxEs9kbSZtGl2mfdeUok9QlqoVpCzxq7laUTnfrWi7xztIX9oJVchsPREo6H
+         V4w2xpRtzJSxJUIlRS1EMM004I1pGbqpqXrGHK1cKbT9eL96C+2tDeAbXI3RafiCHshd
+         mpzZc3SsumfK8AdmXOF0UykqPW97E0Jt7E4GeT1jjz0fZBf8/nY2I+nwqOXBBPtYW7gf
+         tnVQ==
+X-Gm-Message-State: AOAM530a/yHywLqfqhBfDdO9uXAM3WgiozJ47XXodS3XqdHAqd+F0BmP
+        Qw/5NBJsg07FBXGzB2SzkLaXJgLN3fE=
+X-Google-Smtp-Source: ABdhPJzMxHk/aANrs4y+2UIcI5V5euPkOIsB5ME2tTGztPXFvWzA4Wi9RYOD2KaSn6Tey8y0qlvlGQ==
+X-Received: by 2002:a17:902:8648:b0:13e:dc2c:a594 with SMTP id y8-20020a170902864800b0013edc2ca594mr335542plt.23.1634144319026;
+        Wed, 13 Oct 2021 09:58:39 -0700 (PDT)
+Received: from localhost.name ([122.161.48.68])
+        by smtp.gmail.com with ESMTPSA id z11sm6661602pjl.45.2021.10.13.09.58.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Oct 2021 09:58:38 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, herbert@gondor.apana.org.au,
+        davem@davemloft.net, Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH 0/2] Enable Qualcomm Crypto Engine on sm8150
+Date:   Wed, 13 Oct 2021 22:28:21 +0530
+Message-Id: <20211013165823.88123-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-13_06,2021-10-13_02,2020-04-07_01
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the "port" property, which is used with "usb-role-switch"
-to describe the bus connector.
-Definition is inspired from mediatek,mtu3.yaml.
+Qualcomm crypto engine is available on sm8150 SoC as well.
+It supports hardware accelerated algorithms for encryption
+and authentication. It also provides support for aes, des, 3des
+encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+authentication algorithms.
 
-This fixes some errors seen when running "make dtbs_check":
-... 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-        From schema: ... Documentation/devicetree/bindings/usb/dwc2.yaml
+Tested the enabled crypto algorithms with cryptsetup test utilities
+on sm8150-mtp and sa8155p-adp boards (see [1]) and also with crypto self-tests,
+including the fuzz tests (CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y).
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
- Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Note that this series is rebased on the corresponding 
+crypto engine enablement series for sm8250 SoCs (see [2]).
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index 10c7d9b..7d1aa53 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -130,6 +130,16 @@ properties:
-     description: If present indicates that we need to reset the PHY when we 
-       detect a wakeup. This is due to a hardware errata.
- 
-+  port:
-+    description:
-+      Any connector to the data bus of this controller should be modelled
-+      using the OF graph bindings specified, if the "usb-role-switch"
-+      property is used. See graph.txt
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+dependencies:
-+  port: [ 'usb-role-switch' ]
-+
- required:
-   - compatible
-   - reg
+[1]. https://linux.die.net/man/8/cryptsetup
+[2]. https://lore.kernel.org/lkml/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t 
+
+Cc: Thara Gopinath <thara.gopinath@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+
+Bhupesh Sharma (2):
+  crypto: qce: Add 'sm8150-qce' compatible string check
+  arm64/dts: qcom: sm8150: Add dt entries to support crypto engine.
+
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 28 ++++++++++++++++++++++++++++
+ drivers/crypto/qce/core.c            |  1 +
+ 2 files changed, 29 insertions(+)
+
 -- 
-2.7.4
+2.31.1
 
