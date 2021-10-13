@@ -2,224 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5342142B94B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE2642B972
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 09:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238554AbhJMHiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 03:38:50 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:3106 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238555AbhJMHis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 03:38:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634110607; x=1665646607;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cCT4fzrTtwp6irb/rWugaiZG5AFjFhTJLNHPlqgsV0U=;
-  b=SLw08HzNtaXXyViFsgDqpXiql8dt63TM/fVsu/4pBkqj3DMqMKnr0g9C
-   OkYojhbBRdmL1WQEd/Eubpd/vumQpUN7uDO2l7WBpQYaFlxOMrByf7LnH
-   WkpuylhhbuBDKn0BzFTjM+MY1sOM2YRcws/sbv9gbJUk/JHx93pfMGHRQ
-   +jWXPd1fdhPgDo+jxaBdLEwT9Q6tQHl6iMzaZjJXdTtgf0ZW6jyhzVQE5
-   f90yiC/kBaXel0BbIwMs9xYLpiRtF6tHne61SAP5A4us3S27dtDFiMPPk
-   rr0u9zRwb4+vmGyAMOm0RCq0KkrDOHh6tFUf20lH0Jx4amOVVTa/lcp6x
-   g==;
-IronPort-SDR: 5pSpjh9AFsmfNc6Rouv3P2MJuFuAWorgDcQyffvfen6bHF+vEgK/p/q5W352NyY9qefZ/X88AQ
- Bn+A1qYlOwL7dktPgeUAUNWFx0JIClTqpd7y1hx9byYhlMt3DBoxQy+vpPuLnxBr9bJJ3RvHwS
- 4sBMQaC5/tNKrz+7UVzW/wRXpSUniIqaOC0b1T/O7MgPIbgGpww2h2SamJ5q+izo72ehv6VQ2S
- gemuvctX12etFFJs3/HuwyaoZRycZ0S6loYTA49dIdzVJ/DTWS9nSllPQlGXOZJlTExjBaxgvA
- DYrqW8vVnHtHduCZhEX6fnXW
-X-IronPort-AV: E=Sophos;i="5.85,369,1624345200"; 
-   d="scan'208";a="139534707"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Oct 2021 00:36:46 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 13 Oct 2021 00:36:44 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 13 Oct 2021 00:36:43 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <andrew@lunn.ch>,
-        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH v3 2/2] reset: mchp: sparx5: Extend support for lan966x
-Date:   Wed, 13 Oct 2021 09:38:07 +0200
-Message-ID: <20211013073807.2282230-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
-References: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
+        id S238643AbhJMHtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 03:49:40 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:51013 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238577AbhJMHtj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 03:49:39 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 65F465805C3;
+        Wed, 13 Oct 2021 03:47:34 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Wed, 13 Oct 2021 03:47:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=v15lPKXxuQD+O/mquKtYB7JjF4u
+        gAueL/sChMoTCJG8=; b=PUIiLRQJqVtY3Jpq113nXt4rVnoX30/o5V0Rec0fBAs
+        Qn9UDTPsRBsfSxiCGVZtXWNWK72k2rbpMxr+Db81tc+tOvT3wHWJ7Fo+pMz4ALEI
+        zcGiNLMjNp0ApdfTN0rtzAzweVjxDa54wbSiGbCJKCI7eKwjLB/hpOzskEfrGCV+
+        eLhSliX2EELZWiZfCzlC6XP0pRekKGrbwb2BE9U9mJRI2MObZUQsnpSNlh794iQj
+        sAm0xAJbRjmUuaTEyb4oHKoMEo+2oug8+Wl4TviWeFliCVojyr91/ZIlio7YT+3f
+        pul6qvRRxEXefeaE93MkJGIrp4qp0BovdaKz8Yk0R5Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=v15lPK
+        XxuQD+O/mquKtYB7JjF4ugAueL/sChMoTCJG8=; b=YzC2ur6078WJTpNOE9LCOi
+        rOhqjhCqcsAJxzevA1UT6qhpk7lg2yRwzptqdpJO/q8sjCbIK6wPjqDHmJXnf00z
+        F7ekL/9Sk5tp8fBdCdG4rYq42PNGKmSjX1akzyT7LHe/z0WTVodmxAtAQaA8k0ao
+        HSQwjpU7se5Cbgq+Zahmr5yVYLGaOwQy1ehK4t7pUpO7deEC5KMjD5CvzytCKqcG
+        MUq6EJbCF3oZrb88vijVbsbHEIUD0uxAPNON3DIM5hAF+goCou6evWWYzkYqrPdt
+        of8zxTB4uff19vnHUxDVo/I/taqlRamH5PYC1XFbzEC2LLpSiJ5A3HaKdztNOkNw
+        ==
+X-ME-Sender: <xms:DI9mYTHvg9OzL8ZTUQONbHHqSgAwjW0OCZKN2mt5iUgTif5_XfK0aA>
+    <xme:DI9mYQX6NN_7PbBEWLdicGktrZ0KbwioK2Rdu_b04FQUTGA07M10gJMN4HG88nZ33
+    8MGXT1KDdhJhNDFfe0>
+X-ME-Received: <xmr:DI9mYVJKK2x1HGVvKNmYcSkPXk8uFyaq6uLfj0D6gHCz6m_MgDyDqYQNEOISK1AV-15xb-7owgKVX2M1hNLrismpCyUPyD7AQzmS1zBu>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddtledguddulecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:DI9mYRG9r9f79Ym7E2EIBC4zITzYzJhsoXPjmv1n46f_jP7MryXLxQ>
+    <xmx:DI9mYZWKoP8WskL9Ty4je749hu1mcualY9QB3X3GKmVyqBrier4npw>
+    <xmx:DI9mYcN7H4ywQEMpTerT_itaRZGiSFtC6d9ewYx7AHEJxcKrsg-mgg>
+    <xmx:Fo9mYfxInuprPBZRElEi9JzyvKWA35D2z-X5I4-iEl3lNL2xIVKdiQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 13 Oct 2021 03:47:23 -0400 (EDT)
+Date:   Wed, 13 Oct 2021 09:47:22 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
+ supply bindings
+Message-ID: <20211013074722.7y7ug3eri4euknza@gilmour>
+References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+ <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="to54f4mrku7omawu"
+Content-Disposition: inline
+In-Reply-To: <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch extends sparx5 driver to support also the lan966x. The
-process to reset the switch is the same only it has different offsets.
-Therefore make the driver more generic and add support for lan966x.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
- drivers/reset/Kconfig                  |  2 +-
- drivers/reset/reset-microchip-sparx5.c | 81 +++++++++++++++++++++++---
- 2 files changed, 74 insertions(+), 9 deletions(-)
+--to54f4mrku7omawu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index be799a5abf8a..36ce6c8bcf1e 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -116,7 +116,7 @@ config RESET_LPC18XX
- 
- config RESET_MCHP_SPARX5
- 	bool "Microchip Sparx5 reset driver"
--	depends on ARCH_SPARX5 || COMPILE_TEST
-+	depends on ARCH_SPARX5 || SOC_LAN966 || COMPILE_TEST
- 	default y if SPARX5_SWITCH
- 	select MFD_SYSCON
- 	help
-diff --git a/drivers/reset/reset-microchip-sparx5.c b/drivers/reset/reset-microchip-sparx5.c
-index f01e7db8e83b..211ee338e4b6 100644
---- a/drivers/reset/reset-microchip-sparx5.c
-+++ b/drivers/reset/reset-microchip-sparx5.c
-@@ -6,6 +6,7 @@
-  * The Sparx5 Chip Register Model can be browsed at this location:
-  * https://github.com/microchip-ung/sparx-5_reginfo
-  */
-+#include <linux/gpio/consumer.h>
- #include <linux/mfd/syscon.h>
- #include <linux/of_device.h>
- #include <linux/module.h>
-@@ -13,15 +14,22 @@
- #include <linux/regmap.h>
- #include <linux/reset-controller.h>
- 
--#define PROTECT_REG    0x84
--#define PROTECT_BIT    BIT(10)
--#define SOFT_RESET_REG 0x00
--#define SOFT_RESET_BIT BIT(1)
-+struct reset_props {
-+	u32 protect_reg;
-+	u32 protect_bit;
-+	u32 reset_reg;
-+	u32 reset_bit;
-+	u32 cuphy_reg;
-+	u32 cuphy_bit;
-+};
- 
- struct mchp_reset_context {
- 	struct regmap *cpu_ctrl;
- 	struct regmap *gcb_ctrl;
-+	struct regmap *cuphy_ctrl;
- 	struct reset_controller_dev rcdev;
-+	const struct reset_props *props;
-+	struct gpio_desc *phy_reset_gpio;
- };
- 
- static struct regmap_config sparx5_reset_regmap_config = {
-@@ -36,17 +44,39 @@ static int sparx5_switch_reset(struct reset_controller_dev *rcdev,
- 	struct mchp_reset_context *ctx =
- 		container_of(rcdev, struct mchp_reset_context, rcdev);
- 	u32 val;
-+	int err;
- 
- 	/* Make sure the core is PROTECTED from reset */
--	regmap_update_bits(ctx->cpu_ctrl, PROTECT_REG, PROTECT_BIT, PROTECT_BIT);
-+	regmap_update_bits(ctx->cpu_ctrl, ctx->props->protect_reg,
-+			   ctx->props->protect_bit, ctx->props->protect_bit);
- 
- 	/* Start soft reset */
--	regmap_write(ctx->gcb_ctrl, SOFT_RESET_REG, SOFT_RESET_BIT);
-+	regmap_write(ctx->gcb_ctrl, ctx->props->reset_reg,
-+		     ctx->props->reset_bit);
- 
- 	/* Wait for soft reset done */
--	return regmap_read_poll_timeout(ctx->gcb_ctrl, SOFT_RESET_REG, val,
--					(val & SOFT_RESET_BIT) == 0,
-+	err = regmap_read_poll_timeout(ctx->gcb_ctrl, ctx->props->reset_reg, val,
-+					(val & ctx->props->reset_bit) == 0,
- 					1, 100);
-+	if (err)
-+		return err;
-+
-+	if (!ctx->cuphy_ctrl)
-+		return 0;
-+
-+	/* In case there are external PHYs toggle the GPIO to release the reset
-+	 * of the PHYs
-+	 */
-+	if (ctx->phy_reset_gpio) {
-+		gpiod_direction_output(ctx->phy_reset_gpio, 1);
-+		gpiod_set_value(ctx->phy_reset_gpio, 0);
-+		gpiod_set_value(ctx->phy_reset_gpio, 1);
-+		gpiod_set_value(ctx->phy_reset_gpio, 0);
-+	}
-+
-+	/* Release the reset of internal PHY */
-+	return regmap_update_bits(ctx->cuphy_ctrl, ctx->props->cuphy_reg,
-+				  ctx->props->cuphy_bit, ctx->props->cuphy_bit);
- }
- 
- static const struct reset_control_ops sparx5_reset_ops = {
-@@ -111,17 +141,52 @@ static int mchp_sparx5_reset_probe(struct platform_device *pdev)
- 	if (err)
- 		return err;
- 
-+	/* This resource is required on lan966x, to take the internal PHYs out
-+	 * of reset
-+	 */
-+	err = mchp_sparx5_map_syscon(pdev, "cuphy-syscon", &ctx->cuphy_ctrl);
-+	if (err && err != -ENODEV)
-+		return err;
-+
- 	ctx->rcdev.owner = THIS_MODULE;
- 	ctx->rcdev.nr_resets = 1;
- 	ctx->rcdev.ops = &sparx5_reset_ops;
- 	ctx->rcdev.of_node = dn;
-+	ctx->props = device_get_match_data(&pdev->dev);
-+
-+	ctx->phy_reset_gpio = devm_gpiod_get_optional(&pdev->dev, "phy-reset",
-+						      GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->phy_reset_gpio)) {
-+		dev_err(&pdev->dev, "Could not get reset GPIO\n");
-+		return PTR_ERR(ctx->phy_reset_gpio);
-+	}
- 
- 	return devm_reset_controller_register(&pdev->dev, &ctx->rcdev);
- }
- 
-+static const struct reset_props reset_props_sparx5 = {
-+	.protect_reg    = 0x84,
-+	.protect_bit    = BIT(10),
-+	.reset_reg      = 0x0,
-+	.reset_bit      = BIT(1),
-+};
-+
-+static const struct reset_props reset_props_lan966x = {
-+	.protect_reg    = 0x88,
-+	.protect_bit    = BIT(5),
-+	.reset_reg      = 0x0,
-+	.reset_bit      = BIT(1),
-+	.cuphy_reg       = 0x10,
-+	.cuphy_bit       = BIT(0),
-+};
-+
- static const struct of_device_id mchp_sparx5_reset_of_match[] = {
- 	{
- 		.compatible = "microchip,sparx5-switch-reset",
-+		.data = &reset_props_sparx5,
-+	}, {
-+		.compatible = "microchip,lan966x-switch-reset",
-+		.data = &reset_props_lan966x,
- 	},
- 	{ }
- };
--- 
-2.33.0
+Hi,
 
+On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
+> Add a VCC regulator which needs to be enabled before the EN pin is
+> released.
+>=20
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi8=
+3.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> index a5779bf17849..49ace6f312d5 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> @@ -32,6 +32,9 @@ properties:
+>      maxItems: 1
+>      description: GPIO specifier for bridge_en pin (active high).
+> =20
+> +  vcc-supply:
+> +    description: A 1.8V power supply (see regulator/regulator.yaml).
+> +
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+> =20
+> @@ -93,6 +96,7 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> +  - vcc-supply
+
+This isn't a backward-compatible change. All the previous users of that
+binding will now require a vcc-supply property even though it was
+working fine for them before.
+
+You handle that nicely in the code, but you can't make that new property
+required.
+
+Maxime
+
+--to54f4mrku7omawu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYWaPCgAKCRDj7w1vZxhR
+xURoAQDm8IvPUi5vzyUHpQ1t/FoKSZIKEtor9+FYGCY+QX5naQEAlTcI9cbK61fo
+8MqjindSabWT6jCKa/uGOXOtF3LSNwY=
+=6P+T
+-----END PGP SIGNATURE-----
+
+--to54f4mrku7omawu--
