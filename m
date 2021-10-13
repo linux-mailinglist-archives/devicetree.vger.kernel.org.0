@@ -2,154 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AE6542BC36
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 11:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B4E42BC4F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 12:00:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239155AbhJMJ5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 05:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237603AbhJMJ5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 05:57:17 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A45D5C061570;
-        Wed, 13 Oct 2021 02:55:14 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id c4so1438270pls.6;
-        Wed, 13 Oct 2021 02:55:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding;
-        bh=gMtBH0FKznXn6S5/VxYELkocnCm68+UooPeAaK+EkUM=;
-        b=LHMk7Fb30PrBJnIhN4xR6T8vveJgn62ywxX/TudQlPUizAQNsqf/7s5OM4tCwdRI8w
-         kJ/py/Bx829Sq9L6fP57z5QUdzkYlrQxpW3JTA72KaOL7IPxtst8LTwyL4214ayurlm2
-         dyKmq2zWETxp3+Wn81chvi+ruABQESEQJLyqx7m7dOUUGjfMTGTyVV6TrcORozHb3BtC
-         cBA4cHvmcnZ1kw/8j5A8x8BdHfIo8qZn0UysvgaMW1biBncm0VyoHsAXcA3bGrc2brkl
-         LOIHavvjsaofE38KlPTtRB0Gd0r1vrJd07HIVYH/2eO8AyYsfIKW7dO8IB5rgNOZmckY
-         XptA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding;
-        bh=gMtBH0FKznXn6S5/VxYELkocnCm68+UooPeAaK+EkUM=;
-        b=MPHsdyulK2Ik+x1gbCfhkHkNWfZLubx8zUwnDidxfVKKORsgws0wQLoeWUhYafM6T9
-         DP4yVpJT1LTt6AEu24luty+UemGJ6D2ZnOibLikNVeKWW4dkaqTxnDm66oUQrji7fkQZ
-         ceUH+pKnLWzKJyMt00N+Lvaj3tL87yhKypPPfY/55TGdLJgLpWd05gHhJNZmFakE7OBb
-         QRTymgwC2eXPGByjJugXird0cV395uECGpQB0UM9HtaYI6bM2SkGT2FBQDlXHuvwJs1I
-         nanYJVEPyYLK9ubnuxCrjDQ6NktZBQ8y4l1KHYGIyIhWPonEm16Cp+sEHTTr5KBEXBLx
-         04Kg==
-X-Gm-Message-State: AOAM531R7mwIyStiIba1OWyQy9jCmuQirG2PPLzsLvfuRz+LyASaE2ro
-        glJlKCEZCjKKhOlfcN6nFbA=
-X-Google-Smtp-Source: ABdhPJy33q2kxKjhMPEiClqtRXi+voWDnOZESMfd6cxgVLGHsWjCZ1U2dv0vRffmisfMFTT3XV/lrQ==
-X-Received: by 2002:a17:90b:23c8:: with SMTP id md8mr12464157pjb.210.1634118914048;
-        Wed, 13 Oct 2021 02:55:14 -0700 (PDT)
-Received: from localhost.localdomain ([171.211.26.24])
-        by smtp.gmail.com with ESMTPSA id e20sm13906053pfc.11.2021.10.13.02.55.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Oct 2021 02:55:13 -0700 (PDT)
-From:   DENG Qingfang <dqfext@gmail.com>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Michael Rasmussen <mir@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 5/6] net: dsa: realtek-smi: add rtl8365mb subdriver for RTL8365MB-VC
-Date:   Wed, 13 Oct 2021 17:55:05 +0800
-Message-Id: <20211013095505.55966-1-dqfext@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211012123557.3547280-6-alvin@pqrs.dk>
-References: <20211012123557.3547280-1-alvin@pqrs.dk> <20211012123557.3547280-6-alvin@pqrs.dk>
+        id S239233AbhJMKCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 06:02:13 -0400
+Received: from foss.arm.com ([217.140.110.172]:59718 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239124AbhJMKCN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 06:02:13 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B94F91063;
+        Wed, 13 Oct 2021 03:00:09 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 994AD3F70D;
+        Wed, 13 Oct 2021 03:00:07 -0700 (PDT)
+Date:   Wed, 13 Oct 2021 11:00:05 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, svarbanov@mm-sol.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
+        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH v12 0/5] Add DT bindings and DT nodes for PCIe and PHY in
+ SC7280
+Message-ID: <20211013100005.GB9901@lpieralisi>
+References: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 02:35:54PM +0200, Alvin Šipraga wrote:
-> +/* Port mapping macros
-> + *
-> + * PORT_NUM_x2y: map a port number from domain x to domain y
-> + * PORT_MASK_x2y: map a port mask from domain x to domain y
-> + *
-> + * L = logical port domain, i.e. dsa_port.index
-> + * P = physical port domain, used by the Realtek ASIC for port indexing;
-> + *     for ports with internal PHYs, this is also the PHY index
-> + * E = extension port domain, used by the Realtek ASIC for managing EXT ports
-> + *
-> + * The terminology is borrowed from the vendor driver. The extension port domain
-> + * is mostly used to navigate the labyrinthine layout of EXT port configuration
-> + * registers and is not considered intuitive by the author.
-> + *
-> + * Unless a function is accessing chip registers, it should be using the logical
-> + * port domain. Moreover, function arguments for port numbers and port masks
-> + * must always be in the logical domain. The conversion must be done as close as
-> + * possible to the register access to avoid chaos.
-> + *
-> + * The mappings vary between chips in the family supported by this driver. Here
-> + * is an example of the mapping for the RTL8365MB-VC:
-> + *
-> + *    L | P | E | remark
-> + *   ---+---+---+--------
-> + *    0 | 0 |   | user port
-> + *    1 | 1 |   | user port
-> + *    2 | 2 |   | user port
-> + *    3 | 3 |   | user port
-> + *    4 | 6 | 1 | extension (CPU) port
-> + *
-> + * NOTE: Currently this is hardcoded for the RTL8365MB-VC. This will probably
-> + * require a rework when adding support for other chips.
-> + */
-> +#define CPU_PORT_LOGICAL_NUM	4
-> +#define CPU_PORT_LOGICAL_MASK	BIT(CPU_PORT_LOGICAL_NUM)
-> +#define CPU_PORT_PHYSICAL_NUM	6
-> +#define CPU_PORT_PHYSICAL_MASK	BIT(CPU_PORT_PHYSICAL_NUM)
-> +#define CPU_PORT_EXTENSION_NUM	1
-> +
-> +static u32 rtl8365mb_port_num_l2p(u32 port)
-> +{
-> +	return port == CPU_PORT_LOGICAL_NUM ? CPU_PORT_PHYSICAL_NUM : port;
-> +}
-> +
-> +static u32 rtl8365mb_port_mask_l2p(u32 mask)
-> +{
-> +	u32 phys_mask = mask & ~CPU_PORT_LOGICAL_MASK;
-> +
-> +	if (mask & CPU_PORT_LOGICAL_MASK)
-> +		phys_mask |= CPU_PORT_PHYSICAL_MASK;
-> +
-> +	return phys_mask;
-> +}
-> +
-> +static u32 rtl8365mb_port_mask_p2l(u32 phys_mask)
-> +{
-> +	u32 mask = phys_mask & ~CPU_PORT_PHYSICAL_MASK;
-> +
-> +	if (phys_mask & CPU_PORT_PHYSICAL_MASK)
-> +		mask |= CPU_PORT_LOGICAL_MASK;
-> +
-> +	return mask;
-> +}
-> +
-> +#define PORT_NUM_L2P(_p) (rtl8365mb_port_num_l2p(_p))
-> +#define PORT_NUM_L2E(_p) (CPU_PORT_EXTENSION_NUM)
-> +#define PORT_MASK_L2P(_m) (rtl8365mb_port_mask_l2p(_m))
-> +#define PORT_MASK_P2L(_m) (rtl8365mb_port_mask_p2l(_m))
+On Thu, Oct 07, 2021 at 11:18:38PM +0530, Prasad Malisetty wrote:
+> Changes added in v12:
+> 
+> 	* Sorted pipe_clk muxing changes in patch 4 & 5 as per the commit log.
+> 	  -Suggested by Bjorn.
+> 
+> Changes added in v11:
+> 
+> 	* Modified nvme_pwren name as nvme_pwren.
+> 	* Removed bias-pullup option in nvme_pwren entry [v11 Patch 3/5].
+> 	* Changed pcie1_default_state name to pcie1_clkreq_n.
+> 	* Added NULL pointer check for pcie_cfg.
+> 
+> Changes added in v10:
+> 
+> 	* v9 [Patch 4/4/] has been split into two separate patches
+> 	* Addressed all comments in IDP [Patch 3/4] file.
+>  	
+> Changes added in v9:
+>     * Added fixed regulator entry for nvme.suggested by Stephen Boyd
+>     * Added NULL pointer check before accessing ops in pcie probe
+>       Suggested by Stephen Boyd
+> 
+> Changes added in v8:
+> 
+>     * Added seperate pinctrl state for NVMe LDO enable pin [v8 P3/4]
+>     * Removed pointer initialization for pcie_cfg [v8 P4/4]
+>     * Replaced bool pcie_pipe_clk_src with unsigned int:1 [v8 P4/4]
+>     * Changed gcc_pcie_1_pipe_clk_src to pipe_clk_src
+> 
+> Changes added in v7:
+> 
+>         * Removed two fallbacks qcom,pcie-sm8250 and snps,dw-pcie.
+>         * Replaced compatible method in get_resources_2_7_0 with
+>             flag approach suggested by Bjorn Helgaas .
+>         * Setting gcc_pcie_1_clk_src as XO in init_2_7_0 for
+>           gdsc enable.
+>         * Added specific NVMe GPIO entries for SKU1 and SKU2 support
+>           in idp.dts and idp2.dts respectively.
+>         * Moved pcie_1 and pcie_1_phy board specific entries into common
+>           board file sc7280-idp.dtsi file.
+> 
+> Changes in v6:
+> 
+>     * Removed platform check while setting gcc_pcie_1_pipe_clk_src
+>           as clk_set_parent will return 0 with nop if platform doesn't
+>           need to switch pipe clk source.
+>         * Moved wake-n gpio to board specific file sc7280-idp.dtsi
+>         * Sorted gpio.h header entry in sc7280.dtsi file
+> 
+> Changes in v5:
+> 
+>         * Re ordered PCIe, PHY nodes in Soc and board specific dtsi files.
+>         * Removed ref_clk entry in current patch [PATCH v4 P4/4].
+>         * I will add ref clk entry in suspend/ resume commits.
+>         * Added boolean flag in Soc specific dtsi file to differentiate
+>           SM8250 and SC7280 platforms. based on boolean flag, platforms will handle
+>           the pipe clk handling.
+> 
+> Changes in v4 as suggested by Bjorn:
+> 
+>         * Changed pipe clk mux name as gcc_pcie_1_pipe_clk_src.
+>         * Changed pipe_ext_src as phy_pipe_clk.
+>         * Updated commit message for [PATCH v4 4/4].
+> 
+> Changes in v3:
+>         * Changed pipe clock names in dt bindings as pipe_mux and phy_pipe.
+>         * Moved reset and NVMe GPIO pin configs into board specific file.
+>         * Updated pipe clk mux commit message.
+> 
+> Changes in v2:
+>         * Moved pcie pin control settings into IDP file.
+>         * Replaced pipe_clk_src with pipe_clk_mux in pcie driver
+>         * Included pipe clk mux setting change set in this series
+> 
+> Prasad Malisetty (5):
+>   dt-bindings: pci: qcom: Document PCIe bindings for SC7280
+>   arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+>   arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+>   PCI: qcom: Add a flag in match data along with ops
+>   PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
+> 
+>  .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   8 ++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  50 +++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |   8 ++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 118 +++++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-qcom.c             |  95 +++++++++++++++--
+>  6 files changed, 285 insertions(+), 11 deletions(-)
 
-The whole port mapping thing can be avoided if you just use port 6 as the CPU
-port.
+I applied patches [4-5] to pci/qcom for v5.16, thanks I expect other
+patches to go via the relevant trees.
 
-> +
-> +/* Chip-specific data and limits */
+Lorenzo
