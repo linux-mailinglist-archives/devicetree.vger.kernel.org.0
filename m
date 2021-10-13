@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD34842B31D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 05:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 451C642B3CF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 05:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229571AbhJMDKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 12 Oct 2021 23:10:55 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:39869 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230054AbhJMDKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 23:10:54 -0400
-Received: by mail-ot1-f50.google.com with SMTP id k2-20020a056830168200b0054e523d242aso1850687otr.6;
-        Tue, 12 Oct 2021 20:08:51 -0700 (PDT)
+        id S236885AbhJMDs6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 12 Oct 2021 23:48:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236805AbhJMDs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 12 Oct 2021 23:48:58 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC79C061749
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 20:46:55 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id w2so1452093qtn.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Oct 2021 20:46:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xHBd0Wa0rSoZFxGqoT+opA0jNE24TvAUyoul5V1m4IM=;
+        b=XpCeHs4qW8F3FZY4gbJ0Ixs7wpFeF9lP08SsKRpwNb1bHYHq0DYu7mjLSOpUOMQhlb
+         YhJt7zq1WCy7ob9Bu9qTQkC1y/imJu6JrJCJrkuUOkYaXjnYo+4emLz9260vsKlidKU3
+         Dan27Pye6YuLQoSHuHjMhZcVw0ihtygdZ5QsiO9cr5n7OGbO4mtrn/Ioo2v3OUvIqOxq
+         0PvwCCzWdkIW1GOvieyABBWIBXA80EfWEsgbqlc4ZOljd1oYxZkE/uPfwuuyplI9TNdH
+         koK6z/OYcWA8yxXeXTLeXsMWE5v/3NvhERYPI3J7rFOgdO/msfIVg70xcL79P/K0w+wp
+         f03g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=dG7YKVkdDHgU/EVdP5rWldt/Wd4xuXVEeGYHHbyU6pY=;
-        b=WglxSxVgt/9zWvhHSfPuH2OAOHpAGX+Khs0OhpMn7pjFzANsTtnQuP0Mt9UxR/8kWb
-         NHuq0FurjW8AW7hlgZRQ4DfJaVOI4QUWofTQQvS4iudEKhz5ZMIJXe3GQWXYn0bt8E0+
-         PBqz1v4YPNS+P8BBfqvI2g4GlS3yWG0gdqe705pTE+YakxJxgvT6iSBiJaIp1wCmk8nO
-         cpzIujo7yi2bjoh0eRCh6nSfgoqr6kqxa9Aa/amZxxu4g0NxoQD54HCQYPPd75GqA1J1
-         nDAolp2DYMe2xHX89SClcXpeex7qr58sTpR1aAKPdE3vxJfZkKSduu9qWxSLjuyYK7ht
-         ZivQ==
-X-Gm-Message-State: AOAM5329g1lE8Hqre5lBK0OJdYrvOq/wqNbvPAVZTIGXQbATlfz5nH27
-        zhBoaIgVSktRpNC/v377r+C1Ix+LkA==
-X-Google-Smtp-Source: ABdhPJwxbanwesgn/W1Wk639iMVs3dz+D5GBhnB2Y0dX/VfTkAYTB4EguI+MLsLJdXY/BZM8w0/ILA==
-X-Received: by 2002:a9d:61c7:: with SMTP id h7mr4857303otk.21.1634094531056;
-        Tue, 12 Oct 2021 20:08:51 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l45sm2488680ooi.30.2021.10.12.20.08.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Oct 2021 20:08:50 -0700 (PDT)
-Received: (nullmailer pid 3858823 invoked by uid 1000);
-        Wed, 13 Oct 2021 03:08:49 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xHBd0Wa0rSoZFxGqoT+opA0jNE24TvAUyoul5V1m4IM=;
+        b=4XjVYHiUjlgvn5O5g+F23S+a4DMXs6gPWxjCL9x4RgvdEDGIsO2wKbJHKEDNr4RxuY
+         t0mvcar30pAacf09kxWqOyq4VygkmC9bAPGPaHK1tZVL5W4c5Zg2tUWUZHSe48OwW1Gq
+         r4651jd0mc2AMiMbhCDjLGLumP5gbBQJfBzU1GeVVqr0kSnaRrFLDnOghD2w0eqAfsiM
+         5aCpnz1V3soWqcxFkj3dp484hcqqFHQcG55D8GZBOY3rjkm3tTHic5iB/WCRfxGFt3Z4
+         vfqNsjkRfq1jWFc/te84Rh1ctc7L9V3O29YZ30Csy6Knm3TqQNJxI+TumaiO2r+XGO++
+         IiOA==
+X-Gm-Message-State: AOAM531GJYRSr3cZU3hhVdkU3fC3xdUS/CnvEZYIinjBsNKq2vrDs/yo
+        yYYicynam3aRNEwk5g/DyF/NA/uGZcGGOdg03HDgFg==
+X-Google-Smtp-Source: ABdhPJy4YiOg9dlaqLhJX9qZDdydYYREVGTzhvnKh0TvizUmjhqSyqxW9Txzrw7FvYn+mebgZ5P8r1YCXEpC3COdVN0=
+X-Received: by 2002:a05:622a:409:: with SMTP id n9mr27426050qtx.153.1634096814516;
+ Tue, 12 Oct 2021 20:46:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org> <CACRpkda_hW7vbvC1jizRa05ZdgeL-FkU3_zF+rvCfRBuRB3+VQ@mail.gmail.com>
+In-Reply-To: <CACRpkda_hW7vbvC1jizRa05ZdgeL-FkU3_zF+rvCfRBuRB3+VQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 13 Oct 2021 06:46:43 +0300
+Message-ID: <CAA8EJpoqawEDKfKiPzU1zYACa8hU16Ly00tsb0d6BU_jLQMEWQ@mail.gmail.com>
+Subject: Re:
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        netdev@vger.kernel.org, Matthew Hagan <mnhagan88@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Russell King <linux@armlinux.org.uk>
-In-Reply-To: <20211013011622.10537-16-ansuelsmth@gmail.com>
-References: <20211013011622.10537-1-ansuelsmth@gmail.com> <20211013011622.10537-16-ansuelsmth@gmail.com>
-Subject: Re: [net-next PATCH v6 15/16] dt-bindings: net: dsa: qca8k: convert to YAML schema
-Date:   Tue, 12 Oct 2021 22:08:49 -0500
-Message-Id: <1634094529.487895.3858822.nullmailer@robh.at.kernel.org>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Oct 2021 03:16:21 +0200, Ansuel Smith wrote:
-> From: Matthew Hagan <mnhagan88@gmail.com>
-> 
-> Convert the qca8k bindings to YAML format.
-> 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> Co-developed-by: Ansuel Smith <ansuelsmth@gmail.com>
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  .../devicetree/bindings/net/dsa/qca8k.txt     | 245 ------------
->  .../devicetree/bindings/net/dsa/qca8k.yaml    | 362 ++++++++++++++++++
->  2 files changed, 362 insertions(+), 245 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.txt
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-> 
+On Wed, 13 Oct 2021 at 02:59, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Fri, Oct 8, 2021 at 3:25 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+>
+> > In 2019 (in kernel 5.4) spmi-gpio and ssbi-gpio drivers were converted
+> > to hierarchical IRQ helpers, however MPP drivers were not converted at
+> > that moment. Complete this by converting MPP drivers.
+> >
+> > Changes since v2:
+> >  - Add patches fixing/updating mpps nodes in the existing device trees
+>
+> Thanks a *lot* for being thorough and fixing all this properly!
+>
+> I am happy to apply the pinctrl portions to the pinctrl tree, I'm
+> uncertain about Rob's syntax checker robot here, are there real
+> problems? Sometimes it complains about things being changed
+> in the DTS files at the same time.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Rob's checker reports issue that are being fixed by respective
+patches. I think I've updated all dts entries for the mpp devices tree
+nodes.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/qca8k.yaml:362:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+> I could apply all of this (including DTS changes) to an immutable
+> branch and offer to Bjorn if he is fine with the patches and
+> the general approach.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.example.dt.yaml: switch@10: 'oneOf' conditional failed, one must be fixed:
-	'ports' is a required property
-	'ethernet-ports' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+I'm fine with either approach.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1540096
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+With best wishes
+Dmitry
