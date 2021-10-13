@@ -2,178 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F3A42BCBE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 12:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63AED42BCD0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 12:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239287AbhJMK2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 06:28:07 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:42878 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239285AbhJMK2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 06:28:06 -0400
-X-Greylist: delayed 370 seconds by postgrey-1.27 at vger.kernel.org; Wed, 13 Oct 2021 06:28:05 EDT
-Received: from localhost (unknown [192.168.167.225])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 86DAAD6FAC;
-        Wed, 13 Oct 2021 18:19:50 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P26701T140614792369920S1634120379732571_;
-        Wed, 13 Oct 2021 18:19:49 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: zyf@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: zyf@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 12
-X-LOCAL-RCPT-COUNT: 1
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <9ff736094915ea880529a8f6649e4dc5>
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     heiko@sntech.de, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, vkoul@kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de, Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: add naneng combo phy nodes for rk3568
-Date:   Wed, 13 Oct 2021 18:19:38 +0800
-Message-Id: <20211013101938.28061-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211013101938.28061-1-yifeng.zhao@rock-chips.com>
-References: <20211013101938.28061-1-yifeng.zhao@rock-chips.com>
+        id S239358AbhJMKcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 06:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50344 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239036AbhJMKcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 06:32:12 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615ACC061570;
+        Wed, 13 Oct 2021 03:30:08 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id y12so8221644eda.4;
+        Wed, 13 Oct 2021 03:30:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=y/rnqiiRDqzhToYNQ2Zuvuqbkbv5/WaDX5sqgB4Xrno=;
+        b=Jj86qHBhhjlKiPDP7CjiDwa3rXVoGd38psAEjP9nnnGjHqsZ6KyPzsMvLr/y1ZtBq3
+         SPap+O09GBgNCsF4KtMo0HDfjtGGHrhiIEJLH2OM+fpeNCtWsyRkenG/CNcEBgC9I5QJ
+         pF3w4/RvuVplPCiEjB2l3haCyBtqmyjEymOwsYjzj2WDzo8csLhW8WPmlpnM7Te6tFpu
+         Bf0c+bR1FkgM8wa4pMLgZa6W9RRE1HqpEm3rpZ7jmF9teFL82zYEP4IGOmjh7bhfpxFA
+         EBzuXPgODZGqfoeebSIEnlR38UhDlWimz5u2A2BCpphsOu9wsHm4FfijGEvswqMLkPxQ
+         nu2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=y/rnqiiRDqzhToYNQ2Zuvuqbkbv5/WaDX5sqgB4Xrno=;
+        b=zwqCwqw1E6hYEZpUjSVTU7uZqo/1Tfa6aXzehw/G32lYAv6XrwS0KiUI7AabLdv/AZ
+         lTc/kmMFhACzLxjGats0755rgZu4jmcsySRx2WCvpAT8sdd/wjx1W592TwVMw/2ZBgwI
+         p2unMd1BZupKCNle5uVhjohLkFfaBwaadFodUCgsC2aOE+WqORbXgm9NX41d0h0qjEIp
+         Kn9apkqN8Mip9ajzNCTiFd/HhwdQg2ai19p2thoidSFzOvEWy+FuHeAnDdM52FmBGjcL
+         UST11J8wgHFvBlup3rCKGznExWcI1h8KKbnqyJzxYk4xSFdyUmkek8Vs6H9RCmIqc37h
+         aojQ==
+X-Gm-Message-State: AOAM533tRNa/+J/mus+4tXqyM62U0/vpIts4+ggqy9Iw6octpHxNOJ2o
+        3XUCrbIh24i1+8Z3erw7pDg=
+X-Google-Smtp-Source: ABdhPJyz3L+DI2qSA77Phw1w3Asc0E2qWte8XGDO3iCC/qA5s5ah4fZ6hEl79BhG1vwc6Lx7oII4iw==
+X-Received: by 2002:a17:906:1707:: with SMTP id c7mr37987499eje.377.1634121006829;
+        Wed, 13 Oct 2021 03:30:06 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id h18sm6430351ejt.29.2021.10.13.03.30.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Oct 2021 03:30:06 -0700 (PDT)
+Date:   Wed, 13 Oct 2021 12:30:03 +0200
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        netdev@vger.kernel.org, Matthew Hagan <mnhagan88@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Russell King <linux@armlinux.org.uk>
+Subject: Re: [net-next PATCH v6 15/16] dt-bindings: net: dsa: qca8k: convert
+ to YAML schema
+Message-ID: <YWa1KwlM2SFP5jM0@Ansuel-xps.localdomain>
+References: <20211013011622.10537-1-ansuelsmth@gmail.com>
+ <20211013011622.10537-16-ansuelsmth@gmail.com>
+ <1634094529.487895.3858822.nullmailer@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1634094529.487895.3858822.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the core dt-node for the rk3568's naneng combo phys.
+On Tue, Oct 12, 2021 at 10:08:49PM -0500, Rob Herring wrote:
+> On Wed, 13 Oct 2021 03:16:21 +0200, Ansuel Smith wrote:
+> > From: Matthew Hagan <mnhagan88@gmail.com>
+> > 
+> > Convert the qca8k bindings to YAML format.
+> > 
+> > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> > Co-developed-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  .../devicetree/bindings/net/dsa/qca8k.txt     | 245 ------------
+> >  .../devicetree/bindings/net/dsa/qca8k.yaml    | 362 ++++++++++++++++++
+> >  2 files changed, 362 insertions(+), 245 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.txt
+> >  create mode 100644 Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/net/dsa/qca8k.yaml:362:7: [error] no new line character at the end of file (new-line-at-end-of-file)
+>
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
+Stupid me will fix that...
 
-Changes in v2:
-- Move phy0 to rk3568.dtsi
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipq8064-mdio.example.dt.yaml: switch@10: 'oneOf' conditional failed, one must be fixed:
+> 	'ports' is a required property
+> 	'ethernet-ports' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
+> 
 
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 21 +++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
- 2 files changed, 68 insertions(+)
+About this i fixed with the next patch. Should I include that in this
+patch? Or i can ignore this error?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 2fd313a295f8..4db5d3c2a04e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,11 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	pipe_phy_grf0: syscon@fdc70000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc70000 0x0 0x1000>;
-+	};
-+
- 	qos_pcie3x1: qos@fe190080 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe190080 0x0 0x20>;
-@@ -71,6 +76,22 @@
- 			queue0 {};
- 		};
- 	};
-+
-+	combphy0_us: phy@fe820000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe820000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-+		status = "disabled";
-+	};
- };
- 
- &cpu0_opp_table {
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index b721a34ffa8c..2397daf46385 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -214,11 +214,26 @@
- 		};
- 	};
- 
-+	pipegrf: syscon@fdc50000 {
-+		compatible = "rockchip,rk3568-pipegrf", "syscon";
-+		reg = <0x0 0xfdc50000 0x0 0x1000>;
-+	};
-+
- 	grf: syscon@fdc60000 {
- 		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
- 		reg = <0x0 0xfdc60000 0x0 0x10000>;
- 	};
- 
-+	pipe_phy_grf1: syscon@fdc80000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc80000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf2: syscon@fdc90000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc90000 0x0 0x1000>;
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -1039,6 +1054,38 @@
- 		status = "disabled";
- 	};
- 
-+	combphy1_usq: phy@fe830000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe830000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-+		status = "disabled";
-+	};
-+
-+	combphy2_psq: phy@fe840000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe840000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-+		status = "disabled";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/1540096
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
+
 -- 
-2.17.1
-
-
-
+	Ansuel
