@@ -2,105 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 576CD42C286
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D81B42C2A0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235840AbhJMOP3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 13 Oct 2021 10:15:29 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:51981 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231664AbhJMOP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 10:15:29 -0400
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 2EA486000F;
-        Wed, 13 Oct 2021 14:13:21 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Vladimir Vid <vladimir.vid@sartura.hr>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 5/6] arm64: dts: marvell: armada-37xx: add device
- node for UART clock and use it
-In-Reply-To: <20210930095838.28145-6-pali@kernel.org>
-References: <20210930095838.28145-1-pali@kernel.org>
- <20210930095838.28145-6-pali@kernel.org>
-Date:   Wed, 13 Oct 2021 16:13:16 +0200
-Message-ID: <87r1cpdncz.fsf@BL-laptop>
+        id S236390AbhJMORH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 10:17:07 -0400
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:44556 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235884AbhJMORH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 10:17:07 -0400
+Received: by mail-ua1-f42.google.com with SMTP id e7so4725165ual.11;
+        Wed, 13 Oct 2021 07:15:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eOGdh1AkOHJBmLFPoyr41m94hwdgjBmCbg/FB38m3v4=;
+        b=7c6C243zu58q/LJhg5QqG0/cDsANC9mDxIrTU/Y3c3kvErDrCWA0VA9bYm6wdMdC72
+         c2OnZU0OL/K1i9FnMEub8vJU5xrXzth1ZmQaaeI5zTO1jpn3573OIn6en6qtNY+6reWL
+         VQLcBxibSR3oF+A9NV/dZdqKRTCCFHtF0b0QZ2AteolTTpGZ3DSKKIcBOHMJFTsGa72Y
+         qAGa6xIc6RQHH67aneH75pkfZCfLPogEyXwAHEJ1d5ojrm+Z9r6ckdm43DwKQqJ9Wvhs
+         6zyHpUHE5ba+B2RSqU59MRxC+1+fr93F36D/3HT6KLJA0Fwr4OEqbo4r9XtyTcJVEDiG
+         /6dg==
+X-Gm-Message-State: AOAM533N5oI4NAwhTWH6tj7u65oh16ibXr4diGJsqhe9MfxF8jK7/4od
+        c2NGIqqNM3jLo6gLOMyqTZ9xuBseq2fXxXIFPfU=
+X-Google-Smtp-Source: ABdhPJwWSQSEOb7HJUiITEzyUPYdJB8jq0qc3AWy6XySRqTntnQ5K6xK2nsLta84iu1eLwmnUvTAtLLc1kvAWH4QoBw=
+X-Received: by 2002:ab0:538a:: with SMTP id k10mr30117696uaa.14.1634134503591;
+ Wed, 13 Oct 2021 07:15:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+References: <20201223212947.160565-1-paul.kocialkowski@bootlin.com> <20201223212947.160565-2-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20201223212947.160565-2-paul.kocialkowski@bootlin.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 13 Oct 2021 16:14:52 +0200
+Message-ID: <CAMuHMdVKgP5RAH5MhZzjjbfEJVZF6ERvyaQ7iyzDWs35dCtw6w@mail.gmail.com>
+Subject: Re: [PATCH v8 1/4] dt-bindings: display: Document the Xylon LogiCVC
+ display controller
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pali,
+Hi Paul,
 
-> This change defines DT node for UART clock "marvell,armada-3700-uart-clock"
-> and use this UART clock as a base clock for all UART devices.
+On Wed, Dec 23, 2020 at 10:32 PM Paul Kocialkowski
+<paul.kocialkowski@bootlin.com> wrote:
+> The Xylon LogiCVC is a display controller implemented as programmable
+> logic in Xilinx FPGAs.
 >
-> Signed-off-by: Pali Rohár <pali@kernel.org>
->
-> ---
-> Changes in v6:
-> * Do not disable uartclk by default
-> * Rename node to clock-controller@12010
-> ---
->  arch/arm64/boot/dts/marvell/armada-37xx.dtsi | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> index 9acc5d2b5a00..f9bfe73d8ec2 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-37xx.dtsi
-> @@ -132,10 +132,20 @@
->  				reg = <0x11500 0x40>;
->  			};
->  
-> +			uartclk: clock-controller@12010 {
-> +				compatible = "marvell,armada-3700-uart-clock";
-> +				reg = <0x12010 0x4>, <0x12210 0x4>;
-> +				clocks = <&tbg 0>, <&tbg 1>, <&tbg 2>,
-> +					<&tbg 3>, <&xtalclk>;
-> +				clock-names = "TBG-A-P", "TBG-B-P", "TBG-A-S",
-> +					"TBG-B-S", "xtal";
-> +				#clock-cells = <1>;
-> +			};
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
+> @@ -0,0 +1,313 @@
+
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 4
+
+After applying this to my local tree, as it is a dependency for 2/4 in
+for-mfd-next:
+
+Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml:
+properties:clock-names: {'required': ['maxItems']} is not allowed for
+{'minItems': 1, 'maxItems': 4, 'items': [{'const': 'vclk'}, {'enum':
+['vclk2', 'lvdsclk', 'lvdsclkn']}, {'enum': ['vclk2', 'lvdsclk',
+'lvdsclkn']}, {'enum': ['vclk2', 'lvdsclk', 'lvdsclkn']}]}
+hint: "maxItems" is not needed with an "items" list
+from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+
+> +    items:
+> +      # vclk is required and must be provided as first item.
+> +      - const: vclk
+> +      # Other clocks are optional and can be provided in any order.
+> +      - enum:
+> +          - vclk2
+> +          - lvdsclk
+> +          - lvdsclkn
+> +      - enum:
+> +          - vclk2
+> +          - lvdsclk
+> +          - lvdsclkn
+> +      - enum:
+> +          - vclk2
+> +          - lvdsclk
+> +          - lvdsclkn
 > +
->  			uart0: serial@12000 {
->  				compatible = "marvell,armada-3700-uart";
->  				reg = <0x12000 0x18>;
-> -				clocks = <&xtalclk>;
-> +				clocks = <&uartclk 0>;
 
-What happens if we have a new kernel using on old device tree ?
+Gr{oetje,eeting}s,
 
-Gregory
-
->  				interrupts =
->  				<GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
->  				<GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> @@ -147,7 +157,7 @@
->  			uart1: serial@12200 {
->  				compatible = "marvell,armada-3700-uart-ext";
->  				reg = <0x12200 0x30>;
-> -				clocks = <&xtalclk>;
-> +				clocks = <&uartclk 1>;
->  				interrupts =
->  				<GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
->  				<GIC_SPI 31 IRQ_TYPE_EDGE_RISING>;
-> -- 
-> 2.20.1
->
+                        Geert
 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
