@@ -2,130 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A95642BE8C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 13:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F62A42BEB9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 13:13:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233140AbhJMLEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 07:04:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232278AbhJMLES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 07:04:18 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B09E9C061753
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 04:02:15 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id u21so6833696lff.8
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 04:02:15 -0700 (PDT)
+        id S230150AbhJMLP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 07:15:29 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:61892 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229653AbhJMLP2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 07:15:28 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=73KxlkdlyI8mXLBvQp61F7Ysreyok1FWDPua3YonDqI=;
-        b=dzUOvMFCFHvCPLA4d4o9RjHZKAsUW8CJ8oRvQYf4LqDiIG7OE6g1KuPgql1kadB3aC
-         XzGQ7f+HgP4YIjgcC++iLXXfad+FBeSMLBstC6LODUf/X8gOn/lKxj5odAm1aUlXVwsn
-         ISQaOFgM6/zv79n2vyS2H4dFk0UrDDDhStQkeMKKM3GRg5N7QEYtl8UYDerp8QxdegiB
-         ATkstm1/7JjmiFB2ZbcpE2NFFe/5mAjWG8z+VH4130qfhXz3HljINzyBbeseSe3eECK9
-         7e/7Ix2eDLLhCfJy7sub3EBFnXZkBY/5uQ442QjVMeD6cic7lyr+lh/HGHKbjFGWajkk
-         q2Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=73KxlkdlyI8mXLBvQp61F7Ysreyok1FWDPua3YonDqI=;
-        b=wlcySQLdo7Af39VspNLXkf+qUxn7zCwSPi8L1Z9piGXn6eTaGm3rlEtYNK4YDspql9
-         V6SxwTdb8xWqJkyc5yLMVhZPamIj63RnSzcJ4zrzMPz23CRpy5wI7WtjPsnvIxLV1CT/
-         OzKBC6ptRQ2oVH8uP+vNNWdRDgj68ANNrGDiqfN86u9dmzNqiD3BvVnpVhA08sECUwRv
-         jPH5+mNG/MGCd2CZ6ZT5iyEpwdWe8ogJgH+5YBbVWcCSuAhlIJADpfU7PRQy4VgYUKyh
-         61Bk8pNTkrzK/BU+lvzfG4eYsXT0IJzZe9+NHDIzuWmWzxjXPl0kUKRTb0MNBmO1OsWd
-         67+A==
-X-Gm-Message-State: AOAM532vde4u0n3xHTYgdmb9UCCIEIPlaLa6XDEp4GCW4hoX/80dnkTU
-        mXcs004eWeyFhqBBxcjZ1yeV/3bzww1YUfn0ZT2svg==
-X-Google-Smtp-Source: ABdhPJz2gpDUS4W8/df8P/ssMlsByhqzpK4UIzTghVzZx58NQPyhf6+NIw+RgxaAWRM1G+lZLH7/RTstEmgTzE39ngk=
-X-Received: by 2002:a05:651c:111:: with SMTP id a17mr5578922ljb.145.1634122933990;
- Wed, 13 Oct 2021 04:02:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211012123557.3547280-1-alvin@pqrs.dk> <20211012123557.3547280-5-alvin@pqrs.dk>
-In-Reply-To: <20211012123557.3547280-5-alvin@pqrs.dk>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 13 Oct 2021 13:02:02 +0200
-Message-ID: <CACRpkdby5Z9yzUFo4_cXtXb-bz6gF60Rt52naqu5yWBM0bC7bw@mail.gmail.com>
-Subject: Re: [PATCH net-next 4/6] net: dsa: tag_rtl8_4: add realtek 8 byte
- protocol 4 tag
-To:     =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634123606; x=1665659606;
+  h=from:to:cc:subject:date:message-id;
+  bh=YdPfzhsWATxi0+bolJORemf2+qX9sc7j17ozhvVkqHU=;
+  b=OnYexdAR7Hqx93bvcoVRy0z+gqRjo1vzGTqsKxEGLHFfvy5I4vxhxAdH
+   Q27PBvqy2qYDjDunAG1RpAjvdXkbAoNK4O6JoXClYgPv40NggIWLwcpF2
+   YkXJrAzLL2ss3oxa24h2T9uJo7semn1y5OvT+iiYd6cC0iZ+6XVCiO8jH
+   1xX+C8bdmCT0wXFodi7DOA2ChK6FSlTjQjEHwSlBJm1oviNTA4xAmLBLK
+   YHI9qTcDn/w0Ddls1hglWIiJaDrjd4aLrVaiNaQqb8cUYnHf3hVdCeTJR
+   5lh2uCDZOCRTRkpbSmZ3OzvKCZXMR/RpadZdDaheKyj5QPtbNFzOmJnbQ
+   g==;
+X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
+   d="scan'208";a="20020840"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 13 Oct 2021 13:13:24 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 13 Oct 2021 13:13:24 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 13 Oct 2021 13:13:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1634123604; x=1665659604;
+  h=from:to:cc:subject:date:message-id;
+  bh=YdPfzhsWATxi0+bolJORemf2+qX9sc7j17ozhvVkqHU=;
+  b=K5zDbdR6QZUaFYftsHGBD0rWaq08Ob1YiF0hXoD3IDty2szLUcpNPWe2
+   zKAIXuRvstodXxxzvBb6M04KQvj7B4xR/yT6MYiPB5b4jIn8gS/ZUtEL3
+   sdULL0KZ3ITOmjuPtCyIS00meOWmRxB12jJ3Sa69Ch0EmLUjUAhgm70Nb
+   ojvTUxA3eHoxtfI4b+XRy6SYbLjgdTBssaHCC2y/ndquUvacC9Pc9vIHh
+   7jbhFvEOoAI0BYXGAZUukhK2hf1CQCw5c0qhQXq+q1KvDnemyIKpAnDKM
+   Dnsc4XcGydgSa0rOlMJV0vgMaeTk/HDhhPbodpofz7c+vcocbNBN+TbzL
+   w==;
+X-IronPort-AV: E=Sophos;i="5.85,370,1624312800"; 
+   d="scan'208";a="20020839"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 13 Oct 2021 13:13:24 +0200
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 9714F280065;
+        Wed, 13 Oct 2021 13:13:24 +0200 (CEST)
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Subject: [PATCH 1/3] dt-bindings: arm: fsl: add TQ-Systems boards based on i.MX6Q/QP/DL
+Date:   Wed, 13 Oct 2021 13:12:00 +0200
+Message-Id: <20211013111202.6231-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 2:37 PM Alvin =C5=A0ipraga <alvin@pqrs.dk> wrote:
+The TQ-Systems MBa6x mainboard can be used with TQMa6 variants with
+i.MX6Q/QP/DL SoCs (TQMa6Q/QP/DL). The TQMa6Q and DL exist in two variants:
+The newer variants "A" have a hardware workaround for Erratum ERR006687,
+while variants "B" are missing such a workaround, so it needs to be
+handled in software. The erratum was fixed in i.MX6QP, so no "A" variant
+of the TQMa6QP exists.
 
-> From: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
->
-> This commit implements a basic version of the 8 byte tag protocol used
-> in the Realtek RTL8365MB-VC unmanaged switch, which carries with it a
-> protocol version of 0x04.
->
-> The implementation itself only handles the parsing of the EtherType
-> value and Realtek protocol version, together with the source or
-> destination port fields. The rest is left unimplemented for now.
->
-> The tag format is described in a confidential document provided to my
-> company by Realtek Semiconductor Corp. Permission has been granted by
-> the vendor to publish this driver based on that material, together with
-> an extract from the document describing the tag format and its fields.
-> It is hoped that this will help future implementors who do not have
-> access to the material but who wish to extend the functionality of
-> drivers for chips which use this protocol.
->
-> In addition, two possible values of the REASON field are specified,
-> based on experiments on my end. Realtek does not specify what value this
-> field can take.
->
-> Signed-off-by: Alvin =C5=A0ipraga <alsi@bang-olufsen.dk>
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
+ .../devicetree/bindings/arm/fsl.yaml          | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
 
-The code definately looks good:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index f08d77b4a1f0..a48e48e524c2 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -323,6 +323,20 @@ properties:
+           - const: toradex,apalis_imx6q
+           - const: fsl,imx6q
+ 
++      - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
++        items:
++          - const: tq,imx6q-mba6x-a
++          - const: tq,mba6a               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6q-tqma6q-a
++          - const: fsl,imx6q
++
++      - description: TQ-Systems TQMa6Q SoM (variant B) on MBa6x
++        items:
++          - const: tq,imx6q-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6q-tqma6q-b
++          - const: fsl,imx6q
++
+       - description: i.MX6QP based Boards
+         items:
+           - enum:
+@@ -344,6 +358,13 @@ properties:
+           - const: phytec,imx6qdl-pcm058  # PHYTEC phyCORE-i.MX6
+           - const: fsl,imx6qp
+ 
++      - description: TQ-Systems TQMa6QP SoM on MBa6x
++        items:
++          - const: tq,imx6qp-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6qp-tqma6qp-b
++          - const: fsl,imx6qp
++
+       - description: i.MX6DL based Boards
+         items:
+           - enum:
+@@ -482,6 +503,20 @@ properties:
+           - const: dh,imx6s-dhcom-som
+           - const: fsl,imx6dl
+ 
++      - description: TQ-Systems TQMa6DL SoM (variant A) on MBa6x
++        items:
++          - const: tq,imx6dl-mba6x-a
++          - const: tq,mba6a               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6dl-tqma6dl-a
++          - const: fsl,imx6dl
++
++      - description: TQ-Systems TQMa6DL SoM (variant B) on MBa6x
++        items:
++          - const: tq,imx6dl-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6dl-tqma6dl-b
++          - const: fsl,imx6dl
++
+       - description: i.MX6SL based Boards
+         items:
+           - enum:
+-- 
+2.17.1
 
-Some nitpicky personal preferences below:
-
-> +#define RTL8_4_TAG_LEN                 8
-> +/* 0x04 =3D RTL8365MB DSA protocol
-> + */
-> +#define RTL8_4_PROTOCOL_RTL8365MB      0x04
-
-This is #defined
-
-> +       /* Zero FID_EN, FID, PRI_EN, PRI, KEEP; set LEARN_DIS */
-> +       tag[2] =3D htons(1 << 5);
-
-I would create defines for the flags like this:
-#define RTL8365MB_LEARN_DIS BIT(5)
-
-> +       /* Parse Protocol */
-> +       proto =3D ntohs(tag[1]) >> 8;
-
-In the 4byte header code we have something like this:
-#define RTL8_4_PROTOCOL_SHIFT 8
-
-> +       /* Parse TX (switch->CPU) */
-> +       port =3D ntohs(tag[3]) & 0xf; /* Port number is the LSB 4 bits */
-
-This I think is fair enough. No need to define that mask.
-
-Yours,
-Linus Walleij
