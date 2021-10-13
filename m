@@ -2,51 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F2142C200
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2A242C27E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 16:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231644AbhJMOCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 10:02:53 -0400
-Received: from foss.arm.com ([217.140.110.172]:39720 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230324AbhJMOCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 10:02:52 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C866D6E;
-        Wed, 13 Oct 2021 07:00:49 -0700 (PDT)
-Received: from e123427-lin.arm.com (unknown [10.57.53.207])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ABE123F694;
-        Wed, 13 Oct 2021 07:00:47 -0700 (PDT)
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Simon Xue <xxm@rock-chips.com>, Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v9] dt-bindings: rockchip: Add DesignWare based PCIe controller
-Date:   Wed, 13 Oct 2021 15:00:42 +0100
-Message-Id: <163413363029.8588.8606291946135635809.b4-ty@arm.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210818093406.157788-1-xxm@rock-chips.com>
-References: <20210818093406.157788-1-xxm@rock-chips.com>
+        id S234907AbhJMOPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 10:15:13 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:5438 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229794AbhJMOPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 10:15:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634134389; x=1665670389;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Li6Ne+agwAMYqqjH4D05vEMTzz4vF7b2Z2OP7dMLKPE=;
+  b=MJfOZt3eI3WkwXZ1opv/EEYEy41GOJHGiB2MdTOmZwZ97uqs0tF2VhRC
+   Q1jzzqDuNVFqgOnIUxtiqWUB7ChLYl+TGwbRUHjklDGwVXS+XmEq2ERJY
+   4/PUTCU97nyXih+HYSInbWo00ZpfNPDG8kbVTRav0tJHHQVG9yMYiKeqi
+   1iY/VLf/TCdw7qvt7DtXTO9lpyNGc9O4xEzKYukCvjS/Vz8jRb3IaY2wi
+   /zJYpgSB2g1kOXFFtqh7O+0/HpupaLz8+jsI/u9xgr633FlNKntEJ3qDm
+   cPBSeWttKPWOcZ7w2Tt5TJ2w5XnzmpYKhuZiuq1XZz5f4TMvr5y39VFs8
+   Q==;
+IronPort-SDR: Om4bnOphYKnzjKPqhf6y8v/CFjh2PobuRcMfR/Pejg3F52okxsIR+R+rxIxVJFOFKrTAZgRgNg
+ i7vV3F+QndMN6xxD5Cih5xnE4kN/C2ZB7YhLx3cWlKbkGa7K2S28+/HGSuCRyn2xF3KgNRiUY2
+ 8omPTQoLPza0+M8Rq2dI/Tzrn39PbXz4fIvvnTShuT3U7pyAoO3fS8hAsYRGlTX1ilR+IBcZrU
+ ShHTuCXzYKXdEmvXbp2QYGDJlg1gQlMZ5CsruQPcJrAc8GEQh8O6om7mjZ1YyLu68cvB3szF8e
+ KX/anb/Rds75S3p9RhmZEUqm
+X-IronPort-AV: E=Sophos;i="5.85,371,1624345200"; 
+   d="scan'208";a="72800394"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Oct 2021 07:09:48 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 13 Oct 2021 07:09:47 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 13 Oct 2021 07:09:46 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <peda@axentia.se>, <robh+dt@kernel.org>,
+        <peter.korsgaard@barco.com>, <lars.povlsen@microchip.com>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH 0/2] i2c-mux-gpio: Add optional 'select-delay' DT property
+Date:   Wed, 13 Oct 2021 16:10:01 +0200
+Message-ID: <20211013141003.2388495-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Aug 2021 17:34:06 +0800, Simon Xue wrote:
-> Document DT bindings for PCIe controller found on Rockchip SoC.
-> 
-> 
+Add optional property 'select-delay' to add a delay when changing the
+mux state. This is required on some platforms to allow GPIO signals to get
+stablized.
 
-Applied to pci/dt, thanks!
+Horatiu Vultur (2):
+  dt-bindings: i2c-mux-gpio: Add optional DT property
+  i2c: i2c-mux-gpio: Add support 'select-delay' property
 
-[1/1] dt-bindings: rockchip: Add DesignWare based PCIe controller
-      https://git.kernel.org/lpieralisi/pci/c/af7cda832f
+ Documentation/devicetree/bindings/i2c/i2c-mux-gpio.txt | 1 +
+ drivers/i2c/muxes/i2c-mux-gpio.c                       | 7 +++++++
+ 2 files changed, 8 insertions(+)
 
-Thanks,
-Lorenzo
+-- 
+2.33.0
+
