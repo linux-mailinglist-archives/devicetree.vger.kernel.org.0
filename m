@@ -2,114 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D39442CB3F
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 22:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEB8A42CBF5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 22:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229822AbhJMUqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 16:46:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56022 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229462AbhJMUqh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 13 Oct 2021 16:46:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ABB416113E;
-        Wed, 13 Oct 2021 20:44:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634157873;
-        bh=Z3DQ+Z4nxCDiFf5YjNS+6ibcgkKch/WFjfU7mmSJe5o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UOou6/xVP9Bbq6KxlSMJ7usDWiCY1lhmNehP5uc/EbFKYKvSXwMP3lryuFLNGZHb6
-         x0ST6J8TBqrWBdleHeL9p2EjzjeHu6DR4MN8xutFJnCxmrSQAAwQj0B6E6bSTIS+Ah
-         0sbEeW+SKL9x89E4EslKn7xla7ZXa3Q4q/YAq0j9t52A0Bi28jHqKO6XRhYVi3qMaf
-         LmDA7KhRsYPAhjcjEPetk4V7y24X7jVaErMkVJ0MCqvwfxSW3vGZ0hCv2bJTKOCuZV
-         uTmZCFQY5vtPOZdVBSP1sUaE8uDl5rWQERMQ63FQUWwEzsMg1PL1kcNZklKjumnBmX
-         P3TqZetfsQoGA==
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        pavel@ucw.cz, Andrew Lunn <andrew@lunn.ch>
-Cc:     robh+dt@kernel.org, Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH 3/3] dt-bindings: leds: Allow for multiple colors in the `color` property
-Date:   Wed, 13 Oct 2021 22:44:24 +0200
-Message-Id: <20211013204424.10961-3-kabel@kernel.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211013204424.10961-1-kabel@kernel.org>
-References: <20211013204424.10961-1-kabel@kernel.org>
+        id S229909AbhJMUv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 16:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230142AbhJMUvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 16:51:40 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF4DC061770
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 13:49:34 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id y15so17371730lfk.7
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 13:49:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CQSzhxJdMMlkiP+vJlHdXSz2dxXmj0z6XpvWvx+79CI=;
+        b=ly/twV2Ipv2Pynj1RbhppkQLB994l1s1z9XDRiWNBq6z77ItLNzN7Yd7jK3TC7n0ae
+         fNntZJTcP31hK1KhNiPetQaq6RMuF0/OL0hozVivSxHXsHROXFccLQ9m4P3HBhBgNajB
+         BpBLV1nVsED5s3ADcoWn6fmH23Oa3s/1LHCikLf5bI14xPoT0h19h+YbWimN5VYyjU5D
+         kavi8WEla6n8oxOXvTrI9bY5F2EqiWUSPYl1uNTrIeNGbD9zmqCGoNsEm6aVL/9/gTu8
+         omEv5BHb4QM5EuUTp0YxLXK2DfA3uWKEQUe5Iu3BP0CNRClzx/mKRAWrqXgOH+yT8lFS
+         vcAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CQSzhxJdMMlkiP+vJlHdXSz2dxXmj0z6XpvWvx+79CI=;
+        b=2Nv2Nd7V9+LPHEnlDnFeLqCExhQ8W1/Cs6i1M5GO0fU6Sdq4rm2s/FiJkoFfz8/ucM
+         WkAgczqAyg/SxlRx8zI/MQQy5hSyi26ylfpQ90CsvDyyLNdd7QC7a028cjwCnlSRJk8W
+         wS1rHgBciauiHGhbq8hrCw6IFSyJt1TzXugzshj9RqoV5CwMiNsHbAQe1rg2WcNAFg18
+         KCYKPfTcaBHwVAd201IxFGUyvuDgMOHobrhd30lWjdO5/8XL7NZngxR8LkIhKb5O/kQo
+         hoKokUAl/IE2knhjzRKmsxzNK3IGpHQ9tguijKYrDbE54Zyeo0f64YLaCTpWLPgMGlk8
+         4GpQ==
+X-Gm-Message-State: AOAM531a9GIIi4E6STgUXyQysuQKN5l4pH++BRjdFGqw3oWe4ZvUlplL
+        EnR36WLPpJGtQb/Ii4FXbcTSHw==
+X-Google-Smtp-Source: ABdhPJy8nc4bwneUkjO24IdJ0xvl/U67WQrHK8RJvVdm0N1n1ZNhfIwm2+qr4zIzzA1KXlfQEwu7bA==
+X-Received: by 2002:a2e:a26c:: with SMTP id k12mr1708496ljm.23.1634158172519;
+        Wed, 13 Oct 2021 13:49:32 -0700 (PDT)
+Received: from [192.168.1.102] (62-248-207-242.elisa-laajakaista.fi. [62.248.207.242])
+        by smtp.gmail.com with ESMTPSA id m4sm59808ljq.4.2021.10.13.13.49.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Oct 2021 13:49:32 -0700 (PDT)
+Subject: Re: [PATCH v4 18/20] crypto: qce: Defer probing if BAM dma channel is
+ not yet initialized
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
+Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-19-bhupesh.sharma@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Message-ID: <74893e20-3dd8-9b57-69bb-025264f51186@linaro.org>
+Date:   Wed, 13 Oct 2021 23:49:31 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211013105541.68045-19-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some RJ-45 connectors have one green/yellow LED wired in the following
-way:
+Hi Bhupesh,
 
-        green
-      +--|>|--+
-      |       |
-  A---+--|<|--+---B
-        yellow
+On 10/13/21 1:55 PM, Bhupesh Sharma wrote:
+> Since the Qualcomm qce crypto driver needs the BAM dma driver to be
+> setup first (to allow crypto operations), it makes sense to defer
+> the qce crypto driver probing in case the BAM dma driver is not yet
+> probed.
+> 
+> Move the code leg requesting dma channels earlier in the
+> probe() flow. This fixes the qce probe failure issues when both qce
+> and BMA dma are compiled as static part of the kernel.
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>   drivers/crypto/qce/core.c | 20 ++++++++++++--------
+>   1 file changed, 12 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> index cb8c77709e1e..c6f686126fc9 100644
+> --- a/drivers/crypto/qce/core.c
+> +++ b/drivers/crypto/qce/core.c
+> @@ -209,9 +209,19 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>   	if (ret < 0)
+>   		return ret;
+>   
+> +	/* qce driver requires BAM dma driver to be setup first.
 
-But semantically this is still just one (multi-color) LED (for example
-it can be controlled by HW as one dual-LED).
+I believe a multi-line block of comments should be started with '/*' line,
+for reference please take a look at Documentation/process/coding-style.rst
 
-This is a case that we do not support in device tree bindings; setting
-  color = <LED_COLOR_ID_MULTI>;
-or
-  color = <LED_COLOR_ID_RGB>;
-is wrong, because those are meant for when the controller can mix the
-"channels", while for our case only one "channel" can be active at a
-time.
+> +	 * In case the dma channel are not set yet, this check
+> +	 * helps use to return -EPROBE_DEFER earlier.
+> +	 */
+> +	ret = qce_dma_request(qce->dev, &qce->dma);
+> +	if (ret)
+> +		return ret;
+> +
+>   	qce->mem_path = of_icc_get(qce->dev, "memory");
+> -	if (IS_ERR(qce->mem_path))
+> +	if (IS_ERR(qce->mem_path)) {
+> +		qce_dma_release(&qce->dma);
+>   		return PTR_ERR(qce->mem_path);
+> +	}
+>   
+>   	qce->core = devm_clk_get_optional(qce->dev, "core");
+>   	if (IS_ERR(qce->core)) {
+> @@ -247,10 +257,6 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		goto err_clks_iface;
+>   
+> -	ret = qce_dma_request(qce->dev, &qce->dma);
+> -	if (ret)
+> -		goto err_clks;
+> -
+>   	ret = qce_check_version(qce);
+>   	if (ret)
+>   		goto err_clks;
+> @@ -265,12 +271,10 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>   
+>   	ret = qce_register_algs(qce);
+>   	if (ret)
+> -		goto err_dma;
+> +		goto err_clks;
+>   
+>   	return 0;
+>   
+> -err_dma:
+> -	qce_dma_release(&qce->dma);
+>   err_clks:
+>   	clk_disable_unprepare(qce->bus);
+>   err_clks_iface:
+> 
 
-Change the `color` property to accept an (non-empty) array of colors to
-indicate this case.
-
-Example:
-  ethernet-phy {
-    led@0 {
-      reg = <0>;
-      color = <LED_COLOR_ID_GREEN LED_COLOR_ID_YELLOW>;
-      function = LED_FUNCTION_ID_LAN;
-      trigger-sources = <&eth0>;
-    };
-  };
-
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- .../devicetree/bindings/leds/common.yaml         | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 03759d2e125a..492dd3e7f9ac 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -37,13 +37,21 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/string
- 
-   color:
--    description:
-+    description: |
-       Color of the LED. Use one of the LED_COLOR_ID_* prefixed definitions from
-       the header include/dt-bindings/leds/common.h. If there is no matching
-       LED_COLOR_ID available, add a new one.
--    $ref: /schemas/types.yaml#/definitions/uint32
--    minimum: 0
--    maximum: 9
-+
-+      For multi color LEDs there are two cases:
-+        - the LED can mix the channels (i.e. RGB LED); in this case use
-+          LED_COLOR_ID_MULTI or LED_COLOR_ID_RGB
-+        - the LED cannot mix the channels, only one can be active; in this case
-+          enumerate all the possible colors
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    items:
-+      minimum: 0
-+      maximum: 9
- 
-   function-enumerator:
-     description:
--- 
-2.32.0
-
+--
+Best wishes,
+Vladimir
