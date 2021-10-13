@@ -2,62 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6FEB42C452
-	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 17:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88D8542C456
+	for <lists+devicetree@lfdr.de>; Wed, 13 Oct 2021 17:01:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233133AbhJMPDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 11:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233837AbhJMPDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 11:03:02 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 173AFC061570
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 08:00:59 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id 188so2540361iou.12
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 08:00:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=c/glLvohbFB55IWi8Rp94oOnuRuWlRXM8ti7eehICjU=;
-        b=czJ3OmsyyXwSx+QT3JkKAQqDolj6EuVp3kuOA3dWOcXzshM5MKiyKGgdXBBr8NIboA
-         2BK8/uS7kuA0krsDap+OWtmGnWOGibRkmol5nto6P9pEsuwmJrqssQYb9snqmHN+c6sU
-         HtcXDt6jw5EEyWP7LyS55BRUxgqUYCf14nV9SsdHbmJpVZuRwBRCpNCqr2w4XLL9zOvD
-         TrEOCsGT2NPI5s+CbORPzmXGcjttYzo6BbUt7/vT0ppMc+yVrf3RmEWRH1zd9LFEukP9
-         VPzOek1ktScwxv6xhzByHUX8q4qH3gA6lEWrn7+VIitJcZT/6TL9OUekgLetkKLvmyzE
-         i/mg==
+        id S236315AbhJMPD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 11:03:27 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45830
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237763AbhJMPDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 11:03:21 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4A08A40000
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:01:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634137276;
+        bh=xYuV2MmQladXcPP7bw44n/vAd85hc1wnSNxzKdpoKHU=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=h/QXGNQ6m1uR7tRK3CIgv+bWw+nupVn7pe1kAe5t9gLcWICbqxFktHubqMlefJyXZ
+         r9h/t08O0MBlx3IK3OB0k+exGFDs55Zs+JezlrzE6UtYngOOJQsf6SVXd2+QPql2Ex
+         omo5Zh/p+ywpyP2Z4NPqn0X9bmxlz2Bzi3lDwV4tC5uZ9Vg8Wbs93ORlvyuZRZ20rQ
+         9o69lMx7hNW9oRyHC/o09MJSDcgx8mpp4P/vShDjdMR/yR1U1xyQFxyumsND5uE59I
+         I9+CwOPfynNFba8zHE7e7RDXwvUUBp03k6Le/XRWTqfNbsXtAIR2jD6uK+8cDnHxem
+         T9zFtS9pJZ13w==
+Received: by mail-ed1-f71.google.com with SMTP id r11-20020aa7cfcb000000b003d4fbd652b9so2481331edy.14
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 08:01:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=c/glLvohbFB55IWi8Rp94oOnuRuWlRXM8ti7eehICjU=;
-        b=IpmGjn1dYtqd189C/WBtXk2mMoAzkCRG5hI7SoSA3IvrQPdkiSFiIbOItKcgYpfNnv
-         dGz8A81D4LZ5c+5ZN9+8Rg68ESEsf8AFn2/mrGmaR6b5PvTRUz4EkWGZPZ9pfTAFsB3S
-         mIEylVFc8W8vFE5Q/FnhzR/X3oWUr/aGXcuLPWKzRYQOORqIKchr6Jrk23nsov4Q4Qsv
-         f9DIJufQiBB91GYFl6Y5yzlgYYGdxDjI0dwEDc2DMSZXFRFtLJgNSKOCKEqoTTpCCX20
-         xarMErYj5MwNXNFvGlVUhSqrJQ27o5hU0Iq4t1cpnPEXK/XFOfutUn6wcdDQd5UNk58B
-         Kd0g==
-X-Gm-Message-State: AOAM5308Wqdu1acEVH9ywo1pQEGTVy9rWDX4HXQKoFhoIqMDAjZQSuYN
-        5LTeumkmI71B8YTKM16NVbMGVOjfA4crv0Q3ww4=
-X-Google-Smtp-Source: ABdhPJyhtPCeNVxaZfR1O+MJmeYZ9e0LwWNSaixoeG8Vf/sbSW9kUv2bXoS2WKkfoGb0eFNOysPpzZL68retnftkJLw=
-X-Received: by 2002:a05:6638:148b:: with SMTP id j11mr29213069jak.79.1634137256928;
- Wed, 13 Oct 2021 08:00:56 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xYuV2MmQladXcPP7bw44n/vAd85hc1wnSNxzKdpoKHU=;
+        b=sRRuV9hdjW9HWXFrXF8NdFy9WClFVH6e53maFZqRGrRHeA9JFG7VSrz8dAgDbtMwrh
+         meLYUfUKjis+QhY4KFI4Lr3AHPQKP8jtu8PLzvQgKl96u6JgRlNvC44J6hAF5J7Vg/Iv
+         qu6bCKGSKKT3iEaDRgetLClHyf0nTvcvAzaJdTL2wVY8mFuvr1+zyIZfBe6qGNLWbNUe
+         y4uOwQzL4lxL0EUU2JIyJPH/Md2B2l2LkOJjvsp4/CzdjPrXs23XndTvchb9wV6w5Enp
+         SQcD8+DuMF6YGtY1DCgwOwe/E/EY3cp/Ag/u/5IYT+ghJv1DDY3/hgIsjgoAtDK3YXcJ
+         4t6g==
+X-Gm-Message-State: AOAM532tzCksQFQECW5pUz9mX3oogvEw0Uz9CfSYUXwHAGPmiQ44jrbL
+        jEYXwdPAN8IP3MfrPWOkJgDgLvJ401lXcK6yzUQnsZd6z6h2Q5homTj7d1AYwwVuD2RsIScC7WX
+        Ho7ezDaJkZdgxxVIwpL8jvuD4zr4mpbTOaSOvuNLRKBCwg6oFZctlq1s=
+X-Received: by 2002:a50:cf87:: with SMTP id h7mr10281325edk.330.1634137275953;
+        Wed, 13 Oct 2021 08:01:15 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwegVNQSzIUZzqwL+kBl/pg71DIpq9sCZIiDU4Wb8xJespMOYwK9v10kYYfIdkQ4bJOR0ucGyI5yMK1rTxX1ro=
+X-Received: by 2002:a50:cf87:: with SMTP id h7mr10281285edk.330.1634137275716;
+ Wed, 13 Oct 2021 08:01:15 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a6b:b242:0:0:0:0:0 with HTTP; Wed, 13 Oct 2021 08:00:56
- -0700 (PDT)
-Reply-To: abraaahammorrison1980@gmail.com
-From:   Abraham Morrison <johnego001@gmail.com>
-Date:   Wed, 13 Oct 2021 08:00:56 -0700
-Message-ID: <CACOK_Jsu0MJt6Mk8uNcEV1yxOyXU9WXBRQoFAf8oDUCb5-GRNg@mail.gmail.com>
-Subject: Good day!
-To:     undisclosed-recipients:;
+References: <20211013143810.2101838-1-arnd@kernel.org> <20211013143810.2101838-2-arnd@kernel.org>
+In-Reply-To: <20211013143810.2101838-2-arnd@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Date:   Wed, 13 Oct 2021 17:01:04 +0200
+Message-ID: <CA+Eumj5Fx6tQv9B9R9iBCP4C=f2dk3szCGcisvPHYfMWpsCCfw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: exynos: fix cpu unit name warnings
+To:     Arnd Bergmann <arnd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>, soc@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!, I am Barrister. Abraham Morrison, Did you receive my previous
-message? I have an important information for you. So if you are
-interested please get back to me for more details
-Thank you.
-Barrister. Abraham Morrison.
+On Wed, 13 Oct 2021 at 16:38, Arnd Bergmann <arnd@kernel.org> wrote:
+>
+> From: Arnd Bergmann <arnd@arndb.de>
+>
+> dtc started warning about some of the CPU addresses:
+>
+> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:78.20-83.5: Warning (unit_address_format): /cpus/cpu@000000: unit name should not have leading 0s
+> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:85.20-90.5: Warning (unit_address_format): /cpus/cpu@000100: unit name should not have leading 0s
+> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:92.20-97.5: Warning (unit_address_format): /cpus/cpu@000200: unit name should not have leading 0s
+> arch/arm64/boot/dts/exynos/exynosautov9.dtsi:99.20-104.5: Warning (unit_address_format): /cpus/cpu@000300: unit name should not have leading 0s
+>
+> Remove the leading zeroes.
+>
+> Fixes: f695b3f4c45d ("arm64: dts: exynos: add initial support for exynosautov9 SoC")
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+
+Thanks Arnd, but this was fixed with the next version of patchset.
+It's my bad because I did not drop the patch from my next branch after
+spotting it, knowing that Chanho will resubmit the next day and then I
+would replace it. This replacement happened next day but linux next
+got the older/buggy patch.
+
+
+Best regards,
+Krzysztof
