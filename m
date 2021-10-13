@@ -2,88 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CCE42CE2C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B6D42CE36
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbhJMWeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 18:34:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbhJMWeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:34:16 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE010C061749
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:32:12 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id g36so1470208lfv.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 15:32:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T/OomM9w2GusTbCVdWitYQJgC9/Z986cg3wMugLDkCc=;
-        b=iIn8C5md7RBiGzfnw2bAipABPt+03zPtv/DOq/HLswL8ElO65blVWNj9Xi0OdYbSVO
-         Eo4zFMFHuevfXEK92pXYjENk6eY1NWcLNe4lFjx75z+2MjgoQUkSqqpAoqRYLhfEJddo
-         5uMzn/mOrXGlBg75XlWecvyBlqKFxEusfRgLWijGHPegycDKaFJbFlOBnqxtQXv31lGb
-         d0X+r94JhCIkuxRKm6yBj/ouq7toJNfJ9SkyJwwK87fhNSxEja+J8JtvsDm5t5fZlr3/
-         8tCIWi0WipX/kw0TTbIFGX0BTole/YW5bn6Vf3U8qbZhUTt3MFm/9LjEEtqjcFKoV/sP
-         +PfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T/OomM9w2GusTbCVdWitYQJgC9/Z986cg3wMugLDkCc=;
-        b=ENAB01Jz8JcsuYn6W8TI0jn67DfttU9jmCFTrDNmJ76bS6rjaSiVsqTM8Rzs+bY8FG
-         BrFqxSZ2/ZzNU6WRngDbGIIL6cYdz7dKKCrMgwQNxU5FjdXUr8zSQ/sUVcMs63T/Y69h
-         tZyP8dE4AXc0ylguseFcaLaxyou147Y607mGVY8mMmjG47/TZbrkSwrrivCciY08IIiG
-         ayYVduEMn6Z/VqieZmjU/dHE5QZaQLVbME1dtQ2ZN228LOirRpzl/1SJCGzohGVyqAui
-         /C/jI9vVqdi4PoazMUKRA6VKtdREeJ6m5r8DnnwcaNtNHv1OzLQ7JHlkfGD60vDKwSNI
-         I9yw==
-X-Gm-Message-State: AOAM5336G5OhYqlf6rcajL2J0M7gi7msHM1JmFScGZbRUpR11YxPHXdC
-        D9HmWFfLQfErQgeunjNsJJvqX0G7aoecrq0kku8+zWmPAUk=
-X-Google-Smtp-Source: ABdhPJxBSo+RJ+XSsLVvldxL70PplGkXVK8P4+WfUMNkYtB7Bu45xbhCyoL5p3gR6ii06cEdUwToJESL+JN7cP8U8Pk=
-X-Received: by 2002:a19:c10d:: with SMTP id r13mr1679243lff.339.1634164331067;
- Wed, 13 Oct 2021 15:32:11 -0700 (PDT)
+        id S231340AbhJMWfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:35:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51262 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230348AbhJMWfS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 13 Oct 2021 18:35:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BEFD9610CC;
+        Wed, 13 Oct 2021 22:33:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634164394;
+        bh=n3rPWK0nTNXRwEymnsx6bbKrvVz9wDqzvD+JXV6h8n8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=iJ8tI75d0c91NvJhIgQDOBfzPF6n6QUCiT6EXKWl3TKUd3sK711orCs5567HLZym0
+         UndevB/ueTF71Qs6zByHQsjeHaFRfsdTziRsJ55yrRN72b7tw3f8cgjVqKVR/LJNsG
+         73CtsJlKcVIAvEFPyPXGoRCZpxlKqqoN7B2wEk/9S+377F6cTGcmAIuvNIgGBw4vmb
+         CZheyZX2IjIjBSxj0OHmk/B5xeaKiccrnn3bojUqMxBXA0CgZvicmShJBBnAyujLGB
+         tyDePiieGdRi9Go1sS16fQtTrEMKG5vpQGIl7ilXWtlNImQVx64iQveXmibLeEN8Ef
+         lcZrjI3ee76ow==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211007144019.7461-1-jbx6244@gmail.com> <1633661172.660863.1409603.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1633661172.660863.1409603.nullmailer@robh.at.kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Oct 2021 00:31:59 +0200
-Message-ID: <CACRpkdYArdPwEVf_5pwsROKPjbnVAtU3mf9v1z6WXGPoBb=SZg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: pinctrl: convert rockchip,pinctrl.txt
- to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1633567425-11953-1-git-send-email-tdas@codeaurora.org>
+References: <1633567425-11953-1-git-send-email-tdas@codeaurora.org>
+Subject: Re: [PATCH v1 1/2] dt-bindings: clock: Add YAML schemas for CAMCC clocks on SC7280
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Wed, 13 Oct 2021 15:33:13 -0700
+Message-ID: <163416439337.936110.14569646955799205849@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 8, 2021 at 4:46 AM Rob Herring <robh@kernel.org> wrote:
+Quoting Taniya Das (2021-10-06 17:43:44)
+> The camera clock controller clock provider have a bunch of generic
+> properties that are needed in a device tree. Add the CAMCC clock IDs for
+> camera client to request for the clocks.
+>=20
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
 
-> On Thu, 07 Oct 2021 16:40:17 +0200, Johan Jonker wrote:
-> > Convert rockchip,pinctrl.txt to YAML
-> >
-> > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > ---
-> >
-> > Changed V3:
-(...)
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-
-Rob can you tell me how you like me to handle this?
-Do we merge the nice new bindings and deal with the
-aftermath or do we need to fix the DTS files in the same
-patch series?
-
-Thanks,
-Linus Walleij
+Applied to clk-next
