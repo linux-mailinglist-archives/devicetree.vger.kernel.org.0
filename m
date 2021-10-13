@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04FEE42CF34
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 01:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 147E542CF38
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 01:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229677AbhJMXea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 19:34:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34830 "EHLO
+        id S229668AbhJMXh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 19:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbhJMXe0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 19:34:26 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5772EC06174E
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:32:22 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id ec8so16770123edb.6
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:32:22 -0700 (PDT)
+        with ESMTP id S229725AbhJMXh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 19:37:59 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA15C061746
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:35:55 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id i20so16322992edj.10
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 16:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ospeyyhqw0CRqoqClIHT3mWhQW06xSFUt4wC+aB72Do=;
-        b=J0ppSYQmk6ftQ18xXBFf83hWkQjuJ0uLuFrwp5CEMTzHH9X80jUZcDhXJB4Ryq4mKF
-         M2fHKboCOtYZKFEvDiFCbJALu+OngShOiwebyHS6U2HgVMIFe6qAyjjRVan0ulHsTdP1
-         0ztcoUX43Hkg9WoIIPCmcUtPpmq+lBFVaQdl4ZO0KpCg1RCattIhLd14HhE/o+5MZ8JM
-         ygkgNM9Hw9gOspvT9k5K1ZA9nG5u04QksrR1CFB1YgaM0CPsh7EKr76JkDhnE7oSUhPe
-         h8q5pCOZjk9UF7KmI/Pm1RKI8qF+yQXSC4Mn7bGV5CjO5Xj2UA1pNGWkFiK9MWhT10mv
-         gq9g==
+        bh=+QVWEmqTwjvB4lKG2oT78utmP75huv6baJV8Y1UEyyM=;
+        b=XGhEFyFE/kODzisBg+Dy3AWn53AkLeZdpDCkcVjpmgkQ5sBz/p59SBbPu5fEYROYNl
+         3VZG3uLSjs6+TssumBQaLFlmPuC9hEMTTSOvtXtsBFw9OxqzEHMD1VxPUCaIUifMd/k0
+         pWcd1MxVSJ6o9D1nP1dT9+KqMXkE9x8+fxYSmw0sNJ4u/yDOWhQq5P65VcHnSL5Xsyz0
+         IYmTaT3V9edfHkDZO74JiRn2d3SLiqGGviUzePNz9HWEiOBqHi4lV++TlHX9no9nD8p0
+         QqXDOlXbcgltsvk8a1CVTZZbJ+rBeq+d8jEVc5oae7gBFRfnfjJTU4QTwOXcQ0v4qm7h
+         lkxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ospeyyhqw0CRqoqClIHT3mWhQW06xSFUt4wC+aB72Do=;
-        b=g2gcfX+ViG49QL9K/Udnyw1YJZ/5fsospj45jMMgMo2Tq3JPmD1TmqwMv/jVTHwszt
-         3OZKRTRFGEeh6hyqZMu1F0gTGBjo/QOu2afYIvpsRqQ2k/WmYVXhrPxEqkqQjzktF5u7
-         9y9JpFmDE9uFsK/ZL4XDpEsNSwcSi/+TAY8cjDYFlQOwTRhp8ZEr8DIitiC3/zyFBO+S
-         izHHRQq96W0iwBvCMDGlDNyANFMSKrPftiFUuRhaWZ3KNiijJwBMVIEuQB2XzV+TvtCN
-         dtNWi3e8zg4sphthN8HdWUR3Tc1TtNGCnVXw52DJjLvODWfD9QCaBcph5kNpp1khCoJT
-         MCpA==
-X-Gm-Message-State: AOAM532Gj2cw6QTeuAxS15pRDf5HwcjGBOE0FzQJqCL0gH1l1X+pxKMj
-        4IEuZIEuFxPjXUkrykScw009cBlkLyQAJ65U0Iaa1Q==
-X-Google-Smtp-Source: ABdhPJyuIYlcFJXtQMXt4pTjgAt118n7IntyXdUFIq9VY1B2uFC6+blRjvGj0T3/x3oVRqgidcVcxpMLoAdd+OF/5zA=
-X-Received: by 2002:a05:6402:278a:: with SMTP id b10mr3626283ede.134.1634167940811;
- Wed, 13 Oct 2021 16:32:20 -0700 (PDT)
+        bh=+QVWEmqTwjvB4lKG2oT78utmP75huv6baJV8Y1UEyyM=;
+        b=p+ECFiIAb8yFfV/e1OHGnJvUBoBATt1/GEG9AldkugzWgXdG1Tv2r5FT//8d7yf7II
+         6/TZT9zl2b0rDF6An54hJKXDS+1pgbVcQ39WZ+xlzLX/bHVpzsdVKBCJNkBrEq6EsY/h
+         iZR2XiDH7m2tHVx8ROvGbwmNHcbCv4GzcYxnOVRR0UthxCPwyEiwSH0Iio+IJfdcN8Rh
+         wnHzZJPCkD55wWDH3fOquNK+F2m9OGDah1/bmfuWxJBExt+Kj1g5C4gGH3E/5kcqoFNl
+         yScGj2QL+r9bvaL4Y+cr70o927EW8ynmYc8OfvUVLG3pkjPZiqRXZeqZd6Hp6UlK0/HX
+         UPgA==
+X-Gm-Message-State: AOAM532gFPUsRRNsXCLnLALnb6XZjyYjdlIZAuheooK6Leq8okHK6RTC
+        ckMKcTI+/efXUHOs3gjBSQp8o+T2kgfbJ69A2R0hkg==
+X-Google-Smtp-Source: ABdhPJzudWwbadLJFz5Q8P5mUjjvq1YMm2nXg1AcHEp7PN3hUnfOyGsjcJO908OaBYfm4p57U+ZXDNmK5T53AbSmRP4=
+X-Received: by 2002:a05:6402:410:: with SMTP id q16mr3747697edv.286.1634168153873;
+ Wed, 13 Oct 2021 16:35:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211012134027.684712-1-kernel@esmil.dk>
-In-Reply-To: <20211012134027.684712-1-kernel@esmil.dk>
+References: <20210924071614.868307-1-maxime@cerno.tech> <CAL_JsqL3BUX8jO4X12Au_VAytboisQAoxDYz03rQfDMJjL4EDA@mail.gmail.com>
+ <YWWg0PjnuBCKO3Tq@google.com> <CAL_JsqKK_ZC95QfDYsKWdFM3bF+DD7wD=R=--6d74DwqHkgexA@mail.gmail.com>
+ <YWWu+t487giK/FB2@google.com> <YWWvJKs8K9Z8WIGV@google.com>
+In-Reply-To: <YWWvJKs8K9Z8WIGV@google.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 14 Oct 2021 01:32:09 +0200
-Message-ID: <CACRpkdaB27Ar0a+Kxh9bmH78bUL_vFush==Suua2TDjt7wpYug@mail.gmail.com>
-Subject: Re: [PATCH v1 00/16] Basic StarFive JH7100 RISC-V SoC support
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+Date:   Thu, 14 Oct 2021 01:35:42 +0200
+Message-ID: <CACRpkdYe+qJMqbFNyfSE=93ERg4XrmnxqxkT34Kv5n+ZtCyNLA@mail.gmail.com>
+Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
+ binding to a schema
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Chen-Yu Tsai <wens@csie.org>,
+        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, linux-sunxi@lists.linux.dev,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 3:41 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+On Tue, Oct 12, 2021 at 5:52 PM Lee Jones <lee.jones@linaro.org> wrote:
+> On Tue, 12 Oct 2021, Lee Jones wrote:
+> > On Tue, 12 Oct 2021, Rob Herring wrote:
 
->   dt-bindings: pinctrl: Add StarFive pinctrl definitions
->   dt-bindings: pinctrl: Add StarFive JH7100 bindings
->   pinctrl: starfive: Add pinctrl driver for StarFive SoCs
+> > Ah, I missed Bartosz Ack up there.
+> >
+> > Happy to apply it.
+>
+> Linus, Bartosz, do you require a PR?
 
-I'd be happy to apply these to the pinctrl tree if everybody is
-happy.
-If you prefer some other merge path:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+I'm a bit out of the loop so let Bartosz answer this but generally
+not, as long as your tree builds clean we are happy!
 
 Yours,
 Linus Walleij
