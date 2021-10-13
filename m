@@ -2,90 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 953A242CDB0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B879742CDBA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 00:20:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230501AbhJMWSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 13 Oct 2021 18:18:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230515AbhJMWSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:18:45 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4700C061746;
-        Wed, 13 Oct 2021 15:16:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=+u0puN0sMkyAYkNQMTT8QtUODmKP6eAbIA4yxZYl8WM=; b=Eau9WGW08s+kawzSJ3n5iwHVEP
-        8qUk1k1WwQiUEtMiBwrydbwfly+bEnFmyttCySvY9Er2RHzXycILy3bfwG5JV2b/rrK4CDWJJIL4L
-        pcPW02fVBXAWQLaRFPIkt5kB2j0uiGpnIAEVVb4xAfPmA38znuGbwKUGlwwYxn5ltfCfxV0c03Eve
-        SjTPANcs20EvVSwKCec21Ix31Z+u5f6A0nLaNmFgDLrbbC0ESGMDku+wfZlKPqVdjAa3hfBcAMIaM
-        CqIu899k8CSwJDzcgDEm958WGfc4sz7XwLnkL/dONmiv2kwNDUhM8V4u84sdpK2j2Qa5TqROIO+E8
-        JQvDtMWg==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mamYB-000oAV-Fv; Wed, 13 Oct 2021 22:16:39 +0000
-Subject: Re: [PATCH v10 03/13] media: amphion: add amphion vpu device driver
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1634095309.git.ming.qian@nxp.com>
- <2a70d55e012874b9a3381e0aca23010edf65b2f4.1634095309.git.ming.qian@nxp.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <591813d6-2633-bc64-110e-8f62ca07044e@infradead.org>
-Date:   Wed, 13 Oct 2021 15:16:38 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <2a70d55e012874b9a3381e0aca23010edf65b2f4.1634095309.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230178AbhJMWWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 13 Oct 2021 18:22:21 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:46635 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229883AbhJMWWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 13 Oct 2021 18:22:20 -0400
+Received: by mail-ot1-f47.google.com with SMTP id 62-20020a9d0a44000000b00552a6f8b804so5074538otg.13;
+        Wed, 13 Oct 2021 15:20:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=FhOXFtc8ZlYBnjWzOjYeyQHYqTu5IoCFpXCxZaQspmE=;
+        b=dtRZ1R7Ysu0fuCIJXP0TH+Ez7j8rSfmewmoroiDkdx4xV4c0HoBmhrZ4KzuKq/oyi5
+         7KP2+IjA8Zi7Q4yXt2HuULJ7y3oygC1cUvxwDcVK8+9fdn5Mx+kfXQzFGojJY9BENajq
+         /cmLEPD+AY6JSN/QSyEEdWs/aLvqySNauyHNMvPU/ecJ1JWSJT//JwH1OUsmV03AjmYx
+         4utuMVuYXRpTLYOwhkqL4oAnql8TSF+up8fsWKB1/YzmQDzaoRq3FZ+svA5Az5vKwRX/
+         3bDJYzztfgELq5Fd6dUWFsQfU/T9HUeqlK/XgdeSBWvhUwr3RO8lWsElr61PeCAXMKjD
+         +bYA==
+X-Gm-Message-State: AOAM533liy4jByb3u+OMLf1WudOxMhxPZHO+/ZGJJBD7QbiN1M50sq4p
+        SO1YN31zwk4V6scwPTy7hQ==
+X-Google-Smtp-Source: ABdhPJydOw1YpxZRK6382pJlZRPlydDrOZwi+9GWPDjDtOgrhoqlDG7enEBSQP1NRNAeC4kgpWuuAQ==
+X-Received: by 2002:a05:6830:2329:: with SMTP id q9mr1639740otg.229.1634163616339;
+        Wed, 13 Oct 2021 15:20:16 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j8sm165915ooc.21.2021.10.13.15.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Oct 2021 15:20:15 -0700 (PDT)
+Received: (nullmailer pid 1686439 invoked by uid 1000);
+        Wed, 13 Oct 2021 22:20:14 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?q?Marek_Beh=C3=BAn?= <kabel@kernel.org>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>, pavel@ucw.cz,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20211013204424.10961-2-kabel@kernel.org>
+References: <20211013204424.10961-1-kabel@kernel.org> <20211013204424.10961-2-kabel@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: leds: Add `excludes` property
+Date:   Wed, 13 Oct 2021 17:20:14 -0500
+Message-Id: <1634163614.994090.1686438.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/13/21 1:27 AM, Ming Qian wrote:
-> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-> index d9f90084c2f6..2465a5f7a073 100644
-> --- a/drivers/media/platform/Kconfig
-> +++ b/drivers/media/platform/Kconfig
-> @@ -200,6 +200,25 @@ config VIDEO_TI_CAL_MC
->   
->   endif # VIDEO_TI_CAL
->   
-> +config VIDEO_AMPHION_VPU
-> +	tristate "Amphion VPU(Video Processing Unit) Codec IP"
-> +	depends on ARCH_MXC
-> +	depends on MEDIA_SUPPORT
-> +	depends on VIDEO_DEV
-> +	depends on VIDEO_V4L2
-> +	select V4L2_MEM2MEM_DEV
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select VIDEOBUF2_VMALLOC
-> +	default y
+On Wed, 13 Oct 2021 22:44:23 +0200, Marek Behún wrote:
+> Some RJ-45 connectors have LEDs wired in the following way:
+> 
+>          LED1
+>       +--|>|--+
+>       |       |
+>   A---+--|<|--+---B
+>          LED2
+> 
+> With + on A and - on B, LED1 is ON and LED2 is OFF. Inverting the
+> polarity turns LED1 OFF and LED2 ON.
+> 
+> So these LEDs exclude each other.
+> 
+> Add new `excludes` property to the LED binding. The property is a
+> phandle-array to all the other LEDs that are excluded by this LED.
+> 
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/leds/common.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
 
-This should not be "default y" unless it is needed to boot up
-some platform/machine. And even then it should depend on that
-platform/machine if possible.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-And there are 2 other drivers in that same Kconfig file that
-have the same problem.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/leds/common.yaml:66:7: [error] syntax error: could not find expected ':' (syntax)
 
-> +	help
-> +	  Amphion VPU Codec IP contains two parts: Windsor and Malone.
-> +	  Windsor is encoder that supports H.264, and Malone is decoder
-> +	  that supports H.264, HEVC, and other video formats.
-> +	  This is a V4L2 driver for NXP MXC 8Q video accelerator hardware.
-> +	  It accelerates encoding and decoding operations on
-> +	  various NXP SoCs.
-> +	  To compile this driver as a module choose m here.
+dtschema/dtc warnings/errors:
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/leds/common.example.dts'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 120, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a simple key
+  in "<unicode string>", line 65, column 7
+could not find expected ':'
+  in "<unicode string>", line 66, column 7
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/leds/common.example.dts] Error 1
+make[1]: *** Waiting for unfinished jobs....
+schemas/leds/common.yaml: ignoring, error parsing file
+schemas/leds/common.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/leds/common.yaml:  while scanning a simple key
+  in "<unicode string>", line 65, column 7
+could not find expected ':'
+  in "<unicode string>", line 66, column 7
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/common.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/leds/common.yaml
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
--- 
-~Randy
+See https://patchwork.ozlabs.org/patch/1540615
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
