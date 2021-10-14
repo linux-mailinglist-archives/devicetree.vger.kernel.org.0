@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D762D42D760
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57DEF42D767
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbhJNKsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 06:48:45 -0400
-Received: from mail-pf1-f177.google.com ([209.85.210.177]:34374 "EHLO
-        mail-pf1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbhJNKso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 06:48:44 -0400
-Received: by mail-pf1-f177.google.com with SMTP id g14so5136117pfm.1;
-        Thu, 14 Oct 2021 03:46:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DJvXSZseMVfQbBmTt0BMqFozFQd+wMN0VfIKZGrZECk=;
-        b=N36jNuup8DbNKcQt0loYqEFNYdNshFTcCbPLB1O63rYXHyMRpTCwtdGyA5ddfILOja
-         glNutC5d9xuyHF6kdKWcUCSMppkYkwu8IwiVUSXF5+ftQFr3hnwZzVN88l9jPz9Actn3
-         uC3fZ30P2HwyldFGy48wkIcuaPjddiNtiruKcF1VZi/ICmzu0uIyoJCCBygRIJw+O3wH
-         OGldTzRB0reiVmkCDbztBcClCJr2XuELgsAVWFjb2eGVM98TkysqS2nAcQkydtZbS2Mf
-         jXmnvzSHmmvSfrMA3Nv8ciyti27jV1oUpuodtjW/N4eoGQDp0DschB3b82pQgWm3lQ36
-         5a0A==
-X-Gm-Message-State: AOAM533lWBk3GKnw3dbq+zngUcCXD2QfntZFIKhoqWL9rGTuahQu2l6i
-        zi4Fr4NdpuZmnbaL0pgusza1AkdhNXbkK1UyemA=
-X-Google-Smtp-Source: ABdhPJwtbEns4mDs0xX2KLgZa1X/jK39DitRxJ5GZBX6KxfQkmgA4slF3Il6bBNO+Vq6ZZEe58g8utxI0258TBE2Aiw=
-X-Received: by 2002:a62:31c5:0:b0:447:cd37:61f8 with SMTP id
- x188-20020a6231c5000000b00447cd3761f8mr4695364pfx.29.1634208399368; Thu, 14
- Oct 2021 03:46:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211012134027.684712-1-kernel@esmil.dk> <CACRpkdaB27Ar0a+Kxh9bmH78bUL_vFush==Suua2TDjt7wpYug@mail.gmail.com>
-In-Reply-To: <CACRpkdaB27Ar0a+Kxh9bmH78bUL_vFush==Suua2TDjt7wpYug@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Thu, 14 Oct 2021 12:46:28 +0200
-Message-ID: <CANBLGcyno5YGsjAyScDMXqdOPpyXQDH8u7=qMD07rsNVLrOC_Q@mail.gmail.com>
-Subject: Re: [PATCH v1 00/16] Basic StarFive JH7100 RISC-V SoC support
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S230017AbhJNKtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 06:49:32 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:47394 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229513AbhJNKt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 06:49:29 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 7E4751F41052
+Subject: Re: [PATCH v7, 10/15] media: mtk-vcodec: Add new interface to lock
+ different hardware
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20211011070247.792-1-yunfei.dong@mediatek.com>
+ <20211011070247.792-11-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <a13d7ebd-a7d1-f1d0-d4eb-b791e9304686@collabora.com>
+Date:   Thu, 14 Oct 2021 12:47:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211011070247.792-11-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Oct 2021 at 01:32, Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Tue, Oct 12, 2021 at 3:41 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> >   dt-bindings: pinctrl: Add StarFive pinctrl definitions
-> >   dt-bindings: pinctrl: Add StarFive JH7100 bindings
-> >   pinctrl: starfive: Add pinctrl driver for StarFive SoCs
->
-> I'd be happy to apply these to the pinctrl tree if everybody is
-> happy.
-> If you prefer some other merge path:
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> For add new hardware, not only need to lock lat hardware, also
+> need to lock core hardware in case of different instance start
+> to decoder at the same time.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
 
-Thank you, that sounds great to me. Let me post v2 to address Andy and
-Geerts comments though.
-
-/Emil
+Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
