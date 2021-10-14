@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D68C42E013
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 19:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148E842E0C6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 20:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232135AbhJNRdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 13:33:06 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:19828 "EHLO
-        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231206AbhJNRdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 13:33:05 -0400
-Received: from pps.filterd (m0098421.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19EHSweS029454;
-        Thu, 14 Oct 2021 13:30:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-transfer-encoding; s=pp1;
- bh=Rq0jcxFhNxsWKfix/Lz8kGT1bKN6ibN+5nMFu8RS/7A=;
- b=Y9zqZE5qg/RgZXEJaVLdbYi/r87yt1Ju43CYS85J3A+5B7LG4Tq8jMBjhHMydFu9FEWJ
- RLeDZskAxdpu7zOhaLi5AgW20fbPQ2x3D7m9iaIIhOFZoC9RHXqfHCly3ALT37FuFawo
- 35qJSl4ihWt1QHYwNLTUzpULXYD6hUH2vpF+kJjTX7QXVq8+J6pE2cdG2Tpu23hRdMK1
- /OIqoAQlrQQHqhMCba8zzNYwYEQ6RerbPYWKhlVltv3yMPlOLmUDRPwr0+LsRcQEVfi5
- L5VbhJlBCYCtu8ndfuI1kz059YYHGcTlY2Nolf1MLIv4WenyXNMjG7HyAZJw2yUgdg+r GA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3bns3gch7e-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Oct 2021 13:30:58 -0400
-Received: from m0098421.ppops.net (m0098421.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 19EHO1C5001071;
-        Thu, 14 Oct 2021 13:30:58 -0400
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 3bns3gch75-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Oct 2021 13:30:58 -0400
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 19EHBoVD000361;
-        Thu, 14 Oct 2021 17:30:57 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
-        by ppma05wdc.us.ibm.com with ESMTP id 3bk2qcnb99-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 14 Oct 2021 17:30:57 +0000
-Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 19EHUuiC17432838
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 14 Oct 2021 17:30:56 GMT
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 4CE2978068;
-        Thu, 14 Oct 2021 17:30:56 +0000 (GMT)
-Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2207978066;
-        Thu, 14 Oct 2021 17:30:56 +0000 (GMT)
-Received: from localhost (unknown [9.211.53.229])
-        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Thu, 14 Oct 2021 17:30:55 +0000 (GMT)
-From:   Nathan Lynch <nathanl@linux.ibm.com>
-To:     devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] of: make of_node_check_flag() device_node parameter const
-Date:   Thu, 14 Oct 2021 12:30:55 -0500
-Message-Id: <20211014173055.2117872-1-nathanl@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: JY9EWnF96utcXMsIAX7Syizn4mRGmz5d
-X-Proofpoint-ORIG-GUID: 1SY0t52Oa5vD4uq0yHKtp_7ZvbkZmhos
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-14_09,2021-10-14_02,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
- mlxlogscore=868 spamscore=0 bulkscore=0 phishscore=0 adultscore=0
- clxscore=1015 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2109230001 definitions=main-2110140099
+        id S233836AbhJNSJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 14:09:03 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:46618 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230386AbhJNSJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 14:09:03 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1634234818; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=oxG38HVZuMV0lltRN3a6CTUoe9NYl8V8VOMSaQ1XQuQ=; b=nTPN2iCGM77UlbSma38VNJ56qAr4XsicBTpZSNBlPdYZOpCFGgaYl1A+ABY67VKI44AcXCsW
+ 5ePoRuqQuxHiogd5QQuPKNUsAvvQMeBNfJC5kQI78U/oAkB093cpwuaVPqKjVbjd3Jxy4dxa
+ cpUVBK8NUPLI+t+1qvUBJ2omv0g=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 616871b4f3e5b80f1f5b9057 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 14 Oct 2021 18:06:44
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2D24AC4360D; Thu, 14 Oct 2021 18:06:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7BCA1C4338F;
+        Thu, 14 Oct 2021 18:06:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7BCA1C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     sanm@codeaurora.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vbadigan@codeaurora.org, manivannan.sadhasivam@linaro.org
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v2] arm64: dts: qcom: sc7280: Add pcie clock support
+Date:   Thu, 14 Oct 2021 23:36:24 +0530
+Message-Id: <1634234784-5359-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The device_node argument isn't modified by of_node_check_flag(), so mark it
-const.
+Add pcie clock phandle for sc7280 SoC and correct
+The pcie_1_pipe-clk clock name as same as binding.
 
-Signed-off-by: Nathan Lynch <nathanl@linux.ibm.com>
+fix: ab7772de8 ("arm64: dts: qcom: SC7280: Add rpmhcc clock controller node")
+Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+Reported-by: kernel test robot <lkp@intel.com>
+
 ---
- include/linux/of.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This change is depends on the below patch series.
+https://lkml.org/lkml/2021/10/7/841
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 6f1c41f109bb..ac3a5dcbf9e1 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -185,7 +185,7 @@ static inline bool of_node_is_root(const struct device_node *node)
- 	return node && (node->parent == NULL);
- }
- 
--static inline int of_node_check_flag(struct device_node *n, unsigned long flag)
-+static inline int of_node_check_flag(const struct device_node *n, unsigned long flag)
- {
- 	return test_bit(flag, &n->_flags);
- }
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 39635da..78694c1 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -569,9 +569,10 @@
+ 			reg = <0 0x00100000 0 0x1f0000>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+-				 <0>, <0>, <0>, <0>, <0>, <0>;
++				 <0>, <&pcie1_lane 0>,
++				 <0>, <0>, <0>, <0>;
+ 			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+-				      "pcie_0_pipe_clk", "pcie_1_pipe-clk",
++				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+ 				      "ufs_phy_rx_symbol_0_clk", "ufs_phy_rx_symbol_1_clk",
+ 				      "ufs_phy_tx_symbol_0_clk",
+ 				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
 -- 
-2.31.1
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
