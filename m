@@ -2,65 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4CC42E10E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 20:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A5942E127
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 20:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbhJNSXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 14:23:00 -0400
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:44966 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231171AbhJNSW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 14:22:59 -0400
-Received: by mail-oo1-f49.google.com with SMTP id w10-20020a4a274a000000b002b6e972caa1so2160967oow.11;
-        Thu, 14 Oct 2021 11:20:54 -0700 (PDT)
+        id S229915AbhJNS1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 14:27:51 -0400
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:41565 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229675AbhJNS1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 14:27:50 -0400
+Received: by mail-oo1-f44.google.com with SMTP id b5-20020a4ac285000000b0029038344c3dso2177610ooq.8;
+        Thu, 14 Oct 2021 11:25:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rzVS59fW6JCw4SUUlrSov5r2dgobGpDKLwKZFjJWyKs=;
-        b=kgi3kNdu/C3lYiLqkN1YTnhMyw2k/xgj73DFZonfmOFKiYDM42gVeiiaM0c6hEZ/La
-         rf2mZCN6BA0BU7BNk/Rvdksk+jO1b3ujmJbZrTKj6vXZUwW8Dtxo+cNgFLXASrw2Coky
-         D96NNWj+oYzfqjH2ZaILEOUCh/CD2jSgh28yLv7+sLfB5zSUvKAKKV70NiIBT/FxZqZY
-         Ys27CrNZVVJvfqgrPKO23dZIBwCp0PfiQoKnxJMQsZ55gpLp0n+EckXujPNTFa7Sqtn8
-         gMlZhh49DIVF8UtvgqzTFO7i2mBlUQRqnd9psS9/qa2SkGFSMK2Kmv9F5CJbjIeHiUoW
-         exiw==
-X-Gm-Message-State: AOAM533zOpQgmfHES3XyL4bPbvdXRNuQp7zRO47kPlgg0iP2WeXRAFhT
-        2HdwVD24EvAe2Ie675Q+kA==
-X-Google-Smtp-Source: ABdhPJyOzMcPgnyUJRAN6oGdKsVkNB6TEcwQIooRYpkJvRAgay8ieGxivez25FP7BXpYYMh4S4iKDA==
-X-Received: by 2002:a4a:b881:: with SMTP id z1mr5521653ooo.68.1634235654549;
-        Thu, 14 Oct 2021 11:20:54 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=lSGLR+TPyWEX+bgb5ym/EJSPMQUo+T6pVt3I38VRg4o=;
+        b=ozoOJmAMKbLP5EGpiz5crH1a4w2dheJySCB+KHdyvZr+JqvTfTd2fNQAi1wgkUQ3Ch
+         BZs/sv3qbTlq+XfLsrR8orRWjww3wnMJFeAcGwSUSbbr2u/+OV9vwKsU6zFek7hajsWx
+         vK+m/ATGwrlEmW0feAw0rB9xA+HGGrLJmPdp8lzDR5+JhPLJI0qROAWkiHGiRSp0Gku2
+         tl3r5LxRtaSDAzVh/k6UHNl/7ei4JZnxA7gVBLgIpqUta/3K87NZDdpfD9bVWhY7hGqi
+         mlmUW+npBxU7WbbFPG+UA6VvTBBI7xGEXV2+4MWzOl+T+ikCMYtWPd9gGoc7QDK5j1Mf
+         WExQ==
+X-Gm-Message-State: AOAM533NcMGp9u0pnufCDnu2Yf9U9wI4kN45dUaFA/1pYSIUoJ3z8SYE
+        bF63zgf9bsayIqQbSe1K3w==
+X-Google-Smtp-Source: ABdhPJxLbALqLdT/j1AMxSBA5iiUC9rkNODbqRwV6pXrXLNHuI+NpwW64OXR+/SyLkK9muFRv4cd3g==
+X-Received: by 2002:a05:6820:514:: with SMTP id m20mr5538063ooj.66.1634235945371;
+        Thu, 14 Oct 2021 11:25:45 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c3sm701000otr.42.2021.10.14.11.20.53
+        by smtp.gmail.com with ESMTPSA id e25sm571055oot.38.2021.10.14.11.25.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 11:20:54 -0700 (PDT)
-Received: (nullmailer pid 3670138 invoked by uid 1000);
-        Thu, 14 Oct 2021 18:20:53 -0000
-Date:   Thu, 14 Oct 2021 13:20:53 -0500
+        Thu, 14 Oct 2021 11:25:44 -0700 (PDT)
+Received: (nullmailer pid 3677639 invoked by uid 1000);
+        Thu, 14 Oct 2021 18:25:43 -0000
+Date:   Thu, 14 Oct 2021 13:25:43 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, linux@armlinux.org.uk,
+        andrew@lunn.ch, alexandre.belloni@bootlin.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] Add ADV7610 support for adv7604 driver - DT docs.
-Message-ID: <YWh1BYWwLHJCqsyO@robh.at.kernel.org>
-References: <m31r4yoge5.fsf@t19.piap.pl>
+Subject: Re: [PATCH v2 2/3] dt-bindings: phy: Add binding includes for
+ lan966x serdes
+Message-ID: <YWh2J32hZftzIi+F@robh.at.kernel.org>
+References: <20211006063523.3962427-1-horatiu.vultur@microchip.com>
+ <20211006063523.3962427-3-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <m31r4yoge5.fsf@t19.piap.pl>
+In-Reply-To: <20211006063523.3962427-3-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Oct 2021 07:45:38 +0200, Krzysztof Hałasa wrote:
-> ADV7610 is another HDMI receiver chip, very similar to
-> the ADV7611. Tested on TinyRex BaseBoard Lite.
+On Wed, Oct 06, 2021 at 08:35:22AM +0200, Horatiu Vultur wrote:
+> Add include bindings for lan966x serdes
 > 
-> Signed-off-by: Krzysztof Hałasa <khalasa@piap.pl>
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  include/dt-bindings/phy/lan966x_serdes.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 include/dt-bindings/phy/lan966x_serdes.h
 > 
+> diff --git a/include/dt-bindings/phy/lan966x_serdes.h b/include/dt-bindings/phy/lan966x_serdes.h
+> new file mode 100644
+> index 000000000000..06e529473475
+> --- /dev/null
+> +++ b/include/dt-bindings/phy/lan966x_serdes.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +#ifndef __LAN966X_SERDES_H__
+> +#define __LAN966X_SERDES_H__
+> +
+> +#define CU(x)		(x)
+> +#define CU_MAX		CU(2)
+> +#define SERDES6G(x)	(CU_MAX + 1 + (x))
+> +#define SERDES6G_MAX	SERDES6G(3)
+> +#define RG(x)		(SERDES6G_MAX + 1 + (x))
+> +#define RG_MAX		RG(2)
+> +#define SERDES_MAX	(RG_MAX + 1)
 
-Acked-by: Rob Herring <robh@kernel.org>
+I'm guessing these are used for the phy cells? If so, I can't figure out 
+how and I shouldn't have to search the driver to figure it out.
+
+What's CU? What's RG?
