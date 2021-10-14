@@ -2,217 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C01ED42D4CF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 10:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4679242D4E0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 10:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbhJNI2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 04:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229970AbhJNI2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 04:28:36 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B674C061746
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 01:26:30 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r7so16859564wrc.10
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 01:26:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gnT7ITUDew6zP4Lg5jF9hadktZV+ii+Iy6W/r1hLHv0=;
-        b=ch547gAZR+Q3c3Y327p3FYyn/arYGkYkc8PECoQM73tPd7llbZqpZ9kvJ7xF/juuU3
-         fk4AzzHKo5JYR3JKmSx1FB/kq/Zq2hoQMwvG+b7MdXQap36mMbu3DBq8IApbuZDBXTGZ
-         D0IVrEFt1HC9S/0NuF1mFN+KLgXevLgODHWfV7omjKTUpGr2+A7WGRHyUpYSPgF4RMId
-         zmf7LbwtLBKkeWyUH1OoDPG/s3oqpFjGauXbC2p9WZGHHA8o/Un/vXt6NY93Y+8HKG92
-         ArjVUr/hXPp3vZleNy2IVa5mPocPo5silIz9Bzc3rLl+0CxMQVL0tVu3rckQJ8n0S9lm
-         uZLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=gnT7ITUDew6zP4Lg5jF9hadktZV+ii+Iy6W/r1hLHv0=;
-        b=zQvwMVO9FXf4G6k5qCAvgycU+9uGEKnqT2RAhvpZYe07M0coXJBr8mp9UxyD1ZhlJd
-         QAITvbPxzpXUlLtCzRJ/IgeMimv2R36fUVaJWV/IQaUsci3EoZstweujNFv1DDcrf7mA
-         l1omwwOlsrydUnDPwfmwFe4HwtoTMtrPlrwUMuJT9g0TcOErSsylpMZKfjl+bc8BOE7W
-         rqSj7fo6lR4lJ3hYQZ67siuOpGYHvJ0uND6GVbhMUNb47cVIPZfjE4QqzKFGno4o+271
-         c7of+O2NNWVwRUBemlWB1pcwO6bHsNKVFLW4XLQdiRYZHQCn1K58O//b/KagQMeTKZMi
-         19Kw==
-X-Gm-Message-State: AOAM533fz/TGnRivpYw84azzhjiXI36vNSpbb83jqS1VG1m+1qvx6I1l
-        /xz1+Y6YC0XeeqfC/L6rEGFJfw==
-X-Google-Smtp-Source: ABdhPJx3kb0RKjngL3Zm08lJEMCq0GSiOHIniaxNRNHy0v50tjwHheOj+D0AvP9+hzPqKQ9CgMOa2g==
-X-Received: by 2002:a5d:47ac:: with SMTP id 12mr4811542wrb.352.1634199988926;
-        Thu, 14 Oct 2021 01:26:28 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id l20sm10597428wmq.42.2021.10.14.01.26.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 01:26:28 -0700 (PDT)
-Subject: Re: [PATCH RFC linux] dt-bindings: nvmem: Add binding for U-Boot
- environment NVMEM provider
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        U-Boot Mailing List <u-boot@lists.denx.de>
-Cc:     linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Luka Kovacic <luka.kovacic@sartura.hr>
-References: <20211013232048.16559-1-kabel@kernel.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <629c8ba1-c924-565f-0b3c-8b625f4e5fb0@linaro.org>
-Date:   Thu, 14 Oct 2021 09:26:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230155AbhJNIcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 04:32:54 -0400
+Received: from mail-4318.protonmail.ch ([185.70.43.18]:12483 "EHLO
+        mail-4318.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230161AbhJNIcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 04:32:54 -0400
+Date:   Thu, 14 Oct 2021 08:30:38 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1634200246;
+        bh=dYBtx/f72FXDYETSYLf5EAjO7iUAZoohiB+Y/H5mUU0=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=I8a9Rl4QsX2UuPOvVMYlUxxXgztYNgff7Vaf223KD4KAhJcfPaqG/tZS9CBWXGBZ6
+         hUrTCrUApoOEEtsMxuvFdPhHb1nZYwRTWnQqxj4SEzeiV78Ia67O8Y3bfMXavEEmnG
+         wVFvSlB4BNVt8CDZ42a8x9etqiBLIF/+EZYCUUMI=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH 0/8] Add support for MSM8996 Pro
+Message-ID: <20211014083016.137441-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211013232048.16559-1-kabel@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+MSM8996 Pro (also known as MSM8996SG) is a newer revision of MSM8996
+with different CPU/CBF/GPU frequencies and CPR parameters. Its CBF clock al=
+so
+has a different divisor.
+
+This series handles the difference in the CBF clock and adds a new DTSI for
+MSM8996 Pro with CPU and GPU OPPs. It also removes reading msm-id from SMEM
+in qcom-cpufreq-nvmem as it becomes no longer necessary. Separating MSM8996
+and MSM8996 Pro will help with implementing CBF scaling and CPR; since they
+have different CPR parameters and CPU:CBF OPP mapping which is difficult to
+implement in the same cluster OPP tables.
+
+Dependencies:
+- clk: qcom: msm8996-cpu: Add CBF support
+  https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-1-konrad.dyb=
+cio@somainline.org/
+- arm64: dts: qcom: msm8996: Add support for the CBF clock
+  https://lore.kernel.org/linux-arm-msm/20210528192541.1120703-2-konrad.dyb=
+cio@somainline.org/
+
+Yassine Oudjana (8):
+  dt-bindings: clk: qcom: msm8996-apcc: Add CBF
+  dt-bindings: clk: qcom: msm8996-apcc: Add MSM8996 Pro compatible
+  clk: qcom: msm8996-cpu: Add MSM8996 Pro CBF support
+  cpufreq: qcom_cpufreq_nvmem: Simplify reading kryo speedbin
+  dt-bindings: opp: Convert qcom-nvmem-cpufreq to DT schema
+  dt-bindings: opp: qcom-cpufreq-nvmem: Remove SMEM
+  arm64: dts: qcom: msm8996: Add MSM8996 Pro support
+  arm64: dts: qcom: msm8996-xiaomi-scorpio: Include msm8996pro.dtsi
+
+ .../bindings/clock/qcom,msm8996-apcc.yaml     |  11 +-
+ .../bindings/opp/qcom-cpufreq-nvmem.yaml      | 557 ++++++++++++
+ .../bindings/opp/qcom-nvmem-cpufreq.txt       | 796 ------------------
+ MAINTAINERS                                   |   2 +-
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |   3 -
+ .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   |   1 +
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  |   2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  82 +-
+ arch/arm64/boot/dts/qcom/msm8996pro.dtsi      | 281 +++++++
+ drivers/clk/qcom/clk-cpu-8996.c               |  61 +-
+ drivers/cpufreq/Kconfig.arm                   |   1 -
+ drivers/cpufreq/qcom-cpufreq-nvmem.c          |  75 +-
+ 12 files changed, 935 insertions(+), 937 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/opp/qcom-cpufreq-nvme=
+m.yaml
+ delete mode 100644 Documentation/devicetree/bindings/opp/qcom-nvmem-cpufre=
+q.txt
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8996pro.dtsi
+
+--=20
+2.33.0
 
 
-On 14/10/2021 00:20, Marek Behún wrote:
-> Add device tree bindings for U-Boot environment NVMEM provider.
-> 
-> U-Boot environment can be stored at a specific offset of a MTD device,
-> EEPROM, MMC, NAND or SATA device, on an UBI volume, or in a file on a
-> filesystem.
-> 
-> The environment can contain information such as device's MAC address,
-> which should be used by the ethernet controller node.
-> 
-
-Have you looked at 
-./Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml ?
-
-
---srini
-
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->   .../bindings/nvmem/denx,u-boot-env.yaml       | 88 +++++++++++++++++++
->   include/dt-bindings/nvmem/u-boot-env.h        | 18 ++++
->   2 files changed, 106 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
->   create mode 100644 include/dt-bindings/nvmem/u-boot-env.h
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
-> new file mode 100644
-> index 000000000000..56505c08e622
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/denx,u-boot-env.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: U-Boot environment NVMEM Device Tree Bindings
-> +
-> +maintainers:
-> +  - Marek Behún <kabel@kernel.org>
-> +
-> +description:
-> +  This binding represents U-Boot's environment NVMEM settings which can be
-> +  stored on a specific offset of an EEPROM, MMC, NAND or SATA device, or
-> +  an UBI volume, or in a file on a filesystem.
-> +
-> +properties:
-> +  compatible:
-> +    const: denx,u-boot-env
-> +
-> +  path:
-> +    description:
-> +      The path to the file containing the environment if on a filesystem.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
-> +patternProperties:
-> +  "^[^=]+$":
-> +    type: object
-> +
-> +    description:
-> +      This node represents one U-Boot environment variable, which is also one
-> +      NVMEM data cell.
-> +
-> +    properties:
-> +      name:
-> +        description:
-> +          If the variable name contains characters not allowed in device tree node
-> +          name, use this property to specify the name, otherwise the variable name
-> +          is equal to node name.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +
-> +      type:
-> +        description:
-> +          Type of the variable. Since variables, even integers and MAC addresses,
-> +          are stored as strings in U-Boot environment, for proper conversion the
-> +          type needs to be specified. Use one of the U_BOOT_ENV_TYPE_* prefixed
-> +          definitions from include/dt-bindings/nvmem/u-boot-env.h.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 5
-> +
-> +    required:
-> +      - type
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +
-> +    #include <dt-bindings/nvmem/u-boot-env.h>
-> +
-> +    spi-flash {
-> +        partitions {
-> +            compatible = "fixed-partitions";
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +
-> +            partition@180000 {
-> +                compatible = "denx,u-boot-env";
-> +                label = "u-boot-env";
-> +                reg = <0x180000 0x10000>;
-> +
-> +                eth0_addr: ethaddr {
-> +                    type = <U_BOOT_ENV_TYPE_MAC_ADDRESS>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +    ethernet-controller {
-> +        nvmem-cells = <&eth0_addr>;
-> +        nvmem-cell-names = "mac-address";
-> +    };
-> +
-> +...
-> diff --git a/include/dt-bindings/nvmem/u-boot-env.h b/include/dt-bindings/nvmem/u-boot-env.h
-> new file mode 100644
-> index 000000000000..760e5b240619
-> --- /dev/null
-> +++ b/include/dt-bindings/nvmem/u-boot-env.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Macros for U-Boot environment NVMEM device tree bindings.
-> + *
-> + * Copyright (C) 2021 Marek Behún <kabel@kernel.org>
-> + */
-> +
-> +#ifndef __DT_BINDINGS_NVMEM_U_BOOT_ENV_H
-> +#define __DT_BINDINGS_NVMEM_U_BOOT_ENV_H
-> +
-> +#define U_BOOT_ENV_TYPE_STRING		0
-> +#define U_BOOT_ENV_TYPE_ULONG		1
-> +#define U_BOOT_ENV_TYPE_BOOL		2
-> +#define U_BOOT_ENV_TYPE_MAC_ADDRESS	3
-> +#define U_BOOT_ENV_TYPE_ULONG_HEX	4
-> +#define U_BOOT_ENV_TYPE_ULONG_DEC	5
-> +
-> +#endif /* __DT_BINDINGS_NVMEM_U_BOOT_ENV_H */
-> 
