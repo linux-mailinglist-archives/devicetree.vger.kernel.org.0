@@ -2,88 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C11442D32F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1268E42D34C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230020AbhJNHFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 03:05:49 -0400
-Received: from marcansoft.com ([212.63.210.85]:45702 "EHLO mail.marcansoft.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230035AbhJNHFt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 03:05:49 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
+        id S229551AbhJNHN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 03:13:56 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:54986
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229930AbhJNHNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 03:13:55 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 3043B3FA5E;
-        Thu, 14 Oct 2021 07:03:37 +0000 (UTC)
-Subject: Re: [RFC PATCH 4/9] opp: core: Don't warn if required OPP device does
- not exist
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8A5DE3FFF3
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 07:11:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634195510;
+        bh=FM8pSeToFOPUhDjYF23znrZE5dzxI9k0mVFzTSi5BcI=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=CBPh5ZCf+EmkzO/nXgtzKtaPwvTmeB3qizS5uYNsSMR1Gwob36BUt/QT4Kk4O3cR2
+         1DrotPIGMhfXY5ixKQ8MaW+bOnCRYMBlR9oQoU79nVOyRLhIp6k4uJyHBOpLA1DZiS
+         /33XmtSVrBTzdC85oVr3VsGaXBK1yM9j3eJ/IFg33R8QMUR3+Oy+/Ef+EZWryzmSPl
+         5AlVv2wHkh0vhyf2DwFUUq0gbtZuiSOAxXDZdgcJe0i3/z5oziBd+ygAKm8XkClnEO
+         8/273Pzyh8BwY8lbJVcgL6losEc+IdSh7p9xwq5raNnIPkB3PlHwBx8EIkXx+qGmrq
+         6NEJ1ARtaRlew==
+Received: by mail-lf1-f71.google.com with SMTP id x33-20020a0565123fa100b003fcfd99073dso3740663lfa.6
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 00:11:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FM8pSeToFOPUhDjYF23znrZE5dzxI9k0mVFzTSi5BcI=;
+        b=Yd9pJwbOYb8g2JCX6mWt7Wlw4hXuoMaFPJCV0+m8LtMNwhhZYRUQU7RsDhM1v0/Db0
+         wmHrpdE0VE+zC026brUtM/wFSZjqTQRAwU2lZ/QFhmrloAhWRiY2EG7loMwUd6/0UQru
+         k4dN+CaSEc4TS4oNPF7lVOI4ogsJjg3xC3GKuwdxf0SdYZmJeGdZ+eBAaDJLZQupj+YL
+         tiKI+qb2yvVHsjd+6pVEm7DrUzrcVqQRYLlpE/3a+L2w4JsW3y3fsSoZ0d4jTaZb4bTh
+         dm7ay9TfaezsllyAnOTOAoytTRKZKirB3mDhwIftcy7dkPYrjHdGpGxfc9szNZkkC4mV
+         iqtw==
+X-Gm-Message-State: AOAM532u2w8BJ0GkEmuctisInho/4hd9vUjNkHJcvxU7KIMt2PxqH8yO
+        GCKZlQkRuNW/5r8lPkG5J0kGdzR+EqEYAfiRFClxdcSX4lQ1jN1QqsXjQ7ND3Fuv1f7YupjSfSh
+        Qp5DUGivURM2IRqHnRSGXJEW31lc0qgJKf52WZLQ=
+X-Received: by 2002:a05:6512:2307:: with SMTP id o7mr3430117lfu.595.1634195509107;
+        Thu, 14 Oct 2021 00:11:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwgSsaV15NSk47z5aPcuHSvstgvfiWkc6BkOCzPyQ4J2LhnPiscCdV+nbNisZxYgXByuDZ7Eg==
+X-Received: by 2002:a05:6512:2307:: with SMTP id o7mr3430101lfu.595.1634195508926;
+        Thu, 14 Oct 2021 00:11:48 -0700 (PDT)
+Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id 2sm150078lfz.145.2021.10.14.00.11.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Oct 2021 00:11:48 -0700 (PDT)
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20211011165707.138157-1-marcan@marcan.st>
- <20211011165707.138157-5-marcan@marcan.st>
- <20211012032144.2ltlpat7orrsyr6k@vireshk-i7>
- <b7cd51ec-38e5-11d8-5193-1170c9d60ac9@marcan.st>
- <20211012055143.xmkbvhbnolspgjin@vireshk-i7>
- <caf16a6c-f127-7f27-ed17-0522d9f1fb9e@marcan.st>
- <20211012092603.lkmhhjoo5v67wh44@vireshk-i7>
- <049FC437-EC38-4FE5-891E-5E25960892CF@marcan.st>
- <20211012093252.hb6rlcpxv5bmk7n3@vireshk-i7>
- <0db8e994-ac2c-8fad-55d0-1b5a9e2e21f2@marcan.st>
- <20211014065636.lkv77aqbugp3qhif@vireshk-i7>
-From:   Hector Martin <marcan@marcan.st>
-Message-ID: <039b77f3-d10e-bd7a-a594-b951a98bdd45@marcan.st>
-Date:   Thu, 14 Oct 2021 16:03:36 +0900
+References: <20211013202110.31701-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg
+ offsets
+Message-ID: <1cd31098-ba9d-f2e3-e34c-5bada00a2696@canonical.com>
+Date:   Thu, 14 Oct 2021 09:11:47 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211014065636.lkv77aqbugp3qhif@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20211013202110.31701-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2021 15.56, Viresh Kumar wrote:
->> +	/*
->> +	 * Attach the CPU device to its genpd domain (if any), to allow OPP
->> +	 * dependencies to be satisfied.
->> +	 */
->> +	ret = genpd_dev_pm_attach(cpu_dev);
->> +	if (ret <= 0) {
->> +		dev_err(cpu_dev, "Failed to attach CPU device to genpd\n");
->> +		goto out;
->> +	}
->> +
+On 13/10/2021 22:21, Sam Protsenko wrote:
+> Old Exynos SoCs have both Product ID and Revision ID in one single
+> register, while new SoCs tend to have two separate registers for those
+> IDs. Implement handling of both cases by passing Revision ID register
+> offsets in driver data.
 > 
-> Other platform do this from some other place I think.
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
+>  include/linux/soc/samsung/exynos-chipid.h |  6 +-
+>  2 files changed, 58 insertions(+), 15 deletions(-)
 > 
-> Ulf, where should this code be moved ? cpu-clk driver ?
-> 
+> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> index 5c1d0f97f766..7837331fb753 100644
+> --- a/drivers/soc/samsung/exynos-chipid.c
+> +++ b/drivers/soc/samsung/exynos-chipid.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/errno.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+> @@ -24,6 +25,17 @@
+>  
+>  #include "exynos-asv.h"
+>  
+> +struct exynos_chipid_variant {
+> +	unsigned int rev_reg;		/* revision register offset */
+> +	unsigned int main_rev_shift;	/* main revision offset in rev_reg */
+> +	unsigned int sub_rev_shift;	/* sub revision offset in rev_reg */
+> +};
+> +
+> +struct exynos_chipid_info {
+> +	u32 product_id;
+> +	u32 revision;
+> +};
+> +
+>  static const struct exynos_soc_id {
+>  	const char *name;
+>  	unsigned int id;
+> @@ -49,31 +61,55 @@ static const char *product_id_to_soc_id(unsigned int product_id)
+>  	int i;
+>  
+>  	for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
+> -		if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
+> +		if (product_id == soc_ids[i].id)
+>  			return soc_ids[i].name;
+>  	return NULL;
+>  }
+>  
+> +static int exynos_chipid_get_chipid_info(struct regmap *regmap,
+> +		const struct exynos_chipid_variant *data,
+> +		struct exynos_chipid_info *soc_info)
+> +{
+> +	int ret;
+> +	unsigned int val, main_rev, sub_rev;
+> +
+> +	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +	soc_info->product_id = val & EXYNOS_MASK;
+> +
+> +	ret = regmap_read(regmap, data->rev_reg, &val);
 
-I see one driver that does this is drivers/clk/qcom/apcs-sdx55.c (via 
-dev_pm_domain_attach). Though it only does it for CPU#0; we need to do 
-it for all CPUs.
+Isn't this the same register as EXYNOS_CHIPID_REG_PRO_ID?
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+> +	if (ret < 0)
+> +		return ret;
+> +	main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
+> +	sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
+> +	soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
+> +
+> +	return 0;
+> +}
+> +
+>  static int exynos_chipid_probe(struct platform_device *pdev)
+>  {
+> +	const struct exynos_chipid_variant *drv_data;
+> +	struct exynos_chipid_info soc_info;
+>  	struct soc_device_attribute *soc_dev_attr;
+>  	struct soc_device *soc_dev;
+>  	struct device_node *root;
+>  	struct regmap *regmap;
+> -	u32 product_id;
+> -	u32 revision;
+>  	int ret;
+>  
+> +	drv_data = of_device_get_match_data(&pdev->dev);
+> +	if (!drv_data)
+> +		return -EINVAL;
+> +
+>  	regmap = device_node_to_regmap(pdev->dev.of_node);
+>  	if (IS_ERR(regmap))
+>  		return PTR_ERR(regmap);
+>  
+> -	ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &product_id);
+> +	ret = exynos_chipid_get_chipid_info(regmap, drv_data, &soc_info);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	revision = product_id & EXYNOS_REV_MASK;
+> -
+>  	soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
+>  				    GFP_KERNEL);
+>  	if (!soc_dev_attr)
+> @@ -86,8 +122,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+>  	of_node_put(root);
+>  
+>  	soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+> -						"%x", revision);
+> -	soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
+> +						"%x", soc_info.revision);
+> +	soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
+>  	if (!soc_dev_attr->soc_id) {
+>  		pr_err("Unknown SoC\n");
+>  		return -ENODEV;
+> @@ -106,7 +142,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+>  
+>  	dev_info(soc_device_to_device(soc_dev),
+>  		 "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
+> -		 soc_dev_attr->soc_id, product_id, revision);
+> +		 soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
+>  
+>  	return 0;
+>  
+> @@ -125,9 +161,18 @@ static int exynos_chipid_remove(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
+> +	.rev_reg	= 0x0,
+> +	.main_rev_shift	= 0,
+> +	.sub_rev_shift	= 4,
+
+The code does not look correct here. Subrev is at 0:3 bits, mainrev is
+at 4:7.
+
+Did you test it that it produces same result? Looks not - I gave it a
+try and got wrong revision.
+
+
+Best regards,
+Krzysztof
