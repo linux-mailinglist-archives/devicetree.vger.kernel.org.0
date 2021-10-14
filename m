@@ -2,108 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2B242D2D7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 08:41:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD0F42D2D8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 08:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229530AbhJNGnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 02:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbhJNGnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 02:43:32 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90DB6C061746
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 23:41:27 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id v17so15966380wrv.9
-        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 23:41:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mdoHQevChWPiak1ksDMgXK04B0B7nQ0b8w5IVONlPR0=;
-        b=mSIy650ipvtRUAD8Fd6UvoKUpyT6iy9422oVCVv4DzGf+gLtD2hOQYWANJXPvqqzl+
-         kxjBQG+y4bGn1xYSl3gJXj59H9uOgTZRkFZiRm7osZh9v5E5sXQEyhsrOj1oKW2PYSel
-         9kClVPdceZqK249GSdBPTMhpep8sk8iGV8l6oApyIJQB5dVHPRDVlxwUh8sOHdMkAnIx
-         aJUotsbRi/kGusIt0HCcAd7v3qBa2kg8HICRlwjavQuTa0Yk3hpQaRb5pSTETMkmxWHZ
-         yG89znmRVkYr8QNy56uM6tTNcGgXM7RsKFKjXznt6LUHMuHesfEWqIGDBuNdjUwDf6Uu
-         Nv6w==
+        id S229584AbhJNGoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 02:44:06 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:40850
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229457AbhJNGoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 02:44:06 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 205933FFE0
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 06:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634193718;
+        bh=CMmfj/ip+IGKBw8tWjgLAh8I3/FgLXWH7nylZ4BTcqA=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=MB0bTCTv11kczFzbPY0FNzUUzYIrnwcdrIR2ll7xRifeWSekRXlKO7E3SYp3zdaFC
+         lP16RSZ0xEPUwmKdATpbgmUig603V/Ba243xvAWTMkZX0/TEuE9VYmC62Cq//O8DBX
+         pYmAJyT0xQRjC0siiKj+TgLyc7Bbg+icir5Z5SW1XFWQ7URtUfnsEt0wWK/AA1G0JB
+         fp1f3t9ZewpM8hsg09sV9wFCV/IROhGAN/ytuWaS4FFWFxn0gTEaoWE9UkB1sNy0XY
+         7CLqmYHQYhUuoaqG4WnuAPdbREwt8JNp9mqD4tt0WQLgA6xpFvKOiqlD2U9vC/QoNl
+         CkeKep4ZC8AlA==
+Received: by mail-lf1-f71.google.com with SMTP id c41-20020a05651223a900b003fdb648a156so1459676lfv.15
+        for <devicetree@vger.kernel.org>; Wed, 13 Oct 2021 23:41:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mdoHQevChWPiak1ksDMgXK04B0B7nQ0b8w5IVONlPR0=;
-        b=DOjng5gbCMNGOyMv3R0c/uWzEI/yuSIWeaGRb5fmzcWsgiJzeW+0M8Sc/gP//qwbdk
-         89fvOPS5UZTiHQmgXprs2sxniLANHaWo3+rEoCzUheP2ZHcGO7F+3RuOSdPoA6tZ4yLC
-         nuYigtIoiObqfuEk5mMyrsdHzofSxfNTn3IT8m0pJz4NwmAmybhABhWS5AJ/WMS//N+t
-         ptAskGtkZY7BTJllYGNXyL/K0aN3a7WNDGVFFTWgXYCvsQJy6kwTMmdnFyzayRkbduJp
-         6vfSL6UA4oR+7iRmUqIlAueg+vb46kwqMR5Z3U87vCEIlT5/U0GkE7OUOZUuZxETcUUs
-         rP6w==
-X-Gm-Message-State: AOAM533qCVxRcklGYg/s5haKgE8zF2KyDmbfWJw3ARXAsZoE8af6w5xB
-        agbS7l4VuQIvrEfb+soEnkgV9A==
-X-Google-Smtp-Source: ABdhPJz9pPGFHGHAvAYohz36c1b7XdKuDR7rAmgGOwGzyvFPsiz12FQm0Vu9mc2EwECRnBZsiNp+qA==
-X-Received: by 2002:a05:6000:1449:: with SMTP id v9mr4349017wrx.433.1634193686149;
-        Wed, 13 Oct 2021 23:41:26 -0700 (PDT)
-Received: from google.com (176-35-142-29.xdsl.murphx.net. [176.35.142.29])
-        by smtp.gmail.com with ESMTPSA id p18sm1313365wrt.54.2021.10.13.23.41.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Oct 2021 23:41:25 -0700 (PDT)
-Date:   Thu, 14 Oct 2021 07:41:22 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CMmfj/ip+IGKBw8tWjgLAh8I3/FgLXWH7nylZ4BTcqA=;
+        b=QC/VojTgSTQ2X1JU65AO2VEizxxjEBM0ux0mJ9Wu9l1POl4aJKjh8taUOVu7oLyu1s
+         DZFW/5CMgnJZQEpoCRqG7Sjq+6DDsOunWNXYM6GgWVA5RoXM4H1jvowIFOKa9AO25Yw0
+         gf2e4Cscl4PUfB7//wDsFtyhwM1Ta7ScFM84I4p4d/2J/S/NMgaDn7Vj3NnEXpDK5CTz
+         82sDuR1dP/WSLzK+yw0FKAYDiieLmaDDRRerZaWJv8kMlvJdEMim3Mdpra6vF2OfvojA
+         Go7s9Oo9VD/oWVpnaEY2wc0MtOnC0y+MbTEN7BwIV4dEKkTvptGllZJnY8lxotX/3c78
+         uDrw==
+X-Gm-Message-State: AOAM532gQP3wYfsXEgXoaAkubjETO6NvihnWtEobuNY8rdyJRxlKIz44
+        qbiWp2A/ogY/TSl2d7XphxXwgKVHMP2ETZnSO4hufxkIg49jtsl+YC+dxepDzxknFAzl0Cz+jL4
+        1uiXPoOhpnc4EUJlju2yS2YhF/Z8vUfrU8rhjako=
+X-Received: by 2002:ac2:52b0:: with SMTP id r16mr3405372lfm.500.1634193717259;
+        Wed, 13 Oct 2021 23:41:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzFQjJUQipqmMTro8hRz6eMfXduPpPL0Xek7QIUsQK2i5IMv8MJSarYOB4NbF6Q6rvUma+yZw==
+X-Received: by 2002:ac2:52b0:: with SMTP id r16mr3405360lfm.500.1634193717105;
+        Wed, 13 Oct 2021 23:41:57 -0700 (PDT)
+Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id l24sm176616lji.25.2021.10.13.23.41.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Oct 2021 23:41:56 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg
+ offsets
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
- binding to a schema
-Message-ID: <YWfREhBIFLD/9aqo@google.com>
-References: <20210924071614.868307-1-maxime@cerno.tech>
+        linux-kernel@vger.kernel.org
+References: <20211013202110.31701-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <3460c787-0a72-3c37-1075-dfee9cc2c0b3@canonical.com>
+Date:   Thu, 14 Oct 2021 08:41:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20211013202110.31701-1-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210924071614.868307-1-maxime@cerno.tech>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Sep 2021, Maxime Ripard wrote:
-
-> The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
-> thanks to its device tree binding.
+On 13/10/2021 22:21, Sam Protsenko wrote:
+> Old Exynos SoCs have both Product ID and Revision ID in one single
+> register, while new SoCs tend to have two separate registers for those
+> IDs. Implement handling of both cases by passing Revision ID register
+> offsets in driver data.
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> Cc: Chen-Yu Tsai <wens@csie.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: linux-gpio@vger.kernel.org
-> Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
+>  drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
+>  include/linux/soc/samsung/exynos-chipid.h |  6 +-
+>  2 files changed, 58 insertions(+), 15 deletions(-)
 > 
-> Changes from v1:
->   - Removed the example and moved it in the mfd schema
-> ---
->  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
->  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
->  2 files changed, 55 insertions(+), 75 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
+> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> index 5c1d0f97f766..7837331fb753 100644
+> --- a/drivers/soc/samsung/exynos-chipid.c
+> +++ b/drivers/soc/samsung/exynos-chipid.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/errno.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+> @@ -24,6 +25,17 @@
 
-Applied, thanks.
+Include a changelog please. Your patch does not apply and there is no
+information on tree which it was based on.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+
+Best regards,
+Krzysztof
