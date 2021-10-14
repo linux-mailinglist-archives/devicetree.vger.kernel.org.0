@@ -2,142 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0468042DB18
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCFA542DB21
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbhJNOHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:07:42 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:49418 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231245AbhJNOHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:07:41 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id DA2C51F44CD7
-Subject: Re: [PATCH v11 09/16] soc: mediatek: add mtk-mmsys support for mt8195
- vdosys0
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        id S231464AbhJNOKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:10:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230177AbhJNOKP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 10:10:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 209BF610A0;
+        Thu, 14 Oct 2021 14:08:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634220490;
+        bh=D0kIMpPplXpp37Gh0tOmiNC+vZqJTD00gQ8fpi5NP1k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=VxiRiJNs1di0hnfqTQfezhICJ6DFPuhn+4LCHaybprPQL1ccfr5k+pjOanaqq/Ro1
+         Z+L1SqtxyTSSSvgO1BShU959kscT0F9Dup5iJYHk6bNFakJdKxVLmX3RIxg8o0lGd7
+         xPJW4bv+PEpVutGchFm0DMOlBEIF4EzsCbQHl3MGtBHq3RITUHzlG6meTMIfqKq0PH
+         0xHCl/OUiCGA19/hda/V41fLe4ErDMmZwCWvUp0w9VVy7WJ9hvSaxu4unFFyOMfrB5
+         Fjq7pju3gK71nooJ1XF+kySjX9PoHdx43dclswMhBgupzmoWLqmKrJS2yszulsdINs
+         i3etWyYjqehPg==
+Date:   Thu, 14 Oct 2021 07:08:09 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <ALSI@bang-olufsen.dk>
+Cc:     Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <alvin@pqrs.dk>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        hsinyi@chromium.org, fshao@chromium.org, moudy.ho@mediatek.com,
-        roy-cw.yeh@mediatek.com, Fabien Parent <fparent@baylibre.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        nancy.lin@mediatek.com, singo.chang@mediatek.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20210921155218.10387-1-jason-jh.lin@mediatek.com>
- <20210921155218.10387-10-jason-jh.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <8b509551-7cfa-f55c-fc0f-db7d0a3886eb@collabora.com>
-Date:   Thu, 14 Oct 2021 16:05:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Rasmussen <MIR@bang-olufsen.dk>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 5/6] net: dsa: realtek-smi: add rtl8365mb
+ subdriver for RTL8365MB-VC
+Message-ID: <20211014070809.6ca397ce@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <80c80992-85c2-d971-ce1c-a37f8199da7a@bang-olufsen.dk>
+References: <20211012123557.3547280-1-alvin@pqrs.dk>
+        <20211012123557.3547280-6-alvin@pqrs.dk>
+        <20211012082703.7b31e73b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <bde59012-8394-d31b-24c4-018cbfe0ed57@bang-olufsen.dk>
+        <20211013081340.0ca97db1@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <80c80992-85c2-d971-ce1c-a37f8199da7a@bang-olufsen.dk>
 MIME-Version: 1.0
-In-Reply-To: <20210921155218.10387-10-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Add mt8195 vdosys0 clock driver name and routing table to
-> the driver data of mtk-mmsys.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
-> This patch is base on [1]
-> [1] soc: mediatek: mmsys: add mt8192 mmsys support
-> - https://patchwork.kernel.org/project/linux-mediatek/list/?series=524857
-> 
-> The vdosys1 impelmentation patch [2]
-> [2] soc: mediatek: add mtk-mmsys support for mt8195 vdosys1
-> - https://patchwork.kernel.org/project/linux-mediatek/patch/20210906071539.12953-7-nancy.lin@mediatek.com/
-> ---
+On Thu, 14 Oct 2021 12:44:37 +0000 Alvin =C5=A0ipraga wrote:
+> On 10/13/21 5:13 PM, Jakub Kicinski wrote:
+> > On Wed, 13 Oct 2021 08:33:36 +0000 Alvin =C5=A0ipraga wrote: =20
+> >> I implement the dsa_switch_ops callback .get_ethtool_stats, using an
+> >> existing function rtl8366_get_ethtool_stats in the switch helper libra=
+ry
+> >> rtl8366.c. It was my understanding that this is the correct way to
+> >> expose counters within the DSA framework - please correct me if that is
+> >> wrong. =20
+> >=20
+> > It's the legacy way, today we have a unified API for reporting those
+> > stats so user space SW doesn't have to maintain a myriad string matches
+> > to get to basic IEEE stats across vendors. Driver authors have a truly
+> > incredible ability to invent their own names for standard stats. It
+> > appears that your pick of names is also unique :)
+> >=20
+> > It should be trivial to plumb the relevant ethtool_ops thru to
+> > dsa_switch_ops if relevant dsa ops don't exist.
+> >=20
+> > You should also populate correct stats in dsa_switch_ops::get_stats64
+> > (see the large comment above the definition of struct
+> > rtnl_link_stats64 for mapping). A word of warning there, tho, that
+> > callback runs in an atomic context so if your driver needs to block it
+> > has to read the stats periodically from a async work. =20
+>=20
+> OK, so just to clarify:
+>=20
+> - get_ethtool_stats is deprecated - do not use
 
-Hello Jason,
-thanks for the patch! However, there are a few things to improve:
+It can still be used, but standardized interfaces should be preferred
+whenever possible, especially when appropriate uAPI already exists.
 
+> - get_eth_{phy,mac,ctrl,rmon}_stats is the new API - add DSA plumbing=20
+> and use this
 
->   drivers/soc/mediatek/mt8195-mmsys.h    | 114 +++++++++++++++++++++++++
->   drivers/soc/mediatek/mtk-mmsys.c       |  11 +++
->   include/linux/soc/mediatek/mtk-mmsys.h |   9 ++
->   3 files changed, 134 insertions(+)
->   create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
-> 
-> diff --git a/drivers/soc/mediatek/mt8195-mmsys.h b/drivers/soc/mediatek/mt8195-mmsys.h
-> new file mode 100644
-> index 000000000000..0c97a5f016c1
-> --- /dev/null
-> +++ b/drivers/soc/mediatek/mt8195-mmsys.h
-> @@ -0,0 +1,114 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef __SOC_MEDIATEK_MT8195_MMSYS_H
-> +#define __SOC_MEDIATEK_MT8195_MMSYS_H
-> +
-> +#define MT8195_VDO0_OVL_MOUT_EN					0xf14
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0			BIT(0)
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_WDMA0			BIT(1)
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_OVL1			BIT(2)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1			BIT(4)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_WDMA1			BIT(5)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_OVL0			BIT(6)
-> +
-> +#define MT8195_VDO0_SEL_IN					0xf34
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DSC_WRAP0_OUT		(0 << 0)
+Yup.
 
-Bitshifting 0 by 0 bits == 0, so this is simply 0.
+> - get_stats64 orthogonal to ethtool stats but still important - use also=
+=20
+> this
 
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DISP_DITHER1		(1 << 0)
+Yes, users should be able to depend on basic interface stats (packets,
+bytes, crc errors) to be correct.
 
-I would write 0x1 here
+> For stats64 I will need to poll asynchronously - do you have any=20
+> suggestion for how frequently I should do that? I see one DSA driver=20
+> doing it every 3 seconds, for example.
 
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_VDO1_VIRTUAL0		(2 << 0)
-
-....and 0x2 here: bitshifting of 0 bits makes little sense.
-
-> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_DISP_DITHER0		(0 << 4)
-
-Bitshifting 0 by 4 bits is still 0, so this is again 0.
-This is repeated too many times, so I will not list it for all of the occurrences.
-
-> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_VPP_MERGE		(1 << 4)
-
-This is BIT(4).
-
-> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_DISP_DITHER1		(0 << 5) > +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_VPP_MERGE		(1 << 5)
-
-...and this is BIT(5)
-
-> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_VPP_MERGE		(0 << 8)
-> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_DSC_WRAP1_OUT		(1 << 8)
-
-BIT(8)
-
-> +#define MT8195_SEL_IN_SINB_VIRTUAL0_FROM_DSC_WRAP0_OUT		(0 << 9)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_DSC_WRAP1_OUT		(0 << 12)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_VPP_MERGE			(1 << 12)
-
-BIT(12)
-
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_VDO1_VIRTUAL0		(2 << 12)
-
-BIT(13)
-
-... and please, use the BIT(nr) macro for all these bit definitions, it's way more
-readable like that.
-
-Regards,
-- Angelo
+3 sec seems fine.
