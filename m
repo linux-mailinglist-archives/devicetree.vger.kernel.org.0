@@ -2,117 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EDE842DBA0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD74642DBD2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231676AbhJNOdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:33:13 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:36834 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231929AbhJNOdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:33:11 -0400
-Received: by mail-ot1-f48.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so8504224otk.3;
-        Thu, 14 Oct 2021 07:31:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=DIK3JlJ2bJ0du5PT7KO43mUV3V2btTbFFXy8E8ul2KA=;
-        b=elc7e5ElTtNxi976oFg92xvtNo1kv3i98iaUJYqtVhBsPoJItHrLFPOkPYdEHsGVBZ
-         267sGgf8k433P/K0ooZXPqGVzFCcwVPcWoXFVgGu3WrgiMFuyZjWlL8fq7VL0lYtgSUV
-         aK0579rNgHBIH/fLnv909De3AHjR35aM0tD+AfGHUYCZxO6fa424DA54afd6QQLy93eA
-         8Mf9JSNIdEvl9suoEPMNy/Hz+rvTesRuKscYdwvv+nNSP/JQ3UR+kTq8MO5nVd66Va7z
-         YFHSwYW96hG6WNu56j702OKiwnHMxuJsbLUNLoGuZpw4cHMOZwWL1FgSGcS5GF6qUvNI
-         UcnQ==
-X-Gm-Message-State: AOAM531LWrIxz1K5gxjtYc1FAFjGhWYxme7/WVig1Cat7DniS5NXdMz7
-        aZLKNf8t6j53+00F9pws4w==
-X-Google-Smtp-Source: ABdhPJyHytxarfX7/zX2hA7gK8CZmnmZShlDHqNBGtLn5OQ1682QHnABXJKOMT99anGKWPL1DaT5IQ==
-X-Received: by 2002:a9d:7b48:: with SMTP id f8mr2828575oto.112.1634221865888;
-        Thu, 14 Oct 2021 07:31:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u15sm503178oon.35.2021.10.14.07.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 07:31:05 -0700 (PDT)
-Received: (nullmailer pid 3295872 invoked by uid 1000);
-        Thu, 14 Oct 2021 14:31:04 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Shawn Guo <shawnguo@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20211013222313.3767605-6-vladimir.oltean@nxp.com>
-References: <20211013222313.3767605-1-vladimir.oltean@nxp.com> <20211013222313.3767605-6-vladimir.oltean@nxp.com>
-Subject: Re: [PATCH net-next 5/6] dt-bindings: net: dsa: sja1105: add {rx,tx}-internal-delay-ps
-Date:   Thu, 14 Oct 2021 09:31:04 -0500
-Message-Id: <1634221864.138006.3295871.nullmailer@robh.at.kernel.org>
+        id S230507AbhJNOiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:38:06 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:3259 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230190AbhJNOiF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:38:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634222161; x=1665758161;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=UKR5vWCNAno42pYINcB56F+Pp43CdX14ETbyIT5ZJIE=;
+  b=nTMRZCxtF/9FlO3KQ+OJ8eP+zipDJoNUiJXFesovnC6jGcIP5oyGnPwx
+   f0eUCI02P6WNbUrdBWXpB8C+5Ci3t0nZ3MU7hsHHku5nB9A/e5hk+NjLD
+   4HAwMYZWFLktrVKvOzvN8pdkSZsDzYm8WcRtMaml35NZ8jr6INXIuN48X
+   nqtiBhi8XQ00rxWNPTzOcbafgPKNHNCNYSD+9JvZx9PjnySmdf+Vj0iL/
+   91d/ZM3dUxu5I1UtbEuGx+vkJ+grVqyMPzXjuY5cSrzKul0fUF58lGpW3
+   3zhDtPH9fLcQBVJ/BgOyfdhDINWKH3UEoZaqAlLgUARLKO0f5mMHuGyKC
+   g==;
+IronPort-SDR: d+BId0l/vwLu4oBH7WCcy4CC1hRX5GfLxzG3TEWawvTRBPtcFMbCtQXmqjo8hNdV+IgHLQyvuR
+ g96YwPTZVfzII8Z51wwTCgp+297MaRniVrh2iuBLuqJN4VIZ9PdVCau9RMycnZMxcPqyeZYAPF
+ bz3Mk/s2FyLHUrNNg+NmSAU4Q2oHrAGxVGYo4ZDXxt4+ZrhdCI0O8L8Ju0nhNjE6w+i7khBxc6
+ XlvJ1sbu5NIpsDT9eV06C4LcwA3DL/Kf4BSlV/LPt0h3vMrWTA8yvbZAeSqg0OOlBjrxcXuTPh
+ IkFY3b7qthC/QuYMdgxw3JYz
+X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; 
+   d="scan'208";a="140290254"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Oct 2021 07:36:00 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 14 Oct 2021 07:36:00 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 14 Oct 2021 07:35:59 -0700
+Date:   Thu, 14 Oct 2021 16:37:33 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] pinctrl: microchip sgpio: use reset driver
+Message-ID: <20211014143733.t2dov6ajjebxlht6@soft-dev3-1.localhost>
+References: <20211014085929.2579695-1-horatiu.vultur@microchip.com>
+ <20211014085929.2579695-3-horatiu.vultur@microchip.com>
+ <2874212d2f9462880d1b0aae35296162e1277e62.camel@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <2874212d2f9462880d1b0aae35296162e1277e62.camel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Oct 2021 01:23:12 +0300, Vladimir Oltean wrote:
-> Add a schema validator to nxp,sja1105.yaml and to dsa.yaml for explicit
-> MAC-level RGMII delays. These properties must be per port and must be
-> present only for a phy-mode that represents RGMII.
+The 10/14/2021 13:47, Philipp Zabel wrote:
 > 
-> We tell dsa.yaml that these port properties might be present, we also
-> define their valid values for SJA1105. We create a common definition for
-> the RX and TX valid range, since it's quite a mouthful.
+> Hi Horatiu,
+
+Hi Philipp
 > 
-> We also modify the example to include the explicit RGMII delay properties.
-> On the fixed-link ports (in the example, port 4), having these explicit
-> delays is actually mandatory, since with the new behavior, the driver
-> shouts that it is interpreting what delays to apply based on phy-mode.
+> > +     reset = devm_reset_control_get_shared(&pdev->dev, "switch");
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  .../devicetree/bindings/net/dsa/dsa.yaml      |  4 ++
->  .../bindings/net/dsa/nxp,sja1105.yaml         | 42 +++++++++++++++++++
->  2 files changed, 46 insertions(+)
+> Please use devm_reset_control_get_optional_shared() for optional resets
+> and handle errors. That will return NULL in case the optional reset is
+> not specified in the device tree.
+
+I will do that.
+
 > 
+> It seems weird to me that the reset input to the GPIO controller is
+> called "switch" reset. You can request a single unnamed reset with
+> 
+>         reset = devm_reset_control_get_shared(&pdev->dev, NULL);
+> 
+> although that would limit future extendability in case this driver will
+> ever require to handle multiple separate resets. If you decide to
+> request the reset control by name, the yaml binding should specify the
+> same name.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I think this requires a little bit more explanation from my side. On
+lan966x we are facing the following issue. When we try to reset just the
+switch core then also the sgpio device was reset and there was no way
+from HW perspective to prevent this.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:82:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:84:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:85:21: [warning] wrong indentation: expected 18 but found 20 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:86:25: [warning] wrong indentation: expected 22 but found 24 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:93:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:94:21: [warning] wrong indentation: expected 18 but found 20 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:96:21: [warning] wrong indentation: expected 18 but found 20 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:103:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:104:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:105:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:109:13: [warning] wrong indentation: expected 10 but found 12 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:110:13: [warning] wrong indentation: expected 13 but found 12 (indentation)
-./Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml:111:13: [warning] wrong indentation: expected 13 but found 12 (indentation)
+So our solutions was to create a reset driver[1] that will be triggered
+only one time, by the sgpio driver or by the switch driver. That is the
+reason why it was called "switch" reset. And that is the purpose of this
+patch to allow the sgpio driver to reset the switch in case is probed
+before the switch driver so it would not get reset after that.
 
-dtschema/dtc warnings/errors:
+> 
+> > +     if (!IS_ERR(reset))
+> > +             reset_control_reset(reset);
+> 
+> With optional resets, this can be just:
+> 
+>         reset_control_reset(reset);
 
-doc reference errors (make refcheckdocs):
+Great I will do that.
 
-See https://patchwork.ozlabs.org/patch/1540707
+> 
+> regards
+> Philipp
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+[1] https://lore.kernel.org/lkml/20211013073807.2282230-1-horatiu.vultur@microchip.com/
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+/Horatiu
