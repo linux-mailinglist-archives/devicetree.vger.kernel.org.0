@@ -2,153 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C4D42DBF1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:42:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D400742DC0F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231601AbhJNOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:44:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35760 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231286AbhJNOog (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 10:44:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C31EB60E96;
-        Thu, 14 Oct 2021 14:42:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634222551;
-        bh=fdhTS66TOVDzx8KtquiTV6pJu0VSd2p4ZibtwFJ6e5Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AvOkMWb9LYqhw0j4orEhtR1txAXUInuvW633fDb+TQVhvDHap03TwlMBh2qeczBmX
-         Ri+keFSGIkgXFSdIzu6bwT8ZDurmK6KCVzLEjuLcxdwApgHUZQviQ5UyEsWYYUuTvf
-         4/usieL7klqmsowMa325ng3gVEAMlO5pCe5Fs9goSAZznNIBp52U193iFhgmzdpTZJ
-         WyMhMx1XpcRsNzqv9nWptrCchbmNa/kDub7PYlE/CkawK2hc5GCBIhgEBUL0/yyVGS
-         cZhLEpbgKIo7SxLlq1/WdGAVn3kv3DQHLa/xXplOKagpwkIv5mD7iXmgujx2tbmIYS
-         YSLqxysJQf+ww==
-Received: by mail-ed1-f52.google.com with SMTP id y12so26134968eda.4;
-        Thu, 14 Oct 2021 07:42:31 -0700 (PDT)
-X-Gm-Message-State: AOAM533nsQioKLxtF0k8k2P44gskUAIlJVMaHiJMoh74/y9878eh1tSK
-        Ezt1KaUX3t3S92HBSb65Jg1N70AIRs3IdbzKOQ==
-X-Google-Smtp-Source: ABdhPJxM5Uhcff7BCaGJHmbmB9JXZvWTU1yQyXDETewwjg/h9UtviGQRmtNS9N8T6a/ID0xDkhc7i4+bv61tRY4XgNk=
-X-Received: by 2002:a17:906:9399:: with SMTP id l25mr4245067ejx.363.1634222517021;
- Thu, 14 Oct 2021 07:41:57 -0700 (PDT)
+        id S231838AbhJNOy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:54:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45494 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231274AbhJNOy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:54:27 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2616FC061570;
+        Thu, 14 Oct 2021 07:52:23 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 1E93B1F44D01
+Subject: Re: [PATCH v6 06/16] soc: mediatek: add mtk-mmsys support for mt8195
+ vdosys1
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        singo.chang@mediatek.com, srv_heupstream@mediatek.com
+References: <20211004062140.29803-1-nancy.lin@mediatek.com>
+ <20211004062140.29803-7-nancy.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <c6dd417c-a575-8054-9d10-d56d925ec6bc@collabora.com>
+Date:   Thu, 14 Oct 2021 16:52:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211013232048.16559-1-kabel@kernel.org>
-In-Reply-To: <20211013232048.16559-1-kabel@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 14 Oct 2021 09:41:44 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJZC0G_SGfuK0zg8n+uPm5b1L44fo8axUbpvAAZ2b8tAQ@mail.gmail.com>
-Message-ID: <CAL_JsqJZC0G_SGfuK0zg8n+uPm5b1L44fo8axUbpvAAZ2b8tAQ@mail.gmail.com>
-Subject: Re: [PATCH RFC linux] dt-bindings: nvmem: Add binding for U-Boot
- environment NVMEM provider
-To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Luka Kovacic <luka.kovacic@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211004062140.29803-7-nancy.lin@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 13, 2021 at 6:20 PM Marek Beh=C3=BAn <kabel@kernel.org> wrote:
->
-> Add device tree bindings for U-Boot environment NVMEM provider.
->
-> U-Boot environment can be stored at a specific offset of a MTD device,
-> EEPROM, MMC, NAND or SATA device, on an UBI volume, or in a file on a
-> filesystem.
->
-> The environment can contain information such as device's MAC address,
-> which should be used by the ethernet controller node.
->
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+> Add mt8195 vdosys1 clock driver name and routing table to
+> the driver data of mtk-mmsys.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
 > ---
->  .../bindings/nvmem/denx,u-boot-env.yaml       | 88 +++++++++++++++++++
->  include/dt-bindings/nvmem/u-boot-env.h        | 18 ++++
->  2 files changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/denx,u-boot-e=
-nv.yaml
->  create mode 100644 include/dt-bindings/nvmem/u-boot-env.h
->
-> diff --git a/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml=
- b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
-> new file mode 100644
-> index 000000000000..56505c08e622
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/nvmem/denx,u-boot-env.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: U-Boot environment NVMEM Device Tree Bindings
-> +
-> +maintainers:
-> +  - Marek Beh=C3=BAn <kabel@kernel.org>
-> +
-> +description:
-> +  This binding represents U-Boot's environment NVMEM settings which can =
-be
-> +  stored on a specific offset of an EEPROM, MMC, NAND or SATA device, or
-> +  an UBI volume, or in a file on a filesystem.
-> +
-> +properties:
-> +  compatible:
-> +    const: denx,u-boot-env
+>   drivers/soc/mediatek/mt8195-mmsys.h    | 136 +++++++++++++++++++++++++
+>   drivers/soc/mediatek/mtk-mmsys.c       |  10 ++
+>   include/linux/soc/mediatek/mtk-mmsys.h |   2 +
+>   3 files changed, 148 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mt8195-mmsys.h b/drivers/soc/mediatek/mt8195-mmsys.h
+> index 0c97a5f016c1..f19ec72c1243 100644
+> --- a/drivers/soc/mediatek/mt8195-mmsys.h
+> +++ b/drivers/soc/mediatek/mt8195-mmsys.h
+> @@ -59,6 +59,70 @@
+>   #define MT8195_SOUT_DSC_WRAP1_OUT_TO_SINA_VIRTUAL0		(2 << 16)
+>   #define MT8195_SOUT_DSC_WRAP1_OUT_TO_VPP_MERGE			(3 << 16)
+>   
+> +#define MT8195_VDO1_VPP_MERGE0_P0_SEL_IN			0xf04
+> +#define MT8195_VPP_MERGE0_P0_SEL_IN_FROM_MDP_RDMA0		(1 << 0)
 
-'u-boot' is a vendor prefix. Unless you are saying Denx owns u-boot...
+There is no bitshifting action here: this is simply 1.
 
 > +
-> +  path:
-> +    description:
-> +      The path to the file containing the environment if on a filesystem=
-.
-> +    $ref: /schemas/types.yaml#/definitions/string
+> +#define MT8195_VDO1_VPP_MERGE0_P1_SEL_IN			0xf08
+> +#define MT8195_VPP_MERGE0_P1_SEL_IN_FROM_MDP_RDMA1		(1 << 0)
+
+Same here.
+
 > +
-> +patternProperties:
-> +  "^[^=3D]+$":
-> +    type: object
+> +#define MT8195_VDO1_DISP_DPI1_SEL_IN				0xf10
+> +#define MT8195_DISP_DPI1_SEL_IN_FROM_VPP_MERGE4_MOUT		(0 << 0)
+
+And this is 0.
+
 > +
-> +    description:
-> +      This node represents one U-Boot environment variable, which is als=
-o one
-> +      NVMEM data cell.
+> +#define MT8195_VDO1_DISP_DP_INTF0_SEL_IN			0xf14
+> +#define MT8195_DISP_DP_INTF0_SEL_IN_FROM_VPP_MERGE4_MOUT	(0 << 0)
 > +
-> +    properties:
-> +      name:
+> +#define MT8195_VDO1_MERGE4_SOUT_SEL				0xf18
+> +#define MT8195_MERGE4_SOUT_TO_DPI1_SEL				(2 << 0)
 
-'name' is already a property for every node, so this would collide. It
-used to be in the dtb itself, but current revisions generate it from
-the node name.
+This is simply 0x2...
 
-> +        description:
-> +          If the variable name contains characters not allowed in device=
- tree node
-> +          name, use this property to specify the name, otherwise the var=
-iable name
-> +          is equal to node name.
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +
-> +      type:
+> +#define MT8195_MERGE4_SOUT_TO_DP_INTF0_SEL			(3 << 0)
 
-'type' is really too generic. Any given property name should have 1
-meaning and data type.
+...and this is 0x3.
 
-But I expect based on other comments already, all this is going away anyway=
-s.
+There are other occurrences of the same logic, so please fix them all.
 
-> +        description:
-> +          Type of the variable. Since variables, even integers and MAC a=
-ddresses,
-> +          are stored as strings in U-Boot environment, for proper conver=
-sion the
-> +          type needs to be specified. Use one of the U_BOOT_ENV_TYPE_* p=
-refixed
-> +          definitions from include/dt-bindings/nvmem/u-boot-env.h.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 5
+Regards,
+- Angelo
+
