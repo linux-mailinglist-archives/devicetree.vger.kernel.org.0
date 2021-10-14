@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9699242E47D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 01:00:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D8B42E486
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 01:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233638AbhJNXCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 19:02:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41818 "EHLO mail.kernel.org"
+        id S234231AbhJNXEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 19:04:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42690 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230512AbhJNXCO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 19:02:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id C844861090;
-        Thu, 14 Oct 2021 23:00:08 +0000 (UTC)
+        id S230503AbhJNXEt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 19:04:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 291E861053;
+        Thu, 14 Oct 2021 23:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634252408;
-        bh=AA0WZn+DU/kRFEWzKKA9jV8f4+zGPBeXV2ztIbRNPMg=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=gazF9vBuoi77an2Rv23QRPzB1DZddRP4rXm9pHs3pNdG2aWdOlT84Hc/ZyKtD7lV3
-         4zN5lF9CkJLsrxBoYBBeulaEWgh4gBrBjU0ACkeORf0oGRifdBf6q7TTm59Tyjom4C
-         5vu+fJMGvIbJN8ke5uqb7Q8j69CyKqWSFgPmtRyVjTtpfOmlT+A8BB5V7w3KsDdy2Z
-         fgLQBXWLnGNlI02eKAAaXi77qKnPCxKT27FYiMNdOkb9g+4S98teMzbpsyrYa/3RYO
-         kj1SqUsnXtnU3ucvt5P7rih9Wnp7S+U42I73FUm6arg0VSOAU2fgORPz5bqOCYVunJ
-         0smF+Tr8dMnmA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id BC939609ED;
-        Thu, 14 Oct 2021 23:00:08 +0000 (UTC)
+        s=k20201202; t=1634252564;
+        bh=KQhnfft+SeT/c5QZdp7RT0ENepdXT9rmIDodbBGmQKk=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=V987DMuuAu143/QxCL25gnT67YWoLWnzDLrxGaQU2lZE4cKadqwaoj7ZSuvF1ueSH
+         4BFY2IndapYKmGjvJoV1jnI41eVkgUZ1JfE9Ll/CO9Xe52stcM286MeRcND9ugxvQr
+         wNQpjT1xp3meLcjMOcSsUTgg4eJb3JWl7Ve0aCJouIN4G1by8xMOuSZmWso+/FPv5Y
+         bmmxric7fYEBbPbnqdvLHWHbrlmIwZjFqVzdcfX/Vlp9vGJTJ9vy0uy6j4ov3XDBOZ
+         pMfGEADfc88zSMGY/IlJWghPrOzo+tiga7LzpmLXEaJUkGAqI23UrF4tZmmJ9Ez87H
+         5H/aqQSyW2ExA==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] net: of: fix stub of_net helpers for CONFIG_NET=n
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163425240876.7869.13697654167587568953.git-patchwork-notify@kernel.org>
-Date:   Thu, 14 Oct 2021 23:00:08 +0000
-References: <20211014090055.2058949-1-arnd@kernel.org>
-In-Reply-To: <20211014090055.2058949-1-arnd@kernel.org>
-To:     Arnd Bergmann <arnd@kernel.org>
-Cc:     kuba@kernel.org, davem@davemloft.net, arnd@arndb.de,
-        robh+dt@kernel.org, frowand.list@gmail.com, andrew@lunn.ch,
-        michael@walle.cc, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com> <YV1XpL7ibF1y4LbV@google.com> <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com> <YWVD0RXHVLxuXEIN@google.com> <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com> <YWfSz00Rj5AVhkgT@google.com> <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512 global registers
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>, open list:
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>, ;
+Illegal-Object: Syntax error in Cc: address found on vger.kernel.org:
+        Cc:     ;
+                        ^-missing semicolon to end mail group, extraneous tokens in mailbox, missing end of mailbox
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 14 Oct 2021 16:02:42 -0700
+Message-ID: <163425256290.1688384.5646232860050218479@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Quoting Rob Herring (2021-10-14 09:18:16)
+> On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > I don't explicitly build DT documentation.
+> >
+> > Since I use the build bots to let me know if there are strange !(C,
+> > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > configuration possibilities (randconfig) in the repos I maintain, you
+> > might have to convince them that this is important too.
+>=20
+> It's really just a matter of turning on the build in
+> allyesconfig/allmodconfig builds. I've not done that primarily because
+> there's one person I don't want to yell at me, but I could probably
+> make it arm and/or arm64 only. It's really arch and config
+> independent, so doing it multiple times is kind of pointless.
+>=20
+> I assume for bots you mean kernel-ci mainly? Do you run that before
+> stuff gets into linux-next? IMO, that's too late. But still a slight
+> improvement if things go in via one tree. Otherwise, I see the
+> breakage twice, 1st linux-next then the merge window.
+>=20
 
-This patch was applied to netdev/net-next.git (master)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Thu, 14 Oct 2021 11:00:37 +0200 you wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> Moving the of_net code from drivers/of/ to net/core means we
-> no longer stub out the helpers when networking is disabled,
-> which leads to a randconfig build failure with at least one
-> ARM platform that calls this from non-networking code:
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next] net: of: fix stub of_net helpers for CONFIG_NET=n
-    https://git.kernel.org/netdev/net-next/c/8b017fbe0bbb
-
-You are awesome, thank you!
---
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+I run `make dt_binding_check DT_SCHEMA_FILES=3D"<path to yaml file>"` but
+nowadays this seems to check all the bindings and not just the one
+binding I care to check. Did something break?
