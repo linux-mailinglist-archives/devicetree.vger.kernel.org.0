@@ -2,186 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FD9342D3F7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A9A042D417
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:52:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbhJNHql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 03:46:41 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56528
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229967AbhJNHqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 03:46:40 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        id S230176AbhJNHyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 03:54:16 -0400
+Received: from marcansoft.com ([212.63.210.85]:57432 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230049AbhJNHyO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 03:54:14 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A95693FFF0
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 07:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634197475;
-        bh=YxA6fGNZ6kpnunGSBFEKjT2GQx46vYtRacXwF3gTOcA=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=g0gw6JmrUbSTHUYPofY4faaeoaSZ8tTWsfk0OGOp8iy3wzz+btum5gdxutbuYdvwd
-         ntYIDzHWa+Tjv6M4ANxpSZadyk3QhjuGPIdL23KtlNjyzGnF23JEDgGxRW/FiSi4VI
-         ZCpCnJ+4xOq207atGQCq/+LrH5n9UbX0MrYB8XxbvAMQ+g5CZ4aSzlxNc4oXrZmejg
-         emf5SiV35qIxlWxEKiLsCxbuTv5BpNea10kvxY1q6X3ebuhUrVoxbQi1eNM4Vab8fb
-         vS32hEHHILuXCi1AtcHphvbN0j6jcOJ0rH5kIDg05pP8fOZ4PHbngUUmNzCbY/MYN8
-         K1ZK4+dPOrZKQ==
-Received: by mail-lf1-f71.google.com with SMTP id b36-20020a0565120ba400b003fda644089bso3751919lfv.18
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 00:44:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YxA6fGNZ6kpnunGSBFEKjT2GQx46vYtRacXwF3gTOcA=;
-        b=BrBE/gz6pAylrt+u+Uw60WW9hNCvr5qyRv9qplnbJXPDYGEWoRm+9hawYi/NA3IFfq
-         gMasNPfIiCGnhktqnjEibOFT7Vo7/Ri9hA/ISFm2JzNmUPG+2WQIuDBgBgGU6UxR0KeN
-         uYBouUupA8+ub0lRIy2JtNE0Vc05SSvBMTLvv+NnpV4lvrDJiuEQiI4fVh9rhA8yQhoG
-         iiEDfSJ8J7JGRnBO9anY58hFzd8hDvhZN9z9MBsMTilv4egcoNeHSu5XipX5kFKSk4n7
-         i02KK+exh20rnaeUqrrrJPHjpauIZjoXaVM0R5NBQqIKAtRDt+cBWKb4hm2XmqkkCle/
-         fRxw==
-X-Gm-Message-State: AOAM5333MBpjdFedVEeXi69v44aqqtMej8uEG3oFIOriVqdeo1ehoVyh
-        dMFsl762si3d4ruZRuvC6sVfnVY0HjIs8f4/nONIRzZeJcrgrPkAk7hQFBeIth8dMj1vlE8wiMb
-        JFCI7efPOFX85xmGOrcH+M61J0YSU2duQg2IjdDY=
-X-Received: by 2002:a05:6512:c23:: with SMTP id z35mr3741947lfu.590.1634197473938;
-        Thu, 14 Oct 2021 00:44:33 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw9xB37hiRqL5qEQyETaPyULtK9+EdI9KDH1bHmVQfIHFvVJaWzHAXWeSE4urCbWqYM6PNDyQ==
-X-Received: by 2002:a05:6512:c23:: with SMTP id z35mr3741941lfu.590.1634197473783;
-        Thu, 14 Oct 2021 00:44:33 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id r26sm156209lfm.226.2021.10.14.00.44.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 00:44:33 -0700 (PDT)
-Subject: Re: [PATCH 6/8] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-References: <20211011155615.257529-1-luca@lucaceresoli.net>
- <20211011155615.257529-7-luca@lucaceresoli.net>
- <79a3c52b-ed4a-dadb-c7e2-2c96c9a58c49@canonical.com>
- <21684e2a-e84c-05ed-e27c-e710c53e3a64@lucaceresoli.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <092e893a-757c-fd4d-08a1-0ae65219e770@canonical.com>
-Date:   Thu, 14 Oct 2021 09:44:32 +0200
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id B237741AC8;
+        Thu, 14 Oct 2021 07:52:03 +0000 (UTC)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-7-marcan@marcan.st>
+ <a9f6898d-bd76-b94e-52fc-98e9da1a04bd@canonical.com>
+ <2a6f14e5-fbc9-4b9a-9378-a4b5200bc3fb@marcan.st>
+ <f81467d4-74b2-176d-06bf-f04e073efce4@canonical.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [RFC PATCH 6/9] memory: apple: Add apple-mcc driver to manage MCC
+ perf in Apple SoCs
+Message-ID: <00925242-b837-d75b-3655-536d45dcd4d2@marcan.st>
+Date:   Thu, 14 Oct 2021 16:52:01 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <21684e2a-e84c-05ed-e27c-e710c53e3a64@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <f81467d4-74b2-176d-06bf-f04e073efce4@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2021 23:49, Luca Ceresoli wrote:
-> Hi,
-> 
-> On 12/10/21 10:09, Krzysztof Kozlowski wrote:
->> On 11/10/2021 17:56, Luca Ceresoli wrote:
->>> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
->>> watchdog only.
->>>
->>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>> ---
->>>  MAINTAINERS                  |   2 +
->>>  drivers/mfd/Kconfig          |  14 ++++
->>>  drivers/mfd/Makefile         |   1 +
->>>  drivers/mfd/max77714.c       | 151 +++++++++++++++++++++++++++++++++++
->>>  include/linux/mfd/max77714.h |  68 ++++++++++++++++
->>>  5 files changed, 236 insertions(+)
->>>  create mode 100644 drivers/mfd/max77714.c
->>>  create mode 100644 include/linux/mfd/max77714.h
->>>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index 4d0134752537..df394192f14e 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -11389,6 +11389,8 @@ MAXIM MAX77714 PMIC MFD DRIVER
->>>  M:	Luca Ceresoli <luca@lucaceresoli.net>
->>>  S:	Maintained
->>>  F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->>> +F:	drivers/mfd/max77714.c
->>> +F:	include/linux/mfd/max77714.h
->>>  
->>>  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
->>>  M:	Javier Martinez Canillas <javier@dowhile0.org>
->>> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
->>> index ca0edab91aeb..b5f6e6174508 100644
->>> --- a/drivers/mfd/Kconfig
->>> +++ b/drivers/mfd/Kconfig
->>> @@ -853,6 +853,20 @@ config MFD_MAX77693
->>>  	  additional drivers must be enabled in order to use the functionality
->>>  	  of the device.
->>>  
->>> +config MFD_MAX77714
->>> +	bool "Maxim Semiconductor MAX77714 PMIC Support"
+On 14/10/2021 16.36, Krzysztof Kozlowski wrote:
+> On 14/10/2021 08:59, Hector Martin wrote:
+>>> Don't you have a limit of supported channels? It cannot be any uint32...
 >>
->> Why it cannot be a tristate (module)?
+>> Today, it's max 8. But if come Monday we find out Apple's new chips have
+>> 16 channels and otherwise the same register layout, I'd much rather not
+>> have to change the driver...
 > 
-> Because it's not done in the driver I initially copied from, I guess. :)
-> 
-> And also because I thought it's appropriate for a PMIC driver since
-> regulators tend to be always instantiated. But I understand there are
-> valid use cases for that -- will do in v2 unless a good reason pops up
-> for not doing it.
+> OK, however if the driver ever receives different DT with a different
+> value, it will accept it unconditionally and go via address space. I am
+> just saying that being conservative on received values is safer, but I
+> am fine with skipping this problem. At the end we trust DT that it will
+> always match the kernel, don't we? Oh wait, someone can use DT from
+> other kernel in this one...
 
-Main PMIC as a module sometimes requires additional effort (like initrd
-with the PMIC driver) to make system booting. Still for non-SoC
-components we choose to allow modules (e.g. max77686).
+DTs using these compatibles should have the same register layout, and 
+should work with this driver; if a new chip comes out that has a 
+different register layout we will change the compatibles (both) and 
+therefore older kernels won't bind at all. If it has the same layout 
+we'll keep the base compatible, `reg` will grow as needed to accomodate 
+the extra channels, and e.g. num-channels=16 will then just work on 
+older kernels with no changes.
 
-It seems in your case it can be used as module easily because you did
-not implement regulators, which are needed early for storage devices.
+Obviously a broken DT with an insane value here would crash the driver, 
+but so would any other number of crazy DT things; however, I don't 
+expect that to ever happen.
 
-> 
->>> diff --git a/include/linux/mfd/max77714.h b/include/linux/mfd/max77714.h
->>> new file mode 100644
->>> index 000000000000..ca6b747b73c2
->>> --- /dev/null
->>> +++ b/include/linux/mfd/max77714.h
->>> @@ -0,0 +1,68 @@
->>> +/* SPDX-License-Identifier: GPL-2.0-only */
->>> +/*
->>> + * Maxim MAX77714 Register and data structures definition.
->>> + *
->>> + * Copyright (C) 2021 Luca Ceresoli
->>> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
->>> + */
->>> +
->>> +#ifndef _MFD_MAX77714_H_
->>> +#define _MFD_MAX77714_H_
->>
->> Header guard:
->> __LINUX_MFD_MAX77714_H_
-> 
-> OK.
-> 
->>> +
->>> +struct max77714 {
->>> +	struct device *dev;
->>> +	struct regmap *regmap;
->>> +	struct regmap_irq_chip_data *irq_data;
->>> +
->>> +	int irq;
->>> +};
->>
->> Do you have to make it a public structure? If not, please put it in the
->> max77714.c
-> 
-> Good point. Will fix.
-> 
+There's also the case where we end up with multiple memory controllers 
+at discrete offsets (e.g. rumored multi-die configurations); in that 
+case we'll end up with multiple genpd parents and have to add code to 
+support that, and in the meantime older kernels will just have broken 
+cpufreq on the p-cores. But I think that is ~acceptable as long as the 
+system boots; we don't expect to be able to *fully* support newer SoCs 
+on older kernels with no code changes. What I'm aiming for is just 
+making the system work, hopefully with NVMe and USB and a dumb 
+framebuffer, so that distro installers can run and then users can later 
+install a proper up to date kernel will full support for the new SoC.
 
+>> Ah, I didn't realize that was a valid option for MODULE_LICENSE. I guess
+>> anything containing "GPL" works with EXPORT_SYMBOL_GPL?
+> 
+> I don't think exporting symbols is related to how you license your code.
 
-Best regards,
-Krzysztof
+It is; only modules with a GPL-compatible MODULE_LICENSE get to use 
+symbols exported via EXPORT_SYMBOL_GPL.
+
+See kernel/module.c for the symbol lookup logic and 
+include/linux/license.h for the logic to check the string (seems like 
+"Dual MIT/GPL" is explicitly whitelisted there).
+
+Of course, this is a futile effort, as ~every time I see a proprietary 
+module in some embedded device, it either falsely declares itself to be 
+GPL, or they have a shim module that re-exports GPL symbols as non-GPL.
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
