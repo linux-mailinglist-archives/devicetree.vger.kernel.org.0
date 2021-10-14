@@ -2,132 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7F3142D836
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:31:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91ADA42D847
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:35:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbhJNLdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 07:33:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55490 "EHLO
+        id S230523AbhJNLhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 07:37:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230328AbhJNLda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:33:30 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A4FEC061570;
-        Thu, 14 Oct 2021 04:31:26 -0700 (PDT)
-Received: from crub.agik.hopto.org (pd95f1d7c.dip0.t-ipconnect.de [217.95.29.124])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: agust@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 7119583576;
-        Thu, 14 Oct 2021 13:31:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634211084;
-        bh=wUwWGnfkZkVFT+VA7IqdygubbkAZvHxKV85RjWrF1CU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=R0j1OwtVl1r0stex4GJacsuKlV91aLCxzOb91t+N6b3m0Qim/1eXqjNAyMDu/agrc
-         H4pvRDMBYm5RjRgqH6pGLQswYUa51bal9b9wes+MuHQkq4dgMhzf0fU4EUkNpV5Ry+
-         HJnwt6Jh422ha3rE1qy81pzLecyrm0UU3xFseebiNk4OK40NZiDkJFBjyiZbQjG37q
-         JC6jCGYfrfZ5pd9pevqbiGWRpE283fjDqYJe6dCTbfsZcA4rdpPOHGuuCxST+vxwae
-         0bCbbEjAV5C1tFUaNfhcDAat80mWz2lw6FMjnlvjfogGJi3NqNXdpzAufxvS30qiS+
-         5Z7pJHC7hXZBQ==
-From:   Anatolij Gustschin <agust@denx.de>
-To:     linuxppc-dev@lists.ozlabs.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Subject: [PATCH] powerpc/mpc512x: dts: fix PSC node warnings
-Date:   Thu, 14 Oct 2021 13:31:23 +0200
-Message-Id: <20211014113123.2358-1-agust@denx.de>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+        with ESMTP id S229984AbhJNLhK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:37:10 -0400
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EC3C06174E
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:35:05 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id e10so5952745uab.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fgNi17SO2wHIzJ3GMyl4mipupXKnAZkfBwgNfpacaAc=;
+        b=PYQwiPjI//K6gkmkJBVsBz+WxUClxAnjcvOjoYVCs4oeNBCsgTz2CysPdjzk811G/4
+         6LJLDu3i9CSqWdvOf0k25sbtdyr53wZzBJ6fwUkL/toLSRamBH9iiYdjx2YO91m62vhm
+         phsoxtaSOI4p4Tx1TUl4eBoar9rWTFtxM+YaWDNGFZ/+KBhaPydO0zr9+mMFRfPjcWlN
+         Mp2AwF03q2AS2w6x27DO6tbV8eZFGkUOqtIRMK8RBOB1FGR4wpjTwFIA4JOnKWYyUGPB
+         CW8atvIkILr3iNTYor4rbwjU2shEdNvDQIbsehdmU3NwLtF7LKmirB7fVSes5S9TMPm5
+         XV1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fgNi17SO2wHIzJ3GMyl4mipupXKnAZkfBwgNfpacaAc=;
+        b=NAHrJN/RotcRJLqVn6W4ZgqpPIRT90g5Se75D6epZTt+fBvDBVI6lquqgXQGL+dbro
+         FGCFbVdaMJaJBAt/BB7V5kLQbpxFRU9KWMcKlEuSmIcbmGdwOSvzTwXZ54IqjfVYkf2s
+         iLtnHbyiA19j+audtIJMme1zO8PVmX2QdlW/LotKrJRw9ZjzirQ+Yi4XnC4/pFsKPSZ7
+         1AWCH4ZCEYrPBPY4oLGNCR66dmRlU4u9399Jcq6rOA8Hc53jn4GG63L04MEDoODHKMix
+         ZEp90qJ6pgxwLapJjC9NmB3RLYALebwz4SQKM+Q6EX2dPHWQHdp6MzDp3b3D3OGndOXw
+         Esqw==
+X-Gm-Message-State: AOAM531eEEyVfsXXvviRRiCzFAXO9ZGEUK+w5raD9PZo8oxW8mmydXLG
+        YZFTtf5GDHq1Mv6bnA3bSJb/8yRKc9zlOIKLe6cuQQ==
+X-Google-Smtp-Source: ABdhPJwvm0rv7twQz34e7yAJd8Clz2FDQJ38NXNP/AgmkmEYYQ5g5LKu8qXJAh/vrn/kY+rE4JLLEs7hJKymb3P/KSg=
+X-Received: by 2002:a67:d289:: with SMTP id z9mr5897898vsi.39.1634211304359;
+ Thu, 14 Oct 2021 04:35:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211013202110.31701-1-semen.protsenko@linaro.org> <1cd31098-ba9d-f2e3-e34c-5bada00a2696@canonical.com>
+In-Reply-To: <1cd31098-ba9d-f2e3-e34c-5bada00a2696@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 14 Oct 2021 14:34:52 +0300
+Message-ID: <CAPLW+4mtSnt8dCCtSeu-yNTR0F5ZO-hdjFjyGChi=tTWQQt85Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg offsets
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix build warnings like:
-mpc5121.dtsi:397.13-406.5: Warning (spi_bus_bridge): /soc@80000000/psc@11400: node name for SPI buses should be 'spi'
-mpc5121.dtsi:409.13-418.5: Warning (spi_bus_bridge): /soc@80000000/psc@11500: node name for SPI buses should be 'spi'
-mpc5121.dtsi:457.13-466.5: Warning (spi_bus_bridge): /soc@80000000/psc@11900: node name for SPI buses should be 'spi'
+On Thu, 14 Oct 2021 at 10:11, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 13/10/2021 22:21, Sam Protsenko wrote:
+> > Old Exynos SoCs have both Product ID and Revision ID in one single
+> > register, while new SoCs tend to have two separate registers for those
+> > IDs. Implement handling of both cases by passing Revision ID register
+> > offsets in driver data.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >  drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
+> >  include/linux/soc/samsung/exynos-chipid.h |  6 +-
+> >  2 files changed, 58 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> > index 5c1d0f97f766..7837331fb753 100644
+> > --- a/drivers/soc/samsung/exynos-chipid.c
+> > +++ b/drivers/soc/samsung/exynos-chipid.c
+> > @@ -16,6 +16,7 @@
+> >  #include <linux/errno.h>
+> >  #include <linux/mfd/syscon.h>
+> >  #include <linux/of.h>
+> > +#include <linux/of_device.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/regmap.h>
+> >  #include <linux/slab.h>
+> > @@ -24,6 +25,17 @@
+> >
+> >  #include "exynos-asv.h"
+> >
+> > +struct exynos_chipid_variant {
+> > +     unsigned int rev_reg;           /* revision register offset */
+> > +     unsigned int main_rev_shift;    /* main revision offset in rev_reg */
+> > +     unsigned int sub_rev_shift;     /* sub revision offset in rev_reg */
+> > +};
+> > +
+> > +struct exynos_chipid_info {
+> > +     u32 product_id;
+> > +     u32 revision;
+> > +};
+> > +
+> >  static const struct exynos_soc_id {
+> >       const char *name;
+> >       unsigned int id;
+> > @@ -49,31 +61,55 @@ static const char *product_id_to_soc_id(unsigned int product_id)
+> >       int i;
+> >
+> >       for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
+> > -             if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
+> > +             if (product_id == soc_ids[i].id)
+> >                       return soc_ids[i].name;
+> >       return NULL;
+> >  }
+> >
+> > +static int exynos_chipid_get_chipid_info(struct regmap *regmap,
+> > +             const struct exynos_chipid_variant *data,
+> > +             struct exynos_chipid_info *soc_info)
+> > +{
+> > +     int ret;
+> > +     unsigned int val, main_rev, sub_rev;
+> > +
+> > +     ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &val);
+> > +     if (ret < 0)
+> > +             return ret;
+> > +     soc_info->product_id = val & EXYNOS_MASK;
+> > +
+> > +     ret = regmap_read(regmap, data->rev_reg, &val);
+>
+> Isn't this the same register as EXYNOS_CHIPID_REG_PRO_ID?
+>
 
-Signed-off-by: Anatolij Gustschin <agust@denx.de>
----
- arch/powerpc/boot/dts/ac14xx.dts   | 17 +++++++++++++++--
- arch/powerpc/boot/dts/pdm360ng.dts | 11 ++++++++++-
- 2 files changed, 25 insertions(+), 3 deletions(-)
+It is for Exynos4210, but it's not for Exynos850 (see PATCH 3/3), as
+it's described in the commit message. I tried to keep this code
+unified for all SoCs.
 
-diff --git a/arch/powerpc/boot/dts/ac14xx.dts b/arch/powerpc/boot/dts/ac14xx.dts
-index 5d8877e1f4ad..662d7aa2e4e8 100644
---- a/arch/powerpc/boot/dts/ac14xx.dts
-+++ b/arch/powerpc/boot/dts/ac14xx.dts
-@@ -301,13 +301,21 @@
- 			fsl,tx-fifo-size = <512>;
- 		};
- 
-+		/delete-node/ psc@11400;
-+		/delete-node/ psc@11500;
-+
- 		/* PSC4 in SPI mode */
--		spi4: psc@11400 {
-+		spi4: spi@11400 {
- 			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
-+			reg = <0x11400 0x100>;
- 			fsl,rx-fifo-size = <768>;
- 			fsl,tx-fifo-size = <768>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			interrupts = <40 0x8>;
-+			clocks = <&clks MPC512x_CLK_PSC4>,
-+				 <&clks MPC512x_CLK_PSC4_MCLK>;
-+			clock-names = "ipg", "mclk";
- 			num-cs = <1>;
- 			cs-gpios = <&gpio_pic 25 0>;
- 
-@@ -326,13 +334,18 @@
- 		};
- 
- 		/* PSC5 in SPI mode */
--		spi5: psc@11500 {
-+		spi5: spi@11500 {
- 			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
-+			reg = <0x11500 0x100>;
- 			fsl,mode = "spi-master";
- 			fsl,rx-fifo-size = <128>;
- 			fsl,tx-fifo-size = <128>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			interrupts = <40 0x8>;
-+			clocks = <&clks MPC512x_CLK_PSC5>,
-+				 <&clks MPC512x_CLK_PSC5_MCLK>;
-+			clock-names = "ipg", "mclk";
- 
- 			lcd@0 {
- 				compatible = "ilitek,ili922x";
-diff --git a/arch/powerpc/boot/dts/pdm360ng.dts b/arch/powerpc/boot/dts/pdm360ng.dts
-index 67c3b9db75d7..2733d15079a9 100644
---- a/arch/powerpc/boot/dts/pdm360ng.dts
-+++ b/arch/powerpc/boot/dts/pdm360ng.dts
-@@ -169,10 +169,19 @@
- 			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
- 		};
- 
--		psc@11900 {
-+		/delete-node/ psc@11900;
-+
-+		spi@11900 {
- 			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
-+			reg = <0x11900 0x100>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-+			interrupts = <40 0x8>;
-+			fsl,rx-fifo-size = <16>;
-+			fsl,tx-fifo-size = <16>;
-+			clocks = <&clks MPC512x_CLK_PSC9>,
-+				 <&clks MPC512x_CLK_PSC9_MCLK>;
-+			clock-names = "ipg", "mclk";
- 
- 			/* ADS7845 touch screen controller */
- 			ts@0 {
--- 
-2.17.1
+> > +     if (ret < 0)
+> > +             return ret;
+> > +     main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
+> > +     sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
+> > +     soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static int exynos_chipid_probe(struct platform_device *pdev)
+> >  {
+> > +     const struct exynos_chipid_variant *drv_data;
+> > +     struct exynos_chipid_info soc_info;
+> >       struct soc_device_attribute *soc_dev_attr;
+> >       struct soc_device *soc_dev;
+> >       struct device_node *root;
+> >       struct regmap *regmap;
+> > -     u32 product_id;
+> > -     u32 revision;
+> >       int ret;
+> >
+> > +     drv_data = of_device_get_match_data(&pdev->dev);
+> > +     if (!drv_data)
+> > +             return -EINVAL;
+> > +
+> >       regmap = device_node_to_regmap(pdev->dev.of_node);
+> >       if (IS_ERR(regmap))
+> >               return PTR_ERR(regmap);
+> >
+> > -     ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &product_id);
+> > +     ret = exynos_chipid_get_chipid_info(regmap, drv_data, &soc_info);
+> >       if (ret < 0)
+> >               return ret;
+> >
+> > -     revision = product_id & EXYNOS_REV_MASK;
+> > -
+> >       soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
+> >                                   GFP_KERNEL);
+> >       if (!soc_dev_attr)
+> > @@ -86,8 +122,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+> >       of_node_put(root);
+> >
+> >       soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+> > -                                             "%x", revision);
+> > -     soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
+> > +                                             "%x", soc_info.revision);
+> > +     soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
+> >       if (!soc_dev_attr->soc_id) {
+> >               pr_err("Unknown SoC\n");
+> >               return -ENODEV;
+> > @@ -106,7 +142,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+> >
+> >       dev_info(soc_device_to_device(soc_dev),
+> >                "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
+> > -              soc_dev_attr->soc_id, product_id, revision);
+> > +              soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
+> >
+> >       return 0;
+> >
+> > @@ -125,9 +161,18 @@ static int exynos_chipid_remove(struct platform_device *pdev)
+> >       return 0;
+> >  }
+> >
+> > +static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
+> > +     .rev_reg        = 0x0,
+> > +     .main_rev_shift = 0,
+> > +     .sub_rev_shift  = 4,
+>
+> The code does not look correct here. Subrev is at 0:3 bits, mainrev is
+> at 4:7.
+>
 
+Right. I was confused by those existing macros:
+
+    #define EXYNOS_SUBREV_MASK        (0xf << 4)
+    #define EXYNOS_MAINREV_MASK        (0xf << 0)
+
+Those were probably wrong the whole time? Anyway, now I've found
+Exynos4412 User Manual and checked it there -- you are right about
+offsets. Will fix in v3.
+
+> Did you test it that it produces same result? Looks not - I gave it a
+> try and got wrong revision.
+>
+
+I only have Exynos850 based board, and that has 0x0 in Revision ID
+register. But for v3 I'll try to emulate register value in the code
+and make sure that the read value does not change with patch applied.
+
+>
+> Best regards,
+> Krzysztof
