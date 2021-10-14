@@ -2,67 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2CCB42DA7E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 15:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5687942DA87
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 15:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbhJNNfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 09:35:02 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:49142 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhJNNfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 09:35:01 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 818421F44C59
-Subject: Re: [PATCH v7 6/6] arm64: dts: mt8183: change rpmsg property name
-To:     Tinghan Shen <tinghan.shen@mediatek.com>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210924033935.2127-1-tinghan.shen@mediatek.com>
- <20210924033935.2127-7-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <db6c72b4-20d7-3c20-3714-72299cf08c5d@collabora.com>
-Date:   Thu, 14 Oct 2021 15:32:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230229AbhJNNfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 09:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230137AbhJNNfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 09:35:54 -0400
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 824B5C061753
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 06:33:49 -0700 (PDT)
+Received: by mail-qv1-xf2e.google.com with SMTP id cv2so3722324qvb.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 06:33:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6BcmqvnYViEIh48To1seJSXIijn4d6ZSZ7k3f+Yktoo=;
+        b=WyR7VMh0hbMsAtleInHlYp/PyzHfcoWba5Lblnza+Ml+5P7u5g4w/o2lKo0X4Wq0BN
+         qLDsAYwzNK72LEcoabc6Fdpv08rdjj2b2vzCA0a4BqTXEBAEX4b/7aXxpslEYSTX8DXo
+         7CEVgpzsIwww1pqHMh6nl/0NwzWLRl4x+jXI0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6BcmqvnYViEIh48To1seJSXIijn4d6ZSZ7k3f+Yktoo=;
+        b=vVO0NwC9Saovp7Pn8aLzA3/XOjvXwoDiv71mvovpVpOTWcCDOt/ucOdTeKt3oCPIHC
+         BCF6DeyRIBhgru5aU0pGuFSYQyccI3QhnXKA8yu97fbSH8AvimXSzUVTDbfLsVv6Df++
+         rsTkibFW3faNac8bSHIEkuPLMRCggwjPDNBB569xKsgBD4lVd71Kz285lIn92fyLV2Tw
+         gGE5v57YIwBqfhrvQGBDDDeku/e8oK7wkJN5sWzw0b03C5u90s6ay/g5NdxkUuv8nqMo
+         +Qc2b/o/8Dh8ORJVMk9y83EYLAQN4dGcHxrY1EO+FoGmkmRBMYuOk25wycTztJmViU2o
+         d5lg==
+X-Gm-Message-State: AOAM5303dNj1Hfa+TIgIat6dKFRCS5IiUq2S9eAsS+Pb9zDklQzOrCNj
+        KJRunnwjkIB3MV0XkjD7B2ni4w==
+X-Google-Smtp-Source: ABdhPJw5LsNyTAGPpiW66Ow6a1r04mwufMVin71Cm8de/KShizf497R610ZNXNOKwBKSNIfUWlFr1w==
+X-Received: by 2002:a05:6214:506:: with SMTP id v6mr5264835qvw.52.1634218428689;
+        Thu, 14 Oct 2021 06:33:48 -0700 (PDT)
+Received: from bill-the-cat (2603-6081-7b01-cbda-0d65-5385-0e85-d408.res6.spectrum.com. [2603:6081:7b01:cbda:d65:5385:e85:d408])
+        by smtp.gmail.com with ESMTPSA id p19sm1431432qtk.20.2021.10.14.06.33.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Oct 2021 06:33:47 -0700 (PDT)
+Date:   Thu, 14 Oct 2021 09:33:43 -0400
+From:   Tom Rini <trini@konsulko.com>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Luka Kovacic <luka.kovacic@sartura.hr>
+Subject: Re: [PATCH RFC linux] dt-bindings: nvmem: Add binding for U-Boot
+ environment NVMEM provider
+Message-ID: <20211014133343.GA7964@bill-the-cat>
+References: <20211013232048.16559-1-kabel@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210924033935.2127-7-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="19yxUJAiKHVhK1FQ"
+Content-Disposition: inline
+In-Reply-To: <20211013232048.16559-1-kabel@kernel.org>
+X-Clacks-Overhead: GNU Terry Pratchett
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/09/21 05:39, Tinghan Shen ha scritto:
-> The the rpmsg property name is changed to "mediatek," to sync with the
-> vendor name defined in vendor-prefixes.yaml.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index 8e9cf36a9a41..bc4bbcf457ee 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -754,7 +754,7 @@
->   
->   	cros_ec {
->   		compatible = "google,cros-ec-rpmsg";
-> -		mtk,rpmsg-name = "cros-ec-rpmsg";
-> +		mediatek,rpmsg-name = "cros-ec-rpmsg";
->   	};
->   };
->   
-> 
-Please reflect this change in
-Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
 
-Apart from that,
-Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+--19yxUJAiKHVhK1FQ
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Oct 14, 2021 at 01:20:48AM +0200, Marek Beh=FAn wrote:
+
+> Add device tree bindings for U-Boot environment NVMEM provider.
+>=20
+> U-Boot environment can be stored at a specific offset of a MTD device,
+> EEPROM, MMC, NAND or SATA device, on an UBI volume, or in a file on a
+> filesystem.
+>=20
+> The environment can contain information such as device's MAC address,
+> which should be used by the ethernet controller node.
+>=20
+> Signed-off-by: Marek Beh=FAn <kabel@kernel.org>
+> ---
+>  .../bindings/nvmem/denx,u-boot-env.yaml       | 88 +++++++++++++++++++
+
+We already have a vendor prefix for U-Boot, "u-boot" which should be
+used here.
+
+--=20
+Tom
+
+--19yxUJAiKHVhK1FQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCgAdFiEEGjx/cOCPqxcHgJu/FHw5/5Y0tywFAmFoMbQACgkQFHw5/5Y0
+tyzETwv/WiHjFPTYHkbLH/q0GQ+AwOlojn0s5gVYnJG4xnsqkk1WYj9Af4u4Cky1
+wi0nv4tTbfrOMuJx7gdNpkDIpuBeqKEwu1OrgWurONDFDjgXMzywHG0dZvPdt7M7
+jFrGUlWhrv4wq5B5D9G+MKGrhAqpUi2ROfMZ7x6h7DPxa+wLRDPzrKeqRcGNQ1zP
+X6/Oz+H79f+gbDUc2OosGaTKWA+I1tJ8MNXJxXme6eO2uugqFwNIqptQOsM0KtTD
+dflVWpiyVRVgHPfuGikeKjYq5HNsY0nna5OPQbvPErsoW+RJCYXmrkIa5doKH8wJ
+EjUsTD/H1T8ur91xlM7ys3uzNzd/poozOAxGTRLGvwxRamuRvf55PmhhYGCXcd8i
+3IVrPz06/ItwmysTUfbThBAoRreDprfY/tKxqdoMt9sUh9V11cpw2jjfhTOmu7vX
+cTOg2Nq67+3h6XEyy/raYFGxcuVm1gSpDbPPFYTlxQN1shQXqERTMAtDh/iJnvYP
+G5d3MLRV
+=zlwI
+-----END PGP SIGNATURE-----
+
+--19yxUJAiKHVhK1FQ--
