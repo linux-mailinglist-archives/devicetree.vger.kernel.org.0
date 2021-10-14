@@ -2,235 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C34242E009
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 19:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B8542E011
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 19:30:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231199AbhJNR2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 13:28:52 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:47003 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232726AbhJNR2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 13:28:52 -0400
-Received: by mail-oi1-f170.google.com with SMTP id o204so9353687oih.13;
-        Thu, 14 Oct 2021 10:26:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=aZhMJFR7qEIO7M61CFkCjB5kHmujnbdK6yv9W6S7EmM=;
-        b=d2OQcKOCTFa3RsVoBf7T2NUXCKwa7JY9UcfMrGr2TNAFbeg7OZTes11XlshD/1FuO9
-         EBnqvjfKUwQXs/0bCHf48ivjkFoAk/EZms0sqqEz7OJ4ZLl9DPjr0AEgcUYu03GqLgnf
-         lOVHuj1mvxYsWhuF2kyW41vHw0NMF2Sas3wE8/HlH2jeyJgjw614BeDXEDTk1HYRTuu2
-         BszL7GJKGzqdWfKD6aTu+byL8rJP+Y0sFbPbAWhXm9nHMzPYs3QdR5dgr99kLKVxRHft
-         JYNyeVHem7wefeClSiyFwRHZP076fZLkC69V8qEuQu95hr84X+FbTz3gv5la6gScd5ur
-         4t8w==
-X-Gm-Message-State: AOAM531oFq/7Ol6bEPIL+qWp7A+ULxomTaJZv6toBtizCSgkCStN7XLp
-        ELKYsPqtusKownfnJes6PA==
-X-Google-Smtp-Source: ABdhPJzpW374h0wPKAjFh+UaJiw4S6Qg9dmeEbajDJXoaNMqM0XlLBMT14ZlD69a1wFChgOc8hrx3A==
-X-Received: by 2002:aca:3656:: with SMTP id d83mr13912263oia.176.1634232407099;
-        Thu, 14 Oct 2021 10:26:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bp21sm420799oib.31.2021.10.14.10.26.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 10:26:46 -0700 (PDT)
-Received: (nullmailer pid 3584071 invoked by uid 1000);
-        Thu, 14 Oct 2021 17:26:45 -0000
-Date:   Thu, 14 Oct 2021 12:26:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 2/3] dt-bindings: phy: phy-stm32-usbphyc: add optional
- phy tuning properties
-Message-ID: <YWhoVd/XR2SdAbXV@robh.at.kernel.org>
-References: <20211005152453.89330-1-amelie.delaunay@foss.st.com>
- <20211005152453.89330-3-amelie.delaunay@foss.st.com>
+        id S232947AbhJNRce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 13:32:34 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:44328 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232236AbhJNRcd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 13:32:33 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19EGXcNv019427;
+        Thu, 14 Oct 2021 13:30:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=TQBkWUbYrtzJsOVdkCbGRsfXjsL5n6HsAcn9dCwyb+4=;
+ b=XFx2xfLX+yTjTRWMCpya5xRTp795SekWEWZVEziGuxIBTyFU4ZGQrb7i89frkhQNW3oZ
+ LJUztW73Of0F9bbf7tAmi5cejUizXNCL/C32BuzGucI1QeKHXUJ7ol528fx7qgjFJ59L
+ us5OyioKXhxrXlDUScd89q/n8hFK4ueMTON3gbhTjv6GYsw7GWRbRK7n6fVAGT1J1GC6
+ UJamrVcyKigsb1rBE8r0JnlYl070kd1+RUgAYzV5uypmsqukCcGwiNYjQyH4dnWB0GAH
+ E4XiJ++/0nhiNgBKdNQnS7XAvCc+runziKWSV6DPzHQw5QXSuSUTVcEpjm4Sv2hVNUeM uw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3bnnvh1j0y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 Oct 2021 13:30:26 -0400
+Received: from m0098417.ppops.net (m0098417.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 19EHNbO6020109;
+        Thu, 14 Oct 2021 13:30:26 -0400
+Received: from ppma01wdc.us.ibm.com (fd.55.37a9.ip4.static.sl-reverse.com [169.55.85.253])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3bnnvh1j0g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 Oct 2021 13:30:26 -0400
+Received: from pps.filterd (ppma01wdc.us.ibm.com [127.0.0.1])
+        by ppma01wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 19EHBgeo025984;
+        Thu, 14 Oct 2021 17:30:25 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma01wdc.us.ibm.com with ESMTP id 3bk2qbw8qv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 14 Oct 2021 17:30:25 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 19EHUOjD15467060
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 14 Oct 2021 17:30:24 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 66710BE053;
+        Thu, 14 Oct 2021 17:30:24 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3610EBE05B;
+        Thu, 14 Oct 2021 17:30:24 +0000 (GMT)
+Received: from localhost (unknown [9.211.53.229])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Thu, 14 Oct 2021 17:30:24 +0000 (GMT)
+From:   Nathan Lynch <nathanl@linux.ibm.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] of: kobj: make of_node_is_(initialized|attached) parameters const
+Date:   Thu, 14 Oct 2021 12:30:23 -0500
+Message-Id: <20211014173023.2117799-1-nathanl@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211005152453.89330-3-amelie.delaunay@foss.st.com>
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: TISEUv1-Z6imd1MWiDONhgh6GCr_5RgW
+X-Proofpoint-ORIG-GUID: dPtRkMyEQt0wuHffTKOFgZ5RkRe8C5TR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-14_09,2021-10-14_02,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxlogscore=819
+ bulkscore=0 malwarescore=0 suspectscore=0 phishscore=0 mlxscore=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 impostorscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2109230001 definitions=main-2110140097
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 05:24:52PM +0200, Amelie Delaunay wrote:
-> This patch adds the description of new optional phy tuning properties
-> for usbphyc phy sub nodes.
-> 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-> ---
-> Changes in v2:
-> - st,phy-tuning property removed
-> - tuning properties are now put directly in each child node
-> - tuning properties are no more free form text and their name reworked
-> ---
->  .../bindings/phy/phy-stm32-usbphyc.yaml       | 126 ++++++++++++++++++
->  1 file changed, 126 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> index 3329f1d33a4f..c0f4dff2b8cb 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-> @@ -81,6 +81,116 @@ patternProperties:
->          properties:
->            vbus-supply: true
->  
-> +      # It can be necessary to adjust the PHY settings to compensate parasitics, which can be due
-> +      # to USB connector/receptacle, routing, ESD protection component,... Here is the list of
-> +      # all optional parameters to tune the interface of the PHY (HS for High-Speed, FS for Full-
-> +      # Speed, LS for Low-Speed)
-> +
-> +      st,current-boost-milliamp:
+of_node_is_initialized() and of_node_is_attached() don't modify the node
+objects passed to them, so those parameters should be const.
 
-Not a documented unit. Use '-microamp'.
+Signed-off-by: Nathan Lynch <nathanl@linux.ibm.com>
+---
+ drivers/of/kobj.c       | 4 ++--
+ drivers/of/of_private.h | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-> +        description: Current boosting in mA
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 1
-> +        maximum: 2
-> +
-> +      st,no-lsfs-fb-cap:
-> +        description: Disables the LS/FS feedback capacitor
-> +        type: boolean
-> +
-> +      st,decrease-hs-slew-rate:
-> +        description: Decreases the HS driver slew rate by 10%
-> +        type: boolean
-> +
-> +      st,tune-hs-dc-level:
-> +        description: Tunes the HS driver DC level
+diff --git a/drivers/of/kobj.c b/drivers/of/kobj.c
+index 6675b5e56960..7d3853a5a09a 100644
+--- a/drivers/of/kobj.c
++++ b/drivers/of/kobj.c
+@@ -5,13 +5,13 @@
+ #include "of_private.h"
+ 
+ /* true when node is initialized */
+-static int of_node_is_initialized(struct device_node *node)
++static int of_node_is_initialized(const struct device_node *node)
+ {
+ 	return node && node->kobj.state_initialized;
+ }
+ 
+ /* true when node is attached (i.e. present on sysfs) */
+-int of_node_is_attached(struct device_node *node)
++int of_node_is_attached(const struct device_node *node)
+ {
+ 	return node && node->kobj.state_in_sysfs;
+ }
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index 75e67b8bb826..9324483397f6 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -60,7 +60,7 @@ static inline int of_property_notify(int action, struct device_node *np,
+ #endif /* CONFIG_OF_DYNAMIC */
+ 
+ #if defined(CONFIG_OF_KOBJ)
+-int of_node_is_attached(struct device_node *node);
++int of_node_is_attached(const struct device_node *node);
+ int __of_add_property_sysfs(struct device_node *np, struct property *pp);
+ void __of_remove_property_sysfs(struct device_node *np, struct property *prop);
+ void __of_update_property_sysfs(struct device_node *np, struct property *newprop,
+-- 
+2.31.1
 
-You need '|' after 'description:' to retain the formatting you have 
-here.
-
-> +          - <0> normal level
-> +          - <1> increases the level by 5 to 7 mV
-> +          - <2> increases the level by 10 to 14 mV
-> +          - <3> decreases the level by 5 to 7 mV
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 3
-> +        default: 0
-> +
-> +      st,enable-fs-rftime-tuning:
-> +        description: Enables the FS rise/fall tuning option
-> +        type: boolean
-> +
-> +      st,enable-hs-rftime-reduction:
-> +        description: Enables the HS rise/fall reduction feature
-> +        type: boolean
-> +
-> +      st,trim-hs-current:
-> +        description: Controls HS driver current trimming for choke compensation
-> +          - <0> = 18.87 mA target current / nominal + 0%
-> +          - <1> = 19.165 mA target current / nominal + 1.56%
-> +          - <2> = 19.46 mA target current / nominal + 3.12%
-> +          - <3> = 19.755 mA target current / nominal + 4.68%
-> +          - <4> = 20.05 mA target current / nominal + 6.24%
-> +          - <5> = 20.345 mA target current / nominal + 7.8%
-> +          - <6> = 20.64 mA target current / nominal + 9.36%
-> +          - <7> = 20.935 mA target current / nominal + 10.92%
-> +          - <8> = 21.23 mA target current / nominal + 12.48%
-> +          - <9> = 21.525 mA target current / nominal + 14.04%
-> +          - <10> = 21.82 mA target current / nominal + 15.6%
-> +          - <11> = 22.115 mA target current / nominal + 17.16%
-> +          - <12> = 22.458 mA target current / nominal + 19.01%
-> +          - <13> = 22.755 mA target current / nominal + 20.58%
-> +          - <14> = 23.052 mA target current / nominal + 22.16%
-> +          - <15> = 23.348 mA target current / nominal + 23.73%
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 15
-> +        default: 0
-> +
-> +      st,trim-hs-impedance:
-> +        description: Controls HS driver impedance tuning for choke compensation
-> +          - <0> = no impedance offset
-> +          - <1> = reduce the impedance by 2 ohms
-> +          - <2> = reduce the impedance by 4 ohms
-> +          - <3> = reduce the impedance by 6 ohms
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 3
-> +        default: 0
-> +
-> +      st,tune-squelch-level:
-> +        description: Tunes the squelch DC threshold value
-> +          - <0> = no shift in threshold
-> +          - <1> = threshold shift by +7 mV
-> +          - <2> = threshold shift by -5 mV
-> +          - <3> = threshold shift by +14 mV
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 3
-> +        default: 0
-> +
-> +      st,enable-hs-rx-gain-eq:
-> +        description: Enables the HS Rx gain equalizer
-> +        type: boolean
-> +
-> +      st,tune-hs-rx-offset:
-> +        description: Adjusts the HS Rx offset
-> +          - <0> = no offset
-> +          - <1> = offset of +5 mV
-> +          - <2> = offset of +10 mV
-> +          - <3> = offset of -5 mV
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 3
-> +        default: 0
-> +
-> +      st,no-hs-ftime-ctrl:
-> +        description: Disables the HS fall time control of single ended signals during pre-emphasis
-> +        type: boolean
-> +
-> +      st,no-lsfs-sc:
-> +        description: Disables the short circuit protection in LS/FS driver
-> +        type: boolean
-> +
-> +      st,enable-hs-tx-staggering:
-> +        description: Enables the basic staggering in HS Tx mode
-> +        type: boolean
-> +
->      allOf:
->        - if:
->            properties:
-> @@ -137,6 +247,14 @@ examples:
->              reg = <0>;
->              phy-supply = <&vdd_usb>;
->              #phy-cells = <0>;
-> +            st,tune-hs-dc-level = <2>;
-> +            st,enable-fs-rftime-tuning;
-> +            st,enable-hs-rftime-reduction;
-> +            st,trim-hs-current = <15>;
-> +            st,trim-hs-impedance = <1>;
-> +            st,tune-squelch-level = <3>;
-> +            st,tune-hs-rx-offset = <2>;
-> +            st,no-lsfs-sc;
->              connector {
->                  compatible = "usb-a-connector";
->                  vbus-supply = <&vbus_sw>;
-> @@ -147,6 +265,14 @@ examples:
->              reg = <1>;
->              phy-supply = <&vdd_usb>;
->              #phy-cells = <1>;
-> +            st,tune-hs-dc-level = <2>;
-> +            st,enable-fs-rftime-tuning;
-> +            st,enable-hs-rftime-reduction;
-> +            st,trim-hs-current = <15>;
-> +            st,trim-hs-impedance = <1>;
-> +            st,tune-squelch-level = <3>;
-> +            st,tune-hs-rx-offset = <2>;
-> +            st,no-lsfs-sc;
->          };
->      };
->  ...
-> -- 
-> 2.25.1
-> 
-> 
