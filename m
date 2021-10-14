@@ -2,104 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9429842E0DA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 20:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2502A42E0F6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 20:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232731AbhJNSLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 14:11:20 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:46618 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230386AbhJNSLU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 14:11:20 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634234955; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=PaqL+qcUYZsZZQg/ZfKwStuB0Bng0ty0IIvhLrT9KAE=;
- b=TNyu0vFrNXytapvsZDqa0I/R75ml5AgGjq3f7blTRSQyGwcrKCiewI3wpKkUdA5OtMbe2eWR
- reo+M/MbPeUTb2oHwavIcrVil6mgyELOqpb7O2NnxxkGnKoCVt8fxUJwiPf6Fptf/uCTVlJX
- ytLZUMyr0ZbEtUA4XCg/JtD/UL8=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 61687249446c6db0cb8da888 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 14 Oct 2021 18:09:13
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1D361C4360C; Thu, 14 Oct 2021 18:09:13 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id ADFBBC43460;
-        Thu, 14 Oct 2021 18:09:12 +0000 (UTC)
+        id S231840AbhJNSSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 14:18:35 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:41917 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230119AbhJNSSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 14:18:35 -0400
+Received: by mail-ot1-f43.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so9387716ote.8;
+        Thu, 14 Oct 2021 11:16:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=q0HbPoa/SmLtlcbL4A98vA90nfo5N87+w7YnhWCZ1+o=;
+        b=3QiJET6KzZj7paiqiE+C4XnD9WMK6oTBydRV2xfsMuH19+zvTq7uSivFWqM/iCyht4
+         hm3vq8U8TjHrjBcmnyqVCltgZoVNnTDVDR9Ft1pY5Llj5i62WsizzD5CytiZcDmwVtAG
+         +yUqwVhAlW1a7j9X4hHHNrJ1JLyfY1QNgvcUhHUcumSz0H5y6fCOvKCw15NrhM5NWxOD
+         7QLdzfT6yS9/ZS880VGVK7WrW9QYcnDJD/xF0WvvFPTO2jcXDtRcoKU6tC0haAulRJ5u
+         0fB9z8nbBcrswNEMu0gc74jI1+GEz2w5SPuTUf1KIcsaBTRs3ESoNDfh1FApPfWeu35P
+         /oxg==
+X-Gm-Message-State: AOAM5305sIQ8K3S5BfZiHKXGtInePQyPE4hnBnoLy4Ee0sLbcTNmCflD
+        FbeZ3Zc5Al300Lj4pfT2x2Hsdf2EAw==
+X-Google-Smtp-Source: ABdhPJxKfM3iXQ0zI911tswBcyLS7YVr4ZTJq7hvniXYOhLyYuHoLue+Q56bsDP/2yc8QCkCgynuuA==
+X-Received: by 2002:a05:6830:4487:: with SMTP id r7mr657269otv.251.1634235389846;
+        Thu, 14 Oct 2021 11:16:29 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f1sm553273oos.46.2021.10.14.11.16.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Oct 2021 11:16:29 -0700 (PDT)
+Received: (nullmailer pid 3663089 invoked by uid 1000);
+        Thu, 14 Oct 2021 18:16:28 -0000
+Date:   Thu, 14 Oct 2021 13:16:28 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Amelie DELAUNAY <amelie.delaunay@foss.st.com>
+Cc:     "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-phy@lists.infradead.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: phy: phy-stm32-usbphyc: add optional
+ phy tuning properties
+Message-ID: <YWhz/AsfDX24iUR3@robh.at.kernel.org>
+References: <20211005152453.89330-1-amelie.delaunay@foss.st.com>
+ <20211005152453.89330-3-amelie.delaunay@foss.st.com>
+ <1633473959.465401.106809.nullmailer@robh.at.kernel.org>
+ <491ab475-e7dc-eb71-85aa-6d82543b74db@foss.st.com>
+ <CAL_JsqLEPd9_4SgmDh8GakyNxQeuMKhJeGzaLbZSdxDJ_-dZYg@mail.gmail.com>
+ <2a07f03d-ffaa-77f6-c223-74bae60eb3f1@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 14 Oct 2021 23:39:12 +0530
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org,
-        robh+dt@kernel.org, sanm@codeaurora.org, vbadigan@codeaurora.org
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Add pcie clock support
-In-Reply-To: <CAE-0n53vBa5Tn4OEey1ZmBrM+kN5KbXv1Spoj-dtHY6jzN_bbA@mail.gmail.com>
-References: <1634042171-31461-1-git-send-email-pmaliset@codeaurora.org>
- <CAE-0n53vBa5Tn4OEey1ZmBrM+kN5KbXv1Spoj-dtHY6jzN_bbA@mail.gmail.com>
-Message-ID: <1d311e617667a2bbda233e423ca0b898@codeaurora.org>
-X-Sender: pmaliset@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2a07f03d-ffaa-77f6-c223-74bae60eb3f1@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-12 22:56, Stephen Boyd wrote:
-> Quoting Prasad Malisetty (2021-10-12 05:36:11)
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 39635da..78694c1 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -569,9 +569,10 @@
->>                         reg = <0 0x00100000 0 0x1f0000>;
->>                         clocks = <&rpmhcc RPMH_CXO_CLK>,
->>                                  <&rpmhcc RPMH_CXO_CLK_A>, 
->> <&sleep_clk>,
->> -                                <0>, <0>, <0>, <0>, <0>, <0>;
->> +                                <0>, <&pcie1_lane 0>,
->> +                                <0>, <0>, <0>, <0>;
->>                         clock-names = "bi_tcxo", "bi_tcxo_ao", 
->> "sleep_clk",
->> -                                     "pcie_0_pipe_clk", 
->> "pcie_1_pipe-clk",
->> +                                     "pcie_0_pipe_clk", 
->> "pcie_1_pipe_clk",
+On Wed, Oct 06, 2021 at 02:58:21PM +0200, Amelie DELAUNAY wrote:
 > 
-> It looks like a fix because the name doesn't match the binding. Can you
-> add a Fixes tag?
 > 
-Hi Stephen,
+> On 10/6/21 2:38 PM, Rob Herring wrote:
+> > > Disable child nodes while parent node is already disabled fixes the
+> > > warning. But it means to add status = "okay"; in child nodes everywhere
+> > > usbphyc is enabled.
+> > Presumably, you already have to add phy-supply everywhere.
+> >  >> Is it normal dtbs_check checks in child nodes when parent node is
+> disabled?
+> > I'll look into doing that.
+> 
+> Should I wait for your potential dtbs_check update or should I disable child
+> nodes in .dtsi (and enable them along with parent node in .dts using
+> usbphyc) ?
 
-Thanks for the review.
+I pushed a fix to dt-validate for this.
 
-Yes, I fixed the clock name as per the binding. I have added fixes tag 
-and updated the new pacth.
-
-Thanks
--Prasad
-
->>                                       "ufs_phy_rx_symbol_0_clk", 
->> "ufs_phy_rx_symbol_1_clk",
->>                                       "ufs_phy_tx_symbol_0_clk",
->>                                       
->> "usb3_phy_wrapper_gcc_usb30_pipe_clk";
-
+Rob
