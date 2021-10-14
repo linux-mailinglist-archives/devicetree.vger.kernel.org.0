@@ -2,189 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D49E42D8AF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 923A442D8BB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbhJNMDA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Oct 2021 08:03:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33998 "EHLO
+        id S230299AbhJNMF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 08:05:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbhJNMC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:02:59 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 269E4C061570
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:00:55 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mazPk-00008i-29; Thu, 14 Oct 2021 14:00:48 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mazPj-00055W-Ot; Thu, 14 Oct 2021 14:00:47 +0200
-Message-ID: <8241fb1053df3583d9f4f0698907038c8f4ac769.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/2] reset: mchp: sparx5: Extend support for lan966x
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>, robh+dt@kernel.org,
-        andrew@lunn.ch, lars.povlsen@microchip.com,
-        Steen.Hegelund@microchip.com, UNGLinuxDriver@microchip.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 14 Oct 2021 14:00:47 +0200
-In-Reply-To: <20211013073807.2282230-3-horatiu.vultur@microchip.com>
-References: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
-         <20211013073807.2282230-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S231346AbhJNMF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:05:29 -0400
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE03C06174E
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:03:24 -0700 (PDT)
+Received: by mail-ua1-x92d.google.com with SMTP id f4so10736257uad.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:03:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Xj8F02qjcFD/OxSetCAdaTkDEAtmLez+FikCwyhAwDU=;
+        b=wDuxotBJb/+zjFdczEvupCmne7rv44CGr+5h2R+lYo61eRnWC1EAFn4i83sh7rX3yZ
+         V7movBmXIEybpOfvKxfcSoZM8s14aImiaK7T3CM4LFAYoTOvpo9Fq+Dbxg0LaVidfIEc
+         syPvFsSscgM8cio8XTjfXekbVyjDl48TLNGTfIjxsAz31lohV6wmra9eHwb2EWPXW6Od
+         Geemk7JVSfF/jcS/y1qenTMLStW4vUfQieVQRye+fj955TP8JnxYCYaWTWyRe0IKqKao
+         L/1z7qJIutgRw049kdC3st4vuqfMF6eKVR8K7iQHy+xIu1rW5Nn/ulpWSThbRjyd8s5+
+         21yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Xj8F02qjcFD/OxSetCAdaTkDEAtmLez+FikCwyhAwDU=;
+        b=MACd6urOl1NRkfYS48UMVjZToM+5Q9R41xkCEEBUoq/ihfVBLbhQx6n7ToexcsefPg
+         XU+SHjNixNnftEeBirgoCr+mRhN7nE+9nJNjkQYgUJZdAI5TtUVTFYHhy5Urgmn1c9SU
+         W3PyzcF7AdNTp0M8Xo91dtTn1iH7x6PrYeRBV9Rc8i7YQFT1WRk4CuxuPzUKB/3s7mre
+         fuxzKph3avrWnInCmFO7wHUSNug7zRFqyFnJ2JKZvFatOLic00odAowO8wowHoTm6Lqq
+         R3V/ol5PZD9HBTmP+m9GOZGzSqs/jeTMvl0ersffqnl+hpLq/4BmuFviPFy61FE33RBh
+         BgYw==
+X-Gm-Message-State: AOAM5330dwC68d5Xmij2AHVlVHGJQSa25/+OBav/1GgajFXGVDeFWn1I
+        tVd078RtXAzjNiUkeNS6sVu9e9xutOvwLC7zJ80Ip5MYn1DtXw==
+X-Google-Smtp-Source: ABdhPJzHijD+itIOq2W8t2VGEzSHHYo+kmu+BRme0KVWMgeqDnez3zG+NfeqpChgpcbIfgjaiTFhUF0zLPjzU25556s=
+X-Received: by 2002:a67:ab48:: with SMTP id k8mr6179623vsh.30.1634213003678;
+ Thu, 14 Oct 2021 05:03:23 -0700 (PDT)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211013202110.31701-1-semen.protsenko@linaro.org>
+ <1cd31098-ba9d-f2e3-e34c-5bada00a2696@canonical.com> <CAPLW+4mtSnt8dCCtSeu-yNTR0F5ZO-hdjFjyGChi=tTWQQt85Q@mail.gmail.com>
+ <dd61666c-fd1a-c152-9423-9dc6718b1626@canonical.com>
+In-Reply-To: <dd61666c-fd1a-c152-9423-9dc6718b1626@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 14 Oct 2021 15:03:12 +0300
+Message-ID: <CAPLW+4mA64Q8t07tJ_Yi9=AHmGe2NixEmCaMP-Lj65D2TNBt+w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg offsets
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-10-13 at 09:38 +0200, Horatiu Vultur wrote:
-> This patch extends sparx5 driver to support also the lan966x. The
-> process to reset the switch is the same only it has different offsets.
-> Therefore make the driver more generic and add support for lan966x.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> ---
->  drivers/reset/Kconfig                  |  2 +-
->  drivers/reset/reset-microchip-sparx5.c | 81 +++++++++++++++++++++++---
->  2 files changed, 74 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index be799a5abf8a..36ce6c8bcf1e 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -116,7 +116,7 @@ config RESET_LPC18XX
->  
->  config RESET_MCHP_SPARX5
->  	bool "Microchip Sparx5 reset driver"
-> -	depends on ARCH_SPARX5 || COMPILE_TEST
-> +	depends on ARCH_SPARX5 || SOC_LAN966 || COMPILE_TEST
->  	default y if SPARX5_SWITCH
->  	select MFD_SYSCON
->  	help
-> diff --git a/drivers/reset/reset-microchip-sparx5.c b/drivers/reset/reset-microchip-sparx5.c
-> index f01e7db8e83b..211ee338e4b6 100644
-> --- a/drivers/reset/reset-microchip-sparx5.c
-> +++ b/drivers/reset/reset-microchip-sparx5.c
-> @@ -6,6 +6,7 @@
->   * The Sparx5 Chip Register Model can be browsed at this location:
->   * https://github.com/microchip-ung/sparx-5_reginfo
->   */
-> +#include <linux/gpio/consumer.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/of_device.h>
->  #include <linux/module.h>
-> @@ -13,15 +14,22 @@
->  #include <linux/regmap.h>
->  #include <linux/reset-controller.h>
->  
-> -#define PROTECT_REG    0x84
-> -#define PROTECT_BIT    BIT(10)
-> -#define SOFT_RESET_REG 0x00
-> -#define SOFT_RESET_BIT BIT(1)
-> +struct reset_props {
-> +	u32 protect_reg;
-> +	u32 protect_bit;
-> +	u32 reset_reg;
-> +	u32 reset_bit;
-> +	u32 cuphy_reg;
-> +	u32 cuphy_bit;
-> +};
->  
->  struct mchp_reset_context {
->  	struct regmap *cpu_ctrl;
->  	struct regmap *gcb_ctrl;
-> +	struct regmap *cuphy_ctrl;
->  	struct reset_controller_dev rcdev;
-> +	const struct reset_props *props;
-> +	struct gpio_desc *phy_reset_gpio;
->  };
->  
->  static struct regmap_config sparx5_reset_regmap_config = {
-> @@ -36,17 +44,39 @@ static int sparx5_switch_reset(struct reset_controller_dev *rcdev,
->  	struct mchp_reset_context *ctx =
->  		container_of(rcdev, struct mchp_reset_context, rcdev);
->  	u32 val;
-> +	int err;
->  
->  	/* Make sure the core is PROTECTED from reset */
-> -	regmap_update_bits(ctx->cpu_ctrl, PROTECT_REG, PROTECT_BIT, PROTECT_BIT);
-> +	regmap_update_bits(ctx->cpu_ctrl, ctx->props->protect_reg,
-> +			   ctx->props->protect_bit, ctx->props->protect_bit);
->  
->  	/* Start soft reset */
-> -	regmap_write(ctx->gcb_ctrl, SOFT_RESET_REG, SOFT_RESET_BIT);
-> +	regmap_write(ctx->gcb_ctrl, ctx->props->reset_reg,
-> +		     ctx->props->reset_bit);
->  
->  	/* Wait for soft reset done */
-> -	return regmap_read_poll_timeout(ctx->gcb_ctrl, SOFT_RESET_REG, val,
-> -					(val & SOFT_RESET_BIT) == 0,
-> +	err = regmap_read_poll_timeout(ctx->gcb_ctrl, ctx->props->reset_reg, val,
-> +					(val & ctx->props->reset_bit) == 0,
->  					1, 100);
-> +	if (err)
-> +		return err;
-> +
-> +	if (!ctx->cuphy_ctrl)
-> +		return 0;
-> +
-> +	/* In case there are external PHYs toggle the GPIO to release the reset
-> +	 * of the PHYs
-> +	 */
-> +	if (ctx->phy_reset_gpio) {
-> +		gpiod_direction_output(ctx->phy_reset_gpio, 1);
-> +		gpiod_set_value(ctx->phy_reset_gpio, 0);
-> +		gpiod_set_value(ctx->phy_reset_gpio, 1);
-> +		gpiod_set_value(ctx->phy_reset_gpio, 0);
-> +	}
-> +
-> +	/* Release the reset of internal PHY */
-> +	return regmap_update_bits(ctx->cuphy_ctrl, ctx->props->cuphy_reg,
-> +				  ctx->props->cuphy_bit, ctx->props->cuphy_bit);
->  }
->  
->  static const struct reset_control_ops sparx5_reset_ops = {
-> @@ -111,17 +141,52 @@ static int mchp_sparx5_reset_probe(struct platform_device *pdev)
->  	if (err)
->  		return err;
->  
-> +	/* This resource is required on lan966x, to take the internal PHYs out
-> +	 * of reset
+On Thu, 14 Oct 2021 at 14:48, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 14/10/2021 13:34, Sam Protsenko wrote:
+> > On Thu, 14 Oct 2021 at 10:11, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@canonical.com> wrote:
+> >>
+> >> On 13/10/2021 22:21, Sam Protsenko wrote:
+> >>> Old Exynos SoCs have both Product ID and Revision ID in one single
+> >>> register, while new SoCs tend to have two separate registers for those
+> >>> IDs. Implement handling of both cases by passing Revision ID register
+> >>> offsets in driver data.
+> >>>
+> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> >>> ---
+> >>>  drivers/soc/samsung/exynos-chipid.c       | 67 +++++++++++++++++++----
+> >>>  include/linux/soc/samsung/exynos-chipid.h |  6 +-
+> >>>  2 files changed, 58 insertions(+), 15 deletions(-)
+> >>>
+> >>> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> >>> index 5c1d0f97f766..7837331fb753 100644
+> >>> --- a/drivers/soc/samsung/exynos-chipid.c
+> >>> +++ b/drivers/soc/samsung/exynos-chipid.c
+> >>> @@ -16,6 +16,7 @@
+> >>>  #include <linux/errno.h>
+> >>>  #include <linux/mfd/syscon.h>
+> >>>  #include <linux/of.h>
+> >>> +#include <linux/of_device.h>
+> >>>  #include <linux/platform_device.h>
+> >>>  #include <linux/regmap.h>
+> >>>  #include <linux/slab.h>
+> >>> @@ -24,6 +25,17 @@
+> >>>
+> >>>  #include "exynos-asv.h"
+> >>>
+> >>> +struct exynos_chipid_variant {
+> >>> +     unsigned int rev_reg;           /* revision register offset */
+> >>> +     unsigned int main_rev_shift;    /* main revision offset in rev_reg */
+> >>> +     unsigned int sub_rev_shift;     /* sub revision offset in rev_reg */
+> >>> +};
+> >>> +
+> >>> +struct exynos_chipid_info {
+> >>> +     u32 product_id;
+> >>> +     u32 revision;
+> >>> +};
+> >>> +
+> >>>  static const struct exynos_soc_id {
+> >>>       const char *name;
+> >>>       unsigned int id;
+> >>> @@ -49,31 +61,55 @@ static const char *product_id_to_soc_id(unsigned int product_id)
+> >>>       int i;
+> >>>
+> >>>       for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
+> >>> -             if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
+> >>> +             if (product_id == soc_ids[i].id)
+> >>>                       return soc_ids[i].name;
+> >>>       return NULL;
+> >>>  }
+> >>>
+> >>> +static int exynos_chipid_get_chipid_info(struct regmap *regmap,
+> >>> +             const struct exynos_chipid_variant *data,
+> >>> +             struct exynos_chipid_info *soc_info)
+> >>> +{
+> >>> +     int ret;
+> >>> +     unsigned int val, main_rev, sub_rev;
+> >>> +
+> >>> +     ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &val);
+> >>> +     if (ret < 0)
+> >>> +             return ret;
+> >>> +     soc_info->product_id = val & EXYNOS_MASK;
+> >>> +
+> >>> +     ret = regmap_read(regmap, data->rev_reg, &val);
+> >>
+> >> Isn't this the same register as EXYNOS_CHIPID_REG_PRO_ID?
+> >>
+> >
+> > It is for Exynos4210, but it's not for Exynos850 (see PATCH 3/3), as
+> > it's described in the commit message. I tried to keep this code
+> > unified for all SoCs.
+>
+> Yeah, but for Exynos4210 you read the same register twice. It's
+> confusing. Read only once. You could compare the offsets and skip second
+> read.
+>
 
-Ah, here we go, required on lan966x. This should be reflected in the
-binding yaml.
+Thanks, will do in v3.
 
-> +	 */
-> +	err = mchp_sparx5_map_syscon(pdev, "cuphy-syscon", &ctx->cuphy_ctrl);
-> +	if (err && err != -ENODEV)
-> +		return err;
+> >
+> >>> +     if (ret < 0)
+> >>> +             return ret;
+> >>> +     main_rev = (val >> data->main_rev_shift) & EXYNOS_REV_PART_MASK;
+> >>> +     sub_rev = (val >> data->sub_rev_shift) & EXYNOS_REV_PART_MASK;
+> >>> +     soc_info->revision = (main_rev << EXYNOS_REV_PART_SHIFT) | sub_rev;
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>>  static int exynos_chipid_probe(struct platform_device *pdev)
+> >>>  {
+> >>> +     const struct exynos_chipid_variant *drv_data;
+> >>> +     struct exynos_chipid_info soc_info;
+> >>>       struct soc_device_attribute *soc_dev_attr;
+> >>>       struct soc_device *soc_dev;
+> >>>       struct device_node *root;
+> >>>       struct regmap *regmap;
+> >>> -     u32 product_id;
+> >>> -     u32 revision;
+> >>>       int ret;
+> >>>
+> >>> +     drv_data = of_device_get_match_data(&pdev->dev);
+> >>> +     if (!drv_data)
+> >>> +             return -EINVAL;
+> >>> +
+> >>>       regmap = device_node_to_regmap(pdev->dev.of_node);
+> >>>       if (IS_ERR(regmap))
+> >>>               return PTR_ERR(regmap);
+> >>>
+> >>> -     ret = regmap_read(regmap, EXYNOS_CHIPID_REG_PRO_ID, &product_id);
+> >>> +     ret = exynos_chipid_get_chipid_info(regmap, drv_data, &soc_info);
+> >>>       if (ret < 0)
+> >>>               return ret;
+> >>>
+> >>> -     revision = product_id & EXYNOS_REV_MASK;
+> >>> -
+> >>>       soc_dev_attr = devm_kzalloc(&pdev->dev, sizeof(*soc_dev_attr),
+> >>>                                   GFP_KERNEL);
+> >>>       if (!soc_dev_attr)
+> >>> @@ -86,8 +122,8 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+> >>>       of_node_put(root);
+> >>>
+> >>>       soc_dev_attr->revision = devm_kasprintf(&pdev->dev, GFP_KERNEL,
+> >>> -                                             "%x", revision);
+> >>> -     soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
+> >>> +                                             "%x", soc_info.revision);
+> >>> +     soc_dev_attr->soc_id = product_id_to_soc_id(soc_info.product_id);
+> >>>       if (!soc_dev_attr->soc_id) {
+> >>>               pr_err("Unknown SoC\n");
+> >>>               return -ENODEV;
+> >>> @@ -106,7 +142,7 @@ static int exynos_chipid_probe(struct platform_device *pdev)
+> >>>
+> >>>       dev_info(soc_device_to_device(soc_dev),
+> >>>                "Exynos: CPU[%s] PRO_ID[0x%x] REV[0x%x] Detected\n",
+> >>> -              soc_dev_attr->soc_id, product_id, revision);
+> >>> +              soc_dev_attr->soc_id, soc_info.product_id, soc_info.revision);
+> >>>
+> >>>       return 0;
+> >>>
+> >>> @@ -125,9 +161,18 @@ static int exynos_chipid_remove(struct platform_device *pdev)
+> >>>       return 0;
+> >>>  }
+> >>>
+> >>> +static const struct exynos_chipid_variant exynos4210_chipid_drv_data = {
+> >>> +     .rev_reg        = 0x0,
+> >>> +     .main_rev_shift = 0,
+> >>> +     .sub_rev_shift  = 4,
+> >>
+> >> The code does not look correct here. Subrev is at 0:3 bits, mainrev is
+> >> at 4:7.
+> >>
+> >
+> > Right. I was confused by those existing macros:
+> >
+> >     #define EXYNOS_SUBREV_MASK        (0xf << 4)
+> >     #define EXYNOS_MAINREV_MASK        (0xf << 0)
+> >
+> > Those were probably wrong the whole time? Anyway, now I've found
+> > Exynos4412 User Manual and checked it there -- you are right about
+> > offsets. Will fix in v3.
+>
+> They were not used, I think.
+>
+> >
+> >> Did you test it that it produces same result? Looks not - I gave it a
+> >> try and got wrong revision.
+> >>
+> >
+> > I only have Exynos850 based board, and that has 0x0 in Revision ID
+> > register. But for v3 I'll try to emulate register value in the code
+> > and make sure that the read value does not change with patch applied.
+>
+> You should get one of Odroid boards to test it. The MC1 is fairly cheap.
+>
 
-So -ENODEV should return an error if .cuphy_reg is set?
+Will do, I see how it can be useful for further work. For this series,
+I'm pretty sure I can test all cases by emulating the read register
+values. Would it be enough? Also, if you have some time, I'd ask you
+to check v3 on your board.
 
-> +
->  	ctx->rcdev.owner = THIS_MODULE;
->  	ctx->rcdev.nr_resets = 1;
->  	ctx->rcdev.ops = &sparx5_reset_ops;
->  	ctx->rcdev.of_node = dn;
-> +	ctx->props = device_get_match_data(&pdev->dev);
-> +
-> +	ctx->phy_reset_gpio = devm_gpiod_get_optional(&pdev->dev, "phy-reset",
-> +						      GPIOD_OUT_LOW);
-> +	if (IS_ERR(ctx->phy_reset_gpio)) {
-> +		dev_err(&pdev->dev, "Could not get reset GPIO\n");
-> +		return PTR_ERR(ctx->phy_reset_gpio);
-
-You could use dev_err_probe() here.
-
-regards
-Philipp
+> Best regards,
+> Krzysztof
