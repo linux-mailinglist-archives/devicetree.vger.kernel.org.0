@@ -2,104 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 416F942DC14
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9599442DC5B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:56:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230371AbhJNOzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbhJNOzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:55:17 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5FDC061570;
-        Thu, 14 Oct 2021 07:53:12 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id r7so20376729wrc.10;
-        Thu, 14 Oct 2021 07:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=d5B5HCqMrztLLrW5kmrymVzCm+NfqoWthUp1VRMYYUU=;
-        b=FYAYK+krCgB7G+n7iC8xxBZL9hwQhtskXsUeTLq+SGHCsdiffdkrumJkiCjGCkNt8q
-         NobtW9/V9kivu488dgG3anr3hFQXLanVZgjc9ZWPYoAL4ZOckOR6CDDih+2RoPOqWIAP
-         uf3jEheouMKJGa0VUgZSUcB4uwyYE44h2ml/ELVJ+2Lm7C2/Q1N0UKX31G01echDTHli
-         np45qs1t2yAfZtd90Pq4F/Uu1ZmJbatDCzxYzhnj9dNVyxtzutZahdPspgSJvcZYxiev
-         OmkixxM8YATtMgc/Py/IJ4UlCe8vGG1SpG7jrwEQP8EuaO4waH3k7Qf/2SRsp8zJeg3M
-         UuRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=d5B5HCqMrztLLrW5kmrymVzCm+NfqoWthUp1VRMYYUU=;
-        b=P0ynBzDKPe89Aq/DbJ9/KNueCyAW05TRrv8G/BplkU4QbL823OCUoJhROTFbtr3V8k
-         FAHV3lb70hjbf3R1UDt9T3A8LaGilxMYP9yWKmY4skbPOmWsW7t6JsFGTosgGSLsDG/N
-         ys3vtafSYzlZiTMlI+028mI4XGW9gXSqmTkVxHi33ZuVZC2ePt6kRZJuRnnsnhPUuTLP
-         RQxA64/Dc978E7P2OzO95SVKZ4zzX5s7whC+CA1IrSz0JFceRctRpWmGTZFbCnzc0MSx
-         CatOdv4mA1LM813FwxC84yvdwb+j/QDb+QpOcYbB7nPGEmF/77Mr98jXfr3imrkvma5i
-         g1sg==
-X-Gm-Message-State: AOAM531q/AAGsX0eIqZkrTao5XQsXKHOd8fy9qgEZhPlHzom56azw4Hj
-        LYUGN6bigoOn0l4hId+vgm8=
-X-Google-Smtp-Source: ABdhPJxwj4QyeoLsfTgposAnSqBMgGEjIEJUCSUuIY5sn6cN9GS9Hiej7sU0HldUQkDYK6Ps0HMdrw==
-X-Received: by 2002:a05:6000:1acc:: with SMTP id i12mr7034978wry.249.1634223188314;
-        Thu, 14 Oct 2021 07:53:08 -0700 (PDT)
-Received: from ?IPV6:2620:113:80c0:8000:c::779? (nat0.nue.suse.com. [2001:67c:2178:4000::1111])
-        by smtp.gmail.com with ESMTPSA id o23sm2423900wms.18.2021.10.14.07.53.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 07:53:07 -0700 (PDT)
-Message-ID: <47708046-ce93-b879-2d1d-40cff2c3b7ea@gmail.com>
-Date:   Thu, 14 Oct 2021 16:53:07 +0200
+        id S232098AbhJNO61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:58:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:56146 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232248AbhJNO6E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 10:58:04 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4F3311D4;
+        Thu, 14 Oct 2021 07:55:59 -0700 (PDT)
+Received: from bogus (e124108.cambridge.arm.com [10.1.27.40])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A0B813F694;
+        Thu, 14 Oct 2021 07:55:57 -0700 (PDT)
+Date:   Thu, 14 Oct 2021 15:55:55 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
+ performance domains
+Message-ID: <20211014145555.uoi2hyoonrptrd5m@bogus>
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+ <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH v7 6/6] arm64: dts: mt8183: change rpmsg property name
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>, ohad@wizery.com,
-        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
-        robh+dt@kernel.org
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210924033935.2127-1-tinghan.shen@mediatek.com>
- <20210924033935.2127-7-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20210924033935.2127-7-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Oct 14, 2021 at 12:56:46PM +0200, Ulf Hansson wrote:
+> On Mon, 17 May 2021 at 18:14, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> > implementations where untrusted software had direct access to clock and
+> > voltage hardware controls. In this attack, the malicious software was able to
+> > place the platform into unsafe overclocked or undervolted configurations. Such
+> > configurations then enabled the injection of predictable faults to reveal
+> > secrets.
+> >
+> > Many Arm-based systems used to or still use voltage regulator and clock
+> > frameworks in the kernel. These frameworks allow callers to independently
+> > manipulate frequency and voltage settings. Such implementations can render
+> > systems susceptible to this form of attack.
+> >
+> > Attacks such as CLKSCREW are now being mitigated by not having direct and
+> > independent control of clock and voltage in the kernel and moving that
+> > control to a trusted entity, such as the SCP firmware or secure world
+> > firmware/software which are to perform sanity checking on the requested
+> > performance levels, thereby preventing any attempted malicious programming.
+> >
+> > With the advent of such an abstraction, there is a need to replace the
+> > generic clock and regulator bindings used by such devices with a generic
+> > performance domains bindings.
+> >
+> > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+> >
+> > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+>
+> Hi Sudeep/Viresh/Rob,
+>
+> I noticed this binding recently got accepted, so I guess I have missed
+> the opportunity to provide you with a few comments.
+>
 
+Sorry for not cc-ing you, wasn't aware of the below mentioned intersection,
+so assumed you are not one of the interested parties.
 
-On 24/09/2021 05:39, Tinghan Shen wrote:
-> The the rpmsg property name is changed to "mediatek," to sync with the
-> vendor name defined in vendor-prefixes.yaml.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> ---
+> In any case, I would like to ask a few questions. In particular, am I
+> trying to understand why the power-domains bindings [1] can't be used
+> for this?
+>
 
-applied to v5.16-tmp/dts64 which will become v5.16-next/dts64 as soon as 
-v5.16-rc1 is published.
+One reason I can think of is on some platforms, the power domains are
+completely controlled by the firmware and not exposed to the OSPM.
+This is mostly applicable for CPU devices(Platform co-ordinated PSCI)
 
+> The power-domains are capable of dealing with "performance" through
+> the "operating-points-v2" DT property, which maps to the generic OPP
+> bindings [2]. I wonder why that isn't sufficient here? Can you please
+> elaborate?
+>
+
+Even if the power domains are exposed to the OSPM, the OPPs can be
+firmware enumerated rather than DT. Not sure if it is possible to
+represent such systems in the above mentioned bindings. IIUC, the genpd
+uses clock and regulator apis to drive the performance, but these
+platforms have f/w interface to drive the OPPs(abstracted).
+
+I am happy to know if there are ways to support such systems with the
+options you have mentioned above.
+
+--
 Regards,
-Matthias
-
->   arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index 8e9cf36a9a41..bc4bbcf457ee 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -754,7 +754,7 @@
->   
->   	cros_ec {
->   		compatible = "google,cros-ec-rpmsg";
-> -		mtk,rpmsg-name = "cros-ec-rpmsg";
-> +		mediatek,rpmsg-name = "cros-ec-rpmsg";
->   	};
->   };
->   
-> 
+Sudeep
