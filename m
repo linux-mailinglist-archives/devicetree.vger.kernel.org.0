@@ -2,73 +2,904 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5DEB42E3DB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 23:52:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2190C42E459
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 00:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232068AbhJNVyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 17:54:31 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:46725 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232055AbhJNVyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 17:54:31 -0400
-Received: by mail-ot1-f49.google.com with SMTP id 62-20020a9d0a44000000b00552a6f8b804so9535457otg.13;
-        Thu, 14 Oct 2021 14:52:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0/BT3WQEIvQc0ky9Gu6Qly3eAQt86CTZ0AQ8niA71G8=;
-        b=VavJ0ccLOlOof7J0FKCG04WJFO8Q6UPHCkwoQrSo9Ey60na8YwA3WYQz0LCL9cPqj8
-         2hDX2sxHFHTuMNHwIlMROsRb1KrLOrd/RGTu60YMq9KWHvsq90L87YEEVVkfuP36CJcl
-         CaXUSumAGcdScjoMXfYQsmE7mAr73xg9tUcbTt3WSQuKiaSKfDYDbrwHTteiIztMonK3
-         gL+s0/7OFqDODhITySKkx88WFVmfb3fPlposMpbdV/k+a/+5CtpMy8ZokCAHCuPgIKuY
-         j/gaygcJ+hVjxaLD+Ga/E4Xw5qpWCqBs4ysCXwOgFkqtcm3yb1/CBRi2Ul20A8nxgYZu
-         /a2A==
-X-Gm-Message-State: AOAM530MS5aGot+rgojy0V+zW9rae7Gn8iIGwloE8I+0NYAgDAFUTHHb
-        DM2LmVY9y/sOZIheWrAwhw==
-X-Google-Smtp-Source: ABdhPJyYFYcLNH05w3U2mp4FRFrX8XJFWQjh+gp9HpDJ4jmhvvqez4YWqCoB/P4icG92eBZzupGd9Q==
-X-Received: by 2002:a05:6830:4027:: with SMTP id i7mr4792877ots.275.1634248345874;
-        Thu, 14 Oct 2021 14:52:25 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q133sm813026oia.55.2021.10.14.14.52.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 14:52:25 -0700 (PDT)
-Received: (nullmailer pid 4012195 invoked by uid 1000);
-        Thu, 14 Oct 2021 21:52:24 -0000
-Date:   Thu, 14 Oct 2021 16:52:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 7/9] dt-bindings: memory: tegra20: emc: Document new
- LPDDR2 sub-node
-Message-ID: <YWimmE+DMtLpRmEU@robh.at.kernel.org>
-References: <20211006224659.21434-1-digetx@gmail.com>
- <20211006224659.21434-8-digetx@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211006224659.21434-8-digetx@gmail.com>
+        id S231327AbhJNWoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 18:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231309AbhJNWoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 18:44:11 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F42C061570;
+        Thu, 14 Oct 2021 15:42:06 -0700 (PDT)
+Received: from crub.agik.hopto.org (pd95f1d7c.dip0.t-ipconnect.de [217.95.29.124])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: agust@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5D0F78365D;
+        Fri, 15 Oct 2021 00:42:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1634251322;
+        bh=zRB+I8kPNF6m0GO3Ly86D9JEU5zOHzsmg6s6gQyNqzY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ArLqd/siH+WWjjmoW8KARkS0EhSZfbyc3tviR9+wPw3iSj3TDfU8Uh+FiHPvMRtFM
+         1yTBz/5iBi5tr4vEuhqiBpOuPtunyuS6YQWFCuVk86EFR0KGJOFHvnX5Tl/2UHio8x
+         f8qOPxBWVZ3FdrpJnML+ztaP2Apbf1jjkYlS1MsLl8kRrSnNKIbhblotsgtihchL/D
+         fng/APFmHtgcQE0VBKLrWJFSYlfF5wrY15HenYJ7TaP5xx/Crj3EuR4iNZGJP12TFh
+         08Do95MtLwQNq0gygFup1sZAsgwAQNe6zp0y9usITiic3ZNHDIFD9HtaXFHOg2ZiRC
+         pH+F2vRMp5zPA==
+From:   Anatolij Gustschin <agust@denx.de>
+To:     linuxppc-dev@lists.ozlabs.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Subject: [PATCH v2] powerpc/mpc512x: dts: fix PSC node warnings
+Date:   Fri, 15 Oct 2021 00:42:01 +0200
+Message-Id: <20211014224201.24027-1-agust@denx.de>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Oct 2021 01:46:57 +0300, Dmitry Osipenko wrote:
-> Some Tegra20 boards don't have RAM code stored in NVMEM, which is used for
-> the memory chip identification and the identity information should be read
-> out from LPDDR2 chip in this case. Document new sub-node containing generic
-> LPDDR2 properties that will be used for the memory chip identification if
-> RAM code isn't available. The identification is done by reading out memory
-> configuration values from generic LPDDR2 mode registers of SDRAM chip and
-> comparing them with the values of device-tree 'lpddr2' sub-node.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../nvidia,tegra20-emc.yaml                   | 23 +++++++++++++++++--
->  1 file changed, 21 insertions(+), 2 deletions(-)
-> 
+Rework PSC node description to fix build warnings like:
+mpc5121.dtsi:397.13-406.5: Warning (spi_bus_bridge): /soc@80000000/psc@11400: node name for SPI buses should be 'spi'
+mpc5121.dtsi:409.13-418.5: Warning (spi_bus_bridge): /soc@80000000/psc@11500: node name for SPI buses should be 'spi'
+mpc5121.dtsi:457.13-466.5: Warning (spi_bus_bridge): /soc@80000000/psc@11900: node name for SPI buses should be 'spi'
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Anatolij Gustschin <agust@denx.de>
+---
+Changes in v2:
+ - extract PSC nodes to files which can be included
+   separately and extended as needed
+
+ arch/powerpc/boot/dts/ac14xx.dts            | 118 ++++++++--------
+ arch/powerpc/boot/dts/mpc5121-psc0.dtsi     |  16 +++
+ arch/powerpc/boot/dts/mpc5121-psc1.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc10.dtsi    |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc11.dtsi    |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc2.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc3.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi |  17 +++
+ arch/powerpc/boot/dts/mpc5121-psc4.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi |  17 +++
+ arch/powerpc/boot/dts/mpc5121-psc5.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc6.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc7.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc8.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi |  17 +++
+ arch/powerpc/boot/dts/mpc5121-psc9.dtsi     |  15 ++
+ arch/powerpc/boot/dts/mpc5121.dtsi          | 148 +-------------------
+ arch/powerpc/boot/dts/mpc5121ads.dts        |  42 +++---
+ arch/powerpc/boot/dts/pdm360ng.dts          | 104 +++++++-------
+ 19 files changed, 371 insertions(+), 273 deletions(-)
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc0.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc1.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc10.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc11.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc2.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc3.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc6.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc7.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc8.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi
+ create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9.dtsi
+
+diff --git a/arch/powerpc/boot/dts/ac14xx.dts b/arch/powerpc/boot/dts/ac14xx.dts
+index 5d8877e1f4ad..0af3b0ab7550 100644
+--- a/arch/powerpc/boot/dts/ac14xx.dts
++++ b/arch/powerpc/boot/dts/ac14xx.dts
+@@ -15,8 +15,8 @@
+ 	#size-cells = <1>;
+ 
+ 	aliases {
+-		serial0 = &serial0;
+-		serial1 = &serial7;
++		serial0 = &psc3;
++		serial1 = &psc7;
+ 		spi4 = &spi4;
+ 		spi5 = &spi5;
+ 	};
+@@ -294,62 +294,6 @@
+ 			status = "disabled";
+ 		};
+ 
+-		/* PSC3 serial port A, aka ttyPSC0 */
+-		serial0: psc@11300 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-			fsl,rx-fifo-size = <512>;
+-			fsl,tx-fifo-size = <512>;
+-		};
+-
+-		/* PSC4 in SPI mode */
+-		spi4: psc@11400 {
+-			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+-			fsl,rx-fifo-size = <768>;
+-			fsl,tx-fifo-size = <768>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			num-cs = <1>;
+-			cs-gpios = <&gpio_pic 25 0>;
+-
+-			flash: m25p128@0 {
+-				compatible = "st,m25p128";
+-				spi-max-frequency = <20000000>;
+-				reg = <0>;
+-				#address-cells = <1>;
+-				#size-cells = <1>;
+-
+-				partition@0 {
+-					label = "spi-flash0";
+-					reg = <0x00000000 0x01000000>;
+-				};
+-			};
+-		};
+-
+-		/* PSC5 in SPI mode */
+-		spi5: psc@11500 {
+-			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+-			fsl,mode = "spi-master";
+-			fsl,rx-fifo-size = <128>;
+-			fsl,tx-fifo-size = <128>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			lcd@0 {
+-				compatible = "ilitek,ili922x";
+-				reg = <0>;
+-				spi-max-frequency = <100000>;
+-				spi-cpol;
+-				spi-cpha;
+-			};
+-		};
+-
+-		/* PSC7 serial port C, aka ttyPSC2 */
+-		serial7: psc@11700 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-			fsl,rx-fifo-size = <512>;
+-			fsl,tx-fifo-size = <512>;
+-		};
+-
+ 		matrix_keypad@0 {
+ 			compatible = "gpio-matrix-keypad";
+ 			debounce-delay-ms = <5>;
+@@ -393,3 +337,61 @@
+ 		};
+ 	};
+ };
++
++/* PSC3 serial port A, aka ttyPSC0 */
++#include "mpc5121-psc3.dtsi"
++&psc3 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	fsl,rx-fifo-size = <512>;
++	fsl,tx-fifo-size = <512>;
++	status = "okay";
++};
++
++/* PSC7 serial port C, aka ttyPSC2 */
++#include "mpc5121-psc7.dtsi"
++&psc7 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	fsl,rx-fifo-size = <512>;
++	fsl,tx-fifo-size = <512>;
++	status = "okay";
++};
++
++/* PSC4 in SPI mode */
++#include "mpc5121-psc4-spi.dtsi"
++&spi4 {
++	status = "okay";
++	fsl,rx-fifo-size = <768>;
++	fsl,tx-fifo-size = <768>;
++	num-cs = <1>;
++	cs-gpios = <&gpio_pic 25 0>;
++
++	flash: m25p128@0 {
++		compatible = "st,m25p128";
++		spi-max-frequency = <20000000>;
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		partition@0 {
++			label = "spi-flash0";
++			reg = <0x00000000 0x01000000>;
++		};
++	};
++};
++
++/* PSC5 in SPI mode */
++#include "mpc5121-psc5-spi.dtsi"
++&spi5 {
++	status = "okay";
++	fsl,mode = "spi-master";
++	fsl,rx-fifo-size = <128>;
++	fsl,tx-fifo-size = <128>;
++
++	lcd@0 {
++		compatible = "ilitek,ili922x";
++		reg = <0>;
++		spi-max-frequency = <100000>;
++		spi-cpol;
++		spi-cpha;
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc0.dtsi b/arch/powerpc/boot/dts/mpc5121-psc0.dtsi
+new file mode 100644
+index 000000000000..a2df388d864c
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc0.dtsi
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	/* 512x PSCs are not 52xx PSC compatible */
++	psc0: psc@11000 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11000 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC0>,
++			 <&clks MPC512x_CLK_PSC0_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc1.dtsi b/arch/powerpc/boot/dts/mpc5121-psc1.dtsi
+new file mode 100644
+index 000000000000..41848f44c576
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc1.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc1: psc@11100 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11100 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC1>,
++			 <&clks MPC512x_CLK_PSC1_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc10.dtsi b/arch/powerpc/boot/dts/mpc5121-psc10.dtsi
+new file mode 100644
+index 000000000000..6d004a15baf1
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc10.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc10: psc@11a00 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11a00 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC10>,
++			 <&clks MPC512x_CLK_PSC10_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc11.dtsi b/arch/powerpc/boot/dts/mpc5121-psc11.dtsi
+new file mode 100644
+index 000000000000..9888ad50afc3
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc11.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc11: psc@11b00 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11b00 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC11>,
++			 <&clks MPC512x_CLK_PSC11_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc2.dtsi b/arch/powerpc/boot/dts/mpc5121-psc2.dtsi
+new file mode 100644
+index 000000000000..2b229a8cb4cf
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc2.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc2: psc@11200 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11200 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC2>,
++			 <&clks MPC512x_CLK_PSC2_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc3.dtsi b/arch/powerpc/boot/dts/mpc5121-psc3.dtsi
+new file mode 100644
+index 000000000000..972cd0af2ac7
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc3.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc3: psc@11300 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11300 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC3>,
++			 <&clks MPC512x_CLK_PSC3_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi b/arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi
+new file mode 100644
+index 000000000000..d110a89d5e93
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	spi4: spi@11400 {
++		compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
++		reg = <0x11400 0x100>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC9>,
++			 <&clks MPC512x_CLK_PSC9_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc4.dtsi b/arch/powerpc/boot/dts/mpc5121-psc4.dtsi
+new file mode 100644
+index 000000000000..0a3082318125
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc4.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc4: psc@11400 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11400 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC4>,
++			 <&clks MPC512x_CLK_PSC4_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi b/arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi
+new file mode 100644
+index 000000000000..5651ccff02ad
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	spi5: spi@11500 {
++		compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
++		reg = <0x11500 0x100>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC9>,
++			 <&clks MPC512x_CLK_PSC9_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc5.dtsi b/arch/powerpc/boot/dts/mpc5121-psc5.dtsi
+new file mode 100644
+index 000000000000..880ab45d6985
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc5.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc5: psc@11500 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11500 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC5>,
++			 <&clks MPC512x_CLK_PSC5_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc6.dtsi b/arch/powerpc/boot/dts/mpc5121-psc6.dtsi
+new file mode 100644
+index 000000000000..7ec67953cffb
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc6.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc6: psc@11600 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11600 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC6>,
++			 <&clks MPC512x_CLK_PSC6_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc7.dtsi b/arch/powerpc/boot/dts/mpc5121-psc7.dtsi
+new file mode 100644
+index 000000000000..e5ca588e4cfd
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc7.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc7: psc@11700 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11700 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC7>,
++			 <&clks MPC512x_CLK_PSC7_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc8.dtsi b/arch/powerpc/boot/dts/mpc5121-psc8.dtsi
+new file mode 100644
+index 000000000000..056d6bc019de
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc8.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc8: psc@11800 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11800 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC8>,
++			 <&clks MPC512x_CLK_PSC8_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi b/arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi
+new file mode 100644
+index 000000000000..3c82804970eb
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	spi9: spi@11900 {
++		compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
++		reg = <0x11900 0x100>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC9>,
++			 <&clks MPC512x_CLK_PSC9_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121-psc9.dtsi b/arch/powerpc/boot/dts/mpc5121-psc9.dtsi
+new file mode 100644
+index 000000000000..355190f974bd
+--- /dev/null
++++ b/arch/powerpc/boot/dts/mpc5121-psc9.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++
++&soc {
++	psc9: psc@11900 {
++		compatible = "fsl,mpc5121-psc";
++		reg = <0x11900 0x100>;
++		interrupts = <40 0x8>;
++		fsl,rx-fifo-size = <16>;
++		fsl,tx-fifo-size = <16>;
++		clocks = <&clks MPC512x_CLK_PSC9>,
++			 <&clks MPC512x_CLK_PSC9_MCLK>;
++		clock-names = "ipg", "mclk";
++		status = "disabled";
++	};
++};
+diff --git a/arch/powerpc/boot/dts/mpc5121.dtsi b/arch/powerpc/boot/dts/mpc5121.dtsi
+index 3f66b91a8e3c..21674da8beb1 100644
+--- a/arch/powerpc/boot/dts/mpc5121.dtsi
++++ b/arch/powerpc/boot/dts/mpc5121.dtsi
+@@ -87,7 +87,7 @@
+ 		};
+ 	};
+ 
+-	soc@80000000 {
++	soc: soc@80000000 {
+ 		compatible = "fsl,mpc5121-immr";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -343,152 +343,6 @@
+ 			clock-names = "ipg";
+ 		};
+ 
+-		/* 512x PSCs are not 52xx PSC compatible */
+-
+-		/* PSC0 */
+-		psc@11000 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11000 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC0>,
+-				 <&clks MPC512x_CLK_PSC0_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC1 */
+-		psc@11100 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11100 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC1>,
+-				 <&clks MPC512x_CLK_PSC1_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC2 */
+-		psc@11200 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11200 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC2>,
+-				 <&clks MPC512x_CLK_PSC2_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC3 */
+-		psc@11300 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-			reg = <0x11300 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC3>,
+-				 <&clks MPC512x_CLK_PSC3_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC4 */
+-		psc@11400 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-			reg = <0x11400 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC4>,
+-				 <&clks MPC512x_CLK_PSC4_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC5 */
+-		psc@11500 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11500 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC5>,
+-				 <&clks MPC512x_CLK_PSC5_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC6 */
+-		psc@11600 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11600 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC6>,
+-				 <&clks MPC512x_CLK_PSC6_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC7 */
+-		psc@11700 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11700 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC7>,
+-				 <&clks MPC512x_CLK_PSC7_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC8 */
+-		psc@11800 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11800 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC8>,
+-				 <&clks MPC512x_CLK_PSC8_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC9 */
+-		psc@11900 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11900 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC9>,
+-				 <&clks MPC512x_CLK_PSC9_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC10 */
+-		psc@11a00 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11a00 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC10>,
+-				 <&clks MPC512x_CLK_PSC10_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+-		/* PSC11 */
+-		psc@11b00 {
+-			compatible = "fsl,mpc5121-psc";
+-			reg = <0x11b00 0x100>;
+-			interrupts = <40 0x8>;
+-			fsl,rx-fifo-size = <16>;
+-			fsl,tx-fifo-size = <16>;
+-			clocks = <&clks MPC512x_CLK_PSC11>,
+-				 <&clks MPC512x_CLK_PSC11_MCLK>;
+-			clock-names = "ipg", "mclk";
+-		};
+-
+ 		pscfifo@11f00 {
+ 			compatible = "fsl,mpc5121-psc-fifo";
+ 			reg = <0x11f00 0x100>;
+diff --git a/arch/powerpc/boot/dts/mpc5121ads.dts b/arch/powerpc/boot/dts/mpc5121ads.dts
+index b407a50ee622..c87735ec0730 100644
+--- a/arch/powerpc/boot/dts/mpc5121ads.dts
++++ b/arch/powerpc/boot/dts/mpc5121ads.dts
+@@ -133,24 +133,6 @@
+ 			fsl,invert-drvvbus;
+ 			fsl,invert-pwr-fault;
+ 		};
+-
+-		/* PSC3 serial port A aka ttyPSC0 */
+-		psc@11300 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
+-
+-		/* PSC4 serial port B aka ttyPSC1 */
+-		psc@11400 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
+-
+-		/* PSC5 in ac97 mode */
+-		ac97: psc@11500 {
+-			compatible = "fsl,mpc5121-psc-ac97", "fsl,mpc5121-psc";
+-			fsl,mode = "ac97-slave";
+-			fsl,rx-fifo-size = <384>;
+-			fsl,tx-fifo-size = <384>;
+-		};
+ 	};
+ 
+ 	pci: pci@80008500 {
+@@ -172,3 +154,27 @@
+ 				>;
+ 	};
+ };
++
++/* PSC3 serial port A aka ttyPSC0 */
++#include "mpc5121-psc3.dtsi"
++&psc3 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
++
++/* PSC4 serial port B aka ttyPSC1 */
++#include "mpc5121-psc4.dtsi"
++&psc4 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
++
++/* PSC5 in ac97 mode */
++#include "mpc5121-psc5.dtsi"
++&psc5 {
++	compatible = "fsl,mpc5121-psc-ac97", "fsl,mpc5121-psc";
++	status = "okay";
++	fsl,mode = "ac97-slave";
++	fsl,rx-fifo-size = <384>;
++	fsl,tx-fifo-size = <384>;
++};
+diff --git a/arch/powerpc/boot/dts/pdm360ng.dts b/arch/powerpc/boot/dts/pdm360ng.dts
+index 67c3b9db75d7..23e797d8887e 100644
+--- a/arch/powerpc/boot/dts/pdm360ng.dts
++++ b/arch/powerpc/boot/dts/pdm360ng.dts
+@@ -132,64 +132,68 @@
+ 		usb@4000 {
+ 			fsl,invert-pwr-fault;
+ 		};
++	};
++};
+ 
+-		psc@11000 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
+-
+-		psc@11100 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
+-
+-		psc@11200 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
+-
+-		psc@11300 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
++#include "mpc5121-psc0.dtsi"
++#include "mpc5121-psc1.dtsi"
++#include "mpc5121-psc2.dtsi"
++#include "mpc5121-psc3.dtsi"
++#include "mpc5121-psc4.dtsi"
++#include "mpc5121-psc6.dtsi"
++#include "mpc5121-psc8.dtsi"
++#include "mpc5121-psc11.dtsi"
++/* Select PSC UART mode */
++&psc0 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11400 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
++&psc1 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11500 {
+-			status = "disabled";
+-		};
++&psc2 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11600 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
++&psc3 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11700 {
+-			status = "disabled";
+-		};
++&psc4 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11800 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
++&psc6 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11900 {
+-			compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			/* ADS7845 touch screen controller */
+-			ts@0 {
+-				compatible = "ti,ads7846";
+-				reg = <0x0>;
+-				spi-max-frequency = <3000000>;
+-				/* pen irq is GPIO25 */
+-				interrupts = <78 0x8>;
+-			};
+-		};
++&psc8 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11a00 {
+-			status = "disabled";
+-		};
++&psc11 {
++	compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
++	status = "okay";
++};
+ 
+-		psc@11b00 {
+-			compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+-		};
++#include "mpc5121-psc9-spi.dtsi"
++&spi9 {
++	status = "okay";
++
++	/* ADS7845 touch screen controller */
++	ts@0 {
++		compatible = "ti,ads7846";
++		reg = <0x0>;
++		spi-max-frequency = <3000000>;
++		/* pen irq is GPIO25 */
++		interrupts = <78 0x8>;
+ 	};
+ };
+-- 
+2.17.1
+
