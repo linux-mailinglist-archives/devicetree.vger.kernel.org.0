@@ -2,137 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EFC42D3EF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC0542D3F2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:41:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230081AbhJNHm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 03:42:28 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56114
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230118AbhJNHm1 (ORCPT
+        id S229967AbhJNHnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 03:43:19 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:59227 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229551AbhJNHnT (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 03:42:27 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2928F3FFF0
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 07:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634197222;
-        bh=BSACrBGTfG90TqLgzAR+u5HLMmvyB5Y7ctjsvIUfOYw=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=rf73FfvICjWmOHydjk7/P9nde0aEjMseVn3ucM+h1FxxxDaFrgrESR4RCDSoacQbe
-         NwOv41jP8Aumoe3JdgkSPSEg0YCJgU190w6u7UrrfuJvLtgSxIZ/m0zDucgggsjfg5
-         PpfnN/FkoRQ3flYDVHCdKiFVv7KLjjdDLz0JrPjHb6Z5fiN+lIxNPgA2ikxogGEE7v
-         U5fWUIyPnQJIyPPvpxJth2tNzipszWd7WeZP9D1hIwZKSH2MOPu/y3n6LGoU9qSX1e
-         FyxY2Fbkoo9Dt1CdDeSAN77/JT/HIRVdd8KzSn9nOSu5ngM7JO4fFO83rikoMKdwOT
-         XCIRRzv2xdOXQ==
-Received: by mail-lf1-f69.google.com with SMTP id p42-20020a05651213aa00b003fd8935b8d6so3777499lfa.10
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 00:40:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BSACrBGTfG90TqLgzAR+u5HLMmvyB5Y7ctjsvIUfOYw=;
-        b=AMc6wheQb0cr8MJPYzh2bnvXdgRWTcwsgOPNQ34TaBLRZkKg7AZhuo5Y9xRosqf3fs
-         4ktbS2Ts4BjcchfuNznZEFVRpMtia5xW0wyZ1rSyCp1Eotq4J7ZGpCKLFQbd28pE/cTK
-         YdHzK8b/9948y+7vh6d5e4VkFdcVDhLKSvWJ2Hc4XkPQe2YlFq35f144kc0c59nnoM4V
-         vlzi7BjHge3Kl1SRfTww0+0YpBEzzJz0bhXykhJoUzfCgySju/F7CoBd3gFdm4vMmtkM
-         j3pZrrqLmKSGxBWXISCvX2LSwnrMD/6OviQMHRyysgyhYLp6P9tCmOE/tmrD+3JC5lsx
-         7aTw==
-X-Gm-Message-State: AOAM530YXLn5S7En/B7R/CGcVe4gZg/Y3UsZuJoa12qMIrKW+3DS3Dsw
-        y42Bq0f+masn8E6xoqjtIz81dq/wF3v1/m367oXD2W5vPPCjCNUd7beGnBw6sS97WGPKuawa2Tm
-        irFnL7TNncA96tDHukhQroyEM7Xrf3dYG++mlC2Y=
-X-Received: by 2002:a05:651c:11c4:: with SMTP id z4mr4417356ljo.463.1634197221507;
-        Thu, 14 Oct 2021 00:40:21 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxJ852blNGCE18lIHBFuHjg9N7QLcvT90c3zIFiYBIbtej5nM39qTScrIdLkFjQnn03d3q3kg==
-X-Received: by 2002:a05:651c:11c4:: with SMTP id z4mr4417328ljo.463.1634197221346;
-        Thu, 14 Oct 2021 00:40:21 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id 189sm184857ljj.113.2021.10.14.00.40.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 00:40:20 -0700 (PDT)
-Subject: Re: [PATCH 6/8] mfd: max77714: Add driver for Maxim MAX77714 PMIC
-To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>
-References: <20211011155615.257529-1-luca@lucaceresoli.net>
- <20211011155615.257529-7-luca@lucaceresoli.net>
- <b2355acf-94a5-1acf-122b-d661c6d9bb1b@canonical.com>
- <5236720c-96b0-3e18-e08f-a5dde982eab5@lucaceresoli.net>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <b4ee3175-5bd7-cf75-2d2b-2cc9368842e7@canonical.com>
-Date:   Thu, 14 Oct 2021 09:40:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Thu, 14 Oct 2021 03:43:19 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id DB77C2B00428;
+        Thu, 14 Oct 2021 03:41:13 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 14 Oct 2021 03:41:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=fYpD+qQEFt3q5FXg58C9+/ADaWw
+        2/calmEftlemO734=; b=AXup7XZLYKVCtNOzfzNjU7yb2/0WmSG6hABwAdvBPeN
+        rNWWAwa2BoM92FPcHDsdHZZNgDCdsT0e9b7BADGC6B/F16grsedsfq1jd3cGBw0S
+        pHlnLmeNJfpwHNbns2KKAIrymgSA6H52le+gW0Zk2emZzsTVO4725zLuA/LTL+aD
+        svNrNbTcsrHVmOm29TWjxHe0ZRW5d8r33AYPFbCO84m/aor2c8SaJf2PgWOZ1lZe
+        oa/g5zaYTcpGkyzKe0HTq0akLXTJvWDZ3gDfNa9q4kpCimEKukHvf/QFIBf3ZPAy
+        eS9lY2CXV0YVouHCjdnb0FTMSroptpFl/WDw4RCaopQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=fYpD+q
+        QEFt3q5FXg58C9+/ADaWw2/calmEftlemO734=; b=ShYTk4Z/I7O8D5DUKuQ36J
+        49PXfXi4kRn0YhcKMI6M1BIzRHUG0bihojLfaYSKE//byVcRyCyOVIvjZx4lNFkP
+        lbW616OCrAqO7M97qIdZB3KbnkbTHhr92MSwB4B4wKNPHFh6vx4W9zTSc9ncXbHq
+        VYOs0N31MF2u/ixJe/EvxyXEKTn7jIac+hccCODzsWEAtPh+OTrjJyIe9p35h+/x
+        7fyL+BNClX1ws+CHGG6Ds7wo3VyU3GT0MVJ5XFDYrXuv4d/w/FoSjD8FEeDx5O23
+        9hzo3eikRYnRMQ4rXMq9csHvpTTcB+TGxEMLbt+ep1iFQRmHXmN+jANz0WZ7vcfA
+        ==
+X-ME-Sender: <xms:GN9nYZMTwXYtfzaNlcAxxEhG9S0ZQPdqpCEq9gv069pdjJiSrSwJDA>
+    <xme:GN9nYb-DRdX23QiZkYDzhemb1ShF6yLle0TkPerg9LNXKMjwJSeonDMg_BnNPWy99
+    IF2Z5Dvtc9vAQRKiv4>
+X-ME-Received: <xmr:GN9nYYQKa1Dd0I8ntXyoCe_y4LQKIdK-oBDXKTPs-44vaG70wgyVJ8gr5X68bNVpQ9A2rUWkNFQFtMrot7Wc7koHFkPGM_MVbBL3vIvB>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdduuddgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+    heegudenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:GN9nYVt-mddnaVGxwwFln2YUMd6WPbacG1FYbZmgUFMFN07izlrHCA>
+    <xmx:GN9nYRdTCFbw0sk5gqDRb0Z_xKVs7TM8Ba9F27SKcf6ls4UosU0B_g>
+    <xmx:GN9nYR2nTCjFB2hZjL5TsLDoxeWAqQL_qMMh66bcIGkNUQ8OC8BOyA>
+    <xmx:Gd9nYR27fqzPdRK1-0VhQQGMq0WN9PHAKqlStLofj0b89wge1mVdCf2m3hg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 14 Oct 2021 03:41:11 -0400 (EDT)
+Date:   Thu, 14 Oct 2021 09:41:10 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
+ supply bindings
+Message-ID: <20211014074110.ym6mzugde2m5ak22@gilmour>
+References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+ <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
+ <20211013074722.7y7ug3eri4euknza@gilmour>
+ <YWao69+QEK8Fhi/x@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-In-Reply-To: <5236720c-96b0-3e18-e08f-a5dde982eab5@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2vu6g5pb2tsus6jk"
+Content-Disposition: inline
+In-Reply-To: <YWao69+QEK8Fhi/x@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/10/2021 23:39, Luca Ceresoli wrote:
-> Hi,
-> 
-> On 12/10/21 10:32, Krzysztof Kozlowski wrote:
->> On 11/10/2021 17:56, Luca Ceresoli wrote:
->>> Add a simple driver for the Maxim MAX77714 PMIC, supporting RTC and
->>> watchdog only.
->>>
->>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>> ---
->>>  MAINTAINERS                  |   2 +
->>>  drivers/mfd/Kconfig          |  14 ++++
->>>  drivers/mfd/Makefile         |   1 +
->>>  drivers/mfd/max77714.c       | 151 +++++++++++++++++++++++++++++++++++
->>>  include/linux/mfd/max77714.h |  68 ++++++++++++++++
->>>  5 files changed, 236 insertions(+)
->>>  create mode 100644 drivers/mfd/max77714.c
->>>  create mode 100644 include/linux/mfd/max77714.h
->>>
->>
->> (...)
->>
->>> +
->>> +static const struct of_device_id max77714_dt_match[] = {
->>> +	{ .compatible = "maxim,max77714" },
->>> +	{},
->>> +};
->>
->> When converting to module - don't forget the MODULE_DEVICE_TABLE
->>
->>> +
->>> +static struct i2c_driver max77714_driver = {
->>> +	.driver = {
->>> +		.name = "max77714",
->>> +		.of_match_table = of_match_ptr(max77714_dt_match),
->>
->> Kbuild robot pointed it out - of_matc_ptr should not be needed, even for
->> compile testing without OF.
-> 
-> I wonder whether it's better to add '#ifdef CONFIG_OF / #endif' around
-> the struct of_device_id declaration. I think it's what most drivers do,
-> even though I tend to prefer not adding #ifdefs making code less clean
-> only for COMPILE_TESTING.
 
-No, most drivers added it long time ago before we switched it to a new
-way - either __maybe_unused or without anything even. The point is that
-OF driver can be reused for ACPI platforms. If you limit it with ifdef
-or of_match_ptr, the ACPI platform won't have any table to use for binding.
+--2vu6g5pb2tsus6jk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Wed, Oct 13, 2021 at 12:37:47PM +0300, Laurent Pinchart wrote:
+> Hi Maxime,
+>=20
+> On Wed, Oct 13, 2021 at 09:47:22AM +0200, Maxime Ripard wrote:
+> > On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
+> > > Add a VCC regulator which needs to be enabled before the EN pin is
+> > > released.
+> > >=20
+> > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > >  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++=
+++
+> > >  1 file changed, 5 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65=
+dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.=
+yaml
+> > > index a5779bf17849..49ace6f312d5 100644
+> > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.y=
+aml
+> > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.y=
+aml
+> > > @@ -32,6 +32,9 @@ properties:
+> > >      maxItems: 1
+> > >      description: GPIO specifier for bridge_en pin (active high).
+> > > =20
+> > > +  vcc-supply:
+> > > +    description: A 1.8V power supply (see regulator/regulator.yaml).
+> > > +
+> > >    ports:
+> > >      $ref: /schemas/graph.yaml#/properties/ports
+> > > =20
+> > > @@ -93,6 +96,7 @@ properties:
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > +  - vcc-supply
+> >=20
+> > This isn't a backward-compatible change. All the previous users of that
+> > binding will now require a vcc-supply property even though it was
+> > working fine for them before.
+> >=20
+> > You handle that nicely in the code, but you can't make that new property
+> > required.
+>=20
+> We can't make it required in the driver, but can't we make it required
+> in the bindings ? This indicates that all new DTs need to set the
+> property. We also need to mass-patch the in-tree DTs to avoid validation
+> failures, but apart from that, I don't see any issue.
+
+I guess we'd need to clarify what the schemas are here for.
+
+We've been using them for two things: define the bindings, and make
+sure that the users of a binding actually follow it.
+
+The second part makes it very tempting to also cram "and make sure they
+follow our best practices" in there. We never had the discussion about
+whether that's ok or not, and I think the schemas syntax falls a bit
+short there since I don't think we can make the difference between a
+warning and an error that would make it work.
+
+However, if we're talking about the binding itself, then no, you can't
+introduce a new property. Since it was acceptable in the past, it still
+needs to be acceptable going forward.
+
+Maxime
+
+--2vu6g5pb2tsus6jk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYWffFgAKCRDj7w1vZxhR
+xeanAPjg/sDPbHy0fQ+Frfi5Ua8lhsMXTAwUoANmHT7G619yAP0eoUl7NpfwS9BH
+9SR3BGTPf8SfjN+eeTIoHH0KmekmCA==
+=wuEw
+-----END PGP SIGNATURE-----
+
+--2vu6g5pb2tsus6jk--
