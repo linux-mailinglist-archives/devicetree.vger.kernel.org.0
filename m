@@ -2,187 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3DB342E26A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 22:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1448042E27D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 22:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234081AbhJNUJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 16:09:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232898AbhJNUJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 16:09:09 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCABC061570
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 13:07:04 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id g10so28927916edj.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 13:07:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tOC9prHZYIEZh+iOSkgASgqcP4dzHU1Vi2nx843IsCk=;
-        b=NL0BrbBgqbeg+0k1NdyHAoUworVxwn/bPXtWcOyPrJjiIpNlT1faHXA45eyP9NndQ8
-         GY6YgAmOHLAZ/tAmiSlkjl6N8hPbdMSxqgVNlAkQWq4zFMK0JLWO7AArMg2YnWWk2jSp
-         k3WkVkHvKn3O99QXT7K3GiVbGxYD/qzA3Bw94Yswc2z3skllu6r8XA+f/34SzUTYrVno
-         +RIWyNtx2rCeOe/yliw4fna8bHmSd0oZjw9hN+mJnzJL47/a/yr3XjQDu7aRj4zYWWVv
-         4EypWFYkT+zi4P4XBv6M0hYyyXU8d9p2vYXwozwbXGocu6QkkGopMHu6J9GPflpKU/6N
-         gtyA==
+        id S230150AbhJNUQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 16:16:06 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:40658 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230026AbhJNUQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 16:16:06 -0400
+Received: by mail-oi1-f179.google.com with SMTP id n63so10005950oif.7;
+        Thu, 14 Oct 2021 13:14:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tOC9prHZYIEZh+iOSkgASgqcP4dzHU1Vi2nx843IsCk=;
-        b=qJGymJMKzCYcn7890pFR1ZSZGJymgSmWj9qDw2hajWhlPRHBHXFr4VbPt+YB/3s7eT
-         KdOiRtjBne6Ksp8NBzj+WvnQUZuk79aJbQGmfz+bR9d8ce/uLgRIpBnhYxRzAw/3BwLD
-         OlewYtXeJ1TraSdRjBkcmEVzkdcWu02pKW2AOqo4j1wLAuJS4RKwiRT1yPGkqzpwxY2C
-         HyZ6RgGT10yF4Alwkwgo+YZkrrdzdhLU6u3MnLhXhiN/WS0jLOU1QGytxtXUtAKV1h3O
-         yQ6vrmOOk3+oELchjddFEysSKqJnKvavjRc4g7Zda4nBR8+0bpRMZcOTvrTvgcmHxiqq
-         OVWQ==
-X-Gm-Message-State: AOAM533COBrhPsJV8qimZbWfqFEu8ueareteIjquCEn4oLLv3NcklF8B
-        ri20F+K86fik6FEdgMUK7ibJBdfxAbTdDMovW9Oj6A==
-X-Google-Smtp-Source: ABdhPJxD9UzCWfjeFxRsC1YkcQ1vTaG6mft6f+Mucv9VjzzB99L17qlsFkC2Y1a/7iwSh5iOwxPa20nY0PCyjOOngtw=
-X-Received: by 2002:a17:906:b19:: with SMTP id u25mr1397747ejg.36.1634242022767;
- Thu, 14 Oct 2021 13:07:02 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=n01/kMhBv8uu3x49TKo7ZBWRbu8OqDI9V8qJAm3R2B8=;
+        b=WbVdZSRzK+l8i2Fb7Zo/3x6ZYz3fxsgVHEul3eOA7XPyz0JQvfqe13mFO9glnft6Gw
+         3yAUZlGo32HyT30VssAClKY4w6QlPcgNFglFRbMifEMn463hNkKfqtgrqPQFgQWPn4tc
+         P+KZFxhDv+Cx53aSHl46XeX99ik/erz904fRRdug4LQAKIPUSbjD+1vG4VOvK8KWg9zl
+         /pDpDlAjSgpZtRv6Z0yLwWq9z0ardHVhQoV+g4R8H7UPwpfUtFBkXTp12TN4wPvMCdmo
+         lA7XlOTz4W0SstQj2rdxErCvpDLI6kN7FpR/pDNHWNA1FNH8s7o5OBr1WmCN9NiEXwO8
+         vQ+w==
+X-Gm-Message-State: AOAM533TcCJAgHNP7/OlmOYKIvypVmDmaCq2C3IpKFdbqAGcllvw9BI7
+        5Iu17r/raQuMtwFWE+WAKQ==
+X-Google-Smtp-Source: ABdhPJylamsqgwOrb1R27CJzlReJ/tvs5wnqclVDFJam9KoT/CoZ/dpZdg/PEi9S05FbNJ38RN2slg==
+X-Received: by 2002:a05:6808:1686:: with SMTP id bb6mr5614190oib.40.1634242440953;
+        Thu, 14 Oct 2021 13:14:00 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id m23sm629041oom.34.2021.10.14.13.14.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Oct 2021 13:14:00 -0700 (PDT)
+Received: (nullmailer pid 3845806 invoked by uid 1000);
+        Thu, 14 Oct 2021 20:13:59 -0000
+Date:   Thu, 14 Oct 2021 15:13:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, tomi.valkeinen@ti.com,
+        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display/bridge: tc358764: Convert to YAML
+ binding
+Message-ID: <YWiPh5QjOXzq0ut4@robh.at.kernel.org>
+References: <20211006135150.504897-1-angelogioacchino.delregno@collabora.com>
+ <YWSakiB4OFqGzAiw@ravnborg.org>
 MIME-Version: 1.0
-References: <20210304034141.7062-1-brad@pensando.io> <20210304034141.7062-2-brad@pensando.io>
- <CACRpkdbQD6p7fbGtuu1c92uXfSFDCTwqjqsXHpgnD5Lg4v0Okw@mail.gmail.com>
- <20210304091025.ny52qjm7wbfvmjgl@mobilestation> <CACRpkdZroi+_oHqipS71MAGif190y7jWU5Myf55vz=_um4w5cQ@mail.gmail.com>
- <CAK9rFnzDZ4MNm68AJ75g7zegLD-7UMHyoVR-4ssitYTTEeQm5g@mail.gmail.com>
- <CACRpkdZEURRTe15HGf93SvyHej=_6qhfP9KWPSQbCM=SLUVKmA@mail.gmail.com>
- <CAK9rFnxuiAX2-5TFhfyTdpaY3BRysX_Q2sJkca4LhOLzapB83Q@mail.gmail.com> <CACRpkdbF3oXec-8Z-1fNVL47mfYo2TW8WTDxzpwaR2YqLaTdAQ@mail.gmail.com>
-In-Reply-To: <CACRpkdbF3oXec-8Z-1fNVL47mfYo2TW8WTDxzpwaR2YqLaTdAQ@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Thu, 14 Oct 2021 13:06:52 -0700
-Message-ID: <CAK9rFnx1NN92coAgUC7douF+ny8dCL5uoFopBaWAE_q02-XWyg@mail.gmail.com>
-Subject: Re: [PATCH 1/8] gpio: Add Elba SoC gpio driver for spi cs control
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YWSakiB4OFqGzAiw@ravnborg.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 12, 2021 at 4:52 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Mon, Oct 4, 2021 at 6:46 PM Brad Larson <brad@pensando.io> wrote:
->
-> > Yes that works, please see the diff below where the file
-> > gpio-elba-spics.c goes away.  The original implementation was
-> > motivated by gpio-spear-spics.c.
->
-> This looks good to me :)
->
-> Yours,
-> Linus Walleij
+On Mon, Oct 11, 2021 at 10:12:02PM +0200, Sam Ravnborg wrote:
+> Hi AngeloGioacchino,
+> 
+> On Wed, Oct 06, 2021 at 03:51:50PM +0200, AngeloGioacchino Del Regno wrote:
+> > Convert the Toshiba TC358764 txt documentation to YAML.
+> > 
+> > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Thanks for all these conversions to DT-schema.
+> 
+> It would be very good if the changelog could document the warnings they
+> triggers when they are used to check the existing dts files.
+> This is a good way to document that the warnings are expected.
 
-Hi Linus,
+Really what's missing is adding 'ports'.
 
-:-)  It's better to not have to look at a related gpio driver file to
-the spi-dw-mmio.c
-driver and think it could possibly be used as general purpose gpio.
+I'm fine with just a note below '---' on the intent WRT dtbs_check. I 
+assume the intent is to fix the one case which is fine given there is 
+only 1. The graph parsing code doesn't care which way is done and we 
+prefer having 'ports'.
 
-Here is a response summary per patch.  Should I start respinning the
-patchset against
-the latest linux-next tag?  The changes are merged to our production
-5.10.28 kernel
-and the next step is to re-spin the set against the latest linux-next
-which has a newer dtc,
-run checkpatch, etc.  For reference as this has been cooking for
-awhile here is the
-overview from V2 patchset cover letter.
+> 
+> While waiting for Rob to review, here is one small nit. See inline
+> comment below.
+> 
+> My personal preference is to use 4 spaces for indent in the examples.
+> But two is perfectly fine and there is today no rule for it.
+> 
+> When you are resending these, then it would be nice with a cover letter
+> and all patches in one series. You can then use the cover letter both to
+> tell on a higher level what was changed since v1 and to give a status on the
+> conversion effort. I hope you have converted all bridge DT-schemas.
+> 
+> 	Sam
+> 
+> > ---
+> >  .../display/bridge/toshiba,tc358764.txt       | 35 -------
+> >  .../display/bridge/toshiba,tc358764.yaml      | 94 +++++++++++++++++++
+> >  2 files changed, 94 insertions(+), 35 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.txt
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.txt b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.txt
+> > deleted file mode 100644
+> > index 8f9abf28a8fa..000000000000
+> > --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.txt
+> > +++ /dev/null
+> > @@ -1,35 +0,0 @@
+> > -TC358764 MIPI-DSI to LVDS panel bridge
+> > -
+> > -Required properties:
+> > -  - compatible: "toshiba,tc358764"
+> > -  - reg: the virtual channel number of a DSI peripheral
+> > -  - vddc-supply: core voltage supply, 1.2V
+> > -  - vddio-supply: I/O voltage supply, 1.8V or 3.3V
+> > -  - vddlvds-supply: LVDS1/2 voltage supply, 3.3V
+> > -  - reset-gpios: a GPIO spec for the reset pin
+> > -
+> > -The device node can contain following 'port' child nodes,
+> > -according to the OF graph bindings defined in [1]:
+> > -  0: DSI Input, not required, if the bridge is DSI controlled
+> > -  1: LVDS Output, mandatory
+> > -
+> > -[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> > -
+> > -Example:
+> > -
+> > -	bridge@0 {
+> > -		reg = <0>;
+> > -		compatible = "toshiba,tc358764";
+> > -		vddc-supply = <&vcc_1v2_reg>;
+> > -		vddio-supply = <&vcc_1v8_reg>;
+> > -		vddlvds-supply = <&vcc_3v3_reg>;
+> > -		reset-gpios = <&gpd1 6 GPIO_ACTIVE_LOW>;
+> > -		#address-cells = <1>;
+> > -		#size-cells = <0>;
+> > -		port@1 {
+> > -			reg = <1>;
+> > -			lvds_ep: endpoint {
+> > -				remote-endpoint = <&panel_ep>;
+> > -			};
+> > -		};
+> > -	};
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.yaml
+> > new file mode 100644
+> > index 000000000000..267a870b6b0b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358764.yaml
+> > @@ -0,0 +1,94 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/toshiba,tc358764.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Toshiba TC358764 MIPI-DSI to LVDS bridge
+> > +
+> > +maintainers:
+> > +  - Andrzej Hajda <a.hajda@samsung.com>
+> > +
+> > +description: |
+> > +  The TC358764 is bridge device which converts MIPI DSI or MIPI DPI to DP/eDP.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - toshiba,tc358764
+> > +
+> > +  reg:
+> > +    description: Virtual channel number of a DSI peripheral
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    description: GPIO connected to the reset pin.
+> > +    maxItems: 1
+> > +
+> > +  vddc-supply:
+> > +    description: Core voltage supply, 1.2V
+> > +
+> > +  vddio-supply:
+> > +    description: I/O voltage supply, 1.8V or 3.3V
+> > +
+> > +  vddlvds-supply:
+> > +    description: LVDS1/2 voltage supply, 3.3V
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Video port for MIPI DSI input, if the bridge DSI controlled
+> Fix: ..., if the bridge is DSI controlled
+> 
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Video port for LVDS output (panel or connector).
+> > +
+> > +    required:
+> > +      - port@1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vddc-supply
+> > +  - vddio-supply
+> > +  - vddlvds-supply
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c1 {
 
-This series enables support for Pensando Elba SoC based platforms.
+i2c {
 
-The Elba SoC has the following features:
-- Sixteen ARM64 A72 cores
-- Dual DDR 4/5 memory controllers
-- 32 lanes of PCIe Gen3/4 to the Host
-- Network interfaces: Dual 200GE, Quad 100GE, 50GE, 25GE, 10GE and
-  also a single 1GE management port.
-- Storage/crypto offloads and 144 programmable P4 cores.
-- QSPI and EMMC for SoC storage
-- Two SPI interfaces for peripheral management
-- I2C bus for platform management
-
-Summary of response to V1/V2 patchset
-0001-gpio-Add-Elba-SoC-gpio-driver-for-spi-cs-control.patch
-- This patch is deleted.  Elba SOC specific gpio spics control is
-  integrated into spi-dw-mmio.c.
-
-0002-spi-cadence-quadspi-Add-QSPI-support-for-Pensando-El.patch
-- Changed compatible to "pensando,elba-qspi" to be more descriptive
-  in spi-cadence-quadspi.c.
-
-- Arnd wondered if moving to DT properties for quirks may be the
-  way to go.  Feedback I've received on other patches was don't
-  mix two efforts in one patch so I'm currently just adding the
-  Elba support to the current design.
-
-0003-spi-dw-Add-support-for-Pensando-Elba-SoC-SPI.patch
-- Changed the implementation to use existing dw_spi_set_cs() and
-  integrated Elba specific CS control into spi-dw-mmio.c.  The
-  native designware support is for two chip-selects while Elba
-  provides 4 chip-selects.  Instead of adding a new file for
-  this support in gpio-elba-spics.c the support is in one
-  file (spi-dw-mmio.c).
-
-0004-spidev-Add-Pensando-CPLD-compatible.patch
-- This patch is deleted.  The addition of compatible "pensando,cpld"
-  to spidev.c is removed.
-
-0005-mmc-sdhci-cadence-Add-Pensando-Elba-SoC-support.patch
-- Ulf and Yamada-san agreed the amount of code for this support
-  is not enough to need a new file.  The support is added into
-  sdhci-cadence.c and new files sdhci-cadence-elba.c and
-  sdhci-cadence.h are deleted.
-- Redundant defines are removed (e.g. use SDHCI_CDNS_HRS04 and
-  remove SDIO_REG_HRS4).
-- Removed phy init function sd4_set_dlyvr() and used existing
-  sdhci_cdns_phy_init(). Init values are from DT properties.
-- Replace  devm_ioremap_resource(&pdev->dev, iomem)
-     with  devm_platform_ioremap_resource(pdev, 1)
-- Refactored the elba priv_writ_l() and elba_write_l() to
-  remove a little redundant code.
-- The config option CONFIG_MMC_SDHCI_CADENCE_ELBA goes away.
-- Only C syntax and Elba functions are prefixed with elba_
-
-0006-arm64-Add-config-for-Pensando-SoC-platforms.patch
-- Added a little more info to the platform help text to assist
-  users to decide on including platform support or not.
-
-0007-arm64-dts-Add-Pensando-Elba-SoC-support.patch
-- Node names changed to DT generic names
-- Changed from using 'spi@' which is reserved
-- The elba-flash-parts.dtsi is kept separate as
-  it is included in multiple dts files.
-- SPDX license tags at the top of each file
-- The compatible = "pensando,elba" and 'model' are
-  now together in the board file.
-- UIO nodes removed
-- Ordered nodes by increasing unit address
-- Removed an unreferenced container node.
-- Dropped deprecated 'device_type' for uart0 node.
-- Added syscon usage
-
-0010-dt-bindings-spi-cadence-qspi-Add-support-for-Pensand.patch
-- Updated since the latest documentation has been converted to yaml
-
-0011-dt-bindings-gpio-Add-Pensando-Elba-SoC-support.patch
-- This patch is deleted since the Elba gpio spics is added to
-  the spi dw driver and documented there.
-
-Best,
-Brad
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      bridge@0 {
+> > +        compatible = "toshiba,tc358764";
+> > +        reg = <0>;
+> > +        vddc-supply = <&vcc_1v2_reg>;
+> > +        vddio-supply = <&vcc_1v8_reg>;
+> > +        vddlvds-supply = <&vcc_3v3_reg>;
+> > +        reset-gpios = <&gpd1 6 GPIO_ACTIVE_LOW>;
+> > +
+> > +        ports {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          port@1 {
+> > +            reg = <1>;
+> > +            lvds_ep: endpoint {
+> > +              remote-endpoint = <&panel_ep>;
+> > +            };
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.33.0
+> 
