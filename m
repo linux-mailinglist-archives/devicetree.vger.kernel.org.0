@@ -2,94 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD5D42D45F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D83F42D47C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 10:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbhJNIA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 04:00:59 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:50518 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230106AbhJNIA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 04:00:58 -0400
-X-UUID: a8e549faea61499ebb3ac34243eb0875-20211014
-X-UUID: a8e549faea61499ebb3ac34243eb0875-20211014
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1256779269; Thu, 14 Oct 2021 15:58:51 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 14 Oct 2021 15:58:50 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 14 Oct
- 2021 15:58:49 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 14 Oct 2021 15:58:49 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        id S230094AbhJNIG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 04:06:59 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:57624
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229683AbhJNIG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 04:06:58 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AD0203FFF6
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 08:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634198693;
+        bh=ojVn2ZVbkcgXLj7A1DRlVPqyw/Wvd+lGjqh+OPrsbYg=;
+        h=To:Cc:References:From:Subject:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=h+V/m8SE0ysBm9lknGPpnnkrr4Cm8wmFe8JqLgGBn2Fqz26H3Res69bAqugxBDn8i
+         cxVbUVQU9lY7qhoZjNpgaogQm4iWpKgFXaLJhXl+GVGaHBlWJr7tc0b7UWC3mmBQYx
+         H+uMjk7eAIr6ia93HNL7Nak5YBWodeB0Z4Li6X28L/zBQsPpNadka1TYjSVyRWb5Pz
+         SujZ0E6vIOOGzByJyq1G6gqavCq1gYOGUeO/HezX0VdUIPjkdtnWT2diQZ5twOqEVu
+         Ih1Sq9f/dED08Bg+BtLtncvk57wYW56Z82b7/kfE+70sZdSBxT0stGt75pigql/vU5
+         xz/xw+AQ6IQWw==
+Received: by mail-lf1-f69.google.com with SMTP id p42-20020a05651213aa00b003fd8935b8d6so3821251lfa.10
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 01:04:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ojVn2ZVbkcgXLj7A1DRlVPqyw/Wvd+lGjqh+OPrsbYg=;
+        b=JVybtcFAn3tM10v6uatAe5VWttIAP/s4MIR1EYCwMFafCETNMnJwf39BKA3zgg4+mh
+         FssF95XG+nVbpkv3uaPKPGmTWNoSfA6DU1QJL0FL7UUm1IjTAwuJdhPh1e2hCtS5JTrC
+         mjVxpFUV8TQsxUcNqya4sk+4Bx+/2MKoeB9bt5j6Lv2XW1a06A+1YL6GAVfCFQwNtPBF
+         3uWUFKvIDS8wmNqFhprbN2Ubh9U1yorJGR73jaIry6wo7L4UqjpBKRIQKGJqne/mAzNY
+         rTkk22hcbBSlZLWVx8vJVZp7DuL0AMmTCe9nxYoDmaE1GpVUpB+m+1uTV3AG8H34Ta2M
+         GW+g==
+X-Gm-Message-State: AOAM531AetPXtJ2DHxMEP4/TuYcHeZJqZnGZGqHH5yUpQ8xSOVMbV6cV
+        G6QJmocqO1483zJ+Ddvo0p7yNO+xsDb4ZhZbc7Kus10fGZ3wdk2vtW/I8IU4lhjdkz3w+2bOfMB
+        zHQRedIEHB492UvJmubilZqS2NMp7DbaxGVmtGRk=
+X-Received: by 2002:a05:651c:907:: with SMTP id e7mr4525977ljq.457.1634198693142;
+        Thu, 14 Oct 2021 01:04:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw+fscirp5GuIbG7uOPrahokzBv9+3ns/V49MlZBkkCWBoqQbGM80foMTQ19Sle1sD5Y+4ZXA==
+X-Received: by 2002:a05:651c:907:: with SMTP id e7mr4525955ljq.457.1634198692964;
+        Thu, 14 Oct 2021 01:04:52 -0700 (PDT)
+Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id z12sm161733lfs.101.2021.10.14.01.04.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Oct 2021 01:04:52 -0700 (PDT)
+To:     Hector Martin <marcan@marcan.st>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     John Crispin <john@phrozen.org>,
-        Ryder Lee <Ryder.Lee@mediatek.com>,
-        "Sam Shih" <sam.shih@mediatek.com>
-Subject: [PATCH v7 4/4] arm64: dts: mediatek: add pinctrl support for mt7986b
-Date:   Thu, 14 Oct 2021 15:58:36 +0800
-Message-ID: <20211014075836.17681-5-sam.shih@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211014075836.17681-1-sam.shih@mediatek.com>
-References: <20211014075836.17681-1-sam.shih@mediatek.com>
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-7-marcan@marcan.st>
+ <a9f6898d-bd76-b94e-52fc-98e9da1a04bd@canonical.com>
+ <2a6f14e5-fbc9-4b9a-9378-a4b5200bc3fb@marcan.st>
+ <f81467d4-74b2-176d-06bf-f04e073efce4@canonical.com>
+ <00925242-b837-d75b-3655-536d45dcd4d2@marcan.st>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [RFC PATCH 6/9] memory: apple: Add apple-mcc driver to manage MCC
+ perf in Apple SoCs
+Message-ID: <410c0ccb-68d3-478b-2b5b-9165890e614a@canonical.com>
+Date:   Thu, 14 Oct 2021 10:04:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <00925242-b837-d75b-3655-536d45dcd4d2@marcan.st>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt7986b pinctrl node
+On 14/10/2021 09:52, Hector Martin wrote:
+> On 14/10/2021 16.36, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Sam Shih <sam.shih@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt7986b.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+(...)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986b.dtsi b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-index 9cc27020901a..a0b5ee232443 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
-@@ -128,6 +128,27 @@ apmixedsys: apmixedsys@1001e000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pio: pinctrl@1001f000 {
-+			compatible = "mediatek,mt7986b-pinctrl";
-+			reg = <0 0x1001f000 0 0x1000>,
-+			      <0 0x11c30000 0 0x1000>,
-+			      <0 0x11c40000 0 0x1000>,
-+			      <0 0x11e20000 0 0x1000>,
-+			      <0 0x11e30000 0 0x1000>,
-+			      <0 0x11f00000 0 0x1000>,
-+			      <0 0x11f10000 0 0x1000>,
-+			      <0 0x1000b000 0 0x1000>;
-+			reg-names = "gpio", "iocfg_rt", "iocfg_rb", "iocfg_lt",
-+				    "iocfg_lb", "iocfg_tr", "iocfg_tl", "eint";
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-parent = <&gic>;
-+			#interrupt-cells = <2>;
-+		};
-+
- 		sgmiisys0: syscon@10060000 {
- 			compatible = "mediatek,mt7986-sgmiisys_0",
- 				     "syscon";
--- 
-2.29.2
+> 
+>>> Ah, I didn't realize that was a valid option for MODULE_LICENSE. I guess
+>>> anything containing "GPL" works with EXPORT_SYMBOL_GPL?
+>>
+>> I don't think exporting symbols is related to how you license your code.
+> 
+> It is; only modules with a GPL-compatible MODULE_LICENSE get to use 
+> symbols exported via EXPORT_SYMBOL_GPL.
 
+Although there might be such correlation but it's not a rule. You can
+have a GPL module exporting symbols without GPL requirement
+(EXPORT_SYMBOLS). You can have a GPL+MIT module exporting symbols as
+GPL. Obviously you cannot have a non-GPL module, as we do not accept
+these and there is no such choice.
+
+So answering your question that "GPL" works with EXPORT_SYMBOL_GPL -
+everything is GPL but it works with both EXPORT_SYMBOL and
+EXPORT_SYMBOL_GPL.
+
+> 
+> See kernel/module.c for the symbol lookup logic and 
+> include/linux/license.h for the logic to check the string (seems like 
+> "Dual MIT/GPL" is explicitly whitelisted there).
+
+Not related to export symbol. It is used for determining the tainted
+kernel via other licenses.
+
+> 
+> Of course, this is a futile effort, as ~every time I see a proprietary 
+> module in some embedded device, it either falsely declares itself to be 
+> GPL, or they have a shim module that re-exports GPL symbols as non-GPL.
+> 
+
+This is being removed soon (or already).
+
+
+Best regards,
+Krzysztof
