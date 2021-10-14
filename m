@@ -2,267 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B0D142E287
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 22:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BBA042E2A9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 22:20:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231980AbhJNUTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 16:19:03 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:46727 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232993AbhJNUSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 16:18:55 -0400
-Received: by mail-ot1-f45.google.com with SMTP id 62-20020a9d0a44000000b00552a6f8b804so9223038otg.13;
-        Thu, 14 Oct 2021 13:16:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sLOZBbljlJk6fxRBXiALacjUjEX+53gXTaAVz3wg99U=;
-        b=LUJ4ODNkz46zZnNI+Yx6vpzWkKAgPuwlYyK1H2wZ+TP7BnnKeB7NCBkv5rv8JY6VWB
-         IyVEVuhu7ElGzgqImUMZirBXv0mIDqUnbZysoqjMzfLi0q5d6oj0j7m3eJQ8+umHmnBM
-         E11wXEk+xsib3xj+YmYJKKqdT4VwJVUQ/Llw9Ljbj5xJuHtV6gyM8vaqdSRkMKyUhqhP
-         5wEoizex/FLpajMfSn3tsUsValjOgf+u8ErrbdcsiaiV4a6eFT3mT2lCkYw572oSKf/1
-         QBO8UF5+n1hH8uUipKL7zPpmqADFMS93x1khXiNpv792ccOW43mN8iaraZnAmVoVfYJ6
-         xMVg==
-X-Gm-Message-State: AOAM530MGlzRzXMsEO5OmckMwxt47vHzP6yQyCwSYhpWD1KtVAOzgp18
-        fPOrCfvHB3AemHuqYMIp1g==
-X-Google-Smtp-Source: ABdhPJzsUlG+d1iaT/mSTy2OK/mA2mBw4ASqaCFdzTmfCHcV6evnztjSEGS/un35IXxmlV95JeN2QA==
-X-Received: by 2002:a9d:4684:: with SMTP id z4mr4445844ote.134.1634242610236;
-        Thu, 14 Oct 2021 13:16:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j65sm780894oif.5.2021.10.14.13.16.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 13:16:49 -0700 (PDT)
-Received: (nullmailer pid 3850196 invoked by uid 1000);
-        Thu, 14 Oct 2021 20:16:48 -0000
-Date:   Thu, 14 Oct 2021 15:16:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     a.hajda@samsung.com, daniel@ffwll.ch, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display/bridge: tc358767: Convert to YAML
- binding
-Message-ID: <YWiQMM0ugXFYCaD0@robh.at.kernel.org>
-References: <20211006135204.505144-1-angelogioacchino.delregno@collabora.com>
+        id S231168AbhJNUW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 16:22:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35938 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229912AbhJNUW4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 16:22:56 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E5DC061570;
+        Thu, 14 Oct 2021 13:20:50 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78DED2F3;
+        Thu, 14 Oct 2021 22:20:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634242848;
+        bh=f32F8tEoMdmDds2PtCo/SAzfEpYM2JYBSHycxeGrJxs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BFx2GzAbqqIpIWq3uRwy512n9C133x2td9B/m6/Ut/cEr/cfXEYKDunENF4pokRM2
+         YcFuHTFCnKD1+9HPXO5VYk/bprML8+4ynZejGFhKxHfvGXa0kttt55x7FR56IFum6q
+         BQLQibaeHYeUYvTfn0wXXdpXthA7LnK/JlsP1Scg=
+Date:   Thu, 14 Oct 2021 23:20:33 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anil Kumar Mamidala <anil.mamidala@xilinx.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        sakari.ailus@iki.fi, naveenku@xilinx.com,
+        Stefan Hladnik <stefan.hladnik@gmail.com>,
+        Florian Rebaudo <frebaudo@witekio.com>
+Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add bindings for
+ AP1302
+Message-ID: <YWiRERUYZTBepOKU@pendragon.ideasonboard.com>
+References: <20211006113254.3470-1-anil.mamidala@xilinx.com>
+ <20211006113254.3470-2-anil.mamidala@xilinx.com>
+ <YWiK/xXEQwC5HgWD@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211006135204.505144-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <YWiK/xXEQwC5HgWD@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 03:52:04PM +0200, AngeloGioacchino Del Regno wrote:
-> Convert the Toshiba TC358767 txt documentation to YAML.
+Hi Rob,
+
+On Thu, Oct 14, 2021 at 02:54:39PM -0500, Rob Herring wrote:
+> On Wed, Oct 06, 2021 at 05:32:54AM -0600, Anil Kumar Mamidala wrote:
+> > The AP1302 is a standalone ISP for ON Semiconductor sensors.
+> > Add corresponding DT bindings.
+> > 
+> > Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
+> > Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/onnn,ap1302.yaml | 202 +++++++++++++++++++++
+> >  1 file changed, 202 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > new file mode 100644
+> > index 0000000..d96e9db
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
+> > @@ -0,0 +1,202 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/onnn,ap1302.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ON Semiconductor AP1302 Advanced Image Coprocessor
+> > +
+> > +maintainers:
+> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > +  - Anil Kumar M <anil.mamidala@xilinx.com>
+> > +
+> > +description: |-
+> > +  The AP1302 is a standalone ISP for ON Semiconductor sensors. It interfaces to
+> > +  up to two RAW CMOS sensors over MIPI CSI-2 connections, processes the two
+> > +  video streams and outputs YUV frames to the host over a MIPI CSI-2 interface.
+> > +  Frames are output side by side or on two virtual channels.
+> > +
+> > +  The sensors must be identical. They are connected to the AP1302 on dedicated
+> > +  I2C buses, and are controlled by the AP1302 firmware. They are not accessible
+> > +  from the host.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../display/bridge/toshiba,tc358767.txt       |  54 --------
->  .../display/bridge/toshiba,tc358767.yaml      | 118 ++++++++++++++++++
->  2 files changed, 118 insertions(+), 54 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+> In your case, but in general I'd assume whatever sensors are used here 
+> could be attached directly to an SoC with a built-in ISP?
+
+That is correct, the same sensors can be used with a different ISP
+(built-in or not), or even without any ISP.
+
+> The model and 
+> power supplies you specify wouldn't be different, so I think the same 
+> binding could be used for both. Though here, you probably just need a 
+> subset. More below.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
-> deleted file mode 100644
-> index 583c5e9dbe6b..000000000000
-> --- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
-> +++ /dev/null
-> @@ -1,54 +0,0 @@
-> -Toshiba TC358767 eDP bridge bindings
-> -
-> -Required properties:
-> - - compatible: "toshiba,tc358767"
-> - - reg: i2c address of the bridge, 0x68 or 0x0f, depending on bootstrap pins
-> - - clock-names: should be "ref"
-> - - clocks: OF device-tree clock specification for refclk input. The reference
-> -   clock rate must be 13 MHz, 19.2 MHz, 26 MHz, or 38.4 MHz.
-> -
-> -Optional properties:
-> - - shutdown-gpios: OF device-tree gpio specification for SD pin
-> -                   (active high shutdown input)
-> - - reset-gpios: OF device-tree gpio specification for RSTX pin
-> -                (active low system reset)
-> - - toshiba,hpd-pin: TC358767 GPIO pin number to which HPD is connected to (0 or 1)
-> - - ports: the ports node can contain video interface port nodes to connect
-> -   to a DPI/DSI source and to an eDP/DP sink according to [1][2]:
-> -    - port@0: DSI input port
-> -    - port@1: DPI input port
-> -    - port@2: eDP/DP output port
-> -
-> -[1]: Documentation/devicetree/bindings/graph.txt
-> -[2]: Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -Example:
-> -	edp-bridge@68 {
-> -		compatible = "toshiba,tc358767";
-> -		reg = <0x68>;
-> -		shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-> -		reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-> -		clock-names = "ref";
-> -		clocks = <&edp_refclk>;
-> -
-> -		ports {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			port@1 {
-> -				reg = <1>;
-> -
-> -				bridge_in: endpoint {
-> -					remote-endpoint = <&dpi_out>;
-> -				};
-> -			};
-> -
-> -			port@2 {
-> -				reg = <2>;
-> -
-> -				bridge_out: endpoint {
-> -					remote-endpoint = <&panel_in>;
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> new file mode 100644
-> index 000000000000..8e27e6f0fc7d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-> @@ -0,0 +1,118 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/toshiba,tc358767.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba TC358767 MIPI-DSI or MIPI-DPI to DP/eDP bridge
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - toshiba,tc358767
-> +
-> +  reg:
-> +    description: I2C address of the bridge
-> +    enum: [0x68, 0x0f]
-> +
-> +  clocks:
-> +    description:
-> +      Reference clock input. The reference clock rate must be 13MHz, 19.2MHz,
-> +      26MHz, or 38.4MHz.
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: ref
-> +
-> +  reset-gpios:
-> +    description: GPIO connected to the RSTX signal.
-> +    maxItems: 1
-> +
-> +  shutdown-gpios:
-> +    description: GPIO connected to the SD signal.
-> +    maxItems: 1
-> +
-> +  toshiba,hpd-pin:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: TC356767 GPIO pin number to which HPD is connected
-> +    enum:
-> +      - 0
-> +      - 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Video port for MIPI DSI input
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Video port for MIPI DPI input
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Video port for DP/eDP output (panel or connector).
-> +
-> +    oneOf:
-> +      - required:
-> +          - port@0
-> +          - port@2
-> +      - required:
-> +          - port@1
-> +          - port@2
-
-You could move port@2 out to:
-
-       required:
-         - port@2
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clock-names
-> +  - clocks
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c1 {
-
-i2c {
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      bridge@68 {
-> +        compatible = "toshiba,tc358767";
-> +        reg = <0x68>;
-> +        clock-names = "ref";
-> +        clocks = <&edp_refclk>;
-> +        reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-> +        shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@1 {
-> +            reg = <1>;
-> +            bridge_in: endpoint {
-> +              remote-endpoint = <&dpi_out>;
-> +            };
-> +          };
-> +
-> +          port@2 {
-> +            reg = <2>;
-> +            bridge_out: endpoint {
-> +              remote-endpoint = <&panel_in>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.33.0
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: onnn,ap1302
+> > +
+> > +  reg:
+> > +    description: I2C device address.
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    description: Reference to the CLK clock.
+> > +    maxItems: 1
+> > +
+> > +  reset-gpios:
+> > +    description: Reference to the GPIO connected to the RST pin (active low).
+> > +    maxItems: 1
+> > +
+> > +  standby-gpios:
+> > +    description:
+> > +      Reference to the GPIO connected to the STANDBY pin (active high).
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    unevaluatedProperties: false
+> > +    description: MIPI CSI-2 output interface to the host.
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          clock-noncontinuous:
+> > +            type: boolean
+> > +
+> > +          data-lanes:
+> > +            oneOf:
+> > +              - items:
+> > +                  - const: 1
+> > +              - items:
+> > +                  - const: 1
+> > +                  - const: 2
+> > +              - items:
+> > +                  - const: 1
+> > +                  - const: 2
+> > +                  - const: 3
+> > +                  - const: 4
+> > +
+> > +        required:
+> > +          - data-lanes
+> > +
+> > +  sensors:
+> > +    type: object
+> > +    description: List of connected sensors
+> > +
+> > +    properties:
+> > +      "#address-cells":
+> > +        const: 1
+> > +
+> > +      "#size-cells":
+> > +        const: 0
+> > +
+> > +      onnn,model:
+> > +        $ref: "/schemas/types.yaml#/definitions/string"
+> > +        description: |
+> > +          Model of the connected sensors. Must be a valid compatible string.
 > 
+> Then make it a compatible string and move into each child node.
+
+We started with that, but considered that it made mistakes more easily
+in the device tree. As the two sensors have to be identical (it's a
+limitation of the AP1302), moving the model to the sensor nodes means
+that someone could set two different models, and the driver will have to
+include corresponding validation code. It's more code on the driver
+side, and more complexity on the DT side. Does it actually bring us
+anything ?
+
+> > +
+> > +          If no sensor is connected, this property must no be specified, and
+> > +          the AP1302 can be used with it's internal test pattern generator.
+> > +
+> > +    patternProperties:
+> > +      "^sensor@[01]":
+> > +        type: object
+> > +        description: |
+> > +          Sensors connected to the first and second input, with one node per
+> > +          sensor.
+> > +
+> > +        properties:
+> > +          reg:
+> > +            description: AP1302 input port number
+> > +            maxItems: 1
 > 
+> items:
+>   - enum: [ 0, 1]
+> 
+> > +
+> > +        patternProperties:
+> > +          ".*-supply":
+> 
+> You need to list the supplies out.
+
+Fair point, given that we have a list of supply names per sensor in the
+AP1302 driver.
+
+> I would make this a schema for the 
+> sensor along with compatible. Here, you could either reference those if 
+> you want to document the list of supported sensors or don't reference 
+> them and just document 'reg'. With a compatible, the schema will be 
+> applied anyways.
+
+This I'm more concerned about. The sensors may be the same when used
+with the AP1302 or when used standalone, but their integration in the
+system is quite different. With the AP1302, the reg value is the AP1302
+port number, while in the standalone case, it's an I2C address. We're
+just lucky that the #address-cells and #size-cells happen to be the same
+in both cases. In the standalone case, there will be more properties
+that are not applicable here. How would we prevent all those other
+properties from being evaluated in the AP1302 case ?
+
+> > +            description: Power supplies for the sensor
+> > +
+> > +        required:
+> > +          - reg
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    required:
+> > +      - "#address-cells"
+> > +      - "#size-cells"
+> > +
+> > +    # How can we express that onnn,model requires one sensor object to be set ?
+> > +
+> > +    additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - port
+> > +  - sensors
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        camera@3c {
+> > +            compatible = "onnn,ap1302";
+> > +            reg = <0x3c>;
+> > +
+> > +            clocks = <&clk24mhz>;
+> > +
+> > +            reset-gpios = <&pio 102 GPIO_ACTIVE_LOW>;
+> > +            standby-gpios = <&pio 40 GPIO_ACTIVE_HIGH>;
+> > +
+> > +            port {
+> > +                isp1_out: endpoint {
+> > +                    remote-endpoint = <&seninf_in1>;
+> > +                    data-lanes = <1 2 3 4>;
+> > +                };
+> > +            };
+> > +
+> > +            sensors {
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +
+> > +                onnn,model = "onnn,ar0144";
+> > +
+> > +                sensor@0 {
+> > +                    reg = <0>;
+> > +
+> > +                    vdd-supply = <&mt6358_vcamd_reg>;
+> > +                    vaa-supply = <&mt6358_vcama1_reg>;
+> > +                    vddio-supply = <&reg_1p8v_ext>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        camera@3c {
+> > +            compatible = "onnn,ap1302";
+> > +            reg = <0x3c>;
+> > +
+> > +            clocks = <&topckgen 0>;
+> > +
+> > +            reset-gpios = <&pio 102 GPIO_ACTIVE_LOW>;
+> > +            standby-gpios = <&pio 40 GPIO_ACTIVE_HIGH>;
+> > +
+> > +            port {
+> > +                isp2_out: endpoint {
+> > +                    remote-endpoint = <&seninf_in1>;
+> > +                    data-lanes = <1 2>;
+> > +                };
+> > +            };
+> > +
+> > +            sensors {
+> > +                #address-cells = <1>;
+> > +                #size-cells = <0>;
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+
+-- 
+Regards,
+
+Laurent Pinchart
