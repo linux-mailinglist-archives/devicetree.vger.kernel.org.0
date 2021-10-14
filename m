@@ -2,222 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A59D42D94C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4950F42D956
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbhJNMb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 08:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230172AbhJNMb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:31:56 -0400
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B71C061570
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:29:51 -0700 (PDT)
-Received: by mail-ua1-x92f.google.com with SMTP id r22so66579uat.11
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:29:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bpEt5S2I1jECJZ7RAHxHySVXzboFeasK/FtBe+cjO18=;
-        b=yHj0RLsispl3pZOx9OzQRdtNdyJkziqY9hxlNeIeAdjRANYoVp3gT0ZHuJt++TVuLE
-         Fs6uvLKVQ3/EfqaX88EnLDmlO8KLYxuYkeCSIiy+O0kLtnQbBr5bAFwsO+DXKyHQGiOa
-         HJN/Ucm4pLg4vxoMKuZJJjhAh6HCCjXuzqOdOb/PmWZ/RkzN2ET0KIMgWgisCz/fHkgx
-         r4HLxdDuoMCq9Gn7CraNwRXBkENmGDLCg+9DIs5gOlk96PoEcJz6EMJk+YC6BatRNhRE
-         sqPuauczqUPyN/RIKpvfOJt9L1aJ704G7BkWwfJ4iHkq7WmmRig6UUW7h7+iknrv26v7
-         qkcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bpEt5S2I1jECJZ7RAHxHySVXzboFeasK/FtBe+cjO18=;
-        b=rtnKqnsYYKkLEdw5WEbZNhaolbNtZpbv7vW+D27Tb3tlFZPaMmDcvCwccV7nmWvUOx
-         rVZ9NJ31iSs2Tku2eTlAgtvXbRXNGOM7dSzGUd1LoVmD0yfssjOhspOWXBBj020VLeiB
-         0RezcSHiICwxqerZQJ9W/YaRg6vPcNP9GjnMvInsS89O6iRMsglMveqlPSytEu7FV1Od
-         aYZCVK0HIwaMKj7A/mToFKa2q3EiKRCfRy4lKKZaUy13WC8K6OuiaZ8O5AFs8Aowy0VS
-         92SbzG7ZHKuLanWmAkd7NitGIXK8vrpwVbCtv6nkfBFpgDc4qUXW7jtuwNfoinHFt7U8
-         Vryw==
-X-Gm-Message-State: AOAM530CGrVHDx+cMpslu1pWiJmlO+c+dqAkJsqRkLaD0Sj8YwdvvpqM
-        2nfRXvMM7vs5PZUcKpF5EEstuQ==
-X-Google-Smtp-Source: ABdhPJwpZPIshTtwDQYZynBXVHPTqsAW65pNND3KsVH+Ilc20oOix2EKPoY+nV7xF5rMeic3f2Z8gg==
-X-Received: by 2002:a05:6102:e86:: with SMTP id l6mr2706001vst.40.1634214590367;
-        Thu, 14 Oct 2021 05:29:50 -0700 (PDT)
-Received: from fedora ([2803:9800:98c2:8470:9f4:8e2a:88e5:ec01])
-        by smtp.gmail.com with ESMTPSA id x125sm1589796vkc.25.2021.10.14.05.29.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 05:29:48 -0700 (PDT)
-Date:   Thu, 14 Oct 2021 09:29:42 -0300
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v7, 11/15] media: mtk-vcodec: Add core thread
-Message-ID: <YWgitrqT9sWyELpr@fedora>
-References: <20211011070247.792-1-yunfei.dong@mediatek.com>
- <20211011070247.792-12-yunfei.dong@mediatek.com>
+        id S230342AbhJNMfr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 08:35:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230177AbhJNMfr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 08:35:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8DCFB61130;
+        Thu, 14 Oct 2021 12:33:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634214822;
+        bh=RzeylZ/P8x5KQVd3L6CJnKExKqdgjhxzj85+6UhIMm8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ljVcbHGVTczlkVC7vHhhCQuqYe0equRdtOUpMCpuRpgyhqosziC4k8T+knTCT9X4b
+         6id5F1xtARmDPPViBbuzWyVC/i8X59VghnSshHhHGNSf/u2DbgFHzLAm+2fK6vCQD1
+         5Kc/hmge0LSx/ou+COWai128l/CjE6/lhoShMLAt9UeZ7DNt89bAxoiXJOyS8Pxodp
+         RQ4gU2WNmhcHQSl36DVRJ4utiM0d02him1Awi3U2vzvE26Tjz8NgM7zP98cW/TlrZo
+         5xFd8XNMb97X/0Uhytl45MBd8QWheJAT1gSmW6ZtPUGT+yD/txD1IB/QvBmVzZhsSN
+         Xa3z/T6kR7cTA==
+Received: by mail-ed1-f48.google.com with SMTP id g10so23806225edj.1;
+        Thu, 14 Oct 2021 05:33:42 -0700 (PDT)
+X-Gm-Message-State: AOAM530YBrbx3+GSU9QTW8zH18/hZWLqNDzcnZvOvaAeYu/IxMhNudm8
+        JwugcG3wIYP1jHZzuomMcW1cFA779p62o3lgVg==
+X-Google-Smtp-Source: ABdhPJz9TzvElbvIznv9o6eIIhwkZkQvDvfEK/2kZapQkBCcKpS4ncnsn5muDvV6i+hmDO5BxA6TJzf2waYTwhLdyeE=
+X-Received: by 2002:a17:906:9399:: with SMTP id l25mr3470036ejx.363.1634214819463;
+ Thu, 14 Oct 2021 05:33:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211011070247.792-12-yunfei.dong@mediatek.com>
+References: <20211014113123.2358-1-agust@denx.de>
+In-Reply-To: <20211014113123.2358-1-agust@denx.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 14 Oct 2021 07:33:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJQ8_3+pwT0a-gj5iSUSo3kYZXFraejjBGObNHpB+xcTg@mail.gmail.com>
+Message-ID: <CAL_JsqJQ8_3+pwT0a-gj5iSUSo3kYZXFraejjBGObNHpB+xcTg@mail.gmail.com>
+Subject: Re: [PATCH] powerpc/mpc512x: dts: fix PSC node warnings
+To:     Anatolij Gustschin <agust@denx.de>
+Cc:     linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
-
-On Mon, Oct 11, 2021 at 03:02:43PM +0800, Yunfei Dong wrote:
-> Core thread:
-> 1. Gets lat_buf from core msg queue.
-> 2. Proceeds core decode.
-> 3. Puts the lat_buf back to lat msg queue.
-> 
-> Both H264 and VP9 rely on the core thread.
-> 
-
-Avoid the kthread API and instead go with the workqueue API.
-
-See Documentation/core-api/workqueue.rst and include/linux/workqueue.h.
-
-Thanks!
-Ezequiel
-
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+On Thu, Oct 14, 2021 at 6:31 AM Anatolij Gustschin <agust@denx.de> wrote:
+>
+> Fix build warnings like:
+> mpc5121.dtsi:397.13-406.5: Warning (spi_bus_bridge): /soc@80000000/psc@11400: node name for SPI buses should be 'spi'
+> mpc5121.dtsi:409.13-418.5: Warning (spi_bus_bridge): /soc@80000000/psc@11500: node name for SPI buses should be 'spi'
+> mpc5121.dtsi:457.13-466.5: Warning (spi_bus_bridge): /soc@80000000/psc@11900: node name for SPI buses should be 'spi'
+>
+> Signed-off-by: Anatolij Gustschin <agust@denx.de>
 > ---
->  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 12 +++++++
->  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  7 ++++
->  .../platform/mtk-vcodec/vdec_msg_queue.c      | 32 +++++++++++++++++++
->  .../platform/mtk-vcodec/vdec_msg_queue.h      |  6 ++++
->  4 files changed, 57 insertions(+)
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> index e21e0c4bcd86..de83e3b821b4 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> @@ -364,6 +364,18 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->  		goto err_dec_pm;
->  	}
->  
-> +	if (VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
-> +		vdec_msg_queue_init_ctx(&dev->msg_queue_core_ctx,
-> +			MTK_VDEC_CORE);
-> +		dev->kthread_core = kthread_run(vdec_msg_queue_core_thead, dev,
-> +			"mtk-%s", "core");
-> +		if (IS_ERR(dev->kthread_core)) {
-> +			dev_err(&pdev->dev, "Failed to create core thread");
-> +			ret = PTR_ERR(dev->kthread_core);
-> +			goto err_res;
-> +		}
-> +	}
+>  arch/powerpc/boot/dts/ac14xx.dts   | 17 +++++++++++++++--
+>  arch/powerpc/boot/dts/pdm360ng.dts | 11 ++++++++++-
+>  2 files changed, 25 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/powerpc/boot/dts/ac14xx.dts b/arch/powerpc/boot/dts/ac14xx.dts
+> index 5d8877e1f4ad..662d7aa2e4e8 100644
+> --- a/arch/powerpc/boot/dts/ac14xx.dts
+> +++ b/arch/powerpc/boot/dts/ac14xx.dts
+> @@ -301,13 +301,21 @@
+>                         fsl,tx-fifo-size = <512>;
+>                 };
+>
+> +               /delete-node/ psc@11400;
+> +               /delete-node/ psc@11500;
+
+That's an odd way to fix this, and means every user of the .dtsi file
+with these nodes will have to repeat the same thing.
+
 > +
->  	for (i = 0; i < MTK_VDEC_HW_MAX; i++)
->  		mutex_init(&dev->dec_mutex[i]);
->  	spin_lock_init(&dev->irqlock);
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> index 9d072c082f73..68a9b1a2d3b3 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> @@ -27,6 +27,7 @@
->  #define MTK_VCODEC_MAX_PLANES	3
->  #define MTK_V4L2_BENCHMARK	0
->  #define WAIT_INTR_TIMEOUT_MS	1000
-> +#define VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
->  
->  /*
->   * enum mtk_hw_reg_idx - MTK hw register base index
-> @@ -466,6 +467,9 @@ struct mtk_vcodec_enc_pdata {
->   * @comp_dev: component hardware device
->   * @component_node: component node
->   *
-> + * @kthread_core: thread used for core hardware decode
-> + * @msg_queue_core_ctx: msg queue context used for core thread
-> + *
->   * @hardware_bitmap: used to record hardware is ready or not
->   */
->  struct mtk_vcodec_dev {
-> @@ -508,6 +512,9 @@ struct mtk_vcodec_dev {
->  	void *comp_dev[MTK_VDEC_HW_MAX];
->  	struct device_node *component_node[MTK_VDEC_HW_MAX];
->  
-> +	struct task_struct *kthread_core;
-> +	struct vdec_msg_queue_ctx msg_queue_core_ctx;
+>                 /* PSC4 in SPI mode */
+> -               spi4: psc@11400 {
+> +               spi4: spi@11400 {
+>                         compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+> +                       reg = <0x11400 0x100>;
+>                         fsl,rx-fifo-size = <768>;
+>                         fsl,tx-fifo-size = <768>;
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+> +                       interrupts = <40 0x8>;
+> +                       clocks = <&clks MPC512x_CLK_PSC4>,
+> +                                <&clks MPC512x_CLK_PSC4_MCLK>;
+> +                       clock-names = "ipg", "mclk";
+>                         num-cs = <1>;
+>                         cs-gpios = <&gpio_pic 25 0>;
+>
+> @@ -326,13 +334,18 @@
+>                 };
+>
+>                 /* PSC5 in SPI mode */
+> -               spi5: psc@11500 {
+> +               spi5: spi@11500 {
+>                         compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+> +                       reg = <0x11500 0x100>;
+>                         fsl,mode = "spi-master";
+>                         fsl,rx-fifo-size = <128>;
+>                         fsl,tx-fifo-size = <128>;
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+> +                       interrupts = <40 0x8>;
+> +                       clocks = <&clks MPC512x_CLK_PSC5>,
+> +                                <&clks MPC512x_CLK_PSC5_MCLK>;
+> +                       clock-names = "ipg", "mclk";
+>
+>                         lcd@0 {
+>                                 compatible = "ilitek,ili922x";
+> diff --git a/arch/powerpc/boot/dts/pdm360ng.dts b/arch/powerpc/boot/dts/pdm360ng.dts
+> index 67c3b9db75d7..2733d15079a9 100644
+> --- a/arch/powerpc/boot/dts/pdm360ng.dts
+> +++ b/arch/powerpc/boot/dts/pdm360ng.dts
+> @@ -169,10 +169,19 @@
+>                         compatible = "fsl,mpc5121-psc-uart", "fsl,mpc5121-psc";
+>                 };
+>
+> -               psc@11900 {
+> +               /delete-node/ psc@11900;
 > +
->  	DECLARE_BITMAP(hardware_bitmap, MTK_VDEC_HW_MAX);
->  };
->  
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> index d66ed98c79a9..665f571eab4b 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> @@ -256,3 +256,35 @@ void vdec_msg_queue_deinit(
->  			kfree(lat_buf->private_data);
->  	}
->  }
-> +
-> +int vdec_msg_queue_core_thead(void *data)
-> +{
-> +	struct mtk_vcodec_dev *dev = data;
-> +	struct vdec_lat_buf *lat_buf;
-> +	struct mtk_vcodec_ctx *ctx;
-> +
-> +	set_freezable();
-> +	for (;;) {
-> +		try_to_freeze();
-> +		if (kthread_should_stop())
-> +			break;
-> +
-> +		lat_buf = vdec_msg_queue_dqbuf(&dev->msg_queue_core_ctx);
-> +		if (!lat_buf)
-> +			continue;
-> +
-> +		ctx = lat_buf->ctx;
-> +		mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
-> +
-> +		if (!lat_buf->core_decode)
-> +			mtk_v4l2_err("Core decode callback func is NULL");
-> +		else
-> +			lat_buf->core_decode(lat_buf);
-> +
-> +		mtk_vcodec_set_curr_ctx(dev, NULL, MTK_VDEC_CORE);
-> +		vdec_msg_queue_qbuf(&ctx->msg_queue.lat_ctx, lat_buf);
-> +	}
-> +
-> +	mtk_v4l2_debug(3, "Video Capture Thread End");
-> +	return 0;
-> +}
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
-> index 1905ce713592..b5745b144140 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
-> @@ -148,4 +148,10 @@ void vdec_msg_queue_deinit(
->  	struct vdec_msg_queue *msg_queue,
->  	struct mtk_vcodec_ctx *ctx);
->  
-> +/**
-> + * vdec_msg_queue_core_thead - used for core decoder.
-> + * @data: private data used for each codec
-> + */
-> +int vdec_msg_queue_core_thead(void *data);
-> +
->  #endif
-> -- 
-> 2.25.1
-> 
+> +               spi@11900 {
+>                         compatible = "fsl,mpc5121-psc-spi", "fsl,mpc5121-psc";
+> +                       reg = <0x11900 0x100>;
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+> +                       interrupts = <40 0x8>;
+> +                       fsl,rx-fifo-size = <16>;
+> +                       fsl,tx-fifo-size = <16>;
+> +                       clocks = <&clks MPC512x_CLK_PSC9>,
+> +                                <&clks MPC512x_CLK_PSC9_MCLK>;
+> +                       clock-names = "ipg", "mclk";
+>
+>                         /* ADS7845 touch screen controller */
+>                         ts@0 {
+> --
+> 2.17.1
+>
