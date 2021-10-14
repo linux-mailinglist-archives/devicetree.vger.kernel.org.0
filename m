@@ -2,83 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8688042DD3B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 17:03:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C96D42DDF5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 17:19:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232920AbhJNPFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 11:05:17 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:50138 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232683AbhJNPDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 11:03:47 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id CBFDB1F44D70
-Subject: Re: [PATCH v6 10/16] soc: mediatek: add mtk-mutex support for mt8195
- vdosys1
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        singo.chang@mediatek.com, srv_heupstream@mediatek.com
-References: <20211004062140.29803-1-nancy.lin@mediatek.com>
- <20211004062140.29803-11-nancy.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <ccbaff29-808a-4c7b-51d4-764cf283fbbc@collabora.com>
-Date:   Thu, 14 Oct 2021 17:01:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230018AbhJNPVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 11:21:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229994AbhJNPVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 11:21:53 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95F1AC061570
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 08:19:48 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id f4so12021035uad.4
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 08:19:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=E57tubdi4Kb+HoICFHf4HKGD0EgGpurJT1qek7rMtUQ=;
+        b=dgyKfmCeRmX6NnCUrId0FWEi+qXQJ8BrrO5MPFTEbDesgvD+B631APao0Yhw+HuIMz
+         I20Sb9AtVETxqcZHDtMy3uTwcpKFHBwmrNKn4EpK8Ttb82ybawvrObPv7oO8Xcp2HNnn
+         Jq3WEVsWlGPE1L5yHevuxTKGoHwkBb6gveTG77p/9StZYGuEVCFzdwX5UkwLoYQIkOrv
+         6yU4VzEnWkA+K/8Os56UU+7j9926n5DB44Yj1bDw1311oj2QPJOxYGl1npaXQw1lFhkJ
+         nbRxk3ADe1r8hh9s3miwZO+oF/7iwbcMVcNmDMOrDUaVmsvVo4h5+Q/94LlePOcS4z5Z
+         nHCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=E57tubdi4Kb+HoICFHf4HKGD0EgGpurJT1qek7rMtUQ=;
+        b=IPJ65oArwMVJQCEgxZ+RviQ5Oskfsb4sLNorldyqEGLcI5L+rsf1B1yJZgmusg0YTe
+         /snUL1UDCXM5ib3NOuQHQi+BCKjidU0CnxVdS/Jpl5zuHbZufNQ3O36W7E9JshhRmp0T
+         XnXrizJVdq3K2gPmmEZ1Qoyl/a5hKHhDp276sBdqtb/2QOmX/o7ce+aEU2qrZ9XtFLit
+         rFFLccX781zuJCnh68yQq2F3pVnRqKpGQVtHQSe/X/2CuLoG7xVYSyu8MXBFrzM/F9Kb
+         JhN2RPsXhfxpY0DiEfti3KGOIN+2/hpCpw53ZJ+JHo6g6ZMV4JRW4pMXK+QhFAU0LSri
+         ZOEw==
+X-Gm-Message-State: AOAM530u+oJ0u1U0cVPUitKfgsqYcK5cT1ng5Kn7VWl0xVO4omS2dOmV
+        zteEWqL8DD+qizgdhFxfpFKKNlC95JIJhJHlSy4=
+X-Google-Smtp-Source: ABdhPJzte7gP1+n0XKLG3Xj9GccUArtG7cXINWAtlnRXAH6pqH4HPhL4xcJRUjLqp4O8UDLiQ3QqxBtkq1al7ZBvHU4=
+X-Received: by 2002:ab0:48ea:: with SMTP id y39mr7018792uac.34.1634224784741;
+ Thu, 14 Oct 2021 08:19:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20211004062140.29803-11-nancy.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ab0:7441:0:0:0:0:0 with HTTP; Thu, 14 Oct 2021 08:19:44
+ -0700 (PDT)
+Reply-To: kaylamanthey022@gmail.com
+From:   Kayla Manthey <mbahdavido00@gmail.com>
+Date:   Thu, 14 Oct 2021 15:19:44 +0000
+Message-ID: <CAJSDmafUUdAyMTj9oSVKtf+y+bhsCRj4JVc+WQ=MdaPVTahKgA@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Add mtk-mutex support for mt8195 vdosys1.
-> The vdosys1 path component contains ovl_adaptor, merge5,
-> and dp_intf1. Ovl_adaptor is composed of several sub-elements,
-> so change it to support multi-bit control.
-> 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-mutex.c | 296 ++++++++++++++++++-------------
->   1 file changed, 175 insertions(+), 121 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index 36502b27fe20..7767fedbd14f 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -29,113 +29,142 @@
->   
->   #define INT_MUTEX				BIT(1)
->   
-> -#define MT8167_MUTEX_MOD_DISP_PWM		1
-
-This patch doesn't only add support for MT8195 vdosys1, but also changes
-all definitions to a different "format", and also changes the type for
-"mutex_mod" from int to long.
-In reality, the actual functional change is minimal, compared to the size of
-this entire patch.
-
-Please, split this patch in two parts: one patch changing the defines and
-the mutex_mod type (specifying that it's a preparation for adding support for
-mt8195 vdosys1 mutex) and one patch adding such support.
-
-Thanks!
-
-Regards,
-- Angelo
-
-
+Greetings, My name is Kayla Manthey, please reply me back?
