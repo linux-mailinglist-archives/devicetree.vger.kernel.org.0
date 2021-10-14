@@ -2,206 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BECBE42D781
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D088742D786
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbhJNKzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 06:55:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbhJNKzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 06:55:44 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DCECC06174E;
-        Thu, 14 Oct 2021 03:53:39 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id r9so2980618ile.5;
-        Thu, 14 Oct 2021 03:53:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DaTb+4k+F0V+OcIZQk92noaDq0ER0qSofHMcijTckv0=;
-        b=TPJsMFvULPki9Oib0kikIYimr4BHFLGvb81lAZjzg9PojxC7poB+99om045GHW3M+g
-         1Tt3sX+6b55TB4Dl+8VUFGFpGqFM+ZsVjxZjWj93Oj+ecwLwkMaSf2e/xqFgt3nW5I4/
-         kW51c5JlESqxYeni3Uj1zQE12ig1C+AHTObOqGHHuxEGwmm2ub2AcJlqiyrx5sFZrnkm
-         Bg2NyYGZ9wU/wH/MUb4fVNf9JxB6M8xpsQrU6ZSP7ExD+wT1agXB759kD5goBnkY9vT4
-         N1suJEAslCNMirQVm2yWq0edXZIpmPBID3g8JeH39NZDpBJywExFVBXcwImmSTMLDiKt
-         X3kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DaTb+4k+F0V+OcIZQk92noaDq0ER0qSofHMcijTckv0=;
-        b=VTYfaFLV2rsPsP2Uy2bvfCFaAp8CWy/uMttyXgboFy7Nqv0QRJkGj8Jjf99Mm4He1f
-         x7NKn8exLnBirU7EFnhwmqfLiDmNfb7usmOcN+1lT6GAkxB/D7xGxqmeTD7I5GVnTzi0
-         TEXHovrPPq1VQKKFC81lba/TWP3dHJWuDlT9j63UlL1UHR2u/BW2PFjv8WGc2yf4q3k5
-         MLz/ouiq7OtNYpJ5gRzcaIlJcf3KMZROPbbwjn0bLwlH6JpQC55+j7eLaqWCRv1Kg+Ks
-         Y5g0QpsWxnp3WpTacUTNZmnp4MmsMYm1HJPEj5GJ2kFU7pRYlu5h1M+0hA5HoEcpFp4e
-         AvXg==
-X-Gm-Message-State: AOAM5306n2CPEGwE46uLyAOAz1q26nlReGoauMKRk6IP4x6FirybNrwX
-        eHFxFfGeg4rwhZjugFO+DGNeg8WUAvSeXObZC84=
-X-Google-Smtp-Source: ABdhPJy3KKlDt7N5ANo6q+NVxGeDTThueZ6yjtppRpWOMOoXdTqmDKkwFqmftkhqmNs8rVQ1pAx8untdJgkpOjspvLU=
-X-Received: by 2002:a05:6e02:13cb:: with SMTP id v11mr1927428ilj.44.1634208818924;
- Thu, 14 Oct 2021 03:53:38 -0700 (PDT)
+        id S230185AbhJNK5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 06:57:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48010 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230176AbhJNK5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 06:57:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3E6F760FE8;
+        Thu, 14 Oct 2021 10:55:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634208930;
+        bh=/MnBOOloBNkoQ0639mnUn1C7Sn42XWYjpsS3RR92b4Y=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=YVdjZi8UEdWoNbDOSER/nYn8CI9Pu2C9AHqrJXR+6hioEicpNtL4+1tFCUNb/T6RD
+         5bwrVMKTamkb0qvmv6FV0Q6o8RPbd1uTUirEJ0ESoH7hR+nRQCe59DdzvzPg3VHPew
+         MyHyembjbheOiF25wREdLqQQ7GblUlyZDNrJls6K/0hIcVjefnKfk34t0c9oAERTI0
+         udl/XTbYTo9JhRgJk0fimgUIzXyNzRxpCwlFeQ2xaBkEq920upgGQVKgn3QoatGEnj
+         Z1/GdRJuJb2+ENR1U02ZyM3aniq9r6DHxHgmdTT1tvt/ZNEuTE0Y72mLaVN2OjWGBP
+         L957WnIgsmelA==
+Date:   Thu, 14 Oct 2021 12:55:26 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Luka Kovacic <luka.kovacic@sartura.hr>
+Subject: Re: [PATCH RFC linux] dt-bindings: nvmem: Add binding for U-Boot
+ environment NVMEM provider
+Message-ID: <20211014125526.10d4861b@dellmb>
+In-Reply-To: <857c27a6-5c4b-e0ed-a830-35762799613f@linaro.org>
+References: <20211013232048.16559-1-kabel@kernel.org>
+        <629c8ba1-c924-565f-0b3c-8b625f4e5fb0@linaro.org>
+        <20211014120601.133e9a84@dellmb>
+        <857c27a6-5c4b-e0ed-a830-35762799613f@linaro.org>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <1634207106-7632-1-git-send-email-dillon.minfei@gmail.com>
- <1634207106-7632-7-git-send-email-dillon.minfei@gmail.com> <2b0739f1-85e4-6b19-ff30-2587f0c622c2@xs4all.nl>
-In-Reply-To: <2b0739f1-85e4-6b19-ff30-2587f0c622c2@xs4all.nl>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Thu, 14 Oct 2021 18:53:02 +0800
-Message-ID: <CAL9mu0LqkCpjYft4z6V4T97Mq46dCTXZ=BvfQa+DijjRd4pDkA@mail.gmail.com>
-Subject: Re: [PATCH v4 6/8] media: v4l2-ctrls: Add RGB color effects control
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        mchehab+huawei@kernel.org, ezequiel@collabora.com,
-        gnurou@gmail.com, Pi-Hsun Shih <pihsun@chromium.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, gabriel.fernandez@st.com,
-        gabriel.fernandez@foss.st.com,
-        Patrice CHOTARD <patrice.chotard@foss.st.com>,
-        hugues.fruchet@foss.st.com,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans
+On Thu, 14 Oct 2021 11:30:13 +0100
+Srinivas Kandagatla <srinivas.kandagatla@linaro.org> wrote:
 
-Thanks for quick reply
+> On 14/10/2021 11:06, Marek Beh=C3=BAn wrote:
+> > On Thu, 14 Oct 2021 09:26:27 +0100
+> > Srinivas Kandagatla <srinivas.kandagatla@linaro.org> wrote:
+> >  =20
+> >> On 14/10/2021 00:20, Marek Beh=C3=BAn wrote: =20
+> >>> Add device tree bindings for U-Boot environment NVMEM provider.
+> >>>
+> >>> U-Boot environment can be stored at a specific offset of a MTD
+> >>> device, EEPROM, MMC, NAND or SATA device, on an UBI volume, or in
+> >>> a file on a filesystem.
+> >>>
+> >>> The environment can contain information such as device's MAC
+> >>> address, which should be used by the ethernet controller node.
+> >>>     =20
+> >>
+> >> Have you looked at
+> >> ./Documentation/devicetree/bindings/mtd/partitions/nvmem-cells.yaml
+> >> ? =20
+> >=20
+> > Hello srini,
+> >=20
+> > yes, I have. What about it? :)
+> >=20
+> > That binding won't work for u-boot-env, because the data are stored
+> > in a different way. A cell does not have a constant predetermined
+> > offset on the MTD. =20
+>=20
+> Can't you dynamically update the nodes before nvmem-provider is
+> registered?
 
-On Thu, 14 Oct 2021 at 18:44, Hans Verkuil <hverkuil-cisco@xs4all.nl> wrote:
->
-> On 14/10/2021 12:25, dillon.minfei@gmail.com wrote:
-> > From: Dillon Min <dillon.minfei@gmail.com>
-> >
-> > Add V4L2_COLORFX_SET_RGB color effects control, V4L2_CID_COLORFX_RGB
-> > for RGB color setting.
-> >
-> > Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> > ---
-> > v4:
-> > - replace V4L2_COLORFX_SET_ARGB, V4L2_CID_COLORFX_ARGB to
-> >   V4L2_COLORFX_SET_RGB, V4L2_CID_COLORFX_RGB since Alpha paramter not used
-> >   in current. thanks Hans.
-> >
-> >  Documentation/userspace-api/media/v4l/control.rst | 9 +++++++++
-> >  drivers/media/v4l2-core/v4l2-ctrls-defs.c         | 2 ++
-> >  include/uapi/linux/v4l2-controls.h                | 4 +++-
-> >  3 files changed, 14 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/userspace-api/media/v4l/control.rst b/Documentation/userspace-api/media/v4l/control.rst
-> > index f8d0b923da20..3eec65174260 100644
-> > --- a/Documentation/userspace-api/media/v4l/control.rst
-> > +++ b/Documentation/userspace-api/media/v4l/control.rst
-> > @@ -242,8 +242,17 @@ Control IDs
-> >      * - ``V4L2_COLORFX_SET_CBCR``
-> >        - The Cb and Cr chroma components are replaced by fixed coefficients
-> >       determined by ``V4L2_CID_COLORFX_CBCR`` control.
-> > +    * - ``V4L2_COLORFX_SET_RGB``
-> > +      - The RGB components are replaced by the fixed RGB components determined
-> > +        by ``V4L2_CID_COLORFX_RGB`` control.
-> >
-> >
-> > +``V4L2_CID_COLORFX_RGB`` ``(integer)``
-> > +    Determines the Red, Green, and Blue coefficients for
-> > +    ``V4L2_COLORFX_SET_RGB`` color effect.
-> > +    Bits [7:0] of the supplied 32 bit value are interpreted as Blue component,
-> > +    bits [15:8] as Green component, bits [23:16] as Red component, and
-> > +    bits [31:24] must be zero.
-> >
-> >  ``V4L2_CID_COLORFX_CBCR`` ``(integer)``
-> >      Determines the Cb and Cr coefficients for ``V4L2_COLORFX_SET_CBCR``
-> > diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > index 421300e13a41..f4bd90170105 100644
-> > --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> > @@ -785,6 +785,7 @@ const char *v4l2_ctrl_get_name(u32 id)
-> >       case V4L2_CID_MIN_BUFFERS_FOR_OUTPUT:   return "Min Number of Output Buffers";
-> >       case V4L2_CID_ALPHA_COMPONENT:          return "Alpha Component";
-> >       case V4L2_CID_COLORFX_CBCR:             return "Color Effects, CbCr";
-> > +     case V4L2_CID_COLORFX_RGB:              return "Color Effects, RGB";
-> >
-> >       /*
-> >        * Codec controls
-> > @@ -1392,6 +1393,7 @@ void v4l2_ctrl_fill(u32 id, const char **name, enum v4l2_ctrl_type *type,
-> >               *min = *max = *step = *def = 0;
-> >               break;
-> >       case V4L2_CID_BG_COLOR:
-> > +     case V4L2_CID_COLORFX_RGB:
-> >               *type = V4L2_CTRL_TYPE_INTEGER;
-> >               *step = 1;
-> >               *min = 0;
->
-> Can you make another small change here? Please change:
->
->         *max = 0xFFFFFF;
->
-> to:
->
->         *max = 0xffffff;
->
-> to keep in line with the coding standard for hex values.
+Are you talking about dynamically updating nvmem-cell OF nodes, adding
+reg properties with actual offsets and lengths found after parsing?
 
-Sure, do it right now.
+> > The variables are stored as a sequence of values of format
+> > "name=3Dvalue", separated by '\0's, for example:
+> >    board=3Dturris_mox\0ethaddr=3D00:11:22:33:44:55\0bootcmd=3Drun
+> > distro_bootcmd\0.... Chaning lengths of values of variables, or
+> > deleting variables, moves the data around. Integers and MAC
+> > addresses are stored as strings, and so on.=20
+>=20
+> Do you already have a provider driver for handing this.
 
->
-> Also, can you add a separate patch that adds an entry here for V4L2_CID_COLORFX_CBCR
-> that sets *max to 0xffff? I noticed that that was missing. While adding V4L2_CID_COLORFX_RGB
-> it's good to fix V4L2_CID_COLORFX_CBCR as well.
+Not yet, I will send the proposal together with a driver in next
+round.
 
-Sure, you mean the final code like this? first patch to fix cbcr 0xFFFFFF,
-another one to add V4L2_CID_COLORFX_RGB entry.
+> How is pre parsing cell info and post processing data planned to be
+> handled?
 
-1395         case V4L2_CID_BG_COLOR:
-1396         case V4L2_CID_COLORFX_RGB:
-1397                 *type = V4L2_CTRL_TYPE_INTEGER;
-1398                 *step = 1;
-1399                 *min = 0;
-1400                 /* Max is calculated as RGB888 that is 2^24 */
-1401                 *max = 0xffffff;
-1402                 break;
+My plan was to read the variables from the u-boot-env partition, create
+a nvmem-cell for each variable, and then pair the ones mentioned in
+device tree with their DT nodes, and post-process according to type
+(post-processing would be done only for those mentioned in device tree,
+others would be left as strings).
 
-Best Regards
-Dillon
+> Currently in nvmem core we do check for "reg" property for each cell,=20
+> unless the provider driver is adding/updating dt entries dynamically=20
+> before registering nvmem provider
 
->
-> Regards,
->
->         Hans
->
-> > diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-> > index 5532b5f68493..9aa3fd368383 100644
-> > --- a/include/uapi/linux/v4l2-controls.h
-> > +++ b/include/uapi/linux/v4l2-controls.h
-> > @@ -128,6 +128,7 @@ enum v4l2_colorfx {
-> >       V4L2_COLORFX_SOLARIZATION               = 13,
-> >       V4L2_COLORFX_ANTIQUE                    = 14,
-> >       V4L2_COLORFX_SET_CBCR                   = 15,
-> > +     V4L2_COLORFX_SET_RGB                    = 16,
-> >  };
-> >  #define V4L2_CID_AUTOBRIGHTNESS                      (V4L2_CID_BASE+32)
-> >  #define V4L2_CID_BAND_STOP_FILTER            (V4L2_CID_BASE+33)
-> > @@ -145,9 +146,10 @@ enum v4l2_colorfx {
-> >
-> >  #define V4L2_CID_ALPHA_COMPONENT             (V4L2_CID_BASE+41)
-> >  #define V4L2_CID_COLORFX_CBCR                        (V4L2_CID_BASE+42)
-> > +#define V4L2_CID_COLORFX_RGB                 (V4L2_CID_BASE+43)
-> >
-> >  /* last CID + 1 */
-> > -#define V4L2_CID_LASTP1                         (V4L2_CID_BASE+43)
-> > +#define V4L2_CID_LASTP1                         (V4L2_CID_BASE+44)
-> >
-> >  /* USER-class private control IDs */
-> >
-> >
->
+I don't think updaring DT entries dynamically is a correct solution at
+all. Is this done in Linux? Updating device properties is something
+different, but changing DT properties seems wrong to me.
+
+> It will not work as it is. Alteast this is what I suggested in similar
+> case where cell information is in tlv format.
+
+Hmm. OK, I shall try to implement a driver for this and then will
+return to you.
+
+> Secondly mac-address seems to be delimited, we recently introduced
+> post processing callback for provider driver [1], which should help
+> in this case.
+
+Cool, I shall use that.
+
+> If the nvmem-cell names are standard like "mac-address" then you do
+> not need to add a new "type" binding to cell too, you can do
+> post-processing based on name.
+
+I plan to add functions
+  of_nvmem_get_mac_address()
+  nvmem_get_mac_address()
+which would look at (in this order):
+  mac-address, address, mac-address-backup
+We have to keep the name "address" for backwards compatibility with one
+driver that uses this (drivers/net/ethernet/ni/nixge.c)
+
+Thanks.
+
+Marek
