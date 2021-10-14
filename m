@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C280A42D8CD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A9942D8D9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbhJNMHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 08:07:54 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:36370
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230179AbhJNMHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 08:07:53 -0400
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 79CDA3FFF3
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 12:05:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634213148;
-        bh=7DUeJSAMIJhPw/8ePsUW00GrvDqVU0aPI87ZO6EH914=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=Oa0OKVgN0bxroOrVwuIWTN/Y65V0C2cOkyfu60/gL4VLNvPoEX5FaNeIQ5LFZU/ct
-         ZmfSHVawB4+DWkkZ+z1Ua/UT7JAGjmdjEPZnj4rylgzUTtrgGy5T3wkTXLYJzOO6OH
-         SJz1qgZCG+KA4berYIyQPyueWP59yB5+pPsmajwB68kVJ7a8NSRUCe1BazN+9gmDuI
-         z3AoY3o2S888wqB16T4EQyO+dw0q8hl2VXEcDrPQv4xsMMTEWYOgUzAMDUy7qUIOdZ
-         UFn10v4W5v841agsvVc8BchHuX+kea67AqaPYUC4F4c/I6y/CwCejTAUpC8bBZm7Ro
-         5zAFftXrq3XmA==
-Received: by mail-lf1-f70.google.com with SMTP id x7-20020a056512130700b003fd1a7424a8so4197479lfu.5
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:05:48 -0700 (PDT)
+        id S230454AbhJNMJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 08:09:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230026AbhJNMJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:09:52 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B60D4C061570;
+        Thu, 14 Oct 2021 05:07:47 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id r18so18762223wrg.6;
+        Thu, 14 Oct 2021 05:07:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=W6Zxty0TdB/OI+A6DValHoo/NHUzxQVCkM9LpOB6jTE=;
+        b=AWM5ojfdJ9sHreUVwWUja7YsYkONDJSccm4eo/0iNIXY6ZqXb0RkUaDCtHMU+st0pr
+         l45Pk9+pHAgoLt97koch9BRFeBaS/mYCHKh7ChgGdekkB/15mJgtkV1MFKdYYVPxeRhu
+         q41qH9OqOUGNKJJhsioahcPnV1mIAqBD+CDAFcarJpqHwKUCiwvAXDXHMsj0Nt1/VWPU
+         Hntebp2Li6GYaIe6mKwa/ettq3NON8/qk2XTl5uEd9fr+judc9o7aMe/fe4zj7bdQo8e
+         e6b3eLilAXyIvlLIILaZ53NJ1WChar7ycO7Knm3cvUUfTaThthFRzsHot0Mnhxjn71gT
+         afKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7DUeJSAMIJhPw/8ePsUW00GrvDqVU0aPI87ZO6EH914=;
-        b=kN/WCLb8nPP6Oci0AR5OOhMVhUDEERQlTp5/c3Jnyrg6I2xho/l4vc8iu9WAUHdQC9
-         aXk72t2yJEkjdcytP1Zfsj71ITRWbM5bM/pjh+/i5jyBqRLbXUfA+I+TNXf8IJ36ZvOD
-         ANmsNlJMLW3oKxGuDAObRuP+hcuaGOMaAPTWnQHh2TVDokd4/dL3koPpuQc8twASe273
-         esjn8ZyiT5AXshxJq6nSkfefarS4q2VMPGaGTFrwEeo+wBjC9E709/rsd7IlIwbZZGYP
-         SEOSE5U8/rDZhGbLIOuE4SWkGTVyN9tg9KBPTVf1wxGmiMrR17ABLQAmixColxnSdRPM
-         UDhA==
-X-Gm-Message-State: AOAM532GMF0pBBX2BTgljZ7OhR8b58SQ6YL9f414XGfXt3AeKN2HQqGe
-        /lLPdCXREQsEld9kOmVeoiN6eruEFdR2NEBtf7Si6wewnxZvAjNhdsiZWLqbBlO6haHVtIprJjd
-        OhKTbCfUuqWtx2h2F9v2l8gJY2SdGoDJFVlVWmm0=
-X-Received: by 2002:ac2:53b0:: with SMTP id j16mr4569247lfh.656.1634213147838;
-        Thu, 14 Oct 2021 05:05:47 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyCt+hiQkBxCSZOa/Bi5shuLmxG3lPR3IwYp+KgtXpG96mbai/MNiQv4N/aYOMc/bn4ZM5kOw==
-X-Received: by 2002:ac2:53b0:: with SMTP id j16mr4569231lfh.656.1634213147622;
-        Thu, 14 Oct 2021 05:05:47 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f10sm212322lfs.56.2021.10.14.05.05.46
+        bh=W6Zxty0TdB/OI+A6DValHoo/NHUzxQVCkM9LpOB6jTE=;
+        b=HMsOTfdW4f2GeCkcZ+Ddp4bCL6nGZLDK7L8giM0Nfp3Trz9K56Oo4XSXiugbfRXAEQ
+         RdfrJd+bGlfOqloYrVNeRmHvSZhdq5Ig6cxBBMMFFoj5FI07ivo1qBiHFmeuZO5K6Xog
+         gPBwuSJq2ex89gA4kUi+QUNqp0E6eKvcdIvRDYU0/8AggVbCvskqxFAqKRsg8SEd2Zqy
+         tv8X4gv/JqA5Gn2qAIFw5BZw+c6W7H5URRd/1voeCir09yOVSAh+IJchnsISLaXWLmnW
+         DMO0uI6/kIN8LlLlmtdbMWLbwATV0b9L9g/65tkDoHugrMob+o2rvszRm/P1n3rCwPUW
+         y/3g==
+X-Gm-Message-State: AOAM533wf7raLleC4DtrHcxvp+n9HI2I3O0qlto1wjTxmndq3VkUvUnv
+        D0aOjfXHYhFCxnAkEywEcFE=
+X-Google-Smtp-Source: ABdhPJxS6QV//EaWMcgERrbOt7AbVRlil7E05IFdqAJDF21juWnUFUIiz9j65Si1sNqGaBU5Y2SPKg==
+X-Received: by 2002:adf:dc85:: with SMTP id r5mr1934455wrj.164.1634213266365;
+        Thu, 14 Oct 2021 05:07:46 -0700 (PDT)
+Received: from [192.168.19.53] ([78.32.143.231])
+        by smtp.googlemail.com with ESMTPSA id s14sm2207795wro.76.2021.10.14.05.07.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 05:05:47 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] soc: samsung: exynos-chipid: Pass revision reg
- offsets
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20211013202110.31701-1-semen.protsenko@linaro.org>
- <1cd31098-ba9d-f2e3-e34c-5bada00a2696@canonical.com>
- <CAPLW+4mtSnt8dCCtSeu-yNTR0F5ZO-hdjFjyGChi=tTWQQt85Q@mail.gmail.com>
- <dd61666c-fd1a-c152-9423-9dc6718b1626@canonical.com>
- <CAPLW+4mA64Q8t07tJ_Yi9=AHmGe2NixEmCaMP-Lj65D2TNBt+w@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <125ed340-cec7-5f65-c4c1-ab5162b420f6@canonical.com>
-Date:   Thu, 14 Oct 2021 14:05:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Thu, 14 Oct 2021 05:07:45 -0700 (PDT)
+Message-ID: <8d18cba6-1eb0-ae82-a8e2-1c39d694a77f@gmail.com>
+Date:   Thu, 14 Oct 2021 13:07:07 +0100
 MIME-Version: 1.0
-In-Reply-To: <CAPLW+4mA64Q8t07tJ_Yi9=AHmGe2NixEmCaMP-Lj65D2TNBt+w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH v5 3/3] media: i2c: isl7998x: Add driver for Intersil
+ ISL7998x
+Content-Language: en-GB
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        kernel@pengutronix.de
+References: <20211012084150.755160-1-m.tretter@pengutronix.de>
+ <20211012084150.755160-4-m.tretter@pengutronix.de>
+ <f4fca151a04b1c30fca7b2f40dacb2a3b4b4f2c6.camel@pengutronix.de>
+ <20211013080530.GB31981@pengutronix.de>
+ <20211014093409.GC31981@pengutronix.de>
+ <639592c9ca18232c3372ae33d6e561969b1f69e4.camel@pengutronix.de>
+ <d7e61a3b-f56e-d6b1-cef9-b58aaf694862@gmail.com>
+ <20211014110459.GD31981@pengutronix.de>
+From:   Ian Arkver <ian.arkver.dev@gmail.com>
+In-Reply-To: <20211014110459.GD31981@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/10/2021 14:03, Sam Protsenko wrote:
-> On Thu, 14 Oct 2021 at 14:48, Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
->>
->>>
->>>> Did you test it that it produces same result? Looks not - I gave it a
->>>> try and got wrong revision.
+On 14/10/2021 12:04, Michael Tretter wrote:
+> On Thu, 14 Oct 2021 11:45:25 +0100, Ian Arkver wrote:
+>> On 14/10/2021 11:17, Philipp Zabel wrote:
+>>> On Thu, 2021-10-14 at 11:34 +0200, Michael Tretter wrote:
+>>>> On Wed, 13 Oct 2021 10:05:30 +0200, Michael Tretter wrote:
+>>>>> On Tue, 12 Oct 2021 15:27:11 +0200, Philipp Zabel wrote:
+>>> [...]
+>>>>>>> +static int isl7998x_wait_power_on(struct isl7998x *isl7998x)
+>>>>>>> +{
+>>>>>>> +	struct device *dev = isl7998x->subdev.dev;
+>>>>>>> +	unsigned int retry;
+>>>>>>> +	u32 chip_id;
+>>>>>>> +	int ret = -ETIMEDOUT;
+>>>>>>> +
+>>>>>>> +	for (retry = 10; ret && retry > 0; retry--) {
+>>>>>>> +		ret = regmap_read(isl7998x->regmap,
+>>>>>>> +				  ISL7998x_REG_P0_PRODUCT_ID_CODE, &chip_id);
+>>>>>>> +		usleep_range(1000, 2000);
+>>>>>>> +	}
+>>>>>>
+>>>>>> Consider using regmap_read_poll_timeout() here.
+>>>>>
+>>>>> Ack. I forgot about this function.
 >>>>
+>>>> regmap_read_poll_timeout() cannot be used here, because it returns if
+>>>> regmap_read() returns an error. The driver uses the return value of
+>>>> regmap_read() to detect, if the chip is available, and should continue polling
+>>>> if regmap_read() failed. I can implement the necessary behavior with
+>>>> read_poll_timeout(), but am not sure if it is really worth it.
 >>>
->>> I only have Exynos850 based board, and that has 0x0 in Revision ID
->>> register. But for v3 I'll try to emulate register value in the code
->>> and make sure that the read value does not change with patch applied.
->>
->> You should get one of Odroid boards to test it. The MC1 is fairly cheap.
->>
+>>> Oh, right. I still think so, but your call.
+>>>
+>> This wait_power_on function seems odd to me. Wouldn't it be better to just
+>> wait for the power-on delay specified in the datasheet and then
+>> unconditionally go into isl7998x_init? If the device has failed to come up,
+>> that init will fail in its regmap accesses. If you're trying to do the init
+>> earlier than the datasheet specified time then being able to read the
+>> product id code doesn't guarantee the rest of the chip is ready. If there's
+>> no datasheet specification maybe just wait 10ms to 20ms?
 > 
-> Will do, I see how it can be useful for further work. For this series,
-> I'm pretty sure I can test all cases by emulating the read register
-> values. Would it be enough? Also, if you have some time, I'd ask you
-> to check v3 on your board.
+> The datasheet does not specify the power-on delay. The wait_power_on() enables
+> the driver to at least tell the user that the chip was not detected and print
+> the exact chip variant if it was detected. I think this is still better than
+> waiting some arbitrary time and hoping for the best.
 
-Yes, it's OK. I can test it.
+Thanks Michael, I can see how the prints could be useful and I'd 
+neglected them before. I see now this is the only place the device ID is 
+read and reported.
 
-Best regards,
-Krzysztof
+Regards,
+Ian
