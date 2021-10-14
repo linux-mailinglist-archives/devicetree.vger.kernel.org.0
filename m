@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 742C442DC70
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A6A42DD2B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 17:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232585AbhJNO7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:59:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46354 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232328AbhJNO6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:58:23 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD5FC061777;
-        Thu, 14 Oct 2021 07:56:09 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id C5DBA1F44D21
-Subject: Re: [PATCH v6 09/16] soc: mediatek: mmsys: modify reset controller
- for MT8195 vdosys1
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        singo.chang@mediatek.com, srv_heupstream@mediatek.com
-References: <20211004062140.29803-1-nancy.lin@mediatek.com>
- <20211004062140.29803-10-nancy.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <1249012e-4069-429d-654d-7698bcaf5153@collabora.com>
-Date:   Thu, 14 Oct 2021 16:56:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S233532AbhJNPEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 11:04:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50460 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233551AbhJNPD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 11:03:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 1935860E78;
+        Thu, 14 Oct 2021 15:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634223607;
+        bh=cBcq/7Gl7Z9Farp0yd98KOXeGQ3tVK2MxmatTBtBraM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=gYgGH1MbPiz28lGgmA7dJyg0qSoC5/6rqr+OQhs30fSYWA2n/fdaKfQ2/yoIAIRve
+         s0qYs1XacCFNJs6PtcLUb//NqTzT+9cH3RjEqejubaTSS+5n+23dHbG7DaYMpxmrYz
+         dkLl5wdetzwfc5vhvrZMp+AukXaMcjjypJcK1pKR3jcB6M42FiSCSEVQaDi//U6ORg
+         SLLj/4JWeVOANV+MKZhRJPDEAC28BzJgjJJtgopQA2qIq+kBteqTUgikS96sBfAxi2
+         SjwatujhLfLB5xsVSJKfpvQ6JULP8juE3fF30Qv/PDVbeA+5cXApBrxuF+UNcrSBaG
+         Aqlfxgsicizqw==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 085EC60A6D;
+        Thu, 14 Oct 2021 15:00:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20211004062140.29803-10-nancy.lin@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] MAINTAINERS: Update the devicetree documentation path of imx
+ fec driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163422360702.15607.2692244335903528851.git-patchwork-notify@kernel.org>
+Date:   Thu, 14 Oct 2021 15:00:07 +0000
+References: <20211014110214.3254-1-caihuoqing@baidu.com>
+In-Reply-To: <20211014110214.3254-1-caihuoqing@baidu.com>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     qiangqing.zhang@nxp.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/10/21 08:21, Nancy.Lin ha scritto:
-> MT8195 vdosys1 has more than 32 reset bits and a different reset base
-> than other chips. Modify mmsys for support 64 bit and different reset
-> base.
+Hello:
+
+This patch was applied to netdev/net.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Thu, 14 Oct 2021 19:02:14 +0800 you wrote:
+> Change the devicetree documentation path
+> to "Documentation/devicetree/bindings/net/fsl,fec.yaml"
+> since 'fsl-fec.txt' has been converted to 'fsl,fec.yaml' already.
 > 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
 > ---
->   drivers/soc/mediatek/mt8195-mmsys.h |  1 +
->   drivers/soc/mediatek/mtk-mmsys.c    | 21 ++++++++++++++++-----
->   drivers/soc/mediatek/mtk-mmsys.h    |  2 ++
->   3 files changed, 19 insertions(+), 5 deletions(-)
+> *resend +Cc others.
 > 
-> diff --git a/drivers/soc/mediatek/mt8195-mmsys.h b/drivers/soc/mediatek/mt8195-mmsys.h
-> index 648baaec112b..f67801c42fd9 100644
-> --- a/drivers/soc/mediatek/mt8195-mmsys.h
-> +++ b/drivers/soc/mediatek/mt8195-mmsys.h
-> @@ -123,6 +123,7 @@
->   #define MT8195_VDO1_MIXER_SOUT_SEL_IN				0xf68
->   #define MT8195_MIXER_SOUT_SEL_IN_FROM_DISP_MIXER		(0 << 0)
->   
-> +#define MT8195_VDO1_SW0_RST_B           0x1d0
+> [...]
 
-All other definitions are indented with tabulations, but these are spaces here.
-Please, do not mix formatting.
+Here is the summary with links:
+  - MAINTAINERS: Update the devicetree documentation path of imx fec driver
+    https://git.kernel.org/netdev/net/c/ea142b09a639
 
-Regards,
-- Angelo
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
