@@ -2,115 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C846242D7BE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7196142D7CA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbhJNLJr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 14 Oct 2021 07:09:47 -0400
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:41600 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230017AbhJNLJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:09:47 -0400
-Received: by mail-ua1-f51.google.com with SMTP id r17so10417423uaf.8;
-        Thu, 14 Oct 2021 04:07:42 -0700 (PDT)
+        id S230213AbhJNLKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 07:10:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50190 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230379AbhJNLKn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:10:43 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D305AC06174E
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:08:38 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id x27so25439195lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:08:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k2530KBw5sIa2liX0bHYNkuPyPL4C8JnDHSe5IbAiNA=;
+        b=JwlNlmC84haSnTpwQ4RIB0on3sSS4sEJxPcGpt+W9YaCwF5Qy390fnT4vlujDXHgdY
+         rEBclA/tnvug/HMoy0mPnRyeYqfbpOkldGE33gpJg029ojuTOC2WO/NcZI9AyGVJoMVq
+         wjHjsr3q0DhWH+DlQXIcdIfYrD9FmCtj3zMBPyoyNuXDYbC00xFxN3Usye0Iv48VP4uq
+         EqP5iza3B1WDzn4ws9WlTpAJZdnmEExbwedoEXgVfz3iNVxJSjU1fwBxfm7Wjt08uZcY
+         gt3BEPpsFAtWSJL5GE0/wmyix2338kCvCaEqUMxtIW6zi+zq9xAO7rN5JsLS6KyDfTkB
+         yUfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/B6ewknB+MnHQvbRitQiDqwEigA4oJZAAkLELf2uq8k=;
-        b=IhRG2NI8CtKD5Cn1F0OeiTfxqOdTKpDjU30BnKwwIG1AmBvAOrlf6aH46+HFlkuMnl
-         9J8T+H1KQxXy2sGe2ityu/GmRHk46r8UJlmAtZymMM9TRMGdcEyKQHvZresiRPnDzKQt
-         sTOnNsKsqhxlOGQjamylnbmhuzgVN67Gk3WiMRpF6a9qqip4V82USRxuPzhReNo3X2yC
-         f277ZSS7il0bcNtW2+8zc+b8MWHGhcun/s9SoPtAEvGBfZW058DKUIz5+tGnRlLjJWm5
-         O4C4005n8RSvOt76M93MK+pASg93+RJjtj9+EfpfQfCPJxV1UmmhckVzaLCHqk2mnoAB
-         RrLg==
-X-Gm-Message-State: AOAM531jcBWiU94xxfKlhaKoaPB66SECUZKZP8k4v0f7VFBu3+Jac8C8
-        nWcogH7CBsVcKpgp7qoNdQowe/TTGgjT44wohRM=
-X-Google-Smtp-Source: ABdhPJzR8w7sEGJx4FbLAPby8TuPvSntTiEjxdZmilE9t67Wa2qfpVF/SNWeNBBOB81v0B0bGAoPskq58OmJlR5TUBw=
-X-Received: by 2002:a67:d583:: with SMTP id m3mr6014080vsj.41.1634209662141;
- Thu, 14 Oct 2021 04:07:42 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=k2530KBw5sIa2liX0bHYNkuPyPL4C8JnDHSe5IbAiNA=;
+        b=22Lrs6MU/d38ruOAUCPtwT9Oy7D9ITYKweCN4EK0Lx9eD2KNvCzerLBVYqRhiiIHGW
+         XWb/HACQ30ec41WnAOWckjk6eA1KbMSqvkPbPjpQGlJjMmUCmiuXKNw50ivRlTTuhiG1
+         IjqKiOM36jSaQRuS1D70fGEqQDQRbJ4f6czbR12AWofCP2XLNjbdTcfuY4YSeqBB3TR3
+         xEKt69WDTqmpSbLT9GaO2/ARYBi8lb+0kTniHgfHs0Uk8IlGrYI0zRdmZUjyhL6CdDwt
+         xew9uI7tfRLApLaOhn3Xz5eh3ZMng4IYLtI742mbGO6ANqb6KoaplSNtove1m9V99BUG
+         bghA==
+X-Gm-Message-State: AOAM530AivD4bpUsm9Nag00Z+RKkaaPCmoiWq9CKJRDKb6cz0AnVdzf9
+        LlUhnf0BbP+ujoJmjDGR9MSJkPLnElEePTVjirVPZw==
+X-Google-Smtp-Source: ABdhPJzRfdpqfgO3v5yyrdCguPoaanOykFM7wBbzG4cJ6tEEecAxIjy13q5+O7TypTn6AMNZ6c07GDGuNN6Idyb4e9E=
+X-Received: by 2002:a19:5f4b:: with SMTP id a11mr4541619lfj.373.1634209717119;
+ Thu, 14 Oct 2021 04:08:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdX8LzmksfB85iSMX4+RYq=SYTamw5C3GNgbAV+9f1uAyQ@mail.gmail.com> <YWgK3c+8wHWw8IYM@oden.dyn.berto.se>
-In-Reply-To: <YWgK3c+8wHWw8IYM@oden.dyn.berto.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 14 Oct 2021 13:07:30 +0200
-Message-ID: <CAMuHMdWsLzLqVNdt2EGD20fMXxb3R70Hx3EyPHwLsFc82qAG8A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20211011165707.138157-1-marcan@marcan.st> <20211011165707.138157-5-marcan@marcan.st>
+ <20211012032144.2ltlpat7orrsyr6k@vireshk-i7> <b7cd51ec-38e5-11d8-5193-1170c9d60ac9@marcan.st>
+ <20211012055143.xmkbvhbnolspgjin@vireshk-i7> <caf16a6c-f127-7f27-ed17-0522d9f1fb9e@marcan.st>
+ <20211012092603.lkmhhjoo5v67wh44@vireshk-i7> <049FC437-EC38-4FE5-891E-5E25960892CF@marcan.st>
+ <20211012093252.hb6rlcpxv5bmk7n3@vireshk-i7> <0db8e994-ac2c-8fad-55d0-1b5a9e2e21f2@marcan.st>
+ <20211014065636.lkv77aqbugp3qhif@vireshk-i7> <039b77f3-d10e-bd7a-a594-b951a98bdd45@marcan.st>
+ <653603bc-56bb-7eaf-e6e8-3cc7f5c5a666@marcan.st>
+In-Reply-To: <653603bc-56bb-7eaf-e6e8-3cc7f5c5a666@marcan.st>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 14 Oct 2021 13:08:00 +0200
+Message-ID: <CAPDyKFrxea9MT4nFRjaHu-QRg2MyaRVOZO-G0i8kv+KQOrYRbA@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/9] opp: core: Don't warn if required OPP device does
+ not exist
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
-
-On Thu, Oct 14, 2021 at 12:48 PM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2021-10-13 17:08:44 +0200, Geert Uytterhoeven wrote:
-> > On Tue, Oct 12, 2021 at 8:48 PM Niklas Söderlund
-> > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > Convert ADV748X analog video decoder documentation to json-schema.
-
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            const: adi,adv7481
-> > > +    then:
-> > > +      properties:
-> > > +        interrupts:
-> > > +          minItems: 1
-> > > +          maxItems: 3
-> > > +
-> > > +        interrupt-names:
-> > > +          minItems: 1
-> > > +          items:
-> > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> >
-> > They can really appear in any order?
+On Thu, 14 Oct 2021 at 09:23, Hector Martin <marcan@marcan.st> wrote:
 >
-> Yes, as not all interrupt lines may be wired up. It would be nice to
-> enforce that intrq2 must come before intrq3 if both are wired but I'm
-> not sure how to express that.
+> On 14/10/2021 16.03, Hector Martin wrote:
+> > On 14/10/2021 15.56, Viresh Kumar wrote:
+> >>> +   /*
+> >>> +    * Attach the CPU device to its genpd domain (if any), to allow OPP
+> >>> +    * dependencies to be satisfied.
+> >>> +    */
+> >>> +   ret = genpd_dev_pm_attach(cpu_dev);
+> >>> +   if (ret <= 0) {
+> >>> +           dev_err(cpu_dev, "Failed to attach CPU device to genpd\n");
+> >>> +           goto out;
+> >>> +   }
+> >>> +
+> >>
+> >> Other platform do this from some other place I think.
+> >>
+> >> Ulf, where should this code be moved ? cpu-clk driver ?
+> >>
+> >
+> > I see one driver that does this is drivers/clk/qcom/apcs-sdx55.c (via
+> > dev_pm_domain_attach). Though it only does it for CPU#0; we need to do
+> > it for all CPUs.
+>
+> Looking into this further, I'm not sure I like the idea of doing this in
+> the clocks driver. There might be locking issues since it gets
+> instantiated twice and yet doesn't really itself know what subset of
+> CPUs it applies to.
 
-You mean
+I agree. I suggest you look into using a genpd provider and hook up
+all CPU's devices to it. I think that is what Viresh also suggested
+earlier - and this makes most sense to me.
 
-    items:
-      - const: intrq1
-      - const: intrq2
-      - const: intrq3
+As a reference you may have a look at some Qcom platforms that already use this:
 
-?
+arch/arm64/boot/dts/qcom/qcs404.dtsi
 
-If the first two might be exchanged, you can still fix the last one:
+drivers/cpufreq/qcom-cpufreq-nvmem.c:
+To hook up CPU devices to their PM domains (genpds) - it calls
+dev_pm_opp_attach_genpd(), which is a kind of wrapper for
+dev_pm_domain_attach_by_name().
 
-    items:
-      - const: [ intrq1, intrq2 ]
-      - const: [ intrq1, intrq2 ]
-      - const: intrq3
+drivers/soc/qcom/cpr.c
+Registers the genpd provider that is capable of dealing with
+performance states/OPPs for CPUs.
 
-Gr{oetje,eeting}s,
+>
+> There's another driver that does this:
+> drivers/cpuidle/cpuidle-psci-domain.c. That one specifically looks for a
+> power domain called "psci". Perhaps it would make sense to make this
+> generic in cpufreq-dt as per my prior patch, but explicitly request a
+> "cpufreq" domain? That way only devicetrees that opt in to having this
+> handled by cpufreq by naming it that way would get this behavior.
 
-                        Geert
+That sounds like an idea that is worth exploring. In this way, the
+only thing that needs to be implemented for new cases would be the
+genpd provider driver.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+BTW, as you will figure out by looking at the above references, for
+the qcom case we are using "cpr" as the domain name for cpufreq. Of
+course, that doesn't mean we can use "cpufreq" (or whatever name that
+makes sense) going forward for new cases.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+> --
+> Hector Martin (marcan@marcan.st)
+> Public Key: https://mrcn.st/pub
+
+Kind regards
+Uffe
