@@ -2,160 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D06C142D92F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C652442D93D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbhJNMW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 08:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38594 "EHLO
+        id S231596AbhJNM1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 08:27:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229912AbhJNMW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:22:56 -0400
+        with ESMTP id S231340AbhJNM1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:27:15 -0400
 Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8CE6C061570
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:20:51 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id t9so25903121lfd.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:20:51 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4535EC06174E
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:25:10 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id g36so9294485lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:25:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=aEg5x4AVkWpua15/HSCgkbo2+YEZ1rQlTpXQmJEzzuo=;
-        b=169eSdO2ZH1niKCmx2JEK+4FxPMfk1BlEb+fxhvErDgCejprPiohxLRmtExi1iv8W5
-         SSY0zQHMhxqCLpfqSm4YP/lobwjh/PvroFgWWss9FXQvO0OqMebfsv5KV5Usl99LT+jT
-         ZoZFCw139Vb0/lZYd3yYDZJuAPCfdRQEFbkzjQQ4ySs7HoLlJpVvQ+w+UzDEqBIihFmF
-         bBgdbKHh/U/VTJJ+zL/5S75kyz/u19ih8pSkkEfUerTbE4Cpo7lsuLnin64k9tZJSZJ0
-         oMp01NQmzpKCT2iUv9KYw4ICBsfYzrkuiiyG+5HcBuiY/z7ktNy/7g+BhlwpjOUt/o3X
-         w55g==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ecDOxJ4g4rGekvg6Ad7KQ5ygSfRdg/EpAd1GYPQ0UAU=;
+        b=V2yOk6j0nyPSfywCPSk+T5zC77Z8P+1d4kSMfqNEom2mJSpFKjaexaTDKIKNgd/uBw
+         JT343HMobT/VyIVVloVoFq07SqJydkUOWoBOphIycADkj++npExCYTRID1iHmBwYp2yO
+         mBSV35f+U+ACXeph2oDYz7wcdflX8zDiGizx2ycAfrYwCWQj0einJ0/7xA/2lk2kC4ni
+         ocUzCsSRiz+6/iWrPrbmSRo+ai4wKZDY6C4IvK3s/AwXKRbf3pvDTfwee1iBVNwyuNLp
+         ekTS0cm6A0CEfr/Wjq4dbOHBRHFEqeUsvrv+nK8JkMxG7pKbMzMhPU0MB/DTNA++PmID
+         G8OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=aEg5x4AVkWpua15/HSCgkbo2+YEZ1rQlTpXQmJEzzuo=;
-        b=eIOn+pVQ/z7tN94mQ+TpcHlJwjkEeu9SjtUC/ROsDKg/gixEkJS8JTZxtBDBWLmTL+
-         qmY10FsXrZRDLjQfPeoDsKSz5cbfCsZWkgtP8EHnyylEHRFXYf4FTJu2UwdeZyWrPpuh
-         bZX7KPZ8Nk1Q++n9pyHcP7WyOQnFEEYrU3RjsmD/zgJ0rjQvdIR1sji3sOxGrbgIrGeA
-         pPkK83VAdl6SxYbbrQ2xmmvgMJ9Yt3E6PrkgD4S6XsUh5eyUmwol+Kken+8yw+YwXJoR
-         LUymW7IEYovVGpLsEkx5ogsuPiGnqRES9bi33mern3MlIit5qn9vvk76jgLW9Y+k05nL
-         vO/w==
-X-Gm-Message-State: AOAM5327f5CA+FKTPW7KqvmgKrq2RMdEwyWfBZUUqi/rL11xU9qzpJAb
-        czK+X4paJlINymioUG08kM4KVqnssaElXCjL
-X-Google-Smtp-Source: ABdhPJzS8EfDArwZogyF4P6S9I0/5GID66hJd/miHaaK9jNkML45rZ5jFB3XImQRDX0iIXoGmm/qNw==
-X-Received: by 2002:ac2:5d4b:: with SMTP id w11mr4649427lfd.676.1634214048937;
-        Thu, 14 Oct 2021 05:20:48 -0700 (PDT)
-Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
-        by smtp.gmail.com with ESMTPSA id p9sm215447lfe.3.2021.10.14.05.20.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 05:20:48 -0700 (PDT)
-Date:   Thu, 14 Oct 2021 14:20:47 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
-Message-ID: <YWggnyImaPBf3IG8@oden.dyn.berto.se>
-References: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdX8LzmksfB85iSMX4+RYq=SYTamw5C3GNgbAV+9f1uAyQ@mail.gmail.com>
- <YWgK3c+8wHWw8IYM@oden.dyn.berto.se>
- <CAMuHMdWsLzLqVNdt2EGD20fMXxb3R70Hx3EyPHwLsFc82qAG8A@mail.gmail.com>
- <YWgW+ArZ48NeHr5F@oden.dyn.berto.se>
- <CAMuHMdVBVUvyVkjc80fJwuo+-XoEerhOx3QX3w2XtFYf-YY5=g@mail.gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ecDOxJ4g4rGekvg6Ad7KQ5ygSfRdg/EpAd1GYPQ0UAU=;
+        b=kdTkVe0V8O+2BCA/edk/9Mf6mEcxMjourGOCA0NAIPLBIpqJB014nEDlTPSai14Mq/
+         Ok0ZZAALhiIGD9xb2LT0XcVuPlDLzZu8bzRDzYx7RZBv+tiJtt69K2CvDyZhmOe1ZDqC
+         cDKOImLy451SU+Tyg8WZOlnDdU390KFazsA4rOlydkjHBwyHz/h0SYuavnuYmIsVRCQM
+         Et9HFa4RGqPA+jIFaLSfW38j3JFVN3KxriIDR5Jm1MWuHsDBNrNY9QwTHXk+A3Mfs/zW
+         I23JmjaA6W0vM3evQ2rOvLb/k0/Y0MP5H6MhuXKv2gJaA4w9XdvyDFsGA+neqI9B7W3e
+         lcRA==
+X-Gm-Message-State: AOAM532Garz1Gs5YhiAes1tc9CKq3pTbbsYttK1G6M3l+Ug66HKIkKb0
+        1dDXd663IsCzyL4hXC0ubgsuVw==
+X-Google-Smtp-Source: ABdhPJy7zlyfngIg6lyxPZFE4lAszVXSZLyFVA06ruM/zhwbizwMiSLOMbC8PwwtkU0Q/RrfvOCASQ==
+X-Received: by 2002:a2e:bd8a:: with SMTP id o10mr5630339ljq.316.1634214308569;
+        Thu, 14 Oct 2021 05:25:08 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id r10sm251605ljg.10.2021.10.14.05.25.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Oct 2021 05:25:08 -0700 (PDT)
+Subject: Re: [PATCH 4/8] cpufreq: qcom_cpufreq_nvmem: Simplify reading kryo
+ speedbin
+To:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org
+References: <20211014083016.137441-1-y.oudjana@protonmail.com>
+ <20211014083016.137441-5-y.oudjana@protonmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <7e8b5d31-0232-7aee-ceed-ec453b447638@linaro.org>
+Date:   Thu, 14 Oct 2021 15:25:07 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdVBVUvyVkjc80fJwuo+-XoEerhOx3QX3w2XtFYf-YY5=g@mail.gmail.com>
+In-Reply-To: <20211014083016.137441-5-y.oudjana@protonmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 14/10/2021 11:32, Yassine Oudjana wrote:
+> In preparation for adding a separate device tree for MSM8996 Pro, skip reading
+> msm-id from smem and just read the speedbin efuse.
 
-On 2021-10-14 14:14:26 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Thu, Oct 14, 2021 at 1:39 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > On 2021-10-14 13:07:30 +0200, Geert Uytterhoeven wrote:
-> > > On Thu, Oct 14, 2021 at 12:48 PM Niklas Söderlund
-> > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > On 2021-10-13 17:08:44 +0200, Geert Uytterhoeven wrote:
-> > > > > On Tue, Oct 12, 2021 at 8:48 PM Niklas Söderlund
-> > > > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > > > Convert ADV748X analog video decoder documentation to json-schema.
-> > >
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-> > >
-> > > > > > +allOf:
-> > > > > > +  - if:
-> > > > > > +      properties:
-> > > > > > +        compatible:
-> > > > > > +          contains:
-> > > > > > +            const: adi,adv7481
-> > > > > > +    then:
-> > > > > > +      properties:
-> > > > > > +        interrupts:
-> > > > > > +          minItems: 1
-> > > > > > +          maxItems: 3
-> > > > > > +
-> > > > > > +        interrupt-names:
-> > > > > > +          minItems: 1
-> > > > > > +          items:
-> > > > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > > >
-> > > > > They can really appear in any order?
-> > > >
-> > > > Yes, as not all interrupt lines may be wired up. It would be nice to
-> > > > enforce that intrq2 must come before intrq3 if both are wired but I'm
-> > > > not sure how to express that.
-> > >
-> > > You mean
-> > >
-> > >     items:
-> > >       - const: intrq1
-> > >       - const: intrq2
-> > >       - const: intrq3
-> >
-> > Will this not enforce that if intrq2 is present intrq1 must be too?
-> >
-> > >
-> > > ?
-> > >
-> > > If the first two might be exchanged, you can still fix the last one:
-> > >
-> > >     items:
-> > >       - const: [ intrq1, intrq2 ]
-> > >       - const: [ intrq1, intrq2 ]
-> > >       - const: intrq3
-> >
-> > Same here, will this not fail if only intrq3 is given?
-> 
-> Right. And these combinations are all valid?
+It would be nice to comment, why is it possible/necessary. For example:
 
-Yes, there is two or three depending on model irq pins on the device 
-itself and all, none or any combination of them could be wired up.
+MSM8996 Pro has completely different set of frequencies, so it makes no 
+sense to have a single table covering Pro and original SoCs. 
+msm8996pro.dtsi would override frequency table from msm8996.dtsi.
+
 
 > 
-> Gr{oetje,eeting}s,
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>   drivers/cpufreq/Kconfig.arm          |  1 -
+>   drivers/cpufreq/qcom-cpufreq-nvmem.c | 75 +++-------------------------
+>   2 files changed, 6 insertions(+), 70 deletions(-)
 > 
->                         Geert
+> diff --git a/drivers/cpufreq/Kconfig.arm b/drivers/cpufreq/Kconfig.arm
+> index 954749afb5fe..7d9798bc5753 100644
+> --- a/drivers/cpufreq/Kconfig.arm
+> +++ b/drivers/cpufreq/Kconfig.arm
+> @@ -154,7 +154,6 @@ config ARM_QCOM_CPUFREQ_NVMEM
+>   	tristate "Qualcomm nvmem based CPUFreq"
+>   	depends on ARCH_QCOM
+>   	depends on QCOM_QFPROM
+> -	depends on QCOM_SMEM
+>   	select PM_OPP
+>   	help
+>   	  This adds the CPUFreq driver for Qualcomm Kryo SoC based boards.
+> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> index d1744b5d9619..909f7d97b334 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> @@ -9,8 +9,8 @@
+>    * based on the silicon variant in use. Qualcomm Process Voltage Scaling Tables
+>    * defines the voltage and frequency value based on the msm-id in SMEM
+>    * and speedbin blown in the efuse combination.
+> - * The qcom-cpufreq-nvmem driver reads the msm-id and efuse value from the SoC
+> - * to provide the OPP framework with required information.
+> + * The qcom-cpufreq-nvmem driver reads efuse value from the SoC to provide the
+> + * OPP framework with required information.
+>    * This is used to determine the voltage and frequency value for each OPP of
+>    * operating-points-v2 table when it is parsed by the OPP framework.
+>    */
+> @@ -27,22 +27,6 @@
+>   #include <linux/pm_domain.h>
+>   #include <linux/pm_opp.h>
+>   #include <linux/slab.h>
+> -#include <linux/soc/qcom/smem.h>
+> -
+> -#define MSM_ID_SMEM	137
+> -
+> -enum _msm_id {
+> -	MSM8996V3 = 0xF6ul,
+> -	APQ8096V3 = 0x123ul,
+> -	MSM8996SG = 0x131ul,
+> -	APQ8096SG = 0x138ul,
+> -};
+> -
+> -enum _msm8996_version {
+> -	MSM8996_V3,
+> -	MSM8996_SG,
+> -	NUM_OF_MSM8996_VERSIONS,
+> -};
+>   
+>   struct qcom_cpufreq_drv;
+>   
+> @@ -142,35 +126,6 @@ static void get_krait_bin_format_b(struct device *cpu_dev,
+>   	dev_dbg(cpu_dev, "PVS version: %d\n", *pvs_ver);
+>   }
+>   
+> -static enum _msm8996_version qcom_cpufreq_get_msm_id(void)
+> -{
+> -	size_t len;
+> -	u32 *msm_id;
+> -	enum _msm8996_version version;
+> -
+> -	msm_id = qcom_smem_get(QCOM_SMEM_HOST_ANY, MSM_ID_SMEM, &len);
+> -	if (IS_ERR(msm_id))
+> -		return NUM_OF_MSM8996_VERSIONS;
+> -
+> -	/* The first 4 bytes are format, next to them is the actual msm-id */
+> -	msm_id++;
+> -
+> -	switch ((enum _msm_id)*msm_id) {
+> -	case MSM8996V3:
+> -	case APQ8096V3:
+> -		version = MSM8996_V3;
+> -		break;
+> -	case MSM8996SG:
+> -	case APQ8096SG:
+> -		version = MSM8996_SG;
+> -		break;
+> -	default:
+> -		version = NUM_OF_MSM8996_VERSIONS;
+> -	}
+> -
+> -	return version;
+> -}
+> -
+>   static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
+>   					  struct nvmem_cell *speedbin_nvmem,
+>   					  char **pvs_name,
+> @@ -178,30 +133,13 @@ static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
+>   {
+>   	size_t len;
+>   	u8 *speedbin;
+> -	enum _msm8996_version msm8996_version;
+>   	*pvs_name = NULL;
+>   
+> -	msm8996_version = qcom_cpufreq_get_msm_id();
+> -	if (NUM_OF_MSM8996_VERSIONS == msm8996_version) {
+> -		dev_err(cpu_dev, "Not Snapdragon 820/821!");
+> -		return -ENODEV;
+> -	}
+> -
+>   	speedbin = nvmem_cell_read(speedbin_nvmem, &len);
+>   	if (IS_ERR(speedbin))
+>   		return PTR_ERR(speedbin);
+>   
+> -	switch (msm8996_version) {
+> -	case MSM8996_V3:
+> -		drv->versions = 1 << (unsigned int)(*speedbin);
+> -		break;
+> -	case MSM8996_SG:
+> -		drv->versions = 1 << ((unsigned int)(*speedbin) + 4);
+> -		break;
+> -	default:
+> -		BUG();
+> -		break;
+> -	}
+> +	drv->versions = 1 << (unsigned int)(*speedbin);
+>   
+>   	kfree(speedbin);
+>   	return 0;
+> @@ -464,10 +402,9 @@ static const struct of_device_id qcom_cpufreq_match_list[] __initconst = {
+>   MODULE_DEVICE_TABLE(of, qcom_cpufreq_match_list);
+>   
+>   /*
+> - * Since the driver depends on smem and nvmem drivers, which may
+> - * return EPROBE_DEFER, all the real activity is done in the probe,
+> - * which may be defered as well. The init here is only registering
+> - * the driver and the platform device.
+> + * Since the driver depends on the nvmem driver, which may return EPROBE_DEFER,
+> + * all the real activity is done in the probe, which may be defered as well.
+> + * The init here is only registering the driver and the platform device.
+>    */
+>   static int __init qcom_cpufreq_init(void)
+>   {
 > 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+
 
 -- 
-Regards,
-Niklas Söderlund
+With best wishes
+Dmitry
