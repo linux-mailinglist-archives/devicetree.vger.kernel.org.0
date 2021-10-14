@@ -2,181 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1025A42D789
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:56:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE21142D78F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 12:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbhJNK6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 06:58:32 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:47448 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbhJNK6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 06:58:32 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D18251F43904
-Subject: Re: [PATCH v7, 11/15] media: mtk-vcodec: Add core thread
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20211011070247.792-1-yunfei.dong@mediatek.com>
- <20211011070247.792-12-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <3b7084d4-e530-9a55-11f4-d67c37f8f5fa@collabora.com>
-Date:   Thu, 14 Oct 2021 12:56:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230205AbhJNK7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 06:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47614 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230190AbhJNK7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 06:59:30 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31149C06174E
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 03:57:25 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id y15so25177382lfk.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 03:57:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ma08bvDadRdvRvgbZtqFit3zzSDqXJrS+2FBtySKRxU=;
+        b=cazHXUBdAQyBuFmFhsy9XkDETVnSAk8yNl57LhdM/2YL28eSrRXfS58kKGeNV5KUIi
+         FlFAlz0pElKm4hNqV8xtJHkB9fHDRIiH1tr4ZWeK/JJuP2xD/Nha2hAHY11QY4O1YYGb
+         rq9GHr+5FQmGCf/6x+GLgJt7eAPRZ1FGo9R30wBMX0x6AICY69fzL4ya3b8Yt1+UXoGb
+         0teZUUa36b7SwU+USGomMvuWu7aLFkobH/Pip4n4woY1P+EWfy4shQq7qTD+cxfC8pIa
+         CIzgrjq0bRcvfDRu+qce1F0Ay10+ELllrZumW1KEckyU5IT+/8rakwH2MZe8oDz8amDI
+         6o4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ma08bvDadRdvRvgbZtqFit3zzSDqXJrS+2FBtySKRxU=;
+        b=VBAnKAoEcO69nzMsu6xWccLwP7F1Q+HLjzggs53SX7b1rDkrqhXo4UyWpTqk9h5SsC
+         eRBitBUEBeIfnWIpvco9knxzy8SR7Oics9N6DSAvGOTYc8za+7Bk87O4XOLen6d6A6tg
+         X186zDGUJN+lAgHsj9KDtq+EQr8Fj7tKfzugmDNP0Cq3XGN/3zn+SxHVCcnvRfSBbmwU
+         zhCmTGX5L+ULqK4Sm3nVyoO0r+cQq4Jcdve+p+D5uzhdvpdmJLF0hLGoW/b1vFk9Z3gY
+         KLXdGcZf6Ox/NORs4G62YwPaUIuEH+7dGcFtTX9uVyUShn2E1cc16WM1mfSi3heXYapn
+         wHJg==
+X-Gm-Message-State: AOAM530elM+5khNuLdI7NR1KlcbFv6Q4dEOvvFbXeAo+of48lqnS2Dyy
+        wxpvDxhV76ajhKSJz63Rx4sgv7X7SC2juPILKp33HA==
+X-Google-Smtp-Source: ABdhPJzDAHuKVlcnDqyOJuGpNsQIygzy9EU9xzAOTUoW9JQ1UcjzGNS+dQu9a/MW/yHlYPvy2uTc41FmE0Rq4Ayo428=
+X-Received: by 2002:a05:6512:4029:: with SMTP id br41mr4551434lfb.233.1634209043477;
+ Thu, 14 Oct 2021 03:57:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20211011070247.792-12-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+In-Reply-To: <20210517155458.1016707-1-sudeep.holla@arm.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 14 Oct 2021 12:56:46 +0200
+Message-ID: <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+To:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Core thread:
-> 1. Gets lat_buf from core msg queue.
-> 2. Proceeds core decode.
-> 3. Puts the lat_buf back to lat msg queue.
-> 
-> Both H264 and VP9 rely on the core thread.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+On Mon, 17 May 2021 at 18:14, Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> implementations where untrusted software had direct access to clock and
+> voltage hardware controls. In this attack, the malicious software was able to
+> place the platform into unsafe overclocked or undervolted configurations. Such
+> configurations then enabled the injection of predictable faults to reveal
+> secrets.
+>
+> Many Arm-based systems used to or still use voltage regulator and clock
+> frameworks in the kernel. These frameworks allow callers to independently
+> manipulate frequency and voltage settings. Such implementations can render
+> systems susceptible to this form of attack.
+>
+> Attacks such as CLKSCREW are now being mitigated by not having direct and
+> independent control of clock and voltage in the kernel and moving that
+> control to a trusted entity, such as the SCP firmware or secure world
+> firmware/software which are to perform sanity checking on the requested
+> performance levels, thereby preventing any attempted malicious programming.
+>
+> With the advent of such an abstraction, there is a need to replace the
+> generic clock and regulator bindings used by such devices with a generic
+> performance domains bindings.
+>
+> [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+>
+> Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 
-I would be happier to see a better commit message, for example:
-"Introduce a core thread, responsible for... getting lat_buf from ...
-which then proceeds core decode by ... and finally, puts the lat_buf
-back to the lat message queue"
+Hi Sudeep/Viresh/Rob,
+
+I noticed this binding recently got accepted, so I guess I have missed
+the opportunity to provide you with a few comments.
+
+In any case, I would like to ask a few questions. In particular, am I
+trying to understand why the power-domains bindings [1] can't be used
+for this?
+
+The power-domains are capable of dealing with "performance" through
+the "operating-points-v2" DT property, which maps to the generic OPP
+bindings [2]. I wonder why that isn't sufficient here? Can you please
+elaborate?
+
+[1]
+Documentation/devicetree/bindings/power/power-domain.yaml
+
+[2]
+Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+
+Kind regards
+Uffe
 
 > ---
->   .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 12 +++++++
->   .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  7 ++++
->   .../platform/mtk-vcodec/vdec_msg_queue.c      | 32 +++++++++++++++++++
->   .../platform/mtk-vcodec/vdec_msg_queue.h      |  6 ++++
->   4 files changed, 57 insertions(+)
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> index e21e0c4bcd86..de83e3b821b4 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> @@ -364,6 +364,18 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->   		goto err_dec_pm;
->   	}
->   
-> +	if (VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
-> +		vdec_msg_queue_init_ctx(&dev->msg_queue_core_ctx,
-> +			MTK_VDEC_CORE);
-
-No need to break this line.
-
-> +		dev->kthread_core = kthread_run(vdec_msg_queue_core_thead, dev,
-> +			"mtk-%s", "core");
-
-Please fix indentation, like so:
-		dev->kthread_core = kthread_run(vdec_msg_queue_core_thead, dev,
-
-						"mtk-%s", "core");
-
-> +		if (IS_ERR(dev->kthread_core)) {
-> +			dev_err(&pdev->dev, "Failed to create core thread");
-> +			ret = PTR_ERR(dev->kthread_core);
-> +			goto err_res;
-> +		}
-> +	}
+> Hi All,
+>
+> Sorry for yet another delay, I don't want to mist this for v5.14 as Mediatek
+> cpufreq driver was depending on this IIRC.
+>
+> v3[3]->v4:
+>         - Dropped unnecessary phandle-array reference
+>         - Added maxItems = 1 for the property
+>
+> v2[2]->v3[3]:
+>         - Dropped required properties
+>         - Added non cpu device example
+>         - Updated cpu bindings too
+>
+> v1[1]->v2[2]:
+>         - Changed to Dual License
+>         - Added select: true, enum for #performance-domain-cells and
+>           $ref for performance-domain
+>         - Changed the example to use real existing compatibles instead
+>           of made-up ones
+>
+> Regards,
+> Sudeep
+>
+> [1] https://lore.kernel.org/r/20201105173539.1426301-1-sudeep.holla@arm.com
+> [2] https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> [3] https://lore.kernel.org/r/20210407135913.2067694-1-sudeep.holla@arm.com
+>
+>  .../devicetree/bindings/arm/cpus.yaml         |  7 ++
+>  .../bindings/dvfs/performance-domain.yaml     | 74 +++++++++++++++++++
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> index f3c7249c73d6..9a2432a88074 100644
+> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> @@ -257,6 +257,13 @@ description: |+
+>
+>        where voltage is in V, frequency is in MHz.
+>
+> +  performance-domains:
+> +    maxItems: 1
+> +    description:
+> +      List of phandles and performance domain specifiers, as defined by
+> +      bindings of the performance domain provider. See also
+> +      dvfs/performance-domain.yaml.
 > +
->   	for (i = 0; i < MTK_VDEC_HW_MAX; i++)
->   		mutex_init(&dev->dec_mutex[i]);
->   	spin_lock_init(&dev->irqlock);
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> index 9d072c082f73..68a9b1a2d3b3 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> @@ -27,6 +27,7 @@
->   #define MTK_VCODEC_MAX_PLANES	3
->   #define MTK_V4L2_BENCHMARK	0
->   #define WAIT_INTR_TIMEOUT_MS	1000
-> +#define VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
-
-I'd propose to change this to IS_VDEC_LAT_ARCH(hw_arch): that would increase human
-readability when using this macro.
-
->   
->   /*
->    * enum mtk_hw_reg_idx - MTK hw register base index
-> @@ -466,6 +467,9 @@ struct mtk_vcodec_enc_pdata {
->    * @comp_dev: component hardware device
->    * @component_node: component node
->    *
-> + * @kthread_core: thread used for core hardware decode
-> + * @msg_queue_core_ctx: msg queue context used for core thread
-> + *
->    * @hardware_bitmap: used to record hardware is ready or not
->    */
->   struct mtk_vcodec_dev {
-> @@ -508,6 +512,9 @@ struct mtk_vcodec_dev {
->   	void *comp_dev[MTK_VDEC_HW_MAX];
->   	struct device_node *component_node[MTK_VDEC_HW_MAX];
->   
-> +	struct task_struct *kthread_core;
-> +	struct vdec_msg_queue_ctx msg_queue_core_ctx;
+>    power-domains:
+>      description:
+>        List of phandles and PM domain specifiers, as defined by bindings of the
+> diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> new file mode 100644
+> index 000000000000..c8b91207f34d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->   	DECLARE_BITMAP(hardware_bitmap, MTK_VDEC_HW_MAX);
->   };
->   
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> index d66ed98c79a9..665f571eab4b 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
-> @@ -256,3 +256,35 @@ void vdec_msg_queue_deinit(
->   			kfree(lat_buf->private_data);
->   	}
->   }
+> +title: Generic performance domains
 > +
-> +int vdec_msg_queue_core_thead(void *data)
-> +{
-> +	struct mtk_vcodec_dev *dev = data;
-> +	struct vdec_lat_buf *lat_buf;
-> +	struct mtk_vcodec_ctx *ctx;
+> +maintainers:
+> +  - Sudeep Holla <sudeep.holla@arm.com>
 > +
-> +	set_freezable();
-> +	for (;;) {
-> +		try_to_freeze();
-> +		if (kthread_should_stop())
-> +			break;
+> +description: |+
+> +  This binding is intended for performance management of groups of devices or
+> +  CPUs that run in the same performance domain. Performance domains must not
+> +  be confused with power domains. A performance domain is defined by a set
+> +  of devices that always have to run at the same performance level. For a given
+> +  performance domain, there is a single point of control that affects all the
+> +  devices in the domain, making it impossible to set the performance level of
+> +  an individual device in the domain independently from other devices in
+> +  that domain. For example, a set of CPUs that share a voltage domain, and
+> +  have a common frequency control, is said to be in the same performance
+> +  domain.
 > +
-> +		lat_buf = vdec_msg_queue_dqbuf(&dev->msg_queue_core_ctx);
-> +		if (!lat_buf)
-> +			continue;
+> +  This device tree binding can be used to bind performance domain consumer
+> +  devices with their performance domains provided by performance domain
+> +  providers. A performance domain provider can be represented by any node in
+> +  the device tree and can provide one or more performance domains. A consumer
+> +  node can refer to the provider by a phandle and a set of phandle arguments
+> +  (so called performance domain specifiers) of length specified by the
+> +  \#performance-domain-cells property in the performance domain provider node.
 > +
-> +		ctx = lat_buf->ctx;
-> +		mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
+> +select: true
 > +
-> +		if (!lat_buf->core_decode)
-> +			mtk_v4l2_err("Core decode callback func is NULL");
-
-Is this supposed to really happen?
-I see that this is always initialized in function vdec_msg_queue_init().
-
-Regards,
-- Angelo
-
-
+> +properties:
+> +  "#performance-domain-cells":
+> +    description:
+> +      Number of cells in a performance domain specifier. Typically 0 for nodes
+> +      representing a single performance domain and 1 for nodes providing
+> +      multiple performance domains (e.g. performance controllers), but can be
+> +      any value as specified by device tree binding documentation of particular
+> +      provider.
+> +    enum: [ 0, 1 ]
+> +
+> +  performance-domains:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    maxItems: 1
+> +    description:
+> +      A phandle and performance domain specifier as defined by bindings of the
+> +      performance controller/provider specified by phandle.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    performance: performance-controller@12340000 {
+> +        compatible = "qcom,cpufreq-hw";
+> +        reg = <0x12340000 0x1000>;
+> +        #performance-domain-cells = <1>;
+> +    };
+> +
+> +    // The node above defines a performance controller that is a performance
+> +    // domain provider and expects one cell as its phandle argument.
+> +
+> +    cpus {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +
+> +        cpu@0 {
+> +            device_type = "cpu";
+> +            compatible = "arm,cortex-a57";
+> +            reg = <0x0 0x0>;
+> +            performance-domains = <&performance 1>;
+> +        };
+> +    };
+> --
+> 2.25.1
+>
