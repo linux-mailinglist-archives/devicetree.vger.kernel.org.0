@@ -2,93 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A0242D945
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A59D42D94C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 14:29:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbhJNM2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 08:28:45 -0400
-Received: from phobos.denx.de ([85.214.62.61]:35870 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231558AbhJNM2o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 08:28:44 -0400
-Received: from crub (pd95f1d7c.dip0.t-ipconnect.de [217.95.29.124])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: agust@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 486F283572;
-        Thu, 14 Oct 2021 14:26:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634214398;
-        bh=h3d+7/o10dgcD7pQSvUh5MYsQC2GB4YO4Pb5D5tQVj4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QJ3AvB+swCyUTTe+4Apkhltx3Vjvpwrg7wbW1tD+npZGf2SJNzHhS+UURxct9CVdi
-         0HbSnlqIyuZe9aY1/Qa1X0PVNCJMwLAAZxbunFas5i7jjNvXdyM5Ed9lg6oLw+I3MR
-         UU+4AUlaDZSf1UIW+BUdGhOI0tcwahiBEQ9EkMY3Ta7IiZS+aEdz3I2up5TFULRPEZ
-         z7WwT7pPwV7ZtotWSHLrctaQqiznVRcSHqXTClaJNNAnjNA3ZaWDWOgZCHjvWRvvCd
-         H0eyP5k641kEpNp/ig2v7agHaSwR4rKktl4K5bglZIBCFF80Wssi6/QDllKhXeSpcC
-         0VdsamN+lQzcw==
-Date:   Thu, 14 Oct 2021 14:26:37 +0200
-From:   Anatolij Gustschin <agust@denx.de>
-To:     Stephen Rothwell <sfr@canb.auug.org.au>,
-        Rob Herring <robh@kernel.org>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [RFC PATCH] powerpc: dts: Remove MPC5xxx platforms
-Message-ID: <20211014142637.3fda421b@crub>
-In-Reply-To: <20211013173808.7ab92035@canb.auug.org.au>
-References: <20211012153456.2844193-1-robh@kernel.org>
-        <20211013173808.7ab92035@canb.auug.org.au>
+        id S230488AbhJNMb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 08:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230172AbhJNMb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 08:31:56 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42B71C061570
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:29:51 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id r22so66579uat.11
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 05:29:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bpEt5S2I1jECJZ7RAHxHySVXzboFeasK/FtBe+cjO18=;
+        b=yHj0RLsispl3pZOx9OzQRdtNdyJkziqY9hxlNeIeAdjRANYoVp3gT0ZHuJt++TVuLE
+         Fs6uvLKVQ3/EfqaX88EnLDmlO8KLYxuYkeCSIiy+O0kLtnQbBr5bAFwsO+DXKyHQGiOa
+         HJN/Ucm4pLg4vxoMKuZJJjhAh6HCCjXuzqOdOb/PmWZ/RkzN2ET0KIMgWgisCz/fHkgx
+         r4HLxdDuoMCq9Gn7CraNwRXBkENmGDLCg+9DIs5gOlk96PoEcJz6EMJk+YC6BatRNhRE
+         sqPuauczqUPyN/RIKpvfOJt9L1aJ704G7BkWwfJ4iHkq7WmmRig6UUW7h7+iknrv26v7
+         qkcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bpEt5S2I1jECJZ7RAHxHySVXzboFeasK/FtBe+cjO18=;
+        b=rtnKqnsYYKkLEdw5WEbZNhaolbNtZpbv7vW+D27Tb3tlFZPaMmDcvCwccV7nmWvUOx
+         rVZ9NJ31iSs2Tku2eTlAgtvXbRXNGOM7dSzGUd1LoVmD0yfssjOhspOWXBBj020VLeiB
+         0RezcSHiICwxqerZQJ9W/YaRg6vPcNP9GjnMvInsS89O6iRMsglMveqlPSytEu7FV1Od
+         aYZCVK0HIwaMKj7A/mToFKa2q3EiKRCfRy4lKKZaUy13WC8K6OuiaZ8O5AFs8Aowy0VS
+         92SbzG7ZHKuLanWmAkd7NitGIXK8vrpwVbCtv6nkfBFpgDc4qUXW7jtuwNfoinHFt7U8
+         Vryw==
+X-Gm-Message-State: AOAM530CGrVHDx+cMpslu1pWiJmlO+c+dqAkJsqRkLaD0Sj8YwdvvpqM
+        2nfRXvMM7vs5PZUcKpF5EEstuQ==
+X-Google-Smtp-Source: ABdhPJwpZPIshTtwDQYZynBXVHPTqsAW65pNND3KsVH+Ilc20oOix2EKPoY+nV7xF5rMeic3f2Z8gg==
+X-Received: by 2002:a05:6102:e86:: with SMTP id l6mr2706001vst.40.1634214590367;
+        Thu, 14 Oct 2021 05:29:50 -0700 (PDT)
+Received: from fedora ([2803:9800:98c2:8470:9f4:8e2a:88e5:ec01])
+        by smtp.gmail.com with ESMTPSA id x125sm1589796vkc.25.2021.10.14.05.29.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Oct 2021 05:29:48 -0700 (PDT)
+Date:   Thu, 14 Oct 2021 09:29:42 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v7, 11/15] media: mtk-vcodec: Add core thread
+Message-ID: <YWgitrqT9sWyELpr@fedora>
+References: <20211011070247.792-1-yunfei.dong@mediatek.com>
+ <20211011070247.792-12-yunfei.dong@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211011070247.792-12-yunfei.dong@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Oct 2021 17:38:08 +1100
-Stephen Rothwell sfr@canb.auug.org.au wrote:
+Hi Yunfei,
 
->Hi Rob,
->
->On Tue, 12 Oct 2021 10:34:56 -0500 Rob Herring <robh@kernel.org> wrote:
->>
->> The mpc5xxx platforms have had dts warnings for some time which no one
->> seems to care to fix, so let's just remove the dts files.
->> 
->> According to Arnd:
->> "Specifically, MPC5200B has a 15 year lifetime, which ends in
->> 11 months from now. The original bplan/Genesi Efika 5K2 was
->> quite popular at the time it came out, and there are probably
->> still some of those hanging around, but they came with Open
->> Firmware rather than relying on the dts files that ship with the
->> kernel.
->> 
->> Grant Likely was the original maintainer for MPC52xx until 2011,
->> Anatolij Gustschin is still listed as maintainer since then but hasn't
->> been active in it for a while either. Anatolij can probably best judge
->> which of these boards are still in going to be used with future kernels,
->> but I suspect once you start removing bits from 52xx, the newer
->> but less common 512x platform can go away as well."
->> 
->> Cc: Anatolij Gustschin <agust@denx.de>
->> Cc: Arnd Bergmann <arnd@arndb.de>
->> Cc: Stephen Rothwell <sfr@canb.auug.org.au>
->> Cc: Michael Ellerman <mpe@ellerman.id.au>
->> Cc: Benjamin Herrenschmidt <benh@kernel.crashing.org>
->> Cc: Paul Mackerras <paulus@samba.org>
->> Cc: linuxppc-dev@lists.ozlabs.org
->> Signed-off-by: Rob Herring <robh@kernel.org>
->> ---
->> Sending this out as a feeler to see if anyone cares. If anyone does, 
->> please fix the warnings.
+On Mon, Oct 11, 2021 at 03:02:43PM +0800, Yunfei Dong wrote:
+> Core thread:
+> 1. Gets lat_buf from core msg queue.
+> 2. Proceeds core decode.
+> 3. Puts the lat_buf back to lat msg queue.
+> 
+> Both H264 and VP9 rely on the core thread.
+> 
 
-I've sent patches to fix the warnings.
-  
-Thanks,
+Avoid the kthread API and instead go with the workqueue API.
 
-Anatolij
+See Documentation/core-api/workqueue.rst and include/linux/workqueue.h.
+
+Thanks!
+Ezequiel
+
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> ---
+>  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 12 +++++++
+>  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  7 ++++
+>  .../platform/mtk-vcodec/vdec_msg_queue.c      | 32 +++++++++++++++++++
+>  .../platform/mtk-vcodec/vdec_msg_queue.h      |  6 ++++
+>  4 files changed, 57 insertions(+)
+> 
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> index e21e0c4bcd86..de83e3b821b4 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
+> @@ -364,6 +364,18 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>  		goto err_dec_pm;
+>  	}
+>  
+> +	if (VDEC_LAT_ARCH(dev->vdec_pdata->hw_arch)) {
+> +		vdec_msg_queue_init_ctx(&dev->msg_queue_core_ctx,
+> +			MTK_VDEC_CORE);
+> +		dev->kthread_core = kthread_run(vdec_msg_queue_core_thead, dev,
+> +			"mtk-%s", "core");
+> +		if (IS_ERR(dev->kthread_core)) {
+> +			dev_err(&pdev->dev, "Failed to create core thread");
+> +			ret = PTR_ERR(dev->kthread_core);
+> +			goto err_res;
+> +		}
+> +	}
+> +
+>  	for (i = 0; i < MTK_VDEC_HW_MAX; i++)
+>  		mutex_init(&dev->dec_mutex[i]);
+>  	spin_lock_init(&dev->irqlock);
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> index 9d072c082f73..68a9b1a2d3b3 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> @@ -27,6 +27,7 @@
+>  #define MTK_VCODEC_MAX_PLANES	3
+>  #define MTK_V4L2_BENCHMARK	0
+>  #define WAIT_INTR_TIMEOUT_MS	1000
+> +#define VDEC_LAT_ARCH(hw_arch) ((hw_arch) >= MTK_VDEC_LAT_SINGLE_CORE)
+>  
+>  /*
+>   * enum mtk_hw_reg_idx - MTK hw register base index
+> @@ -466,6 +467,9 @@ struct mtk_vcodec_enc_pdata {
+>   * @comp_dev: component hardware device
+>   * @component_node: component node
+>   *
+> + * @kthread_core: thread used for core hardware decode
+> + * @msg_queue_core_ctx: msg queue context used for core thread
+> + *
+>   * @hardware_bitmap: used to record hardware is ready or not
+>   */
+>  struct mtk_vcodec_dev {
+> @@ -508,6 +512,9 @@ struct mtk_vcodec_dev {
+>  	void *comp_dev[MTK_VDEC_HW_MAX];
+>  	struct device_node *component_node[MTK_VDEC_HW_MAX];
+>  
+> +	struct task_struct *kthread_core;
+> +	struct vdec_msg_queue_ctx msg_queue_core_ctx;
+> +
+>  	DECLARE_BITMAP(hardware_bitmap, MTK_VDEC_HW_MAX);
+>  };
+>  
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> index d66ed98c79a9..665f571eab4b 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+> @@ -256,3 +256,35 @@ void vdec_msg_queue_deinit(
+>  			kfree(lat_buf->private_data);
+>  	}
+>  }
+> +
+> +int vdec_msg_queue_core_thead(void *data)
+> +{
+> +	struct mtk_vcodec_dev *dev = data;
+> +	struct vdec_lat_buf *lat_buf;
+> +	struct mtk_vcodec_ctx *ctx;
+> +
+> +	set_freezable();
+> +	for (;;) {
+> +		try_to_freeze();
+> +		if (kthread_should_stop())
+> +			break;
+> +
+> +		lat_buf = vdec_msg_queue_dqbuf(&dev->msg_queue_core_ctx);
+> +		if (!lat_buf)
+> +			continue;
+> +
+> +		ctx = lat_buf->ctx;
+> +		mtk_vcodec_set_curr_ctx(dev, ctx, MTK_VDEC_CORE);
+> +
+> +		if (!lat_buf->core_decode)
+> +			mtk_v4l2_err("Core decode callback func is NULL");
+> +		else
+> +			lat_buf->core_decode(lat_buf);
+> +
+> +		mtk_vcodec_set_curr_ctx(dev, NULL, MTK_VDEC_CORE);
+> +		vdec_msg_queue_qbuf(&ctx->msg_queue.lat_ctx, lat_buf);
+> +	}
+> +
+> +	mtk_v4l2_debug(3, "Video Capture Thread End");
+> +	return 0;
+> +}
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> index 1905ce713592..b5745b144140 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> +++ b/drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+> @@ -148,4 +148,10 @@ void vdec_msg_queue_deinit(
+>  	struct vdec_msg_queue *msg_queue,
+>  	struct mtk_vcodec_ctx *ctx);
+>  
+> +/**
+> + * vdec_msg_queue_core_thead - used for core decoder.
+> + * @data: private data used for each codec
+> + */
+> +int vdec_msg_queue_core_thead(void *data);
+> +
+>  #endif
+> -- 
+> 2.25.1
+> 
