@@ -2,150 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CE9B42D855
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A71D42D85F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 13:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230454AbhJNLlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 07:41:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
+        id S230346AbhJNLqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 07:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231186AbhJNLlo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:41:44 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E22D3C06174E
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:39:39 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id r19so25176423lfe.10
-        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 04:39:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0dmeydzjhaUi1kEyRO+tb4cDfJwd9a/eF0Dg2+vEquw=;
-        b=2AueeCKKy9ILP/UiZl+F8fvvaaVmLXBx/d4uZ6k98hdUJIVBfA5QWLLkSNdx6RYdr+
-         jmMs4hbEAA+zDBy5zNRriTNaQaTIdgg1FFQIiV/bBj2pO1WWZHw4EwC78D/uBB71FTjp
-         DrS63xLNcpD9lxKqNt6J4U7r+KznQLRuBtA+fd0t/i2N1f7Ic4ZcGV6a0C9pyD8IxBt4
-         ZEK5Yb372dYpgGhSzgI5domlkoqHIEPdNsRKszt8MWCFlY2teqPjUTwszoJtMpuMyrRU
-         bo0YB8DbswvqXB4AToZIMJ9nU6DMgd/rveJsLUpcyxUmN6uLVlmes+b99Pr7UQ5bDeMl
-         uw8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0dmeydzjhaUi1kEyRO+tb4cDfJwd9a/eF0Dg2+vEquw=;
-        b=WgkH9hr9yvZPRmp5AU89qtKyb8wO3IKmyvl8vWfPLtzEJ5HHBXeAh9DrquzxUi26s8
-         6hMosezeXNO4tqQxebfkqWiWVi6Y2FdMT7TLcRMrpk34tJ+RYBja8Er5kTgcddkTCkKG
-         AjrSP+8N8tn3uXeigK/61+2q6kIbKl8xKgSv3/T1kp+qTFDSjTWVS8BbHzGiS35qZO8c
-         ZBcnKBqcdS56dii8efAUgRh6gvBSHIAUigmb8eAm6ZZC1KLAG1nzpUjAQV2guBcZNY3I
-         Cb37Y1MSQWRNvDn0ceym1MP6T8rCsbrYk49NXoL3qClMhptub135tdzMJcPZpa2/G1KM
-         /w9A==
-X-Gm-Message-State: AOAM5320EpzXPFzv2t77tnonLRA6WVphtKxZ5jbSgLQ1NnKj+pvmvtZY
-        P2U00SN7rVycwle1b2N/2MZBeS1GcOgw/zo2
-X-Google-Smtp-Source: ABdhPJxepoSD617Qvj7aawKidSUQxI0Uz5yaRoelAIbImt2LucJ3idusCV/Mtxdzuim+F8F/+Y/lsw==
-X-Received: by 2002:a05:6512:3b7:: with SMTP id v23mr4774988lfp.127.1634211577829;
-        Thu, 14 Oct 2021 04:39:37 -0700 (PDT)
-Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
-        by smtp.gmail.com with ESMTPSA id r14sm206650lfe.13.2021.10.14.04.39.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 04:39:37 -0700 (PDT)
-Date:   Thu, 14 Oct 2021 13:39:36 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: adv748x: Convert bindings to json-schema
-Message-ID: <YWgW+ArZ48NeHr5F@oden.dyn.berto.se>
-References: <20211012183324.717975-1-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdX8LzmksfB85iSMX4+RYq=SYTamw5C3GNgbAV+9f1uAyQ@mail.gmail.com>
- <YWgK3c+8wHWw8IYM@oden.dyn.berto.se>
- <CAMuHMdWsLzLqVNdt2EGD20fMXxb3R70Hx3EyPHwLsFc82qAG8A@mail.gmail.com>
+        with ESMTP id S231194AbhJNLqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 07:46:05 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1AD0C061570;
+        Thu, 14 Oct 2021 04:44:00 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 1D7CD3FA67;
+        Thu, 14 Oct 2021 11:43:52 +0000 (UTC)
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kevin Hilman <khilman@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211011165707.138157-1-marcan@marcan.st>
+ <20211011165707.138157-5-marcan@marcan.st>
+ <20211012032144.2ltlpat7orrsyr6k@vireshk-i7>
+ <b7cd51ec-38e5-11d8-5193-1170c9d60ac9@marcan.st>
+ <20211012055143.xmkbvhbnolspgjin@vireshk-i7>
+ <caf16a6c-f127-7f27-ed17-0522d9f1fb9e@marcan.st>
+ <CAPDyKFoVjVYkc4+v-=eD+JbC10GazGt8A1LtD1so3PKMmVcyMg@mail.gmail.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [RFC PATCH 4/9] opp: core: Don't warn if required OPP device does
+ not exist
+Message-ID: <bd07f4b3-6ebf-e074-c1cd-0ef501e8324f@marcan.st>
+Date:   Thu, 14 Oct 2021 20:43:50 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <CAPDyKFoVjVYkc4+v-=eD+JbC10GazGt8A1LtD1so3PKMmVcyMg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWsLzLqVNdt2EGD20fMXxb3R70Hx3EyPHwLsFc82qAG8A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 14/10/2021 18.55, Ulf Hansson wrote:
+> Yes, this sounds like you should move away from modeling the memory
+> part as a parent genpd for the CPUs' genpd.
+> 
+> As Viresh pointed out, a devfreq driver seems like a better way to do
+> this. As a matter of fact, there are already devfreq drivers that do
+> this, unless I am mistaken.
+> 
+> It looks like devfreq providers are listening to opp/cpufreq
+> notifiers, as to get an indication of when it could make sense to
+> change a performance state.
+> 
+> In some cases the devfreq provider is also modeled as an interconnect
+> provider, allowing consumers to specify memory bandwidth constraints,
+> which may trigger a new performance state to be set for the memory
+> controller.
+> 
+> In the tegra case, the memory controller is modelled as an
+> interconnect provider and the devfreq node is modelled as an
+> interconnect-consumer of the memory controller. Perhaps this can work
+> for apple SoCs too?
 
-On 2021-10-14 13:07:30 +0200, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Thu, Oct 14, 2021 at 12:48 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > On 2021-10-13 17:08:44 +0200, Geert Uytterhoeven wrote:
-> > > On Tue, Oct 12, 2021 at 8:48 PM Niklas Söderlund
-> > > <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > > > Convert ADV748X analog video decoder documentation to json-schema.
-> 
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
-> 
-> > > > +allOf:
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            const: adi,adv7481
-> > > > +    then:
-> > > > +      properties:
-> > > > +        interrupts:
-> > > > +          minItems: 1
-> > > > +          maxItems: 3
-> > > > +
-> > > > +        interrupt-names:
-> > > > +          minItems: 1
-> > > > +          items:
-> > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > > > +            - enum: [ intrq1, intrq2, intrq3 ]
-> > >
-> > > They can really appear in any order?
-> >
-> > Yes, as not all interrupt lines may be wired up. It would be nice to
-> > enforce that intrq2 must come before intrq3 if both are wired but I'm
-> > not sure how to express that.
-> 
-> You mean
-> 
->     items:
->       - const: intrq1
->       - const: intrq2
->       - const: intrq3
+I was poking around and noticed the OPP core can already integrate with 
+interconnect requirements, so perhaps the memory controller can be an 
+interconnect provider, and the CPU nodes can directly reference it as a 
+consumer? This seems like a more accurate model of what the hardware 
+does, and I think I saw some devices doing this already.
 
-Will this not enforce that if intrq2 is present intrq1 must be too?
+(only problem is I have no idea of the actual bandwidth numbers involved 
+here... I'll have to run some benchmarks to make sure this isn't just 
+completely dummy data)
 
 > 
-> ?
-> 
-> If the first two might be exchanged, you can still fix the last one:
-> 
->     items:
->       - const: [ intrq1, intrq2 ]
->       - const: [ intrq1, intrq2 ]
->       - const: intrq3
+> That said, perhaps as an option to move forward, we can try to get the
+> cpufreq pieces solved first. Then as a step on top, add the
+> performance scaling for the memory controller?
 
-Same here, will this not fail if only intrq3 is given?
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Sure; that's a pretty much independent part of this patchset, though I'm 
+thinking I might as well try some things out for v2 anyway; if it looks 
+like it'll take longer we can split it out and do just the cpufreq side.
 
 -- 
-Regards,
-Niklas Söderlund
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
