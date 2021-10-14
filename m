@@ -2,76 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B88F42DF77
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 18:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C942B42DFBA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 18:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232564AbhJNQs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 12:48:59 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:36523 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232078AbhJNQsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 12:48:55 -0400
-Received: by mail-ot1-f45.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so9077970otk.3;
-        Thu, 14 Oct 2021 09:46:50 -0700 (PDT)
+        id S231859AbhJNQ4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 12:56:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230244AbhJNQ4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 12:56:38 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99A99C061570
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 09:54:33 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id g36so12994788lfv.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 09:54:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FB7jURQ/cloxZX95b1lZK2eA7ZD1Fvj6ppcELfN+v1Y=;
+        b=Fva9P2qYbLMXvPYYCUTLzGQVBRium3jhyc/Vv5l8krP4vjJdvYXkE7bn49sOnLidY7
+         EhIpcHZPJqGAdSZ860b58YbSqb0K7oSR4zUYfUF7RFlK8zPrJ9ZQzoejl1ttjuwlT9wZ
+         ehEZ8Jm6pYVhDh1KoMwD460X2rxoXq91Chtd4zyy3yYNqYSpUMKPTTkQZspa1s/iJ69D
+         TMcdTy8fm0obj9E20VLM6GEHyCEkGBbJ0HN8ySi9YcnLwVRzCG+HNwK8rKEtXQE7O22Y
+         KUZycXk/IZAfV2gOieqT1m7wzIeiouQL+gzeZr+sTDnHDM6wrX04aXcvw+luBY5m3mNE
+         U79Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=ujHcRvCirmqYyP/G9OIlII3v2dI92/qrzyNIDCv4hDA=;
-        b=lF4Inqduty5EzJ6FSMZRoXYLoJibs8KFb7emvgAIh2WdlEGUH9v0VwhkQ18AgMYP/D
-         1atEEZbsrNKlSTsEagy+hHwyS4E//xczcPYrw8MYDSHCbACJ3hlGGe3j+n8/77XCC7oA
-         3CKMNelDc1arTmisXhrzCXuRXIpaeunqNfrDQhlz2cYLe1XNz44Frj5bJ+bJHe1l9HZj
-         Z7I6jaqgIAkIUbQBwr4USHrZqlXnwK4uHjOn7uXd1imfWvubiaU6dI/len88hZFjXclH
-         l5C2DK8W/jGF2Az4GFy2gqCxHC/yl5rU4JF2s8qAaTqaW9WiaQezOcuEoxahdIC2zVYP
-         YdNg==
-X-Gm-Message-State: AOAM531XVlUum8ztEW0w5MLRqMhiT51kWbV0xjFk174t41SA8ew4jO9x
-        Rk8c03sWGGgTn3xvQiZEvg==
-X-Google-Smtp-Source: ABdhPJxVtfNRxyb4DCtNbXuq+R80ABq48UJGCYahUiRCZ8f5QF2NeHuamoz+are7uUC04PrCG01Myw==
-X-Received: by 2002:a9d:4616:: with SMTP id y22mr3493410ote.215.1634230010558;
-        Thu, 14 Oct 2021 09:46:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j6sm532430oot.18.2021.10.14.09.46.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 09:46:50 -0700 (PDT)
-Received: (nullmailer pid 3518479 invoked by uid 1000);
-        Thu, 14 Oct 2021 16:46:48 -0000
-Date:   Thu, 14 Oct 2021 11:46:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>
-Cc:     jarkko.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
-        mika.westerberg@linux.intel.com, p.zabel@pengutronix.de,
-        arnd@arndb.de, olof@lixom.net, soc@kernel.org, dinguyen@kernel.org,
-        p.yadav@ti.com, Tudor.Ambarus@microchip.com,
-        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alexandre.belloni@bootlin.com, sre@kernel.org,
-        thunder.leizhen@huawei.com, Jonathan.Cameron@huawei.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        ka@semihalf.com, tn@semihalf.com, jam@semihalf.com,
-        amstan@google.com
-Subject: Re: [PATCH v2 2/4] dt-bindings: add bus number property
-Message-ID: <YWhe+NfiY0l0ILrA@robh.at.kernel.org>
-References: <20211005143748.2471647-1-pan@semihalf.com>
- <20211005143746.xE5rCkt-P_XlNkn9bJ8ZqYPY4nQQ7doqzSd4FrAlICY@z>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FB7jURQ/cloxZX95b1lZK2eA7ZD1Fvj6ppcELfN+v1Y=;
+        b=dL++uRmrN07vIHe09gPbc2ZVIWJ9bGzgMqTBQgGmat/H08iiQXG3cQQopOtxHZCzwQ
+         oIneOdoiK/nZD1vn0u/mb0h8/KZqWj8q7b10BV92tXYb2X4biA2X3w/hRTRbdX0nRPAS
+         hLJwdqxm/nYuyQC1cAsDzMiJ2Nki018+mLTtNGuji42lOohCXq/1gVG2XOmZbEZ3TjgS
+         GdwLAcdwUNIMHTOhFy9w1Y4SxVn2xf6vFkTysobZqv26hZEUEUHVQEyW87x6DGoj6qY6
+         AMi0BV7UIz8wm2sxEOiwfWiJf1ku5v7IaWtstJ87NnEOwa68YDMH1zbW0UK3r9zhZcFt
+         HbbQ==
+X-Gm-Message-State: AOAM530TFTCWf+gaPB79ChoJzSN+BOrEVb8ZWTKV+71d8WL7+hBHbjBa
+        LoAJUHOi+7kohal3kBXOLrGvJQ==
+X-Google-Smtp-Source: ABdhPJxF+akf386pidSJ6bww34Ya7ziich6BCGwkslriO2XJi8SbN0D5iMJNBzDIq7se8Wcrm9rKHA==
+X-Received: by 2002:ac2:5627:: with SMTP id b7mr6096938lff.670.1634230471954;
+        Thu, 14 Oct 2021 09:54:31 -0700 (PDT)
+Received: from [192.168.1.102] (62-248-207-242.elisa-laajakaista.fi. [62.248.207.242])
+        by smtp.gmail.com with ESMTPSA id b9sm302732ljq.137.2021.10.14.09.54.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Oct 2021 09:54:31 -0700 (PDT)
+Subject: Re: Revert "arm64: dts: qcom: sm8250: remove bus clock from the mdss
+ node for sm8250 target"
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jonathan Marek <jonathan@marek.ca>,
+        Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>
+References: <20211014135410.4136412-1-dmitry.baryshkov@linaro.org>
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Message-ID: <3af41112-7ccd-5da8-c189-3ed8d22273c0@linaro.org>
+Date:   Thu, 14 Oct 2021 19:54:30 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211005143746.xE5rCkt-P_XlNkn9bJ8ZqYPY4nQQ7doqzSd4FrAlICY@z>
+In-Reply-To: <20211014135410.4136412-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 04:37:46PM +0200, Paweł Anikiel wrote:
-> On SoCFPGA systems, it's desireable to have fixed numbering for
-> i2c busses, while being able to enable/disable them (e.g. have i2c1
-> be mapped to /dev/i2c-1, even though i2c0 is disabled). This can also
-> be achieved using devicetree aliases (see i2c_add_adapter). However,
-> having the driver be self-contained without relying on aliases is more
-> robust.
+Hi Dmitry,
 
-Your header is a bit weird as you have 2 Message-IDs:
+On 10/14/21 4:54 PM, Dmitry Baryshkov wrote:
+> From: Amit Pundir <amit.pundir@linaro.org>
+> 
+> This reverts commit 001ce9785c0674d913531345e86222c965fc8bf4.
+> 
+> This upstream commit broke AOSP (post Android 12 merge) build
+> on RB5. The device either silently crashes into USB crash mode
+> after android boot animation or we see a blank blue screen
+> with following dpu errors in dmesg:
+> 
+> [  T444] hw recovery is not complete for ctl:3
+> [  T444] [drm:dpu_encoder_phys_vid_prepare_for_kickoff:539] [dpu error]enc31 intf1 ctl 3 reset failure: -22
+> [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
+> [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
+> [    C7] [drm:dpu_encoder_frame_done_timeout:2127] [dpu error]enc31 frame done timeout
+> [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
+> [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
+> 
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
 
-> Message-ID: <20211005143748.2471647-3-pan@semihalf.com>                                                                                                     
-> X-Mailer: git-send-email 2.25.1                                                                                                                             
-> Message-ID: <20211005143746.xE5rCkt-P_XlNkn9bJ8ZqYPY4nQQ7doqzSd4FrAlICY@z>                                                                                  
+your sob tag is missing.
+
+> ---
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 8c15d9fed08f..d12e4cbfc852 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -2590,9 +2590,10 @@
+>   			power-domains = <&dispcc MDSS_GDSC>;
+>   
+>   			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +				 <&gcc GCC_DISP_HF_AXI_CLK>,
+>   				 <&gcc GCC_DISP_SF_AXI_CLK>,
+>   				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> -			clock-names = "iface", "nrt_bus", "core";
+> +			clock-names = "iface", "bus", "nrt_bus", "core";
+>   
+>   			assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+>   			assigned-clock-rates = <460000000>;
+> 
+
+--
+Best wishes,
+Vladimir
