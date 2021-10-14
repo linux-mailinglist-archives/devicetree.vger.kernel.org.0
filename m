@@ -2,76 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0D842E334
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 23:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED18642E337
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 23:23:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233065AbhJNVYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 17:24:31 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:35771 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230094AbhJNVYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 17:24:31 -0400
-Received: by mail-oi1-f180.google.com with SMTP id n64so10249664oih.2;
-        Thu, 14 Oct 2021 14:22:26 -0700 (PDT)
+        id S232093AbhJNVZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 17:25:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231376AbhJNVZb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 17:25:31 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861F8C061753
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 14:23:26 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id z15so4544423qvj.7
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 14:23:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ttE8p2peUXMyS7hqkOZ70JD3WtjCQNQamWkaLVYOG3E=;
+        b=D/06ByOoawWkRohQqL2l2CFOCUbYnl2RoitbNmrlvZCl/Nd9AmPlQoHpVUtA0s7bqB
+         cgG091e25RX9jR/YIhWJipESt7lbayvAWIeU7JMRB/QTAroFiN9ENWwNVkUaiBfmYgOL
+         RPweHHT9pg0g8DT4MAf2SsND1veIzjNNtOkmQEqtM5I5UD6b8kk62/4Yr4vvJhxFXjB4
+         X/dO/ueLAeFXA4oPvRcXdJyHBaQ+jsT84+IJ/RyFEiEypmNmfyv+T+oGDq+xG7v+pCs/
+         D1iDGAh2LO5GqEsRkHvsUovBkqfvd7FIQQIKzRHkdBnUs8plEEQUIjtIpN7DgXerWomp
+         Z+HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sTWbWNVDxXpUr7idNmcVYaWD0Lp1YKhdtqNx+mX5y/Y=;
-        b=gBbMvA5IeQKnB4C93L3FI//FArSWBcQdGjUuboLCpLh994YBnlmZgbbfwU2bH3UhpQ
-         dyRtFXb4jCXJtFt7A8u46UXkL+JYd4O+nmAEFsO2wpt8dw2c1drGBUBFDz8CGyoeIOVG
-         l262+DkPDtgUdI5gAKNYlOqhOEQYWJMN28bVXqQqgIELZxCOeOZUxgXHk3y1hjrZKYfr
-         DiYieJHoQiu1JxpDpMfUsUhxwdUtV7iLqv74rcnYTGr3LSLHDic/UwsKbz+lKhu1xN1R
-         qIu2JW9SAaeyst6c3m0pxlRlQFgNTXWnkhDopmdn7kYUODOSnk8kUhGPJ5a+OeObI0dE
-         3X4g==
-X-Gm-Message-State: AOAM530CN/jsGONSQCk8yPdM3qIcoYu5nqw4n2/Ma74bHhU8oYs86skP
-        tXAlItKV1RzRCdHoXKC3Bw==
-X-Google-Smtp-Source: ABdhPJwIfzrDT9VcaTSgTR101M5RgBewZ7IVrd5UyQNz3PTbvJEEL53NKhSAayf/GEVjkb/6Ffaa/A==
-X-Received: by 2002:a05:6808:1686:: with SMTP id bb6mr5833455oib.40.1634246545627;
-        Thu, 14 Oct 2021 14:22:25 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s206sm804475oia.33.2021.10.14.14.22.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 14:22:24 -0700 (PDT)
-Received: (nullmailer pid 3961688 invoked by uid 1000);
-        Thu, 14 Oct 2021 21:22:23 -0000
-Date:   Thu, 14 Oct 2021 16:22:23 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-tegra@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 1/9] dt-bindings: Relocate DDR bindings
-Message-ID: <YWifjxkY7XYmNqXj@robh.at.kernel.org>
-References: <20211006224659.21434-1-digetx@gmail.com>
- <20211006224659.21434-2-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ttE8p2peUXMyS7hqkOZ70JD3WtjCQNQamWkaLVYOG3E=;
+        b=bD9TD3EJ3Cr5SaNZPUyePzPmn9b8Duqtwmb+fVQgsS53pSR+7b4Vombz6e/Ahv27xw
+         6qHOJP85A5ojtii5BXf7u6kL0eDIxJPgud+zH4GBo/+uxmVYv1ZdgkNiS8zPJSp3ko4/
+         O42iIutPkh/aY3EXtz8ApdAowXiYJBgOf22L0Wo/jmUAaCcGJ/kMAuOKzWdDMrDB0hFU
+         Q202HC+IFN02RKNpM6pm5ePvwImsXoJ8OAl4Bd3Hku26eY1vkS3j71lQoM/foetf60Y9
+         4Ak8inPSKsrr38PpCcyJJQcGeRJVbpEzFwEmHGITXy7BbQ+pOQCmBGcpNCdD2E8G60zM
+         milQ==
+X-Gm-Message-State: AOAM533vS0snKzMGNGkDWiJ2fUhMTV4t/Hxf7lYBiYJ4EHD05C6fGP3N
+        z7Lz/TyP/KXcajfkB9/lSGbTE3ztDkpqmQ96ZxfYaQ==
+X-Google-Smtp-Source: ABdhPJz6jJ/pBDq8lM3AFgJVV/e6MlJ8NZaYW+wua17gNkDBg6z/i6ERgMbgkdBVQ2CNOy//tcOfEWYodDSnpJ41DlQ=
+X-Received: by 2002:ad4:4ab1:: with SMTP id i17mr7673146qvx.19.1634246605704;
+ Thu, 14 Oct 2021 14:23:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211006224659.21434-2-digetx@gmail.com>
+References: <20211014135410.4136412-1-dmitry.baryshkov@linaro.org> <3af41112-7ccd-5da8-c189-3ed8d22273c0@linaro.org>
+In-Reply-To: <3af41112-7ccd-5da8-c189-3ed8d22273c0@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 15 Oct 2021 00:23:01 +0300
+Message-ID: <CAA8EJprjoEX4BDHOHevQQ=TMwM21xZSHuqYm8yNJ=L6GiovQYA@mail.gmail.com>
+Subject: Re: Revert "arm64: dts: qcom: sm8250: remove bus clock from the mdss
+ node for sm8250 target"
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Stephen Boyd <sboyd@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Amit Pundir <amit.pundir@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 07 Oct 2021 01:46:51 +0300, Dmitry Osipenko wrote:
-> Move DDR bindings to memory-controllers directory to make them more
-> discoverable.
-> 
-> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  .../bindings/{ => memory-controllers}/ddr/lpddr2-timings.txt      | 0
->  .../devicetree/bindings/{ => memory-controllers}/ddr/lpddr2.txt   | 0
->  .../bindings/{ => memory-controllers}/ddr/lpddr3-timings.txt      | 0
->  .../devicetree/bindings/{ => memory-controllers}/ddr/lpddr3.txt   | 0
->  4 files changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr2-timings.txt (100%)
->  rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr2.txt (100%)
->  rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr3-timings.txt (100%)
->  rename Documentation/devicetree/bindings/{ => memory-controllers}/ddr/lpddr3.txt (100%)
-> 
+On Thu, 14 Oct 2021 at 19:54, Vladimir Zapolskiy
+<vladimir.zapolskiy@linaro.org> wrote:
+>
+> Hi Dmitry,
+>
+> On 10/14/21 4:54 PM, Dmitry Baryshkov wrote:
+> > From: Amit Pundir <amit.pundir@linaro.org>
+> >
+> > This reverts commit 001ce9785c0674d913531345e86222c965fc8bf4.
+> >
+> > This upstream commit broke AOSP (post Android 12 merge) build
+> > on RB5. The device either silently crashes into USB crash mode
+> > after android boot animation or we see a blank blue screen
+> > with following dpu errors in dmesg:
+> >
+> > [  T444] hw recovery is not complete for ctl:3
+> > [  T444] [drm:dpu_encoder_phys_vid_prepare_for_kickoff:539] [dpu error]enc31 intf1 ctl 3 reset failure: -22
+> > [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
+> > [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
+> > [    C7] [drm:dpu_encoder_frame_done_timeout:2127] [dpu error]enc31 frame done timeout
+> > [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
+> > [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
+> >
+> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+>
+> your sob tag is missing.
 
-Acked-by: Rob Herring <robh@kernel.org>
+True. I hope this is fine:
+
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ++-
+> >   1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > index 8c15d9fed08f..d12e4cbfc852 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > @@ -2590,9 +2590,10 @@
+> >                       power-domains = <&dispcc MDSS_GDSC>;
+> >
+> >                       clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> > +                              <&gcc GCC_DISP_HF_AXI_CLK>,
+> >                                <&gcc GCC_DISP_SF_AXI_CLK>,
+> >                                <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> > -                     clock-names = "iface", "nrt_bus", "core";
+> > +                     clock-names = "iface", "bus", "nrt_bus", "core";
+> >
+> >                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> >                       assigned-clock-rates = <460000000>;
+> >
+>
+> --
+> Best wishes,
+> Vladimir
+
+
+
+-- 
+With best wishes
+Dmitry
