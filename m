@@ -2,117 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD74642DBD2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99C4D42DBF1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230507AbhJNOiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:38:06 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:3259 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230190AbhJNOiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:38:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634222161; x=1665758161;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UKR5vWCNAno42pYINcB56F+Pp43CdX14ETbyIT5ZJIE=;
-  b=nTMRZCxtF/9FlO3KQ+OJ8eP+zipDJoNUiJXFesovnC6jGcIP5oyGnPwx
-   f0eUCI02P6WNbUrdBWXpB8C+5Ci3t0nZ3MU7hsHHku5nB9A/e5hk+NjLD
-   4HAwMYZWFLktrVKvOzvN8pdkSZsDzYm8WcRtMaml35NZ8jr6INXIuN48X
-   nqtiBhi8XQ00rxWNPTzOcbafgPKNHNCNYSD+9JvZx9PjnySmdf+Vj0iL/
-   91d/ZM3dUxu5I1UtbEuGx+vkJ+grVqyMPzXjuY5cSrzKul0fUF58lGpW3
-   3zhDtPH9fLcQBVJ/BgOyfdhDINWKH3UEoZaqAlLgUARLKO0f5mMHuGyKC
-   g==;
-IronPort-SDR: d+BId0l/vwLu4oBH7WCcy4CC1hRX5GfLxzG3TEWawvTRBPtcFMbCtQXmqjo8hNdV+IgHLQyvuR
- g96YwPTZVfzII8Z51wwTCgp+297MaRniVrh2iuBLuqJN4VIZ9PdVCau9RMycnZMxcPqyeZYAPF
- bz3Mk/s2FyLHUrNNg+NmSAU4Q2oHrAGxVGYo4ZDXxt4+ZrhdCI0O8L8Ju0nhNjE6w+i7khBxc6
- XlvJ1sbu5NIpsDT9eV06C4LcwA3DL/Kf4BSlV/LPt0h3vMrWTA8yvbZAeSqg0OOlBjrxcXuTPh
- IkFY3b7qthC/QuYMdgxw3JYz
-X-IronPort-AV: E=Sophos;i="5.85,372,1624345200"; 
-   d="scan'208";a="140290254"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 14 Oct 2021 07:36:00 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 14 Oct 2021 07:36:00 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 14 Oct 2021 07:35:59 -0700
-Date:   Thu, 14 Oct 2021 16:37:33 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] pinctrl: microchip sgpio: use reset driver
-Message-ID: <20211014143733.t2dov6ajjebxlht6@soft-dev3-1.localhost>
-References: <20211014085929.2579695-1-horatiu.vultur@microchip.com>
- <20211014085929.2579695-3-horatiu.vultur@microchip.com>
- <2874212d2f9462880d1b0aae35296162e1277e62.camel@pengutronix.de>
+        id S231601AbhJNOoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:44:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35760 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231286AbhJNOog (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 10:44:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C31EB60E96;
+        Thu, 14 Oct 2021 14:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634222551;
+        bh=fdhTS66TOVDzx8KtquiTV6pJu0VSd2p4ZibtwFJ6e5Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AvOkMWb9LYqhw0j4orEhtR1txAXUInuvW633fDb+TQVhvDHap03TwlMBh2qeczBmX
+         Ri+keFSGIkgXFSdIzu6bwT8ZDurmK6KCVzLEjuLcxdwApgHUZQviQ5UyEsWYYUuTvf
+         4/usieL7klqmsowMa325ng3gVEAMlO5pCe5Fs9goSAZznNIBp52U193iFhgmzdpTZJ
+         WyMhMx1XpcRsNzqv9nWptrCchbmNa/kDub7PYlE/CkawK2hc5GCBIhgEBUL0/yyVGS
+         cZhLEpbgKIo7SxLlq1/WdGAVn3kv3DQHLa/xXplOKagpwkIv5mD7iXmgujx2tbmIYS
+         YSLqxysJQf+ww==
+Received: by mail-ed1-f52.google.com with SMTP id y12so26134968eda.4;
+        Thu, 14 Oct 2021 07:42:31 -0700 (PDT)
+X-Gm-Message-State: AOAM533nsQioKLxtF0k8k2P44gskUAIlJVMaHiJMoh74/y9878eh1tSK
+        Ezt1KaUX3t3S92HBSb65Jg1N70AIRs3IdbzKOQ==
+X-Google-Smtp-Source: ABdhPJxM5Uhcff7BCaGJHmbmB9JXZvWTU1yQyXDETewwjg/h9UtviGQRmtNS9N8T6a/ID0xDkhc7i4+bv61tRY4XgNk=
+X-Received: by 2002:a17:906:9399:: with SMTP id l25mr4245067ejx.363.1634222517021;
+ Thu, 14 Oct 2021 07:41:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <2874212d2f9462880d1b0aae35296162e1277e62.camel@pengutronix.de>
+References: <20211013232048.16559-1-kabel@kernel.org>
+In-Reply-To: <20211013232048.16559-1-kabel@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 14 Oct 2021 09:41:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJZC0G_SGfuK0zg8n+uPm5b1L44fo8axUbpvAAZ2b8tAQ@mail.gmail.com>
+Message-ID: <CAL_JsqJZC0G_SGfuK0zg8n+uPm5b1L44fo8axUbpvAAZ2b8tAQ@mail.gmail.com>
+Subject: Re: [PATCH RFC linux] dt-bindings: nvmem: Add binding for U-Boot
+ environment NVMEM provider
+To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Luka Kovacic <luka.kovacic@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/14/2021 13:47, Philipp Zabel wrote:
-> 
-> Hi Horatiu,
+On Wed, Oct 13, 2021 at 6:20 PM Marek Beh=C3=BAn <kabel@kernel.org> wrote:
+>
+> Add device tree bindings for U-Boot environment NVMEM provider.
+>
+> U-Boot environment can be stored at a specific offset of a MTD device,
+> EEPROM, MMC, NAND or SATA device, on an UBI volume, or in a file on a
+> filesystem.
+>
+> The environment can contain information such as device's MAC address,
+> which should be used by the ethernet controller node.
+>
+> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+> ---
+>  .../bindings/nvmem/denx,u-boot-env.yaml       | 88 +++++++++++++++++++
+>  include/dt-bindings/nvmem/u-boot-env.h        | 18 ++++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/denx,u-boot-e=
+nv.yaml
+>  create mode 100644 include/dt-bindings/nvmem/u-boot-env.h
+>
+> diff --git a/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml=
+ b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
+> new file mode 100644
+> index 000000000000..56505c08e622
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/denx,u-boot-env.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/denx,u-boot-env.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: U-Boot environment NVMEM Device Tree Bindings
+> +
+> +maintainers:
+> +  - Marek Beh=C3=BAn <kabel@kernel.org>
+> +
+> +description:
+> +  This binding represents U-Boot's environment NVMEM settings which can =
+be
+> +  stored on a specific offset of an EEPROM, MMC, NAND or SATA device, or
+> +  an UBI volume, or in a file on a filesystem.
+> +
+> +properties:
+> +  compatible:
+> +    const: denx,u-boot-env
 
-Hi Philipp
-> 
-> > +     reset = devm_reset_control_get_shared(&pdev->dev, "switch");
-> 
-> Please use devm_reset_control_get_optional_shared() for optional resets
-> and handle errors. That will return NULL in case the optional reset is
-> not specified in the device tree.
+'u-boot' is a vendor prefix. Unless you are saying Denx owns u-boot...
 
-I will do that.
+> +
+> +  path:
+> +    description:
+> +      The path to the file containing the environment if on a filesystem=
+.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +
+> +patternProperties:
+> +  "^[^=3D]+$":
+> +    type: object
+> +
+> +    description:
+> +      This node represents one U-Boot environment variable, which is als=
+o one
+> +      NVMEM data cell.
+> +
+> +    properties:
+> +      name:
 
-> 
-> It seems weird to me that the reset input to the GPIO controller is
-> called "switch" reset. You can request a single unnamed reset with
-> 
->         reset = devm_reset_control_get_shared(&pdev->dev, NULL);
-> 
-> although that would limit future extendability in case this driver will
-> ever require to handle multiple separate resets. If you decide to
-> request the reset control by name, the yaml binding should specify the
-> same name.
+'name' is already a property for every node, so this would collide. It
+used to be in the dtb itself, but current revisions generate it from
+the node name.
 
-I think this requires a little bit more explanation from my side. On
-lan966x we are facing the following issue. When we try to reset just the
-switch core then also the sgpio device was reset and there was no way
-from HW perspective to prevent this.
+> +        description:
+> +          If the variable name contains characters not allowed in device=
+ tree node
+> +          name, use this property to specify the name, otherwise the var=
+iable name
+> +          is equal to node name.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +
+> +      type:
 
-So our solutions was to create a reset driver[1] that will be triggered
-only one time, by the sgpio driver or by the switch driver. That is the
-reason why it was called "switch" reset. And that is the purpose of this
-patch to allow the sgpio driver to reset the switch in case is probed
-before the switch driver so it would not get reset after that.
+'type' is really too generic. Any given property name should have 1
+meaning and data type.
 
-> 
-> > +     if (!IS_ERR(reset))
-> > +             reset_control_reset(reset);
-> 
-> With optional resets, this can be just:
-> 
->         reset_control_reset(reset);
+But I expect based on other comments already, all this is going away anyway=
+s.
 
-Great I will do that.
-
-> 
-> regards
-> Philipp
-
-[1] https://lore.kernel.org/lkml/20211013073807.2282230-1-horatiu.vultur@microchip.com/
-
--- 
-/Horatiu
+> +        description:
+> +          Type of the variable. Since variables, even integers and MAC a=
+ddresses,
+> +          are stored as strings in U-Boot environment, for proper conver=
+sion the
+> +          type needs to be specified. Use one of the U_BOOT_ENV_TYPE_* p=
+refixed
+> +          definitions from include/dt-bindings/nvmem/u-boot-env.h.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 5
