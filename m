@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51F6142DB55
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF2E42DBA3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 16:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231789AbhJNOWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 10:22:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231773AbhJNOWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:22:12 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE122C061570;
-        Thu, 14 Oct 2021 07:20:07 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id g8so25100208edt.7;
-        Thu, 14 Oct 2021 07:20:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7Pye4dG5TzjPVrX9c8oeWbQoM2y1O4UpzQfA4r8OJaA=;
-        b=WwdTRvdKab+eMr3+y9HfZBaeaAsfYnX4mcEtXNjSKSOQ2SSl+BCKfBohsaYTL29FSG
-         GTuq0kFig2krOZmzXe+Vp9mLJMw6M9VV8NpKTss4BySFLwnmdvuEeIwZ+/fhZ4PYPboI
-         rZ2mv5TBM/0vv8YMt/F2fKSUm8bBu6eG9L9BPFp81YLbSqrIKJfrbFuRQ1fxNNO1/Sr0
-         c9KTkWeMMknBILsRcIpBCUX4DG0bydF9whpQSCq6eY3xLUWMMtsiNSg/Q7S9stiGtOt6
-         o6+PbwwEvtOxbFPos2uFWkmr19d4t6n4xDeeQSedphdPLSkiBq6WIkYse7IC41o1X+8p
-         8z6g==
+        id S231887AbhJNOdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 10:33:14 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:43656 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231953AbhJNOdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 10:33:12 -0400
+Received: by mail-ot1-f44.google.com with SMTP id x33-20020a9d37a4000000b0054733a85462so8448921otb.10;
+        Thu, 14 Oct 2021 07:31:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7Pye4dG5TzjPVrX9c8oeWbQoM2y1O4UpzQfA4r8OJaA=;
-        b=rqoGW7SvMsDx2lnLKhdIv7Sqpd26mz1oKk+Gx4ydOkS+St13oYy0ciPPrSbpfW/lsO
-         UMWD2yiEjxamjzLC+OeXFJKGrER6RyXAuV2AQjHltw9CjTwPn6d8vBckDJrjLjOJdWxr
-         VwRlwb0S/SZyBLHXQ5ZGkZzK+r6R/1sN5ZWcU3qVYC3RdcGN63psBJL7TDz7fXz7iP/e
-         Xntxhx5fuubykJMIk/uuNIV2IECzKZho4W1J+Ww3ZgbF5vDWc4yiXAmtiGy9wAb3AUTD
-         0V6fj/aLlXg9/aDJbZ3JmZ/gzX7g2xQGCcYlStlPn0eozzVNsZcAtaj0jKAo7u397hnE
-         y89g==
-X-Gm-Message-State: AOAM533oOQuAlxMpS1UAQa57FRuk0CUhJLBJxS7gB0+059HITPsCk3bj
-        211Z+EEVFo5jAY5FI9zC1ys=
-X-Google-Smtp-Source: ABdhPJy0+pozCqlTwocQGfr9R46cwy6kWFFfRiMq/UXnrJH8vQXJ8/wSBT8bV0wifyFZDclOSHVWsQ==
-X-Received: by 2002:a17:906:7c4f:: with SMTP id g15mr3948514ejp.373.1634221172254;
-        Thu, 14 Oct 2021 07:19:32 -0700 (PDT)
-Received: from skbuf ([188.25.225.253])
-        by smtp.gmail.com with ESMTPSA id s3sm2107994ejm.49.2021.10.14.07.19.30
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=JabzPd6t6kiXfNS0QYCpjwDF/E/73IVEaQ8WDMarIkg=;
+        b=U/ZxhQV7AjQy6/jUHkbBjyOW2ksN5gwVLm4KnL/R/FukNlUtz5cv4kq5cvglz89HqY
+         RZmrQsXPEkMx7iN01sHZ8/lhoWjhqY5NEAa6vYa8KIhHofAO9Lsm03iyZJYvILeK2RmZ
+         f/Zmj6bU8PWXKNNLbpi32IcyoruLdGI7hgtN+o9Fk7Iu8UHu8nFgkkh04qwQzE5f1RUv
+         tz6oEL6oAqAqF/i5wdy931oUXMXAlKqh6xaVlyf1UQ5Ih5wG4MBsQpq31MQovSyk/jg0
+         JyzIr3a+xcAHFcvK0fx6PQeDdoZdZ1eYYuqN79r0FLT6rNne3UrNahrWVNBCq0OtiVtm
+         O2Eg==
+X-Gm-Message-State: AOAM533Bs6qGv6FD2H1GGulQNYRDwQPwtxomP7RibVcvlR+ePzGseLZl
+        DmKOK9sPJjUndpLqRPg9kCxC1wvWVA==
+X-Google-Smtp-Source: ABdhPJypLKHSBFnjx8VIYSyTZnzAgk5HudrAyzN092U6WAhsRHGoKcjoUIe6YeTN3COcJ3sBkiy3UA==
+X-Received: by 2002:a05:6830:349d:: with SMTP id c29mr622633otu.263.1634221867483;
+        Thu, 14 Oct 2021 07:31:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j65sm604298oif.5.2021.10.14.07.31.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Oct 2021 07:19:31 -0700 (PDT)
-Date:   Thu, 14 Oct 2021 17:19:30 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 net-next 10/10] net: dsa: microchip: add support for
- vlan operations
-Message-ID: <20211014141930.3e5x2wgitsw57v4z@skbuf>
-References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
- <20211007151200.748944-11-prasanna.vengateshan@microchip.com>
- <20211007201705.polwaqgbzff4u3vx@skbuf>
- <6c97e0771204b492f31b3d003a5fd97d789920ef.camel@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6c97e0771204b492f31b3d003a5fd97d789920ef.camel@microchip.com>
+        Thu, 14 Oct 2021 07:31:06 -0700 (PDT)
+Received: (nullmailer pid 3295885 invoked by uid 1000);
+        Thu, 14 Oct 2021 14:31:04 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        monstr@monstr.eu, Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
+        linux-arm-kernel@lists.infradead.org, git@xilinx.com
+In-Reply-To: <72c973da5670b5ae81d050c582948894ee4174f8.1634206453.git.michal.simek@xilinx.com>
+References: <72c973da5670b5ae81d050c582948894ee4174f8.1634206453.git.michal.simek@xilinx.com>
+Subject: Re: [PATCH] dt-bindings: gpio: zynq: Add missing compatible strings
+Date:   Thu, 14 Oct 2021 09:31:04 -0500
+Message-Id: <1634221864.213975.3295884.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 11:13:36PM +0530, Prasanna Vengateshan wrote:
-> > Do you have an explanation for what SW_VLAN_ENABLE does exactly?
-> Enabling the VLAN mode and then act as per the VLAN table.
-> Do you want me to add this explanation as a comment? or?
-
-Yes, not all switches have the same knobs, it would be good to have a
-comment about what you are changing.
-
-> Step (0)
-> > ip link add br0 type bridge vlan_filtering 1
-> > ip link set lan0 master br0
-> > bridge vlan add dev lan0 vid 100 pvid untagged
-> Step (1)
-> > bridge vlan del dev lan0 vid 100
-> Step (2)
-> > ip link set br0 type bridge vlan_filtering 0
-> > 
-> > The expectation is that the switch, being VLAN-unaware as it is currently
-> > configured, receives and sends any packet regardless of VLAN ID.
-> > If you put an IP on br0 in this state, are you able to ping an outside host?
+On Thu, 14 Oct 2021 12:14:18 +0200, Michal Simek wrote:
+> "xlnx,zynqmp-gpio-1.0", "xlnx,versal-gpio-1.0" and "xlnx,pmc-gpio-1.0"
+> compatible strings were not moved to yaml format. But they were in origin
+> text file.
 > 
-> I have numbered the commands above.
-> Results are,
-> Before Step (0). Am able to ping outside.
-> After Step (0). Am not able to ping outside because the vlan table is set
-> After Step (1). Am not able to ping outside
-> After Step (2). Am able to ping outside because of vlan unaware mode.
+> Fixes: 45ca16072b70 ("dt-bindings: gpio: zynq: convert bindings to YAML")
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+> 
+>  Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
 
-This sounds okay.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1540859
+
+
+gpio@ff0a0000: '#address-cells', 'gpio-line-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
+
+gpio@ff0a0000: '#address-cells', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
+	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
+
