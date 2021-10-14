@@ -2,135 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC1AB42D320
-	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 08:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8099042D328
+	for <lists+devicetree@lfdr.de>; Thu, 14 Oct 2021 09:03:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbhJNHBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 03:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
+        id S229997AbhJNHFh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 03:05:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbhJNHBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 03:01:39 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A95C6C061570;
-        Wed, 13 Oct 2021 23:59:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id D151C41AC8;
-        Thu, 14 Oct 2021 06:59:26 +0000 (UTC)
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211011165707.138157-1-marcan@marcan.st>
- <20211011165707.138157-7-marcan@marcan.st>
- <a9f6898d-bd76-b94e-52fc-98e9da1a04bd@canonical.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [RFC PATCH 6/9] memory: apple: Add apple-mcc driver to manage MCC
- perf in Apple SoCs
-Message-ID: <2a6f14e5-fbc9-4b9a-9378-a4b5200bc3fb@marcan.st>
-Date:   Thu, 14 Oct 2021 15:59:24 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S229970AbhJNHFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 03:05:36 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B17A5C061746
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 00:03:31 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id o204so7177906oih.13
+        for <devicetree@vger.kernel.org>; Thu, 14 Oct 2021 00:03:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1l0+SaZHpyG7rrhn4tPV2e7F4MAU+GQ6aooBFBCxnl4=;
+        b=cEUkgYyL0FXKDT85YJ+oxstqdONyVg9jw8g378Z46fnAaYeeB+BBY3TjJISacUN4LE
+         diZ80WE5xxPsIu5R3Vu8U0t3AkumVNF81ddQK09pXcUyvj+LxXH9m0GH4hb0sgP0WsEM
+         LdFMWGdWcwNjUMYn0KwwSZCHYGOCWSQL3v+dBfT+jnhrT6dNj86QZsdYuYXzPQjFD6D1
+         opNAtHBC5ihyj9CnMbcNYgi2Q5NmR3niXCK22KXTC2l/gijkp9ggoGBI2uesTyfaCSFv
+         DrRGytu1mqlaHK65DUdcI4W/DqbSmgUgScd9JtsAwsQB5CqeNlgeqVVpacc1ZK3KcqDD
+         8gPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1l0+SaZHpyG7rrhn4tPV2e7F4MAU+GQ6aooBFBCxnl4=;
+        b=PO4PrVDf5O+Sl2IFrK6MvDJEs9GbmHIj/+qgFutFfUnuH6G/hPLXYpDk2/2M8z9Gl/
+         zNAZ263dEUsORVEA3Ct02MiRh4MQBfLBibIfydrrRP9CGm+CTgZ0Cck/2WusDpzMGAc7
+         qbumzj1eKtvcY5ztEkuGBzUzxqgxqcUNC6czJm+u0+2SEWDwN28iAWTQhH5HZ1vGZ6Yy
+         tt3kVNAkEroWRzUruB+SVD9MYpabDHaWRjmQIURaX3lM07lgJ8W9JHPF9pJ5ra1bJmJ5
+         Fh6pRExjK/PE7G33aipJgWpp8fDErUnmJ2w00JdIAecT58bYGDsQRTo0TTh9y2DJpCCa
+         UZzA==
+X-Gm-Message-State: AOAM5316Ep768ejpONZg3B7FOfY+55fXfPFkgY/IvC2H9lzcsbZNs77h
+        Fj8Wfzy47YAz7iaxyUCwLnxhrpb9QKBHiv2QG+zg6w==
+X-Google-Smtp-Source: ABdhPJz5LcYedJgU2u36Px+sIb9WB9tzzl7Jwf165XrKxoLC6Q222kTM/7wvLgYXQ4hjrBDicAU4o0ISmEHO2X9caSA=
+X-Received: by 2002:a05:6808:1525:: with SMTP id u37mr11690666oiw.12.1634195010727;
+ Thu, 14 Oct 2021 00:03:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <a9f6898d-bd76-b94e-52fc-98e9da1a04bd@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-6-bhupesh.sharma@linaro.org> <1634150392.555106.1324767.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1634150392.555106.1324767.nullmailer@robh.at.kernel.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Thu, 14 Oct 2021 12:33:19 +0530
+Message-ID: <CAH=2NtyJZoPMSDr4aYgX29BeSq3qXyJta3o7ZHPNrNOF+Ym-gA@mail.gmail.com>
+Subject: Re: [PATCH v4 05/20] dt-bindings: qcom-bam: Add 'interconnects' &
+ 'interconnect-names' to optional properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        bhupesh.linux@gmail.com, Andy Gross <agross@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        linux-crypto@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/10/2021 18.19, Krzysztof Kozlowski wrote:
->> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->> +/*
->> + * Apple SoC MCC memory controller performance control driver
->> + *
->> + * Copyright The Asahi Linux Contributors
-> 
-> Copyright date?
+Hello Rob,
 
-We've gone over this one a few times already; most copyright dates 
-quickly become outdated and meaningless :)
+Thanks for your review.
+These issues are already fixed via patches within this series itself
+(as some dts also need correction to pass the 'make dtbs_check'
+check). I am not sure, but it seems the check was run without applying
+other patches from this series.
 
-See: 
-https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/
+See details below:
 
->> +static int apple_mcc_probe(struct platform_device *pdev)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct device_node *node = dev->of_node;
-> 
-> By convention mostly we call the variable "np".
+On Thu, 14 Oct 2021 at 00:09, Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, 13 Oct 2021 16:25:26 +0530, Bhupesh Sharma wrote:
+> > Add new optional properties - 'interconnects' and
+> > 'interconnect-names' to the device-tree binding documentation for
+> > qcom-bam DMA IP.
+> >
+> > These properties describe the interconnect path between bam and main
+> > memory and the interconnect type respectively.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+>
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+>
+> Full log is available here: https://patchwork.ozlabs.org/patch/1540390
+>
+>
+> dma@12142000: $nodename:0: 'dma@12142000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+>
+> dma@12182000: $nodename:0: 'dma@12182000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
+>         arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+>
+> dma@121c2000: $nodename:0: 'dma@121c2000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
+>
+> dma@12402000: $nodename:0: 'dma@12402000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
+>         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
+>
+> dma@1dc4000: $nodename:0: 'dma@1dc4000' does not match '^dma-controller(@.*)?$'
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
 
-Ack, I'll change it for v2.
+All the above will be fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+ 'qcom,controlled-remotely' nodes in dts' in this series. See the git
+log of the this patch for details:
 
->> +	mcc->reg_base = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(mcc->reg_base))
->> +		return PTR_ERR(mcc->reg_base);
->> +
->> +	if (of_property_read_u32(node, "apple,num-channels", &mcc->num_channels)) {
-> 
-> Don't you have a limit of supported channels? It cannot be any uint32...
+'A few qcom device-tree files define dma-controller nodes
+with non-standard 'node names' and also set
+the bool property 'qcom,controlled-remotely' incorrectly, which
+leads to following errors with 'make dtbs_check':
 
-Today, it's max 8. But if come Monday we find out Apple's new chips have 
-16 channels and otherwise the same register layout, I'd much rather not 
-have to change the driver...
+ $ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml:
+     dma@1dc4000: $nodename:0: 'dma@1dc4000' does not match
+     '^dma-controller(@.*)?$'
 
->> +		dev_err(dev, "missing apple,num-channels property\n");
-> 
-> Use almost everywhere dev_err_probe - less code and you get error msg
-> printed.
+ $ arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml:
+     dma@1dc4000: qcom,controlled-remotely: 'oneOf' conditional
+     failed, one must be fixed:
+    [[1]] is not of type 'boolean'
+    True was expected
+    [[1]] is not of type 'null'
 
-Heh, I didn't know about that one. Thanks!
+Fix the same.
+'
 
->> +
->> +	dev_info(dev, "Apple MCC performance driver initialized\n");
-> 
-> Please skip it, or at least make it a dev_dbg, you don't print any
-> valuable information here.
+> dma@1dc4000: 'iommus' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
 
-Ack, I'll remove this.
+Fixed by ' [PATCH 06/20] dt-bindings: qcom-bam: Add 'iommus' to optional
+ properties ' in this series.
 
->> +static struct platform_driver apple_mcc_driver = {
->> +	.probe = apple_mcc_probe,
->> +	.driver = {
->> +		.name = "apple-mcc",
->> +		.of_match_table = apple_mcc_of_match,
->> +	},
->> +};
-> 
-> module_platform_driver() goes here.
+> dma@1dc4000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
 
-Ack, will fix for v2.
+Again this would be fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+ 'qcom,controlled-remotely' nodes in dts' in this series.
 
-> 
->> +
->> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
->> +MODULE_DESCRIPTION("MCC memory controller performance tuning driver for Apple SoCs");
->> +MODULE_LICENSE("GPL v2");
-> 
-> I think this will be "Dual MIT/GPL", based on your SPDX.
+> dma@704000: $nodename:0: 'dma@704000' does not match '^dma-controller(@.*)?$'
+>         arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
+>         arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dt.yaml
+>         arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dt.yaml
 
-Ah, I didn't realize that was a valid option for MODULE_LICENSE. I guess 
-anything containing "GPL" works with EXPORT_SYMBOL_GPL?
+Fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+'qcom,controlled-remotely' nodes in dts' in this series
 
-Thanks for the review!
+> dma@704000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
+>         arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
+>         arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dt.yaml
+>         arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dt.yaml
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+'qcom,controlled-remotely' nodes in dts' in this series
+
+> dma@7544000: $nodename:0: 'dma@7544000' does not match '^dma-controller(@.*)?$'
+>         arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+>         arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>
+> dma@7584000: $nodename:0: 'dma@7584000' does not match '^dma-controller(@.*)?$'
+>         arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+>         arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>
+> dma@7884000: $nodename:0: 'dma@7884000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
+>
+> dma@7984000: $nodename:0: 'dma@7984000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
+>
+> dma@8e04000: $nodename:0: 'dma@8e04000' does not match '^dma-controller(@.*)?$'
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
+>         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
+>
+> dma@c184000: $nodename:0: 'dma@c184000' does not match '^dma-controller(@.*)?$'
+>         arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dt.yaml
+>         arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dt.yaml
+
+All the above 6 issues are fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+ 'qcom,controlled-remotely' nodes in dts' in this series.
+
+> dma-controller@17184000: 'iommus' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+>         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+
+Fixed by ' [PATCH 06/20] dt-bindings: qcom-bam: Add 'iommus' to optional
+ properties ' in this series.
+
+> dma-controller@704000: 'qcom,config-pipe-trust-reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+
+Fixed by '[PATCH 02/20] arm64/dts: qcom: ipq6018: Remove unused
+ 'qcom,config-pipe-trust-reg' property' in this series.
+
+> dma-controller@704000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+
+Fixed by '[PATCH 01/20] arm64/dts: qcom: Fix 'dma' &
+''qcom,controlled-remotely' nodes in dts' in this series.
+
+> dma-controller@7984000: clock-names:0: 'bam_clk' was expected
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+>
+> dma-controller@7984000: clock-names: Additional items are not allowed ('bam_clk' was unexpected)
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+>
+> dma-controller@7984000: clock-names: ['iface_clk', 'bam_clk'] is too long
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+>
+> dma-controller@7984000: clocks: [[9, 138], [9, 137]] is too long
+>         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+
+Fixed by '[PATCH 03/20] arm64/dts: qcom: ipq6018: Remove unused 'iface_clk'
+property from dma-controller node' in this series.
+
+In summary, I ran 'make dtbs_check' after applying this series on
+linus's tip and linux-next's tip as well and saw no errors being
+reported for 'Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml'.
+
+Regards,
+Bhupesh
