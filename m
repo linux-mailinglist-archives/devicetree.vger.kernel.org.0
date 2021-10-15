@@ -2,54 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F2842F58B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 16:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE48242F5C4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 16:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240461AbhJOOiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 10:38:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240420AbhJOOhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 10:37:52 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7000C061570;
-        Fri, 15 Oct 2021 07:35:45 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 33E1E1F45385
-Subject: Re: [PATCH v12 4/5] spmi: mediatek: Add support for MT8195
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Henry Chen <henryc.chen@mediatek.com>
-References: <20210914090338.5945-1-hsin-hsiung.wang@mediatek.com>
- <20210914090338.5945-5-hsin-hsiung.wang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <ecaaca1e-c7fb-4f68-6373-e917887056f0@collabora.com>
-Date:   Fri, 15 Oct 2021 16:35:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240589AbhJOOnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 10:43:51 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:21966 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240578AbhJOOnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 10:43:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634308903; x=1665844903;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=/goTSRahbsIqfRa7LYsf4UTbJb7pkbOHZ10tl9Z7LFU=;
+  b=VxKwiN087ch96IKG+CueMnivESjcmqH0jpcNVXIEaovZ4LhPkpH1Zkqs
+   mIJN9gjje9aRd6ZrkKsvF/84L1JBtHeXWI+8UWRohFZ9skDkfr+wdCH/C
+   DV+HILpTMG0E9CND4g0fM3yare0fUahSdcwYll1L40L0BaHWraeWcl71H
+   mnf6ib6YBprbo7DgyuE09RuijNCc32+/52kv73esMGhqsRWvGnASRSYp4
+   WDU06ORB9PBpYLXRrXD+mUhSSJsU+jaKFm6QDAVU3H1LUdbfeKzGqx9Sl
+   OBDRZ0z1T4/oDRqz5D7AAB2i7wbCDc9ZqitUJbPZ2GNQeVvqVPNoau94R
+   w==;
+IronPort-SDR: 4f58+Kak86+gCKsi2336qSPe8FqlhX2/D3R3ixnTB5ShLryZ5Tv8crFCpsod0LFCuWf2gs4RqA
+ PS9y8Lmv/RXlAqkkT87B4wEHugjQNpHbct85hx10SgsDGBMoFECuKL3VsgzRdjIXGx5niBbpVb
+ socrb7ijBmVScf4m178wrr2yAPFvmvWEzKbeFnfFX+HW41oX+0+kyl+vLenwdGX+3PmIYtgonW
+ xxeXNWKp6+1fUtXoODfbjA6Ec0tO7/0i7/lvti6L6CPzSkIf7M7xl+izqgykbMmxtNPSJpJ4+F
+ /W/nHEUNoPzM6b7oYU2r4xnS
+X-IronPort-AV: E=Sophos;i="5.85,376,1624345200"; 
+   d="scan'208";a="133143190"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Oct 2021 07:41:42 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 15 Oct 2021 07:41:41 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 15 Oct 2021 07:41:39 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH v5 0/2] pinctrl: pinctrl-microchip-sgpio: Extend to call reset driver
+Date:   Fri, 15 Oct 2021 16:42:57 +0200
+Message-ID: <20211015144259.219909-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20210914090338.5945-5-hsin-hsiung.wang@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Henry Chen <henryc.chen@mediatek.com>
-> 
-> Add spmi support for MT8195.
-> 
-> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+This allows the driver to call an optional reset driver.
 
-Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+v4->v5:
+ - check the return value of devm_reset_control_get_optional_shared
+
+v3->v4:
+ - use devm_reset_control_get_optional_shared
+ - remove the expected name of the reset line
+
+v2->v3:
+ - fix warnings reported by 'make dtbs_check'
+
+v1->v2:
+ - add dt-bindings changes
+
+Horatiu Vultur (2):
+  dt-bindings: pinctrl: pinctrl-microchip-sgpio: Add reset binding
+  pinctrl: microchip sgpio: use reset driver
+
+ .../bindings/pinctrl/microchip,sparx5-sgpio.yaml           | 3 +++
+ drivers/pinctrl/pinctrl-microchip-sgpio.c                  | 7 +++++++
+ 2 files changed, 10 insertions(+)
+
+-- 
+2.33.0
 
