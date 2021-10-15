@@ -2,96 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05FF342EC60
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 10:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79EF542EC74
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 10:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236867AbhJOIcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 04:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236721AbhJOIcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 04:32:06 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E09C061570
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 01:30:00 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id i20so34172003edj.10
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 01:30:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yywf8uxmCXs+eHVnojLOdXO3w73p4tPODGryjkUOC2E=;
-        b=l4sgEo7cC46MhO+PI0YeFQne/haReZBLw0/wy6m2pDFVB3+E5ctsPNrDdkeXEPCAIf
-         s4qyVnvX7o++rRkDEuviJmTtYx4crxtzpHUqAYze6yLMGaZpuB2t+Dvy7T6UTC368Cu2
-         V8aW2d/L8DVIkhjuK1SeADaWD6IzrO8rqHWmNbenRsSZK+lpC4trfWbo7JeTr2lwZmmT
-         dV4nYcFRRFAnJAmnWI1awDpvQkiSzfUeL8XFemU57J4IMg/5SqfW+VOeP18B90DK7zl7
-         XgjUlOAK2vEW1yYvM7OWdEWRUo4d2j+R062a+/6HNb4ckgsq6coY2VR1+ICcNeawwEJo
-         Uh/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=yywf8uxmCXs+eHVnojLOdXO3w73p4tPODGryjkUOC2E=;
-        b=mkWE3KmpHcvbN/Cw5B0DdpNs76ABiR3nROo2drWP407F8/8myvdAwSf52H52jGOwbr
-         2omB13TkW9WzW58VC+JCjGbi6IPMmvLLhdxT+YiQWhlUqBzPl2c7ReUU/laLX6yLX5fl
-         pRGYVfydFG08TN8o2kHK/juOgu22JTqb9TDQ6ioFoklIOs5AZMEIzWFimrdO0oVA6bXb
-         XPOy7XgzGjR8m4xcd9RP6a0LlKJ1+h/j5XYacLpRBLOsYp3tknmWVAhYtHYZ5g9KCDg4
-         axdk7Fr789juh6VmjAxEfFrePbdKfnWtRNhnGUN9HYOE501/chLOlEmoIFnRkX7kZL7M
-         b1qw==
-X-Gm-Message-State: AOAM532rrBrpFrVZWSkqUB+vSPXPU0YPs7jupzLbgxoxC+3kMIEe90mN
-        CP94ByV0xG3BegFGiRwKAcE2jA==
-X-Google-Smtp-Source: ABdhPJxry4jiBqbpg/NGImCQluSCFaGyDDT/dLeUU1nPcjHfB+LumB8PhvFLsQ4R4CK37LErl3vv9Q==
-X-Received: by 2002:a50:9e85:: with SMTP id a5mr12888588edf.148.1634286598841;
-        Fri, 15 Oct 2021 01:29:58 -0700 (PDT)
-Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id j21sm3944973edr.64.2021.10.15.01.29.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 15 Oct 2021 01:29:58 -0700 (PDT)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        id S233165AbhJOIiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 04:38:12 -0400
+Received: from comms.puri.sm ([159.203.221.185]:44576 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230015AbhJOIiL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 04:38:11 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 26814DFE31;
+        Fri, 15 Oct 2021 01:36:05 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 682hVSIiObDR; Fri, 15 Oct 2021 01:36:04 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     robh@kernel.org, shawnguo@kernel.org, festevam@gmail.com,
+        krzk@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, kernel@puri.sm,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH] dt-bindings: gpio: zynq: Add power-domains
-Date:   Fri, 15 Oct 2021 10:29:57 +0200
-Message-Id: <655523d7bf9658eb0b8e49a06c8b79a04052e5d5.1634286595.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.33.1
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [RFC PATCH v1 0/4] support the Librem 5 front camera
+Date:   Fri, 15 Oct 2021 10:35:02 +0200
+Message-Id: <20211015083506.4182875-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe optional power-domain property to fix dts_check warnings.
-The similar change was done by commit 8c0aa567146b ("dt-bindings: gpio:
-fsl-imx-gpio: Add power-domains").
+The first patch adds a shared "r3.dtsi" and is only refactoring.
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+The is an RFC because of patch 2 that describes the power supplies as
+regulators. Suggestions are very welcome.
 
- Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Patch 3 and 4 should be straight forward camera descriptions according to
+the drivers.
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
-index 980f92ad9eba..da95b951c23e 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
-@@ -36,6 +36,9 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
+thank you,
+                             martin
+
+Martin Kepplinger (4):
+  arm64: dts: split out a shared imx8mq-librem5-r3.dtsi description
+  arm64: dts: imx8mq-librem5: describe power supply for cameras
+  arm64: dts: imx8mq-librem5: describe the selfie cam
+  arm64: dts: imx8mq-librem5-r3.dtsi: describe selfie cam XSHUTDOWN pin
+
+ .../boot/dts/freescale/imx8mq-librem5-r3.dts  | 25 +----
+ .../boot/dts/freescale/imx8mq-librem5-r3.dtsi | 45 +++++++++
+ .../boot/dts/freescale/imx8mq-librem5-r4.dts  | 16 +---
+ .../boot/dts/freescale/imx8mq-librem5.dtsi    | 96 ++++++++++++++++++-
+ 4 files changed, 144 insertions(+), 38 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dtsi
+
 -- 
-2.33.1
+2.30.2
 
