@@ -2,90 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BEF142F160
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 14:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 336F442F207
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:22:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239118AbhJOMvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 08:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
+        id S235865AbhJONYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 09:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239135AbhJOMvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 08:51:42 -0400
-Received: from mail.fris.de (mail.fris.de [IPv6:2a01:4f8:c2c:390b::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B1A6C061769;
-        Fri, 15 Oct 2021 05:49:36 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 487F4BFBCC;
-        Fri, 15 Oct 2021 14:49:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-        t=1634302174; h=from:subject:date:message-id:to:cc:mime-version:
-         content-transfer-encoding:in-reply-to:references;
-        bh=8lm9gsabnoEYqTgKZqukYHlfOlUcDx4Taw7hbxvkE1k=;
-        b=w25PoQ4x0Y24OkCpbgSjF3j1j5aK06mr9VRzWv/9oF4l7gwyZnsnZb4/pPuUBP8QViLjJz
-        TmfqSukyj5mVgAvFVEWGb7nc49edLWlzIE6kJfb9fSnUnVCsSWPpqbYFGoo/xsh+2UyM9u
-        S3egVukF1ECdl3szDwe1PD5S8u6HEA6Cl3cg+Ewf3TJZoEvUYNv9d6vc9RgEzh5SjgtfhA
-        EBBqF/idvQesqjP7gVKhaIhC0VzolWkGEBoxn27Ya4xQYMcwL9r2a3tQQkb4aoKnA7nHUp
-        Q35r0jZKy9DdakVHQQMaTDEKIZkGlkrsNFjd8hzf2Nyl1tm8rf2+gum5ZsK0Pw==
-From:   Frieder Schrempf <frieder@fris.de>
-To:     devicetree@vger.kernel.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S230500AbhJONYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:24:23 -0400
+X-Greylist: delayed 1548 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 15 Oct 2021 06:22:15 PDT
+Received: from mailserv1.kapsi.fi (mailserv1.kapsi.fi [IPv6:2001:67c:1be8::25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CB4C061570;
+        Fri, 15 Oct 2021 06:22:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=ext.kapsi.fi; s=20161220; h=Subject:Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Sender:
+        Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+        :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=o0wfY5rWG9bmKz4fgn2nS2DQacNRL7NBVJevnu+cu7A=; b=C4BLm5NskSbrQTV1sjBDGHez2B
+        Bb9TCosJPdsS3LYNjtqn7rEp5XDA3EZZLlAsYyjnOXOXTNOIIHA9zB6eHu3G6sTJEfVJRe81gxD2f
+        pQwakmwJIfNhZN2HSYcyXmTbgLp5xpJimHu9+xQNU+W2I/P6EZJ0tYtxzogoXGR+CE8tzRVBALNe1
+        AvTIQc2Yid5js5hUlYgBszJugfslQewUiudB5VoKuCwj4N2I2X9sDKxKzkkWYAlOAGgzsaoED+YBw
+        xCDxOaWlqyKmGWCWinE5mBcM8PlQDA6Ue/pQwnmLzNr14iNVdB2oK6unt7vEatV0fjd6QC87JCLrG
+        mwOwocig==;
+Received: from a2ef-817a-a3e5-8122-5100-87f3-07d0-2001.dyn.estpak.ee ([2001:7d0:87f3:5100:8122:a3e5:817a:a2ef]:52775)
+        by mailserv1.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <maukka@ext.kapsi.fi>)
+        id 1mbMl5-0000tY-BT; Fri, 15 Oct 2021 15:56:23 +0300
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Mauri Sandberg <sandberg@mailfence.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     stable@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 6/6] arm64: dts: imx8mm-kontron: Fix connection type for VSC8531 RGMII PHY
-Date:   Fri, 15 Oct 2021 14:48:40 +0200
-Message-Id: <20211015124841.28226-7-frieder@fris.de>
-In-Reply-To: <20211015124841.28226-1-frieder@fris.de>
-References: <20211015124841.28226-1-frieder@fris.de>
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>
+References: <20210325122832.119147-1-sandberg@mailfence.com>
+ <20210621172053.107045-1-maukka@ext.kapsi.fi>
+ <20210621172053.107045-3-maukka@ext.kapsi.fi>
+ <CAHp75VcjGpveAHNAW7Xf7d_Zf6LGSSyD6+qBiF9xxvb+EKs3tg@mail.gmail.com>
+From:   Mauri Sandberg <maukka@ext.kapsi.fi>
+Message-ID: <c7b9688f-5f52-94e3-532c-2177132869de@ext.kapsi.fi>
+Date:   Fri, 15 Oct 2021 15:56:23 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <CAHp75VcjGpveAHNAW7Xf7d_Zf6LGSSyD6+qBiF9xxvb+EKs3tg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:7d0:87f3:5100:8122:a3e5:817a:a2ef
+X-SA-Exim-Mail-From: maukka@ext.kapsi.fi
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mailserv1.kapsi.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A autolearn=ham autolearn_force=no version=3.4.2
+Subject: Re: [PATCH v5 2/2] gpio: gpio-cascade: add generic GPIO cascade
+X-SA-Exim-Version: 4.2.1 (built Tue, 02 Aug 2016 21:08:31 +0000)
+X-SA-Exim-Scanned: Yes (on mailserv1.kapsi.fi)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Previously we falsely relied on the PHY driver to unconditionally
-enable the internal RX delay. Since the following fix for the PHY
-driver this is not the case anymore:
+On 21.6.2021 20.43, Andy Shevchenko wrote:
 
-commit 7b005a1742be ("net: phy: mscc: configure both RX and TX internal
-delays for RGMII")
-
-In order to enable the delay we need to set the connection type to
-"rgmii-rxid". Without the RX delay the ethernet is not functional at
-all.
-
-Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
-Cc: stable@vger.kernel.org
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
-Changes in v2:
-  * Fix the commit ref in the Fixes tag
-  * Extend the commit message to make clear that ethernet is not working
-    without this fix.
----
- arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-index 14263cd40daf..41ddaf980e14 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-@@ -113,7 +113,7 @@ &ecspi3 {
- &fec1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_enet>;
--	phy-connection-type = "rgmii";
-+	phy-connection-type = "rgmii-rxid";
- 	phy-handle = <&ethphy>;
- 	status = "okay";
- 
--- 
-2.33.0
-
+>> +       gc->of_node = np;
+> 
+> This should be guarded by CONFIG_OF_GPIO.
+In the Kconfig I have a dependency to OF_GPIO. Is the guarding still 
+necessary? Or should the guard be added and dependency removed? Or have 
+them both?
