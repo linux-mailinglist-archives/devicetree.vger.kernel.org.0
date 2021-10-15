@@ -2,105 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A450B42F38F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366D942F3CA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:38:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236715AbhJONeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 09:34:19 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:38868 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236455AbhJONeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 09:34:09 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19F8Pg0q020135;
-        Fri, 15 Oct 2021 15:31:53 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=/vUjc4vKowSy/W2vHTh88FbFav5x8VQuf9Ux8qymYBs=;
- b=nTutEyibQh1xb9hPTZsDehO+kh2v3k/tPPfMkbXnIlEhIt9VwKkmoVrE2qpkA8z50ZRx
- xwVot+DUt/DXQPCM185TJ9Vmgi9LfEQw6XKn7vawQQqwNAehh7zV4qGT6ag9S9dOsb7Z
- lU1kPeYtqkrJPqVuGuA0/g/iIxC3CcaHK1Qf1sfRZulpelcmmcAGlEKUtvFA57Xqc+eU
- tuHvR7wOVwt23q1W0TAyF1PKCH4T2ztSi5H/fMsZ/Xwl3mSitI3up8NrQ+5FPPQCkqnO
- xK0qULJKGo8gLIhKIF3QpOYuFI+Hc24ytAbX1nkXD60P7hMqqqCZ2mzEp+zLljNdEnLr pw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bpydfceym-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 Oct 2021 15:31:53 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 297C510002A;
-        Fri, 15 Oct 2021 15:31:52 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 21A38231DC1;
-        Fri, 15 Oct 2021 15:31:52 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 15 Oct
- 2021 15:31:51 +0200
-Subject: Re: [PATCH 1/1] ARM: dts: stm32: use usbphyc ck_usbo_48m as USBH OHCI
- clock on stm32mp151
-To:     Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20211006095355.59078-1-amelie.delaunay@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <8bae8e79-97d4-f914-5adf-eee1b6526de6@foss.st.com>
-Date:   Fri, 15 Oct 2021 15:31:51 +0200
+        id S239795AbhJONlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 09:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43354 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239838AbhJONk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:40:57 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A89DC061767;
+        Fri, 15 Oct 2021 06:38:51 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 92E011F4536E
+Subject: Re: [PATCH v4 03/13] memory: mtk-smi: Use clk_bulk clock ops
+To:     Yong Wu <yong.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
+        Ikjoon Jang <ikjn@chromium.org>
+References: <20210914113703.31466-1-yong.wu@mediatek.com>
+ <20210914113703.31466-4-yong.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <e466b3fb-d9fe-bb20-23c2-f9766a35f120@collabora.com>
+Date:   Fri, 15 Oct 2021 15:38:40 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211006095355.59078-1-amelie.delaunay@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <20210914113703.31466-4-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-15_04,2021-10-14_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/6/21 11:53 AM, Amelie Delaunay wrote:
-> Referring to the note under USBH reset and clocks chapter of RM0436,
-> "In order to access USBH_OHCI registers it is necessary to activate the USB
-> clocks by enabling the PLL controlled by USBPHYC" (ck_usbo_48m).
+> Use clk_bulk interface instead of the orginal one to simplify the code.
 > 
-> The point is, when USBPHYC PLL is not enabled, OHCI register access
-> freezes the resume from STANDBY. It is the case when dual USBH is enabled,
-> instead of OTG + single USBH.
-> When OTG is probed, as ck_usbo_48m is USBO clock parent, then USBPHYC PLL
-> is enabled and OHCI register access is OK.
+> For SMI larbs: Require apb/smi clocks while gals is optional.
+> For SMI common: Require apb/smi/gals0/gal1 in has_gals case. Otherwise,
+>                  also only require apb/smi, No optional clk here.
 > 
-> This patch adds ck_usbo_48m (provided by USBPHYC PLL) as clock of USBH
-> OHCI, thus USBPHYC PLL will be enabled and OHCI register access will be OK.
+> About the "has_gals" flag, for smi larbs, the gals clock also may be
+> optional even this platform support it. thus it always use
+> *_bulk_get_optional, then the flag has_gals is unnecessary. Remove it.
+> The smi_common's has_gals still keep it.
 > 
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+> Also remove clk fail logs since bulk interface already output fail log.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+
+Hello Yong,
+thanks for the patch! However, I have an improvement to point out:
+
 > ---
->   arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   drivers/memory/mtk-smi.c | 143 +++++++++++++++------------------------
+>   1 file changed, 55 insertions(+), 88 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index bd289bf5d269..fe194c787e6c 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1452,7 +1452,7 @@ stmmac_axi_config_0: stmmac-axi-config {
->   		usbh_ohci: usb@5800c000 {
->   			compatible = "generic-ohci";
->   			reg = <0x5800c000 0x1000>;
-> -			clocks = <&rcc USBH>;
-> +			clocks = <&rcc USBH>, <&usbphyc>;
->   			resets = <&rcc USBH_R>;
->   			interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
->   			status = "disabled";
-> 
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index c5fb51f73b34..f91eaf5c3ab0 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -60,6 +60,20 @@ enum mtk_smi_gen {
+>   	MTK_SMI_GEN2
+>   };
+>   
+> +#define MTK_SMI_CLK_NR_MAX			4
 
-Applied on stm32-next
+This refers to mtk_smi_common_clks[] and should be probably moved after that.
+In any case, I don't think that there's any need to manually define this as 4,
+as you can simply use the macro ARRAY_SIZE(mtk_smi_common_clks).
+Using that will make you able to not update this definition everytime an update
+occurs to the mtk_smi_common_clks array.
 
-regards
-Alex
+> +
+> +/* larbs: Require apb/smi clocks while gals is optional. */
+> +static const char * const mtk_smi_larb_clks[] = {"apb", "smi", "gals"};
+> +#define MTK_SMI_LARB_REQ_CLK_NR		2
+> +#define MTK_SMI_LARB_OPT_CLK_NR		1
+> +
+> +/*
+> + * common: Require these four clocks in has_gals case. Otherwise, only apb/smi are required.
+> + */
+> +static const char * const mtk_smi_common_clks[] = {"apb", "smi", "gals0", "gals1"};
+> +#define MTK_SMI_COM_REQ_CLK_NR		2
+> +#define MTK_SMI_COM_GALS_REQ_CLK_NR	MTK_SMI_CLK_NR_MAX
+> +
+
+Apart from that,
+Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Regards,
+- Angelo
+
