@@ -2,192 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A370342F0E9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 14:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 190A142F10A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 14:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238913AbhJOM34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 08:29:56 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:35555 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238914AbhJOM3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 08:29:04 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 87ED5580EC5;
-        Fri, 15 Oct 2021 08:26:57 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 15 Oct 2021 08:26:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=2aOAXpeIPQR2x
-        ghpp4OMQNId//edXUxPmx/LpQURmRg=; b=c0PVLObD0yYrSxS+mmqlLJ/i4cRXt
-        xmI3Y6zBJ3n4kXpGap7sIeiJ0WSiOThbwXOSKaLx1j0tFIClJHQ9T7lU/41AYHlM
-        Y9+8CnrakMCxiMEn2bzlxu/VWIT4pn1UJIB1jKwgSiCY/dYK9HPT53EZvy7hmUeZ
-        cxdNCnHA5O3Xh8CAxaVk9Ewtws+vYpnfLyyKkgWU5/xtEG/Rlf1YPA0B/C8H0L3y
-        ZpaLGklLlyOWKMRxcDsiWQr+ItVxVg3kK6KwttgnxKQ7R4RvCUlqh+276QrTnoba
-        6giGPKS1FiACU4K+V1OMf6fc6bW4kq149kNmcV9lD8uq8y7dhNVJE6V9A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=2aOAXpeIPQR2xghpp4OMQNId//edXUxPmx/LpQURmRg=; b=iUtBto3Z
-        OdloZKdcv/M2ZWVMRLFrA3GcAws9bWFsKHuUpmfxMijzKggwRuOMcQhA7dwBxnJd
-        PXru1WfYweUvIfPiVQgl4PkjVsOfXZf6SFsVOdvC8jwD0yZchREXTk0xnw1ZOqF8
-        nTZ6A0w/PH1yII11WfPlwDE94EFN0ct01Sq2M9uvmWvU7EtXilCyEeohDIu/nKaE
-        ismBNw6CsI9lNK0BW9MXDpS0rBzNsC1tf/x19xudePpyERd5V9lg9nGS/k4nAykO
-        bcPnSrL0OWw1QJXLmYugIgSIBj4CmaTouimz/Ign4eOqRZXg401hvlX3KMayqhJC
-        MiCJ0vOCR8/wlQ==
-X-ME-Sender: <xms:kXNpYWz48UyCr-BZPoMDjsb4iKd84tnhRRinVy3hiFkzIzC7O96BOw>
-    <xme:kXNpYSTqvRsipPLEpZUBr25gxB9nBRMs9QqWLL_Wo1sCyDl40GVTOc-2t_fo9VVt1
-    RGnZSB2s6dq1BlU7eE>
-X-ME-Received: <xmr:kXNpYYVhyXiEyeSOzevaH2Rj9ltnq2N6elSQCF9Ada-MJi3tpRICm_jqVFYrA8Gfp8mhXAGJZGiV>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddugedghedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgr
-    ihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeeggedtteejke
-    eggeeugfehueevudegvdetjeeviedugedvtdekffekhedtteduhfenucevlhhushhtvghr
-    ufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlih
-    hsthgrihhrvdefrdhmvg
-X-ME-Proxy: <xmx:kXNpYchv29xkLzKuzkfrrLzSC_O6MiYgovDn-st11WgPHBtES5aC7Q>
-    <xmx:kXNpYYAMgOgxrWtSmHK5dgshPqdilpmXlvH9FeWQHBZrgB3LW6DxEA>
-    <xmx:kXNpYdLuphB5IGWlIt6XZxUpjyTvYZccV8G9uQt3fFHz-snvRDdUvQ>
-    <xmx:kXNpYWSdYx7NSckKmMH2BIDFCEYByGm-AT6eQkFX_j_kKpsBwOhmwA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 15 Oct 2021 08:26:51 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
-        broonie@kernel.org, kernel@pengutronix.de
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, linux-imx@nxp.com,
-        amitk@kernel.org, rui.zhang@intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v13 9/9] ARM: dts: imx7d: remarkable2: Enable lcdif
-Date:   Fri, 15 Oct 2021 22:25:51 +1000
-Message-Id: <20211015122551.38951-10-alistair@alistair23.me>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211015122551.38951-1-alistair@alistair23.me>
-References: <20211015122551.38951-1-alistair@alistair23.me>
+        id S232829AbhJOMkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 08:40:55 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:57546 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235537AbhJOMkv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 08:40:51 -0400
+X-UUID: 0a40e355c6f34fe0b5ed7d3d35abfda9-20211015
+X-UUID: 0a40e355c6f34fe0b5ed7d3d35abfda9-20211015
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1499272059; Fri, 15 Oct 2021 20:38:41 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 15 Oct 2021 20:38:39 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 15 Oct 2021 20:38:39 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <tfiga@chromium.org>,
+        <drinkcat@chromium.org>, <acourbot@chromium.org>,
+        <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
+        <sj.huang@mediatek.com>, <allen-kh.cheng@mediatek.com>,
+        <randy.wu@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <hsinyi@google.com>
+Subject: [PATCH v8 0/7] media: mediatek: support mdp3 on mt8183 platform
+Date:   Fri, 15 Oct 2021 20:38:25 +0800
+Message-ID: <20211015123832.17914-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Connect the dispaly on the reMarkable2.
+Change since v7:
+- Rebase on v5.15-rc6
+- Revise several V4L2 M2M settings to pass v4l2-compliance test
+- Integrate those same component dt-binding documents of DRM and MDP, and move them under the MMSYS domain
+- Split MMSYS and MUTEX into two different files according to their functional properties
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/imx7d-remarkable2.dts | 74 +++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+Changes since v6:
+- Refactor GCE event to corresponding node.
+- Fix dt_binding_check fail.
+- Fix compilation errors.
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index b66d28b30d75..fe68f6eaa2ec 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -55,6 +55,16 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <150>;
- 	};
- 
-+	reg_sdoe: regulator-sdoe {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SDOE";
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pinctrl_sdoe_reg>;
-+		pinctrl-1 = <&pinctrl_sdoe_reg>;
-+		gpio = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		pinctrl-names = "default";
-@@ -63,6 +73,16 @@ wifi_pwrseq: wifi_pwrseq {
- 		clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
- 		clock-names = "ext_clock";
- 	};
-+
-+	panel {
-+		compatible = "eink,vb3300-kca";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
- };
- 
- &clks {
-@@ -99,6 +119,20 @@ reg_epdpmic: vcom {
- 	};
- };
- 
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lcdif>;
-+	lcd-supply = <&reg_epdpmic>;
-+	lcd2-supply = <&reg_sdoe>;
-+	status = "okay";
-+
-+	port {
-+		display_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -187,6 +221,46 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
- 		>;
- 	};
- 
-+	pinctrl_lcdif: lcdifgrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA00__LCD_DATA0		0x79
-+			MX7D_PAD_LCD_DATA01__LCD_DATA1		0x79
-+			MX7D_PAD_LCD_DATA02__LCD_DATA2		0x79
-+			MX7D_PAD_LCD_DATA03__LCD_DATA3		0x79
-+			MX7D_PAD_LCD_DATA04__LCD_DATA4		0x79
-+			MX7D_PAD_LCD_DATA05__LCD_DATA5		0x79
-+			MX7D_PAD_LCD_DATA06__LCD_DATA6		0x79
-+			MX7D_PAD_LCD_DATA07__LCD_DATA7		0x79
-+			MX7D_PAD_LCD_DATA08__LCD_DATA8		0x79
-+			MX7D_PAD_LCD_DATA09__LCD_DATA9		0x79
-+			MX7D_PAD_LCD_DATA10__LCD_DATA10		0x79
-+			MX7D_PAD_LCD_DATA11__LCD_DATA11		0x79
-+			MX7D_PAD_LCD_DATA12__LCD_DATA12		0x79
-+			MX7D_PAD_LCD_DATA13__LCD_DATA13		0x79
-+			MX7D_PAD_LCD_DATA14__LCD_DATA14		0x79
-+			MX7D_PAD_LCD_DATA15__LCD_DATA15		0x79
-+
-+			MX7D_PAD_LCD_DATA17__LCD_DATA17		0x79
-+			MX7D_PAD_LCD_DATA18__LCD_DATA18		0x79
-+			MX7D_PAD_LCD_DATA19__LCD_DATA19		0x79
-+			MX7D_PAD_LCD_DATA20__LCD_DATA20		0x79
-+			MX7D_PAD_LCD_DATA21__LCD_DATA21		0x79
-+
-+			MX7D_PAD_LCD_DATA23__LCD_DATA23		0x79
-+			MX7D_PAD_LCD_CLK__LCD_CLK		0x79
-+			MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
-+			MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
-+			MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
-+			MX7D_PAD_LCD_RESET__LCD_RESET		0x79
-+		>;
-+	};
-+
-+	pinctrl_sdoe_reg: sdoereggrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA22__GPIO3_IO27		0x74
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
+Changes since v5:
+- Rebase on v5.14-rc6.
+- Move MMSYS/Mutex settings to corresponding driver.
+- Revise the software license description and copyright.
+- Remove unnecessary enum. or definitions.
+- Optimize platform/chip definition conditions.
+- Use general printing functions instead of MDP3 private ones.
+- Fix compile warning.
+
+Changes since v4:
+- Rebase on v5.13-rc1.
+- Remove the CMDQ flush flow to match the CMDQ API change.
+- Integrate four of MDP's direct-link subcomponents into MDP controller node
+  from syscon node to avoid illegal clock usage.
+- Rewrite dt-binding in a JSON compatible subset of YAML
+- Fix a bit of macro argument precedence.
+
+Changes since v3:
+- Rebase on v5.9-rc1.
+- modify code for review comment from Rob Herring, cancel multiple nodes using
+  same register base situation.
+- control IOMMU port through pm runtime get/put to DMA components' device.
+- SCP(VPU) driver revision.
+- stop queuing jobs(remove flush_workqueue()) after mdp_m2m_release().
+- add computation of plane address with data_offset.
+- fix scale ratio check issue.
+- add default v4l2_format setting.
+
+Changes since v2:
+- modify code for review comment from Tomasz Figa & Alexandre Courbot
+- review comment from Rob Herring will offer code revision in v4, due to
+  it's related to device node modification, will need to modify code
+  architecture
+
+Changes since v1:
+- modify code for CMDQ v3 API support
+- EC ipi cmd migration
+- fix compliance test fail item (m2m cmd with -f) due to there is two problem in runing all format(-f) cmd:
+1. out of memory before test complete
+        Due to capture buffer mmap (refcount + 1) after reqbuf but seems
+        no corresponding munmap called before device close.
+        There are total 12XX items(formats) in format test and each format
+        alloc 8 capture/output buffers.
+2. unceasingly captureBufs() (randomly)
+        Seems the break statement didn't catch the count == 0 situation:
+        In v4l2-test-buffers.cpp, function: captureBufs()
+                        ...
+                        count--;
+                        if (!node->is_m2m && !count)
+                                break;
+        Log is as attachment
+
+I will paste the test result with problem part in another e-mail
+
+Hi,
+
+This is the first version of RFC patch for Media Data Path 3 (MDP3),
+MDP3 is used for scaling and color format conversion.
+support using GCE to write register in critical time limitation.
+support V4L2 m2m device control.
+
+Moudy Ho (7):
+  soc: mediatek: mmsys: add support for MDP
+  soc: mediatek: mmsys: add support for ISP control
+  soc: mediatek: mutex: add support for MDP
+  soc: mediatek: mutex: add functions that operate registers by CMDQ
+  dt-binding: mt8183: add Mediatek MDP3 dt-bindings
+  dts: arm64: mt8183: add Mediatek MDP3 nodes
+  media: platform: mtk-mdp3: add Mediatek MDP3 driver
+
+ .../bindings/arm/mediatek/mediatek,ccorr.yaml |   59 +
+ .../bindings/arm/mediatek/mediatek,rdma.yaml  |  211 +++
+ .../bindings/arm/mediatek/mediatek,wdma.yaml  |   70 +
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |   68 +
+ .../bindings/media/mediatek,mdp3-wrot.yaml    |   70 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  112 +-
+ drivers/media/platform/Kconfig                |   19 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/mtk-mdp3/Makefile      |    6 +
+ .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
+ .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
+ .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
+ .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
+ drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  514 +++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1307 +++++++++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  340 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   76 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  789 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   49 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  737 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  373 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  313 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
+ drivers/soc/mediatek/Kconfig                  |    1 +
+ drivers/soc/mediatek/mt8183-mmsys.h           |  235 +++
+ drivers/soc/mediatek/mtk-mmsys.c              |  160 ++
+ drivers/soc/mediatek/mtk-mmsys.h              |    3 +
+ drivers/soc/mediatek/mtk-mutex.c              |   96 +-
+ include/linux/soc/mediatek/mtk-mmsys.h        |   81 +
+ include/linux/soc/mediatek/mtk-mutex.h        |    8 +
+ 35 files changed, 6500 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,ccorr.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,rdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,wdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+ create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
+
 -- 
-2.31.1
+2.18.0
 
