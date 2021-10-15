@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D7F42ED66
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A938E42ED9F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235937AbhJOJT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 05:19:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39800 "EHLO
+        id S237349AbhJOJ3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 05:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237060AbhJOJT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 05:19:56 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C45C061570
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:49 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id d3so35392795edp.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:49 -0700 (PDT)
+        with ESMTP id S236645AbhJOJ3d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 05:29:33 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FC69C061570
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:27:27 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 5so5659401edw.7
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:27:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20210112.gappssmtp.com; s=20210112;
         h=sender:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+VMRnA7HC88DlpNpC3CNIQMXTLRNrlmvCLC0hTrELVM=;
-        b=OBH8KAuhrWlDFQYqW2OVpe/t/9f7uJUBC8qZlup9bg4CXkuH7z9Mq7JlRVh8Rpw8/o
-         xmj5h4iaRn6qN+QNpiMed7w6X6CGTcw1woDIY59URg9r/mSl9hIapkSxnYzVo0txvKm4
-         zWs9WprTDIq5pSRwd6DIucwyGexMsmo73nPHixb+qav5qGP5NGXiq9hJTtcoXfE1SFJD
-         SrdWL2Q65uY6H83ON3f0O0OWL8ppPCyzZKBTHqjowucszF9agGPlC7COaXfkINymuBIO
-         6gDKw8vGRyB7z0GFZCF0koqqd7yVqBNIslymiid1IvRv827Ti14JBmwwwaGvdTx2d7fa
-         7VWw==
+        bh=jqcUpdGkPlLCSTn8tOP34V+Kz/Zhk4bMhTOT82uEivE=;
+        b=godJCkEv5ZKTN1Jch1qRe/oy1BiwOSYOzQHeO11hViPuOEngpPKz1doHT3Y04ZB5HL
+         su0SiD83VAUMOpPDr77PzRMYXGMiybbUPkKtKIFTAM00PjKXkJ7Ch16xLqO6XOqO57BN
+         d8N1Ys7uBHVwu5LEOLM4jh8BPCxmf0vKGK/CaDjNUiGO2XsOil4AVBjWjuy070SVfKkC
+         +c2wK7TkwUEAQNAlIodpU+sKtXT0i84L4u80gxN75JPRbWYArVIGY2DL5/M2iO4ukqhs
+         Z0G63GMMYebE+ALYDapILXxXZ5tWDgc+QIQZDc2nbBaPZ/4eonoIJyVzWsgnyQgr4RZT
+         mIwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :mime-version:content-transfer-encoding;
-        bh=+VMRnA7HC88DlpNpC3CNIQMXTLRNrlmvCLC0hTrELVM=;
-        b=kI+63OJTI9Ih1OD82YoYIjGAGul0yEspiMwQAEd6JzjxtnkG0DRuOf0bZxu6yFyrrj
-         hJDjIU2xu/WlR7Q9o9Ik/Do38tKvnkxomnAun4mGT6QAjtX1kYEWrG0rf8nlBlN2lYPu
-         efIKVUwoFdAmTOHkdyamqP8XoapMAcswKxxpZC2Vcd6wQkA8if9tfLO59amEvygGq/1E
-         RBotwo0KxbtcgbijzpH9TjgywbP1vEG3HL42nxuY/vamiU2r2JEoiMo8UUHtPGNdSFoe
-         sZiFEr7DaPvS5lRe/qc5kg/5969dc8BE/kA5oQezO7PAv00kHwS/1FuMSKYZDvLBpvZS
-         s8uA==
-X-Gm-Message-State: AOAM533l949fob+WHRSTwKgrZKNUsZ1aJOtmrB095pgIgeMAgKLOu8rR
-        45JCwWdbdmOEldRkh/twGquPoBKu6Ob+FA==
-X-Google-Smtp-Source: ABdhPJwgYy+cpJiy9KN3qbY+IYbfp9B6teWAybvgXQMxWUacfG5m7ZFNGhZD67R18rF67hLBbX24Og==
-X-Received: by 2002:a17:906:520b:: with SMTP id g11mr5433292ejm.502.1634289468222;
-        Fri, 15 Oct 2021 02:17:48 -0700 (PDT)
+        bh=jqcUpdGkPlLCSTn8tOP34V+Kz/Zhk4bMhTOT82uEivE=;
+        b=7jyXFPGrfv6RkPxmdAzP3fBfiR7MDy9ZXBoR5Boq7ny9s7WKzjv/6952lS4FOL3zon
+         Wf3feZScX8LwkUwdO4rmH+0SICCIeHORIIXD5ktFf7fG7SjqJQR8Jwy7zqRqIr7eRsDk
+         d434Y/cN+Ojz+brjQ8I5mrE805S57n1jDv9LvpKk0A48rJwQGFlSPcigXkqcrKBi08As
+         jmYwvtg1NV6arJmd0R4xr7qLGqBjkpVFM0k2DXS7jZmS/ToC7LunQctN4sgd87XjBF56
+         aLA+kwvH58PrQXZ/rIkdz4MwYP/GWXNo3dW4bXwmE1iN1le9X+PTG4AXafeXNs+FotWQ
+         FXuQ==
+X-Gm-Message-State: AOAM533Rc7yZxC7LhR74SKZqlbccRq9tje9gkqiKvoaXwdmxaeDqNKFK
+        rMy7hZS20cbvJyuMjMdYpt6MVg==
+X-Google-Smtp-Source: ABdhPJwdmDklhD3pxxbqu9f2G/CNKriBF1c71usHNKjHgYAwNh5+pG2jeLZotWlI7WoAnEtp8a6PCg==
+X-Received: by 2002:a05:6402:268f:: with SMTP id w15mr16920947edd.13.1634290044445;
+        Fri, 15 Oct 2021 02:27:24 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id m15sm5532409edd.5.2021.10.15.02.17.47
+        by smtp.gmail.com with ESMTPSA id a1sm4195840edu.43.2021.10.15.02.27.24
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 15 Oct 2021 02:17:47 -0700 (PDT)
+        Fri, 15 Oct 2021 02:27:24 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: zynqmp: Fix comment about number of gpio line names
-Date:   Fri, 15 Oct 2021 11:17:46 +0200
-Message-Id: <c3480ba47ac9761903485ebfac127f297053d4da.1634289461.git.michal.simek@xilinx.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Subject: [PATCH] dt-bindings: gpio: zynq: Describe gpio-line-names
+Date:   Fri, 15 Oct 2021 11:27:23 +0200
+Message-Id: <4b9db94cdd8ca106feee53f76fab2a23721f7d2a.1634290039.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,27 +68,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ZynqMP has 174 gpio lines connected to PS controller but DT is describing
-them from 0 to 173 not 174.
+Number of lines depends on compatible string from 58 to 174.
+That's why it is checked based on it.
 
-Fixes: 7a4c31ee877a ("arm64: zynqmp: Add support for Xilinx Kria SOM board")
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
- arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/gpio/gpio-zynq.yaml   | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-index 550b389153e6..bb2602dd2805 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
-@@ -285,5 +285,5 @@ &gpio {
- 			  "", "", "", "", "", /* 155 - 159 */
- 			  "", "", "", "", "", /* 160 - 164 */
- 			  "", "", "", "", "", /* 165 - 169 */
--			  "", "", "", ""; /* 170 - 174 */
-+			  "", "", "", ""; /* 170 - 173 */
- };
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+index da95b951c23e..29c27eadbac8 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
++++ b/Documentation/devicetree/bindings/gpio/gpio-zynq.yaml
+@@ -28,6 +28,11 @@ properties:
+ 
+   gpio-controller: true
+ 
++  gpio-line-names:
++    description: strings describing the names of each gpio line
++    minItems: 58
++    maxItems: 174
++
+   interrupt-controller: true
+ 
+   "#interrupt-cells":
+@@ -39,6 +44,51 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - xlnx,zynqmp-gpio-1.0
++    then:
++      properties:
++        gpio-line-names:
++          minItems: 174
++          maxItems: 174
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - xlnx,zynq-gpio-1.0
++    then:
++      properties:
++        gpio-line-names:
++          minItems: 118
++          maxItems: 118
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - xlnx,versal-gpio-1.0
++    then:
++      properties:
++        gpio-line-names:
++          minItems: 58
++          maxItems: 58
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - xlnx,pmc-gpio-1.0
++    then:
++      properties:
++        gpio-line-names:
++          minItems: 116
++          maxItems: 116
++
+ required:
+   - compatible
+   - reg
 -- 
 2.33.1
 
