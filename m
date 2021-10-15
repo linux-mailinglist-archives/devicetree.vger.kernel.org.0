@@ -2,114 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF2A42F9D3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 19:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E671342F9D8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 19:11:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242115AbhJORNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 13:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242141AbhJORNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 13:13:16 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C323C061570
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:11:09 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id r18so40829520edv.12
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:11:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Edvno2sOp/O5//oFNIXgh3L32eEJg32t9M6swDx8iCI=;
-        b=A3yA0lUmip7KhifwxOIt6jNKUixMdBEHMZOnTKMmMNIa/bavBSMLhSM8frc+yxmOpB
-         hrj6dCtctHKvIl+hoUgPTtUazLA8852xTnlk6DjYq7qU7QvAkTFUXPbZF7vkghYrBwwV
-         7O9sCQK5nA7LXrEzXFSO+SHHQII+zz6X0irWM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Edvno2sOp/O5//oFNIXgh3L32eEJg32t9M6swDx8iCI=;
-        b=ZFCN00zxXnkZr0Otj1U5/yJvExAcgLUOulb+6kww5/jFIZWIpYv92He8sOs/qCRWQ4
-         QCWVUGjcoC/gwBAobdVxWjA60RGQH848yElk1S3A9Zw7MxeC2sPOWYRu9yyl8qB9WQZG
-         IJ+yS2hLytCNsyk20uVHRbnzFy2RSng2z9hfF8XHia3EBa4PHG3KRzDEKyNXFRgIw4UE
-         hQ/htDiFpjsFnijSSwzUajpmsfpXX/YH3sHy+TGQzEAupbfNH6+tgQAilOkchGGcS7Gb
-         1C5jG2YahGH0we2y0hzOgGt/bEiB5jvDr7Y1hYMKfhSUpl9JrAVaqRF6TzfC5gD+Fj0D
-         vfSg==
-X-Gm-Message-State: AOAM533R8ET9oUTYAgEAMeLx0wXnnkLA0pblvfN9i8bVtpBqsbJHb9k9
-        jxojgavsEZ2jw8rBTShZUdxlfyvi6kmZZcIY
-X-Google-Smtp-Source: ABdhPJzCqhSthnvO7YJ9RVCCpqRKN4xPvUd+H0AcGReyP6GRi1ff/wPJVDOph2mS8+nQ45Du+5Bd6w==
-X-Received: by 2002:a17:906:942:: with SMTP id j2mr8328367ejd.303.1634317867992;
-        Fri, 15 Oct 2021 10:11:07 -0700 (PDT)
-Received: from capella.. (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
-        by smtp.gmail.com with ESMTPSA id jt24sm4735792ejb.59.2021.10.15.10.11.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 10:11:07 -0700 (PDT)
-From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 net-next 7/7] net: phy: realtek: add support for RTL8365MB-VC internal PHYs
-Date:   Fri, 15 Oct 2021 19:10:28 +0200
-Message-Id: <20211015171030.2713493-8-alvin@pqrs.dk>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211015171030.2713493-1-alvin@pqrs.dk>
-References: <20211015171030.2713493-1-alvin@pqrs.dk>
+        id S242092AbhJORNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 13:13:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42484 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242093AbhJORNs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 13:13:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9E1B0611CC;
+        Fri, 15 Oct 2021 17:11:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634317901;
+        bh=Z7iN6QNMAz4Odui/sm26suvSVR++7zdZapnB6gkK1qs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YyaFfBXXjlk8Nfuif0Y9pZpNm2wOdMA4K08dAP+cKztjQ/E+hot81XVKrV47CflNi
+         OhAdOaUwWNJs5pZTX0p5X6vuPLuGpmuueMlrmYeNPoZ7xJxk5BUDwIym4r6cy/87Cw
+         I/55h17ZsSOSxZwu4HOKNHjnLDho+HHPsNlbCc5C6qBf2FAfwHkOoPUmH0eYd6syb8
+         rQ8wpvd3PPG+2Em3ylT6HstqBpyZpxBWgikd0NqS/4HcZGIuFVPVRWUi1tv3ae7fHf
+         Hafbn/nSLeZXMRD7qb3rYkHvelu7hZ+bCi55lc7xHvV+DDtZJ54QcbRr4rMykIN80h
+         sSUCJlz1kWOkA==
+Received: by mail-ed1-f51.google.com with SMTP id t16so40688876eds.9;
+        Fri, 15 Oct 2021 10:11:41 -0700 (PDT)
+X-Gm-Message-State: AOAM532FTVRMGsWDRArGRt9ndUTDMajzb6585f5hh9jQGdwzg+0FkkN4
+        dRNr+HfOHZYhDoSMtpka0o4XP/6CA3p3o75ijA==
+X-Google-Smtp-Source: ABdhPJyBcs7BF+aGoJdDOrbXiYgJuYNVZW5lSQW10UHF2HA/w7h9CV69vrBm3/UbTptmrdntR4Hcp6v9s0Sq0aW/aQY=
+X-Received: by 2002:a17:906:9399:: with SMTP id l25mr8042333ejx.363.1634317899968;
+ Fri, 15 Oct 2021 10:11:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com> <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+ <YWVD0RXHVLxuXEIN@google.com> <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com>
+ <YWfSz00Rj5AVhkgT@google.com> <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+ <YWl33gCy1ac29WSs@google.com>
+In-Reply-To: <YWl33gCy1ac29WSs@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 15 Oct 2021 12:11:28 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJNzA4iX2V5FnSg+phNh72JeRxn+D4250aKmOhngZO9yA@mail.gmail.com>
+Message-ID: <CAL_JsqJNzA4iX2V5FnSg+phNh72JeRxn+D4250aKmOhngZO9yA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+On Fri, Oct 15, 2021 at 7:45 AM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Thu, 14 Oct 2021, Rob Herring wrote:
+>
+> > On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > >
+> > > On Wed, 13 Oct 2021, Geert Uytterhoeven wrote:
+> > >
+> > > > Hi Lee,
+> > > >
+> > > > On Tue, Oct 12, 2021 at 10:15 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > On Mon, 11 Oct 2021, Rob Herring wrote:
+> > > > > > On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > > > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
+> > > > > > >
+> > > > > > > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > > >
+> > > > > > > > Add bindings for Unisoc system global register which provide register map
+> > > > > > > > for clocks.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > > > ---
+> > > > > > > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+> > > > > > > >  1 file changed, 68 insertions(+)
+> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> > > > > > >
+> > > > > > > Unapplied v3 and applied this (v4) instead, thanks.
+> > > > > >
+> > > > > > What about the clock binding this depends on:
+> > > > > >
+> > > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > > xargs: dt-doc-validate: exited with status 255; aborting
+> > > > > > make[1]: *** Deleting file
+> > > > > > 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> > > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > > make[1]: *** [scripts/Makefile.lib:385:
+> > > > > > Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
+> > > > > > Error 255
+> > > > > >
+> > > > > >
+> > > > > > Once again, all the components of MFD bindings need to be applied together.
+> > > >
+> > > > Just ran into this, too...
+> > > >
+> > > > > I can't apply what is not sent to me.
+> > > > >
+> > > > > This patch came in on its own.
+> > > >
+> > > > Then please reject/postpone patches that don't build (yet) ;-)
+> > >
+> > > I don't explicitly build DT documentation.
+> > >
+> > > Since I use the build bots to let me know if there are strange !(C,
+> > > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > > configuration possibilities (randconfig) in the repos I maintain, you
+> > > might have to convince them that this is important too.
+> >
+> > It's really just a matter of turning on the build in
+> > allyesconfig/allmodconfig builds. I've not done that primarily because
+> > there's one person I don't want to yell at me, but I could probably
+> > make it arm and/or arm64 only. It's really arch and config
+> > independent, so doing it multiple times is kind of pointless.
+> >
+> > I assume for bots you mean kernel-ci mainly? Do you run that before
+> > stuff gets into linux-next? IMO, that's too late. But still a slight
+> > improvement if things go in via one tree. Otherwise, I see the
+> > breakage twice, 1st linux-next then the merge window.
+>
+> Kernel test robot <lkp@intel.com> is the one that springs to mind.
 
-The RTL8365MB-VC ethernet switch controller has 4 internal PHYs for its
-user-facing ports. All that is needed is to let the PHY driver core
-pick up the IRQ made available by the switch driver.
+It already does sometimes. I haven't figured out when, but I randomly
+see some reports and doesn't report a lot of the cases.
 
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
+> Although, I'm sure there are other, less prolific implementations.
 
-v2 -> v3: no change
+Rob's bot, but that checks patches (not branches) and applies series
+so you won't get errors unless the series is in the wrong patch order.
 
-v1 -> v2: no change
-
-RFC -> v1: no change; collect Reviewed-by
-
- drivers/net/phy/realtek.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index 11be60333fa8..a5671ab896b3 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -1023,6 +1023,14 @@ static struct phy_driver realtek_drvs[] = {
- 		.resume		= genphy_resume,
- 		.read_page	= rtl821x_read_page,
- 		.write_page	= rtl821x_write_page,
-+	}, {
-+		PHY_ID_MATCH_EXACT(0x001cc942),
-+		.name		= "RTL8365MB-VC Gigabit Ethernet",
-+		/* Interrupt handling analogous to RTL8366RB */
-+		.config_intr	= genphy_no_config_intr,
-+		.handle_interrupt = genphy_handle_interrupt_no_ack,
-+		.suspend	= genphy_suspend,
-+		.resume		= genphy_resume,
- 	},
- };
- 
--- 
-2.32.0
-
+Rob
