@@ -2,132 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FAB742EC48
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 10:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0B8042EB0F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 10:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232736AbhJOI3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 04:29:49 -0400
-Received: from mail-eopbgr1320108.outbound.protection.outlook.com ([40.107.132.108]:20016
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230186AbhJOI3r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 04:29:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q4EmAMCJWG5wPxguuZxUgof3Wni7btJ9VQ/t8+c3pjAEMYx0RlHhGB7f/SPENATdRYwP2+5zyJ/Fln7qHYRGqnGCToqdXMNs5GjN9YmeB8BwuJ+Onc0M9DTlonloCCfBpL2YJRsFgFJHDmSYAaFg4EUb1bWy4luhNCbnMqPXu6r1qhD6gzwAzGxum2T3ZcYsiIKm3jRBrSX9YDGk5EWLGsTHAY4TJWQf90Yrx1P6/tGZCpwJRmslJxT7E5GyV2XcKLi7VbYD4HlVMAOyE05dL5V8+NWHkRY9os/nbi65EL8CHOGSbK0bswASPeG28Ul1YKpSYAKBXO2XrV0xFyzBOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4JH1VTdh1XPezlfmg+nh1omUPqvWP+PoiRk4MTQFaoM=;
- b=MDIJtBYryHpcCKmbay1T6h/nV5e0pkwAbx9B9QhXfr7IJJB0Vz8O3V1WkuzhZd6D8WL2c5Ozbf80uxK76szG/7H7vFwi83yfWS5h/Yoq7+wl3Nr2cdYB4iu/yeTV0+FQ1zY3xe15UUxMCfZxMPlZxrNlns922eHCBEmZLn2sIO7sXEfRrFvbyf8ZB65ZSJzGnfox/vm1/U3gIQdNFWM6GkqRuOK+sTIX1SqCWrahTyuc/+Y48svXqe65Yo1f49RQcFEBF5gLMzvEXwFpKGjXmzqUZxtx6xlm1JDtIPNpa5dz0o/7z58z/qdaMlLIuBAU5GCzSSEYrX3E8n8V3Yq2xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo0.onmicrosoft.com;
- s=selector2-vivo0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4JH1VTdh1XPezlfmg+nh1omUPqvWP+PoiRk4MTQFaoM=;
- b=QAB5i2JNxQRSDR0CKLwFE7790o1RpIP2r5RwpA1U+smJlqMZxPbzb3JNKFuKqwyq3d6N85vVo2iOaLffidvOmpa8pAH8QHNCN14GsSJnlAweWZmx0rH2EU+EnXVohwl7Tb04Xxbq8nSZMQHhF3Ip+FFQ1gDpUlGXw/lDfiinvfU=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=vivo.com;
-Received: from SG2PR06MB3367.apcprd06.prod.outlook.com (2603:1096:4:78::19) by
- SG2PR0601MB1951.apcprd06.prod.outlook.com (2603:1096:3:7::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.25; Fri, 15 Oct 2021 08:27:39 +0000
-Received: from SG2PR06MB3367.apcprd06.prod.outlook.com
- ([fe80::fc12:4e1b:cc77:6c0]) by SG2PR06MB3367.apcprd06.prod.outlook.com
- ([fe80::fc12:4e1b:cc77:6c0%6]) with mapi id 15.20.4608.017; Fri, 15 Oct 2021
- 08:27:39 +0000
-From:   Wan Jiabing <wanjiabing@vivo.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     kael_w@yeah.net, Wan Jiabing <wanjiabing@vivo.com>
-Subject: [PATCH] of/unittest: Add of_node_put() before return
-Date:   Fri, 15 Oct 2021 04:26:58 -0400
-Message-Id: <20211015082658.19005-1-wanjiabing@vivo.com>
-X-Mailer: git-send-email 2.20.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR04CA0068.apcprd04.prod.outlook.com
- (2603:1096:202:15::12) To SG2PR06MB3367.apcprd06.prod.outlook.com
- (2603:1096:4:78::19)
+        id S236618AbhJOIKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 04:10:02 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:40250 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236637AbhJOIKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 04:10:00 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20211015080749epoutp02a0a3303ba48962c9ea47757053de8034~uJcsjpAe31794517945epoutp02K
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 08:07:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20211015080749epoutp02a0a3303ba48962c9ea47757053de8034~uJcsjpAe31794517945epoutp02K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1634285269;
+        bh=7Byz6yHaFyOlmUCVCF6GE7hQH0GcypoytV5GiyWBWl4=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=prjZVTYvd0bWvtJhnYI4TToCigs/YMBfOH/sn9GagYDJJsFvc0DDq22AqnbqCXAod
+         qMZDk1eGe+dCrvjXun6dqi/5YpIfEDJmMTottOS1URT2zZjGQGf+O2j8DI/qFgKZy4
+         /7pbuEhYL8J5GORvzq6/SFnnwvP3BOlPyrw00P2A=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20211015080748epcas1p4761a8b0969435ed1eade41fe27965b98~uJcrrUD2b0145601456epcas1p4S;
+        Fri, 15 Oct 2021 08:07:48 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.38.236]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4HVzQT0TbMz4x9Q8; Fri, 15 Oct
+        2021 08:07:29 +0000 (GMT)
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1E.42.24398.5B639616; Fri, 15 Oct 2021 17:07:17 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20211015080716epcas1p2a5d55913228043d0034623f33b8a2235~uJcORftPN1459114591epcas1p26;
+        Fri, 15 Oct 2021 08:07:16 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211015080716epsmtrp2cf6bfe09c3a7f4114f0e812204825dcb~uJcOLUyuv0472204722epsmtrp2c;
+        Fri, 15 Oct 2021 08:07:16 +0000 (GMT)
+X-AuditID: b6c32a35-0edff70000005f4e-88-616936b56761
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A0.92.08750.4B639616; Fri, 15 Oct 2021 17:07:16 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211015080716epsmtip2210df3418359de6cbbd6e6d521b23c98~uJcNx_eGJ1330313303epsmtip2d;
+        Fri, 15 Oct 2021 08:07:16 +0000 (GMT)
+Subject: Re: [PATCH v2 6/6] PM / devfreq: Add a driver for the sun8i/sun50i
+ MBUS
+To:     Samuel Holland <samuel@sholland.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <b6650bd2-7459-2604-f6ff-6eb6df739412@samsung.com>
+Date:   Fri, 15 Oct 2021 17:28:45 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
+        Thunderbird/59.0
 MIME-Version: 1.0
-Received: from localhost.localdomain (203.90.234.87) by HK2PR04CA0068.apcprd04.prod.outlook.com (2603:1096:202:15::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend Transport; Fri, 15 Oct 2021 08:27:38 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ac9b53e-1280-4c44-86b0-08d98fb5a632
-X-MS-TrafficTypeDiagnostic: SG2PR0601MB1951:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <SG2PR0601MB19515F077F1B04A99918F44FABB99@SG2PR0601MB1951.apcprd06.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: afZE3O9Xs2vgY2N7SrF9OMpsuA8NLbrQVkiK1rhs7bkALhUSsKioz93EJjz/eogsw86cv5dPdy6mRsKAbPvUUp6tuL7SY8v4HrCwndzlchr2qEwwJt/dqV9A8bxeT56pR2iuiLMpRvxErXSLWmztxpAQtDg2XsBfEIY489bmm2Nj5CMbnz0ysCZIRt1ltREVzkvIXOtasqnviJnv7YzvUWHzO+HujAeb+rBMBZVUxnOR0Rj75s27w1G5GE2q6gaSo5Rd0AkY/0zMtc5AZZVSdbYuyWIFr76a66NSY87v2fvAQCd3OgXj7Bd6aqRKTKSkB2wbBZr6d+i99ayD2BOL0HQJlyrkZ3k3QlgZ2fU53hSHlpIyR/QCKN2FCj2kusI3kUIitPBjzLz4qvT+a37KT/B21PtdKpZE5MaZFRxgH8ZdDyh5aI3qmgCS13lF2SduSIqV47dPSA1kzBHulxdAx9B0ZnUqF++zGtfE1n84f/3s0Nl3Jo8BJ0ITMth5hge/Q2qmqAdttqSbA42fNaswGXHHIMMFiNYFLJ3unW3ckgMcmukewBjsP7GV8HEMjQVhGxt9UYYbv70knsMwSlOebhkBvaa7lB9PZ7a7dJoIDbHjqdJA0q285JoeGH15SjSwR93dLqrxoLjslc4gtdrFlfWhM/ej7hEbK+Rm5kJePcVubJN8TXv8uJC68DVIOEqPdte91tZrmgmJTeHwma3JTg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR06MB3367.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66476007)(186003)(4326008)(956004)(6666004)(508600001)(8936002)(66556008)(86362001)(8676002)(316002)(6486002)(1076003)(2616005)(83380400001)(6506007)(66946007)(52116002)(110136005)(38350700002)(6512007)(5660300002)(36756003)(4744005)(38100700002)(107886003)(26005)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TeHQjy6i9USfC7Y2BgWTKmkF0UfvQNdaDYAsuztcGEgxyHP65HDw/e492h87?=
- =?us-ascii?Q?rmU7qP+yib+0g5BcOXz0DiNry3YvCYGgO/8u/bwYxxS77Mc5mjwtVSvZf6WL?=
- =?us-ascii?Q?mDKL+odflhhfCwZzrwTJfoyZbAklOFMLok3JUMEqzxDHdWDxVvfOmrdemzTy?=
- =?us-ascii?Q?LHMbn2aSoRIzJn95l2iPnSKoa5+bMMtiSkGuHCCZKJ71YgqIjI9yiHkh16Xm?=
- =?us-ascii?Q?8ISnTxma50Ia78M1o2NZv9dre9Z+jinCNAN2jDerSz7Sg9sTyCyrdWLVCENK?=
- =?us-ascii?Q?BsaJCsIPiMavXYaKF4kBlFXtyzjOu8pSvHOuMiC/z5ERPu3pIlsNv4RN31tS?=
- =?us-ascii?Q?ebLBOddcasa5dApfaoaJ1uo12DERyH3CTfCftn56CzfcWWMHX+mBYjR9fWs3?=
- =?us-ascii?Q?2EQvGfBopyY9gYUfB2g1UX/a6wFKPjtz/M5pLz4L5SSYZqnwhzNlge6GKJCG?=
- =?us-ascii?Q?XEgFax3Pb1VSTahvOx93bOZdc/l4H09z3h7T7MyEj6FIoXy1yz4f+FcIAX29?=
- =?us-ascii?Q?htZE+7+ftHubXRRSc9qqQtn4YV6sNuvYQWFTQ2tTn6jI6RuHuI8A8/kXyyOa?=
- =?us-ascii?Q?6ivVNqUITNFvPcBg9cIAJpx1bYzgGnsWp9f7Bzq+V/DtqzE5rlyiIfdmEvn7?=
- =?us-ascii?Q?9FW3nj23Iqmy3oF+DF/355oObmyAN7Cffz16snfMZy8T/fAis4D4jWtgS/OT?=
- =?us-ascii?Q?fzTOnVZEjRhd1H9rxjUysUsc5LBjY5XSs4cd5++yY0be9/WGT6DvUpkl+r66?=
- =?us-ascii?Q?l04U+ctOHDgIMnbUx63btJt4ja2cO3eI7qHdEJtLO0kk4TCNry32LRYy40zm?=
- =?us-ascii?Q?Im5ahvwyhHdSR647gX7X+iMJkRKs54R6ZEi2MQOyyy9avDxWy3coQH2RGfNG?=
- =?us-ascii?Q?XzKq63mQGDbE1MFdle4KciU5DUdSeTc9kcAGU/pTeI3sjShZZ/IpFlIqApYN?=
- =?us-ascii?Q?wb8XooGjRV0HJ/aUdhnzPdpqH4ClrMMDluY+8SGQqWx9d4k0OQm5p7Id1Ui1?=
- =?us-ascii?Q?7PZaX41oZERU/xyxd4jt9j8og8k4hog/mGJs65O6AVxJhaI72ULqh4/l0WU4?=
- =?us-ascii?Q?4cuZz97Lc83c6+QRPoFrAGrnNvStgxZJbGsGqUllsoGbNI4KVN2ENOrhj/nG?=
- =?us-ascii?Q?BfsD4bd/DmlfVPm7IzH51llghzujc0JNAFHjdGhj3W0oVzb+NF04jb/I3auK?=
- =?us-ascii?Q?W+ZYS8Rcjdr7hCemPu0IdwVaN2JFzogGNZliPwNrj0sAaFfPf22xLyEk5vto?=
- =?us-ascii?Q?tdyyrpj0WxtKYqwv79YJLf8pFjfspI8NyG8uYUSkx/QqFPxdSLTMaKdscJWz?=
- =?us-ascii?Q?wR6vO9kDI14jFpO6Rq/6vLkV?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ac9b53e-1280-4c44-86b0-08d98fb5a632
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR06MB3367.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 08:27:39.1976
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 18ia7ymOnAkktX4yb8ZmevhF6vK+Ivjjq+GzZVT31yOIzlr1lkACKovMq5szshuliN5gCyxV3xtVCYbvssYlnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR0601MB1951
+In-Reply-To: <20211004012739.39053-7-samuel@sholland.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPJsWRmVeSWpSXmKPExsWy7bCmnu5Ws8xEg7k7ZC3mHznHavF8/jpG
+        i7NNb9gtNj2+xmpxedccNovPvUcYLabs28Vm0da5jNXi4ilXi9uNK9gsWvceYbd4/qiTzeLf
+        tY0sFj8PnWdy4PN4f6OV3WPDo9WsHjtn3WX32LSqk81j85J6jxebZzJ69G1Zxejx6utcRo/P
+        m+QCOKOybTJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOA
+        bldSKEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFJgW6BUn5haX5qXr5aWWWBkaGBiZ
+        AhUmZGecm7OApeAuZ8XMFR2MDYw32bsYOTgkBEwkWvYmdjFycQgJ7GCUeLLqGROE84lRYu/9
+        g+wQzmdGif4vbxm7GDnBOnp+vIdK7GKU+H56OSOE855RYlnzXzaQKmGBIIndd6aDVYkITGSS
+        mH3/AAuIwyzwllFi4a4dzCBVbAJaEvtf3ADr4BdQlLj64zHYDl4BO4mPT08zgdgsAqoSjTNf
+        sIPYogJhEie3tUDVCEqcnPmEBcTmFLCUmLC2D6yeWUBc4taT+VC2vMT2t3OYQRZLCLzgkNg4
+        dzUbxBMuEqdv7WCCsIUlXh3fwg5hS0l8frcXqqZaYuXJI2wQzR2MElv2X2CFSBhL7F86mQkU
+        fswCmhLrd+lDhBUldv6eywixmE/i3dceVkgQ80p0tAlBlChLXH5wF2qtpMTi9k62CYxKs5C8
+        MwvJC7OQvDALYdkCRpZVjGKpBcW56anFhgWG8PhOzs/dxAhO2VqmOxgnvv2gd4iRiYPxEKME
+        B7OSCO+7A+mJQrwpiZVVqUX58UWlOanFhxhNgQE8kVlKNDkfmDXySuINTSwNTMyMjE0sDM0M
+        lcR5j722TBQSSE8sSc1OTS1ILYLpY+LglGpg6pPepX55gsrE8K0Na3ZoFalOe1pWdmzq/g+x
+        q0RsDh14W3h2/1Hp5b/eKs22nqba+m6jvXsSg2BmiPincEPtkKQHbz/8MdNh99RODvk6b/nZ
+        z/Im/pp/OK/2H0/c8IxBtJ87m4+jeuH6KuvN9cIv2xkPKSkcW5fr9PRHy4Mpb55wrZ3h8m7i
+        1FuaJodKnFfu4fj6wsTDXPVp+iSmDdfDGLwarm/Z7VRVvbhnvkjnwYA7NxUjPh4Se2zk/e13
+        K4v767y4iEuPii9ek13O6rDmcPVU4RMKGg/Z+gKl1aZmbd10Y9bPF/eufDj7fHZrp/yNlXO2
+        rmP+qPfVY+N6XWX3zZ+aVvD+0DSNaWHWrOdpuaLEUpyRaKjFXFScCADjc84kYgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJIsWRmVeSWpSXmKPExsWy7bCSvO4Ws8xEg7lzJS3mHznHavF8/jpG
+        i7NNb9gtNj2+xmpxedccNovPvUcYLabs28Vm0da5jNXi4ilXi9uNK9gsWvceYbd4/qiTzeLf
+        tY0sFj8PnWdy4PN4f6OV3WPDo9WsHjtn3WX32LSqk81j85J6jxebZzJ69G1Zxejx6utcRo/P
+        m+QCOKO4bFJSczLLUov07RK4Ms7NWcBScJezYuaKDsYGxpvsXYycHBICJhI9P96D2UICOxgl
+        3vyNhYhLSky7eJS5i5EDyBaWOHy4uIuRC6jkLaPEiTvtTCA1wgJBErvvTGcHSYgITGaSOLn1
+        OBOIwwxS9erCdUaIlt2MEltWXWUBaWET0JLY/+IGG4jNL6AocfXHY0YQm1fATuLj09NgY1kE
+        VCUaZ74AO0lUIExi55LHTBA1ghInZz4Bm8MpYCkxYW0fWJxZQF3iz7xLzBC2uMStJ/Oh4vIS
+        29/OYZ7AKDwLSfssJC2zkLTMQtKygJFlFaNkakFxbnpusWGBUV5quV5xYm5xaV66XnJ+7iZG
+        cOxqae1g3LPqg94hRiYOxkOMEhzMSiK87w6kJwrxpiRWVqUW5ccXleakFh9ilOZgURLnvdB1
+        Ml5IID2xJDU7NbUgtQgmy8TBKdXA1DRnTdana6fWnHf8ujBw7X350MXveLQ1RRs/mDmu4jT9
+        Kq5oxLhgekzIc8O8y7EhQvLvG3dVO/+1XXKZLXpW2CmrzuOxNU+fainGPdrbfXJ12J+z9g6L
+        9jyom/qu/rjousWbv3Xl+L2X0V5g4rggRKkvMUPl+hfBe9MVmgLuLZj2vWjHi4kr+sueR2tv
+        /ph/4fnmeq7Htvlabv7PPhwxaem5+o2zJid+rnaB27NPQsb7TJYXN2grfvV2mv7G01jHmal5
+        wtbpaxz6GqY+5ilINm6u+Xn6pgBLz7l435treD3ki2Iivda7LHkq+orhzsQNFn4rU42m2hv8
+        T4+x+zEpubFgupQml9OEfM1HZXlLlFiKMxINtZiLihMByaHgWkwDAAA=
+X-CMS-MailID: 20211015080716epcas1p2a5d55913228043d0034623f33b8a2235
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211004012806epcas1p1ba8ec0edc024a14e520865f689773be8
+References: <20211004012739.39053-1-samuel@sholland.org>
+        <CGME20211004012806epcas1p1ba8ec0edc024a14e520865f689773be8@epcas1p1.samsung.com>
+        <20211004012739.39053-7-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix following coccicheck warning:
-./drivers/of/unittest.c:3091:1-23: WARNING: Function
-for_each_child_of_node should have of_node_put() before return
+Hi Samuel,
 
-Early exits from for_each_child_of_node should decrement the
-node reference counter.
+On 10/4/21 10:27 AM, Samuel Holland wrote:
+> This driver works by adjusting the divider on the DRAM controller's
+> module clock. Thus there is no fixed set of OPPs, only "full speed" down
+> to "quarter speed" (or whatever the maximum divider is on that variant).
+> 
+> It makes use of the MDFS hardware in the MBUS, in "DFS" mode, which
+> takes care of updating registers during the critical section while DRAM
+> is inaccessible.
+> 
+> This driver should support several sunxi SoCs, starting with the A33,
+> which have a DesignWare DDR3 controller with merged PHY register space
+> and the matching MBUS register layout (so not A63 or later). However,
+> the driver has only been tested on the A64/H5, so those are the only
+> compatibles enabled for now.
+> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>  drivers/devfreq/Kconfig          |   8 +
+>  drivers/devfreq/Makefile         |   1 +
+>  drivers/devfreq/sun8i-a33-mbus.c | 511 +++++++++++++++++++++++++++++++
+>  3 files changed, 520 insertions(+)
+>  create mode 100644 drivers/devfreq/sun8i-a33-mbus.c
 
-Signed-off-by: Wan Jiabing <wanjiabing@vivo.com>
----
- drivers/of/unittest.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 8c056972a6dd..b8d2b669408a 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -3094,6 +3094,8 @@ static __init void of_unittest_overlay_high_level(void)
- 			if (!strcmp(np->full_name, base_child->full_name)) {
- 				unittest(0, "illegal node name in overlay_base %pOFn",
- 					 np);
-+				of_node_put(np);
-+				of_node_put(base_child);
- 				return;
- 			}
- 		}
+(snip)
+
+Looks good to me.
+
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
 -- 
-2.20.1
-
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
