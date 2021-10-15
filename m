@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3210742F7E5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7EF342F804
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241188AbhJOQR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 12:17:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48884 "EHLO mail.kernel.org"
+        id S241243AbhJOQXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 12:23:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50932 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241203AbhJOQRy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 12:17:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6484561090;
-        Fri, 15 Oct 2021 16:15:46 +0000 (UTC)
+        id S241253AbhJOQXc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 12:23:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3C699611CE;
+        Fri, 15 Oct 2021 16:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634314546;
-        bh=J6lMIRppIQQR2yDU8HEFtiobkHUlT4L+X3PXR/XHp8k=;
+        s=k20201202; t=1634314885;
+        bh=z0VMHYGv4k9YfLpE9FUSGVn3TrO3Twply7c7zgpVmYM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fUxjpQpKZEMfW+RRIp60SX1iX/UwmX2w7X5lIZEpj7biPSsFXPDMUQafV+MRGFMmQ
-         EL8HPMjTiB8NjmWVoshAD7lta4yw5ks7FQ5A97AWaT6RIcAyKWEtDQ6UK7wHLXbbG3
-         Z1ztXj9KpCB5OMJzlWulfrEP66XP61txqi1cOfM0ryOvkLKJse4YDrrC9cAeT803ZX
-         I1dRqcI6sM7uBu908E4buE0sgeJjzPDGbl1FQ9Mcim+RVQCz+xQivYjOcEswbqaOuG
-         3L1+rjNW2B0Xd0lB3zf/uOnVZtTN0eV7Al82PBbYtkmb3ud3BZvtdUS/bkKYpz+Va3
-         4TlkTUzrYEe4g==
-Received: by mail-ed1-f48.google.com with SMTP id t16so40103749eds.9;
-        Fri, 15 Oct 2021 09:15:46 -0700 (PDT)
-X-Gm-Message-State: AOAM5330xQeEoC3oy4XV9gncJb3ptN4/iAdPOz0bILr8TYnsScTPvcPq
-        iWa9BEFbV5IfNl9RR7wP8qKcXabwPAQQSon2pA==
-X-Google-Smtp-Source: ABdhPJwsRQPmyqCZEJ2EspO5jNkdQ+LeDKtD0EmxJMsNFClADPbMWi8f8wb8874t+JF0p3aYra/8VjChk0VBCZZRh6M=
-X-Received: by 2002:a05:6402:84d:: with SMTP id b13mr19328337edz.6.1634314544839;
- Fri, 15 Oct 2021 09:15:44 -0700 (PDT)
+        b=J6WxXOGI05KDKCcMlAcj6PkNDAZRgenVWkTidMhwoD3JNTz/4l51EERh5Ql1ZSJpj
+         BbHXZvif3Y2gIy8npj+nEwwpC4iH9jXA+7X6nBWvHtWo3FA5Re2BU3Gw+OHqxb4Ihu
+         MjbChxxUI5SnJkj8X4h78uz8Lan/JnmbKUTSNM65fO6nU8rNG1Vmeu/QJoYZQgVcMb
+         CexyF34RQoOQiSJuK+q00/JxapoJ3X9lV7FBcS/BSlxwEHkvP94K0v/4b4Gj5lX88F
+         siBr2i5g4cd21v++Pfceo+bb/ofBufDtCzga5cQiXB7M1Eb29Rm1529svUV4SJ0X3H
+         wr9CZNQCkOeaQ==
+Received: by mail-ed1-f47.google.com with SMTP id ec8so40344501edb.6;
+        Fri, 15 Oct 2021 09:21:25 -0700 (PDT)
+X-Gm-Message-State: AOAM530R9OC/qoLzLGu22XuvXZD4XODSuZx6Jfx8Od2zje/a34LjvOgJ
+        aHSzIS4uL/SZ8wBMwu/Qk/9Yugu2gYLtzi2dcQ==
+X-Google-Smtp-Source: ABdhPJx6achLWZwzx6ovEoDXmzSv+wCsdnSRUuajZYLhkxDFusi9eOjTSSXm7nZir+rTOgxfNjDkLV4a3hqmrLpqCmU=
+X-Received: by 2002:a50:ef10:: with SMTP id m16mr15859060eds.224.1634314883576;
+ Fri, 15 Oct 2021 09:21:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211014224201.24027-1-agust@denx.de>
-In-Reply-To: <20211014224201.24027-1-agust@denx.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 15 Oct 2021 11:15:32 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+_K9X010eKz0uwGH33h3vwwEE-+f=z9YWEdhji4yHxWg@mail.gmail.com>
-Message-ID: <CAL_Jsq+_K9X010eKz0uwGH33h3vwwEE-+f=z9YWEdhji4yHxWg@mail.gmail.com>
-Subject: Re: [PATCH v2] powerpc/mpc512x: dts: fix PSC node warnings
-To:     Anatolij Gustschin <agust@denx.de>
-Cc:     linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
+References: <20211004062140.29803-1-nancy.lin@mediatek.com> <20211004062140.29803-3-nancy.lin@mediatek.com>
+In-Reply-To: <20211004062140.29803-3-nancy.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 16 Oct 2021 00:21:12 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-3KBXyBvMW8zC1fukkDFGczcP6t+CjRbvGh6uQtOSnTA@mail.gmail.com>
+Message-ID: <CAAOTY_-3KBXyBvMW8zC1fukkDFGczcP6t+CjRbvGh6uQtOSnTA@mail.gmail.com>
+Subject: Re: [PATCH v6 02/16] dt-bindings: mediatek: add vdosys1 MERGE
+ property for mt8195
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>
+Cc:     CK Hu <ck.hu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        singo.chang@mediatek.com,
+        srv_heupstream <srv_heupstream@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 14, 2021 at 5:42 PM Anatolij Gustschin <agust@denx.de> wrote:
->
-> Rework PSC node description to fix build warnings like:
-> mpc5121.dtsi:397.13-406.5: Warning (spi_bus_bridge): /soc@80000000/psc@11400: node name for SPI buses should be 'spi'
-> mpc5121.dtsi:409.13-418.5: Warning (spi_bus_bridge): /soc@80000000/psc@11500: node name for SPI buses should be 'spi'
-> mpc5121.dtsi:457.13-466.5: Warning (spi_bus_bridge): /soc@80000000/psc@11900: node name for SPI buses should be 'spi'
+Hi, Nancy:
 
-Okay, I now see the block supports either spi or serial modes. I would
-handle this a bit differently that doesn't create a bunch of new .dtsi
-files.
+Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=884=E6=
+=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=882:21=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> MT8195 vdosys1 merge1 to merge4 have HW mute function.
+> Add MERGE additional mute property description.
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
 >
-> Signed-off-by: Anatolij Gustschin <agust@denx.de>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
 > ---
-> Changes in v2:
->  - extract PSC nodes to files which can be included
->    separately and extended as needed
+>  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml  | 4 ++++
+>  1 file changed, 4 insertions(+)
 >
->  arch/powerpc/boot/dts/ac14xx.dts            | 118 ++++++++--------
->  arch/powerpc/boot/dts/mpc5121-psc0.dtsi     |  16 +++
->  arch/powerpc/boot/dts/mpc5121-psc1.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc10.dtsi    |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc11.dtsi    |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc2.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc3.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi |  17 +++
->  arch/powerpc/boot/dts/mpc5121-psc4.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi |  17 +++
->  arch/powerpc/boot/dts/mpc5121-psc5.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc6.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc7.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc8.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi |  17 +++
->  arch/powerpc/boot/dts/mpc5121-psc9.dtsi     |  15 ++
->  arch/powerpc/boot/dts/mpc5121.dtsi          | 148 +-------------------
->  arch/powerpc/boot/dts/mpc5121ads.dts        |  42 +++---
->  arch/powerpc/boot/dts/pdm360ng.dts          | 104 +++++++-------
->  19 files changed, 371 insertions(+), 273 deletions(-)
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc0.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc1.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc10.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc11.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc2.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc3.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc6.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc7.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc8.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi
->  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9.dtsi
-
-[...]
-
-> diff --git a/arch/powerpc/boot/dts/mpc5121.dtsi b/arch/powerpc/boot/dts/mpc5121.dtsi
-> index 3f66b91a8e3c..21674da8beb1 100644
-> --- a/arch/powerpc/boot/dts/mpc5121.dtsi
-> +++ b/arch/powerpc/boot/dts/mpc5121.dtsi
-> @@ -87,7 +87,7 @@
->                 };
->         };
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
+rge.yaml
+> index 6007e00679a8..d7d0eda813d1 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> @@ -54,6 +54,10 @@ properties:
+>        command to SMI to speed up the data rate.
+>      type: boolean
 >
-> -       soc@80000000 {
-> +       soc: soc@80000000 {
->                 compatible = "fsl,mpc5121-immr";
->                 #address-cells = <1>;
->                 #size-cells = <1>;
-> @@ -343,152 +343,6 @@
->                         clock-names = "ipg";
->                 };
+> +  mediatek,merge-mute:
+> +    description: Support mute function. Mute the content of merge output=
+.
+> +    type: boolean
+> +
+>    mediatek,gce-client-reg:
+>      description:
+>        The register of client driver can be configured by gce with 4 argu=
+ments
+> --
+> 2.18.0
 >
-> -               /* 512x PSCs are not 52xx PSC compatible */
-> -
-> -               /* PSC0 */
-> -               psc@11000 {
-
-I would just put here 'serial@11000' and 'spi@11000' nodes with both
-nodes set to disabled. Then the board dts just has to change status of
-the the nodes it wants to enable (and add child nodes for spi).
-Overlapping addresses are okay if nodes are disabled.
-
-> -                       compatible = "fsl,mpc5121-psc";
-> -                       reg = <0x11000 0x100>;
-> -                       interrupts = <40 0x8>;
-> -                       fsl,rx-fifo-size = <16>;
-> -                       fsl,tx-fifo-size = <16>;
-> -                       clocks = <&clks MPC512x_CLK_PSC0>,
-> -                                <&clks MPC512x_CLK_PSC0_MCLK>;
-> -                       clock-names = "ipg", "mclk";
-> -               };
