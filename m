@@ -2,158 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A389D42FD7C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 23:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A1342FD99
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 23:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243100AbhJOVfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 17:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243079AbhJOVfo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 17:35:44 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8047C061570;
-        Fri, 15 Oct 2021 14:33:37 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x192so12039906lff.12;
-        Fri, 15 Oct 2021 14:33:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gix2t0OaFc3liLwqh7FD+UgpYjMWRC2yF5wlNLCRBI8=;
-        b=qis8HY5aJowC4EqJFx3MOPhEGhcXjXhZTpVf0O0ZaJ8dAFgGw91o/hVODkU7FRxcw6
-         AZU8vc1BfB4zTjM1P62wns5tOI3qN2C+s4pQ1Wsy7bv7gKL7jKc2hWKLs86XVr4W4TUT
-         h5GijvI+PE96P1JI/y2GSZq49aFy6a6+/4SPzO/ECa11w6Y/Kv6VmU9qceSy5gDjzk8o
-         pnepTbIkXzhYSl8fZ83W2Z3QQXtAUBpmlgoDMhpCXuKK0p9NHv69rY9hNa2BbT6Eg8it
-         MsEqAMGICMa6VJqyKAXdLuPQ4xTTE1dI1LqDGKMGRp/pg/8J7tVBDb3taihP7FUws+6E
-         ilHA==
+        id S243181AbhJOVrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 17:47:43 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:45921 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243177AbhJOVrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 17:47:42 -0400
+Received: by mail-oi1-f172.google.com with SMTP id z126so14930674oiz.12;
+        Fri, 15 Oct 2021 14:45:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gix2t0OaFc3liLwqh7FD+UgpYjMWRC2yF5wlNLCRBI8=;
-        b=3bO+DnadSFUCh8FtN9H91OaFfk+VMU3Ap1To/C3KizwrW+nGuQ9wklarWQvNyC077W
-         4mDYGhrdgiTEe28Z/yTTIWqoChDEcThErh074cf2XeLF4eZxVekX9uwfec+m1EjdKzTS
-         ROZ6Ybz8M/vxiN5IEVaLhS8oBRS4Qzgkr25O1puhZk4JWh+y/IXHobotHwsnLvlvvrZZ
-         ORwpcZvVjF1Fv5GAxCRt8SgrKEbC3hwCEI8YNm3Bd5kbqyNLQ1XimEeiqpFzmbQYkjaq
-         Xj04wxshPm0Sb5AP1/HJD9FEJvqUqWrVHUuFbFeeoVABJziyJ1ZxtVeXf5xBrTqaD0lR
-         Dr1Q==
-X-Gm-Message-State: AOAM530TUhXLK1jrZONlk/PYy0jAs4z4rBN8LpZB5XfDvqFDBSWtv41r
-        um/co+J+UOzcv6jK6ZuI33Q=
-X-Google-Smtp-Source: ABdhPJyGE7Et43k/hdPxjdpBoYE8kfL5iTjenGOdjS4PvWxGzZHpGXrxlrYYk3a+u1/JkqbbVxvBCQ==
-X-Received: by 2002:a05:6512:3b94:: with SMTP id g20mr13375031lfv.77.1634333616241;
-        Fri, 15 Oct 2021 14:33:36 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id f23sm689425ljn.110.2021.10.15.14.33.34
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=LJEhLIIou4QlpYiQBXYtb6aADp1Ti+/T4dNd2erHAd8=;
+        b=Wqtpb+l6PoojfqQ12jR3iZ2mGW+nQ4hCIqB2Q9HqgQ1Bb0P3YFTcWFD/Ge52Jkjvah
+         2NmBLh6+yQBIzFmAmuy9ht6t7I852vE5f6bW2xRNal2UwNvEPhZG9gPiTbrjdOc1y7D4
+         PqdU93NFf1+RwXDPjhtGgKGbsn0IYQSI0/zDHTit1FtMgsZGZ4UlVHwXA6JYrxzNcqUY
+         cXLUskwBuPikiwZeWEsBNO1iBDnvs1y9bFhVfN5HCmm7lzuqBuwAZFtUOLImQ0gkVU9D
+         LUf5I8IqADMMx0zQ8Qaeoqnw+zZ1h53fYirzgXDmb4k8eQWNarLEVfRSesiFyj0hwGA1
+         SaHg==
+X-Gm-Message-State: AOAM531UWEl71jbO7e8Jn1nW/YUYiZotFcJAttIdaLDQM90xtqb7R/yt
+        Dx/nHOetKoC03QFgduw3Ug==
+X-Google-Smtp-Source: ABdhPJy7U0aI1r0RqDrCcc4qml4I9+NdEi9+/IDDXC2G+2YE7TgwRK3w6C/JFrks7pWk7d0JcdTklw==
+X-Received: by 2002:a05:6808:3c2:: with SMTP id o2mr10315386oie.15.1634334335025;
+        Fri, 15 Oct 2021 14:45:35 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id k3sm1451154otn.16.2021.10.15.14.45.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 14:33:35 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-rockchip@lists.infradead.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: dt-bindings: rockchip: i2s-tdm: fix rockchip, cru requirement
-Date:   Fri, 15 Oct 2021 23:33:34 +0200
-Message-ID: <2236749.301RoY5kYM@archbook>
-In-Reply-To: <8553b0cd-95e4-c3db-c75a-d3b28e99f131@arm.com>
-References: <20211015143115.1445707-1-frattaroli.nicolas@gmail.com> <8553b0cd-95e4-c3db-c75a-d3b28e99f131@arm.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        Fri, 15 Oct 2021 14:45:34 -0700 (PDT)
+Received: (nullmailer pid 2254017 invoked by uid 1000);
+        Fri, 15 Oct 2021 21:45:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
+        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Steen.Hegelund@microchip.com,
+        lars.povlsen@microchip.com, linus.walleij@linaro.org
+In-Reply-To: <20211015144259.219909-2-horatiu.vultur@microchip.com>
+References: <20211015144259.219909-1-horatiu.vultur@microchip.com> <20211015144259.219909-2-horatiu.vultur@microchip.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: pinctrl-microchip-sgpio: Add reset binding
+Date:   Fri, 15 Oct 2021 16:45:31 -0500
+Message-Id: <1634334331.621918.2254016.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Freitag, 15. Oktober 2021 19:44:56 CEST Robin Murphy wrote:
-> On 2021-10-15 15:31, Nicolas Frattaroli wrote:
-> > The behaviour described in the bindings is exactly the opposite
-> > of what it should be, so this patch fixes the description and
-> > adjusts the if conditions for adding rockchip,cru to required.
-> > 
-> > Fixes: 510f1c133aed ("ASoC: dt-bindings: rockchip: add i2s-tdm bindings")
-> > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > ---
-> > 
-> >   .../devicetree/bindings/sound/rockchip,i2s-tdm.yaml   | 11 ++++++++---
-> >   1 file changed, 8 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
-> > b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml index
-> > ce3e18b50230..93f5221e9381 100644
-> > --- a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
-> > 
-> > @@ -86,7 +86,7 @@ properties:
-> >       $ref: /schemas/types.yaml#/definitions/phandle
-> >       
-> >       description:
-> >         The phandle of the cru.
-> > 
-> > -      Required if neither trcm-sync-tx-only nor trcm-sync-rx-only are
-> > specified. +      Required if either trcm-sync-tx-only or
-> > trcm-sync-rx-only are specified.> 
-> >     rockchip,grf:
-> >       $ref: /schemas/types.yaml#/definitions/phandle
-> > 
-> > @@ -147,8 +147,13 @@ required:
-> >   allOf:
-> >     - if:
-> >         properties:
-> > -        rockchip,trcm-sync-tx-only: false
-> > -        rockchip,trcm-sync-rx-only: false
-> > +        rockchip,trcm-sync-tx-only: true
-> > +    then:
-> > +      required:
-> > +        - rockchip,cru
-> > +  - if:
-> > +      properties:
-> > +        rockchip,trcm-sync-rx-only: true
+On Fri, 15 Oct 2021 16:42:58 +0200, Horatiu Vultur wrote:
+> This describes the new binding which allows to call a reset driver from
+> the pinctrl-microchip-sgpio driver.
 > 
-> FWIW, isn't this just a long-winded way to say
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> ---
+>  .../devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml    | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
->    if:
->      anyOf:
->        - properties:
->            rockchip,trcm-sync-tx-only: true
->        - properties:
->            rockchip,trcm-sync-rx-only: true
-> 
-> which itself could still be more concisely
-> 
->    if:
->      not:
->        properties:
->          rockchip,trcm-sync-tx-only: false
->          rockchip,trcm-sync-rx-only: false
-> 
-> ?
 
-Hi Robin,
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-you are absolutely correct. I'm not very familiar with dtschema yet,
-so I mostly just did what I know would work, as I didn't know about
-"not" or "anyOf" in this context.
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-However I don't think this patch is going to get a V2 because I may
-have found a way to easily get rid of the CRU property altogether,
-making this patch sort of obsolete in the very near future.
-
-Thank you for your review nonetheless, I learned some more dtschema
-today thanks to it. :)
-
-> 
-> Robin.
-> 
-> >       then:
-> >         required:
-> >           - rockchip,cru
-
-Regards,
-Nicolas Frattaroli
+Full log is available here: https://patchwork.ozlabs.org/patch/1541735
 
 
+gpio@61101036c: 'reset-names' does not match any of the regexes: '^gpio@[0-1]$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/microchip/sparx5_pcb125.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dt.yaml
+
+gpio@611010484: 'reset-names' does not match any of the regexes: '^gpio@[0-1]$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/microchip/sparx5_pcb125.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dt.yaml
+
+gpio@61101059c: 'reset-names' does not match any of the regexes: '^gpio@[0-1]$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/microchip/sparx5_pcb125.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135.dt.yaml
+	arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dt.yaml
 
