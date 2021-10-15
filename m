@@ -2,161 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B28D42F135
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 14:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8317442F142
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 14:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238937AbhJOMpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 08:45:18 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:51458
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238973AbhJOMpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 08:45:02 -0400
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 398463FFEE
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 12:42:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634301775;
-        bh=n5foe9bmgDkFfFq3zSQcgI6TNmwb73rCwv2IOYhq6Zc=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=uibEVoQr3KNSl1uYAwd8yP9pHal2pbcoPWpuhiSbjNJGljYt/3oY9kIJ932DL4GYD
-         x0bRGh6E/39HMdNlIJOUk5/u1RiXiG1NHEibUACFiBghR5DOYUHXy0J9j1Z7iEHWk9
-         aVFrKjASJEI2C0QQ6L1TDMhp4GmvhU77ShIyxj7qSuky+EwQUlfwBAoTc71TKovDI5
-         oQOaFSvGExQ9OM6zkanKvHUS9sMe3AtSMskO7IaeBTupNiwXYAJoeauYD8HvjZUG6Z
-         H9a9ddlnUh3BM4pGY8Ek1MPCc445TA8AV4wXagZWuNoTyQTQbUwqdPmDuzC5X5VJtB
-         Dt+MW3lXFJ+AA==
-Received: by mail-wr1-f71.google.com with SMTP id r16-20020adfbb10000000b00160958ed8acso5861057wrg.16
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 05:42:55 -0700 (PDT)
+        id S236006AbhJOMr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 08:47:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59176 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229741AbhJOMr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 08:47:29 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA62CC061570
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 05:45:22 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id m22so26486636wrb.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 05:45:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=H1fRj8KbyTC18M2qqUxC+yLQuVMOY9QK2Vkvq7KCP/Q=;
+        b=wQTgGjUNl5ZNWtCzfZgsJW5kL1LNboDm3JtJ9cH2cUjIi28Fz39i3VbuoVmmS+etat
+         3FWlClGElz2S5Yej3Pj6kzY0FXEMGGxRnCwmC93vCGkH8oVY5GTBVSuPpfj78ouJY2CN
+         hv1y4GWUyVPr76Vmv2ptef3zAL/aemZ5keucGkNa5AUyyLSpvhe/aoXaIZMJTX/0+oxW
+         vjkONNr2GE7TFjsuw1k2zzB2RaSyu+gNkHEmNK6UPEfhXvygEXsO3LUKgFBYiO1VApxV
+         eTpHM/blKl9Up381tU5yctffNmpFwekdfTtypoEzkQ9WsE5KA/EwXwfVRZ0vkLSB/82S
+         GVUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=n5foe9bmgDkFfFq3zSQcgI6TNmwb73rCwv2IOYhq6Zc=;
-        b=dQOQOJ6+Ice6Tvp8gBrq3drPLa8ozS/PFjL8xTAIL5Np32sLrWCGTFohh5S0zNUarh
-         5bZu5wXoED3xrXXUMWR81tnFJhnwr9hAufQVsgt9DN0pnLFNL3kz/tf3VU1fTy2fDXU8
-         5FB8ddoFBz6BowhYMspbPGxl9l8X7vQMAaCvtVxAjNeJw3Ckvi67SmtZt8IfzjPgq82W
-         ORvF402e+1FxG02azPAbvGyjkbBWjpIC2MNJ6wXph8saGNJeC9QWmVyhVKDGklzOOJwY
-         MCPT+PlFBnxhiVvGmRCs5vwTpXyTXVwFaw9VrWywdpdW0DtCV9W8X1NVEPTBQsKem4no
-         B4Lw==
-X-Gm-Message-State: AOAM5304KdWdpfP4d+gxOUUF+3ZEFOv+bkj/clFwrT+DHZanYS9boDb6
-        2FpM06N3XXgXKBbCAoS6NFLW+JwD5ch/7go+7i6fQ30IyYM8Jp3ZVif8OK1jaKNHtFbZXbriWuE
-        GfUAPVCKppHpOewJLZoePHDhplIGM5dEyw4cX9Dc=
-X-Received: by 2002:a7b:c114:: with SMTP id w20mr12049079wmi.143.1634301774933;
-        Fri, 15 Oct 2021 05:42:54 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyNVuMirSALcejYMmB27BxTdWSSxDP4ZYw9M5uBqnWOsxvVtvdVqqFUCaQrxhddccMSOHqJ7w==
-X-Received: by 2002:a7b:c114:: with SMTP id w20mr12049056wmi.143.1634301774736;
-        Fri, 15 Oct 2021 05:42:54 -0700 (PDT)
-Received: from [192.168.123.55] (ip-88-152-144-157.hsi03.unitymediagroup.de. [88.152.144.157])
-        by smtp.gmail.com with ESMTPSA id g188sm4869796wmg.46.2021.10.15.05.42.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Oct 2021 05:42:54 -0700 (PDT)
-Message-ID: <081176c0-5938-df1a-7828-d9ee1c270cbf@canonical.com>
-Date:   Fri, 15 Oct 2021 14:42:53 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=H1fRj8KbyTC18M2qqUxC+yLQuVMOY9QK2Vkvq7KCP/Q=;
+        b=KIxecd4vHsCTYZEsJX0vmBtOyjrHikJQVPszi0cWfYXRGHPkS/+8b4XKcAuwf7iDVs
+         b1IJetgia0ZVopAv+Us0h7ue3uCyY8NfzbYHgxho1EsN0tXOyg9qWC/HOEC/krd21kXO
+         xETmE38vzgzZpW9pGO76t74/vlSr4pZniLGLS2StdiqYqrTUE5Q8MVmSVARyut/JQVGA
+         v9UUDDa1GdSO1SuLiv6uC7DAzR7MkvCMas3KjUPs7aWWzMmVmoWtW1KzPhB3AK44Ksmz
+         9guqG7VSXAiEh4FP17dCoUYkSsTTU6Nm2GWuIjZIj8ucVuwphFrH06+SCIGvJgots0sU
+         153A==
+X-Gm-Message-State: AOAM533Vfoy1Sip8thl3RZYC/LsBB0yVpjIeOtwBFHWFo8RbzHQ+IyHh
+        BVP5+3BHYHzoNNjXGbPjZI3aQA==
+X-Google-Smtp-Source: ABdhPJxR+e4FClxsODFkAteKxROdwFc61kceh1QDU+2OORGy1s3RMcwDGYLNlbGhFmjyYlcrJpfBCA==
+X-Received: by 2002:adf:cd12:: with SMTP id w18mr4152785wrm.401.1634301921366;
+        Fri, 15 Oct 2021 05:45:21 -0700 (PDT)
+Received: from google.com ([95.148.6.175])
+        by smtp.gmail.com with ESMTPSA id e9sm4672725wme.37.2021.10.15.05.45.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Oct 2021 05:45:20 -0700 (PDT)
+Date:   Fri, 15 Oct 2021 13:45:18 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+Message-ID: <YWl33gCy1ac29WSs@google.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+ <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com>
+ <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+ <YWVD0RXHVLxuXEIN@google.com>
+ <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com>
+ <YWfSz00Rj5AVhkgT@google.com>
+ <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH 1/1] dt-bindings: reg-io-width for SiFive CLINT
-Content-Language: en-US
-To:     Jessica Clarke <jrtc27@jrtc27.com>
-Cc:     Bin Meng <bmeng.cn@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Guo Ren <guoren@linux.alibaba.com>, Xiang W <wxjstz@126.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        OpenSBI <opensbi@lists.infradead.org>
-References: <20211015100941.17621-1-heinrich.schuchardt@canonical.com>
- <CAEUhbmUSmi9mbiHpatBjGgRjrtyJPms9BRmyBPs5BWeVb7n1Nw@mail.gmail.com>
- <49af3dc8-0d1e-e82f-6df2-2bf8338acd3a@canonical.com>
- <D976B0F9-6AE4-4C04-8D52-75B24D6E4359@jrtc27.com>
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <D976B0F9-6AE4-4C04-8D52-75B24D6E4359@jrtc27.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/15/21 14:15, Jessica Clarke wrote:
-> On 15 Oct 2021, at 12:54, Heinrich Schuchardt <heinrich.schuchardt@canonical.com> wrote:
->>
->> On 10/15/21 12:14, Bin Meng wrote:
->>> On Fri, Oct 15, 2021 at 6:09 PM Heinrich Schuchardt
->>> <heinrich.schuchardt@canonical.com> wrote:
->>>>
->>>> The CLINT in the T-HEAD 9xx processors do not support 64bit mmio access to
->>>> the MTIMER device. The current schema does not allow to specify this.
->>>>
->>>> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
->>>> restriction. Samuael Holland suggested in
->>>> lib: utils/timer: Use standard property to specify 32-bit I/O
->>>> https://github.com/smaeul/opensbi/commit/b95e9cf7cf93b0af16fc89204378bc59ff30008e
->>>> to use "reg-io-width = <4>;" as the reg-io-width property is generally used
->>>> in the devicetree schema for such a condition.
->>>>
->>>> A release candidate of the ACLINT specification is available at
->>>> https://github.com/riscv/riscv-aclint/releases
->>>>
->>>> Add reg-io-width as optional property to the SiFive Core Local Interruptor.
->>>>
->>>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->>>> ---
->>>>   Documentation/devicetree/bindings/timer/sifive,clint.yaml | 7 +++++++
->>>>   1 file changed, 7 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>> index a35952f48742..266012d887b5 100644
->>>> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->>>> @@ -41,6 +41,13 @@ properties:
->>>>     reg:
->>>>       maxItems: 1
->>>>
->>>> +  reg-io-width:
->>>> +    description: |
->>>> +      Some CLINT implementations, e.g. on the T-HEAD 9xx, only support
->>>> +      32bit access for MTIMER.
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    const: 4
->>> But this is not a "sifive,clint" anyway. Should there be a new
->>> dt-bindings for T-Head clint variant?
->>
->> I assume by new dt-bindings variant you mean: Add a new compatible string in Documentation/devicetree/bindings/timer/sifive,clint.yaml.
->>
->> The vendor Debian image uses:
->> compatible = "{allwinner,sun20i-d1-clint", "sifive,clint0”};
-> 
-> I assume Bin means to stop calling it a sifive,clint0 and instead have
-> something like
-> 
->      "allwinner,sun20i-d1-clint", "thead,clint0"
-> 
-> as is being done for their non-conforming PLIC. It’s worth pointing out
-> that the same is true here; the SiFive CLINT supports 64-bit accesses
-> on RV64, so this is not compatible with a SiFive CLINT. Moreover, the
-> RISC-V spec was clearly written in a way that intended 64-bit accesses
-> to be supported for RV64, though was not completely explicit about
-> that, which has now been resolved (see
-> https://github.com/riscv/riscv-isa-manual/issues/639), so this CLINT
-> violates the obvious intent of the pre-1.12 privileged specs (see
-> Andrew’s message in the issue, which agrees with my reading).
-> 
-> Jess
-> 
+On Thu, 14 Oct 2021, Rob Herring wrote:
 
-This comment is referring to the discussion in
+> On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Wed, 13 Oct 2021, Geert Uytterhoeven wrote:
+> >
+> > > Hi Lee,
+> > >
+> > > On Tue, Oct 12, 2021 at 10:15 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > On Mon, 11 Oct 2021, Rob Herring wrote:
+> > > > > On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
+> > > > > >
+> > > > > > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > >
+> > > > > > > Add bindings for Unisoc system global register which provide register map
+> > > > > > > for clocks.
+> > > > > > >
+> > > > > > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > > ---
+> > > > > > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+> > > > > > >  1 file changed, 68 insertions(+)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> > > > > >
+> > > > > > Unapplied v3 and applied this (v4) instead, thanks.
+> > > > >
+> > > > > What about the clock binding this depends on:
+> > > > >
+> > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > xargs: dt-doc-validate: exited with status 255; aborting
+> > > > > make[1]: *** Deleting file
+> > > > > 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > make[1]: *** [scripts/Makefile.lib:385:
+> > > > > Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
+> > > > > Error 255
+> > > > >
+> > > > >
+> > > > > Once again, all the components of MFD bindings need to be applied together.
+> > >
+> > > Just ran into this, too...
+> > >
+> > > > I can't apply what is not sent to me.
+> > > >
+> > > > This patch came in on its own.
+> > >
+> > > Then please reject/postpone patches that don't build (yet) ;-)
+> >
+> > I don't explicitly build DT documentation.
+> >
+> > Since I use the build bots to let me know if there are strange !(C,
+> > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > configuration possibilities (randconfig) in the repos I maintain, you
+> > might have to convince them that this is important too.
+> 
+> It's really just a matter of turning on the build in
+> allyesconfig/allmodconfig builds. I've not done that primarily because
+> there's one person I don't want to yell at me, but I could probably
+> make it arm and/or arm64 only. It's really arch and config
+> independent, so doing it multiple times is kind of pointless.
+> 
+> I assume for bots you mean kernel-ci mainly? Do you run that before
+> stuff gets into linux-next? IMO, that's too late. But still a slight
+> improvement if things go in via one tree. Otherwise, I see the
+> breakage twice, 1st linux-next then the merge window.
 
-https://lore.kernel.org/lkml/693a609c-4278-84ab-8a9b-448936bb13d0@sholland.org/
+Kernel test robot <lkp@intel.com> is the one that springs to mind.
 
+Although, I'm sure there are other, less prolific implementations.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
