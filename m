@@ -2,152 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D0FB42F40B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16A542F41F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236108AbhJONqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 09:46:04 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39802
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233654AbhJONqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 09:46:03 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 423F84001A
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 13:43:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634305436;
-        bh=eEc0Vi/iayffTVpVwLxFg1C5akct/CAQN7k1AuOgZVk=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=mYxgOPN5Jb1TUhAxbERSP6oDQkg7DCQNK8eFutEd5A20s2mxFGybFNL+foQd1WRpG
-         ZxaqsIrJ4T2/uNSLlE7x+VPfqv6PMJtFujJyThFfRwUKGLx46/KB1/lzKKKteR1Ban
-         fSIrwVAkj09TyzqyOaOm5IbQ+1sEFc7IXLpaMFSys5AEJx0Tw43kTKAuM6jHgfox+K
-         rhLBTjx1GycliuZg+ol0ifw31Ln3IapsrFgbLyyUZHq6P33QnExUczT8WadfsLB/ay
-         VntUX7yQTQiN8P6+ASCPK2gpPgKnK6TSawYMOZduT0eNCfQb3/TooFbh4uMdFsbqa4
-         6cHROuIcSZLcw==
-Received: by mail-lf1-f71.google.com with SMTP id b29-20020a0565120b9d00b003fdc9b2546dso1711844lfv.14
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 06:43:56 -0700 (PDT)
+        id S239762AbhJONsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 09:48:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240061AbhJONsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:48:18 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C54C061570;
+        Fri, 15 Oct 2021 06:46:12 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id d131so22962428ybd.5;
+        Fri, 15 Oct 2021 06:46:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=UMmMwoh0d9xOMBuf6Cb27qJgX9NIbwQbOxUehDVoXW4=;
+        b=mSDy6QRxK1GWCZFRze2z/WPjTfj8t295fUbQbf1kfgfC1DUUqn1r6OUB82lPqEziqO
+         aPvbyCh7Fdmn7+U2T9aXBbvBtchCJWUvjWlTV+h4GFPiyaj9eOjPDeaevyfDx+XswY9O
+         qlsP/N0k3ISA1BsIf11JnASBHQ+NVZOu6UIordsImPMmoVJ2eY/Mu64O44OsXQNgP3Uu
+         GAwVOrPFCVDcaz9D9GLZ36hsUqoxlc4cNtH0hVd6r/OJGWnboEInE6zKcQGGMklOLgBs
+         5qXHsjF3iMMJ/cwwo/tgbfTSCYNdGAYh4RpqZn+X97Ho5avE4EmgJ0pgCpZvhtcZcV2d
+         nePg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eEc0Vi/iayffTVpVwLxFg1C5akct/CAQN7k1AuOgZVk=;
-        b=c2ITiC4to+5OLPxLxVgHNkwi0Q1ZuLaVKCMupdrO2x4AUNB5nDq4I8ywHqiwJ38s4w
-         sod83mi2AaRpAmWTHihhWAAjC+pToMlCwS7qv4D4e70s1XFsmN0Q664tgS40dRbGRhoC
-         PiuGaeNkXCoh2vW9ojTsCBFt3n1nBmLCYJ23Vvs+FKivaxEnWmFIOreqF08VIQppsKQX
-         cxkQdWVGpOLL7PGuIdaLB+AolgbHR4/jUOMMFQljdKB3xeEVkeZrmu68mU65dm1OpZxl
-         h0/wSfLQPievnyTX/qj3I6Jt4RjAWnxF0umhRxKBiqV4UVz+/S/5KXZ2sbt0ppuWzUcP
-         ErlA==
-X-Gm-Message-State: AOAM531AgKG5pcIqu1KbDFs6UB7UucYKbpaSiKdQASHyNW/ICAGT4fV/
-        iMhS7P4qvA4gaistep9R1JOD9dYKs4TSWhHHgTBYloWVZL8mW0G5b1ofWkQAS/ivMkfDqMe6eLl
-        1zZKFHAV9yvy/FeFI5qQ/HAWS4juZnZe0apyH3Y0=
-X-Received: by 2002:a05:6512:308b:: with SMTP id z11mr11244746lfd.330.1634305435632;
-        Fri, 15 Oct 2021 06:43:55 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzZ+/w4Io+W6PbEi76wSIW7Mdthem4+NCuHObjSgdwIOXIeUa8NDjlAeavafuyp7tD/WUbVmQ==
-X-Received: by 2002:a05:6512:308b:: with SMTP id z11mr11244728lfd.330.1634305435410;
-        Fri, 15 Oct 2021 06:43:55 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id bd19sm557333ljb.28.2021.10.15.06.43.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Oct 2021 06:43:54 -0700 (PDT)
-Subject: Re: [PATCH v4 03/13] memory: mtk-smi: Use clk_bulk clock ops
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
-        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
-        Ikjoon Jang <ikjn@chromium.org>
-References: <20210914113703.31466-1-yong.wu@mediatek.com>
- <20210914113703.31466-4-yong.wu@mediatek.com>
- <e466b3fb-d9fe-bb20-23c2-f9766a35f120@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <ab5c6dd1-7eed-4515-8781-c79e5317d038@canonical.com>
-Date:   Fri, 15 Oct 2021 15:43:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=UMmMwoh0d9xOMBuf6Cb27qJgX9NIbwQbOxUehDVoXW4=;
+        b=eBJPyCGVWkZGfifc5wHHIToj7DoSL/rL9ioa3cQhaMR4BAfgcwI7gdgDGjV/HIE3Av
+         Q54F18oddvVi0Hvf7e4tyIx17cv8u6gzFwD8ZRqp9+jLTmN3s4/46omDGXDnpTuy3+8g
+         SWi+5LKHRNoA/yvoBl8YWGlNpVRC5WBKsnsn3oJvVO72nEQ/DApqCgQD1SXonkeFWeVI
+         uXx91/fdpdREhgnpxzhUCQc3qCTSSdfYrPIm5109N+0J1xXCKIRTyznb4D5wP1Q+3PBo
+         DwGHF59woVZHfajBEX9TElJJpVrnArE6ay1B0qMJttJfMtAhvTiwGCtO2YE3rxNY1WBs
+         8Y2w==
+X-Gm-Message-State: AOAM531WF2WNJwUV0gNIu+66EiA8ZcRNamvLAyjyp/12nZZf+N00BZf/
+        HJaOyN+nG91e50RCFBeHGzYN8viPIlPjISxkE7o=
+X-Google-Smtp-Source: ABdhPJwfK40oo9nWMVG1fm09vk4sNWiVNDk0gjrfy78SzbWYqPeXgWz5q5WvAASkenwS0WeJTbIxH9crZgrqZMEVb7k=
+X-Received: by 2002:a25:3843:: with SMTP id f64mr12590756yba.313.1634305571737;
+ Fri, 15 Oct 2021 06:46:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <e466b3fb-d9fe-bb20-23c2-f9766a35f120@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211015100941.17621-1-heinrich.schuchardt@canonical.com>
+ <CAEUhbmUSmi9mbiHpatBjGgRjrtyJPms9BRmyBPs5BWeVb7n1Nw@mail.gmail.com>
+ <49af3dc8-0d1e-e82f-6df2-2bf8338acd3a@canonical.com> <D976B0F9-6AE4-4C04-8D52-75B24D6E4359@jrtc27.com>
+In-Reply-To: <D976B0F9-6AE4-4C04-8D52-75B24D6E4359@jrtc27.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Fri, 15 Oct 2021 21:46:01 +0800
+Message-ID: <CAEUhbmWFAJpVxproxX-iH3Tj7jHGqu_SwN6-tGuxqi7NXVhOhA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] dt-bindings: reg-io-width for SiFive CLINT
+To:     Jessica Clarke <jrtc27@jrtc27.com>
+Cc:     Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Guo Ren <guoren@linux.alibaba.com>, Xiang W <wxjstz@126.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        OpenSBI <opensbi@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2021 15:38, AngeloGioacchino Del Regno wrote:
->> Use clk_bulk interface instead of the orginal one to simplify the code.
->>
->> For SMI larbs: Require apb/smi clocks while gals is optional.
->> For SMI common: Require apb/smi/gals0/gal1 in has_gals case. Otherwise,
->>                  also only require apb/smi, No optional clk here.
->>
->> About the "has_gals" flag, for smi larbs, the gals clock also may be
->> optional even this platform support it. thus it always use
->> *_bulk_get_optional, then the flag has_gals is unnecessary. Remove it.
->> The smi_common's has_gals still keep it.
->>
->> Also remove clk fail logs since bulk interface already output fail log.
->>
->> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> 
-> Hello Yong,
-> thanks for the patch! However, I have an improvement to point out:
-> 
->> ---
->>   drivers/memory/mtk-smi.c | 143 +++++++++++++++------------------------
->>   1 file changed, 55 insertions(+), 88 deletions(-)
->>
->> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
->> index c5fb51f73b34..f91eaf5c3ab0 100644
->> --- a/drivers/memory/mtk-smi.c
->> +++ b/drivers/memory/mtk-smi.c
->> @@ -60,6 +60,20 @@ enum mtk_smi_gen {
->>   	MTK_SMI_GEN2
->>   };
->>   
->> +#define MTK_SMI_CLK_NR_MAX			4
-> 
-> This refers to mtk_smi_common_clks[] and should be probably moved after that.
-> In any case, I don't think that there's any need to manually define this as 4,
-> as you can simply use the macro ARRAY_SIZE(mtk_smi_common_clks).
-> Using that will make you able to not update this definition everytime an update
-> occurs to the mtk_smi_common_clks array.
-> 
->> +
->> +/* larbs: Require apb/smi clocks while gals is optional. */
->> +static const char * const mtk_smi_larb_clks[] = {"apb", "smi", "gals"};
->> +#define MTK_SMI_LARB_REQ_CLK_NR		2
->> +#define MTK_SMI_LARB_OPT_CLK_NR		1
->> +
->> +/*
->> + * common: Require these four clocks in has_gals case. Otherwise, only apb/smi are required.
->> + */
->> +static const char * const mtk_smi_common_clks[] = {"apb", "smi", "gals0", "gals1"};
->> +#define MTK_SMI_COM_REQ_CLK_NR		2
->> +#define MTK_SMI_COM_GALS_REQ_CLK_NR	MTK_SMI_CLK_NR_MAX
->> +
-> 
-> Apart from that,
-> Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Fri, Oct 15, 2021 at 8:15 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
+>
+> On 15 Oct 2021, at 12:54, Heinrich Schuchardt <heinrich.schuchardt@canoni=
+cal.com> wrote:
+> >
+> > On 10/15/21 12:14, Bin Meng wrote:
+> >> On Fri, Oct 15, 2021 at 6:09 PM Heinrich Schuchardt
+> >> <heinrich.schuchardt@canonical.com> wrote:
+> >>>
+> >>> The CLINT in the T-HEAD 9xx processors do not support 64bit mmio acce=
+ss to
+> >>> the MTIMER device. The current schema does not allow to specify this.
+> >>>
+> >>> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indica=
+te the
+> >>> restriction. Samuael Holland suggested in
+> >>> lib: utils/timer: Use standard property to specify 32-bit I/O
+> >>> https://github.com/smaeul/opensbi/commit/b95e9cf7cf93b0af16fc89204378=
+bc59ff30008e
+> >>> to use "reg-io-width =3D <4>;" as the reg-io-width property is genera=
+lly used
+> >>> in the devicetree schema for such a condition.
+> >>>
+> >>> A release candidate of the ACLINT specification is available at
+> >>> https://github.com/riscv/riscv-aclint/releases
+> >>>
+> >>> Add reg-io-width as optional property to the SiFive Core Local Interr=
+uptor.
+> >>>
+> >>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com=
+>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 7 ++++++=
++
+> >>>  1 file changed, 7 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yam=
+l b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> >>> index a35952f48742..266012d887b5 100644
+> >>> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> >>> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> >>> @@ -41,6 +41,13 @@ properties:
+> >>>    reg:
+> >>>      maxItems: 1
+> >>>
+> >>> +  reg-io-width:
+> >>> +    description: |
+> >>> +      Some CLINT implementations, e.g. on the T-HEAD 9xx, only suppo=
+rt
+> >>> +      32bit access for MTIMER.
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    const: 4
+> >> But this is not a "sifive,clint" anyway. Should there be a new
+> >> dt-bindings for T-Head clint variant?
+> >
+> > I assume by new dt-bindings variant you mean: Add a new compatible stri=
+ng in Documentation/devicetree/bindings/timer/sifive,clint.yaml.
+> >
+> > The vendor Debian image uses:
+> > compatible =3D "{allwinner,sun20i-d1-clint", "sifive,clint0=E2=80=9D};
+>
+> I assume Bin means to stop calling it a sifive,clint0 and instead have
+> something like
+>
+>     "allwinner,sun20i-d1-clint", "thead,clint0"
 
-The patchset was merged around a month ago:
-https://lore.kernel.org/lkml/163229303729.7874.4095337797772755570.b4-ty@canonical.com/
+Yep, that's what I wanted to see. Sorry for not being clear. The
+T-Head CLINT is definitely not compatible with "sifive,clint0".
 
+> as is being done for their non-conforming PLIC. It=E2=80=99s worth pointi=
+ng out
+> that the same is true here; the SiFive CLINT supports 64-bit accesses
+> on RV64, so this is not compatible with a SiFive CLINT. Moreover, the
+> RISC-V spec was clearly written in a way that intended 64-bit accesses
+> to be supported for RV64, though was not completely explicit about
+> that, which has now been resolved (see
+> https://github.com/riscv/riscv-isa-manual/issues/639), so this CLINT
+> violates the obvious intent of the pre-1.12 privileged specs (see
+> Andrew=E2=80=99s message in the issue, which agrees with my reading).
 
-Best regards,
-Krzysztof
+Regards,
+Bin
