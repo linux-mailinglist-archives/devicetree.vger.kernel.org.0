@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8353242F448
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:53:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B1D42F493
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240108AbhJONzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 09:55:10 -0400
-Received: from mail-oo1-f53.google.com ([209.85.161.53]:45907 "EHLO
-        mail-oo1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240100AbhJONzJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:55:09 -0400
-Received: by mail-oo1-f53.google.com with SMTP id o26-20020a4abe9a000000b002b74bffdef0so1533665oop.12;
-        Fri, 15 Oct 2021 06:53:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=MBfM52TAP9lKL/6Gl7yI25EmsGYtvq4gyePCT2agpMQ=;
-        b=imido5kugJ0xTYU5vsbVoxQZRNxaK19nf9nAD3iLFq589wD9sRLkKl0xHO1afwW1Jm
-         Zm+RUvaiXkBRIkhrEQFDfR6GHNU+jbIyiiPj8dnsPIId495OM02iJ2/xor100JmiqWyx
-         s5VzoLNq7QL1mr2uPMTCXwAC+qlpmTbKBjGYTw76Suzq9pd1Z6cwkyHXsqr9e+bGgyxy
-         XmaQkWIlCs9rNT9KPi4dN7mx72ZmuIwn2VsDwI8WcYQ+7/jUyI9IWb2kvufROCrOaw0o
-         z5O4pyJjavupjJBJrkHxWPWQct7pgACLNhQ849eyHxmtyIgP+odEqXc6xIRx78UrsKf8
-         SxGA==
-X-Gm-Message-State: AOAM530pBAM+6XuGVBmZTWxAJniic10xPG3BxcGxSoCXdGI7m5HVVs1K
-        IyfiXE6bBn0hn/Vol7Kryg==
-X-Google-Smtp-Source: ABdhPJyHrcyH0IYdVYc3VAEsZQLEvwixo7nzXLImwa/q6EvuSp4NIVJTAezX3k//hM3MoQaf/pvxbg==
-X-Received: by 2002:a4a:6514:: with SMTP id y20mr9198844ooc.9.1634305982613;
-        Fri, 15 Oct 2021 06:53:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l25sm1005679oot.36.2021.10.15.06.53.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 06:53:01 -0700 (PDT)
-Received: (nullmailer pid 1429890 invoked by uid 1000);
-        Fri, 15 Oct 2021 13:53:00 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
+        id S240204AbhJOOBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 10:01:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55172 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239577AbhJOOBh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 10:01:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4CA1161090;
+        Fri, 15 Oct 2021 13:59:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634306371;
+        bh=tHCAgydHYCdUAD+HzPMssFmmvgjn4jyjNVTgtu+4eEw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=k42TqYhkmGmaE+EtfizqtlY/kh6oTSZCb5+sO8CXY8k/W0acjH9ZmUU7LnG2vj0hV
+         2RCoYDTUjzKMoP5b9rq9bsVAaJuswXgYZnm7V+xnWuGgYYb5hHg8VaQnN5ILzp2peG
+         ZEIkd7+AvL881MhjotOmjJfyspnDBx64fMJcfjTBByJmktQoPaqjhzOyt4mBM8RyFb
+         UMHMNexoPIOuP64CqEb6HwV/yOuzRVoN0bJ8h1yO/PHAGcgx1CVXOH/TC/vbQkyqCQ
+         cse0xOpVS5ZYtS4xq4/aizSC1QWr1HkrF8Chz34DZ7KEcqqee/7f4LPxggRxRaJzLg
+         XFjbAQBw3sznA==
+Received: by mail-ed1-f43.google.com with SMTP id w19so38393075edd.2;
+        Fri, 15 Oct 2021 06:59:31 -0700 (PDT)
+X-Gm-Message-State: AOAM532dExKFDVwsp/3cjfxyaayrioyPJpsNotz/ybO2um61epO+X8ld
+        SRfNA/QOprvvsaFsrKZzvIrYVnPnhwbTsltUbQ==
+X-Google-Smtp-Source: ABdhPJz5gjHqCTPm3hhHQQda5+tmnHnI+OJ0yzrp124Rt8HUd7Oj79eh0WY1zgZ3TL2WJ+4/wDNCJHf38OPe5F3Fc2M=
+X-Received: by 2002:a05:6402:1778:: with SMTP id da24mr17737518edb.318.1634306350756;
+ Fri, 15 Oct 2021 06:59:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com> <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+ <YWVD0RXHVLxuXEIN@google.com> <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com>
+ <YWfSz00Rj5AVhkgT@google.com> <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+ <163425256290.1688384.5646232860050218479@swboyd.mtv.corp.google.com>
+In-Reply-To: <163425256290.1688384.5646232860050218479@swboyd.mtv.corp.google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 15 Oct 2021 08:58:57 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJV_CoPH7VrX-D5=u2WsoUpp-pTKbcR2y+gWxhv+WKcEg@mail.gmail.com>
+Message-ID: <CAL_JsqJV_CoPH7VrX-D5=u2WsoUpp-pTKbcR2y+gWxhv+WKcEg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org
-In-Reply-To: <20211015072830.8580-1-maxime@cerno.tech>
-References: <20211015072830.8580-1-maxime@cerno.tech>
-Subject: Re: [PATCH v3] dt-bindings: media: Convert OV5640 binding to a schema
-Date:   Fri, 15 Oct 2021 08:53:00 -0500
-Message-Id: <1634305980.862848.1429889.nullmailer@robh.at.kernel.org>
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 09:28:30 +0200, Maxime Ripard wrote:
-> The Omnivision OV5640 is supported by Linux thanks to its device tree
-> binding.
-> 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
-> 
-> Cc: linux-media@vger.kernel.org
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Steve Longerbeam <slongerbeam@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
-> ---
-> 
-> Changes from v2:
->   - Fix whitespace error
->   - Changed schema referenced for the port validation
-> ---
->  .../devicetree/bindings/media/i2c/ov5640.txt  |  92 -----------
->  .../bindings/media/i2c/ovti,ov5640.yaml       | 154 ++++++++++++++++++
->  2 files changed, 154 insertions(+), 92 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> 
+On Thu, Oct 14, 2021 at 6:02 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Rob Herring (2021-10-14 09:18:16)
+> > On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > >
+> > > I don't explicitly build DT documentation.
+> > >
+> > > Since I use the build bots to let me know if there are strange !(C,
+> > > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > > configuration possibilities (randconfig) in the repos I maintain, you
+> > > might have to convince them that this is important too.
+> >
+> > It's really just a matter of turning on the build in
+> > allyesconfig/allmodconfig builds. I've not done that primarily because
+> > there's one person I don't want to yell at me, but I could probably
+> > make it arm and/or arm64 only. It's really arch and config
+> > independent, so doing it multiple times is kind of pointless.
+> >
+> > I assume for bots you mean kernel-ci mainly? Do you run that before
+> > stuff gets into linux-next? IMO, that's too late. But still a slight
+> > improvement if things go in via one tree. Otherwise, I see the
+> > breakage twice, 1st linux-next then the merge window.
+> >
+>
+> I run `make dt_binding_check DT_SCHEMA_FILES="<path to yaml file>"` but
+> nowadays this seems to check all the bindings and not just the one
+> binding I care to check. Did something break?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+It should apply all the schemas to the example in DT_SCHEMA_FILES.
+Originally, it only applied DT_SCHEMA_FILES schema to the example in
+DT_SCHEMA_FILES.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'AVDD-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'DVDD-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/ti,cal.example.dt.yaml: camera-sensor@3c: 'DOVDD-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1541399
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
