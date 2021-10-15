@@ -2,61 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09DEC42F425
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C1842F42A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240013AbhJONtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 09:49:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49602 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236384AbhJONtL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 09:49:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7E703600D4;
-        Fri, 15 Oct 2021 13:47:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634305624;
-        bh=/Mbkfa1+NWegcrBQ2TkZ79kV27LgRGCLcWrVVKv5bso=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=nFTGJ9ZoXcJf1EMxema9sKSnQ885ZjmovVsTDv7tZ14EqNpCbEkJMEgAJCSjLTdLJ
-         4XipYSuidch6U2ZFN2nyfVLs0UYmWMyAuzmgJuHypwT3VHaPpdLMZNCCxZZBjwj/3S
-         7Mv1mUFkyC7kQYmeb/HWfLNz2davT3oYGPFEDKxqq6HmyRDPa33Tvz7VKkv9zD6YrS
-         1b4XD29rPBJSXNO3/9nvgzVjYbiYB0BsY6xwp6w8AGGVssqc8DbkygbpG4z3mAlmnV
-         9dqzrCjox0hdfjn0Le1hQorrHmFWi1jcXl8/1AGiYHAhEwdAlcOkgJyj0Yw64T5A2U
-         TdMoBSeRJ5DcA==
-Subject: Re: [PATCH v3 4/5] dt-bindings: clock: Document Exynos850 CMU
- bindings
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Ryu Euiyoul <ryu.real@samsung.com>, Tom Gall <tom.gall@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20211008154352.19519-1-semen.protsenko@linaro.org>
- <20211008154352.19519-5-semen.protsenko@linaro.org>
- <7049b3a9-dc8f-2ae9-01e6-eb3b6f461400@kernel.org>
- <CGME20211011101326eucas1p17e6deeaa2449bf3f0d6306fb930cce17@eucas1p1.samsung.com>
- <CAPLW+4kJK=kaiCLDXX1EGLhbKJo5pcHQY9QCj0SVyGQP1n7q0g@mail.gmail.com>
- <ef781890-76ca-3392-9a17-3856fa1834cf@samsung.com>
- <CAPLW+4mXMLadAi6U3GiXqRHAGnLH79rZeK6w=EcbOccjqH4N9w@mail.gmail.com>
-From:   Sylwester Nawrocki <snawrocki@kernel.org>
-Message-ID: <bfe13b9f-fcb5-18a5-c14f-6efa0f61909f@kernel.org>
-Date:   Fri, 15 Oct 2021 15:46:59 +0200
+        id S239979AbhJONti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 09:49:38 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:34886 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239990AbhJONth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:49:37 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 869101F4536F
+Subject: Re: [PATCH v4 03/13] memory: mtk-smi: Use clk_bulk clock ops
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
+        Ikjoon Jang <ikjn@chromium.org>
+References: <20210914113703.31466-1-yong.wu@mediatek.com>
+ <20210914113703.31466-4-yong.wu@mediatek.com>
+ <e466b3fb-d9fe-bb20-23c2-f9766a35f120@collabora.com>
+ <ab5c6dd1-7eed-4515-8781-c79e5317d038@canonical.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <e433d19a-8bb8-8ef5-fce8-4b3535f5bc3e@collabora.com>
+Date:   Fri, 15 Oct 2021 15:47:24 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAPLW+4mXMLadAi6U3GiXqRHAGnLH79rZeK6w=EcbOccjqH4N9w@mail.gmail.com>
+In-Reply-To: <ab5c6dd1-7eed-4515-8781-c79e5317d038@canonical.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -64,58 +49,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.10.2021 10:13, Sam Protsenko wrote:
-> On Mon, 11 Oct 2021 at 13:42, Sylwester Nawrocki<s.nawrocki@samsung.com>  wrote:
->> On 11.10.2021 12:13, Sam Protsenko wrote:
->>> On Sat, 9 Oct 2021 at 23:41, Sylwester Nawrocki<snawrocki@kernel.org>  wrote:
->>>> On 08.10.2021 17:43, Sam Protsenko wrote:
->>>>> Provide dt-schema documentation for Exynos850 SoC clock controller.
->>>>>
->>>>> Signed-off-by: Sam Protsenko<semen.protsenko@linaro.org>
->>>>> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
->>>>> Acked-by: Chanwoo Choi<cw00.choi@samsung.com>
->> [...]
->>>>> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
->>>>> @@ -0,0 +1,185 @@
->> [...]
->>>>> +
->>>>> +title: Samsung Exynos850 SoC clock controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Sam Protsenko<semen.protsenko@linaro.org>
->>>>> +  - Chanwoo Choi<cw00.choi@samsung.com>
->>>>> +  - Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
->>>>> +  - Sylwester Nawrocki<s.nawrocki@samsung.com>
->>>>> +  - Tomasz Figa<tomasz.figa@gmail.com>
->>>>> +
->>>>> +description: |
->>>>> +  Exynos850 clock controller is comprised of several CMU units, generating
->>>>> +  clocks for different domains. Those CMU units are modeled as separate device
->>>>> +  tree nodes, and might depend on each other. Root clocks in that clock tree are
->>>>> +  two external clocks:: OSCCLK (26 MHz) and RTCCLK (32768 Hz). Those external
->>>>> +  clocks must be defined as fixed-rate clocks in dts.
->>>>> +
->>>>> +  CMU_TOP is a top-level CMU, where all base clocks are prepared using PLLs and
->>>>> +  dividers; all other leaf clocks (other CMUs) are usually derived from CMU_TOP.
->>>>> +
->>>>> +  Each clock is assigned an identifier and client nodes can use this identifier
->>>>> +  to specify the clock which they consume. All clocks that available for usage
-
->>>> s/All clocks that available/All clocks available ?
->>>> No need to resend, I can amend it when applying.
->>>>
->>> Yeah, not a native speaker, I tend to do such mistakes sometimes:)
->>> Please fix when applying.
+Il 15/10/21 15:43, Krzysztof Kozlowski ha scritto:
+> On 15/10/2021 15:38, AngeloGioacchino Del Regno wrote:
+>>> Use clk_bulk interface instead of the orginal one to simplify the code.
 >>>
->>> Btw, I can see that you already applied 3 out of 5 patches from this
->>> patch series here: [1]. Can you please also apply the rest, or is
->>> there any outstanding comments that I missed?
->> The patches look good to me, I just wanted to allow some for Rob to have
->> a look and provide an Ack.
+>>> For SMI larbs: Require apb/smi clocks while gals is optional.
+>>> For SMI common: Require apb/smi/gals0/gal1 in has_gals case. Otherwise,
+>>>                   also only require apb/smi, No optional clk here.
+>>>
+>>> About the "has_gals" flag, for smi larbs, the gals clock also may be
+>>> optional even this platform support it. thus it always use
+>>> *_bulk_get_optional, then the flag has_gals is unnecessary. Remove it.
+>>> The smi_common's has_gals still keep it.
+>>>
+>>> Also remove clk fail logs since bulk interface already output fail log.
+>>>
+>>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 >>
-> Can you please review this one?
+>> Hello Yong,
+>> thanks for the patch! However, I have an improvement to point out:
+>>
+>>> ---
+>>>    drivers/memory/mtk-smi.c | 143 +++++++++++++++------------------------
+>>>    1 file changed, 55 insertions(+), 88 deletions(-)
+>>>
+>>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>>> index c5fb51f73b34..f91eaf5c3ab0 100644
+>>> --- a/drivers/memory/mtk-smi.c
+>>> +++ b/drivers/memory/mtk-smi.c
+>>> @@ -60,6 +60,20 @@ enum mtk_smi_gen {
+>>>    	MTK_SMI_GEN2
+>>>    };
+>>>    
+>>> +#define MTK_SMI_CLK_NR_MAX			4
+>>
+>> This refers to mtk_smi_common_clks[] and should be probably moved after that.
+>> In any case, I don't think that there's any need to manually define this as 4,
+>> as you can simply use the macro ARRAY_SIZE(mtk_smi_common_clks).
+>> Using that will make you able to not update this definition everytime an update
+>> occurs to the mtk_smi_common_clks array.
+>>
+>>> +
+>>> +/* larbs: Require apb/smi clocks while gals is optional. */
+>>> +static const char * const mtk_smi_larb_clks[] = {"apb", "smi", "gals"};
+>>> +#define MTK_SMI_LARB_REQ_CLK_NR		2
+>>> +#define MTK_SMI_LARB_OPT_CLK_NR		1
+>>> +
+>>> +/*
+>>> + * common: Require these four clocks in has_gals case. Otherwise, only apb/smi are required.
+>>> + */
+>>> +static const char * const mtk_smi_common_clks[] = {"apb", "smi", "gals0", "gals1"};
+>>> +#define MTK_SMI_COM_REQ_CLK_NR		2
+>>> +#define MTK_SMI_COM_GALS_REQ_CLK_NR	MTK_SMI_CLK_NR_MAX
+>>> +
+>>
+>> Apart from that,
+>> Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> The patchset was merged around a month ago:
+> https://lore.kernel.org/lkml/163229303729.7874.4095337797772755570.b4-ty@canonical.com/
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-The binding is rather straightforward so I applied the patch now, thank you.
+Whoops. Sorry for that.
+I'll send a patch to address what I pointed out, unless the original author of
+this series wants to.
 
-
-
+Thanks,
+- Angelo
