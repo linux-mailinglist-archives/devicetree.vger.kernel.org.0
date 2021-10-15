@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0791142F9CA
+	by mail.lfdr.de (Postfix) with ESMTP id E04C842F9CD
 	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 19:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242043AbhJORND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 13:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
+        id S242057AbhJORNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 13:13:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242030AbhJORNB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 13:13:01 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 685FEC061764
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:10:54 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id i20so39855711edj.10
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:10:54 -0700 (PDT)
+        with ESMTP id S242048AbhJORNF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 13:13:05 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A709C061764
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:10:58 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id z20so40849448edc.13
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 10:10:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pqrs.dk; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Y+uiI0XbR/7xdV14eyZysVN8LLzardz+mHxuh0DPQJU=;
-        b=SsxjFbla/VgWJfe74PWF+zjnqLXs90gduBqvp/Zh8nbkgFqe6GjAyabk1SCLN7PdLG
-         ptUTt4IO52V/mcxvXA/2qFT6ZS7zfp2byTLhzGdLQJuv1w4IOQj2pZ/XEVUk6ogeaUzI
-         35co7L+4HxTc6ww67OtmZwnE2zd305toy5p48=
+        bh=cZtlYEaBOOOUDak05RsEGLYYUfgqdd0jrw6IwnOtniE=;
+        b=hl6C0N8YszS3Hc91yBf0OJ5BNoTznZVly52qPiFIgmpDuPFe/QkTwv8FACn4i3AFUM
+         0nfrsUE/3To7+RXVOkyVt7EFB5F0yY6GNMjXsf6O+5XGvZDlK6e2wvNUzkKG+vNkoEFG
+         7s6usQpw3lOpyoEQZKUIb+8gZfmorKjQljCDk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Y+uiI0XbR/7xdV14eyZysVN8LLzardz+mHxuh0DPQJU=;
-        b=i1V3LqelXvt0ezDlsrSHiRF0md3B69Z0rKRRWkGR0WF7aobplaa72EvqgZw43w9Hw2
-         yETM8l7K1NB2zvhweF8IrXuX0pUokIf2h+AGE6tpKAFrVGxf/n2RIk8SwvZ6u+zHilhj
-         rYBP1evBe4QCuQv7cavME34me9s9EmUDqPwjwu1b6K26ayGWH9Wsz7sDSpn7V9yefJgn
-         yFb2VblMzUWDBPnj/UF04F5d4PUW2JU1YmFEMOTjucHorY0nVTRe+QnNLnIc7PBEWtaC
-         Xdh/wMkR6+o1kgAG36BZ0DCCiVBFPtNAHk34tL0CMdRtwdjY2srtlim4z2sAfcgRVqYw
-         Oymg==
-X-Gm-Message-State: AOAM531ea44qw5mwlNqe7FVVUB9UEVBtkll4cej8epgPnz0xv+QivFb1
-        UhahGwokjKs6DCB9iw6DkJrRug==
-X-Google-Smtp-Source: ABdhPJzhl/qp/eTpqnJVmEh+La6DgXIBWI/Nxh0V9DSh0Xem4p8hVH8oNPWmkkPZI+JZ/eib3xcNVQ==
-X-Received: by 2002:a17:906:c2ca:: with SMTP id ch10mr8493842ejb.311.1634317852987;
-        Fri, 15 Oct 2021 10:10:52 -0700 (PDT)
+        bh=cZtlYEaBOOOUDak05RsEGLYYUfgqdd0jrw6IwnOtniE=;
+        b=5qlbfEQFeSumSsAmVjARRPNAWNCbpdML6opbLwfjKpbysgZeleCKLkiIKc5BGLfjoQ
+         yZC4fseEaOxpfFmTchVFdY447dep9lHpBJugqSbiv/GGOUKbVT8hJgmxaUvubvrYdMfH
+         4lofsXWyW9H1sEmnjhD/EAoeUH6KA4z0oiGGTjtRMunCMMl6Tdy+czeQxOjpw6MelrTB
+         3K2y5tBG0Xq7ZW+UC3ch1OY11wdjwQGdSBpWzH5DNBEIP1eSMcXAPVosXx0o+F2tLSKk
+         gBq5N9yo1ErwtZwRoaLwqQp2oi/rlO77SWDGBhHdUs6BV6yAcVDorbMpj2YkOxDkTq5i
+         F12g==
+X-Gm-Message-State: AOAM53117jo4024a10CL9yv4FM900H99usBS2Cis/P61k2Ir+Rms+LnL
+        xAMWTLBKU1GwBbs7MBGAmQP/zQ==
+X-Google-Smtp-Source: ABdhPJzArYM/aKr535DLyKoBHED/s+pYPPYoLwSS4L9tS0dqnJWACQTUdRtFKfQWRwF3N6X0TiSmeA==
+X-Received: by 2002:a17:906:4e4a:: with SMTP id g10mr8078353ejw.524.1634317856780;
+        Fri, 15 Oct 2021 10:10:56 -0700 (PDT)
 Received: from capella.. (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
-        by smtp.gmail.com with ESMTPSA id jt24sm4735792ejb.59.2021.10.15.10.10.52
+        by smtp.gmail.com with ESMTPSA id jt24sm4735792ejb.59.2021.10.15.10.10.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 10:10:52 -0700 (PDT)
+        Fri, 15 Oct 2021 10:10:56 -0700 (PDT)
 From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Andrew Lunn <andrew@lunn.ch>,
@@ -56,11 +56,11 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         Heiner Kallweit <hkallweit1@gmail.com>,
         Russell King <linux@armlinux.org.uk>
 Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 net-next 3/7] net: dsa: move NET_DSA_TAG_RTL4_A to right place in Kconfig/Makefile
-Date:   Fri, 15 Oct 2021 19:10:24 +0200
-Message-Id: <20211015171030.2713493-4-alvin@pqrs.dk>
+        Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 net-next 4/7] dt-bindings: net: dsa: realtek-smi: document new compatible rtl8365mb
+Date:   Fri, 15 Oct 2021 19:10:25 +0200
+Message-Id: <20211015171030.2713493-5-alvin@pqrs.dk>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211015171030.2713493-1-alvin@pqrs.dk>
 References: <20211015171030.2713493-1-alvin@pqrs.dk>
@@ -73,76 +73,137 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-Move things around a little so that this tag driver is alphabetically
-ordered. The Kconfig file is sorted based on the tristate text.
+rtl8365mb is a new realtek-smi subdriver for the RTL8365MB-VC 4+1 port
+10/100/1000M Ethernet switch controller. Its compatible string is
+"realtek,rtl8365mb".
 
-Suggested-by: Andrew Lunn <andrew@lunn.ch>
 Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 ---
 
-v2 -> v3: no change; collect Reviewed-by from Florian
+v2 -> v3: no change
 
-v1 -> v2: no change; collect Reviewed-by from Vladimir and Linus
+v1 -> v2:
+  - add an example to highlight RGMII delay configuration and CPU port
+    reg number
 
-RFC -> v1: this patch is new
+RFC -> v1: no change; collect Reviewed-by and Acked-by
 
- net/dsa/Kconfig  | 14 +++++++-------
- net/dsa/Makefile |  2 +-
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ .../bindings/net/dsa/realtek-smi.txt          | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
 
-diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-index d8ee15f1c7a9..3a09784dae63 100644
---- a/net/dsa/Kconfig
-+++ b/net/dsa/Kconfig
-@@ -92,13 +92,6 @@ config NET_DSA_TAG_KSZ
- 	  Say Y if you want to enable support for tagging frames for the
- 	  Microchip 8795/9477/9893 families of switches.
+diff --git a/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt b/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt
+index b6ae8541bd55..7959ec237983 100644
+--- a/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt
++++ b/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt
+@@ -9,6 +9,7 @@ SMI-based Realtek devices.
+ Required properties:
  
--config NET_DSA_TAG_RTL4_A
--	tristate "Tag driver for Realtek 4 byte protocol A tags"
--	help
--	  Say Y or M if you want to enable support for tagging frames for the
--	  Realtek switches with 4 byte protocol A tags, sich as found in
--	  the Realtek RTL8366RB.
--
- config NET_DSA_TAG_OCELOT
- 	tristate "Tag driver for Ocelot family of switches, using NPI port"
- 	select PACKING
-@@ -126,6 +119,13 @@ config NET_DSA_TAG_QCA
- 	  Say Y or M if you want to enable support for tagging frames for
- 	  the Qualcomm Atheros QCA8K switches.
+ - compatible: must be exactly one of:
++      "realtek,rtl8365mb" (4+1 ports)
+       "realtek,rtl8366"
+       "realtek,rtl8366rb" (4+1 ports)
+       "realtek,rtl8366s"  (4+1 ports)
+@@ -62,6 +63,8 @@ and subnodes of DSA switches.
  
-+config NET_DSA_TAG_RTL4_A
-+	tristate "Tag driver for Realtek 4 byte protocol A tags"
-+	help
-+	  Say Y or M if you want to enable support for tagging frames for the
-+	  Realtek switches with 4 byte protocol A tags, sich as found in
-+	  the Realtek RTL8366RB.
+ Examples:
+ 
++An example for the RTL8366RB:
 +
- config NET_DSA_TAG_LAN9303
- 	tristate "Tag driver for SMSC/Microchip LAN9303 family of switches"
- 	help
-diff --git a/net/dsa/Makefile b/net/dsa/Makefile
-index 67ea009f242c..f78d537044db 100644
---- a/net/dsa/Makefile
-+++ b/net/dsa/Makefile
-@@ -10,12 +10,12 @@ obj-$(CONFIG_NET_DSA_TAG_DSA_COMMON) += tag_dsa.o
- obj-$(CONFIG_NET_DSA_TAG_GSWIP) += tag_gswip.o
- obj-$(CONFIG_NET_DSA_TAG_HELLCREEK) += tag_hellcreek.o
- obj-$(CONFIG_NET_DSA_TAG_KSZ) += tag_ksz.o
--obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
- obj-$(CONFIG_NET_DSA_TAG_LAN9303) += tag_lan9303.o
- obj-$(CONFIG_NET_DSA_TAG_MTK) += tag_mtk.o
- obj-$(CONFIG_NET_DSA_TAG_OCELOT) += tag_ocelot.o
- obj-$(CONFIG_NET_DSA_TAG_OCELOT_8021Q) += tag_ocelot_8021q.o
- obj-$(CONFIG_NET_DSA_TAG_QCA) += tag_qca.o
-+obj-$(CONFIG_NET_DSA_TAG_RTL4_A) += tag_rtl4_a.o
- obj-$(CONFIG_NET_DSA_TAG_SJA1105) += tag_sja1105.o
- obj-$(CONFIG_NET_DSA_TAG_TRAILER) += tag_trailer.o
- obj-$(CONFIG_NET_DSA_TAG_XRS700X) += tag_xrs700x.o
+ switch {
+ 	compatible = "realtek,rtl8366rb";
+ 	/* 22 = MDIO (has input reads), 21 = MDC (clock, output only) */
+@@ -151,3 +154,87 @@ switch {
+ 		};
+ 	};
+ };
++
++An example for the RTL8365MB-VC:
++
++switch {
++	compatible = "realtek,rtl8365mb";
++	mdc-gpios = <&gpio1 16 GPIO_ACTIVE_HIGH>;
++	mdio-gpios = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++	reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
++
++	switch_intc: interrupt-controller {
++		interrupt-parent = <&gpio5>;
++		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#address-cells = <0>;
++		#interrupt-cells = <1>;
++	};
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0>;
++		port@0 {
++			reg = <0>;
++			label = "swp0";
++			phy-handle = <&ethphy0>;
++		};
++		port@1 {
++			reg = <1>;
++			label = "swp1";
++			phy-handle = <&ethphy1>;
++		};
++		port@2 {
++			reg = <2>;
++			label = "swp2";
++			phy-handle = <&ethphy2>;
++		};
++		port@3 {
++			reg = <3>;
++			label = "swp3";
++			phy-handle = <&ethphy3>;
++		};
++		port@6 {
++			reg = <6>;
++			label = "cpu";
++			ethernet = <&fec1>;
++			phy-mode = "rgmii";
++			tx-internal-delay-ps = <2000>;
++			rx-internal-delay-ps = <2000>;
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++				pause;
++			};
++		};
++	};
++
++	mdio {
++		compatible = "realtek,smi-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: phy@0 {
++			reg = <0>;
++			interrupt-parent = <&switch_intc>;
++			interrupts = <0>;
++		};
++		ethphy1: phy@1 {
++			reg = <1>;
++			interrupt-parent = <&switch_intc>;
++			interrupts = <1>;
++		};
++		ethphy2: phy@2 {
++			reg = <2>;
++			interrupt-parent = <&switch_intc>;
++			interrupts = <2>;
++		};
++		ethphy3: phy@3 {
++			reg = <3>;
++			interrupt-parent = <&switch_intc>;
++			interrupts = <3>;
++		};
++	};
++};
 -- 
 2.32.0
 
