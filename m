@@ -2,361 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B46A42EA1F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9438C42EA23
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:29:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbhJOHaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 03:30:46 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:33277 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229546AbhJOHap (ORCPT
+        id S234673AbhJOHbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 03:31:09 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55448
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233236AbhJOHbI (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 03:30:45 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id B6382580F1D;
-        Fri, 15 Oct 2021 03:28:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 15 Oct 2021 03:28:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=VNKOcczGye8r1pQca6/rADupDx
-        1E7RNhhiNyjezLFkU=; b=FtucuTTwS0ornV6cd5ZA0imR622ocW1YuzBFct7hE6
-        dHlxZyXmyRsD3mmXXvhIzPew0i/hBdONXFehgTTTTmGhHUvsizi/2wgpsKvbFkh2
-        cmg2tS302ZvkOExCObi9q3KzHUDqCa3N5QTEeAwCXsiIXywVsx03HKFYOqlnLmZn
-        WlDWCinNV86TlyNaNRSxqzkMYU8bTdE5iSaF2aCm06XbCBQ6YgfaMSn7Mxc74mox
-        XRG5Qu2A+D3Z1CLucLBoNd8ccwOpqyvEWTMtNZR9mAFiT6z3Av0MOOpwhiwdJcxN
-        ucJD++w51uA51GERUvXM00nVFwp43adT9e4SQPOpo4Jw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=VNKOcczGye8r1pQca
-        6/rADupDx1E7RNhhiNyjezLFkU=; b=TCBmH6a1HfmdxFK8d57mnMVkdOO0dLYZq
-        KG/Pj9GyTF2UZ3mVvqG9Wtt1LwPUBJVBQnAloQBZQbkXUSS9biibr8iJOAgV4Sxs
-        917BEX0vn59cEJt59XqU+UrsUh2q0NoyJjGqDsOzuoUfYUVnSwzNIbpo4ibUqnDR
-        h4qrn1C9xmcLFFjuUl6DhFskBZ4QlzfYiZZvAtQyJucI2DdY20Cvb8+jYwGY+Ikd
-        2O9qy3Dxkmqh4AaKbyonbuRSkscjjeaZA6/30V47ijCK5WszMVKdJ+DkzbSr36GQ
-        E1jdphuag0Qtm4K89gSqve/1wvPupDdvaSQFTOvA4j/66KkiFbSMg==
-X-ME-Sender: <xms:oi1pYY-HwsfL8aCyKRH8zknyq9myjR3-C9mL4gGA7HOJA8GpSbL9zw>
-    <xme:oi1pYQtOaBVj5ke4jWipTnmi_lmd9Wi0IPVhVXgSNaAAyTndlohGekwjZ_kALwhys
-    mfdoBtYeVSKGUpwPaQ>
-X-ME-Received: <xmr:oi1pYeB0C0cEowJTQSBNn8w6YHsohOCxx4l8w4vFNOrkrsCsr4B1htAA9IfhIVZszXsYpkuhPUr6MLbx3eGAqDxlqqDDTVlYhwURDG7u>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddufedguddugecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enogevohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffo
-    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
-    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhephffhhfevtddthefg
-    ieeigeffudehkefgtdeufedvtdduheduieekvddvfedvkeetnecuffhomhgrihhnpeguvg
-    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:oi1pYYdvRc6lxhaV-wc5n80f_lUF0zJu7j4rVrryEoZpucEtTi8IyQ>
-    <xmx:oi1pYdOKe1RQ_yRnlBFBpcug25T_ifTVh8ed4bnDxmwWYLY84dtWCg>
-    <xmx:oi1pYSlKvmzqOqN7VXrLDIXkyTqz_O42P_-T8Si1b--nYJWIY2-UbQ>
-    <xmx:oi1pYQqAwTAmYUJw2NBm4JO3mQkGqT8vNJA8pJZfW8yjZ8LtDsGurQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 15 Oct 2021 03:28:33 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>
-Subject: [PATCH v3] dt-bindings: media: Convert OV5640 binding to a schema
-Date:   Fri, 15 Oct 2021 09:28:30 +0200
-Message-Id: <20211015072830.8580-1-maxime@cerno.tech>
-X-Mailer: git-send-email 2.31.1
+        Fri, 15 Oct 2021 03:31:08 -0400
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D6D9F3FFFC
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 07:29:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634282940;
+        bh=STxvpgXyUSvLYxw4ii45TmrwAbcDPMKJf5rkuTxXNX4=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=sLIYseEOv7DIC0Mm4PYjydVfFF5oId736llhk0t4KMV4m1JI69wZDfLFYHgk8ywui
+         IuJn4wqF8PkAI24KhNvze0M8Nskn+gqRyoktwv0laK6vz55b+yZQAQFDViSbdUc3wD
+         0KeEzpnjH8dURuHa7QD2sP0TitrsC/hsvgfD/+zR12Ci2zxz6AXeIlZyC8w6yUfjod
+         K+6YtR42T3u+IHHOyZ3mMgQiNT1zWrfjdD0UEsd4JZx/H0qBJZWTXxrOsBKPnkcXH1
+         ZGu6a98z64hoH+jGixsAYxn9qMCKSrbp/wbcz56AAQVo5tmnCBPresW+C2aon5n6Gr
+         CPKvxQxXaaGJg==
+Received: by mail-lf1-f69.google.com with SMTP id c41-20020a05651223a900b003fdb648a156so3821001lfv.15
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=STxvpgXyUSvLYxw4ii45TmrwAbcDPMKJf5rkuTxXNX4=;
+        b=6O3FJDdj5KkN9TYw9j8nQWPimBdvB3kujDS/pi6GlWDO/0wEYeuxMkfw6XhzZkUOdj
+         c60FZBMGGrDEUtcqAfyPUPblvA9qU4UA8tYdNBtt+ybqQ8H7xiH0+7mmpNQSdtcSyTQw
+         GIEhZue74yIxQSeuKciI5LaH78pyj3rkDAFwqVHoBmlJCTZx1dPK6Zwv4wRd5h3Prbwr
+         /cGyhf2ShwqrVOaGTWqs9PRs2rrseTqKUevFScawcUOGbsrHYJpHIhqdxsj4sk8yxaT+
+         Q+eyhDFeRxPTeioQDTDbxTuDxM/YNJWiAPbiY4cJWzuU+ZlQhf1VArtSaS/FjQW9Ao5C
+         tijw==
+X-Gm-Message-State: AOAM531KREYtM3eIg3iCoDfgAJXoI54HaCBFD1WxiNuPkHrCTVoPXPZt
+        rqOR7v7ii9Y3ewN428uvAHkt0/p8QeezhG0IuUZicHPWdvkGRAV89zKb0Jpn9/JgOTDmGlztaTO
+        ZKXctQHANGUvDSAqOZh4z4FnI/CPO59I5VsEx/24=
+X-Received: by 2002:a2e:3315:: with SMTP id d21mr11110267ljc.377.1634282940320;
+        Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx9+NLpbjYfYTu5GOLKMRlKSSfPe3h88aVfbR/xFBKM7+q/PPb60UM1KhCUR5XHhSH70vHI0w==
+X-Received: by 2002:a2e:3315:: with SMTP id d21mr11110245ljc.377.1634282940062;
+        Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
+Received: from kozik-lap.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id r3sm431818lfc.114.2021.10.15.00.28.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Oct 2021 00:28:59 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: memory-controllers: correct path to LPDDR3 bindings
+Date:   Fri, 15 Oct 2021 09:28:57 +0200
+Message-Id: <20211015072857.9770-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Omnivision OV5640 is supported by Linux thanks to its device tree
-binding.
+The LPDDR3 bindings were moved to memory-controllers/ddr.
 
-Now that we have the DT validation in place, let's convert the device
-tree bindings for that driver over to a YAML schema.
-
-Cc: linux-media@vger.kernel.org
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Steve Longerbeam <slongerbeam@gmail.com>
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 ---
 
-Changes from v2:
-  - Fix whitespace error
-  - Changed schema referenced for the port validation
+I will fold it into original patch.
 ---
- .../devicetree/bindings/media/i2c/ov5640.txt  |  92 -----------
- .../bindings/media/i2c/ovti,ov5640.yaml       | 154 ++++++++++++++++++
- 2 files changed, 154 insertions(+), 92 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+ .../devicetree/bindings/memory-controllers/ddr/lpddr3.txt    | 5 +++--
+ .../bindings/memory-controllers/samsung,exynos5422-dmc.yaml  | 3 ++-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov5640.txt b/Documentation/devicetree/bindings/media/i2c/ov5640.txt
-deleted file mode 100644
-index c97c2f2da12d..000000000000
---- a/Documentation/devicetree/bindings/media/i2c/ov5640.txt
-+++ /dev/null
-@@ -1,92 +0,0 @@
--* Omnivision OV5640 MIPI CSI-2 / parallel sensor
--
--Required Properties:
--- compatible: should be "ovti,ov5640"
--- clocks: reference to the xclk input clock.
--- clock-names: should be "xclk".
--- DOVDD-supply: Digital I/O voltage supply, 1.8 volts
--- AVDD-supply: Analog voltage supply, 2.8 volts
--- DVDD-supply: Digital core voltage supply, 1.5 volts
--
--Optional Properties:
--- reset-gpios: reference to the GPIO connected to the reset pin, if any.
--	       This is an active low signal to the OV5640.
--- powerdown-gpios: reference to the GPIO connected to the powerdown pin,
--		   if any. This is an active high signal to the OV5640.
--- rotation: as defined in
--	    Documentation/devicetree/bindings/media/video-interfaces.txt,
--	    valid values are 0 (sensor mounted upright) and 180 (sensor
--	    mounted upside down).
--
--The device node must contain one 'port' child node for its digital output
--video port, in accordance with the video interface bindings defined in
--Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--OV5640 can be connected to a MIPI CSI-2 bus or a parallel bus endpoint.
--
--Endpoint node required properties for CSI-2 connection are:
--- remote-endpoint: a phandle to the bus receiver's endpoint node.
--- clock-lanes: should be set to <0> (clock lane on hardware lane 0)
--- data-lanes: should be set to <1> or <1 2> (one or two CSI-2 lanes supported)
--
--Endpoint node required properties for parallel connection are:
--- remote-endpoint: a phandle to the bus receiver's endpoint node.
--- bus-width: shall be set to <8> for 8 bits parallel bus
--	     or <10> for 10 bits parallel bus
--- data-shift: shall be set to <2> for 8 bits parallel bus
--	      (lines 9:2 are used) or <0> for 10 bits parallel bus
--- hsync-active: active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
--- vsync-active: active state of the VSYNC signal, 0/1 for LOW/HIGH respectively.
--- pclk-sample: sample data on rising (1) or falling (0) edge of the pixel clock
--	       signal.
--
--Examples:
--
--&i2c1 {
--	ov5640: camera@3c {
--		compatible = "ovti,ov5640";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_ov5640>;
--		reg = <0x3c>;
--		clocks = <&clks IMX6QDL_CLK_CKO>;
--		clock-names = "xclk";
--		DOVDD-supply = <&vgen4_reg>; /* 1.8v */
--		AVDD-supply = <&vgen3_reg>;  /* 2.8v */
--		DVDD-supply = <&vgen2_reg>;  /* 1.5v */
--		powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
--		reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
--		rotation = <180>;
--
--		port {
--			/* MIPI CSI-2 bus endpoint */
--			ov5640_to_mipi_csi2: endpoint {
--				remote-endpoint = <&mipi_csi2_from_ov5640>;
--				clock-lanes = <0>;
--				data-lanes = <1 2>;
--			};
--		};
--	};
--};
--
--&i2c1 {
--	ov5640: camera@3c {
--		compatible = "ovti,ov5640";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_ov5640>;
--		reg = <0x3c>;
--		clocks = <&clk_ext_camera>;
--		clock-names = "xclk";
--
--		port {
--			/* Parallel bus endpoint */
--			ov5640_to_parallel: endpoint {
--				remote-endpoint = <&parallel_from_ov5640>;
--				bus-width = <8>;
--				data-shift = <2>; /* lines 9:2 are used */
--				hsync-active = <0>;
--				vsync-active = <0>;
--				pclk-sample = <1>;
--			};
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-new file mode 100644
-index 000000000000..540fd69ac39f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-@@ -0,0 +1,154 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5640.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV5640 Image Sensor Device Tree Bindings
-+
-+maintainers:
-+  - Steve Longerbeam <slongerbeam@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/media/video-interface-devices.yaml#
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5640
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: XCLK Input Clock
-+
-+  clock-names:
-+    const: xclk
-+
-+  AVDD-supply:
-+    description: Analog voltage supply, 2.8 volts
-+
-+  DVDD-supply:
-+    description: Digital core voltage supply, 1.5 volts
-+
-+  DOVDD-supply:
-+    description: Digital I/O voltage supply, 1.8 volts
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+    description: >
-+      Reference to the GPIO connected to the powerdown pin, if any.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: >
-+      Reference to the GPIO connected to the reset pin, if any.
-+
-+  rotation:
-+    enum:
-+      - 0
-+      - 180
-+
-+  port:
-+    description: Digital Output Port
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          clock-lanes:
-+            const: 0
-+
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              enum: [1, 2]
-+
-+          bus-width:
-+            enum: [8, 10]
-+
-+          data-shift:
-+            enum: [0, 2]
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - AVDD-supply
-+  - DVDD-supply
-+  - DOVDD-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/clock/imx6qdl-clock.h>
-+      #include <dt-bindings/gpio/gpio.h>
-+
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@3c {
-+              compatible = "ovti,ov5640";
-+              pinctrl-names = "default";
-+              pinctrl-0 = <&pinctrl_ov5640>;
-+              reg = <0x3c>;
-+              clocks = <&clks IMX6QDL_CLK_CKO>;
-+              clock-names = "xclk";
-+              DOVDD-supply = <&vgen4_reg>; /* 1.8v */
-+              AVDD-supply = <&vgen3_reg>;  /* 2.8v */
-+              DVDD-supply = <&vgen2_reg>;  /* 1.5v */
-+              powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
-+              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
-+              rotation = <180>;
-+
-+              port {
-+                  /* MIPI CSI-2 bus endpoint */
-+                  ov5640_to_mipi_csi2: endpoint {
-+                      remote-endpoint = <&mipi_csi2_from_ov5640>;
-+                      clock-lanes = <0>;
-+                      data-lanes = <1 2>;
-+                  };
-+              };
-+          };
-+      };
-+
-+  - |
-+      i2c {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          camera@3c {
-+              compatible = "ovti,ov5640";
-+              pinctrl-names = "default";
-+              pinctrl-0 = <&pinctrl_ov5640>;
-+              reg = <0x3c>;
-+              clocks = <&clk_ext_camera>;
-+              clock-names = "xclk";
-+              DOVDD-supply = <&vgen4_reg>; /* 1.8v */
-+              AVDD-supply = <&vgen3_reg>;  /* 2.8v */
-+              DVDD-supply = <&vgen2_reg>;  /* 1.5v */
-+
-+              port {
-+                  /* Parallel bus endpoint */
-+                  ov5640_to_parallel: endpoint {
-+                      remote-endpoint = <&parallel_from_ov5640>;
-+                      bus-width = <8>;
-+                      data-shift = <2>; /* lines 9:2 are used */
-+                      hsync-active = <0>;
-+                      vsync-active = <0>;
-+                      pclk-sample = <1>;
-+                  };
-+              };
-+          };
-+      };
-+
-+...
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+index b221e653d384..031af5fb0379 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+@@ -43,8 +43,9 @@ These values shall be obtained from the device data-sheet.
+ Child nodes:
+ - The lpddr3 node may have one or more child nodes of type "lpddr3-timings".
+   "lpddr3-timings" provides AC timing parameters of the device for
+-  a given speed-bin. Please see Documentation/devicetree/
+-  bindings/ddr/lpddr3-timings.txt for more information on "lpddr3-timings"
++  a given speed-bin. Please see
++  Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
++  for more information on "lpddr3-timings"
+ 
+ Example:
+ 
+diff --git a/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
+index 6f4fd5814bf4..fe8639dcffab 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
+@@ -51,7 +51,8 @@ properties:
+     $ref: '/schemas/types.yaml#/definitions/phandle'
+     description: |
+       phandle of the connected DRAM memory device. For more information please
+-      refer to documentation file: Documentation/devicetree/bindings/ddr/lpddr3.txt
++      refer to documentation file:
++      Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
+ 
+   operating-points-v2: true
+ 
 -- 
-2.31.1
+2.30.2
 
