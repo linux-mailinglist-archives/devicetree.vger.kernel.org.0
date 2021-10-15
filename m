@@ -2,117 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B63BA42EE99
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 12:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D685D42EEC2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 12:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237884AbhJOKRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 06:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237885AbhJOKRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 06:17:04 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74092C061753;
-        Fri, 15 Oct 2021 03:14:58 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id s64so21439515yba.11;
-        Fri, 15 Oct 2021 03:14:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZTDCpxGbeuWo2eDKtm3bA2A8qW6ZaIJb8O6pyREdQeA=;
-        b=Oo9miBv8zvbpx9UbpKzN5puJZy7wQq6nWt4BuBIXYZZsDZdwKmPGjKeWxVig0J0J9U
-         YxS1NeNWePdLu5ro2hpjheWwl8/9D3MzSDN7kgjxKsWmqACP+Xn4VjDjo7ORtN6k6dPW
-         Xxo0nmVPM2kgaurX2RqeHG5G6g8GieY2Os26DwcIzmUS6hZUibUnDR17MY2zow2pjE8Z
-         FBWyGIbVergDurjvgN353Lkvqd8vrFGmSlMY0NdnyvIZRYh5syMm/4uyfwpnFgklCMjy
-         8MwzKjWKuVJ3qeCThCp0GayV9E4ktFP/WuzdV/OsZ3FtuqZttx1oVitCV4+G4vf5BDDf
-         IaSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZTDCpxGbeuWo2eDKtm3bA2A8qW6ZaIJb8O6pyREdQeA=;
-        b=iFI631cLog/RT9XsKBKekdb4ptbdBTTyqrLAziawH253DZ5HJ/P8JqilZiFfiODBTB
-         MEjBesJiiZMe246zsVIdae7sjrDluoaQBdxwJJBwWlZ1IiJw4VUbcRXM/KMMqU8d4HYZ
-         LsXMmjb18O6AP10wJ9WLSFg5Bm6nm1Xx7Rp4aAr6GNOWaj2ZHJsHXCrzrSxcFUE3opx8
-         iI9H0dw5iQQoMtFPHple2oOsd9vc0GMgrqflrAhEuOLtFlzQvqtjUeuctU6svc95ONYe
-         u+DwmcSJ9iiGHqVBT1TSaD3jqQZHHsOevRH8Ux6LTLTZ/p68eCsc6+G2uGkksw2cQS0l
-         lzlQ==
-X-Gm-Message-State: AOAM5316XOkuJLm6mmJFZFsME7SDEws3k6SUeDrmASH0vQnuu7h7ayjC
-        Zv7OVuGHo/BEgXN62eeHWVCVso+LlMPPqPA/sqg=
-X-Google-Smtp-Source: ABdhPJxZCLP+mddS3lhVDgJN0jp2gMO9M1+8VzhY+veemJYIZYG/1ydxrTn3ALlotQ5/YbUymtiyTdwL1VhxymGR2FE=
-X-Received: by 2002:a25:346:: with SMTP id 67mr11229803ybd.345.1634292897782;
- Fri, 15 Oct 2021 03:14:57 -0700 (PDT)
+        id S237989AbhJOKcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 06:32:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50954 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232172AbhJOKcR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 06:32:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 9843C61041;
+        Fri, 15 Oct 2021 10:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634293811;
+        bh=kUEohQW10Eu1sHMeLGbhJZWFGVBPRUf0aoHV8sFGdl8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=cQjgug1zPkmY9gDrWkqKqn87sy6n/ovtoV/ybwkr7l+6ZgLM2tn4I+vzoLcp+l+st
+         010je+4gCQxNk2jCzVi76EUil6QHBQawU046D1GuWZcW2/6AYSfvIgAhmjM6jX5UhM
+         whlpWb7emqx8O04X830puwYfSU9iiReK0LeH6p1HOY1zD9J2D6m2AIeP+FEO4Uk0V+
+         XIrEd+REGkrjVkDzw5hp0BwwxMtqOnJLAAK4gVGH51heoWF0Aw6P5piMHZHxkgPcFC
+         7whx0hS8QAMyrKAefH301ak6uT8Ilv2/zuVl7vwTkn23VmyYx265XHWdb9gXX2Jsow
+         Jt9LBTL0n6y1w==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 8F91460A47;
+        Fri, 15 Oct 2021 10:30:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211015100941.17621-1-heinrich.schuchardt@canonical.com>
-In-Reply-To: <20211015100941.17621-1-heinrich.schuchardt@canonical.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Fri, 15 Oct 2021 18:14:46 +0800
-Message-ID: <CAEUhbmUSmi9mbiHpatBjGgRjrtyJPms9BRmyBPs5BWeVb7n1Nw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: reg-io-width for SiFive CLINT
-To:     Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Guo Ren <guoren@linux.alibaba.com>, Xiang W <wxjstz@126.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        OpenSBI <opensbi@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next PATCH v7 00/16] Multiple improvement for qca8337 switch
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163429381158.2368.12093247360263703585.git-patchwork-notify@kernel.org>
+Date:   Fri, 15 Oct 2021 10:30:11 +0000
+References: <20211013223921.4380-1-ansuelsmth@gmail.com>
+In-Reply-To: <20211013223921.4380-1-ansuelsmth@gmail.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        linux@armlinux.org.uk, john@phrozen.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 6:09 PM Heinrich Schuchardt
-<heinrich.schuchardt@canonical.com> wrote:
->
-> The CLINT in the T-HEAD 9xx processors do not support 64bit mmio access to
-> the MTIMER device. The current schema does not allow to specify this.
->
-> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
-> restriction. Samuael Holland suggested in
-> lib: utils/timer: Use standard property to specify 32-bit I/O
-> https://github.com/smaeul/opensbi/commit/b95e9cf7cf93b0af16fc89204378bc59ff30008e
-> to use "reg-io-width = <4>;" as the reg-io-width property is generally used
-> in the devicetree schema for such a condition.
->
-> A release candidate of the ACLINT specification is available at
-> https://github.com/riscv/riscv-aclint/releases
->
-> Add reg-io-width as optional property to the SiFive Core Local Interruptor.
->
-> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-> ---
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index a35952f48742..266012d887b5 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -41,6 +41,13 @@ properties:
->    reg:
->      maxItems: 1
->
-> +  reg-io-width:
-> +    description: |
-> +      Some CLINT implementations, e.g. on the T-HEAD 9xx, only support
-> +      32bit access for MTIMER.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    const: 4
+Hello:
 
-But this is not a "sifive,clint" anyway. Should there be a new
-dt-bindings for T-Head clint variant?
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-> +
->    interrupts-extended:
->      minItems: 1
+On Thu, 14 Oct 2021 00:39:05 +0200 you wrote:
+> This series is the final step of a long process of porting 80+ devices
+> to use the new qca8k driver instead of the hacky qca one based on never
+> merged swconfig platform.
+> Some background to justify all these additions.
+> QCA used a special binding to declare raw initval to set the swich. I
+> made a script to convert all these magic values and convert 80+ dts and
+> scan all the needed "unsupported regs". We find a baseline where we
+> manage to find the common and used regs so in theory hopefully we don't
+> have to add anymore things.
+> We discovered lots of things with this, especially about how differently
+> qca8327 works compared to qca8337.
+> 
+> [...]
 
-Regards,
-Bin
+Here is the summary with links:
+  - [net-next,v7,01/16] dsa: qca8k: add mac_power_sel support
+    https://git.kernel.org/netdev/net-next/c/d8b6f5bae6d3
+  - [net-next,v7,02/16] dt-bindings: net: dsa: qca8k: Add SGMII clock phase properties
+    https://git.kernel.org/netdev/net-next/c/fdbf35df9c09
+  - [net-next,v7,03/16] net: dsa: qca8k: add support for sgmii falling edge
+    https://git.kernel.org/netdev/net-next/c/6c43809bf1be
+  - [net-next,v7,04/16] dt-bindings: net: dsa: qca8k: Document support for CPU port 6
+    https://git.kernel.org/netdev/net-next/c/731d613338ec
+  - [net-next,v7,05/16] net: dsa: qca8k: add support for cpu port 6
+    https://git.kernel.org/netdev/net-next/c/3fcf734aa482
+  - [net-next,v7,06/16] net: dsa: qca8k: rework rgmii delay logic and scan for cpu port 6
+    https://git.kernel.org/netdev/net-next/c/5654ec78dd7e
+  - [net-next,v7,07/16] dt-bindings: net: dsa: qca8k: Document qca,sgmii-enable-pll
+    https://git.kernel.org/netdev/net-next/c/13ad5ccc093f
+  - [net-next,v7,08/16] net: dsa: qca8k: add explicit SGMII PLL enable
+    https://git.kernel.org/netdev/net-next/c/bbc4799e8bb6
+  - [net-next,v7,09/16] dt-bindings: net: dsa: qca8k: Document qca,led-open-drain binding
+    https://git.kernel.org/netdev/net-next/c/924087c5c3d4
+  - [net-next,v7,10/16] net: dsa: qca8k: add support for pws config reg
+    https://git.kernel.org/netdev/net-next/c/362bb238d8bf
+  - [net-next,v7,11/16] dt-bindings: net: dsa: qca8k: document support for qca8328
+    https://git.kernel.org/netdev/net-next/c/ed7988d77fbf
+  - [net-next,v7,12/16] net: dsa: qca8k: add support for QCA8328
+    https://git.kernel.org/netdev/net-next/c/f477d1c8bdbe
+  - [net-next,v7,13/16] net: dsa: qca8k: set internal delay also for sgmii
+    https://git.kernel.org/netdev/net-next/c/cef08115846e
+  - [net-next,v7,14/16] net: dsa: qca8k: move port config to dedicated struct
+    https://git.kernel.org/netdev/net-next/c/fd0bb28c547f
+  - [net-next,v7,15/16] dt-bindings: net: ipq8064-mdio: fix warning with new qca8k switch
+    https://git.kernel.org/netdev/net-next/c/e52073a8e308
+  - [net-next,v7,16/16] dt-bindings: net: dsa: qca8k: convert to YAML schema
+    https://git.kernel.org/netdev/net-next/c/d291fbb8245d
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
