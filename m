@@ -2,447 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CED5642EA19
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B46A42EA1F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236078AbhJOH3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 03:29:47 -0400
-Received: from mail-bn8nam12on2091.outbound.protection.outlook.com ([40.107.237.91]:2145
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234601AbhJOH3n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 03:29:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TgccOvuVObDixOM82+NynZH6N9NSZLghds6F/kZ2v9Wvf6d8UhImDkI+TlL2YBo1B24uOSm8Oy8R3UOcPe62bhNSu3ch+TJ4/sBWP+s0aviGoktrVG9xutHwjRVV+b4pI/7nlZy6gXDjmJH5sngOVyIh3vvFJzbJnQQmPzcM5h/R7XaEHryVuGv32stV1Cp6wKy/TYwn/pa2WaYhpcVYSiXwL9L1m4+m6uIusa+sOdM7z53uup+oZj5HZ4IxvcyBER9v5/EWahUBp+McSZ4984W8Pn2zuqPAVbmHdGm9YAj7i60X7aI7b5pgtinV0qJf50Q5iCnbItbHe06eH/KyiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=F1WRlMhA8sQweMGnn94cfGbbTK73cH5FpqO44Njrpy8=;
- b=k8l5Da4U5ydPPvZdg8+wHoFv/XdfC2SOhAg7K2y6ZXop8hiCHlJNp1NatSeI2Dka0D2goFiGdK0WWdiGWir1x4L9IZ2U0T1PFkQ31/XqrfJC+KvCOEx9UGXG1f7LZx/80yCxR8PB/Db49hWZxG526JfcOCcDiCtTg98xox8NG/UcRP0iIJrxQLy1ZQ2vZMeMj5lU1xEfKZcwV9rt2AWnJMegSB2qwtw00HM6SI1hLIDjR3ZrRKpLp4pcvenIVHThLCLzziopGGDjUTO1CFFu7xzs2Ssq0AsT1wSFmxParc+WGGgfseN0dIOX8IypjqF/2KfwaMWyCT6JzijzCxp9Fw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
- header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=maximintegrated.onmicrosoft.com;
- s=selector2-maximintegrated-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=F1WRlMhA8sQweMGnn94cfGbbTK73cH5FpqO44Njrpy8=;
- b=iNt2xwrWVu3R7FW+NUP6WRpJHzyjLBzc9Phb7NtTch2OEa+LwXSGjHaU6xQNs++RXgPFfXb4/QOyG2rT0rmo/pvXUb3yFY6UcW9f1HPvHZFIcrzrJv3BEoti5DjjS42NQ9fx5TnBwN3bpWY8eVCsJffWp8tUfinNTGl4DhBE3DY=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none
- header.from=maximintegrated.com;
-Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
- by BYAPR11MB2726.namprd11.prod.outlook.com (2603:10b6:a02:be::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4587.24; Fri, 15 Oct
- 2021 07:27:34 +0000
-Received: from BYAPR11MB3671.namprd11.prod.outlook.com
- ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
- ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.016; Fri, 15 Oct 2021
- 07:27:34 +0000
-From:   George Song <george.song@maximintegrated.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, george.song@analog.com,
-        ryans.lee@maximintegrated.com, steves.lee@maximintegrated.com,
-        George Song <george.song@maximintegrated.com>
-Subject: [v2 2/2] ASoC: max98520: modified alignment and blank
-Date:   Fri, 15 Oct 2021 16:27:09 +0900
-Message-Id: <20211015072709.3167-2-george.song@maximintegrated.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211015072709.3167-1-george.song@maximintegrated.com>
-References: <20211015072709.3167-1-george.song@maximintegrated.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SL2P216CA0052.KORP216.PROD.OUTLOOK.COM
- (2603:1096:100:19::14) To BYAPR11MB3671.namprd11.prod.outlook.com
- (2603:10b6:a03:b3::15)
+        id S231779AbhJOHaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 03:30:46 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:33277 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229546AbhJOHap (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 03:30:45 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id B6382580F1D;
+        Fri, 15 Oct 2021 03:28:34 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 15 Oct 2021 03:28:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=VNKOcczGye8r1pQca6/rADupDx
+        1E7RNhhiNyjezLFkU=; b=FtucuTTwS0ornV6cd5ZA0imR622ocW1YuzBFct7hE6
+        dHlxZyXmyRsD3mmXXvhIzPew0i/hBdONXFehgTTTTmGhHUvsizi/2wgpsKvbFkh2
+        cmg2tS302ZvkOExCObi9q3KzHUDqCa3N5QTEeAwCXsiIXywVsx03HKFYOqlnLmZn
+        WlDWCinNV86TlyNaNRSxqzkMYU8bTdE5iSaF2aCm06XbCBQ6YgfaMSn7Mxc74mox
+        XRG5Qu2A+D3Z1CLucLBoNd8ccwOpqyvEWTMtNZR9mAFiT6z3Av0MOOpwhiwdJcxN
+        ucJD++w51uA51GERUvXM00nVFwp43adT9e4SQPOpo4Jw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=VNKOcczGye8r1pQca
+        6/rADupDx1E7RNhhiNyjezLFkU=; b=TCBmH6a1HfmdxFK8d57mnMVkdOO0dLYZq
+        KG/Pj9GyTF2UZ3mVvqG9Wtt1LwPUBJVBQnAloQBZQbkXUSS9biibr8iJOAgV4Sxs
+        917BEX0vn59cEJt59XqU+UrsUh2q0NoyJjGqDsOzuoUfYUVnSwzNIbpo4ibUqnDR
+        h4qrn1C9xmcLFFjuUl6DhFskBZ4QlzfYiZZvAtQyJucI2DdY20Cvb8+jYwGY+Ikd
+        2O9qy3Dxkmqh4AaKbyonbuRSkscjjeaZA6/30V47ijCK5WszMVKdJ+DkzbSr36GQ
+        E1jdphuag0Qtm4K89gSqve/1wvPupDdvaSQFTOvA4j/66KkiFbSMg==
+X-ME-Sender: <xms:oi1pYY-HwsfL8aCyKRH8zknyq9myjR3-C9mL4gGA7HOJA8GpSbL9zw>
+    <xme:oi1pYQtOaBVj5ke4jWipTnmi_lmd9Wi0IPVhVXgSNaAAyTndlohGekwjZ_kALwhys
+    mfdoBtYeVSKGUpwPaQ>
+X-ME-Received: <xmr:oi1pYeB0C0cEowJTQSBNn8w6YHsohOCxx4l8w4vFNOrkrsCsr4B1htAA9IfhIVZszXsYpkuhPUr6MLbx3eGAqDxlqqDDTVlYhwURDG7u>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddufedguddugecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enogevohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffo
+    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
+    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhephffhhfevtddthefg
+    ieeigeffudehkefgtdeufedvtdduheduieekvddvfedvkeetnecuffhomhgrihhnpeguvg
+    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:oi1pYYdvRc6lxhaV-wc5n80f_lUF0zJu7j4rVrryEoZpucEtTi8IyQ>
+    <xmx:oi1pYdOKe1RQ_yRnlBFBpcug25T_ifTVh8ed4bnDxmwWYLY84dtWCg>
+    <xmx:oi1pYSlKvmzqOqN7VXrLDIXkyTqz_O42P_-T8Si1b--nYJWIY2-UbQ>
+    <xmx:oi1pYQqAwTAmYUJw2NBm4JO3mQkGqT8vNJA8pJZfW8yjZ8LtDsGurQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 15 Oct 2021 03:28:33 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Maxime Ripard <maxime@cerno.tech>, linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Steve Longerbeam <slongerbeam@gmail.com>
+Subject: [PATCH v3] dt-bindings: media: Convert OV5640 binding to a schema
+Date:   Fri, 15 Oct 2021 09:28:30 +0200
+Message-Id: <20211015072830.8580-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Received: from SEL-LT-028891.maxim-ic.internal (223.62.163.157) by SL2P216CA0052.KORP216.PROD.OUTLOOK.COM (2603:1096:100:19::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16 via Frontend Transport; Fri, 15 Oct 2021 07:27:31 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7ed33291-1ff7-4493-98b3-08d98fad4145
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2726:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR11MB272683BB7421E3878420B9CFF4B99@BYAPR11MB2726.namprd11.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:154;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vTHzr6shch3dQLO/o+Ekj1os6kfkHkUGVz4xTR7ThchXuOcaD1mhcai5jMohMv/g8BDANezx70izaZSYWwKw4MlauV8mbAviYSCgEIPADA0en1Rg7AttjDZzyMn5RMwNHlz4CB2sf8gKgBFBaDOnb04YLoPV2huHtZCswCwfqoCClo2XwSXQm0iazlqx8izDqEWCCzIUh2RusJo1yni4ryC9TUHruMPkAOfIwbot5R3zvuMt2CpmHGsdioMa79KcCjO3LySMvixjpuLRAhDRTWuxvdIjcxQIavCbs/8opvdSHBpP03H/IDcagTCBaiiEno+z9wr4qQZnt/NZngDtZZNgFno0R6w3QniDP65CfaFz0oTe51Zv6MQ/ZAl9X+wXkgNcPVwguFEsN23TZM/KAGvzKSfkmjad5iZRRP0HLUxpTML9S9hB7JYBxlv0cUWI5PNQeDcIzETiX95GmfGq3/B/8MRtdsHeRF8uvz2CCJDbE9m/HaqrIJ8DEUCp0UK8WsgZRZLPrI8nAx3Ncp47BimEyk4GNmkPRXWauk7Tn/dOusB64uTPxiOyELAIREqprTiRan4OvGbDAduXPKZinNa6xUStjFM/4l2EIlRBxhd92+cZsYwkIDgXnhBcwyF3rIK0OYEfkJKAe5WpPD8Wi6gRPpR0C7Dyomh9Ny82bNKysf4zuARAhLj5ZtLTqtQbeZHTFhS62NHHFb0GSc1nUA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(52116002)(1076003)(8676002)(186003)(6666004)(6486002)(30864003)(26005)(956004)(8936002)(6512007)(2616005)(508600001)(86362001)(5660300002)(38100700002)(107886003)(4326008)(6506007)(44832011)(316002)(66556008)(66476007)(83380400001)(66946007)(2906002)(38350700002)(36756003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MNOZsgER3XqvnKySVYMScAdcz+rJgxjBwhVYJjNiiDcOK1hfHuzpJukbnv12?=
- =?us-ascii?Q?8aBsuH18C1Li9nxcbnLmtwKdr1zRdpnJTzxtx+doyeoL5JmlMHZGBAB6hRgX?=
- =?us-ascii?Q?l6BcoUc3lrr7lprnK2VUkWC077f4e4SN9EFj16MhQ9Tsk7Yju4c9JoBfqoRA?=
- =?us-ascii?Q?ujdooWBAi+K1FfI05RiUHCGcjPVDNHGrhoNrrPEYIfomqOj6UIbuEuY8KunJ?=
- =?us-ascii?Q?CC4TzEF9/RjOibFTiw7U8ILoiHplO1QbkgtkX41n7eptGb9tTEOaUH8PvS8Y?=
- =?us-ascii?Q?ggAbygWmV1gPaDlykVlUl5ICM+Im2yXpGNbGtvKe6jIULAN51mp5+2LXUzGB?=
- =?us-ascii?Q?G+KQoxNX5E1VuwLlGHIoEh4J/0hooFnCyqjhM02/0x+581Mk4KrDZXy6+RaD?=
- =?us-ascii?Q?CKnDouXpfQ+ClSgLV8254gLqguPQLsTfJERuDxOlSJ5S1vs3/43A4B//XNv5?=
- =?us-ascii?Q?opAcZaVKz5amIgSuKvfl1DjT8XQxjvKPQK0DTrqHbNF/o4DOjWd8U4T0cnzc?=
- =?us-ascii?Q?nJZ2/+8gZW4/UFK5C6Kh09v3UOQlAhkAO6DXSMzQgskOuJ5X1MqMcRLLD43m?=
- =?us-ascii?Q?BE7s1zMIPsr5LMIxgUnbhLbmm0QKLFvZxQp8c070g0UK199KAARHwFNPrBu5?=
- =?us-ascii?Q?p650sJmF/5rNOGmoqfdN+mf9wVsKG/nrSrRhfne0jSuw1u/iMG+csx3EMt0f?=
- =?us-ascii?Q?f6xfbpEuzFbA+ljECBGS6kHDxfeMkfqcwhEZAu3txaqMPIDq3dI+PoYBSel7?=
- =?us-ascii?Q?eW+mUtikDgWoWRHv5ZMqaQyLW2FGP1FgF/K+YZRpdLvSd+hDqO82MnxuLbC9?=
- =?us-ascii?Q?ATSY+4iC6uib/I3e4w2oAn9TTjhtrG98bzSHI2Z4WDfsMZ2yibrwHlOX/uVs?=
- =?us-ascii?Q?LSuPFsRTdi2Z8AC7KtmYP0CfwR6eQhT7aEo597XYI88Bb2ppYHSGgD8AkBTC?=
- =?us-ascii?Q?9cSN/NXNaAdN6TK8Ii35YV6L35rpm1PBYGC3orVBo1FAX/QSlZhZeAFq1/yT?=
- =?us-ascii?Q?fADutuXXRP0a+iZC7LHmUWWiPlpZHKcClLa9RJVtZFzn0XkkpVFkVNHuf3xa?=
- =?us-ascii?Q?I1Z9YI6uAmtECOWpu/WW1pwf+LgZtIoQ+6/TZoQnoVJ6U/aNZywQoauq3PQY?=
- =?us-ascii?Q?zH0Hvpvz2eypQkNM0+BG8XXp5uPtoyGa3c59qlpB/f/i0U4wPBHZJBiQdkl5?=
- =?us-ascii?Q?5NqBWKh+l74AbCITA+90SFdJssT6zRvjLOIv8q5v0TOktsR2Kk+34/orQAgO?=
- =?us-ascii?Q?1FvrChw1rA0qnfHmFf7T3qGnHnxpIqk+soM0+82B8vja1c1wOPk8rP3KVFvn?=
- =?us-ascii?Q?B3jypiu3d4vFSvA02xiam1Tz?=
-X-OriginatorOrg: maximintegrated.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ed33291-1ff7-4493-98b3-08d98fad4145
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 07:27:33.8938
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fbd909df-ea69-4788-a554-f24b7854ad03
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O2ak0QCNGz16CwIgotEyxpwg5y5Fd2rZrSVn+SX5p8sqfQ9R+013COw/zcPJU90NyFCJ/g9kn61MLrQDRRfjJWvu9lt7DCdT7oWWluB+Lb8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2726
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fixed all CHECK and WARNING for checkpatch --strict result
-removed MODULE_AUTHOR to make one maintainer.
+The Omnivision OV5640 is supported by Linux thanks to its device tree
+binding.
 
-Signed-off-by: George Song <george.song@maximintegrated.com>
+Now that we have the DT validation in place, let's convert the device
+tree bindings for that driver over to a YAML schema.
+
+Cc: linux-media@vger.kernel.org
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Steve Longerbeam <slongerbeam@gmail.com>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
 ---
- sound/soc/codecs/Kconfig    |   7 +++
- sound/soc/codecs/max98520.c | 121 +++++++++++++++++-------------------
- 2 files changed, 64 insertions(+), 64 deletions(-)
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 86b121d2f381..e8817029c671 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -926,6 +926,13 @@ config SND_SOC_MAX98927
- config SND_SOC_MAX98520
- 	tristate "Maxim Integrated MAX98520 Speaker Amplifier"
- 	depends on I2C
-+	help
-+	  Enable support for Maxim Integrated MAX98520 audio
-+	  amplifier, which implements a tripler charge pump
-+	  based boost converter and support sample rates of
-+	  8KHz to 192KHz.
-+
-+	  To compile this driver as a module, choose M here.
- 
- config SND_SOC_MAX98373
- 	tristate
-diff --git a/sound/soc/codecs/max98520.c b/sound/soc/codecs/max98520.c
-index 1a5e0ceae362..163cc0f106af 100644
---- a/sound/soc/codecs/max98520.c
-+++ b/sound/soc/codecs/max98520.c
-@@ -90,9 +90,9 @@ static int max98520_dai_set_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
- 	}
- 
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2041_PCM_CLK_SETUP,
--						MAX98520_PCM_MODE_CFG_PCM_BCLKEDGE,
--						invert);
-+			   MAX98520_R2041_PCM_CLK_SETUP,
-+			   MAX98520_PCM_MODE_CFG_PCM_BCLKEDGE,
-+			   invert);
- 
- 	/* interface format */
- 	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
-@@ -113,9 +113,9 @@ static int max98520_dai_set_fmt(struct snd_soc_dai *codec_dai, unsigned int fmt)
- 	}
- 
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2040_PCM_MODE_CFG,
--						MAX98520_PCM_MODE_CFG_FORMAT_MASK,
--						format << MAX98520_PCM_MODE_CFG_FORMAT_SHIFT);
-+			   MAX98520_R2040_PCM_MODE_CFG,
-+			   MAX98520_PCM_MODE_CFG_FORMAT_MASK,
-+			   format << MAX98520_PCM_MODE_CFG_FORMAT_SHIFT);
- 
- 	return 0;
- }
-@@ -137,7 +137,7 @@ static int max98520_get_bclk_sel(int bclk)
- }
- 
- static int max98520_set_clock(struct snd_soc_component *component,
--	struct snd_pcm_hw_params *params)
-+			      struct snd_pcm_hw_params *params)
- {
- 	struct max98520_priv *max98520 =
- 		snd_soc_component_get_drvdata(component);
-@@ -155,17 +155,17 @@ static int max98520_set_clock(struct snd_soc_component *component,
- 		}
- 
- 		regmap_update_bits(max98520->regmap,
--							MAX98520_R2041_PCM_CLK_SETUP,
--							MAX98520_PCM_CLK_SETUP_BSEL_MASK,
--							value);
-+				   MAX98520_R2041_PCM_CLK_SETUP,
-+				   MAX98520_PCM_CLK_SETUP_BSEL_MASK,
-+				   value);
- 	}
- 	dev_dbg(component->dev, "%s tdm_mode:%d out\n", __func__, max98520->tdm_mode);
- 	return 0;
- }
- 
- static int max98520_dai_hw_params(struct snd_pcm_substream *substream,
--	struct snd_pcm_hw_params *params,
--	struct snd_soc_dai *dai)
-+				  struct snd_pcm_hw_params *params,
-+				  struct snd_soc_dai *dai)
- {
- 	struct snd_soc_component *component = dai->component;
- 	struct max98520_priv *max98520 =
-@@ -193,8 +193,8 @@ static int max98520_dai_hw_params(struct snd_pcm_substream *substream,
- 	max98520->ch_size = snd_pcm_format_width(params_format(params));
- 
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2040_PCM_MODE_CFG,
--						MAX98520_PCM_MODE_CFG_CHANSZ_MASK, chan_sz);
-+			   MAX98520_R2040_PCM_MODE_CFG,
-+			   MAX98520_PCM_MODE_CFG_CHANSZ_MASK, chan_sz);
- 
- 	dev_dbg(component->dev, "format supported %d",
- 		params_format(params));
-@@ -250,9 +250,9 @@ static int max98520_dai_hw_params(struct snd_pcm_substream *substream,
- 		snd_pcm_format_width(params_format(params)), params_rate(params));
- 	/* set DAI_SR to correct LRCLK frequency */
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2042_PCM_SR_SETUP,
--						MAX98520_PCM_SR_MASK,
--						sampling_rate);
-+			   MAX98520_R2042_PCM_SR_SETUP,
-+			   MAX98520_PCM_SR_MASK,
-+			   sampling_rate);
- 
- 	return max98520_set_clock(component, params);
- err:
-@@ -261,8 +261,8 @@ static int max98520_dai_hw_params(struct snd_pcm_substream *substream,
- }
- 
- static int max98520_dai_tdm_slot(struct snd_soc_dai *dai,
--	unsigned int tx_mask, unsigned int rx_mask,
--	int slots, int slot_width)
-+				 unsigned int tx_mask, unsigned int rx_mask,
-+				 int slots, int slot_width)
- {
- 	struct snd_soc_component *component = dai->component;
- 	struct max98520_priv *max98520 =
-@@ -284,9 +284,9 @@ static int max98520_dai_tdm_slot(struct snd_soc_dai *dai,
- 	}
- 
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2041_PCM_CLK_SETUP,
--						MAX98520_PCM_CLK_SETUP_BSEL_MASK,
--						bsel);
-+			   MAX98520_R2041_PCM_CLK_SETUP,
-+			   MAX98520_PCM_CLK_SETUP_BSEL_MASK,
-+			   bsel);
- 
- 	/* Channel size configuration */
- 	switch (slot_width) {
-@@ -306,18 +306,18 @@ static int max98520_dai_tdm_slot(struct snd_soc_dai *dai,
- 	}
- 
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2040_PCM_MODE_CFG,
--						MAX98520_PCM_MODE_CFG_CHANSZ_MASK, chan_sz);
-+			   MAX98520_R2040_PCM_MODE_CFG,
-+			   MAX98520_PCM_MODE_CFG_CHANSZ_MASK, chan_sz);
- 
- 	/* Rx slot configuration */
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2044_PCM_RX_SRC2,
--						MAX98520_PCM_DMIX_CH0_SRC_MASK,
--						rx_mask);
-+			   MAX98520_R2044_PCM_RX_SRC2,
-+			   MAX98520_PCM_DMIX_CH0_SRC_MASK,
-+			   rx_mask);
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2044_PCM_RX_SRC2,
--						MAX98520_PCM_DMIX_CH1_SRC_MASK,
--						rx_mask << MAX98520_PCM_DMIX_CH1_SHIFT);
-+			   MAX98520_R2044_PCM_RX_SRC2,
-+			   MAX98520_PCM_DMIX_CH1_SRC_MASK,
-+			   rx_mask << MAX98520_PCM_DMIX_CH1_SHIFT);
- 
- 	return 0;
- }
-@@ -334,14 +334,13 @@ static const struct snd_soc_dai_ops max98520_dai_ops = {
- };
- 
- static int max98520_dac_event(struct snd_soc_dapm_widget *w,
--	struct snd_kcontrol *kcontrol, int event)
-+			      struct snd_kcontrol *kcontrol, int event)
- {
- 	struct snd_soc_component *component =
- 		snd_soc_dapm_to_component(w->dapm);
- 	struct max98520_priv *max98520 =
- 		snd_soc_component_get_drvdata(component);
- 
+Changes from v2:
+  - Fix whitespace error
+  - Changed schema referenced for the port validation
+---
+ .../devicetree/bindings/media/i2c/ov5640.txt  |  92 -----------
+ .../bindings/media/i2c/ovti,ov5640.yaml       | 154 ++++++++++++++++++
+ 2 files changed, 154 insertions(+), 92 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov5640.txt b/Documentation/devicetree/bindings/media/i2c/ov5640.txt
+deleted file mode 100644
+index c97c2f2da12d..000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/ov5640.txt
++++ /dev/null
+@@ -1,92 +0,0 @@
+-* Omnivision OV5640 MIPI CSI-2 / parallel sensor
 -
- 	switch (event) {
- 	case SND_SOC_DAPM_POST_PMU:
- 		dev_dbg(component->dev, " AMP ON\n");
-@@ -367,14 +366,14 @@ static const char * const max98520_switch_text[] = {
- 
- static const struct soc_enum dai_sel_enum =
- 	SOC_ENUM_SINGLE(MAX98520_R2043_PCM_RX_SRC1,
--		0, 3, max98520_switch_text);
-+			0, 3, max98520_switch_text);
- 
- static const struct snd_kcontrol_new max98520_dai_controls =
- 	SOC_DAPM_ENUM("DAI Sel", dai_sel_enum);
- 
- static const struct snd_soc_dapm_widget max98520_dapm_widgets[] = {
- 	SND_SOC_DAPM_DAC_E("Amp Enable", "HiFi Playback",
--	MAX98520_R209F_AMP_EN, 0, 0, max98520_dac_event,
-+			   MAX98520_R209F_AMP_EN, 0, 0, max98520_dac_event,
- 	SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
- 	SND_SOC_DAPM_MUX("DAI Sel Mux", SND_SOC_NOPM, 0, 0,	&max98520_dai_controls),
- 	SND_SOC_DAPM_OUTPUT("BE_OUT"),
-@@ -472,14 +471,14 @@ static bool max98520_volatile_reg(struct device *dev, unsigned int reg)
- static const struct snd_kcontrol_new max98520_snd_controls[] = {
- /* Volume */
- SOC_SINGLE_TLV("Digital Volume", MAX98520_R2090_AMP_VOL_CTRL,
--	0, 0x7F, 1, max98520_digital_tlv),
-+	       0, 0x7F, 1, max98520_digital_tlv),
- SOC_SINGLE_TLV("Speaker Volume", MAX98520_R2091_AMP_PATH_GAIN,
--	0, 0x5, 0, max98520_spk_tlv),
-+	       0, 0x5, 0, max98520_spk_tlv),
- /* Volume Ramp Up/Down Enable*/
- SOC_SINGLE("Ramp Up Switch", MAX98520_R2092_AMP_DSP_CFG,
--	MAX98520_DSP_SPK_VOL_RMPUP_SHIFT, 1, 0),
-+	   MAX98520_DSP_SPK_VOL_RMPUP_SHIFT, 1, 0),
- SOC_SINGLE("Ramp Down Switch", MAX98520_R2092_AMP_DSP_CFG,
--	MAX98520_DSP_SPK_VOL_RMPDN_SHIFT, 1, 0),
-+	   MAX98520_DSP_SPK_VOL_RMPDN_SHIFT, 1, 0),
- /* Clock Monitor Enable */
- SOC_SINGLE("CLK Monitor Switch", MAX98520_R2037_ERR_MON_CTRL,
- 	   MAX98520_CTRL_CMON_EN_SHIFT, 1, 0),
-@@ -507,27 +506,25 @@ SOC_SINGLE("Speaker Mode Switch", MAX98520_R2095_AMP_CFG,
- /* Dynamic Headroom Tracking */
- SOC_SINGLE("DHT Switch", MAX98520_R20D8_DHT_EN, 0, 1, 0),
- SOC_SINGLE("DHT Limiter Mode", MAX98520_R20D2_LIMITER_CFG2,
--	MAX98520_DHT_LIMITER_MODE_SHIFT, 1, 0),
-+	   MAX98520_DHT_LIMITER_MODE_SHIFT, 1, 0),
- SOC_SINGLE("DHT Hysteresis Switch", MAX98520_R20D6_DHT_HYSTERESIS_CFG,
--	MAX98520_DHT_HYSTERESIS_SWITCH_SHIFT, 1, 0),
-+	   MAX98520_DHT_HYSTERESIS_SWITCH_SHIFT, 1, 0),
- SOC_SINGLE_TLV("DHT Rot Pnt", MAX98520_R20D0_DHT_CFG1,
--	MAX98520_DHT_VROT_PNT_SHIFT, 10, 1, max98520_dht_rotation_point_tlv),
-+	       MAX98520_DHT_VROT_PNT_SHIFT, 10, 1, max98520_dht_rotation_point_tlv),
- SOC_SINGLE_TLV("DHT Supply Headroom", MAX98520_R20D1_LIMITER_CFG1,
--	MAX98520_DHT_SUPPLY_HR_SHIFT, 16, 0, max98520_dht_supply_hr_tlv),
-+	       MAX98520_DHT_SUPPLY_HR_SHIFT, 16, 0, max98520_dht_supply_hr_tlv),
- SOC_SINGLE_TLV("DHT Limiter Threshold", MAX98520_R20D2_LIMITER_CFG2,
--	MAX98520_DHT_LIMITER_THRESHOLD_SHIFT, 0xF, 1, max98520_dht_lim_thresh_tlv),
-+	       MAX98520_DHT_LIMITER_THRESHOLD_SHIFT, 0xF, 1, max98520_dht_lim_thresh_tlv),
- SOC_SINGLE_TLV("DHT Max Attenuation", MAX98520_R20D3_DHT_CFG2,
--	MAX98520_DHT_MAX_ATTEN_SHIFT, 20, 1, max98520_dht_max_atten_tlv),
-+	       MAX98520_DHT_MAX_ATTEN_SHIFT, 20, 1, max98520_dht_max_atten_tlv),
- SOC_SINGLE_TLV("DHT Hysteresis", MAX98520_R20D6_DHT_HYSTERESIS_CFG,
--	MAX98520_DHT_HYSTERESIS_SHIFT, 0x7, 0, max98520_dht_hysteresis_tlv),
-+	       MAX98520_DHT_HYSTERESIS_SHIFT, 0x7, 0, max98520_dht_hysteresis_tlv),
- SOC_ENUM("DHT Attack Rate", max98520_dht_attack_rate_enum),
- SOC_ENUM("DHT Release Rate", max98520_dht_release_rate_enum),
- /* ADC configuration */
- SOC_SINGLE("ADC PVDD CH Switch", MAX98520_R20CF_MEAS_ADC_CFG, 0, 1, 0),
--SOC_SINGLE("ADC PVDD FLT Switch", MAX98520_R20B2_ADC_PVDD0_CFG,
--	MAX98520_FLT_EN_SHIFT, 1, 0),
--SOC_SINGLE("ADC TEMP FLT Switch", MAX98520_R20B3_ADC_THERMAL_CFG,
--	MAX98520_FLT_EN_SHIFT, 1, 0),
-+SOC_SINGLE("ADC PVDD FLT Switch", MAX98520_R20B2_ADC_PVDD0_CFG,	MAX98520_FLT_EN_SHIFT, 1, 0),
-+SOC_SINGLE("ADC TEMP FLT Switch", MAX98520_R20B3_ADC_THERMAL_CFG, MAX98520_FLT_EN_SHIFT, 1, 0),
- SOC_SINGLE("ADC PVDD MSB", MAX98520_R20B6_ADC_PVDD_READBACK_MSB, 0, 0xFF, 0),
- SOC_SINGLE("ADC PVDD LSB", MAX98520_R20B7_ADC_PVDD_READBACK_LSB, 0, 0x01, 0),
- SOC_SINGLE("ADC TEMP MSB", MAX98520_R20B8_ADC_TEMP_READBACK_MSB, 0, 0xFF, 0),
-@@ -597,7 +594,7 @@ static int max98520_probe(struct snd_soc_component *component)
- 	regmap_update_bits(max98520->regmap, MAX98520_R2092_AMP_DSP_CFG, 1, 1);
- 	/* Disable Speaker Safe Mode */
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R2092_AMP_DSP_CFG, MAX98520_SPK_SAFE_EN_MASK, 0);
-+			   MAX98520_R2092_AMP_DSP_CFG, MAX98520_SPK_SAFE_EN_MASK, 0);
- 	/* Enable Clock Monitor Auto-restart */
- 	regmap_write(max98520->regmap, MAX98520_R2030_CLK_MON_CTRL, 0x1);
- 
-@@ -609,8 +606,9 @@ static int max98520_probe(struct snd_soc_component *component)
- 
- 	/* set Rx Enable */
- 	regmap_update_bits(max98520->regmap,
--						MAX98520_R204F_PCM_RX_EN,
--						MAX98520_PCM_RX_EN_MASK, 1);
-+			   MAX98520_R204F_PCM_RX_EN,
-+			   MAX98520_PCM_RX_EN_MASK,
-+			   1);
- 
- 	return 0;
- }
-@@ -624,6 +622,7 @@ static int max98520_suspend(struct device *dev)
- 	regcache_mark_dirty(max98520->regmap);
- 	return 0;
- }
-+
- static int max98520_resume(struct device *dev)
- {
- 	struct max98520_priv *max98520 = dev_get_drvdata(dev);
-@@ -664,18 +663,14 @@ static const struct regmap_config max98520_regmap = {
- 	.cache_type = REGCACHE_RBTREE,
- };
- 
--static int max98520_i2c_probe(struct i2c_client *i2c,
--	const struct i2c_device_id *id)
-+static int max98520_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *id)
- {
+-Required Properties:
+-- compatible: should be "ovti,ov5640"
+-- clocks: reference to the xclk input clock.
+-- clock-names: should be "xclk".
+-- DOVDD-supply: Digital I/O voltage supply, 1.8 volts
+-- AVDD-supply: Analog voltage supply, 2.8 volts
+-- DVDD-supply: Digital core voltage supply, 1.5 volts
 -
- 	int ret = 0;
- 	int reg = 0;
- 	struct max98520_priv *max98520 = NULL;
- 	struct i2c_adapter *adapter = to_i2c_adapter(i2c->dev.parent);
- 
--	ret = i2c_check_functionality(adapter,
--		I2C_FUNC_SMBUS_BYTE
--		| I2C_FUNC_SMBUS_BYTE_DATA);
-+	ret = i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE | I2C_FUNC_SMBUS_BYTE_DATA);
- 	if (!ret) {
- 		dev_err(&i2c->dev, "I2C check functionality failed\n");
- 		return -ENXIO;
-@@ -690,8 +685,8 @@ static int max98520_i2c_probe(struct i2c_client *i2c,
- 	i2c_set_clientdata(i2c, max98520);
- 
- 	/* regmap initialization */
--	max98520->regmap
--		= devm_regmap_init_i2c(i2c, &max98520_regmap);
-+	max98520->regmap =
-+		devm_regmap_init_i2c(i2c, &max98520_regmap);
- 	if (IS_ERR(max98520->regmap)) {
- 		ret = PTR_ERR(max98520->regmap);
- 		dev_err(&i2c->dev,
-@@ -715,8 +710,7 @@ static int max98520_i2c_probe(struct i2c_client *i2c,
- 	}
- 
- 	/* Check Revision ID */
--	ret = regmap_read(max98520->regmap,
--		MAX98520_R21FF_REVISION_ID, &reg);
-+	ret = regmap_read(max98520->regmap, MAX98520_R21FF_REVISION_ID, &reg);
- 	if (ret < 0) {
- 		dev_err(&i2c->dev,
- 			"Failed to read: 0x%02X\n", MAX98520_R21FF_REVISION_ID);
-@@ -771,7 +765,6 @@ static struct i2c_driver max98520_i2c_driver = {
- module_i2c_driver(max98520_i2c_driver)
- 
- MODULE_DESCRIPTION("ALSA SoC MAX98520 driver");
--MODULE_AUTHOR("Ryan Lee <ryans.lee@analog.com>");
--MODULE_AUTHOR("George Song <george.song@analog.com>");
-+MODULE_AUTHOR("George Song <george.song@maximintegrated.com>");
- MODULE_LICENSE("GPL");
- 
+-Optional Properties:
+-- reset-gpios: reference to the GPIO connected to the reset pin, if any.
+-	       This is an active low signal to the OV5640.
+-- powerdown-gpios: reference to the GPIO connected to the powerdown pin,
+-		   if any. This is an active high signal to the OV5640.
+-- rotation: as defined in
+-	    Documentation/devicetree/bindings/media/video-interfaces.txt,
+-	    valid values are 0 (sensor mounted upright) and 180 (sensor
+-	    mounted upside down).
+-
+-The device node must contain one 'port' child node for its digital output
+-video port, in accordance with the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt.
+-
+-OV5640 can be connected to a MIPI CSI-2 bus or a parallel bus endpoint.
+-
+-Endpoint node required properties for CSI-2 connection are:
+-- remote-endpoint: a phandle to the bus receiver's endpoint node.
+-- clock-lanes: should be set to <0> (clock lane on hardware lane 0)
+-- data-lanes: should be set to <1> or <1 2> (one or two CSI-2 lanes supported)
+-
+-Endpoint node required properties for parallel connection are:
+-- remote-endpoint: a phandle to the bus receiver's endpoint node.
+-- bus-width: shall be set to <8> for 8 bits parallel bus
+-	     or <10> for 10 bits parallel bus
+-- data-shift: shall be set to <2> for 8 bits parallel bus
+-	      (lines 9:2 are used) or <0> for 10 bits parallel bus
+-- hsync-active: active state of the HSYNC signal, 0/1 for LOW/HIGH respectively.
+-- vsync-active: active state of the VSYNC signal, 0/1 for LOW/HIGH respectively.
+-- pclk-sample: sample data on rising (1) or falling (0) edge of the pixel clock
+-	       signal.
+-
+-Examples:
+-
+-&i2c1 {
+-	ov5640: camera@3c {
+-		compatible = "ovti,ov5640";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_ov5640>;
+-		reg = <0x3c>;
+-		clocks = <&clks IMX6QDL_CLK_CKO>;
+-		clock-names = "xclk";
+-		DOVDD-supply = <&vgen4_reg>; /* 1.8v */
+-		AVDD-supply = <&vgen3_reg>;  /* 2.8v */
+-		DVDD-supply = <&vgen2_reg>;  /* 1.5v */
+-		powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
+-		reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
+-		rotation = <180>;
+-
+-		port {
+-			/* MIPI CSI-2 bus endpoint */
+-			ov5640_to_mipi_csi2: endpoint {
+-				remote-endpoint = <&mipi_csi2_from_ov5640>;
+-				clock-lanes = <0>;
+-				data-lanes = <1 2>;
+-			};
+-		};
+-	};
+-};
+-
+-&i2c1 {
+-	ov5640: camera@3c {
+-		compatible = "ovti,ov5640";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_ov5640>;
+-		reg = <0x3c>;
+-		clocks = <&clk_ext_camera>;
+-		clock-names = "xclk";
+-
+-		port {
+-			/* Parallel bus endpoint */
+-			ov5640_to_parallel: endpoint {
+-				remote-endpoint = <&parallel_from_ov5640>;
+-				bus-width = <8>;
+-				data-shift = <2>; /* lines 9:2 are used */
+-				hsync-active = <0>;
+-				vsync-active = <0>;
+-				pclk-sample = <1>;
+-			};
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+new file mode 100644
+index 000000000000..540fd69ac39f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
+@@ -0,0 +1,154 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5640.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: OmniVision OV5640 Image Sensor Device Tree Bindings
++
++maintainers:
++  - Steve Longerbeam <slongerbeam@gmail.com>
++
++allOf:
++  - $ref: /schemas/media/video-interface-devices.yaml#
++
++properties:
++  compatible:
++    const: ovti,ov5640
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: XCLK Input Clock
++
++  clock-names:
++    const: xclk
++
++  AVDD-supply:
++    description: Analog voltage supply, 2.8 volts
++
++  DVDD-supply:
++    description: Digital core voltage supply, 1.5 volts
++
++  DOVDD-supply:
++    description: Digital I/O voltage supply, 1.8 volts
++
++  powerdown-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the powerdown pin, if any.
++
++  reset-gpios:
++    maxItems: 1
++    description: >
++      Reference to the GPIO connected to the reset pin, if any.
++
++  rotation:
++    enum:
++      - 0
++      - 180
++
++  port:
++    description: Digital Output Port
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          clock-lanes:
++            const: 0
++
++          data-lanes:
++            minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2]
++
++          bus-width:
++            enum: [8, 10]
++
++          data-shift:
++            enum: [0, 2]
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - AVDD-supply
++  - DVDD-supply
++  - DOVDD-supply
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++      #include <dt-bindings/clock/imx6qdl-clock.h>
++      #include <dt-bindings/gpio/gpio.h>
++
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@3c {
++              compatible = "ovti,ov5640";
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_ov5640>;
++              reg = <0x3c>;
++              clocks = <&clks IMX6QDL_CLK_CKO>;
++              clock-names = "xclk";
++              DOVDD-supply = <&vgen4_reg>; /* 1.8v */
++              AVDD-supply = <&vgen3_reg>;  /* 2.8v */
++              DVDD-supply = <&vgen2_reg>;  /* 1.5v */
++              powerdown-gpios = <&gpio1 19 GPIO_ACTIVE_HIGH>;
++              reset-gpios = <&gpio1 20 GPIO_ACTIVE_LOW>;
++              rotation = <180>;
++
++              port {
++                  /* MIPI CSI-2 bus endpoint */
++                  ov5640_to_mipi_csi2: endpoint {
++                      remote-endpoint = <&mipi_csi2_from_ov5640>;
++                      clock-lanes = <0>;
++                      data-lanes = <1 2>;
++                  };
++              };
++          };
++      };
++
++  - |
++      i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          camera@3c {
++              compatible = "ovti,ov5640";
++              pinctrl-names = "default";
++              pinctrl-0 = <&pinctrl_ov5640>;
++              reg = <0x3c>;
++              clocks = <&clk_ext_camera>;
++              clock-names = "xclk";
++              DOVDD-supply = <&vgen4_reg>; /* 1.8v */
++              AVDD-supply = <&vgen3_reg>;  /* 2.8v */
++              DVDD-supply = <&vgen2_reg>;  /* 1.5v */
++
++              port {
++                  /* Parallel bus endpoint */
++                  ov5640_to_parallel: endpoint {
++                      remote-endpoint = <&parallel_from_ov5640>;
++                      bus-width = <8>;
++                      data-shift = <2>; /* lines 9:2 are used */
++                      hsync-active = <0>;
++                      vsync-active = <0>;
++                      pclk-sample = <1>;
++                  };
++              };
++          };
++      };
++
++...
 -- 
-2.25.1
+2.31.1
 
