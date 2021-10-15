@@ -2,85 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB8C42FDDE
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 00:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFB3042FDE2
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 00:09:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243264AbhJOWJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 18:09:58 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:42938 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243251AbhJOWJ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 18:09:58 -0400
-Received: by mail-ot1-f44.google.com with SMTP id l24-20020a9d1c98000000b00552a5c6b23cso14671264ota.9;
-        Fri, 15 Oct 2021 15:07:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rzK6A3z8OFIcs/1n/hb2OLqf6EldIVkV7PlZ7MDPje8=;
-        b=WTdzfHxSc/JXyzGT19x6+/2dDdF+1dGUnx3xBW3607BsascT/hXEb+WhRe/56jxCII
-         wId0WQCyHFhJGSFAHWO083nzK/qRkpd/TiX5/6hZBHsBJP5jzfXZRkeso/dCI/lxVRRm
-         zLFHnhyfdZJxH8U/fz9R7NZLeR+GP/JlZ1Cco8UCnMvr21/asfihKF3pmz9OQbVi1ans
-         +02cLUEY0CAn28ym9aHDa967biXhRUyhyvvZX29Be9yayBRb0HLySoAX+Zg19TWLhCO/
-         5jYZO15Or5Upjn5UiwdiytqGWd/dkbPy0hxgwLbGkXOpFs3xGk1mYTlyi/UwKoJ4fUtv
-         xUng==
-X-Gm-Message-State: AOAM531+5/ndHT/OrNV5bg/ydfBhhTo74b+gFT0ShvEi1/5LE7OYJACH
-        Q0k3JVqdDwLwCMl69dPF/Q==
-X-Google-Smtp-Source: ABdhPJylKNewbI/pvdMVolRcE/RXozn2cQhzYOSJrrR6IvZLyuAuiGnf/Cqefli8Z9Ebj5H8Aoa9iQ==
-X-Received: by 2002:a9d:5a85:: with SMTP id w5mr10293943oth.73.1634335670677;
-        Fri, 15 Oct 2021 15:07:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r4sm1517697oiw.36.2021.10.15.15.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 15:07:50 -0700 (PDT)
-Received: (nullmailer pid 2289357 invoked by uid 1000);
-        Fri, 15 Oct 2021 22:07:49 -0000
-Date:   Fri, 15 Oct 2021 17:07:49 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        id S238800AbhJOWKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 18:10:39 -0400
+Received: from sibelius.xs4all.nl ([83.163.83.176]:63365 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243168AbhJOWKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 18:10:37 -0400
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id 1702a20a;
+        Sat, 16 Oct 2021 00:08:25 +0200 (CEST)
+Date:   Sat, 16 Oct 2021 00:08:25 +0200 (CEST)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     pali@kernel.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, robh+dt@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        vladimir.vid@sartura.hr, kabel@kernel.org,
+        linux-clk@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: media: Convert OV5640 binding to a schema
-Message-ID: <YWn7tW6v6aooogJO@robh.at.kernel.org>
-References: <20211015072830.8580-1-maxime@cerno.tech>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211015072830.8580-1-maxime@cerno.tech>
+In-Reply-To: <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com>
+        (message from Stephen Boyd on Fri, 15 Oct 2021 14:55:47 -0700)
+Subject: Re: [PATCH v7 3/6] dt-bindings: mvebu-uart: document DT bindings for
+ marvell, armada-3700-uart-clock
+References: <20210930095838.28145-1-pali@kernel.org>
+ <20210930095838.28145-4-pali@kernel.org>
+ <163425678347.1688384.10695189000353676651@swboyd.mtv.corp.google.com>
+ <20211015090937.gnt66hgugrhwnkei@pali> <20211015093701.pfvkighxsndj4ujg@pali> <163433494758.1688384.5994009027317282677@swboyd.mtv.corp.google.com>
+MIME-version: 1.0
+Content-type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Message-ID: <d3ca657877a01872@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 09:28:30 +0200, Maxime Ripard wrote:
-> The Omnivision OV5640 is supported by Linux thanks to its device tree
-> binding.
+> From: Stephen Boyd <sboyd@kernel.org>
+> Date: Fri, 15 Oct 2021 14:55:47 -0700
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
+> Quoting Pali Rohár (2021-10-15 02:37:01)
+> > On Friday 15 October 2021 11:09:37 Pali Rohár wrote:
+> > > On Thursday 14 October 2021 17:13:03 Stephen Boyd wrote:
+> > > > Quoting Pali Rohár (2021-09-30 02:58:35)
+> > > > > diff --git a/Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml b/Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..175f5c8f2bc5
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/clock/marvell,armada-3700-uart-clock.yaml
+> > > > > @@ -0,0 +1,59 @@
+> > > > [..]
+> > > > > +  '#clock-cells':
+> > > > > +    const: 1
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - clocks
+> > > > > +  - clock-names
+> > > > > +  - '#clock-cells'
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    uartclk: clock-controller@12010 {
+> > > > 
+> > > > The uart device is at 0x12000 and the clock-controller is at 0x12010?
+> > > > This looks like a node is being put into DT to represent a clk driver.
+> > > > Why can't we register a clk from the uart device driver itself? I think
+> > > > we talked about this a month or two ago but it still isn't clear to me.
+> > > 
+> > > We have already talked about it and I have already wrote reasons. UART
+> > > clk is shared for both UART1 and UART2. And UART clk regs are in both
+> > > address spaces of UART1 and UART2. UART1 or UART2 can be independently
+> > > disabled on particular board (as pins are MPP which may be configured to
+> > > different function). So you have a board only with UART2, you have to
+> > > disable UART1 node, but at the same time you have to access UART clk to
+> > > drive UART2. And UART clk bits are in UART1 address space.
+> > 
+> > It is explained also in commit message of patch 2/6.
 > 
-> Cc: linux-media@vger.kernel.org
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Steve Longerbeam <slongerbeam@gmail.com>
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> Cool, thanks for the pointer.
 > 
-> ---
+> Why are the two uarts split into different device nodes? It looks like
+> it's one device that was split into two nodes because they're fairly
+> similar hardware blocks, and one or the other may not be used on the
+> board so we want to use status = "disabled" to indicate that. Sadly the
+> hardware team has delivered them as a single package into the SoC at
+> address 0x12000 and then stuck a common clk for both uarts into the same
+> uart wrapper. Here's a clk, job done!
 > 
-> Changes from v2:
->   - Fix whitespace error
->   - Changed schema referenced for the port validation
-> ---
->  .../devicetree/bindings/media/i2c/ov5640.txt  |  92 -----------
->  .../bindings/media/i2c/ovti,ov5640.yaml       | 154 ++++++++++++++++++
->  2 files changed, 154 insertions(+), 92 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5640.yaml
-> 
+> Is it a problem to map UART1 address space when it isn't used on the
+> board? I'm trying to understand why it can't work to register two uart
+> ports from one device node and driver.
 
-Applied, thanks!
+Separate nodes are needed because stdin-path and stdout-patch need to
+be able to point at a specific device node.
