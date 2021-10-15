@@ -2,117 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9438C42EA23
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E446B42EA2E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 09:30:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234673AbhJOHbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 03:31:09 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:55448
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233236AbhJOHbI (ORCPT
+        id S234669AbhJOHcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 03:32:15 -0400
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:59401 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229693AbhJOHcP (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 03:31:08 -0400
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D6D9F3FFFC
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 07:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634282940;
-        bh=STxvpgXyUSvLYxw4ii45TmrwAbcDPMKJf5rkuTxXNX4=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=sLIYseEOv7DIC0Mm4PYjydVfFF5oId736llhk0t4KMV4m1JI69wZDfLFYHgk8ywui
-         IuJn4wqF8PkAI24KhNvze0M8Nskn+gqRyoktwv0laK6vz55b+yZQAQFDViSbdUc3wD
-         0KeEzpnjH8dURuHa7QD2sP0TitrsC/hsvgfD/+zR12Ci2zxz6AXeIlZyC8w6yUfjod
-         K+6YtR42T3u+IHHOyZ3mMgQiNT1zWrfjdD0UEsd4JZx/H0qBJZWTXxrOsBKPnkcXH1
-         ZGu6a98z64hoH+jGixsAYxn9qMCKSrbp/wbcz56AAQVo5tmnCBPresW+C2aon5n6Gr
-         CPKvxQxXaaGJg==
-Received: by mail-lf1-f69.google.com with SMTP id c41-20020a05651223a900b003fdb648a156so3821001lfv.15
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=STxvpgXyUSvLYxw4ii45TmrwAbcDPMKJf5rkuTxXNX4=;
-        b=6O3FJDdj5KkN9TYw9j8nQWPimBdvB3kujDS/pi6GlWDO/0wEYeuxMkfw6XhzZkUOdj
-         c60FZBMGGrDEUtcqAfyPUPblvA9qU4UA8tYdNBtt+ybqQ8H7xiH0+7mmpNQSdtcSyTQw
-         GIEhZue74yIxQSeuKciI5LaH78pyj3rkDAFwqVHoBmlJCTZx1dPK6Zwv4wRd5h3Prbwr
-         /cGyhf2ShwqrVOaGTWqs9PRs2rrseTqKUevFScawcUOGbsrHYJpHIhqdxsj4sk8yxaT+
-         Q+eyhDFeRxPTeioQDTDbxTuDxM/YNJWiAPbiY4cJWzuU+ZlQhf1VArtSaS/FjQW9Ao5C
-         tijw==
-X-Gm-Message-State: AOAM531KREYtM3eIg3iCoDfgAJXoI54HaCBFD1WxiNuPkHrCTVoPXPZt
-        rqOR7v7ii9Y3ewN428uvAHkt0/p8QeezhG0IuUZicHPWdvkGRAV89zKb0Jpn9/JgOTDmGlztaTO
-        ZKXctQHANGUvDSAqOZh4z4FnI/CPO59I5VsEx/24=
-X-Received: by 2002:a2e:3315:: with SMTP id d21mr11110267ljc.377.1634282940320;
-        Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx9+NLpbjYfYTu5GOLKMRlKSSfPe3h88aVfbR/xFBKM7+q/PPb60UM1KhCUR5XHhSH70vHI0w==
-X-Received: by 2002:a2e:3315:: with SMTP id d21mr11110245ljc.377.1634282940062;
-        Fri, 15 Oct 2021 00:29:00 -0700 (PDT)
-Received: from kozik-lap.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id r3sm431818lfc.114.2021.10.15.00.28.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 00:28:59 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: memory-controllers: correct path to LPDDR3 bindings
-Date:   Fri, 15 Oct 2021 09:28:57 +0200
-Message-Id: <20211015072857.9770-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.30.2
+        Fri, 15 Oct 2021 03:32:15 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id CE9455C01E0;
+        Fri, 15 Oct 2021 03:30:08 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Fri, 15 Oct 2021 03:30:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=m0oIlEvFTVVx+KjWs66YsdbS/L
+        YUR5qqOyiotE1+91c=; b=gP7F7n3q/IAL/arnwW2/o+alrEXnW+qDP12g7fKGoO
+        69c34ZQWEK3vpWWYGWXqSTLKw/L2ajleK3ETd5QimAMjyfLgFxvSd2VW2A9ro7EC
+        TPFSsTj92OxkXpUyk4LdWwvr8dpFtfQiTvc4kxsT4g3rv0Pp+05yqV/Do40bAxa3
+        2eS9gCbyBqHZpKWt/z45kb+ATea+FexlcFat+KLzqjD40qUti1KsHHcK1xJBUc2d
+        hFNtcOTmaglH8xmpCc6eFtMN9kKwQg1qqIrlr9XnO1VXN9SpHK5AENPGoJjGUAc2
+        b2UyRhQ+adkU0zv55Sfa1I6AFzQUFh3Ki7koCsRjeucA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=m0oIlEvFTVVx+KjWs
+        66YsdbS/LYUR5qqOyiotE1+91c=; b=L7H8jnhOYuhEgVjDthRILwWFyaknn2+n8
+        V3GTsj1PWfJ9hZvkCcsZIS76eDUbliy/u9VLvKvYI54z2g3a1zyCj6DbCoRO22aX
+        v3S/UbrMZ+8WpjjXVo809fgZEM+v/9QFEuBsJQTze/Zs94ViWdFlBxE0G5p7xAl/
+        JwhNwNZh89Ce6kSOEm+Hsg6bhsOfnedt0TMysvLGY5S52pTAeLBRoPT5FIjz//E8
+        bMYPm1bvQlCX2wU2tVqam6F9oJLY6r89Szag7ILIGCQWSD5YURY+S4TyJl8Yv4jg
+        CW5BnItyN/f6/Pnl4StYhJ3RpHJcbh8dc8SD0TIDCJpGIRDqW84HA==
+X-ME-Sender: <xms:AC5pYa365Pt59d7rWW9PTSX-tUJV-I5sjamB56DAQ0ZprtYKMPWFQg>
+    <xme:AC5pYdFFKF8JBjaWCs7nz6GX5b3vZqs9GBxHZiYWIlV1yDNC2c6r1y_x5j-CiGMfo
+    txBWDyIqlAkV0nS29Y>
+X-ME-Received: <xmr:AC5pYS7Y60RXBC2PvD1WNshKiccKnpcOVH6wWmoyaP7vQxxdx7HHodVPvTJhIbhgwPyztbVP61xl3mSh4SukAZVcKisQ1P-KFiLKyff_>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddufedgudduiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enogevohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffo
+    ggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgi
+    himhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhephffhhfevtddthefg
+    ieeigeffudehkefgtdeufedvtdduheduieekvddvfedvkeetnecuffhomhgrihhnpeguvg
+    hvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhep
+    mhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:AC5pYb3L76_AGWmS_Yekecutgw6JsTqXGNcOHxDLZW4664z9s35xdA>
+    <xmx:AC5pYdFRpU4bkthMu2bLgOFn5a64tqRYIHdP73CJwdggUt1GjauvMA>
+    <xmx:AC5pYU84eC-4QG_9oONFUILBR4vdF_mcrFOApk0G9D5wyELx1J2fyQ>
+    <xmx:AC5pYRgw3AIPAOiRyziYzdw0wbl5BgPxHHGDX22E0wlQLqK03q6ZHg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 15 Oct 2021 03:30:08 -0400 (EDT)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: input: Convert Silead GSL1680 binding to a schema
+Date:   Fri, 15 Oct 2021 09:30:06 +0200
+Message-Id: <20211015073006.8939-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LPDDR3 bindings were moved to memory-controllers/ddr.
+The Silead GSL1680 Touchscreen Controller is supported by Linux thanks
+to its device tree binding.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Now that we have the DT validation in place, let's convert the device
+tree bindings for that driver over to a YAML schema.
+
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: linux-input@vger.kernel.org
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
 ---
 
-I will fold it into original patch.
----
- .../devicetree/bindings/memory-controllers/ddr/lpddr3.txt    | 5 +++--
- .../bindings/memory-controllers/samsung,exynos5422-dmc.yaml  | 3 ++-
- 2 files changed, 5 insertions(+), 3 deletions(-)
+Changes from v2:
+  - Fixed firmware-name property name
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
-index b221e653d384..031af5fb0379 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
-+++ b/Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
-@@ -43,8 +43,9 @@ These values shall be obtained from the device data-sheet.
- Child nodes:
- - The lpddr3 node may have one or more child nodes of type "lpddr3-timings".
-   "lpddr3-timings" provides AC timing parameters of the device for
--  a given speed-bin. Please see Documentation/devicetree/
--  bindings/ddr/lpddr3-timings.txt for more information on "lpddr3-timings"
-+  a given speed-bin. Please see
-+  Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3-timings.txt
-+  for more information on "lpddr3-timings"
- 
- Example:
- 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
-index 6f4fd5814bf4..fe8639dcffab 100644
---- a/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
-+++ b/Documentation/devicetree/bindings/memory-controllers/samsung,exynos5422-dmc.yaml
-@@ -51,7 +51,8 @@ properties:
-     $ref: '/schemas/types.yaml#/definitions/phandle'
-     description: |
-       phandle of the connected DRAM memory device. For more information please
--      refer to documentation file: Documentation/devicetree/bindings/ddr/lpddr3.txt
-+      refer to documentation file:
-+      Documentation/devicetree/bindings/memory-controllers/ddr/lpddr3.txt
- 
-   operating-points-v2: true
- 
+Changes from v1:
+  - Added maximum to the number of fingers
+---
+ .../input/touchscreen/silead,gsl1680.yaml     | 91 +++++++++++++++++++
+ .../input/touchscreen/silead_gsl1680.txt      | 44 ---------
+ 2 files changed, 91 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
+
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml b/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+new file mode 100644
+index 000000000000..eec6f7f6f0a3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+@@ -0,0 +1,91 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/silead,gsl1680.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Silead GSL1680 Touchscreen Controller Device Tree Bindings
++
++maintainers:
++  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  compatible:
++    enum:
++      - silead,gsl1680
++      - silead,gsl1688
++      - silead,gsl3670
++      - silead,gsl3675
++      - silead,gsl3692
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  power-gpios:
++    maxItems: 1
++
++  firmware-name:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: >
++      File basename for board specific firmware
++
++  silead,max-fingers:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 5
++    description: >
++      Maximum number of fingers the touchscreen can detect
++
++  silead,home-button:
++    type: boolean
++    description: >
++      Does the device have a capacitive home-button build into the
++      touchscreen?
++
++  avdd-supply:
++    description: >
++      Regulator phandle for controller AVDD
++
++  vddio-supply:
++    description: >
++      Regulator phandle for controller VDDIO
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - power-gpios
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        touchscreen@40 {
++            compatible = "silead,gsl1680";
++            reg = <0x40>;
++            interrupt-parent = <&pio>;
++            interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>;
++            power-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>;
++            touchscreen-size-x = <480>;
++            touchscreen-size-y = <800>;
++            touchscreen-inverted-x;
++            touchscreen-swapped-x-y;
++            silead,max-fingers = <5>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt b/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
+deleted file mode 100644
+index d67e558e5ab5..000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-* GSL 1680 touchscreen controller
+-
+-Required properties:
+-- compatible		  : Must be one of the following, depending on the model:
+-			    "silead,gsl1680"
+-			    "silead,gsl1688"
+-			    "silead,gsl3670"
+-			    "silead,gsl3675"
+-			    "silead,gsl3692"
+-- reg			  : I2C slave address of the chip (0x40)
+-- interrupts		  : interrupt specification for the gsl1680 interrupt
+-- power-gpios		  : Specification for the pin connected to the gsl1680's
+-			    shutdown input. This needs to be driven high to take the
+-			    gsl1680 out of its low power state
+-- touchscreen-size-x	  : See touchscreen.txt
+-- touchscreen-size-y	  : See touchscreen.txt
+-
+-Optional properties:
+-- firmware-name		  : File basename (string) for board specific firmware
+-- touchscreen-inverted-x  : See touchscreen.txt
+-- touchscreen-inverted-y  : See touchscreen.txt
+-- touchscreen-swapped-x-y : See touchscreen.txt
+-- silead,max-fingers	  : maximum number of fingers the touchscreen can detect
+-- silead,home-button	  : Boolean, set to true on devices which have a
+-			    capacitive home-button build into the touchscreen
+-- vddio-supply		  : regulator phandle for controller VDDIO
+-- avdd-supply		  : regulator phandle for controller AVDD
+-
+-Example:
+-
+-i2c@00000000 {
+-	gsl1680: touchscreen@40 {
+-		compatible = "silead,gsl1680";
+-		reg = <0x40>;
+-		interrupt-parent = <&pio>;
+-		interrupts = <6 11 IRQ_TYPE_EDGE_FALLING>;
+-		power-gpios = <&pio 1 3 GPIO_ACTIVE_HIGH>;
+-		touchscreen-size-x = <480>;
+-		touchscreen-size-y = <800>;
+-		touchscreen-inverted-x;
+-		touchscreen-swapped-x-y;
+-		silead,max-fingers = <5>;
+-	};
+-};
 -- 
-2.30.2
+2.31.1
 
