@@ -2,80 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8EF42F8B3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:51:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BF442F8B9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241658AbhJOQxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 12:53:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34216 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241642AbhJOQxN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 12:53:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4FA4861151;
-        Fri, 15 Oct 2021 16:51:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634316666;
-        bh=RIPWXigVIiL/KIysb2frOp/h0Gpodru2TBwLYvNjvA0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Rbd82HI+29vw+xRsqztUngZmVZeuHdyB7vrE01gYHgutD5HGl0byYQvLpvLFUJl8k
-         2FYL4ZH/3AKsuT0Eyk00tiNajdw3REjKzscPv1u8xe304cDLJzUf844ENqu5ot3vdR
-         PgAwlGxY1fTwo3IYhGdRGKnUH+aWjPvjEmQo8S0ZeNfYHPJp+b1TI5hpaJNl1blfDf
-         RNnif/yBnhXH292ZHR49Y6d4EigmYDd+Gw7kOwcjBnMyEzz9LWpLTCTkVKsX3c07+M
-         vHLIfXIW8RAA5pCEBurGfuJmV40L6Q6xEdBs+fgrMllofDT1oAaoC/a/unbhDQXa+m
-         XotdnzWNMFU+g==
-Date:   Fri, 15 Oct 2021 17:51:03 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     George Song <george.song@maximintegrated.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, george.song@analog.com,
-        ryans.lee@maximintegrated.com, steves.lee@maximintegrated.com
-Subject: Re: [v2 1/2] ASoC: dt-bindings: max98520: changed signed-off-by
- email address
-Message-ID: <YWmxd/tnHRXUEAxy@sirena.org.uk>
-References: <20211015072709.3167-1-george.song@maximintegrated.com>
+        id S241653AbhJOQxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 12:53:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241603AbhJOQxs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 12:53:48 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BADCFC061570;
+        Fri, 15 Oct 2021 09:51:41 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id q19so8860813pfl.4;
+        Fri, 15 Oct 2021 09:51:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zb9G1+QE6TPjcDQWwrFaaor3TCEf2EiGzb+MS9GU7D8=;
+        b=XY99bZaRyYvFlMJ7FRdZGyNr6JdUPvFgp7MJuCUg6ulGJzgYiltl1LarRL0+PnNLX1
+         +Q+yT8P7aJF+GROBgsbXXrc+I1zsfaUAshek0gcqtyIBQ0PED6XFhlT3aEQGj3OFSkm5
+         XMcgllev9uy4VL6qf6Oljv5nzgS9Tk0RQWNKZXYeNRpaFyq/8KgIm7EHt7QwwJfzFohP
+         j9erJ/n0UA9VCXImdor5eZKwElu0U+CVcgeVJV3W2YhKSa4UlIqjnl7DeEFEZfJCgRH+
+         bsUiCQhL3JOrbQCtIKc8Gtb3Fwna5kMeemZHdq/SgDNTUfRA/apjVcFq5lhh022qdJ+C
+         8iKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zb9G1+QE6TPjcDQWwrFaaor3TCEf2EiGzb+MS9GU7D8=;
+        b=O/aOeZGF83l1N7pl5p22Ox0zQsQ6P6k7Qws/sEuZrEEKk9pd31b1pUgYut7WzIFGDf
+         IuNYCVP4mKf5tiT/qf8cJv5C0Ul6WMEQmf1rUoW0cCpPnIfdYZARhrbmlGCZa0+UN/MI
+         w0y8MCuVaNMLxn4w64Eebe5b2cFbxrY/CnMNFjL6682XpVvi/fRqMPOUQAFTuuQZR9p+
+         iCQ6C9dk7g9tbpyrFkVkQeF/fNAjPpOGAWsgyoN1JdIH2H8PmybFylmqtYQ02DgLMO5v
+         Ww7zcBr56ejlXNKcw7Gw2BWF4N2JrGcN7QYMgnPRhjgsQtgwQKRZX7dRZB0w1Twuhvby
+         Ze3Q==
+X-Gm-Message-State: AOAM53341uPVzXd26glc4RVC36V6y4yJT2R0WPhvRHan3XQhoI+Ai3F3
+        p+9kuBlJyMVClf9MHCXRZsw=
+X-Google-Smtp-Source: ABdhPJxyNLQFBFqpTmsYlhliHjDREd1duHZRhxCnMSMedF4vPcF92BYNycEBRVFVpGFc+/trXdfb9w==
+X-Received: by 2002:aa7:808d:0:b0:44b:31ab:c763 with SMTP id v13-20020aa7808d000000b0044b31abc763mr13022551pff.4.1634316701134;
+        Fri, 15 Oct 2021 09:51:41 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id gk1sm3919321pjb.2.2021.10.15.09.51.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Oct 2021 09:51:40 -0700 (PDT)
+Subject: Re: [PATCH net-next 3/6] dt-bindings: net: dsa: sja1105: fix example
+ so all ports have a phy-handle of fixed-link
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>
+References: <20211013222313.3767605-1-vladimir.oltean@nxp.com>
+ <20211013222313.3767605-4-vladimir.oltean@nxp.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <d3e20bf2-797a-ae9b-c5e5-35bc68c1d10c@gmail.com>
+Date:   Fri, 15 Oct 2021 09:51:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qnzJ+0DBWvYa9boS"
-Content-Disposition: inline
-In-Reply-To: <20211015072709.3167-1-george.song@maximintegrated.com>
-X-Cookie: 1: No code table for op: ++post
+In-Reply-To: <20211013222313.3767605-4-vladimir.oltean@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/13/21 3:23 PM, Vladimir Oltean wrote:
+> All ports require either a phy-handle or a fixed-link, and port 3 in the
+> example didn't have one. Add it.
+> 
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
---qnzJ+0DBWvYa9boS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Oct 15, 2021 at 04:27:08PM +0900, George Song wrote:
-> changed signed-off-by email address to maximintegrated group.
->=20
-> Signed-off-by: George Song <george.song@maximintegrated.com>
-> ---
->  Documentation/devicetree/bindings/sound/maxim,max98520.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-
-This file isn't upstream - it looks like you've sent an incremental
-patch against a previous posting instead of revising your patch?  Once a
-patch is accepted upstream you should send incremental changes but until
-then you should repost the whole thing.
-
---qnzJ+0DBWvYa9boS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFpsXYACgkQJNaLcl1U
-h9AIIQf6A8SeB3TftCfbbOY4e0oQWkqlTMdDLv3LOQlzGhIShHYNBDgOZzOkaZ0F
-T622F+iBFCT/en8TD/TJbZDS1SiYE21A/hEBnsXbXcxfUqsl01gy2IomMp4XQq86
-QiXj1QmxCrZ5KvFaFv2cwgRgJaFx5QpMaVjmJJyXlczDJ9NiZ7WmXzhaPXRtCGkV
-F1npJhwp70tIpSDiKtcCctctH/8gcc9KaTnC5dyoWHrBITlu3+JP3IuNRvRAvVGg
-DcJ/APxrWHLrsh47n32PM0sHjD6SZNnmbI3Qj8XIhMnsNddqR6mDlHIqDSOKKbfU
-ZDb612znVSVnEUHCLtSGoK7YnW0o0A==
-=aMTI
------END PGP SIGNATURE-----
-
---qnzJ+0DBWvYa9boS--
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
