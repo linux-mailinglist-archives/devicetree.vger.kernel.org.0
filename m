@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51FDB42E59A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 02:56:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09BF42E59E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 02:57:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233710AbhJOA6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 20:58:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36682 "EHLO mail.kernel.org"
+        id S234098AbhJOA71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 20:59:27 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:60552 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234657AbhJOA6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 20:58:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8694361040;
-        Fri, 15 Oct 2021 00:56:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634259388;
-        bh=U4dnARrBWAJGLPP9DHiCUoMVYjVtEHe13X6lFc+M2aU=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=qlv2hEphxGUqwrs6OgVrQ1UYPmDSQcG/2vTNOcEzktQCqWVNJublBs/jENA4ARDal
-         6fpoHJismQiFl92yxnSea4s2/o2bdx+t04Hm/u45VrgGgoyc24DQBWXVVTxTpGptY2
-         lUk1TZ+Cb2JBNTsFm3L8fHgUG/u6bCkcC42GtcXt5bIHsQ5CX3lzfxanUguAap4dAX
-         M/lIpb4UCpMJl5aKBORuFJjQFPIV4wl8plINzng4UGcKwi7btU8ZR7pEY4D2r4sSDG
-         P1SFSARbuNCsmA22FPoP7P32grG+GjHa79dshW1EDhVe0Zvjeizqc7iHMf2o5Ez2yk
-         +C3UNJ5gpYvdA==
-Content-Type: text/plain; charset="utf-8"
+        id S231872AbhJOA70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 14 Oct 2021 20:59:26 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2B8011A0977;
+        Fri, 15 Oct 2021 02:57:20 +0200 (CEST)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E888C1A095D;
+        Fri, 15 Oct 2021 02:57:19 +0200 (CEST)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.142])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 2A46340A85;
+        Thu, 14 Oct 2021 17:57:19 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH v2 0/2] convert ifc binding to yaml and drop "simple-bus"
+Date:   Thu, 14 Oct 2021 19:57:05 -0500
+Message-Id: <20211015005707.1996-1-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210829154757.784699-6-dmitry.baryshkov@linaro.org>
-References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org> <20210829154757.784699-6-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v7 5/8] clk: qcom: gdsc: enable optional power domain support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-Date:   Thu, 14 Oct 2021 17:56:27 -0700
-Message-ID: <163425938743.1688384.8904532659751492259@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2021-08-29 08:47:54)
-> On sm8250 dispcc and videocc registers are powered up by the MMCX power
-> domain. Currently we use a regulator to enable this domain on demand,
-> however this has some consequences, as genpd code is not reentrant.
->=20
-> Make gdsc code also use pm_runtime calls to ensure that registers are
-> accessible during the gdsc_enable/gdsc_disable operations.
->=20
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
+Convert the ifc binding to yaml schema, in the mean while remove the
+"simple-bus" compatible from the binding to make sure ifc device probes
+before any of the child devices.  Update the driver accordingly.
 
-Applied to clk-next
+DTS changes should be submitted after binding/driver changes are merged.
+
+Changes in v2:
+- Update endian property to type boolean
+- Remove example subnodes that don't have yaml binding
+- Spin DTS patches into a different series
+
+Li Yang (2):
+  dt-bindings: memory: fsl: convert ifc binding to yaml schema
+  memory: fsl_ifc: populate child devices without relying on simple-bus
+
+ .../memory-controllers/fsl/fsl,ifc.yaml       | 113 ++++++++++++++++++
+ .../bindings/memory-controllers/fsl/ifc.txt   |  82 -------------
+ drivers/memory/fsl_ifc.c                      |   7 ++
+ 3 files changed, 120 insertions(+), 82 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.txt
+
+-- 
+2.25.1
+
