@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 099EF42E769
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 05:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9795642E77C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 06:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235240AbhJODxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 23:53:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55204 "EHLO mail.kernel.org"
+        id S233165AbhJOEHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 00:07:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59752 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235225AbhJODxk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 23:53:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D71D1611C3;
-        Fri, 15 Oct 2021 03:51:31 +0000 (UTC)
+        id S229445AbhJOEHD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 00:07:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4EA2C610D2;
+        Fri, 15 Oct 2021 04:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634269894;
-        bh=HRiWV+8zHe2qqxJgo56IMSWbI8+MHo9yh+QgaaZsvtU=;
+        s=k20201202; t=1634270697;
+        bh=T1Z9HbQrrY18qJUzBqQ0IoiV6ybSBk9q37LkdOEVAus=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tDLwis3n2ThfcX1Fy8D9CxQP864NyJ4aDZk4T4GB5OCKNutkll8StU7Jzt/pwzlqT
-         NGwEW/sjcxyqYXIUveg8eVYPh1QJ4ZKjt1tRR+0G9yZiG6uY08n+irsmU4mEmQ4JrQ
-         mzyqiIg1aJCPfTMs9cWloY0ZuxsbC5lW/8GmlYyNX4MjEQBsypdLqbieDmwFoJSiJB
-         UyMfAg5/8NuAVz21mewx7V9Wi00aGVdvkHRQ+s++S+38zVNWUby2Zsz9t1WajvOw5L
-         bFKsBlV06WZm850pNoceMCnHFold8eri4UEfo7Pj1qmk60a69TOLdzU8XpJApRWGFU
-         U4C1HjyoiTuxg==
-Date:   Fri, 15 Oct 2021 11:51:27 +0800
+        b=MXzvhER6Kr2mM3DpPB54nBFaCzil9UDbBHRkB2kejrtxoDqfZxIbk+i0+Vjzc4h8e
+         D5k6bztnfatkzJj9nV1DM/47/upMR8iTcsQz6lPYsCk7lB0U0eN6KBi663xVlvHjq+
+         bhWeF08FTuLMA2efmaW7VYW5Pc+WR/BQePS8wdheBukiF7c9upNQFRioRAyxTAOBFO
+         RDuGG0e6EDLZKCgZivKh2F9Ac8Cs2unKc9laSl0TQskNbnTvCd4MAqaBEi2Rdb7ZC+
+         pHui5UaBDwGJ1jBcscWKXpHuDMZwcR9kX8sX8SBN5V9KzDbtPclkJFEoM2FdN2IUvS
+         ++29VBV8lDI0g==
+Date:   Fri, 15 Oct 2021 12:04:51 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Frieder Schrempf <frieder.schrempf@kontron.de>
 Cc:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>, stable@vger.kernel.org,
         Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH 2/8] arm64: dts: imx8mm-kontron: Make sure SOC and DRAM
- supply voltages are correct
-Message-ID: <20211015035122.GE22881@dragon>
+Subject: Re: [PATCH 3/8] arm64: dts: imx8mm-kontron: Set VDD_SNVS to 800 mV
+Message-ID: <20211015040450.GF22881@dragon>
 References: <20210930155633.2745201-1-frieder@fris.de>
- <20210930155633.2745201-3-frieder@fris.de>
- <20211005065358.GZ20743@dragon>
- <cefc9a67-120e-fda6-cb69-af4cabc58a15@kontron.de>
+ <20210930155633.2745201-4-frieder@fris.de>
+ <20211005065641.GA20743@dragon>
+ <df454b06-3069-d369-e3c7-f2434d94f4af@kontron.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cefc9a67-120e-fda6-cb69-af4cabc58a15@kontron.de>
+In-Reply-To: <df454b06-3069-d369-e3c7-f2434d94f4af@kontron.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 03:10:14PM +0200, Frieder Schrempf wrote:
-> On 05.10.21 08:53, Shawn Guo wrote:
-> > On Thu, Sep 30, 2021 at 05:56:25PM +0200, Frieder Schrempf wrote:
+On Tue, Oct 05, 2021 at 03:14:40PM +0200, Frieder Schrempf wrote:
+> On 05.10.21 08:56, Shawn Guo wrote:
+> > On Thu, Sep 30, 2021 at 05:56:26PM +0200, Frieder Schrempf wrote:
 > >> From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > >>
-> >> VDD_SOC should be 800 mV in suspend and 850 mV in run mode. VDD_DRAM
-> >> should be 950 mV for DDR clock frequencies of 1.5 GHz.
-> >>
-> >> This information is taken from the datasheet and the uboot-imx code.
+> >> According to the datasheet VDD_SNVS should be 800 mV, so let's
+> >> make sure that the voltage won't be different.
 > > 
-> > I'm wondering where the existing settings were coming from?
+> > Could you share the datasheet?
 > 
-> Good question, but I can't really retrace now how I actually determined
-> the values back then. Seems like I had failed to validate them properly.
+> Sure, it's here: https://www.nxp.com/docs/en/data-sheet/IMX8MMIEC.pdf.
+> See table 10 for the operating voltages.
 
-Please update commit log with these background info.
+Thanks for the link!
+
+But datasheet specifies a voltage range. 800 mV is just the typical one.
+The only problem I see is that regulator-min-microvolt should be lowered
+to 800 mV.  regulator-max-microvolt looks correct to me.
 
 Shawn
 
 > 
-> > 
 > >>
+> >> Fixes: 21c4f45b335f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
+> >> Cc: stable@vger.kernel.org
 > >> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
 > >> ---
-> >>  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi | 6 ++++--
-> >>  1 file changed, 4 insertions(+), 2 deletions(-)
+> >>  arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi | 4 ++--
+> >>  1 file changed, 2 insertions(+), 2 deletions(-)
 > >>
 > >> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> >> index 03b3516abd64..b12fb7ce6686 100644
+> >> index b12fb7ce6686..213014f59b46 100644
 > >> --- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
 > >> +++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-som.dtsi
-> >> @@ -92,10 +92,12 @@ regulators {
-> >>  			reg_vdd_soc: BUCK1 {
-> >>  				regulator-name = "buck1";
-> >>  				regulator-min-microvolt = <800000>;
-> >> -				regulator-max-microvolt = <900000>;
-> >> +				regulator-max-microvolt = <850000>;
-> >>  				regulator-boot-on;
-> >>  				regulator-always-on;
-> >>  				regulator-ramp-delay = <3125>;
-> >> +				nxp,dvs-run-voltage = <850000>;
-> >> +				nxp,dvs-standby-voltage = <800000>;
-> >>  			};
+> >> @@ -152,8 +152,8 @@ reg_nvcc_snvs: LDO1 {
 > >>  
-> >>  			reg_vdd_arm: BUCK2 {
-> >> @@ -111,7 +113,7 @@ reg_vdd_arm: BUCK2 {
-> >>  			reg_vdd_dram: BUCK3 {
-> >>  				regulator-name = "buck3";
-> >>  				regulator-min-microvolt = <850000>;
+> >>  			reg_vdd_snvs: LDO2 {
+> >>  				regulator-name = "ldo2";
+> >> -				regulator-min-microvolt = <850000>;
 > >> -				regulator-max-microvolt = <900000>;
-> >> +				regulator-max-microvolt = <950000>;
+> >> +				regulator-min-microvolt = <800000>;
+> >> +				regulator-max-microvolt = <800000>;
 > >>  				regulator-boot-on;
 > >>  				regulator-always-on;
 > >>  			};
