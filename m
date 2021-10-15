@@ -2,139 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9E442F4F1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 16:13:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6476642F50E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 16:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236780AbhJOOOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 10:14:55 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:45209 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240242AbhJOOOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 10:14:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634307157; x=1665843157;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vhKqUtsyI8eiBctTx58Hoeyu/C3PecsWgYb6HWtRnkE=;
-  b=Ks103VOGh3RXLAYqln16j8X9uU5Q03jbAA6sEpM/ugvr/JIMh9kwLsEF
-   YF+osDDTbV0x4UYHGqjLd+rJPZlU2JFiYTurXGiX2QZbuOSh0/tRxrdNa
-   rIb3gx3u26wxIvBodk6JyyS+NwHOatmO1ao0FyHYra6mYY8tiVs2/v8tO
-   5dubiDyH7Sq4FboxTkVpCw391ySep0yg8l/n3B/x3XdVtxw1+QBQDySk+
-   K2BXkM57WbszVgJDZTKcsL/TB6mUrc/jvGT40lrSoRgLz4+cLAVOnGc6P
-   rna6RM/pf2QiSibV1/Vro7jxdyayJ3iaMhOJtYZ5Co69tTY8LNLs7T/Rs
-   g==;
-IronPort-SDR: 1LqGw4wudZsJmutI5/fs2v8NG8v+7mJiYQYRu4y36zP4wmYF4uCNxGspx0UXhdrElT1MHs7lEP
- Ef7vJ4FfgE9+LIWpZZxm9MhPU4VudvkJNPqBY5yguc910c2iZcwVZbUKCOGn0aCITjHBzGB3nf
- H1YAuQjfwQLSd3rejtOjlMwl/9Ckznm65ZpCEFQdCeyXGIsbQwFtPWm06RnrS6+G9bmCKx6C+I
- UH8UFtyi6w0St1Ki06pxTuNT23hQK66htkw8kK83WfFbTrAH2Da+V924BLXv63IxLDk04wufU1
- 21LHPbbFBS6+qgfToYCxW3KP
-X-IronPort-AV: E=Sophos;i="5.85,375,1624345200"; 
-   d="scan'208";a="148241186"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Oct 2021 07:12:36 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 15 Oct 2021 07:12:36 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Fri, 15 Oct 2021 07:12:36 -0700
-Date:   Fri, 15 Oct 2021 16:14:04 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <robh+dt@kernel.org>, <andrew@lunn.ch>,
-        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
-        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: reset: Add lan966x support
-Message-ID: <20211015141404.5eiylskcfy2fxi42@soft-dev3-1.localhost>
-References: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
- <20211013073807.2282230-2-horatiu.vultur@microchip.com>
- <838af7b574968fc55d517a3becede5fa106ed896.camel@pengutronix.de>
- <20211014152016.wuwaesswc5iiil42@soft-dev3-1.localhost>
+        id S237392AbhJOOUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 10:20:31 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:56807 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237359AbhJOOU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 10:20:29 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E8497580CF8;
+        Fri, 15 Oct 2021 10:18:21 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 15 Oct 2021 10:18:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=2Pydx4B0wCZH7JQOFF9GBsc/2F8
+        +/LhIG+iiOimz+hs=; b=AJWPxaoupeZvWHi1yBc3LVIEZWJFfCi53OSP8v8JJ+d
+        88Y8jC1zszwXgk9Qz5neTy3YNWX7vmbCHO7Tgm39eC+vjsvWIRxkY9C0KngGC3I3
+        2vv3eiyuQOrBzdM+cbHhcvETiRRw19yY5wskqqSuz36gOiNgXwi2zlN9kk+XpaEg
+        wbWSla0JWtZCVamvtv+BK7thxj0j0MPXfK6gTZBHdngDwFNgSS2D1jIHQ1Yah3Hi
+        PJJPKvCrP/JLWsCwQTkEiZ9ZWNAXBmeJrhUgVYy9QgdWIuLuKEXMMt9X1+bhWUfK
+        7/8hZYt6R2fgBK5Y6mQ+AJLoVVQPjA3hSkVKsz+eB4Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=2Pydx4
+        B0wCZH7JQOFF9GBsc/2F8+/LhIG+iiOimz+hs=; b=QQ47+82kgeMbwQpajBLKTN
+        ZfPDd54jdcQJWFLWS5GehP8SHZk8jgYxpb4a1vero8m423+GYEv+Gq5QioHQTsRq
+        J/UhdwDhfFiQGYRbb7Hr+iiNYjD92J3L7ae8n+6GiwUT3VQT3g+eI6kekVATLnAZ
+        JZnAekU4YDIt8pldAxfltZyesIDyI4YBKbopi6GunWGoNmLu+V8on3fW1j0/ojv3
+        x2mqldPTcbAmQMNoeL7VBWmXF2jetn429PW7VpHhDPyThEWWFE8JReFwJTU114oQ
+        9mOFIu+rwhfbPHoFmys/RvH78Utwv/SS41neSclY6TG0/J7IUe3edHXV1qEPM7Mg
+        ==
+X-ME-Sender: <xms:rY1pYTG-K4VdvnPOqqVMreTM0w3W-zNcVTNQbPH_wzSMtPFb6Z9sjQ>
+    <xme:rY1pYQUdohtLQmby6tieFNbmb--im1f15KCkxy9xvX8vsAj9Vo6BFNHtWBnW77e15
+    puo4iv6sOihzC70_Fs>
+X-ME-Received: <xmr:rY1pYVIxFXh7mI0N25-H_HFTGFegBZsJAmUVfWw9RDUvLDXH0luxOc16QXlUdtux_Fr_YGX2rU5A6S-G5Mj3cIHlx8E0JrHvFvNZUrQx>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddugedgjeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleeiudeileekueetkeeuffeugeeguddthefhhefftdffffeguedugffggfet
+    lefhnecuffhomhgrihhnpehoiihlrggsshdrohhrghenucevlhhushhtvghrufhiiigvpe
+    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:rY1pYREY0QNhlF6u-r1YyVfkDzPY4QP5lyHQMINiylTjBtgYjrZ50g>
+    <xmx:rY1pYZVJlqW5OYGkGABh6lI-Sm318RMctTQeGbUIOrTGC2I_GSXZGg>
+    <xmx:rY1pYcPOWxPlcBaztCt8f7wNREebpee-plT1ykAbJ5XyY1n05rgORQ>
+    <xmx:rY1pYRRfEP9Cj77MnXKh5PRAAsP-fDwywh3fEr4ZsSpBRRVFFQIxWQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 15 Oct 2021 10:18:20 -0400 (EDT)
+Date:   Fri, 15 Oct 2021 16:18:18 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: media: Convert OV5640 binding to a schema
+Message-ID: <20211015141818.n5unxbpqxcknste6@gilmour>
+References: <20211015072830.8580-1-maxime@cerno.tech>
+ <1634305980.862848.1429889.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="sj2tugj32k4abq3u"
 Content-Disposition: inline
-In-Reply-To: <20211014152016.wuwaesswc5iiil42@soft-dev3-1.localhost>
+In-Reply-To: <1634305980.862848.1429889.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/14/2021 17:20, Horatiu Vultur wrote:
-> Hi Philipp,
-> 
-> The 10/14/2021 13:55, Philipp Zabel wrote:
-> > 
-> > On Wed, 2021-10-13 at 09:38 +0200, Horatiu Vultur wrote:
-> > > This adds support for lan966x.
-> > >
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > >  .../devicetree/bindings/reset/microchip,rst.yaml   | 14 +++++++++++++-
-> > >  1 file changed, 13 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reset/microchip,rst.yaml b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > index 370579aeeca1..fb170ed2c57a 100644
-> > > --- a/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > +++ b/Documentation/devicetree/bindings/reset/microchip,rst.yaml
-> > > @@ -20,7 +20,11 @@ properties:
-> > >      pattern: "^reset-controller@[0-9a-f]+$"
-> > >
-> > >    compatible:
-> > > -    const: microchip,sparx5-switch-reset
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: microchip,sparx5-switch-reset
-> > > +      - items:
-> > > +          - const: microchip,lan966x-switch-reset
-> > >
-> > >    reg:
-> > >      items:
-> > > @@ -37,6 +41,14 @@ properties:
-> > >      $ref: "/schemas/types.yaml#/definitions/phandle"
-> > >      description: syscon used to access CPU reset
-> > >
-> > > +  cuphy-syscon:
-> > > +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> > > +    description: syscon used to access CuPHY
-> > 
-> > Can this be used on sparx5?
-> 
-> No, because the sparx5 doesn't have any internal PHYs that need to
-> be released of the reset.
-> 
-> > Is it optional on lan966x?
-> 
-> No, it is required on lan966x. I will update the binding to show this.
-> 
-> > 
-> > > +  phy-reset-gpios:
-> > > +    description: used for release of reset of the external PHY
-> > > +    maxItems: 1
-> > > +
-> > >  required:
-> > >    - compatible
-> > >    - reg
-> > 
-> > I'd like somebody to reassure me that putting the CuPHY reset and
-> > external PHY GPIO reset in the reset controller is the right thing to
-> > do.
-> > 
-> > It looks fine to me, but I'm not sure if these should rather be in
-> > separate phy nodes that are referenced from the switch.
 
-Were you thinking to have just another reset driver('phy-reset') and then
-the switch to refer to both of them?
-I like this idea because then is more clear what is doing each driver.
+--sj2tugj32k4abq3u
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > 
-> > regards
-> > Philipp
-> 
-> -- 
-> /Horatiu
+Hi,
 
--- 
-/Horatiu
+On Fri, Oct 15, 2021 at 08:53:00AM -0500, Rob Herring wrote:
+> On Fri, 15 Oct 2021 09:28:30 +0200, Maxime Ripard wrote:
+> > The Omnivision OV5640 is supported by Linux thanks to its device tree
+> > binding.
+> >=20
+> > Now that we have the DT validation in place, let's convert the device
+> > tree bindings for that driver over to a YAML schema.
+> >=20
+> > Cc: linux-media@vger.kernel.org
+> > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> > Cc: Steve Longerbeam <slongerbeam@gmail.com>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> >=20
+> > ---
+> >=20
+> > Changes from v2:
+> >   - Fix whitespace error
+> >   - Changed schema referenced for the port validation
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov5640.txt  |  92 -----------
+> >  .../bindings/media/i2c/ovti,ov5640.yaml       | 154 ++++++++++++++++++
+> >  2 files changed, 154 insertions(+), 92 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5640.=
+txt
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov=
+5640.yaml
+> >=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/medi=
+a/ti,cal.example.dt.yaml: camera-sensor@3c: 'AVDD-supply' is a required pro=
+perty
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree=
+/bindings/media/i2c/ovti,ov5640.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/medi=
+a/ti,cal.example.dt.yaml: camera-sensor@3c: 'DVDD-supply' is a required pro=
+perty
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree=
+/bindings/media/i2c/ovti,ov5640.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/medi=
+a/ti,cal.example.dt.yaml: camera-sensor@3c: 'DOVDD-supply' is a required pr=
+operty
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree=
+/bindings/media/i2c/ovti,ov5640.yaml
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://patchwork.ozlabs.org/patch/1541399
+>=20
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+
+This warning can be ignored, it's fixed already in
+e978d5271f7138b6d7c1dd90fe1b5492bc594b8b, which is part of linux-next
+already and has been merged by Rob.
+
+Maxime
+
+
+--sj2tugj32k4abq3u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYWmNqgAKCRDj7w1vZxhR
+xQCUAP4jilBF6RKMIOaVPH1RsEyw+9jbqvgbR4WpsVLUYSQYiAEAxUOuH9hBqThl
+nnf4+8MWGeica/31IIs4oHHY4HwtIwc=
+=ix8c
+-----END PGP SIGNATURE-----
+
+--sj2tugj32k4abq3u--
