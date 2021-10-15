@@ -2,324 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D670142F7D8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3210742F7E5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241145AbhJOQRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 12:17:00 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:53496 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241163AbhJOQQ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 12:16:59 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19FEns7X027196;
-        Fri, 15 Oct 2021 18:14:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=lP/nbF28ek9Ndotad77+6RSDD56NqAlnYTlp0UeVZ7w=;
- b=OjHJmAYW3ECjodTecDzo6Mx6IgqM/EdDGrmq9V2w+Rycy9aifmxRnRYe01elCjYqCQ/n
- cJnLH8JfO3oVuJln/jh2+gAQbEhdJd4iEhBumTNdyRiflhZ6SeArEDJUWN0VQyNx4+AT
- rhv94ZrjJSCNcJOloGap/YTgBEFTnKK7DJ7h7l+M8KP7pmSbypi4647NyHMIp8edCfYr
- qe3r640+QGlMa+jwiDMp8mfhi0OCuncuYthCe58HpoJoQJYK+9ueaVXiOWLzNkMqxTzC
- HTNMVhR2jEBtb0hJsp1Hwo0npBxKnNVD+5uR5Ty5jUQw740Mfs4L5cuAqBcbRPHlwjex /Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bqbrj0d7v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 15 Oct 2021 18:14:39 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F053E10002A;
-        Fri, 15 Oct 2021 18:14:38 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E89E6231513;
-        Fri, 15 Oct 2021 18:14:38 +0200 (CEST)
-Received: from localhost (10.75.127.48) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 15 Oct 2021 18:14:38
- +0200
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH v3 3/3] phy: stm32: add phy tuning support
-Date:   Fri, 15 Oct 2021 18:14:27 +0200
-Message-ID: <20211015161427.220784-4-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211015161427.220784-1-amelie.delaunay@foss.st.com>
-References: <20211015161427.220784-1-amelie.delaunay@foss.st.com>
+        id S241188AbhJOQR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 12:17:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241203AbhJOQRy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 12:17:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6484561090;
+        Fri, 15 Oct 2021 16:15:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634314546;
+        bh=J6lMIRppIQQR2yDU8HEFtiobkHUlT4L+X3PXR/XHp8k=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fUxjpQpKZEMfW+RRIp60SX1iX/UwmX2w7X5lIZEpj7biPSsFXPDMUQafV+MRGFMmQ
+         EL8HPMjTiB8NjmWVoshAD7lta4yw5ks7FQ5A97AWaT6RIcAyKWEtDQ6UK7wHLXbbG3
+         Z1ztXj9KpCB5OMJzlWulfrEP66XP61txqi1cOfM0ryOvkLKJse4YDrrC9cAeT803ZX
+         I1dRqcI6sM7uBu908E4buE0sgeJjzPDGbl1FQ9Mcim+RVQCz+xQivYjOcEswbqaOuG
+         3L1+rjNW2B0Xd0lB3zf/uOnVZtTN0eV7Al82PBbYtkmb3ud3BZvtdUS/bkKYpz+Va3
+         4TlkTUzrYEe4g==
+Received: by mail-ed1-f48.google.com with SMTP id t16so40103749eds.9;
+        Fri, 15 Oct 2021 09:15:46 -0700 (PDT)
+X-Gm-Message-State: AOAM5330xQeEoC3oy4XV9gncJb3ptN4/iAdPOz0bILr8TYnsScTPvcPq
+        iWa9BEFbV5IfNl9RR7wP8qKcXabwPAQQSon2pA==
+X-Google-Smtp-Source: ABdhPJwsRQPmyqCZEJ2EspO5jNkdQ+LeDKtD0EmxJMsNFClADPbMWi8f8wb8874t+JF0p3aYra/8VjChk0VBCZZRh6M=
+X-Received: by 2002:a05:6402:84d:: with SMTP id b13mr19328337edz.6.1634314544839;
+ Fri, 15 Oct 2021 09:15:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-15_05,2021-10-14_02,2020-04-07_01
+References: <20211014224201.24027-1-agust@denx.de>
+In-Reply-To: <20211014224201.24027-1-agust@denx.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 15 Oct 2021 11:15:32 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+_K9X010eKz0uwGH33h3vwwEE-+f=z9YWEdhji4yHxWg@mail.gmail.com>
+Message-ID: <CAL_Jsq+_K9X010eKz0uwGH33h3vwwEE-+f=z9YWEdhji4yHxWg@mail.gmail.com>
+Subject: Re: [PATCH v2] powerpc/mpc512x: dts: fix PSC node warnings
+To:     Anatolij Gustschin <agust@denx.de>
+Cc:     linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It can be necessary to adjust the phys settings to compensate parasitics.
-This patch adds support of new optional properties to configure the tune
-interface of the phys of stm32-usbphyc.
-Properties are optional, that's why each property is skipped if not
-found (-EINVAL).
-Phy tuning is restored on resume because if deep low power state is
-achieved, phy tuning configuration is reset.
+On Thu, Oct 14, 2021 at 5:42 PM Anatolij Gustschin <agust@denx.de> wrote:
+>
+> Rework PSC node description to fix build warnings like:
+> mpc5121.dtsi:397.13-406.5: Warning (spi_bus_bridge): /soc@80000000/psc@11400: node name for SPI buses should be 'spi'
+> mpc5121.dtsi:409.13-418.5: Warning (spi_bus_bridge): /soc@80000000/psc@11500: node name for SPI buses should be 'spi'
+> mpc5121.dtsi:457.13-466.5: Warning (spi_bus_bridge): /soc@80000000/psc@11900: node name for SPI buses should be 'spi'
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- drivers/phy/st/phy-stm32-usbphyc.c | 190 +++++++++++++++++++++++++++++
- 1 file changed, 190 insertions(+)
+Okay, I now see the block supports either spi or serial modes. I would
+handle this a bit differently that doesn't create a bunch of new .dtsi
+files.
 
-diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
-index 083593aea53a..7df6a63ad37b 100644
---- a/drivers/phy/st/phy-stm32-usbphyc.c
-+++ b/drivers/phy/st/phy-stm32-usbphyc.c
-@@ -20,6 +20,7 @@
- #define STM32_USBPHYC_PLL	0x0
- #define STM32_USBPHYC_MISC	0x8
- #define STM32_USBPHYC_MONITOR(X) (0x108 + ((X) * 0x100))
-+#define STM32_USBPHYC_TUNE(X)	(0x10C + ((X) * 0x100))
- #define STM32_USBPHYC_VERSION	0x3F4
- 
- /* STM32_USBPHYC_PLL bit fields */
-@@ -41,6 +42,83 @@
- #define STM32_USBPHYC_MON_SEL_LOCKP 0x1F
- #define STM32_USBPHYC_MON_OUT_LOCKP BIT(3)
- 
-+/* STM32_USBPHYC_TUNE bit fields */
-+#define INCURREN		BIT(0)
-+#define INCURRINT		BIT(1)
-+#define LFSCAPEN		BIT(2)
-+#define HSDRVSLEW		BIT(3)
-+#define HSDRVDCCUR		BIT(4)
-+#define HSDRVDCLEV		BIT(5)
-+#define HSDRVCURINCR		BIT(6)
-+#define FSDRVRFADJ		BIT(7)
-+#define HSDRVRFRED		BIT(8)
-+#define HSDRVCHKITRM		GENMASK(12, 9)
-+#define HSDRVCHKZTRM		GENMASK(14, 13)
-+#define OTPCOMP			GENMASK(19, 15)
-+#define SQLCHCTL		GENMASK(21, 20)
-+#define HDRXGNEQEN		BIT(22)
-+#define HSRXOFF			GENMASK(24, 23)
-+#define HSFALLPREEM		BIT(25)
-+#define SHTCCTCTLPROT		BIT(26)
-+#define STAGSEL			BIT(27)
-+
-+enum boosting_vals {
-+	BOOST_1000_UA = 1000,
-+	BOOST_2000_UA = 2000,
-+};
-+
-+enum dc_level_vals {
-+	DC_NOMINAL,
-+	DC_PLUS_5_TO_7_MV,
-+	DC_PLUS_10_TO_14_MV,
-+	DC_MINUS_5_TO_7_MV,
-+	DC_MAX,
-+};
-+
-+enum current_trim {
-+	CUR_NOMINAL,
-+	CUR_PLUS_1_56_PCT,
-+	CUR_PLUS_3_12_PCT,
-+	CUR_PLUS_4_68_PCT,
-+	CUR_PLUS_6_24_PCT,
-+	CUR_PLUS_7_8_PCT,
-+	CUR_PLUS_9_36_PCT,
-+	CUR_PLUS_10_92_PCT,
-+	CUR_PLUS_12_48_PCT,
-+	CUR_PLUS_14_04_PCT,
-+	CUR_PLUS_15_6_PCT,
-+	CUR_PLUS_17_16_PCT,
-+	CUR_PLUS_19_01_PCT,
-+	CUR_PLUS_20_58_PCT,
-+	CUR_PLUS_22_16_PCT,
-+	CUR_PLUS_23_73_PCT,
-+	CUR_MAX,
-+};
-+
-+enum impedance_trim {
-+	IMP_NOMINAL,
-+	IMP_MINUS_2_OHMS,
-+	IMP_MINUS_4_OMHS,
-+	IMP_MINUS_6_OHMS,
-+	IMP_MAX,
-+};
-+
-+enum squelch_level {
-+	SQLCH_NOMINAL,
-+	SQLCH_PLUS_7_MV,
-+	SQLCH_MINUS_5_MV,
-+	SQLCH_PLUS_14_MV,
-+	SQLCH_MAX,
-+};
-+
-+enum rx_offset {
-+	NO_RX_OFFSET,
-+	RX_OFFSET_PLUS_5_MV,
-+	RX_OFFSET_PLUS_10_MV,
-+	RX_OFFSET_MINUS_5_MV,
-+	RX_OFFSET_MAX,
-+};
-+
- /* STM32_USBPHYC_VERSION bit fields */
- #define MINREV			GENMASK(3, 0)
- #define MAJREV			GENMASK(7, 4)
-@@ -60,6 +138,7 @@ struct stm32_usbphyc_phy {
- 	struct regulator *vbus;
- 	u32 index;
- 	bool active;
-+	u32 tune;
- };
- 
- struct stm32_usbphyc {
-@@ -375,6 +454,107 @@ static int stm32_usbphyc_clk48_register(struct stm32_usbphyc *usbphyc)
- 	return ret;
- }
- 
-+static void stm32_usbphyc_phy_tuning(struct stm32_usbphyc *usbphyc,
-+				     struct device_node *np, u32 index)
-+{
-+	struct stm32_usbphyc_phy *usbphyc_phy = usbphyc->phys[index];
-+	u32 reg = STM32_USBPHYC_TUNE(index);
-+	u32 otpcomp, val;
-+	int ret;
-+
-+	/* Backup OTP compensation code */
-+	otpcomp = FIELD_GET(OTPCOMP, readl_relaxed(usbphyc->base + reg));
-+
-+	ret = of_property_read_u32(np, "st,current-boost-microamp", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && (val == BOOST_1000_UA || val == BOOST_2000_UA)) {
-+			val = (val == BOOST_2000_UA) ? 1 : 0;
-+			usbphyc_phy->tune |= INCURREN | FIELD_PREP(INCURRINT, val);
-+		} else {
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,current-boost-microamp\n", index);
-+		}
-+	}
-+
-+	if (!of_property_read_bool(np, "st,no-lsfs-fb-cap"))
-+		usbphyc_phy->tune |= LFSCAPEN;
-+
-+	if (of_property_read_bool(np, "st,slow-hs-slew-rate"))
-+		usbphyc_phy->tune |= HSDRVSLEW;
-+
-+	ret = of_property_read_u32(np, "st,tune-hs-dc-level", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < DC_MAX) {
-+			if (val == DC_MINUS_5_TO_7_MV) {/* Decreases HS driver DC level */
-+				usbphyc_phy->tune |= HSDRVDCCUR;
-+			} else if (val > 0) {		/* Increases HS driver DC level */
-+				val = (val == DC_PLUS_10_TO_14_MV) ? 1 : 0;
-+				usbphyc_phy->tune |= HSDRVCURINCR | FIELD_PREP(HSDRVDCLEV, val);
-+			}
-+		} else {
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,tune-hs-dc-level\n", index);
-+		}
-+	}
-+
-+	if (of_property_read_bool(np, "st,enable-fs-rftime-tuning"))
-+		usbphyc_phy->tune |= FSDRVRFADJ;
-+
-+	if (of_property_read_bool(np, "st,enable-hs-rftime-reduction"))
-+		usbphyc_phy->tune |= HSDRVRFRED;
-+
-+	ret = of_property_read_u32(np, "st,trim-hs-current", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < CUR_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSDRVCHKITRM, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,trim-hs-current\n", index);
-+	}
-+
-+	ret = of_property_read_u32(np, "st,trim-hs-impedance", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < IMP_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSDRVCHKZTRM, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,trim-hs-impedance\n", index);
-+	}
-+
-+	ret = of_property_read_u32(np, "st,tune-squelch-level", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < SQLCH_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(SQLCHCTL, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,tune-squelch\n", index);
-+	}
-+
-+	if (of_property_read_bool(np, "st,enable-hs-rx-gain-eq"))
-+		usbphyc_phy->tune |= HDRXGNEQEN;
-+
-+	ret = of_property_read_u32(np, "st,tune-hs-rx-offset", &val);
-+	if (ret != -EINVAL) {
-+		if (!ret && val < RX_OFFSET_MAX)
-+			usbphyc_phy->tune |= FIELD_PREP(HSRXOFF, val);
-+		else
-+			dev_warn(usbphyc->dev, "phy%d: invalid st,tune-hs-rx-offset\n", index);
-+	}
-+
-+	if (of_property_read_bool(np, "st,no-hs-ftime-ctrl"))
-+		usbphyc_phy->tune |= HSFALLPREEM;
-+
-+	if (!of_property_read_bool(np, "st,no-lsfs-sc"))
-+		usbphyc_phy->tune |= SHTCCTCTLPROT;
-+
-+	if (of_property_read_bool(np, "st,enable-hs-tx-staggering"))
-+		usbphyc_phy->tune |= STAGSEL;
-+
-+	/* Restore OTP compensation code */
-+	usbphyc_phy->tune |= FIELD_PREP(OTPCOMP, otpcomp);
-+
-+	/*
-+	 * By default, if no st,xxx tuning property is used, usbphyc_phy->tune is equal to
-+	 * STM32_USBPHYC_TUNE reset value (LFSCAPEN | SHTCCTCTLPROT | OTPCOMP).
-+	 */
-+	writel_relaxed(usbphyc_phy->tune, usbphyc->base + reg);
-+}
-+
- static void stm32_usbphyc_switch_setup(struct stm32_usbphyc *usbphyc,
- 				       u32 utmi_switch)
- {
-@@ -550,6 +730,9 @@ static int stm32_usbphyc_probe(struct platform_device *pdev)
- 			usbphyc->phys[port]->vbus = NULL;
- 		}
- 
-+		/* Configure phy tuning */
-+		stm32_usbphyc_phy_tuning(usbphyc, child, index);
-+
- 		port++;
- 	}
- 
-@@ -601,10 +784,17 @@ static int stm32_usbphyc_remove(struct platform_device *pdev)
- static int __maybe_unused stm32_usbphyc_resume(struct device *dev)
- {
- 	struct stm32_usbphyc *usbphyc = dev_get_drvdata(dev);
-+	struct stm32_usbphyc_phy *usbphyc_phy;
-+	int port;
- 
- 	if (usbphyc->switch_setup >= 0)
- 		stm32_usbphyc_switch_setup(usbphyc, usbphyc->switch_setup);
- 
-+	for (port = 0; port < usbphyc->nphys; port++) {
-+		usbphyc_phy = usbphyc->phys[port];
-+		writel_relaxed(usbphyc_phy->tune, usbphyc->base + STM32_USBPHYC_TUNE(port));
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.25.1
+>
+> Signed-off-by: Anatolij Gustschin <agust@denx.de>
+> ---
+> Changes in v2:
+>  - extract PSC nodes to files which can be included
+>    separately and extended as needed
+>
+>  arch/powerpc/boot/dts/ac14xx.dts            | 118 ++++++++--------
+>  arch/powerpc/boot/dts/mpc5121-psc0.dtsi     |  16 +++
+>  arch/powerpc/boot/dts/mpc5121-psc1.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc10.dtsi    |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc11.dtsi    |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc2.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc3.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi |  17 +++
+>  arch/powerpc/boot/dts/mpc5121-psc4.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi |  17 +++
+>  arch/powerpc/boot/dts/mpc5121-psc5.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc6.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc7.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc8.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi |  17 +++
+>  arch/powerpc/boot/dts/mpc5121-psc9.dtsi     |  15 ++
+>  arch/powerpc/boot/dts/mpc5121.dtsi          | 148 +-------------------
+>  arch/powerpc/boot/dts/mpc5121ads.dts        |  42 +++---
+>  arch/powerpc/boot/dts/pdm360ng.dts          | 104 +++++++-------
+>  19 files changed, 371 insertions(+), 273 deletions(-)
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc0.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc1.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc10.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc11.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc2.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc3.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4-spi.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc4.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5-spi.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc5.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc6.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc7.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc8.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9-spi.dtsi
+>  create mode 100644 arch/powerpc/boot/dts/mpc5121-psc9.dtsi
 
+[...]
+
+> diff --git a/arch/powerpc/boot/dts/mpc5121.dtsi b/arch/powerpc/boot/dts/mpc5121.dtsi
+> index 3f66b91a8e3c..21674da8beb1 100644
+> --- a/arch/powerpc/boot/dts/mpc5121.dtsi
+> +++ b/arch/powerpc/boot/dts/mpc5121.dtsi
+> @@ -87,7 +87,7 @@
+>                 };
+>         };
+>
+> -       soc@80000000 {
+> +       soc: soc@80000000 {
+>                 compatible = "fsl,mpc5121-immr";
+>                 #address-cells = <1>;
+>                 #size-cells = <1>;
+> @@ -343,152 +343,6 @@
+>                         clock-names = "ipg";
+>                 };
+>
+> -               /* 512x PSCs are not 52xx PSC compatible */
+> -
+> -               /* PSC0 */
+> -               psc@11000 {
+
+I would just put here 'serial@11000' and 'spi@11000' nodes with both
+nodes set to disabled. Then the board dts just has to change status of
+the the nodes it wants to enable (and add child nodes for spi).
+Overlapping addresses are okay if nodes are disabled.
+
+> -                       compatible = "fsl,mpc5121-psc";
+> -                       reg = <0x11000 0x100>;
+> -                       interrupts = <40 0x8>;
+> -                       fsl,rx-fifo-size = <16>;
+> -                       fsl,tx-fifo-size = <16>;
+> -                       clocks = <&clks MPC512x_CLK_PSC0>,
+> -                                <&clks MPC512x_CLK_PSC0_MCLK>;
+> -                       clock-names = "ipg", "mclk";
+> -               };
