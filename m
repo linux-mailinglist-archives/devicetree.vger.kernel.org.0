@@ -2,87 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC2542F522
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 16:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B591442F7CE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 18:14:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237429AbhJOOXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 10:23:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53258 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234738AbhJOOXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 10:23:52 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B75F6C061570;
-        Fri, 15 Oct 2021 07:21:45 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id w14so38629282edv.11;
-        Fri, 15 Oct 2021 07:21:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YJvkSzyQ78CqYoM3LpjKLXCFiGcDw/gxiiosR4pYAts=;
-        b=gdQ6fTdS7XJZYq2+NhR3rc6Y7khiDldFEjo7t+jPn+6KN13hATH69dN7P6/WwcYDVO
-         bJlbHow0eZIww6iM8K57So2Pl1uNS8inpMV8CxiUUMCIw9684H3wUeUycXm2/kFbiKoq
-         mTX5FfOwLJRgtq9/YY5QitMhdfE9MMJ9gUAxLAbNYG/DHhiYfHKhgorUKU6o2nx7HfsX
-         REytZI/zQ/oJEPvqP95et43EvxciwuzcNhwmspzPewQ4T7TO6K5uOVEFkITDYQ3S9eqS
-         9eqxzSDU4ADuu0d216KCQPXjrqFI8yeW/04TtfTJxcGfh/fbz2KIS6kVVXobE4V4QHAm
-         8Y5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YJvkSzyQ78CqYoM3LpjKLXCFiGcDw/gxiiosR4pYAts=;
-        b=vuibIWduyfJz5DHauPH+HCH4TsgsGDxyv2RIDWI9aV+52G62UyzDEAoLYk2QJ4M1gs
-         S+4xEizjQQmyqKqcRQzYCgmL8XWmrNNOVp6IHxB3OENdTs3CEj8kcdrav56gPw12MW/y
-         jdgpnjSdti4j401jZ6lV2Xu5Vw93wS0nSt7mDKZKciWfD+x/bUpHrdW7Lasa3WrrjUhu
-         Ola6Lnmse6ZtieVF3qgt51Z+HluMySqvqrW5yFgsssPAFTJVO7B4jU9ksWfp/x3iiZn4
-         JhHgEzlevtVshc37i87Hhcszxia9kr4q2ziWGtqWbwfOfzdQREAIm0ChH4L5L6Xs7PrZ
-         w7XQ==
-X-Gm-Message-State: AOAM532l8UXkJ/cbZDe85vKhbJsrEmal0OH6Q9sIvOVEQk1kEHOwgd8c
-        zJEMETvAfeXdJ7Ih4lIvLDqfYVpDZIPvfMxP4EB97qgRHnn0rnMt
-X-Google-Smtp-Source: ABdhPJx9ofxBEblfrrdbDLla2A9YVWsdhE+xZ+jxANI8pYD7FdDF/055Eu9sa7upRTW3xOO0oHZSWNBtjDyZ2nwUfkw=
-X-Received: by 2002:a17:906:2887:: with SMTP id o7mr6897247ejd.425.1634307671194;
- Fri, 15 Oct 2021 07:21:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20210621172053.107045-1-maukka@ext.kapsi.fi> <20210621172053.107045-3-maukka@ext.kapsi.fi>
- <CAHp75VcjGpveAHNAW7Xf7d_Zf6LGSSyD6+qBiF9xxvb+EKs3tg@mail.gmail.com> <c7b9688f-5f52-94e3-532c-2177132869de@ext.kapsi.fi>
-In-Reply-To: <c7b9688f-5f52-94e3-532c-2177132869de@ext.kapsi.fi>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 15 Oct 2021 20:20:23 +0300
-Message-ID: <CAHp75VcFALMECoxQH=YHzfs23dOhngYS0pMUySyj3Lkh+D7BhA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] gpio: gpio-cascade: add generic GPIO cascade
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     Mauri Sandberg <sandberg@mailfence.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        id S237230AbhJOQQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 12:16:57 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:35376 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237282AbhJOQQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 12:16:56 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19FCxdoX023022;
+        Fri, 15 Oct 2021 18:14:38 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=A4tqsFWtDMZnl64khjFES9apGihKCVelBIildCe0RfQ=;
+ b=GIbJF+8oxrYj/kHYTpZH2zyhaZmGkR0WIgj+IIzYgKHavgDtND9OldHkkXW8dXjPoANl
+ DdfT/EXBSojxc+HxkDwpLHzvlP27LcEMqAbX8v49BHJiq5A02kRUwFluiBWbZKAd+bJH
+ w4LoauIHbub8tp75iA1HmFFw1vwg6cspp+dboPguAXJpFZbm98C/Xeffrfg7VkWbsuVS
+ g6PzspigNDh9Sgz1/BKjp6God2KVm3iN0d+WEZ87UCyap7qWwFqmtGnnQAXoicPyl6TX
+ 7YCqa3feu6t/SyNhUtGYvWe4TA2On8EZ5URqusJhfweJ/n5sksz42ac9VRaW7mvjhT1Q QA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bq5apk4b4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 15 Oct 2021 18:14:38 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0CA3E10002A;
+        Fri, 15 Oct 2021 18:14:37 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 00A0B231513;
+        Fri, 15 Oct 2021 18:14:37 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 15 Oct 2021 18:14:36
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH v3 0/3] phy: stm32: add phy tuning support
+Date:   Fri, 15 Oct 2021 18:14:24 +0200
+Message-ID: <20211015161427.220784-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-15_05,2021-10-14_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 3:56 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
-> On 21.6.2021 20.43, Andy Shevchenko wrote:
->
-> >> +       gc->of_node = np;
-> >
-> > This should be guarded by CONFIG_OF_GPIO.
+This series brings phy tuning to stm32-usbphyc with new optional
+device tree properties.
+A prior patch add resume routine, which is used to restore UTMI
+switch and phy tuning configuration, as they can be reset if
+deep low power state is achieved.
 
-The above is actually done by the GPIO library nowadays.
+Amelie Delaunay (3):
+  phy: stm32: restore utmi switch on resume
+  dt-bindings: phy: phy-stm32-usbphyc: add optional phy tuning
+    properties
+  phy: stm32: add phy tuning support
 
-> In the Kconfig I have a dependency to OF_GPIO. Is the guarding still
-> necessary? Or should the guard be added and dependency removed? Or have
-> them both?
+---
+Changes in v3:
+- Use -microamp for current boost
+- '|' added after 'description:' on each properties needing this
+Changes in v2:
+- st,phy-tuning + usb_phy_tuning node removed
+- properties are now in phy child nodes
 
-For this kind ("generic") driver the OF_GPIO dependency is simply
-wrong. You shouldn't have it.
+ .../bindings/phy/phy-stm32-usbphyc.yaml       | 129 +++++++++++
+ drivers/phy/st/phy-stm32-usbphyc.c            | 203 ++++++++++++++++++
+ 2 files changed, 332 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.25.1
+
