@@ -2,130 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D8E242FE5B
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 00:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 071A142FE5D
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 00:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243396AbhJOWwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 18:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58056 "EHLO
+        id S233190AbhJOWxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 18:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233190AbhJOWwI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 18:52:08 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54040C061570;
-        Fri, 15 Oct 2021 15:50:01 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id d21-20020a9d4f15000000b0054e677e0ac5so8489otl.11;
-        Fri, 15 Oct 2021 15:50:01 -0700 (PDT)
+        with ESMTP id S243388AbhJOWxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 18:53:13 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1D8CC061570;
+        Fri, 15 Oct 2021 15:51:05 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id r18so28881187wrg.6;
+        Fri, 15 Oct 2021 15:51:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EJ609syOXwzZkpM5B07tyq4Zn1fxsUT9UgpB4yHJfQ0=;
-        b=m2wfWLhLhLHsBHDdqpREG4Znd+9NoDTJlu5agTkOe9zCwJADsHW2yscS1EoXo3/i9/
-         +cmKx9mwQbc719R1KYfTzG8cL2GNYKFmA5y2F/I2Vg9Yp5DnVCGFVPSR4rc/+Wc7owpB
-         QwOevIIoa1OWLWq8MdSb703NK9GH0uElxCLpF3u/GRym5Vz9SP2mUK3h4+r5tqsCFsuR
-         E9rPoU8/r36PKhqCjiSWrUwM3ZLV85ec+0XaC9zyJs6d6vItqCmMRhhtFjL7n59YNEuV
-         ALH64qrHipgZT9i4Qw0GYqMk3kSOJg6MHltR/XdzNO2NCiunbw84MP9W/LQQUomhLkUV
-         qskA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViyBfgrlTDHAPuYDXUpgKxN93vpgYhGWRnJ+NxkNW10=;
+        b=QveWERmc92+G0T+1qYxwqc36ANWAR4avspuAYLUnhTlPWAPiL1yaQDgisIUlw71zze
+         qoLKzQKfU+gNowZpdHabyNW7pRTgYT6MWzKd3y8H0O5yi0H3aHvnofZfvw7hoOfzRY3+
+         Y+U9oNwlrocJqgAmQSMEVMMazQAymnjU6v07p+FSP+qTHw69gr+uJgoCusp4FErTYugg
+         P0dvsMML8hBeE33p2DlDYST1U5bhOBnqQ++w189qj6zp1LzSpoeKi3ivUoZDHimAO4iW
+         2gkCE4YnL64ILwKpdhFMitih8LfhI7lB1BLLIsyR2f2iD6VmyQB3fcoThqIfCyXbyD/T
+         y7Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=EJ609syOXwzZkpM5B07tyq4Zn1fxsUT9UgpB4yHJfQ0=;
-        b=y2dpDAdI2AMtgWfzwnM/RyKT2ls1zyuREH9O4l9R3NlIAZT3qcuz5mCkGKrtDr7rop
-         unBX/gCEeV2HPMzUcqTJAmzt297kuEFhmy96/gszkInheHuNUIDrGUWFLmFREHavjeyT
-         G/uTJiv991DkEQlRhfRSdsurAhGlO27w2k5huvqA3nx1Dz5N/n1aaMSJUknYR0zvM/+m
-         vVQTMutDO2x8ujprBb918JYR4ENLMIAGcdosUJ4EdS0lzGTSK0A3nxyCiaPe9Zrtfjgb
-         i6v7pl00fZDadeCc6bm3kEKGR4jc8RxuZIQ2GtTaC4VSc+QSxO9pYVaEAbECt2gASlNT
-         2iyg==
-X-Gm-Message-State: AOAM530JSYLAOd+VjKIfYmhiXIEj7H75DYbrZotpab3rV5z72qyWhXN0
-        ycdZbLHCxPSGdXZ8LgKz0FQ=
-X-Google-Smtp-Source: ABdhPJyqJ/kR05EHdclLBjVPx0dsXEuAGuCYh0hcU9gzDXpbu+Q0ZiT1Y6iMFqTm9QBiCsxN8cgX8A==
-X-Received: by 2002:a9d:60cf:: with SMTP id b15mr10332906otk.282.1634338200749;
-        Fri, 15 Oct 2021 15:50:00 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e1sm1620247oiw.16.2021.10.15.15.50.00
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViyBfgrlTDHAPuYDXUpgKxN93vpgYhGWRnJ+NxkNW10=;
+        b=0Oe3xp3MBxxJM8MC+2Q4SbWm4PJhw9UWhBo8uH6WIeDLIySDVZPTfsBtKTB92PLELm
+         6S7jc5icK1UnJ23aKxv5W28VCoqwNeJt0NlYzacNADgPNowVPqlgkd3hJh0o9+saMAEP
+         /j5lo4tUJe7KWBOgVYCwyi32Ij0OZh6CNCcP5GYPlErOHXpsCsemQ7EyQvNLGznHMnUI
+         9znKX0416G8Ul4DAADAeZixlZWxM9tv/5o8XnaMHCJV2D/0qGIrHRtx1lBiT2PN1HX3A
+         ioyTpFCBdhWaBnLnjnLhK9vAyY/GiAGzO5Xd/1HOZLnlAWOvr4oDwW/t5lEO4GN8IK7J
+         sIRw==
+X-Gm-Message-State: AOAM530ImhmJ/NoAwPX7e+g4HGbh9yv28GXPCLi0E+lRXqhK5vcJbM2G
+        JLghhLB3mvw/pwPrtA0UlsM=
+X-Google-Smtp-Source: ABdhPJzKIoCyg8oyLXXUS8sOvfK/90PTAWpLgURFuRPV3Fwso6F9jUV9O1RZ48XQIjgwaOR/20DbYQ==
+X-Received: by 2002:adf:a152:: with SMTP id r18mr18268655wrr.317.1634338264405;
+        Fri, 15 Oct 2021 15:51:04 -0700 (PDT)
+Received: from oci-gb-a1.vcn08061408.oraclevcn.com ([2603:c020:c001:7eff:7c7:9b76:193f:d476])
+        by smtp.googlemail.com with ESMTPSA id q18sm11601017wmc.7.2021.10.15.15.51.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 15:50:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 15 Oct 2021 15:49:59 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Krzysztof Adamski <krzysztof.adamski@nokia.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] hwmon: (tmp421) support specifying n-factor via DT
-Message-ID: <20211015224959.GA1484958@roeck-us.net>
-References: <cover.1634206677.git.krzysztof.adamski@nokia.com>
- <69d0bfcc5ba27c67f21d3eabfb100656a14c75b9.1634206677.git.krzysztof.adamski@nokia.com>
+        Fri, 15 Oct 2021 15:51:03 -0700 (PDT)
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Matthew Hagan <mnhagan88@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: NSP: MX65: add qca8k falling-edge, PLL properties
+Date:   Fri, 15 Oct 2021 23:50:22 +0100
+Message-Id: <20211015225022.3828860-1-mnhagan88@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <69d0bfcc5ba27c67f21d3eabfb100656a14c75b9.1634206677.git.krzysztof.adamski@nokia.com>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 14, 2021 at 03:01:28PM +0200, Krzysztof Adamski wrote:
-> Previous patches added a way to specify some channel specific parameters
-> in DT and n-factor is definitely one of them. This calibration mechanism
-> is board specific as its value depends on the diodes/transistors being
-> connected to the sensor and thus the DT seems like a right fit for that
-> information. It is very similar to the value of shunt resistor that some
-> drivers allows specifying in DT.
-> 
-> This patch adds a possibility to set n-factor for each channel via
-> "n-factor" DT property in each channel subnode.
-> 
-> Signed-off-by: Krzysztof Adamski <krzysztof.adamski@nokia.com>
+This patch enables two properties for the QCA8337 switches on the MX65.
 
-Applied, after "s/^  / /"
+Set the SGMII transmit clock to falling edge
+"qca,sgmii-txclk-falling-edge" to conform to the OEM configuration [1].
 
-Guenter
+The new explicit PLL enable option "qca,sgmii-enable-pll" is required
+[2].
 
-> ---
->  drivers/hwmon/tmp421.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/hwmon/tmp421.c b/drivers/hwmon/tmp421.c
-> index af08bc985a13..606914f20910 100644
-> --- a/drivers/hwmon/tmp421.c
-> +++ b/drivers/hwmon/tmp421.c
-> @@ -34,6 +34,7 @@ enum chips { tmp421, tmp422, tmp423, tmp441, tmp442 };
->  #define TMP421_STATUS_REG			0x08
->  #define TMP421_CONFIG_REG_1			0x09
->  #define TMP421_CONVERSION_RATE_REG		0x0B
-> +#define TMP421_N_FACTOR_REG_1			0x21
->  #define TMP421_MANUFACTURER_ID_REG		0xFE
->  #define TMP421_DEVICE_ID_REG			0xFF
->  
-> @@ -310,6 +311,7 @@ static int tmp421_probe_child_from_dt(struct i2c_client *client,
->  {
->  	struct device *dev = &client->dev;
->  	u32 i;
-> +	s32 val;
->  	int err;
->  
->  	err = of_property_read_u32(child, "reg", &i);
-> @@ -329,6 +331,22 @@ static int tmp421_probe_child_from_dt(struct i2c_client *client,
->  
->  	data->channel[i].enabled = of_device_is_available(child);
->  
-> +	err = of_property_read_s32(child, "ti,n-factor", &val);
-> +	if (!err) {
-> +		if (i == 0) {
-> +			dev_err(dev, "n-factor can't be set for internal channel\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (val > 127 || val < -128) {
-> +			dev_err(dev, "n-factor for channel %d invalid (%d)\n",
-> +				i, val);
-> +			return -EINVAL;
-> +		}
-> +		i2c_smbus_write_byte_data(client, TMP421_N_FACTOR_REG_1 + i - 1,
-> +						  val);
-> +	}
-> +
->  	return 0;
->  }
->  
+[1] https://git.kernel.org/netdev/net-next/c/6c43809bf1be
+[2] https://git.kernel.org/netdev/net-next/c/bbc4799e8bb6
+
+Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+---
+ arch/arm/boot/dts/bcm958625-meraki-alamo.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/boot/dts/bcm958625-meraki-alamo.dtsi b/arch/arm/boot/dts/bcm958625-meraki-alamo.dtsi
+index 102acd85fab2..ba01054a76cf 100644
+--- a/arch/arm/boot/dts/bcm958625-meraki-alamo.dtsi
++++ b/arch/arm/boot/dts/bcm958625-meraki-alamo.dtsi
+@@ -118,6 +118,8 @@ port@0 {
+ 						reg = <0>;
+ 						ethernet = <&sgmii1>;
+ 						phy-mode = "sgmii";
++						qca,sgmii-enable-pll;
++						qca,sgmii-txclk-falling-edge;
+ 						fixed-link {
+ 							speed = <1000>;
+ 							full-duplex;
+@@ -194,6 +196,8 @@ port@0 {
+ 						reg = <0>;
+ 						ethernet = <&sgmii0>;
+ 						phy-mode = "sgmii";
++						qca,sgmii-enable-pll;
++						qca,sgmii-txclk-falling-edge;
+ 						fixed-link {
+ 							speed = <1000>;
+ 							full-duplex;
+-- 
+2.27.0
+
