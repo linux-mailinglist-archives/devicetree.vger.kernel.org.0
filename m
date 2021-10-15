@@ -2,121 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C1842F42A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:47:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A8342F434
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 15:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239979AbhJONti (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 09:49:38 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34886 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239990AbhJONth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:49:37 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 869101F4536F
-Subject: Re: [PATCH v4 03/13] memory: mtk-smi: Use clk_bulk clock ops
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Yong Wu <yong.wu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, ming-fan.chen@mediatek.com,
-        yi.kuo@mediatek.com, anthony.huang@mediatek.com,
-        Ikjoon Jang <ikjn@chromium.org>
-References: <20210914113703.31466-1-yong.wu@mediatek.com>
- <20210914113703.31466-4-yong.wu@mediatek.com>
- <e466b3fb-d9fe-bb20-23c2-f9766a35f120@collabora.com>
- <ab5c6dd1-7eed-4515-8781-c79e5317d038@canonical.com>
-From:   AngeloGioacchino Del Regno 
+        id S239614AbhJONvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 09:51:31 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:41638 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236777AbhJONv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 09:51:29 -0400
+Received: by mail-ot1-f51.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so12895755ote.8;
+        Fri, 15 Oct 2021 06:49:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Emypu18e0IXK8TFQk7ooPj168yx7xW+uYOA6VkCV8JE=;
+        b=o8IjwzNbf6PeJNkfWKPvK54nZeK3FTte3f1DAnOmdcfKDHOixFO8+NG5TDl5cLPIPU
+         XHIpLVm8Cfbb9AeGkfC+yry9WS4O5LOEhYGvb1vhx0y2E5T5ZztEOcu1IiZYRJEzaOyL
+         kGLjLkLhs6CyqXHuF/iJSQ00ag9UU/XV9yNzz5xq559+lEju+GOyKe6lKzRq67KTmbcb
+         nCZqidTwWZgXpGH947wbix3vfbxbICPG6jlXwX3jIz/j92YKvl4JfcuWmvt7LcJTV1ix
+         EZahlR+KTj1qyGRJiWnF7thk/yQ+iP9OpWizmtDdFJXy3tPFMtjCKeVavr3LmB2Xjbsd
+         jX3g==
+X-Gm-Message-State: AOAM533rVlBAavSwc8skg+O/bRHRqgV/AaPmEu+Zd9h+AhuIDCo0wRlE
+        neXro+C7wMgNh5MQF+cBMTwaAvO9og==
+X-Google-Smtp-Source: ABdhPJxUclsuv2sYJlz+mVj3QUqsf0dR1i3duEqsYs1RlI/V8CQynEpT+T1LpMNFTS8H1xYbHJ7fjQ==
+X-Received: by 2002:a9d:19e3:: with SMTP id k90mr7958187otk.99.1634305762209;
+        Fri, 15 Oct 2021 06:49:22 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p14sm967286oov.0.2021.10.15.06.49.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Oct 2021 06:49:21 -0700 (PDT)
+Received: (nullmailer pid 1423603 invoked by uid 1000);
+        Fri, 15 Oct 2021 13:49:20 -0000
+Date:   Fri, 15 Oct 2021 08:49:20 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Message-ID: <e433d19a-8bb8-8ef5-fce8-4b3535f5bc3e@collabora.com>
-Date:   Fri, 15 Oct 2021 15:47:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+Cc:     airlied@linux.ie, seanpaul@chromium.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, daniel@ffwll.ch,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] dt-bindings: display/bridge: ptn3460: Convert to YAML
+ binding
+Message-ID: <YWmG4KddWr4lo6kY@robh.at.kernel.org>
+References: <20211007075822.62411-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <ab5c6dd1-7eed-4515-8781-c79e5317d038@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211007075822.62411-1-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/10/21 15:43, Krzysztof Kozlowski ha scritto:
-> On 15/10/2021 15:38, AngeloGioacchino Del Regno wrote:
->>> Use clk_bulk interface instead of the orginal one to simplify the code.
->>>
->>> For SMI larbs: Require apb/smi clocks while gals is optional.
->>> For SMI common: Require apb/smi/gals0/gal1 in has_gals case. Otherwise,
->>>                   also only require apb/smi, No optional clk here.
->>>
->>> About the "has_gals" flag, for smi larbs, the gals clock also may be
->>> optional even this platform support it. thus it always use
->>> *_bulk_get_optional, then the flag has_gals is unnecessary. Remove it.
->>> The smi_common's has_gals still keep it.
->>>
->>> Also remove clk fail logs since bulk interface already output fail log.
->>>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>
->> Hello Yong,
->> thanks for the patch! However, I have an improvement to point out:
->>
->>> ---
->>>    drivers/memory/mtk-smi.c | 143 +++++++++++++++------------------------
->>>    1 file changed, 55 insertions(+), 88 deletions(-)
->>>
->>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
->>> index c5fb51f73b34..f91eaf5c3ab0 100644
->>> --- a/drivers/memory/mtk-smi.c
->>> +++ b/drivers/memory/mtk-smi.c
->>> @@ -60,6 +60,20 @@ enum mtk_smi_gen {
->>>    	MTK_SMI_GEN2
->>>    };
->>>    
->>> +#define MTK_SMI_CLK_NR_MAX			4
->>
->> This refers to mtk_smi_common_clks[] and should be probably moved after that.
->> In any case, I don't think that there's any need to manually define this as 4,
->> as you can simply use the macro ARRAY_SIZE(mtk_smi_common_clks).
->> Using that will make you able to not update this definition everytime an update
->> occurs to the mtk_smi_common_clks array.
->>
->>> +
->>> +/* larbs: Require apb/smi clocks while gals is optional. */
->>> +static const char * const mtk_smi_larb_clks[] = {"apb", "smi", "gals"};
->>> +#define MTK_SMI_LARB_REQ_CLK_NR		2
->>> +#define MTK_SMI_LARB_OPT_CLK_NR		1
->>> +
->>> +/*
->>> + * common: Require these four clocks in has_gals case. Otherwise, only apb/smi are required.
->>> + */
->>> +static const char * const mtk_smi_common_clks[] = {"apb", "smi", "gals0", "gals1"};
->>> +#define MTK_SMI_COM_REQ_CLK_NR		2
->>> +#define MTK_SMI_COM_GALS_REQ_CLK_NR	MTK_SMI_CLK_NR_MAX
->>> +
->>
->> Apart from that,
->> Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Thu, 07 Oct 2021 09:58:22 +0200, AngeloGioacchino Del Regno wrote:
+> Convert the NXP PTN3460 eDP to LVDS bridge documentation to YAML.
 > 
-> The patchset was merged around a month ago:
-> https://lore.kernel.org/lkml/163229303729.7874.4095337797772755570.b4-ty@canonical.com/
-> 
-> 
-> Best regards,
-> Krzysztof
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../bindings/display/bridge/nxp,ptn3460.yaml  | 106 ++++++++++++++++++
+>  .../bindings/display/bridge/ptn3460.txt       |  39 -------
+>  2 files changed, 106 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ptn3460.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/bridge/ptn3460.txt
 > 
 
-Whoops. Sorry for that.
-I'll send a patch to address what I pointed out, unless the original author of
-this series wants to.
-
-Thanks,
-- Angelo
+Reviewed-by: Rob Herring <robh@kernel.org>
