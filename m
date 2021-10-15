@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BC342E63D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 03:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8287A42E660
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 04:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233617AbhJOBsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 14 Oct 2021 21:48:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60196 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229635AbhJOBsp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 14 Oct 2021 21:48:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AA56E61151;
-        Fri, 15 Oct 2021 01:46:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634262399;
-        bh=6Vd2kFlVhKA+VeEZ2dIfDQIgBxQl4oG8AFsgsstnr50=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VOKNk03QioGmzRuvR0Fz3uTRGp/X9NU3b+ubEfcOl9MLOD4GL4nM1v9czC8cJUtyD
-         1LG2TwrOf94Ik3MYhbyoO/E2pWo7iuZAlgURt9CyprnCfKP6Zp0+yb3H1gA7uQSrIQ
-         wCWpey3Kd9SiUpfepykLsAqaVtCTrVFku+SsouDoND1TdYKERe2XxH0LLq7Ui3iNWo
-         +i/LyVP6rlwZiqKRMp0TFry6Xa/zxzSdDdSCHBFwfj57BpifYaGnM47h9CdkOP9IFd
-         VQx5bZHh1mw/6XC7D7m0CEbL9TLCeURw3vWZUPPIvHe30BE95o1mjM7TRVMSBe3/lH
-         n6Ft1O7wiMFIQ==
-Date:   Fri, 15 Oct 2021 09:46:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Subject: Re: [PATCH v2 7/7] arm64: dts: imx8mq-librem5: set debounce interval
- of volume buttons to 50ms
-Message-ID: <20211015014632.GC10197@dragon>
-References: <20211005134902.2138731-1-martin.kepplinger@puri.sm>
- <20211005134902.2138731-8-martin.kepplinger@puri.sm>
+        id S231274AbhJOCK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 14 Oct 2021 22:10:58 -0400
+Received: from szxga08-in.huawei.com ([45.249.212.255]:25136 "EHLO
+        szxga08-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229938AbhJOCK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 14 Oct 2021 22:10:57 -0400
+Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.56])
+        by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4HVqQl0D1Fz1DHNt;
+        Fri, 15 Oct 2021 10:07:11 +0800 (CST)
+Received: from [10.40.166.221] (10.40.166.221) by
+ dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.8; Fri, 15 Oct 2021 10:08:50 +0800
+Message-ID: <6168E2B2.1070209@hisilicon.com>
+Date:   Fri, 15 Oct 2021 10:08:50 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211005134902.2138731-8-martin.kepplinger@puri.sm>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <xuwei5@hisilicon.com>
+Subject: Re: [PATCH] arm64: dts: hisilicon: align operating-points table name
+ with dtschema
+References: <20210820081522.83512-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210820081522.83512-1-krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.40.166.221]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggeme755-chm.china.huawei.com (10.3.19.101)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 05, 2021 at 03:49:02PM +0200, Martin Kepplinger wrote:
-> From: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-> 
-> The default of 5ms is too low.
-> 
-> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+Hi Krzysztof,
 
-Your SoB is missing here.  I fixed it up and applied the series, thanks!
+On 2021/8/20 16:15, Krzysztof Kozlowski wrote:
+> Align the name of operating-points node to dtschema to fix warnings like:
+> 
+>   cpu_opp_table: $nodename:0: 'cpu_opp_table' does not match '^opp-table(-[a-z0-9]+)?$'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Shawn
+Applied to the HiSilicon arm64 dt tree.
+Thanks!
+
+Best Regards,
+Wei
 
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> index d86486fd659d..60d47c71499b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> @@ -40,12 +40,14 @@ vol-down {
->  			label = "VOL_DOWN";
->  			gpios = <&gpio1 17 GPIO_ACTIVE_LOW>;
->  			linux,code = <KEY_VOLUMEDOWN>;
-> +			debounce-interval = <50>;
->  		};
->  
->  		vol-up {
->  			label = "VOL_UP";
->  			gpios = <&gpio1 16 GPIO_ACTIVE_LOW>;
->  			linux,code = <KEY_VOLUMEUP>;
-> +			debounce-interval = <50>;
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> index 2d5c1a348716..19a979779bdb 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+> @@ -210,7 +210,7 @@ A73_L2: l2-cache1 {
 >  		};
 >  	};
 >  
-> -- 
-> 2.30.2
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -245,7 +245,7 @@ opp04 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> index dde9371dc545..3f2134779115 100644
+> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+> @@ -193,7 +193,7 @@ CLUSTER1_L2: l2-cache1 {
+>  		};
+>  	};
+>  
+> -	cpu_opp_table: cpu_opp_table {
+> +	cpu_opp_table: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
 > 
