@@ -2,176 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A61E042ED69
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4D7F42ED66
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237213AbhJOJUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 05:20:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39840 "EHLO
+        id S235937AbhJOJT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 05:19:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237140AbhJOJUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 05:20:03 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37F9DC061570
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:57 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id z11so37686331lfj.4
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:57 -0700 (PDT)
+        with ESMTP id S237060AbhJOJT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 05:19:56 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C45C061570
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:49 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id d3so35392795edp.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 02:17:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RLC+HjhvviOBGNXg1rQh6EfG6uU7vueygwlcPXecPI8=;
-        b=kQvb5ugQhUs4M3Tj42jrgEz3ieKCsMl6oQ9IJA5CodKTcxAckHP38oFW8Qe2n/VVXa
-         bxu/qCFEiOiENW5kyEpjn6MTg7Bu8KbQaHTHQnqLvQ24ZJGGUVtb/xi1lFGM50/xTfaB
-         9rkXZY1/vBrrxb8rE1GZ58kaFqZdkb+EbqScLG7jgj0EPwxzJlxI/sIqTAKsFupIAMeI
-         b6DyNKJuLQRo51CpRuVxeaGQ2eT8MNV/MESVA9FOBWnVKCZiW+uuhikUD7f+YqxbG3oO
-         lqgKYtlaQL+DBeGUUaRZDydlzL4Mv0XfNTsBQkBKZ+PlBvJTaNEvHWjHK0uLyS/9ksQk
-         sIvQ==
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+VMRnA7HC88DlpNpC3CNIQMXTLRNrlmvCLC0hTrELVM=;
+        b=OBH8KAuhrWlDFQYqW2OVpe/t/9f7uJUBC8qZlup9bg4CXkuH7z9Mq7JlRVh8Rpw8/o
+         xmj5h4iaRn6qN+QNpiMed7w6X6CGTcw1woDIY59URg9r/mSl9hIapkSxnYzVo0txvKm4
+         zWs9WprTDIq5pSRwd6DIucwyGexMsmo73nPHixb+qav5qGP5NGXiq9hJTtcoXfE1SFJD
+         SrdWL2Q65uY6H83ON3f0O0OWL8ppPCyzZKBTHqjowucszF9agGPlC7COaXfkINymuBIO
+         6gDKw8vGRyB7z0GFZCF0koqqd7yVqBNIslymiid1IvRv827Ti14JBmwwwaGvdTx2d7fa
+         7VWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RLC+HjhvviOBGNXg1rQh6EfG6uU7vueygwlcPXecPI8=;
-        b=goJFEf4SJ1IigcsDRjp2Dn3g20vp/suZ71k+VIBlexe6w/f53AUpcSq1x/ocoT792m
-         aXfhb8n7uOnhu/Xm13GFga/TLQew+ZntyTqdcKtApru6iowjFMx8Y8h+G4lQGM/XVkRs
-         8YElcj04yKOD4Eou80fd6hCcrfcgIRdhKWT9nO5WoBr8l2yCthJv+xRZnr/CGh8DseH4
-         4nt3H5WTKGgWaTir1DsbfzK60mDV114aawOoLBs1L02nQ4pfLFppvV3OSFQmew7fug6Y
-         x0RwdX+kFCt28/xeayfjJ/RmF9ZOUz56BZOTcAZN83sZR+L607vuxpcRzN/YnOMMAQ53
-         vbPA==
-X-Gm-Message-State: AOAM533KvcnI4dNtvzz8Sd5r3teXh5Uq7ekOUtPdRBzHob8f0XMiK1+a
-        UGMlvu5zx0+OBkg/PhqwhUjwy2NT/qBR3My1Yfkq7SIyka9eLA==
-X-Google-Smtp-Source: ABdhPJx+08Y1ljiMYn2qfkB9WndJlxkIzmmTo1z25sleCJELjtbRI9uqR33M/umWp8WjlfrAaIt5UdvDvARgk3oQ++U=
-X-Received: by 2002:a05:651c:4c9:: with SMTP id e9mr11602393lji.229.1634289475532;
- Fri, 15 Oct 2021 02:17:55 -0700 (PDT)
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=+VMRnA7HC88DlpNpC3CNIQMXTLRNrlmvCLC0hTrELVM=;
+        b=kI+63OJTI9Ih1OD82YoYIjGAGul0yEspiMwQAEd6JzjxtnkG0DRuOf0bZxu6yFyrrj
+         hJDjIU2xu/WlR7Q9o9Ik/Do38tKvnkxomnAun4mGT6QAjtX1kYEWrG0rf8nlBlN2lYPu
+         efIKVUwoFdAmTOHkdyamqP8XoapMAcswKxxpZC2Vcd6wQkA8if9tfLO59amEvygGq/1E
+         RBotwo0KxbtcgbijzpH9TjgywbP1vEG3HL42nxuY/vamiU2r2JEoiMo8UUHtPGNdSFoe
+         sZiFEr7DaPvS5lRe/qc5kg/5969dc8BE/kA5oQezO7PAv00kHwS/1FuMSKYZDvLBpvZS
+         s8uA==
+X-Gm-Message-State: AOAM533l949fob+WHRSTwKgrZKNUsZ1aJOtmrB095pgIgeMAgKLOu8rR
+        45JCwWdbdmOEldRkh/twGquPoBKu6Ob+FA==
+X-Google-Smtp-Source: ABdhPJwgYy+cpJiy9KN3qbY+IYbfp9B6teWAybvgXQMxWUacfG5m7ZFNGhZD67R18rF67hLBbX24Og==
+X-Received: by 2002:a17:906:520b:: with SMTP id g11mr5433292ejm.502.1634289468222;
+        Fri, 15 Oct 2021 02:17:48 -0700 (PDT)
+Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
+        by smtp.gmail.com with ESMTPSA id m15sm5532409edd.5.2021.10.15.02.17.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 15 Oct 2021 02:17:47 -0700 (PDT)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: zynqmp: Fix comment about number of gpio line names
+Date:   Fri, 15 Oct 2021 11:17:46 +0200
+Message-Id: <c3480ba47ac9761903485ebfac127f297053d4da.1634289461.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com> <20211014145555.uoi2hyoonrptrd5m@bogus>
-In-Reply-To: <20211014145555.uoi2hyoonrptrd5m@bogus>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 15 Oct 2021 11:17:18 +0200
-Message-ID: <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Oct 2021 at 16:56, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Thu, Oct 14, 2021 at 12:56:46PM +0200, Ulf Hansson wrote:
-> > On Mon, 17 May 2021 at 18:14, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-> > > implementations where untrusted software had direct access to clock and
-> > > voltage hardware controls. In this attack, the malicious software was able to
-> > > place the platform into unsafe overclocked or undervolted configurations. Such
-> > > configurations then enabled the injection of predictable faults to reveal
-> > > secrets.
-> > >
-> > > Many Arm-based systems used to or still use voltage regulator and clock
-> > > frameworks in the kernel. These frameworks allow callers to independently
-> > > manipulate frequency and voltage settings. Such implementations can render
-> > > systems susceptible to this form of attack.
-> > >
-> > > Attacks such as CLKSCREW are now being mitigated by not having direct and
-> > > independent control of clock and voltage in the kernel and moving that
-> > > control to a trusted entity, such as the SCP firmware or secure world
-> > > firmware/software which are to perform sanity checking on the requested
-> > > performance levels, thereby preventing any attempted malicious programming.
-> > >
-> > > With the advent of such an abstraction, there is a need to replace the
-> > > generic clock and regulator bindings used by such devices with a generic
-> > > performance domains bindings.
-> > >
-> > > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
-> > >
-> > > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> >
-> > Hi Sudeep/Viresh/Rob,
-> >
-> > I noticed this binding recently got accepted, so I guess I have missed
-> > the opportunity to provide you with a few comments.
-> >
->
-> Sorry for not cc-ing you, wasn't aware of the below mentioned intersection,
-> so assumed you are not one of the interested parties.
->
-> > In any case, I would like to ask a few questions. In particular, am I
-> > trying to understand why the power-domains bindings [1] can't be used
-> > for this?
-> >
->
-> One reason I can think of is on some platforms, the power domains are
-> completely controlled by the firmware and not exposed to the OSPM.
-> This is mostly applicable for CPU devices(Platform co-ordinated PSCI)
+ZynqMP has 174 gpio lines connected to PS controller but DT is describing
+them from 0 to 173 not 174.
 
-See below.
+Fixes: 7a4c31ee877a ("arm64: zynqmp: Add support for Xilinx Kria SOM board")
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
->
-> > The power-domains are capable of dealing with "performance" through
-> > the "operating-points-v2" DT property, which maps to the generic OPP
-> > bindings [2]. I wonder why that isn't sufficient here? Can you please
-> > elaborate?
-> >
->
-> Even if the power domains are exposed to the OSPM, the OPPs can be
-> firmware enumerated rather than DT. Not sure if it is possible to
-> represent such systems in the above mentioned bindings. IIUC, the genpd
-> uses clock and regulator apis to drive the performance, but these
-> platforms have f/w interface to drive the OPPs(abstracted).
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Genpd doesn't operate on clock rates or voltage levels. Instead
-"performance" is just an integer value for genpd. What a performance
-index means, is genpd provider specific.
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index 550b389153e6..bb2602dd2805 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -285,5 +285,5 @@ &gpio {
+ 			  "", "", "", "", "", /* 155 - 159 */
+ 			  "", "", "", "", "", /* 160 - 164 */
+ 			  "", "", "", "", "", /* 165 - 169 */
+-			  "", "", "", ""; /* 170 - 174 */
++			  "", "", "", ""; /* 170 - 173 */
+ };
+-- 
+2.33.1
 
-In other words, it becomes the responsibility for the genpd provider
-to map a performance state index to an OPP, for example. So far,
-providers have used the generic OPP DT bindings to do this, but for
-sure, we don't have to limit ourselves to this. So, if OPP tables can
-be enumerated by FW, rather than specified in DT, that should
-certainly be possible to support.
-
-BTW, these are genpd provider callbacks, that needs to be implemented
-to let it control performance. Perhaps that helps to understand
-things.
-
-int (*set_performance_state)(struct generic_pm_domain *genpd, unsigned
-int state);
-unsigned int (*opp_to_performance_state)(struct generic_pm_domain
-*genpd, struct dev_pm_opp *opp);
-
->
-> I am happy to know if there are ways to support such systems with the
-> options you have mentioned above.
-
-As far as I understand, the "performance domains" DT bindings that
-$subject patch introduces, allows us to group devices into domains, to
-let them be "performance controlled" together. Right?
-
-Unless I am missing something, it looks like power domains DT bindings
-already offer this for us. Yes, certainly, the DT doc [1] needs an
-updated description to better explain this, but other than that we
-should be fine, don't you think?
-
-[1]
-Documentation/devicetree/bindings/power/power-domain.yaml
-
->
-> --
-> Regards,
-> Sudeep
-
-Kind regards
-Uffe
