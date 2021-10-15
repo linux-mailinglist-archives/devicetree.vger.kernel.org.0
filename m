@@ -2,173 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6659742EDA3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:28:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BBA42EDC0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 11:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236624AbhJOJaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 05:30:14 -0400
-Received: from mail-bn8nam11on2065.outbound.protection.outlook.com ([40.107.236.65]:50657
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236608AbhJOJaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 15 Oct 2021 05:30:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=a2z+gNK0loBSM/SBwbH2dmFEx26XIz1IkIVWS0AgZs+yUG4B0P9ZOZOJ2LurRw/dgrcaQlv35ad7HK5a7Z7WcA/ZzbKWmkuOydNCrwallxU4oGWqpGIGlIObY3/9bEPLDAnPBJGfJx7ZtN7wHIgaJzFAVkaJl80O4QbjOgpSQIZgxz1Ug7GXwM9Rkf0LtMphSW4cyDL/zYQJXXKzvyQuqPoMzboTfYAW7OBnHvn5gIUyWl3aSIGT7JRP+CmuAAXQ64rjJ5/+smSybY/jvTveLWDlD+Iijd97jR3Mk7o8vXP3tR+VeBwJq3R7Bnha4gPq+U0MKmbNOiaOi8XFDoaA0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VsV3VuYHBt+qSS+WXUKST5TWg4jXOAFSySWrALG1zXk=;
- b=gtNxc9Jn5znfu+hVPppysUrncltwGzn9mOPwPeUlqu+VpAb0aER3bggRj9nzexoiMoNPoqkkaK6KG2d5h7w7HBoV0wwzJyiXVgU0y4vdsaxnaupbq7eFDOiqKX9mdr2z+YQhERJ7nd0AibFzkTK6ZjJxmoumS9R5fqMJ3xnOsrrgY3nIljrbp7gIw9RGcbTTYelkpuHa9lLPL1dvZHJhDJrKo2q/UAyaTBmV8BwzQdY3V5Rcnfk3Py9KiYS81ZuqLF7ivUb8zXDNNyR5FO3nhiTAiUaxMOcl24b/cBIxm4Il7FQtA5blUdme0IABFFB2Lu8sgarvin+Ux6I/O2RZKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VsV3VuYHBt+qSS+WXUKST5TWg4jXOAFSySWrALG1zXk=;
- b=FZYazR2WnOzpTePjcTnOxMSOnKaQDDoOhZj4gJ56nURHeDDf8IEQCfS6OX7/fAlheVVCdCcbFNQbZc0eKRuHOf/irsauJUU+tnvEtcGC4cJLneyXtA5PbgH9sd2ASA75v0IQBnr0JMdh2ir2nTrRIQ5kboc7DpYgyHOJG6kwNq8=
-Received: from DM5PR06CA0027.namprd06.prod.outlook.com (2603:10b6:3:5d::13) by
- DM5PR02MB2265.namprd02.prod.outlook.com (2603:10b6:3:4f::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.17; Fri, 15 Oct 2021 09:28:05 +0000
-Received: from DM3NAM02FT035.eop-nam02.prod.protection.outlook.com
- (2603:10b6:3:5d:cafe::2f) by DM5PR06CA0027.outlook.office365.com
- (2603:10b6:3:5d::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
- Transport; Fri, 15 Oct 2021 09:28:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT035.mail.protection.outlook.com (10.13.4.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4608.15 via Frontend Transport; Fri, 15 Oct 2021 09:28:05 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 15 Oct 2021 02:28:04 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 15 Oct 2021 02:28:04 -0700
-Envelope-to: git@xilinx.com,
- robh@kernel.org,
- robh+dt@kernel.org,
- devicetree@vger.kernel.org,
- monstr@monstr.eu,
- bgolaszewski@baylibre.com,
- linus.walleij@linaro.org,
- linux-gpio@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- iwamatsu@nigauri.org,
- linux-arm-kernel@lists.infradead.org
-Received: from [10.254.241.49] (port=53814)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1mbJVU-000BKK-4D; Fri, 15 Oct 2021 02:28:04 -0700
-Message-ID: <ab5de303-5b3d-caeb-7fa0-6dfc96576447@xilinx.com>
-Date:   Fri, 15 Oct 2021 11:28:00 +0200
+        id S237425AbhJOJgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 05:36:54 -0400
+Received: from muru.com ([72.249.23.125]:44834 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236690AbhJOJgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 15 Oct 2021 05:36:54 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id D6ECF80F1;
+        Fri, 15 Oct 2021 09:35:19 +0000 (UTC)
+Date:   Fri, 15 Oct 2021 12:34:46 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Chunyan Zhang <zhang.chunyan@linaro.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 4/6] mmc: sdhci-omap: Implement PM runtime functions
+Message-ID: <YWlLNn0yN2r1xDSq@atomide.com>
+References: <20211012103750.38328-1-tony@atomide.com>
+ <20211012103750.38328-5-tony@atomide.com>
+ <CAPDyKFq_jiYPrm_kcprijFfcceVVGnZpkG+4ZY_XSBXJnCT0LA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH] dt-bindings: gpio: zynq: Add missing compatible strings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <monstr@monstr.eu>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "Srinivas Neeli" <srinivas.neeli@xilinx.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
-        <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Nobuhiro Iwamatsu" <iwamatsu@nigauri.org>,
-        <linux-arm-kernel@lists.infradead.org>, <git@xilinx.com>
-References: <72c973da5670b5ae81d050c582948894ee4174f8.1634206453.git.michal.simek@xilinx.com>
- <1634221864.213975.3295884.nullmailer@robh.at.kernel.org>
-From:   Michal Simek <michal.simek@xilinx.com>
-In-Reply-To: <1634221864.213975.3295884.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 66c0a0b2-c730-473f-1de4-08d98fbe1818
-X-MS-TrafficTypeDiagnostic: DM5PR02MB2265:
-X-Microsoft-Antispam-PRVS: <DM5PR02MB226517A91F4830D9431AF5FBC6B99@DM5PR02MB2265.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MleKLS/LdFx2FOLM0hqKBDJRAWZ3Mf/xS0Cmdk7QIJw0ypBsEpIXTASdIVpFCghkcDc2wgp6J4KowsnLShRCBqVdwUZZ9Z034JRPqBnsbd7WiyFHkw+Ffy9WkrbD3JLnyT+iI+RhdLiadK8K1J+x9DjDUj0mOl/6qwdDX9tIEZA+YuxNY+dfoIMihQf3Qfgr+yeVMVC66n8vzDzvI83PqYfBYalAtZZzn9mQjqrZvNnTOMWoXykvf16vRmvlX/WEWpRdNKteYWeIRgSb9O1VWscQVbA1zFeiuS8MjhGCIleAoMzYzqTHHQUQhYfq8dHZ2Jab1rf25PFPVOddjiUYe/eKXejNHYRRP7U8YnksXkNiwyscwhWyRfQUvu4JZDse9H2qnjM7fIbGmxO54sxIJVtnrfJbxzfWutkRe508OL1MjMZWWjam/xSwpRlQDDC0jacSTWxdmSy5G+5+J/oaA/a9WrbCB6DQWYwGTx3sqhu1GuD6iuhvwkTppuA+BCAx2+JV1ZrpIgyfL7ycxVK0K+Zbj0auLVzljnlStIj9DFeCUIPsfiyVqb5Qz/9kilM60CIsYoZhSnMQ5C8h9QO8tvCcJI79LsVgDC66N3uE+LNHGa5yb8uLbld1bEoPMdqEGEBvZPwu/zwxXEtqLwqxPaQ9KQzImYDFy/mkPqFHefSORNiifeJAU60CXVjGRvhFLLa/v9chtT+7aElNKJyd9sfC8My7gyrozstrXm3N1+nikoL2EZWl5HSztC7f9fw/F5vk9ILO2RuHy/VfKu0NC+BU8HasyfBvRIbdJMh0yn16+LQLHP2sHMyHn3MNJQvzerzoK2YC9+ZxdQKrGtYWMA==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(46966006)(36840700001)(110136005)(31686004)(36756003)(54906003)(36906005)(316002)(82310400003)(508600001)(5660300002)(47076005)(53546011)(26005)(8936002)(31696002)(8676002)(9786002)(70206006)(186003)(966005)(70586007)(2616005)(356005)(7416002)(426003)(83380400001)(6666004)(336012)(2906002)(4326008)(44832011)(107886003)(36860700001)(7636003)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2021 09:28:05.9518
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66c0a0b2-c730-473f-1de4-08d98fbe1818
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT035.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB2265
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFq_jiYPrm_kcprijFfcceVVGnZpkG+4ZY_XSBXJnCT0LA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+* Ulf Hansson <ulf.hansson@linaro.org> [211012 15:17]:
+> On Tue, 12 Oct 2021 at 12:38, Tony Lindgren <tony@atomide.com> wrote:
+> > @@ -1350,15 +1355,21 @@ static int sdhci_omap_probe(struct platform_device *pdev)
+> >         if (ret)
+> >                 goto err_cleanup_host;
+> >
+> > +       sdhci_omap_context_save(omap_host);
+> 
+> Calling sdhci_omap_context_save() here looks unnecessary. The device
+> is already runtime resumed at this point.
+> 
+> In other words, sdhci_omap_context_save() will be called from the
+> ->runtime_suspend() callback, next time the device becomes runtime
+> suspended. That should be sufficient, right?
 
-On 10/14/21 16:31, Rob Herring wrote:
-> On Thu, 14 Oct 2021 12:14:18 +0200, Michal Simek wrote:
->> "xlnx,zynqmp-gpio-1.0", "xlnx,versal-gpio-1.0" and "xlnx,pmc-gpio-1.0"
->> compatible strings were not moved to yaml format. But they were in origin
->> text file.
->>
->> Fixes: 45ca16072b70 ("dt-bindings: gpio: zynq: convert bindings to YAML")
->> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
->> ---
->>
->>   Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 6 +++++-
->>   1 file changed, 5 insertions(+), 1 deletion(-)
->>
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1540859
-> 
-> 
-> gpio@ff0a0000: '#address-cells', 'gpio-line-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
-> 
-> gpio@ff0a0000: '#address-cells', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
-> 
+Yup this can be now dropped with omap_host->con initialized to
+-EINVAL earlier.
 
-I sent patches for listing power-domain and gpio-line-names based on 
-this patch.
+> > @@ -1371,8 +1382,12 @@ static int sdhci_omap_remove(struct platform_device *pdev)
+> >         struct device *dev = &pdev->dev;
+> >         struct sdhci_host *host = platform_get_drvdata(pdev);
+> >
+> > +       pm_runtime_get_sync(dev);
+> >         sdhci_remove_host(host, true);
+> > +       pm_runtime_dont_use_autosuspend(dev);
+> >         pm_runtime_put_sync(dev);
+> > +       /* Ensure device gets idled despite userspace sysfs config */
+> > +       pm_runtime_force_suspend(dev);
+> >         pm_runtime_disable(dev);
+> 
+> The call to pm_runtime_disable() can be removed, as that is taken care
+> of in pm_runtime_force_suspend().
 
-Thanks,
-Michal
+OK
+
+> > +static int __maybe_unused sdhci_omap_suspend(struct device *dev)
+> > +{
+> > +       struct sdhci_host *host = dev_get_drvdata(dev);
+> > +       int err;
+> > +
+> > +       /* Enable for configuring wakeups, paired in resume */
+> > +       err = pm_runtime_resume_and_get(dev);
+> > +       if (err < 0)
+> > +               return err;
+> > +
+> > +       sdhci_suspend_host(host);
+> 
+> As far as I can tell, sdhci_suspend_host() doesn't really make sense
+> for the omap variant. What you need, is to put the device into the
+> same low power state as "runtime suspend", that should be sufficient.
+> 
+> The system wakeup will be armed (and later then disarmed) by the PM
+> core, when it calls device_wakeup_arm_wake_irqs() from the
+> dpm_suspend_noirq() phase.
+> 
+> In other words, pointing the system suspend/resume callbacks to
+> pm_runtime_force_suspend|resume() should work fine, I think.
+
+OK sounds good to me.
+
+Regards,
+
+Tony
