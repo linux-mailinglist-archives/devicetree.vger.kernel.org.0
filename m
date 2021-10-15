@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D296442F9F5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 19:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD9C42FA41
+	for <lists+devicetree@lfdr.de>; Fri, 15 Oct 2021 19:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242184AbhJORS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 15 Oct 2021 13:18:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38928 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242176AbhJORSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 13:18:50 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98AD8C061767;
-        Fri, 15 Oct 2021 10:16:43 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id i5so555477pla.5;
-        Fri, 15 Oct 2021 10:16:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=h1OfWNmPxnvZMni+hSGr/aPakXoUDhVv2xUOS4WlYDg=;
-        b=kyPHGZmrPOS/mviCT0sz87P/tWmUvHvWTyD0U+V5YZoy+eLX3dOTwgcgrYP/ebIhX6
-         koEADONUdH4BLJPtn8C7gYcbgPz5XTOyogtmKNh1Xgm54h0qwlS7fhqPAYZ93oDeOxqg
-         TrbShyJoma34MXNXE8WuNuvNqDjGwwgOoENO1JKNZkyAlHMkJhmc3VZK+3wRKVLCSvAo
-         AsMqqyoCn1Ybb68clUy6OtA3YUqcCbKXaK4WN6ej3ca2F+gKrfY7+nZsEhqwF2m7N1dB
-         jKuxjODzZjst70vMF+ETB4asYF4+2pjULbLZf4kufZfTjaoUCe5rQGPF171sZfOg4fN8
-         PFEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=h1OfWNmPxnvZMni+hSGr/aPakXoUDhVv2xUOS4WlYDg=;
-        b=xft/gXjatTmgZc5+mrheuZyMGe4dSHZ1NNAK3aLYFkOoqEGxkVAqavKrXsjZojCLWa
-         p18MzmAI4KHRTRZ4INxg3GgEhA05ULENwd8e/YbeV9DwBxkzBs8a93DUKM548fV7dmqb
-         PrKaKSuKlLN7PzeFrSe+moCxQMt9GXpLWt/IU3W28n7wsQZcZR6pjCGU14nsn++iNglM
-         PFVfUZsecHUGTwifjhISxPQiavK0lc+QZPkXRFkd36iJfgPtJKe+sNVWur3tioz/Su/d
-         kf3pCZO1M40yGI8SYHFqcRsoHDzdBAqtiW3DGEk5wb0I20DLhSIVlMcriXBFKaa0Tfsb
-         OUWQ==
-X-Gm-Message-State: AOAM531F9Fia0mCt0RUuCFkUJnDoIVDTjjipM1WQKJ/gOMYxIw8+QSxm
-        NKDfQW5lZFzmxPPLE07j4lA=
-X-Google-Smtp-Source: ABdhPJxDnJ9gEfsIjDn1Pb1K/slL3blAcdVmn64+NKMFsrbUb4oQ/BHNdP6eXr2WWDYflbz3V9L6aA==
-X-Received: by 2002:a17:902:e74a:b0:13f:3538:fca0 with SMTP id p10-20020a170902e74a00b0013f3538fca0mr12160835plf.22.1634318203132;
-        Fri, 15 Oct 2021 10:16:43 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id s17sm5666597pfs.91.2021.10.15.10.16.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Oct 2021 10:16:42 -0700 (PDT)
-Subject: Re: [PATCH net-next 2/6] ARM: dts: ls1021a-tsn: update RGMII delays
- for sja1105 switch
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        id S234890AbhJORbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 15 Oct 2021 13:31:38 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:33099 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234715AbhJORbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 15 Oct 2021 13:31:38 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id BE204100009;
+        Fri, 15 Oct 2021 17:29:28 +0000 (UTC)
+Date:   Fri, 15 Oct 2021 19:29:28 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>
-References: <20211013222313.3767605-1-vladimir.oltean@nxp.com>
- <20211013222313.3767605-3-vladimir.oltean@nxp.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <28551a3d-541e-8538-6a2f-110eeacd0500@gmail.com>
-Date:   Fri, 15 Oct 2021 10:16:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>
+Subject: Re: [PATCH 2/8] rtc: max77686: convert comments to kernel-doc format
+Message-ID: <YWm6eHTmG63smTZz@piout.net>
+References: <20211011155615.257529-1-luca@lucaceresoli.net>
+ <20211011155615.257529-3-luca@lucaceresoli.net>
 MIME-Version: 1.0
-In-Reply-To: <20211013222313.3767605-3-vladimir.oltean@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211011155615.257529-3-luca@lucaceresoli.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/13/21 3:23 PM, Vladimir Oltean wrote:
-> In the new behavior, the sja1105 driver expects there to be explicit
-> RGMII delays present on the fixed-link ports, otherwise it will complain
-> that it falls back to legacy behavior, which is to apply RGMII delays
-> incorrectly derived from the phy-mode string.
+On 11/10/2021 17:56:09+0200, Luca Ceresoli wrote:
+> Convert the comments documenting this struct to kernel-doc format for
+> standardization and readability.
 > 
-> In this case, the legacy behavior of the driver is to not apply delays
-> in any direction (mostly because the SJA1105T can't do that, so this
-> board uses PCB traces). To preserve that but also silence the driver,
-> use explicit delays of 0 ns. The delay information from the phy-mode is
-> ignored by new kernels (it's still RGMII as long as it's "rgmii*"
-> something), and the explicit {rx,tx}-internal-delay-ps properties are
-> ignored by old kernels, so the change works both ways.
-> 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  drivers/rtc/rtc-max77686.c | 21 ++++++++++++---------
+>  1 file changed, 12 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-max77686.c b/drivers/rtc/rtc-max77686.c
+> index eae7cb9faf1e..bac52cdea97d 100644
+> --- a/drivers/rtc/rtc-max77686.c
+> +++ b/drivers/rtc/rtc-max77686.c
+> @@ -61,24 +61,27 @@ enum {
+>  	RTC_NR_TIME
+>  };
+>  
+> +/**
+> + * struct max77686_rtc_driver_data - model-specific configuration
+> + * @delay: Minimum usecs needed for a RTC update
+> + * @mask: Mask used to read RTC registers value
+> + * @map: Registers offset to I2C addresses map
+> + * @alarm_enable_reg: Has a separate alarm enable register?
+> + * @rtc_i2c_addr: I2C address for RTC block
+> + * @rtc_irq_from_platform: RTC interrupt via platform resource
+> + * @alarm_pending_status_reg: Pending alarm status register
+> + * @rtc_irq_chip: RTC IRQ CHIP for regmap
+> + * @regmap_config: regmap configuration for the chip
+> + */
+>  struct max77686_rtc_driver_data {
+> -	/* Minimum usecs needed for a RTC update */
+>  	unsigned long		delay;
+> -	/* Mask used to read RTC registers value */
+>  	u8			mask;
+> -	/* Registers offset to I2C addresses map */
+>  	const unsigned int	*map;
+> -	/* Has a separate alarm enable register? */
+>  	bool			alarm_enable_reg;
+> -	/* I2C address for RTC block */
+>  	int			rtc_i2c_addr;
+> -	/* RTC interrupt via platform resource */
+>  	bool			rtc_irq_from_platform;
+> -	/* Pending alarm status register */
+>  	int			alarm_pending_status_reg;
+> -	/* RTC IRQ CHIP for regmap */
+>  	const struct regmap_irq_chip *rtc_irq_chip;
+> -	/* regmap configuration for the chip */
+>  	const struct regmap_config *regmap_config;
+>  };
+>  
+> -- 
+> 2.25.1
+> 
+
 -- 
-Florian
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
