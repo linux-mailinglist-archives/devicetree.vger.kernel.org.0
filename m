@@ -2,84 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5524A430231
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D555E430238
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:54:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240099AbhJPKpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 06:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43900 "EHLO
+        id S240193AbhJPK41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 06:56:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbhJPKpu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:45:50 -0400
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B165EC061570
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:43:42 -0700 (PDT)
-Received: by mail-ua1-x942.google.com with SMTP id h19so692583uax.5
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:43:42 -0700 (PDT)
+        with ESMTP id S236021AbhJPK41 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:56:27 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6024FC061570;
+        Sat, 16 Oct 2021 03:54:19 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id x27so53502643lfu.5;
+        Sat, 16 Oct 2021 03:54:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=1EzzsA3gLBYCuarIvmQ5m2wJZBnmUOheVE2nUrjxfgc=;
-        b=gB1P4ZLMG4J+62m1BgoGJHJWC/tQAbKb6ZG3GUqYd++TWPEoFmDdc0SDJn4A5kNCEI
-         eHfhN/z09MVOSLa5dQ3dZp8cOIYe0BmxWAUksqz4p4AJRY2GWWRMSZx1e31z+xShEoDJ
-         Gfp9AWKk4KvT1ZlHCx8CBXxuKfA3RG5VJKJLyPpVSpvMAxKpxYAQieuWuqYf0JRlc81j
-         TJ3kobzlVxXdriOKiGlzMO3wfd7+fwxG+yMz3ig+aZ8LV+oHgaK1jivAb7R/pyy8ATB/
-         +hJy8UFXMmJstw4lFp4EI6aYtp5C5DYCRifDyoB4CczG7FqAg9tLlDNz4v9KkUjkDxE5
-         eC3g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1nXEEQOI2UyvJFPHSDiyUoFnaQvmSXlf0s7F8x76wlc=;
+        b=l/7qp0MVktj3pxcjYP9oXhD8My/pkVceyXH3oedix5GS9BxwMQjo7JAd2GUyEpLgFJ
+         6A3jHx9ICFXkVdu49qN0hEKmZrz2ZEhlTdvdmse34ktf0ATlExTZ3OMVZu32xnbqJW2P
+         FDxZAHo9raJeXntES+2CUbL1k0Ay4WGatGyhMlmjXlTTBLjbACCTP2AdAj1spaQXMZVO
+         5lD3PoaKhStIqLiTf/+T+GH2ACtOO/3folt0bgzpwcCp/jolrhr64pEViAd1HVdYa5lH
+         VG6/fFrRSBy+fuIPUTC8+vbdCVoec4GuTn2lbS5SElm+OCp1q+t72Rg40uIFVSVr6ps7
+         0a6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=1EzzsA3gLBYCuarIvmQ5m2wJZBnmUOheVE2nUrjxfgc=;
-        b=Rx5sGxYw9kxeYgU8WAD7QRXHsIeFEHqktuKyyL3f5ImsRWd5b+HcKA/R+z8tlchFYc
-         BNvChug9SFykXy1taNFX/EdmSU/motj78PjtaYzOjktIK+caauEKR5lPYEEO8sQIlAvB
-         1ddb/2Qj4LBm4IsmGnS/RG40sXmBkGPNGBKdM2pFPaxiZKSkcLuEByQENoWYFyybmc0b
-         VtEEFmNmM7nfhkVtUkZSZt1c1JyJHKDxfvwXb2TroUwmOI+exBdgx8QAB6wjdnc+DGET
-         s26JTeUhq86VIRa0NJFreKZCXkGetP6vdw9lfZH/1UMioaIdIkVQohCkdRE1zCA23iOJ
-         rjdA==
-X-Gm-Message-State: AOAM530gfT3jHwcqaSPuwDcDqo8k9JVXCqBD6Bvg4qU3TPBss4m6WhbI
-        wqOg0JP6a2duH43LSQwwkpvOxiXhqMaUdMWzt+s=
-X-Google-Smtp-Source: ABdhPJxpIkTKS7dbS10npoZKhWGZZ37s5l0HxTqkok+Rf/nG4bleCwjgU6VyWCBd3OnAnu8t1ZVoCgll7Jc+Hz47NhA=
-X-Received: by 2002:a05:6102:c0d:: with SMTP id x13mr1314340vss.39.1634381021784;
- Sat, 16 Oct 2021 03:43:41 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1nXEEQOI2UyvJFPHSDiyUoFnaQvmSXlf0s7F8x76wlc=;
+        b=YGvieu6l+k7j40pZxPn3mn3GWmGhwKghZtLIt7wQ2/wkSv+m98Pqg7KQxJCb2oz7XQ
+         mmIlGyVjwn/houC05X/1Ov9v5K7FHA6u4i2dm4Gp359eK6Xm3GELK2OpjuBn/FraDDZB
+         5XC2KmAEsmYJi25GoUXJMLcarjd2y6M4tvu3Qf5zEbPtjTKd2/ml9vRCX1JN2ks9qVRO
+         y9TEsD0KgBha5UB9mX2FLosCHSBZ/+JEt1hV0rQOVZfhyTHt+ddB4EYRfL4o3pDhbq+O
+         CHOudnPEhFn/2vTDklvO9HUvKXAWbp1UhdCH+suOUUrn22FT65yxdzC2V1jB9ulczixV
+         +quQ==
+X-Gm-Message-State: AOAM530h7ZISd+GGJVjCmO+tt8ITB8Shemk49Dl5fOCcpqsiugQn13hS
+        iL/DkktJueVOixdAk4setwIOc96n+vE=
+X-Google-Smtp-Source: ABdhPJy71ErVHEZBd5Yxc8l9Ddc4qLHPXpX6v/GjX9j4ndPss0lcNvuXGDEW7DzF5dJ7R5zXECcltg==
+X-Received: by 2002:a05:651c:2121:: with SMTP id a33mr6782437ljq.490.1634381657633;
+        Sat, 16 Oct 2021 03:54:17 -0700 (PDT)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id r3sm814224lfc.131.2021.10.16.03.54.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Oct 2021 03:54:17 -0700 (PDT)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] Getting rid of the reset controller in i2s-tdm
+Date:   Sat, 16 Oct 2021 12:53:49 +0200
+Message-Id: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Received: by 2002:ab0:7542:0:0:0:0:0 with HTTP; Sat, 16 Oct 2021 03:43:41
- -0700 (PDT)
-Reply-To: mrsaishag45@gmail.com
-From:   Mrs Aisha Al-Qaddafi <mrsannab56@gmail.com>
-Date:   Sat, 16 Oct 2021 03:43:41 -0700
-Message-ID: <CACg9+29feJ9rCHe0hWMZ4pmi22397nWGo1wE70Mo_gC918r1tQ@mail.gmail.com>
-Subject: Dear Friend,
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I came across your e-mail contact prior a private search while in need
-of your assistance. My name is Aisha Gaddafi a single
+Hello,
 
-Mother and a Widow with three Children. I am the only biological
-Daughter of late Libyan President (Late Colonel Muammar
+after some discussion with Heiko on IRC, he has admitted to me
+that the rockchip,cru property, and its corresponding half a reset
+controller in the driver, is weighing heavily on his mind.
 
-Gaddafi).
+The background is that if the lrck only uses one clock for both rx
+and tx direction, then according to the downstream driver, the rx
+and tx resets should be asserted at roughly the same time to keep
+things in sync.
 
-I have investment funds worth Twenty Seven Million Five Hundred
-Thousand United State Dollar ($27.500.000.00 ) and i need a
+Since there is no existing kernel way of doing this, the driver
+would manually write to the CRU's registers to achieve this,
+violating abstractions.
 
-trusted investment Manager/Partner because of my current refugee
-status, however, I am interested in you for investment
+We've agreed that an atomic bulk reset API would be the best way to
+achieve what it does in a clean fashion. The details of such an API
+have yet to be worked out by me, but as it turns out, this is not
+a pressing need.
 
-project assistance in your country, may be from there, we can build
-business relationship in the nearest future.
+During my investigation, I noticed that I can simply drop the
+synchronised reset for now and assert the two resets manually one
+after the other, and deassert them in the same manner.
 
-I am willing to negotiate investment/business profit sharing ratio
-with you base on the future investment earning profits.
-If you are willing to handle this project on my behalf kindly reply
-urgent to enable me provide you more information about
+For the case I care about, which is audio playback, this seems to
+work just fine. Should someone actually find a case where this
+causes a problem, it should be fixed with an atomic bulk reset API.
 
-the investment funds. Your Urgent Reply Will Be appreciated and all
-email should be at the email below;
+Patch 1 removes the direct CRU writing stuff from the i2s-tdm driver.
 
-Best Regards
-Mrs Aisha Al-Qaddafi
+Patch 2 drops the rockchip,cru property from the bindings; they have
+not yet been in a kernel release, so as far as I know, we can still
+change them with no regard for backwards compatibility.
+
+Patch 3 adds the rk356x i2s1 node without the rockchip,cru property.
+
+Patch 4 adds the analog audio output on Quartz64, included here for
+Heiko's convenience.
+
+Regards,
+Nicolas Frattaroli
+
+Nicolas Frattaroli (4):
+  ASoC: rockchip: i2s-tdm: Strip out direct CRU use
+  ASoC: dt-bindings: rockchip: i2s-tdm: Drop rockchip,cru property
+  arm64: dts: rockchip: Add i2s1 on rk356x
+  arm64: dts: rockchip: Add analog audio on Quartz64
+
+ .../bindings/sound/rockchip,i2s-tdm.yaml      |  16 ---
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  31 ++++-
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  25 ++++
+ sound/soc/rockchip/rockchip_i2s_tdm.c         | 126 +++---------------
+ 4 files changed, 76 insertions(+), 122 deletions(-)
+
+-- 
+2.33.1
+
