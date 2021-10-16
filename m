@@ -2,197 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E190243028C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 14:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8032A4302CB
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 15:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236512AbhJPMSq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 08:18:46 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:9000 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235147AbhJPMSp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 08:18:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1634386534;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=FUfmuNlYDkfLlY4FpNd9yLg46kksRppBVzaePpjIQL8=;
-    b=oWOlFdOcdV5JBy2m8+oaiX1xjaeRqb2ZLH3x8YQhlSkx8dkCBpPfCXqXBe1ZU8cAp6
-    8I07K9jJiKRVP7R+xo4/BgJWtX6t43a1Lo5BgbxmeSRMkmYoUilTaV1HIyKUWe7zpB+b
-    h/RfH5cuqmSvwISnkfI4+EPdcnv/LCCh9itNnGn9nrATAIl/JaacTeTM+O9qVcWkMGMs
-    tQGiHUXi6QWT+TMVDRL3fv/E1e0/z1S0itqaHP7/fufwCmeU4sW0lvDlp77gYucjTfJf
-    KXqOW6vhVVqicTjONVuCPmUbrsmw+L1Szd8UHg1AVdL2kXKrlmCh5FQxG5j0jJRgWOo1
-    wa2w==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrK85/aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.33.8 AUTH)
-    with ESMTPSA id 301038x9GCFWNO7
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Sat, 16 Oct 2021 14:15:32 +0200 (CEST)
-Date:   Sat, 16 Oct 2021 14:15:26 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Martin Kepplinger <martink@posteo.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lucas Stach <dev@lynxeye.de>, Angus Ainslie <angus@akkea.ca>,
-        Guido Gunther <agx@sigxcpu.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Eddie Cai <eddie.cai.linux@gmail.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Dan Johansen <strit@manjaro.org>,
-        Simon South <simon@simonsouth.net>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: add 'chassis-type' property
-Message-ID: <YWrCXnQ3XNocqXhz@gerhold.net>
-References: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
- <20211016102025.23346-4-arnaud.ferraris@collabora.com>
+        id S240420AbhJPNeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 09:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240323AbhJPNet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 09:34:49 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317A7C061764
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 06:32:41 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id e10so3304820plh.8
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 06:32:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1aK089TWp/IXNkLP6WIta2AieRuYEElzJdHSfX6P6V0=;
+        b=j11j5Sz3aeN3l3r54wpgr31mpNhRezrntfXODgjVjdvmqrmA+HhDhHGd2V4dVR3OMi
+         bPxTF8Gyx/Ar2EjnVkGw13NXYYA6I16jc8pNIwP+JC50DmFsLdcb7w+U7TOIwOWMLDK+
+         WqIgczHQrdONYYOw4EVM/9JkRM8XtHyIu/hn8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1aK089TWp/IXNkLP6WIta2AieRuYEElzJdHSfX6P6V0=;
+        b=KowikxD5hjcsq6PhhYbzFZtjiEhUqAaRO/IRXiN8XHO2U/JnMNZxGvd4YzJ4RljbuA
+         UPtB0tIizDzTty+iU8QqatsX0Sqvw8iEDyqG+G7U7WUbYkZIBXTvv1TDuCUTk9fDoyf6
+         oxVLBleGyIkxzUINfaU67sZbU+pvga+KckbpfUH/8gpZ+SYHPAEtjIuq2yDmuuPQu2qD
+         EV+wpr9AbznuHKt/XrAkislN4PurHvYULV8cdOQ7JTbeOl+ZM0sA1ekzgmbTjUK8uCCe
+         rzZtWID98miqWBG6RoH0W/BdOgsL8bEt+GXeIOnHjE8j4qbXsXOAJh78fyiGLhVMun2o
+         5z3g==
+X-Gm-Message-State: AOAM533q9+yD4AEFoTibc80BJCrUWPmBQlsP9A+QuW/mifwytT+xQhaM
+        OXXGTuKOvKD1z/0LFSZWphDhRfnDj8KtfR7/8eWNYQ==
+X-Google-Smtp-Source: ABdhPJz7Y2eLz8NCsbsVPivZ2QzzpzNMDpySe00MJ6LzkK32V+DzxS/B7+EIZE9U3Zn0n6vN5CJfxEYHCOTHR4Gf6HQ=
+X-Received: by 2002:a17:902:9887:b0:13f:7704:425f with SMTP id
+ s7-20020a170902988700b0013f7704425fmr16829397plp.20.1634391160281; Sat, 16
+ Oct 2021 06:32:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211016102025.23346-4-arnaud.ferraris@collabora.com>
+References: <20211016102232.202119-1-michael@amarulasolutions.com>
+ <20211016102232.202119-6-michael@amarulasolutions.com> <YWrEqStMPYuzUoUn@ravnborg.org>
+In-Reply-To: <YWrEqStMPYuzUoUn@ravnborg.org>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Sat, 16 Oct 2021 15:32:28 +0200
+Message-ID: <CAOf5uwm0iiSNvDF9ambZPQ9O6OCkWWAobxXvKYd6ieDscnNXVw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] drm/bridge: dw-mipi-dsi: Fix dsi registration during
+ drm probing
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 16, 2021 at 12:20:24PM +0200, Arnaud Ferraris wrote:
-> A new 'chassis-type' root node property has recently been approved for
-> the device-tree specification, in order to provide a simple way for
-> userspace to detect the device form factor and adjust their behavior
-> accordingly.
-> 
-> This patch fills in this property for end-user devices (such as laptops,
-> smartphones and tablets) based on Qualcomm ARM64 processors.
-> 
-> Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts            | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts                  | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts                  | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts            | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts            | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts            | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts            | 1 +
->  arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts           | 1 +
-> [...]
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> index 670bd1bebd73..265e539e7e99 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts
-> @@ -9,6 +9,7 @@
->  / {
->  	model = "Alcatel OneTouch Idol 3 (4.7)";
->  	compatible = "alcatel,idol347", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-> index cee451e59385..6bc0a29d4b4f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts
-> @@ -8,6 +8,7 @@
->  / {
->  	model = "Asus Zenfone 2 Laser";
->  	compatible = "asus,z00l", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-> index e0075b574190..42d93d3fba36 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts
-> @@ -25,6 +25,7 @@
->  / {
->  	model = "Huawei Ascend G7";
->  	compatible = "huawei,g7", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> index 30716eb8fb2d..9c83c96d2c8a 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
-> @@ -11,6 +11,7 @@
->  / {
->  	model = "Longcheer L8150";
->  	compatible = "longcheer,l8150", "qcom,msm8916-v1-qrd/9-v1", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> index 27845189ac2b..f9ce123471d4 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts
-> @@ -10,6 +10,7 @@
->  / {
->  	model = "BQ Aquaris X5 (Longcheer L8910)";
->  	compatible = "longcheer,l8910", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-> index 6cc2eaeb1d33..4ba11b020f9b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-> @@ -7,6 +7,7 @@
->  / {
->  	model = "Samsung Galaxy A3U (EUR)";
->  	compatible = "samsung,a3u-eur", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	reg_panel_vdd3: regulator-panel-vdd3 {
->  		compatible = "regulator-fixed";
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-> index c2eff5aebf85..d978c9ac179d 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-> @@ -7,6 +7,7 @@
->  / {
->  	model = "Samsung Galaxy A5U (EUR)";
->  	compatible = "samsung,a5u-eur", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	reg_touch_key: regulator-touch-key {
->  		compatible = "regulator-fixed";
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> index 4e20cc0008f7..69a44c6f57fc 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts
-> @@ -11,6 +11,7 @@
->  / {
->  	model = "Xiaomi Redmi 2 (Wingtech WT88047)";
->  	compatible = "wingtech,wt88047", "qcom,msm8916";
-> +	chassis-type = "handset";
->  
->  	aliases {
->  		serial0 = &blsp1_uart2;
+Hi Sam
 
-FWIW:
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net> # msm8916
+On Sat, Oct 16, 2021 at 2:25 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Michael,
+>
+> I fail to follow the logic in this patch.
+>
+>
+> On Sat, Oct 16, 2021 at 10:22:32AM +0000, Michael Trimarchi wrote:
+> > The dsi registration is implemented in rockchip platform driver.
+> > The attach can be called before the probe is terminated and therefore
+> > we need to be sure that corresponding entry during attach is valid
+> >
+> > Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> > ---
+> >  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c   |  8 +++++++-
+> >  drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c | 12 ++++++++----
+> >  include/drm/bridge/dw_mipi_dsi.h                |  2 +-
+> >  3 files changed, 16 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > index e44e18a0112a..44b211be15fc 100644
+> > --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+> > @@ -362,8 +362,14 @@ static int dw_mipi_dsi_host_attach(struct mipi_dsi_host *host,
+> >               dsi->device_found = true;
+> >       }
+> >
+> > +     /*
+> > +      * NOTE: the dsi registration is implemented in
+> > +      * platform driver, that to say dsi would be exist after
+> > +      * probe is terminated. The call is done before the end of probe
+> > +      * so we need to pass the dsi to the platform driver.
+> > +      */
+> >       if (pdata->host_ops && pdata->host_ops->attach) {
+> > -             ret = pdata->host_ops->attach(pdata->priv_data, device);
+> > +             ret = pdata->host_ops->attach(pdata->priv_data, device, dsi);
+> >               if (ret < 0)
+> >                       return ret;
+> >       }
+> > diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> > index a2262bee5aa4..32ddc8642ec1 100644
+> > --- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> > +++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+> > @@ -997,7 +997,8 @@ static const struct component_ops dw_mipi_dsi_rockchip_ops = {
+> >  };
+> >
+> >  static int dw_mipi_dsi_rockchip_host_attach(void *priv_data,
+> > -                                         struct mipi_dsi_device *device)
+> > +                                         struct mipi_dsi_device *device,
+> > +                                         struct dw_mipi_dsi *dmd)
+> >  {
+> >       struct dw_mipi_dsi_rockchip *dsi = priv_data;
+> >       struct device *second;
+> > @@ -1005,6 +1006,8 @@ static int dw_mipi_dsi_rockchip_host_attach(void *priv_data,
+> >
+> >       mutex_lock(&dsi->usage_mutex);
+> >
+> > +     dsi->dmd = dmd;
+> > +
+> >       if (dsi->usage_mode != DW_DSI_USAGE_IDLE) {
+> >               DRM_DEV_ERROR(dsi->dev, "dsi controller already in use\n");
+> >               mutex_unlock(&dsi->usage_mutex);
+> > @@ -1280,6 +1283,7 @@ static int dw_mipi_dsi_rockchip_probe(struct platform_device *pdev)
+> >  {
+> >       struct device *dev = &pdev->dev;
+> >       struct device_node *np = dev->of_node;
+> > +     struct dw_mipi_dsi *dmd;
+> >       struct dw_mipi_dsi_rockchip *dsi;
+> >       struct phy_provider *phy_provider;
+> >       struct resource *res;
+> > @@ -1391,9 +1395,9 @@ static int dw_mipi_dsi_rockchip_probe(struct platform_device *pdev)
+> >       if (IS_ERR(phy_provider))
+> >               return PTR_ERR(phy_provider);
+> >
+> > -     dsi->dmd = dw_mipi_dsi_probe(pdev, &dsi->pdata);
+> > -     if (IS_ERR(dsi->dmd)) {
+> > -             ret = PTR_ERR(dsi->dmd);
+> > +     dmd = dw_mipi_dsi_probe(pdev, &dsi->pdata);
+> > +     if (IS_ERR(dmd)) {
+> > +             ret = PTR_ERR(dmd);
+>
+> The memory pointed to by dmd is allocated in dw_mipi_dsi_probe(), but
+> the pointer is not saved here.
+> We rely on the attach operation to save the dmd pointer.
+>
+>
+> In other words - the attach operation must be called before we call
+> dw_mipi_dsi_rockchip_remove(), which uses the dmd member.
+>
+> This all looks wrong to me - are we papering over some other issue
 
-Thanks for going through the work to add it to so many devices! :)
-Stephan
+Ok, it's wrong. I was not expecting that call.Anyway this was my path
+on linux-next
+
+dw_mipi_dsi_rockchip_probe
+dw_mipi_dsi_probe -->start call
+
+dw_mipi_dsi_rockchip_host_attach <-- this was not able to use dmd
+
+dw_mipi_dsi_probe -> exit from the call
+
+Michael
+
+> here?
+>
+>         Sam
+
+
+
+-- 
+Michael Nazzareno Trimarchi
+Co-Founder & Chief Executive Officer
+M. +39 347 913 2170
+michael@amarulasolutions.com
+__________________________________
+
+Amarula Solutions BV
+Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
+T. +31 (0)85 111 9172
+info@amarulasolutions.com
+www.amarulasolutions.com
