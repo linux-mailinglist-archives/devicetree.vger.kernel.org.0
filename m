@@ -2,199 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B80D43005A
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 07:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA2A9430071
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 07:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242738AbhJPFGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 01:06:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54474 "EHLO
+        id S239430AbhJPFpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 01:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242572AbhJPFGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 01:06:16 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22585C061764
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 22:04:09 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id 75so10473730pga.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Oct 2021 22:04:09 -0700 (PDT)
+        with ESMTP id S239417AbhJPFpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 01:45:30 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 506F2C061570;
+        Fri, 15 Oct 2021 22:43:23 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id o20so30087158wro.3;
+        Fri, 15 Oct 2021 22:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1nRqPfmxrrw4CktC2ScfbUfntBuVYUtnPZ0553muocI=;
-        b=kl7hgM7vwGZWFu9LWpuyq+dIGP0Viks4UP5QnQQLMzbLucXzOyLk+HA8ZFnUm8LuYk
-         2eEWV1rXCXKL3snTDc6Cau1/G+eBVgLQoDJCF4j41wp/C8lSvmA9lHsnA33vARCg5Zkk
-         WMQ+ubC4tZyoWlckkab1kNqkrGte5WJN4Ijsenp10HOJQ6oBqU4ti/tQ6RRvyNY6lPhY
-         MvXvyhMbUKO2F8Sc9ut7lUxhFRHpvdJT5RrJ9QHAQcE2tzI5s3eCTypjggtKpL9xecxA
-         TYF2VRQAMmIKZlXFmiEJd18T26oSwltNM5lh9oPG67zh7exuchPqofWzQTEzUzMVmjr+
-         cQcA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mZ+rYmGOBzCE86+JmpxAv9FKEFvXz9uGD24tn9fITkw=;
+        b=Y78ma8E6KABYw4iqrfLdtQJBddHIhHp5j2gkJANFISFwx5JCMxuBtWUryfImjuGmGf
+         Wo5/cQ8GAz986eZmk+d+gkwgXlg47cmU6xJ0rhI3SDzJYyZp/IcnyeKUYIUQZpod+uX4
+         egnt3qlP4Aw6XJTI18PWDk++eVczcq1GJNFyiSmiujb+HHAjovsQR8IcC4fgI11Qbj0Z
+         Rp7QQPH0yRF8Ae63BlnSg8W+NFFR1cqiVNQoYXfZs+q5Tok4N35OFoTlqX4jYoTGsT6E
+         m7t+ACXUimy7mkTZTrtFrRSgrVBc1SWyxR0muGqGX84Kangx5UnT6T/kOJ/qjYiWodXK
+         GAxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1nRqPfmxrrw4CktC2ScfbUfntBuVYUtnPZ0553muocI=;
-        b=62vmmRbzt0Qj37t6fmX3oP8Vr09HZV/dj9Tk+9bhPuBuA+S7s0sKVzldbz3ZseUJIC
-         fAkGr2EVa90AHp4QCN3S9su7tFjxAmKLH7/PQgvL0QMf7hgPYv3UkgeQMr715+fWt8S1
-         SisWcGXsKiGdvVywmBrZUnFIViV1d6F9DgsT/z7D/XVlxi3pU08fczBkZh1j55eQTO+G
-         /tvbGe9c6siiKW+VvmYc/fk94ZrWrcOcPddngvQdNPU1jB+dr5o/EkTBTngTuLCm6Qdc
-         qUzjZf0JvsgTLCi3eL4cKXc+RSbj6MYvmluqukPcF9DrrhgJeAZbr1IhQe+/cEgQQI9/
-         J6UA==
-X-Gm-Message-State: AOAM533JBsQpSD2uT8fR1/fqRyHIwbb2X4VwH7n2JznrOEWV8A2AZ3+L
-        8HoAGIja8yvYdoPsKKIN2aaBSg==
-X-Google-Smtp-Source: ABdhPJyFTYXZY3VXt/hO0dPUs4MLGklG9srMkkjcN27uPXSIJJgmIUpxOwZDQJ2MxXSF5ZkBNhe71w==
-X-Received: by 2002:aa7:8bd3:0:b0:44c:68b3:a52e with SMTP id s19-20020aa78bd3000000b0044c68b3a52emr16055519pfd.74.1634360648469;
-        Fri, 15 Oct 2021 22:04:08 -0700 (PDT)
-Received: from x1 ([2601:1c2:1080:1950:2d9b:6b84:2b5:218c])
-        by smtp.gmail.com with ESMTPSA id 21sm12617106pjg.57.2021.10.15.22.04.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Oct 2021 22:04:08 -0700 (PDT)
-Date:   Fri, 15 Oct 2021 22:04:06 -0700
-From:   Drew Fustini <dfustini@baylibre.com>
-To:     Jason Kridner <jkridner@beagleboard.org>
-Cc:     Johan Hovold <johan@kernel.org>,
-        Benoit Cousson <bcousson@baylibre.com>,
-        Dave Gerlach <d-gerlach@ti.com>, Keerthy <j-keerthy@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        OMAP List <linux-omap@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: am335x: Add rtc node as system-power-controller
-Message-ID: <20211016050406.GA575510@x1>
-References: <20211012191311.879838-1-dfustini@baylibre.com>
- <YWaJfofs8QAtBnVu@hovoldconsulting.com>
- <20211013214103.GA10628@x1>
- <YWgJkkJ4LuAJhLmk@hovoldconsulting.com>
- <CA+T6QPkUSJZ9Pb8JvfuVuGzfv0cX-HQcT3eALN5Y9882r676MA@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mZ+rYmGOBzCE86+JmpxAv9FKEFvXz9uGD24tn9fITkw=;
+        b=3ipL/N4l9AyTlgILUhnFrHRw/PCfwyAR6XdvZ6BFHs0KZQROzwZCUqgjBbDhzttIgJ
+         1ffhEZgWo7hXQZA4SMAOEzdE7J1dQsN6Ld4oZBBG7M7P5/xtndWR802Tn7FX/bKlQAE0
+         8gykVxCnsfITqFXJz16khAOjdPgMYI2FqmA5iCzscCaav+oT8IDOIhrdkDEl+GHXUZ2U
+         wZo8/z9Tyi9lrK8bVbmZKlJyUzxI72f4Knc0jRXhfAeF7sW3zK6ohNwNjHQHbcq6ODyW
+         jln8L8alaX1GpZFnJxVJ4PH0zkh6ut9swc5turlrTT/5jJeAMpzZJSDr5wEM5BCVpsVL
+         2eew==
+X-Gm-Message-State: AOAM532KOnGQS4P/0kTANVpNwmOYa2HXzNpYu9AGsl9blAjqWHtI42VI
+        Vq9/vYANrd2z6NApBTXQTupOow8r75g=
+X-Google-Smtp-Source: ABdhPJw0BYUa1g3Ko+oZOglsKO935oDH2b71zKTgW/C5ozgXzPwgqwJqD+/PFHwrE8PtzpNuDN2s2g==
+X-Received: by 2002:a5d:64aa:: with SMTP id m10mr19477124wrp.196.1634363001674;
+        Fri, 15 Oct 2021 22:43:21 -0700 (PDT)
+Received: from localhost.localdomain (252.red-83-54-181.dynamicip.rima-tde.net. [83.54.181.252])
+        by smtp.gmail.com with ESMTPSA id z2sm6632663wrn.89.2021.10.15.22.43.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 15 Oct 2021 22:43:21 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh@kernel.org, john@phrozen.org, neil@brown.name,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: bus: add palmbus device tree bindings
+Date:   Sat, 16 Oct 2021 07:43:19 +0200
+Message-Id: <20211016054319.31156-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+T6QPkUSJZ9Pb8JvfuVuGzfv0cX-HQcT3eALN5Y9882r676MA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 14, 2021 at 10:12:48AM -0400, Jason Kridner wrote:
-> On Thu, Oct 14, 2021 at 6:43 AM Johan Hovold <johan@kernel.org> wrote:
-> 
-> > On Wed, Oct 13, 2021 at 02:41:03PM -0700, Drew Fustini wrote:
-> > > On Wed, Oct 13, 2021 at 09:23:42AM +0200, Johan Hovold wrote:
-> > > > On Tue, Oct 12, 2021 at 12:13:12PM -0700, Drew Fustini wrote:
-> > > > > From: Keerthy <j-keerthy@ti.com>
-> > > > >
-> > > > > PMIC_PWR_EN pin of RTC on am335x-evm, bone, and boneblack is
-> > connected to
-> > > > > PMIC on board, so flag rtc node as system-power-controller to allow
-> > > > > software to poweroff boards.
-> > > >
-> > > > The "system-power-controller" property is already set in
-> > > > bone-common.dtsi since
-> > > >
-> > > >     2876cc4a773c ("ARM: dts: Move most of am335x-boneblack.dts to
-> > am335x-boneblack-common.dtsi")
-> > > >
-> > > > so this probably only affects am335x-evm and that should be reflected
-> > in
-> > > > the commit message.
-> > > >
-> > > > Also, should you now remove the property from boneblack-common? Or just
-> > > > add it to am335x-evm instead?
-> > >
-> > > Thank you for reviewing. Yes, I should improve the commit message as the
-> > > BeagleBone Black is already covered for the rtc system-power-controller
-> > > in am335x-boneblack-common.dtsi.
-> >
-> > So is sancloud-bbe apparently.
-> >
-> > I only noticed because I added support to BeagleBone Black long ago so
-> > unless there'd been a regression it should already be supported.
-> >
-> > > I believe it would be ok to remove system-power-controller from
-> > > am335x-boneblack-common.dtsi and have it in am335x-bone-common.dtsi.
-> > >
-> > > These are the files that include am335x-boneblack-common.dtsi:
-> > > arch/arm/boot/dts/am335x-boneblack-wireless.dts
-> > > arch/arm/boot/dts/am335x-boneblack.dts
-> > > arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> > > arch/arm/boot/dts/am335x-sancloud-bbe.dts
-> > >
-> > > But they all also include am335x-bone-common.dtsi.
-> > >
-> > > However, I just noticed that am335x-evm.dts does not include either
-> > > am335x-boneblack-common.dtsi or am335x-boneblack-common.dtsi. Thus
-> > > rtc system-power-controller should be directly inserted into
-> > > am335x-evm.dts.
-> >
-> > Right.
-> >
-> > > I considered just moving system-power-controller to the rtc node in
-> > > am33xx-l4.dtsi but I don't think that would be correct as this would not
-> > > be valid for all am33xx devices.
-> > >
-> > > Does that seem correct to you?
-> >
-> > No, that wouldn't be right.
-> >
-> > You're more familiar with the different variants here, but unless all
-> > flavours of Bone Black have the signal wired, it should probably be
-> > pushed down into the dts files again.
-> >
-> 
-> I believe anything "bone" is going to have the same RTC power
-> configuration. I believe this could be inconsistent at the AM335x level.
+Add device tree bindings for palmbus controller present in all the MIPS
+ralink based SoCs.
 
-Thanks for the input Jason and Johan.
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v3: change sample to use child node which its bindings are
+               already in YAML format to make dtschema happier.
+Changes in v2: fixed missing semicolon in example.
+ .../devicetree/bindings/bus/palmbus.yaml      | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/bus/palmbus.yaml
 
-These are the dts files that currently include either 
-am335x-bone-common.dtsi or am335x-boneblack-common.dtsi:
+diff --git a/Documentation/devicetree/bindings/bus/palmbus.yaml b/Documentation/devicetree/bindings/bus/palmbus.yaml
+new file mode 100644
+index 000000000000..4f6352eff050
+--- /dev/null
++++ b/Documentation/devicetree/bindings/bus/palmbus.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bus/palmbus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ralink PalmBus Device Tree Bindings
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++description: |
++  The ralink palmbus controller can be found in all ralink MIPS
++  SoCs. It provides an external bus for connecting multiple
++  external devices to the SoC.
++
++properties:
++  $nodename:
++    pattern: "^palmbus(@[0-9a-f]+)?$"
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  compatible:
++    const: palmbus
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++
++patternProperties:
++  # All other properties should be child nodes with unit-address and 'reg'
++  "^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+$":
++    type: object
++    properties:
++      reg:
++        maxItems: 1
++
++    required:
++      - reg
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/mips-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    palmbus@1e000000 {
++        compatible = "palmbus";
++        reg = <0x1e000000 0x100000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges = <0x0 0x1e000000 0x0fffff>;
++
++        gpio@600 {
++            #gpio-cells = <2>;
++            #interrupt-cells = <2>;
++            compatible = "mediatek,mt7621-gpio";
++            gpio-controller;
++            gpio-ranges = <&pinctrl 0 0 95>;
++            interrupt-controller;
++            reg = <0x600 0x100>;
++            interrupt-parent = <&gic>;
++            interrupts = <GIC_SHARED 12 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
++
++...
+-- 
+2.33.0
 
-    am335x-bone.dts  
-	am335x-bone-common.dtsi
-
-    am335x-boneblack.dts
-        am335x-bone-common.dtsi
-	am335x-boneblack-common.dtsi [rtc system-power-controller]
-
-    am335x-boneblack-wireless.dts
-	am335x-bone-common.dtsi
-	am335x-boneblack-common.dtsi [rtc system-power-controller]
-
-    am335x-bonegreen.dts
-	am335x-bone-common.dtsi
-
-    am335x-bonegreen-wireless.dts
-	am335x-bone-common.dtsi
-
-    am335x-sancloud-bbe.dts
-	am335x-bone-common.dtsi
-	am335x-boneblack-common.dtsi [rtc system-power-controller]
-
-    am335x-sancloud-bbe-lite.dts
-	am335x-bone-common.dtsi
-	am335x-boneblack-common.dtsi [rtc system-power-controller]
-
-am335x-boneblack.dts, am335x-boneblack-wireless.dts,
-am335x-sancloud-bbe.dts, and am335x-sancloud-bbe-lite.dts already have
-the rtc system-power-controller through am335x-boneblack-common.dtsi.
-
-Moving rtc system-power-controller from am335x-boneblack-common.dtsi to
-am335x-bone-common.dtsi would have no change for those boards as they
-also include am335x-bone-common.dtsi.
-
-It would add system-power-controller to am335x-bone.dts,
-am335x-bonegreen.dts, and am335x-bonegreen-wireless.dts.
-
-The original bone, green and green wireless have PMIC_POWR_EN (ZCZ C6)
-connected to PWR_EN on the TPS65217B PMIC. Thus system-power-controller
-should be valid for them too.
-
-I will make new patch series that:
-
-  * removes system-power-controller from am335x-boneblack-common.dtsi 
-  * adds system-power-controller to am335x-bone-common.dtsi
-  * adds system-power-controller to am335x-evm.dts, am335x-icev2.dts,
-    am335x-icev2-prueth.dts
-
-However, am335x-evmsk.dts should not have system-power-controller as
-PMIC_POWR_EN is not connected in that board design.
-
-Thanks,
-Drew
