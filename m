@@ -2,145 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCAF3430170
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 11:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2A7430178
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 11:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236068AbhJPJQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 05:16:12 -0400
-Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17463 "EHLO
-        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236048AbhJPJQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 05:16:11 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1634375615; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=BpY3SY0aB26/FbDa40bp/WI+57QCU0IwonMWaoE6jh4M+lvFlYZuKERrjR/UoO+J1qquZ6ULYE5Z1kRtLAnM6wNSGDSuszBmPiCRFf92b3lmBTkHxHSGeoFy/R9QtqCjZ1wAlrsu85Io9VHGaiSrrE77nlMp1ljYKnBLumr0Qf0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1634375615; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=sYetWd5dkPd+TI2PlmPR4bwqbZoI6NEUiz188dhP0zk=; 
-        b=Z5R5azUjfz63NZD9PKtuSlayMzyDtyd322pRaDg//YpHtVG5/DDnpXSPAKN+XSSULP5lWjQxJyIUQDm5NyUiPcw+YJkf9wqnoohGbHqnXvkuGA4DhjSO0DD3OIFFOiaW77YFjVpE/Gi8ReQTbZaP8O8jfxmgfl/L118SIABrL7c=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1634375615;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        bh=sYetWd5dkPd+TI2PlmPR4bwqbZoI6NEUiz188dhP0zk=;
-        b=OlKVSVLQPITCn8Uxx/IzUx0aklCUIsMJ57VDMPAODlGQkuvOxIQ30NEFOP/cbrUt
-        MxtYUZEq9LvxI4kyJmn7GHCJApBAfEHrrqevN3BtxHIb+d1Wp53ske722KvXmFugHtL
-        9PqwDxl/rpqh7JuuUSyh2uSdgVs3mjgGKsE8wTMY=
-Received: from [10.10.10.216] (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1634375614599922.1792449684986; Sat, 16 Oct 2021 02:13:34 -0700 (PDT)
-Subject: Re: [PATCH v3 net-next 0/7] net: dsa: add support for RTL8365MB-VC
-To:     =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alvin@pqrs.dk>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     =?UTF-8?Q?Alvin_=c5=a0ipraga?= <alsi@bang-olufsen.dk>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211015171030.2713493-1-alvin@pqrs.dk>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Message-ID: <96111adf-205d-1cca-d05e-20bef29ed29e@arinc9.com>
-Date:   Sat, 16 Oct 2021 12:13:26 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20211015171030.2713493-1-alvin@pqrs.dk>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+        id S243911AbhJPJXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 05:23:46 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:52991 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235334AbhJPJXp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Oct 2021 05:23:45 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 943335C00E0;
+        Sat, 16 Oct 2021 05:21:37 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute1.internal (MEProxy); Sat, 16 Oct 2021 05:21:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=MsSJnDLehR0MBA3XNlTvyuJrdFmP
+        tM7Fb8Vo/fka3Rs=; b=BhYx5Ek4z9ROYyKoY+j1uWg/pSMWRr+BIKwUVyTc7qT8
+        AdlHq1Fr544ZuEp65rXnRkJgMb7cq1xpk3AtuB5xYMAZ8z9e5DhHiDdidnUh/9q+
+        K+0PbcXu56yLP6/OD9iYMmyZo4+RsVyy4O6UwKAUFxuxBKEUqIOSlxvCRvx1JksA
+        WMN3AS7KzImWmU79mKGK318Y6leVYDrZ9TOyc/uGMYzK4a+dfpotOIogsI1zP41A
+        po/JemxoT0a7VL7zFQXBsHqmB0wZIcBxhXdcPxWkzZjzHgskZyW7QfmN8Wf6/g9o
+        je4ujs1xQ5+LxOosGzygclA4uT8NbFYJ3nizm4FOAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=MsSJnD
+        LehR0MBA3XNlTvyuJrdFmPtM7Fb8Vo/fka3Rs=; b=gowAv4g/fZ/gMzr+sDMXk9
+        E8esGKbFatvUjQh1M8CiEMXHyU2OeIw+YWH8rDFvfedqxH5r6V40PK56O5C3OvJH
+        XZo8HISTt+MUcQxuJrWQIDuoTfytEPPjLusdna712ZmwKuGcAH6/rzHrcgo5oaCL
+        MYzfOuVvmFpWH4a1iAhgwywZaaNAnamX4Mp/CTmSeogoyrpqEjTQe1YrcNRvk+JT
+        8zY2IU4oSpMp2hCZOinyHpDVmLk+3qmVgDNSUEmBy4EOU3/T+4NyScwx5wYH+Jdd
+        TASRUnEahegg9rJ2pHlok1Rrt12HbdobHloroNUVsKERW1dWeoRtdwXB45QoxO5A
+        ==
+X-ME-Sender: <xms:oJlqYfYsQySUQDQNvRG-cjXRGiTHjSuObxLa5loUXBtIxVQYKhgU0g>
+    <xme:oJlqYeZEvdk9fvxkfJGaEtLv-vzipRGcjObiJqPfly-bFxT3eT_hx-H4GLU3DAIVp
+    Rz20aN-qSKFPI1AS34>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdduiedgudehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeevvdegveduvdevvdfgleefgeeivdegheeiuedtleevvdeiveevleejfeev
+    tdelheenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdgu
+    vghv
+X-ME-Proxy: <xmx:oJlqYR9S5bDnnacDnomYlCJjL1142UOziwtC5lDCPa4hkadKNmwt1w>
+    <xmx:oJlqYVo94zSIYUrlGgzrXuvUiWJcANRG-oq8Ml90V2tVO5JkmXZNAQ>
+    <xmx:oJlqYaq_G4XHEIL8DfhxwtoZ9rZswhSIYsLk79zOiC7lHhexSMgamg>
+    <xmx:oZlqYaLUOS4xsga9p2fd06XPDsT380U5fk6k4oEAWvOcH1r0qTcrDg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BDD1C2740061; Sat, 16 Oct 2021 05:21:36 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1345-g8441cd7852-fm-20211006.001-g8441cd78
+Mime-Version: 1.0
+Message-Id: <94e07975-f63e-4568-986f-71a278777e9d@www.fastmail.com>
+In-Reply-To: <20210916154911.3168-1-sven@svenpeter.dev>
+References: <20210916154911.3168-1-sven@svenpeter.dev>
+Date:   Sat, 16 Oct 2021 11:21:16 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Jassi Brar" <jassisinghbrar@gmail.com>
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Apple Mailbox Controller support
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested on net-next master branch kernel on Asus RT-AC88U router using 
-OpenWrt.
+On Thu, Sep 16, 2021, at 17:49, Sven Peter wrote:
+> Hi,
+>
+> This is the second version of my series which adds support for the mailbox
+> controllers found on the Apple M1.
+>
+> v1: https://lore.kernel.org/lkml/20210907145501.69161-1-sven@svenpeter.dev/
+>
+> Thanks to Jassi, Mark and Alyssa for the initial review. I've addressed
+> your comments with the following changes:
+>
+>  - switched to txdone_irq instead of introducing a new mode
+>  - switched to a threaded interrupt handler for receiving messages
+>  - added co-processor examples to the device tree binding 
+>  - reformatted the register defines and clarified multiple comments
+>
+> Best,
+>
+> Sven
+>
+> Sven Peter (2):
+>   dt-bindings: mailbox: Add Apple mailbox bindings
+>   mailbox: apple: Add driver for Apple mailboxes
+>
+>  .../bindings/mailbox/apple,mailbox.yaml       |  84 ++++
+>  MAINTAINERS                                   |   3 +
+>  drivers/mailbox/Kconfig                       |  12 +
+>  drivers/mailbox/Makefile                      |   2 +
+>  drivers/mailbox/apple-mailbox.c               | 431 ++++++++++++++++++
+>  include/linux/apple-mailbox.h                 |  18 +
+>  6 files changed, 550 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+>  create mode 100644 drivers/mailbox/apple-mailbox.c
+>  create mode 100644 include/linux/apple-mailbox.h
+>
+> -- 
+> 2.25.1
 
-DT specification:
+Hi Jassi,
 
-	ethernet-switch {
-		compatible = "realtek,rtl8365mb";
-		mdc-gpios = <&chipcommon 6 GPIO_ACTIVE_HIGH>;
-		mdio-gpios = <&chipcommon 7 GPIO_ACTIVE_HIGH>;
-		reset-gpios = <&chipcommon 10 GPIO_ACTIVE_LOW>;
-		realtek,disable-leds;
-		dsa,member = <1 0>;
+Have you had a chance to look at this series yet?
 
-		ports {
-			#address-cells = <1>;
-			#size-cells = <0>;
-			reg = <0>;
 
-			port@0 {
-				reg = <0>;
-				label = "lan5";
-				phy-handle = <&ethphy0>;
-			};
+Thanks,
 
-			port@1 {
-				reg = <1>;
-				label = "lan6";
-				phy-handle = <&ethphy1>;
-			};
 
-			port@2 {
-				reg = <2>;
-				label = "lan7";
-				phy-handle = <&ethphy2>;
-			};
-
-			port@3 {
-				reg = <3>;
-				label = "lan8";
-				phy-handle = <&ethphy3>;
-			};
-
-			port@6 {
-				reg = <6>;
-				label = "cpu";
-				ethernet = <&sw0_p5>;
-				phy-mode = "rgmii";
-				tx-internal-delay-ps = <2000>;
-				rx-internal-delay-ps = <2000>;
-
-				fixed-link {
-					speed = <1000>;
-					full-duplex;
-					pause;
-				};
-			};
-		};
-
-		mdio {
-			compatible = "realtek,smi-mdio";
-			#address-cells = <1>;
-			#size-cells = <0>;
-
-			ethphy0: phy@0 {
-				reg = <0>;
-			};
-
-			ethphy1: phy@1 {
-				reg = <1>;
-			};
-
-			ethphy2: phy@2 {
-				reg = <2>;
-			};
-
-			ethphy3: phy@3 {
-				reg = <3>;
-			};
-		};
-	};
-
-Tested-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+Sven
