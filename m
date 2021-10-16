@@ -2,71 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6064304C1
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 21:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18D694304D4
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 21:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240864AbhJPTYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 15:24:01 -0400
-Received: from esa1.mentor.iphmx.com ([68.232.129.153]:31272 "EHLO
-        esa1.mentor.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240918AbhJPTX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 15:23:56 -0400
-IronPort-SDR: lXBMnDrDd+/qU0IdNV8PdkYJsSgDF7gZjw/QHaV6kzG/kUXsrWjNJTFhwKkDNTmSfGsTyMfYlJ
- NC+3N7CIUrWGvPsZVfswlP9OIXWduw5FGob3KwQvBmHZ5MkwQ4N8AEJ3lm1d9a7p1c5Jf6A58A
- Rwu0sWt+27xSA3L/EeK+rh/osAT46/eArtB0TM0S2kPDS/lYBXs3GJmI8pANo5GkOIxUWniR72
- tYOhiTO0lgFYgVguhKcZFSsasZugPJSKbSapWkJ9KKYFyeOxCeXn+XSZ4sz+Z0O8D7cSN/GrYX
- jfVcAXnTcdGSICIpxwugi1jR
-X-IronPort-AV: E=Sophos;i="5.85,378,1624348800"; 
-   d="scan'208";a="69743826"
-Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
-  by esa1.mentor.iphmx.com with ESMTP; 16 Oct 2021 11:21:47 -0800
-IronPort-SDR: BERo3jtZzz3mTF5NKJyWfz/QtnNo3JhJEvZiGvHqoA4TkFVagekdGSipsc0pnR3+9jvdFm92V2
- 1A4mdJDt9eRWQLQ9b/d+ul0xZQvV0lKmvdQ+JApbreflSiNcJ6BWcnaZF5aGU9FVyxfHF7sxZo
- IBoM89H0WdRO2A8BF4OJWw6WZQRRJqtPjKHU2A0MPASJeXZFKdXn9OGA8NGkX4u5xowx1d2hsb
- xBPENuO0DdOGU1BPIIA4XzQvcbk+HFamKyfA5ONVXR/ABAgGjF3V5uFykTi2wynNLlXsqiVBZs
- xj0=
-From:   Alexey Firago <alexey_firago@mentor.com>
-To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>
-CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexey Firago <alexey_firago@mentor.com>
-Subject: [PATCH 2/2] dt-bindings: rtc: Add Maxim Integrated MAX31343
-Date:   Sat, 16 Oct 2021 22:21:18 +0300
-Message-ID: <20211016192118.255624-3-alexey_firago@mentor.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211016192118.255624-1-alexey_firago@mentor.com>
-References: <20211016192118.255624-1-alexey_firago@mentor.com>
+        id S241050AbhJPTua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 15:50:30 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:47178 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234499AbhJPTua (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 16 Oct 2021 15:50:30 -0400
+Received: from p508fce7c.dip0.t-ipconnect.de ([80.143.206.124] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mbpes-0008HL-7N; Sat, 16 Oct 2021 21:47:54 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Johan Jonker <jbx6244@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andy Gross <agross@kernel.org>,
+        Guido Gunther <agx@sigxcpu.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Dan Johansen <strit@manjaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Tomasz Figa <tfiga@chromium.org>, linux-sunxi@lists.linux.dev,
+        Lucas Stach <dev@lynxeye.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Brian Norris <briannorris@chromium.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Matthias Brugger <mbrugger@suse.com>,
+        Angus Ainslie <angus@akkea.ca>,
+        Martin Kepplinger <martink@posteo.de>,
+        Shawn Guo <shawnguo@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Simon South <simon@simonsouth.net>,
+        Eddie Cai <eddie.cai.linux@gmail.com>
+Subject: Re: (subset) [PATCH 0/4] arm64: dts: add 'chassis-type' property
+Date:   Sat, 16 Oct 2021 21:47:49 +0200
+Message-Id: <163441361289.438137.290850544419428228.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
+References: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-04.mgc.mentorg.com (139.181.222.4) To
- SVR-IES-MBX-04.mgc.mentorg.com (139.181.222.4)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is supported by the rtc-max31343 module.
+On Sat, 16 Oct 2021 12:20:21 +0200, Arnaud Ferraris wrote:
+> A new root node property named 'chassis-type' has recently been approved
+> added to the device tree specification[1]. This will allow userspace to
+> easily detect the device form factor on DT-based devices, and act
+> accordingly.
+> 
+> This patchset fills in this property for existing ARM64 consumer
+> devices (laptops, phones, tablets...).
+> 
+> [...]
 
-Signed-off-by: Alexey Firago <alexey_firago@mentor.com>
----
- Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-index 13925bb78ec7..d3b2be4ad16e 100644
---- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-@@ -45,6 +45,8 @@ properties:
-       - isil,isl1218
-       # Intersil ISL12022 Real-time Clock
-       - isil,isl12022
-+      # Maxim MAX31343 Low Power RTC with Battery Backed SRAM
-+      - maxim,max31343
-       # Real Time Clock Module with I2C-Bus
-       - microcrystal,rv3028
-       # Real Time Clock Module with I2C-Bus
+[4/4] arm64: dts: rockchip: add 'chassis-type' property
+      commit: 263b39bce2fbcd3531163300cb9663a4a9517dde
+
+Best regards,
 -- 
-2.25.1
-
+Heiko Stuebner <heiko@sntech.de>
