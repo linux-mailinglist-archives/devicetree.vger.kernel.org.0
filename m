@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE6564301FD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1824301FF
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244109AbhJPKYz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 06:24:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39150 "EHLO
+        id S244165AbhJPKY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 06:24:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244129AbhJPKYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:24:49 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D636CC061765
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:22:41 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id y12so49962200eda.4
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:22:41 -0700 (PDT)
+        with ESMTP id S244177AbhJPKYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:24:54 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E695C06176A
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:22:43 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 5so18036420edw.7
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 03:22:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=UpaN0+D4v6gZi4C1AIXdRvIf3e9k8TCo9M0Z0xiwZZA=;
-        b=bVpdXZI2t1pu8Dq2bx9BYsDi8Jaxe8gZVC1bkUVLKjO3ibe87Ybbg1ab+UgLVeXDKb
-         m7x45p0HDGuJDf0Dot9aQUuvAnr9q6DMYNrpiiE28WBMTzz7Cmre21wxkaJ8clgPhGeW
-         nbd6brzazC4OFiSA9wHzwi0YsAqXfUKfE8qz4=
+        bh=jQxWHRxLlS8GB+mEPe7uBuP6Wvk6JtWdqezPMx1FAp8=;
+        b=ZbrmSQysVOsDCgQE0R6U3t3cdzYpfABmpvw7lgZv+AatxUb2dgxqNNEbUwa4mFm2jC
+         gKg/7phFpRe61dVUCU+eX8qf9CQ6OPy+jbszZFR/hc7uwNgJ9n1YeRljudbcmN0YR2uf
+         9y81QaVInw28J2Rppwrr+MTcRq5lI6+W6y1uw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=UpaN0+D4v6gZi4C1AIXdRvIf3e9k8TCo9M0Z0xiwZZA=;
-        b=b3P3mdXlPq+PnJUv6GfxLdRw0yL4vFaFiyll1Szfh6yptfTR+T/TW9LbOBNuUL7Zgp
-         SN7SIgAGncUeGP6M+su3i3e7CtSjve48X3A+Ck+rr2w+fBR1haIpkAZkwiixU/FoSNtL
-         QwxNuMqN2ET5xBWBTGXX/G69EOLApJdnmcrZAPcDrBbPf+ow5WA8Y/G+n37Mjc386UyW
-         o7ETq+iYFYvm6f4FGMeGQGx1rN/6fJOO5bNWaLWw447obFvnSAq/XZ+QSEknEEjCP/LX
-         q4893mQfWAICJy5F7VxG6nuebSOhWaamwz9/gao97yYF6eK204RB4+o1jqD9PzUZbRDN
-         JfmQ==
-X-Gm-Message-State: AOAM5339/m30ZiVb3ce/NMcqFfcL1coNnC4gB+pDjwmaLu3+GCLgLLmb
-        cHIxdzdqP9A4I19IRyAF/dhEqw==
-X-Google-Smtp-Source: ABdhPJwwaHJDJm9L+CJNdyZDd6ge+ozPrl5Qg+7itKwaQX0evzlEbxXfMHGOf3U9R8mm0BMJs1HoAw==
-X-Received: by 2002:a17:906:838c:: with SMTP id p12mr13237355ejx.181.1634379760431;
-        Sat, 16 Oct 2021 03:22:40 -0700 (PDT)
+        bh=jQxWHRxLlS8GB+mEPe7uBuP6Wvk6JtWdqezPMx1FAp8=;
+        b=GIuDou5YHtclJV3GL2Pvim1vgu7jZ2ZLxhs0tzSg9l1kyl0Pykg/O7T6+tFYVODx1o
+         +/GKeFkuj0zybsXlXANclzbulb5S8oLJSZE0RukNipW7H5HHf2t7olNnmY7ijfWaNLWj
+         EzfZuxKca0UlH09FvOXeegAkpvh+p6DHZLj/ZQ699nthrXzf413kZstuZRIfG03wxpmb
+         9sjSZmfcybF5T1J/m/swULxbTMGp4poq8mwiEK2cV3wLkf+VqLe9GaOASYEQgZVmzBw8
+         D3pyAFP/zOKGNupPMhBZ/hlsEYbO6CCNaOMWLVEndhGe7mMStjnYAgxdmBNNnolC1WG/
+         dGqA==
+X-Gm-Message-State: AOAM533M22HSnvbwn7DnGmmiZjatmqQKY9QqsJf3LLZyOonPb6LODDV6
+        /NqlV0UymNpYOJc6hDCdchW4lA==
+X-Google-Smtp-Source: ABdhPJyo2efIjAHZdjigTFM3MOKnWgRMrDKspLEdjzUqBqA8mceLmTZXTMTW7XJRpja34WkdXfZSIA==
+X-Received: by 2002:a17:907:6297:: with SMTP id nd23mr14071082ejc.62.1634379761781;
+        Sat, 16 Oct 2021 03:22:41 -0700 (PDT)
 Received: from panicking.lan (93-46-124-24.ip107.fastwebnet.it. [93.46.124.24])
-        by smtp.gmail.com with ESMTPSA id la1sm6117361ejc.48.2021.10.16.03.22.39
+        by smtp.gmail.com with ESMTPSA id la1sm6117361ejc.48.2021.10.16.03.22.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Oct 2021 03:22:39 -0700 (PDT)
+        Sat, 16 Oct 2021 03:22:41 -0700 (PDT)
 From:   Michael Trimarchi <michael@amarulasolutions.com>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -53,9 +53,9 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>
 Cc:     devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
         dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 4/5] drm/panel: ilitek-ili9881c: Make gpio-reset optional
-Date:   Sat, 16 Oct 2021 10:22:31 +0000
-Message-Id: <20211016102232.202119-5-michael@amarulasolutions.com>
+Subject: [PATCH 5/5] drm/bridge: dw-mipi-dsi: Fix dsi registration during drm probing
+Date:   Sat, 16 Oct 2021 10:22:32 +0000
+Message-Id: <20211016102232.202119-6-michael@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211016102232.202119-1-michael@amarulasolutions.com>
 References: <20211016102232.202119-1-michael@amarulasolutions.com>
@@ -65,40 +65,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Depends in how logic is connected to the board the gpio is
-not stricly required.
+The dsi registration is implemented in rockchip platform driver.
+The attach can be called before the probe is terminated and therefore
+we need to be sure that corresponding entry during attach is valid
 
 Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
 ---
- .../devicetree/bindings/display/panel/ilitek,ili9881c.yaml      | 1 -
- drivers/gpu/drm/panel/panel-ilitek-ili9881c.c                   | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c   |  8 +++++++-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c | 12 ++++++++----
+ include/drm/bridge/dw_mipi_dsi.h                |  2 +-
+ 3 files changed, 16 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
-index 2d4a5643a785..07789d554889 100644
---- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9881c.yaml
-@@ -27,7 +27,6 @@ required:
-   - compatible
-   - power-supply
-   - reg
--  - reset-gpios
- 
- additionalProperties: false
- 
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-index d1f20758ed08..103a16018975 100644
---- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-@@ -883,7 +883,7 @@ static int ili9881c_dsi_probe(struct mipi_dsi_device *dsi)
- 		return PTR_ERR(ctx->power);
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+index e44e18a0112a..44b211be15fc 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
+@@ -362,8 +362,14 @@ static int dw_mipi_dsi_host_attach(struct mipi_dsi_host *host,
+ 		dsi->device_found = true;
  	}
  
--	ctx->reset = devm_gpiod_get(&dsi->dev, "reset", GPIOD_OUT_LOW);
-+	ctx->reset = devm_gpiod_get_optional(&dsi->dev, "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(ctx->reset)) {
- 		dev_err(&dsi->dev, "Couldn't get our reset GPIO\n");
- 		return PTR_ERR(ctx->reset);
++	/*
++	 * NOTE: the dsi registration is implemented in
++	 * platform driver, that to say dsi would be exist after
++	 * probe is terminated. The call is done before the end of probe
++	 * so we need to pass the dsi to the platform driver.
++	 */
+ 	if (pdata->host_ops && pdata->host_ops->attach) {
+-		ret = pdata->host_ops->attach(pdata->priv_data, device);
++		ret = pdata->host_ops->attach(pdata->priv_data, device, dsi);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+diff --git a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+index a2262bee5aa4..32ddc8642ec1 100644
+--- a/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
++++ b/drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c
+@@ -997,7 +997,8 @@ static const struct component_ops dw_mipi_dsi_rockchip_ops = {
+ };
+ 
+ static int dw_mipi_dsi_rockchip_host_attach(void *priv_data,
+-					    struct mipi_dsi_device *device)
++					    struct mipi_dsi_device *device,
++					    struct dw_mipi_dsi *dmd)
+ {
+ 	struct dw_mipi_dsi_rockchip *dsi = priv_data;
+ 	struct device *second;
+@@ -1005,6 +1006,8 @@ static int dw_mipi_dsi_rockchip_host_attach(void *priv_data,
+ 
+ 	mutex_lock(&dsi->usage_mutex);
+ 
++	dsi->dmd = dmd;
++
+ 	if (dsi->usage_mode != DW_DSI_USAGE_IDLE) {
+ 		DRM_DEV_ERROR(dsi->dev, "dsi controller already in use\n");
+ 		mutex_unlock(&dsi->usage_mutex);
+@@ -1280,6 +1283,7 @@ static int dw_mipi_dsi_rockchip_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *np = dev->of_node;
++	struct dw_mipi_dsi *dmd;
+ 	struct dw_mipi_dsi_rockchip *dsi;
+ 	struct phy_provider *phy_provider;
+ 	struct resource *res;
+@@ -1391,9 +1395,9 @@ static int dw_mipi_dsi_rockchip_probe(struct platform_device *pdev)
+ 	if (IS_ERR(phy_provider))
+ 		return PTR_ERR(phy_provider);
+ 
+-	dsi->dmd = dw_mipi_dsi_probe(pdev, &dsi->pdata);
+-	if (IS_ERR(dsi->dmd)) {
+-		ret = PTR_ERR(dsi->dmd);
++	dmd = dw_mipi_dsi_probe(pdev, &dsi->pdata);
++	if (IS_ERR(dmd)) {
++		ret = PTR_ERR(dmd);
+ 		if (ret != -EPROBE_DEFER)
+ 			DRM_DEV_ERROR(dev,
+ 				      "Failed to probe dw_mipi_dsi: %d\n", ret);
+diff --git a/include/drm/bridge/dw_mipi_dsi.h b/include/drm/bridge/dw_mipi_dsi.h
+index bda8aa7c2280..cf81f19806ad 100644
+--- a/include/drm/bridge/dw_mipi_dsi.h
++++ b/include/drm/bridge/dw_mipi_dsi.h
+@@ -41,7 +41,7 @@ struct dw_mipi_dsi_phy_ops {
+ 
+ struct dw_mipi_dsi_host_ops {
+ 	int (*attach)(void *priv_data,
+-		      struct mipi_dsi_device *dsi);
++		      struct mipi_dsi_device *dsi, struct dw_mipi_dsi *dmd);
+ 	int (*detach)(void *priv_data,
+ 		      struct mipi_dsi_device *dsi);
+ };
 -- 
 2.25.1
 
