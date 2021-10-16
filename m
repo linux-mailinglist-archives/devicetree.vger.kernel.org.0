@@ -2,125 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E2A7430178
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 11:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1E34301E0
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:20:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243911AbhJPJXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 05:23:46 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:52991 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235334AbhJPJXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 16 Oct 2021 05:23:45 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 943335C00E0;
-        Sat, 16 Oct 2021 05:21:37 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute1.internal (MEProxy); Sat, 16 Oct 2021 05:21:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm2; bh=MsSJnDLehR0MBA3XNlTvyuJrdFmP
-        tM7Fb8Vo/fka3Rs=; b=BhYx5Ek4z9ROYyKoY+j1uWg/pSMWRr+BIKwUVyTc7qT8
-        AdlHq1Fr544ZuEp65rXnRkJgMb7cq1xpk3AtuB5xYMAZ8z9e5DhHiDdidnUh/9q+
-        K+0PbcXu56yLP6/OD9iYMmyZo4+RsVyy4O6UwKAUFxuxBKEUqIOSlxvCRvx1JksA
-        WMN3AS7KzImWmU79mKGK318Y6leVYDrZ9TOyc/uGMYzK4a+dfpotOIogsI1zP41A
-        po/JemxoT0a7VL7zFQXBsHqmB0wZIcBxhXdcPxWkzZjzHgskZyW7QfmN8Wf6/g9o
-        je4ujs1xQ5+LxOosGzygclA4uT8NbFYJ3nizm4FOAw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=MsSJnD
-        LehR0MBA3XNlTvyuJrdFmPtM7Fb8Vo/fka3Rs=; b=gowAv4g/fZ/gMzr+sDMXk9
-        E8esGKbFatvUjQh1M8CiEMXHyU2OeIw+YWH8rDFvfedqxH5r6V40PK56O5C3OvJH
-        XZo8HISTt+MUcQxuJrWQIDuoTfytEPPjLusdna712ZmwKuGcAH6/rzHrcgo5oaCL
-        MYzfOuVvmFpWH4a1iAhgwywZaaNAnamX4Mp/CTmSeogoyrpqEjTQe1YrcNRvk+JT
-        8zY2IU4oSpMp2hCZOinyHpDVmLk+3qmVgDNSUEmBy4EOU3/T+4NyScwx5wYH+Jdd
-        TASRUnEahegg9rJ2pHlok1Rrt12HbdobHloroNUVsKERW1dWeoRtdwXB45QoxO5A
-        ==
-X-ME-Sender: <xms:oJlqYfYsQySUQDQNvRG-cjXRGiTHjSuObxLa5loUXBtIxVQYKhgU0g>
-    <xme:oJlqYeZEvdk9fvxkfJGaEtLv-vzipRGcjObiJqPfly-bFxT3eT_hx-H4GLU3DAIVp
-    Rz20aN-qSKFPI1AS34>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdduiedgudehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeevvdegveduvdevvdfgleefgeeivdegheeiuedtleevvdeiveevleejfeev
-    tdelheenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdgu
-    vghv
-X-ME-Proxy: <xmx:oJlqYR9S5bDnnacDnomYlCJjL1142UOziwtC5lDCPa4hkadKNmwt1w>
-    <xmx:oJlqYVo94zSIYUrlGgzrXuvUiWJcANRG-oq8Ml90V2tVO5JkmXZNAQ>
-    <xmx:oJlqYaq_G4XHEIL8DfhxwtoZ9rZswhSIYsLk79zOiC7lHhexSMgamg>
-    <xmx:oZlqYaLUOS4xsga9p2fd06XPDsT380U5fk6k4oEAWvOcH1r0qTcrDg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id BDD1C2740061; Sat, 16 Oct 2021 05:21:36 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1345-g8441cd7852-fm-20211006.001-g8441cd78
-Mime-Version: 1.0
-Message-Id: <94e07975-f63e-4568-986f-71a278777e9d@www.fastmail.com>
-In-Reply-To: <20210916154911.3168-1-sven@svenpeter.dev>
-References: <20210916154911.3168-1-sven@svenpeter.dev>
-Date:   Sat, 16 Oct 2021 11:21:16 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Jassi Brar" <jassisinghbrar@gmail.com>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Apple Mailbox Controller support
-Content-Type: text/plain
+        id S240151AbhJPKWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 06:22:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239718AbhJPKWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:22:44 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A760C061570;
+        Sat, 16 Oct 2021 03:20:36 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: aferraris)
+        with ESMTPSA id 991501F44913
+From:   Arnaud Ferraris <arnaud.ferraris@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Martin Kepplinger <martink@posteo.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lucas Stach <dev@lynxeye.de>, Angus Ainslie <angus@akkea.ca>,
+        Guido Gunther <agx@sigxcpu.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Eddie Cai <eddie.cai.linux@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Dan Johansen <strit@manjaro.org>,
+        Simon South <simon@simonsouth.net>,
+        Matthias Brugger <mbrugger@suse.com>
+Subject: [PATCH 0/4] arm64: dts: add 'chassis-type' property
+Date:   Sat, 16 Oct 2021 12:20:21 +0200
+Message-Id: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 16, 2021, at 17:49, Sven Peter wrote:
-> Hi,
->
-> This is the second version of my series which adds support for the mailbox
-> controllers found on the Apple M1.
->
-> v1: https://lore.kernel.org/lkml/20210907145501.69161-1-sven@svenpeter.dev/
->
-> Thanks to Jassi, Mark and Alyssa for the initial review. I've addressed
-> your comments with the following changes:
->
->  - switched to txdone_irq instead of introducing a new mode
->  - switched to a threaded interrupt handler for receiving messages
->  - added co-processor examples to the device tree binding 
->  - reformatted the register defines and clarified multiple comments
->
-> Best,
->
-> Sven
->
-> Sven Peter (2):
->   dt-bindings: mailbox: Add Apple mailbox bindings
->   mailbox: apple: Add driver for Apple mailboxes
->
->  .../bindings/mailbox/apple,mailbox.yaml       |  84 ++++
->  MAINTAINERS                                   |   3 +
->  drivers/mailbox/Kconfig                       |  12 +
->  drivers/mailbox/Makefile                      |   2 +
->  drivers/mailbox/apple-mailbox.c               | 431 ++++++++++++++++++
->  include/linux/apple-mailbox.h                 |  18 +
->  6 files changed, 550 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
->  create mode 100644 drivers/mailbox/apple-mailbox.c
->  create mode 100644 include/linux/apple-mailbox.h
->
-> -- 
-> 2.25.1
+Hello,
 
-Hi Jassi,
+A new root node property named 'chassis-type' has recently been approved
+added to the device tree specification[1]. This will allow userspace to
+easily detect the device form factor on DT-based devices, and act
+accordingly.
 
-Have you had a chance to look at this series yet?
+This patchset fills in this property for existing ARM64 consumer
+devices (laptops, phones, tablets...).
+
+[1] https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node
+
+--
+Arnaud Ferraris (4):
+      arm64: dts: allwinner: add 'chassis-type' property
+      arm64: dts: freescale: add 'chassis-type' property
+      arm64: dts: qcom: add 'chassis-type' property
+      arm64: dts: rockchip: add 'chassis-type' property
+
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts                 | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi               | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts                  | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts                  | 1 +
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi                     | 1 +
+ arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts                  | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinebook.dts                 | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi               | 2 ++
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab.dts                  | 1 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64-teres-i.dts                  | 1 +
+ arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi                     | 1 +
+ arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dts | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dts                        | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dts                        | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dts                 | 1 +
+ arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dts                 | 2 ++
+ arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dts       | 1 +
+ arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts                     | 2 ++
+ arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts                   | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dts       | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts         | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts       | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts     | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dts      | 1 +
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts     | 1 +
+ arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts            | 1 +
+ arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dts          | 1 +
+ arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dts          | 1 +
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts                    | 1 +
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts                   | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dts              | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts                       | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dts                       | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dts             | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dts                 | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dts        | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dts        | 1 +
+ arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dts       | 1 +
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dts          | 1 +
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dts        | 1 +
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dts          | 1 +
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dts          | 1 +
+ arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts                   | 1 +
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dts                 | 1 +
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts                    | 1 +
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts                  | 1 +
+ arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts          | 1 +
+ arch/arm64/boot/dts/qcom/sm6350-sony-xperia-lena-pdx213.dts           | 1 +
+ arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts             | 1 +
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dts        | 1 +
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dts        | 1 +
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dts            | 1 +
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts            | 1 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru-bob.dts                       | 1 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru-kevin.dts                     | 1 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi                  | 1 +
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts                  | 1 +
+ 59 files changed, 62 insertions(+)
 
 
-Thanks,
-
-
-Sven
