@@ -2,128 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D555E430238
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBE443023B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 12:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240193AbhJPK41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 06:56:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
+        id S244258AbhJPK4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 06:56:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236021AbhJPK41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:56:27 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6024FC061570;
-        Sat, 16 Oct 2021 03:54:19 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id x27so53502643lfu.5;
-        Sat, 16 Oct 2021 03:54:19 -0700 (PDT)
+        with ESMTP id S244120AbhJPK4l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 06:56:41 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79180C061764;
+        Sat, 16 Oct 2021 03:54:33 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x192so18181040lff.12;
+        Sat, 16 Oct 2021 03:54:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1nXEEQOI2UyvJFPHSDiyUoFnaQvmSXlf0s7F8x76wlc=;
-        b=l/7qp0MVktj3pxcjYP9oXhD8My/pkVceyXH3oedix5GS9BxwMQjo7JAd2GUyEpLgFJ
-         6A3jHx9ICFXkVdu49qN0hEKmZrz2ZEhlTdvdmse34ktf0ATlExTZ3OMVZu32xnbqJW2P
-         FDxZAHo9raJeXntES+2CUbL1k0Ay4WGatGyhMlmjXlTTBLjbACCTP2AdAj1spaQXMZVO
-         5lD3PoaKhStIqLiTf/+T+GH2ACtOO/3folt0bgzpwcCp/jolrhr64pEViAd1HVdYa5lH
-         VG6/fFrRSBy+fuIPUTC8+vbdCVoec4GuTn2lbS5SElm+OCp1q+t72Rg40uIFVSVr6ps7
-         0a6w==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=y+9bOnIXUtzWVh6jBYBC6CeR5DMs4Q+9HtnUCVf3acw=;
+        b=Y8DwMJemYcnlx6P+YftUdk8rxOVY+oN0oN+w9IT2y0dmmjr6h8QRNCn2Pn49r5v/l4
+         2DKzpzPjJ4Xwbv5tAkAo/CMmPoR51LIjT7XZH2HyogOWz8ilfprw/WcGZ4FdSg/jBgG4
+         gxFA2LFwpBrqVRXsil0OWJkhCX+tevmoV96xJIa8sPJ2paw4J/HPrXfbuL2osgtrBAYo
+         WgC1SPx8lFk3/5BEnFv2AaJuU/TSuExT5K9YaNPFbNgGSN03YgpG0CjRFe42wCwXhcsL
+         np23VuYCvILThoi7s0RGJzfNsPgu1z8C+UBR/RTr+1rXEOoSU3B9hsi/LlKU73y4AMRK
+         H1jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1nXEEQOI2UyvJFPHSDiyUoFnaQvmSXlf0s7F8x76wlc=;
-        b=YGvieu6l+k7j40pZxPn3mn3GWmGhwKghZtLIt7wQ2/wkSv+m98Pqg7KQxJCb2oz7XQ
-         mmIlGyVjwn/houC05X/1Ov9v5K7FHA6u4i2dm4Gp359eK6Xm3GELK2OpjuBn/FraDDZB
-         5XC2KmAEsmYJi25GoUXJMLcarjd2y6M4tvu3Qf5zEbPtjTKd2/ml9vRCX1JN2ks9qVRO
-         y9TEsD0KgBha5UB9mX2FLosCHSBZ/+JEt1hV0rQOVZfhyTHt+ddB4EYRfL4o3pDhbq+O
-         CHOudnPEhFn/2vTDklvO9HUvKXAWbp1UhdCH+suOUUrn22FT65yxdzC2V1jB9ulczixV
-         +quQ==
-X-Gm-Message-State: AOAM530h7ZISd+GGJVjCmO+tt8ITB8Shemk49Dl5fOCcpqsiugQn13hS
-        iL/DkktJueVOixdAk4setwIOc96n+vE=
-X-Google-Smtp-Source: ABdhPJy71ErVHEZBd5Yxc8l9Ddc4qLHPXpX6v/GjX9j4ndPss0lcNvuXGDEW7DzF5dJ7R5zXECcltg==
-X-Received: by 2002:a05:651c:2121:: with SMTP id a33mr6782437ljq.490.1634381657633;
-        Sat, 16 Oct 2021 03:54:17 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=y+9bOnIXUtzWVh6jBYBC6CeR5DMs4Q+9HtnUCVf3acw=;
+        b=oxb80LggEs42odu3tbvxOEl1ArMqi/UBVSqLZnk2qouR6RaVdUG02wB1btB4DOQdvA
+         nfnxmkhpOCIzpnaY40hvpqrKH0PEosn2csfok47EFefVGlW4+aOlLNwJAOh/XFJ9igSH
+         baIu+YwJ/z7z8m8XaYkwOy3pt8KLLED4PN9suyXk3adAy5qtfjmPBIm941973j3PbkeB
+         wvvObJlIhsSxGdTg+/CIzakoY8qIfVvtPx1f0NETcc3F7uYwvXIQ95aTCedkvg8vJXHM
+         0WDisgsXSiLh0jwdGt2MO+a6z2DPi0YVnpqpgqt72akOnTe6ApUzgcNvusNyk6g/2yp9
+         mHmA==
+X-Gm-Message-State: AOAM532V3X1HIdh7qxQEzG+2xgeg8DA2U3ph635G4vTKQCFxAFzHANXG
+        ewjFd9OCieV9ahl/6bP1RSE=
+X-Google-Smtp-Source: ABdhPJylXH+nWmjZF01140Heh3m/n1DiYce+4V6jSo5B/7WqbKmJi/0cw7jiUYbX6TptgPDy3DEgsA==
+X-Received: by 2002:a05:6512:118b:: with SMTP id g11mr16986499lfr.353.1634381671808;
+        Sat, 16 Oct 2021 03:54:31 -0700 (PDT)
 Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id r3sm814224lfc.131.2021.10.16.03.54.16
+        by smtp.gmail.com with ESMTPSA id r3sm814224lfc.131.2021.10.16.03.54.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 16 Oct 2021 03:54:17 -0700 (PDT)
+        Sat, 16 Oct 2021 03:54:31 -0700 (PDT)
 From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     linux-rockchip@lists.infradead.org, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/4] Getting rid of the reset controller in i2s-tdm
-Date:   Sat, 16 Oct 2021 12:53:49 +0200
-Message-Id: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
+Subject: [PATCH 2/4] ASoC: dt-bindings: rockchip: i2s-tdm: Drop rockchip,cru property
+Date:   Sat, 16 Oct 2021 12:53:51 +0200
+Message-Id: <20211016105354.116513-3-frattaroli.nicolas@gmail.com>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
+References: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+This property was only needed for a driver hack, which we can
+remove. Since the bindings were not in any kernel release yet, we
+are able to just drop the property instead of silently accepting
+and ignoring it.
 
-after some discussion with Heiko on IRC, he has admitted to me
-that the rockchip,cru property, and its corresponding half a reset
-controller in the driver, is weighing heavily on his mind.
+Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+---
+ .../bindings/sound/rockchip,i2s-tdm.yaml         | 16 ----------------
+ 1 file changed, 16 deletions(-)
 
-The background is that if the lrck only uses one clock for both rx
-and tx direction, then according to the downstream driver, the rx
-and tx resets should be asserted at roughly the same time to keep
-things in sync.
-
-Since there is no existing kernel way of doing this, the driver
-would manually write to the CRU's registers to achieve this,
-violating abstractions.
-
-We've agreed that an atomic bulk reset API would be the best way to
-achieve what it does in a clean fashion. The details of such an API
-have yet to be worked out by me, but as it turns out, this is not
-a pressing need.
-
-During my investigation, I noticed that I can simply drop the
-synchronised reset for now and assert the two resets manually one
-after the other, and deassert them in the same manner.
-
-For the case I care about, which is audio playback, this seems to
-work just fine. Should someone actually find a case where this
-causes a problem, it should be fixed with an atomic bulk reset API.
-
-Patch 1 removes the direct CRU writing stuff from the i2s-tdm driver.
-
-Patch 2 drops the rockchip,cru property from the bindings; they have
-not yet been in a kernel release, so as far as I know, we can still
-change them with no regard for backwards compatibility.
-
-Patch 3 adds the rk356x i2s1 node without the rockchip,cru property.
-
-Patch 4 adds the analog audio output on Quartz64, included here for
-Heiko's convenience.
-
-Regards,
-Nicolas Frattaroli
-
-Nicolas Frattaroli (4):
-  ASoC: rockchip: i2s-tdm: Strip out direct CRU use
-  ASoC: dt-bindings: rockchip: i2s-tdm: Drop rockchip,cru property
-  arm64: dts: rockchip: Add i2s1 on rk356x
-  arm64: dts: rockchip: Add analog audio on Quartz64
-
- .../bindings/sound/rockchip,i2s-tdm.yaml      |  16 ---
- .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  31 ++++-
- arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  25 ++++
- sound/soc/rockchip/rockchip_i2s_tdm.c         | 126 +++---------------
- 4 files changed, 76 insertions(+), 122 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+index ce3e18b50230..6a7c004bef17 100644
+--- a/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
++++ b/Documentation/devicetree/bindings/sound/rockchip,i2s-tdm.yaml
+@@ -82,12 +82,6 @@ properties:
+         - tx-m
+         - rx-m
+ 
+-  rockchip,cru:
+-    $ref: /schemas/types.yaml#/definitions/phandle
+-    description:
+-      The phandle of the cru.
+-      Required if neither trcm-sync-tx-only nor trcm-sync-rx-only are specified.
+-
+   rockchip,grf:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+@@ -144,15 +138,6 @@ required:
+   - rockchip,grf
+   - "#sound-dai-cells"
+ 
+-allOf:
+-  - if:
+-      properties:
+-        rockchip,trcm-sync-tx-only: false
+-        rockchip,trcm-sync-rx-only: false
+-    then:
+-      required:
+-        - rockchip,cru
+-
+ additionalProperties: false
+ 
+ examples:
+@@ -177,7 +162,6 @@ examples:
+             resets = <&cru SRST_M_I2S1_8CH_TX>, <&cru SRST_M_I2S1_8CH_RX>;
+             reset-names = "tx-m", "rx-m";
+             rockchip,trcm-sync-tx-only;
+-            rockchip,cru = <&cru>;
+             rockchip,grf = <&grf>;
+             #sound-dai-cells = <0>;
+             pinctrl-names = "default";
 -- 
 2.33.1
 
