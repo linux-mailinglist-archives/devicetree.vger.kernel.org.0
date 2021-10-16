@@ -2,97 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B4D0430569
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 00:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A93AA43056C
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 00:37:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235410AbhJPWen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 18:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56776 "EHLO
+        id S236964AbhJPWkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 18:40:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235315AbhJPWen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 18:34:43 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B19FC061766
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 15:32:34 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id q16so1029676ljg.3
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 15:32:34 -0700 (PDT)
+        with ESMTP id S235738AbhJPWkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 18:40:06 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99098C061766
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 15:37:57 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id r19so56515679lfe.10
+        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 15:37:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=UtJXPylnX11GkvYRHwpQ9M8Up+4cWJ1bvMpKXPGprlI=;
-        b=n6anFbpSUftSxcsMXPh8ItyBCtV+0rO75hUjfjB4e8pPllEc0yeKjwNe7LYg7288UX
-         SEg6S0Vp+0mj1RdSCRmcKaVdeFFRMGg4qlJUMzT5+2Z+Xnd6wDwlff3YWT6+7fz5+c88
-         RPjPOCxhtwUHkzhYQZV0HMESHs7JoIwRCct+zE0CF1G0XjUGvKrRHCJx/LfY+MBsQ6uy
-         Kd43O6JSsKwPUyFKzV78r/2nyPtLyJP5P4VqGMiST2CzTenTvs5LbCo3cSCe2ZQnWiZz
-         ZhdHUAUDbNQAHX1HGVeYWs63taAgmgLkVoPxK2OTspECFntckDBsGiMd1cN83PcZI2FA
-         eGFw==
+         :cc;
+        bh=HIn9fXswaPOFkEp5r6mPDGSH5cXVQzTMb+9xQaqAYCk=;
+        b=ZJBK6fch2LR7J5S+Tm5RjoueSldPH7z//t69/VqsG6ZEsRLsg8YiWU0K2cM3hpAZAw
+         J9FbmMb8thnH2jmvHVa2djXnl9cpItdp6PFFBE+qUI6ubPogIYPlN/MOxa+virwPb36/
+         kEZwLQBcPzmLQjvaHz5Rr1xeGHRQgt9uhyggiSAEdJOkcgpT4ldkmhlZPbnNnnijAcfP
+         4MFjXn62S9QCa+NqE4qdgleuLCFAlqdCxxcOgTTEiuIWBCEO6vjARYbQoS1VhUTHsOuY
+         X/4l5UKdSL1TqBSjTMKtxwS4IKms0VbfvBot0RkyyyIvFsdKScNS6vIxKOf2aRKIg57/
+         vsnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=UtJXPylnX11GkvYRHwpQ9M8Up+4cWJ1bvMpKXPGprlI=;
-        b=zctlpem/yd/Ol5VwOmYQwV7r4mSJXvll73/+1b872YFFGIOeZ8vkvfvb+4BBKNSUKW
-         yIV2cZRwz/5qwCeT/rLCuQ7ombD/KkST2XRkyrFlKRvBPscGp78J1Ep6Mo8apDnyFcMI
-         55yfpPfB7a/cRIKjozf9h62whIIRBHmHspFLKi0sL9Uu3IDBo63spWyKFpa6AjTJ3d3s
-         V/o00I9QDHHyRSOMkDm1KG69jpBsf9ZXwqKdsypmc4yM9aH5xu9+XXOWru+p1WU5Z4a1
-         w/toN+LhKXySnD/2HDXn7/xIQmXjnJuShBBfgr12BOLAgZJ/1tNiYDz3+LGI2E1JBkuX
-         D+0A==
-X-Gm-Message-State: AOAM530+Xx8zJUE4wcTGQwolEcy4Hvg+sAwBa7wDJ6ERUaaTeYT6M37o
-        HRJ+meN7zTAbsVP+kfJn3691hVqgGiR1QYMWnIAAUA==
-X-Google-Smtp-Source: ABdhPJwedWlUh8TIcRSs+WMCQYe85uSJ0oToOyXYtkBzY4Va0J9vsvC5qfjuRPsSIEKYAhK0d4QJOf1gZpxc0A/NcUQ=
-X-Received: by 2002:a2e:7f05:: with SMTP id a5mr21483042ljd.261.1634423552726;
- Sat, 16 Oct 2021 15:32:32 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=HIn9fXswaPOFkEp5r6mPDGSH5cXVQzTMb+9xQaqAYCk=;
+        b=ZLXkcyVxPUrUyQ6Y58SAbQZDkuia3L5WyhOtHXJCc/7w7US8/Mj3ULEFcdjUnr141d
+         cPsj6UFtP4bk5annJ1cPSMBlGyFpLHOGfOn3o31Czc7+frxrXAOT7mScylw9cgjrBMH/
+         RrHL+kgiD4oTYdOLxEU0MDMUh3MkdWsudqiN/eTq3gd/Jiq4zAjxgX5Ad1PEObAmbaML
+         VeBhMcsq6lBh8Xagqmpa2xg9qg4v9UxbgS98cY3KLSh0zuFFRyEEdwCuUY3iMqFA/KdE
+         I9NCPzOLDZmjcrmY20N16NJtnEyYItIuwF73XSJXzsmxFdoaU4ml1bHN+QqYNuQoD1af
+         6DZg==
+X-Gm-Message-State: AOAM532E1ICLLvYGwLU5XpiJWiOluZ2yhztCFPdJUFFnKQN1bAf6GYPW
+        MQR5fEl3F5v99+6MYqQzBnf5GJiGlvMmyEd/2/fwhwZkwK8=
+X-Google-Smtp-Source: ABdhPJwJVfVbGLWN6Cfk6r/5D+jG7hdkK7FsQWfHxu2/axd8FNdH07TaAiF4xxObMWITHxtrLF4Vk51vM07n8vA0ih8=
+X-Received: by 2002:ac2:5d4a:: with SMTP id w10mr19928988lfd.584.1634423875834;
+ Sat, 16 Oct 2021 15:37:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211015171030.2713493-1-alvin@pqrs.dk> <20211015171030.2713493-7-alvin@pqrs.dk>
-In-Reply-To: <20211015171030.2713493-7-alvin@pqrs.dk>
+References: <20211016141839.45460-1-joey.gouly@arm.com> <20211016141839.45460-2-joey.gouly@arm.com>
+In-Reply-To: <20211016141839.45460-2-joey.gouly@arm.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sun, 17 Oct 2021 00:32:21 +0200
-Message-ID: <CACRpkdbQyZcEYRdt=QusrKYufgBf7ROEc0eQY_MN559hM40naw@mail.gmail.com>
-Subject: Re: [PATCH v3 net-next 6/7] net: dsa: realtek-smi: add rtl8365mb
- subdriver for RTL8365MB-VC
-To:     =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Michael Rasmussen <mir@bang-olufsen.dk>,
-        netdev <netdev@vger.kernel.org>,
+Date:   Sun, 17 Oct 2021 00:37:44 +0200
+Message-ID: <CACRpkdac+NYMSHg_KCb2xQpnFaJMBfGT_7Mk+Kst1WrK9As_ZA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] gpio: Allow per-parent interrupt data
+To:     Joey Gouly <joey.gouly@arm.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 7:11 PM Alvin =C5=A0ipraga <alvin@pqrs.dk> wrote:
+Top-posting because I need a nod from Bartosz that I can
+merge this patch with the rest in the pinctrl tree.
 
-> This patch adds a realtek-smi subdriver for the RTL8365MB-VC 4+1 port
-> 10/100/1000M switch controller. The driver has been developed based on a
-> GPL-licensed OS-agnostic Realtek vendor driver known as rtl8367c found
-> in the OpenWrt source tree.
-
-This version is really nice!
-
-> v2 -> v3:
->   - following the stats change, it became apparent that the rtl8366
->     helper library is no longer that helpful; scrap it and implement
->     the ethtool ops specifically for this chip
-
-I wonder if I should just scrap it in general when I convert RTL8366RB over
-to use your new nice callbacks? Just push that part down into the
-driver for each chip.
-
-I vaguely remember the RTL8366S having the same counters though...
-(I think this is why it is in the shared library at all.)
+Bartosz: I can also offer this one patch in an immutable branch
+as well so you can pull it in as well.
 
 Yours,
 Linus Walleij
+
+On Sat, Oct 16, 2021 at 4:19 PM Joey Gouly <joey.gouly@arm.com> wrote:
+
+> From: Marc Zyngier <maz@kernel.org>
+>
+> The core gpiolib code is able to deal with multiple interrupt parents
+> for a single gpio irqchip. It however only allows a single piece
+> of data to be conveyed to all flow handlers (either the gpio_chip
+> or some other, driver-specific data).
+>
+> This means that drivers have to go through some interesting dance
+> to find the correct context, something that isn't great in interrupt
+> context (see aebdc8abc9db86e2bd33070fc2f961012fff74b4 for a prime
+> example).
+>
+> Instead, offer an optional way for a pinctrl/gpio driver to provide
+> an array of pointers which gets used to provide the correct context
+> to the flow handler.
+>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Joey Gouly <joey.gouly@arm.com>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  drivers/gpio/gpiolib.c      |  9 +++++++--
+>  include/linux/gpio/driver.h | 19 +++++++++++++++++--
+>  2 files changed, 24 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+> index d1b9b721218f..abfbf546d159 100644
+> --- a/drivers/gpio/gpiolib.c
+> +++ b/drivers/gpio/gpiolib.c
+> @@ -1534,9 +1534,14 @@ static int gpiochip_add_irqchip(struct gpio_chip *gc,
+>         }
+>
+>         if (gc->irq.parent_handler) {
+> -               void *data = gc->irq.parent_handler_data ?: gc;
+> -
+>                 for (i = 0; i < gc->irq.num_parents; i++) {
+> +                       void *data;
+> +
+> +                       if (gc->irq.per_parent_data)
+> +                               data = gc->irq.parent_handler_data_array[i];
+> +                       else
+> +                               data = gc->irq.parent_handler_data ?: gc;
+> +
+>                         /*
+>                          * The parent IRQ chip is already using the chip_data
+>                          * for this IRQ chip, so our callbacks simply use the
+> diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
+> index a0f9901dcae6..a673a359e20b 100644
+> --- a/include/linux/gpio/driver.h
+> +++ b/include/linux/gpio/driver.h
+> @@ -168,11 +168,18 @@ struct gpio_irq_chip {
+>
+>         /**
+>          * @parent_handler_data:
+> +        * @parent_handler_data_array:
+>          *
+>          * Data associated, and passed to, the handler for the parent
+> -        * interrupt.
+> +        * interrupt. Can either be a single pointer if @per_parent_data
+> +        * is false, or an array of @num_parents pointers otherwise.  If
+> +        * @per_parent_data is true, @parent_handler_data_array cannot be
+> +        * NULL.
+>          */
+> -       void *parent_handler_data;
+> +       union {
+> +               void *parent_handler_data;
+> +               void **parent_handler_data_array;
+> +       };
+>
+>         /**
+>          * @num_parents:
+> @@ -203,6 +210,14 @@ struct gpio_irq_chip {
+>          */
+>         bool threaded;
+>
+> +       /**
+> +        * @per_parent_data:
+> +        *
+> +        * True if parent_handler_data_array describes a @num_parents
+> +        * sized array to be used as parent data.
+> +        */
+> +       bool per_parent_data;
+> +
+>         /**
+>          * @init_hw: optional routine to initialize hardware before
+>          * an IRQ chip will be added. This is quite useful when
+> --
+> 2.17.1
+>
