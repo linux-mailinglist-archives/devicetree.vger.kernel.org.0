@@ -2,118 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D46AD430334
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 17:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6374F43033B
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 17:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237367AbhJPPRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 11:17:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46404 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237243AbhJPPR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 11:17:29 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF216C061766
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 08:15:21 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id i76so8861992pfe.13
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 08:15:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=54yvKUvR70e1EUwEjIQrkBtCHRmu0YRGTVj0j6VpK3k=;
-        b=IysGORiq0W50u0akiTJ9sGN7Z9uuIDcmR686khN26vdHXQFuJn55dgb+npETZ86Uoh
-         djy/tOVziUjsSsKRmrcVh3O6JPhchV2oc/0PetyLF3E0f189sqsTWlvfb+7gmXEM9HRn
-         nKNZGUYgziwq6GFnJBUW0dl8FEC9IWAc9B3GQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=54yvKUvR70e1EUwEjIQrkBtCHRmu0YRGTVj0j6VpK3k=;
-        b=l5CQapL8uzQt7xJT6zFaDymS7wKbMsx0pMOdPnW57ojFZ+b8pjvoVsOR7n6CRqY+eM
-         N73qH6z4YFPHM4GatPtX2cJzKh58PFdel15tKejj5Nn1Xl/+SOJqhA11EKlJKYqGdYkL
-         j3It5hLnYGuTRzwAYPtbp6l+5du77wlM+Ka+cy2JXlfEj3Jtp0keQJrp+nes8OBwx4EC
-         O8oDBch2MEcktA6XOgbwBPBRG6I4GiCyAxOPMeXM/HGf2rkA2zWmKw+eEO4B5dByC0JX
-         Pzv8jEcrezZ1fhnAFW9aDPOssub2ovJqPa4LMXLoLs60Yy0qoH35wACg3rJV1qIFrlrc
-         kRZA==
-X-Gm-Message-State: AOAM5308+lTpYhUXB6f7+be9EHEucuyBC8hh51D2OKt2w0Jh8ClJRHjg
-        iA1mKoyg8I2RyjwiYIEZ6BbrCZk2kP7vrrHsSucKcw==
-X-Google-Smtp-Source: ABdhPJy/nsmwbNl980n8mO/eYo1HFVH3q5bZkzrm1syD7NgEFUwCZ6QMxfbKqYniPiykBAAfioXb3n3ioZcUYQ8uhes=
-X-Received: by 2002:a63:334c:: with SMTP id z73mr14603487pgz.160.1634397320877;
- Sat, 16 Oct 2021 08:15:20 -0700 (PDT)
+        id S237451AbhJPPTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 11:19:18 -0400
+Received: from mail-4319.protonmail.ch ([185.70.43.19]:49453 "EHLO
+        mail-4319.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237173AbhJPPTR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 11:19:17 -0400
+Date:   Sat, 16 Oct 2021 15:16:55 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1634397426;
+        bh=eacSGFH4NZEHeF23GG6tUuURaKwWMyZu8ig2RqMX4cw=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=x7jTuEniTzvC0i8hRmaU1va1/dblZ9Xnn4Lwg8IgJKtzLVXE3DxM/rMOVe/EtXwTi
+         NW8GRTYojMpzKssQKAU92J8du9ba5InyONR1IlT0pZ0Dtokl0q8QNznI0jBKcxCVFq
+         4CG+tfL1U1Gd8P5DtdltSMj6Wtfa2eob+DB9Xocw=
+To:     Rob Herring <robh@kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Nishanth Menon <nm@ti.com>, phone-devel@vger.kernel.org,
+        Viresh Kumar <vireshk@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-clk@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>, linux-pm@vger.kernel.org
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: clk: qcom: msm8996-apcc: Add CBF
+Message-ID: <G3T21R.IC4JJ9W0GTB72@protonmail.com>
+In-Reply-To: <1634221864.186240.3295880.nullmailer@robh.at.kernel.org>
+References: <20211014083016.137441-1-y.oudjana@protonmail.com> <20211014083016.137441-2-y.oudjana@protonmail.com> <1634221864.186240.3295880.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
-References: <20210107134101.195426-1-paul.kocialkowski@bootlin.com> <62c3e6bccfb3d8c0ef6190861a8608abff34e885.camel@collabora.com>
-In-Reply-To: <62c3e6bccfb3d8c0ef6190861a8608abff34e885.camel@collabora.com>
-From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Date:   Sat, 16 Oct 2021 17:15:09 +0200
-Message-ID: <CAOf5uwkuBYuFaoakiBvPb9eomSDdPWOL01w0=-e4Ud-h8QafbQ@mail.gmail.com>
-Subject: Re: [PATCH 0/5] Rockchip PX30 RGA and VPU support
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Jacob Chen <jacob-chen@iotwrt.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alex Bee <knaerzche@gmail.com>, Chris Healy <cphealy@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all
 
-On Mon, Jun 21, 2021 at 5:00 AM Ezequiel Garcia <ezequiel@collabora.com> wrote:
->
-> Hi Paul,
->
-> On Thu, 2021-01-07 at 14:40 +0100, Paul Kocialkowski wrote:
-> > This series adds the required bits for RGA and VPU support on the
-> > Rockchip PX30 SoC.
-> >
->
-> Do you plan to resend this series?
->
-> Alex recently renamed [1] things so some tweaking will be needed,
-> but it shouldn't be complicated.
->
-> [1] https://lore.kernel.org/linux-media/20210614213215.99389-1-knaerzche@gmail.com/
->
-> It would be great to have support RK3326 and PX30 :)
+On Thu, Oct 14 2021 at 18:31:04 +0400, Rob Herring <robh@kernel.org>=20
+wrote:
+> On Thu, 14 Oct 2021 08:31:32 +0000, Yassine Oudjana wrote:
+>>  Add CBF clock and reg.
+>>=20
+>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>  ---
+>>   .../devicetree/bindings/clock/qcom,msm8996-apcc.yaml   | 10=20
+>> ++++++----
+>>   1 file changed, 6 insertions(+), 4 deletions(-)
+>>=20
+>=20
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+>=20
+> Note that it is not yet a requirement to have 0 warnings for=20
+> dtbs_check.
+> This will change in the future.
+>=20
+> Full log is available here: https://patchwork.ozlabs.org/patch/1540828
+>=20
+>=20
+> clock-controller@6400000: clock-names:0: 'pwrcl_pll' was expected
+> =09arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+> =09arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>=20
+> clock-controller@6400000: clock-names: ['xo'] is too short
+> =09arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+> =09arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>=20
+> clock-controller@6400000: clocks: [[29]] is too short
+> =09arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+>=20
+> clock-controller@6400000: clocks: [[33]] is too short
+> =09arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+>=20
+> clock-controller@6400000: clocks: [[36]] is too short
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>=20
+> clock-controller@6400000: clocks: [[41]] is too short
+> =09arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+>=20
+> clock-controller@6400000: reg: [[104857600, 589824]] is too short
+> =09arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
+> =09arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.ya=
+ml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
+> =09arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
+>=20
 
-I can re-spin and test it, but I don't find the whole thread
+These are old warnings. I wasn't quite sure about those clocks, so I=20
+didn't attempt to fix them.
 
-Michael
-
->
-> Kindly,
-> Ezequiel
->
->
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+=09Yassine
 
 
 
--- 
-Michael Nazzareno Trimarchi
-Co-Founder & Chief Executive Officer
-M. +39 347 913 2170
-michael@amarulasolutions.com
-__________________________________
 
-Amarula Solutions BV
-Joop Geesinkweg 125, 1114 AB, Amsterdam, NL
-T. +31 (0)85 111 9172
-info@amarulasolutions.com
-www.amarulasolutions.com
