@@ -2,185 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE67430368
-	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 17:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D5243037F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Oct 2021 17:46:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236284AbhJPPis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 11:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
+        id S238772AbhJPPsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 16 Oct 2021 11:48:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234575AbhJPPir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 11:38:47 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE1FC061570;
-        Sat, 16 Oct 2021 08:36:39 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id i24so54405169lfj.13;
-        Sat, 16 Oct 2021 08:36:39 -0700 (PDT)
+        with ESMTP id S238648AbhJPPsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 11:48:12 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E41C061570;
+        Sat, 16 Oct 2021 08:46:04 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id w8so11577511qts.4;
+        Sat, 16 Oct 2021 08:46:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iXmHQbdUUEj7iD9UdLGIRExPe2SbeX0x9hgeURTYmuQ=;
-        b=gy+a/5BSaOUZjjMeREUgCptM2ybr7PF148YGvG+CqztuyGq8LBhigc7vHDIIyQZ4RR
-         nCkxVRmxG6APD0+J/FGkfKxkl0tNsjzP7W5/HDgmaFfOHmvbOI3WCtMY70n8umX8yEJV
-         FJGDPXjLDrI9pGt9cpA+/Wo5Ds2dyHODEA9wSoRG9q3PsnHlqMpubsdtzMh+a+j199o6
-         sBrVM5rVaDlfadaBelsLV+JFBxj2s8A9ruw+Th0rjBkgDfinqABq4j1GP6WbYKhHhnWW
-         e25hnD271Cbz3yMZERuOiAdnU4nILxFmsh9aOU6cSv/0XCWbnrMGgN49CuZqdBiLmYgo
-         PhGg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VxKkdzMBTPnwglERy6orEJxvMW5PnT3lhdonviWbxrA=;
+        b=jxAQLXRtafzAK2KPr8cXtf7HWx+MOpOfHAqdaFpBrvpRbFa6gmcD1nO7Rde/qXkcuq
+         6+7laDGEiCNZJ1N/tdjHoyMlF7Mv+V2P8LqUT4hHYgWUQO/Fpr/0sWlTIQBTc8b02fC0
+         JY8tzTZjsBEGK6OUzb/01ra4NfypDVJAbBN3Fd+o18iYDvr7x3+xpEWB0brozXHlMq3k
+         KKGL1LCxcuMel0u7mQz8zHgCtEttsXQzJG0u9ayT9VyxNQHyL7677oyewGRRxkw4OikX
+         mZHzrX7vHKS75AW34mOM6mNbmjZs5O7eEh8b0gXbwU7nwf+q4vUYw7Q9oF05Gn+vQZnk
+         AyOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=iXmHQbdUUEj7iD9UdLGIRExPe2SbeX0x9hgeURTYmuQ=;
-        b=77+wQh5JSBvSRipG4bflGBZadMuOCKuoPz4zRYjNOoM7i83MvqLsfzFxgYPTFYB2y5
-         pEVKasO991N6S89jOoOhZ1zKa5cycPk4n7ZaQbjnBP5HCTgzkDHkToC4ndG8nMb4AMe5
-         d5KSiVukiDXNPJ+J71wnoFelNHkmln40qArHEg0yZVc5H0L0OydIDbwJqU7lIH8C792I
-         DKohOws2kGx5oq1wqohQdEvGzKSgpzMyYJTzNE2LkZogzrMHlyxLAuekJ79fVZ4R+gTt
-         HOD2KjDopLVtWKsWdKTzwM+gvr+Q2s7esoUeDi0sNggCPwp92j0gjW2FLrcEDUVFh/sX
-         9iVw==
-X-Gm-Message-State: AOAM531yzIB82WTrmLXDn7gN8ShM1V5KzzFPf+UtrAbkMDKNMihZmVDy
-        X7qs26TZ4lsOA+7HCF/tF+o=
-X-Google-Smtp-Source: ABdhPJxtvgN0MWJt4cva3KTlHcgZzj89zboYkD6ihnqr+bNLevlFAbbJkDz7ATXU/w01SNAG8MS09Q==
-X-Received: by 2002:a2e:a544:: with SMTP id e4mr15585258ljn.225.1634398597937;
-        Sat, 16 Oct 2021 08:36:37 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-48-94.dynamic.spd-mgts.ru. [46.138.48.94])
-        by smtp.googlemail.com with ESMTPSA id w26sm1021100ljh.18.2021.10.16.08.36.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 16 Oct 2021 08:36:37 -0700 (PDT)
-Subject: Re: [PATCH v13 11/35] drm/tegra: dc: Support OPP and SoC core voltage
- scaling
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Nishanth Menon <nm@ti.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-staging@lists.linux.dev, linux-pwm@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Lucas Stach <dev@lynxeye.de>, Stefan Agner <stefan@agner.ch>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-References: <20210926224058.1252-1-digetx@gmail.com>
- <20210926224058.1252-12-digetx@gmail.com>
- <CAPDyKFobSsFOnmFc4BG353uYgECGD1U1U020oQwB7pX0mfCfvw@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9bb95684-de30-697a-139c-1e3e54dade2a@gmail.com>
-Date:   Sat, 16 Oct 2021 18:36:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=VxKkdzMBTPnwglERy6orEJxvMW5PnT3lhdonviWbxrA=;
+        b=PKru58PBkukilv7vzhhi+7oaD1U2GrMpqa0ioa1yA5MEWM5XqkVP6NW1InoWUVrRv5
+         exxHNxMlYV6trYBTZhE96z4N9kdK7LGD+yos74kDF908u0oYG27YqeQFmKslk7p3Qubl
+         ikxnq3njCrAtkNgTvRbSYyXIddrCXhA+MuXE+ye1WzUAY0x5vLqXkcjVSYgyc54uIoJo
+         jtVnlrjN4gbr+Hm1d1tBj7msFl2A8hguMQFneC/NYlbPUWeV5hqPzGjmxDYGLS8Asm0i
+         gzdPqsc9JMGeGalpTrl43lJYqEGKqE4bVTlBd7MdlEQxBZfmbp1mYiiIZKf5BktCswQy
+         zq9g==
+X-Gm-Message-State: AOAM533MNDsSVAa6p5gA9ajZHxL5iv5Co1qeO3RqMygBT9fefP7btSPT
+        bzj+oFkrB8G889mHoB2MFVXqzUKSNOs=
+X-Google-Smtp-Source: ABdhPJwKvMVm20Ye1VKw6BXYU2GSQWOw8DtwpsyBUc49NqOoOizAZ5LoeP1JiQEFvAzhy2VJvCx1Sg==
+X-Received: by 2002:a05:622a:20d:: with SMTP id b13mr10337813qtx.117.1634399163014;
+        Sat, 16 Oct 2021 08:46:03 -0700 (PDT)
+Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
+        by smtp.gmail.com with ESMTPSA id i13sm4047978qtp.87.2021.10.16.08.46.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Oct 2021 08:46:02 -0700 (PDT)
+From:   Trevor Woerner <twoerner@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+        David Wu <david.wu@rock-chips.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Cameron Nemo <cnemo@tutanota.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support),
+        linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
+Subject: [PATCH 1/2] arm64: dts: rk3328: add gpu opp table
+Date:   Sat, 16 Oct 2021 11:45:44 -0400
+Message-Id: <20211016154548.29555-1-twoerner@gmail.com>
+X-Mailer: git-send-email 2.30.0.rc0
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFobSsFOnmFc4BG353uYgECGD1U1U020oQwB7pX0mfCfvw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.10.2021 16:27, Ulf Hansson пишет:
-> On Mon, 27 Sept 2021 at 00:42, Dmitry Osipenko <digetx@gmail.com> wrote:
->>
->> Add OPP and SoC core voltage scaling support to the display controller
->> driver. This is required for enabling system-wide DVFS on pre-Tegra186
->> SoCs.
->>
->> Tested-by: Peter Geis <pgwipeout@gmail.com> # Ouya T30
->> Tested-by: Paul Fertser <fercerpav@gmail.com> # PAZ00 T20
->> Tested-by: Nicolas Chauvet <kwizart@gmail.com> # PAZ00 T20 and TK1 T124
->> Tested-by: Matt Merhar <mattmerhar@protonmail.com> # Ouya T30
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/gpu/drm/tegra/dc.c | 74 ++++++++++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/tegra/dc.h |  2 ++
->>  2 files changed, 76 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/tegra/dc.c b/drivers/gpu/drm/tegra/dc.c
->> index a29d64f87563..d4047a14e2b6 100644
->> --- a/drivers/gpu/drm/tegra/dc.c
->> +++ b/drivers/gpu/drm/tegra/dc.c
->> @@ -11,9 +11,12 @@
->>  #include <linux/interconnect.h>
->>  #include <linux/module.h>
->>  #include <linux/of_device.h>
->> +#include <linux/pm_domain.h>
->> +#include <linux/pm_opp.h>
->>  #include <linux/pm_runtime.h>
->>  #include <linux/reset.h>
->>
->> +#include <soc/tegra/common.h>
->>  #include <soc/tegra/pmc.h>
->>
->>  #include <drm/drm_atomic.h>
->> @@ -1762,6 +1765,47 @@ int tegra_dc_state_setup_clock(struct tegra_dc *dc,
->>         return 0;
->>  }
->>
->> +static void tegra_dc_update_voltage_state(struct tegra_dc *dc,
->> +                                         struct tegra_dc_state *state)
->> +{
->> +       unsigned long rate, pstate;
->> +       struct dev_pm_opp *opp;
->> +       int err;
->> +
->> +       if (!dc->has_opp_table)
->> +               return;
->> +
->> +       /* calculate actual pixel clock rate which depends on internal divider */
->> +       rate = DIV_ROUND_UP(clk_get_rate(dc->clk) * 2, state->div + 2);
->> +
->> +       /* find suitable OPP for the rate */
->> +       opp = dev_pm_opp_find_freq_ceil(dc->dev, &rate);
->> +
->> +       if (opp == ERR_PTR(-ERANGE))
->> +               opp = dev_pm_opp_find_freq_floor(dc->dev, &rate);
->> +
->> +       if (IS_ERR(opp)) {
->> +               dev_err(dc->dev, "failed to find OPP for %luHz: %pe\n",
->> +                       rate, opp);
->> +               return;
->> +       }
->> +
->> +       pstate = dev_pm_opp_get_required_pstate(opp, 0);
->> +       dev_pm_opp_put(opp);
->> +
->> +       /*
->> +        * The minimum core voltage depends on the pixel clock rate (which
->> +        * depends on internal clock divider of the CRTC) and not on the
->> +        * rate of the display controller clock. This is why we're not using
->> +        * dev_pm_opp_set_rate() API and instead controlling the power domain
->> +        * directly.
->> +        */
->> +       err = dev_pm_genpd_set_performance_state(dc->dev, pstate);
->> +       if (err)
->> +               dev_err(dc->dev, "failed to set power domain state to %lu: %d\n",
->> +                       pstate, err);
-> 
-> Yeah, the above code looks very similar to the code I pointed to in
-> patch6. Perhaps we need to discuss with Viresh, whether it makes sense
-> to fold in a patch adding an opp helper function after all, to avoid
-> the open coding.
-> 
-> Viresh?
+Add an operating-points table and cooling entry to the GPU on the
+RK3328 SoC to improve its performance. According to its datasheet[1]
+the maximum frequency of the Mali-450 MP2 GPU found on the RK3328 SoC
+is 500MHz.
 
-I'll keep it open-coded for now. This code is specific to Tegra because
-normally ceil error shouldn't fall back to the floor, but for Tegra it's
-expected to happen and it's a normal condition.
+On my rock64 device, under x11, glmark2-es2 performance increased from
+around 60 to just over 100. Same device running glmark2-es2 under
+wayland/weston improved from just over 100 to just over 200.
+
+[1] https://rockchip.fr/RK3328%20datasheet%20V1.2.pdf
+
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 26 +++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 8c821acb21ff..5e1dcf71e414 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -532,7 +532,8 @@ map0 {
+ 					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+ 							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 					contribution = <4096>;
+ 				};
+ 			};
+@@ -617,6 +618,29 @@ gpu: gpu@ff300000 {
+ 		clocks = <&cru ACLK_GPU>, <&cru ACLK_GPU>;
+ 		clock-names = "bus", "core";
+ 		resets = <&cru SRST_GPU_A>;
++		operating-points-v2 = <&gpu_opp_table>;
++		#cooling-cells = <2>;
++	};
++
++	gpu_opp_table: gpu-opp-table {
++		compatible = "operating-points-v2";
++
++		opp-200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <1100000>;
++		};
++		opp-300000000 {
++			opp-hz = /bits/ 64 <300000000>;
++			opp-microvolt = <1100000>;
++		};
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <1100000>;
++		};
++		opp-500000000 {
++			opp-hz = /bits/ 64 <500000000>;
++			opp-microvolt = <1100000>;
++		};
+ 	};
+ 
+ 	h265e_mmu: iommu@ff330200 {
+-- 
+2.30.0.rc0
+
