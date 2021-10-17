@@ -2,171 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F7C430893
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 14:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2205B4308AB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 14:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245576AbhJQMNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 08:13:52 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:59631 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242065AbhJQMNv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 08:13:51 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 13C8E5C00BE;
-        Sun, 17 Oct 2021 08:11:42 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute1.internal (MEProxy); Sun, 17 Oct 2021 08:11:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm2; bh=ZWWjC4g+NM5m34T/9263lf+QjNfD
-        U6lB85qVjusw3Uk=; b=RlLLzMrH83WWRYMQcp2AOylkuhI1M6VsP1jfyGHstt+9
-        xvswENN14Llbr1WKt+7rdU0pOdMBEeR/XwCYHONnD8Ph3GLIbfuVnL94bZJGDG/9
-        sCAsg7QlSwKYRTc6B3q8j2ZD7PSjCf0XJH5i6XTWex8kP/vg7jgTWswfZVFUiD6w
-        d3RO24O50tYnQtRicxmOQd97iOHCI6TUTNom+DrplcxQlkLyHQ7K9G5uaoGcQMYw
-        s+W3UM7W8cVzWEff2KMDhioOsHYHTq2KpSPZn2Rn5cM0bWfj03jFxKwnRU62UEe9
-        vwJ679WznVn/WCCYihxV6rSFp9ROojNC9V8GsYxPZw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZWWjC4
-        g+NM5m34T/9263lf+QjNfDU6lB85qVjusw3Uk=; b=NaRK9y7WCU1crZCmrgVt0S
-        TGTtF4tf9B0urU1UApVzpqDEVX8b0xfbn1Ce6yNdf1T1rHwn3Q7MHDEK7yVFx0eX
-        +HeHfUMLP6aic42ccXsVAmb+Y1+KXBgPGYRL50h0Mt6D+Jf5kahLVHgEDP7OxsI5
-        D24bm4RmmYzMBMyhDmIM09ObIPVrwj7u92Lg5kcBGJnMxQE/9B0E/pW02kG2EcbE
-        DvzzFeWrUJggEvExbkS1BZhyOphoRWayzX5Hp9liAXYJCjdkgWqPjDMO90kJjn/u
-        ++qrxmWAkil7rD4MWpVTSR8qD4kAHmAaDmbjtIMNr0e1NP6ZElJrt+KcriNHRHOw
-        ==
-X-ME-Sender: <xms:_RJsYTQfpB-rWXKZfzmBuU2jY08LOUy2iwLYHEbHjNrZsDKnWPKNcw>
-    <xme:_RJsYUwd0BBsC8m5qKE7qoO-9YMinDgOhFbXHL4zgvWmCqQtvOpP3YR6piLZgg4Ys
-    MBbWFnTHiX9xSFs1yg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddukedggeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
-    feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:_RJsYY0ZXwRcWqZrwtQdXq7jvyTVeAqMWH9xpDNVhvttPqA3UjAGwg>
-    <xmx:_RJsYTD7UWbeDjxMhu-IlfjsQ73WbE0Cgmd39enTT04hTFeOPQiFwg>
-    <xmx:_RJsYcjXGKU-NtO1GdPy0FT31LRrGt-NCydOuvaq1Rx4MzTblbAUgA>
-    <xmx:_hJsYYiS652QDuUGDhA9STUEDciK-ExmMh6lAyTPY6p-yuLtljUnxg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id A5A342740061; Sun, 17 Oct 2021 08:11:41 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1345-g8441cd7852-fm-20211006.001-g8441cd78
-Mime-Version: 1.0
-Message-Id: <02537a8a-e9c2-46f4-904e-6ff5c0583cbf@www.fastmail.com>
-In-Reply-To: <YWwQ36hoNPrUJifS@sunset>
-References: <20211017114054.67737-1-sven@svenpeter.dev>
- <20211017114054.67737-3-sven@svenpeter.dev> <YWwQ36hoNPrUJifS@sunset>
-Date:   Sun, 17 Oct 2021 14:11:21 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>
-Cc:     "Jassi Brar" <jassisinghbrar@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] mailbox: apple: Add driver for Apple mailboxes
-Content-Type: text/plain
+        id S245652AbhJQMb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 08:31:59 -0400
+Received: from mail-ua1-f44.google.com ([209.85.222.44]:40776 "EHLO
+        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245651AbhJQMbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 08:31:55 -0400
+Received: by mail-ua1-f44.google.com with SMTP id e2so2241330uax.7;
+        Sun, 17 Oct 2021 05:29:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZNQrmeLcRYkhU7gSap9RiYo7RaZ8Ovh5R/DJnqwEvKY=;
+        b=AJ1DOCof6SmlDUlOwDeP6loJP/W58A1GoYVytgix/yVypJAFFZBnrnKxO0tJ4yErWW
+         LkCwnfvdZhgvSJap8TPDbQnfMA/DIM8dBx9jUO1YccatLsl5Lj30bzgU2hrqMpse7Qes
+         znmfbEGejqg/zicXnyVUoo5pivOsfzW6sypEdS81YDYlZKaibBnSeDHvoYjM3DjfNLJc
+         cnGj1x2oeeN+ojAPRN81DCZPm5zb+61MQclOonS7Z3VM2NcP3M/d7bOYIIrBucsPZwqd
+         dnQUNZ1IiJYE9varwHu+A5PvRFj0UEwi788slSA0vrZpVfSKUO3hehiyoYi4FYIIFsPo
+         K2Pw==
+X-Gm-Message-State: AOAM530GEITODQC5CmIBu484NCaOwQ7zEIcKXugDhlD86rSoaj0/IPUt
+        AgEq0hab6NyoHYPRQY7Aso/VrOh7gtjijw==
+X-Google-Smtp-Source: ABdhPJxLg0q3sxr2Bpd51F2wvK+Dxosx3ycnWqy03AsVO7lzQ6X4K141M2ibwJQ/1Ri7ezP4QLb6zA==
+X-Received: by 2002:ab0:45c4:: with SMTP id u62mr21063253uau.69.1634473785574;
+        Sun, 17 Oct 2021 05:29:45 -0700 (PDT)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id s6sm7593694vkh.45.2021.10.17.05.29.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 17 Oct 2021 05:29:45 -0700 (PDT)
+Received: by mail-ua1-f48.google.com with SMTP id h19so1702834uax.5;
+        Sun, 17 Oct 2021 05:29:45 -0700 (PDT)
+X-Received: by 2002:a67:cb0a:: with SMTP id b10mr23567811vsl.9.1634473784867;
+ Sun, 17 Oct 2021 05:29:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-2-zhang.lyra@gmail.com>
+ <CAMuHMdWq3M3i+5yATeGEUxupU6Gb5ZnJeNsn9czX6tukEbHQng@mail.gmail.com> <CAAfSe-sQB4wXGwGSPYpoF_YmzJjT=dFLTz36haJ6orE_=zai-Q@mail.gmail.com>
+In-Reply-To: <CAAfSe-sQB4wXGwGSPYpoF_YmzJjT=dFLTz36haJ6orE_=zai-Q@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sun, 17 Oct 2021 14:29:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV8=5p8bdSaw0U+=OdzsQW-Te68XR1o8W_p7oPWjyhGUQ@mail.gmail.com>
+Message-ID: <CAMuHMdV8=5p8bdSaw0U+=OdzsQW-Te68XR1o8W_p7oPWjyhGUQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: clk: sprd: Add bindings for ums512
+ clock controller
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Chunyan,
 
-On Sun, Oct 17, 2021, at 14:02, Alyssa Rosenzweig wrote:
->> Apple SoCs such as the M1 come with various co-processors. Mailboxes
->> are used to communicate with those. This driver adds support for
->> two variants of those mailboxes.
->> 
->> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
->> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+On Sat, Oct 16, 2021 at 10:42 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+> On Wed, 13 Oct 2021 at 22:23, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Thu, Sep 23, 2021 at 8:42 AM Chunyan Zhang <zhang.lyra@gmail.com> wrote:
+> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > Add a new bindings to describe ums512 clock compatible strings.
+> > >
+> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> >
+> > > +  clock-names:
+> > > +    minItems: 1
+> > > +    maxItems: 4
+> >
+> > After applying this to my local tree, as it is a dependency for 2/4 in
+> > for-mfd-next:
+> >
+> >     Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml:
+> > properties:clock-names: {'required': ['maxItems']} is not allowed for
+> > {'minItems': 1, 'maxItems': 4, 'items': [{'const': 'ext-26m'},
+> > {'const': 'ext-32k'}, {'const': 'ext-4m'}, {'const': 'rco-100m'}]}
+> >     hint: "maxItems" is not needed with an "items" list
+> >     from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> >
+> > so please drop the maxItems 4.
 >
-> In the future, Reviewed-by tags should be dropped after making major
-> changes to a patch.
-
-I don't think there were any major changes since v2, but sure, I'll drop your
-tag in the future. All your comments below already apply to v2.
-
+> Ok, I will, but I don't have this compile error on my side, how do you
+> get this error report?
 >
->> +		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty |
->> +				       apple_mbox->hw->irq_bit_send_empty,
->> +			       apple_mbox->regs + apple_mbox->hw->irq_enable);
->
-> Nit: weird wrapping, much easier to read as:
->
-> +		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty |
-> +			       apple_mbox->hw->irq_bit_send_empty,
-> +			       apple_mbox->regs + apple_mbox->hw->irq_enable);
->
+> I use the command below:
+> make -k dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/sprd,ums512-clk.yaml
+> and,
+> make -k dt_binding_check
 
-This is just what clang-format does and I'd rather keep it this way.
-Note that the first two lines are the first argument combined with an OR.
+Do you have the latest dt-schema?
 
->> +static const struct apple_mbox_hw apple_mbox_asc_hw = {
->> +	.control_full = APPLE_ASC_MBOX_CONTROL_FULL,
->> +	.control_empty = APPLE_ASC_MBOX_CONTROL_EMPTY,
->> +
->> +	.a2i_control = APPLE_ASC_MBOX_A2I_CONTROL,
->> +	.a2i_send0 = APPLE_ASC_MBOX_A2I_SEND0,
->> +	.a2i_send1 = APPLE_ASC_MBOX_A2I_SEND1,
->> +
->> +	.i2a_control = APPLE_ASC_MBOX_I2A_CONTROL,
->> +	.i2a_recv0 = APPLE_ASC_MBOX_I2A_RECV0,
->> +	.i2a_recv1 = APPLE_ASC_MBOX_I2A_RECV1,
->> +
->> +	.has_irq_controls = false,
->> +};
->
-> Nit: consider dropping the `has_irq_controls = false` assignment.
-> Clearly there are none, or you'd have to fill out the irq_* fields too.
+Gr{oetje,eeting}s,
 
-I'd rather keep it explicit as false here to make the intent clear.
+                        Geert
 
->
->> +static const struct of_device_id apple_mbox_of_match[] = {
->> +	{ .compatible = "apple,t8103-asc-mailbox", .data = &apple_mbox_asc_hw },
->> +	{ .compatible = "apple,t8103-m3-mailbox", .data = &apple_mbox_m3_hw },
->> +	{}
->> +};
->
-> No generic compatibles? I assume this driver hasn't changed much in
-> recent iPhones, and hopefully it won't change much in M1X...
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Then we can always have apple,tXXX-asc-mailbox, apple,t8103-asc-mailbox in the
-device tree. From what I can tell this specific mailbox has only appeared in
-this SoC generation.
-
->
->> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
->> +/*
->> + * Apple mailbox message format
->> + *
->> + * Copyright (C) 2021 The Asahi Linux Contributors
->> + */
->> +
->> +#ifndef _LINUX_APPLE_MAILBOX_H_
->> +#define _LINUX_APPLE_MAILBOX_H_
->> +
->> +#include <linux/types.h>
->> +
->> +struct apple_mbox_msg {
->> +	u64 msg0;
->> +	u32 msg1;
->> +};
->> +
->> +#endif
->
-> Given this file lacks the context of the driver, and the questions
-> raised in v2 review, it might be beneficial to add a quick comment to
-> apple_mbox_msg explaiing that no, really, this is a 96-bit message.
-
-I don't think that's necessary but it doesn't hurt either I guess.
-
-
-Sven
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
