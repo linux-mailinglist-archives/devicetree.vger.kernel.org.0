@@ -2,107 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B63FF430ACB
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 18:37:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEEB430AE8
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 18:53:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343971AbhJQQjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 12:39:53 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48490
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237484AbhJQQjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 12:39:52 -0400
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 03BAB4005C
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 16:37:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634488659;
-        bh=1RPm1/LKTSEH8C0YJx6dXoFgI89yVIC6crD5lgWAirc=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=GB/2jkttGiT2O3gSLZIsbwSllMctQKrSsyztzWsDbljlV5zNTSfTo35vCHi1wxUKR
-         1bBlMY56nADKVeMt68W2CPN92cDamRoYIcOYm/I68xlenoO8tbWFW3Fg5u0CepcA2Q
-         o2VUxAE4Xcf7IjayPdS+B/VtTVSjkZWLy9bkto7n3KyGKxN1mwMetIDefbDPC8bIlq
-         XGM7hWB0xNa2J8d49mgDr9HW+VyfnHiasUDr3H98isGgsgEWF0vhNoBMy3Tjsp+keI
-         p0bQORe73fZ8TR59UROSgM8qgfXvhU9qhqgig4fwkgPVkLlYvFj3vKhAGHHI+OENOi
-         vGX1VAFqRmPqQ==
-Received: by mail-lj1-f199.google.com with SMTP id v13-20020a2e2f0d000000b0021126b5cca2so517563ljv.19
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 09:37:38 -0700 (PDT)
+        id S231154AbhJQQzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 12:55:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344281AbhJQQzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 12:55:09 -0400
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C023C061768
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 09:53:00 -0700 (PDT)
+Received: by mail-oi1-x22e.google.com with SMTP id e63so21098218oif.8
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 09:53:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BCRRRgh750mYqMV1NloRsMgiHGVQ8cIyieVAZnPnZr0=;
+        b=nQhIDjefY9neOb4AKbfK6pjiLSADl7FCGespC3wNcVaw6OsmECoNOYFCf0zpsiHOYw
+         1OeCbWcgCvd8UB2G5yDs+gEwz+FfIsUykz3PXo7WunIRgFACDnaO4B25hKXKvQC5yaJT
+         VmZIe8uU8QPunA/Q4yrUi7m5D0sJFp91aCMlN0QDCY5L3Ti87gxqU1hi/6EDbGCWWeet
+         sLE11rTUrSiGYYWfSXVWrvuYS0sV9f1+IAa8c5sOqgUvN7uv/wposLDVaI7EXespYNo2
+         Rpruba8nt8o1xnIg2AqG/O5q5ds452hrzqGkr+QQw53uqPJVxOLlaTjhTodr8K5xvWSm
+         AReg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1RPm1/LKTSEH8C0YJx6dXoFgI89yVIC6crD5lgWAirc=;
-        b=Xv4WR0cI8Bp9zyGwZg245/LdAgmUa1I7RgOKGOrVC91ImgAgF63B3rE0j8UIZ6AeJj
-         ypUr9wU30QfnXHPluh4UmPGoXNj5TvOlSWq1ZGN3vso0zJhY7vNlg78kt51GsO+dd+gZ
-         mwbN9OnxAUzSYDzJLmJG/qz/8dSdd9Bbf2tuh6RJR0PY3SXWghZARKthQwvpISk5ebCO
-         B2Th2y8t/06Rj2unto/0Nj9PhXia94VmLteYAO/58cYW1TzkdczSJR+f/8frXCarmPmi
-         QYf2YEJncQbPXl9mtUeXFd+McPwHjX86ZJGwjWoUD/CVeTT/JmxGiObtMKXzHyLNgj93
-         +XoQ==
-X-Gm-Message-State: AOAM530/JafeJdJ/2KxnMbIUdN38jLc2yNwYIIgIwtqq1Ryigfop2YTl
-        W7/U/0oLBQsJXrbl3ivw3WHskAnbhtTWLCZOfx/O2gGinPgrQFHvKhewh1+9Mgm8cw/rKN5ruHY
-        sFgHy+NaPqphSkaEeFSXywa7mXKthFdOvtRaa/rw=
-X-Received: by 2002:a05:651c:204d:: with SMTP id t13mr23783983ljo.267.1634488658194;
-        Sun, 17 Oct 2021 09:37:38 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw/lqcEKlBCBJKXljOPkvtPOkonlr9+CwlLqnStL9xaA21H+RrX4917KV+h8+HiIpOwiDIgFg==
-X-Received: by 2002:a05:651c:204d:: with SMTP id t13mr23783965ljo.267.1634488658014;
-        Sun, 17 Oct 2021 09:37:38 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id k23sm46262ljm.29.2021.10.17.09.37.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 17 Oct 2021 09:37:37 -0700 (PDT)
-Subject: Re: [PATCH v4] dt-bindings: net: nfc: nxp,pn544: Convert txt bindings
- to yaml
-To:     David Heidelberg <david@ixit.cz>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht
-References: <20211017160210.85543-1-david@ixit.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <0937ddb4-7a5b-b6e0-d6b8-42a912744bd6@canonical.com>
-Date:   Sun, 17 Oct 2021 18:37:36 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BCRRRgh750mYqMV1NloRsMgiHGVQ8cIyieVAZnPnZr0=;
+        b=XjdKf3ILohSFsD1462+mVCuaI7oG9XoA30pJwWnJ6T1jM3AiIZ5jSm8Y+lDZek45cf
+         rVgUumBQZnmsEVOEf8Cql4eT7ik9MYX8Q8C1hy8tbl3cn3E7mG0scqiL+WfWiS6VMNam
+         Gy0462wZQIdKj6MI0v8TH9oACEvOx9eQXxbXYkTXkccvslwKtouTiJ5dk+fU36gviinz
+         uye2sZgupY10WgAFaQ3r3onN2QNC2HH8KKpRG8NEmrgcpFjaAwoVqFh0btJiVzN8C9MD
+         4cCooNm2hQ3G3B2EsOOPvfcUsvHxnMGl+9ILEswk9R9Sch/ZdIQx3NZSaIMAfI77bPAT
+         WfeQ==
+X-Gm-Message-State: AOAM533zJEspsdxTfMAv7Ju8a3S7UxSqOw6gzlv61OfIRtCiBQj6eH/g
+        cBErvdqIwCtt16NGZqxWFcjylA==
+X-Google-Smtp-Source: ABdhPJxAy4s0tO4Ev9t3wc1zEhu1fbfqDhbnYLcQ9j27Ed7HX+1n1ZSpf0rtHr1NOFLbcoZPvlIslA==
+X-Received: by 2002:a05:6808:57:: with SMTP id v23mr16629909oic.172.1634489579423;
+        Sun, 17 Oct 2021 09:52:59 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id c9sm2495575otn.77.2021.10.17.09.52.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Oct 2021 09:52:58 -0700 (PDT)
+Date:   Sun, 17 Oct 2021 11:52:57 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 13/25] pinctrl: qcom: ssbi-mpp: hardcode IRQ counts
+Message-ID: <YWxU6SKYcPzXyaDI@builder.lan>
+References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
+ <20211008012524.481877-14-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20211017160210.85543-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211008012524.481877-14-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/10/2021 18:02, David Heidelberg wrote:
-> Convert bindings for NXP PN544 NFC driver to YAML syntax.
+On Thu 07 Oct 20:25 CDT 2021, Dmitry Baryshkov wrote:
+
+> The probing of this driver calls platform_irq_count, which will
+> setup all of the IRQs that are configured in device tree. In
+> preparation for converting this driver to be a hierarchical IRQ
+> chip, hardcode the IRQ count based on the hardware type so that all
+> the IRQs are not configured immediately and are configured on an
+> as-needed basis later in the boot process.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> This change will also allow for the removal of the interrupts property
+> later in this patch series once the hierarchical IRQ chip support is in.
+> 
+> This patch also removes the generic qcom,ssbi-mpp OF match since we
+> don't know the number of pins. All of the existing upstream bindings
+> already include the more-specific binding.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
 > ---
-> v2
->  - Krzysztof is a maintainer
->  - pintctrl dropped
->  - 4 space indent for example
->  - nfc node name
-> v3
->  - remove whole pinctrl
-> v4
->  - drop clock-frequency, which is inherited by i2c bus
+>  drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c | 22 ++++++++--------------
+>  1 file changed, 8 insertions(+), 14 deletions(-)
 > 
->  .../bindings/net/nfc/nxp,pn544.yaml           | 56 +++++++++++++++++++
->  .../devicetree/bindings/net/nfc/pn544.txt     | 33 -----------
->  2 files changed, 56 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn544.txt
+> diff --git a/drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c b/drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c
+> index 92e7f2602847..a90cada1d657 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-ssbi-mpp.c
+> @@ -733,13 +733,12 @@ static int pm8xxx_pin_populate(struct pm8xxx_mpp *pctrl,
+>  }
+>  
+>  static const struct of_device_id pm8xxx_mpp_of_match[] = {
+> -	{ .compatible = "qcom,pm8018-mpp" },
+> -	{ .compatible = "qcom,pm8038-mpp" },
+> -	{ .compatible = "qcom,pm8058-mpp" },
+> -	{ .compatible = "qcom,pm8917-mpp" },
+> -	{ .compatible = "qcom,pm8821-mpp" },
+> -	{ .compatible = "qcom,pm8921-mpp" },
+> -	{ .compatible = "qcom,ssbi-mpp" },
+> +	{ .compatible = "qcom,pm8018-mpp", .data = (void *) 6 },
+> +	{ .compatible = "qcom,pm8038-mpp", .data = (void *) 6 },
+> +	{ .compatible = "qcom,pm8058-mpp", .data = (void *) 12 },
+> +	{ .compatible = "qcom,pm8821-mpp", .data = (void *) 4 },
+> +	{ .compatible = "qcom,pm8917-mpp", .data = (void *) 10 },
+> +	{ .compatible = "qcom,pm8921-mpp", .data = (void *) 12 },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, pm8xxx_mpp_of_match);
+> @@ -750,19 +749,14 @@ static int pm8xxx_mpp_probe(struct platform_device *pdev)
+>  	struct pinctrl_pin_desc *pins;
+>  	struct pm8xxx_mpp *pctrl;
+>  	int ret;
+> -	int i, npins;
+> +	int i;
+>  
+>  	pctrl = devm_kzalloc(&pdev->dev, sizeof(*pctrl), GFP_KERNEL);
+>  	if (!pctrl)
+>  		return -ENOMEM;
+>  
+>  	pctrl->dev = &pdev->dev;
+> -	npins = platform_irq_count(pdev);
+> -	if (!npins)
+> -		return -EINVAL;
+> -	if (npins < 0)
+> -		return npins;
+> -	pctrl->npins = npins;
+> +	pctrl->npins = (uintptr_t) device_get_match_data(&pdev->dev);
+>  
+>  	pctrl->regmap = dev_get_regmap(pdev->dev.parent, NULL);
+>  	if (!pctrl->regmap) {
+> -- 
+> 2.30.2
 > 
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
