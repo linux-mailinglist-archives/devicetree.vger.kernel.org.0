@@ -2,103 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47EA843092F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 14:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A97B43093D
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 15:07:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242269AbhJQNB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 09:01:29 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:46033 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S242268AbhJQNB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 09:01:29 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 5DCD95C0109;
-        Sun, 17 Oct 2021 08:59:17 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Sun, 17 Oct 2021 08:59:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm2; bh=knU1y68hFncbUMmEzLqabx16z9
-        8FUfXq7euHxu34Zfk=; b=ck+WM73arOovdlimiqQK6Q6U73xPANY4l8bU8u4mpU
-        7WkO/IzofiY8/F790PtkAT8FCf0va1CKQ1M/tOFVn/te876pZbyx9GqX8/1yEntq
-        +oCHHxrAcKU0EX7M6ADLCH02sT959VlxTopO25mZZ1c6hZaF1FPR4ksGtKt65QMm
-        wZyW3GdcJrztWBCUbotLSt4ievmQQ6iiDeu42iLitYtPqZWg62XwdKmHvttu2Rvo
-        IiekldIqGvZgfEFz396LUNw9KYdA1gRhejiCI4FKXkop9h0lDvPb5fRRq+QucZmj
-        RQZcMf1A1znnHjBLug2SmEmb6GElsyAYuSf+Je7MPMTg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=knU1y68hFncbUMmEz
-        Lqabx16z98FUfXq7euHxu34Zfk=; b=CGGsaPCgs+DGc7wcFucl+0LR+EJliQxUe
-        JljDfa+H3ZHePBlc9Cl8R++65BACuH+dWKxVrnsrcE+IxqXib1KXMYpMqj5PG39r
-        oHqnTZ0FnIWkhWFI7H1055EyrCsK8A5AwJ9azYP8/d64OMJgytFJepnqCLIYF8YE
-        z/39C2d7It254wSuXTYGpO3iehrO0lYEFEc9YWRnAX4fXeQjxZdYQESPMqIH842E
-        ppbrJsHBhuAZbyM2tnmBc8rlEOFWRO7gkJYxjOqQ8YkxXrEEpmVOldLhMXQByqBI
-        MAYR3rZ5Eodm3rXJCQSiscdyyQ4AqPk7ewfOO9OHKlxbkc1VpRVMA==
-X-ME-Sender: <xms:JR5sYf3YNwGmqqP45F30p6M3y_2s1pYvJHVuw8Yi5IEqmObFvWI5jw>
-    <xme:JR5sYeHN7GjUyD1hi53XT8C2OZacjxvvuOdjwMOz1ds4BSVSqlUtRLF470sgXFxPK
-    P3exuiFtZ_lSKsEDBk>
-X-ME-Received: <xmr:JR5sYf4mmE4OffeXMP1enmSJcIfc5ktMPewLHizTWOdOGI7wYCMCi129pMQ8u0up0bFIRIpk6q6inhhXzEF6YTDFBPlEkUbBorhMr0NapEVTByCrNPXU7c8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddukedgheejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcurfgv
-    thgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnh
-    epuefgleekvddtjefffeejheevleefveekgfduudfhgefhfeegtdehveejfefffffgnecu
-    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnse
-    hsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:JR5sYU063KTkUf_L-gUR66FzyfQvD0buCE1P2f-xebCYAJZI49OE_w>
-    <xmx:JR5sYSHFZc_M8_jbx0Zfv8vModOZeTV1aIKJWnIYPO8gTo7gXM5r2g>
-    <xmx:JR5sYV8xw5bz5YlAQWQdQ8gDn9CNA9avOCs-Oq6uoq3LPVA3uZk-KA>
-    <xmx:JR5sYQbLtkcrivqQnqioxU9jc5pMtYVqNwOwTriF0usctRL9UJnKhQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 17 Oct 2021 08:59:15 -0400 (EDT)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Felipe Balbi <balbi@kernel.org>
-Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: usb: dwc3: Document role-switch-reset-quirk
-Date:   Sun, 17 Oct 2021 14:59:03 +0200
-Message-Id: <20211017125904.69076-1-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S245672AbhJQNJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 09:09:31 -0400
+Received: from mout.kundenserver.de ([217.72.192.73]:39305 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343586AbhJQNJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 09:09:30 -0400
+Received: from localhost.localdomain ([37.4.249.122]) by
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MMnru-1mJSWy3JTA-00Iopc; Sun, 17 Oct 2021 15:06:56 +0200
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Mwesigwa Guma <mguma@redhat.com>,
+        Ojaswin Mujoo <ojaswin98@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-staging@lists.linux.dev,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH 0/2] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to json-schemas
+Date:   Sun, 17 Oct 2021 15:06:34 +0200
+Message-Id: <1634475996-6809-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:HcgF6GKzf3ITZhG4DQ1jGxpWvWeqYFRZ9gwf+eZgutQ+Ie9MX4V
+ dY77C4s0yspKXUeYFmGGImIoTJbfpUnDodn8qmvJHs+rMXN0rOZE7GEMJRUeEbu1r8jOLsN
+ 2wj6CFeak6vCFGZf7senpzQXfdNt5TFzIwnhcYdVWKZX7fJLBwWilbmZKnjR24J6fTEZzAj
+ XGc/To/24tAWN7pRH5r7w==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ZpdYrFoOSQw=:ZcFhvCfPoUUeZsJIxHGiHx
+ JuMRZKi1UnSnPln89Z0oF4g7EAcpoFEc7qr4wcpdR4GUbTTEN0rJhL9TqIvmflYaIDt1qiCmy
+ TDZQ/tqWUOBAMWHwEtCs22zh9D87ufztD0A0vW1xty5TAPe4K8GESJXfLv9tjS35dKEon7d7J
+ nDwoZzQc8U13VHPDrLEei8wYtabpPXX+ff299grH1CgOOv4GgjrdtLiVzCJmUv8Ri841+G24U
+ 05bCAwmxF0cgOJ86xGIcTrf5HcNV/RA21t3RqpZUDtHbORpp12vpnQClV2dKRxq1La7QjByk4
+ DAR9mfDw/C6ObOa2EA/5uEh7oS8w24NT1vkOsynyvGzfyKUYDse7uyhlGFTe14s8B/K844367
+ pyC6NW/xmSgSrJNhqgw8I78+tLretTkNQtgkNjxFoYaQFE6wnvkg072Ao1g7H03uf5vBknTEx
+ xO5c+4nyNvr31rSBFpe2vKB6OvynWz2QGG8QBnVT1XcGH+4Jf5+UKhdaHSHBbRHOHNKpQ8ScQ
+ E9hSu8HT45u4kgY9xwJQpVjrY5IkFJH7TW2GU3AW1BPr2txanPdtt/ThIIUSlsQpy1ckWtixz
+ zgCYx68hrL5pcGvdp+KtA3hlerXxtU6kMRJST5cd0B34OlG5hoART5C3aEB99pN0p3dm1LXQ+
+ yOtL6lPl3YZdzXeD9+5kOL9Qeiyhh9P5fExRVe0aMVvSTVlQZFzZb0u7sykM96tSQcFflSrWB
+ qOrpTNch2RDvEqN26fOfOtyTVx9PLB88++m9AkWPwxwjLiacyjnZd5b8m+4=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dwc3 controller on the Apple M1 must be reset whenever a
-device is unplugged from the root port and triggers a role
-switch notification. Document the quirk to enable this behavior.
+This series converts the VCHIQ bindings to YAML format.
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Stefan Wahren (2):
+  ARM: dts: bcm283x: Drop fallback compatible for vchiq
+  dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to json-schema
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 25ac2c93dc6c..9635e20cab68 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -226,6 +226,12 @@ properties:
-       avoid -EPROTO errors with usbhid on some devices (Hikey 970).
-     type: boolean
- 
-+  snps,role-switch-reset-quirk:
-+    description:
-+      When set, DWC3 will be reset and reinitialized whenever a role switch
-+      is performed.
-+    type: boolean
-+
-   snps,is-utmi-l1-suspend:
-     description:
-       True when DWC3 asserts output signal utmi_l1_suspend_n, false when
+ .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
+ .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 47 ++++++++++++++++++++++
+ arch/arm/boot/dts/bcm2836-rpi.dtsi                 |  2 +-
+ 3 files changed, 48 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+
 -- 
-2.25.1
+2.7.4
 
