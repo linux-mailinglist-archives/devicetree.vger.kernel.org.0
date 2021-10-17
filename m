@@ -2,70 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FE83430877
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 13:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06AF143088F
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 14:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242128AbhJQLrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 07:47:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60630 "EHLO mail.kernel.org"
+        id S242169AbhJQMEz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 08:04:55 -0400
+Received: from rosenzweig.io ([138.197.143.207]:47190 "EHLO rosenzweig.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238081AbhJQLrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 07:47:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 011D360FE3;
-        Sun, 17 Oct 2021 11:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634471115;
-        bh=ohuMuYmmuyqyemJ4Qv+2X0qk6HWlk0oTy0Gz89ptlUo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ba2+hAgqogX5pyL/+cDfcC/L2/wrEGbJ9jKoi7XLGpqxScs6BytFNYjroMCWo/BVH
-         V+GJtRe3JCtiIzpaITvLkS+jLIvdiSb32DsLjoQ3NldEKjX1Yr1DFm8qn725IcxcSv
-         jeT3TatImQUuV2OsfLKFo+Nm+84zySMQ/ebFVXr/9mLOLZ/9UAQQRUOge9SjHjiOSr
-         ZzcA9VZGfmETOOswrvr4h/N1OIO26N6D8Bkr4ffpswJF7NlbOTyIBoNsIwRP9e8+IO
-         +X1ZiW59EdhB9dS+GW6CZDTQsdmututWLb5IXDOjZttz+DPhGsDYCvPpsdTHpiDOkn
-         aXlduszwQTqEw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S236197AbhJQMEz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 08:04:55 -0400
+Date:   Sun, 17 Oct 2021 08:02:39 -0400
+From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jaroslav Kysela <perex@perex.cz>, alsa-devel@alsa-project.org,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        Takashi Iwai <tiwai@suse.com>
-Subject: Re: (subset) [PATCH 0/4] Getting rid of the reset controller in i2s-tdm
-Date:   Sun, 17 Oct 2021 12:45:06 +0100
-Message-Id: <163447061131.1864024.8259786717418291207.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
-References: <20211016105354.116513-1-frattaroli.nicolas@gmail.com>
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Hector Martin <marcan@marcan.st>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] mailbox: apple: Add driver for Apple mailboxes
+Message-ID: <YWwQ36hoNPrUJifS@sunset>
+References: <20211017114054.67737-1-sven@svenpeter.dev>
+ <20211017114054.67737-3-sven@svenpeter.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211017114054.67737-3-sven@svenpeter.dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Oct 2021 12:53:49 +0200, Nicolas Frattaroli wrote:
-> after some discussion with Heiko on IRC, he has admitted to me
-> that the rockchip,cru property, and its corresponding half a reset
-> controller in the driver, is weighing heavily on his mind.
+> Apple SoCs such as the M1 come with various co-processors. Mailboxes
+> are used to communicate with those. This driver adds support for
+> two variants of those mailboxes.
 > 
-> The background is that if the lrck only uses one clock for both rx
-> and tx direction, then according to the downstream driver, the rx
-> and tx resets should be asserted at roughly the same time to keep
-> things in sync.
-> 
-> [...]
+> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 
-Applied, thanks!
+In the future, Reviewed-by tags should be dropped after making major
+changes to a patch.
 
-[1/4] ASoC: rockchip: i2s-tdm: Strip out direct CRU use
-      commit: d6365d0f0a03c1feb28d86dfd192972ddc647013
-[2/4] ASoC: dt-bindings: rockchip: i2s-tdm: Drop rockchip,cru property
-      commit: 4e52cb9e2c22c9d860910794c82461064baadd9f
+> +		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty |
+> +				       apple_mbox->hw->irq_bit_send_empty,
+> +			       apple_mbox->regs + apple_mbox->hw->irq_enable);
 
-Best regards,
--- 
-Mark Brown <broonie@kernel.org>
+Nit: weird wrapping, much easier to read as:
+
++		writel_relaxed(apple_mbox->hw->irq_bit_recv_not_empty |
++			       apple_mbox->hw->irq_bit_send_empty,
++			       apple_mbox->regs + apple_mbox->hw->irq_enable);
+
+> +static const struct apple_mbox_hw apple_mbox_asc_hw = {
+> +	.control_full = APPLE_ASC_MBOX_CONTROL_FULL,
+> +	.control_empty = APPLE_ASC_MBOX_CONTROL_EMPTY,
+> +
+> +	.a2i_control = APPLE_ASC_MBOX_A2I_CONTROL,
+> +	.a2i_send0 = APPLE_ASC_MBOX_A2I_SEND0,
+> +	.a2i_send1 = APPLE_ASC_MBOX_A2I_SEND1,
+> +
+> +	.i2a_control = APPLE_ASC_MBOX_I2A_CONTROL,
+> +	.i2a_recv0 = APPLE_ASC_MBOX_I2A_RECV0,
+> +	.i2a_recv1 = APPLE_ASC_MBOX_I2A_RECV1,
+> +
+> +	.has_irq_controls = false,
+> +};
+
+Nit: consider dropping the `has_irq_controls = false` assignment.
+Clearly there are none, or you'd have to fill out the irq_* fields too.
+
+> +static const struct of_device_id apple_mbox_of_match[] = {
+> +	{ .compatible = "apple,t8103-asc-mailbox", .data = &apple_mbox_asc_hw },
+> +	{ .compatible = "apple,t8103-m3-mailbox", .data = &apple_mbox_m3_hw },
+> +	{}
+> +};
+
+No generic compatibles? I assume this driver hasn't changed much in
+recent iPhones, and hopefully it won't change much in M1X...
+
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> +/*
+> + * Apple mailbox message format
+> + *
+> + * Copyright (C) 2021 The Asahi Linux Contributors
+> + */
+> +
+> +#ifndef _LINUX_APPLE_MAILBOX_H_
+> +#define _LINUX_APPLE_MAILBOX_H_
+> +
+> +#include <linux/types.h>
+> +
+> +struct apple_mbox_msg {
+> +	u64 msg0;
+> +	u32 msg1;
+> +};
+> +
+> +#endif
+
+Given this file lacks the context of the driver, and the questions
+raised in v2 review, it might be beneficial to add a quick comment to
+apple_mbox_msg explaiing that no, really, this is a 96-bit message.
