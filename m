@@ -2,131 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39BE5430A68
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 18:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAABC430A76
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 18:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242347AbhJQQMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 12:12:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242318AbhJQQMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 12:12:44 -0400
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6391FC061768
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 09:10:34 -0700 (PDT)
-Received: by mail-oo1-xc32.google.com with SMTP id s2-20020a4ac102000000b002b722c09046so4793415oop.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 09:10:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JMyWX0FY/MOdMazh7g2+XT2HmUN0GY0VM/f4y3N1QsQ=;
-        b=KoneSuYh0Oxd97pI5biVoza+oU1ASdg5duUN/blrzPpixhZ2r7oouvu6sM8jPJRD/K
-         i5CcyODPp1+Y3+A3IuyOfgbyCfczBXZ4hJn+LiCTO0ffn/+aNDtco3fZc8unVs7A6U7c
-         7CANAI2vwfoyV5lz07zjv3lQYMtvPzYx/WjCvZASHQkem352m9k3Jad3Ned0iQwmG7xy
-         U0cEoPSQk4qDa6UGpoB1wWrewxTT2+TJFAbFOTltyuHNc0iV91uORwU/V1k9zn7fcBh/
-         Wxxc/QyRf6NXSeLNvTnbK3x+42SQ0i30yWy83KLPptbT2up0vjn9+r/I6FSJ2kp5k4cG
-         1Suw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JMyWX0FY/MOdMazh7g2+XT2HmUN0GY0VM/f4y3N1QsQ=;
-        b=t4zQkrwmnhu+fjHJzsg8c87tvvZ5jLhpTkhvv2gjPs7ynhI21Z1JW1RDcjZ+c4EPKK
-         IqtX6pzBJRMPginqq9VyaLo6t90aWnknadtupjDquLTDppF8tMTejPhKIYVDZe11FaiO
-         i8kAje0KTnbYIlGLm7+CpZFqLXso3y0tp2gR3sLFx5YqFh8GU5n5LTv/pBb7jxDXgFjS
-         TmW2tgbX7dKjkRDtugraklzCqk3/PllwuCK+ZF/gUx6JZg6IgCA9Y7uhC8lXHnyChD55
-         fnG57kMnonw7iZLAlQ84nZIbZIDbXS7k2npWjq9og2InEBG/Eoi56Rx2XuvgGrhZct2T
-         e+dA==
-X-Gm-Message-State: AOAM533TA4+vBGbHOyAMvIf1r7BaPp6Kff4RJBlDYyvHcWTSaBNX919K
-        I7AlocLK8ufXpOo0M0KLCdUkbw==
-X-Google-Smtp-Source: ABdhPJw6Q7ehbxXGbI+cIWrSApbLR/o0E6g0Vc7GHlPepAuqwrNEV/D26O0CHAPucJ5V1MWEi8RAWw==
-X-Received: by 2002:a4a:4006:: with SMTP id n6mr17689612ooa.73.1634487033728;
-        Sun, 17 Oct 2021 09:10:33 -0700 (PDT)
-Received: from localhost.localdomain ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id ay42sm2514892oib.22.2021.10.17.09.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Oct 2021 09:10:33 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] mfd: qcom-spmi-pmic: Add missing PMICs supported by socinfo
-Date:   Sun, 17 Oct 2021 09:12:18 -0700
-Message-Id: <20211017161218.2378176-4-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20211017161218.2378176-1-bjorn.andersson@linaro.org>
-References: <20211017161218.2378176-1-bjorn.andersson@linaro.org>
+        id S242559AbhJQQVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 12:21:50 -0400
+Received: from ixit.cz ([94.230.151.217]:43472 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242540AbhJQQVu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 12:21:50 -0400
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 3651C24E6D;
+        Sun, 17 Oct 2021 18:19:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634487577;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=wWjQh1NDpDiGhtuAQnWHLqSqeC+APKGhQWQnsGPgJHE=;
+        b=XoN2T7JZ0Nvu6lGpniTJNBaigXp3/2OITiaJMVY7+1Nu43G4dusA/he+LDwTFEW6Z/quov
+        5OiE5jKyanylzRmWDl0OdI13ui4e1GHyouKFZqj6X62nasmd0wdW4Nqum5XVVgwQwV8qGd
+        y0qmxBrAdg4FQ0stWO+jZ6UdYXhWHd8=
+Date:   Sun, 17 Oct 2021 18:18:05 +0200
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v3] dt-bindings: net: nfc: nxp,pn544: Convert txt bindings
+ to yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, ~okias/devicetree@lists.sr.ht
+Message-Id: <5MQ41R.3H1Q29VJH3GC3@ixit.cz>
+In-Reply-To: <1a315cff-fa34-0fac-8312-9a96d56966c7@canonical.com>
+References: <20211009161941.41634-1-david@ixit.cz>
+        <1633894316.431235.3158667.nullmailer@robh.at.kernel.org>
+        <1a315cff-fa34-0fac-8312-9a96d56966c7@canonical.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm socinfo driver has eight more PMICs described, add these to
-the SPMI PMIC driver as well.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
 
-Changes since v1:
-- Rebased on top of sorting of entries
+On Sun, Oct 10 2021 at 23:01:24 +0200, Krzysztof Kozlowski 
+<krzysztof.kozlowski@canonical.com> wrote:
+> On 10/10/2021 21:31, Rob Herring wrote:
+>>  On Sat, 09 Oct 2021 18:19:42 +0200, David Heidelberg wrote:
+>>>  Convert bindings for NXP PN544 NFC driver to YAML syntax.
+>>> 
+>>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>>  ---
+>>>  v2
+>>>   - Krzysztof is a maintainer
+>>>   - pintctrl dropped
+>>>   - 4 space indent for example
+>>>   - nfc node name
+>>>  v3
+>>>   - remove whole pinctrl
+>>>   .../bindings/net/nfc/nxp,pn544.yaml           | 61 
+>>> +++++++++++++++++++
+>>>   .../devicetree/bindings/net/nfc/pn544.txt     | 33 ----------
+>>>   2 files changed, 61 insertions(+), 33 deletions(-)
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+>>>   delete mode 100644 
+>>> Documentation/devicetree/bindings/net/nfc/pn544.txt
+>>> 
+>> 
+>>  Running 'make dtbs_check' with the schema in this patch gives the
+>>  following warnings. Consider if they are expected or the schema is
+>>  incorrect. These may not be new warnings.
+>> 
+>>  Note that it is not yet a requirement to have 0 warnings for 
+>> dtbs_check.
+>>  This will change in the future.
+>> 
+>>  Full log is available here: 
+>> https://patchwork.ozlabs.org/patch/1538804
+>> 
+>> 
+>>  pn547@28: 'clock-frequency' is a required property
+>>  	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
+>>  	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
+>> 
+> 
+> I think clock-frequency should be dropped from I2C slave device.
+> Similarly to this one:
+> https://lore.kernel.org/linux-nfc/f955726a-eb2d-7b3e-9c5f-978358710eb6@canonical.com/T/#u
+> 
+You have right, it isn't parsed by driver and values match parent i2c 
+bus. I dropped it in next revision.
 
- drivers/mfd/qcom-spmi-pmic.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+David
 
-diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-index 8be07102a468..1cacc00aa6c9 100644
---- a/drivers/mfd/qcom-spmi-pmic.c
-+++ b/drivers/mfd/qcom-spmi-pmic.c
-@@ -31,6 +31,8 @@
- #define PM8916_SUBTYPE		0x0b
- #define PM8004_SUBTYPE		0x0c
- #define PM8909_SUBTYPE		0x0d
-+#define PM8028_SUBTYPE		0x0e
-+#define PM8901_SUBTYPE		0x0f
- #define PM8950_SUBTYPE		0x10
- #define PMI8950_SUBTYPE		0x11
- #define PM8998_SUBTYPE		0x14
-@@ -38,6 +40,13 @@
- #define PM8005_SUBTYPE		0x18
- #define PM660L_SUBTYPE		0x1A
- #define PM660_SUBTYPE		0x1B
-+#define PM8150_SUBTYPE		0x1E
-+#define PM8150L_SUBTYPE		0x1f
-+#define PM8150B_SUBTYPE		0x20
-+#define PMK8002_SUBTYPE		0x21
-+#define PM8009_SUBTYPE		0x24
-+#define PM8150C_SUBTYPE		0x26
-+#define SMB2351_SUBTYPE		0x29
- 
- static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
-@@ -45,9 +54,15 @@ static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pm8004",    .data = (void *)PM8004_SUBTYPE },
- 	{ .compatible = "qcom,pm8005",    .data = (void *)PM8005_SUBTYPE },
- 	{ .compatible = "qcom,pm8019",    .data = (void *)PM8019_SUBTYPE },
-+	{ .compatible = "qcom,pm8028",    .data = (void *)PM8028_SUBTYPE },
- 	{ .compatible = "qcom,pm8110",    .data = (void *)PM8110_SUBTYPE },
-+	{ .compatible = "qcom,pm8150",    .data = (void *)PM8150_SUBTYPE },
-+	{ .compatible = "qcom,pm8150b",   .data = (void *)PM8150B_SUBTYPE },
-+	{ .compatible = "qcom,pm8150c",   .data = (void *)PM8150C_SUBTYPE },
-+	{ .compatible = "qcom,pm8150l",   .data = (void *)PM8150L_SUBTYPE },
- 	{ .compatible = "qcom,pm8226",    .data = (void *)PM8226_SUBTYPE },
- 	{ .compatible = "qcom,pm8841",    .data = (void *)PM8841_SUBTYPE },
-+	{ .compatible = "qcom,pm8901",    .data = (void *)PM8901_SUBTYPE },
- 	{ .compatible = "qcom,pm8909",    .data = (void *)PM8909_SUBTYPE },
- 	{ .compatible = "qcom,pm8916",    .data = (void *)PM8916_SUBTYPE },
- 	{ .compatible = "qcom,pm8941",    .data = (void *)PM8941_SUBTYPE },
-@@ -60,6 +75,8 @@ static const struct of_device_id pmic_spmi_id_table[] = {
- 	{ .compatible = "qcom,pmi8962",   .data = (void *)PMI8962_SUBTYPE },
- 	{ .compatible = "qcom,pmi8994",   .data = (void *)PMI8994_SUBTYPE },
- 	{ .compatible = "qcom,pmi8998",   .data = (void *)PMI8998_SUBTYPE },
-+	{ .compatible = "qcom,pmk8002",   .data = (void *)PMK8002_SUBTYPE },
-+	{ .compatible = "qcom,smb2351",   .data = (void *)SMB2351_SUBTYPE },
- 	{ .compatible = "qcom,spmi-pmic", .data = (void *)COMMON_SUBTYPE },
- 	{ }
- };
--- 
-2.29.2
+> 
+> Best regards,
+> Krzysztof
+
 
