@@ -2,125 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA391430773
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 11:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825244307AC
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 12:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234880AbhJQJSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 05:18:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54294 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234497AbhJQJSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 05:18:50 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29855C061765;
-        Sun, 17 Oct 2021 02:16:41 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
+        id S245235AbhJQKFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 06:05:49 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:43986
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S245233AbhJQKFs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 06:05:48 -0400
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id E3D3E423BA;
-        Sun, 17 Oct 2021 09:16:31 +0000 (UTC)
-To:     Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>, Marc Zyngier <maz@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kevin Hilman <khilman@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211011165707.138157-1-marcan@marcan.st>
- <20211011165707.138157-8-marcan@marcan.st>
- <163424925931.1688384.9647104000291025081@swboyd.mtv.corp.google.com>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [RFC PATCH 7/9] clk: apple: Add clk-apple-cluster driver to
- manage CPU p-states
-Message-ID: <5fab7650-7313-2c20-54eb-65078dd9c3d9@marcan.st>
-Date:   Sun, 17 Oct 2021 18:16:29 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6DED24018E
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 10:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634465018;
+        bh=/w7rnLVxUNTURGieCGfqqQ4bUB62VIx19Vc4b3uH07U=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=Syw6PWxsIVg+9BACtbHhY5TDfantVSxI0kxK5HdqsqcaGMp7pF41vluGvmCvwlb65
+         5m8ARYmZCf1ed+3HMcwUzLkq3y5pDfH3qyxEJZHjonblt4LB7ZRQhpIRPISzW/6AnP
+         hJm2tG9cGfVqUZu9ZGcdtj0ly47Rx6xtZm4B9+2IVVQdvjMb7l1X8bqr5Wt+xqYNUx
+         pNvskuFcuQWVHtRONNK+zA/qgSopQ0G4m7/oc3EAOepruh7fkKs66R7ywbpfmCjIsL
+         5jHx9HrhCJAnbj/0h4IauikaMhErQwSIhjYuWGnrQuJUnoP6O60MYTgYaSl+qJTJE0
+         O2KCgEpHdbmwQ==
+Received: by mail-ed1-f71.google.com with SMTP id f4-20020a50e084000000b003db585bc274so11738577edl.17
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 03:03:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/w7rnLVxUNTURGieCGfqqQ4bUB62VIx19Vc4b3uH07U=;
+        b=zMsvBgCLCKCVTajcrWhwGFkEhUOUlTtMF4LVWBer9edT2R/ILPe/l5opRQRuXY6bks
+         QXLtIKtwH+Gp9lsp4rWi96zk+wJPNkzroksATtejl8vDHuQMOGNFzMt+8eg1tfRpq1UE
+         mGVAY4nYdYVYj8I4vL9GwNryc/HYo8cxKRJvg92ClhkGwCUejIiibQS+ZuQ9wPKI5pzh
+         kDatm9/KB4iHeqCB76jBVMADm+LJ19DDHgqPhz2YD0WYwsni4dedBXZQ4jpX4Tg0eidK
+         3hNKZr5sdXnqNDmISzjBLylJf5c2AlW3jPOGe6DnAdumcMTcVRtx6Qx0uBd6wIdrrEpp
+         XuJg==
+X-Gm-Message-State: AOAM5313FG3RiR9LCRJ/ew352r3KwcLzyvhQRhFUyc3clezm985iBfbr
+        clAfzVZw2V1x8wc5hqHrPZ/AFGKNfWqTNXwb3wSh1XjfsS6/xYsA0pKH+jIBBl6B2ChFpjO5H09
+        YQ5VAYjWY7srVxyYTbfCG1RwKXAgasG2XtPfKwJLiY2cH5MoskPWsjXs=
+X-Received: by 2002:a17:906:919:: with SMTP id i25mr21077550ejd.171.1634465017813;
+        Sun, 17 Oct 2021 03:03:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxBD4IVI+3m1jDS1GLi//iCI68rTkdNzvWdP8PXY93uSfBu2PzfjILpnco+k3Rb/r6y11YH8kKxYU50YYZPaHc=
+X-Received: by 2002:a17:906:919:: with SMTP id i25mr21077516ejd.171.1634465017650;
+ Sun, 17 Oct 2021 03:03:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <163424925931.1688384.9647104000291025081@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 8bit
+References: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
+In-Reply-To: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Date:   Sun, 17 Oct 2021 12:03:26 +0200
+Message-ID: <CA+Eumj5zqbk7Vn7dAvjNWXKK6pCNgu34-VZGudP=BmO0_+0Tgw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] arm64: dts: add 'chassis-type' property
+To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-rockchip@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Martin Kepplinger <martink@posteo.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Lucas Stach <dev@lynxeye.de>,
+        Angus Ainslie <angus@akkea.ca>,
+        Guido Gunther <agx@sigxcpu.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Eddie Cai <eddie.cai.linux@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Brian Norris <briannorris@chromium.org>,
+        Dan Johansen <strit@manjaro.org>,
+        Simon South <simon@simonsouth.net>,
+        Matthias Brugger <mbrugger@suse.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/10/2021 07.07, Stephen Boyd wrote:
-> This looks bad from a locking perspective. How is lockdep holding up
-> with this driver? We're underneath the prepare lock here and we're
-> setting a couple level registers which is all good but now we're calling
-> into genpd code and who knows what's going to happen locking wise.
+On Sat, 16 Oct 2021 at 12:20, Arnaud Ferraris
+<arnaud.ferraris@collabora.com> wrote:
+>
+> Hello,
+>
+> A new root node property named 'chassis-type' has recently been approved
+> added to the device tree specification[1]. This will allow userspace to
+> easily detect the device form factor on DT-based devices, and act
+> accordingly.
+>
+> This patchset fills in this property for existing ARM64 consumer
+> devices (laptops, phones, tablets...).
+>
+> [1] https://github.com/devicetree-org/devicetree-specification/blob/main/source/chapter3-devicenodes.rst#root-node
+>
 
-It seems this is all going away given the other discussion threads point 
-towards handling this directly via OPP in the cpufreq-dt driver. I'll 
-run whatever I end up with for v2 through lockdep though, good call!
+I'll add the same for Exynos, S3C and S5P. Do you know by any chance
+what is the meaning of "embedded"? How a development board should be
+classified?
 
-> I don't actually see anything in here that indicates this is supposed to
-> be a clk provider. Is it being modeled as a clk so that it can use
-> cpufreq-dt? If it was a clk provider I'd expect it to be looking at
-> parent clk rates, and reading hardware to calculate frequencies based on
-> dividers and multipliers, etc. None of that is happening here.
-> 
-> Why not write a cpufreq driver, similar to qcom-cpufreq-hw.c that looks
-> through the OPP table and then writes the value into the pstate
-> registers? The registers in here look awfully similar to the qcom
-> hardware. I don't know what the DESIRED1 and DESIRED2 registers are for
-> though. Maybe they're so that one or the other frequency can be used if
-> available? Like a min/max?
-> 
-> Either way, writing this as a cpufreq driver avoids the clk framework
-> entirely which is super great for me :) It also avoids locking headaches
-> from the clk prepare lock, and it also lets you support lockless cpufreq
-> transitions by implementing the fast_switch function. I don't see any
-> downsides to the cpufreq driver approach.
 
-I wasn't too sure about this approach; I thought using a clk provider 
-would end up simplifying things since I could use the cpufreq-dt 
-machinery to take care of all the OPP stuff, and a lot of SoCs seemed to 
-be going that way, but it seems cpufreq might be a better approach for 
-this SoC?
-
-There can only be one cpufreq driver instance, while I used two clock 
-controllers to model the two clusters. So in the cpufreq case, the 
-driver itself would have to deal with all potential CPU cluster 
-instances/combinations itself. Not sure how much more code that will be, 
-hopefully not too much...
-
-I see qcom-cpufreq-hw uses a qcom,freq-domain prop to link CPUs to the 
-cpufreq domains. cpufreq-dt and vexpress-spc-cpufreq instead use 
-dev_pm_opp_get_sharing_cpus to look for shared OPP tables. Is there a 
-reason not to do it that way and avoid the vendor prop? I guess the prop 
-is more explicit while the sharing approach would have an implicit order 
-dependency (i.e. CPUs are always grouped by cluster and clusters are 
-listed in /cpus in the same order as in the cpufreq node)...
-
-(Ack on the other comments, but if this becomes a cpufreq driver most of 
-it is going to end up rewritten... :))
-
-For the cpufreq case, do you have any suggestions as to how to relate it 
-to the memory controller configuration tweaks? Ideally this would go 
-through the OPP tables so it can be customized for future SoCs without 
-stuff hardcoded in the driver... it seems the configuration affects 
-power saving behavior / latencies, so it doesn't quite match the 
-interconnect framework bandwidth request stuff. I'm also not sure how 
-this would affect fast_switch, since going through those frameworks 
-might imply locks... we might even find ourselves with a situation in 
-the near future where multiple cpufreq policies can request memory 
-controller latency reduction independently; I can come up with how to do 
-this locklessly using atomics, but I can't imagine that being workable 
-with higher-level frameworks, it would have to be a vendor-specific 
-mechanism at that point...
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Best regards,
+Krzysztof
