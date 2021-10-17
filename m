@@ -2,124 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93DAD4305B3
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 02:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D244306FA
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 08:51:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241251AbhJQAOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 16 Oct 2021 20:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
+        id S244991AbhJQGxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 02:53:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236325AbhJQAOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 16 Oct 2021 20:14:33 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA32DC061765
-        for <devicetree@vger.kernel.org>; Sat, 16 Oct 2021 17:12:24 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 4189083209;
-        Sun, 17 Oct 2021 02:12:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634429540;
-        bh=1NwdYw1Kty3P/bmZ6Fjrh2EVp6bVutiM8C9BBm3FkS4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=EAgcUqJdB/DAyUmIue9tut9eZm47aKRJfzwAFXq/MygwuLx/YD0F2dmKj5IKX8LmG
-         yOYGBo0urOoSay1v1gUYUDYm8EOCrADkMKCkKCmuwCJ5EUiOs77hnk6Ibj7b3UI7a7
-         V9CT7F/9VAE1KFK8KFY2tHdWT6qpqKgM9Z4TUC2kFajH+u8NLEk09bTfG2BEaIXD7Q
-         oM5qm8CWa1CST5GYwG/oUcOWEYLLZnR/il1wQ/HGhwVxXmiimEl3CnyENiSRCcEEnY
-         xHZ5msHouwi0XwGQN7habTSFTiG3mpiyvACGszz6n4H1D3Mj4egxW/p6Iw9Cm4uROz
-         Zz8+PNAE3ADXA==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH v5 2/2] drm/bridge: lvds-codec: Add support for pixel data sampling edge select
-Date:   Sun, 17 Oct 2021 02:12:04 +0200
-Message-Id: <20211017001204.299940-2-marex@denx.de>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211017001204.299940-1-marex@denx.de>
-References: <20211017001204.299940-1-marex@denx.de>
+        with ESMTP id S232431AbhJQGxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 02:53:46 -0400
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC12EC061765;
+        Sat, 16 Oct 2021 23:51:36 -0700 (PDT)
+Received: by mail-vk1-xa2a.google.com with SMTP id 34so7125793vkl.13;
+        Sat, 16 Oct 2021 23:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zNAUH8TjDFzaFJVIqct55AXw+xWzukjzRr3h7rQ5J3g=;
+        b=jJnBGNwZTUy94l7GdW/7dM0ak1B4tPtJ3KhbRlQWbODnhUIthJ12JuiiwR4fKmuJtO
+         9LSrUXAmgtlcTCB7za3Rsi2OLP1C15ibRn3HKP9pDc3QT5Ujzy3Ijt2qvBNFobY8NAF8
+         RPULzytg0lGnBxU88Q7L/z8VwEAQ6hLlpG3npFUhgmC9SgCtNCmifibrxRemZnsrHMHG
+         lgnpgnO7VizudOxTfl83luUQu4YeqNl9uINzRNw195NY+Ywd7ajrGsrMCsU0PucP+nrQ
+         zbuxQRL/VBUd0kqghB1nTWEq2DI7EidGIdaoY09/XTnUcr/OfDUwWzoi0oNP+6jbAdcP
+         ktuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zNAUH8TjDFzaFJVIqct55AXw+xWzukjzRr3h7rQ5J3g=;
+        b=InEbvgm+roHe39skgBaAg4prwZNu3NSM8jvvPrRVywPfCrULd3twy4Ve2M/CvqywWY
+         SN+9n9tD5vw+Y/SlZpFihRtqDHEwZISRYNGyLwdfTknHqDQA8XC8wJ0Z1lGphx6vP3TV
+         E3wyZGZYul2/jKBl0yEXbFzn7i/2MA8h8ui5RwTVHlu4iHpN+zi4KDoVi6QkFEceClSo
+         bT9CRV11A8l1AX+eJzxm2COP+Y7FGQQHxTORh1VLcdwPPZmdD2GdWqQrsUY6Xh2bOeVF
+         c3YN/VhBZHJ1JqxYX+GlWAM0Ig2y/WpXZKgsTahhgRLaN36y1BEdM7J51eLP+xYT3Pw2
+         iO7A==
+X-Gm-Message-State: AOAM531GsORYcuTwfnXFI3OZx9F90DlRc7jEj2MPmm58H4N0wM6GtEDZ
+        k3+E+xEatjEf1uPrYVwVlQ8bk8kBxUGKkNyeaVg=
+X-Google-Smtp-Source: ABdhPJzjqlVzjheCW3CWQHUGfh9ZnqaVFj9KCAFVcuoSJ7H0X4yDmYPUYvmOMSSKCwpIXOQEMoZLz8RsI4Fd5XUSG2c=
+X-Received: by 2002:a05:6122:d06:: with SMTP id az6mr444750vkb.17.1634453495343;
+ Sat, 16 Oct 2021 23:51:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20211006112306.4691-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <20211006112306.4691-1-sergio.paracuellos@gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sun, 17 Oct 2021 08:51:24 +0200
+Message-ID: <CAMhs-H_h9=sj5_p58WcqrYJuT-CGHp38xELwD1jvt=XzfvG2bw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] clk: ralink: make system controller a reset provider
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-staging@lists.linux.dev, NeilBrown <neil@brown.name>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The OnSemi FIN3385 Parallel-to-LVDS encoder has a dedicated input line to
-select input pixel data sampling edge. Add DT property "pclk-sample", not
-the same as the one used by display timings but rather the same as used by
-media, and configure bus flags based on this DT property.
+Hi Stephen,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: - Limit the pixelclk-active to encoders only
-    - Update DT binding document
-V3: - Determine whether this is encoder from connector, i.e.
-      lvds_codec->connector_type == DRM_MODE_CONNECTOR_LVDS
-V4: - Switch to pclk-sample. Note that the value of this is inverted,
-      so all the existing users of pixelclk-active using previous
-      previous version of this patch must be reworked
-V5: Rebase on recent linux-next
----
- drivers/gpu/drm/bridge/lvds-codec.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On Wed, Oct 6, 2021 at 1:23 PM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> Hi all,
+>
+> This patch series add minimal change to provide mt7621 resets properly
+> defining them in the 'mediatek,mt7621-sysc' node which is the system
+> controller of the SoC and is already providing clocks to the rest of
+> the world.
+>
+> There is shared architecture code for all ralink platforms in 'reset.c'
+> file located in 'arch/mips/ralink' but the correct thing to do to align
+> hardware with software seems to define and add related reset code to the
+> already mainlined clock driver.
+>
+> After this changes, we can get rid of the useless reset controller node
+> in the device tree and use system controller node instead where the property
+> '#reset-cells' has been added. Binding documentation for this nodeq has
+> been updated with the new property accordly.
+>
+> This series also provide a bindings include header where all related
+> reset bits for the MT7621 SoC are defined.
+>
+> Also, please take a look to this review [0] to understand better motivation
+> for this series.
+>
+> Thanks in advance for your feedback.
+>
+> Changes in v2:
+>  - Address review comments of Dan Carpenter [1]:
+>     + Avoid 'inline' in function definition.
+>     + Return proper error codes (-EINVAL) instead of '-1'.
+>     + Make use of 'devm_kzalloc' instead of 'kzalloc'.
 
-diff --git a/drivers/gpu/drm/bridge/lvds-codec.c b/drivers/gpu/drm/bridge/lvds-codec.c
-index f991842a161f..702ea803a743 100644
---- a/drivers/gpu/drm/bridge/lvds-codec.c
-+++ b/drivers/gpu/drm/bridge/lvds-codec.c
-@@ -21,6 +21,7 @@ struct lvds_codec {
- 	struct device *dev;
- 	struct drm_bridge bridge;
- 	struct drm_bridge *panel_bridge;
-+	struct drm_bridge_timings timings;
- 	struct regulator *vcc;
- 	struct gpio_desc *powerdown_gpio;
- 	u32 connector_type;
-@@ -119,6 +120,7 @@ static int lvds_codec_probe(struct platform_device *pdev)
- 	struct device_node *bus_node;
- 	struct drm_panel *panel;
- 	struct lvds_codec *lvds_codec;
-+	u32 val;
- 	int ret;
- 
- 	lvds_codec = devm_kzalloc(dev, sizeof(*lvds_codec), GFP_KERNEL);
-@@ -187,12 +189,25 @@ static int lvds_codec_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	/*
-+	 * Encoder might sample data on different clock edge than the display,
-+	 * for example OnSemi FIN3385 has a dedicated strapping pin to select
-+	 * the sampling edge.
-+	 */
-+	if (lvds_codec->connector_type == DRM_MODE_CONNECTOR_LVDS &&
-+	    !of_property_read_u32(dev->of_node, "pclk-sample", &val)) {
-+		lvds_codec->timings.input_bus_flags = val ?
-+			DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE :
-+			DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE;
-+	}
-+
- 	/*
- 	 * The panel_bridge bridge is attached to the panel's of_node,
- 	 * but we need a bridge attached to our of_node for our user
- 	 * to look up.
- 	 */
- 	lvds_codec->bridge.of_node = dev->of_node;
-+	lvds_codec->bridge.timings = &lvds_codec->timings;
- 	drm_bridge_add(&lvds_codec->bridge);
- 
- 	platform_set_drvdata(pdev, lvds_codec);
--- 
-2.33.0
+Can you please take a look into this series? I'd like them to be added
+in the next merge window and if something needs to be changed I'd like
+to have a bit of time to do it :)).
 
+Regarding how to merge this I guess all of the patches should apply
+cleanly in any tree but since there are already changes in mt7621-dts
+maybe patches 1 and 4 which are related can go through the staging
+tree (if Greg is ok with this) and the bindings doc change and driver
+changes (patches 2 and 3) can go through your tree.
+
+Thanks in advance for your time.
+
+Best regards,
+    Sergio Paracuellos
+
+>
+> Best regards,
+>     Sergio Paracuellos
+>
+> [0]: https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210926145931.14603-3-sergio.paracuellos@gmail.com/
+> [1]: https://lkml.org/lkml/2021/10/6/204
+>
+> Sergio Paracuellos (4):
+>   dt-bindings: reset: add dt binding header for Mediatek MT7621 resets
+>   dt-bindings: clock: mediatek,mt7621-sysc: add '#reset-cells' property
+>   clk: ralink: make system controller node a reset provider
+>   staging: mt7621-dts: align resets with binding documentation
+>
+>  .../bindings/clock/mediatek,mt7621-sysc.yaml  | 12 +++
+>  drivers/clk/ralink/clk-mt7621.c               | 79 +++++++++++++++++++
+>  drivers/staging/mt7621-dts/mt7621.dtsi        | 27 +++----
+>  include/dt-bindings/reset/mt7621-reset.h      | 37 +++++++++
+>  4 files changed, 140 insertions(+), 15 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/mt7621-reset.h
+>
+> --
+> 2.33.0
+>
