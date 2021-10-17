@@ -2,95 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6C70430B35
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 19:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 902BC430BB2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 21:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344410AbhJQR3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 13:29:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54210 "EHLO mail.kernel.org"
+        id S233568AbhJQTWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 15:22:00 -0400
+Received: from ixit.cz ([94.230.151.217]:45812 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344366AbhJQR3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 13:29:22 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S231243AbhJQTV7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 15:21:59 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 107DE60FD8;
-        Sun, 17 Oct 2021 17:27:09 +0000 (UTC)
-Date:   Sun, 17 Oct 2021 18:31:25 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        devicetree@vger.kernel.org, kernel@axis.com, lars@metafoo.de,
-        linux-iio@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] Add settle time support to iio-mux
-Message-ID: <20211017183108.1797d416@jic23-huawei>
-In-Reply-To: <7c14fabc-8811-5875-15a0-67884e2da78d@axentia.se>
-References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
-        <7c14fabc-8811-5875-15a0-67884e2da78d@axentia.se>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        by ixit.cz (Postfix) with ESMTPSA id AE742236BE;
+        Sun, 17 Oct 2021 16:18:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634480315;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=PW4syiLGNWkceasWafQ5IY74fbUGtSoyaqFdOYWkGfs=;
+        b=bWvyyjDDKDBfmjLQswbNiPsqP7ADcp8mWj44xE2rLcz0Mz1/wNmbhNF5eMrBxJyL7Ly1/S
+        TeTkZom1wg8zVHQHqTLS2BBOFHgUzHBmJQBQVePiEo9PQkAebjpqK928Ka0ZNs83R573PL
+        5OH8olcmadRtXUcnSYN8hdLcpIhdYAg=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH v3 2/4] arm64: dts: qcom: sm6350: fix typo in ecc-size property
+Date:   Sun, 17 Oct 2021 16:16:58 +0200
+Message-Id: <20211017141700.61201-2-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211017141700.61201-1-david@ixit.cz>
+References: <20211017141700.61201-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 9 Oct 2021 01:09:56 +0200
-Peter Rosin <peda@axentia.se> wrote:
+Typo, default value is 0, but since we won't break backwards
+compatibility (this change is still inside -rc) lets change it to 16.
 
-> Hi Vincent!
-> 
-> On 2021-10-07 15:46, Vincent Whitchurch wrote:
-> > On one of our boards we use gpio-mux with iio-mux to read voltages using an ADC
-> > from a few different channels, and on this board the input voltage needs some
-> > time to stabilize after a switch of the mux.
-> > 
-> > This series add devicetree and driver support for this kind of hardware which
-> > requries a settle time after muxing.
-> > 
-> > v1 -> v2:
-> > - Move property support to iio-mux and delay handling to mux core as suggested
-> >   by Peter.
-> > 
-> > v1: https://lore.kernel.org/all/20211004153640.20650-1-vincent.whitchurch@axis.com/
-> > 
-> > Vincent Whitchurch (3):
-> >   mux: add support for delay after muxing
-> >   dt-bindings: iio: io-channel-mux: Add property for settle time
-> >   iio: multiplexer: iio-mux: Support settle-time-us property
-> > 
-> >  .../iio/multiplexer/io-channel-mux.yaml       |  5 +++
-> >  drivers/iio/multiplexer/iio-mux.c             |  7 +++-
-> >  drivers/mux/core.c                            | 36 ++++++++++++++++---
-> >  include/linux/mux/consumer.h                  | 23 +++++++++---
-> >  include/linux/mux/driver.h                    |  4 +++
-> >  5 files changed, 65 insertions(+), 10 deletions(-)
-> >   
-> 
-> This looks really nice, thank you! The only question I see is if it should
-> go via my (virtually unused) mux tree or via the iio tree. Yes, the meat is
-> in mux/core.c, but I'm happy to just ack these patches and have Jonathan
-> handle them. But, I'm also fine with handling it in the mux tree (but I'm
-> getting old and forgetful, and it's been so many moons that I need to
-> re-learn the steps).
-> 
-> Jonathan, you or me? If you, you can add:
-> 
-> Acked-by: Peter Rosin <peda@axentia.se>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I don't really mind, but the 4/3 and 5/3 have broken my b4 based flow + Rob
-hasn't yet given an Ack on those two, so I'll not pick any of them up just yet.
-I can sort out the two oddly numbered patches if Rob is happy, though they'll
-probably not have the nice link tags that b4 automates.
-
-Note Rob didn't actually say he was happy with patch 2 yet as far as I can tell.
-
-Thanks,
-
-Jonathan
-
-> 
-> Cheers,
-> Peter
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 513c27895dd5..db405a6175c0 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -344,7 +344,7 @@ ramoops: ramoops@ffc00000 {
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+ 			ftrace-size = <0x0>;
+-			cc-size = <0x0>;
++			ecc-size = <16>;
+ 			no-map;
+ 		};
+ 
+-- 
+2.33.0
 
