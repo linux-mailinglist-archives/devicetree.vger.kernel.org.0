@@ -2,296 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4402F4309E3
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 16:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B32430A0A
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241553AbhJQO6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 10:58:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39832 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237361AbhJQO6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 10:58:44 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D07E60EE5;
-        Sun, 17 Oct 2021 14:56:33 +0000 (UTC)
-Date:   Sun, 17 Oct 2021 16:00:47 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 1/2] iio: frequency: adrf6780: add support for
- ADRF6780
-Message-ID: <20211017160047.17e3adb7@jic23-huawei>
-In-Reply-To: <20211011110011.104063-1-antoniu.miclaus@analog.com>
-References: <20211011110011.104063-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1343962AbhJQPbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 11:31:47 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:46747 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343951AbhJQPbm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:31:42 -0400
+Received: by mail-oi1-f177.google.com with SMTP id o204so20904699oih.13;
+        Sun, 17 Oct 2021 08:29:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=VPU+IFl4rLLYv2sOarpRyTDAHLleEPGL84WnvEUxC44=;
+        b=s77MQEFjHOULeR0ph38LxG3+9kxVfaroSOtX7HyFcwmZI7IrBl6yGgU7VxzUxduF4o
+         oWJddGNWqgSAyqxt69tvtbJlBk8+xJaGO1m7Kt0jq9xPzKQ+TWClxrvc7v89NYL3y6nx
+         NnkqQQV504NyAGfFNg1wNXiuX9TR83FLYdnhJQiOqRb+ya24lErNbRP+o347UeeamEYU
+         05329icYrmHyxcCs+UGUnjrUIZrCJIAsBQNGBuns5BNl/bacSJRjr0OC4TA+GqP253gF
+         XludXQNvZA54NjpAH9sPV9ZEqL6vxkoAJaGAJ320RnC/Ti9NK6e50TtonQBW7wKY6V82
+         GI/A==
+X-Gm-Message-State: AOAM532QSMfp7vPVx9Zts01iCCIMQEK6ExF0bbn7HHGchaB4ZDYBd/kh
+        YjUzwr90Guws4pJPGQdviw==
+X-Google-Smtp-Source: ABdhPJzZtyYhtqoQxXXNOcJqBlvAp1S6x2o7gQ2wmOrzqos7znUppF8Htr+idDdtScuGYSuiUBGRGQ==
+X-Received: by 2002:aca:ea83:: with SMTP id i125mr24646331oih.26.1634484572722;
+        Sun, 17 Oct 2021 08:29:32 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id be2sm2653931oib.1.2021.10.17.08.29.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 17 Oct 2021 08:29:31 -0700 (PDT)
+Received: (nullmailer pid 60702 invoked by uid 1000);
+        Sun, 17 Oct 2021 15:29:30 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Stan Skowronek <stan@corellium.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>
+In-Reply-To: <20211017114054.67737-2-sven@svenpeter.dev>
+References: <20211017114054.67737-1-sven@svenpeter.dev> <20211017114054.67737-2-sven@svenpeter.dev>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add Apple mailbox bindings
+Date:   Sun, 17 Oct 2021 10:29:30 -0500
+Message-Id: <1634484570.833028.60701.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Oct 2021 14:00:10 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> The ADRF6780 is a silicon germanium (SiGe) design, wideband,
-> microwave upconverter optimized for point to point microwave
-> radio designs operating in the 5.9 GHz to 23.6 GHz frequency
-> range.
+On Sun, 17 Oct 2021 13:40:53 +0200, Sven Peter wrote:
+> Apple mailbox controller are found on the M1 and are used for
+> communication with various co-processors.
 > 
-> Datasheet:
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ADRF6780.pdf
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-
-Hi Antoniu,
-
-A few things went wrong with the addition of the remove path changes that you
-will want to clean up.
-
-Also just noticed your ADC channel is an output which seems unlikely...
-
-See comments inline.
-
-Thanks,
-
-Jonathan
-
+> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 > ---
-> changes in v7:
->  - add device remove path and disable all circuitry controlled via 
->    Enable Register.
->  - rename `adrf6780_dt_parse` -> `adrf6780_properties_parse`
-> 
->  drivers/iio/frequency/Kconfig    |  12 +
->  drivers/iio/frequency/Makefile   |   1 +
->  drivers/iio/frequency/adrf6780.c | 503 +++++++++++++++++++++++++++++++
->  3 files changed, 516 insertions(+)
->  create mode 100644 drivers/iio/frequency/adrf6780.c
+>  .../bindings/mailbox/apple,mailbox.yaml       | 79 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
 > 
 
-...
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> diff --git a/drivers/iio/frequency/adrf6780.c b/drivers/iio/frequency/adrf6780.c
-> new file mode 100644
-> index 000000000000..2daa728d2ff4
-> --- /dev/null
-> +++ b/drivers/iio/frequency/adrf6780.c
-> @@ -0,0 +1,503 @@
+yamllint warnings/errors:
 
-...
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: properties:interrupts: 'oneOf' conditional failed, one must be fixed:
+	[{'description': 'send fifo is empty interrupt'}, {'description': 'send fifo is not empty interrupt'}, {'description': 'receive fifo is empty interrupt'}, {'description': 'receive fifo is not empty interrupt'}] is too long
+	[{'description': 'send fifo is empty interrupt'}, {'description': 'send fifo is not empty interrupt'}, {'description': 'receive fifo is empty interrupt'}, {'description': 'receive fifo is not empty interrupt'}] is too short
+	False schema does not allow 4
+	1 was expected
+	4 is greater than the maximum of 2
+	4 is greater than the maximum of 3
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: properties:interrupt-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 'recv-empty'}, {'const': 'recv-not-empty'}] is too long
+	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 'recv-empty'}, {'const': 'recv-not-empty'}] is too short
+	False schema does not allow 4
+	1 was expected
+	4 is greater than the maximum of 2
+	4 is greater than the maximum of 3
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: ignoring, error in schema: properties: interrupts
+warning: no schema found in file: ./Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+Documentation/devicetree/bindings/mailbox/apple,mailbox.example.dt.yaml:0:0: /example-0/mailbox@77408000: failed to match any schema with compatible: ['apple,t8103-asc-mailbox']
 
-> +#define ADRF6780_CHAN_ADC(_channel) {			\
-> +	.type = IIO_ALTVOLTAGE,				\
-> +	.output = 1,					\
-> +	.indexed = 1,					\
-> +	.channel = _channel,				\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW)	\
-> +}
-> +
-> +#define ADRF6780_CHAN_RDAC(_channel) {			\
-> +	.type = IIO_ALTVOLTAGE,				\
-> +	.output = 1,					\
-> +	.indexed = 1,					\
-> +	.channel = _channel,				\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_SCALE)	\
-> +}
+doc reference errors (make refcheckdocs):
 
-Just noticed, but as you use the same index for ADC(0) and RDAC(0)
-and both are output channels(odd for something called ADC?) you might
-as well combine the info_masks and have just one entry.
+See https://patchwork.ozlabs.org/patch/1542209
 
-I'm guessing that ADC channel might not be an output one though...
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> +
-> +#define ADRF6780_CHAN_IQ_PHASE(_channel, rf_comp) {		\
-> +	.type = IIO_ALTVOLTAGE,					\
-> +	.modified = 1,						\
-> +	.output = 1,						\
-> +	.indexed = 1,						\
-> +	.channel2 = IIO_MOD_##rf_comp,				\
-> +	.channel = _channel,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PHASE)		\
-> +}
-> +
-> +static const struct iio_chan_spec adrf6780_channels[] = {
-> +	ADRF6780_CHAN_ADC(0),
-> +	ADRF6780_CHAN_RDAC(0),
-> +	ADRF6780_CHAN_IQ_PHASE(0, I),
-> +	ADRF6780_CHAN_IQ_PHASE(0, Q),
-> +};
-> +
->
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-...
+pip3 install dtschema --upgrade
 
-> +static int adrf6780_init(struct adrf6780_dev *dev)
-> +{
-> +	int ret;
-> +	unsigned int chip_id, enable_reg, enable_reg_msk;
-> +	struct spi_device *spi = dev->spi;
-> +
-> +	/* Perform a software reset */
-> +	ret = adrf6780_reset(dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = adrf6780_spi_read(dev, ADRF6780_REG_CONTROL, &chip_id);
-> +	if (ret)
-> +		return ret;
-> +
-> +	chip_id = FIELD_GET(ADRF6780_CHIP_ID_MSK, chip_id);
-> +	if (chip_id != ADRF6780_CHIP_ID) {
-> +		dev_err(&spi->dev, "ADRF6780 Invalid Chip ID.\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	enable_reg_msk = ADRF6780_VGA_BUFFER_EN_MSK |
-> +			ADRF6780_DETECTOR_EN_MSK |
-> +			ADRF6780_LO_BUFFER_EN_MSK |
-> +			ADRF6780_IF_MODE_EN_MSK |
-> +			ADRF6780_IQ_MODE_EN_MSK |
-> +			ADRF6780_LO_X2_EN_MSK |
-> +			ADRF6780_LO_PPF_EN_MSK |
-> +			ADRF6780_LO_EN_MSK |
-> +			ADRF6780_UC_BIAS_EN_MSK;
-> +
-> +	enable_reg = FIELD_PREP(ADRF6780_VGA_BUFFER_EN_MSK, dev->vga_buff_en) |
-> +			FIELD_PREP(ADRF6780_DETECTOR_EN_MSK, 1) |
-> +			FIELD_PREP(ADRF6780_LO_BUFFER_EN_MSK, dev->lo_buff_en) |
-> +			FIELD_PREP(ADRF6780_IF_MODE_EN_MSK, dev->if_mode_en) |
-> +			FIELD_PREP(ADRF6780_IQ_MODE_EN_MSK, dev->iq_mode_en) |
-> +			FIELD_PREP(ADRF6780_LO_X2_EN_MSK, dev->lo_x2_en) |
-> +			FIELD_PREP(ADRF6780_LO_PPF_EN_MSK, dev->lo_ppf_en) |
-> +			FIELD_PREP(ADRF6780_LO_EN_MSK, dev->lo_en) |
-> +			FIELD_PREP(ADRF6780_UC_BIAS_EN_MSK, dev->uc_bias_en);
-> +
-> +	ret = adrf6780_spi_update_bits(dev, ADRF6780_REG_ENABLE, enable_reg_msk, enable_reg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = adrf6780_spi_update_bits(dev, ADRF6780_REG_LO_PATH,
-> +						ADRF6780_LO_SIDEBAND_MSK,
-> +						FIELD_PREP(ADRF6780_LO_SIDEBAND_MSK, dev->lo_sideband));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
-> +						ADRF6780_VDET_OUTPUT_SELECT_MSK,
-> +						FIELD_PREP(ADRF6780_VDET_OUTPUT_SELECT_MSK, dev->vdet_out_en));
+Please check and re-submit.
 
-Very long line so perhaps add an additional line break after the ,
-
-
-> +}
-> +
-
-...
-
-> +
-> +static int adrf6780_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct adrf6780_dev *dev;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*dev));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	dev = iio_priv(indio_dev);
-> +
-> +	indio_dev->info = &adrf6780_info;
-> +	indio_dev->name = "adrf6780";
-> +	indio_dev->channels = adrf6780_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(adrf6780_channels);
-> +
-> +	dev->spi = spi;
-> +
-> +	adrf6780_properties_parse(dev);
-> +
-> +	dev->clkin = devm_clk_get(&spi->dev, "lo_in");
-
-Please add an error message to things that might result in a deferred probe
-via dev_err_probe() as it stores more debugging information for those trying
-to chase down why a probe was deferred. Note this is a new thing, but as you
-are going to need to do another version anyway, nice to tidy it up in the
-initial driver rather than as a follow up patch.
-
-> +	if (IS_ERR(dev->clkin))
-> +		return PTR_ERR(dev->clkin);
-> +
-> +	ret = clk_prepare_enable(dev->clkin);
-> +	if (ret < 0)
-> +		goto error_disable_clk;
-> +
-> +	mutex_init(&dev->lock);
-> +
-> +	ret = adrf6780_init(dev);
-> +	if (ret)
-> +		goto error_disable_clk;;
-> +
-> +	ret = iio_device_register(indio_dev);
-> +	if (ret)
-> +		goto error_disable_clk;
-> +
-> +	return 0;
-> +
-> +error_disable_clk:
-
-An easy way to spot inconsistencies is to compare what is done
-in the error path in probe() with what occurs in remove().
-They should only differ in that the first element in remove() often
-won't appear in the probe error handling.  So why am I not seeing the
-disable write to the device here?
-
-> +	clk_disable_unprepare(dev->clkin);
-> +
-> +	return ret;
-> +}
-> +
-> +static int adrf6780_remove(struct spi_device *spi)
-> +{
-> +	int ret;
-> +	struct iio_dev *indio_dev = spi_get_drvdata(spi);
-> +	struct adrf6780_dev *dev = iio_priv(indio_dev);
-> +
-> +	/* Disable all components in the Enable Register */
-> +	ret = adrf6780_spi_write(dev, ADRF6780_REG_ENABLE, 0x0);
-
-What call in probe() is this matched against?   Looks to be the
-_init() call.  In which case this should be after the iio_device_unregister().
-Particularly obvious here as turning off the device 'before' we remove the
-userspace interface is never a good plan.
-
-Also, there is no point in returning an error code from probe so just
-carry on if this fails and we'll disable as much as possible.
-Note that there are lots of patches removing returns from spi driver
-remove functions at the moment.
-
-Everything you are doing in this remove could be easily handled automatically
-with a few devm_add_action_or_reset() calls in probe.  See the many
-patches Alexandru Ardelean has sent converting driver to that approach.
-One side effect is that the ordering is automatically correct.
-
-> +	if(ret)
-> +		return ret;
-> +
-> +	iio_device_unregister(indio_dev);
-> +
-> +	clk_disable_unprepare(dev->clkin);
-> +
-> +	return 0;
-> +}
-> +
-> +
-
-One blank line is almost always enough.
-
-> +static const struct spi_device_id adrf6780_id[] = {
-> +	{ "adrf6780", 0 },
-> +	{}
-> +};
