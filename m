@@ -2,87 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5995430A34
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 283A8430A47
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344075AbhJQPdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 11:33:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344078AbhJQPdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:33:42 -0400
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29B0AC061771
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:33 -0700 (PDT)
-Received: by mail-oo1-xc30.google.com with SMTP id s2-20020a4ac102000000b002b722c09046so4773402oop.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IIAVHwexbMKhrI7FMZ1CTcUKEaRKC2WFDIr4wjA9dyM=;
-        b=bQdY43ATH2AnaTJzC83o8Ib3eHA2zChAc6yOdTe6pdC+MVQ/Radhbs3cwOTVH/hYWI
-         RcmD4j9J5d1EWrdjM7bZ6AJbSurxmzaDnDwVasgTI3yWYjRpmOd6TsLJfp7KN3nlgWmZ
-         BEt9vrasPFdbZRHjsC1JAk8dv5Vj213Zfuc6BX81IWJ8uxuuk8IlnYs1SLoDOsgEZQ8y
-         6IA1KaH8HVf1GWpvNgSo2exBaAU+6Q5aQRcKVdPlCvxJ2yTf+xLKqh7eZjITD/3kda6h
-         fuhEfGOUByVq0cNHdPGAIFQBvwT/BdCNndH3XO3yNc1dfTbcCpcQkCuDtexjIYJa+lLD
-         gkTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IIAVHwexbMKhrI7FMZ1CTcUKEaRKC2WFDIr4wjA9dyM=;
-        b=t1Y4oa5iScXpumy5j+jpDzXf7O19IlK1oFzZne0MLTzdglVjiki8In0+sJU/IOzTby
-         xLJUdhPGmuAW11dlUY4UnfFZIiQVPhthmRjIRHLwVizofS/nFrLRBrcn+5bN87o5FMie
-         JrBHK5Kie1rHRThAXjUA+Rhx/jUnCwhCJ21VyL8pPsx2gzdWaz5otknAyLz1Y3++Z541
-         Z4SttswP51t6t4GvILGoTFDRkvg2s75zv31CUzSUKC39NOoxxWGkaSJ+s/dH0PdpwY/r
-         xV7JvwZnUV7UG+whdOXdaLGt0199Izq5lp/sbUxrmVuNK8OVXtXqjdkoOgwZEYnDKj/i
-         35EA==
-X-Gm-Message-State: AOAM530glv/xo0smGkxiQN8smYvkSQzQWzve38wZlYopdN4z6xfVrfuq
-        B+NfsUPG/F/jmdtfHUD7wzSCEw==
-X-Google-Smtp-Source: ABdhPJworGe7fs6gl6skg45o+ZKw6EU9Ggscu/3Ure3gpGHUHFi0fean+cLXjYw8B0pOGryGOH6pHQ==
-X-Received: by 2002:a4a:d099:: with SMTP id i25mr17637290oor.86.1634484692561;
-        Sun, 17 Oct 2021 08:31:32 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id x6sm2565698otp.49.2021.10.17.08.31.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Oct 2021 08:31:32 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: apq8016-sbc: Clarify firmware-names
-Date:   Sun, 17 Oct 2021 10:31:18 -0500
-Message-Id: <163448466184.410927.17405938029703984127.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210922195853.95574-1-stephan@gerhold.net>
-References: <20210922195853.95574-1-stephan@gerhold.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S238038AbhJQPpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 11:45:12 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:57857 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237507AbhJQPpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 11:45:12 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id CA9EA58174D;
+        Sun, 17 Oct 2021 11:43:01 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute1.internal (MEProxy); Sun, 17 Oct 2021 11:43:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=Ar3UQU2Sa++4NZyb+2T9TqxUkLx7
+        OwjH980XzmFd+HI=; b=az5eW2L/b1Av9aQt1pszh/6hgkWXcrHCeG8TF9+6S/gw
+        zN7KBwORoKjoKJgeBNcokVCaG7fmtsYR+td/Vi0yDewtFnd99eSrXszwNkUoXlRr
+        Auz0+uDg+K/R6+1X8deC9/C1nI8iioBPlwDAA5xm5QFRqMAiLXWQFm0itNnC6pRH
+        GyE+AwiW7U2Ck7jmvGcWSzokmkZI2U4ekW2KR0xYe2Tuc4nNamE2TPNKeV3Wnx+x
+        vI1mL73RIGJt0icWMjHPa2ieDmV+B1BDoR7KYOtDW2RugDpY4e0z/uALnOqkkAv2
+        kWWxkl+8X6tB6IZ4IFnJlOBvbbYuyZjtinoycgOSmQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ar3UQU
+        2Sa++4NZyb+2T9TqxUkLx7OwjH980XzmFd+HI=; b=k5fZQ9y3A47yKYsHIwY61b
+        IARHhWuUrxxFhvF9MwZqXioArgw+JC2vbA4cn7V/Pq5rpXqR2tZzYNU+Mn0XgCru
+        R+H9WfVdzYF+0tJNJ/HoExyq+Fle+gFiKpuhTjJySLoV++VglowlULdWsRDbxHDm
+        C5JsI0jWTn1X4/hhWc248uJxqDEj0VLKwdpZ/4+5UpcoKfFX1D97JWDanLce48r1
+        jNYIgqlMMuHAuq1Lo7Hm92ujj5ZYtUjiN2rihrYSHohEVk9CIj1RhgCA84E6v6mk
+        +jamEYLpqxk/i0qf6Tb08r4SWm9D5l2sEWqkRXSVWFjCDOKn2WTfPBqUb2PYmpdQ
+        ==
+X-ME-Sender: <xms:hURsYSul-wg9L0xU0Kz9anBBcoQfQF9dJoHuGmETSg8aKTvZV-o7iw>
+    <xme:hURsYXcRJL98kKcS8gFEVhIRcia1ZeLCr8ex_DdD6wo-4z6HOm6GiWPg_XS0drKxb
+    jJAKFyDWgQC20PU7Fg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddukedgleduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeefieeiffekffetgeffleekgefgiedvgeffvedtleegieefhfejgeehleel
+    hfeuveenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdhoiihlrggsshdroh
+    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehs
+    vhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:hURsYdyxIA1MCgEIvVNlNCwRy-3gL4p53vI9ZjbEMfUZYlBEqyChmQ>
+    <xmx:hURsYdPOavpveBE_5aILJN8MJR7V2i_zkRp_g5rVqav7T6lEPWFUbQ>
+    <xmx:hURsYS9mE3aRQrYnH9zyUgbOf6154c8DE5X6xVue_D4ZP1-ii40_ag>
+    <xmx:hURsYVZKbV-TS6VXlMirLhWddRvgTZA9C-C4mZugrfbjoh6x3Cse2A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 1C0932740061; Sun, 17 Oct 2021 11:43:01 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1345-g8441cd7852-fm-20211006.001-g8441cd78
+Mime-Version: 1.0
+Message-Id: <8a64dc78-4c8d-4eb2-b6e4-d0470f3eb511@www.fastmail.com>
+In-Reply-To: <1634484570.833028.60701.nullmailer@robh.at.kernel.org>
+References: <20211017114054.67737-1-sven@svenpeter.dev>
+ <20211017114054.67737-2-sven@svenpeter.dev>
+ <1634484570.833028.60701.nullmailer@robh.at.kernel.org>
+Date:   Sun, 17 Oct 2021 17:42:40 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     "Jassi Brar" <jassisinghbrar@gmail.com>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Mark Kettenis" <kettenis@openbsd.org>,
+        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add Apple mailbox bindings
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sep 2021 21:58:53 +0200, Stephan Gerhold wrote:
-> Commit 0f6b380d580c ("arm64: dts: qcom: apq8016-sbc: Update modem and WiFi
-> firmware path") added "firmware-name"s to the APQ8016 SBC (DB410c) device
-> tree to separate the (test key)-signed firmware from other devices.
-> 
-> However, the added names are a bit confusing. The "modem" firmware used by
-> DB410c is actually a simplified version for APQ8016 that lacks most of the
-> modem functionality (phone calls, SMS etc) that is available on MSM8916.
-> Placing it in "qcom/msm8916/modem.mbn" suggests that it supports all
-> functionality for MSM and not just the reduced functionality for APQ.
-> 
-> [...]
+On Sun, Oct 17, 2021, at 17:29, Rob Herring wrote:
+> On Sun, 17 Oct 2021 13:40:53 +0200, Sven Peter wrote:
+>> Apple mailbox controller are found on the M1 and are used for
+>> communication with various co-processors.
+>> 
+>> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
+>> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>>  .../bindings/mailbox/apple,mailbox.yaml       | 79 +++++++++++++++++++
+>>  MAINTAINERS                                   |  1 +
+>>  2 files changed, 80 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+>> 
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
+> properties:interrupts: 'oneOf' conditional failed, one must be fixed:
+> 	[{'description': 'send fifo is empty interrupt'}, {'description': 
+> 'send fifo is not empty interrupt'}, {'description': 'receive fifo is 
+> empty interrupt'}, {'description': 'receive fifo is not empty 
+> interrupt'}] is too long
+> 	[{'description': 'send fifo is empty interrupt'}, {'description': 
+> 'send fifo is not empty interrupt'}, {'description': 'receive fifo is 
+> empty interrupt'}, {'description': 'receive fifo is not empty 
+> interrupt'}] is too short
+> 	False schema does not allow 4
+> 	1 was expected
+> 	4 is greater than the maximum of 2
+> 	4 is greater than the maximum of 3
+> 	hint: "minItems" is only needed if less than the "items" list length
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
+> properties:interrupt-names: 'oneOf' conditional failed, one must be 
+> fixed:
+> 	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 
+> 'recv-empty'}, {'const': 'recv-not-empty'}] is too long
+> 	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 
+> 'recv-empty'}, {'const': 'recv-not-empty'}] is too short
+> 	False schema does not allow 4
+> 	1 was expected
+> 	4 is greater than the maximum of 2
+> 	4 is greater than the maximum of 3
+> 	hint: "minItems" is only needed if less than the "items" list length
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
+> ignoring, error in schema: properties: interrupts
+> warning: no schema found in file: 
+> ./Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+> Documentation/devicetree/bindings/mailbox/apple,mailbox.example.dt.yaml:0:0: 
+> /example-0/mailbox@77408000: failed to match any schema with 
+> compatible: ['apple,t8103-asc-mailbox']
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/patch/1542209
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
 
-Applied, thanks!
 
-[1/1] arm64: dts: qcom: apq8016-sbc: Clarify firmware-names
-      commit: 2533786f46d074d67a4bca04c2d44d3825594415
+Whoops, looks like this fails some new check added since I submitted
+the last version a month ago.
+I'll drop the "minItems: 4" since the number of items is constant anyway.
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Sven
