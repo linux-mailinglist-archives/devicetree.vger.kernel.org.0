@@ -2,69 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C356430A2A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5229430A28
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344012AbhJQPdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 11:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52470 "EHLO
+        id S1344045AbhJQPdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 11:33:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344014AbhJQPdf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:33:35 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BAF8C06176E
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:26 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id n64so20954690oih.2
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:26 -0700 (PDT)
+        with ESMTP id S1344031AbhJQPdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:33:38 -0400
+Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D36C06176D
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:28 -0700 (PDT)
+Received: by mail-oo1-xc2c.google.com with SMTP id a17-20020a4a6851000000b002b59bfbf669so548527oof.9
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=DHs/CYcm2qKRKw2WotgRIQKXcOHYWF5rKMY3LC5HdnY=;
-        b=kgg1PBx3V0Co2ywaEFgOub/6RanqM1JagwdUiSWUyPi53pXZV4POksFqGjkhWlTtW6
-         WlKLJv8s24BwZhl+YdIPHm5CrneU7GcaVHpYABlcMsSyP7baKHWE/wB1b1BflLOFKc5/
-         f69KUatQ7WWVDoINE9UZaganUHuGvm+uZ/tEgbKAnzSgeOTzdLy373gr67LIiJH4QOU4
-         NYh8kFcKmyQzM8z03UbLz99AoGB2zbw3Kj78nhx/iMte/7ThAIW8JGsGMpBiFsTDa42S
-         i1ByhkEP8iC24rZmVbB1nAGz3uzLOH60PkVAyvYOKy1x8RDDwhwGuUfftxxPtwJIwX0d
-         1HAQ==
+        bh=0RwjU+xMTKwnJSdI/ZvJQg7RwuWcVuJ6qT981afubY4=;
+        b=egX+4knf0mp/ETZTK2SirLB3Yfw0qsJSNehObIg6sfzDYPQbuoqNBGkHo/t8BvRkBH
+         BNmd7KPPih+yWo1dXRep1zuymIv4wibMQj+So/7GxZo6WIa8zeOxAckauTcDxlPVoWeY
+         xiMu5Q5xJqAmk9T8MQDkvadxZlMUep71BHIAt3RdPm6NYWW0CTQ3PwvvpGWZ30aZpziq
+         LSCCpp30OTH9wdYXXxx1EfKkBh08ux2Kqc+5v7WJbCMfFawiUXJlOIkhAzSXrAHMw9kM
+         UzoOv/qpPeK3706UZgD7KoaXUe8caBeqKNN9fcwwfJbluZkyNmlGn6AL1yEbGmx/QFuO
+         YZAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=DHs/CYcm2qKRKw2WotgRIQKXcOHYWF5rKMY3LC5HdnY=;
-        b=VMfKYtknufmkkQbl92etrKYbG4w9ixE7KhrB1F/KgNyPw8aRSBK+IWYHfU9KqOKWGt
-         rtO3gNMZXDnk2x4NGYvgtyjYI3TFn0F7lwvwZxOsyncO0y4ONMKevI4bMjMn/o/JNgH3
-         ml2GDKGGCFVDubBSgjPJOBnVh0wYzcoiE73vg0+eUV/s0aCbbXDc/bLmiX+5evc7A56X
-         /KLT5pg2/JLcAD3yViYH4fVOqwpynzD3EnaF7/xAxiP0wlH9sskNIXIC6qEdzaPavqYn
-         l9eZLN2QqGwxGlz8+2iFKB76BUVjekUkADuTxx7ej+2McHJlQwTYJojB6OPglOQvT+mc
-         A0jg==
-X-Gm-Message-State: AOAM533lm9+g2b4pJFOiQywF8oXurAturb/4+ZdwCS/KDXk/cxEyTPfE
-        OYNMlJrSvu6XGf45Zk2yQ4KQkw==
-X-Google-Smtp-Source: ABdhPJyoKBhysey+HUBoaspOx6durmCbGKIDzgFX90eJiuJCZ9vXUITaHoWQ9yrCq7T3kYPIEmbEqA==
-X-Received: by 2002:aca:db8a:: with SMTP id s132mr25047575oig.119.1634484685445;
-        Sun, 17 Oct 2021 08:31:25 -0700 (PDT)
+        bh=0RwjU+xMTKwnJSdI/ZvJQg7RwuWcVuJ6qT981afubY4=;
+        b=1GM5CaB/a+lKhEZOsXUtHdrWq4RhYi2dIYemELbQORQ+rDvtSvFowX8RNo2YltBjME
+         YYCn+sEtaYmfDgBSX57oiiL4uWM0Et4qrAGXll55ozJkiaKgTcn932MvxkbmKQY5WIPp
+         2d24jXatfAVBRVITRiCEZADVK8xw/+2otKFELMNJIn8nKYb89eWAk3aTkrpbmD7KvmVe
+         OQv7uvsAaFOa2cgbvwndkTx4xHS2OOlEnLmmeXItFQdnE+nyjC/87zUnXv0a1PDEwZZF
+         KwqaCyPOqt6j5EoTriCi6L18WZe51Gwjqqe/lDYUsxoWLOS0SMNIGFf3KUI0xghnT8Es
+         7ZDg==
+X-Gm-Message-State: AOAM531s3Es5TKMn82TgxmgAXnT1sio78MQucw/b668PxK/NVWkCupHZ
+        jcR8jKJg4LAPFb1kXzKFUQY8nw==
+X-Google-Smtp-Source: ABdhPJzHDaDBSR9eIppkqcxxm46japDYxXj9RAds0rnAM9bYXyGg9tFLS+fndIqSUyTv2Z3E+mxSGg==
+X-Received: by 2002:a4a:e9f0:: with SMTP id w16mr17707836ooc.3.1634484688160;
+        Sun, 17 Oct 2021 08:31:28 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id x6sm2565698otp.49.2021.10.17.08.31.24
+        by smtp.gmail.com with ESMTPSA id x6sm2565698otp.49.2021.10.17.08.31.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Oct 2021 08:31:25 -0700 (PDT)
+        Sun, 17 Oct 2021 08:31:27 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-clk@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: (subset) [PATCH v7 0/6] clk: qcom: use power-domain for sm8250's clock controllers
-Date:   Sun, 17 Oct 2021 10:31:11 -0500
-Message-Id: <163448466184.410927.258014767858670421.b4-ty@linaro.org>
+To:     Philip Chen <philipchen@chromium.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org, dianders@chromium.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 1/2] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
+Date:   Sun, 17 Oct 2021 10:31:14 -0500
+Message-Id: <163448466185.410927.18392226904278200617.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
-References: <20210829154757.784699-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20211008113839.v3.1.Ibada67e75d2982157e64164f1d11715d46cdc42c@changeid>
+References: <20211008113839.v3.1.Ibada67e75d2982157e64164f1d11715d46cdc42c@changeid>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -72,22 +66,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 29 Aug 2021 18:47:49 +0300, Dmitry Baryshkov wrote:
-> On SM8250 both the display and video clock controllers are powered up by
-> the MMCX power domain. Handle this by linking clock controllers to the
-> proper power domain, and using runtime power management to enable and
-> disable the MMCX power domain.
+On Fri, 8 Oct 2021 11:39:34 -0700, Philip Chen wrote:
+> Factor out ti-sn65dsi86 edp bridge as a separate dts fragment.
+> This helps us introduce the second source edp bridge later.
 > 
-> Dependencies:
-> https://lore.kernel.org/linux-pm/1628767642-4008-1-git-send-email-rnayak@codeaurora.org/
-> (pending inclusion into 5.15)
 > 
-> [...]
 
 Applied, thanks!
 
-[6/8] arm64: dts: qcom: sm8250: remove mmcx regulator
-      commit: 266e5cf39a0f25787cb66a36dde50799194062c6
+[1/2] arm64: dts: sc7180: Factor out ti-sn65dsi86 support
+      commit: 4537977a50e6257c6c19db925479298c19822667
+[2/2] arm64: dts: sc7180: Support Parade ps8640 edp bridge
+      commit: 0faf297c427372ad2a02dc28e6d1327825031882
 
 Best regards,
 -- 
