@@ -2,94 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D5F3430BFA
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 22:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63E6D430BEE
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 22:05:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242844AbhJQUT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 16:19:57 -0400
-Received: from vern.gendns.com ([98.142.107.122]:34598 "EHLO vern.gendns.com"
+        id S242814AbhJQUID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 16:08:03 -0400
+Received: from phobos.denx.de ([85.214.62.61]:33704 "EHLO phobos.denx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S242899AbhJQUTx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 16:19:53 -0400
-X-Greylist: delayed 1581 seconds by postgrey-1.27 at vger.kernel.org; Sun, 17 Oct 2021 16:19:53 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:MIME-Version:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=mBedI+GnmqR8ufViU8AAiK9kL096SIDzwcuuPdOFVIE=; b=t+IfxrQxMP9iitfbQcbu18TXbu
-        iX+0ZFwdigNp3eT9USj2KEfN5x3SJejV7FDzA1KbTCFATHdbP6QcFFxRPcBLG113m8XiS31318/oz
-        Bddju//bmbMOxLOxg5/EQe3SeIcoz75pvBBX4oo9yToizevTfNCji/QpU0p+b9CKioZloLnyVREnE
-        qQz+t56Gv+ubd/4uQzLQVfOC+cjTMfc1slTbqI8NPih35w65+RXhO7ublfKtu7QNmQkxuAyvF+XWm
-        le8hrCQ0Lgn82hfrS/Igy0NCYN7jBZRFc1c5idnHt8fxp9jyakUtHX6I4Q1nPZSYJX1l2azCvYUgv
-        zKAJcK9g==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:34374 helo=freyr.lechnology.com)
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <david@lechnology.com>)
-        id 1mcCBi-0007Zh-7c; Sun, 17 Oct 2021 15:51:19 -0400
-From:   David Lechner <david@lechnology.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     David Lechner <david@lechnology.com>, Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH] ARM: dts: da850: add MMD SDIO interrupts
-Date:   Sun, 17 Oct 2021 14:51:05 -0500
-Message-Id: <20211017195105.3498643-1-david@lechnology.com>
-X-Mailer: git-send-email 2.25.1
+        id S233148AbhJQUID (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 16:08:03 -0400
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 301B682849;
+        Sun, 17 Oct 2021 22:05:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1634501152;
+        bh=miRIGtV3Ypklz6qbRshGTjY1MCffjbZVUo36Fyo5E5M=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=klVyz3m0VDeLLOfIs7HrprUi9FpmohyDzG67oI+VUrNv3o+mZMEFJu9PHzUqJXpG0
+         MdwrnBwLXiNSxu2THf7++1SdQlsNvpN8UM2GzrKrRnBXuYv5o5CsgmgFQQfZvZQG+5
+         /6fxmDOD9cFcu2zvBmOEF61HP0HWNKB8nKnZepuI+Yz59dO9k4vo55v718RbtodDp4
+         sDdBgVp9TrsR/atrfqM/aKUBAK+Uz04/58I0YERX1rqCIYI8g5ArqB+ZS1YH8bFmZY
+         fEbZfO+zTudAfi8aYpFOLAjzWELFl5+aYLd4v+lNnTR7Pe2eWjgCv25oZQ4svNbctS
+         JsjfREJR7hJTA==
+Subject: Re: [PATCH v5 2/2] drm/bridge: lvds-codec: Add support for pixel data
+ sampling edge select
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20211017001204.299940-1-marex@denx.de>
+ <20211017001204.299940-2-marex@denx.de> <YWxUB9y3qFzkfRR0@ravnborg.org>
+ <075913ae-e5a0-3a9e-c928-55cae99ab0e5@denx.de>
+ <YWxgKWXBpT6PyQO8@ravnborg.org>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <48c72f74-7be2-77d5-636c-0228f2bf0939@denx.de>
+Date:   Sun, 17 Oct 2021 22:05:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+In-Reply-To: <YWxgKWXBpT6PyQO8@ravnborg.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the MMC SDIO interrupts to the MMC nodes in the device tree
-for TI DA850/AM18XX/OMAP-L138.
+On 10/17/21 7:40 PM, Sam Ravnborg wrote:
+> Hi Marek,
+> 
+> On Sun, Oct 17, 2021 at 07:29:51PM +0200, Marek Vasut wrote:
+>> On 10/17/21 6:49 PM, Sam Ravnborg wrote:
+>>
+>> [...]
+>>
+>>>> +	/*
+>>>> +	 * Encoder might sample data on different clock edge than the display,
+>>>> +	 * for example OnSemi FIN3385 has a dedicated strapping pin to select
+>>>> +	 * the sampling edge.
+>>>> +	 */
+>>>> +	if (lvds_codec->connector_type == DRM_MODE_CONNECTOR_LVDS &&
+>>>> +	    !of_property_read_u32(dev->of_node, "pclk-sample", &val)) {
+>>>> +		lvds_codec->timings.input_bus_flags = val ?
+>>>> +			DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE :
+>>>> +			DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE;
+>>>> +	}
+>>>> +
+>>>>    	/*
+>>>>    	 * The panel_bridge bridge is attached to the panel's of_node,
+>>>>    	 * but we need a bridge attached to our of_node for our user
+>>>>    	 * to look up.
+>>>>    	 */
+>>>>    	lvds_codec->bridge.of_node = dev->of_node;
+>>>> +	lvds_codec->bridge.timings = &lvds_codec->timings;
+>>> I do not understand how this will work. The only field that is set is timings.input_bus_flags
+>>> but any user will see bridge.timings is set and will think this is all
+>>> timing info.
+>>>
+>>> Maybe I just misses something obvious?
+>>
+>> Is there anything else in those timings that should be set ? See
+>> include/drm/drm_bridge.h around line 640
+>>
+>> setup_time_ps/hold_time_ps/dual_link isn't supported by this driver, so it
+>> is 0 or false anyway, i.e. no change.
+> 
+> Just me being confused with display_timings. Patch looks good.
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> 
+> Ping me in a few days to apply it if there is no more feedback.
 
-The missing interrupts were causing the following error message to be
-printed:
-
-    davinci_mmc 1c40000.mmc: IRQ index 1 not found
-
-Signed-off-by: David Lechner <david@lechnology.com>
----
- arch/arm/boot/dts/da850.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/da850.dtsi b/arch/arm/boot/dts/da850.dtsi
-index c3942b4e82ad..bda9a22ba4bc 100644
---- a/arch/arm/boot/dts/da850.dtsi
-+++ b/arch/arm/boot/dts/da850.dtsi
-@@ -537,7 +537,7 @@ mmc0: mmc@40000 {
- 			reg = <0x40000 0x1000>;
- 			cap-sd-highspeed;
- 			cap-mmc-highspeed;
--			interrupts = <16>;
-+			interrupts = <16>, <17>;
- 			dmas = <&edma0 16 0>, <&edma0 17 0>;
- 			dma-names = "rx", "tx";
- 			clocks = <&psc0 5>;
-@@ -567,7 +567,7 @@ mmc1: mmc@21b000 {
- 			reg = <0x21b000 0x1000>;
- 			cap-sd-highspeed;
- 			cap-mmc-highspeed;
--			interrupts = <72>;
-+			interrupts = <72>, <73>;
- 			dmas = <&edma1 28 0>, <&edma1 29 0>;
- 			dma-names = "rx", "tx";
- 			clocks = <&psc1 18>;
--- 
-2.25.1
-
+ACK
