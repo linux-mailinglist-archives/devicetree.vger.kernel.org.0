@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7414F430A10
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33849430A14
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343974AbhJQPda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 11:33:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52404 "EHLO
+        id S1343993AbhJQPdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 11:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242285AbhJQPd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:33:29 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A84C061765
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:20 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id q129so21021831oib.0
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:20 -0700 (PDT)
+        with ESMTP id S1343951AbhJQPdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 11:33:31 -0400
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E259FC06161C
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:21 -0700 (PDT)
+Received: by mail-oi1-x22c.google.com with SMTP id o83so20955170oif.4
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 08:31:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xNI/fqSmWltjImZA+3I0T0IoPCdlprAOazFOStLyFNQ=;
-        b=eIn3KPrwMzRcAEhVrvpaCX1sK1rURrMUuzGw6u8KDZb5pOCqybeVIJ42eNZB16MjyW
-         IxZyo3C8K90IlNMJOvlGDMAcNpMLT3h3RJNxQob9SBC0ltatbxZQ1E0wTXYfwhQzs+xS
-         GXEILVFfC0jkbU1LqQc2StSicMpc2G61bgO2IymliMOs/rTTI1nnMcfmnqKjK0NP699A
-         /8eNlf1lg/Bqev+nMmKar8bOC+JdloqAIDTfYQDF+LNCeCOzayh9O/n4GOc2Pths/9My
-         762onKZvrtqjXDETlJHmOYt/JIJnx//tE+IizCVPwvSAzYXy0ikDlTXWsehIKk1hOgQm
-         YLFg==
+        bh=X1BNeRRH+4pCFYNacV/SnSRJ6/WkMTg9riRV4NgpWaI=;
+        b=inBJGGXIeipJ60XqJEqfNPYwCvRqERJvdfzckXf/FQlU71wzj2xsmJCKM9jT7XzJ/2
+         BC9S7duklDKg5BtPmWacZJd0pbyzXWhjYFPwV+5XdqS8ZbWmSqmfYosZf63fwiB+OxMF
+         GzLqRQ0zFHW8s/kfc0bpv4ca4k4uTTtgD92PaWv5hJPyZy2iBCUxzQXO+XTUdzZzyscI
+         dVHv7mVozrZE4TxH9tU5IgepLQkIAVirLb+Q5GJz8va0OLNOfvIuZ4VlUnV8p2DEphXv
+         omswBq76lmR2CB+tZAtCRdRhlDXXNqz66pJdfAqsY9WrKiveeGckR6p1ZKAFC4KWHP/i
+         qmfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xNI/fqSmWltjImZA+3I0T0IoPCdlprAOazFOStLyFNQ=;
-        b=V/S6OtvNZi74dYW0biPc+/VTB/KprMmHhYSTqzT882xie0cXKNhuQZLkks+E6hn/v9
-         bsdZcHJaMqHVOxSV9JMl/dwx98WX0tv/UKwPJZSRbYiRLjtoQXC4BGgSIzC/PUFboPZi
-         XUqahhTvSd1oTl8FUxdys6qZ3iOeeuAnYkFe3/itToZBbWpDKxHwlc6qSysOeonagH0O
-         JLdIU5NOeCj8+W72nm+k5vPpZMJZtvpeXrkJCAYhbdeZRduur4CA+E+FDn9lBtjzUJdA
-         BuO2dGxdn+RGAm3QAUnzqhbO4rCW4ymI4ri7Slw2fG5T/2Av0cNzWLL3UkWvKSFLsq+1
-         rXmw==
-X-Gm-Message-State: AOAM533n53d7qMAufHAECJPAt7ZCzgEwPI7UWXjSb60mSDlWUFmpx25A
-        LpSXtirjxuiYz1RVQNP0P4CjCQ==
-X-Google-Smtp-Source: ABdhPJwVxS/MjPNX0T0Nx9Mr6ypflotXnob3w24BwfCxT2HW++E7bsXZHzZF9vRr299QYpi1mB+1oQ==
-X-Received: by 2002:a54:4f8f:: with SMTP id g15mr15986476oiy.169.1634484679542;
-        Sun, 17 Oct 2021 08:31:19 -0700 (PDT)
+        bh=X1BNeRRH+4pCFYNacV/SnSRJ6/WkMTg9riRV4NgpWaI=;
+        b=RDAPbg2pF9aEXoUhfjxvMFO59RuS8yatVEakdcoRtAftHDOHUPBP6qgyAg4Od4tDzQ
+         5VYurrhmUZHT9YE3/IkKuhWd3a0CHrCQ10cIu60sARQGBS2CKYNjPD6S+bEOUs8KTDRE
+         d5gSPKpF5JTjHAf8qgN8UybNVeIFSRsvhHCN4nfGqRhwE0v9ZDz4vh9nlweej6HBTjx/
+         zjuIO0y+WllmQ/EHhStKQ03A8uZMYQHwo+GoXqk5NNFG9H14a8L9wpaXow8LGmtS9Rz4
+         kddr5tZDWVJlfzQbCwo85WQWMqnqbm9xGyZ5mF34+Qo0HXY5M17WQpfbqUzf037AD5q/
+         JknA==
+X-Gm-Message-State: AOAM530oXmnit/kt58ziXzmIh1QrXUzlMsXMEiAVdhgFvgEjJoFafr6Q
+        kNawYXIQ1DEzAkUvfBusOB69Sxdmw+A=
+X-Google-Smtp-Source: ABdhPJwNs6CeqlgS6OrYQ39EbXlETugWmu6Cbv6RgS/P1oLqmnnKTp0wpWhxbPZRXkjeOYXTmmJ9PQ==
+X-Received: by 2002:a05:6808:308e:: with SMTP id bl14mr8869305oib.92.1634484681347;
+        Sun, 17 Oct 2021 08:31:21 -0700 (PDT)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id x6sm2565698otp.49.2021.10.17.08.31.18
+        by smtp.gmail.com with ESMTPSA id x6sm2565698otp.49.2021.10.17.08.31.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Oct 2021 08:31:19 -0700 (PDT)
+        Sun, 17 Oct 2021 08:31:21 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-kernel@vger.kernel.org,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc:     Shunqian Zheng <zhengsq@rock-chips.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-msm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Guido Gunther <agx@sigxcpu.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-sunxi@lists.linux.dev,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Dan Johansen <strit@manjaro.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-rockchip@lists.infradead.org, Lucas Stach <dev@lynxeye.de>,
-        Simon South <simon@simonsouth.net>,
-        Fabio Estevam <festevam@gmail.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Angus Ainslie <angus@akkea.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Eddie Cai <eddie.cai.linux@gmail.com>
-Subject: Re: (subset) [PATCH 3/4] arm64: dts: qcom: add 'chassis-type' property
-Date:   Sun, 17 Oct 2021 10:31:04 -0500
-Message-Id: <163448466184.410927.10597282951257964258.b4-ty@linaro.org>
+To:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Deepak Kumar Singh <deesin@codeaurora.org>,
+        Chris Lew <clew@codeaurora.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/4] dt-bindings: soc: smem: Make indirection optional
+Date:   Sun, 17 Oct 2021 10:31:06 -0500
+Message-Id: <163448466184.410927.8544390085953194195.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211016102025.23346-4-arnaud.ferraris@collabora.com>
-References: <20211016102025.23346-1-arnaud.ferraris@collabora.com> <20211016102025.23346-4-arnaud.ferraris@collabora.com>
+In-Reply-To: <20210930182111.57353-1-bjorn.andersson@linaro.org>
+References: <20210930182111.57353-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -88,21 +68,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Oct 2021 12:20:24 +0200, Arnaud Ferraris wrote:
-> A new 'chassis-type' root node property has recently been approved for
-> the device-tree specification, in order to provide a simple way for
-> userspace to detect the device form factor and adjust their behavior
-> accordingly.
+On Thu, 30 Sep 2021 11:21:07 -0700, Bjorn Andersson wrote:
+> In the modern Qualcomm platform there's no reason for having smem as a
+> separate node, so let's change this.
 > 
-> This patch fills in this property for end-user devices (such as laptops,
-> smartphones and tablets) based on Qualcomm ARM64 processors.
+> Bjorn Andersson (4):
+>   dt-bindings: sram: Document qcom,rpm-msg-ram
+>   dt-bindings: soc: smem: Make indirection optional
+>   soc: qcom: smem: Support reserved-memory description
+>   arm64: dts: qcom: sdm845: Drop standalone smem node
 > 
 > [...]
 
 Applied, thanks!
 
-[3/4] arm64: dts: qcom: add 'chassis-type' property
-      commit: eaa744b1c101a33fba5978866defc8a7e87f8d79
+[4/4] arm64: dts: qcom: sdm845: Drop standalone smem node
+      commit: 622adb84b3e7c48a888c3df26fbf28679ded660b
 
 Best regards,
 -- 
