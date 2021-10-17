@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFCB2430B37
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 19:29:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6C70430B35
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 19:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344420AbhJQRcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 13:32:03 -0400
-Received: from phobos.denx.de ([85.214.62.61]:35388 "EHLO phobos.denx.de"
+        id S1344410AbhJQR3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 13:29:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54210 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344366AbhJQRcD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 13:32:03 -0400
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        id S1344366AbhJQR3W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 13:29:22 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E19DA8314C;
-        Sun, 17 Oct 2021 19:29:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634491792;
-        bh=ztI9DlbJeKj95yM+25uJ2nJ30rAN4QzeA0XZQ8yKiuY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=c4L0G7K+fb1Vyfpjod8Bw4y4S3arcXagiOQ8sDY5PvNxzFBjl7+a6uqUS4S9hwM7d
-         61kPk7W9cJhKDYJLlM7HASZ5KOCmI4hLBq/CcVbTsMeqz6rljoWZ2z2QsO5DlRFw7p
-         sGSEdZW0/t2ZcTPQYosrn3sg3dpJqMVgou9Tb55OqKHw0aNS+aXtjbx/KTfZwsw40x
-         7t+z5/VEZzBezH2hC+jt8SKbTYQhmfqpdStU/N94jegH/e0sqx8FthDYYjmavTeMRi
-         ePXFxAm/fp6ce46n6ftdkOrGuaktlYsr5lHYh+H3tFo1NShXbp82YpPtJ1xuWmDCKV
-         u0tzahHhPuTfA==
-Subject: Re: [PATCH v5 2/2] drm/bridge: lvds-codec: Add support for pixel data
- sampling edge select
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20211017001204.299940-1-marex@denx.de>
- <20211017001204.299940-2-marex@denx.de> <YWxUB9y3qFzkfRR0@ravnborg.org>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <075913ae-e5a0-3a9e-c928-55cae99ab0e5@denx.de>
-Date:   Sun, 17 Oct 2021 19:29:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        by mail.kernel.org (Postfix) with ESMTPSA id 107DE60FD8;
+        Sun, 17 Oct 2021 17:27:09 +0000 (UTC)
+Date:   Sun, 17 Oct 2021 18:31:25 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        devicetree@vger.kernel.org, kernel@axis.com, lars@metafoo.de,
+        linux-iio@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] Add settle time support to iio-mux
+Message-ID: <20211017183108.1797d416@jic23-huawei>
+In-Reply-To: <7c14fabc-8811-5875-15a0-67884e2da78d@axentia.se>
+References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
+        <7c14fabc-8811-5875-15a0-67884e2da78d@axentia.se>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <YWxUB9y3qFzkfRR0@ravnborg.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/17/21 6:49 PM, Sam Ravnborg wrote:
+On Sat, 9 Oct 2021 01:09:56 +0200
+Peter Rosin <peda@axentia.se> wrote:
 
-[...]
-
->> +	/*
->> +	 * Encoder might sample data on different clock edge than the display,
->> +	 * for example OnSemi FIN3385 has a dedicated strapping pin to select
->> +	 * the sampling edge.
->> +	 */
->> +	if (lvds_codec->connector_type == DRM_MODE_CONNECTOR_LVDS &&
->> +	    !of_property_read_u32(dev->of_node, "pclk-sample", &val)) {
->> +		lvds_codec->timings.input_bus_flags = val ?
->> +			DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE :
->> +			DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE;
->> +	}
->> +
->>   	/*
->>   	 * The panel_bridge bridge is attached to the panel's of_node,
->>   	 * but we need a bridge attached to our of_node for our user
->>   	 * to look up.
->>   	 */
->>   	lvds_codec->bridge.of_node = dev->of_node;
->> +	lvds_codec->bridge.timings = &lvds_codec->timings;
-> I do not understand how this will work. The only field that is set is timings.input_bus_flags
-> but any user will see bridge.timings is set and will think this is all
-> timing info.
+> Hi Vincent!
 > 
-> Maybe I just misses something obvious?
+> On 2021-10-07 15:46, Vincent Whitchurch wrote:
+> > On one of our boards we use gpio-mux with iio-mux to read voltages using an ADC
+> > from a few different channels, and on this board the input voltage needs some
+> > time to stabilize after a switch of the mux.
+> > 
+> > This series add devicetree and driver support for this kind of hardware which
+> > requries a settle time after muxing.
+> > 
+> > v1 -> v2:
+> > - Move property support to iio-mux and delay handling to mux core as suggested
+> >   by Peter.
+> > 
+> > v1: https://lore.kernel.org/all/20211004153640.20650-1-vincent.whitchurch@axis.com/
+> > 
+> > Vincent Whitchurch (3):
+> >   mux: add support for delay after muxing
+> >   dt-bindings: iio: io-channel-mux: Add property for settle time
+> >   iio: multiplexer: iio-mux: Support settle-time-us property
+> > 
+> >  .../iio/multiplexer/io-channel-mux.yaml       |  5 +++
+> >  drivers/iio/multiplexer/iio-mux.c             |  7 +++-
+> >  drivers/mux/core.c                            | 36 ++++++++++++++++---
+> >  include/linux/mux/consumer.h                  | 23 +++++++++---
+> >  include/linux/mux/driver.h                    |  4 +++
+> >  5 files changed, 65 insertions(+), 10 deletions(-)
+> >   
+> 
+> This looks really nice, thank you! The only question I see is if it should
+> go via my (virtually unused) mux tree or via the iio tree. Yes, the meat is
+> in mux/core.c, but I'm happy to just ack these patches and have Jonathan
+> handle them. But, I'm also fine with handling it in the mux tree (but I'm
+> getting old and forgetful, and it's been so many moons that I need to
+> re-learn the steps).
+> 
+> Jonathan, you or me? If you, you can add:
+> 
+> Acked-by: Peter Rosin <peda@axentia.se>
 
-Is there anything else in those timings that should be set ? See
-include/drm/drm_bridge.h around line 640
+I don't really mind, but the 4/3 and 5/3 have broken my b4 based flow + Rob
+hasn't yet given an Ack on those two, so I'll not pick any of them up just yet.
+I can sort out the two oddly numbered patches if Rob is happy, though they'll
+probably not have the nice link tags that b4 automates.
 
-setup_time_ps/hold_time_ps/dual_link isn't supported by this driver, so 
-it is 0 or false anyway, i.e. no change.
+Note Rob didn't actually say he was happy with patch 2 yet as far as I can tell.
+
+Thanks,
+
+Jonathan
+
+> 
+> Cheers,
+> Peter
+
