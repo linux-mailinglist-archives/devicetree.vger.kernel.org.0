@@ -2,163 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 283A8430A47
-	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 17:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0EA9430AC2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Oct 2021 18:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238038AbhJQPpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 11:45:12 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:57857 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237507AbhJQPpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 17 Oct 2021 11:45:12 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CA9EA58174D;
-        Sun, 17 Oct 2021 11:43:01 -0400 (EDT)
-Received: from imap47 ([10.202.2.97])
-  by compute1.internal (MEProxy); Sun, 17 Oct 2021 11:43:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm2; bh=Ar3UQU2Sa++4NZyb+2T9TqxUkLx7
-        OwjH980XzmFd+HI=; b=az5eW2L/b1Av9aQt1pszh/6hgkWXcrHCeG8TF9+6S/gw
-        zN7KBwORoKjoKJgeBNcokVCaG7fmtsYR+td/Vi0yDewtFnd99eSrXszwNkUoXlRr
-        Auz0+uDg+K/R6+1X8deC9/C1nI8iioBPlwDAA5xm5QFRqMAiLXWQFm0itNnC6pRH
-        GyE+AwiW7U2Ck7jmvGcWSzokmkZI2U4ekW2KR0xYe2Tuc4nNamE2TPNKeV3Wnx+x
-        vI1mL73RIGJt0icWMjHPa2ieDmV+B1BDoR7KYOtDW2RugDpY4e0z/uALnOqkkAv2
-        kWWxkl+8X6tB6IZ4IFnJlOBvbbYuyZjtinoycgOSmQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Ar3UQU
-        2Sa++4NZyb+2T9TqxUkLx7OwjH980XzmFd+HI=; b=k5fZQ9y3A47yKYsHIwY61b
-        IARHhWuUrxxFhvF9MwZqXioArgw+JC2vbA4cn7V/Pq5rpXqR2tZzYNU+Mn0XgCru
-        R+H9WfVdzYF+0tJNJ/HoExyq+Fle+gFiKpuhTjJySLoV++VglowlULdWsRDbxHDm
-        C5JsI0jWTn1X4/hhWc248uJxqDEj0VLKwdpZ/4+5UpcoKfFX1D97JWDanLce48r1
-        jNYIgqlMMuHAuq1Lo7Hm92ujj5ZYtUjiN2rihrYSHohEVk9CIj1RhgCA84E6v6mk
-        +jamEYLpqxk/i0qf6Tb08r4SWm9D5l2sEWqkRXSVWFjCDOKn2WTfPBqUb2PYmpdQ
-        ==
-X-ME-Sender: <xms:hURsYSul-wg9L0xU0Kz9anBBcoQfQF9dJoHuGmETSg8aKTvZV-o7iw>
-    <xme:hURsYXcRJL98kKcS8gFEVhIRcia1ZeLCr8ex_DdD6wo-4z6HOm6GiWPg_XS0drKxb
-    jJAKFyDWgQC20PU7Fg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddukedgleduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeefieeiffekffetgeffleekgefgiedvgeffvedtleegieefhfejgeehleel
-    hfeuveenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgpdhoiihlrggsshdroh
-    hrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehs
-    vhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:hURsYdyxIA1MCgEIvVNlNCwRy-3gL4p53vI9ZjbEMfUZYlBEqyChmQ>
-    <xmx:hURsYdPOavpveBE_5aILJN8MJR7V2i_zkRp_g5rVqav7T6lEPWFUbQ>
-    <xmx:hURsYS9mE3aRQrYnH9zyUgbOf6154c8DE5X6xVue_D4ZP1-ii40_ag>
-    <xmx:hURsYVZKbV-TS6VXlMirLhWddRvgTZA9C-C4mZugrfbjoh6x3Cse2A>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 1C0932740061; Sun, 17 Oct 2021 11:43:01 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1345-g8441cd7852-fm-20211006.001-g8441cd78
-Mime-Version: 1.0
-Message-Id: <8a64dc78-4c8d-4eb2-b6e4-d0470f3eb511@www.fastmail.com>
-In-Reply-To: <1634484570.833028.60701.nullmailer@robh.at.kernel.org>
-References: <20211017114054.67737-1-sven@svenpeter.dev>
- <20211017114054.67737-2-sven@svenpeter.dev>
- <1634484570.833028.60701.nullmailer@robh.at.kernel.org>
-Date:   Sun, 17 Oct 2021 17:42:40 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     "Jassi Brar" <jassisinghbrar@gmail.com>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Mark Kettenis" <kettenis@openbsd.org>,
-        "Stan Skowronek" <stan@corellium.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: Add Apple mailbox bindings
-Content-Type: text/plain
+        id S237019AbhJQQcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 12:32:00 -0400
+Received: from ixit.cz ([94.230.151.217]:44180 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233820AbhJQQb7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 12:31:59 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 364DF20064;
+        Sun, 17 Oct 2021 16:18:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634480314;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=SPc2IVyrD8PWJ0VNqHMWOp4R+CLAD6uPKyK1HWCBuvM=;
+        b=I0N3JpybQuQYUZL+lrg6V5ari/iB5tccm83ZD53NxUDjpz54X+UtEecizh6/s1WOjKq0dH
+        xAYcOgvesr7tqaak1F/Z4QCNPVLCMVvlnGOVa3whNC7zsMQHAAVL5Zk1sO/2HoZCxoAYsV
+        l78O8yc6wmrIAX0huSmmPL2SNoV76h0=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH v3 1/4] arm64: dts: qcom: SMxxxx: drop msg-size property from ramoops
+Date:   Sun, 17 Oct 2021 16:16:57 +0200
+Message-Id: <20211017141700.61201-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 17, 2021, at 17:29, Rob Herring wrote:
-> On Sun, 17 Oct 2021 13:40:53 +0200, Sven Peter wrote:
->> Apple mailbox controller are found on the M1 and are used for
->> communication with various co-processors.
->> 
->> Reviewed-by: Alyssa Rosenzweig <alyssa@rosenzweig.io>
->> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Sven Peter <sven@svenpeter.dev>
->> ---
->>  .../bindings/mailbox/apple,mailbox.yaml       | 79 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 80 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
->> 
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
-> properties:interrupts: 'oneOf' conditional failed, one must be fixed:
-> 	[{'description': 'send fifo is empty interrupt'}, {'description': 
-> 'send fifo is not empty interrupt'}, {'description': 'receive fifo is 
-> empty interrupt'}, {'description': 'receive fifo is not empty 
-> interrupt'}] is too long
-> 	[{'description': 'send fifo is empty interrupt'}, {'description': 
-> 'send fifo is not empty interrupt'}, {'description': 'receive fifo is 
-> empty interrupt'}, {'description': 'receive fifo is not empty 
-> interrupt'}] is too short
-> 	False schema does not allow 4
-> 	1 was expected
-> 	4 is greater than the maximum of 2
-> 	4 is greater than the maximum of 3
-> 	hint: "minItems" is only needed if less than the "items" list length
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
-> properties:interrupt-names: 'oneOf' conditional failed, one must be 
-> fixed:
-> 	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 
-> 'recv-empty'}, {'const': 'recv-not-empty'}] is too long
-> 	[{'const': 'send-empty'}, {'const': 'send-not-empty'}, {'const': 
-> 'recv-empty'}, {'const': 'recv-not-empty'}] is too short
-> 	False schema does not allow 4
-> 	1 was expected
-> 	4 is greater than the maximum of 2
-> 	4 is greater than the maximum of 3
-> 	hint: "minItems" is only needed if less than the "items" list length
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml: 
-> ignoring, error in schema: properties: interrupts
-> warning: no schema found in file: 
-> ./Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> Documentation/devicetree/bindings/mailbox/apple,mailbox.example.dt.yaml:0:0: 
-> /example-0/mailbox@77408000: failed to match any schema with 
-> compatible: ['apple,t8103-asc-mailbox']
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1542209
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
+Invalid property, not supported by ramoops node.
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 1 -
+ arch/arm64/boot/dts/qcom/sm6350.dtsi                         | 1 -
+ arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi      | 1 -
+ arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi         | 1 -
+ 4 files changed, 4 deletions(-)
 
-Whoops, looks like this fails some new check added since I submitted
-the last version a month ago.
-I'll drop the "minItems: 4" since the number of items is constant anyway.
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+index 58b6b2742d3f..64f1eab99d5e 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+@@ -74,7 +74,6 @@ pstore_mem: ramoops@ffc00000 {
+ 			reg = <0x0 0xffc40000 0x0 0xc0000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 		};
+ 
+ 		cmdline_mem: memory@ffd00000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 926d30c57add..513c27895dd5 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -344,7 +344,6 @@ ramoops: ramoops@ffc00000 {
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+ 			ftrace-size = <0x0>;
+-			msg-size = <0x20000 0x20000>;
+ 			cc-size = <0x0>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+index 014fe3a31548..a7eb084932ab 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
+@@ -126,7 +126,6 @@ ramoops@ffc00000 {
+ 			reg = <0x0 0xffc00000 0x0 0x100000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 			ecc-size = <16>;
+ 			no-map;
+ 		};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+index d63f7a9bc4e9..34cfb8d8d1ad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
+@@ -111,7 +111,6 @@ ramoops@ffc00000 {
+ 			reg = <0x0 0xffc00000 0x0 0x100000>;
+ 			record-size = <0x1000>;
+ 			console-size = <0x40000>;
+-			msg-size = <0x20000 0x20000>;
+ 			ecc-size = <16>;
+ 			no-map;
+ 		};
+-- 
+2.33.0
 
-
-Sven
