@@ -2,119 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9821F4325D3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136A54325DB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbhJRSDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 14:03:03 -0400
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:39716 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbhJRSDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:03:02 -0400
-Received: by mail-oi1-f173.google.com with SMTP id m67so904102oif.6;
-        Mon, 18 Oct 2021 11:00:51 -0700 (PDT)
+        id S229924AbhJRSFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 14:05:02 -0400
+Received: from mail-ot1-f54.google.com ([209.85.210.54]:39660 "EHLO
+        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229634AbhJRSFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:05:01 -0400
+Received: by mail-ot1-f54.google.com with SMTP id e59-20020a9d01c1000000b00552c91a99f7so857396ote.6;
+        Mon, 18 Oct 2021 11:02:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fJW+JPWEfavDVityhwlsFWcBG/x4wTATfK/QnHQWFdU=;
-        b=VtrkeaTzApa9g4wXc64SVOr7nDcMg4gZONPqXXXoe2J3DPW8JfFNWNtZwqzqMihKqc
-         vyrYGaYQN2ekAPYGvOAR2P8wgMY9FvvBMaWDGpH407PfbTjloSrWRfW2wyK8jzmEXIxJ
-         N4S4OQDBY9VrvK1Et05klmN9v1eu+q/17RFOaiMOWDZOjaJcLFd1Ty+G4OKbvdgB8T19
-         agjEhL7CN05Ou2Y58lJPHoyK0g2ompUcD4xcNOxcOHFeacAN9se3Gbgo46rMLLfYtiyx
-         NXwRRpKTImpRr/PyOdbILjx3jIT+VbCUaicO0dL7t07mcTQjgkytC7Br6rEXjiHxRdGb
-         qkmg==
-X-Gm-Message-State: AOAM530ObzdZG1rcBQ+u1wr3+gegQ115HnZ+Y4AsttJtfTlV/aSmMyjS
-        39t+5XX3KK200co/A3tQCw==
-X-Google-Smtp-Source: ABdhPJx0zMKQn0IsUB6FiRV3VCu0QuhyImdpIY9W6aijL2TTnDHJplBHXgjLwQiM85yFBPL95REEQA==
-X-Received: by 2002:a05:6808:14d6:: with SMTP id f22mr310894oiw.152.1634580050834;
-        Mon, 18 Oct 2021 11:00:50 -0700 (PDT)
+        bh=Ekwh8TBKcZzWO0G92IyrQXg0TBRFib0eeL94Dkztj58=;
+        b=AIiEsZ9R3JHP6bzaAtS4am4Jswj+lmLOkA5CodOSoneeFIKq+nYY1J/mPxNKBVB4ei
+         M2qyXp404S2ZVNDw7fgc1fEcAZvxbO/GRcFtd32BuvrzHtUJxsV4OzLRn6oIDnwyUEb1
+         p3bLxbrCRdeKAEQozpSjKnOG3wzaru/5dd2DAXodgBKJ30BK/zXtTy32IvdAI1dw+ubg
+         9Zt829fjD36QFAMsKDQeSZdKifu6cLa4x/Pml4ooRHkbY5HbRnAXsaD7DfiKca7aIx9T
+         xmDNFjiee7+TApmQGuYrW7GJ2CL+ZKXrrkoxoMxoA2DfDdBLh5wbcAVEMFBtiFwbPSD0
+         pLCg==
+X-Gm-Message-State: AOAM532M9QI3nkReJKkRj6yX8qc2oamyIkykeaMVUE26eDxKgfQianpf
+        xth/KcVm2mjnAN5sHqsHEA==
+X-Google-Smtp-Source: ABdhPJzHlH+zszUbV8GDbZ+HPEN49U8e4xqnb9GVwQzoGSfcYQm+oUPquDgeOo//WQRrXrd/RzawsQ==
+X-Received: by 2002:a05:6830:3114:: with SMTP id b20mr1097752ots.163.1634580170226;
+        Mon, 18 Oct 2021 11:02:50 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p133sm3049367oia.11.2021.10.18.11.00.49
+        by smtp.gmail.com with ESMTPSA id y12sm1570554otq.60.2021.10.18.11.02.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 11:00:50 -0700 (PDT)
-Received: (nullmailer pid 2662534 invoked by uid 1000);
-        Mon, 18 Oct 2021 18:00:48 -0000
-Date:   Mon, 18 Oct 2021 13:00:48 -0500
+        Mon, 18 Oct 2021 11:02:49 -0700 (PDT)
+Received: (nullmailer pid 2666118 invoked by uid 1000);
+        Mon, 18 Oct 2021 18:02:48 -0000
+Date:   Mon, 18 Oct 2021 13:02:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>,
-        netdev@vger.kernel.org, olteanv@gmail.com,
-        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
-        kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 net-next 01/10] dt-bindings: net: dsa: dt bindings for
- microchip lan937x
-Message-ID: <YW22UEelVFoNVYrG@robh.at.kernel.org>
-References: <20211007151200.748944-1-prasanna.vengateshan@microchip.com>
- <20211007151200.748944-2-prasanna.vengateshan@microchip.com>
- <YV9pk13TT9W7X2i1@lunn.ch>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Tomasz Figa <tomasz.figa@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: add samsung,exynosautov9-sysreg
+ compatible
+Message-ID: <YW22yKUhpIoO/IEB@robh.at.kernel.org>
+References: <20211012002314.38965-1-chanho61.park@samsung.com>
+ <CGME20211012002533epcas2p182112e07ea081957a0e54fea46c66816@epcas2p1.samsung.com>
+ <20211012002314.38965-2-chanho61.park@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YV9pk13TT9W7X2i1@lunn.ch>
+In-Reply-To: <20211012002314.38965-2-chanho61.park@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 07, 2021 at 11:41:39PM +0200, Andrew Lunn wrote:
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    //Ethernet switch connected via spi to the host
-> > +    ethernet {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      fixed-link {
-> > +        speed = <1000>;
-> > +        full-duplex;
-> > +      };
-> > +    };
-> > +
-> > +    spi {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      lan9374: switch@0 {
-> > +        compatible = "microchip,lan9374";
-> > +        reg = <0>;
-> > +
-> > +        spi-max-frequency = <44000000>;
-> > +
-> > +        ethernet-ports {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +          port@0 {
-> > +            reg = <0>;
-> > +            label = "lan1";
-> > +            phy-mode = "internal";
-> > +            phy-handle = <&t1phy0>;
-> > +          };
+On Tue, 12 Oct 2021 09:23:12 +0900, Chanho Park wrote:
+> Add document Samsung's Exynos Auto v9 compatible for system registers.
 > 
-> ...
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> > +        mdio {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +
-> > +          t1phy0: ethernet-phy@0{
-> > +            reg = <0x0>;
-> > +          };
-> 
-> Does this pass Rob's DT schema proof tools? You don't have any
-> description of the mdio properties.
 
-Good catch. It will pass ATM only because 'unevaluatedProperties' is not 
-yet implemented (should be in place soon). So it needs:
-
-mdio:
-  $ref: /schemas/net/mdio.yaml#
-  unevaluatedProperties: false
-
-Otherwise, this looks fine.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
