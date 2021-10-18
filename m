@@ -2,69 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E654326B9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D82143270F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:06:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232628AbhJRSma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 14:42:30 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:38487 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232204AbhJRSm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:42:29 -0400
-Received: by mail-ot1-f54.google.com with SMTP id l10-20020a056830154a00b00552b74d629aso995156otp.5;
-        Mon, 18 Oct 2021 11:40:18 -0700 (PDT)
+        id S231234AbhJRTIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 15:08:34 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:33727 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229924AbhJRTId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:08:33 -0400
+Received: by mail-oi1-f177.google.com with SMTP id q129so1253751oib.0;
+        Mon, 18 Oct 2021 12:06:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=r3X1ifyviq85D3kYFgE9ZYCvHfqfPnp8hioFYQJaRoM=;
-        b=d5FiuE7MrvzPz8g1Dpab3nzMk+9y/J4+JXkZ6S2tWjEGu13tkQGsQTICzfrFITd3bq
-         ZWmhiSJugKb+SPnarYrBQkc5Cedl0iP7LfOps7fwzTN0cN/Jzd4NtoSyknJtt284YqLE
-         014cZNfuk7mXBBPNBnS0LC8LunrelpHRpyQFWx1Uvkz3a+yTSdHKBGzxW0ejZyoHvFES
-         Flxx4qjWuLuax/dkWKvbVsi2zNOrtr63bLZifcE/F7X6AfXjgFJqBChVz9ofbspO5x48
-         pIqEERs5sSJWJMAfjXFMhp4XzqwJA//yUOfWyx15Dpcn3lH7vzZAGRf9YC0f2TGDphv3
-         gjrw==
-X-Gm-Message-State: AOAM531ZTwx+MKq/2vCkokMB4YYAe8ONNmrQqZmgypPJ4omtgSiqABKR
-        EMLPtU7qq/AjP4dTlbAmz8mIuH6riA==
-X-Google-Smtp-Source: ABdhPJyTISW6vAihjTlJRqFSF5/LmNUGpNgtLZ+xBpIe5B1qpA0fRBu5T1XlOKP4Jr7ckjcEYaOlpg==
-X-Received: by 2002:a05:6830:57d:: with SMTP id f29mr1287524otc.285.1634582417871;
-        Mon, 18 Oct 2021 11:40:17 -0700 (PDT)
+        bh=0I1DAhQIKT4b0pGsLrOdgZbYNlOKF2oGK8nCiwpxq/4=;
+        b=TJp3avwpDQloYnKny63dI1DULFzFi+eyD+wpLPqfXPVQoV2SLZ4fcu14vvNG5jI969
+         q7tajBvKuehQF2+sATQKD3O0a+hpSLc0ELGVbYiwzcHFHmzKwXv21K0pn0HLgIDkcVE7
+         LJHB9hFwBdGqNwCRW/uc8vbafABTkaIAQhCNyn6dNSYxd2lg55S1VY5sVzjWDB1bbTls
+         CRAil+DmfwhWSet3vD4Wf9v/TxoJvfWkDIdiwgu1/ykurt72B7nQBR6aQlmkFobzf93j
+         qrVy/GwdutuFlByUi7j7JJSBuygD/Sv0b6Si57kdAoC7NWhhqjyFKaHe+7cHJhrsLBn1
+         0UsA==
+X-Gm-Message-State: AOAM531lKd0N47E51M4ajv6EGV+WPKLQzAyhGeZwp6QtrY2bYeX4/CYG
+        I6m1uKN1wzqUP+88cYJnag==
+X-Google-Smtp-Source: ABdhPJwysvwj0Ekaq9rEf6Tx2wem4iU1C46ZVkUTn+PlkM6hNg8/as7TKlmiuZlTtK9UDjucgY2cVw==
+X-Received: by 2002:aca:d6d2:: with SMTP id n201mr554420oig.120.1634583981928;
+        Mon, 18 Oct 2021 12:06:21 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w9sm3108564otp.64.2021.10.18.11.40.16
+        by smtp.gmail.com with ESMTPSA id bp21sm3065315oib.31.2021.10.18.12.06.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 11:40:17 -0700 (PDT)
-Received: (nullmailer pid 2725898 invoked by uid 1000);
-        Mon, 18 Oct 2021 18:40:16 -0000
-Date:   Mon, 18 Oct 2021 13:40:16 -0500
+        Mon, 18 Oct 2021 12:06:21 -0700 (PDT)
+Received: (nullmailer pid 2767853 invoked by uid 1000);
+        Mon, 18 Oct 2021 19:06:19 -0000
+Date:   Mon, 18 Oct 2021 14:06:19 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 02/25] dt-bindings: mfd: qcom-pm8xxx: add missing
- child nodes
-Message-ID: <YW2/kL2cGgUEqhpJ@robh.at.kernel.org>
-References: <20211008012524.481877-1-dmitry.baryshkov@linaro.org>
- <20211008012524.481877-3-dmitry.baryshkov@linaro.org>
+To:     alexandru.tachici@analog.com
+Cc:     andrew@lunn.ch, o.rempel@pengutronix.de, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] dt-bindings: net: phy: Add 10-baseT1L 2.4 Vpp
+Message-ID: <YW3Fq7WMSB+TL2u4@robh.at.kernel.org>
+References: <20211011142215.9013-1-alexandru.tachici@analog.com>
+ <20211011142215.9013-8-alexandru.tachici@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211008012524.481877-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20211011142215.9013-8-alexandru.tachici@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Oct 2021 04:25:01 +0300, Dmitry Baryshkov wrote:
-> Add gpio@[0-9a-f]+, mpps@[0-9a-f]+ and xoadc@[0-9a-f]+ as possible child
-> nodes of qcom,pm8xxx, referencing existint schema files. Schema for
-> other possible nodes does not exist yet.
+On Mon, Oct 11, 2021 at 05:22:14PM +0300, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Add a tristate property to advertise desired transmit level.
+> 
+> If the device supports the 2.4 Vpp operating mode for 10BASE-T1L,
+> as defined in 802.3gc, and the 2.4 Vpp transmit voltage operation
+> is desired, property should be set to 1. This property is used
+> to select whether Auto-Negotiation advertises a request to
+> operate the 10BASE-T1L PHY in increased transmit level mode.
+> 
+> If property is set to 1, the PHY shall advertise a request
+> to operate the 10BASE-T1L PHY in increased transmit level mode.
+> If property is set to zero, the PHY shall not advertise
+> a request to operate the 10BASE-T1L PHY in increased transmit level mode.
+> 
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 > ---
->  .../devicetree/bindings/mfd/qcom-pm8xxx.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 2766fe45bb98..2bb3a96612a2 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -77,6 +77,15 @@ properties:
+>      description:
+>        Maximum PHY supported speed in Mbits / seconds.
+>  
+> +  an-10base-t1l-2.4vpp:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+What does 'an' mean?
+
+> +    description: |
+> +      tristate, request/disable 2.4 Vpp operating mode. The values are:
+> +      0: Disable 2.4 Vpp operating mode.
+> +      1: Request 2.4 Vpp operating mode from link partner.
+> +      Absence of this property will leave configuration to default values.
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    enum: [0, 1]
+
+What happened to this one doing the same thing?:
+
+https://lore.kernel.org/lkml/20201117201555.26723-3-dmurphy@ti.com/
+
