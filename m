@@ -2,183 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F31B8432860
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 22:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD06143293C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 23:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231504AbhJRUYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 16:24:39 -0400
-Received: from mail-oi1-f182.google.com ([209.85.167.182]:37668 "EHLO
-        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbhJRUYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 16:24:39 -0400
-Received: by mail-oi1-f182.google.com with SMTP id o83so1456867oif.4;
-        Mon, 18 Oct 2021 13:22:27 -0700 (PDT)
+        id S229555AbhJRVrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 17:47:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229529AbhJRVrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 17:47:35 -0400
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2CFC06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:24 -0700 (PDT)
+Received: by mail-qt1-x82e.google.com with SMTP id b12so16609101qtq.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3kxxjnpajnLan+DlWscaEGHQpNRH8oNyJjc2GZj0gis=;
+        b=eVEgfnxfaUdhUt/5YAtildIbe5oHbAKEh2BmfIwqcuqjFoffearSCUtT79nGI4rdny
+         xM4+Vk5sK+Hk7aIQfB39mybUcxEQZB4upapVT+dLCf8KEq8j4//7IxbgcbVHmYRwuzr9
+         AcGwq32NRkvvyyhmcIRJT2Pzydz5IGG6NOXfs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7Q1GESrNzI0X9p3dbyTYede0NsPh2RkVpjoyNwEn14I=;
-        b=x4Z13bWpVwvH+YZ/BOFlsi8iNmaSA8px8mUadz+CAyraTMjxuCefwSH8tDqSEB82ih
-         uG4dVmj/WRJIKwV90NP7uxV/Dv2H16SZmbc6VRd3ws2o0VzLgDtOVP4sMSnRwux2QDIP
-         3kFAec6Deo9Cwm3Jls6PXrYg2aqqzF+jFSWKBQqWkIAbRVCbcC+6L5lBk9yA0Y6hG03V
-         35g9RvUWnak/vpr9QyyeHcYxL1Jj44wNRw0vlTyaWMbn2T34c7tZHNZ//dGZE0ihvzf5
-         ETZ//65x7KIGiTEe4I5IoKwnpc3As/lHxdaUAxyqfuI9nRz0Zo1kuQdgpzXsPDN7z2nN
-         EphQ==
-X-Gm-Message-State: AOAM533xErNttb6dQAEb0J+GoL7Fq1yRALytPrpOXIx5s+viZcd4+ZXS
-        BCM32eTelmfJjEFLRLyoGg==
-X-Google-Smtp-Source: ABdhPJz2TgiPYPSZQfHCvzrzeimiszDamV/kXPLPJ7Dawc4pZ9Fig2c8c62WwLuBZK9znvtdyAAo0g==
-X-Received: by 2002:a05:6808:2106:: with SMTP id r6mr880818oiw.72.1634588547022;
-        Mon, 18 Oct 2021 13:22:27 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l19sm3273136otr.22.2021.10.18.13.22.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 13:22:26 -0700 (PDT)
-Received: (nullmailer pid 2892359 invoked by uid 1000);
-        Mon, 18 Oct 2021 20:22:25 -0000
-Date:   Mon, 18 Oct 2021 15:22:25 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Subject: Re: [PATCH net-next v2 3/4] dt-bindings: net: Add schema for
- Qualcomm BAM-DMUX
-Message-ID: <YW3XgaiT2jBv4D+L@robh.at.kernel.org>
-References: <20211011141733.3999-1-stephan@gerhold.net>
- <20211011141733.3999-4-stephan@gerhold.net>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3kxxjnpajnLan+DlWscaEGHQpNRH8oNyJjc2GZj0gis=;
+        b=m7/Fbwr3fbfldlsg8/o4rPa57I3+ZkGSJHaH2Bwcik5uuQz30UoGqnC4gMREmTAEfl
+         syD+ME1HWBjh8szNOI6VB6pzQWHE/uj90azKlbG93+GbvZUOOWjw6MNBps8CnDt1bQhy
+         8YxvvoIIP4MQahorGC63o4zn2dhVc4HSFpCcaIe0LYD/q4GpJn6UHlB3/F4DytLWGwjy
+         DZH9emhmc5Zp/EkbSn+60peg31ZuK9+7mWGiNW5NGj8Iik6jTCnGYc1c3XnoeiDTggW9
+         DMjB97nnNiyFQF51PCZpTofeSUdJZ2/199uHVmnFEn13Sb/pt21EOeGc9JGKQ18jlLAk
+         mMiQ==
+X-Gm-Message-State: AOAM532wtBZ1kHXQQnJyFVDOL35vp4M81OiT0cVlLF3rc14MJJYypKc9
+        R1Y3cZv6fcqAaYr3T/xjuKsIQXfi+XxAkw==
+X-Google-Smtp-Source: ABdhPJxehTFd2a8hJoCQ+9rJswnihY2X9D2PTiR0qFdbwzPuclNzdmOOOI5s5jVYngaSlC97bN4gPA==
+X-Received: by 2002:ac8:5b8b:: with SMTP id a11mr18853622qta.261.1634593522900;
+        Mon, 18 Oct 2021 14:45:22 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
+        by smtp.gmail.com with ESMTPSA id z26sm5809470qko.13.2021.10.18.14.45.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Oct 2021 14:45:22 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id o134so1254375ybc.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:21 -0700 (PDT)
+X-Received: by 2002:a25:bdce:: with SMTP id g14mr31388284ybk.352.1634593521482;
+ Mon, 18 Oct 2021 14:45:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211011141733.3999-4-stephan@gerhold.net>
+References: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
+ <86b0d847ddf06c1b445f3dbac9c771a9@codeaurora.org>
+In-Reply-To: <86b0d847ddf06c1b445f3dbac9c771a9@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 18 Oct 2021 14:45:09 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WnMnEckHdu0DG3U8MnyjwQ42aybFxq35nWSLG=vs=LGA@mail.gmail.com>
+Message-ID: <CAD=FV=WnMnEckHdu0DG3U8MnyjwQ42aybFxq35nWSLG=vs=LGA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: pmk8350: Make RTC disabled by default;
+ enable on sc7280-idp
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 04:17:35PM +0200, Stephan Gerhold wrote:
-> The BAM Data Multiplexer provides access to the network data channels of
-> modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916 or
-> MSM8974. It is built using a simple protocol layer on top of a DMA engine
-> (Qualcomm BAM) and bidirectional interrupts to coordinate power control.
-> 
-> The device tree node combines the incoming interrupt with the outgoing
-> interrupts (smem-states) as well as the two DMA channels, which allows
-> the BAM-DMUX driver to request all necessary resources.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> Changes since RFC: None.
-> ---
->  .../bindings/net/qcom,bam-dmux.yaml           | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml b/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
-> new file mode 100644
-> index 000000000000..33e125e70cb4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/qcom,bam-dmux.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm BAM Data Multiplexer
-> +
-> +maintainers:
-> +  - Stephan Gerhold <stephan@gerhold.net>
-> +
-> +description: |
-> +  The BAM Data Multiplexer provides access to the network data channels
-> +  of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
-> +  or MSM8974. It is built using a simple protocol layer on top of a DMA engine
-> +  (Qualcomm BAM DMA) and bidirectional interrupts to coordinate power control.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,bam-dmux
+Bjorn,
 
-Is this block the same on every SoC? It needs to be SoC specific.
+On Wed, Sep 29, 2021 at 9:00 PM <skakit@codeaurora.org> wrote:
+>
+> On 2021-09-30 04:08, Douglas Anderson wrote:
+> > The RTC on the pmk8350 is not useful on all boards. Some boards may
+> > not provide backup power to the PMIC but might have another RTC on the
+> > board that does have backup power. In this case it's better to not use
+> > the RTC on the PMIC.
+> >
+> > At the moment, the only boards that includes this PMIC are sc7280-idp
+> > and sc7280-idp2. On sc7280-idp I'm not aware of any other RTCs, but
+> > sc7280-idp2 has a Chrome OS EC on it and this is intended to provide
+> > the RTC for the AP.
+> >
+> > Let's do what we normally do for hardware that's not used by all
+> > boards and set it to a default status of "disabled" and then enable it
+> > on the boards that need it.
+> >
+> > NOTE: for sc7280-idp it's _possible_ we might also want to add
+> > `allow-set-time;`. That could be the subject of a future patch if it
+> > is indeed true.
+> >
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+>
+> Reviewed-by: Satya Priya <skakit@codeaurora.org>
 
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupts used by the modem to signal the AP.
-> +      Both interrupts must be declared as IRQ_TYPE_EDGE_BOTH.
-> +    items:
-> +      - description: Power control
-> +      - description: Power control acknowledgment
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: pc
-> +      - const: pc-ack
-> +
-> +  qcom,smem-states:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: State bits used by the AP to signal the modem.
-> +    items:
-> +      - description: Power control
-> +      - description: Power control acknowledgment
-> +
-> +  qcom,smem-state-names:
-> +    description: Names for the state bits used by the AP to signal the modem.
-> +    items:
-> +      - const: pc
-> +      - const: pc-ack
-> +
-> +  dmas:
-> +    items:
-> +      - description: TX DMA channel phandle
-> +      - description: RX DMA channel phandle
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - interrupt-names
-> +  - qcom,smem-states
-> +  - qcom,smem-state-names
-> +  - dmas
-> +  - dma-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    mpss: remoteproc {
-> +        bam-dmux {
-> +            compatible = "qcom,bam-dmux";
-> +
-> +            interrupt-parent = <&modem_smsm>;
-> +            interrupts = <1 IRQ_TYPE_EDGE_BOTH>, <11 IRQ_TYPE_EDGE_BOTH>;
-> +            interrupt-names = "pc", "pc-ack";
-> +
-> +            qcom,smem-states = <&apps_smsm 1>, <&apps_smsm 11>;
-> +            qcom,smem-state-names = "pc", "pc-ack";
-> +
-> +            dmas = <&bam_dmux_dma 4>, <&bam_dmux_dma 5>;
-> +            dma-names = "tx", "rx";
-> +        };
-> +    };
-> -- 
-> 2.33.0
-> 
-> 
+If you're still accepting patches for 5.16, it'd be keen if you'd
+consider taking this one. Thanks!
+
+-Doug
