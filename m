@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A319B4317A9
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DC26431811
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:50:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbhJRLow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 07:44:52 -0400
-Received: from mailgw02.mediatek.com ([216.200.240.185]:40464 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbhJRLov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:44:51 -0400
-X-UUID: a73d4373383a4e27a3817458b6af7051-20211018
-X-UUID: a73d4373383a4e27a3817458b6af7051-20211018
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
+        id S231480AbhJRLwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 07:52:33 -0400
+Received: from mailgw01.mediatek.com ([216.200.240.184]:59619 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229833AbhJRLwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:52:32 -0400
+X-UUID: 58031b3a165d42438237dec41239b6b0-20211018
+X-UUID: 58031b3a165d42438237dec41239b6b0-20211018
+Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw01.mediatek.com
         (envelope-from <sam.shih@mediatek.com>)
         (musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1037881835; Mon, 18 Oct 2021 04:42:37 -0700
+        with ESMTP id 1552800078; Mon, 18 Oct 2021 04:50:20 -0700
 Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- MTKMBS62DR.mediatek.inc (172.29.94.18) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 18 Oct 2021 04:40:26 -0700
+ MTKMBS62N1.mediatek.inc (172.29.193.41) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 18 Oct 2021 04:40:28 -0700
 Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 18 Oct 2021 19:40:25 +0800
+ Transport; Mon, 18 Oct 2021 19:40:28 +0800
 From:   Sam Shih <sam.shih@mediatek.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -37,9 +37,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
 CC:     John Crispin <john@phrozen.org>,
         Ryder Lee <Ryder.Lee@mediatek.com>,
         Sam Shih <sam.shih@mediatek.com>
-Subject: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
-Date:   Mon, 18 Oct 2021 19:40:08 +0800
-Message-ID: <20211018114009.13350-3-sam.shih@mediatek.com>
+Subject: [PATCH v7 3/3] arm64: dts: mediatek: add basic mt7986b support
+Date:   Mon, 18 Oct 2021 19:40:09 +0800
+Message-ID: <20211018114009.13350-4-sam.shih@mediatek.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20211018114009.13350-1-sam.shih@mediatek.com>
 References: <20211018114009.13350-1-sam.shih@mediatek.com>
@@ -50,7 +50,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic chip support for Mediatek mt7986a, include
+Add basic chip support for Mediatek mt7986b, include
 basic uart nodes, rng node and watchdog node.
 
 Add cpu node, timer node, gic node, psci and reserved-memory node
@@ -60,12 +60,7 @@ Signed-off-by: Sam Shih <sam.shih@mediatek.com>
 
 ---
 v7: added memory node back to dts
-v6: removed clock and pinctrl node, to separate basic part into a single
-    patch series
-
-Original thread:
-https://lore.kernel.org/all/20211004124155.1404-1-sam.shih@mediatek.com/
-
+v6: separate basic part into a single patch series
 v5: follow reviewr's comment: removed clock freqency node in timer due to
     we have set CNTFRQ_EL0 in ATF firmware, and also corrected GICD range
 v4: added missing gic register bases, and fixed range of GICR
@@ -73,30 +68,30 @@ v3: used the stdout-path instead of console=ttyS0
 v2: modified clock and uart node due to clock driver updated
 ---
  arch/arm64/boot/dts/mediatek/Makefile        |   1 +
- arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  38 +++++
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 149 +++++++++++++++++++
- 3 files changed, 188 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
- create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+ arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts |  30 ++++
+ arch/arm64/boot/dts/mediatek/mt7986b.dtsi    | 149 +++++++++++++++++++
+ 3 files changed, 180 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986b.dtsi
 
 diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 4f68ebed2e31..e6c3a73b9e4a 100644
+index e6c3a73b9e4a..d555e43d1ccc 100644
 --- a/arch/arm64/boot/dts/mediatek/Makefile
 +++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+@@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
  dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
 new file mode 100644
-index 000000000000..ca074cf8e578
+index 000000000000..0f2f337bef4e
 --- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-@@ -0,0 +1,38 @@
++++ b/arch/arm64/boot/dts/mediatek/mt7986b-rfb.dts
+@@ -0,0 +1,30 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +/*
 + * Copyright (C) 2021 MediaTek Inc.
@@ -104,11 +99,11 @@ index 000000000000..ca074cf8e578
 + */
 +
 +/dts-v1/;
-+#include "mt7986a.dtsi"
++#include "mt7986b.dtsi"
 +
 +/ {
-+	model = "MediaTek MT7986a RFB";
-+	compatible = "mediatek,mt7986a-rfb";
++	model = "MediaTek MT7986b RFB";
++	compatible = "mediatek,mt7986b-rfb";
 +
 +	aliases {
 +		serial0 = &uart0;
@@ -120,26 +115,18 @@ index 000000000000..ca074cf8e578
 +	};
 +
 +	memory {
-+		reg = <0 0x40000000 0 0x40000000>;
++		reg = <0 0x40000000 0 0x10000000>;
 +	};
 +};
 +
 +&uart0 {
 +	status = "okay";
 +};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986b.dtsi b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
 new file mode 100644
-index 000000000000..75912bcf6c9c
+index 000000000000..2b8e0a382398
 --- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7986b.dtsi
 @@ -0,0 +1,149 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 +/*
@@ -151,7 +138,7 @@ index 000000000000..75912bcf6c9c
 +#include <dt-bindings/interrupt-controller/arm-gic.h>
 +
 +/ {
-+	compatible = "mediatek,mt7986a";
++	compatible = "mediatek,mt7986b";
 +	interrupt-parent = <&gic>;
 +	#address-cells = <2>;
 +	#size-cells = <2>;
