@@ -2,119 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB55432680
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C62C432692
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232957AbhJRShC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 14:37:02 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:40493 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232871AbhJRShB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:37:01 -0400
-Received: by mail-oi1-f172.google.com with SMTP id n63so1029236oif.7;
-        Mon, 18 Oct 2021 11:34:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BXwNrG4eTVKzZpIRCarHGGXmlKSomOiTra/AD02w75c=;
-        b=7VlNV8FWPkUjBb0oU0/UKu0j+6nH945hLFFhwK0pJYMh/0EBKobvyoJnTk7mDoV2y9
-         Lags/V2LT1yogHoqyWPNGUKdjruMlr8zyZ1LKF2MTnkceGWjy7m5NtdqlqkcfKl/npqL
-         qZY3bgbfEI1L+kmQ14CA/Ucdth6QKziW8X5NSJ8rrP5fHpAzPwEn6qlGgVcYxy7fENqq
-         Ary2i1yOOo/UOu2SQjfCfH9Xkq6lMUG1+8m5L3fLs4G+Zy2tSiY9oPTaPVOkSQ5IvQLz
-         7/Hm5TjX46vPzlWj7QXSIwgvfzmjBd4YL8D1AhBUjB7d3w/CjQFNf7LuFiYwGsLZjYpT
-         1mDA==
-X-Gm-Message-State: AOAM532T8hrPTXUxMXWJjUNxWCpy/3SExM3UK3zYnXreYAIPbT5dDY9c
-        nx9QkmeMXeLp/6HR7RNLWA==
-X-Google-Smtp-Source: ABdhPJzytjS8WufNOS6c5DnQSwiC9AtiJ0xXtCDkJKcuKA4GJ0hB8mYCuU118OYBmfgq1xUbUP7g1A==
-X-Received: by 2002:a05:6808:10cc:: with SMTP id s12mr453511ois.164.1634582089247;
-        Mon, 18 Oct 2021 11:34:49 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r14sm1276825oiw.44.2021.10.18.11.34.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 11:34:48 -0700 (PDT)
-Received: (nullmailer pid 2717501 invoked by uid 1000);
-        Mon, 18 Oct 2021 18:34:47 -0000
-Date:   Mon, 18 Oct 2021 13:34:47 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: net: nfc: nxp,pn544: Convert txt
- bindings to yaml
-Message-ID: <YW2+R4drCwcmzKMK@robh.at.kernel.org>
-References: <20211017160210.85543-1-david@ixit.cz>
- <1634559233.484644.2074240.nullmailer@robh.at.kernel.org>
- <RAC61R.YOBPB57076K71@ixit.cz>
+        id S232705AbhJRSke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 14:40:34 -0400
+Received: from mga05.intel.com ([192.55.52.43]:29303 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229924AbhJRSkd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Oct 2021 14:40:33 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10141"; a="314535751"
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; 
+   d="scan'208";a="314535751"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2021 11:38:21 -0700
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; 
+   d="scan'208";a="444203257"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.72.159])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2021 11:38:15 -0700
+Received: from andy by smile with local (Exim 4.95)
+        (envelope-from <andy.shevchenko@gmail.com>)
+        id 1mcXWF-000Ide-QR;
+        Mon, 18 Oct 2021 21:37:55 +0300
+Date:   Mon, 18 Oct 2021 21:37:55 +0300
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+Message-ID: <YW2/A4ZQwbFX0uPB@smile.fi.intel.com>
+References: <20211012134027.684712-1-kernel@esmil.dk>
+ <20211012134027.684712-13-kernel@esmil.dk>
+ <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
+ <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
+ <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
+ <CANBLGcxriKLZ+CKUsj5sviW8FdHnWTF2koROwmAb=G2tbmE6vQ@mail.gmail.com>
+ <CAHp75VccSDLVbs1sF_-1zghWyLKtKKV1qtxOxZZ-cS0e6S-sBA@mail.gmail.com>
+ <CANBLGcw1qMB7r7TbuQEevOPHq94wAtZNs=yFQ3UP_DEREvGz6g@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <RAC61R.YOBPB57076K71@ixit.cz>
+In-Reply-To: <CANBLGcw1qMB7r7TbuQEevOPHq94wAtZNs=yFQ3UP_DEREvGz6g@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 18, 2021 at 03:04:03PM +0200, David Heidelberg wrote:
-> 
-> 
-> 
-> On Mon, Oct 18 2021 at 07:13:53 -0500, Rob Herring <robh@kernel.org> wrote:
-> > On Sun, 17 Oct 2021 18:02:10 +0200, David Heidelberg wrote:
-> > >  Convert bindings for NXP PN544 NFC driver to YAML syntax.
-> > > 
-> > >  Signed-off-by: David Heidelberg <david@ixit.cz>
-> > >  ---
-> > >  v2
-> > >   - Krzysztof is a maintainer
-> > >   - pintctrl dropped
-> > >   - 4 space indent for example
-> > >   - nfc node name
-> > >  v3
-> > >   - remove whole pinctrl
-> > >  v4
-> > >   - drop clock-frequency, which is inherited by i2c bus
-> > > 
-> > >   .../bindings/net/nfc/nxp,pn544.yaml           | 56
-> > > +++++++++++++++++++
-> > >   .../devicetree/bindings/net/nfc/pn544.txt     | 33 -----------
-> > >   2 files changed, 56 insertions(+), 33 deletions(-)
-> > >   create mode 100644
-> > > Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
-> > >   delete mode 100644
-> > > Documentation/devicetree/bindings/net/nfc/pn544.txt
-> > > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1542257
-> > 
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> > 
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> > 
-> > 
-> > 
-> > nfc@28: 'clock-frequency' does not match any of the regexes:
-> > 'pinctrl-[0-9]+'
-> > 	arch/arm/boot/dts/tegra30-asus-nexus7-grouper-E1565.dt.yaml
-> > 	arch/arm/boot/dts/tegra30-asus-nexus7-grouper-PM269.dt.yaml
-> > 
-> > nfc@2a: 'clock-frequency' does not match any of the regexes:
-> > 'pinctrl-[0-9]+'
-> > 	arch/arm/boot/dts/tegra30-asus-nexus7-tilapia-E1565.dt.yaml
-> > 
-> 
-> Patches for this are already in grate repository and will be sent to
-> mainline soon! :)
+On Mon, Oct 18, 2021 at 06:35:10PM +0200, Emil Renner Berthing wrote:
+> On Mon, 18 Oct 2021 at 18:24, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Mon, Oct 18, 2021 at 6:56 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> > > On Mon, 18 Oct 2021 at 17:48, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > On Mon, Oct 18, 2021 at 6:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> > > > > On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > > > On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
 
-Okay. I was under the impression 'clock-frequency' was removed thinking 
-it is in the i2c bus schema already. It is, but unfortunately you need 
-it here too if used because all properties for a node have to be listed 
-in the schema for the node. 'unevaluatedProperties' can't evaluate 
-properties in the child nodes of the parent schema with the properties 
-of the child schema.
+...
 
-Rob
+> > > > > > > +               case PIN_CONFIG_BIAS_DISABLE:
+> > > > > >
+> > > > > > > +                       mask |= PAD_BIAS_MASK;
+> > > > > >
+> > > > > > Use it...
+> > > > > >
+> > > > > > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
+> > > > > >
+> > > > > > ...here. Ditto for the similar cases in this function and elsewhere.
+> > > > >
+> > > > > I don't follow. How do you want me to use mask? If I did value =
+> > > > > (value & ~mask) | PAD_BIAS_DISABLE; then I'd wipe the previous
+> > > > > configuration. Eg. suppose the first config is the drive strength and
+> > > > > second disables bias. Then on the 2nd loop mask =
+> > > > > PAD_DRIVE_STRENGTH_MASK | PAD_BIAS_MASK and the drive strength value
+> > > > > would be wiped.
+> > > >
+> > > > Collect masks and new values in temporary variables and apply them
+> > > > once after the loop is done, no?
+> > >
+> > > But that's exactly what the code does. It merges all the config
+> > > options into a single mask and value so we only need to do rmw on the
+> > > register once.
+> >
+> > Then masking the value makes no sense.
+> > What you should have is simply as
+> >
+> >   mask |= FOO;
+> >   value |= BAR;
+> 
+> Yeah, but then we could get into weird states if the device tree
+> specifies both bias-disable and bias-pull-up by mistake. This code is
+> written so that only the last valid state is chosen.
+
+But shouldn't it be disallowed by:
+ 1) DTC validator (Rob?)
+ 2) GPIO / pin control (Linus, Bart?)
+?
+
+...
+
+> > > > > > > +       ret = clk_prepare_enable(clk);
+> > > > > > > +       if (ret) {
+> > > > > >
+> > > > > > > +               reset_control_deassert(rst);
+> > > > > >
+> > > > > > Use devm_add_action_or_reset().
+> > > > >
+> > > > > I don't see how that is better.
+> > > >
+> > > > Pity. The rule of thumb is to either try to use devm_*() everywhere in
+> > > > the probe, or don't use it at all. Above is the more-or-less standard
+> > > > pattern where devn_add_action_or_reset() is being used in the entire
+> > > > kernel.
+> > > >
+> > > > > Then I'd first need to call that and
+> > > > > check for errors, but just on the line below enabling the clock the
+> > > > > reset line is deasserted anyway, so then the action isn't needed any
+> > > > > longer. So that 3 lines of code for devm_add_action_or_reset +
+> > > > > lingering unneeded action or code to remove it again vs. just the line
+> > > > > above.
+> > > >
+> > > > Then don't use devm_*() at all. What's the point?
+> > >
+> > > I'm confused. So you wan't an unneeded action to linger because the
+> > > probe function temporarily asserts reset for 3 lines of code?
+> >
+> > I;m talking about clk_prepare_enable().
+> 
+> Ok, you wrote your comment under the reset_control_deassert call. How
+> would devm_add_action_or_reset for clk_prepare_enable work?
+
+It seems both are needed to be converted, otherwise _everything_ after
+reset_assert() should not be devm_*().
+
+TL;DR: the rule is
+  Allowed:	devm_*() followed by non-devm_*()
+  NOT allowed:	devm_*() followed by non-devm_*() followed by devm_*()
+
+Of course, you may try to work the latter one, but it diminishes the whole
+idea behind it, that's why I told that may be not using devm_*() is the
+correct approach here and that what you meant (?).
+
+The example how to use above mentioned API, just grep for it.
+
+# See [1] for the sources of the used script
+$ gl4func.sh devm_add_action_or_reset clk_prepare_enable | wc -l
+101
+
+
+[1]: https://github.com/andy-shev/home-bin-tools/blob/master/gl4func.sh
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
