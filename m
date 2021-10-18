@@ -2,114 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4392743298C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 00:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87540432980
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 00:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232019AbhJRWHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 18:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40632 "EHLO
+        id S233165AbhJRWGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 18:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbhJRWHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 18:07:33 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35F7C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:21 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id n2so3273234qta.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:21 -0700 (PDT)
+        with ESMTP id S232628AbhJRWGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 18:06:10 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 377B3C061745
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:03:59 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id om14so13163704pjb.5
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:03:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VNpqRRdnPDIUGCc3uEFG9REMCz+uQZwgGwBrpVs1X7k=;
-        b=PzH1/3QFJDCAo6+yfE9yZp3FhN5bdJblxdwmrYJXz4W0YDV5QgMDwXPS+9oDzaYsmR
-         1hy1VBsrs0g+cboLAmAYffm5C4OKJ9PZknz0zqdbSlWGpa8IqJfWmggmKLf9VGSQPSoq
-         bF2fHToJMjgOwuWZ6BDY28QPn+sUaZRuPFe0c=
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EWLOc8/hfNY9oAs9EE0iuyf6SIeHv8bSlieQBFSOAOY=;
+        b=kjeS4CRP3HqOok9cHASbD8OP2Rk+FZtDj2dK3MPYTeuxKxNfgivsdx04Gk1h+fpZUr
+         xuqFpOZpnsTtlcooONuW0qfYwLy8xzqovlH3362rtDHZq8EXGCTowxVZg47lZYRlI/Sk
+         3wrB54xgVnrwNbDbb41K+Ro2Dto124F+vb1knnYBkghJP63yUcpHt1SAmOZbyMVZ/WU2
+         Eye0HGAd3ZhWNK/SJtsMNqt5KBrWEekab7XEaYfCLnHTJLX1SHsynL3M88ojYKPXUE7C
+         wty8zKbdSpvEG2KyXQqnh57zX2zVGhlu6nfLjSlMv3X0DiAoE+2uWtSBO+5gc8YVR56u
+         pH2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VNpqRRdnPDIUGCc3uEFG9REMCz+uQZwgGwBrpVs1X7k=;
-        b=CeoA0WSiW4o94og/Df5dQ0q4QD6OTTQN+RWMzUQn2EN4jJz895V0KwMJ34hpqD04gf
-         QhQ8OatNCjbOkhNAdr+ao7t3rWmKBjWYWZcR6A2mqYT2ySBnVCUQEbDmDUS1xsM4/uBX
-         11Y5MjOyJfMU77zD0BTKLDibXtcmSHKlQKYSQ6XDXOZXKq3s4Ngq4PIzgGY7D6eCoL1D
-         4RLYsa73Sb1+NqYGV08kWQ1fegLb7dYjuGqa2UrHZv89NhqkG4gZ5Mhs2hPWr7WB0LsO
-         OG/Fg2kSY2V9KKHo5ukFloHvSeZYEFX247j0e5ZeexOBt3KS7LHQVYxD9dT33GnQu0jG
-         7npQ==
-X-Gm-Message-State: AOAM533t4LupAVReXmanhIi3m8SuEP3dfMtf8LgFHaYcYhB377c47a/L
-        vi6109Yz9E3VL3PBdhU75lHG1YCX93/FiQ==
-X-Google-Smtp-Source: ABdhPJw3PrHtRt3d2zgrLp/3mjF5lg+v/6i0NZDSFCyGsTFJDk1gC6IL4sIg/cTMyl+wemRe2+GjEQ==
-X-Received: by 2002:ac8:5988:: with SMTP id e8mr32665280qte.32.1634594720716;
-        Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id f23sm6117943qtq.40.2021.10.18.15.05.20
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id s4so1329101ybs.8
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
-X-Received: by 2002:a5b:102:: with SMTP id 2mr31008124ybx.101.1634594288583;
- Mon, 18 Oct 2021 14:58:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EWLOc8/hfNY9oAs9EE0iuyf6SIeHv8bSlieQBFSOAOY=;
+        b=hk3eWMh3wgmxwn5pCyIaO9IwhvWytUdbwyhIcXVLefTOhE6z6qUHGNYKyXghJNYlmx
+         VzoltBejKbxnuDJBbDet94HZ5SYuA8UeMB7gGrHDvVirQ5B4OO37E8OaK/F9zS0hoOnp
+         +GU50ftn/HEGDImF7dg7TejU4Vnzmn/nmHhfCUzqq6NyaANeJsRk6z+Izg4hXMXchc5H
+         CziVswLHkmpf5o3aFo8BNv1UNSVxsezRxeN+gOfc3Xp3tElmDoFULyJrlh49XtM1BiUf
+         kRZqwFcughwpVGN1T6cYPW+IFUEEQVkyhRLIpmuUIqolprgMudrAGC5kkJGvERvmHJ1H
+         UeNw==
+X-Gm-Message-State: AOAM530pn/ICvXSL+H9Mt75jEFGJfG7o+vBCDTpF0/Efz9KVttAlR9nC
+        mr3+lxUSRln4dBdI1DpmE591pg==
+X-Google-Smtp-Source: ABdhPJxf95LjSvvxphK4iCsAo9dgNJ1DZmUuLtM2CwL3Xh5sF77F8T232vNVIz6Lk6Scu8cdr2lO5g==
+X-Received: by 2002:a17:90b:1196:: with SMTP id gk22mr1812237pjb.126.1634594638734;
+        Mon, 18 Oct 2021 15:03:58 -0700 (PDT)
+Received: from x1.lan ([2607:fb90:3273:95f2:c715:2287:eaad:f905])
+        by smtp.gmail.com with ESMTPSA id f33sm386796pjk.42.2021.10.18.15.03.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 15:03:58 -0700 (PDT)
+From:   Drew Fustini <dfustini@baylibre.com>
+To:     Dave Gerlach <d-gerlach@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Johan Hovold <johan@kernel.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Benoit Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Drew Fustini <dfustini@baylibre.com>
+Subject: [PATCH 0/2] ARM: dts: am335x: add rtc system-power-controller
+Date:   Mon, 18 Oct 2021 15:00:18 -0700
+Message-Id: <20211018220018.1514652-1-dfustini@baylibre.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
- <20211013100005.GB9901@lpieralisi> <CAE-0n52fZZkWt5KxF8gq0D55f_joq0v2sBBp81Gts8cBt6fJgg@mail.gmail.com>
-In-Reply-To: <CAE-0n52fZZkWt5KxF8gq0D55f_joq0v2sBBp81Gts8cBt6fJgg@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 18 Oct 2021 14:57:56 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WYvV+=uyEOYq7LjtBgpSGV6KovvoS1e88fgc1kpt_c7Q@mail.gmail.com>
-Message-ID: <CAD=FV=WYvV+=uyEOYq7LjtBgpSGV6KovvoS1e88fgc1kpt_c7Q@mail.gmail.com>
-Subject: Re: [PATCH v12 0/5] Add DT bindings and DT nodes for PCIe and PHY in SC7280
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, svarbanov@mm-sol.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        sallenki@codeaurora.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Johan pointed out when I submitted "ARM: dts: am335x: Add rtc node as
+system-power-controller" [1] that mentioning am335x-evm and boneblack
+in the commit message was incorrect. system-power-controller is already
+present in am335x-boneblack-common.dtsi and am335x-evm would need the
+property added directly to the dts file.
 
-On Fri, Oct 15, 2021 at 12:43 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Lorenzo Pieralisi (2021-10-13 03:00:05)
-> > On Thu, Oct 07, 2021 at 11:18:38PM +0530, Prasad Malisetty wrote:
-> > > Prasad Malisetty (5):
-> > >   dt-bindings: pci: qcom: Document PCIe bindings for SC7280
-> > >   arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
-> > >   arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
-> > >   PCI: qcom: Add a flag in match data along with ops
-> > >   PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
-> > >
-> > >  .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
-> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   8 ++
-> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  50 +++++++++
-> > >  arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |   8 ++
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 118 +++++++++++++++++++++
-> > >  drivers/pci/controller/dwc/pcie-qcom.c             |  95 +++++++++++++++--
-> > >  6 files changed, 285 insertions(+), 11 deletions(-)
-> >
-> > I applied patches [4-5] to pci/qcom for v5.16, thanks I expect other
-> > patches to go via the relevant trees.
-> >
->
-> Lorenzo, can you pick up patch 1 too? It's the binding update for the
-> compatible string used in patch 4-5.
+These are the dts files that currently include either
+am335x-bone-common.dtsi or am335x-boneblack-common.dtsi:
 
-I think that means that patches 2-3 are ready to land in the Qualcomm
-tree assuming Bjorn Andersson is still accepting patches there for
-5.16, right?
+    am335x-bone.dts
+	am335x-bone-common.dtsi
 
--Doug
+    am335x-boneblack.dts
+        am335x-bone-common.dtsi
+	am335x-boneblack-common.dtsi
+
+    am335x-boneblack-wireless.dts
+	am335x-bone-common.dtsi
+	am335x-boneblack-common.dtsi
+
+    am335x-bonegreen.dts
+	am335x-bone-common.dtsi
+
+    am335x-bonegreen-wireless.dts
+	am335x-bone-common.dtsi
+
+    am335x-sancloud-bbe.dts
+	am335x-bone-common.dtsi
+	am335x-boneblack-common.dtsi
+
+    am335x-sancloud-bbe-lite.dts
+	am335x-bone-common.dtsi
+	am335x-boneblack-common.dtsi
+
+am335x-boneblack, am335x-boneblack-wireless, am335x-sancloud-bbe and
+am335x-sancloud-bbe-lite currently get the system-power-controller
+property from am335x-boneblack-common.dtsi. Moving that property to
+am335x-bone-common.dtsi would have no change for these boards as they
+include that dtsi file too.
+
+This change would result in the addition of system-power-controller
+to bone, bonegreen and bonegreen-wireless. These boards all have
+PMIC_POWR_EN (ZCZ ball C6) connected to PWR_EN on the TPS65217B PMIC.
+Thus system-power-controller is a valid property for them too.
+
+In addition to BeagleBone, I have reviewed the TI AM335x eval boards:
+
+am335x-evm.dts should _not_ have the system-power-controller property as
+the PMIC_POWER_EN is not connected on the TMDXEVM3358 board [2]. The
+ball would be connected to SLEEP (pin 37) on the TPS65910A3 PMIC but R65
+is marked as do not populate.
+
+am335x-evmsk.dts should _not_ have system-power-controller property as
+PMIC_POWER_EN is not connected on the TMDSSK3358 board [3].
+
+am335x-icev2.dts should have the system-power-controller property as the
+PMIC_POWER_EN (ZCZ ball C6) is connected to PWRHOLD (pin 1) of the
+TPS65910A3 PMIC on the TMDSICE3359 board [4].
+
+Cc: Jason Kridner <jkridner@beagleboard.org>
+Cc: Dave Gerlach <d-gerlach@ti.com>
+Cc: Keerthy <j-keerthy@ti.com>
+Cc: Johan Hovold <johan@kernel.org>
+
+[1] https://lore.kernel.org/linux-omap/20211012191311.879838-1-dfustini@baylibre.com/
+[2] https://www.ti.com/tool/TMDXEVM3358
+[3] https://www.ti.com/tool/TMDSSK3358
+[4] https://www.ti.com/tool/TMDSICE3359
+
+
+Drew Fustini (2):
+  ARM: dts: am335x-boneblack-common: move system-power-controller
+  ARM: dts: am335x-icev2: Add system-power-controller to RTC node
+
+ arch/arm/boot/dts/am335x-bone-common.dtsi      | 1 +
+ arch/arm/boot/dts/am335x-boneblack-common.dtsi | 4 ----
+ arch/arm/boot/dts/am335x-icev2.dts             | 4 ++++
+ 3 files changed, 5 insertions(+), 4 deletions(-)
+
+-- 
+2.27.0
+
