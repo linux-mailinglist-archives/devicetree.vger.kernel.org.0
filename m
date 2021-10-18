@@ -2,74 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD06143293C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 23:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D0E432940
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 23:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbhJRVrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 17:47:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
+        id S231938AbhJRVsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 17:48:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbhJRVrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 17:47:35 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C2CFC06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:24 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id b12so16609101qtq.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:24 -0700 (PDT)
+        with ESMTP id S229529AbhJRVsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 17:48:18 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB6BC06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:46:06 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id n12so11095978qvk.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:46:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3kxxjnpajnLan+DlWscaEGHQpNRH8oNyJjc2GZj0gis=;
-        b=eVEgfnxfaUdhUt/5YAtildIbe5oHbAKEh2BmfIwqcuqjFoffearSCUtT79nGI4rdny
-         xM4+Vk5sK+Hk7aIQfB39mybUcxEQZB4upapVT+dLCf8KEq8j4//7IxbgcbVHmYRwuzr9
-         AcGwq32NRkvvyyhmcIRJT2Pzydz5IGG6NOXfs=
+        bh=O/q48JXWMaZxMGZNH2ea25Eia5Gi+Z231/aB9DP8nAI=;
+        b=AbXn4vfjK9uLMmUsYmIaTqwvikm7krHCabUvqkEkxYmZL4MTWIDdXvuwL/kEFBrfV9
+         zPZVrkLmzyzBwxI3K9nd5Y9rwOTOs/nGzLsbeLLEqvGNBfAJXfKiX4RnD5QlFghufypZ
+         so3BpGgJaADzX4z+/Uijjwuvn10GiEf/V+rJ0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3kxxjnpajnLan+DlWscaEGHQpNRH8oNyJjc2GZj0gis=;
-        b=m7/Fbwr3fbfldlsg8/o4rPa57I3+ZkGSJHaH2Bwcik5uuQz30UoGqnC4gMREmTAEfl
-         syD+ME1HWBjh8szNOI6VB6pzQWHE/uj90azKlbG93+GbvZUOOWjw6MNBps8CnDt1bQhy
-         8YxvvoIIP4MQahorGC63o4zn2dhVc4HSFpCcaIe0LYD/q4GpJn6UHlB3/F4DytLWGwjy
-         DZH9emhmc5Zp/EkbSn+60peg31ZuK9+7mWGiNW5NGj8Iik6jTCnGYc1c3XnoeiDTggW9
-         DMjB97nnNiyFQF51PCZpTofeSUdJZ2/199uHVmnFEn13Sb/pt21EOeGc9JGKQ18jlLAk
-         mMiQ==
-X-Gm-Message-State: AOAM532wtBZ1kHXQQnJyFVDOL35vp4M81OiT0cVlLF3rc14MJJYypKc9
-        R1Y3cZv6fcqAaYr3T/xjuKsIQXfi+XxAkw==
-X-Google-Smtp-Source: ABdhPJxehTFd2a8hJoCQ+9rJswnihY2X9D2PTiR0qFdbwzPuclNzdmOOOI5s5jVYngaSlC97bN4gPA==
-X-Received: by 2002:ac8:5b8b:: with SMTP id a11mr18853622qta.261.1634593522900;
-        Mon, 18 Oct 2021 14:45:22 -0700 (PDT)
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com. [209.85.219.173])
-        by smtp.gmail.com with ESMTPSA id z26sm5809470qko.13.2021.10.18.14.45.21
+        bh=O/q48JXWMaZxMGZNH2ea25Eia5Gi+Z231/aB9DP8nAI=;
+        b=W1lQmWY3GnUjCvzHUp20w8Wccwgxy/a735IwjM9w0t34f6QuSXN1yMBFxHqfoGwPo8
+         weW7XC/tlPZRXhEEUNchsj+8eImEkIAlDB7O1rCjsGoTsx7tgCWy/JgvudYRuj50YYYF
+         ioY+zT/cheNP+JEuD49EYqFuvP84e+Zsq6pRrjqR0FBirhmhObx9glV/7C+eBDsdWbeM
+         1qF++M4CPfBhkfgLEWuR40IEzY3Bv7tWaV2ceREhRRsUfhQka94S25Z7scedx0hSvnhL
+         vBEYumJMs37QKJw/xnzCK/jDmcMsiHp+AasRSH0mdqAvYzgwNMdkjJ9azGwBwlzeupER
+         uVIw==
+X-Gm-Message-State: AOAM530BPbITPCT8YMvJExFQaFRAqTK4HMNd5Hu+4+e9LlR1urGwm9oE
+        hEFA5uSh1Ik/njF4llrR640GtOzdlgy/GA==
+X-Google-Smtp-Source: ABdhPJwjpPqUF+2mHHH8gVOHWLiUfonFwGNmIQU0zRQcf2YUYdfnWh6qgrVBAmZBON1K9IUWrAjjCA==
+X-Received: by 2002:a05:6214:2a45:: with SMTP id jf5mr27332710qvb.25.1634593565810;
+        Mon, 18 Oct 2021 14:46:05 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id i13sm6655660qtp.87.2021.10.18.14.46.04
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Oct 2021 14:45:22 -0700 (PDT)
-Received: by mail-yb1-f173.google.com with SMTP id o134so1254375ybc.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:45:21 -0700 (PDT)
-X-Received: by 2002:a25:bdce:: with SMTP id g14mr31388284ybk.352.1634593521482;
- Mon, 18 Oct 2021 14:45:21 -0700 (PDT)
+        Mon, 18 Oct 2021 14:46:05 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id t127so5453859ybf.13
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 14:46:04 -0700 (PDT)
+X-Received: by 2002:a5b:102:: with SMTP id 2mr30963560ybx.101.1634593564543;
+ Mon, 18 Oct 2021 14:46:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210929153553.1.Ib44c2ac967833d7a3f51452d44d15b7b8d23c1f0@changeid>
- <86b0d847ddf06c1b445f3dbac9c771a9@codeaurora.org>
-In-Reply-To: <86b0d847ddf06c1b445f3dbac9c771a9@codeaurora.org>
+References: <1632892123-11006-1-git-send-email-rajpat@codeaurora.org> <CAE-0n51Vnb1YKZKtg-2iSK7r+50RrbURW5TN6Wyvc+9b21jZNA@mail.gmail.com>
+In-Reply-To: <CAE-0n51Vnb1YKZKtg-2iSK7r+50RrbURW5TN6Wyvc+9b21jZNA@mail.gmail.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 18 Oct 2021 14:45:09 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WnMnEckHdu0DG3U8MnyjwQ42aybFxq35nWSLG=vs=LGA@mail.gmail.com>
-Message-ID: <CAD=FV=WnMnEckHdu0DG3U8MnyjwQ42aybFxq35nWSLG=vs=LGA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: pmk8350: Make RTC disabled by default;
- enable on sc7280-idp
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+Date:   Mon, 18 Oct 2021 14:45:52 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UJQ1J3_Kmz+8tArUQfjmSMBMOs2K=yhMVDaLjusnW+SA@mail.gmail.com>
+Message-ID: <CAD=FV=UJQ1J3_Kmz+8tArUQfjmSMBMOs2K=yhMVDaLjusnW+SA@mail.gmail.com>
+Subject: Re: [PATCH V1] arm64: dts: qcom: sc7280: Add 200MHz in qspi_opp_table
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Rajesh Patil <rajpat@codeaurora.org>,
         Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -77,32 +77,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Bjorn,
 
-On Wed, Sep 29, 2021 at 9:00 PM <skakit@codeaurora.org> wrote:
+On Wed, Sep 29, 2021 at 10:31 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> On 2021-09-30 04:08, Douglas Anderson wrote:
-> > The RTC on the pmk8350 is not useful on all boards. Some boards may
-> > not provide backup power to the PMIC but might have another RTC on the
-> > board that does have backup power. In this case it's better to not use
-> > the RTC on the PMIC.
+> Quoting Rajesh Patil (2021-09-28 22:08:43)
+> > Add 200MHz OPP in qspi_opp_table
 > >
-> > At the moment, the only boards that includes this PMIC are sc7280-idp
-> > and sc7280-idp2. On sc7280-idp I'm not aware of any other RTCs, but
-> > sc7280-idp2 has a Chrome OS EC on it and this is intended to provide
-> > the RTC for the AP.
-> >
-> > Let's do what we normally do for hardware that's not used by all
-> > boards and set it to a default status of "disabled" and then enable it
-> > on the boards that need it.
-> >
-> > NOTE: for sc7280-idp it's _possible_ we might also want to add
-> > `allow-set-time;`. That could be the subject of a future patch if it
-> > is indeed true.
-> >
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
 > > ---
-> >
 >
-> Reviewed-by: Satya Priya <skakit@codeaurora.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
 If you're still accepting patches for 5.16, it'd be keen if you'd
 consider taking this one. Thanks!
