@@ -2,72 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 136A54325DB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92A943260F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbhJRSFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 14:05:02 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:39660 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbhJRSFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:05:01 -0400
-Received: by mail-ot1-f54.google.com with SMTP id e59-20020a9d01c1000000b00552c91a99f7so857396ote.6;
-        Mon, 18 Oct 2021 11:02:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Ekwh8TBKcZzWO0G92IyrQXg0TBRFib0eeL94Dkztj58=;
-        b=AIiEsZ9R3JHP6bzaAtS4am4Jswj+lmLOkA5CodOSoneeFIKq+nYY1J/mPxNKBVB4ei
-         M2qyXp404S2ZVNDw7fgc1fEcAZvxbO/GRcFtd32BuvrzHtUJxsV4OzLRn6oIDnwyUEb1
-         p3bLxbrCRdeKAEQozpSjKnOG3wzaru/5dd2DAXodgBKJ30BK/zXtTy32IvdAI1dw+ubg
-         9Zt829fjD36QFAMsKDQeSZdKifu6cLa4x/Pml4ooRHkbY5HbRnAXsaD7DfiKca7aIx9T
-         xmDNFjiee7+TApmQGuYrW7GJ2CL+ZKXrrkoxoMxoA2DfDdBLh5wbcAVEMFBtiFwbPSD0
-         pLCg==
-X-Gm-Message-State: AOAM532M9QI3nkReJKkRj6yX8qc2oamyIkykeaMVUE26eDxKgfQianpf
-        xth/KcVm2mjnAN5sHqsHEA==
-X-Google-Smtp-Source: ABdhPJzHlH+zszUbV8GDbZ+HPEN49U8e4xqnb9GVwQzoGSfcYQm+oUPquDgeOo//WQRrXrd/RzawsQ==
-X-Received: by 2002:a05:6830:3114:: with SMTP id b20mr1097752ots.163.1634580170226;
-        Mon, 18 Oct 2021 11:02:50 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y12sm1570554otq.60.2021.10.18.11.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 11:02:49 -0700 (PDT)
-Received: (nullmailer pid 2666118 invoked by uid 1000);
-        Mon, 18 Oct 2021 18:02:48 -0000
-Date:   Mon, 18 Oct 2021 13:02:48 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, Tomasz Figa <tomasz.figa@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: add samsung,exynosautov9-sysreg
- compatible
-Message-ID: <YW22yKUhpIoO/IEB@robh.at.kernel.org>
-References: <20211012002314.38965-1-chanho61.park@samsung.com>
- <CGME20211012002533epcas2p182112e07ea081957a0e54fea46c66816@epcas2p1.samsung.com>
- <20211012002314.38965-2-chanho61.park@samsung.com>
+        id S231956AbhJRSKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 14:10:47 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:57618 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231590AbhJRSKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:10:47 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E00C28C6;
+        Mon, 18 Oct 2021 20:08:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634580515;
+        bh=UgDligBdkBJSa+psgu7m13DMpVB69NkjDnaxfX8vpAo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hbuxFj6IZRSym2HpPuqe+mV3XB0gclh78Ke2o65+78j2eWvCpGE+na4N5A9wuk3QR
+         +/P6gpJeiMPaTb3QNLC6xlBTyFxi0wOBV/n6Ax+xsrjOonbnCmO3u55KW1AaN4BHT5
+         MHxgvWZsM0J6xLS5clVk7lUbmWx6hT7xtHsX/50M=
+Date:   Mon, 18 Oct 2021 21:08:17 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: lvds-codec:
+ Document pixel data sampling edge select
+Message-ID: <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
+References: <20211017001204.299940-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211012002314.38965-2-chanho61.park@samsung.com>
+In-Reply-To: <20211017001204.299940-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 09:23:12 +0900, Chanho Park wrote:
-> Add document Samsung's Exynos Auto v9 compatible for system registers.
-> 
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Marek,
 
-Acked-by: Rob Herring <robh@kernel.org>
+Thank you for the patch.
+
+On Sun, Oct 17, 2021 at 02:12:03AM +0200, Marek Vasut wrote:
+> The OnSemi FIN3385 Parallel-to-LVDS encoder has a dedicated input line to
+> select input pixel data sampling edge. Add DT property "pclk-sample", not
+> the same as the one used by display timings but rather the same as used by
+> media, to define the pixel data sampling edge.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
+> ---
+> V4: New patch split from combined V3
+> V5: Rebase on recent linux-next
+> ---
+>  .../bindings/display/bridge/lvds-codec.yaml    | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> index 1faae3e323a4..708de84ac138 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+> @@ -79,6 +79,14 @@ properties:
+>        - port@0
+>        - port@1
+>  
+> +  pclk-sample:
+> +    description:
+> +      Data sampling on rising or falling edge.
+> +    enum:
+> +      - 0  # Falling edge
+> +      - 1  # Rising edge
+> +    default: 0
+> +
+
+Shouldn't this be moved to the endpoint, the same way data-mapping is
+defined as an endpoint property ?
+
+>    powerdown-gpios:
+>      description:
+>        The GPIO used to control the power down line of this device.
+> @@ -102,6 +110,16 @@ then:
+>                properties:
+>                  data-mapping: false
+>  
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: lvds-encoder
+> +then:
+> +  properties:
+> +    pclk-sample: false
+> +
+>  required:
+>    - compatible
+>    - ports
+
+-- 
+Regards,
+
+Laurent Pinchart
