@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5733843263B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92236432654
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 20:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbhJRSXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 14:23:19 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:33722 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229980AbhJRSXT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 14:23:19 -0400
-Received: from p508fdda9.dip0.t-ipconnect.de ([80.143.221.169] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mcXFo-0001cz-Ne; Mon, 18 Oct 2021 20:20:56 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de,
-        amitk@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        rui.zhang@intel.com, linux-rockchip@lists.infradead.org,
-        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 1/4] dt-bindings: thermal: allow more resets for tsadc node in rockchip-thermal.yaml
-Date:   Mon, 18 Oct 2021 20:20:55 +0200
-Message-Id: <163458113680.651054.7196028816120992133.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210930110517.14323-1-jbx6244@gmail.com>
-References: <20210930110517.14323-1-jbx6244@gmail.com>
+        id S232518AbhJRS26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 14:28:58 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:35832 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229696AbhJRS25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 14:28:57 -0400
+Received: by mail-oi1-f181.google.com with SMTP id r6so1031769oiw.2;
+        Mon, 18 Oct 2021 11:26:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FouZD7WWAm4FEr44KhGasJDNRL3CwqxudIFUEOILOfM=;
+        b=A9G3a76XjbCSX186/RfONbbj9RCYOnVK8AUjkpLPbWFLMpjaravdXDXfTDXUmpbPR2
+         8Em2epRWlFmcn1UFHgd15ieCuTqByMLw3UnDc4H9wAd9I1+cvphZ52BWTWoeiDcskJtU
+         DZpv9/F5MWTUrLoynzyIfWGHgiAkMKm+wyePnl1XP6xMNDV7xIOwnki5g3UcULT4eizn
+         SyXVP9fW/k3VnYsfQnwJiTkEHJ6sFYZUsF6Xl5pE3cjYTgDekOV0sxzrelurR/my9u9A
+         eEj1aA+CAoyRHfGbflhVlxGzvthB6/iJdULDCQrJ2mcponfoDpixxAMKWWmLJrqxSGUM
+         RGCg==
+X-Gm-Message-State: AOAM530BKPOApE3+DW9un8RbsIBxafklEzvHagovK0OLLE/pexjZ6dhn
+        +bgF424H8YlQRnvpH4LEPQ==
+X-Google-Smtp-Source: ABdhPJzgKEr+ZEnCBB0TINT5L+Hks6jkJRLj6D8d/PeDLfJ1LGueYN1L0xSHwgTaIgOSWvSXUPUdRw==
+X-Received: by 2002:aca:41d5:: with SMTP id o204mr416199oia.41.1634581605651;
+        Mon, 18 Oct 2021 11:26:45 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g12sm2619925oof.6.2021.10.18.11.26.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 11:26:45 -0700 (PDT)
+Received: (nullmailer pid 2705218 invoked by uid 1000);
+        Mon, 18 Oct 2021 18:26:44 -0000
+Date:   Mon, 18 Oct 2021 13:26:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org,
+        davem@davemloft.net, agross@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        robh+dt@kernel.org, bhupesh.linux@gmail.com
+Subject: Re: [PATCH v4 11/20] dt-bindings: crypto : Add new compatible
+ strings for qcom-qce
+Message-ID: <YW28ZIbBj2+mfndy@robh.at.kernel.org>
+References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-12-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211013105541.68045-12-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 30 Sep 2021 13:05:14 +0200, Johan Jonker wrote:
-> The tsadc node in rk356x.dtsi has more resets defined then currently
-> allowed by rockchip-thermal.yaml, so fix that in the documentation.
-> The driver now uses the devm_reset_control_array_get() function,
-> so reset-names is no longer required, but keep it for legacy reasons.
+On Wed, 13 Oct 2021 16:25:32 +0530, Bhupesh Sharma wrote:
+> Newer qcom chips support newer versions of the qce crypto IP, so add
+> soc specific compatible strings for qcom-qce instead of using crypto
+> IP version specific ones.
+> 
+> Keep the old strings for backward-compatibility, but mark them as
+> deprecated.
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
 
-Applied, thanks!
-
-Fixed the patch subject to the regular prefixes.
-
-[4/4] arm64: dts: fix resets in tsadc node for rk356x.dtsi
-      commit: 5c9e66c6b75a754025c74bde7b7a6c52674d8aa1
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
