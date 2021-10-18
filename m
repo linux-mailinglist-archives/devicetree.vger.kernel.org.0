@@ -2,744 +2,685 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E354322EE
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F7E432302
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232454AbhJRPe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 11:34:56 -0400
-Received: from mail-eopbgr60065.outbound.protection.outlook.com ([40.107.6.65]:21731
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231946AbhJRPe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 11:34:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m/EO/1EHYHpqMN6Z8+BSnEKwm4TYgM6fGGUufhFxGA+GbsCelnJi5wBnZsSlxsPF6MfzEOkC0MYdVyvnc/VpPZGkvDM7RcumT9p/ckwfPYgKb2Id9RNvodYDaJb+przZ3zjk4q5MFSA2OJXaiUMGO5916xJq9kg1LVZoy48sVbxk1C4h/lZz7Km7UTmNytt1628orhNaANCCwFS9TJdo2e4JWJIQua5kBuxFZoNoBOXJJksLJhMqJV8vfYPlv9Dr0uj3Lc/J3FJw5+bo+b+Gt56iGyalIsFiDp/GkwceUKq7vayDHtHlcEqELIzgkuuw2Fx6gkWjcrAnhST0i1q09A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OrLqZ/yQ1j5NHmDMwiI8AZRFhkMJDsCGm3+dhi5yXzc=;
- b=U/FWVzAz2RJq/V4Pfv71LpTmywpDvKDtdb7Un9LHaCKVCp3yLnUQQjcOp/O9JRpUGZUf8+iIBo3/RuX1sNSr9Mtzes+30ym6Y3TWX3Lut0ocFbA5fEV9W4C+1N+rV9FChei+6plJu+aBOFDRE2CY0URJhhG6gDRbjU60+hk4++bauoJb4yy/7VxmFEihd9Q+vEmqVolPMYGpW304SYiRkaOTyd6szhbNg1892X/yy8qrRU31l/KhRVA6A4igA9AmkeEr9iui7RHLEhSnfaCME0IQMo92WusEAzQA842MCyoJCP/f0mxg5if/FcD8oQ7ZA2orS0tif8AemBtNfAl/rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OrLqZ/yQ1j5NHmDMwiI8AZRFhkMJDsCGm3+dhi5yXzc=;
- b=dZIYORpYtwMIMn0FlJEp1tWveEvNQ8xzk85hNJW3X93k9PHFP32GKwgnomxuLDp94fnkr3EYRDFrWjMVr/n5M6veD2absqkKZyi1aYV0QtUgrl4Kll2Lvv9DvKVWTxEc2a8x/Rct0mf0y1zIZq5mPZrX4BVVVerBZds+9ZuGrUM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB9PR03MB7434.eurprd03.prod.outlook.com (2603:10a6:10:22c::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Mon, 18 Oct
- 2021 15:32:42 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::a9aa:f363:66e:fadf]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::a9aa:f363:66e:fadf%6]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
- 15:32:42 +0000
-Subject: Re: [PATCH v8 3/3] pwm: Add support for Xilinx AXI Timer
-To:     Michal Simek <michal.simek@xilinx.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        linux-kernel@vger.kernel.org
-References: <20211015190025.409426-1-sean.anderson@seco.com>
- <20211015190025.409426-3-sean.anderson@seco.com>
- <3303baa4-e3ea-2009-2122-0abff30e25c5@xilinx.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <653f7615-4fc3-8d0d-125c-c09260d30d12@seco.com>
-Date:   Mon, 18 Oct 2021 11:32:36 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <3303baa4-e3ea-2009-2122-0abff30e25c5@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MN2PR03CA0002.namprd03.prod.outlook.com
- (2603:10b6:208:23a::7) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        id S232873AbhJRPiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 11:38:03 -0400
+Received: from mail-pg1-f171.google.com ([209.85.215.171]:37534 "EHLO
+        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232933AbhJRPiC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 11:38:02 -0400
+Received: by mail-pg1-f171.google.com with SMTP id s136so13398834pgs.4;
+        Mon, 18 Oct 2021 08:35:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ix+PjeVUr9M9hmSH2oYIe5g/udBeDCxp0YK/hSiGdg0=;
+        b=xuc6/JQ4yRQF1qlZJB4Ewi3SHbpk5cVeBgQOs192JHYyX0ObnNdwf4cmNq4GKxj2re
+         QIO9Qa4Vn3KJsHvmxHOsIMN/CBluoDuq65REtIdN97tY7ih0FtvDKIXbYJtsaf6RqmMj
+         SqyIRk8fYvKmJjki2dxYtJxLaVZOryT9BL4Jypm6sYHGZm94TbObYjW4wI8bz508Pnf4
+         g08DG8rflvBaLDqBvMwWuX6UrnbZFpaSO8EjS7KEQO15wgl8ck5sS/do2dDW4mx+s8RD
+         nguLj7qe7v43czMAyqM8mLlCtheOgvEOUDb2zDiNMR60LlNGPv21wJY4hl5p9QYI8+BF
+         wXrA==
+X-Gm-Message-State: AOAM53198fWfZddOjt43iH0K5MaHCiPYNy7u+hroO4g6TbShgBLgbu4g
+        PL3oV4GWxB94qlPbQbZlEua9jMBrk56twz4gt9k=
+X-Google-Smtp-Source: ABdhPJzT4LgxUt7FciDLvvzmuxi7pknt0BTuurCI8z6mbkWTQg7776/M/gliut0S1FkbMnG28TD6bZziajZQ25qMB8I=
+X-Received: by 2002:a62:31c5:0:b0:447:cd37:61f8 with SMTP id
+ x188-20020a6231c5000000b00447cd3761f8mr29553098pfx.29.1634571350615; Mon, 18
+ Oct 2021 08:35:50 -0700 (PDT)
 MIME-Version: 1.0
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR03CA0002.namprd03.prod.outlook.com (2603:10b6:208:23a::7) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend Transport; Mon, 18 Oct 2021 15:32:40 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: af8a3419-0c14-475a-359c-08d9924c8672
-X-MS-TrafficTypeDiagnostic: DB9PR03MB7434:
-X-Microsoft-Antispam-PRVS: <DB9PR03MB74349A48D0076EBD070BC9FA96BC9@DB9PR03MB7434.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Napefq0dvdaef0oIkoMIUxJPDp+fqm5kGUXslWKF3hvKi/VpmDeQRuBEeQBnbHmCx3Hzq5qqg0FIsSY0YiJ+lakctVe1xfGAiWIjxuZYxUYuPUi4mTbaQ+kuwLz8ZlrOwv0w2uIIytTIsit4NhHQDM2yv5mEKZiYfIzKqFpqZEw0T7pYneVwrlmjLuJ+StknPUX0omd4oQFWiXcmxc7sxyqKeMEeuvo6dK/lzTGPjxNhUxoU0UATjxEoSn7kF8H0vQ1GH10gBkyrfz5bUZMHgrEcIIBTr/0opDSpQwNklNkcbB5eXNQ0T9QjjPVnjfRVlOF6RuFjZOpgLhXG5FDH3xs5uA/pfn1oj6rC9Cgy3/yXD1sjtTMY6J2M4oLSCuzNBFi73r0eIazntuOyCO8m84SpRZQEzF04i77yhMbwAyt348OQ5vt9GweSu87HHNYeR+sUteFcKkP01R6JlOY9/qt2QPUXuSKo6HdnF5wR/WcapSZEPrq0d6MKvJ6c9THNUu/TDeV3mV2JCAJJCr3EQKCJZd3BUi5Vs0iQ4KicsCe3QIWiFzvTYQfCPre2dSaorVw9RJ22RsHb1h/Us3bYC1QDkNS/68sSO5JsfJ1dQ3EF5bFHfCUVekyUQ2TAF8KHNDlQ9mM1XybyzFk05vuWKTPm37OIiP1JsKK1Rx+WkkzEbf6LAeGUHj2UdYy9+gOXr2UIpyytvGI9h/9xraHXU+NvEyEV++HU2g1HRynWxNI1icpMZ59LeICmB+/hhInvqAHiE1p+bUHeka0wBN3WsAnmv/UMfJDdIxIaSJa5QPnTD21YWyIEECD1ko6gx48Zy19MMhe18b0219nmc1sIQNiFGKRuW31EzHZlgftl0gs=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(83380400001)(4326008)(8936002)(38100700002)(38350700002)(966005)(8676002)(52116002)(16576012)(5660300002)(186003)(86362001)(36756003)(66556008)(6486002)(316002)(6666004)(31696002)(66946007)(26005)(53546011)(66476007)(2616005)(956004)(110136005)(54906003)(30864003)(508600001)(31686004)(44832011)(2906002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TFRhNysvR3JUbFZsclRZdFB3SWc4Qy96b2c2akJwd3YwOUJIQlc2enJMTXdm?=
- =?utf-8?B?bEdnUzNFMmk2QzhUbWJDYjg0aFl6eHJPZk5CRmZtVlhlN0psaW5uZDVKaGZD?=
- =?utf-8?B?OVJzR2ZiRzkzVnZxQUhZNHF3YUhZc0x2c0JoU2Nxb2VCQUNhbVlRa3ExOHpn?=
- =?utf-8?B?RlhiZEpjYW5HSlVnZE93OTlpOGt6SmRlSThob2lVdDZGUHhJNTVqYzRmY3ZJ?=
- =?utf-8?B?U1FlWGhtbmY5RUVVUVZHVUZYSGs2aklWQTkzSFlKY3duamZ6em5WWG9kd0I5?=
- =?utf-8?B?VHdZbzZVS1RTYUg5NHUxbkI4YmdxekltTE9rYjFoSFR2SjFub1p2NVhtZDNy?=
- =?utf-8?B?RzJCVCt1NCtlZXZtcjBLOFhCTnAvamNmOG1yZDBjbkZCY1lubGVyR3c0N0lV?=
- =?utf-8?B?WnlHa0ZYQysxdDlRMlVjblVhS05pb2x0T0dsVElYMU1IbG13aFlDQm1CQUJ1?=
- =?utf-8?B?M2Q2T2VPdGJDK0JqcVFpMGZMVFBwY2ZLVU9sV0dXdUhFVG1TclJCeFN0T1dS?=
- =?utf-8?B?a0llSFFXRVY5bkVTVE9iMG1VNkptaHM4MHVGQmR4WGVsUVlqY09yOWp2enZC?=
- =?utf-8?B?MGlsQTltZlB1WGZXOGdoNkxyeTQ3MWFFdnBkKzdUbndqSnkxVVFTODJjU1kw?=
- =?utf-8?B?R1FSQWNiTHd6Q0Q5K0k2eHN3ZzBOVlNtajFsU0p3UnB1MFJXWTlYTTZ3cVdt?=
- =?utf-8?B?blZnaHZ0Y0xuM2xWalNKKzNkTVZCdzVHcWg2M3Z5NC9VZXJNeGoxZ2l1QTA5?=
- =?utf-8?B?cVZzTTNteUVNditNVWNFelgrcm0wdndJREh1VURITnZRYXQzU3JUL0drYlpr?=
- =?utf-8?B?b2p2QVQxdFhsaFp6b2t6UDFjNktmNEJqbWt4V3lqaExOMWJWOHJoSy9XTkIv?=
- =?utf-8?B?bEhxM3o2bGxJMG9NMm9ZWmtQSWN6R2V3Tlozei90eWE4WTdwWlZ2Rk5Uc2oy?=
- =?utf-8?B?RitUSkFyelZPSE1VdWNpcFU1Rm9wbzR1Q3BVR3BkZUtBS1lBTnduZmQvamww?=
- =?utf-8?B?MDVGVUM5bjRyUkJvSjR4bm9GM2pweWI4Ui8vUjBnSllIdFFQdFVCbUJuTTFv?=
- =?utf-8?B?Z0paeTFLMG9aQ01FTS90bUtQSjVMdGZnUW1Tdng4eHNnOEF5cUxDN1VCV2c1?=
- =?utf-8?B?d2VoOXpEKzVKSTJOS1RqS0lxQkFzaWxjRFZ2NHJKOTIvdHltVlhRMlJhWFZB?=
- =?utf-8?B?YXJMeWZkSXBnRDJRWnhmTllSbTJFL09xTW5EVC9pckc5Zmp1Q0YyYmY1UDI0?=
- =?utf-8?B?UmRhSTVUQTFrRk9YdkdMNjNjOGdJeXZYVVNOaGxJTXBkcUlCMFBBbWpFM3JF?=
- =?utf-8?B?Z0ZYcjY5bkFHSzZ3S2ZONklDTkVWZ2R1L0xnQjlVRFNJM2NHc0pVb0lPRVlX?=
- =?utf-8?B?RUhEQjdvQ1ZaV0xpbTNYTEdlamtaM3NDM3NYUmd3Mnp2eE1nU0IyTU04WTVX?=
- =?utf-8?B?MFdFcEY3OGVoalZXVjFUb3FxUHpvYjE0N2RtaitRcExsWUE2MnB5eWYrbFVZ?=
- =?utf-8?B?ZUVwNGtid1NBTmlicTFIZVRlUDlLUDhRL3VHaUgvYUhmdHNOb2VReDJxeFNV?=
- =?utf-8?B?Q2U0OTAxY2prQllKMFZwNE03cmM3bFNPeUltMyt6Q3QwYi9KanB3emJ4TUFw?=
- =?utf-8?B?VFBlclNDTGo2ZlNnU3ZrUW15NHlhc01wUEN0bk02aHVsRHlmTWNIZnMxcTlK?=
- =?utf-8?B?TFpMZ2N2SE52anR0eVNJaXpublg0cDJ3cWttUmpMS1NxL3IvZGMzZWZ1Mjd2?=
- =?utf-8?Q?R8lgfaePGJuNfQBv2WNPJz+40HzJ5pQm1RSttX0?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: af8a3419-0c14-475a-359c-08d9924c8672
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 15:32:42.3035
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hjoxRP9xpkwuGPPkAlzWxmOubyRzd2Pcbr/fy14D9em43td/HFj0jWzpm497KvlI8rOUrNA0Z0NYCUYs3JC5Gw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB7434
+References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-13-kernel@esmil.dk>
+ <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
+In-Reply-To: <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Mon, 18 Oct 2021 17:35:39 +0200
+Message-ID: <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
+Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> > Add a combined pinctrl and gpio driver for the StarFive JH7100 SoC.
+> >
+> > For each "GPIO" there are two registers for configuring the output and
+> > output enable signals which may come from other peripherals. Among these
+> > are two special signals that are constant 0 and constant 1 respectively.
+> > Controlling the GPIOs from software is done by choosing one of these
+> > signals. In other words the same registers are used for both pinmuxing
+> > and controlling the GPIOs, which makes it easier to combine the pinctrl
+> > and gpio driver in one.
+> >
+> > I wrote the pinconf and pinmux parts, but the gpio part of the code is
+> > based on the gpio driver in the vendor tree written by Huan Feng with
+> > cleanups and fixes by Drew and me.
+>
+> s/gpio/GPIO/g
+>
+> ...
+>
+> > +config PINCTRL_STARFIVE
+>
+> > +       bool "Pinctrl and GPIO driver for the StarFive JH7100 SoC"
+>
+> Why not module?
+>
+> > +       depends on SOC_STARFIVE || COMPILE_TEST
+>
+> > +       depends on OF
+>
+> Do you really need this taking into account...
+>
+> > +       default SOC_STARFIVE
+> > +       select GENERIC_PINCTRL_GROUPS
+> > +       select GENERIC_PINMUX_FUNCTIONS
+> > +       select GENERIC_PINCONF
+> > +       select GPIOLIB
+> > +       select GPIOLIB_IRQCHIP
+>
+> > +       select OF_GPIO
+>
+> ...this one?
+>
+> ...
+>
+> bits.h ?
+>
+> > +#include <linux/clk.h>
+> > +#include <linux/gpio/driver.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+>
+>
+> mod_devicetable.h ?
+>
+> > +#include <linux/pinctrl/pinctrl.h>
+> > +#include <linux/pinctrl/pinmux.h>
+>
+> Can you move these as a group after generic linux/* ones?
+>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/reset.h>
+> > +#include <linux/spinlock.h>
+>
+> ...
+>
+> > +/*
+> > + * refer to Section 12. GPIO Registers in JH7100 datasheet:
+>
+> Be consistent in your style, here for example missed capitalization.
+>
+> > + * https://github.com/starfive-tech/StarLight_Docs
+>
+> Is it possible to have the datasheet to be provided as Datasheet: tag
+> in the commit message?
+>
+> > + */
+>
+> ...
+>
+> > +/*
+> > + * Global enable for GPIO interrupts, offset: 0x0, field: GPIOEN
+> > + * set to 1 if GPIO interrupts are enabled, set to 0 to disable
+> > + */
+> > +#define IRQ_GLOBAL_EN          0x0
+>
+> s/0x0/0x00/g
+>
+> ...
+>
+> > +/*
+> > + * Interrupt Type for GPIO[31:0], offset: 0x10, field: GPIOS_0
+> > + * set to 1 if edge-triggered, set to 0 for level-triggered
+> > + */
+> > +#define IRQ_TYPE_LOW           0x10
+> > +
+> > +/*
+> > + * Interrupt Type for GPIO[63:32], offset: 0x14, field: GPIOS_1
+> > + */
+> > +#define IRQ_TYPE_HIGH          0x14
+>
+> As I reviewed below, the IRQ is represented by a few registers in a
+> row, no need to define low and high separately. Ditto for the rest
+> register pairs.
+>
+> ...
+>
+> > +/*
+> > + * Interrupt Status after Masking GPIO[31:0], offset: 0x40, field: GPIOMIS_0
+> > + * status of edge-triggered or level-triggered after masking
+> > + * value of 1 means edge or level was detected, value of 0 menas not detected
+>
+> menas?!
+>
+> > + */
+>
+> ...
+>
+> > +/*
+> > + * Data Value of GPIO for GPIO[31:0], offest: 0x48, field: GPIODIN_0
+>
+> offest?!
+>
+> > + * dynamically reflects value on the GPIO pin
+> > + */
+>
+> Please, run a spellchecker.
+>
+> ...
+>
+> > +#define IO_PADSHARE_SEL                0x1a0
+>
+> Okay, make all registers to be fixed width, i.e. 0x000 for IRQ global
+> enabling and so on.
+>
+> ...
+>
+> > +#define PAD_SLEW_RATE_MASK             0xe00U
+>
+> GENMASK()
+>
+> > +#define PAD_BIAS_STRONG_PULL_UP                0x100U
+> > +#define PAD_INPUT_ENABLE               0x080U
+> > +#define PAD_INPUT_SCHMITT_ENABLE       0x040U
+> > +#define PAD_BIAS_DISABLE               0x020U
+> > +#define PAD_BIAS_PULL_DOWN             0x010U
+>
+> All above seems like BIT(_something_).
+>
+> > +#define PAD_BIAS_MASK                  0x130U
+> > +#define PAD_DRIVE_STRENGTH_MASK                0x007U
+>
+> GENMASK()
+>
+> ...
+>
+> > +#ifdef CONFIG_DEBUG_FS
+>
+> __maybe_unused ?
+>
+> > +#else
+> > +#define starfive_pin_dbg_show NULL
+> > +#endif
+>
+> ...
+>
+> > +       dout = readl_relaxed(reg);
+>
+> readl_relaxed(reg + 0x00)
+>
+> > +       reg += 4;
+>
+> > +       doen = readl_relaxed(reg);
+>
+> readl_relaxed(reg + 0x04);
+>
+> ...
+>
+> > +       seq_printf(s, "dout=%u%s doen=%u%s",
+> > +                  dout & 0xffU, (dout & 0x80000000U) ? "r" : "",
+> > +                  doen & 0xffU, (doen & 0x80000000U) ? "r" : "");
+>
+> GENMASK()
+> BIT()
+>
+> ...
+>
+> > +       for_each_child_of_node(np, child) {
+> > +               const __be32 *pinmux_list;
+> > +               const __be32 *pins_list;
+> > +               int pinmux_size;
+> > +               int pins_size;
+> > +
+> > +               pinmux_list = of_get_property(child, "pinmux", &pinmux_size);
+> > +               pins_list   = of_get_property(child, "pins",   &pins_size);
+> > +               if (pinmux_list && pins_list) {
+> > +                       dev_err(dev, "invalid pinctrl group %pOFn.%pOFn: %s\n",
+> > +                               np, child, "both pinmux and pins set");
+> > +                       of_node_put(child);
+> > +                       return -EINVAL;
+> > +               }
+> > +
+> > +               if (pinmux_list && pinmux_size > 0) {
+> > +                       nmaps += 2;
+> > +               } else if (pins_list && pins_size > 0) {
+> > +                       nmaps += 1;
+> > +               } else {
+> > +                       dev_err(dev, "invalid pinctrl group %pOFn.%pOFn: %s\n",
+> > +                               np, child, "neither pinmux nor pins set");
+> > +                       of_node_put(child);
+> > +                       return -EINVAL;
+> > +               }
+> > +               ngroups += 1;
+> > +       }
+>
+> This entire loop seems like
+> 1) it should be based on something from pin control core;
+> 2) it's using some low level APIs instead of better ones like
+> of_property_read_uXX();
+> 3) smells like unoptimized NIH.
+>
+> ...
+>
+> > +               if ((list = of_get_property(child, "pinmux", &npins))) {
+>
+> Why not of_property_read_...() ?
+>
+> ...
+>
+> > +                               u32 v = be32_to_cpu(*list++);
+>
+> My gosh!
+>
+> ...
+>
+> > +                       for (i = 0; i < npins; i++)
+> > +                               pins[i] = be32_to_cpu(*list++);
+>
+> Ditto.
+> Even for this we have something in byteorder headers.
+>
+> Summary, make sure you use much better _existing_ APIs instead of the
+> above crap.
+>
+> ...
+>
+> > +free_pinmux:
+> > +       devm_kfree(dev, pinmux);
+> > +free_pins:
+> > +       devm_kfree(dev, pins);
+> > +free_grpname:
+> > +       devm_kfree(dev, grpname);
+>
+> What the heck?!
+>
+> > +free_pgnames:
+> > +       devm_kfree(dev, pgnames);
+>
+> Ditto.
+>
+> ...
+>
+> > +out:
+>
+> Useless label.
+>
+> > +       return ret;
+>
+> ...
+>
+> > +       for (i = 0; i < group->num_pins; i++) {
+> > +               unsigned int gpio = starfive_pin_to_gpio(sfp, group->pins[i]);
+> > +               void __iomem *reg_dout;
+> > +               void __iomem *reg_doen;
+> > +               void __iomem *reg_din;
+> > +               u32 v, dout, doen, din;
+> > +               unsigned long flags;
+>
+> > +               if (dev_WARN_ONCE(dev, gpio >= MAX_GPIO,
+>
+> What?!
+>
+> > +                                 "%s: invalid gpiomux pin", group->name))
+> > +                       continue;
+> > +
+> > +               v = pinmux[i];
+> > +               dout = ((v & BIT(7)) << (31 - 7)) | ((v >> 24) & 0xffU);
+> > +               doen = ((v & BIT(6)) << (31 - 6)) | ((v >> 16) & 0xffU);
+> > +               din  = (v >> 8) & 0xffU;
+>
+> What is this voodoo for?
+>
+> > +               if (din != 0xff)
+> > +                       reg_din = sfp->base + GPIO_IN_OFFSET + 4 * din;
+> > +               else
+> > +                       reg_din = NULL;
+>
+> This looks like you maybe use gpio-regmap instead?
+>
+> ...
+>
+> > +       void __iomem *reg = sfp->padctl + 4 * (pin / 2);
+> > +       u32 value = readl_relaxed(reg);
+> > +
+> > +       if (pin & 1U)
+> > +               value >>= 16;
+> > +       return value;
+>
+> u8 shift = 16 * (pin % 2);
+>
+> return readl_relaxed() >> shift;
+>
+> ?
+>
+> Something similar for below code.
+>
+> ...
+>
+> > +#ifdef CONFIG_DEBUG_FS
+> > +static const struct pin_config_item
+> > +starfive_pinconf_custom_conf_items[ARRAY_SIZE(starfive_pinconf_custom_params)] = {
+>
+> Instead of using ARAY_SIZE() here, use static_assert().
+>
+> __maybe_unused?
+>
+> > +       PCONFDUMP(PIN_CONFIG_STARFIVE_STRONG_PULL_UP, "input bias strong pull-up", NULL, false),
+> > +};
+> > +#else
+> > +#define starfive_pinconf_custom_conf_items NULL
+> > +#endif
+>
+> ...
+>
+> > +static const unsigned char starfive_drive_strength[] = {
+> > +       14, 21, 28, 35, 42, 49, 56, 63,
+>
+> Why table? Can you simply use the formula?!
+>
+> > +};
+>
+> ...
+>
+> > +       if (unlikely(!group))
+>
+> Why unlikely() Must be justified here and everywhere where you are using it.
+>
+> > +               return -EINVAL;
+> > +
+> > +       return starfive_pinconf_get(pctldev, group->pins[0], config);
+> > +}
+>
+> ...
+>
+> > +               case PIN_CONFIG_BIAS_DISABLE:
+>
+> > +                       mask |= PAD_BIAS_MASK;
+>
+> Use it...
+>
+> > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
+>
+> ...here. Ditto for the similar cases in this function and elsewhere.
 
+I don't follow. How do you want me to use mask? If I did value =
+(value & ~mask) | PAD_BIAS_DISABLE; then I'd wipe the previous
+configuration. Eg. suppose the first config is the drive strength and
+second disables bias. Then on the 2nd loop mask =
+PAD_DRIVE_STRENGTH_MASK | PAD_BIAS_MASK and the drive strength value
+would be wiped.
 
-On 10/18/21 8:23 AM, Michal Simek wrote:
-> 
-> 
-> On 10/15/21 21:00, Sean Anderson wrote:
->> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
->> found on Xilinx FPGAs. At the moment clock control is very basic: we
->> just enable the clock during probe and pin the frequency. In the future,
->> someone could add support for disabling the clock when not in use.
->>
->> Some common code has been specially demarcated. While currently only
->> used by the PWM driver, it is anticipated that it may be split off in
->> the future to be used by the timer driver as well.
->>
->> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
->>
->> [1] https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
->>
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->>
->> Changes in v8:
->> - Drop new timer driver; it has been deferred for future series
->>
->> Changes in v7:
->> - Add dependency on OF_ADDRESS
->> - Fix period_cycles calculation
->> - Fix typo in limitations
->>
->> Changes in v6:
->> - Capitalize error messages
->> - Don't disable regmap locking to allow inspection of registers via
->>    debugfs
->> - Prevent overflow when calculating period_cycles
->> - Remove enabled variable from xilinx_pwm_apply
->> - Swap order of period_cycle range comparisons
->>
->> Changes in v5:
->> - Allow non-zero #pwm-cells
->> - Correctly set duty_cycle in get_state when TLR0=TLR1
->> - Elaborate on limitation section
->> - Perform some additional checks/rounding in apply_state
->> - Remove xlnx,axi-timer-2.0 compatible string
->> - Rework duty-cycle and period calculations with feedback from Uwe
->> - Switch to regmap to abstract endianness issues
->> - Use more verbose error messages
->>
->> Changes in v4:
->> - Don't use volatile in read/write replacements. Some arches have it and
->>    some don't.
->> - Put common timer properties into their own struct to better reuse
->>    code.
->> - Remove references to properties which are not good enough for Linux.
->>
->> Changes in v3:
->> - Add clockevent and clocksource support
->> - Remove old microblaze driver
->> - Rewrite probe to only use a device_node, since timers may need to be
->>    initialized before we have proper devices. This does bloat the code a bit
->>    since we can no longer rely on helpers such as dev_err_probe. We also
->>    cannot rely on device resources being free'd on failure, so we must free
->>    them manually.
->> - We now access registers through xilinx_timer_(read|write). This allows us
->>    to deal with endianness issues, as originally seen in the microblaze
->>    driver. CAVEAT EMPTOR: I have not tested this on big-endian!
->>
->> Changes in v2:
->> - Add comment describing device
->> - Add comment explaining why we depend on !MICROBLAZE
->> - Add dependencies on COMMON_CLK and HAS_IOMEM
->> - Cast dividends to u64 to avoid overflow
->> - Check for over- and underflow when calculating TLR
->> - Check range of xlnx,count-width
->> - Don't compile this module by default for arm64
->> - Don't set pwmchip.base to -1
->> - Ensure the clock is always running when the pwm is registered
->> - Remove debugfs file :l
->> - Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
->> - Report errors with dev_error_probe
->> - Set xilinx_pwm_ops.owner
->> - Use NSEC_TO_SEC instead of defining our own
->> - Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by Uwe
->>
->>   MAINTAINERS                        |   7 +
->>   arch/microblaze/kernel/timer.c     |   3 +
->>   drivers/pwm/Kconfig                |  14 ++
->>   drivers/pwm/Makefile               |   1 +
->>   drivers/pwm/pwm-xilinx.c           | 329 +++++++++++++++++++++++++++++
->>   include/clocksource/timer-xilinx.h |  91 ++++++++
->>   6 files changed, 445 insertions(+)
->>   create mode 100644 drivers/pwm/pwm-xilinx.c
->>   create mode 100644 include/clocksource/timer-xilinx.h
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 6b6f98483deb..bed034ef46ad 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -20601,6 +20601,13 @@ F:    drivers/misc/Makefile
->>   F:    drivers/misc/xilinx_sdfec.c
->>   F:    include/uapi/misc/xilinx_sdfec.h
->> +XILINX PWM DRIVER
->> +M:    Sean Anderson <sean.anderson@seco.com>
->> +S:    Maintained
->> +F:    drivers/clocksource/timer-xilinx-common.c
->> +F:    drivers/pwm/pwm-xilinx.c
->> +F:    include/clocksource/timer-xilinx.h
->> +
->>   XILINX UARTLITE SERIAL DRIVER
->>   M:    Peter Korsgaard <jacmet@sunsite.dk>
->>   L:    linux-serial@vger.kernel.org
->> diff --git a/arch/microblaze/kernel/timer.c b/arch/microblaze/kernel/timer.c
->> index f8832cf49384..20e2669b533d 100644
->> --- a/arch/microblaze/kernel/timer.c
->> +++ b/arch/microblaze/kernel/timer.c
->> @@ -251,6 +251,9 @@ static int __init xilinx_timer_init(struct device_node *timer)
->>       u32 timer_num = 1;
->>       int ret;
->> +    if (of_property_read_bool(np, "#pwm-cells"))
->> +        return 0;
->> +
->>       if (initialized)
->>           return -EINVAL;
->> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
->> index aa29841bbb79..47f25237754f 100644
->> --- a/drivers/pwm/Kconfig
->> +++ b/drivers/pwm/Kconfig
->> @@ -638,4 +638,18 @@ config PWM_VT8500
->>         To compile this driver as a module, choose M here: the module
->>         will be called pwm-vt8500.
->> +config PWM_XILINX
->> +    tristate "Xilinx AXI Timer PWM support"
->> +    depends on OF_ADDRESS
->> +    depends on COMMON_CLK
->> +    select REGMAP_MMIO
->> +    help
->> +      PWM driver for Xilinx LogiCORE IP AXI timers. This timer is
->> +      typically a soft core which may be present in Xilinx FPGAs.
->> +      This device may also be present in Microblaze soft processors.
->> +      If you don't have this IP in your design, choose N.
->> +
->> +      To compile this driver as a module, choose M here: the module
->> +      will be called pwm-xilinx.
->> +
->>   endif
->> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
->> index 708840b7fba8..ea785480359b 100644
->> --- a/drivers/pwm/Makefile
->> +++ b/drivers/pwm/Makefile
->> @@ -60,3 +60,4 @@ obj-$(CONFIG_PWM_TWL)        += pwm-twl.o
->>   obj-$(CONFIG_PWM_TWL_LED)    += pwm-twl-led.o
->>   obj-$(CONFIG_PWM_VISCONTI)    += pwm-visconti.o
->>   obj-$(CONFIG_PWM_VT8500)    += pwm-vt8500.o
->> +obj-$(CONFIG_PWM_XILINX)    += pwm-xilinx.o
->> diff --git a/drivers/pwm/pwm-xilinx.c b/drivers/pwm/pwm-xilinx.c
->> new file mode 100644
->> index 000000000000..c532be6c7912
->> --- /dev/null
->> +++ b/drivers/pwm/pwm-xilinx.c
->> @@ -0,0 +1,329 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Copyright (C) 2021 Sean Anderson <sean.anderson@seco.com>
->> + *
->> + * Limitations:
->> + * - When changing both duty cycle and period, we may end up with one cycle
->> + *   with the old duty cycle and the new period. This is because the counters
->> + *   may only be reloaded by first stopping them, or by letting them be
->> + *   automatically reloaded at the end of a cycle. If this automatic reload
->> + *   happens after we set TLR0 but before we set TLR1 then we will have a
->> + *   bad cycle. This could probably be fixed by reading TCR0 just before
->> + *   reprogramming, but I think it would add complexity for little gain.
->> + * - Cannot produce 100% duty cycle by configuring the TLRs. This might be
->> + *   possible by stopping the counters at an appropriate point in the cycle,
->> + *   but this is not (yet) implemented.
->> + * - Only produces "normal" output.
->> + * - Always produces low output if disabled.
->> + */
->> +
->> +#include <clocksource/timer-xilinx.h>
->> +#include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->> +#include <linux/device.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/pwm.h>
->> +#include <linux/regmap.h>
->> +
->> +/*
->> + * The following functions are "common" to drivers for this device, and may be
->> + * exported at a future date.
->> + */
->> +u32 xilinx_timer_tlr_cycles(struct xilinx_timer_priv *priv, u32 tcsr,
->> +                u64 cycles)
->> +{
->> +    WARN_ON(cycles < 2 || cycles - 2 > priv->max);
->> +
->> +    if (tcsr & TCSR_UDT)
->> +        return cycles - 2;
->> +    else
-> 
-> 
-> you don't need else here.
+> After done this, you will see how you can simplify and deduplicate the
+> switch-cases.
+>
+> ...
+>
+> > +#ifdef CONFIG_DEBUG_FS
+>
+> __maybe_unused ?
+>
+> > +#else
+> > +#define starfive_pinconf_dbg_show NULL
+> > +#endif
+>
+> ...
+>
+> > +       if (gpio < 32) {
+> > +               value = readl_relaxed(sfp->base + GPIO_DIN_LOW);
+>
+> > +               value = (value >> gpio) & 1U;
+>
+> Drop
+>
+> > +       } else {
+> > +               value = readl_relaxed(sfp->base + GPIO_DIN_HIGH);
+>
+> > +               value = (value >> (gpio - 32)) & 1U;
+>
+> Drop
+>
+> > +       }
+>
+> > +       return value;
+>
+> return !!(value & BIT(gpio % 32));
+>
+> ...
+>
+> > +               if (arg == 0)
+>
+> > +                       return -ENOTSUPP;
+>
+> Shouldn't we return something else and pin control core will change it
+> to something else if needed?
+>
+> > +               if (arg == 0)
+> > +                       return -ENOTSUPP;
+>
+> Ditto.
+>
+> > +       default:
+> > +               return -ENOTSUPP;
+>
+> ...
+>
+> > +       if (gpio < 0 || gpio >= MAX_GPIO)
+> > +               return;
+> > +
+> > +       if (gpio < 32) {
+> > +               ie = sfp->base + IRQ_ENABLE_LOW;
+> > +               mask = BIT(gpio);
+> > +       } else {
+> > +               ie = sfp->base + IRQ_ENABLE_HIGH;
+> > +               mask = BIT(gpio - 32);
+> > +       }
+>
+> See below. And update all occurrences of these lines accordingly and
+> everywhere. Also for IRQ may use helper functions if needed (but I
+> don't believe the high and low register have stride more than 4).
+>
+> ...
+>
+> > +       if (gpio < 0 || gpio >= MAX_GPIO)
+> > +               return -EINVAL;
+>
+> How is it possible to be ever triggered?
+>
+> ...
+>
+> > +       if (gpio < 32) {
+> > +               base = sfp->base;
+> > +               mask = BIT(gpio);
+> > +       } else {
+> > +               base = sfp->base + 4;
+> > +               mask = BIT(gpio - 32);
+> > +       }
+>
+> base = sfp_base + 4 * (gpio / 32);
+> mask = BIT(gpio % 32);
+>
+> ...
+>
+> > +               irq_set_handler_locked(d, handle_edge_irq);
+>
+> > +               irq_set_handler_locked(d, handle_edge_irq);
+>
+> Dup.
+>
+> ...
+>
+> > +               irq_set_handler_locked(d, handle_edge_irq);
+>
+> > +               irq_set_handler_locked(d, handle_level_irq);
+>
+> > +               irq_set_handler_locked(d, handle_level_irq);
+>
+> Ditto.
+>
+> ...
+>
+> > +               irq_set_handler_locked(d, handle_bad_irq);
+>
+> Why is this here? Move it to ->probe().
+>
+> ...
+>
+> > +       clk = devm_clk_get(dev, NULL);
+> > +       if (IS_ERR(clk)) {
+> > +               ret = PTR_ERR(clk);
+>
+> > +               dev_err(dev, "could not get clock: %d\n", ret);
+>
+> Thank you for spamming logs with this noise.
+>
+> > +               return ret;
+>
+> Hint: return dev_err_probe(). Ditto for the rest in this function.
+>
+> > +       }
+>
+> ...
+>
+> > +       ret = clk_prepare_enable(clk);
+> > +       if (ret) {
+>
+> > +               reset_control_deassert(rst);
+>
+> Use devm_add_action_or_reset().
 
-OK
+I don't see how that is better. Then I'd first need to call that and
+check for errors, but just on the line below enabling the clock the
+reset line is deasserted anyway, so then the action isn't needed any
+longer. So that 3 lines of code for devm_add_action_or_reset +
+lingering unneeded action or code to remove it again vs. just the line
+above.
 
->> +        return priv->max - cycles + 2;
->> +}
->> +
->> +unsigned int xilinx_timer_get_period(struct xilinx_timer_priv *priv,
->> +                     u32 tlr, u32 tcsr)
->> +{
->> +    u64 cycles;
->> +
->> +    if (tcsr & TCSR_UDT)
->> +        cycles = tlr + 2;
->> +    else
->> +        cycles = (u64)priv->max - tlr + 2;
->> +
->> +    /* cycles has a max of 2^32 + 2 */
->> +    return DIV64_U64_ROUND_CLOSEST(cycles * NSEC_PER_SEC,
->> +                       clk_get_rate(priv->clk));
->> +}
->> +
->> +int xilinx_timer_common_init(struct device_node *np,
->> +                 struct xilinx_timer_priv *priv,
->> +                 u32 *one_timer)
->> +{
->> +    int ret;
->> +    u32 width;
->> +
->> +    ret = of_property_read_u32(np, "xlnx,one-timer-only", one_timer);
->> +    if (ret) {
->> +        pr_err("%pOF: err %d: xlnx,one-timer-only\n", np, ret);
->> +        return ret;
->> +    } else if (*one_timer && *one_timer != 1) {
-> 
-> you can also remove this else.
-> 
-> 
->> +        pr_err("%pOF: xlnx,one-timer-only must be 0 or 1\n", np);
-> 
-> Isn't it better to check direct value you need?
-> If you have 1 here you will fail in probe anyway that's why there is no reason to continue in property reading.
+> > +               dev_err(dev, "could not enable clock: %d\n", ret);
+> > +               return ret;
+> > +       }
+>
+> ...
+>
+> > +       if (!of_property_read_u32(dev->of_node, "starfive,signal-group", &value)) {
+>
+> Can be refactored without conditional. Also, why not to use
+> device_property_read_u32()?
+>
+> > +               if (value <= 6)
+> > +                       writel(value, sfp->padctl + IO_PADSHARE_SEL);
+> > +               else
+>
+> > +                       dev_err(dev, "invalid signal group %u\n", value);
+>
+> Why _err if you not bail out here?
+>
+> > +       }
+>
+> ...
+>
+> > +       value = readl(sfp->padctl + IO_PADSHARE_SEL);
+> > +       switch (value) {
+> > +       case 0:
+> > +               sfp->gpios.pin_base = 0x10000;
+>
+> Magic number!
+>
+> > +               goto done;
+> > +       case 1:
+> > +               sfp->gpios.pin_base = PAD_GPIO(0);
+> > +               break;
+> > +       case 2:
+> > +               sfp->gpios.pin_base = PAD_FUNC_SHARE(72);
+> > +               break;
+> > +       case 3:
+> > +               sfp->gpios.pin_base = PAD_FUNC_SHARE(70);
+> > +               break;
+> > +       case 4: case 5: case 6:
+> > +               sfp->gpios.pin_base = PAD_FUNC_SHARE(0);
+> > +               break;
+> > +       default:
+> > +               dev_err(dev, "invalid signal group %u\n", value);
+> > +               return -EINVAL;
+> > +       }
+>
+> ...
+>
+> > +       sfp->gc.of_node = dev->of_node;
+>
+> Isn't GPIO library do this for you?
 
-This was one of the "common" functions designed for reuse by both the pwm an timer drivers.
-If you like, I can remove this functionality.
+If it does I can't find it.
 
->> +        return -EINVAL;
->> +    }
->> +
->> +    ret = of_property_read_u32(np, "xlnx,count-width", &width);
->> +    if (ret == -EINVAL) {
->> +        width = 32;
->> +    } else if (ret) {
->> +        pr_err("%pOF: err %d: xlnx,count-width\n", np, ret);
->> +        return ret;
->> +    } else if (width < 8 || width > 32) {
->> +        pr_err("%pOF: invalid counter width\n", np);
->> +        return -EINVAL;
->> +    }
->> +    priv->max = BIT_ULL(width) - 1;
->> +
->> +    return 0;
->> +}
->> +
->> +/*
->> + * The idea here is to capture whether the PWM is actually running (e.g.
->> + * because we or the bootloader set it up) and we need to be careful to ensure
->> + * we don't cause a glitch. According to the data sheet, to enable the PWM we
->> + * need to
->> + *
->> + * - Set both timers to generate mode (MDT=1)
->> + * - Set both timers to PWM mode (PWMA=1)
->> + * - Enable the generate out signals (GENT=1)
->> + *
->> + * In addition,
->> + *
->> + * - The timer must be running (ENT=1)
->> + * - The timer must auto-reload TLR into TCR (ARHT=1)
->> + * - We must not be in the process of loading TLR into TCR (LOAD=0)
->> + * - Cascade mode must be disabled (CASC=0)
->> + *
->> + * If any of these differ from usual, then the PWM is either disabled, or is
->> + * running in a mode that this driver does not support.
->> + */
->> +#define TCSR_PWM_SET (TCSR_GENT | TCSR_ARHT | TCSR_ENT | TCSR_PWMA)
->> +#define TCSR_PWM_CLEAR (TCSR_MDT | TCSR_LOAD)
->> +#define TCSR_PWM_MASK (TCSR_PWM_SET | TCSR_PWM_CLEAR)
->> +
->> +struct xilinx_pwm_device {
->> +    struct pwm_chip chip;
->> +    struct xilinx_timer_priv priv;
->> +};
->> +
->> +static inline struct xilinx_timer_priv
->> +*xilinx_pwm_chip_to_priv(struct pwm_chip *chip)
->> +{
->> +    return &container_of(chip, struct xilinx_pwm_device, chip)->priv;
->> +}
->> +
->> +static bool xilinx_timer_pwm_enabled(u32 tcsr0, u32 tcsr1)
->> +{
->> +    return ((TCSR_PWM_MASK | TCSR_CASC) & tcsr0) == TCSR_PWM_SET &&
->> +        (TCSR_PWM_MASK & tcsr1) == TCSR_PWM_SET;
->> +}
->> +
->> +static int xilinx_pwm_apply(struct pwm_chip *chip, struct pwm_device *unused,
->> +                const struct pwm_state *state)
->> +{
->> +    struct xilinx_timer_priv *priv = xilinx_pwm_chip_to_priv(chip);
->> +    u32 tlr0, tlr1, tcsr0, tcsr1;
->> +    u64 period_cycles, duty_cycles;
->> +    unsigned long rate;
->> +
->> +    if (state->polarity != PWM_POLARITY_NORMAL)
->> +        return -EINVAL;
->> +
->> +    /*
->> +     * To be representable by TLR, cycles must be between 2 and
->> +     * priv->max + 2. To enforce this we can reduce the duty
->> +     * cycle, but we may not increase it.
->> +     */
->> +    rate = clk_get_rate(priv->clk);
->> +    /* Prevent overflow by clamping to the worst case of rate */
->> +    period_cycles = min_t(u64, state->period, ULONG_MAX * NSEC_PER_SEC);
->> +    period_cycles = mul_u64_u32_div(period_cycles, rate, NSEC_PER_SEC);
->> +    if (period_cycles < 2 || period_cycles - 2 > priv->max)
->> +        return -ERANGE;
->> +    duty_cycles = mul_u64_u32_div(state->duty_cycle, rate, NSEC_PER_SEC);
->> +
->> +    /*
->> +     * If we specify 100% duty cycle, we will get 0% instead, so decrease
->> +     * the duty cycle count by one.
->> +     */
->> +    if (period_cycles == duty_cycles)
->> +        duty_cycles--;
->> +
->> +    /* Round down to 0% duty cycle for unrepresentable duty cycles */
->> +    if (duty_cycles < 2)
->> +        duty_cycles = period_cycles;
->> +
->> +    regmap_read(priv->map, TCSR0, &tcsr0);
->> +    regmap_read(priv->map, TCSR1, &tcsr1);
->> +    tlr0 = xilinx_timer_tlr_cycles(priv, tcsr0, period_cycles);
->> +    tlr1 = xilinx_timer_tlr_cycles(priv, tcsr1, duty_cycles);
->> +    regmap_write(priv->map, TLR0, tlr0);
->> +    regmap_write(priv->map, TLR1, tlr1);
->> +
->> +    if (state->enabled) {
->> +        /*
->> +         * If the PWM is already running, then the counters will be
->> +         * reloaded at the end of the current cycle.
->> +         */
->> +        if (!xilinx_timer_pwm_enabled(tcsr0, tcsr1)) {
->> +            /* Load TLR into TCR */
->> +            regmap_write(priv->map, TCSR0, tcsr0 | TCSR_LOAD);
->> +            regmap_write(priv->map, TCSR1, tcsr1 | TCSR_LOAD);
->> +            /* Enable timers all at once with ENALL */
->> +            tcsr0 = (TCSR_PWM_SET & ~TCSR_ENT) | (tcsr0 & TCSR_UDT);
->> +            tcsr1 = TCSR_PWM_SET | TCSR_ENALL | (tcsr1 & TCSR_UDT);
->> +            regmap_write(priv->map, TCSR0, tcsr0);
->> +            regmap_write(priv->map, TCSR1, tcsr1);
->> +        }
->> +    } else {
->> +        regmap_write(priv->map, TCSR0, 0);
->> +        regmap_write(priv->map, TCSR1, 0);
->> +    }
->> +
->> +    return 0;
->> +}
->> +
->> +static void xilinx_pwm_get_state(struct pwm_chip *chip,
->> +                 struct pwm_device *unused,
->> +                 struct pwm_state *state)
->> +{
->> +    struct xilinx_timer_priv *priv = xilinx_pwm_chip_to_priv(chip);
->> +    u32 tlr0, tlr1, tcsr0, tcsr1;
->> +
->> +    regmap_read(priv->map, TLR0, &tlr0);
->> +    regmap_read(priv->map, TLR1, &tlr1);
->> +    regmap_read(priv->map, TCSR0, &tcsr0);
->> +    regmap_read(priv->map, TCSR1, &tcsr1);
->> +    state->period = xilinx_timer_get_period(priv, tlr0, tcsr0);
->> +    state->duty_cycle = xilinx_timer_get_period(priv, tlr1, tcsr1);
->> +    state->enabled = xilinx_timer_pwm_enabled(tcsr0, tcsr1);
->> +    state->polarity = PWM_POLARITY_NORMAL;
->> +
->> +    /* 100% duty cycle results in constant low output */
->> +    if (state->period == state->duty_cycle)
->> +        state->duty_cycle = 0;
->> +}
->> +
->> +static const struct pwm_ops xilinx_pwm_ops = {
->> +    .apply = xilinx_pwm_apply,
->> +    .get_state = xilinx_pwm_get_state,
->> +    .owner = THIS_MODULE,
->> +};
->> +
->> +static const struct regmap_config xilinx_pwm_regmap_config = {
->> +    .reg_bits = 32,
->> +    .reg_stride = 4,
->> +    .val_bits = 32,
->> +    .val_format_endian = REGMAP_ENDIAN_LITTLE,
->> +    .max_register = TCR1,
->> +};
->> +
->> +static int xilinx_timer_probe(struct platform_device *pdev)
->> +{
->> +    int ret;
->> +    struct device *dev = &pdev->dev;
->> +    struct device_node *np = dev->of_node;
->> +    struct xilinx_timer_priv *priv;
->> +    struct xilinx_pwm_device *pwm;
->> +    u32 pwm_cells, one_timer;
->> +    void __iomem *regs;
->> +
->> +    ret = of_property_read_u32(np, "#pwm-cells", &pwm_cells);
->> +    if (ret == -EINVAL)
->> +        return -ENODEV;
->> +    else if (ret)
-> 
-> I would remove this else. It is at least for me easier to read.
-
-OK
-
->> +        return dev_err_probe(dev, ret, "could not read #pwm-cells\n");
->> +
->> +    pwm = devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
->> +    if (!pwm)
->> +        return -ENOMEM;
-> 
-> newline
-
-Here I would like to keep these grouped to highlight that they are related/dependent.
-
->> +    platform_set_drvdata(pdev, pwm);
->> +    priv = &pwm->priv;
->> +
->> +    regs = devm_platform_ioremap_resource(pdev, 0);
->> +    if (IS_ERR(regs))
->> +        return PTR_ERR(regs);
->> +
->> +    priv->map = devm_regmap_init_mmio(dev, regs,
->> +                      &xilinx_pwm_regmap_config);
->> +    if (IS_ERR(priv->map))
->> +        return dev_err_probe(dev, PTR_ERR(priv->map),
->> +                     "Could not create regmap\n");
->> +
->> +    ret = xilinx_timer_common_init(np, priv, &one_timer);
->> +    if (ret)
->> +        return ret;
->> +
->> +    if (one_timer)
->> +        return dev_err_probe(dev, -EINVAL,
->> +                     "Two timers required for PWM mode\n");
-> 
-> I would fail from above that this code is not needed.
-
-(see above)
-
->> +
->> +    /*
->> +     * The polarity of the generate outputs must be active high for PWM
->> +     * mode to work. We could determine this from the device tree, but
->> +     * alas, such properties are not allowed to be used.
->> +     */
->> +
->> +    priv->clk = devm_clk_get(dev, "s_axi_aclk");
->> +    if (IS_ERR(priv->clk))
->> +        return dev_err_probe(dev, PTR_ERR(priv->clk),
->> +                     "Could not get clock\n");
->> +
->> +    ret = clk_prepare_enable(priv->clk);
->> +    if (ret)
->> +        return dev_err_probe(dev, ret, "Clock enable failed\n");
->> +    clk_rate_exclusive_get(priv->clk);
->> +
->> +    pwm->chip.dev = dev;
->> +    pwm->chip.ops = &xilinx_pwm_ops;
->> +    pwm->chip.npwm = 1;
->> +    ret = pwmchip_add(&pwm->chip);
->> +    if (ret) {
->> +        clk_rate_exclusive_put(priv->clk);
->> +        clk_disable_unprepare(priv->clk);
->> +        return dev_err_probe(dev, ret, "Could not register PWM chip\n");
->> +    }
->> +
->> +    return 0;
->> +}
->> +
->> +static int xilinx_timer_remove(struct platform_device *pdev)
->> +{
->> +    struct xilinx_pwm_device *pwm = platform_get_drvdata(pdev);
->> +
->> +    pwmchip_remove(&pwm->chip);
->> +    clk_rate_exclusive_put(pwm->priv.clk);
->> +    clk_disable_unprepare(pwm->priv.clk);
->> +    return 0;
->> +}
->> +
->> +static const struct of_device_id xilinx_timer_of_match[] = {
->> +    { .compatible = "xlnx,xps-timer-1.00.a", },
->> +    {},
->> +};
->> +MODULE_DEVICE_TABLE(of, xilinx_timer_of_match);
->> +
->> +static struct platform_driver xilinx_timer_driver = {
->> +    .probe = xilinx_timer_probe,
->> +    .remove = xilinx_timer_remove,
->> +    .driver = {
->> +        .name = "xilinx-timer",
->> +        .of_match_table = of_match_ptr(xilinx_timer_of_match),
->> +    },
->> +};
->> +module_platform_driver(xilinx_timer_driver);
->> +
->> +MODULE_ALIAS("platform:xilinx-timer");
->> +MODULE_DESCRIPTION("Xilinx LogiCORE IP AXI Timer driver");
->> +MODULE_LICENSE("GPL v2");
->> diff --git a/include/clocksource/timer-xilinx.h b/include/clocksource/timer-xilinx.h
->> new file mode 100644
->> index 000000000000..1f7757b84a5e
->> --- /dev/null
->> +++ b/include/clocksource/timer-xilinx.h
->> @@ -0,0 +1,91 @@
->> +/* SPDX-License-Identifier: GPL-2.0+ */
->> +/*
->> + * Copyright (C) 2021 Sean Anderson <sean.anderson@seco.com>
->> + */
->> +
->> +#ifndef XILINX_TIMER_H
->> +#define XILINX_TIMER_H
->> +
->> +#include <linux/compiler.h>
->> +
->> +#define TCSR0    0x00
->> +#define TLR0    0x04
->> +#define TCR0    0x08
->> +#define TCSR1    0x10
->> +#define TLR1    0x14
->> +#define TCR1    0x18
->> +
->> +#define TCSR_MDT    BIT(0)
->> +#define TCSR_UDT    BIT(1)
->> +#define TCSR_GENT    BIT(2)
->> +#define TCSR_CAPT    BIT(3)
->> +#define TCSR_ARHT    BIT(4)
->> +#define TCSR_LOAD    BIT(5)
->> +#define TCSR_ENIT    BIT(6)
->> +#define TCSR_ENT    BIT(7)
->> +#define TCSR_TINT    BIT(8)
->> +#define TCSR_PWMA    BIT(9)
->> +#define TCSR_ENALL    BIT(10)
->> +#define TCSR_CASC    BIT(11)
->> +
->> +struct clk;
->> +struct device_node;
->> +struct regmap;
->> +
->> +/**
->> + * struct xilinx_timer_priv - Private data for Xilinx AXI timer drivers
->> + * @map: Regmap of the device, possibly with an offset
->> + * @clk: Parent clock
->> + * @max: Maximum value of the counters
->> + */
->> +struct xilinx_timer_priv {
->> +    struct regmap *map;
->> +    struct clk *clk;
->> +    u32 max;
->> +};
->> +
->> +/**
->> + * xilinx_timer_tlr_cycles() - Calculate the TLR for a period specified
->> + *                             in clock cycles
->> + * @priv: The timer's private data
->> + * @tcsr: The value of the TCSR register for this counter
->> + * @cycles: The number of cycles in this period
->> + *
->> + * Callers of this function MUST ensure that @cycles is representable as
->> + * a TLR.
->> + *
->> + * Return: The calculated value for TLR
->> + */
->> +u32 xilinx_timer_tlr_cycles(struct xilinx_timer_priv *priv, u32 tcsr,
->> +                u64 cycles);
->> +
->> +/**
->> + * xilinx_timer_get_period() - Get the current period of a counter
->> + * @priv: The timer's private data
->> + * @tlr: The value of TLR for this counter
->> + * @tcsr: The value of TCSR for this counter
->> + *
->> + * Return: The period, in ns
->> + */
->> +unsigned int xilinx_timer_get_period(struct xilinx_timer_priv *priv,
->> +                     u32 tlr, u32 tcsr);
->> +
->> +/**
->> + * xilinx_timer_common_init() - Perform common initialization for Xilinx
->> + *                              AXI timer drivers.
->> + * @priv: The timer's private data
->> + * @np: The devicetree node for the timer
->> + * @one_timer: Set to %1 if there is only one timer
->> + *
->> + * This performs common initialization, such as detecting endianness,
->> + * and parsing devicetree properties. @priv->regs must be initialized
->> + * before calling this function. This function initializes @priv->read,
->> + * @priv->write, and @priv->width.
->> + *
->> + * Return: 0, or negative errno
->> + */
->> +int xilinx_timer_common_init(struct device_node *np,
->> +                 struct xilinx_timer_priv *priv,
->> +                 u32 *one_timer);
->> +
->> +#endif /* XILINX_TIMER_H */
->>
-
-Thanks for the review.
-
---Sean
+>
+> ...
+>
+> > +       starfive_irq_chip.parent_device = dev;
+>
+> Ditto?
+>
+> ...
+>
+> > +       sfp->gc.irq.parents =
+> > +               devm_kcalloc(dev, 1, sizeof(*sfp->gc.irq.parents), GFP_KERNEL);
+>
+> 1 -> sfp->gc.irq.num_parents
+> And hence move below line up.
+>
+> > +       if (!sfp->gc.irq.parents)
+> > +               return -ENOMEM;
+>
+> > +       sfp->gc.irq.num_parents = 1;
+>
+> ...
+>
+> > +       dev_info(dev, "StarFive GPIO chip registered %d GPIOs\n", sfp->gc.ngpio);
+>
+> Redundant noise.
+>
+> ...
+>
+> > +static const struct of_device_id starfive_of_match[] = {
+> > +       { .compatible = "starfive,jh7100-pinctrl" },
+>
+> > +       { /* sentinel */ },
+>
+> No comma needed for terminator entry.
+>
+> > +};
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
