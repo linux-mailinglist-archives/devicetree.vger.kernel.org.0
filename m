@@ -2,147 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB474311B1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 09:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4832643120B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 10:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbhJRIAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 04:00:55 -0400
-Received: from mail-eopbgr130113.outbound.protection.outlook.com ([40.107.13.113]:63669
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230478AbhJRIAy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 04:00:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GJwlnDlUSv1GlTRm8oh2U9pZ9d9lg9DUG8f+Gva0IArVz4HrQ3bOSC04plWBUqLxVmbt73V4RACRkk1pUa2WJDZebuo+MX2ZUd+kf1u9A8fRSLVglNVIHUOtVC0ZGhAkA0VkHRV1v02hwFDotqYz34LeBS7U5L+2hRTkQbdaIKUiVAfzZEUAW3Ev/i7m84kOga193rWk8jPE6qOlzxrG1OMEeQ07Oh66sDNn6kUYKmfsaPHZoDbfLWONm15JBIgRGMpdoSirTHBYnmcpnPlSMvtdwpUrVGTLsY8azyvNHH2RBmpnHu28NnJCVUw8wS3clTMrbyINtVX/hiGmcBDtMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ukZUTLfC/bdElIBNVg/PjluUCy51GK9ABMZM/vE/s0E=;
- b=MZ8XOYyOefvHfveMfj+DjbVoW4iyi/F5obQYj3GaW5ZUxW+xEtWeL6V4B+14v5ajHdnUBbWjyLBrkXhvwARtE/mlgquzBFHesn/7G3HDi7Bt1CdaNHyZ6gZoOPQN4VW9WSxREOp3uNjVx5xqynuRa6ruGQJ6fVwKz0Y1OxyDpfuBX1XSAsjfg/EdKjrHHRs1n+78b8OGixqtNizI1yN3GYYx0zXdMBMYboIJpaj0upnaP6z7Rvq0QMUO2yA8ZkKkFuDRnDEdgpi31Z7o5Vsm4lzZDptI77cy3pjFZwR8CYg1YCeV6TZHqB5kZ4CmG0cHbvtAUljABAFs6uTKqj7JFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bang-olufsen.dk; dmarc=pass action=none
- header.from=bang-olufsen.dk; dkim=pass header.d=bang-olufsen.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bang-olufsen.dk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ukZUTLfC/bdElIBNVg/PjluUCy51GK9ABMZM/vE/s0E=;
- b=olWin40DBsCN/fZo8s+J2hev57oM63hIFJ4fZtodqD0w2oDM+PZuGw9UCK/qRdyGn8c46082yVBmJi/A/fp5F5oVv5N6PpOHK4DxwyqJK50tRAICwLTmDfFNc9tRGziJseeOmojkBWXYG1y5+7b0pajXdyr2SbgAl8tvFp10uog=
-Received: from HE1PR03MB3114.eurprd03.prod.outlook.com (2603:10a6:7:60::18) by
- HE1PR0301MB2491.eurprd03.prod.outlook.com (2603:10a6:3:70::22) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.18; Mon, 18 Oct 2021 07:58:40 +0000
-Received: from HE1PR03MB3114.eurprd03.prod.outlook.com
- ([fe80::d984:dc33:ba2e:7e56]) by HE1PR03MB3114.eurprd03.prod.outlook.com
- ([fe80::d984:dc33:ba2e:7e56%5]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
- 07:58:40 +0000
-From:   =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <ALSI@bang-olufsen.dk>
-To:     DENG Qingfang <dqfext@gmail.com>,
-        =?utf-8?B?QWx2aW4gxaBpcHJhZ2E=?= <alvin@pqrs.dk>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 net-next 5/7] net: dsa: tag_rtl8_4: add realtek 8 byte
- protocol 4 tag
-Thread-Topic: [PATCH v3 net-next 5/7] net: dsa: tag_rtl8_4: add realtek 8 byte
- protocol 4 tag
-Thread-Index: AQHXweeh2ZSouY7skEirLTDENie5YqvVI4yAgANEkIA=
-Date:   Mon, 18 Oct 2021 07:58:40 +0000
-Message-ID: <8da0a0ce-6f62-ca02-0b72-bcf5ff4ec493@bang-olufsen.dk>
-References: <20211015171030.2713493-1-alvin@pqrs.dk>
- <20211015171030.2713493-6-alvin@pqrs.dk>
- <20211016060429.783447-1-dqfext@gmail.com>
-In-Reply-To: <20211016060429.783447-1-dqfext@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=bang-olufsen.dk;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 84c42f2e-2e9a-4d61-c297-08d9920d194c
-x-ms-traffictypediagnostic: HE1PR0301MB2491:
-x-microsoft-antispam-prvs: <HE1PR0301MB2491F6C89CE322B8913402A983BC9@HE1PR0301MB2491.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: K+4fBYkqHD/xhnnnV6vcjupQf0izxuemWla/vymPwhQuf+SY1BmH3wGSAW6T5a0o23SjgDQpGuEffXow7/R1KRI2dz4S7Oy2WWRDfhmtNhL1xUhtgBX0uLBmhsh76cyjDoPuEPykFXZMlgk5zQn8H4VFojZ5/dtSuArzGUhcekqXVgbnHwKBD6FaFcSrwux3uXssHNAu0o7Ba+Bei0cNrptEzmryBali69k8YOLZ3A4uanNSRmo0FI/uGExGJqidLvi1vXv+79QpSJPoqXNHNM87gbHBzXGf4M2x8eh5/iL5Kh6Rw/jUPIB8yOzr9dne524JKe1zmTa2UUrDzj9ZFa/yytDGOQ+h/zmvDeLsJjRT+ePMWAo6beo1E6C6yimP7y5VHPhRUAh5jW5JzH8+xG7LgF6fPkY7Y9IzWbMyui2NZKuQMndJPaEqoN0zdiQw13IL7dXFJGuH3HiBwGQDWCIW/EDNv6PYS5xd7fsMZ/b0LI8fDr2jj5fffcNLMhK4+NYKZ5uZ9ntUYUa5GuuRZkmTzO4aDDq89UM1W7s/LhHnyPKfPsUggq3CitWyWAG/NXP5qPOuijn67lh1/aT3gdPOhVZv9S6rMijcLSDQvJqt9QRs+QE6Do+LLu6mkYBLuTICy9p/Olpeip3PMztUCY0Jx1rW3Kqf91cCwGEB3h5xdL9fLNZuge99iD9MxDcT91NB5WHWLPbs1BfT09LGMij82mrFg5UYZktPf8aYynX5dY7umXFhwVnk1tORMAYdQt+jlpVsqSlEuemeqKUIiA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR03MB3114.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(122000001)(66476007)(64756008)(2906002)(66556008)(71200400001)(66446008)(110136005)(5660300002)(186003)(31696002)(38070700005)(6512007)(31686004)(76116006)(4744005)(38100700002)(508600001)(8976002)(66946007)(6486002)(91956017)(54906003)(53546011)(7416002)(8936002)(4326008)(316002)(6506007)(26005)(85182001)(85202003)(8676002)(2616005)(36756003)(86362001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?c3E4OE5XREVyRndMdUxmNkU0MkFXK2JGNUI1L0pCNlEzQXZaZHlPeEhyMkR2?=
- =?utf-8?B?NHAwNUEvU2htWnh3SURlcVhGL1NLNHE0MDltOFkreFhOUzFzeVIvZlNIVVMz?=
- =?utf-8?B?SForK04zTTIwbVRZSGFPZHBkT0pMbklXeHI0eS93RGUvNEZCVjVMTGJzT0lK?=
- =?utf-8?B?bzVRT3BIZEtoc0NLelFOODZGK0duZlhnRy9PNklEM2FOd0NmZ0tEeFd2em1K?=
- =?utf-8?B?QkF5cWI3R3ZMRmY4TmxhTFh0QnFTV3kyR0k0NmwrYS9JUVR3TkYyQUwxY0FX?=
- =?utf-8?B?VFZqWElZdnlMM2ZGdkJmQVJQWXpXTXUwTFFnRHdtQjNMZ1BSSmgvbzhqQTg5?=
- =?utf-8?B?WDZ4VnN2eGlwVzhXWkNIMjZuOEdiaFFsRHZEQU5DNmNoNkpvUjNGYjM3ZUJT?=
- =?utf-8?B?dXVCVmxwMzVERDBldUVmZWdwWnhkSHNNdnhwMitSMkN1V2dHY2JsaXhmc1ZL?=
- =?utf-8?B?Yjg1OXBoek01K3JoWTNaUjlCSitKNm90OUhwUjQxZDdHMFdRdlo5aTRMTkxG?=
- =?utf-8?B?Y3FEeHlHelFVRm85aXR6QVAxejJaTHYxMVliSm5JRlZhNG9yNVdqUjZHRFJH?=
- =?utf-8?B?LzV6bWs2ODRMS1NPNEV3cmlFbGY4YTJZQmZWSjIxZ2hvdVk1YlBvYkZ3djN5?=
- =?utf-8?B?MFhoL1Mwck81NnZpUDZWQkJYdm9PcEhoZ0o1dktxN3B0aDhzZ1Jwb01NR0pE?=
- =?utf-8?B?YnZoNHYzVm1nT2x4Ry9Tc25Jbmk1Q0dkM3hONERmN0grc3haSVFCWXJmVVlx?=
- =?utf-8?B?cFp3NEdhcEdIdmhqQUM2UjZhSkVBTGtaNElZdk1TTjNjVVBzU2ZIbWFjWkJ6?=
- =?utf-8?B?YU9wcTN1ZGt5YWtZNGkwcGVDb3FzK0l1RHRsUmJLbkhHSGxDdVN6Q1pjRlFV?=
- =?utf-8?B?QVdFRGRydkkxemNRWmJxQi9QZ1BNMnZkcmRhMEtpSmpQN2J3TjJybzlvbHF3?=
- =?utf-8?B?NFFySmN6UG1KSGRvcGVJSTJUb0ZaS24xbUZ5Qll6OFhPTEhlMlc0aUJXbzdG?=
- =?utf-8?B?ZkgvWDZoS1dPVmU4K2d5cm1sSmo3R1lHSC9xb3lpcjJyV1ZyWW9EQUV0NmJS?=
- =?utf-8?B?MG1meGRtb0VrSzk3c1Z1MjJWSGx0L0Y2UmFSZDVqeG12aEVLNExuaGl1RUFB?=
- =?utf-8?B?NTdkQSt2NjhmM2Y4d3Q2ZmV6bWJuVFphMVF5cit1Mi96RWxVY0V0MDZOS1dU?=
- =?utf-8?B?RW5MbGltNUl0RmJ4UTV1YU5GUEl6N3Y3SWM2QWF0Vmpxbkgvc2N4UEhmZkMx?=
- =?utf-8?B?V0JwVEZkem16NUthS254aVBBQXh6aTZHMy9aRUV5SGtTbFM2T291R09STVdU?=
- =?utf-8?B?Z1RqUWs2S3lTaThNNlZoS2VTRFBhUUU5aEE5ajBCb3lqOE41akR5R2tzM25M?=
- =?utf-8?B?bmhCK3JwRzdySTlSSm5VdUt6akd1TkRkOW9LVU05UUlRdDdIOUtyTDNFZGQy?=
- =?utf-8?B?QmVLVDV2Ymk2dXQzTjdROC8ybUZkdE9jcHdFVG81TElNdTcwZlJnU3d3Unh6?=
- =?utf-8?B?L2V4VkNXQXZ2U0cvMXNHRWdPcjJES0hRS3pRQ1hvdUFvdjNqb0dDczUvY1dr?=
- =?utf-8?B?b2JwRHNNK3Q5eUFDaDZXMDZMR0N0cm1Kb1hESmY4NnJONW1Gai9RNWdoWWFm?=
- =?utf-8?B?OXVVQ2NrT0VZV1EzRzZ5Zzg2UkpPdTh6WkYzeDhvVkFRZTlZaW43bkhnMmtC?=
- =?utf-8?B?Q3lubjhiaURvaTVwVzRIRDV0cWdod2Qwd2xsTUxMMjQweklBN3JlZVB3Y0tZ?=
- =?utf-8?Q?isTiEKv48ql/8cb1mhQl7hbYfyeJkK5nm5fREHP?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DCD2336A42EC3440A867338051C61719@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S231213AbhJRIV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 04:21:56 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:59650 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231130AbhJRIV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 04:21:56 -0400
+Received: from [192.168.224.11] (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id 0B9BA44A024E;
+        Mon, 18 Oct 2021 10:19:43 +0200 (CEST)
+Subject: Re: [PATCH v5 0/4] iio: chemical: Add support for Sensirion SCD4x CO2
+ sensor
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>
+References: <20211008101706.755942-1-roan@protonic.nl>
+ <20211010165919.51f06938@jic23-huawei> <20211013183828.521f043f@jic23-huawei>
+ <3ecfe246-b942-0c1e-08e6-17eff4c5cc16@protonic.nl>
+ <20211014181932.5f70d2e4@jic23-huawei>
+From:   Roan van Dijk <roan@protonic.nl>
+Message-ID: <2c7f8b7c-3070-5763-7b74-3811cdbfcabc@protonic.nl>
+Date:   Mon, 18 Oct 2021 10:19:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-OriginatorOrg: bang-olufsen.dk
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR03MB3114.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84c42f2e-2e9a-4d61-c297-08d9920d194c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2021 07:58:40.5147
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 210d08b8-83f7-470a-bc96-381193ca14a1
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PslYjOv3CEmWLBuXbb2zNo9z/PRGxzW3suK/59OioxkyThhRFw4yHJBPXMnFGce/ZZQ5J/lJX3ug3Qgle45Ybg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0301MB2491
+In-Reply-To: <20211014181932.5f70d2e4@jic23-huawei>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTAvMTYvMjEgODowNCBBTSwgREVORyBRaW5nZmFuZyB3cm90ZToNCj4gT24gRnJpLCBPY3Qg
-MTUsIDIwMjEgYXQgMDc6MTA6MjZQTSArMDIwMCwgQWx2aW4gxaBpcHJhZ2Egd3JvdGU6DQo+PiAr
-c3RhdGljIHN0cnVjdCBza19idWZmICpydGw4XzRfdGFnX3htaXQoc3RydWN0IHNrX2J1ZmYgKnNr
-YiwNCj4+ICsJCQkJICAgICAgIHN0cnVjdCBuZXRfZGV2aWNlICpkZXYpDQo+PiArew0KPj4gKwlz
-dHJ1Y3QgZHNhX3BvcnQgKmRwID0gZHNhX3NsYXZlX3RvX3BvcnQoZGV2KTsNCj4+ICsJX19iZTE2
-ICp0YWc7DQo+PiArDQo+PiArCS8qIFBhZCBvdXQgc28gdGhlIChzdHJpcHBlZCkgcGFja2V0IGlz
-IGF0IGxlYXN0IDY0IGJ5dGVzIGxvbmcNCj4+ICsJICogKGluY2x1ZGluZyBGQ1MpLCBvdGhlcndp
-c2UgdGhlIHN3aXRjaCB3aWxsIGRyb3AgdGhlIHBhY2tldC4NCj4+ICsJICogVGhlbiB3ZSBuZWVk
-IGFuIGFkZGl0aW9uYWwgOCBieXRlcyBmb3IgdGhlIFJlYWx0ZWsgdGFnLg0KPj4gKwkgKi8NCj4+
-ICsJaWYgKHVubGlrZWx5KF9fc2tiX3B1dF9wYWR0byhza2IsIEVUSF9aTEVOICsgUlRMOF80X1RB
-R19MRU4sIGZhbHNlKSkpDQo+PiArCQlyZXR1cm4gTlVMTDsNCj4gDQo+IElzIHRoaXMgc3RpbGwg
-cmVxdWlyZWQgaWYgeW91IHNldCBydGw4MzY1bWJfY3B1X3J4bGVuIHRvIDY0IGJ5dGVzIGFscmVh
-ZHk/DQoNCkFwcGFyZW50bHkgbm90IC0gbmljZSBjYXRjaC4gSSd2ZSByZW1vdmVkIGl0IGZvciB3
-aGF0IHdpbGwgYmUgdjQuIDopDQoNCj4gDQo+PiArDQo+PiArCXNrYl9wdXNoKHNrYiwgUlRMOF80
-X1RBR19MRU4pOw0KPj4gKw0KDQo=
+
+
+On 14-10-2021 19:19, Jonathan Cameron wrote:
+> On Thu, 14 Oct 2021 10:24:54 +0200
+> Roan van Dijk <roan@protonic.nl> wrote:
+> 
+>> On 13-10-2021 19:38, Jonathan Cameron wrote:
+>>> On Sun, 10 Oct 2021 16:59:19 +0100
+>>> Jonathan Cameron <jic23@kernel.org> wrote:
+>>>    
+>>>> On Fri,  8 Oct 2021 12:17:02 +0200
+>>>> Roan van Dijk <roan@protonic.nl> wrote:
+>>>>   
+>>>>> This series adds support for the Sensirion SCD4x sensor.
+>>>>>
+>>>>> The driver supports continuous reads of temperature, relative humdity and CO2
+>>>>> concentration. There is an interval of 5 seconds between readings. During
+>>>>> this interval the drivers checks if the sensor has new data available.
+>>>>>
+>>>>> The driver is based on the scd30 driver. However, The scd4x has become too
+>>>>> different to just expand the scd30 driver. I made a new driver instead of
+>>>>> expanding the scd30 driver. I hope I made the right choice by doing so?
+>>>>
+>>>> Applied to the togreg branch of iio.git with the issues Randy mentioned tidied
+>>>> up. Pushed out as testing for 0-day to see if it can find anything we missed
+>>>
+>>> And indeed - I missed a bunch of places where explicit __be16 types should have
+>>> been used.
+>>>
+>>> I've applied the following fixup, shout if it's wrong.
+>>>   
+>> Thank you Jonathan for applying this fixup. No need to shout :) Your
+>> changes should fix the issue.
+>>
+>> However, I have a question about something else. The co2 concentration
+>> is an IIO_CHAN_INFO_RAW, but doesn't have a scale or offset at this
+>> moment. Is an _scale always required for an _raw in the ABI? I could not
+>> find anything in the documentation if there is a rule for this. Someone
+>> mentioned this to me, so I want to check if I did this right.
+>>
+>> The sensor returns the actual co2 value upon reading, like 450 ppm. We
+>> can set an offset of this co2 value with the calibration_forced_value
+>> through the ABI, but this offset is handled internally by the sensor. So
+>> there isn't anything with scaling or an offset needed at the driver side.
+> 
+> Ah. We could have mapped this to calibbias, though here it's made more
+> complex by other calibrations existing that don't use the value so let's
+> leave it as it is.
+> 
+>>
+>> Was I right by making it of type RAW? If needed we could make it more
+>> like the scd30 driver, keeping it of type RAW but with scale = 1. What
+>> should I do or is it fine as it is?
+> 
+> Hmm. Interesting corner case in the ABI.  A _raw value without a scale
+> normally means we don't know it for some reason.  The most common case
+> of this is light sensors where several _raw intensity values are combined
+> in some (typically non linear) transform to form a single measure of illuminance.
+> Those intensity_raw channels don't have an meaningful units, but devices
+> often have threshold events on them so we have to expose them.
+> 
+> I would say make it a processed value, but there is a quirk.
+> concentrations in IIO are expressed in percent not per million, so you need
+> a scale anyway, I guess 10000?  See Documentation/ABI/testing/sysfs-bus-iio
+> 
+> 
+> No need to do a new driver version, just send a patch tidying up this corner.
+> 
+
+Hi Jonathan,
+
+As you suggested, these are my fixes for the concentration reading.
+
+The co2 reading is now a processed value and has a scale. I also added 
+the information in sysfs-bus-iio documentation, because this type of 
+processed value is new in the ABI.
+
+diff --git a/Documentation/ABI/testing/sysfs-bus-iio 
+b/Documentation/ABI/testing/sysfs-bus-iio
+index c27347d3608e..66a17f4c831e 100644
+--- a/Documentation/ABI/testing/sysfs-bus-iio
++++ b/Documentation/ABI/testing/sysfs-bus-iio
+@@ -1716,6 +1716,7 @@ Description:
+
+  What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_raw
+  What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_raw
++What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_input
+  What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_raw
+  What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_co2_raw
+  What: 
+/sys/bus/iio/devices/iio:deviceX/in_concentration_ethanol_raw
+diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
+index 09b34201c42b..bc1c6676029d 100644
+--- a/drivers/iio/chemical/scd4x.c
++++ b/drivers/iio/chemical/scd4x.c
+@@ -337,6 +337,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+
+         switch (mask) {
+         case IIO_CHAN_INFO_RAW:
++       case IIO_CHAN_INFO_PROCESSED:
+                 ret = iio_device_claim_direct_mode(indio_dev);
+                 if (ret)
+                         return ret;
+@@ -352,7 +353,11 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+                 *val = ret;
+                 return IIO_VAL_INT;
+         case IIO_CHAN_INFO_SCALE:
+-               if (chan->type == IIO_TEMP) {
++               if (chan->type == IIO_CONCENTRATION) {
++                       *val = 0;
++                       *val2 = 100;
++                       return IIO_VAL_INT_PLUS_MICRO;
++               } else if (chan->type == IIO_TEMP) {
+                         *val = 175000;
+                         *val2 = 65536;
+                         return IIO_VAL_FRACTIONAL;
+@@ -501,7 +506,8 @@ static const struct iio_chan_spec scd4x_channels[] = {
+                 .type = IIO_CONCENTRATION,
+                 .channel2 = IIO_MOD_CO2,
+                 .modified = 1,
+-               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
++               .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED) |
++                                       BIT(IIO_CHAN_INFO_SCALE),
+                 .address = SCD4X_CO2,
+                 .scan_index = SCD4X_CO2,
+                 .scan_type = {
+
+Thanks,
+
+Roan
+
+> Thanks,
+> 
+> Jonathan
+> 
+> 
+>> Sorry for not asking this earlier.
+>>
+>> Thanks,
+>>
+>> Roan
+>>
+>>> diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
+>>> index 09b34201c42b..ebebcb117ba2 100644
+>>> --- a/drivers/iio/chemical/scd4x.c
+>>> +++ b/drivers/iio/chemical/scd4x.c
+>>> @@ -263,7 +263,7 @@ static int scd4x_write_and_fetch(struct scd4x_state *state, enum scd4x_cmd cmd,
+>>>    static int scd4x_read_meas(struct scd4x_state *state, uint16_t *meas)
+>>>    {
+>>>    	int i, ret;
+>>> -	uint16_t buf[3];
+>>> +	__be16 buf[3];
+>>>    
+>>>    	ret = scd4x_read(state, CMD_READ_MEAS, buf, sizeof(buf));
+>>>    	if (ret)
+>>> @@ -282,12 +282,13 @@ static int scd4x_wait_meas_poll(struct scd4x_state *state)
+>>>    	int ret;
+>>>    
+>>>    	do {
+>>> +		__be16 bval;
+>>>    		uint16_t val;
+>>>    
+>>> -		ret = scd4x_read(state, CMD_GET_DATA_READY, &val, sizeof(val));
+>>> +		ret = scd4x_read(state, CMD_GET_DATA_READY, &bval, sizeof(bval));
+>>>    		if (ret)
+>>>    			return -EIO;
+>>> -		val = be16_to_cpu(val);
+>>> +		val = be16_to_cpu(bval);
+>>>    
+>>>    		/* new measurement available */
+>>>    		if (val & 0x7FF)
+>>> @@ -333,7 +334,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+>>>    {
+>>>    	struct scd4x_state *state = iio_priv(indio_dev);
+>>>    	int ret;
+>>> -	uint16_t tmp;
+>>> +	__be16 tmp;
+>>>    
+>>>    	switch (mask) {
+>>>    	case IIO_CHAN_INFO_RAW:
+>>> @@ -405,17 +406,18 @@ static ssize_t calibration_auto_enable_show(struct device *dev,
+>>>    	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+>>>    	struct scd4x_state *state = iio_priv(indio_dev);
+>>>    	int ret;
+>>> -	uint16_t val;
+>>> +	__be16 bval;
+>>> +	u16 val;
+>>>    
+>>>    	mutex_lock(&state->lock);
+>>> -	ret = scd4x_read(state, CMD_GET_ASC, &val, sizeof(val));
+>>> +	ret = scd4x_read(state, CMD_GET_ASC, &bval, sizeof(bval));
+>>>    	mutex_unlock(&state->lock);
+>>>    	if (ret) {
+>>>    		dev_err(dev, "failed to read automatic calibration");
+>>>    		return ret;
+>>>    	}
+>>>    
+>>> -	val = (be16_to_cpu(val) & SCD4X_READY_MASK) ? 1 : 0;
+>>> +	val = (be16_to_cpu(bval) & SCD4X_READY_MASK) ? 1 : 0;
+>>>    
+>>>    	return sprintf(buf, "%d\n", val);
+>>>    }
+>>>
+>>>    
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Jonathan
+>>>>   
+>>>>>
+>>>>> Changes since v5:
+>>>>> scd4x.c:
+>>>>>     - Fix bug in trigger_handler
+>>>>>
+>>>>> Changes since v4:
+>>>>> scd4x.c:
+>>>>>     - Minor fixes in documentation
+>>>>>     - Reorder trigger_handler so memcpy is not needed anymore
+>>>>> Documentation:
+>>>>>     - Change information about the KernelVersion for the
+>>>>>       calibration_forced_value_available
+>>>>>
+>>>>> Changes since v3:
+>>>>> scd4x.c
+>>>>>     - Change read and write_and_fetch function parameter. CRC byte is now
+>>>>>       hidden inside the function.
+>>>>>     - Fix minor style issues
+>>>>>     - Add calibration_forced_value_available attribute to the driver
+>>>>>     - Remove including BUFFER_TRIGGERED
+>>>>>     - Change calibbias to raw ADC readings rather than converting it to
+>>>>>       milli degrees C.
+>>>>> Documentation:
+>>>>>     - Change description of driver attributes
+>>>>>     - Add calibration_forced_value_available documentation
+>>>>>
+>>>>> Changes since v2:
+>>>>> scd4x.c:
+>>>>>     - Change boolean operations
+>>>>>     - Document scope of lock
+>>>>>     - Remove device *dev from struct
+>>>>>     - Add goto block for errror handling
+>>>>>     - Add function to read value per channel in read_raw
+>>>>>     - Fix bug with lock in error paths
+>>>>>     - Remove conversion of humidity and temperature values
+>>>>>     - Add scale and offset to temperature channel
+>>>>>     - Add scale to humidity channel
+>>>>>     - Move memset out of locked section
+>>>>>     - Remove unused irq functions
+>>>>>     - Move device register at end of probe function
+>>>>> Documentation:
+>>>>>     - Copy content of sysfs-bus-iio-scd30 to sysfs-bus-iio
+>>>>>     - Remove Documentation/ABI/testing/sysfs-bus-iio-scd30
+>>>>>
+>>>>> Changes since v1:
+>>>>> dt-bindings:
+>>>>>     - Separated compatible string for each sensor type
+>>>>> scd4x.c:
+>>>>>     - Changed probe, resume and suspend functions to static
+>>>>>     - Added SIMPLE_DEV_PM_OPS function call for power management
+>>>>>       operations.
+>>>>>
+>>>>> Roan van Dijk (4):
+>>>>>     dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
+>>>>>     MAINTAINERS: Add myself as maintainer of the scd4x driver
+>>>>>     drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+>>>>>     iio: documentation: Document scd4x calibration use
+>>>>>
+>>>>>    Documentation/ABI/testing/sysfs-bus-iio       |  41 ++
+>>>>>    Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 -
+>>>>>    .../iio/chemical/sensirion,scd4x.yaml         |  46 ++
+>>>>>    MAINTAINERS                                   |   6 +
+>>>>>    drivers/iio/chemical/Kconfig                  |  13 +
+>>>>>    drivers/iio/chemical/Makefile                 |   1 +
+>>>>>    drivers/iio/chemical/scd4x.c                  | 689 ++++++++++++++++++
+>>>>>    7 files changed, 796 insertions(+), 34 deletions(-)
+>>>>>    delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+>>>>>    create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
+>>>>>    create mode 100644 drivers/iio/chemical/scd4x.c
+>>>>>       
+>>>>   
+>>>    
+> 
