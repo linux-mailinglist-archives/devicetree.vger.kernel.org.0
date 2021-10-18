@@ -2,75 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3171431826
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B89431831
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbhJRLxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 07:53:32 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:56548 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229569AbhJRLxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:53:31 -0400
-X-UUID: b68fa2e4eea844aa93dc442b28bddf92-20211018
-X-UUID: b68fa2e4eea844aa93dc442b28bddf92-20211018
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1198654547; Mon, 18 Oct 2021 19:51:17 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 18 Oct 2021 19:51:16 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 18 Oct
- 2021 19:51:16 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 18 Oct 2021 19:51:16 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Benson Leung" <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Guenter Roeck <groeck@chromium.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Subject: [PATCH] dt-bindings: mfd: change naming of mediatek rpmsg property
-Date:   Mon, 18 Oct 2021 19:51:11 +0800
-Message-ID: <20211018115111.14096-1-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.15.GIT
+        id S230399AbhJRLzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 07:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230381AbhJRLzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:55:16 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA423C061745
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:53:05 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id p21so8473756wmq.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:53:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=OjLEjB+66gVcYoeS09uTUDIcrNaPGWu2B8UnkmdnjH8=;
+        b=TrNwmmZrgahcTims1xWqWBxeCqU683WDHAH56sTYfn6zV/+JBJBqAkYxq70Kp6jhAW
+         z7Mixy3n1K/zgsRFYDzvaZ8625DAyCGnq8EO08kv2D75JFgexb69aSm4EsjjDnUUI5gr
+         rcSguRag8AfHNcvcJKLmO14BTI+pOnwajLKEGTVW6JXbDMrt+HCsl6gPs7AHud8HuokL
+         NPfai1qTH4gzcucVUgaAbI/ygD+WdYGMUUiW0OK0hX1RfYeQJlIJ/MDrhgwxUAYNTPfj
+         Sz4UKZkkRWRetl9dWGMANObQyChq1e1bNzFV8jenVLEMCcCfgnUjMrPMSUBtcrQRlj7p
+         DCUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=OjLEjB+66gVcYoeS09uTUDIcrNaPGWu2B8UnkmdnjH8=;
+        b=lzJdKkQeW5WEF3X5bzsdyhQ9DwrUWcf4bG3xjNE4FGOLxaBkH7Uo26rIoMZq2oh0DG
+         1fbveQDpvAxfzmlvvgoHmbpP3tb4N7828jycuiRY/aU9/w1jk9Wz4ZS9C/PYFl+hByI+
+         gkPm+O33BYO45pMuKuKhtSuWFb4ta1SiYZt7/yKlX0OA0QGLAU8GcZqGZDQYWxXQk3xf
+         2Lm1hX/atBFQ2In8ua+J07+39sPNdhn4Yex/CkE7F7WPpbRqfVrDJDWbA0rDywudEMDU
+         prYskY8EGPGbZROK3zDprlMvskU51iapL9w7QH3w7HAPI5n3fwt2kH+QXqOmuwPYgmdD
+         6Xag==
+X-Gm-Message-State: AOAM533Efq4ZldaHHBxBgmTzMUEXHKErqUVbkTEhUSckGgnNSBU1DEfE
+        ied7I8ucSss3raXyt4S9OlavMA==
+X-Google-Smtp-Source: ABdhPJxItLyyofC2JRkGeF4ExPOPrkr01IZHTPDrzV2bHDZsePkNF5ptZ6iL8Bcj5Nl9CdILuFVcvw==
+X-Received: by 2002:a1c:2309:: with SMTP id j9mr42794361wmj.189.1634557984169;
+        Mon, 18 Oct 2021 04:53:04 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id a16sm12223529wrs.30.2021.10.18.04.53.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 04:53:03 -0700 (PDT)
+Date:   Mon, 18 Oct 2021 12:53:01 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+Message-ID: <YW1gHXKLIe6nyVOd@google.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com>
+ <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com>
+ <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+ <YWVD0RXHVLxuXEIN@google.com>
+ <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com>
+ <YWfSz00Rj5AVhkgT@google.com>
+ <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+ <YWl33gCy1ac29WSs@google.com>
+ <CAL_JsqJNzA4iX2V5FnSg+phNh72JeRxn+D4250aKmOhngZO9yA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJNzA4iX2V5FnSg+phNh72JeRxn+D4250aKmOhngZO9yA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change from "mtk,rpmsg-name" to "mediatek,rpmsg-name" to sync with the
-vendor name defined in vendor-prefixes.yaml.
+On Fri, 15 Oct 2021, Rob Herring wrote:
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
----
- Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> On Fri, Oct 15, 2021 at 7:45 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Thu, 14 Oct 2021, Rob Herring wrote:
+> >
+> > > On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > >
+> > > > On Wed, 13 Oct 2021, Geert Uytterhoeven wrote:
+> > > >
+> > > > > Hi Lee,
+> > > > >
+> > > > > On Tue, Oct 12, 2021 at 10:15 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > > On Mon, 11 Oct 2021, Rob Herring wrote:
+> > > > > > > On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > > > > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
+> > > > > > > >
+> > > > > > > > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > > > >
+> > > > > > > > > Add bindings for Unisoc system global register which provide register map
+> > > > > > > > > for clocks.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > > > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > > > > ---
+> > > > > > > > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+> > > > > > > > >  1 file changed, 68 insertions(+)
+> > > > > > > > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> > > > > > > >
+> > > > > > > > Unapplied v3 and applied this (v4) instead, thanks.
+> > > > > > >
+> > > > > > > What about the clock binding this depends on:
+> > > > > > >
+> > > > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > > > xargs: dt-doc-validate: exited with status 255; aborting
+> > > > > > > make[1]: *** Deleting file
+> > > > > > > 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> > > > > > > Unknown file referenced: [Errno 2] No such file or directory:
+> > > > > > > '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> > > > > > > make[1]: *** [scripts/Makefile.lib:385:
+> > > > > > > Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
+> > > > > > > Error 255
+> > > > > > >
+> > > > > > >
+> > > > > > > Once again, all the components of MFD bindings need to be applied together.
+> > > > >
+> > > > > Just ran into this, too...
+> > > > >
+> > > > > > I can't apply what is not sent to me.
+> > > > > >
+> > > > > > This patch came in on its own.
+> > > > >
+> > > > > Then please reject/postpone patches that don't build (yet) ;-)
+> > > >
+> > > > I don't explicitly build DT documentation.
+> > > >
+> > > > Since I use the build bots to let me know if there are strange !(C,
+> > > > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > > > configuration possibilities (randconfig) in the repos I maintain, you
+> > > > might have to convince them that this is important too.
+> > >
+> > > It's really just a matter of turning on the build in
+> > > allyesconfig/allmodconfig builds. I've not done that primarily because
+> > > there's one person I don't want to yell at me, but I could probably
+> > > make it arm and/or arm64 only. It's really arch and config
+> > > independent, so doing it multiple times is kind of pointless.
+> > >
+> > > I assume for bots you mean kernel-ci mainly? Do you run that before
+> > > stuff gets into linux-next? IMO, that's too late. But still a slight
+> > > improvement if things go in via one tree. Otherwise, I see the
+> > > breakage twice, 1st linux-next then the merge window.
+> >
+> > Kernel test robot <lkp@intel.com> is the one that springs to mind.
+> 
+> It already does sometimes. I haven't figured out when, but I randomly
+> see some reports and doesn't report a lot of the cases.
 
-diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-index d793dd0316b7..0faa4da6c7c8 100644
---- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-+++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-@@ -59,7 +59,7 @@ properties:
-       whether this nvram is present or not.
-     type: boolean
- 
--  mtk,rpmsg-name:
-+  mediatek,rpmsg-name:
-     description:
-       Must be defined if the cros-ec is a rpmsg device for a Mediatek
-       ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
+It would be great if it can be figured it out.
+
+Apart from my W=1 work, I seldom build/test/run obscure/specialist
+compiler flags/options.  If someone can convince the 0-day builder
+bots that testing DT docs is a good idea when building for the
+appropriate architectures, I'm all in.
+
+> > Although, I'm sure there are other, less prolific implementations.
+> 
+> Rob's bot, but that checks patches (not branches) and applies series
+> so you won't get errors unless the series is in the wrong patch order.
+
+Right.  Good tool, but solves a different problem.
+
 -- 
-2.18.0
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
