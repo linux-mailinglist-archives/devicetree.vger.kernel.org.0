@@ -2,298 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB9E1432959
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 23:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4392743298C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 00:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231920AbhJRV5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 17:57:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
+        id S232019AbhJRWHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 18:07:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbhJRV5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 17:57:12 -0400
-Received: from mail-il1-x12f.google.com (mail-il1-x12f.google.com [IPv6:2607:f8b0:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39352C06161C;
-        Mon, 18 Oct 2021 14:55:01 -0700 (PDT)
-Received: by mail-il1-x12f.google.com with SMTP id k3so6046904ilo.7;
-        Mon, 18 Oct 2021 14:55:01 -0700 (PDT)
+        with ESMTP id S229991AbhJRWHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 18:07:33 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35F7C06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:21 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id n2so3273234qta.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TalGu0MMIR7zMbpLgPht+0jBS5F9Emp81Ltjv+/4fb8=;
-        b=S69I+UNQ/RgHeQFEiRRIFQFwyx3cWM9poZZvEFEDnP9ty1jwBNaS49S8qLPumV/hBP
-         htDpg5do7M89TVbp0WIgDW2iDuSDzxtGoSV62tuyFmzgOOzCDoB6Z94xZ5leGbXdL3wl
-         TUSADrKXkAmxwdLM2zs4ECAX8kikaz1nLv1HPo5unIs7NUqHxzsyCKT7toWqI0+sqQuD
-         v1aWcjUNExN/yvRd3PsR5IkhhCm/HSN5gQGxbwLOHwjO7EHMH9NlCOyM2BVA/T4wM+hs
-         EYGpASauTeX3n7kOMBTEFYr2CDfhK/Y5LEp3MOrWQUKgEsTe7/JyNejzOCrARlspBiRr
-         Pm8g==
+        bh=VNpqRRdnPDIUGCc3uEFG9REMCz+uQZwgGwBrpVs1X7k=;
+        b=PzH1/3QFJDCAo6+yfE9yZp3FhN5bdJblxdwmrYJXz4W0YDV5QgMDwXPS+9oDzaYsmR
+         1hy1VBsrs0g+cboLAmAYffm5C4OKJ9PZknz0zqdbSlWGpa8IqJfWmggmKLf9VGSQPSoq
+         bF2fHToJMjgOwuWZ6BDY28QPn+sUaZRuPFe0c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TalGu0MMIR7zMbpLgPht+0jBS5F9Emp81Ltjv+/4fb8=;
-        b=CFgCxzuEzG//Xsz/f7P6UYmMKzdg0SDK/KrAHC4uqWPM48142KOCVBmxB/tMi/ZPcW
-         yVn1WiSzkvSdqxoxftmqV5wdV7XmyR8wuPKDafLq02w0CjAHS/KucO+6kNc0dZIUjkL6
-         h8sLLcb2UP4XkYOz4TbMC83XwL1TDiI/IwInc8FQhmxWjsSfY4JCkdHQS6fJ2Umxfh5R
-         DOTIurN8eGQgbdb8vJ82PPfNbpG3g25zdTLo6MgBDryd4XVMnCpqQVz8rcjZFVaWjOOj
-         e4/AX/8Wx/yhyIw90UvW1DJCHJKtbVCYANho3E/MrB8nz+RPx9FyTXqAgTq2X7aZtFAv
-         p8Jg==
-X-Gm-Message-State: AOAM532yOLIqFN47UdZmBcbZS6mqBv8Hyu3+zxJtVm88HMSCczPixOeL
-        EUNyo6xKW+UfIThZ4oIVpwUC+9Cd1/lqTrIlMnc=
-X-Google-Smtp-Source: ABdhPJxuHmbxEEQGiMuJRqarx7V9JqvIEhCaD+/RfukuA+LHMVgcqbdX24133jaF6wE8QM/Srdjl6IFQL7gjwljPy4c=
-X-Received: by 2002:a05:6e02:1885:: with SMTP id o5mr15797830ilu.221.1634594100573;
- Mon, 18 Oct 2021 14:55:00 -0700 (PDT)
+        bh=VNpqRRdnPDIUGCc3uEFG9REMCz+uQZwgGwBrpVs1X7k=;
+        b=CeoA0WSiW4o94og/Df5dQ0q4QD6OTTQN+RWMzUQn2EN4jJz895V0KwMJ34hpqD04gf
+         QhQ8OatNCjbOkhNAdr+ao7t3rWmKBjWYWZcR6A2mqYT2ySBnVCUQEbDmDUS1xsM4/uBX
+         11Y5MjOyJfMU77zD0BTKLDibXtcmSHKlQKYSQ6XDXOZXKq3s4Ngq4PIzgGY7D6eCoL1D
+         4RLYsa73Sb1+NqYGV08kWQ1fegLb7dYjuGqa2UrHZv89NhqkG4gZ5Mhs2hPWr7WB0LsO
+         OG/Fg2kSY2V9KKHo5ukFloHvSeZYEFX247j0e5ZeexOBt3KS7LHQVYxD9dT33GnQu0jG
+         7npQ==
+X-Gm-Message-State: AOAM533t4LupAVReXmanhIi3m8SuEP3dfMtf8LgFHaYcYhB377c47a/L
+        vi6109Yz9E3VL3PBdhU75lHG1YCX93/FiQ==
+X-Google-Smtp-Source: ABdhPJw3PrHtRt3d2zgrLp/3mjF5lg+v/6i0NZDSFCyGsTFJDk1gC6IL4sIg/cTMyl+wemRe2+GjEQ==
+X-Received: by 2002:ac8:5988:: with SMTP id e8mr32665280qte.32.1634594720716;
+        Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id f23sm6117943qtq.40.2021.10.18.15.05.20
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id s4so1329101ybs.8
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 15:05:20 -0700 (PDT)
+X-Received: by 2002:a5b:102:: with SMTP id 2mr31008124ybx.101.1634594288583;
+ Mon, 18 Oct 2021 14:58:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211009114313.17967-1-alistair@alistair23.me> <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com>
-In-Reply-To: <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Tue, 19 Oct 2021 07:54:34 +1000
-Message-ID: <CAKmqyKM8S14zu7Ck_97tUqkZJLa7AufM-gDKOHgmjsSABNfObA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/4] HID: wacom_sys: Add support for flipping the data values
-To:     Ping Cheng <pinglinux@gmail.com>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
+ <20211013100005.GB9901@lpieralisi> <CAE-0n52fZZkWt5KxF8gq0D55f_joq0v2sBBp81Gts8cBt6fJgg@mail.gmail.com>
+In-Reply-To: <CAE-0n52fZZkWt5KxF8gq0D55f_joq0v2sBBp81Gts8cBt6fJgg@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 18 Oct 2021 14:57:56 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WYvV+=uyEOYq7LjtBgpSGV6KovvoS1e88fgc1kpt_c7Q@mail.gmail.com>
+Message-ID: <CAD=FV=WYvV+=uyEOYq7LjtBgpSGV6KovvoS1e88fgc1kpt_c7Q@mail.gmail.com>
+Subject: Re: [PATCH v12 0/5] Add DT bindings and DT nodes for PCIe and PHY in SC7280
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, svarbanov@mm-sol.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
         LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        Matthias Kaehlcke <mka@chromium.org>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        sallenki@codeaurora.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-pci@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 3:42 AM Ping Cheng <pinglinux@gmail.com> wrote:
->
-> Hi Alistair,
->
-> On Sat, Oct 9, 2021, 4:44 AM Alistair Francis <alistair@alistair23.me> wrote:
->>
->> Add support to the Wacom HID device for flipping the values based on
->> device tree settings. This allows us to support devices where the panel
->> is installed in a different orientation, such as the reMarkable2.
->
->
-> This device was designed for hid-generic driver, if it's not driven by wacom_i2c.c or an out of tree driver.
->
-> wacom.ko doesn't support vid 0x2d1f devices.
->
-> Nacked-by: Ping Cheng <Ping.Cheng@wacom.com>
+Hi,
 
-Any ideas how to support the hardware then?
-
-I can't use the wacom_i2c driver as the panel supports I2C HID. But I
-can't use the I2C HID driver as I need the values flipped to support
-the installed orientation.
-
-Alistair
-
+On Fri, Oct 15, 2021 at 12:43 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Sorry about that,
-> Ping
+> Quoting Lorenzo Pieralisi (2021-10-13 03:00:05)
+> > On Thu, Oct 07, 2021 at 11:18:38PM +0530, Prasad Malisetty wrote:
+> > > Prasad Malisetty (5):
+> > >   dt-bindings: pci: qcom: Document PCIe bindings for SC7280
+> > >   arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes
+> > >   arm64: dts: qcom: sc7280: Add PCIe nodes for IDP board
+> > >   PCI: qcom: Add a flag in match data along with ops
+> > >   PCI: qcom: Switch pcie_1_pipe_clk_src after PHY init in SC7280
+> > >
+> > >  .../devicetree/bindings/pci/qcom,pcie.txt          |  17 +++
+> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   8 ++
+> > >  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  50 +++++++++
+> > >  arch/arm64/boot/dts/qcom/sc7280-idp2.dts           |   8 ++
+> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi               | 118 +++++++++++++++++++++
+> > >  drivers/pci/controller/dwc/pcie-qcom.c             |  95 +++++++++++++++--
+> > >  6 files changed, 285 insertions(+), 11 deletions(-)
+> >
+> > I applied patches [4-5] to pci/qcom for v5.16, thanks I expect other
+> > patches to go via the relevant trees.
+> >
 >
->> Signed-off-by: Alistair Francis <alistair@alistair23.me>
->> ---
->>  .../bindings/input/hid-over-i2c.txt           | 20 ++++++
->>  drivers/hid/wacom_sys.c                       | 25 ++++++++
->>  drivers/hid/wacom_wac.c                       | 61 +++++++++++++++++++
->>  drivers/hid/wacom_wac.h                       | 13 ++++
->>  4 files changed, 119 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
->> index c76bafaf98d2..16ebd7c46049 100644
->> --- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
->> +++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
->> @@ -33,6 +33,26 @@ device-specific compatible properties, which should be used in addition to the
->>  - post-power-on-delay-ms: time required by the device after enabling its regulators
->>    or powering it on, before it is ready for communication.
->>
->> +  flip-tilt-x:
->> +    type: boolean
->> +    description: Flip the tilt X values read from device
->> +
->> +  flip-tilt-y:
->> +    type: boolean
->> +    description: Flip the tilt Y values read from device
->> +
->> +  flip-pos-x:
->> +    type: boolean
->> +    description: Flip the X position values read from device
->> +
->> +  flip-pos-y:
->> +    type: boolean
->> +    description: Flip the Y position values read from device
->> +
->> +  flip-distance:
->> +    type: boolean
->> +    description: Flip the distance values read from device
->> +
->>  Example:
->>
->>         i2c-hid-dev@2c {
->> diff --git a/drivers/hid/wacom_sys.c b/drivers/hid/wacom_sys.c
->> index 93f49b766376..47d9590b10bd 100644
->> --- a/drivers/hid/wacom_sys.c
->> +++ b/drivers/hid/wacom_sys.c
->> @@ -10,6 +10,7 @@
->>
->>  #include "wacom_wac.h"
->>  #include "wacom.h"
->> +#include <linux/of.h>
->>  #include <linux/input/mt.h>
->>
->>  #define WAC_MSG_RETRIES                5
->> @@ -2730,6 +2731,28 @@ static void wacom_mode_change_work(struct work_struct *work)
->>         return;
->>  }
->>
->> +static void wacom_of_read(struct hid_device *hdev, struct wacom_wac *wacom_wac)
->> +{
->> +       if (IS_ENABLED(CONFIG_OF)) {
->> +               wacom_wac->flip_tilt_x = of_property_read_bool(hdev->dev.parent->of_node,
->> +                                                       "flip-tilt-x");
->> +               wacom_wac->flip_tilt_y = of_property_read_bool(hdev->dev.parent->of_node,
->> +                                                       "flip-tilt-y");
->> +               wacom_wac->flip_pos_x = of_property_read_bool(hdev->dev.parent->of_node,
->> +                                                       "flip-pos-x");
->> +               wacom_wac->flip_pos_y = of_property_read_bool(hdev->dev.parent->of_node,
->> +                                                       "flip-pos-y");
->> +               wacom_wac->flip_distance = of_property_read_bool(hdev->dev.parent->of_node,
->> +                                                       "flip-distance");
->> +       } else {
->> +               wacom_wac->flip_tilt_x = false;
->> +               wacom_wac->flip_tilt_y = false;
->> +               wacom_wac->flip_pos_x = false;
->> +               wacom_wac->flip_pos_y = false;
->> +               wacom_wac->flip_distance = false;
->> +       }
->> +}
->> +
->>  static int wacom_probe(struct hid_device *hdev,
->>                 const struct hid_device_id *id)
->>  {
->> @@ -2797,6 +2820,8 @@ static int wacom_probe(struct hid_device *hdev,
->>                                  error);
->>         }
->>
->> +       wacom_of_read(hdev, wacom_wac);
->> +
->>         wacom_wac->probe_complete = true;
->>         return 0;
->>  }
->> diff --git a/drivers/hid/wacom_wac.c b/drivers/hid/wacom_wac.c
->> index 33a6908995b1..c01f683e23fa 100644
->> --- a/drivers/hid/wacom_wac.c
->> +++ b/drivers/hid/wacom_wac.c
->> @@ -3261,6 +3261,63 @@ static int wacom_status_irq(struct wacom_wac *wacom_wac, size_t len)
->>         return 0;
->>  }
->>
->> +static int wacom_of_irq(struct wacom_wac *wacom_wac, size_t len)
->> +{
->> +       const struct wacom_features *features = &wacom_wac->features;
->> +       unsigned char *data = wacom_wac->data;
->> +       struct input_dev *input = wacom_wac->pen_input;
->> +       unsigned int x, y, pressure;
->> +       unsigned char tsw, f1, f2, ers;
->> +       short tilt_x, tilt_y, distance;
->> +
->> +       if (!IS_ENABLED(CONFIG_OF))
->> +               return 0;
->> +
->> +       tsw = data[1] & WACOM_TIP_SWITCH_bm;
->> +       ers = data[1] & WACOM_ERASER_bm;
->> +       f1 = data[1] & WACOM_BARREL_SWITCH_bm;
->> +       f2 = data[1] & WACOM_BARREL_SWITCH_2_bm;
->> +       x = le16_to_cpup((__le16 *)&data[2]);
->> +       y = le16_to_cpup((__le16 *)&data[4]);
->> +       pressure = le16_to_cpup((__le16 *)&data[6]);
->> +
->> +       /* Signed */
->> +       tilt_x = get_unaligned_le16(&data[9]);
->> +       tilt_y = get_unaligned_le16(&data[11]);
->> +
->> +       distance = get_unaligned_le16(&data[13]);
->> +
->> +       /* keep touch state for pen events */
->> +       if (!wacom_wac->shared->touch_down)
->> +               wacom_wac->tool[0] = (data[1] & 0x0c) ?
->> +                       BTN_TOOL_RUBBER : BTN_TOOL_PEN;
->> +
->> +       wacom_wac->shared->touch_down = data[1] & 0x20;
->> +
->> +       // Flip the values based on properties from the device tree
->> +
->> +       // Default to a negative value for distance as HID compliant Wacom
->> +       // devices generally specify the hovering distance as negative.
->> +       distance = wacom_wac->flip_distance ? distance : -distance;
->> +       x = wacom_wac->flip_pos_x ? (features->x_max - x) : x;
->> +       y = wacom_wac->flip_pos_y ? (features->y_max - y) : y;
->> +       tilt_x = wacom_wac->flip_tilt_x ? -tilt_x : tilt_x;
->> +       tilt_y = wacom_wac->flip_tilt_y ? -tilt_y : tilt_y;
->> +
->> +       input_report_key(input, BTN_TOUCH, tsw || ers);
->> +       input_report_key(input, wacom_wac->tool[0], wacom_wac->shared->touch_down);
->> +       input_report_key(input, BTN_STYLUS, f1);
->> +       input_report_key(input, BTN_STYLUS2, f2);
->> +       input_report_abs(input, ABS_X, x);
->> +       input_report_abs(input, ABS_Y, y);
->> +       input_report_abs(input, ABS_PRESSURE, pressure);
->> +       input_report_abs(input, ABS_DISTANCE, distance);
->> +       input_report_abs(input, ABS_TILT_X, tilt_x);
->> +       input_report_abs(input, ABS_TILT_Y, tilt_y);
->> +
->> +       return 1;
->> +}
->> +
->>  void wacom_wac_irq(struct wacom_wac *wacom_wac, size_t len)
->>  {
->>         bool sync;
->> @@ -3379,6 +3436,10 @@ void wacom_wac_irq(struct wacom_wac *wacom_wac, size_t len)
->>                         sync = wacom_remote_irq(wacom_wac, len);
->>                 break;
->>
->> +       case HID_GENERIC:
->> +               sync = wacom_of_irq(wacom_wac, len);
->> +               break;
->> +
->>         default:
->>                 sync = false;
->>                 break;
->> diff --git a/drivers/hid/wacom_wac.h b/drivers/hid/wacom_wac.h
->> index 8b2d4e5b2303..4dd5a56bf347 100644
->> --- a/drivers/hid/wacom_wac.h
->> +++ b/drivers/hid/wacom_wac.h
->> @@ -157,6 +157,14 @@
->>  #define WACOM_HID_WT_Y                  (WACOM_HID_UP_WACOMTOUCH | 0x131)
->>  #define WACOM_HID_WT_REPORT_VALID       (WACOM_HID_UP_WACOMTOUCH | 0x1d0)
->>
->> +// Bitmasks (for data[3])
->> +#define WACOM_TIP_SWITCH_bm         (1 << 0)
->> +#define WACOM_BARREL_SWITCH_bm      (1 << 1)
->> +#define WACOM_ERASER_bm             (1 << 2)
->> +#define WACOM_INVERT_bm             (1 << 3)
->> +#define WACOM_BARREL_SWITCH_2_bm    (1 << 4)
->> +#define WACOM_IN_RANGE_bm           (1 << 5)
->> +
->>  #define WACOM_BATTERY_USAGE(f) (((f)->hid == HID_DG_BATTERYSTRENGTH) || \
->>                                  ((f)->hid == WACOM_HID_WD_BATTERY_CHARGING) || \
->>                                  ((f)->hid == WACOM_HID_WD_BATTERY_LEVEL))
->> @@ -357,6 +365,11 @@ struct wacom_wac {
->>         bool has_mode_change;
->>         bool is_direct_mode;
->>         bool is_invalid_bt_frame;
->> +       bool flip_tilt_x;
->> +       bool flip_tilt_y;
->> +       bool flip_pos_x;
->> +       bool flip_pos_y;
->> +       bool flip_distance;
->>  };
->>
->>  #endif
->> --
->> 2.31.1
->>
+> Lorenzo, can you pick up patch 1 too? It's the binding update for the
+> compatible string used in patch 4-5.
+
+I think that means that patches 2-3 are ready to land in the Qualcomm
+tree assuming Bjorn Andersson is still accepting patches there for
+5.16, right?
+
+-Doug
