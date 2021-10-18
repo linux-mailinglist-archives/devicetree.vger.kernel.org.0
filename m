@@ -2,105 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3924319D6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8971431A29
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbhJRMuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 08:50:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53398 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbhJRMuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 08:50:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62DC2C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 05:47:57 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1mcS3I-0003FV-EQ; Mon, 18 Oct 2021 14:47:40 +0200
-Received: from pengutronix.de (2a03-f580-87bc-d400-c2ef-28ab-e0cd-e8fd.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:c2ef:28ab:e0cd:e8fd])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 81EB9696766;
-        Mon, 18 Oct 2021 12:47:37 +0000 (UTC)
-Date:   Mon, 18 Oct 2021 14:47:36 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S230005AbhJRM6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 08:58:30 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:18822 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230526AbhJRM6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 08:58:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1634561774;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=OqccIkY4i1t4VJRk9mPtA2mqAlP8NFJGUylFRJUf6so=;
+    b=emhYqEC1M0Czer1t0/DniSH/7MJn6qmwkRVR+AIC9QU0Kgdgr/ysxF0cFISY2nntww
+    ZGo9fiSp87F4bYLp28466WnF7UQtpQ3xsSJtyNQVT+fBG/be9UYjFMqDa8D3Ydl7HwU0
+    KK5CKMC9820YJZH5jxjq2IIbS432RyqVHsO9pq0XnUbwa7leL2WWwuNvDsLznupg3VjZ
+    KoPH3Ktl7HRMmOFvxVehv9c1ZAAA8BPRRtYXE1N1P1MH16TSK7yJ8jW+SyAYso2JjxIm
+    04GKNPzezm6VMPbvZM8X+PydhmpMLcpF9pg99PBc7jEfl2srVf81yAzpvbxNCHf0u8/v
+    BW5Q==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw5+aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.33.8 AUTH)
+    with ESMTPSA id 301038x9ICuAWJs
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 18 Oct 2021 14:56:10 +0200 (CEST)
+Date:   Mon, 18 Oct 2021 14:56:05 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexei Starovoitov <ast@kernel.org>,
-        Daniel Borkmann <daniel@iogearbox.net>,
-        Andrii Nakryiko <andrii@kernel.org>,
-        Martin KaFai Lau <kafai@fb.com>,
-        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
-        John Fastabend <john.fastabend@gmail.com>,
-        KP Singh <kpsingh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        bpf@vger.kernel.org
-Subject: Re: [PATCH v4 0/6] CAN: Add support for CAN in AM65,J721e and AM64
-Message-ID: <20211018124736.zr2oavfg6h3tnrgp@pengutronix.de>
-References: <20211006055344.22662-1-a-govindraju@ti.com>
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: Re: [PATCH net-next v2 1/4] dt-bindings: dmaengine: bam_dma: Add
+ "powered remotely" mode
+Message-ID: <YW1u5UlmrypFxp9C@gerhold.net>
+References: <20211011141733.3999-1-stephan@gerhold.net>
+ <20211011141733.3999-2-stephan@gerhold.net>
+ <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ljji6pbi73l3wne5"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211006055344.22662-1-a-govindraju@ti.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Oct 18, 2021 at 05:04:31PM +0530, Bhupesh Sharma wrote:
+> On Mon, 11 Oct 2021 at 20:12, Stephan Gerhold <stephan@gerhold.net> wrote:
+> >
+> > In some configurations, the BAM DMA controller is set up by a remote
+> > processor and the local processor can simply start making use of it
+> > without setting up the BAM. This is already supported using the
+> > "qcom,controlled-remotely" property.
+> >
+> > However, for some reason another possible configuration is that the
+> > remote processor is responsible for powering up the BAM, but we are
+> > still responsible for initializing it (e.g. resetting it etc). Add
+> > a "qcom,powered-remotely" property to describe that configuration.
+> >
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > ---
+> > Changes since RFC:
+> >   - Rename qcom,remote-power-collapse -> qcom,powered-remotely
+> >     for consistency with "qcom,controlled-remotely"
+> >
+> > NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
+> >       so this could also go through the dmaengine tree.
+> >
+> > Also note that there is an ongoing effort to convert these bindings
+> > to DT schema but sadly there were not any updates for a while. :/
+> > https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
+> 
+> Seems you missed the latest series posted last week - [1]. Sorry I got
+> a bit delayed posting it due to being caught up in other patches.
+> 
+> Maybe you can rebase your patch on the same and use the YAML bindings
+> for the qcom,bam_dma controller.
+> 
+> [1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t
+> 
 
---ljji6pbi73l3wne5
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ah, you're right sorry! Seems like you sent it two days after I sent the
+v2 of this patch. Thanks a lot for continuing work on this! :)
 
-On 06.10.2021 11:23:37, Aswath Govindraju wrote:
-> The following series of patches add support for CAN in SoC's AM65, J721e
-> and AM64.
->=20
-> The following series is dependent on,
-> https://patchwork.kernel.org/project/netdevbpf/patch/20210920123344.2320-=
-1-a-govindraju@ti.com/
+Since I already sent v3 of this patch earlier, I think it is best if
+I wait a bit first and see if Vinod has any comments or still wants to
+take it for 5.16. Should be simple to rebase either of our patches on
+the other one.
 
-This patch just hit net/master:
-
-| 99d173fbe894 can: m_can: fix iomap_read_fifo() and iomap_write_fifo()
-| https://git.kernel.org/netdev/net/c/99d173fbe8944861a00ebd1c73817a1260d21=
-e60
-
-and should be part of v5.15.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---ljji6pbi73l3wne5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmFtbOYACgkQqclaivrt
-76n5Jwf/R6q+JD0YwphCt5Ds1vOyuiZPyR4D2wrVSFpT/+l6g00FDgeMztPJT6zN
-SYLYIyyceQ3tBP1R+ZBKfM8EdFaA8g6PORPECfUwH12gP6GnvUX+Nsvlgr1XMtOn
-9I6ls+J0cFhFoSQ/HVXoRlLsCTXGEk1QLcPUVE/iazvJx7bOy1jbR+sLwINoMn0L
-Kf+3/Pae+NhOvELK8HjVFIH1LWAEUpu6sTs81ebL8elGHxgbiGBi8vcWPkorkyfD
-DhaLbRCSh1y4uf09YJhU9OzjXIwyVbOJZixDUGgEBDwvjV9BtOyAhsAgQYFZ8IQg
-prXTLN1erGJEdGGjZgq/9DPDviN91g==
-=H9mY
------END PGP SIGNATURE-----
-
---ljji6pbi73l3wne5--
+Thanks!
+Stephan
