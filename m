@@ -2,167 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B14B043252B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:40:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2175743256F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:49:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233662AbhJRRmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 13:42:35 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:37434 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233535AbhJRRme (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:42:34 -0400
-Received: by mail-oi1-f181.google.com with SMTP id o83so838879oif.4;
-        Mon, 18 Oct 2021 10:40:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WjCdoPbhUwOU2BPjJvdVK3b+6xDTrV2zEbWC1uYUtaY=;
-        b=lZJzB20kNN7+prG1bD/2a9Fp0cqVWXkKw2De2C6d4wPJ2RwRqrIrIkY47c8EIPirJu
-         Dq4RMaKL4/VQRozDX9yJbI5qAsZp23vFEXLMk+5GGFjBXYK7WlIfvGzBzQ7tK+BMXuLU
-         XoA8Gd1zZEhp5cfn2OXbrNhlzJJYEmHyHdVADxAzd5zNIkuqMY1afl+0hnZ6YItB6bE6
-         U01rlbr4cZf3YmuEKK+12onoEpSmg5ncb1aLfKsHP5Eh935QG2dZyskY5ixrbJyBYejD
-         8B/vNM49jYXIa7PL19qVCN7UFMYRUhMCWX3Gfzf63V50r2Cq0mz13P81i89imxRblydY
-         72Ow==
-X-Gm-Message-State: AOAM530hPGNSuJN+gHHhcPdOQWvlOulz2aTA403O9UasziTPbGZgn5tu
-        Za9/EHiWDrb1yUkK+le7Ew==
-X-Google-Smtp-Source: ABdhPJwoJ4rchmQWhDHqPkxTSK7hUZqnNUE76P6zsjk0M22Dwy50hrUbpkkDsR3nSNZfVB6NrdZXcA==
-X-Received: by 2002:a05:6808:5d5:: with SMTP id d21mr227760oij.104.1634578823296;
-        Mon, 18 Oct 2021 10:40:23 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c3sm3189302otr.42.2021.10.18.10.40.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 10:40:22 -0700 (PDT)
-Received: (nullmailer pid 2625572 invoked by uid 1000);
-        Mon, 18 Oct 2021 17:40:21 -0000
-Date:   Mon, 18 Oct 2021 12:40:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Message-ID: <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
-References: <20211018114046.25571-1-etienne.carriere@linaro.org>
+        id S234270AbhJRRvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 13:51:23 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:57312 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231404AbhJRRvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:51:22 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D1818C6;
+        Mon, 18 Oct 2021 19:49:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634579349;
+        bh=kGHVUfuxgV4rB8nRRiNcpW0RYtslbwQlZuwutSufKzU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b6ZpJYGRgupz3BGUWT8GE6p3CRq81hQBK27Y2g6q89HECqoc/EgapfjNcahQOuHu6
+         m1KDzJCnq24tu2KFfUedR1WB/sKRLHsxZZY+8MeZR1Y1aTGOp7LErzn/MqXDjB/Zlw
+         VOQjTbF2ROCxDFCjUi++ZN/V8e7M7dVOSk6J4BJ4=
+Date:   Mon, 18 Oct 2021 20:48:52 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
+ supply bindings
+Message-ID: <YW2zhFX9krzbHlpL@pendragon.ideasonboard.com>
+References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+ <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
+ <20211013074722.7y7ug3eri4euknza@gilmour>
+ <YWao69+QEK8Fhi/x@pendragon.ideasonboard.com>
+ <20211014074110.ym6mzugde2m5ak22@gilmour>
+ <YWo6U1juhMsHnQYU@pendragon.ideasonboard.com>
+ <20211018152013.e3kmbm2lszb652gi@gilmour>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211018114046.25571-1-etienne.carriere@linaro.org>
+In-Reply-To: <20211018152013.e3kmbm2lszb652gi@gilmour>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 18, 2021 at 01:40:45PM +0200, Etienne Carriere wrote:
-> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> based on an OP-TEE service invocation. The compatible mandates a
-> channel ID defined with property "linaro,optee-channel-id".
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> ---
-> Changes since v2:
->  - Define mandatory property linaro,optee-channel-id
->  - Rebased on yaml description file
-> 
-> Changes since v1:
->  - Removed modification regarding mboxes property description.
-> ---
->  .../bindings/firmware/arm,scmi.yaml           | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 5c4c6782e052..12154ecc081b 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -38,6 +38,9 @@ properties:
->                       The virtio transport only supports a single device.
->          items:
->            - const: arm,scmi-virtio
-> +      - description: SCMI compliant firmware with OP-TEE transport
-> +        items:
-> +          - const: linaro,scmi-optee
->  
->    interrupts:
->      description:
-> @@ -83,6 +86,11 @@ properties:
->      description:
->        SMC id required when using smc or hvc transports
->  
-> +  linaro,optee-channel-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Channel id required when using OP-TEE transports
-> +
->    protocol@11:
->      type: object
->      properties:
-> @@ -195,6 +203,9 @@ patternProperties:
->          minItems: 1
->          maxItems: 2
->  
-> +      linaro,optee-channel-id:
-> +        maxItems: 1
+Hi Maxime,
 
-Why is the same property in 2 different spots? That doesn't seem ideal.
-
-Unfortunately, you have to duplicate the definition.
-
-> +
->      required:
->        - reg
->  
-> @@ -226,6 +237,16 @@ else:
->        - arm,smc-id
->        - shmem
->  
-> +  else:
-> +    if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: linaro,scmi-optee
-> +    then:
-> +      required:
-> +        - linaro,optee-channel-id
-> +
->  examples:
->    - |
->      firmware {
-> @@ -340,7 +361,30 @@ examples:
->                  reg = <0x11>;
->                  #power-domain-cells = <1>;
->              };
-> +        };
-> +    };
-> +
-> +  - |
-> +    firmware {
-> +        scmi {
-> +            compatible = "linaro,scmi-optee";
-> +            linaro,optee-channel = <0>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            scmi_clk: protocol@14 {
-> +                reg = <0x14>;
-> +                #clock-cells = <1>;
-> +            };
-> +
-> +            scmi_dvfs: protocol@13 {
-> +                reg = <0x13>;
->  
-> +                #clock-cells = <1>;
-> +                linaro,optee-channel = <1>;
-> +                shmem = <&cpu_scp_hpri0>;
-> +            };
->          };
->      };
->  
-> -- 
-> 2.17.1
+On Mon, Oct 18, 2021 at 05:20:13PM +0200, Maxime Ripard wrote:
+> On Sat, Oct 16, 2021 at 05:34:59AM +0300, Laurent Pinchart wrote:
+> > On Thu, Oct 14, 2021 at 09:41:10AM +0200, Maxime Ripard wrote:
+> > > On Wed, Oct 13, 2021 at 12:37:47PM +0300, Laurent Pinchart wrote:
+> > > > On Wed, Oct 13, 2021 at 09:47:22AM +0200, Maxime Ripard wrote:
+> > > > > On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
+> > > > > > Add a VCC regulator which needs to be enabled before the EN pin is
+> > > > > > released.
+> > > > > > 
+> > > > > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > > ---
+> > > > > >  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
+> > > > > >  1 file changed, 5 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > index a5779bf17849..49ace6f312d5 100644
+> > > > > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > @@ -32,6 +32,9 @@ properties:
+> > > > > >      maxItems: 1
+> > > > > >      description: GPIO specifier for bridge_en pin (active high).
+> > > > > >  
+> > > > > > +  vcc-supply:
+> > > > > > +    description: A 1.8V power supply (see regulator/regulator.yaml).
+> > > > > > +
+> > > > > >    ports:
+> > > > > >      $ref: /schemas/graph.yaml#/properties/ports
+> > > > > >  
+> > > > > > @@ -93,6 +96,7 @@ properties:
+> > > > > >  required:
+> > > > > >    - compatible
+> > > > > >    - reg
+> > > > > > +  - vcc-supply
+> > > > > 
+> > > > > This isn't a backward-compatible change. All the previous users of that
+> > > > > binding will now require a vcc-supply property even though it was
+> > > > > working fine for them before.
+> > > > > 
+> > > > > You handle that nicely in the code, but you can't make that new property
+> > > > > required.
+> > > > 
+> > > > We can't make it required in the driver, but can't we make it required
+> > > > in the bindings ? This indicates that all new DTs need to set the
+> > > > property. We also need to mass-patch the in-tree DTs to avoid validation
+> > > > failures, but apart from that, I don't see any issue.
+> > > 
+> > > I guess we'd need to clarify what the schemas are here for.
+> > > 
+> > > We've been using them for two things: define the bindings, and make
+> > > sure that the users of a binding actually follow it.
+> > > 
+> > > The second part makes it very tempting to also cram "and make sure they
+> > > follow our best practices" in there. We never had the discussion about
+> > > whether that's ok or not, and I think the schemas syntax falls a bit
+> > > short there since I don't think we can make the difference between a
+> > > warning and an error that would make it work.
+> > > 
+> > > However, if we're talking about the binding itself, then no, you can't
+> > > introduce a new property.
+> > 
+> > I assume you mean "a new required property" here.
+> > 
+> > > Since it was acceptable in the past, it still needs to be acceptable
+> > > going forward.
+> > 
+> > I think that's a matter of definition. The way I see it (but I could be
+> > mistaken), we're essentially versioning DT bindings without actually
+> > saying so, with the latest version being the visible one, and drivers
+> > having to preserve backward compatibility with new versions. We could
+> > also see it in different ways of course.
 > 
+> I disagree. A binding is essentially a contract on how the OS is
+> supposed to interpret whatever comes from the DT. If we do what you
+> suggest, then we lose all documentation of older versions we still need
+> to support at the OS level. And relying on all developers to look
+> through the entire history to figure it out is a sure way to screw
+> things up :)
 > 
+> The use of deprecated indicates that we actually want to document the
+> old versions.
+> 
+> > What's important is in my opinion to make sure that new DTs will do
+> > the right thing, and if we don't make this property required, we can't
+> > check that. DT authors wouldn't know if the property is optional due
+> > to backward compatibility only but highly recommended, or really
+> > optional.
+> 
+> Add a comment saying that this should really be added, but we can't
+> because it was missing it was in the original binding?
+
+That will not help validating that new DTs are compliant with the last
+version of the bindings.
+
+We have one tool, and two needs. The tool should be extended to cover
+both, but today it can only support one. Which of these two is the most
+important:
+
+- Documentating old behaviour, to helper driver authors on other
+  operating systems implement backward compatibility without having to
+  look at the history ?
+
+- Validating all new device trees to ensure they implement the latest
+  recommended version of the bindings ?
+
+I think the second one is much more frequent, and is also where most of
+the issues will arise.
+
+-- 
+Regards,
+
+Laurent Pinchart
