@@ -2,139 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D35DC430DAC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 03:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57AE3430DFF
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 05:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238679AbhJRBpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 21:45:43 -0400
-Received: from twhmllg3.macronix.com ([211.75.127.131]:11089 "EHLO
-        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235368AbhJRBpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 21:45:43 -0400
-Received: from twhfmlp1.macronix.com (twhfmlp1.macronix.com [172.17.20.91])
-        by TWHMLLG3.macronix.com with ESMTP id 19I1gdGm015281;
-        Mon, 18 Oct 2021 09:42:39 +0800 (GMT-8)
-        (envelope-from jaimeliao@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id D550E851C17E8086009A;
-        Mon, 18 Oct 2021 09:42:39 +0800 (CST)
-In-Reply-To: <YWC8jgI74FgTudSD@robh.at.kernel.org>
-References: <20211008162228.1753083-1-miquel.raynal@bootlin.com> <20211008162228.1753083-4-miquel.raynal@bootlin.com> <YWC8jgI74FgTudSD@robh.at.kernel.org>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     "Boris Brezillon" <bbrezillon@kernel.org>,
-        "Mark Brown" <broonie@kernel.org>, devicetree@vger.kernel.org,
-        juliensu@mxic.com.tw, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        "Richard Weinberger" <richard@nod.at>,
-        "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
-        "Tudor Ambarus" <Tudor.Ambarus@microchip.com>,
-        "Vignesh Raghavendra" <vigneshr@ti.com>,
-        "Xiangsheng Hou" <Xiangsheng.Hou@mediatek.com>
-Subject: =?Big5?B?pl6rSDogUmU6IFtSRkMgUEFUQ0ggMDMvMTBdIGR0LWJpbmRpbmdzOiB2ZW5kb3It?=
- =?Big5?B?cHJlZml4ZXM6IFVwZGF0ZSBNYWNyb25peCBwcmVmaXg=?=
+        id S229570AbhJRDFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 23:05:19 -0400
+Received: from mail-mw2nam10on2118.outbound.protection.outlook.com ([40.107.94.118]:7009
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229526AbhJRDFQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 23:05:16 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eXiWdwCVY1gDWL8ZOftLrTaCH13aci4bO3v13Se8XIUGh1zUAZuXkbwQD26v+I81uxX26M13k/8zxlJPZT7/LT1cTMmWR/z6WQjYct14kgjbE4AnFtb11movIDsdVstnVn+oFsow/85AmH3fFAcYjNXBAX41IKFK92eA5AVp2x1eICH5Dx4Jtwu3ygGNg06ZETd5cFIVwDjxKm63EVLSvnIxB403UTm1FOzM52NHNDTjokdvZMKWUPQujqXBZ7vEZB8QNxpex8c3as0OzsvlfL2nrU8UY7OWjMed14leRtdT8MtIw2fi/KSw3q3avY21gdjFDFMNr7ONZzFxfcn22Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5jm1yErAlZG4d+Ypt/Woxl4UH+n+0VhfEjRSo/ZCJBc=;
+ b=jUzx49STxScgvcb+wuxmRPXcw8KZNOjlQT4bkg8E8jbA26iuSWThb7s54+bOO7DD5duoOZjELCiWp0uNMKqLdqdVFGxQ+2dPPOuWLCfdDh/nwsyy5dxqGI7qhKWzqqMoeRRT3cjf/DKsBCdkfDAfK7ERMtknQccBY/fByqegWL3jqLpAdXRdkot5n0QXUMPPBB+MLuFdhGqI4HMaqYlbXXMXf3CcxTWTx3TqijXUxXje+t7dw0IB2rPRgxu4maaRUMzLNTb9J2WOAMDR9Vz79wxafttn8/HmdyYDHUHjyvpzoImBXm139b1bwHKNZ3YUNrgJjWYY115bIjR2HuuakA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5jm1yErAlZG4d+Ypt/Woxl4UH+n+0VhfEjRSo/ZCJBc=;
+ b=y++oaPY8qqvV1Wgwhmi/1ZSRf2VGiQpVOoQDrLYg/694dSUfRXPHOQSvhLaVeHxpFJ8YgmdLfIr9tzI+omExz6GZmURTpysF3x7nATYslJVlQT6XwebK9oCOVwF/IGznX37qse/1/aQvnzQOYyiUtHzORy0/NAsZzodVnoLYMqw=
+Authentication-Results: analogixsemi.com; dkim=none (message not signed)
+ header.d=none;analogixsemi.com; dmarc=none action=none
+ header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BYAPR04MB3862.namprd04.prod.outlook.com (2603:10b6:a02:ad::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Mon, 18 Oct
+ 2021 03:03:03 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::e149:c2d4:fd23:a682]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::e149:c2d4:fd23:a682%7]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
+ 03:03:03 +0000
+From:   Xin Ji <xji@analogixsemi.com>
+To:     xji@analogixsemi.com
+Cc:     airlied@linux.ie, bliang@analogixsemi.com, broonie@kernel.org,
+        daniel@ffwll.ch, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, drinkcat@google.com,
+        hsinyi@chromium.org, laurent.pinchart+renesas@ideasonboard.com,
+        linux-kernel@vger.kernel.org, mripard@kernel.org,
+        ricardo.canuelo@collabora.com, robh+dt@kernel.org,
+        sam@ravnborg.org, span@analogixsemi.com, zhenli@analogixsemi.com
+Subject: [PATCH v11 0/4] Add MIPI rx DPI support
+Date:   Mon, 18 Oct 2021 11:02:53 +0800
+Message-Id: <20211018030253.2055066-1-xji@analogixsemi.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <cover.1628161369.git.xji@analogixsemi.com>
+References: <cover.1628161369.git.xji@analogixsemi.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: HKAPR03CA0002.apcprd03.prod.outlook.com
+ (2603:1096:203:c8::7) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
-X-KeepSent: 9A15BF2B:E4A73AE9-48258772:00093984;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP6 SHF907 April 26, 2018
-Message-ID: <OF9A15BF2B.E4A73AE9-ON48258772.00093984-48258772.00096628@mxic.com.tw>
-From:   jaimeliao@mxic.com.tw
-Date:   Mon, 18 Oct 2021 09:42:39 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2021/10/18 AM 09:42:39,
-        Serialize complete at 2021/10/18 AM 09:42:39
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG3.macronix.com 19I1gdGm015281
+Received: from anxtwsw-Precision-3640-Tower (60.251.58.79) by HKAPR03CA0002.apcprd03.prod.outlook.com (2603:1096:203:c8::7) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.13 via Frontend Transport; Mon, 18 Oct 2021 03:03:02 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9cecffa3-55fe-45c7-4c28-08d991e3cc97
+X-MS-TrafficTypeDiagnostic: BYAPR04MB3862:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR04MB3862C42C9327186EA5863F57C7BC9@BYAPR04MB3862.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1uqlJ0JnyGfkJ6gGXmRHzRmWehN73QCZiFeCXzD+1Nc7Fc0dIMF4gexFYYpzbPf5S1kYSNX7Kj2CJxgBurw5Nm58K6aqmlaJte8Qflp2o7HjesLPyP97yKN2BO8YD082wBuHQXrwVVNHi6aGC0J93msPP/jsEIuqP5IWhN749agqAhg9L9nowDdR6KO27TCfBUvOf48CyZmtGpEuTMfBXpnBGkYVVFhnP5PqFBd43iPAJ4sHOh4kGGIx/bK1tLNr6YRYCCycqfi/clZrZIQ4AyEv2h+Xh/xHDglj/KTf2VZoIvpCZKp03YyzyLbrgBMIWstrw+cY+tsU5xy4Zj1tvS3QbGJGXL6mLHiXRRq9hrgghnyJj3m6IKn3BNtGRn2BLT6dXsKginvbPqsZkFvVnlpxviWTWaWTsvI3HI0F9zo0Docm7wAvEE59XXJwuOfMdRQTPQMPHfdFqH5/Z+PTqfbbSMKt67ZGim3DoIGkL19qx4sVsXWkfw1LUZYqUKW10Bca3jcgfYAjQHiKX+iv2hqOp9GN/uG2sJM+Mho+I2kQlD7IVmv0/ASIgDk2lOfoPhkC7HvMr7VTob0N4IoxFj5wpw5ejYsHTO5uvLHfawVtPp1YwLrdeNApjLhDBJGRV0wfqTCGBqU+4QxsgtELN+spKWEDqRWNcbEr6WgaQeidy9wu0VnVCDurM/s9Se49n42aKc8pCcNJ7hWikaU9Rw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(83380400001)(2906002)(38100700002)(186003)(6666004)(1076003)(34206002)(6496006)(55236004)(52116002)(107886003)(36756003)(2616005)(956004)(26005)(8676002)(66946007)(6486002)(38350700002)(7416002)(5660300002)(4326008)(37006003)(86362001)(8936002)(508600001)(316002)(66556008)(66476007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+fXhGL2XVM3PEjHJXX6XuhiQaM7rz98hYQfi5QFwyYysEZZBsJkwBlUSwxjL?=
+ =?us-ascii?Q?jvbu7GAwNCopNVtwI4j/xkitJMhau6haOHI3u3/GR2QyWi+xOgJK+M7pRgKG?=
+ =?us-ascii?Q?YzvM2PXeqvETJ/aF8f0Cutq+SnXyAQGGZdd20MmjInUcB3K1JVpNr/M4g/QV?=
+ =?us-ascii?Q?9rLOiEfiDU5Jq1e15d2rgSAfozzKO0RucsGJBdO4O4tkir8D07w3nYOnc22d?=
+ =?us-ascii?Q?e0cd4JZPJEAPtmtYrluVQYS8NeN/idCqlmWELE7YdURSQKuWBTvWQRywaGxQ?=
+ =?us-ascii?Q?slKBLHyRh/SUhH8WxpQc1BbuI1WShX5dVKjQX2e8Kr2kjAsy65XtFjKKV/1k?=
+ =?us-ascii?Q?u+LS+F503e2xJKiJKgZEcLB+BXT5hlB7Fggd1SmG90GS+LvkSMcSb83orpVe?=
+ =?us-ascii?Q?Q44cf7qkNEojFcI4dmvfa/PCN8Ur2CBZy/mTCyZyX10GypKvx1zdaS+neUBD?=
+ =?us-ascii?Q?IjVHS/LJ0dwzpkUHBMdESJMi6UCieyowqlCSojTfaOTkajwNkntAWoypaHBo?=
+ =?us-ascii?Q?1JVumFyht0UbDXjPnVn993P7zQprc0NlIBDYbSxatfVKcAO9C8SppHF0oNrd?=
+ =?us-ascii?Q?LNNTB83w3Spk6BlGkmJcpnIBHjgYGBbyoRSxUrvTzJ83opu54DosZYbfR/2A?=
+ =?us-ascii?Q?9LPREu9O0N6R9wGTSq51xBSkyeQELC2OrUdtqQGzpvG2yYaPfa2tmsPJeuqJ?=
+ =?us-ascii?Q?Nz0X9JSGuxsNggyA7g/r5WJ2h3xUJdxJL3b66Di9h8DOF6Gf2RsFGObe88JN?=
+ =?us-ascii?Q?uygtsSkj9X/Jh7WLYmiqlWBAwK0MYjH8BNdpnzQw4AyforidkgnGJwtO4onE?=
+ =?us-ascii?Q?uEg59QZXd4VSuR4oHk94LxFConfYOKPIpbfCfaM8KDW9LhIIds7plyC500DO?=
+ =?us-ascii?Q?jyaGuN4km8Nq7IMwBS+mVEzRVF3xNAC1lGLw9/cAG1ab+n/Sy1TIpwy/8j5S?=
+ =?us-ascii?Q?1Of3FVKdRvnOZ7tWz4g6zudpA8FUE7PXuDJLQuvhwGLBr/Yhw2qYH5K45axd?=
+ =?us-ascii?Q?NBeQIM/Aaet6gT8/CjZQnZKOnsUlV2Y0Aw5nJ1w47f3fYygf8ESha4e4LFYV?=
+ =?us-ascii?Q?esY71R5SkYdgGYYysYGQWGLPej+jdPbRKzK34bqDsJYRTeZbw0qcyz0v/zzo?=
+ =?us-ascii?Q?K7g0NNAZPvzpJ6MNEv1hmmdSu03VLjhLLHF+geUKyeiR0ubOj7B59RyQOgAK?=
+ =?us-ascii?Q?1fBMSRg1Fpptt5ufXwFesZ6kPR1jWuJwJpL/IFtoepagGx78RB1qI0k+qlKP?=
+ =?us-ascii?Q?1RMxSGO8Kd4P/jMO6p7/qAVon7gQtbuFIMq7IdEpnUh2kwAGGebOtV2WXeMI?=
+ =?us-ascii?Q?JraX+zn0fCKE/FSZrJhOqSHW?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cecffa3-55fe-45c7-4c28-08d991e3cc97
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 03:03:03.0257
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: h9mn3lbEuSdplwan3seHkRClJhCRcGHt/7xjQ8b1KhS0j0BEfGgJQvbwSGiAKiRhBeahuoLdkx2cHVXl7JCPOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB3862
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all, this patch series implement MIPI rx DPI feature. Please help to review.
 
-Hi Rob
+This is the v11 version, rebase all patches on the latest code.
+Any mistakes, please let me know, I'll fix it in the next series.
 
-> 
-> Re: [RFC PATCH 03/10] dt-bindings: vendor-prefixes: Update Macronix 
-prefix
-> 
-> On Fri, Oct 08, 2021 at 06:22:21PM +0200, Miquel Raynal wrote:
-> > When looking at compatible prefixes, Macronix is sometimes referred as
-> > mxicy:
-> > - mxicy,mx25r1635f
-> > - mxicy,mx25u6435f
-> > - mxicy,mx25v8035f
-> > - mxicy,mx25f0a-spi
-> > and sometimes as mxic:
-> > - mxic,multi-itfc-v009-nand-controller
-> > - mxic,enable-randomizer-otp
-> > 
-> > It looks like the more up-to-date way is mxic so declare this prefix 
-and
-> > mark the other one as deprecated.
-> 
-> mxicy is more widely used with flash parts. There's not a single dts 
-> file with 'mxic' which only seems to be some nand controller.
-Yes, you are right.
+Change history:
+v11: Fix Rob Herring comment
+ - Move swing register description in property.
+ - Remove additional property.
 
-Hi Miquel
+v10: Fix Rob Herring and Laurent Pinchart comments
+ - Add more description about lane swing configuration in commit
+   message.
 
-Please keep using "mxicy,*" consistently for the compatible property, 
-thanks.
+v9: Fix Neil Amstrong comment
+ - use macro define 'V4L2_FWNODE_BUS_TYPE_PARALLEL' instead of fixing
+   value.
 
-> 
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/vendor-
-> prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index b868cefc7c55..013a87850cd5 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -758,8 +758,11 @@ patternProperties:
-> >      description: Mundo Reader S.L.
-> >    "^murata,.*":
-> >      description: Murata Manufacturing Co., Ltd.
-> > +  "^mxic,.*":
-> > +    description: Macronix International Co., Ltd.
-> >    "^mxicy,.*":
-> >      description: Macronix International Co., Ltd.
-> > +    deprecated: true
-> >    "^myir,.*":
-> >      description: MYIR Tech Limited
-> >    "^national,.*":
-> > -- 
-> > 2.27.0
-> > 
-> > 
+v8: Fix Laurent Pinchart comment
+ - Expand the commit message.
 
+v7:
+ - Rebase DT on the latest branch 'drm-misc-next'.
+ - Remove HDCP patch.
 
-CONFIDENTIALITY NOTE:
+v6: Fix kernel robot compile warning
 
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
+v5: Fix Rob Herring, Hsin-Yi, Robert Foss comments
+ - Rebase code on the branch 'drm-misc-next', refer video-interfaces.yaml
+ - Seprate HDCP function to a new patch
+ - Fix driver not correctly get 'bus-type' 'data-lanes'
+ - Add audio HDMI codec function support
 
-Macronix International Co., Ltd.
+v4: Fix Rob Herring comment
+ - Rebase code on the branch 'drm-misc-next'
+ - Change 'analogix,hdcp-support' type to boolean
 
-=====================================================================
+v3: Fix Rob Herring, Dan Carpenter, Nicolas comment
+ - Split the patch, fix not correct return data
+ - Fix several coding format
+ - Split DP tx swing register setting to two property
+ - Add HDCP support vender flag
+ - remove 'analogix,swing-setting' and 'analogix,mipi-dpi-in' property
 
+v2: Fix Rob Herring comment
+ - Fix yamllint warnings/errors in analogix,anx7625.yaml
+ - Fix kernel robot compile warning
 
+v1: initial MIPI rx DPI feature support
 
-============================================================================
+Xin Ji (4):
+  dt-bindings:drm/bridge:anx7625:add vendor define
+  drm/bridge: anx7625: fix not correct return value
+  drm/bridge: anx7625: add MIPI DPI input feature
+  drm/bridge: anx7625: add HDMI audio function
 
-CONFIDENTIALITY NOTE:
+ .../display/bridge/analogix,anx7625.yaml      |  65 ++-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     | 458 ++++++++++++++++--
+ drivers/gpu/drm/bridge/analogix/anx7625.h     |  23 +-
+ 3 files changed, 491 insertions(+), 55 deletions(-)
 
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+-- 
+2.25.1
 
