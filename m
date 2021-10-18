@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D614315E6
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D14431617
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbhJRKYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 06:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231808AbhJRKYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:24:09 -0400
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA568C061770
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:21:58 -0700 (PDT)
-Received: by mail-pl1-x629.google.com with SMTP id i5so4653088pla.5
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:21:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/TZLehJ/hDMRtkj0rrB2dSWebDz1FDgoJGvlylziczE=;
-        b=WYdQNbKeD3mhKTaZ3XkNhbgTsqQlEsqtsHNlVi7Ro7ccexyI/SmcepJOGoe6kNcKFH
-         6keQCwh9qlw+HeYlDTkixvjCfcGC60VNk5HFkO4vLV9J2txIX2JSs1NbSnIfUn6f2w0P
-         iv79GvV5OiLvvN7Nt3GcHY++EW+0BUZPORRMaRHHN9KkBGN5Pb4qZMNSatkGeD2Z4yet
-         LnPbAsEmyP0neXoOdfjP7N5TDLEiWut8gRgk6Z61x1fEUhAPpJIPOIQhnOejZX+zssDX
-         HRl+hABwhd/zVSR1hHTufYpicT5yj6TgjbZzGl3d9dOzmMf6zIGThY66t/Bb5GmImp1/
-         Yf+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/TZLehJ/hDMRtkj0rrB2dSWebDz1FDgoJGvlylziczE=;
-        b=IzLEREyzOcVFy1HtDumPHQ/jxqlcWhJWSJdsmlOS19HlzVBOq+qJWbeqRLkTBkdSu4
-         z9WXZIRLk4iA8dnSdh9HjyWwPl5zWuP/F9IjQSNb1Fc7bPzL2RwiA4d2ptRWsZKqMBaQ
-         6InGubJUDVfE7ZIfiZwdih/9p0i9yuDE6s/sjmp4++tcxJzsYXscdrMkdSk3qeMQ8A06
-         S5GPZbe8WMJLjVkupnVttAGWM8q/mc9md5MycQXh1VJWtYDwOo5L7fUg2EXawvhlThfH
-         ATYWmit4RYrzzkmU2iH8pjudUbrr1j0rSW/o/DRlURxSRPq3zPMF9nc3DAwAsGAkg1OD
-         KWOw==
-X-Gm-Message-State: AOAM532QduYhyjwdAGW6tGlIkibmaRiQvbESvYrvMdOfLpDk8h7vLbIz
-        oWYLRy3l5hMq/uVVfBVKxsLXoIR1nXEKWs23/dTTMw==
-X-Google-Smtp-Source: ABdhPJxSQvcSPtF8mkOmZlSZeFJ2met+as1mLMT6yIqDnKm+G6lJAdALnr4C9K1Hb2fHbtOLJPghlRaV27YLvBptm2s=
-X-Received: by 2002:a17:90b:4f4c:: with SMTP id pj12mr10698062pjb.231.1634552518107;
- Mon, 18 Oct 2021 03:21:58 -0700 (PDT)
+        id S231717AbhJRK26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 06:28:58 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:27241 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231666AbhJRK2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:28:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1634552791;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=bua4qRiW+JEJUeLGwWodyTqYPgYZUApgEu65ss/BRko=;
+    b=laXcJ6YeDgFicYa3wx6eCTt4Egkt5YT0r+WTe4n82pURVGSFjfyEkb1I/Kje6XRtq2
+    YMzYbN8wLL5i8fHoYr3C3jaCdWVLe6piPnHrco7pJJbeBGbPI+nAowLrxvlj2oSKRRLR
+    k4NEmiS0E9mfdqbuDRES6kPZBr5p4Y3wID4k2VlFfzaebkUNGRDw/6ITH28udNuzOUOE
+    9Px03FyBEan4oubS8RrEL2pkcyCRdl+YU5eteFKSifg4DLJUp88wtyarg2UsdyxQEe1g
+    rvzIgu2IQ3AWBa4qfFYW59xTnDH4eMLFRdfB0PlseRbZHb2PTfMm3cotnI/OR37BQ3dp
+    wbGg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL1OfxR"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.33.8 AUTH)
+    with ESMTPSA id 301038x9IAQTVQ2
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 18 Oct 2021 12:26:29 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v3 0/2] dmaengine: qcom: bam_dma: Add "powered remotely" mode for BAM-DMUX
+Date:   Mon, 18 Oct 2021 12:24:19 +0200
+Message-Id: <20211018102421.19848-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20210914091204.2204278-1-tzungbi@google.com> <CAL_JsqL7QbCJrqLZtRX9eNJC39kJWwbva2ZQeD+Azb+pKHzJ=Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqL7QbCJrqLZtRX9eNJC39kJWwbva2ZQeD+Azb+pKHzJ=Q@mail.gmail.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Mon, 18 Oct 2021 18:21:47 +0800
-Message-ID: <CA+Px+wV-1adVEm-iB7ow0JG5=p50X=xV1KJT5V9_7n-Ao63zBQ@mail.gmail.com>
-Subject: Re: [PATCH v3] ASoC: dt-bindings: mediatek: mt8192: re-add audio afe document
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 16, 2021 at 8:41 PM Rob Herring <robh+dt@kernel.org> wrote:
-> Sigh. What's the status of
-> dt-bindings/reset-controller/mt8192-resets.h? Because now this is
-> applied again and has an error in linux-next since the header is
-> missing.
+The BAM Data Multiplexer (BAM-DMUX) provides access to the network data
+channels of modems integrated into many older Qualcomm SoCs, e.g.
+Qualcomm MSM8916 or MSM8974.
 
-It was moved by [1] and applied in [2].
+Shortly said, BAM-DMUX is built using a simple protocol layer on top of
+a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
+a special mode where the modem/remote side is responsible for powering
+on the BAM when needed but we are responsible to initialize it.
+The BAM is powered off when unneeded by coordinating power control
+via bidirectional interrupts from the BAM-DMUX driver.
 
-[1]: https://lore.kernel.org/all/20210930103105.v4.1.I514d9aafff3a062f751b37d3fea7402f67595b86@changeid/
-[2]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=for-next&id=f07c776f6d7ed5f8423863efd2445016e690aba1
+This series adds one possible solution for handling the "powered remotely"
+mode in the bam_dma driver.
 
-Have proposed a patch[3] for fixing the issue in linux-next.  But it
-would be still broken in ASoC tree for now.
+For more information about BAM-DMUX itself, see the series on netdev:
+https://lore.kernel.org/netdev/20211011141733.3999-5-stephan@gerhold.net/
 
-[3]: https://mailman.alsa-project.org/pipermail/alsa-devel/2021-October/191317.html
+Changes in v3:
+  - Split dmaengine changes to a separate series
+  - Address review comments from Bjorn
+
+v2: https://lore.kernel.org/netdev/20211011141733.3999-1-stephan@gerhold.net/
+RFC: https://lore.kernel.org/netdev/20210719145317.79692-1-stephan@gerhold.net/
+
+
+Stephan Gerhold (2):
+  dt-bindings: dmaengine: bam_dma: Add "powered remotely" mode
+  dmaengine: qcom: bam_dma: Add "powered remotely" mode
+
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |  2 +
+ drivers/dma/qcom/bam_dma.c                    | 90 ++++++++++++-------
+ 2 files changed, 59 insertions(+), 33 deletions(-)
+
+-- 
+2.33.0
+
