@@ -2,218 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC1B431276
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 10:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 851C9431293
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 10:56:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231149AbhJRIw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 04:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230416AbhJRIw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 04:52:56 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC800C061745
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 01:50:45 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id q10-20020a17090a1b0a00b001a076a59640so10538853pjq.0
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 01:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snap.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GHXbJOIzZz0uyntt3d4Ji3zC10J5q8hg7NVP4sxB/3A=;
-        b=MVqbCJ+qrW56KrmzD8R3M8i0+7L6/2N9HTKwD91HZxA5ZhmPrhDQ4ai96QeQ+IRW32
-         o+oqncKGrt5MLW1D3wj4DKWYhG4sUmHQvCGBxzXnFByLzcS3GgFNV/BiZ3wQ4oPmrbx+
-         PsRParRjkty7v5/PtF2kORz2cTC0R9Ihq2yx4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=GHXbJOIzZz0uyntt3d4Ji3zC10J5q8hg7NVP4sxB/3A=;
-        b=lRy7eC6a95jY5EV9WWqa06d/fgPObBCcsyUyEW27jTcOZ0F8kQtDPOnHTjdB1iZIMa
-         MDugl3ZTaOWvpjjbS+yA7xtgWon8VcOGAAaEhtmvsHzhwatvUyqFQuvaSMzCfkN9Wdz+
-         SYVe9ALvvkplN2Ysl0x+bK0f8yR4xjrGo0mdIJ+GlW2eBfLgPysywU/jgM4djG2n4ibI
-         kIW52wx43JlT8uw+iVYOyBgZrkA+maS4HC47tNJymLgCK/HqGvz47Q0yMm/rb7gFx7Vd
-         no4yHuSKAsaeO6d2RAStMzrSNqd9//61IK4PqP7OSuusZqJLidguexp5oxyrLZsr0nig
-         Q7Ug==
-X-Gm-Message-State: AOAM53191xNoU1inUAS4dV32j5j4QJWKzRKrn97IbLL/o69lNYnpy5NV
-        h730c5BsYjHaSs5k71lhaiQ9yA==
-X-Google-Smtp-Source: ABdhPJyEJNhOxcKqPfI321wH7F65Tf3VHQiW8+t4OacOLT+eCreb7CFUmmOFH0bBeykWbB5vh/pH/w==
-X-Received: by 2002:a17:90a:1950:: with SMTP id 16mr31113039pjh.126.1634547045267;
-        Mon, 18 Oct 2021 01:50:45 -0700 (PDT)
-Received: from localhost ([213.249.125.26])
-        by smtp.gmail.com with UTF8SMTPSA id r8sm12278901pgp.30.2021.10.18.01.50.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Oct 2021 01:50:44 -0700 (PDT)
-From:   Ola Jeppsson <ola@snap.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Ola Jeppsson <ola@snap.com>, Heinrich Fink <hfink@snap.com>,
-        Olivier Schonken <oschonken@snapchat.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8350: Add fastrpc nodes
-Date:   Mon, 18 Oct 2021 10:50:17 +0200
-Message-Id: <20211018085017.1549494-1-ola@snap.com>
-X-Mailer: git-send-email 2.32.0.380.geb27b338a3
+        id S231359AbhJRI6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 04:58:42 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:61614 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231149AbhJRI6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 04:58:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634547390; x=1666083390;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4QCbsoC9KdhFg+QiSYzGg8KwlZxGWoWVEktTeAQXuKk=;
+  b=vFHzFQgNWAhZGnZN82wa7/rBUaHwVao9OY2eTldA3efAL8QwauIMriHH
+   BDE4ACf4u53fyYJkoXeqc8QWF1GgOdr1TFo1RYBE/2voQbM3QNllsXzdi
+   BWCIrrB/DblpWtUhRbbQGOuqRYKUhZ/Pan3ydJhM9JBEnzKQEB2MPo/aN
+   BKv0LiLivLZWYYKD2f/a2dEk+PHAJDiLUc1xaXcUY7i9iOo3uFlSLOXeK
+   n4gfiIc2/9mrnqPODxEh6FmB8kpXd9ElwWkjOm93WcjCugiyQkl5PJMks
+   deBaqz270c0ECHYmT07tkZCcrykgK7w6NFwft0k2C/mC/4n60lHWbH5cZ
+   w==;
+IronPort-SDR: ldAVD0elYh2YQjufIKWzV/AEOFjXxgkFNZEwzkOKFxI9iKOyWr9aALvNvLs4NzIx5n8Ivjo9s0
+ L0Y64aPuOzyDOxLb3CChSe2XHMkJlwDtNUyiEKRh/nqgaNuBl3KN4e0ZZDeyBguh2zaFXxjxnQ
+ 4zbOPikfE+SipJdIzp3phrinfpvXkf14NWLdoq/xUL7ovnA2g1SmP6WhTPl5OBTjHWyL51INuG
+ KtntEuMiul1ir73onm3dEoahun0ijhFteorL4kmyMtVODwnlgg+xCK46qN4JxCZYfcAIDye1ww
+ 2Oshv8BMv0Yw73HizGqTyydu
+X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; 
+   d="scan'208";a="133408733"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Oct 2021 01:56:29 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 18 Oct 2021 01:56:29 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 18 Oct 2021 01:56:27 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <lars.povlsen@microchip.com>, <Steen.Hegelund@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH v6 0/2] pinctrl: pinctrl-microchip-sgpio: Extend to call reset driver
+Date:   Mon, 18 Oct 2021 10:57:52 +0200
+Message-ID: <20211018085754.1066056-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add fastrpc nodes for sDSP, cDSP, and aDSP.
+This allows the driver to call an optional reset driver.
 
-Signed-off-by: Ola Jeppsson <ola@snap.com>
-Acked-by: Heinrich Fink <hfink@snap.com>
-Acked-by: Olivier Schonken <oschonken@snapchat.com>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 118 +++++++++++++++++++++++++++
- 1 file changed, 118 insertions(+)
+v5->v6:
+ - fix warnings reported by 'make dtbs_check'
+ - add back the name of the reset line
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index e91cd8a5e535..84660a945be7 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -1129,6 +1129,32 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 				label = "slpi";
- 				qcom,remote-pid = <3>;
- 
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "sdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x0541 0x0>;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x0542 0x0>;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x0543 0x0>;
-+						/* note: shared-cb = <4> in downstream */
-+					};
-+				};
- 			};
- 		};
- 
-@@ -1170,6 +1196,72 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 
- 				label = "cdsp";
- 				qcom,remote-pid = <5>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x2161 0x0400>,
-+							 <&apps_smmu 0x1181 0x0420>;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x2162 0x0400>,
-+							 <&apps_smmu 0x1182 0x0420>;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x2163 0x0400>,
-+							 <&apps_smmu 0x1183 0x0420>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x2164 0x0400>,
-+							 <&apps_smmu 0x1184 0x0420>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x2165 0x0400>,
-+							 <&apps_smmu 0x1185 0x0420>;
-+					};
-+
-+					compute-cb@6 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <6>;
-+						iommus = <&apps_smmu 0x2166 0x0400>,
-+							 <&apps_smmu 0x1186 0x0420>;
-+					};
-+
-+					compute-cb@7 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <7>;
-+						iommus = <&apps_smmu 0x2167 0x0400>,
-+							 <&apps_smmu 0x1187 0x0420>;
-+					};
-+
-+					compute-cb@8 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <8>;
-+						iommus = <&apps_smmu 0x2168 0x0400>,
-+							 <&apps_smmu 0x1188 0x0420>;
-+					};
-+
-+					/* note: secure cb9 in downstream */
-+				};
- 			};
- 		};
- 
-@@ -1402,6 +1494,32 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1803 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1804 0x0>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1805 0x0>;
-+					};
-+				};
- 			};
- 		};
- 	};
+v4->v5:
+ - check the return value of devm_reset_control_get_optional_shared
+
+v3->v4:
+ - use devm_reset_control_get_optional_shared
+ - remove the expected name of the reset line
+
+v2->v3:
+ - fix warnings reported by 'make dtbs_check'
+
+v1->v2:
+ - add dt-bindings changes
+
+Horatiu Vultur (2):
+  dt-bindings: pinctrl: pinctrl-microchip-sgpio: Add reset binding
+  pinctrl: microchip sgpio: use reset driver
+
+ .../bindings/pinctrl/microchip,sparx5-sgpio.yaml           | 7 +++++++
+ drivers/pinctrl/pinctrl-microchip-sgpio.c                  | 7 +++++++
+ 2 files changed, 14 insertions(+)
+
 -- 
-2.32.0.380.geb27b338a3
+2.33.0
 
