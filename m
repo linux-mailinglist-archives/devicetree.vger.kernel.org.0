@@ -2,124 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 718694323FC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D42BA432404
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:43:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233478AbhJRQnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 12:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51412 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232251AbhJRQnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:43:40 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45028C061768
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:41:29 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id n63so585881oif.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:41:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=m/74ZeSghoGWz2Y5U8O6ZsL9J98hmrFFn2k+ASasuxI=;
-        b=V/Sg2umzcGxAR3kKFG3Fy5qzN2KDcjvbNbDPZVaGE9ltjEXcESslh7PJ2o2/ybmpNP
-         UFKEXP1js86ftmV1k/I7e/TrkYC6/wQSVyV+vk68P+lRlhHBXg7o+2ZGRYT/JZ6SJ9sC
-         Rzo6euFvfLpT+re3VFTWKSb+c74m/3JcGY6wipnJ1dHRejNOXrIUSd1GaebdANSi3Qb7
-         9Mcow/pJUlnMAbcheP/las1Om3h3m3i6zigpriw6Z/MENOdDrDyQkO9R7p7b9ZH8aNLU
-         qKXLUBvNx2XeEqdc9CfCezeBu8rx3mP4+VPFrBP9p2Bpw2JTmyJzSb4QNdb5VMtNxwoL
-         c/iQ==
+        id S232815AbhJRQpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 12:45:40 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:35451 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231793AbhJRQpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:45:40 -0400
+Received: by mail-oi1-f177.google.com with SMTP id r6so628455oiw.2;
+        Mon, 18 Oct 2021 09:43:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m/74ZeSghoGWz2Y5U8O6ZsL9J98hmrFFn2k+ASasuxI=;
-        b=PvfUGnZMZYqPXUShwqUfgdBYoLS/QlLsH9ktviQ4wwPZBerVoi7HYJ6NAX1Eq5huTz
-         9Za6WPkwQUqEJ/IbkDAHUguesUC8hxENBxbUMPui4Xy9uCorpNc3bd919xi9ShIie937
-         No+qsk4y5jRT8WnAts6pys4hsHpjwhj+5vpg/gOSZV0ZzYlAZXOZA/CQwGBfTD/IkcAQ
-         Xl5qo1fpsrmsuc897r+Em+ViDYC9HUHpZoeRxd+Wi8pzlMlS+dODY8zAIp6gKglMZ0qn
-         R5D8KV83Dw0oBSW0KGb3cwFLLqzpx8as+PSxUF3T3o3WRM7z/FDVhee/xG97Zc82YL+d
-         VY3w==
-X-Gm-Message-State: AOAM530FsXnDSqPYYNs8vJfrkQ1kzU7RhOmaQv34SQgdEnVZVJBziY6T
-        H1J1bVSybH1O4JrTbNAVaSp6FRPGg2+MNYRQvL7nwA==
-X-Google-Smtp-Source: ABdhPJyhI/boD/Dqt4cOu1o+91uOGjUh5J0lLqztunxb38ijIyGLzE0BAxzGggtm1QdOFWnWdOHyLHlnrRrD206Ea5U=
-X-Received: by 2002:aca:58d6:: with SMTP id m205mr737607oib.126.1634575288536;
- Mon, 18 Oct 2021 09:41:28 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/vsPv2SD1Rt8WbOkNW13ZNWlyAjKc3bg4K4BxMrdTKc=;
+        b=Pa6GomVbVXYYe/9ExmVV6kjIEgfq6uTGu8OoluinqdpUSOiTZd7nMFcCHluXIbqmw4
+         I5DpeX3U/Hcg8fg8zzx1e6bfYfHVq99iQ81E8LhiOgidhHSY4ha32kTCz7H91erY0qE7
+         uDYZMpjGrMBGdeWquNXi+BSv3ibalgE1WQGlOeOVwmIpq2An5FlypjmQdse26FIF86Yb
+         UzBI+lAU1YFaI1OU7bXE+hKwSPzps/qLc3cXONFyTNalf3XegM+AqzNGwOtJf9XSDnyN
+         MchZC3ppEXyZ2yaaQVusE/3b85XoSUPcebpE8KIw3PZvZAydLhE04NUy5RoJHXeNT9ff
+         kowg==
+X-Gm-Message-State: AOAM530uSZt1A8JjgzJW0dcWQTK14lrQTnc13P/SPvDAyydjuieXmwfS
+        hQdMOICgtICvx7+J7JBmFQ==
+X-Google-Smtp-Source: ABdhPJxOfGc66L0/rXjSFdldE/BLsaDwndHWOMX5LeqJpkR4KftoMRAgJrb4lXRb41d95MOC+xLB+g==
+X-Received: by 2002:a05:6808:7c8:: with SMTP id f8mr638949oij.146.1634575408315;
+        Mon, 18 Oct 2021 09:43:28 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id ay42sm3156043oib.22.2021.10.18.09.43.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 09:43:27 -0700 (PDT)
+Received: (nullmailer pid 2532419 invoked by uid 1000);
+        Mon, 18 Oct 2021 16:43:26 -0000
+Date:   Mon, 18 Oct 2021 11:43:26 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        michal.simek@xilinx.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v8 2/3] dt-bindings: pwm: Add Xilinx AXI Timer
+Message-ID: <YW2kLjjbAYdaDI0l@robh.at.kernel.org>
+References: <20211015190025.409426-1-sean.anderson@seco.com>
+ <20211015190025.409426-2-sean.anderson@seco.com>
 MIME-Version: 1.0
-References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-2-stephan@gerhold.net>
- <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com> <YW1u5UlmrypFxp9C@gerhold.net>
-In-Reply-To: <YW1u5UlmrypFxp9C@gerhold.net>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 18 Oct 2021 22:11:17 +0530
-Message-ID: <CAH=2Ntz9BLKpQCPtUOtHp6HDS8R6AQf5XVDUNbdRvYSn=pn8Rg@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/4] dt-bindings: dmaengine: bam_dma: Add
- "powered remotely" mode
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
-        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211015190025.409426-2-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 15 Oct 2021 15:00:24 -0400, Sean Anderson wrote:
+> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is a
+> "soft" block, so it has some parameters which would not be configurable in
+> most hardware. This binding is usually automatically generated by Xilinx's
+> tools, so the names and values of some properties should be kept as they
+> are, if possible. In addition, this binding is already in the kernel at
+> arch/microblaze/boot/dts/system.dts, and in user software such as QEMU.
+> 
+> The existing driver uses the clock-frequency property, or alternatively the
+> /cpus/timebase-frequency property as its frequency input. Because these
+> properties are deprecated, they have not been included with this schema.
+> All new bindings should use the clocks/clock-names properties to specify
+> the parent clock.
+> 
+> Because we need to init timer devices so early in boot, we determine if we
+> should use the PWM driver or the clocksource/clockevent driver by the
+> presence/absence, respectively, of #pwm-cells. Because both counters are
+> used by the PWM, there is no need for a separate property specifying which
+> counters are to be used for the PWM.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v8:
+> - Set additionalProperties: false
+> 
+> Changes in v7:
+> - Add #pwm-cells to properties
+> - Document why additionalProperties is true
+> 
+> Changes in v6:
+> - Enumerate possible counter widths
+> - Fix incorrect schema id
+> 
+> Changes in v5:
+> - Add example for timer binding
+> - Fix indentation lint
+> - Move schema into the timer directory
+> - Remove xlnx,axi-timer-2.0 compatible string
+> - Update commit message to reflect revisions
+> 
+> Changes in v4:
+> - Make some properties optional for clocksource drivers
+> - Predicate PWM driver on the presence of #pwm-cells
+> - Remove references to generate polarity so this can get merged
+> 
+> Changes in v3:
+> - Add an example with non-deprecated properties only.
+> - Add xlnx,pwm and xlnx,gen?-active-low properties.
+> - Make newer replacement properties mutually-exclusive with what they
+>   replace
+> - Mark all boolean-as-int properties as deprecated
+> 
+> Changes in v2:
+> - Use 32-bit addresses for example binding
+> 
+>  .../bindings/timer/xlnx,xps-timer.yaml        | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+> 
 
-On Mon, 18 Oct 2021 at 18:26, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Mon, Oct 18, 2021 at 05:04:31PM +0530, Bhupesh Sharma wrote:
-> > On Mon, 11 Oct 2021 at 20:12, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > >
-> > > In some configurations, the BAM DMA controller is set up by a remote
-> > > processor and the local processor can simply start making use of it
-> > > without setting up the BAM. This is already supported using the
-> > > "qcom,controlled-remotely" property.
-> > >
-> > > However, for some reason another possible configuration is that the
-> > > remote processor is responsible for powering up the BAM, but we are
-> > > still responsible for initializing it (e.g. resetting it etc). Add
-> > > a "qcom,powered-remotely" property to describe that configuration.
-> > >
-> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > > ---
-> > > Changes since RFC:
-> > >   - Rename qcom,remote-power-collapse -> qcom,powered-remotely
-> > >     for consistency with "qcom,controlled-remotely"
-> > >
-> > > NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
-> > >       so this could also go through the dmaengine tree.
-> > >
-> > > Also note that there is an ongoing effort to convert these bindings
-> > > to DT schema but sadly there were not any updates for a while. :/
-> > > https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
-> >
-> > Seems you missed the latest series posted last week - [1]. Sorry I got
-> > a bit delayed posting it due to being caught up in other patches.
-> >
-> > Maybe you can rebase your patch on the same and use the YAML bindings
-> > for the qcom,bam_dma controller.
-> >
-> > [1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t
-> >
->
-> Ah, you're right sorry! Seems like you sent it two days after I sent the
-> v2 of this patch. Thanks a lot for continuing work on this! :)
->
-> Since I already sent v3 of this patch earlier, I think it is best if
-> I wait a bit first and see if Vinod has any comments or still wants to
-> take it for 5.16. Should be simple to rebase either of our patches on
-> the other one.
-
-Sure, let's wait for Vinod's comments.
-
-Regards,
-Bhupesh
+Reviewed-by: Rob Herring <robh@kernel.org>
