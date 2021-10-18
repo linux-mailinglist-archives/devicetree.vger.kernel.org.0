@@ -2,93 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21E15432791
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B08432795
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:29:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233054AbhJRTai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 15:30:38 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:44736 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231263AbhJRTah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:30:37 -0400
-Received: by mail-oi1-f179.google.com with SMTP id y207so1208043oia.11;
-        Mon, 18 Oct 2021 12:28:26 -0700 (PDT)
+        id S231787AbhJRTbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 15:31:55 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:38468 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232912AbhJRTby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:31:54 -0400
+Received: by mail-ot1-f51.google.com with SMTP id l10-20020a056830154a00b00552b74d629aso1161503otp.5;
+        Mon, 18 Oct 2021 12:29:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=D0YJTgYqkI0d37F5afRzmNLlaPdJh1d4TAnzCXiblq0=;
-        b=5rClcNl84ulXxdCHw3smwee0SIdQ9GnX7MCqL2p/9nKP0sbDyZZlWwafi0GFG0qWsF
-         IXRUhFo7DpilMUj55qqQREmVakD/5vTLsaMb+gbkT0o/QXjG/u4DRiWVTvPMKpm99yi8
-         ZKd1LcHVNVhbtw3RUUT7ERyrlDj6hwyparWHTLDjnx78BQYFU3d7VaH+OE156brClGt7
-         W7vUS0fcxSmLv2dddX90pTYQPf5XuIi6DS9xlkLEjTov5tCxTW11+BZiIHrh28KQ6HJM
-         /AtnCta2AqWYFuJu82Jc5e/wJ9e0UxJraC1anzcjf6Z5ArjcMx3sLEwp+WnrMAyCygj8
-         +0jg==
-X-Gm-Message-State: AOAM531GMQVOWK5lyGgnoWHc1xdqUEhXdm7fYuz23bLs0J+d1fHtWA78
-        DedYvQCWQdlWq/Qy27f2BQ==
-X-Google-Smtp-Source: ABdhPJxQC0Ll46fRBQVLIW3++nUDa/GFT9GC0+aR+CgO0yRDgNhs3+oQs0oc0WQaswcFQ9Pr0Q7IRw==
-X-Received: by 2002:aca:f302:: with SMTP id r2mr656586oih.90.1634585305918;
-        Mon, 18 Oct 2021 12:28:25 -0700 (PDT)
+        bh=uxaQFenmJzGwC+IUubS4cWsAXC6ECKn16PE13Pm+TzQ=;
+        b=Gg7U2MzWtdxGsPtGYbHLfC1l/7DZPVbRn6e/B52InHZF2LVrzHSOL8p6GP8NXYM1NK
+         xtkD2r+qivLk7cDlPf2zsD53nySeKwqr7YPOvKuvOxYpFjOfsPh4HRqDBhMtijT3bEv2
+         vZTAUKZXsDf6xBMcnhplzzpSfeQFBjdykHPj8DvP4daWy+jXCrzy0EvvDapBV4r++AmP
+         JiOr9ZkfdXgTltaaF7rldmVnKu+wMsw2AWUP327jfBoyw3rIYmfW//92hp9sS5sXgWGE
+         qq87ZtWV5j1NoUyGrkquzJ7rGUKi1EgR52KRiDqESWNnwKOug88ZVwIm18MoBH03AQvA
+         wQqA==
+X-Gm-Message-State: AOAM530sqtH9PObtiS//DRh166L2g+hmrvwduDGJbhMq8KGeeXyqVXLj
+        7S5Ok5fQLQ6pi9rWTSvEJBXmFNKlmQ==
+X-Google-Smtp-Source: ABdhPJxQt1AtyRJgxbShImCdxQMW79KrP3k81bFkVpuAM4lbP8oIQTaSCyu7Ectm95KWhvJBq11R4Q==
+X-Received: by 2002:a9d:842:: with SMTP id 60mr1466167oty.302.1634585383054;
+        Mon, 18 Oct 2021 12:29:43 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x8sm3143146ota.75.2021.10.18.12.28.24
+        by smtp.gmail.com with ESMTPSA id u21sm3104983oiv.25.2021.10.18.12.29.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 12:28:25 -0700 (PDT)
-Received: (nullmailer pid 2803420 invoked by uid 1000);
-        Mon, 18 Oct 2021 19:28:24 -0000
-Date:   Mon, 18 Oct 2021 14:28:24 -0500
+        Mon, 18 Oct 2021 12:29:42 -0700 (PDT)
+Received: (nullmailer pid 2805582 invoked by uid 1000);
+        Mon, 18 Oct 2021 19:29:41 -0000
+Date:   Mon, 18 Oct 2021 14:29:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     kishon@ti.com, vkoul@kernel.org, andrew@lunn.ch,
-        alexandre.belloni@bootlin.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
-Message-ID: <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
-References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
- <20211015123920.176782-3-horatiu.vultur@microchip.com>
+To:     Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>, devicetree@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-phy@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: phy-stm32-usbphyc: add optional
+ phy tuning properties
+Message-ID: <YW3LJWOCzZm3jxuJ@robh.at.kernel.org>
+References: <20211015161427.220784-1-amelie.delaunay@foss.st.com>
+ <20211015161427.220784-3-amelie.delaunay@foss.st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211015123920.176782-3-horatiu.vultur@microchip.com>
+In-Reply-To: <20211015161427.220784-3-amelie.delaunay@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
-> Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
-> requires to be muxed based on the HW representation.
+On Fri, 15 Oct 2021 18:14:26 +0200, Amelie Delaunay wrote:
+> This patch adds the description of new optional phy tuning properties
+> for usbphyc phy sub nodes.
 > 
-> So add constants for each interface to be able to distinguish them.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 > ---
->  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+> Changes in v3:
+> - Use -microamp instead of undocumented -milliamp
+> - Add '|' after 'description:' on each property needing this
+> Changes in v2:
+> - st,phy-tuning property removed
+> - tuning properties are now put directly in each child node
+> - tuning properties are no more free form text and their name reworked
+> ---
+>  .../bindings/phy/phy-stm32-usbphyc.yaml       | 129 ++++++++++++++++++
+>  1 file changed, 129 insertions(+)
 > 
-> diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> new file mode 100644
-> index 000000000000..8a05f93ecf41
-> --- /dev/null
-> +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +
-> +#ifndef __PHY_LAN966X_SERDES_H__
-> +#define __PHY_LAN966X_SERDES_H__
-> +
-> +#define PHY(x)		(x)
-> +#define PHY_MAX		PHY(2)
-> +#define SERDES6G(x)	(PHY_MAX + 1 + (x))
-> +#define SERDES6G_MAX	SERDES6G(3)
-> +#define RGMII(x)	(SERDES6G_MAX + 1 + (x))
-> +#define RGMII_MAX	RGMII(2)
-> +#define SERDES_MAX	(RGMII_MAX + 1)
 
-I still don't understand. #phy-cells description says we have:
-
-<port idx> <serdes idx>
-
-But here it's 3 numbers. How are these defines used to fill in the 2 
-cells?
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
