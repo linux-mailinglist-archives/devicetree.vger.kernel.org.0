@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0583432518
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B14B043252B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:40:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234122AbhJRRey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 13:34:54 -0400
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:41482 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233591AbhJRRev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:34:51 -0400
-Received: by mail-ot1-f43.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so737494ote.8;
-        Mon, 18 Oct 2021 10:32:40 -0700 (PDT)
+        id S233662AbhJRRmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 13:42:35 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:37434 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233535AbhJRRme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:42:34 -0400
+Received: by mail-oi1-f181.google.com with SMTP id o83so838879oif.4;
+        Mon, 18 Oct 2021 10:40:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=2U8hBROJcAqw7cvJsslFtgA/mHZAvox2fIGmr8/9UKc=;
-        b=gWXWqH+BO+vEiSsONPvHYwL1SSld5R0tfQxgvsztcb+WHD5fhxBfvjrmpz228dii55
-         SlO82qLKvzsUrUuMgRFnEA945LkD+aY6Vuu+aoD0DuWyZz0o3KOgEqno2olNbVeDPlmx
-         0qnwqAbfFbVlL/UGxp8Tg3/HlztBEeAZBYaimVboHNZHgL3Rvoc8na/leU6jQg+3GHI3
-         UIG9r18d3LxjZZrvnyabqLQMg1BYTg7l3xPHjmjnNF1sJ+irAlctUud90sdkvNfdYcW7
-         BoHa5MQKn85vSFz1Ibax/zyMfrWqlcb926Sx8jyUYJDbqZpQiBnYVQ6mFtVn/T/ICy/F
-         D2mg==
-X-Gm-Message-State: AOAM531L3OyoO8Lr15csq+8sQjJowmPi9rY+u604t3OyaBv+dGPRb4ak
-        QOzu7F8T07klpS4ypMu1mQ==
-X-Google-Smtp-Source: ABdhPJyRN4OujdXL5CfZdoqzic+ABwBDXCL5MO8pWWd5f8xybeyhVcEjN/oNd+bSkL/32ctN/iwwiw==
-X-Received: by 2002:a9d:4113:: with SMTP id o19mr1013451ote.228.1634578360032;
-        Mon, 18 Oct 2021 10:32:40 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WjCdoPbhUwOU2BPjJvdVK3b+6xDTrV2zEbWC1uYUtaY=;
+        b=lZJzB20kNN7+prG1bD/2a9Fp0cqVWXkKw2De2C6d4wPJ2RwRqrIrIkY47c8EIPirJu
+         Dq4RMaKL4/VQRozDX9yJbI5qAsZp23vFEXLMk+5GGFjBXYK7WlIfvGzBzQ7tK+BMXuLU
+         XoA8Gd1zZEhp5cfn2OXbrNhlzJJYEmHyHdVADxAzd5zNIkuqMY1afl+0hnZ6YItB6bE6
+         U01rlbr4cZf3YmuEKK+12onoEpSmg5ncb1aLfKsHP5Eh935QG2dZyskY5ixrbJyBYejD
+         8B/vNM49jYXIa7PL19qVCN7UFMYRUhMCWX3Gfzf63V50r2Cq0mz13P81i89imxRblydY
+         72Ow==
+X-Gm-Message-State: AOAM530hPGNSuJN+gHHhcPdOQWvlOulz2aTA403O9UasziTPbGZgn5tu
+        Za9/EHiWDrb1yUkK+le7Ew==
+X-Google-Smtp-Source: ABdhPJwoJ4rchmQWhDHqPkxTSK7hUZqnNUE76P6zsjk0M22Dwy50hrUbpkkDsR3nSNZfVB6NrdZXcA==
+X-Received: by 2002:a05:6808:5d5:: with SMTP id d21mr227760oij.104.1634578823296;
+        Mon, 18 Oct 2021 10:40:23 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r4sm3129771oti.27.2021.10.18.10.32.38
+        by smtp.gmail.com with ESMTPSA id c3sm3189302otr.42.2021.10.18.10.40.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 10:32:39 -0700 (PDT)
-Received: (nullmailer pid 2612840 invoked by uid 1000);
-        Mon, 18 Oct 2021 17:32:38 -0000
+        Mon, 18 Oct 2021 10:40:22 -0700 (PDT)
+Received: (nullmailer pid 2625572 invoked by uid 1000);
+        Mon, 18 Oct 2021 17:40:21 -0000
+Date:   Mon, 18 Oct 2021 12:40:21 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
         Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org
-In-Reply-To: <20211018114046.25571-1-etienne.carriere@linaro.org>
-References: <20211018114046.25571-1-etienne.carriere@linaro.org>
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org
 Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Date:   Mon, 18 Oct 2021 12:32:38 -0500
-Message-Id: <1634578358.516648.2612839.nullmailer@robh.at.kernel.org>
+Message-ID: <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
+References: <20211018114046.25571-1-etienne.carriere@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211018114046.25571-1-etienne.carriere@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 13:40:45 +0200, Etienne Carriere wrote:
+On Mon, Oct 18, 2021 at 01:40:45PM +0200, Etienne Carriere wrote:
 > Introduce compatible "linaro,scmi-optee" for SCMI transport channel
 > based on an OP-TEE service invocation. The compatible mandates a
 > channel ID defined with property "linaro,optee-channel-id".
@@ -71,55 +73,96 @@ On Mon, 18 Oct 2021 13:40:45 +0200, Etienne Carriere wrote:
 >  .../bindings/firmware/arm,scmi.yaml           | 44 +++++++++++++++++++
 >  1 file changed, 44 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 5c4c6782e052..12154ecc081b 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -38,6 +38,9 @@ properties:
+>                       The virtio transport only supports a single device.
+>          items:
+>            - const: arm,scmi-virtio
+> +      - description: SCMI compliant firmware with OP-TEE transport
+> +        items:
+> +          - const: linaro,scmi-optee
+>  
+>    interrupts:
+>      description:
+> @@ -83,6 +86,11 @@ properties:
+>      description:
+>        SMC id required when using smc or hvc transports
+>  
+> +  linaro,optee-channel-id:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Channel id required when using OP-TEE transports
+> +
+>    protocol@11:
+>      type: object
+>      properties:
+> @@ -195,6 +203,9 @@ patternProperties:
+>          minItems: 1
+>          maxItems: 2
+>  
+> +      linaro,optee-channel-id:
+> +        maxItems: 1
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Why is the same property in 2 different spots? That doesn't seem ideal.
 
-yamllint warnings/errors:
+Unfortunately, you have to duplicate the definition.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'description' is a required property
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('maxItems' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: ignoring, error in schema: patternProperties: ^protocol@[0-9a-f]+$: properties: linaro,optee-channel-id
-warning: no schema found in file: ./Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml:0:0: /example-1/firmware/scmi: failed to match any schema with compatible: ['arm,scmi']
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:175.39-178.19: ERROR (duplicate_label): /example-2/firmware/scmi/protocol@14: Duplicate label 'scmi_clk' on /example-2/firmware/scmi/protocol@14 and /example-0/firmware/scmi/protocol@14
-Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:180.40-186.19: ERROR (duplicate_label): /example-2/firmware/scmi/protocol@13: Duplicate label 'scmi_dvfs' on /example-2/firmware/scmi/protocol@13 and /example-0/firmware/scmi/protocol@13
-ERROR: Input tree has errors, aborting (use -f to force output)
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml] Error 2
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1542547
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> +
+>      required:
+>        - reg
+>  
+> @@ -226,6 +237,16 @@ else:
+>        - arm,smc-id
+>        - shmem
+>  
+> +  else:
+> +    if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: linaro,scmi-optee
+> +    then:
+> +      required:
+> +        - linaro,optee-channel-id
+> +
+>  examples:
+>    - |
+>      firmware {
+> @@ -340,7 +361,30 @@ examples:
+>                  reg = <0x11>;
+>                  #power-domain-cells = <1>;
+>              };
+> +        };
+> +    };
+> +
+> +  - |
+> +    firmware {
+> +        scmi {
+> +            compatible = "linaro,scmi-optee";
+> +            linaro,optee-channel = <0>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            scmi_clk: protocol@14 {
+> +                reg = <0x14>;
+> +                #clock-cells = <1>;
+> +            };
+> +
+> +            scmi_dvfs: protocol@13 {
+> +                reg = <0x13>;
+>  
+> +                #clock-cells = <1>;
+> +                linaro,optee-channel = <1>;
+> +                shmem = <&cpu_scp_hpri0>;
+> +            };
+>          };
+>      };
+>  
+> -- 
+> 2.17.1
+> 
+> 
