@@ -2,76 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC34B4327EC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 473D14327F0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233052AbhJRTt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 15:49:28 -0400
-Received: from phobos.denx.de ([85.214.62.61]:41004 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232835AbhJRTt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 15:49:27 -0400
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 636EE8111F;
-        Mon, 18 Oct 2021 21:47:14 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634586434;
-        bh=x/P3vbpNUTIEoVsYF1dUtOdZvnv7+JaRiiItGytLISY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=0XHttoleP2HhObqyqdJbb9P0MBqUI/M3nwogGmH6b6hpdMS+5hk+APN6LR+ux5SaB
-         ZrGLHotcfdrLLo0cHT2re1hiqnA4pptg4CK44Ta6f7SZ13IgLjoSfZOBX+O2+DGWA2
-         f236vkMQYSWzlv4QXQKbzJlvXcf2ZqzlvkLPcxFNqthC+RkTXIUDbvGRRGamLKeIO8
-         drS7mPnB2LHmJtZZJkbcXh2iotUYaEDdQDUJa6vDaYPEAl0HTi270YBze9/2Osqn2m
-         3QoRGQM6X6BJ/t9+5dtnzmsGMNYnliaacb6vAsKBPLmJnf0YV+/S4RsLyLGBOhbYYs
-         T3yXdTACPA6+g==
-Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: lvds-codec: Document
- pixel data sampling edge select
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-References: <20211017001204.299940-1-marex@denx.de>
- <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <c34f8a7e-eec6-9373-0c52-f6546ad689a8@denx.de>
-Date:   Mon, 18 Oct 2021 21:47:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231542AbhJRTvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 15:51:11 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:34661 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230159AbhJRTvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:51:11 -0400
+Received: by mail-ot1-f48.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so152951otb.1;
+        Mon, 18 Oct 2021 12:48:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AAoBj4y4weGMfJE/H2YUzE461Zo+UYbwtItvsEO1Bq0=;
+        b=EHVWgI716m7OkjJMCLZVqV+EVYnqSs//3UYE5dWyyIQFUJwGBDVXj6NGzvinyB4oXf
+         GgUzMKlDG1iryJ38SOlTPVx8t2seZ1tmquc9RD2e7CO9newyugeAMdaoHe1HoZEEgVv9
+         IFNz2f2vRbL0y4ri5GadjurgK7lPJ8WxX7zyh/FFYKAECal2jwxwo6gWDOPETH5/fy8T
+         9SD/yO3+kjFdNjbAv3RGc+Z8p1SYJNuEkEziZ3D7poFvhZWL2xPw6QNUvTpgkHW0zTfZ
+         EbEd+/wY9Fkq+wrHB2xMnV0rjttSiY5neoeJXYz5IR0RFVJB8XDJwq7uXjxgeNfm7Fu9
+         IBgA==
+X-Gm-Message-State: AOAM531FnTU/VxY/QwsvN1e3iobgcryTKPhQQ7LZ4u+0BwV9WqPFX7sW
+        +e86rfe97cHwqQGVurGAhw==
+X-Google-Smtp-Source: ABdhPJzO339HRKj4AW98yudKu8l33V+dVFUqkR3/vATJbubDlMODK604QfCtHQumP/dOc5zpMWb41g==
+X-Received: by 2002:a05:6830:1e08:: with SMTP id s8mr1515560otr.305.1634586539491;
+        Mon, 18 Oct 2021 12:48:59 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e59sm3222734ote.14.2021.10.18.12.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 12:48:59 -0700 (PDT)
+Received: (nullmailer pid 2836064 invoked by uid 1000);
+        Mon, 18 Oct 2021 19:48:58 -0000
+Date:   Mon, 18 Oct 2021 14:48:58 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        abhinavk@codeaurora.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: Introduce Qualcomm eDP/DP PHY
+ binding
+Message-ID: <YW3PqhQHauDYRlwN@robh.at.kernel.org>
+References: <20211016232128.2341395-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211016232128.2341395-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/18/21 8:08 PM, Laurent Pinchart wrote:
-
-[...]
-
->> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->> index 1faae3e323a4..708de84ac138 100644
->> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->> @@ -79,6 +79,14 @@ properties:
->>         - port@0
->>         - port@1
->>   
->> +  pclk-sample:
->> +    description:
->> +      Data sampling on rising or falling edge.
->> +    enum:
->> +      - 0  # Falling edge
->> +      - 1  # Rising edge
->> +    default: 0
->> +
+On Sat, Oct 16, 2021 at 04:21:27PM -0700, Bjorn Andersson wrote:
+> Introduce a binding for the eDP/DP PHY hardware block found in several
+> different Qualcomm platforms.
 > 
-> Shouldn't this be moved to the endpoint, the same way data-mapping is
-> defined as an endpoint property ?
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> 
+> Changes since v2:
+> - None
+> 
+>  .../devicetree/bindings/phy/qcom,edp-phy.yaml | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> new file mode 100644
+> index 000000000000..c258e4f7e332
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/phy/qcom,edp-phy.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm DP/eDP PHY
+> +
+> +maintainers:
+> +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> +
+> +description:
+> +  The Qualcomm DP/eDP PHY is found in a number of Qualcomm platform and
+> +  provides the physical interface for DisplayPort and Embedded Display Port.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sc8180x-dp-phy
+> +      - qcom,sc8180x-edp-phy
 
-The strapping is a chip property, not port property, so no.
+Is there a difference between DP and eDP?
+
+Perhaps note what that is if so.
+
+> +
+> +  reg:
+> +    items:
+> +      - description: PHY base register block
+> +      - description: tx0 register block
+> +      - description: tx1 register block
+> +      - description: PLL register block
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aux
+> +      - const: cfg_ahb
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#clock-cells"
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    phy@aec2a00 {
+> +      compatible = "qcom,sc8180x-edp-phy";
+> +      reg = <0x0aec2a00 0x1c0>,
+> +            <0x0aec2200 0xa0>,
+> +            <0x0aec2600 0xa0>,
+> +            <0x0aec2000 0x19c>;
+> +
+> +      clocks = <&dispcc 0>, <&dispcc 1>;
+> +      clock-names = "aux", "cfg_ahb";
+> +
+> +      #clock-cells = <1>;
+> +      #phy-cells = <0>;
+> +    };
+> +...
+> -- 
+> 2.29.2
+> 
+> 
