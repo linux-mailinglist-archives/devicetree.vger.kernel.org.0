@@ -2,82 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84EC743277F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21E15432791
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbhJRTYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 15:24:20 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:45605 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229836AbhJRTYR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:24:17 -0400
-Received: by mail-oi1-f169.google.com with SMTP id z126so1179516oiz.12;
-        Mon, 18 Oct 2021 12:22:06 -0700 (PDT)
+        id S233054AbhJRTai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 15:30:38 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:44736 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231263AbhJRTah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:30:37 -0400
+Received: by mail-oi1-f179.google.com with SMTP id y207so1208043oia.11;
+        Mon, 18 Oct 2021 12:28:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=V1VnPfu2AuP5zIjik8TfylZ3NxfW6iX2aHgGQlj0jqg=;
-        b=lJeW3jfCIf9MCViLcFl3pPE7z5aMYY4upFPt0248/IzLavjcWrGfXpBcQBXlGDYCqf
-         20bVC7vqyThRepmVQmWlezjLKPAACcewfEtknAm8ZjdmqR/DBEY+5rKe3mYeX/EjFEWu
-         HdnY4KHm9BmIVFOX2w67eOzUV8Ao4csMaJjddpP2mjBl/DT91+bYH7dxPgAmyX+VK69x
-         muUM2KnoFX7dwoekv9dNYvNZXBaWgiqP7q86d8aPdra/LqNgKjpAiy9Fgx4VP3rmhY46
-         z99D20CyiVKjMTHdKvWy7FLaHnElbj/s7TZmR1ZkZqAlhdCP7ER9n7yahHMwkn6adaZr
-         Zw4A==
-X-Gm-Message-State: AOAM533xkFENYyeT5roRvtVftn8guoYUngtblCHfTXKQZeJosPkrEj73
-        ZGhIoZB4l+RlZbwUESaUxMpYhykGug==
-X-Google-Smtp-Source: ABdhPJxh2LC3W8dQZ8gqVlEq2VAcnrlQgUXPPILPrFtjFirbOy3w662Y8RAwHo0haLYLz14lx34unA==
-X-Received: by 2002:a05:6808:1795:: with SMTP id bg21mr635590oib.150.1634584925790;
-        Mon, 18 Oct 2021 12:22:05 -0700 (PDT)
+        bh=D0YJTgYqkI0d37F5afRzmNLlaPdJh1d4TAnzCXiblq0=;
+        b=5rClcNl84ulXxdCHw3smwee0SIdQ9GnX7MCqL2p/9nKP0sbDyZZlWwafi0GFG0qWsF
+         IXRUhFo7DpilMUj55qqQREmVakD/5vTLsaMb+gbkT0o/QXjG/u4DRiWVTvPMKpm99yi8
+         ZKd1LcHVNVhbtw3RUUT7ERyrlDj6hwyparWHTLDjnx78BQYFU3d7VaH+OE156brClGt7
+         W7vUS0fcxSmLv2dddX90pTYQPf5XuIi6DS9xlkLEjTov5tCxTW11+BZiIHrh28KQ6HJM
+         /AtnCta2AqWYFuJu82Jc5e/wJ9e0UxJraC1anzcjf6Z5ArjcMx3sLEwp+WnrMAyCygj8
+         +0jg==
+X-Gm-Message-State: AOAM531GMQVOWK5lyGgnoWHc1xdqUEhXdm7fYuz23bLs0J+d1fHtWA78
+        DedYvQCWQdlWq/Qy27f2BQ==
+X-Google-Smtp-Source: ABdhPJxQC0Ll46fRBQVLIW3++nUDa/GFT9GC0+aR+CgO0yRDgNhs3+oQs0oc0WQaswcFQ9Pr0Q7IRw==
+X-Received: by 2002:aca:f302:: with SMTP id r2mr656586oih.90.1634585305918;
+        Mon, 18 Oct 2021 12:28:25 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id az14sm3127906oib.51.2021.10.18.12.22.04
+        by smtp.gmail.com with ESMTPSA id x8sm3143146ota.75.2021.10.18.12.28.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 12:22:05 -0700 (PDT)
-Received: (nullmailer pid 2793607 invoked by uid 1000);
-        Mon, 18 Oct 2021 19:22:04 -0000
-Date:   Mon, 18 Oct 2021 14:22:04 -0500
+        Mon, 18 Oct 2021 12:28:25 -0700 (PDT)
+Received: (nullmailer pid 2803420 invoked by uid 1000);
+        Mon, 18 Oct 2021 19:28:24 -0000
+Date:   Mon, 18 Oct 2021 14:28:24 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: input: Convert Silead GSL1680 binding to
- a schema
-Message-ID: <YW3JXGS4toCgDw2c@robh.at.kernel.org>
-References: <20211015073006.8939-1-maxime@cerno.tech>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, andrew@lunn.ch,
+        alexandre.belloni@bootlin.com, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
+Message-ID: <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
+References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
+ <20211015123920.176782-3-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211015073006.8939-1-maxime@cerno.tech>
+In-Reply-To: <20211015123920.176782-3-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 09:30:06 +0200, Maxime Ripard wrote:
-> The Silead GSL1680 Touchscreen Controller is supported by Linux thanks
-> to its device tree binding.
+On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
+> Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
+> requires to be muxed based on the HW representation.
 > 
-> Now that we have the DT validation in place, let's convert the device
-> tree bindings for that driver over to a YAML schema.
+> So add constants for each interface to be able to distinguish them.
 > 
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: linux-input@vger.kernel.org
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> 
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
+>  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
 > 
-> Changes from v2:
->   - Fixed firmware-name property name
-> 
-> Changes from v1:
->   - Added maximum to the number of fingers
-> ---
->  .../input/touchscreen/silead,gsl1680.yaml     | 91 +++++++++++++++++++
->  .../input/touchscreen/silead_gsl1680.txt      | 44 ---------
->  2 files changed, 91 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
-> 
+> diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> new file mode 100644
+> index 000000000000..8a05f93ecf41
+> --- /dev/null
+> +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +#ifndef __PHY_LAN966X_SERDES_H__
+> +#define __PHY_LAN966X_SERDES_H__
+> +
+> +#define PHY(x)		(x)
+> +#define PHY_MAX		PHY(2)
+> +#define SERDES6G(x)	(PHY_MAX + 1 + (x))
+> +#define SERDES6G_MAX	SERDES6G(3)
+> +#define RGMII(x)	(SERDES6G_MAX + 1 + (x))
+> +#define RGMII_MAX	RGMII(2)
+> +#define SERDES_MAX	(RGMII_MAX + 1)
 
-Applied, thanks!
+I still don't understand. #phy-cells description says we have:
+
+<port idx> <serdes idx>
+
+But here it's 3 numbers. How are these defines used to fill in the 2 
+cells?
+
+Rob
