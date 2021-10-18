@@ -2,172 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43637432420
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F83D432430
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233852AbhJRQv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 12:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233731AbhJRQvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:51:25 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C42C7C06176A;
-        Mon, 18 Oct 2021 09:49:13 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id x27so1073920lfu.5;
-        Mon, 18 Oct 2021 09:49:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SH0kHI8q3C1h2KdyVaYHMPS3/G5O58tP5UqzMH9EraU=;
-        b=Eo1YvWYvah4YBUTfa9fZS9I5YsX6WULFGARs9Szh/UiAoIktedhxl07McLaAjTp93h
-         QGSSMJhNPl70xrmINq9T1rO+IvppGW+XWLFVhJaYc7wZhD3dGXYo8jvuJ4GH2NFD+LlK
-         TAxj45c3VHqomjxZggSgM1fvjFMBUyAXqUeoEFVBnrBvUobeeNdqnIlUFUPoIq7AJPb/
-         r7m74Za5dNMs3B/EiIkK2un9BdsbDec5EMhu9dc5EoZvibN6Oiquc4CyII24ZVFu1j6a
-         zAqesXip+V+4F6lq06aSipK9/XfRZat1IFMQGBFuSLWSOWQ50qyHGYMLpyiiIYT2XiB2
-         vCJA==
+        id S232333AbhJRQxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 12:53:30 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:42613 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233953AbhJRQxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:53:00 -0400
+Received: by mail-ot1-f47.google.com with SMTP id l24-20020a9d1c98000000b00552a5c6b23cso565851ota.9;
+        Mon, 18 Oct 2021 09:50:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SH0kHI8q3C1h2KdyVaYHMPS3/G5O58tP5UqzMH9EraU=;
-        b=67F43igg8qMOi0wizUf7VNYNu9kHaAEa2Cnc6NPX1E41S/KWigg/d+Xr/4p/iizVjO
-         BRgErfPzoDGBVLIUYyF1fgLDXQzZuEXNHN46pjVxn2O2AreFBJX/J0WAuoSZ5/HYC8WB
-         sv6gR4zd4WEXbRkhjFxf7j41+jG1Y0rWaTCjoT5HhNHvcBgDzulriI/J++flAjFCLxgU
-         vwTiBkYoWGFKvtVi03oqqdKDzTXgYXT8W++CO8qSKQxe9GOz7FfUswaypko8z70Yo4LC
-         Auc73fHURUe7HrVuke9BiAQl/uSsJkVxWsw98hXV214YuWfaqfMsYaHoO8fK0jBzzciq
-         shzw==
-X-Gm-Message-State: AOAM533raQ1hupWl9Vg0Crw22w3K0MdtpJm3gGZwcekbqu/0o+3Z+xeJ
-        WunRyy5mHYEMnw3tvfD0swTXdqH1lqs=
-X-Google-Smtp-Source: ABdhPJw4/WfZL1h2TWZmw+Hog8tO0U9Q77OHUMcEIva5sYFlT867+XKGpU1XH6ZIr+kTks78S378gQ==
-X-Received: by 2002:ac2:4f02:: with SMTP id k2mr778622lfr.455.1634575752192;
-        Mon, 18 Oct 2021 09:49:12 -0700 (PDT)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id r17sm1444035lfe.107.2021.10.18.09.49.10
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7/8ZdPCDpzCIf++N+/tm/eQVkJplZHCJWzFtvEkgSvE=;
+        b=pyq0yNM7vFy880eL+v2p33mGRvjl+aFNNUc5uGEGhVRA9/m5FhHCMNgiV6k6JM3gmN
+         glD56CY5Nth2M/GPg1TIoe2xlDOdfbsBYGNZD2MoxkrivYXZ+1S9LaIgPTMe32BX5JJq
+         QIWxAjNigtEiTPgXgh2F+Q31dOGugR08ZkrH9VhTNPoAsKWrr+aZ4KbFfIiRdZrdPuDD
+         4MO5+BJTv2MjnQR+xkOvVEQphCthaFFTkRnD6/9/93LERdzfDGGAv2xD0zd6OohxADnI
+         xPjc3Uuyz0v6PoYczdWcUopcO4L2T1g6oBZcpU8eIUmsn5mwahyBorp15IWyfA4qGxC6
+         qGNg==
+X-Gm-Message-State: AOAM533Fi/Np20yBkuqVdq20hWOCaEcey9+2+1f5EM0SS46RN+9dgO0f
+        qmIMmVNWRP7yxFS6lYothQ==
+X-Google-Smtp-Source: ABdhPJxi73W9ObWJAjfMigXJBzyssvZtHIUGhEVyxD6AIHc53L87lFuMcGjh8KWtklEqPM0P46wzqQ==
+X-Received: by 2002:a9d:718e:: with SMTP id o14mr767288otj.299.1634575849116;
+        Mon, 18 Oct 2021 09:50:49 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j8sm689565otu.59.2021.10.18.09.50.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 09:49:11 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
-        David Wu <david.wu@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Cameron Nemo <cnemo@tutanota.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>,
-        Trevor Woerner <twoerner@gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: rk3328: add gpu opp table
-Date:   Mon, 18 Oct 2021 18:49:09 +0200
-Message-ID: <3352474.ljgn2FL0hr@archbook>
-In-Reply-To: <20211016154548.29555-1-twoerner@gmail.com>
-References: <20211016154548.29555-1-twoerner@gmail.com>
+        Mon, 18 Oct 2021 09:50:48 -0700 (PDT)
+Received: (nullmailer pid 2544249 invoked by uid 1000);
+        Mon, 18 Oct 2021 16:50:47 -0000
+Date:   Mon, 18 Oct 2021 11:50:47 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oskar Senft <osk@google.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: Add nct7802 bindings
+Message-ID: <YW2l5yTj2Adc+Kjz@robh.at.kernel.org>
+References: <20211011012212.91357-1-osk@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211011012212.91357-1-osk@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Samstag, 16. Oktober 2021 17:45:44 CEST Trevor Woerner wrote:
-> Add an operating-points table and cooling entry to the GPU on the
-> RK3328 SoC to improve its performance. According to its datasheet[1]
-> the maximum frequency of the Mali-450 MP2 GPU found on the RK3328 SoC
-> is 500MHz.
+On Sun, Oct 10, 2021 at 09:22:11PM -0400, Oskar Senft wrote:
+> This change documents the device tree bindings for the Nuvoton
+> NCT7802Y driver.
 > 
-> On my rock64 device, under x11, glmark2-es2 performance increased from
-> around 60 to just over 100. Same device running glmark2-es2 under
-> wayland/weston improved from just over 100 to just over 200.
-> 
-> [1] https://rockchip.fr/RK3328%20datasheet%20V1.2.pdf
-> 
-> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+> Signed-off-by: Oskar Senft <osk@google.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 26 +++++++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+> Changes from PATCH v6:
+> - Fixed formatting error reported by yamllint
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi index 8c821acb21ff..5e1dcf71e414
-> 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -532,7 +532,8 @@ map0 {
->  					cooling-device = <&cpu0 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->  							 <&cpu1 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->  							 <&cpu2 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -							 <&cpu3 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +							 <&cpu3 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&gpu 
-THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->  					contribution = <4096>;
->  				};
->  			};
-> @@ -617,6 +618,29 @@ gpu: gpu@ff300000 {
->  		clocks = <&cru ACLK_GPU>, <&cru ACLK_GPU>;
->  		clock-names = "bus", "core";
->  		resets = <&cru SRST_GPU_A>;
-> +		operating-points-v2 = <&gpu_opp_table>;
-> +		#cooling-cells = <2>;
-> +	};
-> +
-> +	gpu_opp_table: gpu-opp-table {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp-200000000 {
-> +			opp-hz = /bits/ 64 <200000000>;
-> +			opp-microvolt = <1100000>;
-> +		};
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
-> +			opp-microvolt = <1100000>;
-> +		};
-> +		opp-400000000 {
-> +			opp-hz = /bits/ 64 <400000000>;
-> +			opp-microvolt = <1100000>;
-> +		};
-> +		opp-500000000 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +			opp-microvolt = <1100000>;
-> +		};
->  	};
+> Changes from PATCH v5:
+> - Refactored to use patternProperties.
+> - Added validation for sensor-type and temperature-mode.
+> ---
+>  .../bindings/hwmon/nuvoton,nct7802.yaml       | 144 ++++++++++++++++++
+>  1 file changed, 144 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
 > 
->  	h265e_mmu: iommu@ff330200 {
+> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> new file mode 100644
+> index 000000000000..a0a245938528
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+> @@ -0,0 +1,144 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NCT7802Y Hardware Monitoring IC
+> +
+> +maintainers:
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +description: |
+> +  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
+> +  5 remote temperature sensors with SMBus interface.
+> +
+> +  Datasheets:
+> +    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,nct7802
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^channel@[0-3]$":
+> +    type: object
 
-As for whether this works as described on a ROCK64 for glmark2-es2-wayland:
+I would move the 'additionalProperties' here. I think that's a bit 
+easier to read.
 
-Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> +    properties:
+> +      reg:
+> +        items:
+> +          - enum:
+> +              - 0    # Local Temperature Sensor ("LTD")
+> +              - 1    # Remote Temperature Sensor or Voltage Sensor 1 ("RTD1")
+> +              - 2    # Remote Temperature Sensor or Voltage Sensor 2 ("RTD2")
+> +              - 3    # Remote Temperature Sensor or Voltage Sensor 3 ("RTD3")
 
-There is some stuff worth noting that LibreELEC does on this SoC[1]:
+blank line
 
-1. they use 1.05V for all OPPs up to and including 400 MHz
-2. they run 500 MHz at 1.15V instead (though 1.10V seemed to work for both of 
-us)
-3. they disable 500 MHz because 1.15V was apparently too high for rkvdec.
+> +      sensor-type:
+> +        items:
+> +          - enum:
+> +              - temperature
+> +              - voltage
 
-3 is currently not very relevant because mainline Linux has no rkvdec node in 
-the rk3328 dtsi, and we're not running at 1.15V.
+blank line
 
-I've decided to add their rkvdec dtsi patch[2] on top anyway, and saw no 
-complaints from the rkvdec module while glmark2-es2-drm was running. However, 
-it's not like I tried to actually hardware decode video while it was running 
-because the userspace situation still won't let me without compiling entirely 
-too much stuff from git. Though the rkvdec module was loaded and present.
+> +      temperature-mode:
+> +        items:
+> +          - enum:
+> +              - thermistor
+> +              - thermal-diode
 
-[1]: https://github.com/LibreELEC/LibreELEC.tv/commit/
-9a6be0d36ba7ff3c3d5df798682d47a1de594ac0
-[2]: https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/
-patches/linux/default/linux-1001-v4l2-rockchip.patch#L860-L935
+blank line
 
+> +    required:
+> +      - reg
 
+blank line
 
+> +    allOf:
+> +      # For channels RTD1, RTD2 and RTD3, require sensor-type to be set.
+> +      # Otherwise (for all other channels), do not allow temperature-mode to be
+> +      # set.
+> +      - if:
+> +          properties:
+> +            reg:
+> +              items:
+> +                - enum:
+> +                    - 1
+> +                    - 2
+> +                    - 3
+> +        then:
+> +          required:
+> +            - sensor-type
+> +        else:
+> +          not:
+> +            required:
+> +              - sensor-type
+> +
+> +      # For channels RTD1 and RTD2 and if sensor-type is "temperature", require
+> +      # temperature-mode to be set. Otherwise (for all other channels or
+> +      # sensor-type settings), do not allow temperature-mode to be set
+> +      - if:
+> +          properties:
+> +            reg:
+> +              items:
+> +                - enum:
+> +                    - 1
+> +                    - 2
+> +            sensor-type:
+> +              items:
+> +                - enum:
+> +                    - temperature
+> +        then:
+> +          required:
+> +            - temperature-mode
+> +        else:
+> +          not:
+> +            required:
+> +              - temperature-mode
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        nct7802@28 {
+> +            compatible = "nuvoton,nct7802";
+> +            reg = <0x28>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            channel@0 { /* LTD */
+> +              reg = <0>;
+> +              status = "okay";
+
+Don't show status in examples.
+
+> +            };
+> +
+> +            channel@1 { /* RTD1 */
+> +              reg = <1>;
+> +              status = "okay";
+> +              sensor-type = "voltage";
+> +            };
+> +
+> +            channel@2 { /* RTD2 */
+> +              reg = <2>;
+> +              status = "okay";
+> +              sensor-type = "temperature";
+> +              temperature-mode = "thermal-diode";
+> +            };
+> +
+> +            channel@3 { /* RTD3 */
+> +              reg = <3>;
+> +              status = "okay";
+> +              sensor-type = "temperature";
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.33.0.882.g93a45727a2-goog
+> 
+> 
