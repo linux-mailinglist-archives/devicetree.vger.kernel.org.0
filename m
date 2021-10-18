@@ -2,41 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EFFA431650
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:41:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 651E243165A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbhJRKnJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 06:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
+        id S229843AbhJRKpn convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 06:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbhJRKnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:43:06 -0400
+        with ESMTP id S229653AbhJRKpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:45:42 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5D1C061714
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:40:54 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658D0C06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:43:31 -0700 (PDT)
 Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ4U-0002SF-9S; Mon, 18 Oct 2021 12:40:46 +0200
+        id 1mcQ73-0002kW-4N; Mon, 18 Oct 2021 12:43:25 +0200
 Received: from pza by lupine with local (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ4T-0006AV-MT; Mon, 18 Oct 2021 12:40:45 +0200
-Message-ID: <26612614156b53a3c1798f86177a69f613f210b7.camel@pengutronix.de>
-Subject: Re: [PATCH v3 1/2] dt-bindings: reset: Add lan966x support
+        id 1mcQ72-0006Cg-PW; Mon, 18 Oct 2021 12:43:24 +0200
+Message-ID: <0b319e9a397d3c8299761a65393a69b0a45be22b.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/2] reset: mchp: sparx5: Extend support for lan966x
 From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Horatiu Vultur <horatiu.vultur@microchip.com>
 Cc:     robh+dt@kernel.org, andrew@lunn.ch, lars.povlsen@microchip.com,
         Steen.Hegelund@microchip.com, UNGLinuxDriver@microchip.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Date:   Mon, 18 Oct 2021 12:40:45 +0200
-In-Reply-To: <20211015141404.5eiylskcfy2fxi42@soft-dev3-1.localhost>
+Date:   Mon, 18 Oct 2021 12:43:24 +0200
+In-Reply-To: <20211014154000.jxnzeq6lnlkmnxzf@soft-dev3-1.localhost>
 References: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
-         <20211013073807.2282230-2-horatiu.vultur@microchip.com>
-         <838af7b574968fc55d517a3becede5fa106ed896.camel@pengutronix.de>
-         <20211014152016.wuwaesswc5iiil42@soft-dev3-1.localhost>
-         <20211015141404.5eiylskcfy2fxi42@soft-dev3-1.localhost>
+         <20211013073807.2282230-3-horatiu.vultur@microchip.com>
+         <8241fb1053df3583d9f4f0698907038c8f4ac769.camel@pengutronix.de>
+         <20211014154000.jxnzeq6lnlkmnxzf@soft-dev3-1.localhost>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.30.5-1.1 
@@ -49,15 +48,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-10-15 at 16:14 +0200, Horatiu Vultur wrote:
-[...]
-> Were you thinking to have just another reset driver('phy-reset') and then
-> the switch to refer to both of them?
-> I like this idea because then is more clear what is doing each driver.
+On Thu, 2021-10-14 at 17:40 +0200, Horatiu Vultur wrote:
+> 
+> > > +      */
+> > > +     err = mchp_sparx5_map_syscon(pdev, "cuphy-syscon", &ctx->cuphy_ctrl);
+> > > +     if (err && err != -ENODEV)
+> > > +             return err;
+> > 
+> > So -ENODEV should return an error if .cuphy_reg is set?
+> 
+> I am not sure I follow this.
+> If cuphy-syscon is not set then mchp_sparx5_map_syscon will return
+> -ENODEV. This can be ignored for sparx5 as this is not required.
+> If cuphy-syscon is set then if mchp_sparx5_map_syscon returns an error
+> then report this error.
 
-Yes, especially if there is no requirement to handle switch and PHY
-resets at the same time: this would allow the sgpio driver to trigger
-the required switch reset without already releasing the PHYs from reset.
+My point was that in case of cuphy-syscon missing from the DT, the
+lan966x compatible reset controller should probably throw the error
+instead of ignoring it. With v4 this is not relevant any more.
 
 regards
 Philipp
