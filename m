@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA52431993
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E3924319D6
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:47:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbhJRMqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 08:46:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48230 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229519AbhJRMqx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 08:46:53 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9E88860EE9
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 12:44:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634561082;
-        bh=ZL9e3eGrmC0Ie88Mdfl7fImyjuCu2CkK+jQySL6d3Vo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UfNLuZGHoXSBKfeIQJrv1U3iakWr0N16/OcCf83BDNHwvpCzqF2D/pdwc0iXf0j8y
-         4VQDo2XKkRY0FbJYtgoTVUbqiCgiY8n24gyZgsAGn8BB76MMZe3nlGJ11vHRP00yQ2
-         aZGYf6zzr28YVxsAzGcKUOogicZDWrIv5a0hLRYZajrQNXTfJdajWoz662nkZP+DhP
-         K9kNmTLSjqz0UrrkkQF4ATlpRC7xn1LwpP2dum6UwZ8ftom4x8jR0K/0DwgBFt4/MZ
-         X+0jhHJ1yPJxRAbwcZE1Cx9QcQISGW+EYUMNNlFt9bASgFtynNrD0oi9PmF3G6U2qK
-         G1s+wGFJLSa2Q==
-Received: by mail-ed1-f52.google.com with SMTP id 5so40044534edw.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 05:44:42 -0700 (PDT)
-X-Gm-Message-State: AOAM5334OAbFeY0hYP02HBxk9jwhkJtzMPvS1HclmtFN/8FmRllW/BMr
-        85FOjgVkm9Wtd3irksfslwf7m8Let/zzEZSYnA==
-X-Google-Smtp-Source: ABdhPJyZG95UI3isnS3/MWtVxqmFLZ5yj0gIsUDVGC6LMmsTKPxQeoYUPwe1Dk/0jlKQ0KM0J8+qp2GHh49zFtVlM7w=
-X-Received: by 2002:aa7:c357:: with SMTP id j23mr46215878edr.145.1634561079137;
- Mon, 18 Oct 2021 05:44:39 -0700 (PDT)
+        id S231686AbhJRMuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 08:50:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53398 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231217AbhJRMuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 08:50:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62DC2C06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 05:47:57 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1mcS3I-0003FV-EQ; Mon, 18 Oct 2021 14:47:40 +0200
+Received: from pengutronix.de (2a03-f580-87bc-d400-c2ef-28ab-e0cd-e8fd.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:c2ef:28ab:e0cd:e8fd])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 81EB9696766;
+        Mon, 18 Oct 2021 12:47:37 +0000 (UTC)
+Date:   Mon, 18 Oct 2021 14:47:36 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexei Starovoitov <ast@kernel.org>,
+        Daniel Borkmann <daniel@iogearbox.net>,
+        Andrii Nakryiko <andrii@kernel.org>,
+        Martin KaFai Lau <kafai@fb.com>,
+        Song Liu <songliubraving@fb.com>, Yonghong Song <yhs@fb.com>,
+        John Fastabend <john.fastabend@gmail.com>,
+        KP Singh <kpsingh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        bpf@vger.kernel.org
+Subject: Re: [PATCH v4 0/6] CAN: Add support for CAN in AM65,J721e and AM64
+Message-ID: <20211018124736.zr2oavfg6h3tnrgp@pengutronix.de>
+References: <20211006055344.22662-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-References: <1634475996-6809-1-git-send-email-stefan.wahren@i2se.com>
- <1634475996-6809-3-git-send-email-stefan.wahren@i2se.com> <1634484570.846584.60704.nullmailer@robh.at.kernel.org>
- <c88489a9-53f3-cae2-48bc-5afcf4ca5256@i2se.com>
-In-Reply-To: <c88489a9-53f3-cae2-48bc-5afcf4ca5256@i2se.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 18 Oct 2021 07:44:26 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK6v85jWT+BmU1O1AEsYde+e7LtKCDKBtN1nV+O3KTARQ@mail.gmail.com>
-Message-ID: <CAL_JsqK6v85jWT+BmU1O1AEsYde+e7LtKCDKBtN1nV+O3KTARQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: soc: bcm: Convert brcm, bcm2835-vchiq to json-schema
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ojaswin Mujoo <ojaswin98@gmail.com>,
-        Mwesigwa Guma <mguma@redhat.com>,
-        linux-staging@lists.linux.dev,
-        Scott Branden <sbranden@broadcom.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Ray Jui <rjui@broadcom.com>, devicetree@vger.kernel.org,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ljji6pbi73l3wne5"
+Content-Disposition: inline
+In-Reply-To: <20211006055344.22662-1-a-govindraju@ti.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 17, 2021 at 11:31 AM Stefan Wahren <stefan.wahren@i2se.com> wrote:
->
-> Hi Rob,
->
-> Am 17.10.21 um 17:29 schrieb Rob Herring:
-> > On Sun, 17 Oct 2021 15:06:36 +0200, Stefan Wahren wrote:
-> >> This converts the VCHIQ bindings to YAML format.
-> >>
-> >> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> >> ---
-> >>  .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
-> >>  .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 47 ++++++++++++++++++++++
-> >>  2 files changed, 47 insertions(+), 17 deletions(-)
-> >>  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-> >>  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-> >>
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> >
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> >
-> > Full log is available here: https://patchwork.ozlabs.org/patch/1542230
-> >
-> >
-> > mailbox@7e00b840: compatible: Additional items are not allowed ('brcm,bcm2835-vchiq' was unexpected)
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dt.yaml
-> >       arch/arm/boot/dts/bcm2836-rpi-2-b.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-b.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-cm3-io3.dt.yaml
-> >
-> > mailbox@7e00b840: compatible: ['brcm,bcm2836-vchiq', 'brcm,bcm2835-vchiq'] is too long
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-a-plus.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dt.yaml
-> >       arch/arm64/boot/dts/broadcom/bcm2837-rpi-cm3-io3.dt.yaml
-> >       arch/arm/boot/dts/bcm2836-rpi-2-b.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-a-plus.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-b.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-3-b-plus.dt.yaml
-> >       arch/arm/boot/dts/bcm2837-rpi-cm3-io3.dt.yaml
->
-> i'm confused patch 1/2 ( "ARM: dts: bcm283x: Drop fallback compatible
-> for vchiq" ) of this series should prevent this warning. Was it applied
-> before running dtbs_check?
 
-No, so you can ignore this.
+--ljji6pbi73l3wne5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On 06.10.2021 11:23:37, Aswath Govindraju wrote:
+> The following series of patches add support for CAN in SoC's AM65, J721e
+> and AM64.
+>=20
+> The following series is dependent on,
+> https://patchwork.kernel.org/project/netdevbpf/patch/20210920123344.2320-=
+1-a-govindraju@ti.com/
+
+This patch just hit net/master:
+
+| 99d173fbe894 can: m_can: fix iomap_read_fifo() and iomap_write_fifo()
+| https://git.kernel.org/netdev/net/c/99d173fbe8944861a00ebd1c73817a1260d21=
+e60
+
+and should be part of v5.15.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--ljji6pbi73l3wne5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmFtbOYACgkQqclaivrt
+76n5Jwf/R6q+JD0YwphCt5Ds1vOyuiZPyR4D2wrVSFpT/+l6g00FDgeMztPJT6zN
+SYLYIyyceQ3tBP1R+ZBKfM8EdFaA8g6PORPECfUwH12gP6GnvUX+Nsvlgr1XMtOn
+9I6ls+J0cFhFoSQ/HVXoRlLsCTXGEk1QLcPUVE/iazvJx7bOy1jbR+sLwINoMn0L
+Kf+3/Pae+NhOvELK8HjVFIH1LWAEUpu6sTs81ebL8elGHxgbiGBi8vcWPkorkyfD
+DhaLbRCSh1y4uf09YJhU9OzjXIwyVbOJZixDUGgEBDwvjV9BtOyAhsAgQYFZ8IQg
+prXTLN1erGJEdGGjZgq/9DPDviN91g==
+=H9mY
+-----END PGP SIGNATURE-----
+
+--ljji6pbi73l3wne5--
