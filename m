@@ -2,130 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1902C43176F
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57F6743178E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbhJRLgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 07:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbhJRLgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:36:53 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADC9C061714
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:34:43 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id w12-20020a056830410c00b0054e7ceecd88so230492ott.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:34:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6G8Hfd9HWWdOmQn8dJ/4ZTN0E6g9DldkLudnuHQWD1k=;
-        b=mfWHkg6A++/9gjuM+FUS0mGsRBbFBJOlC/EjyddiPAJctM5q/3aGEkGv0P9ExrHLYf
-         vlnNzUKEfOTtJzDy0NRR4NFTvE8RnCv5Smk1MSYJQUYBgQc5ztrxlGLQ6BvCE6HgqeHR
-         AuoMfraz4oXYEmgUAVhlRhm6sQ6nWYWvEQiL/5R7bLCmzwDP9RIyY3PFQFpKf0P/mdMb
-         //v1bgSYW9PRlFyzfVwe5fv6KzVlQVdy0Ry0vHqL9/4UtfDzq4BV85xu2Uh50jPPrQl5
-         zIZuwOmHSc6Thw3vfNcXkvSf9F+XlsvT5aeSj7mjWcE3tgqqeaVhgoC46G9Tj2XzjpoB
-         yUtg==
+        id S231446AbhJRLj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 07:39:28 -0400
+Received: from mail-ua1-f54.google.com ([209.85.222.54]:37382 "EHLO
+        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231295AbhJRLj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:39:28 -0400
+Received: by mail-ua1-f54.google.com with SMTP id f4so5124904uad.4;
+        Mon, 18 Oct 2021 04:37:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6G8Hfd9HWWdOmQn8dJ/4ZTN0E6g9DldkLudnuHQWD1k=;
-        b=uatnJa9CNVtmdPODpOQZzniu/xjdH7D+ojUSllzElu191DL2vrYvmUNfbmS1MTOqJt
-         +E/RK4DPlpXFk6t0rXSPIuVA7ypYoTTDHlRZLldtXIjaf87ARKaZwZADVOiYRFxe9IlV
-         UpsTGzMY78i3IAfvipt1MquplR3WBIz7BbJ+OUM0J6Mr6rGjPNvF6Ff5lkPM51mt0eOZ
-         6X6reUje72kG98D5iiGKK4Obf+2b1CVLyKK7Gn3la1yxsdZauvWQI4QmapsGdCOwiQXf
-         YTVKlrkyALGmffHwa1sffPsazfjQ5ZwCyTRzuef4R7BFtOcAtk917Ic7ewDONxK93MJi
-         zfWg==
-X-Gm-Message-State: AOAM532esvYeABsz9fHPgeviT7uf5VnIXQsOi6yRk3KAmdx1Xt7ty2/k
-        wdZkK0A08KPbXgdrNUSsFcMOi0G3OJZXTzoYzWC7VA==
-X-Google-Smtp-Source: ABdhPJzToQU6dBlbmasyOXnGLHSpLJDGclh9CmgZFd06P3bvgiJJeE2czOxOsSKQnEzr3MFg2ogcNZYW8cFjW+0K93M=
-X-Received: by 2002:a05:6830:1c26:: with SMTP id f6mr20715033ote.28.1634556882315;
- Mon, 18 Oct 2021 04:34:42 -0700 (PDT)
+        bh=yoiylfhsu7vOzWaVrb8Sfpqi1MCIs1ryTZwMWyEH6Ag=;
+        b=Bcen5t89gEoZ6eoroXnsq1Mk7Q4yFwfaYv+3P41TrqBwwGwl67CaWO0xOtEeZeLb/m
+         1RU/+Ca9flBr94WEBsskisVTGI59N8bKM+TU3zwPhKTUldAhvr0b8mZtIrDUUTFfGbfh
+         7sMdpFc/dZuAInSct28pjRrbYD/epxA7ZPxEL+Pkl/wHHCnTMkUEiWtsUVMfqGSb0rqX
+         jmFxUrMm6cuj7933Ys3K2fjvNCdqDHve4Yx7QfB7hMROTjiyN8XjC0l7yRAyr+0Dj5Nh
+         1ru86qU2/tGnM+CGF80nQF4rqiWgTa0OhBM5HgwkayyOwHbCVKT33huM2QeABTStmvHG
+         EJ7Q==
+X-Gm-Message-State: AOAM531dn9lx344lXGlobSEuULUbTpE65CufM/q4Mdo1fTlfbfZ54aRh
+        6B6GiNRV8Ai+kVTzwPFB6n4gAe0uRuQp9w==
+X-Google-Smtp-Source: ABdhPJydUuu55vT6vkPDOdiZ7jMcFEzd+CMbA4JZz4mJY4f2LLn2V1q80p/42Pgpc5nGRORgyn47Zw==
+X-Received: by 2002:ab0:3c48:: with SMTP id u8mr25896475uaw.124.1634557036521;
+        Mon, 18 Oct 2021 04:37:16 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id p26sm1646092uaa.18.2021.10.18.04.37.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Oct 2021 04:37:16 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id x207so8421804vke.2;
+        Mon, 18 Oct 2021 04:37:15 -0700 (PDT)
+X-Received: by 2002:a1f:1841:: with SMTP id 62mr23885899vky.26.1634557035711;
+ Mon, 18 Oct 2021 04:37:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-2-stephan@gerhold.net>
-In-Reply-To: <20211011141733.3999-2-stephan@gerhold.net>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 18 Oct 2021 17:04:31 +0530
-Message-ID: <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/4] dt-bindings: dmaengine: bam_dma: Add
- "powered remotely" mode
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
-        Johannes Berg <johannes@sipsolutions.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Aleksander Morgado <aleksander@aleksander.es>,
-        netdev@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
-        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <YV1XpL7ibF1y4LbV@google.com>
+ <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+ <YWVD0RXHVLxuXEIN@google.com> <CAMuHMdWqYVp1JyzZoidAJhPy9ypRnSOWHJLz5knDUMcFHPOzAw@mail.gmail.com>
+ <YWfSz00Rj5AVhkgT@google.com> <CAL_Jsq+GHt+DqHa0GeLKWoni+Lghg5wg5ssREZBdSD-=K3XQ1A@mail.gmail.com>
+ <163425256290.1688384.5646232860050218479@swboyd.mtv.corp.google.com>
+ <CAL_JsqJV_CoPH7VrX-D5=u2WsoUpp-pTKbcR2y+gWxhv+WKcEg@mail.gmail.com>
+ <CAMuHMdU1TCOvDwx6pjg=0-hLkFywRGQsZUNM+0aJLb96fZGAQA@mail.gmail.com> <163433541408.1688384.16269113818432626325@swboyd.mtv.corp.google.com>
+In-Reply-To: <163433541408.1688384.16269113818432626325@swboyd.mtv.corp.google.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 18 Oct 2021 13:37:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUuB1JfDXJiC281xanzW1zoq-LeTRmWtRDzn3vn2Z6wFw@mail.gmail.com>
+Message-ID: <CAMuHMdUuB1JfDXJiC281xanzW1zoq-LeTRmWtRDzn3vn2Z6wFw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan,
+Hi Stephen,
 
-On Mon, 11 Oct 2021 at 20:12, Stephan Gerhold <stephan@gerhold.net> wrote:
+On Sat, Oct 16, 2021 at 12:03 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> Quoting Geert Uytterhoeven (2021-10-15 10:09:10)
+> > On Fri, Oct 15, 2021 at 3:59 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > On Thu, Oct 14, 2021 at 6:02 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > > Quoting Rob Herring (2021-10-14 09:18:16)
+> > > > > On Thu, Oct 14, 2021 at 1:48 AM Lee Jones <lee.jones@linaro.org> wrote:
+> > > > > >
+> > > > > > I don't explicitly build DT documentation.
+> > > > > >
+> > > > > > Since I use the build bots to let me know if there are strange !(C,
+> > > > > > ASM, arm, aarch64, mips, ppc, x86) build issues or ones with odd
+> > > > > > configuration possibilities (randconfig) in the repos I maintain, you
+> > > > > > might have to convince them that this is important too.
+> > > > >
+> > > > > It's really just a matter of turning on the build in
+> > > > > allyesconfig/allmodconfig builds. I've not done that primarily because
+> > > > > there's one person I don't want to yell at me, but I could probably
+> > > > > make it arm and/or arm64 only. It's really arch and config
+> > > > > independent, so doing it multiple times is kind of pointless.
+> > > > >
+> > > > > I assume for bots you mean kernel-ci mainly? Do you run that before
+> > > > > stuff gets into linux-next? IMO, that's too late. But still a slight
+> > > > > improvement if things go in via one tree. Otherwise, I see the
+> > > > > breakage twice, 1st linux-next then the merge window.
+> > > > >
+> > > >
+> > > > I run `make dt_binding_check DT_SCHEMA_FILES="<path to yaml file>"` but
+> > > > nowadays this seems to check all the bindings and not just the one
+> > > > binding I care to check. Did something break?
+> > >
+> > > It should apply all the schemas to the example in DT_SCHEMA_FILES.
+> > > Originally, it only applied DT_SCHEMA_FILES schema to the example in
+> > > DT_SCHEMA_FILES.
+> >
+> > Probably Stephen means that yamllint is still run on all files, which
+> > I tried to fix in [1]?
+> >
+> > I've been running an improved version for months, but I haven't sent
+> > it out yet.
+> >
 >
-> In some configurations, the BAM DMA controller is set up by a remote
-> processor and the local processor can simply start making use of it
-> without setting up the BAM. This is already supported using the
-> "qcom,controlled-remotely" property.
->
-> However, for some reason another possible configuration is that the
-> remote processor is responsible for powering up the BAM, but we are
-> still responsible for initializing it (e.g. resetting it etc). Add
-> a "qcom,powered-remotely" property to describe that configuration.
->
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> ---
-> Changes since RFC:
->   - Rename qcom,remote-power-collapse -> qcom,powered-remotely
->     for consistency with "qcom,controlled-remotely"
->
-> NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
->       so this could also go through the dmaengine tree.
->
-> Also note that there is an ongoing effort to convert these bindings
-> to DT schema but sadly there were not any updates for a while. :/
-> https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
+> Oh yeah probably. Do I need to carry this patch locally until it is
+> fixed?
 
-Seems you missed the latest series posted last week - [1]. Sorry I got
-a bit delayed posting it due to being caught up in other patches.
+Submitted the improved version:
+https://lore.kernel.org/all/cover.1634551582.git.geert+renesas@glider.be
 
-Maybe you can rebase your patch on the same and use the YAML bindings
-for the qcom,bam_dma controller.
+Gr{oetje,eeting}s,
 
-[1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t
+                        Geert
 
-Regards,
-Bhupesh
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> ---
->  Documentation/devicetree/bindings/dma/qcom_bam_dma.txt | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> index cf5b9e44432c..6e9a5497b3f2 100644
-> --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> @@ -15,6 +15,8 @@ Required properties:
->    the secure world.
->  - qcom,controlled-remotely : optional, indicates that the bam is controlled by
->    remote proccessor i.e. execution environment.
-> +- qcom,powered-remotely : optional, indicates that the bam is powered up by
-> +  a remote processor but must be initialized by the local processor.
->  - num-channels : optional, indicates supported number of DMA channels in a
->    remotely controlled bam.
->  - qcom,num-ees : optional, indicates supported number of Execution Environments
-> --
-> 2.33.0
->
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
