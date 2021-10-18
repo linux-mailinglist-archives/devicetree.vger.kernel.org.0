@@ -2,59 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78D1443165C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:44:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91C9E431698
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbhJRKqN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 06:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52274 "EHLO
+        id S229675AbhJRK5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 06:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbhJRKqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:46:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6396C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:44:01 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ7X-0002lf-Pv; Mon, 18 Oct 2021 12:43:55 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ7X-0006Dj-Cx; Mon, 18 Oct 2021 12:43:55 +0200
-Message-ID: <46235d88ea5d3621eb8ab6fe150e9fcb3f9ebe1f.camel@pengutronix.de>
-Subject: Re: [PATCH v4 2/2] reset: mchp: sparx5: Extend support for lan966x
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>, robh+dt@kernel.org,
-        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
-        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Andrew Lunn <andrew@lunn.ch>
-Date:   Mon, 18 Oct 2021 12:43:55 +0200
-In-Reply-To: <20211018091522.1113510-3-horatiu.vultur@microchip.com>
-References: <20211018091522.1113510-1-horatiu.vultur@microchip.com>
-         <20211018091522.1113510-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S229910AbhJRK5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:57:05 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 812CCC061769
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:54:53 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:e87a:7c37:aec5:5884])
+        by andre.telenet-ops.be with bizsmtp
+        id 7Nuq2600P22VXnz01Nuq2g; Mon, 18 Oct 2021 12:54:50 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mcQI5-005sWI-T1; Mon, 18 Oct 2021 12:54:49 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mcQI5-00DbGP-E1; Mon, 18 Oct 2021 12:54:49 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Joey Gouly <joey.gouly@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/2] dt-bindings: Improve yamllint performance
+Date:   Mon, 18 Oct 2021 12:54:46 +0200
+Message-Id: <cover.1634551582.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-10-18 at 11:15 +0200, Horatiu Vultur wrote:
-> This patch extends sparx5 driver to support also the lan966x. The
-> process to reset the switch is the same only it has different offsets.
-> Therefore make the driver more generic and add support for lan966x.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+	Hi Rob,
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+This series improves yamllint performance by parallelizing the
+operation, and by restricting the checked files to those specified using
+DT_SCHEMA_FILES.
 
-regards
-Philipp
+Changes compared to v1:
+  - New patch to parallelize yamllint,
+  - Introduce find_all_cmd,
+  - Only use the restricted set for yamllint.
+
+I've been using this for the past 6 months, as it helps a lot when
+writing or updating DT bindings.  Combined, this reduces the execution
+time of
+
+    make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/your/binding/file.yaml
+
+from ca. 30 to 10 s on i7-8700K.
+
+Thanks for your comments!
+
+Geert Uytterhoeven (2):
+  dt-bindings: Parallelize yamllint
+  dt-bindings: Consider DT_SCHEMA_FILES when finding all json-schema
+
+ Documentation/devicetree/bindings/Makefile | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
