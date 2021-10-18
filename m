@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C5A432773
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EC743277F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:22:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232635AbhJRTVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 15:21:38 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:41550 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbhJRTVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:21:37 -0400
-Received: by mail-ot1-f49.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so1105601ote.8;
-        Mon, 18 Oct 2021 12:19:26 -0700 (PDT)
+        id S230159AbhJRTYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 15:24:20 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:45605 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229836AbhJRTYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 15:24:17 -0400
+Received: by mail-oi1-f169.google.com with SMTP id z126so1179516oiz.12;
+        Mon, 18 Oct 2021 12:22:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=e6arM/5Dhn7rx7N9waMT1O9TAGcCfI2K71aXcO+9YrY=;
-        b=fuEXvhZApaYmYTp229TL3ymkzrOwm/4yL1zjFUapxM42vUCw66GkeEtWLjEe35GJFK
-         tyktxJjotfuCshnFWGz2i2YV/Nr/JMRHq2UkXiN36uxdJuLSGdgyxVtmpxbHMnIoUOTJ
-         HuvPsfxaJDyxVTrWfjxw+u8cHsnWoJ7EmdPHYuaHaOg3mqlu51BWns8NnB12O8Ajzv//
-         DIL2xTb/H1t6xcizWHxTAvMYh66L+0RUHV+XGAae2uKBJwhFrai/9yW0JszaAva5Qh+2
-         46BRkO1SReZpLW+R0FyxawRYrVEdcUlD2LQX+MBu6UkxiQhw62idpPKYrB6Uxj1SP3pZ
-         I3RQ==
-X-Gm-Message-State: AOAM530HU0oGw9F44kcNZaLBmRwnsFF8USoGW4hUIC+/Usp/g9Hustwu
-        kiugrE96VYW4oN5FhyF8yQ==
-X-Google-Smtp-Source: ABdhPJxTOuyFSpJchEpUgdmoQy3eg1rOqRBnMUqaBKjstriq7xNvJaPRWzlT80xCva6GiJzaYLK6vw==
-X-Received: by 2002:a05:6830:440c:: with SMTP id q12mr1435350otv.84.1634584765960;
-        Mon, 18 Oct 2021 12:19:25 -0700 (PDT)
+        bh=V1VnPfu2AuP5zIjik8TfylZ3NxfW6iX2aHgGQlj0jqg=;
+        b=lJeW3jfCIf9MCViLcFl3pPE7z5aMYY4upFPt0248/IzLavjcWrGfXpBcQBXlGDYCqf
+         20bVC7vqyThRepmVQmWlezjLKPAACcewfEtknAm8ZjdmqR/DBEY+5rKe3mYeX/EjFEWu
+         HdnY4KHm9BmIVFOX2w67eOzUV8Ao4csMaJjddpP2mjBl/DT91+bYH7dxPgAmyX+VK69x
+         muUM2KnoFX7dwoekv9dNYvNZXBaWgiqP7q86d8aPdra/LqNgKjpAiy9Fgx4VP3rmhY46
+         z99D20CyiVKjMTHdKvWy7FLaHnElbj/s7TZmR1ZkZqAlhdCP7ER9n7yahHMwkn6adaZr
+         Zw4A==
+X-Gm-Message-State: AOAM533xkFENYyeT5roRvtVftn8guoYUngtblCHfTXKQZeJosPkrEj73
+        ZGhIoZB4l+RlZbwUESaUxMpYhykGug==
+X-Google-Smtp-Source: ABdhPJxh2LC3W8dQZ8gqVlEq2VAcnrlQgUXPPILPrFtjFirbOy3w662Y8RAwHo0haLYLz14lx34unA==
+X-Received: by 2002:a05:6808:1795:: with SMTP id bg21mr635590oib.150.1634584925790;
+        Mon, 18 Oct 2021 12:22:05 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e22sm3189083otp.0.2021.10.18.12.19.24
+        by smtp.gmail.com with ESMTPSA id az14sm3127906oib.51.2021.10.18.12.22.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 12:19:25 -0700 (PDT)
-Received: (nullmailer pid 2789232 invoked by uid 1000);
-        Mon, 18 Oct 2021 19:19:24 -0000
-Date:   Mon, 18 Oct 2021 14:19:24 -0500
+        Mon, 18 Oct 2021 12:22:05 -0700 (PDT)
+Received: (nullmailer pid 2793607 invoked by uid 1000);
+        Mon, 18 Oct 2021 19:22:04 -0000
+Date:   Mon, 18 Oct 2021 14:22:04 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     robh+dt@kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alexandre.torgue@foss.st.com, amelie.delaunay@foss.st.com,
-        linux-stm32@st-md-mailman.stormreply.com,
-        gregkh@linuxfoundation.org, hminas@synopsys.com
-Subject: Re: [PATCH v3 2/4] dt-bindings: usb: dwc2: adopt otg properties
- defined in usb-drd.yaml
-Message-ID: <YW3IvEwPKvkyuBMM@robh.at.kernel.org>
-References: <1634133425-25670-1-git-send-email-fabrice.gasnier@foss.st.com>
- <1634133425-25670-3-git-send-email-fabrice.gasnier@foss.st.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: input: Convert Silead GSL1680 binding to
+ a schema
+Message-ID: <YW3JXGS4toCgDw2c@robh.at.kernel.org>
+References: <20211015073006.8939-1-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1634133425-25670-3-git-send-email-fabrice.gasnier@foss.st.com>
+In-Reply-To: <20211015073006.8939-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 13 Oct 2021 15:57:03 +0200, Fabrice Gasnier wrote:
-> Adopt some OTG optional properties as defined in usb-drd.yaml:
-> - otg-rev
-> - hnp-disable
-> - srp-disable
+On Fri, 15 Oct 2021 09:30:06 +0200, Maxime Ripard wrote:
+> The Silead GSL1680 Touchscreen Controller is supported by Linux thanks
+> to its device tree binding.
 > 
-> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+> Now that we have the DT validation in place, let's convert the device
+> tree bindings for that driver over to a YAML schema.
+> 
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: linux-input@vger.kernel.org
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
 > ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> 
+> Changes from v2:
+>   - Fixed firmware-name property name
+> 
+> Changes from v1:
+>   - Added maximum to the number of fingers
+> ---
+>  .../input/touchscreen/silead,gsl1680.yaml     | 91 +++++++++++++++++++
+>  .../input/touchscreen/silead_gsl1680.txt      | 44 ---------
+>  2 files changed, 91 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead,gsl1680.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/silead_gsl1680.txt
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
