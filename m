@@ -2,256 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE838431DBA
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 15:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4EDF431D6C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 15:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233726AbhJRNyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 09:54:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50742 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232327AbhJRNwa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 09:52:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3B5116140A;
-        Mon, 18 Oct 2021 13:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634564328;
-        bh=+KNkz7Nw4XNYaPsxS3VoMilJ6IGWgKggJgF0Dx0aCjM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MK+Hi/zS2sheljq77TCabhacPeJQVWHNDrGJq/pijFuQzh5p18E+aAaCVAgmSsIZG
-         YTI1EQcMkocgwYsyeeNvSG3Y+w4xb/nKUhQVSIltXstTektUD7bN7NV7urNftt7IPa
-         3jbbTz322yXShepmB8RmvttQAkI/WmBuzso6N2AGIlbFtXIwuF5xwo4d50q64Q5pWP
-         f06aXtzvACs7mN3nxi1NXbLnhIO54e1a2GxvVUjybxxoKH3Gi/ke4VwkDcg1sKxl1q
-         cBq53MW20kewjYXIJpMQF1X88qfnfYFawMRPWo13xCpq/UcxEiYUGbh7o5omG3EC7E
-         /9l/1e8ossTOQ==
-Received: by mail-ed1-f54.google.com with SMTP id w14so71206519edv.11;
-        Mon, 18 Oct 2021 06:38:48 -0700 (PDT)
-X-Gm-Message-State: AOAM532tw9h02Cw9swMQEl43AE72XxILnpceN2EOu8u/Zz2TcW8/hPrO
-        BZmae9Ddvswib+M047YOt3m9yCMCcy08W7XNjg==
-X-Google-Smtp-Source: ABdhPJzC8FCPx06z5aKCjWFU3VIkGsOX3tAUk7AlT9uiEN0CIXyCaWz0JWKVLuQfIZRXr0NuuVoDXKwt65WpQ/4p1+s=
-X-Received: by 2002:a05:6402:27d3:: with SMTP id c19mr43500965ede.70.1634564223968;
- Mon, 18 Oct 2021 06:37:03 -0700 (PDT)
+        id S233463AbhJRNv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 09:51:26 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.170]:16751 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231893AbhJRNtZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 09:49:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1634564830;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=1mMw6YuDELOq6zOK2SjiTcuTtmZUdFxJCRNKU8bgwTg=;
+    b=EVeGBcLZsGBFaLjq8B11jXZNXNuhZgv5iPBTZa4pPya9errCkdlg31jzBl29JFKSM1
+    iRFDWOxIfG0oyI3flKXzOnjM9BltGWdegmA/tI2j7wS5o40xZyE6OyyV62TzWuGIn63T
+    YJcAT+KIc/qaXNfMlwB2HFI1xEG3zcPieU5Fcc3WFwm6oIu+8M5zm2QW5jOWY/onPoGu
+    fxrXXcNDp3WPO8ZnNc1WiakXAzQ4bWe430On1HVuroz2QOuA5DhPoVW80AnLPbrO4er1
+    i+OeX8okYPSnHJ0TUqLnnjFF4VClhU9vl7dJarNSdFqXSSp6fAZR4MnKZgSmPB2a+EWe
+    qtRw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL1OfxR"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.33.8 AUTH)
+    with ESMTPSA id 301038x9IDlAWs1
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 18 Oct 2021 15:47:10 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH] arm64: dts: qcom: Drop unneeded extra device-specific includes
+Date:   Mon, 18 Oct 2021 15:36:56 +0200
+Message-Id: <20211018133656.32649-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211006113254.3470-1-anil.mamidala@xilinx.com>
- <20211006113254.3470-2-anil.mamidala@xilinx.com> <YWiK/xXEQwC5HgWD@robh.at.kernel.org>
- <YWiRERUYZTBepOKU@pendragon.ideasonboard.com>
-In-Reply-To: <YWiRERUYZTBepOKU@pendragon.ideasonboard.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 18 Oct 2021 08:36:51 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+DjGZpZgE7SiVeSQLsWFHOmBdK+sodUQAeBMd5QPYw0w@mail.gmail.com>
-Message-ID: <CAL_Jsq+DjGZpZgE7SiVeSQLsWFHOmBdK+sodUQAeBMd5QPYw0w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add bindings for AP1302
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Anil Kumar Mamidala <anil.mamidala@xilinx.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>,
-        Naveen Kumar Gaddipati <naveenku@xilinx.com>,
-        Stefan Hladnik <stefan.hladnik@gmail.com>,
-        Florian Rebaudo <frebaudo@witekio.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 14, 2021 at 3:20 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Rob,
->
-> On Thu, Oct 14, 2021 at 02:54:39PM -0500, Rob Herring wrote:
-> > On Wed, Oct 06, 2021 at 05:32:54AM -0600, Anil Kumar Mamidala wrote:
-> > > The AP1302 is a standalone ISP for ON Semiconductor sensors.
-> > > Add corresponding DT bindings.
-> > >
-> > > Signed-off-by: Anil Kumar Mamidala <anil.mamidala@xilinx.com>
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Stefan Hladnik <stefan.hladnik@gmail.com>
-> > > Signed-off-by: Florian Rebaudo <frebaudo@witekio.com>
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/onnn,ap1302.yaml | 202 +++++++++++++++++++++
-> > >  1 file changed, 202 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
-> > > new file mode 100644
-> > > index 0000000..d96e9db
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/onnn,ap1302.yaml
-> > > @@ -0,0 +1,202 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/onnn,ap1302.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: ON Semiconductor AP1302 Advanced Image Coprocessor
-> > > +
-> > > +maintainers:
-> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > +  - Anil Kumar M <anil.mamidala@xilinx.com>
-> > > +
-> > > +description: |-
-> > > +  The AP1302 is a standalone ISP for ON Semiconductor sensors. It interfaces to
-> > > +  up to two RAW CMOS sensors over MIPI CSI-2 connections, processes the two
-> > > +  video streams and outputs YUV frames to the host over a MIPI CSI-2 interface.
-> > > +  Frames are output side by side or on two virtual channels.
-> > > +
-> > > +  The sensors must be identical. They are connected to the AP1302 on dedicated
-> > > +  I2C buses, and are controlled by the AP1302 firmware. They are not accessible
-> > > +  from the host.
-> >
-> > In your case, but in general I'd assume whatever sensors are used here
-> > could be attached directly to an SoC with a built-in ISP?
->
-> That is correct, the same sensors can be used with a different ISP
-> (built-in or not), or even without any ISP.
->
-> > The model and
-> > power supplies you specify wouldn't be different, so I think the same
-> > binding could be used for both. Though here, you probably just need a
-> > subset. More below.
-> >
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: onnn,ap1302
-> > > +
-> > > +  reg:
-> > > +    description: I2C device address.
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    description: Reference to the CLK clock.
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    description: Reference to the GPIO connected to the RST pin (active low).
-> > > +    maxItems: 1
-> > > +
-> > > +  standby-gpios:
-> > > +    description:
-> > > +      Reference to the GPIO connected to the STANDBY pin (active high).
-> > > +    maxItems: 1
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    unevaluatedProperties: false
-> > > +    description: MIPI CSI-2 output interface to the host.
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          clock-noncontinuous:
-> > > +            type: boolean
-> > > +
-> > > +          data-lanes:
-> > > +            oneOf:
-> > > +              - items:
-> > > +                  - const: 1
-> > > +              - items:
-> > > +                  - const: 1
-> > > +                  - const: 2
-> > > +              - items:
-> > > +                  - const: 1
-> > > +                  - const: 2
-> > > +                  - const: 3
-> > > +                  - const: 4
-> > > +
-> > > +        required:
-> > > +          - data-lanes
-> > > +
-> > > +  sensors:
-> > > +    type: object
-> > > +    description: List of connected sensors
-> > > +
-> > > +    properties:
-> > > +      "#address-cells":
-> > > +        const: 1
-> > > +
-> > > +      "#size-cells":
-> > > +        const: 0
-> > > +
-> > > +      onnn,model:
-> > > +        $ref: "/schemas/types.yaml#/definitions/string"
-> > > +        description: |
-> > > +          Model of the connected sensors. Must be a valid compatible string.
-> >
-> > Then make it a compatible string and move into each child node.
->
-> We started with that, but considered that it made mistakes more easily
-> in the device tree. As the two sensors have to be identical (it's a
-> limitation of the AP1302), moving the model to the sensor nodes means
-> that someone could set two different models, and the driver will have to
-> include corresponding validation code. It's more code on the driver
-> side, and more complexity on the DT side. Does it actually bring us
-> anything ?
+For some reason apq8016-sbc, apq8096-db820c, msm8916-mtp and msm8996-mtp
+were added as separate .dts and .dtsi files where the first only contains
+the model name and the latter contains most of the actual definitions.
+Perhaps this was done with the expectation that there would be other
+devices also making use of exactly the same. However, this has not
+been the case until now and it also seems unlikely in the future.
+Having the extra .dtsi only clutters the file list and provides
+little benefit.
 
-1 schema instead of 2.
+Move the contents of the .dtsi into the .dts file to make this consistent
+with most other devices that simply define everything in the .dts.
 
-That doesn't really seem much more complex given you probably need to
-make sure you have 2 and only 2 child nodes. You're checking a
-property either outside or inside a loop:
+There are no functional changes introduced by this patch:
+The compiled ".dtb"s are completely identical.
 
-// check model or...
-// for_each_of_child_node()
-   // ...check compatible
-   // parse rest of node
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Note that Git generates a terrible diff by default for this patch.
+(It tries to move the contents of the much longer .dtsi into the .dts
+ rather than the other way around...)
 
-// check 2 nodes setup.
+I had to use some magic to get a properly readable diff, let me know
+if this causes any problems for some reason.
+---
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts            | 13 -------------
+ .../dts/qcom/{apq8016-sbc.dtsi => apq8016-sbc.dts}  |  5 +++++
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts         | 13 -------------
+ .../{apq8096-db820c.dtsi => apq8096-db820c.dts}     |  5 +++++
+ arch/arm64/boot/dts/qcom/msm8916-mtp.dts            | 13 -------------
+ .../dts/qcom/{msm8916-mtp.dtsi => msm8916-mtp.dts}  |  5 +++++
+ arch/arm64/boot/dts/qcom/msm8996-mtp.dts            | 13 -------------
+ .../dts/qcom/{msm8996-mtp.dtsi => msm8996-mtp.dts}  |  5 +++++
+ 8 files changed, 20 insertions(+), 52 deletions(-)
+ delete mode 100644 arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+ rename arch/arm64/boot/dts/qcom/{apq8016-sbc.dtsi => apq8016-sbc.dts} (99%)
+ delete mode 100644 arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+ rename arch/arm64/boot/dts/qcom/{apq8096-db820c.dtsi => apq8096-db820c.dts} (99%)
+ delete mode 100644 arch/arm64/boot/dts/qcom/msm8916-mtp.dts
+ rename arch/arm64/boot/dts/qcom/{msm8916-mtp.dtsi => msm8916-mtp.dts} (68%)
+ delete mode 100644 arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+ rename arch/arm64/boot/dts/qcom/{msm8996-mtp.dtsi => msm8996-mtp.dts} (78%)
 
->
-> > > +
-> > > +          If no sensor is connected, this property must no be specified, and
-> > > +          the AP1302 can be used with it's internal test pattern generator.
-> > > +
-> > > +    patternProperties:
-> > > +      "^sensor@[01]":
-> > > +        type: object
-> > > +        description: |
-> > > +          Sensors connected to the first and second input, with one node per
-> > > +          sensor.
-> > > +
-> > > +        properties:
-> > > +          reg:
-> > > +            description: AP1302 input port number
-> > > +            maxItems: 1
-> >
-> > items:
-> >   - enum: [ 0, 1]
-> >
-> > > +
-> > > +        patternProperties:
-> > > +          ".*-supply":
-> >
-> > You need to list the supplies out.
->
-> Fair point, given that we have a list of supply names per sensor in the
-> AP1302 driver.
->
-> > I would make this a schema for the
-> > sensor along with compatible. Here, you could either reference those if
-> > you want to document the list of supported sensors or don't reference
-> > them and just document 'reg'. With a compatible, the schema will be
-> > applied anyways.
->
-> This I'm more concerned about. The sensors may be the same when used
-> with the AP1302 or when used standalone, but their integration in the
-> system is quite different. With the AP1302, the reg value is the AP1302
-> port number, while in the standalone case, it's an I2C address. We're
-> just lucky that the #address-cells and #size-cells happen to be the same
-> in both cases.
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+deleted file mode 100644
+index f3c0dbfd0a23..000000000000
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
++++ /dev/null
+@@ -1,13 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+- */
+-
+-/dts-v1/;
+-
+-#include "apq8016-sbc.dtsi"
+-
+-/ {
+-	model = "Qualcomm Technologies, Inc. APQ 8016 SBC";
+-	compatible = "qcom,apq8016-sbc", "qcom,apq8016";
+-};
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+similarity index 99%
+rename from arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
+rename to arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+index 1c097098f1e0..a5320d6d30e7 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+@@ -3,6 +3,8 @@
+  * Copyright (c) 2015, The Linux Foundation. All rights reserved.
+  */
+ 
++/dts-v1/;
++
+ #include "msm8916-pm8916.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+@@ -11,6 +13,9 @@
+ #include <dt-bindings/sound/apq8016-lpass.h>
+ 
+ / {
++	model = "Qualcomm Technologies, Inc. APQ 8016 SBC";
++	compatible = "qcom,apq8016-sbc", "qcom,apq8016";
++
+ 	aliases {
+ 		serial0 = &blsp1_uart2;
+ 		serial1 = &blsp1_uart1;
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+deleted file mode 100644
+index 757afa27424d..000000000000
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
++++ /dev/null
+@@ -1,13 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
+- */
+-
+-/dts-v1/;
+-
+-#include "apq8096-db820c.dtsi"
+-
+-/ {
+-	model = "Qualcomm Technologies, Inc. DB820c";
+-	compatible = "arrow,apq8096-db820c", "qcom,apq8096-sbc", "qcom,apq8096";
+-};
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+similarity index 99%
+rename from arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+rename to arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+index eca428ab2517..d01a512634cf 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+@@ -3,6 +3,8 @@
+  * Copyright (c) 2014-2016, The Linux Foundation. All rights reserved.
+  */
+ 
++/dts-v1/;
++
+ #include "msm8996.dtsi"
+ #include "pm8994.dtsi"
+ #include "pmi8994.dtsi"
+@@ -40,6 +42,9 @@
+  */
+ 
+ / {
++	model = "Qualcomm Technologies, Inc. DB820c";
++	compatible = "arrow,apq8096-db820c", "qcom,apq8096-sbc", "qcom,apq8096";
++
+ 	aliases {
+ 		serial0 = &blsp2_uart2;
+ 		serial1 = &blsp2_uart3;
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-mtp.dts b/arch/arm64/boot/dts/qcom/msm8916-mtp.dts
+deleted file mode 100644
+index d66c15538785..000000000000
+--- a/arch/arm64/boot/dts/qcom/msm8916-mtp.dts
++++ /dev/null
+@@ -1,13 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+- */
+-
+-/dts-v1/;
+-
+-#include "msm8916-mtp.dtsi"
+-
+-/ {
+-	model = "Qualcomm Technologies, Inc. MSM 8916 MTP";
+-	compatible = "qcom,msm8916-mtp", "qcom,msm8916-mtp/1", "qcom,msm8916";
+-};
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8916-mtp.dts
+similarity index 68%
+rename from arch/arm64/boot/dts/qcom/msm8916-mtp.dtsi
+rename to arch/arm64/boot/dts/qcom/msm8916-mtp.dts
+index 1bd05046cdeb..7c0ceb3cff45 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-mtp.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-mtp.dts
+@@ -3,9 +3,14 @@
+  * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+  */
+ 
++/dts-v1/;
++
+ #include "msm8916-pm8916.dtsi"
+ 
+ / {
++	model = "Qualcomm Technologies, Inc. MSM 8916 MTP";
++	compatible = "qcom,msm8916-mtp", "qcom,msm8916-mtp/1", "qcom,msm8916";
++
+ 	aliases {
+ 		serial0 = &blsp1_uart2;
+ 		usid0 = &pm8916_0;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+deleted file mode 100644
+index 45ed594c1b9c..000000000000
+--- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
++++ /dev/null
+@@ -1,13 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+- */
+-
+-/dts-v1/;
+-
+-#include "msm8996-mtp.dtsi"
+-
+-/ {
+-	model = "Qualcomm Technologies, Inc. MSM 8996 MTP";
+-	compatible = "qcom,msm8996-mtp";
+-};
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-mtp.dtsi b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+similarity index 78%
+rename from arch/arm64/boot/dts/qcom/msm8996-mtp.dtsi
+rename to arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+index ac43a91f1104..7d9fc35bc7a0 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-mtp.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996-mtp.dts
+@@ -3,9 +3,14 @@
+  * Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+  */
+ 
++/dts-v1/;
++
+ #include "msm8996.dtsi"
+ 
+ / {
++	model = "Qualcomm Technologies, Inc. MSM 8996 MTP";
++	compatible = "qcom,msm8996-mtp";
++
+ 	aliases {
+ 		serial0 = &blsp2_uart2;
+ 	};
+-- 
+2.33.0-magic42
 
-'reg' and everything associated with it are properties of the bus and
-outside the scope of this binding. We have the same binding on devices
-that can be on I2C or SPI for example.
-
-> In the standalone case, there will be more properties
-> that are not applicable here. How would we prevent all those other
-> properties from being evaluated in the AP1302 case ?
-
-I'm not all that worried about that, but you could have a different
-compatible if you really wanted.
-
-Rob
