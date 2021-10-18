@@ -2,160 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA15432815
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 21:59:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F4AF432827
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 22:07:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233508AbhJRUBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 16:01:38 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:38619 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231903AbhJRUBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 16:01:38 -0400
-Received: by mail-oi1-f171.google.com with SMTP id t4so1362997oie.5;
-        Mon, 18 Oct 2021 12:59:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/KO8MvppjA9yDmahjXb0FodhN5V5+dS+Knni3+3rua8=;
-        b=OXISQ3XbPzCnnBtuWo578IOOJ9k/ITgw6iv5dA0EBkqypyRNRJ6ur8It/vaxhgMcAD
-         hZG4FOlbCAn7SXuF/sZ+dsPyF8LmQ/lCfo+JztGCu8l/KB3Hm1oO49iLWnAcLyBXIkH1
-         I0X6T6YiYvJtG9xZs4qzmU8+p+nU+rCjBt3ygUnmA2KAGE/cq7k3mbxR8ns4o4R/AxZz
-         5FFB8ju/bxh1BlHLHORH0SZUCslC9BJdrxcCiXn9uIvqwNNGkCZ46wxcwxcx5YKJ9jZc
-         GKbuMOTiyM8XN50aDXYwt1ViVi4Vfk+wuONjHEhotVLvXY1fKV4JlJITOrwfC4TUq4ap
-         uvwQ==
-X-Gm-Message-State: AOAM531BBvwrKsZnnSlfdj0qVL0Oaajajq/txqpDMpfoNP6AMt5uerK7
-        bS2kOd6gew/fYuqGlS7Q1g==
-X-Google-Smtp-Source: ABdhPJxJBK2iXYAuAaPiu+Bn51zOnUYWqFsKlnTyUsyakCVVxNcpPMq+Uxw4DmwcsHfAnJAn+lhUEQ==
-X-Received: by 2002:a05:6808:300a:: with SMTP id ay10mr820353oib.36.1634587166105;
-        Mon, 18 Oct 2021 12:59:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l1sm1691404oic.30.2021.10.18.12.59.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 12:59:25 -0700 (PDT)
-Received: (nullmailer pid 2853247 invoked by uid 1000);
-        Mon, 18 Oct 2021 19:59:24 -0000
-Date:   Mon, 18 Oct 2021 14:59:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2] dt-bindings: mediatek: add adsp-mbox document
-Message-ID: <YW3SHDBj2Q1dS8Wp@robh.at.kernel.org>
-References: <20211008084030.2439-1-Allen-KH.Cheng@mediatek.com>
+        id S231811AbhJRUKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 16:10:02 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:53002 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230298AbhJRUKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 16:10:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634587670; x=1666123670;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=jU2TIbW2nRIVyj8Hr+GCR3NNoC+DnWdiYc46k5ir78Q=;
+  b=SVkt1rmFzI7oH2eP4pI6+2wa/CdXNTueyehCsuGczE/HvqnXsqSvrAa7
+   RcVC2xFe2BBgjkCMspd6ulecF2FxEZ4ec45Kr0O/vWlcvhBKQBvBAtTwM
+   Bl2OSTBrseiSKDpqOZITS+lHdaGmJCTDVF0RZ7g1SdT0KYR4pw1vH9HkP
+   kJ7c9/FlwIDbKiBDYKLRtCPvJT1k7qFogx44Xm1JFF0L/xbSd8zQ2j+AQ
+   AvRdmhT3d6ogrtyOJHTtK8t6jA8MDV6hukdRvnkVzwcjIZndWOPOYkvME
+   dVSsDFZmSB6I5ZB3q43BQdIG2bs8WocjzZgl43Ybybe73Yw1f6jlSlSQe
+   g==;
+IronPort-SDR: LNpVprfZsbaYgkP7MRcdRpXlrF8FZ7NmDCIjbBzr/YXNX5iKtjTHEzTX0Rc8dq4m9GJR0WCVW/
+ tem9yOwqBlicNf6OPg2kdRo0LJaLVNKFaPoxn6eL6m0iI6Htie4nKzxwNDGKOqOAL2C6jUojTb
+ shEztbC6YHsC7mnWcP2HgdK2ltpuPNSdLySJ+/wE/iuDjvXXnH8PqJsGd0gD5SlKB9DrUSDyw3
+ 8aB1kIn6kb3lUdNUF4J3Qb+0qRS/janzi8NMH84cEpX2rwqCbbqL1mAkMrCnboo7suUZIsqFqr
+ L0LmKv4qzw3Md4KgPe4UZx2B
+X-IronPort-AV: E=Sophos;i="5.85,382,1624345200"; 
+   d="scan'208";a="133487798"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Oct 2021 13:07:46 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 18 Oct 2021 13:07:43 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Mon, 18 Oct 2021 13:07:43 -0700
+Date:   Mon, 18 Oct 2021 22:09:15 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+CC:     <robh+dt@kernel.org>, <mturquette@baylibre.com>,
+        <sboyd@kernel.org>, <nicolas.ferre@microchip.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Eugen.Hristev@microchip.com>, <Manohar.Puri@microchip.com>
+Subject: Re: [PATCH v8 3/3] clk: lan966x: Add lan966x SoC clock driver
+Message-ID: <20211018200915.5jdgf6lqrs633vck@soft-dev3-1.localhost>
+References: <20211008082635.31774-1-kavyasree.kotagiri@microchip.com>
+ <20211008082635.31774-4-kavyasree.kotagiri@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20211008084030.2439-1-Allen-KH.Cheng@mediatek.com>
+In-Reply-To: <20211008082635.31774-4-kavyasree.kotagiri@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 08, 2021 at 04:40:30PM +0800, Allen-KH Cheng wrote:
-> This patch adds document for mediatek adsp mbox
+The 10/08/2021 13:56, Kavyasree Kotagiri wrote:
+> This adds Generic Clock Controller driver for lan966x SoC.
+
+Hi Kavya,
+
 > 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> ---
->  .../bindings/mailbox/mtk,adsp-mbox.yaml       | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
-> new file mode 100644
-> index 000000000000..9028e403ceda
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/mtk,adsp-mbox.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +#define DIV_MAX		256
 > +
-> +title: Mediatek ADSP mailbox
-> +
-> +maintainers:
-> +  - Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> +
-> +description: |
-> +  The MTK ADSP mailbox Inter-Processor Communication (IPC) enables the SoC
-> +  to ommunicate with ADSP by passing messages through two mailbox channels.
-> +  The MTK ADSP mailbox IPC also provides the ability for one processor to
-> +  signal the other processor using interrupts.
-> +
-> +  mbox0 is handling ipc reply
-> +  mbox1 is handling ipc request
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: mediatek,mt8195-adsp-mbox
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    description: 
-> +      Physical address base for dsp mbox base registers.
-> +    maxItems: 2
-> +    minItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: reg_mbox0 
-> +      - const: reg_mbox1
+> +static const char *clk_names[N_CLOCKS] = {
+> +	"qspi0", "qspi1", "qspi2", "sdmmc0",
+> +	"pi", "mcan0", "mcan1", "flexcom0",
+> +	"flexcom1", "flexcom2", "flexcom3",
+> +	"flexcom4", "timer", "usb_refclk",
+> +};
 
-'reg_' is redundant.
+Aren't these names a little bit generic, especially 'timer'?
+The problem that I am seeing, if there is another clock driver that
+register a clock with the same name, then this will fail. Here is the
+check for this[1]
 
 > +
-> +  interrupts:
-> +    description: 
-> +      adsp mbox interrupt
-> +    maxItems: 2
-> +    minItems: 2
+> +static int lan966x_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct clk_hw_onecell_data *hw_data;
+> +	struct device *dev = &pdev->dev;
+> +	int i;
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: irq_mbox0 
-> +      - const: irq_mbox1
+> +	hw_data = devm_kzalloc(dev, sizeof(*hw_data), GFP_KERNEL);
 
-'irq_' is redundant.
+Is this correct? Shouldn't be
 
+devm_kzalloc(dev, struct_size(hw_data, hws, N_CLOCKS), GFP_KERNEL);
 
-Is this really 1 h/w block? Kind of looks like 2 instances of a block.
-
+> +	if (!hw_data)
+> +		return -ENOMEM;
 > +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
 > +
-> +additionalProperties: false
+> +	init.ops = &lan966x_gck_ops;
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +	hw_data->num = N_CLOCKS;
 > +
-> +    adsp_mailbox:adsp_mailbox@10816000 {
-> +        compatible = "mediatek,mt8195-adsp-mbox";
-> +        #mbox-cells = <1>;
-> +        reg = <0x10816000 0x1000>,
-> +              <0x10817000 0x1000>;
-> +        reg-names = "reg_mbox0", "reg_mbox1";
-> +        interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH 0>,
-> +                     <GIC_SPI 703 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        interrupt-names = "irq_mbox0", "irq_mbox1";
-> +    };
+> +	for (i = 0; i < N_CLOCKS; i++) {
+> +		init.name = clk_names[i];
+> +		hw_data->hws[i] = lan966x_gck_clk_register(dev, i);
+> +		if (IS_ERR(hw_data->hws[i])) {
+> +			dev_err(dev, "failed to register %s clock\n",
+> +				init.name);
+> +			return PTR_ERR(hw_data->hws[i]);
+> +		}
+> +	}
 > +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, hw_data);
+> +}
+> +
+> +static const struct of_device_id lan966x_clk_dt_ids[] = {
+> +	{ .compatible = "microchip,lan966x-gck", },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, lan966x_clk_dt_ids);
+> +
+> +static struct platform_driver lan966x_clk_driver = {
+> +	.probe  = lan966x_clk_probe,
+> +	.driver = {
+> +		.name = "lan966x-clk",
+> +		.of_match_table = lan966x_clk_dt_ids,
+> +	},
+> +};
+> +builtin_platform_driver(lan966x_clk_driver);
+> +
+> +MODULE_AUTHOR("Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>");
+> +MODULE_DESCRIPTION("LAN966X clock driver");
+> +MODULE_LICENSE("GPL v2");
 > -- 
-> 2.18.0
+> 2.17.1
 > 
-> 
+
+[1] https://elixir.bootlin.com/linux/latest/source/drivers/clk/clk.c#L3423
+
+-- 
+/Horatiu
