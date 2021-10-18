@@ -2,172 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 269D74323EB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 718694323FC
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231896AbhJRQhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 12:37:33 -0400
-Received: from mail-pj1-f50.google.com ([209.85.216.50]:54958 "EHLO
-        mail-pj1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbhJRQhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:37:33 -0400
-Received: by mail-pj1-f50.google.com with SMTP id np13so12599211pjb.4;
-        Mon, 18 Oct 2021 09:35:22 -0700 (PDT)
+        id S233478AbhJRQnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 12:43:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232251AbhJRQnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:43:40 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45028C061768
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:41:29 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id n63so585881oif.7
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:41:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=m/74ZeSghoGWz2Y5U8O6ZsL9J98hmrFFn2k+ASasuxI=;
+        b=V/Sg2umzcGxAR3kKFG3Fy5qzN2KDcjvbNbDPZVaGE9ltjEXcESslh7PJ2o2/ybmpNP
+         UFKEXP1js86ftmV1k/I7e/TrkYC6/wQSVyV+vk68P+lRlhHBXg7o+2ZGRYT/JZ6SJ9sC
+         Rzo6euFvfLpT+re3VFTWKSb+c74m/3JcGY6wipnJ1dHRejNOXrIUSd1GaebdANSi3Qb7
+         9Mcow/pJUlnMAbcheP/las1Om3h3m3i6zigpriw6Z/MENOdDrDyQkO9R7p7b9ZH8aNLU
+         qKXLUBvNx2XeEqdc9CfCezeBu8rx3mP4+VPFrBP9p2Bpw2JTmyJzSb4QNdb5VMtNxwoL
+         c/iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=t0ejuGV5Mekv33Ke5yZ2hDIuNqOJx8vNh5URYlHnJto=;
-        b=6gJgbjgOz8H1lvQqWP/wAmtY+y/pqX+6z+6K3PbPnXm+FZqvHp1IfZ3forvshPWJz+
-         paM31sN7f7HAKISYLy0CQVSRH9CZWbVn1HNEOpwcaspXayWD83mUDscDhvQTOZossZwB
-         9o7z/AoBevUzOramcUFrp1FyxwqHyiUzvtEz1wenNK9NfnY/Y954tyaLw9jCuGUcUORb
-         DtJa1VD4ezGvlZiSWQQ/43uHQ6pghFWJ9CeGp00SM2m4AClNnfjBpaatLDQj5dpOFEeO
-         gXXYzAa95fdCq5SdaS0JqEfF532DdHwlhTWNQpWVpSqMrv5IRUGt208DnegCkK5pmJ88
-         igMA==
-X-Gm-Message-State: AOAM532rLKtk1+J952sNkMhbosBBnvWLhRUVNy+OMNnSw+oLmClUur5l
-        rwptyeuuLnmZEg8PQ1Ae88R2TDcYVUA+TvxtccA=
-X-Google-Smtp-Source: ABdhPJwvaMOxnoenZJe9/ILtrcFiCQv9WRvnnA+r4NIrZLRlZciSQOo/t9cppApR2frz6pS5hFOQgQA/Yz9/Zrjvuhw=
-X-Received: by 2002:a17:902:7783:b0:13d:fee6:8095 with SMTP id
- o3-20020a170902778300b0013dfee68095mr28042663pll.7.1634574921896; Mon, 18 Oct
- 2021 09:35:21 -0700 (PDT)
+        bh=m/74ZeSghoGWz2Y5U8O6ZsL9J98hmrFFn2k+ASasuxI=;
+        b=PvfUGnZMZYqPXUShwqUfgdBYoLS/QlLsH9ktviQ4wwPZBerVoi7HYJ6NAX1Eq5huTz
+         9Za6WPkwQUqEJ/IbkDAHUguesUC8hxENBxbUMPui4Xy9uCorpNc3bd919xi9ShIie937
+         No+qsk4y5jRT8WnAts6pys4hsHpjwhj+5vpg/gOSZV0ZzYlAZXOZA/CQwGBfTD/IkcAQ
+         Xl5qo1fpsrmsuc897r+Em+ViDYC9HUHpZoeRxd+Wi8pzlMlS+dODY8zAIp6gKglMZ0qn
+         R5D8KV83Dw0oBSW0KGb3cwFLLqzpx8as+PSxUF3T3o3WRM7z/FDVhee/xG97Zc82YL+d
+         VY3w==
+X-Gm-Message-State: AOAM530FsXnDSqPYYNs8vJfrkQ1kzU7RhOmaQv34SQgdEnVZVJBziY6T
+        H1J1bVSybH1O4JrTbNAVaSp6FRPGg2+MNYRQvL7nwA==
+X-Google-Smtp-Source: ABdhPJyhI/boD/Dqt4cOu1o+91uOGjUh5J0lLqztunxb38ijIyGLzE0BAxzGggtm1QdOFWnWdOHyLHlnrRrD206Ea5U=
+X-Received: by 2002:aca:58d6:: with SMTP id m205mr737607oib.126.1634575288536;
+ Mon, 18 Oct 2021 09:41:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-13-kernel@esmil.dk>
- <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
- <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
- <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
- <CANBLGcxriKLZ+CKUsj5sviW8FdHnWTF2koROwmAb=G2tbmE6vQ@mail.gmail.com> <CAHp75VccSDLVbs1sF_-1zghWyLKtKKV1qtxOxZZ-cS0e6S-sBA@mail.gmail.com>
-In-Reply-To: <CAHp75VccSDLVbs1sF_-1zghWyLKtKKV1qtxOxZZ-cS0e6S-sBA@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Mon, 18 Oct 2021 18:35:10 +0200
-Message-ID: <CANBLGcw1qMB7r7TbuQEevOPHq94wAtZNs=yFQ3UP_DEREvGz6g@mail.gmail.com>
-Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-2-stephan@gerhold.net>
+ <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com> <YW1u5UlmrypFxp9C@gerhold.net>
+In-Reply-To: <YW1u5UlmrypFxp9C@gerhold.net>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 18 Oct 2021 22:11:17 +0530
+Message-ID: <CAH=2Ntz9BLKpQCPtUOtHp6HDS8R6AQf5XVDUNbdRvYSn=pn8Rg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/4] dt-bindings: dmaengine: bam_dma: Add
+ "powered remotely" mode
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 at 18:24, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Mon, Oct 18, 2021 at 6:56 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > On Mon, 18 Oct 2021 at 17:48, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Mon, Oct 18, 2021 at 6:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > > On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+Hi,
+
+On Mon, 18 Oct 2021 at 18:26, Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> ...
->
-> > > > > > +               case PIN_CONFIG_BIAS_DISABLE:
-> > > > >
-> > > > > > +                       mask |= PAD_BIAS_MASK;
-> > > > >
-> > > > > Use it...
-> > > > >
-> > > > > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
-> > > > >
-> > > > > ...here. Ditto for the similar cases in this function and elsewhere.
-> > > >
-> > > > I don't follow. How do you want me to use mask? If I did value =
-> > > > (value & ~mask) | PAD_BIAS_DISABLE; then I'd wipe the previous
-> > > > configuration. Eg. suppose the first config is the drive strength and
-> > > > second disables bias. Then on the 2nd loop mask =
-> > > > PAD_DRIVE_STRENGTH_MASK | PAD_BIAS_MASK and the drive strength value
-> > > > would be wiped.
+> On Mon, Oct 18, 2021 at 05:04:31PM +0530, Bhupesh Sharma wrote:
+> > On Mon, 11 Oct 2021 at 20:12, Stephan Gerhold <stephan@gerhold.net> wrote:
 > > >
-> > > Collect masks and new values in temporary variables and apply them
-> > > once after the loop is done, no?
+> > > In some configurations, the BAM DMA controller is set up by a remote
+> > > processor and the local processor can simply start making use of it
+> > > without setting up the BAM. This is already supported using the
+> > > "qcom,controlled-remotely" property.
+> > >
+> > > However, for some reason another possible configuration is that the
+> > > remote processor is responsible for powering up the BAM, but we are
+> > > still responsible for initializing it (e.g. resetting it etc). Add
+> > > a "qcom,powered-remotely" property to describe that configuration.
+> > >
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > ---
+> > > Changes since RFC:
+> > >   - Rename qcom,remote-power-collapse -> qcom,powered-remotely
+> > >     for consistency with "qcom,controlled-remotely"
+> > >
+> > > NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
+> > >       so this could also go through the dmaengine tree.
+> > >
+> > > Also note that there is an ongoing effort to convert these bindings
+> > > to DT schema but sadly there were not any updates for a while. :/
+> > > https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
 > >
-> > But that's exactly what the code does. It merges all the config
-> > options into a single mask and value so we only need to do rmw on the
-> > register once.
->
-> Then masking the value makes no sense.
-> What you should have is simply as
->
->   mask |= FOO;
->   value |= BAR;
-
-Yeah, but then we could get into weird states if the device tree
-specifies both bias-disable and bias-pull-up by mistake. This code is
-written so that only the last valid state is chosen.
-
-
-> ...
->
-> > > > > > +       ret = clk_prepare_enable(clk);
-> > > > > > +       if (ret) {
-> > > > >
-> > > > > > +               reset_control_deassert(rst);
-> > > > >
-> > > > > Use devm_add_action_or_reset().
-> > > >
-> > > > I don't see how that is better.
-> > >
-> > > Pity. The rule of thumb is to either try to use devm_*() everywhere in
-> > > the probe, or don't use it at all. Above is the more-or-less standard
-> > > pattern where devn_add_action_or_reset() is being used in the entire
-> > > kernel.
-> > >
-> > > > Then I'd first need to call that and
-> > > > check for errors, but just on the line below enabling the clock the
-> > > > reset line is deasserted anyway, so then the action isn't needed any
-> > > > longer. So that 3 lines of code for devm_add_action_or_reset +
-> > > > lingering unneeded action or code to remove it again vs. just the line
-> > > > above.
-> > >
-> > > Then don't use devm_*() at all. What's the point?
+> > Seems you missed the latest series posted last week - [1]. Sorry I got
+> > a bit delayed posting it due to being caught up in other patches.
 > >
-> > I'm confused. So you wan't an unneeded action to linger because the
-> > probe function temporarily asserts reset for 3 lines of code?
->
-> I;m talking about clk_prepare_enable().
-
-Ok, you wrote your comment under the reset_control_deassert call. How
-would devm_add_action_or_reset for clk_prepare_enable work?
-
-> ...
->
-> > > > > > +       sfp->gc.of_node = dev->of_node;
-> > > > >
-> > > > > Isn't GPIO library do this for you?
-> > > >
-> > > > If it does I can't find it.
-> > >
-> > > Heh... `man git grep`
-> > > Hint: `git grep -n 'of_node = .*of_node' -- drivers/gpio/gpiolib*`
+> > Maybe you can rebase your patch on the same and use the YAML bindings
+> > for the qcom,bam_dma controller.
 > >
-> > That's exactly what I did.
+> > [1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t
+> >
 >
-> Now look at the result and find the correct place where it's done.
-> Btw, all hits are in the very same function.
+> Ah, you're right sorry! Seems like you sent it two days after I sent the
+> v2 of this patch. Thanks a lot for continuing work on this! :)
 >
-> --
-> With Best Regards,
-> Andy Shevchenko
+> Since I already sent v3 of this patch earlier, I think it is best if
+> I wait a bit first and see if Vinod has any comments or still wants to
+> take it for 5.16. Should be simple to rebase either of our patches on
+> the other one.
+
+Sure, let's wait for Vinod's comments.
+
+Regards,
+Bhupesh
