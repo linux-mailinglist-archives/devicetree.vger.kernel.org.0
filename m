@@ -2,151 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68441432363
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BE843236F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 18:03:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232658AbhJRP62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 11:58:28 -0400
-Received: from mail-pl1-f169.google.com ([209.85.214.169]:42978 "EHLO
-        mail-pl1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbhJRP62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 11:58:28 -0400
-Received: by mail-pl1-f169.google.com with SMTP id l6so11536201plh.9;
-        Mon, 18 Oct 2021 08:56:17 -0700 (PDT)
+        id S231977AbhJRQGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 12:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231787AbhJRQF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 12:05:59 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30470C061745
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:03:48 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id e3so42067563wrc.11
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 09:03:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=U+OIiOCMy27mbGAVIQWKPL+EskS0hM/mO2G0dhzOV/w=;
+        b=jvI5XDF/reW/lpq7AGNTSHhH/RptkMOZEnZr0m2g7jEJB8NC/GMARXVIORxhGwt1Mw
+         +o0kFqxpPGJ6aS5C8AAq4g03pNPwx9Mw7IyGBjuwyG4RoLlPfxTygaPaTqEC39VraXYa
+         M36mwhnX5wGM+lFGhylCkNeZY+2CCj3D6P8teKBcjRGsVU0mTU3J4y/ZpJ24FJHFo8dh
+         XekrGaczuX1zRfdUFw+6xqz8FPi7d4pb2dpy6kCWQLDFQ7Pri0itsDw6zcjn/pCADJ26
+         A8UmzJ/2cb2s4gZXMgAYWS25NAPkfaHhaQ2Ilcr4L+b58QdXl3n/C+z31kwYfjJzR5o9
+         kSqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Sz77FGY3TYZu+DudMczIxYP7Uz431ugMBdntq9R2j6g=;
-        b=fMWAyxCGyUQl41hh95+Y8oHBNoYwVoSs00yjW8OGqOvMGdwcOk4D0Jz0g1PxnwdVqa
-         RdcB8gwaQys115HjZ5tgNbVvMZldZbwHan8ozsqWBLY+7JA5L03Dvyf79URvd/cU97yq
-         DgFrbqLL26i1Kjzcr9PJ1Yx8BrAuYdUcTITtI+aO+j/viJVpR+M9JKFVaVsq2EY/wrwQ
-         L8i4oaGaRjwkpr+jzqaIe1viP0ACpSGFteZ1h5H+cTpJXkKMUlo5joU2PZAwc/lA8noc
-         v4awG+mUghOaHChEh/Syghmeqdu66bufJUn51UqpIIwHaPxWcTvgyadhc5vHsyzd4Gkp
-         gn1w==
-X-Gm-Message-State: AOAM533gppni8c+ydFOYQ0Hwgd/4LX1H5lgnCEvY+GckzDtuWMdfstti
-        zgd6Shj/5bhKxpOjMtIH0BijAQLjl9LtovCkKEg=
-X-Google-Smtp-Source: ABdhPJytbrnjvXDqXeJ32Cr4x0roS+Ri36aOfdjuS8Ff/22AEVjBwE3WwhfM7pfyCnhYscJ4ErQEhShdpzuzuK3o9YA=
-X-Received: by 2002:a17:90b:694:: with SMTP id m20mr48766296pjz.160.1634572576629;
- Mon, 18 Oct 2021 08:56:16 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=U+OIiOCMy27mbGAVIQWKPL+EskS0hM/mO2G0dhzOV/w=;
+        b=tB7JQW2HgxgsvheReZ2+80WSJaGzi2EEt04XoYDctRpB6I4o2hUp4sGerf80YOE7iw
+         yYwTK4bb6N0EhPBrKTjElUPDPAOMkprJi/M09Olk7zpKTog58fNH6XocZgN2BsQgnWSA
+         ASYiThgKFvkP9kCFw0TQhRxu27RblojcV+uz8Z1bPQmFH97Trinwn3zJYqGH9zI5vFfx
+         W0TJD2Kfkas4VFqDExJ+ighN9IGB0K7NUQSIp8N1cEXR0Z/wnODcWV5RgMAizaMevaAn
+         0YLTUnx35tGFvgiPT0S6njIdJx5p/0r8yWNClVcE6vDkTwIXZ6nCmAI0VtsvHTR+Efbn
+         +UVg==
+X-Gm-Message-State: AOAM531TnOM95OD3Aq8Caz5nMOl7gFQk14xmk7SxTseouV6yNNxOjXb4
+        YnxE+Cmn9qMMZzNjxyiv/8rKnw==
+X-Google-Smtp-Source: ABdhPJyQuCKOS0zcwDTms53/DFCPp1vNgudJJWPlT53tuVhpwDzWhLqnggucx92t2Vco/MSTf8WIXA==
+X-Received: by 2002:adf:e7d0:: with SMTP id e16mr36332036wrn.283.1634573026584;
+        Mon, 18 Oct 2021 09:03:46 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:c590:9206:d20a:23bd? ([2a01:e34:ed2f:f020:c590:9206:d20a:23bd])
+        by smtp.googlemail.com with ESMTPSA id d3sm14437830wrb.36.2021.10.18.09.03.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Oct 2021 09:03:46 -0700 (PDT)
+Subject: Re: [PATCH 3/3] thermal: mediatek: add MT8365 thermal driver support
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
+        khilman@baylibre.com
+References: <20211014135636.3644166-1-msp@baylibre.com>
+ <20211014135636.3644166-4-msp@baylibre.com>
+ <33815817-0f64-836a-5417-c614e66e231e@linaro.org>
+ <20211018154001.sj7nc575hln3jkel@blmsp>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <1844fd1b-d3ff-55c1-a98e-54219c3838df@linaro.org>
+Date:   Mon, 18 Oct 2021 18:03:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-13-kernel@esmil.dk>
- <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
- <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com> <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
-In-Reply-To: <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Mon, 18 Oct 2021 17:56:05 +0200
-Message-ID: <CANBLGcxriKLZ+CKUsj5sviW8FdHnWTF2koROwmAb=G2tbmE6vQ@mail.gmail.com>
-Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211018154001.sj7nc575hln3jkel@blmsp>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 at 17:48, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Mon, Oct 18, 2021 at 6:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> When answering, cut down your message to the point, please! It's a bit
-> annoying to remove overquoting...
->
-> ...
->
-> > > > +               case PIN_CONFIG_BIAS_DISABLE:
-> > >
-> > > > +                       mask |= PAD_BIAS_MASK;
-> > >
-> > > Use it...
-> > >
-> > > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
-> > >
-> > > ...here. Ditto for the similar cases in this function and elsewhere.
-> >
-> > I don't follow. How do you want me to use mask? If I did value =
-> > (value & ~mask) | PAD_BIAS_DISABLE; then I'd wipe the previous
-> > configuration. Eg. suppose the first config is the drive strength and
-> > second disables bias. Then on the 2nd loop mask =
-> > PAD_DRIVE_STRENGTH_MASK | PAD_BIAS_MASK and the drive strength value
-> > would be wiped.
->
-> Collect masks and new values in temporary variables and apply them
-> once after the loop is done, no?
 
-But that's exactly what the code does. It merges all the config
-options into a single mask and value so we only need to do rmw on the
-register once.
+Hi Markus,
 
-> ...
->
-> > > > +       ret = clk_prepare_enable(clk);
-> > > > +       if (ret) {
-> > >
-> > > > +               reset_control_deassert(rst);
-> > >
-> > > Use devm_add_action_or_reset().
-> >
-> > I don't see how that is better.
->
-> Pity. The rule of thumb is to either try to use devm_*() everywhere in
-> the probe, or don't use it at all. Above is the more-or-less standard
-> pattern where devn_add_action_or_reset() is being used in the entire
-> kernel.
->
-> > Then I'd first need to call that and
-> > check for errors, but just on the line below enabling the clock the
-> > reset line is deasserted anyway, so then the action isn't needed any
-> > longer. So that 3 lines of code for devm_add_action_or_reset +
-> > lingering unneeded action or code to remove it again vs. just the line
-> > above.
->
-> Then don't use devm_*() at all. What's the point?
+On 18/10/2021 17:40, Markus Schneider-Pargmann wrote:
 
-I'm confused. So you wan't an unneeded action to linger because the
-probe function temporarily asserts reset for 3 lines of code?
+[ ... ]
 
-> ...
->
-> > > > +       sfp->gc.of_node = dev->of_node;
-> > >
-> > > Isn't GPIO library do this for you?
-> >
-> > If it does I can't find it.
->
-> Heh... `man git grep`
-> Hint: `git grep -n 'of_node = .*of_node' -- drivers/gpio/gpiolib*`
+>>
+>>>  	}, {
+>>>  	},
+>>>  };
+>>>  MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
+>>>  
+>>> -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
+>>> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
+>>> +				       void __iomem *apmixed_base)
+>>>  {
+>>>  	int tmp;
+>>>  
+>>> -	tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
+>>> -	tmp &= ~(0x37);
+>>> -	tmp |= 0x1;
+>>> -	writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
+>>> +	if (!mt->conf->apmixed_buffer_ctl_reg)
+>>> +		return;
+>>> +
+>>> +	tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+>>> +	tmp &= mt->conf->apmixed_buffer_ctl_mask;
+>>> +	tmp |= mt->conf->apmixed_buffer_ctl_set;
+>>
+>> What is the goal of these two bits operations ?
+> 
+> mt7622 needs to unset a few bits and set one bit in this register.
+> mt8365 only unsets bits. For this purpose I created a _mask field to
+> unset bits and a _set field to set bits.
+> 
+> Would you suggest a different way?
 
-That's exactly what I did.
+No, I understand what you wanted to do. I was just unsure if there was a
+trick because of the tmp |= 0;
 
-> --
-> With Best Regards,
-> Andy Shevchenko
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
