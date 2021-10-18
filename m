@@ -2,212 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73EC443109B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 08:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6197B4310B3
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 08:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229533AbhJRGgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 02:36:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38462 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230001AbhJRGf6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 02:35:58 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C7DC2610E8;
-        Mon, 18 Oct 2021 06:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634538827;
-        bh=8Duvbt7Tr+2iGsTsmx8skOoyJai429Qy3uMCGXSBySA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e4FZ1PWQO/Uip/YT4S6mgAiC8jjEugYD0gkMGyxz5gPLfmy8aojycaQPpuQJbCVjQ
-         3hzirrqdt6pKz4WtdJOkRn8xFEfx2cn7kSpdWFpUJ3KVusBmKQwR0uXpoKbouE7S25
-         lzdReyNtBEoMjgTudnjeK7hE7lFQ1q84rtmB5W05uySFMWn6sKXDm0uxqm9xbNvDws
-         fLf4guJxmEjyvXk3LogtJrnLRAzuLkoQ8WX2dI0hFB0n3KxKajZJ0DUEl2aofMG15C
-         VeEf26DEHz/OaMw8rAYA01soKQylUZLJm5K7PfytpMClgd0vwCw847s4V6NFRhVGIl
-         7B6/1e9RqlvoQ==
-Date:   Mon, 18 Oct 2021 12:03:42 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, list@opendingux.net,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH 5/5] dmaengine: jz4780: Support bidirectional I/O on one
- channel
-Message-ID: <YW0VRnFGcYFY0+XZ@matsya>
-References: <20211011143652.51976-1-paul@crapouillou.net>
- <20211011143652.51976-6-paul@crapouillou.net>
+        id S230091AbhJRGm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 02:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52946 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229847AbhJRGm3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 02:42:29 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 514BEC06161C
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 23:40:18 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id z20so66792912edc.13
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 23:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20210112.gappssmtp.com; s=20210112;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5/7hBCmpfW9MTjUXgrKdtGWjkgtU8/we8OWRfC8+kMU=;
+        b=jGCiFWIozFtWDE1T+9nxnGqjF2A1pX0+KZyJP2RLpI1vI6tRTql9ktYE+xvnk/+nVT
+         i54qqTOQ8UiOV/6Djx6Ye/m4JtiqqiamvXTRLztf9jzVUnpfGpV1Ws/rwnWQb7B4yxKB
+         o4sjyaGPbV8qTNWy0JTp9g9vY4Tfg0cPTepWFBmMcluYYGabrGcUAkxIRSGLfWis0DfA
+         mtNNqgM6xE+fU9Q1IuONkj74QTkmrfagz4ASHP086615rpO9S1SwknxKofRDQieBsKgh
+         H6Uq1xO14mKNaLR1Zshuql0Tyh8a1C3QmyYImRYCZkn02zfFbSKqndXljCavVNIqwSIj
+         mP8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=5/7hBCmpfW9MTjUXgrKdtGWjkgtU8/we8OWRfC8+kMU=;
+        b=JzcfpiLc3UqK7rnioYBFyym5CajvwSdNL2nn8ilbX/xZimqkHFGQc0ublGiTSbtPNS
+         kTpm+AYsayx4GZI4rr2WHQKVF3Jqw4X6qiQau3M78MyPdURu98+x+e7foL2/eh2x8CZG
+         nFWG4j+3A3DaXq7btaisd6U+HL7B2AKWXStRSHPuLtYLC/iTAzhmd46/fvrk6R9UUd4z
+         D6TDcDjrNbmJ8uQsMjfA9dwMLQLTuQWxIYjwZhSOpOMC7snXtCY+vQv9Xo9Ihobyr+SZ
+         YGirR8KZNeVj8sjUA7rLBnsykSBUIzhU+gxhblKX84xWIyreYh9+fam5qlEPEAYureYj
+         nHCA==
+X-Gm-Message-State: AOAM533mGtdxq1x6aYRt3Y5N55YSOgXlLHXwqhqg+AZRC5rcQG1/FPeP
+        0kXLA11FwJQ11e4ybpFsJDZe+A==
+X-Google-Smtp-Source: ABdhPJwpfA0BoEQhv6pd4Op8P97mbX7msngKe6mKU3AEA7gl3+/5yuT20iGp771CluTA50hpKXe3qw==
+X-Received: by 2002:a17:906:6bce:: with SMTP id t14mr27276140ejs.546.1634539216960;
+        Sun, 17 Oct 2021 23:40:16 -0700 (PDT)
+Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
+        by smtp.gmail.com with ESMTPSA id j22sm8253013ejt.11.2021.10.17.23.40.16
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 17 Oct 2021 23:40:16 -0700 (PDT)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] dt-bindings: display: xilinx: Fix example with psgtr
+Date:   Mon, 18 Oct 2021 08:40:12 +0200
+Message-Id: <a291be294dea6e580ad9acd436742a48b7cd00a2.1634539210.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211011143652.51976-6-paul@crapouillou.net>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-10-21, 16:36, Paul Cercueil wrote:
-> For some devices with only half-duplex capabilities, it doesn't make
-> much sense to use one DMA channel per direction, as both channels will
-> never be active at the same time.
-> 
-> Add support for bidirectional I/O on DMA channels. The client drivers
-> can then request a "tx-rx" DMA channel which will be used for both
-> directions.
-> 
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> ---
->  drivers/dma/dma-jz4780.c | 48 ++++++++++++++++++++++++++--------------
->  1 file changed, 32 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/dma/dma-jz4780.c b/drivers/dma/dma-jz4780.c
-> index 4d62e24ebff9..ee1d50792c32 100644
-> --- a/drivers/dma/dma-jz4780.c
-> +++ b/drivers/dma/dma-jz4780.c
-> @@ -122,6 +122,7 @@ struct jz4780_dma_desc {
->  	dma_addr_t desc_phys;
->  	unsigned int count;
->  	enum dma_transaction_type type;
-> +	uint32_t transfer_type;
+Commit cea0f76a483d ("dt-bindings: phy: Add DT bindings for Xilinx ZynqMP
+PSGTR PHY") clearly defines #phy-cells as 4. In past 5 cells were used by
+it never went to upstream. That's why fix example by using only 4 cells
+instead of 5.
 
-why not u32?
+Fixes: e7c7970a678d ("dt-bindings: display: xlnx: Add ZynqMP DP subsystem bindings")
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
->  	uint32_t status;
->  };
->  
-> @@ -130,7 +131,7 @@ struct jz4780_dma_chan {
->  	unsigned int id;
->  	struct dma_pool *desc_pool;
->  
-> -	uint32_t transfer_type;
-> +	uint32_t transfer_type_tx, transfer_type_rx;
->  	uint32_t transfer_shift;
->  	struct dma_slave_config	config;
->  
-> @@ -157,7 +158,7 @@ struct jz4780_dma_dev {
->  };
->  
->  struct jz4780_dma_filter_data {
-> -	uint32_t transfer_type;
-> +	uint32_t transfer_type_tx, transfer_type_rx;
->  	int channel;
->  };
->  
-> @@ -226,9 +227,10 @@ static inline void jz4780_dma_chan_disable(struct jz4780_dma_dev *jzdma,
->  		jz4780_dma_ctrl_writel(jzdma, JZ_DMA_REG_DCKEC, BIT(chn));
->  }
->  
-> -static struct jz4780_dma_desc *jz4780_dma_desc_alloc(
-> -	struct jz4780_dma_chan *jzchan, unsigned int count,
-> -	enum dma_transaction_type type)
-> +static struct jz4780_dma_desc *
-> +jz4780_dma_desc_alloc(struct jz4780_dma_chan *jzchan, unsigned int count,
-> +		      enum dma_transaction_type type,
-> +		      enum dma_transfer_direction direction)
->  {
->  	struct jz4780_dma_desc *desc;
->  
-> @@ -248,6 +250,12 @@ static struct jz4780_dma_desc *jz4780_dma_desc_alloc(
->  
->  	desc->count = count;
->  	desc->type = type;
-> +
-> +	if (direction == DMA_DEV_TO_MEM)
-> +		desc->transfer_type = jzchan->transfer_type_rx;
-> +	else
-> +		desc->transfer_type = jzchan->transfer_type_tx;
-> +
->  	return desc;
->  }
->  
-> @@ -361,7 +369,7 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_slave_sg(
->  	unsigned int i;
->  	int err;
->  
-> -	desc = jz4780_dma_desc_alloc(jzchan, sg_len, DMA_SLAVE);
-> +	desc = jz4780_dma_desc_alloc(jzchan, sg_len, DMA_SLAVE, direction);
->  	if (!desc)
->  		return NULL;
->  
-> @@ -410,7 +418,7 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_dma_cyclic(
->  
->  	periods = buf_len / period_len;
->  
-> -	desc = jz4780_dma_desc_alloc(jzchan, periods, DMA_CYCLIC);
-> +	desc = jz4780_dma_desc_alloc(jzchan, periods, DMA_CYCLIC, direction);
->  	if (!desc)
->  		return NULL;
->  
-> @@ -455,14 +463,14 @@ static struct dma_async_tx_descriptor *jz4780_dma_prep_dma_memcpy(
->  	struct jz4780_dma_desc *desc;
->  	uint32_t tsz;
->  
-> -	desc = jz4780_dma_desc_alloc(jzchan, 1, DMA_MEMCPY);
-> +	desc = jz4780_dma_desc_alloc(jzchan, 1, DMA_MEMCPY, 0);
->  	if (!desc)
->  		return NULL;
->  
->  	tsz = jz4780_dma_transfer_size(jzchan, dest | src | len,
->  				       &jzchan->transfer_shift);
->  
-> -	jzchan->transfer_type = JZ_DMA_DRT_AUTO;
-> +	desc->transfer_type = JZ_DMA_DRT_AUTO;
->  
->  	desc->desc[0].dsa = src;
->  	desc->desc[0].dta = dest;
-> @@ -528,7 +536,7 @@ static void jz4780_dma_begin(struct jz4780_dma_chan *jzchan)
->  
->  	/* Set transfer type. */
->  	jz4780_dma_chn_writel(jzdma, jzchan->id, JZ_DMA_REG_DRT,
-> -			      jzchan->transfer_type);
-> +			      jzchan->desc->transfer_type);
->  
->  	/*
->  	 * Set the transfer count. This is redundant for a descriptor-driven
-> @@ -788,7 +796,8 @@ static bool jz4780_dma_filter_fn(struct dma_chan *chan, void *param)
->  		return false;
->  	}
->  
-> -	jzchan->transfer_type = data->transfer_type;
-> +	jzchan->transfer_type_tx = data->transfer_type_tx;
-> +	jzchan->transfer_type_rx = data->transfer_type_rx;
->  
->  	return true;
->  }
-> @@ -800,11 +809,17 @@ static struct dma_chan *jz4780_of_dma_xlate(struct of_phandle_args *dma_spec,
->  	dma_cap_mask_t mask = jzdma->dma_device.cap_mask;
->  	struct jz4780_dma_filter_data data;
->  
-> -	if (dma_spec->args_count != 2)
-> +	if (dma_spec->args_count == 2) {
-> +		data.transfer_type_tx = dma_spec->args[0];
-> +		data.transfer_type_rx = dma_spec->args[0];
-> +		data.channel = dma_spec->args[1];
-> +	} else if (dma_spec->args_count == 3) {
-> +		data.transfer_type_tx = dma_spec->args[0];
-> +		data.transfer_type_rx = dma_spec->args[1];
+ .../devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-aha so you have a different values for tx and rx, that seems okay. Maybe
-word a better in binding and also add examples in binding for this
-
-> +		data.channel = dma_spec->args[2];
-> +	} else {
->  		return NULL;
-> -
-> -	data.transfer_type = dma_spec->args[0];
-> -	data.channel = dma_spec->args[1];
-> +	}
->  
->  	if (data.channel > -1) {
->  		if (data.channel >= jzdma->soc_data->nb_channels) {
-> @@ -822,7 +837,8 @@ static struct dma_chan *jz4780_of_dma_xlate(struct of_phandle_args *dma_spec,
->  			return NULL;
->  		}
->  
-> -		jzdma->chan[data.channel].transfer_type = data.transfer_type;
-> +		jzdma->chan[data.channel].transfer_type_tx = data.transfer_type_tx;
-> +		jzdma->chan[data.channel].transfer_type_rx = data.transfer_type_rx;
->  
->  		return dma_get_slave_channel(
->  			&jzdma->chan[data.channel].vchan.chan);
-> -- 
-> 2.33.0
-
+diff --git a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
+index d88bd93f4b80..10ec78ca1c65 100644
+--- a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
++++ b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
+@@ -160,8 +160,8 @@ examples:
+                <&xlnx_dpdma 2>,
+                <&xlnx_dpdma 3>;
+ 
+-        phys = <&psgtr 1 PHY_TYPE_DP 0 3 27000000>,
+-               <&psgtr 0 PHY_TYPE_DP 1 3 27000000>;
++        phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
++               <&psgtr 0 PHY_TYPE_DP 1 3>;
+ 
+         phy-names = "dp-phy0", "dp-phy1";
+     };
 -- 
-~Vinod
+2.33.1
+
