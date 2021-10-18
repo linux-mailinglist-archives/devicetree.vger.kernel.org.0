@@ -2,40 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651E243165A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78D1443165C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 12:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbhJRKpn convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 06:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52140 "EHLO
+        id S229473AbhJRKqN convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 06:46:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbhJRKpm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:45:42 -0400
+        with ESMTP id S229590AbhJRKqM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 06:46:12 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658D0C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:43:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6396C06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 03:44:01 -0700 (PDT)
 Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ73-0002kW-4N; Mon, 18 Oct 2021 12:43:25 +0200
+        id 1mcQ7X-0002lf-Pv; Mon, 18 Oct 2021 12:43:55 +0200
 Received: from pza by lupine with local (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQ72-0006Cg-PW; Mon, 18 Oct 2021 12:43:24 +0200
-Message-ID: <0b319e9a397d3c8299761a65393a69b0a45be22b.camel@pengutronix.de>
-Subject: Re: [PATCH v3 2/2] reset: mchp: sparx5: Extend support for lan966x
+        id 1mcQ7X-0006Dj-Cx; Mon, 18 Oct 2021 12:43:55 +0200
+Message-ID: <46235d88ea5d3621eb8ab6fe150e9fcb3f9ebe1f.camel@pengutronix.de>
+Subject: Re: [PATCH v4 2/2] reset: mchp: sparx5: Extend support for lan966x
 From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     robh+dt@kernel.org, andrew@lunn.ch, lars.povlsen@microchip.com,
-        Steen.Hegelund@microchip.com, UNGLinuxDriver@microchip.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Mon, 18 Oct 2021 12:43:24 +0200
-In-Reply-To: <20211014154000.jxnzeq6lnlkmnxzf@soft-dev3-1.localhost>
-References: <20211013073807.2282230-1-horatiu.vultur@microchip.com>
-         <20211013073807.2282230-3-horatiu.vultur@microchip.com>
-         <8241fb1053df3583d9f4f0698907038c8f4ac769.camel@pengutronix.de>
-         <20211014154000.jxnzeq6lnlkmnxzf@soft-dev3-1.localhost>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>, robh+dt@kernel.org,
+        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
+        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Andrew Lunn <andrew@lunn.ch>
+Date:   Mon, 18 Oct 2021 12:43:55 +0200
+In-Reply-To: <20211018091522.1113510-3-horatiu.vultur@microchip.com>
+References: <20211018091522.1113510-1-horatiu.vultur@microchip.com>
+         <20211018091522.1113510-3-horatiu.vultur@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.30.5-1.1 
@@ -48,24 +46,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-10-14 at 17:40 +0200, Horatiu Vultur wrote:
+On Mon, 2021-10-18 at 11:15 +0200, Horatiu Vultur wrote:
+> This patch extends sparx5 driver to support also the lan966x. The
+> process to reset the switch is the same only it has different offsets.
+> Therefore make the driver more generic and add support for lan966x.
 > 
-> > > +      */
-> > > +     err = mchp_sparx5_map_syscon(pdev, "cuphy-syscon", &ctx->cuphy_ctrl);
-> > > +     if (err && err != -ENODEV)
-> > > +             return err;
-> > 
-> > So -ENODEV should return an error if .cuphy_reg is set?
-> 
-> I am not sure I follow this.
-> If cuphy-syscon is not set then mchp_sparx5_map_syscon will return
-> -ENODEV. This can be ignored for sparx5 as this is not required.
-> If cuphy-syscon is set then if mchp_sparx5_map_syscon returns an error
-> then report this error.
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-My point was that in case of cuphy-syscon missing from the DT, the
-lan966x compatible reset controller should probably throw the error
-instead of ignoring it. With v4 this is not relevant any more.
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
 regards
 Philipp
