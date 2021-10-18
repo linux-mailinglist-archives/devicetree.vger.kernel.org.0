@@ -2,323 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4832643120B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 10:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4432743123A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 10:36:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231213AbhJRIV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 04:21:56 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:59650 "EHLO
-        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231130AbhJRIV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 04:21:56 -0400
-Received: from [192.168.224.11] (ert768.prtnl [192.168.224.11])
-        by sparta.prtnl (Postfix) with ESMTP id 0B9BA44A024E;
-        Mon, 18 Oct 2021 10:19:43 +0200 (CEST)
-Subject: Re: [PATCH v5 0/4] iio: chemical: Add support for Sensirion SCD4x CO2
- sensor
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, david@protonic.nl,
-        Lars-Peter Clausen <lars@metafoo.de>
-References: <20211008101706.755942-1-roan@protonic.nl>
- <20211010165919.51f06938@jic23-huawei> <20211013183828.521f043f@jic23-huawei>
- <3ecfe246-b942-0c1e-08e6-17eff4c5cc16@protonic.nl>
- <20211014181932.5f70d2e4@jic23-huawei>
-From:   Roan van Dijk <roan@protonic.nl>
-Message-ID: <2c7f8b7c-3070-5763-7b74-3811cdbfcabc@protonic.nl>
-Date:   Mon, 18 Oct 2021 10:19:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230472AbhJRIiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 04:38:25 -0400
+Received: from mail-mw2nam12on2098.outbound.protection.outlook.com ([40.107.244.98]:57825
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230405AbhJRIiY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Oct 2021 04:38:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iQVM/a2NJbtaLeBd3nUCTcoBLYZWkrn4iQWQgd9SOZkxiWN8+ia8uzH5QURZKwhhOvc0RcNmNHQe8y+EhmgL8ySpJhIUc3JXaZUKVmeSNaNu+7Wbc8+uLFhe7FxShPx1OHWoGIuyu6bNfKSIajKfJBgM22IsWKUY0Q1GMwyXANT7SbX7VmAoqwwZ35k43Vd9gZl9n6oSBSYJx1gwbHotZ00+E5fE4Tn1hdCfG86/HjF8sl1a75uT/bGPsAdw8GQ5zLY8cMdis1urVVqprdWsJsSNglgOyrTkLFzMAmmW1f/0eOuUHL1JyACJ5/WlpRzazQHUocq+yqIQ1jKIZrFOZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u9Bou5HF8PJcNrcYgfz9ANonmw6Iqu0si8sUnlS2HN8=;
+ b=Zw6s0Db2TndZyaXBrpE1m/2UFsUvE+wHD8VrIiczXl+ZmSWFV0hd1xvXReYvtaA1dBHH7Ip+Iku75fBLgCwX+7dk1Z+jChHzO0AfHSylWl6FbZ265lt77q+ugAuBM85wFpSnuWwl40rZz8zTa68NvGpM14lJt0G+WOUiCNxNQUFFD3JirNoaTyr9+rb1XvLPrFRZl5ywW0B0rZAKRY9dTJiAcFhqQna5nbon2tsK3SG+jqvPj2yXBoYYgEK0s4438s88lMgVOuw+le1dgToxI2HKqrbeWc3+LeSPWFyrCgb9mHHY9F9L3yDiLgtanrEoZGe/bF880G3TUZ1WKMXbIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
+ header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=maximintegrated.onmicrosoft.com;
+ s=selector2-maximintegrated-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u9Bou5HF8PJcNrcYgfz9ANonmw6Iqu0si8sUnlS2HN8=;
+ b=TSmYT3Jvtx6tD/AiKEW4ILiiOwoX25pi5GtZraOcNaLqZ+YZEYek1yA68TuTXQyBgv4bLORaEbqtBvdQdccjHKQ/M+rZKhGg7ywfiMr3fqWnkFFsfZ66xs5TGlaY9Zr33vpKPUD44EW18t02M3A7AiBNwn27HeNmpw7TLq/MtAw=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none
+ header.from=maximintegrated.com;
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
+ by SJ0PR11MB5134.namprd11.prod.outlook.com (2603:10b6:a03:2de::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.17; Mon, 18 Oct
+ 2021 08:36:10 +0000
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
+ 08:36:10 +0000
+From:   George Song <george.song@maximintegrated.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, george.song@analog.com,
+        ryans.lee@maximintegrated.com, steves.lee@maximintegrated.com,
+        George Song <george.song@maximintegrated.com>
+Subject: [v3 1/2] ASoC: dt-bindings: max98520: add initial bindings
+Date:   Mon, 18 Oct 2021 17:35:53 +0900
+Message-Id: <20211018083554.5360-1-george.song@maximintegrated.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SLXP216CA0004.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:100:6::14) To BYAPR11MB3671.namprd11.prod.outlook.com
+ (2603:10b6:a03:b3::15)
 MIME-Version: 1.0
-In-Reply-To: <20211014181932.5f70d2e4@jic23-huawei>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: nl
-Content-Transfer-Encoding: 7bit
+Received: from SEL-LT-028891.maxim-ic.internal (223.62.219.217) by SLXP216CA0004.KORP216.PROD.OUTLOOK.COM (2603:1096:100:6::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend Transport; Mon, 18 Oct 2021 08:36:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 334123b8-97d9-4185-ffbf-08d99212561c
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB5134:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SJ0PR11MB513445FF803319F0C41B5DA8F4BC9@SJ0PR11MB5134.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1gjZ2F+/MU0Zzal+wDJjcf0NEb1huAWfRUOmOnG4/HJJB9M84+1ZoPoqjud7a/46OF2T7aXd4LTXn8RBlzcm3hLqDD3ucOGxCxDSaphDKajNWzYAcJTMJOA6bP7E8lXA3i8toGcCW+tFQaYo4fD9+JLiUU4y0tPZXBdCLEof+dUH3SVnxQ9pY/M6aI7akQgkQnw8glFYK1ZO3PFfN8qnRN0wYLbt3LFIiB59Ypcw8MkCvAUonspx6dXU1F9hXkMaJuPPtC+ATqLXCuBggVyzYxmAUawBClSoSM5TANItptAnKRLw7k+Kae5v8BkbxXP2grNdC2iUYsirlQPMqztfEOkJqB/2LfeH/hUMmBwka7AEBIlLs6rR0vPgJ7XgnIdDwQaohOOGy8YZOJLsljb6U6kwlt56TeiswOGh4jGUuKPHNu4i4os/Nvr+8FuPfaQq2etk3sRsq3s3r6d/WyI+UjcmD5RHjRcggisAgRO5VeNAFjMlE6lKTmj0cwp72igItQO7MaBYZdhzENMBjkl5X2zeaxmhK9gAMRuITPsGGdIQWlJC3i3GyIJMYFqwx4MGJ9r7miP8mU88tAk/abSuGb4slO6+Wh8Xq4D1ecwQcv7Zy6GgjfIi3jrjS9SlM8kRAtG10ytg5jG6Uxm172af2kAu7XeUW6rmnanh420ENB6H0pmw2InO9h1+8HrJ4yzFIn0cgU4Y9/mwMgVi9+MaWZTAsx7jivCcDiC6SXEqJDALzFq/+XKzgFsvA8BnsM1lwbPDEttbHUSiUuaa7ZAGmYc2iBjtCA7nv5/2QFR21vBygF1SCUWMJaL9NkWjyrxT89+j6NPQ/l3EeMLLksPeWg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(26005)(6506007)(38100700002)(6512007)(66556008)(2616005)(66476007)(44832011)(38350700002)(52116002)(966005)(36756003)(6486002)(956004)(1076003)(4326008)(86362001)(186003)(107886003)(5660300002)(508600001)(316002)(2906002)(6666004)(66946007)(8936002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/XK1ZrYRmHJgZPq4+zXOS9RCtO0EA3zLjhnc9AMnC8nypEWxGfxP8+suvdsY?=
+ =?us-ascii?Q?NI4VcJtIgoWrqDNcIt6cabd7SiI+QC1MqnX5RfFP8DwLrTV6m6HqY3o2VzOM?=
+ =?us-ascii?Q?CdnTApA5y0XkN9r4haL4o1yXWKe0PeYBYHL8M3n/DUWtyLsR4ovrXiPn3F4Y?=
+ =?us-ascii?Q?7pHzPJk7gqRYi6vZ9ddjhDwWIITD46XnIIZ40QKO2lGuyNqRru6fgC2PJfHb?=
+ =?us-ascii?Q?lqxCJdoTYIppf2OQTljZOHcCaFsohPHh2zUIEevPVl/+tEhSF3M3EOcUy6kM?=
+ =?us-ascii?Q?GSPOJ2SOQ77q5C1qtSm5x1UOYHWl+MCzY0HTlRpvGWIjW/5FJx2PV4Lo0wN2?=
+ =?us-ascii?Q?8lQJW2OQ+sEa2ukbztTHM0RuuoryZYmAjyhin7QPlwES/QfEb4Q5CXNcjP9S?=
+ =?us-ascii?Q?OCfOG4Bham8G6Ag/DRrSkV17MyusnB5EgBHr9ACIzRVRUa6vp+/uafi9umK8?=
+ =?us-ascii?Q?rsR/tT1J4FZOIuqypmE/i4ZMny13fysJua897uDaRiCTgfVd5Hp3JBwLl67Z?=
+ =?us-ascii?Q?ytKFBmOUtsFctcuvOAfNWM/vRdyw3VbPhIdaKMddqXPmyiPlSsLCyt75Vrbt?=
+ =?us-ascii?Q?LH3SoDNKRF+vwZhOTOeAl1rSkmSJgNZU0gj0E6Tvl1GzCtuj24NgpwFzwOCJ?=
+ =?us-ascii?Q?M5Bvis51eg4fN2r1fT+ywbhXvY5WOAP2Ts2A0x1gO/N7VcKPkhoixC3LH8yG?=
+ =?us-ascii?Q?m2DGkDRkPp2FCYceSYOsXU0picYtYM6tKM4KlUXKG8E/haAa9hlmvf0D/ISD?=
+ =?us-ascii?Q?ep8/M5/5RjmecJCaeVPk2cV+WIWljQ5oPJp6C8pL5qi23Qyku0AymxCOjrb5?=
+ =?us-ascii?Q?Bhadi8aOKW4gcgrHYRscBOOxmToVzNWelIQ9Uppgp8xEEHLKq5LhDoWMq0aU?=
+ =?us-ascii?Q?Qmv4GgrcHyAC0pShF8x9F66WULx8CPEVr9U15FdacfFMM0H+t9Xj4AuXwzzO?=
+ =?us-ascii?Q?140U1d9rndUPVnh1CDWfnNDNeOtjRqNtZy+4WemJhrwTXpTAGgvu/sPyyEsv?=
+ =?us-ascii?Q?7U1C0nBf6Iy4oEBBQK37OLUFmmWk+egjcHUryeq8AY11cIah+6siC0A2b9/P?=
+ =?us-ascii?Q?2S15K1sjEjGMiXZMQMc22OG9VVkvK0LlVZhq0osQRPWIcGjWLvlWkcpAIpDe?=
+ =?us-ascii?Q?VsyJhWv+vFOBJom46n1z8khtfusewpSH/t1SPPVHYTPmeC+yd0ooO5gPOVFM?=
+ =?us-ascii?Q?xxeG7dduT06dhiXhGeCBfXpySk+QxmdvZqVsjbRXIc0gyICE2h3PfMFBfKE8?=
+ =?us-ascii?Q?ZD2tmydzxvKPqk3KbRFw/wuokyQ7iVBuCOzaNRZr6wjYhSG5zVtwD9GmPqXx?=
+ =?us-ascii?Q?Q1HOwxi6Bn+t+47K0ZKDtEbK?=
+X-OriginatorOrg: maximintegrated.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 334123b8-97d9-4185-ffbf-08d99212561c
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2021 08:36:10.4111
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd909df-ea69-4788-a554-f24b7854ad03
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vG75M5Ex4pz22UaUcXUvaCXlqQ6MemITtspKgl5WYIfgp3dC5kFA5PdWCEHMguAIlS/sW7VDDvEOc1qppOc3TJ9aL5uQ5YBRvoip/7iVNlA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5134
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+add initial bindings for max98520 audio amplifier
 
+Signed-off-by: George Song <george.song@maximintegrated.com>
+---
+ .../bindings/sound/maxim,max98520.yaml        | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98520.yaml
 
-On 14-10-2021 19:19, Jonathan Cameron wrote:
-> On Thu, 14 Oct 2021 10:24:54 +0200
-> Roan van Dijk <roan@protonic.nl> wrote:
-> 
->> On 13-10-2021 19:38, Jonathan Cameron wrote:
->>> On Sun, 10 Oct 2021 16:59:19 +0100
->>> Jonathan Cameron <jic23@kernel.org> wrote:
->>>    
->>>> On Fri,  8 Oct 2021 12:17:02 +0200
->>>> Roan van Dijk <roan@protonic.nl> wrote:
->>>>   
->>>>> This series adds support for the Sensirion SCD4x sensor.
->>>>>
->>>>> The driver supports continuous reads of temperature, relative humdity and CO2
->>>>> concentration. There is an interval of 5 seconds between readings. During
->>>>> this interval the drivers checks if the sensor has new data available.
->>>>>
->>>>> The driver is based on the scd30 driver. However, The scd4x has become too
->>>>> different to just expand the scd30 driver. I made a new driver instead of
->>>>> expanding the scd30 driver. I hope I made the right choice by doing so?
->>>>
->>>> Applied to the togreg branch of iio.git with the issues Randy mentioned tidied
->>>> up. Pushed out as testing for 0-day to see if it can find anything we missed
->>>
->>> And indeed - I missed a bunch of places where explicit __be16 types should have
->>> been used.
->>>
->>> I've applied the following fixup, shout if it's wrong.
->>>   
->> Thank you Jonathan for applying this fixup. No need to shout :) Your
->> changes should fix the issue.
->>
->> However, I have a question about something else. The co2 concentration
->> is an IIO_CHAN_INFO_RAW, but doesn't have a scale or offset at this
->> moment. Is an _scale always required for an _raw in the ABI? I could not
->> find anything in the documentation if there is a rule for this. Someone
->> mentioned this to me, so I want to check if I did this right.
->>
->> The sensor returns the actual co2 value upon reading, like 450 ppm. We
->> can set an offset of this co2 value with the calibration_forced_value
->> through the ABI, but this offset is handled internally by the sensor. So
->> there isn't anything with scaling or an offset needed at the driver side.
-> 
-> Ah. We could have mapped this to calibbias, though here it's made more
-> complex by other calibrations existing that don't use the value so let's
-> leave it as it is.
-> 
->>
->> Was I right by making it of type RAW? If needed we could make it more
->> like the scd30 driver, keeping it of type RAW but with scale = 1. What
->> should I do or is it fine as it is?
-> 
-> Hmm. Interesting corner case in the ABI.  A _raw value without a scale
-> normally means we don't know it for some reason.  The most common case
-> of this is light sensors where several _raw intensity values are combined
-> in some (typically non linear) transform to form a single measure of illuminance.
-> Those intensity_raw channels don't have an meaningful units, but devices
-> often have threshold events on them so we have to expose them.
-> 
-> I would say make it a processed value, but there is a quirk.
-> concentrations in IIO are expressed in percent not per million, so you need
-> a scale anyway, I guess 10000?  See Documentation/ABI/testing/sysfs-bus-iio
-> 
-> 
-> No need to do a new driver version, just send a patch tidying up this corner.
-> 
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98520.yaml b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+new file mode 100644
+index 000000000000..b6509cb2c8e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98520.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim Integrated MAX98520 Speaker Amplifier Driver
++
++maintainers:
++  - George Song <george.song@maximintegrated.com>
++
++properties:
++  compatible:
++    const: maxim,max98520
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      max98520: amplifier@38 {
++        compatible = "maxim,max98520";
++        reg = <0x38>;
++      };
++    };
++
+-- 
+2.25.1
 
-Hi Jonathan,
-
-As you suggested, these are my fixes for the concentration reading.
-
-The co2 reading is now a processed value and has a scale. I also added 
-the information in sysfs-bus-iio documentation, because this type of 
-processed value is new in the ABI.
-
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio 
-b/Documentation/ABI/testing/sysfs-bus-iio
-index c27347d3608e..66a17f4c831e 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -1716,6 +1716,7 @@ Description:
-
-  What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_raw
-  What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_raw
-+What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_input
-  What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_raw
-  What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_co2_raw
-  What: 
-/sys/bus/iio/devices/iio:deviceX/in_concentration_ethanol_raw
-diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
-index 09b34201c42b..bc1c6676029d 100644
---- a/drivers/iio/chemical/scd4x.c
-+++ b/drivers/iio/chemical/scd4x.c
-@@ -337,6 +337,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
-
-         switch (mask) {
-         case IIO_CHAN_INFO_RAW:
-+       case IIO_CHAN_INFO_PROCESSED:
-                 ret = iio_device_claim_direct_mode(indio_dev);
-                 if (ret)
-                         return ret;
-@@ -352,7 +353,11 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
-                 *val = ret;
-                 return IIO_VAL_INT;
-         case IIO_CHAN_INFO_SCALE:
--               if (chan->type == IIO_TEMP) {
-+               if (chan->type == IIO_CONCENTRATION) {
-+                       *val = 0;
-+                       *val2 = 100;
-+                       return IIO_VAL_INT_PLUS_MICRO;
-+               } else if (chan->type == IIO_TEMP) {
-                         *val = 175000;
-                         *val2 = 65536;
-                         return IIO_VAL_FRACTIONAL;
-@@ -501,7 +506,8 @@ static const struct iio_chan_spec scd4x_channels[] = {
-                 .type = IIO_CONCENTRATION,
-                 .channel2 = IIO_MOD_CO2,
-                 .modified = 1,
--               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+               .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED) |
-+                                       BIT(IIO_CHAN_INFO_SCALE),
-                 .address = SCD4X_CO2,
-                 .scan_index = SCD4X_CO2,
-                 .scan_type = {
-
-Thanks,
-
-Roan
-
-> Thanks,
-> 
-> Jonathan
-> 
-> 
->> Sorry for not asking this earlier.
->>
->> Thanks,
->>
->> Roan
->>
->>> diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
->>> index 09b34201c42b..ebebcb117ba2 100644
->>> --- a/drivers/iio/chemical/scd4x.c
->>> +++ b/drivers/iio/chemical/scd4x.c
->>> @@ -263,7 +263,7 @@ static int scd4x_write_and_fetch(struct scd4x_state *state, enum scd4x_cmd cmd,
->>>    static int scd4x_read_meas(struct scd4x_state *state, uint16_t *meas)
->>>    {
->>>    	int i, ret;
->>> -	uint16_t buf[3];
->>> +	__be16 buf[3];
->>>    
->>>    	ret = scd4x_read(state, CMD_READ_MEAS, buf, sizeof(buf));
->>>    	if (ret)
->>> @@ -282,12 +282,13 @@ static int scd4x_wait_meas_poll(struct scd4x_state *state)
->>>    	int ret;
->>>    
->>>    	do {
->>> +		__be16 bval;
->>>    		uint16_t val;
->>>    
->>> -		ret = scd4x_read(state, CMD_GET_DATA_READY, &val, sizeof(val));
->>> +		ret = scd4x_read(state, CMD_GET_DATA_READY, &bval, sizeof(bval));
->>>    		if (ret)
->>>    			return -EIO;
->>> -		val = be16_to_cpu(val);
->>> +		val = be16_to_cpu(bval);
->>>    
->>>    		/* new measurement available */
->>>    		if (val & 0x7FF)
->>> @@ -333,7 +334,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
->>>    {
->>>    	struct scd4x_state *state = iio_priv(indio_dev);
->>>    	int ret;
->>> -	uint16_t tmp;
->>> +	__be16 tmp;
->>>    
->>>    	switch (mask) {
->>>    	case IIO_CHAN_INFO_RAW:
->>> @@ -405,17 +406,18 @@ static ssize_t calibration_auto_enable_show(struct device *dev,
->>>    	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
->>>    	struct scd4x_state *state = iio_priv(indio_dev);
->>>    	int ret;
->>> -	uint16_t val;
->>> +	__be16 bval;
->>> +	u16 val;
->>>    
->>>    	mutex_lock(&state->lock);
->>> -	ret = scd4x_read(state, CMD_GET_ASC, &val, sizeof(val));
->>> +	ret = scd4x_read(state, CMD_GET_ASC, &bval, sizeof(bval));
->>>    	mutex_unlock(&state->lock);
->>>    	if (ret) {
->>>    		dev_err(dev, "failed to read automatic calibration");
->>>    		return ret;
->>>    	}
->>>    
->>> -	val = (be16_to_cpu(val) & SCD4X_READY_MASK) ? 1 : 0;
->>> +	val = (be16_to_cpu(bval) & SCD4X_READY_MASK) ? 1 : 0;
->>>    
->>>    	return sprintf(buf, "%d\n", val);
->>>    }
->>>
->>>    
->>>>
->>>> Thanks,
->>>>
->>>> Jonathan
->>>>   
->>>>>
->>>>> Changes since v5:
->>>>> scd4x.c:
->>>>>     - Fix bug in trigger_handler
->>>>>
->>>>> Changes since v4:
->>>>> scd4x.c:
->>>>>     - Minor fixes in documentation
->>>>>     - Reorder trigger_handler so memcpy is not needed anymore
->>>>> Documentation:
->>>>>     - Change information about the KernelVersion for the
->>>>>       calibration_forced_value_available
->>>>>
->>>>> Changes since v3:
->>>>> scd4x.c
->>>>>     - Change read and write_and_fetch function parameter. CRC byte is now
->>>>>       hidden inside the function.
->>>>>     - Fix minor style issues
->>>>>     - Add calibration_forced_value_available attribute to the driver
->>>>>     - Remove including BUFFER_TRIGGERED
->>>>>     - Change calibbias to raw ADC readings rather than converting it to
->>>>>       milli degrees C.
->>>>> Documentation:
->>>>>     - Change description of driver attributes
->>>>>     - Add calibration_forced_value_available documentation
->>>>>
->>>>> Changes since v2:
->>>>> scd4x.c:
->>>>>     - Change boolean operations
->>>>>     - Document scope of lock
->>>>>     - Remove device *dev from struct
->>>>>     - Add goto block for errror handling
->>>>>     - Add function to read value per channel in read_raw
->>>>>     - Fix bug with lock in error paths
->>>>>     - Remove conversion of humidity and temperature values
->>>>>     - Add scale and offset to temperature channel
->>>>>     - Add scale to humidity channel
->>>>>     - Move memset out of locked section
->>>>>     - Remove unused irq functions
->>>>>     - Move device register at end of probe function
->>>>> Documentation:
->>>>>     - Copy content of sysfs-bus-iio-scd30 to sysfs-bus-iio
->>>>>     - Remove Documentation/ABI/testing/sysfs-bus-iio-scd30
->>>>>
->>>>> Changes since v1:
->>>>> dt-bindings:
->>>>>     - Separated compatible string for each sensor type
->>>>> scd4x.c:
->>>>>     - Changed probe, resume and suspend functions to static
->>>>>     - Added SIMPLE_DEV_PM_OPS function call for power management
->>>>>       operations.
->>>>>
->>>>> Roan van Dijk (4):
->>>>>     dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
->>>>>     MAINTAINERS: Add myself as maintainer of the scd4x driver
->>>>>     drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
->>>>>     iio: documentation: Document scd4x calibration use
->>>>>
->>>>>    Documentation/ABI/testing/sysfs-bus-iio       |  41 ++
->>>>>    Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 -
->>>>>    .../iio/chemical/sensirion,scd4x.yaml         |  46 ++
->>>>>    MAINTAINERS                                   |   6 +
->>>>>    drivers/iio/chemical/Kconfig                  |  13 +
->>>>>    drivers/iio/chemical/Makefile                 |   1 +
->>>>>    drivers/iio/chemical/scd4x.c                  | 689 ++++++++++++++++++
->>>>>    7 files changed, 796 insertions(+), 34 deletions(-)
->>>>>    delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
->>>>>    create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
->>>>>    create mode 100644 drivers/iio/chemical/scd4x.c
->>>>>       
->>>>   
->>>    
-> 
