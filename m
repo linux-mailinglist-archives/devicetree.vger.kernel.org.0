@@ -2,311 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5052043231C
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB7E432340
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbhJRPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 11:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37590 "EHLO
+        id S232619AbhJRPuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 11:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232408AbhJRPmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 11:42:17 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67093C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 08:40:05 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id i12so42114877wrb.7
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 08:40:05 -0700 (PDT)
+        with ESMTP id S231986AbhJRPuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 11:50:24 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356E2C06161C;
+        Mon, 18 Oct 2021 08:48:13 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id t16so898192eds.9;
+        Mon, 18 Oct 2021 08:48:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=pjlDidMjUP54gNnWHEztCEIW6CfLvZ4h/Q6wK7PbSKk=;
-        b=VLCqQd5lCp6WvwDEA5GFEkCQ5+CNUFltDinOxOC907MtLaXIT3zPBANhDsE+kN5JX4
-         asJTtKUMb1XGdoXVRfyK4r8kfe2BPyAGwlAdr75C9BHOoHk/k5VwaUaE04m2tfo9PunI
-         6Wzotf50yIxvDiEYI31iRmyuRzp03ORnGdO6j2rgnIPV3iUlFegzOyjH0SLrgudmv238
-         a03KzWaoVOEJuwS2y37B29deujv3DSwOM/f+KxuW9NQSDGsnBp2UHqg3NyXnWQ+mJtBl
-         0Np2YQwT8YekFnswy0KfM5FQmgy/LkAKJZmApN3TkmIGxirZYE70F+V6C8cqO2NY0hzW
-         HliA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=v1PYM9PWLM/0wgTMMikzXAP/o0bC3fPRJxSFK9OzpC8=;
+        b=bvoVUSzWgSETBCvh833uiGY27G23tFSf/9WrtIVPLQBgwK6Rj56yHcDtEdcQXJK7Hs
+         luhJp0KZGQrxsbfoNkE5RJfauKWl2uWHDlCAiyzsGQSKxcfMUeJGY9OaCPv+uJHOiL+m
+         wQAZH9S7oAwhLLA5wx0RUsVDSPnzETI4ObrFTk5aI1/w1NhbWB9qM3MgSHEzB3Ax34jC
+         350PxSaiPWENuf/mGCHu/PNN6KbitZl5hauVjU1yPwIwyC2ocMIKVnqOwAyJMPw0zy6B
+         PvHK7ZEIoSQUR5ab1xWb+E2xpIJ7jAiZ+3Tn/RUsB66/PcXaznkyvxejJlc+6kqYxjsi
+         Ntow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=pjlDidMjUP54gNnWHEztCEIW6CfLvZ4h/Q6wK7PbSKk=;
-        b=FTI1rkvSRDTWqvgTBM6xLinsT5dRIG2f92zZD6vUhswPxqUJ8jXQzAJNlwPYPmZmyE
-         PDdOWaRvKfZnVbcGsdxsuyAoBm5oJp335FwGk5RPglu8wZK7ZXGgvB96TBbxh1j3UisT
-         QMoHS0dU7oh9dQe/K+inZLrhCm/2Dk6Ak/l8okEUNIsheVvrCsEoNXJoaFIfki0qHKwc
-         rROzBnWi3myo5FBkpPX6Nh0uQH4v2SQKN69FWb2Z0Q+YfFVFfHzCMq4NqPD87GZ4s562
-         MPSkutlU1/gFir/15wKrPsqWoppwiYKqgV7JT2363eSTDJiOXwcuLHDuPDDJsIAjFapp
-         dJZA==
-X-Gm-Message-State: AOAM530gfoU1ZecgMvMXJre1VgdBr9EB1B2uiMWjhKuoxuFlAfEFkoVT
-        93cR49fq9km4aKGptzDrAc5ylQ==
-X-Google-Smtp-Source: ABdhPJy/pQcdiOs4mcK3rfZtbnFO8PF2JEU9NxxxCX5B3S5ikVNoWX+n9XNbC5OEjQ4lOu/gwDIDPA==
-X-Received: by 2002:a05:6000:1541:: with SMTP id 1mr35650882wry.273.1634571603956;
-        Mon, 18 Oct 2021 08:40:03 -0700 (PDT)
-Received: from blmsp ([2a02:2454:3e6:c900:5142:5fbb:5821:5dc3])
-        by smtp.gmail.com with ESMTPSA id u5sm12227325wmm.39.2021.10.18.08.40.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Oct 2021 08:40:02 -0700 (PDT)
-Date:   Mon, 18 Oct 2021 17:40:01 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
-        khilman@baylibre.com
-Subject: Re: [PATCH 3/3] thermal: mediatek: add MT8365 thermal driver support
-Message-ID: <20211018154001.sj7nc575hln3jkel@blmsp>
-References: <20211014135636.3644166-1-msp@baylibre.com>
- <20211014135636.3644166-4-msp@baylibre.com>
- <33815817-0f64-836a-5417-c614e66e231e@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=v1PYM9PWLM/0wgTMMikzXAP/o0bC3fPRJxSFK9OzpC8=;
+        b=wXpoiXSN4fgYgxpwUqXYVgUbwpbnQA7Uuq4Al8WMMJIjwzkZPPTVJY83vZhcktt4FJ
+         I+saJAfwTur23jEXE0d29i10azHhf+Gn1AhiSAL3rwqGryb3nbPBGH5TXfC7yrdVtN9a
+         qMWW44n9n+EqwH5AY99ZzingxGBg6lRJ0Czfw642XCgNFOok7auz96EiYXefyUv5BZt5
+         8Nx9rmd/s7iZhU3Gd45aW7+fBxMi7yKXYlFvQLhA6bYu3ynQvOZ94qakaneL6PFtvw5f
+         XRLz5HX7ne5Mwi3JzzUqkEPYy2nSjH9QoF1nUx+Ng9+vI2QPNY+qxIN7qXCe0m/kw2d6
+         5gdg==
+X-Gm-Message-State: AOAM532bHOQAxFHTptv2P3grQzzMKQ2jetE/OuVp540qmRuiqjXl88Vd
+        sEnFVKqADnrW4zziDeq/G9tt7j06Vs0YLRw0lCM=
+X-Google-Smtp-Source: ABdhPJz+JM3f/n/l/fo/vo7/jjTcnbAe1364W/IPs8Uv1VZE0XQpGmrpDB6SZ/1RGXPV+JzGalz543On+DjMTsOZ3lw=
+X-Received: by 2002:a05:6402:2787:: with SMTP id b7mr44842444ede.238.1634572089268;
+ Mon, 18 Oct 2021 08:48:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <33815817-0f64-836a-5417-c614e66e231e@linaro.org>
+References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-13-kernel@esmil.dk>
+ <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com> <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
+In-Reply-To: <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 18 Oct 2021 18:47:17 +0300
+Message-ID: <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
+Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On Mon, Oct 18, 2021 at 6:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
 
-On Sat, Oct 16, 2021 at 10:06:28PM +0200, Daniel Lezcano wrote:
-> On 14/10/2021 15:56, Markus Schneider-Pargmann wrote:
-> > From: Fabien Parent <fparent@baylibre.com>
-> > 
-> > mt8365 is similar to the other SoCs supported by the driver. It has only
-> > one bank and 3 sensors that can be multiplexed.
-> > 
-> > Additionally the buffer has to be enabled and connected to AUXADC
-> > similar to the V2 version but at a different register offset. That's why
-> > I added three new configuration values to define the register, mask and
-> > bits to be set to be able to use it for both V2 and mt8365.
-> > 
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > [Added apmixed control register logic]
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >  drivers/thermal/mtk_thermal.c | 91 ++++++++++++++++++++++++++++++++---
-> >  1 file changed, 85 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> > index 93ee043d70da..7a75ae8231f2 100644
-> > --- a/drivers/thermal/mtk_thermal.c
-> > +++ b/drivers/thermal/mtk_thermal.c
-> > @@ -31,6 +31,7 @@
-> >  #define AUXADC_CON2_V		0x010
-> >  #define AUXADC_DATA(channel)	(0x14 + (channel) * 4)
-> >  
-> > +#define APMIXED_SYS_TS_CON0	0x600
-> >  #define APMIXED_SYS_TS_CON1	0x604
-> >  
-> >  /* Thermal Controller Registers */
-> > @@ -245,6 +246,17 @@ enum mtk_thermal_version {
-> >  /* The calibration coefficient of sensor  */
-> >  #define MT8183_CALIBRATION	153
-> >  
-> > +/* MT8365 */
-> > +#define MT8365_TEMP_AUXADC_CHANNEL 11
-> > +#define MT8365_CALIBRATION 164
-> > +#define MT8365_NUM_CONTROLLER 1
-> > +#define MT8365_NUM_BANKS 1
-> > +#define MT8365_NUM_SENSORS 3
-> > +#define MT8365_NUM_SENSORS_PER_ZONE 3
-> 
-> You can get rid of these macros by using ARRAY_SIZE.
-> 
-> eg.
-> 
-> static const int mt8365_bank_data[] = {
-> 	MT8365_TS1,
-> 	MT8365_TS2,
-> 	MT8365_TS3
-> };
-> 
-> ...
-> 
-> 	.num_sensors = ARRAY_SIZE(mt8365_bank_data);
-> ...
-> 
+When answering, cut down your message to the point, please! It's a bit
+annoying to remove overquoting...
 
-Thanks, done, I also used ARRAY_SIZE() on the other array definitions to
-enforce that they have the correct size.
+...
 
-> 
-> > +#define MT8365_TS1 0
-> > +#define MT8365_TS2 1
-> > +#define MT8365_TS3 2
-> > +
-> >  struct mtk_thermal;
-> >  
-> >  struct thermal_bank_cfg {
-> > @@ -271,6 +283,9 @@ struct mtk_thermal_data {
-> >  	bool need_switch_bank;
-> >  	struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
-> >  	enum mtk_thermal_version version;
-> > +	u32 apmixed_buffer_ctl_reg;
-> > +	u32 apmixed_buffer_ctl_mask;
-> > +	u32 apmixed_buffer_ctl_set;
-> >  };
-> >  
-> >  struct mtk_thermal {
-> > @@ -386,6 +401,24 @@ static const int mt7622_mux_values[MT7622_NUM_SENSORS] = { 0, };
-> >  static const int mt7622_vts_index[MT7622_NUM_SENSORS] = { VTS1 };
-> >  static const int mt7622_tc_offset[MT7622_NUM_CONTROLLER] = { 0x0, };
-> >  
-> > +/* MT8365 thermal sensor data */
-> > +static const int mt8365_bank_data[MT8365_NUM_SENSORS] = {
-> > +	MT8365_TS1, MT8365_TS2, MT8365_TS3
-> > +};
-> > +
-> > +static const int mt8365_msr[MT8365_NUM_SENSORS_PER_ZONE] = {
-> > +	TEMP_MSR0, TEMP_MSR1, TEMP_MSR2
-> > +};
-> > +
-> > +static const int mt8365_adcpnp[MT8365_NUM_SENSORS_PER_ZONE] = {
-> > +	TEMP_ADCPNP0, TEMP_ADCPNP1, TEMP_ADCPNP2
-> > +};
-> > +
-> > +static const int mt8365_mux_values[MT8365_NUM_SENSORS] = { 0, 1, 2 };
-> > +static const int mt8365_tc_offset[MT8365_NUM_CONTROLLER] = { 0 };
-> > +
-> > +static const int mt8365_vts_index[MT8365_NUM_SENSORS] = { VTS1, VTS2, VTS3 };
-> > +
-> >  /*
-> >   * The MT8173 thermal controller has four banks. Each bank can read up to
-> >   * four temperature sensors simultaneously. The MT8173 has a total of 5
-> > @@ -460,6 +493,40 @@ static const struct mtk_thermal_data mt2701_thermal_data = {
-> >  	.version = MTK_THERMAL_V1,
-> >  };
-> >  
-> > +/*
-> > + * The MT8365 thermal controller has one bank, which can read up to
-> > + * four temperature sensors simultaneously. The MT8365 has a total of 3
-> > + * temperature sensors.
-> > + *
-> > + * The thermal core only gets the maximum temperature of this one bank,
-> > + * so the bank concept wouldn't be necessary here. However, the SVS (Smart
-> > + * Voltage Scaling) unit makes its decisions based on the same bank
-> > + * data.
-> > + */
-> > +static const struct mtk_thermal_data mt8365_thermal_data = {
-> > +	.auxadc_channel = MT8365_TEMP_AUXADC_CHANNEL,
-> > +	.num_banks = MT8365_NUM_BANKS,
-> > +	.num_sensors = MT8365_NUM_SENSORS,
-> > +	.vts_index = mt8365_vts_index,
-> > +	.cali_val = MT8365_CALIBRATION,
-> > +	.num_controller = MT8365_NUM_CONTROLLER,
-> > +	.controller_offset = mt8365_tc_offset,
-> > +	.need_switch_bank = false,
-> > +	.bank_data = {
-> > +		{
-> > +			.num_sensors = MT8365_NUM_SENSORS,
-> > +			.sensors = mt8365_bank_data
-> > +		},
-> > +	},
-> > +	.msr = mt8365_msr,
-> > +	.adcpnp = mt8365_adcpnp,
-> > +	.sensor_mux_values = mt8365_mux_values,
-> > +	.version = MTK_THERMAL_V1,
-> > +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON0,
-> > +	.apmixed_buffer_ctl_mask = ~(u32)GENMASK(29, 28),
-> > +	.apmixed_buffer_ctl_set = 0,
-> > +};
-> > +
-> >  /*
-> >   * The MT2712 thermal controller has one bank, which can read up to
-> >   * four temperature sensors simultaneously. The MT2712 has a total of 4
-> > @@ -514,6 +581,9 @@ static const struct mtk_thermal_data mt7622_thermal_data = {
-> >  	.adcpnp = mt7622_adcpnp,
-> >  	.sensor_mux_values = mt7622_mux_values,
-> >  	.version = MTK_THERMAL_V2,
-> > +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
-> > +	.apmixed_buffer_ctl_mask = ~0x37,
-> > +	.apmixed_buffer_ctl_set = 0x1,
-> 
-> Please change those literal into macros
+> > > +               case PIN_CONFIG_BIAS_DISABLE:
+> >
+> > > +                       mask |= PAD_BIAS_MASK;
+> >
+> > Use it...
+> >
+> > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
+> >
+> > ...here. Ditto for the similar cases in this function and elsewhere.
+>
+> I don't follow. How do you want me to use mask? If I did value =
+> (value & ~mask) | PAD_BIAS_DISABLE; then I'd wipe the previous
+> configuration. Eg. suppose the first config is the drive strength and
+> second disables bias. Then on the 2nd loop mask =
+> PAD_DRIVE_STRENGTH_MASK | PAD_BIAS_MASK and the drive strength value
+> would be wiped.
 
-done.
+Collect masks and new values in temporary variables and apply them
+once after the loop is done, no?
 
-> 
-> >  };
-> >  
-> >  /*
-> > @@ -958,19 +1028,27 @@ static const struct of_device_id mtk_thermal_of_match[] = {
-> >  	{
-> >  		.compatible = "mediatek,mt8183-thermal",
-> >  		.data = (void *)&mt8183_thermal_data,
-> > +	},
-> > +	{
-> > +		.compatible = "mediatek,mt8365-thermal",
-> > +		.data = (void *)&mt8365_thermal_data,
-> 
-> Is this cast really needed ?
+...
 
-No, removed and created another patch to fix all other ones. Would look
-weird otherwise.
+> > > +       ret = clk_prepare_enable(clk);
+> > > +       if (ret) {
+> >
+> > > +               reset_control_deassert(rst);
+> >
+> > Use devm_add_action_or_reset().
+>
+> I don't see how that is better.
 
-> 
-> >  	}, {
-> >  	},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
-> >  
-> > -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
-> > +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
-> > +				       void __iomem *apmixed_base)
-> >  {
-> >  	int tmp;
-> >  
-> > -	tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
-> > -	tmp &= ~(0x37);
-> > -	tmp |= 0x1;
-> > -	writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
-> > +	if (!mt->conf->apmixed_buffer_ctl_reg)
-> > +		return;
-> > +
-> > +	tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
-> > +	tmp &= mt->conf->apmixed_buffer_ctl_mask;
-> > +	tmp |= mt->conf->apmixed_buffer_ctl_set;
-> 
-> What is the goal of these two bits operations ?
+Pity. The rule of thumb is to either try to use devm_*() everywhere in
+the probe, or don't use it at all. Above is the more-or-less standard
+pattern where devn_add_action_or_reset() is being used in the entire
+kernel.
 
-mt7622 needs to unset a few bits and set one bit in this register.
-mt8365 only unsets bits. For this purpose I created a _mask field to
-unset bits and a _set field to set bits.
+> Then I'd first need to call that and
+> check for errors, but just on the line below enabling the clock the
+> reset line is deasserted anyway, so then the action isn't needed any
+> longer. So that 3 lines of code for devm_add_action_or_reset +
+> lingering unneeded action or code to remove it again vs. just the line
+> above.
 
-Would you suggest a different way?
+Then don't use devm_*() at all. What's the point?
 
-Thanks for your feedback.
+...
 
-Best,
-Markus
+> > > +       sfp->gc.of_node = dev->of_node;
+> >
+> > Isn't GPIO library do this for you?
+>
+> If it does I can't find it.
 
-> 
-> > +	writel(tmp, apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
-> >  	udelay(200);
-> >  }
-> >  
-> > @@ -1070,8 +1148,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
-> >  		goto err_disable_clk_auxadc;
-> >  	}
-> >  
-> > +	mtk_thermal_turn_on_buffer(mt, apmixed_base);
-> > +
-> >  	if (mt->conf->version == MTK_THERMAL_V2) {
-> > -		mtk_thermal_turn_on_buffer(apmixed_base);
-> >  		mtk_thermal_release_periodic_ts(mt, auxadc_base);
-> >  	}
-> >  
-> > 
-> 
-> 
-> -- 
-> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-> 
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
+Heh... `man git grep`
+Hint: `git grep -n 'of_node = .*of_node' -- drivers/gpio/gpiolib*`
+
+-- 
+With Best Regards,
+Andy Shevchenko
