@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1AA4322B3
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 580384322DB
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbhJRPX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 11:23:28 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:47439 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232363AbhJRPX1 (ORCPT
+        id S229696AbhJRPde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 11:33:34 -0400
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:42960 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230154AbhJRPde (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 11:23:27 -0400
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5BBA3580B22;
-        Mon, 18 Oct 2021 11:21:16 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Mon, 18 Oct 2021 11:21:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        CGCHnQh8YfsDbNmhWqbZpULcIeaSOSKYfULNXySwmlk=; b=faJlnAxBWFPKhHS0
-        FOLGZX6QFb7LE/iIHc9Vwie9La5cfIHcjzGnty1lxbfkJbwvEGi229gvVkztyQn7
-        EtZ9UlVZjmGKuM9daN+I1wdxjHkujzgMr2VHmzx97MdkiMX4RPZK5uIQRqxwe2Yz
-        U8SPfNXDm7O8KVw63ZV8VBsIv/4Hbio9D/xj1WIezh6Gng5W5hXPiZ68E1g8TCiE
-        ehMzdo38VoRtbAB775MLVTTw3LCzc+Uo2Peb1qOGdWIyONqXpBNKbp7HU6aYbyZc
-        6ZEkwd8mD5n1vz1/uNXh8i3+LOV90r4asZ9YaYICDwE+qLNSwGgcc/iPlViaP5QQ
-        u5lx9w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=CGCHnQh8YfsDbNmhWqbZpULcIeaSOSKYfULNXySwm
-        lk=; b=EJXXByRwYNJKyuZp8Fv1JrVK0kbg8+koFVIewVimO2jjO9pkPhuFzygQz
-        5PxuL2DI8YYT3fkVn9mMpP58MHW5nxnsnwlopmdBNH19jq8V718VAQL1qLXzxM4S
-        +omS+SIZWK6Yjw20zM8DR3lq0UswVE6Pq/966ODWNRgQz7Om1vOamTAZs1PAaBag
-        rpv2f4ITVmfg4KKhw5hNkwXmmLB+As6ZUWzAx63cSjULOdGQE2gJCX6l00SEmd3T
-        qIJS5jN93OCh1F72y+75JOKTRGqGOpnf1yT9iVJ2ryZR8BrnLx9hUe7UokZRun3M
-        Ae3LooVBP9v7fnY479BLFzZifi+Bg==
-X-ME-Sender: <xms:6pBtYc54dO3NJRE5nNjAfZs8FjKpm0aK18j9rgS38YsWIPq5y4hZDQ>
-    <xme:6pBtYd6f_giIuzB_Qv6PmMJyKKBc-gG6ATWqmsz9EDjxfiT1di8mFpQBmgRIb3X1O
-    hb0gGerLn69Icf3ySI>
-X-ME-Received: <xmr:6pBtYbfdE3T88CMPoA3TaHGpBkEYofDpH-SS9VWbp1HnCKGFGBIkEy6JqWVKgbkbz1LDw60fz-hVYYqXzpnITNtTuTEMRRlRqHiixOCr>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddvtddgkeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
-    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:6pBtYRI9P6GXidggW157octoSwj5AXLhP05YWq10_TDxKwDKr1vi9g>
-    <xmx:6pBtYQLxpp08AfCEp31VSH_90uxpKxg9XNMW7tWyVAa0u9dEDSejKA>
-    <xmx:6pBtYSwGW4dnCXd-Xc_faVs53Y2VgyWnRoA0Mdc4bkkZxaIixNNvkw>
-    <xmx:7JBtYfUAnag_ZqFjB8_cDQ8ZRd7q8mX2wC9y9fgVN7X8s2vC1tE79g>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 18 Oct 2021 11:21:13 -0400 (EDT)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     linux-kernel@vger.kernel.org,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Brian Norris <briannorris@chromium.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dan Johansen <strit@manjaro.org>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Eddie Cai <eddie.cai.linux@gmail.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        Lucas Stach <dev@lynxeye.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Angus Ainslie <angus@akkea.ca>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-sunxi@lists.linux.dev, Matthias Brugger <mbrugger@suse.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Simon South <simon@simonsouth.net>,
-        Guido Gunther <agx@sigxcpu.org>
-Subject: Re: (subset) [PATCH 1/4] arm64: dts: allwinner: add 'chassis-type' property
-Date:   Mon, 18 Oct 2021 17:21:11 +0200
-Message-Id: <163457046206.219378.2737975440418368271.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211016102025.23346-2-arnaud.ferraris@collabora.com>
-References: <20211016102025.23346-1-arnaud.ferraris@collabora.com> <20211016102025.23346-2-arnaud.ferraris@collabora.com>
+        Mon, 18 Oct 2021 11:33:34 -0400
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19ICZjli024862;
+        Mon, 18 Oct 2021 08:31:15 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=pfpt0220;
+ bh=dU2vCIi5WKPb7AFGaKXXQnjtepfMevDauHgbDEzDwrw=;
+ b=Go2/eztflQ7vf1M3NDoKpy63E7BgUeHyJP46YFhUVgAzcQfbRrWbnKbxr7WzfqDic5jU
+ 7pxH306/yAMhLH/m7LJMAsQFBFQJ46GnrFx534ylWimO7qZGt/q6Yymo9fI/zJ1rR8IX
+ FUnlmLD7Q9lnqSO1y4Y2eM3PpShk/+40Y0IPdkeWuXA/0BswFUKgF6a14/61GDD5vxKK
+ 4Y+cD9qA8q2AgyC5wHJGZhxX6MKR/kcUJPyFPOWzrg+ndTgLjhcJSJyu+En5forACnZ7
+ 1W8cY528zI+PPc0gh/54RVBM5GhwowTHevn5IN12wJBjyx2nib/4DRyfFVB/EgpL1K/r 0A== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com with ESMTP id 3bs1bujjke-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 18 Oct 2021 08:31:14 -0700
+Received: from DC5-EXCH01.marvell.com (10.69.176.38) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 18 Oct
+ 2021 08:31:13 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH01.marvell.com
+ (10.69.176.38) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Mon, 18 Oct 2021 08:31:13 -0700
+Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
+        by maili.marvell.com (Postfix) with ESMTP id 7DEE15E6862;
+        Mon, 18 Oct 2021 08:31:10 -0700 (PDT)
+From:   Bhaskara Budiredla <bbudiredla@marvell.com>
+To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <bbhushan2@marvell.com>, <sgoutham@marvell.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bhaskara Budiredla <bbudiredla@marvell.com>
+Subject: [PATCH v6 0/2] drivers: perf: Add Marvell CN10K LLC-TAD pmu driver
+Date:   Mon, 18 Oct 2021 21:00:55 +0530
+Message-ID: <20211018153057.23217-1-bbudiredla@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: N-5QNF2_xhJzFgjxJK5kM1P8ezzqTWOk
+X-Proofpoint-ORIG-GUID: N-5QNF2_xhJzFgjxJK5kM1P8ezzqTWOk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-18_07,2021-10-18_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Oct 2021 12:20:22 +0200, Arnaud Ferraris wrote:
-> A new 'chassis-type' root node property has recently been approved for
-> the device-tree specification, in order to provide a simple way for
-> userspace to detect the device form factor and adjust their behavior
-> accordingly.
-> 
-> This patch fills in this property for end-user devices (such as laptops,
-> smartphones and tablets) based on Allwinner ARM64 processors.
-> 
-> [...]
+This series introduces performance monitor driver to Last-level-cache
+tag-and-data (LLC-TAD) PMU which is an intergral part of Marvell CN10K SoCs.
+The configuration and functionality of the TAD PMU is covered in patch 1.
+The device tree bindings are dealt in patch 2.
 
-Applied to local tree (sunxi/dt-for-5.17).
+v6:
+ - add COMPILE_TEST dependency (Bharat Bhushan)
+ - replace sprintf with sysfs_emit (Bharat Bhushan)
 
-Thanks!
-Maxime
+v5:
+ - add prefix, type, description for vendor specific properties
+   in DT bindings (Rob Herring)
+
+v4:
+ - rebased on kernel v5.14-rc7
+ - eliminate yamllint errors (Rob Herring) 
+
+v3:
+ - rebased on kernel v5.14-rc5
+ - disable sampling events via PERF_PMU_CAP_NO_INTERRUPT (Will Deacon)
+ - convert tad pmu bindings to schema (Will Deacon)
+ - replace tighter semantics with *_relaxed() accesses (Will Deacon)
+ - use PMU_EVENT_ATTR_ID generic macro (Will Deacon)
+ - allow cleanup of allocations through devm_kcalloc() (Will Deacon)
+
+v2:
+ - rebased on kernel v5.13-rc3
+
+Bhaskara Budiredla (2):
+  drivers: perf: Add LLC-TAD perf counter support
+  dt-bindings: perf: Add YAML schemas for Marvell CN10K LLC-TAD pmu
+    bindings
+
+ .../bindings/perf/marvell-cn10k-tad.yaml      |  63 +++
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/marvell_cn10k_tad_pmu.c          | 429 ++++++++++++++++++
+ 4 files changed, 500 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+ create mode 100644 drivers/perf/marvell_cn10k_tad_pmu.c
+
+-- 
+2.17.1
+
