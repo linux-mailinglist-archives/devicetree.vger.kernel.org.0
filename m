@@ -2,120 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54848431ABB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 15:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1578431AC5
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 15:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231768AbhJRN3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 09:29:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39402 "EHLO mail.kernel.org"
+        id S231873AbhJRN3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 09:29:05 -0400
+Received: from foss.arm.com ([217.140.110.172]:37362 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231814AbhJRN1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 09:27:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7A11C60EFE;
-        Mon, 18 Oct 2021 13:24:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634563490;
-        bh=Wrg1gLaNSkOVsbaHPa86t0+1ZCN45SC1LSyRyh0i74U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dV8KTEDh7BcIR0Kl17EbZu09NWj7MKmJPw9xQaxi57C14YUbnO+p+khtj6aDgUbMo
-         0v8qbcKBoGXJtRFQxAWqGZnAfztfLhsvnphvT32wtoqm37pVoWAUYqZSUxSvKmwKEu
-         r7A85x6fWT1YqKTiMAaJ1Zno9ooc97cud8ty4GyfWrNpjM6+abswBV3aMqLVzccJba
-         iy7WUw6gkFRgsG7OfBoir89POwWTCd+5RT3q53l1E5BFLvgv3RkYb9iI6Wbj/Bm7qD
-         6CfjdqfoaA5gPRZTkKR1L/9jVP9z/U1DxvU0w+ekKZUqG0QRh7QzbMPnFs3FnZJFt4
-         /2KKmyQrBDJuw==
-Received: by mail-ed1-f45.google.com with SMTP id a25so71209913edx.8;
-        Mon, 18 Oct 2021 06:24:50 -0700 (PDT)
-X-Gm-Message-State: AOAM532PI68+qW2OZNTdb5ac67gaPljtXoSX+QH5kpAaHG1NSfCA8aEL
-        hv5n9CaTQOUft+0KJB2UxK0xW1hHEkfcWwp3sw==
-X-Google-Smtp-Source: ABdhPJwJp66/mbeoS946PTfEodPH9WSktJ7q0aZ4rB1sYJUsau+I+zXONWG+AiPIJksRWj2sksZo3XrPPghjAb6gHxI=
-X-Received: by 2002:a50:da06:: with SMTP id z6mr45662114edj.355.1634563424098;
- Mon, 18 Oct 2021 06:23:44 -0700 (PDT)
+        id S230526AbhJRN20 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 18 Oct 2021 09:28:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 58926101E;
+        Mon, 18 Oct 2021 06:26:15 -0700 (PDT)
+Received: from bogus (unknown [10.57.25.56])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 13AC93F73D;
+        Mon, 18 Oct 2021 06:26:07 -0700 (PDT)
+Date:   Mon, 18 Oct 2021 14:26:05 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        James Morse <james.morse@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Jonas Bonn <jonas@southpole.se>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        Stafford Horne <shorne@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, x86@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
+        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/12] of: Add of_get_cpu_hwid() to read hardware ID from
+ CPU nodes
+Message-ID: <20211018132605.jh2huoxmywjcr5xa@bogus>
+References: <20211006164332.1981454-1-robh@kernel.org>
+ <20211006164332.1981454-2-robh@kernel.org>
 MIME-Version: 1.0
-References: <20211007080934.108804-1-chanho61.park@samsung.com>
- <CGME20211007081135epcas2p2d577fc8dec75471cf42024eda6a45690@epcas2p2.samsung.com>
- <20211007080934.108804-14-chanho61.park@samsung.com> <YWmHQ5CVQd97JzHJ@robh.at.kernel.org>
- <003d01d7c3b6$dccac760$96605620$@samsung.com>
-In-Reply-To: <003d01d7c3b6$dccac760$96605620$@samsung.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 18 Oct 2021 08:23:31 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKkA3i=-uyEz81tscRSNa5-RisYa_b_VaJmOurkPz+f=g@mail.gmail.com>
-Message-ID: <CAL_JsqKkA3i=-uyEz81tscRSNa5-RisYa_b_VaJmOurkPz+f=g@mail.gmail.com>
-Subject: Re: [PATCH v4 13/16] dt-bindings: ufs: exynos-ufs: add io-coherency property
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bean Huo <beanhuo@micron.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Christoph Hellwig <hch@infradead.org>,
-        Can Guo <cang@codeaurora.org>,
-        Jaegeuk Kim <jaegeuk@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Gyunghoon Kwon <goodjob.kwon@samsung.com>,
-        Sowon Na <sowon.na@samsung.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        SCSI <linux-scsi@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211006164332.1981454-2-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 17, 2021 at 7:27 PM Chanho Park <chanho61.park@samsung.com> wrote:
+On Wed, Oct 06, 2021 at 11:43:21AM -0500, Rob Herring wrote:
+> There are various open coded implementions parsing the CPU node 'reg'
+> property which contains the CPU's hardware ID. Introduce a new function,
+> of_get_cpu_hwid(), to read the hardware ID.
 >
-> > > +  samsung,sysreg:
-> > > +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> > > +    description: phandle for FSYSx sysreg interface, used to control
-> > > +                 sysreg register bit for UFS IO Coherency
-> > > +
-> > > +  samsung,ufs-shareability-reg-offset:
-> > > +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > > +    description: Offset to the shareability register for io-coherency
-> >
-> > Make these a single property: <phandle offset>
+> All the callers should be DT only code, so no need for an empty
+> function.
 >
-> As I already mentioned previous e-mail [1], I need to support two ufs
-> instances for exynosauto v9 soc.
 
-Don't expect me to remember. That was 100s of reviews ago.
+Thanks for doing this. I postponed and forgot about this though I had
+planned for this when I touched code around this.
 
->
-> syscon_fsys2: syscon@17c20000 {
->         compatible = "samsung,exynosautov9-sysreg", "syscon";
->         reg = <0x17c20000 0x1000>;
-> };
->
-> ufs_0: ufs0@17e00000 {
->         <snip>
->         samsung,sysreg = <&syscon_fsys2>;
->         samsung,ufs-shareability-reg-offset = <0x710>;
+Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
 
-samsung,ufs-shareability-reg = <&syscon_fsys2 0x710>;
-
-> };
->
-> To be added ufs_1 like below
-> ufs_1: ufs0@17f00000 {
->         <snip>
->         samsung,sysreg = <&syscon_fsys2>;
->         samsung,ufs-shareability-reg-offset = <0x714>;
-
-samsung,ufs-shareability-reg = <&syscon_fsys2 0x714>;
-
-I still don't see what's the problem?
-
-> };
->
-> [1]:
-> https://lore.kernel.org/linux-scsi/000901d7b0e0$e618b220$b24a1660$@samsung.c
-> om/
->
-> If you prefer them to be separated sysreg phandles which directly pointing
-> the register, I'm able to change it.
-> But, the syscon_fsys2 can be used for other IPs as well such as ethernet.
->
-> Best Regards,
-> Chanho Park
->
+--
+Regards,
+Sudeep
