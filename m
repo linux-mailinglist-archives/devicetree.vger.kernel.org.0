@@ -2,135 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0B6430EE1
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 06:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE861430EE9
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 06:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbhJREaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 00:30:15 -0400
-Received: from mail-co1nam11on2135.outbound.protection.outlook.com ([40.107.220.135]:29249
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229589AbhJREaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 18 Oct 2021 00:30:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XeHZ2Z9IiZ1ykmOOeszGqRzxQ3ejNJ4itNR9OLbjGmvPJNWsYSqGo+9WZO+WW+MBh652r96z1kAlWk+Yse4IzW8FJU835i8KnHt7avfJPounmHzstFvZ7WZyOIMIOqGAKeD+5zLEAgEkjOSVIiDukzptxPudKvLHvLbPYfisThhzziuGXVwqNAlAfSFj7mSoIa6I/+ijyfD08NLDVxNLyfq1sNiBS7Ep79XbmiMMPbVFNf9CtdIRroZ40k0ZMU0/mza/c3mKO05iPVTMOQx0KNkPLtAe3FyRxOXh1TOEM0j4wZbyKxnnkdrJq0465HoS9vq5xNu8n/A8i1mF7Y2KEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rFibBbwC9OXO9CmAIv8TmpN9dJyrTkVB1TMRj5IHhIE=;
- b=PAmdPzuGql9TfQymm1GaWJ4ixO0XphLg8DpRBHgyxL5ABtE4cjbYZrzvGN8MUhIIYSWnvGRW9TztPFu7alOi/tDyehuhPePMvLhC7teR/3HuHnG31dcMpTynvIr+H/DuhbgE1bFuRGsCxqcZ9A/lvbQWqdQDNDcxxvo2MfvGMnooeSqTKJhdkrvZNB58JfOcP7QKuZEuDzDvsQWlfeWwdQVQPq3ruK1Nx7lqkicfc6EGJcKSh97aEhUHUbdyp4ZQrqVxFNnyy50mbIKbCpAPWs0XGwUynJTuT8sHcNK/uf2lewVF/QXwfDouaK+l5XakoQwh1cEOc68bqJ37GUdtUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
- header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
- arc=none
+        id S229572AbhJREf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 00:35:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53190 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229453AbhJREf1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 00:35:27 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 203DAC06161C
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 21:33:17 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id i12so38773816wrb.7
+        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 21:33:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=maximintegrated.onmicrosoft.com;
- s=selector2-maximintegrated-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rFibBbwC9OXO9CmAIv8TmpN9dJyrTkVB1TMRj5IHhIE=;
- b=FHyGPAIhP78SwikvGFdTY+oqgn+Kn1j5SIscAAN9UbLHnWkUPR9CLwWXoZZ6DvhUJm94JN1kPD1LKdDO3qxXokdVzYvdjfmmgDft8gYDQzuRaJgiZP5Jv2s2GcSRzjw9dyHBqaVM00mCXlouepxnXZQx2WiazivJKsBjkk9bORE=
-Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
- by BYAPR11MB3479.namprd11.prod.outlook.com (2603:10b6:a03:1e::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15; Mon, 18 Oct
- 2021 04:28:03 +0000
-Received: from BYAPR11MB3671.namprd11.prod.outlook.com
- ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
- ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.018; Mon, 18 Oct 2021
- 04:28:03 +0000
-From:   George Song <George.Song@maximintegrated.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "george.song@analog.com" <george.song@analog.com>,
-        Ryan Lee <RyanS.Lee@maximintegrated.com>,
-        Steve Lee <SteveS.Lee@maximintegrated.com>
-Subject: RE: [EXTERNAL] Re: [v2 2/2] ASoC: max98520: modified alignment and
- blank
-Thread-Topic: [EXTERNAL] Re: [v2 2/2] ASoC: max98520: modified alignment and
- blank
-Thread-Index: AQHXwZYe2v0WPMfB7UKNOh7WkmfetqvURqgAgAPnPkA=
-Date:   Mon, 18 Oct 2021 04:28:03 +0000
-Message-ID: <BYAPR11MB3671C1C3541CE36FD630F746F4BC9@BYAPR11MB3671.namprd11.prod.outlook.com>
-References: <20211015072709.3167-1-george.song@maximintegrated.com>
- <20211015072709.3167-2-george.song@maximintegrated.com>
- <YWmxmBh7J1x2SaXi@sirena.org.uk>
-In-Reply-To: <YWmxmBh7J1x2SaXi@sirena.org.uk>
-Accept-Language: ko-KR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none
- header.from=maximintegrated.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 38f6acb0-b5fd-4649-29c0-08d991efacf5
-x-ms-traffictypediagnostic: BYAPR11MB3479:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR11MB3479EF4FD84F4B13E831433EF4BC9@BYAPR11MB3479.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kTM941J7UB5n3wDX/Mc19QEGsdnXrI2mrAish4IocBN87kOfK1MSsN5/wd3WF7nKUBhakThG/mQFyCZEf7WJddu8nW04zzjyabsax54G2kHfH7QJZO8431uo+zMj8BPAkcV2JvjK8g7OD8Y32jIgxC3YOsGkC2aB6Y46sLq0Tj4/bGNjw/WmAodDSfBc8ye2vgYsbNFtykhrwypFsHKQidj2Kc0gntnFSdwq/toojF0gjeM7JGzqHteAZEI4Yc0nL1cbk4zBIzqtmMBJd5wfFpxwegO6PAQHQtUmpqSJ1uqlrBfS68KCouvsIHnMk3AJJiYzIgH1Hv3lS8b0M8AiTHDegH90SbVaAHfFU7GQEe83IQ+Y3PuD2YMOroGa02v1EpYTq1z/MfS9o0274VYaMi0qjcmy6P7Zfdavti22X2wVYjT5ZxD5eHkN5sou18VxmdS9TxjL4wNnQLPOmA7RJeH/UhT1obCXRPid4gS9l+VoLrGJXS4m/21b/Y0Vf80fXbYU7j2ow006vzNbPvON1/GTm+EDwoFvLFRfkAp4ipJ3rJsuyR+sjfL+zaDboFu2RQbPRifmpbNqYivwSXyT4MpWVWl3ZxRrjRbJR+4oS8r1j8XbwAhq31eA0t9tGCPyBTrQ9rOQut+5n0mUypWgWCTRYcm2lVtk8njlfFVdfhWUtpcYPUG6zaICMEj2WIJ37WmA3AGiLpGnWJf9td00rQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(122000001)(508600001)(7696005)(86362001)(54906003)(66446008)(38070700005)(83380400001)(316002)(5660300002)(9686003)(186003)(66556008)(38100700002)(64756008)(66946007)(6506007)(71200400001)(33656002)(52536014)(4326008)(55016002)(76116006)(26005)(8676002)(8936002)(107886003)(2906002)(66476007)(4744005)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?fXngW8g25bfDFdCFZJ4yH1fEHhBea1t7KOpSCvyKiMg9OeYnjU4fMe1Pnc25?=
- =?us-ascii?Q?lwc2wvBL+GKXkxMzLeQwK9743TAXHhqf+a318ldE/k1bjYMc75cOL1cQp4qo?=
- =?us-ascii?Q?YFNbtRKo7G97ExrUTOlLUW6KlTdZgBVvg6U746tr0fORg8K88HblwW4J075D?=
- =?us-ascii?Q?POiBSKI3Ye3sMccEvg9TDuxZ9sFtx9wht5pQnS+IjdOaR74BJvjymgdhZxhq?=
- =?us-ascii?Q?OLATK+/XtFOCuPGo9bno/qKG9TJYmiGkT0PBz9Uj/41JfYDbpYRDXCNNHkAg?=
- =?us-ascii?Q?yLTrNX7uHD2o9ecaCU9O8/+Q4nV2V/T3orIPK6je1w8Inv2CU9D3O1QsfmyH?=
- =?us-ascii?Q?7cOZ21r5jSaAtbgN7vdnifE0yPY59PFB0Tx8DBQfgMUpLjjWg9B2eEuNmbt4?=
- =?us-ascii?Q?ub0vv7PeKqxpdg6kIuyg3YmnGUwtacPtbc6UU7y4jbtc2yWeNFfJ5AxnZXD/?=
- =?us-ascii?Q?2CFgqyejm71xDtd3TNgCYxBy/GmOhYGsvaGmiVJtkBcfE9UoW/o/MfNKB8bw?=
- =?us-ascii?Q?bBtEp0ZTzpmlzAd1kGYcHx2VOUImSPXhzHBrfjIUoaednuDJsSdwrEcwIUS5?=
- =?us-ascii?Q?btIbNDX2O0bChaOn2VQ/PLdU3z5Npu8RXU6xeJKy1sKX6pH6/joxgZUJ+HKf?=
- =?us-ascii?Q?5yICY0TWRCukZm3qw6RADVETno2dBtm6wRdJ6pqRivgBtQyqN6vc+ilFdkp0?=
- =?us-ascii?Q?SkDyQ4L0gSmn36gnDKts/nA3FXSVGDhp1xlxuDVV0/ZmYf0TdV5tQVmcWA/4?=
- =?us-ascii?Q?8hNvqFDihcjLqZDJDFLVkdYeaB7zvia8VULidb3Sn/EIkHyH2ICcfNTlAdXn?=
- =?us-ascii?Q?dwn4Ink2EK0UJZS15LHC79cR85/bdyD7US3f92BYD1XIxFXwvCoN3NmSUUuV?=
- =?us-ascii?Q?tOhETZyc/b2NJ35NccD9ey66o+elF5SF+2zL9DVhfZupUhrxjdvKKVcf0SM/?=
- =?us-ascii?Q?umWxcL+hlxrTrdsGKtvGLyepBgdtlnBI6g5xZiJIe1xYwdB2YDA2oCHNHcb7?=
- =?us-ascii?Q?k9ONL+FHBwFRGxDjdGCJImwfThtbsO/9QKtDGfl2GjEovRGlYzkA7SuPiK0l?=
- =?us-ascii?Q?Fh9hCINIvxZcI2XglmC2VmPHgoXoB7/y7RN5jiL9JbqjTi59AGdmxQKgCwZQ?=
- =?us-ascii?Q?5M92sy0+gB/AF+4VXMt8KzYkp7hA87TcpYOZApOMnqkm+G6wOF38KksuWhOQ?=
- =?us-ascii?Q?YsU0pZvmBnqWYERLs38y42u7jT/FbQGYLOnkPUkmTH/iphZwwTCiK/DKnx3y?=
- =?us-ascii?Q?tMDCHTpY+ePTQi4/r+9lxEEirTrjhqAX9BkmWUEsUwREO8R1wcXrgo/Uf4nd?=
- =?us-ascii?Q?a5PFpFiC0P73Xv1ARDAm9VHr?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FtUBtWA90x+Pb9HFP4uoXiLc4o2TxeGhqR6fwQbYKb8=;
+        b=8FITqn9K5KfRz8Ss1x15c/E4gIyXjugA04x7iNdNUejiXgz2555yzSJAAogSzeqS7q
+         q7PQ64fPTE7OmgI+KE4+63vBXNG4t75ylGCguocaJ6W9ts3/Z1BzDET5FIoc2I0p573S
+         nMV1YdamHEgyQ8bjZKH1qaKYLQpK/1souUpEJWopgjAFcAIaKWe90l9Yg/iheEyLtPaO
+         nXfg1S4L/hDNCIp7SPKlZHganpou+0uiJ/IhRAu8zr1ObxfsGE2/es/iP0LCvWlVHVW+
+         1tkyy3NLORkCqIBvtpdUCdzdyiHfetUE4MxNWl8QmpFlJYamaRoNqlJfWNs1c0s3QA7f
+         2WuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FtUBtWA90x+Pb9HFP4uoXiLc4o2TxeGhqR6fwQbYKb8=;
+        b=VzLgzI+Y3yteoT8mM7aYZmJyHzFEqMn68fv9wHO/LD5g1Gn89B0JBTV3USp+1ZoyB7
+         Ufil9lh0DeUm0eOfQAHkxiRqp3gt6fDbCewxnWW8uTupJLHKyAkkmky+loaYIuuK7V8k
+         7uYScekFdCUdka0ywDgExy3zMCzHJrxJkXLAdKdoEim/seixMw+DIf93BoKcxFKo2La2
+         9H7uLAmQRFuKI59btUrPR6HgEFSuJbKFcSM9q6K6bTbvZqbOr+CFx5NBqA0DMjLCFDyf
+         EunzGq2EPIb1RnRdU0IN0Isy56mq6lKbXKtqhwWTJ1jXjGP1yXp2LC4OV4lESavL58sC
+         gIPw==
+X-Gm-Message-State: AOAM533dBzwWsUTDc6pdq5VGHNsNIN0buPF71el3fKRdNyn9oeCJrn+o
+        9VVP7YRmVHoNB06NFcS0VBu/P5stLlqb1yRkRzEmnw==
+X-Google-Smtp-Source: ABdhPJydk0ydbDmFLt6u8ok8LYEytDSxAqGGTqx/OVzL0U1AcEhdOHzFxvIrItXho4WDm+C9oH+N3RJyq1U48OoRJwM=
+X-Received: by 2002:a5d:6dce:: with SMTP id d14mr32967521wrz.363.1634531595601;
+ Sun, 17 Oct 2021 21:33:15 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: maximintegrated.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38f6acb0-b5fd-4649-29c0-08d991efacf5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Oct 2021 04:28:03.2926
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fbd909df-ea69-4788-a554-f24b7854ad03
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YoW8u1qwrUDXtpKVaQiGsalJzG0S6gtQzbhiOCEg/iWTqDckUfTMiwCfF1Sw4GX83LnNu524RQQD4FIBv+DKUj6NzMk0IdI2XEdnMmnLcEw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3479
+References: <20211015120735.27972-1-heinrich.schuchardt@canonical.com>
+In-Reply-To: <20211015120735.27972-1-heinrich.schuchardt@canonical.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Mon, 18 Oct 2021 10:03:04 +0530
+Message-ID: <CAAhSdy3JU6jitTWFk4CVRG5Xc7P7ueZzd=xmnKBNpx8eGaR6hw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] dt-bindings: reg-io-width for SiFive CLINT
+To:     Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Bin Meng <bmeng.cn@gmail.com>, Xiang W <wxjstz@126.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        OpenSBI <opensbi@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Fri, Oct 15, 2021 at 04:27:09PM +0900, George Song wrote:
-> > fixed all CHECK and WARNING for checkpatch --strict result removed
-> > MODULE_AUTHOR to make one maintainer.
-> >
-> > Signed-off-by: George Song <george.song@maximintegrated.com>
-> > ---
-> >  sound/soc/codecs/Kconfig    |   7 +++
-> >  sound/soc/codecs/max98520.c | 121
-> > +++++++++++++++++-------------------
-> >  2 files changed, 64 insertions(+), 64 deletions(-)
->=20
-> Looks like the same issue here - squash the fixes into your original patc=
-h
-> and then resend that as your version 2.
-OK I see. I`ll re send patch including whole things.
+On Fri, Oct 15, 2021 at 5:37 PM Heinrich Schuchardt
+<heinrich.schuchardt@canonical.com> wrote:
+>
+> The CLINT in the T-HEAD 9xx processors do not support 64bit mmio access to
+> the MTIMER device. The current schema does not allow to specify this.
+>
+> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
+> restriction. Samuael Holland suggested in
+> lib: utils/timer: Use standard property to specify 32-bit I/O
+> https://github.com/smaeul/opensbi/commit/b95e9cf7cf93b0af16fc89204378bc59ff30008e
+> to use "reg-io-width = <4>;" as the reg-io-width property is generally used
+> in the devicetree schema for such a condition.
+>
+> A release candidate of the ACLINT specification is available at
+> https://github.com/riscv/riscv-aclint/releases
+>
+> Add reg-io-width as optional property to the SiFive Core Local Interruptor.
+> Add a new compatible string "allwinner,sun20i-d1-clint" for the CLINT of
+> the Allwinner D1 SoC.
+>
+> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+> ---
+>  .../devicetree/bindings/timer/sifive,clint.yaml     | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> index a35952f48742..d3b4c6844e2f 100644
+> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - enum:
+>            - sifive,fu540-c000-clint
+>            - canaan,k210-clint
+> +          - allwinner,sun20i-d1-clint
+>        - const: sifive,clint0
+>
+>      description:
+> @@ -33,14 +34,22 @@ properties:
+>        Supported compatible strings are -
+>        "sifive,fu540-c000-clint" for the SiFive CLINT v0 as integrated
+>        onto the SiFive FU540 chip, "canaan,k210-clint" for the SiFive
+> -      CLINT v0 as integrated onto the Canaan Kendryte K210 chip, and
+> -      "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
+> +      CLINT v0 as integrated onto the Canaan Kendryte K210 chip,
+> +      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC,
+> +      and "sifive,clint0" for the SiFive CLINT v0 IP block with no chip
+>        integration tweaks.
+>        Please refer to sifive-blocks-ip-versioning.txt for details
+>
+>    reg:
+>      maxItems: 1
+>
+> +  reg-io-width:
+> +    description: |
+> +      Some CLINT implementations, e.g. on the T-HEAD 9xx, only support
+> +      32bit access for MTIMER.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    const: 4
+> +
+
+Please drop the "reg-io-width" DT property.
+
+Based on discussion on ACLINT MTIMER DT bindings, Rob suggested
+using implementation specific compatible string for detecting register IO
+width. We should follow the same strategy here as well.
+
+Regards,
+Anup
+
+>    interrupts-extended:
+>      minItems: 1
+>
+> --
+> 2.32.0
+>
