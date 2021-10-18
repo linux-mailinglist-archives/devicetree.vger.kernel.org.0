@@ -2,105 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E5A431704
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1902C43176F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 13:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbhJRLQ6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 07:16:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
+        id S230321AbhJRLgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 07:36:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbhJRLQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:16:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB316C06161C
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:14:46 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQbE-0006vn-QW; Mon, 18 Oct 2021 13:14:36 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mcQbD-00082c-IT; Mon, 18 Oct 2021 13:14:35 +0200
-Message-ID: <14aa7bde4028007496dfbf041ab5000eb437941e.camel@pengutronix.de>
-Subject: Re: [PATCH v6 2/2] pinctrl: microchip sgpio: use reset driver
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
-        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Mon, 18 Oct 2021 13:14:35 +0200
-In-Reply-To: <20211018111231.bawmvre4dqow65dy@soft-dev3-1.localhost>
-References: <20211018085754.1066056-1-horatiu.vultur@microchip.com>
-         <20211018085754.1066056-3-horatiu.vultur@microchip.com>
-         <6f46c5ab7458e1368abfeb8dee6e24271f39d236.camel@pengutronix.de>
-         <20211018111231.bawmvre4dqow65dy@soft-dev3-1.localhost>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        with ESMTP id S229665AbhJRLgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 07:36:53 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADC9C061714
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:34:43 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id w12-20020a056830410c00b0054e7ceecd88so230492ott.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 04:34:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6G8Hfd9HWWdOmQn8dJ/4ZTN0E6g9DldkLudnuHQWD1k=;
+        b=mfWHkg6A++/9gjuM+FUS0mGsRBbFBJOlC/EjyddiPAJctM5q/3aGEkGv0P9ExrHLYf
+         vlnNzUKEfOTtJzDy0NRR4NFTvE8RnCv5Smk1MSYJQUYBgQc5ztrxlGLQ6BvCE6HgqeHR
+         AuoMfraz4oXYEmgUAVhlRhm6sQ6nWYWvEQiL/5R7bLCmzwDP9RIyY3PFQFpKf0P/mdMb
+         //v1bgSYW9PRlFyzfVwe5fv6KzVlQVdy0Ry0vHqL9/4UtfDzq4BV85xu2Uh50jPPrQl5
+         zIZuwOmHSc6Thw3vfNcXkvSf9F+XlsvT5aeSj7mjWcE3tgqqeaVhgoC46G9Tj2XzjpoB
+         yUtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6G8Hfd9HWWdOmQn8dJ/4ZTN0E6g9DldkLudnuHQWD1k=;
+        b=uatnJa9CNVtmdPODpOQZzniu/xjdH7D+ojUSllzElu191DL2vrYvmUNfbmS1MTOqJt
+         +E/RK4DPlpXFk6t0rXSPIuVA7ypYoTTDHlRZLldtXIjaf87ARKaZwZADVOiYRFxe9IlV
+         UpsTGzMY78i3IAfvipt1MquplR3WBIz7BbJ+OUM0J6Mr6rGjPNvF6Ff5lkPM51mt0eOZ
+         6X6reUje72kG98D5iiGKK4Obf+2b1CVLyKK7Gn3la1yxsdZauvWQI4QmapsGdCOwiQXf
+         YTVKlrkyALGmffHwa1sffPsazfjQ5ZwCyTRzuef4R7BFtOcAtk917Ic7ewDONxK93MJi
+         zfWg==
+X-Gm-Message-State: AOAM532esvYeABsz9fHPgeviT7uf5VnIXQsOi6yRk3KAmdx1Xt7ty2/k
+        wdZkK0A08KPbXgdrNUSsFcMOi0G3OJZXTzoYzWC7VA==
+X-Google-Smtp-Source: ABdhPJzToQU6dBlbmasyOXnGLHSpLJDGclh9CmgZFd06P3bvgiJJeE2czOxOsSKQnEzr3MFg2ogcNZYW8cFjW+0K93M=
+X-Received: by 2002:a05:6830:1c26:: with SMTP id f6mr20715033ote.28.1634556882315;
+ Mon, 18 Oct 2021 04:34:42 -0700 (PDT)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-2-stephan@gerhold.net>
+In-Reply-To: <20211011141733.3999-2-stephan@gerhold.net>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 18 Oct 2021 17:04:31 +0530
+Message-ID: <CAH=2NtwH9kmZBMsOkZkwiuN2mpmOTiAVtw3zC2O4xNdCgG8P4w@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 1/4] dt-bindings: dmaengine: bam_dma: Add
+ "powered remotely" mode
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, MSM <linux-arm-msm@vger.kernel.org>,
+        dmaengine@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-10-18 at 13:12 +0200, Horatiu Vultur wrote:
-> The 10/18/2021 12:37, Philipp Zabel wrote:
-> 
-> Hi Philipp,
-> > Hi Horatiu,
-> > 
-> > On Mon, 2021-10-18 at 10:57 +0200, Horatiu Vultur wrote:
-> > > On lan966x platform when the switch gets reseted then also the sgpio
-> > > gets reseted. The fix for this is to extend also the sgpio driver to
-> > > call the reset driver which will be reseted only once by the first
-> > > driver that is probed.
-> > > 
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > >  drivers/pinctrl/pinctrl-microchip-sgpio.c | 7 +++++++
-> > >  1 file changed, 7 insertions(+)
-> > > 
-> > > diff --git a/drivers/pinctrl/pinctrl-microchip-sgpio.c b/drivers/pinctrl/pinctrl-microchip-sgpio.c
-> > > index 072bccdea2a5..78765faa245a 100644
-> > > --- a/drivers/pinctrl/pinctrl-microchip-sgpio.c
-> > > +++ b/drivers/pinctrl/pinctrl-microchip-sgpio.c
-> > > @@ -17,6 +17,7 @@
-> > >  #include <linux/pinctrl/pinmux.h>
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/property.h>
-> > > +#include <linux/reset.h>
-> > > 
-> > >  #include "core.h"
-> > >  #include "pinconf.h"
-> > > @@ -803,6 +804,7 @@ static int microchip_sgpio_probe(struct platform_device *pdev)
-> > >       int div_clock = 0, ret, port, i, nbanks;
-> > >       struct device *dev = &pdev->dev;
-> > >       struct fwnode_handle *fwnode;
-> > > +     struct reset_control *reset;
-> > >       struct sgpio_priv *priv;
-> > >       struct clk *clk;
-> > >       u32 val;
-> > > @@ -813,6 +815,11 @@ static int microchip_sgpio_probe(struct platform_device *pdev)
-> > > 
-> > >       priv->dev = dev;
-> > > 
-> > > +     reset = devm_reset_control_get_optional_shared(&pdev->dev, "switch");
-> > 
-> > This is the first GPIO driver that I am aware of that requests a named
-> > reset control, so I'm still not sure if this should be called "switch"
-> > instead of "gpio" or just "reset", just in case there is a future model
-> > where the GPIO controller reset is not shared with the switch reset.
-> 
-> I agree, it is not the best name. But the name "switch" was already used
-> in DT by sparx5[1], so I just went with this name.
+Hi Stephan,
 
-Oh, ok, in that case the decision already has been made.
+On Mon, 11 Oct 2021 at 20:12, Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> In some configurations, the BAM DMA controller is set up by a remote
+> processor and the local processor can simply start making use of it
+> without setting up the BAM. This is already supported using the
+> "qcom,controlled-remotely" property.
+>
+> However, for some reason another possible configuration is that the
+> remote processor is responsible for powering up the BAM, but we are
+> still responsible for initializing it (e.g. resetting it etc). Add
+> a "qcom,powered-remotely" property to describe that configuration.
+>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> Changes since RFC:
+>   - Rename qcom,remote-power-collapse -> qcom,powered-remotely
+>     for consistency with "qcom,controlled-remotely"
+>
+> NOTE: This is *not* a compile-time requirement for the BAM-DMUX driver
+>       so this could also go through the dmaengine tree.
+>
+> Also note that there is an ongoing effort to convert these bindings
+> to DT schema but sadly there were not any updates for a while. :/
+> https://lore.kernel.org/linux-arm-msm/20210519143700.27392-2-bhupesh.sharma@linaro.org/
 
-regards
-Philipp
+Seems you missed the latest series posted last week - [1]. Sorry I got
+a bit delayed posting it due to being caught up in other patches.
+
+Maybe you can rebase your patch on the same and use the YAML bindings
+for the qcom,bam_dma controller.
+
+[1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#t
+
+Regards,
+Bhupesh
+
+> ---
+>  Documentation/devicetree/bindings/dma/qcom_bam_dma.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> index cf5b9e44432c..6e9a5497b3f2 100644
+> --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> @@ -15,6 +15,8 @@ Required properties:
+>    the secure world.
+>  - qcom,controlled-remotely : optional, indicates that the bam is controlled by
+>    remote proccessor i.e. execution environment.
+> +- qcom,powered-remotely : optional, indicates that the bam is powered up by
+> +  a remote processor but must be initialized by the local processor.
+>  - num-channels : optional, indicates supported number of DMA channels in a
+>    remotely controlled bam.
+>  - qcom,num-ees : optional, indicates supported number of Execution Environments
+> --
+> 2.33.0
+>
