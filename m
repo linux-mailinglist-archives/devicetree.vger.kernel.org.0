@@ -2,80 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C95CE431863
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F4343189C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 14:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229781AbhJRMDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 08:03:23 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:50796 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230399AbhJRMDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 08:03:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634558472; x=1666094472;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jr6MSQpq3y/ZkNOUuLFMDSkZtNAhm5mKOpvVprC0aCs=;
-  b=v33/PED5MJi+j7fqKl+s4MrXK+mATJysTm8uL697ox7Xi3u/dD9Q+7Ql
-   /yChVqbMZy+Hb0D9GWv3yZ7pJCZLl5NosswAkMBuiCD/9EfdttTjcFlB9
-   FwDUXvJdUAiW93SciVHG7ljiyXDm2EHITRO1BVAGydmPIzR14+ZQQVVFc
-   gCelSUBl9HkUdrTFZOryZNOtPi3CaK6p7X2gjwpRkds3oY/MxSv3KGCgD
-   at7aKghSdHvXqi7LdF5kp8uC2rrCbw85TfHfdPQeEAaTHw7OvIGS6Ct2J
-   lFaYqOolSkiBZTIgwLujuiWoA9c0k6livLuEUnZ2GgCiErGDsZHuO3fKS
-   Q==;
-IronPort-SDR: vSbaoL9jcVsseWI75UVq/weDcBclJjEne15vFOST/OQ1RrgB1LnFYnNRM/Lx73qhoy6PFV9K60
- Om+EJR5MshyeMMOByv4RZ4STGypoRvmNzrIqD7W+/Pl7cRkVDEuhpFojGZvawysIWyx0Ahoi+b
- 9CgPzCAi3jSwKJmHe/bsVLvRQ2wCpwK+rw2wvnEc+ca5wMzO6QRT+MiYR3w1avAr95nxyupGxp
- J9ucnbbef/34Bz8dqYEDlbxfdPFlvYgt9tMElEZhLWd/N9nhxn0LoEYHYaYEzu0OtqWovAuRG/
- CtJ+c2oz5Vp0EK69hmt3M7Mo
-X-IronPort-AV: E=Sophos;i="5.85,381,1624345200"; 
-   d="scan'208";a="148538464"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Oct 2021 05:01:11 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 18 Oct 2021 05:01:11 -0700
-Received: from [10.205.21.35] (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Mon, 18 Oct 2021 05:01:09 -0700
-Message-ID: <d88f46ec206eecafa7f503724bae1063b7a16211.camel@microchip.com>
-Subject: Re: [PATCH v4 2/2] reset: mchp: sparx5: Extend support for lan966x
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        <p.zabel@pengutronix.de>, <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Andrew Lunn <andrew@lunn.ch>, <robh+dt@kernel.org>
-Date:   Mon, 18 Oct 2021 14:01:09 +0200
-In-Reply-To: <20211018091522.1113510-3-horatiu.vultur@microchip.com>
-References: <20211018091522.1113510-1-horatiu.vultur@microchip.com>
-         <20211018091522.1113510-3-horatiu.vultur@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S229569AbhJRMQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 08:16:06 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:44004 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229581AbhJRMQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 08:16:06 -0400
+Received: by mail-oi1-f181.google.com with SMTP id o4so24021645oia.10;
+        Mon, 18 Oct 2021 05:13:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=o3tDIMhbFnjnaWFNKY8OECJ7Mjc3HAYXOLncYD0rywA=;
+        b=o7hJkwPv6G++9HRhIkpG2yoS+LW2Ji/0Y3eUUccL7D0VefcDPRJaUEEV8ZpskqIcix
+         GkQywUZTZvzf1k9NKuexTiNUq2I8cFKS7y+LacPurym5ExgluHLy8eA3yx3gkDLR33ey
+         D4Kxx9PeNs91fgucG/+CytfyKBUVj/OE4DRVz8Qo8Viv7HOMNtr0qURz6H2KpRQZii5N
+         hH/AU0qSobgzT+BJVPQhXZA7+1A5BwXDRQdmnryONYFTvxFLqEAGxgiQG3SAiS0BS9iy
+         2k6y7GRUGBQilTH5/UoIjWowOu/hY9RHsb6CLXLoo33bzxAaeujqMHensWhbPeI4oUm4
+         BnJA==
+X-Gm-Message-State: AOAM531iIs068tN9+dr+RUL4YuKCrcabUj9E0j5nBSWPxASG6hdUifDt
+        5Rh3bWo8tfGhDNqJIlqzPw==
+X-Google-Smtp-Source: ABdhPJxV7uU4axirSj0liNe2NLPhByiv9fWa6hEbSEpOSjIoe+pp9Fhp6hojMfVWh0viqHFC56vw7A==
+X-Received: by 2002:aca:a94c:: with SMTP id s73mr28462897oie.93.1634559234829;
+        Mon, 18 Oct 2021 05:13:54 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id s5sm1828281ois.55.2021.10.18.05.13.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 05:13:54 -0700 (PDT)
+Received: (nullmailer pid 2074238 invoked by uid 1000);
+        Mon, 18 Oct 2021 12:13:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <1634521033-17003-8-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1634521033-17003-1-git-send-email-hayashi.kunihiko@socionext.com> <1634521033-17003-8-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: Re: [PATCH 7/8] dt-bindings: phy: uniphier-ahci: Add bindings for Pro4 SoC
+Date:   Mon, 18 Oct 2021 07:13:53 -0500
+Message-Id: <1634559233.449347.2074237.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-10-18 at 11:15 +0200, Horatiu Vultur wrote:
-> This patch extends sparx5 driver to support also the lan966x. The
-> process to reset the switch is the same only it has different offsets.
-> Therefore make the driver more generic and add support for lan966x.
+On Mon, 18 Oct 2021 10:37:12 +0900, Kunihiko Hayashi wrote:
+> Update AHCI-PHY binding document for UniPhier Pro4 SoC. Pro4 AHCI-PHY
+> needs to control additional reset lines, "pm", "tx", and "rx" and
+> additional I/O clock line "gio".
 > 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 > ---
+>  .../bindings/phy/socionext,uniphier-ahci-phy.yaml    | 20 ++++++++++++++++----
+>  1 file changed, 16 insertions(+), 4 deletions(-)
+> 
 
-Reviewed-by: Steen Hegelund <steen.hegelund@microchip.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-BR
-Steen
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml:35:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml:50:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml:56:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-steen.hegelund@microchip.com
+dtschema/dtc warnings/errors:
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1542355
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
