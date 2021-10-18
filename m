@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FAD432028
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 16:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9BF432197
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 17:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231929AbhJROuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 10:50:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
+        id S233494AbhJRPFH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 18 Oct 2021 11:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231874AbhJROuK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 10:50:10 -0400
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D292C061745
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 07:47:59 -0700 (PDT)
-Received: by mail-yb1-xb33.google.com with SMTP id i84so2696656ybc.12
-        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 07:47:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=2Y8NayuLnfX3GwLkDMn7ZTyD7RtMsOyjIifS8+INynY=;
-        b=XulFKbz1ZQNizIVQGDmAgKMG+KnscgG/c8yGk7UG1dxXB7fjmCAywmmK6KL8xR99yN
-         kVawGuB+pWgwcB48vHRAdyBIB0hw+ksAMy/Bkmyzr0kbyyR6MBDwdAed12VBy2E1+mMm
-         qMemTxgUiGnroAMyZAmtQCondSMNt9KPRjZj/VBgWLzwviK4zrBpL7YBw5EC7MzFUAHs
-         OZGsJ8+FaX5DlopD9DANuPmNlfWsnzetWBhpga9WF3hfU7pDraBHNrz1n5pAIFpSN++x
-         aQJWNmGWZWhIH+Gs/wXePsVlQJemjkzK3mYxD2YWewFI8dg6d7X4eKYY/cdILulzmVli
-         ne7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=2Y8NayuLnfX3GwLkDMn7ZTyD7RtMsOyjIifS8+INynY=;
-        b=uADIuxiYI1t6Nr8NjW/aSH7dTEZro5dH+mxNR2tXp5hF2/c8LJsxT5YcuT7mItwVEx
-         sU51aJxQPNL4kxfkaifLN20oS+xGeoKba+N/b7qXJpqAjZk5O8OjQPWfdi5ql9fVRzV0
-         djN8t9704QcrQhpE7AxZ8/qSXvRhRQDKmeP9Tiniy2XbM3ovigaey9IneBKiKK9OPcot
-         917tcwq12l7XVE1kbH4jcvtlzqfVDr7UOZChqq2opiddhcPDimhon+V+klDGPq8v8g1s
-         phnlD9Bt3ss9LfidehkC8bdrOPZEt6BfD60YHYeaUYFXEtGaGfvn9CN2g36RVTD87srg
-         /JeA==
-X-Gm-Message-State: AOAM531bjIOSTCkx2JVEod+9hIUjbvkkUTEZFwGkx0eLIwuLujAvYiij
-        XS6jmOpjRjKZuepJ1F1dCB7+d4X9CTgrL+JvLc0=
-X-Google-Smtp-Source: ABdhPJzolRZ4ZoRjdJ4a2pSO2iCj/DRQn/qKhfmMecOhYwc0anION1YK1qrZX4evgiRQ7KXoGqF5bccCSkGMm5IHegw=
-X-Received: by 2002:a25:ae66:: with SMTP id g38mr28181442ybe.536.1634568478383;
- Mon, 18 Oct 2021 07:47:58 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a05:7010:7b83:b0:145:eb96:a52a with HTTP; Mon, 18 Oct 2021
- 07:47:58 -0700 (PDT)
-Reply-To: mrsaishag45@gmail.com
-From:   Mrs Aisha Al-Qaddafi <farahfaridaa11@gmail.com>
-Date:   Mon, 18 Oct 2021 07:47:58 -0700
-Message-ID: <CA+kR5Kd49cme1Kok-YPE8rxpA22DTgDnptFrueU7yOioAUx3ig@mail.gmail.com>
-Subject: Dear Friend,
-To:     undisclosed-recipients:;
+        with ESMTP id S233800AbhJRPD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 11:03:58 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CF0C06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 08:01:46 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mcU8x-0005ns-AK; Mon, 18 Oct 2021 17:01:39 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mcU8w-0001pe-LB; Mon, 18 Oct 2021 17:01:38 +0200
+Message-ID: <2eb89942760fc56fc1b4fe59377fa36d499134ee.camel@pengutronix.de>
+Subject: Re: [PATCH v4 0/2] Extend Sparx5 switch reset driver for lan966x
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>, robh+dt@kernel.org,
+        lars.povlsen@microchip.com, Steen.Hegelund@microchip.com,
+        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Mon, 18 Oct 2021 17:01:38 +0200
+In-Reply-To: <20211018091522.1113510-1-horatiu.vultur@microchip.com>
+References: <20211018091522.1113510-1-horatiu.vultur@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
+On Mon, 2021-10-18 at 11:15 +0200, Horatiu Vultur wrote:
+> This patch serie extends the Microchip Sparx5 reset driver to support
+> lan966x
+> 
+> v3->v4:
+>   - drop all the changes regarding the phy reset.
+>   - use enum instead oneOf in dt-bindings
+> 
+> v2->v3:
+>   - rename variable reset_gpio to phy_reset_gpio
+>   - rename gpios property in documentation to phy-reset-gpios
+> 
+> v1->v2:
+>   - add reviewed-by tag
+>   - extend driver to be able to release the reset also for external PHYs
+> 
+> Horatiu Vultur (2):
+>   dt-bindings: reset: Add lan966x support
+>   reset: mchp: sparx5: Extend support for lan966x
+> 
+>  .../bindings/reset/microchip,rst.yaml         |  4 +-
+>  drivers/reset/Kconfig                         |  2 +-
+>  drivers/reset/reset-microchip-sparx5.c        | 40 +++++++++++++++----
+>  3 files changed, 36 insertions(+), 10 deletions(-)
 
-I came across your e-mail contact prior to a private search while in
-need of your assistance. I am Aisha Al-Qaddafi, the only biological
-Daughter of Former President of Libya Col. Muammar Al-Qaddafi. Am a
-single Mother and a Widow with three Children.
+Thank you, both applied to reset/next.
 
-I have investment funds worth Twenty Seven Million Five Hundred
-Thousand United State Dollar ($27.500.000.00 ) and i need a trusted
-investment Manager/Partner because of my current refugee status,
-however, I am interested in you for investment project assistance in
-your country, may be from there, we can build business relationship in
-the nearest future.
-
-I am willing to negotiate an investment/business profit sharing ratio
-with you based on the future investment earning profits.
-
-If you are willing to handle this project on my behalf kindly reply
-urgently to enable me to provide you more information about the
-investment funds.
-Best Regards
-Mrs Aisha Al-Qaddafi
+regards
+Philipp
