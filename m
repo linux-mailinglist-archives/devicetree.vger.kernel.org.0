@@ -2,121 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5712143245D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F136C432519
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 19:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232677AbhJRRFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 13:05:07 -0400
-Received: from mail-pf1-f173.google.com ([209.85.210.173]:41893 "EHLO
-        mail-pf1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232114AbhJRRFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:05:06 -0400
-Received: by mail-pf1-f173.google.com with SMTP id y7so15192543pfg.8;
-        Mon, 18 Oct 2021 10:02:55 -0700 (PDT)
+        id S234127AbhJRRey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 13:34:54 -0400
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:41492 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234113AbhJRRex (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 13:34:53 -0400
+Received: by mail-ot1-f50.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so737582ote.8;
+        Mon, 18 Oct 2021 10:32:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pncH/JsFyTOuX1MFN8WrmdDdgAe+iOiHDqyec0cvtsI=;
-        b=jpI6zqbUv5bYjw+0TiJ9PcQLG5GIjIweGDTDknk6tm4ga9WwBQ6AVdYIe0ISeWfDF4
-         NoocRpl43EqLFWRNtbTnK3vK9YR86tICdCPUuKYNhSi1Wxke8ZpjrFa1ARcE701irSM/
-         aIE7O1rpZj65bgpwdC2QZebC6ZrZ0DNsr+xJFW5NV0Ac2fTkcQhjf8Yd40grYxRvNCuB
-         zA0Hb4+e3x17ubmSdScf+Y2g4THsbAc2R2EQN9M0mXFArGqBXKNWMM/CT3uYAMTpKLGa
-         YgdDteTV144E4JNJo0m4rsOef9metjGU2dbD27gYF4w+MZm/CbLOdgnmSOZ26aoUDD0G
-         RP5g==
-X-Gm-Message-State: AOAM530tzxhnQriLZip/hq4OAOqOXE1gw+TiOWFY4GjnqRPYtR0UxDHF
-        8PV1K/7je9Z2mvoCSNQxGf87V1go/kFlSTIfUlLUDY+pIn0=
-X-Google-Smtp-Source: ABdhPJxBbRec2jyrrXkEQANfBfNhCIEoy1Kd52kI2aZkYtXf49W7q1r7dD5sz5uKW7JBTdSKP3O7I/8meCQjtrHn/bY=
-X-Received: by 2002:a05:6a00:1707:b0:44d:47e1:9ffe with SMTP id
- h7-20020a056a00170700b0044d47e19ffemr30112553pfc.53.1634576575002; Mon, 18
- Oct 2021 10:02:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211012134027.684712-1-kernel@esmil.dk> <20211012134027.684712-13-kernel@esmil.dk>
- <CAHp75Vep+i+iyJi0LAOKuer-cUZoUoB_ZrWKcmT=EB_4hOgFGw@mail.gmail.com>
- <CANBLGcxHD2vy0+tXYo5Pkqri9mV7aD9jikvs3ygBJRxF4ApLMA@mail.gmail.com>
- <CAHp75Vc65deoHbks-aPmnjEJzm3GdqFMfBCUqw4vVLVr=71Ncg@mail.gmail.com>
- <CANBLGcxriKLZ+CKUsj5sviW8FdHnWTF2koROwmAb=G2tbmE6vQ@mail.gmail.com>
- <CAHp75VccSDLVbs1sF_-1zghWyLKtKKV1qtxOxZZ-cS0e6S-sBA@mail.gmail.com> <CAHp75VcgFRGpca-pSU9T5Oo1fT4aWQJd5EQfyZscGYx0mDMJ_Q@mail.gmail.com>
-In-Reply-To: <CAHp75VcgFRGpca-pSU9T5Oo1fT4aWQJd5EQfyZscGYx0mDMJ_Q@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Mon, 18 Oct 2021 19:02:43 +0200
-Message-ID: <CANBLGcxHLQZygX9CHsXK4aYS9m4VE5OnLNROOmvP1ps5UP-xAw@mail.gmail.com>
-Subject: Re: [PATCH v1 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=RHy3ZoTJ5ER11Swn75LpbiD1h4u7AequpZ+0XI4U4+w=;
+        b=mVg6JxP+gug6ZEiCKwXAr2llagvkk7JT3itss2qouh/3SlF6awayG2SubxZU3M5dHu
+         nmCb3MzFsJ/V/1oVLcHA4ydqeFMnH+0jU8S4JTrhOkGHVn/DKhkU0263dfBkUrcGl7sM
+         6J2FwdVkDK7AhatvX8cZsGs4aRrpigx7vNx2oRrP7fnhsAgkLY06pcVMjYIZqUiLC/yT
+         rb5+UfiJyJv7PPtsXYXtVYuvs7HrrQDvWfQug0cdxqxMGYAVZ1PNZ5Or2k3B9ODn9JdJ
+         93rOKlAk1VHYg+LiiQaWbZg05+cCC3iLt2zF+ym+eXdNFQQQFleME7Q5wB5Ql8SVtbOE
+         R6TQ==
+X-Gm-Message-State: AOAM5308vHH4l/7mWm2cNM2RQwNQUKwLEKWL9tK4iqVwWvyvXwwJAVQe
+        IYjU0EUFNTNaxURm1iCfBA==
+X-Google-Smtp-Source: ABdhPJzfQ44Eru9QB7/gzKIkq4F5Lwz75ZrkkyfLU9Xtzn7rDzu9ppJs/+xdULly0x2mhJkpvhriBA==
+X-Received: by 2002:a05:6830:1f27:: with SMTP id e7mr1020556oth.234.1634578361786;
+        Mon, 18 Oct 2021 10:32:41 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id m23sm2584303oom.34.2021.10.18.10.32.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Oct 2021 10:32:41 -0700 (PDT)
+Received: (nullmailer pid 2612843 invoked by uid 1000);
+        Mon, 18 Oct 2021 17:32:38 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Benson Leung <bleung@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org
+In-Reply-To: <20211018115111.14096-1-tinghan.shen@mediatek.com>
+References: <20211018115111.14096-1-tinghan.shen@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: mfd: change naming of mediatek rpmsg property
+Date:   Mon, 18 Oct 2021 12:32:38 -0500
+Message-Id: <1634578358.531021.2612842.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 at 18:29, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Mon, Oct 18, 2021 at 7:23 PM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Mon, Oct 18, 2021 at 6:56 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > On Mon, 18 Oct 2021 at 17:48, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > On Mon, Oct 18, 2021 at 6:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > > > On Tue, 12 Oct 2021 at 19:03, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > > On Tue, Oct 12, 2021 at 4:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> ...
->
-> > > > > > > +       ret = clk_prepare_enable(clk);
-> > > > > > > +       if (ret) {
-> > > > > >
-> > > > > > > +               reset_control_deassert(rst);
-> > > > > >
-> > > > > > Use devm_add_action_or_reset().
-> > > > >
-> > > > > I don't see how that is better.
-> > > >
-> > > > Pity. The rule of thumb is to either try to use devm_*() everywhere in
-> > > > the probe, or don't use it at all. Above is the more-or-less standard
-> > > > pattern where devn_add_action_or_reset() is being used in the entire
-> > > > kernel.
-> > > >
-> > > > > Then I'd first need to call that and
-> > > > > check for errors, but just on the line below enabling the clock the
-> > > > > reset line is deasserted anyway, so then the action isn't needed any
-> > > > > longer. So that 3 lines of code for devm_add_action_or_reset +
-> > > > > lingering unneeded action or code to remove it again vs. just the line
-> > > > > above.
-> > > >
-> > > > Then don't use devm_*() at all. What's the point?
-> > >
-> > > I'm confused. So you wan't an unneeded action to linger because the
-> > > probe function temporarily asserts reset for 3 lines of code?
-> >
-> > I;m talking about clk_prepare_enable().
->
-> Having a second look I found even problematic error paths because of
-> mixing devm_*() with non-devm_*() calls, which only assures me that
-> your ->probe() error path is broken and should be revisited.
+On Mon, 18 Oct 2021 19:51:11 +0800, Tinghan Shen wrote:
+> Change from "mtk,rpmsg-name" to "mediatek,rpmsg-name" to sync with the
+> vendor name defined in vendor-prefixes.yaml.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-So do you want to expand on that now or should I send v2 first?
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
+
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1542563
+
+
+cros_ec: 'mtk,rpmsg-name' does not match any of the regexes: '^extcon[0-9]*$', '^i2c-tunnel[0-9]*$', '^regulator@[0-9]+$', 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
+
