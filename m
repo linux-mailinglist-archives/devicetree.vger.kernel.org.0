@@ -2,188 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D62D431135
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 09:13:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8F63431143
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 09:17:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbhJRHPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Oct 2021 03:15:40 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:58568 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbhJRHPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 03:15:38 -0400
-Received: from [IPv6:2a02:810a:880:f54:88bb:da86:4533:43d6] (unknown [IPv6:2a02:810a:880:f54:88bb:da86:4533:43d6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id BE80A1F42642;
-        Mon, 18 Oct 2021 08:13:25 +0100 (BST)
-Subject: Re: [PATCH v8 04/12] iommu/mediatek: Add device_link between the
- consumer and the larb devices
-To:     Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        David Airlie <airlied@linux.ie>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
-        yi.kuo@mediatek.com, acourbot@chromium.org,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        anthony.huang@mediatek.com,
-        Frank Wunderlich <frank-w@public-files.de>
-References: <20210929013719.25120-1-yong.wu@mediatek.com>
- <20210929013719.25120-5-yong.wu@mediatek.com>
- <e00b92db-0562-27ca-2f96-1f03ff824988@collabora.com>
- <e4c98036dd73b91b8352a162f80240171e2b3f0f.camel@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <da5934de-65ad-4bac-c510-eb0d40d96d70@collabora.com>
-Date:   Mon, 18 Oct 2021 09:13:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230241AbhJRHTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Oct 2021 03:19:53 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:2389 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230114AbhJRHTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Oct 2021 03:19:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1634541462; x=1666077462;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=tBE9gpFLaTdVJ/JmeejJpC/B5K1DEYpgVD8Zzk/KwLA=;
+  b=DlBW55Cx91nqKZt5CKVRdt6GCnaC1WGNu1j0u1MFvYVzHzW7T6ubTM8c
+   IL/3Rl0jaYM2Bu9mfbN5In+WBfibvqJhQa7IknpNFjUtl6vqsUZJBcSiG
+   8fkLRb+oVLTNVcwAAxynEK6dMkdKh3WK0CHSe3oIVwGs8joo/nTx/t9Z/
+   c=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 18 Oct 2021 00:17:42 -0700
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2021 00:17:40 -0700
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Mon, 18 Oct 2021 00:17:35 -0700
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <mka@chromium.org>,
+        <linus.walleij@linaro.org>, <dmitry.baryshkov@linaro.org>,
+        <Jonathan.Cameron@huawei.com>, <quic_kgunda@quicinc.com>,
+        <quic_aghayal@quicinc.com>, <quic_subbaram@quicinc.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        "Jishnu Prakash" <quic_jprakash@quicinc.com>
+Subject: [PATCH 0/2] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
+Date:   Mon, 18 Oct 2021 12:47:07 +0530
+Message-ID: <1634541429-3215-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <e4c98036dd73b91b8352a162f80240171e2b3f0f.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+PMIC5 Gen2 ADC_TM is supported on PMIC7 chips and is a close
+counterpart of PMIC7 ADC. It has the same functionality as
+PMIC5 ADC_TM, to support generating interrupts on ADC value
+crossing upper or lower thresholds for monitored channels.
 
+Jishnu Prakash (2):
+  dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
+  thermal: qcom: add support for PMIC5 Gen2 ADCTM
 
-On 16.10.21 04:23, Yong Wu wrote:
-> On Mon, 2021-10-11 at 14:36 +0200, Dafna Hirschfeld wrote:
->>
->> On 29.09.21 03:37, Yong Wu wrote:
->>> MediaTek IOMMU-SMI diagram is like below. all the consumer connect
->>> with
->>> smi-larb, then connect with smi-common.
->>>
->>>           M4U
->>>            |
->>>       smi-common
->>>            |
->>>     -------------
->>>     |         |    ...
->>>     |         |
->>> larb1     larb2
->>>     |         |
->>> vdec       venc
->>>
->>> When the consumer works, it should enable the smi-larb's power
->>> which
->>> also need enable the smi-common's power firstly.
->>>
->>> Thus, First of all, use the device link connect the consumer and
->>> the
->>> smi-larbs. then add device link between the smi-larb and smi-
->>> common.
->>>
->>> This patch adds device_link between the consumer and the larbs.
->>>
->>> When device_link_add, I add the flag DL_FLAG_STATELESS to avoid
->>> calling
->>> pm_runtime_xx to keep the original status of clocks. It can avoid
->>> two
->>> issues:
->>> 1) Display HW show fastlogo abnormally reported in [1]. At the
->>> beggining,
->>> all the clocks are enabled before entering kernel, but the clocks
->>> for
->>> display HW(always in larb0) will be gated after clk_enable and
->>> clk_disable
->>> called from device_link_add(->pm_runtime_resume) and rpm_idle. The
->>> clock
->>> operation happened before display driver probe. At that time, the
->>> display
->>> HW will be abnormal.
->>>
->>> 2) A deadlock issue reported in [2]. Use DL_FLAG_STATELESS to skip
->>> pm_runtime_xx to avoid the deadlock.
->>>
->>> Corresponding, DL_FLAG_AUTOREMOVE_CONSUMER can't be added, then
->>> device_link_removed should be added explicitly.
->>>
->>> [1]
->>> https://lore.kernel.org/linux-mediatek/1564213888.22908.4.camel@mhfsdcap03/
->>> [2] https://lore.kernel.org/patchwork/patch/1086569/
->>>
->>> Suggested-by: Tomasz Figa <tfiga@chromium.org>
->>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
->>> Tested-by: Frank Wunderlich <frank-w@public-files.de> # BPI-
->>> R2/MT7623
->>> ---
->>>    drivers/iommu/mtk_iommu.c    | 22 ++++++++++++++++++++++
->>>    drivers/iommu/mtk_iommu_v1.c | 20 +++++++++++++++++++-
->>>    2 files changed, 41 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
->>> index d5848f78a677..a2fa55899434 100644
->>> --- a/drivers/iommu/mtk_iommu.c
->>> +++ b/drivers/iommu/mtk_iommu.c
->>> @@ -560,22 +560,44 @@ static struct iommu_device
->>> *mtk_iommu_probe_device(struct device *dev)
->>>    {
->>>    	struct iommu_fwspec *fwspec = dev_iommu_fwspec_get(dev);
->>>    	struct mtk_iommu_data *data;
->>> +	struct device_link *link;
->>> +	struct device *larbdev;
->>> +	unsigned int larbid;
->>>    
->>>    	if (!fwspec || fwspec->ops != &mtk_iommu_ops)
->>>    		return ERR_PTR(-ENODEV); /* Not a iommu client device
->>> */
->>>    
->>>    	data = dev_iommu_priv_get(dev);
->>>    
->>> +	/*
->>> +	 * Link the consumer device with the smi-larb device(supplier)
->>> +	 * The device in each a larb is a independent HW. thus only
->>> link
->>> +	 * one larb here.
->>> +	 */
->>> +	larbid = MTK_M4U_TO_LARB(fwspec->ids[0]);
->>
->> so larbid is always the same for all the ids of a device?
-> 
-> Yes. For me, each a dtsi node should represent a HW unit which can only
-> connect one larb.
-> 
->> If so maybe it worth testing it and return error if this is not the
->> case.
-> 
-> Thanks for the suggestion. This is very helpful. I did see someone put
-> the different larbs in one node. I will check this, and add return
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        |  83 +++-
+ drivers/iio/adc/qcom-vadc-common.c                 | 187 +++++++++
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 431 ++++++++++++++++++++-
+ include/linux/iio/adc/qcom-vadc-common.h           |   2 +
+ 4 files changed, 692 insertions(+), 11 deletions(-)
 
-I am working on bugs found on media drivers, could you please point me to
-that wrong node?
-Will you send a fix to that node in the dtsi?
+-- 
+2.7.4
 
-
-Thanks,
-Dafna
-
-> EINVAL for this case.
-
-
-
-> 
->>
->> Thanks,
->> Dafna
->   
->>>
