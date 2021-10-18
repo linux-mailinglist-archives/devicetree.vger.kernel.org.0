@@ -2,226 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C00430D56
-	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 03:12:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E94D4430D6E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Oct 2021 03:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344939AbhJRBOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 17 Oct 2021 21:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37324 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344949AbhJRBOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 17 Oct 2021 21:14:33 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18380C061765
-        for <devicetree@vger.kernel.org>; Sun, 17 Oct 2021 18:12:18 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4725A891B0;
-        Mon, 18 Oct 2021 14:12:14 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1634519534;
-        bh=O2UYL2vwwrFX+xVYrMAyYBcqHgKcOdHT45FDP++g4Tw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=SCHxk1QCDgiN3ArAQF0bVGLskU52pq/Fl8wt4sel5e09N+czgx0uac1zllfbbWvvf
-         uhfsHwuxfErTO0ho473pYki1BVcgsL0SfO/EaG5xpwcbwggmPgleZqa73a5aOyRp+6
-         +Ssdtq8mM9+NxVeyTfr8QAfIAOQdDkKgCRGE6UrgEC4a9Y+1X7SBjzTMg0RdKwThhj
-         T6p4RE3qggZeag06kqWxvWMnMaA7RN99qpAsz3Vem0aMsuugBWBabj2yUKph0M8AvP
-         5z5p98KJ9UfRLf/R20kODzKF+7QtVV+kof0tAGXB7aXLyQYSFgFOXG3saJ1uoQx6jl
-         ibBthkcGHWRow==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B616cc9ee0002>; Mon, 18 Oct 2021 14:12:14 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.26])
-        by pat.atlnz.lc (Postfix) with ESMTP id 2F49013ED1E;
-        Mon, 18 Oct 2021 14:12:14 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 2D8E82A0B00; Mon, 18 Oct 2021 14:12:14 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 2/2] arm/arm64: dts: Add MV88E6393X to CN9130-CRB device tree
-Date:   Mon, 18 Oct 2021 14:12:11 +1300
-Message-Id: <20211018011211.3836590-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211018011211.3836590-1-chris.packham@alliedtelesis.co.nz>
-References: <20211018011211.3836590-1-chris.packham@alliedtelesis.co.nz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=eIJtc0h1 c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=8gfv0ekSlNoA:10 a=RPquEeSGPLc92inKvdoA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+        id S234360AbhJRB3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 17 Oct 2021 21:29:55 -0400
+Received: from mx.socionext.com ([202.248.49.38]:31204 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238640AbhJRB3y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 17 Oct 2021 21:29:54 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 18 Oct 2021 10:27:43 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 4A6C72058B40;
+        Mon, 18 Oct 2021 10:27:43 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 18 Oct 2021 10:27:43 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 8F54DB62B7;
+        Mon, 18 Oct 2021 10:27:42 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH net-next 0/2] net: ethernet: ave: Introduce UniPhier NX1 SoC support
+Date:   Mon, 18 Oct 2021 10:27:35 +0900
+Message-Id: <1634520457-16440-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CN9130-CRB boards have a MV88E6393X switch connected to eth0. Add
-the necessary dts nodes and properties for this.
+This series includes the patches to add basic support for new UniPhier NX1
+SoC. NX1 SoC also has the same kinds of controls as the other UniPhier
+SoCs.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
-This is based on the Marvell SDK. I've re-ordered the port entries to
-be in ascending order renamed the wan ports and connected the SFP+.
+Kunihiko Hayashi (2):
+  dt-bindings: net: ave: Add bindings for NX1 SoC
+  net: ethernet: ave: Add compatible string and SoC-dependent data for
+    NX1 SoC
 
-Changes in v2:
-- Remove unused port0
-- Label all ports "pN"
-- Add interrupt connections
-- Add SFP
+ .../devicetree/bindings/net/socionext,uniphier-ave4.yaml  |  1 +
+ drivers/net/ethernet/socionext/sni_ave.c                  | 15 +++++++++++++++
+ 2 files changed, 16 insertions(+)
 
- arch/arm64/boot/dts/marvell/cn9130-crb.dtsi | 129 ++++++++++++++++++++
- 1 file changed, 129 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi b/arch/arm64/boo=
-t/dts/marvell/cn9130-crb.dtsi
-index 0885c6339d1b..d600422afd6c 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-@@ -73,6 +73,16 @@ cp0_reg_sd_vcc: cp0_sd_vcc@0 {
- 		enable-active-high;
- 		regulator-always-on;
- 	};
-+
-+	sfp: sfp {
-+		compatible =3D "sff,sfp";
-+		i2c-bus =3D <&cp0_i2c1>;
-+		mod-def0-gpios =3D <&expander0 3 GPIO_ACTIVE_LOW>;
-+		los-gpio =3D <&expander0 15 GPIO_ACTIVE_HIGH>;
-+		tx-disable-gpio =3D <&expander0 2 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio =3D <&cp0_gpio1 24 GPIO_ACTIVE_HIGH>;
-+		status =3D "okay";
-+	};
- };
-=20
- &uart0 {
-@@ -195,6 +205,125 @@ &cp0_mdio {
- 	phy0: ethernet-phy@0 {
- 		reg =3D <0>;
- 	};
-+
-+	switch6: switch0@6 {
-+		/* Actual device is MV88E6393X */
-+		compatible =3D "marvell,mv88e6190";
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+		reg =3D <6>;
-+		interrupt-parent =3D <&cp0_gpio1>;
-+		interrupts =3D <28 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		#interrupt-cells =3D <2>;
-+
-+		dsa,member =3D <0 0>;
-+
-+		ports {
-+			#address-cells =3D <1>;
-+			#size-cells =3D <0>;
-+
-+			port@1 {
-+				reg =3D <1>;
-+				label =3D "p1";
-+				phy-handle =3D <&switch0phy1>;
-+			};
-+
-+			port@2 {
-+				reg =3D <2>;
-+				label =3D "p2";
-+				phy-handle =3D <&switch0phy2>;
-+			};
-+
-+			port@3 {
-+				reg =3D <3>;
-+				label =3D "p3";
-+				phy-handle =3D <&switch0phy3>;
-+			};
-+
-+			port@4 {
-+				reg =3D <4>;
-+				label =3D "p4";
-+				phy-handle =3D <&switch0phy4>;
-+			};
-+
-+			port@5 {
-+				reg =3D <5>;
-+				label =3D "p5";
-+				phy-handle =3D <&switch0phy5>;
-+			};
-+
-+			port@6 {
-+				reg =3D <6>;
-+				label =3D "p6";
-+				phy-handle =3D <&switch0phy6>;
-+			};
-+
-+			port@7 {
-+				reg =3D <7>;
-+				label =3D "p7";
-+				phy-handle =3D <&switch0phy7>;
-+			};
-+
-+			port@8 {
-+				reg =3D <8>;
-+				label =3D "p8";
-+				phy-handle =3D <&switch0phy8>;
-+			};
-+
-+			port@9 {
-+				reg =3D <9>;
-+				label =3D "p9";
-+				phy-mode =3D "10gbase-r";
-+				sfp =3D <&sfp>;
-+				managed =3D "in-band-status";
-+			};
-+
-+			port@10 {
-+				reg =3D <10>;
-+				label =3D "cpu";
-+				ethernet =3D <&cp0_eth0>;
-+			};
-+
-+		};
-+
-+		mdio {
-+			#address-cells =3D <1>;
-+			#size-cells =3D <0>;
-+
-+			switch0phy1: switch0phy1@1 {
-+				reg =3D <0x1>;
-+			};
-+
-+			switch0phy2: switch0phy2@2 {
-+				reg =3D <0x2>;
-+			};
-+
-+			switch0phy3: switch0phy3@3 {
-+				reg =3D <0x3>;
-+			};
-+
-+			switch0phy4: switch0phy4@4 {
-+				reg =3D <0x4>;
-+			};
-+
-+			switch0phy5: switch0phy5@5 {
-+				reg =3D <0x5>;
-+			};
-+
-+			switch0phy6: switch0phy6@6 {
-+				reg =3D <0x6>;
-+			};
-+
-+			switch0phy7: switch0phy7@7 {
-+				reg =3D <0x7>;
-+			};
-+
-+			switch0phy8: switch0phy8@8 {
-+				reg =3D <0x8>;
-+			};
-+		};
-+	};
- };
-=20
- &cp0_xmdio {
---=20
-2.33.0
+-- 
+2.7.4
 
