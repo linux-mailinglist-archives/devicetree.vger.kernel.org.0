@@ -2,124 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DAA433FE5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 22:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 784F3433FF7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 22:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbhJSUqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 16:46:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48856 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230147AbhJSUqZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 16:46:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D12FB61373;
-        Tue, 19 Oct 2021 20:44:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634676251;
-        bh=T8mHmJya+ILFpd3CCIxQDtDOrlirWq4tUXYlbvgnPik=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=e7h8XCbiWISq39ZW24xItKFZT0ZZM66Qo387xD8ygYxNkxcSxsfdjuBE0nODgV8nd
-         xZe8RNARDPbJ10V89jhBLGD/SQQlTqwZVlUpPSzaSA4eNhGYQc8Mj/AOvdFu5SEqVW
-         dw02rsY/6JSH7v4H1I6ZhZS3DdLhgor/rkqINNayJEUEIZ6itjoJRmJJfgvyv9eUGG
-         ukjlfLdvgrLU2WQBuc4A3wgrjkMCuXCBMxTkcjHJnLLFReHg3uMZBiPjwpJms/HQ+L
-         HZqEvFConnQ4LlCRP/ETOkoGh4rmD7tWANXoa19SyiwgnyfYXbfehmK9IXbvjqzNrC
-         4Trf0AOlel7Eg==
-Received: by mail-wm1-f41.google.com with SMTP id z77-20020a1c7e50000000b0030db7b70b6bso5453807wmc.1;
-        Tue, 19 Oct 2021 13:44:11 -0700 (PDT)
-X-Gm-Message-State: AOAM531CrHDCYgXjy1G71lwXu5DboTMkL/SU3qiWm9T4T8gNFzoxr5WG
-        ohMelj61pVJTJqrijTL96zAYLC5Z4hvB1Ycv8n4=
-X-Google-Smtp-Source: ABdhPJyJhNq13/SKtqK5Qj+ZXoJCuLOxLsA8F5PoL249ralobTTeSAlxk94fzTdhFycLrA5AaDtEaiCfGufMtVS9Ei4=
-X-Received: by 2002:a05:600c:208:: with SMTP id 8mr8317592wmi.173.1634676250240;
- Tue, 19 Oct 2021 13:44:10 -0700 (PDT)
+        id S231685AbhJSUwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 16:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231314AbhJSUwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 16:52:30 -0400
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728D1C06161C;
+        Tue, 19 Oct 2021 13:50:17 -0700 (PDT)
+Received: by mail-io1-xd29.google.com with SMTP id r134so21961324iod.11;
+        Tue, 19 Oct 2021 13:50:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9vqaYPJTseMPHZqZJ05hvv6wCPKInTtA3VDUdp0xR2U=;
+        b=fx32n+sSi8AkWwRIAigmx9mp67eG857PjM9zzxL6ZiuP/vkQgrb/Xg38qMRIvqu9Db
+         EI70VP6p3CwfgCKxyWRGC7D+Z2P5h9R5W7kN5Qd4FfKVpy4eDzNUZ2qWOCvFdVvVNkud
+         kvnmkBEQvKvUIEbslSxG3dMZ6h5lH7KEuywxFtAXj7ntJgafHV+e9ziNQwGHCHyrGL7X
+         mZ9AvxGkaywuZ71ROmvwnQb6Ah+Eif9iuzhWHm2NOSeuy865QdlVJpaBA3m+c5XRgfek
+         uJefi1HZ7nJvMKHdH6xJQSF1So9vR7VNK0EbAUkrpel9cqrK181shBL1fkhkgX1TtUi6
+         jOUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9vqaYPJTseMPHZqZJ05hvv6wCPKInTtA3VDUdp0xR2U=;
+        b=LVg6hz4cVSilUgfc+ym4VUP/vY+OXZE+Q3HF4FZ6WVIecDKtdAML5CUAEKI1ZOJqKW
+         cP6BNDqmT3GXLvv9yICIT2JPnVrHVybVpb6mkEoU89yr5lDNiPEGpN+6yjEKCTblktQW
+         Y253PCdhFABQ2ESGuiXlfTAoSuk2CRXD2fqdjluh954SRH2f3qlGcgRmEoeKHkuzTvDu
+         iGyL2LZ2MOSqEaC5dS1FIVVuNVXskuGBEz+Nx5hojlD5NqYhexIZo1yFqdVX4HRZBCCg
+         f9WQAlNMxxmnjXVeTy+r8VdayTFUh2hfwUR3vJRV/9Ij6dmGZvh9EFkzkpKLQ+/yULSg
+         v0NQ==
+X-Gm-Message-State: AOAM533I4fVzK3Zx/jRMcgMRIAjxzwxSp/BWiaQw+laoqQrhL4hrGorN
+        /Te9+RsgK/K4OsLK34byz2gOqbv9GaiHSdrULso=
+X-Google-Smtp-Source: ABdhPJx3Mzrw6dFvnsflFCQyUYi5Fa3FPp5lTiKKE15jhmvleJ3cb1J4Askbc/O330XlH0ME4eBrTq3lwg56KrjrgXQ=
+X-Received: by 2002:a05:6602:2d4e:: with SMTP id d14mr21238434iow.172.1634676616752;
+ Tue, 19 Oct 2021 13:50:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org> <1632399378-12229-9-git-send-email-rajpat@codeaurora.org>
-In-Reply-To: <1632399378-12229-9-git-send-email-rajpat@codeaurora.org>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Tue, 19 Oct 2021 22:43:54 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3KuTEAXbSTU+n3D_fryquo8B-eXSF2+HrikiNVn6kSSg@mail.gmail.com>
-Message-ID: <CAK8P3a3KuTEAXbSTU+n3D_fryquo8B-eXSF2+HrikiNVn6kSSg@mail.gmail.com>
-Subject: Re: [PATCH V10 8/8] arm64: dts: sc7280: Add aliases for I2C and SPI
-To:     Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+References: <20211019144520.3613926-1-geert@linux-m68k.org> <20211019144520.3613926-4-geert@linux-m68k.org>
+In-Reply-To: <20211019144520.3613926-4-geert@linux-m68k.org>
+From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date:   Tue, 19 Oct 2021 22:50:05 +0200
+Message-ID: <CANiq72nJS_rxwB7BQJ30iEeFcX8_7VznkF0DvueM_Ym+Wqd94A@mail.gmail.com>
+Subject: Re: [PATCH v8 03/21] auxdisplay: img-ascii-lcd: Fix lock-up when
+ displaying empty string
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Miguel Ojeda <ojeda@kernel.org>,
+        Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 23, 2021 at 2:18 PM Rajesh Patil <rajpat@codeaurora.org> wrote:
+On Tue, Oct 19, 2021 at 4:45 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
-> Add aliases for i2c and spi for sc7280 soc.
->
-> Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> +               devm_kfree(&ctx->pdev->dev, ctx->message);
 
-I saw this in the pull request, can this please be reverted?
+Unrelated to this patch (and no need to change it), but we could
+remove the conditional guarding the devm_kfree below to match this
+one.
 
-Putting the aliases into the .dtsi file is really silly, as there are
-likely boards that
-don't connect every single one of those, and then will have to
-override and renumber
-them.
-
-Please only list the aliases that are actually connected on a particular
-board.
-
-        Arnd
-
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index c26647a..e5fefd1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -26,8 +26,40 @@
->         chosen { };
->
->         aliases {
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +               i2c4 = &i2c4;
-> +               i2c5 = &i2c5;
-> +               i2c6 = &i2c6;
-> +               i2c7 = &i2c7;
-> +               i2c8 = &i2c8;
-> +               i2c9 = &i2c9;
-> +               i2c10 = &i2c10;
-> +               i2c11 = &i2c11;
-> +               i2c12 = &i2c12;
-> +               i2c13 = &i2c13;
-> +               i2c14 = &i2c14;
-> +               i2c15 = &i2c15;
->                 mmc1 = &sdhc_1;
->                 mmc2 = &sdhc_2;
-
-The mmc ones should probably go away as well.
-
-> +               spi0 = &spi0;
-> +               spi1 = &spi1;
-> +               spi2 = &spi2;
-> +               spi3 = &spi3;
-> +               spi4 = &spi4;
-> +               spi5 = &spi5;
-> +               spi6 = &spi6;
-> +               spi7 = &spi7;
-> +               spi8 = &spi8;
-> +               spi9 = &spi9;
-> +               spi10 = &spi10;
-> +               spi11 = &spi11;
-> +               spi12 = &spi12;
-> +               spi13 = &spi13;
-> +               spi14 = &spi14;
-> +               spi15 = &spi15;
->         };
->
+Cheers,
+Miguel
