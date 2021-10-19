@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6692343425A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 01:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD2C43425B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 01:58:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbhJTAAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 20:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbhJTAAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 20:00:21 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 372FAC061746
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 16:58:08 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id u21so11110151lff.8
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 16:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aoJoRicRoKRwwH8sKnmnAcz3hOYI18/6K1zt/5RQ9go=;
-        b=uGEx80SNXwGvds4c/nV7QzKKF44gFULTkt9Z7sZ7/5pBoLD3FDnOZQZNYOh9vANTJJ
-         fsJ9l9ZtfuL6hDwjSAt0zOCZbC46bqdDDDhUBGUNUCiymt5sHNcDTW3vghQGRQInKCto
-         zXpjam2T5800N19jcCfpaQyc9yGaX0EhrEEKWrTBMF1rmd43c4m4S8xNIk7XfIN9KqTg
-         NXgH7avcU9zq2EKc8FvGANV1Jm0tK++xoVf+1BrstiLN53caOOMCnAb9Z6BTToHOYC6j
-         egSTmjcaQj1ul9t2WznwAaANfIST2W1rGBcDTDdSUu3/U94/Nnzi2azbY/CwgkknwM/i
-         TA1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aoJoRicRoKRwwH8sKnmnAcz3hOYI18/6K1zt/5RQ9go=;
-        b=g2+SWS9eYRI6oweUawjI0fPqxmT8sqix+lEg1QEWE/o0a3VyAzibaZaZWNIIldAX96
-         ks5AOX/54KkT9lKGwi7HVXMO+XuNzLZNskCFgQGfP8SFeqFYoZC3Inkc2krk+xTetQBZ
-         5nJdB8xjTB5PxaOJwAITJ9GrBWm8JE6XvQmtVgYxCpWH+tZV4uEuzVT4zy4wqza1Ztcm
-         F9xH7cZncpsoGd/+/U1jkFvI/gQEVr1stct7Gu+lrZRBqp/ZglGscz3RxLXpVMy2405S
-         kkib0d6w5FEG+IrPUoyLwaNXqRkjGIyZG5AdqHIQOJKVxirt6FjqIZtuX8IOZ/yzHkWq
-         jv1Q==
-X-Gm-Message-State: AOAM533ZLcAjJENZgay/l8Vh27urxtt/cjAeniE1s0tjbUB/Kx8/YHoP
-        JwsCLAK62/h6lI1JG2d983QNC+U0IO3lEEPcitoShgi72C4=
-X-Google-Smtp-Source: ABdhPJyoM9l8GvG83pjRDT4StPbmgxeFTQFY2sOhwsdvTesKlg43bvAnzMTLP7bn1KwSWpGRKh288WjUmAjh41mxTSo=
-X-Received: by 2002:a05:6512:3d27:: with SMTP id d39mr8729458lfv.229.1634687886423;
- Tue, 19 Oct 2021 16:58:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210921184803.1757916-1-linus.walleij@linaro.org>
-In-Reply-To: <20210921184803.1757916-1-linus.walleij@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 20 Oct 2021 01:57:55 +0200
-Message-ID: <CACRpkdbLxhUtXHs2+hy6U6OW2V3YTxrjxp0AxVP3PnV1hoFNKw@mail.gmail.com>
-Subject: Re: [PATCH 1/2 v3] dt-bindings: clock: u8500: Rewrite in YAML and extend
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229677AbhJTAAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 20:00:46 -0400
+Received: from mx.socionext.com ([202.248.49.38]:37520 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229547AbhJTAAp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 20:00:45 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 20 Oct 2021 08:58:31 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 321E8206E701;
+        Wed, 20 Oct 2021 08:58:31 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 20 Oct 2021 08:58:31 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id E6B3BB62AC;
+        Wed, 20 Oct 2021 08:58:30 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH v2 0/8] phy: socionext: Introduce some features for UniPhier SoCs
+Date:   Wed, 20 Oct 2021 08:58:00 +0900
+Message-Id: <1634687888-23900-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 8:50 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+This series includes the patches to add the following features:
+- Add basic support for new UniPhier NX1 SoC to USB3 and PCIe PHY.
+  NX1 SoC also has the same kinds of controls as the other UniPhier SoCs.
+- Add a PHY parameters to PCIe PHY
+- Add dual-phy support for the SoCs that has two phys to PCIe PHY
+- Add basic support for Pro4 SoC to ACHI PHY
 
-> This rewrites the ux500/u8500 clock bindings in YAML schema and extends them
-> with the PRCC reset controller.
->
-> The bindings are a bit idiomatic but it just reflects their age, the ux500
-> platform was used as guinea pig for early device tree conversion of platforms
-> in 2015. The new subnode for the reset controller follows the pattern of the
-> old bindings and adds a node with reset-cells for this.
->
-> Cc: devicetree@vger.kernel.org
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes since v1:
+- Fix indentation of clocks and resets in AHCI PHY binding documentation
+- Fix insufficient argument issue when adding dual-phy to PCIe PHY
 
-One month has passed, can we merge this patch?
+Kunihiko Hayashi (8):
+  dt-bindings: phy: uniphier-usb3: Add bindings for NX1 SoC
+  phy: uniphier-usb3: Add compatible string for NX1 SoC
+  dt-bindings: phy: uniphier-pcie: Add bindings for NX1 SoC
+  phy: uniphier-pcie: Add compatible string and SoC-dependent data for
+    NX1 SoC
+  phy: uniphier-pcie: Set VCOPLL clamp mode in PHY register
+  phy: uniphier-pcie: Add dual-phy support for NX1 SoC
+  dt-bindings: phy: uniphier-ahci: Add bindings for Pro4 SoC
+  phy: uniphier-ahci: Add support for Pro4 SoC
 
-Yours,
-Linus Walleij
+ .../bindings/phy/socionext,uniphier-ahci-phy.yaml  |  20 +-
+ .../bindings/phy/socionext,uniphier-pcie-phy.yaml  |   1 +
+ .../phy/socionext,uniphier-usb3hs-phy.yaml         |   1 +
+ .../phy/socionext,uniphier-usb3ss-phy.yaml         |   1 +
+ drivers/phy/socionext/Kconfig                      |   2 +-
+ drivers/phy/socionext/phy-uniphier-ahci.c          | 201 ++++++++++++++++++++-
+ drivers/phy/socionext/phy-uniphier-pcie.c          |  70 +++++--
+ drivers/phy/socionext/phy-uniphier-usb3hs.c        |   4 +
+ drivers/phy/socionext/phy-uniphier-usb3ss.c        |   4 +
+ 9 files changed, 282 insertions(+), 22 deletions(-)
+
+-- 
+2.7.4
+
