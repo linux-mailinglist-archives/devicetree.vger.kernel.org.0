@@ -2,177 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CFBB433B14
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E8B433B40
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231874AbhJSPvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 11:51:25 -0400
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:33781 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232738AbhJSPvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:51:12 -0400
-Received: by mail-ua1-f41.google.com with SMTP id i15so908804uap.0;
-        Tue, 19 Oct 2021 08:48:59 -0700 (PDT)
+        id S231460AbhJSPy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 11:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234385AbhJSPyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:54:24 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF9DC0613DF;
+        Tue, 19 Oct 2021 08:52:08 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 67-20020a1c1946000000b0030d4c90fa87so3742039wmz.2;
+        Tue, 19 Oct 2021 08:52:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tahb42vhWIxe7aQDRTcB+CJ+M3oOryLTbrMHuFirItg=;
+        b=oM7DBx5qiYzOh1ouvwxD5AaD77Y6ySL4Iqy3T3LYClN+6MVTmzTBuqxmhEq8IECzIs
+         9gSUhzjdEpGkrqM7U/Azasd+H/9iez/wDghg9Er3ZkyfylyBmdB4h0aqXoaGUdpKNDJO
+         JWdlY6OybwcQwhd0VyAfdtfslRMg/WdgPGpq7vVkwCn45OVqocaV6QT9W3ykF3V4M8dJ
+         3zRBgvw0FylLjbtlDOGAxjfU6lnntxKF1DdYqQLqk/0AcVqFwqqws+DSgulcJ/qsABhY
+         lxu7LfZGkbDYDAOWZ3w1eVEYv2uEqd2vDoomB9sfURBAU9srDrAeQoOaOddiSkkrX8jd
+         sghg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HNaCNDIMKi9f5orM5Jol9xHR3VahWyBHoZmsq1Eeb20=;
-        b=k+geyGmZIBzvsxD0ArpgebLewKURGVA+YsuQJqGJ8v1ya3qruj6PGFuAgrAftkT9Qe
-         2O9z/1M0ADg7XEhqYPgbTbuwfA35VWyj+lSbox+4PHjUNBWpcMBSNiwJ3ir9wMeIjws1
-         DKBTkIG1joKyARuMM94lLin6KTls4f1sq3pa3PaAqn1dztGIXOXbVwzneS8To8SlshpO
-         xGbJUFneKoywJawOaH3YcB6+H/WNT9mijVb3iYCT2OY0FT5olTNA8/S1BBOUyipKqE/G
-         45I0sJ9+vpnXe2dGcKOG6Lfd13Vw746iz/VXBtv2xWpo2+0F/WVoL2Zbr6L/TdoSIvDa
-         eoVQ==
-X-Gm-Message-State: AOAM533osZLaAPGd5OZmg70na7P781druF21xayNmZk22hCgZpKWmjsm
-        vrEFJdBN/20gqI8wtdeYuwyoPSDuXEW5ZA==
-X-Google-Smtp-Source: ABdhPJziWFXHbttaGhABKofRQCK6LlxVlvrspebAP2565jCfhx5Tnun1PrBhCjFF4mmreoo8EjQDTQ==
-X-Received: by 2002:ab0:212:: with SMTP id 18mr725437uas.103.1634658538771;
-        Tue, 19 Oct 2021 08:48:58 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id u26sm11291347vsj.9.2021.10.19.08.48.58
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tahb42vhWIxe7aQDRTcB+CJ+M3oOryLTbrMHuFirItg=;
+        b=Uvkb19gScaaqSFrMIqIZ6SZ9XKr8HBJJH8M02dtyyhGi9fBZ+5seIlJ6qtZFdLG9fj
+         9bYOsE+fz5gcjtALK8uS8S9O/LBl1Sliij9FFuBugHQC3BrNpfwxfapJxekPFuzOUUxR
+         evrhjjQltiRsd1GVePmUn0XRndYYoVqAzTWvgNLxDjzanTRKbEENiGoI8+luN4y2bqvJ
+         ma27U9uujQ58TWZOfy+jUsj9jzLVrtVTW5XNhgE6zo3ORL/D+zQQ3dN/eF72TPS2tK5Y
+         e8aqxUHaySxP5Ro6II36b3MpeIDO5/J+Kk28DrfHOxdJvC0qcLnFROgECZWT4CDsMycz
+         UezQ==
+X-Gm-Message-State: AOAM530/CKSB2n3qVdJZ0YdPMzeZJIR3ugiN6wLTFh8fo8eHVJiyOS8o
+        6B43ehERJ7ETDsyeHM8PBQ==
+X-Google-Smtp-Source: ABdhPJx2WUl7NkppItDT/LYD6ezXkFEAkVwlcku30q6Jjk4WKrin4xBzm5d8lCxl+n8MRIRt3I75yA==
+X-Received: by 2002:a1c:4645:: with SMTP id t66mr7114221wma.179.1634658727228;
+        Tue, 19 Oct 2021 08:52:07 -0700 (PDT)
+Received: from ?IPv6:2a02:810b:f40:4200:c0be:9a16:558c:2838? ([2a02:810b:f40:4200:c0be:9a16:558c:2838])
+        by smtp.gmail.com with ESMTPSA id z2sm15165023wrh.44.2021.10.19.08.52.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Oct 2021 08:48:58 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id f4so794095uad.4;
-        Tue, 19 Oct 2021 08:48:58 -0700 (PDT)
-X-Received: by 2002:ab0:3154:: with SMTP id e20mr854747uam.14.1634658537875;
- Tue, 19 Oct 2021 08:48:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1634646975.git.geert+renesas@glider.be> <c1814db9aff7f09ea41b562a2da305312d8df2dd.1634646975.git.geert+renesas@glider.be>
- <70d3efb8-e379-5d20-1873-4752e893f10b@lechnology.com>
-In-Reply-To: <70d3efb8-e379-5d20-1873-4752e893f10b@lechnology.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 19 Oct 2021 17:48:46 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWBwh6uZ_NtMsGjHcV4bTUgZfs0iKg-jCCLM8gkRcRi6g@mail.gmail.com>
-Message-ID: <CAMuHMdWBwh6uZ_NtMsGjHcV4bTUgZfs0iKg-jCCLM8gkRcRi6g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: net: ti,bluetooth: Convert to json-schema
-To:     David Lechner <david@lechnology.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sebastian Reichel <sre@kernel.org>,
+        Tue, 19 Oct 2021 08:52:06 -0700 (PDT)
+Subject: Re: [PATCH 1/2] arm64: dts: rk3328: add gpu opp table
+To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+        David Wu <david.wu@rock-chips.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Cameron Nemo <cnemo@tutanota.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Elaine Zhang <zhangqing@rock-chips.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Trevor Woerner <twoerner@gmail.com>
+References: <20211016154548.29555-1-twoerner@gmail.com>
+ <3352474.ljgn2FL0hr@archbook>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <5a667361-940e-4653-ac3e-ae26a70255a2@gmail.com>
+Date:   Tue, 19 Oct 2021 17:52:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <3352474.ljgn2FL0hr@archbook>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+Am 18.10.21 um 18:49 schrieb Nicolas Frattaroli:
+> On Samstag, 16. Oktober 2021 17:45:44 CEST Trevor Woerner wrote:
+>> Add an operating-points table and cooling entry to the GPU on the
+>> RK3328 SoC to improve its performance. According to its datasheet[1]
+>> the maximum frequency of the Mali-450 MP2 GPU found on the RK3328 SoC
+>> is 500MHz.
+>>
+>> On my rock64 device, under x11, glmark2-es2 performance increased from
+>> around 60 to just over 100. Same device running glmark2-es2 under
+>> wayland/weston improved from just over 100 to just over 200.
+>>
+>> [1] https://rockchip.fr/RK3328%20datasheet%20V1.2.pdf
+>>
+>> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3328.dtsi | 26 +++++++++++++++++++++++-
+>>   1 file changed, 25 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi index 8c821acb21ff..5e1dcf71e414
+>> 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>> @@ -532,7 +532,8 @@ map0 {
+>>   					cooling-device = <&cpu0
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>   							 <&cpu1
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>   							 <&cpu2
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> -							 <&cpu3
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +							 <&cpu3
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +							 <&gpu
+> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>   					contribution = <4096>;
+>>   				};
+>>   			};
+>> @@ -617,6 +618,29 @@ gpu: gpu@ff300000 {
+>>   		clocks = <&cru ACLK_GPU>, <&cru ACLK_GPU>;
+>>   		clock-names = "bus", "core";
+>>   		resets = <&cru SRST_GPU_A>;
+>> +		operating-points-v2 = <&gpu_opp_table>;
+>> +		#cooling-cells = <2>;
+>> +	};
+>> +
+>> +	gpu_opp_table: gpu-opp-table {
+>> +		compatible = "operating-points-v2";
+>> +
+>> +		opp-200000000 {
+>> +			opp-hz = /bits/ 64 <200000000>;
+>> +			opp-microvolt = <1100000>;
+>> +		};
+>> +		opp-300000000 {
+>> +			opp-hz = /bits/ 64 <300000000>;
+>> +			opp-microvolt = <1100000>;
+>> +		};
+>> +		opp-400000000 {
+>> +			opp-hz = /bits/ 64 <400000000>;
+>> +			opp-microvolt = <1100000>;
+>> +		};
+>> +		opp-500000000 {
+>> +			opp-hz = /bits/ 64 <500000000>;
+>> +			opp-microvolt = <1100000>;
+>> +		};
+>>   	};
+>>
+>>   	h265e_mmu: iommu@ff330200 {
+> 
+> As for whether this works as described on a ROCK64 for glmark2-es2-wayland:
 
-On Tue, Oct 19, 2021 at 5:41 PM David Lechner <david@lechnology.com> wrote:
-> On 10/19/21 7:43 AM, Geert Uytterhoeven wrote:
-> > Convert the Texas Instruments serial-attached bluetooth Device Tree
-> > binding documentation to json-schema.
-> >
-> > Add missing max-speed property.
-> > Update the example.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > I listed David as maintainer, as he wrote the original bindings.
-> > Please scream if not appropriate.
->
-> I'm not affiliated with TI in any way, so if someone from TI
-> wants to take responsibility, that would probably be better.
->
-> For for the time being...
->
-> Acked-by: David Lechner <david@lechnology.com>
+The probably most "convenient" and also future-proof solution upstream 
+for that is to define voltage ranges á la
 
-Thanks!
 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/ti,bluetooth.yaml
-> > @@ -0,0 +1,91 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/ti,bluetooth.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Texas Instruments Bluetooth Chips
-> > +
-> > +maintainers:
-> > +  - David Lechner <david@lechnology.com>
-> > +
-> > +description: |
-> > +  This documents the binding structure and common properties for serial
-> > +  attached TI Bluetooth devices. The following chips are included in this
-> > +  binding:
-> > +
-> > +  * TI CC256x Bluetooth devices
-> > +  * TI WiLink 7/8 (wl12xx/wl18xx) Shared Transport BT/FM/GPS devices
-> > +
-> > +  TI WiLink devices have a UART interface for providing Bluetooth, FM radio,
-> > +  and GPS over what's called "shared transport". The shared transport is
-> > +  standard BT HCI protocol with additional channels for the other functions.
-> > +
-> > +  TI WiLink devices also have a separate WiFi interface as described in
-> > +  wireless/ti,wlcore.yaml.
-> > +
-> > +  This bindings follows the UART slave device binding in ../serial/serial.yaml.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,cc2560
-> > +      - ti,wl1271-st
-> > +      - ti,wl1273-st
-> > +      - ti,wl1281-st
-> > +      - ti,wl1283-st
-> > +      - ti,wl1285-st
-> > +      - ti,wl1801-st
-> > +      - ti,wl1805-st
-> > +      - ti,wl1807-st
-> > +      - ti,wl1831-st
-> > +      - ti,wl1835-st
-> > +      - ti,wl1837-st
-> > +
-> > +  enable-gpios:
-> > +    maxItems: 1
-> > +
-> > +  vio-supply:
-> > +    description: Vio input supply (1.8V)
-> > +
-> > +  vbat-supply:
-> > +    description: Vbat input supply (2.9-4.8V)
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ext_clock
-> > +
-> > +  max-speed: true
->
-> Does this mean that max-speed from serial.yaml is supported
-> but current-speed is not?
 
-I added it because one DTS uses "max-speed", and the driver
-supports it.
-The driver does not support "current-speed", but seems to ask for
-an initial speed of 115200, and an operational speed of max-speed
-(default 3000000, perhaps that should be documented in the bindings):
+opp-200000000 {
 
-        hci_uart_set_speeds(hu, 115200, max_speed);
+		opp-hz = /bits/ 64 <200000000>;
 
-Gr{oetje,eeting}s,
+		opp-microvolt = <950000 950000 1150000>;
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+};
+
+and so on.
+
+And then adapt the regulator-min-microvolt of the logic regulator like
+
+vdd_logic: DCDC_REG1 {
+
+	regulator-name = "vdd_logic";
+
+	regulator-min-microvolt = <1050000>;
+
+...
+};
+
+That way all opp-points will be taken, but its ensured, that vdd_log 
+never goes below 1.05 V
+
+> 
+> Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> 
+> There is some stuff worth noting that LibreELEC does on this SoC[1]:
+> 
+> 1. they use 1.05V for all OPPs up to and including 400 MHz
+> 2. they run 500 MHz at 1.15V instead (though 1.10V seemed to work for both of
+> us)
+
+That might be true for your boards, but note that the required voltage 
+is per "leakage level" defined in efuse bits - something we do not 
+support for Rockchip upstream currently - see [1]
+
+> 3. they disable 500 MHz because 1.15V was apparently too high for rkvdec.
+> 
+> 3 is currently not very relevant because mainline Linux has no rkvdec node in
+> the rk3328 dtsi, and we're not running at 1.15V.
+> 
+> I've decided to add their rkvdec dtsi patch[2] on top anyway, and saw no
+> complaints from the rkvdec module while glmark2-es2-drm was running. However,
+> it's not like I tried to actually hardware decode video while it was running
+> because the userspace situation still won't let me without compiling entirely
+> too much stuff from git. Though the rkvdec module was loaded and present.
+You will see no complaints from the module , but you will see the SoC 
+crashing if both is running at the same time - see rkvdec-opp-table 
+downstream [2]
+
+[1] 
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3328.dtsi#L750-L751
+
+[2] 
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3328.dtsi#L840-L867
+
+Alex
+
+> [1]: https://github.com/LibreELEC/LibreELEC.tv/commit/
+> 9a6be0d36ba7ff3c3d5df798682d47a1de594ac0
+> [2]: https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/
+> patches/linux/default/linux-1001-v4l2-rockchip.patch#L860-L935
+> 
+> 
+> 
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
+
