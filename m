@@ -2,83 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C78E432D32
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 07:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E4B432D65
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 07:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233961AbhJSFch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 01:32:37 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:28017 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233858AbhJSFca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 01:32:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1634621419; x=1666157419;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=BnIMmMG3GLnlGVFFFmf75XcYfyFqpdunJeIco6oUqBA=;
-  b=YaDTrf/XmyUNWA55yvPFO3iXisEkxWEAbWQVG6ExV71OyBSMm5ix7HPd
-   a6wYNLZDsGa6g0S7NBJAeTYPCZMpqKuOjojeH8PZe3joxv6DQ8+pAUTsF
-   XOR4mxK3Ji7wT4bLHs3D5Cu+B3VnQ7wyXBsNCc9Goxesw2d+Y73JiHkOX
-   U=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 18 Oct 2021 22:30:18 -0700
-X-QCInternal: smtphost
-Received: from nalasex01c.na.qualcomm.com ([10.47.97.35])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Oct 2021 22:30:18 -0700
-Received: from fenglinw-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
- Mon, 18 Oct 2021 22:30:14 -0700
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-CC:     <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
-        <quic_fenglinw@quicinc.com>, <tglx@linutronix.de>,
-        <maz@kernel.org>, "David Collins" <collinsd@quicinc.com>
-Subject: [PATCH v2 08/10] bindings: spmi: spmi-pmic-arb: mark interrupt properties as optional
-Date:   Tue, 19 Oct 2021 13:29:19 +0800
-Message-ID: <1634621361-17155-9-git-send-email-quic_fenglinw@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1634621361-17155-1-git-send-email-quic_fenglinw@quicinc.com>
-References: <1634621361-17155-1-git-send-email-quic_fenglinw@quicinc.com>
+        id S229649AbhJSFuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 01:50:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57540 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229527AbhJSFuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 01:50:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B08FBC06161C
+        for <devicetree@vger.kernel.org>; Mon, 18 Oct 2021 22:48:42 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mchzF-0004x1-86; Tue, 19 Oct 2021 07:48:33 +0200
+Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1mchzC-0004ue-Fz; Tue, 19 Oct 2021 07:48:30 +0200
+Date:   Tue, 19 Oct 2021 07:48:30 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     alexandru.tachici@analog.com, andrew@lunn.ch, davem@davemloft.net,
+        devicetree@vger.kernel.org, hkallweit1@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] dt-bindings: net: phy: Add 10-baseT1L 2.4 Vpp
+Message-ID: <20211019054830.GA16320@pengutronix.de>
+References: <20211011142215.9013-1-alexandru.tachici@analog.com>
+ <20211011142215.9013-8-alexandru.tachici@analog.com>
+ <YW3Fq7WMSB+TL2u4@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YW3Fq7WMSB+TL2u4@robh.at.kernel.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:32:09 up 243 days,  8:56, 111 users,  load average: 0.35, 0.20,
+ 0.19
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Collins <collinsd@quicinc.com>
+On Mon, Oct 18, 2021 at 02:06:19PM -0500, Rob Herring wrote:
+> On Mon, Oct 11, 2021 at 05:22:14PM +0300, alexandru.tachici@analog.com wrote:
+> > From: Alexandru Tachici <alexandru.tachici@analog.com>
+> > 
+> > Add a tristate property to advertise desired transmit level.
+> > 
+> > If the device supports the 2.4 Vpp operating mode for 10BASE-T1L,
+> > as defined in 802.3gc, and the 2.4 Vpp transmit voltage operation
+> > is desired, property should be set to 1. This property is used
+> > to select whether Auto-Negotiation advertises a request to
+> > operate the 10BASE-T1L PHY in increased transmit level mode.
+> > 
+> > If property is set to 1, the PHY shall advertise a request
+> > to operate the 10BASE-T1L PHY in increased transmit level mode.
+> > If property is set to zero, the PHY shall not advertise
+> > a request to operate the 10BASE-T1L PHY in increased transmit level mode.
+> > 
+> > Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 9 +++++++++
+> >  1 file changed, 9 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 2766fe45bb98..2bb3a96612a2 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -77,6 +77,15 @@ properties:
+> >      description:
+> >        Maximum PHY supported speed in Mbits / seconds.
+> >  
+> > +  an-10base-t1l-2.4vpp:
+> 
+> What does 'an' mean?
 
-Mark all interrupt related properties as optional instead of
-required.  Some boards do not required PMIC IRQ support and it
-isn't needed to handle SPMI bus transactions, so specify it as
-optional.
+I assume, it is for Auto Negotiate.
 
-Signed-off-by: David Collins <collinsd@codeaurora.org>
-Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
----
- Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt | 2 ++
- 1 file changed, 2 insertions(+)
+> > +    description: |
+> > +      tristate, request/disable 2.4 Vpp operating mode. The values are:
+> > +      0: Disable 2.4 Vpp operating mode.
+> > +      1: Request 2.4 Vpp operating mode from link partner.
+> > +      Absence of this property will leave configuration to default values.
+> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> > +    enum: [0, 1]
+> 
+> What happened to this one doing the same thing?:
+> 
+> https://lore.kernel.org/lkml/20201117201555.26723-3-dmurphy@ti.com/
 
-diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
-index ca645e2..6332507 100644
---- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
-+++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
-@@ -29,6 +29,8 @@ Required properties:
- - #size-cells : must be set to 0
- - qcom,ee : indicates the active Execution Environment identifier (0-5)
- - qcom,channel : which of the PMIC Arb provided channels to use for accesses (0-5)
-+
-+Optional properties:
- - interrupts : interrupt list for the PMIC Arb controller, must contain a
-                single interrupt entry for the peripheral interrupt
- - interrupt-names : corresponding interrupt names for the interrupts
+This one was not really synced with the IEEE 802.3 standard. According
+to the standard, there is optional 10base-t1l specific 2.4 Vpp operating mode.
+To be able to operate in this mode, HW should be designed to do so.
+And other way around, if HW is designed for explosive environment, it
+should never operate in 2.4 Vpp mode.
+So, depending on this property, the ability of the link-partner and user
+space configuration, we may allow to auto negotiate this mode.
+
+The question is, should it actually be called "an-", since this property
+should limit automatic and manual link configuration
+
+Regards,
+Oleksij
 -- 
-2.7.4
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
