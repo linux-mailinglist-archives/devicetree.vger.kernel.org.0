@@ -2,136 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A274331E4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 11:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35FFF43320C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 11:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234680AbhJSJNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 05:13:40 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:63783 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234511AbhJSJNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 05:13:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634634687; x=1666170687;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SFnbRDPbh9Cnl0CjzDAQQBLnGioAW3IiP6jsl+JbKXg=;
-  b=jPym3YQhHt0CQfa0VB3P5O4H4n+lhvg6ET/x7Q515621bxQ6crZFzwaB
-   JnrgW6JcJH65dvr5I5AAxEhBrrgP3o0ZObNJBxfJSnHHBE6UjcWm6aXBl
-   lOBVjC/2AFwF/Q1BfkHHKmlCenXbRWCXfcV4dSENpof/Vc0qB3YgZBqp7
-   6ZFysEOnmz9cceScWWNTgtN5HmxVWlWHhMeh5JyiweOEhh7sNZ0f4i+/M
-   K19BwAW0EYz3iy/TrpwHWaFK4VRcXaOwjnd/+IML1kJm7ldbrMizUBd0r
-   RDiAlZgp6CEp7WfdoxyVIoVjSPQtcmImd1xZzMNxoYgFKgDfrtlvKlE5N
-   Q==;
-IronPort-SDR: aDBBwI1xiQi99aA95+ithxdVm7jIv/LL1zMQ24NUTEJ+nGIDBg93FpATujlCl7HSMccbVM6NZm
- 0K8LJdN+5aeFshYHkZIkW1ya9l5k+bpP2rvSl9k9tiCc+BmDqtJwkHLn20j7VXW8AFIXGpV8ak
- k0NdEpg2zIDlo2VFwrJN1l6j4tC0xN/sB3t4oCnLYcmJxYDdYUcmIpMJ/3ogQc4c3Eq4hcs+fG
- eBmCm/n5e8Ra4YVNuZkwrPYECeb6Y9gtLbRPuxqxPya04qmdUrHWARXt1zL5ne6G1ELLiejBaU
- XlOAqhh3OP4iO8bt+Oh2tSee
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; 
-   d="scan'208";a="73497729"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Oct 2021 02:11:26 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 19 Oct 2021 02:11:26 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 19 Oct 2021 02:11:26 -0700
-Date:   Tue, 19 Oct 2021 11:12:58 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <kishon@ti.com>, <vkoul@kernel.org>, <andrew@lunn.ch>,
-        <alexandre.belloni@bootlin.com>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
-Message-ID: <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
-References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
- <20211015123920.176782-3-horatiu.vultur@microchip.com>
- <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
+        id S234914AbhJSJXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 05:23:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234933AbhJSJXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 05:23:10 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D3DC061745
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:20:57 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id ec8so10335494edb.6
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:20:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=toRRVEqTLUd3SSxzIDP/+DUaLEtYke19fi6Pz2sUJkE=;
+        b=Cf18QzOp+PRhe6QqZXXGOa4O7FcIcT8tM6VPOG1htKyJ1o5kTmJFuUaCM3AI4CWu3s
+         Kh+keaBzAGxQygo9i8deGphOkop3SLutGrTs2ukML7vLZ/vSvRkWQZFS4YfdoyXOkcjg
+         9MueBURbdbqni8kwo6RPOs8F1cVzS3nDxLl16afPJBfbdKclb387x3ZtXgT90MS/ydPS
+         z7nDn6GTXp+SswME3vjPhHMaUF+zyQg5kvjNVfzTw95BdRCk+7paJWKFGR8VYyjsZSjB
+         +TxMnqCQiGou0u0rE6TaY3tx0yNlgJFYq5CdiYl3qj0P2ZFm3Y36xbGtK7IpJiOTr18P
+         hzhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=toRRVEqTLUd3SSxzIDP/+DUaLEtYke19fi6Pz2sUJkE=;
+        b=BURJaB6v8xsvbdNqWJIsbnJ2QF7dTaPTReHYpVe70mKjWoXDDmMzqlj2KkGIL2yY3B
+         TIXUH0Ds8ycd3HZNRXKFGrJqNOtYCdzWBv7kZnMXeNeVcB9u0TvuSmlyaHau8lcbIfaK
+         4WYCXts3Cvcw/gQVvhdJaMXu/V+oHLydh4ouZI8v84KoMCLp6NBIXLXh/MHUzVEZ1abA
+         BmW0PgxegwHtNKEqBhZkkVMNCOdxmkwpnoFWe566KODtr4lJdxsVYdS361gobm7ZGLXr
+         tq50vl79zT9KUzzobjEGWU9Tzjkr8kXnDt9PRzu7T+Lq19klD+MVIVPelsO/9sdfTVwn
+         0OWQ==
+X-Gm-Message-State: AOAM530i+jndIC5BpmXbE10sKQhsWs0aDSXVfce8WAQUOxLjRpFEl/hv
+        zMYRsqunsFBND3WI3KN7aeDNc+fI88uR9LhyILLr7w==
+X-Google-Smtp-Source: ABdhPJzEQhtxbot5YkrZdRE19sSa4f2O5W5kZNzagpESU86f9Z1ZP1xca6lG0VyOTvQlnZg+aWhg3uov1zMvvMMgn2Y=
+X-Received: by 2002:a17:906:d975:: with SMTP id rp21mr36538913ejb.104.1634635255802;
+ Tue, 19 Oct 2021 02:20:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
+References: <20211018114046.25571-1-etienne.carriere@linaro.org> <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
+In-Reply-To: <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Tue, 19 Oct 2021 11:20:44 +0200
+Message-ID: <CAN5uoS_ab2Te6++JPAQ2UJqjdO46t=vyT2Ek0DvWG8umSibTnQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/18/2021 14:28, Rob Herring wrote:
-> 
-> On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
-> > Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
-> > requires to be muxed based on the HW representation.
+On Mon, 18 Oct 2021 at 19:40, Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Oct 18, 2021 at 01:40:45PM +0200, Etienne Carriere wrote:
+> > Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+> > based on an OP-TEE service invocation. The compatible mandates a
+> > channel ID defined with property "linaro,optee-channel-id".
 > >
-> > So add constants for each interface to be able to distinguish them.
-> >
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
 > > ---
-> >  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+> > Changes since v2:
+> >  - Define mandatory property linaro,optee-channel-id
+> >  - Rebased on yaml description file
 > >
-> > diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> > new file mode 100644
-> > index 000000000000..8a05f93ecf41
-> > --- /dev/null
-> > +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> > @@ -0,0 +1,14 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > Changes since v1:
+> >  - Removed modification regarding mboxes property description.
+> > ---
+> >  .../bindings/firmware/arm,scmi.yaml           | 44 +++++++++++++++++++
+> >  1 file changed, 44 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > index 5c4c6782e052..12154ecc081b 100644
+> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > @@ -38,6 +38,9 @@ properties:
+> >                       The virtio transport only supports a single device.
+> >          items:
+> >            - const: arm,scmi-virtio
+> > +      - description: SCMI compliant firmware with OP-TEE transport
+> > +        items:
+> > +          - const: linaro,scmi-optee
+> >
+> >    interrupts:
+> >      description:
+> > @@ -83,6 +86,11 @@ properties:
+> >      description:
+> >        SMC id required when using smc or hvc transports
+> >
+> > +  linaro,optee-channel-id:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Channel id required when using OP-TEE transports
 > > +
-> > +#ifndef __PHY_LAN966X_SERDES_H__
-> > +#define __PHY_LAN966X_SERDES_H__
+> >    protocol@11:
+> >      type: object
+> >      properties:
+> > @@ -195,6 +203,9 @@ patternProperties:
+> >          minItems: 1
+> >          maxItems: 2
+> >
+> > +      linaro,optee-channel-id:
+> > +        maxItems: 1
+>
+> Why is the same property in 2 different spots? That doesn't seem ideal.
+>
+> Unfortunately, you have to duplicate the definition.
+
+Property linaro,optee-channel-id for compatible linaro,scmi-optee
+is like properties mboxes and shmem for compatibile arm,scmi.
+There are mandated in the scmi node and are optional in its subnodes:
+an scmi protocol (a subnode), can have a dedicated scmi channel.
+
+The yaml description is expected to reflect that.
+
+Regards,
+Etienne
+
+>
 > > +
-> > +#define PHY(x)               (x)
-> > +#define PHY_MAX              PHY(2)
-> > +#define SERDES6G(x)  (PHY_MAX + 1 + (x))
-> > +#define SERDES6G_MAX SERDES6G(3)
-> > +#define RGMII(x)     (SERDES6G_MAX + 1 + (x))
-> > +#define RGMII_MAX    RGMII(2)
-> > +#define SERDES_MAX   (RGMII_MAX + 1)
-> 
-> I still don't understand. #phy-cells description says we have:
-> 
-> <port idx> <serdes idx>
-> 
-> But here it's 3 numbers. How are these defines used to fill in the 2
-> cells?
-
-Actually they are still only a number. Or maybe I am missing something.
-
-Maybe an example will help:
-
----
-serdes: serdes@e2004010 {
-    compatible = "microchip,lan966x-serdes";
-    reg = <0xe202c000 0x9c>, <0xe2004010 0x4>;
-    #phy-cells = <2>;
-};
-
-&port0 {
-    ...
-    phys = <&serdes 0 SERDES6G(1)>;
-    ...
-};
-
-&port1 {
-    ...
-    phys = <&serdes 1 PHY(0)>;
-    ...
-}
-
-...
----
-
-Here are some existing examples based on which I have created this patch
-series:
-https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot_pcb120.dts#L99
-https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot.dtsi#L274
-
-> 
-> Rob
-
--- 
-/Horatiu
+> >      required:
+> >        - reg
+> >
+> > @@ -226,6 +237,16 @@ else:
+> >        - arm,smc-id
+> >        - shmem
+> >
+> > +  else:
+> > +    if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: linaro,scmi-optee
+> > +    then:
+> > +      required:
+> > +        - linaro,optee-channel-id
+> > +
+> >  examples:
+> >    - |
+> >      firmware {
+> > @@ -340,7 +361,30 @@ examples:
+> >                  reg = <0x11>;
+> >                  #power-domain-cells = <1>;
+> >              };
+> > +        };
+> > +    };
+> > +
+> > +  - |
+> > +    firmware {
+> > +        scmi {
+> > +            compatible = "linaro,scmi-optee";
+> > +            linaro,optee-channel = <0>;
+> > +
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            scmi_clk: protocol@14 {
+> > +                reg = <0x14>;
+> > +                #clock-cells = <1>;
+> > +            };
+> > +
+> > +            scmi_dvfs: protocol@13 {
+> > +                reg = <0x13>;
+> >
+> > +                #clock-cells = <1>;
+> > +                linaro,optee-channel = <1>;
+> > +                shmem = <&cpu_scp_hpri0>;
+> > +            };
+> >          };
+> >      };
+> >
+> > --
+> > 2.17.1
+> >
+> >
