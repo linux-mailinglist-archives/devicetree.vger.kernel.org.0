@@ -2,186 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF0414333A8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:38:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E6E4333CC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235260AbhJSKkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 06:40:10 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54474 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235257AbhJSKkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 06:40:09 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 75AD58AE;
-        Tue, 19 Oct 2021 12:37:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1634639875;
-        bh=8JWvYP7ZXVX/kiNPwYH3OHqA/Dchd8D3VcR7gzCGxug=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZdUhWVXrY7JUp50m8IW066ZGCBuCbfbCtZAnL4r6Q70Csc173wfQ5Qrg7Y/3YVVZG
-         qT5r7Oz/u7TPihqG8iqnMSA2JAKe8DeJF+znP9xJv8vbX4l7EdxQmPrOptCGQjLMFh
-         wO2G6XqZSuJFSgadNgihDBOYDudmBPZF08Kfs5+8=
-Date:   Tue, 19 Oct 2021 13:37:37 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
- supply bindings
-Message-ID: <YW6f8U2BC/6WQoVx@pendragon.ideasonboard.com>
-References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
- <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
- <20211013074722.7y7ug3eri4euknza@gilmour>
- <YWao69+QEK8Fhi/x@pendragon.ideasonboard.com>
- <20211014074110.ym6mzugde2m5ak22@gilmour>
- <YWo6U1juhMsHnQYU@pendragon.ideasonboard.com>
- <20211018152013.e3kmbm2lszb652gi@gilmour>
- <YW2zhFX9krzbHlpL@pendragon.ideasonboard.com>
- <20211019073728.7a3rmp3fz62rxh6w@gilmour>
+        id S235208AbhJSKqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 06:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40842 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235179AbhJSKqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 06:46:35 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD90DC061745
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 03:44:22 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id v17so46850894wrv.9
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 03:44:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=u1emP74LMR8/SvGoouwH++0x/p6OWG+7EYKvBz2UYg8=;
+        b=of5XTyT0K3CPL1nTRDT8JDcSH2dpt4BaIJGz42QaY2MJkw8Pj9kPOn05hWWo1FN/i1
+         BdacScUTT5bwFpPLeUTjLfVGSNiGq9UO1fiG6qPQ+2iSVLu+5xwLvIYdicuxpOVl+NMk
+         JavBQ80EGM3/fZzbs3enCHN4p3UXmsZ/ov/gLYdDATLbPiyHH7miUPcagf6/n+GWHu4K
+         CBkyiYVKXvUH3hwZ0wa+4iG/kg1yjRohlIaMT+cgrckN7nLLSySjg/nSSCgIY30l8WrR
+         McAPZ9sV6VQ2K12G9WabbYNra6JeugiIIn/UIJ4Tb6cXW886ObmSp1P6CFcQZF3z2eDG
+         3wag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=u1emP74LMR8/SvGoouwH++0x/p6OWG+7EYKvBz2UYg8=;
+        b=4UjLrjYELNCpTDAbOLrFNYi/W2AgLe5nlEbza40igsRPLJcW13VQmeLUQ8XqAauDfz
+         QhH6dXZJqc3NdSsKwA3eGdh6ctk+01S8xgGmZAD+XvSu9tqOnUe62+cIAO1zaaTmlv1j
+         lZkyZtZzZBiey5eHnYmnXR9+dNeHBrxf1xWJjOWsUWuwZx8vj2H3CCGCSxPTzopU21Oh
+         kKncH2PgUGrCONXHh32YKd3+G9fVfZsHPgaGHBSMZ08ys/wgYSDqmwSksDWqjZY3zshy
+         Nf7J2E+A9Wjlo5OBBn5dFC2ZtjONRgPezYG6Yc5AK51BQL6awHry+zV4Vh85AjBfDODf
+         h/gg==
+X-Gm-Message-State: AOAM533YFH9lCNVKRVqxgGWbmlqUx4szscQ4DGGrfhNMnrml0ohMGHch
+        0/AMZiFm0+GcKs8PIKBbxPfZ4w==
+X-Google-Smtp-Source: ABdhPJyZjIHKYWT4pQlfal1tLcBol+nlDGLcHvkF/ANdHRtITNxC1BrufddcAkjHys1sUUpuIxkwlg==
+X-Received: by 2002:a5d:4a0c:: with SMTP id m12mr43634922wrq.27.1634640261228;
+        Tue, 19 Oct 2021 03:44:21 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:c590:9206:d20a:23bd? ([2a01:e34:ed2f:f020:c590:9206:d20a:23bd])
+        by smtp.googlemail.com with ESMTPSA id h11sm14071179wrz.5.2021.10.19.03.44.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Oct 2021 03:44:20 -0700 (PDT)
+Subject: Re: [PATCH v2 4/4] thermal: mediatek: add MT8365 thermal driver
+ support
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
+        khilman@baylibre.com
+References: <20211019093404.1913357-1-msp@baylibre.com>
+ <20211019093404.1913357-5-msp@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <d796b9ea-210a-1385-8823-f697b7ac7fa7@linaro.org>
+Date:   Tue, 19 Oct 2021 12:44:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
+In-Reply-To: <20211019093404.1913357-5-msp@baylibre.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211019073728.7a3rmp3fz62rxh6w@gilmour>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
-
-On Tue, Oct 19, 2021 at 09:37:28AM +0200, Maxime Ripard wrote:
-> On Mon, Oct 18, 2021 at 08:48:52PM +0300, Laurent Pinchart wrote:
-> > On Mon, Oct 18, 2021 at 05:20:13PM +0200, Maxime Ripard wrote:
-> > > On Sat, Oct 16, 2021 at 05:34:59AM +0300, Laurent Pinchart wrote:
-> > > > On Thu, Oct 14, 2021 at 09:41:10AM +0200, Maxime Ripard wrote:
-> > > > > On Wed, Oct 13, 2021 at 12:37:47PM +0300, Laurent Pinchart wrote:
-> > > > > > On Wed, Oct 13, 2021 at 09:47:22AM +0200, Maxime Ripard wrote:
-> > > > > > > On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
-> > > > > > > > Add a VCC regulator which needs to be enabled before the EN pin is
-> > > > > > > > released.
-> > > > > > > > 
-> > > > > > > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-> > > > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > > > > > > ---
-> > > > > > > >  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
-> > > > > > > >  1 file changed, 5 insertions(+)
-> > > > > > > > 
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > > > > index a5779bf17849..49ace6f312d5 100644
-> > > > > > > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > > > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > > > > @@ -32,6 +32,9 @@ properties:
-> > > > > > > >      maxItems: 1
-> > > > > > > >      description: GPIO specifier for bridge_en pin (active high).
-> > > > > > > >  
-> > > > > > > > +  vcc-supply:
-> > > > > > > > +    description: A 1.8V power supply (see regulator/regulator.yaml).
-> > > > > > > > +
-> > > > > > > >    ports:
-> > > > > > > >      $ref: /schemas/graph.yaml#/properties/ports
-> > > > > > > >  
-> > > > > > > > @@ -93,6 +96,7 @@ properties:
-> > > > > > > >  required:
-> > > > > > > >    - compatible
-> > > > > > > >    - reg
-> > > > > > > > +  - vcc-supply
-> > > > > > > 
-> > > > > > > This isn't a backward-compatible change. All the previous users of that
-> > > > > > > binding will now require a vcc-supply property even though it was
-> > > > > > > working fine for them before.
-> > > > > > > 
-> > > > > > > You handle that nicely in the code, but you can't make that new property
-> > > > > > > required.
-> > > > > > 
-> > > > > > We can't make it required in the driver, but can't we make it required
-> > > > > > in the bindings ? This indicates that all new DTs need to set the
-> > > > > > property. We also need to mass-patch the in-tree DTs to avoid validation
-> > > > > > failures, but apart from that, I don't see any issue.
-> > > > > 
-> > > > > I guess we'd need to clarify what the schemas are here for.
-> > > > > 
-> > > > > We've been using them for two things: define the bindings, and make
-> > > > > sure that the users of a binding actually follow it.
-> > > > > 
-> > > > > The second part makes it very tempting to also cram "and make sure they
-> > > > > follow our best practices" in there. We never had the discussion about
-> > > > > whether that's ok or not, and I think the schemas syntax falls a bit
-> > > > > short there since I don't think we can make the difference between a
-> > > > > warning and an error that would make it work.
-> > > > > 
-> > > > > However, if we're talking about the binding itself, then no, you can't
-> > > > > introduce a new property.
-> > > > 
-> > > > I assume you mean "a new required property" here.
-> > > > 
-> > > > > Since it was acceptable in the past, it still needs to be acceptable
-> > > > > going forward.
-> > > > 
-> > > > I think that's a matter of definition. The way I see it (but I could be
-> > > > mistaken), we're essentially versioning DT bindings without actually
-> > > > saying so, with the latest version being the visible one, and drivers
-> > > > having to preserve backward compatibility with new versions. We could
-> > > > also see it in different ways of course.
-> > > 
-> > > I disagree. A binding is essentially a contract on how the OS is
-> > > supposed to interpret whatever comes from the DT. If we do what you
-> > > suggest, then we lose all documentation of older versions we still need
-> > > to support at the OS level. And relying on all developers to look
-> > > through the entire history to figure it out is a sure way to screw
-> > > things up :)
-> > > 
-> > > The use of deprecated indicates that we actually want to document the
-> > > old versions.
-> > > 
-> > > > What's important is in my opinion to make sure that new DTs will do
-> > > > the right thing, and if we don't make this property required, we can't
-> > > > check that. DT authors wouldn't know if the property is optional due
-> > > > to backward compatibility only but highly recommended, or really
-> > > > optional.
-> > > 
-> > > Add a comment saying that this should really be added, but we can't
-> > > because it was missing it was in the original binding?
-> > 
-> > That will not help validating that new DTs are compliant with the last
-> > version of the bindings.
-> > 
-> > We have one tool, and two needs. The tool should be extended to cover
-> > both, but today it can only support one. Which of these two is the most
-> > important:
-> > 
-> > - Documentating old behaviour, to helper driver authors on other
-> >   operating systems implement backward compatibility without having to
-> >   look at the history ?
-> > 
-> > - Validating all new device trees to ensure they implement the latest
-> >   recommended version of the bindings ?
-> > 
-> > I think the second one is much more frequent, and is also where most of
-> > the issues will arise.
+On 19/10/2021 11:34, Markus Schneider-Pargmann wrote:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> I understand the drive for the latter, but we shouldn't be dropping the
-> former in the process, which has been what we've been doing for the last
-> decade or so.
+> mt8365 is similar to the other SoCs supported by the driver. It has only
+> one bank and 3 sensors that can be multiplexed.
+> 
+> Additionally the buffer has to be enabled and connected to AUXADC
+> similar to the V2 version but at a different register offset. That's why
+> I added three new configuration values to define the register, mask and
+> bits to be set to be able to use it for both V2 and mt8365.
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> [Added apmixed control register logic]
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+> 
+> Notes:
+>     Changes v1 -> v2:
+>     - Use of ARRAY_SIZE to avoid NUM macros.
+>     - Remove (void*) cast.
+>     - Use macros for mt7622 buffer_ctl operations.
+> 
+>  drivers/thermal/mtk_thermal.c | 90 ++++++++++++++++++++++++++++++++---
+>  1 file changed, 84 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index af6cd11eb221..fc4ea58d00ec 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -31,6 +31,7 @@
+>  #define AUXADC_CON2_V		0x010
+>  #define AUXADC_DATA(channel)	(0x14 + (channel) * 4)
+>  
+> +#define APMIXED_SYS_TS_CON0	0x600
+>  #define APMIXED_SYS_TS_CON1	0x604
+>  
+>  /* Thermal Controller Registers */
+> @@ -212,6 +213,8 @@ enum mtk_thermal_version {
+>  #define MT7622_NUM_SENSORS_PER_ZONE	1
+>  #define MT7622_TS1	0
+>  #define MT7622_NUM_CONTROLLER		1
+> +#define MT7622_BUFFER_CTL_MASK		~0x37
+> +#define MT7622_BUFFER_CTL_SET		0x1
+>  
+>  /* The maximum number of banks */
+>  #define MAX_NUM_ZONES		8
+> @@ -245,6 +248,14 @@ enum mtk_thermal_version {
+>  /* The calibration coefficient of sensor  */
+>  #define MT8183_CALIBRATION	153
+>  
+> +/* MT8365 */
+> +#define MT8365_TEMP_AUXADC_CHANNEL 11
+> +#define MT8365_CALIBRATION 164
+> +#define MT8365_NUM_BANKS 1
+> +#define MT8365_TS1 0
+> +#define MT8365_TS2 1
+> +#define MT8365_TS3 2
+> +
+>  struct mtk_thermal;
+>  
+>  struct thermal_bank_cfg {
+> @@ -271,6 +282,9 @@ struct mtk_thermal_data {
+>  	bool need_switch_bank;
+>  	struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
+>  	enum mtk_thermal_version version;
+> +	u32 apmixed_buffer_ctl_reg;
+> +	u32 apmixed_buffer_ctl_mask;
+> +	u32 apmixed_buffer_ctl_set;
+>  };
+>  
+>  struct mtk_thermal {
+> @@ -386,6 +400,25 @@ static const int mt7622_mux_values[MT7622_NUM_SENSORS] = { 0, };
+>  static const int mt7622_vts_index[MT7622_NUM_SENSORS] = { VTS1 };
+>  static const int mt7622_tc_offset[MT7622_NUM_CONTROLLER] = { 0x0, };
+>  
+> +/* MT8365 thermal sensor data */
+> +static const int mt8365_bank_data[] = {
+> +	MT8365_TS1, MT8365_TS2, MT8365_TS3
+> +};
+> +
+> +static const int mt8365_msr[ARRAY_SIZE(mt8365_bank_data)] = {
+> +	TEMP_MSR0, TEMP_MSR1, TEMP_MSR2
+> +};
+> +
+> +static const int mt8365_adcpnp[ARRAY_SIZE(mt8365_bank_data)] = {
+> +	TEMP_ADCPNP0, TEMP_ADCPNP1, TEMP_ADCPNP2
+> +};
+> +
+> +static const int mt8365_mux_values[ARRAY_SIZE(mt8365_bank_data)] = { 0, 1, 2 };
 
-That point is debatable :-) I've repeatedly asked during review of DT
-bindings for new properties to be made required, based on the above
-rationale. This is the first time I see a push back.
+This portion of declaration shows it should be *one* array of structures :/
 
-I believe we need to address both of the above problems. In the very
-short term, we have to pick which of the two we care about most, as we
-can't have both yet. I have made my personal preference clear, but I'll
-apply the official decision in further reviews. Maybe Rob could share
-his point of view ?
+This comment applies for all the existing code.
+
+TBH, I think the code could be simplified and consolidated in this
+driver. But that would be out of the scope of your changes as I
+understand you are sticking to the current implementation.
+
+
+> +static const int mt8365_tc_offset[] = { 0 };
+
+0x0, to be consistent with the rest of the code.
+
+> +
+> +static const int mt8365_vts_index[ARRAY_SIZE(mt8365_bank_data)] = { VTS1, VTS2,
+> +								    VTS3 };
+> +
+>  /*
+>   * The MT8173 thermal controller has four banks. Each bank can read up to
+>   * four temperature sensors simultaneously. The MT8173 has a total of 5
+> @@ -460,6 +493,39 @@ static const struct mtk_thermal_data mt2701_thermal_data = {
+>  	.version = MTK_THERMAL_V1,
+>  };
+>  
+> +/*
+> + * The MT8365 thermal controller has one bank, which can read up to
+> + * four temperature sensors simultaneously. The MT8365 has a total of 3
+> + * temperature sensors.
+> + *
+> + * The thermal core only gets the maximum temperature of this one bank,
+> + * so the bank concept wouldn't be necessary here. However, the SVS (Smart
+> + * Voltage Scaling) unit makes its decisions based on the same bank
+> + * data.
+> + */
+> +static const struct mtk_thermal_data mt8365_thermal_data = {
+> +	.auxadc_channel = MT8365_TEMP_AUXADC_CHANNEL,
+> +	.num_banks = MT8365_NUM_BANKS,
+> +	.num_sensors = ARRAY_SIZE(mt8365_bank_data),
+> +	.vts_index = mt8365_vts_index,
+> +	.cali_val = MT8365_CALIBRATION,
+> +	.num_controller = ARRAY_SIZE(mt8365_tc_offset),
+> +	.controller_offset = mt8365_tc_offset,
+> +	.need_switch_bank = false,
+> +	.bank_data = {
+> +		{
+> +			.num_sensors = ARRAY_SIZE(mt8365_bank_data),
+> +			.sensors = mt8365_bank_data
+> +		},
+> +	},
+> +	.msr = mt8365_msr,
+> +	.adcpnp = mt8365_adcpnp,
+> +	.sensor_mux_values = mt8365_mux_values,
+> +	.version = MTK_THERMAL_V1,
+> +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON0,
+> +	.apmixed_buffer_ctl_mask = ~(u32)GENMASK(29, 28),
+> +};
+>
+>  /*
+>   * The MT2712 thermal controller has one bank, which can read up to
+>   * four temperature sensors simultaneously. The MT2712 has a total of 4
+> @@ -514,6 +580,9 @@ static const struct mtk_thermal_data mt7622_thermal_data = {
+>  	.adcpnp = mt7622_adcpnp,
+>  	.sensor_mux_values = mt7622_mux_values,
+>  	.version = MTK_THERMAL_V2,
+> +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
+> +	.apmixed_buffer_ctl_mask = MT7622_BUFFER_CTL_MASK,
+> +	.apmixed_buffer_ctl_set = MT7622_BUFFER_CTL_SET,
+>  };
+>  
+>  /*
+> @@ -958,19 +1027,27 @@ static const struct of_device_id mtk_thermal_of_match[] = {
+>  	{
+>  		.compatible = "mediatek,mt8183-thermal",
+>  		.data = &mt8183_thermal_data,
+> +	},
+> +	{
+> +		.compatible = "mediatek,mt8365-thermal",
+> +		.data = &mt8365_thermal_data,
+>  	}, {
+>  	},
+>  };
+>  MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
+>  
+> -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
+> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
+> +				       void __iomem *apmixed_base)
+>  {
+>  	int tmp;
+>  
+> -	tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
+> -	tmp &= ~(0x37);
+> -	tmp |= 0x1;
+> -	writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
+> +	if (!mt->conf->apmixed_buffer_ctl_reg)
+> +		return;
+> +
+> +	tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+> +	tmp &= mt->conf->apmixed_buffer_ctl_mask;
+> +	tmp |= mt->conf->apmixed_buffer_ctl_set;
+> +	writel(tmp, apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+>  	udelay(200);
+>  }
+>  
+> @@ -1070,8 +1147,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>  		goto err_disable_clk_auxadc;
+>  	}
+>  
+> +	mtk_thermal_turn_on_buffer(mt, apmixed_base);
+> +
+>  	if (mt->conf->version == MTK_THERMAL_V2) {
+> -		mtk_thermal_turn_on_buffer(apmixed_base);
+>  		mtk_thermal_release_periodic_ts(mt, auxadc_base);
+>  	}
+>  
+> 
+
 
 -- 
-Regards,
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Laurent Pinchart
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
