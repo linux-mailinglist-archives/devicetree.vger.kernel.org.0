@@ -2,233 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66314433B48
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4850433B94
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 18:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233512AbhJSPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 11:55:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232993AbhJSPzQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:55:16 -0400
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCD6C061765
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
-Received: by mail-pj1-x102a.google.com with SMTP id q2-20020a17090a2e0200b001a0fd4efd49so2149909pjd.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0hJdTPE/X0TchThuYtIcfkeVoIZpuXd1w8LycbQX2wo=;
-        b=e0OMaw2pO7lBwvHrxGeO5TuJteJBanulQDFstc3mN0CIzzzSzFL0SAki2Ab8ovISkb
-         CIciB+Ja0iSSBs/2XJ/obiJZVRvw9BUEZDIzqULrn5ZiFl7shdYvu051qjeozTntwYJT
-         QYg6a/wYN4PrbGOFBWJit1cZbrJSYk7Naer1qlqa7z0RkP99/X0k0EE5vrtKTywBQi5f
-         ACLwOQUmWS0Kjw6QCzwDs25iQG0575ejAmZGXtZ3WnMW2VJhT6TDDEt4mtQFS1t5Tc3L
-         JsmiJuW2xFgURhMFXqKoI2MwUrYpfDqzgqoqT5WS5XkG+/DW2RwJtHY6sG231j3kgQzq
-         qtRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0hJdTPE/X0TchThuYtIcfkeVoIZpuXd1w8LycbQX2wo=;
-        b=qHIBbEHLDElnoxjty9XG3+Hkdtg57uNqxnrscHcVNvGt1QvaV5lkOpRrpb5/awylt1
-         Dqh/MvhKICc9+14bghEVmwo7CRMTpV1Sjd5Yi0dBQBu8WqtIUPBwDTjMyWVwruI4akZh
-         42N9fJnFDOLqGuG+7eDkO8xDNdbL2K40oXjJIFLlLDXv8Fe+LP5KtXSkA8CJSkpLVFDt
-         RhWgSPHDOqYW4tFra4JTnFZHcgs1nbrgo9sJwd4F4kgvhwRxFLlN97rd3lTr3GJSOp6K
-         mxFoVcJJoswhlcwVoxxQZQ4fB0OZ7teGYM9eG0Wv3e2yu7ELCNAVaxYLaP3y/cackY0X
-         b7lg==
-X-Gm-Message-State: AOAM530KztfEibD97qLZOQkGwq6lWE9S0F1vVaWCW6B5WF4JiJ/rcnxu
-        b3LxhIdPfFGynG1DKfMo3FQHHlofpkP33osvnVoRHA==
-X-Google-Smtp-Source: ABdhPJyRBqJPyd1gzy/plQ5XFljpcudmR2DUGHESDi4bc0j4s8l7ja0Hu4S+Q9rCI1WFNW8WsxgfYFyhjTBYhQxG6Kw=
-X-Received: by 2002:a17:90b:1e4b:: with SMTP id pi11mr620719pjb.179.1634658783107;
- Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <1634028078-2387-1-git-send-email-hongxing.zhu@nxp.com>
- <CAJ+vNU2b-=T_gTsRBvdF7SRUZopEFOU_Np8mEJn8bOpn5b5FaA@mail.gmail.com> <AS8PR04MB8676B2AC24E2769D47A1ED478CBD9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB8676B2AC24E2769D47A1ED478CBD9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 19 Oct 2021 08:52:51 -0700
-Message-ID: <CAJ+vNU2AitmxCyam5FArmxAD41QUU=5CF_0JZhm+uzdkRbr7kw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/9] add the imx8m pcie phy driver and imx8mm pcie support
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
+        id S231559AbhJSQGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 12:06:35 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:53144 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230168AbhJSQGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 12:06:33 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19JE1L0R004966;
+        Tue, 19 Oct 2021 18:04:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=fdqa3FWQjGrFeZEe9ls1cJx0wp/BD6sM4yLn8Lo2/UM=;
+ b=MQ9RMn/gavH7KWZKGlRD6W0G2SSSkl5rnWfomMnQraGoBLCCHVk7jvRfO3aOZbIRWyNK
+ rTEUjBGacbreKzkcYuCBGK8UiX/Ut9TxE807dUDJCBr5jcV3Vcf3545KxTw35ANnCi79
+ ntGjUtShm65X9ljUriPAf/Qnl3Ikeq8raNJJBn2P+eH5AtWhltGkoFo5MjpgCDDirkpX
+ LKA6IMeKuLKHVln5APy8+shqAHtWyYFWeBr8Z3nBH/MpMJnRFx72LkX4P7aMsYNpgRXf
+ lebYdKxDqnm/vEwwKrjLzLxo9DDHqMLeUMcs+GHoGb8XvJ0iyRECLeXXCIo141/KFMqs NA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bstrwauuq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 19 Oct 2021 18:04:12 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C1EA3100034;
+        Tue, 19 Oct 2021 18:04:09 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 61C78231518;
+        Tue, 19 Oct 2021 18:04:09 +0200 (CEST)
+Received: from [10.48.0.126] (10.75.127.50) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 19 Oct
+ 2021 18:04:06 +0200
+Subject: Re: Re: [PATCH v16 0/7] usb: misc: Add onboard_usb_hub driver
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Alan Stern <stern@rowland.harvard.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        "Felipe Balbi" <balbi@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        "Ravi Chandra Sadineni" <ravisadineni@chromium.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        "Aswath Govindraju" <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jens Axboe <axboe@kernel.dk>, Johan Hovold <johan@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lionel DEBIEVE <lionel.debieve@st.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "Marek Szyprowski" <m.szyprowski@samsung.com>,
+        Mark Brown <broonie@kernel.org>,
+        =?UTF-8?Q?Martin_J=c3=bccker?= <martin.juecker@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Olivier MOYSAN <olivier.moysan@st.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Robert Richter <rric@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Shawn Guo <shawnguo@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        William Cohen <wcohen@redhat.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        =?UTF-8?Q?=c5=81ukasz_Stelmach?= <l.stelmach@samsung.com>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <YUoRq1RrOIoiBJ5+@google.com>
+ <CAD=FV=WrddUhWT0wUVZD0gN_+8Zy1VGY77LYLYBvhaPQQ_SqZw@mail.gmail.com>
+ <YWkiGGBKOVokBye9@kroah.com>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Message-ID: <03f28680-35eb-25f4-5041-f3a56144da24@foss.st.com>
+Date:   Tue, 19 Oct 2021 18:04:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <YWkiGGBKOVokBye9@kroah.com>
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-19_02,2021-10-19_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 18, 2021 at 7:10 PM Richard Zhu <hongxing.zhu@nxp.com> wrote:
->
->
-> > -----Original Message-----
-> > From: Tim Harvey <tharvey@gateworks.com>
-> > Sent: Saturday, October 16, 2021 3:59 AM
-> > To: Richard Zhu <hongxing.zhu@nxp.com>; Lucas Stach
-> > <l.stach@pengutronix.de>
-> > Cc: Kishon Vijay Abraham I <kishon@ti.com>; vkoul@kernel.org; Rob Herring
-> > <robh@kernel.org>; galak@kernel.crashing.org; Shawn Guo
-> > <shawnguo@kernel.org>; linux-phy@lists.infradead.org; Device Tree Mailing
-> > List <devicetree@vger.kernel.org>; Linux ARM Mailing List
-> > <linux-arm-kernel@lists.infradead.org>; open list
-> > <linux-kernel@vger.kernel.org>; Sascha Hauer <kernel@pengutronix.de>;
-> > dl-linux-imx <linux-imx@nxp.com>
-> > Subject: Re: [PATCH v3 0/9] add the imx8m pcie phy driver and imx8mm pcie
-> > support
-> >
-> > On Tue, Oct 12, 2021 at 2:06 AM Richard Zhu <hongxing.zhu@nxp.com>
-> > wrote:
-> > >
-> > > refer to the discussion [1] when try to enable i.MX8MM PCIe support,
-> > > one standalone PCIe PHY driver should be seperated from i.MX PCIe
-> > > driver when enable i.MX8MM PCIe support.
-> > >
-> > > This patch-set adds the standalone PCIe PHY driver suport[1-5], and
-> > > i.MX8MM PCIe support[6-9] to have whole view to review this patch-set.
-> > >
-> > > The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
-> > > [2] and this PHY driver patch-set.
-> > >
-> > > [1]
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > >
-> > hwork.ozlabs.org%2Fproject%2Flinux-pci%2Fpatch%2F20210510141509.929
-> > 120
-> > >
-> > -3-l.stach%40pengutronix.de%2F&amp;data=04%7C01%7Chongxing.zhu%40
-> > nxp.c
-> > >
-> > om%7C4e3d8ee008d94327f99108d9901634be%7C686ea1d3bc2b4c6fa92cd
-> > 99c5c3016
-> > >
-> > 35%7C0%7C0%7C637699247319711209%7CUnknown%7CTWFpbGZsb3d8ey
-> > JWIjoiMC4wLj
-> > >
-> > AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp
-> > ;sdata=
-> > >
-> > Z2TZCpdDUSoqrNB1X%2BXdoYNBe3dBDKUgkA4r%2F0TcdOg%3D&amp;reser
-> > ved=0
-> > > [2]
-> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
-> > >
-> > hwork.kernel.org%2Fproject%2Flinux-arm-kernel%2Fcover%2F202109102026
-> > 40
-> > > .980366-1-l.stach%40pengutronix.de%2F&amp;data=04%7C01%7Chongxin
-> > g.zhu%
-> > >
-> > 40nxp.com%7C4e3d8ee008d94327f99108d9901634be%7C686ea1d3bc2b4c6
-> > fa92cd99
-> > >
-> > c5c301635%7C0%7C0%7C637699247319711209%7CUnknown%7CTWFpbGZ
-> > sb3d8eyJWIjo
-> > >
-> > iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C10
-> > 00&amp
-> > > ;sdata=5h%2By%2FcBW%2BjFkyplUuN1nB5%2BAFHuwCUJBqvRh1RiPYMo
-> > %3D&amp;rese
-> > > rved=0
-> > >
-> > > Main changes v2 --> v3:
-> > > - Regarding Lucas' comments.
-> > >  - to have a whole view to review the patches, send out the i.MX8MM PCIe
-> > support too.
-> > >  - move the PHY related bits manipulations of the GPR/SRC to standalone
-> > PHY driver.
-> > >  - split the dts changes to SOC and board DT, and use the enum instead of
-> > raw value.
-> > >  - update the license of the dt-binding header file.
-> > >
-> > > Changes v1 --> v2:
-> > > - Update the license of the dt-binding header file to make the license
-> > >   compatible with dts files.
-> > > - Fix the dt_binding_check errors.
-> > >
-> > > Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
-> > > Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  79
-> > +++++++++++++++++++++++++++++
-> > > arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  53
-> > ++++++++++++++++++++
-> > > arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |
-> > 46 ++++++++++++++++-
-> > > drivers/pci/controller/dwc/pci-imx6.c                        |  63
-> > ++++++++++++++++++++++-
-> > > drivers/phy/freescale/Kconfig                                |   9
-> > ++++
-> > > drivers/phy/freescale/Makefile                               |   1
-> > +
-> > > drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 218
-> > ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> > ++++++++++++++++++
-> > > include/dt-bindings/phy/phy-imx8-pcie.h                      |  14
-> > ++++++
-> > > 9 files changed, 486 insertions(+), 3 deletions(-)
-> > >
-> > > [PATCH v3 1/9] dt-bindings: phy: phy-imx8-pcie: Add binding for the
-> > > [PATCH v3 2/9] dt-bindings: phy: add imx8 pcie phy driver support
-> > > [PATCH v3 3/9] arm64: dts: imx8mm: add the pcie phy support [PATCH v3
-> > > 4/9] arm64: dts: imx8mm-evk: add the pcie phy support [PATCH v3 5/9]
-> > > phy: freescale: pcie: initialize the imx8 pcie [PATCH v3 6/9]
-> > > dt-bindings: imx6q-pcie: Add PHY phandles and name [PATCH v3 7/9]
-> > > arm64: dts: imx8mm: add the pcie support [PATCH v3 8/9] arm64: dts:
-> > > imx8mm-evk: add the pcie support on imx8mm [PATCH v3 9/9] PCI: imx:
-> > > add the imx8mm pcie support
-> >
-> > Richard and Lucas,
-> >
-> > Thanks for your collective work on this series!
-> >
-> > I have imx8mm-venice boards to test this on both with and without PCIe
-> > bridges. I've tested this on top of Shawn's imx/for-next (as blk-ctl has been
-> > merged there) and end up hanging waiting for PHY ready timeout.
-> [Richard Zhu] Sorry to reply late. I run the tests based on pci/for-next applied the blk-ctl issue by Lucas [2] in commit.
-> Can you help to make a re-tests?
-> As I know that the blk-ctl is not merged yet.
-> Hi Lucas:
-> Am I right?
->
+On 10/15/21 8:39 AM, Greg Kroah-Hartman wrote:
+> On Thu, Oct 14, 2021 at 02:38:55PM -0700, Doug Anderson wrote:
+>> Hi,
+>>
+>> On Tue, Sep 21, 2021 at 10:09 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>>>
+>>> Hi Greg,
+>>>
+>>> are there any actions pending or can this land in usb-testing?
+>>>
+>>> I confirmed that this series can be rebased on top of v5.15-rc2
+>>> without conflicts.
+>>
+>> I'm quite interested to know what the next action items are, too. This
+>> is one of the very few patches we have for trogdor (excluding MIPI
+>> camera, which is a long story) that we're carrying downstream, so I'm
+>> keenly interested in making sure it's unblocked (if, indeed, it's
+>> blocked on anything).
+>>
+>> If folks feel that this needs more review eyes before landing again
+>> then I'll try to find some time in the next week or two. If it's just
+>> waiting for the merge window to open/close so it can have maximal bake
+>> time, that's cool too. Please yell if there's something that I can do
+>> to help, though! :-)
+> 
+> I would love more review-eyes on this please.
+> 
 
-Richard,
+Hi,
 
-v5 of blk-ctl is merged into Shawn's for-next tree.
+I noticed this series some time ago, and wanted to take a closer look.
 
-> >
-> > [    1.454308] imx6q-pcie 33800000.pcie:       IO
-> > 0x001ff80000..0x001ff8ffff -> 0x0
-> > [    1.466538] imx6q-pcie 33800000.pcie:      MEM
-> > 0x0018000000..0x001fefffff -> 0x0
-> > [    1.476344] libphy: fec_enet_mii_bus: probed
-> > [    1.602631] phy phy-32f00000.pcie-phy.0: phy init failed --> -110
-> > [    1.608775] imx6q-pcie 33800000.pcie: Waiting for PHY ready timeout!
-> >
-> > I can verify that imx8_pcie_phy_probe returns successfully and the the phy
-> > node (imx6_pcie->phy) was found.
-> >
-> > Here is the dt change I made for the imx8mm-venice-gw71xx-0x board that
-> > has no bridge:
-> [Richard Zhu] Refer to the changes, the external OSC is used as PCIe REF clock(same to EVK board design), right?
+The same issue this series address is seen on stm32 board for instance.
+(arch/arm/boot/dts/stm32mp15xx-dkx.dtsi). On board HUB (not described in
+the DT) is supplied by an always-on regulator.
+So it could could be interesting/useful to address the same case ,
+on stm32 boards, where USB2 (ehci-platform driver) is used currently.
 
-Correct, an ext osc is used like EVK.
+I noticed a few things, especially on the dt-bindings. I've some
+questions here.
 
-I applied v5 blk-ctl and your v3 series on top of pci/next and came up
-with the same issue. Do you have a git repo I could try to make sure
-I'm not missing anything?
+In this series, RTS5411 is used. The dt-bindings documents it as a child
+node of the USB controller. E.g.
 
-Also, as Lucas has requested some changes do you have a v4 coming soon
-that I should wait for to try? I believe this has something to do with
-the phy reset where some of his changes were requested.
+&usb {
+	usb_hub_2_0: hub@1 {
+		...
+	};
 
-Best regards,
+	usb_hub_3_0: hub@2 {
+	};
+}
 
-Tim
+I had a quick look at RTS5411 datasheet. It looks like there's an i2c
+interface too.
+- I guess the I2C interface isn't used in your case ?
+  (I haven't checked what it could be used for...)
+
+In the stm32 boards (stm32mp15xx-dkx), there's an usb2514b chip
+- that also could be wired on I2C interface (0R mount option)
+- unused on stm32 boards by default
+
+usb2514b chip already has a dt-bindings (with compatible), and a driver:
+- drivers/usb/misc/usb251xb.c
+- Documentation/devicetree/bindings/usb/usb251xb.txt
+
+It is defined more as an i2c chip, so I'd expect it as an i2c child,
+e.g. like:
+
+&i2c {
+	usb2514b@2c {
+		compatible = "microchip,usb2514b";
+		...
+	};
+};
+
+
+This way, I don't see how it could be used together with onboard_usb_hub
+driver ? (But I may have missed it)
+Is it possible to use a phandle, instead of a child node ?
+
+However, in the stm32mp15xx-dkx case, i2c interface isn't wired/used by
+default. So obviously the i2c driver isn't used. In this case, could the
+"microchip,usb2514b" be listed in onboard_usb_hub driver ?
+(wouldn't it be redundant ?)
+
+In this case it would be a child node of the usb DT node... Maybe that's
+more a question for Rob: would it be "legal" regarding existing
+dt-bindings ?
+
+
+Thanks in advance
+Best Regards,
+Fabrice
+
+
+> It's in my queue to review, I just need to spend the time on it, sorry
+> for the delay.
+> 
+> greg k-h
+> 
