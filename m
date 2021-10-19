@@ -2,96 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A3F6432F4E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 09:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C71432F80
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 09:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229551AbhJSH0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 03:26:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbhJSH0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 03:26:45 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 075ECC061745
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 00:24:30 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id q10-20020a17090a1b0a00b001a076a59640so1451221pjq.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 00:24:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KaZumjEr6psXo+FbbHL4XPGhQeR5rsWs0ksdjltFbos=;
-        b=iKsbYIVyf1QTse1ZaTXBhGEWLxMZeZ75JqdhTrf6I4RzvpYcM0aLERf/klzsonMVnE
-         q0O28e58EPJ9V17z4+UmN8NE6U4cj/lDNhGU8JsFFYrzjUlP0RFwgjxgXlHnB1+j8dW/
-         vESheDbnsaM69yk1W+1AqdkB0HQrK1XSwpCqX9XOMTbOuDeHZpQvc5L34JULE9BkUYfI
-         bkJbHbFE5B09lnk8KwhNBQsSoeHNEU58KKX8sQvr8PKLWl0BUe32FXJIYubD2yKg5+WO
-         bjlha3YCvmOp08IRsmdt+yl1vliSuNs0j49VTg1UI3AfkTSoCE7q2XGwFa9pDO23G+6H
-         tKwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KaZumjEr6psXo+FbbHL4XPGhQeR5rsWs0ksdjltFbos=;
-        b=Uo2x8eYXJm6tol5/1x2AC/mFji3H9Ah7cLeIdlWIb2+hwNIjx0ckNKhvAqAajSLSR+
-         VQXT63tCitMxiEl2rOv3T2tV/c+k0Vi1/fxA8u7XhxDCbvOXfkMoZzT7yjcF91s6pjcO
-         dBhMspphrRDhPxZjR9P6H/rRrVbozcVzorPlwYH9VKmmskrH/IK+ARZjHImmFaVp/EXL
-         561O6cBY4EnjtU321njefokdHpziFdXxD8ZWoM1Xu5NMu6YoeZoImQc38BRtFMEL0gV9
-         zOZX62FWszbEGOuOLCip2aV2y5oe+tO5o0xBwiFWk3rqNZ9J9Xmi60PflElgA3Wcz0tr
-         8RNw==
-X-Gm-Message-State: AOAM530KCk4VJ8yxORc39mjaqfVyQ3506bBJn4T4ZMvBKSlsXI0UyT4J
-        7N4tFhmzId6cvLy1WKgBpHQeBsSlyq/EXw==
-X-Google-Smtp-Source: ABdhPJyIJENFs1h9BoLqt7ZOAPWKWBNXzr8a+IsYpfIX9BnUnBqnFC397oicesZn1p5th9KDtjtJ/g==
-X-Received: by 2002:a17:90b:4a81:: with SMTP id lp1mr4684401pjb.124.1634628269463;
-        Tue, 19 Oct 2021 00:24:29 -0700 (PDT)
-Received: from localhost ([106.201.113.61])
-        by smtp.gmail.com with ESMTPSA id p3sm15074490pfb.205.2021.10.19.00.24.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 00:24:28 -0700 (PDT)
-Date:   Tue, 19 Oct 2021 12:54:25 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20211019072425.dvq3ummjdkjmucgm@vireshk-i7>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
- <20211014145555.uoi2hyoonrptrd5m@bogus>
- <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+        id S234357AbhJSHc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 03:32:58 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:43130 "EHLO
+        protonic.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234584AbhJSHcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 03:32:54 -0400
+Received: from [192.168.224.11] (ert768.prtnl [192.168.224.11])
+        by sparta.prtnl (Postfix) with ESMTP id 301E944A024E;
+        Tue, 19 Oct 2021 09:30:34 +0200 (CEST)
+Subject: Re: [PATCH v5 0/4] iio: chemical: Add support for Sensirion SCD4x CO2
+ sensor
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tomasz Duszynski <tomasz.duszynski@octakon.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, david@protonic.nl,
+        Lars-Peter Clausen <lars@metafoo.de>
+References: <20211008101706.755942-1-roan@protonic.nl>
+ <20211010165919.51f06938@jic23-huawei> <20211013183828.521f043f@jic23-huawei>
+ <3ecfe246-b942-0c1e-08e6-17eff4c5cc16@protonic.nl>
+ <20211014181932.5f70d2e4@jic23-huawei>
+ <2c7f8b7c-3070-5763-7b74-3811cdbfcabc@protonic.nl>
+ <20211018185225.11396bb0@jic23-huawei>
+From:   Roan van Dijk <roan@protonic.nl>
+Message-ID: <23636d50-56b9-b7da-59b5-3568e1f3d5ca@protonic.nl>
+Date:   Tue, 19 Oct 2021 09:30:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20211018185225.11396bb0@jic23-huawei>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: nl
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-10-21, 11:17, Ulf Hansson wrote:
-> As far as I understand, the "performance domains" DT bindings that
-> $subject patch introduces, allows us to group devices into domains, to
-> let them be "performance controlled" together. Right?
 
-This and it also provides a reg space where we can get/set the
-performance state.
 
-> Unless I am missing something, it looks like power domains DT bindings
-> already offer this for us. Yes, certainly, the DT doc [1] needs an
-> updated description to better explain this, but other than that we
-> should be fine, don't you think?
+On 18-10-2021 19:52, Jonathan Cameron wrote:
+> On Mon, 18 Oct 2021 10:19:42 +0200
+> Roan van Dijk <roan@protonic.nl> wrote:
+> 
+>> On 14-10-2021 19:19, Jonathan Cameron wrote:
+>>> On Thu, 14 Oct 2021 10:24:54 +0200
+>>> Roan van Dijk <roan@protonic.nl> wrote:
+>>>    
+>>>> On 13-10-2021 19:38, Jonathan Cameron wrote:
+>>>>> On Sun, 10 Oct 2021 16:59:19 +0100
+>>>>> Jonathan Cameron <jic23@kernel.org> wrote:
+>>>>>       
+>>>>>> On Fri,  8 Oct 2021 12:17:02 +0200
+>>>>>> Roan van Dijk <roan@protonic.nl> wrote:
+>>>>>>      
+>>>>>>> This series adds support for the Sensirion SCD4x sensor.
+>>>>>>>
+>>>>>>> The driver supports continuous reads of temperature, relative humdity and CO2
+>>>>>>> concentration. There is an interval of 5 seconds between readings. During
+>>>>>>> this interval the drivers checks if the sensor has new data available.
+>>>>>>>
+>>>>>>> The driver is based on the scd30 driver. However, The scd4x has become too
+>>>>>>> different to just expand the scd30 driver. I made a new driver instead of
+>>>>>>> expanding the scd30 driver. I hope I made the right choice by doing so?
+>>>>>>
+>>>>>> Applied to the togreg branch of iio.git with the issues Randy mentioned tidied
+>>>>>> up. Pushed out as testing for 0-day to see if it can find anything we missed
+>>>>>
+>>>>> And indeed - I missed a bunch of places where explicit __be16 types should have
+>>>>> been used.
+>>>>>
+>>>>> I've applied the following fixup, shout if it's wrong.
+>>>>>      
+>>>> Thank you Jonathan for applying this fixup. No need to shout :) Your
+>>>> changes should fix the issue.
+>>>>
+>>>> However, I have a question about something else. The co2 concentration
+>>>> is an IIO_CHAN_INFO_RAW, but doesn't have a scale or offset at this
+>>>> moment. Is an _scale always required for an _raw in the ABI? I could not
+>>>> find anything in the documentation if there is a rule for this. Someone
+>>>> mentioned this to me, so I want to check if I did this right.
+>>>>
+>>>> The sensor returns the actual co2 value upon reading, like 450 ppm. We
+>>>> can set an offset of this co2 value with the calibration_forced_value
+>>>> through the ABI, but this offset is handled internally by the sensor. So
+>>>> there isn't anything with scaling or an offset needed at the driver side.
+>>>
+>>> Ah. We could have mapped this to calibbias, though here it's made more
+>>> complex by other calibrations existing that don't use the value so let's
+>>> leave it as it is.
+>>>    
+>>>>
+>>>> Was I right by making it of type RAW? If needed we could make it more
+>>>> like the scd30 driver, keeping it of type RAW but with scale = 1. What
+>>>> should I do or is it fine as it is?
+>>>
+>>> Hmm. Interesting corner case in the ABI.  A _raw value without a scale
+>>> normally means we don't know it for some reason.  The most common case
+>>> of this is light sensors where several _raw intensity values are combined
+>>> in some (typically non linear) transform to form a single measure of illuminance.
+>>> Those intensity_raw channels don't have an meaningful units, but devices
+>>> often have threshold events on them so we have to expose them.
+>>>
+>>> I would say make it a processed value, but there is a quirk.
+>>> concentrations in IIO are expressed in percent not per million, so you need
+>>> a scale anyway, I guess 10000?  See Documentation/ABI/testing/sysfs-bus-iio
+>>>
+>>>
+>>> No need to do a new driver version, just send a patch tidying up this corner.
+>>>    
+>>
+>> Hi Jonathan,
+>>
+>> As you suggested, these are my fixes for the concentration reading.
+>>
+>> The co2 reading is now a processed value and has a scale. I also added
+>> the information in sysfs-bus-iio documentation, because this type of
+>> processed value is new in the ABI.
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-iio
+>> b/Documentation/ABI/testing/sysfs-bus-iio
+>> index c27347d3608e..66a17f4c831e 100644
+>> --- a/Documentation/ABI/testing/sysfs-bus-iio
+>> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+>> @@ -1716,6 +1716,7 @@ Description:
+>>
+>>    What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_raw
+>>    What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_raw
+>> +What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_input
+>>    What:          /sys/bus/iio/devices/iio:deviceX/in_concentration_co2_raw
+>>    What:          /sys/bus/iio/devices/iio:deviceX/in_concentrationX_co2_raw
+>>    What:
+>> /sys/bus/iio/devices/iio:deviceX/in_concentration_ethanol_raw
+>> diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
+>> index 09b34201c42b..bc1c6676029d 100644
+>> --- a/drivers/iio/chemical/scd4x.c
+>> +++ b/drivers/iio/chemical/scd4x.c
+>> @@ -337,6 +337,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+>>
+>>           switch (mask) {
+>>           case IIO_CHAN_INFO_RAW:
+>> +       case IIO_CHAN_INFO_PROCESSED:
+>>                   ret = iio_device_claim_direct_mode(indio_dev);
+>>                   if (ret)
+>>                           return ret;
+>> @@ -352,7 +353,11 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+>>                   *val = ret;
+>>                   return IIO_VAL_INT;
+>>           case IIO_CHAN_INFO_SCALE:
+>> -               if (chan->type == IIO_TEMP) {
+>> +               if (chan->type == IIO_CONCENTRATION) {
+>> +                       *val = 0;
+>> +                       *val2 = 100;
+>> +                       return IIO_VAL_INT_PLUS_MICRO;
+>> +               } else if (chan->type == IIO_TEMP) {
+>>                           *val = 175000;
+>>                           *val2 = 65536;
+>>                           return IIO_VAL_FRACTIONAL;
+>> @@ -501,7 +506,8 @@ static const struct iio_chan_spec scd4x_channels[] = {
+>>                   .type = IIO_CONCENTRATION,
+>>                   .channel2 = IIO_MOD_CO2,
+>>                   .modified = 1,
+>> -               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>> +               .info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED) |
+>> +                                       BIT(IIO_CHAN_INFO_SCALE),
+> You shouldn't have scale and processed.  If we need a scale, then it should
+> be _RAW.
+> 
+> Jonathan
 
-I think yes we can make it work through that as well, but I am not
-sure if we will be able to use required-opp n stuff here as the DT
-doesn't have the OPP table for the CPUs.
+Okay, it's now a _RAW value with a scale to make the concentration value 
+expressed in percent. This should be the fix then.
 
-The CPU's freq table is generated at runtime, see
-drivers/cpufreq/mediatek-cpufreq-hw.c for example.
+diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
+index 09b34201c42b..b063b378c7d5 100644
+--- a/drivers/iio/chemical/scd4x.c
++++ b/drivers/iio/chemical/scd4x.c
+@@ -352,7 +352,11 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+                 *val = ret;
+                 return IIO_VAL_INT;
+         case IIO_CHAN_INFO_SCALE:
+-               if (chan->type == IIO_TEMP) {
++               if (chan->type == IIO_CONCENTRATION) {
++                       *val = 0;
++                       *val2 = 100;
++                       return IIO_VAL_INT_PLUS_MICRO;
++               } else if (chan->type == IIO_TEMP) {
+                         *val = 175000;
+                         *val2 = 65536;
+                         return IIO_VAL_FRACTIONAL;
+@@ -501,7 +505,8 @@ static const struct iio_chan_spec scd4x_channels[] = {
+                 .type = IIO_CONCENTRATION,
+                 .channel2 = IIO_MOD_CO2,
+                 .modified = 1,
+-               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
++               .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
++                                       BIT(IIO_CHAN_INFO_SCALE),
+                 .address = SCD4X_CO2,
+                 .scan_index = SCD4X_CO2,
+                 .scan_type = {
 
--- 
-viresh
+Thanks,
+
+Roan
+
+> 
+>>                   .address = SCD4X_CO2,
+>>                   .scan_index = SCD4X_CO2,
+>>                   .scan_type = {
+>>
+>> Thanks,
+>>
+>> Roan
+>>
+>>> Thanks,
+>>>
+>>> Jonathan
+>>>
+>>>    
+>>>> Sorry for not asking this earlier.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Roan
+>>>>   
+>>>>> diff --git a/drivers/iio/chemical/scd4x.c b/drivers/iio/chemical/scd4x.c
+>>>>> index 09b34201c42b..ebebcb117ba2 100644
+>>>>> --- a/drivers/iio/chemical/scd4x.c
+>>>>> +++ b/drivers/iio/chemical/scd4x.c
+>>>>> @@ -263,7 +263,7 @@ static int scd4x_write_and_fetch(struct scd4x_state *state, enum scd4x_cmd cmd,
+>>>>>     static int scd4x_read_meas(struct scd4x_state *state, uint16_t *meas)
+>>>>>     {
+>>>>>     	int i, ret;
+>>>>> -	uint16_t buf[3];
+>>>>> +	__be16 buf[3];
+>>>>>     
+>>>>>     	ret = scd4x_read(state, CMD_READ_MEAS, buf, sizeof(buf));
+>>>>>     	if (ret)
+>>>>> @@ -282,12 +282,13 @@ static int scd4x_wait_meas_poll(struct scd4x_state *state)
+>>>>>     	int ret;
+>>>>>     
+>>>>>     	do {
+>>>>> +		__be16 bval;
+>>>>>     		uint16_t val;
+>>>>>     
+>>>>> -		ret = scd4x_read(state, CMD_GET_DATA_READY, &val, sizeof(val));
+>>>>> +		ret = scd4x_read(state, CMD_GET_DATA_READY, &bval, sizeof(bval));
+>>>>>     		if (ret)
+>>>>>     			return -EIO;
+>>>>> -		val = be16_to_cpu(val);
+>>>>> +		val = be16_to_cpu(bval);
+>>>>>     
+>>>>>     		/* new measurement available */
+>>>>>     		if (val & 0x7FF)
+>>>>> @@ -333,7 +334,7 @@ static int scd4x_read_raw(struct iio_dev *indio_dev,
+>>>>>     {
+>>>>>     	struct scd4x_state *state = iio_priv(indio_dev);
+>>>>>     	int ret;
+>>>>> -	uint16_t tmp;
+>>>>> +	__be16 tmp;
+>>>>>     
+>>>>>     	switch (mask) {
+>>>>>     	case IIO_CHAN_INFO_RAW:
+>>>>> @@ -405,17 +406,18 @@ static ssize_t calibration_auto_enable_show(struct device *dev,
+>>>>>     	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+>>>>>     	struct scd4x_state *state = iio_priv(indio_dev);
+>>>>>     	int ret;
+>>>>> -	uint16_t val;
+>>>>> +	__be16 bval;
+>>>>> +	u16 val;
+>>>>>     
+>>>>>     	mutex_lock(&state->lock);
+>>>>> -	ret = scd4x_read(state, CMD_GET_ASC, &val, sizeof(val));
+>>>>> +	ret = scd4x_read(state, CMD_GET_ASC, &bval, sizeof(bval));
+>>>>>     	mutex_unlock(&state->lock);
+>>>>>     	if (ret) {
+>>>>>     		dev_err(dev, "failed to read automatic calibration");
+>>>>>     		return ret;
+>>>>>     	}
+>>>>>     
+>>>>> -	val = (be16_to_cpu(val) & SCD4X_READY_MASK) ? 1 : 0;
+>>>>> +	val = (be16_to_cpu(bval) & SCD4X_READY_MASK) ? 1 : 0;
+>>>>>     
+>>>>>     	return sprintf(buf, "%d\n", val);
+>>>>>     }
+>>>>>
+>>>>>       
+>>>>>>
+>>>>>> Thanks,
+>>>>>>
+>>>>>> Jonathan
+>>>>>>      
+>>>>>>>
+>>>>>>> Changes since v5:
+>>>>>>> scd4x.c:
+>>>>>>>      - Fix bug in trigger_handler
+>>>>>>>
+>>>>>>> Changes since v4:
+>>>>>>> scd4x.c:
+>>>>>>>      - Minor fixes in documentation
+>>>>>>>      - Reorder trigger_handler so memcpy is not needed anymore
+>>>>>>> Documentation:
+>>>>>>>      - Change information about the KernelVersion for the
+>>>>>>>        calibration_forced_value_available
+>>>>>>>
+>>>>>>> Changes since v3:
+>>>>>>> scd4x.c
+>>>>>>>      - Change read and write_and_fetch function parameter. CRC byte is now
+>>>>>>>        hidden inside the function.
+>>>>>>>      - Fix minor style issues
+>>>>>>>      - Add calibration_forced_value_available attribute to the driver
+>>>>>>>      - Remove including BUFFER_TRIGGERED
+>>>>>>>      - Change calibbias to raw ADC readings rather than converting it to
+>>>>>>>        milli degrees C.
+>>>>>>> Documentation:
+>>>>>>>      - Change description of driver attributes
+>>>>>>>      - Add calibration_forced_value_available documentation
+>>>>>>>
+>>>>>>> Changes since v2:
+>>>>>>> scd4x.c:
+>>>>>>>      - Change boolean operations
+>>>>>>>      - Document scope of lock
+>>>>>>>      - Remove device *dev from struct
+>>>>>>>      - Add goto block for errror handling
+>>>>>>>      - Add function to read value per channel in read_raw
+>>>>>>>      - Fix bug with lock in error paths
+>>>>>>>      - Remove conversion of humidity and temperature values
+>>>>>>>      - Add scale and offset to temperature channel
+>>>>>>>      - Add scale to humidity channel
+>>>>>>>      - Move memset out of locked section
+>>>>>>>      - Remove unused irq functions
+>>>>>>>      - Move device register at end of probe function
+>>>>>>> Documentation:
+>>>>>>>      - Copy content of sysfs-bus-iio-scd30 to sysfs-bus-iio
+>>>>>>>      - Remove Documentation/ABI/testing/sysfs-bus-iio-scd30
+>>>>>>>
+>>>>>>> Changes since v1:
+>>>>>>> dt-bindings:
+>>>>>>>      - Separated compatible string for each sensor type
+>>>>>>> scd4x.c:
+>>>>>>>      - Changed probe, resume and suspend functions to static
+>>>>>>>      - Added SIMPLE_DEV_PM_OPS function call for power management
+>>>>>>>        operations.
+>>>>>>>
+>>>>>>> Roan van Dijk (4):
+>>>>>>>      dt-bindings: iio: chemical: sensirion,scd4x: Add yaml description
+>>>>>>>      MAINTAINERS: Add myself as maintainer of the scd4x driver
+>>>>>>>      drivers: iio: chemical: Add support for Sensirion SCD4x CO2 sensor
+>>>>>>>      iio: documentation: Document scd4x calibration use
+>>>>>>>
+>>>>>>>     Documentation/ABI/testing/sysfs-bus-iio       |  41 ++
+>>>>>>>     Documentation/ABI/testing/sysfs-bus-iio-scd30 |  34 -
+>>>>>>>     .../iio/chemical/sensirion,scd4x.yaml         |  46 ++
+>>>>>>>     MAINTAINERS                                   |   6 +
+>>>>>>>     drivers/iio/chemical/Kconfig                  |  13 +
+>>>>>>>     drivers/iio/chemical/Makefile                 |   1 +
+>>>>>>>     drivers/iio/chemical/scd4x.c                  | 689 ++++++++++++++++++
+>>>>>>>     7 files changed, 796 insertions(+), 34 deletions(-)
+>>>>>>>     delete mode 100644 Documentation/ABI/testing/sysfs-bus-iio-scd30
+>>>>>>>     create mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,scd4x.yaml
+>>>>>>>     create mode 100644 drivers/iio/chemical/scd4x.c
+>>>>>>>          
+>>>>>>      
+>>>>>       
+>>>    
+> 
