@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB25943406B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 23:21:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B8FA43408D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 23:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229695AbhJSVXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 17:23:53 -0400
-Received: from mail-oo1-f54.google.com ([209.85.161.54]:42551 "EHLO
-        mail-oo1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbhJSVXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 17:23:53 -0400
-Received: by mail-oo1-f54.google.com with SMTP id a17-20020a4a6851000000b002b59bfbf669so1176529oof.9;
-        Tue, 19 Oct 2021 14:21:39 -0700 (PDT)
+        id S229546AbhJSV1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 17:27:20 -0400
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:42580 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229533AbhJSV1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 17:27:20 -0400
+Received: by mail-oi1-f182.google.com with SMTP id g125so6974450oif.9;
+        Tue, 19 Oct 2021 14:25:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2UUC/3x7ofeAneQJCy/LNm1w85QsLZXDRkpQ+xWwBmU=;
-        b=IjmW0cb1qc53Men9AXB+e1X0/njoUqr5FuRCOXxJllad5BdKxFX/nn3pq0cQ5aCksv
-         K5mQdzt5PpK4WzgWopZAuUuoGuM/UpiCbS9N1Chj+L9VvsLtwkoMWyHo8/hDqgnn+bsg
-         zokiY2UByTRviN5hrgr0NalgHdUJqPdO9CR+wFUSbGwATL9+oTOnz4gxdsSEAbReYluQ
-         1TXup0QDRIIKIn+CAMq53WBLqBhaP4QlPKZsU+V6NYRSV7/WanJ1P3QQzsRh/vYvmx9n
-         KM/u2mLji2sKAuXMe6SkN2iu23BcS5seHDwWdRWML4tjz+lBDwtsTAfyMRGGeTVuVDeo
-         2Ugg==
-X-Gm-Message-State: AOAM530cwkS68qLrVusb0Ttg+hfDzlEGK8C1JiksZr7N7ZcIO3CyIpsU
-        s1Pzohko2Nh/k3gibzXpSQ==
-X-Google-Smtp-Source: ABdhPJwNrg/XuTyux0NXtK5tyTRR3bwuEqv0kh/QBZ8M5QK6Ecru3wRZ84BT6IFRxkHlUE3sAMbgiQ==
-X-Received: by 2002:a4a:430c:: with SMTP id k12mr6628026ooj.43.1634678499397;
-        Tue, 19 Oct 2021 14:21:39 -0700 (PDT)
+        bh=q+OJDx5FymiLds3Rk5vgoSW8vy1KRIWasS3RIQPvnjw=;
+        b=lYAubNTkkXy9ifQUJJqxxNi8pc0WxcZbGTV0245NTRT6BvVopMCxnhqwdQFiKs02Y8
+         Pd7XYSUEdBEg5DOufYAqW/ThTgTMwJ8eY4W98agW9hupmZ2FhHhg0PPQWPDY8Z9i/vMY
+         KR3fv44ocVtf+sFfqckVlVHluMto1P6Kd+6/l59ZUwoW/HQl1Q2nXinQPE3rrUGpvGk2
+         ovEHO2CGkEFpbMmby0ADBb6VvrmjHAgqGeLLryRGk44PHTt/BTiwupL4fXtrwiYRXl8i
+         TgeX///Yych9qKFV1wiU0sRHRSIxKLXbrySZyij4D75kaFQbOIZ5VH63wDvSlTergoHh
+         U0mw==
+X-Gm-Message-State: AOAM531ML8WPdvWMvwGLCqs7/nLA5HK/5l29XDzcUSE6PJ1UJP4nRPcD
+        4PeFl3yXlN3ZTdYv194Glw==
+X-Google-Smtp-Source: ABdhPJyjnK98KH12DbshUH97zi4FbzM0bds33eS4InU42Epat5TE8jC7RPfxeZZyzNjt5jXpMeVEzg==
+X-Received: by 2002:a54:4e98:: with SMTP id c24mr5974224oiy.159.1634678706591;
+        Tue, 19 Oct 2021 14:25:06 -0700 (PDT)
 Received: from robh.at.kernel.org (rrcs-67-78-118-34.sw.biz.rr.com. [67.78.118.34])
-        by smtp.gmail.com with ESMTPSA id c17sm65695ots.35.2021.10.19.14.21.38
+        by smtp.gmail.com with ESMTPSA id bm43sm41495oib.50.2021.10.19.14.25.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 14:21:38 -0700 (PDT)
-Received: (nullmailer pid 862188 invoked by uid 1000);
-        Tue, 19 Oct 2021 21:21:36 -0000
-Date:   Tue, 19 Oct 2021 16:21:36 -0500
+        Tue, 19 Oct 2021 14:25:05 -0700 (PDT)
+Received: (nullmailer pid 866769 invoked by uid 1000);
+        Tue, 19 Oct 2021 21:25:03 -0000
+Date:   Tue, 19 Oct 2021 16:25:03 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     mchehab@kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, martin.botka@somainline.org,
-        robh+dt@kernel.org, phone-devel@vger.kernel.org,
-        linux-media@vger.kernel.org, agross@kernel.org,
-        stanimir.varbanov@linaro.org, bjorn.andersson@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: media: venus: Add sdm660 dt schema
-Message-ID: <YW824G+mII83pjU5@robh.at.kernel.org>
-References: <20211008102119.268869-1-angelogioacchino.delregno@collabora.com>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     jic23@kernel.org, robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        kernel@axis.com, devicetree@vger.kernel.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 4/3] dt-bindings: iio: io-channel-mux: add optional
+ #io-channel-cells
+Message-ID: <YW83r+AqgTookHjp@robh.at.kernel.org>
+References: <20211007134641.13417-1-vincent.whitchurch@axis.com>
+ <20211007134641.13417-3-vincent.whitchurch@axis.com>
+ <1633661172.633248.1409599.nullmailer@robh.at.kernel.org>
+ <43e22ba4-0619-49bc-8062-b561cf19ca23@axentia.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211008102119.268869-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <43e22ba4-0619-49bc-8062-b561cf19ca23@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 08 Oct 2021 12:21:17 +0200, AngeloGioacchino Del Regno wrote:
-> Add a schema description for the Venus video decoder/encoder IP
-> in SDM660.
+On Sat, 09 Oct 2021 00:11:21 +0200, Peter Rosin wrote:
+> Needed for in-kernel use of the child channels of the mux.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Fixes problems like this, reported by dtbs_check:
+> adc0mux: '#io-channel-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 	arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dt.yaml
+> 
+> Suggested-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Signed-off-by: Peter Rosin <peda@axentia.se>
 > ---
->  .../bindings/media/qcom,sdm660-venus.yaml     | 186 ++++++++++++++++++
->  1 file changed, 186 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm660-venus.yaml
+>  .../devicetree/bindings/iio/multiplexer/io-channel-mux.yaml    | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
