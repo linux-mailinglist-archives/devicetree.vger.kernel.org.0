@@ -2,83 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C18C7434195
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 00:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1CB94341B5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 00:54:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbhJSWuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 18:50:19 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:33789 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229683AbhJSWuT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 18:50:19 -0400
-Received: by mail-oo1-f52.google.com with SMTP id y145-20020a4a4597000000b002b7d49905acso748829ooa.0;
-        Tue, 19 Oct 2021 15:48:05 -0700 (PDT)
+        id S229905AbhJSW4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 18:56:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229893AbhJSW4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 18:56:35 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16205C06174E
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 15:54:22 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id f11so1242624pfc.12
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 15:54:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cU3HJbTF7v8oN4m9QpyNLUi7Z2VsnXCEZXyNBnXavMs=;
+        b=cuhVndCamK8/716BHL8VV3m6G8gcGkThTiSVQ6WCdR23cmkvS8BAdf5MUWNZ3+xdJh
+         SXNvDs9u/lEzXmzt2H4VqFJR13EW1nC9xTyUpNjgvdyajBpGbxaWkVSkwru2zDmzhJL5
+         9+BvigGJweB1Imcox7fO16zbnV5IFg9bzbcUo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qy225hlqYwRXCtGLKyscMysC+wuepXd23D/7I3vqNfc=;
-        b=B3/aSvDOcQ92TP+IkJQovgaDu60ln8LsiB1H3HzHS2vgFIgMy/uywc8d+INVjk7bhM
-         BBowuXkMelQtcIsY6/U/0CaiwRebOuCEsl+7Yq3NJlRbp1aMvj5RirgM3Vd7jycOH3G/
-         uPkfxIJvcMA8vF2Lv1ORDG96FlC5ViM/KHFKdAXtsJfyhV2C/1rXFRyK3r7FxtyqDBK+
-         sPAzBqs/Lzb1j9BSO1BInW4OtfAeEIoO2IEmvgNIOE28jWxFLycYK0Jez/hNdhm4uW6q
-         F3FgMJsM0xxgWiYvFIOa77TlILZvDNQKCAhbto3S+bpLeVBKvlsUCLTwOYpf2UM/rRgv
-         qX7A==
-X-Gm-Message-State: AOAM532dwGTLjK4rwGjaJ2aWFvRdrb/VVVfboYPszdlueHhKwk3Q3m2i
-        dpG+5jGh4/w8b1sncB9qBvqMEu24NQ==
-X-Google-Smtp-Source: ABdhPJx+7M3+gwkvEccdiQLtE6ApfeIIiJPnK81zPl6XyOGFDwaQcsleOmnfmF9OVJFcsgizIss55Q==
-X-Received: by 2002:a4a:ca0f:: with SMTP id w15mr6869426ooq.39.1634683685422;
-        Tue, 19 Oct 2021 15:48:05 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n17sm82181oic.21.2021.10.19.15.48.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 15:48:04 -0700 (PDT)
-Received: (nullmailer pid 968061 invoked by uid 1000);
-        Tue, 19 Oct 2021 22:48:03 -0000
-Date:   Tue, 19 Oct 2021 17:48:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-clk@vger.kernel.org, Sagar Kadam <sagar.kadam@sifive.com>,
-        linux-gpio@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        linux-kernel@vger.kernel.org, Matteo Croce <mcroce@microsoft.com>,
+        bh=cU3HJbTF7v8oN4m9QpyNLUi7Z2VsnXCEZXyNBnXavMs=;
+        b=L8aXYF0z8PBgeK2Wd46wypNKyQjdjbhwRKaUeFFfl2rxwmzO52Ui+DFmEEgdkQYhKp
+         SKlyNDWUdTrDpDPrb1vF+CaiDHKUD+gLtWwhQX2OR8ydy1ErZiekcEoIspIlKro1pGjm
+         PBERXzwKqrBBjXoKByPR6Dnafm7qOyvIQ63ocj32n9Hqh13hk3LTrnajbjg1t0BSQQr7
+         YMenWwT2YTLkRjwdwMzDMDD1/WJWAaQt4bCY2K7nYz+2C4fYUx+UBH43EClibN5POpoI
+         sgq4+TkJuYiCN5ViyTFTKI3rYh4AjhOt1IJ66rJoU1hd59Dx+MUT6Uox1Kw/85ePVbIm
+         niOA==
+X-Gm-Message-State: AOAM532RKQ6jk+HZzkpbhXw19ph5oJOjn4MDjBSnlSunq4pvKvSUItfA
+        o0o99Xr97vHBMGDQ3mIX5VfZMQ==
+X-Google-Smtp-Source: ABdhPJwhFFyHmKUMVfxbdbUIRSGmuKpqlVMRtb5XW/S/r0SYWKyVbrnMtwygjRKH7m1CQn1PDJPYsw==
+X-Received: by 2002:a62:5804:0:b0:44b:b75b:ec8f with SMTP id m4-20020a625804000000b0044bb75bec8fmr2499812pfb.63.1634684061497;
+        Tue, 19 Oct 2021 15:54:21 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:6c1f:a561:f56:7d16])
+        by smtp.gmail.com with UTF8SMTPSA id q6sm245804pgc.1.2021.10.19.15.54.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Oct 2021 15:54:21 -0700 (PDT)
+Date:   Tue, 19 Oct 2021 15:54:18 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        linux-serial@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: Re: [PATCH v1 02/16] dt-bindings: timer: Add StarFive JH7100 clint
-Message-ID: <YW9LI/scFZtyczt2@robh.at.kernel.org>
-References: <20211012134027.684712-1-kernel@esmil.dk>
- <20211012134027.684712-3-kernel@esmil.dk>
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Peter Chen <peter.chen@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-usb@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Andy Gross <agross@kernel.org>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Nishanth Menon <nm@ti.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v15 0/6] usb: misc: Add onboard_usb_hub driver
+Message-ID: <YW9MmoSTouEDdpxa@google.com>
+References: <20210727004118.2583774-1-mka@chromium.org>
+ <CAA8EJpq55e+fk9oDi8+JXDWiPcXDXK5oz1DL5eqfx+FkT-xhnw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211012134027.684712-3-kernel@esmil.dk>
+In-Reply-To: <CAA8EJpq55e+fk9oDi8+JXDWiPcXDXK5oz1DL5eqfx+FkT-xhnw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 15:40:13 +0200, Emil Renner Berthing wrote:
-> Add compatible string for the StarFive JH7100 clint.
-> 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> ---
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Dmitry,
 
-Acked-by: Rob Herring <robh@kernel.org>
+On Tue, Oct 19, 2021 at 07:24:41PM +0300, Dmitry Baryshkov wrote:
+> On Tue, 27 Jul 2021 at 03:41, Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > This series adds:
+> > - the onboard_usb_hub_driver
+> > - glue in the xhci-plat driver to create and destroy the
+> >   onboard_usb_hub platform devices if needed
+> > - a device tree binding for the Realtek RTS5411 USB hub controller
+> > - device tree changes that add RTS5411 entries for the QCA SC7180
+> >   based boards trogdor and lazor
+> > - a couple of stubs for platform device functions to avoid
+> >   unresolved symbols with certain kernel configs
+> >
+> > The main issue the driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For discrete onboard hubs (an
+> > example for such a hub is the Realtek RTS5411) this is often solved
+> > by supplying the hub with an 'always-on' regulator, which is kind
+> > of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires even more hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
+> 
+> I have the feeling that you might want to check if you can use pwrseq
+> subsystem being proposed at
+> https://lore.kernel.org/linux-arm-msm/20211006035407.1147909-1-dmitry.baryshkov@linaro.org/.
+> It has been created for exactly the same reason of handling complex
+> power up/down requirements in a bus-neutral way. So instead of
+> creating an onboard-usb-hub, you might want to populate the hub node
+> with the reference to pwrseq device and make usb core call into
+> pwrseq. How does that sound to you?
+
+Thanks for the pointer, it's good to see another attempt to sort out
+power sequencing.
+
+The pwrseq framework could potentially be used by the onboard_usb_hub
+driver, but it probably can't replace it completely. Besides powering
+the USB hub on before enumeration the driver also can optionally power
+it off during system suspend when no wakeup capable USB devices are
+connected, which can result in signifcant power savings on battery
+powered devices. For this the driver needs knowledge about the USB
+(hub) devices that are provided by a hub chip. That part is probably
+best implemented by a driver under drivers/usb/.
+
+It might be an option to have the USB core and the onboard_usb_hub
+driver use the pwrseq framework, though we'd have to ensure that it
+isn't a problem that the USB core turns power on (before
+enumeration) and the onboard_usb_hub driver turns it off during
+system suspend (and on again on resume).
