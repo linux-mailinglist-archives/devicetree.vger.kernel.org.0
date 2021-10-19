@@ -2,123 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2728F433883
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19EFC433893
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbhJSOlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 10:41:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbhJSOlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:41:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F9FCC06161C
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 07:39:10 -0700 (PDT)
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 69A6E8311B;
-        Tue, 19 Oct 2021 16:39:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634654346;
-        bh=BxOAPH0QRXLoyVWjThosVte4qZxQSLbjezC73uElCsY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=bjFvxZLM1XKfdPKbjuh71izFKcxH3NidZ3q4aLrQJrDPjDyu7rCPSIdlAhoPJzmBM
-         NrAbdj7iu1js9asT6xKPcsyfudAENosjGVs6TmVxMzQMEfzu2zbZL3HxgCPlJra0Zf
-         sZY2KsD6fAA/HMWSTaM3bNlBKuF9Qw2UJuS8UN0jlZunBS1u+V6b26CzsbORhaEv51
-         OwvAuikUjA4eyyxhD2+UumnNUQCM921UH09N6V00x0355NJeRY5OTPQYDcMLVv1XB+
-         qnEbYIHVPQs4uGwyfW4YfJpSpUZ8bA88RTVx0gKMAJlOcNJZW6dlq3iZANB2Z1uutn
-         3OA1l7RIBhevA==
-Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: lvds-codec: Document
- pixel data sampling edge select
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-References: <20211017001204.299940-1-marex@denx.de>
- <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
- <c34f8a7e-eec6-9373-0c52-f6546ad689a8@denx.de>
- <YW3Rw0hZmB6plu+V@pendragon.ideasonboard.com>
- <4f235f45-5c03-eaeb-69ac-3d801a1dd58c@denx.de>
- <YW5qlXPyy6ZOHS6N@pendragon.ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <c3f74fc5-3ec7-f01a-3195-273c28ceec83@denx.de>
-Date:   Tue, 19 Oct 2021 16:39:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S229789AbhJSOou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 10:44:50 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35988 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229649AbhJSOot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:44:49 -0400
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8606012A;
+        Tue, 19 Oct 2021 16:42:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634654555;
+        bh=rxp6PMBsDJjGA2wH/eGe+dqU2991TJOOwj2FEZEGGiU=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=KCo5atH4zp/Z5y88JzcnrVAd8Gs2RAhpmhcgdx462FrtLgCxAFWPGI1rek2yxj0LG
+         XtL2l8nDkYucsGEJAhqyiZ4NgF1gezbU/Ie8LxTWKW8CqA5dot5WmR3qo8tXbmVJc6
+         EiJEeZOuaPuiMBab4231e7OtuIbizKtNsiEDUPyQ=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <YW5qlXPyy6ZOHS6N@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211019090020.11724-1-Meng.Li@windriver.com>
+References: <20211019090020.11724-1-Meng.Li@windriver.com>
+Subject: Re: [PATCH] arch: arm64: dts: Set gpio5-pin9 as input by default
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, meng.li@windriver.com
+To:     Meng Li <Meng.Li@windriver.com>, geert+renesas@glider.be,
+        magnus.damm@gmail.com, robh+dt@kernel.org
+Date:   Tue, 19 Oct 2021 15:42:33 +0100
+Message-ID: <163465455377.2083150.11106861856940757460@Monstersaurus>
+User-Agent: alot/0.9.2
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/19/21 8:49 AM, Laurent Pinchart wrote:
-> Hi Marek,
+Quoting Meng Li (2021-10-19 10:00:20)
+> The gpio5-pin9 is used as the interrupt pin of i2c external
+> gpio chip, so set this pin as input by default.
 
-Hi,
+Is a GPIO hog the right way to do this?
+Shouldn't the other GPIO chip be modelled in DT and reference the gpio
+interrupt line from there in its interrupt property?
 
->>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>> index 1faae3e323a4..708de84ac138 100644
->>>>>> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>> @@ -79,6 +79,14 @@ properties:
->>>>>>           - port@0
->>>>>>           - port@1
->>>>>>     
->>>>>> +  pclk-sample:
->>>>>> +    description:
->>>>>> +      Data sampling on rising or falling edge.
->>>>>> +    enum:
->>>>>> +      - 0  # Falling edge
->>>>>> +      - 1  # Rising edge
->>>>>> +    default: 0
->>>>>> +
->>>>>
->>>>> Shouldn't this be moved to the endpoint, the same way data-mapping is
->>>>> defined as an endpoint property ?
->>>>
->>>> The strapping is a chip property, not port property, so no.
->>>
->>> For this particular chip that's true. I'm still not convinced overall.
->>> For some cases it could be a per-port property
->>
->> Can you be more specific about "some cases" ?
-> 
-> I'm thinking about bridges that could have multiple parallel inputs.
+I assume by 'external gpio chip' you mean one which is permanantly
+attached to the ULCB Kingfisher board, and not a custom addition?
 
-Can you draft an example how such a binding would look like within the 
-confines of this lvds-codec.yaml ?
+--
+Regards
+Kieran
 
-I also have to wonder how such a hypothetical device would work, would 
-it serialize two parallel bussed into single LVDS one ?
-
->>> , and moving it there for
->>> lvds-codec too could allow implementing helpers to parse DT properties,
->>> without much drawback for this particular use case as far as I can see.
->>> It's hard to predict the future with certainty of course, so I won't
->>> insist.
->>
->> The DT bindings and the OS drivers are separate thing, we really
->> shouldn't start bending DT bindings so that they would fit nicely with a
->> specific OS driver model.
-> 
-> DT bindings are not holy beings that live in a mythical heaven way above
-> the mere mortal drivers, they would be useless without implementations.
-> It's not about bending them, which I regularly push against during
-> review, but about structuring them in a way that facilitates
-> implementations when all other things are equal.
-
-Note that the pclk-sample isn't a property of the input, but of the 
-chip, I don't think it is a good idea to say they are equal and conflate 
-them like so.
-
-> As I said, despite wondering whether or not it would be better to move
-> the property to the endpoint (and that was a genuine open question), I
-> won't insist in this case.
-
-[...]
+>=20
+> Signed-off-by: Meng Li <Meng.Li@windriver.com>
+> ---
+>  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/d=
+ts/renesas/ulcb-kf.dtsi
+> index 202177706cde..8986a7e6e099 100644
+> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> @@ -205,6 +205,15 @@
+>         };
+>  };
+> =20
+> +&gpio5 {
+> +       gpio_exp_77_int {
+> +               gpio-hog;
+> +               gpios =3D <9 0>;
+> +               input;
+> +               line-name =3D "gpio-exp-77-int";
+> +       };
+> +};
+> +
+>  &i2c4 {
+>         i2cswitch4: i2c-switch@71 {
+>                 compatible =3D "nxp,pca9548";
+> --=20
+> 2.17.1
+>
