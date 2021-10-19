@@ -2,232 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E8B433B40
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66314433B48
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:53:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbhJSPy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 11:54:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55992 "EHLO
+        id S233512AbhJSPzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 11:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234385AbhJSPyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:54:24 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAF9DC0613DF;
-        Tue, 19 Oct 2021 08:52:08 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 67-20020a1c1946000000b0030d4c90fa87so3742039wmz.2;
-        Tue, 19 Oct 2021 08:52:08 -0700 (PDT)
+        with ESMTP id S232993AbhJSPzQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:55:16 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBCD6C061765
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id q2-20020a17090a2e0200b001a0fd4efd49so2149909pjd.1
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tahb42vhWIxe7aQDRTcB+CJ+M3oOryLTbrMHuFirItg=;
-        b=oM7DBx5qiYzOh1ouvwxD5AaD77Y6ySL4Iqy3T3LYClN+6MVTmzTBuqxmhEq8IECzIs
-         9gSUhzjdEpGkrqM7U/Azasd+H/9iez/wDghg9Er3ZkyfylyBmdB4h0aqXoaGUdpKNDJO
-         JWdlY6OybwcQwhd0VyAfdtfslRMg/WdgPGpq7vVkwCn45OVqocaV6QT9W3ykF3V4M8dJ
-         3zRBgvw0FylLjbtlDOGAxjfU6lnntxKF1DdYqQLqk/0AcVqFwqqws+DSgulcJ/qsABhY
-         lxu7LfZGkbDYDAOWZ3w1eVEYv2uEqd2vDoomB9sfURBAU9srDrAeQoOaOddiSkkrX8jd
-         sghg==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0hJdTPE/X0TchThuYtIcfkeVoIZpuXd1w8LycbQX2wo=;
+        b=e0OMaw2pO7lBwvHrxGeO5TuJteJBanulQDFstc3mN0CIzzzSzFL0SAki2Ab8ovISkb
+         CIciB+Ja0iSSBs/2XJ/obiJZVRvw9BUEZDIzqULrn5ZiFl7shdYvu051qjeozTntwYJT
+         QYg6a/wYN4PrbGOFBWJit1cZbrJSYk7Naer1qlqa7z0RkP99/X0k0EE5vrtKTywBQi5f
+         ACLwOQUmWS0Kjw6QCzwDs25iQG0575ejAmZGXtZ3WnMW2VJhT6TDDEt4mtQFS1t5Tc3L
+         JsmiJuW2xFgURhMFXqKoI2MwUrYpfDqzgqoqT5WS5XkG+/DW2RwJtHY6sG231j3kgQzq
+         qtRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tahb42vhWIxe7aQDRTcB+CJ+M3oOryLTbrMHuFirItg=;
-        b=Uvkb19gScaaqSFrMIqIZ6SZ9XKr8HBJJH8M02dtyyhGi9fBZ+5seIlJ6qtZFdLG9fj
-         9bYOsE+fz5gcjtALK8uS8S9O/LBl1Sliij9FFuBugHQC3BrNpfwxfapJxekPFuzOUUxR
-         evrhjjQltiRsd1GVePmUn0XRndYYoVqAzTWvgNLxDjzanTRKbEENiGoI8+luN4y2bqvJ
-         ma27U9uujQ58TWZOfy+jUsj9jzLVrtVTW5XNhgE6zo3ORL/D+zQQ3dN/eF72TPS2tK5Y
-         e8aqxUHaySxP5Ro6II36b3MpeIDO5/J+Kk28DrfHOxdJvC0qcLnFROgECZWT4CDsMycz
-         UezQ==
-X-Gm-Message-State: AOAM530/CKSB2n3qVdJZ0YdPMzeZJIR3ugiN6wLTFh8fo8eHVJiyOS8o
-        6B43ehERJ7ETDsyeHM8PBQ==
-X-Google-Smtp-Source: ABdhPJx2WUl7NkppItDT/LYD6ezXkFEAkVwlcku30q6Jjk4WKrin4xBzm5d8lCxl+n8MRIRt3I75yA==
-X-Received: by 2002:a1c:4645:: with SMTP id t66mr7114221wma.179.1634658727228;
-        Tue, 19 Oct 2021 08:52:07 -0700 (PDT)
-Received: from ?IPv6:2a02:810b:f40:4200:c0be:9a16:558c:2838? ([2a02:810b:f40:4200:c0be:9a16:558c:2838])
-        by smtp.gmail.com with ESMTPSA id z2sm15165023wrh.44.2021.10.19.08.52.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Oct 2021 08:52:06 -0700 (PDT)
-Subject: Re: [PATCH 1/2] arm64: dts: rk3328: add gpu opp table
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
-        David Wu <david.wu@rock-chips.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Cameron Nemo <cnemo@tutanota.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Trevor Woerner <twoerner@gmail.com>
-References: <20211016154548.29555-1-twoerner@gmail.com>
- <3352474.ljgn2FL0hr@archbook>
-From:   Alex Bee <knaerzche@gmail.com>
-Message-ID: <5a667361-940e-4653-ac3e-ae26a70255a2@gmail.com>
-Date:   Tue, 19 Oct 2021 17:52:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0hJdTPE/X0TchThuYtIcfkeVoIZpuXd1w8LycbQX2wo=;
+        b=qHIBbEHLDElnoxjty9XG3+Hkdtg57uNqxnrscHcVNvGt1QvaV5lkOpRrpb5/awylt1
+         Dqh/MvhKICc9+14bghEVmwo7CRMTpV1Sjd5Yi0dBQBu8WqtIUPBwDTjMyWVwruI4akZh
+         42N9fJnFDOLqGuG+7eDkO8xDNdbL2K40oXjJIFLlLDXv8Fe+LP5KtXSkA8CJSkpLVFDt
+         RhWgSPHDOqYW4tFra4JTnFZHcgs1nbrgo9sJwd4F4kgvhwRxFLlN97rd3lTr3GJSOp6K
+         mxFoVcJJoswhlcwVoxxQZQ4fB0OZ7teGYM9eG0Wv3e2yu7ELCNAVaxYLaP3y/cackY0X
+         b7lg==
+X-Gm-Message-State: AOAM530KztfEibD97qLZOQkGwq6lWE9S0F1vVaWCW6B5WF4JiJ/rcnxu
+        b3LxhIdPfFGynG1DKfMo3FQHHlofpkP33osvnVoRHA==
+X-Google-Smtp-Source: ABdhPJyRBqJPyd1gzy/plQ5XFljpcudmR2DUGHESDi4bc0j4s8l7ja0Hu4S+Q9rCI1WFNW8WsxgfYFyhjTBYhQxG6Kw=
+X-Received: by 2002:a17:90b:1e4b:: with SMTP id pi11mr620719pjb.179.1634658783107;
+ Tue, 19 Oct 2021 08:53:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <3352474.ljgn2FL0hr@archbook>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1634028078-2387-1-git-send-email-hongxing.zhu@nxp.com>
+ <CAJ+vNU2b-=T_gTsRBvdF7SRUZopEFOU_Np8mEJn8bOpn5b5FaA@mail.gmail.com> <AS8PR04MB8676B2AC24E2769D47A1ED478CBD9@AS8PR04MB8676.eurprd04.prod.outlook.com>
+In-Reply-To: <AS8PR04MB8676B2AC24E2769D47A1ED478CBD9@AS8PR04MB8676.eurprd04.prod.outlook.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 19 Oct 2021 08:52:51 -0700
+Message-ID: <CAJ+vNU2AitmxCyam5FArmxAD41QUU=5CF_0JZhm+uzdkRbr7kw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] add the imx8m pcie phy driver and imx8mm pcie support
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 18.10.21 um 18:49 schrieb Nicolas Frattaroli:
-> On Samstag, 16. Oktober 2021 17:45:44 CEST Trevor Woerner wrote:
->> Add an operating-points table and cooling entry to the GPU on the
->> RK3328 SoC to improve its performance. According to its datasheet[1]
->> the maximum frequency of the Mali-450 MP2 GPU found on the RK3328 SoC
->> is 500MHz.
->>
->> On my rock64 device, under x11, glmark2-es2 performance increased from
->> around 60 to just over 100. Same device running glmark2-es2 under
->> wayland/weston improved from just over 100 to just over 200.
->>
->> [1] https://rockchip.fr/RK3328%20datasheet%20V1.2.pdf
->>
->> Signed-off-by: Trevor Woerner <twoerner@gmail.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3328.dtsi | 26 +++++++++++++++++++++++-
->>   1 file changed, 25 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi index 8c821acb21ff..5e1dcf71e414
->> 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> @@ -532,7 +532,8 @@ map0 {
->>   					cooling-device = <&cpu0
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>   							 <&cpu1
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>   							 <&cpu2
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> -							 <&cpu3
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> +							 <&cpu3
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->> +							 <&gpu
-> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>   					contribution = <4096>;
->>   				};
->>   			};
->> @@ -617,6 +618,29 @@ gpu: gpu@ff300000 {
->>   		clocks = <&cru ACLK_GPU>, <&cru ACLK_GPU>;
->>   		clock-names = "bus", "core";
->>   		resets = <&cru SRST_GPU_A>;
->> +		operating-points-v2 = <&gpu_opp_table>;
->> +		#cooling-cells = <2>;
->> +	};
->> +
->> +	gpu_opp_table: gpu-opp-table {
->> +		compatible = "operating-points-v2";
->> +
->> +		opp-200000000 {
->> +			opp-hz = /bits/ 64 <200000000>;
->> +			opp-microvolt = <1100000>;
->> +		};
->> +		opp-300000000 {
->> +			opp-hz = /bits/ 64 <300000000>;
->> +			opp-microvolt = <1100000>;
->> +		};
->> +		opp-400000000 {
->> +			opp-hz = /bits/ 64 <400000000>;
->> +			opp-microvolt = <1100000>;
->> +		};
->> +		opp-500000000 {
->> +			opp-hz = /bits/ 64 <500000000>;
->> +			opp-microvolt = <1100000>;
->> +		};
->>   	};
->>
->>   	h265e_mmu: iommu@ff330200 {
-> 
-> As for whether this works as described on a ROCK64 for glmark2-es2-wayland:
+On Mon, Oct 18, 2021 at 7:10 PM Richard Zhu <hongxing.zhu@nxp.com> wrote:
+>
+>
+> > -----Original Message-----
+> > From: Tim Harvey <tharvey@gateworks.com>
+> > Sent: Saturday, October 16, 2021 3:59 AM
+> > To: Richard Zhu <hongxing.zhu@nxp.com>; Lucas Stach
+> > <l.stach@pengutronix.de>
+> > Cc: Kishon Vijay Abraham I <kishon@ti.com>; vkoul@kernel.org; Rob Herring
+> > <robh@kernel.org>; galak@kernel.crashing.org; Shawn Guo
+> > <shawnguo@kernel.org>; linux-phy@lists.infradead.org; Device Tree Mailing
+> > List <devicetree@vger.kernel.org>; Linux ARM Mailing List
+> > <linux-arm-kernel@lists.infradead.org>; open list
+> > <linux-kernel@vger.kernel.org>; Sascha Hauer <kernel@pengutronix.de>;
+> > dl-linux-imx <linux-imx@nxp.com>
+> > Subject: Re: [PATCH v3 0/9] add the imx8m pcie phy driver and imx8mm pcie
+> > support
+> >
+> > On Tue, Oct 12, 2021 at 2:06 AM Richard Zhu <hongxing.zhu@nxp.com>
+> > wrote:
+> > >
+> > > refer to the discussion [1] when try to enable i.MX8MM PCIe support,
+> > > one standalone PCIe PHY driver should be seperated from i.MX PCIe
+> > > driver when enable i.MX8MM PCIe support.
+> > >
+> > > This patch-set adds the standalone PCIe PHY driver suport[1-5], and
+> > > i.MX8MM PCIe support[6-9] to have whole view to review this patch-set.
+> > >
+> > > The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
+> > > [2] and this PHY driver patch-set.
+> > >
+> > > [1]
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
+> > >
+> > hwork.ozlabs.org%2Fproject%2Flinux-pci%2Fpatch%2F20210510141509.929
+> > 120
+> > >
+> > -3-l.stach%40pengutronix.de%2F&amp;data=04%7C01%7Chongxing.zhu%40
+> > nxp.c
+> > >
+> > om%7C4e3d8ee008d94327f99108d9901634be%7C686ea1d3bc2b4c6fa92cd
+> > 99c5c3016
+> > >
+> > 35%7C0%7C0%7C637699247319711209%7CUnknown%7CTWFpbGZsb3d8ey
+> > JWIjoiMC4wLj
+> > >
+> > AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp
+> > ;sdata=
+> > >
+> > Z2TZCpdDUSoqrNB1X%2BXdoYNBe3dBDKUgkA4r%2F0TcdOg%3D&amp;reser
+> > ved=0
+> > > [2]
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatc
+> > >
+> > hwork.kernel.org%2Fproject%2Flinux-arm-kernel%2Fcover%2F202109102026
+> > 40
+> > > .980366-1-l.stach%40pengutronix.de%2F&amp;data=04%7C01%7Chongxin
+> > g.zhu%
+> > >
+> > 40nxp.com%7C4e3d8ee008d94327f99108d9901634be%7C686ea1d3bc2b4c6
+> > fa92cd99
+> > >
+> > c5c301635%7C0%7C0%7C637699247319711209%7CUnknown%7CTWFpbGZ
+> > sb3d8eyJWIjo
+> > >
+> > iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C10
+> > 00&amp
+> > > ;sdata=5h%2By%2FcBW%2BjFkyplUuN1nB5%2BAFHuwCUJBqvRh1RiPYMo
+> > %3D&amp;rese
+> > > rved=0
+> > >
+> > > Main changes v2 --> v3:
+> > > - Regarding Lucas' comments.
+> > >  - to have a whole view to review the patches, send out the i.MX8MM PCIe
+> > support too.
+> > >  - move the PHY related bits manipulations of the GPR/SRC to standalone
+> > PHY driver.
+> > >  - split the dts changes to SOC and board DT, and use the enum instead of
+> > raw value.
+> > >  - update the license of the dt-binding header file.
+> > >
+> > > Changes v1 --> v2:
+> > > - Update the license of the dt-binding header file to make the license
+> > >   compatible with dts files.
+> > > - Fix the dt_binding_check errors.
+> > >
+> > > Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
+> > > Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  79
+> > +++++++++++++++++++++++++++++
+> > > arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  53
+> > ++++++++++++++++++++
+> > > arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |
+> > 46 ++++++++++++++++-
+> > > drivers/pci/controller/dwc/pci-imx6.c                        |  63
+> > ++++++++++++++++++++++-
+> > > drivers/phy/freescale/Kconfig                                |   9
+> > ++++
+> > > drivers/phy/freescale/Makefile                               |   1
+> > +
+> > > drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 218
+> > ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+> > ++++++++++++++++++
+> > > include/dt-bindings/phy/phy-imx8-pcie.h                      |  14
+> > ++++++
+> > > 9 files changed, 486 insertions(+), 3 deletions(-)
+> > >
+> > > [PATCH v3 1/9] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+> > > [PATCH v3 2/9] dt-bindings: phy: add imx8 pcie phy driver support
+> > > [PATCH v3 3/9] arm64: dts: imx8mm: add the pcie phy support [PATCH v3
+> > > 4/9] arm64: dts: imx8mm-evk: add the pcie phy support [PATCH v3 5/9]
+> > > phy: freescale: pcie: initialize the imx8 pcie [PATCH v3 6/9]
+> > > dt-bindings: imx6q-pcie: Add PHY phandles and name [PATCH v3 7/9]
+> > > arm64: dts: imx8mm: add the pcie support [PATCH v3 8/9] arm64: dts:
+> > > imx8mm-evk: add the pcie support on imx8mm [PATCH v3 9/9] PCI: imx:
+> > > add the imx8mm pcie support
+> >
+> > Richard and Lucas,
+> >
+> > Thanks for your collective work on this series!
+> >
+> > I have imx8mm-venice boards to test this on both with and without PCIe
+> > bridges. I've tested this on top of Shawn's imx/for-next (as blk-ctl has been
+> > merged there) and end up hanging waiting for PHY ready timeout.
+> [Richard Zhu] Sorry to reply late. I run the tests based on pci/for-next applied the blk-ctl issue by Lucas [2] in commit.
+> Can you help to make a re-tests?
+> As I know that the blk-ctl is not merged yet.
+> Hi Lucas:
+> Am I right?
+>
 
-The probably most "convenient" and also future-proof solution upstream 
-for that is to define voltage ranges á la
+Richard,
 
+v5 of blk-ctl is merged into Shawn's for-next tree.
 
+> >
+> > [    1.454308] imx6q-pcie 33800000.pcie:       IO
+> > 0x001ff80000..0x001ff8ffff -> 0x0
+> > [    1.466538] imx6q-pcie 33800000.pcie:      MEM
+> > 0x0018000000..0x001fefffff -> 0x0
+> > [    1.476344] libphy: fec_enet_mii_bus: probed
+> > [    1.602631] phy phy-32f00000.pcie-phy.0: phy init failed --> -110
+> > [    1.608775] imx6q-pcie 33800000.pcie: Waiting for PHY ready timeout!
+> >
+> > I can verify that imx8_pcie_phy_probe returns successfully and the the phy
+> > node (imx6_pcie->phy) was found.
+> >
+> > Here is the dt change I made for the imx8mm-venice-gw71xx-0x board that
+> > has no bridge:
+> [Richard Zhu] Refer to the changes, the external OSC is used as PCIe REF clock(same to EVK board design), right?
 
-opp-200000000 {
+Correct, an ext osc is used like EVK.
 
-		opp-hz = /bits/ 64 <200000000>;
+I applied v5 blk-ctl and your v3 series on top of pci/next and came up
+with the same issue. Do you have a git repo I could try to make sure
+I'm not missing anything?
 
-		opp-microvolt = <950000 950000 1150000>;
+Also, as Lucas has requested some changes do you have a v4 coming soon
+that I should wait for to try? I believe this has something to do with
+the phy reset where some of his changes were requested.
 
+Best regards,
 
-
-};
-
-and so on.
-
-And then adapt the regulator-min-microvolt of the logic regulator like
-
-vdd_logic: DCDC_REG1 {
-
-	regulator-name = "vdd_logic";
-
-	regulator-min-microvolt = <1050000>;
-
-...
-};
-
-That way all opp-points will be taken, but its ensured, that vdd_log 
-never goes below 1.05 V
-
-> 
-> Tested-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> 
-> There is some stuff worth noting that LibreELEC does on this SoC[1]:
-> 
-> 1. they use 1.05V for all OPPs up to and including 400 MHz
-> 2. they run 500 MHz at 1.15V instead (though 1.10V seemed to work for both of
-> us)
-
-That might be true for your boards, but note that the required voltage 
-is per "leakage level" defined in efuse bits - something we do not 
-support for Rockchip upstream currently - see [1]
-
-> 3. they disable 500 MHz because 1.15V was apparently too high for rkvdec.
-> 
-> 3 is currently not very relevant because mainline Linux has no rkvdec node in
-> the rk3328 dtsi, and we're not running at 1.15V.
-> 
-> I've decided to add their rkvdec dtsi patch[2] on top anyway, and saw no
-> complaints from the rkvdec module while glmark2-es2-drm was running. However,
-> it's not like I tried to actually hardware decode video while it was running
-> because the userspace situation still won't let me without compiling entirely
-> too much stuff from git. Though the rkvdec module was loaded and present.
-You will see no complaints from the module , but you will see the SoC 
-crashing if both is running at the same time - see rkvdec-opp-table 
-downstream [2]
-
-[1] 
-https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3328.dtsi#L750-L751
-
-[2] 
-https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm64/boot/dts/rockchip/rk3328.dtsi#L840-L867
-
-Alex
-
-> [1]: https://github.com/LibreELEC/LibreELEC.tv/commit/
-> 9a6be0d36ba7ff3c3d5df798682d47a1de594ac0
-> [2]: https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/
-> patches/linux/default/linux-1001-v4l2-rockchip.patch#L860-L935
-> 
-> 
-> 
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-
+Tim
