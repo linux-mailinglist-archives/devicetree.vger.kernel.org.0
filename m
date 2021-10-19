@@ -2,189 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35FFF43320C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 11:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8AF8433264
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 11:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234914AbhJSJXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 05:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49894 "EHLO
+        id S235044AbhJSJil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 05:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234933AbhJSJXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 05:23:10 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D3DC061745
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:20:57 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id ec8so10335494edb.6
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:20:57 -0700 (PDT)
+        with ESMTP id S235094AbhJSJik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 05:38:40 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30DB1C061745
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:36:28 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id o20so46677760wro.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 02:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=toRRVEqTLUd3SSxzIDP/+DUaLEtYke19fi6Pz2sUJkE=;
-        b=Cf18QzOp+PRhe6QqZXXGOa4O7FcIcT8tM6VPOG1htKyJ1o5kTmJFuUaCM3AI4CWu3s
-         Kh+keaBzAGxQygo9i8deGphOkop3SLutGrTs2ukML7vLZ/vSvRkWQZFS4YfdoyXOkcjg
-         9MueBURbdbqni8kwo6RPOs8F1cVzS3nDxLl16afPJBfbdKclb387x3ZtXgT90MS/ydPS
-         z7nDn6GTXp+SswME3vjPhHMaUF+zyQg5kvjNVfzTw95BdRCk+7paJWKFGR8VYyjsZSjB
-         +TxMnqCQiGou0u0rE6TaY3tx0yNlgJFYq5CdiYl3qj0P2ZFm3Y36xbGtK7IpJiOTr18P
-         hzhg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pAQ3nDSi7GJKEkpq93Gk3fW3GifCTB9f+3J4xNuNsa8=;
+        b=gP8nU56KZdDX/muBPZFm9b5HoHa1FEeoZNaQ2M517z2vjkHquJFNvDOJ/wxnFuRZmc
+         6VEiXjBGNq4woQv9vGa6VmWMg4+aelNiIhZGvrtKs8tMVuO/F2zE7q/+GiEcS94XM2Z8
+         tr3k5LODloiPk6Nmx/iMI9cKoOJH3WKCAMso2klC9XoLZ7Nrihxfs03+3KoLxzRkMNHP
+         qZuUrzT9di/B3Ht8J8NWeW2s+llj+fySzAGXtW1t84ZyvjmbfyusOGnGosqJqftB2Y4T
+         dlNIAEKjZpKNmEP/Tvhkr4ZvQAOlgNK2IKNTeO98tcnmXwoPa9xdhptRLpO9uOvWbOq8
+         S98A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=toRRVEqTLUd3SSxzIDP/+DUaLEtYke19fi6Pz2sUJkE=;
-        b=BURJaB6v8xsvbdNqWJIsbnJ2QF7dTaPTReHYpVe70mKjWoXDDmMzqlj2KkGIL2yY3B
-         TIXUH0Ds8ycd3HZNRXKFGrJqNOtYCdzWBv7kZnMXeNeVcB9u0TvuSmlyaHau8lcbIfaK
-         4WYCXts3Cvcw/gQVvhdJaMXu/V+oHLydh4ouZI8v84KoMCLp6NBIXLXh/MHUzVEZ1abA
-         BmW0PgxegwHtNKEqBhZkkVMNCOdxmkwpnoFWe566KODtr4lJdxsVYdS361gobm7ZGLXr
-         tq50vl79zT9KUzzobjEGWU9Tzjkr8kXnDt9PRzu7T+Lq19klD+MVIVPelsO/9sdfTVwn
-         0OWQ==
-X-Gm-Message-State: AOAM530i+jndIC5BpmXbE10sKQhsWs0aDSXVfce8WAQUOxLjRpFEl/hv
-        zMYRsqunsFBND3WI3KN7aeDNc+fI88uR9LhyILLr7w==
-X-Google-Smtp-Source: ABdhPJzEQhtxbot5YkrZdRE19sSa4f2O5W5kZNzagpESU86f9Z1ZP1xca6lG0VyOTvQlnZg+aWhg3uov1zMvvMMgn2Y=
-X-Received: by 2002:a17:906:d975:: with SMTP id rp21mr36538913ejb.104.1634635255802;
- Tue, 19 Oct 2021 02:20:55 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pAQ3nDSi7GJKEkpq93Gk3fW3GifCTB9f+3J4xNuNsa8=;
+        b=smSQsvbCb+DdMtIyrKvWI8Wi7RMg1IqNOBVmMHTm/mcxB8FNQoM5ZQraVOqVKXOJPt
+         zGKuinBWT17miMMd35MtD4JGZBevWTYGmuuDakyVPbBKesn7vrRLuoUVjOF0xyrp6ddf
+         E6K8lxN3XfxONbt23lBUaqh/KQMsGaouY1pTa0f+1iHo9ocP5UV2MFqYFjujYrarBVXZ
+         h2Fe1eZzrjau6UhqmN+WsieiyQSlmRzKtA804RagYReYiuqpFPB8A8VUUXDPYw3pHLQK
+         LduyUm212AeEeOwegxWXTjrFr70AjKd3IxCq336mMJCPMLdCg3jikHG+ACM4de72eTrV
+         ZniQ==
+X-Gm-Message-State: AOAM530X7adSkHYIo+iVvKWrsB9NYSxQhRW523IhGblSriB80tLE9baT
+        in7YB/lYNxtoaODiFN8m8nH4Cg==
+X-Google-Smtp-Source: ABdhPJxOQXjEw6eiRtOB4dRH95sLoz/UAgvA3+DT3VX0bWePwEQwNePyd24CoSoDt1rFoxL8eXWmIA==
+X-Received: by 2002:a5d:6e8d:: with SMTP id k13mr42883919wrz.295.1634636186755;
+        Tue, 19 Oct 2021 02:36:26 -0700 (PDT)
+Received: from blmsp.lan ([2a02:2454:3e6:c900:5142:5fbb:5821:5dc3])
+        by smtp.gmail.com with ESMTPSA id o23sm1765765wms.18.2021.10.19.02.36.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Oct 2021 02:36:26 -0700 (PDT)
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
+        khilman@baylibre.com, Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v2 0/4] thermal: mediatek: Add mt8365 support
+Date:   Tue, 19 Oct 2021 11:34:00 +0200
+Message-Id: <20211019093404.1913357-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211018114046.25571-1-etienne.carriere@linaro.org> <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
-In-Reply-To: <YW2xhRXQ+MA/Cxm1@robh.at.kernel.org>
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-Date:   Tue, 19 Oct 2021 11:20:44 +0200
-Message-ID: <CAN5uoS_ab2Te6++JPAQ2UJqjdO46t=vyT2Ek0DvWG8umSibTnQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 at 19:40, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Oct 18, 2021 at 01:40:45PM +0200, Etienne Carriere wrote:
-> > Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> > based on an OP-TEE service invocation. The compatible mandates a
-> > channel ID defined with property "linaro,optee-channel-id".
-> >
-> > Cc: devicetree@vger.kernel.org
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> > ---
-> > Changes since v2:
-> >  - Define mandatory property linaro,optee-channel-id
-> >  - Rebased on yaml description file
-> >
-> > Changes since v1:
-> >  - Removed modification regarding mboxes property description.
-> > ---
-> >  .../bindings/firmware/arm,scmi.yaml           | 44 +++++++++++++++++++
-> >  1 file changed, 44 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > index 5c4c6782e052..12154ecc081b 100644
-> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > @@ -38,6 +38,9 @@ properties:
-> >                       The virtio transport only supports a single device.
-> >          items:
-> >            - const: arm,scmi-virtio
-> > +      - description: SCMI compliant firmware with OP-TEE transport
-> > +        items:
-> > +          - const: linaro,scmi-optee
-> >
-> >    interrupts:
-> >      description:
-> > @@ -83,6 +86,11 @@ properties:
-> >      description:
-> >        SMC id required when using smc or hvc transports
-> >
-> > +  linaro,optee-channel-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Channel id required when using OP-TEE transports
-> > +
-> >    protocol@11:
-> >      type: object
-> >      properties:
-> > @@ -195,6 +203,9 @@ patternProperties:
-> >          minItems: 1
-> >          maxItems: 2
-> >
-> > +      linaro,optee-channel-id:
-> > +        maxItems: 1
->
-> Why is the same property in 2 different spots? That doesn't seem ideal.
->
-> Unfortunately, you have to duplicate the definition.
+Hi,
 
-Property linaro,optee-channel-id for compatible linaro,scmi-optee
-is like properties mboxes and shmem for compatibile arm,scmi.
-There are mandated in the scmi node and are optional in its subnodes:
-an scmi protocol (a subnode), can have a dedicated scmi channel.
+this series adds a compatible to the bindings and a specific part for
+the thermal driver.
 
-The yaml description is expected to reflect that.
+In v2 I added a patch to remove unnecessary (void*) casts and fixed the
+comments I received.
 
-Regards,
-Etienne
+Thanks for any feedback or comments.
 
->
-> > +
-> >      required:
-> >        - reg
-> >
-> > @@ -226,6 +237,16 @@ else:
-> >        - arm,smc-id
-> >        - shmem
-> >
-> > +  else:
-> > +    if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: linaro,scmi-optee
-> > +    then:
-> > +      required:
-> > +        - linaro,optee-channel-id
-> > +
-> >  examples:
-> >    - |
-> >      firmware {
-> > @@ -340,7 +361,30 @@ examples:
-> >                  reg = <0x11>;
-> >                  #power-domain-cells = <1>;
-> >              };
-> > +        };
-> > +    };
-> > +
-> > +  - |
-> > +    firmware {
-> > +        scmi {
-> > +            compatible = "linaro,scmi-optee";
-> > +            linaro,optee-channel = <0>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            scmi_clk: protocol@14 {
-> > +                reg = <0x14>;
-> > +                #clock-cells = <1>;
-> > +            };
-> > +
-> > +            scmi_dvfs: protocol@13 {
-> > +                reg = <0x13>;
-> >
-> > +                #clock-cells = <1>;
-> > +                linaro,optee-channel = <1>;
-> > +                shmem = <&cpu_scp_hpri0>;
-> > +            };
-> >          };
-> >      };
-> >
-> > --
-> > 2.17.1
-> >
-> >
+Best,
+Markus
+
+
+Fabien Parent (1):
+  thermal: mediatek: add MT8365 thermal driver support
+
+Markus Schneider-Pargmann (3):
+  dt-bindings: thermal: mediatek: Add mt8365
+  thermal: mediatek: Fix apmixed error message
+  thermal: mediatek: Remove data void casts
+
+ .../bindings/thermal/mediatek-thermal.txt     |   1 +
+ drivers/thermal/mtk_thermal.c                 | 102 +++++++++++++++---
+ 2 files changed, 91 insertions(+), 12 deletions(-)
+
+-- 
+2.33.0
+
