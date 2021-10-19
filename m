@@ -2,341 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0345B4339DC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:10:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E82433A1B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 17:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbhJSPMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 11:12:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232126AbhJSPM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 11:12:29 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CB4C06161C;
-        Tue, 19 Oct 2021 08:10:16 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id g62-20020a9d2dc4000000b0054752cfbc59so2357010otb.1;
-        Tue, 19 Oct 2021 08:10:16 -0700 (PDT)
+        id S232601AbhJSPXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 11:23:16 -0400
+Received: from mail-bn7nam10on2087.outbound.protection.outlook.com ([40.107.92.87]:45153
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233677AbhJSPXN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 11:23:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Bs7wUs42JXKt2wXiRoglCtQyqbykIMq9GfCjELEQpzgAqgN/WQoshjeQ3pkZBKY48DenJVjWK/YOfFHM9vIcfAatq1R8Z8PdTx4JsnpMYv6KTcTwanYsljh2/h4bO6EpNgmZfjsnr8wqeXwmRlHU9qf5DQbxzEAO01nyLdXqx6AMmbotFitXwBd7ljSv0dKx6xfX6wAxoH95FBlUqIpKOFvDoLpY9GqrDQjtXPf8WEHyTgNXVya5WDF/gx0DeL69XWJyiDu4/bcvT18rIz83MlNgnoVGEDRDJE0/xrM9AWHWbMRPZXsL+QGftDcGh3ysqzTEMKcY4T1EGhUVszCpqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=g015nim8vgp52WwgrtqdkfVGmFDaS3hqY0e9qwWxoK8=;
+ b=YwZ/IP8scrYyIWPMLKPTxpFNACIiLu+9XftPk+B8GwxxeB0B87YnsfSruLId7CMVWq5Nx/+YW6/HCy/kLavLwCmjUudFOmQYBnoxfmHRjPNqIndoCNrXwPWRQ1+aWf11eXwqVx60Jd1qd+PIOW37WI4EJeuARv/+eenj+P7cAyLVk0I62Fovj9Lsmt/NLA1WNq7RgcsuZvA0OTlx4DVNhgY7z9X1io47mcLy7RHOs1iWChylu4ZMgP3Cs3CTwmUv2Z79D5FVeu5a0UrtgrsmPhv/gG/3qEOIrbmSV79b30n7PJwD4yhrc700nlJ2UlqUxHFpq8kF8xB9tEBeVG591Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.80.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=FGfoFIVzDJyNFSMe7bGLeEepbGylRtdot2FdwXw7D6c=;
-        b=p3p09aNQQ5OCiyfw+BxD+Grsw73QkzxeFRc9g4J9Fp/QCvjxgF2Aa0EfGepOssUKjW
-         2isRWFg0m+Yo/DWWhZLrcBGdYkFEgO0m7M14L6riErOWS0TR/MGckmCMmUdHfzbKLkLP
-         LqAsvT3A/ndzIsBWCHR7nqe/4gaHoRDPer0Io/dW9mVz2VICzrwvSLRNTfufaKvsyHsK
-         TaxZQ+tlKDlpqiX7a79PVgb8HPqJgb0L1V66hFc6pedEZlpjBg2PyTk3rJz6UN5P+wQR
-         iECj2my0AS6TqBh+HHP+bs7Unn9EhL2nx9ssBGdpaEyeMR/wI6gvk31wXBH6k2yHoJZJ
-         ZZeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FGfoFIVzDJyNFSMe7bGLeEepbGylRtdot2FdwXw7D6c=;
-        b=AByuwELIcfc3oHLAUJt6/V2KwzQ91BC32fPJRBxzPyX6uCUjXJGJKjNWkFyT18UyGi
-         FYzjjJ95DeiE73enJo+UcJu7P8ri/O0cXB5PIqD9ZDZwv23R97gCQlJMOLrb8jBoe2oL
-         8cmrmalUOI/MfzMWYKqo6wSusIrbjroEUO1kunc2mzvSItimMy4W/9srm8yONEa3/Z11
-         VgSgHzpajBKMo+r3jGkj3MIQxjptsMB756kTB28T3BpcOxoDYLiepC+K7a+e7lFIGVma
-         dZM3rcKHzh29LXk2Hf4vxscdgMpr5TKRAICcAxWYWy6ifu3pCuYVfScfQ5QnmdKE9DLj
-         1w1A==
-X-Gm-Message-State: AOAM533X3hU75p/ol3opyFFhRtrYGe4odz91fmFXRiL4tTuYfu1uQ95t
-        Vd3qzanQ1r7jwhTIva43Iv9MwLGeFns=
-X-Google-Smtp-Source: ABdhPJziOrjVKmgVEq9VnBSNBeQGu6t2Lsd1Sei3AsFZYKZ2GhoIcKqjbA4Eb9XKu9pVCX3kc6C7Mw==
-X-Received: by 2002:a05:6830:4002:: with SMTP id h2mr5921084ots.49.1634656216183;
-        Tue, 19 Oct 2021 08:10:16 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 2sm3705703oil.37.2021.10.19.08.10.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Oct 2021 08:10:15 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 8/9] watchdog: max77714: add driver for the watchdog in
- the MAX77714 PMIC
-To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211019145919.7327-1-luca@lucaceresoli.net>
- <20211019145919.7327-9-luca@lucaceresoli.net>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <f14e0a94-f283-7be4-761c-9dc725a1add0@roeck-us.net>
-Date:   Tue, 19 Oct 2021 08:10:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=g015nim8vgp52WwgrtqdkfVGmFDaS3hqY0e9qwWxoK8=;
+ b=VVOJtz2YOGl+t/OFxLSywbfcj0zYcD23kHeVrdNFUxujjqyD4I6yLsQgUjjyL6/7F17TLxCSyaGM/XehYkkD9Xhcm+ZMTbdeyFQVTIE5T90ZAZVO4D+yfrqyE277VLTsZFAFSnmF2NNXpyzsOa4HON+ql6VD4W3AsR5/K7Nt/cU=
+Received: from DS7PR07CA0014.namprd07.prod.outlook.com (2603:10b6:5:3af::17)
+ by DM8PR02MB8122.namprd02.prod.outlook.com (2603:10b6:8:1b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Tue, 19 Oct
+ 2021 15:20:59 +0000
+Received: from DM3NAM02FT058.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:3af:cafe::eb) by DS7PR07CA0014.outlook.office365.com
+ (2603:10b6:5:3af::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend
+ Transport; Tue, 19 Oct 2021 15:20:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.80.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.80.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.80.198; helo=xir-pvapexch01.xlnx.xilinx.com;
+Received: from xir-pvapexch01.xlnx.xilinx.com (149.199.80.198) by
+ DM3NAM02FT058.mail.protection.outlook.com (10.13.5.42) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 15:20:58 +0000
+Received: from xir-pvapexch02.xlnx.xilinx.com (172.21.17.17) by
+ xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 19 Oct 2021 16:20:56 +0100
+Received: from smtp.xilinx.com (172.21.105.197) by
+ xir-pvapexch02.xlnx.xilinx.com (172.21.17.17) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 19 Oct 2021 16:20:56 +0100
+Envelope-to: anand.ashok.dumbre@xilinx.com,
+ git@xilinx.com,
+ michal.simek@xilinx.com,
+ linux-kernel@vger.kernel.org,
+ jic23@kernel.org,
+ lars@metafoo.de,
+ linux-iio@vger.kernel.org,
+ pmeerw@pmeerw.net,
+ devicetree@vger.kernel.org
+Received: from [10.71.188.1] (port=8251 helo=xiranandash40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <anand.ashok.dumbre@xilinx.com>)
+        id 1mcqv4-00030B-3h; Tue, 19 Oct 2021 16:20:50 +0100
+From:   Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+To:     <linux-kernel@vger.kernel.org>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <linux-iio@vger.kernel.org>, <git@xilinx.com>,
+        <michal.simek@xilinx.com>, <pmeerw@pmeerw.net>,
+        <devicetree@vger.kernel.org>
+CC:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+Subject: [PATCH v7 0/4]  Add Xilinx AMS Driver
+Date:   Tue, 19 Oct 2021 16:20:44 +0100
+Message-ID: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20211019145919.7327-9-luca@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 65b8e37a-7bfd-4183-d87f-08d993140dd7
+X-MS-TrafficTypeDiagnostic: DM8PR02MB8122:
+X-Microsoft-Antispam-PRVS: <DM8PR02MB8122D75F8D84E624315AE967A9BD9@DM8PR02MB8122.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3h/JC3vAZoyLjNv7KIEIuNyPxoFwvNJNFKQKu3iP4p3mbant1Z/2tei5fTJNVvZWyZ+xfHha/ZoeaiLknYWZKSgJCnmk9ocaywHBPdbDMPvyp8Kq3mkOOgBcxeckFZoQSiW4phfClzrjJe6yo/GAQKFsUlHVW92krUiM8JowCFVXMVbKZD67lncan7OmUlVz1WebjP6r8NNRw3oROEI83VxxBEOzqfqRsoCOBoSZbgkgfzej9TzN+h+tpLgDxQXvOUoiaXzaEGbG2rUyMr1mwdRlbLV82VMreyo5oVokhHpLv9y8Et3Y+OOevd+cfeX9GBBTnABpSugPacFcWcLNsnVRattC9MJbo899ibDkpUOAVAvBfvd48JCzVcHrJ2DAuTI3c6w0OygMoK9XwXlfdwmhpnaHXXWGXEdbHhe91xqzMIl25UbtZ9g6L/MT7s5scgcZlvRtKgMQ9rTcpcQ2GSeMp72NOc9N/sVsrNoZLl2CDkoAQCig3WBNFlih8qKYuRkQ1ZDV3xc9dLkBgdIeockiq0G3Uu2D7kc1simkXTztmi4BCUHqUgedYmNy8TCrMe8Vsr4rzfLQ+SZetzQrUeTpAg4S143QHbhTzulEMGUVFpafHj0DkQeJtqfMFVmgJdR395kncLNLm7eEOvlPYka1GkAfzKUF8Zu5vs+4yMUsbQubeWQM8gnyuLwHhhHUzOx+X7E2GweXzZ2tiy6sUOT0J1itgqYN0luwY+S+Vcfg8VFZw8FwdzAlz8oVmj9b
+X-Forefront-Antispam-Report: CIP:149.199.80.198;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:xir-pvapexch01.xlnx.xilinx.com;PTR:unknown-80-198.xilinx.com;CAT:NONE;SFS:(36840700001)(46966006)(8936002)(508600001)(1076003)(4326008)(47076005)(7636003)(316002)(2906002)(82310400003)(26005)(186003)(336012)(36860700001)(83380400001)(2616005)(356005)(110136005)(8676002)(36756003)(5660300002)(107886003)(7696005)(36906005)(70586007)(426003)(70206006)(9786002)(6666004)(103116003)(102446001)(2101003);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 15:20:58.8255
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65b8e37a-7bfd-4183-d87f-08d993140dd7
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.80.198];Helo=[xir-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT058.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR02MB8122
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/19/21 7:59 AM, Luca Ceresoli wrote:
-> Add a simple driver to support the watchdog embedded in the Maxim MAX77714
-> PMIC.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+Add Xilinx AMS driver which is used for Xilinx's ZynqMP AMS controller.
+This AMS driver is used to report various interface voltages and temperatures
+across the system.
+This driver will be used by iio-hwmon to repport voltages and temperatures
+across the system by using various channel interfaces.
+This driver handles AMS module including PS-Sysmon & PL-Sysmon. The binding
+documentation is added for understanding of AMS, PS, PL Sysmon Channels.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Changes in v2:
+	- Added documentation for sysfs (Patch-2)
+	- Addressed code style review comments
+	- Patch-2 (Now it is Patch-3)
+		- Arranged the includes in alphabetical order
+		- Removed the wrapper 'ams_pl_write_reg()' and used writel
+		  instead
+		- Removed the unnecessary delay of 1ms and used polling of EOC
+		  instead
+		- Removed spin_lock and used mutex only.
+		- Used request_irq() instead of devm_request_irq() and handled
+		  respective error conditions
+		- Moved contents of xilinx-ams.h to inline with xilinx-ams.c
+	- Patch-1
+		- Addressed Documentation style comments
 
-The driver needs the include file introduced with the mfd driver,
-so I assume it will be submitted through the mfd branch.
+Changes in v3:
+	- Updated bindings document with the suggested modification in v2 review
+	- Removed documentation for sysfs
+	- Removed extended names for channels in the Xilinx AMS driver
+	- Modified dts to use ranges for child nodes
+	- Reduced address and size cells to 32-bit instead of 64-bit
 
-Thanks,
-Guenter
+Changes in v4:
+	- Updated bindings document with the suggested modification in v3 review
+	- Changed the Device Tree property 'ranges' for child nodes
+	- Used Channel Numbers as 'reg' value in DT to avoid confusion
+	- Removed unused NULL arguments as suggested in v3 patch review
+	- Addressed comments on Device Tree property naming
 
-> 
-> ---
-> 
-> Changes in v2:
->   - fix Kconfig help indentation (Randy Dunlap)
->   - make max77714_margin_value static const (Guenter Roeck)
->   - fix platform module instantiation
-> ---
->   MAINTAINERS                     |   1 +
->   drivers/watchdog/Kconfig        |   9 ++
->   drivers/watchdog/Makefile       |   1 +
->   drivers/watchdog/max77714_wdt.c | 179 ++++++++++++++++++++++++++++++++
->   4 files changed, 190 insertions(+)
->   create mode 100644 drivers/watchdog/max77714_wdt.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index abd9de8a9d99..71c3d8513ba0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11391,6 +11391,7 @@ M:	Luca Ceresoli <luca@lucaceresoli.net>
->   S:	Maintained
->   F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->   F:	drivers/mfd/max77714.c
-> +F:	drivers/watchdog/max77714_wdt.c
->   F:	include/linux/mfd/max77714.h
->   
->   MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index a24385099a91..b9b575acd690 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -699,6 +699,15 @@ config MAX77620_WATCHDOG
->   	  MAX77620 chips. To compile this driver as a module,
->   	  choose M here: the module will be called max77620_wdt.
->   
-> +config MAX77714_WATCHDOG
-> +	tristate "Maxim MAX77714 Watchdog Timer"
-> +	depends on MFD_MAX77714 || COMPILE_TEST
-> +	help
-> +	  This is the driver for watchdog timer in the MAX77714 PMIC.
-> +	  Say 'Y' here to enable the watchdog timer support for MAX77714
-> +	  chips. To compile this driver as a module, choose M here: the
-> +	  module will be called max77714_wdt.
-> +
->   config IMX2_WDT
->   	tristate "IMX2+ Watchdog"
->   	depends on ARCH_MXC || ARCH_LAYERSCAPE || COMPILE_TEST
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 1bd2d6f37c53..268a942311a0 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -215,6 +215,7 @@ obj-$(CONFIG_WM831X_WATCHDOG) += wm831x_wdt.o
->   obj-$(CONFIG_WM8350_WATCHDOG) += wm8350_wdt.o
->   obj-$(CONFIG_MAX63XX_WATCHDOG) += max63xx_wdt.o
->   obj-$(CONFIG_MAX77620_WATCHDOG) += max77620_wdt.o
-> +obj-$(CONFIG_MAX77714_WATCHDOG) += max77714_wdt.o
->   obj-$(CONFIG_ZIIRAVE_WATCHDOG) += ziirave_wdt.o
->   obj-$(CONFIG_SOFT_WATCHDOG) += softdog.o
->   obj-$(CONFIG_MENF21BMC_WATCHDOG) += menf21bmc_wdt.o
-> diff --git a/drivers/watchdog/max77714_wdt.c b/drivers/watchdog/max77714_wdt.c
-> new file mode 100644
-> index 000000000000..cce6c13d76eb
-> --- /dev/null
-> +++ b/drivers/watchdog/max77714_wdt.c
-> @@ -0,0 +1,179 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Maxim MAX77714 Watchdog Driver
-> + *
-> + * Copyright (C) 2021 Luca Ceresoli
-> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/max77714.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/watchdog.h>
-> +
-> +struct max77714_wdt {
-> +	struct device		*dev;
-> +	struct regmap		*rmap;
-> +	struct watchdog_device	wd_dev;
-> +};
-> +
-> +/* Timeout in seconds, indexed by TWD bits of CNFG_GLBL2 register */
-> +static const unsigned int max77714_margin_value[] = { 2, 16, 64, 128 };
-> +
-> +static int max77714_wdt_start(struct watchdog_device *wd_dev)
-> +{
-> +	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
-> +
-> +	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
-> +				  MAX77714_WDTEN, MAX77714_WDTEN);
-> +}
-> +
-> +static int max77714_wdt_stop(struct watchdog_device *wd_dev)
-> +{
-> +	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
-> +
-> +	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
-> +				  MAX77714_WDTEN, 0);
-> +}
-> +
-> +static int max77714_wdt_ping(struct watchdog_device *wd_dev)
-> +{
-> +	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
-> +
-> +	return regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL3,
-> +				  MAX77714_WDTC, 1);
-> +}
-> +
-> +static int max77714_wdt_set_timeout(struct watchdog_device *wd_dev,
-> +				    unsigned int timeout)
-> +{
-> +	struct max77714_wdt *wdt = watchdog_get_drvdata(wd_dev);
-> +	unsigned int new_timeout, new_twd;
-> +	int err;
-> +
-> +	for (new_twd = 0; new_twd < ARRAY_SIZE(max77714_margin_value) - 1; new_twd++)
-> +		if (timeout <= max77714_margin_value[new_twd])
-> +			break;
-> +
-> +	/* new_wdt is not out of bounds here due to the "- 1" in the for loop */
-> +	new_timeout = max77714_margin_value[new_twd];
-> +
-> +	/*
-> +	 * "If the value of TWD needs to be changed, clear the system
-> +	 * watchdog timer first [...], then change the value of TWD."
-> +	 * (MAX77714 datasheet)
-> +	 */
-> +	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL3,
-> +				 MAX77714_WDTC, 1);
-> +	if (err)
-> +		return err;
-> +
-> +	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG_GLBL2,
-> +				 MAX77714_TWD_MASK, new_twd);
-> +	if (err)
-> +		return err;
-> +
-> +	wd_dev->timeout = new_timeout;
-> +
-> +	dev_dbg(wdt->dev, "New timeout = %u s (WDT = 0x%x)", new_timeout, new_twd);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct watchdog_info max77714_wdt_info = {
-> +	.identity = "max77714-watchdog",
-> +	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
-> +};
-> +
-> +static const struct watchdog_ops max77714_wdt_ops = {
-> +	.start		= max77714_wdt_start,
-> +	.stop		= max77714_wdt_stop,
-> +	.ping		= max77714_wdt_ping,
-> +	.set_timeout	= max77714_wdt_set_timeout,
-> +};
-> +
-> +static int max77714_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct max77714_wdt *wdt;
-> +	struct watchdog_device *wd_dev;
-> +	unsigned int regval;
-> +	int err;
-> +
-> +	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-> +	if (!wdt)
-> +		return -ENOMEM;
-> +
-> +	wdt->dev = dev;
-> +
-> +	wd_dev = &wdt->wd_dev;
-> +	wd_dev->info = &max77714_wdt_info;
-> +	wd_dev->ops = &max77714_wdt_ops;
-> +	wd_dev->min_timeout = 2;
-> +	wd_dev->max_timeout = 128;
-> +
-> +	platform_set_drvdata(pdev, wdt);
-> +	watchdog_set_drvdata(wd_dev, wdt);
-> +
-> +	wdt->rmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!wdt->rmap)
-> +		return dev_err_probe(wdt->dev, -ENODEV, "Failed to get parent regmap\n");
-> +
-> +	/* WD_RST_WK: if 1 wdog restarts; if 0 wdog shuts down */
-> +	err = regmap_update_bits(wdt->rmap, MAX77714_CNFG2_ONOFF,
-> +				 MAX77714_WD_RST_WK, MAX77714_WD_RST_WK);
-> +	if (err)
-> +		return dev_err_probe(wdt->dev, err, "Error updating CNFG2_ONOFF\n");
-> +
-> +	err = regmap_read(wdt->rmap, MAX77714_CNFG_GLBL2, &regval);
-> +	if (err)
-> +		return dev_err_probe(wdt->dev, err, "Error reading CNFG_GLBL2\n");
-> +
-> +	/* enable watchdog | enable auto-clear in sleep state */
-> +	regval |= (MAX77714_WDTEN | MAX77714_WDTSLPC);
-> +
-> +	err = regmap_write(wdt->rmap, MAX77714_CNFG_GLBL2, regval);
-> +	if (err)
-> +		return dev_err_probe(wdt->dev, err, "Error writing CNFG_GLBL2\n");
-> +
-> +	wd_dev->timeout = max77714_margin_value[regval & MAX77714_TWD_MASK];
-> +
-> +	dev_dbg(wdt->dev, "Timeout = %u s (WDT = 0x%x)",
-> +		wd_dev->timeout, regval & MAX77714_TWD_MASK);
-> +
-> +	set_bit(WDOG_HW_RUNNING, &wd_dev->status);
-> +
-> +	watchdog_stop_on_unregister(wd_dev);
-> +
-> +	err = devm_watchdog_register_device(dev, wd_dev);
-> +	if (err)
-> +		return dev_err_probe(dev, err, "Cannot register watchdog device\n");
-> +
-> +	dev_info(dev, "registered as /dev/watchdog%d\n", wd_dev->id);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct platform_device_id max77714_wdt_platform_id[] = {
-> +	{ .name = "max77714-watchdog", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(platform, max77714_wdt_platform_id);
-> +
-> +static struct platform_driver max77714_wdt_driver = {
-> +	.driver	= {
-> +		.name	= "max77714-watchdog",
-> +	},
-> +	.probe	= max77714_wdt_probe,
-> +	.id_table = max77714_wdt_platform_id,
-> +};
-> +
-> +module_platform_driver(max77714_wdt_driver);
-> +
-> +MODULE_DESCRIPTION("MAX77714 watchdog timer driver");
-> +MODULE_AUTHOR("Luca Ceresoli <luca@lucaceresoli.net>");
-> +MODULE_LICENSE("GPL v2");
-> 
+Changes in v5:
+	- Updated bindings document to the YAML format
+	- Updated bindings document with the suggested modification in v4 review
+	- Renamed iio_pl_info struct to iio_ams_info in Xilinx AMS driver
+	- Updated the Xilinx AMS driver to not use iio_priv_to_dev function
+	- Updated Xilinx AMS node to reflect the changes in bindings document
+	- Update MAINTAINERS file
+
+Changes in v6:
+	- Removed all tabs from bindings document.
+	- Removed the xlnx,ext-channels node from the device tree since
+	  it is not neeeded.
+	- Fixed unit addresses for ps-ams and pl-ams.
+	- Removed the names property from bindings.
+	- Fixed warnings from checkpatch.pl in the driver.
+	- devm_add_action_or_reset() used for exit/error path.
+	- devm_request_irq() for managed irq request instead of
+	  request_irq()
+
+Changes in v7:
+	- Added use of FIELD_PREP and FIELD_GET.
+	- Added the spinlocks back the v1 which were removed in v2 for
+	  no justifiable reason and replaced with the same mutex. This
+	  caused deadlocks.
+	- Removed the buffered mode information from channel config.
+	- Usage of wrapper functions for devm_add_action_or_reset
+	  callbacks to avoid typecasting functions.
+	- Usage of devm_platform_iremap_resource().
+	- Handled platform_get_irq() return values.
+	- Removed the remove() callback.
+	- Fixed the dt-bindings.
+
+Anand Ashok Dumbre (4):
+  arm64: zynqmp: DT: Add Xilinx AMS node
+  iio: adc: Add Xilinx AMS driver
+  dt-bindings: iio: adc: Add Xilinx AMS binding documentation
+  MAINTAINERS: Add maintainer for xilinx-ams
+
+ .../bindings/iio/adc/xlnx,zynqmp-ams.yaml     |  227 +++
+ MAINTAINERS                                   |    7 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |   26 +-
+ drivers/iio/adc/Kconfig                       |   13 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/xilinx-ams.c                  | 1338 +++++++++++++++++
+ 6 files changed, 1611 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+ create mode 100644 drivers/iio/adc/xilinx-ams.c
+
+-- 
+2.17.1
 
