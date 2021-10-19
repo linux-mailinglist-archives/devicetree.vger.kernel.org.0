@@ -2,84 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBDE84337B7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2E1B4337B5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:48:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235822AbhJSNug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 09:50:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47162 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235774AbhJSNuf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 09:50:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E70560724;
-        Tue, 19 Oct 2021 13:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634651303;
-        bh=XMC/wPCLR3CBhhlT5pdzczydUVy9/N9xDjzMYHJpisA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XVz3/x1A/lWTu+niZXy+0StJv8L0IQUVZCiEkvfOa2MSgPYviTFsMQRTwZ3RVMjAP
-         DzH/cm9o/LLbuqUW6I9Le6IwMuAXwMhqLFqjhJCnSHqXs+ypzZZwxBLjSJ0Ll2E62x
-         o8rufTm7qtEo9zHjmTQQ0NtwVzZht+5ULI1kM9DQVVME+xBOISQk10mcnTp6u7yxgj
-         dyaV2siNXZ1TUw6pCpxOAdRhmEyo+7KjmHmTk/NR/46CZrXDS1YWGb4sj5ZH41yB2x
-         kkUdq6HwbVs+sxWqgsUvVOCoP/4u8QqgRd0Vg0A3iNMFXv/claKAiPQpQTGq4xQDJM
-         76mZsOYYP/Jpg==
-Received: by mail-ed1-f46.google.com with SMTP id w19so13222362edd.2;
-        Tue, 19 Oct 2021 06:48:23 -0700 (PDT)
-X-Gm-Message-State: AOAM531Rx4oghoBppGP3mW3OpOcqtQD7QIqZB9WvXAEJmSIDQRvVkau4
-        e6D+6hNG5xIcIAOyPFaq4jiTZIbXi0DTdavz8g==
-X-Google-Smtp-Source: ABdhPJyAfrYlSPnzjG28JymfwvH0BP3fn74QUTfI0oe+sTUWy23ijNdMN4gs6ujRiJQN0RszPk5QghJDBRsUY0PgyKY=
-X-Received: by 2002:a05:6402:1778:: with SMTP id da24mr53073940edb.318.1634651259310;
- Tue, 19 Oct 2021 06:47:39 -0700 (PDT)
+        id S235691AbhJSNub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 09:50:31 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:37403 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235929AbhJSNua (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 09:50:30 -0400
+Received: by mail-ua1-f46.google.com with SMTP id f4so3514598uad.4;
+        Tue, 19 Oct 2021 06:48:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fcDzEu/olBUewc2zfLP9L5lSacn9aVLegk1TrgMXQas=;
+        b=Jzmhf3cw/KshIRz8/xBpAv46b3d7uYEbmVLuJ+p/+8pDnEMzCntEHDTxFynCSvjMbL
+         fCSw9YyizoQQQ+4O/3Lfwl/KEh+pwmQU2M2ffoSPtt7MiGP1fMJqa6ms18wGKYFS+3Br
+         aT6MrLpoPQSyOPU8Nn59tQkMYk3FFJC+3DtD8MiRdqqxgf19jE1vS9DEW/6yWXlMiqgv
+         Qgv2qr2DUDKY3/AyJZhrtlvjGX2XbYHFVgcfZ9W6V3NFEiUKF3pbSRI95ymPBw0DjbS8
+         AfXDyPda85ZFNlpeEsPPNn+F/kdNFVCX0IvseSkOWxXLsO6YcZqusmHsvF/fxCa37J6+
+         RjUw==
+X-Gm-Message-State: AOAM530iZg/yAw6QsSbAoFwBjtPXsrev9IrxSZcmjI51FbyyHFo+EVs5
+        +gKUrH6oB9df1i5MI7VztqtyJZjU6OhcJw==
+X-Google-Smtp-Source: ABdhPJwep983ZzJlXgVZ2iEEdJAq2O28V2X8VNam5AcKFVqSYD+Nd8ojG3/RZJuDE2SSsGdKHTwEqQ==
+X-Received: by 2002:a67:ac42:: with SMTP id n2mr35580262vsh.21.1634651296314;
+        Tue, 19 Oct 2021 06:48:16 -0700 (PDT)
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
+        by smtp.gmail.com with ESMTPSA id b24sm10798780uaq.16.2021.10.19.06.48.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
+Received: by mail-vk1-f175.google.com with SMTP id bc10so3428305vkb.1;
+        Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
+X-Received: by 2002:a1f:1604:: with SMTP id 4mr32111362vkw.11.1634651295119;
+ Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211018101608.3818840-1-tzungbi@google.com>
-In-Reply-To: <20211018101608.3818840-1-tzungbi@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 19 Oct 2021 08:47:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK9UQ9K+GseF5QtiPW_sHMiupq1HAwDArN6P+H8iBwJ-Q@mail.gmail.com>
-Message-ID: <CAL_JsqK9UQ9K+GseF5QtiPW_sHMiupq1HAwDArN6P+H8iBwJ-Q@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: rename reset controller
- headers in DT example
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+References: <cover.1634646975.git.geert+renesas@glider.be> <87a6j5gmvg.fsf@codeaurora.org>
+In-Reply-To: <87a6j5gmvg.fsf@codeaurora.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 19 Oct 2021 15:48:03 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
+Message-ID: <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings: net: TI wlcore json schema conversion
+ and fix
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        David Lechner <david@lechnology.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 18, 2021 at 5:16 AM Tzung-Bi Shih <tzungbi@google.com> wrote:
->
-> Commit f07c776f6d7e ("arm64: dts: mediatek: Move reset controller
-> constants into common location") moves the reset controller headers.
-> However, it forgot to rename the DT example in mt8192-afe-pcm.yaml.
->
-> Renames the DT example to pass dt_binding_check.
->
-> Fixes: f07c776f6d7e ("arm64: dts: mediatek: Move reset controller constants into common location")
-> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
-> ---
-> The patch bases on next-20211018.
->
-> In Mark's tree[1], the commit f07c776f6d7e hasn't shown up.
-> In Matthias's tree[2], mt8192-afe-pcm.yaml hasn't applied.
->
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/
-> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/
->
-> Also, I am not sure if the commit hash "f07c776f6d7e" would change
-> or not after it applies to mainline.
->
->  Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Kalle,
 
-Not great as things will break again in the merge window temporarily.
-You could just not use the 1 reset define in the example and avoid all
-that, but this is fine:
+On Tue, Oct 19, 2021 at 3:33 PM Kalle Valo <kvalo@codeaurora.org> wrote:
+> Geert Uytterhoeven <geert+renesas@glider.be> writes:
+> > This patch series converts the Device Tree bindings for the Texas
+> > Instruments Wilink Wireless LAN and Bluetooth Controllers to
+> > json-schema, after fixing an issue in a Device Tree source file.
+> >
+> > Thanks for your comments!
+> >
+> > Geert Uytterhoeven (3):
+> >   ARM: dts: motorola-mapphone: Drop second ti,wlcore compatible value
+> >   dt-bindings: net: wireless: ti,wlcore: Convert to json-schema
+> >   dt-bindings: net: ti,bluetooth: Convert to json-schema
+> >
+> >  .../devicetree/bindings/net/ti,bluetooth.yaml |  91 ++++++++++++
+> >  .../devicetree/bindings/net/ti-bluetooth.txt  |  60 --------
+> >  .../bindings/net/wireless/ti,wlcore,spi.txt   |  57 --------
+> >  .../bindings/net/wireless/ti,wlcore.txt       |  45 ------
+> >  .../bindings/net/wireless/ti,wlcore.yaml      | 134 ++++++++++++++++++
+> >  .../boot/dts/motorola-mapphone-common.dtsi    |   2 +-
+> >  arch/arm/boot/dts/omap3-gta04a5.dts           |   2 +-
+> >  7 files changed, 227 insertions(+), 164 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/net/ti,bluetooth.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/net/ti-bluetooth.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
+> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
+> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+>
+> Via which tree should these go?
 
-Acked-by: Rob Herring <robh@kernel.org>
+The DTS change should go through the OMAP tree.
+The binding changes through the net or DT trees.
+
+I kept everything together for an improved overview.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
