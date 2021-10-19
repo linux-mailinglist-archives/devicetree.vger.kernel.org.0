@@ -2,108 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6E0434148
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 00:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE92C434157
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 00:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229707AbhJSW0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 18:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbhJSW0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 18:26:14 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A620C06161C;
-        Tue, 19 Oct 2021 15:24:00 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 859311F43E76
-Received: by earth.universe (Postfix, from userid 1000)
-        id 0842C3C0CA7; Wed, 20 Oct 2021 00:23:57 +0200 (CEST)
-Date:   Wed, 20 Oct 2021 00:23:56 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Lechner <david@lechnology.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-wireless@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/3] ARM: dts: motorola-mapphone: Drop second ti,wlcore
- compatible value
-Message-ID: <20211019222356.ybx2dn6oaogichtv@earth.universe>
-References: <cover.1634646975.git.geert+renesas@glider.be>
- <84f8e477015d73ce7fca7b8abdd1099f505ad972.1634646975.git.geert+renesas@glider.be>
+        id S229757AbhJSW2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 18:28:41 -0400
+Received: from ixit.cz ([94.230.151.217]:54002 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229632AbhJSW2k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 18:28:40 -0400
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id AD26920064;
+        Wed, 20 Oct 2021 00:26:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634682386;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=5jg69UQKQD2tfZXqs0E8mJ/KCQlQAP8qmUqnBxG4Qmc=;
+        b=oDJMZM2oqDFrpN31K5nWQscg6a1VUzgAVbDDln45t1tsQpX4+3jO4cNelc7PqdzfMzUG3j
+        7JHGAVnRzDU9vMNIfQrp6L7UYoWI/n8rUDcQbovynNtE3tN5Ex8QnhXTAaHBIKs/1lB/as
+        lgRsGXHVAyppd4bcv4qIBgcBaULVj9M=
+Date:   Wed, 20 Oct 2021 00:24:52 +0200
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH] WIP: dt-bindings: arm: firmware: tlm,trusted-foundations:
+ Convert txt bindings to yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephen Warren <swarren@nvidia.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht
+Message-Id: <GXW81R.AUXV3AJ9VUDL@ixit.cz>
+In-Reply-To: <YW86yrhJBTunU121@robh.at.kernel.org>
+References: <20211009104518.45596-1-david@ixit.cz>
+        <YW86yrhJBTunU121@robh.at.kernel.org>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dtqfs7bs4eb7ghau"
-Content-Disposition: inline
-In-Reply-To: <84f8e477015d73ce7fca7b8abdd1099f505ad972.1634646975.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dtqfs7bs4eb7ghau
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
 
-On Tue, Oct 19, 2021 at 02:43:11PM +0200, Geert Uytterhoeven wrote:
-> The TI wlcore DT bindings specify using a single compatible value for
-> each variant, and the Linux kernel driver matches against the first
-> compatible value since commit 078b30da3f074f2e ("wlcore: add wl1285
-> compatible") in v4.13.
+On Tue, Oct 19 2021 at 16:38:18 -0500, Rob Herring <robh@kernel.org> 
+wrote:
+> On Sat, Oct 09, 2021 at 12:45:18PM +0200, David Heidelberg wrote:
+>>  Convert Trusted Foundation binding to the YAML syntax.
+> 
+> Looks fine. Why WIP?
+> 
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Can you drop the WIP prefix I forgot or should I resend?
 
--- Sebastian
 
->  arch/arm/boot/dts/motorola-mapphone-common.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/b=
-oot/dts/motorola-mapphone-common.dtsi
-> index a4423ff0df39264b..c7a1f3ffc48ca58e 100644
-> --- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-> +++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-> @@ -310,7 +310,7 @@ &mmc3 {
->  	#address-cells =3D <1>;
->  	#size-cells =3D <0>;
->  	wlcore: wlcore@2 {
-> -		compatible =3D "ti,wl1285", "ti,wl1283";
-> +		compatible =3D "ti,wl1285";
->  		reg =3D <2>;
->  		/* gpio_100 with gpmc_wait2 pad as wakeirq */
->  		interrupts-extended =3D <&gpio4 4 IRQ_TYPE_LEVEL_HIGH>,
-> --=20
-> 2.25.1
->=20
+> If version number ranges are known, you could add constraints on 
+> those.
 
---dtqfs7bs4eb7ghau
-Content-Type: application/pgp-signature; name="signature.asc"
+from driver:
+         * we are not using version information for now since currently
+         * supported SMCs are compatible with all TF releases
+so I guess at least driver currently doesn't care and know any enums.
 
------BEGIN PGP SIGNATURE-----
+David
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmFvRXkACgkQ2O7X88g7
-+prCPw//aKM8e080CfIvvBYQqetwGG+1nS3TMtHR6VDiMOsEHjCGjsKX3W0ilf6s
-+QUixW6xyIiuJDwpFsoVW0trtYVjfCdoDUgF1D8/0Kb+Q3aTwtqqaUqQLzCflXPT
-aO8nClN8JrLX1ewNkxjAE+tXa+Z0tEWun0avnRoXbaSYnUFN7OAnEzNY9RuksYiW
-xnaaGStczuIpsAZnTzOROxH9/yny+SM9XiZPl+dsCvAcjYOfF2F8H2eIjYzUI5dP
-B1lqo0GT11NrzUVBxLxZdWy7BbA8frRUw13wBcaQFt+GoJjcdsiU1pvssmg5FA7o
-FAM8xL3gx4k1QvtqpaVKw4usSC29wNYsL2DpsDAiN/T+lCvIWWPL8HuvB17nL2cv
-Wzui2ikkfkpAUQuSXpzeyETV2aH4xfWxTZTSC1FGPbcZptRQ5vyMWySfEo60OBW6
-+E1pV6kWjmKnMiXIjUuqIASDTJq+JW9jk8FWCGRcHf8phCVnmkGxCRh9nAbQQ7QX
-LB8DhwA/LwqZ2wfcxm/DI+DjIQUSEynslvAdDtkod8i8py5HUN/+6fzR62Vmnc/T
-DzBdCmLMzZPqwBOAl4L46UUhkbjnvU7zRVLjUioTU9/TmtYpIjYcwU9giFYhhPto
-ZgNs5Y8R/kgWvMk4txkAIz8p1cyBWLfuScZ0Db8v+UMX3MnyTWU=
-=3UNY
------END PGP SIGNATURE-----
+> 
+>> 
+>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>  ---
+>>   .../arm/firmware/tlm,trusted-foundations.txt  | 20 --------
+>>   .../arm/firmware/tlm,trusted-foundations.yaml | 46 
+>> +++++++++++++++++++
+>>   2 files changed, 46 insertions(+), 20 deletions(-)
+>>   delete mode 100644 
+>> Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.txt
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.yaml
+>> 
+>>  diff --git 
+>> a/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.txt 
+>> b/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.txt
+>>  deleted file mode 100644
+>>  index 780d0392a66b..000000000000
+>>  --- 
+>> a/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.txt
+>>  +++ /dev/null
+>>  @@ -1,20 +0,0 @@
+>>  -Trusted Foundations
+>>  --------------------
+>>  -
+>>  -Boards that use the Trusted Foundations secure monitor can signal 
+>> its
+>>  -presence by declaring a node compatible with 
+>> "tlm,trusted-foundations"
+>>  -under the /firmware/ node
+>>  -
+>>  -Required properties:
+>>  -- compatible: "tlm,trusted-foundations"
+>>  -- tlm,version-major: major version number of Trusted Foundations 
+>> firmware
+>>  -- tlm,version-minor: minor version number of Trusted Foundations 
+>> firmware
+>>  -
+>>  -Example:
+>>  -	firmware {
+>>  -		trusted-foundations {
+>>  -			compatible = "tlm,trusted-foundations";
+>>  -			tlm,version-major = <2>;
+>>  -			tlm,version-minor = <8>;
+>>  -		};
+>>  -	};
+>>  diff --git 
+>> a/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.yaml 
+>> b/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.yaml
+>>  new file mode 100644
+>>  index 000000000000..9d1857c0aa07
+>>  --- /dev/null
+>>  +++ 
+>> b/Documentation/devicetree/bindings/arm/firmware/tlm,trusted-foundations.yaml
+>>  @@ -0,0 +1,46 @@
+>>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>  +%YAML 1.2
+>>  +---
+>>  +$id: 
+>> "http://devicetree.org/schemas/arm/firmware/tlm,trusted-foundations.yaml#"
+>>  +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>>  +
+>>  +title: Trusted Foundations
+>>  +
+>>  +description: |
+>>  +  Boards that use the Trusted Foundations secure monitor can 
+>> signal its
+>>  +  presence by declaring a node compatible under the /firmware/ node
+>>  +
+>>  +maintainers:
+>>  +  - Stephen Warren <swarren@nvidia.com>
+>>  +
+>>  +properties:
+>>  +  $nodename:
+>>  +    const: trusted-foundations
+>>  +
+>>  +  compatible:
+>>  +    const: tlm,trusted-foundations
+>>  +
+>>  +  tlm,version-major:
+>>  +    $ref: /schemas/types.yaml#/definitions/uint32
+>>  +    description: major version number of Trusted Foundations 
+>> firmware
+>>  +
+>>  +  tlm,version-minor:
+>>  +    $ref: /schemas/types.yaml#/definitions/uint32
+>>  +    description: minor version number of Trusted Foundations 
+>> firmware
+>>  +
+>>  +required:
+>>  +  - compatible
+>>  +  - tlm,version-major
+>>  +  - tlm,version-minor
+>>  +
+>>  +additionalProperties: false
+>>  +
+>>  +examples:
+>>  +  - |
+>>  +    firmware {
+>>  +      trusted-foundations {
+>>  +        compatible = "tlm,trusted-foundations";
+>>  +        tlm,version-major = <2>;
+>>  +        tlm,version-minor = <8>;
+>>  +      };
+>>  +    };
+>>  --
+>>  2.33.0
+>> 
+>> 
 
---dtqfs7bs4eb7ghau--
+
