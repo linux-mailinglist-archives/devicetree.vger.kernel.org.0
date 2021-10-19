@@ -2,100 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42A4F434204
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 01:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4610434217
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 01:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhJSXWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 19:22:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44946 "EHLO
+        id S229657AbhJSXfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 19:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbhJSXWX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 19:22:23 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A065C06161C;
-        Tue, 19 Oct 2021 16:20:10 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id b189-20020a1c1bc6000000b0030da052dd4fso6161859wmb.3;
-        Tue, 19 Oct 2021 16:20:10 -0700 (PDT)
+        with ESMTP id S229554AbhJSXfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 19:35:54 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC07C06161C;
+        Tue, 19 Oct 2021 16:33:40 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id n7so22466127iod.0;
+        Tue, 19 Oct 2021 16:33:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wCNp6pRP0whQW8wmwIovrXx3DF0GHE2nJ7BG+D14iAI=;
-        b=B5qKM3MIncrmUKRrTKCNJupQHUdbtHvb/DYYsN4VIipcV2tqk8ppCu32SKU1okb70/
-         AJ4IaZqhsHIIZ5NbNllcYeQC76uHgAGrJGZF18gSlBajw3xrc2FJCJeTPgC4nvzk+Q0J
-         BLDuxRW8ztOCSSKlKCl+7gZs/z85uCFRu1CLeG/AyL1mAu+8nvKTMdwMRnpIw3vzOx47
-         RLzt3WBCFO1x5sVSHvxGmyaA3kSUoJwArrHK7rZ4ss1TltBSxFRYPqgu8tDNGwj2V3lN
-         jq1U1ScgHQ2izVbOWXe6vB/V0V3G2ROse+Nhv36vazUHfpBDbZciIkeqLaXGDIMmAcYO
-         n3vA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=25rWtVJ6antFlMKw+3pZxLgSVWLey+YCqrJLukUkDHQ=;
+        b=H7c+hB7X91riOlLeouKV8ZaBVBWQqIcSjW+PmO/QGmd73wmuMDc4JL7WsuBVj+lL7Q
+         /13w9EhRqmUY63kGcfV+4xEAUlLtDFQ2FJ5mGdE4NpJRqKG6kFBW1HLPekJGlnUhh/ox
+         Y5gaRXfv48cdC61MNhnM4gtwCYcnGJGzEDe1raU31cXL2EYDLCotfjfJtY0f2yawAoZO
+         cm66z9vFwmRiuO97lEWb4uLzKLo53nztTr/FGkKLmJ/jjKhb3HPKNjoGNLFTrbmEphac
+         OVzM0OewPn2IjNFhHS1xAFOPagt7CpwuGieNYQNl0szHcgTLt9jpS0RwvSd8AtWJj3bt
+         aBKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wCNp6pRP0whQW8wmwIovrXx3DF0GHE2nJ7BG+D14iAI=;
-        b=id+LCpq+35hsvhwWYH0+gzD2zCCLuEa12KmT+P25qi3FdM1RK0AY7xkltRrAm5E8Gg
-         cTpSKMdV+J2GRf+4QLo11VhS+fVGPn9hdPWMspw/HVa3c1VtDLjzXfWl4janfnTrpeEY
-         cYoPFqWrXAV/XkgcN5YDMDkkgqk5b2ERQZxhHEKMCegfou1Rvf9YSV7ydK5KiGVxRnyM
-         ZRnrYboOzu4si+KbtxK5fchpQ/MClMS5fft4tK+sYtRkSy03/b0TZkK/sdYuwOyvnkdj
-         fgoIwFchfLjSQmNYaKlwCG9+GohzoJXn1G2B7kvdJ+x0PuBBHhISAW9uVfdr73cwJ/EU
-         tlGA==
-X-Gm-Message-State: AOAM531JAwM4erCJ3gcOfmuCUlprE4vJmGRmOynPHiew+XrPmvGnP+zz
-        XB/SZBQ2rVGLKos751QGcL8=
-X-Google-Smtp-Source: ABdhPJyFy6jXFXEH5YBEK6YZAIH6fYITYu0JKu13nCIXd2izmF13kuLM6XW0yR/U3p2azgQEMnDcxg==
-X-Received: by 2002:a5d:6982:: with SMTP id g2mr47446560wru.51.1634685608867;
-        Tue, 19 Oct 2021 16:20:08 -0700 (PDT)
-Received: from localhost.localdomain (94-29-39-10.dynamic.spd-mgts.ru. [94.29.39.10])
-        by smtp.gmail.com with ESMTPSA id q16sm308983wru.39.2021.10.19.16.20.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 16:20:08 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: opp: Allow multi-worded node names
-Date:   Wed, 20 Oct 2021 02:19:05 +0300
-Message-Id: <20211019231905.2974-1-digetx@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=25rWtVJ6antFlMKw+3pZxLgSVWLey+YCqrJLukUkDHQ=;
+        b=HVxeLL4WojxX7WPhLnYo2H5+LgVGJzOI7VuuTBaQwAq9olDvwnb6BnB6uN3vduE3v1
+         B+oVGAxOUa9+7LiQG+aYJfFJ589V0VI/aVktlRBYhErCBIKgHa7HXAkbp/rQSU8ErXjh
+         t1BZ04m5zPGpi4hyxYKoLuawT2DgBQFXGmWon9PnVB3MAxA25DZlcznX5clV1r/nIZge
+         OYp1Y5wTouxLeQr2r7ciM+r651uiL+vKOO6/wUILbOjsfu4tK0zy8cMNAfajV4tgd0Sz
+         LMGMDoBN+Ggf2N+HTfhBoJS7SNlhe8sZlcKmRSkrzEd825Ea/YZ1rWG0pu/xShy20MHR
+         p65Q==
+X-Gm-Message-State: AOAM530tVk40E3b1m+eChUVDxc7pjx7SvwsQMWVhsd7uR65mYQJkpjlM
+        6NN2uTvt4+4t7LfuVaZziKRht+19CrtzqKMXSek=
+X-Google-Smtp-Source: ABdhPJyRmICumBr3hkAN5zDPyjw6E2QPC/S9FYCXywaKJmpiMx6L5D0jjzwJBbXy+KoshuC/KwcAr8lxScqF1MH10zU=
+X-Received: by 2002:a05:6638:1489:: with SMTP id j9mr4111709jak.18.1634686420144;
+ Tue, 19 Oct 2021 16:33:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211009114313.17967-1-alistair@alistair23.me>
+ <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com> <YW4kgnI0DQHj4sw4@google.com>
+In-Reply-To: <YW4kgnI0DQHj4sw4@google.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Wed, 20 Oct 2021 09:33:13 +1000
+Message-ID: <CAKmqyKMrb=Uz0+-ycj0HkAKJYdRU11Dc+24+KJw_j3MHT=2+yw@mail.gmail.com>
+Subject: Re: [PATCH v11 1/4] HID: wacom_sys: Add support for flipping the data values
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Ping Cheng <pinglinux@gmail.com>,
+        Alistair Francis <alistair@alistair23.me>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>, Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        linux-input <linux-input@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not all OPP table names and OPP entries consist of a single word. In
-particular NVIDIA Tegra OPP tables use multi-word names. Allow OPP node
-and OPP entry name to have multi-worded names to silence DT checker
-warnings about the multi-word names separated by hyphen.
+On Tue, Oct 19, 2021 at 11:51 AM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
+>
+> Hi Ping,
+>
+> On Mon, Oct 18, 2021 at 10:41:55AM -0700, Ping Cheng wrote:
+> > Hi Alistair,
+> >
+> > On Sat, Oct 9, 2021, 4:44 AM Alistair Francis <alistair@alistair23.me>
+> > wrote:
+> >
+> > > Add support to the Wacom HID device for flipping the values based on
+> > > device tree settings. This allows us to support devices where the panel
+> > > is installed in a different orientation, such as the reMarkable2.
+> > >
+> >
+> > This device was designed for hid-generic driver, if it's not driven by
+> > wacom_i2c.c or an out of tree driver.
+> >
+> > wacom.ko doesn't support vid 0x2d1f devices.
+>
+> I am really confused about this distinction. Could you please elaborate
+> why wacom driver only supports 0x056a (and, curiously, some Lenovo)
+> devices.
+>
+> Thanks.
+>
+>
+> >
+> > Nacked-by: Ping Cheng <Ping.Cheng@wacom.com>
+> >
+> > Sorry about that,
+> > Ping
+> >
+> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > ---
+> > >  .../bindings/input/hid-over-i2c.txt           | 20 ++++++
+> > >  drivers/hid/wacom_sys.c                       | 25 ++++++++
+> > >  drivers/hid/wacom_wac.c                       | 61 +++++++++++++++++++
+> > >  drivers/hid/wacom_wac.h                       | 13 ++++
+> > >  4 files changed, 119 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> > > b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> > > index c76bafaf98d2..16ebd7c46049 100644
+> > > --- a/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> > > +++ b/Documentation/devicetree/bindings/input/hid-over-i2c.txt
+> > > @@ -33,6 +33,26 @@ device-specific compatible properties, which should be
+> > > used in addition to the
+> > >  - post-power-on-delay-ms: time required by the device after enabling its
+> > > regulators
+> > >    or powering it on, before it is ready for communication.
+> > >
+> > > +  flip-tilt-x:
+> > > +    type: boolean
+> > > +    description: Flip the tilt X values read from device
+> > > +
+> > > +  flip-tilt-y:
+> > > +    type: boolean
+> > > +    description: Flip the tilt Y values read from device
+>
+> Do these really need to be controlled separately from the main
+> touchcsreen orientation?
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I don't think so actually.
 
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-index ae3ae4d39843..298cf24af270 100644
---- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-@@ -22,7 +22,7 @@ select: false
- 
- properties:
-   $nodename:
--    pattern: '^opp-table(-[a-z0-9]+)?$'
-+    pattern: '^opp-table(-[a-z0-9]+)*$'
- 
-   opp-shared:
-     description:
-@@ -33,7 +33,7 @@ properties:
-     type: boolean
- 
- patternProperties:
--  '^opp-?[0-9]+$':
-+  '^opp(-[0-9]+)*$':
-     type: object
-     description:
-       One or more OPP nodes describing voltage-current-frequency combinations.
--- 
-2.32.0
+>
+> > > +
+> > > +  flip-pos-x:
+> > > +    type: boolean
+> > > +    description: Flip the X position values read from device
+> > > +
+> > > +  flip-pos-y:
+> > > +    type: boolean
+> > > +    description: Flip the Y position values read from device
+>
+> We already have touchscreen-inverted-x/y defined in
+> Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml,
+> why are they not sufficient?
 
+The touchscreen-* properties aren't applied to HID devices though, at
+least not that I can tell.
+
+Alistair
+
+>
+> > > +
+> > > +  flip-distance:
+> > > +    type: boolean
+> > > +    description: Flip the distance values read from device
+>
+> I am still confused of the notion of flipped distance.
+>
+> > > +
+> > >  Example:
+> > >
+> > >         i2c-hid-dev@2c {
+> > > diff --git a/drivers/hid/wacom_sys.c b/drivers/hid/wacom_sys.c
+> > > index 93f49b766376..47d9590b10bd 100644
+> > > --- a/drivers/hid/wacom_sys.c
+> > > +++ b/drivers/hid/wacom_sys.c
+> > > @@ -10,6 +10,7 @@
+> > >
+> > >  #include "wacom_wac.h"
+> > >  #include "wacom.h"
+> > > +#include <linux/of.h>
+> > >  #include <linux/input/mt.h>
+> > >
+> > >  #define WAC_MSG_RETRIES                5
+> > > @@ -2730,6 +2731,28 @@ static void wacom_mode_change_work(struct
+> > > work_struct *work)
+> > >         return;
+> > >  }
+> > >
+> > > +static void wacom_of_read(struct hid_device *hdev, struct wacom_wac
+> > > *wacom_wac)
+> > > +{
+> > > +       if (IS_ENABLED(CONFIG_OF)) {
+> > > +               wacom_wac->flip_tilt_x =
+> > > of_property_read_bool(hdev->dev.parent->of_node,
+> > > +                                                       "flip-tilt-x");
+> > > +               wacom_wac->flip_tilt_y =
+> > > of_property_read_bool(hdev->dev.parent->of_node,
+> > > +                                                       "flip-tilt-y");
+> > > +               wacom_wac->flip_pos_x =
+> > > of_property_read_bool(hdev->dev.parent->of_node,
+> > > +                                                       "flip-pos-x");
+> > > +               wacom_wac->flip_pos_y =
+> > > of_property_read_bool(hdev->dev.parent->of_node,
+> > > +                                                       "flip-pos-y");
+> > > +               wacom_wac->flip_distance =
+> > > of_property_read_bool(hdev->dev.parent->of_node,
+> > > +                                                       "flip-distance");
+> > > +       } else {
+> > > +               wacom_wac->flip_tilt_x = false;
+> > > +               wacom_wac->flip_tilt_y = false;
+> > > +               wacom_wac->flip_pos_x = false;
+> > > +               wacom_wac->flip_pos_y = false;
+> > > +               wacom_wac->flip_distance = false;
+> > > +       }
+> > > +}
+> > > +
+> > >  static int wacom_probe(struct hid_device *hdev,
+> > >                 const struct hid_device_id *id)
+> > >  {
+> > > @@ -2797,6 +2820,8 @@ static int wacom_probe(struct hid_device *hdev,
+> > >                                  error);
+> > >         }
+> > >
+> > > +       wacom_of_read(hdev, wacom_wac);
+> > > +
+> > >         wacom_wac->probe_complete = true;
+> > >         return 0;
+> > >  }
+> > > diff --git a/drivers/hid/wacom_wac.c b/drivers/hid/wacom_wac.c
+> > > index 33a6908995b1..c01f683e23fa 100644
+> > > --- a/drivers/hid/wacom_wac.c
+> > > +++ b/drivers/hid/wacom_wac.c
+> > > @@ -3261,6 +3261,63 @@ static int wacom_status_irq(struct wacom_wac
+> > > *wacom_wac, size_t len)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static int wacom_of_irq(struct wacom_wac *wacom_wac, size_t len)
+> > > +{
+> > > +       const struct wacom_features *features = &wacom_wac->features;
+> > > +       unsigned char *data = wacom_wac->data;
+> > > +       struct input_dev *input = wacom_wac->pen_input;
+> > > +       unsigned int x, y, pressure;
+> > > +       unsigned char tsw, f1, f2, ers;
+> > > +       short tilt_x, tilt_y, distance;
+> > > +
+> > > +       if (!IS_ENABLED(CONFIG_OF))
+> > > +               return 0;
+> > > +
+> > > +       tsw = data[1] & WACOM_TIP_SWITCH_bm;
+> > > +       ers = data[1] & WACOM_ERASER_bm;
+> > > +       f1 = data[1] & WACOM_BARREL_SWITCH_bm;
+> > > +       f2 = data[1] & WACOM_BARREL_SWITCH_2_bm;
+> > > +       x = le16_to_cpup((__le16 *)&data[2]);
+> > > +       y = le16_to_cpup((__le16 *)&data[4]);
+> > > +       pressure = le16_to_cpup((__le16 *)&data[6]);
+> > > +
+> > > +       /* Signed */
+> > > +       tilt_x = get_unaligned_le16(&data[9]);
+> > > +       tilt_y = get_unaligned_le16(&data[11]);
+> > > +
+> > > +       distance = get_unaligned_le16(&data[13]);
+>
+> You are still parsing raw data. The point of HID is to provide common
+> framework for scaling raw values.
+>
+> Thanks.
+>
+> --
+> Dmitry
