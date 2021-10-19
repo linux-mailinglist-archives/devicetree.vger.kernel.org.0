@@ -2,223 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D90E4333A6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF0414333A8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235169AbhJSKkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 06:40:03 -0400
-Received: from mail-mw2nam12on2122.outbound.protection.outlook.com ([40.107.244.122]:39194
-        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230097AbhJSKkC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 06:40:02 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZGiE83nZNsqBsJbsmp8XmNaaqk0OILHlejh5DcKD0JaFS1khvVrE8+rbwIqDaWhhv4okiTJ4PJ4GAGffeVDGPD5oROcgOe8EY1zhJsC1NITjcapqAbGPz5Gl3Z4Z2NIdi+MpMBX+nFpSZPAR3lUSoGtaydidKKJTSkTOApVjvnz+C5YjCclxnihpiqdnVmSt6cd7YhHDqDrlptqX1xxKuWTwiO//Kq6sMRhnAEb4hDs/KhKgjNyxWc8R3/39aCAb4Vb8Ds0a3RjXSmVHNMb4ZhXGcbMfEK0ssgiNn7NsrEp6p1NGMW6c0Q7Ca+vIITAQZ7tU2VjUSamFubbDBdFyrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x7yWm3bkKTkq+MyS2SQO7QnMD8ckP/yInVUO4fAv8V4=;
- b=SE72hs5fa+wPEiSFxJBoTg8ORunkU2phzeY8fuHfNVYahpsdazSGPaAjTceH6WJXP/5RkdKrD3f49lwbiOFsFdhnT1huKs2Qo1D3KI8zXoNyoNqrGaoo739FEdvEHYJxz+bHj2khrMXz+3LcTb+4Vzl30+2Io+Q29UDBHp9LEgbe5plXkWZ0kl2UeWxUS7OPYjYCAd2frtzC9WZey9L+IZU0SJgOhui8NbA6sn5O+68QAxkivHp+jc7D41/RqCov6A+Jy/gS1rvWl9JKSDW7wFdU4Er0D8CUyU+/NSYtgVACaehwKnsXRY46uzcOMV2qub5akIis6MRSWimjCJOpBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x7yWm3bkKTkq+MyS2SQO7QnMD8ckP/yInVUO4fAv8V4=;
- b=RvR6BYwbPANoBcZM4/QZ6YVAVQdFYr2Q/genSDlGZMiUyWEFTeexyU2oEk6DlDc70g7xFRMtx6R6He4Ye3mkM+HQC0N4MBWHsIzzWYSkGqt+QqI3yMhyfNgFewkg8+Uu+c9tTXmTDP8fPxALyxuaZYmV89KKrbdsTsMPE3D7J/0=
-Authentication-Results: jms.id.au; dkim=none (message not signed)
- header.d=none;jms.id.au; dmarc=none action=none
- header.from=amperemail.onmicrosoft.com;
-Received: from SJ0PR01MB7238.prod.exchangelabs.com (2603:10b6:a03:3f7::22) by
- BYAPR01MB5286.prod.exchangelabs.com (2603:10b6:a03:86::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4608.17; Tue, 19 Oct 2021 10:37:45 +0000
-Received: from SJ0PR01MB7238.prod.exchangelabs.com
- ([fe80::1d89:1ea0:77b9:2328]) by SJ0PR01MB7238.prod.exchangelabs.com
- ([fe80::1d89:1ea0:77b9:2328%9]) with mapi id 15.20.4608.018; Tue, 19 Oct 2021
- 10:37:45 +0000
-Message-ID: <161db1b2-f52f-2bbb-7121-a4097df8cf48@amperemail.onmicrosoft.com>
-Date:   Tue, 19 Oct 2021 17:37:34 +0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.2.0
-Subject: Re: [PATCH v2 1/3] ARM: dts: aspeed: mtjade: Add some gpios
-Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>,
-        Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-References: <20211019060155.945-1-quan@os.amperecomputing.com>
- <20211019060155.945-2-quan@os.amperecomputing.com>
- <CACPK8Xcp0ruL-7p3AA+yvba3Drrwm-=-hMnMpd=a1aHwQHnE1A@mail.gmail.com>
-From:   Thang Nguyen <thang@amperemail.onmicrosoft.com>
-In-Reply-To: <CACPK8Xcp0ruL-7p3AA+yvba3Drrwm-=-hMnMpd=a1aHwQHnE1A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: HK2PR02CA0215.apcprd02.prod.outlook.com
- (2603:1096:201:20::27) To SJ0PR01MB7238.prod.exchangelabs.com
- (2603:10b6:a03:3f7::22)
+        id S235260AbhJSKkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 06:40:10 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54474 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235257AbhJSKkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 06:40:09 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 75AD58AE;
+        Tue, 19 Oct 2021 12:37:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1634639875;
+        bh=8JWvYP7ZXVX/kiNPwYH3OHqA/Dchd8D3VcR7gzCGxug=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZdUhWVXrY7JUp50m8IW066ZGCBuCbfbCtZAnL4r6Q70Csc173wfQ5Qrg7Y/3YVVZG
+         qT5r7Oz/u7TPihqG8iqnMSA2JAKe8DeJF+znP9xJv8vbX4l7EdxQmPrOptCGQjLMFh
+         wO2G6XqZSuJFSgadNgihDBOYDudmBPZF08Kfs5+8=
+Date:   Tue, 19 Oct 2021 13:37:37 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc
+ supply bindings
+Message-ID: <YW6f8U2BC/6WQoVx@pendragon.ideasonboard.com>
+References: <20211012064843.298104-1-alexander.stein@ew.tq-group.com>
+ <20211012064843.298104-4-alexander.stein@ew.tq-group.com>
+ <20211013074722.7y7ug3eri4euknza@gilmour>
+ <YWao69+QEK8Fhi/x@pendragon.ideasonboard.com>
+ <20211014074110.ym6mzugde2m5ak22@gilmour>
+ <YWo6U1juhMsHnQYU@pendragon.ideasonboard.com>
+ <20211018152013.e3kmbm2lszb652gi@gilmour>
+ <YW2zhFX9krzbHlpL@pendragon.ideasonboard.com>
+ <20211019073728.7a3rmp3fz62rxh6w@gilmour>
 MIME-Version: 1.0
-Received: from [192.168.86.197] (42.116.119.23) by HK2PR02CA0215.apcprd02.prod.outlook.com (2603:1096:201:20::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.15 via Frontend Transport; Tue, 19 Oct 2021 10:37:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 98cc5d47-7daf-4680-35c6-08d992ec7cb0
-X-MS-TrafficTypeDiagnostic: BYAPR01MB5286:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR01MB528625E5E8F98DB92250CB448DBD9@BYAPR01MB5286.prod.exchangelabs.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QsIHlkrD6Pgk60kE/0HiLcOvEu4z/IRlQElG5hjyKYqj/yVTTIWzx2NZD2Q9J//W1oI5Ri34Ur08YRu672PO4lfLtY7oQ6glyGO62KjEzufoNArCpj2k5y1T2dDUvoBcMxzB7qmb+mJ5QyfKhGc68cL5Mb+aLdC8UgbVU5fbjjcVqct+APakXYot65M9TQwrzlnVBm8aqgBowC1TXqTbgGtOe8H17mhEZS2lvzbdmoRSzu9Xm/BWSPNzw11URoSuoNpeb+cAviJjdMf1JBxx4awTdTPJjnNT4DqqG8bFetR/WsXttINACamkV5eTIR+l9HvfMm2dNlA9iba+r7LU0LYIk8vXKPbx3dOQybwotz50XXYJBnqmrZAar4wwlIFyj6MLZv4jhhmSHJvlCPKplXAWDX02dIjY9B9hT+ZCmdZZGqp7j/9GU6CPKe7woevKhIJC1zqGDEe+2xHgioxaxVpR8YwjwyVGqDYrCn10lfa7LYz3DsZIBdaUe6DEBJZFEz/EMb9X9aBBImHXjIfGkmns4ud4DPKqaP+GoSqblPRENF1phM+d9BAcycZrTP7KrDJtII9J4TS1MRHUvQ/Ne/v5f4WGCXbHhhFMk0PRx7/6eLi83AuigjU4CmPaqoQF1kZMF7ylsFKP9iVPu1OqjS+oQhPGRQmoddkASzzoUKXfDpnZgzE/7zlfMxkKSqLteeOy6yVVNU7Gg02A01w81SINH/VylJ3oSiuszGFHyM1zrrRFzDRmwvj8H2xlJk3IvIpuBJ/78zShgkw0L/dfilWYs6WmGRlLkbT7eTBX5l+X33BytU4E23N9SdSoFzjtWZgrOc2rPzqck9tl5UGXgEipSp8r+SSB/T/EnIXrPQ4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7238.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66476007)(26005)(66556008)(6486002)(54906003)(956004)(107886003)(5660300002)(53546011)(966005)(83380400001)(110136005)(8936002)(83170400001)(31696002)(66946007)(2616005)(42882007)(16576012)(31686004)(8676002)(316002)(38350700002)(2906002)(508600001)(52116002)(186003)(38100700002)(6666004)(4326008)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGxRM2Q0YnFrSFdIYldkdUtJRWNnaEdqcC82WW5hYjFxaUl4ZzdtZ253S3Ja?=
- =?utf-8?B?OUF0bEVQU0puREFLdzN1eFRRNFlBYnFnUGIvcGZnN0h6cUpaS0RQRS8rSWxC?=
- =?utf-8?B?WUljZ3B3Z3l1TzBnTWtRNW9lSnhvZHUyWGlnZEtQSXBpdDhWK1VDQ2tmMlM3?=
- =?utf-8?B?blBJam8zZlJuV3h4VHBiVllPRnhDZ1poYS9GOXg0RFlUeFpDaGpwSVNTRk9S?=
- =?utf-8?B?NUV4RWtlQzN2UnAvNGpQOU80UmpSM3BGaVJlYmRONTc5RnRHbmIwcWRMSUE5?=
- =?utf-8?B?T1orWHhKdkRrQTZiM1BUUXNQRzFtYUtPaUx3bjQ0eFJHTWVMOXRiMlFDQnNM?=
- =?utf-8?B?S0JHd2RSZFRtRkFXQ1NRNzQ5cVNwZEV2K2FUSlJRTStOQjdRT2FkSStzSnJk?=
- =?utf-8?B?OTRhaWpNQzFneVpnMjZ4REZpK2kwZWRvdW9URDQzcDFlNnRxNTBST05nVWpP?=
- =?utf-8?B?bktNYk5iS1JnaEFreVVyc20wcUNWV3pmRXAzWUVjTnIwdmpLNGdPcEdjUDAw?=
- =?utf-8?B?V05yRFU2VWhqQU9ZUjFEZUJJUG9pS1ZxTVQyOHlHcTNFc3NZaHI5aDR1R1J4?=
- =?utf-8?B?S1BLR1B5V0c3MVVXYmxZMkpDcjdXYlBiS21sZGV4UDRNV28vZzVrclZFeFg4?=
- =?utf-8?B?aU85bzM4MmtsREczdTZHbDlSRTBtZWs3WkdiVGxWUzZZNzFjcGpHSlh3bU1M?=
- =?utf-8?B?bHpFajdQV3o1VUxWdnBaN09NZ3dPUnJCMTdWUjlneDRpTkNNcmV4YjFmeFI0?=
- =?utf-8?B?MWZXenRJbzdaRWVteTk5Ylh5LzNvaXdRWW1TWHBoSU9nWTVJZXlhM2Jhb0Fu?=
- =?utf-8?B?T2p3YytVMVdOU1V5N25DM1MvOWxhVzZJWU1Sbk1IK1A0U3YxZXcwREVIWER1?=
- =?utf-8?B?ZzgrVytSRDg2Wjg2ZGFTSHlmdy9lUlhDcVdhUEN0K2lWS3BXZ1VLSmZ4Mm92?=
- =?utf-8?B?UXdQb0h6cUZmbDMyU0dmRkxtQWVrUTlpZ0ZJMy9VMmVtTnMyakphVkN1SjRC?=
- =?utf-8?B?UlVCdFJEcmIrTCt3dEhjQ2ZvZjdVdGtuWUZJd2hPc1dGMC9TWVNwRnhaTlgr?=
- =?utf-8?B?Q1gwbkVkN1Z4RDdpdXhMV05vSUpRME9GakxZUDJEUzBadURjM3pVTlJaNlJZ?=
- =?utf-8?B?bDA4N0dKZFVIdlc0cHZleTRRcm02SjlYbTVvS2t4N1FYUm5jUmo2Z3VVczBU?=
- =?utf-8?B?bVNHTmllY3hac2prV0VieHNZalFmbG1xRDVyYXNNRDJXUmtjL0Z6VDB6eG9K?=
- =?utf-8?B?WFVOakljbkx5QVV5dm9raXhkMDkzb2ZVWWtWcDdGS0s4NWtLQWlGMTZsUG1y?=
- =?utf-8?B?Qml6N3lYemtNeFA3UUlpdmkxSFphNnFSU3RQWGptd1hHS1pUb2R3T0w4UHhJ?=
- =?utf-8?B?YVdtU3hUV0IxNjR5L09ZRGFLVmdURnkyTllzL2VWT082ems5T3VXOEx2TmtR?=
- =?utf-8?B?RE94TUM3WmlOU3VTSyt0Ulh6MEFyUnRBZjVPckEyMEtheHNKT0NYeDhBMW94?=
- =?utf-8?B?cndSUVJqTnA0WVNHOUp3cEVFbmYyOUZTazAwdjJuVjlGeEVmTUJiNlFLdnZk?=
- =?utf-8?B?MlJPdy9Rak9ZNEFMLy9UT3VFWVd3UmVKNFp6alNzbG1XZG1yY25EYlZ2VndW?=
- =?utf-8?B?U1ZFNUp5emJIRTY3dUxqTmVrd3FGNkdLS0R3MnJWeE9OQ2JsaTIrc0lRNFla?=
- =?utf-8?B?SGo5V2lqUzNYeXNVc0hHZ25GK0lZRlZ5cTd6N01JRGlFb1ZLZWVueVF2Wm51?=
- =?utf-8?Q?qLOnsuC62FbcFmf+jPcN1G8tPmsapblt/k/lnP7?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98cc5d47-7daf-4680-35c6-08d992ec7cb0
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7238.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2021 10:37:45.4203
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DhvLgr9/9lZN0gPaL2yZllo4XJfTl3rnGTdKD+KvtPQ85KpxYJdsGS2pk5M+VJyz66OmPT8zp2I2i+IyesCH+qiHbuS32cAASm2TCX8/QFOEBfo9KZ8warZRiKFCH5hI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR01MB5286
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211019073728.7a3rmp3fz62rxh6w@gilmour>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Maxime,
 
+On Tue, Oct 19, 2021 at 09:37:28AM +0200, Maxime Ripard wrote:
+> On Mon, Oct 18, 2021 at 08:48:52PM +0300, Laurent Pinchart wrote:
+> > On Mon, Oct 18, 2021 at 05:20:13PM +0200, Maxime Ripard wrote:
+> > > On Sat, Oct 16, 2021 at 05:34:59AM +0300, Laurent Pinchart wrote:
+> > > > On Thu, Oct 14, 2021 at 09:41:10AM +0200, Maxime Ripard wrote:
+> > > > > On Wed, Oct 13, 2021 at 12:37:47PM +0300, Laurent Pinchart wrote:
+> > > > > > On Wed, Oct 13, 2021 at 09:47:22AM +0200, Maxime Ripard wrote:
+> > > > > > > On Tue, Oct 12, 2021 at 08:48:42AM +0200, Alexander Stein wrote:
+> > > > > > > > Add a VCC regulator which needs to be enabled before the EN pin is
+> > > > > > > > released.
+> > > > > > > > 
+> > > > > > > > Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> > > > > > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > > > > > > ---
+> > > > > > > >  .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml     | 5 +++++
+> > > > > > > >  1 file changed, 5 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > > > index a5779bf17849..49ace6f312d5 100644
+> > > > > > > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+> > > > > > > > @@ -32,6 +32,9 @@ properties:
+> > > > > > > >      maxItems: 1
+> > > > > > > >      description: GPIO specifier for bridge_en pin (active high).
+> > > > > > > >  
+> > > > > > > > +  vcc-supply:
+> > > > > > > > +    description: A 1.8V power supply (see regulator/regulator.yaml).
+> > > > > > > > +
+> > > > > > > >    ports:
+> > > > > > > >      $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > > >  
+> > > > > > > > @@ -93,6 +96,7 @@ properties:
+> > > > > > > >  required:
+> > > > > > > >    - compatible
+> > > > > > > >    - reg
+> > > > > > > > +  - vcc-supply
+> > > > > > > 
+> > > > > > > This isn't a backward-compatible change. All the previous users of that
+> > > > > > > binding will now require a vcc-supply property even though it was
+> > > > > > > working fine for them before.
+> > > > > > > 
+> > > > > > > You handle that nicely in the code, but you can't make that new property
+> > > > > > > required.
+> > > > > > 
+> > > > > > We can't make it required in the driver, but can't we make it required
+> > > > > > in the bindings ? This indicates that all new DTs need to set the
+> > > > > > property. We also need to mass-patch the in-tree DTs to avoid validation
+> > > > > > failures, but apart from that, I don't see any issue.
+> > > > > 
+> > > > > I guess we'd need to clarify what the schemas are here for.
+> > > > > 
+> > > > > We've been using them for two things: define the bindings, and make
+> > > > > sure that the users of a binding actually follow it.
+> > > > > 
+> > > > > The second part makes it very tempting to also cram "and make sure they
+> > > > > follow our best practices" in there. We never had the discussion about
+> > > > > whether that's ok or not, and I think the schemas syntax falls a bit
+> > > > > short there since I don't think we can make the difference between a
+> > > > > warning and an error that would make it work.
+> > > > > 
+> > > > > However, if we're talking about the binding itself, then no, you can't
+> > > > > introduce a new property.
+> > > > 
+> > > > I assume you mean "a new required property" here.
+> > > > 
+> > > > > Since it was acceptable in the past, it still needs to be acceptable
+> > > > > going forward.
+> > > > 
+> > > > I think that's a matter of definition. The way I see it (but I could be
+> > > > mistaken), we're essentially versioning DT bindings without actually
+> > > > saying so, with the latest version being the visible one, and drivers
+> > > > having to preserve backward compatibility with new versions. We could
+> > > > also see it in different ways of course.
+> > > 
+> > > I disagree. A binding is essentially a contract on how the OS is
+> > > supposed to interpret whatever comes from the DT. If we do what you
+> > > suggest, then we lose all documentation of older versions we still need
+> > > to support at the OS level. And relying on all developers to look
+> > > through the entire history to figure it out is a sure way to screw
+> > > things up :)
+> > > 
+> > > The use of deprecated indicates that we actually want to document the
+> > > old versions.
+> > > 
+> > > > What's important is in my opinion to make sure that new DTs will do
+> > > > the right thing, and if we don't make this property required, we can't
+> > > > check that. DT authors wouldn't know if the property is optional due
+> > > > to backward compatibility only but highly recommended, or really
+> > > > optional.
+> > > 
+> > > Add a comment saying that this should really be added, but we can't
+> > > because it was missing it was in the original binding?
+> > 
+> > That will not help validating that new DTs are compliant with the last
+> > version of the bindings.
+> > 
+> > We have one tool, and two needs. The tool should be extended to cover
+> > both, but today it can only support one. Which of these two is the most
+> > important:
+> > 
+> > - Documentating old behaviour, to helper driver authors on other
+> >   operating systems implement backward compatibility without having to
+> >   look at the history ?
+> > 
+> > - Validating all new device trees to ensure they implement the latest
+> >   recommended version of the bindings ?
+> > 
+> > I think the second one is much more frequent, and is also where most of
+> > the issues will arise.
+> 
+> I understand the drive for the latter, but we shouldn't be dropping the
+> former in the process, which has been what we've been doing for the last
+> decade or so.
 
-On 19/10/2021 13:46, Joel Stanley wrote:
-> On Tue, 19 Oct 2021 at 06:02, Quan Nguyen <quan@os.amperecomputing.com> wrote:
->>
->> Add S0_SCP_AUTH_FAIL, S1_SCP_AUTH_FAIL gpios to indicates firmware
->> authentication fail on each socket.
-> 
-> These use the gpio-keys API to expose the GPIOs. I think OpenBMC is
-> moving away from this abstraction, and instead reading the GPIOs with
-> the gpio chardev interface.
-Can you give an example of the suggested change?
-> 
->>
->> Add gpio RTC_BAT_SEN_EN to enable RTC battery adc sensor.
->>
->> Add BMC_I2C4_O_EN gpio to go high at boot to enable access to I2C4 bus.
-> 
-> OpenBMC has started a process to document GPIOs that are exposed to
-> userspace, initially so a common userspace can be used across
-> machines. I like doing it for the additional reason that it provides
-> consistency in the naming.
-[Thang] The BMC_I2C4_O_EN GPIO is used in kernel only which enabling 
-access to all I2C devices in I2C4 bus, like FRU EEPROM. As it is used as 
-gpio-hog, no userspace access is allowed/intended. It can't be 
-configured in userspace as FRU EEPROM is probed only in kernel boot.
-> 
-> https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
-> 
-> If you could take a look at that document and add your GPIOs where
-> possible, and then update the device tree.
-[Thang] I am aware of this GPIO naming convention document. But I think 
-it is to define common name for special GPIOs that applications can use.
+That point is debatable :-) I've repeatedly asked during review of DT
+bindings for new properties to be made required, based on the above
+rationale. This is the first time I see a push back.
 
->>
->> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
->> Signed-off-by: Thang Nguyen <thang@os.amperecomputing.com>
->> ---
->> v2:
->>    - None
->>
->>   .../arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 21 ++++++++++++++++++-
->>   1 file changed, 20 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
->> index 57b0c45a2298..3515d55bd312 100644
->> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
->> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
->> @@ -86,6 +86,18 @@ S0_cpu_fault {
->>                          linux,code = <ASPEED_GPIO(J, 1)>;
->>                  };
->>
->> +               S0_scp_auth_fail {
->> +                       label = "S0_SCP_AUTH_FAIL";
->> +                       gpios = <&gpio ASPEED_GPIO(J, 2) GPIO_ACTIVE_LOW>;
->> +                       linux,code = <ASPEED_GPIO(J, 2)>;
->> +               };
->> +
->> +               S1_scp_auth_fail {
->> +                       label = "S1_SCP_AUTH_FAIL";
->> +                       gpios = <&gpio ASPEED_GPIO(Z, 5) GPIO_ACTIVE_LOW>;
->> +                       linux,code = <ASPEED_GPIO(Z, 5)>;
->> +               };
->> +
->>                  S1_overtemp {
->>                          label = "S1_OVERTEMP";
->>                          gpios = <&gpio ASPEED_GPIO(Z, 6) GPIO_ACTIVE_LOW>;
->> @@ -590,7 +602,7 @@ &gpio {
->>          /*Q0-Q7*/       "","","","","","UID_BUTTON","","",
->>          /*R0-R7*/       "","","BMC_EXT_HIGHTEMP_L","OCP_AUX_PWREN",
->>                          "OCP_MAIN_PWREN","RESET_BUTTON","","",
->> -       /*S0-S7*/       "","","","","","","","",
->> +       /*S0-S7*/       "","","","","RTC_BAT_SEN_EN","","","",
-> 
-> I suggest you create a proposal to call this one
-> battery-voltage-read-enable. I know that some of the IBM machines
-> intend to have this same GPIO.
-[Thang] is there any application to use this pin name?
-> 
->>          /*T0-T7*/       "","","","","","","","",
->>          /*U0-U7*/       "","","","","","","","",
->>          /*V0-V7*/       "","","","","","","","",
->> @@ -604,4 +616,11 @@ &gpio {
->>                          "S1_BMC_DDR_ADR","","","","",
->>          /*AC0-AC7*/     "SYS_PWR_GD","","","","","BMC_READY","SLAVE_PRESENT_L",
->>                          "BMC_OCP_PG";
->> +
->> +       i2c4_o_en {
->> +               gpio-hog;
->> +               gpios = <ASPEED_GPIO(Y, 2) GPIO_ACTIVE_HIGH>;
->> +               output-high;
->> +               line-name = "BMC_I2C4_O_EN";
->> +       };
->>   };
->> --
->> 2.28.0
->>
+I believe we need to address both of the above problems. In the very
+short term, we have to pick which of the two we care about most, as we
+can't have both yet. I have made my personal preference clear, but I'll
+apply the official decision in further reviews. Maybe Rob could share
+his point of view ?
+
+-- 
+Regards,
+
+Laurent Pinchart
