@@ -2,160 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46409434009
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 22:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ADF7434022
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 23:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231597AbhJSU7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 16:59:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbhJSU7c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 16:59:32 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE038C061746
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 13:57:19 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so5660154ote.13
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 13:57:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bCvmWzHQrYIfnO0ni9WAgMr+c10EzSFOwZC7pgW4XHI=;
-        b=uiCrBAiRW2zOddDPJJEsxpT1djYlOt7sAS8zE/E6GGuHPVZOiSEQPa2Nicjk5NGnDS
-         inye6mIny+cC380QqBW7vlpo8qwc8TZNbfskz/jOD6HvnbqQ2clH7C/mgWj/8evaxOmC
-         VUPXz5bEVkcojmwV9hfKJl61c6wPtshobWJXVYEzkqXcpTqZzztEAjYgRbLMjFylCtIQ
-         /bULOvTGm6JPbHw4B49Mlvfd83GeinfF3giG0vW87248ZYHyC/j9uOGBZJySHlpoSbT+
-         26M8b8bIM/wtGlM+0TzgzdkSJ8z7u94AzAybdG3u1raDZXlGMP3S4yyMztmcAkvxiMtm
-         U3Ew==
+        id S231506AbhJSVH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 17:07:29 -0400
+Received: from mail-oo1-f44.google.com ([209.85.161.44]:36475 "EHLO
+        mail-oo1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230454AbhJSVH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 17:07:28 -0400
+Received: by mail-oo1-f44.google.com with SMTP id r1-20020a4a9641000000b002b6b55007bfso1394175ooi.3;
+        Tue, 19 Oct 2021 14:05:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bCvmWzHQrYIfnO0ni9WAgMr+c10EzSFOwZC7pgW4XHI=;
-        b=DsIdpcUoCkAaTHmGFrf3jJ5vWu6zfzi+VmowOD7p87X3Tj1keGqOdTUjY25QZKYH+r
-         Y5zqo89x+91xPePpt9Dxoj3kAgIL9Ud8AIUa55hyixBzwpPAUBDI94dVyaYiyLkfIPQt
-         5UGJl5sEQO9BsC617VEK7RuZkTRjWJTE539KTYshUE0tUG9GczL99WSmHAZiufw9F6/P
-         NXsZlxKFQcWXsUEh25n0QMyzm5gSiJausck35CKGFJDqN7zy8jsCDJUhtChFociZJXRY
-         vmSa0u6dvUBW0D1zZlGL+TjY/lGkX1U4ctdHKnJPbF4ic6LYWO3rk9w5Tx70KF9G1Gc8
-         tz4Q==
-X-Gm-Message-State: AOAM530G58N4lRRW4AseOyIZDA2eqbTfwm9DWGbvtadRGGF3ttMZdFku
-        /2g8ARa/FkkwPQVDvFhXzuJpAQ==
-X-Google-Smtp-Source: ABdhPJxYKbXVgJME4uWfjnB1za8f5xBVAtcttFEGbUiN1i8iAO/vSf6B027OrhcBA1UCQTNb1JZjIw==
-X-Received: by 2002:a05:6830:24a9:: with SMTP id v9mr7189676ots.326.1634677038861;
-        Tue, 19 Oct 2021 13:57:18 -0700 (PDT)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id e23sm29938oih.40.2021.10.19.13.57.17
+        bh=Uovi01bpGrOsxAesgYaedpo5qleHPu+gqmazQ2PqE9k=;
+        b=JPdrbqrTEym/rHI3awRnPbGD2ADPQFToPy+EpDmjOV2s94MzbEQ4TFS94lfCCIR5mg
+         HiolR1PhdW2LFC7GbO10gIoetZ2gH7L2wkUkas9tF6CwzVV/kkhalMwEeGsjhp+PQBhg
+         qWFH5vTCyNI3Q7x2Lh7k6nNWNtEI40kJzo4L706AqtamzOqPDBux7sBgC5dZv45MpDwg
+         7Lk+RLGa6dMgZHEG2AeDuM1uyK8o02uvPeblIG0WxkpQiMDTWheah7hYk2tloQvtf4Yj
+         oSTmQHXu20zRZ0dxmOy9PX6W/RI056+DlCEV11QZVPAaBONz5spTR0Q8m4UPAW9erQ4h
+         rSNg==
+X-Gm-Message-State: AOAM532XwCIwrAMPRu56BFs0XKGoXay+C11Ub9JnwDN3oOfoiPnotelI
+        4HA8JnozOZ+/GOQ6QMMRvQ==
+X-Google-Smtp-Source: ABdhPJyhyPQNMuR+qw1Jvcgnm5CRqVy/8fHEBr0brrssYczt14ecIiGtUQ/haQB3wGcqQ92i3Puoyw==
+X-Received: by 2002:a4a:b90d:: with SMTP id x13mr6602641ooo.25.1634677514932;
+        Tue, 19 Oct 2021 14:05:14 -0700 (PDT)
+Received: from robh.at.kernel.org (rrcs-67-78-118-34.sw.biz.rr.com. [67.78.118.34])
+        by smtp.gmail.com with ESMTPSA id u21sm33948oiv.25.2021.10.19.14.05.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 13:57:18 -0700 (PDT)
-Date:   Tue, 19 Oct 2021 13:59:03 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Arnd Bergmann <arnd@kernel.org>,
-        Rajesh Patil <rajpat@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        msavaliy@qti.qualcomm.com, satya priya <skakit@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Doug Anderson <dianders@chromium.org>
-Subject: Re: [PATCH V10 8/8] arm64: dts: sc7280: Add aliases for I2C and SPI
-Message-ID: <YW8xl0fLnQE5o3AQ@ripper>
-References: <1632399378-12229-1-git-send-email-rajpat@codeaurora.org>
- <1632399378-12229-9-git-send-email-rajpat@codeaurora.org>
- <CAK8P3a3KuTEAXbSTU+n3D_fryquo8B-eXSF2+HrikiNVn6kSSg@mail.gmail.com>
+        Tue, 19 Oct 2021 14:05:13 -0700 (PDT)
+Received: (nullmailer pid 836872 invoked by uid 1000);
+        Tue, 19 Oct 2021 21:05:05 -0000
+Date:   Tue, 19 Oct 2021 16:05:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Kalle Valo <kvalo@codeaurora.org>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        David Lechner <david@lechnology.com>,
+        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: net: wireless: ti,wlcore: Convert to
+ json-schema
+Message-ID: <YW8zAR0aeSduLRoD@robh.at.kernel.org>
+References: <cover.1634646975.git.geert+renesas@glider.be>
+ <23a2fbc46255a988e5d36f6c14abb7130480d200.1634646975.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAK8P3a3KuTEAXbSTU+n3D_fryquo8B-eXSF2+HrikiNVn6kSSg@mail.gmail.com>
+In-Reply-To: <23a2fbc46255a988e5d36f6c14abb7130480d200.1634646975.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 19 Oct 13:43 PDT 2021, Arnd Bergmann wrote:
-
-> On Thu, Sep 23, 2021 at 2:18 PM Rajesh Patil <rajpat@codeaurora.org> wrote:
-> >
-> > Add aliases for i2c and spi for sc7280 soc.
-> >
-> > Signed-off-by: Rajesh Patil <rajpat@codeaurora.org>
-> > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+On Tue, Oct 19, 2021 at 02:43:12PM +0200, Geert Uytterhoeven wrote:
+> The Texas Instruments Wilink 6/7/8 (wl12xx/wl18xx) Wireless LAN
+> Controllers can be connected via SPI or via SDIO.
+> Convert the two Device Tree binding documents to json-schema, and merge
+> them into a single document.
 > 
-> I saw this in the pull request, can this please be reverted?
+> Add missing ti,wl1285 compatible value.
+> Add missing interrupt-names property.
 > 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>   - The wlcore driver is marked orphan in MAINTAINERS.  Both Tony and
+>     Russell made recent bugfixes, and my not-so-random coin picked Tony
+>     as a suitable maintainer.  Please scream if not appropriate.
+>   - How to express if a property is required when connected to a
+>     specific bus type?
 
-Yes, this can certainly be corrected.
+There isn't a (simple) way within this schema, but IIRC the spi bus 
+schema already requires 'reg' in child nodes.
 
-> Putting the aliases into the .dtsi file is really silly, as there are
-> likely boards that
-> don't connect every single one of those, and then will have to
-> override and renumber
-> them.
+Otherwise, looks good and I'll queue.
+
+> ---
+>  .../devicetree/bindings/net/ti-bluetooth.txt  |   2 +-
+>  .../bindings/net/wireless/ti,wlcore,spi.txt   |  57 --------
+>  .../bindings/net/wireless/ti,wlcore.txt       |  45 ------
+>  .../bindings/net/wireless/ti,wlcore.yaml      | 134 ++++++++++++++++++
+>  arch/arm/boot/dts/omap3-gta04a5.dts           |   2 +-
+>  5 files changed, 136 insertions(+), 104 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
+>  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
 > 
-> Please only list the aliases that are actually connected on a particular
-> board.
+> diff --git a/Documentation/devicetree/bindings/net/ti-bluetooth.txt b/Documentation/devicetree/bindings/net/ti-bluetooth.txt
+> index f48c17b38f5851de..3c01cfc1e12dc132 100644
+> --- a/Documentation/devicetree/bindings/net/ti-bluetooth.txt
+> +++ b/Documentation/devicetree/bindings/net/ti-bluetooth.txt
+> @@ -13,7 +13,7 @@ and GPS over what's called "shared transport". The shared transport is
+>  standard BT HCI protocol with additional channels for the other functions.
+>  
+>  TI WiLink devices also have a separate WiFi interface as described in
+> -wireless/ti,wlcore.txt.
+> +wireless/ti,wlcore.yaml.
+>  
+>  This bindings follows the UART slave device binding in ../serial/serial.yaml.
+>  
+> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt b/Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
+> deleted file mode 100644
+> index cb5c9e1569ca5300..0000000000000000
+> --- a/Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
+> +++ /dev/null
+> @@ -1,57 +0,0 @@
+> -* Texas Instruments wl12xx/wl18xx wireless lan controller
+> -
+> -The wl12xx/wl18xx chips can be connected via SPI or via SDIO. This
+> -document describes the binding for the SPI connected chip.
+> -
+> -Required properties:
+> -- compatible :          Should be one of the following:
+> -    * "ti,wl1271"
+> -    * "ti,wl1273"
+> -    * "ti,wl1281"
+> -    * "ti,wl1283"
+> -    * "ti,wl1801"
+> -    * "ti,wl1805"
+> -    * "ti,wl1807"
+> -    * "ti,wl1831"
+> -    * "ti,wl1835"
+> -    * "ti,wl1837"
+> -- reg :                 Chip select address of device
+> -- spi-max-frequency :   Maximum SPI clocking speed of device in Hz
+> -- interrupts :          Should contain parameters for 1 interrupt line.
+> -- vwlan-supply :        Point the node of the regulator that powers/enable the
+> -                        wl12xx/wl18xx chip
+> -
+> -Optional properties:
+> -- ref-clock-frequency : Reference clock frequency (should be set for wl12xx)
+> -- clock-xtal :          boolean, clock is generated from XTAL
+> -
+> -- Please consult Documentation/devicetree/bindings/spi/spi-bus.txt
+> -  for optional SPI connection related properties,
+> -
+> -Examples:
+> -
+> -For wl12xx family:
+> -&spi1 {
+> -	wlcore: wlcore@1 {
+> -		compatible = "ti,wl1271";
+> -		reg = <1>;
+> -		spi-max-frequency = <48000000>;
+> -		interrupt-parent = <&gpio3>;
+> -		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
+> -		vwlan-supply = <&vwlan_fixed>;
+> -		clock-xtal;
+> -		ref-clock-frequency = <38400000>;
+> -	};
+> -};
+> -
+> -For wl18xx family:
+> -&spi0 {
+> -	wlcore: wlcore@0 {
+> -		compatible = "ti,wl1835";
+> -		reg = <0>;
+> -		spi-max-frequency = <48000000>;
+> -		interrupt-parent = <&gpio0>;
+> -		interrupts = <27 IRQ_TYPE_EDGE_RISING>;
+> -		vwlan-supply = <&vwlan_fixed>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
+> deleted file mode 100644
+> index 9306c4dadd46aea7..0000000000000000
+> --- a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
+> +++ /dev/null
+> @@ -1,45 +0,0 @@
+> -TI Wilink 6/7/8 (wl12xx/wl18xx) SDIO devices
+> -
+> -This node provides properties for controlling the wilink wireless device. The
+> -node is expected to be specified as a child node to the SDIO controller that
+> -connects the device to the system.
+> -
+> -Required properties:
+> - - compatible: should be one of the following:
+> -    * "ti,wl1271"
+> -    * "ti,wl1273"
+> -    * "ti,wl1281"
+> -    * "ti,wl1283"
+> -    * "ti,wl1285"
+> -    * "ti,wl1801"
+> -    * "ti,wl1805"
+> -    * "ti,wl1807"
+> -    * "ti,wl1831"
+> -    * "ti,wl1835"
+> -    * "ti,wl1837"
+> - - interrupts : specifies attributes for the out-of-band interrupt.
+> -
+> -Optional properties:
+> - - ref-clock-frequency : ref clock frequency in Hz
+> - - tcxo-clock-frequency : tcxo clock frequency in Hz
+> -
+> -Note: the *-clock-frequency properties assume internal clocks. In case of external
+> -clock, new bindings (for parsing the clock nodes) have to be added.
+> -
+> -Example:
+> -
+> -&mmc3 {
+> -	vmmc-supply = <&wlan_en_reg>;
+> -	bus-width = <4>;
+> -	cap-power-off-card;
+> -	keep-power-in-suspend;
+> -
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -	wlcore: wlcore@2 {
+> -		compatible = "ti,wl1835";
+> -		reg = <2>;
+> -		interrupt-parent = <&gpio0>;
+> -		interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+> new file mode 100644
+> index 0000000000000000..8dd164d10290082a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/wireless/ti,wlcore.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments Wilink 6/7/8 (wl12xx/wl18xx) Wireless LAN Controller
+> +
+> +maintainers:
+> +  - Tony Lindgren <tony@atomide.com>
+> +
+> +description:
+> +  The wl12xx/wl18xx chips can be connected via SPI or via SDIO.
+> +  Note that the *-clock-frequency properties assume internal clocks.  In case
+> +  of external clocks, new bindings (for parsing the clock nodes) have to be
+> +  added.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,wl1271
+> +      - ti,wl1273
+> +      - ti,wl1281
+> +      - ti,wl1283
+> +      - ti,wl1285
+> +      - ti,wl1801
+> +      - ti,wl1805
+> +      - ti,wl1807
+> +      - ti,wl1831
+> +      - ti,wl1835
+> +      - ti,wl1837
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description:
+> +      This is required when connected via SPI, and optional when connected via
+> +      SDIO.
+> +
+> +  spi-max-frequency: true
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: irq
+> +      - const: wakeup
+> +
+> +  vwlan-supply:
+> +    description:
+> +      Points to the node of the regulator that powers/enable the wl12xx/wl18xx
+> +      chip.  This is required when connected via SPI.
+> +
+> +
+> +  ref-clock-frequency:
+> +    description: Reference clock frequency.
+> +
+> +  tcxo-clock-frequency:
+> +    description: TCXO clock frequency.
+> +
+> +  clock-xtal:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Indicates that the clock is generated from XTAL.
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - ti,wl1271
+> +          - ti,wl1273
+> +          - ti,wl1281
+> +          - ti,wl1283
+> +then:
+> +  required:
+> +    - ref-clock-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    // For wl12xx family:
+> +    spi1 {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            wlcore1: wlcore@1 {
+> +                    compatible = "ti,wl1271";
+> +                    reg = <1>;
+> +                    spi-max-frequency = <48000000>;
+> +                    interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
+> +                    vwlan-supply = <&vwlan_fixed>;
+> +                    clock-xtal;
+> +                    ref-clock-frequency = <38400000>;
+> +            };
+> +    };
+> +
+> +    // For wl18xx family:
+> +    spi2 {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            wlcore2: wlcore@0 {
+> +                    compatible = "ti,wl1835";
+> +                    reg = <0>;
+> +                    spi-max-frequency = <48000000>;
+> +                    interrupts = <27 IRQ_TYPE_EDGE_RISING>;
+> +                    vwlan-supply = <&vwlan_fixed>;
+> +            };
+> +    };
+> +
+> +    // SDIO example:
+> +    mmc3 {
+> +            vmmc-supply = <&wlan_en_reg>;
+> +            bus-width = <4>;
+> +            cap-power-off-card;
+> +            keep-power-in-suspend;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            wlcore3: wlcore@2 {
+> +                    compatible = "ti,wl1835";
+> +                    reg = <2>;
+> +                    interrupts = <19 IRQ_TYPE_LEVEL_HIGH>;
+> +            };
+> +    };
+> diff --git a/arch/arm/boot/dts/omap3-gta04a5.dts b/arch/arm/boot/dts/omap3-gta04a5.dts
+> index a2ba4030cf279683..0b5bd73888771438 100644
+> --- a/arch/arm/boot/dts/omap3-gta04a5.dts
+> +++ b/arch/arm/boot/dts/omap3-gta04a5.dts
+> @@ -79,7 +79,7 @@ OMAP3_CORE1_IOPAD(0x2138, PIN_INPUT | MUX_MODE4) /* gpin114 */
+>  
+>  /*
+>   * for WL183x module see
+> - * Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
+> + * Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+>   */
+>  
+>  &wifi_pwrseq {
+> -- 
+> 2.25.1
 > 
->         Arnd
 > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > index c26647a..e5fefd1 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > @@ -26,8 +26,40 @@
-> >         chosen { };
-> >
-> >         aliases {
-> > +               i2c0 = &i2c0;
-> > +               i2c1 = &i2c1;
-> > +               i2c2 = &i2c2;
-> > +               i2c3 = &i2c3;
-> > +               i2c4 = &i2c4;
-> > +               i2c5 = &i2c5;
-> > +               i2c6 = &i2c6;
-> > +               i2c7 = &i2c7;
-> > +               i2c8 = &i2c8;
-> > +               i2c9 = &i2c9;
-> > +               i2c10 = &i2c10;
-> > +               i2c11 = &i2c11;
-> > +               i2c12 = &i2c12;
-> > +               i2c13 = &i2c13;
-> > +               i2c14 = &i2c14;
-> > +               i2c15 = &i2c15;
-> >                 mmc1 = &sdhc_1;
-> >                 mmc2 = &sdhc_2;
-> 
-> The mmc ones should probably go away as well.
-> 
-
-I should have paid more attention when applying this patch, because the
-commit message should have stated why any of these were introduced.
-
-
-@Rajesh, can you please help me understand the need for any of these and
-prepare a patch that introduce the specific ones needed in the
-individual board dts(i) files - with reasoning for the aliases in the
-commit message.
-
-Thanks,
-Bjorn
-
-> > +               spi0 = &spi0;
-> > +               spi1 = &spi1;
-> > +               spi2 = &spi2;
-> > +               spi3 = &spi3;
-> > +               spi4 = &spi4;
-> > +               spi5 = &spi5;
-> > +               spi6 = &spi6;
-> > +               spi7 = &spi7;
-> > +               spi8 = &spi8;
-> > +               spi9 = &spi9;
-> > +               spi10 = &spi10;
-> > +               spi11 = &spi11;
-> > +               spi12 = &spi12;
-> > +               spi13 = &spi13;
-> > +               spi14 = &spi14;
-> > +               spi15 = &spi15;
-> >         };
-> >
