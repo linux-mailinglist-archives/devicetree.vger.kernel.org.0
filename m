@@ -2,163 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B024340C6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 23:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132BB4340D5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 23:53:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbhJSVuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 17:50:22 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:46928 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229483AbhJSVuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 17:50:21 -0400
-Received: by mail-ot1-f51.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so5806932ote.13;
-        Tue, 19 Oct 2021 14:48:08 -0700 (PDT)
+        id S229704AbhJSVzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 17:55:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53432 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229483AbhJSVzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 17:55:10 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E246DC06161C;
+        Tue, 19 Oct 2021 14:52:56 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id g13-20020a17090a3c8d00b00196286963b9so925453pjc.3;
+        Tue, 19 Oct 2021 14:52:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=w522X2nG4IQsRMZlyKb9GT+f9KOrClbgsHRAWFAk+IQ=;
+        b=JS05GGLzlL/0nlGpl4TuOExaFbAWvUVzy5uFh52GUzZkliErec672yzDfpgVp3HP1/
+         oy7P9zgnBxjnLPhJAzd2qD63Pb93IjLjUVfYNVQhI1884/HqcgfagtJgz+FKsXnOvlwR
+         peWJaPalfXxGVGyL4r0ZxixzWYowmGFBN6nn1eAyakUcK38bmTTYWpL2e3J2DjV6WyGf
+         k2j81/i7oPiQLz1DC/RYXVpbBvHYFT4V5OlsCGJXH9eDqEoSB9PiPofZ2D7WRV41pJ2B
+         j9I7ei9WWNZz9OfDP/lSpUbJPzkPIa1mt4Ul4mGby6Fumdabws42YqCr0RRQA5rDOxBS
+         slng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kk4JJaI2+ZWVHR3qmBOUQ3+Cwe87UzzcR1lA2qLxmoE=;
-        b=vLFAGpGoJLr+GvvEx6TDADCp5EX8QqHxF8E253gxJetcWQYLQXGaUqpx1sNmOJ690J
-         iMVZcYr1BfwBiSS+110bJW1oCD+mBeak5KUeQbjB6fQR9O0fYXNEI7Eok7Iuu9V76CEd
-         zb8d314+l5wThSk171TPDotWofXx2g7HCcKINYCsTzn1TBmxONw07ahkAT3rkeH3zEyM
-         zqmqPR1ivWQ6YONUPF93E6qXLxlCqfqKdsPv4ifcbK4Gqm4kMoAVn98geYoCZD3OyLkb
-         07RhEQd5cDkpHsRpyHSUCzHgprMtSiVkzjoyE/DcHdJMT//Q8cKzPf8KeiyAI27Z30lf
-         OTZw==
-X-Gm-Message-State: AOAM533Z8Z7upOJHUOV80eVNctdGePxbq0rU95v+BtVNns579V/Vl7ox
-        jr4+3Ru6+0pzQ0zwerQrUw==
-X-Google-Smtp-Source: ABdhPJyLHMnAFjhQ49+4BKJZb8Nmp39Xuf6bIEmlKF5GpgwCyCrQ6Ozd2pKV6vqMWY7kJMF6kIjhPg==
-X-Received: by 2002:a05:6830:19c2:: with SMTP id p2mr7486872otp.27.1634680088305;
-        Tue, 19 Oct 2021 14:48:08 -0700 (PDT)
-Received: from robh.at.kernel.org (rrcs-67-78-118-34.sw.biz.rr.com. [67.78.118.34])
-        by smtp.gmail.com with ESMTPSA id i18sm66516oot.27.2021.10.19.14.48.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 14:48:07 -0700 (PDT)
-Received: (nullmailer pid 897146 invoked by uid 1000);
-        Tue, 19 Oct 2021 21:48:05 -0000
-Date:   Tue, 19 Oct 2021 16:48:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~okias/devicetree@lists.sr.ht
-Subject: Re: [PATCH] dt-bindings: input: mcs-touchkey: Convert txt bindings
- to yaml
-Message-ID: <YW89FX52NQNBzQ/2@robh.at.kernel.org>
-References: <20211009104837.46626-1-david@ixit.cz>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=w522X2nG4IQsRMZlyKb9GT+f9KOrClbgsHRAWFAk+IQ=;
+        b=M0SH3UjB/KYrvdBUgNdOAm4jru43i5wXysPeXkxpNuTn1hHSU/M3vmZU5BXh41OHfo
+         G/P+Tkg/BEvcGUgJM4553EGdXKMOC7KOV07xPuKnGT/KoId6cxnmXPoNyhqpV/00CaKr
+         MgltnhueYh8RhIIs5EWHgnVGnuaO6Z/VM9xS+yPB8uwZoPm6aTGhcVMKURNRJyGQtMFQ
+         xwJk8M+7KmW3VJnu/6r/Nslhyu6dcVTsL35oYzEkE9kfAQ+pQyrusY3gCNJnTAckS/wV
+         sl6YWI//Y3Yg3kP5D4pg1+G4odv3u0YNQiSzcU8hyJd4Zqsx8KKFHpjpEP0v+93JEntQ
+         rjxA==
+X-Gm-Message-State: AOAM533DklHL2iwpBU5APUKXXJGuTp68sX9+BEm6tsWgDoKeNAEWaH8B
+        jbEjY7J3RC3Vzg1eBKFz6WqTKkUivVQ=
+X-Google-Smtp-Source: ABdhPJyKlqZiDvRxriBiWqbjHMkpZ7H/bMq4TsUcMFscmBbehbLX6xSQLuhRnqKrWXL4hm6HxEN69A==
+X-Received: by 2002:a17:902:ec82:b0:13f:663c:87cc with SMTP id x2-20020a170902ec8200b0013f663c87ccmr35450758plg.24.1634680375823;
+        Tue, 19 Oct 2021 14:52:55 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id z2sm190542pgn.8.2021.10.19.14.52.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Oct 2021 14:52:55 -0700 (PDT)
+Subject: Re: [PATCH v4 09/14] irqchip: Provide platform_device to
+ of_irq_init_cb_t
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM SUB-ARCHITECTURES" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+References: <20211009022023.3796472-1-f.fainelli@gmail.com>
+ <20211009022023.3796472-10-f.fainelli@gmail.com>
+ <871r4gvggb.wl-maz@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <52edd412-4ffa-2f5e-4466-bca71abb5e66@gmail.com>
+Date:   Tue, 19 Oct 2021 14:52:53 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211009104837.46626-1-david@ixit.cz>
+In-Reply-To: <871r4gvggb.wl-maz@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 09, 2021 at 12:48:37PM +0200, David Heidelberg wrote:
-> Convert MELFAS MCS-5000 touchscreen controller chip documentation to the YAML format.
+On 10/19/21 2:43 PM, Marc Zyngier wrote:
+> On Sat, 09 Oct 2021 03:20:18 +0100,
+> Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>
+>> Provide the platform device mapping to the interrupt controller node to
+>> the of_irq_init_cb_t callback such that drivers can make use of it.
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  drivers/irqchip/irqchip.c  | 2 +-
+>>  drivers/irqchip/qcom-pdc.c | 3 ++-
+>>  drivers/of/irq.c           | 2 +-
+>>  include/linux/of_irq.h     | 5 ++++-
+>>  4 files changed, 8 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/irqchip.c b/drivers/irqchip/irqchip.c
+>> index 3570f0a588c4..289784eefd00 100644
+>> --- a/drivers/irqchip/irqchip.c
+>> +++ b/drivers/irqchip/irqchip.c
+>> @@ -55,6 +55,6 @@ int platform_irqchip_probe(struct platform_device *pdev)
+>>  	if (par_np && !irq_find_matching_host(par_np, DOMAIN_BUS_ANY))
+>>  		return -EPROBE_DEFER;
+>>  
+>> -	return irq_init_cb(np, par_np);
+>> +	return irq_init_cb(np, par_np, pdev);
+>>  }
+>>  EXPORT_SYMBOL_GPL(platform_irqchip_probe);
+>> diff --git a/drivers/irqchip/qcom-pdc.c b/drivers/irqchip/qcom-pdc.c
+>> index 173e6520e06e..819a93360b96 100644
+>> --- a/drivers/irqchip/qcom-pdc.c
+>> +++ b/drivers/irqchip/qcom-pdc.c
+>> @@ -359,7 +359,8 @@ static int pdc_setup_pin_mapping(struct device_node *np)
+>>  	return 0;
+>>  }
+>>  
+>> -static int qcom_pdc_init(struct device_node *node, struct device_node *parent)
+>> +static int qcom_pdc_init(struct device_node *node, struct device_node *parent,
+>> +			 struct platform_device *pdev)
+>>  {
+>>  	struct irq_domain *parent_domain, *pdc_domain, *pdc_gpio_domain;
+>>  	int ret;
+>> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+>> index 352e14b007e7..18f3f5c00c87 100644
+>> --- a/drivers/of/irq.c
+>> +++ b/drivers/of/irq.c
+>> @@ -538,7 +538,7 @@ void __init of_irq_init(const struct of_device_id *matches)
+>>  				 desc->dev,
+>>  				 desc->dev, desc->interrupt_parent);
+>>  			ret = desc->irq_init_cb(desc->dev,
+>> -						desc->interrupt_parent);
+>> +						desc->interrupt_parent, NULL);
+>>  			if (ret) {
+>>  				of_node_clear_flag(desc->dev, OF_POPULATED);
+>>  				kfree(desc);
+>> diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
+>> index aaf219bd0354..89acc8b089f0 100644
+>> --- a/include/linux/of_irq.h
+>> +++ b/include/linux/of_irq.h
+>> @@ -9,7 +9,10 @@
+>>  #include <linux/ioport.h>
+>>  #include <linux/of.h>
+>>  
+>> -typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *);
+>> +struct platform_device;
+>> +
+>> +typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *,
+>> +				struct platform_device *);
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../bindings/input/mcs-touchkey.txt           | 26 ---------
->  .../bindings/input/mcs-touchkey.yaml          | 53 +++++++++++++++++++
->  2 files changed, 53 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/mcs-touchkey.txt
+> Having added some type-checking to the IRQCHIP_MATCH() #definery, I
+> end-up with warnings such as:
+> 
+> In file included from ./include/linux/kernel.h:16,
+>                  from drivers/irqchip/irq-bcm7038-l1.c:12:
+> ./include/linux/minmax.h:20:28: warning: comparison of distinct pointer types lacks a cast
+>    20 |  (!!(sizeof((typeof(x) *)1 == (typeof(y) *)1)))
+>       |                            ^~
+> ./include/linux/irqchip.h:41:2: note: in expansion of macro ‘__typecheck’
+>    41 |  __typecheck(typecheck_irq_init_cb, fn) ? fn : fn
+>       |  ^~~~~~~~~~~
+> ./include/linux/irqchip.h:44:12: note: in expansion of macro ‘typecheck_irq_init_cb’
+>    44 |    .data = typecheck_irq_init_cb(fn), },
+>       |            ^~~~~~~~~~~~~~~~~~~~~
+> drivers/irqchip/irq-bcm7038-l1.c:459:1: note: in expansion of macro ‘IRQCHIP_MATCH’
+>   459 | IRQCHIP_MATCH("brcm,bcm7038-l1-intc", bcm7038_l1_of_init)
+>       | ^~~~~~~~~~~~~
+> 
+> Clearly, you didn't update the drivers you just converted to
+> IRQCHIP_MATCH(), and only fixed the QC driver.
 
-I don't have this file in my tree.
+Yes, I will re-order the patches a little bit and update the drivers as
+they are converted.
 
->  create mode 100644 Documentation/devicetree/bindings/input/mcs-touchkey.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/input/mcs-touchkey.txt b/Documentation/devicetree/bindings/input/mcs-touchkey.txt
-> deleted file mode 100644
-> index 545454112a43..000000000000
-> --- a/Documentation/devicetree/bindings/input/mcs-touchkey.txt
-> +++ /dev/null
-> @@ -1,26 +0,0 @@
-> -* mcs_touchkey MELFAS MCS5000/5080 controller
-> -
-> -Required properties:
-> -- compatible: must be "mcs5000_touchkey" or "mcs5080_touchkey"
-> -- reg : I2C address of the chip
-> -- interrupts: interrupt to which the chop is connected
-> -- key_maxval: size of keycode table
-> -- interrupts: interrupt to which the chip is connected
-> -- code: key code for this device
-> -
-> -Example:
-> -
-> -	i2c_touch_key: i2c-gpio-0 {
-> -	       /* ... */
-> -
-> -	       touch_key@20 {
-> -		       compatible = "mcs5080_touchkey";
-> -		       reg = <0x20>;
-> -		       interrupt-patrent = <gpj0>;
-> -		       key_maxval = <2>;
-> -		       linux, code = <0x0000009e
-> -			              0x000000a9>;
-> -	       };
-> -
-> -	       /* ... */
-> -	};
-> diff --git a/Documentation/devicetree/bindings/input/mcs-touchkey.yaml b/Documentation/devicetree/bindings/input/mcs-touchkey.yaml
-> new file mode 100644
-> index 000000000000..b56de0361ff8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/mcs-touchkey.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/mcs-touchkey.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MELFAS MCS5000/5080 controller
-> +
-> +maintainers:
-> +  - Rob Herring <robh+dt@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mcs5000_touchkey
-> +      - mcs5080_touchkey
-> +
-> +  reg: true
-> +  interrupts: true
-> +  key_maxval:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size of keycode table
-> +
-> +  linux,code:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: key code for this device
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - linux,code
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/tegra-gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c_touch_key: i2c-gpio-0 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      melfas-touchkey@20 {
-> +        compatible = "mcs5080_touchkey";
-> +        reg = <0x20>;
-> +        interrupt-parent = <&gpio>;
-> +        interrupts = <TEGRA_GPIO(Q, 4) IRQ_TYPE_EDGE_FALLING>;
-> +        key_maxval = <4>;
-> +        linux,code = <139 102 158 217>;
-> +      };
-> +    };
-> -- 
-> 2.33.0
-> 
-> 
+> FWIW, I'm planning to take something like the hack below into the tree
+> to detect this sort of stuff early.
+
+Sounds good, thanks!
+-- 
+Florian
