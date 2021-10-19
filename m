@@ -2,103 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB22433725
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D9C843373D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:39:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235846AbhJSNg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 09:36:26 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:15903 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235863AbhJSNgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 09:36:23 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634650451; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=Awjq6TEuWGRl0DXdWzOVvwj1sBhVOsIunmTEUQFfTSA=; b=KAmcxvXywILMJfXokB6R4VZCgAMS4zzzLUSdSoN2Z2VRWSQIvv0gfooAWSZJujTHhLqwNJkN
- 4P9UG4PHaoA76BUGBa7LuLakQoZvQUSE/BXLdYh1LEiLf3nw8bTwPwbjLlG6BKN7jz5Gc8NU
- wwE3+gi6s0EZSlNcYFsrXALwMGE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 616ec93b308e0dd3302be6e9 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 19 Oct 2021 13:33:47
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 159F2C4360C; Tue, 19 Oct 2021 13:33:47 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DDF0CC4338F;
-        Tue, 19 Oct 2021 13:33:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DDF0CC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        =?utf-8?Q?Beno?= =?utf-8?Q?=C3=AEt?= Cousson 
-        <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Lechner <david@lechnology.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: net: TI wlcore json schema conversion and fix
-References: <cover.1634646975.git.geert+renesas@glider.be>
-Date:   Tue, 19 Oct 2021 16:33:39 +0300
-In-Reply-To: <cover.1634646975.git.geert+renesas@glider.be> (Geert
-        Uytterhoeven's message of "Tue, 19 Oct 2021 14:43:10 +0200")
-Message-ID: <87a6j5gmvg.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S230487AbhJSNmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 09:42:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43780 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235739AbhJSNmF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 09:42:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7AA8D60FDA;
+        Tue, 19 Oct 2021 13:39:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634650792;
+        bh=nt2mCYefXWMIaMeljO6B+JG+TGSzgNhhr44Juy9MjH0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pK7YqmUL0a3iT4HpsQCx5Ot8rkA9Yqhbrnwv6jo6ZElrRKYhQv9j4fPWpW1r8FMli
+         5Lsz8CjwuVHiiiycxNhLQpl8GvJMI8RwgE/wUIMSc0wLxAnpdUQEo1jjznHaJ+fQQt
+         JIj7yE5yeya9A1mOOe0gT1KvBEDPa8FmgnY0dTfoAmeIsedH/kWzwxjtvxC8crPo5z
+         nJgW6slFeIQJhlqXo25qOsp0es4mmwMxcTEPq84O0EsgZ2NU4+sDyAbPGnRJqOIZZd
+         r1gz9l8PfC3oh/e3mkrURmoV8TD+u34ZNgYynrINyntYBB5Bthm+dTop1ouzWsjFGj
+         zmv9xK4EXC6oA==
+Received: by mail-ed1-f50.google.com with SMTP id i20so12933501edj.10;
+        Tue, 19 Oct 2021 06:39:52 -0700 (PDT)
+X-Gm-Message-State: AOAM533lghX/ODQ05U1chP5xTsuhbPrWFnQhBuXR2/EUTnzgQE+wKcbE
+        8y3OBAEEUx0eqAAw2aXDnD+Vcj6Nc5j6J4ALnA==
+X-Google-Smtp-Source: ABdhPJw785YAft9kOCJXRejGGvZ/JDL+mkBm+lWkw83KlfrIebtxU9BzrRRTN4EOU5p2crXDoSahLOKz0M3l0GoGLxg=
+X-Received: by 2002:aa7:c357:: with SMTP id j23mr56462688edr.145.1634650742754;
+ Tue, 19 Oct 2021 06:39:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
+ <20211015123920.176782-3-horatiu.vultur@microchip.com> <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
+ <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
+In-Reply-To: <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 19 Oct 2021 08:38:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
+Message-ID: <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>, Vinod <vkoul@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Geert Uytterhoeven <geert+renesas@glider.be> writes:
-
-> 	Hi all,
+On Tue, Oct 19, 2021 at 4:11 AM Horatiu Vultur
+<horatiu.vultur@microchip.com> wrote:
 >
-> This patch series converts the Device Tree bindings for the Texas
-> Instruments Wilink Wireless LAN and Bluetooth Controllers to
-> json-schema, after fixing an issue in a Device Tree source file.
+> The 10/18/2021 14:28, Rob Herring wrote:
+> >
+> > On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
+> > > Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
+> > > requires to be muxed based on the HW representation.
+> > >
+> > > So add constants for each interface to be able to distinguish them.
+> > >
+> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > ---
+> > >  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
+> > >  1 file changed, 14 insertions(+)
+> > >  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+> > >
+> > > diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> > > new file mode 100644
+> > > index 000000000000..8a05f93ecf41
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> > > @@ -0,0 +1,14 @@
+> > > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > > +
+> > > +#ifndef __PHY_LAN966X_SERDES_H__
+> > > +#define __PHY_LAN966X_SERDES_H__
+> > > +
+> > > +#define PHY(x)               (x)
+> > > +#define PHY_MAX              PHY(2)
+> > > +#define SERDES6G(x)  (PHY_MAX + 1 + (x))
+> > > +#define SERDES6G_MAX SERDES6G(3)
+> > > +#define RGMII(x)     (SERDES6G_MAX + 1 + (x))
+> > > +#define RGMII_MAX    RGMII(2)
+> > > +#define SERDES_MAX   (RGMII_MAX + 1)
+> >
+> > I still don't understand. #phy-cells description says we have:
+> >
+> > <port idx> <serdes idx>
+> >
+> > But here it's 3 numbers. How are these defines used to fill in the 2
+> > cells?
 >
-> Thanks for your comments!
+> Actually they are still only a number. Or maybe I am missing something.
+
+So all the defines apply to the 2nd cell? That's what's missing. The
+cell description needs to spell all this out. 3 different modes or
+whatever. Explain what the h/w is comprised of in the top level
+'description'.
+
 >
-> Geert Uytterhoeven (3):
->   ARM: dts: motorola-mapphone: Drop second ti,wlcore compatible value
->   dt-bindings: net: wireless: ti,wlcore: Convert to json-schema
->   dt-bindings: net: ti,bluetooth: Convert to json-schema
+> Maybe an example will help:
 >
->  .../devicetree/bindings/net/ti,bluetooth.yaml |  91 ++++++++++++
->  .../devicetree/bindings/net/ti-bluetooth.txt  |  60 --------
->  .../bindings/net/wireless/ti,wlcore,spi.txt   |  57 --------
->  .../bindings/net/wireless/ti,wlcore.txt       |  45 ------
->  .../bindings/net/wireless/ti,wlcore.yaml      | 134 ++++++++++++++++++
->  .../boot/dts/motorola-mapphone-common.dtsi    |   2 +-
->  arch/arm/boot/dts/omap3-gta04a5.dts           |   2 +-
->  7 files changed, 227 insertions(+), 164 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,bluetooth.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/ti-bluetooth.txt
->  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
->  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+> ---
+> serdes: serdes@e2004010 {
+>     compatible = "microchip,lan966x-serdes";
+>     reg = <0xe202c000 0x9c>, <0xe2004010 0x4>;
+>     #phy-cells = <2>;
+> };
+>
+> &port0 {
+>     ...
+>     phys = <&serdes 0 SERDES6G(1)>;
+>     ...
+> };
+>
+> &port1 {
+>     ...
+>     phys = <&serdes 1 PHY(0)>;
 
-Via which tree should these go?
+I think CU was better, just needed some comments. PHY is pretty vague.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+>     ...
+> }
+>
+> ...
+> ---
+>
+> Here are some existing examples based on which I have created this patch
+> series:
+> https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot_pcb120.dts#L99
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+None of which use PHY() or RGMII()...
+
+
+> https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot.dtsi#L274
+>
+> >
+> > Rob
+>
+> --
+> /Horatiu
