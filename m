@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B38D43308F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 10:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEAA4330F4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 10:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234700AbhJSIGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 04:06:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36618 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234776AbhJSIGp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 04:06:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A1F861374;
-        Tue, 19 Oct 2021 08:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634630673;
-        bh=CTjNTHuzm1+dw0qCGQwqzQ2l6G0E8eItZGg614Pb4Xo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=pgeVgKTHdLBKbMHUOio8NWHZBo3Mguyd783BpVUtfL5AkWYgS4V9BINR3aZLEIbfz
-         TJvV5SQcWQjsmBEhYVvr7R8WWzXkcmHr49glfaSEiVkh/9XB3AXYCWNDeLDqm7gq8E
-         GdzQtzW8+iRsYm3+aK4J/M/NEpCmMGfkBwTU7jgIvGwO0ubmgtRPxIGc4HQQ/a6CqR
-         urdXTPW+aX8wosr6xxPhafTfK30w2gQ0lKMGNnpMHmlTZCFwx09ANp/P9ev2oyu7Xk
-         nEtx7By+7zNG+BcIBOMxPnxIjvtQf7RnHg/y//+/GCP5mlPcgRGBF5FPhQ7UC7t9Ho
-         rSUubAE2d9m1A==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mck6j-001oJs-Ap; Tue, 19 Oct 2021 09:04:25 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v3 22/23] regulator: dt-bindings: update samsung,s5m8767.yaml reference
-Date:   Tue, 19 Oct 2021 09:04:21 +0100
-Message-Id: <63f3ac8bc958d65e4f31ad4a0060c21a7038cbde.1634630486.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1634630485.git.mchehab+huawei@kernel.org>
-References: <cover.1634630485.git.mchehab+huawei@kernel.org>
+        id S234519AbhJSIW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 04:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234132AbhJSIW6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 04:22:58 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33222C061745
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 01:20:46 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id g8so4658082ljn.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 01:20:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=XEbKiekzN6WdrwcxP5TOSGyV67sRkHldHzX091SMD8k=;
+        b=SSrCUYnor/HDWCA+bg+/68eOThJjRUO4RantNelerUlCPp3oXkX1EoPzQHUKLH9yaC
+         fXrPJVmqg1vHn4jzS052H7vxDkO9Q1tGsQAe9ISc0Pxn/SKMOGNDD9wUSw4m58VjVPfr
+         M72zJpIDDVgbt3RvGmJnwqJ1q/WI0bNn+XhCegJsBFok2H4tuKDemd3KzgCwa1Dz8oi9
+         1vw113Ou5tYbbgfz/C69KHmDITQbIBMXm6omM1gpbfuTjT4RTNBTMDXm4y/66nte8gsv
+         1h+2o8wbcQrTYWVgQsICiBnLbgoKoCpfgQNt5NPH4xJo1vIWgxYR5C2g6xfCKNxlCSkn
+         frsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=XEbKiekzN6WdrwcxP5TOSGyV67sRkHldHzX091SMD8k=;
+        b=p6OKza5CXFWn5KGeqgukiP/VSkNq4Sofhw+Dg8vG6WTZQkrxg0T1ENDWEDtO1SQJsS
+         am/Abf+UGbGWUTq4inw29e21KSHmSXd421Ec8adIttveP5BxtiIuIo/vHNWYGu9It8kX
+         LC2I9MikudC3lq5kx4Qk1yNnMUYZbIeUZbAAISdnQscYIu6xoZC55qLRzhBVrtdGtnaH
+         +TnawiLiGkSxFTs58NVimSuZak1ceh5HpYHhnSWUjTgvmvjoCA+l/RaYaIfVf4MpvRZd
+         F7MyseKz4J0+90DKJrpMrFLwpLbXMPd04ztgGL4vgarSXQKeM8UWFtKGMdDRs4aI9X84
+         KG8w==
+X-Gm-Message-State: AOAM530pP67h2ih8MCnXoQdd9wdb8X4RWD71mEWaI+E1kb3SdY87ZUe+
+        UAIPVFX8uOCQ/0SDEU+HELwKqn0GRtcYMB9DoVUciczdTNXOpif4
+X-Google-Smtp-Source: ABdhPJz+N9tL/Tt8GcpDt+wBknyO2VrDpckjoE7Sq7kd8PJbUlfQvXYWrwPYUW2iQvyoCt1Tn5Z3QeV5fDRL9q9U7tE=
+X-Received: by 2002:a2e:b547:: with SMTP id a7mr5423644ljn.347.1634631643759;
+ Tue, 19 Oct 2021 01:20:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Received: by 2002:a05:6512:3689:0:0:0:0 with HTTP; Tue, 19 Oct 2021 01:20:43
+ -0700 (PDT)
+Reply-To: davwilliams1006@gmail.com
+From:   "Mr.David Williams" <chrisolukolade11@gmail.com>
+Date:   Tue, 19 Oct 2021 01:20:43 -0700
+Message-ID: <CA+hQ6PoMHkQ0hrjJ=X2cWJEvMZo7Z0VEjHF3x=SEy1DG78mdww@mail.gmail.com>
+Subject: Mr. David Williams
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The file name: Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
-should be, instead: Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml.
+Hello Friend,
 
-Update its cross-reference accordingly.
+This is to inform you that your pending wire transfer payment of Four
+million two hundred thousand US dollars, is now ready to be paid to
+you via ATM Master Card which you can be able to make withdraw from
+any ATM Machine of your choice in any part of the world. Indicate your
+interest to enable us to process your ATM CARD send to you.
 
-Fixes: fab58debc137 ("regulator: dt-bindings: samsung,s5m8767: convert to dtschema")
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
+Get back to me with your details.
 
-To mailbombing on a large number of people, only mailing lists were C/C on the cover.
-See [PATCH v3 00/23] at: https://lore.kernel.org/all/cover.1634630485.git.mchehab+huawei@kernel.org/
-
- .../devicetree/bindings/regulator/samsung,s5m8767.yaml          | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-index 80a63d47790a..4281f670c775 100644
---- a/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-+++ b/Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml
-@@ -15,7 +15,7 @@ description: |
- 
-   The S5M8767 provides buck and LDO regulators.
- 
--  See also Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml for
-+  See also Documentation/devicetree/bindings/regulator/samsung,s5m8767.yaml for
-   additional information and example.
- 
- patternProperties:
--- 
-2.31.1
-
+Regards
+Mr. David Williams
+E-Mail: ( williamsmrdavid60@gmail.com )
