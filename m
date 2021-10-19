@@ -2,159 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CD74336BD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 420E94336DC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:20:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235826AbhJSNQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 09:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235825AbhJSNQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 09:16:06 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C1BCC06161C;
-        Tue, 19 Oct 2021 06:13:53 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id w19so12722714edd.2;
-        Tue, 19 Oct 2021 06:13:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Yb5AYlFBZpmOcMRPANWbIoCRCA80wADgh4x7iAW1ExU=;
-        b=H0zGly0sCkacvlKcxqqWAJ4IY4FSkznN2vKL1ODg8xYFhSUhN15I8y7637JR93fvhV
-         zoWDzKhPk9HxNtj3XG9NRzVM/oBxD+tK+d8ptg7nlcvCstOPufCxvJAjzRcDQvx2XUBV
-         xiiSufc+SOdXorgmUOKj+RVUGhPyaWF2GDlX4+q5fyfLjTm5iDqWH43jdEJbrV4dPj/z
-         wG7NpiXYOc6IT5nA+t4A3d+mYB6DloDmyXw21PLOi3EZuBLUi2A0JBQc6hanaGYBUvXi
-         oTIPxlEb6Ng/oe9bISOlYuWnAFT32WZHtt+uCMioDRUp4y6tGOc0AoPvNC+c48J5Z+7n
-         8Zpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Yb5AYlFBZpmOcMRPANWbIoCRCA80wADgh4x7iAW1ExU=;
-        b=V0Rq1ZZLlm26QcQReqMm27RhXYrnfLiSRnbk5nFXyFoo9xskclVBw1riZzlwxiHjtj
-         Hz8o83mMkL17IgRoxziDGJ8iqqXzDgcioKk0JOyh5Vq5bey5xQHNWQ4HsR60XyF+Q+Em
-         O/hLMV6XH3pUmAQrWJ3UTvmFwR0dSs1dPHYFPm0zWGv57M7E4y0ni3B50UVIM75x1g0F
-         VUu3Cmxiko9iuRm60fc0/NVinNvgoraKeJNKFW5hfA9WvwhnUGpg9u8orSFVk/FYjEkQ
-         YfqUHphfPmm0Fl6o8qr7ZiVDHISwWh5uyYOgTQvOT+JjDILSwkGOVo6rJtsc8vJBShDA
-         FD+g==
-X-Gm-Message-State: AOAM530BnPIRb444gCQi85iGb1tP1u252ERNH/VW9A1Ni0vmQ/s9wV4N
-        sqhsmuO6VPO60/bk1GrdP7XTk8NiCgCqSnd9FbY=
-X-Google-Smtp-Source: ABdhPJzpUjCirAMo9LRcvIUqEhu7nS182O8i9NHU3B0apVjOzlvvl++HVxgQGWYCXow969iY47xNrnxdD2OuKLxsBEg=
-X-Received: by 2002:a17:906:a158:: with SMTP id bu24mr35432917ejb.356.1634649229512;
- Tue, 19 Oct 2021 06:13:49 -0700 (PDT)
+        id S235836AbhJSNWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 09:22:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58428 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231563AbhJSNWV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 09:22:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7AAF1610E7;
+        Tue, 19 Oct 2021 13:20:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634649608;
+        bh=xGEIDfi1JKH3eqvvi6gZj8PD5RM7Y9UpbqwvaVzs/Wo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=m49h4VW6MoCd4zMCdev/m86jNWKuJXK1Pvme1TuC3s7014zUBOYNyR0oDjYStrz6h
+         HcGQ3SsdxazHbz+uU7eyGedc0n58OXoh9hWtnzJP3mFb+T4F8bC5TBftgPhjALJsAa
+         UmT5EKpoEXNh9lU4lG/uDCByq5+sY8uHY9gQXCTB0+YqyElgM9IoBOUMHVRdcYcAY2
+         aKssdW17ZWuW9g5wd+XRVoBk9ndAmAVWY0/O7y992m/ewf6T1/8JSCe2zbkzBaVuxR
+         VvLaA4qhc0hOINVPN8nU58AT/0VOW96gBOkPway5Lz7KAYBR/CnvcGU430bvMNKmQO
+         kojxFIc+kLPmA==
+Received: by mail-ed1-f45.google.com with SMTP id a25so12763134edx.8;
+        Tue, 19 Oct 2021 06:20:08 -0700 (PDT)
+X-Gm-Message-State: AOAM531yp/c+Y2E8ypiSWONOxsy3RlCTKCTn50xiIc/6aUtTVkpsthy6
+        /1aBN92EBvYuF7BgRo8GYo+IAXLMlHY1QRdynQ==
+X-Google-Smtp-Source: ABdhPJwuCT2accakT1n8HM9H8FZqhzJoiBD2H7LJdGtKC3BtNmJwjl0n52dVamz1Jg6FtFki6Znb7OXYl78LT011sgY=
+X-Received: by 2002:a17:906:c350:: with SMTP id ci16mr36562486ejb.466.1634649595458;
+ Tue, 19 Oct 2021 06:19:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20211019125731.4327-1-maukka@ext.kapsi.fi> <20211019125731.4327-3-maukka@ext.kapsi.fi>
-In-Reply-To: <20211019125731.4327-3-maukka@ext.kapsi.fi>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 19 Oct 2021 16:12:57 +0300
-Message-ID: <CAHp75VeOZY+YHfFsnTNdYfan=dxZx9ZEoCr8PAgOewAZX4khsQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] gpio: gpio-cascade: add generic GPIO cascade
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     Mauri Sandberg <sandberg@mailfence.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>
+References: <20211011141733.3999-1-stephan@gerhold.net> <20211011141733.3999-4-stephan@gerhold.net>
+ <YW3XgaiT2jBv4D+L@robh.at.kernel.org> <YW5t01Su5ycLm67c@gerhold.net>
+In-Reply-To: <YW5t01Su5ycLm67c@gerhold.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 19 Oct 2021 08:19:42 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLWV56ehsT2HHpg_qCDxhWmTHgCQoKgZLot_Q8xCdF-OA@mail.gmail.com>
+Message-ID: <CAL_JsqLWV56ehsT2HHpg_qCDxhWmTHgCQoKgZLot_Q8xCdF-OA@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 3/4] dt-bindings: net: Add schema for Qualcomm BAM-DMUX
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev <netdev@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
+        Shevchenko <andy.shevchenko@gmail.com>," 
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 4:00 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
+On Tue, Oct 19, 2021 at 2:03 AM Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> Adds support for building cascades of GPIO lines. That is, it allows
-> setups when there is one upstream line and multiple cascaded lines, out
-> of which one can be chosen at a time. The status of the upstream line
-> can be conveyed to the selected cascaded line or, vice versa, the status
-> of the cascaded line can be conveyed to the upstream line.
+> On Mon, Oct 18, 2021 at 03:22:25PM -0500, Rob Herring wrote:
+> > On Mon, Oct 11, 2021 at 04:17:35PM +0200, Stephan Gerhold wrote:
+> > > The BAM Data Multiplexer provides access to the network data channels of
+> > > modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916 or
+> > > MSM8974. It is built using a simple protocol layer on top of a DMA engine
+> > > (Qualcomm BAM) and bidirectional interrupts to coordinate power control.
+> > >
+> > > The device tree node combines the incoming interrupt with the outgoing
+> > > interrupts (smem-states) as well as the two DMA channels, which allows
+> > > the BAM-DMUX driver to request all necessary resources.
+> > >
+> > > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > > ---
+> > > Changes since RFC: None.
+> > > ---
+> > >  .../bindings/net/qcom,bam-dmux.yaml           | 87 +++++++++++++++++++
+> > >  1 file changed, 87 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml b/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+> > > new file mode 100644
+> > > index 000000000000..33e125e70cb4
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+> > > @@ -0,0 +1,87 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/qcom,bam-dmux.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Qualcomm BAM Data Multiplexer
+> > > +
+> > > +maintainers:
+> > > +  - Stephan Gerhold <stephan@gerhold.net>
+> > > +
+> > > +description: |
+> > > +  The BAM Data Multiplexer provides access to the network data channels
+> > > +  of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
+> > > +  or MSM8974. It is built using a simple protocol layer on top of a DMA engine
+> > > +  (Qualcomm BAM DMA) and bidirectional interrupts to coordinate power control.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: qcom,bam-dmux
+> >
+> > Is this block the same on every SoC? It needs to be SoC specific.
+> >
 >
-> A multiplexer is being used to select, which cascaded GPIO line is being
-> used at any given time.
+> Hm, I think describing it as *SoC*-specific wouldn't be accurate:
+> This node does not describe any hardware block, it's more a "firmware
+> convention". The only hardware involved is the BAM DMA engine, which
+> already has SoC/IP-specific compatibles in its own device tree node.
 >
-> At the moment only input direction is supported. In future it should be
-> possible to add support for output direction, too.
+> This means that if anything there should be "firmware version"-specific
+> compatibles, because one SoC might have different (typically signed)
+> firmware versions that provide slightly different functionality.
+> However, I have to admit that I'm not familiar enough with the different
+> firmware versions to come up with a reasonable naming schema for the
+> compatible. :/
+>
+> In general, I cannot think of any difference between different versions
+> that would matter to a driver. The protocol is quite simple, and minor
+> firmware differences can be better handled through the control channel
+> that sets up the connection for the modem.
+>
+> Does that make sense?
 
-Thanks for an update! My comments below.
+Okay. Please add some of the above details to the binding.
 
-...
-
-> +config GPIO_CASCADE
-> +       tristate "General GPIO cascade"
-> +       select MULTIPLEXER
-> +       help
-> +         Say yes here to enable support for generic GPIO cascade.
-> +
-> +         This allows building one-to-many cascades of GPIO lines using
-> +         different types of multiplexers readily available. At the
-> +         moment only input lines are supported.
-
-Care to mention what will be the module name in the case of being
-built as a module?
-(Hint: there are plenty of existing examples in the kernel)
-
-...
-
-> +#include <linux/module.h>
-
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/gpio/driver.h>
-
-I would move this group...
-
-> +#include <linux/slab.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mux/consumer.h>
-> +
-
-...to be somewhere here to explicitly show that this is the GPIO
-subsystem related driver.
-
-...
-
-> +       mc = devm_mux_control_get(dev, NULL);
-> +       if (IS_ERR(mc))
-
-> +               return dev_err_probe(dev,
-> +                                    PTR_ERR(mc),
-> +                                    "unable to get mux-control\n");
-
-Why not one line?
-
-...
-
-> +       upstream = devm_gpiod_get(dev, "upstream",  GPIOD_IN);
-> +       if (IS_ERR(upstream)) {
-> +               dev_err(dev, "unable to claim upstream GPIO line\n");
-> +               return -ENODEV;
-
-Why shadowing error code? What happens if it's deferred?
-Hint: use dev_err_probe() here as well.
-
-> +       }
-
-...
-
-> +       err = devm_gpiochip_add_data(dev, &cas->gpio_chip, NULL);
-> +       if (err) {
-> +               dev_err(dev, "unable to add gpio chip\n");
-> +               return err;
-> +       }
-> +
-> +       platform_set_drvdata(pdev, cas);
-> +       return 0;
-
-I would rather do
-
-       platform_set_drvdata(pdev, cas);
-
-       return devm_gpiochip_add_data(dev, &cas->gpio_chip, NULL);
-
--- 
-With Best Regards,
-Andy Shevchenko
+Rob
