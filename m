@@ -2,144 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D9C843373D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBDE84337B7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbhJSNmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 09:42:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43780 "EHLO mail.kernel.org"
+        id S235822AbhJSNug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 09:50:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47162 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235739AbhJSNmF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 09:42:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7AA8D60FDA;
-        Tue, 19 Oct 2021 13:39:52 +0000 (UTC)
+        id S235774AbhJSNuf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 09:50:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2E70560724;
+        Tue, 19 Oct 2021 13:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634650792;
-        bh=nt2mCYefXWMIaMeljO6B+JG+TGSzgNhhr44Juy9MjH0=;
+        s=k20201202; t=1634651303;
+        bh=XMC/wPCLR3CBhhlT5pdzczydUVy9/N9xDjzMYHJpisA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pK7YqmUL0a3iT4HpsQCx5Ot8rkA9Yqhbrnwv6jo6ZElrRKYhQv9j4fPWpW1r8FMli
-         5Lsz8CjwuVHiiiycxNhLQpl8GvJMI8RwgE/wUIMSc0wLxAnpdUQEo1jjznHaJ+fQQt
-         JIj7yE5yeya9A1mOOe0gT1KvBEDPa8FmgnY0dTfoAmeIsedH/kWzwxjtvxC8crPo5z
-         nJgW6slFeIQJhlqXo25qOsp0es4mmwMxcTEPq84O0EsgZ2NU4+sDyAbPGnRJqOIZZd
-         r1gz9l8PfC3oh/e3mkrURmoV8TD+u34ZNgYynrINyntYBB5Bthm+dTop1ouzWsjFGj
-         zmv9xK4EXC6oA==
-Received: by mail-ed1-f50.google.com with SMTP id i20so12933501edj.10;
-        Tue, 19 Oct 2021 06:39:52 -0700 (PDT)
-X-Gm-Message-State: AOAM533lghX/ODQ05U1chP5xTsuhbPrWFnQhBuXR2/EUTnzgQE+wKcbE
-        8y3OBAEEUx0eqAAw2aXDnD+Vcj6Nc5j6J4ALnA==
-X-Google-Smtp-Source: ABdhPJw785YAft9kOCJXRejGGvZ/JDL+mkBm+lWkw83KlfrIebtxU9BzrRRTN4EOU5p2crXDoSahLOKz0M3l0GoGLxg=
-X-Received: by 2002:aa7:c357:: with SMTP id j23mr56462688edr.145.1634650742754;
- Tue, 19 Oct 2021 06:39:02 -0700 (PDT)
+        b=XVz3/x1A/lWTu+niZXy+0StJv8L0IQUVZCiEkvfOa2MSgPYviTFsMQRTwZ3RVMjAP
+         DzH/cm9o/LLbuqUW6I9Le6IwMuAXwMhqLFqjhJCnSHqXs+ypzZZwxBLjSJ0Ll2E62x
+         o8rufTm7qtEo9zHjmTQQ0NtwVzZht+5ULI1kM9DQVVME+xBOISQk10mcnTp6u7yxgj
+         dyaV2siNXZ1TUw6pCpxOAdRhmEyo+7KjmHmTk/NR/46CZrXDS1YWGb4sj5ZH41yB2x
+         kkUdq6HwbVs+sxWqgsUvVOCoP/4u8QqgRd0Vg0A3iNMFXv/claKAiPQpQTGq4xQDJM
+         76mZsOYYP/Jpg==
+Received: by mail-ed1-f46.google.com with SMTP id w19so13222362edd.2;
+        Tue, 19 Oct 2021 06:48:23 -0700 (PDT)
+X-Gm-Message-State: AOAM531Rx4oghoBppGP3mW3OpOcqtQD7QIqZB9WvXAEJmSIDQRvVkau4
+        e6D+6hNG5xIcIAOyPFaq4jiTZIbXi0DTdavz8g==
+X-Google-Smtp-Source: ABdhPJyAfrYlSPnzjG28JymfwvH0BP3fn74QUTfI0oe+sTUWy23ijNdMN4gs6ujRiJQN0RszPk5QghJDBRsUY0PgyKY=
+X-Received: by 2002:a05:6402:1778:: with SMTP id da24mr53073940edb.318.1634651259310;
+ Tue, 19 Oct 2021 06:47:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
- <20211015123920.176782-3-horatiu.vultur@microchip.com> <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
- <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
-In-Reply-To: <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 19 Oct 2021 08:38:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
-Message-ID: <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>, Vinod <vkoul@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20211018101608.3818840-1-tzungbi@google.com>
+In-Reply-To: <20211018101608.3818840-1-tzungbi@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 19 Oct 2021 08:47:28 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK9UQ9K+GseF5QtiPW_sHMiupq1HAwDArN6P+H8iBwJ-Q@mail.gmail.com>
+Message-ID: <CAL_JsqK9UQ9K+GseF5QtiPW_sHMiupq1HAwDArN6P+H8iBwJ-Q@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: mediatek: rename reset controller
+ headers in DT example
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 4:11 AM Horatiu Vultur
-<horatiu.vultur@microchip.com> wrote:
+On Mon, Oct 18, 2021 at 5:16 AM Tzung-Bi Shih <tzungbi@google.com> wrote:
 >
-> The 10/18/2021 14:28, Rob Herring wrote:
-> >
-> > On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
-> > > Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
-> > > requires to be muxed based on the HW representation.
-> > >
-> > > So add constants for each interface to be able to distinguish them.
-> > >
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > >  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
-> > >  1 file changed, 14 insertions(+)
-> > >  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
-> > >
-> > > diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> > > new file mode 100644
-> > > index 000000000000..8a05f93ecf41
-> > > --- /dev/null
-> > > +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
-> > > @@ -0,0 +1,14 @@
-> > > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> > > +
-> > > +#ifndef __PHY_LAN966X_SERDES_H__
-> > > +#define __PHY_LAN966X_SERDES_H__
-> > > +
-> > > +#define PHY(x)               (x)
-> > > +#define PHY_MAX              PHY(2)
-> > > +#define SERDES6G(x)  (PHY_MAX + 1 + (x))
-> > > +#define SERDES6G_MAX SERDES6G(3)
-> > > +#define RGMII(x)     (SERDES6G_MAX + 1 + (x))
-> > > +#define RGMII_MAX    RGMII(2)
-> > > +#define SERDES_MAX   (RGMII_MAX + 1)
-> >
-> > I still don't understand. #phy-cells description says we have:
-> >
-> > <port idx> <serdes idx>
-> >
-> > But here it's 3 numbers. How are these defines used to fill in the 2
-> > cells?
+> Commit f07c776f6d7e ("arm64: dts: mediatek: Move reset controller
+> constants into common location") moves the reset controller headers.
+> However, it forgot to rename the DT example in mt8192-afe-pcm.yaml.
 >
-> Actually they are still only a number. Or maybe I am missing something.
-
-So all the defines apply to the 2nd cell? That's what's missing. The
-cell description needs to spell all this out. 3 different modes or
-whatever. Explain what the h/w is comprised of in the top level
-'description'.
-
+> Renames the DT example to pass dt_binding_check.
 >
-> Maybe an example will help:
->
+> Fixes: f07c776f6d7e ("arm64: dts: mediatek: Move reset controller constants into common location")
+> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 > ---
-> serdes: serdes@e2004010 {
->     compatible = "microchip,lan966x-serdes";
->     reg = <0xe202c000 0x9c>, <0xe2004010 0x4>;
->     #phy-cells = <2>;
-> };
+> The patch bases on next-20211018.
 >
-> &port0 {
->     ...
->     phys = <&serdes 0 SERDES6G(1)>;
->     ...
-> };
+> In Mark's tree[1], the commit f07c776f6d7e hasn't shown up.
+> In Matthias's tree[2], mt8192-afe-pcm.yaml hasn't applied.
 >
-> &port1 {
->     ...
->     phys = <&serdes 1 PHY(0)>;
+> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/
+> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/
+>
+> Also, I am not sure if the commit hash "f07c776f6d7e" would change
+> or not after it applies to mainline.
+>
+>  Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-I think CU was better, just needed some comments. PHY is pretty vague.
+Not great as things will break again in the merge window temporarily.
+You could just not use the 1 reset define in the example and avoid all
+that, but this is fine:
 
->     ...
-> }
->
-> ...
-> ---
->
-> Here are some existing examples based on which I have created this patch
-> series:
-> https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot_pcb120.dts#L99
-
-None of which use PHY() or RGMII()...
-
-
-> https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot.dtsi#L274
->
-> >
-> > Rob
->
-> --
-> /Horatiu
+Acked-by: Rob Herring <robh@kernel.org>
