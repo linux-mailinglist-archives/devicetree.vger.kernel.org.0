@@ -2,116 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A94C433811
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4318C43381D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232682AbhJSOLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 10:11:15 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:56701 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229734AbhJSOLO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 10:11:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634652541; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=WY2I3/9Ukehmx/Ml8RRSY/034uNGRLFMxiyy7ZlPyKo=; b=py47fospt5qg68x7HqwmlGRIpG1XxOi+tOlbn2uxBcgmXa5c9GTnT1Cw4+sUZfXh9ZgBQZUR
- HSO0ba8aDdWyLLGWVoT6t1MDb9xN1gaooo7sDX3RfT55Mkq346tES23OmgTu3tyI1iaKGqDp
- Bw1hpNH40t3yajCj3SnO/y6Jlys=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 616ed0b8b03398c06c521e89 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 19 Oct 2021 14:05:44
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 386C5C4360C; Tue, 19 Oct 2021 14:05:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B3E66C4338F;
-        Tue, 19 Oct 2021 14:05:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B3E66C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        =?utf-8?Q?Beno?= =?utf-8?Q?=C3=AEt?= Cousson 
-        <bcousson@baylibre.com>, Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Lechner <david@lechnology.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "open list\:TI ETHERNET SWITCH DRIVER \(CPSW\)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 0/3] dt-bindings: net: TI wlcore json schema conversion and fix
-References: <cover.1634646975.git.geert+renesas@glider.be>
-        <87a6j5gmvg.fsf@codeaurora.org>
-        <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
-Date:   Tue, 19 Oct 2021 17:05:37 +0300
-In-Reply-To: <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
-        (Geert Uytterhoeven's message of "Tue, 19 Oct 2021 15:48:03 +0200")
-Message-ID: <8735oxgle6.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S231604AbhJSOPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 10:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60928 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229584AbhJSOPY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:15:24 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B31BC061746
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 07:13:11 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id r6so6423298ljg.6
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 07:13:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/25LReJpLmexJOLsg1U4LuPGd27FRP03kBeKy7B8I5o=;
+        b=PtXf40cExBsKA6nV5e77WfUEMxzkT2NFQnPtC51Tu9UOotsDNjZoMbvVM/+d40IM9h
+         dQmyjQ1bAXa6nMhcNsNH2cmus5iQJHjWtdU6YRrA7XdZRFtrolWVr+WjdSdYYZ/bMGyR
+         W26A2vfhvBBB7zEXD299MRX57UMNCuDQjoEFPTA6SPtj3AnA2XychO6W4PieX3DNtf9n
+         jcrILVHDbCcjJPYq0nLZCbndOcZUhR/nPMagLtsQ5TkMPCZHudEuRGJumsgyOWnH9bEB
+         vXoR/wUCO7+ZYiW0hKWxQ2kdt2BX0zIgArk+BaLwC+pqtzMwsIsmcDx3vFNl0VGVWn5y
+         Wkzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/25LReJpLmexJOLsg1U4LuPGd27FRP03kBeKy7B8I5o=;
+        b=y98icnlWbFNxzFUpF/IPwTncLQ0gmDLs7eg6POVUMzZgMLOGrsDLbOZ0jSzfR0K6qm
+         HkpRWidvEkfh3vebaNx/BJTRPQ0ah4jXv7OPCDZ61mtxKhkszGoD9Bm0nxrljysA4jmw
+         JBnYtVeKI2rRaJECkkRj2L7tlUytAR++83bwRxqSKra3PAXFY8RQ0y29mekOR4mGbDHl
+         VSjaAqfnxdZ597g2lJ5XsyHxFGUq3IMKivtQAJcvqv4ajOb6sljBYbDGnojXRVY9UdRT
+         AgmAFPQOgBJxAC60toLgA+ZiTEvSSX3W3JtBx13vsn048CkR7cpS1h/xFYRr4jB+6SFF
+         JH+w==
+X-Gm-Message-State: AOAM531JZb8nJUHP2TwIBEtv8lPnGqTyF8QLKlkJ+RQuJ14kaCvfg88q
+        aUrVEX65hlVoa0Ey256z9WwuYw==
+X-Google-Smtp-Source: ABdhPJzPP4EtERsJnIetXPWwwfIY3iWtk4TXNDwY/nr3BsDBbk3teRY3BsGmScoX1PK5HNNXeEvo3A==
+X-Received: by 2002:a2e:6818:: with SMTP id c24mr7148268lja.471.1634652789734;
+        Tue, 19 Oct 2021 07:13:09 -0700 (PDT)
+Received: from grasshopper.googchameleon.semihalf.net ([83.142.187.85])
+        by smtp.gmail.com with ESMTPSA id d24sm1957805ljc.2.2021.10.19.07.13.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Oct 2021 07:13:09 -0700 (PDT)
+From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+To:     dinguyen@kernel.org, robh+dt@kernel.org, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, upstream@semihalf.com,
+        mw@semihalf.com, jam@semihalf.com, ka@semihalf.com,
+        tn@semihalf.com, amstan@google.com,
+        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
+Subject: [PATCH v4 0/2] Add support for the Mercury+ AA1 module
+Date:   Tue, 19 Oct 2021 16:12:26 +0200
+Message-Id: <20211019141228.1271617-1-pan@semihalf.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Geert Uytterhoeven <geert@linux-m68k.org> writes:
+The following patches add support for the Mercury+ AA1 with an
+Arria 10 SoCFPGA.
 
-> On Tue, Oct 19, 2021 at 3:33 PM Kalle Valo <kvalo@codeaurora.org> wrote:
->> Geert Uytterhoeven <geert+renesas@glider.be> writes:
->> > This patch series converts the Device Tree bindings for the Texas
->> > Instruments Wilink Wireless LAN and Bluetooth Controllers to
->> > json-schema, after fixing an issue in a Device Tree source file.
->> >
->> > Thanks for your comments!
->> >
->> > Geert Uytterhoeven (3):
->> >   ARM: dts: motorola-mapphone: Drop second ti,wlcore compatible value
->> >   dt-bindings: net: wireless: ti,wlcore: Convert to json-schema
->> >   dt-bindings: net: ti,bluetooth: Convert to json-schema
->> >
->> >  .../devicetree/bindings/net/ti,bluetooth.yaml |  91 ++++++++++++
->> >  .../devicetree/bindings/net/ti-bluetooth.txt  |  60 --------
->> >  .../bindings/net/wireless/ti,wlcore,spi.txt   |  57 --------
->> >  .../bindings/net/wireless/ti,wlcore.txt       |  45 ------
->> >  .../bindings/net/wireless/ti,wlcore.yaml      | 134 ++++++++++++++++++
->> >  .../boot/dts/motorola-mapphone-common.dtsi    |   2 +-
->> >  arch/arm/boot/dts/omap3-gta04a5.dts           |   2 +-
->> >  7 files changed, 227 insertions(+), 164 deletions(-)
->> >  create mode 100644 Documentation/devicetree/bindings/net/ti,bluetooth.yaml
->> >  delete mode 100644 Documentation/devicetree/bindings/net/ti-bluetooth.txt
->> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
->> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
->> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
->>
->> Via which tree should these go?
->
-> The DTS change should go through the OMAP tree.
-> The binding changes through the net or DT trees.
->
-> I kept everything together for an improved overview.
+v4:
+* move devicetree aliases to socfpga_arria10.dtsi
+* sort arria10 entries in arch/arm/boot/dts/Makefile
 
-Good, thanks. I'll then drop these from my queue.
+v3:
+* replace i2c busno property with devicetree aliases
+* reset controller patch added to Philipp Zabel's tree
+
+v2:
+* remove spi flash node
+* rename memory and mdio nodes
+* add gpio nodes
+* add busno property to designware i2c driver
+
+Paweł Anikiel (2):
+  reset: socfpga: add empty driver allowing consumers to probe
+  socfpga: dts: move arria10 aliases to socfpga_arria10.dtsi
+
+ arch/arm/boot/dts/socfpga_arria10.dtsi       | 13 ++++++++++
+ arch/arm/boot/dts/socfpga_arria10_socdk.dtsi |  7 +-----
+ drivers/reset/reset-socfpga.c                | 26 ++++++++++++++++++++
+ 3 files changed, 40 insertions(+), 6 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+2.25.1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
