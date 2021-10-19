@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2E1B4337B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D97764337E4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 15:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235691AbhJSNub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 09:50:31 -0400
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:37403 "EHLO
-        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235929AbhJSNua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 09:50:30 -0400
-Received: by mail-ua1-f46.google.com with SMTP id f4so3514598uad.4;
-        Tue, 19 Oct 2021 06:48:17 -0700 (PDT)
+        id S235426AbhJSOB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 10:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232726AbhJSOB0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:01:26 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111B1C061746
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 06:59:13 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id j21so7847470lfe.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 06:59:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ILzjBv7jb2erSvTebu5+BOJoPbprz/SsH8tpTWu6DKY=;
+        b=O2Re71PfoAqOL7WOfHfHJNkIL7iakzqAszzJk8SjFyqWyNb6UHyVMqs6C3OoSWFI9F
+         Xd64Q3XG7+XiEpugc1LBKkCsbt0vFqwjKEg2h5n9zge5VqjQGwXmHsR7/hIdY5oZ9d/g
+         5DfJKBfi4rxaMhprLEdyPJvfPKfXnn2MFq9VxKNW9P9Y14ABget75hoP0JN+Sd2k3Oz+
+         NZ3KUgMnI1fTEb+pN3spt4l7LG71Y5Y03w+0lC2USSDgWWWO0H+PGdDB1fo5BV2kHhcj
+         +aX1sr2LryW3yuBIDCwy1jjpcNQSCsz9JM7sylSi9ochWS5bEJdW/sz0oq0atmMOQCsP
+         NEuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fcDzEu/olBUewc2zfLP9L5lSacn9aVLegk1TrgMXQas=;
-        b=Jzmhf3cw/KshIRz8/xBpAv46b3d7uYEbmVLuJ+p/+8pDnEMzCntEHDTxFynCSvjMbL
-         fCSw9YyizoQQQ+4O/3Lfwl/KEh+pwmQU2M2ffoSPtt7MiGP1fMJqa6ms18wGKYFS+3Br
-         aT6MrLpoPQSyOPU8Nn59tQkMYk3FFJC+3DtD8MiRdqqxgf19jE1vS9DEW/6yWXlMiqgv
-         Qgv2qr2DUDKY3/AyJZhrtlvjGX2XbYHFVgcfZ9W6V3NFEiUKF3pbSRI95ymPBw0DjbS8
-         AfXDyPda85ZFNlpeEsPPNn+F/kdNFVCX0IvseSkOWxXLsO6YcZqusmHsvF/fxCa37J6+
-         RjUw==
-X-Gm-Message-State: AOAM530iZg/yAw6QsSbAoFwBjtPXsrev9IrxSZcmjI51FbyyHFo+EVs5
-        +gKUrH6oB9df1i5MI7VztqtyJZjU6OhcJw==
-X-Google-Smtp-Source: ABdhPJwep983ZzJlXgVZ2iEEdJAq2O28V2X8VNam5AcKFVqSYD+Nd8ojG3/RZJuDE2SSsGdKHTwEqQ==
-X-Received: by 2002:a67:ac42:: with SMTP id n2mr35580262vsh.21.1634651296314;
-        Tue, 19 Oct 2021 06:48:16 -0700 (PDT)
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
-        by smtp.gmail.com with ESMTPSA id b24sm10798780uaq.16.2021.10.19.06.48.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
-Received: by mail-vk1-f175.google.com with SMTP id bc10so3428305vkb.1;
-        Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
-X-Received: by 2002:a1f:1604:: with SMTP id 4mr32111362vkw.11.1634651295119;
- Tue, 19 Oct 2021 06:48:15 -0700 (PDT)
+        bh=ILzjBv7jb2erSvTebu5+BOJoPbprz/SsH8tpTWu6DKY=;
+        b=zB8SSNyvSwCqVilz46sAWHAbUcvurvmrDOysSyXzMZ/mDye3evo5Mq2s8qMr8by3iG
+         VHWARBXtKnWWpSkQikKq1niQDz8uYvnQvUAu71rxFIombixTB7xQsJhgy6nqEtL0u1Yb
+         UlnMI9V4hZ4lsIdwX5C0vGMyQsxb4HIvN66739EbGViBcDdtd57h7p/oPdSlsjRm//i1
+         3g/HAWl3PFM4bg5pFKXS/FnOFoDeeUqtc2uLXNlORq9XgcKCIG3GfvXi+T2ry4c+jymH
+         hbITl91LOBvqIVowPG9rpoNTg5mdn5G0spiATgCEmZ00IxlrG6bm/6tSaN0fFrn2J215
+         Hi2A==
+X-Gm-Message-State: AOAM532N2yRrz5eIiScGbPnCJK1JYgTi82Bagcojiggvw5dH5QZQ3FpT
+        iXqMRSJ5Oy71UciQgEv9TNHcthI0hw22uuyuRyqzXg==
+X-Google-Smtp-Source: ABdhPJwEZ/12s6FhUn9BwHsNM2h0kgJ1t7fNc7uC9H9v39KVXFWF2Gp6L127iVGYAWoxT0/CCwL8R8bkoNkCTrlDLyE=
+X-Received: by 2002:a05:6512:3084:: with SMTP id z4mr5900952lfd.167.1634651951419;
+ Tue, 19 Oct 2021 06:59:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1634646975.git.geert+renesas@glider.be> <87a6j5gmvg.fsf@codeaurora.org>
-In-Reply-To: <87a6j5gmvg.fsf@codeaurora.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 19 Oct 2021 15:48:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
-Message-ID: <CAMuHMdWEwsK=jUt=T8irpAdjocLtAjajBCacGHnu4fKKio6ZbA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] dt-bindings: net: TI wlcore json schema conversion
- and fix
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        David Lechner <david@lechnology.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        linux-wireless <linux-wireless@vger.kernel.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+ <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
+ <20211014145555.uoi2hyoonrptrd5m@bogus> <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+ <20211019072425.dvq3ummjdkjmucgm@vireshk-i7>
+In-Reply-To: <20211019072425.dvq3ummjdkjmucgm@vireshk-i7>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 19 Oct 2021 15:58:35 +0200
+Message-ID: <CAPDyKFqk_-YQjEECLm_gM6UpMahRok4vNnxCv3i614OEvPuD2Q@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kalle,
-
-On Tue, Oct 19, 2021 at 3:33 PM Kalle Valo <kvalo@codeaurora.org> wrote:
-> Geert Uytterhoeven <geert+renesas@glider.be> writes:
-> > This patch series converts the Device Tree bindings for the Texas
-> > Instruments Wilink Wireless LAN and Bluetooth Controllers to
-> > json-schema, after fixing an issue in a Device Tree source file.
-> >
-> > Thanks for your comments!
-> >
-> > Geert Uytterhoeven (3):
-> >   ARM: dts: motorola-mapphone: Drop second ti,wlcore compatible value
-> >   dt-bindings: net: wireless: ti,wlcore: Convert to json-schema
-> >   dt-bindings: net: ti,bluetooth: Convert to json-schema
-> >
-> >  .../devicetree/bindings/net/ti,bluetooth.yaml |  91 ++++++++++++
-> >  .../devicetree/bindings/net/ti-bluetooth.txt  |  60 --------
-> >  .../bindings/net/wireless/ti,wlcore,spi.txt   |  57 --------
-> >  .../bindings/net/wireless/ti,wlcore.txt       |  45 ------
-> >  .../bindings/net/wireless/ti,wlcore.yaml      | 134 ++++++++++++++++++
-> >  .../boot/dts/motorola-mapphone-common.dtsi    |   2 +-
-> >  arch/arm/boot/dts/omap3-gta04a5.dts           |   2 +-
-> >  7 files changed, 227 insertions(+), 164 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/ti,bluetooth.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/ti-bluetooth.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore,spi.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.txt
-> >  create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
+On Tue, 19 Oct 2021 at 09:24, Viresh Kumar <viresh.kumar@linaro.org> wrote:
 >
-> Via which tree should these go?
+> On 15-10-21, 11:17, Ulf Hansson wrote:
+> > As far as I understand, the "performance domains" DT bindings that
+> > $subject patch introduces, allows us to group devices into domains, to
+> > let them be "performance controlled" together. Right?
+>
+> This and it also provides a reg space where we can get/set the
+> performance state.
 
-The DTS change should go through the OMAP tree.
-The binding changes through the net or DT trees.
+Right. So that can be done for power-domains too.
 
-I kept everything together for an improved overview.
+>
+> > Unless I am missing something, it looks like power domains DT bindings
+> > already offer this for us. Yes, certainly, the DT doc [1] needs an
+> > updated description to better explain this, but other than that we
+> > should be fine, don't you think?
+>
+> I think yes we can make it work through that as well, but I am not
+> sure if we will be able to use required-opp n stuff here as the DT
+> doesn't have the OPP table for the CPUs.
+>
+> The CPU's freq table is generated at runtime, see
+> drivers/cpufreq/mediatek-cpufreq-hw.c for example.
 
-Gr{oetje,eeting}s,
+To me, this looks doable from a genpd provider too. Of course, we may
+need to extend the genpd interface a bit to make it fit well for this
+new use case, of course. And I am happy to help, if that is needed.
 
-                        Geert
+One thing though; how is the aggregation of the OPP votes expected to
+be done? Is that entirely managed by FW - or is it expected that the
+cpufreq driver, in this case, keeps track of the aggregated votes too?
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Don't get me wrong, I am not pushing for these DT bindings to be
+deprecated (at least not yet :-)), but I would certainly like to
+understand more about them. In the end, we haven't walked this far, by
+extending genpd and inventing new DT bindings to enable it to support
+"performance management" - then just to just forget about them again.
+:-)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Kind regards
+Uffe
