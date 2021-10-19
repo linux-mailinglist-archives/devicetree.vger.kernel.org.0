@@ -2,288 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E6E4333CC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A95F4333E4
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 12:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235208AbhJSKqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 06:46:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235179AbhJSKqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 06:46:35 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD90DC061745
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 03:44:22 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id v17so46850894wrv.9
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 03:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=u1emP74LMR8/SvGoouwH++0x/p6OWG+7EYKvBz2UYg8=;
-        b=of5XTyT0K3CPL1nTRDT8JDcSH2dpt4BaIJGz42QaY2MJkw8Pj9kPOn05hWWo1FN/i1
-         BdacScUTT5bwFpPLeUTjLfVGSNiGq9UO1fiG6qPQ+2iSVLu+5xwLvIYdicuxpOVl+NMk
-         JavBQ80EGM3/fZzbs3enCHN4p3UXmsZ/ov/gLYdDATLbPiyHH7miUPcagf6/n+GWHu4K
-         CBkyiYVKXvUH3hwZ0wa+4iG/kg1yjRohlIaMT+cgrckN7nLLSySjg/nSSCgIY30l8WrR
-         McAPZ9sV6VQ2K12G9WabbYNra6JeugiIIn/UIJ4Tb6cXW886ObmSp1P6CFcQZF3z2eDG
-         3wag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=u1emP74LMR8/SvGoouwH++0x/p6OWG+7EYKvBz2UYg8=;
-        b=4UjLrjYELNCpTDAbOLrFNYi/W2AgLe5nlEbza40igsRPLJcW13VQmeLUQ8XqAauDfz
-         QhH6dXZJqc3NdSsKwA3eGdh6ctk+01S8xgGmZAD+XvSu9tqOnUe62+cIAO1zaaTmlv1j
-         lZkyZtZzZBiey5eHnYmnXR9+dNeHBrxf1xWJjOWsUWuwZx8vj2H3CCGCSxPTzopU21Oh
-         kKncH2PgUGrCONXHh32YKd3+G9fVfZsHPgaGHBSMZ08ys/wgYSDqmwSksDWqjZY3zshy
-         Nf7J2E+A9Wjlo5OBBn5dFC2ZtjONRgPezYG6Yc5AK51BQL6awHry+zV4Vh85AjBfDODf
-         h/gg==
-X-Gm-Message-State: AOAM533YFH9lCNVKRVqxgGWbmlqUx4szscQ4DGGrfhNMnrml0ohMGHch
-        0/AMZiFm0+GcKs8PIKBbxPfZ4w==
-X-Google-Smtp-Source: ABdhPJyZjIHKYWT4pQlfal1tLcBol+nlDGLcHvkF/ANdHRtITNxC1BrufddcAkjHys1sUUpuIxkwlg==
-X-Received: by 2002:a5d:4a0c:: with SMTP id m12mr43634922wrq.27.1634640261228;
-        Tue, 19 Oct 2021 03:44:21 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c590:9206:d20a:23bd? ([2a01:e34:ed2f:f020:c590:9206:d20a:23bd])
-        by smtp.googlemail.com with ESMTPSA id h11sm14071179wrz.5.2021.10.19.03.44.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Oct 2021 03:44:20 -0700 (PDT)
-Subject: Re: [PATCH v2 4/4] thermal: mediatek: add MT8365 thermal driver
- support
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
-        khilman@baylibre.com
-References: <20211019093404.1913357-1-msp@baylibre.com>
- <20211019093404.1913357-5-msp@baylibre.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <d796b9ea-210a-1385-8823-f697b7ac7fa7@linaro.org>
-Date:   Tue, 19 Oct 2021 12:44:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211019093404.1913357-5-msp@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S235291AbhJSKvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 06:51:40 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:46252 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235208AbhJSKvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 06:51:38 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 19 Oct 2021 03:49:26 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 19 Oct 2021 03:49:24 -0700
+X-QCInternal: smtphost
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 19 Oct 2021 16:19:09 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 26C52535A; Tue, 19 Oct 2021 16:19:08 +0530 (IST)
+From:   Satya Priya <skakit@codeaurora.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, swboyd@chromium.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Satya Priya <skakit@codeaurora.org>
+Subject: [PATCH V2 0/3] Add PM8350C PMIC PWM support for backlight
+Date:   Tue, 19 Oct 2021 16:18:48 +0530
+Message-Id: <1634640531-15813-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2021 11:34, Markus Schneider-Pargmann wrote:
-> From: Fabien Parent <fparent@baylibre.com>
-> 
-> mt8365 is similar to the other SoCs supported by the driver. It has only
-> one bank and 3 sensors that can be multiplexed.
-> 
-> Additionally the buffer has to be enabled and connected to AUXADC
-> similar to the V2 version but at a different register offset. That's why
-> I added three new configuration values to define the register, mask and
-> bits to be set to be able to use it for both V2 and mt8365.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> [Added apmixed control register logic]
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
-> 
-> Notes:
->     Changes v1 -> v2:
->     - Use of ARRAY_SIZE to avoid NUM macros.
->     - Remove (void*) cast.
->     - Use macros for mt7622 buffer_ctl operations.
-> 
->  drivers/thermal/mtk_thermal.c | 90 ++++++++++++++++++++++++++++++++---
->  1 file changed, 84 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index af6cd11eb221..fc4ea58d00ec 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -31,6 +31,7 @@
->  #define AUXADC_CON2_V		0x010
->  #define AUXADC_DATA(channel)	(0x14 + (channel) * 4)
->  
-> +#define APMIXED_SYS_TS_CON0	0x600
->  #define APMIXED_SYS_TS_CON1	0x604
->  
->  /* Thermal Controller Registers */
-> @@ -212,6 +213,8 @@ enum mtk_thermal_version {
->  #define MT7622_NUM_SENSORS_PER_ZONE	1
->  #define MT7622_TS1	0
->  #define MT7622_NUM_CONTROLLER		1
-> +#define MT7622_BUFFER_CTL_MASK		~0x37
-> +#define MT7622_BUFFER_CTL_SET		0x1
->  
->  /* The maximum number of banks */
->  #define MAX_NUM_ZONES		8
-> @@ -245,6 +248,14 @@ enum mtk_thermal_version {
->  /* The calibration coefficient of sensor  */
->  #define MT8183_CALIBRATION	153
->  
-> +/* MT8365 */
-> +#define MT8365_TEMP_AUXADC_CHANNEL 11
-> +#define MT8365_CALIBRATION 164
-> +#define MT8365_NUM_BANKS 1
-> +#define MT8365_TS1 0
-> +#define MT8365_TS2 1
-> +#define MT8365_TS3 2
-> +
->  struct mtk_thermal;
->  
->  struct thermal_bank_cfg {
-> @@ -271,6 +282,9 @@ struct mtk_thermal_data {
->  	bool need_switch_bank;
->  	struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
->  	enum mtk_thermal_version version;
-> +	u32 apmixed_buffer_ctl_reg;
-> +	u32 apmixed_buffer_ctl_mask;
-> +	u32 apmixed_buffer_ctl_set;
->  };
->  
->  struct mtk_thermal {
-> @@ -386,6 +400,25 @@ static const int mt7622_mux_values[MT7622_NUM_SENSORS] = { 0, };
->  static const int mt7622_vts_index[MT7622_NUM_SENSORS] = { VTS1 };
->  static const int mt7622_tc_offset[MT7622_NUM_CONTROLLER] = { 0x0, };
->  
-> +/* MT8365 thermal sensor data */
-> +static const int mt8365_bank_data[] = {
-> +	MT8365_TS1, MT8365_TS2, MT8365_TS3
-> +};
-> +
-> +static const int mt8365_msr[ARRAY_SIZE(mt8365_bank_data)] = {
-> +	TEMP_MSR0, TEMP_MSR1, TEMP_MSR2
-> +};
-> +
-> +static const int mt8365_adcpnp[ARRAY_SIZE(mt8365_bank_data)] = {
-> +	TEMP_ADCPNP0, TEMP_ADCPNP1, TEMP_ADCPNP2
-> +};
-> +
-> +static const int mt8365_mux_values[ARRAY_SIZE(mt8365_bank_data)] = { 0, 1, 2 };
+This series depends on [1], which adds driver for Qualcomm LPG.
 
-This portion of declaration shows it should be *one* array of structures :/
+[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=560587&state=%2A&archive=both
 
-This comment applies for all the existing code.
+satya priya (3):
+  dt-bindings: leds: Add pm8350c pmic support
+  leds: Add pm8350c support to Qualcomm LPG driver
+  arm64: dts: qcom: pm8350c: Add pwm support
 
-TBH, I think the code could be simplified and consolidated in this
-driver. But that would be out of the scope of your changes as I
-understand you are sticking to the current implementation.
-
-
-> +static const int mt8365_tc_offset[] = { 0 };
-
-0x0, to be consistent with the rest of the code.
-
-> +
-> +static const int mt8365_vts_index[ARRAY_SIZE(mt8365_bank_data)] = { VTS1, VTS2,
-> +								    VTS3 };
-> +
->  /*
->   * The MT8173 thermal controller has four banks. Each bank can read up to
->   * four temperature sensors simultaneously. The MT8173 has a total of 5
-> @@ -460,6 +493,39 @@ static const struct mtk_thermal_data mt2701_thermal_data = {
->  	.version = MTK_THERMAL_V1,
->  };
->  
-> +/*
-> + * The MT8365 thermal controller has one bank, which can read up to
-> + * four temperature sensors simultaneously. The MT8365 has a total of 3
-> + * temperature sensors.
-> + *
-> + * The thermal core only gets the maximum temperature of this one bank,
-> + * so the bank concept wouldn't be necessary here. However, the SVS (Smart
-> + * Voltage Scaling) unit makes its decisions based on the same bank
-> + * data.
-> + */
-> +static const struct mtk_thermal_data mt8365_thermal_data = {
-> +	.auxadc_channel = MT8365_TEMP_AUXADC_CHANNEL,
-> +	.num_banks = MT8365_NUM_BANKS,
-> +	.num_sensors = ARRAY_SIZE(mt8365_bank_data),
-> +	.vts_index = mt8365_vts_index,
-> +	.cali_val = MT8365_CALIBRATION,
-> +	.num_controller = ARRAY_SIZE(mt8365_tc_offset),
-> +	.controller_offset = mt8365_tc_offset,
-> +	.need_switch_bank = false,
-> +	.bank_data = {
-> +		{
-> +			.num_sensors = ARRAY_SIZE(mt8365_bank_data),
-> +			.sensors = mt8365_bank_data
-> +		},
-> +	},
-> +	.msr = mt8365_msr,
-> +	.adcpnp = mt8365_adcpnp,
-> +	.sensor_mux_values = mt8365_mux_values,
-> +	.version = MTK_THERMAL_V1,
-> +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON0,
-> +	.apmixed_buffer_ctl_mask = ~(u32)GENMASK(29, 28),
-> +};
->
->  /*
->   * The MT2712 thermal controller has one bank, which can read up to
->   * four temperature sensors simultaneously. The MT2712 has a total of 4
-> @@ -514,6 +580,9 @@ static const struct mtk_thermal_data mt7622_thermal_data = {
->  	.adcpnp = mt7622_adcpnp,
->  	.sensor_mux_values = mt7622_mux_values,
->  	.version = MTK_THERMAL_V2,
-> +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
-> +	.apmixed_buffer_ctl_mask = MT7622_BUFFER_CTL_MASK,
-> +	.apmixed_buffer_ctl_set = MT7622_BUFFER_CTL_SET,
->  };
->  
->  /*
-> @@ -958,19 +1027,27 @@ static const struct of_device_id mtk_thermal_of_match[] = {
->  	{
->  		.compatible = "mediatek,mt8183-thermal",
->  		.data = &mt8183_thermal_data,
-> +	},
-> +	{
-> +		.compatible = "mediatek,mt8365-thermal",
-> +		.data = &mt8365_thermal_data,
->  	}, {
->  	},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
->  
-> -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
-> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
-> +				       void __iomem *apmixed_base)
->  {
->  	int tmp;
->  
-> -	tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
-> -	tmp &= ~(0x37);
-> -	tmp |= 0x1;
-> -	writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
-> +	if (!mt->conf->apmixed_buffer_ctl_reg)
-> +		return;
-> +
-> +	tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
-> +	tmp &= mt->conf->apmixed_buffer_ctl_mask;
-> +	tmp |= mt->conf->apmixed_buffer_ctl_set;
-> +	writel(tmp, apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
->  	udelay(200);
->  }
->  
-> @@ -1070,8 +1147,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->  		goto err_disable_clk_auxadc;
->  	}
->  
-> +	mtk_thermal_turn_on_buffer(mt, apmixed_base);
-> +
->  	if (mt->conf->version == MTK_THERMAL_V2) {
-> -		mtk_thermal_turn_on_buffer(apmixed_base);
->  		mtk_thermal_release_periodic_ts(mt, auxadc_base);
->  	}
->  
-> 
-
+ Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml |  1 +
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi                     |  6 ++++++
+ drivers/leds/rgb/leds-qcom-lpg.c                          | 10 ++++++++++
+ 3 files changed, 17 insertions(+)
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
