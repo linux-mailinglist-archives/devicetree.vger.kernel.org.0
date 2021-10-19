@@ -2,388 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5715432FE0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 09:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B4A433047
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 09:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234554AbhJSHoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 03:44:20 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:3885 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234544AbhJSHoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 03:44:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634629327; x=1666165327;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=g4AZsJrPUtQXB9sl9Zo80Y3mOIjAUQMvMOb+slgqweE=;
-  b=I5dmdLSld6DEHKidy87NzFzGDyPalxEasELN0eV2TXAVIF3pF9BnN+u6
-   EMIpflF6oSqgwHzbEynt+S7uGXmP5oJIQrABGqkbeqQew6Yu21ObStBUY
-   oGmdZJg+Ae6pgTSXld6DsrG4H1S1O9bp6kYbhW86Ot8RHnh0TNEhf+kyU
-   DdnOACvqgqmO47qFukPGyR3vbG4p70Qnzjj6ks0XIR4AQQ5lZoV+4wyaZ
-   glyAplISwIuXjTB9cVIOc1Po30V5GyixBwRblUbtTByD0hSrgHmoRLcMQ
-   QWIgoCIt04u3IfxkrU0/WQEFw/sTkNhSksIg4s+yqcKXpWaG0A/xE4P/5
-   Q==;
-IronPort-SDR: UWP1jnV089+KSuJEXDNeZXY5h+mxOYzCYxhl0yrT5pnJxX7WmRMiQ7yHUE6lgANBO2zDFuZs1s
- ZyT07+qIKI273xLDZAHf6p8cOB2UMf3xpDgyAucFLTVLr7B1KhCXT7tNmwhlvBiT6fHr545awT
- ObdiBiiC+86x/W9QpxOSpOTfoS1nmTRx/FsYRG3IVa6fWSNs6a86RbWIhIIFhhNDgccIROQGW6
- RwtrfyHB3LTe/zI9Yf5fk3gaarYrGqy4RZvXSIBkg1gmdVOjMWTPhffr9BzLviJOztU0WtjIcA
- /Th+ZuDMWeKSnGJuAWOGo6D8
-X-IronPort-AV: E=Sophos;i="5.85,383,1624345200"; 
-   d="scan'208";a="148666149"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Oct 2021 00:42:05 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 19 Oct 2021 00:42:04 -0700
-Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Tue, 19 Oct 2021 00:42:00 -0700
-From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-To:     <robh+dt@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>
-CC:     <nicolas.ferre@microchip.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Eugen.Hristev@microchip.com>,
-        <Kavyasree.Kotagiri@microchip.com>, <Manohar.Puri@microchip.com>
-Subject: [PATCH v9 3/3] clk: lan966x: Add lan966x SoC clock driver
-Date:   Tue, 19 Oct 2021 13:10:30 +0530
-Message-ID: <20211019074030.31294-4-kavyasree.kotagiri@microchip.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211019074030.31294-1-kavyasree.kotagiri@microchip.com>
-References: <20211019074030.31294-1-kavyasree.kotagiri@microchip.com>
+        id S234556AbhJSH7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 03:59:47 -0400
+Received: from mail-mw2nam12on2101.outbound.protection.outlook.com ([40.107.244.101]:8800
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231187AbhJSH7o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 19 Oct 2021 03:59:44 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KMBAqb4osItwAlLSv2mVXrfeESnPFBrTBGyX6Q70rnnhqqUsyAOKjuF4I0JD09gCV4+2GwjYPAAHcv8hWR/onzUwv1OzRa+2yCNjfNcPVMdRMNrkQPfjHld0ryz6DHGPsnMXAqBlXRA0ErvA7JUes86Edqw58qhcWkZJma3gNO/Xib7o7++qbeuetPfj1/it0a4s+gqMHiqYq/D6ukvgy2jTNV6WXIiItpFg/dqHCzzJyuCwIC/xA9PAv2w+M6yTp7U86BCmBuksFcoWylyVFt1O8hOdpeeSeoKrOHc1gaKKRdg1CyFR46RUREQLls+GRRIGHOjtr0QWO9Mk0mTUPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e+I56tpV+0lwXd/quSJ+34BJ4mXTClCIT8z2bPeuGc8=;
+ b=m3rdQ8pCppVXOrfTZT7qHeQagv3Abj4eaNfTV8pFHJgS+n2fCm82O2iig7eA+/9RG4id3MTBZrYlBbk+Knpm17c25Cf3Qgp7VFdS+uV2WgIvzvVzNQeKdI3qxhtKGiw/CxiZ13M7Iv1zDtmJ97sGZIWvEqK5GdwOTjEaDff+CKQ8B9SYNr/kGfY9qmXFB2taPftgkTBO4FmzK4lDB3PbadBeSUFEaYxuIzX4JpEKhJE8iFX6JUMDTBvFVazXDZxhsFq1RLxWl6jKH2fbOp6UqNIweNjGdzw/3Kq2FHNfX33Afdmb8OwETFXJHOPdgJqZSOoQwd7omRZ6NsgydO6NPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
+ header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=maximintegrated.onmicrosoft.com;
+ s=selector2-maximintegrated-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e+I56tpV+0lwXd/quSJ+34BJ4mXTClCIT8z2bPeuGc8=;
+ b=J6TQVHnQyfX8O8O0QdgBXAm3XHoDVX4bStcluEVejha32x3TRpfcOGOL8+t7G7si6INmGv921oPFSWEG3Q2FtzRFkTZWuADAkvl+KHnaH06FPt+73cXTcfIg6B9hcMw+L7Pv1QJO4oAVLy2/R0AE5uwCO2pTfFK95OTvkkhT/CY=
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
+ by BYAPR11MB2918.namprd11.prod.outlook.com (2603:10b6:a03:92::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Tue, 19 Oct
+ 2021 07:57:27 +0000
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.018; Tue, 19 Oct 2021
+ 07:57:27 +0000
+From:   George Song <George.Song@maximintegrated.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "george.song@analog.com" <george.song@analog.com>,
+        Ryan Lee <RyanS.Lee@maximintegrated.com>,
+        Steve Lee <SteveS.Lee@maximintegrated.com>
+Subject: RE: [EXTERNAL] Re: [v3 2/2] ASoC: max98520: add max98520 audio
+ amplifier driver
+Thread-Topic: [EXTERNAL] Re: [v3 2/2] ASoC: max98520: add max98520 audio
+ amplifier driver
+Thread-Index: AQHXw/s2x3A5X1ZlPEurKpXCb3FgFavYshcAgAFD2bA=
+Date:   Tue, 19 Oct 2021 07:57:26 +0000
+Message-ID: <BYAPR11MB367106FDD5394AA4F88A42D4F4BD9@BYAPR11MB3671.namprd11.prod.outlook.com>
+References: <20211018083554.5360-1-george.song@maximintegrated.com>
+ <20211018083554.5360-2-george.song@maximintegrated.com>
+ <YW1quluaCzsUpET0@sirena.org.uk>
+In-Reply-To: <YW1quluaCzsUpET0@sirena.org.uk>
+Accept-Language: ko-KR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none
+ header.from=maximintegrated.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e9299050-c638-4b5e-9fc7-08d992d617e7
+x-ms-traffictypediagnostic: BYAPR11MB2918:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR11MB2918C32E4D49D15B649C04F1F4BD9@BYAPR11MB2918.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: b1KdyAh7+Sb2gMMtTLgAYqy1xT0tyOi/s7czLBRceYMcf6FmYz5zydZqPS6k91E257x4rObE+a3iu3+YnAZQfVW6a6e6pb5wobruyYgLB+uIQgshrcq14e7c3o9eD4JReS7vUzgTTTm2jk2StT7ZhRWNMh84Rjzykf9vQ5UNO3didFUVXiK9acX0Dm5b9nx0OTdqRKN/FZtPYJ3zQUYmmiS9HU9+gnjoP1DlWY5o04gd0Pj1Wf0HawwpccWVzUa0ODWMHgatqpPTp9Tf2n1sfT9SBbyr8qbJ0pHu4LK/wOhB7kAHDVFpL7FfI5sZ+y++iquPBhRe7cHs4aAIMUmstiFWXsZI7A4OAFyeGG5McfMTqKlNYRIrd2PdIz23zVtEuj79CmPzi6zWom28LZn3c8d9uON3qAtiIxg08wkMbsWRzAL/TzQLJS6V3KE4r4TNNYKsQp+LrJYzC0LLcjgi7UQnbVhWhYHndHJLJW9K/20cnk+Y9aWYIdMuE5D8AW/MecP1kQ8waDGZDH/RpP8B0sd4kvif7BZ3HKx6uLUk+Hfxo4AYVaq2OgLsRmjrXSHusTmc/CtAWbA0VC54pqXSKi+SQCyzj4Lnk2LDm+ij+DkJar4U51Lcf3x7sdlF+svnqdxyPTdCFG+Jypb+2EwOAQhDhrM53iYLn0rkAgByNRE2PJ7weJNCNGSgmkvMJY6iAN+zMQtB28s5o0r5ovFqqA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(316002)(54906003)(71200400001)(2906002)(83380400001)(5660300002)(7696005)(122000001)(9686003)(38070700005)(66446008)(86362001)(64756008)(66556008)(508600001)(55016002)(38100700002)(8936002)(33656002)(26005)(186003)(8676002)(4326008)(76116006)(6916009)(66476007)(6506007)(52536014)(107886003)(66946007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?BC6aTa8XhI5dGIRxk8XneZhPfMnGD2LcmqMPmpYu5n4/WCgwDbzKRvbyGeAG?=
+ =?us-ascii?Q?3rLiCrqLPiFEmRKdQ63+oamU0k5NrxZiWNa9wtW2MmVzNqf00MLHd1eyDqH7?=
+ =?us-ascii?Q?nBHdf8d7fSWgAU4K3YWZhE/0YMRANG9Bqg7DBrVe9FtXtQCs6EzT0yxCOb9i?=
+ =?us-ascii?Q?ssiEdMfzEQ+9wFppPYzQVwtJoIywV3ejuxKkbzfPyD9oSNtjsMSJKjUQXWZC?=
+ =?us-ascii?Q?fRmHfq469LYBarBrk6i44wFa/wMyEIVIHvRcZGb5s5wYp1r9q8f2gG6/X/ip?=
+ =?us-ascii?Q?JqzOcHsj6asZf/1cH0bjCURhnmQTin4tXUAehb1YOJWvm87Fr+PCss5tO0Yw?=
+ =?us-ascii?Q?y6u90N5GNEhpJbJriQczDK55iWOrghrf/0Fs/0MiMYvRZtPGfSJxCc9nrJAr?=
+ =?us-ascii?Q?qRHgWVXLlxO+PFAE9pyNsjqPZNAnD2YnEt7/FJqOCox66swr5+Bm799nh1ID?=
+ =?us-ascii?Q?8DSlumg4ZlurrJVuwuMF9NERu4i7I/dTp7R2QMxLiIGwiVaMFLUH0R68fLZl?=
+ =?us-ascii?Q?+xpTI6LEXEXm7kvUhBorw1/2pUbRqf4TBo+RgLABzvzi1jAkuAMvnwzXJRxx?=
+ =?us-ascii?Q?sItEd3rXGtEmT93FjXJ0AXRfK1YHA3tqBi4I+GYxjyeC5POAoKPlkvRVg4QW?=
+ =?us-ascii?Q?kCuxLT8VuFf9sB0/3cy3lGzgNsDhEMKgnULZv94epdKQ2SUugiGkb77+c8Ml?=
+ =?us-ascii?Q?WP1orveQv1USY7DtuxSiXS+vqoRxVGr99FKbmQwT6gF3/EVPt8g+OKMOAecP?=
+ =?us-ascii?Q?WDhxAWeP8DzhONHsS/J5Ju3qHySHTz1sz6emfgqVdXpI7j5D6WinEeTziEre?=
+ =?us-ascii?Q?85ryz4k1svxsrw1gDX0RJHaiWXkLKmftfzZ1pcQSSu1K5oRp+2S+HNmY1iDm?=
+ =?us-ascii?Q?BlUCRAh0199JXIK9OI90y4cD/T1dk8+lUxvUQyCjYHqu02qEDx8wtM7EHWzg?=
+ =?us-ascii?Q?J6V/fTiDKaG1qQv0fVZl8UUIsbg3pctgzPcY0jnPtWz56r4AxKZOj8lIkjA6?=
+ =?us-ascii?Q?3RgHOUbfMCzSK5gOOacv6L6QPXqKaTlIB0VsZ0o691X71LU0Exj3h1M3ATRQ?=
+ =?us-ascii?Q?YgA7uGG6i2c4hp6vEk/VSec56IMMG+lvIJIeqUvKXZayKNSVU6rF75u658te?=
+ =?us-ascii?Q?a4fXCsLZ4HqhpEw3Nh+2KVw4h0jJHex4tx9G6CiVDePjTEYDH5R3wG5WEvjX?=
+ =?us-ascii?Q?2c1+NawXjKkEb/UM3jiUs5dZwPvNR47auTov8fHKajER/0iEuthuEmg1gMU/?=
+ =?us-ascii?Q?hIyf8Zg8UieBzx8ip3MYZzgAkJwTr2BR7qho06CplPTUvmGGIVIWKDxSn4If?=
+ =?us-ascii?Q?qcc=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
+X-OriginatorOrg: maximintegrated.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9299050-c638-4b5e-9fc7-08d992d617e7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2021 07:57:26.9938
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fbd909df-ea69-4788-a554-f24b7854ad03
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TypROab26yg3DtcZc5rOxkFO2JjrYkqA3IAW+tQzFqKG64HQvfVyS5qPzkK/yGa7qhL8nIwzwIQsCEAn3uxByLX5hsAgG1JPCnf99Wz+kyw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2918
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds Generic Clock Controller driver for lan966x SoC.
-
-Lan966x clock controller contains 3 PLLs - cpu_clk, ddr_clk
-and sys_clk. It generates and supplies clock to various
-peripherals within SoC.
-Register settings required to provide GCK clocking to a
-peripheral is as below:
-GCK_SRC_SEL     = Select clock source.
-GCK_PRESCALER   = Set divider value.
-GCK_ENA         = 1 - Enable GCK clock.
-
-Signed-off-by: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Co-developed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
----
-v8 -> v9:
-- Changed clk_name "timer" to "timer1"
-- Updated devm_kzalloc in probe function.
-
-v7 -> v8:
-- Defined new constant DIV_MAX.
-- Corrected and updated divider value condition check.
-- Added Acked-by.
-
-v6 -> v7:
-- Added Kconfig and Makefile entires for lan966x clock driver.
-
-v5 -> v6:
-- No changes.
-
-v4 -> v5:
-- Returning proper error - PTR_ERR.
-- Removed unused variable "ret" in probe function.
-
-v3 -> v4:
-- Used clk_parent_data instead of of_clk_get_parent_name().
-
-v2 -> v3:
-- No changes.
-
-v1 -> v2:
-- No changes.
-
- drivers/clk/Kconfig       |   7 ++
- drivers/clk/Makefile      |   1 +
- drivers/clk/clk-lan966x.c | 240 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 248 insertions(+)
- create mode 100644 drivers/clk/clk-lan966x.c
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index c5b3dc97396a..1b992a554ff8 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -221,6 +221,13 @@ config COMMON_CLK_GEMINI
- 	  This driver supports the SoC clocks on the Cortina Systems Gemini
- 	  platform, also known as SL3516 or CS3516.
- 
-+config COMMON_CLK_LAN966X
-+	bool "Generic Clock Controller driver for LAN966X SoC"
-+	help
-+	  This driver provides support for Generic Clock Controller(GCK) on
-+	  LAN966X SoC. GCK generates and supplies clock to various peripherals
-+	  within the SoC.
-+
- config COMMON_CLK_ASPEED
- 	bool "Clock driver for Aspeed BMC SoCs"
- 	depends on ARCH_ASPEED || COMPILE_TEST
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index e42312121e51..d8565ef01b34 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -37,6 +37,7 @@ obj-$(CONFIG_ARCH_HIGHBANK)		+= clk-highbank.o
- obj-$(CONFIG_CLK_HSDK)			+= clk-hsdk-pll.o
- obj-$(CONFIG_COMMON_CLK_K210)		+= clk-k210.o
- obj-$(CONFIG_LMK04832)			+= clk-lmk04832.o
-+obj-$(CONFIG_COMMON_CLK_LAN966X)	+= clk-lan966x.o
- obj-$(CONFIG_COMMON_CLK_LOCHNAGAR)	+= clk-lochnagar.o
- obj-$(CONFIG_COMMON_CLK_MAX77686)	+= clk-max77686.o
- obj-$(CONFIG_COMMON_CLK_MAX9485)	+= clk-max9485.o
-diff --git a/drivers/clk/clk-lan966x.c b/drivers/clk/clk-lan966x.c
-new file mode 100644
-index 000000000000..19bec94e1551
---- /dev/null
-+++ b/drivers/clk/clk-lan966x.c
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Microchip LAN966x SoC Clock driver.
-+ *
-+ * Copyright (C) 2021 Microchip Technology, Inc. and its subsidiaries
-+ *
-+ * Author: Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk-provider.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include <dt-bindings/clock/microchip,lan966x.h>
-+
-+#define GCK_ENA         BIT(0)
-+#define GCK_SRC_SEL     GENMASK(9, 8)
-+#define GCK_PRESCALER   GENMASK(23, 16)
-+
-+#define DIV_MAX		255
-+
-+static const char *clk_names[N_CLOCKS] = {
-+	"qspi0", "qspi1", "qspi2", "sdmmc0",
-+	"pi", "mcan0", "mcan1", "flexcom0",
-+	"flexcom1", "flexcom2", "flexcom3",
-+	"flexcom4", "timer1", "usb_refclk",
-+};
-+
-+struct lan966x_gck {
-+	struct clk_hw hw;
-+	void __iomem *reg;
-+};
-+#define to_lan966x_gck(hw) container_of(hw, struct lan966x_gck, hw)
-+
-+static const struct clk_parent_data lan966x_gck_pdata[] = {
-+	{ .fw_name = "cpu_clk", .name = "cpu_clk" },
-+	{ .fw_name = "ddr_clk", .name = "ddr_clk" },
-+	{ .fw_name = "sys_clk", .name = "sys_clk" },
-+};
-+
-+static struct clk_init_data init = {
-+	.parent_data = lan966x_gck_pdata,
-+	.num_parents = ARRAY_SIZE(lan966x_gck_pdata),
-+};
-+
-+static void __iomem *base;
-+
-+static int lan966x_gck_enable(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val |= GCK_ENA;
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static void lan966x_gck_disable(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val &= ~GCK_ENA;
-+	writel(val, gck->reg);
-+}
-+
-+static int lan966x_gck_set_rate(struct clk_hw *hw,
-+				unsigned long rate,
-+				unsigned long parent_rate)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 div, val = readl(gck->reg);
-+
-+	if (rate == 0 || parent_rate == 0)
-+		return -EINVAL;
-+
-+	/* Set Prescalar */
-+	div = parent_rate / rate;
-+	val &= ~GCK_PRESCALER;
-+	val |= FIELD_PREP(GCK_PRESCALER, (div - 1));
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static long lan966x_gck_round_rate(struct clk_hw *hw, unsigned long rate,
-+				   unsigned long *parent_rate)
-+{
-+	unsigned int div;
-+
-+	if (rate == 0 || *parent_rate == 0)
-+		return -EINVAL;
-+
-+	if (rate >= *parent_rate)
-+		return *parent_rate;
-+
-+	div = DIV_ROUND_CLOSEST(*parent_rate, rate);
-+
-+	return *parent_rate / div;
-+}
-+
-+static unsigned long lan966x_gck_recalc_rate(struct clk_hw *hw,
-+					     unsigned long parent_rate)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 div, val = readl(gck->reg);
-+
-+	div = FIELD_GET(GCK_PRESCALER, val);
-+
-+	return parent_rate / (div + 1);
-+}
-+
-+static int lan966x_gck_determine_rate(struct clk_hw *hw,
-+				      struct clk_rate_request *req)
-+{
-+	struct clk_hw *parent;
-+	int i;
-+
-+	for (i = 0; i < clk_hw_get_num_parents(hw); ++i) {
-+		parent = clk_hw_get_parent_by_index(hw, i);
-+		if (!parent)
-+			continue;
-+
-+		/* Allowed prescaler divider range is 0-255 */
-+		if (clk_hw_get_rate(parent) / req->rate <= DIV_MAX) {
-+			req->best_parent_hw = parent;
-+			req->best_parent_rate = clk_hw_get_rate(parent);
-+
-+			return 0;
-+		}
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static u8 lan966x_gck_get_parent(struct clk_hw *hw)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	return FIELD_GET(GCK_SRC_SEL, val);
-+}
-+
-+static int lan966x_gck_set_parent(struct clk_hw *hw, u8 index)
-+{
-+	struct lan966x_gck *gck = to_lan966x_gck(hw);
-+	u32 val = readl(gck->reg);
-+
-+	val &= ~GCK_SRC_SEL;
-+	val |= FIELD_PREP(GCK_SRC_SEL, index);
-+	writel(val, gck->reg);
-+
-+	return 0;
-+}
-+
-+static const struct clk_ops lan966x_gck_ops = {
-+	.enable         = lan966x_gck_enable,
-+	.disable        = lan966x_gck_disable,
-+	.set_rate       = lan966x_gck_set_rate,
-+	.round_rate     = lan966x_gck_round_rate,
-+	.recalc_rate    = lan966x_gck_recalc_rate,
-+	.determine_rate = lan966x_gck_determine_rate,
-+	.set_parent     = lan966x_gck_set_parent,
-+	.get_parent     = lan966x_gck_get_parent,
-+};
-+
-+static struct clk_hw *lan966x_gck_clk_register(struct device *dev, int i)
-+{
-+	struct lan966x_gck *priv;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	priv->reg = base + (i * 4);
-+	priv->hw.init = &init;
-+	ret = devm_clk_hw_register(dev, &priv->hw);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return &priv->hw;
-+};
-+
-+static int lan966x_clk_probe(struct platform_device *pdev)
-+{
-+	struct clk_hw_onecell_data *hw_data;
-+	struct device *dev = &pdev->dev;
-+	int i;
-+
-+	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, N_CLOCKS),
-+			       GFP_KERNEL);
-+	if (!hw_data)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	init.ops = &lan966x_gck_ops;
-+
-+	hw_data->num = N_CLOCKS;
-+
-+	for (i = 0; i < N_CLOCKS; i++) {
-+		init.name = clk_names[i];
-+		hw_data->hws[i] = lan966x_gck_clk_register(dev, i);
-+		if (IS_ERR(hw_data->hws[i])) {
-+			dev_err(dev, "failed to register %s clock\n",
-+				init.name);
-+			return PTR_ERR(hw_data->hws[i]);
-+		}
-+	}
-+
-+	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, hw_data);
-+}
-+
-+static const struct of_device_id lan966x_clk_dt_ids[] = {
-+	{ .compatible = "microchip,lan966x-gck", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, lan966x_clk_dt_ids);
-+
-+static struct platform_driver lan966x_clk_driver = {
-+	.probe  = lan966x_clk_probe,
-+	.driver = {
-+		.name = "lan966x-clk",
-+		.of_match_table = lan966x_clk_dt_ids,
-+	},
-+};
-+builtin_platform_driver(lan966x_clk_driver);
-+
-+MODULE_AUTHOR("Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>");
-+MODULE_DESCRIPTION("LAN966X clock driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.17.1
-
+> On Mon, Oct 18, 2021 at 05:35:54PM +0900, George Song wrote:
+>=20
+> > +	case SND_SOC_DAPM_POST_PMD:
+> > +		dev_dbg(component->dev, " AMP OFF\n");
+> > +
+> > +		regmap_write(max98520->regmap, MAX98520_R210F_GLOBAL_EN, 0);
+> > +		usleep_range(30000, 31000);
+> > +		max98520->tdm_mode =3D false;
+> > +		break;
+>=20
+> Why would stopping the DAC put us out of TDM mode?  Not that I can see
+> anything which ever sets tdm_mode to anything other than false or checks
+> the value...
+It will be removed tdm_mode to false line.
+>=20
+> > +static const struct snd_soc_dapm_widget max98520_dapm_widgets[] =3D {
+> > +	SND_SOC_DAPM_DAC_E("Amp Enable", "HiFi Playback",
+> > +			   MAX98520_R209F_AMP_EN, 0, 0, max98520_dac_event,
+> > +	SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
+>=20
+> I can't help think that the global enable ought to be a _SUPPLY widget, i=
+t
+> would get enabled before the DAC rather than after it but it's not clear
+> that the ordering is critical here.
+It will be modified SND_SOC_NOPM instead of MAX98520_R209F_AMP_EN.
+>=20
+> > +static DECLARE_TLV_DB_SCALE(max98520_digital_tlv, -6300, 50, 1);
+> > +static const DECLARE_TLV_DB_RANGE(max98520_spk_tlv,
+> > +	0, 5, TLV_DB_SCALE_ITEM(600, 300, 0), );
+>=20
+> Why is _digital_tlv not const?  It's also a bit weird that _spk_tlv is a
+> range with one entry not a scale.
+It will be added const casting in front of DECLARE_TLV_DB_SCALE.
+>=20
+> > +	count =3D 0;
+> > +	while (count < 3) {
+> > +		usleep_range(10000, 11000);
+> > +		/* Software Reset Verification */
+> > +		ret =3D regmap_read(max98520->regmap,
+> MAX98520_R21FF_REVISION_ID, &reg);
+> > +		if (!ret) {
+> > +			dev_info(dev, "Reset completed (retry:%d)\n", count);
+> > +			return;
+> > +		}
+> > +		count++;
+>=20
+> Does this really need to be logged?
+It will be removed for logging regarding reset completed.
+>=20
+> > +	/* Software Reset */
+> > +	max98520_reset(max98520, component->dev);
+> > +	usleep_range(30000, 31000);
+>=20
+> Shouldn't that delay be in the reset routine?  Perhaps between the
+> attempts to read the ID register?
+It will be removed 30ms sleep after reset function.
+>=20
+> > +	/* L/R mix configuration */
+> > +	regmap_write(max98520->regmap, MAX98520_R2043_PCM_RX_SRC1, 0x2);
+> > +
+> > +	regmap_write(max98520->regmap, MAX98520_R2044_PCM_RX_SRC2, 0x10);
+>=20
+> These should be exposed to the user, not hard coded - different systems
+> may need different configurations.
+It`s already exposed for 2043 register which is regarding mono mixer for "D=
+AI Sel Mux"
+It will be exposed for 2044 register which is regarding pcm input channel s=
+election to dapm mixer.
+>=20
+> > +	/* Disable Speaker Safe Mode */
+> > +	regmap_update_bits(max98520->regmap,
+> > +			   MAX98520_R2092_AMP_DSP_CFG,
+> MAX98520_SPK_SAFE_EN_MASK, 0);
+>=20
+> This seems like something that should be left as is by default given the
+> name (or forced on if it were disabled by default)?
+It will be removed to be left as is by default given the name.
+>=20
+> > +	/* Hard coded values for the experiments */
+> > +	regmap_write(max98520->regmap, MAX98520_R21FF_REVISION_ID, 0x54);
+> > +	regmap_write(max98520->regmap, MAX98520_R21FF_REVISION_ID, 0x4d);
+> > +	regmap_write(max98520->regmap, MAX98520_R2161_BOOST_TM1, 0x2);
+> > +	regmap_write(max98520->regmap, MAX98520_R2095_AMP_CFG, 0xc8);
+>=20
+> This doesn't seem suitable for upstream.
+They will be removed.
+>=20
+> > +	/* Power on device */
+> > +	if (gpio_is_valid(max98520->reset_gpio)) {
+> > +		ret =3D devm_gpio_request(&i2c->dev, max98520->reset_gpio,
+> > +					"MAX98520_RESET");
+>=20
+> You should use the gpiod APIs for new code, not the legacy GPIO interface=
+.
+> This GPIO wasn't mentioned in the DT bindings but should have been
+> described there.
+It will be modified to gpiod APIs like devm_gpiod_get_optional for getting =
+reset_gpio (struct gpio_desc *reset_gpio).
+>=20
+> > +		if (ret) {
+> > +			dev_err(&i2c->dev, "%s: Failed to request gpio %d\n",
+> > +				__func__, max98520->reset_gpio);
+> > +			return -EINVAL;
+> > +		}
+> > +		gpio_direction_output(max98520->reset_gpio, 0);
+> > +		msleep(50);
+> > +		gpio_direction_output(max98520->reset_gpio, 1);
+> > +		msleep(20);
+> > +	}
+>=20
+> Shouldn't the disable/enable of the reset GPIO be in the reset function?
+It will be modified to gpiod APIs like gpiod_set_value_cansleep function in=
+stead of gpio_direction_output.
