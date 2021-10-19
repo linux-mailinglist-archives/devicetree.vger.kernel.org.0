@@ -2,85 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19EFC433893
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE1E4338A5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 16:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhJSOou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 10:44:50 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:35988 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbhJSOot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:44:49 -0400
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8606012A;
-        Tue, 19 Oct 2021 16:42:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1634654555;
-        bh=rxp6PMBsDJjGA2wH/eGe+dqU2991TJOOwj2FEZEGGiU=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=KCo5atH4zp/Z5y88JzcnrVAd8Gs2RAhpmhcgdx462FrtLgCxAFWPGI1rek2yxj0LG
-         XtL2l8nDkYucsGEJAhqyiZ4NgF1gezbU/Ie8LxTWKW8CqA5dot5WmR3qo8tXbmVJc6
-         EiJEeZOuaPuiMBab4231e7OtuIbizKtNsiEDUPyQ=
-Content-Type: text/plain; charset="utf-8"
+        id S232248AbhJSOrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 10:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40080 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231921AbhJSOrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 10:47:46 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D440AC06176E
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 07:45:30 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:b4c3:ba80:54db:46f])
+        by albert.telenet-ops.be with bizsmtp
+        id 7qlS2600p12AN0U06qlTi7; Tue, 19 Oct 2021 16:45:29 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mcqMo-006B4N-Lx; Tue, 19 Oct 2021 16:45:26 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mcqMn-00FAAE-H4; Tue, 19 Oct 2021 16:45:25 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Miguel Ojeda <ojeda@kernel.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v8 00/21] auxdisplay: ht16k33: Add character display support
+Date:   Tue, 19 Oct 2021 16:44:59 +0200
+Message-Id: <20211019144520.3613926-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211019090020.11724-1-Meng.Li@windriver.com>
-References: <20211019090020.11724-1-Meng.Li@windriver.com>
-Subject: Re: [PATCH] arch: arm64: dts: Set gpio5-pin9 as input by default
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, meng.li@windriver.com
-To:     Meng Li <Meng.Li@windriver.com>, geert+renesas@glider.be,
-        magnus.damm@gmail.com, robh+dt@kernel.org
-Date:   Tue, 19 Oct 2021 15:42:33 +0100
-Message-ID: <163465455377.2083150.11106861856940757460@Monstersaurus>
-User-Agent: alot/0.9.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Meng Li (2021-10-19 10:00:20)
-> The gpio5-pin9 is used as the interrupt pin of i2c external
-> gpio chip, so set this pin as input by default.
+	Hi Miguel et al,
 
-Is a GPIO hog the right way to do this?
-Shouldn't the other GPIO chip be modelled in DT and reference the gpio
-interrupt line from there in its interrupt property?
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
 
-I assume by 'external gpio chip' you mean one which is permanantly
-attached to the ULCB Kingfisher board, and not a custom addition?
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
+
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-17 contain a bug fixes, cleanups and improvements for the
+    HT16K33 driver, to prepare for segment display support,
+  - Patch 18 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 19 updates the HT16K33 DT bindings to document an LED subnode,
+  - Patch 20 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color,
+  - Patch 21 converts the HT16K33 driver to use device properties.
+
+Changes compared to v7[1]:
+  - Fix array upper bound check in map_to_seg14(),
+  - Add Reviewed-by, Acked-by.
+
+Changes compared to v6[2]:
+  - Add Acked-by, Reviewed-by,
+  - New patch "auxdisplay: ht16k33: Fix frame buffer device blanking",
+  - Add linux,default-trigger to example,
+  - Add missing call to ht16k33_brightness_set() in
+    ht16k33_fbdev_probe(), to make sure brightness and blinking are set
+    to a sane state,
+  - Integrate "auxdisplay: ht16k33: Make use of device properties" into
+    this series.
+
+Changes compared to v5[3]:
+  - Add Reviewed-by,
+  - Reorder operations in ht16k33_led_probe() to ease future conversion
+    to device properties.
+
+Changes compared to v4[4]:
+  - Add Reviewed-by,
+  - Add missing select NEW_LEDS.
+
+Changes compared to v3[5]:
+  - Combine compatible values for 7/14 segment displays into an enum,
+  - Add Reviewed-by,
+  - Add missing select LEDS_CLASS.
+
+Changes compared to v2[6]:
+  - Drop color property from display node,
+  - Use compat_only_sysfs_link_entry_to_kobj() instead of cooking our
+    own helper on top of kernfs_create_link(),
+  - Use "err" instead of "error" to be consistent with existing driver
+    naming style,
+  - Pass "dev" instead of "client" to ht16k33_fbdev_probe() and
+    ht16k33_seg_probe(),
+  - Drop local variable "node",
+  - Remove unneeded inclusion of <linux/leds.h> and <linux/of_device.h>,
+  - Document LED subnode,
+  - Remove unneeded C++ comment,
+  - Make the creation of the LED device dependent on the presence of the
+    "led" subnode in DT, so it can be used in dot-matrix mode too.
+  - Use led_init_data() and devm_led_classdev_register_ext() to retrieve
+    all LED properties from DT, instead of manual LED name construction
+    based on just the "color" property.
+
+Changes compared to v1[7]:
+  - Fix type of color to uint32,
+  - "refresh-rate-hz" is still required for dot-matrix displays.
+  - Move "select LINEDISP" for HT16K33 symbol to correct patch,
+  - Add backwards compatibility "message" symlink to img-ascii-lcd,
+  - Connect backlight to fbdev in ht16k33 dot-matrix mode,
+  - Set "err = -EINVAL" in switch() case that cannot happen,
+  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
+
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, connected to an OrangeCrab ECP5 FPGA board
+running a 64 MHz VexRiscv RISC-V softcore.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
+
+Thanks for applying!
+
+[1] "[PATCH v7 00/21] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20211012183327.649865-1-geert@linux-m68k.org/
+[2] "[PATCH v6 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210914143835.511051-1-geert@linux-m68k.org/
+[3] "[PATCH v5 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210811095759.1281480-1-geert@linux-m68k.org/
+[3] "[PATCH v4 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210727140459.3767788-1-geert@linux-m68k.org/
+[4] "[PATCH v3 00/19] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210714151130.2531831-1-geert@linux-m68k.org/
+[5] "[PATCH v2 00/18] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210625125902.1162428-1-geert@linux-m68k.org/
+[6] "[PATCH 00/17] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210322144848.1065067-1-geert@linux-m68k.org/
+
+Geert Uytterhoeven (21):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Connect backlight to fbdev
+  auxdisplay: ht16k33: Fix frame buffer device blanking
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  dt-bindings: auxdisplay: ht16k33: Document LED subnode
+  auxdisplay: ht16k33: Add LED support
+  auxdisplay: ht16k33: Make use of device properties
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  32 +-
+ drivers/auxdisplay/Kconfig                    |  12 +-
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 500 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 205 ++-----
+ drivers/auxdisplay/line-display.c             | 261 +++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 241 +++++++++
+ 8 files changed, 1019 insertions(+), 276 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
 
 --
-Regards
-Kieran
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->=20
-> Signed-off-by: Meng Li <Meng.Li@windriver.com>
-> ---
->  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/d=
-ts/renesas/ulcb-kf.dtsi
-> index 202177706cde..8986a7e6e099 100644
-> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> @@ -205,6 +205,15 @@
->         };
->  };
-> =20
-> +&gpio5 {
-> +       gpio_exp_77_int {
-> +               gpio-hog;
-> +               gpios =3D <9 0>;
-> +               input;
-> +               line-name =3D "gpio-exp-77-int";
-> +       };
-> +};
-> +
->  &i2c4 {
->         i2cswitch4: i2c-switch@71 {
->                 compatible =3D "nxp,pca9548";
-> --=20
-> 2.17.1
->
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
