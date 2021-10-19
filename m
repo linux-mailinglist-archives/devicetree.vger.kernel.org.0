@@ -2,160 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B87F432DE6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 08:10:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AE72432E83
+	for <lists+devicetree@lfdr.de>; Tue, 19 Oct 2021 08:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233392AbhJSGND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 02:13:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48122 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229649AbhJSGNC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 19 Oct 2021 02:13:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 84D0060F25;
-        Tue, 19 Oct 2021 06:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634623850;
-        bh=Owmwksox9NtzQPLSYGWk+fB46QPT15T+JUlZ6m1mps0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=L7btO8NhBH/y/NCDfgm1eBMaQsJFhDEPKM4zDiP1Cwi6gMu5138k1BTGyEO4qVd7s
-         kZeA6UBb5lVaKKjK0fx1SwxLgRW9w9K0YWLnGk0iTVwVw/B4Y7+MOkJIYe844ltpvG
-         Ifah+x0unL2gFTravdU5EJReOAKecU/yHtEJA1NqdY1cSg4XOalyDuGia0wfB0AMK5
-         Kcwyuahzm1wsIetN9DAQFQVrAZZeP6GcjsCN8nqAVktVA3OpKdRu13gCQPKLjc8Qw9
-         NgV2lFMS8pkndmXALVF/QEi3qEne00QDr9HgHgx0dHnEPNPxuTRpcMSVNqVMZxlwke
-         PsyQoTX55RxUQ==
-Date:   Tue, 19 Oct 2021 07:10:45 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5] dt-bindings: misc: add schema for USB hub on Kirin
- devices
-Message-ID: <20211019071045.2bd410ab@sal.lan>
-In-Reply-To: <f955e7dba47e2e96ca6bfe761a1f998e9b5a4c50.1632814787.git.mchehab+huawei@kernel.org>
-References: <f955e7dba47e2e96ca6bfe761a1f998e9b5a4c50.1632814787.git.mchehab+huawei@kernel.org>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S229649AbhJSGsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Oct 2021 02:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229695AbhJSGsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 02:48:41 -0400
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CB7C06161C;
+        Mon, 18 Oct 2021 23:46:28 -0700 (PDT)
+Received: by mail-qv1-xf30.google.com with SMTP id j12so11669957qvk.12;
+        Mon, 18 Oct 2021 23:46:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kPpGQ/usuIv6r0JFjkYFCgDGOkeWZxHqy3uYPgIqN/E=;
+        b=IzzuT+2lP0r9gPF/tnCzyet81txYZEuBr5EoUfq65UCXmd97IUKjxfSDYaFTsb9dRi
+         ERBJQbcImNnmeYDOMJKGvrYchDdOaqywyLjfHETEP1kLLHJHrOcHXrPh4bWXZRan4azb
+         SzzXJ2xjgvZjZ/2rHlRvEpVJUWtGBwDSF/94U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kPpGQ/usuIv6r0JFjkYFCgDGOkeWZxHqy3uYPgIqN/E=;
+        b=l321O1gvgiPpvvnMeHa06iv33ac7aRarp5NXEXS/Zpwm19Mfpk1TZ1IR2sU0V4GKbQ
+         Vu3dZ4GwUrwnUHGfkiqEH6VpbVmHrXOpgrgqLRquMkha1DdNrWRp/Y7lnsQLcQ+e4Gf7
+         RXEjdDIW7v72fMs+VggW+zZ3k875x1N3dKZxYI83G6RgfMJeYNrNWCc0Yawf9lWsGfvc
+         6skCek3JDa4AlS1zU7B6WWHICte3oV3ymmAPUWGUJ25BApvscC146Dqappll4itjSpvz
+         sU7FFp0o+7u6l6LOwlP27dsFM9rhDivCXT7Nxyw3LrCAjI51c64Se/DD+WMT6qgHWOsi
+         6bpw==
+X-Gm-Message-State: AOAM533prx3ESKsql0GXLX7cqwoMfhi8zkdmJiCGDKTFRLnOK1RZTlEA
+        +WXlpU1Mw/421i0HDuCeDpFMNfbT3iPSbMhTrBU=
+X-Google-Smtp-Source: ABdhPJwVUsADq1mo1BO5nQp+62iE2cz6mNTV9MKZGvspzkW1xufQZsSlNx1FUVk9bHcWeRidndx81yd4a16pLT2Ymo0=
+X-Received: by 2002:ad4:5de9:: with SMTP id jn9mr30214330qvb.41.1634625986385;
+ Mon, 18 Oct 2021 23:46:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20211019060155.945-1-quan@os.amperecomputing.com> <20211019060155.945-2-quan@os.amperecomputing.com>
+In-Reply-To: <20211019060155.945-2-quan@os.amperecomputing.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 19 Oct 2021 06:46:14 +0000
+Message-ID: <CACPK8Xcp0ruL-7p3AA+yvba3Drrwm-=-hMnMpd=a1aHwQHnE1A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] ARM: dts: aspeed: mtjade: Add some gpios
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 19 Oct 2021 at 06:02, Quan Nguyen <quan@os.amperecomputing.com> wrote:
+>
+> Add S0_SCP_AUTH_FAIL, S1_SCP_AUTH_FAIL gpios to indicates firmware
+> authentication fail on each socket.
 
-Em Tue, 28 Sep 2021 09:40:06 +0200
-Mauro Carvalho Chehab <mchehab+huawei@kernel.org> escreveu:
+These use the gpio-keys API to expose the GPIOs. I think OpenBMC is
+moving away from this abstraction, and instead reading the GPIOs with
+the gpio chardev interface.
 
-> From: Yu Chen <chenyu56@huawei.com>
-> 
-> This patch adds binding documentation to support USB HUB and
-> USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
-> 
-> [mchehab: updated OF schema and added HiKey970 example]
-> Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> Signed-off-by: John Stultz <john.stultz@linaro.org>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+>
+> Add gpio RTC_BAT_SEN_EN to enable RTC battery adc sensor.
+>
+> Add BMC_I2C4_O_EN gpio to go high at boot to enable access to I2C4 bus.
 
-Could you please review and apply this patch on your tree? It is the
-only missing piece for USB to start working on HiKey 960/970.
+OpenBMC has started a process to document GPIOs that are exposed to
+userspace, initially so a common userspace can be used across
+machines. I like doing it for the additional reason that it provides
+consistency in the naming.
 
+https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
+
+If you could take a look at that document and add your GPIOs where
+possible, and then update the device tree.
+
+>
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+> Signed-off-by: Thang Nguyen <thang@os.amperecomputing.com>
 > ---
->  .../bindings/misc/hisilicon,hikey-usb.yaml    | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> new file mode 100644
-> index 000000000000..761ab686121a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> v2:
+>   - None
+>
+>  .../arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 21 ++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
+> index 57b0c45a2298..3515d55bd312 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
+> @@ -86,6 +86,18 @@ S0_cpu_fault {
+>                         linux,code = <ASPEED_GPIO(J, 1)>;
+>                 };
+>
+> +               S0_scp_auth_fail {
+> +                       label = "S0_SCP_AUTH_FAIL";
+> +                       gpios = <&gpio ASPEED_GPIO(J, 2) GPIO_ACTIVE_LOW>;
+> +                       linux,code = <ASPEED_GPIO(J, 2)>;
+> +               };
 > +
-> +title: HiKey960/970 onboard USB GPIO Hub
+> +               S1_scp_auth_fail {
+> +                       label = "S1_SCP_AUTH_FAIL";
+> +                       gpios = <&gpio ASPEED_GPIO(Z, 5) GPIO_ACTIVE_LOW>;
+> +                       linux,code = <ASPEED_GPIO(Z, 5)>;
+> +               };
 > +
-> +maintainers:
-> +  - John Stultz <john.stultz@linaro.org>
+>                 S1_overtemp {
+>                         label = "S1_OVERTEMP";
+>                         gpios = <&gpio ASPEED_GPIO(Z, 6) GPIO_ACTIVE_LOW>;
+> @@ -590,7 +602,7 @@ &gpio {
+>         /*Q0-Q7*/       "","","","","","UID_BUTTON","","",
+>         /*R0-R7*/       "","","BMC_EXT_HIGHTEMP_L","OCP_AUX_PWREN",
+>                         "OCP_MAIN_PWREN","RESET_BUTTON","","",
+> -       /*S0-S7*/       "","","","","","","","",
+> +       /*S0-S7*/       "","","","","RTC_BAT_SEN_EN","","","",
+
+I suggest you create a proposal to call this one
+battery-voltage-read-enable. I know that some of the IBM machines
+intend to have this same GPIO.
+
+>         /*T0-T7*/       "","","","","","","","",
+>         /*U0-U7*/       "","","","","","","","",
+>         /*V0-V7*/       "","","","","","","","",
+> @@ -604,4 +616,11 @@ &gpio {
+>                         "S1_BMC_DDR_ADR","","","","",
+>         /*AC0-AC7*/     "SYS_PWR_GD","","","","","BMC_READY","SLAVE_PRESENT_L",
+>                         "BMC_OCP_PG";
 > +
-> +description: |
-> +  Supports the onboard USB GPIO hubs found on HiKey960/970.
-> +  Such hubs require a power supply for the USB I/O. Depending on the
-> +  exact hub model, after USB I/O is powered up, a reset should be needed.
-> +
-> +  It also acts as a role-switch intermediary to detect the state of
-> +  the USB-C port, to switch the hub into dual-role USB-C or host mode,
-> +  which enables and powers up the onboard USB-A host ports.
-> +
-> +  Schematics about such hubs can be found here:
-> +    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
-> +    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,usbhub
-> +
-> +  typec-vbus-gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: phandle to the typec-vbus gpio
-> +
-> +  otg-switch-gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: phandle to the otg-switch gpio
-> +
-> +  hub-reset-en-gpios:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: phandle to the hub reset gpio
-> +
-> +  usb-role-switch:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Support role switch.
-> +
-> +  hub-vdd-supply:
-> +    description: regulator for hub power
-> +
-> +  port:
-> +    description: |
-> +      describe hadware connections between USB endpoints.
-> +      Two ports are supported: the first being the endpoint that will
-> +      be notified by this driver, and the second being the endpoint
-> +      that notifies this driver of a role switch.
-> +
-> +required:
-> +  - compatible
-> +  - hub-vdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    usb-hub {
-> +        compatible = "hisilicon,usbhub";
-> +        typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
-> +        otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
-> +        hub-reset-en-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
-> +        hub-vdd-supply = <&usb_hub_vdd>;
-> +        usb-role-switch;
-> +        port {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            usb_ep0: endpoint@0 {
-> +                reg = <0>;
-> +                remote-endpoint = <&dwc3_role_switch>;
-> +            };
-> +            usb_ep1: endpoint@1 {
-> +                reg = <1>;
-> +                remote-endpoint = <&rt1711h_ep>;
-> +            };
-> +        };
-> +    };
+> +       i2c4_o_en {
+> +               gpio-hog;
+> +               gpios = <ASPEED_GPIO(Y, 2) GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "BMC_I2C4_O_EN";
+> +       };
+>  };
+> --
+> 2.28.0
+>
