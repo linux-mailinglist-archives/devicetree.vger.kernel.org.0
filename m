@@ -2,95 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A431D434456
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 06:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DB1E43447A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 07:06:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbhJTE30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 00:29:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55916 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbhJTE30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 00:29:26 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF015C061746
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id r6so8130009oiw.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
+        id S229756AbhJTFIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 01:08:34 -0400
+Received: from mail-bn8nam11on2128.outbound.protection.outlook.com ([40.107.236.128]:22689
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229492AbhJTFIe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 01:08:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kxXamqWljq5NI5Ux0NTUs4XQDmXjoKUJFDHznCMhdyuV8mmttpSPsGBpkTEBR0heWn+i+AQqghvBnbVcBw7eLVd2DqhiXjtWCpftKEqbGH+s34h+SAfIauZJVaPy24fz0ZZY18CFFikuKhh52+s+cYNjifwa/vl2Hcl2j3c3/sh57+3jxlUP4NLup+srW6PARCn1CUTHfvR+IKZQ3kBTcKBv1V25oUUDnk3A7diSWQPeBkQV4z1DlIDJ5GrNyaQv0/JJxpol7RjqVPUXb2NWo6SiUfQRRkMW1njas0mWlATrPqQXNo88UySjVh/DtHU0ROtGns8TrCV8TOSn7NjC1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pyI1v6cIl0C0Tlw0tTyndqfb31EEyOPJHni4z5fbYAM=;
+ b=hWogQx+7PYVa24+iDBptkUYAkIraXJBuHtMBThAjNLNIHFwojtKjkk1FftlFLIkhsJZdsE97PSZvn4wB5+jUUHsty60GT8Dwq02IKqL0STxMhoY4YJq+B+ROAHWnfkW51NawgmlPdX+MDCJarPhCRi/NttgFRRUpSpIKoHk62DPG+1BM2OX/yBSeLl0SRBp3eCtbp3YvsZwOCOlUaX4JjbIfQUiiejBF7aiSO/+6c3+xBhgkglKm1Sxc0HibNd7SmosZSrhdUfQAXJP1cxLdivCwOd1/bHwO1rjD+c4WI5562bXsyApNTuAeoBYWN8pTHIyPsuM2C3eCAwD18tbXug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
+ header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
+ arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=KVKplhRxILI8I/oy0FMY8RP+d5gKK/Wsa1r6nqQ6o3U=;
-        b=bAjp6vkLKBf5OVZt33zDaaAdJgfXccJSKnoVSKOf6Y2zM89m+ddRnlIcBfnBeiMAGB
-         pqyZOh/VkiJZjeZ8VO/Fa1ov9vrCSBE3WgJhaWUCkWLwh4RGqEwlHjCuVN9N0SaTYwW+
-         /KtiISyCJV5UScjlpTp4wCAKBOI3ddhOe0T2g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=KVKplhRxILI8I/oy0FMY8RP+d5gKK/Wsa1r6nqQ6o3U=;
-        b=ww/RtQJTEnl09CGeLZqN0g89sbqN93fV4RvKTrLS0LNcVVi4jlcDQ8sok6B3Ft5wdO
-         zXwO2mrF8lcBgltzF+qo8i7XXtBD2saF9+XoeE8TH45qvA7ejS4rMvdXOjnbnMDRSBue
-         4RU62KyqjrfXmUz5OHQIfCyFImDA1P59yjUGiWAoNpP8/mJRNyyeMvZ3PAq6wYUOigry
-         IcE3LTiKINJzG5ugtfDFZ3GHBU/wUF6QFREmrITO7rtkKz9IlGMrZQxtppQrTDofwgMW
-         wq9uko12H85FZVAQvfd2j0dW4GKiXqkix8VM8o7KWyhqA7G1Oj/7lpam5k+7t2GqNCmf
-         TYfQ==
-X-Gm-Message-State: AOAM532nzsPXzy6sgxVw5thfR7vwGAftAS2QgRmv0EeOL+E3QZfK0pk1
-        TC7Sae41f4CvlmSvPX6YUiQpcbp4JtUnq/+4IvhQKA==
-X-Google-Smtp-Source: ABdhPJzh3ZOGe96IecK1OqqtQSExKI9kebMcVSUhZrUrhR6WDYqRhGnx1+pIa+JBaJw/ZtCtcC9iBYQ8L33OtBMjwMs=
-X-Received: by 2002:a05:6808:23c2:: with SMTP id bq2mr7418740oib.32.1634704032132;
- Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 19 Oct 2021 23:27:11 -0500
+ d=maximintegrated.onmicrosoft.com;
+ s=selector2-maximintegrated-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pyI1v6cIl0C0Tlw0tTyndqfb31EEyOPJHni4z5fbYAM=;
+ b=M3iYoo1We35NLd0qXsLuzqg221pvDFezXmZk0DZ4LT+pguqodUVI7wbjs4A0wJuHXMXeOIoANFAWWlx8eL1jDGQ5KPEfmz/l6F80jmeYOKucPqB15OKLfNNIqmhRhTRBHAE45MKshcuTLo6H/9euEryphZ5IFRqITzEBas50oaY=
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
+ by SJ0PR11MB4911.namprd11.prod.outlook.com (2603:10b6:a03:2ad::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.16; Wed, 20 Oct
+ 2021 05:06:18 +0000
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.018; Wed, 20 Oct 2021
+ 05:06:18 +0000
+From:   George Song <George.Song@maximintegrated.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "george.song@analog.com" <george.song@analog.com>,
+        Ryan Lee <RyanS.Lee@maximintegrated.com>,
+        Steve Lee <SteveS.Lee@maximintegrated.com>
+Subject: RE: [EXTERNAL] Re: [v3 2/2] ASoC: max98520: add max98520 audio
+ amplifier driver
+Thread-Topic: [EXTERNAL] Re: [v3 2/2] ASoC: max98520: add max98520 audio
+ amplifier driver
+Thread-Index: AQHXw/s2x3A5X1ZlPEurKpXCb3FgFavYshcAgAFD2bCAAEOuAIABHtdg
+Date:   Wed, 20 Oct 2021 05:06:17 +0000
+Message-ID: <BYAPR11MB367197EB4E103B53DBBAC6D0F4BE9@BYAPR11MB3671.namprd11.prod.outlook.com>
+References: <20211018083554.5360-1-george.song@maximintegrated.com>
+ <20211018083554.5360-2-george.song@maximintegrated.com>
+ <YW1quluaCzsUpET0@sirena.org.uk>
+ <BYAPR11MB367106FDD5394AA4F88A42D4F4BD9@BYAPR11MB3671.namprd11.prod.outlook.com>
+ <YW6zKsiWPE+xGWTy@sirena.org.uk>
+In-Reply-To: <YW6zKsiWPE+xGWTy@sirena.org.uk>
+Accept-Language: ko-KR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none
+ header.from=maximintegrated.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7d263ffb-f48f-44e0-71fe-08d99387597e
+x-ms-traffictypediagnostic: SJ0PR11MB4911:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SJ0PR11MB49113FB65904698CA5A5567BF4BE9@SJ0PR11MB4911.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4ITkzLzBv97Cs2Trj4vsmEsJNnWTu67hDb+RagycKYaN+w5Txsb4c26R+c9NbE6b/0UN8Ejw6dShTgCdQi3nEPyo6g6t+h6pm4H9W8iiMmrTlsyrvNcXGKlRd/T3hNLzvTM6oaU8w3AOJhQL+Fg01fnd0otgmo0ofqOJ5xKTsfeFaS7igBbpScytTzKv9l0vWou1CNnHwIei+7EgYnJGqqDfGKcwYvJbx0eAqig79zkqaKNKtotXh74PsoJOidkHqzPMVWwH+xQqhj3FFdiF9Wpo3sgs8UJVmrWr7onrGici0GEqlyGnMBWvzf8h451Uin3Jv9Z9pZM97jwN5Cgr82q06FA6+zTC3IEZtU7nRnvbl1O99IYtTnGhu/TURDNydICyeDsc4Io7C3CTDEKTT4tDV6wPN3tYpDSBHOxHklCBMUSfiN7LUh86Cw50RJ+m4/itpBZxetEalJEQD7q+Lp0oYvH0Hg1Z75M1/P7rQ1qni6Q6ItvshwEdeT6G2b9/1FkVNydX4r7zjPuiUWi+GS6uhuwOP8ddrQwkFtUYXp48bbjxkIHdgJNHusXOWEif4A1DNWYgopV5uigDRBMqqMQU7zVXl5JcAgHgt3J5LSH/u/VsTtnQLvVe0RefnTAicHMCiDo3KgItte4YROBZAh7vE7b8Jw7Oy3O9LjcRybWQ35QWk32F6hrslFBLxqjpEI3ObfsRvvhx/Jjix/VDxg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(38100700002)(9686003)(6506007)(55016002)(122000001)(7696005)(38070700005)(316002)(6916009)(508600001)(54906003)(26005)(83380400001)(5660300002)(33656002)(4326008)(4744005)(76116006)(8936002)(2906002)(186003)(107886003)(66476007)(8676002)(66446008)(86362001)(64756008)(66556008)(66946007)(71200400001)(52536014);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?D/xqK/WrXcvEzWQDlbwyoHt9aBHTjHmCHby/RhYn0i0/M6wGV8WEYVriKH9f?=
+ =?us-ascii?Q?hRsS8IDekp1or1SQd3WHVv1B4wJ1pn03KgXe2bBca+asfqvO+RZZbGV4xzsz?=
+ =?us-ascii?Q?qz5WpKsl03RdlLMLNawqZCkZeh/FMBnawBvu2MI4zp/+i0V741WaCRoeATsn?=
+ =?us-ascii?Q?j2ognmlPkGqYboL92ITiPjwKZAkTS65FWSROMgqC4qUIrPXesilovNNJMnRm?=
+ =?us-ascii?Q?XOQSPuxtBKMnNHq1MLmS8H/Z/pOCWNGHHeN1ALG1IuQ9n2YgATFfgXF7XXdR?=
+ =?us-ascii?Q?dDjW+a6I7e09C5ayfa1s1BT0rQGifIP7yEJXkdeQ0rZCbQifECE9ht8C3QbE?=
+ =?us-ascii?Q?GRVON0hcm99+l/cKxTLBQ0cge9j6TK4USTk2J3ZJYKN3eg1fsbI3tTu6t+zI?=
+ =?us-ascii?Q?fZfJwdAXsDU69d5+FMq1tievm3KZI2UKl9t7ryvWxRJBkYw71IR+nOjFLFt7?=
+ =?us-ascii?Q?bS0Hj225xk5yyNNuXMvMjJAp7io+tb8NzfxQKff6wYyWv2AQybDyFxlh7ZKG?=
+ =?us-ascii?Q?5VB/Zxef3YL1wtgTKbTgHGLLaGy7FaipFGpRENQKrs/vAKjqWXpKxZGhaF0I?=
+ =?us-ascii?Q?P9/16ZNEz4Sui2NNJFNx0PSZd1GkGU7WKM9cR44LTHJRAEpEJwF6Z+KuPBmq?=
+ =?us-ascii?Q?TvVLb5XfILRKFY6cG6t/FO1wXn5OjLRmRI4GfX3bgmQl15xsqqVh+MYSh7oz?=
+ =?us-ascii?Q?ZftSW57S9vBcv4QvoJmvGicvK7DnXNdTgdWmix6kmwuI82TMMlkC8tUHQZF8?=
+ =?us-ascii?Q?RCYtSgnSGzpt9zEWJMXbwJ4nYvFUgetwz0U8mWCrUyBnZyrj/CmlWus8+j95?=
+ =?us-ascii?Q?dVEI64ce2bjEZDDqPkjNhm7e7ZZQ92zq2bhSx4rRidUJLQixWRI+1o4dNzpd?=
+ =?us-ascii?Q?WC+/lYhBRkcAEc7vLIiw6NJshmBGxjYO7h7jJoONm+L4BWy0u9t6gt2QJ2EK?=
+ =?us-ascii?Q?hXF1ZFwf77qEaRFvU9FGH2kyYiFo/jgtGAGgEm9ArfsacSdBdibxqS3EJ7WI?=
+ =?us-ascii?Q?nlVeciYA5vurw8LlqYb3RuBmXLBzNvXiIZfeVn6aFolMiGpmaZfrp7F4S0jL?=
+ =?us-ascii?Q?l9GWGiG9ZLpI3N98ifwYuZu9RXaZvBM2C55uZTClscFXIxceqAwVdkx403wO?=
+ =?us-ascii?Q?L45HVt4yDv/BClfqTR1olUE2DDUEtdbx95OUmdoaYGknezfTPG/wd8l+qYqu?=
+ =?us-ascii?Q?s50F4JvfKgklS3cEPVy4urTKR4SL2rt2Ubm4US+QtcjRRzKb5gpUdtwEV2yD?=
+ =?us-ascii?Q?zKbBSknaTg7XT1Jk8xm7pHpGI3klqrIQhNQal23MoHI6BoYpgLGzT++UuE3K?=
+ =?us-ascii?Q?9r7zawrnMNQZJ20dEXF/oLAn?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <1634640531-15813-4-git-send-email-skakit@codeaurora.org>
-References: <1634640531-15813-1-git-send-email-skakit@codeaurora.org> <1634640531-15813-4-git-send-email-skakit@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 19 Oct 2021 23:27:11 -0500
-Message-ID: <CAE-0n509=RqfzqBjzVDRphk3umbmZEuN8=A91FY8DPWyn0BH1g@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] arm64: dts: qcom: pm8350c: Add pwm support
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: maximintegrated.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d263ffb-f48f-44e0-71fe-08d99387597e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2021 05:06:17.9943
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fbd909df-ea69-4788-a554-f24b7854ad03
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: r9RkHXvFcvuElbbckbQ079Fmby2ZaVtVBWilmr4gn3luwSckaLeJM2WXgHyANCWODhmPqIY9bFbgkWn7TsHKtJ/BeNNsPJQkKFZJMHpmlwE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4911
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2021-10-19 03:48:51)
-> From: satya priya <skakit@codeaurora.org>
->
-> Add pwm support for PM8350C pmic.
->
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> ---
-> Changes in V2:
->  - Dropped suffix '4' from pwm phandle and removed "status=ok".
->
->  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> index e1b75ae..08fc0a8 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-> @@ -29,6 +29,12 @@
->                         interrupt-controller;
->                         #interrupt-cells = <2>;
->                 };
-> +
-> +               pm8350c_pwm: pwm {
-> +                       compatible = "qcom,pm8350c-pwm";
-
-It should have a reg property. Every node should have a single cell for
-the reg property because the parent has #address-cells = <1>
-
-> +                       #pwm-cells = <2>;
-> +                       status = "disabled";
-> +               };
->         };
+> On Tue, Oct 19, 2021 at 07:57:26AM +0000, George Song wrote:
+>=20
+> > > > +	/* L/R mix configuration */
+> > > > +	regmap_write(max98520->regmap,
+> MAX98520_R2043_PCM_RX_SRC1, 0x2);
+> > > > +
+> > > > +	regmap_write(max98520->regmap,
+> MAX98520_R2044_PCM_RX_SRC2,
+> > > > +0x10);
+> > >
+> > > These should be exposed to the user, not hard coded - different
+> > > systems may need different configurations.
+> > It`s already exposed for 2043 register which is regarding mono
+> mixer for "DAI Sel Mux"
+> > It will be exposed for 2044 register which is regarding pcm input
+> channel selection to dapm mixer.
+>=20
+> Then leave the values at the defaults and let the user select what's
+> sensible for their system.
+It will be left the default value in probe function and=20
+described mixer/widget comment
+>=20
+> Please fix your mail client to word wrap within paragraphs at
+> something substantially less than 80 columns.  Doing this makes your
+> messages much easier to read and reply to.
+OK I see.
