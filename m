@@ -2,101 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59246434E34
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FE94434E62
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229842AbhJTOtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 10:49:13 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:40619 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229691AbhJTOtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:49:12 -0400
-Received: by mail-ot1-f54.google.com with SMTP id s18-20020a0568301e1200b0054e77a16651so8512088otr.7;
-        Wed, 20 Oct 2021 07:46:58 -0700 (PDT)
+        id S230219AbhJTO6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:58:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229695AbhJTO63 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:58:29 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2F3C06161C;
+        Wed, 20 Oct 2021 07:56:15 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id f4so7181523uad.4;
+        Wed, 20 Oct 2021 07:56:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LVRZfCbUcEWqq8bS7PaOVjbhTh/WMCv3Aoqx5RAxI1Y=;
+        b=M3jZcojyY6KwbydrAH9WjnewEr0XFq3PdzkMUEsUbrFx8wTTQXqGLT5+Sec2jPy3AG
+         hfumzblW+g6VWHX9JfOrVqa9RC5FGzhf9e1eCBzSw9wTccgog9GsS+iwwm9kpsRxXWLA
+         alXC1g16Bh5LGu8GLxP4Qm3zXCb6UcwtoIcOPjbOcujtgx3+z3Z4euOFsOTaRKAAr92d
+         ZzErZg9YruuNDYylZZ74fJyWY3jjwNCRojRreE/zm6npnzfFsRBGaxPxpeUWUOJbTxmo
+         r4rq+9Na4it873j4LlwH8wPWhf9nzKrExExfZhfV3xqFedVVG7dUy5Ho/YiO3mcJyuyK
+         +qJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pasGqTuRZhubCpUnUf/TWc8G25S9HUibTcAJimgPxXA=;
-        b=dWHPhRapHMqjmn+L74FC/UA83ALdjbauDpVvCtHyhaG0rL5eOcWtkrz5Qwb6quGsnK
-         BO6DVomHH/+norClmAV7/Y1cKx+bCT+yAYcphSqaguxyFt0788E3orIeuWtUcqaQ+oMA
-         +dwJwhufJ/bod00hvZl+5gsoxWkfuJea2W9zkAvmboaIV2Zlpb7ArPlbCgJCj+MDINqj
-         FV3RrCapP2ySsfIUXlK41zaJrBR3oZoGbkQeiJaGv1sPsNeiPvZhiGdOsBo8S7l8y6xr
-         XEdcJNgLte898WczIoCS7s9ReJAJ9if/QbeGgiYgVZz304uDihPJnaoMQA91tZwkVBDN
-         Cp4A==
-X-Gm-Message-State: AOAM531EhvHpcz2/KN9IVGPq1FnuUmrjvxxhbsLtYZzIPhIfRVi03KbO
-        f/HHWTIERFWUuidkLEvM7Q==
-X-Google-Smtp-Source: ABdhPJzp6IUxvWJLdKtEe/ko4g5HhBARBdoKSrrQRhy4qCIw26mSvLZ75JSXyO0uu9OGEOozEEzsEg==
-X-Received: by 2002:a9d:6c4b:: with SMTP id g11mr281341otq.122.1634741217678;
-        Wed, 20 Oct 2021 07:46:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q2sm434228ooe.12.2021.10.20.07.46.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Oct 2021 07:46:57 -0700 (PDT)
-Received: (nullmailer pid 2336346 invoked by uid 1000);
-        Wed, 20 Oct 2021 14:46:56 -0000
-Date:   Wed, 20 Oct 2021 09:46:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Nishanth Menon <nm@ti.com>, David Heidelberg <david@ixit.cz>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: opp: Allow multi-worded node names
-Message-ID: <YXAr4OlhucAibMlH@robh.at.kernel.org>
-References: <20211019231905.2974-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LVRZfCbUcEWqq8bS7PaOVjbhTh/WMCv3Aoqx5RAxI1Y=;
+        b=Uf+LGljQqrQcFeeRTqc3hPoweVuWqVssxQF1atR/BpNF1YBl0cc6UYMt58K+6uxX26
+         YHsI1+eSubU4Fs9at4+bDxdgvfxbyNW+/CkmPNFzmDObkY3rMYESmZ4FwVrFtDGMEwUF
+         PkmGjlzV0c1gDosAygNx6zjQeexy2+UxDi83atntZE3MpN40KFYE6+JvOnXZG/hKSSEm
+         D+RtZic06VrbWMusZq+qWFwaFndribJu0UzZcqMOiroyKkU3XrgTH8unfLZrPHI00YwD
+         57t7ndbtkfuDYfBClsrPQKFu3+Tbn0G/SmVvqTBHyMxXTWVOjUvsbzuaPjNQYF2NFc/W
+         AAKQ==
+X-Gm-Message-State: AOAM532Yyn/aPeLrY8gtlMCwikk0XpE7vd64zkA40upqfZEoTE/ELAyT
+        zgpm3h624MH83NTwTJgShAkEOvIyoKJyy49oykc=
+X-Google-Smtp-Source: ABdhPJy/0HLpH4lEXBGS1niveWyVKjjV+ypKgVhS4pvrspXd+LAcOALfGNoz8yvyLuDFEkbc7WSHTclIrYcmad0Hvdg=
+X-Received: by 2002:a67:42c2:: with SMTP id p185mr641748vsa.41.1634741774522;
+ Wed, 20 Oct 2021 07:56:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211019231905.2974-1-digetx@gmail.com>
+References: <20210922050035.18162-1-sergio.paracuellos@gmail.com> <163473978253.23166.3894301849923362863.b4-ty@arm.com>
+In-Reply-To: <163473978253.23166.3894301849923362863.b4-ty@arm.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 20 Oct 2021 16:56:03 +0200
+Message-ID: <CAMhs-H99H_Ojtdwyj3_9K6FdZfNgD42cHfjrVJ-+6_RiU4OG7g@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci <linux-pci@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-staging@lists.linux.dev,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 02:19:05AM +0300, Dmitry Osipenko wrote:
-> Not all OPP table names and OPP entries consist of a single word. In
-> particular NVIDIA Tegra OPP tables use multi-word names. Allow OPP node
-> and OPP entry name to have multi-worded names to silence DT checker
-> warnings about the multi-word names separated by hyphen.
-> 
-> Reviewed-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> index ae3ae4d39843..298cf24af270 100644
-> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> @@ -22,7 +22,7 @@ select: false
->  
->  properties:
->    $nodename:
-> -    pattern: '^opp-table(-[a-z0-9]+)?$'
-> +    pattern: '^opp-table(-[a-z0-9]+)*$'
+On Wed, Oct 20, 2021 at 4:23 PM Lorenzo Pieralisi
+<lorenzo.pieralisi@arm.com> wrote:
+>
+> On Wed, 22 Sep 2021 07:00:32 +0200, Sergio Paracuellos wrote:
+> > MediaTek MT7621 PCIe subsys supports single Root complex (RC)
+> > with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
+> > Topology is as follows:
+> >
+> >
+> >                           MT7621 PCIe HOST Topology
+> >
+> > [...]
+>
+> Applied to pci/mt7621, thanks!
+>
+> [1/3] dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
+>       https://git.kernel.org/lpieralisi/pci/c/e5bc5605e7
+> [2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+>       https://git.kernel.org/lpieralisi/pci/c/5797a2b2bc
+> [3/3] MAINTAINERS: add myself as maintainer of the MT7621 PCI controller driver
+>       https://git.kernel.org/lpieralisi/pci/c/eb1d7d438c
+>
+> Thanks,
+> Lorenzo
 
-I don't see how this helps you. What I see needed upstream is a prefix:
+Thanks, Lorenzo.
 
-'-?opp-table(-[0-9]+)?$'
-
-Though really what I'd like to see is the OPP nodes moved into the 
-device nodes they belong to when appropriate (i.e. when not shared 
-between multiple devices).
-
->  
->    opp-shared:
->      description:
-> @@ -33,7 +33,7 @@ properties:
->      type: boolean
->  
->  patternProperties:
-> -  '^opp-?[0-9]+$':
-> +  '^opp(-[0-9]+)*$':
->      type: object
->      description:
->        One or more OPP nodes describing voltage-current-frequency combinations.
-> -- 
-> 2.32.0
-> 
-> 
+Best regards,
+     Sergio Paracuellos
