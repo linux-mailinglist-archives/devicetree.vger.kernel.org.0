@@ -2,109 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17CE8434D2C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE94434D56
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbhJTOOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 10:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbhJTOOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:14:10 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D3BC06161C
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:11:56 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id c28so3069534qtv.11
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:11:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=x7JOzkLp3qJQ5ZEG3Wvg8nto1+QE37HnHtRsZbydM6A=;
-        b=keol+gj5+qeTZu7psqLrfHytYbYF9Njy0f1C2oSux4ZVQa3fJggX2xMmvZcZCrOnzc
-         CGQU5fMG+V+CmoXPEcUUb+lQIEJ4c6INHctBT5mvtWiaBFg+E2XRHhYWKxaM355n1uI/
-         iDwz+FJm9X4PHN5d6ffrvfV42N4MBDB6hhuCOjas27HSXDXCizS3SypOs36+dUP8BmG2
-         O3z7Nfr6wxYBF9thGB91/o/m/ATC6eYbX+TBGXiXV7t0z7UhgN+HSVVa0GCBJPXcnCRQ
-         RsTHJ66Gg0yW0Bj4/jKK6HRNDv3EYh/yPL/3AF07U2jcqbfnn+s2Y6XV1ULfzISJ8wyU
-         bRlA==
+        id S229921AbhJTOWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:22:04 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:39495 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229639AbhJTOWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:22:03 -0400
+Received: by mail-oi1-f172.google.com with SMTP id s9so7473161oiw.6;
+        Wed, 20 Oct 2021 07:19:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=x7JOzkLp3qJQ5ZEG3Wvg8nto1+QE37HnHtRsZbydM6A=;
-        b=11d05NoSJbxfEAB+ByOIE8umJrZkBICIf/a80uEFh839ZDHQkNbL/4y5OB8sFYkhx2
-         jCrgzsWB8Nygdj1pDOih1OPvEm6TX/m9RQHkaLkB0M+bo/uPUJzlwxes4kI9Ra+rAJuf
-         S7JcnLkC6wzF6XTsHwDV1zssgxxHfp5Juk+up3+HAdo5juhKyCUfukWqr1xT2p6fEYej
-         3pjqQRRv5I2F1cPJ3/YFx6KCAPMpxZhQi//jE+uRxav6Vi1A+FocdBjV7C4t+kohjHQ3
-         URaIpcRw0HL1c9PStixYMdQpNE/LsXkWCXcho08RwtMILsd9RXER/tGdNuyPku08gsxd
-         DaPA==
-X-Gm-Message-State: AOAM532cG2qfMVySscEIUqBxOJueCmWUaPlM7/sTbQbLBRKZd2y9PWwe
-        ISPD1X4OA3DCFRgfO7K5ATa/JA==
-X-Google-Smtp-Source: ABdhPJywLYD3sCDbm0hAanxdF+yNPD6msA//MmQPz+lrjVYHgur0Zel8YSlYYQkwYSXID4FUi4RNIA==
-X-Received: by 2002:ac8:7145:: with SMTP id h5mr176222qtp.240.1634739115459;
-        Wed, 20 Oct 2021 07:11:55 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id s189sm1028875qka.100.2021.10.20.07.11.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 07:11:55 -0700 (PDT)
-Subject: Re: [PATCH v4 19/20] crypto: qce: Add 'sm8250-qce' compatible string
- check
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
-Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
- <20211013105541.68045-20-bhupesh.sharma@linaro.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <86fe25d6-c20c-b143-deb2-984aa727c657@linaro.org>
-Date:   Wed, 20 Oct 2021 10:11:54 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CQR8bA2DDw1T775UVo7jNnRB7J3D07XKlU/rQiyQQnM=;
+        b=hw8kjlnFP5HelJJ0iGdWviTMjYxDek3O9gWM+etcHTVK6sIdJCnzoSM//v4h96jdl5
+         lGrSX0dfwcleypjLHAJRcKfQI7t0Om/sDzTe7jNTFMKp+cWVw5Jy7EiYC9EbT3czYOtM
+         auFIWs8OYd/l4K+SVXuR2S/rhZlRiEO1J0ITVLbZpOWAzBZGh/FHinGbMkB0IWLQ0v7n
+         T+Vu5TWqHX79htd5Lxgt1T6CZmMapBwQ0cY5KE+/0mPxBeW28KnoDQqMB/PV8fJeSEu1
+         I8famPAcUyGM8W7e1aYmkdqgjCZ5VOlm8j+jmB6g3PmT9GM15TS9+TJ9Jni/dZjy7rJv
+         NbUA==
+X-Gm-Message-State: AOAM533hkB3ulSDEb2UbKCzxO6MMsFaaNBjbmtiPQ28fcJc/R+KjX1cg
+        4aaY5ewThK9DRC/Bgoxbkg==
+X-Google-Smtp-Source: ABdhPJxW9P/PudtVYOU9cQ6l4rME3ClU1cNhDdvCc/Xw17GiN25AzsXlt7wEgblNZKsgXYjVar84Rw==
+X-Received: by 2002:a05:6808:199d:: with SMTP id bj29mr7759915oib.165.1634739588807;
+        Wed, 20 Oct 2021 07:19:48 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x10sm424722ooa.16.2021.10.20.07.19.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Oct 2021 07:19:47 -0700 (PDT)
+Received: (nullmailer pid 2299344 invoked by uid 1000);
+        Wed, 20 Oct 2021 14:19:45 -0000
+Date:   Wed, 20 Oct 2021 09:19:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH v15 09/10] of: fdt: Add memory for devices by DT property
+ "linux,usable-memory-range"
+Message-ID: <YXAlgdZ5q7CdBXw4@robh.at.kernel.org>
+References: <20211020020317.1220-1-thunder.leizhen@huawei.com>
+ <20211020020317.1220-10-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <20211013105541.68045-20-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211020020317.1220-10-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/13/21 6:55 AM, Bhupesh Sharma wrote:
-> Add 'sm8250-qce' compatible string check in qce crypto
-> driver as we add support for sm8250 crypto device in the
-> device-tree in the subsequent patch.
+On Wed, Oct 20, 2021 at 10:03:16AM +0800, Zhen Lei wrote:
+> From: Chen Zhou <chenzhou10@huawei.com>
 > 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-
-Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
-
--- 
-Warm Regards
-Thara (She/Her/Hers)
-
+> When reserving crashkernel in high memory, some low memory is reserved
+> for crash dump kernel devices and never mapped by the first kernel.
+> This memory range is advertised to crash dump kernel via DT property
+> under /chosen,
+>         linux,usable-memory-range = <BASE1 SIZE1 [BASE2 SIZE2]>
+> 
+> We reused the DT property linux,usable-memory-range and made the low
+> memory region as the second range "BASE2 SIZE2", which keeps compatibility
+> with existing user-space and older kdump kernels.
+> 
+> Crash dump kernel reads this property at boot time and call memblock_add()
+> to add the low memory region after memblock_cap_memory_range() has been
+> called.
+> 
+> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->   drivers/crypto/qce/core.c | 1 +
->   1 file changed, 1 insertion(+)
+>  drivers/of/fdt.c | 47 ++++++++++++++++++++++++++++++++++++-----------
+>  1 file changed, 36 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index c6f686126fc9..4c55eceb4e7f 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -306,6 +306,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
->   static const struct of_device_id qce_crypto_of_match[] = {
->   	{ .compatible = "qcom,ipq6018-qce", },
->   	{ .compatible = "qcom,sdm845-qce", },
-> +	{ .compatible = "qcom,sm8250-qce", },
->   	{}
->   };
->   MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
-> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 4546572af24bbf1..cf59c847b2c28a5 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -969,8 +969,16 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
+>  		 elfcorehdr_addr, elfcorehdr_size);
+>  }
+>  
+> -static phys_addr_t cap_mem_addr;
+> -static phys_addr_t cap_mem_size;
+> +/*
+> + * The main usage of linux,usable-memory-range is for crash dump kernel.
+> + * Originally, the number of usable-memory regions is one. Now there may
+> + * be two regions, low region and high region.
+> + * To make compatibility with existing user-space and older kdump, the low
+> + * region is always the last range of linux,usable-memory-range if exist.
+> + */
+> +#define MAX_USABLE_RANGES		2
+> +
+> +static struct memblock_region cap_mem_regions[MAX_USABLE_RANGES];
+>  
+>  /**
+>   * early_init_dt_check_for_usable_mem_range - Decode usable memory range
+> @@ -979,20 +987,30 @@ static phys_addr_t cap_mem_size;
+>   */
+>  static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
+>  {
+> -	const __be32 *prop;
+> -	int len;
+> +	const __be32 *prop, *endp;
+> +	int len, nr = 0;
+> +	struct memblock_region *rgn = &cap_mem_regions[0];
+>  
+>  	pr_debug("Looking for usable-memory-range property... ");
+>  
+>  	prop = of_get_flat_dt_prop(node, "linux,usable-memory-range", &len);
+> -	if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
+> +	if (!prop)
+>  		return;
+>  
+> -	cap_mem_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
+> -	cap_mem_size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> +	endp = prop + (len / sizeof(__be32));
+> +	while ((endp - prop) >= (dt_root_addr_cells + dt_root_size_cells)) {
+> +		rgn->base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+> +		rgn->size = dt_mem_next_cell(dt_root_size_cells, &prop);
+> +
+> +		pr_debug("cap_mem_regions[%d]: base=%pa, size=%pa\n",
+> +			 nr, &rgn->base, &rgn->size);
+> +
+> +		if (++nr >= MAX_USABLE_RANGES)
+> +			break;
+> +
+> +		rgn++;
+> +	}
+>  
+> -	pr_debug("cap_mem_start=%pa cap_mem_size=%pa\n", &cap_mem_addr,
+> -		 &cap_mem_size);
+>  }
+>  
+>  #ifdef CONFIG_SERIAL_EARLYCON
+> @@ -1265,7 +1283,8 @@ bool __init early_init_dt_verify(void *params)
+>  
+>  void __init early_init_dt_scan_nodes(void)
+>  {
+> -	int rc = 0;
+> +	int i, rc = 0;
+> +	struct memblock_region *rgn = &cap_mem_regions[0];
+>  
+>  	/* Initialize {size,address}-cells info */
+>  	of_scan_flat_dt(early_init_dt_scan_root, NULL);
+> @@ -1279,7 +1298,13 @@ void __init early_init_dt_scan_nodes(void)
+>  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+>  
+>  	/* Handle linux,usable-memory-range property */
+> -	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
+> +	memblock_cap_memory_range(rgn->base, rgn->size);
+> +	for (i = 1; i < MAX_USABLE_RANGES; i++) {
+> +		rgn++;
+
+Just use rgn[i].
+
+> +
+> +		if (rgn->size)
+
+This check can be in the 'for' conditions check.
+
+> +			memblock_add(rgn->base, rgn->size);
+> +	}
 
 
+There's not really any point in doing all this in 2 steps. I'm 
+assuming this needs to be handled after scanning the memory nodes, so 
+can you refactor this moving early_init_dt_check_for_usable_mem_range 
+out of early_init_dt_scan_chosen() and call it here. You'll have to get 
+the offset for /chosen twice or save the offset.
+
+Rob
