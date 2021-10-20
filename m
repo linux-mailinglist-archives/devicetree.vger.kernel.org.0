@@ -2,118 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DED2A434686
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 646E14346BA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbhJTIMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 04:12:45 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46872 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229503AbhJTIMp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 04:12:45 -0400
-Received: from [213.208.157.36] (helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1md6g6-0002KZ-Qj; Wed, 20 Oct 2021 10:10:26 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Chen-Yu Tsai <wens@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: rk3399: Hook up DMA for UARTs
-Date:   Wed, 20 Oct 2021 10:10:25 +0200
-Message-ID: <2163516.Xs4XyuuM7S@phil>
-In-Reply-To: <20210920175647.13008-2-wens@kernel.org>
-References: <20210920175647.13008-1-wens@kernel.org> <20210920175647.13008-2-wens@kernel.org>
+        id S229878AbhJTIWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 04:22:49 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:43732 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhJTIWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 04:22:45 -0400
+Received: by mail-ua1-f46.google.com with SMTP id i22so5003393ual.10;
+        Wed, 20 Oct 2021 01:20:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=G0aFIaG5DuBGUXCrNxzD6HsYeP6ck00oKaqW6SSo6UM=;
+        b=dU4M/j1lUkxtAdZUMiy7DM6DJsSqJxYq+CWer7vedooz19e4AV1cGSOdXONGpCkPM8
+         bHCdZoE1/2mUseqYPVkg1iHmj3m2INK1DgB+p/FHeQFWXlPgftPzVqZA/WISv2HKuMeH
+         HveHLbvybrhKsOFwIBEH8fNeAW9OYlwvZrs65m13xg6nYLm4ro40U1GU4rWPljW/tW1M
+         WptkBs45cnpdLk5NjNmg2W0TswBg1dPrRskp3XAkelMLj81dqwPieSTk/17fn2xmcg3A
+         AzyKSEpCKdClHWzK988OPIJLoGB/+68gqCROFmpxrAfUD6Lm5zJ7kazCzU4x7CoG2/MP
+         0JfQ==
+X-Gm-Message-State: AOAM532j0VVsAWDtMxtsPUe3zqunkUeuA53QuIyFkSFuLubhCZirNMYm
+        G8/95viENAGKBNQVnxHFJNh+rRHpBWNU0A==
+X-Google-Smtp-Source: ABdhPJykNfYZkk0MCjRAYMauZl8i7maJS3L+JJNrpUwPsMzHPi1QtQTjM5YTKgU11oQSngUA4t+SHg==
+X-Received: by 2002:a05:6102:3a0d:: with SMTP id b13mr21963342vsu.7.1634718030417;
+        Wed, 20 Oct 2021 01:20:30 -0700 (PDT)
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
+        by smtp.gmail.com with ESMTPSA id m11sm935964vkp.46.2021.10.20.01.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 01:20:29 -0700 (PDT)
+Received: by mail-vk1-f173.google.com with SMTP id x207so11682215vke.2;
+        Wed, 20 Oct 2021 01:20:29 -0700 (PDT)
+X-Received: by 2002:a05:6122:a20:: with SMTP id 32mr37163725vkn.15.1634718029542;
+ Wed, 20 Oct 2021 01:20:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20210913170436.243-1-alexander.helms.jy@renesas.com>
+ <20210913170436.243-2-alexander.helms.jy@renesas.com> <CAMuHMdWZp=7sR+dTL0F8o61weLqqC3k1kkemm_PktvyK8+ONmw@mail.gmail.com>
+ <CAMuHMdXq2NyBf539raFJSoWSGXnwxOAMWcVB_WV-=uf+kOs7rw@mail.gmail.com> <4f2f81a8-9a79-3211-5ec3-fa679c3e7bb9@renesas.com>
+In-Reply-To: <4f2f81a8-9a79-3211-5ec3-fa679c3e7bb9@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 20 Oct 2021 10:20:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXHkeOK+Bg10BCLDvTztV6+y9+OomBUiTAoa1+GCHRnvw@mail.gmail.com>
+Message-ID: <CAMuHMdXHkeOK+Bg10BCLDvTztV6+y9+OomBUiTAoa1+GCHRnvw@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] dt-bindings: Add binding for Renesas 8T49N241
+To:     Alex Helms <alexander.helms.jy@renesas.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        david.cater.jc@renesas.com, Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Alex,
 
-Am Montag, 20. September 2021, 19:56:47 CEST schrieb Chen-Yu Tsai:
-> From: Chen-Yu Tsai <wens@csie.org>
-> 
-> The RK3399 has two DMA controllers, one of which is wired up to work
-> with the SPI controllers and UARTs. The SPI controllers are already
-> hooked up, but the UARTs aren't.
-> 
-> Add the "dmas" and "dma-names" to the UART device nodes to hook up DMA.
+On Tue, Oct 19, 2021 at 11:53 PM Alex Helms
+<alexander.helms.jy@renesas.com> wrote:
+> On 10/14/2021 5:16 AM, Geert Uytterhoeven wrote:
+> > On Wed, Oct 13, 2021 at 8:02 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> >> On Mon, Sep 13, 2021 at 7:05 PM Alex Helms
+> >> <alexander.helms.jy@renesas.com> wrote:
+> >>> Renesas 8T49N241 has 4 outputs, 1 integral and 3 fractional dividers.
+> >>> The 8T49N241 accepts up to two differential or single-ended input clocks
+> >>> and a fundamental-mode crystal input. The internal PLL can lock to either
+> >>> of the input reference clocks or to the crystal to behave as a frequency
+> >>> synthesizer.
+> >>>
+> >>> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>
+> >> Thanks for your patch!
+> >>
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+> >
+> >> BTW, do you plan to add interrupt and/or GPIO support later?
+> >
+> > To clarify, and I really meant to add:
+> >
+> >   interrupts:
+> >     maxItems: 1
+> >
+> > to the bindings now, and GPIO-related properties and subnodes later.
+>
+> Any additional features such as interrupts and GPIO properties would only be added if there is customer demand for such features. Since there is no interrupt support, does the "interrupts" item still need to be added to the yaml?
 
-last time this came up, there was the issue of the pl330 driver in the
-kernel not being able to handle the case where the number of channels
-hooked up was larger than the number of possible channels handled
-at the same time (8 for dmac peri according to the TRM).
+DT describes hardware, not software policy (or limitations of the driver).
 
-Did this get solved meanwhile or are we then possibly starving the spi
-controllers from dma access when the uarts also get dma channels
-and are possibly probed earlier?
+Arguably that applies to both interrupts and GPIOs, but the latter is
+more complex to describe, while the former is a simple "interrupts"
+property.  It's not uncommon for board components to have their
+interrupt line wired to an SoC, even if the driver doesn't use it.
 
+Gr{oetje,eeting}s,
 
-Heiko
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index 3871c7fd83b0..87d6e4eb1337 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -608,6 +608,8 @@ uart0: serial@ff180000 {
->  		reg = <0x0 0xff180000 0x0 0x100>;
->  		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
->  		clock-names = "baudclk", "apb_pclk";
-> +		dmas = <&dmac_peri 0>, <&dmac_peri 1>;
-> +		dma-names = "tx", "rx";
->  		interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH 0>;
->  		reg-shift = <2>;
->  		reg-io-width = <4>;
-> @@ -621,6 +623,8 @@ uart1: serial@ff190000 {
->  		reg = <0x0 0xff190000 0x0 0x100>;
->  		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
->  		clock-names = "baudclk", "apb_pclk";
-> +		dmas = <&dmac_peri 2>, <&dmac_peri 3>;
-> +		dma-names = "tx", "rx";
->  		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH 0>;
->  		reg-shift = <2>;
->  		reg-io-width = <4>;
-> @@ -634,6 +638,8 @@ uart2: serial@ff1a0000 {
->  		reg = <0x0 0xff1a0000 0x0 0x100>;
->  		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
->  		clock-names = "baudclk", "apb_pclk";
-> +		dmas = <&dmac_peri 4>, <&dmac_peri 5>;
-> +		dma-names = "tx", "rx";
->  		interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH 0>;
->  		reg-shift = <2>;
->  		reg-io-width = <4>;
-> @@ -647,6 +653,8 @@ uart3: serial@ff1b0000 {
->  		reg = <0x0 0xff1b0000 0x0 0x100>;
->  		clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
->  		clock-names = "baudclk", "apb_pclk";
-> +		dmas = <&dmac_peri 6>, <&dmac_peri 7>;
-> +		dma-names = "tx", "rx";
->  		interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH 0>;
->  		reg-shift = <2>;
->  		reg-io-width = <4>;
-> @@ -1142,6 +1150,8 @@ uart4: serial@ff370000 {
->  		reg = <0x0 0xff370000 0x0 0x100>;
->  		clocks = <&pmucru SCLK_UART4_PMU>, <&pmucru PCLK_UART4_PMU>;
->  		clock-names = "baudclk", "apb_pclk";
-> +		dmas = <&dmac_peri 8>, <&dmac_peri 9>;
-> +		dma-names = "tx", "rx";
->  		interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH 0>;
->  		reg-shift = <2>;
->  		reg-io-width = <4>;
-> 
-
-
-
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
