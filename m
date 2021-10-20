@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E88A434D26
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CE8434D2C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:11:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbhJTOM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 10:12:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47208 "EHLO
+        id S229977AbhJTOOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:14:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbhJTOM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:12:56 -0400
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D4D2C06161C
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:10:41 -0700 (PDT)
-Received: by mail-qt1-x82e.google.com with SMTP id w2so3153736qtn.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:10:41 -0700 (PDT)
+        with ESMTP id S229570AbhJTOOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:14:10 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D3BC06161C
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:11:56 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id c28so3069534qtv.11
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=A+7/tYuokduAraYDaM/MNqe/qPgiHwjLTlChysTQILI=;
-        b=Fd6AaurLzQDPJogWpED/+njhBQ3CRKq0XqHJwDRFZWQ6++ZyhNIOta2z/xbkRQWN73
-         Dt/hkKIQHIsJIZlgJaOzu6TtOwOphlh4L0nL0a5Rjkj71JRtxOzu2MgCELlSWZia5B4G
-         ZY/dv+KrrG/F4NX21qGOVdjQBY6LhhwK/4gfO/geSIG0dpF4HSanqLU3H+NEoqCe8z5K
-         iGi/bVr+7ikhfTxSVXfaYkH0N3v6AZn8ODXM2R9A1hdySqkTflzY5xIHG7zSc6wQhXuc
-         JiKJPtF9GbXSBhYis/cLGOHAasts6knNp+ZGoFjrZgBtG0W8ZIUveGsZ320+8GkiU53u
-         xFEg==
+        bh=x7JOzkLp3qJQ5ZEG3Wvg8nto1+QE37HnHtRsZbydM6A=;
+        b=keol+gj5+qeTZu7psqLrfHytYbYF9Njy0f1C2oSux4ZVQa3fJggX2xMmvZcZCrOnzc
+         CGQU5fMG+V+CmoXPEcUUb+lQIEJ4c6INHctBT5mvtWiaBFg+E2XRHhYWKxaM355n1uI/
+         iDwz+FJm9X4PHN5d6ffrvfV42N4MBDB6hhuCOjas27HSXDXCizS3SypOs36+dUP8BmG2
+         O3z7Nfr6wxYBF9thGB91/o/m/ATC6eYbX+TBGXiXV7t0z7UhgN+HSVVa0GCBJPXcnCRQ
+         RsTHJ66Gg0yW0Bj4/jKK6HRNDv3EYh/yPL/3AF07U2jcqbfnn+s2Y6XV1ULfzISJ8wyU
+         bRlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=A+7/tYuokduAraYDaM/MNqe/qPgiHwjLTlChysTQILI=;
-        b=cW1B6W2WO8Rr6xNTjO4j2HRj0YUoMWFnQZW1VwHXQlRRUEwaQHfvDrSHR7vAnSqByo
-         U4+LXG2DlyZdfaoIOmPcfJtbzGBhIrI8vTaGhgM1EgFKUvk3hzHWxr03ePvrPmZWxAV6
-         10dYf1BoLCTCK6e+/5Cr5NC8MIqb6Q7Rw5nGSPVrqwWFbtPix+IWyOQod0IDtxhRqRmr
-         udtM4s5AhLIys5pdAqxQFT7kclYuTuEbPv6VqWqD3U3hVewZL7EHanr1e6MB/XlxDulS
-         vBzI5bbGIpeslxJ2d7p0hokJy5B79LJ77BHdKvgmTl0/PyugGAgOr+0iLv6OSB2dUXk2
-         b6Dw==
-X-Gm-Message-State: AOAM531I8g3wTNvdZZWowMHM0C2P2phjwzpR9+5xbbGdlBe7FEU6bern
-        6pbv4Yn0wb+McOm/u6DXorWgI6+eFVwfQg==
-X-Google-Smtp-Source: ABdhPJx7I22ooxQS73u+v3KsAR5e7TFQY8Rkzqi72g9Uw/1EzI7OgcXfSVXv9rzTTxjKU8fevvIqNQ==
-X-Received: by 2002:ac8:5903:: with SMTP id 3mr195093qty.74.1634739040791;
-        Wed, 20 Oct 2021 07:10:40 -0700 (PDT)
+        bh=x7JOzkLp3qJQ5ZEG3Wvg8nto1+QE37HnHtRsZbydM6A=;
+        b=11d05NoSJbxfEAB+ByOIE8umJrZkBICIf/a80uEFh839ZDHQkNbL/4y5OB8sFYkhx2
+         jCrgzsWB8Nygdj1pDOih1OPvEm6TX/m9RQHkaLkB0M+bo/uPUJzlwxes4kI9Ra+rAJuf
+         S7JcnLkC6wzF6XTsHwDV1zssgxxHfp5Juk+up3+HAdo5juhKyCUfukWqr1xT2p6fEYej
+         3pjqQRRv5I2F1cPJ3/YFx6KCAPMpxZhQi//jE+uRxav6Vi1A+FocdBjV7C4t+kohjHQ3
+         URaIpcRw0HL1c9PStixYMdQpNE/LsXkWCXcho08RwtMILsd9RXER/tGdNuyPku08gsxd
+         DaPA==
+X-Gm-Message-State: AOAM532cG2qfMVySscEIUqBxOJueCmWUaPlM7/sTbQbLBRKZd2y9PWwe
+        ISPD1X4OA3DCFRgfO7K5ATa/JA==
+X-Google-Smtp-Source: ABdhPJywLYD3sCDbm0hAanxdF+yNPD6msA//MmQPz+lrjVYHgur0Zel8YSlYYQkwYSXID4FUi4RNIA==
+X-Received: by 2002:ac8:7145:: with SMTP id h5mr176222qtp.240.1634739115459;
+        Wed, 20 Oct 2021 07:11:55 -0700 (PDT)
 Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id m16sm1119634qkn.15.2021.10.20.07.10.40
+        by smtp.gmail.com with ESMTPSA id s189sm1028875qka.100.2021.10.20.07.11.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 07:10:40 -0700 (PDT)
-Subject: Re: [PATCH v4 18/20] crypto: qce: Defer probing if BAM dma channel is
- not yet initialized
+        Wed, 20 Oct 2021 07:11:55 -0700 (PDT)
+Subject: Re: [PATCH v4 19/20] crypto: qce: Add 'sm8250-qce' compatible string
+ check
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
 Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
@@ -57,14 +57,14 @@ Cc:     bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
         herbert@gondor.apana.org.au, davem@davemloft.net,
         Bjorn Andersson <bjorn.andersson@linaro.org>
 References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
- <20211013105541.68045-19-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-20-bhupesh.sharma@linaro.org>
 From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <c6df4da4-3d50-5592-1036-b9a8cebb79d9@linaro.org>
-Date:   Wed, 20 Oct 2021 10:10:39 -0400
+Message-ID: <86fe25d6-c20c-b143-deb2-984aa727c657@linaro.org>
+Date:   Wed, 20 Oct 2021 10:11:54 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20211013105541.68045-19-bhupesh.sharma@linaro.org>
+In-Reply-To: <20211013105541.68045-20-bhupesh.sharma@linaro.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -75,84 +75,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 10/13/21 6:55 AM, Bhupesh Sharma wrote:
-> Since the Qualcomm qce crypto driver needs the BAM dma driver to be
-> setup first (to allow crypto operations), it makes sense to defer
-> the qce crypto driver probing in case the BAM dma driver is not yet
-> probed.
-> 
-> Move the code leg requesting dma channels earlier in the
-> probe() flow. This fixes the qce probe failure issues when both qce
-> and BMA dma are compiled as static part of the kernel.
-
-Hi Bhupesh,
-
-I am quite curious to know the nature of probe failure you are seeing 
-with the current sequence.  I am not against changing the sequence but 
-for me when a driver is enabled, it is clocks first, interconnect next 
-and then dma. Also I have tested the current sequence on sm8150 with 
-both the modules built in as static and I have not seen the failure.
-
--- 
-Warm Regards
-Thara (She/Her/Hers)
+> Add 'sm8250-qce' compatible string check in qce crypto
+> driver as we add support for sm8250 crypto device in the
+> device-tree in the subsequent patch.
 > 
 > Cc: Thara Gopinath <thara.gopinath@linaro.org>
 > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
+
+-- 
+Warm Regards
+Thara (She/Her/Hers)
+
 > ---
->   drivers/crypto/qce/core.c | 20 ++++++++++++--------
->   1 file changed, 12 insertions(+), 8 deletions(-)
+>   drivers/crypto/qce/core.c | 1 +
+>   1 file changed, 1 insertion(+)
 > 
 > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index cb8c77709e1e..c6f686126fc9 100644
+> index c6f686126fc9..4c55eceb4e7f 100644
 > --- a/drivers/crypto/qce/core.c
 > +++ b/drivers/crypto/qce/core.c
-> @@ -209,9 +209,19 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   	if (ret < 0)
->   		return ret;
->   
-> +	/* qce driver requires BAM dma driver to be setup first.
-> +	 * In case the dma channel are not set yet, this check
-> +	 * helps use to return -EPROBE_DEFER earlier.
-> +	 */
-> +	ret = qce_dma_request(qce->dev, &qce->dma);
-> +	if (ret)
-> +		return ret;
-> +
->   	qce->mem_path = of_icc_get(qce->dev, "memory");
-> -	if (IS_ERR(qce->mem_path))
-> +	if (IS_ERR(qce->mem_path)) {
-> +		qce_dma_release(&qce->dma);
->   		return PTR_ERR(qce->mem_path);
-> +	}
->   
->   	qce->core = devm_clk_get_optional(qce->dev, "core");
->   	if (IS_ERR(qce->core)) {
-> @@ -247,10 +257,6 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   	if (ret)
->   		goto err_clks_iface;
->   
-> -	ret = qce_dma_request(qce->dev, &qce->dma);
-> -	if (ret)
-> -		goto err_clks;
-> -
->   	ret = qce_check_version(qce);
->   	if (ret)
->   		goto err_clks;
-> @@ -265,12 +271,10 @@ static int qce_crypto_probe(struct platform_device *pdev)
->   
->   	ret = qce_register_algs(qce);
->   	if (ret)
-> -		goto err_dma;
-> +		goto err_clks;
->   
->   	return 0;
->   
-> -err_dma:
-> -	qce_dma_release(&qce->dma);
->   err_clks:
->   	clk_disable_unprepare(qce->bus);
->   err_clks_iface:
+> @@ -306,6 +306,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
+>   static const struct of_device_id qce_crypto_of_match[] = {
+>   	{ .compatible = "qcom,ipq6018-qce", },
+>   	{ .compatible = "qcom,sdm845-qce", },
+> +	{ .compatible = "qcom,sm8250-qce", },
+>   	{}
+>   };
+>   MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
 > 
 
 
