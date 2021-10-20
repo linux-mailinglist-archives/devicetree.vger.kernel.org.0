@@ -2,82 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53583435050
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 18:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B22435071
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 18:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbhJTQjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 12:39:23 -0400
-Received: from mail-4022.proton.ch ([185.70.40.22]:16668 "EHLO
-        mail-4022.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbhJTQjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 12:39:21 -0400
-Date:   Wed, 20 Oct 2021 16:36:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1634747824;
-        bh=d2roxbyt8b4yNeziE8Odnw0Moch2ElML4lV+Hjkivkk=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=TuwzoSevEYLt926RQ3REVkJDqQC8gn20aPBgTIhE0kjTtclmtdnDetQlkGXhlh6F6
-         rEjkZni+qo86r2ISypda9IviYklar69e1iYzy+wnACAFZDbNf1lX8qS4muIvmp/Xyk
-         FCuFAOIwuaaQB3aU9Esz1aKa8DmnLfJfRqQPn+WU=
-To:     Caleb Connolly <caleb@connolly.tech>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH] arm64: dts: qcom: sdm845-oneplus: enable second wifi channel
-Message-ID: <20211020163557.291803-1-caleb@connolly.tech>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+        id S229952AbhJTQod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 12:44:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54406 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230049AbhJTQoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 12:44:32 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E30C061749
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:42:17 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id e189-20020a2569c6000000b005be95530997so356369ybc.6
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:42:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=nYDqdSCOLsb3EuBLqgFuRJT/AkynPzPSYq70WD81Abg=;
+        b=cE1mIAYH4KApryiQBNCgeGgi/7dza9hmjDenIG4kFkhMhVVfaTHhMZU/EaX0hSpug8
+         oMjw1HswhrCmhKOzmt9GZwH6rXUQMlVCZotaqcNSV1R82/XtAkJDLm0E0QPdAsP/G9BP
+         GGPn7XYyDM09cIjSx0A+6E+htQoSGA1FFqf4aF1XF65SNeGS65l5mJXAiF07CEqFJTmE
+         37RcUaBp9KgnGiQ7tb5Uf+DXZiQIUAyYZQBvAc1UY/sBFwu+YUodAo8REQy48YVJfu2J
+         mBksT9Vm9LeTzOiTp/uP0IdSsURS3N/2PlmD7a2xW0RLXIBNys4tR9mL+kgiVTyAnbKX
+         0nvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=nYDqdSCOLsb3EuBLqgFuRJT/AkynPzPSYq70WD81Abg=;
+        b=3NGUcNbaCTWyWx3jfkJch5cA4yEP/rQgfyfRRlXLzYrIMS74UYTilrGYMjeYABnDAM
+         g+GZx4+pzuStS+RL9HrAyY8l7GjHCmk3e1AXO0BGyyO85phHiZb/MEwFVze03jm4TrH8
+         WuMtIpVhiY8XaGpsBWV4uIlrDuY2FrKlN1EeLqpRiyogl9LfSFMkLHxlJQWEhciWMe5M
+         GCB2EtYd1F+GUmYZ8tw1hVbElAJqJdYzF2WC5rvTq61RoRYJLJxxqCpzPrsDIpfGLx/C
+         uWKRhO5vAv1KiMZbVJ116gROYGIlzuA+hdwkiQkJERxa2iM0LgWVTHvYAoKgpfT/lcvp
+         UNfg==
+X-Gm-Message-State: AOAM533Xd6fXM+dJhoW7d0co6bOyAFguFsjaiLkk3lRA+qcp4jxVw/2c
+        6UEvlSmBWr80yidvhc/QyZT6ma4=
+X-Google-Smtp-Source: ABdhPJwQlhj86xuuPxYWBoeHQjgOZy5Ow4QsywzliDa0jyy2ruS1Fa1TpRjg57ug7oOBwvgj7Rb8anM=
+X-Received: from osk.cam.corp.google.com ([2620:0:1004:1a:a607:1490:fbbf:43bc])
+ (user=osk job=sendgmr) by 2002:a25:c696:: with SMTP id k144mr125766ybf.296.1634748137022;
+ Wed, 20 Oct 2021 09:42:17 -0700 (PDT)
+Date:   Wed, 20 Oct 2021 12:42:12 -0400
+Message-Id: <20211020164213.174597-1-osk@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.33.0.1079.g6e70778dc9-goog
+Subject: [PATCH v8 1/2] dt-bindings: hwmon: Add nct7802 bindings
+From:   Oskar Senft <osk@google.com>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Oskar Senft <osk@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Like the c630, the OnePlus 6 is also capable of using both antenna
-channels for 2.4 and 5ghz wifi, however unlike the c630 only the first
-channel is used for bluetooth.
+This change documents the device tree bindings for the Nuvoton
+NCT7802Y driver.
 
-Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+Signed-off-by: Oskar Senft <osk@google.com>
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes from PATCH v7:
+- Implemented review comments:
+  - Added blank lines to increase readability.
+  - Moved "additionalProperties" up to increase readability.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm=
-64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index d4355522374a..8bf2430a3af7 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -248,6 +248,12 @@ vreg_l20a_2p95: ldo20 {
- =09=09=09regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
- =09=09};
+Changes from PATCH v6:
+- Fixed formatting error reported by yamllint
 
-+=09=09vreg_l23a_3p3: ldo23 {
-+=09=09=09regulator-min-microvolt =3D <3300000>;
-+=09=09=09regulator-max-microvolt =3D <3312000>;
-+=09=09=09regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
-+=09=09};
+Changes from PATCH v5:
+- Refactored to use patternProperties.
+- Added validation for sensor-type and temperature-mode.
+---
+ .../bindings/hwmon/nuvoton,nct7802.yaml       | 145 ++++++++++++++++++
+ 1 file changed, 145 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+
+diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+new file mode 100644
+index 000000000000..2f0620ecccc9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7802.yaml
+@@ -0,0 +1,145 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
 +
- =09=09vdda_qusb_hs0_3p1:
- =09=09vreg_l24a_3p075: ldo24 {
- =09=09=09regulator-min-microvolt =3D <3088000>;
-@@ -647,6 +653,7 @@ &wifi {
- =09vdd-1.8-xo-supply =3D <&vreg_l7a_1p8>;
- =09vdd-1.3-rfa-supply =3D <&vreg_l17a_1p3>;
- =09vdd-3.3-ch0-supply =3D <&vreg_l25a_3p3>;
-+=09vdd-3.3-ch1-supply =3D <&vreg_l23a_3p3>;
-
- =09qcom,snoc-host-cap-8bit-quirk;
- };
---
-2.33.1
-
++$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7802.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NCT7802Y Hardware Monitoring IC
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++
++description: |
++  The NCT7802Y is a hardware monitor IC which supports one on-die and up to
++  5 remote temperature sensors with SMBus interface.
++
++  Datasheets:
++    https://www.nuvoton.com/export/resource-files/Nuvoton_NCT7802Y_Datasheet_V12.pdf
++
++additionalProperties: false
++
++properties:
++  compatible:
++    enum:
++      - nuvoton,nct7802
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^channel@[0-3]$":
++    type: object
++
++    additionalProperties: false
++
++    properties:
++      reg:
++        items:
++          - enum:
++              - 0    # Local Temperature Sensor ("LTD")
++              - 1    # Remote Temperature Sensor or Voltage Sensor 1 ("RTD1")
++              - 2    # Remote Temperature Sensor or Voltage Sensor 2 ("RTD2")
++              - 3    # Remote Temperature Sensor or Voltage Sensor 3 ("RTD3")
++
++      sensor-type:
++        items:
++          - enum:
++              - temperature
++              - voltage
++
++      temperature-mode:
++        items:
++          - enum:
++              - thermistor
++              - thermal-diode
++
++    required:
++      - reg
++
++    allOf:
++      # For channels RTD1, RTD2 and RTD3, require sensor-type to be set.
++      # Otherwise (for all other channels), do not allow temperature-mode to be
++      # set.
++      - if:
++          properties:
++            reg:
++              items:
++                - enum:
++                    - 1
++                    - 2
++                    - 3
++        then:
++          required:
++            - sensor-type
++        else:
++          not:
++            required:
++              - sensor-type
++
++      # For channels RTD1 and RTD2 and if sensor-type is "temperature", require
++      # temperature-mode to be set. Otherwise (for all other channels or
++      # sensor-type settings), do not allow temperature-mode to be set
++      - if:
++          properties:
++            reg:
++              items:
++                - enum:
++                    - 1
++                    - 2
++            sensor-type:
++              items:
++                - enum:
++                    - temperature
++        then:
++          required:
++            - temperature-mode
++        else:
++          not:
++            required:
++              - temperature-mode
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        nct7802@28 {
++            compatible = "nuvoton,nct7802";
++            reg = <0x28>;
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            channel@0 { /* LTD */
++              reg = <0>;
++            };
++
++            channel@1 { /* RTD1 */
++              reg = <1>;
++              sensor-type = "voltage";
++            };
++
++            channel@2 { /* RTD2 */
++              reg = <2>;
++              sensor-type = "temperature";
++              temperature-mode = "thermal-diode";
++            };
++
++            channel@3 { /* RTD3 */
++              reg = <3>;
++              sensor-type = "temperature";
++            };
++        };
++    };
+-- 
+2.33.0.1079.g6e70778dc9-goog
 
