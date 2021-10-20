@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F48F434D7B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70F64434D95
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230234AbhJTO0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 10:26:10 -0400
-Received: from foss.arm.com ([217.140.110.172]:60690 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230029AbhJTO0I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 10:26:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23BA9D6E;
-        Wed, 20 Oct 2021 07:23:54 -0700 (PDT)
-Received: from e123427-lin.arm.com (unknown [10.57.45.139])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5132A3F73D;
-        Wed, 20 Oct 2021 07:23:52 -0700 (PDT)
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     linux-pci@vger.kernel.org,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        john@phrozen.org, neil@brown.name, gregkh@linuxfoundation.org,
-        linux-staging@lists.linux.dev, matthias.bgg@gmail.com,
-        tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
-        bhelgaas@google.com
-Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
-Date:   Wed, 20 Oct 2021 15:23:45 +0100
-Message-Id: <163473978253.23166.3894301849923362863.b4-ty@arm.com>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
-References: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
+        id S230123AbhJTOa3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:30:29 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:49967 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230089AbhJTOa2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:30:28 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id AE17A20003;
+        Wed, 20 Oct 2021 14:28:09 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Julien Su <juliensu@mxic.com.tw>,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH 00/18] External ECC engines & Macronix support
+Date:   Wed, 20 Oct 2021 16:27:51 +0200
+Message-Id: <20211020142809.349347-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -39,24 +39,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sep 2021 07:00:32 +0200, Sergio Paracuellos wrote:
-> MediaTek MT7621 PCIe subsys supports single Root complex (RC)
-> with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
-> Topology is as follows:
-> 
-> 
->                           MT7621 PCIe HOST Topology
-> 
-> [...]
+Hello all,
 
-Applied to pci/mt7621, thanks!
+This series is now stable and brings support for external/modular ECC
+engines, and let SPI controller using the ECC framework.
 
-[1/3] dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
-      https://git.kernel.org/lpieralisi/pci/c/e5bc5605e7
-[2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
-      https://git.kernel.org/lpieralisi/pci/c/5797a2b2bc
-[3/3] MAINTAINERS: add myself as maintainer of the MT7621 PCI controller driver
-      https://git.kernel.org/lpieralisi/pci/c/eb1d7d438c
+As a first example, Macronix ECC engine can be used as an
+external engine (takes the data, proceeds to the calculations, writes
+back the ECC bytes) or as a pipelined engine doing on-the-fly
+calculations (which is very common in the raw NAND world).
 
-Thanks,
-Lorenzo
+In the device tree, the ECC engine should be described as a separated DT
+node. Then:
+* external case: the flash node should provide a nand-ecc-engine
+  property pointing to the ECC engine node.
+* pipelined case: the flash node should provide a nand-ecc-engine
+  property pointing to the SPI controller, itself with another
+  nand-ecc-engine property pointing at the ECC engine node.
+
+This series comes with a bunch of improvements on the binding side as
+well.
+
+Cheers,
+Miquèl
+
+Changes since the RFC:
+* Rebased on top of v5.15-rc1.
+* Fixed the dirmap configuration.
+* Added the various tags received.
+* Fixed the bindings as reported by the robots.
+* Fixed the return value of the helper counting bitflips.
+* Included a fix from Jaime Liao in the external pattern logic.
+* Added the yaml conversion of Macronix SPI controller description.
+* Added the yaml conversion of the SPI-NAND description.
+* Created a nand-chip.yaml file to share properties between SPI-NAND and
+  raw NAND.
+
+Mason Yang (1):
+  mtd: spinand: macronix: Use random program load
+
+Miquel Raynal (17):
+  dt-bindings: mtd: nand-controller: Fix the reg property description
+  dt-bindings: mtd: nand-controller: Fix a comment in the examples
+  dt-bindings: mtd: nand-chip: Create a NAND chip description
+  dt-bindings: mtd: spi-nand: Convert spi-nand description file to yaml
+  dt-bindings: vendor-prefixes: Clarify Macronix prefix
+  dt-bindings: spi: mxic: The interrupt property is not mandatory
+  dt-bindings: spi: mxic: Convert to yaml
+  dt-bindings: mtd: Describe Macronix NAND ECC engine
+  dt-bindings: spi: mxic: Document the nand-ecc-engine property
+  mtd: nand: ecc: Add infrastructure to support hardware engines
+  mtd: nand: mxic-ecc: Add Macronix external ECC engine support
+  mtd: nand: mxic-ecc: Support SPI pipelined mode
+  spi: mxic: Fix the transmit path
+  spi: mxic: Create a helper to configure the controller before an
+    operation
+  spi: mxic: Create a helper to ease the start of an operation
+  spi: mxic: Add support for direct mapping
+  spi: mxic: Add support for pipelined ECC operations
+
+ .../bindings/mtd/mxicy,nand-ecc-engine.yaml   |  77 ++
+ .../devicetree/bindings/mtd/nand-chip.yaml    |  71 ++
+ .../bindings/mtd/nand-controller.yaml         |  57 +-
+ .../devicetree/bindings/mtd/spi-nand.txt      |   5 -
+ .../devicetree/bindings/mtd/spi-nand.yaml     |  27 +
+ .../bindings/spi/mxicy,mx25f0a-spi.yaml       |  73 ++
+ .../devicetree/bindings/spi/spi-mxic.txt      |  34 -
+ .../devicetree/bindings/vendor-prefixes.yaml  |   3 +
+ drivers/mtd/nand/Kconfig                      |   6 +
+ drivers/mtd/nand/Makefile                     |   1 +
+ drivers/mtd/nand/core.c                       |  10 +-
+ drivers/mtd/nand/ecc-mxic.c                   | 799 ++++++++++++++++++
+ drivers/mtd/nand/ecc.c                        |  89 ++
+ drivers/mtd/nand/spi/macronix.c               |   2 +-
+ drivers/spi/spi-mxic.c                        | 328 +++++--
+ include/linux/mtd/nand-ecc-mxic.h             |  36 +
+ include/linux/mtd/nand.h                      |  11 +
+ 17 files changed, 1483 insertions(+), 146 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mxicy,nand-ecc-engine.yaml
+ create mode 100644 Documentation/devicetree/bindings/mtd/nand-chip.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/spi-nand.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/mxicy,mx25f0a-spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-mxic.txt
+ create mode 100644 drivers/mtd/nand/ecc-mxic.c
+ create mode 100644 include/linux/mtd/nand-ecc-mxic.h
+
+-- 
+2.27.0
+
