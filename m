@@ -2,94 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A07D43474E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:50:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0FB9434794
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 11:05:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbhJTIwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 04:52:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229677AbhJTIwm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 04:52:42 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E907C061746;
-        Wed, 20 Oct 2021 01:50:28 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 385948319B;
-        Wed, 20 Oct 2021 10:50:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1634719826;
-        bh=KuMbYZy0KqCB6uiczurO6mDyZHG1HljairWQFE7l5kE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZhMut0WMFeX/pnZGTf44hTSSFDDyeFAV0inwSBsHfld3yZRvfPJAHlc+4+TqmYw2t
-         +rLbpECWaSy4hDYZWwTEFFET6tvyBuIqlM850Blk86fy7BI+UKKFAIs2B7mUgGwE4c
-         GYr3/hxmsRii9/4AgfACjt87ncv2y1mjiDRdKkUyWHeh4HvPQuZAZFYzQBvHOcdptE
-         LRJpdineoUUfZFZy1GwNxeoEJtuQ0Cm0x/NWiQrlsEumPXd+JLV566kHXOSz+Ae5GE
-         nSdUcPqlX5f5n9EHFXAQCZQntv8vOv/+SJtNV/TxKhhhRCAIVx8GhOv0UlR4PSMrWx
-         h21cnBJsuhDtw==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-clk@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: [PATCH 2/2] clk: bd718x7: Add rohm,clock-output-is-critical property
-Date:   Wed, 20 Oct 2021 10:49:56 +0200
-Message-Id: <20211020084956.83041-2-marex@denx.de>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211020084956.83041-1-marex@denx.de>
-References: <20211020084956.83041-1-marex@denx.de>
+        id S229548AbhJTJHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 05:07:47 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:64394 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229503AbhJTJHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 05:07:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634720733; x=1666256733;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SPBHRwKBxvfeQCeCmvDTAwkvWtsrV8f0sXTIZMWaKDY=;
+  b=fClDs0tklzCV6T9cwNiwpE8J/vOsMJAzTlNp5j1KeyMMLx3B4+jGcIUK
+   OqzmpSNw/f7bePq2gM1xzXRyof34GC61du8WbT44RfQmTjqa+NcI46neJ
+   QuNawZ1doHyFAjSVNMAVT5dfA75C7MK7lIe618f/zgDv/7ATUddnzF6Za
+   ceSg7vGAXxifMBHuLcYQ8DCXv4xRupiP+pCVjskO753h1ftgjjKbN3WZy
+   09Zo2uUNq4lJSeXL83jRvW4tvIdhS3ya2nS6fuujnkVv7yYcPmz7fgqGH
+   VFbfsyn8QVo46iuKENj1U0f6pn/bOLhSR1jO4IiEv5q4JmFIsw/PLx7AQ
+   w==;
+IronPort-SDR: 1pFKrgr3bw/cD8VgF6LVGGpsUgQ4qlBePFX9+Pwksym38UqtHCVtAFSVTjF+FQ6lyZF2+m+NL6
+ KwyHb7ZIShBdIxrbey0uQeKcUvgan2Lb7tdjekeE+Cv9tAlg5LjpdE+3XHCVJU7K6YKx+CwsZV
+ ccZ0GpndddJh6ThIXmNIF63AeyJT7HZ3qyd3Bho4jWl5+SsLbti+C4seLq0930kGA/XI77z4Tw
+ QBGaSQNRmdUKBB2Cd0eIPgAcSfqhi4m3PVvIeV7ItmNRC4EcmW02Nx0j64jECb7TXAY/BaBoDR
+ dBzQRkBDsNo+miaFyxr+friS
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; 
+   d="scan'208";a="141010436"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Oct 2021 02:05:30 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 20 Oct 2021 02:05:30 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Wed, 20 Oct 2021 02:05:29 -0700
+Date:   Wed, 20 Oct 2021 11:07:03 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>, Vinod <vkoul@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/3] dt-bindings: phy: Add constants for lan966x serdes
+Message-ID: <20211020090703.sspta6qltdymylig@soft-dev3-1.localhost>
+References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
+ <20211015123920.176782-3-horatiu.vultur@microchip.com>
+ <YW3K2GX+hmkwt3EE@robh.at.kernel.org>
+ <20211019091258.3uet6lp3mxaoliqt@soft-dev3-1.localhost>
+ <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLemN4jU32-5UvPBGUb7G6jxxKwD5oetJWkoBLANuyTsw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the possibility to configure PMIC 32kHz output clock as CRITICAL,
-so that they are never gated off. This is useful in case those clock
-supply some vital clock net, which requires the clock to always run.
+The 10/19/2021 08:38, Rob Herring wrote:
+> 
+> On Tue, Oct 19, 2021 at 4:11 AM Horatiu Vultur
+> <horatiu.vultur@microchip.com> wrote:
+> >
+> > The 10/18/2021 14:28, Rob Herring wrote:
+> > >
+> > > On Fri, Oct 15, 2021 at 02:39:19PM +0200, Horatiu Vultur wrote:
+> > > > Lan966x has: 2 integrated PHYs, 3 SerDes and 2 RGMII interfaces. Which
+> > > > requires to be muxed based on the HW representation.
+> > > >
+> > > > So add constants for each interface to be able to distinguish them.
+> > > >
+> > > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > > ---
+> > > >  include/dt-bindings/phy/phy-lan966x-serdes.h | 14 ++++++++++++++
+> > > >  1 file changed, 14 insertions(+)
+> > > >  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+> > > >
+> > > > diff --git a/include/dt-bindings/phy/phy-lan966x-serdes.h b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> > > > new file mode 100644
+> > > > index 000000000000..8a05f93ecf41
+> > > > --- /dev/null
+> > > > +++ b/include/dt-bindings/phy/phy-lan966x-serdes.h
+> > > > @@ -0,0 +1,14 @@
+> > > > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > > > +
+> > > > +#ifndef __PHY_LAN966X_SERDES_H__
+> > > > +#define __PHY_LAN966X_SERDES_H__
+> > > > +
+> > > > +#define PHY(x)               (x)
+> > > > +#define PHY_MAX              PHY(2)
+> > > > +#define SERDES6G(x)  (PHY_MAX + 1 + (x))
+> > > > +#define SERDES6G_MAX SERDES6G(3)
+> > > > +#define RGMII(x)     (SERDES6G_MAX + 1 + (x))
+> > > > +#define RGMII_MAX    RGMII(2)
+> > > > +#define SERDES_MAX   (RGMII_MAX + 1)
+> > >
+> > > I still don't understand. #phy-cells description says we have:
+> > >
+> > > <port idx> <serdes idx>
+> > >
+> > > But here it's 3 numbers. How are these defines used to fill in the 2
+> > > cells?
+> >
+> > Actually they are still only a number. Or maybe I am missing something.
+> 
+> So all the defines apply to the 2nd cell? That's what's missing.
 
-The iMX8M RTC XTAL input is one such example, if the clock are ever
-gated off, the system locks up completely. The clock must be present
-and enabled even if the RTC is unused.
+Exactly.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Michael Turquette <mturquette@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-power@fi.rohmeurope.com
-To: linux-clk@vger.kernel.org
----
- drivers/clk/clk-bd718x7.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+> The cell description needs to spell all this out. 3 different modes or
+> whatever. Explain what the h/w is comprised of in the top level
+> 'description'.
 
-diff --git a/drivers/clk/clk-bd718x7.c b/drivers/clk/clk-bd718x7.c
-index ac40b669d60b..a59bc57f13bc 100644
---- a/drivers/clk/clk-bd718x7.c
-+++ b/drivers/clk/clk-bd718x7.c
-@@ -125,6 +125,13 @@ static int bd71837_clk_probe(struct platform_device *pdev)
- 	c->pdev = pdev;
- 	c->hw.init = &init;
- 
-+	/*
-+	 * The clock supply vital clock net, e.g. SoC XTAL input,
-+	 * and the clock must not ever be turned off.
-+	 */
-+	if (of_property_read_bool(parent->of_node, "rohm,clock-output-is-critical"))
-+		init.flags |= CLK_IS_CRITICAL,
-+
- 	of_property_read_string_index(parent->of_node,
- 				      "clock-output-names", 0, &init.name);
- 
+I will add this description.
+
+> 
+> >
+> > Maybe an example will help:
+> >
+> > ---
+> > serdes: serdes@e2004010 {
+> >     compatible = "microchip,lan966x-serdes";
+> >     reg = <0xe202c000 0x9c>, <0xe2004010 0x4>;
+> >     #phy-cells = <2>;
+> > };
+> >
+> > &port0 {
+> >     ...
+> >     phys = <&serdes 0 SERDES6G(1)>;
+> >     ...
+> > };
+> >
+> > &port1 {
+> >     ...
+> >     phys = <&serdes 1 PHY(0)>;
+> 
+> I think CU was better, just needed some comments. PHY is pretty vague.
+
+Same here, I will update it.
+
+> 
+> >     ...
+> > }
+> >
+> > ...
+> > ---
+> >
+> > Here are some existing examples based on which I have created this patch
+> > series:
+> > https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot_pcb120.dts#L99
+> 
+> None of which use PHY() or RGMII()...
+> 
+> 
+> > https://elixir.bootlin.com/linux/v5.15-rc6/source/arch/mips/boot/dts/mscc/ocelot.dtsi#L274
+> >
+> > >
+> > > Rob
+> >
+> > --
+> > /Horatiu
+
 -- 
-2.33.0
-
+/Horatiu
