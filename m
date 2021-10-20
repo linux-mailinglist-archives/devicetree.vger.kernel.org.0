@@ -2,153 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFEF9434807
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 11:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F0F2434815
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 11:43:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230024AbhJTJi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 05:38:28 -0400
-Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:50928
-        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229555AbhJTJi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 05:38:27 -0400
-Received: from workstation5.fritz.box (ip-88-152-144-157.hsi03.unitymediagroup.de [88.152.144.157])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 2E7F03FFE4;
-        Wed, 20 Oct 2021 09:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634722572;
-        bh=bAoP1FRiCuy1+/FURCUdf01qjwFj5kNYA9taKaOAcu4=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=XnzyDxewYJGTGBxlg71DeHB66UWnfd82EVEm/zwRbcfvTQysIL70WtTnPhXBZzMwI
-         UDbN5qUjEbN4FRJymfUrT9bN4oNycc5qA+tbo1SAiQUaMYfMFYwesMXDilH33Sz0hA
-         nuTt07ydy5wJaXnTTyAFaVX6ftqtf2SqiUskyQuGKUHGk1zuP4V+g4FVQHLtfk+X5n
-         AJJm4UCK9LbC0oQwF8z0t3df34VGmCR4W/ezI1/xQNFkJR9+3q5SI7ZanUEOnkrS/K
-         7HoJ/ryvjMNmVjbjCv3SUMq2HKgdF6U1JBKYVX1VUuhLkqGY71Yc1yjhAnCSPh4EBG
-         Ci+JwbFxeRTCA==
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Guo Ren <guoren@linux.alibaba.com>, Bin Meng <bmeng.cn@gmail.com>,
-        Xiang W <wxjstz@126.com>, Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        opensbi@lists.infradead.org,
-        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Subject: [PATCH 1/1] dt-bindings: T-HEAD CLINT
-Date:   Wed, 20 Oct 2021 11:36:03 +0200
-Message-Id: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
-X-Mailer: git-send-email 2.32.0
+        id S229570AbhJTJpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 05:45:38 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:58344 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229555AbhJTJph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 05:45:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634723003; x=1666259003;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Z47sps6aiduYq9zxghfDWy+i1+XjGukGY3TIg6+nO8E=;
+  b=BGExX2/j/d1JO9sYylnG9uLsnsh11A0gdY0Hf2iLdMpp2OWujV5Bx/qA
+   cy1kOAF6q7XDgrHdQ8OLndpU8by1EpchM5akDm6cfYwwbnbUsocL5gxcG
+   H70V7ffWf6U1kIF/eCu3+hKC0UOR5o+RIZQCe2nrf1Y0iejJgcNEFsIUG
+   zOqmdfOoA77J12uePzXjEQZcpWb/nGZ8vZ3k2OEKhQ2pOmdt7UH/P4vQQ
+   8YlUF2O4MJm/Uc5eYrpO4lMeETB55IIoijU8nYOwqL4TlNpNCocljIGjS
+   XsnPgntwS99a6JBom4y/8//hfonqBaWVCzCW3YiFZoM/ZljhSEBt5d48n
+   A==;
+IronPort-SDR: QQSo92EB/7JhmETOogVnU7TUkxzNwqKjrgWO9W8yEum2fMjDr8XJkMf8D1coAjiztkfJckzHRl
+ oybA6kAVxn3gklJySDUT0OCpoSlLpzM72xSx9m63XYUqRm7cXZraEpugaamhoxq9e6wH2cIv8z
+ Jre7MHFWlhF5HAfbGbxoKRthDNJ4gsLbSm/lKhKODWqYaUPKnY2y6dnHFxKRqyoVudqykCADpn
+ vwIljsjfH3GLLhYVyAJ/ks843zblzbbyl2rEmChIvPgsY2vs31NmejolQa8v2nnHBZihqW/US2
+ 0URVBz8bOXvhtPgkUXTlAV4U
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; 
+   d="scan'208";a="133739400"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Oct 2021 02:43:22 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 20 Oct 2021 02:43:22 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 20 Oct 2021 02:43:20 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <kishon@ti.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <andrew@lunn.ch>, <alexandre.belloni@bootlin.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH v4 0/3] phy: Add driver for lan966x Serdes driver
+Date:   Wed, 20 Oct 2021 11:42:26 +0200
+Message-ID: <20211020094229.1760793-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
-not support 64bit mmio access to the MTIMER device.
+This patch serie adds support for Microchip lan966x serdes. The lan966x
+device contains has 7 interfaces, consisting of 2 copper transceivers,
+3 Serdes and 2 RGMII interfaces. Two of the Serdes support QSGMII.
+The driver also adds the functionality of "muxing" the interfaces to
+different logical ports.
 
-OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
-restriction and the "sifive,cling0" compatible string. An OpenSBI
-patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
-is generally used in the devicetree schema for such a condition.
+The following table shows which interfaces can be supported by the port.
 
-As the design is not SiFive based it is preferable to apply a compatible
-string identifying T-HEAD instead.
+PortNumber    Max Speed    Ethernet interface options
+    0            1Gbps       CuPHY, 1G SGMII or QSGMII
+    1            1Gbps       CuPHY, 1G SGMII or QSGMII
+    2          2.5Gbps       2.5G SGMII, QSGMII, RGMII
+    3          2.5Gbps       2.5G SGMII, QSGMII, RGMII
+    4          2.5Gbps       2.5G SGMII, QSGMII
+    5            1Gbps       QSGMII, RGMII
+    6            1Gbps       QSGMII, RGMII
+    7            1Gbps       QSGMII
 
-Add a new yaml file describing the T-HEAD CLINT.
+v3->v4:
+- update description of the driver
+- removed unused registers
+- use bitfield operations in the registers
+- add macros for PLL configuration
+- move macros and structs at the top of the file
 
-Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
----
-@Palmer, @Anup
-I copied you as maintainers from sifive,clint.yaml. Please, indicate if
-this should be changed.
+v2->v3:
+- remove unused includes
+- add missing '...' in microchip,lan966x-serdes.yaml
+- rename lan966x-serdes.h to phy-lan966x-serdes.h
+- Rename CU->PHY and RG->RGMII
+- update commit message for PATCH 2
 
-For the prior discussion see:
-https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
-https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
+v1->v2:
+- replace the regmap with iomem
+- update DT bindings
 
-A release candidate of the ACLINT specification is available at
-https://github.com/riscv/riscv-aclint/releases
----
- .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
- 1 file changed, 62 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
 
-diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
-new file mode 100644
-index 000000000000..02463fb2043a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive Core Local Interruptor
-+
-+maintainers:
-+  - Palmer Dabbelt <palmer@dabbelt.com>
-+  - Anup Patel <anup.patel@wdc.com>
-+
-+description:
-+  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
-+  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
-+  interrupts. It directly connects to the timer and inter-processor interrupt
-+  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
-+  interrupt controller is the parent interrupt controller for CLINT device.
-+  The clock frequency of the CLINT is specified via "timebase-frequency" DT
-+  property of "/cpus" DT node. The "timebase-frequency" DT property is
-+  described in Documentation/devicetree/bindings/riscv/cpus.yaml
-+
-+properties:
-+  compatible:
-+    items:
-+      - const:
-+          - allwinner,sun20i-d1-clint
-+      - const:
-+          - thead,clint0
-+
-+    description:
-+      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
-+      the T-HEAD derived CLINTs.
-+      Supported compatible strings are -
-+      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
-+      and "thead,clint0" for the T-HEAD IP block with no chip
-+      integration tweaks.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts-extended:
-+    minItems: 1
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts-extended
-+
-+examples:
-+  - |
-+    timer@2000000 {
-+      compatible = "allwinner,sun20i-d1-clint", "thead,clint0";
-+      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
-+                             &cpu2intc 3 &cpu2intc 7
-+                             &cpu3intc 3 &cpu3intc 7
-+                             &cpu4intc 3 &cpu4intc 7>;
-+       reg = <0x2000000 0x10000>;
-+    };
-+...
+Horatiu Vultur (3):
+  dt-bindings: phy: Add lan966x-serdes binding
+  dt-bindings: phy: Add constants for lan966x serdes
+  phy: Add lan966x ethernet serdes PHY driver
+
+ .../phy/microchip,lan966x-serdes.yaml         |  59 ++
+ drivers/phy/microchip/Kconfig                 |   8 +
+ drivers/phy/microchip/Makefile                |   1 +
+ drivers/phy/microchip/lan966x_serdes.c        | 548 ++++++++++++++++++
+ drivers/phy/microchip/lan966x_serdes_regs.h   | 209 +++++++
+ include/dt-bindings/phy/phy-lan966x-serdes.h  |  14 +
+ 6 files changed, 839 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+ create mode 100644 drivers/phy/microchip/lan966x_serdes.c
+ create mode 100644 drivers/phy/microchip/lan966x_serdes_regs.h
+ create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+
 -- 
-2.32.0
+2.33.0
 
