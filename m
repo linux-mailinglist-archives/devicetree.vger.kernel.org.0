@@ -2,245 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 414D6435073
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 18:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F8D3435082
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 18:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230313AbhJTQog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 12:44:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54428 "EHLO
+        id S230235AbhJTQrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 12:47:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230285AbhJTQog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 12:44:36 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFC3EC06174E
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:42:21 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id h185-20020a256cc2000000b005bdce4db0easo31223296ybc.12
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:42:21 -0700 (PDT)
+        with ESMTP id S230190AbhJTQrm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 12:47:42 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8487EC061749
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:45:26 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id w14so26910249edv.11
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 09:45:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IHLUn7sE+CWeyJGwUt9Fg19fE4IBXhW7HDVWDJnGVsY=;
-        b=o0P6AGlO1B1cvFuR8WzDFCSvpRXabsmrwPyKL0Rg68XwoiYSjnqkvjC09iEWxT7sxg
-         sMUHvv3aTwwBEbpDCFyYI8l/QVinPngzdqzpGDHMXy6ftOtYwF+qCoF8FklsTEuexEI9
-         0XmxohZlfdkS4x+1/mCd5enIImH3uwUeF22j7jrCqmmJDxbPlcYT9k8wYq7oMvfpOS7G
-         mlDE/NxvoMTS2U8wy18xfLKnQQL+ovFNLq1bwIU+Us4L3K6/qoEhnRYu8UzFxxpz0LkJ
-         1808Lzp4IslAwb4WOP/VPwdgKQ32bbJ93liWFhpUeECzQa+HBKNXVNXFerD/cpFVmA8W
-         AuDw==
+        bh=54ox45iamAqJI/ZSpvjT5ytrb9y5qaD60KiIyvWufQE=;
+        b=JEupWRdH/ZFgHpE7i0xYU+gheIJ1mWk/Jz6nhN8ZHLR8hos3roX9F3YPG+T0GhLy54
+         V9z2FFrRspZ+M/UVhD6C9+ntvoNq9NQmwqdkmy7P0biv9p3fxbC9TCX8vsuozogk6IfP
+         w45AvME8aouQje4BLDMWoy/UeUIa3cY3oIShCUMWl2fraXHU65RnBPw0Q7K5NckNkGZ5
+         3Mi4zHehqsT/5ei+v6usNQ0sxxTXbE33FsfjqIqkE+/LJjLlJW5nxnkxPYN68u53iKa2
+         GllZVbX1htMdYfc5hAkSQvrYUboiqh/Ce/oSKMuKV37t6r5fdRqkHkdcTELd4iTU5aS9
+         YEkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=IHLUn7sE+CWeyJGwUt9Fg19fE4IBXhW7HDVWDJnGVsY=;
-        b=YrLu+sL0w/Mt9PuJieyM3ByDqJdjZR0wo6Nm2VN9/hz1RiM+JGsss5Z54BJBbgKP7m
-         bKyHS1lyQ3AwJkXd7t6pQPddrutsmcMW5TM6FET2BGBp6dnwQEA/015W67pzeHrkdxri
-         p/CkQJJj2muj/7/Ra/bDG3M9MfLG9DVuD1hIa9x/R0jAGT1gIrFdYP/YdxvwNBhK6Qvu
-         NQuTXDQgES0GubyNXOtlbP0DpTNPybIGi8FsVcGXN7VASOdsukH3F2PorVQaoqezJB/2
-         wVzMpNhuqNprQ0wfZ9JDONBGTmGDqKREEqnU6N9iLI2/iQJzVr6EfREsonrzUf46Ib5P
-         ZR9A==
-X-Gm-Message-State: AOAM532Q7x3Rp+dhtrmc9LUfPGiGiHgDpbsNboCqWpBDz2OuJkVBjs3J
-        iyJ27cmvJdbmfXeBmuOAy1S1ZcA=
-X-Google-Smtp-Source: ABdhPJz5iTmijp1jngJ7qyzAn/XVSTjtv9vToNoDNnjqGwNYbfVS3QF++s8/rYPSOo7hJi81ne7jEWs=
-X-Received: from osk.cam.corp.google.com ([2620:0:1004:1a:a607:1490:fbbf:43bc])
- (user=osk job=sendgmr) by 2002:a25:cb03:: with SMTP id b3mr155435ybg.138.1634748140825;
- Wed, 20 Oct 2021 09:42:20 -0700 (PDT)
-Date:   Wed, 20 Oct 2021 12:42:13 -0400
-In-Reply-To: <20211020164213.174597-1-osk@google.com>
-Message-Id: <20211020164213.174597-2-osk@google.com>
-Mime-Version: 1.0
-References: <20211020164213.174597-1-osk@google.com>
-X-Mailer: git-send-email 2.33.0.1079.g6e70778dc9-goog
-Subject: [PATCH v8 2/2] hwmon: (nct7802) Make temperature/voltage sensors configurable
-From:   Oskar Senft <osk@google.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Oskar Senft <osk@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=54ox45iamAqJI/ZSpvjT5ytrb9y5qaD60KiIyvWufQE=;
+        b=eqDlCfGjcuROf7LfDxZdL+4g5tzZmm2I3PZgNaC7mdD/tKeoVVkKtNtZanSRP4ZNE7
+         7BhD5u4NScqe65pciGGcGAT5Njl7cIVGMSxIuTjFLjj3eHJDrptZqI4idBQC8997IAZ+
+         KQNHtnC6lphXwvwT5ECMV0iHvRHRxB+9Xqwl6Qwc4wEZi/S02nBlLCpp6yh5A3e7XnB9
+         Z7JHHjotHUpSD1qO/ow2SlSEEyzMvRB4ZRIsV0k/XIt7BbEFB1Vm0Hb3ewBLdPZ9jp/k
+         ojMceqJXcSrMCylThFcL0np5LsH0M6krSbx/LBBJWxiojr2xX61wFWGYV6cc/jSRoKXC
+         y8pA==
+X-Gm-Message-State: AOAM530xmjzBhywUP4VBGn7vlLHS3Qi1F2ccpLh8talhlV9nKT8b37Si
+        b8Uw0vk6wGGkHdLnQKkLJezV7+s87iddbAE5TObeqsE9suQ=
+X-Google-Smtp-Source: ABdhPJwESR4BaiSZNwncK3k5JFkYwYy3lXgr3LuPP4BgzRv4dmOeosqMpCxNFStPOzgnfaTqzpxnUP59bHg64aVX7uU=
+X-Received: by 2002:a50:ec0f:: with SMTP id g15mr61186edr.47.1634748322553;
+ Wed, 20 Oct 2021 09:45:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211018114046.25571-1-etienne.carriere@linaro.org>
+ <1634578358.516648.2612839.nullmailer@robh.at.kernel.org> <CAN5uoS_B6PrkWtaX5V4xdNnvRjzTJwsB=txVK0YB8bGjWsKdNA@mail.gmail.com>
+In-Reply-To: <CAN5uoS_B6PrkWtaX5V4xdNnvRjzTJwsB=txVK0YB8bGjWsKdNA@mail.gmail.com>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Wed, 20 Oct 2021 18:45:11 +0200
+Message-ID: <CAN5uoS8V7ygo04iOjb=AF8HLf58cpZkL8QzkaG8kouKtUYS-aw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change allows LTD and RTD inputs to be configured via
-device tree bindings. If the DT bindings are not present or
-invalid, the input configuration is not modified and left at
-HW defaults.
+Hi again,
 
-Signed-off-by: Oskar Senft <osk@google.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-Changes from PATCH v6 and v7:
-- None (resubmitted due to changes in nuvoton,nct7802.yaml).
+On Wed, 20 Oct 2021 at 17:52, Etienne Carriere
+<etienne.carriere@linaro.org> wrote:
+>
+> Hello Rob,
+>
+>
+> On Mon, 18 Oct 2021 at 19:32, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, 18 Oct 2021 13:40:45 +0200, Etienne Carriere wrote:
+> > > Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+> > > based on an OP-TEE service invocation. The compatible mandates a
+> > > channel ID defined with property "linaro,optee-channel-id".
+> > >
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> > > ---
+> > > Changes since v2:
+> > >  - Define mandatory property linaro,optee-channel-id
+> > >  - Rebased on yaml description file
+> > >
+> > > Changes since v1:
+> > >  - Removed modification regarding mboxes property description.
+> > > ---
+> > >  .../bindings/firmware/arm,scmi.yaml           | 44 +++++++++++++++++++
+> > >  1 file changed, 44 insertions(+)
+> > >
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'description' is a required property
+> >         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+> >         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
+> >         'type' is a required property
+> >                 hint: A vendor boolean property can use "type: boolean"
+> >         Additional properties are not allowed ('maxItems' was unexpected)
+> >                 hint: A vendor boolean property can use "type: boolean"
+> >         /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
+> >                 'enum' is a required property
+> >                 'const' is a required property
+> >                 hint: A vendor string property with exact values has an implicit type
+> >                 from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> >         /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: patternProperties:^protocol@[0-9a-f]+$:properties:linaro,optee-channel-id: 'oneOf' conditional failed, one must be fixed:
+> >                 '$ref' is a required property
+> >                 'allOf' is a required property
+> >                 hint: A vendor property needs a $ref to types.yaml
+> >                 from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> >         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+> >         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/firmware/arm,scmi.yaml: ignoring, error in schema: patternProperties: ^protocol@[0-9a-f]+$: properties: linaro,optee-channel-id
+> > warning: no schema found in file: ./Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> > Documentation/devicetree/bindings/mailbox/arm,mhu.example.dt.yaml:0:0: /example-1/firmware/scmi: failed to match any schema with compatible: ['arm,scmi']
+> > Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:175.39-178.19: ERROR (duplicate_label): /example-2/firmware/scmi/protocol@14: Duplicate label 'scmi_clk' on /example-2/firmware/scmi/protocol@14 and /example-0/firmware/scmi/protocol@14
+> > Documentation/devicetree/bindings/firmware/arm,scmi.example.dts:180.40-186.19: ERROR (duplicate_label): /example-2/firmware/scmi/protocol@13: Duplicate label 'scmi_dvfs' on /example-2/firmware/scmi/protocol@13 and /example-0/firmware/scmi/protocol@13
+> > ERROR: Input tree has errors, aborting (use -f to force output)
+> > make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/firmware/arm,scmi.example.dt.yaml] Error 2
+> > make[1]: *** Waiting for unfinished jobs....
+> > make: *** [Makefile:1441: dt_binding_check] Error 2
+> >
+> > doc reference errors (make refcheckdocs):
+> >
+> > See https://patchwork.ozlabs.org/patch/1542547
+> >
+> > This check can fail if there are any dependencies. The base for a patch
+> > series is generally the most recent rc1.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+> >
+> > Please check and re-submit.
+> >
+>
+> Thanks for the feedback and guidelines. I've played a bit with dt
+> checker and saw that description/type/etc.. are not needed when the
+> property name does not include a coma ','.
+>
+> I think i'll use "optee-channel-id" instead of
+> "linaro,optee-channel-id" as property name.
+> With that name, 'make dt_binding_check' passes without complains on
+> arm,scmi.yaml.
+> I have no strong preference and here and can go either ways.
 
-Changes from PATCH v5:
-- Removed unused "found_channel_config" variable.
-- Initialize mode_mask and mode_val to defaults.
----
- drivers/hwmon/nct7802.c | 129 ++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 125 insertions(+), 4 deletions(-)
+Discard my comment. I'll preserve the linaro, vendor prefix.
+This property is all but generic.
+I"ll add a clean description where needed and run dt_checker against.
 
-diff --git a/drivers/hwmon/nct7802.c b/drivers/hwmon/nct7802.c
-index 604af2f6103a..d56f78327619 100644
---- a/drivers/hwmon/nct7802.c
-+++ b/drivers/hwmon/nct7802.c
-@@ -51,6 +51,23 @@ static const u8 REG_VOLTAGE_LIMIT_MSB_SHIFT[2][5] = {
- #define REG_CHIP_ID		0xfe
- #define REG_VERSION_ID		0xff
- 
-+/*
-+ * Resistance temperature detector (RTD) modes according to 7.2.32 Mode
-+ * Selection Register
-+ */
-+#define RTD_MODE_CURRENT	0x1
-+#define RTD_MODE_THERMISTOR	0x2
-+#define RTD_MODE_VOLTAGE	0x3
-+
-+#define MODE_RTD_MASK		0x3
-+#define MODE_LTD_EN		0x40
-+
-+/*
-+ * Bit offset for sensors modes in REG_MODE.
-+ * Valid for index 0..2, indicating RTD1..3.
-+ */
-+#define MODE_BIT_OFFSET_RTD(index) ((index) * 2)
-+
- /*
-  * Data structures and manipulation thereof
-  */
-@@ -1038,7 +1055,112 @@ static const struct regmap_config nct7802_regmap_config = {
- 	.volatile_reg = nct7802_regmap_is_volatile,
- };
- 
--static int nct7802_init_chip(struct nct7802_data *data)
-+static int nct7802_get_channel_config(struct device *dev,
-+				      struct device_node *node, u8 *mode_mask,
-+				      u8 *mode_val)
-+{
-+	u32 reg;
-+	const char *type_str, *md_str;
-+	u8 md;
-+
-+	if (!node->name || of_node_cmp(node->name, "channel"))
-+		return 0;
-+
-+	if (of_property_read_u32(node, "reg", &reg)) {
-+		dev_err(dev, "Could not read reg value for '%s'\n",
-+			node->full_name);
-+		return -EINVAL;
-+	}
-+
-+	if (reg > 3) {
-+		dev_err(dev, "Invalid reg (%u) in '%s'\n", reg,
-+			node->full_name);
-+		return -EINVAL;
-+	}
-+
-+	if (reg == 0) {
-+		if (!of_device_is_available(node))
-+			*mode_val &= ~MODE_LTD_EN;
-+		else
-+			*mode_val |= MODE_LTD_EN;
-+		*mode_mask |= MODE_LTD_EN;
-+		return 0;
-+	}
-+
-+	/* At this point we have reg >= 1 && reg <= 3 */
-+
-+	if (!of_device_is_available(node)) {
-+		*mode_val &= ~(MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1));
-+		*mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-+		return 0;
-+	}
-+
-+	if (of_property_read_string(node, "sensor-type", &type_str)) {
-+		dev_err(dev, "No type for '%s'\n", node->full_name);
-+		return -EINVAL;
-+	}
-+
-+	if (!strcmp(type_str, "voltage")) {
-+		*mode_val |= (RTD_MODE_VOLTAGE & MODE_RTD_MASK)
-+			     << MODE_BIT_OFFSET_RTD(reg - 1);
-+		*mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-+		return 0;
-+	}
-+
-+	if (strcmp(type_str, "temperature")) {
-+		dev_err(dev, "Invalid type '%s' for '%s'\n", type_str,
-+			node->full_name);
-+		return -EINVAL;
-+	}
-+
-+	if (reg == 3) {
-+		/* RTD3 only supports thermistor mode */
-+		md = RTD_MODE_THERMISTOR;
-+	} else {
-+		if (of_property_read_string(node, "temperature-mode",
-+					    &md_str)) {
-+			dev_err(dev, "No mode for '%s'\n", node->full_name);
-+			return -EINVAL;
-+		}
-+
-+		if (!strcmp(md_str, "thermal-diode"))
-+			md = RTD_MODE_CURRENT;
-+		else if (!strcmp(md_str, "thermistor"))
-+			md = RTD_MODE_THERMISTOR;
-+		else {
-+			dev_err(dev, "Invalid mode '%s' for '%s'\n", md_str,
-+				node->full_name);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	*mode_val |= (md & MODE_RTD_MASK) << MODE_BIT_OFFSET_RTD(reg - 1);
-+	*mode_mask |= MODE_RTD_MASK << MODE_BIT_OFFSET_RTD(reg - 1);
-+
-+	return 0;
-+}
-+
-+static int nct7802_configure_channels(struct device *dev,
-+				      struct nct7802_data *data)
-+{
-+	/* Enable local temperature sensor by default */
-+	u8 mode_mask = MODE_LTD_EN, mode_val = MODE_LTD_EN;
-+	struct device_node *node;
-+	int err;
-+
-+	if (dev->of_node) {
-+		for_each_child_of_node(dev->of_node, node) {
-+			err = nct7802_get_channel_config(dev, node, &mode_mask,
-+							 &mode_val);
-+			if (err)
-+				return err;
-+		}
-+	}
-+
-+	return regmap_update_bits(data->regmap, REG_MODE, mode_mask, mode_val);
-+}
-+
-+static int nct7802_init_chip(struct device *dev, struct nct7802_data *data)
- {
- 	int err;
- 
-@@ -1047,8 +1169,7 @@ static int nct7802_init_chip(struct nct7802_data *data)
- 	if (err)
- 		return err;
- 
--	/* Enable local temperature sensor */
--	err = regmap_update_bits(data->regmap, REG_MODE, 0x40, 0x40);
-+	err = nct7802_configure_channels(dev, data);
- 	if (err)
- 		return err;
- 
-@@ -1074,7 +1195,7 @@ static int nct7802_probe(struct i2c_client *client)
- 	mutex_init(&data->access_lock);
- 	mutex_init(&data->in_alarm_lock);
- 
--	ret = nct7802_init_chip(data);
-+	ret = nct7802_init_chip(dev, data);
- 	if (ret < 0)
- 		return ret;
- 
--- 
-2.33.0.1079.g6e70778dc9-goog
+Sorry for the noise.
+Regards,
+Etienne
 
+
+>
+> I though the "linaro," was expected.
+> Please tell me if there's any reason I need to preserve this "linaro,"
+> prefix on that property.
+>
+> Regards,
+> Etienne
