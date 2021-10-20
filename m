@@ -2,151 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF1D434A3D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 13:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71644434A5B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 13:43:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbhJTLlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 07:41:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56848 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229941AbhJTLla (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 07:41:30 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S229952AbhJTLpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 07:45:11 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49788
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230179AbhJTLpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 07:45:10 -0400
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4BCC3611B0;
-        Wed, 20 Oct 2021 11:39:15 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1md9w8-000Q93-UK; Wed, 20 Oct 2021 12:39:13 +0100
-Date:   Wed, 20 Oct 2021 12:39:11 +0100
-Message-ID: <878ryoc4dc.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        patrice.chotard@foss.st.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        maxime coquelin <mcoquelin.stm32@gmail.com>,
-        alexandre torgue <alexandre.torgue@foss.st.com>,
-        michael turquette <mturquette@baylibre.com>,
-        stephen boyd <sboyd@kernel.org>,
-        herbert xu <herbert@gondor.apana.org.au>,
-        "david s . miller" <davem@davemloft.net>,
-        david airlie <airlied@linux.ie>,
-        daniel vetter <daniel@ffwll.ch>,
-        thierry reding <thierry.reding@gmail.com>,
-        sam ravnborg <sam@ravnborg.org>,
-        yannick fertre <yannick.fertre@foss.st.com>,
-        philippe cornu <philippe.cornu@foss.st.com>,
-        benjamin gaignard <benjamin.gaignard@linaro.org>,
-        vinod koul <vkoul@kernel.org>,
-        ohad ben-cohen <ohad@wizery.com>,
-        bjorn andersson <bjorn.andersson@linaro.org>,
-        baolin wang <baolin.wang7@gmail.com>,
-        jonathan cameron <jic23@kernel.org>,
-        lars-peter clausen <lars@metafoo.de>,
-        olivier moysan <olivier.moysan@foss.st.com>,
-        arnaud pouliquen <arnaud.pouliquen@foss.st.com>,
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8D95840019
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 11:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634730175;
+        bh=tdDpH01uDMaig+FuQ9PM8Nx6u5iJw79tILyhirsrWXQ=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Btif3CdhbSObdGakPCnM4eRUrCg0Ch6YN/wC3x/QlODfQV7mxiFrSRA0EqozpyhUw
+         RdDQ8MdtWUHuXwxJmx9wVJ+qiXZCWvZNANdvFKbS1EfA2WxuhJN2v/Oz+ywRP+6I9r
+         zU4756dFsBJbEwv5L/hvAjbIvMGw/Ch1C4PRcpLjX97d0arnjbT/VVJ3D61OyXnvMv
+         ScGIbyr1pTAW54QvzqMr8GmC5qbTISDZO/Wd2Nfg6omCNya4FRje6PNeVocNcACBCO
+         48BxVlqD2rgFcm2+QH0sy7VFHotDn/3qorOGsMGrEMiSEjtEyzVjDLBtAg4HXcbCRG
+         u5wiQ6l5VYc0g==
+Received: by mail-wm1-f72.google.com with SMTP id o140-20020a1ca592000000b0030d66991388so150053wme.7
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 04:42:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tdDpH01uDMaig+FuQ9PM8Nx6u5iJw79tILyhirsrWXQ=;
+        b=y3dzmlz3x3i+v6ydpY8l3TVSNyGZwmj+hlfbuJXsSNdivQqtNQD67dnI4MhZpDWvFN
+         L952VtTpV5PcgZPY4dTWCeZrzRb2a66TYkKvvnIJ8qSrSRzLvHPW7mhh8TUSLyDw3Z4w
+         6nyXVdkSSzkrfNxzxjMgF0UoVdOz6M83skFqEdYx4CRsn4lwZzGchoN8HmWAx20jt61M
+         W7Icge9P/zYyTPCu6pMOt8tmCTqsJF4YMF+bnSMRLUBUTGp21+52D2OvwO3yluf8VKPl
+         QoN9c9sj0B+cxqJGYz31sUT0pOGceErmtkROlNOUotWTl2E/PqnTQIZ6KGGDv7Qm4GYO
+         jNwA==
+X-Gm-Message-State: AOAM532Euu7Sf3ULZvEtaOV6JGIk3kHnHOJECrtUWPAeEKp7yBJUuyM+
+        necLaid7zOb4KY5BcoDNyhaJscgTjpMF1u6jmtiQYgUQEtzTT+OV93kIhxYfzCQjBkiD30w+lSo
+        Hnsrv7AbCvRxOQVptgRtNv9uAYHHhZaTiTN4myoo=
+X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr52558020wry.296.1634730175191;
+        Wed, 20 Oct 2021 04:42:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyTYsmDUEoSmOgGfRQuvGXjp4xEXc4RGTmMWLib1J1UD0fvSL7a7UiTabgi/AyDkMpNJ682wg==
+X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr52557999wry.296.1634730174949;
+        Wed, 20 Oct 2021 04:42:54 -0700 (PDT)
+Received: from [192.168.123.55] (ip-88-152-144-157.hsi03.unitymediagroup.de. [88.152.144.157])
+        by smtp.gmail.com with ESMTPSA id z8sm1830913wrq.16.2021.10.20.04.42.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 04:42:54 -0700 (PDT)
+Message-ID: <ff1fdb31-d739-ee85-9ce0-8386065e297f@canonical.com>
+Date:   Wed, 20 Oct 2021 13:42:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH 1/1] dt-bindings: T-HEAD CLINT
+Content-Language: en-US
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        dillon min <dillon.minfei@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Fabien Dessenne <fabien.dessenne@foss.st.com>,
-        Christophe Roullier <christophe.roullier@foss.st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Pierre-Yves MORDRET <pierre-yves.mordret@foss.st.com>,
-        Ludovic Barre <ludovic.barre@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Le Ray <erwan.leray@foss.st.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        dmaengine@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-media@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject: Re: dt-bindings: treewide: Update @st.com email address to @foss.st.com
-In-Reply-To: <22fb6f19-21eb-dcb5-fa31-bb243d4a7eaf@canonical.com>
-References: <20211020065000.21312-1-patrice.chotard@foss.st.com>
-        <22fb6f19-21eb-dcb5-fa31-bb243d4a7eaf@canonical.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: krzysztof.kozlowski@canonical.com, patrice.chotard@foss.st.com, robh+dt@kernel.org, mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, mturquette@baylibre.com, sboyd@kernel.org, herbert@gondor.apana.org.au, davem@davemloft.net, airlied@linux.ie, daniel@ffwll.ch, thierry.reding@gmail.com, sam@ravnborg.org, yannick.fertre@foss.st.com, philippe.cornu@foss.st.com, benjamin.gaignard@linaro.org, vkoul@kernel.org, ohad@wizery.com, bjorn.andersson@linaro.org, baolin.wang7@gmail.com, jic23@kernel.org, lars@metafoo.de, olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com, tglx@linutronix.de, jassisinghbrar@gmail.com, mchehab@kernel.org, hugues.fruchet@foss.st.com, fabrice.gasnier@foss.st.com, lee.jones@linaro.org, miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, kuba@kernel.org, srinivas.kandagatla@linaro.org, kishon@ti.com, linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org, mathieu.poirier@linaro.org, mpm@selenic.com, a.zummo@towertech.i
- t, alexandre.belloni@bootlin.com, gregkh@linuxfoundation.org, rafael@kernel.org, daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com, wim@linux-watchdog.org, linux@roeck-us.net, geert+renesas@glider.be, viresh.kumar@linaro.org, a.fatoum@pengutronix.de, jagan@amarulasolutions.com, dillon.minfei@gmail.com, marex@denx.de, laurent.pinchart@ideasonboard.com, sre@kernel.org, dmitry.torokhov@gmail.com, paul@crapouillou.net, fabien.dessenne@foss.st.com, christophe.roullier@foss.st.com, gabriel.fernandez@foss.st.com, lionel.debieve@foss.st.com, amelie.delaunay@foss.st.com, pierre-yves.mordret@foss.st.com, ludovic.barre@foss.st.com, christophe.kerello@foss.st.com, p.paillet@foss.st.com, peppe.cavallaro@st.com, joabreu@synopsys.com, erwan.leray@foss.st.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org,
-  dmaengine@vger.kernel.org, linux-remoteproc@vger.kernel.org, linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org, alsa-devel@alsa-project.org, linux-media@vger.kernel.org, linux-mtd@lists.infradead.org, netdev@vger.kernel.org, linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org, linux-spi@vger.kernel.org, linux-pm@vger.kernel.org, linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Guo Ren <guoren@linux.alibaba.com>,
+        Bin Meng <bmeng.cn@gmail.com>, Xiang W <wxjstz@126.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        OpenSBI <opensbi@lists.infradead.org>
+References: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
+ <CAAhSdy22y3gWM0Y9x7m84CdmtHKo7VsDC4+ZDY7+mhkJ9HcYyA@mail.gmail.com>
+From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <CAAhSdy22y3gWM0Y9x7m84CdmtHKo7VsDC4+ZDY7+mhkJ9HcYyA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Oct 2021 08:45:02 +0100,
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+On 10/20/21 13:27, Anup Patel wrote:
+> On Wed, Oct 20, 2021 at 3:06 PM Heinrich Schuchardt
+> <heinrich.schuchardt@canonical.com> wrote:
+>>
+>> The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
+>> not support 64bit mmio access to the MTIMER device.
+>>
+>> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
+>> restriction and the "sifive,cling0" compatible string. An OpenSBI
+>> patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
+>> is generally used in the devicetree schema for such a condition.
+>>
+>> As the design is not SiFive based it is preferable to apply a compatible
+>> string identifying T-HEAD instead.
+>>
+>> Add a new yaml file describing the T-HEAD CLINT.
+>>
+>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+>> ---
+>> @Palmer, @Anup
+>> I copied you as maintainers from sifive,clint.yaml. Please, indicate if
+>> this should be changed.
+>>
+>> For the prior discussion see:
+>> https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
+>> https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
+>>
+>> A release candidate of the ACLINT specification is available at
+>> https://github.com/riscv/riscv-aclint/releases
 > 
-> On 20/10/2021 08:50, patrice.chotard@foss.st.com wrote:
-> > From: Patrice Chotard <patrice.chotard@foss.st.com>
-> > 
-> > Not all @st.com email address are concerned, only people who have
-> > a specific @foss.st.com email will see their entry updated.
-> > For some people, who left the company, remove their email.
-> > 
+> T-HEAD supporting only 32bit accesses to MTIME and MTIMECMP
+> registers are totally allowed. The RISC-V privileged specification does
+> not enforce RV64 platforms to support 64bit accesses to MTIME and
+> MTIMECMP registers. Also, the ACLINT specification only states
+> that MTIME and MTIMECMP registers are 64-bit wide but it does
+> not enforce platforms to support 64-bit accesses.
 > 
-> Please split simple address change from maintainer updates (removal,
-> addition).
+> Here are some discussions from tech-aia mailing list:
+> https://lists.riscv.org/g/tech-aia/message/115
+> https://lists.riscv.org/g/tech-aia/message/119
+> https://lists.riscv.org/g/tech-aia/message/120
 > 
-> Also would be nice to see here explained *why* are you doing this.
+> In other words, the T-HEAD CLINT (MTIMER+MSWI) is compliant
+> with the RISC-V ACLINT specification.
+> 
+> I think we should add implementation specific compatible strings
+> for Allwinner D1 in the ACLINT MTIMER and ACLINT MSWI
+> DT bindings.
+> 
+> How about including the following two compatible strings in
+> ACLINT DT bindings ?
+> allwinner,sun20i-d1-aclint-mtimer
+> allwinner,sun20i-d1-aclint-mswi
 
-And why this can't be done with a single update to .mailmap, like
-anyone else does.
+If the Allwinner CLINT is sufficiently compliant, this makes sense to me.
 
-	M.
+Will there be a new round of
+[RFC PATCH v4 08/10] dt-bindings: timer: Add ACLINT MTIMER bindings
+https://lore.kernel.org/all/20211007123632.697666-9-anup.patel@wdc.com/
+were you could add the Allwinner device? Or is that series already merged?
 
--- 
-Without deviation from the norm, progress is not possible.
+Should the riscv,aclint-mtimer.yaml file mention that there are 
+different access sizes and either state per compatibility string what 
+that size is or provide a parameter for that purpose?
+
+Best regards
+
+Heinrich
+
+> 
+> Regards,
+> Anup
+> 
+>> ---
+>>   .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
+>>   1 file changed, 62 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+>> new file mode 100644
+>> index 000000000000..02463fb2043a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: SiFive Core Local Interruptor
+>> +
+>> +maintainers:
+>> +  - Palmer Dabbelt <palmer@dabbelt.com>
+>> +  - Anup Patel <anup.patel@wdc.com>
+>> +
+>> +description:
+>> +  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
+>> +  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
+>> +  interrupts. It directly connects to the timer and inter-processor interrupt
+>> +  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
+>> +  interrupt controller is the parent interrupt controller for CLINT device.
+>> +  The clock frequency of the CLINT is specified via "timebase-frequency" DT
+>> +  property of "/cpus" DT node. The "timebase-frequency" DT property is
+>> +  described in Documentation/devicetree/bindings/riscv/cpus.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const:
+>> +          - allwinner,sun20i-d1-clint
+>> +      - const:
+>> +          - thead,clint0
+>> +
+>> +    description:
+>> +      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
+>> +      the T-HEAD derived CLINTs.
+>> +      Supported compatible strings are -
+>> +      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
+>> +      and "thead,clint0" for the T-HEAD IP block with no chip
+>> +      integration tweaks.
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts-extended:
+>> +    minItems: 1
+>> +
+>> +additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts-extended
+>> +
+>> +examples:
+>> +  - |
+>> +    timer@2000000 {
+>> +      compatible = "allwinner,sun20i-d1-clint", "thead,clint0";
+>> +      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
+>> +                             &cpu2intc 3 &cpu2intc 7
+>> +                             &cpu3intc 3 &cpu3intc 7
+>> +                             &cpu4intc 3 &cpu4intc 7>;
+>> +       reg = <0x2000000 0x10000>;
+>> +    };
+>> +...
+>> --
+>> 2.32.0
+>>
+
