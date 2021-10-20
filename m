@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6EF434EAA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E09E434ECB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbhJTPLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:11:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46298 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229570AbhJTPLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 11:11:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 56E0E6137C;
-        Wed, 20 Oct 2021 15:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634742565;
-        bh=V8dOGDI+8Esrzokm8M0yenicCab84JXeYlub3sJhK+o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YxGYAXE9zbZQX/iXvbXcaARd+gX5myi8BFCBo9z/IiVSOZUcyLzIpDHWIoeEEw9lq
-         ur5yChHfowLYRejboVz5EyCZ9gKtIvtnM7g7YWavWTNTYtXA5sfaLC1j/WDHSZpepT
-         bdIE+03FXIavtRSKAHs+zXVWjdWFhmWtvVthl1ydVZBHOXvScUy3e77JVpJWprHfw2
-         4kVUankFrG8DtmyFnMlk9L+iSCtwB5OyyZ0Q4EZmnSOB2/iIbKMpoNjduBbUYsX7Fo
-         n6vTaFDy0zNehwqGcpU57HId2M6dJ7GHOrD7YKuLypZxmXKyDPgk81sSSamZ7yMIGz
-         t5X4yYQ0pExvQ==
-Received: by mail-qk1-f176.google.com with SMTP id bp7so3350217qkb.12;
-        Wed, 20 Oct 2021 08:09:25 -0700 (PDT)
-X-Gm-Message-State: AOAM531bJ/YkFmuNL99g+4ux9jpOTVHrzmgY2kl1vcLsmt3i2r/ak/BZ
-        I05PyQiH0knl66xvuPn5wHVZLCUPPxlOm5Q+OA==
-X-Google-Smtp-Source: ABdhPJyGoWzG5JvS8XT67rDl5KsAoE+oAvmANea6yGKMy2Cxc0+sI6RuMRf9B7gkVo8hK4KsjNLCXx6U2Pzicu3/xZU=
-X-Received: by 2002:ae9:df01:: with SMTP id t1mr117844qkf.202.1634742564401;
- Wed, 20 Oct 2021 08:09:24 -0700 (PDT)
+        id S230134AbhJTPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:16:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230029AbhJTPQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:16:33 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554B1C06161C;
+        Wed, 20 Oct 2021 08:14:19 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id 187so3223723pfc.10;
+        Wed, 20 Oct 2021 08:14:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TDLzKkefiW2qBcvhl9Mh1B9EpLxuIPGwsH2zNljPvVs=;
+        b=DOen5TCfJtA35vSF3dAtiaJkpldhQRHm/jmvb9QBl5DBXxRYX+iQ6/fBeR3GVBMoya
+         elnoAqS4D2bVR0BFIpEW+l2RvR/fbtMUaAyEr4vyFLpZnYVfw2OaDzLKqOp4Xfcu+Y5O
+         2zjSL4Nz9JUW/GnqjGbiHFXgClpiaGXjulr+jw8wiLrU79DBipcQFXiIXn2szNFZZ94o
+         TOEhEOFCBmHjbj/x6Q9g/nIq3Et8Hj1zQagSK+pYlxxOOeQfd2dC8KyIZvjaUAmZfTyP
+         mLgoO7IL71dOPbSlkuPj7mFEgl5jZVmwQprG49+aX1NTDdvtoVS6RLaxqr89LxJ04xXR
+         mTbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TDLzKkefiW2qBcvhl9Mh1B9EpLxuIPGwsH2zNljPvVs=;
+        b=A6inxs7luaqi7KqXYzBfZMQFsZ4I1hELFFOcpSuOPj+nX4+PDl0IAVsjcQwBDjLY5J
+         WKwt9bXfdLKFRHKQUw25i1+sDlqgRMXZuonBYAwSDx+Y6LUDzNZC8QtynY/dBuYiK00h
+         XzbmRgGm0P1fk5OhHKcYfa/Zal7sZ6Qrr7DghlUbD9J90yJ628dvGmVHJdwAZ5qlPNAb
+         aHzWgz8Fdrr+xwecX901gNV4aVh/g3uYOHv+PslR3d7JeWSNZ8DopsI3V03D1zAmTjiI
+         +JXEWm7rJsylNqJFws9yVygDO3IFwLyMSuUCftVvo8fc2NKhjsmvmC4/SVz5RYIJngBB
+         0WjA==
+X-Gm-Message-State: AOAM530nIgpjW6oqey3cIk33jsNToPO2F9G5HkWWFGwSupHlemQ3T81x
+        X48cHBz4yKlBqZqdupAo+Os=
+X-Google-Smtp-Source: ABdhPJzxgXnhqhph34eLaK9uCGeTajw1218Blaf9Oo5OFWjJ/dESKTgwUNGYgmRsel5mrhk1ihQmWA==
+X-Received: by 2002:a05:6a00:2181:b0:44d:c18d:7af9 with SMTP id h1-20020a056a00218100b0044dc18d7af9mr25513pfi.16.1634742858719;
+        Wed, 20 Oct 2021 08:14:18 -0700 (PDT)
+Received: from [192.168.1.121] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id x6sm3301886pfh.77.2021.10.20.08.14.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 08:14:18 -0700 (PDT)
+Message-ID: <ef9f4279-1820-3e90-482e-c4e710859af6@gmail.com>
+Date:   Wed, 20 Oct 2021 08:14:07 -0700
 MIME-Version: 1.0
-References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
- <YV1XpL7ibF1y4LbV@google.com> <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 20 Oct 2021 10:09:13 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLUkxKOMSWLzTK14h3EyBCsO2dfq3=MxOSvv1ZK0_H=ow@mail.gmail.com>
-Message-ID: <CAL_JsqLUkxKOMSWLzTK14h3EyBCsO2dfq3=MxOSvv1ZK0_H=ow@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
- global registers
-To:     Lee Jones <lee.jones@linaro.org>, Stephen Boyd <sboyd@kernel.org>
-Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v4 09/14] irqchip: Provide platform_device to
+ of_irq_init_cb_t
+Content-Language: en-US
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM SUB-ARCHITECTURES" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+References: <20211009022023.3796472-1-f.fainelli@gmail.com>
+ <20211009022023.3796472-10-f.fainelli@gmail.com>
+ <871r4gvggb.wl-maz@kernel.org>
+ <CAL_Jsq+CWeFHsHHaAwbb940Zk1thU50gDGcqfO6NdgWQ2FPTWA@mail.gmail.com>
+ <87tuhcnlwt.wl-maz@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <87tuhcnlwt.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 11, 2021 at 9:11 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
-> >
-> > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
-> >
-> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > >
-> > > Add bindings for Unisoc system global register which provide register map
-> > > for clocks.
-> > >
-> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
-> > >  1 file changed, 68 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
-> >
-> > Unapplied v3 and applied this (v4) instead, thanks.
->
-> What about the clock binding this depends on:
->
-> Unknown file referenced: [Errno 2] No such file or directory:
-> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
-> xargs: dt-doc-validate: exited with status 255; aborting
-> make[1]: *** Deleting file
-> 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
-> Unknown file referenced: [Errno 2] No such file or directory:
-> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
-> make[1]: *** [scripts/Makefile.lib:385:
-> Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
-> Error 255
->
->
-> Once again, all the components of MFD bindings need to be applied together.
 
-It seems that Stephen still has comments and there's a new check that
-causes the clock schema to fail, so this should be dropped or
-reverted.
 
-Rob
+On 10/20/2021 1:24 AM, Marc Zyngier wrote:
+> On Tue, 19 Oct 2021 23:23:52 +0100,
+> Rob Herring <robh@kernel.org> wrote:
+>>
+>>   On Tue, Oct 19, 2021 at 4:43 PM Marc Zyngier <maz@kernel.org> wrote:
+>>>
+>>> diff --git a/include/linux/irqchip.h b/include/linux/irqchip.h
+>>> index ccf32758ea85..146a9d80a6a2 100644
+>>> --- a/include/linux/irqchip.h
+>>> +++ b/include/linux/irqchip.h
+>>> @@ -33,7 +33,15 @@ extern int platform_irqchip_probe(struct platform_device *pdev);
+>>>   #define IRQCHIP_PLATFORM_DRIVER_BEGIN(drv_name) \
+>>>   static const struct of_device_id drv_name##_irqchip_match_table[] = {
+>>>
+>>> -#define IRQCHIP_MATCH(compat, fn) { .compatible = compat, .data = fn },
+>>> +/* Undefined on purpose */
+>>> +int typecheck_irq_init_cb(struct device_node *, struct device_node *,
+>>> +                         struct platform_device *);
+>>> +
+>>> +#define typecheck_irq_init_cb(fn)                                      \
+>>> +       __typecheck(typecheck_irq_init_cb, fn) ? fn : fn
+>>
+>> That's nice! Shouldn't it also be used for IRQCHIP_DECLARE?
+> 
+> Absolutely. And enabling this shows that changing of_irq_init_cb_t
+> breaks *all users* of IRQCHIP_DECLARE(). Not an acceptable outcome
+> when we're at -rc5. >
+> Why can't the relevant drivers use of_find_device_by_node() instead?
+> That would allow us to keep the status-quo on of_irq_init_cb_t.
+
+Rob had suggested several solutions, including using 
+of_find_device_by_node(), however updating of_irq_init_cb_t was 
+indicated to be the better way. I had intentionally not updated 
+IRQCHIP_DECLARE() because it would ignore the 3rd argument we passed to 
+it (platform_device *) so I thought.
+
+If I am spinning a v6 using of_find_device_by_node() would that be 
+acceptable to you?
+-- 
+Florian
