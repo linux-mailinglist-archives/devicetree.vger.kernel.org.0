@@ -2,130 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D64E9434E82
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A6EF434EAA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:09:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbhJTPFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:05:41 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:47216 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230355AbhJTPFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 11:05:40 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19KE4S9J029447;
-        Wed, 20 Oct 2021 17:03:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=nJXuhyQXitFXtPIaUWe8n59j2UiZ2FPRgTXRkj7zWl8=;
- b=ZdcKgVHNu9yk/H5h1Qcx/aFzEgBOR2FdkMonbXXwMtEGepiAn/n94+nErEV5IErzoJa4
- 5PKb8gu0l0IF+2EtC+Wu8udIBtaLytGVIUvdpatRs9TDvG9BPaVNXvqY3+NuPwuIwAC0
- /2yEacD+r/5im+iqFV9JQBOFTwSAnxynPTmlgEZICw7AjLZMiLU95ZfOTKB4Sne8/cwb
- FJljuI/qCrxi3Agw68yk6wGg83edD7rqOknhMnSk1mvpt1VWks5h4sVY7W+wvoVqAbrR
- ND2RT+vlsDNO367HtAAnIP2OJ8Y4PA8SBafcS+GzuFE51n7WK2iKcVf5eW7MbfUcZhYj Gg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3btfvstbkv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 20 Oct 2021 17:03:15 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id ED175100034;
-        Wed, 20 Oct 2021 17:03:14 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E603622A6E6;
-        Wed, 20 Oct 2021 17:03:14 +0200 (CEST)
-Received: from localhost (10.75.127.45) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 20 Oct 2021 17:03:14
- +0200
-From:   Erwan Le Ray <erwan.leray@foss.st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Erwan Le Ray <erwan.leray@foss.st.com>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-Subject: [PATCH 1/1] ARM: dts: stm32: add pull-up to USART3 and UART7 RX pins on DKx boards
-Date:   Wed, 20 Oct 2021 17:03:11 +0200
-Message-ID: <20211020150311.10101-1-erwan.leray@foss.st.com>
-X-Mailer: git-send-email 2.17.1
+        id S230409AbhJTPLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:11:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46298 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229570AbhJTPLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 11:11:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 56E0E6137C;
+        Wed, 20 Oct 2021 15:09:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634742565;
+        bh=V8dOGDI+8Esrzokm8M0yenicCab84JXeYlub3sJhK+o=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YxGYAXE9zbZQX/iXvbXcaARd+gX5myi8BFCBo9z/IiVSOZUcyLzIpDHWIoeEEw9lq
+         ur5yChHfowLYRejboVz5EyCZ9gKtIvtnM7g7YWavWTNTYtXA5sfaLC1j/WDHSZpepT
+         bdIE+03FXIavtRSKAHs+zXVWjdWFhmWtvVthl1ydVZBHOXvScUy3e77JVpJWprHfw2
+         4kVUankFrG8DtmyFnMlk9L+iSCtwB5OyyZ0Q4EZmnSOB2/iIbKMpoNjduBbUYsX7Fo
+         n6vTaFDy0zNehwqGcpU57HId2M6dJ7GHOrD7YKuLypZxmXKyDPgk81sSSamZ7yMIGz
+         t5X4yYQ0pExvQ==
+Received: by mail-qk1-f176.google.com with SMTP id bp7so3350217qkb.12;
+        Wed, 20 Oct 2021 08:09:25 -0700 (PDT)
+X-Gm-Message-State: AOAM531bJ/YkFmuNL99g+4ux9jpOTVHrzmgY2kl1vcLsmt3i2r/ak/BZ
+        I05PyQiH0knl66xvuPn5wHVZLCUPPxlOm5Q+OA==
+X-Google-Smtp-Source: ABdhPJyGoWzG5JvS8XT67rDl5KsAoE+oAvmANea6yGKMy2Cxc0+sI6RuMRf9B7gkVo8hK4KsjNLCXx6U2Pzicu3/xZU=
+X-Received: by 2002:ae9:df01:: with SMTP id t1mr117844qkf.202.1634742564401;
+ Wed, 20 Oct 2021 08:09:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.45]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-20_05,2021-10-20_02,2020-04-07_01
+References: <20210923064137.60722-1-zhang.lyra@gmail.com> <20210923064137.60722-3-zhang.lyra@gmail.com>
+ <YV1XpL7ibF1y4LbV@google.com> <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+eqqv=qtKOiNdEpYGi2amek_m+Q-Z9A769pXXqJ4R88A@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 20 Oct 2021 10:09:13 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLUkxKOMSWLzTK14h3EyBCsO2dfq3=MxOSvv1ZK0_H=ow@mail.gmail.com>
+Message-ID: <CAL_JsqLUkxKOMSWLzTK14h3EyBCsO2dfq3=MxOSvv1ZK0_H=ow@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: sprd: Add bindings for ums512
+ global registers
+To:     Lee Jones <lee.jones@linaro.org>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pull-up to USART3 and UART7 RX pins to allow loop tests between USART3
-and UART7 on stm32mp15 DKx boards.
+On Mon, Oct 11, 2021 at 9:11 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Oct 6, 2021 at 3:00 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Thu, 23 Sep 2021, Chunyan Zhang wrote:
+> >
+> > > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > >
+> > > Add bindings for Unisoc system global register which provide register map
+> > > for clocks.
+> > >
+> > > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  .../bindings/mfd/sprd,ums512-glbreg.yaml      | 68 +++++++++++++++++++
+> > >  1 file changed, 68 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+> >
+> > Unapplied v3 and applied this (v4) instead, thanks.
+>
+> What about the clock binding this depends on:
+>
+> Unknown file referenced: [Errno 2] No such file or directory:
+> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> xargs: dt-doc-validate: exited with status 255; aborting
+> make[1]: *** Deleting file
+> 'Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml'
+> Unknown file referenced: [Errno 2] No such file or directory:
+> '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/sprd,ums512-clk.yaml'
+> make[1]: *** [scripts/Makefile.lib:385:
+> Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.example.dt.yaml]
+> Error 255
+>
+>
+> Once again, all the components of MFD bindings need to be applied together.
 
-Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
+It seems that Stephen still has comments and there's a new check that
+causes the clock schema to fail, so this should be dropped or
+reverted.
 
-diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-index e13c2a9762b8..fe6e6f50151d 100644
---- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-@@ -1816,7 +1816,7 @@
- 		};
- 		pins2 {
- 			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* UART7_RX */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
-@@ -1826,7 +1826,7 @@
- 		};
- 		pins2 {
- 			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* UART7_RX */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
-@@ -1971,7 +1971,7 @@
- 		pins2 {
- 			pinmux = <STM32_PINMUX('B', 12, AF8)>, /* USART3_RX */
- 				 <STM32_PINMUX('I', 10, AF8)>; /* USART3_CTS_NSS */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
-@@ -1988,7 +1988,7 @@
- 		};
- 		pins3 {
- 			pinmux = <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
-@@ -2012,7 +2012,7 @@
- 		pins2 {
- 			pinmux = <STM32_PINMUX('B', 12, AF8)>, /* USART3_RX */
- 				 <STM32_PINMUX('B', 13, AF7)>; /* USART3_CTS_NSS */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
-@@ -2029,7 +2029,7 @@
- 		};
- 		pins3 {
- 			pinmux = <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
--			bias-disable;
-+			bias-pull-up;
- 		};
- 	};
- 
--- 
-2.17.1
-
+Rob
