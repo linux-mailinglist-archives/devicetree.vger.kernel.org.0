@@ -2,81 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77A78434C05
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 15:25:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 782DD434C2A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 15:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhJTN1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 09:27:47 -0400
-Received: from mail-vk1-f169.google.com ([209.85.221.169]:41893 "EHLO
-        mail-vk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229911AbhJTN1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 09:27:46 -0400
-Received: by mail-vk1-f169.google.com with SMTP id l20so9263595vkm.8;
-        Wed, 20 Oct 2021 06:25:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g3KuA/4GnS8bU61JtTZyTiH/9Yt2gqQecB6dIOt6LAs=;
-        b=y4qOCkzV3O/uU49k8gHyYPOj6TT8nVfUKLkSZaD+Ceg7uZZBl2rFxDCj327dOtW+dr
-         StPTgaEyF2TQYKPL2O+2ZTEl/R1Xjnw2qcvZWYtscGoeqge2KbOMGFwWgjBpwugQ1ABi
-         Vm2hpDzCOqTaqbr69RvApOkOU91KFlFfJGCy28EpmLEtnRNZFMOyb4yCzB7T+xCNJgjv
-         0BQkwasw91t2+7ZGun5zprwYw/gJYvguTBluJZoDN6AS7twYsdphzx0eOVkhoWtH5q5S
-         bvxov4dq3A675wziLfBobXvDH3KUYGu4uGMA/cm66HdrnK5yoOwAdVZirrfLJD//SfbN
-         KkhA==
-X-Gm-Message-State: AOAM531y0F0T6u2UG671Im6JcYmO99NJzT+CeF7KLOKiqUCX0w+lOzAd
-        1fkDClYpZB2Zm6buwqXpniqujyTQNdmxhQ==
-X-Google-Smtp-Source: ABdhPJwiNYwEkqpPn7VOqbDYEdiFM4on86pfe4232/73yfpNYnEVShAfM6G9z4h9PUgywjJ79yOpQQ==
-X-Received: by 2002:a1f:264a:: with SMTP id m71mr39143036vkm.5.1634736331355;
-        Wed, 20 Oct 2021 06:25:31 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id g23sm1319443vkd.15.2021.10.20.06.25.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 06:25:30 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id f3so6558789uap.6;
-        Wed, 20 Oct 2021 06:25:30 -0700 (PDT)
-X-Received: by 2002:ab0:58c1:: with SMTP id r1mr6937533uac.89.1634736330467;
- Wed, 20 Oct 2021 06:25:30 -0700 (PDT)
+        id S229943AbhJTNft convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 20 Oct 2021 09:35:49 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:51323 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229639AbhJTNft (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 09:35:49 -0400
+Received: from mail-wm1-f46.google.com ([209.85.128.46]) by
+ mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MODeL-1mJhzw3XrN-00OUOY; Wed, 20 Oct 2021 15:33:33 +0200
+Received: by mail-wm1-f46.google.com with SMTP id g79-20020a1c2052000000b00323023159e1so1790315wmg.2;
+        Wed, 20 Oct 2021 06:33:33 -0700 (PDT)
+X-Gm-Message-State: AOAM5301XPz0H3iXI2bGvd+m9ERXfiawu/rDO5yrf9dHivxD5xN+wjUf
+        madVRj8iQ3ek+13uCHw7/5BzISHKEf9U/b33vAY=
+X-Google-Smtp-Source: ABdhPJxY/Ua7ZwYe4Z5WF5LhCFLVLILKFKBq3mgQsPNvFmW5mHTQv/qL3luMioBXbYeLCvcOb7xVR7smc7gDFtx2g/E=
+X-Received: by 2002:adf:b1c4:: with SMTP id r4mr51896376wra.428.1634736813387;
+ Wed, 20 Oct 2021 06:33:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210922195208.1734936-1-festevam@gmail.com>
-In-Reply-To: <20210922195208.1734936-1-festevam@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 20 Oct 2021 15:25:19 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUPe9X73jwHiMtrTxUcsiVjPtVXgqesiDU6FkSwfOdOKg@mail.gmail.com>
-Message-ID: <CAMuHMdUPe9X73jwHiMtrTxUcsiVjPtVXgqesiDU6FkSwfOdOKg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sm6125: Remove leading zeroes
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     =?UTF-8?Q?Bj=C3=B6rn_Andersson?= <bjorn.andersson@linaro.org>,
+References: <20211019141228.1271617-1-pan@semihalf.com> <20211019141228.1271617-2-pan@semihalf.com>
+In-Reply-To: <20211019141228.1271617-2-pan@semihalf.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Wed, 20 Oct 2021 15:33:17 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0g82DoivaADueeOcKOjNVDiutZLAAWAROzgvuYt83Z3w@mail.gmail.com>
+Message-ID: <CAK8P3a0g82DoivaADueeOcKOjNVDiutZLAAWAROzgvuYt83Z3w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] socfpga: dts: move arria10 aliases to socfpga_arria10.dtsi
+To:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Cc:     Dinh Nguyen <dinguyen@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        martin.botka@somainline.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        upstream@semihalf.com, Marcin Wojtas <mw@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Alexandru Stan <amstan@google.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:9TIBTlutona7zBFgeBOsTKFN5IW8STXY0jlFzDV4LvCQCZhpaFX
+ 0GsPasrHE+pnFjq9Uf2Ep6TOI5flGmlesLn5Yph37398bCnAfssBxHgR3dBa5Hh6lgceYfL
+ mcDnHrMgkPV3eufRvafcfJjxv/oR3SEGqy7lgGBs/dPVBU7hGqjOJ0amr51P9Vs0h95FM6X
+ rKWKpRR05lxVOUMDHIPvw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:YZdY5xPBj0c=:+SR+Wko6nNnxVLfq9AFIUH
+ hUeS5jwnsiNlPPN6zSjcOUXz/Z3vog2mDdxzqHsvSZPZZnR8ecA7gpmwToh4gCQMRbcaYsQIQ
+ 8sqX8Gu3Xwi7TH4yDBCRcoUKZq00tU2JtqFdBpNt64CaZaJAQGOU44yi6g5RD++Yi2MhpJEpK
+ J4x0svNo6SzVfFqI6vZpt2gSV0ZyIM9hmwWVRu6umPl6pHOESv8v6Wk8naTcJh+JsqA+x4/Te
+ aEo/XkVIWCsBPzeUb2xG/CGx0c49RSAO/MT2Ikk9KZ1eWbFvWDnMO8AkasVMKgb5gMldWCha8
+ nchFKDgvC7c4uhh9vOmdtsqa+BvJ0/9c2llMMkx9KtKwBGABvXEvXfbS+Jo2AI7shZQ0v6BLx
+ +W5jDrsmOUMfp5tkjAU4mA5LmeOmMJHzZ0dzBn9g1Yhd7KvUbQx6JGfIlmP8139xtxS8AfpMR
+ UZcH5vmDh6rpwW0Velre/g0bhdGs6DHUY8HqtWncyNeVoXPQR6h8KRZGQEQ6zbCsIHHSLoFsi
+ Y75n+FTz9XKLH83yByUvdDnUuxZ5S3K3JIIzD3kkbBPWApUG/46mMe4BTXvHjZXaIeHvmESV5
+ q5G7Z1GnXHDnwrg0aMuOW1l3uJJ8oDFiJrUzVaKmsdJ0Zv+DHIM6Rg+1cIjHaZswSYu11iOqM
+ VgIzhQuJ2xMiLmK3YkfeJ586J/UEGJLpNshwymjU145ajFHPsebtGq7BaNK/+eWAU5hWqNeDN
+ W3yS4U/fq6LD5xGRSFGg9/nZD6vcE503n1AaEAfrW3Zzo55sBHuQmUdpvK+2Misa3+sWzldoZ
+ Schd+D/pgyLXiWUg3quK2qUpCPCh7f9u+/qoGu7Lxi+tZDiCE0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 22, 2021 at 9:52 PM Fabio Estevam <festevam@gmail.com> wrote:
-> dtc complains about the leading zeroes:
+On Tue, Oct 19, 2021 at 4:12 PM Paweł Anikiel <pan@semihalf.com> wrote:
 >
-> arch/arm64/boot/dts/qcom/sm6125.dtsi:497.19-503.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f121000: unit name should not have leading 0s
-> arch/arm64/boot/dts/qcom/sm6125.dtsi:505.19-510.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f123000: unit name should not have leading 0s
-> arch/arm64/boot/dts/qcom/sm6125.dtsi:512.19-517.6: Warning (unit_address_format): /soc/timer@f120000/frame@0f124000: unit name should not have leading 0
+> socfpga_arria10_socdk.dtsi declares aliases which will most likely
+> be used by other arria10 boards in the exact same way. move these
+> aliases to the parent file.
 >
-> Remove them.
->
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+No, please move them into the .dts files instead for consistency.
 
-Gr{oetje,eeting}s,
+Each board may use a different subset of them, or have them
+numbered differently, so keep it out of the .dtsi file.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+     Arnd
