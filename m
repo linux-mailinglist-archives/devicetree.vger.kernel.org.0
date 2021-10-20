@@ -2,95 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3799434F57
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F63434E4C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:52:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhJTPwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:52:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42212 "EHLO
+        id S230325AbhJTOyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbhJTPwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:52:47 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72CB4C06161C
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 08:50:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=3pYELVi8mnsWebFYNcRganbAvyKdP5iaaTrkwBFv1pQ=; b=tLjX5t/g5WG9uQs4zabhm3mU3+
-        hG/ktlbYDwd+f2GPvzCivqymp2f+/YjGyAzcSkb/8DK5cbIdYzm53mTY85aiAU7Y6YuY+wEX3iP9B
-        9FSkw8Wg9ed7VEs4Ga3uQvtjUueUAV43EBWyx60InsPIiI9UH7vw5WU8HXoQXW/OkZIYQvRO+bOTe
-        MewLi+D3wdBhHRNWoHEwY8vtBhfwooASKBz8Nogac9awL3mBVYb++QeRO1vhrBjSswy9+1Z+7xzjQ
-        uTExz5FoGtwSEvg7rPq1HAiaD6CjpSth55UgdCB0yOQqD1faaUe0o3ThR6QeFJ9S6DauMwpHzQKKR
-        iXaIabgA==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:41706 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1mdDr4-0007uT-9Q; Wed, 20 Oct 2021 16:50:14 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1mdDr3-006f6l-QZ; Wed, 20 Oct 2021 16:50:13 +0100
-From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-To:     Shawn Guo <shawnguo@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: dts: vf610-zii-dev-rev-b: correct phy-mode for 6185 dsa
- link
+        with ESMTP id S230314AbhJTOyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:54:54 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3121EC06161C
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:52:39 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id y15so15605622lfk.7
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 07:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uF9hWW3HRUf/pq/5JlaNIpHT0L4GbqCbpiYbDrZSHOA=;
+        b=0rQGLB9YZvEkHvK2gZzkK/wXAshQ/85L4jcpnYTn/ZXKOUozcal+MHq8WwbHBllJ/n
+         bBhmmBhdYW3pchY/eHmwbgkO+eCnMnP/yygJY6Vygqo9ypWELyqpAa/6esI4rE5QR97j
+         k5k+RO5/XNlSP9bzowUY4wEmKd6fkztxB2AOq1MOoFLTE/yVe9rZe69DN1meqlbLLyEF
+         8KvC2hK/OP/gWiHtVpZ4Kx97+PEKx9bpipD138oGEVd0cEadzRHZ4/yFG1cujSwWN6Ku
+         tnJs3hCq2ImnBErlD9yQYGzg3GC/FBNBd6mO/i2yCZ5e6qiKKsNjyaAM6oTNHI4NqjJ2
+         QJGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uF9hWW3HRUf/pq/5JlaNIpHT0L4GbqCbpiYbDrZSHOA=;
+        b=NgWUkwt+HnQruNKx9FKe5q18uTbGF/3KAOpphklJYw2T5AsRMxfqVBpPNiBBl4fFX5
+         PR4GEnCsY617v4G+k+l/Kc3C9UBxMQvhD7Zdl5p1fPB38a1kLH4vmffj1o7TTPYLO6Fc
+         zmyqx4MRDp4afwWq61MsyexmUCR4+u73Xj3g/vUcErGX2cXnD/ePreKR8W9ooLyqSY1l
+         qbbOh3EhYUAPUgTIzcRbVObsrG+i+oSJhfUgvvyjHJYtSnzmT83HuFM+OZGJ/yiSFIZa
+         r+XubTi12Fz6ilXMZITLWQdh+aoDXGFqUrkNAUdmvicKyaPFbvz2ocsLw87lYNPWks3n
+         VDNQ==
+X-Gm-Message-State: AOAM532NYr9/C5Tb8DnJmMdVa74fHylE3zrtELejhCgECDFe2mLKl8p6
+        csrewHp3RNEcIGMsj/An4k/Zt9WTVp3s8n2/ZSoWcg==
+X-Google-Smtp-Source: ABdhPJxpXDFarFNfEzRY7wsOM/9m/aFfKd6h5mqPvuRmjwEt9qei7dVsoAhUSKaOcnD8t59mJNjsNOJJ1O+LDQVLYbY=
+X-Received: by 2002:a19:c201:: with SMTP id l1mr252650lfc.92.1634741557199;
+ Wed, 20 Oct 2021 07:52:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1mdDr3-006f6l-QZ@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Wed, 20 Oct 2021 16:50:13 +0100
+References: <20211019141228.1271617-1-pan@semihalf.com> <20211019141228.1271617-2-pan@semihalf.com>
+ <CAK8P3a0g82DoivaADueeOcKOjNVDiutZLAAWAROzgvuYt83Z3w@mail.gmail.com>
+In-Reply-To: <CAK8P3a0g82DoivaADueeOcKOjNVDiutZLAAWAROzgvuYt83Z3w@mail.gmail.com>
+From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Date:   Wed, 20 Oct 2021 17:52:28 +0200
+Message-ID: <CAF9_jYQt6ObUcaA0_aKHnQDoKuYPAYT48jfA3_RKE=q1OkCang@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] socfpga: dts: move arria10 aliases to socfpga_arria10.dtsi
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Dinh Nguyen <dinguyen@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        upstream@semihalf.com, Marcin Wojtas <mw@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Alexandru Stan <amstan@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT currently lists the port mode for the 88E6352 switch 1 to 88E6185
-switch 2 as "rgmii-id" but referring to the schematics, it is in fact
-a serdes link. The 88E6352 is configured with P5_MODE=6, S_SEL=1 and
-S_MODE=1, which means port 5 is configured as 1000BASE-X.
+On Wed, Oct 20, 2021 at 3:33 PM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Tue, Oct 19, 2021 at 4:12 PM Pawe=C5=82 Anikiel <pan@semihalf.com> wro=
+te:
+> >
+> > socfpga_arria10_socdk.dtsi declares aliases which will most likely
+> > be used by other arria10 boards in the exact same way. move these
+> > aliases to the parent file.
+> >
+> > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+>
+> No, please move them into the .dts files instead for consistency.
+>
+> Each board may use a different subset of them, or have them
+> numbered differently, so keep it out of the .dtsi file.
+>
+>      Arnd
 
-This is confirmed by the value in the 88E6352 port 5 status register,
-0x4e09, where C_MODE=9 meaning 1000BASE-X. It is also confirmed by
-the 88E6185 port 9 status register, 0x5e8c, where C_MODE=4 meaning
-cross-chip SERDES mode is selected.
+Thank you for your remark. The aliases per .dts file were in the v3
+patch, however this change was explicitly requested. I will bring that
+back and resubmit.
 
-Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
----
- arch/arm/boot/dts/vf610-zii-dev-rev-b.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/vf610-zii-dev-rev-b.dts b/arch/arm/boot/dts/vf610-zii-dev-rev-b.dts
-index 39be99b3cf0d..a71316cdae02 100644
---- a/arch/arm/boot/dts/vf610-zii-dev-rev-b.dts
-+++ b/arch/arm/boot/dts/vf610-zii-dev-rev-b.dts
-@@ -155,7 +155,7 @@ switch1port5: port@5 {
- 						reg = <5>;
- 						label = "dsa";
- 						link = <&switch2port9>;
--						phy-mode = "rgmii-txid";
-+						phy-mode = "1000base-x";
- 
- 						fixed-link {
- 							speed = <1000>;
-@@ -242,7 +242,7 @@ port@4 {
- 					switch2port9: port@9 {
- 						reg = <9>;
- 						label = "dsa";
--						phy-mode = "rgmii-txid";
-+						phy-mode = "1000base-x";
- 						link = <&switch1port5
- 							&switch0port5>;
- 
--- 
-2.30.2
-
+Thanks, Pawe=C5=82.
