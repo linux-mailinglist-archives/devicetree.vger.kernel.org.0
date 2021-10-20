@@ -2,94 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7C04346DC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B294346F9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbhJTIaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 04:30:03 -0400
-Received: from mail-ua1-f54.google.com ([209.85.222.54]:40570 "EHLO
-        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbhJTIaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 04:30:03 -0400
-Received: by mail-ua1-f54.google.com with SMTP id e2so5076779uax.7;
-        Wed, 20 Oct 2021 01:27:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9qbWNnmOS9ewt1IIN1OcfZDAH5iLC7O1G6fIHR9IJTY=;
-        b=iGd8AOd6yqH7CxN0z30wbM00KE2Ct61RRd1cMwWWWX3X7ytwglAHYk5I5qp7lcqM4c
-         u4OPiRDa7B0fNXd0TqWXHtjPNuC9S1ABJM3nTuCSZACSx7DzNwxcbCbXFFu2rFe6jeMc
-         iRrSou94JiBhnmWrnMI6kr0UZ1MzEHRYwiSRDZcVSdUrMcWO11wBSqtPEHYMpOIzl/uC
-         cxo/2vGqkk1+xqGqL83Hra+QxRh9M7CTG8kAummNpDllg73SHcPwRyYiUflsBPS4w6Ie
-         mHBGvOimHiSqzEGtrnkO0kS8DxexYP+gTsmhhEzq28/OwVshXPkoclEBeIE66qrDlTyk
-         tJpA==
-X-Gm-Message-State: AOAM532Nsov9hanSp6EyDtPArR/D1DFaqVdQmvj0FUyqgO0+9etJx74A
-        c+Kou3S19TqxR/oUvu/usXDojQqt1f+ZDw==
-X-Google-Smtp-Source: ABdhPJy8g1dB3Ql2G4/bvKkNwONBJg74ugTyzZLorLFUJtXp6Ad71m7wZdNaKHaYv0+G6ZhqoBs/Cg==
-X-Received: by 2002:a67:3244:: with SMTP id y65mr40825101vsy.10.1634718468245;
-        Wed, 20 Oct 2021 01:27:48 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id t69sm910738vkc.32.2021.10.20.01.27.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 01:27:47 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a17so5013756uax.12;
-        Wed, 20 Oct 2021 01:27:47 -0700 (PDT)
-X-Received: by 2002:ab0:3d9a:: with SMTP id l26mr5914512uac.114.1634718467216;
- Wed, 20 Oct 2021 01:27:47 -0700 (PDT)
+        id S229632AbhJTIdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 04:33:42 -0400
+Received: from mail-mw2nam12on2110.outbound.protection.outlook.com ([40.107.244.110]:45356
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229603AbhJTIdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 04:33:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kmt+jGt+w8qj421hOratwipREwo3MQqDW0TpyGQeU3tFNV3S7oMMgGrHC+ny8hOK6+/soMucLxNorBII5EPhSpO8+AGPfrRegR6qzOdA4jcny1prz8kR+oFFEvjcfVJQJ0RjHxyt3DfrJaT1PNW9tmp2FD96ZHTLAQXF8PUA86lLpE/HMELfxNEIyXOdEWi3zDlsuwjZEDpodGobOfxT9TtmDxyhg5pZhfn76Iovd4WoVDdQqKKEa/zbydnGp9UybFJ69nmO9EfPZnYS07gnSvFwBrCx1BrD+76GFiL5sY5MIGPDjyhCIRLRO37X+rToB4w1q62cAsxX5kobD+Gwag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=u9Bou5HF8PJcNrcYgfz9ANonmw6Iqu0si8sUnlS2HN8=;
+ b=mPZ3X4/44pObUelyWtOin/FRqYuZGMpIkcgzGsYcO5Z6KkV+K9RoHulZN1CjpS/daOLw8j+wbbnqnGL2zjZeZ3PySxv2R3H2EJrGqy9e4HM00IsvA1en+lasNt+tekmL6N0hxIk4VwCeSj7WepBcItTMxrugdbmJ3P4T2jd/vqTbIP81N47PVPCwiciCAmUho0X5rKZQeoKdwEFiU3zAi3mDR+Nz/4v8gRmvG9AkR+U36brNHvNW7eRvrt/UWYw9F6VllnOb2th4TbGl7/DHs4vLZuxC4eoj7QP8yBCLaI5NKlnZEUYFcn6j8J3wiX9B6xwPMKvdoJRfMisImmGfTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
+ header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=maximintegrated.onmicrosoft.com;
+ s=selector2-maximintegrated-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=u9Bou5HF8PJcNrcYgfz9ANonmw6Iqu0si8sUnlS2HN8=;
+ b=OWrmM4WSxD5PqAnqrConVD1PlMJt45yajfKvds5j7zrggVcqzuPx6jnfwkE2UD0gXn6ETlxwla5dSbiSbPLznBY0VrN8bjEvrxWR+LeRMhICTx6h+/bgvtFBm/4rkncWAB7Z5C7o1GTK6R43jvkD7DeErgHZXrS9yhg66JrKWSo=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none
+ header.from=maximintegrated.com;
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
+ by BYAPR11MB3447.namprd11.prod.outlook.com (2603:10b6:a03:1d::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.18; Wed, 20 Oct
+ 2021 08:31:22 +0000
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4608.018; Wed, 20 Oct 2021
+ 08:31:22 +0000
+From:   George Song <george.song@maximintegrated.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, george.song@analog.com,
+        ryans.lee@maximintegrated.com, steves.lee@maximintegrated.com,
+        George Song <george.song@maximintegrated.com>
+Subject: [v5 1/2] ASoC: dt-bindings: max98520: add initial bindings
+Date:   Wed, 20 Oct 2021 17:30:54 +0900
+Message-Id: <20211020083055.23625-1-george.song@maximintegrated.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SL2P216CA0002.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:100:18::12) To BYAPR11MB3671.namprd11.prod.outlook.com
+ (2603:10b6:a03:b3::15)
 MIME-Version: 1.0
-References: <20211019144520.3613926-1-geert@linux-m68k.org>
- <20211019144520.3613926-4-geert@linux-m68k.org> <CANiq72nJS_rxwB7BQJ30iEeFcX8_7VznkF0DvueM_Ym+Wqd94A@mail.gmail.com>
- <CANiq72nGPzDEeiQccTQ6QCeionfkfp01EDjp4btBfYKabXzGrg@mail.gmail.com>
-In-Reply-To: <CANiq72nGPzDEeiQccTQ6QCeionfkfp01EDjp4btBfYKabXzGrg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 20 Oct 2021 10:27:36 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWBhBs3dpLFHo8VmUr22DkbXpPqMSwqkCVzpYYNA-5g4A@mail.gmail.com>
-Message-ID: <CAMuHMdWBhBs3dpLFHo8VmUr22DkbXpPqMSwqkCVzpYYNA-5g4A@mail.gmail.com>
-Subject: Re: [PATCH v8 03/21] auxdisplay: img-ascii-lcd: Fix lock-up when
- displaying empty string
-To:     Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc:     Miguel Ojeda <ojeda@kernel.org>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>, Marek Behun <marek.behun@nic.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Received: from SEL-LT-028891.maxim-ic.internal (223.62.204.189) by SL2P216CA0002.KORP216.PROD.OUTLOOK.COM (2603:1096:100:18::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.15 via Frontend Transport; Wed, 20 Oct 2021 08:31:19 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1e395590-6a81-47f5-6031-08d993a3ff26
+X-MS-TrafficTypeDiagnostic: BYAPR11MB3447:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <BYAPR11MB344749FC53F51165F01BD4BCF4BE9@BYAPR11MB3447.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SUttz9FAN254Bpyb3uFYuW/axlAj0L++b91x80vpvnEjNrSLck+rlLlS+1YARluYTiBu/IJSwS+dAvqAXd7OZfEZTyqTpGz1B409MhTnE+Lz3PhEKgrkqX/+5d94RaF/XfN8KjLGv5Rr/KJAefUDBb695fM3gf6zrR5T8C2BsysLF2ks2021bPBQcyDdEN/AtWkPHQCkivPWIam1TRlwYDwlRHc+8H9HQcv2vTCSR9NbrTq1bFxEGDU1stq4hoscgdj0lsQ+vYDOc3bYAw46KibXG2Ob2qFqjkegqhFlfaTyOemPEs7cdYRx2/UBGlZ7eHh3vqtzoYi5WNxD5aefFZzuJwrGUSMOT1ulmdKudZ8mKiH0uliO5AD2Wq7TpD7WCGCsQZXs8C4I7K5HmeiF8uFIdLS0R1BPB0WpVzUdafKY6cdHZj3+uIo1wVoglG2Lk94PPsMMfRpWYBafQpUT/Slw+OJWo1SEBrKFCCm/IrjbL7Y4r6ja1JQpJ5tiiUyEd7MQtAZ5gShaB/qQVeKsY/ctIAKryiH9YOAziHZxsEyMEXQRVnnDYPXj+fikcrfaGJi2tIPdWFveglQ4KV8INZ5Vk3PeyWfsWVUG/BT1aj5x9zuXQOrbP3tMKflJkh1E4G3NY8Wm/0yffITIuxkRP5h9lLH5SEuIG9PWdAuST53xdDPqb6xKGn8rWF5npMqzt4LfcDfQVR+Vvur11woOqiczTZ2xAFi/sMoNhTOPVhvtyzeq3+0HtPRnggMbwGHAulgUqBcE+BXTl/c12hphMUc4EdpLWB+TDMuIxdUZusJe/IoSyBUFGMlkKdSm5xApcOVaMeumlrmEYsOMOlCMrw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(44832011)(1076003)(86362001)(6666004)(36756003)(66476007)(186003)(8676002)(5660300002)(6486002)(2616005)(956004)(2906002)(316002)(66946007)(508600001)(26005)(6506007)(966005)(6512007)(52116002)(4326008)(66556008)(8936002)(38100700002)(38350700002)(107886003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/Ch0YREnzVGlAxHHJfOWTnNCNXVEsUwUxRlCqC/wEqwVWALDxJNdWF4m3ZXk?=
+ =?us-ascii?Q?SNtim7mWErocDutU4hpkGesGWMC0vJjTuhfMprdRRgXW+Nlm2KBhZ1pW1779?=
+ =?us-ascii?Q?1uUn9l2vq6H50B4aPRZGrNVX2FyBYJcaXdaMFbgc7ZnDPZG6Or+GZsZ/XzOe?=
+ =?us-ascii?Q?euKqkEFlKZo1UJ4OkJklLf9Wz7li7tb1L60X5r7MslIm1fmpNUTwBVfFAZvO?=
+ =?us-ascii?Q?WgKK6nKhhWo94AkY6ZX352GZbf3Smbu6udN+eX/PhBWF4W7IVnuIQ4/1mOnY?=
+ =?us-ascii?Q?CLvy5ouZR1BkAyGE+QkuOOeOdaMuo0ieJMQtWuKinV5HQHThJP4WpBtl1IBG?=
+ =?us-ascii?Q?vDTIzGp2QM2RHr1URsrnYRXHvtbTr/6B2XTwJhRh0WJXrTcWapJxePA/czTJ?=
+ =?us-ascii?Q?xApZTScgXIgfgijg8XyZ/SQTMZKsn3u0KTbp79ZxK38DlUHlONKwxJbtkzmf?=
+ =?us-ascii?Q?aZYUfRtgc/OLagWVCo2iu39NZFVZJP2QD2q7N+TF3mZihtBh7FTj0zZKCl/i?=
+ =?us-ascii?Q?Kr+X49+yaJlWy3I4+rQ4ZWEmmsoCV6BevP4iVLYC5FO9nxIW0hqmekCvQkjG?=
+ =?us-ascii?Q?t6YmJfO3B9p+ESDAwChJhwAR3yaz67ThYi+w0fUjxubFs82IQlk4sgknB79P?=
+ =?us-ascii?Q?JF8MPZTN7OCJ9WXEWweSROXX/rK7/OC66t/hVefihq9a3kM8QF5EV/Bl+uLg?=
+ =?us-ascii?Q?dPF18GTdVxsHIxsSwMgcF0C9xV/S/Ig1OlPD+7dAB4RADmWkVRuZqThCU1iz?=
+ =?us-ascii?Q?l90e8WI7N+r1VZdJ4CjFLRZP0U9BuPLSJ9WAk+rWYjPpB6Ytb+6R4jOZk/qg?=
+ =?us-ascii?Q?2N8hgzB5B8OR/QImNWc0hQVAxL1r+MlgxVr5WNoVOyd3VzM/8+eVJl+Szc00?=
+ =?us-ascii?Q?6W9pIasCWsP4YB2LLXhDveumMR4zcHEPw6tnYMmCXhBpQ/++iFXffjsAQBS9?=
+ =?us-ascii?Q?mzxGEr8dv2Gccv9CxDJQLq7wbepLCtku/S80DAe3Z/LEL+C0b0btmVx42SES?=
+ =?us-ascii?Q?ew5+KWeUg+mtYr2nhStsuQd6bor+6pGLoHXsFEQBkHFZl6mq8cuPGvN8DyeO?=
+ =?us-ascii?Q?7mxlOGKkJnxmGK0IpCOPHhZePT9OZQBWcBjmjhZYjXQKI7YxpWyTX6piFXbT?=
+ =?us-ascii?Q?jj5tfThPtwSLyVgIt61f+HS4+UZ+W53jcc3mF4WAjPxQFpnWjK5+4OF4IHNd?=
+ =?us-ascii?Q?SCNXLLujodt4n4xK/0sZp7U1W3dIc/ZFjvNQLjJ/Cj/1cHq0J9j/sYdN5xGH?=
+ =?us-ascii?Q?VUoC/B26LZAq7Vde2qA9D0LC+wci0EIKe8A7wesc6KU8MAnkzNWAY2vpCNdp?=
+ =?us-ascii?Q?8g3aHIiL65GXk2WaH0e6BflW?=
+X-OriginatorOrg: maximintegrated.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e395590-6a81-47f5-6031-08d993a3ff26
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2021 08:31:22.1931
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd909df-ea69-4788-a554-f24b7854ad03
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vGD47CqDnvaNHQ1aI6cK6rWoZ0uxkOa4ycjoCu3piq7QW50A3ep+9yoX9UWcQsZoSfZW8KZ3D0U/c8bobl1BDgPP/kCu9B85DxyJ7/eK+EU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3447
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miguel,
+add initial bindings for max98520 audio amplifier
 
-On Tue, Oct 19, 2021 at 11:09 PM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
-> On Tue, Oct 19, 2021 at 10:50 PM Miguel Ojeda
-> <miguel.ojeda.sandonis@gmail.com> wrote:
-> >
-> > Unrelated to this patch (and no need to change it), but we could
-> > remove the conditional guarding the devm_kfree below to match this
-> > one.
->
-> Yeah, you did it when moving the code later on -- I guess we could
-> have done it before too, to match, like the sysfs_emit change does it
-> before, but it is not that important.
+Signed-off-by: George Song <george.song@maximintegrated.com>
+---
+ .../bindings/sound/maxim,max98520.yaml        | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98520.yaml
 
-As this patch fixes a DoS that can be triggered from userspace,
-I wanted it to be a fix as small and concise as possible.
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98520.yaml b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+new file mode 100644
+index 000000000000..b6509cb2c8e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98520.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim Integrated MAX98520 Speaker Amplifier Driver
++
++maintainers:
++  - George Song <george.song@maximintegrated.com>
++
++properties:
++  compatible:
++    const: maxim,max98520
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      max98520: amplifier@38 {
++        compatible = "maxim,max98520";
++        reg = <0x38>;
++      };
++    };
++
+-- 
+2.25.1
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
