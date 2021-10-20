@@ -2,308 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 555324348B4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D744348C0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhJTKOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 06:14:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229878AbhJTKOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 06:14:16 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFD76C06161C;
-        Wed, 20 Oct 2021 03:12:01 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id j21so14135618lfe.0;
-        Wed, 20 Oct 2021 03:12:01 -0700 (PDT)
+        id S229972AbhJTKQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 06:16:45 -0400
+Received: from mail-am6eur05on2056.outbound.protection.outlook.com ([40.107.22.56]:20576
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229771AbhJTKQp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 06:16:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hjL1lkbByw38inefww0hVhjXzisFiiuA/hpXBnLWT7nOTaSbyz/gKXRaio6AeHFRDPKslXRbBHiHWoU0BffRRhtEo6p6TCu1T5fvWy1ZiFqf63LlhpIzU4cqNLGXMCp16W0giMu9NEiIgK5CbCJV1vOpb6Ze+g+XIpUwPWLP7ka+aYl8RgwwD4CKvphjWBfuakxNFA1z9wAyoBJUiTxwHnLalX6v0aTEci+pjBYL2MzziWO7rClVrNV76pr/eFTQlk3ejQi4BKlmeBUPgXthPUAA/PA23qbeicQIThv3r8fleWnSHkjsRBsQ0WKjhf4SDTCDrxYX/FXnowgMvsCtSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iStepYrAceWlfC+t1NZmnsdmForSzo+cj1/xVnYW/2Q=;
+ b=GwWHVazU5dDUIP1kiBOSW68x8Ju2B42eYsP2Sb3OKxVT6RYKtO9EFjjV8s/aXCkEPy5JdUUYQusAK4NSx8FMIqIXJCZwLQgTWCDA60+TsLak9m0fMS06AmPpcUiGxM5nOHfWsti3kOJhMQ74WwKLlz9kiovJbwqxWhKiuHqW90K2XvfBj2oM+nMPeJiwhjAd4JxWsbAXo1JKHIItp5j4NjhO9pGJiezPpUbb7TCAQXK2rynDYEHccPUkIpG6XqbeBRGwBMq7j1mhRbcK8fcfm1tHuknoHmmQ8AsCi5vAkFmMxnAz3YW47AjDYb3mYkS6w1+yuDd23zLy1cbyXEZMxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=o5vW3+1/Yb9DoK8RFz9pKj6hMdqBTflWtxCfKKNKjIM=;
-        b=ll8xtqZzt4j/xPMOFRixiOUUn0YawGc0VpIb27yrU/5xEc2mz9U7AIdXr9JuC/4fNY
-         Kbn29sUg9B/ceg0QlMmILfZwibgluYxemdn3/tXoz4Dw5IE6TN7mK0jE8ig9ytSmi1TD
-         B9KKbY+j3HXZ2uK17Bbu8IM6RLJZ9itwBOrR/m1obI+vU2upfUmChSjVnu3jV23pFVln
-         tu3XJxSWcEH411KfT9u797yh1Y966wFahCYFKbaZfy18abMmyS3l668wHNjfRiT3EDRP
-         eBonaGqc8zVkf8va7O2qG7bEAUjKvAceZJYfBNWVb4yTvPXvE5n1o1GAoYvJLyh7C2vT
-         jSGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=o5vW3+1/Yb9DoK8RFz9pKj6hMdqBTflWtxCfKKNKjIM=;
-        b=iVpWLSGsrINdzYLhLU/L8CnKILtrT/3rzCxpWv7HETwCLXGXu3ef4OnsEALyWLDTEO
-         yHBU8IZXK/ksnBWB+1uIyS8cg1o4HRpZSAmkqizGPVnZ5Ut2ugUTGgWORh+lHnuI5kMB
-         l1oS6qmYV5nkUjft8OtjGW9MfBsyEKWrI///Fs8maRq4ubXNfHWMOnbrsKsrJ66vug2K
-         ReEfjPOY+LAN7MtnxnXUD7hdE3CWheKPQpst72qiZmLcP0ZHc0RidERt9xteOxOe6VwY
-         DjIOmt3P2pwwtcYULW0J4NRMC3tX0+hB3D+Gw8314koIjV4cQkxrK/URRL0SsF/0YcZI
-         V+4g==
-X-Gm-Message-State: AOAM5326KDZvYgApXBAI77y8Kfa39DAoBkxLk+aAHXICHzmPkrwFWHCH
-        8f73TN9RXuQNq/Oe7//bld4TY+kDU0bMLprn48c=
-X-Google-Smtp-Source: ABdhPJz0yOlCXwfArD9Mal5dBBBBtkMwEzgvgerdM1r51AASanzPqDKjABdfiE+rhkOn/dNQZ6rtdgQ7i2KZDFEoQ1s=
-X-Received: by 2002:ac2:4e85:: with SMTP id o5mr11286411lfr.105.1634724720016;
- Wed, 20 Oct 2021 03:12:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210813145302.3933-1-kevin3.tang@gmail.com> <20210813145302.3933-7-kevin3.tang@gmail.com>
- <20210917154047.leojvqjqjj2sg34l@gilmour> <CAFPSGXZbqh0f6kEoQaq_Nt677ksVS6QPdAa5==KVVAszSAuasw@mail.gmail.com>
- <20210928092805.wbc4ev3ze7a7zgqr@gilmour>
-In-Reply-To: <20210928092805.wbc4ev3ze7a7zgqr@gilmour>
-From:   Kevin Tang <kevin3.tang@gmail.com>
-Date:   Wed, 20 Oct 2021 18:09:32 +0800
-Message-ID: <CAFPSGXZta-oJ7Hp3AyiGjpXr5e42g3r24Su6-L6HOwMR4QU5Zw@mail.gmail.com>
-Subject: Re: [PATCH v6 6/6] drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iStepYrAceWlfC+t1NZmnsdmForSzo+cj1/xVnYW/2Q=;
+ b=vet4Q//iulq//HE+VZjnCE5e1bgTsa7drKR8wsq69Tilf8xJ+q7b3MMeP4FlI/fXVcSEqFHzAnouVE0DKS+sDeJLXjxVxeWSo8bp0P2hhNHOeZoQqg/jw2LpSRF6l3Wj128rEv0R8/jw9Mz1FbakNeGNZzw49zvswq4ofqX2V4Y=
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
+ DB7PR03MB4011.eurprd03.prod.outlook.com (2603:10a6:5:32::25) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4608.18; Wed, 20 Oct 2021 10:14:28 +0000
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::65a0:9648:47b:5be4]) by DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::65a0:9648:47b:5be4%5]) with mapi id 15.20.4608.018; Wed, 20 Oct 2021
+ 10:14:28 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     Marek Vasut <marex@denx.de>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+CC:     Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, pony1.wu@gmail.com,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Stephen Boyd <sboyd@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
+ rohm,clock-output-is-critical property
+Thread-Topic: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
+ rohm,clock-output-is-critical property
+Thread-Index: AQHXxY+JJdX8Jutbb0a+1WZK+KZDHavbq2eA
+Date:   Wed, 20 Oct 2021 10:14:27 +0000
+Message-ID: <263da45f-d648-3c65-aed3-e4ba41927911@fi.rohmeurope.com>
+References: <20211020084956.83041-1-marex@denx.de>
+In-Reply-To: <20211020084956.83041-1-marex@denx.de>
+Accept-Language: fi-FI, en-US
+Content-Language: fi-FI
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+authentication-results: denx.de; dkim=none (message not signed)
+ header.d=none;denx.de; dmarc=none action=none header.from=fi.rohmeurope.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9dcda5a8-7058-4c10-0402-08d993b26669
+x-ms-traffictypediagnostic: DB7PR03MB4011:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR03MB4011E23CC12B3D282F0C3CDEADBE9@DB7PR03MB4011.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pgw124xvN2heMgLZgohYIqyl7mxkMK1fD8RDh2haxCgumReLCzauJe4Pam0C23nxFBN6SCwHSingXHQ7/Yuqx6XUo48mNzGOhgKNUVikJCr1wITZYOIr7b7jAxY4tsAyCsOf7SWIDES9VTSUoXHgP5H7qJQsPakn4noYtEEgLyYS2o8XCEhEKNDNVWrXwKxCMf1Vsic2f1rfNE7gsUQZAzuoZTH5aFpIbYYiYlcXSPbOzQH7t/HYlu0gc1X9RY04IBGzl/VG1XiXLuicx5W9KplPujNpnw1aY9FIsfqxkjE1H6bztHxGIF9aktLT1noOAIkPzrTXPzIWLwa2302vHUADJeukmCsLeLdd9XvfDwtSQNNJPoJvhUuDKEPmrOFyS5+JAiOw9Xc/YhxPRON27mXFJTNVZtAJ6zAzzOOaNUQ7XHGPl1yArR2GJD5JrEN2iBrwqkOsGlxdbsaDjriVSFcX1tVIIs/EdEGKmX3hEbE12pHSRWNUyAuEra1pEwYR1JEHPEKtIBxRF+NNlTtz4QI3X+nnq8yjZI3BoWHNyxE1bHwwNYNFvuTrCYpsmtSkGLXKbM47RDQElho5AaSxsXSas6mR3lp2VfvMlQJCi719amZC8NppWJLOGvGfFMr536FUn2cGHnoeRVH5vg/wsz2tiPj+WHNO0ffvLd5gKhlVOwuqkwFzmNGxkZXX7nkvBWkH7+zWG3+R7Jnsfg/zsUmu1Xb3GPzVS+4Osrxym2/Bo5B60hHRpE5XEKB+wDQ2js2ojCva4ZMQ/WX2AQVnWg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(31686004)(66446008)(4326008)(66476007)(316002)(76116006)(107886003)(2616005)(71200400001)(26005)(66946007)(66556008)(5660300002)(110136005)(38070700005)(8936002)(83380400001)(91956017)(64756008)(2906002)(122000001)(8676002)(38100700002)(6512007)(508600001)(54906003)(53546011)(86362001)(6486002)(6506007)(31696002)(186003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aVRmaCtIaGMwK2hQdGxybXdTWVNBWWgxTkFoVDZuUnV5NXZBSmVFNFgxamJr?=
+ =?utf-8?B?UUlmWEhnZGpEd0tnMkhiL2pxVUdYVmJ5OHNBc0ZNN0MxVnNaR1E3ZkJhSmNo?=
+ =?utf-8?B?cDRlajZaNXJRTmg1Q0pQOWtkVU1RZ1V4TnNtN2xPQWxpSDFRSjNKM25NUUpa?=
+ =?utf-8?B?OS90a1FZekk0QytJOHRURHFOdFYyV3hidGkyOFVCT1VWc3l4Rzh5NUwrUVRa?=
+ =?utf-8?B?R29VUzNsU21ha3VTSUladzBHdlA4djBNK3JON3pRZ0U0VzZIWUpEZndNWmVw?=
+ =?utf-8?B?aDNiM3RJaUhJeG50OE5KbHhGT3hIT2p5U1lMZUhwN2Q4cTU0cWdPcEk5QzJr?=
+ =?utf-8?B?QkRSa3hpNndCUWkwYWRhL0x2R3NsV2JUN3dDTm9qcEhPMU5tRDlrSmZSUDN0?=
+ =?utf-8?B?S1RBNEhLbmowZ3lwaTc4RmRvOEFiT0xOWW5tYzUxQlJHNjNzVVVSd2ZTVWdv?=
+ =?utf-8?B?dm1aZlRoM1pGSjNKVUdBc2lyN2Y4N3RqdWJBajZVeGlOaU5xbWU5OExOcW1Q?=
+ =?utf-8?B?cmI3TzlEejQwRzJsNk0vQmZPZy8zOXFTZFFUUUU2Z3NMaVh2NmpZS2UvaUdG?=
+ =?utf-8?B?ZlphK1JPS3hhQXIzdWVuR2JOQ3IvUkQvRE5pcml2WnI5UTQ0cG1LUnBZQjZS?=
+ =?utf-8?B?UFhRWWdiWVBXZUhsTlhoRmVPZzJVeUsrY0tjWkgwOEo0cXgzQ25BTFpZVnhs?=
+ =?utf-8?B?Nng3b0xOM3pTeWQwRDdTYVNmVDNkMmNqRGozZFlWY3Y0cGltKzBFREtsRS9G?=
+ =?utf-8?B?R0swN3pSRU1zZzA3TzI4RHR6SWd0YU5xOHdNTnpPMDg1bTdycDh0Nks5NjdU?=
+ =?utf-8?B?Yzg3b01JdGQ1bjJLZzNEb3Y0ellDTkVVWG9zU0loM0E1T3l2SEhmbkVYdlVE?=
+ =?utf-8?B?ZzV0Yll3SktqSWlNcWFvV004cE5mcndjWC9aWmh6K2ROODg1YUJmYVFqZWVY?=
+ =?utf-8?B?dU1iaG1hdGtqY0kwNFRxZzBNeU42MmhpNGtodXo1OWFhcDk1ZHJWRnhxaGdS?=
+ =?utf-8?B?V1dncHM1NDl3Ujl2TVBCeFdGcHVhMlkzU1I1YkVLQkZubTMzelkwa1R5dFUz?=
+ =?utf-8?B?eWlGS1dHMnN5bFNHeE1IYUFFOFlOM0FTTU04RkxpS0tiVkJjWUdLUVArUDds?=
+ =?utf-8?B?NmlmanF2TVNrTzNjelZUQk5ubGlVTnl3MnJTTDBIMTZ2ZHhPekpGTGo2bDUr?=
+ =?utf-8?B?OWc3eGlzNUUvL2x3L09uTDl3eUZyRVRmVDg4OG1aZmN1c243czZHMjNIVlJI?=
+ =?utf-8?B?eVozdjFpWHhJN2IrVm85SkZCc3BBRVBxaXlmRytBaUlBU2EvWGV6ZUVTL3Qw?=
+ =?utf-8?B?cGxhNjV3UVBtZmZreW55Q0NRQ1c1aDdxbFBXVGJ5clNpQ0s3dWxMRW1UcGVi?=
+ =?utf-8?B?TGJ2cEZrSFV1Nk9uNFJ6aGV5VnlvMzM3OC9IRVVucHNwMTJHNlllaktrV2xs?=
+ =?utf-8?B?K2Q4SnZxWTREOVpqZWJyZmpwVFA3ZU9WekFWSWFoeUUvaEllZ0NMMVc1ZHJ4?=
+ =?utf-8?B?OHRrNklnTFVIa2tCSVlrVDhuVVdEczZ0aDVjN1FIV3BSTUlNelNDaHcxN3h3?=
+ =?utf-8?B?ckRjVmlZYk5jY2J5Rzh2OHFKN204MFFyRXVoMU9peDJ1OFl5OS9zN3BsM1Nn?=
+ =?utf-8?B?azUvODl5cGpwaG8xdFFFLzRmbmQrRldQaWJ6S1d3QTJsT08xRm1SWUJtcm5N?=
+ =?utf-8?B?d1JvaE9yc2xxdmxMZHUrM0E3QUF1RzE2Szd5MlVRbmhncVZvQ0g0UFpJWFFm?=
+ =?utf-8?Q?DDHOMTuCx9q6wvMiNs=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C6B56E00E9C702429E9059843B8C4B57@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9dcda5a8-7058-4c10-0402-08d993b26669
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Oct 2021 10:14:27.8647
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Matti.Vaittinen@fi.rohmeurope.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB4011
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B49=E6=9C=8828=E6=97=
-=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=885:28=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Sun, Sep 26, 2021 at 10:31:53PM +0800, Kevin Tang wrote:
-> > Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B49=E6=9C=8817=E6=
-=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8B=E5=8D=8811:40=E5=86=99=E9=81=93=EF=BC=9A
-> > > > +static void sprd_dsi_encoder_mode_set(struct drm_encoder *encoder,
-> > > > +                              struct drm_display_mode *mode,
-> > > > +                              struct drm_display_mode *adj_mode)
-> > > > +{
-> > > > +     struct sprd_dsi *dsi =3D encoder_to_dsi(encoder);
-> > > > +
-> > > > +     drm_dbg(dsi->drm, "%s() set mode: %s\n", __func__, dsi->mode-=
->name);
-> > > > +}
-> > >
-> > > You don't need that function?
-> > No need for now. need to delete it?
->
-> Yes
->
-> > > > +static int sprd_dsi_encoder_atomic_check(struct drm_encoder *encod=
-er,
-> > > > +                                 struct drm_crtc_state *crtc_state=
-,
-> > > > +                                 struct drm_connector_state *conn_=
-state)
-> > > > +{
-> > > > +     return 0;
-> > > > +}
-> > >
-> > > Ditto
-> >
-> > No need for now. need to delete it?
->
-> Yep
->
-> > > > +static int sprd_dsi_find_panel(struct sprd_dsi *dsi)
-> > > > +{
-> > > > +     struct device *dev =3D dsi->host.dev;
-> > > > +     struct device_node *child, *lcds_node;
-> > > > +     struct drm_panel *panel;
-> > > > +
-> > > > +     /* search /lcds child node first */
-> > > > +     lcds_node =3D of_find_node_by_path("/lcds");
-> > > > +     for_each_child_of_node(lcds_node, child) {
-> > > > +             panel =3D of_drm_find_panel(child);
-> > > > +             if (!IS_ERR(panel)) {
-> > > > +                     dsi->panel =3D panel;
-> > > > +                     return 0;
-> > > > +             }
-> > > > +     }
-> > > > +
-> > > > +     /*
-> > > > +      * If /lcds child node search failed, we search
-> > > > +      * the child of dsi host node.
-> > > > +      */
-> > > > +     for_each_child_of_node(dev->of_node, child) {
-> > > > +             panel =3D of_drm_find_panel(child);
-> > > > +             if (!IS_ERR(panel)) {
-> > > > +                     dsi->panel =3D panel;
-> > > > +                     return 0;
-> > > > +             }
-> > > > +     }
-> > > > +
-> > > > +     drm_err(dsi->drm, "of_drm_find_panel() failed\n");
-> > > > +     return -ENODEV;
-> > > > +}
-> > >
-> > > Just use devm_drm_of_get_bridge there
-> >
-> > We use drm_panel_init and drm_panel_add API to add panel, so here is a
-> > panel device, not a bridge.
->
-> Like Sam said, the panel API is on its way out and is being superseded
-> by bridge_panels.
-hi maxime,
-If get a panel by devm_drm_of_get_bridge, how to use bridge api to access p=
-anel?
-it seems that pre_enable/enable still needs to be implemented, so we
-need to add drm_bridge_func,
-then move the panel-related operations in drm_encoder_helper_funcs to
-drm_bridge_funcs callback?
->
-> > > > +static int sprd_dsi_host_init(struct sprd_dsi *dsi, struct device =
-*dev)
-> > > > +{
-> > > > +     int ret;
-> > > > +
-> > > > +     dsi->host.dev =3D dev;
-> > > > +     dsi->host.ops =3D &sprd_dsi_host_ops;
-> > > > +
-> > > > +     ret =3D mipi_dsi_host_register(&dsi->host);
-> > > > +     if (ret)
-> > > > +             drm_err(dsi->drm, "failed to register dsi host\n");
-> > > > +
-> > > > +     return ret;
-> > > > +}
-> > > >
-> > > > [...]
-> > > >
-> > > > +static int sprd_dsi_connector_init(struct drm_device *drm, struct =
-sprd_dsi *dsi)
-> > > > +{
-> > > > +     struct drm_encoder *encoder =3D &dsi->encoder;
-> > > > +     struct drm_connector *connector =3D &dsi->connector;
-> > > > +     int ret;
-> > > > +
-> > > > +     connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> > > > +
-> > > > +     ret =3D drm_connector_init(drm, connector,
-> > > > +                              &sprd_dsi_atomic_connector_funcs,
-> > > > +                              DRM_MODE_CONNECTOR_DSI);
-> > > > +     if (ret) {
-> > > > +             drm_err(drm, "drm_connector_init() failed\n");
-> > > > +             return ret;
-> > > > +     }
-> > > > +
-> > > > +     drm_connector_helper_add(connector,
-> > > > +                              &sprd_dsi_connector_helper_funcs);
-> > > > +
-> > > > +     drm_connector_attach_encoder(connector, encoder);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static int sprd_dsi_context_init(struct sprd_dsi *dsi,
-> > > > +                     struct device *dev)
-> > > > +{
-> > > > +     struct platform_device *pdev =3D to_platform_device(dev);
-> > > > +     struct dsi_context *ctx =3D &dsi->ctx;
-> > > > +     struct resource *res;
-> > > > +
-> > > > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > > +     ctx->base =3D devm_ioremap(dev, res->start, resource_size(res=
-));
-> > > > +     if (!ctx->base) {
-> > > > +             drm_err(dsi->drm, "failed to map dsi host registers\n=
-");
-> > > > +             return -ENXIO;
-> > > > +     }
-> > > > +
-> > > > +     ctx->pll =3D devm_kzalloc(dev, sizeof(*ctx->pll), GFP_KERNEL)=
-;
-> > > > +     if (!ctx->pll)
-> > > > +             return -ENOMEM;
-> > > > +
-> > > > +     ctx->regmap =3D devm_regmap_init(dev, &regmap_tst_io, dsi, &b=
-yte_config);
-> > > > +     if (IS_ERR(ctx->regmap)) {
-> > > > +             drm_err(dsi->drm, "dphy regmap init failed\n");
-> > > > +             return PTR_ERR(ctx->regmap);
-> > > > +     }
-> > > > +
-> > > > +     ctx->data_hs2lp =3D 120;
-> > > > +     ctx->data_lp2hs =3D 500;
-> > > > +     ctx->clk_hs2lp =3D 4;
-> > > > +     ctx->clk_lp2hs =3D 15;
-> > > > +     ctx->max_rd_time =3D 6000;
-> > > > +     ctx->int0_mask =3D 0xffffffff;
-> > > > +     ctx->int1_mask =3D 0xffffffff;
-> > > > +     ctx->enabled =3D true;
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static int sprd_dsi_bind(struct device *dev, struct device *master=
-, void *data)
-> > > > +{
-> > > > +     struct drm_device *drm =3D data;
-> > > > +     struct sprd_dsi *dsi;
-> > > > +     int ret;
-> > > > +
-> > > > +     dsi =3D sprd_dsi_encoder_init(drm, dev);
-> > > > +     if (IS_ERR(dsi))
-> > > > +             return PTR_ERR(dsi);
-> > > > +
-> > > > +     dsi->drm =3D drm;
-> > > > +     dev_set_drvdata(dev, dsi);
-> > > > +
-> > > > +     ret =3D sprd_dsi_connector_init(drm, dsi);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D sprd_dsi_context_init(dsi, dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D sprd_dsi_host_init(dsi, dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static void sprd_dsi_unbind(struct device *dev,
-> > > > +                     struct device *master, void *data)
-> > > > +{
-> > > > +     struct sprd_dsi *dsi =3D dev_get_drvdata(dev);
-> > > > +
-> > > > +     mipi_dsi_host_unregister(&dsi->host);
-> > > > +}
-> > > > +
-> > > > +static const struct component_ops dsi_component_ops =3D {
-> > > > +     .bind   =3D sprd_dsi_bind,
-> > > > +     .unbind =3D sprd_dsi_unbind,
-> > > > +};
-> > > > +
-> > > > +static const struct of_device_id dsi_match_table[] =3D {
-> > > > +     { .compatible =3D "sprd,sharkl3-dsi-host" },
-> > > > +     { /* sentinel */ },
-> > > > +};
-> > > > +
-> > > > +static int sprd_dsi_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +     return component_add(&pdev->dev, &dsi_component_ops);
-> > >
-> > > In order to prevent probe issues, you need to register you mipi_dsi_h=
-ost
-> > > here, see:
-> > > https://lore.kernel.org/dri-devel/20210910101218.1632297-3-maxime@cer=
-no.tech/
-> >
-> > We register mipi_dsi_hot on our panel driver, like this:
-> >
-> > 1092   ret =3D mipi_dsi_attach(slave);
-> > 1093   if (ret) {
-> > 1094   DRM_ERROR("failed to attach dsi panel to host\n");
-> > 1095   drm_panel_remove(&panel->base);
-> > 1096   return ret;
-> > 1097   }
->
-> It's not about when you attach, but when you call
-> mipi_dsi_host_register. You're doing it in sprd_dsi_host_init that you
-> call in bind(), which is against the best practices and will create
-> probing issues in the future.
->
-> Maxime
+SGkgZGVlIEhvIE1hcmVrLA0KDQpUaGFua3MhIEkgbGlrZSB0aGUgaWRlYSBhbmQgYXBwcmVjaWF0
+ZSB0aGUgaW1wcm92ZW1lbnQuDQoNCk9uIDEwLzIwLzIxIDExOjQ5LCBNYXJlayBWYXN1dCB3cm90
+ZToNCj4gQWRkIHRoZSBwb3NzaWJpbGl0eSB0byBjb25maWd1cmUgUE1JQyAzMmtIeiBvdXRwdXQg
+Y2xvY2sgYXMgQ1JJVElDQUwsDQo+IHNvIHRoYXQgdGhleSBhcmUgbmV2ZXIgZ2F0ZWQgb2ZmLiBU
+aGlzIGlzIHVzZWZ1bCBpbiBjYXNlIHRob3NlIGNsb2NrDQo+IHN1cHBseSBzb21lIHZpdGFsIGNs
+b2NrIG5ldCwgd2hpY2ggcmVxdWlyZXMgdGhlIGNsb2NrIHRvIGFsd2F5cyBydW4uDQo+IA0KPiBU
+aGUgaU1YOE0gUlRDIFhUQUwgaW5wdXQgaXMgb25lIHN1Y2ggZXhhbXBsZSwgaWYgdGhlIGNsb2Nr
+IGFyZSBldmVyDQo+IGdhdGVkIG9mZiwgdGhlIHN5c3RlbSBsb2NrcyB1cCBjb21wbGV0ZWx5LiBU
+aGUgY2xvY2sgbXVzdCBiZSBwcmVzZW50DQo+IGFuZCBlbmFibGVkIGV2ZW4gaWYgdGhlIFJUQyBp
+cyB1bnVzZWQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBNYXJlayBWYXN1dCA8bWFyZXhAZGVueC5k
+ZT4NCj4gQ2M6IE1hdHRpIFZhaXR0aW5lbiA8bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUu
+Y29tPg0KPiBDYzogTWljaGFlbCBUdXJxdWV0dGUgPG10dXJxdWV0dGVAYmF5bGlicmUuY29tPg0K
+PiBDYzogUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4gQ2M6IFN0ZXBoZW4gQm95
+ZCA8c2JveWRAa2VybmVsLm9yZz4NCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnDQo+
+IENjOiBsaW51eC1wb3dlckBmaS5yb2htZXVyb3BlLmNvbQ0KPiBUbzogbGludXgtY2xrQHZnZXIu
+a2VybmVsLm9yZw0KPiAtLS0NCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bWZkL3JvaG0sYmQ3MTg0Ny1wbWljLnlhbWwgfCA1ICsrKysrDQo+ICAgMSBmaWxlIGNoYW5nZWQs
+IDUgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNl
+dHJlZS9iaW5kaW5ncy9tZmQvcm9obSxiZDcxODQ3LXBtaWMueWFtbCBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcm9obSxiZDcxODQ3LXBtaWMueWFtbA0KPiBpbmRleCA1
+ZDUzMTA1MWExNTMuLjI0OTdhZGUyYmJkMCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4NDctcG1pYy55YW1sDQo+ICsrKyBiL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcm9obSxiZDcxODQ3LXBtaWMueWFt
+bA0KPiBAQCAtNDEsNiArNDEsMTEgQEAgcHJvcGVydGllczoNCj4gICAgIGNsb2NrLW91dHB1dC1u
+YW1lczoNCj4gICAgICAgbWF4SXRlbXM6IDENCj4gICANCj4gKyAgcm9obSxjbG9jay1vdXRwdXQt
+aXMtY3JpdGljYWw6DQoNCkkgd29uZGVyIGlmIHRoaXMgcmVhbGx5IGlzIHNvbWV0aGluZyBzcGVj
+aWZpYyB0byBST0hNIElDcz8gRG8geW91IHRoaW5rIA0KdGhpcyB3b3VsZCB3YXJyYW50IGEgZ2Vu
+ZXJpYywgbm9uIHZlbmRvciBzcGVjaWZpYyBwcm9wZXJ0eT8gSSBhbSBPayB3aXRoIA0KdGhlIFJP
+SE0gc3BlY2lmaWMgcHJvcGVydHkgdG9vIGJ1dCBpdCBqdXN0IHNlZW1zIHRvIG1lIHRoaXMgbWln
+aHQgbm90IGJlIA0KdW5pcXVlIHRvIFJPSE0gSUMocykuDQoNCkJ5IHRoZSB3YXksIHRoZSB2ZXJ5
+IHNhbWUgY2xrIGRyaXZlciB3aGVyZSB5b3UgaW1wbGVtZW50ZWQgdGhlIHByb3BlcnR5IA0KcmVh
+ZGluZyAocGF0Y2ggMi8yKSBpcyB1c2VkIGJ5IGZldyBvdGhlciBST0hNIFBNSUNzLiBBdCBsZWFz
+dCBieSANCkJENzE4MzcsIEJENzE4MjgsIEJENzE4MTUsIEJEOTU3NiBhbmQgQkQ5NTczLiBTbyB0
+aGUgY29kZSBjaGFuZ2UgaGVyZSANCmFkZHMgc3VwcG9ydCBmb3IgdGhpcyBwcm9wZXJ0eSB0byBh
+bGwgb2YgdGhvc2UgUE1JQ3MuIEkgd29uZGVyIGlmIHRoZSANCnByb3BlcnR5IHNob3VsZCBiZSBt
+ZW50aW9uZWQgaW4gYWxsIG9mIHRoZSBiaW5kaW5nIGRvY3MuLi4gVGhhdCBjb3VsZCBiZSANCmFu
+b3RoZXIgYXJndW1lbnQgZm9yIG1ha2luZyB0aGlzIGEgZ2VuZXJpYyBwcm9wZXJ0eSBhbmQgZGVz
+Y3JpYmluZyBpdCBpbiANCmNsayB5YW1sIDspDQoNCldlbGwsIGp1c3QgbXkgMTAgQ2VudHMgLSBJ
+IGFtIG9rIHdpdGggdGhpcyBjaGFuZ2UgYXMgeW91IHByZXNlbnRlZCBpdCANCmhlcmUgaWYgeW91
+IGRvbid0IHRoaW5rIHRoaXMgc2hvdWxkIGJlIGdlbmVyaWMgb25lLg0KDQo+ICsgICAgZGVzY3Jp
+cHRpb246DQo+ICsgICAgICBOZXZlciBnYXRlIG9mZiBDMzJLX09VVCBjbG9jay4NCj4gKyAgICB0
+eXBlOiBib29sZWFuDQo+ICsNCj4gICAjIFRoZSBCRDcxODQ3IGFiZCBCRDcxODUwIHN1cHBvcnQg
+dHdvIGRpZmZlcmVudCBIVyBzdGF0ZXMgYXMgcmVzZXQgdGFyZ2V0DQo+ICAgIyBzdGF0ZXMuIFN0
+YXRlcyBhcmUgY2FsbGVkIGFzIFNOVlMgYW5kIFJFQURZLiBBdCBSRUFEWSBzdGF0ZSBhbGwgdGhl
+IFBNSUMNCj4gICAjIHBvd2VyIG91dHB1dHMgZ28gZG93biBhbmQgT1RQIGlzIHJlbG9hZC4gQXQg
+dGhlIFNOVlMgc3RhdGUgYWxsIG90aGVyIGxvZ2ljDQo+IA0KDQpCZXN0IFJlZ2FyZHMNCglNYXR0
+aSBWYWl0dGluZW4NCg==
