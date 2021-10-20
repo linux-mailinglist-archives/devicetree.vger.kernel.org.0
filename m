@@ -2,379 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE2CE435467
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 22:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93776435494
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 22:27:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbhJTURB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 16:17:01 -0400
-Received: from ixit.cz ([94.230.151.217]:57890 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229910AbhJTURB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 16:17:01 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 38C3820064;
-        Wed, 20 Oct 2021 22:14:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1634760884;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=3xm0DPHOl9yQRCEmN8ie1WfoCaoHVhNhOOGY6/WiZ+U=;
-        b=zssKQ5/ABu0ZdhEyxx0NaaTXMQf/9BA4ggeYiFMkPMkudu46R4x+8A5x/NpvSL8K0CCgFZ
-        bslcrbkgWNByYvft5xhez87Y7UvF8ttPOTY8x9N2/hnf9xcRG1v8gYdIiWkgrBu155lPUa
-        EZTu6DoU3wxybt7Esy3RR9ALOT1MF5E=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: correct mmc node naming
-Date:   Wed, 20 Oct 2021 22:14:39 +0200
-Message-Id: <20211020201440.229196-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S230471AbhJTU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 16:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49910 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230155AbhJTU34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 16:29:56 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4805FC06174E
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 13:27:42 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id i5so10712399pla.5
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 13:27:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7MkU8qwyEkJbn1j/FIRW/1axu09eSaDPhCxUWJs7Xag=;
+        b=ciE7a7WangZ6fjX+SQ+qQvaQsbxewBTE/wyy0BbU9QMyhMs7ST6ntYWq4kQG2y5kEn
+         D473iaqcbfVQgwGikbqQZGdPcgylhhowl1o+oW+693DDQHGKPtCth01zB2BZ1tU/IdJY
+         NSjJBGZWqRqKyj6tSCs4I6f+Vc3kYci0wabT0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7MkU8qwyEkJbn1j/FIRW/1axu09eSaDPhCxUWJs7Xag=;
+        b=DoyU83wglOh5d7BRw2QFuIIOG0nBpASTJ0wsfIeWEvNYBmX8v8+kNxLea4y2qGKIs7
+         V4eorLgsunZW5aZRMbX/r+nrc9o/dvm5BHkBN/E5xYLz4Fc4XmLxj6pFTSb1BJ0fv9in
+         eMN9jcfdnwIK8r7YUx+eL7L8/Iw+Or+l6YUsQhUDmKNyeMtXCqZbpV7AqOFlfRZ5shdM
+         2Onz0GihVVpJdRK0Vo+40nnxcLYVg3WOF329fUfQkZ+7PJu+mk5dwrw7Pq9Xo4Rvdx6W
+         QC+S01kR1B40nguFO+xm7imVl88MzU6aPi7cskj7Xd8JdoNTCLJ3tMNp3vduhSsAFFMS
+         LHyg==
+X-Gm-Message-State: AOAM5320OmD6GiHUhI1Jc7I8rD3Yho1uwnxx+3QrfQ4JzGZ8ZEtdX1qL
+        oFSFHB/3WhP3mso6lRDP/4YvEA==
+X-Google-Smtp-Source: ABdhPJw6gfKcbqM+tY+90U1CK/uu2LsahHLxttJUjL8ZmyqqKLDjo5TIxo28aeH3NR6WmU2kfy7dOw==
+X-Received: by 2002:a17:90a:1950:: with SMTP id 16mr1233777pjh.126.1634761661806;
+        Wed, 20 Oct 2021 13:27:41 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d5fe:85e9:caf2:ec4e])
+        by smtp.gmail.com with UTF8SMTPSA id q8sm3806814pfu.167.2021.10.20.13.27.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 13:27:41 -0700 (PDT)
+Date:   Wed, 20 Oct 2021 13:27:40 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Mathias Nyman <mathias.nyman@linux.intel.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v16 6/7] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YXB7vIP6ifQS3T4o@google.com>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <20210813125146.v16.6.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <dfac0025-b693-2431-04c8-1dba7ef32141@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <dfac0025-b693-2431-04c8-1dba7ef32141@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MMC nodes has to be named mmc@ to comply with dt-bindings.
+Hi Mathias,
 
-Fix warnings as:
-arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml: sdcc@12400000: $nodename:0: 'sdcc@12400000' does not match '^mmc(@.*)?$'
-	From schema: Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+On Wed, Oct 20, 2021 at 04:05:37PM +0300, Mathias Nyman wrote:
+> Hi
+> 
+> On 13.8.2021 22.52, Matthias Kaehlcke wrote:
+> > Call onboard_hub_create/destroy_pdevs() from  _probe()/_remove()
+> > to create/destroy platform devices for onboard USB hubs that may
+> > be connected to the root hub of the controller. These functions
+> > are a NOP unless CONFIG_USB_ONBOARD_HUB=y/m.
+> > 
+> > Also add a field to struct xhci_hcd to keep track of the onboard hub
+> > platform devices that are owned by the xHCI.
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> 
+> Haven't really looked at this series until now.
+> 
+> Is there any reason why the xhci platform driver was selected as
+> the best place to create/remove these onboard hub devices?
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-apq8060-dragonboard.dts      |  6 +++---
- arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts  |  2 +-
- arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts         |  6 +++---
- arch/arm/boot/dts/qcom-apq8064-ifc6410.dts          |  6 +++---
- arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts |  4 ++--
- arch/arm/boot/dts/qcom-apq8064.dtsi                 |  6 +++---
- arch/arm/boot/dts/qcom-ipq8064.dtsi                 |  4 ++--
- arch/arm/boot/dts/qcom-mdm9615.dtsi                 |  4 ++--
- arch/arm/boot/dts/qcom-msm8660-surf.dts             |  4 ++--
- arch/arm/boot/dts/qcom-msm8660.dtsi                 | 10 +++++-----
- arch/arm/boot/dts/qcom-msm8960-cdp.dts              |  4 ++--
- arch/arm/boot/dts/qcom-msm8960.dtsi                 |  4 ++--
- 12 files changed, 30 insertions(+), 30 deletions(-)
+IIRC Alan suggested to use the xhci platform driver for creating/removing
+the onboard hub devices when we were trying to get rid of a separate DT
+node on the 'platform bus', which was suitable the board for my use case.
 
-diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-index 5bedbb902ad5..d664ccd454c5 100644
---- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
-@@ -899,7 +899,7 @@ ncp {
- 		};
- 		amba {
- 			/* Internal 3.69 GiB eMMC */
--			sdcc@12400000 {
-+			mmc@12400000 {
- 				status = "okay";
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&dragon_sdcc1_pins>;
-@@ -908,7 +908,7 @@ sdcc@12400000 {
- 			};
- 
- 			/* External micro SD card, directly connected, pulled up to 2.85 V */
--			sdcc@12180000 {
-+			mmc@12180000 {
- 				status = "okay";
- 				/* Enable SSBI GPIO 22 as input, use for card detect */
- 				pinctrl-names = "default";
-@@ -922,7 +922,7 @@ sdcc@12180000 {
- 			 * Second external micro SD card, using two TXB104RGYR levelshifters
- 			 * to lift from 1.8 V to 2.85 V
- 			 */
--			sdcc@12200000 {
-+			mmc@12200000 {
- 				status = "okay";
- 				/* Enable SSBI GPIO 26 as input, use for card detect */
- 				pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
-index 197494ef887b..b2cd32f440e0 100644
---- a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
-+++ b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
-@@ -367,7 +367,7 @@ phy {
- 
- 		amba {
- 			/* eMMC */
--			sdcc@12400000 {
-+			mmc@12400000 {
- 				status = "okay";
- 				vmmc-supply = <&pm8921_l5>;
- 				vqmmc-supply = <&pm8921_s4>;
-diff --git a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
-index 0148148a8e0a..e068a8d0adf0 100644
---- a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
-+++ b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
-@@ -220,14 +220,14 @@ pci@1b500000 {
- 
- 		amba {
- 			/* eMMC */
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status = "okay";
- 				vmmc-supply = <&pm8921_l5>;
- 				vqmmc-supply = <&pm8921_s4>;
- 			};
- 
- 			/* External micro SD card */
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				status = "okay";
- 				vmmc-supply = <&v3p3_fixed>;
- 				pinctrl-names	= "default";
-@@ -235,7 +235,7 @@ sdcc3: sdcc@12180000 {
- 				cd-gpios	= <&tlmm_pinmux 26 GPIO_ACTIVE_LOW>;
- 			};
- 			/* WLAN */
--			sdcc4: sdcc@121c0000 {
-+			sdcc4: mmc@121c0000 {
- 				status = "okay";
- 				vmmc-supply = <&v3p3_fixed>;
- 				vqmmc-supply = <&v3p3_fixed>;
-diff --git a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-index d0a17b5a5fa3..2638b380be20 100644
---- a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-+++ b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
-@@ -314,14 +314,14 @@ pios {
- 
- 		amba {
- 			/* eMMC */
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status = "okay";
- 				vmmc-supply = <&pm8921_l5>;
- 				vqmmc-supply = <&pm8921_s4>;
- 			};
- 
- 			/* External micro SD card */
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				status = "okay";
- 				vmmc-supply = <&pm8921_l6>;
- 				pinctrl-names	= "default";
-@@ -329,7 +329,7 @@ sdcc3: sdcc@12180000 {
- 				cd-gpios	= <&tlmm_pinmux 26 GPIO_ACTIVE_LOW>;
- 			};
- 			/* WLAN */
--			sdcc4: sdcc@121c0000 {
-+			sdcc4: mmc@121c0000 {
- 				status = "okay";
- 				vmmc-supply = <&ext_3p3v>;
- 				vqmmc-supply = <&pm8921_lvs1>;
-diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-index 72e47bdc5c12..f8c97efc61fc 100644
---- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-+++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-@@ -374,14 +374,14 @@ serial@1a240000 {
- 		};
- 
- 		amba {
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status = "okay";
- 
- 				vmmc-supply = <&pm8921_l5>;
- 				vqmmc-supply = <&pm8921_s4>;
- 			};
- 
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				status = "okay";
- 
- 				vmmc-supply = <&pm8921_l6>;
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 8a389323a474..ed1cd2c529cc 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1073,7 +1073,7 @@ amba {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status		= "disabled";
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				pinctrl-names	= "default";
-@@ -1093,7 +1093,7 @@ sdcc1: sdcc@12400000 {
- 				dma-names = "tx", "rx";
- 			};
- 
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
-@@ -1111,7 +1111,7 @@ sdcc3: sdcc@12180000 {
- 				dma-names = "tx", "rx";
- 			};
- 
--			sdcc4: sdcc@121c0000 {
-+			sdcc4: mmc@121c0000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index 110113f3b8e2..7f67b282da10 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -1181,7 +1181,7 @@ amba: amba {
- 			#size-cells = <1>;
- 			ranges;
- 
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status          = "disabled";
- 				compatible      = "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
-@@ -1201,7 +1201,7 @@ sdcc1: sdcc@12400000 {
- 				dma-names = "tx", "rx";
- 			};
- 
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				compatible      = "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status          = "disabled";
-diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-index 6e90c5d5a050..c32415f0e66d 100644
---- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
-+++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
-@@ -354,7 +354,7 @@ amba {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
--			sdcc1: sdcc@12180000 {
-+			sdcc1: mmc@12180000 {
- 				status = "disabled";
- 				compatible = "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
-@@ -374,7 +374,7 @@ sdcc1: sdcc@12180000 {
- 				assigned-clock-rates = <400000>;
- 			};
- 
--			sdcc2: sdcc@12140000 {
-+			sdcc2: mmc@12140000 {
- 				compatible = "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status = "disabled";
-diff --git a/arch/arm/boot/dts/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-index 6a321ccb0bd0..414280d9bdba 100644
---- a/arch/arm/boot/dts/qcom-msm8660-surf.dts
-+++ b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-@@ -35,13 +35,13 @@ vsdcc_fixed: vsdcc-regulator {
- 
- 		amba {
- 			/* eMMC */
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status = "okay";
- 				vmmc-supply = <&vsdcc_fixed>;
- 			};
- 
- 			/* External micro SD card */
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				status = "okay";
- 				vmmc-supply = <&vsdcc_fixed>;
- 			};
-diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
-index 21cb58ab68ac..1e8aab357f9c 100644
---- a/arch/arm/boot/dts/qcom-msm8660.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
-@@ -483,7 +483,7 @@ amba {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status		= "disabled";
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
-@@ -499,7 +499,7 @@ sdcc1: sdcc@12400000 {
- 				cap-mmc-highspeed;
- 			};
- 
--			sdcc2: sdcc@12140000 {
-+			sdcc2: mmc@12140000 {
- 				status		= "disabled";
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
-@@ -514,7 +514,7 @@ sdcc2: sdcc@12140000 {
- 				cap-mmc-highspeed;
- 			};
- 
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
-@@ -530,7 +530,7 @@ sdcc3: sdcc@12180000 {
- 				no-1-8-v;
- 			};
- 
--			sdcc4: sdcc@121c0000 {
-+			sdcc4: mmc@121c0000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
-@@ -545,7 +545,7 @@ sdcc4: sdcc@121c0000 {
- 				cap-mmc-highspeed;
- 			};
- 
--			sdcc5: sdcc@12200000 {
-+			sdcc5: mmc@12200000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
-diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-index e7d2e937ea4c..4af01039c3b2 100644
---- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-+++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
-@@ -26,12 +26,12 @@ serial@16440000 {
- 
- 		amba {
- 			/* eMMC */
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status = "okay";
- 			};
- 
- 			/* External micro SD card */
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				status = "okay";
- 			};
- 		};
-diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-index 172ea3c70eac..2a0ec97a264f 100644
---- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-@@ -263,7 +263,7 @@ amba {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
--			sdcc1: sdcc@12400000 {
-+			sdcc1: mmc@12400000 {
- 				status		= "disabled";
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
-@@ -280,7 +280,7 @@ sdcc1: sdcc@12400000 {
- 				vmmc-supply = <&vsdcc_fixed>;
- 			};
- 
--			sdcc3: sdcc@12180000 {
-+			sdcc3: mmc@12180000 {
- 				compatible	= "arm,pl18x", "arm,primecell";
- 				arm,primecell-periphid = <0x00051180>;
- 				status		= "disabled";
--- 
-2.33.0
+> This ties the onboard hubs to xhci, and won't work in case we have onboard
+> hubs connected to a ehci controllers.
 
+Right, the driver itself isn't limited to xhci. The initial idea was that
+support for other types of USB controllers could be added as needed (I only
+have a config with xhci for testing).
+
+> If separate devices for controlling onboard hub power is the right solution then
+> how about creating the onboard hub device in usb_add_hcd() (hcd.c), and
+> store it in struct usb_hcd.
+> 
+> A bit like how the roothub device is created, or PHYs are tuned.
+
+Sure, that sounds feasible, even better if it's handled in a single place
+and different types of controllers don't have to add support separately.
