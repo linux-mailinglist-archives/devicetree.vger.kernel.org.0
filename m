@@ -2,101 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88A4843494D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27A20434979
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:56:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbhJTKtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 06:49:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56362 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbhJTKtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 06:49:10 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A603C06161C;
-        Wed, 20 Oct 2021 03:46:56 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id o24-20020a05600c511800b0030d9da600aeso9126558wms.4;
-        Wed, 20 Oct 2021 03:46:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=whR0ZNxEwCyi9xlkSBMhZ6NrngLCDrmcZY7NCoPKafI=;
-        b=KHlw1PTz/EehdeNVRNMFwWDJ7vt2hnQw25wlwHrN9gnP+ctgzou5509ivVB6IIdsal
-         B7WPtuo5hjdBQPV5lCny+/HsOO1JOOCPGVG5wa+OUmRooES/mLtk9SKOJjmiuQ1lOcXC
-         L99/inxTii8cG4TYDeDSUPotLcSyJgltHV6GTRJDVhJ/tTb/E7KcH2HyGnSI6hUXGN5Z
-         RG+8SoB/STv4fW6M/nFTwXkncDHsLCv4ikGtuTihNexU1m/Q/lrpNJlEisDhsvaEh5uW
-         NaayCWfojl0/QOKSjrZBnh9skENyIvD3bUhfWP/LhSUVrypNP7OWGFjlVu3zF/80wtfY
-         /UhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=whR0ZNxEwCyi9xlkSBMhZ6NrngLCDrmcZY7NCoPKafI=;
-        b=iW+W+0kfEybhH041VmjyjT/QfR8/1x1xP+AGzbEsrKnyA01hw/PFw1SVCVoTXBcZpU
-         B3QPMdpgJypUz7/U4yEatle0VW+ginRqd7E+jYDLp2dKWZibDIAihRTZcyjX4mFA/k2a
-         IqNMVzlBoyWdgD9ANrUnm3CDCMUmZIzxqBSFOiuMURAcODCLDWaezKy1TLFPbREx8Z2G
-         Xq9jsOqUI/8r7xTXTRyIeq8FBuVnuiE30w+c2Ggs1JmZnGjV1FDTAedpf6Gua9aL0PSi
-         IGOtpLkXWfn/5pnYi6Rj51G3C6Vwz/tqLwQX3lUjNnsPMQc3lq518rskbompf5GuWYig
-         5E0w==
-X-Gm-Message-State: AOAM532DP85gTvE+skLKTxHk5V6j8svGULOfXVQ1iUC8zdGq41gclyuG
-        bOLP8idljaqv+E7ENUSWm10=
-X-Google-Smtp-Source: ABdhPJwm+IrPO2y3xhTKkLSUO69xt4tsC/ZTGfrcTIjFDlthmuo3d7YIzc3kQ2pGtcqhrSLwM30n8Q==
-X-Received: by 2002:a1c:3b44:: with SMTP id i65mr12766620wma.161.1634726814812;
-        Wed, 20 Oct 2021 03:46:54 -0700 (PDT)
-Received: from localhost.localdomain (i5C74E127.versanet.de. [92.116.225.39])
-        by smtp.gmail.com with ESMTPSA id n68sm4599412wmn.13.2021.10.20.03.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Oct 2021 03:46:54 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        David Heidelberg <david@ixit.cz>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: rectify entry for PSTORE FILESYSTEM
-Date:   Wed, 20 Oct 2021 12:46:47 +0200
-Message-Id: <20211020104647.11556-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229977AbhJTK61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 06:58:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43454 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229864AbhJTK61 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 06:58:27 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D97696128B;
+        Wed, 20 Oct 2021 10:56:12 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1md9GU-000PbK-T5; Wed, 20 Oct 2021 11:56:10 +0100
+Date:   Wed, 20 Oct 2021 11:56:06 +0100
+Message-ID: <87a6j4c6d5.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM
+        SUB-ARCHITECTURES), linux-mips@vger.kernel.org (open list:MIPS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE)
+Subject: Re: [PATCH v5 01/14] irqchip: Provide platform_device to of_irq_init_cb_t
+In-Reply-To: <20211019215855.1920099-2-f.fainelli@gmail.com>
+References: <20211019215855.1920099-1-f.fainelli@gmail.com>
+        <20211019215855.1920099-2-f.fainelli@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, linux-kernel@vger.kernel.org, robh@kernel.org, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, linux@armlinux.org.uk, catalin.marinas@arm.com, will@kernel.org, tsbogend@alpha.franken.de, tglx@linutronix.de, robh+dt@kernel.org, frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 89a5bf0f22fd ("dt-bindings: reserved-memory: ramoops: Convert txt
-bindings to yaml") converts ramoops.txt to ramoops.yaml, but missed to
-adjust its reference in MAINTAINERS.
+AOn Tue, 19 Oct 2021 22:58:42 +0100,
+Florian Fainelli <f.fainelli@gmail.com> wrote:
+> 
+> Provide the platform device mapping to the interrupt controller node to
+> the of_irq_init_cb_t callback such that drivers can make use of it.
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  drivers/irqchip/irqchip.c  | 2 +-
+>  drivers/irqchip/qcom-pdc.c | 3 ++-
+>  drivers/of/irq.c           | 2 +-
+>  include/linux/of_irq.h     | 5 ++++-
+>  4 files changed, 8 insertions(+), 4 deletions(-)
+>
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about
-a broken reference.
+[...]
 
-Repair this file reference in PSTORE FILESYSTEM.
+> diff --git a/include/linux/of_irq.h b/include/linux/of_irq.h
+> index aaf219bd0354..89acc8b089f0 100644
+> --- a/include/linux/of_irq.h
+> +++ b/include/linux/of_irq.h
+> @@ -9,7 +9,10 @@
+>  #include <linux/ioport.h>
+>  #include <linux/of.h>
+>  
+> -typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *);
+> +struct platform_device;
+> +
+> +typedef int (*of_irq_init_cb_t)(struct device_node *, struct device_node *,
+> +				struct platform_device *);
+>  
+>  /*
+>   * Workarounds only applied to 32bit powermac machines
 
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-applies cleanly on next-20211019
+As pointed out in my reply to your v4 [1], this does break all users
+of IRQCHIP_DECLARE(). You can see that by applying [2].
 
-Please apply clean-up patch on top of commit above.
+	M.
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+[1] https://lore.kernel.org/r/87tuhcnlwt.wl-maz@kernel.org
+[2] https://lore.kernel.org/r/20211020104527.3066268-1-maz@kernel.org
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1ad9cbe46b53..cb84a0d46a24 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15336,7 +15336,7 @@ S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kees/linux.git for-next/pstore
- F:	Documentation/admin-guide/ramoops.rst
- F:	Documentation/admin-guide/pstore-blk.rst
--F:	Documentation/devicetree/bindings/reserved-memory/ramoops.txt
-+F:	Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
- F:	drivers/acpi/apei/erst.c
- F:	drivers/firmware/efi/efi-pstore.c
- F:	fs/pstore/
 -- 
-2.26.2
-
+Without deviation from the norm, progress is not possible.
