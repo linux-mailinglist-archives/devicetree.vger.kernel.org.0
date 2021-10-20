@@ -2,118 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E4D243436A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 04:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A431D434456
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 06:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbhJTCRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Oct 2021 22:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55442 "EHLO
+        id S229735AbhJTE30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 00:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbhJTCRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Oct 2021 22:17:06 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84385C061749;
-        Tue, 19 Oct 2021 19:14:51 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id h193so5728161pgc.1;
-        Tue, 19 Oct 2021 19:14:51 -0700 (PDT)
+        with ESMTP id S229492AbhJTE30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 00:29:26 -0400
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF015C061746
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
+Received: by mail-oi1-x232.google.com with SMTP id r6so8130009oiw.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BeLefvFYaaRNCXybpBNbetJ8KPidcgjmt2FIlG8JLGU=;
-        b=g2kvxFPQF0NKcFZdcxoOMWcur0VCSL5wdxGZLs3mlkcAkYUcSmvP9Af8ZAStymqLs0
-         tHAM0eeyBmCxRmMskpNA5XC/UuUkOL42EK7ejN4a2nK85+pGdX8bBQgBC+Y5C8aOuw9v
-         f2kPwbFVcmDHyCf38qj5zBBrhHvIulPdmtayqXLxfelVYJmAn9YRFpDeeh8bV14bX69W
-         HtjKu7YdKH5WFTSZgd94BqDCs/ESo+Gg7g1GAGOLdTtIoaY/jMiUknWIW9FYqClpfGb4
-         NKwnkkAlwzIDQ5+kLk6WDGqQdfXPssBhqpLl7KLAaWDeuTceVn7nl69zNgwSUqhQnv3p
-         +mtw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=KVKplhRxILI8I/oy0FMY8RP+d5gKK/Wsa1r6nqQ6o3U=;
+        b=bAjp6vkLKBf5OVZt33zDaaAdJgfXccJSKnoVSKOf6Y2zM89m+ddRnlIcBfnBeiMAGB
+         pqyZOh/VkiJZjeZ8VO/Fa1ov9vrCSBE3WgJhaWUCkWLwh4RGqEwlHjCuVN9N0SaTYwW+
+         /KtiISyCJV5UScjlpTp4wCAKBOI3ddhOe0T2g=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BeLefvFYaaRNCXybpBNbetJ8KPidcgjmt2FIlG8JLGU=;
-        b=fh09+zwK+Zy93AfUTfw8yB056DtrnpMl6Ui0PVzoqAiMtXQ79xMN9QcA+CbqvNqvJm
-         7GQa+udbaoiGf9pHdK81WdU69+g/0Xen6D5KQobWp38GRyClFyNVpOlwK/NEFJkqIBv8
-         VKoizQaAHtRLq8wcj2+0MX84znZi/Tj1surfLAw7eIopPBMF8uB/UKo3Xr+XJcOWUcaH
-         0VjltdQFu+B6I7jslmRQ3v+9nWYdpuYzq2Y5GX5SwSvWqHnqeEtLNjFoHy2ufs4HfO/m
-         NQCowwrQsQ78iFcdnEjGwoKD5wdZchi/rrHwj0zxYzsDvXVI3RSAvb8Q9v6NFBYuYnfN
-         BqSQ==
-X-Gm-Message-State: AOAM533OIUBTdx622fpnQ+FvJHFoxrmBSQ4stL0a3BR1ZjH2n2amVPiV
-        8m3Kpg+3LpR3kAcNhMQzBMc=
-X-Google-Smtp-Source: ABdhPJyR9L42ItJdgeY8OFVEuB+bR+EEDRXjgA+Rvzo7tbV8YJlnkPhWyOmMetzWesvDsvBeGVKbUw==
-X-Received: by 2002:a05:6a00:88e:b0:44c:c40:9279 with SMTP id q14-20020a056a00088e00b0044c0c409279mr3335225pfj.85.1634696090862;
-        Tue, 19 Oct 2021 19:14:50 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:4814:8c29:ba96:983d])
-        by smtp.gmail.com with ESMTPSA id k14sm422679pji.45.2021.10.19.19.14.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Oct 2021 19:14:49 -0700 (PDT)
-Date:   Tue, 19 Oct 2021 19:14:47 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Ping Cheng <pinglinux@gmail.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Jiri Kosina <jikos@kernel.org>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v11 1/4] HID: wacom_sys: Add support for flipping the
- data values
-Message-ID: <YW97lwsMrLHetJGy@google.com>
-References: <20211009114313.17967-1-alistair@alistair23.me>
- <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com>
- <YW4kgnI0DQHj4sw4@google.com>
- <CAKmqyKMrb=Uz0+-ycj0HkAKJYdRU11Dc+24+KJw_j3MHT=2+yw@mail.gmail.com>
- <YW9rRUsxPHTjeOGT@google.com>
- <CAKmqyKMpMCb4gLyp94rCgVBU3eccjafD8nF7y6o+oU6D-OHvTQ@mail.gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=KVKplhRxILI8I/oy0FMY8RP+d5gKK/Wsa1r6nqQ6o3U=;
+        b=ww/RtQJTEnl09CGeLZqN0g89sbqN93fV4RvKTrLS0LNcVVi4jlcDQ8sok6B3Ft5wdO
+         zXwO2mrF8lcBgltzF+qo8i7XXtBD2saF9+XoeE8TH45qvA7ejS4rMvdXOjnbnMDRSBue
+         4RU62KyqjrfXmUz5OHQIfCyFImDA1P59yjUGiWAoNpP8/mJRNyyeMvZ3PAq6wYUOigry
+         IcE3LTiKINJzG5ugtfDFZ3GHBU/wUF6QFREmrITO7rtkKz9IlGMrZQxtppQrTDofwgMW
+         wq9uko12H85FZVAQvfd2j0dW4GKiXqkix8VM8o7KWyhqA7G1Oj/7lpam5k+7t2GqNCmf
+         TYfQ==
+X-Gm-Message-State: AOAM532nzsPXzy6sgxVw5thfR7vwGAftAS2QgRmv0EeOL+E3QZfK0pk1
+        TC7Sae41f4CvlmSvPX6YUiQpcbp4JtUnq/+4IvhQKA==
+X-Google-Smtp-Source: ABdhPJzh3ZOGe96IecK1OqqtQSExKI9kebMcVSUhZrUrhR6WDYqRhGnx1+pIa+JBaJw/ZtCtcC9iBYQ8L33OtBMjwMs=
+X-Received: by 2002:a05:6808:23c2:: with SMTP id bq2mr7418740oib.32.1634704032132;
+ Tue, 19 Oct 2021 21:27:12 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 19 Oct 2021 23:27:11 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKmqyKMpMCb4gLyp94rCgVBU3eccjafD8nF7y6o+oU6D-OHvTQ@mail.gmail.com>
+In-Reply-To: <1634640531-15813-4-git-send-email-skakit@codeaurora.org>
+References: <1634640531-15813-1-git-send-email-skakit@codeaurora.org> <1634640531-15813-4-git-send-email-skakit@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Tue, 19 Oct 2021 23:27:11 -0500
+Message-ID: <CAE-0n509=RqfzqBjzVDRphk3umbmZEuN8=A91FY8DPWyn0BH1g@mail.gmail.com>
+Subject: Re: [PATCH V2 3/3] arm64: dts: qcom: pm8350c: Add pwm support
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <skakit@codeaurora.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 11:44:50AM +1000, Alistair Francis wrote:
-> On Wed, Oct 20, 2021 at 11:05 AM Dmitry Torokhov
-> <dmitry.torokhov@gmail.com> wrote:
-> >
-> > On Wed, Oct 20, 2021 at 09:33:13AM +1000, Alistair Francis wrote:
-> > > On Tue, Oct 19, 2021 at 11:51 AM Dmitry Torokhov
-> > > <dmitry.torokhov@gmail.com> wrote:
-> > > >
-> > > > We already have touchscreen-inverted-x/y defined in
-> > > > Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml,
-> > > > why are they not sufficient?
-> > >
-> > > The touchscreen-* properties aren't applied to HID devices though, at
-> > > least not that I can tell.
-> >
-> > No, they are not currently, but that does not mean we need to establish
-> > a new set of properties (property names) for HID case.
-> 
-> I can update the names to use the existing touchscreen ones.
-> 
-> Do you have a hint of where this should be implemented though?
-> 
-> Right now (without "HID: wacom: Add support for the AG14 Wacom
-> device") the wacom touchscreen is just registered as a generic HID
-> device. I don't see any good place in hid-core, hid-input or
-> hid-generic to invert the input values for this.
+Quoting Satya Priya (2021-10-19 03:48:51)
+> From: satya priya <skakit@codeaurora.org>
+>
+> Add pwm support for PM8350C pmic.
+>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - Dropped suffix '4' from pwm phandle and removed "status=ok".
+>
+>  arch/arm64/boot/dts/qcom/pm8350c.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> index e1b75ae..08fc0a8 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
+> @@ -29,6 +29,12 @@
+>                         interrupt-controller;
+>                         #interrupt-cells = <2>;
+>                 };
+> +
+> +               pm8350c_pwm: pwm {
+> +                       compatible = "qcom,pm8350c-pwm";
 
-I think the transformation should happen in
-hid-multitouch.c::mt_process_slot() using helpers from
-include/linux/input/touchscreen.h
+It should have a reg property. Every node should have a single cell for
+the reg property because the parent has #address-cells = <1>
 
-I think the more challenging question is to how pass/attach struct
-touchscreen_properties * to the hid device (i expect the properties will
-be attached to i2c-hid device, but maybe we could create a sub-node of
-it and attach properties there.
-
-Thanks.
-
--- 
-Dmitry
+> +                       #pwm-cells = <2>;
+> +                       status = "disabled";
+> +               };
+>         };
