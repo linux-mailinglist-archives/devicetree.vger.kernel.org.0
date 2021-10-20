@@ -2,150 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 950A04347F3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 11:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEF9434807
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 11:36:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbhJTJcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 05:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbhJTJcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 05:32:07 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB6ECC061749;
-        Wed, 20 Oct 2021 02:29:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id A711B1F43D72
-Subject: Re: [PATCH v2 2/9] soc: mediatek: mutex: expand parameter for mdp
- mutex function
-To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
+        id S230024AbhJTJi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 05:38:28 -0400
+Received: from smtp-relay-canonical-0.canonical.com ([185.125.188.120]:50928
+        "EHLO smtp-relay-canonical-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229555AbhJTJi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 05:38:27 -0400
+Received: from workstation5.fritz.box (ip-88-152-144-157.hsi03.unitymediagroup.de [88.152.144.157])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-canonical-0.canonical.com (Postfix) with ESMTPSA id 2E7F03FFE4;
+        Wed, 20 Oct 2021 09:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634722572;
+        bh=bAoP1FRiCuy1+/FURCUdf01qjwFj5kNYA9taKaOAcu4=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=XnzyDxewYJGTGBxlg71DeHB66UWnfd82EVEm/zwRbcfvTQysIL70WtTnPhXBZzMwI
+         UDbN5qUjEbN4FRJymfUrT9bN4oNycc5qA+tbo1SAiQUaMYfMFYwesMXDilH33Sz0hA
+         nuTt07ydy5wJaXnTTyAFaVX6ftqtf2SqiUskyQuGKUHGk1zuP4V+g4FVQHLtfk+X5n
+         AJJm4UCK9LbC0oQwF8z0t3df34VGmCR4W/ezI1/xQNFkJR9+3q5SI7ZanUEOnkrS/K
+         7HoJ/ryvjMNmVjbjCv3SUMq2HKgdF6U1JBKYVX1VUuhLkqGY71Yc1yjhAnCSPh4EBG
+         Ci+JwbFxeRTCA==
+From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Guo Ren <guoren@linux.alibaba.com>, Bin Meng <bmeng.cn@gmail.com>,
+        Xiang W <wxjstz@126.com>, Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atish.patra@wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        "river . cheng" <river.cheng@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20211020071448.14187-1-roy-cw.yeh@mediatek.com>
- <20211020071448.14187-3-roy-cw.yeh@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <0eaea2d4-1683-622a-e814-8b6c7c3eab2e@collabora.com>
-Date:   Wed, 20 Oct 2021 11:29:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        opensbi@lists.infradead.org,
+        Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Subject: [PATCH 1/1] dt-bindings: T-HEAD CLINT
+Date:   Wed, 20 Oct 2021 11:36:03 +0200
+Message-Id: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20211020071448.14187-3-roy-cw.yeh@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/10/21 09:14, roy-cw.yeh ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> Expand parameter for mdp mutex function
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
+not support 64bit mmio access to the MTIMER device.
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
+restriction and the "sifive,cling0" compatible string. An OpenSBI
+patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
+is generally used in the devicetree schema for such a condition.
 
+As the design is not SiFive based it is preferable to apply a compatible
+string identifying T-HEAD instead.
 
-> ---
->   drivers/soc/mediatek/mtk-mutex.c       | 26 ++++++++++++++++++--------
->   include/linux/soc/mediatek/mtk-mutex.h |  2 +-
->   2 files changed, 19 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-> index 814f58f692cf..c100a5249016 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -25,8 +25,9 @@
->   #define DISP_REG_MUTEX_EN(n)			(0x20 + 0x20 * (n))
->   #define DISP_REG_MUTEX(n)			(0x24 + 0x20 * (n))
->   #define DISP_REG_MUTEX_RST(n)			(0x28 + 0x20 * (n))
-> -#define DISP_REG_MUTEX_MOD(mutex_mod_reg, n)	(mutex_mod_reg + 0x20 * (n))
-> -#define DISP_REG_MUTEX_SOF(mutex_sof_reg, n)	(mutex_sof_reg + 0x20 * (n))
-> +#define DISP_REG_MUTEX_MOD(mutex_mod_reg, n)	((mutex_mod_reg) + 0x20 * (n))
-> +#define DISP_REG_MUTEX_MOD1(mutex_mod_reg, n)	((mutex_mod_reg) + 0x20 * (n) + 0x4)
-> +#define DISP_REG_MUTEX_SOF(mutex_sof_reg, n)	((mutex_sof_reg) + 0x20 * (n))
->   #define DISP_REG_MUTEX_MOD2(n)			(0x34 + 0x20 * (n))
->   
->   #define INT_MUTEX				BIT(1)
-> @@ -116,6 +117,11 @@
->   #define MT8183_MUTEX_MDP_MOD_MASK		0x07FFFFFF
->   #define MT8183_MUTEX_MDP_SOF_MASK		0x00000007
->   
-> +#define MT8183_MDP_PIPE_IMGI			MT8183_MUTEX_MDP_START
-> +#define MT8183_MDP_PIPE_RDMA0			(MT8183_MUTEX_MDP_START + 1)
-> +#define MT8183_MDP_PIPE_WPEI			(MT8183_MUTEX_MDP_START + 2)
-> +#define MT8183_MDP_PIPE_WPEI2			(MT8183_MUTEX_MDP_START + 3)
-> +
->   struct mtk_mutex {
->   	int id;
->   	bool claimed;
-> @@ -254,10 +260,10 @@ static const unsigned int mt8183_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->   
->   /* indicate which mutex is used by each pipepline */
->   static const unsigned int mt8183_mutex_mdp_offset[MDP_PIPE_MAX] = {
-> -	[MDP_PIPE_IMGI] = MT8183_MUTEX_MDP_START,
-> -	[MDP_PIPE_RDMA0] = MT8183_MUTEX_MDP_START + 1,
-> -	[MDP_PIPE_WPEI] = MT8183_MUTEX_MDP_START + 2,
-> -	[MDP_PIPE_WPEI2] = MT8183_MUTEX_MDP_START + 3
-> +	[MDP_PIPE_IMGI] = MT8183_MDP_PIPE_IMGI,
-> +	[MDP_PIPE_RDMA0] = MT8183_MDP_PIPE_RDMA0,
-> +	[MDP_PIPE_WPEI] = MT8183_MDP_PIPE_WPEI,
-> +	[MDP_PIPE_WPEI2] = MT8183_MDP_PIPE_WPEI2,
->   };
->   
->   static const struct mtk_mutex_data mt2701_mutex_driver_data = {
-> @@ -410,7 +416,7 @@ void mtk_mutex_add_comp(struct mtk_mutex *mutex,
->   EXPORT_SYMBOL_GPL(mtk_mutex_add_comp);
->   
->   void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
-> -			   struct mmsys_cmdq_cmd *cmd)
-> +			   u32 mod1, u32 sof, struct mmsys_cmdq_cmd *cmd)
->   {
->   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
->   						 mutex[mutex->id]);
-> @@ -422,9 +428,13 @@ void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
->   	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr + offset,
->   			    mod, mtx->data->mutex_mdp_mod_mask);
->   
-> +	offset = DISP_REG_MUTEX_MOD1(mtx->data->mutex_mod_reg, mutex->id);
-> +	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr + offset,
-> +			    mod1, mtx->data->mutex_mdp_mod_mask);
-> +
->   	offset = DISP_REG_MUTEX_SOF(mtx->data->mutex_sof_reg, mutex->id);
->   	cmdq_pkt_write_mask(cmd->pkt, mtx->subsys_id, mtx->addr + offset,
-> -			    0, mtx->data->mutex_mdp_sof_mask);
-> +			    sof, mtx->data->mutex_mdp_sof_mask);
->   }
->   EXPORT_SYMBOL_GPL(mtk_mutex_add_mdp_mod);
->   
-> diff --git a/include/linux/soc/mediatek/mtk-mutex.h b/include/linux/soc/mediatek/mtk-mutex.h
-> index d08b98419dd9..a2b81ce55b5d 100644
-> --- a/include/linux/soc/mediatek/mtk-mutex.h
-> +++ b/include/linux/soc/mediatek/mtk-mutex.h
-> @@ -17,7 +17,7 @@ int mtk_mutex_prepare(struct mtk_mutex *mutex);
->   void mtk_mutex_add_comp(struct mtk_mutex *mutex,
->   			enum mtk_ddp_comp_id id);
->   void mtk_mutex_add_mdp_mod(struct mtk_mutex *mutex, u32 mod,
-> -			   struct mmsys_cmdq_cmd *cmd);
-> +			   u32 mod1, u32 sof, struct mmsys_cmdq_cmd *cmd);
->   void mtk_mutex_enable(struct mtk_mutex *mutex);
->   void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
->   			      struct mmsys_cmdq_cmd *cmd);
-> 
+Add a new yaml file describing the T-HEAD CLINT.
 
+Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+---
+@Palmer, @Anup
+I copied you as maintainers from sifive,clint.yaml. Please, indicate if
+this should be changed.
+
+For the prior discussion see:
+https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
+https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
+
+A release candidate of the ACLINT specification is available at
+https://github.com/riscv/riscv-aclint/releases
+---
+ .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
+
+diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+new file mode 100644
+index 000000000000..02463fb2043a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+@@ -0,0 +1,62 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SiFive Core Local Interruptor
++
++maintainers:
++  - Palmer Dabbelt <palmer@dabbelt.com>
++  - Anup Patel <anup.patel@wdc.com>
++
++description:
++  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
++  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
++  interrupts. It directly connects to the timer and inter-processor interrupt
++  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
++  interrupt controller is the parent interrupt controller for CLINT device.
++  The clock frequency of the CLINT is specified via "timebase-frequency" DT
++  property of "/cpus" DT node. The "timebase-frequency" DT property is
++  described in Documentation/devicetree/bindings/riscv/cpus.yaml
++
++properties:
++  compatible:
++    items:
++      - const:
++          - allwinner,sun20i-d1-clint
++      - const:
++          - thead,clint0
++
++    description:
++      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
++      the T-HEAD derived CLINTs.
++      Supported compatible strings are -
++      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
++      and "thead,clint0" for the T-HEAD IP block with no chip
++      integration tweaks.
++
++  reg:
++    maxItems: 1
++
++  interrupts-extended:
++    minItems: 1
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts-extended
++
++examples:
++  - |
++    timer@2000000 {
++      compatible = "allwinner,sun20i-d1-clint", "thead,clint0";
++      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
++                             &cpu2intc 3 &cpu2intc 7
++                             &cpu3intc 3 &cpu3intc 7
++                             &cpu4intc 3 &cpu4intc 7>;
++       reg = <0x2000000 0x10000>;
++    };
++...
+-- 
+2.32.0
 
