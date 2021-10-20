@@ -2,71 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 047634354B5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 22:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BA624354E1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 23:02:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbhJTUoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 16:44:13 -0400
-Received: from ixit.cz ([94.230.151.217]:57960 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230325AbhJTUoN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 16:44:13 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 9C30720064;
-        Wed, 20 Oct 2021 22:41:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1634762516;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=bXw0JZYeVYpDrBpFwSaI87WeHbGG+hkhQghNnAqIAHg=;
-        b=To3+wnwaigWLhsWtNUmnpEipcFmg9F6bZc18BsMPT7rp2BbU8qlQH6czgDYDwz7+iE/lfX
-        iN53mou2gEtyXm68CCA1Nlu7NUCLQOglQMYGiotGWgh5as8j9VZFtVeZg4ql4lT/CYLRaK
-        p4lrJRD+ghwuGJWbJc/6+gLacf1y9zo=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: fix flash node naming for RB3011
-Date:   Wed, 20 Oct 2021 22:41:44 +0200
-Message-Id: <20211020204145.235050-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S230308AbhJTVEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 17:04:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57664 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229943AbhJTVEc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 17:04:32 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668B0C061749
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 14:02:16 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id t184so10627382pgd.8
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 14:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=aEJ4aClzzu5M+yXLNrCl94comgnOtbH7g1x4aaTR2/c=;
+        b=GikTc+5IV3eD51X5uI3yzoZYmKC7Yr4vKdZ8qjxkUY583xnRiFULZuVXqgMwYtozXx
+         l0FPaxlD8F+TzqockpUYUWpMmEQo3U9W6kw3lbKMqNLyxxfqhSWuA9GCoBeAqkVP02jD
+         j5n27xv7ljZTpnFM+m24txDgSGIisdFK/lbVE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=aEJ4aClzzu5M+yXLNrCl94comgnOtbH7g1x4aaTR2/c=;
+        b=54rd7j12XiZaQ5iiWVtdgQ2a3yxPN+sC38bKtiqmjNp2TpYrwtqOS0mFJ/AABDb+9L
+         3QZ6753zqNPYcV+ofmFz9mqYZsnMfXxjb5fxfkse7AyPS2eIiBpkHBlaP1461c0hIke3
+         anr3rnuYd7SurLA9G5zXCNuV1bVxR17MognsBMkTgzbxzGzpGXU7hH8XCOY8vYcYXugn
+         4OhuzEIzl6G1iL2grc4ZfTahEqGrQxvwFjhdDRvLeXmdHhkiXiqGUfLiTQ99CUFWc0Tn
+         ExVpk/TtWjHpNibN2QENBzsdRyuj+3i++C3OgATZ6TRueViXgCbEsUhX3LsrvgFNbjxn
+         aktg==
+X-Gm-Message-State: AOAM533mwWfU37QK7zdWiH0dsNrOaRNlulyadgrWfIYbUjJy9lwN3jiM
+        m0PHsJ7+BEuwQmwaKGqk9kyvsg==
+X-Google-Smtp-Source: ABdhPJz2CgbXheR9DbGF3q23WRYHZCtYywJXpdmuXkB5TBHsWGRJt2taiEpwvmG0a/on2vqLgOQXpQ==
+X-Received: by 2002:a63:7119:: with SMTP id m25mr1185739pgc.253.1634763735988;
+        Wed, 20 Oct 2021 14:02:15 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d5fe:85e9:caf2:ec4e])
+        by smtp.gmail.com with UTF8SMTPSA id p25sm4319527pfh.86.2021.10.20.14.01.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 14:01:54 -0700 (PDT)
+Date:   Wed, 20 Oct 2021 14:01:21 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v16 6/7] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <YXCDobJSuytwthoA@google.com>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <20210813125146.v16.6.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <dfac0025-b693-2431-04c8-1dba7ef32141@linux.intel.com>
+ <YXB7vIP6ifQS3T4o@google.com>
+ <20211020203720.GA1137200@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211020203720.GA1137200@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-rename node to comply with dt-schema
+On Wed, Oct 20, 2021 at 04:37:20PM -0400, Alan Stern wrote:
+> On Wed, Oct 20, 2021 at 01:27:40PM -0700, Matthias Kaehlcke wrote:
+> > Hi Mathias,
+> > 
+> > On Wed, Oct 20, 2021 at 04:05:37PM +0300, Mathias Nyman wrote:
+> > > If separate devices for controlling onboard hub power is the right solution then
+> > > how about creating the onboard hub device in usb_add_hcd() (hcd.c), and
+> > > store it in struct usb_hcd.
+> > > 
+> > > A bit like how the roothub device is created, or PHYs are tuned.
+> > 
+> > Sure, that sounds feasible, even better if it's handled in a single place
+> > and different types of controllers don't have to add support separately.
+> 
+> Bear in mind that this would prevent you from working with onboard
+> non-root hubs.
 
-Fix warning:
-arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml: s25fl016k@0: $nodename:0: 's25fl016k@0' does not match '^flash(@.*)?$'
-	From schema: Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+My goal is to (architecturally) support nested hubs, but TBH I haven't
+looked much into such a configuration since I don't have hardware for
+testing. My assumption was that support for onboard hubs connected to
+non-root hubs whould have to be added to the generic hub driver.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-index f7ea2e5dd191..0244dda06ee8 100644
---- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-@@ -172,7 +172,7 @@ spi4: spi@1a280000 {
- 
- 				cs-gpios = <&qcom_pinmux 20 GPIO_ACTIVE_HIGH>;
- 
--				norflash: s25fl016k@0 {
-+				norflash: flash@0 {
- 					compatible = "jedec,spi-nor";
- 					#address-cells = <1>;
- 					#size-cells = <1>;
--- 
-2.33.0
-
+Could you elaborate in how far you think it would be different for
+xhci_plat vs generic hcd?
