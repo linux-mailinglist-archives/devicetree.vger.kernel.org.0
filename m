@@ -2,105 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5E82435128
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 19:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 383DC435186
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 19:41:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbhJTR1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 13:27:01 -0400
-Received: from mail-0201.mail-europe.com ([51.77.79.158]:51282 "EHLO
-        mail-0201.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbhJTR1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 13:27:01 -0400
-Date:   Wed, 20 Oct 2021 17:24:32 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1634750682;
-        bh=77z2TAz6twFFcjLPzt2kV+UKOHbqTBnqrqy+N6bDW/k=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=qOeFKyQBfqHLSTz41MPxXFO6A2WHcVu9xLb1iy0dUDXfupgvOpbI1jDcH5g8TQcRR
-         trg2pWpGlpFJ0UQOkSjgdl6JCaMR8wQHaqCSJ0pHhgUGbHQs1vZBaBGCmdjkn2yITo
-         a4PGmvE6E1IyGZQGZfpWAKr1OACp++rCbmHnVUhs=
-To:     Steev Klimaszewski <steev@kali.org>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S230474AbhJTRnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 13:43:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231179AbhJTRnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 13:43:49 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6791C06174E
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 10:41:34 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id t5-20020a17090a4e4500b001a0a284fcc2so1070173pjl.2
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 10:41:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tLS8+kBpzekWeBdekKGTRJk0E4srTCOVGmq4Px1Q8VQ=;
+        b=gJbARJpG2w9XXkcZ6CSy2/THoVI0FcFNYFPuofYL8NVisjqdt0X0eq+HH+reaQpVXm
+         5MI+SplxtlxvZ1E0OLUyfIl/XiVcXduiwQnprTmO3DEStW4HT30c1IoDI1oVZxm+iOAV
+         3/XJwkPNgY1b56D39N24JZYm6H5qZHpfKUBzM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tLS8+kBpzekWeBdekKGTRJk0E4srTCOVGmq4Px1Q8VQ=;
+        b=47dR8IR9QEEmdOz2YBM5idEv1sQmMNz5qMZ2opKRrKnn20wwpwiZqKC/W/ja8jezbD
+         kXoHS6FByii0eS80HCD4RfwqVXMrQjQf8We04p0/K3bgcXGGrw5JPoaHQQVRA9y4GO5P
+         0BlsuWGRvmNZFltfoLVOeKc3GepJwy6DBDeOSuYJNAbWqbP0JrCqPl9A03CXyZjCmw4T
+         eKw9XT5UN+ZlY+iPEhf33uItCgcP9pCVnUvK2Ma2WzWilSlYAkODVHwWmyh8IQlPpYYf
+         xpxebHgFO11RlrYThKr0kur8qnQdaYM5+QSjA1K4U3tPYuVRfGhsjF3WK5g3g9rKeqQw
+         nV1Q==
+X-Gm-Message-State: AOAM533e7cSh5Eh61Mu3KVQFvVW8l7XpDLGGos3HhpDy4v7o6M34lWsC
+        STTCgzVv/1EbpvzdYszUwrM+Iw==
+X-Google-Smtp-Source: ABdhPJzlGMQDOJLoQZpO+D08HsHF1MsykzBHtuqJvEm206lRGp9Qb3pe7UydXadxkqIvENvT61l62w==
+X-Received: by 2002:a17:903:1ca:b0:13e:f367:9361 with SMTP id e10-20020a17090301ca00b0013ef3679361mr507344plh.3.1634751694235;
+        Wed, 20 Oct 2021 10:41:34 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d5fe:85e9:caf2:ec4e])
+        by smtp.gmail.com with UTF8SMTPSA id i128sm3148602pfc.47.2021.10.20.10.41.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Oct 2021 10:41:33 -0700 (PDT)
+Date:   Wed, 20 Oct 2021 10:41:31 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Doug Anderson <dianders@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus: enable second wifi channel
-Message-ID: <037d2bee-c04d-aa22-c8df-232dda4038a1@connolly.tech>
-In-Reply-To: <19359125-16fa-f9e0-1450-b0e9181064e1@kali.org>
-References: <20211020163557.291803-1-caleb@connolly.tech> <19359125-16fa-f9e0-1450-b0e9181064e1@kali.org>
+        Alan Stern <stern@rowland.harvard.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        Al Viro <viro@zeniv.linux.org.uk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Alexandre TORGUE - foss <alexandre.torgue@foss.st.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Andy Gross <agross@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jens Axboe <axboe@kernel.dk>, Johan Hovold <johan@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Lionel DEBIEVE <lionel.debieve@st.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Mark Brown <broonie@kernel.org>,
+        Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>,
+        Nishanth Menon <nm@ti.com>,
+        Olivier MOYSAN <olivier.moysan@st.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Robert Richter <rric@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tony Lindgren <tony@atomide.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        William Cohen <wcohen@redhat.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Subject: Re: [PATCH v16 0/7] usb: misc: Add onboard_usb_hub driver
+Message-ID: <YXBUywpxasyTtSCr@google.com>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <YUoRq1RrOIoiBJ5+@google.com>
+ <CAD=FV=WrddUhWT0wUVZD0gN_+8Zy1VGY77LYLYBvhaPQQ_SqZw@mail.gmail.com>
+ <YWkiGGBKOVokBye9@kroah.com>
+ <03f28680-35eb-25f4-5041-f3a56144da24@foss.st.com>
+ <0739e563-c8e7-2a19-e440-4f32e7de3917@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Disposition: inline
+In-Reply-To: <0739e563-c8e7-2a19-e440-4f32e7de3917@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Steev,
+On Wed, Oct 20, 2021 at 08:21:21AM +0200, Michal Simek wrote:
+> 
+> 
+> On 10/19/21 18:04, Fabrice Gasnier wrote:
+> > On 10/15/21 8:39 AM, Greg Kroah-Hartman wrote:
+> > > On Thu, Oct 14, 2021 at 02:38:55PM -0700, Doug Anderson wrote:
+> > > > Hi,
+> > > > 
+> > > > On Tue, Sep 21, 2021 at 10:09 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> > > > > 
+> > > > > Hi Greg,
+> > > > > 
+> > > > > are there any actions pending or can this land in usb-testing?
+> > > > > 
+> > > > > I confirmed that this series can be rebased on top of v5.15-rc2
+> > > > > without conflicts.
+> > > > 
+> > > > I'm quite interested to know what the next action items are, too. This
+> > > > is one of the very few patches we have for trogdor (excluding MIPI
+> > > > camera, which is a long story) that we're carrying downstream, so I'm
+> > > > keenly interested in making sure it's unblocked (if, indeed, it's
+> > > > blocked on anything).
+> > > > 
+> > > > If folks feel that this needs more review eyes before landing again
+> > > > then I'll try to find some time in the next week or two. If it's just
+> > > > waiting for the merge window to open/close so it can have maximal bake
+> > > > time, that's cool too. Please yell if there's something that I can do
+> > > > to help, though! :-)
+> > > 
+> > > I would love more review-eyes on this please.
+> > > 
+> > 
+> > Hi,
+> > 
+> > I noticed this series some time ago, and wanted to take a closer look.
+> > 
+> > The same issue this series address is seen on stm32 board for instance.
+> > (arch/arm/boot/dts/stm32mp15xx-dkx.dtsi). On board HUB (not described in
+> > the DT) is supplied by an always-on regulator.
+> > So it could could be interesting/useful to address the same case ,
+> > on stm32 boards, where USB2 (ehci-platform driver) is used currently.
+> > 
+> > I noticed a few things, especially on the dt-bindings. I've some
+> > questions here.
+> > 
+> > In this series, RTS5411 is used. The dt-bindings documents it as a child
+> > node of the USB controller. E.g.
+> > 
+> > &usb {
+> > 	usb_hub_2_0: hub@1 {
+> > 		...
+> > 	};
+> > 
+> > 	usb_hub_3_0: hub@2 {
+> > 	};
+> > }
+> > 
+> > I had a quick look at RTS5411 datasheet. It looks like there's an i2c
+> > interface too.
+> > - I guess the I2C interface isn't used in your case ?
+> >    (I haven't checked what it could be used for...)
+> > 
+> > In the stm32 boards (stm32mp15xx-dkx), there's an usb2514b chip
+> > - that also could be wired on I2C interface (0R mount option)
+> > - unused on stm32 boards by default
+> > 
+> > usb2514b chip already has a dt-bindings (with compatible), and a driver:
+> > - drivers/usb/misc/usb251xb.c
+> > - Documentation/devicetree/bindings/usb/usb251xb.txt
+> > 
+> > It is defined more as an i2c chip, so I'd expect it as an i2c child,
+> > e.g. like:
+> > 
+> > &i2c {
+> > 	usb2514b@2c {
+> > 		compatible = "microchip,usb2514b";
+> > 		...
+> > 	};
+> > };
+> > 
+> > 
+> > This way, I don't see how it could be used together with onboard_usb_hub
+> > driver ? (But I may have missed it)
+> > Is it possible to use a phandle, instead of a child node ?
+> > 
+> > However, in the stm32mp15xx-dkx case, i2c interface isn't wired/used by
+> > default. So obviously the i2c driver isn't used. In this case, could the
+> > "microchip,usb2514b" be listed in onboard_usb_hub driver ?
+> > (wouldn't it be redundant ?)
+> > 
+> > In this case it would be a child node of the usb DT node... Maybe that's
+> > more a question for Rob: would it be "legal" regarding existing
+> > dt-bindings ?
+> 
+> We wanted to upstream driver for microchip usb5744 and based on this thread
+> with Rob
+> 
+> https://lore.kernel.org/all/CAL_JsqJZBbu+UXqUNdZwg-uv0PAsNg55026PTwhKr5wQtxCjVQ@mail.gmail.com/
+> 
+> the recommendation was to use i2c-bus link. And in our usb5744 case where
+> usb hub has only one i2c address we just hardcoded it in the driver. I
+> should be pushing this driver to xilinx soc tree soon if you want to take a
+> look.
 
-On 20/10/2021 18:13, Steev Klimaszewski wrote:
-> Hi Caleb,
->
-> On 10/20/21 11:36 AM, Caleb Connolly wrote:
->> Like the c630, the OnePlus 6 is also capable of using both antenna
->> channels for 2.4 and 5ghz wifi, however unlike the c630 only the first
->> channel is used for bluetooth.
->>
->> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
->> ---
->>    arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 7 +++++++
->>    1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/=
-arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> index d4355522374a..8bf2430a3af7 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
->> @@ -248,6 +248,12 @@ vreg_l20a_2p95: ldo20 {
->>    =09=09=09regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>    =09=09};
->>
->> +=09=09vreg_l23a_3p3: ldo23 {
->> +=09=09=09regulator-min-microvolt =3D <3300000>;
->> +=09=09=09regulator-max-microvolt =3D <3312000>;
->> +=09=09=09regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->> +=09=09};
->> +
->>    =09=09vdda_qusb_hs0_3p1:
->>    =09=09vreg_l24a_3p075: ldo24 {
->>    =09=09=09regulator-min-microvolt =3D <3088000>;
->> @@ -647,6 +653,7 @@ &wifi {
->>    =09vdd-1.8-xo-supply =3D <&vreg_l7a_1p8>;
->>    =09vdd-1.3-rfa-supply =3D <&vreg_l17a_1p3>;
->>    =09vdd-3.3-ch0-supply =3D <&vreg_l25a_3p3>;
->> +=09vdd-3.3-ch1-supply =3D <&vreg_l23a_3p3>;
->>
->>    =09qcom,snoc-host-cap-8bit-quirk;
->>    };
->> --
->> 2.33.1
->>
->>
-> Just for the record, I added it for completeness, as far as I can tell,
-> the bluetooth driver itself won't use the second channel.
-Ah I see, I can confirm that the bluetooth hardware is only connected to th=
-e first channel on the op6, so with wifi off
-the second antenna can also be turned off to save power without affecting b=
-luetooth signal strength.
->
->
-> -- steev
->
-
---
-Kind Regards,
-Caleb
-
+Interesting, with the 'i2c-bus' link it might be feasible to support the
+i2c functionality in the onboard_usb_hub driver if desired. Not sure how
+things would look when the hub can have different i2c addresses. Also in
+case of powering down the hub during system suspend any configuration
+through i2c would have to be done again on resume.
