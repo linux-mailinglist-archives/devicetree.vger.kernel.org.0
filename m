@@ -2,24 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4037F434ED3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B07434EE2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbhJTPSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34386 "EHLO
+        id S229702AbhJTPVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229570AbhJTPSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:18:20 -0400
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257DEC06161C
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 08:16:06 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AA9903F36D;
-        Wed, 20 Oct 2021 17:16:00 +0200 (CEST)
+        with ESMTP id S230314AbhJTPVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:21:06 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AFDC06161C;
+        Wed, 20 Oct 2021 08:18:51 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 308141F441DD
 Subject: Re: [PATCH v16 6/7] arm64: dts: mt8192: add svs device information
 To:     Roger Lu <roger.lu@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
@@ -44,9 +41,9 @@ Cc:     Fan Chen <fan.chen@mediatek.com>,
 References: <20210428065440.3704-1-roger.lu@mediatek.com>
  <20210428065440.3704-7-roger.lu@mediatek.com>
 From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <855e004b-b128-70f7-b1d2-9fe957c94e08@somainline.org>
-Date:   Wed, 20 Oct 2021 17:16:00 +0200
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <dec2190e-ce5a-3192-73b4-f4aae772bf2d@collabora.com>
+Date:   Wed, 20 Oct 2021 17:18:45 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
@@ -68,6 +65,7 @@ Il 28/04/21 08:54, Roger Lu ha scritto:
 > 
 
 Hello Roger,
+
 thanks for this series! However, there is an issue with this patch:
 
 > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
@@ -86,8 +84,12 @@ thanks for this series! However, there is an issue with this patch:
 > +					0x150 5 0x154 5 0 0     (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: svs */
 
 You are using macros here, which are defined in dt-bindings/reset/ti-syscon.h
+
 hovever, you are not including this header in this devicetree, so it's not
+
 compiling.
+
+
 
 Please fix it.
 
@@ -130,14 +132,21 @@ arch/arm64/boot/dts/mediatek/mt8192.dtsi:510.5-24: Warning (reg_format):
 /soc/efuse@11c10000/data1:reg: property has invalid length (8 bytes) 
 (#address-cells == 2, #size-cells == 1)
 
+
+
 arch/arm64/boot/dts/mediatek/mt8192.dtsi:513.5-24: Warning (reg_format): 
 /soc/efuse@11c10000/calib@580:reg: property has invalid length (8 bytes) 
 (#address-cells == 2, #size-cells == 1)
 
 
+
+
+
 In short, you should add here:
-			#address-cells = <1>;
-			#size-cells = <1>;
+
+             #address-cells = <1>;
+
+             #size-cells = <1>;
 
 > +			lvts_e_data1: data1 {
 > +				reg = <0x1C0 0x58>;
@@ -152,5 +161,10 @@ In short, you should add here:
 >   			reg = <0 0x11cb0000 0 0x1000>,
 > 
 
+P.S.: Sorry for the double email, the previous one got sent with the wrong
+       address.
+
+
 Regards,
+
 - Angelo
