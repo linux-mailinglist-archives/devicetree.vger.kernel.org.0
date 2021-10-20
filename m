@@ -2,33 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35E9E43461D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 09:45:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2A143465D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229491AbhJTHr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 03:47:59 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46670 "EHLO gloria.sntech.de"
+        id S229498AbhJTIEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 04:04:34 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:46780 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229544AbhJTHr7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 03:47:59 -0400
+        id S229888AbhJTIEG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 04:04:06 -0400
 Received: from [213.208.157.36] (helo=phil.sntech)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1md6IA-0002EF-W5; Wed, 20 Oct 2021 09:45:43 +0200
+        id 1md6XX-0002Hv-PZ; Wed, 20 Oct 2021 10:01:35 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com
-Subject: Re: (subset) [PATCH 1/2] dt-bindings: phy: rockchip: remove usb-phy fallback string for rk3066a/rk3188
-Date:   Wed, 20 Oct 2021 09:45:31 +0200
-Message-Id: <163471592707.690007.3298750911238930727.b4-ty@sntech.de>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add idle cooling devices
+Date:   Wed, 20 Oct 2021 10:01:32 +0200
+Message-Id: <163471688410.692684.11557412132014625068.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210828111218.10026-1-jbx6244@gmail.com>
-References: <20210828111218.10026-1-jbx6244@gmail.com>
+In-Reply-To: <20211001161728.1729664-1-daniel.lezcano@linaro.org>
+References: <20211001161728.1729664-1-daniel.lezcano@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -36,18 +34,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 28 Aug 2021 13:12:17 +0200, Johan Jonker wrote:
-> With the conversion of rockchip-usb-phy.yaml a long time used fallback
-> string for rk3066a/rk3188 was added. The linux driver doesn't do much with
-> the GRF phy address range, however the u-boot driver rockchip_usb2_phy.c
-> does. The bits in GRF_UOC0_CON2 for rk3066a/rk3188 and rk3288 for example
-> don't match. Remove the usb-phy fallback string for rk3066a/rk3188
-> to prevent possible strange side effects.
+On Fri, 1 Oct 2021 18:17:28 +0200, Daniel Lezcano wrote:
+> The thermal framework accepts now the cpu idle cooling device as an
+> alternative when the cpufreq cooling device fails.
+> 
+> Add the node in the DT so the cooling devices will be present and the
+> platforms can extend the thermal zone definition to add them.
 
 Applied, thanks!
 
-[2/2] ARM: dts: rockchip: remove usb-phy fallback string for rk3066a/rk3188
-      commit: 97ef6931208f7ab09f52dd291320aa53878aaa53
+[1/1] arm64: dts: rockchip: Add idle cooling devices
+      commit: 43f9699b0c12d4e50b66723213cef456c52254f3
 
 Best regards,
 -- 
