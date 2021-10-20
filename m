@@ -2,79 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F35774352B7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 20:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19834352F7
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 20:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbhJTSgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 14:36:16 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:43553 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbhJTSgP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 14:36:15 -0400
-Received: by mail-ot1-f44.google.com with SMTP id y15-20020a9d460f000000b0055337e17a55so1887024ote.10;
-        Wed, 20 Oct 2021 11:34:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xnBryV4oUKQXd619YT8sGTDtpc9ycu5jUG/DjRiH8XU=;
-        b=uLCpKczqGefFophjTVw2ebxpfW+B4Q6W/uFwYvVm2LUIWBOkvGSKoCuxqDJ46TfBgu
-         NTUF6nRyEYFjv2g5q7UWD7N73wIyqPCrlw8BmgGveMDvBFZ3hHZVGvPO6UDpuUN6SRdl
-         GUtIbf/vtEa3X7k9COVpLT35S6nd6JfZEqcUcCOKzM3wV3N92KLDFuhSnnaeQcukY7QA
-         Zk4iaMPPG4RsNaHZivkcGd63l05NBrixPFDpd97vLYuybCdoSJdAsSffLAoCJKZT1bKC
-         +HRYgqO0jwoqNahASFMGIHNd+7M5PkFxn9A07xOIVT2TNH6GOFCZgrtMJYlEpqY2Nbrb
-         kblw==
-X-Gm-Message-State: AOAM533Wt+AHqKJD5c+QB9dcYT9/BeaLlJ0wtcAmi8wGVVhRKDNStggS
-        HPYbuXQmGgMhyEC5k0rHwCcRBDz4Ww==
-X-Google-Smtp-Source: ABdhPJxFJm6XC+UQ6kJR5DV/BrsYgXhz8Z4xwoLFsAOPSCFc9ygxbLexEvfXjwyP83HCdpkRpp7QdA==
-X-Received: by 2002:a05:6830:788:: with SMTP id w8mr819981ots.72.1634754840619;
-        Wed, 20 Oct 2021 11:34:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w9sm597696otp.64.2021.10.20.11.33.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Oct 2021 11:33:59 -0700 (PDT)
-Received: (nullmailer pid 2651673 invoked by uid 1000);
-        Wed, 20 Oct 2021 18:33:57 -0000
-Date:   Wed, 20 Oct 2021 13:33:57 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Joey Gouly <joey.gouly@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: Consider DT_SCHEMA_FILES when finding
- all json-schema
-Message-ID: <YXBhFUAgpXaxCK3y@robh.at.kernel.org>
-References: <cover.1634551582.git.geert+renesas@glider.be>
- <174ab1d791b7bc65f3b0f11b72be13af1748c731.1634551582.git.geert+renesas@glider.be>
+        id S231327AbhJTSuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 14:50:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35640 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230076AbhJTSuR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 14:50:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A10E6103D;
+        Wed, 20 Oct 2021 18:48:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634755683;
+        bh=n8VrOe4I2yKWKENo2xOz+GrW26l+tosuZNQ1rYD5gKE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=X8tKojH7Z8fdPyVTk4z+AoVAS3a9h5oYDEVDa7uI3b3vQWDC0RDkopnsSuFW09wMx
+         S5ymoCHlxw+BZDcfi8a/SbXyaru92R/D/4JVacWcGVpk2lCHkMZKGKNpRCcpV4amQE
+         0SC95mBmBf+xrbZsPKYOZ3Tw+i6Awvb4CDoD4fADso7xeFCGtNQbQjFeERWiYt5J4a
+         XviC1MWcQkWkyhnJbBbb7MhB9KdUgixAetlN+ZjGulMI+TYlz6yOX8pi/IJu8QIrAm
+         DPTPSRiUO2vc4Q2/LyUL9rJoQfRdVbdcu/SicgghaP/nLNsd5aIhVOahGYlBk3gw4h
+         jokZEwKpwMQ/g==
+Received: by mail-lf1-f42.google.com with SMTP id g36so328184lfv.3;
+        Wed, 20 Oct 2021 11:48:02 -0700 (PDT)
+X-Gm-Message-State: AOAM532bXNhmVLh6cfAOUxsJB+NDo+eiCLht4tPeKR4iEnlNWXGLeu4P
+        /I69BmJlS2QuRZe9tLV1khZkLcBv1KlsB4zS7g==
+X-Google-Smtp-Source: ABdhPJyDkQcU37hcsbyKe6namKZuEksRA+CPb1y/N+dx0XKOp77yba3905ZumF5lcfjyaXaZElnjUUGJ+2NqhJwXc9g=
+X-Received: by 2002:aa7:cd0a:: with SMTP id b10mr942298edw.164.1634755670808;
+ Wed, 20 Oct 2021 11:47:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <174ab1d791b7bc65f3b0f11b72be13af1748c731.1634551582.git.geert+renesas@glider.be>
+References: <20211006164332.1981454-1-robh@kernel.org>
+In-Reply-To: <20211006164332.1981454-1-robh@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 20 Oct 2021 13:47:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLg1=T52MqhsGgmAcRueC_nJdivGg4h+M2Bd8W3fyHCmg@mail.gmail.com>
+Message-ID: <CAL_JsqLg1=T52MqhsGgmAcRueC_nJdivGg4h+M2Bd8W3fyHCmg@mail.gmail.com>
+Subject: Re: [PATCH 00/12] DT: CPU h/w id parsing clean-ups and cacheinfo id support
+To:     Russell King <linux@armlinux.org.uk>,
+        James Morse <james.morse@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Jonas Bonn <jonas@southpole.se>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        Stafford Horne <shorne@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Rich Felker <dalias@libc.org>, X86 ML <x86@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H. Peter Anvin" <hpa@zytor.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-csky@vger.kernel.org,
+        Openrisc <openrisc@lists.librecores.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        SH-Linux <linux-sh@vger.kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Oct 2021 12:54:48 +0200, Geert Uytterhoeven wrote:
-> Setting DT_SCHEMA_FILES allows the user to restrict the
-> "dt_binding_check" make target to a specified set of DT binding files.
-> However, yamllint is still run on all available files, which not only
-> takes time, but also outputs warnings for other binding files the
-> developer is not interested in.
-> 
-> Fix this by renaming "find_cmd" to "find_all_cmd", introducing a new
-> "find_cmd" to only return the files specified by DT_SCHEMA_FILES (if
-> present), and using the latter for yamllint.
+On Wed, Oct 6, 2021 at 11:43 AM Rob Herring <robh@kernel.org> wrote:
+>
+> The first 10 patches add a new function, of_get_cpu_hwid(), which parses
+> CPU DT node 'reg' property, and then use it to replace all the open
+> coded versions of parsing CPU node 'reg' properties.
+>
+> The last 2 patches add support for populating the cacheinfo 'id' on DT
+> platforms. The minimum associated CPU hwid is used for the id. The id is
+> optional, but necessary for resctrl which is being adapted for Arm MPAM.
+>
+> Tested on arm64. Compile tested on arm, x86 and powerpc.
+>
+> Rob
+>
+> Rob Herring (12):
+>   of: Add of_get_cpu_hwid() to read hardware ID from CPU nodes
+>   ARM: Use of_get_cpu_hwid()
+>   ARM: broadcom: Use of_get_cpu_hwid()
+>   arm64: Use of_get_cpu_hwid()
+>   csky: Use of_get_cpu_hwid()
+>   openrisc: Use of_get_cpu_hwid()
+>   powerpc: Use of_get_cpu_hwid()
+>   riscv: Use of_get_cpu_hwid()
+>   sh: Use of_get_cpu_hwid()
+>   x86: dt: Use of_get_cpu_hwid()
+>   cacheinfo: Allow for >32-bit cache 'id'
+>   cacheinfo: Set cache 'id' based on DT data
 
-We can also do the same thing on dt-doc-validate since checking and 
-preprocessing schemas are separate steps, so I did while applying. 
+I've fixed up the openrisc error and applied 1-10 to the DT tree.
 
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - Introduce find_all_cmd,
->   - Only use the restricted set for yamllint.
-> ---
->  Documentation/devicetree/bindings/Makefile | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
-> 
+The cacheinfo part is going to need some more work. I've found I will
+need the cache affinity (of possible cpus) as well, so I plan to also
+store the affinity instead of looping thru caches and cpus again.
+
+Rob
