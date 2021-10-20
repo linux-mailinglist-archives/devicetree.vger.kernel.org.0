@@ -2,84 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 484084346FE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52DB043474C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 10:50:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229548AbhJTIgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 04:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54158 "EHLO
+        id S229910AbhJTIwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 04:52:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbhJTIgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 04:36:17 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 705E1C06161C;
-        Wed, 20 Oct 2021 01:34:03 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id r19so13397685lfe.10;
-        Wed, 20 Oct 2021 01:34:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=lhlJC9eINwtf3OPi5fDRUQ5o8RilMSHMkBZ4fEM0caE=;
-        b=iX4g1pCFVllFCpx63AQ86dbyahwxdCqygPhUx28cGYjP2ii5yZmdDXvPa7qNdm6V9G
-         9arAuTVBQlTZVYOKBWPxcZsi37ylXoWnueEiKyUH2JM/TPKkGaGLE03iERv51qYOu8d6
-         cv6B6ovg9CGd2nXfJe8wJ8Y3mbEeouQDZd6h+K+pT4MFpr5SvySxUS4fVIiSwAHpzXMM
-         B7BQvXv8Hz9r2xdwziYmKOJ1kXLvifkr8Wb25Sza9ELCN5BudVNkzLLk2xJNKX2Dmp6g
-         pkpdv+QpS+/iQXKEzzsJImARntvdrW+nEpBIOcUBvOJAZ/+LkfMJ+BhBQz7WmmOwEErr
-         QJfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=lhlJC9eINwtf3OPi5fDRUQ5o8RilMSHMkBZ4fEM0caE=;
-        b=RdD/PLYq+W8dXLwZnS8xnPDdeJPP3kfzJHRwjxgk3eqBsnEBacQufg+EgnIcDcSTsh
-         9Ju0PlzZ7H05onDJRMurVUDTAPNMNr9NgPdy9KIqzBn0GQDYxIiyKxAZ8+mXQj+qlTGE
-         mOcVqKSu1emurmmT8CQnTzn/aekAxKGG0ksH96z63Fwv7Sz+sFm1wszrmVXnphldjWLC
-         OFU2KCyyuNj5k0pVlFEQZZhzC2S6Cj4PRUnt8wCViajCZpMNSMrNzQnDvzG8ZdRKygm9
-         K5xdyzqKW0bz7yoOzVmkUL7JaXlfOEmWlC8vZOh4+aLEpZM7wSQh1q9D+/Vamt2n/yrn
-         2S3g==
-X-Gm-Message-State: AOAM530fCGpuvmZjA+37T0GvLdq/zqU960cIXQ1P1qvWHbgRY5AorQlH
-        I36l75mR2A3jqspkwAHmnQ8=
-X-Google-Smtp-Source: ABdhPJyCzQ/cI8HRaRTFUKYOJc35UsvwijD1Z3dH7ElJANOry74TXJmFtqEwmagpApv3ugGRB8/50Q==
-X-Received: by 2002:a05:6512:3c83:: with SMTP id h3mr10833527lfv.170.1634718841033;
-        Wed, 20 Oct 2021 01:34:01 -0700 (PDT)
-Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl. [194.29.137.1])
-        by smtp.gmail.com with ESMTPSA id c6sm136045lfs.211.2021.10.20.01.34.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 01:34:00 -0700 (PDT)
-Message-ID: <a0bf8a10-a73f-a322-422d-ce638212d45c@gmail.com>
-Date:   Wed, 20 Oct 2021 10:33:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.2.0
-Subject: Re: [PATCH] dt-bindings: arm: qcom: Nexus 4 was build by LG, not Asus
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S229663AbhJTIwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 04:52:42 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E895C06161C;
+        Wed, 20 Oct 2021 01:50:28 -0700 (PDT)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id B312A82F9E;
+        Wed, 20 Oct 2021 10:50:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1634719826;
+        bh=HzN4VwCev1h0HKzqcm7IiINVPE1vhUzyaNSEfQ58SfA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PrinXZrndEL6CTZt/2hVmn3+J/TjvbJv8zhu0Wu8HX8fwmvmgb7wko8lpC8Ps8bja
+         3IqbVqYjHaAnj1pSjdVXFO+riuOgU6CzNgVtXoSP52Tx9BBGQg7Myd8XHnDNczZ3qI
+         WeEYlFvIVFkGc0uh+XzmLZ8Xy2EsMiIYz4a0QHGtNZn5V7F3sMkKh1BbSe8/HQVjvY
+         azq8+oRnFG8FQ3335H93Md8uNRaa7PUXA1LPAiphyGHqM4wNWV+Vnp8BDDLOVihgcj
+         E2VRHXe4YQtWnFvLlSzuZHfQWLF0uMLT8AVXF9KUW3VAZQ7Dq7D2SqdOzR7Bfi6J8s
+         au4FoU2tmTZPg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@codeaurora.org>
-Cc:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211020001327.37490-1-david@ixit.cz>
-From:   Konrad Dybcio <konradybcio@gmail.com>
-In-Reply-To: <20211020001327.37490-1-david@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document rohm,clock-output-is-critical property
+Date:   Wed, 20 Oct 2021 10:49:55 +0200
+Message-Id: <20211020084956.83041-1-marex@denx.de>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the possibility to configure PMIC 32kHz output clock as CRITICAL,
+so that they are never gated off. This is useful in case those clock
+supply some vital clock net, which requires the clock to always run.
 
- > dt-bindings: arm: qcom: Nexus 4 was build by LG, not Asus
+The iMX8M RTC XTAL input is one such example, if the clock are ever
+gated off, the system locks up completely. The clock must be present
+and enabled even if the RTC is unused.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-power@fi.rohmeurope.com
+To: linux-clk@vger.kernel.org
+---
+ Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Very cool, but what does that patch change? (It should be more in the 
-likes of
-
-"Fix Nexus 4 vendor prefix", as the patch title should describe the 
-change or
-
-the point of it, not the problem)
-
-
-Konrad
+diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+index 5d531051a153..2497ade2bbd0 100644
+--- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
++++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+@@ -41,6 +41,11 @@ properties:
+   clock-output-names:
+     maxItems: 1
+ 
++  rohm,clock-output-is-critical:
++    description:
++      Never gate off C32K_OUT clock.
++    type: boolean
++
+ # The BD71847 abd BD71850 support two different HW states as reset target
+ # states. States are called as SNVS and READY. At READY state all the PMIC
+ # power outputs go down and OTP is reload. At the SNVS state all other logic
+-- 
+2.33.0
 
