@@ -2,112 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A19834352F7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 20:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E938435305
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 20:50:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231327AbhJTSuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 14:50:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35640 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230076AbhJTSuR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 14:50:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0A10E6103D;
-        Wed, 20 Oct 2021 18:48:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634755683;
-        bh=n8VrOe4I2yKWKENo2xOz+GrW26l+tosuZNQ1rYD5gKE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=X8tKojH7Z8fdPyVTk4z+AoVAS3a9h5oYDEVDa7uI3b3vQWDC0RDkopnsSuFW09wMx
-         S5ymoCHlxw+BZDcfi8a/SbXyaru92R/D/4JVacWcGVpk2lCHkMZKGKNpRCcpV4amQE
-         0SC95mBmBf+xrbZsPKYOZ3Tw+i6Awvb4CDoD4fADso7xeFCGtNQbQjFeERWiYt5J4a
-         XviC1MWcQkWkyhnJbBbb7MhB9KdUgixAetlN+ZjGulMI+TYlz6yOX8pi/IJu8QIrAm
-         DPTPSRiUO2vc4Q2/LyUL9rJoQfRdVbdcu/SicgghaP/nLNsd5aIhVOahGYlBk3gw4h
-         jokZEwKpwMQ/g==
-Received: by mail-lf1-f42.google.com with SMTP id g36so328184lfv.3;
-        Wed, 20 Oct 2021 11:48:02 -0700 (PDT)
-X-Gm-Message-State: AOAM532bXNhmVLh6cfAOUxsJB+NDo+eiCLht4tPeKR4iEnlNWXGLeu4P
-        /I69BmJlS2QuRZe9tLV1khZkLcBv1KlsB4zS7g==
-X-Google-Smtp-Source: ABdhPJyDkQcU37hcsbyKe6namKZuEksRA+CPb1y/N+dx0XKOp77yba3905ZumF5lcfjyaXaZElnjUUGJ+2NqhJwXc9g=
-X-Received: by 2002:aa7:cd0a:: with SMTP id b10mr942298edw.164.1634755670808;
- Wed, 20 Oct 2021 11:47:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211006164332.1981454-1-robh@kernel.org>
-In-Reply-To: <20211006164332.1981454-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 20 Oct 2021 13:47:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLg1=T52MqhsGgmAcRueC_nJdivGg4h+M2Bd8W3fyHCmg@mail.gmail.com>
-Message-ID: <CAL_JsqLg1=T52MqhsGgmAcRueC_nJdivGg4h+M2Bd8W3fyHCmg@mail.gmail.com>
-Subject: Re: [PATCH 00/12] DT: CPU h/w id parsing clean-ups and cacheinfo id support
-To:     Russell King <linux@armlinux.org.uk>,
-        James Morse <james.morse@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        Stafford Horne <shorne@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Rich Felker <dalias@libc.org>, X86 ML <x86@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        id S231163AbhJTSwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 14:52:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230076AbhJTSwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 14:52:43 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438ADC06161C;
+        Wed, 20 Oct 2021 11:50:29 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id q10-20020a17090a1b0a00b001a076a59640so4307871pjq.0;
+        Wed, 20 Oct 2021 11:50:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jCTb2WHpCoALHksNWsQaKHhY8JPhECfpgoUvgy9th8Y=;
+        b=iJguvjx1coWd0eNGdUNUyqXo+TUzvTVmLESIXbT/pGmTkUWVWvBHDtPOD2cM69N/KW
+         MYWrYzeyAwV0MX3vupC221ZIIrqg5E8rYb04svCyOiQIPY20v0BeXleS1pfFPAMFbonG
+         HQuLiiHt3SPaRO734w2e4lbPR0YNB3fQi23n0a6jiGNbcI7Nbs3c8a7ZgJLzbXJjCS89
+         dQNxwu9Nj6kY0QfNjM3VXQdWgvsxusUCpbSnlB3rnblBY4Z8qXCnahCq+IUcfLdNZTFP
+         OXus2dfyXIC6LJSvxjGT8wobH+ysVoeCzrL0b5BjQZAftRDUiVQgee2+Sml7DFfgbJFm
+         iYpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jCTb2WHpCoALHksNWsQaKHhY8JPhECfpgoUvgy9th8Y=;
+        b=tAmZDZd1JBVg2sEkvCJjCW4jIc1TrfKyiGNvEIuYOOoeS1xnlQjZmfbhKbHL+TFxmb
+         T+vDzSDjhGzRj9A0NX2A4PziGSj3LhImZS47SfRVHP4PyhwxX3Nq7gh5gvJnVraThtCz
+         Lr4/5/b/ERr7+t+NJUWhdDvqQ0Tw56noZrmg/u86ymcZ3umbZZkMSFKOAc3umRHVez5g
+         PnSOTfdmiwreJMQb2njJSr2f7s6lNqsnqPyHjow+5ogCxmOZt9MiTpOYkdjRBNqtQAw0
+         T3lRexhoN185pCY7ODs8hw/vs3NfIN1FwEiZORenIIT+A2f/VmxjG4ljtuqszUhV+/6u
+         vorg==
+X-Gm-Message-State: AOAM533VqitDo4witB9qIj0ZSpg3HMbspDPTaRSwDeaAC1RKRGyYcI2r
+        NllsqyN35iLDYTyNdmJ1Omgp0DiW6Ns=
+X-Google-Smtp-Source: ABdhPJxsrSXaveNPHaZktrIOBkh5ClOyOONpYSte2ljo9Suw+qbalLBZqIShPizPhoBJRQkU9Ngtaw==
+X-Received: by 2002:a17:902:e5cb:b0:13f:25b7:4d50 with SMTP id u11-20020a170902e5cb00b0013f25b74d50mr719178plf.38.1634755828325;
+        Wed, 20 Oct 2021 11:50:28 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id o127sm3267863pfb.216.2021.10.20.11.50.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Oct 2021 11:50:27 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
         Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM
+        BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE...),
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-csky@vger.kernel.org,
-        Openrisc <openrisc@lists.librecores.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        SH-Linux <linux-sh@vger.kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM
+        SUB-ARCHITECTURES), linux-mips@vger.kernel.org (open list:MIPS),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE)
+Subject: [PATCH v6 00/13] Modular Broadcom irqchip drivers
+Date:   Wed, 20 Oct 2021 11:48:46 -0700
+Message-Id: <20211020184859.2705451-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 6, 2021 at 11:43 AM Rob Herring <robh@kernel.org> wrote:
->
-> The first 10 patches add a new function, of_get_cpu_hwid(), which parses
-> CPU DT node 'reg' property, and then use it to replace all the open
-> coded versions of parsing CPU node 'reg' properties.
->
-> The last 2 patches add support for populating the cacheinfo 'id' on DT
-> platforms. The minimum associated CPU hwid is used for the id. The id is
-> optional, but necessary for resctrl which is being adapted for Arm MPAM.
->
-> Tested on arm64. Compile tested on arm, x86 and powerpc.
->
-> Rob
->
-> Rob Herring (12):
->   of: Add of_get_cpu_hwid() to read hardware ID from CPU nodes
->   ARM: Use of_get_cpu_hwid()
->   ARM: broadcom: Use of_get_cpu_hwid()
->   arm64: Use of_get_cpu_hwid()
->   csky: Use of_get_cpu_hwid()
->   openrisc: Use of_get_cpu_hwid()
->   powerpc: Use of_get_cpu_hwid()
->   riscv: Use of_get_cpu_hwid()
->   sh: Use of_get_cpu_hwid()
->   x86: dt: Use of_get_cpu_hwid()
->   cacheinfo: Allow for >32-bit cache 'id'
->   cacheinfo: Set cache 'id' based on DT data
+Hi Thomas, Marc,
 
-I've fixed up the openrisc error and applied 1-10 to the DT tree.
+This patch series aims at allowing the 3 interrupt controller drivers
+used on Broadcom STB platforms to be built as modules in order for those
+to be shipped in a GKI enabled system (Android).
 
-The cacheinfo part is going to need some more work. I've found I will
-need the cache affinity (of possible cpus) as well, so I plan to also
-store the affinity instead of looping thru caches and cpus again.
+The irq-bcm7038-l1 requires us to export a number of symbols, which is
+not great, but there are not obvious solutions other than adding
+accessor functions to get the same information.
 
-Rob
+Assuming you are happy with the changes though, please do take the last
+two changes as well through your tree.
+
+Thanks!
+
+Changes in v6:
+
+- dropped changing the prototype of of_init_irq_cb and instead
+  resolved the platform_device from irq-bcm7120-l2 since this is
+  the only driver that needs this to call platform_irq_count()
+
+Changes in v5:
+
+- put patch #9 as the first one
+- add missing platform_device argument to the irq-bcm7038-l1 and
+  irq-brcmstb-l2 drivers (Marc)
+
+Changes in v4:
+
+- added Thomas' Acked-by for patch #1
+- added Rob's Reviewed-by for patch 9 and updated qcom-pdc.c as
+  suggested
+- s/argument/parameter/ in patch #14 as suggested by Sergey
+
+Changes in v3:
+
+- avoid the use of the cpu_logical_map array for platforms other than
+  MIPS
+- removed the bogus irq_set_affinity callback for platforms other than
+  MIPS
+- bring-back the export of irq_gc_noop() lost in the v2
+
+Changes in v2:
+
+- avoid using irq_to_desc() and use irq_get_irq_data() instead
+- re-order patches to avoid linking failure for irq-brcmstb-l2
+- removed the use of .irq_cpu_offline() and converted BMIPS to use
+  irq_migrate_all_off_this_cpu()
+- avoid exporting of_irq_count() and use a platform device passed
+  down from the irqchip platform driver registration code instead
+- added kernel-doc fix
+
+
+Florian Fainelli (13):
+  MIPS: BMIPS: Remove use of irq_cpu_offline
+  irqchip/irq-bcm7038-l1: Remove .irq_cpu_offline()
+  irqchip/irq-bcm7038-l1: Use irq_get_irq_data()
+  irqchip/irq-bcm7038-l1: Gate use of CPU logical map to MIPS
+  irqchip/irq-bcm7038-l1: Restrict affinity setting to MIPS
+  irqchip/irq-bcm7038-l1: Switch to IRQCHIP_PLATFORM_DRIVER
+  genirq: Export irq_gc_{unmask_enable,mask_disable}_reg
+  irqchip/irq-brcmstb-l2: Switch to IRQCHIP_PLATFORM_DRIVER
+  genirq: Export irq_gc_noop()
+  irqchip/irq-bcm7120-l2: Switch to IRQCHIP_PLATFORM_DRIVER
+  arm64: broadcom: Removed forced select of interrupt controllers
+  ARM: bcm: Removed forced select of interrupt controllers
+  irqchip: Fix kernel-doc parameter typo for IRQCHIP_DECLARE
+
+ arch/arm/mach-bcm/Kconfig        |  4 ---
+ arch/arm64/Kconfig.platforms     |  3 --
+ arch/mips/Kconfig                |  1 +
+ arch/mips/kernel/smp-bmips.c     |  3 +-
+ drivers/irqchip/Kconfig          | 12 ++++++--
+ drivers/irqchip/irq-bcm7038-l1.c | 47 ++++++++------------------------
+ drivers/irqchip/irq-bcm7120-l2.c | 21 ++++++++++----
+ drivers/irqchip/irq-brcmstb-l2.c | 16 ++++++-----
+ include/linux/irqchip.h          |  2 +-
+ kernel/irq/generic-chip.c        |  3 ++
+ 10 files changed, 51 insertions(+), 61 deletions(-)
+
+-- 
+2.25.1
+
