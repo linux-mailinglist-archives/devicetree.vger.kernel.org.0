@@ -2,164 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33ACC4348E0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6051434902
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 12:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbhJTK1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 06:27:41 -0400
-Received: from foss.arm.com ([217.140.110.172]:58562 "EHLO foss.arm.com"
+        id S229771AbhJTKh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 06:37:58 -0400
+Received: from mga09.intel.com ([134.134.136.24]:7379 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229639AbhJTK1k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 06:27:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53B84ED1;
-        Wed, 20 Oct 2021 03:25:26 -0700 (PDT)
-Received: from bogus (unknown [10.57.25.56])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 29F973F70D;
-        Wed, 20 Oct 2021 03:25:23 -0700 (PDT)
-Date:   Wed, 20 Oct 2021 11:25:21 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20211020102521.ag2w3fns5bmgb7zd@bogus>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
- <20211014145555.uoi2hyoonrptrd5m@bogus>
- <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+        id S229639AbhJTKh6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 06:37:58 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10142"; a="228622884"
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; 
+   d="scan'208";a="228622884"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2021 03:35:44 -0700
+X-IronPort-AV: E=Sophos;i="5.87,166,1631602800"; 
+   d="scan'208";a="527005545"
+Received: from dhicke3x-mobl1.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.252.29.200])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Oct 2021 03:35:41 -0700
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Prabhjot Khurana <prabhjot.khurana@intel.com>,
+        Elena Reshetova <elena.reshetova@intel.com>
+Subject: [PATCH 0/5] Keem Bay OCS ECC crypto driver
+Date:   Wed, 20 Oct 2021 11:35:33 +0100
+Message-Id: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 15, 2021 at 11:17:18AM +0200, Ulf Hansson wrote:
-> On Thu, 14 Oct 2021 at 16:56, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Thu, Oct 14, 2021 at 12:56:46PM +0200, Ulf Hansson wrote:
-> > > On Mon, 17 May 2021 at 18:14, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > > >
-> > > > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-> > > > implementations where untrusted software had direct access to clock and
-> > > > voltage hardware controls. In this attack, the malicious software was able to
-> > > > place the platform into unsafe overclocked or undervolted configurations. Such
-> > > > configurations then enabled the injection of predictable faults to reveal
-> > > > secrets.
-> > > >
-> > > > Many Arm-based systems used to or still use voltage regulator and clock
-> > > > frameworks in the kernel. These frameworks allow callers to independently
-> > > > manipulate frequency and voltage settings. Such implementations can render
-> > > > systems susceptible to this form of attack.
-> > > >
-> > > > Attacks such as CLKSCREW are now being mitigated by not having direct and
-> > > > independent control of clock and voltage in the kernel and moving that
-> > > > control to a trusted entity, such as the SCP firmware or secure world
-> > > > firmware/software which are to perform sanity checking on the requested
-> > > > performance levels, thereby preventing any attempted malicious programming.
-> > > >
-> > > > With the advent of such an abstraction, there is a need to replace the
-> > > > generic clock and regulator bindings used by such devices with a generic
-> > > > performance domains bindings.
-> > > >
-> > > > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
-> > > >
-> > > > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-> > > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > >
-> > > Hi Sudeep/Viresh/Rob,
-> > >
-> > > I noticed this binding recently got accepted, so I guess I have missed
-> > > the opportunity to provide you with a few comments.
-> > >
-> >
-> > Sorry for not cc-ing you, wasn't aware of the below mentioned intersection,
-> > so assumed you are not one of the interested parties.
-> >
-> > > In any case, I would like to ask a few questions. In particular, am I
-> > > trying to understand why the power-domains bindings [1] can't be used
-> > > for this?
-> > >
-> >
-> > One reason I can think of is on some platforms, the power domains are
-> > completely controlled by the firmware and not exposed to the OSPM.
-> > This is mostly applicable for CPU devices(Platform co-ordinated PSCI)
-> 
-> See below.
-> 
-> >
-> > > The power-domains are capable of dealing with "performance" through
-> > > the "operating-points-v2" DT property, which maps to the generic OPP
-> > > bindings [2]. I wonder why that isn't sufficient here? Can you please
-> > > elaborate?
-> > >
-> >
-> > Even if the power domains are exposed to the OSPM, the OPPs can be
-> > firmware enumerated rather than DT. Not sure if it is possible to
-> > represent such systems in the above mentioned bindings. IIUC, the genpd
-> > uses clock and regulator apis to drive the performance, but these
-> > platforms have f/w interface to drive the OPPs(abstracted).
-> 
-> Genpd doesn't operate on clock rates or voltage levels. Instead
-> "performance" is just an integer value for genpd. What a performance
-> index means, is genpd provider specific.
->
+Hi,
 
-Understood.
+This patch series adds the Intel Keem Bay OCS ECC crypto driver, which
+enables hardware-accelerated 'ecdh-nist-p256' and 'ecdh-nist-p384' on
+the Intel Keem Bay SoC.
 
-> In other words, it becomes the responsibility for the genpd provider
-> to map a performance state index to an OPP, for example. So far,
-> providers have used the generic OPP DT bindings to do this, but for
-> sure, we don't have to limit ourselves to this. So, if OPP tables can
-> be enumerated by FW, rather than specified in DT, that should
-> certainly be possible to support.
->
-> BTW, these are genpd provider callbacks, that needs to be implemented
-> to let it control performance. Perhaps that helps to understand
-> things.
->
-> int (*set_performance_state)(struct generic_pm_domain *genpd, unsigned
-> int state);
-> unsigned int (*opp_to_performance_state)(struct generic_pm_domain
-> *genpd, struct dev_pm_opp *opp);
->
+The following changes to core crypto code are also done:
+- KPP support is added to the crypto engine (so that the new driver can
+  use it).
+- 'crypto/ecc.h' is moved to 'include/crypto/internal' (so that this and
+  other drivers can use the symbols exported by 'crypto/ecc.c').
+- A few additional functions from 'crypto/ecc.c' are exported (so that
+  this and other drivers can use them and avoid code duplication).
 
-Looks like this can be used for devices but what about CPUs ?
+The driver passes crypto manager self-tests.
 
-> >
-> > I am happy to know if there are ways to support such systems with the
-> > options you have mentioned above.
->
-> As far as I understand, the "performance domains" DT bindings that
-> $subject patch introduces, allows us to group devices into domains, to
-> let them be "performance controlled" together. Right?
->
+A previous version of this patch series was submitted as an RFC:
+https://lore.kernel.org/linux-crypto/20201217172101.381772-1-daniele.alessandrelli@linux.intel.com/
 
-Or independently. It doesn't matter.
+Changes from previous RFC submission (RFC-v1):
+- Switched to the new 'ecdh-nist-p256' and 'ecdh-nist-p384' algorithm
+  names
+- Dropped the CONFIG_CRYPTO_DEV_KEEMBAY_OCS_ECDH_GEN_PRIV_KEY_SUPPORT
+  Kconfig option
 
-> Unless I am missing something, it looks like power domains DT bindings
-> already offer this for us. Yes, certainly, the DT doc [1] needs an
-> updated description to better explain this, but other than that we
-> should be fine, don't you think?
->
+Daniele Alessandrelli (2):
+  crypto: ecc - Move ecc.h to include/crypto/internal
+  crypto: ecc - Export additional helper functions
 
-As I mentioned about, the main question is what if firmware doesn't
-want to expose power domain details to OSPM like PC co-ordinated PSCI
-idle states while it wants to either group CPUs or leave them as
-individual in order to get per-CPU DVFS requests and aggregate them
-in the firmware. It does something similar for idle states already.
+Prabhjot Khurana (3):
+  crypto: engine - Add KPP Support to Crypto Engine
+  dt-bindings: crypto: Add Keem Bay ECC bindings
+  crypto: keembay-ocs-ecc - Add Keem Bay OCS ECC Driver
 
+ Documentation/crypto/crypto_engine.rst        |    4 +
+ .../crypto/intel,keembay-ocs-ecc.yaml         |   47 +
+ MAINTAINERS                                   |   11 +
+ crypto/crypto_engine.c                        |   26 +
+ crypto/ecc.c                                  |   14 +-
+ crypto/ecdh.c                                 |    2 +-
+ crypto/ecdsa.c                                |    2 +-
+ crypto/ecrdsa.c                               |    2 +-
+ crypto/ecrdsa_defs.h                          |    2 +-
+ drivers/crypto/keembay/Kconfig                |   19 +
+ drivers/crypto/keembay/Makefile               |    2 +
+ drivers/crypto/keembay/keembay-ocs-ecc.c      | 1017 +++++++++++++++++
+ include/crypto/engine.h                       |    5 +
+ {crypto => include/crypto/internal}/ecc.h     |   36 +
+ 14 files changed, 1180 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-ecc.yaml
+ create mode 100644 drivers/crypto/keembay/keembay-ocs-ecc.c
+ rename {crypto => include/crypto/internal}/ecc.h (90%)
+
+
+base-commit: 06f6e365e2ecf799c249bb464aa9d5f055e88b56
 -- 
-Regards,
-Sudeep
+2.31.1
+
