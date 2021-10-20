@@ -2,83 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD91843557A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 23:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2164043559F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 23:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhJTVuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 17:50:04 -0400
-Received: from ixit.cz ([94.230.151.217]:58092 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229695AbhJTVuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 17:50:03 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id CCFAB20064;
-        Wed, 20 Oct 2021 23:47:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1634766466;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=iOJOGKD4+nMoa/XKfnzaJB8yvuBgtg5n+cX+CHz67bY=;
-        b=NfcwT8Omg5zsizoFl7Wy+SrceP3t3sFE/cf52PIEP5V5vPsy/nacsUk1+BUDSwJgGd2L8S
-        ftokWkL206vzpzRXKQUF2wmPm4UC7noDTZxYrh4sfh8O2SuDxY3xER2J4MABHJy/PK5jyb
-        B8OC67xFMBKOC+grSgjShEDslQc8low=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: qcom: fix memory and mdio nodes naming for RB3011
-Date:   Wed, 20 Oct 2021 23:47:41 +0200
-Message-Id: <20211020214741.261509-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S230317AbhJTV7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 17:59:54 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:55091 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S229977AbhJTV7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 17:59:53 -0400
+Received: (qmail 1140230 invoked by uid 1000); 20 Oct 2021 17:57:38 -0400
+Date:   Wed, 20 Oct 2021 17:57:38 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH v16 6/7] usb: host: xhci-plat: Create platform device for
+ onboard hubs in probe()
+Message-ID: <20211020215738.GA1140001@rowland.harvard.edu>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <20210813125146.v16.6.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid>
+ <dfac0025-b693-2431-04c8-1dba7ef32141@linux.intel.com>
+ <YXB7vIP6ifQS3T4o@google.com>
+ <20211020203720.GA1137200@rowland.harvard.edu>
+ <YXCDobJSuytwthoA@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YXCDobJSuytwthoA@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes warnings regarding to memory and mdio nodes and
-apply new naming following dt-schema.
+On Wed, Oct 20, 2021 at 02:01:21PM -0700, Matthias Kaehlcke wrote:
+> On Wed, Oct 20, 2021 at 04:37:20PM -0400, Alan Stern wrote:
+> > On Wed, Oct 20, 2021 at 01:27:40PM -0700, Matthias Kaehlcke wrote:
+> > > Hi Mathias,
+> > > 
+> > > On Wed, Oct 20, 2021 at 04:05:37PM +0300, Mathias Nyman wrote:
+> > > > If separate devices for controlling onboard hub power is the right solution then
+> > > > how about creating the onboard hub device in usb_add_hcd() (hcd.c), and
+> > > > store it in struct usb_hcd.
+> > > > 
+> > > > A bit like how the roothub device is created, or PHYs are tuned.
+> > > 
+> > > Sure, that sounds feasible, even better if it's handled in a single place
+> > > and different types of controllers don't have to add support separately.
+> > 
+> > Bear in mind that this would prevent you from working with onboard
+> > non-root hubs.
+> 
+> My goal is to (architecturally) support nested hubs, but TBH I haven't
+> looked much into such a configuration since I don't have hardware for
+> testing. My assumption was that support for onboard hubs connected to
+> non-root hubs whould have to be added to the generic hub driver.
+> 
+> Could you elaborate in how far you think it would be different for
+> xhci_plat vs generic hcd?
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+A lot of this material has slipped from my mind.  However, I don't see 
+much difference between those two approaches.
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-index 0244dda06ee8..596d129d4a95 100644
---- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-@@ -19,12 +19,12 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory@0 {
-+	memory@42000000 {
- 		reg = <0x42000000 0x3e000000>;
- 		device_type = "memory";
- 	};
- 
--	mdio0: mdio@0 {
-+	mdio0: mdio-0 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 1 GPIO_ACTIVE_HIGH>,
-@@ -91,7 +91,7 @@ port@5 {
- 		};
- 	};
- 
--	mdio1: mdio@1 {
-+	mdio1: mdio-1 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 11 GPIO_ACTIVE_HIGH>,
--- 
-2.33.0
-
+Alan Stern
