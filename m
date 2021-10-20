@@ -2,211 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB480434AB6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 14:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3900F434ADE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 14:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhJTMG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 08:06:57 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:44575 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230225AbhJTMG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 08:06:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1634731481;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=YIqOHqo+4Uvs1mEiol2RpATCv5maqrLKpagaNsgMP6A=;
-        b=AEBxtb4rlot4h2UkBaoCpOO4Mq7zCYECdFzvd4R8gZ7E8fAIYDJ0Adsinf1wjdeE7zSRm0
-        xPz+/7KgUugkbc2alEmjYhOLCy2143mOAdKgFhIcXAv5tCxmQylOuaFNd58uEhOhf2z8s9
-        8l4a49AHsvnbpClNi3vw3AfK2gMz3kQ=
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com
- [209.85.215.200]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-246-VxyIwAAWPG-E9OgHRDu7sQ-1; Wed, 20 Oct 2021 08:04:40 -0400
-X-MC-Unique: VxyIwAAWPG-E9OgHRDu7sQ-1
-Received: by mail-pg1-f200.google.com with SMTP id n9-20020a63e049000000b002951886c1c5so13306597pgj.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 05:04:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YIqOHqo+4Uvs1mEiol2RpATCv5maqrLKpagaNsgMP6A=;
-        b=kNq/M5xjJwk592B10P4lIXT5bhlVUaUKOISesB1CMfhTJZNxBB0I6i1O95ogpxS44B
-         YK7d72CfqfbZTj71j388bN0ouWCBbswZrqDIph83RJLBo1lmgHwcgGjqQWLGArIFAt76
-         fHFMl3XcqutUmgK+x2LTw4glC6F6Dtaa7xs53NaiPMjPhUcaQhyxYCWEzIKThxA8osq3
-         GQrkyiJKysk2v6shQX7jKzvYe85z/uLlguZfQ4RNQZ+hTkPhRQwmfY4YioMO9j4D5dW+
-         pEmkqNGAe2hqKiKEgjj+C5yhlNC/YS92glHHc6P1KQ1n13c3pdrhgY9CoKpwjkxDjfXX
-         Fi1g==
-X-Gm-Message-State: AOAM5302+dK24piXvR2LOVYHEOuqYl+ImHMD9b+MErKG68BhTF6tt7pc
-        QnT+Li6veo9PP6b52Kx3EeFV2VSansha2ONO+IV9uNKT3Cvpg4nelGulUda3v7A9pSaje4E7BCO
-        +jg22lymPD8mXI/3lfX3rIIPCZ2dyvdMq7V9XTg==
-X-Received: by 2002:a63:3f0b:: with SMTP id m11mr33013659pga.274.1634731479255;
-        Wed, 20 Oct 2021 05:04:39 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyhadLqyr9lBSi0ffsZJTtscppEgRxsW/9/FY8VcsJF9JyOpwjpodZn/GWBrfmrqdONhXZHn83JBW3Z7qZ1TMY=
-X-Received: by 2002:a63:3f0b:: with SMTP id m11mr33013605pga.274.1634731478617;
- Wed, 20 Oct 2021 05:04:38 -0700 (PDT)
+        id S230156AbhJTMNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 08:13:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43530 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229702AbhJTMNv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 08:13:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 65CB461074;
+        Wed, 20 Oct 2021 12:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634731897;
+        bh=ckZekgHfXPNrctbtmwn/TGxRCUp2+V/eyQ3YFtAHCoc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=OCJD16Cc2q1tBaoDi4XbfQZi33O0dtat9uLxQk8uxoB+YE5wNJ6HbjlH+KSYN37Xo
+         3CvlgXDR6dzwJlmZGopJUwfzNmaJpcrbRuHdihA+TqsLlQeeD5fZBycxgD9xrXCLo2
+         kejEu/F4iWwv2dEd+vB70CLGV/49DwZkyAhBYk5WUyaiCNG168P7uXw6J7Hk/4OtDm
+         /gCnNdMEfvM3WkWmcjEMEyH7vVscFSUZD5EMwhvQTJODDx4kvj5tghK1IAg8SmuSK3
+         FUUcHsXnVq0L1QnVySn+r7hBDmr9CX7Zl4DvxZPK8w90g3B27M6Z2OGB//VyHKh4RK
+         uOYe1SrU20Zsw==
+Received: by mail-ed1-f45.google.com with SMTP id z20so25672679edc.13;
+        Wed, 20 Oct 2021 05:11:37 -0700 (PDT)
+X-Gm-Message-State: AOAM531+X+NQTCyWqk0NdvNqB6IiU+AJrsuXr5Jpj6ssXmQK2o1mGiUi
+        lSH6ysSZbNetH32ru7kxwpjvRgKwtT/UkKyhzw==
+X-Google-Smtp-Source: ABdhPJziCh0How2XWuqWshR/PhmVL3qKByiGPf48sv6tjMme1db5PF70rk7+2VqiIfikuwfHRURpG/XbrEBytglT3EM=
+X-Received: by 2002:a17:906:c350:: with SMTP id ci16mr43839599ejb.466.1634731889944;
+ Wed, 20 Oct 2021 05:11:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211009114313.17967-1-alistair@alistair23.me>
- <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com>
- <YW4kgnI0DQHj4sw4@google.com> <CAKmqyKMrb=Uz0+-ycj0HkAKJYdRU11Dc+24+KJw_j3MHT=2+yw@mail.gmail.com>
- <YW9rRUsxPHTjeOGT@google.com> <CAKmqyKMpMCb4gLyp94rCgVBU3eccjafD8nF7y6o+oU6D-OHvTQ@mail.gmail.com>
- <YW97lwsMrLHetJGy@google.com> <CAO-hwJKSxVFAiAriWU0No7sFxzo9XB1-T9LFeF5Zn27B8erFPA@mail.gmail.com>
- <CAKmqyKN0fhJOGZwg6LKag=8fVsANBUNg39Gfr5qdJyUJu1AVrw@mail.gmail.com>
-In-Reply-To: <CAKmqyKN0fhJOGZwg6LKag=8fVsANBUNg39Gfr5qdJyUJu1AVrw@mail.gmail.com>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Wed, 20 Oct 2021 14:04:27 +0200
-Message-ID: <CAO-hwJJ4kF880TVKNFy6wb5d-Q4+eCSuFfgP+=6+eTuN9eoNKA@mail.gmail.com>
-Subject: Re: [PATCH v11 1/4] HID: wacom_sys: Add support for flipping the data values
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ping Cheng <pinglinux@gmail.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Jiri Kosina <jikos@kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20210517155458.1016707-1-sudeep.holla@arm.com>
+ <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
+ <20211014145555.uoi2hyoonrptrd5m@bogus> <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+In-Reply-To: <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 20 Oct 2021 07:11:17 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+Xb-MX4dkebARFJ_qHyFUWyPJ1WDZLQkUKA5ALsSHsgg@mail.gmail.com>
+Message-ID: <CAL_Jsq+Xb-MX4dkebARFJ_qHyFUWyPJ1WDZLQkUKA5ALsSHsgg@mail.gmail.com>
+Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic performance domains
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 1:34 PM Alistair Francis <alistair23@gmail.com> wrote:
+On Fri, Oct 15, 2021 at 4:17 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> On Wed, Oct 20, 2021 at 5:40 PM Benjamin Tissoires
-> <benjamin.tissoires@redhat.com> wrote:
+> On Thu, 14 Oct 2021 at 16:56, Sudeep Holla <sudeep.holla@arm.com> wrote:
 > >
-> > On Wed, Oct 20, 2021 at 4:14 AM Dmitry Torokhov
-> > <dmitry.torokhov@gmail.com> wrote:
-> > >
-> > > On Wed, Oct 20, 2021 at 11:44:50AM +1000, Alistair Francis wrote:
-> > > > On Wed, Oct 20, 2021 at 11:05 AM Dmitry Torokhov
-> > > > <dmitry.torokhov@gmail.com> wrote:
-> > > > >
-> > > > > On Wed, Oct 20, 2021 at 09:33:13AM +1000, Alistair Francis wrote:
-> > > > > > On Tue, Oct 19, 2021 at 11:51 AM Dmitry Torokhov
-> > > > > > <dmitry.torokhov@gmail.com> wrote:
-> > > > > > >
-> > > > > > > We already have touchscreen-inverted-x/y defined in
-> > > > > > > Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml,
-> > > > > > > why are they not sufficient?
-> > > > > >
-> > > > > > The touchscreen-* properties aren't applied to HID devices though, at
-> > > > > > least not that I can tell.
-> > > > >
-> > > > > No, they are not currently, but that does not mean we need to establish
-> > > > > a new set of properties (property names) for HID case.
+> > On Thu, Oct 14, 2021 at 12:56:46PM +0200, Ulf Hansson wrote:
+> > > On Mon, 17 May 2021 at 18:14, Sudeep Holla <sudeep.holla@arm.com> wrote:
 > > > >
-> > > > I can update the names to use the existing touchscreen ones.
+> > > > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> > > > implementations where untrusted software had direct access to clock and
+> > > > voltage hardware controls. In this attack, the malicious software was able to
+> > > > place the platform into unsafe overclocked or undervolted configurations. Such
+> > > > configurations then enabled the injection of predictable faults to reveal
+> > > > secrets.
 > > > >
-> > > > Do you have a hint of where this should be implemented though?
+> > > > Many Arm-based systems used to or still use voltage regulator and clock
+> > > > frameworks in the kernel. These frameworks allow callers to independently
+> > > > manipulate frequency and voltage settings. Such implementations can render
+> > > > systems susceptible to this form of attack.
 > > > >
-> > > > Right now (without "HID: wacom: Add support for the AG14 Wacom
-> > > > device") the wacom touchscreen is just registered as a generic HID
-> > > > device. I don't see any good place in hid-core, hid-input or
-> > > > hid-generic to invert the input values for this.
+> > > > Attacks such as CLKSCREW are now being mitigated by not having direct and
+> > > > independent control of clock and voltage in the kernel and moving that
+> > > > control to a trusted entity, such as the SCP firmware or secure world
+> > > > firmware/software which are to perform sanity checking on the requested
+> > > > performance levels, thereby preventing any attempted malicious programming.
+> > > >
+> > > > With the advent of such an abstraction, there is a need to replace the
+> > > > generic clock and regulator bindings used by such devices with a generic
+> > > > performance domains bindings.
+> > > >
+> > > > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+> > > >
+> > > > Link: https://lore.kernel.org/r/20201116181356.804590-1-sudeep.holla@arm.com
+> > > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > > Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+> > > > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > > >
-> > > I think the transformation should happen in
-> > > hid-multitouch.c::mt_process_slot() using helpers from
-> > > include/linux/input/touchscreen.h
+> > > Hi Sudeep/Viresh/Rob,
 > > >
-> > > I think the more challenging question is to how pass/attach struct
-> > > touchscreen_properties * to the hid device (i expect the properties will
-> > > be attached to i2c-hid device, but maybe we could create a sub-node of
-> > > it and attach properties there.
+> > > I noticed this binding recently got accepted, so I guess I have missed
+> > > the opportunity to provide you with a few comments.
 > > >
 > >
-> > Sorry but I don't like that very much. This would mean that we have an
-> > out of band information that needs to be carried over to
-> > HID-generic/multitouch and having tests for it is going to be harder.
-> > I would rather have userspace deal with the rotation if we do not have
-> > the information from the device itself.
+> > Sorry for not cc-ing you, wasn't aware of the below mentioned intersection,
+> > so assumed you are not one of the interested parties.
+> >
+> > > In any case, I would like to ask a few questions. In particular, am I
+> > > trying to understand why the power-domains bindings [1] can't be used
+> > > for this?
+> > >
+> >
+> > One reason I can think of is on some platforms, the power domains are
+> > completely controlled by the firmware and not exposed to the OSPM.
+> > This is mostly applicable for CPU devices(Platform co-ordinated PSCI)
 >
-> My 2c below
+> See below.
 >
 > >
-> > Foreword: I have been given a hammer, so I see nails everywhere.
+> > > The power-domains are capable of dealing with "performance" through
+> > > the "operating-points-v2" DT property, which maps to the generic OPP
+> > > bindings [2]. I wonder why that isn't sufficient here? Can you please
+> > > elaborate?
+> > >
 > >
-> > The past 3 weeks I have been working on implementing some eBPF hooks
-> > in the HID subsystem. This would IMO be the best solution here: a udev
-> > hwdb rule sees that there is the not-wacom PID/VID (and maybe the
-> > platform or parses the OF properties if they are available in the
+> > Even if the power domains are exposed to the OSPM, the OPPs can be
+> > firmware enumerated rather than DT. Not sure if it is possible to
+> > represent such systems in the above mentioned bindings. IIUC, the genpd
+> > uses clock and regulator apis to drive the performance, but these
+> > platforms have f/w interface to drive the OPPs(abstracted).
 >
-> I'm not sure we have a specific VID/PID to work with here. The VID is
-> generic AFAIK, not sure about the PID though. Maybe someone from Wacom
-> could confirm either way.
-
-It actually doesn't really matter. What matters is that there is a way
-to know that this device needs to be rotated, being through DT
-properties that would be exported through sysfs, or a hwdb entry that
-matches on the product, the platform or something else.
-
+> Genpd doesn't operate on clock rates or voltage levels. Instead
+> "performance" is just an integer value for genpd. What a performance
+> index means, is genpd provider specific.
 >
-> > sysfs) and adds a couple of functions in the HID stack to rotate the
-> > screen. The advantage is that we do not need to add a new kernel API
+> In other words, it becomes the responsibility for the genpd provider
+> to map a performance state index to an OPP, for example. So far,
+> providers have used the generic OPP DT bindings to do this, but for
+> sure, we don't have to limit ourselves to this. So, if OPP tables can
+> be enumerated by FW, rather than specified in DT, that should
+> certainly be possible to support.
 >
-> I would say that touchscreen-inverted-x/y isn't a new API, it's
-> commonly used. To me it makes sense that it's supported for all
-> touchscreens.
-
-Well, it's new in the HID world, and this is opening the pandora box:
-the patch adds only the equivalent of touchscreen-inverted-x/y, but
-not touchscreen-swapped-x-y. So you can not actually rotate a screen
-by 90 degrees.
-
-Inverting a value on an axis is easy. Swapping 2 axes is way harder in
-the HID world, because you have to interpret the report descriptor
-differently.
-
-Also, the patch adds 3 new properties: flip-tilt-x/y and flip-distance.
-The tilt and distance would be easy, but suddenly we need to also add
-pressure, and all of the other HID definitions. This is going to be
-endless. It took me a while to understand Rob's point regarding
-generic properties, but we are exactly entering this territory: this
-is an endless chase and will never end.
-
-I would much rather have a device specific quirk that would be
-triggered by the DT than adding generic properties like that.
-
-Also, hid-multitouch is the most tested driver through the hid-tools
-test suite: https://gitlab.freedesktop.org/libevdev/hid-tools
-I am not sure how I can add tests for those properties in a generic
-way (the creation of the "virtual DT" is going to be problematic).
-
-On the contrary, a device specific quirk can easily be tested without
-having to mess too much with the hid subsystem.
-
+> BTW, these are genpd provider callbacks, that needs to be implemented
+> to let it control performance. Perhaps that helps to understand
+> things.
 >
-> > anymore, the disadvantage is that we need userspace to "fix" the
-> > kernel behaviour (so at boot, this might be an issue).
->
-> That's a pain for me. I'm still stuck with the vendors userspace as I
-> need their propiritory eInk driver code. It also seems like a hassle
-> for different distros to handle this (compared to just in the DT).
-
-I understand the pain. But I am not talking about a 1 kernel cycle
-release timeframe. More like 6-12 months to bring in all the pieces
-together. Distributions have no issues with udev most of the time
-(even those that stuck to the old pre-systemd fork), and it would not
-be different than having a udev intrinsic that tags the pen with
-ID_INPUT_TABLET so libinput and others can deal with it.
-
-Cheers,
-Benjamin
-
->
-> Alistair
+> int (*set_performance_state)(struct generic_pm_domain *genpd, unsigned
+> int state);
+> unsigned int (*opp_to_performance_state)(struct generic_pm_domain
+> *genpd, struct dev_pm_opp *opp);
 >
 > >
-> > I am not at the point where I can share the code as there is a lot of
-> > rewriting and my last attempt is resulting in a page fault, but I'd be
-> > happy to share it more once that hiccup is solved.
-> >
-> > Cheers,
-> > Benjamin
-> >
+> > I am happy to know if there are ways to support such systems with the
+> > options you have mentioned above.
 >
+> As far as I understand, the "performance domains" DT bindings that
+> $subject patch introduces, allows us to group devices into domains, to
+> let them be "performance controlled" together. Right?
+>
+> Unless I am missing something, it looks like power domains DT bindings
+> already offer this for us. Yes, certainly, the DT doc [1] needs an
+> updated description to better explain this, but other than that we
+> should be fine, don't you think?
 
+'power domains' in DT is supposed to mean physical power islands in
+the h/w where as genpd can be whatever you want. Are power and
+performance domains always 1:1?
+
+Rob
