@@ -2,130 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E09E434ECB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4037F434ED3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhJTPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:16:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33996 "EHLO
+        id S230179AbhJTPSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:18:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230029AbhJTPQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:16:33 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 554B1C06161C;
-        Wed, 20 Oct 2021 08:14:19 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id 187so3223723pfc.10;
-        Wed, 20 Oct 2021 08:14:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TDLzKkefiW2qBcvhl9Mh1B9EpLxuIPGwsH2zNljPvVs=;
-        b=DOen5TCfJtA35vSF3dAtiaJkpldhQRHm/jmvb9QBl5DBXxRYX+iQ6/fBeR3GVBMoya
-         elnoAqS4D2bVR0BFIpEW+l2RvR/fbtMUaAyEr4vyFLpZnYVfw2OaDzLKqOp4Xfcu+Y5O
-         2zjSL4Nz9JUW/GnqjGbiHFXgClpiaGXjulr+jw8wiLrU79DBipcQFXiIXn2szNFZZ94o
-         TOEhEOFCBmHjbj/x6Q9g/nIq3Et8Hj1zQagSK+pYlxxOOeQfd2dC8KyIZvjaUAmZfTyP
-         mLgoO7IL71dOPbSlkuPj7mFEgl5jZVmwQprG49+aX1NTDdvtoVS6RLaxqr89LxJ04xXR
-         mTbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TDLzKkefiW2qBcvhl9Mh1B9EpLxuIPGwsH2zNljPvVs=;
-        b=A6inxs7luaqi7KqXYzBfZMQFsZ4I1hELFFOcpSuOPj+nX4+PDl0IAVsjcQwBDjLY5J
-         WKwt9bXfdLKFRHKQUw25i1+sDlqgRMXZuonBYAwSDx+Y6LUDzNZC8QtynY/dBuYiK00h
-         XzbmRgGm0P1fk5OhHKcYfa/Zal7sZ6Qrr7DghlUbD9J90yJ628dvGmVHJdwAZ5qlPNAb
-         aHzWgz8Fdrr+xwecX901gNV4aVh/g3uYOHv+PslR3d7JeWSNZ8DopsI3V03D1zAmTjiI
-         +JXEWm7rJsylNqJFws9yVygDO3IFwLyMSuUCftVvo8fc2NKhjsmvmC4/SVz5RYIJngBB
-         0WjA==
-X-Gm-Message-State: AOAM530nIgpjW6oqey3cIk33jsNToPO2F9G5HkWWFGwSupHlemQ3T81x
-        X48cHBz4yKlBqZqdupAo+Os=
-X-Google-Smtp-Source: ABdhPJzxgXnhqhph34eLaK9uCGeTajw1218Blaf9Oo5OFWjJ/dESKTgwUNGYgmRsel5mrhk1ihQmWA==
-X-Received: by 2002:a05:6a00:2181:b0:44d:c18d:7af9 with SMTP id h1-20020a056a00218100b0044dc18d7af9mr25513pfi.16.1634742858719;
-        Wed, 20 Oct 2021 08:14:18 -0700 (PDT)
-Received: from [192.168.1.121] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id x6sm3301886pfh.77.2021.10.20.08.14.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 08:14:18 -0700 (PDT)
-Message-ID: <ef9f4279-1820-3e90-482e-c4e710859af6@gmail.com>
-Date:   Wed, 20 Oct 2021 08:14:07 -0700
+        with ESMTP id S229570AbhJTPSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:18:20 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 257DEC06161C
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 08:16:06 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AA9903F36D;
+        Wed, 20 Oct 2021 17:16:00 +0200 (CEST)
+Subject: Re: [PATCH v16 6/7] arm64: dts: mt8192: add svs device information
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20210428065440.3704-1-roger.lu@mediatek.com>
+ <20210428065440.3704-7-roger.lu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <855e004b-b128-70f7-b1d2-9fe957c94e08@somainline.org>
+Date:   Wed, 20 Oct 2021 17:16:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH v4 09/14] irqchip: Provide platform_device to
- of_irq_init_cb_t
+In-Reply-To: <20210428065440.3704-7-roger.lu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM SUB-ARCHITECTURES" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>
-References: <20211009022023.3796472-1-f.fainelli@gmail.com>
- <20211009022023.3796472-10-f.fainelli@gmail.com>
- <871r4gvggb.wl-maz@kernel.org>
- <CAL_Jsq+CWeFHsHHaAwbb940Zk1thU50gDGcqfO6NdgWQ2FPTWA@mail.gmail.com>
- <87tuhcnlwt.wl-maz@kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <87tuhcnlwt.wl-maz@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 10/20/2021 1:24 AM, Marc Zyngier wrote:
-> On Tue, 19 Oct 2021 23:23:52 +0100,
-> Rob Herring <robh@kernel.org> wrote:
->>
->>   On Tue, Oct 19, 2021 at 4:43 PM Marc Zyngier <maz@kernel.org> wrote:
->>>
->>> diff --git a/include/linux/irqchip.h b/include/linux/irqchip.h
->>> index ccf32758ea85..146a9d80a6a2 100644
->>> --- a/include/linux/irqchip.h
->>> +++ b/include/linux/irqchip.h
->>> @@ -33,7 +33,15 @@ extern int platform_irqchip_probe(struct platform_device *pdev);
->>>   #define IRQCHIP_PLATFORM_DRIVER_BEGIN(drv_name) \
->>>   static const struct of_device_id drv_name##_irqchip_match_table[] = {
->>>
->>> -#define IRQCHIP_MATCH(compat, fn) { .compatible = compat, .data = fn },
->>> +/* Undefined on purpose */
->>> +int typecheck_irq_init_cb(struct device_node *, struct device_node *,
->>> +                         struct platform_device *);
->>> +
->>> +#define typecheck_irq_init_cb(fn)                                      \
->>> +       __typecheck(typecheck_irq_init_cb, fn) ? fn : fn
->>
->> That's nice! Shouldn't it also be used for IRQCHIP_DECLARE?
+Il 28/04/21 08:54, Roger Lu ha scritto:
+> add compitable/reg/irq/clock/efuse/reset setting in svs node
 > 
-> Absolutely. And enabling this shows that changing of_irq_init_cb_t
-> breaks *all users* of IRQCHIP_DECLARE(). Not an acceptable outcome
-> when we're at -rc5. >
-> Why can't the relevant drivers use of_find_device_by_node() instead?
-> That would allow us to keep the status-quo on of_irq_init_cb_t.
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 34 ++++++++++++++++++++++++
+>   1 file changed, 34 insertions(+)
+> 
 
-Rob had suggested several solutions, including using 
-of_find_device_by_node(), however updating of_irq_init_cb_t was 
-indicated to be the better way. I had intentionally not updated 
-IRQCHIP_DECLARE() because it would ignore the 3rd argument we passed to 
-it (platform_device *) so I thought.
+Hello Roger,
+thanks for this series! However, there is an issue with this patch:
 
-If I am spinning a v6 using of_find_device_by_node() would that be 
-acceptable to you?
--- 
-Florian
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index fe24cc66ff7a..e9816a56d87b 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -270,6 +270,14 @@
+>   			compatible = "mediatek,mt8192-infracfg", "syscon";
+>   			reg = <0 0x10001000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +
+> +			infracfg_rst: reset-controller {
+> +				compatible = "mediatek,infra-reset", "ti,syscon-reset";
+> +				#reset-cells = <1>;
+> +				ti,reset-bits = <
+> +					0x150 5 0x154 5 0 0     (ASSERT_SET | DEASSERT_SET | STATUS_NONE) /* 0: svs */
+
+You are using macros here, which are defined in dt-bindings/reset/ti-syscon.h
+hovever, you are not including this header in this devicetree, so it's not
+compiling.
+
+Please fix it.
+
+> +				>;
+> +			};
+>   		};
+>   
+>   		pericfg: syscon@10003000 {
+> @@ -564,6 +572,20 @@
+>   			status = "disabled";
+>   		};
+>   
+> +		svs: svs@1100b000 {
+> +			compatible = "mediatek,mt8192-svs";
+> +			reg = <0 0x1100b000 0 0x1000>;
+> +			interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg CLK_INFRA_THERM>;
+> +			clock-names = "main";
+> +			nvmem-cells = <&svs_calibration>,
+> +				      <&lvts_e_data1>;
+> +			nvmem-cell-names = "svs-calibration-data",
+> +					   "t-calibration-data";
+> +			resets = <&infracfg_rst 0>;
+> +			reset-names = "svs_rst";
+> +		};
+> +
+>   		spi1: spi@11010000 {
+>   			compatible = "mediatek,mt8192-spi",
+>   				     "mediatek,mt6765-spi";
+> @@ -681,6 +703,18 @@
+>   			#clock-cells = <1>;
+>   		};
+>   
+> +		efuse: efuse@11c10000 {
+> +			compatible = "mediatek,efuse";
+> +			reg = <0 0x11c10000 0 0x1000>;
+> +
+
+arch/arm64/boot/dts/mediatek/mt8192.dtsi:510.5-24: Warning (reg_format): 
+/soc/efuse@11c10000/data1:reg: property has invalid length (8 bytes) 
+(#address-cells == 2, #size-cells == 1)
+
+arch/arm64/boot/dts/mediatek/mt8192.dtsi:513.5-24: Warning (reg_format): 
+/soc/efuse@11c10000/calib@580:reg: property has invalid length (8 bytes) 
+(#address-cells == 2, #size-cells == 1)
+
+
+In short, you should add here:
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+> +			lvts_e_data1: data1 {
+> +				reg = <0x1C0 0x58>;
+> +			};
+> +			svs_calibration: calib@580 {
+> +				reg = <0x580 0x68>;
+> +			};
+> +		};
+> +
+>   		i2c3: i2c3@11cb0000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11cb0000 0 0x1000>,
+> 
+
+Regards,
+- Angelo
