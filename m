@@ -2,107 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B451434EE8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FAFB434F0A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:28:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbhJTPWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:22:38 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:32860 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhJTPWh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 11:22:37 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 1C10F1F441E0
-Subject: Re: [PATCH v16 2/7] arm64: dts: mt8183: add svs device information
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210428065440.3704-1-roger.lu@mediatek.com>
- <20210428065440.3704-3-roger.lu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <70e71210-6d17-92e3-4e3f-01b83380be42@collabora.com>
-Date:   Wed, 20 Oct 2021 17:20:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20210428065440.3704-3-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230393AbhJTPbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:31:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52082 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230191AbhJTPa7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 11:30:59 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5924C61371;
+        Wed, 20 Oct 2021 15:28:45 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mdDWE-000T12-2P; Wed, 20 Oct 2021 16:28:43 +0100
+Date:   Wed, 20 Oct 2021 16:28:41 +0100
+Message-ID: <87zgr3btqu.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM281XX/BCM11XXX/BCM216XX ARM ARCHITE..." 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM SUB-ARCHITECTURES" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 09/14] irqchip: Provide platform_device to of_irq_init_cb_t
+In-Reply-To: <ef9f4279-1820-3e90-482e-c4e710859af6@gmail.com>
+References: <20211009022023.3796472-1-f.fainelli@gmail.com>
+        <20211009022023.3796472-10-f.fainelli@gmail.com>
+        <871r4gvggb.wl-maz@kernel.org>
+        <CAL_Jsq+CWeFHsHHaAwbb940Zk1thU50gDGcqfO6NdgWQ2FPTWA@mail.gmail.com>
+        <87tuhcnlwt.wl-maz@kernel.org>
+        <ef9f4279-1820-3e90-482e-c4e710859af6@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: f.fainelli@gmail.com, robh@kernel.org, linux-kernel@vger.kernel.org, rjui@broadcom.com, sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com, linux@armlinux.org.uk, catalin.marinas@arm.com, will@kernel.org, tsbogend@alpha.franken.de, tglx@linutronix.de, frowand.list@gmail.com, linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/21 08:54, Roger Lu ha scritto:
-> add compitable/reg/irq/clock/efuse setting in svs node
+On Wed, 20 Oct 2021 16:14:07 +0100,
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 > 
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index 80519a145f13..441d617ece43 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -657,6 +657,18 @@
->   			status = "disabled";
->   		};
->   
-> +		svs: svs@1100b000 {
-> +			compatible = "mediatek,mt8183-svs";
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_LOW>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>;
-> +			clock-names = "main";
-> +			nvmem-cells = <&svs_calibration>,
-> +				      <&thermal_calibration>;
-> +			nvmem-cell-names = "svs-calibration-data",
-> +					   "t-calibration-data";
-> +		};
-> +
->   		pwm0: pwm@1100e000 {
->   			compatible = "mediatek,mt8183-disp-pwm";
->   			reg = <0 0x1100e000 0 0x1000>;
-> @@ -941,9 +953,15 @@
->   			reg = <0 0x11f10000 0 0x1000>;
->   			#address-cells = <1>;
->   			#size-cells = <1>;
-> +			thermal_calibration: calib@180 {
-> +				reg = <0x180 0xc>;
-> +			};
->   			mipi_tx_calibration: calib@190 {
->   				reg = <0x190 0xc>;
->   			};
-> +			svs_calibration: calib@580 {
-> +				reg = <0x580 0x64>;
-> +			};
->   		};
->   
->   		u3phy: usb-phy@11f40000 {
 > 
+> On 10/20/2021 1:24 AM, Marc Zyngier wrote:
+> > On Tue, 19 Oct 2021 23:23:52 +0100,
+> > Rob Herring <robh@kernel.org> wrote:
+> >> 
+> >>   On Tue, Oct 19, 2021 at 4:43 PM Marc Zyngier <maz@kernel.org> wrote:
+> >>> 
+> >>> diff --git a/include/linux/irqchip.h b/include/linux/irqchip.h
+> >>> index ccf32758ea85..146a9d80a6a2 100644
+> >>> --- a/include/linux/irqchip.h
+> >>> +++ b/include/linux/irqchip.h
+> >>> @@ -33,7 +33,15 @@ extern int platform_irqchip_probe(struct platform_device *pdev);
+> >>>   #define IRQCHIP_PLATFORM_DRIVER_BEGIN(drv_name) \
+> >>>   static const struct of_device_id drv_name##_irqchip_match_table[] = {
+> >>> 
+> >>> -#define IRQCHIP_MATCH(compat, fn) { .compatible = compat, .data = fn },
+> >>> +/* Undefined on purpose */
+> >>> +int typecheck_irq_init_cb(struct device_node *, struct device_node *,
+> >>> +                         struct platform_device *);
+> >>> +
+> >>> +#define typecheck_irq_init_cb(fn)                                      \
+> >>> +       __typecheck(typecheck_irq_init_cb, fn) ? fn : fn
+> >> 
+> >> That's nice! Shouldn't it also be used for IRQCHIP_DECLARE?
+> > 
+> > Absolutely. And enabling this shows that changing of_irq_init_cb_t
+> > breaks *all users* of IRQCHIP_DECLARE(). Not an acceptable outcome
+> > when we're at -rc5. >
+> > Why can't the relevant drivers use of_find_device_by_node() instead?
+> > That would allow us to keep the status-quo on of_irq_init_cb_t.
+> 
+> Rob had suggested several solutions, including using
+> of_find_device_by_node(), however updating of_irq_init_cb_t was
+> indicated to be the better way. I had intentionally not updated
+> IRQCHIP_DECLARE() because it would ignore the 3rd argument we passed
+> to it (platform_device *) so I thought.
 
-This patch doesn't apply on the latest linux-next due to some new commits in
-mt8183.dtsi, can you please rebase?
+In general, conflicting prototype always lead to the compiler
+legitimately screwing something up, and you are left with a pile of
+steaming crap to debug.
+
+So *no* to that sort of trick.
+
+> If I am spinning a v6 using of_find_device_by_node() would that be
+> acceptable to you?
+
+That'd be much better.
 
 Thanks,
-- Angelo
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
