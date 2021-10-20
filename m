@@ -2,82 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40A47434D6A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F48F434D7B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 16:23:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbhJTOYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 10:24:51 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:36555 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbhJTOYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 10:24:50 -0400
-Received: by mail-oi1-f181.google.com with SMTP id u69so9853434oie.3;
-        Wed, 20 Oct 2021 07:22:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IzAnrV6/peuFgeN4i6pPMNcPWiS8ja/WjUYjReEgoJ8=;
-        b=enZwmAkqVGOZovhv8B04kgeo4dwwaW1FUF/aAeN2QpxelWZZtxnGfx1GebCIWgcuqs
-         2afl8LwE8q1ZTUpeSCERn0AgbcMyP9MJEu35TnBrjMuNscI+BxeCG+bwFDlPwuIKzHD6
-         JQ046QYqZ9HDcOOjJKXbkaDsSDNhAGtnVFFVEv3+vR71MU/kfAtmE2TUBtbELYQ5MpCF
-         xKukn5cIFjoAu07TeSH7cX8+lOruq3WZnr2AMXcBddTymkFEvPO3bDFVg9v3QvOTFHzA
-         75t0AAgMDPsBq58uDW9BhkTSbInFrVlf7I5Ta3FIc2M233ov+sdY+Ga065zBkqSs6Xke
-         QmHQ==
-X-Gm-Message-State: AOAM530eo77jkLEEYr/2e2Gub4NMTpQ086NTJMbQMQOJCdEefyXcFbiP
-        JW20HcaPUgYcETV+GmG8JQ==
-X-Google-Smtp-Source: ABdhPJwuFXF4Y0pxuI20pnX5+EsjXLqQ515YB0tsPuZSFImLatZVfsh2sGIls2R7dpSxpkHbcIr3eg==
-X-Received: by 2002:a05:6808:181c:: with SMTP id bh28mr9638219oib.12.1634739755989;
-        Wed, 20 Oct 2021 07:22:35 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e22sm499384otp.0.2021.10.20.07.22.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Oct 2021 07:22:35 -0700 (PDT)
-Received: (nullmailer pid 2303575 invoked by uid 1000);
-        Wed, 20 Oct 2021 14:22:34 -0000
-Date:   Wed, 20 Oct 2021 09:22:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-wireless@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Tony Lindgren <tony@atomide.com>,
-        David Lechner <david@lechnology.com>, netdev@vger.kernel.org,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Kalle Valo <kvalo@codeaurora.org>,
-        Jakub Kicinski <kuba@kernel.org>
-Subject: Re: [PATCH 3/3] dt-bindings: net: ti,bluetooth: Convert to
- json-schema
-Message-ID: <YXAmKuyIP7Jr8kLF@robh.at.kernel.org>
-References: <cover.1634646975.git.geert+renesas@glider.be>
- <c1814db9aff7f09ea41b562a2da305312d8df2dd.1634646975.git.geert+renesas@glider.be>
+        id S230234AbhJTO0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 10:26:10 -0400
+Received: from foss.arm.com ([217.140.110.172]:60690 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230029AbhJTO0I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 10:26:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23BA9D6E;
+        Wed, 20 Oct 2021 07:23:54 -0700 (PDT)
+Received: from e123427-lin.arm.com (unknown [10.57.45.139])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5132A3F73D;
+        Wed, 20 Oct 2021 07:23:52 -0700 (PDT)
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     linux-pci@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        john@phrozen.org, neil@brown.name, gregkh@linuxfoundation.org,
+        linux-staging@lists.linux.dev, matthias.bgg@gmail.com,
+        tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
+        bhelgaas@google.com
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+Date:   Wed, 20 Oct 2021 15:23:45 +0100
+Message-Id: <163473978253.23166.3894301849923362863.b4-ty@arm.com>
+X-Mailer: git-send-email 2.31.0
+In-Reply-To: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
+References: <20210922050035.18162-1-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c1814db9aff7f09ea41b562a2da305312d8df2dd.1634646975.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Oct 2021 14:43:13 +0200, Geert Uytterhoeven wrote:
-> Convert the Texas Instruments serial-attached bluetooth Device Tree
-> binding documentation to json-schema.
+On Wed, 22 Sep 2021 07:00:32 +0200, Sergio Paracuellos wrote:
+> MediaTek MT7621 PCIe subsys supports single Root complex (RC)
+> with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
+> Topology is as follows:
 > 
-> Add missing max-speed property.
-> Update the example.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> I listed David as maintainer, as he wrote the original bindings.
-> Please scream if not appropriate.
-> ---
->  .../devicetree/bindings/net/ti,bluetooth.yaml | 91 +++++++++++++++++++
->  .../devicetree/bindings/net/ti-bluetooth.txt  | 60 ------------
->  2 files changed, 91 insertions(+), 60 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,bluetooth.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/ti-bluetooth.txt
+>                           MT7621 PCIe HOST Topology
 > 
+> [...]
 
-Applied, thanks!
+Applied to pci/mt7621, thanks!
+
+[1/3] dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
+      https://git.kernel.org/lpieralisi/pci/c/e5bc5605e7
+[2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+      https://git.kernel.org/lpieralisi/pci/c/5797a2b2bc
+[3/3] MAINTAINERS: add myself as maintainer of the MT7621 PCI controller driver
+      https://git.kernel.org/lpieralisi/pci/c/eb1d7d438c
+
+Thanks,
+Lorenzo
