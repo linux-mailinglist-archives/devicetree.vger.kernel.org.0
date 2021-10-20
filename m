@@ -2,238 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71644434A5B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 13:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC05434A70
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 13:46:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229952AbhJTLpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 07:45:11 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:49788
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230179AbhJTLpK (ORCPT
+        id S230105AbhJTLsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 07:48:37 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:38638 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229548AbhJTLsg (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 07:45:10 -0400
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8D95840019
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 11:42:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634730175;
-        bh=tdDpH01uDMaig+FuQ9PM8Nx6u5iJw79tILyhirsrWXQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Btif3CdhbSObdGakPCnM4eRUrCg0Ch6YN/wC3x/QlODfQV7mxiFrSRA0EqozpyhUw
-         RdDQ8MdtWUHuXwxJmx9wVJ+qiXZCWvZNANdvFKbS1EfA2WxuhJN2v/Oz+ywRP+6I9r
-         zU4756dFsBJbEwv5L/hvAjbIvMGw/Ch1C4PRcpLjX97d0arnjbT/VVJ3D61OyXnvMv
-         ScGIbyr1pTAW54QvzqMr8GmC5qbTISDZO/Wd2Nfg6omCNya4FRje6PNeVocNcACBCO
-         48BxVlqD2rgFcm2+QH0sy7VFHotDn/3qorOGsMGrEMiSEjtEyzVjDLBtAg4HXcbCRG
-         u5wiQ6l5VYc0g==
-Received: by mail-wm1-f72.google.com with SMTP id o140-20020a1ca592000000b0030d66991388so150053wme.7
-        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 04:42:55 -0700 (PDT)
+        Wed, 20 Oct 2021 07:48:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1634730381;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=LySlTxzcD+7slFBtrVsFu7OVFgYb2J6CfC7UbOwcNTc=;
+        b=DnFvp9ZYC1E2fukQQd4PnHymr2uY2g8Y6CV4LH1YEPpTjPesfZyYrkYyzvnxHoViC+5wjc
+        AlSPhiU7y1K7R+AfIVaJl1lsh5PgvQjUYW5HVYvWwWCO588cmDNRXGqJHjJdFTxA2aSGKX
+        skSi/65/XWHUHZ2zbF3vd2mgKghhKMM=
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-282-Ws1YfZFsPuyPLAnYUYEtMA-1; Wed, 20 Oct 2021 07:46:20 -0400
+X-MC-Unique: Ws1YfZFsPuyPLAnYUYEtMA-1
+Received: by mail-pl1-f197.google.com with SMTP id z8-20020a170903018800b0013f23528cb6so9462504plg.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Oct 2021 04:46:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=tdDpH01uDMaig+FuQ9PM8Nx6u5iJw79tILyhirsrWXQ=;
-        b=y3dzmlz3x3i+v6ydpY8l3TVSNyGZwmj+hlfbuJXsSNdivQqtNQD67dnI4MhZpDWvFN
-         L952VtTpV5PcgZPY4dTWCeZrzRb2a66TYkKvvnIJ8qSrSRzLvHPW7mhh8TUSLyDw3Z4w
-         6nyXVdkSSzkrfNxzxjMgF0UoVdOz6M83skFqEdYx4CRsn4lwZzGchoN8HmWAx20jt61M
-         W7Icge9P/zYyTPCu6pMOt8tmCTqsJF4YMF+bnSMRLUBUTGp21+52D2OvwO3yluf8VKPl
-         QoN9c9sj0B+cxqJGYz31sUT0pOGceErmtkROlNOUotWTl2E/PqnTQIZ6KGGDv7Qm4GYO
-         jNwA==
-X-Gm-Message-State: AOAM532Euu7Sf3ULZvEtaOV6JGIk3kHnHOJECrtUWPAeEKp7yBJUuyM+
-        necLaid7zOb4KY5BcoDNyhaJscgTjpMF1u6jmtiQYgUQEtzTT+OV93kIhxYfzCQjBkiD30w+lSo
-        Hnsrv7AbCvRxOQVptgRtNv9uAYHHhZaTiTN4myoo=
-X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr52558020wry.296.1634730175191;
-        Wed, 20 Oct 2021 04:42:55 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyTYsmDUEoSmOgGfRQuvGXjp4xEXc4RGTmMWLib1J1UD0fvSL7a7UiTabgi/AyDkMpNJ682wg==
-X-Received: by 2002:a05:6000:2af:: with SMTP id l15mr52557999wry.296.1634730174949;
-        Wed, 20 Oct 2021 04:42:54 -0700 (PDT)
-Received: from [192.168.123.55] (ip-88-152-144-157.hsi03.unitymediagroup.de. [88.152.144.157])
-        by smtp.gmail.com with ESMTPSA id z8sm1830913wrq.16.2021.10.20.04.42.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Oct 2021 04:42:54 -0700 (PDT)
-Message-ID: <ff1fdb31-d739-ee85-9ce0-8386065e297f@canonical.com>
-Date:   Wed, 20 Oct 2021 13:42:53 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LySlTxzcD+7slFBtrVsFu7OVFgYb2J6CfC7UbOwcNTc=;
+        b=hx/+48RoYw+zh2CcVp5VGzR8HszS/dukhzLiNygJER3pCv9fgK1Qful3JZ7ZLuzu7G
+         lXOmwDsPBD9RoD+JJ2bPSxQ1Tn4LBAYJxmB/wiIrxm6vyWPorfnZhsk9NZr7/rPtA/41
+         FNUqVBH3Wxbv0hrR7CCYiGZHja07gKavCnN5LymtZ72ZP9UT/M8/jQWA9I4bbpLRUqbC
+         GEqm67UdxsWgTmVELhwHR9SObvw2kwFMjQN63qsK89waW7r6QbSAPojKKwznVG+S7BlR
+         zV+nZCebShd/ymT5VOMn5J4ljWEsAbhMgdTXHZGjGzeaVhnZEsLw/2rNCM/sHriNqIzZ
+         txcA==
+X-Gm-Message-State: AOAM533TvVaIJqnoeCzmkifb/tRkz4erd1Cx4SBK8TLNcZhEVfqxI0tF
+        vQ8fcGhKSyx+SqzbNDcmjTX+FZY6CqkUWVsxutwr3ZNdejjT6T7SALxmIsAUUGNvo2Pa/5oP9k/
+        bTKhT5gXcbG2rxt6nv3D1W0WkVZ2OUiW4Yn2AJQ==
+X-Received: by 2002:a63:2c4f:: with SMTP id s76mr28303189pgs.155.1634730379630;
+        Wed, 20 Oct 2021 04:46:19 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw4DmIw+MrtRlqJaeak+OKL+IGdEbrzuhxPVHeBus5n775dV6e5SEnXt3bdox6Tf2tkHligQIKqQkcuG8vKrpQ=
+X-Received: by 2002:a63:2c4f:: with SMTP id s76mr28303175pgs.155.1634730379392;
+ Wed, 20 Oct 2021 04:46:19 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH 1/1] dt-bindings: T-HEAD CLINT
-Content-Language: en-US
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Bin Meng <bmeng.cn@gmail.com>, Xiang W <wxjstz@126.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        OpenSBI <opensbi@lists.infradead.org>
-References: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
- <CAAhSdy22y3gWM0Y9x7m84CdmtHKo7VsDC4+ZDY7+mhkJ9HcYyA@mail.gmail.com>
-From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <CAAhSdy22y3gWM0Y9x7m84CdmtHKo7VsDC4+ZDY7+mhkJ9HcYyA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211009114313.17967-1-alistair@alistair23.me>
+ <CAF8JNh+OUzvAHA9tBrH2d_WxWPXRgiunhGO5KV4-fqVG+tUOyQ@mail.gmail.com>
+ <YW4kgnI0DQHj4sw4@google.com> <CAKmqyKMrb=Uz0+-ycj0HkAKJYdRU11Dc+24+KJw_j3MHT=2+yw@mail.gmail.com>
+ <YW9rRUsxPHTjeOGT@google.com> <CAKmqyKMpMCb4gLyp94rCgVBU3eccjafD8nF7y6o+oU6D-OHvTQ@mail.gmail.com>
+ <YW97lwsMrLHetJGy@google.com> <CAKmqyKMHoJWv=O0p_y6u34--njcsYxnWHg+EYzOFUnS3MFTvow@mail.gmail.com>
+In-Reply-To: <CAKmqyKMHoJWv=O0p_y6u34--njcsYxnWHg+EYzOFUnS3MFTvow@mail.gmail.com>
+From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Date:   Wed, 20 Oct 2021 13:46:08 +0200
+Message-ID: <CAO-hwJJsBoXqP7KdQZYcRGeq39_kdwv8TyT3j-nEKyPe3cB_3g@mail.gmail.com>
+Subject: Re: [PATCH v11 1/4] HID: wacom_sys: Add support for flipping the data values
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Ping Cheng <pinglinux@gmail.com>,
+        Alistair Francis <alistair@alistair23.me>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>, Jiri Kosina <jikos@kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/20/21 13:27, Anup Patel wrote:
-> On Wed, Oct 20, 2021 at 3:06 PM Heinrich Schuchardt
-> <heinrich.schuchardt@canonical.com> wrote:
->>
->> The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
->> not support 64bit mmio access to the MTIMER device.
->>
->> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
->> restriction and the "sifive,cling0" compatible string. An OpenSBI
->> patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
->> is generally used in the devicetree schema for such a condition.
->>
->> As the design is not SiFive based it is preferable to apply a compatible
->> string identifying T-HEAD instead.
->>
->> Add a new yaml file describing the T-HEAD CLINT.
->>
->> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->> ---
->> @Palmer, @Anup
->> I copied you as maintainers from sifive,clint.yaml. Please, indicate if
->> this should be changed.
->>
->> For the prior discussion see:
->> https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
->> https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
->>
->> A release candidate of the ACLINT specification is available at
->> https://github.com/riscv/riscv-aclint/releases
-> 
-> T-HEAD supporting only 32bit accesses to MTIME and MTIMECMP
-> registers are totally allowed. The RISC-V privileged specification does
-> not enforce RV64 platforms to support 64bit accesses to MTIME and
-> MTIMECMP registers. Also, the ACLINT specification only states
-> that MTIME and MTIMECMP registers are 64-bit wide but it does
-> not enforce platforms to support 64-bit accesses.
-> 
-> Here are some discussions from tech-aia mailing list:
-> https://lists.riscv.org/g/tech-aia/message/115
-> https://lists.riscv.org/g/tech-aia/message/119
-> https://lists.riscv.org/g/tech-aia/message/120
-> 
-> In other words, the T-HEAD CLINT (MTIMER+MSWI) is compliant
-> with the RISC-V ACLINT specification.
-> 
-> I think we should add implementation specific compatible strings
-> for Allwinner D1 in the ACLINT MTIMER and ACLINT MSWI
-> DT bindings.
-> 
-> How about including the following two compatible strings in
-> ACLINT DT bindings ?
-> allwinner,sun20i-d1-aclint-mtimer
-> allwinner,sun20i-d1-aclint-mswi
+On Wed, Oct 20, 2021 at 1:28 PM Alistair Francis <alistair23@gmail.com> wrote:
+>
+> On Wed, Oct 20, 2021 at 12:14 PM Dmitry Torokhov
+> <dmitry.torokhov@gmail.com> wrote:
+> >
+> > On Wed, Oct 20, 2021 at 11:44:50AM +1000, Alistair Francis wrote:
+> > > On Wed, Oct 20, 2021 at 11:05 AM Dmitry Torokhov
+> > > <dmitry.torokhov@gmail.com> wrote:
+> > > >
+> > > > On Wed, Oct 20, 2021 at 09:33:13AM +1000, Alistair Francis wrote:
+> > > > > On Tue, Oct 19, 2021 at 11:51 AM Dmitry Torokhov
+> > > > > <dmitry.torokhov@gmail.com> wrote:
+> > > > > >
+> > > > > > We already have touchscreen-inverted-x/y defined in
+> > > > > > Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml,
+> > > > > > why are they not sufficient?
+> > > > >
+> > > > > The touchscreen-* properties aren't applied to HID devices though, at
+> > > > > least not that I can tell.
+> > > >
+> > > > No, they are not currently, but that does not mean we need to establish
+> > > > a new set of properties (property names) for HID case.
+> > >
+> > > I can update the names to use the existing touchscreen ones.
+> > >
+> > > Do you have a hint of where this should be implemented though?
+> > >
+> > > Right now (without "HID: wacom: Add support for the AG14 Wacom
+> > > device") the wacom touchscreen is just registered as a generic HID
+> > > device. I don't see any good place in hid-core, hid-input or
+> > > hid-generic to invert the input values for this.
+> >
+> > I think the transformation should happen in
+> > hid-multitouch.c::mt_process_slot() using helpers from
+> > include/linux/input/touchscreen.h
+>
+> Thanks for the help!
+>
+> I have managed to get the device to be a hid-multitouch (instead of
+> hid-generic).
+>
+> I also think I have figured out a way to get the properties to
+> hid-multitouch from the i2c-hid device. It requires a change to
+> touchscreen.c, but it's not a big change.
+>
+> The main problem now is that hid-multitouch.c::mt_process_slot() isn't
+> actually called. The code just calls input_sync() from
+> hid-multitouch.c::mt_report(). It doesn't get to mt_process_slot() due
+> to rdata->is_mt_collection not being true. Setting
+> rdata->is_mt_collection to true causes userspace not to see the wacom
+> input any more.
 
-If the Allwinner CLINT is sufficiently compliant, this makes sense to me.
+hid-multitouch now only handles the mutltitouch part. Everything else
+is handled in hid-input.c
+So if the device is just presenting a stylus to the user space, you
+better not use hid-multitouch at all, but hid-generic.
 
-Will there be a new round of
-[RFC PATCH v4 08/10] dt-bindings: timer: Add ACLINT MTIMER bindings
-https://lore.kernel.org/all/20211007123632.697666-9-anup.patel@wdc.com/
-were you could add the Allwinner device? Or is that series already merged?
+Cheers,
+Benjamin
 
-Should the riscv,aclint-mtimer.yaml file mention that there are 
-different access sizes and either state per compatibility string what 
-that size is or provide a parameter for that purpose?
-
-Best regards
-
-Heinrich
-
-> 
-> Regards,
-> Anup
-> 
->> ---
->>   .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
->>   1 file changed, 62 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
->> new file mode 100644
->> index 000000000000..02463fb2043a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
->> @@ -0,0 +1,62 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: SiFive Core Local Interruptor
->> +
->> +maintainers:
->> +  - Palmer Dabbelt <palmer@dabbelt.com>
->> +  - Anup Patel <anup.patel@wdc.com>
->> +
->> +description:
->> +  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
->> +  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
->> +  interrupts. It directly connects to the timer and inter-processor interrupt
->> +  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
->> +  interrupt controller is the parent interrupt controller for CLINT device.
->> +  The clock frequency of the CLINT is specified via "timebase-frequency" DT
->> +  property of "/cpus" DT node. The "timebase-frequency" DT property is
->> +  described in Documentation/devicetree/bindings/riscv/cpus.yaml
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const:
->> +          - allwinner,sun20i-d1-clint
->> +      - const:
->> +          - thead,clint0
->> +
->> +    description:
->> +      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
->> +      the T-HEAD derived CLINTs.
->> +      Supported compatible strings are -
->> +      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
->> +      and "thead,clint0" for the T-HEAD IP block with no chip
->> +      integration tweaks.
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts-extended:
->> +    minItems: 1
->> +
->> +additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts-extended
->> +
->> +examples:
->> +  - |
->> +    timer@2000000 {
->> +      compatible = "allwinner,sun20i-d1-clint", "thead,clint0";
->> +      interrupts-extended = <&cpu1intc 3 &cpu1intc 7
->> +                             &cpu2intc 3 &cpu2intc 7
->> +                             &cpu3intc 3 &cpu3intc 7
->> +                             &cpu4intc 3 &cpu4intc 7>;
->> +       reg = <0x2000000 0x10000>;
->> +    };
->> +...
->> --
->> 2.32.0
->>
+>
+> Alistair
+>
+> >
+> > I think the more challenging question is to how pass/attach struct
+> > touchscreen_properties * to the hid device (i expect the properties will
+> > be attached to i2c-hid device, but maybe we could create a sub-node of
+> > it and attach properties there.
+> >
+> > Thanks.
+> >
+> > --
+> > Dmitry
+>
 
