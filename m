@@ -2,279 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE7AE43540C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 21:51:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2CE435467
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 22:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231618AbhJTTxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 15:53:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231612AbhJTTxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Oct 2021 15:53:46 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 359BCC06161C;
-        Wed, 20 Oct 2021 12:51:31 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id g25so625312wrb.2;
-        Wed, 20 Oct 2021 12:51:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=N9trX6BUcNb0j2IVKNM+Xz6Qfq7brKDHnZXMGzRSkSA=;
-        b=mnvqchSp+CCj4iMN0D8Oi+rdYe1Z2sFSIhdFBDL3xwtxSwhZEaEzZfko5GyaI3jkY+
-         Ir9s3c5UijXmLDNdBOom1N95uo0ZpjTJWgB+X2yzpMB9HAO/Xr9ukKiJwj+pk5FFxX2n
-         wx5yS514Bo2ks4KqT2Wz/1n+iYpdmbGS62VLohYF9hBjN7dVReF3EZDPeP2ZlETytn6U
-         HiRoL6yMPlrQjV1ue9ESEVA6w+JBqIbkuipzSkqUaeQAa2DVOgz6eiqXprP5+1+qt9G+
-         JTnirBTJLgIuznBPlohKFn3+gRrjO3Hpq5NjUDo3qn7BHgvFW3KAEHYL1ecT9zoWxVA0
-         amsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=N9trX6BUcNb0j2IVKNM+Xz6Qfq7brKDHnZXMGzRSkSA=;
-        b=wFB57UIO8Yjhz+fuY2lPjXfUCI6yszQrKnS2/qiG34rz2cEvSLW+2plD6s/yU2ifGN
-         OFO4xZ8uu6eGUPNee/6DNZgjruVch/xDUTSmlNtr1FWMNDvcyIG6wvBR07kpkd/enzu7
-         wEXR+TUQAEn8NI+djNApR3Y4v0Jvm0nH0IUsKkeiAV83rv4+9XaD7J5ZOqQPyXgbVscB
-         s1U03WPEthmsYQSZlZibtv5AYLf9MPosVub1+aYVPGeoUT11o1K3jxvYlXoPfLstLo37
-         5k/O75QOscm+7wJYpbFQPakkECTDm3InGA+gONBB/sy/keacq7zZvr37kNlRCpgr2d1t
-         VsSw==
-X-Gm-Message-State: AOAM532KYah5URK1xnb+UEVkIAk2qjUC3GjKRKN4zubmfrGBrY7HSMYm
-        Slf7NdRiOJWE5YPKwMeWols+NwzxvpA=
-X-Google-Smtp-Source: ABdhPJxvbSbZ3lODadM+Se1fG2YW1EKusNJWgMmB6xKpOc5/J9LzV5h3eM5Wm5B6S22fBOlFPY1+Xw==
-X-Received: by 2002:a05:6000:145:: with SMTP id r5mr1556083wrx.64.1634759489688;
-        Wed, 20 Oct 2021 12:51:29 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a01-0c23-b9f5-df00-f22f-74ff-fe21-0725.c23.pool.telefonica.de. [2a01:c23:b9f5:df00:f22f:74ff:fe21:725])
-        by smtp.googlemail.com with ESMTPSA id f3sm2741310wml.11.2021.10.20.12.51.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Oct 2021 12:51:29 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-phy@lists.infradead.org, vkoul@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, kishon@ti.com,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 2/2] phy: amlogic: Add a new driver for the HDMI TX PHY on Meson8/8b/8m2
-Date:   Wed, 20 Oct 2021 21:51:07 +0200
-Message-Id: <20211020195107.1564533-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211020195107.1564533-1-martin.blumenstingl@googlemail.com>
-References: <20211020195107.1564533-1-martin.blumenstingl@googlemail.com>
+        id S229952AbhJTURB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 16:17:01 -0400
+Received: from ixit.cz ([94.230.151.217]:57890 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229910AbhJTURB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 16:17:01 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 38C3820064;
+        Wed, 20 Oct 2021 22:14:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1634760884;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=3xm0DPHOl9yQRCEmN8ie1WfoCaoHVhNhOOGY6/WiZ+U=;
+        b=zssKQ5/ABu0ZdhEyxx0NaaTXMQf/9BA4ggeYiFMkPMkudu46R4x+8A5x/NpvSL8K0CCgFZ
+        bslcrbkgWNByYvft5xhez87Y7UvF8ttPOTY8x9N2/hnf9xcRG1v8gYdIiWkgrBu155lPUa
+        EZTu6DoU3wxybt7Esy3RR9ALOT1MF5E=
+From:   David Heidelberg <david@ixit.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: correct mmc node naming
+Date:   Wed, 20 Oct 2021 22:14:39 +0200
+Message-Id: <20211020201440.229196-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
-region. Unfortunately only few register bits are documented. For
-HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
-kernel.
+MMC nodes has to be named mmc@ to comply with dt-bindings.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Fix warnings as:
+arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml: sdcc@12400000: $nodename:0: 'sdcc@12400000' does not match '^mmc(@.*)?$'
+	From schema: Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- drivers/phy/amlogic/Kconfig              |  10 ++
- drivers/phy/amlogic/Makefile             |   1 +
- drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 160 +++++++++++++++++++++++
- 3 files changed, 171 insertions(+)
- create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+ arch/arm/boot/dts/qcom-apq8060-dragonboard.dts      |  6 +++---
+ arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts  |  2 +-
+ arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts         |  6 +++---
+ arch/arm/boot/dts/qcom-apq8064-ifc6410.dts          |  6 +++---
+ arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts |  4 ++--
+ arch/arm/boot/dts/qcom-apq8064.dtsi                 |  6 +++---
+ arch/arm/boot/dts/qcom-ipq8064.dtsi                 |  4 ++--
+ arch/arm/boot/dts/qcom-mdm9615.dtsi                 |  4 ++--
+ arch/arm/boot/dts/qcom-msm8660-surf.dts             |  4 ++--
+ arch/arm/boot/dts/qcom-msm8660.dtsi                 | 10 +++++-----
+ arch/arm/boot/dts/qcom-msm8960-cdp.dts              |  4 ++--
+ arch/arm/boot/dts/qcom-msm8960.dtsi                 |  4 ++--
+ 12 files changed, 30 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index db5d0cd757e3..486ca23aba32 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -2,6 +2,16 @@
- #
- # Phy drivers for Amlogic platforms
- #
-+config PHY_MESON8_HDMI_TX
-+	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-+	depends on (ARCH_MESON && ARM) || COMPILE_TEST
-+	depends on OF
-+	select MFD_SYSCON
-+	help
-+	  Enable this to support the HDMI TX PHYs found in Meson8,
-+	  Meson8b and Meson8m2 SoCs.
-+	  If unsure, say N.
-+
- config PHY_MESON8B_USB2
- 	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
- 	default ARCH_MESON
-diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-index 8fa07fbd0d92..c0886c850bb0 100644
---- a/drivers/phy/amlogic/Makefile
-+++ b/drivers/phy/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
- obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
- obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
- obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-new file mode 100644
-index 000000000000..f9a6572c27d8
---- /dev/null
-+++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-+ *
-+ * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+/*
-+ * Unfortunately there is no detailed documentation available for the
-+ * HHI_HDMI_PHY_CNTL0 register. CTL0 and CTL1 is all we know about.
-+ * Magic register values in the driver below are taken from the vendor
-+ * BSP / kernel.
-+ */
-+#define HHI_HDMI_PHY_CNTL0				0x3a0
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
-+
-+#define HHI_HDMI_PHY_CNTL1				0x3a4
-+	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
-+	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
-+
-+#define HHI_HDMI_PHY_CNTL2				0x3a8
-+
-+struct phy_meson8_hdmi_tx_priv {
-+	struct regmap		*hhi;
-+	struct clk		*tmds_clk;
-+};
-+
-+static int phy_meson8_hdmi_tx_init(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	return clk_prepare_enable(priv->tmds_clk);
-+}
-+
-+static int phy_meson8_hdmi_tx_exit(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	clk_disable_unprepare(priv->tmds_clk);
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+	unsigned int i;
-+	u16 hdmi_ctl0;
-+
-+	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
-+		hdmi_ctl0 = 0x1e8b;
-+	else
-+		hdmi_ctl0 = 0x4d0b;
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1, 0x0);
-+
-+	/* Reset three times, just like the vendor driver does */
-+	for (i = 0; i < 3; i++) {
-+		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
-+			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
-+		usleep_range(1000, 2000);
-+
-+		regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
-+		usleep_range(1000, 2000);
-+	}
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_write(priv->hhi, HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops phy_meson8_hdmi_tx_ops = {
-+	.init		= phy_meson8_hdmi_tx_init,
-+	.exit		= phy_meson8_hdmi_tx_exit,
-+	.power_on	= phy_meson8_hdmi_tx_power_on,
-+	.power_off	= phy_meson8_hdmi_tx_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct phy_meson8_hdmi_tx_priv *priv;
-+	struct phy_provider *phy_provider;
-+	struct resource *res;
-+	struct phy *phy;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	if (!res)
-+		return -EINVAL;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->hhi = syscon_node_to_regmap(np->parent);
-+	if (IS_ERR(priv->hhi))
-+		return PTR_ERR(priv->hhi);
-+
-+	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(priv->tmds_clk))
-+		return PTR_ERR(priv->tmds_clk);
-+
-+	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	phy_provider = devm_of_phy_provider_register(&pdev->dev,
-+						     of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-+	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, phy_meson8_hdmi_tx_of_match);
-+
-+static struct platform_driver phy_meson8_hdmi_tx_driver = {
-+	.probe	= phy_meson8_hdmi_tx_probe,
-+	.driver	= {
-+		.name		= "phy-meson8-hdmi-tx",
-+		.of_match_table	= phy_meson8_hdmi_tx_of_match,
-+	},
-+};
-+module_platform_driver(phy_meson8_hdmi_tx_driver);
-+
-+MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-+MODULE_DESCRIPTION("Meson8, Meson8b and Meson8m2 HDMI TX PHY driver");
-+MODULE_LICENSE("GPL v2");
+diff --git a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+index 5bedbb902ad5..d664ccd454c5 100644
+--- a/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom-apq8060-dragonboard.dts
+@@ -899,7 +899,7 @@ ncp {
+ 		};
+ 		amba {
+ 			/* Internal 3.69 GiB eMMC */
+-			sdcc@12400000 {
++			mmc@12400000 {
+ 				status = "okay";
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&dragon_sdcc1_pins>;
+@@ -908,7 +908,7 @@ sdcc@12400000 {
+ 			};
+ 
+ 			/* External micro SD card, directly connected, pulled up to 2.85 V */
+-			sdcc@12180000 {
++			mmc@12180000 {
+ 				status = "okay";
+ 				/* Enable SSBI GPIO 22 as input, use for card detect */
+ 				pinctrl-names = "default";
+@@ -922,7 +922,7 @@ sdcc@12180000 {
+ 			 * Second external micro SD card, using two TXB104RGYR levelshifters
+ 			 * to lift from 1.8 V to 2.85 V
+ 			 */
+-			sdcc@12200000 {
++			mmc@12200000 {
+ 				status = "okay";
+ 				/* Enable SSBI GPIO 26 as input, use for card detect */
+ 				pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+index 197494ef887b..b2cd32f440e0 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dts
+@@ -367,7 +367,7 @@ phy {
+ 
+ 		amba {
+ 			/* eMMC */
+-			sdcc@12400000 {
++			mmc@12400000 {
+ 				status = "okay";
+ 				vmmc-supply = <&pm8921_l5>;
+ 				vqmmc-supply = <&pm8921_s4>;
+diff --git a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
+index 0148148a8e0a..e068a8d0adf0 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-cm-qs600.dts
+@@ -220,14 +220,14 @@ pci@1b500000 {
+ 
+ 		amba {
+ 			/* eMMC */
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status = "okay";
+ 				vmmc-supply = <&pm8921_l5>;
+ 				vqmmc-supply = <&pm8921_s4>;
+ 			};
+ 
+ 			/* External micro SD card */
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				status = "okay";
+ 				vmmc-supply = <&v3p3_fixed>;
+ 				pinctrl-names	= "default";
+@@ -235,7 +235,7 @@ sdcc3: sdcc@12180000 {
+ 				cd-gpios	= <&tlmm_pinmux 26 GPIO_ACTIVE_LOW>;
+ 			};
+ 			/* WLAN */
+-			sdcc4: sdcc@121c0000 {
++			sdcc4: mmc@121c0000 {
+ 				status = "okay";
+ 				vmmc-supply = <&v3p3_fixed>;
+ 				vqmmc-supply = <&v3p3_fixed>;
+diff --git a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
+index d0a17b5a5fa3..2638b380be20 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-ifc6410.dts
+@@ -314,14 +314,14 @@ pios {
+ 
+ 		amba {
+ 			/* eMMC */
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status = "okay";
+ 				vmmc-supply = <&pm8921_l5>;
+ 				vqmmc-supply = <&pm8921_s4>;
+ 			};
+ 
+ 			/* External micro SD card */
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				status = "okay";
+ 				vmmc-supply = <&pm8921_l6>;
+ 				pinctrl-names	= "default";
+@@ -329,7 +329,7 @@ sdcc3: sdcc@12180000 {
+ 				cd-gpios	= <&tlmm_pinmux 26 GPIO_ACTIVE_LOW>;
+ 			};
+ 			/* WLAN */
+-			sdcc4: sdcc@121c0000 {
++			sdcc4: mmc@121c0000 {
+ 				status = "okay";
+ 				vmmc-supply = <&ext_3p3v>;
+ 				vqmmc-supply = <&pm8921_lvs1>;
+diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+index 72e47bdc5c12..f8c97efc61fc 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+@@ -374,14 +374,14 @@ serial@1a240000 {
+ 		};
+ 
+ 		amba {
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status = "okay";
+ 
+ 				vmmc-supply = <&pm8921_l5>;
+ 				vqmmc-supply = <&pm8921_s4>;
+ 			};
+ 
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				status = "okay";
+ 
+ 				vmmc-supply = <&pm8921_l6>;
+diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
+index 8a389323a474..ed1cd2c529cc 100644
+--- a/arch/arm/boot/dts/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
+@@ -1073,7 +1073,7 @@ amba {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status		= "disabled";
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				pinctrl-names	= "default";
+@@ -1093,7 +1093,7 @@ sdcc1: sdcc@12400000 {
+ 				dma-names = "tx", "rx";
+ 			};
+ 
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
+@@ -1111,7 +1111,7 @@ sdcc3: sdcc@12180000 {
+ 				dma-names = "tx", "rx";
+ 			};
+ 
+-			sdcc4: sdcc@121c0000 {
++			sdcc4: mmc@121c0000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
+diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+index 110113f3b8e2..7f67b282da10 100644
+--- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+@@ -1181,7 +1181,7 @@ amba: amba {
+ 			#size-cells = <1>;
+ 			ranges;
+ 
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status          = "disabled";
+ 				compatible      = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -1201,7 +1201,7 @@ sdcc1: sdcc@12400000 {
+ 				dma-names = "tx", "rx";
+ 			};
+ 
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				compatible      = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status          = "disabled";
+diff --git a/arch/arm/boot/dts/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+index 6e90c5d5a050..c32415f0e66d 100644
+--- a/arch/arm/boot/dts/qcom-mdm9615.dtsi
++++ b/arch/arm/boot/dts/qcom-mdm9615.dtsi
+@@ -354,7 +354,7 @@ amba {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-			sdcc1: sdcc@12180000 {
++			sdcc1: mmc@12180000 {
+ 				status = "disabled";
+ 				compatible = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -374,7 +374,7 @@ sdcc1: sdcc@12180000 {
+ 				assigned-clock-rates = <400000>;
+ 			};
+ 
+-			sdcc2: sdcc@12140000 {
++			sdcc2: mmc@12140000 {
+ 				compatible = "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status = "disabled";
+diff --git a/arch/arm/boot/dts/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom-msm8660-surf.dts
+index 6a321ccb0bd0..414280d9bdba 100644
+--- a/arch/arm/boot/dts/qcom-msm8660-surf.dts
++++ b/arch/arm/boot/dts/qcom-msm8660-surf.dts
+@@ -35,13 +35,13 @@ vsdcc_fixed: vsdcc-regulator {
+ 
+ 		amba {
+ 			/* eMMC */
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status = "okay";
+ 				vmmc-supply = <&vsdcc_fixed>;
+ 			};
+ 
+ 			/* External micro SD card */
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				status = "okay";
+ 				vmmc-supply = <&vsdcc_fixed>;
+ 			};
+diff --git a/arch/arm/boot/dts/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom-msm8660.dtsi
+index 21cb58ab68ac..1e8aab357f9c 100644
+--- a/arch/arm/boot/dts/qcom-msm8660.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8660.dtsi
+@@ -483,7 +483,7 @@ amba {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status		= "disabled";
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -499,7 +499,7 @@ sdcc1: sdcc@12400000 {
+ 				cap-mmc-highspeed;
+ 			};
+ 
+-			sdcc2: sdcc@12140000 {
++			sdcc2: mmc@12140000 {
+ 				status		= "disabled";
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -514,7 +514,7 @@ sdcc2: sdcc@12140000 {
+ 				cap-mmc-highspeed;
+ 			};
+ 
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
+@@ -530,7 +530,7 @@ sdcc3: sdcc@12180000 {
+ 				no-1-8-v;
+ 			};
+ 
+-			sdcc4: sdcc@121c0000 {
++			sdcc4: mmc@121c0000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
+@@ -545,7 +545,7 @@ sdcc4: sdcc@121c0000 {
+ 				cap-mmc-highspeed;
+ 			};
+ 
+-			sdcc5: sdcc@12200000 {
++			sdcc5: mmc@12200000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
+diff --git a/arch/arm/boot/dts/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+index e7d2e937ea4c..4af01039c3b2 100644
+--- a/arch/arm/boot/dts/qcom-msm8960-cdp.dts
++++ b/arch/arm/boot/dts/qcom-msm8960-cdp.dts
+@@ -26,12 +26,12 @@ serial@16440000 {
+ 
+ 		amba {
+ 			/* eMMC */
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status = "okay";
+ 			};
+ 
+ 			/* External micro SD card */
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				status = "okay";
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+index 172ea3c70eac..2a0ec97a264f 100644
+--- a/arch/arm/boot/dts/qcom-msm8960.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+@@ -263,7 +263,7 @@ amba {
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
+-			sdcc1: sdcc@12400000 {
++			sdcc1: mmc@12400000 {
+ 				status		= "disabled";
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+@@ -280,7 +280,7 @@ sdcc1: sdcc@12400000 {
+ 				vmmc-supply = <&vsdcc_fixed>;
+ 			};
+ 
+-			sdcc3: sdcc@12180000 {
++			sdcc3: mmc@12180000 {
+ 				compatible	= "arm,pl18x", "arm,primecell";
+ 				arm,primecell-periphid = <0x00051180>;
+ 				status		= "disabled";
 -- 
-2.33.1
+2.33.0
 
