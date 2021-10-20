@@ -2,87 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C451434E74
-	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43890434E7D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Oct 2021 17:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbhJTPDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 11:03:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44314 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229952AbhJTPDg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 11:03:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C35F46138F;
-        Wed, 20 Oct 2021 15:01:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634742081;
-        bh=z7VI6hj0K9Fo796pWRUpy2R1Q9kn8kHQhTlWYJrfePw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dyBLcFuF+wn3BShsvjbGx4E3RAwbQT4nrgtZZ2ucQvW0WJgGinS3ELMs5itRcixwb
-         ukujKpk5TavF++yrwmYtJS7EyK/0fz1PIVIE+WyV0I67wCiAtnrfE3wag4Qd9yLaL7
-         KV8rDitLkufEhSpKc/d+gD48aaFTz+DgYMSzEeWhi1uLQcvS7deh3aU0jbxdWD6tyx
-         RGtonH4EvPfPD2kHgFdqJWKT45DtBQiGrzHLWMlViisxbEI4OiUaRJ282itbkWxfup
-         Vtvf7hB4MFH0JgXc+FxcveOCU70eyqJsCazXnt40oLBTGOi7JQ8S4kXVyOPcLbd4n1
-         WFhfh9pRAtqIg==
-Received: by mail-qk1-f173.google.com with SMTP id 77so3353902qkh.6;
-        Wed, 20 Oct 2021 08:01:21 -0700 (PDT)
-X-Gm-Message-State: AOAM532IPeoffr01SKhBodx2bramKkKnFBZkrD6pmDHwgvhrXC6rkngU
-        2FGBfFgWmE2NoCAWb3s+hzxcn41nLD4AVWfQAw==
-X-Google-Smtp-Source: ABdhPJyF4QCRR727Up4VIKtIer6TwAG0Kp1SH4RXVSOp5/OcQ0MGQA8sNFtv8DACvo+5a6zmtaeiQivPLevTM4/xvDY=
-X-Received: by 2002:a05:620a:4150:: with SMTP id k16mr16220qko.357.1634742080892;
- Wed, 20 Oct 2021 08:01:20 -0700 (PDT)
+        id S229952AbhJTPFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 11:05:23 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:56780 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229570AbhJTPFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 11:05:22 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19KD3Z97008294;
+        Wed, 20 Oct 2021 17:02:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=mtOAELMMg2FfpdI+Q7BA2qRARYKxutpR06ajPBwwq9Y=;
+ b=yQQSQXJ542OSxFmsRHyGX9DTkSXeW3qYEXUypRzpJAigAUdasdc19knryijFmr72fxBX
+ LMzO45yBMizMP2Fps3/NA1mU9bhy5ZoHM5XaiMNE4IZymllzKZiBfaci5VTIuRkqQUwP
+ X62mdhrQTeyDfg/1xKblJoCnM8FMlPBM2p34U8oNGbZBEg1+52e2S1eiJElW8L/4JgL2
+ I4T2DhtksiUDYk/sor3is9KUTKNa1O5+wWfoz57X29v1vXxLGtiIP3Bf1W4EqlTbr67M
+ +KW7tvdcQrnJXcxd6m8XorfhrzdL4vrqIdK+dGunS6/wAo1zZyjG7EFh/Rd/whG7z/rP 7g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3btknp8pjd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Oct 2021 17:02:53 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5136B10002A;
+        Wed, 20 Oct 2021 17:02:52 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 48D7922A6E6;
+        Wed, 20 Oct 2021 17:02:52 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 20 Oct 2021 17:02:52
+ +0200
+From:   Erwan Le Ray <erwan.leray@foss.st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Erwan Le Ray <erwan.leray@foss.st.com>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 1/1] ARM: dts: stm32: clean useless spaces in uart4_idle_pins_a node
+Date:   Wed, 20 Oct 2021 17:02:30 +0200
+Message-ID: <20211020150230.9939-1-erwan.leray@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20210924071614.868307-1-maxime@cerno.tech> <YWfREhBIFLD/9aqo@google.com>
-In-Reply-To: <YWfREhBIFLD/9aqo@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 20 Oct 2021 10:01:09 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+tX2TNBLwohWCh05qPsuiYb6n6qmap9f-sko1oOEsi7A@mail.gmail.com>
-Message-ID: <CAL_Jsq+tX2TNBLwohWCh05qPsuiYb6n6qmap9f-sko1oOEsi7A@mail.gmail.com>
-Subject: Re: [RESEND v2 1/3] dt-bindings: gpio: Convert X-Powers AXP209 GPIO
- binding to a schema
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
-        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-20_05,2021-10-20_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 14, 2021 at 1:41 AM Lee Jones <lee.jones@linaro.org> wrote:
->
-> On Fri, 24 Sep 2021, Maxime Ripard wrote:
->
-> > The X-Powers AXP PMICs feature a GPIO Controller supported by Linux
-> > thanks to its device tree binding.
-> >
-> > Now that we have the DT validation in place, let's convert the device
-> > tree bindings for that driver over to a YAML schema.
-> >
-> > Cc: Chen-Yu Tsai <wens@csie.org>
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: linux-gpio@vger.kernel.org
-> > Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >
-> > ---
-> >
-> > Changes from v1:
-> >   - Removed the example and moved it in the mfd schema
-> > ---
-> >  .../devicetree/bindings/gpio/gpio-axp209.txt  | 75 -------------------
-> >  .../bindings/gpio/x-powers,axp209-gpio.yaml   | 55 ++++++++++++++
-> >  2 files changed, 55 insertions(+), 75 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-axp209.txt
-> >  create mode 100644 Documentation/devicetree/bindings/gpio/x-powers,axp209-gpio.yaml
->
-> Applied, thanks.
+Clean useless spaces in uart4_idle_pins_a node.
 
-Pushed out? Still failing in linux-next.
+Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
 
-Rob
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+index 5b60ecbd718f..e13c2a9762b8 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -1737,20 +1737,20 @@
+ 	};
+ 
+ 	uart4_idle_pins_a: uart4-idle-0 {
+-		   pins1 {
+-			 pinmux = <STM32_PINMUX('G', 11, ANALOG)>; /* UART4_TX */
+-		   };
+-		   pins2 {
+-			 pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
+-			 bias-disable;
+-		   };
++		pins1 {
++			pinmux = <STM32_PINMUX('G', 11, ANALOG)>; /* UART4_TX */
++		};
++		pins2 {
++			pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
++			bias-disable;
++		};
+ 	};
+ 
+ 	uart4_sleep_pins_a: uart4-sleep-0 {
+-		   pins {
++		pins {
+ 			pinmux = <STM32_PINMUX('G', 11, ANALOG)>, /* UART4_TX */
+ 				 <STM32_PINMUX('B', 2, ANALOG)>; /* UART4_RX */
+-		    };
++		};
+ 	};
+ 
+ 	uart4_pins_b: uart4-1 {
+-- 
+2.17.1
+
