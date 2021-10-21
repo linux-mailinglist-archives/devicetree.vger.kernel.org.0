@@ -2,367 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FFB4435FD8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 13:02:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A9943602C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 13:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbhJULEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 07:04:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34328 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229567AbhJULE0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 07:04:26 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D27C60FF2;
-        Thu, 21 Oct 2021 11:02:08 +0000 (UTC)
-Date:   Thu, 21 Oct 2021 12:06:26 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Cc:     <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
-        <linux-iio@vger.kernel.org>, <git@xilinx.com>,
-        <michal.simek@xilinx.com>, <pmeerw@pmeerw.net>,
-        <devicetree@vger.kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>
-Subject: Re: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
-Message-ID: <20211021120626.56cf1b8d@jic23-huawei>
-In-Reply-To: <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
-References: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com>
-        <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230264AbhJUL3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 07:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52538 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230267AbhJUL3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 07:29:22 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED913C06174E
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 04:27:06 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id g79-20020a1c2052000000b00323023159e1so6533872wmg.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 04:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=HRccYAAxKQH+n0Ne7PXP5DxOUX/iyOBZsE6vUgryPPA=;
+        b=wCYYjM4NSyxWT4PSGKrKws6r32sIgJNKs34OdlwLebZBAaAVP+417F8eBMUbSvsGYl
+         8H/0QZsL5tNohQsHBRbu9L+SLBZMrzXg68OSPaEoLqBwnysv9ryUlqY+D5aZVJHhTS2e
+         tvCuD3hx0xGS3Qx7qIH5lrx+xJIqA5BGp14Bq3RBQaD6ErdnkLDqx9Y7459uZEKcstLU
+         Ge+S9FFM/2k8rUSCq+oJ4Vqenn8ZNoix8iyR//SUt9vozAFV2cDfnlbQBeS1UA6rpK0I
+         Ru4aN8sz2Hp/Kd7XXsG9OKGikOtg5jWYIXtVKM3xOqfr6ELXJQTFFCK+0Jq0qx8OMbuK
+         MfuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=HRccYAAxKQH+n0Ne7PXP5DxOUX/iyOBZsE6vUgryPPA=;
+        b=cG9yl2/dkqsaccdzPNuoKV/VvAkMIPOjrhoLy/5xRcrkH45Ds+o3EUcw4PJ+372SKb
+         C5Aja5TTht3Xn2oMtCjYCLo0Tp3XhCHoaQc8BEWiZncSw+Mx7vbF0M6IX11XpLs2tlGv
+         I4CU9UzDsrsaX0rmlsuttvJxgjU5bnjaPNTUqtOOf7MI44WoA4lcOBk2tQSGU6F0QAPT
+         E6o8Ty8ZfFmMEMNiiIhTvqnaub7ZRVzsCbGLIXssiJoIWkRWOTHF7u450Q1h0nzPmfa1
+         g2e3w8noxdw/SiQ4FuHq4ELzT1SaUWrIqEUmDD3oMs9pp/W+9Cb19kRBaXWgK7rpmzF3
+         zU4g==
+X-Gm-Message-State: AOAM53065fKy3XbOM96gSjBQngtlwQ63ID5QQPUcN4khrPZEa8KrOI2v
+        PZ6L8TpoiZwDWDIFNJ1lb9CYgb+2VmsXYg==
+X-Google-Smtp-Source: ABdhPJzKFS7TlSxmG2+szgwLYfdptm119KR6wx8JCvIzN5lFi1GpLvMQsHTeuyE50hGZRY9NTLnbQQ==
+X-Received: by 2002:a05:600c:1c1b:: with SMTP id j27mr5689836wms.1.1634815625514;
+        Thu, 21 Oct 2021 04:27:05 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id f8sm53282wrj.41.2021.10.21.04.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Oct 2021 04:27:05 -0700 (PDT)
+Date:   Thu, 21 Oct 2021 12:27:03 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        kernel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, amitk@kernel.org, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alistair23@gmail.com, linux-hwmon@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v13 3/9] mfd: simple-mfd-i2c: Enable support for the
+ silergy,sy7636a
+Message-ID: <YXFOh6nubOYKv5ua@google.com>
+References: <20211015122551.38951-1-alistair@alistair23.me>
+ <20211015122551.38951-4-alistair@alistair23.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211015122551.38951-4-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Oct 2021 16:20:46 +0100
-Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com> wrote:
+On Fri, 15 Oct 2021, Alistair Francis wrote:
 
-> The AMS includes an ADC as well as on-chip sensors that can be used to
-> sample external voltages and monitor on-die operating conditions, such
-> as temperature and supply voltage levels. The AMS has two SYSMON blocks.
-> PL-SYSMON block is capable of monitoring off chip voltage and
-> temperature.
-> PL-SYSMON block has DRP, JTAG and I2C interface to enable monitoring
-> from external master. Out of these interface currently only DRP is
-> supported.
-> Other block PS-SYSMON is memory mapped to PS.
-> The AMS can use internal channels to monitor voltage and temperature as
-> well as one primary and up to 16 auxiliary channels for measuring
-> external voltages.
-> The voltage and temperature monitoring channels also have event
-> capability which allows to generate an interrupt when their value falls
-> below or raises above a set threshold.
-> 
-> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-
-It would be good at some point to move away from of specific firmware property
-reading, but on a platform like this I guess you can be fairly sure no one will
-be using ACPI or other firmware description options so I'm not going to insist
-on it for an initial merge.
-
-Other comment I have are fairly minor but we need to leave some time
-for other reviews and in particular DT binding review.
-
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 > ---
->  drivers/iio/adc/Kconfig      |   13 +
->  drivers/iio/adc/Makefile     |    1 +
->  drivers/iio/adc/xilinx-ams.c | 1341 ++++++++++++++++++++++++++++++++++
->  3 files changed, 1355 insertions(+)
->  create mode 100644 drivers/iio/adc/xilinx-ams.c
-
-...
-
-> diff --git a/drivers/iio/adc/xilinx-ams.c b/drivers/iio/adc/xilinx-ams.c
-> new file mode 100644
-> index 000000000000..597cdda8a618
-> --- /dev/null
-> +++ b/drivers/iio/adc/xilinx-ams.c
-> @@ -0,0 +1,1341 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Xilinx AMS driver
-> + *
-> + *  Copyright (C) 2021 Xilinx, Inc.
-> + *
-> + *  Manish Narani <mnarani@xilinx.com>
-> + *  Rajnikant Bhojani <rajnikant.bhojani@xilinx.com>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-#include <linux/mod_devicetable.h> for the of_device_id structure defintion.
-
-> +#include <linux/of_address.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include <linux/iio/events.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +
-...
-
-> +/**
-> + * struct ams - Driver data for xilinx-ams
-> + * @base: physical base address of device
-> + * @ps_base: physical base address of PS device
-> + * @pl_base: physical base address of PL device
-> + * @clk: clocks associated with the device
-> + * @dev: pointer to device struct
-> + * @lock: to handle multiple user interaction
-> + * @intr_lock: to protect interrupt mask values
-> + * @masked_alarm: currently masked due to alarm
-> + * @alarm_mask: alarm configuration
-> + * @interrupt_mask: interrupt configuration
-> + * @irq: interrupt number of the sysmon
-> + * @ams_unmask_work: re-enables event once the event condition disappears
-> + *
-> + * This structure contains necessary state for Sysmon driver to operate
-> + */
-> +struct ams {
-> +	void __iomem *base;
-> +	void __iomem *ps_base;
-> +	void __iomem *pl_base;
-> +	struct clk *clk;
-> +	struct device *dev;
-> +	/* check kernel doc above */
-> +	struct mutex lock;
-> +	/* check kernel doc above */
-> +	spinlock_t intr_lock;
-> +	unsigned int alarm_mask;
-Docs should be same order as the fields.
-> +	unsigned int masked_alarm;
-> +	u64 intr_mask;
-
-That's not the name in the docs.  Run kernel-doc script over this and
-fix all the errors / warnings.
-
-> +	int irq;
-> +	struct delayed_work ams_unmask_work;
+>  drivers/mfd/simple-mfd-i2c.c | 12 +++++++++++
+>  include/linux/mfd/sy7636a.h  | 41 ++++++++++++++++++++++++++++++++++++
+>  2 files changed, 53 insertions(+)
+>  create mode 100644 include/linux/mfd/sy7636a.h
+> 
+> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> index 51536691ad9d..fbc6d6aed6c0 100644
+> --- a/drivers/mfd/simple-mfd-i2c.c
+> +++ b/drivers/mfd/simple-mfd-i2c.c
+> @@ -62,8 +62,20 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+>  	return ret;
+>  }
+>  
+> +static const struct mfd_cell sy7636a_cells[] = {
+> +	{ .name = "sy7636a-regulator", },
+> +	{ .name = "sy7636a-temperature", },
+> +	{ .name = "sy7636a-thermal", },
 > +};
 > +
+> +static const struct simple_mfd_data silergy_sy7636a = {
+> +	.mfd_cell = sy7636a_cells,
+> +	.mfd_cell_size = ARRAY_SIZE(sy7636a_cells),
+> +};
+> +
+>  static const struct of_device_id simple_mfd_i2c_of_match[] = {
+>  	{ .compatible = "kontron,sl28cpld" },
+> +	{ .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+> diff --git a/include/linux/mfd/sy7636a.h b/include/linux/mfd/sy7636a.h
+> new file mode 100644
+> index 000000000000..15caa54f0432
+> --- /dev/null
+> +++ b/include/linux/mfd/sy7636a.h
+> @@ -0,0 +1,41 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Functions to access SY3686A power management chip.
+> + *
+> + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> + */
+> +
+> +#ifndef __MFD_SY7636A_H
+> +#define __MFD_SY7636A_H
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
 
-...
+Why are these needed?
 
+> +#define SY7636A_REG_OPERATION_MODE_CRL		0x00
+> +#define SY7636A_OPERATION_MODE_CRL_VCOMCTL	BIT(6)
+> +#define SY7636A_OPERATION_MODE_CRL_ONOFF	BIT(7)
+> +#define SY7636A_REG_VCOM_ADJUST_CTRL_L		0x01
+> +#define SY7636A_REG_VCOM_ADJUST_CTRL_H		0x02
+> +#define SY7636A_REG_VCOM_ADJUST_CTRL_MASK	0x01ff
+> +#define SY7636A_REG_VLDO_VOLTAGE_ADJULST_CTRL	0x03
+> +#define SY7636A_REG_POWER_ON_DELAY_TIME		0x06
+> +#define SY7636A_REG_FAULT_FLAG			0x07
+> +#define SY7636A_FAULT_FLAG_PG			BIT(0)
+> +#define SY7636A_REG_TERMISTOR_READOUT		0x08
 > +
-> +static irqreturn_t ams_irq(int irq, void *data)
-> +{
-> +	struct iio_dev *indio_dev = data;
-> +	struct ams *ams = iio_priv(indio_dev);
-> +	u32 isr0;
+> +#define SY7636A_REG_MAX				0x08
 > +
-> +	spin_lock(&ams->intr_lock);
+> +#define VCOM_MIN		0
+> +#define VCOM_MAX		5000
 > +
-> +	isr0 = readl(ams->base + AMS_ISR_0);
+> +#define VCOM_ADJUST_CTRL_MASK	0x1ff
+> +// Used to shift the high byte
+> +#define VCOM_ADJUST_CTRL_SHIFT	8
+> +// Used to scale from VCOM_ADJUST_CTRL to mv
+> +#define VCOM_ADJUST_CTRL_SCAL	10000
 > +
-> +	/* only process alarms that are not masked */
-> +	isr0 &= ~((ams->intr_mask & AMS_ISR0_ALARM_MASK) | ams->masked_alarm);
+> +#define FAULT_FLAG_SHIFT	1
 > +
-> +	if (!isr0)
+> +#endif /* __LINUX_MFD_SY7636A_H */
 
-lock held.
-
-> +		return IRQ_NONE;
-> +
-> +	/* clear interrupt */
-> +	writel(isr0, ams->base + AMS_ISR_0);
-> +
-> +	/* Mask the alarm interrupts until cleared */
-> +	ams->masked_alarm |= isr0;
-> +	ams_update_intrmask(ams, 0, 0);
-> +
-> +	ams_handle_events(indio_dev, isr0);
-> +
-> +	schedule_delayed_work(&ams->ams_unmask_work,
-> +			      msecs_to_jiffies(AMS_UNMASK_TIMEOUT_MS));
-> +
-> +	spin_unlock(&ams->intr_lock);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
-...
-
-> +
-> +static int ams_parse_dt(struct iio_dev *indio_dev, struct platform_device *pdev)
-> +{
-> +	struct ams *ams = iio_priv(indio_dev);
-> +	struct iio_chan_spec *ams_channels, *dev_channels;
-> +	struct device_node *child_node = NULL, *np = pdev->dev.of_node;
-> +	int ret, vol_ch_cnt = 0, temp_ch_cnt = 0, i, rising_off, falling_off;
-> +	unsigned int num_channels = 0;
-> +
-> +	/* Initialize buffer for channel specification */
-> +	ams_channels = kzalloc(sizeof(ams_ps_channels) +
-> +			       sizeof(ams_pl_channels) +
-> +			       sizeof(ams_ctrl_channels), GFP_KERNEL);
-> +	if (!ams_channels)
-> +		return -ENOMEM;
-> +
-> +	if (of_device_is_available(np)) {
-> +		ret = ams_init_module(indio_dev, np, ams_channels);
-> +		if (ret < 0)
-> +			goto err;
-> +
-> +		num_channels += ret;
-> +	}
-> +
-> +	for_each_child_of_node(np, child_node) {
-> +		if (of_device_is_available(child_node)) {
-> +			ret = ams_init_module(indio_dev, child_node,
-> +					      ams_channels + num_channels);
-> +			if (ret < 0)
-> +				goto err;
-
-for_each_child_of_node() holds a reference if we jump out of the loop
-before it terminates.
-https://elixir.bootlin.com/linux/latest/source/drivers/of/base.c#L715
-is where it ultimately releases that reference when the loop is terminating.
-Her you need to do it manually with an of_node_put() call
-
-> +
-> +			num_channels += ret;
-> +		}
-> +	}
-> +
-> +	for (i = 0; i < num_channels; i++) {
-> +		if (ams_channels[i].type == IIO_VOLTAGE)
-> +			ams_channels[i].channel = vol_ch_cnt++;
-> +		else
-> +			ams_channels[i].channel = temp_ch_cnt++;
-> +
-> +		if (ams_channels[i].scan_index < (AMS_PS_SEQ_MAX * 3)) {
-> +			/* set threshold to max and min for each channel */
-> +			falling_off =
-> +				ams_get_alarm_offset(ams_channels[i].scan_index,
-> +						     IIO_EV_DIR_FALLING);
-> +			rising_off =
-> +				ams_get_alarm_offset(ams_channels[i].scan_index,
-> +						     IIO_EV_DIR_RISING);
-> +			if (ams_channels[i].scan_index >= AMS_PS_SEQ_MAX) {
-> +				writel(AMS_ALARM_THR_MIN,
-> +				       ams->pl_base + falling_off);
-> +				writel(AMS_ALARM_THR_MAX,
-> +				       ams->pl_base + rising_off);
-> +			} else {
-> +				writel(AMS_ALARM_THR_MIN,
-> +				       ams->ps_base + falling_off);
-> +				writel(AMS_ALARM_THR_MAX,
-> +				       ams->ps_base + rising_off);
-> +			}
-> +		}
-> +	}
-> +
-> +	dev_channels = devm_kzalloc(&pdev->dev, sizeof(*dev_channels) *
-> +				    num_channels, GFP_KERNEL);
-> +	if (!dev_channels) {
-> +		ret = -ENOMEM;
-> +		goto err;
-> +	}
-
-We now have the option of devm_krealloc()   If you used that in conjunction
-with devm_kzalloc to replace the kzalloc above, you could avoid this need to
-copy.  Not important though if you prefer doing this manual version.
-
-> +
-> +	memcpy(dev_channels, ams_channels,
-> +	       sizeof(*ams_channels) * num_channels);
-> +	indio_dev->channels = dev_channels;
-> +	indio_dev->num_channels = num_channels;
-> +
-> +	ret = 0;
-> +err:
-> +	kfree(ams_channels);
-> +
-> +	return ret;
-> +}
-> +
-
-...
-
-> +static int ams_probe(struct platform_device *pdev)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct ams *ams;
-> +	int ret;
-> +
-> +	if (!pdev->dev.of_node)
-> +		return -ENODEV;
-> +
-> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*ams));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	ams = iio_priv(indio_dev);
-> +	mutex_init(&ams->lock);
-> +	spin_lock_init(&ams->intr_lock);
-> +
-> +	indio_dev->name = "xilinx-ams";
-> +
-> +	indio_dev->info = &iio_ams_info;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	ams->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ams->base))
-> +		return PTR_ERR(ams->base);
-> +
-> +	ams->clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(ams->clk))
-> +		return PTR_ERR(ams->clk);
-> +	clk_prepare_enable(ams->clk);
-> +	devm_add_action_or_reset(&pdev->dev, ams_clk_disable_unprepare,
-> +				 ams->clk);
-> +
-> +	INIT_DELAYED_WORK(&ams->ams_unmask_work, ams_unmask_worker);
-> +	devm_add_action_or_reset(&pdev->dev, ams_cancel_delayed_work,
-> +				 &ams->ams_unmask_work);
-> +
-> +	ret = ams_init_device(ams);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to initialize AMS\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = ams_parse_dt(indio_dev, pdev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failure in parsing DT\n");
-> +		return ret;
-> +	}
-> +
-> +	ams_enable_channel_sequence(indio_dev);
-> +
-> +	ams->irq = platform_get_irq(pdev, 0);
-> +	if (ams->irq == -EPROBE_DEFER) {
-> +		ret = -EPROBE_DEFER;
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev, ams->irq, &ams_irq, 0, "ams-irq",
-> +			       indio_dev);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "failed to register interrupt\n");
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, indio_dev);
-> +
-> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> +
-
-return devm_...
-
-> +	return ret;
-> +}
-> +
-
-
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
