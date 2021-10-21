@@ -2,93 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCD924362B8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 15:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FEC24362B6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 15:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230190AbhJUNWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 09:22:17 -0400
-Received: from mail-0301.mail-europe.com ([188.165.51.139]:51592 "EHLO
-        mail-0301.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbhJUNWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:22:17 -0400
-Date:   Thu, 21 Oct 2021 13:19:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1634822397;
-        bh=GpiB0I+KGCnyy1lCsiKsCapszoFphoofSjyFZ0nHIGs=;
-        h=Date:To:From:Reply-To:Subject:In-Reply-To:References:From;
-        b=E5qvC2u71WXT6csjZ0itrr0L8SovrB1cxWgv9Fc0Bs5HopIdb3/8pv+GKh6GMR4O3
-         nD6mk+65KGPib1xgOXxJ7x+JVrrNQQvTHs+IrDUosvG4c+XcwyIy0R1EVhQ38bJy/f
-         uCozGkhJivMtn8DRDBuFY546W4G1w3YDKSiXWpO0=
-To:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231309AbhJUNWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 09:22:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230436AbhJUNWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:22:09 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC60C0613B9
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 06:19:53 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2c41:c2bf:5c8f:53c5])
+        by andre.telenet-ops.be with bizsmtp
+        id 8dKr2600E1Z5S4H01dKrfC; Thu, 21 Oct 2021 15:19:51 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mdXz5-006ZBW-0m; Thu, 21 Oct 2021 15:19:51 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mdXz4-00GQCf-2v; Thu, 21 Oct 2021 15:19:50 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen <tomba@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH v5 2/5] interconnect: icc-rpm: Add support for bus power domain
-Message-ID: <20211021131839.234662-3-y.oudjana@protonmail.com>
-In-Reply-To: <20211021131839.234662-1-y.oudjana@protonmail.com>
-References: <20211021131839.234662-1-y.oudjana@protonmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: display: tilcd: Fix endpoint adressing in example
+Date:   Thu, 21 Oct 2021 15:19:49 +0200
+Message-Id: <c58b9cdcd09cf669bb63cd9465d0f75dd66e742c.1634822358.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for attaching to a power domain. This is required
-for Aggregate 0 NoC on MSM8996, which is powered by a GDSC.
+Remove the bogus unit addresses from the endpoints in the example.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/interconnect/qcom/icc-rpm.c | 7 +++++++
- drivers/interconnect/qcom/icc-rpm.h | 1 +
- 2 files changed, 8 insertions(+)
+ Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qco=
-m/icc-rpm.c
-index ef7999a08c8b..6b918d082ab6 100644
---- a/drivers/interconnect/qcom/icc-rpm.c
-+++ b/drivers/interconnect/qcom/icc-rpm.c
-@@ -11,6 +11,7 @@
- #include <linux/of_device.h>
- #include <linux/of_platform.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-=20
-@@ -340,6 +341,12 @@ int qnoc_probe(struct platform_device *pdev)
- =09if (ret)
- =09=09return ret;
-=20
-+=09if (desc->has_bus_pd) {
-+=09=09ret =3D dev_pm_domain_attach(dev, true);
-+=09=09if (ret)
-+=09=09=09return ret;
-+=09}
-+
- =09provider =3D &qp->provider;
- =09INIT_LIST_HEAD(&provider->nodes);
- =09provider->dev =3D dev;
-diff --git a/drivers/interconnect/qcom/icc-rpm.h b/drivers/interconnect/qco=
-m/icc-rpm.h
-index f5744de4da19..fd06a3b9e3f7 100644
---- a/drivers/interconnect/qcom/icc-rpm.h
-+++ b/drivers/interconnect/qcom/icc-rpm.h
-@@ -77,6 +77,7 @@ struct qcom_icc_desc {
- =09size_t num_nodes;
- =09const char * const *clocks;
- =09size_t num_clocks;
-+=09bool has_bus_pd;
- =09bool is_bimc_node;
- =09const struct regmap_config *regmap_cfg;
- =09unsigned int qos_offset;
---=20
-2.33.1
-
+diff --git a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
+index 3e64075ac7ece2a1..3b3d0bbfcfff443c 100644
+--- a/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
++++ b/Documentation/devicetree/bindings/display/tilcdc/tilcdc.txt
+@@ -60,7 +60,7 @@ Example:
+ 		blue-and-red-wiring = "crossed";
+ 
+ 		port {
+-			lcdc_0: endpoint@0 {
++			lcdc_0: endpoint {
+ 				remote-endpoint = <&hdmi_0>;
+ 			};
+ 		};
+@@ -75,7 +75,7 @@ Example:
+ 		pinctrl-1 = <&nxp_hdmi_bonelt_off_pins>;
+ 
+ 		port {
+-			hdmi_0: endpoint@0 {
++			hdmi_0: endpoint {
+ 				remote-endpoint = <&lcdc_0>;
+ 			};
+ 		};
+-- 
+2.25.1
 
