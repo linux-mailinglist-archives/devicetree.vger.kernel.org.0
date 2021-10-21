@@ -2,93 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B330435DA6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5F9435DBB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231133AbhJUJLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 05:11:15 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:31105 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231153AbhJUJLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:11:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1634807339; x=1666343339;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ifSk/ar9zle6TUfdbkckP9UIu6NSYDdpfvg1NVg6IEY=;
-  b=xSucywZ+bRSSYGXDrE+l8kASEJj8B20ubz+PHpoIE+N9yty4V3GGYNZZ
-   J6h4ws8SSCaDa73r8DjX3yESVSxYLIqKkaitR1kmrJEdoU4b7yvMKBIq8
-   yUN0Z+RyJugyJcNjI4mlugdfzfKFz1BbLQbp9d03TzeN2qZBxvdJEusIE
-   rJe4p1A4CVu4lj96UPLkrv8g6cWBcvpFaErT0KupGrcoKXgo+8gMVlj41
-   3+OuKwcyyqQP5p2SgdkrrL/SHyNDkVYZJKs2Eqn3Kc0tG7mM6PmzByuEc
-   9r77mKXDhlrG4hjJ5Kh1OtUIuk7n1MxRCUZfOM/4Iec1+0NBTOyclzg1b
-   g==;
-IronPort-SDR: JVbCpvZRb87y5B3+hQcJR9mpIloPKgR5W+Y63f1qMxj2U2HfrPxW4eTyI8nckMUySfUArqY+fU
- KuxFjJefqys1kFEnt98KgOfdP/PxBaWYUpzzwF+VrV5jaJZfftbcqrVTORJatab/TRRvIN1Y8b
- vmCGxjbd9krqOt0X7mV6YeCJr9wbLOIGPauLC532VAtFAHEHQUECGYqEUro1oFSvXfEumN5aX5
- l8MEpVrzqAhBaglz+JcZisBiWclBRI19fl7ZKMR0c31U3eesooTchuBORzF75cvwNe4S5JMFkR
- beDKoSW8EX1f9LGFeNFLLNHn
-X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; 
-   d="scan'208";a="141184758"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Oct 2021 02:08:58 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 21 Oct 2021 02:08:58 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 21 Oct 2021 02:08:58 -0700
-Date:   Thu, 21 Oct 2021 11:10:32 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>, <kishon@ti.com>,
-        <robh+dt@kernel.org>, <andrew@lunn.ch>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 3/3] phy: Add lan966x ethernet serdes PHY driver
-Message-ID: <20211021091032.ffaoncg5jjdwdeyg@soft-dev3-1.localhost>
-References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
- <20211015123920.176782-4-horatiu.vultur@microchip.com>
- <YW8HIHTCVgB+URJ5@matsya>
- <20211020091733.fxph2pq3xa3byvry@soft-dev3-1.localhost>
- <YXA3VVUGEjUR4HDC@matsya>
- <YXA6lZBTeA6aNxVD@piout.net>
- <YXEEcJHuEdFLPyCU@matsya>
+        id S231482AbhJUJRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 05:17:15 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:58054
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231153AbhJUJRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 05:17:15 -0400
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C6E1940010
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 09:14:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634807698;
+        bh=ytj9TJXPU/viRoBCe3czC/QnBbUOzUJFGdNTRHasgmo=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=LS9K0Kuf7ExyW4LUC+ea8tDNXFUtPOeRzmnSVTD9DmyjxM0XC4uLTNZO01NeO4aMF
+         sQQUit4ezvB3W2K9VawoWD+bGWeNT5rUowAtlRNERSUGD2npQqW13aqHKyzc+x34+k
+         yXX+qy5v07YHGa4P5gT7WFVF5xNn+4cMBYp8XR6wifjVtn61jC0pX7cAZoJ7f3SGwu
+         Uh/q10j+rrWaRju2eyvTqgYyJpxvVxqDyWLOKggFZxUi2XwxR4kpcpgD2v1+oEe4xu
+         bddl3fWdrVEabGMOE5aBeScZ/HCyUZ6bwd5X6MaEcFwsmfca63Un73pur2AxejO32Q
+         LpG6Ftw/cfZBA==
+Received: by mail-lj1-f200.google.com with SMTP id u21-20020a2e91d5000000b00210e16996e5so2574980ljg.5
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 02:14:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ytj9TJXPU/viRoBCe3czC/QnBbUOzUJFGdNTRHasgmo=;
+        b=S9taUil61uuR3chcYqFgpPR88hk5oH8aRg3h4YYMKWKViskEAI905OL09vxjW+lscg
+         LDWIHeVPrKXZ1wBRtjPS1+slDvAr9YvIqUcaWw3YmVKlD4xOAZKOLu1Bdx75+dI/VwVe
+         a5+1ZFDSr29KDWodArI8xJlJqxB24hVkDybprBaDrxkCSCgU0IG/uQ568txB9KTm3t5u
+         iXVRFqGhOmxwC1fy07TP/0KQvSbLNyRZeSwRCNhtfXvrgb6stxeMOL9kX0JLkmb5k/se
+         kE6Ec/zMdg7p2TGTS/YMS4zXh93ZCiY+sgTAl8DFaXddObpGgaJ4J7yGzsO0W9m3mEKx
+         aq/A==
+X-Gm-Message-State: AOAM532E/7b4X/jtLBW66pFkeqIWRHjojqQvf1IO5S5/lsvwyLwnzu2C
+        RyqEp7B4taRNBQI+p61UjqAp6WZdGEykKLCVJmFv12gV07XfsbR/NlHcKh3qOl4iwWUOqJWIX8l
+        CTydfWgkm7kRFnu93qrgJhUgj7qHxDwSqr1POoiI=
+X-Received: by 2002:a05:651c:490:: with SMTP id s16mr4725352ljc.423.1634807698126;
+        Thu, 21 Oct 2021 02:14:58 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxE5YihtoWA04zZD9ZPDHafCjFehzdXEgiZoVPP8SOURpyYaWPBoivjMG+GOgyU+MxKUdNHag==
+X-Received: by 2002:a05:651c:490:: with SMTP id s16mr4725334ljc.423.1634807697902;
+        Thu, 21 Oct 2021 02:14:57 -0700 (PDT)
+Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id e12sm482150ljp.30.2021.10.21.02.14.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Oct 2021 02:14:57 -0700 (PDT)
+Subject: Re: [PATCH v3 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M
+ and S5M to dtschema
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211006132324.76008-1-krzysztof.kozlowski@canonical.com>
+ <YXA+GoTf6u/Y4qLX@google.com>
+ <16c79986-03b2-b74b-0de8-4118e2c4419f@canonical.com>
+ <b98bd487-6c55-d058-8073-689b9396b527@canonical.com>
+ <YXEtuX5j9z8es0/i@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <4be10d9d-fbe5-3dd6-be0a-2b66a857a015@canonical.com>
+Date:   Thu, 21 Oct 2021 11:14:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YXEEcJHuEdFLPyCU@matsya>
+In-Reply-To: <YXEtuX5j9z8es0/i@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/21/2021 11:40, Vinod Koul wrote:
+On 21/10/2021 11:07, Lee Jones wrote:
+> On Wed, 20 Oct 2021, Krzysztof Kozlowski wrote:
 > 
-> On 20-10-21, 17:49, Alexandre Belloni wrote:
-> > On 20/10/2021 21:05:49+0530, Vinod Koul wrote:
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > > >
-> > > > > Any reason why this is dual licensed, why not GPL only?
-> > > >
-> > > > No reason, I think I copy this from a different file.
-> > >
-> > > Please have a chat with your lawyers on the correct license this should
-> > > have!
-> > Dual GPL and MIT was Microsemi's policy, I'm not sure it carried over to
-> > Microchip.
+>> On 20/10/2021 18:08, Krzysztof Kozlowski wrote:
+>>> On 20/10/2021 18:04, Lee Jones wrote:
+>>>> On Wed, 06 Oct 2021, Krzysztof Kozlowski wrote:
+>>>>
+>>>>> Hi All,
+>>>>>
+>>>>> Changes since v2
+>>>>> ================
+>>>>> 1. Add Rob's tags.
+>>>>> 2. Remove "regulator-name" from properties (all regulator dtschema).
+>>>>> 3. Move "unevaluatedProperties" higher to make code easier to read (all regulator dtschema).
+>>>>> 4. Add ref-type to op-mode property (patch 6: s5m8767 regulators).
+>>>>>
+>>>>> Changes since v1
+>>>>> ================
+>>>>> 1. Drop DTS patches - applied.
+>>>>> 2. Fully remove bindings/regulator/samsung,s5m8767.txt .
+>>>>> 3. Minor subject reformatting and few typos in text.
+>>>>>
+>>>>>
+>>>>> Intro
+>>>>> =====
+>>>>> This patchset converts all devicetree bindings of Samsung S2M and S5M
+>>>>> PMIC devices from txt to dtschema.
+>>>>>
+>>>>> It includes also two fixes because later conversion depends on it
+>>>>> (contextually).
+>>>>>
+>>>>>
+>>>>> Merging/dependencies
+>>>>> ====================
+>>>>> 1. Regulator related binding changes depend on first two commits (the
+>>>>>    fixes), because of context.
+>>>>> 2. The mfd bindings depend on clock and regulator bindings.
+>>>>>
+>>>>> The fixes and bindings changes (patches 1-10) should go via the same
+>>>>> tree.  For example regulator or mfd tree.
+>>>>>
+>>>>> Another alternative is that regulator patches (1-2, 4-6) go via Mark who
+>>>>> later gives MFD a stable branch/tag to pull. Then the clock and MFD
+>>>>> bindings would go on top via MFD tree. Or any other setup you would like
+>>>>> to have. :)
+>>>>>
+>>>>>
+>>>>> Overview of devices
+>>>>> ===================
+>>>>> Essentially all Samsung S2M and S5M PMICs are very similar devices. They
+>>>>> provide the same functionality: regulators, RTC, 2 or 3 clocks and main
+>>>>> power management (e.g. power cut to SoC).
+>>>>>
+>>>>> The differences are mostly in registers layout and number of regulators.
+>>>>>
+>>>>> The drivers are built around one common part, mfd/sec-core.c, and share
+>>>>> some drivers between devices:
+>>>>> 1. MFD sec-core for all devices,
+>>>>> 1. one clock driver for most of devices,
+>>>>> 2. one RTC driver for all devices,
+>>>>> 3. three regulator drivers.
+>>>>>
+>>>>> The regulator drivers were implementing slightly different features,
+>>>>> therefore one regulator binding for all devices does not make much
+>>>>> sense.  However the clock device binding can be shared.
+>>>>>
+>>>>> The final dtschema bindings try to implement this - share only the clock
+>>>>> bindings.
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>>> Krzysztof Kozlowski (10):
+>>>>>   regulator: s5m8767: do not use reset value as DVS voltage if GPIO DVS
+>>>>>     is disabled
+>>>>>   regulator: dt-bindings: samsung,s5m8767: correct
+>>>>>     s5m8767,pmic-buck-default-dvs-idx property
+>>>>>   dt-bindings: clock: samsung,s2mps11: convert to dtschema
+>>>>>   regulator: dt-bindings: samsung,s2m: convert to dtschema
+>>>>>   regulator: dt-bindings: samsung,s2mpa01: convert to dtschema
+>>>>>   regulator: dt-bindings: samsung,s5m8767: convert to dtschema
+>>>>>   dt-bindings: mfd: samsung,s2mps11: convert to dtschema
+>>>>>   dt-bindings: mfd: samsung,s2mpa01: convert to dtschema
+>>>>>   dt-bindings: mfd: samsung,s5m8767: convert to dtschema
+>>>>>   dt-bindings: mfd: samsung,s5m8767: document buck and LDO supplies
+>>>>
+>>>> Looks like these are ready to be pushed.
+>>>>
+>>>> However, I am not in receipt of patches 1-2.
+>>>>
+>>>> Am I okay to merge 3-10 right now?
+>>>
+>>> No. This is v3, but we need v4. Please:
+>>> 1. Merge tag from Mark:
+>>> https://lore.kernel.org/lkml/YWCT+YL%2F9qHbF9f0@sirena.org.uk/
+>>>
+>>> 2. Then apply patches 7-10 (MFD bindings).
+>>
+>> ... patches 7-10 from that v4 of course. They start here:
+>> https://lore.kernel.org/lkml/20211008113931.134847-4-krzysztof.kozlowski@canonical.com/
 > 
-> That is why they need to talk to someone and decide what license
-> applies :)
-
-I have changed it to be the same as the one on sparx5 because also
-sparx5 is a Microchip product. On sparx5 we used:
-'SPDX-License-Identifier: GPL-2.0-or-later'
-
+> ... and these can do in on their own?  With no inter-dependencies?
 > 
-> --
-> ~Vinod
+> Or is Rob going to tell me off again?
 
--- 
-/Horatiu
+The 7-10 depend on 1-6 from this set. 1-6 are in the tag provided by
+Mark, so you have to base your work on Mark's tag.
+
+Then you will get everything from this patchset (but v4, not v3 please).
+The patchset itself does not depend on anything else, so I do not expect
+Rob objecting. It was also reviewed by Rob.
+
+To summarize: please merge tag from Mark and apply patches 7-10 from v4
+on top of that tag.
+
+
+Best regards,
+Krzysztof
