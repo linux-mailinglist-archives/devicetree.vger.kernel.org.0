@@ -2,118 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DFC435F7C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 12:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E8B435FDA
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 13:02:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230187AbhJUKrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 06:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42966 "EHLO
+        id S229567AbhJULEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 07:04:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230372AbhJUKq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 06:46:59 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80C9C06161C;
-        Thu, 21 Oct 2021 03:44:43 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E9B121F44896
-Subject: Re: [PATCH v1 4/4] media: platform: mtk-mdp3: Set rdma compression
- reg in each frame
-To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        "river . cheng" <river.cheng@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20211021063414.23663-1-roy-cw.yeh@mediatek.com>
- <20211021063414.23663-5-roy-cw.yeh@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <4154479c-b0cc-dde4-eb73-bc6c65c9beca@collabora.com>
-Date:   Thu, 21 Oct 2021 12:44:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S230320AbhJULEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 07:04:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CF5C061749
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 04:02:35 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mdVqC-0000p6-Cl; Thu, 21 Oct 2021 13:02:32 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mdVqB-0008Fo-8C; Thu, 21 Oct 2021 13:02:31 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mdVqB-0001Gb-79; Thu, 21 Oct 2021 13:02:31 +0200
+Date:   Thu, 21 Oct 2021 13:02:31 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Peter Chen <peter.chen@nxp.com>,
+        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+Message-ID: <20211021110231.pcdjjax67ygs3iok@pengutronix.de>
+References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
+ <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
+ <20190626055409.jjiwptyths6p6jty@pengutronix.de>
+ <VI1PR04MB53270E979BA9817D47A7AFC88BFD0@VI1PR04MB5327.eurprd04.prod.outlook.com>
+ <20190724130939.43t66umrasbe4wwf@pengutronix.de>
+ <20190923102825.zemkconnvdibke5h@pengutronix.de>
+ <20191115090757.usc753lq7uujtqyy@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20211021063414.23663-5-roy-cw.yeh@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gdginxlkf2f7j5c4"
+Content-Disposition: inline
+In-Reply-To: <20191115090757.usc753lq7uujtqyy@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/10/21 08:34, roy-cw.yeh ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> Set rdma compression reg in each frame
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> ---
->   drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c | 10 ++++++----
->   drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c |  2 +-
->   2 files changed, 7 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
-> index 12d6c88c68d2..dc0d1b3ff218 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
-> @@ -178,15 +178,17 @@ static int config_rdma_frame(struct mdp_comp_ctx *ctx,
->   			/* Setup Compression Control */
->   			MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_COMP_CON,
->   				     rdma->comp_ctrl, write_mask);
-> -		}
-> -
-> -		if (mdp_cfg->rdma_support_afbc &&
-> -		    (MDP_COLOR_IS_COMPRESS(colorformat))) {
-> +		} else if (mdp_cfg->rdma_support_afbc &&
-> +			   (MDP_COLOR_IS_COMPRESS(colorformat))) {
 
-Looks like you're unconditionally writing to the compression control register,
+--gdginxlkf2f7j5c4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-so you can just...
+On Fri, Nov 15, 2019 at 10:07:57AM +0100, Uwe Kleine-K=F6nig wrote:
+> Hello,
+>=20
+> On Mon, Sep 23, 2019 at 12:28:25PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Jul 24, 2019 at 03:09:39PM +0200, Uwe Kleine-K=F6nig wrote:
+> > > On Thu, Jun 27, 2019 at 03:15:10AM +0000, Peter Chen wrote:
+> > > > =20
+> > > > > On 19-06-26 02:40, Peter Chen wrote:
+> > > > > >
+> > > > > > > Subject: [PATCH] ARM: imx25: provide a fixed regulator for us=
+b phys
+> > > > > > >
+> > > > > > > The usb phys are internal to the SoC and so it their 5V suppl=
+y. With
+> > > > > > > this regulator added explicitly the following (harmless) boot=
+ messages go away:
+> > > > > > >
+> > > > > > > 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vc=
+c not found, using dummy regulator
+> > > > > > > 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vc=
+c not found, using dummy regulator
+> > > > > > >
+> > > > > >
+> > > > > > To eliminate the warning message, I suggest doing below changes=
+, as
+> > > > > > vcc supply is not mandatory.
+> > > > > >
+> > > > > > diff --git a/drivers/usb/phy/phy-generic.c
+> > > > > > b/drivers/usb/phy/phy-generic.c index a53b89be5324..01a5ff1a0515
+> > > > > > 100644
+> > > > > > --- a/drivers/usb/phy/phy-generic.c
+> > > > > > +++ b/drivers/usb/phy/phy-generic.c
+> > > > > > @@ -275,7 +275,7 @@ int usb_phy_gen_create_phy(struct device *d=
+ev, struct usb_phy_generic *nop,
+> > > > > >                 }
+> > > > > >         }
+> > > > > >
+> > > > > > -       nop->vcc =3D devm_regulator_get(dev, "vcc");
+> > > > > > +       nop->vcc =3D devm_regulator_get_optional(dev, "vcc");
+> > > > >=20
+> > > > > Is the regulator optional? IMHO this shouldn't be the fix. I thin=
+k the right fix is Uwe's
+> > > > > approach.
+> > > > >=20
+> > > >=20
+> > > > Add Felipe.
+> > > >=20
+> > > > Some USB PHY's power are from the core system's power (eg, DDR), an=
+d some are
+> > > > fixed at the board and no switch for it. So, it is transparent for =
+software at some cases.
+> > >=20
+> > > It's not clear to me how to proceed. There are two opposing opinions =
+and
+> > > I don't know enough about USB on mx25 to judge myself.
+> > >=20
+> > > Felipe?
+> >=20
+> > This thread is still open in my inbox. Felipe, how can I lure you into
+> > giving your opinion?
+> >=20
+> > My original suggestion can be seen at
+> > https://lore.kernel.org/linux-usb/20190625100412.11815-1-u.kleine-koeni=
+g@pengutronix.de/,
+> > Peter's alternative is still in the quotes above. Which is the
+> > right/better one?
+>=20
+> The stuff said above is still true. I'd like to put this issue on file
+> with "fixed in mainline", but currently this seems to be a stalemate.
+> because nobody cares enough :-|
 
->   			MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_MF_BKGD_SIZE_IN_PXL,
->   				     ((width + 31) >> 5) << 5, 0x001FFFFF);
->   			MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_MF_BKGD_H_SIZE_IN_PXL,
->   				     ((height + 7) >> 3) << 3, 0x001FFFFF);
->   
-		}
-		/* Setup Compression Control */
+This topic is on stall since two years now and I still have the patch in
+the patch stack for my mx25 boards.
 
-		MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_COMP_CON,
+In my eyes my patch is the right one, because no matter how, the usb
+phys need some powering, so devm_regulator_get_optional() doesn't seem
+to be the right approach.
 
-			     rdma->comp_ctrl, write_mask);	
+Would resending the patch help?
 
-... and avoid repeating the same thing over and over in all of the conditionals.
+Best regards
+Uwe
 
-> +			/* Setup Compression Control */
-> +			MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_COMP_CON,
-> +				     rdma->comp_ctrl, write_mask);
-> +		} else {
->   			/* Setup Compression Control */
->   			MM_REG_WRITE(cmd, subsys_id, base, MDP_RDMA_COMP_CON,
->   				     rdma->comp_ctrl, write_mask);
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> index 875326afb686..1a15490d45e7 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> @@ -34,7 +34,7 @@ static const struct mdp_platform_config mt8195_plat_cfg = {
->   	.rdma_support_afbc              = true,
->   	.rdma_esl_setting               = true,
->   	.rdma_rsz1_sram_sharing         = false,
-> -	.rdma_upsample_repeat_only      = true,
-> +	.rdma_upsample_repeat_only      = false,
->   	.rsz_disable_dcm_small_sample   = false,
->   	.rsz_etc_control                = true,
->   	.wrot_filter_constraint         = false,
-> 
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
+--gdginxlkf2f7j5c4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmFxSL4ACgkQwfwUeK3K
+7AnS6ggAjw0nNGSQUE4mj6ul03QBEsSYmsAm+MYYaWAnmB7vSVXYQJb0RVxPsJJc
+nG7X5xPTHn6mLZfznqkJxxcuSQcvBi0XhLzyFBE3MzqIUyHAJE5Rwq+1/LYpr56S
+5qrzXNHWHrame3REZpFBtK6ocy+lxksqezMwrQscp1+LszOLq4tiTrVnExxeTEyR
+l21R9J3Er1b/4icxCj/7R/W3WpTXEhHIDuEZJUAZNXkW4CRMU9RUWTm7SXC+7ly5
+Oct6N2mbZXST5YKVXMF8pTQ4Mx2EZvWvUh6t2KDRT42wRGqEnMpL1LIZkSuyx45D
+sezdxPdeLJyJSoT8UrpRa6LLJxNRpw==
+=tWhJ
+-----END PGP SIGNATURE-----
+
+--gdginxlkf2f7j5c4--
