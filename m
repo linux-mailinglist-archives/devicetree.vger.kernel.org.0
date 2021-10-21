@@ -2,76 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E68274369BB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 19:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD6FC436A0F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 20:06:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231133AbhJURvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 13:51:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57726 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229968AbhJURve (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 13:51:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id DB6BA61251;
-        Thu, 21 Oct 2021 17:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634838558;
-        bh=971Dp8XXlkN81iFinRf4MvIWoZp9k1Gvl8mpn3B/FJM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=B0SmXacw38IY46Rk14ueq7FjGmEv8PJXxLy0fjVD/gZqDGFeUgfgh3SKEv35gXVHq
-         P0+LGyZG7If1VcoDILrzmcZ5Y8S/945OqoMYscHeXHlav+QOVgqTm+qE0ByODvyLf7
-         wPoX91RrERqcRRelEGWzUBsHOBoPGzLnHw7509MKdTuInkYbY1YPRaiLPtSEyvaEFI
-         nUYh8Tegr5WavWY8kE2n+sbmi+21G94MxpQfqFBDlCctrY5cHHG+XDvAWua1SgJTIi
-         s9bZOk6uGMjXAAif5jbF6eqSPhjXd9kczDqgwqdFFG4/CWXvFHERPj0MSI6WX6OpVz
-         jT+4u4dsg6YYQ==
-Date:   Thu, 21 Oct 2021 23:19:14 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>, kishon@ti.com,
-        robh+dt@kernel.org, andrew@lunn.ch, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] phy: Add lan966x ethernet serdes PHY driver
-Message-ID: <YXGoGtbFeKa+TVk2@matsya>
-References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
- <20211015123920.176782-4-horatiu.vultur@microchip.com>
- <YW8HIHTCVgB+URJ5@matsya>
- <20211020091733.fxph2pq3xa3byvry@soft-dev3-1.localhost>
- <YXA3VVUGEjUR4HDC@matsya>
- <YXA6lZBTeA6aNxVD@piout.net>
- <YXEEcJHuEdFLPyCU@matsya>
- <20211021091032.ffaoncg5jjdwdeyg@soft-dev3-1.localhost>
+        id S231453AbhJUSJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 14:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229968AbhJUSJK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 14:09:10 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C162C061764
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 11:06:54 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id d21-20020a9d4f15000000b0054e677e0ac5so1381641otl.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 11:06:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=TsLxcYrVGzv2bNbIlrKzjrjVENJvOk/fhrJ4w/U92ao=;
+        b=M28mUW0hACZY0hgixz6nV5cT95gbMzVM7myHXhBJURHlMszsRVbAeXB4Mm4iqcgRKD
+         SCUzuCoOeZHK4h6EGaARJ5b7cjSbaJMFZZHnTXo70aqsHpDS+gZcxUIEwzIzyGpNlfDO
+         PNtOP+ipZYBQ+sS9tF2JVvw/BjUyJ8aOXNEPo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=TsLxcYrVGzv2bNbIlrKzjrjVENJvOk/fhrJ4w/U92ao=;
+        b=kDVj57OcTJl68KsNArjufE8jw/ITEwYc5FW0Og/8BLscAPRyxeIFnMzjqXJfdirNEX
+         yV46ByDUV8wgPJYAjnrQ5M5zompUWmPpg9TdoNWANdLmmXuKEtzJGtEINutmdbx2t1bX
+         2HDuGODLk4gIwGjTt5VBAFW628lzf3hhmN3+p3qg2kFHnf0YkaytWiXLLpDNciiFF9Vv
+         r3F1Qo283XEIAix/k7t/7223CP8Yz0sIlVKm1dg90TjEi4a7hpDn7ZIkIgPBAG31KUoR
+         M7qZO0b2HjOls0EtsQdBbwXYl509V2/MNWTFGTihROwi9VCkYJozcUfMKoKKZRbUhRFw
+         A2MQ==
+X-Gm-Message-State: AOAM532032z3qPCOPYODeqv4zcvihmXAWQJEBf6SSPMGfHiRFbcHK+lH
+        DVOnZIQQjTmZJI48ppTbURpRRGAiNb+Ml2UoYluqaw==
+X-Google-Smtp-Source: ABdhPJzylvcnEbJeIadhM/rNF9uTiWh44FT2oXv2KycTaSkPHc9aKwkpTA6Y5O975e21ioZ7dor1wkY5eUjF+aL1UUo=
+X-Received: by 2002:a9d:12f4:: with SMTP id g107mr5841884otg.77.1634839613971;
+ Thu, 21 Oct 2021 11:06:53 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 21 Oct 2021 11:06:53 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211021091032.ffaoncg5jjdwdeyg@soft-dev3-1.localhost>
+In-Reply-To: <1634234784-5359-1-git-send-email-pmaliset@codeaurora.org>
+References: <1634234784-5359-1-git-send-email-pmaliset@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 21 Oct 2021 11:06:53 -0700
+Message-ID: <CAE-0n51PGVQ6GT7RMTQajEM54NLOUZBGPkVKmVaG1JV7Fgv9Ag@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add pcie clock support
+To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org,
+        sanm@codeaurora.org, vbadigan@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-10-21, 11:10, Horatiu Vultur wrote:
-> The 10/21/2021 11:40, Vinod Koul wrote:
-> > 
-> > On 20-10-21, 17:49, Alexandre Belloni wrote:
-> > > On 20/10/2021 21:05:49+0530, Vinod Koul wrote:
-> > > > > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > > > >
-> > > > > > Any reason why this is dual licensed, why not GPL only?
-> > > > >
-> > > > > No reason, I think I copy this from a different file.
-> > > >
-> > > > Please have a chat with your lawyers on the correct license this should
-> > > > have!
-> > > Dual GPL and MIT was Microsemi's policy, I'm not sure it carried over to
-> > > Microchip.
-> > 
-> > That is why they need to talk to someone and decide what license
-> > applies :)
-> 
-> I have changed it to be the same as the one on sparx5 because also
-> sparx5 is a Microchip product. On sparx5 we used:
-> 'SPDX-License-Identifier: GPL-2.0-or-later'
+Quoting Prasad Malisetty (2021-10-14 11:06:24)
+> Add pcie clock phandle for sc7280 SoC and correct
+> The pcie_1_pipe-clk clock name as same as binding.
+>
+> fix: ab7772de8 ("arm64: dts: qcom: SC7280: Add rpmhcc clock controller node")
 
-Has the code been copied/derived from somewhere/auto generated from
-scripts/tools or entirely written by you?
+This is wrong. Should be
 
--- 
-~Vinod
+Fixes: ab7772de8612 ("arm64: dts: qcom: SC7280: Add rpmhcc clock
+controller node")
+
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> ---
+> This change is depends on the below patch series.
+> https://lkml.org/lkml/2021/10/7/841
+
+Why doesn't that patch update this clock cell then?
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 39635da..78694c1 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -569,9 +569,10 @@
+>                         reg = <0 0x00100000 0 0x1f0000>;
+>                         clocks = <&rpmhcc RPMH_CXO_CLK>,
+>                                  <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+> -                                <0>, <0>, <0>, <0>, <0>, <0>;
+> +                                <0>, <&pcie1_lane 0>,
+> +                                <0>, <0>, <0>, <0>;
+>                         clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+> -                                     "pcie_0_pipe_clk", "pcie_1_pipe-clk",
+> +                                     "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+
+This can be split from the patch to fix just the name in one patch and
+then add the pcie1_lane phandle in the next patch. That way new features
+aren't being mixed together with the string fix.
+
+>                                       "ufs_phy_rx_symbol_0_clk", "ufs_phy_rx_symbol_1_clk",
+>                                       "ufs_phy_tx_symbol_0_clk",
+>                                       "usb3_phy_wrapper_gcc_usb30_pipe_clk";
