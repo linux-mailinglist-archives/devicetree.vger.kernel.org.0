@@ -2,134 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF327435D57
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 10:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E26D435D61
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 10:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbhJUIyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 04:54:09 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:33397 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbhJUIyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 04:54:06 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634806311; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=TsTUaUN6UAZjto/Yd/hWLc73ukdwtGkHFVUFsfzhjq4=;
- b=G3oBkKyzKz9Q3AYU09qhW3P/aAxd+EJZLWqwV3PBgWZpAS3a7urKJ18P2i0YhoNSoqBee8bh
- AEKQTEtdnFQreXXTUP1SIG/vJdLJYCIqmWofQrMW9y4CKeaOHzWbau61kWgwTE+ZbBCRYEG+
- W1+5IoZvlEJt3DuY9Q0nTTkNHNE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 61712a0e308e0dd330b1e033 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 21 Oct 2021 08:51:26
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E37D9C43617; Thu, 21 Oct 2021 08:51:25 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3A2CAC4338F;
-        Thu, 21 Oct 2021 08:51:25 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 21 Oct 2021 14:21:25 +0530
-From:   skakit@codeaurora.org
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231360AbhJUIzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 04:55:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45714 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230385AbhJUIzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 04:55:19 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE837C06161C;
+        Thu, 21 Oct 2021 01:53:03 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id E4C991F44759
+Subject: Re: [PATCH v16 4/7] soc: mediatek: SVS: add debug commands
+To:     Roger Lu <roger.lu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        Kevin Hilman <khilman@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mka@chromium.org,
-        collinsd@codeurora.org, subbaram@codeaurora.org,
-        kgunda@codeaurora.org
-Subject: Re: [PATCH V2 2/4] dt-bindings: mfd: pm8008: Add pm8008 regulator
- node
-In-Reply-To: <CAE-0n51pCkrdOSJFf3V4HGB5PcUcRa2y6zRQbQ30i-hQVhjC=Q@mail.gmail.com>
-References: <1633060859-22969-1-git-send-email-skakit@codeaurora.org>
- <1633060859-22969-3-git-send-email-skakit@codeaurora.org>
- <CAE-0n51pCkrdOSJFf3V4HGB5PcUcRa2y6zRQbQ30i-hQVhjC=Q@mail.gmail.com>
-Message-ID: <23abf3d093df63b1025e466f45ff16c6@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20210428065440.3704-1-roger.lu@mediatek.com>
+ <20210428065440.3704-5-roger.lu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <715c9587-825f-6c22-96a2-273fb7f07bc3@collabora.com>
+Date:   Thu, 21 Oct 2021 10:52:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210428065440.3704-5-roger.lu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-05 23:40, Stephen Boyd wrote:
-> Quoting Satya Priya (2021-09-30 21:00:57)
->> Add pm8008-regulator node and example.
->> 
->> Signed-off-by: Satya Priya <skakit@codeaurora.org>
->> ---
->> Changes in V2:
->>  - As per Rob's comments changed "pm8008[a-z]?-regulator" to
->>    "^pm8008[a-z]?-regulators".
->> 
->>  .../devicetree/bindings/mfd/qcom,pm8008.yaml       | 24 
->> ++++++++++++++++++++++
->>  1 file changed, 24 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml 
->> b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> index ec3138c..0c9665e 100644
->> --- a/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/qcom,pm8008.yaml
->> @@ -45,6 +45,10 @@ properties:
->>      const: 0
->> 
->>  patternProperties:
->> +  "^pm8008[a-z]?-regulators$":
+Il 28/04/21 08:54, Roger Lu ha scritto:
+> The purpose of SVS is to help find the suitable voltages
+> for DVFS. Therefore, if SVS bank voltages are concerned
+> to be wrong, we can adjust SVS bank voltages by this patch.
 > 
-> Please just call it 'regulators'
+> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-svs.c | 328 +++++++++++++++++++++++++++++++++
+>   1 file changed, 328 insertions(+)
 > 
->> +    type: object
->> +    $ref: "../regulator/qcom,pm8008-regulator.yaml#"
->> +
->>    "^gpio@[0-9a-f]+$":
->>      type: object
->> 
->> @@ -122,6 +126,26 @@ examples:
->>            interrupt-controller;
->>            #interrupt-cells = <2>;
->>          };
->> +
->> +        pm8008-regulators {
-> 
-> Please just call it 'regulators'
-> 
+> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
+> index 2d2153c92373..8794a2d87baa 100644
+> --- a/drivers/soc/mediatek/mtk-svs.c
+> +++ b/drivers/soc/mediatek/mtk-svs.c
+> @@ -6,6 +6,7 @@
+>   #include <linux/bits.h>
+>   #include <linux/clk.h>
+>   #include <linux/completion.h>
+> +#include <linux/debugfs.h>
+>   #include <linux/device.h>
+>   #include <linux/init.h>
+>   #include <linux/interrupt.h>
+> @@ -24,6 +25,7 @@
+>   #include <linux/pm_runtime.h>
+>   #include <linux/regulator/consumer.h>
+>   #include <linux/reset.h>
+> +#include <linux/seq_file.h>
+>   #include <linux/slab.h>
+>   #include <linux/spinlock.h>
+>   #include <linux/thermal.h>
+> @@ -62,6 +64,39 @@
+>   #define SVSB_INTSTS_COMPLETE		0x1
+>   #define SVSB_INTSTS_CLEAN		0x00ffffff
+>   
+> +#define debug_fops_ro(name)						\
+> +	static int svs_##name##_debug_open(struct inode *inode,		\
+> +					   struct file *filp)		\
+> +	{								\
+> +		return single_open(filp, svs_##name##_debug_show,	\
+> +				   inode->i_private);			\
+> +	}								\
+> +	static const struct file_operations svs_##name##_debug_fops = {	\
+> +		.owner = THIS_MODULE,					\
+> +		.open = svs_##name##_debug_open,			\
+> +		.read = seq_read,					\
+> +		.llseek = seq_lseek,					\
+> +		.release = single_release,				\
+> +	}
+> +
+> +#define debug_fops_rw(name)						\
+> +	static int svs_##name##_debug_open(struct inode *inode,		\
+> +					   struct file *filp)		\
+> +	{								\
+> +		return single_open(filp, svs_##name##_debug_show,	\
+> +				   inode->i_private);			\
+> +	}								\
+> +	static const struct file_operations svs_##name##_debug_fops = {	\
+> +		.owner = THIS_MODULE,					\
+> +		.open = svs_##name##_debug_open,			\
+> +		.read = seq_read,					\
+> +		.write = svs_##name##_debug_write,			\
+> +		.llseek = seq_lseek,					\
+> +		.release = single_release,				\
+> +	}
+> +
+> +#define svs_dentry(name)	{__stringify(name), &svs_##name##_debug_fops}
+> +
+>   static DEFINE_SPINLOCK(mtk_svs_lock);
+>   
+>   /*
+> @@ -83,6 +118,7 @@ enum svsb_phase {
+>   	SVSB_PHASE_INIT01,
+>   	SVSB_PHASE_INIT02,
+>   	SVSB_PHASE_MON,
+> +	SVSB_PHASE_NUM,
 
-Okay
+I would move the addition of these last members in the previous (3/7) patch,
+where you introduce the driver in the first place.
 
->> +          compatible = "qcom,pm8008-regulator";
->> +          #address-cells = <1>;
->> +          #size-cells = <0>;
->> +
->> +          vdd_l1_l2-supply = <&vreg_s8b_1p2>;
->> +          vdd_l3_l4-supply = <&vreg_s1b_1p8>;
->> +          vdd_l5-supply = <&vreg_bob>;
->> +          vdd_l6-supply = <&vreg_bob>;
->> +          vdd_l7-supply = <&vreg_bob>;
->> +
->> +          pm8008_l1: regulator@4000 {
->> +            reg = <0x4000>;
->> +            regulator-name = "pm8008_l1";
->> +            regulator-min-microvolt = <950000>;
->> +            regulator-max-microvolt = <1300000>;
->> +            qcom,min-dropout-voltage = <96000>;
->> +          };
->> +        };
+Also, I think that using _MAX instead would be better, as it is pretty
+much a common practice. So, this would become SVSB_PHASE_MAX.
+
+>   };
+>   
+>   enum svs_reg_index {
+> @@ -140,6 +176,7 @@ enum svs_reg_index {
+>   	SPARE2,
+>   	SPARE3,
+>   	THSLPEVEB,
+> +	SVS_REG_NUM,
+
+... and this would become SVS_REG_MAX
+
+>   };
+>   
+>   static const u32 svs_regs_v2[] = {
+
+Apart from that,
+
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
