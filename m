@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73AFB435F0B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 12:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 229E6435F6A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 12:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbhJUKaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 06:30:55 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42768 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbhJUKaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 06:30:55 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D75221F44855
-Subject: Re: [PATCH v1 3/4] media: platform: mtk-mdp3: Set
- dma_set_mask_and_coherent
-To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
+        id S230437AbhJUKoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 06:44:01 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:47554 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230452AbhJUKoA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 06:44:00 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1634812905; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=5bJuWyddTpfaRQuOnPHNHNJ3Pnyj9rAGCER8Il6EUGo=; b=YhQkLoZ+Om07fLeGtJnwMo4rsq2sldj1jdzpcExdL4TMOk/q9S2SzA4dmmU9+Z3J03si51X4
+ lsC55xmEHxmjM6aOh+IMbaJvlzlJTDKiW0EJbB5Fs4zJupjLvKFqXE/VcQr7sMorPLvekg/T
+ cJm1VV3INZASAYngO/xIBe6FOws=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 617143d059612e0100e41a5d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 21 Oct 2021 10:41:20
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D1966C43616; Thu, 21 Oct 2021 10:41:19 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5C415C43460;
+        Thu, 21 Oct 2021 10:41:14 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5C415C43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        "river . cheng" <river.cheng@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20211021063414.23663-1-roy-cw.yeh@mediatek.com>
- <20211021063414.23663-4-roy-cw.yeh@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <d0db66a3-04b4-1b1f-f6bb-8b45154559ff@collabora.com>
-Date:   Thu, 21 Oct 2021 12:28:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211021063414.23663-4-roy-cw.yeh@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, mdtipton@codeaurora.org, saravanak@google.com,
+        okukatla@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-arm-msm-owner@vger.kernel.org
+Subject: [v8 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
+Date:   Thu, 21 Oct 2021 16:10:55 +0530
+Message-Id: <1634812857-10676-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
+References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 21/10/21 08:34, roy-cw.yeh ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> Set dma_set_mask_and_coherent
-> 
+Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+SoCs.
 
-Please explain why you're setting that and why 34 bits in the commit description.
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+---
+ Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> ---
->   drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> index 1e61ac7ca790..875326afb686 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
-> @@ -1141,6 +1141,8 @@ static int mdp_probe(struct platform_device *pdev)
->   	mdp->pdev = pdev;
->   	mdp->mdp_data = of_device_get_match_data(&pdev->dev);
->   
-> +	dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
-> +
->   	ret = of_property_read_u32(dev->of_node, "mediatek,mdp3-id", &id);
->   	if (ret) {
->   		dev_err(dev, "Failed to get mdp-id\n");
-> 
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index e701524..116e434 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -18,6 +18,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc7180-osm-l3
++      - qcom,sc7280-epss-l3
+       - qcom,sc8180x-osm-l3
+       - qcom,sdm845-osm-l3
+       - qcom,sm8150-osm-l3
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
