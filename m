@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB79243575B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 02:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14674435778
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 02:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232066AbhJUAZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 20:25:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44158 "EHLO mail.kernel.org"
+        id S231917AbhJUA02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 20:26:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44822 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232042AbhJUAZA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 20:25:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 41ACC60FD8;
-        Thu, 21 Oct 2021 00:22:44 +0000 (UTC)
+        id S231980AbhJUAZ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 20:25:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 625FE61381;
+        Thu, 21 Oct 2021 00:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634775765;
-        bh=dkCvC7JcUp89D5pDIH6bpJMp72CkeTXg05qjoA65ybs=;
+        s=k20201202; t=1634775793;
+        bh=JZvb5aZChvEeaRYi0gPN5KIejU8wmaPEpKHviKIR3Ho=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TD2dm9pD2pHSBBkr1d3YU+0CT4SO/A3gWln8DXHJxgQYG6DC4wo4oFYUXrYZO3t4G
-         BnKE98v5E9JlnWce4mWDVel28dRkXdTEWNkLJeRhzFvKzyWxyexPqIxp9f76ST7goP
-         D24y/5XAKVQFq+hXbjroz5aboLTaeIlkJPuIpgSwMEIo3AKt24JV3aMU/Bw0UxVZRt
-         MbVAq3J4yv+K/peMLrHT70GZ3KN/XwFsaUPfNJppYqHpSdxlBBKJYmfInI7L0UacIN
-         I0FMQinCp3DVhjuv1FagdTI8lgdKvecjzfAvtlMBU4so4aPRQwEk/7XHwkxv+RnIz0
-         7uc8ewFBusmpw==
+        b=a/1LYoPsRE6wGYmTa5ZCZ7YPDa3lKQkQY/ZdYetQSkzMuqngVS9H7nPh2pB3Gxzgx
+         c3xHcDR6B+jJqeSJXPZra5BlUHOKkzS3SndD857ynfWjQNVW6rfnP1RhvGuJx/PBeD
+         o/lBQYeBrHSOqmZIRtvt2AacOO1Iri89IGQgOQv6dyIrFT79SAOsGAXHo7jQ6fk2rJ
+         INTF+KFjvzY7hI91Ut0kKpeJKekCpjwUJz9iYQa59H5RV6bkZLEbY6lOMGAew3ZX7r
+         BspaVNOg4FCvFgFq77LrX45oLCQMwIP0E5o6EwJ8dbQw4G2F5hz0omQN8LGB86acDO
+         yoTtc35VTAjXA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Herve Codina <herve.codina@bootlin.com>,
@@ -30,12 +30,12 @@ Cc:     Herve Codina <herve.codina@bootlin.com>,
         Sasha Levin <sashal@kernel.org>, vireshk@kernel.org,
         shiraz.linux.kernel@gmail.com, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 04/11] ARM: dts: spear3xx: Fix gmac node
-Date:   Wed, 20 Oct 2021 20:22:30 -0400
-Message-Id: <20211021002238.1129482-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 04/10] ARM: dts: spear3xx: Fix gmac node
+Date:   Wed, 20 Oct 2021 20:22:59 -0400
+Message-Id: <20211021002305.1129633-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211021002238.1129482-1-sashal@kernel.org>
-References: <20211021002238.1129482-1-sashal@kernel.org>
+In-Reply-To: <20211021002305.1129633-1-sashal@kernel.org>
+References: <20211021002305.1129633-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -65,10 +65,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/spear3xx.dtsi b/arch/arm/boot/dts/spear3xx.dtsi
-index f266b7b03482..cc88ebe7a60c 100644
+index 118135d75899..4e4166d96b26 100644
 --- a/arch/arm/boot/dts/spear3xx.dtsi
 +++ b/arch/arm/boot/dts/spear3xx.dtsi
-@@ -47,7 +47,7 @@ dma@fc400000 {
+@@ -53,7 +53,7 @@ dma@fc400000 {
  		};
  
  		gmac: eth@e0800000 {
