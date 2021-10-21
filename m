@@ -2,117 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3AE436D44
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 00:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC894436E62
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 01:40:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231983AbhJUWNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 18:13:50 -0400
-Received: from ixit.cz ([94.230.151.217]:60682 "EHLO ixit.cz"
+        id S230280AbhJUXmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 19:42:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54554 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230233AbhJUWNt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 18:13:49 -0400
-Received: from [127.0.0.1] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 5750320064;
-        Fri, 22 Oct 2021 00:11:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1634854290;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ei8POAb+X6oO+/oTFo2niVhFPP85+JXrdHFErDGQUwc=;
-        b=i1qhKDaV9RFi1sYnf64cAlk9NnxJql95fj0el3CTAT2EUp5P64H/dxF+NkCBRa2eC8qcvW
-        87TQwz9gDsqke1pyne8Q1oXzyzt94gUfkB4+r1AddzowomBWE4QHNOR/+bDK1a/nDLFrcH
-        x9bsQzspusbJ+1YJ29+naBnb9/pxgH8=
-Date:   Thu, 21 Oct 2021 22:11:29 +0000
-From:   David Heidelberg <david@ixit.cz>
-To:     Alex Elder <elder@ieee.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@kernel.org>
-CC:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_1/2=5D_dt-bindings=3A_net=3A_qco?= =?US-ASCII?Q?m=2Cipa=3A_describe_IPA_v4=2E5_interconnects?=
-In-Reply-To: <05b2cc69-d8a4-750d-d98d-db8580546a15@ieee.org>
-References: <20211020225435.274628-1-david@ixit.cz> <05b2cc69-d8a4-750d-d98d-db8580546a15@ieee.org>
-Message-ID: <C9217CCA-1A9B-40DC-9A96-13655270BA8F@ixit.cz>
+        id S229512AbhJUXmZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 19:42:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id CB0D861208;
+        Thu, 21 Oct 2021 23:40:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634859608;
+        bh=TRjAishGZW/mEXzyo6a17dS1h5NFtEhAgreGj7cD/MY=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=T8SQPXfJP7vEXxhrov9+kLkKPRmnzAMqGNa7NJp9tVU08qobJl241ezro29id3PwI
+         lxh/9QxECcW/U1E+f+J+Pz1qLHUTF+iIJ4P+vPuYhKTFHKh0Z1Y8Pe6jBSMMvOsa5W
+         f5zIWi31KFIIozWRK/zimVQ9sXXWlgmHtvP3I65U48uob2LaeafMPNbE1aYbLtWQdf
+         lsxAVkraK53s9UurYNpRx8iW0m8bf2ul+/pUjaPpaTTXLastBWiPiVq4F+Pf1ubcYd
+         0VZUUPkeqSW5+FPMI7rNE19nZPV4sUUt/AXm8tC5v5vEyElTHK1K3/+ynk4FAe7xP3
+         8hLHIsqIjhpVg==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id BC4D460A24;
+        Thu, 21 Oct 2021 23:40:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v17 0/3] AX88796C SPI Ethernet Adapter
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163485960876.25151.11012064455389480138.git-patchwork-notify@kernel.org>
+Date:   Thu, 21 Oct 2021 23:40:08 +0000
+References: <20211020182422.362647-1-l.stelmach@samsung.com>
+In-Reply-To: <20211020182422.362647-1-l.stelmach@samsung.com>
+To:     =?utf-8?q?=C5=81ukasz_Stelmach_=3Cl=2Estelmach=40samsung=2Ecom=3E?=@ci.codeaurora.org
+Cc:     davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+        jim.cromie@gmail.com, hkallweit1@gmail.com, robh+dt@kernel.org,
+        kgene@kernel.org, krzk@kernel.org, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Alex,
+Hello:
 
-it's make dtbs_check (for me with ARCH=3Darm)
+This series was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-David
+On Wed, 20 Oct 2021 20:24:19 +0200 you wrote:
+> This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+> found on ARTIK5 evaluation board. The driver has been ported from a
+> v3.10.9 vendor kernel for ARTIK5 board.
+> 
+> Changes in v17:
+>   - marked no_regs_list as const
+>   - added myself as MODULE_AUTHOR()
+>   - rearranged locking in ax88796c_close() to prevent race condition in
+>     case ax88796c_work() wakes the queue after trasmission.
+> 
+> [...]
 
+Here is the summary with links:
+  - [net-next,v17,1/3] dt-bindings: vendor-prefixes: Add asix prefix
+    https://git.kernel.org/netdev/net-next/c/4def0acb63ce
+  - [net-next,v17,2/3] dt-bindings: net: Add bindings for AX88796C SPI Ethernet Adapter
+    https://git.kernel.org/netdev/net-next/c/b13c7a88a7b6
+  - [net-next,v17,3/3] net: ax88796c: ASIX AX88796C SPI Ethernet Adapter Driver
+    https://git.kernel.org/netdev/net-next/c/a97c69ba4f30
 
--------- P=C5=AFvodn=C3=AD zpr=C3=A1va --------
-Odes=C3=ADlatel: Alex Elder <elder@ieee=2Eorg>
-Odesl=C3=A1no: 21=2E =C5=99=C3=ADjna 2021 20:35:14 UTC
-Komu: David Heidelberg <david@ixit=2Ecz>, Andy Gross <agross@kernel=2Eorg>=
-, Bjorn Andersson <bjorn=2Eandersson@linaro=2Eorg>, "David S=2E Miller" <da=
-vem@davemloft=2Enet>, Jakub Kicinski <kuba@kernel=2Eorg>, Rob Herring <robh=
-+dt@kernel=2Eorg>, Alex Elder <elder@kernel=2Eorg>
-Kopie: ~okias/devicetree@lists=2Esr=2Eht, linux-arm-msm@vger=2Ekernel=2Eor=
-g, netdev@vger=2Ekernel=2Eorg, devicetree@vger=2Ekernel=2Eorg, linux-kernel=
-@vger=2Ekernel=2Eorg
-P=C5=99edm=C4=9Bt: Re: [PATCH 1/2] dt-bindings: net: qcom,ipa: describe IP=
-A v4=2E5 interconnects
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-On 10/20/21 5:54 PM, David Heidelberg wrote:
-> IPA v4=2E5 interconnects was missing from dt-schema, which was trigering
-> warnings while validation=2E
->=20
-> Signed-off-by: David Heidelberg <david@ixit=2Ecz>
-
-Can you please tell me a command to use to trigger
-the warnings you are seeing?  I don't see an error
-when building "dtbs" or doing "dt_binding_check"=2E
-
-Thanks=2E
-
-					-Alex
-
-> ---
->   Documentation/devicetree/bindings/net/qcom,ipa=2Eyaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa=2Eyaml b/Doc=
-umentation/devicetree/bindings/net/qcom,ipa=2Eyaml
-> index b8a0b392b24e=2E=2Ea2835ed52076 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa=2Eyaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa=2Eyaml
-> @@ -95,6 +95,11 @@ properties:
->             - description: Path leading to system memory
->             - description: Path leading to internal memory
->             - description: Path between the AP and IPA config space
-> +      - items: # IPA v4=2E5
-> +          - description: Path leading to system memory region A
-> +          - description: Path leading to system memory region B
-> +          - description: Path leading to internal memory
-> +          - description: Path between the AP and IPA config space
->       interconnect-names:
->       oneOf:
-> @@ -105,6 +110,11 @@ properties:
->             - const: memory
->             - const: imem
->             - const: config
-> +      - items: # IPA v4=2E5
-> +          - const: memory-a
-> +          - const: memory-b
-> +          - const: imem
-> +          - const: config
->       qcom,smem-states:
->       $ref: /schemas/types=2Eyaml#/definitions/phandle-array
->=20
 
