@@ -2,219 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6444365D0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 17:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53EB43665B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 17:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbhJUPUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 11:20:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50836 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbhJUPUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 11:20:02 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1CFC061348
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 08:17:46 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id p16so2926561lfa.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 08:17:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1mny4aFnqq/so1rrWHGvBW/GWX6no1JZVgdILHmhID4=;
-        b=qCyIicNoOv2HmN+x6ltBwRdlqrlSY/ubDGsNs3WhSC/T4W3ZOAg5v/P4t3K0bBfz1s
-         BWIWPdVTGAI28ncppEoEPpbn/mLVOixk4WKzJfjde20DCH54uQthho0iKsBf2+l4OvGG
-         xPbWiQaYytnfX+r4wKzDhE6yQMecFQmiyEV2S1XL4tN72lxAw3r68n5pm+vCzIFT2Fws
-         bRUXEHPED8+k5sJKn3BE5EjUT9Ezj5cw5u4NbX+CpKOU4MBZvwblvmpvdkWL3f7tM5uk
-         0YM9yPw197JtQ6qW3J1PCpgPO8bWGq1HVasT0KA+8nmy7dwoRdIpAYxQ3KAq0DjaVYkX
-         ZCdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1mny4aFnqq/so1rrWHGvBW/GWX6no1JZVgdILHmhID4=;
-        b=2MWkG93z2z0uG3XfARlN9j1VPsd9fxSffdx443Qh4dsLORtIHGxWhyhQ7FexyuFDFc
-         5i+JfAV6jN30fQT6iywUfjdoxDpt9pLXDANPYi8uMvQzn4v618TexvMIiOprvHho1SZz
-         RnKfN+aSpEvIs0BWurqCfa7C26fnEjfpQ0DGtXW011aPkH5q7/tKndXsfQOzDlUlbFhd
-         5xdM6AWsodRie23HjHxDH4QI4EU370ygGuJ87vhTYVEulfeeXb5TOGf+U0TClYMLRP/i
-         Q1HhVmiYmbSaQDFufdMn4ELQIcIKkg0QnQG3h9V9T1XgsbJm8hb0XPJ4g5e23EcFabEk
-         uL6A==
-X-Gm-Message-State: AOAM533yxv8owQHO121UuDOYx7F5mS3B51ia6amXYhq6MAS9Wz882Zor
-        PYHCDq73AqSEJgK3/aubtJT7Og==
-X-Google-Smtp-Source: ABdhPJxHrJ3j7jtB38SX81sCzp9UWPik7BjA/bBTlE7m9NlwleHAlYDX4Q94f/nNjebP/hCxN/Nvkw==
-X-Received: by 2002:a05:6512:12c8:: with SMTP id p8mr6167371lfg.42.1634829464947;
-        Thu, 21 Oct 2021 08:17:44 -0700 (PDT)
-Received: from grasshopper.googchameleon.semihalf.net ([83.142.187.85])
-        by smtp.gmail.com with ESMTPSA id bt10sm91113lfb.193.2021.10.21.08.17.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Oct 2021 08:17:44 -0700 (PDT)
-From:   =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>
-To:     arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
-        dinguyen@kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, upstream@semihalf.com,
-        mw@semihalf.com, ka@semihalf.com, jam@semihalf.com,
-        tn@semihalf.com, amstan@google.com,
-        =?UTF-8?q?Pawe=C5=82=20Anikiel?= <pan@semihalf.com>,
+        id S231331AbhJUPgp convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 21 Oct 2021 11:36:45 -0400
+Received: from mout.kundenserver.de ([212.227.126.130]:42483 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230020AbhJUPgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 11:36:45 -0400
+Received: from mail-wm1-f49.google.com ([209.85.128.49]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1N1x2P-1moGOA0wzx-012KP9; Thu, 21 Oct 2021 17:34:27 +0200
+Received: by mail-wm1-f49.google.com with SMTP id 84-20020a1c0457000000b003232b0f78f8so173819wme.0;
+        Thu, 21 Oct 2021 08:34:27 -0700 (PDT)
+X-Gm-Message-State: AOAM530w8UKJ/B+CltoUIV2kgLA8PlsL+Bjs374a3lsqTYbUQm1jya3n
+        KrMkPxyMMckMLr3VZ0kWs45Q/+/wq0xqwBu0y3k=
+X-Google-Smtp-Source: ABdhPJxXncWjnG0sJW6NQ2Y9XBmC9AcHboOLxbofUUlK3ALWGyEu4Nd9mK94PrbsNQQGlWRLZDhWj2rD2O1jkn6ZwhY=
+X-Received: by 2002:a05:600c:4f42:: with SMTP id m2mr21988450wmq.82.1634830466894;
+ Thu, 21 Oct 2021 08:34:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211021151736.2096926-1-pan@semihalf.com> <20211021151736.2096926-2-pan@semihalf.com>
+In-Reply-To: <20211021151736.2096926-2-pan@semihalf.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 21 Oct 2021 17:34:10 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a1i_23yBht0f86GoHUeef+XXPg_ahkMy6ndARHqcrhKWA@mail.gmail.com>
+Message-ID: <CAK8P3a1i_23yBht0f86GoHUeef+XXPg_ahkMy6ndARHqcrhKWA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] dts: socfpga: Add Mercury+ AA1 devicetree
+To:     =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        upstream@semihalf.com, Marcin Wojtas <mw@semihalf.com>,
+        Konrad Adamczyk <ka@semihalf.com>,
+        Jacek Majkowski <jam@semihalf.com>,
+        Tomasz Nowicki <tn@semihalf.com>,
+        Alexandru Stan <amstan@google.com>,
         Joanna Brozek <jbrozek@antmicro.com>,
         Mariusz Glebocki <mglebocki@antmicro.com>,
         Tomasz Gorochowik <tgorochowik@antmicro.com>,
         Maciej Mikunda <mmikunda@antmicro.com>
-Subject: [PATCH v5 1/1] dts: socfpga: Add Mercury+ AA1 devicetree
-Date:   Thu, 21 Oct 2021 17:17:36 +0200
-Message-Id: <20211021151736.2096926-2-pan@semihalf.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211021151736.2096926-1-pan@semihalf.com>
-References: <20211021151736.2096926-1-pan@semihalf.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Provags-ID: V03:K1:cR51spLlB3Iw6O8Jegs6c+QUcGBJa0vPdLFRDNkM2/MxKghw70w
+ bi0Avk+M/swyexM+K9901nInoj1wn230vn/ZTZUKjXegRfRQHYAwIJhH4qHBpkCVDULhRBS
+ 4qmoKcTznJmNH1nmBGRg8RIC7ezwE8z+dxCvHLXgcx5YeHeXD7urpnqDiA3RVP8Xik85XUn
+ 8L+0dMwFPD/yIEBntr5GA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:wq6BAPyNOws=:YrWqV9tZHyr9SlSvSLJM2z
+ Z0YWP3Zl0jNQ8yVmXTo7FUu13sjh6z8nm3gvarU6KHIPmlHC5WWJ/Ze91+jTeB3P7Qn6sdPme
+ ntjAUJAdzKNM79kYdHL3XKhEpgMoE/W0E6OQy8xab/MeVpQTuAgaamtrnIETVAu2HQZbTA6Oq
+ 50oVF1qXJKqm1l6gc9dSx6JrAceWTkV8dPlQ/Egx/VUBlj54GSeuDjIiRPu5Z9RGEPNde03LT
+ 8JaHOBdYDuxIQObvAHFW53eQctS7G3MYJZsPKcOBd8aumQjTtsQi0RwW6n+mOzUdotVigEdb3
+ jrH3QKHR2lcQaE1pXceL3LFvNMBv+N9a9u/AeFf0Ke89bf7D1W2q8hyxmBu1kmxwik3QWRk+B
+ Hk86qu8f4kwXvbvoqFkizU9KTGtv1cPodwxi1ZHqmIDJ/cO7RKcqP6LwERmKeyhZuqlqbCNGN
+ 9giEdi3KJjnH1Oj6hcLxw739P+mxCC68BfY3D/k+p9UD6P9eQdWSmArYrBgUM+8M1TpFsM342
+ shz3PbY8scC+FlsrBSheXzGSiUakNv6TVs8TpcggJ/E5YvX4J7yuP4nzniEOlRl//A7ccCPzG
+ LHEHahW9DVopqLMJU214TkF6kOLJHgAlYIiDUOS5WwAAFG7O1+ik4UNdoQrGAioSDB35LA6fZ
+ 2ig+qvOe0Pljii5bKN4krZiO5cxBbVDmWFu8qLl9G3qriXjIkuHlJALWH1GyowqNnktMD3TJY
+ irbgmJ0fEPbv1bbdlh1Pn5rKA4ftBvtwrvMYvavNYf2w3hH/daeN7Kwk9r8N6K9vZgl01P8kz
+ KyhxUB3cvFwnBTEFJ9yLTi/P0D//9gV8h7Qr1uYRld8aPuzaoE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Mercury+ AA1 module for Arria 10 SoC FPGA.
+On Thu, Oct 21, 2021 at 5:17 PM Paweł Anikiel <pan@semihalf.com> wrote:
+>
+> Add support for the Mercury+ AA1 module for Arria 10 SoC FPGA.
+>
+> Signed-off-by: Paweł Anikiel <pan@semihalf.com>
+> Signed-off-by: Joanna Brozek <jbrozek@antmicro.com>
+> Signed-off-by: Mariusz Glebocki <mglebocki@antmicro.com>
+> Signed-off-by: Tomasz Gorochowik <tgorochowik@antmicro.com>
+> Signed-off-by: Maciej Mikunda <mmikunda@antmicro.com>
 
-Signed-off-by: Paweł Anikiel <pan@semihalf.com>
-Signed-off-by: Joanna Brozek <jbrozek@antmicro.com>
-Signed-off-by: Mariusz Glebocki <mglebocki@antmicro.com>
-Signed-off-by: Tomasz Gorochowik <tgorochowik@antmicro.com>
-Signed-off-by: Maciej Mikunda <mmikunda@antmicro.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/socfpga_arria10_mercury_aa1.dts  | 112 ++++++++++++++++++
- 2 files changed, 113 insertions(+)
- create mode 100644 arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
+Thank you for the respin, looks good to me now.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7e0934180724..803702883122 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1075,6 +1075,7 @@ dtb-$(CONFIG_ARCH_S5PV210) += \
- 	s5pv210-torbreck.dtb
- dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
- 	socfpga_arria5_socdk.dtb \
-+	socfpga_arria10_mercury_aa1.dtb \
- 	socfpga_arria10_socdk_nand.dtb \
- 	socfpga_arria10_socdk_qspi.dtb \
- 	socfpga_arria10_socdk_sdmmc.dtb \
-diff --git a/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
-new file mode 100644
-index 000000000000..2a3364b26361
---- /dev/null
-+++ b/arch/arm/boot/dts/socfpga_arria10_mercury_aa1.dts
-@@ -0,0 +1,112 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "socfpga_arria10.dtsi"
-+
-+/ {
-+
-+	model = "Enclustra Mercury AA1";
-+	compatible = "altr,socfpga-arria10", "altr,socfpga";
-+
-+	aliases {
-+		ethernet0 = &gmac0;
-+		serial1 = &uart1;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+	};
-+
-+	memory@0 {
-+		name = "memory";
-+		device_type = "memory";
-+		reg = <0x0 0x80000000>; /* 2GB */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial1:115200n8";
-+	};
-+};
-+
-+&eccmgr {
-+	sdmmca-ecc@ff8c2c00 {
-+		compatible = "altr,socfpga-sdmmc-ecc";
-+		reg = <0xff8c2c00 0x400>;
-+		altr,ecc-parent = <&mmc>;
-+		interrupts = <15 IRQ_TYPE_LEVEL_HIGH>,
-+			     <47 IRQ_TYPE_LEVEL_HIGH>,
-+			     <16 IRQ_TYPE_LEVEL_HIGH>,
-+			     <48 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+};
-+
-+&gmac0 {
-+	phy-mode = "rgmii";
-+	phy-addr = <0xffffffff>; /* probe for phy addr */
-+
-+	max-frame-size = <3800>;
-+	status = "okay";
-+
-+	phy-handle = <&phy3>;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy3: ethernet-phy@3 {
-+			txd0-skew-ps = <0>; /* -420ps */
-+			txd1-skew-ps = <0>; /* -420ps */
-+			txd2-skew-ps = <0>; /* -420ps */
-+			txd3-skew-ps = <0>; /* -420ps */
-+			rxd0-skew-ps = <420>; /* 0ps */
-+			rxd1-skew-ps = <420>; /* 0ps */
-+			rxd2-skew-ps = <420>; /* 0ps */
-+			rxd3-skew-ps = <420>; /* 0ps */
-+			txen-skew-ps = <0>; /* -420ps */
-+			txc-skew-ps = <1860>; /* 960ps */
-+			rxdv-skew-ps = <420>; /* 0ps */
-+			rxc-skew-ps = <1680>; /* 780ps */
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&gpio0 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	status = "okay";
-+};
-+
-+&gpio2 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	isl12022: isl12022@6f {
-+		status = "okay";
-+		compatible = "isil,isl12022";
-+		reg = <0x6f>;
-+	};
-+};
-+
-+/* Following mappings are taken from arria10 socdk dts */
-+&mmc {
-+	status = "okay";
-+	cap-sd-highspeed;
-+	broken-cd;
-+	bus-width = <4>;
-+};
-+
-+&osc1 {
-+	clock-frequency = <33330000>;
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+	dr_mode = "host";
-+};
--- 
-2.25.1
+Reviewed-by: Arnd Bergmann <arnd@arndb.de>
 
+Dinh, are you planning to pick this up into your socfpga tree, or
+should I apply it directly to the soc tree this time?
+
+        Arnd
