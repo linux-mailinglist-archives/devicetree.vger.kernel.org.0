@@ -2,126 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 592C4435EC6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 12:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73AFB435F0B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 12:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhJUKOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 06:14:37 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47910
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229914AbhJUKOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 06:14:36 -0400
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 76FD03FFE2
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 10:12:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1634811139;
-        bh=21AS2FEP/OzKAvU7EfAR5y5AIciFZnKJqHdmh3txaKU=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=kPS0ezkhCNCrdc8oLYG0hNVEqBfPkCZPzCxbdd2bv1zOxw1uklkMxmq8Jcnb3A8Ly
-         Fa4FOMlxdX8WCQiOARGSeFoGqLNQsye5RiD3lzUMTy6FKdoEoenV+Elf5RrjwR0bID
-         gJfDkjEWHoKZFPx680NAo0biO9zBWSHY6OvbEdSnuEd3QDsKMGVQYCEiC0N6/7g+Ie
-         TNhc6PtFY/lsuewqc9PXEkLMyNvXEQVoIszNhvqMmtgVUPVFtJkIh0cVg7fj6xE+HK
-         HwXwfJZHjJaO0dwk/RroDfyt42Zub31si0PdQwnyoMfLZis/IwKYAnqQ5WI1cIMQBN
-         bXiLK4ov5rNSQ==
-Received: by mail-lj1-f198.google.com with SMTP id j13-20020a2e6e0d000000b0021101c034d5so2613154ljc.14
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 03:12:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=21AS2FEP/OzKAvU7EfAR5y5AIciFZnKJqHdmh3txaKU=;
-        b=EY5ie+iV3P3G22lP7D2oBgnG+1sbViAO2QqVYkHKwttfUkt5R97rG+yld/DsyzNG7o
-         oI+NfLsTXlQUhPC6gEFaxz0R4f7k8/18dO/gg3xZool4/SB9Cd1+DBUAxafN0mpNNVo9
-         +r3ibWDytbrYS5JsM501Xgzm77AQZhzrRI9MJpUOHJvI4ChiP/dg9im2C1VIbXP19aZs
-         bkmeG0jF45h8WXQ3uWxaM7CcdrO2GroMQ4hr7Mnh8xQMr0AAgkw7/0wg7OUZIzmHiSH3
-         Or35jv03kE3DV4JjXeHnT8vu95xsd0F7tqjBoEbvVaKtsAD2VdpwPIt+n/iMozYWmsSb
-         IHag==
-X-Gm-Message-State: AOAM532NXX9bN8DMZvuP/EJv2HI5zqXMAfY7BadJtM4zquG/938eUSQ/
-        OaHLwyV9YNicGtWzQb8QlxCMHNjyhtM9IfwoLksd6qQ+kqFdCGbEapTaTAxyw58VioukxkyY80I
-        X3OU3tJ3Kv3KgD3Xb8ybUkNlahgmdMByHfgNWEU8=
-X-Received: by 2002:a2e:750e:: with SMTP id q14mr4978181ljc.338.1634811138964;
-        Thu, 21 Oct 2021 03:12:18 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy+SlIK6fBGyzlDr6pIF6Po5nSccW4yTx8qBknyO8d7i0iNeVBcnz0u/NSa8Zxr5Tqxq9gqXg==
-X-Received: by 2002:a2e:750e:: with SMTP id q14mr4978158ljc.338.1634811138705;
-        Thu, 21 Oct 2021 03:12:18 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id h1sm420052lfj.125.2021.10.21.03.12.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Oct 2021 03:12:18 -0700 (PDT)
-Subject: Re: [PATCH v2 0/2] mfd/regulator: dt-bindings: max77686: convert to
- dtschema
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211008123552.191384-1-krzysztof.kozlowski@canonical.com>
- <YXE65SBhGFHP54L6@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <85c56cfb-64d9-a840-c2e4-eea47461188d@canonical.com>
-Date:   Thu, 21 Oct 2021 12:12:17 +0200
+        id S229914AbhJUKaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 06:30:55 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:42768 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229567AbhJUKaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 06:30:55 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id D75221F44855
+Subject: Re: [PATCH v1 3/4] media: platform: mtk-mdp3: Set
+ dma_set_mask_and_coherent
+To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        "river . cheng" <river.cheng@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20211021063414.23663-1-roy-cw.yeh@mediatek.com>
+ <20211021063414.23663-4-roy-cw.yeh@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <d0db66a3-04b4-1b1f-f6bb-8b45154559ff@collabora.com>
+Date:   Thu, 21 Oct 2021 12:28:35 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <YXE65SBhGFHP54L6@google.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20211021063414.23663-4-roy-cw.yeh@mediatek.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2021 12:03, Lee Jones wrote:
-> On Fri, 08 Oct 2021, Krzysztof Kozlowski wrote:
+Il 21/10/21 08:34, roy-cw.yeh ha scritto:
+> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
 > 
->> Hi,
->>
->> Convert Maxim MAX77686 bindings to dtschema.  The MFD patch (2/2)
->> depends on regulator, so this should go via one tree, for example MFD or DT.
->>
->> Changes since v1:
->> =================
->> See individual patches.
->>
->> Clock bindings
->> ==============
->> Existing Documentation/devicetree/bindings/clock/maxim,max77686.txt are
->> left untouched. The file is still used/referenced by other Maxim
->> devices: MAX77620 and MAX77802.
->>
->> Best regards,
->> Krzysztof
->>
->> Krzysztof Kozlowski (2):
->>   regulator: dt-bindings: maxim,max77686: convert to dtschema
->>   dt-bindings: mfd: maxim,max77686: convert to dtschema
->>
->>  .../devicetree/bindings/mfd/max77686.txt      |  26 ----
->>  .../bindings/mfd/maxim,max77686.yaml          | 132 ++++++++++++++++++
->>  .../bindings/regulator/max77686.txt           |  71 ----------
->>  .../bindings/regulator/maxim,max77686.yaml    |  83 +++++++++++
->>  MAINTAINERS                                   |   2 +-
->>  5 files changed, 216 insertions(+), 98 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/mfd/max77686.txt
->>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/regulator/max77686.txt
->>  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77686.yaml
+> Set dma_set_mask_and_coherent
 > 
-> Does this need a PR too?
 
-No, I hope not. The regulator patch was acked by Mark and Rob, so you
-can freely take both of these. I am not aware of any conflicts or other
-dependencies.
+Please explain why you're setting that and why 34 bits in the commit description.
 
+> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+> ---
+>   drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+> index 1e61ac7ca790..875326afb686 100644
+> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+> @@ -1141,6 +1141,8 @@ static int mdp_probe(struct platform_device *pdev)
+>   	mdp->pdev = pdev;
+>   	mdp->mdp_data = of_device_get_match_data(&pdev->dev);
+>   
+> +	dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(34));
+> +
+>   	ret = of_property_read_u32(dev->of_node, "mediatek,mdp3-id", &id);
+>   	if (ret) {
+>   		dev_err(dev, "Failed to get mdp-id\n");
+> 
 
-Best regards,
-Krzysztof
