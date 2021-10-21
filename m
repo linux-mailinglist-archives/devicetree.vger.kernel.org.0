@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14674435778
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 02:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A3C43578B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 02:25:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231917AbhJUA02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Oct 2021 20:26:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44822 "EHLO mail.kernel.org"
+        id S232323AbhJUA1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Oct 2021 20:27:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45328 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231980AbhJUAZ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 20 Oct 2021 20:25:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 625FE61381;
-        Thu, 21 Oct 2021 00:23:12 +0000 (UTC)
+        id S232353AbhJUAZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 20 Oct 2021 20:25:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8190B60FDA;
+        Thu, 21 Oct 2021 00:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634775793;
+        s=k20201202; t=1634775819;
         bh=JZvb5aZChvEeaRYi0gPN5KIejU8wmaPEpKHviKIR3Ho=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=a/1LYoPsRE6wGYmTa5ZCZ7YPDa3lKQkQY/ZdYetQSkzMuqngVS9H7nPh2pB3Gxzgx
-         c3xHcDR6B+jJqeSJXPZra5BlUHOKkzS3SndD857ynfWjQNVW6rfnP1RhvGuJx/PBeD
-         o/lBQYeBrHSOqmZIRtvt2AacOO1Iri89IGQgOQv6dyIrFT79SAOsGAXHo7jQ6fk2rJ
-         INTF+KFjvzY7hI91Ut0kKpeJKekCpjwUJz9iYQa59H5RV6bkZLEbY6lOMGAew3ZX7r
-         BspaVNOg4FCvFgFq77LrX45oLCQMwIP0E5o6EwJ8dbQw4G2F5hz0omQN8LGB86acDO
-         yoTtc35VTAjXA==
+        b=gTiq7WDe/hawtrylOEMv7nubCXavziAvOkGsY8wij3q2rG1oUuYvRarj4bhC0kmrw
+         I8b2U+dWRpbIt//Q/yjtqWt7ihSs9vSAjUKh/8pZ5423txdE8aNprYLjT1UCiXPgQ0
+         dnkrBw6b2TEEQfYPCwFtbH1bHKVYiwrb2N2ncwagbMxiKj/0oxArLmcmMKnTab3rRK
+         Iwpd2p7c0Xt5gCg//Q1OPv/E4iTZxtlsdP2aijIpHe+gs1UhClqvlsyJcCtkvP4Ajf
+         K8Dqcmx9UJCEsuYfiEvHKOtJmQjiBEH/2zluuRWd6gaBFsnAOpSJ1y35XlqohG2cCg
+         xGiZQVOcyle1A==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Herve Codina <herve.codina@bootlin.com>,
@@ -30,12 +30,12 @@ Cc:     Herve Codina <herve.codina@bootlin.com>,
         Sasha Levin <sashal@kernel.org>, vireshk@kernel.org,
         shiraz.linux.kernel@gmail.com, robh+dt@kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 04/10] ARM: dts: spear3xx: Fix gmac node
-Date:   Wed, 20 Oct 2021 20:22:59 -0400
-Message-Id: <20211021002305.1129633-4-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 3/9] ARM: dts: spear3xx: Fix gmac node
+Date:   Wed, 20 Oct 2021 20:23:27 -0400
+Message-Id: <20211021002333.1129824-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211021002305.1129633-1-sashal@kernel.org>
-References: <20211021002305.1129633-1-sashal@kernel.org>
+In-Reply-To: <20211021002333.1129824-1-sashal@kernel.org>
+References: <20211021002333.1129824-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
