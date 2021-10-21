@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC232435E25
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5F6435E36
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231473AbhJUJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 05:45:58 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:33745 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231371AbhJUJp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:45:57 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 23A02100007;
-        Thu, 21 Oct 2021 09:43:39 +0000 (UTC)
-Date:   Thu, 21 Oct 2021 11:43:38 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        id S231621AbhJUJtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 05:49:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58058 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231542AbhJUJtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:49:21 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C15C06161C
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 02:47:05 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id r18so102808wrg.6
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 02:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Xv7yy8py0DKeobvYvlJ9FHOkVAuAh9UvNYK21UpSTh0=;
+        b=v//taxIpU61sYw2GgDkdnV/5qgqxhDV68363Q42soNTo+faeEN6SQHRA4Cief4D90P
+         E0q62PU7tIxLdwWeNeZn/4QaJi/VxRT1v2nmdWXMwtzGL9S5cotZIL13nKppn2aYoLXC
+         GBRrIDSuuEwNxZs4p0kjeaNCwi1Z7W7LAxgAXsQ/gTEA+DYVp2+MCiL/b2x6h6Bgyhtw
+         yZyH4uCZq+NWAwpaDdw20xe1D3VKVcGD4ljOxD4eTCXrB51AVGCPpucnZmLWz0KsbWIE
+         Si6lSz4FlVlJia8O9OEZ9u0Mzbg7XW5kLRgsF39/aOgDWclsAE7MX74CjDxkV9e2BLtX
+         OaTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Xv7yy8py0DKeobvYvlJ9FHOkVAuAh9UvNYK21UpSTh0=;
+        b=r3FWqaE59GijXARW417O2RJb8pUs06IOX5/or3exWSbDE6bAoglMtl1zWxaKFjNeop
+         HGOl2xdyau1s5aZd3mbxpmWLYKaBNu/0nnMI+/3opwXjHu0M8PnJuHMPQpcxpDzlP7s1
+         CtdEjnsUYjldn3rcCz0veyMxie3y//N2nRWJEwF75MmH46GEAvvNx7tLn+fO+xSE16hb
+         Ny45bj8nXBhMrgHg+GVOIXeOhARlz0zlI07EH00jLFxUJKgypRf9JhklzYv4BD6CxC5A
+         6jTovVomehFQTCH7EpFj3W3fbqi6hY3aFUdVD2L4s0kixR05m3oBNbV8qgxmtUoaVOkd
+         xXeA==
+X-Gm-Message-State: AOAM53244O9h/evSq+iymtpEUmmfz0YE5IYeHIsOWGYSpN9vBX4rERVa
+        H+jz8DTThX83vQcDUlrlIH/s3g==
+X-Google-Smtp-Source: ABdhPJyuat/sV/sJFXIOlsrLqS92zPlOzm+T+23hm8J961JAtuxiY3SjW3So5Ni8FNDiFoPoNK+ISg==
+X-Received: by 2002:a5d:4643:: with SMTP id j3mr6018858wrs.297.1634809624436;
+        Thu, 21 Oct 2021 02:47:04 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id f186sm7184109wma.46.2021.10.21.02.47.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Oct 2021 02:47:03 -0700 (PDT)
+Date:   Thu, 21 Oct 2021 10:47:01 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 4/9] rtc: max77686: remove unused code to read in
- 12-hour mode
-Message-ID: <YXE2Sr3BOj3EMDAm@piout.net>
-References: <20211019145919.7327-1-luca@lucaceresoli.net>
- <20211019145919.7327-5-luca@lucaceresoli.net>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 07/10] dt-bindings: mfd: samsung,s2mps11: convert to
+ dtschema
+Message-ID: <YXE3FSiG87gNtN34@google.com>
+References: <20211008113723.134648-1-krzysztof.kozlowski@canonical.com>
+ <20211008113931.134847-4-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211019145919.7327-5-luca@lucaceresoli.net>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211008113931.134847-4-krzysztof.kozlowski@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/10/2021 16:59:14+0200, Luca Ceresoli wrote:
-> The MAX77714 RTC chip is explicitly set to 24-hour mode in
-> max77686_rtc_probe() -> max77686_rtc_init_reg() and never changed back to
-> 12-hour mode. Accordingly info->rtc_24hr_mode is set to 1 in the same place
-> and never modified later, so it is de facto a constant. Yet there is code
-> to read 12-hour time, which is unreachable.
-> 
-> Remove the unused variable, the unreachable code to manage 12-hour mode and
-> the defines that become unused due to the above changes.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+On Fri, 08 Oct 2021, Krzysztof Kozlowski wrote:
 
+> Convert the MFD part of Samsung S2MPS11/S2MPS13/S2MPS14/S2MPS15/S2MPU02
+> family of PMICs to DT schema format.  Previously the bindings were
+> mostly in mfd/samsung,sec-core.txt.
 > 
+> The conversion copies parts of description from existing bindings
+> therefore the license is not changed from GPLv2.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
-> 
-> Changes in v2:
->  - remove the now-unused defines too (Alexandre Belloni)
->  - improve the commit message
-> ---
->  drivers/rtc/rtc-max77686.c | 14 +-------------
->  1 file changed, 1 insertion(+), 13 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-max77686.c b/drivers/rtc/rtc-max77686.c
-> index 7e765207f28e..5c64d08c0732 100644
-> --- a/drivers/rtc/rtc-max77686.c
-> +++ b/drivers/rtc/rtc-max77686.c
-> @@ -34,9 +34,6 @@
->  #define RTC_UDR_MASK			BIT(RTC_UDR_SHIFT)
->  #define RTC_RBUDR_SHIFT			4
->  #define RTC_RBUDR_MASK			BIT(RTC_RBUDR_SHIFT)
-> -/* RTC Hour register */
-> -#define HOUR_PM_SHIFT			6
-> -#define HOUR_PM_MASK			BIT(HOUR_PM_SHIFT)
->  /* RTC Alarm Enable */
->  #define ALARM_ENABLE_SHIFT		7
->  #define ALARM_ENABLE_MASK		BIT(ALARM_ENABLE_SHIFT)
-> @@ -99,7 +96,6 @@ struct max77686_rtc_info {
->  
->  	int rtc_irq;
->  	int virq;
-> -	int rtc_24hr_mode;
->  };
->  
->  enum MAX77686_RTC_OP {
-> @@ -278,13 +274,7 @@ static void max77686_rtc_data_to_tm(u8 *data, struct rtc_time *tm,
->  
->  	tm->tm_sec = data[RTC_SEC] & mask;
->  	tm->tm_min = data[RTC_MIN] & mask;
-> -	if (info->rtc_24hr_mode) {
-> -		tm->tm_hour = data[RTC_HOUR] & 0x1f;
-> -	} else {
-> -		tm->tm_hour = data[RTC_HOUR] & 0x0f;
-> -		if (data[RTC_HOUR] & HOUR_PM_MASK)
-> -			tm->tm_hour += 12;
-> -	}
-> +	tm->tm_hour = data[RTC_HOUR] & 0x1f;
->  
->  	/* Only a single bit is set in data[], so fls() would be equivalent */
->  	tm->tm_wday = ffs(data[RTC_WEEKDAY] & mask) - 1;
-> @@ -662,8 +652,6 @@ static int max77686_rtc_init_reg(struct max77686_rtc_info *info)
->  	data[0] = (1 << BCD_EN_SHIFT) | (1 << MODEL24_SHIFT);
->  	data[1] = (0 << BCD_EN_SHIFT) | (1 << MODEL24_SHIFT);
->  
-> -	info->rtc_24hr_mode = 1;
-> -
->  	ret = regmap_bulk_write(info->rtc_regmap,
->  				info->drv_data->map[REG_RTC_CONTROLM],
->  				data, ARRAY_SIZE(data));
-> -- 
-> 2.25.1
-> 
+>  .../bindings/mfd/samsung,s2mps11.yaml         | 267 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 268 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+
+Applied, thanks.
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
