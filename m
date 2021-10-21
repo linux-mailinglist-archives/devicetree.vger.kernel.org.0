@@ -2,108 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE5A54362F5
+	by mail.lfdr.de (Postfix) with ESMTP id 649B84362F2
 	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 15:30:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbhJUNc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230487AbhJUNc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 21 Oct 2021 09:32:28 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:44859 "EHLO
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:35723 "EHLO
         mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbhJUNc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:32:26 -0400
-Received: by mail-oi1-f179.google.com with SMTP id y207so823471oia.11;
-        Thu, 21 Oct 2021 06:30:10 -0700 (PDT)
+        with ESMTP id S230283AbhJUNcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:32:25 -0400
+Received: by mail-oi1-f179.google.com with SMTP id r6so873871oiw.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 06:30:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=9tYUSXrv+aJRgRoUi4LsxnIyvrDFQxilKTvm9UGMfQw=;
-        b=XUgWrudnuO9IVhZnpMs1r9qQDLpZdxjf6BfyyXPiPJdHunrckVb8o3N+mz42vQQ1h8
-         5I/tBeFTstW8ASuXoGXI73E8rlVJojVBW0Yuo1ceuXgWGkRanMPM64VgdlfUyuXB5PNI
-         gpZVMDCdhXqnXevJA0DMnzvXhmXl24JPGnMrn5zuT5+BeGtD166F87J8pP4V2zQN18JV
-         4yWrf4MsicBMPlJ8IIKSc1v9SgEVcXX+i6d2r1h9ROVMfCe156TFdX7jNnOFpByuCkLM
-         CCKTrkh+fwUS3MGrAcAM9/uYJ6wI7KXrn/YFsR1zo1Vr9U81RKlvvTgTWvIK96xUzRtH
-         1Dzw==
-X-Gm-Message-State: AOAM530+5ljUxzu66/24MIYvBesixdJF6w6OzkZpHyUw7jMe1FuCK21e
-        ijtqkbI/rm8vK4vjmOm0Gw==
-X-Google-Smtp-Source: ABdhPJzwATZTOqJPdVrIby7aiYWs8CklYXzzyozkscDmUEsTPHn+sO4ma6HMFkCRHgfWTxZeyhXT1w==
-X-Received: by 2002:a05:6808:bcc:: with SMTP id o12mr4569690oik.151.1634823009913;
-        Thu, 21 Oct 2021 06:30:09 -0700 (PDT)
+        bh=WLIwA5FD/KtHnG54OgwxE3AJ2VLgcGG0qXYDGdPIMCU=;
+        b=33bs09vRSp/Wp/MN1w4+OPYbVrjcOMyN/zx7oLWab6V8CXmwandiAIHGu+nFL/AfHv
+         wTOd5qEPPkC4Zkuud6ekjHIq3T3rhMdr1Jk6sru4X5/eEJWhh8aaUKvmKF3WP7D6Ixoq
+         By21TReUcbxFJonCgzBhzy1r+TCkVnsFJizPYXRvdrduP4lE1+90dSCCN41BW2cEdt8G
+         dUu0qLY5jVxGL+aB4/bflb2luFvMcRQKcK2gCPIiWRUYlc+2gnOE2idWBYxIDtQ5Vtek
+         HkoeJsFUWo5g/+L0zkgwxf7cTWeum6c1jTkdwcUgupxy942XK9GtiZ7HwvDO3dtj/BRQ
+         //tg==
+X-Gm-Message-State: AOAM531ufchsfJ1cRYMZEE/04p0k/qbj4WO8oWhojKa+id8tL/8zMLrs
+        UZVSda4zl6yqRFANf98OzA==
+X-Google-Smtp-Source: ABdhPJzWNqQ82LGFFmXVyboYOunuq36yDADhSjRjBxsMz++SfMFiv9RLtb3gzPemE+KZAIIdxJ6VMw==
+X-Received: by 2002:a05:6808:f8f:: with SMTP id o15mr1238476oiw.38.1634823008338;
+        Thu, 21 Oct 2021 06:30:08 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c17sm1136592ots.35.2021.10.21.06.30.08
+        by smtp.gmail.com with ESMTPSA id 187sm1064082oig.19.2021.10.21.06.30.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Oct 2021 06:30:09 -0700 (PDT)
-Received: (nullmailer pid 353172 invoked by uid 1000);
+        Thu, 21 Oct 2021 06:30:07 -0700 (PDT)
+Received: (nullmailer pid 353169 invoked by uid 1000);
         Thu, 21 Oct 2021 13:30:05 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        ~okias/devicetree@lists.sr.ht, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>
-In-Reply-To: <20211020231646.278706-1-david@ixit.cz>
-References: <20211020231646.278706-1-david@ixit.cz>
-Subject: Re: [PATCH] dt-bindings: mfd: qcom: pm8xxx: add pm8018 compatible
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org
+In-Reply-To: <20211021092707.3562523-3-msp@baylibre.com>
+References: <20211021092707.3562523-1-msp@baylibre.com> <20211021092707.3562523-3-msp@baylibre.com>
+Subject: Re: [PATCH v5 2/7] dt-bindings: mediatek,dp: Add Display Port binding
 Date:   Thu, 21 Oct 2021 08:30:05 -0500
-Message-Id: <1634823005.115639.353170.nullmailer@robh.at.kernel.org>
+Message-Id: <1634823005.099522.353168.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Oct 2021 01:16:45 +0200, David Heidelberg wrote:
-> Add missing compatible for the PM8018 model.
+On Thu, 21 Oct 2021 11:27:02 +0200, Markus Schneider-Pargmann wrote:
+> This controller is present on several mediatek hardware. Currently
+> mt8195 and mt8395 have this controller without a functional difference,
+> so only one compatible field is added.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> The controller can have two forms, as a normal display port and as an
+> embedded display port.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> 
+> Notes:
+>     Changes v4 -> v5:
+>     - Removed "status" in the example
+>     - Remove edp_tx compatible.
+>     - Rename dp_tx compatible to dp-tx.
+> 
+>  .../display/mediatek/mediatek,dp.yaml         | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1544064
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dts:20:18: fatal error: dt-bindings/power/mt8195-power.h: No such file or directory
+   20 |         #include <dt-bindings/power/mt8195-power.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/display/mediatek/mediatek,dp.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
+doc reference errors (make refcheckdocs):
 
-pmic@0: compatible: Additional items are not allowed ('qcom,pm8921' was unexpected)
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+See https://patchwork.ozlabs.org/patch/1544239
 
-pmic@0: compatible: ['qcom,pm8018', 'qcom,pm8921'] is too long
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-pmic@0: 'gpio@150', 'keypad@148', 'led@131', 'led@132', 'led@133', 'led@48', 'mpps@50', 'pwrkey@1c', 'vibrator@4a', 'xoadc@197' do not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-apq8060-dragonboard.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-pmic@0: 'gpio@150', 'keypad@148', 'mpps@50', 'pwrkey@1c', 'vibrator@4a', 'xoadc@197' do not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-msm8660-surf.dt.yaml
+pip3 install dtschema --upgrade
 
-pmic@0: 'gpio@150', 'mpp@50', 'pwrkey@1c' do not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-pmic@0: 'gpio@150', 'mpps@50', 'pwrkey@1c', 'xoadc@197' do not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-
-pmic@0: 'keypad@148', 'pwrkey@1c' do not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-msm8960-cdp.dt.yaml
-
-pmic@0: rtc@11d:compatible: Additional items are not allowed ('qcom,pm8921-rtc' was unexpected)
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-pmic@0: rtc@11d:compatible: ['qcom,pm8018-rtc', 'qcom,pm8921-rtc'] is too long
-	arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
-
-pmic@1: 'mpps@50' does not match any of the regexes: 'pinctrl-[0-9]+', 'rtc@[0-9a-f]+$'
-	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
+Please check and re-submit.
 
