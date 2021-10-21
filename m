@@ -2,285 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9817E4360EA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A828436158
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbhJUMDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 08:03:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60758 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229765AbhJUMDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:03:45 -0400
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05595C061749
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:01:28 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2c41:c2bf:5c8f:53c5])
-        by laurent.telenet-ops.be with bizsmtp
-        id 8c1R260021Z5S4H01c1Rhs; Thu, 21 Oct 2021 14:01:25 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mdWlA-006Y6m-Pe; Thu, 21 Oct 2021 14:01:24 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mdWlA-00GCux-18; Thu, 21 Oct 2021 14:01:24 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Boris Brezillon <bbrezillon@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] [RFC] dt-bindings: display: bridge: sil,sii9022: Convert to json-schema
-Date:   Thu, 21 Oct 2021 14:01:22 +0200
-Message-Id: <1ad70333148a473c1344a87993e795be90f355e4.1634817622.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S231772AbhJUMV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 08:21:27 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:45859 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231612AbhJUMVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:21:14 -0400
+X-Greylist: delayed 549 seconds by postgrey-1.27 at vger.kernel.org; Thu, 21 Oct 2021 08:20:34 EDT
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 19LC6KUJ003249;
+        Thu, 21 Oct 2021 15:06:20 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
+        id 5377463A1D; Thu, 21 Oct 2021 15:06:31 +0300 (IDT)
+From:   amirmizi6@gmail.com
+To:     Eyal.Cohen@nuvoton.com, jarkko@kernel.org, oshrialkoby85@gmail.com,
+        alexander.steffen@infineon.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
+        arnd@arndb.de, gregkh@linuxfoundation.org, benoit.houyere@st.com,
+        eajames@linux.ibm.com, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
+        Amir Mizinski <amirmizi6@gmail.com>
+Subject: [PATCH v16 0/6] Add tpm i2c ptp driver
+Date:   Thu, 21 Oct 2021 15:05:51 +0300
+Message-Id: <20211021120557.69234-1-amirmizi6@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Silicon Image sii902x HDMI bridge Device Tree binding
-documentation to json-schema.
+From: Amir Mizinski <amirmizi6@gmail.com>
 
-Add missing sil,sii9022-cpi and sil,sii9022-tpi compatible values.
+This patch set adds support for TPM devices that implement the I2C.
+Interface defined by TCG PTP specification:
+https://trustedcomputinggroup.org/wp-content/uploads/TCG_PC_Client_Platform_TPM_Profile_PTP_2.0_r1.03_v22.pdf
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-RFC as I do not know the meaning of the various ports subnodes.
----
- .../bindings/display/bridge/sii902x.txt       |  78 ----------
- .../bindings/display/bridge/sil,sii9022.yaml  | 133 ++++++++++++++++++
- 2 files changed, 133 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/sii902x.txt
- create mode 100644 Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
+The driver was tested on Raspberry-Pie 3, using Nuvoton NPCT75X TPM.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
-deleted file mode 100644
-index 3bc760cc31cbbeee..0000000000000000
---- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--sii902x HDMI bridge bindings
--
--Required properties:
--	- compatible: "sil,sii9022"
--	- reg: i2c address of the bridge
--
--Optional properties:
--	- interrupts: describe the interrupt line used to inform the host
--	  about hotplug events.
--	- reset-gpios: OF device-tree gpio specification for RST_N pin.
--	- iovcc-supply: I/O Supply Voltage (1.8V or 3.3V)
--	- cvcc12-supply: Digital Core Supply Voltage (1.2V)
--
--	HDMI audio properties:
--	- #sound-dai-cells: <0> or <1>. <0> if only i2s or spdif pin
--	   is wired, <1> if the both are wired. HDMI audio is
--	   configured only if this property is found.
--	- sil,i2s-data-lanes: Array of up to 4 integers with values of 0-3
--	   Each integer indicates which i2s pin is connected to which
--	   audio fifo. The first integer selects i2s audio pin for the
--	   first audio fifo#0 (HDMI channels 1&2), second for fifo#1
--	   (HDMI channels 3&4), and so on. There is 4 fifos and 4 i2s
--	   pins (SD0 - SD3). Any i2s pin can be connected to any fifo,
--	   but there can be no gaps. E.g. an i2s pin must be mapped to
--	   fifo#0 and fifo#1 before mapping a channel to fifo#2. Default
--	   value is <0>, describing SD0 pin beiging routed to hdmi audio
--	   fifo #0.
--	- clocks: phandle and clock specifier for each clock listed in
--           the clock-names property
--	- clock-names: "mclk"
--	   Describes SII902x MCLK input. MCLK can be used to produce
--	   HDMI audio CTS values. This property follows
--	   Documentation/devicetree/bindings/clock/clock-bindings.txt
--	   consumer binding.
--
--	If HDMI audio is configured the sii902x device becomes an I2S
--	and/or spdif audio codec component (e.g a digital audio sink),
--	that can be used in configuring a full audio devices with
--	simple-card or audio-graph-card binding. See their binding
--	documents on how to describe the way the sii902x device is
--	connected to the rest of the audio system:
--	Documentation/devicetree/bindings/sound/simple-card.yaml
--	Documentation/devicetree/bindings/sound/audio-graph-card.yaml
--	Note: In case of the audio-graph-card binding the used port
--	index should be 3.
--
--Optional subnodes:
--	- video input: this subnode can contain a video input port node
--	  to connect the bridge to a display controller output (See this
--	  documentation [1]).
--
--[1]: Documentation/devicetree/bindings/media/video-interfaces.txt
--
--Example:
--	hdmi-bridge@39 {
--		compatible = "sil,sii9022";
--		reg = <0x39>;
--		reset-gpios = <&pioA 1 0>;
--		iovcc-supply = <&v3v3_hdmi>;
--		cvcc12-supply = <&v1v2_hdmi>;
--
--		#sound-dai-cells = <0>;
--		sil,i2s-data-lanes = < 0 1 2 >;
--		clocks = <&mclk>;
--		clock-names = "mclk";
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--				bridge_in: endpoint {
--					remote-endpoint = <&dc_out>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml b/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
-new file mode 100644
-index 0000000000000000..4e5a8ecf87647e8b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/sil,sii9022.yaml
-@@ -0,0 +1,133 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/sil,sii9022.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Silicon Image sii902x HDMI bridge
-+
-+maintainers:
-+  - Boris Brezillon <bbrezillon@kernel.org>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - sil,sii9022-cpi
-+              - sil,sii9022-tpi
-+          - const: sil,sii9022
-+      - const: sil,sii9022
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: Interrupt line used to inform the host about hotplug events.
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  iovcc-supply:
-+    description: I/O Supply Voltage (1.8V or 3.3V)
-+
-+  cvcc12-supply:
-+    description: Digital Core Supply Voltage (1.2V)
-+
-+  '#sound-dai-cells':
-+    enum: [ 0, 1 ]
-+    description: |
-+      <0> if only i2s or spdif pin is wired,
-+      <1> if both are wired.
-+      HDMI audio is configured only if this property is found.
-+      If HDMI audio is configured the sii902x device becomes an I2S and/or
-+      spdif audio codec component (e.g. a digital audio sink), that can be used
-+      in configuring a full audio devices with simple-card or audio-graph-card
-+      binding. See their binding documents on how to describe the way the
-+      sii902x device is connected to the rest of the audio system:
-+      Documentation/devicetree/bindings/sound/simple-card.yaml
-+      Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-+      Note: In case of the audio-graph-card binding the used port index should
-+      be 3.
-+
-+  sil,i2s-data-lanes:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    items:
-+      - enum: [ 0, 1, 2, 3 ]
-+      - enum: [ 0, 1, 2, 3 ]
-+      - enum: [ 0, 1, 2, 3 ]
-+      - enum: [ 0, 1, 2, 3 ]
-+    description:
-+      Each integer indicates which i2s pin is connected to which audio fifo.
-+      The first integer selects i2s audio pin for the first audio fifo#0 (HDMI
-+      channels 1&2), second for fifo#1 (HDMI channels 3&4), and so on. There
-+      are 4 fifos and 4 i2s pins (SD0 - SD3). Any i2s pin can be connected to
-+      any fifo, but there can be no gaps. E.g. an i2s pin must be mapped to
-+      fifo#0 and fifo#1 before mapping a channel to fifo#2. Default value is
-+      <0>, describing SD0 pin being routed to hdmi audio fifo #0.
-+
-+  clocks:
-+    maxItems: 1
-+    description: MCLK input. MCLK can be used to produce HDMI audio CTS values.
-+
-+  clock-names:
-+    const: mclk
-+
-+  ports:
-+    type: object
-+    properties:
-+      port@0:
-+        type: object
-+        description: FIXME
-+
-+      port@1:
-+        type: object
-+        description: FIXME
-+
-+      port@2:
-+        type: object
-+        description: FIXME
-+
-+      port@3:
-+        type: object
-+        description: FIXME
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        hdmi-bridge@39 {
-+            compatible = "sil,sii9022";
-+            reg = <0x39>;
-+            reset-gpios = <&pioA 1 0>;
-+            iovcc-supply = <&v3v3_hdmi>;
-+            cvcc12-supply = <&v1v2_hdmi>;
-+
-+            #sound-dai-cells = <0>;
-+            sil,i2s-data-lanes = < 0 1 2 >;
-+            clocks = <&mclk>;
-+            clock-names = "mclk";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    bridge_in: endpoint {
-+                        remote-endpoint = <&dc_out>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+Interrupts are not implemented yet, preparing it for the next patch.
+This patch is based on initial work by oshri Alkoby, Alexander Steffen and Christophe Ricard
+
+Changes since version 1:
+-"char:tpm:Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        - Fixed and extended commit description.
+        - Fixed an issue regarding handling max retries.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options":
+        -Converted "tpm_tis_i2c.txt" to "tpm-tis-i2c.yaml".
+        - Renamed "tpm_tis-i2c" to "tpm-tis-i2c".
+        - Removed interrupts properties.
+-"char: tpm: add tpm_tis_i2c driver"
+        - Replaced "tpm_tis-i2c" with "tpm-tis-i2c" in "tpm_tis_i2c.c".
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11236257/
+ - Rob Herring: https://patchwork.kernel.org/patch/11236253/
+
+Changes since version 2:
+- Added 2 new commits with improvements suggested by Benoit Houyere.
+        -"Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -"Handle an exception for TPM Firmware Update mode."
+- Updated patch to latest v5.5
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Added "interrupts" and "crc-checksum" to properties.
+        - Updated binding description and commit info.
+-"char: tpm: add tpm_tis_i2c driver" (suggested by Benoit Houyere)
+        - Added repeat I2C frame after NACK.
+        - Checksum I2C feature activation in DTS file configuration.
+Addressed comments from:
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1161287/
+
+Changes since version 3:
+- Updated patch to latest v5.6
+- Updated commits headlines and development credit format by Jarkko Sakkinen suggestion
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        - Updated commit description.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        - Fixed 'make dt_binding_check' errors on YAML file.
+        - Removed interrupts from required and examples since there is no use for them in current patch.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lore.kernel.org/patchwork/patch/1192101/
+ - Rob Herring: https://lore.kernel.org/patchwork/patch/1192099/
+
+Changes since version 4:
+-"tpm: tpm_tis: Make implementation of read16 read32 write32 optional"
+        -Added a "Reviewed-by" tag:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops in order to check data integrity"
+        -Fixed credit typos.
+-"tpm: tpm_tis: rewrite "tpm_tis_req_canceled()""
+        -Added fixes tag and removed changes for STM.
+-"tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Fixed typos, edited description to be clearer, and added a "Suggested-by" tag.
+-"tpm: Handle an exception for TPM Firmware Update mode."
+        -Added a "Suggested-by" tag.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C options"
+        -Fixed 'make dt_binding_check' errors.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -Added tested-by tag by Eddie James.
+        -Fixed indent in Kconfig file.
+        -Fixed 'MODULE_DESCRIPTION'.
+Addressed comments from:
+ - Jarkko Sakkinen: https://patchwork.kernel.org/patch/11467645/
+                https://patchwork.kernel.org/patch/11467655/
+                https://patchwork.kernel.org/patch/11467643/
+                https://patchwork.kernel.org/patch/11467659/
+                https://patchwork.kernel.org/patch/11467651/
+ - Rob Herring: https://patchwork.kernel.org/patch/11467653/
+ - Randy Dunlap: https://patchwork.kernel.org/patch/11467651/
+ - Eddie James: https://lore.kernel.org/patchwork/patch/1192104/
+
+Changes since version 5:
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Updated short description and fixed long description to be more clear.
+Addressed comments from:
+ - Jarkko Sakkinen: https://lkml.org/lkml/2020/4/6/748
+
+Changes since version 6:
+-"tpm: tpm_tis: Make implementation of read16, read32 and write32 optional"
+        -Fixed short description.
+        -fixed long description proofreading issues.
+-"tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Fixed long description by Jarkko comments and proofreading issues.
+        -Replaced "check_data" with verify_data_integrity".
+        -New line before return statement.
+-"tpm: tpm_tis: rewrite "tpm_tis_req_canceled()"
+        -Fixed line over 80 characters.
+        -fixed long description proofreading issues.
+-" tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot"
+        -fixed long description proofreading issues.
+-"dt-bindings: tpm: Add YAML schema for TPM TIS I2C option"
+        -Replaced "tpm-tis-i2c@2e" with "tpm_tis@2e".
+        -Fixed CRC_Checksum description.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -Replaced "depends on CRC_CCIT" with "select CRC_CCIT".
+        -Added tested-by tag by Joel Stanley.
+        -Fixed checkpatch.pl warnings.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1221336/
+        https://lore.kernel.org/patchwork/patch/1221337/
+        https://lore.kernel.org/patchwork/patch/1221339/
+ - Joel Stanley:
+        https://lore.kernel.org/patchwork/patch/1220543/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1221334/
+
+Changes since version 7:
+- Added a new commit with improvements suggested by Benoit Houyere.
+        -"tpm: tpm_tis: verify TPM_STS register is valid after locality request"
+-"tpm: tpm_tis: Rewrite "tpm_tis_req_canceled()""
+        -Fixed Hash for Fixes tag.
+-"tpm: Add YAML schema for TPM TIS I2C options"
+        -Added a compatible string specific to the nuvoton npct75x chip.
+-"tpm: tpm_tis: add tpm_tis_i2c driver"
+        -added a compatible string according to yaml file.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1231524/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1231526/
+
+Changes since version 8:
+- "tpm: tpm_tis: Make implementation of read16, read32 and write32 optional"
+        -Fixed a compile error conflicting CR50
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Moved commit backwards from 4/8 to 2/8 for a better flow with new data integrity check design
+- "tpm: tpm_tis: Add retry in case of protocol failure or data integrity (on I2C only) failure."
+        -Renamed from "tpm: tpm_tis: Add check_data handle to tpm_tis_phy_ops"
+        -Redesign and added a retry for additional error cases.
+- "tpm: Add YAML schema for TPM TIS I2C options"
+        -Fixed Dual-license new binding
+        -Removed "oneOf"
+        -Fixed tpm_tis@2e to tpm@2e
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1240728/
+        https://lore.kernel.org/patchwork/patch/1240736/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1240733/
+
+Changes since version 9:
+- "tpm: Make read{16, 32}() and write32() in tpm_tis_phy_ops optional"
+        -Fixed short description
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Canceled wait_for_tpm_stat() function renaming.
+        -Fixed long description
+- "tpm: Add YAML schema for TPM TIS I2C options"
+        -Added a reviewed-by tag.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1247163/
+        https://lore.kernel.org/patchwork/patch/1247164/
+ - Rob Herring:
+        https://lore.kernel.org/patchwork/patch/1247161/
+
+Changes since version 10:
+- "tpm: Make read{16, 32}() and write32() in tpm_tis_phy_ops optional"
+        -Added a Reviewed-by and Tested-by tags
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Renamed "mask_result" parameter with "stat"
+- "tpm: tpm_tis: Add retry in case of protocol failure or data integrity (on I2C only) failure."
+        -Edited long description.
+        -Modified tpm_tis_recv() to __tpm_tis_recv() and Introduced a new tpm_tis_recv() function
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1252428/
+        https://lore.kernel.org/patchwork/patch/1252422/
+        https://lore.kernel.org/patchwork/patch/1252424/
+
+Changes since version 11:
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+        -Added a "Reviewed-by" tag
+        -Renamed 'wait_for_tpm_stat()' function with 'tpm_tis_wait_for_stat()'
+- "tpm: tpm_tis: Add retry in case of protocol failure."
+        -Removed data integrity check and created a new commit for it.
+        -Edited short and long description.
+- "tpm: tpm_tis: Add verify_data_integrity handle to tpm_tis_phy_ops"
+        -This is a new commit.
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1258107/
+        https://lore.kernel.org/patchwork/patch/1258110/
+
+Changes since version 12:
+	
+- Moved "tpm: Add YAML schema for TPM TIS I2C options" to end of patch.
+- Removed two commits to be resubmited on later patch:
+        - "tpm: tpm_tis: Add retry in case of protocol failure."
+        - "tpm: tpm_tis: Add verify_data_integrity handle to tpm_tis_phy_ops"
+- "tpm: tpm_tis: add tpm_tis_i2c driver"
+        - Removed verify data integrity (Checksum) functuality from i2c driver.
+		- Edited Long Description.
+		- Updated header comment for tpm_tis_i2c.c
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lore.kernel.org/patchwork/patch/1263805/
+        https://lore.kernel.org/patchwork/patch/1263813/
+		
+Changes since version 13:
+	
+- Edited description of commits 1-6 by Jarkko comments.
+- "tpm: Add YAML schema for TPM TIS I2C options"
+        - Fixed YAML compilation error of missing "additionalProperties" field
+Addressed comments from:
+ - Jarkko Sakkinen:
+        https://lkml.org/lkml/2021/8/26/546
+        https://lkml.org/lkml/2021/8/26/548
+	https://lkml.org/lkml/2021/8/26/550
+	https://lkml.org/lkml/2021/8/26/551
+	https://lkml.org/lkml/2021/8/26/552
+	https://lkml.org/lkml/2021/8/26/553
+	https://lkml.org/lkml/2021/8/26/555
+ - Rob Herring:
+	https://lkml.org/lkml/2021/8/26/427
+	
+Changes since version 14:
+
+- "tpm: Make read{16, 32}() and write32() in tpm_tis_phy_ops optional"
+		-Removed commit.
+- "tpm: tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception"
+		-Fixed description and restored "wait_for_tom_stat" to its original name
+- "tpm: tpm_tis: add tpm_tis_i2c driver"
+		-Added read{16, 32}() and write32() functions in i2c driver.
+Addressed comments from:
+ - Jarkko Sakkinen:
+	https://lkml.org/lkml/2021/9/13/2235
+	https://lkml.org/lkml/2021/9/13/2241
+
+Changes since version 15:
+
+- tpm_tis: Fix expected bit handling and send all bytes in one shot without last byte in exception
+	-Fixed and added description
+	-Added a fixed tag
+	-Changed stat parameter name to result.
+- tpm: Add YAML schema for TPM TIS I2C options
+	-Added Reviewd-by tag
+Addressed comments from:
+ - Jarkko Sakkinen:
+	https://www.spinics.net/lists/linux-integrity/msg19686.html	
+ - Rob Herring:
+	https://www.spinics.net/lists/linux-integrity/msg19686.html
+
+Amir Mizinski (6):
+  tpm_tis: Fix expected bit handling and send all bytes in one shot
+    without last byte in exception
+  tpm: tpm_tis: Rewrite "tpm_tis_req_canceled()"
+  tpm: Handle an exception for TPM Firmware Update      mode.
+  tpm: tpm_tis: verify TPM_STS register is valid after locality request
+  tpm: tpm_tis: add tpm_tis_i2c driver
+  tpm: Add YAML schema for TPM TIS I2C options
+
+ .../bindings/security/tpm/tpm-tis-i2c.yaml         |  52 ++++
+ drivers/char/tpm/Kconfig                           |  12 +
+ drivers/char/tpm/Makefile                          |   1 +
+ drivers/char/tpm/tpm2-cmd.c                        |   4 +
+ drivers/char/tpm/tpm_tis_core.c                    |  82 +++----
+ drivers/char/tpm/tpm_tis_i2c.c                     | 267 +++++++++++++++++++++
+ include/linux/tpm.h                                |   1 +
+ 7 files changed, 371 insertions(+), 48 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+ create mode 100644 drivers/char/tpm/tpm_tis_i2c.c
+
 -- 
-2.25.1
+2.7.4
 
