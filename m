@@ -2,112 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6BC1436660
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 17:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBB7C4366D2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 17:53:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbhJUPiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 11:38:03 -0400
-Received: from foss.arm.com ([217.140.110.172]:44384 "EHLO foss.arm.com"
+        id S231406AbhJUPzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 11:55:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58088 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230072AbhJUPiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 11:38:03 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DEEDDD6E;
-        Thu, 21 Oct 2021 08:35:46 -0700 (PDT)
-Received: from bogus (unknown [10.57.25.56])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 56E773F694;
-        Thu, 21 Oct 2021 08:35:45 -0700 (PDT)
-Date:   Thu, 21 Oct 2021 16:35:42 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20211021153542.qdklpwqiz4ujx6zy@bogus>
-References: <20210517155458.1016707-1-sudeep.holla@arm.com>
- <CAPDyKFr=pf-0JbkiD6rkzeWwPZmDxEE_R=ovhzRUHfVjO9S0tw@mail.gmail.com>
- <20211014145555.uoi2hyoonrptrd5m@bogus>
- <CAPDyKFppiogQ5GLQJCqvYGfDQ80HrLLiv43o4H4WBW0PqyONNg@mail.gmail.com>
- <20211020102521.ag2w3fns5bmgb7zd@bogus>
- <CAPDyKFrunb7sjhZnWVDPRYD_p0Dqr+NZyzX-OUrE00nCa2PmNA@mail.gmail.com>
+        id S231640AbhJUPzO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 11:55:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3D28C61056;
+        Thu, 21 Oct 2021 15:52:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634831578;
+        bh=bT4Y6jm4eIIAGAvmhjb7MfpQRPLShEcQjaUMMUiTuf8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=aUbk1Gij1itRQH9rLJK4kyHFzM17SFGhAGV6izTPivsaOUWRzCJt4p5nhbJ1z50w3
+         D9ZtjjVHHGpKnXJJ6bwkt1/nHxnD3aMCs6NdFTUws5mxwTifJaQ1cAn5RHdBPYq7EI
+         RNh5/oIikuAwTvJ54laZ4fijzcxCFsSuDQsS1Z5laYiSOIvIXgW3MERENqt/dxjO46
+         StkYc+7JwVSqWWpAdXz/P5Rmlg1KuwKmvGwZMg3NkWruQ+cdGXjDwXjBH+uFWzXkvU
+         lpTlch8hLGv93VX90yl+9RgdxYzVst8Lpeb7RFzGUynOoH9rKHTDleHWBm13pF//rE
+         wncyqmFWICb2Q==
+Date:   Thu, 21 Oct 2021 10:52:56 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-pci@vger.kernel.org,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        john@phrozen.org, neil@brown.name, gregkh@linuxfoundation.org,
+        linux-staging@lists.linux.dev, matthias.bgg@gmail.com,
+        tsbogend@alpha.franken.de, devicetree@vger.kernel.org,
+        bhelgaas@google.com
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+Message-ID: <20211021155256.GA2689055@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFrunb7sjhZnWVDPRYD_p0Dqr+NZyzX-OUrE00nCa2PmNA@mail.gmail.com>
+In-Reply-To: <163473978253.23166.3894301849923362863.b4-ty@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 03:34:17PM +0200, Ulf Hansson wrote:
-> On Wed, 20 Oct 2021 at 12:25, Sudeep Holla <sudeep.holla@arm.com> wrote:
-
-[...]
-
-> >
-> > Looks like this can be used for devices but what about CPUs ?
->
-> Yes, that should work. dev_pm_genpd_set_performance_state() takes a
-> struct device* as an in-parameter.
->
-> The struct device to use would typically be the one that you receive
-> from dev_pm_domain_attach_by_name(). We already do this for some other
-> cpufreq drivers, so this works fine.
->
-
-I totally understand this is possible but the question is: is it really
-necessary ?
-
-> >
-> > > >
-> > > > I am happy to know if there are ways to support such systems with the
-> > > > options you have mentioned above.
-> > >
-> > > As far as I understand, the "performance domains" DT bindings that
-> > > $subject patch introduces, allows us to group devices into domains, to
-> > > let them be "performance controlled" together. Right?
-> > >
-> >
-> > Or independently. It doesn't matter.
-> >
-> > > Unless I am missing something, it looks like power domains DT bindings
-> > > already offer this for us. Yes, certainly, the DT doc [1] needs an
-> > > updated description to better explain this, but other than that we
-> > > should be fine, don't you think?
-> > >
-> >
-> > As I mentioned about, the main question is what if firmware doesn't
-> > want to expose power domain details to OSPM like PC co-ordinated PSCI
-> > idle states while it wants to either group CPUs or leave them as
-> > individual in order to get per-CPU DVFS requests and aggregate them
-> > in the firmware. It does something similar for idle states already.
+On Wed, Oct 20, 2021 at 03:23:45PM +0100, Lorenzo Pieralisi wrote:
+> On Wed, 22 Sep 2021 07:00:32 +0200, Sergio Paracuellos wrote:
+> > MediaTek MT7621 PCIe subsys supports single Root complex (RC)
+> > with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
+> > Topology is as follows:
+> > 
+> > 
+> >                           MT7621 PCIe HOST Topology
+> > 
+> > [...]
 > 
-> Yes, that can be modeled too.
+> Applied to pci/mt7621, thanks!
 > 
-> Just let each CPU node point to its own separate power-domain and also
-> *don't* model the parent power-domain, instead leave this to be
-> managed by the FW.
->
+> [1/3] dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
+>       https://git.kernel.org/lpieralisi/pci/c/e5bc5605e7
+> [2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+>       https://git.kernel.org/lpieralisi/pci/c/5797a2b2bc
+> [3/3] MAINTAINERS: add myself as maintainer of the MT7621 PCI controller driver
+>       https://git.kernel.org/lpieralisi/pci/c/eb1d7d438c
 
-Why ? IMO it is unnecessary indirection and useless as we don't need the
-genpd created for these for no useful reasons. All we need is to get the
-domain id for the device and request the firmware passing that id to set
-the performance. Creating a psuedo power domain with no power domain
-info except the performance domain id and then creating genpd domains
-for the same just because we can is something I am failing to understand
-here. I agree if the CPU domains were real(as in what f/w or h/w represents),
-then may be, again I really don't like them disconnected from real CPU
-power domains just because perf and power are not 1:1. Creating one set
-of genpd for power and another for performance is also not okay IMO for
-reasons stated above.
+Since this is a PCIe (not conventional PCI) controller, I vote for
+renaming these from:
 
--- 
-Regards,
-Sudeep
+  PCI_MT7621
+  Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+  drivers/pci/controller/pci-mt7621.c
+
+to:
+
+  PCIE_MT7621
+  Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+  drivers/pci/controller/pcie-mt7621.c
+
+We have a mix of these, with many of the early PCIe drivers being
+named "pci", but I think that was my mistake and there's no reason to
+continue it.
+
+I can do this locally unless somebody objects.
