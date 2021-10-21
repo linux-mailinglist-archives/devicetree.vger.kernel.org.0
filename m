@@ -2,121 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 876414368FE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 19:27:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A1843692B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 19:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbhJUR3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 13:29:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbhJUR3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 13:29:49 -0400
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485B4C061764;
-        Thu, 21 Oct 2021 10:27:33 -0700 (PDT)
-Received: by mail-ua1-x92c.google.com with SMTP id h4so2691608uaw.1;
-        Thu, 21 Oct 2021 10:27:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n3KAUH5tf43FPgeIldLgrHI6MLHGHRqbeDSFqA/wj6k=;
-        b=UktcyfAWEPQILj2/NzzmvMAzdpAfMV4q5eRVROBynRVdLNYRD8/2gc+znAsZnXnhVm
-         EHDpxnJll2/m+IuTvzo6nn/r+gUDbq+dvYHJXt2/MaBGXse9LLIqMA+nzFhO5ortgguY
-         QkgfawKKXp9966CULV4EKTpPSMomVEmfU/DxuwznaFrwAH+Qdb+OgndgB1XrvTBt4G0c
-         UdK6XeBpXM3GgG6+TtADSFokXF4axnBNObXiJ77jl2UUlGfn4O4HbpZ4mCT59XAsEh2t
-         Ttb/6FgV/1PKqzze94P+8N4weGR1/O9wIOUbIFXAgl0nHlXPMqeND/GHcYY4CKBIiPTi
-         jsYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n3KAUH5tf43FPgeIldLgrHI6MLHGHRqbeDSFqA/wj6k=;
-        b=V7oTOdDJUOOs29NTsqouy8NzuY9f5hT/WgpjTVKvp8FQlFF5PdVa7AP3Znrauu4oM7
-         UzjEXUZIanIup267RlPvriqzpIDSHUL474ptqmsJ+wPbTmCMr/IilZQmkoGRHhFGG+EJ
-         LiyQW+b5JU4sGb15tJOxeISO6b3u7UBrRvxgT7o+0J/fbaPEq2NfYDU6B7q6MbXKlZv7
-         mMGbOzS6R17bVHUaMnahiOVJpN9yyOcSUnzLPBE5UG/GBtZHPe51bOLo6ooah0DlOhHM
-         JywAr4/TswQ4UP19t/dJnmR3q70OR//8+ZmO9vwlyeoXMOReUzCsT4DBdjgLlbxeYGLK
-         Dn9Q==
-X-Gm-Message-State: AOAM5325WcknKDa//nhw4trFT5Laj5SqeA84+7H6l/4WKRhPQU4ov+Vr
-        a+RzO2mhWHPABNt4yGVSDQaoOlcZWY4qgK4M5mk=
-X-Google-Smtp-Source: ABdhPJy9D+3cDlBwjEWxaq8dqkdQpLoO3j0avxBUK363K6hl97hfPjuGhjnr8pAKXA2wvwWYSysjy/d2TVvGs/4/j74=
-X-Received: by 2002:a67:d78c:: with SMTP id q12mr8220476vsj.28.1634837252362;
- Thu, 21 Oct 2021 10:27:32 -0700 (PDT)
+        id S231281AbhJURlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 13:41:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43130 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229968AbhJURlP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 13:41:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7F112611F2;
+        Thu, 21 Oct 2021 17:38:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634837939;
+        bh=LpNb5Ofiwydmq40FQU8duMylt8pFFZmKuTDr2i1rZIU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hKUD38yu6OZtErjhk2Qs5xIkQkkCFgxI2gcsBS9eGEs1l2jYMzjeg859x1/X64QWV
+         vkcv0jFID8Xd6qSxzsexrZvBo1jlvaOcShqL+4jAlIB3xHu3qJGBEqSRyTpDSGJDIS
+         F4WK8BHBkRJ1CCPcVX9FO3JQTcTf2srRcJ0ubDWiX2KyRCyqVRXMTXgw9Rs8Z4TFCe
+         QKSGQ3nBnsER2zLtyJG6irupxiXLHm7EGZprrb2RMMO2wIgtRtig7NIJ8JbvXO8i/s
+         NP0h4p7p+Oe0leUnfZ/A2ekch/e7q3DXZ6lkIopYID/jpHe+h8gnIA/xXfH/4yTX0d
+         spTMj66k5Ulrw==
+Received: by mail-ed1-f48.google.com with SMTP id g10so3907198edj.1;
+        Thu, 21 Oct 2021 10:38:59 -0700 (PDT)
+X-Gm-Message-State: AOAM530q+b2Mv4yp24ITvE1n1hz0v9aWtCDg8P5SAj8LpwPHqy639xKL
+        IySMVhzldgKl8sln5JQNq66n3KROSL6RANI/LQ==
+X-Google-Smtp-Source: ABdhPJz/vbdq3qrIZ6VKZxs1qt95sB5jOe4PZ1t0hVBlVmqM5S9SyIXFm9L+aZKMoHABRpPUFg0+0rgoH+mqfa+mN5E=
+X-Received: by 2002:a17:906:c350:: with SMTP id ci16mr8528906ejb.466.1634837933642;
+ Thu, 21 Oct 2021 10:38:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <163473978253.23166.3894301849923362863.b4-ty@arm.com> <20211021155256.GA2689055@bhelgaas>
-In-Reply-To: <20211021155256.GA2689055@bhelgaas>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 21 Oct 2021 19:27:21 +0200
-Message-ID: <CAMhs-H-BA+KzEwuDPzcmrDPdgJBFA2XdYTBvT4R4MEOUB=WQ1g@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
- controller driver
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        linux-staging@lists.linux.dev,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+References: <20210802160521.331031-1-lizhi.hou@xilinx.com> <20210802160521.331031-2-lizhi.hou@xilinx.com>
+ <20211012050931.GA95330@yilunxu-OptiPlex-7050> <8d8f6c08-6e68-a4b8-4cfd-1dd547f3fe28@xilinx.com>
+ <20211014022122.GG95330@yilunxu-OptiPlex-7050> <cc261622-5104-39ae-7221-b33dd70303e5@xilinx.com>
+ <CAL_JsqKoHomBBzggK0RzoWxPjnvZijS5v6NympozLz62P-NOvA@mail.gmail.com> <SJ0PR02MB8845BABAB67F3A9F98285A74BBBF9@SJ0PR02MB8845.namprd02.prod.outlook.com>
+In-Reply-To: <SJ0PR02MB8845BABAB67F3A9F98285A74BBBF9@SJ0PR02MB8845.namprd02.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 21 Oct 2021 12:38:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com>
+Message-ID: <CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com>
+Subject: Re: [PATCH V9 XRT Alveo 01/14] Documentation: fpga: Add a document
+ describing XRT Alveo drivers
+To:     Sonal Santan <sonals@xilinx.com>
+Cc:     Lizhi Hou <lizhih@xilinx.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        Max Zhen <maxz@xilinx.com>, Yu Liu <yliu@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        Stefano Stabellini <stefanos@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
+        David Woodhouse <dwmw2@infradead.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Thu, Oct 21, 2021 at 5:52 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+On Thu, Oct 21, 2021 at 12:36 AM Sonal Santan <sonals@xilinx.com> wrote:
 >
-> On Wed, Oct 20, 2021 at 03:23:45PM +0100, Lorenzo Pieralisi wrote:
-> > On Wed, 22 Sep 2021 07:00:32 +0200, Sergio Paracuellos wrote:
-> > > MediaTek MT7621 PCIe subsys supports single Root complex (RC)
-> > > with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
-> > > Topology is as follows:
-> > >
-> > >
-> > >                           MT7621 PCIe HOST Topology
-> > >
-> > > [...]
+> Hello Rob,
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, October 19, 2021 6:03 AM
+> > To: Lizhi Hou <lizhih@xilinx.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-fpga@vger.kernel.org; Max Zhen
+> > <maxz@xilinx.com>; Sonal Santan <sonals@xilinx.com>; Yu Liu
+> > <yliu@xilinx.com>; Michal Simek <michals@xilinx.com>; Stefano Stabellin=
+i
+> > <stefanos@xilinx.com>; devicetree@vger.kernel.org; trix@redhat.com; Mor=
+itz
+> > Fischer <mdf@kernel.org>; Max Zhen <maxz@xilinx.com>; Xu Yilun
+> > <yilun.xu@intel.com>
+> > Subject: Re: [PATCH V9 XRT Alveo 01/14] Documentation: fpga: Add a
+> > document describing XRT Alveo drivers
 > >
-> > Applied to pci/mt7621, thanks!
+> > On Thu, Oct 14, 2021 at 11:12 AM Lizhi Hou <lizhi.hou@xilinx.com> wrote=
+:
+> > >
+> > > Hello Rob,
+> > >
+> > > Please help with the review of the proposed FDT usage by Alveo/XRT dr=
+ivers.
+> > >
+> > > Thanks,
+> > > Lizhi
+> > >
+> > > On 10/13/21 7:21 PM, Xu Yilun wrote:
+> > > > CAUTION: This message has originated from an External Source. Pleas=
+e use
+> > proper judgment and caution when opening attachments, clicking links, o=
+r
+> > responding to this email.
+> > > >
+> > > >
+> > > >>>> +.. _device_tree_usage:
+> > > >>>> +
+> > > >>>> +Device Tree Usage
+> > > >>>> +-----------------
+> > > >>>> +
+> > > >>>> +The xsabin file stores metadata which advertise HW subsystems
+> > > >>>> +present in a partition. The metadata is stored in device tree
+> > > >>>> +format with a well defined schema. XRT management driver uses
+> > > >>>> +this information to bind *xrt_drivers* to the subsystem
+> > > >>>> +instantiations. The xrt_drivers are found in **xrt-lib.ko** ker=
+nel
+> > module.
+> > > >>> I'm still catching up the patchset from the very beginning, and
+> > > >>> just finished the Documentation part. So far, I see the DT usage
+> > > >>> concern which may impact the architecure a lot, so I should raise=
+ it ASAP.
+> > > >>>
+> > > >>> The concern raised by the DT maintainer:
+> > > >>> https://lore.kernel.org/linux-fpga/CAL_JsqLod6FBGFhu7WXtMrB_z7wj8=
+-
+> > > >>> up0EetM1QS9M3gjm8d7Q@mail.gmail.com/
+> > > >>>
+> > > >>> First of all, directly parsing FDT in device drivers is not a
+> > > >>> normal usage of DT in linux. It is out of the current DT usage
+> > > >>> model. So it should be agreed by DT maintainers.
+> > > >> Thanks for reviewing XRT document and providing feedback.
+> > > >> Here is the reply from Sonal for Rob=E2=80=99s question:
+> > > >> https://lore.kernel.org/linux-
+> > fpga/BY5PR02MB62604B87C66A1AD139A6F15
+> > > >> 3BBF40@BY5PR02MB6260.namprd02.prod.outlook.com/
+> > > >> Overall, libfdt is used by XRT driver to parse the metadata which
+> > > >> comes with an Alveo board.
+> > > >> When XRT driver discovers an Alveo board, it will read a fdt blob
+> > > >> from board firmware file resident on the host.
+> > > >> By parsing the fdt blob, XRT driver gets information about this
+> > > >> Alveo board, such as version, uuid, IPs exposed to PCI BAR, interr=
+upt
+> > binding etc.
+> > > >> So libfdt is used simply as Alveo metadata parser here. XRT driver=
+s
+> > > >> do not interact with system wide DT or present the Alveo device
+> > > >> tree to host. For many systems like x86_64, system wide DT is not
+> > > >> present but libfdt parsing services will still be needed.
+> > > > Yes, I understand the use case.
+> > > >
+> > > > My concern is, directly parsing an isolated FDT in device driver an=
+d
+> > > > populate sub devices, skipping the unflattening, this is a new
+> > > > working model of device tree usage, but for the same purpose as the
+> > > > existing one.
+> > > >
+> > > > So I really need the confirmation of DT maintainers.
 > >
-> > [1/3] dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
-> >       https://git.kernel.org/lpieralisi/pci/c/e5bc5605e7
-> > [2/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
-> >       https://git.kernel.org/lpieralisi/pci/c/5797a2b2bc
-> > [3/3] MAINTAINERS: add myself as maintainer of the MT7621 PCI controller driver
-> >       https://git.kernel.org/lpieralisi/pci/c/eb1d7d438c
->
-> Since this is a PCIe (not conventional PCI) controller, I vote for
-> renaming these from:
->
->   PCI_MT7621
->   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
->   drivers/pci/controller/pci-mt7621.c
->
-> to:
->
->   PCIE_MT7621
->   Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
->   drivers/pci/controller/pcie-mt7621.c
->
-> We have a mix of these, with many of the early PCIe drivers being
-> named "pci", but I think that was my mistake and there's no reason to
-> continue it.
+> > Perhaps you could explain why you think you need to use FDT instead of
+> > unflattening. Without that, the answer is don't use FDT.
+> >
+> Xilinx Alveo PCIe cards are predominantly used in x86_64 systems which do=
+ not have device tree support compiled into the kernel. XRT driver uses a m=
+atching FDT to discover IP subsystems sitting behind the PCIe BARs exposed =
+by an Alveo PCIe card. The FDT blob (as part of an Alveo PCIe card firmware=
+) can be freely downloaded from xilinx.com.
 
-I see.
+If the kernel is going to consume that FDT blob, then it needs to
+follow upstream practices which primarily means all the device
+bindings must be documented with schema and reviewed.
 
->
-> I can do this locally unless somebody objects.
 
-I have no problem at all. Only one question. Do you mean to change
-compatible string also, or only the name of the file? Let me know if I
-have to do anything.
+> If using an unflattened tree (instead of FDT) is the right solution then =
+we would certainly look into it. Should the PCIe driver then call something=
+ like of_fdt_unflatten_tree() with a FDT blob and the kernel would then bui=
+ld an unflattened tree and hang it off the PCIe device node? The FDT blob f=
+or a PCIe device is only known to the driver since different PCIe platforms=
+ may store it differently: a known location in the PCIe BAR, the flash on t=
+he PCIe board or a file on the filesystem. If the kernel can provide a gene=
+ral on demand unflattening service similar to DTO use model, we will have a=
+ more scalable solution to describe IP subsystems exposed by a PCIe device =
+and make their discovery data driven. Can this feature also work on x86_64 =
+systems which does not use OF?
 
-Thanks,
-    Sergio Paracuellos
+There's other similar usecases like this. For example, an FTDI or
+similar USB to serial chip that has GPIO, I2C, etc. and could have
+downstream devices hanging off of those interfaces. And then you could
+plug-in multiple of those devices to the host system. For this to
+work, we'd need to create a base tree (if there isn't one) with nodes
+for the USB or PCI device(s) and then an overlay for the device can be
+applied to those nodes. This is also partially an issue on DT based
+systems as the DT node may not exist given these are 'discoverable'
+buses. It's a bit easier to solve given the PCI host bridge or USB
+controller exists in the DT already.
+
+There's really 2 separate parts here. There's how to attach a DT to a
+device on a non-DT system (or DT system with a device not described in
+the base DT). The second part is how to describe the PCI device and
+downstream devices. This part is no different than any other device.
+
+
+> > > >>> Current FPGA framework modifies kernel's live tree by DT overlay,
+> > > >>> when FPGA is dynamically reprogrammed and new HW devices appear.
+> > > >>> See Documentation/devicetree/bindings/fpga/fpga-region.txt.
+> > > >>>
+> > > >>> Then something less important:
+> > > >>>
+> > > >>>     1. The bindings should be documented in
+> > Documentation/devicetree/bindings/.
+> >
+> > Yes.
+> >
+> > > >>>     2. Are all the example DT usage conform to the exsiting bindi=
+ngs? I
+> > > >>>        didn't go through all device classes, but remember like th=
+e
+> > > >>>        interrupt-controller should have a "interrupt-controller" =
+property,
+> > and
+> > > >>>        the PCI properties are also different from PCI bindings.
+> >
+> > They don't, but should. I can't tell what you are trying to do here, bu=
+t it looks
+> > like a mess.
+> >
+> Will appreciate any pointers on existing PCIe use case for the device tre=
+e.
+
+Documentation/devicetree/bindings/pci/ and there's the PCI bus schema
+here[1]. There's also the OpenFirmware PCI spec[2].
+
+Rob
+
+[1] https://github.com/devicetree-org/dt-schema/blob/main/schemas/pci/pci-b=
+us.yaml
+[2] https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
