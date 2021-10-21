@@ -2,140 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2447436B3F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 21:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D764436B50
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 21:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231618AbhJUTXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 15:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51150 "EHLO
+        id S231869AbhJUT0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 15:26:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231464AbhJUTXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 15:23:12 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E337BC061243
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 12:20:55 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id g36so56294lfv.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 12:20:55 -0700 (PDT)
+        with ESMTP id S230020AbhJUT0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 15:26:03 -0400
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38D9BC0613B9;
+        Thu, 21 Oct 2021 12:23:47 -0700 (PDT)
+Received: by mail-ua1-x936.google.com with SMTP id a17so3220372uax.12;
+        Thu, 21 Oct 2021 12:23:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UMGkfKzFkPndk+aukTeC2hPij1ioiGplmmYNbBLd39U=;
-        b=w/2IhqbvnJAooThVClYZntt6hO4FpSbjki/TXe5kQS/pqLu820t3MU1YMfc9qj4cyQ
-         ZIvFptym8t2h67l5XIDaTXm1YgxhJjtiCV2oDFhdaQ5ddyDjeoncTGgFimylroR5s6Q7
-         0NEbkXziBnKLYk2MWnJp9mDejpH4JNyHd9Ej0MM7uv/ggbHMQ3pCM/ZiyeuoNL+KLZFy
-         AbJbMUYbaXp+ttYheo9l364ZY8fKs6ZSUCtmo/d5FgxrSHJ0hABpzOsD2BhNdTNU+FTQ
-         WZq2qRYN5PC6B67D7+9HvZ2I1SvnlGXV1E1XLNih+WIfw4DDzVMf5yjRfxHCVxwI6K6/
-         qnwg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/iZOrd1VHON6EXEVnr2OGsIIn2iCBQ+KTNa7mjlDUM0=;
+        b=oxB1oSOsP0sTjaOmhjon770YW0M1lJJYpt6kycMBP4ougazTjT4o4QoXDq6Lu79V2S
+         hjfZ+0HAa+wQ3rbYJ02VZQpNntDOWduBrCMRiT8+7CxerTMUTtIztOyT/oS/pdduADuV
+         NjeLE7OR3qqPYyrhR0gzYFzM6rSU6kKOVnNjaT6c/eiRNHvJ1AkRZxr6imxPRMEJsjk6
+         vy4+mZ/dXprzxb4DiQbaACRAW+3Q8NKkcPGqXO2xk98sOl08oX6Eo5Ftm9DZnkGJrtQT
+         IxCvjQorWaca5/mxyq5+P3Cloteu4eXEI7h5v8/L7Xgr+VyDcUAbGMTKMJGAS7vjxjzY
+         f2/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UMGkfKzFkPndk+aukTeC2hPij1ioiGplmmYNbBLd39U=;
-        b=q2O1G1U2n91Qjd0srbqCfdBZ9J5pJQ7bq7NY9mP2HiUpChKtkaEJL6mhL3VZ2rGCmr
-         Vdb+XysCx7aRQgH9TLqBk/8LGH2yiCBBgn2QBe4L1/PQOhO0hYd+POygHU/AFaE5DoX5
-         iR3xXLq/lZAWQMUlfx7Y7grZTDNQOSfMaRaAAAjZjZrUFSqb7Gse/sYroO0B0jSAGBIC
-         9hibz081petoB7b+6wm9m8aGM2Dk8OdiDNFx1uiLtOCSyes2YBEmXHyfLodDQr/rseUP
-         rCWNUJVg41iqHJTzb/puJjEynzEaOBlfYITdiEuAkweGrbAhfRpDTw41eh7gijebKVRz
-         rSjA==
-X-Gm-Message-State: AOAM533ELXtPPpH8h9yDM8Oy3hsHFnrEZTo7/MZRYDJ32z8FA0npnubn
-        zgKGzIyVe+kDSW8H0914r+/PXA==
-X-Google-Smtp-Source: ABdhPJxo5GjXqDlTGLWXCwJrN0GPBLdVN5DKRXlP3V5kEnbBE/le0TdxKJD1wGsFtyNWAVs8eddv0w==
-X-Received: by 2002:a19:6441:: with SMTP id b1mr6800607lfj.73.1634844054240;
-        Thu, 21 Oct 2021 12:20:54 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h16sm626022lji.140.2021.10.21.12.20.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Oct 2021 12:20:53 -0700 (PDT)
-Subject: Re: [PATCH RESEND v5 0/5] interconnect: qcom: Add MSM8996
- interconnect driver
-To:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20211021132329.234942-1-y.oudjana@protonmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <73fbfa8b-8f71-53b2-f5b6-0f17f4941a91@linaro.org>
-Date:   Thu, 21 Oct 2021 22:20:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/iZOrd1VHON6EXEVnr2OGsIIn2iCBQ+KTNa7mjlDUM0=;
+        b=yd3+F7XFNkuYmuLuGF8VWGFBf+qsB9wwSiaUuzvh/FsUVV/M3Hjv4QWYWX4hqrXgPq
+         LcS1uhhmGkl+CTa6gTuUQygXipqzP7dOui337SptEXG1d0MX28/TOGLYDl/TIOPpTY0M
+         bVx/ERoDx5kwpYGTY1lRXXXHjDGlUp6Ut0f8rdJSjPKuB99CPMcFN3JG/IWjG7OcGZ8x
+         W2GWxSmb0fP6yei8+WKgWBfXTm5U6R7vgi1Kt7LjPQEVpQP9hKSUpygWXpWjfRIHVXWZ
+         1mps41XoAZDanzD7LQPRn8iTrA3FL+j0sOkJQk+ax+yKP5+46BT0AFGlkRIB4Po39L6B
+         9Hnw==
+X-Gm-Message-State: AOAM531aHj+cuQqGVPMO5TJHcuJsWhg6BikVjZ1tR4+k0Dt/eTJK3HGD
+        mLREovvCulXpNM7y6rkha5I2u8DSx8+/cRDFc7E=
+X-Google-Smtp-Source: ABdhPJyl+qrRv/nOh0WSig9UsFs43pWf6wVkaq74TeHbHFuOzbysXm1dvud4VyCuBvqj0AKn04lPsWGHcuy+eAYMdrA=
+X-Received: by 2002:a05:6102:e11:: with SMTP id o17mr8846106vst.55.1634844226344;
+ Thu, 21 Oct 2021 12:23:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20211021132329.234942-1-y.oudjana@protonmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <CAMhs-H-BA+KzEwuDPzcmrDPdgJBFA2XdYTBvT4R4MEOUB=WQ1g@mail.gmail.com>
+ <20211021181145.GA2708516@bhelgaas>
+In-Reply-To: <20211021181145.GA2708516@bhelgaas>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 21 Oct 2021 21:23:35 +0200
+Message-ID: <CAMhs-H8pTmbG0idbPWjnW4faFj0F4TKwSSK6wzwepbqWSEtx4w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-staging@lists.linux.dev,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/10/2021 16:24, Yassine Oudjana wrote:
-> This series adds a driver for interconnects on MSM8996. This fixes some rare display underflows
-> and provides a slight heat reduction.
-> 
-> Resending because some addresses in CC got mixed up.
-> 
-> Changes since v4:
->   - Rebase on Dmitry's icc-rpm patches[1].
->   - Combine SDM660 bindings into the RPM interconnect schema.
->   - Clean up qcom_icc_node structs by removing unused properties, moving links to external
->     arrays and using the same arrays for multiple nodes where possible.
->   - Add support for Aggregate 0 NoC (a0noc).
-> Changes since v3:
->   - Expand DEFINE_QNODE macros in msm8996.c.
->   - Commonize probe function.
->   - Don't rename qcom_icc_set in icc-rpmh since it's no longer needed.
->   - Code style fixes.
-> Changes since v2:
->   - Dual-license qcom,msm8996.h and move it to the dt bindings patch
->   - Remove interconnect paths from CPUs since cpufreq driver doesn't support icc scaling yet.
-> Changes since v1:
->   - Split first patch into 2 patches, one for renaming qcom_icc_set in icc-rpmh, and another
->     one for the actual commonization.
->   - Revert unnecessary move of include line in sdm660.c
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20210903232421.1384199-1-dmitry.baryshkov@linaro.org/
+On Thu, Oct 21, 2021 at 8:11 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> On Thu, Oct 21, 2021 at 07:27:21PM +0200, Sergio Paracuellos wrote:
+> > On Thu, Oct 21, 2021 at 5:52 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > Since this is a PCIe (not conventional PCI) controller, I vote for
+> > > renaming these from:
+> > >
+> > >   PCI_MT7621
+> > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+> > >   drivers/pci/controller/pci-mt7621.c
+> > >
+> > > to:
+> > >
+> > >   PCIE_MT7621
+> > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> > >   drivers/pci/controller/pcie-mt7621.c
+> > >
+> > > We have a mix of these, with many of the early PCIe drivers being
+> > > named "pci", but I think that was my mistake and there's no reason to
+> > > continue it.
+> >
+> > I see.
+> >
+> > >
+> > > I can do this locally unless somebody objects.
+> >
+> > I have no problem at all. Only one question. Do you mean to change
+> > compatible string also, or only the name of the file? Let me know if I
+> > have to do anything.
+>
+> I didn't change the compatible string, to avoid a DT incompatibility.
+> But I *did* change the Kconfig symbol to PCIE_MT7621, which could
+> require changes to out-of-tree .configs.  I'm open to suggestions
+> either way for both things.
 
-For the whole series:
+IMHO, I do think we should not worry about out-of-tree stuff at all.
+If the correct way to define the Kconfig symbol or the compatible
+string is to change them, just do that. MT7621 SoC is extensively used
+by openWRT community. As far as I have seen until now, the way of
+doing things there is to take the latest long term kernel (now they
+are using 5.4 as stable and 5.10 as testing kernel), apply a bunch of
+patches they have and do a complete build of both kernel, device tree
+and rootfs. So I guess it is not a big problem if we also change
+compatible string since when an update is performed for a device all
+of the stuff is just replaced. Maybe I am wrong and John has a
+different opinion... John, any comments on this?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> #db820c
-
-> 
-> Yassine Oudjana (5):
->    dt-bindings: interconnect: Combine SDM660 bindings into RPM schema
->    interconnect: icc-rpm: Add support for bus power domain
->    dt-bindings: interconnect: Add Qualcomm MSM8996 DT bindings
->    interconnect: qcom: Add MSM8996 interconnect provider driver
->    arm64: dts: qcom: msm8996: Add interconnect support
-> 
->   .../bindings/interconnect/qcom,rpm.yaml       |  143 +-
->   .../bindings/interconnect/qcom,sdm660.yaml    |  185 --
->   arch/arm64/boot/dts/qcom/msm8996.dtsi         |   93 +
->   drivers/interconnect/qcom/Kconfig             |    9 +
->   drivers/interconnect/qcom/Makefile            |    2 +
->   drivers/interconnect/qcom/icc-rpm.c           |    7 +
->   drivers/interconnect/qcom/icc-rpm.h           |    1 +
->   drivers/interconnect/qcom/msm8996.c           | 2113 +++++++++++++++++
->   drivers/interconnect/qcom/msm8996.h           |  149 ++
->   .../dt-bindings/interconnect/qcom,msm8996.h   |  163 ++
->   10 files changed, 2673 insertions(+), 192 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
->   create mode 100644 drivers/interconnect/qcom/msm8996.c
->   create mode 100644 drivers/interconnect/qcom/msm8996.h
->   create mode 100644 include/dt-bindings/interconnect/qcom,msm8996.h
-> 
-
-
--- 
-With best wishes
-Dmitry
+Best regards,
+    Sergio Paracuellos
