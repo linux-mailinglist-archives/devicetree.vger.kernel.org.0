@@ -2,65 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 853EA43617A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8686A4361F3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbhJUMW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 08:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37118 "EHLO
+        id S230411AbhJUMmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 08:42:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231637AbhJUMW0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:22:26 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744E5C061762
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:20:10 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id z69so607602iof.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:20:10 -0700 (PDT)
+        with ESMTP id S230425AbhJUMmu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:42:50 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28220C06161C
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:40:34 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id o20so635742wro.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:40:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=G2Jq8ABcZaKAiy06d3oRm5z7XXaT0OFvg3EWPt/6AmM=;
-        b=M5Ya1N0dCbQJLcwtpVEPTz6Dw3mxiUGnLonLp8ALVmrUobmbUbdal8KzCPO079nop4
-         p42L4tLfntonejdleCvs97XDS5IVoKgzp10GBTnOE+0hFNiwDJeci1pMOTZCr0HZ4LCs
-         XErQkcbDRY7/gjsFJOu9d9FikMoNmRF0L3XYgqbC2sLzCsGN4H533tIUaUX5bKkz+vMN
-         12ZwbbnL1+OWKirejA6vP0lqZQR3aZnltK88wcgWY1wY8NFWNCTlsFgfREmQgCZJtA0K
-         ewWdMpuMgGD6Y+f7OXOnXib2+gq1S+OBarah4nx/YddL9i5eynDBsggViC04Mi04buQR
-         CJQw==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jFdTGkgZkLf00tvUnp17RfTsEUHHJhiknRtK2YvBISw=;
+        b=GfMN12Kb0msIxKeO7aDO3rZ4tfxpuLl8OsCoaferKQwZeOwDv28J3Cr2m0bLDUjaUd
+         xMAb3P3arrHDnaYCke3klEETVYG2NqJSVPgbCIn5kTndpI5ER3zgsLFV5ZS7UKR5Gz7/
+         nXQ+NFVYiyYOmt6gZ3ifa3/5AQslqFaZ4J8Cli1f8BiB4RXTqfwzxTbAgGvIGdcdmsYx
+         FoI/ui1/hfk63Tevrbg/ds2WipfuDL2nZxfSzUJs6H/unTKDrMTK7e2r9dQQHUCrL1OR
+         XohgcdJ/BvEcyxOL34kLi+OZ2W5FG02fFxhTkmuiZMYl5G2eLmhfFejbUitXMJO8v5jd
+         PVJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=G2Jq8ABcZaKAiy06d3oRm5z7XXaT0OFvg3EWPt/6AmM=;
-        b=vNowmtdrROvbdmp+Tkwc1NksSuuvTF90Eyp1CfsFE6ZP5WKHBbRe4rYpmWrm/WDLI7
-         Kp3fQlVrHPRILD+QW313BNiQxzWEpbpm95Q+T/8+ga/jbt9R2HeK1DlitESlIyPsLhhe
-         sv8FUu9ek3UQpZbns2PGdH1O4vzOCWStP80sPoE6YI5iC4Wot4P0OkzCMpyvMB6yHjae
-         Zoi2OeWgbEtiE9D54QuR06FsUHiiOE6kf+T1UXOq+mLlWIJrSiMCs6ewZx6Fgspg58Mp
-         VnL/meg9JGn0FDz+7azb7r6m0nwHx7zyJ2QYuZuTBdOabdDnSLV+ztJEtCEkwiBkTY+R
-         uKKw==
-X-Gm-Message-State: AOAM533WXzI0JD13LbnMbA9cAb5LgcrFzkFP4w+DTBVJ4wh5EqQmqsXI
-        a2XBowVAWaMIS+53zOfPV2A0TvpPEKb2fzgabUU=
-X-Google-Smtp-Source: ABdhPJyg4Uw5gMXeuJaK/fNuVnFoa3QK4wMhuKn5p7setzcVxuuBiAsS3r7VZmGpmNn3nsrj2MAVSnMCKNX9QxUD/fY=
-X-Received: by 2002:a02:9f1a:: with SMTP id z26mr3762598jal.86.1634818809669;
- Thu, 21 Oct 2021 05:20:09 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jFdTGkgZkLf00tvUnp17RfTsEUHHJhiknRtK2YvBISw=;
+        b=eionV21g3tBeQJf3K/TPjnIWkGQ1d3Z1T6FtGqMr0V3cvt8Li+9R/f4rhEOfYUVQIA
+         B0bzzsVuW8Q3/tnZ6vhhsGAbrbnFSPhnkm1Jj5PkPcvwtkuG5FXy5YDjR1KH5UNaEGad
+         ugKu6rEBujuIj7E129x+NcYp765CkRIR0sKwMJPT1dEhQkZxPnc/r/UMjkMb59zrIvUW
+         SpCBs03d29soGuio2yTaaSyDBja1PmcyEzhjTKelL7EINfFS7daub5srAxV+cVXvzExi
+         tJearW/6oqBKjyxAdqfph7DB3GpIrrcVkU5NvgDc8XgtGBw6lRmKqCURTszJZFOk0bc5
+         IEkQ==
+X-Gm-Message-State: AOAM532sqM/lpPpdWk7cASiWC9WN2yL+PuCOu4f5lpsuu1SdAe/zpXUc
+        xJYYgIXwjw0QoTBcBECvCmsRqA==
+X-Google-Smtp-Source: ABdhPJx/zFvawwQAt68SuNbqhUDjjGd9HhjTT4xx6cJ40HOUaxW0H3Xi0M8W04egPzq24H/8gpPP3A==
+X-Received: by 2002:a5d:69cc:: with SMTP id s12mr7232765wrw.108.1634820032716;
+        Thu, 21 Oct 2021 05:40:32 -0700 (PDT)
+Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
+        by smtp.googlemail.com with ESMTPSA id a127sm7886425wme.40.2021.10.21.05.40.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Oct 2021 05:40:32 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Subject: [PATCH] schemas: graph: Fix reference to video-interfaces
+Date:   Thu, 21 Oct 2021 14:40:26 +0200
+Message-Id: <20211021124026.2494221-1-niklas.soderlund@ragnatech.se>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Received: by 2002:a05:6638:1924:0:0:0:0 with HTTP; Thu, 21 Oct 2021 05:20:09
- -0700 (PDT)
-Reply-To: ooisangkuang63@gmail.com
-From:   Mr Ooi Sang Kuang <mrsshirleyperezfosgate7@gmail.com>
-Date:   Thu, 21 Oct 2021 05:20:09 -0700
-Message-ID: <CA+ynneBiQsQaBjiG4sPysZHF9edA-QYDpLvkShBxLRGFpeEF6w@mail.gmail.com>
-Subject: Hello
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The video-interfaces documentation have been converted from text to
+yaml, update the path in the graph schema.
+
+Signed-off-by: Niklas Söderlund <niklas.soderlund@ragnatech.se>
+---
+ schemas/graph.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/schemas/graph.yaml b/schemas/graph.yaml
+index 617bdc57676c42d4..3a2fc58c8d15333b 100644
+--- a/schemas/graph.yaml
++++ b/schemas/graph.yaml
+@@ -23,7 +23,7 @@ description: |
+   may be described by specialized bindings depending on the type of connection.
+ 
+   To see how this binding applies to video pipelines, for example, see
+-  Documentation/devicetree/bindings/media/video-interfaces.txt.
++  Documentation/devicetree/bindings/media/video-interfaces.yaml.
+   Here the ports describe data interfaces, and the links between them are
+   the connecting data buses. A single port with multiple connections can
+   correspond to multiple devices being connected to the same physical bus.
 -- 
-Hello,
+2.33.1
 
-I want to discuss an important project issue with you.
-Please, let me know if this email is valid. Reply me at ooisangkuang63@gmail.com
-
-Thank you,
-Mr Ooi Sang Kuang
