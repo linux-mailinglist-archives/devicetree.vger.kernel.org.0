@@ -2,168 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E8B435FDA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 13:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FFB4435FD8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 13:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbhJULEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 07:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230320AbhJULEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 07:04:51 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CF5C061749
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 04:02:35 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mdVqC-0000p6-Cl; Thu, 21 Oct 2021 13:02:32 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mdVqB-0008Fo-8C; Thu, 21 Oct 2021 13:02:31 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mdVqB-0001Gb-79; Thu, 21 Oct 2021 13:02:31 +0200
-Date:   Thu, 21 Oct 2021 13:02:31 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Peter Chen <peter.chen@nxp.com>,
-        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
-Message-ID: <20211021110231.pcdjjax67ygs3iok@pengutronix.de>
-References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
- <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
- <20190626055409.jjiwptyths6p6jty@pengutronix.de>
- <VI1PR04MB53270E979BA9817D47A7AFC88BFD0@VI1PR04MB5327.eurprd04.prod.outlook.com>
- <20190724130939.43t66umrasbe4wwf@pengutronix.de>
- <20190923102825.zemkconnvdibke5h@pengutronix.de>
- <20191115090757.usc753lq7uujtqyy@pengutronix.de>
+        id S230243AbhJULEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 07:04:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34328 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229567AbhJULE0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 07:04:26 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9D27C60FF2;
+        Thu, 21 Oct 2021 11:02:08 +0000 (UTC)
+Date:   Thu, 21 Oct 2021 12:06:26 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+Cc:     <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
+        <linux-iio@vger.kernel.org>, <git@xilinx.com>,
+        <michal.simek@xilinx.com>, <pmeerw@pmeerw.net>,
+        <devicetree@vger.kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>
+Subject: Re: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
+Message-ID: <20211021120626.56cf1b8d@jic23-huawei>
+In-Reply-To: <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+References: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com>
+        <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gdginxlkf2f7j5c4"
-Content-Disposition: inline
-In-Reply-To: <20191115090757.usc753lq7uujtqyy@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 19 Oct 2021 16:20:46 +0100
+Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com> wrote:
 
---gdginxlkf2f7j5c4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> The AMS includes an ADC as well as on-chip sensors that can be used to
+> sample external voltages and monitor on-die operating conditions, such
+> as temperature and supply voltage levels. The AMS has two SYSMON blocks.
+> PL-SYSMON block is capable of monitoring off chip voltage and
+> temperature.
+> PL-SYSMON block has DRP, JTAG and I2C interface to enable monitoring
+> from external master. Out of these interface currently only DRP is
+> supported.
+> Other block PS-SYSMON is memory mapped to PS.
+> The AMS can use internal channels to monitor voltage and temperature as
+> well as one primary and up to 16 auxiliary channels for measuring
+> external voltages.
+> The voltage and temperature monitoring channels also have event
+> capability which allows to generate an interrupt when their value falls
+> below or raises above a set threshold.
+> 
+> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
 
-On Fri, Nov 15, 2019 at 10:07:57AM +0100, Uwe Kleine-K=F6nig wrote:
-> Hello,
->=20
-> On Mon, Sep 23, 2019 at 12:28:25PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Jul 24, 2019 at 03:09:39PM +0200, Uwe Kleine-K=F6nig wrote:
-> > > On Thu, Jun 27, 2019 at 03:15:10AM +0000, Peter Chen wrote:
-> > > > =20
-> > > > > On 19-06-26 02:40, Peter Chen wrote:
-> > > > > >
-> > > > > > > Subject: [PATCH] ARM: imx25: provide a fixed regulator for us=
-b phys
-> > > > > > >
-> > > > > > > The usb phys are internal to the SoC and so it their 5V suppl=
-y. With
-> > > > > > > this regulator added explicitly the following (harmless) boot=
- messages go away:
-> > > > > > >
-> > > > > > > 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vc=
-c not found, using dummy regulator
-> > > > > > > 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vc=
-c not found, using dummy regulator
-> > > > > > >
-> > > > > >
-> > > > > > To eliminate the warning message, I suggest doing below changes=
-, as
-> > > > > > vcc supply is not mandatory.
-> > > > > >
-> > > > > > diff --git a/drivers/usb/phy/phy-generic.c
-> > > > > > b/drivers/usb/phy/phy-generic.c index a53b89be5324..01a5ff1a0515
-> > > > > > 100644
-> > > > > > --- a/drivers/usb/phy/phy-generic.c
-> > > > > > +++ b/drivers/usb/phy/phy-generic.c
-> > > > > > @@ -275,7 +275,7 @@ int usb_phy_gen_create_phy(struct device *d=
-ev, struct usb_phy_generic *nop,
-> > > > > >                 }
-> > > > > >         }
-> > > > > >
-> > > > > > -       nop->vcc =3D devm_regulator_get(dev, "vcc");
-> > > > > > +       nop->vcc =3D devm_regulator_get_optional(dev, "vcc");
-> > > > >=20
-> > > > > Is the regulator optional? IMHO this shouldn't be the fix. I thin=
-k the right fix is Uwe's
-> > > > > approach.
-> > > > >=20
-> > > >=20
-> > > > Add Felipe.
-> > > >=20
-> > > > Some USB PHY's power are from the core system's power (eg, DDR), an=
-d some are
-> > > > fixed at the board and no switch for it. So, it is transparent for =
-software at some cases.
-> > >=20
-> > > It's not clear to me how to proceed. There are two opposing opinions =
-and
-> > > I don't know enough about USB on mx25 to judge myself.
-> > >=20
-> > > Felipe?
-> >=20
-> > This thread is still open in my inbox. Felipe, how can I lure you into
-> > giving your opinion?
-> >=20
-> > My original suggestion can be seen at
-> > https://lore.kernel.org/linux-usb/20190625100412.11815-1-u.kleine-koeni=
-g@pengutronix.de/,
-> > Peter's alternative is still in the quotes above. Which is the
-> > right/better one?
->=20
-> The stuff said above is still true. I'd like to put this issue on file
-> with "fixed in mainline", but currently this seems to be a stalemate.
-> because nobody cares enough :-|
+It would be good at some point to move away from of specific firmware property
+reading, but on a platform like this I guess you can be fairly sure no one will
+be using ACPI or other firmware description options so I'm not going to insist
+on it for an initial merge.
 
-This topic is on stall since two years now and I still have the patch in
-the patch stack for my mx25 boards.
+Other comment I have are fairly minor but we need to leave some time
+for other reviews and in particular DT binding review.
 
-In my eyes my patch is the right one, because no matter how, the usb
-phys need some powering, so devm_regulator_get_optional() doesn't seem
-to be the right approach.
+> ---
+>  drivers/iio/adc/Kconfig      |   13 +
+>  drivers/iio/adc/Makefile     |    1 +
+>  drivers/iio/adc/xilinx-ams.c | 1341 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 1355 insertions(+)
+>  create mode 100644 drivers/iio/adc/xilinx-ams.c
 
-Would resending the patch help?
+...
 
-Best regards
-Uwe
+> diff --git a/drivers/iio/adc/xilinx-ams.c b/drivers/iio/adc/xilinx-ams.c
+> new file mode 100644
+> index 000000000000..597cdda8a618
+> --- /dev/null
+> +++ b/drivers/iio/adc/xilinx-ams.c
+> @@ -0,0 +1,1341 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Xilinx AMS driver
+> + *
+> + *  Copyright (C) 2021 Xilinx, Inc.
+> + *
+> + *  Manish Narani <mnarani@xilinx.com>
+> + *  Rajnikant Bhojani <rajnikant.bhojani@xilinx.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+#include <linux/mod_devicetable.h> for the of_device_id structure defintion.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> +#include <linux/of_address.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +#include <linux/iio/events.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +
+...
 
---gdginxlkf2f7j5c4
-Content-Type: application/pgp-signature; name="signature.asc"
+> +/**
+> + * struct ams - Driver data for xilinx-ams
+> + * @base: physical base address of device
+> + * @ps_base: physical base address of PS device
+> + * @pl_base: physical base address of PL device
+> + * @clk: clocks associated with the device
+> + * @dev: pointer to device struct
+> + * @lock: to handle multiple user interaction
+> + * @intr_lock: to protect interrupt mask values
+> + * @masked_alarm: currently masked due to alarm
+> + * @alarm_mask: alarm configuration
+> + * @interrupt_mask: interrupt configuration
+> + * @irq: interrupt number of the sysmon
+> + * @ams_unmask_work: re-enables event once the event condition disappears
+> + *
+> + * This structure contains necessary state for Sysmon driver to operate
+> + */
+> +struct ams {
+> +	void __iomem *base;
+> +	void __iomem *ps_base;
+> +	void __iomem *pl_base;
+> +	struct clk *clk;
+> +	struct device *dev;
+> +	/* check kernel doc above */
+> +	struct mutex lock;
+> +	/* check kernel doc above */
+> +	spinlock_t intr_lock;
+> +	unsigned int alarm_mask;
+Docs should be same order as the fields.
+> +	unsigned int masked_alarm;
+> +	u64 intr_mask;
 
------BEGIN PGP SIGNATURE-----
+That's not the name in the docs.  Run kernel-doc script over this and
+fix all the errors / warnings.
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmFxSL4ACgkQwfwUeK3K
-7AnS6ggAjw0nNGSQUE4mj6ul03QBEsSYmsAm+MYYaWAnmB7vSVXYQJb0RVxPsJJc
-nG7X5xPTHn6mLZfznqkJxxcuSQcvBi0XhLzyFBE3MzqIUyHAJE5Rwq+1/LYpr56S
-5qrzXNHWHrame3REZpFBtK6ocy+lxksqezMwrQscp1+LszOLq4tiTrVnExxeTEyR
-l21R9J3Er1b/4icxCj/7R/W3WpTXEhHIDuEZJUAZNXkW4CRMU9RUWTm7SXC+7ly5
-Oct6N2mbZXST5YKVXMF8pTQ4Mx2EZvWvUh6t2KDRT42wRGqEnMpL1LIZkSuyx45D
-sezdxPdeLJyJSoT8UrpRa6LLJxNRpw==
-=tWhJ
------END PGP SIGNATURE-----
+> +	int irq;
+> +	struct delayed_work ams_unmask_work;
+> +};
+> +
 
---gdginxlkf2f7j5c4--
+...
+
+> +
+> +static irqreturn_t ams_irq(int irq, void *data)
+> +{
+> +	struct iio_dev *indio_dev = data;
+> +	struct ams *ams = iio_priv(indio_dev);
+> +	u32 isr0;
+> +
+> +	spin_lock(&ams->intr_lock);
+> +
+> +	isr0 = readl(ams->base + AMS_ISR_0);
+> +
+> +	/* only process alarms that are not masked */
+> +	isr0 &= ~((ams->intr_mask & AMS_ISR0_ALARM_MASK) | ams->masked_alarm);
+> +
+> +	if (!isr0)
+
+lock held.
+
+> +		return IRQ_NONE;
+> +
+> +	/* clear interrupt */
+> +	writel(isr0, ams->base + AMS_ISR_0);
+> +
+> +	/* Mask the alarm interrupts until cleared */
+> +	ams->masked_alarm |= isr0;
+> +	ams_update_intrmask(ams, 0, 0);
+> +
+> +	ams_handle_events(indio_dev, isr0);
+> +
+> +	schedule_delayed_work(&ams->ams_unmask_work,
+> +			      msecs_to_jiffies(AMS_UNMASK_TIMEOUT_MS));
+> +
+> +	spin_unlock(&ams->intr_lock);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+
+...
+
+> +
+> +static int ams_parse_dt(struct iio_dev *indio_dev, struct platform_device *pdev)
+> +{
+> +	struct ams *ams = iio_priv(indio_dev);
+> +	struct iio_chan_spec *ams_channels, *dev_channels;
+> +	struct device_node *child_node = NULL, *np = pdev->dev.of_node;
+> +	int ret, vol_ch_cnt = 0, temp_ch_cnt = 0, i, rising_off, falling_off;
+> +	unsigned int num_channels = 0;
+> +
+> +	/* Initialize buffer for channel specification */
+> +	ams_channels = kzalloc(sizeof(ams_ps_channels) +
+> +			       sizeof(ams_pl_channels) +
+> +			       sizeof(ams_ctrl_channels), GFP_KERNEL);
+> +	if (!ams_channels)
+> +		return -ENOMEM;
+> +
+> +	if (of_device_is_available(np)) {
+> +		ret = ams_init_module(indio_dev, np, ams_channels);
+> +		if (ret < 0)
+> +			goto err;
+> +
+> +		num_channels += ret;
+> +	}
+> +
+> +	for_each_child_of_node(np, child_node) {
+> +		if (of_device_is_available(child_node)) {
+> +			ret = ams_init_module(indio_dev, child_node,
+> +					      ams_channels + num_channels);
+> +			if (ret < 0)
+> +				goto err;
+
+for_each_child_of_node() holds a reference if we jump out of the loop
+before it terminates.
+https://elixir.bootlin.com/linux/latest/source/drivers/of/base.c#L715
+is where it ultimately releases that reference when the loop is terminating.
+Her you need to do it manually with an of_node_put() call
+
+> +
+> +			num_channels += ret;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < num_channels; i++) {
+> +		if (ams_channels[i].type == IIO_VOLTAGE)
+> +			ams_channels[i].channel = vol_ch_cnt++;
+> +		else
+> +			ams_channels[i].channel = temp_ch_cnt++;
+> +
+> +		if (ams_channels[i].scan_index < (AMS_PS_SEQ_MAX * 3)) {
+> +			/* set threshold to max and min for each channel */
+> +			falling_off =
+> +				ams_get_alarm_offset(ams_channels[i].scan_index,
+> +						     IIO_EV_DIR_FALLING);
+> +			rising_off =
+> +				ams_get_alarm_offset(ams_channels[i].scan_index,
+> +						     IIO_EV_DIR_RISING);
+> +			if (ams_channels[i].scan_index >= AMS_PS_SEQ_MAX) {
+> +				writel(AMS_ALARM_THR_MIN,
+> +				       ams->pl_base + falling_off);
+> +				writel(AMS_ALARM_THR_MAX,
+> +				       ams->pl_base + rising_off);
+> +			} else {
+> +				writel(AMS_ALARM_THR_MIN,
+> +				       ams->ps_base + falling_off);
+> +				writel(AMS_ALARM_THR_MAX,
+> +				       ams->ps_base + rising_off);
+> +			}
+> +		}
+> +	}
+> +
+> +	dev_channels = devm_kzalloc(&pdev->dev, sizeof(*dev_channels) *
+> +				    num_channels, GFP_KERNEL);
+> +	if (!dev_channels) {
+> +		ret = -ENOMEM;
+> +		goto err;
+> +	}
+
+We now have the option of devm_krealloc()   If you used that in conjunction
+with devm_kzalloc to replace the kzalloc above, you could avoid this need to
+copy.  Not important though if you prefer doing this manual version.
+
+> +
+> +	memcpy(dev_channels, ams_channels,
+> +	       sizeof(*ams_channels) * num_channels);
+> +	indio_dev->channels = dev_channels;
+> +	indio_dev->num_channels = num_channels;
+> +
+> +	ret = 0;
+> +err:
+> +	kfree(ams_channels);
+> +
+> +	return ret;
+> +}
+> +
+
+...
+
+> +static int ams_probe(struct platform_device *pdev)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct ams *ams;
+> +	int ret;
+> +
+> +	if (!pdev->dev.of_node)
+> +		return -ENODEV;
+> +
+> +	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*ams));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	ams = iio_priv(indio_dev);
+> +	mutex_init(&ams->lock);
+> +	spin_lock_init(&ams->intr_lock);
+> +
+> +	indio_dev->name = "xilinx-ams";
+> +
+> +	indio_dev->info = &iio_ams_info;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +
+> +	ams->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ams->base))
+> +		return PTR_ERR(ams->base);
+> +
+> +	ams->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(ams->clk))
+> +		return PTR_ERR(ams->clk);
+> +	clk_prepare_enable(ams->clk);
+> +	devm_add_action_or_reset(&pdev->dev, ams_clk_disable_unprepare,
+> +				 ams->clk);
+> +
+> +	INIT_DELAYED_WORK(&ams->ams_unmask_work, ams_unmask_worker);
+> +	devm_add_action_or_reset(&pdev->dev, ams_cancel_delayed_work,
+> +				 &ams->ams_unmask_work);
+> +
+> +	ret = ams_init_device(ams);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to initialize AMS\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = ams_parse_dt(indio_dev, pdev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failure in parsing DT\n");
+> +		return ret;
+> +	}
+> +
+> +	ams_enable_channel_sequence(indio_dev);
+> +
+> +	ams->irq = platform_get_irq(pdev, 0);
+> +	if (ams->irq == -EPROBE_DEFER) {
+> +		ret = -EPROBE_DEFER;
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_request_irq(&pdev->dev, ams->irq, &ams_irq, 0, "ams-irq",
+> +			       indio_dev);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "failed to register interrupt\n");
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, indio_dev);
+> +
+> +	ret = devm_iio_device_register(&pdev->dev, indio_dev);
+> +
+
+return devm_...
+
+> +	return ret;
+> +}
+> +
+
+
