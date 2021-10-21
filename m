@@ -2,64 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D89A8435D9E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B330435DA6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:09:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbhJUJK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 05:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbhJUJK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:10:58 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C54C06161C;
-        Thu, 21 Oct 2021 02:08:43 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id C99571F44787
-Subject: Re: [PATCH v16 7/7] soc: mediatek: SVS: add mt8192 SVS GPU driver
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210428065440.3704-1-roger.lu@mediatek.com>
- <20210428065440.3704-8-roger.lu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <19f8fa23-bfd4-4db5-64dc-c563bf617437@collabora.com>
-Date:   Thu, 21 Oct 2021 11:08:35 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231133AbhJUJLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 05:11:15 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:31105 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231153AbhJUJLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:11:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634807339; x=1666343339;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ifSk/ar9zle6TUfdbkckP9UIu6NSYDdpfvg1NVg6IEY=;
+  b=xSucywZ+bRSSYGXDrE+l8kASEJj8B20ubz+PHpoIE+N9yty4V3GGYNZZ
+   J6h4ws8SSCaDa73r8DjX3yESVSxYLIqKkaitR1kmrJEdoU4b7yvMKBIq8
+   yUN0Z+RyJugyJcNjI4mlugdfzfKFz1BbLQbp9d03TzeN2qZBxvdJEusIE
+   rJe4p1A4CVu4lj96UPLkrv8g6cWBcvpFaErT0KupGrcoKXgo+8gMVlj41
+   3+OuKwcyyqQP5p2SgdkrrL/SHyNDkVYZJKs2Eqn3Kc0tG7mM6PmzByuEc
+   9r77mKXDhlrG4hjJ5Kh1OtUIuk7n1MxRCUZfOM/4Iec1+0NBTOyclzg1b
+   g==;
+IronPort-SDR: JVbCpvZRb87y5B3+hQcJR9mpIloPKgR5W+Y63f1qMxj2U2HfrPxW4eTyI8nckMUySfUArqY+fU
+ KuxFjJefqys1kFEnt98KgOfdP/PxBaWYUpzzwF+VrV5jaJZfftbcqrVTORJatab/TRRvIN1Y8b
+ vmCGxjbd9krqOt0X7mV6YeCJr9wbLOIGPauLC532VAtFAHEHQUECGYqEUro1oFSvXfEumN5aX5
+ l8MEpVrzqAhBaglz+JcZisBiWclBRI19fl7ZKMR0c31U3eesooTchuBORzF75cvwNe4S5JMFkR
+ beDKoSW8EX1f9LGFeNFLLNHn
+X-IronPort-AV: E=Sophos;i="5.87,169,1631602800"; 
+   d="scan'208";a="141184758"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Oct 2021 02:08:58 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 21 Oct 2021 02:08:58 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 21 Oct 2021 02:08:58 -0700
+Date:   Thu, 21 Oct 2021 11:10:32 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>, <kishon@ti.com>,
+        <robh+dt@kernel.org>, <andrew@lunn.ch>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] phy: Add lan966x ethernet serdes PHY driver
+Message-ID: <20211021091032.ffaoncg5jjdwdeyg@soft-dev3-1.localhost>
+References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
+ <20211015123920.176782-4-horatiu.vultur@microchip.com>
+ <YW8HIHTCVgB+URJ5@matsya>
+ <20211020091733.fxph2pq3xa3byvry@soft-dev3-1.localhost>
+ <YXA3VVUGEjUR4HDC@matsya>
+ <YXA6lZBTeA6aNxVD@piout.net>
+ <YXEEcJHuEdFLPyCU@matsya>
 MIME-Version: 1.0
-In-Reply-To: <20210428065440.3704-8-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YXEEcJHuEdFLPyCU@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> Reviewed-by: YT Lee <yt.lee@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 485 ++++++++++++++++++++++++++++++++-
->   1 file changed, 479 insertions(+), 6 deletions(-)
+The 10/21/2021 11:40, Vinod Koul wrote:
 > 
+> On 20-10-21, 17:49, Alexandre Belloni wrote:
+> > On 20/10/2021 21:05:49+0530, Vinod Koul wrote:
+> > > > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > > >
+> > > > > Any reason why this is dual licensed, why not GPL only?
+> > > >
+> > > > No reason, I think I copy this from a different file.
+> > >
+> > > Please have a chat with your lawyers on the correct license this should
+> > > have!
+> > Dual GPL and MIT was Microsemi's policy, I'm not sure it carried over to
+> > Microchip.
+> 
+> That is why they need to talk to someone and decide what license
+> applies :)
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+I have changed it to be the same as the one on sparx5 because also
+sparx5 is a Microchip product. On sparx5 we used:
+'SPDX-License-Identifier: GPL-2.0-or-later'
+
+> 
+> --
+> ~Vinod
+
+-- 
+/Horatiu
