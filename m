@@ -2,229 +2,667 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71A1843692B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 19:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D2E436937
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 19:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231281AbhJURlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 13:41:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43130 "EHLO mail.kernel.org"
+        id S231803AbhJURnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 13:43:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44936 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229968AbhJURlP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 13:41:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7F112611F2;
-        Thu, 21 Oct 2021 17:38:59 +0000 (UTC)
+        id S231220AbhJURnM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 13:43:12 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9FA68611F2;
+        Thu, 21 Oct 2021 17:40:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634837939;
-        bh=LpNb5Ofiwydmq40FQU8duMylt8pFFZmKuTDr2i1rZIU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hKUD38yu6OZtErjhk2Qs5xIkQkkCFgxI2gcsBS9eGEs1l2jYMzjeg859x1/X64QWV
-         vkcv0jFID8Xd6qSxzsexrZvBo1jlvaOcShqL+4jAlIB3xHu3qJGBEqSRyTpDSGJDIS
-         F4WK8BHBkRJ1CCPcVX9FO3JQTcTf2srRcJ0ubDWiX2KyRCyqVRXMTXgw9Rs8Z4TFCe
-         QKSGQ3nBnsER2zLtyJG6irupxiXLHm7EGZprrb2RMMO2wIgtRtig7NIJ8JbvXO8i/s
-         NP0h4p7p+Oe0leUnfZ/A2ekch/e7q3DXZ6lkIopYID/jpHe+h8gnIA/xXfH/4yTX0d
-         spTMj66k5Ulrw==
-Received: by mail-ed1-f48.google.com with SMTP id g10so3907198edj.1;
-        Thu, 21 Oct 2021 10:38:59 -0700 (PDT)
-X-Gm-Message-State: AOAM530q+b2Mv4yp24ITvE1n1hz0v9aWtCDg8P5SAj8LpwPHqy639xKL
-        IySMVhzldgKl8sln5JQNq66n3KROSL6RANI/LQ==
-X-Google-Smtp-Source: ABdhPJz/vbdq3qrIZ6VKZxs1qt95sB5jOe4PZ1t0hVBlVmqM5S9SyIXFm9L+aZKMoHABRpPUFg0+0rgoH+mqfa+mN5E=
-X-Received: by 2002:a17:906:c350:: with SMTP id ci16mr8528906ejb.466.1634837933642;
- Thu, 21 Oct 2021 10:38:53 -0700 (PDT)
+        s=k20201202; t=1634838056;
+        bh=al/wtvWSlkgyx+NfnXToovBV3LMUyBhfkXrmg3XwFSo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SWgR1e3t1CQsIL5c8dqbxTbNRNWOD9qJw69hvhaFT3XC2NwFhiho6Ors6XhKby/zj
+         rMPmn8XnzB9vfsVRN1nuL41f1mWzxZch85MYRO3JlgUYNOYaknspRhDzi9vCduJyfI
+         6pefAW2Ax7JPfy73Ct417Ezf7iwZyoPQG1vvUguxgeIcRgIimqGMmmqMDlmSmboTFt
+         rcnvjG6p/r4uyxkpvtkBdm9UAJhRj0zmtnGADGYM7++O8pjMoDFsi6X379j2EKXyBN
+         s67dx7pF7UARgYp/c+XL87W+FygCoX9bWt6H3ZoWOrHp2615fQvav/gGGeawmCYpzN
+         95/wIGDg8LuGA==
+Date:   Thu, 21 Oct 2021 23:10:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        abhinavk@codeaurora.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 2/2] phy: qcom: Introduce new eDP PHY driver
+Message-ID: <YXGmJFoeXwtTvl7p@matsya>
+References: <20211016232128.2341395-1-bjorn.andersson@linaro.org>
+ <20211016232128.2341395-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-References: <20210802160521.331031-1-lizhi.hou@xilinx.com> <20210802160521.331031-2-lizhi.hou@xilinx.com>
- <20211012050931.GA95330@yilunxu-OptiPlex-7050> <8d8f6c08-6e68-a4b8-4cfd-1dd547f3fe28@xilinx.com>
- <20211014022122.GG95330@yilunxu-OptiPlex-7050> <cc261622-5104-39ae-7221-b33dd70303e5@xilinx.com>
- <CAL_JsqKoHomBBzggK0RzoWxPjnvZijS5v6NympozLz62P-NOvA@mail.gmail.com> <SJ0PR02MB8845BABAB67F3A9F98285A74BBBF9@SJ0PR02MB8845.namprd02.prod.outlook.com>
-In-Reply-To: <SJ0PR02MB8845BABAB67F3A9F98285A74BBBF9@SJ0PR02MB8845.namprd02.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 21 Oct 2021 12:38:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com>
-Message-ID: <CAL_JsqJfyRymB=VxLuQqLpep+Q1Eie48dobv9sC5OizDz0d2DQ@mail.gmail.com>
-Subject: Re: [PATCH V9 XRT Alveo 01/14] Documentation: fpga: Add a document
- describing XRT Alveo drivers
-To:     Sonal Santan <sonals@xilinx.com>
-Cc:     Lizhi Hou <lizhih@xilinx.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
-        Max Zhen <maxz@xilinx.com>, Yu Liu <yliu@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "trix@redhat.com" <trix@redhat.com>,
-        Moritz Fischer <mdf@kernel.org>, Xu Yilun <yilun.xu@intel.com>,
-        David Woodhouse <dwmw2@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211016232128.2341395-2-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 12:36 AM Sonal Santan <sonals@xilinx.com> wrote:
->
-> Hello Rob,
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Tuesday, October 19, 2021 6:03 AM
-> > To: Lizhi Hou <lizhih@xilinx.com>
-> > Cc: linux-kernel@vger.kernel.org; linux-fpga@vger.kernel.org; Max Zhen
-> > <maxz@xilinx.com>; Sonal Santan <sonals@xilinx.com>; Yu Liu
-> > <yliu@xilinx.com>; Michal Simek <michals@xilinx.com>; Stefano Stabellin=
-i
-> > <stefanos@xilinx.com>; devicetree@vger.kernel.org; trix@redhat.com; Mor=
-itz
-> > Fischer <mdf@kernel.org>; Max Zhen <maxz@xilinx.com>; Xu Yilun
-> > <yilun.xu@intel.com>
-> > Subject: Re: [PATCH V9 XRT Alveo 01/14] Documentation: fpga: Add a
-> > document describing XRT Alveo drivers
-> >
-> > On Thu, Oct 14, 2021 at 11:12 AM Lizhi Hou <lizhi.hou@xilinx.com> wrote=
-:
-> > >
-> > > Hello Rob,
-> > >
-> > > Please help with the review of the proposed FDT usage by Alveo/XRT dr=
-ivers.
-> > >
-> > > Thanks,
-> > > Lizhi
-> > >
-> > > On 10/13/21 7:21 PM, Xu Yilun wrote:
-> > > > CAUTION: This message has originated from an External Source. Pleas=
-e use
-> > proper judgment and caution when opening attachments, clicking links, o=
-r
-> > responding to this email.
-> > > >
-> > > >
-> > > >>>> +.. _device_tree_usage:
-> > > >>>> +
-> > > >>>> +Device Tree Usage
-> > > >>>> +-----------------
-> > > >>>> +
-> > > >>>> +The xsabin file stores metadata which advertise HW subsystems
-> > > >>>> +present in a partition. The metadata is stored in device tree
-> > > >>>> +format with a well defined schema. XRT management driver uses
-> > > >>>> +this information to bind *xrt_drivers* to the subsystem
-> > > >>>> +instantiations. The xrt_drivers are found in **xrt-lib.ko** ker=
-nel
-> > module.
-> > > >>> I'm still catching up the patchset from the very beginning, and
-> > > >>> just finished the Documentation part. So far, I see the DT usage
-> > > >>> concern which may impact the architecure a lot, so I should raise=
- it ASAP.
-> > > >>>
-> > > >>> The concern raised by the DT maintainer:
-> > > >>> https://lore.kernel.org/linux-fpga/CAL_JsqLod6FBGFhu7WXtMrB_z7wj8=
--
-> > > >>> up0EetM1QS9M3gjm8d7Q@mail.gmail.com/
-> > > >>>
-> > > >>> First of all, directly parsing FDT in device drivers is not a
-> > > >>> normal usage of DT in linux. It is out of the current DT usage
-> > > >>> model. So it should be agreed by DT maintainers.
-> > > >> Thanks for reviewing XRT document and providing feedback.
-> > > >> Here is the reply from Sonal for Rob=E2=80=99s question:
-> > > >> https://lore.kernel.org/linux-
-> > fpga/BY5PR02MB62604B87C66A1AD139A6F15
-> > > >> 3BBF40@BY5PR02MB6260.namprd02.prod.outlook.com/
-> > > >> Overall, libfdt is used by XRT driver to parse the metadata which
-> > > >> comes with an Alveo board.
-> > > >> When XRT driver discovers an Alveo board, it will read a fdt blob
-> > > >> from board firmware file resident on the host.
-> > > >> By parsing the fdt blob, XRT driver gets information about this
-> > > >> Alveo board, such as version, uuid, IPs exposed to PCI BAR, interr=
-upt
-> > binding etc.
-> > > >> So libfdt is used simply as Alveo metadata parser here. XRT driver=
-s
-> > > >> do not interact with system wide DT or present the Alveo device
-> > > >> tree to host. For many systems like x86_64, system wide DT is not
-> > > >> present but libfdt parsing services will still be needed.
-> > > > Yes, I understand the use case.
-> > > >
-> > > > My concern is, directly parsing an isolated FDT in device driver an=
-d
-> > > > populate sub devices, skipping the unflattening, this is a new
-> > > > working model of device tree usage, but for the same purpose as the
-> > > > existing one.
-> > > >
-> > > > So I really need the confirmation of DT maintainers.
-> >
-> > Perhaps you could explain why you think you need to use FDT instead of
-> > unflattening. Without that, the answer is don't use FDT.
-> >
-> Xilinx Alveo PCIe cards are predominantly used in x86_64 systems which do=
- not have device tree support compiled into the kernel. XRT driver uses a m=
-atching FDT to discover IP subsystems sitting behind the PCIe BARs exposed =
-by an Alveo PCIe card. The FDT blob (as part of an Alveo PCIe card firmware=
-) can be freely downloaded from xilinx.com.
+On 16-10-21, 16:21, Bjorn Andersson wrote:
+> Many recent Qualcomm platforms comes with native DP and eDP support.
+> This consists of a controller in the MDSS and a QMP-like PHY.
+> 
+> While similar to the well known QMP block, the eDP PHY only has TX lanes
+> and the programming sequences are slightly different. Rather than
+> continuing the trend of parameterize the QMP driver to pieces, this
+> introduces the support as a new driver.
+> 
+> The registration of link and pixel clocks are borrowed from the QMP
+> driver. The non-DP link frequencies are omitted for now.
+> 
+> The eDP PHY is very similar to the dedicated (non-USB) DP PHY, but only
+> the prior is supported for now.
 
-If the kernel is going to consume that FDT blob, then it needs to
-follow upstream practices which primarily means all the device
-bindings must be documented with schema and reviewed.
+since this is QMP phy, pls add an explanation why common QMP driver
+is not used here?
 
+> +static int qcom_edp_phy_init(struct phy *phy)
+> +{
+> +	struct qcom_edp *edp = phy_get_drvdata(phy);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(edp->supplies), edp->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = clk_bulk_prepare_enable(ARRAY_SIZE(edp->clks), edp->clks);
+> +	if (ret)
+> +		goto out_disable_supplies;
+> +
+> +	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+> +	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
+> +	       edp->edp + DP_PHY_PD_CTL);
+> +
+> +	writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
 
-> If using an unflattened tree (instead of FDT) is the right solution then =
-we would certainly look into it. Should the PCIe driver then call something=
- like of_fdt_unflatten_tree() with a FDT blob and the kernel would then bui=
-ld an unflattened tree and hang it off the PCIe device node? The FDT blob f=
-or a PCIe device is only known to the driver since different PCIe platforms=
- may store it differently: a known location in the PCIe BAR, the flash on t=
-he PCIe board or a file on the filesystem. If the kernel can provide a gene=
-ral on demand unflattening service similar to DTO use model, we will have a=
- more scalable solution to describe IP subsystems exposed by a PCIe device =
-and make their discovery data driven. Can this feature also work on x86_64 =
-systems which does not use OF?
+magic?
 
-There's other similar usecases like this. For example, an FTDI or
-similar USB to serial chip that has GPIO, I2C, etc. and could have
-downstream devices hanging off of those interfaces. And then you could
-plug-in multiple of those devices to the host system. For this to
-work, we'd need to create a base tree (if there isn't one) with nodes
-for the USB or PCI device(s) and then an overlay for the device can be
-applied to those nodes. This is also partially an issue on DT based
-systems as the DT node may not exist given these are 'discoverable'
-buses. It's a bit easier to solve given the PCI host bridge or USB
-controller exists in the DT already.
+> +
+> +	writel(DP_PHY_PD_CTL_PSR_PWRDN, edp->edp + DP_PHY_PD_CTL);
+> +	msleep(20);
+> +
+> +	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+> +	       DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN |
+> +	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
+> +	       edp->edp + DP_PHY_PD_CTL);
+> +
+> +	writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
+> +	writel(0x13, edp->edp + DP_PHY_AUX_CFG1);
+> +	writel(0x24, edp->edp + DP_PHY_AUX_CFG2);
+> +	writel(0x00, edp->edp + DP_PHY_AUX_CFG3);
+> +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG4);
+> +	writel(0x26, edp->edp + DP_PHY_AUX_CFG5);
+> +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG6);
+> +	writel(0x03, edp->edp + DP_PHY_AUX_CFG7);
+> +	writel(0x37, edp->edp + DP_PHY_AUX_CFG8);
+> +	writel(0x03, edp->edp + DP_PHY_AUX_CFG9);
 
-There's really 2 separate parts here. There's how to attach a DT to a
-device on a non-DT system (or DT system with a device not described in
-the base DT). The second part is how to describe the PCI device and
-downstream devices. This part is no different than any other device.
+In qmp phy we use a table for this, that looks very elegant and I am
+sure next rev will have different magic numbers, so should we go the
+table approach here on as well..?
 
+> +
+> +	writel(0x1f, edp->edp + 0x58);
 
-> > > >>> Current FPGA framework modifies kernel's live tree by DT overlay,
-> > > >>> when FPGA is dynamically reprogrammed and new HW devices appear.
-> > > >>> See Documentation/devicetree/bindings/fpga/fpga-region.txt.
-> > > >>>
-> > > >>> Then something less important:
-> > > >>>
-> > > >>>     1. The bindings should be documented in
-> > Documentation/devicetree/bindings/.
-> >
-> > Yes.
-> >
-> > > >>>     2. Are all the example DT usage conform to the exsiting bindi=
-ngs? I
-> > > >>>        didn't go through all device classes, but remember like th=
-e
-> > > >>>        interrupt-controller should have a "interrupt-controller" =
-property,
-> > and
-> > > >>>        the PCI properties are also different from PCI bindings.
-> >
-> > They don't, but should. I can't tell what you are trying to do here, bu=
-t it looks
-> > like a mess.
-> >
-> Will appreciate any pointers on existing PCIe use case for the device tre=
-e.
+the register offset should be defined
 
-Documentation/devicetree/bindings/pci/ and there's the PCI bus schema
-here[1]. There's also the OpenFirmware PCI spec[2].
+> +
+> +	msleep(20);
+> +
+> +	return 0;
+> +
+> +out_disable_supplies:
+> +	regulator_bulk_disable(ARRAY_SIZE(edp->supplies), edp->supplies);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_edp_phy_configure(struct phy *phy, union phy_configure_opts *opts)
+> +{
+> +	const struct phy_configure_opts_dp *dp_opts = &opts->dp;
+> +	struct qcom_edp *edp = phy_get_drvdata(phy);
+> +
+> +	memcpy(&edp->dp_opts, dp_opts, sizeof(*dp_opts));
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_edp_configure_ssc(const struct qcom_edp *edp)
+> +{
+> +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +	u32 step1;
+> +	u32 step2;
+> +
+> +	switch (dp_opts->link_rate) {
+> +	case 1620:
+> +	case 2700:
+> +	case 8100:
+> +		step1 = 0x45;
+> +		step2 = 0x06;
+> +		break;
 
-Rob
+line after each break please (here & few other places)
 
-[1] https://github.com/devicetree-org/dt-schema/blob/main/schemas/pci/pci-b=
-us.yaml
-[2] https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
+> +	case 5400:
+> +		step1 = 0x5c;
+> +		step2 = 0x08;
+> +		break;
+> +	default:
+> +		/* Other link rates aren't supported */
+> +		return -EINVAL;
+> +	}
+> +
+> +	writel(0x01, edp->pll + QSERDES_V4_COM_SSC_EN_CENTER);
+> +	writel(0x00, edp->pll + QSERDES_V4_COM_SSC_ADJ_PER1);
+> +	writel(0x36, edp->pll + QSERDES_V4_COM_SSC_PER1);
+> +	writel(0x01, edp->pll + QSERDES_V4_COM_SSC_PER2);
+> +	writel(step1, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0);
+> +	writel(step2, edp->pll + QSERDES_V4_COM_SSC_STEP_SIZE2_MODE0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_edp_configure_pll(const struct qcom_edp *edp)
+> +{
+> +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +	u32 div_frac_start2_mode0;
+> +	u32 div_frac_start3_mode0;
+> +	u32 dec_start_mode0;
+> +	u32 lock_cmp1_mode0;
+> +	u32 lock_cmp2_mode0;
+> +	u32 hsclk_sel;
+> +
+> +	switch (dp_opts->link_rate) {
+> +	case 1620:
+> +		hsclk_sel = 0x5;
+> +		dec_start_mode0 = 0x69;
+> +		div_frac_start2_mode0 = 0x80;
+> +		div_frac_start3_mode0 = 0x07;
+> +		lock_cmp1_mode0 = 0x6f;
+> +		lock_cmp2_mode0 = 0x08;
+> +		break;
+> +	case 2700:
+> +		hsclk_sel = 0x3;
+> +		dec_start_mode0 = 0x69;
+> +		div_frac_start2_mode0 = 0x80;
+> +		div_frac_start3_mode0 = 0x07;
+> +		lock_cmp1_mode0 = 0x0f;
+> +		lock_cmp2_mode0 = 0x0e;
+> +		break;
+> +	case 5400:
+> +		hsclk_sel = 0x1;
+> +		dec_start_mode0 = 0x8c;
+> +		div_frac_start2_mode0 = 0x00;
+> +		div_frac_start3_mode0 = 0x0a;
+> +		lock_cmp1_mode0 = 0x1f;
+> +		lock_cmp2_mode0 = 0x1c;
+> +		break;
+> +	case 8100:
+> +		hsclk_sel = 0x0;
+> +		dec_start_mode0 = 0x69;
+> +		div_frac_start2_mode0 = 0x80;
+> +		div_frac_start3_mode0 = 0x07;
+> +		lock_cmp1_mode0 = 0x2f;
+> +		lock_cmp2_mode0 = 0x2a;
+> +		break;
+> +	default:
+> +		/* Other link rates aren't supported */
+> +		return -EINVAL;
+> +	}
+> +
+> +	writel(0x01, edp->pll + QSERDES_V4_COM_SVS_MODE_CLK_SEL);
+> +	writel(0x0b, edp->pll + QSERDES_V4_COM_SYSCLK_EN_SEL);
+> +	writel(0x02, edp->pll + QSERDES_V4_COM_SYS_CLK_CTRL);
+> +	writel(0x0c, edp->pll + QSERDES_V4_COM_CLK_ENABLE1);
+> +	writel(0x06, edp->pll + QSERDES_V4_COM_SYSCLK_BUF_ENABLE);
+> +	writel(0x30, edp->pll + QSERDES_V4_COM_CLK_SELECT);
+> +	writel(hsclk_sel, edp->pll + QSERDES_V4_COM_HSCLK_SEL);
+> +	writel(0x0f, edp->pll + QSERDES_V4_COM_PLL_IVCO);
+> +	writel(0x08, edp->pll + QSERDES_V4_COM_LOCK_CMP_EN);
+> +	writel(0x36, edp->pll + QSERDES_V4_COM_PLL_CCTRL_MODE0);
+> +	writel(0x16, edp->pll + QSERDES_V4_COM_PLL_RCTRL_MODE0);
+> +	writel(0x06, edp->pll + QSERDES_V4_COM_CP_CTRL_MODE0);
+> +	writel(dec_start_mode0, edp->pll + QSERDES_V4_COM_DEC_START_MODE0);
+> +	writel(0x00, edp->pll + QSERDES_V4_COM_DIV_FRAC_START1_MODE0);
+> +	writel(div_frac_start2_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START2_MODE0);
+> +	writel(div_frac_start3_mode0, edp->pll + QSERDES_V4_COM_DIV_FRAC_START3_MODE0);
+> +	writel(0x02, edp->pll + QSERDES_V4_COM_CMN_CONFIG);
+> +	writel(0x3f, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN0_MODE0);
+> +	writel(0x00, edp->pll + QSERDES_V4_COM_INTEGLOOP_GAIN1_MODE0);
+> +	writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_MAP);
+> +	writel(lock_cmp1_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP1_MODE0);
+> +	writel(lock_cmp2_mode0, edp->pll + QSERDES_V4_COM_LOCK_CMP2_MODE0);
+> +
+> +	writel(0x0a, edp->pll + QSERDES_V4_COM_BG_TIMER);
+> +	writel(0x14, edp->pll + QSERDES_V4_COM_CORECLK_DIV_MODE0);
+> +	writel(0x00, edp->pll + QSERDES_V4_COM_VCO_TUNE_CTRL);
+> +	writel(0x17, edp->pll + QSERDES_V4_COM_BIAS_EN_CLKBUFLR_EN);
+> +	writel(0x0f, edp->pll + QSERDES_V4_COM_CORE_CLK_EN);
+> +	writel(0xa0, edp->pll + QSERDES_V4_COM_VCO_TUNE1_MODE0);
+> +	writel(0x03, edp->pll + QSERDES_V4_COM_VCO_TUNE2_MODE0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_edp_set_vco_div(const struct qcom_edp *edp)
+> +{
+> +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +	unsigned long pixel_freq;
+> +	u32 vco_div;
+> +
+> +	switch (dp_opts->link_rate) {
+> +	case 1620:
+> +		vco_div = 0x1;
+> +		pixel_freq = 1620000000UL / 2;
+> +		break;
+> +	case 2700:
+> +		vco_div = 0x1;
+> +		pixel_freq = 2700000000UL / 2;
+> +		break;
+> +	case 5400:
+> +		vco_div = 0x2;
+> +		pixel_freq = 5400000000UL / 4;
+> +		break;
+> +	case 8100:
+> +		vco_div = 0x0;
+> +		pixel_freq = 8100000000UL / 6;
+> +		break;
+> +	default:
+> +		/* Other link rates aren't supported */
+> +		return -EINVAL;
+> +	}
+> +
+> +	writel(vco_div, edp->edp + DP_PHY_VCO_DIV);
+> +
+> +	clk_set_rate(edp->dp_link_hw.clk, dp_opts->link_rate * 100000);
+> +	clk_set_rate(edp->dp_pixel_hw.clk, pixel_freq);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_edp_phy_power_on(struct phy *phy)
+> +{
+> +	const struct qcom_edp *edp = phy_get_drvdata(phy);
+> +	int timeout;
+> +	int ret;
+> +	u32 val;
+> +
+> +	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+> +	       DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN |
+> +	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
+> +	       edp->edp + DP_PHY_PD_CTL);
+> +	writel(0xfc, edp->edp + DP_PHY_MODE);
+> +
+> +	timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_CMN_STATUS,
+> +				     val, val & BIT(7), 5, 200);
+> +	if (timeout)
+> +		return timeout;
+> +
+> +	writel(0x01, edp->tx0 + TXn_LDO_CONFIG);
+> +	writel(0x01, edp->tx1 + TXn_LDO_CONFIG);
+> +	writel(0x00, edp->tx0 + TXn_LANE_MODE_1);
+> +	writel(0x00, edp->tx1 + TXn_LANE_MODE_1);
+> +
+> +	ret = qcom_edp_configure_ssc(edp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_edp_configure_pll(edp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* TX Lane configuration */
+> +	writel(0x05, edp->edp + DP_PHY_TX0_TX1_LANE_CTL);
+> +	writel(0x05, edp->edp + DP_PHY_TX2_TX3_LANE_CTL);
+> +
+> +	/* TX-0 register configuration */
+> +	writel(0x03, edp->tx0 + TXn_TRANSCEIVER_BIAS_EN);
+> +	writel(0x0f, edp->tx0 + TXn_CLKBUF_ENABLE);
+> +	writel(0x03, edp->tx0 + TXn_RESET_TSYNC_EN);
+> +	writel(0x01, edp->tx0 + TXn_TRAN_DRVR_EMP_EN);
+> +	writel(0x04, edp->tx0 + TXn_TX_BAND);
+> +
+> +	/* TX-1 register configuration */
+> +	writel(0x03, edp->tx1 + TXn_TRANSCEIVER_BIAS_EN);
+> +	writel(0x0f, edp->tx1 + TXn_CLKBUF_ENABLE);
+> +	writel(0x03, edp->tx1 + TXn_RESET_TSYNC_EN);
+> +	writel(0x01, edp->tx1 + TXn_TRAN_DRVR_EMP_EN);
+> +	writel(0x04, edp->tx1 + TXn_TX_BAND);
+> +
+> +	ret = qcom_edp_set_vco_div(edp);
+> +	if (ret)
+> +		return ret;
+> +
+> +	writel(0x01, edp->edp + DP_PHY_CFG);
+> +	writel(0x05, edp->edp + DP_PHY_CFG);
+> +	writel(0x01, edp->edp + DP_PHY_CFG);
+> +	writel(0x09, edp->edp + DP_PHY_CFG);
+> +
+> +	writel(0x20, edp->pll + QSERDES_V4_COM_RESETSM_CNTRL);
+> +
+> +	timeout = readl_poll_timeout(edp->pll + QSERDES_V4_COM_C_READY_STATUS,
+> +				     val, val & BIT(0), 500, 10000);
+> +	if (timeout)
+> +		return timeout;
+> +
+> +	writel(0x19, edp->edp + DP_PHY_CFG);
+> +	writel(0x1f, edp->tx0 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x04, edp->tx0 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x00, edp->tx0 + TXn_TX_POL_INV);
+> +	writel(0x1f, edp->tx1 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x04, edp->tx1 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x00, edp->tx1 + TXn_TX_POL_INV);
+> +	writel(0x10, edp->tx0 + TXn_TX_DRV_LVL_OFFSET);
+> +	writel(0x10, edp->tx1 + TXn_TX_DRV_LVL_OFFSET);
+> +	writel(0x11, edp->tx0 + TXn_RES_CODE_LANE_OFFSET_TX0);
+> +	writel(0x11, edp->tx0 + TXn_RES_CODE_LANE_OFFSET_TX1);
+> +	writel(0x11, edp->tx1 + TXn_RES_CODE_LANE_OFFSET_TX0);
+> +	writel(0x11, edp->tx1 + TXn_RES_CODE_LANE_OFFSET_TX1);
+> +
+> +	writel(0x10, edp->tx0 + TXn_TX_EMP_POST1_LVL);
+> +	writel(0x10, edp->tx1 + TXn_TX_EMP_POST1_LVL);
+> +	writel(0x1f, edp->tx0 + TXn_TX_DRV_LVL);
+> +	writel(0x1f, edp->tx1 + TXn_TX_DRV_LVL);
+> +
+> +	writel(0x4, edp->tx0 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x3, edp->tx0 + TXn_TRANSCEIVER_BIAS_EN);
+> +	writel(0x4, edp->tx1 + TXn_HIGHZ_DRVR_EN);
+> +	writel(0x0, edp->tx1 + TXn_TRANSCEIVER_BIAS_EN);
+> +	writel(0x3, edp->edp + DP_PHY_CFG_1);
+> +
+> +	writel(0x18, edp->edp + DP_PHY_CFG);
+> +	usleep_range(100, 1000);
+> +
+> +	writel(0x19, edp->edp + DP_PHY_CFG);
+> +
+> +	return readl_poll_timeout(edp->edp + DP_PHY_STATUS,
+> +				  val, val & BIT(1), 500, 10000);
+> +}
+> +
+> +static int qcom_edp_phy_power_off(struct phy *phy)
+> +{
+> +	const struct qcom_edp *edp = phy_get_drvdata(phy);
+> +
+> +	writel(DP_PHY_PD_CTL_PSR_PWRDN, edp->edp + DP_PHY_PD_CTL);
+> +
+> +	return 0;
+> +}
+> +
+> +static int qcom_edp_phy_exit(struct phy *phy)
+> +{
+> +	struct qcom_edp *edp = phy_get_drvdata(phy);
+> +
+> +	clk_bulk_disable_unprepare(ARRAY_SIZE(edp->clks), edp->clks);
+> +	regulator_bulk_disable(ARRAY_SIZE(edp->supplies), edp->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct phy_ops qcom_edp_ops = {
+> +	.init		= qcom_edp_phy_init,
+> +	.configure	= qcom_edp_phy_configure,
+> +	.power_on	= qcom_edp_phy_power_on,
+> +	.power_off	= qcom_edp_phy_power_off,
+> +	.exit		= qcom_edp_phy_exit,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +/*
+> + * Embedded Display Port PLL driver block diagram for branch clocks
+> + *
+> + *              +------------------------------+
+> + *              |        EDP_VCO_CLK           |
+> + *              |                              |
+> + *              |    +-------------------+     |
+> + *              |    |  (EDP PLL/VCO)    |     |
+> + *              |    +---------+---------+     |
+> + *              |              v               |
+> + *              |   +----------+-----------+   |
+> + *              |   | hsclk_divsel_clk_src |   |
+> + *              |   +----------+-----------+   |
+> + *              +------------------------------+
+> + *                              |
+> + *          +---------<---------v------------>----------+
+> + *          |                                           |
+> + * +--------v----------------+                          |
+> + * |   edp_phy_pll_link_clk  |                          |
+> + * |     link_clk            |                          |
+> + * +--------+----------------+                          |
+> + *          |                                           |
+> + *          |                                           |
+> + *          v                                           v
+> + * Input to DISPCC block                                |
+> + * for link clk, crypto clk                             |
+> + * and interface clock                                  |
+> + *                                                      |
+> + *                                                      |
+> + *      +--------<------------+-----------------+---<---+
+> + *      |                     |                 |
+> + * +----v---------+  +--------v-----+  +--------v------+
+> + * | vco_divided  |  | vco_divided  |  | vco_divided   |
+> + * |    _clk_src  |  |    _clk_src  |  |    _clk_src   |
+> + * |              |  |              |  |               |
+> + * |divsel_six    |  |  divsel_two  |  |  divsel_four  |
+> + * +-------+------+  +-----+--------+  +--------+------+
+> + *         |                 |                  |
+> + *         v---->----------v-------------<------v
+> + *                         |
+> + *              +----------+-----------------+
+> + *              |   edp_phy_pll_vco_div_clk  |
+> + *              +---------+------------------+
+> + *                        |
+> + *                        v
+> + *              Input to DISPCC block
+> + *              for EDP pixel clock
+> + *
+> + */
+> +static int qcom_edp_dp_pixel_clk_determine_rate(struct clk_hw *hw,
+> +						struct clk_rate_request *req)
+> +{
+> +	switch (req->rate) {
+> +	case 1620000000UL / 2:
+> +	case 2700000000UL / 2:
+> +	/* 5.4 and 8.1 GHz are same link rate as 2.7GHz, i.e. div 4 and div 6 */
+
+above rates are 1.62 and 2.7, where is 5.4 and 8.1... what am i missing?
+
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static unsigned long
+> +qcom_edp_dp_pixel_clk_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> +{
+> +	const struct qcom_edp *edp = container_of(hw, struct qcom_edp, dp_pixel_hw);
+> +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +
+> +	switch (dp_opts->link_rate) {
+> +	case 1620:
+> +		return 1620000000UL / 2;
+> +	case 2700:
+> +		return 2700000000UL / 2;
+> +	case 5400:
+> +		return 5400000000UL / 4;
+> +	case 8100:
+> +		return 8100000000UL / 6;
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static const struct clk_ops qcom_edp_dp_pixel_clk_ops = {
+> +	.determine_rate = qcom_edp_dp_pixel_clk_determine_rate,
+> +	.recalc_rate = qcom_edp_dp_pixel_clk_recalc_rate,
+> +};
+> +
+> +static int qcom_edp_dp_link_clk_determine_rate(struct clk_hw *hw,
+> +					       struct clk_rate_request *req)
+
+maybe is rate_valid/supported be better name for this?
+
+> +{
+> +	switch (req->rate) {
+> +	case 162000000:
+> +	case 270000000:
+> +	case 540000000:
+> +	case 810000000:
+> +		return 0;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static unsigned long
+> +qcom_edp_dp_link_clk_recalc_rate(struct clk_hw *hw, unsigned long parent_rate)
+> +{
+> +	const struct qcom_edp *edp = container_of(hw, struct qcom_edp, dp_link_hw);
+> +	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
+> +
+> +	switch (dp_opts->link_rate) {
+> +	case 1620:
+> +	case 2700:
+> +	case 5400:
+> +	case 8100:
+> +		return dp_opts->link_rate * 100000;
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static const struct clk_ops qcom_edp_dp_link_clk_ops = {
+> +	.determine_rate = qcom_edp_dp_link_clk_determine_rate,
+> +	.recalc_rate = qcom_edp_dp_link_clk_recalc_rate,
+> +};
+> +
+> +static int qcom_edp_clks_register(struct qcom_edp *edp, struct device_node *np)
+> +{
+> +	struct clk_hw_onecell_data *data;
+> +	struct clk_init_data init = { };
+> +	int ret;
+> +
+> +	data = devm_kzalloc(edp->dev, sizeof(data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	init.ops = &qcom_edp_dp_link_clk_ops;
+> +	init.name = "edp_phy_pll_link_clk";
+> +	edp->dp_link_hw.init = &init;
+> +	ret = devm_clk_hw_register(edp->dev, &edp->dp_link_hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	init.ops = &qcom_edp_dp_pixel_clk_ops;
+> +	init.name = "edp_phy_pll_vco_div_clk";
+> +	edp->dp_pixel_hw.init = &init;
+> +	ret = devm_clk_hw_register(edp->dev, &edp->dp_pixel_hw);
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->hws[0] = &edp->dp_link_hw;
+> +	data->hws[1] = &edp->dp_pixel_hw;
+> +	data->num = 2;
+> +
+> +	return devm_of_clk_add_hw_provider(edp->dev, of_clk_hw_onecell_get, data);
+> +}
+> +
+> +static int qcom_edp_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev = &pdev->dev;
+> +	struct qcom_edp *edp;
+> +	int ret;
+> +
+> +	edp = devm_kzalloc(dev, sizeof(*edp), GFP_KERNEL);
+> +	if (!edp)
+> +		return -ENOMEM;
+> +
+> +	edp->dev = dev;
+> +
+> +	edp->edp = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(edp->edp))
+> +		return PTR_ERR(edp->edp);
+> +
+> +	edp->tx0 = devm_platform_ioremap_resource(pdev, 1);
+> +	if (IS_ERR(edp->tx0))
+> +		return PTR_ERR(edp->tx0);
+> +
+> +	edp->tx1 = devm_platform_ioremap_resource(pdev, 2);
+> +	if (IS_ERR(edp->tx1))
+> +		return PTR_ERR(edp->tx1);
+> +
+> +	edp->pll = devm_platform_ioremap_resource(pdev, 3);
+> +	if (IS_ERR(edp->pll))
+> +		return PTR_ERR(edp->pll);
+> +
+> +	edp->clks[0].id = "aux";
+> +	edp->clks[1].id = "cfg_ahb";
+> +	ret = devm_clk_bulk_get(dev, ARRAY_SIZE(edp->clks), edp->clks);
+> +	if (ret)
+> +		return ret;
+> +
+> +	edp->supplies[0].supply = "vdda-phy";
+> +	edp->supplies[1].supply = "vdda-pll";
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(edp->supplies), edp->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = qcom_edp_clks_register(edp, pdev->dev.of_node);
+> +	if (ret)
+> +		return ret;
+> +
+> +	edp->phy = devm_phy_create(dev, pdev->dev.of_node, &qcom_edp_ops);
+> +	if (IS_ERR(edp->phy)) {
+> +		dev_err(dev, "failed to register phy\n");
+> +		return PTR_ERR(edp->phy);
+> +	}
+> +
+> +	phy_set_drvdata(edp->phy, edp);
+> +
+> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct of_device_id qcom_edp_phy_match_table[] = {
+> +	{ .compatible = "qcom,sc8180x-edp-phy" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+> +
+> +static struct platform_driver qcom_edp_phy_driver = {
+> +	.probe		= qcom_edp_phy_probe,
+> +	.driver = {
+> +		.name	= "qcom-edp-phy",
+> +		.of_match_table = qcom_edp_phy_match_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(qcom_edp_phy_driver);
+> +
+> +MODULE_AUTHOR("Bjorn Andersson <bjorn.andersson@linaro.org>");
+> +MODULE_DESCRIPTION("Qualcomm eDP QMP PHY driver");
+> +MODULE_LICENSE("GPL v2");
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
+> index bebeac2c091c..f09bbbac5542 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
+> @@ -549,6 +549,7 @@
+>  /* Only for QMP V4 PHY - QSERDES COM registers */
+>  #define QSERDES_V4_COM_BG_TIMER				0x00c
+>  #define QSERDES_V4_COM_SSC_EN_CENTER			0x010
+> +#define QSERDES_V4_COM_SSC_ADJ_PER1			0x014
+>  #define QSERDES_V4_COM_SSC_PER1				0x01c
+>  #define QSERDES_V4_COM_SSC_PER2				0x020
+>  #define QSERDES_V4_COM_SSC_STEP_SIZE1_MODE0		0x024
+> -- 
+> 2.29.2
+
+-- 
+~Vinod
