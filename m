@@ -2,122 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2EE436168
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF51B43610E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231723AbhJUMVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 08:21:53 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:45859 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231775AbhJUMVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:21:37 -0400
-X-Greylist: delayed 549 seconds by postgrey-1.27 at vger.kernel.org; Thu, 21 Oct 2021 08:20:34 EDT
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 19LC7rFT003271;
-        Thu, 21 Oct 2021 15:07:53 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
-        id 240B263A1D; Thu, 21 Oct 2021 15:08:05 +0300 (IDT)
-From:   amirmizi6@gmail.com
-To:     Eyal.Cohen@nuvoton.com, jarkko@kernel.org, oshrialkoby85@gmail.com,
-        alexander.steffen@infineon.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org, benoit.houyere@st.com,
-        eajames@linux.ibm.com, joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
-        Amir Mizinski <amirmizi6@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v16 6/6] tpm: Add YAML schema for TPM TIS I2C options
-Date:   Thu, 21 Oct 2021 15:05:57 +0300
-Message-Id: <20211021120557.69234-7-amirmizi6@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20211021120557.69234-1-amirmizi6@gmail.com>
-References: <20211021120557.69234-1-amirmizi6@gmail.com>
+        id S230340AbhJUMJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 08:09:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229765AbhJUMJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:09:13 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A84C06161C
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:06:57 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id o20so479848wro.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:06:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ZcFeRC73UKaa3p+nvjfoKXbuybNs1IiSI5VXt1+O0h8=;
+        b=QrMzCEsn+k+371RBMkTdnwTcdUtYRoptFxnkREZS4i5pLjW+7onXK1YMM/tKL7lsyV
+         kpg4iXvdTHlJB/QHKQM3dUBS8fyRkRAzNfu4Okn7PFyMWMN3rZ4i9p2EDyZrW2anQ3Ip
+         8EaYuoVwPghvk+I/YFpdeNGv0sKyy+lrC48pvvOft+dafq/YThbGYIkXo6F0uDxYAlmQ
+         UREbqAThRqFVEZlliCt69T2wf4MeiDquOno3WgmF6NpMrlc19noa25PUBXYgkPtV/+QG
+         SnPz0EB3Gecm6NfHUuyAvEmHQoojHkYjRNRjjpfgSqjYjPmE5/esF3mO0IoOg2TxoPzB
+         JX9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ZcFeRC73UKaa3p+nvjfoKXbuybNs1IiSI5VXt1+O0h8=;
+        b=PAZaLvHwAzNR6F5WiFSxwWQL+cBZOxjd/cAdGWDV9MZ+hU5Kv2GCgmAMNQ2oHtLW+s
+         QLGBF4lc3pZt63WnZHNnVh0C028kMP3vrN29lQIRt9de8pPpkuvFpqtQd3OP9NxKRSlX
+         Jf+7Corl8/j4yG1ps8wE3gFN3AQV0luS5bcuhL1Sm94803QdBUscpK0OrYhLEAaHbtbp
+         cQrCnU+VNGynw+GU6qhoXcNoX5Ho3LWkYOnVa2OeqdxH9aVR7y9UGX9pgKQN2AXOTl8U
+         ZJo99pbjTpUvMkQm36EQb/zR4nWvTmvu3L6T+uXJhHauVFXa84od+Q+bw3cK/9yc+5+J
+         TQjQ==
+X-Gm-Message-State: AOAM531/JvF723sPLcVBk8YMLYEL4CPF8YeC4kvNFXrgCm3zmZrcLM+c
+        PYJnCloBiYRfJ5kbQ57l54XHhA==
+X-Google-Smtp-Source: ABdhPJwjccrvXrRDtW8YC0zECaOaVmzzOrfXick8ROZdWaUbmP6uAMzl1Y7+N1i0guFas2iRBoq51g==
+X-Received: by 2002:adf:8b06:: with SMTP id n6mr6874271wra.5.1634818015858;
+        Thu, 21 Oct 2021 05:06:55 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id y26sm4401523wma.15.2021.10.21.05.06.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Oct 2021 05:06:55 -0700 (PDT)
+Date:   Thu, 21 Oct 2021 13:06:53 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: mfd: add samsung,exynosautov9-sysreg
+ compatible
+Message-ID: <YXFX3QoKJ9Wk6miQ@google.com>
+References: <20211012002314.38965-1-chanho61.park@samsung.com>
+ <CGME20211012002533epcas2p182112e07ea081957a0e54fea46c66816@epcas2p1.samsung.com>
+ <20211012002314.38965-2-chanho61.park@samsung.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211012002314.38965-2-chanho61.park@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amir Mizinski <amirmizi6@gmail.com>
+On Tue, 12 Oct 2021, Chanho Park wrote:
 
-Add a YAML schema to support tpm tis i2c related dt-bindings for the I2c
-PTP based physical layer.
+> Add document Samsung's Exynos Auto v9 compatible for system registers.
+> 
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-This patch adds the documentation for corresponding device tree bindings of
-I2C based Physical TPM.
-Refer to the 'I2C Interface Definition' section in
-'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
-for specification.
+v3 of this patch has already been applied.
 
-Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/security/tpm/tpm-tis-i2c.yaml         | 52 ++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+I don't see any differences, so I'll keep v3 for now.
 
-diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-new file mode 100644
-index 0000000..217ba8e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: I2C PTP based TPM Device Tree Bindings
-+
-+maintainers:
-+  - Amir Mizinski <amirmizi6@gmail.com>
-+
-+description:
-+  Device Tree Bindings for I2C based Trusted Platform Module(TPM).
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          # Nuvoton's Trusted Platform Module (TPM) (NPCT75x)
-+          - nuvoton,npct75x
-+      - const: tcg,tpm-tis-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt:
-+    maxItems: 1
-+
-+  crc-checksum:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Set this flag to enable CRC checksum.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      tpm@2e {
-+        compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-+        reg = <0x2e>;
-+        crc-checksum;
-+      };
-+    };
-+...
+In future, please provide a change-log under the '---' tag.
+
 -- 
-2.7.4
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
