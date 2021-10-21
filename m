@@ -2,86 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61EB4436123
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:13:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 853EA43617A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 14:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231497AbhJUMPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 08:15:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35280 "EHLO
+        id S231707AbhJUMW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 08:22:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231309AbhJUMPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:15:25 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 406DDC06161C
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:13:09 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id y16-20020a05600c17d000b0030db7a51ee2so7135607wmo.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:13:09 -0700 (PDT)
+        with ESMTP id S231637AbhJUMW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 08:22:26 -0400
+Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 744E5C061762
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:20:10 -0700 (PDT)
+Received: by mail-io1-xd30.google.com with SMTP id z69so607602iof.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 05:20:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=owYFM55aP56rDs5EWvgoXTHHvnZP3ih1QEcPV9bvrhs=;
-        b=ldx+vWNYbkgie7M5aaF/195y7BkfcqHpNSlAHho9tOMXzsKxFshah8V9OjRxVzKvWA
-         vBNn9W7oGV39i+NR9FsmME+88hdpmpKfRP3fq8qtf6BnhQ0zKN7ut5SmO9/ySmFY12r5
-         yJyfaqbiwChqViLbch3/uWw2/vvHKxt/aoB1nVXjY4jD/Sj5fYvk8ne7nb6Ni/k9wolk
-         EUkYZ9q1yArClmK9+RYdatWAP9JHUX3uZOgm6RybnLk4wacwgMGx9uHc7GoXmx7Nnh4m
-         BMGGCvu2p7mP5iyhnOXOyI7TqtrbiNftNDIv5+n2GmAEoIoGzJr1/l5np5BkyoaL0yeg
-         bE+g==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=G2Jq8ABcZaKAiy06d3oRm5z7XXaT0OFvg3EWPt/6AmM=;
+        b=M5Ya1N0dCbQJLcwtpVEPTz6Dw3mxiUGnLonLp8ALVmrUobmbUbdal8KzCPO079nop4
+         p42L4tLfntonejdleCvs97XDS5IVoKgzp10GBTnOE+0hFNiwDJeci1pMOTZCr0HZ4LCs
+         XErQkcbDRY7/gjsFJOu9d9FikMoNmRF0L3XYgqbC2sLzCsGN4H533tIUaUX5bKkz+vMN
+         12ZwbbnL1+OWKirejA6vP0lqZQR3aZnltK88wcgWY1wY8NFWNCTlsFgfREmQgCZJtA0K
+         ewWdMpuMgGD6Y+f7OXOnXib2+gq1S+OBarah4nx/YddL9i5eynDBsggViC04Mi04buQR
+         CJQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=owYFM55aP56rDs5EWvgoXTHHvnZP3ih1QEcPV9bvrhs=;
-        b=GaF1subDDnkTyf+pRjeCg0zsfakEqh5F6DKT+aOuJ55tOnBnb5KCyET1LfPaKQTwOW
-         9mT49gnOrAWhW1cIXHbZxsULqfa/0s2iMjqGAFq9TT7K7RbB7DvJTBCd5cyrAAKxviXr
-         e/xEp533DXfV8Reah7n/SferK3oJh32FOAf8i7hPsVkYBN92mpaAAofDKud000DNwVWB
-         jdnn7pqdhuRVpKzX+fbmXQOcf1KWhIUELRRXURl68DrIUBowCdAk/G/aYKqpmaA3JTGv
-         Lt0vvLP8a7VYkG1WMzQb1p/4+KgPQATJsbZV9JHijYRdJh9pDsXHEpmZuG2Dg2FnXoAj
-         3wxQ==
-X-Gm-Message-State: AOAM530lCnia5ojVUfk6xQtja4eqxkIrLfnfT4KRmiwrRRit8wXueaXB
-        X10MK62+XJrqwgBu3h6j8a59/w==
-X-Google-Smtp-Source: ABdhPJzL/H7g1S4PgfSqOGhhgqxYnCklysw/apV7GI7zZ1gsUA2IRIdf3lO7BsVrtf05AOuVQnsvIg==
-X-Received: by 2002:a1c:f21a:: with SMTP id s26mr6253430wmc.117.1634818387845;
-        Thu, 21 Oct 2021 05:13:07 -0700 (PDT)
-Received: from google.com ([95.148.6.207])
-        by smtp.gmail.com with ESMTPSA id k8sm7519770wms.41.2021.10.21.05.13.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Oct 2021 05:13:07 -0700 (PDT)
-Date:   Thu, 21 Oct 2021 13:13:05 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <skakit@codeaurora.org>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: qcom: pm8xxx: add pm8018 compatible
-Message-ID: <YXFZUcVFOg0uQRSv@google.com>
-References: <20211020231646.278706-1-david@ixit.cz>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=G2Jq8ABcZaKAiy06d3oRm5z7XXaT0OFvg3EWPt/6AmM=;
+        b=vNowmtdrROvbdmp+Tkwc1NksSuuvTF90Eyp1CfsFE6ZP5WKHBbRe4rYpmWrm/WDLI7
+         Kp3fQlVrHPRILD+QW313BNiQxzWEpbpm95Q+T/8+ga/jbt9R2HeK1DlitESlIyPsLhhe
+         sv8FUu9ek3UQpZbns2PGdH1O4vzOCWStP80sPoE6YI5iC4Wot4P0OkzCMpyvMB6yHjae
+         Zoi2OeWgbEtiE9D54QuR06FsUHiiOE6kf+T1UXOq+mLlWIJrSiMCs6ewZx6Fgspg58Mp
+         VnL/meg9JGn0FDz+7azb7r6m0nwHx7zyJ2QYuZuTBdOabdDnSLV+ztJEtCEkwiBkTY+R
+         uKKw==
+X-Gm-Message-State: AOAM533WXzI0JD13LbnMbA9cAb5LgcrFzkFP4w+DTBVJ4wh5EqQmqsXI
+        a2XBowVAWaMIS+53zOfPV2A0TvpPEKb2fzgabUU=
+X-Google-Smtp-Source: ABdhPJyg4Uw5gMXeuJaK/fNuVnFoa3QK4wMhuKn5p7setzcVxuuBiAsS3r7VZmGpmNn3nsrj2MAVSnMCKNX9QxUD/fY=
+X-Received: by 2002:a02:9f1a:: with SMTP id z26mr3762598jal.86.1634818809669;
+ Thu, 21 Oct 2021 05:20:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211020231646.278706-1-david@ixit.cz>
+Received: by 2002:a05:6638:1924:0:0:0:0 with HTTP; Thu, 21 Oct 2021 05:20:09
+ -0700 (PDT)
+Reply-To: ooisangkuang63@gmail.com
+From:   Mr Ooi Sang Kuang <mrsshirleyperezfosgate7@gmail.com>
+Date:   Thu, 21 Oct 2021 05:20:09 -0700
+Message-ID: <CA+ynneBiQsQaBjiG4sPysZHF9edA-QYDpLvkShBxLRGFpeEF6w@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Oct 2021, David Heidelberg wrote:
-
-> Add missing compatible for the PM8018 model.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 1 +
->  1 file changed, 1 insertion(+)
-
-Applied, thanks.
-
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Hello,
+
+I want to discuss an important project issue with you.
+Please, let me know if this email is valid. Reply me at ooisangkuang63@gmail.com
+
+Thank you,
+Mr Ooi Sang Kuang
