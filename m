@@ -2,157 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E26D435D61
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 10:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CBD7435D9B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 11:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbhJUIzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 04:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45714 "EHLO
+        id S231439AbhJUJJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 05:09:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbhJUIzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 04:55:19 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE837C06161C;
-        Thu, 21 Oct 2021 01:53:03 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id E4C991F44759
-Subject: Re: [PATCH v16 4/7] soc: mediatek: SVS: add debug commands
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
+        with ESMTP id S231394AbhJUJJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 05:09:24 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F5B3C061749
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 02:07:09 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id r7so455752wrc.10
+        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 02:07:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=fa8qTNUMfdlm5vVlUvR29Di6jRAMYyn6oP+QaN90AGc=;
+        b=GJgVEZZOZYp+PLlgHwjiuMJ0smmcTiEeRFCpmRgAvtDPhVEyxooLd4PxqPk32F2yCn
+         HAVijInvS6hf+6qOwSa5NxtTfgxemgw3RO15ka8CSmmtCpEl5SG5dnE8aGmjdGTD/RRd
+         EAWScowWFcONLMtYxRsOmUxP0SW8eQRVea5mShWM3/1I1KUxFhA6heGkJMjxhubFbyui
+         hT57540L21MmRtgM2RfI9hhDgBWfWBDP0pjhmEcHasi5sKYuVmBwhaobY1nna1m5GX42
+         RXEePQr7gXWR0A8FDB5URysq2I2AJTVc4eRsh2wSJAfUaF5iVXUf4luG0KKw6VIs5SGK
+         bocw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=fa8qTNUMfdlm5vVlUvR29Di6jRAMYyn6oP+QaN90AGc=;
+        b=q/DmYZMErCTmqEC7+xZglY5mL2JBlX06oUVcTCjKdAix/XfRIdERc7KQt6BbK12ksx
+         PYJ3gW5gtexmo4CYUjluPqvyRIvIu2GDRP1pNFQoOrqhpL68GKS2Mw6V5vJ1AtCpCH9W
+         yOakHJJPhgro/eMj1g+NjIPtBFri8EzUIFK2+6Jl12iEXrdjjp/M4GpWPM/JLisSYlOV
+         hDhG11Em6+/BkJbpSpHYYB9FX49rTurtJPu8ahqQrYnIMYLWoTsYkxdsKsw7np8PZnFM
+         ek4jDzCNfEZB7kiHrRZ9mBAuxFV0o4Y977vs3E8WCCjIlBNOk0FS0ttZySgxxeYI9SYf
+         S4mQ==
+X-Gm-Message-State: AOAM533SPhOTs09jbS8n6k7Irg/bu7ns+agSxPx35XehqD9HpRQcQKQz
+        mOHACaVzFcUPchYJE6yxJ+QBj57Uwa+j+A==
+X-Google-Smtp-Source: ABdhPJyLvrmnvqTWa0t6F6IhSJkal5/W1VnSEpvXXHa1yE5OnPVfRhps7Jd/HKqKroDO8CuXCMBanw==
+X-Received: by 2002:adf:b350:: with SMTP id k16mr5744094wrd.368.1634807227725;
+        Thu, 21 Oct 2021 02:07:07 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id d1sm4408449wrr.72.2021.10.21.02.07.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Oct 2021 02:07:07 -0700 (PDT)
+Date:   Thu, 21 Oct 2021 10:07:05 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210428065440.3704-1-roger.lu@mediatek.com>
- <20210428065440.3704-5-roger.lu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <715c9587-825f-6c22-96a2-273fb7f07bc3@collabora.com>
-Date:   Thu, 21 Oct 2021 10:52:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Rob Herring <robh+dt@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 00/10] regulator/mfd/clock: dt-bindings: Samsung S2M
+ and S5M to dtschema
+Message-ID: <YXEtuX5j9z8es0/i@google.com>
+References: <20211006132324.76008-1-krzysztof.kozlowski@canonical.com>
+ <YXA+GoTf6u/Y4qLX@google.com>
+ <16c79986-03b2-b74b-0de8-4118e2c4419f@canonical.com>
+ <b98bd487-6c55-d058-8073-689b9396b527@canonical.com>
 MIME-Version: 1.0
-In-Reply-To: <20210428065440.3704-5-roger.lu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b98bd487-6c55-d058-8073-689b9396b527@canonical.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/04/21 08:54, Roger Lu ha scritto:
-> The purpose of SVS is to help find the suitable voltages
-> for DVFS. Therefore, if SVS bank voltages are concerned
-> to be wrong, we can adjust SVS bank voltages by this patch.
+On Wed, 20 Oct 2021, Krzysztof Kozlowski wrote:
+
+> On 20/10/2021 18:08, Krzysztof Kozlowski wrote:
+> > On 20/10/2021 18:04, Lee Jones wrote:
+> >> On Wed, 06 Oct 2021, Krzysztof Kozlowski wrote:
+> >>
+> >>> Hi All,
+> >>>
+> >>> Changes since v2
+> >>> ================
+> >>> 1. Add Rob's tags.
+> >>> 2. Remove "regulator-name" from properties (all regulator dtschema).
+> >>> 3. Move "unevaluatedProperties" higher to make code easier to read (all regulator dtschema).
+> >>> 4. Add ref-type to op-mode property (patch 6: s5m8767 regulators).
+> >>>
+> >>> Changes since v1
+> >>> ================
+> >>> 1. Drop DTS patches - applied.
+> >>> 2. Fully remove bindings/regulator/samsung,s5m8767.txt .
+> >>> 3. Minor subject reformatting and few typos in text.
+> >>>
+> >>>
+> >>> Intro
+> >>> =====
+> >>> This patchset converts all devicetree bindings of Samsung S2M and S5M
+> >>> PMIC devices from txt to dtschema.
+> >>>
+> >>> It includes also two fixes because later conversion depends on it
+> >>> (contextually).
+> >>>
+> >>>
+> >>> Merging/dependencies
+> >>> ====================
+> >>> 1. Regulator related binding changes depend on first two commits (the
+> >>>    fixes), because of context.
+> >>> 2. The mfd bindings depend on clock and regulator bindings.
+> >>>
+> >>> The fixes and bindings changes (patches 1-10) should go via the same
+> >>> tree.  For example regulator or mfd tree.
+> >>>
+> >>> Another alternative is that regulator patches (1-2, 4-6) go via Mark who
+> >>> later gives MFD a stable branch/tag to pull. Then the clock and MFD
+> >>> bindings would go on top via MFD tree. Or any other setup you would like
+> >>> to have. :)
+> >>>
+> >>>
+> >>> Overview of devices
+> >>> ===================
+> >>> Essentially all Samsung S2M and S5M PMICs are very similar devices. They
+> >>> provide the same functionality: regulators, RTC, 2 or 3 clocks and main
+> >>> power management (e.g. power cut to SoC).
+> >>>
+> >>> The differences are mostly in registers layout and number of regulators.
+> >>>
+> >>> The drivers are built around one common part, mfd/sec-core.c, and share
+> >>> some drivers between devices:
+> >>> 1. MFD sec-core for all devices,
+> >>> 1. one clock driver for most of devices,
+> >>> 2. one RTC driver for all devices,
+> >>> 3. three regulator drivers.
+> >>>
+> >>> The regulator drivers were implementing slightly different features,
+> >>> therefore one regulator binding for all devices does not make much
+> >>> sense.  However the clock device binding can be shared.
+> >>>
+> >>> The final dtschema bindings try to implement this - share only the clock
+> >>> bindings.
+> >>>
+> >>> Best regards,
+> >>> Krzysztof
+> >>>
+> >>> Krzysztof Kozlowski (10):
+> >>>   regulator: s5m8767: do not use reset value as DVS voltage if GPIO DVS
+> >>>     is disabled
+> >>>   regulator: dt-bindings: samsung,s5m8767: correct
+> >>>     s5m8767,pmic-buck-default-dvs-idx property
+> >>>   dt-bindings: clock: samsung,s2mps11: convert to dtschema
+> >>>   regulator: dt-bindings: samsung,s2m: convert to dtschema
+> >>>   regulator: dt-bindings: samsung,s2mpa01: convert to dtschema
+> >>>   regulator: dt-bindings: samsung,s5m8767: convert to dtschema
+> >>>   dt-bindings: mfd: samsung,s2mps11: convert to dtschema
+> >>>   dt-bindings: mfd: samsung,s2mpa01: convert to dtschema
+> >>>   dt-bindings: mfd: samsung,s5m8767: convert to dtschema
+> >>>   dt-bindings: mfd: samsung,s5m8767: document buck and LDO supplies
+> >>
+> >> Looks like these are ready to be pushed.
+> >>
+> >> However, I am not in receipt of patches 1-2.
+> >>
+> >> Am I okay to merge 3-10 right now?
+> > 
+> > No. This is v3, but we need v4. Please:
+> > 1. Merge tag from Mark:
+> > https://lore.kernel.org/lkml/YWCT+YL%2F9qHbF9f0@sirena.org.uk/
+> > 
+> > 2. Then apply patches 7-10 (MFD bindings).
 > 
-> Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> ---
->   drivers/soc/mediatek/mtk-svs.c | 328 +++++++++++++++++++++++++++++++++
->   1 file changed, 328 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> index 2d2153c92373..8794a2d87baa 100644
-> --- a/drivers/soc/mediatek/mtk-svs.c
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -6,6 +6,7 @@
->   #include <linux/bits.h>
->   #include <linux/clk.h>
->   #include <linux/completion.h>
-> +#include <linux/debugfs.h>
->   #include <linux/device.h>
->   #include <linux/init.h>
->   #include <linux/interrupt.h>
-> @@ -24,6 +25,7 @@
->   #include <linux/pm_runtime.h>
->   #include <linux/regulator/consumer.h>
->   #include <linux/reset.h>
-> +#include <linux/seq_file.h>
->   #include <linux/slab.h>
->   #include <linux/spinlock.h>
->   #include <linux/thermal.h>
-> @@ -62,6 +64,39 @@
->   #define SVSB_INTSTS_COMPLETE		0x1
->   #define SVSB_INTSTS_CLEAN		0x00ffffff
->   
-> +#define debug_fops_ro(name)						\
-> +	static int svs_##name##_debug_open(struct inode *inode,		\
-> +					   struct file *filp)		\
-> +	{								\
-> +		return single_open(filp, svs_##name##_debug_show,	\
-> +				   inode->i_private);			\
-> +	}								\
-> +	static const struct file_operations svs_##name##_debug_fops = {	\
-> +		.owner = THIS_MODULE,					\
-> +		.open = svs_##name##_debug_open,			\
-> +		.read = seq_read,					\
-> +		.llseek = seq_lseek,					\
-> +		.release = single_release,				\
-> +	}
-> +
-> +#define debug_fops_rw(name)						\
-> +	static int svs_##name##_debug_open(struct inode *inode,		\
-> +					   struct file *filp)		\
-> +	{								\
-> +		return single_open(filp, svs_##name##_debug_show,	\
-> +				   inode->i_private);			\
-> +	}								\
-> +	static const struct file_operations svs_##name##_debug_fops = {	\
-> +		.owner = THIS_MODULE,					\
-> +		.open = svs_##name##_debug_open,			\
-> +		.read = seq_read,					\
-> +		.write = svs_##name##_debug_write,			\
-> +		.llseek = seq_lseek,					\
-> +		.release = single_release,				\
-> +	}
-> +
-> +#define svs_dentry(name)	{__stringify(name), &svs_##name##_debug_fops}
-> +
->   static DEFINE_SPINLOCK(mtk_svs_lock);
->   
->   /*
-> @@ -83,6 +118,7 @@ enum svsb_phase {
->   	SVSB_PHASE_INIT01,
->   	SVSB_PHASE_INIT02,
->   	SVSB_PHASE_MON,
-> +	SVSB_PHASE_NUM,
+> ... patches 7-10 from that v4 of course. They start here:
+> https://lore.kernel.org/lkml/20211008113931.134847-4-krzysztof.kozlowski@canonical.com/
 
-I would move the addition of these last members in the previous (3/7) patch,
-where you introduce the driver in the first place.
+... and these can do in on their own?  With no inter-dependencies?
 
-Also, I think that using _MAX instead would be better, as it is pretty
-much a common practice. So, this would become SVSB_PHASE_MAX.
+Or is Rob going to tell me off again?
 
->   };
->   
->   enum svs_reg_index {
-> @@ -140,6 +176,7 @@ enum svs_reg_index {
->   	SPARE2,
->   	SPARE3,
->   	THSLPEVEB,
-> +	SVS_REG_NUM,
-
-... and this would become SVS_REG_MAX
-
->   };
->   
->   static const u32 svs_regs_v2[] = {
-
-Apart from that,
-
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
