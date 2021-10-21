@@ -2,246 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD6C4362AC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 15:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D5F4362AE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Oct 2021 15:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbhJUNVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 09:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51014 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbhJUNVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:21:19 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7FAC06122B
-        for <devicetree@vger.kernel.org>; Thu, 21 Oct 2021 06:19:03 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2c41:c2bf:5c8f:53c5])
-        by baptiste.telenet-ops.be with bizsmtp
-        id 8dJy2600G1Z5S4H01dJyWe; Thu, 21 Oct 2021 15:19:01 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mdXyE-006ZAG-4k; Thu, 21 Oct 2021 15:18:58 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mdXyD-00GQ8L-Lv; Thu, 21 Oct 2021 15:18:57 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Russell King <linux@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-omap@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 3/3] [RFC] dt-bindings: display: bridge: nxp,tda998x: Convert to json-schema
-Date:   Thu, 21 Oct 2021 15:18:53 +0200
-Message-Id: <1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1634822085.git.geert+renesas@glider.be>
-References: <cover.1634822085.git.geert+renesas@glider.be>
+        id S230463AbhJUNVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 09:21:32 -0400
+Received: from mail-0201.mail-europe.com ([51.77.79.158]:45080 "EHLO
+        mail-0201.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230329AbhJUNVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Oct 2021 09:21:31 -0400
+Date:   Thu, 21 Oct 2021 13:19:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1634822352;
+        bh=LVkvx9GGJ+N/xVjEUjWIyINyqpMs9KCy7RcvjjDf9QM=;
+        h=Date:To:From:Reply-To:Subject:From;
+        b=bHSD/JrrJWnb+02sZ/gTBVCGXMt1haJcFjk8zcJU6ELCcl/KGGZV5TEfz4LG+8DkR
+         oLJTHT+r0jzu2YEganYF8hwmuA55h1yBFVwsjLrtr9fQF2ebVGL7eq+E9dVLF51+5S
+         7kQVy567wGIWlXqm40foW7o8x/So16PFP7p+Ee7k=
+To:     Georgi Djakov <djakov@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH v5 0/5] interconnect: qcom: Add MSM8996 interconnect driver
+Message-ID: <20211021131839.234662-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP TDA998x HDMI transmitter Device Tree binding
-documentation to json-schema.
+This series adds a driver for interconnects on MSM8996. This fixes some rar=
+e display underflows
+and provides a slight heat reduction.
 
-Add missing "#sound-dai-cells" property.
-Add ports hierarchy, as an alternative to port.
-Drop pinctrl properties, as they do not belong here.
+Changes since v4:
+ - Rebase on Dmitry's icc-rpm patches[1].
+ - Combine SDM660 bindings into the RPM interconnect schema.
+ - Clean up qcom_icc_node structs by removing unused properties, moving lin=
+ks to external
+   arrays and using the same arrays for multiple nodes where possible.
+ - Add support for Aggregate 0 NoC (a0noc).
+Changes since v3:
+ - Expand DEFINE_QNODE macros in msm8996.c.
+ - Commonize probe function.
+ - Don't rename qcom_icc_set in icc-rpmh since it's no longer needed.
+ - Code style fixes.
+Changes since v2:
+ - Dual-license qcom,msm8996.h and move it to the dt bindings patch
+ - Remove interconnect paths from CPUs since cpufreq driver doesn't support=
+ icc scaling yet.
+Changes since v1:
+ - Split first patch into 2 patches, one for renaming qcom_icc_set in icc-r=
+pmh, and another
+   one for the actual commonization.
+ - Revert unnecessary move of include line in sdm660.c
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-RFC as I do not know:
-  1. The correct value(s) for '#sound-dai-cells' (the example used 2,
-     which was IMHO wrong, while all actual users use 0),
-  2. The meaning of the various ports subnodes.
----
- .../bindings/display/bridge/nxp,tda998x.yaml  | 108 ++++++++++++++++++
- .../bindings/display/bridge/tda998x.txt       |  54 ---------
- 2 files changed, 108 insertions(+), 54 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/tda998x.txt
+[1] https://lore.kernel.org/linux-arm-msm/20210903232421.1384199-1-dmitry.b=
+aryshkov@linaro.org/
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
-new file mode 100644
-index 0000000000000000..87c64edcf5d5617d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/nxp,tda998x.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/nxp,tda998x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP TDA998x HDMI transmitter
-+
-+maintainers:
-+  - Russell King <linux@armlinux.org.uk>
-+
-+properties:
-+  compatible:
-+    const: nxp,tda998x
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  video-ports:
-+    default: 0x230145
-+    description:
-+      24 bits value which defines how the video controller output is wired to
-+      the TDA998x input.
-+
-+  audio-ports:
-+    description:
-+      Array of 8-bit values, 2 values per DAI (Documentation/sound/soc/dai.rst).
-+      The implementation allows one or two DAIs.
-+      If two DAIs are defined, they must be of different type.
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    items:
-+      minItems: 1
-+      maxItems: 2
-+      items:
-+        - description: |
-+            The first value defines the DAI type: TDA998x_SPDIF or TDA998x_I2S
-+            (see include/dt-bindings/display/tda998x.h).
-+        - description:
-+            The second value defines the tda998x AP_ENA reg content when the
-+            DAI in question is used.
-+
-+  '#sound-dai-cells':
-+    enum: [ 0, 1 ]
-+
-+  nxp,calib-gpios:
-+    maxItems: 1
-+    description:
-+      Calibration GPIO, which must correspond with the gpio used for the
-+      TDA998x interrupt pin.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description: FIXME
-+
-+      port@1:
-+        type: object
-+        description: FIXME
-+
-+required:
-+  - compatible
-+  - reg
-+
-+oneOf:
-+  - required:
-+      - port
-+  - required:
-+      - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/display/tda998x.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tda998x: hdmi-encoder@70 {
-+            compatible = "nxp,tda998x";
-+            reg = <0x70>;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+            video-ports = <0x230145>;
-+
-+            #sound-dai-cells = <1>;
-+                         /* DAI-format / AP_ENA reg value */
-+            audio-ports = <TDA998x_SPDIF 0x04>,
-+                          <TDA998x_I2S 0x03>;
-+
-+            port {
-+                tda998x_in: endpoint {
-+                    remote-endpoint = <&lcdc_0>;
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/bridge/tda998x.txt b/Documentation/devicetree/bindings/display/bridge/tda998x.txt
-deleted file mode 100644
-index f5a02f61dd36f1c6..0000000000000000
---- a/Documentation/devicetree/bindings/display/bridge/tda998x.txt
-+++ /dev/null
-@@ -1,54 +0,0 @@
--Device-Tree bindings for the NXP TDA998x HDMI transmitter
--
--Required properties;
--  - compatible: must be "nxp,tda998x"
--
--  - reg: I2C address
--
--Required node:
--  - port: Input port node with endpoint definition, as described
--        in Documentation/devicetree/bindings/graph.txt
--
--Optional properties:
--  - interrupts: interrupt number and trigger type
--	default: polling
--
--  - pinctrl-0: pin control group to be used for
--	screen plug/unplug interrupt.
--
--  - pinctrl-names: must contain a "default" entry.
--
--  - video-ports: 24 bits value which defines how the video controller
--	output is wired to the TDA998x input - default: <0x230145>
--
--  - audio-ports: array of 8-bit values, 2 values per one DAI[1].
--	The first value defines the DAI type: TDA998x_SPDIF or TDA998x_I2S[2].
--	The second value defines the tda998x AP_ENA reg content when the DAI
--	in question is used. The implementation allows one or two DAIs. If two
--	DAIs are defined, they must be of different type.
--
--  - nxp,calib-gpios: calibration GPIO, which must correspond with the
--	gpio used for the TDA998x interrupt pin.
--
--[1] Documentation/sound/soc/dai.rst
--[2] include/dt-bindings/display/tda998x.h
--
--Example:
--
--#include <dt-bindings/display/tda998x.h>
--
--	tda998x: hdmi-encoder {
--		compatible = "nxp,tda998x";
--		reg = <0x70>;
--		interrupt-parent = <&gpio0>;
--		interrupts = <27 2>;		/* falling edge */
--		pinctrl-0 = <&pmx_camera>;
--		pinctrl-names = "default";
--		video-ports = <0x230145>;
--
--		#sound-dai-cells = <2>;
--			     /*	DAI-format	AP_ENA reg value */
--		audio-ports = <	TDA998x_SPDIF	0x04
--				TDA998x_I2S	0x03>;
--
--	};
--- 
-2.25.1
+Yassine Oudjana (5):
+  dt-bindings: interconnect: Combine SDM660 bindings into RPM schema
+  interconnect: icc-rpm: Add support for bus power domain
+  dt-bindings: interconnect: Add Qualcomm MSM8996 DT bindings
+  interconnect: qcom: Add MSM8996 interconnect provider driver
+  arm64: dts: qcom: msm8996: Add interconnect support
+
+ .../bindings/interconnect/qcom,rpm.yaml       |  143 +-
+ .../bindings/interconnect/qcom,sdm660.yaml    |  185 --
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   93 +
+ drivers/interconnect/qcom/Kconfig             |    9 +
+ drivers/interconnect/qcom/Makefile            |    2 +
+ drivers/interconnect/qcom/icc-rpm.c           |    7 +
+ drivers/interconnect/qcom/icc-rpm.h           |    1 +
+ drivers/interconnect/qcom/msm8996.c           | 2113 +++++++++++++++++
+ drivers/interconnect/qcom/msm8996.h           |  149 ++
+ .../dt-bindings/interconnect/qcom,msm8996.h   |  163 ++
+ 10 files changed, 2673 insertions(+), 192 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm=
+660.yaml
+ create mode 100644 drivers/interconnect/qcom/msm8996.c
+ create mode 100644 drivers/interconnect/qcom/msm8996.h
+ create mode 100644 include/dt-bindings/interconnect/qcom,msm8996.h
+
+--=20
+2.33.1
+
 
