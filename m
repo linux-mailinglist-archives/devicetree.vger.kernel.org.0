@@ -2,98 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CED2D437E94
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1ACC437EBA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234034AbhJVT1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 15:27:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233615AbhJVT1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 15:27:20 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3B2C061767
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:02 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id e4so38339wrc.7
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RUp2XLqq8Lwi/bCtW75kgwYY33nabu26v+zSnuqstFo=;
-        b=H78BuiGGtS652wLIuHe5+8En2woNN+Zx3w5mN1mw6MZuDHZI2AZVfeG2SVm1RLTzfY
-         gbvClSs1QexiFf64RI18qjMk88x0e8HWu6lzTL6tdUUqu/qXPu4RRo4MwgUCI5ABDuCd
-         Zg05VhGgagMRpRVH5U+hZII1ifD2CgO3NuI48=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RUp2XLqq8Lwi/bCtW75kgwYY33nabu26v+zSnuqstFo=;
-        b=dZY00LrQAa98/io6VgjrJcK32oRW3bJlQDBzrZBIUzPvVBOdm/xhH1bgoIYt4PhBTw
-         LuRJjMNEQZGLQ3iCSb+os/kg1JbaVxYP/bk2XSk3GbVkHS75mAJpQU2C0Me/uwkknrzf
-         hQRXUvsv2EdITA9sOS9Hiag/UBk8cTeoEMyhzlraEdsa4GZTRo9LAFeqRWozvJ24BotF
-         AyF9VXIGEUChFNs9vI6qEIRiQmwIsj/nXDuGIwh7YiN96IAzJDGPXbayn8tcxKvXiTsd
-         ZYqj+uG3DnXOvFfGrvbKpAfD0xlxORfwBQpPJiMu98yxTfH5QN1Iml1VYrCDczWPGYE0
-         MU9A==
-X-Gm-Message-State: AOAM532G29YDjFb/3jmO4zvEVYZKyLkclcgC44wpYnTsrrtS6cQy5/xC
-        tHn72UHSs50yLeKE+C1mjgKM1BNeDh+Gx6MHXpPFcQ==
-X-Google-Smtp-Source: ABdhPJyMDc6EZKx2boNeX0DtFA+guxiLLagh2B2rcpBWIQ8n27Nr50828eKBi9y39j6/fsELyTRrOGfZJB/2CW0Qav8=
-X-Received: by 2002:a05:6000:1283:: with SMTP id f3mr2224362wrx.128.1634930701241;
- Fri, 22 Oct 2021 12:25:01 -0700 (PDT)
+        id S234162AbhJVTkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 15:40:18 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:53506 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234090AbhJVTkR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 15:40:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=npLDeeKezSJSIPo+3xxZFs91kdmA9Ool3n0yzTC39Zk=; b=A3Mu7CxAkCqTs+j9mOUyUb5qtA
+        zhHzOuo8x4pgvXeT1mjJBxbFmky0uvVpNI2Pe3S++8Z2DlOQ4Ps47HG9Jz9rZw1T3y2+UKT/dzAqC
+        oZndolJx8Zc70M2l/59ZvERTOzbIhXnknWw1oYHwC1TPVnIfqvHX6WlamuuOgrv/AdQI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1me0MS-00BQJj-KZ; Fri, 22 Oct 2021 21:37:52 +0200
+Date:   Fri, 22 Oct 2021 21:37:52 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     netdev@vger.kernel.org,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [net-next PATCH 1/2] dt-bindings: net: macb: Add mdio bus child
+ node
+Message-ID: <YXMTEDopXc5tDZ3z@lunn.ch>
+References: <20211022163548.3380625-1-sean.anderson@seco.com>
 MIME-Version: 1.0
-References: <20211022140714.28767-1-jim2101024@gmail.com> <20211022140714.28767-2-jim2101024@gmail.com>
- <YXLPZ4CsQMjHPpJS@sirena.org.uk>
-In-Reply-To: <YXLPZ4CsQMjHPpJS@sirena.org.uk>
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-Date:   Fri, 22 Oct 2021 15:24:50 -0400
-Message-ID: <CA+-6iNz3PMsYDds_uoh_xNoPop-tLn1O9U9wnTmTx+pZyN5ZFA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     Jim Quinlan <jim2101024@gmail.com>,
-        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
-        <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211022163548.3380625-1-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 22, 2021 at 10:49 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Fri, Oct 22, 2021 at 10:06:54AM -0400, Jim Quinlan wrote:
->
-> > The use of a regulator property in the pcie EP subnode such as
-> > "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-> > file at
-> >
-> > https://github.com/devicetree-org/dt-schema/pull/54
->
-> This contains updates to add the generic PCIe supply rails, not the
-> brcm-ep-a and brcm-ep-b supplies (which as I said on the other patch
-> look like they ought to be renamed).  That's fine since they're
-> obviously not generic PCIe things but this means that those bindings
-> need to be added to the device specific bindings here.  Currently
-> there's only an update to the examples.
+On Fri, Oct 22, 2021 at 12:35:47PM -0400, Sean Anderson wrote:
+> This adds an optional mdio bus child node. If present, the mac will
+> look for PHYs there instead of directly under the top-level node. This
+> eliminates any ambiguity about whether child nodes are PHYs, and allows
+> the MDIO bus to contain non-PHY devices.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 
-Just to be clear, and assuming that the brcm-ep-[ab] supply names are
-green-lighted by you and Rob, are you saying
-I have to update the github site or our YAML file?  If the latter, it
-seems odd to be describing
-an EP-device property in the YAML for an RC driver since the github
-site already describes the EP-device.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Jim
+    Andrew
