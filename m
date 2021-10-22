@@ -2,128 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 194B4437884
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 15:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B03B54378A5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 16:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233080AbhJVN77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 09:59:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47040 "EHLO
+        id S232357AbhJVOFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 10:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233082AbhJVN7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 09:59:38 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDFDC061224;
-        Fri, 22 Oct 2021 06:57:21 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id y12so1476121eda.4;
-        Fri, 22 Oct 2021 06:57:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N2LgKJHjAxWATzIP8s9Chgsauqr0Jq39ANiFQNTNdvA=;
-        b=atHm7dWYDFc+xMMI0nEXnjBKGmTe3Mhj3j44gptKPmL3yZSmcfPhGBE64YsimpDkRj
-         3JNapsquzvEaRN4rlLZm/e3gAK6PuH4inkVvuQzMmWJD4Fw6FTtWQPCXkgqDCuh7EULb
-         yNTTsoQRo9uDej/o2MZxfOP65jPJvwE94CFsaqfNuZNaXjAjM/EmrMyiG4Xju744vWFB
-         MF6JOygy44c4b8O8vYFaLC36mbgBaHx84E22kFUgJLaYtkfz/IR1K5WkWIspkHAhxZrf
-         ER3rtRGr7XHV0NpNgjyePT0QzWIZ2EsAHQ7higGfSHKW8azFx28d7dx9gfAmHjBCNF4f
-         aSGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N2LgKJHjAxWATzIP8s9Chgsauqr0Jq39ANiFQNTNdvA=;
-        b=ZMzIZWuHq8dylZDyJQL0nkdIu3LzEe9anQzZDUefznPDs6C2WvVkHUP4nUAy6gPVr9
-         bd/FUyxPhKdOsyRFlAJRCesh5tHbYHIQY4MbHyr3uKhMUqnnDch5lqSdtbMsPnOlKwUN
-         N9D2jxQReN/p+84V9cGDG4Zu/99SF/lzqEfDADXPsu8nL5kOcJl5V7AaMMgwfMEG7u6t
-         rRhoU8XxpbfAjcYbIC5A5PhTlqODCsYCawshXeanh2MMLcl0JXhFkFuKkcvx6jy/J8Kj
-         2yWy3Xo0qgZinWemmU1QuPhwQ6gYyjb4F0VzVliyGltML2hV69QxU105aMxGRpbqc6jR
-         x2mg==
-X-Gm-Message-State: AOAM530mKf3C1OszVnLru0OzkCgv8pmJytzeOoVXspmmCk3VjNJDW/ln
-        t4VPhm0RNaqmWC4DscYWzBQe52tnvfsMBV7hJG0=
-X-Google-Smtp-Source: ABdhPJxJM2m9jS5DjeNSJjBC4XIn4RTOgPs/zblzns86IWUdsSxE0UfgtL48RUJSZS0ETv3HMiVmN+oWWEz4xXDFYeE=
-X-Received: by 2002:a17:906:2887:: with SMTP id o7mr15492300ejd.425.1634911039873;
- Fri, 22 Oct 2021 06:57:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-10-kernel@esmil.dk>
- <CAHp75VcUv6WH0--FANpRExCdEOJNVo8KCtJ2Go090=FZq-Y0UQ@mail.gmail.com>
- <CANBLGcysKdqo+FioSkhd1PZRLzPF=fRJrCTsUGR7vXcn2WpYHg@mail.gmail.com>
- <CAHp75VditKnEcPKgqxz7NfG3ZWLZCu=pW=8qw7HS_iWePTj5Qw@mail.gmail.com> <CANBLGcxDUNib4C0mrP1bYnJSLyZn7rmV1wwJyj5tK4-nbMnu9g@mail.gmail.com>
-In-Reply-To: <CANBLGcxDUNib4C0mrP1bYnJSLyZn7rmV1wwJyj5tK4-nbMnu9g@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 22 Oct 2021 16:56:24 +0300
-Message-ID: <CAHp75VfcTkpq17fzVmzdZVC=xCBFEajxmG2C79TkD1S5+9BNqg@mail.gmail.com>
-Subject: Re: [PATCH v2 09/16] reset: starfive-jh7100: Add StarFive JH7100
- reset driver
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        with ESMTP id S231905AbhJVOFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 10:05:41 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD307C061764;
+        Fri, 22 Oct 2021 07:03:23 -0700 (PDT)
+Received: from [IPv6:2a02:810a:880:f54:50fa:5c7d:20f4:e8d3] (unknown [IPv6:2a02:810a:880:f54:50fa:5c7d:20f4:e8d3])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: dafna)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 3DBD31F454AB;
+        Fri, 22 Oct 2021 15:03:21 +0100 (BST)
+Subject: Re: [PATCH v3 13/33] iommu/mediatek: Remove the power status checking
+ in tlb flush all
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, chao.hao@mediatek.com,
+        yen-chang.chen@mediatek.com,
+        Collabora Kernel ML <kernel@collabora.com>
+References: <20210923115840.17813-1-yong.wu@mediatek.com>
+ <20210923115840.17813-14-yong.wu@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <6cff0b97-b861-e02d-e76f-2510c962c452@collabora.com>
+Date:   Fri, 22 Oct 2021 16:03:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20210923115840.17813-14-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 22, 2021 at 4:50 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> On Fri, 22 Oct 2021 at 15:39, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > On Fri, Oct 22, 2021 at 4:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > On Fri, 22 Oct 2021 at 14:56, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > On Thu, Oct 21, 2021 at 8:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+Hi
 
-...
 
-> > > > Can you convert this to simple
-> > > >
-> > > >   if (assert)
-> > > >     ret = readl_...
-> > > >   else
-> > > >     ret = readl_...
-> > > >
-> > > > below?
-> > >
-> > > I don't see how that would work. We're using the done value in in the
-> > > readl_poll_timeout. Maybe you can be a bit more explicit.
-> >
-> > Supply done either == mask or == ^mask. Try it.
->
-> So you want this?
-> if (assert)
->   ret = readl_poll_timeout_atomic(reg_status, value, (value & mask) ==
-> done, 0, 1000);
-> else
->   ret = readl_poll_timeout_atomic(reg_status, value, (value & mask) ==
-> ^done, 0, 1000);
->
-> The compiler might be clever enough, but I'd worry the long body of
-> the readl_poll_timeout_atomic macro is inline twice. Rather than just
-> flipping the bit in `done`.
+On 23.09.21 13:58, Yong Wu wrote:
+> To simplify the code, Remove the power status checking in the
+> tlb_flush_all, remove this:
+>     if (pm_runtime_get_if_in_use(data->dev) <= 0)
+> 	    continue;
+> 
+> After this patch, the mtk_iommu_tlb_flush_all will be called from
+> a) isr
+> b) pm runtime resume callback
+> c) tlb flush range fail case
+> d) iommu_create_device_direct_mappings
+>     -> iommu_flush_iotlb_all
+> In first three cases, the power and clock always are enabled; d) is direct
 
-You have a point, although it would be nice to have confirmation of either.
+Regarding case "c) tlb flush range fail case", I found out that this often happens
+when the iommu is used while it is runtime suspended. For example the mtk-vcodec
+encoder driver calls "pm_runtime_resume_and_get" only when it starts streaming but
+buffers allocation is done in 'v4l2_reqbufs' before "pm_runtime_resume_and_get" is called
+and then I see the warning "Partial TLB flush timed out, falling back to full flush"
+I am not sure how to fix that issue, but it seems that case 'c)' might indicate that
+power and clock are actually not enabled.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> mapping, the tlb flush is unnecessay since we already have tlb_flush_all
+> in the pm_runtime_resume callback. When the iommu's power status is
+> changed to active, the tlb always is clean.
+> 
+> In addition, there still are 2 reasons that don't add PM status checking
+> in the tlb flush all:
+> a) Write tlb flush all register also is ok even though the HW has no
+> power and clocks. Write ignore.
+> b) pm_runtime_get_if_in_use(m4udev) is 0 when the tlb_flush_all
+> is called frm pm_runtime_resume cb. From this point, we can not add
+> this code above in this tlb_flush_all.
+> 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>   drivers/iommu/mtk_iommu.c | 20 +++++++-------------
+>   1 file changed, 7 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index e9e94944ed91..4a33b6c6b1db 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -204,10 +204,14 @@ static struct mtk_iommu_domain *to_mtk_domain(struct iommu_domain *dom)
+>   	return container_of(dom, struct mtk_iommu_domain, domain);
+>   }
+>   
+> -static void mtk_iommu_tlb_do_flush_all(struct mtk_iommu_data *data)
+> +static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data *data)
+>   {
+>   	unsigned long flags;
+>   
+> +	/*
+> +	 * No need get power status since the HW PM status nearly is active
+> +	 * when entering here.
+> +	 */
+>   	spin_lock_irqsave(&data->tlb_lock, flags);
+>   	writel_relaxed(F_INVLD_EN1 | F_INVLD_EN0,
+>   		       data->base + data->plat_data->inv_sel_reg);
+> @@ -216,16 +220,6 @@ static void mtk_iommu_tlb_do_flush_all(struct mtk_iommu_data *data)
+>   	spin_unlock_irqrestore(&data->tlb_lock, flags);
+>   }
+>   
+> -static void mtk_iommu_tlb_flush_all(struct mtk_iommu_data *data)
+> -{
+> -	if (pm_runtime_get_if_in_use(data->dev) <= 0)
+> -		return;
+> -
+> -	mtk_iommu_tlb_do_flush_all(data);
+> -
+> -	pm_runtime_put(data->dev);
+> -}
+> -
+>   static void mtk_iommu_tlb_flush_range_sync(unsigned long iova, size_t size,
+>   					   struct mtk_iommu_data *data)
+>   {
+> @@ -263,7 +257,7 @@ static void mtk_iommu_tlb_flush_range_sync(unsigned long iova, size_t size,
+>   		if (ret) {
+>   			dev_warn(data->dev,
+>   				 "Partial TLB flush timed out, falling back to full flush\n");
+> -			mtk_iommu_tlb_do_flush_all(data);
+> +			mtk_iommu_tlb_flush_all(data);
+>   		}
+>   
+>   		if (has_pm)
+> @@ -993,7 +987,7 @@ static int __maybe_unused mtk_iommu_runtime_resume(struct device *dev)
+>   	 *
+>   	 * Thus, Make sure the tlb always is clean after each PM resume.
+>   	 */
+> -	mtk_iommu_tlb_do_flush_all(data);
+> +	mtk_iommu_tlb_flush_all(data);
+>   
+>   	/*
+>   	 * Uppon first resume, only enable the clk and return, since the values of the
+> 
