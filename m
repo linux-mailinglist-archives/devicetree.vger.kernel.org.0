@@ -2,112 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9CD437304
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44EF543731A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:53:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbhJVHsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 03:48:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231773AbhJVHsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 03:48:11 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 366D6C061764
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 00:45:54 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id y4so2184741plb.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 00:45:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Z/rD25ghdcHlFZlNXXw4T1nq9tn6Xxk48eCfRlYkZn0=;
-        b=FX/TUAYWjTslXC8Hp5FgJb0xZEBSJOzysJ37Fnt+xZr2D0kZlHWAjM5LriAbIwfP6J
-         K5zoimBILjYUJt/U/9WNXjDhJWd2MFRosKU0N0tttXl7tfAwg7bYzoodEV/xEv5EMthu
-         Cz+NDego1BmAJNbXiyXbTmwlzEWT3J8KcjkBQQAJ0KrpiFJZVA3RF59nDOVNs2aOgFtz
-         os0Z6/W10jytQwM59OGLWN7ld3jRlb+jcTgOd39/xhzIWzmjZmT/ZBDKJX1Jt2DbUbtv
-         YvU1EmFPgeEQ5oM7zmozZ1Mi6bNgP4Tx6scd+8J2VIWeS3NlW/MpdZmMbc045v/lxPVq
-         F5Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Z/rD25ghdcHlFZlNXXw4T1nq9tn6Xxk48eCfRlYkZn0=;
-        b=kShC9ITZYhniwBHDImc3qjIhXUM95oftwsbvgIIT+Ln8NHJaQVZASpQChQrXfjYoT7
-         jxGg7wV6NrA+319TxuqV4qexafaCqfADGbZiRch2V3RLGJQa77OqNWRlCKXI/kvG56aW
-         dUnOPSussOtxRpHqhy6pY8B5JSl8to+OoN6mIndqSv9di30tKNIUfNYrA7IxK9PMZeYv
-         YOOzkbAgGrMs22KPHz5pYaSR7ztXSqVkFEukZMsyWPiXlSQXhkZclo6E4QNuBj64/AWY
-         uEjAmIWZGCVNaj+wlUyeIXJcmnOBl7hj1MeFF+3yPNtPP+TV35yETvbfjf8aVmx+e9Y3
-         aA3A==
-X-Gm-Message-State: AOAM531s7is9pM81okiU6frhsQqJXo/Em+Cm2SpanDKLDlDVuxVesGh0
-        FdBUEGA538ZfpY8De6KP46rFCg==
-X-Google-Smtp-Source: ABdhPJyDYZOQap4PdARqH3xauuUfV1TALSxuYRwszMBi3zk3YQluIWNGdBgKPKjjOCAKjoC1L8kxTQ==
-X-Received: by 2002:a17:90b:1e4b:: with SMTP id pi11mr12764225pjb.179.1634888753689;
-        Fri, 22 Oct 2021 00:45:53 -0700 (PDT)
-Received: from localhost ([106.201.113.61])
-        by smtp.gmail.com with ESMTPSA id f15sm9647795pfe.132.2021.10.22.00.45.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Oct 2021 00:45:53 -0700 (PDT)
-Date:   Fri, 22 Oct 2021 13:15:51 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        David Heidelberg <david@ixit.cz>, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: opp: Allow multi-worded node names
-Message-ID: <20211022074551.ro22d7xj3idisvzv@vireshk-i7>
-References: <20211019231905.2974-1-digetx@gmail.com>
- <YXAr4OlhucAibMlH@robh.at.kernel.org>
- <20211022044334.4yn3i4kwinbrjicd@vireshk-i7>
- <48de7f40-deda-739d-96ca-e61ec5a0b257@gmail.com>
- <20211022065029.x5a5oh7mh2sjofey@vireshk-i7>
- <9798d34b-4886-9d4a-9fb7-634aa323af02@gmail.com>
+        id S231872AbhJVH4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 03:56:00 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:55648 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231773AbhJVH4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 03:56:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1634889223; x=1666425223;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=y+D2FT5j/LnL8Qi8aQ+TfjOl9CoE/Lrl6PtCtaRjKGg=;
+  b=H4QgZT9xpVpyP0p8zEZg6uuqCmCyyFmMC7tP3lWrIobmsYUDvpBLC90p
+   oX/eeW5NuZYXcIxDajOtkqhlan6nztEY1MMReDzrQoAOqKEQla1EyJRTs
+   idyV/DC/JuGhLw3Foz6nGIjpFZ20sz+ch1YtOLykYWROpmkBdm50QD8Ax
+   Gk8WjGf50Uk4nOZm/vCfGU3YrLnqwfvJQexDOQiGeAdr8AcITYQgqKjXn
+   OotNukvllbFitK0NPAZ34b9vsykZLrrNf+zr6uyWx2oP9VNBiLOvF7D3f
+   vq4ykCS7+DF2KkQnLNPKLHatreIIegq5xyNxqXRT5gk0bvgUUPo+82zGa
+   A==;
+IronPort-SDR: 9OpEuHiaqkKxHlZNKOn0MdTfU1kpWH1SRmNmjyHpOOr6EKaHUwnMz0Y83XpVwU5RzRzIYUx1Q6
+ WK+CXusf3hib6LAJ5wB5FpVkZGoigRwbnNlMyIG2nIeTAJdEOI/vw/jqvi/uwPe7YVnXuzR/iF
+ 9TtivW6wG1Q8WSNyYgpC20+19eXUKJJZZ4ukqWa3b53WYuEgogrRwc8KgkrwwGbWNLotS45uBe
+ +rQgBeRW8Ws3kLiQL/Y+L9CmVGUm8Ev2tA4hU4C4oF75BYYDNG+Cw406Nk6oNs5TTZPtk/Ma5B
+ tlaGHQ76YvJUlXdTvwZ6evcB
+X-IronPort-AV: E=Sophos;i="5.87,172,1631602800"; 
+   d="scan'208";a="149141099"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Oct 2021 00:53:42 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 22 Oct 2021 00:53:41 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 22 Oct 2021 00:53:38 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <jacopo@jmondi.org>, <laurent.pinchart@ideasonboard.com>,
+        <sakari.ailus@iki.fi>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH 00/21] media: atmel: atmel-isc: implement media controller
+Date:   Fri, 22 Oct 2021 10:52:26 +0300
+Message-ID: <20211022075247.518880-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9798d34b-4886-9d4a-9fb7-634aa323af02@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-21, 10:39, Dmitry Osipenko wrote:
-> What we currently have for Tegra is a tegra-opps.dtsi and tegra.dtsi
-> which includes the OPP's dtsi.
-> 
-> the tegra-opps.dtsi has this structure:
-> 
-> table: devname-opp-table {
-> 	opp: ...
-> };
-> 
-> and tegra.dtsi:
-> 
-> #include "tegra-opps.dtsi"
-> 
-> device@0000 {
-> 	operating-points-v2 = <&table>;
-> };
-> 
-> It just occurred to me that there is no need to move all tables to
-> tegra.dtsi, but change structure of tegra-opps.dtsi to:
-> 
-> device@0000 {
-> 	operating-points-v2 = <&table>;
-> 
-> 	table: opp-table {
-> 		opp: ...
-> 	};
-> };
+This series is a first attempt to support media controller in the atmel
+ISC and XISC drivers.
+This series also includes the csi2dc driver which was previously sent in a
+separate series:
+https://www.spinics.net/lists/linux-media/msg181042.html
+https://www.spinics.net/lists/linux-media/msg181044.html
+The driver now addresses comments received in latest v5 series from last year.
 
-I thought you would have already thought about that and I was surprised when you
-saw the tables are big enough to be moved. I was wondering what does it really
-mean :)
+The series includes some minor changes and fixes that improve the isc common
+code base, like removing the enum frameintervals VIDIOC, fixing bytesperline
+for planar formats, etc.
 
-> Then there no need to change current naming scheme. Let me try to
-> implement it and see how it goes.
+Many thanks to folks from libcamera who helped a lot with understanding
+how a media controller driver should behave.
 
-That's good then.
+Feedback is welcome !
+
+
+Eugen Hristev (21):
+  MAINTAINERS: add microchip csi2dc
+  dt-bindings: media: atmel: csi2dc: add bindings for microchip csi2dc
+  media: atmel: introduce microchip csi2dc driver
+  MAINTAINERS: atmel-isc: add new file atmel-isc-clk.c
+  media: atmel: atmel-isc: split the clock code into separate source
+    file
+  media: atmel: atmel-isc: replace video device name with module name
+  media: atmel: atmel-sama7g5-isc: fix ispck leftover
+  media: atmel: atmel-isc-base: use streaming status when queueing
+    buffers
+  media: atmel: atmel-isc-base: remove frameintervals VIDIOC
+  media: atmel: atmel-isc-base: report frame sizes as full supported
+    range
+  media: atmel: atmel-isc-base: implement mbus_code support in enumfmt
+  media: atmel: atmel-isc-base: fix bytesperline value for planar
+    formats
+  MAINTAINERS: atmel-isc: add new file atmel-isc-mc.c
+  media: atmel: atmel-isc: implement media controller
+  ARM: dts: at91: sama7g5: add nodes for video capture
+  ARM: configs: at91: sama7: add xisc and csi2dc
+  ARM: multi_v7_defconfig: add atmel video pipeline modules
+  media: atmel: atmel-sama5d2-isc: fix wrong mask in YUYV format check
+  media: atmel: atmel-isc-base: use mutex to lock awb workqueue from
+    streaming
+  media: atmel: atmel-isc-base: add wb debug messages
+  media: atmel: atmel-isc-base: clamp wb gain coefficients
+
+ .../bindings/media/microchip,csi2dc.yaml      | 149 ++++
+ MAINTAINERS                                   |   9 +
+ arch/arm/boot/dts/sama7g5.dtsi                |  49 ++
+ arch/arm/configs/multi_v7_defconfig           |   3 +
+ arch/arm/configs/sama7_defconfig              |   2 +
+ drivers/media/platform/atmel/Kconfig          |  15 +
+ drivers/media/platform/atmel/Makefile         |   3 +-
+ drivers/media/platform/atmel/atmel-isc-base.c | 515 ++++---------
+ drivers/media/platform/atmel/atmel-isc-clk.c  | 316 ++++++++
+ drivers/media/platform/atmel/atmel-isc-mc.c   | 235 ++++++
+ drivers/media/platform/atmel/atmel-isc.h      |  33 +
+ .../media/platform/atmel/atmel-sama5d2-isc.c  |  16 +-
+ .../media/platform/atmel/atmel-sama7g5-isc.c  |  18 +-
+ .../media/platform/atmel/microchip-csi2dc.c   | 700 ++++++++++++++++++
+ 14 files changed, 1686 insertions(+), 377 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+ create mode 100644 drivers/media/platform/atmel/atmel-isc-clk.c
+ create mode 100644 drivers/media/platform/atmel/atmel-isc-mc.c
+ create mode 100644 drivers/media/platform/atmel/microchip-csi2dc.c
 
 -- 
-viresh
+2.25.1
+
