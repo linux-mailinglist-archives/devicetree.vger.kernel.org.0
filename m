@@ -2,134 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62428437970
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 16:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 425BC4379BC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 17:18:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233159AbhJVO7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 10:59:16 -0400
-Received: from mail-pl1-f177.google.com ([209.85.214.177]:46955 "EHLO
-        mail-pl1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233102AbhJVO7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 10:59:15 -0400
-Received: by mail-pl1-f177.google.com with SMTP id i1so2840164plr.13;
-        Fri, 22 Oct 2021 07:56:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bP/PBZ5dE4p5HX2+QicYK3rA0pH5Cba6d4G9S+AUf1E=;
-        b=Je9zJuspXn4Spq26r2VAWVcdx4rDKm1V5uKeXekx6DwyqvfgYcec088ZUaBmSesZsc
-         6L2gNIKufUPe+Aj6VIncal8qM9ILX1o6Xqz2u4Tro3NOiybYPgi/KtuhjhSsw736vKwL
-         xD8KtICfSDOvFXLOcnds0lsJCilAL6cEDG7PpWNyTFjHrowaVpP1qU8WQQPiw+jOOAPj
-         AoYYMXZbKqX+qgqgvai8fHPvzKliRt5bEK1FL2sQP+V8Y3nyxKx5xPqbmMDnaJRF9Toh
-         uehjGN6retNIFXMS87SUzVljhb/aoVbBZPzpktSsMAoLpVRPsSEw/3J/Lcn/VZh7UodN
-         ILQw==
-X-Gm-Message-State: AOAM533YbKZARQ+UCOgfqxeGHwrbL0xtfjeFmhejhsyFk+HM8IHtsfLp
-        1fX1HAerJgkpBnAm3guHc8rQMjVLnRpHycPZwpA=
-X-Google-Smtp-Source: ABdhPJwB+UUuFlxzIiKUXd5KRD9w1J7GsVmq0SJSBFy8jKVC7XgO/aG+zbPd6g7s+pWXzJt2gXXzIfD/CsG7XKZCsEc=
-X-Received: by 2002:a17:902:7783:b0:13d:fee6:8095 with SMTP id
- o3-20020a170902778300b0013dfee68095mr453870pll.7.1634914616930; Fri, 22 Oct
- 2021 07:56:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-10-kernel@esmil.dk>
- <CAHp75VcUv6WH0--FANpRExCdEOJNVo8KCtJ2Go090=FZq-Y0UQ@mail.gmail.com>
- <CANBLGcysKdqo+FioSkhd1PZRLzPF=fRJrCTsUGR7vXcn2WpYHg@mail.gmail.com>
- <CAHp75VditKnEcPKgqxz7NfG3ZWLZCu=pW=8qw7HS_iWePTj5Qw@mail.gmail.com>
- <CANBLGcyaSgbOgA4u_QivUQicyZ0MuUmrSsPq56OAANsav8R=VQ@mail.gmail.com> <CAHp75Vf=fGn33JFa-8UwCzv7A6AgHdnvfoabKnCcuKZxOyWX2Q@mail.gmail.com>
-In-Reply-To: <CAHp75Vf=fGn33JFa-8UwCzv7A6AgHdnvfoabKnCcuKZxOyWX2Q@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Fri, 22 Oct 2021 16:56:45 +0200
-Message-ID: <CANBLGcwZG-HpMuyw0LTGY2fwOJTgcMW7V_6kb=CFhX-Y5RjQSA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/16] reset: starfive-jh7100: Add StarFive JH7100
- reset driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S233277AbhJVPUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 11:20:33 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:53455 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232384AbhJVPUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 11:20:33 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 66D0C580F92;
+        Fri, 22 Oct 2021 11:18:14 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Fri, 22 Oct 2021 11:18:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=46YpM5jZKwd3mcnLxsPVqOmlYwf
+        lxCO4p2fiY1KoOPc=; b=qm/JHEjUR81ScgvglY9ndyrWS6meTUz02OeqaWeuwnV
+        OkvwFVjW753vqgVHwr+I7OhJFw1cJfhfxlXXHEZA1I3RqDQ4tWjSZ/KlP3IYrvL0
+        DhrpBbN43xHgOaLUMJZJ0KuzMu+1fEEfTEsxbTqF7FaeyDyhTZQykIWjrUNSNGsi
+        uT4eqrJqDCpp6eFFpZLfBgwDAjZP5dfZhc0bJjgFC6dd8iUWmiYnKoe7178zU2qu
+        AG+l8dA1GcdlOAML1P8inXgr9ERXBCkHQGZ/6xCBd0shOkTY/7UQgld470E2Sthm
+        ui0lZ6XpYyrGFwS10FcCiQc9TKhxRpuKtn146Sp7MUA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=46YpM5
+        jZKwd3mcnLxsPVqOmlYwflxCO4p2fiY1KoOPc=; b=ODoNLg6b9DxvKZ9suUSYH6
+        ibbkhO6J/bGRvsG2yv16q0+2KVopWvljS4+tT9yMqnb9aC2M7FVOqVuzMwi6DV4w
+        TYC4Gp/ORsQGrXg/Bx35p7J+SvPOBT/84L/GRvNabaIRP+cr3IDLB7HOV+R5SdTA
+        mSgcSov7Yc5r/dPNI3VIWe/I7caf2GraW1ukuxXF0alogK1ev4t4rZbDVbWNJEOA
+        frUsW+rLtY4rrheFi195Oav+vi68tM+LU2KSKKkjAbAZfd/PUKEdxNGtruwzZPRn
+        /HnDPeB/bWdUU1AS31twbQCi1oqH1TQwhdUVCuPuJt3zeuqZRSWsc1MslNArO6bQ
+        ==
+X-ME-Sender: <xms:NdZyYRpgEAo76-yfnDAaM3pmvgYYvRy5uQZRPPwY7hxaAdC1BfhxFw>
+    <xme:NdZyYTpjPmsAr-sXeGewqzvH3VcwRoQ-JkWIOUfyqVqW1OhExH8m6UUhyWwt93IXY
+    zZFW4t_5T5tY6_joMs>
+X-ME-Received: <xmr:NdZyYeOzjnNtXiGBb9iTlhifuZm69WxhizsDdtS7DK7kB1X74WcFtrRTV2kgVgXa6tNAJ1C9qLzSAYfy9X6ZGBv--bzWSHZ5w6OAAumuAgBo7g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvddvkedgjedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    gfrhhlucfvnfffucdljedtmdenucfjughrpeffhffvuffkfhggtggujgesghdtroertddt
+    vdenucfhrhhomheprfgrthhrihgtkhcuhghilhhlihgrmhhsuceophgrthhrihgtkhessh
+    htfigtgidrgiihiieqnecuggftrfgrthhtvghrnhepfeeikedvjeejheetgeeggeefgeff
+    teeugfegtddvudeggfeugfefjedvuedvveevnecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepphgrthhrihgtkhesshhtfigtgidrgiihii
+X-ME-Proxy: <xmx:NdZyYc71h11aRVJBMGfw2EO0jp91Y2LEb_hdTyTUPjoScQgPUwAZHA>
+    <xmx:NdZyYQ6B5nPy8TxGZY_MeQw4V0VyxFBsCDKZHYicXG6WSJGUG2ZCoQ>
+    <xmx:NdZyYUgj5g6TZgOd_k22lZJCcLgfLGG_GyhOP924D2D0nfpbD18H_g>
+    <xmx:NtZyYTJ4p4_qR52E2TPgLiaZIzg_pp3dv1yxYjVH1RdCC9E6t3S5IQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 22 Oct 2021 11:18:12 -0400 (EDT)
+Date:   Fri, 22 Oct 2021 10:18:11 -0500
+From:   Patrick Williams <patrick@stwcx.xyz>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Zev Weiss <zev@bewilderbeest.net>, kvm@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Kirti Wankhede <kwankhede@nvidia.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Rajat Jain <rajatja@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jianxiong Gao <jxgao@google.com>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Alex Williamson <alex.williamson@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cornelia Huck <cohuck@redhat.com>,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org
+Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
+ reserved devices
+Message-ID: <YXLWMyleiTFDDZgm@heinlein>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <20211022020032.26980-5-zev@bewilderbeest.net>
+ <YXJeYCFJ5DnBB63R@kroah.com>
+ <YXJ3IPPkoLxqXiD3@hatter.bewilderbeest.net>
+ <YXJ88eARBE3vU1aA@kroah.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="70daKchr0JYsGAyF"
+Content-Disposition: inline
+In-Reply-To: <YXJ88eARBE3vU1aA@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Oct 2021 at 16:50, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Fri, Oct 22, 2021 at 5:25 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > On Fri, 22 Oct 2021 at 15:39, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Fri, Oct 22, 2021 at 4:35 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > > On Fri, 22 Oct 2021 at 14:56, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > On Thu, Oct 21, 2021 at 8:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> ...
->
-> > > > > Why all these ugly % 32 against constants?
-> > > >
-> > > > Because the JH7100_RST_ values goes higher than 31. There is a
-> > > > BIT_MASK macro, but that does % BITS_PER_LONG and this is a 64bit
-> > > > machine.
-> > >
-> > > And? It's exactly what you have to use!
-> >
-> > So you want me to use an unsigned long array or DECLARE_BITMAP and
-> > juggle two different index and bit offsets?
->
-> What are the offsets of those status registers?
-> AFAICS they are sequential 4 32-bit registers.
 
-That's right, but we're on a 64bit machine, so DECLARE_BITMAP will
-give us an unsigned long array that doesn't match that.
+--70daKchr0JYsGAyF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> So bitmap is exactly what is suitable here, you are right!
-> See gpio-xilinx and gpio-pca953x on how to use bitmaps in the GPIO drivers.
+Hi Greg,
 
-None of them has a pre-initialized const DECLARE_BITMAP, so they don't
-have to deal with the 4 vs. 2 commas problem.
+On Fri, Oct 22, 2021 at 10:57:21AM +0200, Greg Kroah-Hartman wrote:
+> On Fri, Oct 22, 2021 at 01:32:32AM -0700, Zev Weiss wrote:
+> > On Thu, Oct 21, 2021 at 11:46:56PM PDT, Greg Kroah-Hartman wrote:
+> > > On Thu, Oct 21, 2021 at 07:00:31PM -0700, Zev Weiss wrote:
 
-> > Also is there a macro for handling that we'd then need 4 commas on
-> > 32bit COMPILE_TEST and 2 commas on 64bit?
-> > If you have some other way in mind you'll have to be a lot more explicit again.
-> >
-> > The point of the jh7100_reset_asserted array is that it exactly
-> > mirrors the values of the status registers when the lines are
-> > asserted. Maybe writing it like this would be more explicit:
-> >
-> > static const u32 jh7100_reset_asserted[4] = {
-> >         /* STATUS0 register */
-> >         BIT(JH7100_RST_U74 % 32) |
-> >         BIT(JH7100_RST_VP6_DRESET % 32) |
-> >         BIT(JH7100_RST_VP6_BRESET % 32),
-> >         /* STATUS1 register */
-> >         BIT(JH7100_RST_HIFI4_DRESET % 32) |
-> >         BIT(JH7100_RST_HIFI4_BRESET % 32),
-> >         /* STATUS2 register */
-> >         BIT(JH7100_RST_E24 % 32),
-> >         /* STATUS3 register */
-> >         0,
-> > };
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+> > So we want the kernel to be aware of the device's existence (so that we
+> > *can* bind a driver to it when needed), but we don't want it touching t=
+he
+> > device unless we really ask for it.
+> >=20
+> > Does that help clarify the motivation for wanting this functionality?
+>=20
+> Sure, then just do this type of thing in the driver itself.  Do not have
+> any matching "ids" for this hardware it so that the bus will never call
+> the probe function for this hardware _until_ a manual write happens to
+> the driver's "bind" sysfs file.
+
+It sounds like you're suggesting a change to one particular driver to satis=
+fy
+this one particular case (and maybe I'm just not understanding your suggest=
+ion).
+For a BMC, this is a pretty regular situation and not just as one-off as Ze=
+v's
+example.
+
+Another good example is where a system can have optional riser cards with a
+whole tree of devices that might be on that riser card (and there might be
+different variants of a riser card that could go in the same slot).  Usually
+there is an EEPROM of some sort at a well-known address that can be parsed =
+to
+identify which kind of riser card it is and then the appropriate sub-device=
+s can
+be enumerated.  That EEPROM parsing is something that is currently done in
+userspace due to the complexity and often vendor-specific nature of it.
+
+Many of these devices require quite a bit more configuration information th=
+an
+can be passed along a `bind` call.  I believe it has been suggested previou=
+sly
+that this riser-card scenario could also be solved with dynamic loading of =
+DT
+snippets, but that support seems simple pretty far from being merged.
+
+--=20
+Patrick Williams
+
+--70daKchr0JYsGAyF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmFy1jEACgkQqwNHzC0A
+wRkFhg/9HGu2uiFP02YyeOYntJIcOruf1o1SzGDkH/cH9bsS/NmFUA76UFa42pJp
+O1Dkn1yXtjNdENw9UL7RU3kmCWHaEP2nBxP3F+3Gt/9uYZIxArNWBQUGMjELC+dn
+6wfQXoRPwPX+/Tzug7WAgwqsWP9KvdIzvIYf1GfKSlZGXxa2uuwJb4QFTLirrmiK
+zFn78+EB+4qSZEl3KucpA4UahfCobnPcz7a51DP2XSn70Qq2kTZfxn3Pjd4tYtAg
+N0YqDe32NnYHX1jAh/g/QXLv4BCOHh4x8IDWBaekoZ9dSg9CctAjct8L7+HxbdV6
+HWFwlDFm2GvLtv71WyKGqxRaeFfp2+BSZaedQXLM/1t3xY8lD3HOG0yFUxCweXZ9
+yFXrlql9NQ+KkoML3LbO+NUrzk3Iz3cJxSQ7s0G6/N57fI/dUsHVihJfABroBPhF
+xNFYGEsADyvcLFygWXCG3Z/hNa5RgJOhSxrijXTTimUmJg0/TZePrLGJQ6Iikehp
+D+5v6DOh/Itq/CaXhjpwitloV1yxQGnEM+72cIb7pjkjTqsuKXQwy8Gq4XQzXHLX
+YV9NM7xESn7QUuuED4KprEEKYMVu5vIFDNhgifBXd48GTEr1Ga8BbFDVfoUcPuya
+oQ707lRUwbiNx344LTJqBm/cotib5i5rIaMQAIAZtUecxdzQ9tk=
+=/Hnz
+-----END PGP SIGNATURE-----
+
+--70daKchr0JYsGAyF--
