@@ -2,58 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D364B437EC1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED38437ED6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:50:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233926AbhJVTlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 15:41:42 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:53524 "EHLO vps0.lunn.ch"
+        id S233727AbhJVTwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 15:52:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232504AbhJVTll (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Oct 2021 15:41:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=UbtXdGmH6ZNl4a8rI3PzE5Ir8rWJXZWxxEZkMcHo7FE=; b=sVOccO4F1QZiPz3NKQq2b7ig3/
-        +p/vLY0xkO+1ohk3pSQIgmwH35a910M7+Y0X4WwPWIlvbZ90w5aLMMh6GEe724nxZMfjCOBOBgtDV
-        tAcUTQugTC3zoGK+57rFBAylgBs7OUhb+Grtbqy/+Ecg1D5o4Ua6QFfSI9B94l+G16uY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1me0Nr-00BQLi-G7; Fri, 22 Oct 2021 21:39:19 +0200
-Date:   Fri, 22 Oct 2021 21:39:19 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     netdev@vger.kernel.org,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [net-next PATCH 1/2] dt-bindings: net: macb: Add mdio bus child
- node
-Message-ID: <YXMTZ1zIstT5OV96@lunn.ch>
-References: <20211022163548.3380625-1-sean.anderson@seco.com>
+        id S232380AbhJVTwS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 15:52:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 59486610FF;
+        Fri, 22 Oct 2021 19:50:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634932201;
+        bh=jwMPmB0H7xo3mn8douB10ZBq+16xN4lZpM6uy8QxG9A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ISgo/73wtU88GuydGF1LrZFMivJ0v9w7eDKsbF13R6rIuFKACOZniNOzVV4X4B5oz
+         bhu4kLVHqflWTAxamJDBthxP69vENoXLgzwBVVenwlY5VB2KiGUc4LSaLTRBM0qnS+
+         oLtgVs7jFh4gQThFUztvQKXgthAEDH9CFs0mFtyl0NuKnwfgFdi3zHNepgEFkNmfDc
+         /v12+Y1rN2M6wM/L8I8tMIU8U+nTbGA5n9ZoVrAP6yI7hYKco1rgy0Mpe12wK7+P4q
+         HeqEFJh6HOakH/IfNmSKPwgZ+QV4qeHYZa1PY0aSHuVfPOGGBPi4ZDmwEhZ/UTTwXE
+         UsSPRZ3PRYXdg==
+Date:   Fri, 22 Oct 2021 20:49:57 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Rob Herring <robh@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
+ voltage regulators
+Message-ID: <YXMV5Uhe4s2mMWZn@sirena.org.uk>
+References: <20211022140714.28767-1-jim2101024@gmail.com>
+ <20211022140714.28767-2-jim2101024@gmail.com>
+ <YXLPZ4CsQMjHPpJS@sirena.org.uk>
+ <CA+-6iNz3PMsYDds_uoh_xNoPop-tLn1O9U9wnTmTx+pZyN5ZFA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/Bye8kAx8ud+gq9M"
 Content-Disposition: inline
-In-Reply-To: <20211022163548.3380625-1-sean.anderson@seco.com>
+In-Reply-To: <CA+-6iNz3PMsYDds_uoh_xNoPop-tLn1O9U9wnTmTx+pZyN5ZFA@mail.gmail.com>
+X-Cookie: I program, therefore I am.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 22, 2021 at 12:35:47PM -0400, Sean Anderson wrote:
-> This adds an optional mdio bus child node. If present, the mac will
-> look for PHYs there instead of directly under the top-level node. This
-> eliminates any ambiguity about whether child nodes are PHYs, and allows
-> the MDIO bus to contain non-PHY devices.
 
-Hi Sean
+--/Bye8kAx8ud+gq9M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please always have a patch 0/X for patchsets, which explains the big
-picture of the patchset. This is also used as the merge commit
-message.
+On Fri, Oct 22, 2021 at 03:24:50PM -0400, Jim Quinlan wrote:
 
-	Andrew
+> Just to be clear, and assuming that the brcm-ep-[ab] supply names are
+> green-lighted by you and Rob, are you saying
+> I have to update the github site or our YAML file?  If the latter, it
+> seems odd to be describing
+> an EP-device property in the YAML for an RC driver since the github
+> site already describes the EP-device.
+
+If you're extending the binding to have additional features beyond what
+the generic binding has then I'd expect something in the device specific
+binding.  This doesn't seem different to how controllers and devices for
+other buses frequently add properties on top of the generic properties
+for the bus.
+
+--/Bye8kAx8ud+gq9M
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmFzFeUACgkQJNaLcl1U
+h9Dydgf9GDlnjcoBJeK+uP0hv76ds3RnTnpYLu/UsmaibCKXoH14KBs4M4BCKT1D
+yXcBk0yCXaFCFAGYfU2l1LT4V01/dFLs1SgEORIUyVYM/djKHIaSfCe2dIr+tzKH
+tAYZS2wZOLKUS/2TrAk14kUO7kYbz0CsoJzbpyALO7jpVbuBY1tvJAlsTlzgNiVo
+iLIb02PxJZdNC+8tD2eXLmWkEbABT5Slb3Y4U6lw61FWcpSaCreaVK04pBT6HyfK
+qHgOoWG0ERaagiiEdt1i/i5/AxUKVMShDxb/SqqAZIx5HFWhMtuqza4z1sLAx6Bv
+Svjh9CjaxOW9QnB+le6hZNEBIrp0IQ==
+=mHsy
+-----END PGP SIGNATURE-----
+
+--/Bye8kAx8ud+gq9M--
