@@ -2,148 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3F64372EB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B65F437302
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232291AbhJVHln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 03:41:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231887AbhJVHln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 03:41:43 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF3DC061764;
-        Fri, 22 Oct 2021 00:39:25 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id br29so3365502lfb.7;
-        Fri, 22 Oct 2021 00:39:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/58fmdUhTm+vfNi37x8+KK09cI+TRWyCksHi0nDfU5w=;
-        b=InAXn6SY9iZdGJoaYnKd6GyA2mSWyrbFdE79N4LY8b8lZmJblhqrlFCdjFM/rqFQb2
-         TgybTyUTAjRL7SXNkv/joGkB3HPU9TjJLjHVyltGjDO0rpqE4R9ifzY4O3uf1DqAcXBc
-         aS3ByHucFdSVKXqokg+hW4kQQD5z5sizJnGl/qSHp4ZywdgBkFNu+P1w4cb94cwwZfW2
-         24yf+pLcE7Lk/e0/mm0UJGwMwilDUgRygz9vK0pqNvlhEbZobeMLC8LXZerwBsZ2CWJ5
-         Qh20aH8mKeOlB/jpHHbgsimYZPW0/23p/6VLSgyTr08VpHtTZ5LviakjY6NFKM/AHt70
-         5VYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/58fmdUhTm+vfNi37x8+KK09cI+TRWyCksHi0nDfU5w=;
-        b=PMI9ZCUJ6arDgstj8wwuHYMPnOP16qfQeMLNwfnnO+ckohzmRPcFzPB10JL5cxCiGE
-         PQ4Dr6p1hp3BqS/F7qX0jTwwO5hRZbXDR0Oodtq7pLoRjhi5c2aCf4et2OdIwzcLx08i
-         /LDFwrc0zvrefT7pgUGs394zCNGD1Q0563yCOOzv1lB4zAJadJj7e/QrnO9ORwkP9HaH
-         r25TWdpAK/e3Ta8yOJCQxzlIjMzi44nJJBkfxqIo/WFcsqZ3jgXC0mGZuO0pDq2kWurW
-         nKQkeiXeD7y1BMjxQTaUOGM26vKThs/SzLEFSUf8iRqyEeZs2FoT55G2/yMvlyYim2CP
-         s6uQ==
-X-Gm-Message-State: AOAM532XrwvCYyUroHvYub5Jcv+8xoOlBmSO1haY1cDdYK8qjMAVLb0t
-        21+jO4WN/hOQ2ceESwqzIbJpsgd5ivc=
-X-Google-Smtp-Source: ABdhPJymo+Zl+DAOspOKSpT4DLOygjttXwzvy1Fv7LSUcZ7hlmbkYW/ZckIr7kJEQv4otKGXY694Gw==
-X-Received: by 2002:a19:c7d2:: with SMTP id x201mr9416131lff.543.1634888363840;
-        Fri, 22 Oct 2021 00:39:23 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-61-202.dynamic.spd-mgts.ru. [94.29.61.202])
-        by smtp.googlemail.com with ESMTPSA id 13sm658620lfq.69.2021.10.22.00.39.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Oct 2021 00:39:23 -0700 (PDT)
-Subject: Re: [PATCH v1] dt-bindings: opp: Allow multi-worded node names
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
-        David Heidelberg <david@ixit.cz>, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20211019231905.2974-1-digetx@gmail.com>
- <YXAr4OlhucAibMlH@robh.at.kernel.org>
- <20211022044334.4yn3i4kwinbrjicd@vireshk-i7>
- <48de7f40-deda-739d-96ca-e61ec5a0b257@gmail.com>
- <20211022065029.x5a5oh7mh2sjofey@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9798d34b-4886-9d4a-9fb7-634aa323af02@gmail.com>
-Date:   Fri, 22 Oct 2021 10:39:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231778AbhJVHrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 03:47:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231773AbhJVHru (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 03:47:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 07F1A610E7;
+        Fri, 22 Oct 2021 07:45:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1634888733;
+        bh=Z6yQcmBJ8aKfu0i1OuEPtt3St4z1ZRFhgXV88+Wc/t8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=z92mTEMa5gPnLSdnBhIHMxh2Od0alhF7AyEqH4PTZeVA1dOLYtzXUSfQe4x31kymC
+         KPANlAmMm4w7oA/DJpYJkmJPSFtGxMmtiah31rNZSFAWcgffHwY/uBYJ9rgclqNsAv
+         ugUogTE0cvYY2d5iI3psRj+OQlsZO+Ywc38pEs0o=
+Date:   Fri, 22 Oct 2021 09:45:31 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] of: base: add function to check for status =
+ "reserved"
+Message-ID: <YXJsG1E5fWpddKHx@kroah.com>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <20211022020032.26980-2-zev@bewilderbeest.net>
+ <YXJdi3IBzaqmSZ9b@kroah.com>
+ <YXJqgNDOaNLzTg0T@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-In-Reply-To: <20211022065029.x5a5oh7mh2sjofey@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YXJqgNDOaNLzTg0T@hatter.bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-22.10.2021 09:50, Viresh Kumar пишет:
-> On 22-10-21, 09:40, Dmitry Osipenko wrote:
->> 22.10.2021 07:43, Viresh Kumar пишет:
->>> On 20-10-21, 09:46, Rob Herring wrote:
->>>> On Wed, Oct 20, 2021 at 02:19:05AM +0300, Dmitry Osipenko wrote:
->>>>> Not all OPP table names and OPP entries consist of a single word. In
->>>>> particular NVIDIA Tegra OPP tables use multi-word names. Allow OPP node
->>>>> and OPP entry name to have multi-worded names to silence DT checker
->>>>> warnings about the multi-word names separated by hyphen.
->>>>>
->>>>> Reviewed-by: David Heidelberg <david@ixit.cz>
->>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 4 ++--
->>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->>>>> index ae3ae4d39843..298cf24af270 100644
->>>>> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->>>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->>>>> @@ -22,7 +22,7 @@ select: false
->>>>>  
->>>>>  properties:
->>>>>    $nodename:
->>>>> -    pattern: '^opp-table(-[a-z0-9]+)?$'
->>>>> +    pattern: '^opp-table(-[a-z0-9]+)*$'
->>>>
->>>> I don't see how this helps you. What I see needed upstream is a prefix:
->>>>
->>>> '-?opp-table(-[0-9]+)?$'
->>>
->>> I wonder if we should disallow that to keep naming more 
->>
->> I also think that postfix variant should be disallowed for consistency.
->> I sent out patches for both variants.
->>
->> V2 uses pattern that supports both naming schemes. If V2 is less
->> appropriate, then please take this V1.
+On Fri, Oct 22, 2021 at 12:38:40AM -0700, Zev Weiss wrote:
+> On Thu, Oct 21, 2021 at 11:43:23PM PDT, Greg Kroah-Hartman wrote:
+> > On Thu, Oct 21, 2021 at 07:00:28PM -0700, Zev Weiss wrote:
+> > > Per v0.3 of the Devicetree Specification [0]:
+> > > 
+> > >   Indicates that the device is operational, but should not be used.
+> > >   Typically this is used for devices that are controlled by another
+> > >   software component, such as platform firmware.
+> > > 
+> > > One use-case for this is in OpenBMC, where certain devices (such as a
+> > > BIOS flash chip) may be shared by the host and the BMC, but cannot be
+> > > accessed by the BMC during its usual boot-time device probing, because
+> > > they require additional (potentially elaborate) coordination with the
+> > > host to arbitrate which processor is controlling the device.
+> > > 
+> > > Devices marked with this status should thus be instantiated, but not
+> > > have a driver bound to them or be otherwise touched.
+> > > 
+> > > [0] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
+> > > 
+> > > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> > > ---
+> > >  drivers/of/base.c  | 56 +++++++++++++++++++++++++++++++++++++++-------
+> > >  include/linux/of.h |  6 +++++
+> > >  2 files changed, 54 insertions(+), 8 deletions(-)
+> > > 
+> > > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > > index 0ac17256258d..3bd7c5b8a2cc 100644
+> > > --- a/drivers/of/base.c
+> > > +++ b/drivers/of/base.c
+> > > @@ -580,14 +580,16 @@ int of_machine_is_compatible(const char *compat)
+> > >  EXPORT_SYMBOL(of_machine_is_compatible);
+> > > 
+> > >  /**
+> > > - *  __of_device_is_available - check if a device is available for use
+> > > + * __of_device_check_status - check if a device's status matches a particular string
+> > >   *
+> > > - *  @device: Node to check for availability, with locks already held
+> > > + * @device: Node to check status of, with locks already held
+> > > + * @val: Status string to check for, or NULL for "okay"/"ok"
+> > >   *
+> > > - *  Return: True if the status property is absent or set to "okay" or "ok",
+> > > - *  false otherwise
+> > > + * Return: True if status property exists and matches @val, or either "okay"
+> > > + * or "ok" if @val is NULL, or if status property is absent and @val is
+> > > + * "okay", "ok", or NULL.  False otherwise.
+> > >   */
+> > > -static bool __of_device_is_available(const struct device_node *device)
+> > > +static bool __of_device_check_status(const struct device_node *device, const char *val)
+> > >  {
+> > >  	const char *status;
+> > >  	int statlen;
+> > > @@ -596,17 +598,35 @@ static bool __of_device_is_available(const struct device_node *device)
+> > >  		return false;
+> > > 
+> > >  	status = __of_get_property(device, "status", &statlen);
+> > > -	if (status == NULL)
+> > > -		return true;
+> > > +	if (!status) {
+> > > +		/* a missing status property is treated as "okay" */
+> > > +		status = "okay";
+> > > +		statlen = strlen(status) + 1; /* property lengths include the NUL terminator */
+> > > +	}
+> > > 
+> > >  	if (statlen > 0) {
+> > > -		if (!strcmp(status, "okay") || !strcmp(status, "ok"))
+> > > +		if (!val && (!strcmp(status, "okay") || !strcmp(status, "ok")))
+> > > +			return true;
+> > > +		else if (val && !strcmp(status, val))
+> > 
+> > 
+> > Ick, where is this string coming from?  The kernel or userspace or a
+> > device tree?  This feels very wrong, why is the kernel doing parsing
+> > like this of different options that all mean the same thing?
+> > 
 > 
-> I didn't like V2, we can mandate to keep it like opp-* and opp-table-*.
+> Which string do you mean by "this string"?  'status' comes from a property
+> of the device tree node; 'val' will be one of a small set of string
+> constants passed by the caller.  Accepting either spelling of "okay"/"ok"
+> has been in place since 2008 (commit 834d97d45220, "[POWERPC] Add
+> of_device_is_available function"); using NULL as a shorthand for those two
+> strings was a suggestion that came up in review feedback on a previous
+> incarnation of these patches (https://lore.kernel.org/openbmc/CAL_Jsq+rKGv39zHTxNx0A7=X4K48nXRLqWonecG5SobdJq3yKw@mail.gmail.com/T/#u).
+
+I was referring to "okay".  And if this really is a "we take either"
+type of thing, shouldn't there be a single function to call for this
+type of test, much like we have some of the sysfs helpers?
+
+And what about using match_string() as well?
+
+> > >  			return true;
+> > >  	}
+> > > 
+> > >  	return false;
+> > >  }
+> > > 
+> > > +/**
+> > > + * __of_device_is_available - check if a device is available for use
+> > > + *
+> > > + * @device: Node to check for availability, with locks already held
+> > > + *
+> > > + * Return: True if the status property is absent or set to "okay" or "ok",
+> > > + * false otherwise
+> > > + */
+> > > +static bool __of_device_is_available(const struct device_node *device)
+> > > +{
+> > > +	return __of_device_check_status(device, NULL);
+> > > +}
+> > > +
+> > >  /**
+> > >   *  of_device_is_available - check if a device is available for use
+> > >   *
+> > > @@ -628,6 +648,26 @@ bool of_device_is_available(const struct device_node *device)
+> > >  }
+> > >  EXPORT_SYMBOL(of_device_is_available);
+> > > 
+> > > +/**
+> > > + * of_device_is_reserved - check if a device is marked as reserved
+> > > + *
+> > > + * @device: Node to check for reservation
+> > > + *
+> > > + * Return: True if the status property is set to "reserved", false otherwise
+> > > + */
+> > > +bool of_device_is_reserved(const struct device_node *device)
+> > > +{
+> > > +	unsigned long flags;
+> > > +	bool res;
+> > > +
+> > > +	raw_spin_lock_irqsave(&devtree_lock, flags);
+> > > +	res = __of_device_check_status(device, "reserved");
+> > > +	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+> > 
+> > Why is this a "raw" spinlock?
+> > 
 > 
-> This patch looked okay to me, lets see what Rob has to say.
+> devtree_lock being a raw_spinlock_t appears to date from commit d6d3c4e65651
+> ("OF: convert devtree lock from rw_lock to raw spinlock"); "required for
+> preempt-rt", according to Thomas Gleixner's commit message.
 > 
+> > Where is this status coming from?
+> > 
+> 
+> This would be specified in a DT node, e.g. via something like:
+> 
+>   &somedev {
+>     compatible = "foobar";
+>     status = "reserved";
+>     /* ... */
+>   };
+> 
+> > > +
+> > > +	return res;
+> > > +}
+> > > +EXPORT_SYMBOL(of_device_is_reserved);
+> > 
+> > EXPORT_SYMBOL_GPL()?
+> > 
+> 
+> Its closest existing sibling, of_device_is_available(), is a plain
+> EXPORT_SYMBOL(); if we want to convert things more broadly that'd be fine
+> with me, but having one be GPL-only and the other not seems like it'd be a
+> bit confusing and inconsistent?
 
-What we currently have for Tegra is a tegra-opps.dtsi and tegra.dtsi
-which includes the OPP's dtsi.
+Ah, ok, you are following the rest of this file for this, and the
+locking stuff, sorry, I was not familiar with it.
 
-the tegra-opps.dtsi has this structure:
+thanks,
 
-table: devname-opp-table {
-	opp: ...
-};
-
-and tegra.dtsi:
-
-#include "tegra-opps.dtsi"
-
-device@0000 {
-	operating-points-v2 = <&table>;
-};
-
-It just occurred to me that there is no need to move all tables to
-tegra.dtsi, but change structure of tegra-opps.dtsi to:
-
-device@0000 {
-	operating-points-v2 = <&table>;
-
-	table: opp-table {
-		opp: ...
-	};
-};
-
-Then there no need to change current naming scheme. Let me try to
-implement it and see how it goes.
+greg k-h
