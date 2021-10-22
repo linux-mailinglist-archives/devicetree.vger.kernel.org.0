@@ -2,164 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63125437A85
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 18:00:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9BDD437AE0
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 18:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233580AbhJVQCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 12:02:10 -0400
-Received: from mail-pg1-f182.google.com ([209.85.215.182]:40452 "EHLO
-        mail-pg1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233539AbhJVQCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 12:02:03 -0400
-Received: by mail-pg1-f182.google.com with SMTP id q5so3703244pgr.7;
-        Fri, 22 Oct 2021 08:59:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ve3WMv+ekDk2TdI4V72WJsoDE4qRPggIm2D4MYgIa/s=;
-        b=YoSiSqNcsi/ce2Uu1fcFeaqpii6hTMjVDm7gJVw9xDH7AdC8PIx4gZ6uPuL7xRMfKC
-         54vOTvPfjthY2XSwrFXUfAZ2vUmPFxcdmIjrVK9CB27pMhIzll+qEDfnDQXo0s/LiDVf
-         dWF8W7ei5gGRo647Wr5c6gl5mtJtGFEoXxxy8I01BTGmgrqSaevViH5qTX9xyNlbam7d
-         jERbu6pqN3qPhlmXHpFpLvtQmdhKZJ7K4Xyx36X/iWI8B0kd/8j/TebiebSz9ztK3k5i
-         8REQfczYggfpmdnmJptxwh77Sesn5dLd6oDTEceHOpqJAhKrDemxDA0/Hs/W3CJl4d3m
-         uGwg==
-X-Gm-Message-State: AOAM532FBU6tFdSW+DWL7GGC++DXZ0CowbtFTlczbdBiSIOgY3GHbEGa
-        d7+gGptSPuK9PthIGgoSDNCFIkrkN41OTYu6xCQ=
-X-Google-Smtp-Source: ABdhPJytmeUKXJ3sdL/RoZcFfoUxkwHNf715Lzot8ru5O13Qs3evLOYJia2m3U02KPExB+40zvfLAu1iZcMn5ibdDp4=
-X-Received: by 2002:a63:2d46:: with SMTP id t67mr414276pgt.15.1634918385517;
- Fri, 22 Oct 2021 08:59:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-10-kernel@esmil.dk>
- <CAHp75VcUv6WH0--FANpRExCdEOJNVo8KCtJ2Go090=FZq-Y0UQ@mail.gmail.com>
- <CANBLGcysKdqo+FioSkhd1PZRLzPF=fRJrCTsUGR7vXcn2WpYHg@mail.gmail.com>
- <CAHp75VditKnEcPKgqxz7NfG3ZWLZCu=pW=8qw7HS_iWePTj5Qw@mail.gmail.com>
- <CANBLGcyaSgbOgA4u_QivUQicyZ0MuUmrSsPq56OAANsav8R=VQ@mail.gmail.com>
- <CAHp75Vf=fGn33JFa-8UwCzv7A6AgHdnvfoabKnCcuKZxOyWX2Q@mail.gmail.com>
- <CANBLGcwZG-HpMuyw0LTGY2fwOJTgcMW7V_6kb=CFhX-Y5RjQSA@mail.gmail.com>
- <CAHp75VfwmSfeUPvUXT3TTf0ZYGMfBZ0qaPoB0_SCzyR=Fb_Emw@mail.gmail.com>
- <CANBLGcwz7s5OJer-37mQC2r_H0trec04S69ovYdU2_LbiVrtYw@mail.gmail.com> <YXLenBb21jTZlGu0@smile.fi.intel.com>
-In-Reply-To: <YXLenBb21jTZlGu0@smile.fi.intel.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Fri, 22 Oct 2021 17:59:34 +0200
-Message-ID: <CANBLGcyOiOCeSg0ZHxHjOcpHT9HQ0X3_8Ovff4u2qOnB7BWOsw@mail.gmail.com>
-Subject: Re: [PATCH v2 09/16] reset: starfive-jh7100: Add StarFive JH7100
- reset driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S232107AbhJVQaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 12:30:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231862AbhJVQaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 12:30:04 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB34CC061764;
+        Fri, 22 Oct 2021 09:27:46 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id DE66A82;
+        Fri, 22 Oct 2021 09:27:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1634920066;
+        bh=9ANmMSEk1aAbeawe64EsUaomAcFnid9WE5u9j/wKPAE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Xw4T5w67UbwaPgMhmXzpEj9hXA+sV5kL9WDIN1WazGCwBKHp17etXqoz6Yt1EIynf
+         KvNnL5n9oJQK+cb8JhB34dttMA5JWOFLLnAzva6BTyc/JrkOv4LjIPm7eSxLPKcrBQ
+         2DrRMhUIFfonwkrOq2VlADFnrtkj/zhWm1spJek0=
+Date:   Fri, 22 Oct 2021 09:27:41 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kirti Wankhede <kwankhede@nvidia.com>,
+        Alex Williamson <alex.williamson@redhat.com>,
+        Cornelia Huck <cohuck@redhat.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+        Jianxiong Gao <jxgao@google.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rajat Jain <rajatja@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        dmaengine@vger.kernel.org, kvm@vger.kernel.org
+Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
+ reserved devices
+Message-ID: <YXLmfX9I2kThCwvy@hatter.bewilderbeest.net>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <20211022020032.26980-5-zev@bewilderbeest.net>
+ <YXJeYCFJ5DnBB63R@kroah.com>
+ <YXJ3IPPkoLxqXiD3@hatter.bewilderbeest.net>
+ <YXJ88eARBE3vU1aA@kroah.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YXJ88eARBE3vU1aA@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Oct 2021 at 17:55, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Fri, Oct 22, 2021 at 05:36:21PM +0200, Emil Renner Berthing wrote:
-> > On Fri, 22 Oct 2021 at 17:25, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Fri, Oct 22, 2021 at 5:56 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > > > On Fri, 22 Oct 2021 at 16:50, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > On Fri, Oct 22, 2021 at 5:25 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+On Fri, Oct 22, 2021 at 01:57:21AM PDT, Greg Kroah-Hartman wrote:
+>On Fri, Oct 22, 2021 at 01:32:32AM -0700, Zev Weiss wrote:
+>> On Thu, Oct 21, 2021 at 11:46:56PM PDT, Greg Kroah-Hartman wrote:
+>> > On Thu, Oct 21, 2021 at 07:00:31PM -0700, Zev Weiss wrote:
+>> > > Devices whose fwnodes are marked as reserved are instantiated, but
+>> > > will not have a driver bound to them unless userspace explicitly
+>> > > requests it by writing to a 'bind' sysfs file.  This is to enable
+>> > > devices that may require special (userspace-mediated) preparation
+>> > > before a driver can safely probe them.
+>> > >
+>> > > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>> > > ---
+>> > >  drivers/base/bus.c            |  2 +-
+>> > >  drivers/base/dd.c             | 13 ++++++++-----
+>> > >  drivers/dma/idxd/compat.c     |  3 +--
+>> > >  drivers/vfio/mdev/mdev_core.c |  2 +-
+>> > >  include/linux/device.h        | 14 +++++++++++++-
+>> > >  5 files changed, 24 insertions(+), 10 deletions(-)
+>> >
+>> > Ugh, no, I don't really want to add yet-another-state to the driver core
+>> > like this.  Why are these devices even in the kernel with a driver that
+>> > wants to bind to them registered if the driver somehow should NOT be
+>> > bound to it?  Shouldn't all of that logic be in the crazy driver itself
+>> > as that is a very rare and odd thing to do that the driver core should
+>> > not care about at all.
+>> >
+>> > And why does a device need userspace interaction at all?  Again, why
+>> > would the driver not know about this and handle it all directly?
+>> >
+>>
+>> Let me expand a bit more on the details of the specific situation I'm
+>> dealing with...
+>>
+>> On a server motherboard we've got a host CPU (Xeon, Epyc, POWER, etc.) and a
+>> baseboard management controller, or BMC (typically an ARM SoC, an ASPEED
+>> AST2500 in my case).  The host CPU's firmware (BIOS/UEFI, ME firmware, etc.)
+>> lives in a SPI flash chip.  Because it's the host's firmware, that flash
+>> chip is connected to and generally (by default) under the control of the
+>> host CPU.
+>>
+>> But we also want the BMC to be able to perform out-of-band updates to the
+>> host's firmware, so the flash is *also* connected to the BMC.  There's an
+>> external mux (controlled by a GPIO output driven by the BMC) that switches
+>> which processor (host or BMC) is actually driving the SPI signals to the
+>> flash chip, but there's a bunch of other stuff that's also required before
+>> the BMC can flip that switch and take control of the SPI interface:
+>>
+>>  - the BMC needs to track (and potentially alter) the host's power state
+>> to ensure it's not running (in OpenBMC the existing logic for this is    an
+>> entire non-trivial userspace daemon unto itself)
+>>
+>>  - it needs to twiddle some other GPIOs to put the ME into recovery mode
+>>
+>>  - it needs to exchange some IPMI messages with the ME to confirm it got
+>> into recovery mode
+>>
+>> (Some of the details here are specific to the particular motherboard I'm
+>> working with, but I'd guess other systems probably have broadly similar
+>> requirements.)
+>>
+>> The firmware flash (or at least the BMC's side of the mux in front of it) is
+>> attached to a spi-nor controller that's well supported by an existing MTD
+>> driver (aspeed-smc), but that driver can't safely probe the chip until all
+>> the stuff described above has been done.  In particular, this means we can't
+>> reasonably bind the driver to that device during the normal
+>> device-discovery/driver-binding done in the BMC's boot process (nor do we
+>> want to, as that would pull the rug out from under the running host).  We
+>> basically only ever want to touch that SPI interface when a user (sysadmin
+>> using the BMC, let's say) has explicitly initiated an out-of-band firmware
+>> update.
+>>
+>> So we want the kernel to be aware of the device's existence (so that we
+>> *can* bind a driver to it when needed), but we don't want it touching the
+>> device unless we really ask for it.
+>>
+>> Does that help clarify the motivation for wanting this functionality?
 >
-> ...
+>Sure, then just do this type of thing in the driver itself.  Do not have
+>any matching "ids" for this hardware it so that the bus will never call
+>the probe function for this hardware _until_ a manual write happens to
+>the driver's "bind" sysfs file.
 >
-> > > > > AFAICS they are sequential 4 32-bit registers.
-> > > >
-> > > > That's right, but we're on a 64bit machine, so DECLARE_BITMAP will
-> > > > give us an unsigned long array that doesn't match that.
-> > >
-> > > I didn't get it, sorry.
-> > > You will have a bitmap array which you will split to 32-bit values.
-> > > What you will probably need is to move  xgpio_get_value32() and void
-> > > xgpio_set_value32() to the one of bitmap related headers (look for
-> > > bitmap_get_value8() and friends).
-> > >
-> > > > > So bitmap is exactly what is suitable here, you are right!
-> > > > > See gpio-xilinx and gpio-pca953x on how to use bitmaps in the GPIO drivers.
-> > > >
-> > > > None of them has a pre-initialized const DECLARE_BITMAP, so they don't
-> > > > have to deal with the 4 vs. 2 commas problem.
-> > >
-> > > I believe it's well possible to refactor this to look much better with
-> > > bitmaps (as it represents the hardware very well).
-> >
-> > Right, but how exactly? This works on on 64bit, but not with 32bit COMPILE_TEST:
-> >
-> > static const DECLARE_BITMAP(jh7100_reset_asserted, JH7100_RSTN_END) = {
-> >         /* STATUS0 register */
-> >         BIT_MASK(JH7100_RST_U74) |
-> >         BIT_MASK(JH7100_RST_VP6_DRESET) |
-> >         BIT_MASK(JH7100_RST_VP6_BRESET) |
-> >         /* STATUS1 register */
-> >         BIT_MASK(JH7100_RST_HIFI4_DRESET) |
-> >         BIT_MASK(JH7100_RST_HIFI4_BRESET),
-> >         /* STATUS2 register */
-> >         BIT_MASK(JH7100_RST_E24) |
-> >         /* STATUS3 register */
-> >         0,
-> > };
->
-> BITMAP_FROM_U64() ?
 
-So you think this is better?
+Perhaps I'm misunderstanding what you're suggesting, but if I just 
+change the DT "compatible" string so that the device doesn't match the 
+driver and then try to manually bind it, the driver_match_device() check 
+in bind_store() prevents that manual bind from actually happening.
 
-static const DECLARE_BITMAP(jh7100_reset_asserted, JH7100_RSTN_END) = {
-        BITMAP_FROM_U64(
-                /* STATUS0 register */
-                BIT_MASK(JH7100_RST_U74) |
-                BIT_MASK(JH7100_RST_VP6_DRESET) |
-                BIT_MASK(JH7100_RST_VP6_BRESET) |
-                /* STATUS1 register */
-                BIT_MASK(JH7100_RST_HIFI4_DRESET) |
-                BIT_MASK(JH7100_RST_HIFI4_BRESET)
-        ),
-        BITMAP_FROM_U64(
-                /* STATUS2 register */
-                BIT_MASK(JH7100_RST_E24) |
-                /* STATUS3 register */
-                0
-        ),
-};
 
-> > > > > > Also is there a macro for handling that we'd then need 4 commas on
-> > > > > > 32bit COMPILE_TEST and 2 commas on 64bit?
-> > > > > > If you have some other way in mind you'll have to be a lot more explicit again.
-> > > > > >
-> > > > > > The point of the jh7100_reset_asserted array is that it exactly
-> > > > > > mirrors the values of the status registers when the lines are
-> > > > > > asserted.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Thanks,
+Zev
+
