@@ -2,151 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34012437E98
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CED2D437E94
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 21:25:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234077AbhJVT1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 15:27:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
+        id S234034AbhJVT1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 15:27:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234017AbhJVT1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 15:27:38 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70105C061766
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:20 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id i6so5357030ila.12
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:20 -0700 (PDT)
+        with ESMTP id S233615AbhJVT1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 15:27:20 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA3B2C061767
+        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:02 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id e4so38339wrc.7
+        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 12:25:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=broadcom.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IFA4wQlK8CaJ1hsur/1XKvwpvXwy3gkeKIlN9LvzEXo=;
-        b=rLomiKzN1fvLTUesFN4FsINXNm+w/LrB2o5/eWt84mtqPWqYwdzh/K2yIhZXhq60v5
-         jZq7ZhN8IHFdFn6ymywqjTysXCp6H7KF0WPorpOWZJn/A0QZ9xCJDC2etyOaV9oAomTs
-         +QdYrypKZwRsuzxTyhdqlZnFNfAqZ+508z+85OkGoBFUJI4khVGEfHYIEMGDSvm6RYVT
-         rY984v4bEqJsQQIvvfBkmOMva/I9A+gkPdxO4Ls/SaajWH1gOnawzN/Kr7SJpv3Ffd3U
-         apdsb38aqGg6FUCQH2BondlgVJRZEe7JTJ5KU+r/b2IGuor4mCtZx5Qw35qfNgpbCn2P
-         ZrzA==
+        bh=RUp2XLqq8Lwi/bCtW75kgwYY33nabu26v+zSnuqstFo=;
+        b=H78BuiGGtS652wLIuHe5+8En2woNN+Zx3w5mN1mw6MZuDHZI2AZVfeG2SVm1RLTzfY
+         gbvClSs1QexiFf64RI18qjMk88x0e8HWu6lzTL6tdUUqu/qXPu4RRo4MwgUCI5ABDuCd
+         Zg05VhGgagMRpRVH5U+hZII1ifD2CgO3NuI48=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=IFA4wQlK8CaJ1hsur/1XKvwpvXwy3gkeKIlN9LvzEXo=;
-        b=B/qQY1wwp7SCL8aR0Olq8asrDw150jPbl72MGo8LiqF0BrGg5BQWYDryd9QrR5fCNI
-         Ejr4L0n/qvqt5KHAYc975mGx7bKbb+vMdoxGLNpDPz1wdeIDGTkw2V4uApr/HuFFS1X+
-         +oVuvErvbBUYYDwiAtcNEhQVmeGLepskYR86GfGKfPnFuWrOUXPAJfgLLnRvHxVW3A4Z
-         HOR+1jN6p08j74i45XyVSy3ozhOfKSg92Mv5/U0Ofs8kHZi6+b6V8IsuY7A0D3rlstfK
-         G84rvtHJIU3Us1g23PHmp+MyRSlCKHWZqxc6Q8JXAgUyOzvHWVB0x0vvkdVyykgqmiy7
-         xIlw==
-X-Gm-Message-State: AOAM530V/1VKzduNQoKGA4m5s/vQast9+3ho33PMb0wa1GVDSNUcWE0r
-        N4U6HvPflWoVIC9PuZIftwNx3Jc2mi0gEU9izEa69Q==
-X-Google-Smtp-Source: ABdhPJwvWnJcpi9p4Iog2ilpcyx5pHCQ1DxE1z9y9o1svoDRBNloCTdriMWufTsRJesTGutghF0pvYQAlf/QVGTOqaE=
-X-Received: by 2002:a05:6e02:120f:: with SMTP id a15mr1159054ilq.109.1634930719824;
- Fri, 22 Oct 2021 12:25:19 -0700 (PDT)
+        bh=RUp2XLqq8Lwi/bCtW75kgwYY33nabu26v+zSnuqstFo=;
+        b=dZY00LrQAa98/io6VgjrJcK32oRW3bJlQDBzrZBIUzPvVBOdm/xhH1bgoIYt4PhBTw
+         LuRJjMNEQZGLQ3iCSb+os/kg1JbaVxYP/bk2XSk3GbVkHS75mAJpQU2C0Me/uwkknrzf
+         hQRXUvsv2EdITA9sOS9Hiag/UBk8cTeoEMyhzlraEdsa4GZTRo9LAFeqRWozvJ24BotF
+         AyF9VXIGEUChFNs9vI6qEIRiQmwIsj/nXDuGIwh7YiN96IAzJDGPXbayn8tcxKvXiTsd
+         ZYqj+uG3DnXOvFfGrvbKpAfD0xlxORfwBQpPJiMu98yxTfH5QN1Iml1VYrCDczWPGYE0
+         MU9A==
+X-Gm-Message-State: AOAM532G29YDjFb/3jmO4zvEVYZKyLkclcgC44wpYnTsrrtS6cQy5/xC
+        tHn72UHSs50yLeKE+C1mjgKM1BNeDh+Gx6MHXpPFcQ==
+X-Google-Smtp-Source: ABdhPJyMDc6EZKx2boNeX0DtFA+guxiLLagh2B2rcpBWIQ8n27Nr50828eKBi9y39j6/fsELyTRrOGfZJB/2CW0Qav8=
+X-Received: by 2002:a05:6000:1283:: with SMTP id f3mr2224362wrx.128.1634930701241;
+ Fri, 22 Oct 2021 12:25:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211014135410.4136412-1-dmitry.baryshkov@linaro.org>
- <3af41112-7ccd-5da8-c189-3ed8d22273c0@linaro.org> <CAA8EJprjoEX4BDHOHevQQ=TMwM21xZSHuqYm8yNJ=L6GiovQYA@mail.gmail.com>
-In-Reply-To: <CAA8EJprjoEX4BDHOHevQQ=TMwM21xZSHuqYm8yNJ=L6GiovQYA@mail.gmail.com>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Sat, 23 Oct 2021 00:54:43 +0530
-Message-ID: <CAMi1Hd15Qb=xitFax-0OrL47reZnkpg-=Tvu3w=rKtwBk00JuQ@mail.gmail.com>
-Subject: Re: Revert "arm64: dts: qcom: sm8250: remove bus clock from the mdss
- node for sm8250 target"
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
+References: <20211022140714.28767-1-jim2101024@gmail.com> <20211022140714.28767-2-jim2101024@gmail.com>
+ <YXLPZ4CsQMjHPpJS@sirena.org.uk>
+In-Reply-To: <YXLPZ4CsQMjHPpJS@sirena.org.uk>
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+Date:   Fri, 22 Oct 2021 15:24:50 -0400
+Message-ID: <CA+-6iNz3PMsYDds_uoh_xNoPop-tLn1O9U9wnTmTx+pZyN5ZFA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
+ voltage regulators
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Jim Quinlan <jim2101024@gmail.com>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Stephen Boyd <sboyd@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 at 02:53, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+On Fri, Oct 22, 2021 at 10:49 AM Mark Brown <broonie@kernel.org> wrote:
 >
-> On Thu, 14 Oct 2021 at 19:54, Vladimir Zapolskiy
-> <vladimir.zapolskiy@linaro.org> wrote:
+> On Fri, Oct 22, 2021 at 10:06:54AM -0400, Jim Quinlan wrote:
+>
+> > The use of a regulator property in the pcie EP subnode such as
+> > "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
+> > file at
 > >
-> > Hi Dmitry,
-> >
-> > On 10/14/21 4:54 PM, Dmitry Baryshkov wrote:
-> > > From: Amit Pundir <amit.pundir@linaro.org>
-> > >
-> > > This reverts commit 001ce9785c0674d913531345e86222c965fc8bf4.
-> > >
-> > > This upstream commit broke AOSP (post Android 12 merge) build
-> > > on RB5. The device either silently crashes into USB crash mode
-> > > after android boot animation or we see a blank blue screen
-> > > with following dpu errors in dmesg:
-> > >
-> > > [  T444] hw recovery is not complete for ctl:3
-> > > [  T444] [drm:dpu_encoder_phys_vid_prepare_for_kickoff:539] [dpu error]enc31 intf1 ctl 3 reset failure: -22
-> > > [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
-> > > [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
-> > > [    C7] [drm:dpu_encoder_frame_done_timeout:2127] [dpu error]enc31 frame done timeout
-> > > [  T444] [drm:dpu_encoder_phys_vid_wait_for_commit_done:513] [dpu error]vblank timeout
-> > > [  T444] [drm:dpu_kms_wait_for_commit_done:454] [dpu error]wait for commit done returned -110
-> > >
-> > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> >
-> > your sob tag is missing.
+> > https://github.com/devicetree-org/dt-schema/pull/54
 >
-> True. I hope this is fine:
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
+> This contains updates to add the generic PCIe supply rails, not the
+> brcm-ep-a and brcm-ep-b supplies (which as I said on the other patch
+> look like they ought to be renamed).  That's fine since they're
+> obviously not generic PCIe things but this means that those bindings
+> need to be added to the device specific bindings here.  Currently
+> there's only an update to the examples.
 
-Hi,
+Just to be clear, and assuming that the brcm-ep-[ab] supply names are
+green-lighted by you and Rob, are you saying
+I have to update the github site or our YAML file?  If the latter, it
+seems odd to be describing
+an EP-device property in the YAML for an RC driver since the github
+site already describes the EP-device.
 
-Any update on this? I'd really like to see this or a relevant fix to
-land in v5.15, because I can't boot AOSP on RB5 otherwise.
-
-Regards,
-Amit Pundir
-
-> >
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 ++-
-> > >   1 file changed, 2 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > index 8c15d9fed08f..d12e4cbfc852 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > @@ -2590,9 +2590,10 @@
-> > >                       power-domains = <&dispcc MDSS_GDSC>;
-> > >
-> > >                       clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-> > > +                              <&gcc GCC_DISP_HF_AXI_CLK>,
-> > >                                <&gcc GCC_DISP_SF_AXI_CLK>,
-> > >                                <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> > > -                     clock-names = "iface", "nrt_bus", "core";
-> > > +                     clock-names = "iface", "bus", "nrt_bus", "core";
-> > >
-> > >                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> > >                       assigned-clock-rates = <460000000>;
-> > >
-> >
-> > --
-> > Best wishes,
-> > Vladimir
->
->
->
-> --
-> With best wishes
-> Dmitry
+Jim
