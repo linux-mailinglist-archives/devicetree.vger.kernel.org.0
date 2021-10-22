@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D04C1437203
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 08:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85FDA43720D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 08:47:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231679AbhJVGpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 02:45:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56562 "EHLO mail.kernel.org"
+        id S230379AbhJVGtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 02:49:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57752 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229609AbhJVGpo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Oct 2021 02:45:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BC1E360FE7;
-        Fri, 22 Oct 2021 06:43:26 +0000 (UTC)
+        id S229609AbhJVGtS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 02:49:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 488E560F50;
+        Fri, 22 Oct 2021 06:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1634885007;
-        bh=Ru/Z3TmyVyCg7ZOQGOOooZjIAeX9BcdeAuSHcNBwLjc=;
+        s=korg; t=1634885221;
+        bh=+Fkp4XMTW4DD+TiuV8fRU7EzH5a/UJyx5ELdTnoO+vk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xCajnFiIFvaf0JehoaKFyOeOIPbK7wIKSnevGwtvGQ7QvKLhOPjvvSWHMVnMixeBe
-         wOB/fmXp8nXA8s0HpBYKQ0ZkArJ65IeVO7pmL2neiWxEAVhRZ7UmuYgjLgZL9Ks5k4
-         6/9m0bKgnMu9AGGTdxKQoXjRdJuUv5nkL/5oRBuw=
-Date:   Fri, 22 Oct 2021 08:43:23 +0200
+        b=jq3iY2JKlAX0xOntAT8OGpltqeTISuwgz9HM/ViUZxGGBAkGBpWCFtN5QwmUL3Klh
+         pfe6nt3IzzL8gQpJixVJyghPQe8Xb47mIFZpYdwC2qrrFLVuf669y7dnCCFN8AgvoV
+         4nSyjbrHqJTYIHyauyIpVbelASHdZvypS4/QAP5A=
+Date:   Fri, 22 Oct 2021 08:46:56 +0200
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     Zev Weiss <zev@bewilderbeest.net>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
@@ -28,146 +28,60 @@ Cc:     Frank Rowand <frowand.list@gmail.com>,
         Jeremy Kerr <jk@codeconstruct.com.au>,
         Joel Stanley <joel@jms.id.au>,
         Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] of: base: add function to check for status =
- "reserved"
-Message-ID: <YXJdi3IBzaqmSZ9b@kroah.com>
+        linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Dave Jiang <dave.jiang@intel.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kirti Wankhede <kwankhede@nvidia.com>,
+        Alex Williamson <alex.williamson@redhat.com>,
+        Cornelia Huck <cohuck@redhat.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
+        Jianxiong Gao <jxgao@google.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rajat Jain <rajatja@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        dmaengine@vger.kernel.org, kvm@vger.kernel.org
+Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
+ reserved devices
+Message-ID: <YXJeYCFJ5DnBB63R@kroah.com>
 References: <20211022020032.26980-1-zev@bewilderbeest.net>
- <20211022020032.26980-2-zev@bewilderbeest.net>
+ <20211022020032.26980-5-zev@bewilderbeest.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211022020032.26980-2-zev@bewilderbeest.net>
+In-Reply-To: <20211022020032.26980-5-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 07:00:28PM -0700, Zev Weiss wrote:
-> Per v0.3 of the Devicetree Specification [0]:
-> 
->   Indicates that the device is operational, but should not be used.
->   Typically this is used for devices that are controlled by another
->   software component, such as platform firmware.
-> 
-> One use-case for this is in OpenBMC, where certain devices (such as a
-> BIOS flash chip) may be shared by the host and the BMC, but cannot be
-> accessed by the BMC during its usual boot-time device probing, because
-> they require additional (potentially elaborate) coordination with the
-> host to arbitrate which processor is controlling the device.
-> 
-> Devices marked with this status should thus be instantiated, but not
-> have a driver bound to them or be otherwise touched.
-> 
-> [0] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
+On Thu, Oct 21, 2021 at 07:00:31PM -0700, Zev Weiss wrote:
+> Devices whose fwnodes are marked as reserved are instantiated, but
+> will not have a driver bound to them unless userspace explicitly
+> requests it by writing to a 'bind' sysfs file.  This is to enable
+> devices that may require special (userspace-mediated) preparation
+> before a driver can safely probe them.
 > 
 > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 > ---
->  drivers/of/base.c  | 56 +++++++++++++++++++++++++++++++++++++++-------
->  include/linux/of.h |  6 +++++
->  2 files changed, 54 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index 0ac17256258d..3bd7c5b8a2cc 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -580,14 +580,16 @@ int of_machine_is_compatible(const char *compat)
->  EXPORT_SYMBOL(of_machine_is_compatible);
->  
->  /**
-> - *  __of_device_is_available - check if a device is available for use
-> + * __of_device_check_status - check if a device's status matches a particular string
->   *
-> - *  @device: Node to check for availability, with locks already held
-> + * @device: Node to check status of, with locks already held
-> + * @val: Status string to check for, or NULL for "okay"/"ok"
->   *
-> - *  Return: True if the status property is absent or set to "okay" or "ok",
-> - *  false otherwise
-> + * Return: True if status property exists and matches @val, or either "okay"
-> + * or "ok" if @val is NULL, or if status property is absent and @val is
-> + * "okay", "ok", or NULL.  False otherwise.
->   */
-> -static bool __of_device_is_available(const struct device_node *device)
-> +static bool __of_device_check_status(const struct device_node *device, const char *val)
->  {
->  	const char *status;
->  	int statlen;
-> @@ -596,17 +598,35 @@ static bool __of_device_is_available(const struct device_node *device)
->  		return false;
->  
->  	status = __of_get_property(device, "status", &statlen);
-> -	if (status == NULL)
-> -		return true;
-> +	if (!status) {
-> +		/* a missing status property is treated as "okay" */
-> +		status = "okay";
-> +		statlen = strlen(status) + 1; /* property lengths include the NUL terminator */
-> +	}
->  
->  	if (statlen > 0) {
-> -		if (!strcmp(status, "okay") || !strcmp(status, "ok"))
-> +		if (!val && (!strcmp(status, "okay") || !strcmp(status, "ok")))
-> +			return true;
-> +		else if (val && !strcmp(status, val))
+>  drivers/base/bus.c            |  2 +-
+>  drivers/base/dd.c             | 13 ++++++++-----
+>  drivers/dma/idxd/compat.c     |  3 +--
+>  drivers/vfio/mdev/mdev_core.c |  2 +-
+>  include/linux/device.h        | 14 +++++++++++++-
+>  5 files changed, 24 insertions(+), 10 deletions(-)
 
+Ugh, no, I don't really want to add yet-another-state to the driver core
+like this.  Why are these devices even in the kernel with a driver that
+wants to bind to them registered if the driver somehow should NOT be
+bound to it?  Shouldn't all of that logic be in the crazy driver itself
+as that is a very rare and odd thing to do that the driver core should
+not care about at all.
 
-Ick, where is this string coming from?  The kernel or userspace or a
-device tree?  This feels very wrong, why is the kernel doing parsing
-like this of different options that all mean the same thing?
-
-
->  			return true;
->  	}
->  
->  	return false;
->  }
->  
-> +/**
-> + * __of_device_is_available - check if a device is available for use
-> + *
-> + * @device: Node to check for availability, with locks already held
-> + *
-> + * Return: True if the status property is absent or set to "okay" or "ok",
-> + * false otherwise
-> + */
-> +static bool __of_device_is_available(const struct device_node *device)
-> +{
-> +	return __of_device_check_status(device, NULL);
-> +}
-> +
->  /**
->   *  of_device_is_available - check if a device is available for use
->   *
-> @@ -628,6 +648,26 @@ bool of_device_is_available(const struct device_node *device)
->  }
->  EXPORT_SYMBOL(of_device_is_available);
->  
-> +/**
-> + * of_device_is_reserved - check if a device is marked as reserved
-> + *
-> + * @device: Node to check for reservation
-> + *
-> + * Return: True if the status property is set to "reserved", false otherwise
-> + */
-> +bool of_device_is_reserved(const struct device_node *device)
-> +{
-> +	unsigned long flags;
-> +	bool res;
-> +
-> +	raw_spin_lock_irqsave(&devtree_lock, flags);
-> +	res = __of_device_check_status(device, "reserved");
-> +	raw_spin_unlock_irqrestore(&devtree_lock, flags);
-
-Why is this a "raw" spinlock?
-
-Where is this status coming from?
-
-> +
-> +	return res;
-> +}
-> +EXPORT_SYMBOL(of_device_is_reserved);
-
-EXPORT_SYMBOL_GPL()?
+And why does a device need userspace interaction at all?  Again, why
+would the driver not know about this and handle it all directly?
 
 thanks,
 
