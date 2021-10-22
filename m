@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A5F34373AF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 10:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B1A4373B9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 10:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbhJVIew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 04:34:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231991AbhJVIew (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 04:34:52 -0400
-X-Greylist: delayed 23504 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 22 Oct 2021 01:32:35 PDT
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15CADC061764;
-        Fri, 22 Oct 2021 01:32:35 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 232EF3F5;
-        Fri, 22 Oct 2021 01:32:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1634891554;
-        bh=lqkbfmixKdAIZ7NwTV3pl1HORUZPPAa/zIkOK6+t7Qk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d+0rlGtHbliW+JQVt48EXvy4ih5dfAUHhgt01WK90mdgJdnnPcQ3kB2PeuNRh8uQO
-         F41f+zSfFacuPovblAYpvxD6OjWmzOYPirEiAEf1JRZ/8a+q8L8RXIuiBEkKtibrda
-         //21v1EIHl5bio+r9+6Q1C83qvYMwareZ0BwmBGk=
-Date:   Fri, 22 Oct 2021 01:32:32 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kirti Wankhede <kwankhede@nvidia.com>,
-        Alex Williamson <alex.williamson@redhat.com>,
-        Cornelia Huck <cohuck@redhat.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        Jianxiong Gao <jxgao@google.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rajat Jain <rajatja@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine@vger.kernel.org, kvm@vger.kernel.org
-Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
- reserved devices
-Message-ID: <YXJ3IPPkoLxqXiD3@hatter.bewilderbeest.net>
-References: <20211022020032.26980-1-zev@bewilderbeest.net>
- <20211022020032.26980-5-zev@bewilderbeest.net>
- <YXJeYCFJ5DnBB63R@kroah.com>
+        id S232174AbhJVIhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 04:37:20 -0400
+Received: from foss.arm.com ([217.140.110.172]:51392 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231984AbhJVIhU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 04:37:20 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 75708ED1;
+        Fri, 22 Oct 2021 01:35:02 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AB6EB3F70D;
+        Fri, 22 Oct 2021 01:35:00 -0700 (PDT)
+Date:   Fri, 22 Oct 2021 09:34:55 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        robh+dt@kernel.org
+Cc:     Bjorn Helgaas <helgaas@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-staging@lists.linux.dev,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+Message-ID: <20211022083455.GA20345@lpieralisi>
+References: <CAMhs-H-BA+KzEwuDPzcmrDPdgJBFA2XdYTBvT4R4MEOUB=WQ1g@mail.gmail.com>
+ <20211021181145.GA2708516@bhelgaas>
+ <CAMhs-H8pTmbG0idbPWjnW4faFj0F4TKwSSK6wzwepbqWSEtx4w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YXJeYCFJ5DnBB63R@kroah.com>
+In-Reply-To: <CAMhs-H8pTmbG0idbPWjnW4faFj0F4TKwSSK6wzwepbqWSEtx4w@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 11:46:56PM PDT, Greg Kroah-Hartman wrote:
->On Thu, Oct 21, 2021 at 07:00:31PM -0700, Zev Weiss wrote:
->> Devices whose fwnodes are marked as reserved are instantiated, but
->> will not have a driver bound to them unless userspace explicitly
->> requests it by writing to a 'bind' sysfs file.  This is to enable
->> devices that may require special (userspace-mediated) preparation
->> before a driver can safely probe them.
->>
->> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->> ---
->>  drivers/base/bus.c            |  2 +-
->>  drivers/base/dd.c             | 13 ++++++++-----
->>  drivers/dma/idxd/compat.c     |  3 +--
->>  drivers/vfio/mdev/mdev_core.c |  2 +-
->>  include/linux/device.h        | 14 +++++++++++++-
->>  5 files changed, 24 insertions(+), 10 deletions(-)
->
->Ugh, no, I don't really want to add yet-another-state to the driver core
->like this.  Why are these devices even in the kernel with a driver that
->wants to bind to them registered if the driver somehow should NOT be
->bound to it?  Shouldn't all of that logic be in the crazy driver itself
->as that is a very rare and odd thing to do that the driver core should
->not care about at all.
->
->And why does a device need userspace interaction at all?  Again, why
->would the driver not know about this and handle it all directly?
->
+On Thu, Oct 21, 2021 at 09:23:35PM +0200, Sergio Paracuellos wrote:
+> On Thu, Oct 21, 2021 at 8:11 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> >
+> > On Thu, Oct 21, 2021 at 07:27:21PM +0200, Sergio Paracuellos wrote:
+> > > On Thu, Oct 21, 2021 at 5:52 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > > Since this is a PCIe (not conventional PCI) controller, I vote for
+> > > > renaming these from:
+> > > >
+> > > >   PCI_MT7621
+> > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+> > > >   drivers/pci/controller/pci-mt7621.c
+> > > >
+> > > > to:
+> > > >
+> > > >   PCIE_MT7621
+> > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> > > >   drivers/pci/controller/pcie-mt7621.c
+> > > >
+> > > > We have a mix of these, with many of the early PCIe drivers being
+> > > > named "pci", but I think that was my mistake and there's no reason to
+> > > > continue it.
+> > >
+> > > I see.
+> > >
+> > > >
+> > > > I can do this locally unless somebody objects.
+> > >
+> > > I have no problem at all. Only one question. Do you mean to change
+> > > compatible string also, or only the name of the file? Let me know if I
+> > > have to do anything.
+> >
+> > I didn't change the compatible string, to avoid a DT incompatibility.
+> > But I *did* change the Kconfig symbol to PCIE_MT7621, which could
+> > require changes to out-of-tree .configs.  I'm open to suggestions
+> > either way for both things.
+> 
+> IMHO, I do think we should not worry about out-of-tree stuff at all.
 
-Let me expand a bit more on the details of the specific situation I'm 
-dealing with...
+For Kconfig I tend to agree. For DT I see some "bindings" in the staging
+tree are being deleted and published as official DT bindings with this
+patchset but I believe we still have to keep the compatible string
+backward compatibility regardless because there may be firmware out
+there using it.
 
-On a server motherboard we've got a host CPU (Xeon, Epyc, POWER, etc.) 
-and a baseboard management controller, or BMC (typically an ARM SoC, an 
-ASPEED AST2500 in my case).  The host CPU's firmware (BIOS/UEFI, ME 
-firmware, etc.) lives in a SPI flash chip.  Because it's the host's 
-firmware, that flash chip is connected to and generally (by default) 
-under the control of the host CPU.  
-
-But we also want the BMC to be able to perform out-of-band updates to 
-the host's firmware, so the flash is *also* connected to the BMC.  
-There's an external mux (controlled by a GPIO output driven by the BMC) 
-that switches which processor (host or BMC) is actually driving the SPI 
-signals to the flash chip, but there's a bunch of other stuff that's 
-also required before the BMC can flip that switch and take control of 
-the SPI interface:
-
-  - the BMC needs to track (and potentially alter) the host's power state 
-    to ensure it's not running (in OpenBMC the existing logic for this is 
-    an entire non-trivial userspace daemon unto itself)
-
-  - it needs to twiddle some other GPIOs to put the ME into recovery mode
-
-  - it needs to exchange some IPMI messages with the ME to confirm it got 
-    into recovery mode
-
-(Some of the details here are specific to the particular motherboard I'm 
-working with, but I'd guess other systems probably have broadly similar 
-requirements.)
-
-The firmware flash (or at least the BMC's side of the mux in front of 
-it) is attached to a spi-nor controller that's well supported by an 
-existing MTD driver (aspeed-smc), but that driver can't safely probe the 
-chip until all the stuff described above has been done.  In particular, 
-this means we can't reasonably bind the driver to that device during the 
-normal device-discovery/driver-binding done in the BMC's boot process 
-(nor do we want to, as that would pull the rug out from under the 
-running host).  We basically only ever want to touch that SPI interface 
-when a user (sysadmin using the BMC, let's say) has explicitly initiated 
-an out-of-band firmware update.
-
-So we want the kernel to be aware of the device's existence (so that we 
-*can* bind a driver to it when needed), but we don't want it touching 
-the device unless we really ask for it.
-
-Does that help clarify the motivation for wanting this functionality?
-
+Rob, what's the standard policy that should be used in this case ?
 
 Thanks,
-Zev
+Lorenzo
 
+> If the correct way to define the Kconfig symbol or the compatible
+> string is to change them, just do that. MT7621 SoC is extensively used
+> by openWRT community. As far as I have seen until now, the way of
+> doing things there is to take the latest long term kernel (now they
+> are using 5.4 as stable and 5.10 as testing kernel), apply a bunch of
+> patches they have and do a complete build of both kernel, device tree
+> and rootfs. So I guess it is not a big problem if we also change
+> compatible string since when an update is performed for a device all
+> of the stuff is just replaced. Maybe I am wrong and John has a
+> different opinion... John, any comments on this?
+> 
+> Best regards,
+>     Sergio Paracuellos
