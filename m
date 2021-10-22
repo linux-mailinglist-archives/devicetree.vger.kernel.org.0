@@ -2,94 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AFD243757B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 12:31:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A224375B5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 12:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232684AbhJVKdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 06:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57180 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232679AbhJVKdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 06:33:20 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86520C061348
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 03:31:02 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id d198-20020a1c1dcf000000b00322f53b9b89so2122539wmd.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 03:31:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0w1yn0kHGg+18Yn7SEFx6+dUjy1ROAw6/DrVLeyy5W4=;
-        b=shWDNK044FtksKPiZfQIkKAl/3u/UdHTelMBoDZsbd1h56DG7bm0LQnjMj4g9JmBP3
-         +kQFNVSbRFZEBUDGCm8zYgg0et6eSPNvJRJ19HUU4pKWSuQ5LKd/WQOWNK4k7zKhE3xj
-         D4ONnV191Ab1miQm/2RCvy7rO+DofrTAnGwVapgKC/hAhMRMs4JkY1hi7n3ZEVJ16ct9
-         VV2cx0BbHwGXEMdZ5sXjCNa1jGnYh2+LL9hvYE+ZGUsQ9KLqs/uaE3jRG/lSkMNTqba6
-         1wGxS9/XXWJ++KIiqtnp+F/IEHB1nWurV0KyooTDpTVklKJO9a6ptcWFfXyqeTJ4yqbF
-         /yfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=0w1yn0kHGg+18Yn7SEFx6+dUjy1ROAw6/DrVLeyy5W4=;
-        b=EBA6WOjpVyiYhvZt5dObcAQbLIw6uhR0kadUTfiC+8h8HEZ5alOS+194WdMF932Brn
-         l6Z9CyRlOwIbWN2hd7EDYJs8qUX0MtRJDLwC4jMQwPvX3q8gJCXLeSH/t/U11JWOuEyn
-         aRgKMH/fbFBqXSj68urwtRSj6t2DQGqaJkAp0/cqoQzdFYHg3ZLY8fJ3WGeKyTfrfePV
-         ezOncXRXDema5pnw6NygcDk6euQBiY7MTt3ESrpgYu45JA8NHFpC48/EL+F8f03IUsdQ
-         su6YVZSuCKx9+if8Q9DN7SejkhrrOHJAk3v8TWghjecw/OnPEmCpFtlPXzmYI5H+orgn
-         CytQ==
-X-Gm-Message-State: AOAM53078spGuKlMM92LV6bHtrMQDNnIay6EcwoF16EB5lGC+w3oCuL3
-        WfK5cKzq87959dV0JyLWdaxcfw==
-X-Google-Smtp-Source: ABdhPJwBDBAu78G4Mrc736dZlmiw1XOQycC0liaM/m7RdrV5TsQXA3ceFzJIOyDRGU3aQI3t8Eh9zA==
-X-Received: by 2002:a1c:1d44:: with SMTP id d65mr8403859wmd.29.1634898661163;
-        Fri, 22 Oct 2021 03:31:01 -0700 (PDT)
-Received: from google.com ([95.148.6.207])
-        by smtp.gmail.com with ESMTPSA id r39sm1862773wmp.2.2021.10.22.03.31.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Oct 2021 03:31:00 -0700 (PDT)
-Date:   Fri, 22 Oct 2021 11:30:58 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        kernel@pengutronix.de, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, amitk@kernel.org, rui.zhang@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alistair23@gmail.com, linux-hwmon@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v13 1/9] dt-bindings: mfd: Initial commit of
- silergy,sy7636a.yaml
-Message-ID: <YXKS4slSthfexrR6@google.com>
-References: <20211015122551.38951-1-alistair@alistair23.me>
- <20211015122551.38951-2-alistair@alistair23.me>
+        id S232577AbhJVKwO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 06:52:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37952 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232560AbhJVKwO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 06:52:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DE77460560;
+        Fri, 22 Oct 2021 10:49:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634899796;
+        bh=0N9euYvolHICbMqCsFL6zp/Zm/NyWT3YNUnL9sLoKA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i71yzpodiCIsPew+jgWa539RfutcCEYWttPcVFJURi2rFo+r9ed5mHxFdp9tu3r9Y
+         fRVM8VIes1lw6JlL6X7ssvAkzKHRcOc4ZdqJtOFlD1qlv5+AMFaKQWsaXT+x5+vb0V
+         S7WcCrJ4HYNKMXTjAgMAxl0NaQzjAI0TkFusLc2JdhL1fVcsbBuI8ujEA9cQX7VwK+
+         t5c+Mg5VtvnB2N5gKVEizfvesHU1jTtRUfKbsr/CJJ23DGeS91oij5EK8jMB1To/dk
+         QR2KISQa9hPHcDomS+2MS8fZyTBOE0pfRoorhbuht0CCuZGDfBdAqdCtsHt88ZK2ae
+         D7HFqsdQoJFwg==
+Date:   Fri, 22 Oct 2021 16:19:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, kishon@ti.com,
+        p.zabel@pengutronix.de
+Subject: Re: [PATCH v2 2/3] phy/rockchip: add naneng combo phy for RK3568
+Message-ID: <YXKXULdyPuv1BirB@matsya>
+References: <20211013101938.28061-1-yifeng.zhao@rock-chips.com>
+ <20211013101938.28061-3-yifeng.zhao@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211015122551.38951-2-alistair@alistair23.me>
+In-Reply-To: <20211013101938.28061-3-yifeng.zhao@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021, Alistair Francis wrote:
-
-> Initial support for the Silergy SY7636A Power Management chip
-> and regulator.
+On 13-10-21, 18:19, Yifeng Zhao wrote:
+> This patch implements a combo phy driver for Rockchip SoCs
+> with NaNeng IP block. This phy can be used as pcie-phy, usb3-phy,
+> sata-phy or sgmii-phy.
 > 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
 > ---
->  .../bindings/mfd/silergy,sy7636a.yaml         | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> 
+> Changes in v2:
+> - Using api devm_platform_get_and_ioremap_resource.
+> - Modify rockchip_combphy_set_Mode.
+> - Add some PHY registers definition.
+> 
+>  drivers/phy/rockchip/Kconfig                  |   8 +
+>  drivers/phy/rockchip/Makefile                 |   1 +
+>  .../rockchip/phy-rockchip-naneng-combphy.c    | 650 ++++++++++++++++++
+>  3 files changed, 659 insertions(+)
+>  create mode 100644 drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> 
+> diff --git a/drivers/phy/rockchip/Kconfig b/drivers/phy/rockchip/Kconfig
+> index e812adad7242..9022e395c056 100644
+> --- a/drivers/phy/rockchip/Kconfig
+> +++ b/drivers/phy/rockchip/Kconfig
+> @@ -66,6 +66,14 @@ config PHY_ROCKCHIP_INNO_DSIDPHY
+>  	  Enable this to support the Rockchip MIPI/LVDS/TTL PHY with
+>  	  Innosilicon IP block.
+>  
+> +config PHY_ROCKCHIP_NANENG_COMBO_PHY
+> +	tristate "Rockchip NANENG COMBO PHY Driver"
+> +	depends on ARCH_ROCKCHIP && OF
+> +	select GENERIC_PHY
+> +	help
+> +	  Enable this to support the Rockchip PCIe/USB3.0/SATA/QSGMII
+> +	  combo PHY with NaNeng IP block.
+> +
+>  config PHY_ROCKCHIP_PCIE
+>  	tristate "Rockchip PCIe PHY Driver"
+>  	depends on (ARCH_ROCKCHIP && OF) || COMPILE_TEST
+> diff --git a/drivers/phy/rockchip/Makefile b/drivers/phy/rockchip/Makefile
+> index f0eec212b2aa..a5041efb5b8f 100644
+> --- a/drivers/phy/rockchip/Makefile
+> +++ b/drivers/phy/rockchip/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_PHY_ROCKCHIP_INNO_CSIDPHY)	+= phy-rockchip-inno-csidphy.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_INNO_DSIDPHY)	+= phy-rockchip-inno-dsidphy.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_INNO_HDMI)	+= phy-rockchip-inno-hdmi.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_INNO_USB2)	+= phy-rockchip-inno-usb2.o
+> +obj-$(CONFIG_PHY_ROCKCHIP_NANENG_COMBO_PHY)	+= phy-rockchip-naneng-combphy.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_PCIE)		+= phy-rockchip-pcie.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_TYPEC)	+= phy-rockchip-typec.o
+>  obj-$(CONFIG_PHY_ROCKCHIP_USB)		+= phy-rockchip-usb.o
+> diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> new file mode 100644
+> index 000000000000..fbfc5fbbd5b8
+> --- /dev/null
+> +++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
+> @@ -0,0 +1,650 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Rockchip PIPE USB3.0 PCIE SATA combphy driver
+> + *
+> + * Copyright (C) 2021 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset.h>
+> +#include <dt-bindings/phy/phy.h>
+> +
+> +#define BIT_WRITEABLE_SHIFT		16
+> +#define REF_CLOCK_24MHz			24000000
+> +#define REF_CLOCK_25MHz			25000000
+> +#define REF_CLOCK_100MHz		100000000
+> +/* RK3568 T22 COMBO PHY REG */
+> +#define RK3568_T22_PHYREG5		(0x5 << 2)
+> +#define T22_PHYREG5_PLL_DIV_MASK	GENMASK(7, 6)
+> +#define T22_PHYREG5_PLL_DIV_SHIFT	6
+> +#define T22_PHYREG5_PLL_DIV_2		1
+> +
+> +#define RK3568_T22_PHYREG6		(0x6 << 2)
+> +#define T22_PHYREG6_TX_RTERM_MASK	GENMASK(7, 4)
+> +#define T22_PHYREG6_TX_RTERM_SHIFT	4
+> +#define T22_PHYREG6_TX_RTERM_50OHM	0x8
+> +#define T22_PHYREG6_RX_RTERM_MASK	GENMASK(3, 0)
+> +#define T22_PHYREG6_RX_RTERM_SHIFT	0
+> +#define T22_PHYREG6_RX_RTERM_44OHM	0xF
+> +
+> +#define RK3568_T22_PHYREG7		(0x7 << 2)
 
-For my own reference (apply this as-is to your sign-off block):
+Pls use GENMASK for these?
 
-  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> +#define T22_PHYREG7_SSC_EN		BIT(4)
+> +
+> +#define RK3568_T22_PHYREG10		(0xA << 2)
+> +#define T22_PHYREG10_SU_TRIM_0_7	0xF0
+> +
+> +#define RK3568_T22_PHYREG11		(0xB << 2)
+> +#define T22_PHYREG11_PLL_LPF_ADJ	0x4
+> +
+> +#define RK3568_T22_PHYREG12		(0xC << 2)
+> +#define T22_PHYREG12_RESISTER_MASK	GENMASK(5, 4)
+> +#define T22_PHYREG12_RESISTER_SHIFT	0x4
 
+bitfield.h has nice helpers which can extract/program values and avoid
+one to define these shifts
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+~Vinod
