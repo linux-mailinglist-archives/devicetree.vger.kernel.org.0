@@ -2,114 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 903BC4378D0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 16:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3F64378E1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 16:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbhJVOOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 10:14:16 -0400
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:43953 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232244AbhJVOOP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 10:14:15 -0400
-Received: by mail-oi1-f176.google.com with SMTP id o4so5140882oia.10;
-        Fri, 22 Oct 2021 07:11:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=fntq8tUMlB+L0yN28C+/8oiQ/tqnhvbVaVy+XCHM97M=;
-        b=VwQQJkjyzJxf2ac2q1SbmbQ9GS6gkSIFP+OU/E8Q615+2ksSYUj1RLg13b0YEWgCkL
-         ADJNi7HB52iKbsRUGUxgqLQe63+SDIKJbfGB15k+Xv8pMM2mGDyRK1gN4PA6ZT14o0+P
-         icsP19ho1jNd8i+Ac6m8/XYJwXueCfGX5rzlWUWOm35d/qnyUgEaajxRbhQ7nu5qVa/p
-         p4Sb5uXZRztpNVTJk2q5XYAcNUsc3/yZjtTsksiayjifIzN0C+gHBMLS9W8PLvWk3eur
-         nOEH+Vf9mK5k7IdBDYkkvtJcJpKudDFGdQBxnMplFpk3A9VIuRC+vVDTIV+/BTZ/7nBq
-         9Xlg==
-X-Gm-Message-State: AOAM530NW74CQi0sphcaVnEAkaDHNe2aRa1GUV73MnJfXxTk65LPT76p
-        jo4bfc4mB0B9ulXQ6HmMfA==
-X-Google-Smtp-Source: ABdhPJwQ2dCgcSgOjl+llkhisJut4OFc60/Z9ZVdZK9ftiZjWbJd0kP0dC9thm618B3k/7CcA122Eg==
-X-Received: by 2002:a05:6808:1287:: with SMTP id a7mr10108534oiw.45.1634911917877;
-        Fri, 22 Oct 2021 07:11:57 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id a15sm2037958oiw.53.2021.10.22.07.11.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Oct 2021 07:11:57 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     soc@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: [PATCH v2] ARM: dts: spear13xx: Drop malformed 'interrupt-map' on PCI nodes
-Date:   Fri, 22 Oct 2021 09:11:56 -0500
-Message-Id: <20211022141156.2592221-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        id S232977AbhJVOS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 10:18:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232985AbhJVOS6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 10:18:58 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6FB3161373;
+        Fri, 22 Oct 2021 14:16:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1634912201;
+        bh=I+VXfPjoibNjIgn+qnRCFrsghnS2om1ehTAMQ/z8VZ4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AKXxsoiDFiAPsC8TKx8rmbdjFViHoVHUiMXptW6F8/PcfomMTRqqBk7WlmD4H7aV7
+         lCUchvHlXBMJ3p55TysGCSIi7R+UfAPq/GEu8GLPJGDwOGDrMX5s1yJ0M+sDEIWehn
+         jFORLuKq/z3co/j5mfsfMmMYzYxUleel8CLBGuipxKpiGiO80l9t7NEx0/GeCSQCyd
+         gID3Oy3/QTAqdFpzppwPTgOd7Wzg3dRQD+QByDvZ5UuiHX1hFepO+pcc4/dYjP/F0x
+         QPt1ckj9nm0rW+Bu9qWLoDEIag6dn5Oa6xoF7XvuAexQp1nRZKO0vbZYiTCqduLky6
+         SAFhe4B+iwepA==
+Received: by mail-ed1-f41.google.com with SMTP id g10so2192443edj.1;
+        Fri, 22 Oct 2021 07:16:41 -0700 (PDT)
+X-Gm-Message-State: AOAM5305Zpe61gV+NRLkykY/QXDHrx2no8wiHBkOcyF56BSauNvUh/76
+        tHQDOrYN24Dj5iR8LtQAnu5JnPvFIDRNYkZQiA==
+X-Google-Smtp-Source: ABdhPJxEy9Te8GeD+1Msa4yBTOezWnyqGiwHRtT5L7oFuNgjRAvA05EQWETuGADJ5MorxmiVbdE734tH9dP2RFnYhIo=
+X-Received: by 2002:a17:906:9399:: with SMTP id l25mr15150817ejx.363.1634912197965;
+ Fri, 22 Oct 2021 07:16:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211009104518.45596-1-david@ixit.cz> <YW86yrhJBTunU121@robh.at.kernel.org>
+ <GXW81R.AUXV3AJ9VUDL@ixit.cz>
+In-Reply-To: <GXW81R.AUXV3AJ9VUDL@ixit.cz>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 22 Oct 2021 09:16:26 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKD-3-VkFT5fAKrD0jFWWmBFTQHWQKSv4JrfZ515GVP_Q@mail.gmail.com>
+Message-ID: <CAL_JsqKD-3-VkFT5fAKrD0jFWWmBFTQHWQKSv4JrfZ515GVP_Q@mail.gmail.com>
+Subject: Re: [PATCH] WIP: dt-bindings: arm: firmware: tlm,trusted-foundations:
+ Convert txt bindings to yaml
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Stephen Warren <swarren@nvidia.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        ~okias/devicetree@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The spear13xx PCI 'interrupt-map' property is not parse-able.
-'#interrupt-cells' is missing and there are 3 #address-cells. Based on the
-driver, the only supported interrupt is for MSI. Therefore, 'interrupt-map'
-is not needed.
+On Tue, Oct 19, 2021 at 5:26 PM David Heidelberg <david@ixit.cz> wrote:
+>
+>
+>
+>
+> On Tue, Oct 19 2021 at 16:38:18 -0500, Rob Herring <robh@kernel.org>
+> wrote:
+> > On Sat, Oct 09, 2021 at 12:45:18PM +0200, David Heidelberg wrote:
+> >>  Convert Trusted Foundation binding to the YAML syntax.
+> >
+> > Looks fine. Why WIP?
+> >
+>
+> Can you drop the WIP prefix I forgot or should I resend?
 
-Cc: Shiraz Hashim <shiraz.linux.kernel@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
+Please resend.
 
-Arnd, Olof, Please apply.
-
- arch/arm/boot/dts/spear1310.dtsi | 6 ------
- arch/arm/boot/dts/spear1340.dtsi | 2 --
- 2 files changed, 8 deletions(-)
-
-diff --git a/arch/arm/boot/dts/spear1310.dtsi b/arch/arm/boot/dts/spear1310.dtsi
-index c4b49baf9804..2f746a9428a7 100644
---- a/arch/arm/boot/dts/spear1310.dtsi
-+++ b/arch/arm/boot/dts/spear1310.dtsi
-@@ -82,8 +82,6 @@ pcie0: pcie@b1000000 {
- 			reg = <0xb1000000 0x4000>, <0x80000000 0x20000>;
- 			reg-names = "dbi", "config";
- 			interrupts = <0 68 0x4>;
--			interrupt-map-mask = <0 0 0 0>;
--			interrupt-map = <0x0 0 &gic 0 68 0x4>;
- 			num-lanes = <1>;
- 			phys = <&miphy0 1>;
- 			phy-names = "pcie-phy";
-@@ -101,8 +99,6 @@ pcie1: pcie@b1800000 {
- 			reg = <0xb1800000 0x4000>, <0x90000000 0x20000>;
- 			reg-names = "dbi", "config";
- 			interrupts = <0 69 0x4>;
--			interrupt-map-mask = <0 0 0 0>;
--			interrupt-map = <0x0 0 &gic 0 69 0x4>;
- 			num-lanes = <1>;
- 			phys = <&miphy1 1>;
- 			phy-names = "pcie-phy";
-@@ -120,8 +116,6 @@ pcie2: pcie@b4000000 {
- 			reg = <0xb4000000 0x4000>, <0xc0000000 0x20000>;
- 			reg-names = "dbi", "config";
- 			interrupts = <0 70 0x4>;
--			interrupt-map-mask = <0 0 0 0>;
--			interrupt-map = <0x0 0 &gic 0 70 0x4>;
- 			num-lanes = <1>;
- 			phys = <&miphy2 1>;
- 			phy-names = "pcie-phy";
-diff --git a/arch/arm/boot/dts/spear1340.dtsi b/arch/arm/boot/dts/spear1340.dtsi
-index 1a8f5e8b10e3..827e887afbda 100644
---- a/arch/arm/boot/dts/spear1340.dtsi
-+++ b/arch/arm/boot/dts/spear1340.dtsi
-@@ -47,8 +47,6 @@ pcie0: pcie@b1000000 {
- 			reg = <0xb1000000 0x4000>, <0x80000000 0x20000>;
- 			reg-names = "dbi", "config";
- 			interrupts = <0 68 0x4>;
--			interrupt-map-mask = <0 0 0 0>;
--			interrupt-map = <0x0 0 &gic 0 68 0x4>;
- 			num-lanes = <1>;
- 			phys = <&miphy0 1>;
- 			phy-names = "pcie-phy";
--- 
-2.32.0
-
+Rob
