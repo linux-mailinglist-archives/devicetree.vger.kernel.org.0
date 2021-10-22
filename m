@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85FDA43720D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 08:47:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA029437235
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 08:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbhJVGtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 02:49:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57752 "EHLO mail.kernel.org"
+        id S232190AbhJVGwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 02:52:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229609AbhJVGtS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Oct 2021 02:49:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 488E560F50;
-        Fri, 22 Oct 2021 06:47:00 +0000 (UTC)
+        id S232183AbhJVGw3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 02:52:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B720260F50;
+        Fri, 22 Oct 2021 06:50:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1634885221;
-        bh=+Fkp4XMTW4DD+TiuV8fRU7EzH5a/UJyx5ELdTnoO+vk=;
+        s=korg; t=1634885412;
+        bh=c9Eng1ii6V3IjK+Y3GNOcOMLUlsifakRFAI0XTxmwgA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jq3iY2JKlAX0xOntAT8OGpltqeTISuwgz9HM/ViUZxGGBAkGBpWCFtN5QwmUL3Klh
-         pfe6nt3IzzL8gQpJixVJyghPQe8Xb47mIFZpYdwC2qrrFLVuf669y7dnCCFN8AgvoV
-         4nSyjbrHqJTYIHyauyIpVbelASHdZvypS4/QAP5A=
-Date:   Fri, 22 Oct 2021 08:46:56 +0200
+        b=aZWGszIVMVJjGrRpfDp0oFm3sYhGJjcB73qcFkijcxBEOzNOQ5Os8l4MxBbLRjC80
+         NhcL28v6zWAurvX+nqMUmxFNob/xVgobgQAWYbZpxmmj5VWkaJ8a/K2qmeaIC9ACgv
+         GBnQaS/4YnVIgMp0jJgkqmWz18NoD5d3u/tjyRMk=
+Date:   Fri, 22 Oct 2021 08:50:07 +0200
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     Zev Weiss <zev@bewilderbeest.net>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
@@ -28,60 +28,89 @@ Cc:     Frank Rowand <frowand.list@gmail.com>,
         Jeremy Kerr <jk@codeconstruct.com.au>,
         Joel Stanley <joel@jms.id.au>,
         Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kirti Wankhede <kwankhede@nvidia.com>,
-        Alex Williamson <alex.williamson@redhat.com>,
-        Cornelia Huck <cohuck@redhat.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        Jianxiong Gao <jxgao@google.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rajat Jain <rajatja@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine@vger.kernel.org, kvm@vger.kernel.org
-Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
- reserved devices
-Message-ID: <YXJeYCFJ5DnBB63R@kroah.com>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/5] driver core, of: support for reserved devices
+Message-ID: <YXJfHwzIdksUKPIe@kroah.com>
 References: <20211022020032.26980-1-zev@bewilderbeest.net>
- <20211022020032.26980-5-zev@bewilderbeest.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211022020032.26980-5-zev@bewilderbeest.net>
+In-Reply-To: <20211022020032.26980-1-zev@bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 07:00:31PM -0700, Zev Weiss wrote:
-> Devices whose fwnodes are marked as reserved are instantiated, but
-> will not have a driver bound to them unless userspace explicitly
-> requests it by writing to a 'bind' sysfs file.  This is to enable
-> devices that may require special (userspace-mediated) preparation
-> before a driver can safely probe them.
+On Thu, Oct 21, 2021 at 07:00:27PM -0700, Zev Weiss wrote:
+> Hello all,
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-> ---
->  drivers/base/bus.c            |  2 +-
->  drivers/base/dd.c             | 13 ++++++++-----
->  drivers/dma/idxd/compat.c     |  3 +--
->  drivers/vfio/mdev/mdev_core.c |  2 +-
->  include/linux/device.h        | 14 +++++++++++++-
->  5 files changed, 24 insertions(+), 10 deletions(-)
+> This series is another incarnation of a couple other patchsets I've
+> posted recently [0, 1], but again different enough in overall
+> structure that I'm not sure it's exactly a v2 (or v3).
+> 
+> As compared to [1], it abandons the writable binary sysfs files and at
+> Frank's suggestion returns to an approach more akin to [0], though
+> without any driver-specific (aspeed-smc) changes, which I figure might
+> as well be done later in a separate series once appropriate
+> infrastructure is in place.
+> 
+> The basic idea is to implement support for a status property value
+> that's documented in the DT spec [2], but thus far not used at all in
+> the kernel (or anywhere else I'm aware of): "reserved".  According to
+> the spec (section 2.3.4, Table 2.4), this status:
+> 
+>   Indicates that the device is operational, but should not be used.
+>   Typically this is used for devices that are controlled by another
+>   software component, such as platform firmware.
+> 
+> With these changes, devices marked as reserved are (at least in some
+> cases, more on this later) instantiated, but will not have drivers
+> bound to them unless and until userspace explicitly requests it by
+> writing the device's name to the driver's sysfs 'bind' file.  This
+> enables appropriate handling of hardware arrangements that can arise
+> in contexts like OpenBMC, where a device may be shared with another
+> external controller not under the kernel's control (for example, the
+> flash chip storing the host CPU's firmware, shared by the BMC and the
+> host CPU and exclusively under the control of the latter by default).
+> Such a device can be marked as reserved so that the kernel refrains
+> from touching it until appropriate preparatory steps have been taken
+> (e.g. BMC userspace coordinating with the host CPU to arbitrate which
+> processor has control of the firmware flash).
+> 
+> Patches 1-3 provide some basic plumbing for checking the "reserved"
+> status of a device, patch 4 is the main driver-core change, and patch
+> 5 tweaks the OF platform code to not skip reserved devices so that
+> they can actually be instantiated.
 
-Ugh, no, I don't really want to add yet-another-state to the driver core
-like this.  Why are these devices even in the kernel with a driver that
-wants to bind to them registered if the driver somehow should NOT be
-bound to it?  Shouldn't all of that logic be in the crazy driver itself
-as that is a very rare and odd thing to do that the driver core should
-not care about at all.
+Again, the driver core should not care about this, that is up to the bus
+that wants to read these "reserved" values and do something with them or
+not (remember the bus is the thing that does the binding, not the driver
+core).
 
-And why does a device need userspace interaction at all?  Again, why
-would the driver not know about this and handle it all directly?
+But are you sure you are using the "reserved" field properly?  You are
+wanting to do "something" to the device to later on be able to then have
+the kernel touch the device, while it seems that the reason for this
+field is for the kernel to NEVER touch the device at all.  What will
+break if you change this logic?
+
+> One shortcoming of this series is that it doesn't automatically apply
+> universally across all busses and drivers -- patch 5 enables support
+> for platform devices, but similar changes would be required for
+> support in other busses (e.g. in of_register_spi_devices(),
+> of_i2c_register_devices(), etc.) and drivers that instantiate DT
+> devices.  Since at present a "reserved" status is treated as
+> equivalent to "disabled" and this series preserves that status quo in
+> those cases I'd hope this wouldn't be considered a deal-breaker, but
+> a thing to be aware of at least.
+> 
+> Greg: I know on [1] you had commented nack-ing the addition of boolean
+> function parameters; patch 4 adds a flags mask instead in an analogous
+> situation.  I'm not certain how much of an improvement you'd consider
+> that (hopefully at least slightly better, in that the arguments passed
+> at the call site are more self-explanatory); if that's still
+> unsatisfactory I'd welcome any suggested alternatives.
+
+Flags are a bit better, yes, but still I do not think this is the right
+way to go here, see my comments on the patches...
 
 thanks,
 
