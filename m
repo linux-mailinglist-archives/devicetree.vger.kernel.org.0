@@ -2,146 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F64437FE9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 23:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5202438011
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 00:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233937AbhJVVYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 17:24:38 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:37666 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231997AbhJVVYh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 17:24:37 -0400
-Received: by mail-ot1-f50.google.com with SMTP id b4-20020a9d7544000000b00552ab826e3aso5972521otl.4;
-        Fri, 22 Oct 2021 14:22:19 -0700 (PDT)
+        id S233524AbhJVWFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 18:05:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231382AbhJVWFI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 18:05:08 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A22E3C061764;
+        Fri, 22 Oct 2021 15:02:50 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id q19so4830461pfl.4;
+        Fri, 22 Oct 2021 15:02:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Q2X/8VfwNdtvO4WHWKTeql6HD7EYi2Lj4H/w1gAQKOQ=;
+        b=KQ2jivUs2wDE3OjEusgktIGwnWNUDzbHG++RpaXHRhPj+V89CZvEPZEFxaZm4VxsQg
+         i0nT9+BmozmmdoMp7mmBQXS3bXB928eIS1ezKswG6k6JdBCURz6aIzqCCM94ps4eY7WW
+         fduhdNKFS+f12Bcz7EoLuHVPlMDzvQwkJq1FEG4+HlTlmWZVZWx3aT7rtXPEqld/vBCt
+         qQBstPnl/2NDzzZw29G4y2BLnizYo2RYYH2WnlWU6IhHs95S6mcrLdvlNQ4UANh5v65/
+         G4JP/GFljffQj0/BpOD/rm3MksztIFaGJfPULxTsHO/X6EoELQBLzZc14QsJbcmNuvzA
+         /+ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CgddvVUw2mXha4aQsq+joAmwB7SJYgDFFKT+so5ZqWc=;
-        b=JQCVp1KS9zpEbmwidHs4K+8Rpusw6NT77tNNCyHLPf6EZi7e6G05qLp4GxmLGaYG/w
-         1gAA6q1V1lqOKFOdpBOKYDD5ug58MDSLNcdNonvLnBj42tEaGejJh7RAoLApegliFH/s
-         EAoKoeqZlljUVWS1DiqH7Gqq6clKGtTbT5tRskEvjy5NfwegCkbml4wqGASxc2UXIbgC
-         firpehLNOMZmCD8S5DtIY6+AYes9CPt+/kH82pnViK6OgW6IocAUzOPYpH7zcsedIpXd
-         o/4tsJ7Hq3CpaHc8xzJhVmBgcQAqD4ou6RoaCPTxWb5vXF+Bb/X4Tp4iYmoKTdNgp9Ui
-         e1eg==
-X-Gm-Message-State: AOAM5313lJ75E/3AF+lCK2q4fR/quypsJd9uxUNOFVJb+T+Jg7TlIKh6
-        Yc14VNycN24YAEgvDyh2LQ==
-X-Google-Smtp-Source: ABdhPJy7J9nmIVAe1bK/WZgWHoAJVBT7jB213B2rYjuD6+bYmXBfbpTY0lKSrdEPyaGLpGGsaIT6/w==
-X-Received: by 2002:a9d:d52:: with SMTP id 76mr1825166oti.350.1634937739427;
-        Fri, 22 Oct 2021 14:22:19 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d7sm1858976otl.19.2021.10.22.14.22.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Oct 2021 14:22:18 -0700 (PDT)
-Received: (nullmailer pid 3192660 invoked by uid 1000);
-        Fri, 22 Oct 2021 21:22:17 -0000
-Date:   Fri, 22 Oct 2021 16:22:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Bin Meng <bmeng.cn@gmail.com>, Xiang W <wxjstz@126.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        opensbi@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: T-HEAD CLINT
-Message-ID: <YXMriYWcOcgJSpKj@robh.at.kernel.org>
-References: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Q2X/8VfwNdtvO4WHWKTeql6HD7EYi2Lj4H/w1gAQKOQ=;
+        b=gl0f5svjLVOobOAs67FYXxBSr0KBmDvC6pJ882IShw3FAkYYdp+Ksq1aGMSLnBvtxP
+         YsgtIS3SfXofHOQSbwpVHIhwZ8Y5IzKW5ZL9YzeKgFaYUgDnxefp78cTmL+8aCL2hLBk
+         HYDHy+/d+0ZyCWc0/6b3kMMnF69DDrZEkZDW72XCMJK0OgqhrYiJo9mG+Hh4WU1wwfaz
+         GSVoMlKrTiCh+KEny68h6HLVLhQs8LQPYM1r0a++J9Rt6j0WfEWanwujEBdapvMZ+/OG
+         TuHUO0wIx7JCmQOrsJ4LYk2da2QwBwLtMw47ok9PbR+9bFuWchyFUYqTCt9Ke3eoUsvC
+         5BGg==
+X-Gm-Message-State: AOAM531JTRt1miGjCR8fvBDd6fCvj9IuumdOJpo8nT3Ufy7K1Mk5qVYB
+        5q9eEn4Funnuw9bRHA3QwMg9b6fXCH0=
+X-Google-Smtp-Source: ABdhPJyi83RmmZlRicKRAYSWWka9IWiS1ZqEYUQHFMFH4oh2FUO2PsfM12waVM0aqMiSBQTG9v8/gA==
+X-Received: by 2002:a63:1950:: with SMTP id 16mr1772387pgz.346.1634940169552;
+        Fri, 22 Oct 2021 15:02:49 -0700 (PDT)
+Received: from [172.30.1.57] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id v22sm10920247pff.93.2021.10.22.15.02.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Oct 2021 15:02:48 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: clock: samsung: Document Exynos850
+ CMU_APM
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+References: <20211021203152.29312-1-semen.protsenko@linaro.org>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Message-ID: <d54a7dd3-d88b-81ce-cd80-02abd3e37165@gmail.com>
+Date:   Sat, 23 Oct 2021 07:02:43 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
+In-Reply-To: <20211021203152.29312-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 11:36:03AM +0200, Heinrich Schuchardt wrote:
-> The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
-> not support 64bit mmio access to the MTIMER device.
+On 21. 10. 22. 오전 5:31, Sam Protsenko wrote:
+> CMU_APM generates clocks for APM IP-core (Active Power Management). In
+> particular it generates RTC clocks, which are needed to enable rtc-s3c
+> driver on Exynos850 SoC.
 > 
-> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
-> restriction and the "sifive,cling0" compatible string. An OpenSBI
-> patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
-> is generally used in the devicetree schema for such a condition.
-> 
-> As the design is not SiFive based it is preferable to apply a compatible
-> string identifying T-HEAD instead.
-> 
-> Add a new yaml file describing the T-HEAD CLINT.
-> 
-> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
-> @Palmer, @Anup
-> I copied you as maintainers from sifive,clint.yaml. Please, indicate if
-> this should be changed.
+>   .../clock/samsung,exynos850-clock.yaml        | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
 > 
-> For the prior discussion see:
-> https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
-> https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
+> diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> index 7f8c91a29b91..5618cfa62f80 100644
+> --- a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
+> @@ -32,6 +32,7 @@ properties:
+>     compatible:
+>       enum:
+>         - samsung,exynos850-cmu-top
+> +      - samsung,exynos850-cmu-apm
+>         - samsung,exynos850-cmu-core
+>         - samsung,exynos850-cmu-dpu
+>         - samsung,exynos850-cmu-hsi
+> @@ -68,6 +69,24 @@ allOf:
+>             items:
+>               - const: oscclk
+>   
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos850-cmu-apm
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: External reference clock (26 MHz)
+> +            - description: CMU_APM bus clock (from CMU_TOP)
+> +
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: dout_clkcmu_apm_bus
+> +
+>     - if:
+>         properties:
+>           compatible:
 > 
-> A release candidate of the ACLINT specification is available at
-> https://github.com/riscv/riscv-aclint/releases
-> ---
->  .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
-> new file mode 100644
-> index 000000000000..02463fb2043a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SiFive Core Local Interruptor
-> +
-> +maintainers:
-> +  - Palmer Dabbelt <palmer@dabbelt.com>
-> +  - Anup Patel <anup.patel@wdc.com>
-> +
-> +description:
-> +  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
-> +  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
-> +  interrupts. It directly connects to the timer and inter-processor interrupt
-> +  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
-> +  interrupt controller is the parent interrupt controller for CLINT device.
-> +  The clock frequency of the CLINT is specified via "timebase-frequency" DT
-> +  property of "/cpus" DT node. The "timebase-frequency" DT property is
-> +  described in Documentation/devicetree/bindings/riscv/cpus.yaml
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const:
-> +          - allwinner,sun20i-d1-clint
-> +      - const:
-> +          - thead,clint0
-> +
-> +    description:
-> +      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
-> +      the T-HEAD derived CLINTs.
-> +      Supported compatible strings are -
-> +      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
-> +      and "thead,clint0" for the T-HEAD IP block with no chip
-> +      integration tweaks.
 
-T-HEAD uses the same versioning as SiFive? If you use version numbers in 
-compatible strings, the numbering needs to be documented and correlate 
-back to the h/w design. See [1]. IP release numbers for FPGA IP for 
-example. What it should not be is the binding author making up 0, 1, 2, 
-etc. versions.
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
-Rob
+Thanks.
 
-[1] Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.txt
-
+-- 
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
