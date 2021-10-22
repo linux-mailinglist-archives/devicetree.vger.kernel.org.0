@@ -2,104 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E90CA4374A3
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 11:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 754864374EA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 11:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbhJVJYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 05:24:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231563AbhJVJYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 22 Oct 2021 05:24:30 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C3EB960FDA;
-        Fri, 22 Oct 2021 09:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1634894533;
-        bh=9aGfIgQGiaQYTNOWKV+Zae5m5NPz4PloE1ueYrvbcko=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dx999myzKkPyX9nYyLuy1encmZJQVXGy3WDSNJ/frpiPbZz7w7nT7oZeMBYVcq1HD
-         H9J7uUVZvBE2VUBYeqo7SgMfO0dhlHx+XteJd1sus5uLNuifjcVTTel9JnoVwKRiTx
-         KM8Fsm14tGJj1itWm/e+sZl24EkuvlfrB5zGLBb8=
-Date:   Fri, 22 Oct 2021 11:22:11 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Oliver O'Halloran <oohall@gmail.com>
-Subject: Re: [PATCH 0/5] driver core, of: support for reserved devices
-Message-ID: <YXKCw/eEB8n2qtVx@kroah.com>
-References: <20211022020032.26980-1-zev@bewilderbeest.net>
- <YXJfHwzIdksUKPIe@kroah.com>
- <YXJ9yR6b5vI3NwF7@hatter.bewilderbeest.net>
+        id S231616AbhJVJmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 05:42:36 -0400
+Received: from mail-pf1-f178.google.com ([209.85.210.178]:37495 "EHLO
+        mail-pf1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232038AbhJVJmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 05:42:33 -0400
+Received: by mail-pf1-f178.google.com with SMTP id q19so3130200pfl.4;
+        Fri, 22 Oct 2021 02:40:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2DRet2N5HhCm6h5wynnS1gaOYbkbGXzOrerbjjC0E3g=;
+        b=Jrkj7Jx9VmBivqrIstT5FQ0tLVNsID3nHIkQBDPtRh693hp0l2M+vwDTZWwH8Lbxtr
+         LnNOXPEoA8FcICMv8yUk4RTPW7QlSWU+pLolsrYWpZnELe07BesyDZHVDiU2+kVaPXBf
+         38bt1sw4J2ijStGsfnNa3IFwXlvw0nFq69cMgiLV3Od620tFd4xpxfaKkWMRaOVWUW2Z
+         nDBLzf0FbjGLd3UO/Sz4bf+P5Z2SI10s3EbmccvpVa3HWk2GwvppAD+18Rtzk+JdTaPO
+         yASB+VH+TpLlKJp1dY5bAMnU94mZGHUNmjER79pHeufJ49J59vq0yYf+9SQCV82+0y67
+         Xzyg==
+X-Gm-Message-State: AOAM532EV4cWAG4PnESuapwrRCmLoctHc7OPuGQ8UyCZBkEFw8r7eegm
+        FefogQ1DrYrr8eV3+B3hHlGsKuWBAJJ2umwslS4=
+X-Google-Smtp-Source: ABdhPJyblyCb0CC4y8acTqNncuSqdbB5QocuyXB3xV6V6A5/kNsqxhKmEJEGhcR1xInlPyJlLfr9PFvQz/JeTr9ws8o=
+X-Received: by 2002:a62:5257:0:b0:44c:ed84:350a with SMTP id
+ g84-20020a625257000000b0044ced84350amr11091780pfb.79.1634895616438; Fri, 22
+ Oct 2021 02:40:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YXJ9yR6b5vI3NwF7@hatter.bewilderbeest.net>
+References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-2-kernel@esmil.dk>
+ <CAHp75VfD73Nsrp-3hMzFtuEAfka+rRc=2m0ZZYddhWBAzg=QAw@mail.gmail.com>
+In-Reply-To: <CAHp75VfD73Nsrp-3hMzFtuEAfka+rRc=2m0ZZYddhWBAzg=QAw@mail.gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Fri, 22 Oct 2021 11:40:05 +0200
+Message-ID: <CANBLGcxJGgi9nuT6LpjGgPj1bg0aW-ELRCAO0Csv3xi82gTCnQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/16] RISC-V: Add StarFive SoC Kconfig option
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 22, 2021 at 02:00:57AM -0700, Zev Weiss wrote:
-> On Thu, Oct 21, 2021 at 11:50:07PM PDT, Greg Kroah-Hartman wrote:
-> > On Thu, Oct 21, 2021 at 07:00:27PM -0700, Zev Weiss wrote:
-> > > Hello all,
-> > > 
-> > > This series is another incarnation of a couple other patchsets I've
-> > > posted recently [0, 1], but again different enough in overall
-> > > structure that I'm not sure it's exactly a v2 (or v3).
-> > > 
-> > > As compared to [1], it abandons the writable binary sysfs files and at
-> > > Frank's suggestion returns to an approach more akin to [0], though
-> > > without any driver-specific (aspeed-smc) changes, which I figure might
-> > > as well be done later in a separate series once appropriate
-> > > infrastructure is in place.
-> > > 
-> > > The basic idea is to implement support for a status property value
-> > > that's documented in the DT spec [2], but thus far not used at all in
-> > > the kernel (or anywhere else I'm aware of): "reserved".  According to
-> > > the spec (section 2.3.4, Table 2.4), this status:
-> > > 
-> > >   Indicates that the device is operational, but should not be used.
-> > >   Typically this is used for devices that are controlled by another
-> > >   software component, such as platform firmware.
-> > > 
-> > > With these changes, devices marked as reserved are (at least in some
-> > > cases, more on this later) instantiated, but will not have drivers
-> > > bound to them unless and until userspace explicitly requests it by
-> > > writing the device's name to the driver's sysfs 'bind' file.  This
-> > > enables appropriate handling of hardware arrangements that can arise
-> > > in contexts like OpenBMC, where a device may be shared with another
-> > > external controller not under the kernel's control (for example, the
-> > > flash chip storing the host CPU's firmware, shared by the BMC and the
-> > > host CPU and exclusively under the control of the latter by default).
-> > > Such a device can be marked as reserved so that the kernel refrains
-> > > from touching it until appropriate preparatory steps have been taken
-> > > (e.g. BMC userspace coordinating with the host CPU to arbitrate which
-> > > processor has control of the firmware flash).
-> > > 
-> > > Patches 1-3 provide some basic plumbing for checking the "reserved"
-> > > status of a device, patch 4 is the main driver-core change, and patch
-> > > 5 tweaks the OF platform code to not skip reserved devices so that
-> > > they can actually be instantiated.
-> > 
-> > Again, the driver core should not care about this, that is up to the bus
-> > that wants to read these "reserved" values and do something with them or
-> > not (remember the bus is the thing that does the binding, not the driver
-> > core).
-> > 
-> > But are you sure you are using the "reserved" field properly?
-> 
-> Well, thus far both Rob Herring and Oliver O'Halloran (originator of the
-> "reserved" status in the DT spec, whom I probably should have CCed earlier,
-> sorry) have seemed receptive to this interpretation of it, which I'd hope
-> would lend it some credence.
+On Fri, 22 Oct 2021 at 10:51, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> On Thu, Oct 21, 2021 at 8:42 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> >
+> > Add StarFive Kconfig option to select SoC specific and common drivers
+> > required for these SoCs.
+>
+> ...
+>
+> > +config SOC_STARFIVE
+> > +       bool "StarFive SoCs"
+> > +       select PINCTRL
+> > +       select RESET_CONTROLLER
+>
+> > +       select SIFIVE_PLIC
+>
+> If this is well understood and platform related the above two are too
+> generic. Why have you selected them?
 
-Ok, that's up to the DT people, I'll let you all fight it out with the
-platform creators :)
+From your last comments the criterion seemed to be to only add it here
+if it would otherwise fail to boot. Well it does fail to boot without
+the reset and pinctrl drivers. The clock driver too, but RISCV already
+selects COMMON_CLK. Once PINCTRL and RESET_CONTROLLER is selected the
+specific drivers defaults to SOC_STARFIVE.
 
-Good luck!
+Alternatively we'd select the drivers too, but I can't promise that
+future StarFive chips will need the same JH7100 clock and reset
+drivers. Doing it this way means that selecting SOC_STARFIVE by
+default gives you a kernel that will boot on all StarFive SoCs, but
+you can still customise it further to your particular chip. It seems
+like SOC_SIFIVE is doing the same.
 
-greg k-h
+> > +       help
+> > +         This enables support for StarFive SoC platform hardware.
+>
+> Not too much to read here. What is the point of this help?
+> I would elaborate what kind of platform it may support, what kind of
+> drivers it selects due to necessity of the accomplishing the boot
+> process, etc.
+
+This is exactly as the other descriptions in this file. I don't know
+why SOC_STARFIVE should be special.
+
+/Emil
