@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74AC043748A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 11:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E90CA4374A3
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 11:22:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232357AbhJVJR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 05:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232180AbhJVJR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 05:17:27 -0400
-Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A743C061764;
-        Fri, 22 Oct 2021 02:15:10 -0700 (PDT)
-Received: by mail-il1-x12a.google.com with SMTP id j10so200009ilu.2;
-        Fri, 22 Oct 2021 02:15:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7DczJgTsrEUe66TRocDFUq17LG2eh3rHGp1OMow1/+w=;
-        b=cHca5wcCZFcIOzsxgI1SKRJm8zwJz8tYeN49PeA6DW51nZrTWPmUGV1y4rogZ4zSFc
-         FZMCPJHOh7X1ODHnoJNdw6DWP+YeSlhnfEaymoqnvhpfuP7onfUFf72lohDWEOb0hoLs
-         36jokar2MqMJ3pcYomSDGtSeTtvKnJGNSqxLypDcez+ghR3Vnj+vYl/0z1E/bZoWd2eB
-         OKCV/6+77knnFz0msLAAuecBmCe3xnK7tIdyNj+Vh3dzfeK4A7WCOOsEjPYVTdC5b/JU
-         OHo8kRyaBQuN6FrGp7cFTtM0FSUAcCNSpezlTec+R0Vh+F1i98sDepdpXGrfQwbzT7cj
-         k22w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7DczJgTsrEUe66TRocDFUq17LG2eh3rHGp1OMow1/+w=;
-        b=ntNLzp29s4DWxinLW+uVHrVVQr9AXLcVAxRc+n0YD6l9EkoOtnIulQaFLgNLlq68D0
-         5MrPI+6Oq5bqHCECBkxhvz6fnaZXdQ+b/2Vlx4TOTE7vBXZ/UmlRy6q6qy+uWK/g+FSM
-         H14WAVHileMTnq3914H4U8rV44WKImg2tBZ3KweZOjxSihL0vhScVXteziSbxdQLr4kh
-         wnGzmFR6LFOIWmBzqfy+S6qobB4mgqrfd73+Zz8I7if+/ySyzoaOHvGNh5p9AbHFbXfL
-         Ii8W+ldVfdbuxMjzIxMp+yGBrvaGJEL9IH0i+NSO1DQ1mTYrFbH5m7Il146+t43N70I/
-         O6Uw==
-X-Gm-Message-State: AOAM532ngrqbcmVBBupcGm1cWd6/GXQFM49rjsxy+ElPrcoxUMAiObl0
-        hiszxUyXHXK4E7G/q4eMwqAjQHShDsyUQkmluMA=
-X-Google-Smtp-Source: ABdhPJztOeX0qbkcDhGUgqmJkz/Xjz1Z8hBdU+o7cNL+/8jFrXgzSoqv4ReeXcrxKop/kg/iRZYdgBvZCtGp/EOroWY=
-X-Received: by 2002:a05:6e02:1a05:: with SMTP id s5mr7531783ild.303.1634894109439;
- Fri, 22 Oct 2021 02:15:09 -0700 (PDT)
+        id S232161AbhJVJYa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 05:24:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49814 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231563AbhJVJYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 05:24:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3EB960FDA;
+        Fri, 22 Oct 2021 09:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1634894533;
+        bh=9aGfIgQGiaQYTNOWKV+Zae5m5NPz4PloE1ueYrvbcko=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dx999myzKkPyX9nYyLuy1encmZJQVXGy3WDSNJ/frpiPbZz7w7nT7oZeMBYVcq1HD
+         H9J7uUVZvBE2VUBYeqo7SgMfO0dhlHx+XteJd1sus5uLNuifjcVTTel9JnoVwKRiTx
+         KM8Fsm14tGJj1itWm/e+sZl24EkuvlfrB5zGLBb8=
+Date:   Fri, 22 Oct 2021 11:22:11 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Oliver O'Halloran <oohall@gmail.com>
+Subject: Re: [PATCH 0/5] driver core, of: support for reserved devices
+Message-ID: <YXKCw/eEB8n2qtVx@kroah.com>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <YXJfHwzIdksUKPIe@kroah.com>
+ <YXJ9yR6b5vI3NwF7@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-References: <1634633003-18132-1-git-send-email-dillon.minfei@gmail.com>
- <1634633003-18132-10-git-send-email-dillon.minfei@gmail.com>
- <CAL9mu0Jw99aeSmwy7gnY3XQK3V1V-C1-R8ET5jvSMz7niH=g4g@mail.gmail.com> <b43699a6-dc53-3fcd-6cc9-6b05025cad96@foss.st.com>
-In-Reply-To: <b43699a6-dc53-3fcd-6cc9-6b05025cad96@foss.st.com>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Fri, 22 Oct 2021 17:14:32 +0800
-Message-ID: <CAL9mu0LUs0iwn2NUaUrbDjDGkB8dahdW+86RSeVJPpaP=V8f6A@mail.gmail.com>
-Subject: Re: [PATCH v6 09/10] clk: stm32: Fix ltdc's clock turn off by
- clk_disable_unused() after system enter shell
-To:     "gabriel.fernandez@foss.st.com" <gabriel.fernandez@foss.st.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        mchehab+huawei@kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        ezequiel@collabora.com, gnurou@gmail.com,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, gabriel.fernandez@st.com,
-        Patrice CHOTARD <patrice.chotard@foss.st.com>,
-        hugues.fruchet@foss.st.com,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YXJ9yR6b5vI3NwF7@hatter.bewilderbeest.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel
+On Fri, Oct 22, 2021 at 02:00:57AM -0700, Zev Weiss wrote:
+> On Thu, Oct 21, 2021 at 11:50:07PM PDT, Greg Kroah-Hartman wrote:
+> > On Thu, Oct 21, 2021 at 07:00:27PM -0700, Zev Weiss wrote:
+> > > Hello all,
+> > > 
+> > > This series is another incarnation of a couple other patchsets I've
+> > > posted recently [0, 1], but again different enough in overall
+> > > structure that I'm not sure it's exactly a v2 (or v3).
+> > > 
+> > > As compared to [1], it abandons the writable binary sysfs files and at
+> > > Frank's suggestion returns to an approach more akin to [0], though
+> > > without any driver-specific (aspeed-smc) changes, which I figure might
+> > > as well be done later in a separate series once appropriate
+> > > infrastructure is in place.
+> > > 
+> > > The basic idea is to implement support for a status property value
+> > > that's documented in the DT spec [2], but thus far not used at all in
+> > > the kernel (or anywhere else I'm aware of): "reserved".  According to
+> > > the spec (section 2.3.4, Table 2.4), this status:
+> > > 
+> > >   Indicates that the device is operational, but should not be used.
+> > >   Typically this is used for devices that are controlled by another
+> > >   software component, such as platform firmware.
+> > > 
+> > > With these changes, devices marked as reserved are (at least in some
+> > > cases, more on this later) instantiated, but will not have drivers
+> > > bound to them unless and until userspace explicitly requests it by
+> > > writing the device's name to the driver's sysfs 'bind' file.  This
+> > > enables appropriate handling of hardware arrangements that can arise
+> > > in contexts like OpenBMC, where a device may be shared with another
+> > > external controller not under the kernel's control (for example, the
+> > > flash chip storing the host CPU's firmware, shared by the BMC and the
+> > > host CPU and exclusively under the control of the latter by default).
+> > > Such a device can be marked as reserved so that the kernel refrains
+> > > from touching it until appropriate preparatory steps have been taken
+> > > (e.g. BMC userspace coordinating with the host CPU to arbitrate which
+> > > processor has control of the firmware flash).
+> > > 
+> > > Patches 1-3 provide some basic plumbing for checking the "reserved"
+> > > status of a device, patch 4 is the main driver-core change, and patch
+> > > 5 tweaks the OF platform code to not skip reserved devices so that
+> > > they can actually be instantiated.
+> > 
+> > Again, the driver core should not care about this, that is up to the bus
+> > that wants to read these "reserved" values and do something with them or
+> > not (remember the bus is the thing that does the binding, not the driver
+> > core).
+> > 
+> > But are you sure you are using the "reserved" field properly?
+> 
+> Well, thus far both Rob Herring and Oliver O'Halloran (originator of the
+> "reserved" status in the DT spec, whom I probably should have CCed earlier,
+> sorry) have seemed receptive to this interpretation of it, which I'd hope
+> would lend it some credence.
 
-Thanks for the quick response.
+Ok, that's up to the DT people, I'll let you all fight it out with the
+platform creators :)
 
-Best Regards
-Dillon
+Good luck!
 
-On Fri, 22 Oct 2021 at 17:10, gabriel.fernandez@foss.st.com
-<gabriel.fernandez@foss.st.com> wrote:
->
-> Hi Dillon,
->
-> You can add my Acked-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->
-> Best Regards
-> Gabriel
->
-> On 10/22/21 9:25 AM, Dillon Min wrote:
-> > Hi Gabriel
-> >
-> > I guess you are the maintainer of stm32 clk subsystem from [1], Could
-> > you help to review this patch, just give a brief of the history:
-> >
-> > - this patch was acked by Stephen Boyd at [2].
-> > - reviewed by Patrice Chotard at [3].
-> >
-> > Without this patch , the kernel will turn off ltdc's clk after the
-> > system reach shell.
-> >
-> > [1] https://lore.kernel.org/lkml/AM8PR10MB4785545DC980090C1E7D66B281009@AM8PR10MB4785.EURPRD10.PROD.OUTLOOK.COM/
-> >
-> > [2] https://lore.kernel.org/linux-arm-kernel/159056850835.88029.9264848839121822798@swboyd.mtv.corp.google.com/
-> >
-> > [3] https://lore.kernel.org/lkml/6915fa2a-e211-476f-8317-6825e280c322@foss.st.com/#t
-> >
-> > Best Regards
-> > Dillon
-> >
-> > On Tue, 19 Oct 2021 at 16:44, Dillon Min <dillon.minfei@gmail.com> wrote:
-> >>
-> >> stm32's clk driver register two ltdc gate clk to clk core by
-> >> clk_hw_register_gate() and clk_hw_register_composite()
-> >>
-> >> first: 'stm32f429_gates[]', clk name is 'ltdc', which no user to use.
-> >> second: 'stm32f429_aux_clk[]', clk name is 'lcd-tft', used by ltdc driver
-> >>
-> >> both of them point to the same offset of stm32's RCC register. after
-> >> kernel enter console, clk core turn off ltdc's clk as 'stm32f429_gates[]'
-> >> is no one to use. but, actually 'stm32f429_aux_clk[]' is in use.
-> >>
-> >> stm32f469/746/769 have the same issue, fix it.
-> >>
-> >> Fixes: daf2d117cbca ("clk: stm32f4: Add lcd-tft clock")
-> >> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> >> Link: https://lore.kernel.org/linux-arm-kernel/1590564453-24499-7-git-send-email-dillon.minfei@gmail.com/
-> >> Link: https://lore.kernel.org/lkml/CAPTRvHkf0cK_4ZidM17rPo99gWDmxgqFt4CDUjqFFwkOeQeFDg@mail.gmail.com/
-> >> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> >> ---
-> >> v6: no change.
-> >>
-> >>   drivers/clk/clk-stm32f4.c | 4 ----
-> >>   1 file changed, 4 deletions(-)
-> >>
-> >> diff --git a/drivers/clk/clk-stm32f4.c b/drivers/clk/clk-stm32f4.c
-> >> index af46176ad053..473dfe632cc5 100644
-> >> --- a/drivers/clk/clk-stm32f4.c
-> >> +++ b/drivers/clk/clk-stm32f4.c
-> >> @@ -129,7 +129,6 @@ static const struct stm32f4_gate_data stm32f429_gates[] __initconst = {
-> >>          { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> >> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
-> >>   };
-> >>
-> >>   static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
-> >> @@ -211,7 +210,6 @@ static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
-> >>          { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> >> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
-> >>   };
-> >>
-> >>   static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
-> >> @@ -286,7 +284,6 @@ static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
-> >>          { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> >> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
-> >>   };
-> >>
-> >>   static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
-> >> @@ -364,7 +361,6 @@ static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
-> >>          { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> >> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
-> >>          { STM32F4_RCC_APB2ENR, 30,      "mdio",         "apb2_div" },
-> >>   };
-> >>
-> >> --
-> >> 2.7.4
-> >>
+greg k-h
