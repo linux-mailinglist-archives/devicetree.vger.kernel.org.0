@@ -2,52 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E91F9436F1E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 02:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC75436F21
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 02:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbhJVAzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Oct 2021 20:55:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40952 "EHLO mail.kernel.org"
+        id S232396AbhJVAzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Oct 2021 20:55:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41102 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229512AbhJVAzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 21 Oct 2021 20:55:09 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A694761371;
-        Fri, 22 Oct 2021 00:52:52 +0000 (UTC)
+        id S232392AbhJVAzP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 21 Oct 2021 20:55:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 18B166135E;
+        Fri, 22 Oct 2021 00:52:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1634863973;
-        bh=/ar7Vm5chhxFFJNLsH1Cx7MqXOvv+yBrbQnZyJ7ext0=;
+        s=k20201202; t=1634863978;
+        bh=mH7GdbWGt4HKolhZrvahIHWGiMTWStm6bmleErRylaw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ugDqVE5LEFVT7/8vRX1SWqwaJ3I5ScNrEq2t0RusE9J4xkcI7xqNz/rGm+OGE2ePP
-         BMnWjwEuVU4FEa0SG+NUNzWfQDzTmJqHjz/8YAsI7FqN/SosBxBTjrADbYZynbiFDV
-         3qzPSII+4Tsym20VDjCTxdRgpAQLLFWSrK4esjxbSBQb9Nkuk2Uxv9VEnZhM7AYR3L
-         293LQ6kJc7HQFNFMJiGUxryVARloozj1p+HHPn67DnNFu3iJMGX3sYMsbCCXpP9Mrc
-         XOYIZ8CdU1kydl6iEJVkbSgk/zUzQyWwMZOYRZQS7U58HsbSCGJuUtOmQzPZmf5yiL
-         RhIKq8Di4+ggg==
+        b=PI307ggATI6Lj3AJra27XvUoy0evLCnu9VFMnrrvZ/N0TcDzGov5xbxIWA8ZUyZ5G
+         SMyRiBm+fD758cSxCHoWNM1tESAShCWYEd34eDbLSThU8luIZJpgDeDKCDiauH/Tpf
+         5AaiTVZSgeNAwcrnQ1PDiZ4tJ/HguyDcb2YFZjkkQb1M44MevtzRKs0VM/6mvFE9mi
+         tXfpFAUeKJYNHeZ/fBh56JCuyDGNjB7Bc9JTiQkh6mt8j3mn5w3GFNhAauWBDUKnBe
+         5GIvdGOY6qVfmtD4NyeOLByrczShpuodyG0gQPNP5IzKXEkmVLU0eRqZuPvlwJ8/5B
+         JUtGQdDrnszng==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-arm-msm@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-Cc:     Mark Brown <broonie@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        David Collins <collinsd@codeaurora.org>,
-        linux-gpio@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, linux-clk@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        konrad.dybcio@somainline.org, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: (subset) [PATCH v2 00/11] Initial Fairphone 4 support
-Date:   Fri, 22 Oct 2021 01:52:45 +0100
-Message-Id: <163486395942.2610269.17464570982100143546.b4-ty@kernel.org>
+To:     Masami Hiramatsu <mhiramat@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] regulator: Introduce UniPhier NX1 SoC support
+Date:   Fri, 22 Oct 2021 01:52:47 +0100
+Message-Id: <163486395941.2610269.5320640167922930528.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211007212444.328034-1-luca@z3ntu.xyz>
-References: <20211007212444.328034-1-luca@z3ntu.xyz>
+In-Reply-To: <1634520605-16583-1-git-send-email-hayashi.kunihiko@socionext.com>
+References: <1634520605-16583-1-git-send-email-hayashi.kunihiko@socionext.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -55,15 +43,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Oct 2021 23:24:27 +0200, Luca Weiss wrote:
-> This series adds basic support for the recently announced Fairphone 4
-> smartphone, based on the Snapdragon 750G (sm7225).
+On Mon, 18 Oct 2021 10:30:03 +0900, Kunihiko Hayashi wrote:
+> This series includes the patches to add basic support for new UniPhier NX1
+> SoC. NX1 SoC also has the same kinds of controls as the other UniPhier
+> SoCs.
 > 
-> This adds support for UART, power & volume buttons, screen based on
-> simple-framebuffer, regulators and USB.
-> 
-> v2 fixes some stylistic problems in dts and corrects the situation with
-> pm6350 regulator supplies.
+> Kunihiko Hayashi (2):
+>   dt-bindings: regulator: uniphier: Add binding for NX1 SoC
+>   regulator: uniphier: Add USB-VBUS compatible string for NX1 SoC
 > 
 > [...]
 
@@ -73,10 +60,10 @@ Applied to
 
 Thanks!
 
-[02/11] dt-bindings: regulator: qcom,rpmh: Add compatible for PM6350
-        commit: 12271ba94530e7476eff09e98a7de10c31f5d474
-[03/11] regulator: qcom-rpmh: Add PM6350 regulators
-        commit: 0adafd62505ccb4787d4918fd0b4ca126b754453
+[1/2] dt-bindings: regulator: uniphier: Add binding for NX1 SoC
+      commit: 4c1ef56bd9c7a60efdeac9f1478b5467fb47c093
+[2/2] regulator: uniphier: Add USB-VBUS compatible string for NX1 SoC
+      commit: 32e84faa825e8bc6431186a41b68e0fcff857b72
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
