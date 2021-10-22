@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 209FF437701
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 14:22:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C350437706
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 14:22:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232449AbhJVMYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 08:24:40 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34686 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231611AbhJVMYj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 08:24:39 -0400
-X-UUID: fe42fe69248a4aeb9b4cd1680e6ae3b2-20211022
-X-UUID: fe42fe69248a4aeb9b4cd1680e6ae3b2-20211022
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1662205131; Fri, 22 Oct 2021 20:22:20 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 22 Oct 2021 20:22:19 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 22 Oct
- 2021 20:22:18 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 22 Oct 2021 20:22:18 +0800
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        "Weiyi Lu" <weiyi.lu@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
-CC:     John Crispin <john@phrozen.org>,
-        Ryder Lee <Ryder.Lee@mediatek.com>,
-        "Sam Shih" <sam.shih@mediatek.com>
-Subject: [RESEND, PATCH v6 0/5] Mediatek MT7986 basic clock support
-Date:   Fri, 22 Oct 2021 20:22:13 +0800
-Message-ID: <20211022122213.27065-1-sam.shih@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S232766AbhJVMY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 08:24:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53854 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230462AbhJVMY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 08:24:56 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EADE1C061764
+        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 05:22:38 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id g8so600250edb.12
+        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 05:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=EabbjzyBCsHP1Pqryzjhoy0dM3xlyxLmmpO8ACgMTo8=;
+        b=l8vptWc5Ky7l4svCrZmA1/+YOu9Rj5NS1qveu0gC14BaYR6sQ6UBUDLTzIww4Mz3Nm
+         UZbQmCVF/qA5QJxDvSXZug8OALKet3OLBmsJqC6K+B6nt+ntU9sWIgPF52q2ApsflQOH
+         k7fInxIpy7a9VY8xIm2JbuWbQrt2fzFgiDgP+bKUWSunxzK54475wcUo9LXD/QxjBm/T
+         mnaZVRPTTXlbU08lNiMKbkeJHfQRP9IxF65fE5Q8oNP+EeFFAI3BsHHpDDP59Bijete/
+         fX6VoWEOaxqacPGxb8cq1GhtCAOK2bzVcZZR6R0u9ehPAvg8XL8wj8F6PKVvzfjJHB0T
+         9XJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=EabbjzyBCsHP1Pqryzjhoy0dM3xlyxLmmpO8ACgMTo8=;
+        b=ol9S12tcKNGjcPgZfLG7P9IOF3Us49Pa9VuEPhcy2fcoVLoeklNpNB+SHd+Z+Ndjnl
+         OjLiEZXI9MGYRNArpVkQhJ3rXMo9ML12D+Y2TVq4T9JriOho30cEGxkUKsZrUY4Ht8ZQ
+         4gDRAkdDLmFSSzd/IUfrTKfC/ylLw4OyKED+8V8nllW4xNvYLXWzDAd9POsufvcq7nOX
+         qCgXrb02I39VcAHxJP+crK8xuXS3LQMkGgUUom7qqwV4BLNIiSYFXJZFXPhrptowiQSn
+         4AIX+xcWK7VVd0Al6VGHz/ZjYYAoXUvmmFDrcUFABhU/ZUSlz5wqmdbhlbjp8Bsbo/1E
+         ZncA==
+X-Gm-Message-State: AOAM531w+Ze0MtxlW/cO/Lhf8LCTn1v0GoOrJuUwypiazyfSVeBnOaJD
+        GHZApY46JolZILG2X+PQxGaNzR2aTPYteL1ElVA=
+X-Google-Smtp-Source: ABdhPJxw0kPE8queRl/OJCi4xEWWGOytEkRqO9Hcg0haH9BQfIQtcEMMc/8+PBh8nITOCeRz8AWf6oYWRvkYTkaOfMU=
+X-Received: by 2002:a17:906:d937:: with SMTP id rn23mr15018849ejb.101.1634905355963;
+ Fri, 22 Oct 2021 05:22:35 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:a17:907:7fa7:0:0:0:0 with HTTP; Fri, 22 Oct 2021 05:22:34
+ -0700 (PDT)
+Reply-To: bahadur.rayanby@gmail.com
+From:   Ryan Bahadur <dr.philposman7@gmail.com>
+Date:   Fri, 22 Oct 2021 05:22:34 -0700
+Message-ID: <CAMOT=VSU-bb0=2v+L06Sjpm-ujHqg5uCTAMGEiCzL2X7fohH1w@mail.gmail.com>
+Subject: CAN I TRUST YOU
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series add basic clock support for mediatek mt7986 SoC.
-It is based on patch series "Add basic SoC support for mediatek mt7986"
-https://lore.kernel.org/all/20211018114009.13350-1-sam.shih@mediatek.com/
-and "clk: mediatek: Add API for clock resource recycle"
-https://lore.kernel.org/linux-arm-kernel/20210914021633.26377-5-chun-jie.chen@mediatek.com/
+-- 
+Greetings,
 
----
-v6: Used lowercase hex values in clock DT
-v5: used builtin_platform_driver instead of CLK_OF_DECLARE
-    follow recent clk-mt8195 clock patch series:
-    https://lore.kernel.org/linux-arm-kernel/20210914021633.26377-1-chun-jie.chen@mediatek.com/
+Firstly, I apologize for encroaching into your privacy in this manner
+as it may seem unethical though it is a matter of great importance.
 
-v4:
-According to the maintainer’s suggestion, this patch splits the previous
-thread into independent patch series.
-This patch include clock driver and device tree update
+I am Mr.Ryan Bahadur, I work with Cayman National Bank (Cayman Islands).
 
-Original thread:
-https://lore.kernel.org/all/20210914085137.31761-1-sam.shih@mediatek.com/
-https://lore.kernel.org/linux-arm-kernel/20210914085137.31761-2-sam.shih@mediatek.com/
----
+I am contacting you because my status would not permit me to do this
+alone as it is concerning our customer and an investment placed under
+our bank's management over 5 years ago.
 
-Sam Shih (5):
-  dt-bindings: clock: mediatek: document clk bindings for mediatek
-    mt7986 SoC
-  clk: mediatek: add mt7986 clock IDs
-  clk: mediatek: add mt7986 clock support
-  arm64: dts: mediatek: add clock support for mt7986a
-  arm64: dts: mediatek: add clock support for mt7986b
+I have a proposal I would love to discuss with you which will be very
+beneficial to both of us. It's regarding my late client who has a huge
+deposit with my bank.
 
- .../arm/mediatek/mediatek,apmixedsys.txt      |   1 +
- .../bindings/arm/mediatek/mediatek,ethsys.txt |   1 +
- .../arm/mediatek/mediatek,infracfg.txt        |   1 +
- .../arm/mediatek/mediatek,sgmiisys.txt        |   2 +
- .../arm/mediatek/mediatek,topckgen.txt        |   1 +
- arch/arm64/boot/dts/mediatek/mt7986a.dtsi     |  68 +++-
- arch/arm64/boot/dts/mediatek/mt7986b.dtsi     |  68 +++-
- drivers/clk/mediatek/Kconfig                  |  17 +
- drivers/clk/mediatek/Makefile                 |   4 +
- drivers/clk/mediatek/clk-mt7986-apmixed.c     | 100 +++++
- drivers/clk/mediatek/clk-mt7986-eth.c         | 132 +++++++
- drivers/clk/mediatek/clk-mt7986-infracfg.c    | 224 ++++++++++++
- drivers/clk/mediatek/clk-mt7986-topckgen.c    | 342 ++++++++++++++++++
- include/dt-bindings/clock/mt7986-clk.h        | 169 +++++++++
- 14 files changed, 1120 insertions(+), 10 deletions(-)
- create mode 100644 drivers/clk/mediatek/clk-mt7986-apmixed.c
- create mode 100644 drivers/clk/mediatek/clk-mt7986-eth.c
- create mode 100644 drivers/clk/mediatek/clk-mt7986-infracfg.c
- create mode 100644 drivers/clk/mediatek/clk-mt7986-topckgen.c
- create mode 100644 include/dt-bindings/clock/mt7986-clk.h
+He is from your country and shares the same last name with you.
 
---
-2.29.2
+I want to seek your consent to present you as the next of kin to my
+late client who died and left a huge deposit with my bank.
 
+I would respectfully request that you keep the contents of this mail
+confidential and respect the integrity of the information you come by
+as a result of this mail.
+
+Please kindly get back to me for more details if I can TRUST YOU.{
+bahadur.rayanby@gmail.com}
+
+Regards
+Mr.Ryan Bahadur
+Treasury and Deposit Management,
+Cayman National Bank Cayman Islands.
