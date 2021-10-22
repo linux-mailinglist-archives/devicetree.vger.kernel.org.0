@@ -2,160 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 715D64372B4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290FE4372E6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 09:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231912AbhJVH2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 03:28:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43390 "EHLO
+        id S231942AbhJVHlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 03:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231334AbhJVH2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 03:28:19 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED233C061764;
-        Fri, 22 Oct 2021 00:26:01 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id a8so3257823ilj.10;
-        Fri, 22 Oct 2021 00:26:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xGW6THywkFBuOv9pHK/lIzKrkZB0E8ZIytUvD2+0Xw8=;
-        b=Eh4hasD9RvEAh6ImQl27Ae2v7t2vwvorjoDgIoYVCE+rXO0eIBgQvFwbIQD/g7hjG8
-         SSTAEDjo228I1eH+2ZxK0SNqiNxVzHLqlxLwDSAwsd18aQLw0b1mNmAb9all+hB2mt1P
-         HtjnOE/qSbehdmf4XR7Q2K1EF4Es5SwxR3eVL7gO/+iHL/XLFauKArm0YveFUS5BOF6t
-         JDpgpVP0CkCf1I9qARXL2F8saP3ocO6f3XRCFHfsLo/u+yY5EoF7iMCN4Xb1riPwcuB1
-         azWIRU2HmiQ6tokGswRjYjrvzN7oI8HAkjpBXK3cqtAA0umeZIVp1MTovtBth4wAqrWx
-         knzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xGW6THywkFBuOv9pHK/lIzKrkZB0E8ZIytUvD2+0Xw8=;
-        b=VT9/ygnsVUrMN5tV3C8HxZL9oKI1/mCvOXgy3SA8y27RVGnd7IJ8WnkMar0UFpjqve
-         PXgSrkrziLkjgBUAa8zul4W4DykXSMrVl6n2VRWO7BDVl/99Ya1mJskFPWneNT65BELX
-         Zn3fksUidRTMh4eh2q9segyLxjjKVzY2sMFZpEnCl9kYDD8IqgJ9fmzH6d3fTl7uj+Up
-         Vnc30KaJG3JeJgmbdcn25tdsSn92cHkOhInv+jLX+iOrdI/MCplr6Ej4R5lqu0HlRDt1
-         k8NZeIujRQaN/5eo+u0Q1ZaEXak7xtU2rmjB+BlaOw/+4mr8a2dgSI9GTK0fYVt9V4oU
-         W12A==
-X-Gm-Message-State: AOAM533nJNfOQWofWU8SIt0n9QQn7cdCtfUz5VgAIKPNRGoOkiH6G843
-        z/9hesze1IyMdy59GJgIg6kHPe3IU7lQZXNsEQg=
-X-Google-Smtp-Source: ABdhPJzptGfW29mWmQ2t1Ao8a4dPISAZrav5sOoX2pl1Jm+Kj5xoE3Qsw272r5sA9jxvbALGZVvbQPMQ5FuvNiZm1XY=
-X-Received: by 2002:a05:6e02:164e:: with SMTP id v14mr6777429ilu.320.1634887561381;
- Fri, 22 Oct 2021 00:26:01 -0700 (PDT)
+        with ESMTP id S232140AbhJVHlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 03:41:02 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 448DEC061764;
+        Fri, 22 Oct 2021 00:38:45 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (71-212-29-146.tukw.qwest.net [71.212.29.146])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id BBD643F5;
+        Fri, 22 Oct 2021 00:38:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1634888325;
+        bh=kLThclivvucdLvqBkWXzBYC9PcfYiKpUKEDKsLyPwD4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GY2tE09MyBfvWd3WTZAsuQi6XkbgwBKuEkwCUxl1EWLlDdEoIm+gkWpZI4QvDQ0WJ
+         ON2/OtO9q3/7K+sPG8xvQBUu30Uj0bYfAISTDmpOgKWuNQpM9ASBJHx7iyvG1UodCX
+         kGMU27vb/jvcgQHwu2A6F8DF2P6gIxLW4kXFtrK0=
+Date:   Fri, 22 Oct 2021 00:38:40 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] of: base: add function to check for status =
+ "reserved"
+Message-ID: <YXJqgNDOaNLzTg0T@hatter.bewilderbeest.net>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <20211022020032.26980-2-zev@bewilderbeest.net>
+ <YXJdi3IBzaqmSZ9b@kroah.com>
 MIME-Version: 1.0
-References: <1634633003-18132-1-git-send-email-dillon.minfei@gmail.com> <1634633003-18132-10-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1634633003-18132-10-git-send-email-dillon.minfei@gmail.com>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Fri, 22 Oct 2021 15:25:25 +0800
-Message-ID: <CAL9mu0Jw99aeSmwy7gnY3XQK3V1V-C1-R8ET5jvSMz7niH=g4g@mail.gmail.com>
-Subject: Re: [PATCH v6 09/10] clk: stm32: Fix ltdc's clock turn off by
- clk_disable_unused() after system enter shell
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        mchehab+huawei@kernel.org, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        ezequiel@collabora.com, gnurou@gmail.com,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, gabriel.fernandez@st.com,
-        gabriel.fernandez@foss.st.com
-Cc:     Patrice CHOTARD <patrice.chotard@foss.st.com>,
-        hugues.fruchet@foss.st.com,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YXJdi3IBzaqmSZ9b@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel
+On Thu, Oct 21, 2021 at 11:43:23PM PDT, Greg Kroah-Hartman wrote:
+>On Thu, Oct 21, 2021 at 07:00:28PM -0700, Zev Weiss wrote:
+>> Per v0.3 of the Devicetree Specification [0]:
+>>
+>>   Indicates that the device is operational, but should not be used.
+>>   Typically this is used for devices that are controlled by another
+>>   software component, such as platform firmware.
+>>
+>> One use-case for this is in OpenBMC, where certain devices (such as a
+>> BIOS flash chip) may be shared by the host and the BMC, but cannot be
+>> accessed by the BMC during its usual boot-time device probing, because
+>> they require additional (potentially elaborate) coordination with the
+>> host to arbitrate which processor is controlling the device.
+>>
+>> Devices marked with this status should thus be instantiated, but not
+>> have a driver bound to them or be otherwise touched.
+>>
+>> [0] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.3/devicetree-specification-v0.3.pdf
+>>
+>> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+>> ---
+>>  drivers/of/base.c  | 56 +++++++++++++++++++++++++++++++++++++++-------
+>>  include/linux/of.h |  6 +++++
+>>  2 files changed, 54 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/of/base.c b/drivers/of/base.c
+>> index 0ac17256258d..3bd7c5b8a2cc 100644
+>> --- a/drivers/of/base.c
+>> +++ b/drivers/of/base.c
+>> @@ -580,14 +580,16 @@ int of_machine_is_compatible(const char *compat)
+>>  EXPORT_SYMBOL(of_machine_is_compatible);
+>>
+>>  /**
+>> - *  __of_device_is_available - check if a device is available for use
+>> + * __of_device_check_status - check if a device's status matches a particular string
+>>   *
+>> - *  @device: Node to check for availability, with locks already held
+>> + * @device: Node to check status of, with locks already held
+>> + * @val: Status string to check for, or NULL for "okay"/"ok"
+>>   *
+>> - *  Return: True if the status property is absent or set to "okay" or "ok",
+>> - *  false otherwise
+>> + * Return: True if status property exists and matches @val, or either "okay"
+>> + * or "ok" if @val is NULL, or if status property is absent and @val is
+>> + * "okay", "ok", or NULL.  False otherwise.
+>>   */
+>> -static bool __of_device_is_available(const struct device_node *device)
+>> +static bool __of_device_check_status(const struct device_node *device, const char *val)
+>>  {
+>>  	const char *status;
+>>  	int statlen;
+>> @@ -596,17 +598,35 @@ static bool __of_device_is_available(const struct device_node *device)
+>>  		return false;
+>>
+>>  	status = __of_get_property(device, "status", &statlen);
+>> -	if (status == NULL)
+>> -		return true;
+>> +	if (!status) {
+>> +		/* a missing status property is treated as "okay" */
+>> +		status = "okay";
+>> +		statlen = strlen(status) + 1; /* property lengths include the NUL terminator */
+>> +	}
+>>
+>>  	if (statlen > 0) {
+>> -		if (!strcmp(status, "okay") || !strcmp(status, "ok"))
+>> +		if (!val && (!strcmp(status, "okay") || !strcmp(status, "ok")))
+>> +			return true;
+>> +		else if (val && !strcmp(status, val))
+>
+>
+>Ick, where is this string coming from?  The kernel or userspace or a
+>device tree?  This feels very wrong, why is the kernel doing parsing
+>like this of different options that all mean the same thing?
+>
 
-I guess you are the maintainer of stm32 clk subsystem from [1], Could
-you help to review this patch, just give a brief of the history:
+Which string do you mean by "this string"?  'status' comes from a 
+property of the device tree node; 'val' will be one of a small set of 
+string constants passed by the caller.  Accepting either spelling of 
+"okay"/"ok" has been in place since 2008 (commit 834d97d45220, 
+"[POWERPC] Add of_device_is_available function"); using NULL as a 
+shorthand for those two strings was a suggestion that came up in review 
+feedback on a previous incarnation of these patches 
+(https://lore.kernel.org/openbmc/CAL_Jsq+rKGv39zHTxNx0A7=X4K48nXRLqWonecG5SobdJq3yKw@mail.gmail.com/T/#u).
 
-- this patch was acked by Stephen Boyd at [2].
-- reviewed by Patrice Chotard at [3].
+>
+>>  			return true;
+>>  	}
+>>
+>>  	return false;
+>>  }
+>>
+>> +/**
+>> + * __of_device_is_available - check if a device is available for use
+>> + *
+>> + * @device: Node to check for availability, with locks already held
+>> + *
+>> + * Return: True if the status property is absent or set to "okay" or "ok",
+>> + * false otherwise
+>> + */
+>> +static bool __of_device_is_available(const struct device_node *device)
+>> +{
+>> +	return __of_device_check_status(device, NULL);
+>> +}
+>> +
+>>  /**
+>>   *  of_device_is_available - check if a device is available for use
+>>   *
+>> @@ -628,6 +648,26 @@ bool of_device_is_available(const struct device_node *device)
+>>  }
+>>  EXPORT_SYMBOL(of_device_is_available);
+>>
+>> +/**
+>> + * of_device_is_reserved - check if a device is marked as reserved
+>> + *
+>> + * @device: Node to check for reservation
+>> + *
+>> + * Return: True if the status property is set to "reserved", false otherwise
+>> + */
+>> +bool of_device_is_reserved(const struct device_node *device)
+>> +{
+>> +	unsigned long flags;
+>> +	bool res;
+>> +
+>> +	raw_spin_lock_irqsave(&devtree_lock, flags);
+>> +	res = __of_device_check_status(device, "reserved");
+>> +	raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>
+>Why is this a "raw" spinlock?
+>
 
-Without this patch , the kernel will turn off ltdc's clk after the
-system reach shell.
+devtree_lock being a raw_spinlock_t appears to date from commit 
+d6d3c4e65651 ("OF: convert devtree lock from rw_lock to raw spinlock"); 
+"required for preempt-rt", according to Thomas Gleixner's commit 
+message.
 
-[1] https://lore.kernel.org/lkml/AM8PR10MB4785545DC980090C1E7D66B281009@AM8PR10MB4785.EURPRD10.PROD.OUTLOOK.COM/
+>Where is this status coming from?
+>
 
-[2] https://lore.kernel.org/linux-arm-kernel/159056850835.88029.9264848839121822798@swboyd.mtv.corp.google.com/
+This would be specified in a DT node, e.g. via something like:
 
-[3] https://lore.kernel.org/lkml/6915fa2a-e211-476f-8317-6825e280c322@foss.st.com/#t
+   &somedev {
+     compatible = "foobar";
+     status = "reserved";
+     /* ... */
+   };
 
-Best Regards
-Dillon
+>> +
+>> +	return res;
+>> +}
+>> +EXPORT_SYMBOL(of_device_is_reserved);
+>
+>EXPORT_SYMBOL_GPL()?
+>
 
-On Tue, 19 Oct 2021 at 16:44, Dillon Min <dillon.minfei@gmail.com> wrote:
->
-> stm32's clk driver register two ltdc gate clk to clk core by
-> clk_hw_register_gate() and clk_hw_register_composite()
->
-> first: 'stm32f429_gates[]', clk name is 'ltdc', which no user to use.
-> second: 'stm32f429_aux_clk[]', clk name is 'lcd-tft', used by ltdc driver
->
-> both of them point to the same offset of stm32's RCC register. after
-> kernel enter console, clk core turn off ltdc's clk as 'stm32f429_gates[]'
-> is no one to use. but, actually 'stm32f429_aux_clk[]' is in use.
->
-> stm32f469/746/769 have the same issue, fix it.
->
-> Fixes: daf2d117cbca ("clk: stm32f4: Add lcd-tft clock")
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> Link: https://lore.kernel.org/linux-arm-kernel/1590564453-24499-7-git-send-email-dillon.minfei@gmail.com/
-> Link: https://lore.kernel.org/lkml/CAPTRvHkf0cK_4ZidM17rPo99gWDmxgqFt4CDUjqFFwkOeQeFDg@mail.gmail.com/
-> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> ---
-> v6: no change.
->
->  drivers/clk/clk-stm32f4.c | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/drivers/clk/clk-stm32f4.c b/drivers/clk/clk-stm32f4.c
-> index af46176ad053..473dfe632cc5 100644
-> --- a/drivers/clk/clk-stm32f4.c
-> +++ b/drivers/clk/clk-stm32f4.c
-> @@ -129,7 +129,6 @@ static const struct stm32f4_gate_data stm32f429_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
-> @@ -211,7 +210,6 @@ static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
-> @@ -286,7 +284,6 @@ static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
-> @@ -364,7 +361,6 @@ static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 30,      "mdio",         "apb2_div" },
->  };
->
-> --
-> 2.7.4
->
+Its closest existing sibling, of_device_is_available(), is a plain 
+EXPORT_SYMBOL(); if we want to convert things more broadly that'd be 
+fine with me, but having one be GPL-only and the other not seems like 
+it'd be a bit confusing and inconsistent?
+
+
+Thanks,
+Zev
+
