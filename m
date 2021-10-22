@@ -2,123 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 873AD4377C7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 15:14:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8984377D7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Oct 2021 15:24:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232847AbhJVNQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 09:16:14 -0400
-Received: from mail-pl1-f178.google.com ([209.85.214.178]:47074 "EHLO
-        mail-pl1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbhJVNQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 09:16:13 -0400
-Received: by mail-pl1-f178.google.com with SMTP id i1so2638895plr.13;
-        Fri, 22 Oct 2021 06:13:56 -0700 (PDT)
+        id S230519AbhJVN0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 09:26:55 -0400
+Received: from mail-oo1-f51.google.com ([209.85.161.51]:38446 "EHLO
+        mail-oo1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230342AbhJVN0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 09:26:55 -0400
+Received: by mail-oo1-f51.google.com with SMTP id i1-20020a4ab241000000b002b7069d0e88so1101746ooo.5;
+        Fri, 22 Oct 2021 06:24:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3OEFGu3enLvj4SiHrgtW22LytEptjzZQ2XovqUzzJxs=;
-        b=nQlnjLb0xaEQ9s8nFvdNgPY0GIxKJ+7Z/bcDdya4eKXAVWfCFGvLZZthyIrbQLZ1Kd
-         /CFPZZJVnIwwKWPJwnh71t5q0m06yH20QsOIYhdnOvwzI4xF94/IeI1Kd6x887c0dIjV
-         dP3L/ugz+o8vQ//qfOXfR4RmBwuoIyqJ/oSuaUuFLPphP8OMUGfGrxkhmGBQbXvtpELM
-         Db1e6ktKBz6GlGjfO+dUKVkXoLpYppgfwdeU3J38ql9JWS9dbdv6QyRcC6PfEOhx566w
-         3Ne734B4tDWmfyCvdkpU/7DNux9zMhpRspT1KR7NAmp9FVBeFXQGvuFifx/SBfMNBT46
-         ZA/Q==
-X-Gm-Message-State: AOAM5301zVQQROmUIDXdyP4pt2a3x8tyL80ZgytDxmGufo51uyhHKIy9
-        i0dg1BkpL9ZpA1MBVQb3/s9oJRwynHd7L1bNijg=
-X-Google-Smtp-Source: ABdhPJwdNKuFIRy3q4FG0qUqRpoxDObQ291Tb2SMDa/9Z3I5rVsMLHdpaoevze0fIUT7jxHb62MFoZMSVTU8r0ulBHA=
-X-Received: by 2002:a17:90b:98:: with SMTP id bb24mr4342124pjb.194.1634908435520;
- Fri, 22 Oct 2021 06:13:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-7-kernel@esmil.dk>
- <CAHp75VcS7ZZCciAgBH2QU7u8CiHzveAOsvSdv2DQBvpBn_6opQ@mail.gmail.com>
-In-Reply-To: <CAHp75VcS7ZZCciAgBH2QU7u8CiHzveAOsvSdv2DQBvpBn_6opQ@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Fri, 22 Oct 2021 15:13:44 +0200
-Message-ID: <CANBLGcyHpxuT9N+H8Lk=5CjMb1=-17_sH3dBzALCMYpAEZfeuw@mail.gmail.com>
-Subject: Re: [PATCH v2 06/16] clk: starfive: Add JH7100 clock generator driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rRNhbdg2DSuhPmKmcEvYXvhzUYi1wo+w9CgilER+WOY=;
+        b=auV97yI0wvbf+3PrbVZvbyuVdIvbNEbYlw1gh3g1Oou+LjLsKfCsfK47SMVnmjps9U
+         DkBAH9wexEloTQrbLyIXJId7aVnPdDXRQ7LmXXIV4HuVrEkrc1fASP1KUPKQT/Lj2bXh
+         qEnspAjvHFhsdqFvhth09Jg1Qk1h7jZRw+qfyGSQkdlaULRgrIQsaG1v0kzMMpCAvD7Z
+         FRCp7sRroKtaFq1QHIzWgLwBqKoFGPraMrMSpKkm9c94TVnGIP2MhfIAjpFIWetu4huP
+         ix2AD2HV9dF+it23hA5amSDb19bvual/HYe/+OSzddPlP9IdeWbwg3LxpxcrqoYQxhxx
+         VzzA==
+X-Gm-Message-State: AOAM53341EKP/eB3wXb0bi9pzFzfsnQuhlbR550GdHfSMGY8EJEwqU26
+        JTY4Ln7qoBvHAkZOSql1orYgAyrb7w==
+X-Google-Smtp-Source: ABdhPJz4OdatYL0OZZ1u/JwvBag0fE6+tAbXF8Bh1KkNtxb/vB+zb8WsUdn+LRpW8BPz72m+WtuPzA==
+X-Received: by 2002:a4a:e292:: with SMTP id k18mr9212036oot.80.1634909077279;
+        Fri, 22 Oct 2021 06:24:37 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id t8sm1667014otc.74.2021.10.22.06.24.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Oct 2021 06:24:36 -0700 (PDT)
+Received: (nullmailer pid 2506514 invoked by uid 1000);
+        Fri, 22 Oct 2021 13:24:35 -0000
+Date:   Fri, 22 Oct 2021 08:24:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee.jones@linaro.org>,
+        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v9 1/4] dt-bindings: display: Document the Xylon LogiCVC
+ display controller
+Message-ID: <YXK7k01crkLuRfSq@robh.at.kernel.org>
+References: <20210914200539.732093-1-paul.kocialkowski@bootlin.com>
+ <20210914200539.732093-2-paul.kocialkowski@bootlin.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210914200539.732093-2-paul.kocialkowski@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Oct 2021 at 14:34, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Thu, Oct 21, 2021 at 8:43 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> ...
->
-> > +static struct clk_hw *clk_starfive_jh7100_get(struct of_phandle_args *clkspec, void *data)
-> > +{
-> > +       struct clk_starfive_jh7100_priv *priv = data;
-> > +       unsigned int idx = clkspec->args[0];
-> > +
-> > +       if (idx >= JH7100_CLK_END) {
-> > +               dev_err(priv->dev, "invalid clock index %u\n", idx);
-> > +               return ERR_PTR(-EINVAL);
->
-> After this
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git/commit/?h=driver-core-next&id=7065f92255bb2468dbb9aa0537ff186ef64d5a02
-> It's okay to use
->
-> > +       }
->
->        if (idx >= JH7100_CLK_END)
->                return dev_err_probe(priv->dev, -EINVAL, "invalid clock
-> index %u\n", idx);
->
-> Ditto for other similar cases.
+On Tue, 14 Sep 2021 22:05:36 +0200, Paul Kocialkowski wrote:
+> The Xylon LogiCVC is a display controller implemented as programmable
+> logic in Xilinx FPGAs.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../display/xylon,logicvc-display.yaml        | 302 ++++++++++++++++++
+>  1 file changed, 302 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
+> 
 
-Hmm.. this function doesn't return int, but struct clk_hw *, hence the ERR_PTR.
-Also I don't see any other similar cases in this driver.
+Since the mfd part is already applied and it's too late for 
+drm-misc, I've applied it, thanks!
 
-> > +       if (idx >= JH7100_CLK_PLL0_OUT)
-> > +               return priv->pll[idx - JH7100_CLK_PLL0_OUT];
-> > +
-> > +       return &priv->reg[idx].hw;
-> > +}
->
-> ...
->
-> > +       while (idx)
-> > +               clk_hw_unregister(&priv->reg[--idx].hw);
->
-> I still consider that usual pattern, i.e.
->
->        while (idx--)
->                clk_hw_unregister(&priv->reg[idx].hw);
->
-> but since you are pushing hard for your variant I'll leave it to the
-> maintainers and author.
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+Rob
