@@ -2,136 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 631A04383D9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 15:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E3F438402
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 17:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbhJWNsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Oct 2021 09:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbhJWNsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 09:48:24 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F217AC061764;
-        Sat, 23 Oct 2021 06:46:04 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id x27so51587lfu.5;
-        Sat, 23 Oct 2021 06:46:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4rKqaG58LsxP7jan+TfTxUtpkcjNd0KJcH+SvoPk9tQ=;
-        b=Mml/w11SDttmlYPFEbEV4BKEePRyF05t7cyq+TZeeD6PPNOcKuqDDpOWKe2+zZZkmF
-         kbuO+BgChVyXx9Ict4A9soGBZdNelHzweN2+trOLPYxxrq+M/IF4De/MLYpx8T/a+Kxc
-         6DwRV65BaB27z3AanI3U3xm1IqVLidy65BIai06Nr+Mzjegu1Z9oWzXfetblbRpxLJgU
-         WkJEv1duPeZTMdUZEx8HzZNLrzn0wPuk2CHKbZdg0Xm1V3hKr6qKMfPYT87435WnJOiA
-         AUre0nnRhIpvgNMiBkcLzFCT6bNZSKcyIhZHS1AFjOG1w/Zh0lrLrnGu2ZJ34vaVfdth
-         ugGA==
+        id S229819AbhJWPQ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Oct 2021 11:16:27 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:38854 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229954AbhJWPQ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 11:16:27 -0400
+Received: by mail-oi1-f181.google.com with SMTP id t4so8939316oie.5;
+        Sat, 23 Oct 2021 08:14:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4rKqaG58LsxP7jan+TfTxUtpkcjNd0KJcH+SvoPk9tQ=;
-        b=mAvXCBPBgLsIZMqmdOUfnC6/Cix8fAOXrFMfNJo78Cd6jSf+V5aQJlCtFJAbP/Exsz
-         nn6PQ6n4f0mnFLsgXwQToQ+AYDQuDSTjWxBTG18ODaEvN5uIR1DTylnmZ9ri1SC3u7UQ
-         wDk8PJSD4ZGiOH0nFIw4LdSVJ6Q59eMfWExUDTYW3wjzf2ejn/IsxAeeQDsUGaKXijni
-         82NwnmOHKTsknqLu8CpxZbvS2nPGkrCaC9iqNc5/WJxADegcBdq1gAHOG3ciGIi/+wFn
-         X/dCOyJn2OPLwlECd8jXBsETmPcxCjztCMtdDzPORvN3jl6f3B1iSA8/amTK1DzkZlCk
-         Tcvg==
-X-Gm-Message-State: AOAM531Wmn6aIQgQxQnJurSDF4EUi+oyH/P2All4A2rLe7V0fTJYv0J/
-        XJ1MBEhkl7r32XUsQTH9DxjlPtQG0fQ=
-X-Google-Smtp-Source: ABdhPJxK103geiOjZuq7CrRe1vrwPXqNxDK7QjdYAnhGDWcAOo9ga80f4JQwj9CaAjQ5V+9pDZfCNg==
-X-Received: by 2002:a05:6512:3e14:: with SMTP id i20mr5732617lfv.121.1634996762212;
-        Sat, 23 Oct 2021 06:46:02 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-53-128.dynamic.spd-mgts.ru. [94.29.53.128])
-        by smtp.googlemail.com with ESMTPSA id d20sm1175519ljg.20.2021.10.23.06.46.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Oct 2021 06:46:01 -0700 (PDT)
-Subject: Re: [PATCH v1] dt-bindings: opp: Allow multi-worded node names
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Nishanth Menon <nm@ti.com>, David Heidelberg <david@ixit.cz>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211019231905.2974-1-digetx@gmail.com>
- <YXAr4OlhucAibMlH@robh.at.kernel.org>
- <20211022044334.4yn3i4kwinbrjicd@vireshk-i7>
- <48de7f40-deda-739d-96ca-e61ec5a0b257@gmail.com>
- <20211022065029.x5a5oh7mh2sjofey@vireshk-i7>
- <9798d34b-4886-9d4a-9fb7-634aa323af02@gmail.com>
- <20211022074551.ro22d7xj3idisvzv@vireshk-i7>
- <356febd2-64a2-0451-2c73-9319e5223c57@gmail.com>
-Message-ID: <0d42e370-4c1e-13a1-9a5a-f8ae00d8512d@gmail.com>
-Date:   Sat, 23 Oct 2021 16:46:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <356febd2-64a2-0451-2c73-9319e5223c57@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Bg2HoxcvGMf9Ovj9pzcdsVijqJ6NR5PA0icgim7NWfg=;
+        b=7CzyhMNH61vH2pNSR/YdQ2vns9i8KDtcXTFW+nYPBnPd+9TD3JV0y9ExJ0shX6o93E
+         ATqvz9l4N1Sg/T7XvmHrK5lpwesit7s6BpnbnO44HWIm2xRjfBplYWn8mJ8E77l4kpmJ
+         ejxU/kI9ZjkigKCxqe9qypDmhw+E+EgbmheMohf+6/mWzQ6G4vaoZ3q7agMgjSsFVoak
+         fZQL6J6HQvb9nck9ifd32OgqTZcxELVGREusZRI2DRB6enmKpG8aYt/opzvqjK/nC7lb
+         bjoIZx5zvF36jjND1gYWJv7UUvzPYRYqBWPmzVEylDPVAzw+J0VMbp9cYriAwYydIxFv
+         NEkQ==
+X-Gm-Message-State: AOAM532otxW+l4C2G8QhTwiAeIMnpfitfxO1uaLhI3ZemeUCZrBnM2d6
+        U994J6FZ/Xg3OeAWXf92UQ==
+X-Google-Smtp-Source: ABdhPJwQDNUGM05bn4X0T3kRMyChqK0m5VA0mJAMxX4DU1XqHz1ATJcKoGJH4PT3tIl5jnn3ivdTug==
+X-Received: by 2002:a05:6808:1392:: with SMTP id c18mr4610058oiw.23.1635002047669;
+        Sat, 23 Oct 2021 08:14:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l7sm2001249oog.22.2021.10.23.08.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Oct 2021 08:14:06 -0700 (PDT)
+Received: (nullmailer pid 457390 invoked by uid 1000);
+        Sat, 23 Oct 2021 15:14:05 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, srinivas.kandagatla@linaro.org,
+        plai@codeaurora.org, broonie@kernel.org,
+        linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        bgoswami@codeaurora.org, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, tiwai@suse.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>,
+        rohitkr@codeaurora.org, perex@perex.cz, robh+dt@kernel.org
+In-Reply-To: <1634982842-7477-9-git-send-email-srivasam@codeaurora.org>
+References: <1634982842-7477-1-git-send-email-srivasam@codeaurora.org> <1634982842-7477-9-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v3 08/10] ASoC: dt-bindings: Add SC7280 sound card bindings
+Date:   Sat, 23 Oct 2021 10:14:05 -0500
+Message-Id: <1635002045.623723.457389.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-23.10.2021 16:00, Dmitry Osipenko пишет:
-> 22.10.2021 10:45, Viresh Kumar пишет:
->> On 22-10-21, 10:39, Dmitry Osipenko wrote:
->>> What we currently have for Tegra is a tegra-opps.dtsi and tegra.dtsi
->>> which includes the OPP's dtsi.
->>>
->>> the tegra-opps.dtsi has this structure:
->>>
->>> table: devname-opp-table {
->>> 	opp: ...
->>> };
->>>
->>> and tegra.dtsi:
->>>
->>> #include "tegra-opps.dtsi"
->>>
->>> device@0000 {
->>> 	operating-points-v2 = <&table>;
->>> };
->>>
->>> It just occurred to me that there is no need to move all tables to
->>> tegra.dtsi, but change structure of tegra-opps.dtsi to:
->>>
->>> device@0000 {
->>> 	operating-points-v2 = <&table>;
->>>
->>> 	table: opp-table {
->>> 		opp: ...
->>> 	};
->>> };
->>
->> I thought you would have already thought about that and I was surprised when you
->> saw the tables are big enough to be moved. I was wondering what does it really
->> mean :)
->>
->>> Then there no need to change current naming scheme. Let me try to
->>> implement it and see how it goes.
->>
->> That's good then.
->>
+On Sat, 23 Oct 2021 15:24:00 +0530, Srinivasa Rao Mandadapu wrote:
+> Add bindings for lpass sc7280 based soundcards which supports
+> audio over i2s based speaker, soundwire based headset, msm dmics
+> and HDMI Port.
 > 
-> I implemented that approach and it works, but there are two problems:
-> 
-> 1. I had to factor out OPP tables from SPI device-tree nodes because DTC doesn't allow to have them within SPI nodes [1] and dtb fails to compile.
-> 
-> [1] https://elixir.bootlin.com/linux/v5.15-rc6/source/scripts/dtc/checks.c#L1141
-> 
-> 2. dtbs_check now warns about every opp-table sub-node, like this:
-> 
-> /home/runner/work/linux/linux/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-E1565.dt.yaml: memory-controller@7000f400: 'opp-table' does not match any of the regexes: '^emc-timings-[0-9]+$', 'pinctrl-[0-9]+'
-> 	From schema: /home/runner/work/linux/linux/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.yaml
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 69 +++++++++++++++++++---
+>  1 file changed, 61 insertions(+), 8 deletions(-)
 > 
 
-Thinking more about this, it's not a good idea to add new sub-node to
-nodes which already have sub-nodes because existing driver code that
-parses sub-nodes may not be ready to face the new opp-table sub-node.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I'll revert back to the previous variant with distinct opp-table nodes.
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg: [[0, 1658351616, 0, 425984], [0, 1659895808, 0, 167936]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg-names: ['lpass-hdmiif', 'lpass-lpaif'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupts: [[0, 160, 1], [0, 268, 1]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupt-names: ['lpass-irq-lpaif', 'lpass-irq-hdmi'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: iommus: [[4294967295, 4128, 0], [4294967295, 4146, 0]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1545178
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
