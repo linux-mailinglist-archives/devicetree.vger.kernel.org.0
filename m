@@ -2,68 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B5B24380B0
-	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 01:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D934380DA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 02:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232323AbhJVXj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Oct 2021 19:39:59 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:41700 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230086AbhJVXj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Oct 2021 19:39:58 -0400
-Received: by mail-oi1-f181.google.com with SMTP id bk18so6949016oib.8;
-        Fri, 22 Oct 2021 16:37:40 -0700 (PDT)
+        id S231452AbhJWAFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Oct 2021 20:05:36 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:56660
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231293AbhJWAFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 22 Oct 2021 20:05:36 -0400
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D988340005
+        for <devicetree@vger.kernel.org>; Sat, 23 Oct 2021 00:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1634947394;
+        bh=XUfcmdIiHP0nbLBuvoKlNVwHtrOEgTh5qPjTylX+Xt8=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=iL7jHtxartRcssf3q/vpY9COqvftBSFZMYTXUdfFCtTHGSFMWTq31kKzGqDUxG34C
+         XgsZ2zbo1S7u8vjoGGzGPG4VAze5Fl2DMPYa0irZECxWlSYoByXdq5LX7M9Gg1EnMt
+         qoDtBeF1agk6WgwNnevWdv/RP0fuc4EINa5abgecZsmcbPdFkUxa93iSs72hsAURUZ
+         cVZL4pencx5NGO68PDWC++e7eIvyYuUifBnuUcMvtkNPmmk2PpdNxcJjp1L9y0iPsS
+         Rx3T8HHR5BuAp08fywj36XjYBfVKMQ39Iad2c+zq3j0ObPN5RpIIGO4xA6t4i8ibab
+         DcY+1bbrleL4g==
+Received: by mail-wr1-f72.google.com with SMTP id z8-20020adfec88000000b00168672580e0so78399wrn.21
+        for <devicetree@vger.kernel.org>; Fri, 22 Oct 2021 17:03:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zSuAE3RSJ43llp8C+stYHPq0rTTeRWYXzdSTZgPFCs4=;
-        b=aFvJ8JMlp5j90QHvB9uqaldZ/NgYFaC7uwjbznIwCj0/+YXuqDWI7IfBnLVluFS6uQ
-         JlG1GCe4svCdulycyqqE6+oBjEpI45ZEr7uV5OdhXPvsdlX0RPgLzj//mlOafj56XhjJ
-         LD5TaP8ArAP1l+0HL9+vixPM2D6nh01/8SwQS4kNE1nXE88lkTANleKFKYRnycDy8RZl
-         L2xOiRHb+mt2Motbh50IWT7bsaNb3+w/d8IgAlw1kCcTI3KGaOvqlyiGFRfx84Aplr2u
-         5I9J2jmG9zexE+96prkkFl5LsX3CwObVK41fw814jx4o2Jge2L0XTZ21VljwDL64LpJl
-         DrmA==
-X-Gm-Message-State: AOAM533tkMsdx6GABtR+GkcB8EIobVLc63ztNbCLp/hFD2ssNcQ1avo3
-        RshEvA8kc6ufjAiLEaQtdQ==
-X-Google-Smtp-Source: ABdhPJygMuUHKwqjAYXnJQ+sF4UCg9hIvLQi6e+ekBq4QT4WLoGAHQT+sUEZ856SUYdCTJjATVBiLQ==
-X-Received: by 2002:a05:6808:a1d:: with SMTP id n29mr3711706oij.164.1634945860291;
-        Fri, 22 Oct 2021 16:37:40 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m7sm2271061oiw.49.2021.10.22.16.37.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Oct 2021 16:37:39 -0700 (PDT)
-Received: (nullmailer pid 3386546 invoked by uid 1000);
-        Fri, 22 Oct 2021 23:37:38 -0000
-Date:   Fri, 22 Oct 2021 18:37:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     alexandre.belloni@bootlin.com, linux-kernel@vger.kernel.org,
-        codrin.ciubotariu@microchip.com, ludovic.desroches@microchip.com,
-        linux-i2c@vger.kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, nicolas.ferre@microchip.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: at91: Extend compatible list for
- lan966x
-Message-ID: <YXNLQlUKgloigEd8@robh.at.kernel.org>
-References: <20211012140718.2138278-1-horatiu.vultur@microchip.com>
- <20211012140718.2138278-2-horatiu.vultur@microchip.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XUfcmdIiHP0nbLBuvoKlNVwHtrOEgTh5qPjTylX+Xt8=;
+        b=uw5wlfRz3xtwRmvuaInarMxY4rUSk+VaMqf24e0WSN8t6NqeCJRjuKYIscfjldLkHU
+         uhiaBvDwWdDbWGnaRG/ULFdAktKNt0Smelm1LUWJ+a+39xrQ//tknFJlciJtIdNnTxWL
+         TtK4shn/FqTQ9UzUrfXdcD8Uvn53Ld0K7HKcnGe3iiw6hBLJHfhmEs6r+1kk1I2Ny+iA
+         pp1lDrT/a8pCutDyST14HsIP8Qs1ynnL3Z4ywCewSEvtN8Zb0r6KD/NgOWHMT6k6VsOb
+         dv2Bfq6S/6Aj+MY7DalGBIRbAODjD/UCJH/9rDmJkS/0aS66WgIoCROJDtCMxB+ZHuoo
+         49NA==
+X-Gm-Message-State: AOAM5314wETMFH8sBS9jSMyQpi+tNhzLT7eGJ9RuCLIGgWWwqeikimfn
+        WFFJGuaoWU6Fh6obCSvxT3AW7OFAU2pttqEEqa4xLbXQecenRue8Ht9itPZ4635GsWul/XPh3fL
+        MobMWQjlUE/EdpeCxqpV4VKhPG84JCkHq1q4OFnk=
+X-Received: by 2002:adf:fccc:: with SMTP id f12mr3804406wrs.208.1634947394160;
+        Fri, 22 Oct 2021 17:03:14 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw7/oKz0tgyj4UYNQC2NoolgI+FF+Jp6VqF/7vU92xkd9q+CO9Gla8aTbLNFqjeQM7R06FKpA==
+X-Received: by 2002:adf:fccc:: with SMTP id f12mr3804372wrs.208.1634947393940;
+        Fri, 22 Oct 2021 17:03:13 -0700 (PDT)
+Received: from [192.168.123.35] (ip-88-152-144-157.hsi03.unitymediagroup.de. [88.152.144.157])
+        by smtp.gmail.com with ESMTPSA id a16sm9182038wrp.14.2021.10.22.17.03.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Oct 2021 17:03:13 -0700 (PDT)
+Message-ID: <6d642c10-27b1-72bd-a38e-f966ae8831f0@canonical.com>
+Date:   Sat, 23 Oct 2021 02:03:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211012140718.2138278-2-horatiu.vultur@microchip.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH 1/1] dt-bindings: T-HEAD CLINT
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Bin Meng <bmeng.cn@gmail.com>, Xiang W <wxjstz@126.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        opensbi@lists.infradead.org
+References: <20211020093603.28653-1-heinrich.schuchardt@canonical.com>
+ <YXMriYWcOcgJSpKj@robh.at.kernel.org>
+From:   Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+In-Reply-To: <YXMriYWcOcgJSpKj@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 16:07:17 +0200, Horatiu Vultur wrote:
-> Extend compatible list and the i2c-sda-hold-time-ns property
-> with 'microchip,lan966x-i2c'
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-at91.txt | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+On 10/22/21 23:22, Rob Herring wrote:
+> On Wed, Oct 20, 2021 at 11:36:03AM +0200, Heinrich Schuchardt wrote:
+>> The CLINT in the T-HEAD 9xx CPUs is similar to the SiFive CLINT but does
+>> not support 64bit mmio access to the MTIMER device.
+>>
+>> OpenSBI currently uses a property 'clint,has-no-64bit-mmio' to indicate the
+>> restriction and the "sifive,cling0" compatible string. An OpenSBI
+>> patch suggested to use "reg-io-width = <4>;" as the reg-io-width property
+>> is generally used in the devicetree schema for such a condition.
+>>
+>> As the design is not SiFive based it is preferable to apply a compatible
+>> string identifying T-HEAD instead.
+>>
+>> Add a new yaml file describing the T-HEAD CLINT.
+>>
+>> Signed-off-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+>> ---
+>> @Palmer, @Anup
+>> I copied you as maintainers from sifive,clint.yaml. Please, indicate if
+>> this should be changed.
+>>
+>> For the prior discussion see:
+>> https://lore.kernel.org/all/20211015100941.17621-1-heinrich.schuchardt@canonical.com/
+>> https://lore.kernel.org/all/20211015120735.27972-1-heinrich.schuchardt@canonical.com/
+>>
+>> A release candidate of the ACLINT specification is available at
+>> https://github.com/riscv/riscv-aclint/releases
+>> ---
+>>   .../bindings/timer/thead,clint.yaml           | 62 +++++++++++++++++++
+>>   1 file changed, 62 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/timer/thead,clint.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/timer/thead,clint.yaml b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+>> new file mode 100644
+>> index 000000000000..02463fb2043a
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/timer/thead,clint.yaml
+>> @@ -0,0 +1,62 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/timer/thead,clint.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: SiFive Core Local Interruptor
+>> +
+>> +maintainers:
+>> +  - Palmer Dabbelt <palmer@dabbelt.com>
+>> +  - Anup Patel <anup.patel@wdc.com>
+>> +
+>> +description:
+>> +  T-HEAD (and other RISC-V) SOCs include an implementation of the T-HEAD
+>> +  Core Local Interruptor (CLINT) for M-mode timer and M-mode inter-processor
+>> +  interrupts. It directly connects to the timer and inter-processor interrupt
+>> +  lines of various HARTs (or CPUs) so RISC-V per-HART (or per-CPU) local
+>> +  interrupt controller is the parent interrupt controller for CLINT device.
+>> +  The clock frequency of the CLINT is specified via "timebase-frequency" DT
+>> +  property of "/cpus" DT node. The "timebase-frequency" DT property is
+>> +  described in Documentation/devicetree/bindings/riscv/cpus.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const:
+>> +          - allwinner,sun20i-d1-clint
+>> +      - const:
+>> +          - thead,clint0
+>> +
+>> +    description:
+>> +      Should be "<vendor>,<chip>-clint" and "thead,clint<version>" for
+>> +      the T-HEAD derived CLINTs.
+>> +      Supported compatible strings are -
+>> +      "allwinner,sun20i-d1-clint" for the CLINT in the Allwinner D1 SoC
+>> +      and "thead,clint0" for the T-HEAD IP block with no chip
+>> +      integration tweaks.
+> 
+> T-HEAD uses the same versioning as SiFive? If you use version numbers in
+> compatible strings, the numbering needs to be documented and correlate
+> back to the h/w design. See [1]. IP release numbers for FPGA IP for
+> example. What it should not be is the binding author making up 0, 1, 2,
+> etc. versions.
+
+The only publicly available information on the IP block is:
+
+https://github.com/T-head-Semi/openc906/blob/main/doc/%E7%8E%84%E9%93%81C906%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf
+
+Page 3 has a version number for the whole document. Chapter 9 does not 
+have any version number for the CLINT. So should we simply call the 
+block "thead,clint" without any version number?
+
+@Guo: do you have more information accessible?
+
+Best regards
+
+Heinrich
+
+> 
+> Rob
+> 
+> [1] Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.txt
+> 
