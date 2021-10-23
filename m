@@ -2,314 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7163443853B
-	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 22:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1039438542
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 22:35:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbhJWUbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Oct 2021 16:31:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S230388AbhJWUh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Oct 2021 16:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230142AbhJWUbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 16:31:31 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77164C061714;
-        Sat, 23 Oct 2021 13:29:11 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id d3so2511182edp.3;
-        Sat, 23 Oct 2021 13:29:11 -0700 (PDT)
+        with ESMTP id S230230AbhJWUh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 16:37:58 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25123C061714;
+        Sat, 23 Oct 2021 13:35:38 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id n10so632620iod.13;
+        Sat, 23 Oct 2021 13:35:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SzVsOsazz6NgGH8KlymKLjObEboSVEskSxC1YWCAEw0=;
-        b=X6FhEI8KR4yF/JzKN0WfOrZUVXXl3Z0uA43e1KGXQJH4sqg6CGTn1wlhZN61EgHmD3
-         lj9nWS2tQ7rGEAQcfwtRiOy8bJ4j5QauFfdOTYAf2oZUeCvsj19Ufho8hZHTz/hlZ9WA
-         249T9S+51UEZZByD7YwodCA/f2DxFBSRrgmlwIdjPFVpWavHQ3nvM85EVy1SYE+du8Nv
-         EDnYB5RhTA2K3RqckOVWkkN4vUyWK7E63RqAN3NlfgfcjqBYN9uAdmRldrhOf2U1qmzb
-         oN7OOKy8RBn/45MXfe+CXLDRGfPGQ/+n6ikl1UgqDXgX2LdVvvp2ZG1qANvEOlxc6IYR
-         rKFw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DRz5WNlfSy+sShjmQTbrU6okPHsh3e5rmhOcPLYt3ew=;
+        b=fih7jeOAVQfqyL0t/DxOEXEUlf4DkadilKBrl72TnKq9XBl/BqiU3hil+k5/BK+F/9
+         bSZjCOganYq/pimgFyKtIGScOAJEU9lRdVc231en/6uTNa3AbfBus4BbpNbn1bft7OeL
+         xm/SEjf4VO2YED08mtIpXghhkjFfTbDL0O4KMN7ZWc4y3MLqSzahJ9NxU2Mz/lPbAmkj
+         MtoTHjI+l4JvTmUbKeApYJJEO5rheqiF3kd1bRrb6sFQHH2OqB1G4aIsRvVs0ETgfYgJ
+         2SCaGipjHiU5rDurXgaSBjcbGuz3GJOKzDhEuPgj2z9CP/ljP6IvvU342+70b2yHkqNG
+         mg0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SzVsOsazz6NgGH8KlymKLjObEboSVEskSxC1YWCAEw0=;
-        b=m1WlXyce4lJ7n4uhfgFwTIhGjC/b7lwhTiPVQBUjw1wiMF4bYUAMvRYF01e0DddbAt
-         ux/WBsd87qbv5uiXkN+JwxuxyjVNIilXrCy1z2UQR9VnbMXKIwm+KnKfItpuFdOSwqQm
-         Dqbe2WTIdmn2KLQ1vXkHH2yLbQsfo5vRefdBW6QfSPnrFeHDk+MZYGPAfYJG3Ixuj7Wi
-         oAHUp8YwaEwg+RejYuW3GebD3QYcetu47k/wiB2x/jXBXoP0lmf9WVqoj7IMgkJxVMtr
-         Gq7Gyz6XZjYlvXhgQHlERFcLEjbytQaF9Wm8JFb2BkdXHvcez6XQUVja6f/h67ovsBWD
-         O/KQ==
-X-Gm-Message-State: AOAM5325Ut7JSFTBlEe1QUdAgY8L7JVgmHfzIucDfne6Sip/An1Nhm+q
-        gRRkgrbZuozbvqlqkffLGybxRKEnkctf4Tker0k=
-X-Google-Smtp-Source: ABdhPJwe86OXrLgQr5wEpGhqsTLlqOWg2HVfJfboGhfAmN9//Cy2DIVS6hRyxHuZK7CF3ikwca10ZYQTNd/3mna8SzI=
-X-Received: by 2002:a17:907:7601:: with SMTP id jx1mr9785287ejc.69.1635020949911;
- Sat, 23 Oct 2021 13:29:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-13-kernel@esmil.dk>
- <CAHp75Vf3yNoKxguHP3EPcRV_3tG++Fd=FVM0MXqW4_SmLA6HEw@mail.gmail.com> <CANBLGcxEwkcZn2CC69zLaVqL8ocS6r6HDaaoUF09gg1mpDxFzg@mail.gmail.com>
-In-Reply-To: <CANBLGcxEwkcZn2CC69zLaVqL8ocS6r6HDaaoUF09gg1mpDxFzg@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 23 Oct 2021 23:28:33 +0300
-Message-ID: <CAHp75Vc5-Sg-0kKN=OMs_2iJbtc+D9=f0-Sp+SpY5O3roU3XdA@mail.gmail.com>
-Subject: Re: [PATCH v2 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DRz5WNlfSy+sShjmQTbrU6okPHsh3e5rmhOcPLYt3ew=;
+        b=6thqeky1TqUMmbLQBzwrbbzII7KcnN0CDly2HUCaNI4ZtGPe8riFWZB5my5sFYLi0O
+         BxYbobIsxRlcxUYkfAOKVFT+A+CBmrpdL3s/VGKO6KDZEYUtZ3wmFn3XiA9r7NdGqVWu
+         RpOjOR3pwwoMRH4p1k1ptRHsbZUA3d0EQ0VEnLG9WZCg+VgO+QSdPJvLoLnyl6J+5Tn1
+         mbLEk77cRNtcbhgxVOOhCD/K1kDxZpQSJ76dRMY8shH20qNQNEyQtg9KUctQfIc1qZ6I
+         mY13XZW7Qa+ByP5DDwCX8ZmUdU2H5BDSkVO3uOkUH3ZnI37HM9taMVJ1q9n0zEeQJTIb
+         V3Wg==
+X-Gm-Message-State: AOAM532YGbugL1mV3SICxG4Dl+aa1Eg2eW/P3015l7pM/7J6cZ4J+UTE
+        nnudJlahhhv9j9H/3r19ww4=
+X-Google-Smtp-Source: ABdhPJwm3vVRbunRYhaH6vNvk2l+hvDnbNmQcRxs532CQOIH1W2N4gq8GWdNU7jArQcaqbD2EwBCUQ==
+X-Received: by 2002:a05:6602:2c07:: with SMTP id w7mr4886406iov.122.1635021338101;
+        Sat, 23 Oct 2021 13:35:38 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:1534:f270:7127:bc0a])
+        by smtp.gmail.com with ESMTPSA id i5sm6128678ilj.49.2021.10.23.13.35.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Oct 2021 13:35:37 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-media@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        cstevens@beaconembedded.com, aford@beaconembedded.com,
+        Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC V2 0/5] arm64: dts: imx8mm: Enable CSI and OV5640 Camera
+Date:   Sat, 23 Oct 2021 15:34:51 -0500
+Message-Id: <20211023203457.1217821-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 23, 2021 at 9:46 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> On Fri, 22 Oct 2021 at 15:32, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > On Thu, Oct 21, 2021 at 8:44 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+The imx8mm appears to have both a CSI bridge and mipi-csi-2 drivers.  With
+those enabled, both the imx8mm-evk and imx8mm-beacon boards should be able
+use an OV5640 camera.
 
-...
+The mipi-csi2 driver sets the clock frequency to 333MHz, so the clock parent
+of the CSI1 must be reparented to a faster clock.  On the custom NXP kernel,
+they use IMX8MM_SYS_PLL2_1000M, so that is done in the device tree to match.
 
-> > > +               } else if ((npins = of_property_count_u32_elems(child, "pins")) > 0) {
-> > > +                       pins = devm_kcalloc(dev, npins, sizeof(*pins), GFP_KERNEL);
-> > > +                       if (!pins)
-> > > +                               goto free_grpname;
-> > > +
-> > > +                       pinmux = NULL;
-> > > +
-> > > +                       for (i = 0; i < npins; i++) {
-> > > +                               u32 v;
-> > > +
-> > > +                               ret = of_property_read_u32_index(child, "pins", i, &v);
-> > > +                               if (ret)
-> > > +                                       goto free_pins;
-> > > +                               pins[i] = v;
-> > > +                       }
-> >
-> > NIH _array() APIs.
->
-> .. here the pins array is an int array and not u32 array. I can cast
-> it and and hope Linux will never run on a machine where sizeof(int) !=
-> 4 if you think that's better?
+With the CSI and mipi_csi2 drivers pointing to an OV5640 camera, the media
+pipeline can be configured with the following:
 
-Can you make it u32?
+    media-ctl --links "'ov5640 1-003c':0->'imx7-mipi-csis.0':0[1]"
 
-...
+The camera and various nodes in the pipeline can be configured for UYVY:
+    media-ctl -v -V "'ov5640 1-003c':0 [fmt:UYVY8_1X16/640x480 field:none]"
+    media-ctl -v -V "'csi':0 [fmt:UYVY8_1X16/640x480 field:none]"
 
-> > > +free_pinmux:
-> > > +       devm_kfree(dev, pinmux);
-> > > +free_pins:
-> > > +       devm_kfree(dev, pins);
-> > > +free_grpname:
-> > > +       devm_kfree(dev, grpname);
-> >
-> > > +free_pgnames:
-> > > +       devm_kfree(dev, pgnames);
-> >
-> > Just no, please get rid of them either way as I explained in previous reviews.
->
-> So I asked you if you thought it was better to leave these unused
-> allocations when parsing the device tree node fails but you never
-> answered that. I didn't want put words in your mouth so I could only
-> assume you didn't. I'd really like a straight answer to that so I have
-> something to refer to when people ask why this driver doesn't do the
-> same as fx. the pinctrl-single. So just to be clear: do you think it's
-> better to leave this unused garbage allocated if parsing the device
-> tree node fails?
+With that, the media pipeline looks like:
 
-If it's only one time use, I don't think it's good to have it hanging
-around, BUT at the same time devm_*() is not suitable for such
-allocations.
 
-...
+Media controller API version 5.15.0
 
-> > > +               if (reg_din)
-> > > +                       writel_relaxed(gpio + 2, reg_din);
-> >
-> > Why 0 can't be written?
->
-> Because signal 0 is a special "always 0" signal and signal 1 is a
-> special "always 1" signal, and after that signal n is the input value
-> of GPIO n - 2. We don't want to overwrite the PoR defaults.
+Media device information
+------------------------
+driver          imx7-csi
+model           imx-media
+serial          
+bus info        platform:32e20000.csi
+hw revision     0x0
+driver version  5.15.0
 
-Okay, this, perhaps, needs a comment (if I have not missed the existing one).
+Device topology
+- entity 1: csi (2 pads, 2 links)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev0
+	pad0: Sink
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+		<- "imx7-mipi-csis.0":1 [ENABLED,IMMUTABLE]
+	pad1: Source
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
+		-> "csi capture":0 [ENABLED,IMMUTABLE]
 
-And what about checking for reg_din? Do you have some blocks output-only?
+- entity 4: csi capture (1 pad, 1 link)
+            type Node subtype V4L flags 0
+            device node name /dev/video0
+	pad0: Sink
+		<- "csi":1 [ENABLED,IMMUTABLE]
 
-...
+- entity 10: imx7-mipi-csis.0 (2 pads, 2 links)
+             type V4L2 subdev subtype Unknown flags 0
+             device node name /dev/v4l-subdev1
+	pad0: Sink
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
+		<- "ov5640 1-003c":0 [ENABLED]
+	pad1: Source
+		[fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
+		-> "csi":0 [ENABLED,IMMUTABLE]
 
-> > > +               case PIN_CONFIG_BIAS_DISABLE:
-> > > +                       mask |= PAD_BIAS_MASK;
-> > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
-> >
-> > Okay, I have got why you are masking on each iteration, but here is
-> > the question, shouldn't you apply the cnages belonged to each of the
-> > group of options as it's requested by the user? Here you basically
-> > ignore all previous changes to bias.
-> >
-> > I would expect that you have something like
-> >
-> > for () {
-> >   switch (type) {
-> >   case BIAS*:
-> >     return apply_bias();
-> >   ...other types...
-> >   default:
-> >     return err;
-> >   }
-> > }
->
-> I such cases where you get conflicting PIN_CONFIG_BIAS_* settings I
-> don't see why it's better to do the rmw on the padctl register for the
-> first bias setting only to then change the bits again a few
-> microseconds later when the loop encounters the second bias setting.
-> After the loop is done the end result would still be just the last
-> bias setting.
+- entity 15: ov5640 1-003c (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev2
+	pad0: Source
+		[fmt:UYVY8_1X16/640x480@1/30 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range]
+		-> "imx7-mipi-csis.0":0 [ENABLED]
 
-It could be bias X followed by something else followed by bias Y. You
-will write something else with bias Y. I admit I don't know this
-hardware and you and maintainers are supposed to decide what's better,
-but my guts are telling me that current algo is buggy.
+When configured, gstreamer can be used to capture 1 frame and store it to a file.
 
-> > > +                       break;
+gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
 
-...
+Unfortunately, the video capture never appears to happen.  No errors occur, not
+interrupts are recorded and no errors are recorded.
 
-> > > +static int starfive_gpio_request(struct gpio_chip *gc, unsigned int gpio)
-> > > +{
-> > > +       return pinctrl_gpio_request(gc->base + gpio);
-> > > +}
-> > > +
-> > > +static void starfive_gpio_free(struct gpio_chip *gc, unsigned int gpio)
-> > > +{
-> > > +       pinctrl_gpio_free(gc->base + gpio);
-> > > +}
-> >
-> > Point of having these function is...?
->
-> These calls tells the pinctrl system that a certain pin is now used
-> for GPIO. Conversely it'll also prevent fx. userspace from doing GPIO
-> on a pin that's already used by I2C, a UART or some other peripheral.
+gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
+Setting pipeline to PAUSED ...
+Pipeline is live and does not need PREROLL ...
+Pipeline is PREROLLED ...
+Setting pipeline to [  114.819632] v4l2_get_link_freq: Link frequency estimated using pixel rate: result might be inaccurate
+PLAYING ...
+New clock: GstSystem[  114.829203] v4l2_get_link_freq: Consider implementing support for V4L2_CID_LINK_FREQ in the transmitter driver
+Clock
+/GstPipeline:pipeline0/GstV4l2Src:v4l2src0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
+/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
+/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
 
-Isn't pin control doing it by default?
 
-...
+If anyone has any insight as to what might be wrong, I'd like feedback.
+I posted a device tree that I beleive goes with the newer imx8mm-evk, but
+I do not have this hardware, so I cannot test it.
 
-> > > +       /* enable input and schmitt trigger */
-> >
-> > Use capitalization consistently.
->
-> I am?
+Adam Ford (5):
+  arm64: dts: imx8mm: Add CSI nodes
+  arm64: defconfig: Enable VIDEO_IMX_MEDIA
+  arm64: dts: imx8mm-beacon: Enable OV5640 Camera
+  arm64: defconfig: Enable OV5640
+  arm64: dts: imx8mm-evk: Enable OV5640 Camera
 
-In the comment is one style, in other comments it's another.
-
-...
-
-> > > +       case IRQ_TYPE_EDGE_RISING:
-
-> > > +               handler   = handle_edge_irq;
-> > > +               break;
-> > > +       case IRQ_TYPE_EDGE_FALLING:
-
-> > > +               handler   = handle_edge_irq
-> > > +               break;
-> > > +       case IRQ_TYPE_EDGE_BOTH:
-
-> > > +               handler   = handle_edge_irq;
-> >
-> > Dup. You may do it once without any temporary variable.
-> > I haven't got why you haven't addressed this.
->
-> So you want two switches on the trigger variable, one for irq_type,
-> edge_both and polarity, and one for the handler? If this is not what
-> you have in mind please be a lot more explicit. Trying to guess what
-> you mean gets really old.
-
-switch (type) {
-case bla bla bla:
-  ...everything except handler...
-}
-
-if (type & EDGE)
- irq_lock(edge_handler)
-else if (type & LEVEL)
- irq_lock(level_handler)
-
->
-> > > +               break;
-> > > +       case IRQ_TYPE_LEVEL_HIGH:
-
-> > > +               handler   = handle_level_irq;
-> > > +               break;
-> > > +       case IRQ_TYPE_LEVEL_LOW:
-
-> > > +               handler   = handle_level_irq;
-> >
-> > Ditto.
-> >
-> > > +               break;
-
-...
-
-> > > +       clk = devm_clk_get(dev, NULL);
-> > > +       if (IS_ERR(clk)) {
-> >
-> > > +               ret = PTR_ERR(clk);
-> >
-> > Inline into below.
-> >
-> > > +               return dev_err_probe(dev, ret, "could not get clock: %d\n", ret);
-> > > +       }
-> >
-> > Ditto for all other similar cases.
->
-> So you would rather want this?
->   return dev_err_probe(dev, PTR_ERR(clk), "could not get clock: %d\n",
-> PTR_ERR(clk));
-> or just not tell why getting the clock failed?
-
-Of course not, no dup of the printing error code is needed. I guess I
-mentioned it in another patch.
-
-return dev_err_probe(dev, PTR_ERR($error), "$msg\n");
-
-...
-
-> > > +       if (!device_property_read_u32(dev, "starfive,signal-group", &value)) {
-> >
-> > Since you are using of_property_* elsewhere, makes sense to use same
-> > here, or otherwise, use device_*() APIs there.
->
-> Wait, so now you want of_property_read_u32(dev->of_node, ...) here
-> again, is that right?
-
-Before I missed that there are other of_property_read*() calls, now
-since you used them elsewhere it makes sense to be consistent over the
-code.
+ .../freescale/imx8mm-beacon-baseboard.dtsi    | 55 +++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 44 +++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     | 55 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  2 +
+ 4 files changed, 156 insertions(+)
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.25.1
+
