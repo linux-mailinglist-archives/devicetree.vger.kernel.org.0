@@ -2,143 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E09714382DB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 11:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B2A438313
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 12:13:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232140AbhJWJ6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Oct 2021 05:58:05 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:63930 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231485AbhJWJ5s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Oct 2021 05:57:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1634982929; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=JiEOJqa3aqS2iNBJDoYuclB4bw9U3vBvyQW5D9XElQE=; b=RmxXgvjW71uEsCxBRHA3CitmTxlH+A+0zhiZg0J+UZfb3b6fpMhHlW5UTSNOWzgBkc/o+REe
- oibpNUAtCYiQ8O/7X5N9rqjlwHHzOYTiFb7gPns3PozWOHodi+zoOxrZaaiU9mHe5uChzShO
- BMEL+Lt5VcjQyuZfZtFoeKFhjSw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 6173dc0767f107c6111e6465 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 23 Oct 2021 09:55:19
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 71D52C43638; Sat, 23 Oct 2021 09:55:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4D0F7C4361B;
-        Sat, 23 Oct 2021 09:55:12 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 4D0F7C4361B
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: [PATCH v3 10/10] ASoC: qcom: SC7280: Update config for building codec dma drivers
-Date:   Sat, 23 Oct 2021 15:24:02 +0530
-Message-Id: <1634982842-7477-11-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1634982842-7477-1-git-send-email-srivasam@codeaurora.org>
-References: <1634982842-7477-1-git-send-email-srivasam@codeaurora.org>
+        id S230339AbhJWKQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Oct 2021 06:16:03 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:48890 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230126AbhJWKQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 06:16:03 -0400
+X-UUID: 36a512ea59e84be394440c4a73b7eb8d-20211023
+X-UUID: 36a512ea59e84be394440c4a73b7eb8d-20211023
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <flora.fu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2012393897; Sat, 23 Oct 2021 18:13:39 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 23 Oct 2021 18:13:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 23 Oct 2021 18:13:38 +0800
+From:   Flora Fu <flora.fu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Ikjoon Jang <ikjn@chromium.org>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v3 0/7] Add Support for MediaTek MT8192 APU Power
+Date:   Sat, 23 Oct 2021 18:13:27 +0800
+Message-ID: <20211023101334.27686-1-flora.fu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add configuration for building SC7280 audio codec dma drivers.
+The MediaTek AI Processing Unit (APU) is a proprietary hardware
+in the SoC to support AI operations.
+The series is to create apusys in the SoC folder for developing
+the related drivers. Add the apu clocks, basic apu nodes and the
+power domain to provide the power controller of APU subsystem.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
----
- sound/soc/qcom/Kconfig  | 13 +++++++++++++
- sound/soc/qcom/Makefile |  4 ++++
- 2 files changed, 17 insertions(+)
+This series is based on MT8192 clock[1] and MT8193/PMIC[3][4] patches.
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521655
+[2] https://patchwork.kernel.org/patch/12134935
+[3] https://patchwork.kernel.org/patch/12140237
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index d9ffcb7..2b98ad9 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -20,6 +20,10 @@ config SND_SOC_LPASS_PLATFORM
- 	tristate
- 	select REGMAP_MMIO
- 
-+config SND_SOC_LPASS_CDC_DMA
-+	tristate
-+	select REGMAP_MMIO
-+
- config SND_SOC_LPASS_IPQ806X
- 	tristate
- 	select SND_SOC_LPASS_CPU
-@@ -36,6 +40,13 @@ config SND_SOC_LPASS_SC7180
- 	select SND_SOC_LPASS_PLATFORM
- 	select SND_SOC_LPASS_HDMI
- 
-+config SND_SOC_LPASS_SC7280
-+	tristate
-+	select SND_SOC_LPASS_CPU
-+	select SND_SOC_LPASS_PLATFORM
-+	select SND_SOC_LPASS_HDMI
-+	select SND_SOC_LPASS_CDC_DMA
-+
- config SND_SOC_STORM
- 	tristate "ASoC I2S support for Storm boards"
- 	select SND_SOC_LPASS_IPQ806X
-@@ -156,7 +167,9 @@ config SND_SOC_SC7280
- 	tristate "SoC Machine driver for SC7280 boards"
- 	depends on I2C && SOUNDWIRE
- 	select SND_SOC_QCOM_COMMON
-+	select SND_SOC_LPASS_SC7280
- 	select SND_SOC_MAX98357A
-+	select SND_SOC_WCD938X
- 	select SND_SOC_LPASS_RX_MACRO
- 	select SND_SOC_LPASS_TX_MACRO
- 	help
-diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-index 625aec6..8b7b876 100644
---- a/sound/soc/qcom/Makefile
-+++ b/sound/soc/qcom/Makefile
-@@ -1,18 +1,22 @@
- # SPDX-License-Identifier: GPL-2.0
- # Platform
- snd-soc-lpass-cpu-objs := lpass-cpu.o
-+snd-soc-lpass-cdc-dma-objs := lpass-cdc-dma.o
- snd-soc-lpass-hdmi-objs := lpass-hdmi.o
- snd-soc-lpass-platform-objs := lpass-platform.o
- snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
- snd-soc-lpass-apq8016-objs := lpass-apq8016.o
- snd-soc-lpass-sc7180-objs := lpass-sc7180.o
-+snd-soc-lpass-sc7280-objs := lpass-sc7280.o
- 
- obj-$(CONFIG_SND_SOC_LPASS_CPU) += snd-soc-lpass-cpu.o
-+obj-$(CONFIG_SND_SOC_LPASS_CDC_DMA) += snd-soc-lpass-cdc-dma.o
- obj-$(CONFIG_SND_SOC_LPASS_HDMI) += snd-soc-lpass-hdmi.o
- obj-$(CONFIG_SND_SOC_LPASS_PLATFORM) += snd-soc-lpass-platform.o
- obj-$(CONFIG_SND_SOC_LPASS_IPQ806X) += snd-soc-lpass-ipq806x.o
- obj-$(CONFIG_SND_SOC_LPASS_APQ8016) += snd-soc-lpass-apq8016.o
- obj-$(CONFIG_SND_SOC_LPASS_SC7180) += snd-soc-lpass-sc7180.o
-+obj-$(CONFIG_SND_SOC_LPASS_SC7280) += snd-soc-lpass-sc7280.o
- 
- # Machine
- snd-soc-storm-objs := storm.o
+Change notes:
+v2->v3:
+  1) Rebase to 5.15-rc1
+  2) remove the apu-mbox registers from syscon.
+  3) update mtk-apu-pm to fix clock flow and move power status bit into
+     platform data to support different hardware settings.
+
+v1->v2:
+  1) update expression "s/_/-/" in dt-bindings documents.
+  2) drop apu power domain header file for mt8192.
+
+v1: https://patchwork.kernel.org/project/linux-mediatek/list/?series=461999
+
+Flora Fu (7):
+  dt-bindings: clock: Add MT8192 APU clock bindings
+  clk: mediatek: mt8192: Add APU clocks support
+  dt-bindings: arm: mediatek: Add new document bindings for APU
+  dt-bindings: soc: mediatek: apusys: Add new document for APU power
+    domain
+  soc: mediatek: apu: Add apusys and add apu power domain driver
+  arm64: dts: mt8192: Add APU node
+  arm64: dts: mt8192: Add APU power domain node
+
+ .../arm/mediatek/mediatek,apusys.yaml         |  49 ++
+ .../soc/mediatek/mediatek,apu-pm.yaml         | 144 ++++
+ arch/arm64/boot/dts/mediatek/mt8192-evb.dts   |   7 +
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  39 ++
+ drivers/clk/mediatek/clk-mt8192.c             |  91 +++
+ drivers/soc/mediatek/Kconfig                  |  19 +
+ drivers/soc/mediatek/Makefile                 |   1 +
+ drivers/soc/mediatek/apusys/Makefile          |   2 +
+ drivers/soc/mediatek/apusys/mtk-apu-pm.c      | 633 ++++++++++++++++++
+ include/dt-bindings/clock/mt8192-clk.h        |  14 +-
+ 10 files changed, 997 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,apusys.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,apu-pm.yaml
+ create mode 100644 drivers/soc/mediatek/apusys/Makefile
+ create mode 100644 drivers/soc/mediatek/apusys/mtk-apu-pm.c
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.18.0
 
