@@ -2,121 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06531438328
-	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 12:14:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59AA84383A3
+	for <lists+devicetree@lfdr.de>; Sat, 23 Oct 2021 14:18:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbhJWKQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Oct 2021 06:16:51 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:54184 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231481AbhJWKQn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 06:16:43 -0400
-X-UUID: cca729225b1b40ec8599b7f4ff97d00d-20211023
-X-UUID: cca729225b1b40ec8599b7f4ff97d00d-20211023
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <flora.fu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1718320597; Sat, 23 Oct 2021 18:14:22 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 23 Oct 2021 18:14:20 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 23 Oct 2021 18:14:20 +0800
-From:   Flora Fu <flora.fu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Ikjoon Jang <ikjn@chromium.org>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>
-Subject: [PATCH v3 7/7] arm64: dts: mt8192: Add APU power domain node
-Date:   Sat, 23 Oct 2021 18:13:34 +0800
-Message-ID: <20211023101334.27686-8-flora.fu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211023101334.27686-1-flora.fu@mediatek.com>
-References: <20211023101334.27686-1-flora.fu@mediatek.com>
+        id S229830AbhJWMUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Oct 2021 08:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229813AbhJWMUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 08:20:21 -0400
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75D0C061764
+        for <devicetree@vger.kernel.org>; Sat, 23 Oct 2021 05:18:02 -0700 (PDT)
+Received: by mail-ua1-x936.google.com with SMTP id e10so12767224uab.3
+        for <devicetree@vger.kernel.org>; Sat, 23 Oct 2021 05:18:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=jfZ6y8fcGvAE1BlPR3wVs6P5tuC6lUydmPFOe3mAfpg=;
+        b=eQva5w89JJ0hRnJVtigNcNoCWn5WfkYLT/bXYd1x8JyRdPzy85hg+3mAkq1igtyTbp
+         r12xtER0jN2TSZVj/GT48yBcHRUIuqtc2//KsZD4y5qxdtJvBbtGwGc/4WzNQFcRbM7y
+         2RWV+nGqvhN459XDJs5ErhUbBbNaf6SHeO2FHVjFraco0/WtGy6eTvjJeWG45UCIMIh0
+         9FefFfCqjmvmaR89S35eNSaXZZOPgNnr1xC//8OTcwAGblFVFZ9+k0TzETMKRIqLV/a1
+         c8y50oKw9ELWitfIFe0aEpx+buOTuCm35Xi8C/xbdIPikkTKtNdSgmdsJsgC4eebjkpI
+         6pXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=jfZ6y8fcGvAE1BlPR3wVs6P5tuC6lUydmPFOe3mAfpg=;
+        b=NIcjXZWrhPUKoNV7wS3XxQSIc5THiO/s/Sezie2dv8VlW+7e0lPE8OHbBCz6AbwXxl
+         62EVYMfO7w0jHuZHqJVE1jkJLtSoYxdJRaH8PdP33Z3knLBVw+aOlrylCcxt10wh9nA3
+         e49OspF7FnPSfFuppA/wn0QUXJTZrcGkltHpJkarNpNs4hQCiYkb8qlBvCtQhu1f1Bfq
+         8Y41PCgLhqhAYZGgIuLZTBQtqBepXLOnNONwfpEO0H5hCzZU52XD1+8Sb9aTCllXlrvd
+         1DcSHGLRxP7Mh9hiSMCEDcLsQjoirrhZp/HDJ0+Q76IJfjtQ8HTH45okouiTbqDa0aaz
+         xePw==
+X-Gm-Message-State: AOAM531kFDjBJWE54/hnnC8WWNlwleja1m30ludSq93KsI/xnCnxJIYM
+        ROKf3P4p9iQb1EWV38pgY36Zw9sIc/hcaPc2HM0=
+X-Google-Smtp-Source: ABdhPJwcelNZor77fOJLU1lZ2QY/mVlzyDxf0hA3348LBQGp1WZJwSgFkheol6eQUJufWoaFq5YtqsggGIzYhAfDFsg=
+X-Received: by 2002:a67:edd7:: with SMTP id e23mr6027518vsp.14.1634991481754;
+ Sat, 23 Oct 2021 05:18:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Received: by 2002:a59:cc61:0:b0:238:b198:f3a9 with HTTP; Sat, 23 Oct 2021
+ 05:18:01 -0700 (PDT)
+Reply-To: mrmichelduku@outlook.com
+From:   Michel <wster7410@gmail.com>
+Date:   Sat, 23 Oct 2021 12:18:01 +0000
+Message-ID: <CA+zKiD48-KbW3WoLvkJRpV-uGPRSJ87iEW8SyJGDkF6G0_qqDg@mail.gmail.com>
+Subject: Please Respond Urgently
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add APU power domain node to MT8192.
+Greetings,
 
-Signed-off-by: Flora Fu <flora.fu@mediatek.com>
----
-Note:
-This patch depends on mt8192/mt6359 dts patches which haven't yet been accepted.
-This series is based on MT8192 clock[1][2] and MT8193/PMIC[3][4] patches.
-[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521655
-[2] https://patchwork.kernel.org/patch/12134935
-[3] https://patchwork.kernel.org/patch/12140237
----
- arch/arm64/boot/dts/mediatek/mt8192-evb.dts |  7 ++++++
- arch/arm64/boot/dts/mediatek/mt8192.dtsi    | 27 +++++++++++++++++++++
- 2 files changed, 34 insertions(+)
+With due respect to your person, I make this contact with you as I
+believe that you can be of great assistance to me. I need your
+assistance in transferring the sum of $11.3million to your account
+Where this money can be shared between us.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-index 808be492e970..5d9e108e41f5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-evb.dts
-@@ -28,3 +28,10 @@
- &uart0 {
- 	status = "okay";
- };
-+
-+&apuspm {
-+	vsram-supply = <&mt6359_vsram_md_ldo_reg>;
-+	apu_top: power-domain@0 {
-+		domain-supply = <&mt6359_vproc1_buck_reg>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 72bbc3b4abf9..7014082637b0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -928,6 +928,33 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		apuspm: power-domain@190f0000 {
-+			compatible = "mediatek,mt8192-apu-pm", "syscon";
-+			reg = <0 0x190f0000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#power-domain-cells = <1>;
-+			mediatek,scpsys = <&scpsys>;
-+			mediatek,apu-conn = <&apu_conn>;
-+			mediatek,apu-vcore = <&apu_vcore>;
-+			apu_top: power-domain@0 {
-+				reg = <0>;
-+				#power-domain-cells = <0>;
-+				clocks = <&topckgen CLK_TOP_DSP_SEL>,
-+					 <&topckgen CLK_TOP_IPU_IF_SEL>,
-+					 <&clk26m>,
-+					 <&topckgen CLK_TOP_UNIVPLL_D6_D2>;
-+				clock-names = "clk_top_conn",
-+					      "clk_top_ipu_if",
-+					      "clk_off",
-+					      "clk_on_default";
-+				assigned-clocks = <&topckgen CLK_TOP_DSP_SEL>,
-+						  <&topckgen CLK_TOP_IPU_IF_SEL>;
-+				assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D6_D2>,
-+							 <&topckgen CLK_TOP_UNIVPLL_D6_D2>;
-+			};
-+		};
-+
- 		camsys: clock-controller@1a000000 {
- 			compatible = "mediatek,mt8192-camsys";
- 			reg = <0 0x1a000000 0 0x1000>;
--- 
-2.18.0
+By indicating your interest I will send you the full details on how
+the business will be executed.
 
+Best Regards,
+Michel Duku.
