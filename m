@@ -2,98 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D968438982
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 16:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE2C43898C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 16:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231485AbhJXO3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 10:29:52 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:44607 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbhJXO3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 10:29:50 -0400
-Received: by mail-oi1-f169.google.com with SMTP id y207so11905484oia.11
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 07:27:30 -0700 (PDT)
+        id S230419AbhJXOld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 10:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230358AbhJXOld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 10:41:33 -0400
+Received: from mail-vk1-xa30.google.com (mail-vk1-xa30.google.com [IPv6:2607:f8b0:4864:20::a30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5777C061764
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 07:39:12 -0700 (PDT)
+Received: by mail-vk1-xa30.google.com with SMTP id o42so3904373vkf.9
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 07:39:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3D8GDSKP4b4iak3caMjKDgewc0dkNqxERr8vtXIFb5E=;
+        b=Kq0V9JG8QxSsVF+syuSF2F9f2Qf33pqeKWkgYSxUWKQviYfRhBzPln/oaYZdlFFztB
+         eduq3daSepKPQo5uzYJ9vdmRmOtQVNdNlpGLargu7MIro4Lr7U56Qz8fPYODJFYf/ulc
+         7P1OJLv9BbsY+mbmudvjJ56WpTmHj24uHNfiY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=bac1EHQkBLbZ51/7v+VmRY1SXZprPbhYfUmFnr47AYA=;
-        b=BjeRtblNm9Aa3dp5FpjsBT4nVlsPRsZCMsba0Gukm+V4KQkKjwFR54ZrnHb4WqQqGi
-         36NsKa/RIyDzuGMW6Hv7LiXYlt70NsiLnQ5MLPO0JFBIuDctNOfOfOUx/jGHL+SSl+ud
-         jMqukGwzdLMucTw8MBON3Rt1EkSkXd1Bh27nnWG01/YX6ES1chAQ2thkg95csndkhlrP
-         2ljjvBiAZvcRTEKW4v655RPt7svYgu+L0res/7wnamSOtbqngCDNmo5NPjtIDIBPI/uM
-         vZ8y/pQKP0z3XUgkm5hYqeZpvKSz2sqdiQhxGwCztmFPUIGvhWkwFKbshFdAfA8273U4
-         meBg==
-X-Gm-Message-State: AOAM533FUW/y1kM41KXhJr8tv/PdIAcShctPJS4uG5ukJbBzy1r+3DDU
-        mx1GotXjngDOG+b5YWwfbQ==
-X-Google-Smtp-Source: ABdhPJxYwzxyZCJKOPBY4JfmuFSFDzmeL5qYzRCwPxWHNonbQ5oo5VIUj+rpOFZQ7OPfF3t4+vLmKw==
-X-Received: by 2002:a05:6808:d49:: with SMTP id w9mr8037183oik.61.1635085649754;
-        Sun, 24 Oct 2021 07:27:29 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l10sm2919143otj.9.2021.10.24.07.27.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Oct 2021 07:27:29 -0700 (PDT)
-Received: (nullmailer pid 2015036 invoked by uid 1000);
-        Sun, 24 Oct 2021 14:27:27 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@mailbox.org>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>
-In-Reply-To: <20211023214856.30097-1-alexander.stein@mailbox.org>
-References: <20211023214856.30097-1-alexander.stein@mailbox.org>
-Subject: Re: [PATCH 1/4] dt-bindings: sound: amlogic: t9015: Add missing AVDD-supply property
-Date:   Sun, 24 Oct 2021 09:27:27 -0500
-Message-Id: <1635085647.937250.2015034.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3D8GDSKP4b4iak3caMjKDgewc0dkNqxERr8vtXIFb5E=;
+        b=I4MUYFhjI+a1Jq2fvFloBIC3X4y5QpbA+da7+7TfIGOcC0Wpxz5/ZD/MwwbeIpV5DX
+         7SOm7M5LmnpSYkwQhdtf855CbEqAghGibzmRnhut2ASDqO5tSwHcKwfdauKq3aMHcQ+F
+         5gXfrW1KqoPS4fZ+SFkYZumqhJGmuieJFI6aeJVaT/iVRCSHZA9O9H46WPLGVLZVR6ID
+         NGOhEmCh53XuvdtMe/drHYi2KTluNCCUCces71KsmFaPTNwtssGK+hUvvFSKetELHvHj
+         Q3OHNCeV6OnLufkqW3zFENkxpBGKa6ruqBtqoCkDeC4d/PcayG4mhIO7OS6x098B7z0w
+         D9pQ==
+X-Gm-Message-State: AOAM533Q9K/Jk5U1KF/JFshCAg5o2pVJ8IQI+4DiK8SjOLsPgoUYc2Mm
+        ZGGCRN3glY69YnfwqZKeDBq3XMIKnBN8wH8LWSZ0txA5wgk=
+X-Google-Smtp-Source: ABdhPJyeWW2Kk8pchSdyqCB9Ehqc04eyaae6+Gf2j/tPot3AlwQhcRLSGp1JXizGMc+Ol7OvdnrHPNXwoVBWZGu78Sw=
+X-Received: by 2002:a1f:5c46:: with SMTP id q67mr11033605vkb.24.1635086351424;
+ Sun, 24 Oct 2021 07:39:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211003125134.2.I7733f5a849476e908cc51f0c71b8a594337fbbdf@changeid>
+ <YVtWVZDzhwMPnKj0@robh.at.kernel.org> <CAPnjgZ3hUu6AUiMtC8tSQPeeG1aH1bQMcE8SQ_T8Nd-FjY_fGQ@mail.gmail.com>
+ <CAL_JsqLT28Lp6pVYLxheZ=iK9QDOzXcezihR+sru4qLQLoUeWw@mail.gmail.com>
+ <CAPnjgZ1accZg-G00xX7HPE8KAoh9NPAkfrb9BFrj3W5Bo_0pKg@mail.gmail.com>
+ <CAL_JsqL5MP1efM_d5EF3x4M_qf3gee8Sc8TQFgxoVsdCWTY9uw@mail.gmail.com>
+ <CAPnjgZ2r1qSDkJS_Z2v25=EsZj_9pt=qSTre3yTjqUnQrV7+ww@mail.gmail.com> <d3ca77bc4dfc5b70@bloch.sibelius.xs4all.nl>
+In-Reply-To: <d3ca77bc4dfc5b70@bloch.sibelius.xs4all.nl>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Sun, 24 Oct 2021 08:38:59 -0600
+Message-ID: <CAPnjgZ28KsGUPLtuKEYGijP9=moHCcJ4O7yC2x9PAt9ak5fK-Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: u-boot: Add an initial binding for config
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Rob Herring <robh@kernel.org>,
+        Devicetree Discuss <devicetree@vger.kernel.org>,
+        Tom Rini <trini@konsulko.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        lk <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 23 Oct 2021 23:48:53 +0200, Alexander Stein wrote:
-> Fixes the schema check warning "audio-controller@32000: 'AVDD-supply'
-> do not match any of the regexes: 'pinctrl-[0-9]+'"
-> 
-> Fixes: 5c36abcd2621 ("ASoC: meson: add t9015 internal codec binding documentation")
-> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
-> ---
-> I am aware that adding required properties to bindings is frowned upon. But in
-> this case it seems acceptable for the following reasons:
-> * AVDD-supply was used from the very first driver commit
-> * All DT (g12 and gxl) using t9015 controller provide AVDD-supply
->   already
-> But I'm ok to not add it to required properties as well. The driver uses
-> it nevertheless though.
-> 
->  Documentation/devicetree/bindings/sound/amlogic,t9015.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+Hi Mark,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Thu, 21 Oct 2021 at 02:51, Mark Kettenis <mark.kettenis@xs4all.nl> wrote:
+>
+> > From: Simon Glass <sjg@chromium.org>
+> > Date: Wed, 20 Oct 2021 16:44:41 -0600
+> >
+> > Hi Rob,
+> >
+> > On Mon, 18 Oct 2021 at 16:26, Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, Oct 13, 2021 at 11:33 AM Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > "
+> > > > Hi Rob,
+> > > >
+> > > > On Tue, 12 Oct 2021 at 09:05, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > >  On Tue, Oct 12, 2021 at 8:41 AM Simon Glass <sjg@chromium.org> wrote:
+> > > > > >
+> > > > > > Hi Rob,
+> > > > > >
+> > > > > > On Mon, 4 Oct 2021 at 13:30, Rob Herring <robh@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Sun, Oct 03, 2021 at 12:51:53PM -0600, Simon Glass wrote:
+> > > > > > > > U-Boot makes use of the devicetree for its driver model. Devices are bound
+> > > > > > > > based on the hardware description in the devicetree.
+> > > > > > > >
+> > > > > > > > Since U-Boot is not an operating system, it has no command line or user
+> > > > > > > > space to provide configuration and policy information. This must be made
+> > > > > > > > available in some other way.
+> > > > > > > >
+> > > > > > > > Therefore U-Boot uses devicetree for configuration and run-time control
+> > > > > > > > and has done for approximately 9 years. This works extremely well in the
+> > > > > > > > project and is very flexible. However the bindings have never been
+> > > > > > > > incorporated in the devicetree bindings in the Linux tree. This could be
+> > > > > > > > a good time to start this work as we try to create standard bindings for
+> > > > > > > > communicating between firmware components.
+> > > > > > > >
+> > > > > > > > Add an initial binding for this node, covering just the config node, which
+> > > > > > > > is the main requirement. It is similar in concept to the chosen node, but
+> > > > > > > > used for passing information between firmware components, instead of from
+> > > > > > > > firmware to operating system.
+> > > > > > > >
+> > > > > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > > > > > ---
+> > > > > > > > Please be kind in your review. Some words about why this is needed are
+> > > > > > > > included in the description in config.yaml file.
+> > > > > > > >
+> > > > > > > > The last attempt to add just one property needed by U-Boot went into the
+> > > > > > > > weeds 6 years ago, with what I see as confusion about the role of the
+> > > > > > > > chosen node in devicetree[1].
+> > > > > > > >
+> > > > > > > > I am trying again in the hope of reaching resolution rather than just
+> > > > > > > > going around in circles with the 'devicetree is a hardware description'
+> > > > > > > > argument :-)
+> > > > > > > >
+> > > > > > > > Quoting from the introduction to latest devicetree spec[2]:
+> > > > > > > >
+> > > > > > > > >>>
+> > > > > > > > To initialize and boot a computer system, various software components
+> > > > > > > > interact. Firmware might perform low-level initialization of the system
+> > > > > > > > hardware before passing control to software such as an operating system,
+> > > > > > > > bootloader, or  hypervisor. Bootloaders and hypervisors can, in turn,
+> > > > > > > > load and transfer control to operating systems. Standard, consistent
+> > > > > > > > interfaces and conventions facilitate the interactions between these
+> > > > > > > > software components. In this document the term boot program is used to
+> > > > > > > > generically refer to a software component that initializes the system
+> > > > > > > > state and executes another software component referred to as a client
+> > > > > > > > program.
+> > > > > > > > <<<
+> > > > > > > >
+> > > > > > > > This clearly envisages multiple software components in the firmware
+> > > > > > > > domain and in fact that is the case today. They need some way to
+> > > > > > > > communicate configuration data such as memory setup, runtime-feature
+> > > > > > > > selection and developer conveniences. Devicetree seems ideal, at least for
+> > > > > > > > components where the performance / memory requirements of devicetree are
+> > > > > > > > affordable.
+> > > > > > > >
+> > > > > > > > I hope that the Linux community (which owns the devicetree bindings) finds
+> > > > > > > > this initiative valuable and acceptable.
+> > > > > > >
+> > > > > > > Owns? I'm having a sale and can make you a good offer. Buy 1 binding,
+> > > > > > > get 2000 free. :)
+> > > > > >
+> > > > > > Yes, it's the price of that first binding that surely puts everyone off.
+> > > > > >
+> > > > > > (sorry for sitting on this for a week, my spam filter doesn't like
+> > > > > > some mailing lists and I'm working on it)
+> > > > > >
+> > > > > > >
+> > > > > > > >
+> > > > > > > > [1] https://lists.denx.de/pipermail/u-boot/2015-July/218585.html
+> > > > > > > > [2] https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.3
+> > > > > > > >
+> > > > > > > >  .../devicetree/bindings/u-boot/config.yaml    | 137 ++++++++++++++++++
+> > > > > > > >  1 file changed, 137 insertions(+)
+> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/u-boot/config.yaml
+> > > > > > >
+> > > > > > > Might as well put this into dt-schema rather than the kernel. But might
+> > > > > > > get more review here first.
+> > > > > >
+> > > > > > OK, so does that mean a PR to https://github.com/robherring/dt-schema
+> > > > >
+> > > > > Wrong one: https://github.com/devicetree-org/dt-schema
+> > > > >
+> > > > > I need to update the readme there for the old one.
+> > > >
+> > > > OK thanks.
+> > > >
+> > > > >
+> > > > > > or is there a mailing list for it? I think I am missing some
+> > > > > > understanding here.
+> > > > >
+> > > > > You can send a PR or to a DT mailing list, but the mail list will get
+> > > > > more reviews (hopefully). devicetree-spec is better than devicetree as
+> > > > > it is not a firehose.
+> > > >
+> > > > OK.
+> > > >
+> > > > >
+> > > > > > >
+> > > > > > > > diff --git a/Documentation/devicetree/bindings/u-boot/config.yaml b/Documentation/devicetree/bindings/u-boot/config.yaml
+> > > > > > > > new file mode 100644
+> > > > > > > > index 00000000000000..336577a17fdf5a
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/Documentation/devicetree/bindings/u-boot/config.yaml
+> > > > > > > > @@ -0,0 +1,137 @@
+> > > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > > +%YAML 1.2
+> > > > > > > > +---
+> > > > > > > > +$id: http://devicetree.org/schemas/u-boot/config.yaml#
+> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > +
+> > > > > > > > +title: U-Boot configuration node
+> > > > > > > > +
+> > > > > > > > +maintainers:
+> > > > > > > > +  - Simon Glass <sjg@chromium.org>
+> > > > > > > > +
+> > > > > > > > +description: |
+> > > > > > > > +  The config node does not represent a real device, but serves as a place
+> > > > > > > > +  for passing data between firmware elements, like memory maps. Data in the
+> > > > > > > > +  config node does not represent the hardware. It is ignored by operating
+> > > > > > > > +  systems.
+> > > > > > > > +
+> > > > > > > > +  Purpose of config node
+> > > > > > > > +  ----------------------
+> > > > > > > > +
+> > > > > > > > +  A common problem with firmware is that many builds are needed to deal with the
+> > > > > > > > +  slight variations between different, related models. For example, one model
+> > > > > > > > +  may have a TPM and another may not. Devicetree provides an excellent solution
+> > > > > > > > +  to this problem, in that the devicetree to actually use on a platform can be
+> > > > > > > > +  injected in the factory based on which model is being manufactured at the time.
+> > > > > > > > +
+> > > > > > > > +  A related problem causing build proliferation is dealing with the differences
+> > > > > > > > +  between development firmware, developer-friendly firmware (e.g. with all
+> > > > > > > > +  security features present but with the ability to access the command line),
+> > > > > > > > +  test firmware (which runs tests used in the factory), final production
+> > > > > > > > +  firmware (before signing), signed firmware (where the signatures have been
+> > > > > > > > +  inserted) and the like. Ideally all or most of these should use the same
+> > > > > > > > +  U-Boot build, with just some options to determine the features available. For
+> > > > > > > > +  example, being able to control whether the UART console or JTAG are available,
+> > > > > > > > +  on any image, is a great debugging aid.
+> > > > > > > > +
+> > > > > > > > +  When the firmware consists of multiple parts (various U-Boot phases, TF-A,
+> > > > > > > > +  OP-TEE), it is helpful that all operate the same way at runtime, regardless of
+> > > > > > > > +  how they were built. This can be achieved by passing the runtime configuration
+> > > > > > > > +  (e.g. 'enable UART console', 'here are your public keys') along the chain
+> > > > > > > > +  through each firmware stage. It is frustrating to have to replicate a bug on
+> > > > > > > > +  production firmware which does happen on developer firmware, because they are
+> > > > > > > > +  completely different builds.
+> > > > > > > > +
+> > > > > > > > +  The config node provides useful functionality for this. It allows the different
+> > > > > > > > +  controls to be 'factored out' of the U-Boot binary, so they can be controlled
+> > > > > > > > +  separately from the initial source-code build. The node can be easily updated
+> > > > > > > > +  by a build or factory tool and can control various features in U-Boot. It is
+> > > > > > > > +  similar in concept to a Kconfig option, except that it can be changed after
+> > > > > > > > +  U-Boot is built.
+> > > > > > > > +
+> > > > > > > > +  The config node is similar in concept to /chosen (see chosen.txt) except that
+> > > > > > >
+> > > > > > > chosen.yaml now (in dt-schema).
+> > > > > >
+> > > > > > OK
+> > > > > >
+> > > > > > >
+> > > > > > > > +  it is for passing information *into* and *between) firmware components,
+> > > > > > > > +  instead of from firmware to the Operating System. Also, while operating
+> > > > > > > > +  systems typically have a (sometimes extremely long) command line, U-Boot does
+> > > > > > > > +  not support this, except with sandbox. The devicetree provides a more
+> > > > > > > > +  structured approach in any case.
+> > > > > > >
+> > > > > > > What about having a /chosen/u-boot/ node instead?
+> > > > > >
+> > > > > > What is your rationale for doing that?
+> > > > >
+> > > > > Simply that /chosen is where the s/w configuration for the next stage
+> > > > > consuming the DT goes. Also, we already have bootcmd defined in chosen
+> > > > > and don't need it in a whole other place.
+> > > >
+> > > > OK I see.
+> > > >
+> > > > The spec says "The /chosen node does not represent a real device in
+> > > > the system but describes parameters chosen or specified by the system
+> > > > firmware at run time. It shall be a child of the root node."
+> > > >
+> > > > To my reading, this is not the same thing. I would prefer something like:
+> > > >
+> > > > "The /xxx node does not represent a real device in the system but
+> > > > describes parameters used by the system firmware at run time. It shall
+> > > > be a child of the root node."
+> > >
+> > > The wording is from simpler times... We can reword it however we need.
+> >
+> > Yes, as is the /chosen node, I think. So perhaps we should be able to
+> > expand to other nodes as needed!
+>
+> Maybe, but it we probably should follow existing practice.
+>
+> The whole DT thing came out of OpenFirmware.  The OpenFirmware
+> standard defines a /options node with various options that control how
+> the firmware behaves.  It is defined in the IEEE 1275 standard:
+>
+>   https://www.openfirmware.info/data/docs/of1275.pdf
+>
+> The way this behaves on Sun and (PowerPC) machines is quite similar
+> how environment variables work in U-Boot.
 
-yamllint warnings/errors:
+I don't see much semantic difference between choices and options, but
+I would be quite happy to use 'options' for firmware. In fact it seems
+that 'options' serves the same purpose as the 'config' node I had in
+mind. We still need to have subnodes for project-specific things
+though.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.example.dt.yaml: audio-controller@32000: 'AVDD-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+BTW it is interesting reading that old doc again. I wonder who it was
+who decided to allow x86 code in the boot ROMs?
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1545246
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Regards,
+Simon
