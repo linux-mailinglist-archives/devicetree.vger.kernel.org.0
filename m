@@ -2,117 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A96438BA8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 21:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B95E438BFE
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 23:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231673AbhJXTfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 15:35:30 -0400
-Received: from mout.kundenserver.de ([212.227.17.10]:46019 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbhJXTf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 15:35:29 -0400
-Received: from mail-wm1-f44.google.com ([209.85.128.44]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M2fDl-1mg6xB2L3H-004DXt; Sun, 24 Oct 2021 21:33:06 +0200
-Received: by mail-wm1-f44.google.com with SMTP id b133-20020a1c808b000000b0032ca4d18aebso6898085wmd.2;
-        Sun, 24 Oct 2021 12:33:06 -0700 (PDT)
-X-Gm-Message-State: AOAM533HTIBq3hCwwGKazh6pnxCKMId/bIP3UF9zEsThuL/ne2PSMtw3
-        SMk6azf+fGYpUUAX7yA8s9WmTDoGGzjnbJPgCI8=
-X-Google-Smtp-Source: ABdhPJw4hH7C/a2zk240txDvHL7tN8+k+dIxhQayqZg6YZyRuMpfgd65spSGiNjZlg56v83/yxP5Ni8w6w2+98dAEhQ=
-X-Received: by 2002:a05:600c:1548:: with SMTP id f8mr15117795wmg.35.1635103986146;
- Sun, 24 Oct 2021 12:33:06 -0700 (PDT)
+        id S231684AbhJXVGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 17:06:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60232 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231479AbhJXVGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 17:06:33 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD38C061764
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 14:04:12 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id g36so7271225lfv.3
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 14:04:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rXZiinBB1P7wOrPBY5EXOLhRiRUn4EMUQJBC+p4xV6E=;
+        b=wqk0FsTc33l1K46sT2Xr6J8RUxVJh/uxskfmCXujnPnsqk00yE0NSXmAbm/sI7ezoQ
+         Sv9PPACt1sGIa2itP3H0vpq0T/XUB8iU9lbCfkvX672BUxotkQmISbTr5EEOE+eTBLXZ
+         BiZvlrGw0vfunNxOZGTvhRhFjDn6kYhClJd6VX+ZyGvj0gwO6AFgZ/2FeSje7WXeI35r
+         6b6blrGBXF7oSBFZLFOYFAXZFcEQhUx2kcLW/uvB6v5CEFrnUr/ZknJfuaI9mBuWuKQ2
+         p5H6rH45jT9U+V9hKA9jjV5V9Pkh/ufWHg4B+PXlCSIpsh3//IYZR+BKE2+QBZDXG1G4
+         k/MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rXZiinBB1P7wOrPBY5EXOLhRiRUn4EMUQJBC+p4xV6E=;
+        b=CGoSvn7h5Myt6JsERjx7Fz6gdxm3SyUgydqFtuLaPSuTtg2lMpRWZic+zxWeNYMAGW
+         7097XPTIN1ePLNkVTtHBvgF3iGMOKgKFvUKHjjSRMZKXXCnxvRiAAbcZrcaPmurAJ9/W
+         zudxAu+4gJuo1ygjoW47WOP8I/KmPHTE/TF2j6kddHOeWoT3siDDUVDs22e3SrMoyzww
+         0ei88hhJgSay9FRJmyHzl6GF72aKgx5WpzEb+JZN+IfxfQu0+1zhAF4Yd3ulxgAyZ/eZ
+         IPOXcfEh5ve9eIMTXgOEpmVKRVfkj14sx8ryXH1BwMaa+vtQDykWQdV13NWEJsH+TA8r
+         sGfg==
+X-Gm-Message-State: AOAM532njVZDq/awEvYN1pRTy66ifVOTe9rdAGAt9waPb/ZvIwlymsCS
+        QJO7waxnxcIzbKKYevtw07VsH/W9fqyCkgRQO6VUBg==
+X-Google-Smtp-Source: ABdhPJxNr92QTY2HNT8gRchRvSIpTrojxUxrxZ0hp9tos7pfpHyh5Hyi1phko/4SIzDFMiFX1QLAQUIl+4FTuACoszg=
+X-Received: by 2002:ac2:5d4a:: with SMTP id w10mr13034115lfd.584.1635109450097;
+ Sun, 24 Oct 2021 14:04:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
-In-Reply-To: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Sun, 24 Oct 2021 21:32:50 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3ccWgpQF8-Ej7Di_=eCs+cibDgiY5962iPKsMgzD_qSg@mail.gmail.com>
-Message-ID: <CAK8P3a3ccWgpQF8-Ej7Di_=eCs+cibDgiY5962iPKsMgzD_qSg@mail.gmail.com>
-Subject: Re: [PATCH 00/13] This patchset aims to add initial support for the
- i.MXRT10xx family
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        giulio.benetti@benettiengineering.com,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        b20788@freescale.com, Andy Duan <fugang.duan@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
+References: <20211018085754.1066056-1-horatiu.vultur@microchip.com>
+In-Reply-To: <20211018085754.1066056-1-horatiu.vultur@microchip.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 24 Oct 2021 23:03:59 +0200
+Message-ID: <CACRpkdbyY9LPf5una95YE4OW4do9aLp_Vr-ge23RTSu6-7iKjw@mail.gmail.com>
+Subject: Re: [PATCH v6 0/2] pinctrl: pinctrl-microchip-sgpio: Extend to call
+ reset driver
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:ijSh8KXz9yGLScq0wxSXSqtezBqpCDdhnwiuDPpD9kH75RQnRE0
- ZK/afQsy0B4yZ7y1N0VpJ/G9U9EeXQ0Re73DMdXLLT8x0IhLZQ99krcnis7WbHBWavIn6lU
- d9D4O0kgZowaTVUN+gzAIM4OYi5NCI67u5r/vV1+pAyHARaNN2y8gZeKuzhJRkViH/cKrBi
- AojeRN/GxKuaWQfF5S8RA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:dhGgQdPx4oQ=:UHVrONz9YTHa3Lk9O6zc5u
- OSVCwKR4calueVJjuvmN9YpKDezKl8EXtP7NQFF1BWLLZEivMPyVzz5FQgnX7+gPxpqiNN2+5
- G4cqI1J9oI1OkgojGhBL7O/xtt+buZcIiQVJMIXwX79GJh2P8UgrGjYbGGxNwbGWfQw3NRU3m
- kWBLD4ltGzMQqH9HomM1d9zlIsnrJ0eSC7zEjDx8LlEyXTvlsGuFH6MskIIlaMg0oxiqKST9V
- 8OUx2I+AXsH+iT4uxFkunq0x+a+lUfXuudFR6sDbdPOSydYwSY9EGVIMJZEjWD3KjIXPMaCou
- GfWIp/sLG5DVoPKGYwYZiYv4V4xaDwmkJVMVEJa/6RqkiOos6PwCWyCcpWL8D1P5LDFgtQ2VH
- kKnIafyQCY1g4Mop5H2GSX5OjeX2x3WrgOVmK97/EU/4gDfY5soZNI6hGo5r/ZdwKVrWIqI6K
- PZCT6GwfJNS2HEUM1A7Lz1DMWvQTT0jQk6ekcp9k3RR5/xPBerd9hh0STGW+D9ykEK+M2l/9Z
- w2UACRbFZzVHj6FbwibFOCkeuKVC/hWPxFB+4p+XNflWhFR/lLfBYCPQvDYtEi6C+ZN3/Q4kY
- f0aE2BZM+Ki56j/rsI4KiWC054YLlzb0iTCilri0kww8q9dqvEZQrN/DKxp4vzxS6291CVXmn
- oBUIYvNKNFNPioL6/Mq0Vp6KhAlWrzyJ/TCGIjlbOZr431OiEAGI2+AAc2i5/+Rt8bImuioAv
- CQXSraJG7uK0niWXxi3i/7j22mbT84Lo5+6T07J1S8nuKaXrKIvUXOUis2M0OieN2iYeR/P/W
- ic2iIGmZVQ9Hn3VzAZ4WFgeQthqLMF2jvk0/fcQO3gVu0ZmtWY=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 24, 2021 at 5:40 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> Add initial support for the i.MXRT10xx SoC family
-> starting with the i.IMXRT1050 SoC.
-> This patchset contains:
-> - i.MXRT10xx family infrastructure
-> - i.MXRT1050 pinctrl driver adaption
-> - i.MXRT1050 clock driver adaption
-> - i.MXRT1050 sd-card driver adaption
-> - i.MXRT1050 uart driver adaption
-> - i.MXRT1050-evk basic support
+On Mon, Oct 18, 2021 at 10:56 AM Horatiu Vultur
+<horatiu.vultur@microchip.com> wrote:
 
-Can you expand the description a bit more so it makes sense as a changelog
-text for the merge commit? It's fairly rare these days that we add support for a
-MMU-less platform, so it would be good if the introductory text answers
-questions like:
+> v5->v6:
+>  - fix warnings reported by 'make dtbs_check'
+>  - add back the name of the reset line
 
-- what is this platform used for, and what is the purpose of running Linux on it
-  in place of the usual RTOS variants?
+Patch set v6 applied, thanks for working this out!
 
-- are you doing this just for fun, or are there any commercial use cases?
-
-- what are the minimum and maximum memory configurations this has
-  been tested with?
-
-- what user space are you testing with: any particular distro that supports
-  this platform, and do you run elf-fdpic or flat binaries.
-
-- are you planning to also support the newer i.MXRT11xx or
-  Cortex-R based designs like the S32S?
-
-       Arnd
+Yours,
+Linus Walleij
