@@ -2,35 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9DE44388D9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 14:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31C094388E8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 14:50:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230249AbhJXMgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 08:36:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbhJXMgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 08:36:12 -0400
-X-Greylist: delayed 501 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 24 Oct 2021 05:33:51 PDT
-Received: from pmb.cereq.fr (unknown [IPv6:2a02:2498:6d7b:ea7:216:3eff:fe3c:cc9e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF00FC061764
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 05:33:51 -0700 (PDT)
-To:     devicetree@vger.kernel.org
-Subject: How are you
-X-PHP-Originating-Script: 0:5s4x5sq45sq45xsq45xsqx5sq4.php
-Date:   Sun, 24 Oct 2021 12:25:28 +0000
-From:   TF <tfisher7533032@gmail.com>
-Reply-To: tonyf2963100@onmail.com
+        id S230506AbhJXMw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 08:52:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48294 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230337AbhJXMw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Oct 2021 08:52:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 233BD60F4F;
+        Sun, 24 Oct 2021 12:50:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635079808;
+        bh=4ZT/OHhliL2xpFRvHBucE++OTesAzg+EfQ7BpPMQfoM=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=b5RTDbXQ3dumt/nIcZuyZTJQsrjChAUcQEDVtoJncc8+XHje539MlKMzKo8Mf34Gt
+         11wGVOo/40Qv9ACKjJLIYL4muWgH26RRL6vC8NfamvblBtrqEDmUlnW1mYXwr+HAcf
+         NG0LmR/B/8e0DRpX5vqlbd+hwjuCkSoCSQkN5NIJp3S5TX6IEHNEqNoVnNSQjvUhPz
+         RXG0GyZqtleQOB6Ky0HSWAJZUJk+a4kyP3CSynG5gEu3DhkYjRkAnR5Lr9VZYI5cZo
+         gVA+fqdDBujFKwy9Qngyzo6U/vF/tgOzn7Y9srfXfevQlVDG59b05e4WvrW0P4sESw
+         yY59zNBCHdBTA==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 14DE660BD8;
+        Sun, 24 Oct 2021 12:50:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Message-Id: <20211024122528.8AE0A23298@pmb.cereq.fr>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next PATCH 1/2] dt-bindings: net: macb: Add mdio bus child node
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <163507980807.1741.5240492609197431431.git-patchwork-notify@kernel.org>
+Date:   Sun, 24 Oct 2021 12:50:08 +0000
+References: <20211022163548.3380625-1-sean.anderson@seco.com>
+In-Reply-To: <20211022163548.3380625-1-sean.anderson@seco.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     netdev@vger.kernel.org, nicolas.ferre@microchip.com,
+        claudiu.beznea@microchip.com, kuba@kernel.org, davem@davemloft.net,
+        linux-kernel@vger.kernel.org, robh@kernel.org,
+        devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings,
-My name is Tony Fisher, the investment manager of an investment company. We grant loans to both Corporate and Private entities, we can fund as a soft loan under our ongoing corporate finance program at 3% interest rate per annum without collateral. Loans are processed and released within 5-7 working days upon receipt of complete documents, payment will be made through Bank Wire Transfer TM103 block funds. The PROOF OF FUND is available once you confirm your interest. If you have any viable project which requires loan funding, we would like to work with you, send the business plan or any related documents. Reply email to: ftony6953@onmail.com / tfisher4321@onmail.com
+Hello:
 
-Regards,
-Tony Fisher
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
+
+On Fri, 22 Oct 2021 12:35:47 -0400 you wrote:
+> This adds an optional mdio bus child node. If present, the mac will
+> look for PHYs there instead of directly under the top-level node. This
+> eliminates any ambiguity about whether child nodes are PHYs, and allows
+> the MDIO bus to contain non-PHY devices.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> 
+> [...]
+
+Here is the summary with links:
+  - [net-next,1/2] dt-bindings: net: macb: Add mdio bus child node
+    https://git.kernel.org/netdev/net-next/c/25790844006a
+  - [net-next,2/2] net: macb: Use mdio child node for MDIO bus if it exists
+    https://git.kernel.org/netdev/net-next/c/4d98bb0d7ec2
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
