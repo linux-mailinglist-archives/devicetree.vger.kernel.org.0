@@ -2,83 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A74438601
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 02:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3778843866B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 05:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231391AbhJXAjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Oct 2021 20:39:23 -0400
-Received: from phobos.denx.de ([85.214.62.61]:37030 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231131AbhJXAjX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 23 Oct 2021 20:39:23 -0400
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D337D83303;
-        Sun, 24 Oct 2021 02:37:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1635035822;
-        bh=Sy1O37cAs5gqV5sR7/uMeWWea3WjWSSRC8MZNh3N/8U=;
-        h=From:To:Cc:Subject:Date:From;
-        b=E+Wmca333vp2sTkVdW4S8aO6Zycl8NnzjEozzRGYW0IpOXHDMEVlNbYG0L3vdRP8d
-         GSQkkqt1PXAPxOJC8GJirr6jxXtnPt1r8RH+5SAQtSdw6qmBGXnaQeGr4NwBKiUoHB
-         m5vVpGjRx3kMedm6tFOoAz7IKk0mUhuJh4FMDg+wLsdNc7jGXTIcI5LVjC8umyn5YT
-         zpY04Ot9zW+K6BcMpTYCif9nNv28MtFqR2AL3DimNNi+X/PfF9VPN+9ekM3cp0mByl
-         OXpS+ebLib94VQeMcgxwBGNuTxL0OFHixSxO9/sJjkrw068nd/u7DzjOmKDjOCAHNp
-         gZPIVOrVNAyiQ==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-usb@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: usb: dwc2: Add otg-rev property documentation
-Date:   Sun, 24 Oct 2021 02:36:52 +0200
-Message-Id: <20211024003652.227772-1-marex@denx.de>
-X-Mailer: git-send-email 2.33.0
+        id S230016AbhJXDGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Oct 2021 23:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231376AbhJXDGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Oct 2021 23:06:40 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13BDBC061220
+        for <devicetree@vger.kernel.org>; Sat, 23 Oct 2021 20:04:19 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id b4-20020a9d7544000000b00552ab826e3aso9797552otl.4
+        for <devicetree@vger.kernel.org>; Sat, 23 Oct 2021 20:04:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=09khimdAjQRi8HKATJj9Yiw14F//GZIJY/3Fe7+1+Ew=;
+        b=lHDyo+4Dao/LPjRiG1bPgSM38hRwp9NmMy+FE4x4UHptLKk5sQX82TX7R+yqo/Sx1k
+         vpmwoKDWHfskPP7m3dpCjBSwcLHkZ3OZ+0rZ/xNTX+qi/cB3O2MvU2BGYzrCOPP73+Ko
+         Nz8xruVnyHemho7jFWSjyfS7glTYTx1jInbqcttKImabSlDLIUzh/yHzieGAVxO6OGyl
+         ZFY2B2eYCP466an727i+vHIuOWDzkDSQJnH0Z9tl0KsQDXQEeGSoYySzgw8cQZooqebY
+         XvKTE6zrAC2cCr3Btcl0mS/SOtSmfMNTy8SaWiLYgK3mK3YtlUMpbnLXL9AkO36Vni/Z
+         1WVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=09khimdAjQRi8HKATJj9Yiw14F//GZIJY/3Fe7+1+Ew=;
+        b=Ina21lJw3YUai8wRPgWow0XSAY1TEu0sxFJQ30cG6HjAKibz/kQ7cscZ7niS81l5Kb
+         U1rBr75zrHSUlOpdLTz5Dtk0OX/eGum0IeeH5BMsKT9Ybs71XeWUe7sxdULucweBUEXA
+         afwxbQYH6+rVGzH48lNLFZQrUttGhmgU6cywELY8InEAGgfqoTaNbxO9u4EsUP55+mwQ
+         uvTY8QkdQXsQ5O8Fwbpt6D8gMdi/+4TeD/vKgLwM7rh1cVH1FGLyVqxEF5Xki6zzKU6c
+         X6kBDJ+YO+dEZqkdsh5tx1OIOWpHcmu8LFd9pAFe1Aoevj7xB8F8l4Z+LE6jQ0Si/1zx
+         uD1g==
+X-Gm-Message-State: AOAM5322jt0R6gSWWU34xxhsMaI37zDmh8sZXEMsb5Px1hFoPAxDXOFM
+        CsK/Ewhevdx6VPE7yz7XafNDfg==
+X-Google-Smtp-Source: ABdhPJxXIK+1OUczhalebYJ7/W4p3n75GDzIHUTDynp8eQPC+UOq1fcxo3/zmNL2HgmGyBdZhEfL9A==
+X-Received: by 2002:a9d:20a3:: with SMTP id x32mr6982286ota.91.1635044658537;
+        Sat, 23 Oct 2021 20:04:18 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id h2sm2679287otr.37.2021.10.23.20.04.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Oct 2021 20:04:17 -0700 (PDT)
+Date:   Sat, 23 Oct 2021 22:04:15 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>, Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] arm64: dts: qcom: msm8996: Revamp reserved memory
+Message-ID: <YXTNL7boyiRFKQiV@builder.lan>
+References: <20210926190555.278589-1-y.oudjana@protonmail.com>
+ <20210926190555.278589-2-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210926190555.278589-2-y.oudjana@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Copy the otg-rev property documentation from usb-drd.yaml into the DWC2
-binding document, since some users of the DWC2 IP like STM32MP1 use the
-otg-rev property in DT bindings for this controller.
+On Sun 26 Sep 14:06 CDT 2021, Yassine Oudjana wrote:
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
-NOTE: Shouldn't this somehow be part of the USB core bindings instead?
----
- Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+> Fix a total overlap between zap_shader_region and slpi_region, and rename
+> all regions to match the naming convention in other Qualcomm SoC device trees.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index 10c7d9b6cc53f..254436c19870b 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -120,6 +120,16 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/uint32-array
-     description: size of periodic tx fifo per endpoint (except ep0) in gadget mode.
- 
-+  otg-rev:
-+    description:
-+      Tells usb driver the release number of the OTG and EH supplement with
-+      which the device and its descriptors are compliant, in binary-coded
-+      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
-+      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
-+      0x0200 or above.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0x0100, 0x0120, 0x0130, 0x0200]
-+
-   snps,need-phy-for-wake:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description: If present indicates that the phy needs to be left on for 
--- 
-2.33.0
+FYI, I like this series, but I held off applying it because I wanted to
+verify that the shuffling of the memory regions works on the existing
+8996 boards.
 
+Unfortunately it didn't work, either with or without the shuffling on
+the db820c - and I've not found the time to figure out why that is. I
+hope to get back to this shortly (or that someone else will figure it
+out and provide a tested-by)
+
+Regards,
+Bjorn
+
+> ---
+>  .../dts/qcom/msm8996-sony-xperia-tone.dtsi    | 18 ++++--
+>  .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 18 +++---
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi         | 63 ++++++++++---------
+>  3 files changed, 55 insertions(+), 44 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+> index 507396c4d23b..4c26e66f0610 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+> @@ -13,9 +13,10 @@
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+>  
+> -/delete-node/ &slpi_region;
+> -/delete-node/ &venus_region;
+> -/delete-node/ &zap_shader_region;
+> +/delete-node/ &adsp_mem;
+> +/delete-node/ &slpi_mem;
+> +/delete-node/ &venus_mem;
+> +/delete-node/ &gpu_mem;
+>  
+>  / {
+>  	qcom,msm-id = <246 0x30001>; /* MSM8996 V3.1 (Final) */
+> @@ -46,18 +47,23 @@ cont_splash_mem: memory@83401000 {
+>  			no-map;
+>  		};
+>  
+> -		zap_shader_region: gpu@90400000 {
+> +		adsp_mem: adsp@8ea00000 {
+> +			reg = <0x0 0x8ea00000 0x0 0x1a00000>;
+> +			no-map;
+> +		};
+> +
+> +		gpu_mem: gpu@90400000 {
+>  			compatible = "shared-dma-pool";
+>  			reg = <0x0 0x90400000 0x0 0x2000>;
+>  			no-map;
+>  		};
+>  
+> -		slpi_region: memory@90500000 {
+> +		slpi_mem: memory@90500000 {
+>  			reg = <0 0x90500000 0 0xa00000>;
+>  			no-map;
+>  		};
+>  
+> -		venus_region: memory@90f00000 {
+> +		venus_mem: memory@90f00000 {
+>  			reg = <0 0x90f00000 0 0x500000>;
+>  			no-map;
+>  		};
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> index d239b01b8505..a5e7bccadba2 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> @@ -66,32 +66,32 @@ memory@88800000 {
+>  
+>  		/* This platform has all PIL regions offset by 0x1400000 */
+>  		/delete-node/ mpss@88800000;
+> -		mpss_region: mpss@89c00000 {
+> +		mpss_mem: mpss@89c00000 {
+>  			reg = <0x0 0x89c00000 0x0 0x6200000>;
+>  			no-map;
+>  		};
+>  
+>  		/delete-node/ adsp@8ea00000;
+> -		adsp_region: adsp@8ea00000 {
+> +		adsp_mem: adsp@8fe00000 {
+>  			reg = <0x0 0x8fe00000 0x0 0x1b00000>;
+>  			no-map;
+>  		};
+>  
+> -		/delete-node/ slpi@90b00000;
+> -		slpi_region: slpi@91900000 {
+> +		/delete-node/ slpi@90500000;
+> +		slpi_mem: slpi@91900000 {
+>  			reg = <0x0 0x91900000 0x0 0xa00000>;
+>  			no-map;
+>  		};
+>  
+> -		/delete-node/ gpu@8f200000;
+> -		zap_shader_region: gpu@92300000 {
+> +		/delete-node/ gpu@90f00000;
+> +		gpu_mem: gpu@92300000 {
+>  			compatible = "shared-dma-pool";
+>  			reg = <0x0 0x92300000 0x0 0x2000>;
+>  			no-map;
+>  		};
+>  
+>  		/delete-node/ venus@91000000;
+> -		venus_region: venus@90400000 {
+> +		venus_mem: venus@92400000 {
+>  			reg = <0x0 0x92400000 0x0 0x500000>;
+>  			no-map;
+>  		};
+> @@ -107,7 +107,7 @@ ramoops@92900000 {
+>  			pmsg-size = <0x40000>;
+>  		};
+>  
+> -		/delete-node/ rmtfs@86700000;
+> +		/delete-node/ rmtfs;
+>  		rmtfs@f6c00000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0 0xf6c00000 0 0x200000>;
+> @@ -118,7 +118,7 @@ rmtfs@f6c00000 {
+>  		};
+>  
+>  		/delete-node/ mba@91500000;
+> -		mba_region: mba@f6f00000 {
+> +		mba_mem: mba@f6f00000 {
+>  			reg = <0x0 0xf6f00000 0x0 0x100000>;
+>  			no-map;
+>  		};
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index eb3ec5ff46eb..1495fff6ffc9 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -384,60 +384,65 @@ reserved-memory {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> -		mba_region: mba@91500000 {
+> -			reg = <0x0 0x91500000 0x0 0x200000>;
+> +		hyp_mem: memory@85800000 {
+> +			reg = <0x0 0x85800000 0x0 0x600000>;
+>  			no-map;
+>  		};
+>  
+> -		slpi_region: slpi@90b00000 {
+> -			reg = <0x0 0x90b00000 0x0 0xa00000>;
+> +		xbl_mem: memory@85e00000 {
+> +			reg = <0x0 0x85e00000 0x0 0x200000>;
+>  			no-map;
+>  		};
+>  
+> -		venus_region: venus@90400000 {
+> -			reg = <0x0 0x90400000 0x0 0x700000>;
+> +		smem_mem: smem-mem@86000000 {
+> +			reg = <0x0 0x86000000 0x0 0x200000>;
+>  			no-map;
+>  		};
+>  
+> -		adsp_region: adsp@8ea00000 {
+> -			reg = <0x0 0x8ea00000 0x0 0x1a00000>;
+> +		tz_mem: memory@86200000 {
+> +			reg = <0x0 0x86200000 0x0 0x2600000>;
+>  			no-map;
+>  		};
+>  
+> -		mpss_region: mpss@88800000 {
+> -			reg = <0x0 0x88800000 0x0 0x6200000>;
+> +		rmtfs_mem: rmtfs {
+> +			compatible = "qcom,rmtfs-mem";
+> +
+> +			size = <0x0 0x200000>;
+> +			alloc-ranges = <0x0 0xa0000000 0x0 0x2000000>;
+>  			no-map;
+> +
+> +			qcom,client-id = <1>;
+> +			qcom,vmid = <15>;
+>  		};
+>  
+> -		smem_mem: smem-mem@86000000 {
+> -			reg = <0x0 0x86000000 0x0 0x200000>;
+> +		mpss_mem: mpss@88800000 {
+> +			reg = <0x0 0x88800000 0x0 0x6200000>;
+>  			no-map;
+>  		};
+>  
+> -		memory@85800000 {
+> -			reg = <0x0 0x85800000 0x0 0x800000>;
+> +		adsp_mem: adsp@8ea00000 {
+> +			reg = <0x0 0x8ea00000 0x0 0x1b00000>;
+>  			no-map;
+>  		};
+>  
+> -		memory@86200000 {
+> -			reg = <0x0 0x86200000 0x0 0x2600000>;
+> +		slpi_mem: slpi@90500000 {
+> +			reg = <0x0 0x90500000 0x0 0xa00000>;
+>  			no-map;
+>  		};
+>  
+> -		rmtfs@86700000 {
+> -			compatible = "qcom,rmtfs-mem";
+> -
+> -			size = <0x0 0x200000>;
+> -			alloc-ranges = <0x0 0xa0000000 0x0 0x2000000>;
+> +		gpu_mem: gpu@90f00000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x90f00000 0x0 0x100000>;
+>  			no-map;
+> +		};
+>  
+> -			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +		venus_mem: venus@91000000 {
+> +			reg = <0x0 0x91000000 0x0 0x500000>;
+> +			no-map;
+>  		};
+>  
+> -		zap_shader_region: gpu@8f200000 {
+> -			compatible = "shared-dma-pool";
+> -			reg = <0x0 0x90b00000 0x0 0xa00000>;
+> +		mba_mem: mba@91500000 {
+> +			reg = <0x0 0x91500000 0x0 0x200000>;
+>  			no-map;
+>  		};
+>  	};
+> @@ -1013,7 +1018,7 @@ opp-133000000 {
+>  			};
+>  
+>  			zap-shader {
+> -				memory-region = <&zap_shader_region>;
+> +				memory-region = <&gpu_mem>;
+>  			};
+>  		};
+>  
+> @@ -2001,7 +2006,7 @@ venus: video-codec@c00000 {
+>  				 <&venus_smmu 0x2c>,
+>  				 <&venus_smmu 0x2d>,
+>  				 <&venus_smmu 0x31>;
+> -			memory-region = <&venus_region>;
+> +			memory-region = <&venus_mem>;
+>  			status = "disabled";
+>  
+>  			video-decoder {
+> @@ -3008,7 +3013,7 @@ adsp_pil: remoteproc@9300000 {
+>  			clocks = <&xo_board>;
+>  			clock-names = "xo";
+>  
+> -			memory-region = <&adsp_region>;
+> +			memory-region = <&adsp_mem>;
+>  
+>  			qcom,smem-states = <&smp2p_adsp_out 0>;
+>  			qcom,smem-state-names = "stop";
+> -- 
+> 2.33.0
+> 
+> 
