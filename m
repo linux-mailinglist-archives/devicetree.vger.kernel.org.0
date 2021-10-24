@@ -2,72 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C094388E8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 14:50:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E4843892C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 15:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbhJXMw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 08:52:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48294 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230337AbhJXMw2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 24 Oct 2021 08:52:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPS id 233BD60F4F;
-        Sun, 24 Oct 2021 12:50:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635079808;
-        bh=4ZT/OHhliL2xpFRvHBucE++OTesAzg+EfQ7BpPMQfoM=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=b5RTDbXQ3dumt/nIcZuyZTJQsrjChAUcQEDVtoJncc8+XHje539MlKMzKo8Mf34Gt
-         11wGVOo/40Qv9ACKjJLIYL4muWgH26RRL6vC8NfamvblBtrqEDmUlnW1mYXwr+HAcf
-         NG0LmR/B/8e0DRpX5vqlbd+hwjuCkSoCSQkN5NIJp3S5TX6IEHNEqNoVnNSQjvUhPz
-         RXG0GyZqtleQOB6Ky0HSWAJZUJk+a4kyP3CSynG5gEu3DhkYjRkAnR5Lr9VZYI5cZo
-         gVA+fqdDBujFKwy9Qngyzo6U/vF/tgOzn7Y9srfXfevQlVDG59b05e4WvrW0P4sESw
-         yY59zNBCHdBTA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 14DE660BD8;
-        Sun, 24 Oct 2021 12:50:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S230435AbhJXNgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 09:36:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46412 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230358AbhJXNgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 09:36:04 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D19C061243
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:33:43 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id s18-20020a0568301e1200b0054e77a16651so11065599otr.7
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:33:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HIK+oBs/aRGxhchMLI4wI4uDRRw5QPJtNSu/6AfT09M=;
+        b=Xy2+1gH+z2WauJnJbFCbfsGQOf0niJt31JbdZbGIju5V5nPlf4TKzA14wiS1PbAJU0
+         Jp4YQgDyQAmvcayNupUkemnS5Kn5Pkv/EXifpAfTM//j6hq3/FxpIcCGSiUsIpaRN5gG
+         pQMrNnGNNpcR1Rl8hweAFk1RjMoKVKd7k7/isTKF08eSzHx9i0pP2NxviX6Rx6rl29kj
+         02ZQvy/1w2ODTa7EOcfJW3AnjQxObhvWysg5U4EGB4gRt2FbHwDG5pwPPEBhNSj0o/b2
+         1kE8N9+OHFjcrD8P1+S+cCHYUHPKuv5HgWXZD6OMV8Zol2PvfizdVHmefJBfAXHKB/52
+         Xw7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HIK+oBs/aRGxhchMLI4wI4uDRRw5QPJtNSu/6AfT09M=;
+        b=ILLaqakKR6emv1woS8FZrvM5lwriviXHIjmIEVJ1zIdPtuH89uOsuwIW7l1e4X+NuC
+         rLLId/e57pw7+CKzAcjFRg2cd5NFhFR/TPD83SGq4VO2FyzOVjhm5TuRCufXclybV3gZ
+         OHmqXUn3Njr5oLeXknUWzcslsUeX9DLj5XzyIdYajGNJczCJP91OWepKIMzCc75TYQRd
+         UJOgoMf94fVpL1xltDkF3JAVMqUEV3709FHdlyDHx/DY9ziEa2mBQ+26QV+lL2+WlyLw
+         yrKj99MdMMrY/pye2zco7kIsAiAZAb09K32Y7tLQEuNa9RxeZKBOA1h11TCRbmG6Zl5S
+         bubA==
+X-Gm-Message-State: AOAM531U6QeGoFygpdfsYkECaiDfze8aG8349HpXuOVyhdYbIUltoH3u
+        N1IDWHSzkQBCdoLRTWiGNpJqNeQuHvhEGXNoaF6mAA==
+X-Google-Smtp-Source: ABdhPJxIYbpINdi+DQOp+tHW2M8fIxiOb2JBue1thOWy6OsTzqzua7MkzNxoViZYbzf0jkh/dVhQTDtbcnZ97EP7Ic0=
+X-Received: by 2002:a9d:26:: with SMTP id 35mr8926991ota.379.1635082422960;
+ Sun, 24 Oct 2021 06:33:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [net-next PATCH 1/2] dt-bindings: net: macb: Add mdio bus child node
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163507980807.1741.5240492609197431431.git-patchwork-notify@kernel.org>
-Date:   Sun, 24 Oct 2021 12:50:08 +0000
-References: <20211022163548.3380625-1-sean.anderson@seco.com>
-In-Reply-To: <20211022163548.3380625-1-sean.anderson@seco.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     netdev@vger.kernel.org, nicolas.ferre@microchip.com,
-        claudiu.beznea@microchip.com, kuba@kernel.org, davem@davemloft.net,
-        linux-kernel@vger.kernel.org, robh@kernel.org,
-        devicetree@vger.kernel.org
+References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
+ <20211013105541.68045-18-bhupesh.sharma@linaro.org> <2699de22-4943-685f-5700-82137a4326ae@linaro.org>
+In-Reply-To: <2699de22-4943-685f-5700-82137a4326ae@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 24 Oct 2021 19:03:31 +0530
+Message-ID: <CAH=2NtyJAH3=XzipZx1f9WMYp+-hCTyHXrsivViBdzix4CQpJQ@mail.gmail.com>
+Subject: Re: [PATCH v4 17/20] crypto: qce: Print a failure msg in case probe() fails
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Vladimir,
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+On Thu, 14 Oct 2021 at 00:56, Vladimir Zapolskiy
+<vladimir.zapolskiy@linaro.org> wrote:
+>
+> Hi Bhupesh,
+>
+> On 10/13/21 1:55 PM, Bhupesh Sharma wrote:
+> > Print a failure message (dev_err) in case the qcom qce crypto
+> > driver probe() fails.
+> >
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >   drivers/crypto/qce/core.c | 2 ++
+> >   1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> > index 576c416461f9..cb8c77709e1e 100644
+> > --- a/drivers/crypto/qce/core.c
+> > +++ b/drivers/crypto/qce/core.c
+> > @@ -281,6 +281,8 @@ static int qce_crypto_probe(struct platform_device *pdev)
+> >       icc_set_bw(qce->mem_path, 0, 0);
+> >   err_mem_path_put:
+> >       icc_put(qce->mem_path);
+> > +
+> > +     dev_err(dev, "%s failed : %d\n", __func__, ret);
+> >       return ret;
+> >   }
+> >
+>
+> As for me the rationale of this change is quite non-obvious, a user is well
+> informed, if a driver probe fails. I would rather ask you to consider to
+> drop this change.
 
-On Fri, 22 Oct 2021 12:35:47 -0400 you wrote:
-> This adds an optional mdio bus child node. If present, the mac will
-> look for PHYs there instead of directly under the top-level node. This
-> eliminates any ambiguity about whether child nodes are PHYs, and allows
-> the MDIO bus to contain non-PHY devices.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> 
-> [...]
+Normally, when a driver probe fails, the kernel logging system does pretty
+well to hold logs for the same and these can be referred to later for debugging.
 
-Here is the summary with links:
-  - [net-next,1/2] dt-bindings: net: macb: Add mdio bus child node
-    https://git.kernel.org/netdev/net-next/c/25790844006a
-  - [net-next,2/2] net: macb: Use mdio child node for MDIO bus if it exists
-    https://git.kernel.org/netdev/net-next/c/4d98bb0d7ec2
+However with crypto tests on arm machines, since the arm crypto interfaces are
+also normally enabled by default, so boot-on crypto tests (enabled via
+CRYPTO_MANAGER_EXTRA_TESTS), which normally take place at algorithm
+registration,
+it's sometimes difficult to check the qce driver probe errors /
+failures, in case the board hangs or reboots while running the boot-on
+crypto tests.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+In such a case, if qce crypto driver probe fails, it is useful to see
+a failure message on the serial console itself.
 
-
+Regards,
+Bhupesh
