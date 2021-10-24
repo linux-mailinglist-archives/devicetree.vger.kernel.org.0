@@ -2,105 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 839864389D8
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 17:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 619DC438A1E
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 17:41:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231138AbhJXPil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 11:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44838 "EHLO
+        id S232286AbhJXPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 11:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbhJXPik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 11:38:40 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB422C061745
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 08:36:19 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id g201-20020a1c20d2000000b00327775075f7so2053818wmg.5
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 08:36:19 -0700 (PDT)
+        with ESMTP id S232135AbhJXPmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 11:42:51 -0400
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C48C061745;
+        Sun, 24 Oct 2021 08:40:30 -0700 (PDT)
+Received: by mail-qv1-xf35.google.com with SMTP id o20so5672949qvk.7;
+        Sun, 24 Oct 2021 08:40:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Uo+KZSKbMpCYD2HnQVmUgWBUvnOq/cWI0Zv67K4qsag=;
-        b=yu5Z4gfoU+YC7zzBlq9uJ6PXvotAkI9fzmpdOOfZJqkYYQUBQ7/Z/MTdSwgi4nd5jb
-         B3dyMlOYGV88bSwN1GoOONZ0UT/2ZqC5ShpiUsJKxBtW6vnCE00UhsZcr8Urk7ytx0/S
-         NDdcZXNGmOLXHRjfF6zjYBygT8MkmkWhD/CCxddf844M0hv+4uUkNr4d9WJOAdXOWNI2
-         sWAOU5teuRpYkPKTVpSLWSPndpLuaaAaVlhoAbz63sJx/c/IzZtD7mXjtv9bDca89bA5
-         1GNLXAbJJLnvKiOAtAE6++GUirONvnRdY8bSlswlBmlY14qE8e7wRWCPqV9F5H+NviO1
-         C9Jw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LV+Kgtvh7+La2ITtz0O2xUdXeTpFbYkBF1tkOGmeqvo=;
+        b=W8sl0oty4LeSR/wD4twzLfVyyTY9S3Ml1JSOgTX1o8FBFMPDEzNMEbBGerE9WlXQ/+
+         Vjw6h+ZFPZn8ivalJy7pppYq7YWG5czHuAsuVi76+baVObp20qqawXV6NR6YxZRCGE0r
+         1NIzvWlXWaze7PK+kDq9J3yJfqC4H19jda0oKMKDauhnR2gBJ0txw9brYJg3PMuYpiB5
+         sQ9j7b+mr2FKFCp8wDODpJ8ibvy0acsuanHLDqD7zVKYknWbM06zb5xeBft7o+/Gjj2S
+         6fHMxbyR/dF1CYC9znrHTeE7rBr7ykQyUc32B4bHtn99qzj2bIXXFUW1lDoab8vAbPaB
+         VU7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Uo+KZSKbMpCYD2HnQVmUgWBUvnOq/cWI0Zv67K4qsag=;
-        b=ISSkIXs3R9UQ37UfLjbcoCWR42oXb6e9DfyfwrZU7R5NbDJ2lHoPfUnT2rApd/vMB9
-         9wNBXlJiI7kgG+khSF+eDb1h+GcnuSBFltSTNAf9B3MzSD1IxyXqdn942vxm1vfu0Cj2
-         o/ff3xAbI6D+8bGE+BIhiwJG/kgZTRK8PuHRtmhoJ3XQJGGU6LX+6ZSYCCB+5USsvID3
-         sTpQ1AS3Lam9rpm8TNcZiqCcPKjz5KnfT8jJZq8E9xXGmHSUvPdg47W9Ha5lHYzsF5GV
-         ech3xNK96uOJqMMekdqp/0mpZRQ/srDzES7HhuFa4ObE32FWbaXEtH124w70hMx8DFL6
-         lFJw==
-X-Gm-Message-State: AOAM533DqiUE0evbc+q6KagtJUhbowYr4MIqdda/4CAk0vZXuMx/OXr8
-        UaaDdfqkaJxP1SxC72RfRJCCCsu3c9jf0Q==
-X-Google-Smtp-Source: ABdhPJwwN33lxeowWbuondAurMoTKsZYNPHjpTT6hvtmBIMTKVjY9pcuRTU0VfDorky8HCqiHArLDA==
-X-Received: by 2002:a1c:7fd0:: with SMTP id a199mr43354530wmd.96.1635089778344;
-        Sun, 24 Oct 2021 08:36:18 -0700 (PDT)
-Received: from blmsp ([2a02:2454:3e6:c900:5142:5fbb:5821:5dc3])
-        by smtp.gmail.com with ESMTPSA id w7sm7605993wrm.64.2021.10.24.08.36.17
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LV+Kgtvh7+La2ITtz0O2xUdXeTpFbYkBF1tkOGmeqvo=;
+        b=flOrpzRzB6iAbnL9T95hpY/VseAhc19GyxNdrHktkEWZICpSe96cpyj9EVvhmZxAGP
+         XUPvjY+TYw6N1wUTEbrsgda2oZ558g2fwDiCu2AFHM2e14j7XRaWTfnurz9t/o6s902V
+         KZl7UER5zhu/vwA4dnbsZIx86/QsOrP894a+bRSxfnqA/70NpmAwNvcs24DsC5Nt+g0Z
+         jRXivi3vVR0bhtAbWWkzWA1ddWRj7dVOwWLYsQ+8F/yrCWb9hz9WTcyzH0rFNeparLH8
+         y5sbEIqayqisEq/g3hlBTP1gjMsQqtmoL4TO0BoaO/djTgUY7ywIiePfRTomOSLl+05J
+         K+vw==
+X-Gm-Message-State: AOAM5300NwPa5EnGTMVrDVdkQAMhKzoLaLywkNSrPmXMSeM5pWnKmOyS
+        FOZgSvZUnn8TGQDAOlg5cgg=
+X-Google-Smtp-Source: ABdhPJxrfcYCPfz68n11err6efPvJC+z85O2b06D7iuXsggzwGZIZGXiSuLoNWvtuBAH76Yljnt2Ww==
+X-Received: by 2002:a0c:cdd0:: with SMTP id a16mr11304302qvn.40.1635090029708;
+        Sun, 24 Oct 2021 08:40:29 -0700 (PDT)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id x9sm7291731qtw.84.2021.10.24.08.40.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Oct 2021 08:36:18 -0700 (PDT)
-Date:   Sun, 24 Oct 2021 17:36:17 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v5 2/7] dt-bindings: mediatek,dp: Add Display Port binding
-Message-ID: <20211024153617.inkbrjzqjp4mspyh@blmsp>
-References: <20211021092707.3562523-1-msp@baylibre.com>
- <20211021092707.3562523-3-msp@baylibre.com>
- <YXNG8Qy5jAPdWbHY@robh.at.kernel.org>
+        Sun, 24 Oct 2021 08:40:29 -0700 (PDT)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
+        b20788@freescale.com, Mr.Bossman075@gmail.com, fugang.duan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH 00/13] This patchset aims to add initial support for the i.MXRT10xx family
+Date:   Sun, 24 Oct 2021 11:40:14 -0400
+Message-Id: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YXNG8Qy5jAPdWbHY@robh.at.kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 22, 2021 at 06:19:13PM -0500, Rob Herring wrote:
-> On Thu, 21 Oct 2021 11:27:02 +0200, Markus Schneider-Pargmann wrote:
-> > This controller is present on several mediatek hardware. Currently
-> > mt8195 and mt8395 have this controller without a functional difference,
-> > so only one compatible field is added.
-> > 
-> > The controller can have two forms, as a normal display port and as an
-> > embedded display port.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> > 
-> > Notes:
-> >     Changes v4 -> v5:
-> >     - Removed "status" in the example
-> >     - Remove edp_tx compatible.
-> >     - Rename dp_tx compatible to dp-tx.
-> > 
-> >  .../display/mediatek/mediatek,dp.yaml         | 87 +++++++++++++++++++
-> >  1 file changed, 87 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> > 
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> But can't be applied without the dependent header (or remove the 
-> dependency).
+Add initial support for the i.MXRT10xx SoC family
+starting with the i.IMXRT1050 SoC.
+This patchset contains:
+- i.MXRT10xx family infrastructure
+- i.MXRT1050 pinctrl driver adaption
+- i.MXRT1050 clock driver adaption
+- i.MXRT1050 sd-card driver adaption
+- i.MXRT1050 uart driver adaption
+- i.MXRT1050-evk basic support
 
-Ok, thank you Rob. Maybe I will remove the dependency.
+Giulio Benetti (6):
+  ARM: imx: add initial support for i.MXRT10xx family
+  dt-bindings: imx: Add pinctrl binding doc for i.MXRT1050
+  pinctrl: freescale: Add i.MXRT1050 pinctrl driver support
+  dt-bindings: imx: Add clock binding for i.MXRT1050
+  ARM: dts: imx: add i.MXRT1050-EVK support
+  ARM: imxrt_defconfig: add i.MXRT family defconfig
 
-Thanks,
-Markus
+Jesse Taube (7):
+  dt-bindings: pinctrl: add i.MXRT1050 pinctrl binding doc
+  dt-bindings: clock: imx: Add documentation for i.MXRT clock
+  clk: imx: Add initial support for i.MXRT clock driver
+  dt-bindings: serial: fsl-lpuart: add i.MXRT compatible
+  tty: serial: fsl_lpuart: add i.MXRT support
+  dt-bindings: mmc: fsl-imx-esdhc: add i.MXRT compatible string
+  mmc: sdhci-esdhc-imx: Add sdhc support for i.MXRT series
+
+ .../bindings/clock/imxrt-clock.yaml           |  57 +
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   1 +
+ .../bindings/pinctrl/fsl,imxrt1050.yaml       |  85 ++
+ .../bindings/serial/fsl-lpuart.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/imxrt1050-evk.dts           | 164 +++
+ arch/arm/boot/dts/imxrt1050.dtsi              | 179 ++++
+ arch/arm/configs/imxrt_defconfig              | 157 +++
+ arch/arm/mach-imx/Kconfig                     |   9 +
+ arch/arm/mach-imx/Makefile                    |   2 +
+ arch/arm/mach-imx/mach-imxrt.c                |  19 +
+ drivers/clk/imx/Kconfig                       |   3 +
+ drivers/clk/imx/Makefile                      |   1 +
+ drivers/clk/imx/clk-imxrt.c                   | 156 +++
+ drivers/mmc/host/sdhci-esdhc-imx.c            |   7 +
+ drivers/pinctrl/freescale/Kconfig             |   7 +
+ drivers/pinctrl/freescale/Makefile            |   1 +
+ drivers/pinctrl/freescale/pinctrl-imxrt1050.c | 349 ++++++
+ drivers/tty/serial/fsl_lpuart.c               |   8 +
+ include/dt-bindings/clock/imxrt1050-clock.h   |  72 ++
+ include/dt-bindings/pinctrl/pins-imxrt1050.h  | 993 ++++++++++++++++++
+ 21 files changed, 2273 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imxrt-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imxrt1050.yaml
+ create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
+ create mode 100644 arch/arm/configs/imxrt_defconfig
+ create mode 100644 arch/arm/mach-imx/mach-imxrt.c
+ create mode 100644 drivers/clk/imx/clk-imxrt.c
+ create mode 100644 drivers/pinctrl/freescale/pinctrl-imxrt1050.c
+ create mode 100644 include/dt-bindings/clock/imxrt1050-clock.h
+ create mode 100644 include/dt-bindings/pinctrl/pins-imxrt1050.h
+
+-- 
+2.33.0
+
