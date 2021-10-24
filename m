@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03A00438C37
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 23:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D04438C4D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 00:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231547AbhJXWAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 18:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43722 "EHLO
+        id S229727AbhJXWUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 18:20:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbhJXWAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 18:00:05 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C783EC061745;
-        Sun, 24 Oct 2021 14:57:43 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id j21so6906349lfe.0;
-        Sun, 24 Oct 2021 14:57:43 -0700 (PDT)
+        with ESMTP id S229519AbhJXWUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 18:20:18 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20DCC061745
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 15:17:56 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id d13so4758765ljg.0
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 15:17:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+OPNFjQ0wVzkY1u6XnIDimYIJnCs2bgrAf6ProT42W0=;
-        b=IrnQq0Ym/QnKoKVI7edsx4cAuDrzOkiqVEgNPjETSF4ydD9jJn6qC8iQNp5gwwrzUg
-         dNNnNXC+8Io5c01EKUT5xLEY87PYxvuchZqE2tLsjro2P/0ruUOs3QTK8oEcQaEDVS8a
-         4K15OGXLosRivPeDIFB/d2alg4MIMSBFtz4X5NWWhzs+mUO0so5S5Nuzw9pJHuRVLxMH
-         xQLdySugfdoXNV+eiO9zi8952p6k246DuFaD5BW1qS+wPWMc1pxPjcXJB16cVvdakNRm
-         8oUP3kaydN4Pb3m5EGwErpjIaqkZC3xiNDJtOPqVkosue4F+r2hJBaA1Luz/Z6L2xKKN
-         eDfg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JJaQllcwUzGd4qxnMR+A86sauTQSNS36fTnnI/uULQM=;
+        b=GQ+zacEvuIRSW8rKG/z7bNab0DMU6w/J4LIs6RCDHju9nVo1ufu9qJ9aDN0QJNxejY
+         0FL926egcpBAegVGFn999GDpXrzXuR0g4jSjEjkqinSx9UutX/P7KOiiUeMk2It6MaEo
+         rRHzucaXtlYVjA3ligXrHAhCQn+VAnngnZworLl41Rcs1XgMfoUs0XE9+ywYpBqjif0Y
+         145L74F8X6SKmrGpzzZ0a0SX87Stx23qWWYI1iu7U2e4F91knBiglw4EpyuTZiSSocg3
+         7WqpX796Rj1dGzcnbqfcuMw01bWvOI4Fx9g4xGw+3ubQMZKk1c22FSXIVbj+xJg2o29T
+         UZpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+OPNFjQ0wVzkY1u6XnIDimYIJnCs2bgrAf6ProT42W0=;
-        b=PMNUdAKsvhAszevU8M/jhrDNlz3jnB/c7OMs2S9Q0aEEUTIUkGw4VIYx5omnFmVXAi
-         dFkqYP2INo11NFm6M/nHcyGtAAyftVDChzgsMCnUBw9i2UJOW37U35zbiLtpNc4XiP1Y
-         DZ6zCjesWuUc/cxNuWbTXZhKibUU6Yt7vGkvSV6doDskqEq1ZEogBPzgowJtK5H7mpF1
-         uGCdCVflqVB6HnRRrApQEh8FBj1xnrGx7zAoj1vWiP+7xL6E+Gjx9sP9GAj3ILIvAq7V
-         tlOCVaNrO9WLgL6qU06SPB4iEnsm92os9R1ce8Ms0NsUGH52wbFMrUr5PPtK8wbFYZgT
-         GbLw==
-X-Gm-Message-State: AOAM530C4U4eNF7fRJnGuXyyzxmHfkAzEdQBoZsb+A/AaP3eNXEmxMV9
-        4SWxg8Mifp6BGbm1Z/NIWfo=
-X-Google-Smtp-Source: ABdhPJwzKtqJ08WOIh+DpB8KaTx7RH+I+2hakfvKl8cIVp2e+hPQrUdsJaAcL3p90wdPlomH4G2dEw==
-X-Received: by 2002:a05:6512:33c8:: with SMTP id d8mr12823570lfg.621.1635112662112;
-        Sun, 24 Oct 2021 14:57:42 -0700 (PDT)
-Received: from localhost.localdomain (46-138-41-28.dynamic.spd-mgts.ru. [46.138.41.28])
-        by smtp.gmail.com with ESMTPSA id d27sm1577364ljo.15.2021.10.24.14.57.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Oct 2021 14:57:41 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        David Heidelberg <david@ixit.cz>,
-        Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: opp: Allow multi-worded OPP entry names
-Date:   Mon, 25 Oct 2021 00:57:18 +0300
-Message-Id: <20211024215718.28969-1-digetx@gmail.com>
-X-Mailer: git-send-email 2.33.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JJaQllcwUzGd4qxnMR+A86sauTQSNS36fTnnI/uULQM=;
+        b=2jCEMulqGZgezqtSCXhAPltQeRyrXJbxiCod01ar0YrqIyh//vXZlr3Cb88/lC5VLP
+         ajOsEy9PQohz1s1hoAfzWl7YGc8ot810nMK41j0zmiIJT0HL1SqE4raxUpUdwe+AXPNq
+         P+juNkB7dKPkH3jeeWLHmhOseWhNC3JDXF8PXrtsDP2wUNElQuROV7ch7+wycsUkPcJ1
+         JXQUlfRMWUlxjTBTjBc5uFFnGQtSX2YeWXQEvb12FiUM1NmkVJZBMdiYufNAiOeocw0s
+         PgSmaRi0YS+25eFf45ZLlU8+kZzQCP1tNP0nVpran+VIzvEq57u5w1rO0XC6jdf7Z5Dw
+         yY0w==
+X-Gm-Message-State: AOAM53221B8wwPPh+91wp1KznN3vH0aeVsjYerLXttrnYfLBIE2a1rOh
+        1DAaF2lq2sjZCElgefiP/ekCNEYiyTza/EWEPQPNsg==
+X-Google-Smtp-Source: ABdhPJzoqTpYQ5TpW5Izs9igH8k5pOJrErUUiisSDzyj8MrLgy4z8bzWFA9jSxPgHlJRRbjcka6RCXHo8VBMTWnTrq4=
+X-Received: by 2002:a2e:b748:: with SMTP id k8mr15148284ljo.358.1635113875297;
+ Sun, 24 Oct 2021 15:17:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210325122832.119147-1-sandberg@mailfence.com>
+ <20211019200831.3817-1-maukka@ext.kapsi.fi> <20211019200831.3817-3-maukka@ext.kapsi.fi>
+In-Reply-To: <20211019200831.3817-3-maukka@ext.kapsi.fi>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 25 Oct 2021 00:17:44 +0200
+Message-ID: <CACRpkdYvhM53GVLpDp6mHmy+U0kTz2t-yDz5afeXeWTgp=bsXw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] gpio: gpio-cascade: add generic GPIO cascade
+To:     Mauri Sandberg <maukka@ext.kapsi.fi>
+Cc:     Mauri Sandberg <sandberg@mailfence.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not all OPP entries fit into a single word. In particular NVIDIA Tegra OPP
-tables use multi-word names where first part is freq and second voltage
-because different hardware versions use different voltages for the same
-freqs. Allow OPP entry to have multi-worded name separated by hyphen.
-This silences DT checker warnings about wrong naming scheme.
+On Tue, Oct 19, 2021 at 10:10 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
+> Adds support for building cascades of GPIO lines. That is, it allows
+> setups when there is one upstream line and multiple cascaded lines, out
+> of which one can be chosen at a time. The status of the upstream line
+> can be conveyed to the selected cascaded line or, vice versa, the status
+> of the cascaded line can be conveyed to the upstream line.
+>
+> A multiplexer is being used to select, which cascaded GPIO line is being
+> used at any given time.
+>
+> At the moment only input direction is supported. In future it should be
+> possible to add support for output direction, too.
+>
+> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
+> ---
+> v6 -> v7:
 
-Changelog:
+This v7 looks like clean and nice merge material to me,
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-v3: - Viresh Kumar suggested that we shouldn't support postfix variant.
-      I dropped variant with postfix naming scheme and multi-wording
-      support of table names.
-
-v2: - In addition to a multi-wording support, support of the postfix
-      *-opp-table naming scheme is added to the updated pattern.
-
- Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-index ae3ae4d39843..f79343960539 100644
---- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-+++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-@@ -33,7 +33,7 @@ properties:
-     type: boolean
- 
- patternProperties:
--  '^opp-?[0-9]+$':
-+  '^opp(-[0-9]+)*$':
-     type: object
-     description:
-       One or more OPP nodes describing voltage-current-frequency combinations.
--- 
-2.33.1
-
+Yours,
+Linus Walleij
