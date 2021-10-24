@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E4843892C
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 15:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25AB7438931
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 15:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbhJXNgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 09:36:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46412 "EHLO
+        id S231664AbhJXNhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 09:37:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbhJXNgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 09:36:04 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9D19C061243
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:33:43 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id s18-20020a0568301e1200b0054e77a16651so11065599otr.7
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:33:43 -0700 (PDT)
+        with ESMTP id S230301AbhJXNhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 09:37:04 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 231BAC061767
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:34:44 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id bk18so11788393oib.8
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 06:34:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=HIK+oBs/aRGxhchMLI4wI4uDRRw5QPJtNSu/6AfT09M=;
-        b=Xy2+1gH+z2WauJnJbFCbfsGQOf0niJt31JbdZbGIju5V5nPlf4TKzA14wiS1PbAJU0
-         Jp4YQgDyQAmvcayNupUkemnS5Kn5Pkv/EXifpAfTM//j6hq3/FxpIcCGSiUsIpaRN5gG
-         pQMrNnGNNpcR1Rl8hweAFk1RjMoKVKd7k7/isTKF08eSzHx9i0pP2NxviX6Rx6rl29kj
-         02ZQvy/1w2ODTa7EOcfJW3AnjQxObhvWysg5U4EGB4gRt2FbHwDG5pwPPEBhNSj0o/b2
-         1kE8N9+OHFjcrD8P1+S+cCHYUHPKuv5HgWXZD6OMV8Zol2PvfizdVHmefJBfAXHKB/52
-         Xw7A==
+        bh=ZT5fAPNyma5e8WyOr3A/N0atEQZClP4tTp5HN0LYpNU=;
+        b=pus/LjZ4Z8Uirsug0xo7ImF4DBZk6R688dmmvvXAqXfgj1hDPomu/UBKljPuTJAV94
+         X8fiCSxBQziChqPRPDhRvOiB7o/fFUSoZxnbz927sXDnCKV0P3uITNT80A6Lf7yopguU
+         g3kWkCaeGmwenOfQPS+J3W1cYuzCVFTYBbaH70cRvwrCBDuCjFsZnz9Bd5W0PPJEgNQ9
+         deCidFezCiIh89PfAv0Fj/JYXqOHTyJ7oOgWOBXzCE98R3hRsdv4dWD5wxWAphgTFZfU
+         aGRtp7abMFk47nKdNqsSjQ7i1TBzmc4KhIZpej8jgrs/MAwzmdz+aOw7dD+Aezlp/NvO
+         FR7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=HIK+oBs/aRGxhchMLI4wI4uDRRw5QPJtNSu/6AfT09M=;
-        b=ILLaqakKR6emv1woS8FZrvM5lwriviXHIjmIEVJ1zIdPtuH89uOsuwIW7l1e4X+NuC
-         rLLId/e57pw7+CKzAcjFRg2cd5NFhFR/TPD83SGq4VO2FyzOVjhm5TuRCufXclybV3gZ
-         OHmqXUn3Njr5oLeXknUWzcslsUeX9DLj5XzyIdYajGNJczCJP91OWepKIMzCc75TYQRd
-         UJOgoMf94fVpL1xltDkF3JAVMqUEV3709FHdlyDHx/DY9ziEa2mBQ+26QV+lL2+WlyLw
-         yrKj99MdMMrY/pye2zco7kIsAiAZAb09K32Y7tLQEuNa9RxeZKBOA1h11TCRbmG6Zl5S
-         bubA==
-X-Gm-Message-State: AOAM531U6QeGoFygpdfsYkECaiDfze8aG8349HpXuOVyhdYbIUltoH3u
-        N1IDWHSzkQBCdoLRTWiGNpJqNeQuHvhEGXNoaF6mAA==
-X-Google-Smtp-Source: ABdhPJxIYbpINdi+DQOp+tHW2M8fIxiOb2JBue1thOWy6OsTzqzua7MkzNxoViZYbzf0jkh/dVhQTDtbcnZ97EP7Ic0=
-X-Received: by 2002:a9d:26:: with SMTP id 35mr8926991ota.379.1635082422960;
- Sun, 24 Oct 2021 06:33:42 -0700 (PDT)
+        bh=ZT5fAPNyma5e8WyOr3A/N0atEQZClP4tTp5HN0LYpNU=;
+        b=1pgjZjwZBwPfOmvdW9ng4gXFw2xtfFx7pd3l61z/hBzbzAjW+AoGvmH+tYHu298SJE
+         23KdOdCUadZs0wk+yvwBZNjjjmZJ3IRS3TYUP63jhZkPKj2ksgIOpzFFasOnCqGnm0/q
+         qQrc9zV0RElM1DbVgudJIuuP98E7PcrvYYLv3G9RwN87lipRKaFbxpf7Qt1ksZSE2DK5
+         jaqZhS0NtdfEB6CadLB+eIR1sVTrhLesN68C5PAuXKk7HXYybylCBrURadMfJ6y2OnKM
+         7s9/eGLf6d+iwTJrE8TauDQDzPf5Hzzq7yXKoXRxJXlboLd2AyZLZT1Gc3enFD64K5jA
+         8NwA==
+X-Gm-Message-State: AOAM530eYtvVUY8GB3c3/WZsBYbDHfuWaZ74huMJw7S6+qR6jsIbGyZy
+        PvDmzdqaJ5Ticeoc9ZJckD1X+Y7cwAS0pAOwOyookg==
+X-Google-Smtp-Source: ABdhPJw6MtPfZNRBtb5CTwISKGRCnQMN0HVMf5dU8udAdvoGUoEQeJDigLYoasCwbfbNEh6DyJ9w8rMN2i9KfCY1QwQ=
+X-Received: by 2002:a05:6808:1686:: with SMTP id bb6mr8188043oib.40.1635082483473;
+ Sun, 24 Oct 2021 06:34:43 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211013105541.68045-1-bhupesh.sharma@linaro.org>
- <20211013105541.68045-18-bhupesh.sharma@linaro.org> <2699de22-4943-685f-5700-82137a4326ae@linaro.org>
-In-Reply-To: <2699de22-4943-685f-5700-82137a4326ae@linaro.org>
+ <20211013105541.68045-17-bhupesh.sharma@linaro.org> <5f69019a-86c7-fac5-2758-1be9a9092678@linaro.org>
+In-Reply-To: <5f69019a-86c7-fac5-2758-1be9a9092678@linaro.org>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Sun, 24 Oct 2021 19:03:31 +0530
-Message-ID: <CAH=2NtyJAH3=XzipZx1f9WMYp+-hCTyHXrsivViBdzix4CQpJQ@mail.gmail.com>
-Subject: Re: [PATCH v4 17/20] crypto: qce: Print a failure msg in case probe() fails
+Date:   Sun, 24 Oct 2021 19:04:32 +0530
+Message-ID: <CAH=2NtzMvXz6FRCApdxP1FFM9=73yfm07YibWGL-m0+KSkweaQ@mail.gmail.com>
+Subject: Re: [PATCH v4 16/20] crypto: qce: core: Make clocks optional
 To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 Cc:     MSM <linux-arm-msm@vger.kernel.org>, linux-crypto@vger.kernel.org,
         bhupesh.linux@gmail.com,
@@ -60,7 +60,6 @@ Cc:     MSM <linux-arm-msm@vger.kernel.org>, linux-crypto@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Herbert Xu <herbert@gondor.apana.org.au>,
         "David S . Miller" <davem@davemloft.net>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Thara Gopinath <thara.gopinath@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
@@ -69,54 +68,65 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Vladimir,
 
-On Thu, 14 Oct 2021 at 00:56, Vladimir Zapolskiy
+On Thu, 14 Oct 2021 at 00:53, Vladimir Zapolskiy
 <vladimir.zapolskiy@linaro.org> wrote:
 >
 > Hi Bhupesh,
 >
 > On 10/13/21 1:55 PM, Bhupesh Sharma wrote:
-> > Print a failure message (dev_err) in case the qcom qce crypto
-> > driver probe() fails.
+> > From: Thara Gopinath <thara.gopinath@linaro.org>
 > >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >   drivers/crypto/qce/core.c | 2 ++
-> >   1 file changed, 2 insertions(+)
-> >
-> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> > index 576c416461f9..cb8c77709e1e 100644
-> > --- a/drivers/crypto/qce/core.c
-> > +++ b/drivers/crypto/qce/core.c
-> > @@ -281,6 +281,8 @@ static int qce_crypto_probe(struct platform_device *pdev)
-> >       icc_set_bw(qce->mem_path, 0, 0);
-> >   err_mem_path_put:
-> >       icc_put(qce->mem_path);
-> > +
-> > +     dev_err(dev, "%s failed : %d\n", __func__, ret);
-> >       return ret;
-> >   }
-> >
+> > On certain Snapdragon processors, the crypto engine clocks are enabled by
+> > default by security firmware and the driver need not/ should not handle the
+> > clocks. Make acquiring of all the clocks optional in crypto enginer driver
 >
-> As for me the rationale of this change is quite non-obvious, a user is well
-> informed, if a driver probe fails. I would rather ask you to consider to
-> drop this change.
+> typo, s/enginer/engine/
+>
+> > so that the driver intializes properly even if no clocks are specified in
+>
+> typo, s/intializes/initializes/
 
-Normally, when a driver probe fails, the kernel logging system does pretty
-well to hold logs for the same and these can be referred to later for debugging.
-
-However with crypto tests on arm machines, since the arm crypto interfaces are
-also normally enabled by default, so boot-on crypto tests (enabled via
-CRYPTO_MANAGER_EXTRA_TESTS), which normally take place at algorithm
-registration,
-it's sometimes difficult to check the qce driver probe errors /
-failures, in case the board hangs or reboots while running the boot-on
-crypto tests.
-
-In such a case, if qce crypto driver probe fails, it is useful to see
-a failure message on the serial console itself.
+Thanks, I will fix these typos in v5.
 
 Regards,
 Bhupesh
+
+> > the dt.
+> >
+> > Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> > ---
+> >   drivers/crypto/qce/core.c | 6 +++---
+> >   1 file changed, 3 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> > index 2ab0b97d718c..576c416461f9 100644
+> > --- a/drivers/crypto/qce/core.c
+> > +++ b/drivers/crypto/qce/core.c
+> > @@ -213,19 +213,19 @@ static int qce_crypto_probe(struct platform_device *pdev)
+> >       if (IS_ERR(qce->mem_path))
+> >               return PTR_ERR(qce->mem_path);
+> >
+> > -     qce->core = devm_clk_get(qce->dev, "core");
+> > +     qce->core = devm_clk_get_optional(qce->dev, "core");
+> >       if (IS_ERR(qce->core)) {
+> >               ret = PTR_ERR(qce->core);
+> >               goto err_mem_path_put;
+> >       }
+> >
+> > -     qce->iface = devm_clk_get(qce->dev, "iface");
+> > +     qce->iface = devm_clk_get_optional(qce->dev, "iface");
+> >       if (IS_ERR(qce->iface)) {
+> >               ret = PTR_ERR(qce->iface);
+> >               goto err_mem_path_put;
+> >       }
+> >
+> > -     qce->bus = devm_clk_get(qce->dev, "bus");
+> > +     qce->bus = devm_clk_get_optional(qce->dev, "bus");
+> >       if (IS_ERR(qce->bus)) {
+> >               ret = PTR_ERR(qce->bus);
+> >               goto err_mem_path_put;
+> >
+>
+> --
+> Best wishes,
+> Vladimir
