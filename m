@@ -2,153 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C58C0438B98
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 21:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A96438BA8
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 21:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231397AbhJXTKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 15:10:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35184 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbhJXTKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 15:10:55 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BED6C061745;
-        Sun, 24 Oct 2021 12:08:34 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id w23so4111774lje.7;
-        Sun, 24 Oct 2021 12:08:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LygNu+5BcyoxJoO4N+kRy5tMK0K/aKdFySsPx1/bqUY=;
-        b=gKYkhcdOT/qib/XQosIRtO7maBquPeEeL97wBvTDDLJglAcqSsENrCluOstzWkxsTX
-         wVu6Groj9ZjBU/XeaS4Ev1qXPpVYTrQ1u39ieZG2rDMmZiItFNjjRd/xWy7N+c7W//qi
-         Ku3UV0KsXpUO1yjUOVBWcU3H5HKeb6QZ6uG1E0hrpRdS9hSQXNGYn6w7mHEJ5v0iWwzl
-         2Cow/FB+s2oaxN/+YN6wyQWeBDHfcFDe8yBqXYVxCJ6Ot45l+uTJgFMCX/rwrwSLpg33
-         xkBKkzNk568Ttcpwkny/2Nh4OPGudfopOgA2cvUm8mt9WPZNO3sEpDJRrGsCIjPjHEeq
-         ps6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=LygNu+5BcyoxJoO4N+kRy5tMK0K/aKdFySsPx1/bqUY=;
-        b=gr8T0NyZZ89vwiB4rZOxG+AI/ao3J+b+6CVydXBVOEZ2aGA6inBnWOfdXqfp/cxZBe
-         COVdM84E9gHxixayF58vNM/Ky7JjY8R4Yunik4NuWI0yVe03F4QX7odJLke9ha8JQxxH
-         +eqglNhC58ZHIAaNnv+mUYFUKWJeTgbfidwCB2Bzz1eyWBvDOgiIuGSrZAuz9dU8y/8l
-         sDLQC/tNvP1+Dn2CaH2BJvaz/a9RstptUlWP3SvVtzwGktZt5oJSIHLZbKWCT9USWEJL
-         LRxV60NHe19H7PwFWd9bawQna1CirOx+4ph7QYh/iFKHZBX4etmpRtYsCCEB7FZvlQj6
-         XDbw==
-X-Gm-Message-State: AOAM532DYVXgzW2paQbQJ2p2iuXS5aiEN+t707nDUpWdHH7+y8aVemJQ
-        57z6d0W2yaUpdVN9keoxDDnSdcot1pI=
-X-Google-Smtp-Source: ABdhPJwyTg6gBW6/79PXjMAsHBaxC6vFFyBb7pDEm+YCaXq+ye2Gz6I3c1FxSENtZ2u0mtMypneYCQ==
-X-Received: by 2002:a2e:b4b3:: with SMTP id q19mr13755255ljm.508.1635102512207;
-        Sun, 24 Oct 2021 12:08:32 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-50-159.dynamic.spd-mgts.ru. [46.138.50.159])
-        by smtp.googlemail.com with ESMTPSA id v13sm1781861ljk.72.2021.10.24.12.08.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Oct 2021 12:08:31 -0700 (PDT)
-Subject: Re: [PATCH v1 2/3] ARM: tegra: Name clock and regulator nodes
- according to DT-schema
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20210926233704.10164-1-digetx@gmail.com>
- <20210926233704.10164-3-digetx@gmail.com> <YVtqlt4m63WuBHGM@orome.fritz.box>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <9e42d42c-2fe0-3d74-3cd8-2d9e0a1356b2@gmail.com>
-Date:   Sun, 24 Oct 2021 22:08:31 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S231673AbhJXTfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 15:35:30 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:46019 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231538AbhJXTf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 15:35:29 -0400
+Received: from mail-wm1-f44.google.com ([209.85.128.44]) by
+ mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M2fDl-1mg6xB2L3H-004DXt; Sun, 24 Oct 2021 21:33:06 +0200
+Received: by mail-wm1-f44.google.com with SMTP id b133-20020a1c808b000000b0032ca4d18aebso6898085wmd.2;
+        Sun, 24 Oct 2021 12:33:06 -0700 (PDT)
+X-Gm-Message-State: AOAM533HTIBq3hCwwGKazh6pnxCKMId/bIP3UF9zEsThuL/ne2PSMtw3
+        SMk6azf+fGYpUUAX7yA8s9WmTDoGGzjnbJPgCI8=
+X-Google-Smtp-Source: ABdhPJw4hH7C/a2zk240txDvHL7tN8+k+dIxhQayqZg6YZyRuMpfgd65spSGiNjZlg56v83/yxP5Ni8w6w2+98dAEhQ=
+X-Received: by 2002:a05:600c:1548:: with SMTP id f8mr15117795wmg.35.1635103986146;
+ Sun, 24 Oct 2021 12:33:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YVtqlt4m63WuBHGM@orome.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Sun, 24 Oct 2021 21:32:50 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3ccWgpQF8-Ej7Di_=eCs+cibDgiY5962iPKsMgzD_qSg@mail.gmail.com>
+Message-ID: <CAK8P3a3ccWgpQF8-Ej7Di_=eCs+cibDgiY5962iPKsMgzD_qSg@mail.gmail.com>
+Subject: Re: [PATCH 00/13] This patchset aims to add initial support for the
+ i.MXRT10xx family
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        giulio.benetti@benettiengineering.com,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        b20788@freescale.com, Andy Duan <fugang.duan@nxp.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:ijSh8KXz9yGLScq0wxSXSqtezBqpCDdhnwiuDPpD9kH75RQnRE0
+ ZK/afQsy0B4yZ7y1N0VpJ/G9U9EeXQ0Re73DMdXLLT8x0IhLZQ99krcnis7WbHBWavIn6lU
+ d9D4O0kgZowaTVUN+gzAIM4OYi5NCI67u5r/vV1+pAyHARaNN2y8gZeKuzhJRkViH/cKrBi
+ AojeRN/GxKuaWQfF5S8RA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dhGgQdPx4oQ=:UHVrONz9YTHa3Lk9O6zc5u
+ OSVCwKR4calueVJjuvmN9YpKDezKl8EXtP7NQFF1BWLLZEivMPyVzz5FQgnX7+gPxpqiNN2+5
+ G4cqI1J9oI1OkgojGhBL7O/xtt+buZcIiQVJMIXwX79GJh2P8UgrGjYbGGxNwbGWfQw3NRU3m
+ kWBLD4ltGzMQqH9HomM1d9zlIsnrJ0eSC7zEjDx8LlEyXTvlsGuFH6MskIIlaMg0oxiqKST9V
+ 8OUx2I+AXsH+iT4uxFkunq0x+a+lUfXuudFR6sDbdPOSydYwSY9EGVIMJZEjWD3KjIXPMaCou
+ GfWIp/sLG5DVoPKGYwYZiYv4V4xaDwmkJVMVEJa/6RqkiOos6PwCWyCcpWL8D1P5LDFgtQ2VH
+ kKnIafyQCY1g4Mop5H2GSX5OjeX2x3WrgOVmK97/EU/4gDfY5soZNI6hGo5r/ZdwKVrWIqI6K
+ PZCT6GwfJNS2HEUM1A7Lz1DMWvQTT0jQk6ekcp9k3RR5/xPBerd9hh0STGW+D9ykEK+M2l/9Z
+ w2UACRbFZzVHj6FbwibFOCkeuKVC/hWPxFB+4p+XNflWhFR/lLfBYCPQvDYtEi6C+ZN3/Q4kY
+ f0aE2BZM+Ki56j/rsI4KiWC054YLlzb0iTCilri0kww8q9dqvEZQrN/DKxp4vzxS6291CVXmn
+ oBUIYvNKNFNPioL6/Mq0Vp6KhAlWrzyJ/TCGIjlbOZr431OiEAGI2+AAc2i5/+Rt8bImuioAv
+ CQXSraJG7uK0niWXxi3i/7j22mbT84Lo5+6T07J1S8nuKaXrKIvUXOUis2M0OieN2iYeR/P/W
+ ic2iIGmZVQ9Hn3VzAZ4WFgeQthqLMF2jvk0/fcQO3gVu0ZmtWY=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-04.10.2021 23:56, Thierry Reding пишет:
->> From: David Heidelberg <david@ixit.cz>
->>
->> Name clocks and regulators according to DT-schema to fix warnings such as:
->>
->> arch/arm/boot/dts/tegra20-acer-a500-picasso.dt.yaml: /: clock@0: 'anyOf' conditional failed, one must be fixed:
->>  	'reg' is a required property
->>  	'ranges' is a required property
->>  	From schema: /home/runner/.local/lib/python3.8/site-packages/dtschema/schemas/root-node.yaml
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>  arch/arm/boot/dts/tegra114-dalmore.dts        | 16 +++++------
->>  arch/arm/boot/dts/tegra114-roth.dts           | 14 +++++-----
->>  arch/arm/boot/dts/tegra114-tn7.dts            |  8 +++---
->>  arch/arm/boot/dts/tegra124-jetson-tk1.dts     | 26 ++++++++---------
->>  arch/arm/boot/dts/tegra124-nyan.dtsi          | 28 +++++++++----------
->>  arch/arm/boot/dts/tegra124-venice2.dts        | 28 +++++++++----------
->>  .../boot/dts/tegra20-acer-a500-picasso.dts    | 12 ++++----
->>  arch/arm/boot/dts/tegra20-harmony.dts         | 16 +++++------
->>  arch/arm/boot/dts/tegra20-medcom-wide.dts     |  8 +++---
->>  arch/arm/boot/dts/tegra20-paz00.dts           |  6 ++--
->>  arch/arm/boot/dts/tegra20-plutux.dts          |  8 +++---
->>  arch/arm/boot/dts/tegra20-seaboard.dts        | 16 +++++------
->>  arch/arm/boot/dts/tegra20-tamonten.dtsi       |  4 +--
->>  arch/arm/boot/dts/tegra20-tec.dts             |  8 +++---
->>  arch/arm/boot/dts/tegra20-trimslice.dts       | 12 ++++----
->>  arch/arm/boot/dts/tegra20-ventana.dts         | 12 ++++----
->>  .../tegra30-asus-nexus7-grouper-common.dtsi   | 10 +++----
->>  ...egra30-asus-nexus7-grouper-maxim-pmic.dtsi |  4 +--
->>  .../tegra30-asus-nexus7-grouper-ti-pmic.dtsi  |  2 +-
->>  arch/arm/boot/dts/tegra30-beaver.dts          | 20 ++++++-------
->>  arch/arm/boot/dts/tegra30-cardhu-a02.dts      | 12 ++++----
->>  arch/arm/boot/dts/tegra30-cardhu-a04.dts      | 14 +++++-----
->>  arch/arm/boot/dts/tegra30-cardhu.dtsi         | 28 +++++++++----------
->>  23 files changed, 156 insertions(+), 156 deletions(-)
-> I'm not sure about this one. Last time I talked to Rob about this, he
-> seemed to suggest that reintroducing the top-level clocks and regulators
-> nodes was preferable to doing these renamed.
-> 
-> Rob, which way do we want to decide this? If we do want to reintroduce
-> the clocks and regulators top-level "bus" nodes, we probably need the
-> tooling to learn to accept that, because I /think/ the reason why they
-> were originally dropped a while ago was because the tooling complained
-> about the "bus" nodes not being named "bus" (I think that was because
-> they traditionally have had "simple-bus" in their compatible and hence
-> the "simple-bus" schema was applied along with the schema for the node
-> name.
-> 
-> So I think we have a couple of options here:
-> 
->   * Make it so that these nodes no longer need the "simple-bus"
->     compatible string: this would need new code to parse these nodes
->     and instantiate platform device for them like "simple-bus" would
->     do.
-> 
->   * Relax the rules for the "simple-bus" compatible string. It looks
->     like this would be the simplest, because we could just extend the
->     pattern in the "simple-bus" schema. There's a slight catch, though,
->     because we'd also need to allow "#size-cells = <0>" for these. And
->     maybe also make "ranges" not required because it doesn't make sense
->     for #size-cells = <0>.
-> 
->   * Create a new compatible string specifically for these. That would be
->     similar to the first option, except that it's perhaps a bit more
->     formal. We could basically create a separate schema for this type of
->     bus, so that simple-bus could remain as-is.
-> 
-> Perhaps there's also yet another option that I haven't thought of that's
-> better than the above.
-> 
-> Quoting in full below for you to get a better picture of what kinds of
-> changes we're talking about here.
+On Sun, Oct 24, 2021 at 5:40 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>
+> Add initial support for the i.MXRT10xx SoC family
+> starting with the i.IMXRT1050 SoC.
+> This patchset contains:
+> - i.MXRT10xx family infrastructure
+> - i.MXRT1050 pinctrl driver adaption
+> - i.MXRT1050 clock driver adaption
+> - i.MXRT1050 sd-card driver adaption
+> - i.MXRT1050 uart driver adaption
+> - i.MXRT1050-evk basic support
 
-Could you please explain what's the point in having a top-level node?
+Can you expand the description a bit more so it makes sense as a changelog
+text for the merge commit? It's fairly rare these days that we add support for a
+MMU-less platform, so it would be good if the introductory text answers
+questions like:
 
-It's also not clear how it will help fixing the warning messages since
-reg property still should be required.
+- what is this platform used for, and what is the purpose of running Linux on it
+  in place of the usual RTOS variants?
 
-If there is no good point, then let's rename nodes and move on.
+- are you doing this just for fun, or are there any commercial use cases?
+
+- what are the minimum and maximum memory configurations this has
+  been tested with?
+
+- what user space are you testing with: any particular distro that supports
+  this platform, and do you run elf-fdpic or flat binaries.
+
+- are you planning to also support the newer i.MXRT11xx or
+  Cortex-R based designs like the S32S?
+
+       Arnd
