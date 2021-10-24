@@ -2,76 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C133C4389A1
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 17:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 158BF4389E1
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 17:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231633AbhJXPK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 11:10:28 -0400
-Received: from smtp-32-i2.italiaonline.it ([213.209.12.32]:33663 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231524AbhJXPK2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 24 Oct 2021 11:10:28 -0400
-X-Greylist: delayed 486 seconds by postgrey-1.27 at vger.kernel.org; Sun, 24 Oct 2021 11:10:26 EDT
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([213.45.67.127])
-        by smtp-32.iol.local with ESMTPA
-        id eeyWmj6mkdfuoeeycmWXwy; Sun, 24 Oct 2021 16:59:58 +0200
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1635087598; bh=J+qzONQYXgNyBKJYBTiaKJTYCSBiy+QsX3A+nUydbnY=;
-        h=From;
-        b=fOJnuGvh2e0uBr3YTMmS3LvwFi/wO6i62GFoelFWPnX1PzQLbRN+3bvPPvbY3XoeQ
-         +PqoGQXhetkyxpiPmV+05ngIgHXfUVoTBSKJ/QTDIv6GH6QCMXPUEivcUc8w3ZzHPl
-         uJHSXPDGRTd11iYFBg6qAsqIA8boYU79id8gyobQ58nyOD7Jmwzsck3A0e60Endt6k
-         vwrijU8cUmgNdjtuSlJxvhFvL0lHIOfqYsaaXQ6e7K+TKRaNCcWt/kUogb3zFzdMHe
-         +W9/qpCbf1xybTCIKJvgdptALjWcd4EENu4+bjxWxBFk7HeBoETsoP7IraKZY9CIoM
-         GFqY5+NpYSQKQ==
-X-CNFS-Analysis: v=2.4 cv=IrzbzJzg c=1 sm=1 tr=0 ts=617574ee cx=a_exe
- a=Vk63IOK+/LoQucGDvce7tA==:117 a=Vk63IOK+/LoQucGDvce7tA==:17
- a=WGf4WTbLby2_tS91RlMA:9
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     Dario Binacchi <dariobin@libero.it>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH 4/6] dt-bindings: input: ti-tsc-adc: fix tsc node example
-Date:   Sun, 24 Oct 2021 16:59:28 +0200
-Message-Id: <20211024145931.1916-5-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211024145931.1916-1-dariobin@libero.it>
-References: <20211024145931.1916-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfMVdhLtfg83vJJELVEZQUgLPfSOCgAeUHPnJ0uqOvaJjSPxdNFDp2mVg89wyZw/5MJmQaxRkxAK6NrM9Wp3n7gcol2YLUtS8+/5k5x9fW1Kmt3L/TOvD
- gq2suAyX5umxpBnzBzNhun+cS3rQlQLqxMEXun6WvgCwBpQ0I9okt8PQ2i1eFZJyCBV4Yi/BmYugKpF014aeM+LNFzDrJ+4OK02w6jlJCTRMgvXkSoe7xxwz
- V1x5plZN8kwao507DAGRykY706Q9favDyO5mhHyLG51XsuRUTApyEMTizrTgeqaREc7kTDZBsbpgcIMytM/gnKnX12xbmBcmY8QFXnC953z+hnl7s0mLDt/B
- QrwQEBvNogwz/n7NfSWQ13s3gIThOqbxdIUqE4Odh558tpR9hDL1qcS4U3fvM0r4L2rWnu4j
+        id S231691AbhJXPjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 11:39:47 -0400
+Received: from elvis.franken.de ([193.175.24.41]:37591 "EHLO elvis.franken.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231548AbhJXPjq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 24 Oct 2021 11:39:46 -0400
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1mefYp-0006bc-00; Sun, 24 Oct 2021 17:37:23 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id EA98EC2649; Sun, 24 Oct 2021 17:26:04 +0200 (CEST)
+Date:   Sun, 24 Oct 2021 17:26:04 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        Aleksandar Markovic <aleksandar.qemu.devel@gmail.com>,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-perf-users@vger.kernel.org,
+        kvm@vger.kernel.org
+Subject: Re: [PATCH] MIPS: Remove NETLOGIC support
+Message-ID: <20211024152604.GA4721@alpha.franken.de>
+References: <20211020124923.130298-1-tsbogend@alpha.franken.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211020124923.130298-1-tsbogend@alpha.franken.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit c9aeb249bf72e ("Input: ti_am335x_tsc - fix spelling mistake
-in TSC/ADC DT binding") didn't fix the typo mistake in the tsc node of
-the example.
+On Wed, Oct 20, 2021 at 02:49:13PM +0200, Thomas Bogendoerfer wrote:
+> No (active) developer owns this hardware, so let's remove Linux support.
+> 
+> Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+> ---
+>  arch/mips/Kbuild.platforms                    |   1 -
+>  arch/mips/Kconfig                             |  91 +--
+>  arch/mips/boot/compressed/uart-16550.c        |  12 -
+>  arch/mips/boot/dts/Makefile                   |   1 -
+>  arch/mips/boot/dts/netlogic/Makefile          |   8 -
+>  arch/mips/boot/dts/netlogic/xlp_evp.dts       | 131 ----
+>  arch/mips/boot/dts/netlogic/xlp_fvp.dts       | 131 ----
+>  arch/mips/boot/dts/netlogic/xlp_gvp.dts       |  89 ---
+>  arch/mips/boot/dts/netlogic/xlp_rvp.dts       |  89 ---
+>  arch/mips/boot/dts/netlogic/xlp_svp.dts       | 131 ----
+>  arch/mips/configs/nlm_xlp_defconfig           | 557 -----------------
+>  arch/mips/configs/nlm_xlr_defconfig           | 508 ----------------
+>  arch/mips/include/asm/cop2.h                  |  11 -
+>  arch/mips/include/asm/cpu-type.h              |   8 -
+>  arch/mips/include/asm/cpu.h                   |   2 +-
+>  arch/mips/include/asm/hazards.h               |   2 +-
+>  .../asm/mach-netlogic/cpu-feature-overrides.h |  57 --
+>  arch/mips/include/asm/mach-netlogic/irq.h     |  17 -
+>  .../include/asm/mach-netlogic/multi-node.h    |  74 ---
+>  arch/mips/include/asm/netlogic/common.h       | 132 ----
+>  arch/mips/include/asm/netlogic/haldefs.h      | 171 ------
+>  arch/mips/include/asm/netlogic/interrupt.h    |  45 --
+>  arch/mips/include/asm/netlogic/mips-extns.h   | 301 ---------
+>  arch/mips/include/asm/netlogic/psb-bootinfo.h |  95 ---
+>  .../include/asm/netlogic/xlp-hal/bridge.h     | 186 ------
+>  .../include/asm/netlogic/xlp-hal/cpucontrol.h |  89 ---
+>  .../mips/include/asm/netlogic/xlp-hal/iomap.h | 214 -------
+>  .../include/asm/netlogic/xlp-hal/pcibus.h     | 113 ----
+>  arch/mips/include/asm/netlogic/xlp-hal/pic.h  | 366 -----------
+>  arch/mips/include/asm/netlogic/xlp-hal/sys.h  | 213 -------
+>  arch/mips/include/asm/netlogic/xlp-hal/uart.h | 192 ------
+>  arch/mips/include/asm/netlogic/xlp-hal/xlp.h  | 119 ----
+>  arch/mips/include/asm/netlogic/xlr/bridge.h   | 104 ----
+>  arch/mips/include/asm/netlogic/xlr/flash.h    |  55 --
+>  arch/mips/include/asm/netlogic/xlr/fmn.h      | 365 -----------
+>  arch/mips/include/asm/netlogic/xlr/gpio.h     |  74 ---
+>  arch/mips/include/asm/netlogic/xlr/iomap.h    | 109 ----
+>  arch/mips/include/asm/netlogic/xlr/msidef.h   |  84 ---
+>  arch/mips/include/asm/netlogic/xlr/pic.h      | 306 ----------
+>  arch/mips/include/asm/netlogic/xlr/xlr.h      |  59 --
+>  arch/mips/include/asm/processor.h             |  13 -
+>  arch/mips/include/asm/vermagic.h              |   4 -
+>  arch/mips/kernel/cpu-probe.c                  |  84 ---
+>  arch/mips/kernel/idle.c                       |   2 -
+>  arch/mips/kernel/perf_event_mipsxx.c          |  86 ---
+>  arch/mips/kvm/entry.c                         |   8 +-
+>  arch/mips/mm/c-r4k.c                          |   2 -
+>  arch/mips/mm/tlbex.c                          |   9 +-
+>  arch/mips/netlogic/Kconfig                    |  86 ---
+>  arch/mips/netlogic/Makefile                   |   4 -
+>  arch/mips/netlogic/Platform                   |  16 -
+>  arch/mips/netlogic/common/Makefile            |   5 -
+>  arch/mips/netlogic/common/earlycons.c         |  63 --
+>  arch/mips/netlogic/common/irq.c               | 350 -----------
+>  arch/mips/netlogic/common/reset.S             | 299 ---------
+>  arch/mips/netlogic/common/smp.c               | 285 ---------
+>  arch/mips/netlogic/common/smpboot.S           | 141 -----
+>  arch/mips/netlogic/common/time.c              | 110 ----
+>  arch/mips/netlogic/xlp/Makefile               |  11 -
+>  arch/mips/netlogic/xlp/ahci-init-xlp2.c       | 390 ------------
+>  arch/mips/netlogic/xlp/ahci-init.c            | 209 -------
+>  arch/mips/netlogic/xlp/cop2-ex.c              | 121 ----
+>  arch/mips/netlogic/xlp/dt.c                   |  95 ---
+>  arch/mips/netlogic/xlp/nlm_hal.c              | 508 ----------------
+>  arch/mips/netlogic/xlp/setup.c                | 174 ------
+>  arch/mips/netlogic/xlp/usb-init-xlp2.c        | 288 ---------
+>  arch/mips/netlogic/xlp/usb-init.c             | 149 -----
+>  arch/mips/netlogic/xlp/wakeup.c               | 212 -------
+>  arch/mips/netlogic/xlr/Makefile               |   3 -
+>  arch/mips/netlogic/xlr/fmn-config.c           | 296 ---------
+>  arch/mips/netlogic/xlr/fmn.c                  | 199 ------
+>  arch/mips/netlogic/xlr/platform-flash.c       | 216 -------
+>  arch/mips/netlogic/xlr/platform.c             | 250 --------
+>  arch/mips/netlogic/xlr/setup.c                | 206 -------
+>  arch/mips/netlogic/xlr/wakeup.c               |  85 ---
+>  arch/mips/pci/Makefile                        |   3 -
+>  arch/mips/pci/msi-xlp.c                       | 571 ------------------
+>  arch/mips/pci/pci-xlp.c                       | 332 ----------
+>  arch/mips/pci/pci-xlr.c                       | 368 -----------
+>  79 files changed, 6 insertions(+), 11559 deletions(-)
+>  delete mode 100644 arch/mips/boot/dts/netlogic/Makefile
+>  delete mode 100644 arch/mips/boot/dts/netlogic/xlp_evp.dts
+>  delete mode 100644 arch/mips/boot/dts/netlogic/xlp_fvp.dts
+>  delete mode 100644 arch/mips/boot/dts/netlogic/xlp_gvp.dts
+>  delete mode 100644 arch/mips/boot/dts/netlogic/xlp_rvp.dts
+>  delete mode 100644 arch/mips/boot/dts/netlogic/xlp_svp.dts
+>  delete mode 100644 arch/mips/configs/nlm_xlp_defconfig
+>  delete mode 100644 arch/mips/configs/nlm_xlr_defconfig
+>  delete mode 100644 arch/mips/include/asm/mach-netlogic/cpu-feature-overrides.h
+>  delete mode 100644 arch/mips/include/asm/mach-netlogic/irq.h
+>  delete mode 100644 arch/mips/include/asm/mach-netlogic/multi-node.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/common.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/haldefs.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/interrupt.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/mips-extns.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/psb-bootinfo.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/bridge.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/cpucontrol.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/iomap.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/pcibus.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/pic.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/sys.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/uart.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlp-hal/xlp.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/bridge.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/flash.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/fmn.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/gpio.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/iomap.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/msidef.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/pic.h
+>  delete mode 100644 arch/mips/include/asm/netlogic/xlr/xlr.h
+>  delete mode 100644 arch/mips/netlogic/Kconfig
+>  delete mode 100644 arch/mips/netlogic/Makefile
+>  delete mode 100644 arch/mips/netlogic/Platform
+>  delete mode 100644 arch/mips/netlogic/common/Makefile
+>  delete mode 100644 arch/mips/netlogic/common/earlycons.c
+>  delete mode 100644 arch/mips/netlogic/common/irq.c
+>  delete mode 100644 arch/mips/netlogic/common/reset.S
+>  delete mode 100644 arch/mips/netlogic/common/smp.c
+>  delete mode 100644 arch/mips/netlogic/common/smpboot.S
+>  delete mode 100644 arch/mips/netlogic/common/time.c
+>  delete mode 100644 arch/mips/netlogic/xlp/Makefile
+>  delete mode 100644 arch/mips/netlogic/xlp/ahci-init-xlp2.c
+>  delete mode 100644 arch/mips/netlogic/xlp/ahci-init.c
+>  delete mode 100644 arch/mips/netlogic/xlp/cop2-ex.c
+>  delete mode 100644 arch/mips/netlogic/xlp/dt.c
+>  delete mode 100644 arch/mips/netlogic/xlp/nlm_hal.c
+>  delete mode 100644 arch/mips/netlogic/xlp/setup.c
+>  delete mode 100644 arch/mips/netlogic/xlp/usb-init-xlp2.c
+>  delete mode 100644 arch/mips/netlogic/xlp/usb-init.c
+>  delete mode 100644 arch/mips/netlogic/xlp/wakeup.c
+>  delete mode 100644 arch/mips/netlogic/xlr/Makefile
+>  delete mode 100644 arch/mips/netlogic/xlr/fmn-config.c
+>  delete mode 100644 arch/mips/netlogic/xlr/fmn.c
+>  delete mode 100644 arch/mips/netlogic/xlr/platform-flash.c
+>  delete mode 100644 arch/mips/netlogic/xlr/platform.c
+>  delete mode 100644 arch/mips/netlogic/xlr/setup.c
+>  delete mode 100644 arch/mips/netlogic/xlr/wakeup.c
+>  delete mode 100644 arch/mips/pci/msi-xlp.c
+>  delete mode 100644 arch/mips/pci/pci-xlp.c
+>  delete mode 100644 arch/mips/pci/pci-xlr.c
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
----
+applied to mips-next.
 
- .../devicetree/bindings/input/touchscreen/ti-tsc-adc.txt        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thomas.
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-index aad5e34965eb..2013fd7c4a10 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-@@ -77,7 +77,7 @@ Example:
- 		tsc {
- 			ti,wires = <4>;
- 			ti,x-plate-resistance = <200>;
--			ti,coordiante-readouts = <5>;
-+			ti,coordinate-readouts = <5>;
- 			ti,wire-config = <0x00 0x11 0x22 0x33>;
- 			ti,charge-delay = <0x400>;
- 		};
 -- 
-2.17.1
-
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
