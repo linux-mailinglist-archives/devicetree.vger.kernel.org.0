@@ -2,103 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E629E438B1D
-	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 19:53:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD655438B2C
+	for <lists+devicetree@lfdr.de>; Sun, 24 Oct 2021 20:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbhJXRzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 13:55:53 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:42463 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbhJXRzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 13:55:53 -0400
-Received: from mail-wm1-f42.google.com ([209.85.128.42]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1M9FX5-1mZSUI3jEN-006SRL; Sun, 24 Oct 2021 19:53:29 +0200
-Received: by mail-wm1-f42.google.com with SMTP id v127so8366758wme.5;
-        Sun, 24 Oct 2021 10:53:29 -0700 (PDT)
-X-Gm-Message-State: AOAM532reHIze5043lAPKsvwG8Glp9MECmWcabbqK1pbegkMX7V+ueZZ
-        zSl2X9/iB5feVmx/n3ZXCkKvNXHGu1FBVZ4zlhU=
-X-Google-Smtp-Source: ABdhPJxAhKvKxvRV90kejl8FnT17ZZByidqHhrwYyLntatIyXa6+UFeOuZK/953n6F+p+BmGC4bLZFSksrkP/BWw3Es=
-X-Received: by 2002:a7b:ce93:: with SMTP id q19mr1275704wmj.98.1635098009501;
- Sun, 24 Oct 2021 10:53:29 -0700 (PDT)
+        id S231694AbhJXSCK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 14:02:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231290AbhJXSCJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 14:02:09 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AB9C061764
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 10:59:49 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id t4so12442038oie.5
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 10:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BfU5q/0MkozQjzfxR6fQ4i7r2iqV9JZtLKp+vQfhRpU=;
+        b=pdYCn35jLstYtIncYgyEJh8mDax2MR4xaFC6pD6fwx1gH+hsNgg5lgS3W+Vr3WgsuX
+         TpymYrvpFIg4hKFY08fkxXkP6Or/UK0jSmWYPhEVAaQmfbNq2muoyOF7Kos9er8FNYJb
+         UAidjHEc3ImWIz/D2KyeOOCxTzAbJVJKT4oPHp00xlKnx8eH9BSgD5DrnLnLiQ5SOwUa
+         p2fgwzwDkpGCwKASvOX4+YChtoDwu+fvof++7Vo+Huugu67jNH/aud7x4pFGKxL3KkZl
+         ulwGRu/l5hUOEB4m7fKoJdI3jQdMlJPFYsFDwRS4N/JdZO0/iXfHJE78xBSjib//15ju
+         e0iA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BfU5q/0MkozQjzfxR6fQ4i7r2iqV9JZtLKp+vQfhRpU=;
+        b=s8Ct9B6CE8/X9wFbD8fqFfUsEFd33WO7YSqL2X1y1Xy2rdoU8iXeluL27h4MBC2Qo+
+         UWkDos4PocT9HzOEVR4OqAut5UxvdwsN/Q4kwoN8XByPsX5YYM1iMcRNer4/xdRFeDdH
+         vkhyrLzCa666ucrDruIjkxD/Zpbb/nwznLn55/bom8wdTJGUT5qUwSZKTqe8NXvFF3Rf
+         xZI8mt1qCRgEktobTcNDCaSdUwvIz+N6SDNYdMdmbf+Ij0b0gZTQkgKYJ+wly1IJsOf1
+         Z49+jQkKH36+QRSPRdEJNquoeys76TnVwButDZxa/C4IKM4hhcHET5h6hR7Ndi6Thc+H
+         oPVQ==
+X-Gm-Message-State: AOAM532qwP4kOeWhhNsrCli66p5wE8JlpSVno4ZxlyDy6m+zK5qBJaSq
+        wOHYQZydFizTgZDVOW8lT7H/KAmnoML3S5xwFyxSoA==
+X-Google-Smtp-Source: ABdhPJwrXc5XiQNk9mpeiT9wp9gl8G131w1XhrRufMF0fBvxI0VI61qn0pT1Tj8boCstPSgIVF1w1F5swuRlqjbRdKI=
+X-Received: by 2002:a05:6808:181c:: with SMTP id bh28mr19520914oib.12.1635098387495;
+ Sun, 24 Oct 2021 10:59:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com> <20211024154027.1479261-2-Mr.Bossman075@gmail.com>
-In-Reply-To: <20211024154027.1479261-2-Mr.Bossman075@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Sun, 24 Oct 2021 19:53:13 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a20inw-CoMGda1Hpa77xEa3U1ciVaehCG0SB92-9C8STQ@mail.gmail.com>
-Message-ID: <CAK8P3a20inw-CoMGda1Hpa77xEa3U1ciVaehCG0SB92-9C8STQ@mail.gmail.com>
-Subject: Re: [PATCH 01/13] ARM: imx: add initial support for i.MXRT10xx family
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>,
-        Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        giulio.benetti@benettiengineering.com,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        b20788@freescale.com, Andy Duan <fugang.duan@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+References: <20211013165823.88123-1-bhupesh.sharma@linaro.org>
+ <20211013165823.88123-2-bhupesh.sharma@linaro.org> <YXWVYZlCpkSRb7xv@builder.lan>
+In-Reply-To: <YXWVYZlCpkSRb7xv@builder.lan>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 24 Oct 2021 23:29:36 +0530
+Message-ID: <CAH=2NtyHpZa0KV5TRDuvciC+uV6mdO03RmEJSKMXES4HZOg-HA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] crypto: qce: Add 'sm8150-qce' compatible string check
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     MSM <linux-arm-msm@vger.kernel.org>, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Thara Gopinath <thara.gopinath@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:jpAIGFAXZeo2vCLhQFf500yuB1TNv3spR30XUq+7IGS7QbvVIwB
- fAwWPUoU+AQ13qAYv/1ryFOSgu7L+hHejwg3R7aUA2dQIr2r4GKMa1cz2SwvHtKe8Kq5Tfm
- sKuHJTyua+CSDeYPX8bQPh1Mvg1s40TZ/HSVUK2e2Jx6JRSlPTf7ilSZp0v3UCX9JoGquM8
- Z/TJjmn/pU7/xZ2Gvsg+Q==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:3zM0WTt5LN8=:eJBY9y89Nl5xRgWe68teFJ
- f01IYMgTK6IOGN5VWDlxea76NqodFk/yoYJYDy2CUFvG/IJm90a9oX9OtROfCTNUmhE01Vl0D
- n+FfUd/WYy815rMBNUXt5CJbqOQOE6TRCq5DffzpuHjwEkDdTZ/8QPvecgnm06FR4dqGRC+QK
- FiLIgsnMrTlybWMAqChsDdAG3K8Ii+zlJbVzMa8/7Af7rq46sp+5esvDRi0rYTRFJqQV7jqnN
- uAJluKkbVC2TsdlPwTle3leKETx14Str/dToLHLoM/JK8tHQXFSZKiSgUXt/JO1PI/DK0QIOa
- aoMSgLpP5V0Iku4vWRB9VTeIL4RyvdUhWWV1YzzI+SlygzIJWCQ2ZHO89PRrYV41LEiqJCF6l
- TAWQFI4ewTgbJSivE0uFdJRUTzwzXUDdLEPxKJ2OxTQb5tky3+A3bw0DSpYaWYtHX1F48NLDq
- T4CrGm/FJbnR5lSruStIvQG9tptpVXFfL2A6C9QsRKDxwRvKyDLubop3TdEfXdJ/EkIvWfsNP
- FgtOD50kXCT69LDXVdnRERGgxotPkEZvJdHc4o35jH76NvQ5jbnS5fP9ZC3hQhU4A2MW5bHMG
- +699uYh6EBc86tMwAIx9FDWHW1+CZfn54fYA1p0XBTAqKs3wActpeJVzl/R0/YVnnJ8Fco1H3
- 78c9ggrUDau7e6vY/R8HyB/2h2ZJymt0BqpWFiNyq1GVJQTn2+erageh9bJoy4p6usu293ZNo
- at/ZkEY7YxmpoV0rIPVKxD8xRoqFjBMmkCThCP0LekzCW5TY5Hjqu8tZp5xafydmqwN8szCER
- eIRIlcltBbY0GzR708bKjNA88X6BMH24TeLDM3tHyxCYuW6Ol8=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 24, 2021 at 5:40 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
->
-> The i.MXRT10xx family of processors features NXP's implementation of the
-> Arm Cortex-M7 core and in some case the Arm Cortex-M4 core too.
->
-> This patch aims to add an initial support for imxrt.
+Hi Bjorn,
 
-> +config SOC_IMXRT
-> +       bool "i.MXRT support"
-> +       depends on ARM_SINGLE_ARMV7M || ARCH_MULTI_V7
-> +       select ARMV7M_SYSTICK if ARM_SINGLE_ARMV7M
-> +       select ARM_GIC if ARCH_MULTI_V7
+On Sun, 24 Oct 2021 at 22:48, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 13 Oct 11:58 CDT 2021, Bhupesh Sharma wrote:
+>
+> > Add 'sm8150-qce' compatible string check in qce crypto
+> > driver as we add support for sm8150 crypto device in the
+> > device-tree in the subsequent patch.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  drivers/crypto/qce/core.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> > index 4c55eceb4e7f..ecbe9f7c6c0a 100644
+> > --- a/drivers/crypto/qce/core.c
+> > +++ b/drivers/crypto/qce/core.c
+> > @@ -306,6 +306,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
+> >  static const struct of_device_id qce_crypto_of_match[] = {
+> >       { .compatible = "qcom,ipq6018-qce", },
+> >       { .compatible = "qcom,sdm845-qce", },
+> > +     { .compatible = "qcom,sm8150-qce", },
+> >       { .compatible = "qcom,sm8250-qce", },
+>
+> When I look at linux-next I see qce_crypto_of_match defined as:
+>
+> static const struct of_device_id qce_crypto_of_match[] = {
+>         { .compatible = "qcom,crypto-v5.1", },
+>         { .compatible = "qcom,crypto-v5.4", },
+>         {}
+> };
+>
+> Can you please help me understand what I'm doing wrong?
 
-The Kconfig entry appears to contradict the description. Is this platform
-only for Armv7-M, or are there also variants with Armv7-A cores?
+Oh, you have missed [PATCH 15/20] from the sm8250 qce crypto addition
+series (see [1])
 
-         Arnd
+This series is dependent on the sm8250 qce enablement series, as I
+noted in the cover letter (see [2]).
+
+However, Thara and Vladimir pointed out backward compatibility issues
+with PATCH 15/20 of the first series. So I will send a v5 to fix the
+same along with other issues pointed in the v4.
+
+Sorry for any confusion caused.
+
+[1]. https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/T/#m566546d32d8da7ee94822dfba625e98fd3496d17
+[2]. https://www.spinics.net/lists/linux-arm-msm/msg96053.html
+
+Regards,
+Bhupesh
