@@ -2,104 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 355044397A4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 15:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E244C4397F3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 15:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232526AbhJYNga (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 09:36:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44054 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230137AbhJYNg3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 09:36:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B78460C49;
-        Mon, 25 Oct 2021 13:34:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1635168847;
-        bh=TGM36HNRsET/pFtiRfUexbyoYySsw2F2J7sSYWaL4F0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cLwXICOQfBRit9X+o06XSrCCVKcm+8e9Lr8O3G353b3PJm27R/6kJBXEgUANF2Q13
-         yFo1+jzyeBnuifrTyxAID5+YW9BmeKBbwhl0bVxV6tMEmd9Ejq2LhPh+ZWRyqB1R7k
-         mWNhnb3OIffD3fMCcsJpq/paMle0k8Ob1NPCM9PY=
-Date:   Mon, 25 Oct 2021 15:34:05 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Patrick Williams <patrick@stwcx.xyz>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Zev Weiss <zev@bewilderbeest.net>, kvm@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kirti Wankhede <kwankhede@nvidia.com>,
+        id S233055AbhJYOAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 10:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230225AbhJYOAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 10:00:13 -0400
+Received: from mail-qk1-x735.google.com (mail-qk1-x735.google.com [IPv6:2607:f8b0:4864:20::735])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128BEC061745;
+        Mon, 25 Oct 2021 06:57:51 -0700 (PDT)
+Received: by mail-qk1-x735.google.com with SMTP id bp7so11664946qkb.12;
+        Mon, 25 Oct 2021 06:57:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7rxdYqIO+JK237h1leH+bsExljsO5Y3Ycz3/IBgPYvU=;
+        b=eZ7BFSwkN97rU+KuOwXK41Ezbmjb1zO1EQQfTqES8rc4l6I6gaf2NlET/tJkMoA1+N
+         Bxnr1CkIIGs5iKbE6Xo5MZlCChvaZUESb1vwhUZ7YGmF/yxJBPkWOlIG8rXpa4V9wyYb
+         9GWUvUtdPIRl9QDTIS+dHoa16SiuRkDAbO+N/NbK3FRHTXIs53iAYMd4ZPqMxVD8m/hf
+         Md/5XiEMe6x4fFsDnaMquFen7nxsvv5Yrwe7FLlovDKY1K4CIsaAODZGZYEZ2cIo2Ml8
+         VFgVMgMTZCK53gS4zuWrq66TGd1qsxc4BUrErUft7zlzoqyFS5T+Mg01bH7IhS/4GkKP
+         0Mew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7rxdYqIO+JK237h1leH+bsExljsO5Y3Ycz3/IBgPYvU=;
+        b=naIqTkYj+bPIXXUaTjCz71BD+Wklk/TsW3jEmfdbIS+xl8pC1JiWafjfSb5Fh4Kuc+
+         SJ38wx9E1Y34rQQGBt3gbLBsUS32Ls+uumXD+cop7QL1RD64UNPmJycczWjZkh6w52kR
+         uRcpIGEWHknsUysD21vKAkDNwmXIXC+vzGo68kqGfjBQbY2pfAUyl8wAsoN4a8QdHBll
+         Raaq/SbUlcc19C04u1gkyJoFtY/ZMsWzZCeJfez1GmxtRgg9hasupcLpaRlz1bCei8CB
+         rn7TNSVKztVb0ZgG6ERxbEGts0t8ppi+VZVuHnlA5szUJOnUp+JOxCIh25AVwiZ2ftJc
+         4k9A==
+X-Gm-Message-State: AOAM532/i1xzlIBqAgbFcohN7fONVPvDv5zg1EW1WoLxa57nNBgXR3iO
+        XV+WLfb6oHAY26gEPjUKszg=
+X-Google-Smtp-Source: ABdhPJx7RB7JYMETqkdl2lDe/tLc/PmA59WParAYFcWHyJw9NE116RVhX5z3h21h20znsAvGdfjeDg==
+X-Received: by 2002:a05:620a:31a2:: with SMTP id bi34mr13385245qkb.331.1635170270173;
+        Mon, 25 Oct 2021 06:57:50 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id r23sm8453413qtm.80.2021.10.25.06.57.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Oct 2021 06:57:49 -0700 (PDT)
+Subject: Re: [PATCH 0/5] driver core, of: support for reserved devices
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Zev Weiss <zev@bewilderbeest.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
         Jeremy Kerr <jk@codeconstruct.com.au>,
-        Rajat Jain <rajatja@google.com>,
-        Jianxiong Gao <jxgao@google.com>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Alex Williamson <alex.williamson@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cornelia Huck <cohuck@redhat.com>,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
- reserved devices
-Message-ID: <YXayTeJiQvpRutU0@kroah.com>
-References: <YXJeYCFJ5DnBB63R@kroah.com>
- <YXJ3IPPkoLxqXiD3@hatter.bewilderbeest.net>
- <YXJ88eARBE3vU1aA@kroah.com>
- <YXLWMyleiTFDDZgm@heinlein>
- <YXPOSZPA41f+EUvM@kroah.com>
- <627101ee-7414-57d1-9952-6e023b8db317@gmail.com>
- <YXZLjTvGevAXcidW@kroah.com>
- <YXaYmie/CUHnixtX@heinlein>
- <YXap8V/jMM3Ksj7x@smile.fi.intel.com>
- <YXavBWTNYsufqj8u@heinlein>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Oliver O'Halloran <oohall@gmail.com>
+References: <20211022020032.26980-1-zev@bewilderbeest.net>
+ <YXJfHwzIdksUKPIe@kroah.com> <YXJ9yR6b5vI3NwF7@hatter.bewilderbeest.net>
+ <3a5e271d-d977-7eca-21c5-fd75a2366920@gmail.com>
+Message-ID: <ad2b0169-a8c1-f94b-9bf5-11bc1e17f843@gmail.com>
+Date:   Mon, 25 Oct 2021 08:57:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YXavBWTNYsufqj8u@heinlein>
+In-Reply-To: <3a5e271d-d977-7eca-21c5-fd75a2366920@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 08:20:05AM -0500, Patrick Williams wrote:
-> On Mon, Oct 25, 2021 at 03:58:25PM +0300, Andy Shevchenko wrote:
-> > On Mon, Oct 25, 2021 at 06:44:26AM -0500, Patrick Williams wrote:
-> > > On Mon, Oct 25, 2021 at 08:15:41AM +0200, Greg Kroah-Hartman wrote:
-> > > > On Mon, Oct 25, 2021 at 12:38:08AM -0500, Frank Rowand wrote:
-> > > > > On 10/23/21 3:56 AM, Greg Kroah-Hartman wrote:
-> > >  
-> > > > We have the bind/unbind ability today, from userspace, that can control
-> > > > this.  Why not just have Linux grab the device when it boots, and then
-> > > > when userspace wants to "give the device up", it writes to "unbind" in
-> > > > sysfs, and then when all is done, it writes to the "bind" file and then
-> > > > Linux takes back over.
-> > > > 
-> > > > Unless for some reason Linux should _not_ grab the device when booting,
-> > > > then things get messier, as we have seen in this thread.
-> > > 
-> > > This is probably more typical on a BMC than atypical.  The systems often require
-> > > the BMC (running Linux) to be able to reboot independently from the managed host
-> > > (running anything).  In the example Zev gave, the BMC rebooting would rip away
-> > > the BIOS chip from the running host.
-> > > 
-> > > The BMC almost always needs to come up in a "I don't know what could possibly be
-> > > going on in the system" state and re-discover where the system was left off.
-> > 
-> > Isn't it an architectural issue then?
+On 10/25/21 12:53 AM, Frank Rowand wrote:
+> On 10/22/21 4:00 AM, Zev Weiss wrote:
+>> On Thu, Oct 21, 2021 at 11:50:07PM PDT, Greg Kroah-Hartman wrote:
+>>> On Thu, Oct 21, 2021 at 07:00:27PM -0700, Zev Weiss wrote:
+>>>> Hello all,
+>>>>
+>>>> This series is another incarnation of a couple other patchsets I've
+>>>> posted recently [0, 1], but again different enough in overall
+>>>> structure that I'm not sure it's exactly a v2 (or v3).
+>>>>
+>>>> As compared to [1], it abandons the writable binary sysfs files and at
+>>>> Frank's suggestion returns to an approach more akin to [0], though
+>>>> without any driver-specific (aspeed-smc) changes, which I figure might
+>>>> as well be done later in a separate series once appropriate
+>>>> infrastructure is in place.
+>>>>
+>>>> The basic idea is to implement support for a status property value
+>>>> that's documented in the DT spec [2], but thus far not used at all in
+>>>> the kernel (or anywhere else I'm aware of): "reserved".  According to
+>>>> the spec (section 2.3.4, Table 2.4), this status:
+>>>>
+>>>>   Indicates that the device is operational, but should not be used.
+>>>>   Typically this is used for devices that are controlled by another
+>>>>   software component, such as platform firmware.
+>>>>
+>>>> With these changes, devices marked as reserved are (at least in some
+>>>> cases, more on this later) instantiated, but will not have drivers
+>>>> bound to them unless and until userspace explicitly requests it by
+>>>> writing the device's name to the driver's sysfs 'bind' file.  This
+>>>> enables appropriate handling of hardware arrangements that can arise
+>>>> in contexts like OpenBMC, where a device may be shared with another
+>>>> external controller not under the kernel's control (for example, the
+>>>> flash chip storing the host CPU's firmware, shared by the BMC and the
+>>>> host CPU and exclusively under the control of the latter by default).
+>>>> Such a device can be marked as reserved so that the kernel refrains
+>>>> from touching it until appropriate preparatory steps have been taken
+>>>> (e.g. BMC userspace coordinating with the host CPU to arbitrate which
+>>>> processor has control of the firmware flash).
+>>>>
+>>>> Patches 1-3 provide some basic plumbing for checking the "reserved"
+>>>> status of a device, patch 4 is the main driver-core change, and patch
+>>>> 5 tweaks the OF platform code to not skip reserved devices so that
+>>>> they can actually be instantiated.
+>>>
+>>> Again, the driver core should not care about this, that is up to the bus
+>>> that wants to read these "reserved" values and do something with them or
+>>> not (remember the bus is the thing that does the binding, not the driver
+>>> core).
+>>>
+>>> But are you sure you are using the "reserved" field properly?
+>>
+>> Well, thus far both Rob Herring and Oliver O'Halloran (originator of the "reserved" status in the DT spec, whom I probably should have CCed earlier, sorry) have seemed receptive to this interpretation of it, which I'd hope would lend it some credence.
 > 
-> I'm not sure what "it" you are referring to here.
+> I am not on board with this interpretation.  To me, if the value of
+> status is "reserved", then the Linux kernel should _never_ use the
+> device described by the node.
 > 
-> I was trying to explain why starting in "bind" state is not a good idea for a
-> BMC in most of these cases where we want to be able to dynamically add a device.
+> If a "reserved" node is usable by the Linux kernel, then the specification
+> should be updated to allow this.  And the specification should probably
+> be expanded to either discuss how to describe the coordination between
+> multiple entities or state that the coordination is outside of the
+> specification and will be implemention dependent.
 
-I think "it" is "something needs to be the moderator between the two
-operating systems".  What is the external entity that handles the
-switching between the two?
+Maybe a value of "reserved-sharable" should be added to the standard.
+This would indicate that the node is operational and controlled by
+another software component, but is available to the operating system
+after requesting permission or being granted permission from the other
+software component.
 
-thanks,
+The exact method of requesting permission or being granted permission
+could either be driver specific, or the driver binding could
+include one or more additional properties to describe the method.
 
-greg k-h
+One thing that I am wary of is the possibility of a proliferation of
+status checks changing from "okay" to "okay" || ("reserved" and the
+state of the driver is that permission has been granted).
+
+From a simplicity of coding view, it is really tempting to dynamically
+change the value of the status property from "reserved-sharable"
+to "okay" when the other software component grants permission to
+use the device, so that status checks will magically allow use
+instead of blocking use.  I do not like changing the value of the
+status property dynamically because the devicetree is supposed to
+describe hardware (and communicate information from the firmware
+to the operating system), not to actively maintain state.
+
+-Frank
+
+> 
+> I am wary of the complexity of the operating system treating a node as
+> reserved at initial boot, then at some point via coordination with
+> some other entity starting to use the node.  It is not too complex if
+> the node is a leaf node with no links (phandles) to or from any other node,
+> but as soon as links to or from other nodes exist, then other drivers or
+> subsystems may need to be aware of when the node is available to the
+> operating system or given back to the other entity then any part of the
+> operating system has to coordinate in that state transition.  This is
+> driving a lot of my caution that we be careful to create architecture
+> and not an ad hoc hack.
+> 
+> -Frank
+> 
+>>
+>>> You are
+>>> wanting to do "something" to the device to later on be able to then have
+>>> the kernel touch the device, while it seems that the reason for this
+>>> field is for the kernel to NEVER touch the device at all.  What will
+>>> break if you change this logic?
+>>
+>> Given that there's no existing usage of or support for this status value anywhere I can see in the kernel, and that Oliver has indicated that it should be compatible with usage in OpenPower platform firmware, my expectation would certainly be that nothing would break, but if there are examples of things that could I'd be interested to see them.
+>>
+>>
+>> Thanks,
+>> Zev
+>>
+> 
+
