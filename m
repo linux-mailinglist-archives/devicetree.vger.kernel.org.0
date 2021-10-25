@@ -2,181 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 112E8439ACE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 17:49:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 889D0439AD0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 17:49:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232637AbhJYPwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 11:52:12 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:51853 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230070AbhJYPwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 11:52:12 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 7D7305806E4;
-        Mon, 25 Oct 2021 11:49:49 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 25 Oct 2021 11:49:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=0aER1SAbuXA9nYwjSnrNi66UhKk
-        Mzhn0/WJpn0hsF2I=; b=a3HDdU3oG6CY8b3GHjdKaB5w08HQNnLO0b7ow8rgCHn
-        QLSDmr7wbfQ4qqchyk1XklS7i7CHr7a+TPUc78e/ENH92Vpf/hxKiupMcz/IMoEa
-        10niQvw+bRbEV3/D0U3WZtfh+8vDRQP2LZildMs6pCLPLVq67cbRlsvN8GdFA7CW
-        lRSf0n3F6ve4HfrTO9phOjTY0T5zCb/Freyemcoi0FJwqtUuYWjgbMc5cZvE1xOa
-        STI1g2ghRVSkgH0B+NxlbzXbnczza5lC36zWLOSDW53IgRwwpwf9oBUqJoC4+Fgq
-        yQQm3NMTnid30Vdu7kGgX9Qpd7j2cgIKPZJfFrM4UFg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=0aER1S
-        AbuXA9nYwjSnrNi66UhKkMzhn0/WJpn0hsF2I=; b=TXvfYLmNlJzAj25uXHxj4U
-        LuabYELPTeKHnKUUiEpQO7IjyTsogqzj5tRA1x7tQ4qOKhbiKtvXx3+sGrBnqsbP
-        0qqP68eYmhjTSpAla1lnYqmQy74jbT37FbI3qv/3wigC5HTak9Osj2vwAjGxw5S+
-        BkRAfVMdDKO7Sj9jkhSc+J3uyOzsUnM3PongiXKJdU/QkKoRotVf7/kPB3NXoziI
-        AMVTg137o+CLTocZF63d6R6/kyPGYXdf6qDpWpJBu7ozrr/VZvA8lsOjap+RhICn
-        uA22i7sUe1Gm4aIFAc186HH2krU+sMxMyWXl6Isy+svRkSWaIEoX3AQT7+0TkEoQ
-        ==
-X-ME-Sender: <xms:G9J2YbRC7-45o-m3FHYhpcL2lOnWgy5K5VRkr_EfqEpSulCjSuuliA>
-    <xme:G9J2Ycw6s4-L6skN-EpVViAD832PVYxXCKe8Mq7PkLj4geky9aIue271XLN-hWFFS
-    W1JBAZR60h8uaXDSwY>
-X-ME-Received: <xmr:G9J2YQ2pk0m8Xv5M6GNjxLns07AJ7mSLjCrYjRUEKlG-3PQ0M7p0YRZyhCks44_xNpMrWCSNLMK3QZ66AfMCculhMFdqIOorgoJEUvtU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefhedgkeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:G9J2YbAUoGC6Lnl7bYGuDw-PZul04KodCu1RQJQeVD76R4yllfo8cg>
-    <xmx:G9J2YUizQuWwZW6VVZ6sSqA6UCnBb_DUthdj0utT_suUCEEvqsZCkA>
-    <xmx:G9J2Yfqhv8Gc4XofYEgGk2N7O3cEAVKLrY8P2I7x7rGLbFE2Cqqosw>
-    <xmx:HdJ2YVZTk9djiSN8X49jHj9yP-qB9C--K9FHyMX5F3e8ZzExgMmxNw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 25 Oct 2021 11:49:47 -0400 (EDT)
-Date:   Mon, 25 Oct 2021 17:49:45 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] dt-bindings: rtc: sun6i: Add H616, R329, and D1
- support
-Message-ID: <20211025154945.6vbp7ru5qvvpe34r@gilmour>
-References: <20210928080335.36706-1-samuel@sholland.org>
- <20210928080335.36706-3-samuel@sholland.org>
+        id S233131AbhJYPwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 11:52:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230070AbhJYPwP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 11:52:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4A0C660720;
+        Mon, 25 Oct 2021 15:49:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635176992;
+        bh=T2GFghtcHNLOa+MHlF+E5+QAYjJCxcjLCfKLLCipAH4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mFuQs7jLqq/WU6egj7Y2jXE6PJKp2mLT6hEHQiLsOUunNc6GH0IpXADIMVhMIhXEA
+         PORFkUAzEWvvQ+6AHX1ZJoHcXD7CBuwtmTgBxtv7/BMJsfmCTODQepJ1fIoQPTLxWD
+         f62rtPJbG636u2DCT0pYorjBjoLw3ZATtShC6fxXp8Nm45hD+QiGAX5vhcbGD23XaA
+         6tVnRdao1SJJdnLmg4fGXZtaCuOA1sUUEunD8K/2peIa7MJ3OqSNnfvQRwk5c8pkZR
+         xvoIrGT3pRJe+tOEuYpi1g+FWx/KsUNjq9LyhdbT1FEOLepe+2GizdMYCUDz6p7krB
+         8fvw39vCtjE2w==
+Date:   Mon, 25 Oct 2021 16:49:50 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     bjorn.andersson@linaro.org, robh@kernel.org, plai@codeaurora.org,
+        pierre-louis.bossart@linux.intel.com, tiwai@suse.de,
+        devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+Subject: Re: [PATCH v9 12/17] ASoC: qdsp6: audioreach: add Kconfig and
+ Makefile
+Message-ID: <YXbSHubt3Rivh9xp@sirena.org.uk>
+References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
+ <20211006113950.10782-13-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ihzrd562brfvvncn"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="murvvOThzU63xl3q"
 Content-Disposition: inline
-In-Reply-To: <20210928080335.36706-3-samuel@sholland.org>
+In-Reply-To: <20211006113950.10782-13-srinivas.kandagatla@linaro.org>
+X-Cookie: Eschew obfuscation.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ihzrd562brfvvncn
+--murvvOThzU63xl3q
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, Oct 06, 2021 at 12:39:45PM +0100, Srinivas Kandagatla wrote:
+> Now that all the code for audioreach and q6apm are in at this point to be
+> able to compile, start adding Kconfig and Makefile changes.
 
-On Tue, Sep 28, 2021 at 03:03:28AM -0500, Samuel Holland wrote:
-> These new RTC variants all have a single alarm, like the R40 variant.
->=20
-> For the new SoCs, start requiring a complete list of input clocks. The
-> H616 has three required clocks. The R329 also has three required clocks
-> (but one is different), plus an optional crystal oscillator input. The
-> D1 RTC is identical to the one in the R329.
->=20
-> And since these new SoCs will have a well-defined output clock order as
-> well, they do not need the clock-output-names property.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> Changes since v1:
->   - Properly update the DT binding clocks and clock-names properties.
->=20
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 72 ++++++++++++++++++-
->  include/dt-bindings/clock/sun6i-rtc.h         | 10 +++
->  2 files changed, 79 insertions(+), 3 deletions(-)
->  create mode 100644 include/dt-bindings/clock/sun6i-rtc.h
->=20
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rt=
-c.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index a88d46ffb457..b971510a5ae7 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -24,9 +24,14 @@ properties:
->            - allwinner,sun8i-v3-rtc
->            - allwinner,sun50i-h5-rtc
->            - allwinner,sun50i-h6-rtc
-> +          - allwinner,sun50i-h616-rtc
-> +          - allwinner,sun50i-r329-rtc
->        - items:
->            - const: allwinner,sun50i-a64-rtc
->            - const: allwinner,sun8i-h3-rtc
-> +      - items:
-> +          - const: allwinner,sun20i-d1-rtc
-> +          - const: allwinner,sun50i-r329-rtc
-> =20
->    reg:
->      maxItems: 1
-> @@ -38,7 +43,10 @@ properties:
->        - description: RTC Alarm 1
-> =20
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +
-> +  clock-names:
-> +    minItems: 1
-> =20
->    clock-output-names:
->      minItems: 1
-> @@ -98,7 +106,66 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: allwinner,sun8i-r40-rtc
-> +            const: allwinner,sun50i-h616-rtc
-> +
-> +    then:
-> +      clocks:
-> +        minItems: 3
-> +        maxItems: 3
+This doesn't compile with current code for arm64 defconfig:
 
-If clocks is set to minItems: 1, you'll still get a failure.
+/mnt/kernel/sound/soc/qcom/qdsp6/q6apm.c: In function 'q6apm_audio_remove':
+/mnt/kernel/sound/soc/qcom/qdsp6/q6apm.c:703:2: error: too few arguments to function 'snd_soc_tplg_component_remove'
+  703 |  snd_soc_tplg_component_remove(component);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /mnt/kernel/include/sound/soc-dapm.h:15,
+                 from /mnt/kernel/include/sound/soc.h:386,
+                 from /mnt/kernel/sound/soc/qcom/qdsp6/q6apm.c:15:
+/mnt/kernel/include/sound/soc-topology.h:191:19: note: declared here
+  191 | static inline int snd_soc_tplg_component_remove(struct snd_soc_component *comp,
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The way the schemas are checked is a bit weird, but it's not checked
-once with the sum of all the schemas, they are all checked separately.
+This will be with the stub for !SND_SOC_TOPOLOGY, the index argument has
+been removed for the actual implementation but not for the stub, the fix
+is in the header.
 
-So the schema under the then here will be valid, but the global check
-property will fail because it expects 1 item.
-
-You'll need minItems: 1, maxItems: 4 for the global clocks and
-clock-names.
-
-Maxime
-
---ihzrd562brfvvncn
+--murvvOThzU63xl3q
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYXbSGQAKCRDj7w1vZxhR
-xUS7AP9dNLk6cWYN+vxStPWF4+biVpg60Zru5IdULikRqQBmlQD/dCBOoGYPDuE0
-TtN7hEAVpGbjJcDGTznhWfsYr5rTJQM=
-=b+4w
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmF20h0ACgkQJNaLcl1U
+h9D++wf+JwyFgodfzmfQ+BPTjdLIw7DMvXZX2Je/xIfWADZ8tSg9r1D+LIflPdDP
+zYuCt2kQ28Zq2H7SIfG+W2crSSpAlG3cOjfkkevaclL8u0hDDFc2c2nJRYDBjtrz
+aph7S2rLmIt9H0LOPM3VghyS+eOxZRNecdVImbyjM0yOELoFVsGyfrXvLCaziSyz
++7L2ouU7TNStXvT9AFmsG8Q3YJJTiEAqf/ZRtQUz2ksRwZKzGgIr8bBaolFdH0d7
+figc2AXRChTMyj760seY86rHfUQjZ7SpmXwk3w6QvFpOMMh8FUHUYCLDbHTmegAM
+WANHyQqNwcoTsExew6Yl4NA8A7KQcw==
+=amHX
 -----END PGP SIGNATURE-----
 
---ihzrd562brfvvncn--
+--murvvOThzU63xl3q--
