@@ -2,108 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC98439A49
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 17:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F284439A6B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 17:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234057AbhJYPUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 11:20:50 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:55508 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234047AbhJYPUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 11:20:39 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19PC9Btr012722;
-        Mon, 25 Oct 2021 17:18:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=jr66hLIEX+TD8fAGSR2/TZktoKUA/Ywg65PBDRR0/Y8=;
- b=WvRYac9/H+BgDLoe4ld97c/KQiravT0iXUAtBs+cDaMiuesETPUrCMLP5hDL+xAKF9u6
- 3Qje1RfenLD4U1ZgYhJ9iAzmD2mp09kemB6P7anxiOspb2xUzbG67ukWXjxXP9Lok6cX
- dYokp41ypyWTKwlpIlA6pNwmBM/KO12345JnvUiNMW1NXxZptry7J1JL1rkboXAJ9vjz
- dpbCto2tvQW66/An83XkcRNhtfw86ESOtr0Mkbm2v0RYrzN9ZPjyMQxb68OJNjpyWPWM
- 6OLhmOxtAnsMycEjDyeLAaOChFgC4Npc32qN1vsZhIq3HfTpt7ArFQMm/y2Am/O6Dy5/ Bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3bwqpsjtva-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 25 Oct 2021 17:18:07 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D5B18100038;
-        Mon, 25 Oct 2021 17:18:06 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CF21F24187B;
-        Mon, 25 Oct 2021 17:18:06 +0200 (CEST)
-Received: from localhost (10.75.127.49) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 25 Oct 2021 17:18:06
- +0200
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <alexandre.torgue@foss.st.com>
-CC:     <robh+dt@kernel.org>, <amelie.delaunay@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <fabrice.gasnier@foss.st.com>
-Subject: [PATCH 2/2] ARM: dts: stm32: tune the HS USB PHYs on stm32mp157c-ev1
-Date:   Mon, 25 Oct 2021 17:17:50 +0200
-Message-ID: <1635175070-28722-3-git-send-email-fabrice.gasnier@foss.st.com>
+        id S233534AbhJYPaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 11:30:30 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:14503 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230169AbhJYPaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 11:30:30 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635175688; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=3zTsPRswybeqkW/NN/9MmGt5qZUFbx0X45N/ZZo5/Fc=; b=NY0jLHEsnwe8X0JB+zf5SbhcyrngDGPpi+/E5nM9jt6ZCES/tobCj5u+HF8xOICRk3Od+rOT
+ 5K/aYE5AC6dp5a1tsWVTzZO3cphIzFJ8VRQ0kUdHpTk7dIcvxb7hThzpVezt6RnWomcxi+TO
+ Y6IsqD6kJJC32739LRPSyMKRnZk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6176ccf3fd91319f0fd4f863 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 25 Oct 2021 15:27:47
+ GMT
+Sender: akolli=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 29FF9C43616; Mon, 25 Oct 2021 15:27:47 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from akolli-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EFDEDC4338F;
+        Mon, 25 Oct 2021 15:27:44 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org EFDEDC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     ath11k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATCH 1/2] dt: bindings: add new DT entry for ath11k PCI device support
+Date:   Mon, 25 Oct 2021 20:57:27 +0530
+Message-Id: <1635175648-23491-1-git-send-email-akolli@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635175070-28722-1-git-send-email-fabrice.gasnier@foss.st.com>
-References: <1635175070-28722-1-git-send-email-fabrice.gasnier@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-25_05,2021-10-25_02,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds phy tuning parameters for usbphyc port0 (USBH controller)
-and usbphyc port1 (OTG controller).
-Phy tuning parameters are used to adjust the phy settings to compensate
-parasitics, which can be due to USB receptacle, routing, and ESD protection
-component.
+Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+Ath11k firmware uses host DDR memory, DT entry is used to reserve
+these host DDR memory regions, send these memory base
+addresses using DT entries.
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 ---
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 38 ++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index 5c5b1dd..e222d2d 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -375,3 +375,25 @@
- &usbphyc {
- 	status = "okay";
- };
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 5ac9616c9239..c7e6612e949c 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -19,6 +19,10 @@ description: |
+   These devices use HOST DDR memory, HOST DDR memory can be reserved
+   and send to ath11k driver from DT.
+ 
++  ATH11K supports PCI devices like QCA6390,QCN9074.
++  These devices use host DDR memory, host DDR memory can be reserved
++  and send to ath11k driver from DT.
 +
-+&usbphyc_port0 {
-+	st,tune-hs-dc-level = <2>;
-+	st,enable-fs-rftime-tuning;
-+	st,enable-hs-rftime-reduction;
-+	st,trim-hs-current = <15>;
-+	st,trim-hs-impedance = <1>;
-+	st,tune-squelch-level = <3>;
-+	st,tune-hs-rx-offset = <2>;
-+	st,no-lsfs-sc;
-+};
+ properties:
+   compatible:
+     enum:
+@@ -177,6 +181,29 @@ properties:
+     description:
+       HOST DDR end address.
+ 
++  qcom,base-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Host DDR base address for firmware. QCN9074 firmware uses 45 MB of host
++      DDR memory in mode-0 and 15 MB of host DDR memory in mode-2.
 +
-+&usbphyc_port1 {
-+	st,tune-hs-dc-level = <2>;
-+	st,enable-fs-rftime-tuning;
-+	st,enable-hs-rftime-reduction;
-+	st,trim-hs-current = <15>;
-+	st,trim-hs-impedance = <1>;
-+	st,tune-squelch-level = <3>;
-+	st,tune-hs-rx-offset = <2>;
-+	st,no-lsfs-sc;
-+};
++  qcom,caldb-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Host DDR address to store CALDB. CALDB is calibration data base
++      for WLAN channel and tx power.
++
++  qcom,start-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Host DDR start address. For example on x86 it is 0x0,
++      on IPQ8074 it is 0x41000000.
++
++  qcom,end-addr:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Host DDR end address.
++
+ required:
+   - compatible
+   - reg
+@@ -317,3 +344,14 @@ examples:
+         qcom,end-addr = <0x80000000>;
+       };
+     };
++
++  - |
++
++    pcie0_rp {
++      ath11k0 {
++        qcom,base-addr = <0x50F00000>;
++        qcom,caldb-addr = <0x53E00000>;
++        qcom,start-addr = <0x41000000>;
++        qcom,end-addr = <0x80000000>;
++      };
++    };
 -- 
 2.7.4
 
