@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E4DD439208
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECA014391F9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230128AbhJYJKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 05:10:38 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:36225 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232479AbhJYJKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 05:10:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1635152896; x=1666688896;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=P4bXBTYrltaXp9PhngK0POqzvllY4fXOthFXfnrTvcA=;
-  b=rI0SSz027FZKTXm2hRUPFPwHSc5Bq8wiZQjF2da+eaGt7Yjf562/U6Ox
-   a6yujMW5r0RgILeBQcla89+n4wM7T+WNdYjsctiFyox9A2MShHUCdunLF
-   QEkpfgfnQqt0b9UCNcAoPLb1WzFKl0zvzkltNw5CtkhTeeF/jrtyppUTn
-   4=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 25 Oct 2021 02:08:16 -0700
-X-QCInternal: smtphost
-Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2021 02:08:15 -0700
-Received: from c-sanm-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
- Mon, 25 Oct 2021 02:08:09 -0700
-From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>
-CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: sc7280: Add cx power domain support
-Date:   Mon, 25 Oct 2021 14:37:31 +0530
-Message-ID: <1635152851-23660-4-git-send-email-quic_c_sanm@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
-References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+        id S232344AbhJYJKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 05:10:04 -0400
+Received: from marcansoft.com ([212.63.210.85]:40302 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232222AbhJYJKD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 05:10:03 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 097C741EA7;
+        Mon, 25 Oct 2021 09:07:37 +0000 (UTC)
+To:     Joey Gouly <joey.gouly@arm.com>, linux-gpio@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd@arm.com,
+        Stan Skowronek <stan@corellium.com>
+References: <20211024101838.43107-1-joey.gouly@arm.com>
+ <20211024101838.43107-5-joey.gouly@arm.com>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v4 4/5] pinctrl: add pinctrl/GPIO driver for Apple SoCs
+Message-ID: <7092f3f8-c9ae-4cde-2d1d-f5fd19ad2626@marcan.st>
+Date:   Mon, 25 Oct 2021 18:07:35 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+In-Reply-To: <20211024101838.43107-5-joey.gouly@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add multi pd support to set performance state for cx domain
-to maintain minimum corner voltage for USB clocks.
+On 24/10/2021 19.18, Joey Gouly wrote:
+> This driver adds support for the pinctrl / GPIO hardware found
+> on some Apple SoCs.
+> 
+> Co-developed-by: Stan Skowronek <stan@corellium.com>
+> Signed-off-by: Stan Skowronek <stan@corellium.com>
+> Signed-off-by: Joey Gouly <joey.gouly@arm.com>
+> ---
+[snip]
 
-Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
----
-v2:
-Changed rpmhd_opp_svs to rmphd_opp_nom for cx domain.
+> +/* GPIO chip functions */
+> +
+> +static int apple_gpio_gpio_get_direction(struct gpio_chip *chip,
+> +					 unsigned int offset)
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Nit: do we really need to gpio_gpio all the things? I think maz already 
+mentioned this one.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index d74a4c8..9e3b6ad 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2538,7 +2538,8 @@
- 			interrupt-names = "hs_phy_irq", "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq", "ss_phy_irq";
- 
--			power-domains = <&gcc GCC_USB30_PRIM_GDSC>;
-+			power-domains = <&rpmhpd SC7280_CX>, <&gcc GCC_USB30_PRIM_GDSC>;
-+			required-opps = <&rpmhpd_opp_svs>, <>;
- 
- 			resets = <&gcc GCC_USB30_PRIM_BCR>;
- 
+> +	for (i = 0; i < npins; i++) {
+> +		res = pinctrl_generic_add_group(pctl->pctldev, pins[i].name,
+> +						pin_nums + i, 1, pctl);
+> +		if (res < 0)
+> +			return dev_err_probe(pctl->dev, res,
+> +					     "Failed to register group");
+> +	}
+> +
+> +	res = pinmux_generic_add_function(pctl->pctldev, "gpio", pin_names,
+> +					  npins, pctl);
+> +	if (res < 0)
+> +		return dev_err_probe(pctl->dev, res,
+> +				     "Failed to register function.");
+> +
+> +	res = pinmux_generic_add_function(pctl->pctldev, "periph", pin_names,
+> +					  npins, pctl);
+
+Since we have up to 3 peripheral functions I guess this should be done 
+thrice, as "periph0" - "periph2" (or maybe 1-3 if you prefer the 
+1-indexed version, as it matches the selector).
+
+AFAICT this doesn't have DT impact though, so it's not a big deal since 
+right now I don't think we use any functions > 1.
+
 -- 
-2.7.4
-
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
