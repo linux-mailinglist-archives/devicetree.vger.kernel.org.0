@@ -2,123 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8384391EE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:05:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 327604391FB
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbhJYJHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 05:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49886 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231940AbhJYJHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 05:07:33 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38073C061764
-        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 02:05:11 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so14012719otk.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 02:05:11 -0700 (PDT)
+        id S232346AbhJYJKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 05:10:24 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:2828 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232222AbhJYJKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 05:10:23 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=endlessos.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NPeu1poYOZvBuPcB8mqHzEfH4COGHEACiTWNCQVfl9w=;
-        b=KqQIbYxy73SZL1DGOQqQzSk2lqdc8dqLRIPlx0jEoOKP81cf0OeAQLI9plzVbeQ0HA
-         K2E1JOtzeVL5A9qKdsyFJJ7Fl3Xmal0CZ9vdM3jQmjOy8UQt0yT1hFk+uIk/+8T7r1iu
-         fBe4xFufWSF7hmTI7DROYob9lRBiZwaw9XWvNYEDm2BZ4/Dy1UWaSiJ3ev8asG2JT6OV
-         IaIdGJ7q5swoac1+F6b4i7XQhaC0NxIIiR4SHV1r5xJ9xfplE3O7mDpbsCfjezVb6BsH
-         PVt81Rm/XPa+oed+cAGZU7JTlE2hO5DcS8vShZlFLrCpY3c+6ZuxX3kLYOfEW89UsTKd
-         aCOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NPeu1poYOZvBuPcB8mqHzEfH4COGHEACiTWNCQVfl9w=;
-        b=mB5fiEw8vnPpnuCyO7T+YzDT+hnII8hd41Lq7Vf+DN+lLEwIsU/glyn6qYBEA4zJV1
-         0MIkgN1fTU9Crgj+X6CJ8fsAm3Yi0l5L2xwPc/wrpEU/h2mIC3xOAvrU/sswun7BL+/F
-         J4jmjDCjlhyYYZTb5EwePgT/eOm3USw3SavuJJywfZVlIs1o4Li23nEVTKRkoovUmJ3T
-         bhL667cMt/YKx7QnLTfb0vLZ2TtLO6Z1erCp+K8shOMxaIuvpZKFPGqflXuK5iemz6KK
-         DY1FkioRctd6+ZLWv0yNsye9EGKxLxpN4m2ooYVyVcXhfRXSu7AERk+kJDD/ldT/05lP
-         ExyQ==
-X-Gm-Message-State: AOAM533c4ocvowEqAujkIGEPDi6CvehrOZDeAjtjGGW+gj6SoqDgFfTO
-        6v7Bzr4R8AyNtxgorseumxkS2++uKO2JYvruvlpx9w==
-X-Google-Smtp-Source: ABdhPJxamKYAFZoNCTkBSpzygAJ04U8L9iWnulLsJcuDqg2jccuCGWR54kLMiqkaIUsmOaNbdkG+qo7JoQZK6oy+KAE=
-X-Received: by 2002:a9d:6483:: with SMTP id g3mr12458785otl.105.1635152710562;
- Mon, 25 Oct 2021 02:05:10 -0700 (PDT)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635152881; x=1666688881;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=2PkNjhUphczudseeH6pBm+cV1kX02FQKp+tuRQaRBoQ=;
+  b=wJHZF7ZoevHsnMHU7NYTJl29L3elFfBoMD2RyTJd6rcvvGZuLmjHpQuV
+   owkKGiq4VR7Cdc5K6JnqDWaq76HRzkeqtAbf9Q7DCLe3N41VF0L1r5rvz
+   eF1S9ph3iac/dlEOW1PnU8f5SKfswtYUgOPXs/YHx5wXmaUNOq8LXXccE
+   k=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 25 Oct 2021 02:08:00 -0700
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2021 02:07:59 -0700
+Received: from c-sanm-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Mon, 25 Oct 2021 02:07:54 -0700
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "Matthias Kaehlcke" <mka@chromium.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: [PATCH v2 0/3] USB DWC3 QCOM Multi power domain support
+Date:   Mon, 25 Oct 2021 14:37:28 +0530
+Message-ID: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20200924063042.41545-1-jhp@endlessos.org> <YXXNsdVTo8pVfs4/@think.localdomain>
-In-Reply-To: <YXXNsdVTo8pVfs4/@think.localdomain>
-From:   Jian-Hong Pan <jhp@endlessos.org>
-Date:   Mon, 25 Oct 2021 17:04:20 +0800
-Message-ID: <CAPpJ_ed1pBmCWPFMPj8vNkfPAqUtugvUJC14e2pcDuDJUastzQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: disable USB type-c DisplayPort
-To:     Siva Mahadevan <me@svmhdvn.name>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Soeren Moch <smoch@web.de>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Hugh Cole-Baker <sigmaris@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Linux Upstreaming Team <linux@endlessm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Siva Mahadevan <me@svmhdvn.name> =E6=96=BC 2021=E5=B9=B410=E6=9C=8825=E6=97=
-=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=885:17=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Jian-Hong Pan wrote:
-> > The cdn-dp sub driver probes the device failed on PINEBOOK Pro.
-> >
-> > kernel: cdn-dp fec00000.dp: [drm:cdn_dp_probe [rockchipdrm]] *ERROR* mi=
-ssing extcon or phy
-> > kernel: cdn-dp: probe of fec00000.dp failed with error -22
-> >
-> > Then, the device halts all of the DRM related device jobs. For example,
-> > the operations: vop_component_ops, vop_component_ops and
-> > rockchip_dp_component_ops cannot be bound to corresponding devices. So,
-> > Xorg cannot find the correct DRM device.
-> >
-> > The USB type-C DisplayPort does not work for now. So, disable the
-> > DisplayPort node until the type-C phy work has been done.
-> >
-> > Link: https://patchwork.kernel.org/patch/11794141/#23639877
-> > Signed-off-by: Jian-Hong Pan <jhp@endlessos.org>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arc=
-h/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> > index 06d48338c836..d624c595c533 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-> > @@ -380,7 +380,7 @@ mains_charger: dc-charger {
-> >  };
-> >
-> >  &cdn_dp {
-> > -     status =3D "okay";
-> > +     status =3D "disabled";
-> >  };
-> >
-> >  &cpu_b0 {
-> > --
-> > 2.28.0
->
-> I saw a similar patch posted at https://lkml.org/lkml/2021/7/15/752. I
-> was wondering if one of these patches will be submitted to mainline, or
-> what the status on this patch is. I can confirm that this does solve
-> the issue on my Pinebook Pro. Will this go forward?
+Add multi pd support to set performance state for cx domain
+to maintain minimum corner voltage for USB clocks.
 
-Notice that commit ("arm64: dts: rockchip: Disable CDN DP on Pinebook
-Pro") [1] is already in linux-next.
+Add corresponding dt bindings, driver changes and dt changes.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/?h=3Dnext-20211022&id=3D2513fa5c25d42f55ca5f0f0ab247af7c9fbfa3b1
+changes in v2:
+make cx as mandatory power domain.
+Added error handling and detach function.Used attach_by_id function.
+Changed rpmhd_opp_svs to rmphd_opp_nom for cx domain.
 
-Jian-Hong Pan
+
+Sandeep Maheswaram (3):
+  dt-bindings: usb: qcom,dwc3: Add multi-pd bindings for dwc3 qcom
+  usb: dwc3: qcom: Add multi-pd support
+  arm64: dts: qcom: sc7280: Add cx power domain support
+
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |  8 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  3 +-
+ drivers/usb/dwc3/dwc3-qcom.c                       | 87 ++++++++++++++++++++++
+ 3 files changed, 96 insertions(+), 2 deletions(-)
+
+-- 
+2.7.4
+
