@@ -2,60 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 794AA4398B1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 16:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B86E4398FE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 16:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233151AbhJYOfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 10:35:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41030 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233583AbhJYOfZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 10:35:25 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18CCC06122A;
-        Mon, 25 Oct 2021 07:33:03 -0700 (PDT)
+        id S233257AbhJYOt5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 10:49:57 -0400
+Received: from marcansoft.com ([212.63.210.85]:38402 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232916AbhJYOty (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 10:49:54 -0400
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 5DB1C1F42EAA
-Subject: Re: [PATCH v3 1/2] ASoC: SOF: mediatek: Add mt8195 dsp clock support
-To:     YC Hung <yc.hung@mediatek.com>, broonie@kernel.org, tiwai@suse.com,
-        robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, daniel.baluta@nxp.com,
-        trevor.wu@mediatek.com, allen-kh.cheng@mediatek.com
-References: <20211025105635.30625-1-yc.hung@mediatek.com>
- <20211025105635.30625-2-yc.hung@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <b11f6124-9c94-3c09-7f15-ce952b5f27bf@collabora.com>
-Date:   Mon, 25 Oct 2021 16:32:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: hector@marcansoft.com)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 73AD6419B4;
+        Mon, 25 Oct 2021 14:47:23 +0000 (UTC)
+From:   Hector Martin <marcan@marcan.st>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Hector Martin <marcan@marcan.st>, Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: [PATCH v2 0/8] Apple SoC PMGR device power states driver
+Date:   Mon, 25 Oct 2021 23:47:10 +0900
+Message-Id: <20211025144718.157794-1-marcan@marcan.st>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <20211025105635.30625-2-yc.hung@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/10/21 12:56, YC Hung ha scritto:
-> Add adsp clock on/off support on mt8195 platform.
-> 
-> Signed-off-by: YC Hung <yc.hung@mediatek.com>
+This series adds the driver for the Apple PMGR device power state
+registers. These registers can clockgate and (in some cases) powergate
+specific SoC blocks. They also control the reset line, and can have
+additional features such as automatic power management.
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+The current driver supports only the lowest/highest power states,
+provided via the genpd framework, plus reset support provided via
+the reset subsystem.
 
-> ---
->   sound/soc/sof/mediatek/adsp_helper.h       |   2 +-
->   sound/soc/sof/mediatek/mt8195/Makefile     |   2 +-
->   sound/soc/sof/mediatek/mt8195/mt8195-clk.c | 163 +++++++++++++++++++++
->   sound/soc/sof/mediatek/mt8195/mt8195-clk.h |  28 ++++
->   sound/soc/sof/mediatek/mt8195/mt8195.c     |  22 ++-
->   5 files changed, 213 insertions(+), 4 deletions(-)
->   create mode 100644 sound/soc/sof/mediatek/mt8195/mt8195-clk.c
->   create mode 100644 sound/soc/sof/mediatek/mt8195/mt8195-clk.h
-> 
+Apple's PMGRs (there are two in the T8103) have a uniform register
+bit layout (sometimes with varying features). To be able to support
+multiple SoC generations as well as express pd relationships
+dynamically, this binding describes each PMGR power state control
+as a single devicetree node. Future SoC generations are expected to
+retain backwards compatibility, allowing this driver to work on them
+with only DT changes.
+
+#1: MAINTAINERS updates, to go via the SoC tree to avert merge hell
+#2-#3: Adds the required device tree bindings
+#4: The driver itself.
+#5: Somewhat unrelated DT change, but I wanted to get it out of the way
+    for #7
+#6: Instantiates the driver in t8103.dtsi.
+#7: Adds runtime-pm support to the Samsung UART driver, as a first
+    consumer.
+#8: Instantiates a second UART, to more easily test this.
+
+There are currently no consumers for the reset functionality, so
+it is untested, but we will be testing it soon with the NVMe driver
+(as it is required to allow driver re-binding to work properly).
+
+== Changes since v1 ==
+
+Mostly addressing review comments.
+
+- DT schema fixes
+- Reference one DT schema from the other
+- Full example in MFD schema
+- s/apple,domain-name/label/
+- Split out MAINTAINERS patch
+- Handle failed regmap reads more sanely
+- Do not bind to apple,t8103-pmgr-pwrstate"
+
+Hector Martin (8):
+  MAINTAINERS: Add PMGR power state files to ARM/APPLE MACHINE
+  dt-bindings: arm: apple: Add apple,pmgr binding
+  dt-bindings: power: Add apple,pmgr-pwrstate binding
+  soc: apple: Add driver for Apple PMGR power state controls
+  arm64: dts: apple: t8103: Rename clk24 to clkref
+  arm64: dts: apple: t8103: Add the UART PMGR tree
+  tty: serial: samsung_tty: Support runtime PM
+  arm64: dts: apple: t8103: Add UART2
+
+ .../bindings/arm/apple/apple,pmgr.yaml        | 149 +++++++++
+ .../bindings/power/apple,pmgr-pwrstate.yaml   |  69 +++++
+ MAINTAINERS                                   |   3 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts      |   5 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          | 134 ++++++++-
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/apple/Kconfig                     |  21 ++
+ drivers/soc/apple/Makefile                    |   2 +
+ drivers/soc/apple/apple-pmgr-pwrstate.c       | 282 ++++++++++++++++++
+ drivers/tty/serial/samsung_tty.c              |  93 +++---
+ 11 files changed, 723 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+ create mode 100644 drivers/soc/apple/Kconfig
+ create mode 100644 drivers/soc/apple/Makefile
+ create mode 100644 drivers/soc/apple/apple-pmgr-pwrstate.c
+
+-- 
+2.33.0
 
