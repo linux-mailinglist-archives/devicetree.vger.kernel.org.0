@@ -2,172 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B40643900A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95277439018
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:11:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbhJYHKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 03:10:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58770 "EHLO mail.kernel.org"
+        id S231250AbhJYHNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 03:13:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59876 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230059AbhJYHKQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 03:10:16 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 907BC60F9C;
-        Mon, 25 Oct 2021 07:07:53 +0000 (UTC)
+        id S229727AbhJYHNU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 03:13:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 12B6860F9C;
+        Mon, 25 Oct 2021 07:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635145674;
-        bh=jAvb0Th54ggrdiHBLJ1eMnNsymTI/uXr/s7gfpm+Yw8=;
+        s=k20201202; t=1635145858;
+        bh=wHlKRt1QrjCcx+YMoChVXSYiCfVO9OSjhXh60NOXWK8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dVHSSsU7xk/RWpeonZOIzDd3tH1iEuL0K57WNjrMw8HIdaEFQapbSy7GyinXZcRMC
-         QMAQbGyIin6yXie79hHZglXuktnTLHvb1VdBInU8jDuxbhOAAV1ESvBRsXv6PsIODh
-         yqjA7Ww8N6rexXAoab2MKkZLaBJvVpyC/o9KIpa9SzvNx+enVFiryjeFqvayjwxAfJ
-         XcdYTCKzJykG0SQDcs84oFGhaW723n5nIrZ9EXP90bpVTrypundJhCAsezfm6MSBiA
-         u4IfnbBRaQNjtFd3L/1kBFuhszzFjuBoB28RCkL7st+wmZqTW+82qEQj5mudUut4T5
-         atMbJ/y7Aun+g==
-Date:   Mon, 25 Oct 2021 12:37:50 +0530
+        b=ETX5aTw5UkAaQv5un4FxUBu/HcCp/zrkxsNdvOPFNy0lueoBk1foSCXRqsW5+ny64
+         3UfHmFBZCPVqX99RHxQzRZ0gvweVig7NnkR9pSh5uZaFOykb9S5Nm+1nUN5mSEU4SO
+         9ZqqEqhcWYEz29jeUqQUwkcXTUE97h0Kv7l/yU7DAgXjBo7FMqJ1HrT5nW0pGV9W4J
+         QrvT1M3rNlgSXlDBeRNJ7XrsaWh8bQzTLgGyDBc3y1xXmGjtkSvdRjZQjAsE0xQQe8
+         ESOTCsQbChee3GQtzlGFzKE0Z2zIZDdMboPld6SZ8Q8M7ULBfm4SQGmNpjE+FeSatm
+         aFJjnvBIdD5lw==
+Date:   Mon, 25 Oct 2021 12:40:54 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: rockchip: Add Naneng combo PHY
- bindings
-Message-ID: <YXZXxl8rc7b+i5J8@matsya>
-References: <20211013101938.28061-1-yifeng.zhao@rock-chips.com>
- <20211013101938.28061-2-yifeng.zhao@rock-chips.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        abhinavk@codeaurora.org, Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 2/2] phy: qcom: Introduce new eDP PHY driver
+Message-ID: <YXZYfh+yfNFkqY0a@matsya>
+References: <20211016232128.2341395-1-bjorn.andersson@linaro.org>
+ <20211016232128.2341395-2-bjorn.andersson@linaro.org>
+ <YXGmJFoeXwtTvl7p@matsya>
+ <YXLx7EV7ZiMIxauO@ripper>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211013101938.28061-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <YXLx7EV7ZiMIxauO@ripper>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-10-21, 18:19, Yifeng Zhao wrote:
-> Add the compatible strings for the Naneng combo PHY found on rockchip SoC.
+On 22-10-21, 10:16, Bjorn Andersson wrote:
+> On Thu 21 Oct 10:40 PDT 2021, Vinod Koul wrote:
+> 
+> > On 16-10-21, 16:21, Bjorn Andersson wrote:
+> > > Many recent Qualcomm platforms comes with native DP and eDP support.
+> > > This consists of a controller in the MDSS and a QMP-like PHY.
+> > > 
+> > > While similar to the well known QMP block, the eDP PHY only has TX lanes
+> > > and the programming sequences are slightly different. Rather than
+> > > continuing the trend of parameterize the QMP driver to pieces, this
+> > > introduces the support as a new driver.
+> > > 
+> > > The registration of link and pixel clocks are borrowed from the QMP
+> > > driver. The non-DP link frequencies are omitted for now.
+> > > 
+> > > The eDP PHY is very similar to the dedicated (non-USB) DP PHY, but only
+> > > the prior is supported for now.
+> > 
+> > since this is QMP phy, pls add an explanation why common QMP driver
+> > is not used here?
+> 
+> Looked at this again, doesn't the second paragraph answer that?
 
-Pls cc rob & DT list here!
+Hmmm, somehow this got missed by me! Yes sounds okay
 
+> > > +static int qcom_edp_phy_init(struct phy *phy)
+> > > +{
+> [..]
+> > > +	writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
+> > > +	writel(0x13, edp->edp + DP_PHY_AUX_CFG1);
+> > > +	writel(0x24, edp->edp + DP_PHY_AUX_CFG2);
+> > > +	writel(0x00, edp->edp + DP_PHY_AUX_CFG3);
+> > > +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG4);
+> > > +	writel(0x26, edp->edp + DP_PHY_AUX_CFG5);
+> > > +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG6);
+> > > +	writel(0x03, edp->edp + DP_PHY_AUX_CFG7);
+> > > +	writel(0x37, edp->edp + DP_PHY_AUX_CFG8);
+> > > +	writel(0x03, edp->edp + DP_PHY_AUX_CFG9);
+> > 
+> > In qmp phy we use a table for this, that looks very elegant and I am
+> > sure next rev will have different magic numbers, so should we go the
+> > table approach here on as well..?
+> > 
 > 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> ---
+> Comparing the v3 and v4 USB/DP combo phy and this, the only number that
+> differs is CFG_AUX2 and CFG_AUX8.
 > 
-> Changes in v2:
-> - Fix dtschema/dtc warnings/errors
+> CFG_AUX8 is 0x37 for eDP and 0xb7 for DP and AUX_CFG2 seems better to
+> mask together, but I don't fully understand the content yet.
 > 
->  .../phy/phy-rockchip-naneng-combphy.yaml      | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-> new file mode 100644
-> index 000000000000..55ad33d902ec
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/phy-rockchip-naneng-combphy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip SoC Naneng Combo Phy Device Tree Bindings
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3568-naneng-combphy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: reference clock
-> +      - description: apb clock
-> +      - description: pipe clock
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: ref
-> +      - const: apb
-> +      - const: pipe
-> +
-> +  '#phy-cells':
-> +    const: 1
-> +
-> +  resets:
-> +    minItems: 1
-> +    items:
-> +      - description: exclusive apb reset line
-> +      - description: exclusive PHY reset line
-> +
-> +  reset-names:
-> +    minItems: 1
-> +    items:
-> +      - const: combphy-apb
-> +      - const: combphy
-> +
-> +  rockchip,pipe-grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Some additional phy settings are access through GRF regs.
-> +
-> +  rockchip,pipe-phy-grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Some additional pipe settings are access through GRF regs.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#phy-cells'
-> +  - resets
-> +  - reset-names
-> +  - rockchip,pipe-grf
-> +  - rockchip,pipe-phy-grf
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    #include <dt-bindings/clock/rk3568-cru.h>
-> +
-> +    pipegrf: syscon@fdc50000 {
-> +      reg = <0xfdc50000 0x1000>;
-> +    };
-> +
-> +    pipe_phy_grf0: syscon@fdc70000 {
-> +      reg = <0xfdc70000 0x1000>;
-> +    };
-> +
-> +    combphy0_us: phy@fe820000 {
-> +      compatible = "rockchip,rk3568-naneng-combphy";
-> +      reg = <0xfe820000 0x100>;
-> +      #phy-cells = <1>;
-> +      clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
-> +        <&cru PCLK_PIPE>;
-> +      clock-names = "ref", "apb", "pipe";
-> +      assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-> +      assigned-clock-rates = <100000000>;
-> +      resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
-> +      reset-names = "combphy-apb", "combphy";
-> +      rockchip,pipe-grf = <&pipegrf>;
-> +      rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-> +    };
-> -- 
-> 2.17.1
+> I did check two other platforms and they have the same sequence, except
+> one additional bit in AUX_CFG2. There also seem to be a few additional
+> permutations of this value, so I don't think tables are the solution.
 > 
 > 
+> So I think it's better if we leave this as proposed and then
+> parameterize the two individual entries as needed when we go forward -
+> or determine that I missed something.
+
+okay sounds good to me
 
 -- 
 ~Vinod
