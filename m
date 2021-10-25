@@ -2,110 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95277439018
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CDB43903B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231250AbhJYHNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 03:13:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59876 "EHLO mail.kernel.org"
+        id S230236AbhJYHWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 03:22:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34520 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229727AbhJYHNU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 03:13:20 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 12B6860F9C;
-        Mon, 25 Oct 2021 07:10:57 +0000 (UTC)
+        id S230183AbhJYHWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 03:22:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EF61660724;
+        Mon, 25 Oct 2021 07:20:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635145858;
-        bh=wHlKRt1QrjCcx+YMoChVXSYiCfVO9OSjhXh60NOXWK8=;
+        s=k20201202; t=1635146415;
+        bh=oTmkGUaMrUls5+nCfH+wzzIwXOCcij7+t4UXotfvygc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ETX5aTw5UkAaQv5un4FxUBu/HcCp/zrkxsNdvOPFNy0lueoBk1foSCXRqsW5+ny64
-         3UfHmFBZCPVqX99RHxQzRZ0gvweVig7NnkR9pSh5uZaFOykb9S5Nm+1nUN5mSEU4SO
-         9ZqqEqhcWYEz29jeUqQUwkcXTUE97h0Kv7l/yU7DAgXjBo7FMqJ1HrT5nW0pGV9W4J
-         QrvT1M3rNlgSXlDBeRNJ7XrsaWh8bQzTLgGyDBc3y1xXmGjtkSvdRjZQjAsE0xQQe8
-         ESOTCsQbChee3GQtzlGFzKE0Z2zIZDdMboPld6SZ8Q8M7ULBfm4SQGmNpjE+FeSatm
-         aFJjnvBIdD5lw==
-Date:   Mon, 25 Oct 2021 12:40:54 +0530
+        b=NBBnUm5h4gqghZDyGBMFXofipnhDcGhosPJFd1wDxuNdR8Y3iJTNIfaycs/CXyeEk
+         Pg1TjT/dDF6z6yziPGqO9eYMRx1Xh5kc35qEqRyYuFcAf4ExWCxzNb4OpkbLKLcNm/
+         YtwCSwNicUdpsVC1qNrsQeqqSpX3eDl8xTFq8964WT60svGjv17G5F8epkoteciX0b
+         MDM9z53DyMs+3WNInJXoi6s6gnPPCVCSK1aiEI/S/eH/G9jBfGky62ppl5JD2QDNuR
+         1SsxwHagc6UmJGtIr7NVHonkZQ3/Su10jESG+wPPrb4BXYK2qNGgplVBxx+vICxTTo
+         CCz4zW7iHKanw==
+Date:   Mon, 25 Oct 2021 12:50:11 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        abhinavk@codeaurora.org, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v3 2/2] phy: qcom: Introduce new eDP PHY driver
-Message-ID: <YXZYfh+yfNFkqY0a@matsya>
-References: <20211016232128.2341395-1-bjorn.andersson@linaro.org>
- <20211016232128.2341395-2-bjorn.andersson@linaro.org>
- <YXGmJFoeXwtTvl7p@matsya>
- <YXLx7EV7ZiMIxauO@ripper>
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/7] phy: phy-mtk-dp: Add driver for DP phy
+Message-ID: <YXZaq/HYkZSNYKI3@matsya>
+References: <20211021092707.3562523-1-msp@baylibre.com>
+ <20211021092707.3562523-7-msp@baylibre.com>
+ <YXJIPu/Ax6qeft03@matsya>
+ <20211022130636.ncqisltwsvkkc7cg@blmsp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YXLx7EV7ZiMIxauO@ripper>
+In-Reply-To: <20211022130636.ncqisltwsvkkc7cg@blmsp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-21, 10:16, Bjorn Andersson wrote:
-> On Thu 21 Oct 10:40 PDT 2021, Vinod Koul wrote:
-> 
-> > On 16-10-21, 16:21, Bjorn Andersson wrote:
-> > > Many recent Qualcomm platforms comes with native DP and eDP support.
-> > > This consists of a controller in the MDSS and a QMP-like PHY.
-> > > 
-> > > While similar to the well known QMP block, the eDP PHY only has TX lanes
-> > > and the programming sequences are slightly different. Rather than
-> > > continuing the trend of parameterize the QMP driver to pieces, this
-> > > introduces the support as a new driver.
-> > > 
-> > > The registration of link and pixel clocks are borrowed from the QMP
-> > > driver. The non-DP link frequencies are omitted for now.
-> > > 
-> > > The eDP PHY is very similar to the dedicated (non-USB) DP PHY, but only
-> > > the prior is supported for now.
-> > 
-> > since this is QMP phy, pls add an explanation why common QMP driver
-> > is not used here?
-> 
-> Looked at this again, doesn't the second paragraph answer that?
+On 22-10-21, 15:06, Markus Schneider-Pargmann wrote:
 
-Hmmm, somehow this got missed by me! Yes sounds okay
-
-> > > +static int qcom_edp_phy_init(struct phy *phy)
-> > > +{
-> [..]
-> > > +	writel(0x00, edp->edp + DP_PHY_AUX_CFG0);
-> > > +	writel(0x13, edp->edp + DP_PHY_AUX_CFG1);
-> > > +	writel(0x24, edp->edp + DP_PHY_AUX_CFG2);
-> > > +	writel(0x00, edp->edp + DP_PHY_AUX_CFG3);
-> > > +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG4);
-> > > +	writel(0x26, edp->edp + DP_PHY_AUX_CFG5);
-> > > +	writel(0x0a, edp->edp + DP_PHY_AUX_CFG6);
-> > > +	writel(0x03, edp->edp + DP_PHY_AUX_CFG7);
-> > > +	writel(0x37, edp->edp + DP_PHY_AUX_CFG8);
-> > > +	writel(0x03, edp->edp + DP_PHY_AUX_CFG9);
+> > > +	dp_phy->regs = *(struct regmap **)dev->platform_data;
+> > > +	if (!dp_phy->regs) {
+> > > +		dev_err(dev, "No data passed, requires struct regmap**\n");
+> > > +		return -EINVAL;
+> > > +	}
 > > 
-> > In qmp phy we use a table for this, that looks very elegant and I am
-> > sure next rev will have different magic numbers, so should we go the
-> > table approach here on as well..?
+> > is there a reason to do it this way? Why not set the IORESOURCE_MEM for
+> > this device and let the driver map here?
 > > 
+> > NO clocks?
 > 
-> Comparing the v3 and v4 USB/DP combo phy and this, the only number that
-> differs is CFG_AUX2 and CFG_AUX8.
+> As briefly mentioned in the commit message, this phy is not a dedicated
+> phy. It is embedded in the DisplayPort controller that is added in patch
+> 7 of this series. The registerspace of the DisplayPort controller starts
+> at offset 0x0, continues with 0x1000 for PHY related functions and goes
+> on with encoder related and other registers at 0x2000, 0x3000 and
+> 0x4000.
 > 
-> CFG_AUX8 is 0x37 for eDP and 0xb7 for DP and AUX_CFG2 seems better to
-> mask together, but I don't fully understand the content yet.
+> As this seems to me to be a single function block (also from what I read
+> from the datasheet), I designed the binding documentation so that the
+> DisplayPort controller starts at 0x0 and spans all registers. Based on
+> that I wanted to share the regmap created in the DisplayPort controller
+> with this PHY driver that is a direct child of that driver, similar to
+> multi function device drivers.
 > 
-> I did check two other platforms and they have the same sequence, except
-> one additional bit in AUX_CFG2. There also seem to be a few additional
-> permutations of this value, so I don't think tables are the solution.
-> 
-> 
-> So I think it's better if we leave this as proposed and then
-> parameterize the two individual entries as needed when we go forward -
-> or determine that I missed something.
+> That also means that the PHY does not have any clocks it requires as it
+> only exists in the context of the DisplayPort controller. I could pass
+> the same clocks to the PHY, but the use of these clocks does not make
+> any difference.
 
-okay sounds good to me
+Okay, that sounds sensible
+
+> As I don't have a piece of devicetree, I struggled with using phy_get
+> as, if I understand it correctly, it uses the devicetree to find the
+> correct PHY device?
+
+Not really, device tree is one of the backends phy_get() relies on. If
+you are having issues, then chances are there are bugs somewhere or
+usage is incorrect
+
+> Do you have a suggestion on how I could improve this interaction between
+> DP controller and PHY? Maybe some driver that I could look at that has
+> similar constraints?
+
+I would say use phy_get() and fix if we have any issues around it, that
+should make it much cleaner to use
 
 -- 
 ~Vinod
