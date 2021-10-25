@@ -2,71 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A23BF439E3D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 20:16:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEADB439E44
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 20:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231967AbhJYSTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 14:19:18 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:37693 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231671AbhJYSTS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 14:19:18 -0400
-Received: by mail-oi1-f174.google.com with SMTP id o83so16782458oif.4;
-        Mon, 25 Oct 2021 11:16:55 -0700 (PDT)
+        id S232386AbhJYSTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 14:19:21 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:46960 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231671AbhJYSTV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 14:19:21 -0400
+Received: by mail-oi1-f180.google.com with SMTP id o204so16731923oih.13;
+        Mon, 25 Oct 2021 11:16:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=xi7P1Rrna9Jet22xDzvAkW1hYhgZ5q2ACsTSGvVAVYU=;
-        b=2X/Pd+78yAW2xH9n2rgE+0y+w5faqTwE8sY8E971X0p0KdQH8Q7w/ajVSC/vzXKi08
-         dwkO41ebTMg4whXgoPkDDoEUJcJGxPypr92Nycl2jPTrGLdHnDyFnxkzu+KPG7peHCWb
-         VOGoSCz0Rl2j/Ejm3aoduQQg6mjoGIEStLuIiKxDcgiaLed09wJLNs6iadeZAqI3XoHW
-         bqKsgD4Xgly1Q/lzuYIPZP0GhOhXmf2BsC9b1PNLSEIvSA6YSceddxjicmRAk1zK/sZO
-         eNvK93zpLzxAs+fWlAPMnJBPbQCGOv0kTL4sg0pHC+RSU9jq3R1BXdpXPh4w/KFtmHun
-         ObHg==
-X-Gm-Message-State: AOAM531+CUDvynMI3h8jtduQcpakR6H3Zn491uJcwIQRHNRewFv7/wZb
-        uzNfDw9OiEuvlagKIZDiQA==
-X-Google-Smtp-Source: ABdhPJzO0ZaESWJKCka3JkpLozhsZTIWwkp8vrWrZGosJ5NjJETw1tpHO/GvuST2HiDVPhnZAhbadQ==
-X-Received: by 2002:a05:6808:1aa6:: with SMTP id bm38mr15728806oib.163.1635185815303;
-        Mon, 25 Oct 2021 11:16:55 -0700 (PDT)
+        bh=c8iDrdrscM2c58XhHr9hAeNjE08nH97DcHB6REi5ScM=;
+        b=MVMb4je/U+cCTo504rqWYnOqCy1cqJD+pgleJIqmP7nhjJ8YxrBp4+fXXe6FcXnBhl
+         eJyBZoRgu6/2TOsL4tiHghjT/qxTJ/Isx06iwalEn96k++a6vFjvr12Mpkkfud775rNR
+         J0tzTCqppreRmWpGt9IRh4ZirYb5OSiE6EskrTIyxMcG6S5GOwogXFYsFFzRh0Cdwr1J
+         XpMKUM4xy5mwjLsMhc8F1eSlRGlJtfGCfhPVJNc0E90+hx+OqZrTbxeilM9Qxy0cRaVV
+         a0mzk/q5g+g9+/SCKYNR45lm0cSs26UYaZpB/p2QVBbcZMPhBT5LwUygrFiMxi4n24UH
+         BDWA==
+X-Gm-Message-State: AOAM5327t8cYkBEgpQimh6rHO9guNz6Pumh60zwfayQo6IhT8vNaNri8
+        mXXx5o5/OPn+X6ckz01+fA==
+X-Google-Smtp-Source: ABdhPJzt9UxcoWWAoSw1waWa4o7cP/4BdO3Lt0f7+VkpxhBaAKmqzO61CJbl9tB6ZxiVOi2kQsPn2g==
+X-Received: by 2002:a05:6808:158c:: with SMTP id t12mr23688907oiw.74.1635185817319;
+        Mon, 25 Oct 2021 11:16:57 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d25sm3689068otp.33.2021.10.25.11.16.54
+        by smtp.gmail.com with ESMTPSA id z8sm3050765oof.47.2021.10.25.11.16.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Oct 2021 11:16:54 -0700 (PDT)
-Received: (nullmailer pid 824863 invoked by uid 1000);
+        Mon, 25 Oct 2021 11:16:56 -0700 (PDT)
+Received: (nullmailer pid 824870 invoked by uid 1000);
         Mon, 25 Oct 2021 18:16:53 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Cc:     quic_pkondeti@quicinc.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-kernel@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Arnd Bergmann <arnd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>, quic_ppratap@quicinc.com
-In-Reply-To: <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
-References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com> <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings for dwc3 qcom
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Hovold <johan@kernel.org>
+In-Reply-To: <20211025144718.157794-4-marcan@marcan.st>
+References: <20211025144718.157794-1-marcan@marcan.st> <20211025144718.157794-4-marcan@marcan.st>
+Subject: Re: [PATCH v2 3/8] dt-bindings: power: Add apple,pmgr-pwrstate binding
 Date:   Mon, 25 Oct 2021 13:16:53 -0500
-Message-Id: <1635185813.742664.824862.nullmailer@robh.at.kernel.org>
+Message-Id: <1635185813.771483.824869.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 14:37:29 +0530, Sandeep Maheswaram wrote:
-> Add multi pd bindings to set performance state for cx domain
-> to maintain minimum corner voltage for USB clocks.
+On Mon, 25 Oct 2021 23:47:13 +0900, Hector Martin wrote:
+> This syscon child node represents a single SoC device controlled by the
+> PMGR block. This layout allows us to declare all device power state
+> controls (power/clock gating and reset) in the device tree, including
+> dependencies, instead of hardcoding it into the driver. The register
+> layout is uniform.
 > 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> Each pmgr-pwrstate node provides genpd and reset features, to be
+> consumed by downstream device nodes.
+> 
+> Future SoCs are expected to use backwards compatible registers, and the
+> "apple,pmgr-pwrstate" represents any such interfaces (possibly with
+> additional features gated by the more specific compatible), allowing
+> them to be bound without driver updates. If a backwards incompatible
+> change is introduced in future SoCs, it will require a new compatible,
+> such as "apple,pmgr-pwrstate-v2".
+> 
+> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+> Signed-off-by: Hector Martin <marcan@marcan.st>
 > ---
-> v2:
-> Make cx domain mandatory.
-> 
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  .../bindings/power/apple,pmgr-pwrstate.yaml   | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -75,21 +92,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml: properties:power-domains: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'cx power domain'}, {'description': 'USB gdsc power domain'}] is too long
-	[{'description': 'cx power domain'}, {'description': 'USB gdsc power domain'}] is too short
-	False schema does not allow 2
-	1 was expected
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml: ignoring, error in schema: properties: power-domains
-warning: no schema found in file: ./Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml:0:0: /example-0/soc/usb@a6f8800: failed to match any schema with compatible: ['qcom,sdm845-dwc3', 'qcom,dwc3']
-Documentation/devicetree/bindings/usb/qcom,dwc3.example.dt.yaml:0:0: /example-0/soc/usb@a6f8800: failed to match any schema with compatible: ['qcom,sdm845-dwc3', 'qcom,dwc3']
+
 
 doc reference errors (make refcheckdocs):
+Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml: Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
 
-See https://patchwork.ozlabs.org/patch/1545621
+See https://patchwork.ozlabs.org/patch/1545800
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
