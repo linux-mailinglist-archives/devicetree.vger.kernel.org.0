@@ -2,100 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83A074396E0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 14:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32819439712
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 15:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233315AbhJYNBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 09:01:15 -0400
-Received: from mga14.intel.com ([192.55.52.115]:27939 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233392AbhJYNBO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 09:01:14 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10147"; a="229913159"
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; 
-   d="scan'208";a="229913159"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2021 05:58:52 -0700
-X-IronPort-AV: E=Sophos;i="5.87,180,1631602800"; 
-   d="scan'208";a="571607199"
-Received: from smile.fi.intel.com ([10.237.72.184])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2021 05:58:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1mezYX-000cfz-I6;
-        Mon, 25 Oct 2021 15:58:25 +0300
-Date:   Mon, 25 Oct 2021 15:58:25 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Patrick Williams <patrick@stwcx.xyz>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Zev Weiss <zev@bewilderbeest.net>, kvm@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Kirti Wankhede <kwankhede@nvidia.com>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Rajat Jain <rajatja@google.com>,
-        Jianxiong Gao <jxgao@google.com>,
-        Dave Jiang <dave.jiang@intel.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        Alex Williamson <alex.williamson@redhat.com>,
+        id S233437AbhJYNH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 09:07:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48936 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233350AbhJYNH1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 09:07:27 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89818C061745;
+        Mon, 25 Oct 2021 06:05:05 -0700 (PDT)
+Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D73BFE0A;
+        Mon, 25 Oct 2021 15:05:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1635167103;
+        bh=HHQktu/Xe0KUuqSdOBW/xmiFyItT3nR/qljwo82gocY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=duXedLYDDdLO3oONcnqZUyNNCkMjGnwDee8yd6HuFMMiyoBIa3QEuaBcbBDtElB8x
+         /OySjhBOUtZukVStrMHZ+QjllLGq+xmMbem4v6Oq4he+lNT8W69BFVUugK3Bdjfd4x
+         IB2Gzp9hxpzaqy4dHSRuNAGwZq0Q/pCmgP1Jno4s=
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-input@vger.kernel.org
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Bhaskar Chowdhury <unixbhaskar@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cornelia Huck <cohuck@redhat.com>,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        dmaengine@vger.kernel.org
-Subject: Re: [PATCH 4/5] driver core: inhibit automatic driver binding on
- reserved devices
-Message-ID: <YXap8V/jMM3Ksj7x@smile.fi.intel.com>
-References: <20211022020032.26980-1-zev@bewilderbeest.net>
- <20211022020032.26980-5-zev@bewilderbeest.net>
- <YXJeYCFJ5DnBB63R@kroah.com>
- <YXJ3IPPkoLxqXiD3@hatter.bewilderbeest.net>
- <YXJ88eARBE3vU1aA@kroah.com>
- <YXLWMyleiTFDDZgm@heinlein>
- <YXPOSZPA41f+EUvM@kroah.com>
- <627101ee-7414-57d1-9952-6e023b8db317@gmail.com>
- <YXZLjTvGevAXcidW@kroah.com>
- <YXaYmie/CUHnixtX@heinlein>
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2] arm64: dts: renesas: r8a779a0: falcon-cpu: Add SW46 switch support
+Date:   Mon, 25 Oct 2021 14:04:57 +0100
+Message-Id: <20211025130457.935122-1-kieran.bingham+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YXaYmie/CUHnixtX@heinlein>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 06:44:26AM -0500, Patrick Williams wrote:
-> On Mon, Oct 25, 2021 at 08:15:41AM +0200, Greg Kroah-Hartman wrote:
-> > On Mon, Oct 25, 2021 at 12:38:08AM -0500, Frank Rowand wrote:
-> > > On 10/23/21 3:56 AM, Greg Kroah-Hartman wrote:
->  
-> > We have the bind/unbind ability today, from userspace, that can control
-> > this.  Why not just have Linux grab the device when it boots, and then
-> > when userspace wants to "give the device up", it writes to "unbind" in
-> > sysfs, and then when all is done, it writes to the "bind" file and then
-> > Linux takes back over.
-> > 
-> > Unless for some reason Linux should _not_ grab the device when booting,
-> > then things get messier, as we have seen in this thread.
-> 
-> This is probably more typical on a BMC than atypical.  The systems often require
-> the BMC (running Linux) to be able to reboot independently from the managed host
-> (running anything).  In the example Zev gave, the BMC rebooting would rip away
-> the BIOS chip from the running host.
-> 
-> The BMC almost always needs to come up in a "I don't know what could possibly be
-> going on in the system" state and re-discover where the system was left off.
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
 
-Isn't it an architectural issue then?
+Add support for SW46-1 and SW46-2 as switches using the gpio-keys
+framework.
 
+Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
+---
+v2:
+ - Don't adjust the pin-config bias
+
+SW_LID and SW_DOCK are selected as low-impact switch events for the
+default configuration. Would SW_RFKILL_ALL, and SW_MUTE_DEVICE be
+preferred as more 'functional' defaults? (I have otherwise avoided these
+to hopefully prevent unwanted / undocumented effects occuring on
+development hardware running a full interface which may parse these)
+
+I'd expect them to be overridden by any platform using them anyway.
+
+Testing this with evtest on the board shows this:
+
+	kbingham@falcon-v3u:~$ sudo evtest /dev/input/by-path/platform-keys-event
+	Input driver version is 1.0.1
+	Input device ID: bus 0x19 vendor 0x1 product 0x1 version 0x100
+	Input device name: "keys"
+	Supported events:
+	  Event type 0 (EV_SYN)
+	  Event type 1 (EV_KEY)
+	    Event code 2 (KEY_1)
+	    Event code 3 (KEY_2)
+	    Event code 4 (KEY_3)
+	  Event type 5 (EV_SW)
+	    Event code 0 (SW_LID) state 0
+	    Event code 5 (SW_DOCK) state 0
+	Properties:
+	Testing ... (interrupt to exit)
+	Event: time 1635166698.832665, type 5 (EV_SW), code 5 (SW_DOCK), value 1
+	Event: time 1635166698.832665, -------------- SYN_REPORT ------------
+	Event: time 1635166701.661119, type 5 (EV_SW), code 0 (SW_LID), value 1
+	Event: time 1635166701.661119, -------------- SYN_REPORT ------------
+	Event: time 1635166711.453056, type 5 (EV_SW), code 5 (SW_DOCK), value 0
+	Event: time 1635166711.453056, -------------- SYN_REPORT ------------
+	Event: time 1635166712.791572, type 5 (EV_SW), code 0 (SW_LID), value 0
+	Event: time 1635166712.791572, -------------- SYN_REPORT ------------
+
+ .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi  | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+index 1fe0cf0dcc99..0ca21a057530 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+@@ -83,6 +83,24 @@ keys {
+ 		pinctrl-0 = <&keys_pins>;
+ 		pinctrl-names = "default";
+ 
++		sw-1 {
++			gpios = <&gpio1 28 GPIO_ACTIVE_LOW>;
++			linux,code = <SW_LID>;
++			linux,input-type = <EV_SW>;
++			label = "SW46-1";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
++		sw-2 {
++			gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
++			linux,code = <SW_DOCK>;
++			linux,input-type = <EV_SW>;
++			label = "SW46-2";
++			wakeup-source;
++			debounce-interval = <20>;
++		};
++
+ 		key-1 {
+ 			gpios = <&gpio6 18 GPIO_ACTIVE_LOW>;
+ 			linux,code = <KEY_1>;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.30.2
 
