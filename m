@@ -2,488 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F2F5439367
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 12:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DB77439376
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 12:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232613AbhJYKOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 06:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
+        id S232783AbhJYKSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 06:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbhJYKOL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 06:14:11 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CDEC061745;
-        Mon, 25 Oct 2021 03:11:48 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id z20so17698195edc.13;
-        Mon, 25 Oct 2021 03:11:48 -0700 (PDT)
+        with ESMTP id S232772AbhJYKSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 06:18:44 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7CAC061745;
+        Mon, 25 Oct 2021 03:16:22 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id l13so20345973edi.8;
+        Mon, 25 Oct 2021 03:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=fBDtSkb+dGGN2tqHEpHesGVMQTFs7wdi20nGWFMJJF4=;
-        b=n2Z58umT1+y0hJ5/VfGH1xRDoEhFgQuhRInFhcwYSFtUZxXCAzmQErcbgeU1nAhleh
-         K/5HCcYFZnIft/4SR8pXSjoEeuHcQOc0vJ1Ob+e8qwqFPsb33LVJpjFbFAGalIb5TS0J
-         lnBm7OFJx8isN4EzqP9C3HAkx/ZeqSDNqkyoAzoNob219dzQHLpkH44o3Qy5dQHYZy0N
-         lVW5jrjKe702eSujSxyfPWuuvJ04B2GomOuMQN+6dkX2RhSRuVhYjDesbodIlDYQdVMX
-         YkKwpLFEu6fGw7Gee2awRAdaYrR5OPeaZa6n1u3SAE0vomAdtK9Gs3semnj2dbqHT0z7
-         Ag9g==
+        bh=NoOyCfUHoc1NYPh3QSE+q8V42pQrvXovBnbm5bi8Q4k=;
+        b=QYH7ZKvRWU1KiiEGEiqhp/peQaL15IJnNfVPiYX/zO0MWra7+JI3SXg0Lc0JOA98XW
+         WPj0LrY1A9k5qE+Fp7rMP4ng0O1HUTlPumAhQb4+v52N+Gxh4ARNPuyOlTxD1lWp2hPU
+         +CZeBnhLNgI5Sswr1xtPARYwEWLeJVIyMo0vKQkodDvIb+wFY1C1QMKmpWuR8CETdaeY
+         +1QUbqZOiVqSWFHOAOgre3vMI8qKI9BZ3oqaxTWnWpEwtFrprfAJnVoUrrormyAw67w8
+         q4J0hElT7j8paGd5sJawJ1zttr7+KMkjayF3pBz9cS4vqbe4A781qONfgGIej61A2KEd
+         BXmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=fBDtSkb+dGGN2tqHEpHesGVMQTFs7wdi20nGWFMJJF4=;
-        b=GOzDMl0WBKHgd9QjXQFgB96tWX8cV1Hpjzw8xMqXwnwcjtOLQ3Cn9H7VXjhO0feu7h
-         GkmznSGZIeEmYWzNiJJNnNgMZmONvTa+xUMRfVpxQ9KDSpbjqDv7BaNryl4eLJ34x/Lc
-         BGOs7iSw3RsrzxmPAVuo7PmEhx9+1utWL4IrQiZ9YHrr2VJOFzo6vFaicxoSMVbR4DH2
-         8q8BdDRwyUCaazAyVyNax2a5y3xPRdEkVHqY9+xYu21bg6E/2PYJZIVX802ZNDwAokb8
-         ErfnAKBGCwA0EB+CduWM6j+pVTScSSBgNYfjHc43KEYiknycFl35JPjK9lbInpzDPfB5
-         iFXw==
-X-Gm-Message-State: AOAM532emzADzL5sf06wMruuo1DWiFexYDApSuna8aHekWVcbI3QLQMd
-        EUgBdcFS7nbG7Ng4xZ/OH8Q/t8KJHv1ibKSzFlAvs4FwpT5wC0t7
-X-Google-Smtp-Source: ABdhPJxnVs+40H4BfrBPiJ9jq/jYd7cxqczAPOsv2ew+ObXa4taiOCia9XzqsSkUyVhDTJnu3UyfP0mDRcNp0ExmemU=
-X-Received: by 2002:a05:6402:150f:: with SMTP id f15mr25381328edw.224.1635156705178;
- Mon, 25 Oct 2021 03:11:45 -0700 (PDT)
+        bh=NoOyCfUHoc1NYPh3QSE+q8V42pQrvXovBnbm5bi8Q4k=;
+        b=YLCsN5rUDWHtcgPzdu3n/cvmPBLNUNpadsuByUhqCHuPN9FRhbSojbgwewGPoLVFW3
+         YvMb5UlwcHo5APY2bwX+4jmKSJkjgyae1ziXHJRAlwKqt5RIGyVzqJ/Z1yf3MsOcsoKR
+         +aY1rwdScPqkTZE0AN4poAUofUou2SzzgXWjvSg8tvA5eqCO76isv1PRt/rwFpJHZT+h
+         AAath7Sd++g+EHs9Ff7e398+VCOvbeNtYAuO4VnzbUeSATuM8cWuuAjwb+Az4KIxwVMo
+         0qWYIp4r70suvf7amWwnTzn5caKZ3EIyOjyUwYqaDzLZbI3iSN2IqXzv56o3cnbeQfb7
+         ARDQ==
+X-Gm-Message-State: AOAM531DJ8XveusHL9XjbWZ2rLpP2hXuuEzOxFXhn/IbrAW9uZ/WsTNd
+        vX/GeZ+spkrAEGomKkB9ZJXVnlWojpUURP9pnVU=
+X-Google-Smtp-Source: ABdhPJzVsrEQ2wGc7NbJFC9XtcZJjhMbuy0RLRmB4+JyACp9oh8ch9YE0U1JW5YiiQEFm2TA0W1r11nn0kZxkU7HS/I=
+X-Received: by 2002:a17:906:a158:: with SMTP id bu24mr19541505ejb.356.1635156977533;
+ Mon, 25 Oct 2021 03:16:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com> <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
-In-Reply-To: <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-13-kernel@esmil.dk>
+ <CAHp75Vf3yNoKxguHP3EPcRV_3tG++Fd=FVM0MXqW4_SmLA6HEw@mail.gmail.com>
+ <CANBLGcxEwkcZn2CC69zLaVqL8ocS6r6HDaaoUF09gg1mpDxFzg@mail.gmail.com>
+ <CAHp75Vc5-Sg-0kKN=OMs_2iJbtc+D9=f0-Sp+SpY5O3roU3XdA@mail.gmail.com>
+ <CANBLGcxnmt4Ki4EHAXeoJX5mJMyeioZXhGaDsKm_wk86D4js3Q@mail.gmail.com> <CANBLGcyOfo3r0Viidf9kyW0Q9yD4uqTLm90+7O=T49v7ZHurfA@mail.gmail.com>
+In-Reply-To: <CANBLGcyOfo3r0Viidf9kyW0Q9yD4uqTLm90+7O=T49v7ZHurfA@mail.gmail.com>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Oct 2021 13:10:50 +0300
-Message-ID: <CAHp75Vf+dWSG6g-JsVnkJc0nREviRGZCeqoCfi20YZ9ouD+=hg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
-To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio <linux-iio@vger.kernel.org>, git <git@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
+Date:   Mon, 25 Oct 2021 13:15:23 +0300
+Message-ID: <CAHp75Vc1EES8c7XD-MbQNdtCJA3YvvEYd3_e378rVCe6=AmhvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 6:22 PM Anand Ashok Dumbre
-<anand.ashok.dumbre@xilinx.com> wrote:
+On Sun, Oct 24, 2021 at 12:29 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> On Sat, 23 Oct 2021 at 23:02, Emil Renner Berthing <kernel@esmil.dk> wrote:
+> > On Sat, 23 Oct 2021 at 22:29, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > On Sat, Oct 23, 2021 at 9:46 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+
+...
+
+> > So is that a yes or a no to my question? It's not clear to me.
 >
-> The AMS includes an ADC as well as on-chip sensors that can be used to
-> sample external voltages and monitor on-die operating conditions, such
-> as temperature and supply voltage levels. The AMS has two SYSMON blocks.
-> PL-SYSMON block is capable of monitoring off chip voltage and
-> temperature.
-> PL-SYSMON block has DRP, JTAG and I2C interface to enable monitoring
-> from external master. Out of these interface currently only DRP is
+> I see now that you've probably misunderstood what the code does. It's
+> not one time use. The function parses the device tree and dynamically
+> registers groups and functions with the pinctrl framework. Each group
+> needs a string name, an int array of pins and optionally the pinmux
+> data. Once the group is registered those pieces of data needs to live
+> with the group until the drive is unloaded. But if the device tree
+> parsing fails before the group is registered then those allocations
+> would never be referenced and just hang around as garbage until the
+> driver is unloaded. In such cases fx. pinctrl-single uses devm_free to
+> free them again.
 
-from an external
-interfaces
+Thank you for elaboration. Please, drop devm_*(). In this case it's
+inappropriate to use it. pinctrl-single should be amended accordingly,
+but it's out of scope here.
 
-> supported.
-> Other block PS-SYSMON is memory mapped to PS.
-> The AMS can use internal channels to monitor voltage and temperature as
-> well as one primary and up to 16 auxiliary channels for measuring
-> external voltages.
-> The voltage and temperature monitoring channels also have event
-> capability which allows to generate an interrupt when their value falls
-> below or raises above a set threshold.
+...
+
+> > > > I such cases where you get conflicting PIN_CONFIG_BIAS_* settings I
+> > > > don't see why it's better to do the rmw on the padctl register for the
+> > > > first bias setting only to then change the bits again a few
+> > > > microseconds later when the loop encounters the second bias setting.
+> > > > After the loop is done the end result would still be just the last
+> > > > bias setting.
+> > >
+> > > It could be bias X followed by something else followed by bias Y. You
+> > > will write something else with bias Y. I admit I don't know this
+> > > hardware and you and maintainers are supposed to decide what's better,
+> > > but my guts are telling me that current algo is buggy.
+> >
+> > So there is only one padctl register pr. pin. I don't see why first
+> > setting the bias bits to X, then setting some other bits, and then
+> > setting the bias bits to Y would be different from just setting all
+> > the bits in one go. Except for during that little microsecond window
+> > during the loop that I actually think it's better to avoid.
 >
-> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-
-What does this SoB mean here? Have you read Submitting Patches?
-
-> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-
-...
-
-> +config XILINX_AMS
-> +       tristate "Xilinx AMS driver"
-> +       depends on ARCH_ZYNQMP || COMPILE_TEST
-> +       depends on HAS_IOMEM
-> +       help
-
-> +         Say yes here to have support for the Xilinx AMS.
-
-It's not important for most of the users. Please, strat help with more
-useful information like below.
-
-> +         The driver supports Voltage and Temperature monitoring on Xilinx Ultrascale
-> +         devices.
-> +
-> +         The driver can also be built as a module. If so, the module will be called
-> +         xilinx-ams.
-
-...
-
-> + *  Manish Narani <mnarani@xilinx.com>
-
-A-ha! You probably forgot the Co-developed-by tag above.
-
-> + *  Rajnikant Bhojani <rajnikant.bhojani@xilinx.com>
-
-...
-
-Missed headers, like bits.h.
-
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-
-> +#include <linux/of_address.h>
-
-Do you need this? Maybe mod_devicetable.h?
-
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-
-...
-
-> +static const unsigned int AMS_UNMASK_TIMEOUT_MS = 500;
-
-Why not define (esp. taking into account another similar define below?
-
-...
-
-> +#define AMS_REGCFG1_ALARM_MASK         0xF0F
-> +#define AMS_REGCFG3_ALARM_MASK         0x3F
-
-> +#define AMS_PL_ALARM_MASK              0xFFFF0000U
-> +#define AMS_ISR0_ALARM_MASK            0xFFFFFFFFU
-> +#define AMS_ISR1_ALARM_MASK            0xE000001FU
-> +#define AMS_ISR1_EOC_MASK              0x00000008U
-
-What is so special about these that they are not using combinations of
-GENMASK() / BIT()?
-
-...
-
-> +enum ams_alarm_bit {
-> +       AMS_ALARM_BIT_TEMP,
-> +       AMS_ALARM_BIT_SUPPLY1,
-> +       AMS_ALARM_BIT_SUPPLY2,
-> +       AMS_ALARM_BIT_SUPPLY3,
-> +       AMS_ALARM_BIT_SUPPLY4,
-> +       AMS_ALARM_BIT_SUPPLY5,
-> +       AMS_ALARM_BIT_SUPPLY6,
-> +       AMS_ALARM_BIT_RESERVED,
-> +       AMS_ALARM_BIT_SUPPLY7,
-> +       AMS_ALARM_BIT_SUPPLY8,
-> +       AMS_ALARM_BIT_SUPPLY9,
-> +       AMS_ALARM_BIT_SUPPLY10,
-> +       AMS_ALARM_BIT_VCCAMS,
-> +       AMS_ALARM_BIT_TEMP_REMOTE
-
-Is it terminator line? Doesn't sound like it to me. So, please add a
-comma. Same for the rest.
-
-> +};
-
-...
-
-> +       AMS_SEQ_MAX
-
-This seems correct, no comma is needed :-)
-
-...
-
-> +struct ams {
-> +       void __iomem *base;
-> +       void __iomem *ps_base;
-> +       void __iomem *pl_base;
-> +       struct clk *clk;
-> +       struct device *dev;
-
-> +       /* check kernel doc above */
-
-Useless
-
-> +       struct mutex lock;
-
-> +       /* check kernel doc above */
-
-Ditto.
-
-> +       spinlock_t intr_lock;
-> +       unsigned int alarm_mask;
-> +       unsigned int masked_alarm;
-> +       u64 intr_mask;
-> +       int irq;
-> +       struct delayed_work ams_unmask_work;
-> +};
-
-...
-
-> +       writel((val & ~mask) | (data & mask), ams->ps_base + offset);
-
-Split to assignment and simple writel() call. Same to the rest.
-
-...
-
-> +       ams->intr_mask &= ~mask;
-> +       ams->intr_mask |= (val & mask);
-
-This may be combined to one line as it's a standard pattern.
-
-...
-
-> +       if (ams->ps_base) {
-> +               /* Configuring PS alarm enable */
-> +               cfg = ~((alarm_mask & AMS_ISR0_ALARM_2_TO_0_MASK) <<
-> +                              AMS_CONF1_ALARM_2_TO_0_SHIFT);
-> +               cfg &= ~((alarm_mask & AMS_ISR0_ALARM_6_TO_3_MASK) <<
-> +                               AMS_CONF1_ALARM_6_TO_3_SHIFT);
-> +               ams_ps_update_reg(ams, AMS_REG_CONFIG1, AMS_REGCFG1_ALARM_MASK,
-> +                                 cfg);
-> +
-> +               cfg = ~((alarm_mask >> AMS_CONF3_ALARM_12_TO_7_SHIFT) &
-> +                               AMS_ISR0_ALARM_12_TO_7_MASK);
-> +               ams_ps_update_reg(ams, AMS_REG_CONFIG3, AMS_REGCFG3_ALARM_MASK,
-> +                                 cfg);
-> +       }
-
-By factoring out the body of the conditional to a helper function you may:
-- decrease indentation
-- make code better to read
-- reduce LOCs
-
-> +       if (ams->pl_base) {
-> +               pl_alarm_mask = (alarm_mask >> AMS_PL_ALARM_START);
-> +               pl_alarm_mask = FIELD_GET(AMS_PL_ALARM_MASK, alarm_mask);
-> +               /* Configuring PL alarm enable */
-> +               cfg = ~((pl_alarm_mask & AMS_ISR0_ALARM_2_TO_0_MASK) <<
-> +                       AMS_CONF1_ALARM_2_TO_0_SHIFT);
-> +               cfg &= ~((pl_alarm_mask & AMS_ISR0_ALARM_6_TO_3_MASK) <<
-> +                        AMS_CONF1_ALARM_6_TO_3_SHIFT);
-> +               ams_pl_update_reg(ams, AMS_REG_CONFIG1,
-> +                                 AMS_REGCFG1_ALARM_MASK, cfg);
-> +
-> +               cfg = ~((pl_alarm_mask >> AMS_CONF3_ALARM_12_TO_7_SHIFT) &
-> +                       AMS_ISR0_ALARM_12_TO_7_MASK);
-> +               ams_pl_update_reg(ams, AMS_REG_CONFIG3,
-> +                                 AMS_REGCFG3_ALARM_MASK, cfg);
-> +       }
-
-Ditto. And the same applies to all the rest where it gains something
-from the above list of improvements.
-
-...
-
-> +       int i;
-> +       unsigned long long scan_mask;
-> +       struct ams *ams = iio_priv(indio_dev);
-
-Reversed xmas tree order, please.
-Same for the rest.
-
-...
-
-> +       /* Run calibration of PS & PL as part of the sequence */
-> +       scan_mask = 0x1 | BIT(AMS_PS_SEQ_MAX);
-
-BIT(0) ?
-
-...
-
-> +       ams_update_intrmask(ams, ~0, ~0);
-
-Replace ~0 to proper GENMASK()./BIT() combination which takes into
-account real bits used by hardware.
-
-...
-
-> +       case IIO_CHAN_INFO_RAW:
-> +               mutex_lock(&ams->lock);
-> +               if (chan->scan_index >= (AMS_PS_SEQ_MAX * 3)) {
-
-Too many parens.
-
-> +                       ret = ams_read_vcc_reg(ams, chan->address, val);
-> +                       if (ret) {
-> +                               mutex_unlock(&ams->lock);
-> +                               return -EINVAL;
-> +                       }
-> +                       ams_enable_channel_sequence(indio_dev);
-> +               } else if (chan->scan_index >= AMS_PS_SEQ_MAX)
-> +                       *val = readl(ams->pl_base + chan->address);
-> +               else
-> +                       *val = readl(ams->ps_base + chan->address);
-> +               mutex_unlock(&ams->lock);
-> +
-> +               return IIO_VAL_INT;
-
-...
-
-> +       return -EINVAL;
-
-Use corresponding defaul cases in each of the switches.
-
-...
-
-> +       int offset = 0;
-
-Make the assignment as an else branch, so all offset assignments will
-be grouped together.
-
-> +       if (dir == IIO_EV_DIR_FALLING) {
-> +               if (scan_index < AMS_SEQ_SUPPLY7)
-> +                       offset = AMS_ALARM_THRESHOLD_OFF_10;
-> +               else
-> +                       offset = AMS_ALARM_THRESHOLD_OFF_20;
-> +       }
-
-...
-
-> +       return 0;
-
-default case.
-
-> +}
-
-...
-
-> +static const struct iio_chan_spec
-> +*ams_event_to_channel(struct iio_dev *indio_dev, u32 event)
-
-Unusual indentation.
-
-...
-
-> +       case AMS_ALARM_BIT_TEMP_REMOTE:
-> +               scan_index += AMS_SEQ_TEMP_REMOTE;
-> +               break;
-
-default?
-Same for the rest of the cases like this.
-
-...
-
-> +       return (ams->alarm_mask & ams_get_alarm_mask(chan->scan_index)) ? 1 : 0;
-
-!! would work as well.
-
-...
-
-> +               /*
-> +                * The temperature channel only supports over-temperature
-> +                * events
-
-Missed period.
-
-> +                */
-
-...
-
-> +       /* only process alarms that are not masked */
-
-Inconsistent style (here capitalization is missed). Make all comments
-in the code consistent.
-
-> +       isr0 &= ~((ams->intr_mask & AMS_ISR0_ALARM_MASK) | ams->masked_alarm);
-
-> +
-
-Redundant blank line.
-
-> +       if (!isr0)
-
-How did you test this branch? (Hint: something very important should
-be done here)
-
-> +               return IRQ_NONE;
-
-...
-
-> +       for_each_child_of_node(chan_node, child) {
-> +               ret = of_property_read_u32(child, "reg", &reg);
-> +               if (ret || reg > (AMS_PL_MAX_EXT_CHANNEL + 30))
-> +                       continue;
-> +
-> +               memcpy(&channels[num_channels], &ams_pl_channels[reg +
-> +                      AMS_PL_MAX_FIXED_CHANNEL - 30], sizeof(*channels));
-> +
-> +               if (of_property_read_bool(child, "xlnx,bipolar"))
-> +                       channels[num_channels].scan_type.sign = 's';
-> +
-> +               num_channels++;
-> +       }
-
-Use device property API here instead of *of_*() calls.
-
-...
-
-> +       /* Initialize buffer for channel specification */
-> +       ams_channels = kzalloc(sizeof(ams_ps_channels) +
-> +                              sizeof(ams_pl_channels) +
-> +                              sizeof(ams_ctrl_channels), GFP_KERNEL);
-
-Use the corresponding macro from overflow.h.
-
-> +       if (!ams_channels)
-> +               return -ENOMEM;
-
-...
-
-> +       if (of_device_is_available(np)) {
-
-fwnode_device_is_available()
-
-> +               ret = ams_init_module(indio_dev, np, ams_channels);
-> +               if (ret < 0)
-> +                       goto err;
-> +
-> +               num_channels += ret;
-> +       }
-
-...
-
-> +       for_each_child_of_node(np, child_node) {
-> +               if (of_device_is_available(child_node)) {
-> +                       ret = ams_init_module(indio_dev, child_node,
-> +                                             ams_channels + num_channels);
-> +                       if (ret < 0)
-> +                               goto err;
-> +
-> +                       num_channels += ret;
-> +               }
-> +       }
-
-As per above.
-
-...
-
-> +       if (!pdev->dev.of_node)
-> +               return -ENODEV;
-
-Drop this, please. It will allow reuse of the driver in ACPI environments.
-
-...
-
-> +       ams->irq = platform_get_irq(pdev, 0);
-> +       if (ams->irq == -EPROBE_DEFER) {
-
-Is IRQ optional or not?
-
-> +               ret = -EPROBE_DEFER;
-> +               return ret;
-> +       }
-
-...
-
-> +       ret = devm_iio_device_register(&pdev->dev, indio_dev);
-> +
-> +       return ret;
-
-return devm_...
-
-...
-
-> +       clk_prepare_enable(ams->clk);
-
-It might fail.
-
+> Maybe an example is in order. Suppose we get strong pull-up, drive
+> strength 3 and pull-down config flags (the strong pull-up and pull
+> down flags conflict) and the padctl value is 0x0c0 (pull-up, input and
+> schmitt trigger enabled). With your solution of just altering the
+> padctl bits immediately we'd call starfive_padctl_rmw 3 times in rapid
+> succession like this:
+>
+> starfive_padctl_rmw(pin, 0x130, 0x100);
+> starfive_padctl_rmw(pin, 0x007, 0x003);
+> starfive_padctl_rmw(pin, 0x130, 0x010);
+>
+> ..and the end result would be 0x0d3, although the strong pull-up would
+> be enabled for the microseconds between the 1st and 3nd call.
+> As the code is now it'd just directly do
+>
+> starfive_padctl_rmw(pin, 0x137, 0x013)
+>
+> ..which again results in 0x0d3, only without the microsecond blink of
+> the strong pull-up.
+
+You missed the point. Hardware on the other end may behave well
+differently in these two cases.
 
 -- 
 With Best Regards,
