@@ -2,103 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B6143A590
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 23:10:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F050643A594
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 23:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234369AbhJYVNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 17:13:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42516 "EHLO mail.kernel.org"
+        id S234601AbhJYVPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 17:15:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43566 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234890AbhJYVNH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 17:13:07 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 42320610A4;
-        Mon, 25 Oct 2021 21:10:45 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.lan)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mf7Ex-001WA3-Ew; Mon, 25 Oct 2021 22:10:43 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        kernel-team@android.com
-Subject: [PATCH 5/5] arm64: dts: apple: j274: Expose PCI node for the Ethernet MAC address
-Date:   Mon, 25 Oct 2021 22:10:18 +0100
-Message-Id: <20211025211018.744363-6-maz@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211025211018.744363-1-maz@kernel.org>
-References: <20211025211018.744363-1-maz@kernel.org>
+        id S234509AbhJYVPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 17:15:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C09BC61073;
+        Mon, 25 Oct 2021 21:12:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635196358;
+        bh=4MXuBNVzkrZP3yecgRjqdL1aeKI6T/KhfEayaMfhl5o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=Jwx48/xdZTS5oCSdpphMARaOk5BXsy/YhtvgQK58CS0MIbpFO/7nVRXfsizhctVfR
+         DHn11NFtFXjfnu6kyDHuqPw89urntqir4r8uypb/5YKdemXm94z7eYj6keuXdeIE25
+         DXSNsPXSoB7zjCqOT+Et5sjq1DtzstEtlDWbAhhCErQsIOpLcJ/97usD3deU4+3YdK
+         MHURE3evLaqBPAtcbvjIeGjPfhVB6lKH0heav9dnl+Wot8LtpkTvQGZBBmEBQkPFve
+         wn8n9vsGs2dHq3cKEq4GbiUzVa6XVCu+uhZ6TeALJcplO2i1e8+vq8/HkoP4FAQIIy
+         2ot2MOyZdSGpQ==
+Date:   Mon, 25 Oct 2021 16:12:36 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-staging@lists.linux.dev,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
+ controller driver
+Message-ID: <20211025211236.GA31293@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, kettenis@openbsd.org, sven@svenpeter.dev, marcan@marcan.st, alyssa@rosenzweig.io, kernel-team@android.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMhs-H90rD8aHJ+txDzFZ62Ej9_TY=BZMT+1058d=Pm_LfYwPA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At the moment, all the Minis running Linux have the same MAC
-address (00:10:18:00:00:00), which is a bit annoying.
+On Fri, Oct 22, 2021 at 11:13:39AM +0200, Sergio Paracuellos wrote:
+> On Fri, Oct 22, 2021 at 10:35 AM Lorenzo Pieralisi
+> <lorenzo.pieralisi@arm.com> wrote:
+> >
+> > On Thu, Oct 21, 2021 at 09:23:35PM +0200, Sergio Paracuellos wrote:
+> > > On Thu, Oct 21, 2021 at 8:11 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > >
+> > > > On Thu, Oct 21, 2021 at 07:27:21PM +0200, Sergio Paracuellos wrote:
+> > > > > On Thu, Oct 21, 2021 at 5:52 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> > > > > > Since this is a PCIe (not conventional PCI) controller, I
+> > > > > > vote for renaming these from:
+> > > > > >
+> > > > > >   PCI_MT7621
+> > > > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+> > > > > >   drivers/pci/controller/pci-mt7621.c
+> > > > > >
+> > > > > > to:
+> > > > > >
+> > > > > >   PCIE_MT7621
+> > > > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
+> > > > > >   drivers/pci/controller/pcie-mt7621.c
+> > > > > >
+> > > > > > We have a mix of these, with many of the early PCIe
+> > > > > > drivers being named "pci", but I think that was my mistake
+> > > > > > and there's no reason to continue it.
+> > > > >
+> > > > > I see.
+> > > > >
+> > > > > > I can do this locally unless somebody objects.
+> > > > >
+> > > > > I have no problem at all. Only one question. Do you mean to
+> > > > > change compatible string also, or only the name of the file?
+> > > > > Let me know if I have to do anything.
+> > > >
+> > > > I didn't change the compatible string, to avoid a DT
+> > > > incompatibility.  But I *did* change the Kconfig symbol to
+> > > > PCIE_MT7621, which could require changes to out-of-tree
+> > > > .configs.  I'm open to suggestions either way for both things.
+> > >
+> > > IMHO, I do think we should not worry about out-of-tree stuff at
+> > > all.
+> >
+> > For Kconfig I tend to agree. For DT I see some "bindings" in the
+> > staging tree are being deleted and published as official DT
+> > bindings with this patchset but I believe we still have to keep
+> > the compatible string backward compatibility regardless because
+> > there may be firmware out there using it.
+> 
+> The bindings txt file removed in staging with this patchset was also
+> added by me three years ago[0], and has been changing until the YAML
+> bindings are reviewed by Rob and driver updated accordly in this
+> patchset.
+>
+> OpenWRT maintains its own file[1] which I don't know is updated or
+> not according to the one in staging which I am pretending to
+> properly mainline for 5.17. But yes, I agree there might be firmware
+> out there using current compatible string.
+> 
+> [0]: Commit 5451e22618b8 ("staging: mt7621-pci: dt-bindings: add dt
+> bindings for mt7621 pcie controller")
+> [1]: https://github.com/openwrt/openwrt/blob/master/target/linux/ramips/dts/mt7621.dtsi
 
-Expose the PCI node corresponding to the Ethernet device, and
-declare a 'local-mac-address' property. The bootloader will update
-it (m1n1 already has the required feature). And if it doesn't, then
-the default value is already present in the DT.
+OK, for now I left my rework as-is:
 
-This relies on forcing the bus number for each port so that the
-endpoints connected to them are correctly numbered (and keeps dtc
-quiet).
+  - changed CONFIG_PCI_MT7621 to CONFIG_PCIE_MT7621
+  - renamed mediatek,mt7621-pci.yaml to mediatek,mt7621-pcie.yaml
+  - renamed pci-mt7621.c to pcie-mt7621.c
+  - kept DT compatible string "mediatek,mt7621-pci" in .yaml and .c
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/boot/dts/apple/t8103-j274.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+I reason that the Kconfig and filename changes only affect people
+building kernels or DTs, but a compatible string change would force a
+DT update to be synchronized with a kernel update.
 
-diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts b/arch/arm64/boot/dts/apple/t8103-j274.dts
-index e0f6775b9878..33a80f9501dc 100644
---- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-@@ -17,6 +17,7 @@ / {
- 
- 	aliases {
- 		serial0 = &serial0;
-+		ethernet0 = &ethernet0;
- 	};
- 
- 	chosen {
-@@ -43,3 +44,25 @@ memory@800000000 {
- &serial0 {
- 	status = "okay";
- };
-+
-+/*
-+ * Force the bus number assignments so that we can declare some of the
-+ * on-board devices and properties that are populated by the bootloader
-+ * (such as MAC addresses).
-+ */
-+&port00 {
-+	bus-range = <1 1>;
-+};
-+
-+&port01 {
-+	bus-range = <2 2>;
-+};
-+
-+&port02 {
-+	bus-range = <3 3>;
-+	ethernet0: pci@0,0 {
-+		reg = <0x30000 0x0 0x0 0x0 0x0>;
-+		/* To be filled by the loader */
-+		local-mac-address = [00 10 18 00 00 00];
-+	};
-+};
--- 
-2.30.2
+Happy to change this if necessary.
 
+Bjorn
