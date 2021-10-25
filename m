@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B67743A47E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 22:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED4A43A49F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 22:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233384AbhJYU0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 16:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36198 "EHLO
+        id S234339AbhJYU2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 16:28:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234122AbhJYUZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 16:25:54 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C5D6C04A426;
-        Mon, 25 Oct 2021 13:10:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=CsvL4v/RYNVoKdvqUcUJV/dOSJi7VMO3ULrp0raf47I=; b=Ad1wd4ZCdG3bF5K8R/GIxj9gT+
-        +qc4aPpJh0nheolbsuvwq0sEwjgliRNepbViB3fgXi0kxJCP4613Dh0Vc14Efs4cBqtKxu5ta5va6
-        ILmypmASyKNmhtiq2ePEgGwrbTdDSVwW4DYwBYrWsHb0LNYHpCk013UvMAlvDWZqLYLS4SMAqiBKM
-        HbDZlaAL3kLoBtbPnz8CJRW5x6VSxV3icyxcWVeGePlWR7dOqFpFBtCPj42tpJWDO2IrkiBlEQeR8
-        Y8lYlKad4DJauPJtmClDMTagREPFZGp7bwLxzzTNVcTmuqNRvyRAWTaWYOgRGrUKz8GuqyIj0HTO6
-        mVkOhfXg==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mf6Ip-00HYjn-Rb; Mon, 25 Oct 2021 20:10:39 +0000
-Subject: Re: [PATCH 1/4] Input: Add driver for Cypress Generation 5
- touchscreen
-To:     Alistair Francis <alistair@alistair23.me>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Cc:     andreas@kemnade.info, alistair23@gmail.com,
-        dmitry.torokhov@gmail.com, linus.walleij@linaro.org,
-        robh+dt@kernel.org, rydberg@bitmath.org,
-        mylene.josserand@free-electrons.com,
-        =?UTF-8?Q?Myl=c3=a8ne_Josserand?= <mylene.josserand@bootlin.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-References: <20211025114214.44617-1-alistair@alistair23.me>
- <20211025114214.44617-2-alistair@alistair23.me>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <896cd7b2-57c8-e777-0e12-4f319c43f49e@infradead.org>
-Date:   Mon, 25 Oct 2021 13:10:38 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S236864AbhJYU2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 16:28:06 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36BAC04CCA1
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 13:17:01 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id y207so17205059oia.11
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 13:17:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=sFv6oulnfVWm3KV24cqy4zkMNUKjR06XXY8InDqsw00=;
+        b=QDiai+q8Lqf5LMBLx2DhWGQnvq0RMrH2tHpBEgbx3rXXJU1etaPCLUki3NvMOiiWf8
+         t/1GJIn2IejrRZjvkeRoV8LAE3d9Ps01FqQmrkk6U7FEf8+OVU2HXp50V9ve+WZ9Tyf1
+         1JunLoHzZAAYHRpEGHajeJ3/3EhrykIaRZuIs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=sFv6oulnfVWm3KV24cqy4zkMNUKjR06XXY8InDqsw00=;
+        b=boZ701o2aYCMQvwV8dvdMeG5Zc+b4bHNKy6uYX+Se7sVxV55URRg3720dpkKOMVC1l
+         2hcUAvkzzLKIYr8ohbOrwFSXW7olrgQKsIjRIn81VLQXGtVigIrncZssiVtQLwOOMqnc
+         T50VgggdLZWO0phlmPL3npAoi0WEqbRLz/DyHIPRRvSglQBNDFaORJM26hEIbVPedY7y
+         C4eEWc0yCzWuneJUnLS5Y6iJfqRGZt93dca7XJjrk2Wsg531C5QnXJJLH0864jsqFO3r
+         hJBS1fPXzyq19JMV+07J248CmNhzR5nV2FUwGXvTvTkhnwuzvAo2Z6hMFfB4qNdSkK/7
+         b0Hw==
+X-Gm-Message-State: AOAM530jp2C3HxQ4orrzUsktnkvP8GZykHvdIAJFHS4gtKjkoesHabb6
+        qbINJ06GbiT95dSClSvSRHZ7SZjmwHUKzGu5vl1ASQ==
+X-Google-Smtp-Source: ABdhPJwhdypNNNtSLateKcvC+lx++2bCS+2MH4BP5EkkJROEF59u9EHq9c5I6//07zar4ce5AtumC4etyH/4t4KQ/Xc=
+X-Received: by 2002:a05:6808:1d9:: with SMTP id x25mr12912230oic.64.1635193021348;
+ Mon, 25 Oct 2021 13:17:01 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 25 Oct 2021 13:17:00 -0700
 MIME-Version: 1.0
-In-Reply-To: <20211025114214.44617-2-alistair@alistair23.me>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <YXcBK7zqny0s4gd4@ripper>
+References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com> <YXcBK7zqny0s4gd4@ripper>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 25 Oct 2021 13:17:00 -0700
+Message-ID: <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/25/21 4:42 AM, Alistair Francis wrote:
-> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-> index d4e74738c5a8..231cb0c1750b 100644
-> --- a/drivers/input/touchscreen/Kconfig
-> +++ b/drivers/input/touchscreen/Kconfig
-> @@ -284,6 +284,20 @@ config TOUCHSCREEN_CYTTSP4_SPI
->   	  To compile this driver as a module, choose M here: the
->   	  module will be called cyttsp4_spi.
->   
-> +config TOUCHSCREEN_CYTTSP5
-> +	tristate "Cypress TrueTouch Gen5 Touchscreen Driver"
-> +	depends on OF
-> +	select REGMAP_I2C
-> +	select CRC_ITU_T
-> +	help
-> +	  Driver for Parade TrueTouch Standard Product
-> +	  Generation 5 touchscreen controllers.
-> +	  I2C bus interface support only.
-> +	  Say Y here if you have a Cypress Gen5 touchscreen.
-> +	  If unsure, say N.
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called cyttsp5.
+Quoting Bjorn Andersson (2021-10-25 12:10:35)
+> On Mon 25 Oct 02:07 PDT 2021, Sandeep Maheswaram wrote:
+>
+> > Add multi pd bindings to set performance state for cx domain
+> > to maintain minimum corner voltage for USB clocks.
+> >
+> > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> > ---
+> > v2:
+> > Make cx domain mandatory.
+> >
+> >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > index 2bdaba0..fd595a8 100644
+> > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> > @@ -42,7 +42,13 @@ properties:
+> >
+> >    power-domains:
+> >      description: specifies a phandle to PM domain provider node
+> > -    maxItems: 1
+> > +    minItems: 2
+> > +    items:
+> > +      - description: cx power domain
+> > +      - description: USB gdsc power domain
+> > +
+> > +  required-opps:
+> > +    description: specifies the performance state to power domain
+>
+> I'm still worried about the fact that we can't just rely on the USB GDSC
+> being a subdomin of CX in order to just "turn on" CX.
+>
+> Afaict accepting this path forward means that for any device that sits
+> in a GDSC power domain we will have to replicate this series for the
+> related driver.
+>
 
-Hi,
-Why is there no line:
-	depends on I2C
-here?
-
-thanks.
--- 
-~Randy
+I suspect the problem is that it's not just "turn on" but wanting to
+turn it on and then set the performance state to some value based on the
+clk frequency. Maybe the simplest version of that could be supported
+somehow by having dev_pm_opp_set_rate() figure out that the 'level'
+applies to the parent power domain instead of the child one? Or we may
+need to make another part of the OPP binding to indicate the
+relationship between the power domain and the OPP and the parent of the
+power domain.
