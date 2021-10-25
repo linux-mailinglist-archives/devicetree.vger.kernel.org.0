@@ -2,181 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B214390EC
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 10:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D920643910B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 10:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbhJYIQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 04:16:26 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:43402 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbhJYIQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 04:16:25 -0400
-Received: from localhost (unknown [192.168.167.70])
-        by lucky1.263xmail.com (Postfix) with ESMTP id C0B60D70C6;
-        Mon, 25 Oct 2021 16:06:39 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P17687T140584201217792S1635149192925589_;
-        Mon, 25 Oct 2021 16:06:38 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 13
-X-LOCAL-RCPT-COUNT: 2
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <fbefa1c002cae2b903d86d6e21652e4b>
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     heiko@sntech.de, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, vkoul@kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de, cl@rock-chips.com,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: add naneng combo phy nodes for rk3568
-Date:   Mon, 25 Oct 2021 16:06:32 +0800
-Message-Id: <20211025080632.32063-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211025080632.32063-1-yifeng.zhao@rock-chips.com>
-References: <20211025080632.32063-1-yifeng.zhao@rock-chips.com>
+        id S230099AbhJYIWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 04:22:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230019AbhJYIWT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 04:22:19 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26697C061745
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 01:19:53 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id m42so9841396wms.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 01:19:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nqdTAd2AAFjUR4/hpb+Hh1HQbpzrMWpG+y0bpTyBHe8=;
+        b=0Cqi+hPbwmyD1uI7h/XlBWasSMJzIJA2qUTP7fF5bkIeGXmrTjAISUxahve+FUTKVZ
+         0bD091S+Q6o/+ccNucB5aASYR0ZEuEzxumSKMlY6/5unRGz6eV4raUfWFhSGtZiVCEEp
+         D9maoN0WKOYAimUURKBKokqbBjl1ZgftPT+WvvT+yfmbXX7RQM8Wnqr4EkoNvoraxK6u
+         X9WG+jqPrpcSJrWqrrEs3dZcfOHjTuR97eM8XZg0EKQRu3AnIOD3Rudko6j28ZqiXUPr
+         vDkLJWqrv62ECFjIoMtgFJW5H6+Q6LnGBN9hjK+DQRegNvqXl165s0/rqWIOT0dhrgGh
+         qbKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=nqdTAd2AAFjUR4/hpb+Hh1HQbpzrMWpG+y0bpTyBHe8=;
+        b=Dt6CwwDwYWRSyD2h900PhnXg6iVno170VYqNFgPFFOLxR1oBlkCn0zz8COdEMvgbYY
+         XNsYZU+12qB7bPX4eqvRdQPsLkXCqMVENAWjo1BSPc3Nt3XL48pquiMvIilzNTwbjCwR
+         0+IzoKSdoWFUF0Kcum4rAUnun+gMLrMfyIIMi2mDCtM5Tu0G8yG+i6u9aiQ4cvkL6ayK
+         M0TKWmCqXkwN2WH3SAhjW5IAs5FVvWf5zmRnDKn/ocRcfGxQY4/p7cMVeLZ+ffn1CS3s
+         eq2TLQWG768l5/jRu0q+lbrWJzzn8dXH75FJprGSL9Vf2Au2gCkeQM4xiD6Wn8iquRx/
+         8hkw==
+X-Gm-Message-State: AOAM5315CIglt5hs7GHBZ84AinSbqwJkzdXAwfLXyOAajuh2YRNORLep
+        XQ1NOE7Z/V7SvgvS1OMbfSSE7A==
+X-Google-Smtp-Source: ABdhPJwNGa9asu7Z1567HMswCkhmdmuQt831fpZVjam/iHs5lXL5iOHzHOKOePjV5DjCEgETDXqGwg==
+X-Received: by 2002:a1c:7208:: with SMTP id n8mr9906308wmc.130.1635149991460;
+        Mon, 25 Oct 2021 01:19:51 -0700 (PDT)
+Received: from [172.20.10.7] ([37.166.214.228])
+        by smtp.gmail.com with ESMTPSA id o1sm6803044wru.91.2021.10.25.01.19.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Oct 2021 01:19:50 -0700 (PDT)
+Subject: Re: [PATCH 3/4] arm64: dts: amlogic: meson-g12: Fix GPU operating
+ point table node name
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20211023214856.30097-1-alexander.stein@mailbox.org>
+ <20211023214856.30097-3-alexander.stein@mailbox.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <fdacca3e-a35f-ac88-8a57-1fa5bb049e68@baylibre.com>
+Date:   Mon, 25 Oct 2021 10:19:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211023214856.30097-3-alexander.stein@mailbox.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the core dt-node for the rk3568's naneng combo phys.
+On 23/10/2021 23:48, Alexander Stein wrote:
+> Starting with commit 94274f20f6bf ("dt-bindings: opp: Convert to DT
+> schema") the opp node name has a mandatory pattern. This change
+> fixes the dtbs_check warning:
+> gpu-opp-table: $nodename:0: 'gpu-opp-table' does not match
+> '^opp-table(-[a-z0-9]+)?$'
+> Put the 'gpu' part at the end to match the pattern.
+> 
+> Fixes: 916a0edc43f0 ("arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS")
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> Same as with patch 2/4 about the 'Fixes' tag: At the time when
+> gpu-opp-table was added there was no schema present. So there was no bug at
+> the time of writing. I'm ok either way.
+> 
+>  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index ff987e7ccff2..517519e6e87f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -58,7 +58,7 @@ efuse: efuse {
+>  		secure-monitor = <&sm>;
+>  	};
+>  
+> -	gpu_opp_table: gpu-opp-table {
+> +	gpu_opp_table: opp-table-gpu {
+>  		compatible = "operating-points-v2";
+>  
+>  		opp-124999998 {
+> 
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
-
-Changes in v3:
-- Move pipe_phy_grf0 to rk3568.dtsi
-
-Changes in v2:
-- Move phy0 to rk3568.dtsi
-
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 21 +++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
- 2 files changed, 68 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 2fd313a295f8..4db5d3c2a04e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,11 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	pipe_phy_grf0: syscon@fdc70000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc70000 0x0 0x1000>;
-+	};
-+
- 	qos_pcie3x1: qos@fe190080 {
- 		compatible = "rockchip,rk3568-qos", "syscon";
- 		reg = <0x0 0xfe190080 0x0 0x20>;
-@@ -71,6 +76,22 @@
- 			queue0 {};
- 		};
- 	};
-+
-+	combphy0_us: phy@fe820000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe820000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-+		status = "disabled";
-+	};
- };
- 
- &cpu0_opp_table {
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 46d9552f6028..4380580d061b 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -214,11 +214,26 @@
- 		};
- 	};
- 
-+	pipegrf: syscon@fdc50000 {
-+		compatible = "rockchip,rk3568-pipegrf", "syscon";
-+		reg = <0x0 0xfdc50000 0x0 0x1000>;
-+	};
-+
- 	grf: syscon@fdc60000 {
- 		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
- 		reg = <0x0 0xfdc60000 0x0 0x10000>;
- 	};
- 
-+	pipe_phy_grf1: syscon@fdc80000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc80000 0x0 0x1000>;
-+	};
-+
-+	pipe_phy_grf2: syscon@fdc90000 {
-+		compatible = "rockchip,pipe-phy-grf", "syscon";
-+		reg = <0x0 0xfdc90000 0x0 0x1000>;
-+	};
-+
- 	pmucru: clock-controller@fdd00000 {
- 		compatible = "rockchip,rk3568-pmucru";
- 		reg = <0x0 0xfdd00000 0x0 0x1000>;
-@@ -1077,6 +1092,38 @@
- 		status = "disabled";
- 	};
- 
-+	combphy1_usq: phy@fe830000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe830000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-+		status = "disabled";
-+	};
-+
-+	combphy2_psq: phy@fe840000 {
-+		compatible = "rockchip,rk3568-naneng-combphy";
-+		reg = <0x0 0xfe840000 0x0 0x100>;
-+		#phy-cells = <1>;
-+		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
-+			 <&cru PCLK_PIPE>;
-+		clock-names = "ref", "apb", "pipe";
-+		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-+		assigned-clock-rates = <100000000>;
-+		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
-+		reset-names = "combphy-apb", "combphy";
-+		rockchip,pipe-grf = <&pipegrf>;
-+		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-+		status = "disabled";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
--- 
-2.17.1
-
-
-
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
