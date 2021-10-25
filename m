@@ -2,100 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7CDB43903B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5617243903D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 09:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230236AbhJYHWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 03:22:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34520 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230183AbhJYHWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 03:22:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EF61660724;
-        Mon, 25 Oct 2021 07:20:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635146415;
-        bh=oTmkGUaMrUls5+nCfH+wzzIwXOCcij7+t4UXotfvygc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NBBnUm5h4gqghZDyGBMFXofipnhDcGhosPJFd1wDxuNdR8Y3iJTNIfaycs/CXyeEk
-         Pg1TjT/dDF6z6yziPGqO9eYMRx1Xh5kc35qEqRyYuFcAf4ExWCxzNb4OpkbLKLcNm/
-         YtwCSwNicUdpsVC1qNrsQeqqSpX3eDl8xTFq8964WT60svGjv17G5F8epkoteciX0b
-         MDM9z53DyMs+3WNInJXoi6s6gnPPCVCSK1aiEI/S/eH/G9jBfGky62ppl5JD2QDNuR
-         1SsxwHagc6UmJGtIr7NVHonkZQ3/Su10jESG+wPPrb4BXYK2qNGgplVBxx+vICxTTo
-         CCz4zW7iHKanw==
-Date:   Mon, 25 Oct 2021 12:50:11 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 6/7] phy: phy-mtk-dp: Add driver for DP phy
-Message-ID: <YXZaq/HYkZSNYKI3@matsya>
-References: <20211021092707.3562523-1-msp@baylibre.com>
- <20211021092707.3562523-7-msp@baylibre.com>
- <YXJIPu/Ax6qeft03@matsya>
- <20211022130636.ncqisltwsvkkc7cg@blmsp>
+        id S231133AbhJYHWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 03:22:43 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:55094 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230183AbhJYHWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 03:22:42 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19P6qN51012732;
+        Mon, 25 Oct 2021 09:20:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Z6nK0T3KPSvgwKH+T3spCM1HMT7IXBot+P5ETpHeGOY=;
+ b=ik4sp/2PfFjDhr+Ag/T2oYCwJe1sgraRcPk/Cl9seEHii6YdzEWP7Gp88L5Lc7L0Jtli
+ KVJpOmYi2CrjOSo65GDmUrlgYGdXSlsr67PhhKu/5iPNfvBVbozdEdK139Dpz764Ygmx
+ Wb6+7q0cub6KquIBCjsNcXide+jzjHd1/rMMst8yEEmaOWdVo95SnhY+PIbbBuaO5X91
+ UlNrWavEkTNya4KeEyYRGJjpJwsFfb9sTDjIz/XFC4z1o+gKOnsgtfhAI6gjlKWADpzq
+ tlgE8tSpZNs5u3ljNTi8iav+wZxjoAZVB0uxncxej1XMdiJe5tiE+Z8k1OmSY4gXldku lA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bwqpsg58h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 25 Oct 2021 09:20:15 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5550310002A;
+        Mon, 25 Oct 2021 09:20:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 312A02138EF;
+        Mon, 25 Oct 2021 09:20:15 +0200 (CEST)
+Received: from [10.211.0.75] (10.75.127.50) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 25 Oct
+ 2021 09:20:13 +0200
+Subject: Re: [PATCH] dt-bindings: usb: dwc2: Add otg-rev property
+ documentation
+To:     Marek Vasut <marex@denx.de>, <linux-usb@vger.kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+References: <20211024003652.227772-1-marex@denx.de>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Message-ID: <d3169061-e131-8dd9-5796-b82b9800cef1@foss.st.com>
+Date:   Mon, 25 Oct 2021 09:20:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211022130636.ncqisltwsvkkc7cg@blmsp>
+In-Reply-To: <20211024003652.227772-1-marex@denx.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-25_02,2021-10-25_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-10-21, 15:06, Markus Schneider-Pargmann wrote:
-
-> > > +	dp_phy->regs = *(struct regmap **)dev->platform_data;
-> > > +	if (!dp_phy->regs) {
-> > > +		dev_err(dev, "No data passed, requires struct regmap**\n");
-> > > +		return -EINVAL;
-> > > +	}
-> > 
-> > is there a reason to do it this way? Why not set the IORESOURCE_MEM for
-> > this device and let the driver map here?
-> > 
-> > NO clocks?
+On 10/24/21 2:36 AM, Marek Vasut wrote:
+> Copy the otg-rev property documentation from usb-drd.yaml into the DWC2
+> binding document, since some users of the DWC2 IP like STM32MP1 use the
+> otg-rev property in DT bindings for this controller.
 > 
-> As briefly mentioned in the commit message, this phy is not a dedicated
-> phy. It is embedded in the DisplayPort controller that is added in patch
-> 7 of this series. The registerspace of the DisplayPort controller starts
-> at offset 0x0, continues with 0x1000 for PHY related functions and goes
-> on with encoder related and other registers at 0x2000, 0x3000 and
-> 0x4000.
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+> NOTE: Shouldn't this somehow be part of the USB core bindings instead?
+
+Hi Marek,
+
+Yes, this is similar to patch series I sent recently, see [1].
+
+[1]
+https://lore.kernel.org/linux-usb/1634133425-25670-1-git-send-email-fabrice.gasnier@foss.st.com/
+
+BR,
+Fabrice
+
+> ---
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> As this seems to me to be a single function block (also from what I read
-> from the datasheet), I designed the binding documentation so that the
-> DisplayPort controller starts at 0x0 and spans all registers. Based on
-> that I wanted to share the regmap created in the DisplayPort controller
-> with this PHY driver that is a direct child of that driver, similar to
-> multi function device drivers.
+> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> index 10c7d9b6cc53f..254436c19870b 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> @@ -120,6 +120,16 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>      description: size of periodic tx fifo per endpoint (except ep0) in gadget mode.
+>  
+> +  otg-rev:
+> +    description:
+> +      Tells usb driver the release number of the OTG and EH supplement with
+> +      which the device and its descriptors are compliant, in binary-coded
+> +      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
+> +      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
+> +      0x0200 or above.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0x0100, 0x0120, 0x0130, 0x0200]
+> +
+>    snps,need-phy-for-wake:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description: If present indicates that the phy needs to be left on for 
 > 
-> That also means that the PHY does not have any clocks it requires as it
-> only exists in the context of the DisplayPort controller. I could pass
-> the same clocks to the PHY, but the use of these clocks does not make
-> any difference.
-
-Okay, that sounds sensible
-
-> As I don't have a piece of devicetree, I struggled with using phy_get
-> as, if I understand it correctly, it uses the devicetree to find the
-> correct PHY device?
-
-Not really, device tree is one of the backends phy_get() relies on. If
-you are having issues, then chances are there are bugs somewhere or
-usage is incorrect
-
-> Do you have a suggestion on how I could improve this interaction between
-> DP controller and PHY? Maybe some driver that I could look at that has
-> similar constraints?
-
-I would say use phy_get() and fix if we have any issues around it, that
-should make it much cleaner to use
-
--- 
-~Vinod
