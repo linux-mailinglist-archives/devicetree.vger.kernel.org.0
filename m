@@ -2,433 +2,429 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4718643A3B7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 22:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC2BF43A426
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 22:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238738AbhJYUCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 16:02:20 -0400
-Received: from esa1.hgst.iphmx.com ([68.232.141.245]:9214 "EHLO
-        esa1.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238650AbhJYUAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 16:00:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1635191876; x=1666727876;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=5eCkQBSoOonAgl0sljci20qzRudmi2nGeiTOpU2ck8k=;
-  b=iG/X2J8cQnQV6q1vFl3xl2AjhEFYgOuK5htjj0+j2amHYXEEs8mQP9LP
-   PTjix6Dp4pkikGo8ijfepes13bfzPUm/E24GQ3ebORTICoqs0yrxrfxug
-   8jZUkpYyIPrSEceVN9iqpSokbm6OiZdkZnyC94kRP7bas8icyZ9WkzzYz
-   QJ+elYx5j++c199GrCZPEzMZgRQ+svEsS3tTFPnFsIhCCTO+XKi5jn65T
-   5vdmlSCKIPfkNw8ZJPkhN1IqMUGqAsiurXA0MyJ5Xid5yFUrln4a5Odnm
-   ZB1VMMvttbZ4s4aOEuWXz/548tvu06ic6Qd2X2d3ViLfZoAvnEm/PqqDM
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.87,181,1631548800"; 
-   d="scan'208";a="295545860"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 26 Oct 2021 03:53:58 +0800
-IronPort-SDR: IeN04PlRtYCxU+SwXfouAIodWKSxnI3i0BucTNqXLKnjfEhd8xV43u3qC6qz3cC9lTmG2r6xlq
- XlnYx56L77RAClZX9BEylcSmaxKPCyIT8jgB4XNqaK1VkXq/ezHi7DfA4cbH/q7vUssMjnbOtG
- t8g0zDvt/qN6krws7ewofSKDCmehQ+Ak/yymk/RkwBIhLBvTBB+/RQ7oWvtoUdGlsqCC+najnl
- czT6UF1XOMFWkP5EmNwDKRbrPsgd7rncPB1OmZtgVFJ9o+c1qQ8l24fD2D8NRv86Oq626dza27
- EwtU7EHPWfsOpTdZhiwM4vqf
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Oct 2021 12:27:56 -0700
-IronPort-SDR: sgL6fH3SqTj1Vc7DndHcQ5eU4S9K9WuQ2yC1lDxThHigOPtotZ7xN/qmhg/XvZ6KmTW1VUA+Nz
- FmjYEGjvv3oovr1nI+T6aYwearWeq2KbLCT3u972drnP8GevgZHq8d7bx9MaOiBHsIehq0jQyg
- jYKzfzcvBmELoDmbRWM/4yLXRsdyyrz86VmYwGhjUHkVm1WSW0ecnCavfnASMlwNefO/8FOyBY
- BmLaFgF/Ke0diHNqWCfXRw8KvVWslxgifRMPKqzcEgZzoPMoqQgdWq/Fy32usMFWBTAxLjPkVx
- v0Q=
-WDCIronportException: Internal
-Received: from unknown (HELO hulk.wdc.com) ([10.225.167.27])
-  by uls-op-cesaip01.wdc.com with ESMTP; 25 Oct 2021 12:53:59 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>
-Subject: [v4 08/11] RISC-V: Add interrupt support for perf
-Date:   Mon, 25 Oct 2021 12:53:47 -0700
-Message-Id: <20211025195350.242914-9-atish.patra@wdc.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211025195350.242914-1-atish.patra@wdc.com>
-References: <20211025195350.242914-1-atish.patra@wdc.com>
+        id S238541AbhJYUPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 16:15:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238137AbhJYUPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 16:15:21 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB595C06F691
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 12:37:16 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id b12so11351997qtq.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 12:37:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=Xomg13yoe8Zy0xpyncWa5/BlOSzBi3U2smQU5H2tuU4=;
+        b=H0c2xpINHt6+ynT6sgeT2/fNqpVtsmwtM7vBa8H1jGYjYrC3wWZRExdMscq96TjYnE
+         0Wppm1YkXbARTmuLqwCJDsY7iZxfaG/x/LVyWDZ0DvAs6sm8kJRZNOV0od3/JSR4+51p
+         B34ccTy0UC98RWPBaF2TjwIkkfgIj3ugUZOdamO8oQISW11bSYiQzqpGCX6lluuoJAu/
+         kBeqBL4PhmUap2hjKd9vkFtT5PshLeZxlbfCJ947PTbw0/LflEVSmSE0+lEElIqbehDX
+         cCkMiqu5qhg1Rk4srKO4qgRU+oBixZYjqmFLGXKub7kn4tPSZvk38EQfTaEgX7uizYmT
+         fEDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=Xomg13yoe8Zy0xpyncWa5/BlOSzBi3U2smQU5H2tuU4=;
+        b=ERzmBmz7Wxl4dLHJ3Jq+s4Y1TLY/7UCIgYI1PZcaKPHpE5TXyh08e9rzreHydZdEsW
+         ls2SSgVTYF7miYFZOE0mqu36Xy476CbZku6ta8aqlhB6S2Y0KJXyfkPaQG9SFfv9E2Fz
+         zVWXEZLGLIyUy78KqdU8P+7p5GwkBIGgfjNzg9Lg0ohyga/zHHTHEN8YdqcSuu4X5+I3
+         KKwp8+pFtwvM1FaOjNK+0UM04mArHr/GXBKXjQerfmo58eyXzAAa22A0eiwCMG5PJxSs
+         r5IJj6RxTpkVZT39FxvY2+1pvrfoRGIc36vLAcXXBCIFdqKfkhci+Vje6AisP9gtxRn9
+         k32w==
+X-Gm-Message-State: AOAM532MmRzLLj2omorbOF33x6BtPIBQjp2J7zsnMUmBRsBWs5g++Dlb
+        3c/IcaNZ6b7nFNC1qHZLWkJIDA==
+X-Google-Smtp-Source: ABdhPJyW7a+Z2+u+aSVG4TVj9FtliW38yyYAb9Y3POPp/FFxZ5+MADly+p5qDcEzhsI/BcDZs3QxFQ==
+X-Received: by 2002:a05:622a:188b:: with SMTP id v11mr20030425qtc.193.1635190635705;
+        Mon, 25 Oct 2021 12:37:15 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id g11sm10575364qko.31.2021.10.25.12.37.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Oct 2021 12:37:15 -0700 (PDT)
+Message-ID: <b72028ca1e4635ff16c2102ff527ec18b61120df.camel@ndufresne.ca>
+Subject: Re: [PATCH v5 00/10] Add support for DMA2D of STMicroelectronics
+ STM32 Soc series
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     dillon.minfei@gmail.com, mchehab@kernel.org,
+        mchehab+huawei@kernel.org, hverkuil-cisco@xs4all.nl,
+        ezequiel@collabora.com, gnurou@gmail.com, pihsun@chromium.org,
+        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        gabriel.fernandez@st.com, gabriel.fernandez@foss.st.com
+Cc:     patrice.chotard@foss.st.com, hugues.fruchet@foss.st.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Date:   Mon, 25 Oct 2021 15:37:13 -0400
+In-Reply-To: <1634533488-25334-1-git-send-email-dillon.minfei@gmail.com>
+References: <1634533488-25334-1-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Sscof extension allows counter overflow and filtering for programmable
-counters. Enable the perf driver to handle the overflow interrupt.
-Even though the perf overflow interrupt is a local one, it is parsed from
-DT for simplification. Thus, the DT node with interrupt-extended property
-is mandatory for any platform that wants event sampling.
+Le lundi 18 octobre 2021 à 13:04 +0800, dillon.minfei@gmail.com a écrit :
+> From: Dillon Min <dillon.minfei@gmail.com>
+> 
+> This patchset introduces a basic support for DMA2D Interface
+> of STMicroelectronics STM32 SoC series.
+> 
+> This first basic support implements R2M, M2M, M2M_PFC
+> M2M_BLEND support will be added later on.
+> 
+> This has been tested on STM32469-DISCO board.
+> 
+> history
+> v5:
+> - rebase to media_tree https://git.linuxtv.org/media_tree.git/
+> - remove unused log from dma2d driver to avoid spam kernel log.
+> - fix 0xFFFFFF to 0xffffff, 2^24 to 2^24 -1, etc.
+> - introduce patch "media: v4l2-ctrls: Add V4L2_CID_COLORFX_CBCR max setting"
+>   to add V4L2_CID_COLORFX_CBCR entry.
+> - thanks to Hans's patch, open nullptr check in v4l2-compliance, update new
+>   test result. thanks.
+>   https://lore.kernel.org/linux-media/3acd9ee4-5a58-6ed4-17fe-61596a5252b8@xs4all.nl/
+> 
+> v4 link:
+> https://lore.kernel.org/lkml/bc8e1cd1-0013-9062-88b6-fddca535919f@xs4all.nl/
+> 
+> v4:
+> - replace V4L2_COLORFX_SET_ARGB, V4L2_CID_COLORFX_ARGB to
+>   V4L2_COLORFX_SET_RGB, V4L2_CID_COLORFX_RGB since Alpha paramter not used
+>   in current. thanks Hans.
+> v3 link:
+> https://lore.kernel.org/lkml/1633689012-14492-1-git-send-email-dillon.minfei@gmail.com/
+> 
+> v3:
+> - use V4L2_COLORFX_SET_ARGB, V4L2_CID_COLORFX_ARGB to pass argb paramter to
+>   the dma2d driver, instead of add stm32 private ioctl.
+> - some v2's patch are removed in this version.
+>   - "[PATCH v2 7/9] media: docs: add doc for the stm32 dma2d driver"
+>   - "[PATCH v2 8/9] media: v4l: uapi: Add user control base for stm32 dma2d
+>     controls"
+> - dma2d's driver changes based on Hans's review result. detail can be found at
+>   "media: stm32-dma2d: STM32 DMA2D driver"
+> - add stm32 clk drivers bugfix, ltdc clock disabled after kenerl boot up.
+> v3 based on kernel and v4l-utils git:
+> 
+> kernel:
+> commit 9e1ff307c779ce1f0f810c7ecce3d95bbae40896
+> Author: Linus Torvalds <torvalds@linux-foundation.org>
+> Date:   Sun Oct 3 14:08:47 2021 -0700
+> 
+>     Linux 5.15-rc4
+> 
+> v4l-utils:
+> commit 700f5ded9c6de2c6dfe5d1b453d85566f95b4f0c
+> Author: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> Date:   Sat Oct 2 11:01:05 2021 +0200
+> 
+>     test-media: show version info earlier and show cmd args
+> 
+>     Log the version info earlier and also log the command line arguments.
+>  
+>     Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> 
+> v2 link:
+> https://lore.kernel.org/lkml/1626341068-20253-11-git-send-email-dillon.minfei@gmail.com/
+> 
+> 
+> v2:
+> - update v4l2-compliance to SHA: a4f2e3a6f306 2021-07-13 08:04:15
+>   the test results at below [1].
+> - introduce Documentation/userspace-api/media/drivers/stm32-uapi.rst
+>   to explain the detail of dma2d's ioctl.
+> - reserved 16 ioctls from v4l2-controls.h for stm32, introduce stm32-media.h.
+> - collect Reviewed-by tag from Rob Herring.
+> - update dma2d driver from Hans's review. the details can be found
+>   at related patches.
+> v1 link:
+> https://lore.kernel.org/lkml/1621508727-24486-1-git-send-email-dillon.minfei@gmail.com/
+> 
+> v1:
+> The commit based on kernel(master): c3d0e3fd41b7f0f5d5d5b6022ab7e813f04ea727
+> 
+> Note for v4l2-compliance tool on nu-mmu platform:
+> I add two change based on v4l-utils since commit:
+> f0c7e3d71eaf4182bae7eb3ee0e43b4eeb047ea9
+> 
+> - change fork() to vfork() in v4l2-test-controls.cpp
+>   since no-mmu platform don't include fork().
+> 
+> with v4l2-compliance test log (with above modification):
+> since the stm32f469-disco ram limitation, there are 25 failed on
+> dma_alloc_coherent()
+> 
+> Really appreciate if someone can help to test this patch on the STM32429I-EVAL
+> evaluation board (https://www.st.com/en/evaluation-tools/stm32429i-eval.html)
+> 8M x 32-bit SDRAM, 1M x 16-bit SRAM and 8M x 16-bit NOR Flash
+> 
+> ~ # v4l2-compliance -f -d /dev/video0 > /dev/ttyprintk
+> [ 1798.550690] [U] v4l2-compliance 1.21.0-4855, 32 bits, 32-bit time_t
+> [ 1799.527504] [U] v4l2-compliance SHA: 700f5ded9c6d 2021-10-02 09:01:05
+> [ 1800.534558] [U] Compliance test for stm-dma2d device /dev/video0:
+> [ 1801.514999] [U] Driver Info:
+> [ 1801.998840] [U]      Driver name      : stm-dma2d
+> [ 1802.482151] [U]      Card type        : stm-dma2d
+> [ 1802.959808] [U]      Bus info         : platform:stm-dma2d
+> [ 1803.435715] [U]      Driver version   : 5.15.0
+> [ 1803.904938] [U]      Capabilities     : 0x84208000
+> [ 1804.371290] [U]              Video Memory-to-Memory
+> [ 1804.830870] [U]              Streaming
+> [ 1805.281465] [U]              Extended Pix Format
+> [ 1805.733249] [U]              Device Capabilities
+> [ 1806.181369] [U]      Device Caps      : 0x04208000
+> [ 1806.622899] [U]              Video Memory-to-Memory
+> [ 1807.057208] [U]              Streaming
+> [ 1807.483866] [U]              Extended Pix Format
+> [ 1807.907678] [U] Required ioctls:
+> [ 1808.325287] [U]      test VIDIOC_QUERYCAP: OK
+> [ 1808.785260] [U]      test invalid ioctls: OK
+> [ 1809.199015] [U] Allow for multiple opens:
+> [ 1809.613894] [U]      test second /dev/video0 open: OK
+> [ 1810.416746] [U]      test VIDIOC_QUERYCAP: OK
+> [ 1810.827974] [U]      test VIDIOC_G/S_PRIORITY: OK
+> [ 1811.466506] [U]      test for unlimited opens: OK
+> [ 1811.868388] [U] Debug ioctls:
+> [ 1812.257689] [U]      test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> [ 1813.034108] [U]      test VIDIOC_LOG_STATUS: OK (Not Supported)
+> [ 1813.807583] [U] Input ioctls:
+> [ 1814.192271] [U]      test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> [ 1814.958053] [U]      test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> [ 1815.721424] [U]      test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> [ 1816.486425] [U]      test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> [ 1817.253873] [U]      test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> [ 1818.021773] [U]      test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> [ 1818.783542] [U]      Inputs: 0 Audio Inputs: 0 Tuners: 0
+> [ 1819.170414] [U] Output ioctls:
+> [ 1819.549601] [U]      test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> [ 1820.306132] [U]      test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> [ 1821.085495] [U]      test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> [ 1821.883894] [U]      test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> [ 1822.698269] [U]      test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> [ 1823.541345] [U]      Outputs: 0 Audio Outputs: 0 Modulators: 0
+> [ 1824.391635] [U] Input/Output configuration ioctls:
+> [ 1824.830293] [U]      test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> [ 1825.708848] [U]      test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> [ 1826.608994] [U]      test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> [ 1827.520616] [U]      test VIDIOC_G/S_EDID: OK (Not Supported)
+> [ 1828.438211] [U] Control ioctls:
+> [ 1828.926449] [U]      test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+> [ 1829.856497] [U]      test VIDIOC_QUERYCTRL: OK
+> [ 1830.335647] [U]      test VIDIOC_G/S_CTRL: OK
+> [ 1830.816513] [U]      test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+> [ 1831.740067] [U]      test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+> [ 1832.666736] [U]      test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> [ 1833.597005] [U]      Standard Controls: 3 Private Controls: 0
+> [ 1834.070452] [U] Format ioctls:
+> [ 1834.540460] [U]      test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> [ 1835.473065] [U]      test VIDIOC_G/S_PARM: OK (Not Supported)
+> [ 1836.395238] [U]      test VIDIOC_G_FBUF: OK (Not Supported)
+> [ 1837.322128] [U]      test VIDIOC_G_FMT: OK
+> [ 1837.798880] [U]      test VIDIOC_TRY_FMT: OK
+> [ 1838.267574] [U]      test VIDIOC_S_FMT: OK
+> [ 1838.724264] [U]      test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> [ 1839.627408] [U]      test Cropping: OK (Not Supported)
+> [ 1840.526875] [U]      test Composing: OK (Not Supported)
+> [ 1841.428562] [U]      test Scaling: OK
+> [ 1841.882087] [U] Codec ioctls:
+> [ 1842.331672] [U]      test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> [ 1843.221419] [U]      test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> [ 1844.105854] [U]      test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> [ 1844.993986] [U] Buffer ioctls:
+> [ 1845.558827] [U]      test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> [ 1846.486226] [U]      test VIDIOC_EXPBUF: OK
+> [ 1846.936148] [U]      test Requests: OK (Not Supported)
+> [ 1847.805687] [U]      test TIME32/64: OK
+> [ 1848.255712] [U] Test input 0:
+> [ 1848.685591] [U] Stream using all formats:
+> [ 1853.598085] [U]      BA24 (32-bit ARGB 8-8-8-8) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+> [ 1858.085109] [U]      BA24 (32-bit ARGB 8-8-8-8) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+> [ 1861.799188] [U]      BA24 (32-bit ARGB 8-8-8-8) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+> [ 1864.859534] [U]      BA24 (32-bit ARGB 8-8-8-8) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+> [ 1867.974755] [U]      BA24 (32-bit ARGB 8-8-8-8) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+> [ 1868.466365] stm-dma2d 4002b000.dma2d: dma alloc of size 4294643712 failed
+> [ 1868.971398] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1869.487572] [U]      BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> BA24 (32-bit ARGB 8-8-8-8) 16383x65535: FAIL
 
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
----
- arch/riscv/include/asm/csr.h   |   8 +-
- drivers/perf/riscv_pmu_sbi.c   | 209 ++++++++++++++++++++++++++++++---
- include/linux/perf/riscv_pmu.h |   4 +-
- 3 files changed, 204 insertions(+), 17 deletions(-)
+Have you considered adapting your maximum width/height to something reasonable ?
+Consider V4L2 drivers will usually be used for streaming, so using 2 OUTPUT and
+2 CAPTURE buffer isn't special, so perhaps find something that will be possible
+to allocate ? I bet you can't even have more then 4G of ram on that device, so
+even if theoretically you could program the HW for 16383x65535, it is physically
+impossible to allocate a second buffer of that size (or any size).
 
-diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index e4d369830af4..8518eb0014bc 100644
---- a/arch/riscv/include/asm/csr.h
-+++ b/arch/riscv/include/asm/csr.h
-@@ -63,6 +63,7 @@
- #define IRQ_M_TIMER		7
- #define IRQ_S_EXT		9
- #define IRQ_M_EXT		11
-+#define IRQ_PMU_OVF		13
- 
- /* Exception causes */
- #define EXC_INST_MISALIGNED	0
-@@ -151,6 +152,8 @@
- #define CSR_HPMCOUNTER30H	0xc9e
- #define CSR_HPMCOUNTER31H	0xc9f
- 
-+#define CSR_SSCOUNTOVF		0xda0
-+
- #define CSR_SSTATUS		0x100
- #define CSR_SIE			0x104
- #define CSR_STVEC		0x105
-@@ -212,7 +215,10 @@
- # define RV_IRQ_SOFT		IRQ_S_SOFT
- # define RV_IRQ_TIMER	IRQ_S_TIMER
- # define RV_IRQ_EXT		IRQ_S_EXT
--#endif /* CONFIG_RISCV_M_MODE */
-+# define RV_IRQ_PMU	IRQ_PMU_OVF
-+# define SIP_LCOFIP     (_AC(0x1, UL) << IRQ_PMU_OVF)
-+
-+#endif /* !CONFIG_RISCV_M_MODE */
- 
- /* IE/IP (Supervisor/Machine Interrupt Enable/Pending) flags */
- #define IE_SIE		(_AC(0x1, UL) << RV_IRQ_SOFT)
-diff --git a/drivers/perf/riscv_pmu_sbi.c b/drivers/perf/riscv_pmu_sbi.c
-index 7a274aeff51e..46380ac22e08 100644
---- a/drivers/perf/riscv_pmu_sbi.c
-+++ b/drivers/perf/riscv_pmu_sbi.c
-@@ -11,6 +11,9 @@
- #include <linux/mod_devicetable.h>
- #include <linux/perf/riscv_pmu.h>
- #include <linux/platform_device.h>
-+#include <linux/irq.h>
-+#include <linux/irqdomain.h>
-+#include <linux/of_irq.h>
- 
- #include <asm/sbi.h>
- 
-@@ -445,33 +448,203 @@ static int pmu_sbi_get_ctrinfo(int nctr)
- 	return 0;
- }
- 
-+static inline void pmu_sbi_stop_all(struct riscv_pmu *pmu)
-+{
-+	/**
-+	 * No need to check the error because we are disabling all the counters
-+	 * which may include counters that are not enabled yet.
-+	 */
-+	sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_STOP,
-+		  0, GENMASK_ULL(pmu->num_counters - 1, 0), 0, 0, 0, 0);
-+}
-+
-+static inline void pmu_sbi_start_all(struct riscv_pmu *pmu)
-+{
-+	int lidx;
-+	struct cpu_hw_events *hwc = this_cpu_ptr(pmu->hw_events);
-+	unsigned long flag = ~SBI_PMU_START_FLAG_SET_INIT_VALUE;
-+
-+	/* Start all the enabled counters without reinitilizing it */
-+	for_each_set_bit(lidx, hwc->used_event_ctrs, RISCV_MAX_COUNTERS)
-+		sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_START, lidx, 1, flag,
-+			  0, 0, 0);
-+}
-+
-+static irqreturn_t pmu_sbi_ovf_handler(int irq, void *dev)
-+{
-+	struct perf_sample_data data;
-+	struct pt_regs *regs;
-+	struct hw_perf_event *hw_evt;
-+	union sbi_pmu_ctr_info *info;
-+	int lidx, hidx, fidx;
-+	struct riscv_pmu *pmu;
-+	struct perf_event *event;
-+	struct cpu_hw_events *hwc = dev;
-+	unsigned long overflow;
-+
-+	fidx = find_first_bit(hwc->used_event_ctrs, RISCV_MAX_COUNTERS);
-+	event = hwc->events[fidx];
-+	if (!event) {
-+		csr_clear(CSR_SIP, SIP_LCOFIP);
-+		return IRQ_NONE;
-+	}
-+
-+	pmu = to_riscv_pmu(event->pmu);
-+	pmu_sbi_stop_all(pmu);
-+
-+	/* Overflow status register should only be read after counter are stopped */
-+	overflow = csr_read(CSR_SSCOUNTOVF);
-+
-+	/**
-+	 * Overflow interrupt pending bit should only be cleared after stopping
-+	 * all the counters to avoid any race condition.
-+	 */
-+	csr_clear(CSR_SIP, SIP_LCOFIP);
-+
-+	/* No overflow bit is set */
-+	if (!overflow)
-+		return IRQ_NONE;
-+
-+	regs = get_irq_regs();
-+
-+	for_each_set_bit(lidx, hwc->used_event_ctrs, RISCV_MAX_COUNTERS) {
-+		struct perf_event *event = hwc->events[lidx];
-+
-+		/* Skip if invalid event or user did not request a sampling */
-+		if (!event || !is_sampling_event(event))
-+			continue;
-+
-+		info = &pmu_ctr_list[lidx];
-+		/* Firmware counter don't support overflow yet */
-+		if (!info || info->type == SBI_PMU_CTR_TYPE_FW)
-+			continue;
-+
-+		/* compute hardware counter index */
-+		hidx = info->csr - CSR_CYCLE;
-+		/* check if the corresponding bit is set in sscountovf */
-+		if (!(overflow & (1 << hidx)))
-+			continue;
-+
-+		hw_evt = &event->hw;
-+		riscv_pmu_event_update(event);
-+		perf_sample_data_init(&data, 0, hw_evt->last_period);
-+		/*
-+		 * Perf event overflow will queue the processing of the event as
-+		 * an irq_work which will be taken care of in the handling of
-+		 * IPI_IRQ_WORK.
-+		 */
-+		if (perf_event_overflow(event, &data, regs))
-+			pmu_sbi_ctr_stop(event, 0);
-+	}
-+	pmu_sbi_start_all(pmu);
-+
-+	return IRQ_HANDLED;
-+}
-+
- static int pmu_sbi_starting_cpu(unsigned int cpu, struct hlist_node *node)
- {
- 	struct riscv_pmu *pmu = hlist_entry_safe(node, struct riscv_pmu, node);
-+	struct cpu_hw_events __percpu *hw_events = pmu->hw_events;
-+	int pmu_irq;
- 
- 	/* Enable the access for TIME csr only from the user mode now */
- 	csr_write(CSR_SCOUNTEREN, 0x2);
- 
- 	/* Stop all the counters so that they can be enabled from perf */
--	sbi_ecall(SBI_EXT_PMU, SBI_EXT_PMU_COUNTER_STOP,
--		  0, GENMASK_ULL(pmu->num_counters - 1, 0), 0, 0, 0, 0);
--
-+	pmu_sbi_stop_all(pmu);
-+	pmu_irq = per_cpu(hw_events->irq, cpu);
-+	if (pmu_irq) {
-+		csr_clear(CSR_IP, BIT(RV_IRQ_PMU));
-+		csr_set(CSR_IE, BIT(RV_IRQ_PMU));
-+		enable_percpu_irq(pmu_irq, IRQ_TYPE_NONE);
-+	}
- 	return 0;
- }
- 
- static int pmu_sbi_dying_cpu(unsigned int cpu, struct hlist_node *node)
- {
-+	struct riscv_pmu *pmu = hlist_entry_safe(node, struct riscv_pmu, node);
-+	struct cpu_hw_events __percpu *hw_events = pmu->hw_events;
-+	int pmu_irq;
-+
-+	pmu_irq = per_cpu(hw_events->irq, cpu);
-+	if (pmu_irq) {
-+		disable_percpu_irq(pmu_irq);
-+		csr_clear(CSR_IE, BIT(RV_IRQ_PMU));
-+	}
- 	/* Disable all counters access for user mode now */
- 	csr_write(CSR_SCOUNTEREN, 0x0);
- 
- 	return 0;
- }
- 
-+static int pmu_sbi_setup_irqs(struct riscv_pmu *pmu, struct platform_device *pdev)
-+{
-+	int i = 0, num_irqs, ret;
-+	struct cpu_hw_events __percpu *hw_events = pmu->hw_events;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
-+
-+	num_irqs = of_irq_count(node);
-+
-+	if (num_irqs <= 0) {
-+		dev_warn(dev, "no irqs for PMU, sampling events not supported\n");
-+		return -EPERM;
-+	}
-+
-+	for (i = 0; i < num_irqs; i++) {
-+		struct of_phandle_args parent;
-+		irq_hw_number_t pmu_irq = 0;
-+		int cpu, hartid;
-+
-+		if (of_irq_parse_one(node, i, &parent)) {
-+			pr_err("%pOFP: failed to parse parent for irq %d.\n", node, i);
-+			continue;
-+		}
-+
-+		if (parent.args[0] != RV_IRQ_PMU) {
-+			pr_err("%pOFP: invalid irq %d for hwirq %d.\n", node, i, parent.args[0]);
-+			continue;
-+		}
-+
-+		hartid = riscv_of_parent_hartid(parent.np);
-+		if (hartid < 0) {
-+			pr_warn("failed to parse hart ID for irq %d.\n", i);
-+			continue;
-+		}
-+
-+		cpu = riscv_hartid_to_cpuid(hartid);
-+		if (cpu < 0) {
-+			pr_warn("Invalid cpuid for irq %d\n", i);
-+			continue;
-+		}
-+		if (!pmu_irq && irq_find_host(parent.np)) {
-+			pmu_irq = irq_of_parse_and_map(node, i);
-+			pr_err("%s: found irq %lu\n", __func__, pmu_irq);
-+			if (pmu_irq)
-+				ret = request_percpu_irq(pmu_irq, pmu_sbi_ovf_handler,
-+							 "riscv-pmu", hw_events);
-+			if (ret) {
-+				pr_err("registering percpu irq failed [%d]\n", ret);
-+				return ret;
-+			}
-+			if (per_cpu(hw_events->irq, cpu)) {
-+				pr_warn("PMU irq already set!!");
-+				return -EINVAL;
-+			}
-+			per_cpu(hw_events->irq, cpu) = pmu_irq;
-+			per_cpu(hw_events->sscof_ext_present, cpu) = true;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int pmu_sbi_device_probe(struct platform_device *pdev)
- {
- 	struct riscv_pmu *pmu = NULL;
- 	int num_counters;
--	int ret;
-+	int ret = -ENODEV;
- 
- 	pr_info("SBI PMU extension is available\n");
- 	/* Notify legacy implementation that SBI pmu is available*/
-@@ -483,13 +656,19 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 	num_counters = pmu_sbi_find_num_ctrs();
- 	if (num_counters < 0) {
- 		pr_err("SBI PMU extension doesn't provide any counters\n");
--		return -ENODEV;
-+		goto out_free;
- 	}
- 
- 	/* cache all the information about counters now */
- 	if (pmu_sbi_get_ctrinfo(num_counters))
--		return -ENODEV;
-+		goto out_free;
- 
-+	ret = pmu_sbi_setup_irqs(pmu, pdev);
-+	if (ret < 0) {
-+		pr_info("Perf sampling/filtering is not supported as sscof extension is not available\n");
-+		pmu->pmu.capabilities |= PERF_PMU_CAP_NO_INTERRUPT;
-+		pmu->pmu.capabilities |= PERF_PMU_CAP_NO_EXCLUDE;
-+	}
- 	pmu->num_counters = num_counters;
- 	pmu->ctr_start = pmu_sbi_ctr_start;
- 	pmu->ctr_stop = pmu_sbi_ctr_stop;
-@@ -510,19 +689,27 @@ static int pmu_sbi_device_probe(struct platform_device *pdev)
- 	}
- 
- 	return 0;
-+
-+out_free:
-+	kfree(pmu);
-+	return ret;
- }
- 
-+static const struct of_device_id riscv_pmu_of_device_ids[] = {
-+	{.compatible = "riscv,pmu", .data = NULL},
-+};
-+
- static struct platform_driver pmu_sbi_driver = {
- 	.probe		= pmu_sbi_device_probe,
- 	.driver		= {
- 		.name	= RISCV_PMU_PDEV_NAME,
-+		.of_match_table = riscv_pmu_of_device_ids,
- 	},
- };
- 
- static int __init pmu_sbi_devinit(void)
- {
- 	int ret;
--	struct platform_device *pdev;
- 
- 	if (((sbi_major_version() == 0) && (sbi_minor_version() < 3)) ||
- 		sbi_probe_extension(SBI_EXT_PMU) <= 0) {
-@@ -539,14 +726,6 @@ static int __init pmu_sbi_devinit(void)
- 	}
- 
- 	ret = platform_driver_register(&pmu_sbi_driver);
--	if (ret)
--		return ret;
--
--	pdev = platform_device_register_simple(RISCV_PMU_PDEV_NAME, -1, NULL, 0);
--	if (IS_ERR(pdev)) {
--		platform_driver_unregister(&pmu_sbi_driver);
--		return PTR_ERR(pdev);
--	}
- 
- 	return ret;
- }
-diff --git a/include/linux/perf/riscv_pmu.h b/include/linux/perf/riscv_pmu.h
-index f3bce79d8998..afd93840754b 100644
---- a/include/linux/perf/riscv_pmu.h
-+++ b/include/linux/perf/riscv_pmu.h
-@@ -29,10 +29,13 @@
- struct cpu_hw_events {
- 	/* currently enabled events */
- 	int			n_events;
-+	/* Counter overflow interrupt */
-+	int		irq;
- 	/* currently enabled events */
- 	struct perf_event	*events[RISCV_MAX_COUNTERS];
- 	/* currently enabled counters */
- 	DECLARE_BITMAP(used_event_ctrs, RISCV_MAX_COUNTERS);
-+	bool sscof_ext_present;
- };
- 
- struct riscv_pmu {
-@@ -40,7 +43,6 @@ struct riscv_pmu {
- 	char		*name;
- 
- 	irqreturn_t	(*handle_irq)(int irq_num, void *dev);
--	int		irq;
- 
- 	int		num_counters;
- 	u64		(*ctr_read)(struct perf_event *event);
--- 
-2.31.1
+> [ 1870.017197] stm-dma2d 4002b000.dma2d: dma alloc of size 4294643712 failed
+> [ 1870.562272] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1871.147644] [U]      BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> RGB3 (24-bit RGB 8-8-8) 16383x65535: FAIL
+> [ 1871.780530] stm-dma2d 4002b000.dma2d: dma alloc of size 4294643712 failed
+> [ 1872.431797] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1873.112100] [U]      BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> [ 1873.805156] stm-dma2d 4002b000.dma2d: dma alloc of size 4294643712 failed
+> [ 1874.492353] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1875.221576] [U]      BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> AR15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+> [ 1876.000283] stm-dma2d 4002b000.dma2d: dma alloc of size 4294643712 failed
+> [ 1876.808963] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1877.634785] [U]      BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+> [ 1883.283141] [U]      BA24 (32-bit ARGB 8-8-8-8) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+> [ 1888.533587] [U]      BA24 (32-bit ARGB 8-8-8-8) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+> [ 1892.729322] [U]      BA24 (32-bit ARGB 8-8-8-8) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+> [ 1896.013783] [U]      BA24 (32-bit ARGB 8-8-8-8) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+> [ 1899.195802] [U]      BA24 (32-bit ARGB 8-8-8-8) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> [ 1902.318853] [U]      RGB3 (24-bit RGB 8-8-8) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+> [ 1905.399663] [U]      RGB3 (24-bit RGB 8-8-8) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+> [ 1908.515463] [U]      RGB3 (24-bit RGB 8-8-8) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+> [ 1911.589775] [U]      RGB3 (24-bit RGB 8-8-8) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+> [ 1914.682147] [U]      RGB3 (24-bit RGB 8-8-8) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+> [ 1915.169478] stm-dma2d 4002b000.dma2d: dma alloc of size 3220983808 failed
+> [ 1915.671278] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1916.184281] [U]      RGB3 (24-bit RGB 8-8-8) 16383x65535 -> BA24 (32-bit ARGB 8-8-8-8) 16383x65535: FAIL
+> [ 1916.709840] stm-dma2d 4002b000.dma2d: dma alloc of size 3220983808 failed
+> [ 1917.252352] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1917.834611] [U]      RGB3 (24-bit RGB 8-8-8) 16383x65535 -> RGB3 (24-bit RGB 8-8-8) 16383x65535: FAIL
+> [ 1918.463784] stm-dma2d 4002b000.dma2d: dma alloc of size 3220983808 failed
+> [ 1919.114290] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1919.789982] [U]      RGB3 (24-bit RGB 8-8-8) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> [ 1920.479624] stm-dma2d 4002b000.dma2d: dma alloc of size 3220983808 failed
+> [ 1921.165202] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1921.893374] [U]      RGB3 (24-bit RGB 8-8-8) 16383x65535 -> AR15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+> [ 1922.668057] stm-dma2d 4002b000.dma2d: dma alloc of size 3220983808 failed
+> [ 1923.469342] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1924.297500] [U]      RGB3 (24-bit RGB 8-8-8) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+> [ 1929.890593] [U]      RGB3 (24-bit RGB 8-8-8) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+> [ 1935.098497] [U]      RGB3 (24-bit RGB 8-8-8) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+> [ 1939.250033] [U]      RGB3 (24-bit RGB 8-8-8) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+> [ 1942.503854] [U]      RGB3 (24-bit RGB 8-8-8) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+> [ 1945.659254] [U]      RGB3 (24-bit RGB 8-8-8) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> [ 1948.763903] [U]      RGBP (16-bit RGB 5-6-5) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+> [ 1951.832407] [U]      RGBP (16-bit RGB 5-6-5) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+> [ 1954.927592] [U]      RGBP (16-bit RGB 5-6-5) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+> [ 1957.991536] [U]      RGBP (16-bit RGB 5-6-5) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+> [ 1961.086603] [U]      RGBP (16-bit RGB 5-6-5) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+> [ 1961.575893] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 1962.079572] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1962.594354] [U]      RGBP (16-bit RGB 5-6-5) 16383x65535 -> BA24 (32-bit ARGB 8-8-8-8) 16383x65535: FAIL
+> [ 1963.121249] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 1963.665788] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1964.249129] [U]      RGBP (16-bit RGB 5-6-5) 16383x65535 -> RGB3 (24-bit RGB 8-8-8) 16383x65535: FAIL
+> [ 1964.880104] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 1965.530670] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1966.210598] [U]      RGBP (16-bit RGB 5-6-5) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> [ 1966.902316] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 1967.590215] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1968.319871] [U]      RGBP (16-bit RGB 5-6-5) 16383x65535 -> AR15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+> [ 1969.097012] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 1969.900036] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 1970.729920] [U]      RGBP (16-bit RGB 5-6-5) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+> [ 1976.318963] [U]      RGBP (16-bit RGB 5-6-5) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+> [ 1981.494224] [U]      RGBP (16-bit RGB 5-6-5) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+> [ 1985.599406] [U]      RGBP (16-bit RGB 5-6-5) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+> [ 1988.829141] [U]      RGBP (16-bit RGB 5-6-5) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+> [ 1991.998991] [U]      RGBP (16-bit RGB 5-6-5) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> [ 1995.084529] [U]      AR15 (16-bit ARGB 1-5-5-5) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+> [ 1998.191853] [U]      AR15 (16-bit ARGB 1-5-5-5) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+> [ 2001.307217] [U]      AR15 (16-bit ARGB 1-5-5-5) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+> [ 2004.413725] [U]      AR15 (16-bit ARGB 1-5-5-5) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+> [ 2007.527437] [U]      AR15 (16-bit ARGB 1-5-5-5) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+> [ 2008.016277] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2008.523318] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2009.038828] [U]      AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> BA24 (32-bit ARGB 8-8-8-8) 16383x65535: FAIL
+> [ 2009.567269] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2010.112209] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2010.697226] [U]      AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> RGB3 (24-bit RGB 8-8-8) 16383x65535: FAIL
+> [ 2011.329552] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2011.979307] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2012.658449] [U]      AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> [ 2013.350104] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2014.035612] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2014.762649] [U]      AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> AR15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+> [ 2015.538183] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2016.338784] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2017.166692] [U]      AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+> [ 2022.744387] [U]      AR15 (16-bit ARGB 1-5-5-5) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+> [ 2027.927575] [U]      AR15 (16-bit ARGB 1-5-5-5) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+> [ 2032.066337] [U]      AR15 (16-bit ARGB 1-5-5-5) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+> [ 2035.295351] [U]      AR15 (16-bit ARGB 1-5-5-5) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+> [ 2038.476408] [U]      AR15 (16-bit ARGB 1-5-5-5) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> [ 2041.591223] [U]      AR12 (16-bit ARGB 4-4-4-4) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+> [ 2044.678274] [U]      AR12 (16-bit ARGB 4-4-4-4) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+> [ 2047.774851] [U]      AR12 (16-bit ARGB 4-4-4-4) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+> [ 2050.849788] [U]      AR12 (16-bit ARGB 4-4-4-4) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+> [ 2053.955560] [U]      AR12 (16-bit ARGB 4-4-4-4) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+> [ 2054.446212] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2054.951517] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2055.467584] [U]      AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> BA24 (32-bit ARGB 8-8-8-8) 16383x65535: FAIL
+> [ 2055.997127] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2056.543193] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2057.128457] [U]      AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> RGB3 (24-bit RGB 8-8-8) 16383x65535: FAIL
+> [ 2057.761407] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2058.413191] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2059.093749] [U]      AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> [ 2059.786201] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2060.472393] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2061.200709] [U]      AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> AR15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+> [ 2061.977728] stm-dma2d 4002b000.dma2d: dma alloc of size 2147323904 failed
+> [ 2062.780816] [U]              fail: v4l2-test-buffers.cpp(1349): q.reqbufs(node, 2)
+> [ 2063.610351] [U]      AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+> [ 2069.207680] [U]      AR12 (16-bit ARGB 4-4-4-4) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+> [ 2074.392036] [U]      AR12 (16-bit ARGB 4-4-4-4) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+> [ 2078.538621] [U]      AR12 (16-bit ARGB 4-4-4-4) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+> [ 2081.749134] [U]      AR12 (16-bit ARGB 4-4-4-4) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+> [ 2084.922145] [U]      AR12 (16-bit ARGB 4-4-4-4) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> [ 2085.416538] [U] Total for stm-dma2d device /dev/video0: 121, Succeeded: 96, Failed: 25, Warnings: 0
+> *** BLURB HERE ***
+
+^ I guess that was meant for you to justify the failures.
+
+> 
+> Dillon Min (10):
+>   media: admin-guide: add stm32-dma2d description
+>   media: dt-bindings: media: add document for STM32 DMA2d bindings
+>   ARM: dts: stm32: Add DMA2D support for STM32F429 series soc
+>   ARM: dts: stm32: Enable DMA2D on STM32F469-DISCO board
+>   media: v4l2-mem2mem: add v4l2_m2m_get_unmapped_area for no-mmu
+>     platform
+>   media: videobuf2: Fix the size printk format
+>   media: v4l2-ctrls: Add V4L2_CID_COLORFX_CBCR max setting
+>   media: v4l2-ctrls: Add RGB color effects control
+>   clk: stm32: Fix ltdc's clock turn off by clk_disable_unused() after
+>     system enter shell
+>   media: stm32-dma2d: STM32 DMA2D driver
+> 
+>  .../admin-guide/media/platform-cardlist.rst        |   1 +
+>  .../devicetree/bindings/media/st,stm32-dma2d.yaml  |  71 ++
+>  Documentation/userspace-api/media/v4l/control.rst  |   9 +
+>  arch/arm/boot/dts/stm32f429.dtsi                   |  10 +
+>  arch/arm/boot/dts/stm32f469-disco.dts              |   4 +
+>  drivers/clk/clk-stm32f4.c                          |   4 -
+>  .../media/common/videobuf2/videobuf2-dma-contig.c  |   4 +-
+>  drivers/media/platform/Kconfig                     |  11 +
+>  drivers/media/platform/Makefile                    |   1 +
+>  drivers/media/platform/stm32/Makefile              |   2 +
+>  drivers/media/platform/stm32/dma2d/dma2d-hw.c      | 143 ++++
+>  drivers/media/platform/stm32/dma2d/dma2d-regs.h    | 113 ++++
+>  drivers/media/platform/stm32/dma2d/dma2d.c         | 739 +++++++++++++++++++++
+>  drivers/media/platform/stm32/dma2d/dma2d.h         | 135 ++++
+>  drivers/media/v4l2-core/v4l2-ctrls-defs.c          |  12 +-
+>  drivers/media/v4l2-core/v4l2-mem2mem.c             |  21 +
+>  include/media/v4l2-mem2mem.h                       |   5 +
+>  include/uapi/linux/v4l2-controls.h                 |   4 +-
+>  18 files changed, 1280 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dma2d.yaml
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d-hw.c
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d-regs.h
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d.c
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d.h
+> 
+
 
