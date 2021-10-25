@@ -2,93 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EB41438F46
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 08:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD48438F52
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 08:22:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbhJYGTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 02:19:48 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:12820 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230106AbhJYGTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 02:19:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1635142642;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=FzGDnxr5iXiYUSz2axj//eT4Wsv8vgWvAfW+iVGHdf8=;
-    b=ImfAx+t4NXRYNr0a6G3iB9mT/O1t9DcFUMzYWZCq0RrQVfit2gU8t8CufoZr4KJREm
-    Tj/vd6t/Ar//kz7xeq/+leVFICZ6n7YvhaXGJDrAwVMMr9XfqdmMN4Lde9Cob3RCxA+d
-    b7Kgfqql2J34Lja18GF8LWH+oBIecqQIV5mAvR7zebGinjWzVKmrQaevOyY+MgnpyXss
-    +HtJIthQyLyM8MWe7+9040VAy4+0xDWzjLG5qnh1RGk10jk+OLiOZDrh2HCv23T0ozkC
-    M4rgDRPocd8M8FZU6gmDxqOLw4p4YC9h9aQiQlhgLjxXUohPo37WxgeXHDZ7P/Z67q6z
-    bYPw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK8+86Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.33.8 AUTH)
-    with ESMTPSA id 301038x9P6HL6Ln
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 25 Oct 2021 08:17:21 +0200 (CEST)
-Date:   Mon, 25 Oct 2021 08:17:15 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 0/2] dmaengine: qcom: bam_dma: Add "powered remotely"
- mode for BAM-DMUX
-Message-ID: <YXZL655lHukjar/x@gerhold.net>
-References: <20211018102421.19848-1-stephan@gerhold.net>
- <YXZFGFH5lxDKeenw@matsya>
+        id S230368AbhJYGYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 02:24:35 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:56069 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230342AbhJYGYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 02:24:34 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 79FC55806AD;
+        Mon, 25 Oct 2021 02:22:10 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 25 Oct 2021 02:22:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=9RV4sajVRAaiAxkMiEO963Z9/Y
+        vQEWTOabZurBq9fI8=; b=kGnE+jYGDXymV4Xiq/7FGXrq+67VDY0XxdLHWYuMtH
+        1cKQ1cpf0U8X+B3KInfwu++Mm7WJUBMUSiDBMrE8Jo5ysrfmS7UMrE6SfyqyNLuA
+        5Y3xxQU7t07OE2d7cZ7TiSfs33vb5NgTDPxZccpA7VA4/8L5kG4JUpZ/fPNdxIWc
+        RKum05p8hqtblBp0BBEwL8zbYIHX/quGV9mthxf9kOe0+S/ZVJhXKmwyMzheuzI2
+        eDXPGY2Ky5IP6WIA2dOrTcyjnaI/xMbE8eONIkGFoNuH2yJ0AjHLIRFUKkrn3wTl
+        APEYiNf+WKyu54z/0JGFHCKlTqdaXYd0l3bZcEGOqWcg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=9RV4sajVRAaiAxkMi
+        EO963Z9/YvQEWTOabZurBq9fI8=; b=MGLFb95lUZQ4zLy3lEE6UiV+ce1c1OVLf
+        gmW6IucM6BQbnAC5HhqKxKI+k94l45jrJvFhqbQ0BpYqfNcCmiTAmeIigzLSlrG+
+        0RIPVSh+D2WCAIFflT2Gn4fEfvV3DXuL8Cq2SKqhaXtT6/pXF+xbH1NUz7lsKGSS
+        6ERNQDMOL+W6dUdTrBR0lszjsu7GM4UgffpHWlY9d7rf4EShcxiA5jpjMyZ7k8U1
+        1jtRYMphBjzacLBAjr35gRFgrnWYDdoosTpbOdyCaqWxlX9wTwplgooBljtOBuMi
+        9h2asNz7FXkT4FoGSKlgigIlOLrUihIJItwCM1dI4T3qiQSYqGUPA==
+X-ME-Sender: <xms:EE12YXSA5uhtArjfmMfSHkU3ubPJ1EgWIppZoXGAQdKhVrZ-2Noq2g>
+    <xme:EE12YYwFc4xx8aNNXE_iZ2jMpghRIZFi3NYXiKl2QIlSGilbCPt1t7WltrvNEFTVR
+    4To_WMSpdNJnT2wN2o>
+X-ME-Received: <xmr:EE12Yc18ZaBx6l5oD9mImBmJXqw8Y2Fk3VoNQhxUNCFOok26K2MUTdvs_6kI5aeKNx6YYTrYiKBNFb6Afxm4k3E1ZY2ZudVAFhuuL8FoenvMMfvXo2HwuxM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefgedguddtgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfr
+    vghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrh
+    hnpeefhedufedtvdfhhedvudehtdejjeehueduffdtgfdvkedvleelueevlefgfeelgfen
+    ucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:EU12YXC9NZGR27-MpzgH6PnUgQGFG5J_YtpaJLwnajVh7olnnbpIow>
+    <xmx:EU12YQgNmBvo4yDgFT9g2IWRAQuIejR6OzPw1M65JmjI6FsHQF3aRw>
+    <xmx:EU12YbpYuc9xX2jhuLHGX144eFMgQL8DxPZB2Cwt4AhorqKc78SHcg>
+    <xmx:Ek12YTMa9T0GFJF2IJRGPLUwGm6ZPBjz0sIEQrJyBtSJSVAtpvHlcQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 25 Oct 2021 02:22:07 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] Apple Mailbox Controller support
+Date:   Mon, 25 Oct 2021 08:22:01 +0200
+Message-Id: <20211025062204.1517-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YXZFGFH5lxDKeenw@matsya>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 11:18:08AM +0530, Vinod Koul wrote:
-> On 18-10-21, 12:24, Stephan Gerhold wrote:
-> > The BAM Data Multiplexer (BAM-DMUX) provides access to the network data
-> > channels of modems integrated into many older Qualcomm SoCs, e.g.
-> > Qualcomm MSM8916 or MSM8974.
-> > 
-> > Shortly said, BAM-DMUX is built using a simple protocol layer on top of
-> > a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
-> > a special mode where the modem/remote side is responsible for powering
-> > on the BAM when needed but we are responsible to initialize it.
-> > The BAM is powered off when unneeded by coordinating power control
-> > via bidirectional interrupts from the BAM-DMUX driver.
-> > 
-> > This series adds one possible solution for handling the "powered remotely"
-> > mode in the bam_dma driver.
-> 
-> This looks good me me. Bhupesh/Stephan what was the conclusion on the
-> the discussion you folks had?
-> 
+Hi,
 
-Basically I said I would wait if you still want to take this for 5.16. :)
-There is a conflict with the DT schema conversion in Bhupesh's series,
-but it's trivial to solve no matter which of the patches is applied first.
+This is the fourth version of my series which adds support for the mailbox
+controllers found on the Apple M1.
 
-Since Bhupesh still needs to send v5 as far as I can tell (and has a
-much larger series overall), I think it's fine to apply this one first.
+v1: https://lore.kernel.org/lkml/20210907145501.69161-1-sven@svenpeter.dev/
+v2: https://lore.kernel.org/lkml/20210916154911.3168-1-sven@svenpeter.dev/
+v3: https://lore.kernel.org/lkml/20211017114054.67737-1-sven@svenpeter.dev/
 
-Bhupesh, you can just copy-paste this below qcom,controlled-remotely
-in your DT schema if Vinod applies this patch first:
+Changes from v3 to v4:
+ - dropped minItems: 4 from the bindings
+ - added back of_xlate since the mailbox core only supports #mbox-cells = <1>
+   but this mailbox uses #mbox-cells = <0>
+ - Split of the MAINTAINERS changes to a separate file since we have quite a few
+   changes in flight and there will likely be conflicts once the pull requests
+   from various subsystems are sent to Linus
 
-  qcom,powered-remotely:
-    $ref: /schemas/types.yaml#/definitions/flag
-    description:
-      Indicates that the bam is powered up by a remote processor
-      but must be initialized by the local processor.
+Changes from v2 to v3:
+ - removed dma barriers since the mbox client will take care of these
+ - moved the of_device_id table and related code to the bottom of the file
+ - removed of_xlate
+ - dropped clock handling from the code and the binding since we now understand
+   that these are actually power domains
 
-Thanks!
-Stephan
+Changes from v1 to v2:
+ - switched to txdone_irq instead of introducing a new mode
+ - switched to a threaded interrupt handler for receiving messages
+ - added co-processor examples to the device tree binding
+ - reformatted the register defines and clarified multiple comments
+
+Best,
+
+Sven
+
+Sven Peter (3):
+  MAINTAINERS: Add Apple mailbox files
+  dt-bindings: mailbox: Add Apple mailbox bindings
+  mailbox: apple: Add driver for Apple mailboxes
+
+ .../bindings/mailbox/apple,mailbox.yaml       |  77 ++++
+ MAINTAINERS                                   |   3 +
+ drivers/mailbox/Kconfig                       |  12 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/apple-mailbox.c               | 384 ++++++++++++++++++
+ include/linux/apple-mailbox.h                 |  19 +
+ 6 files changed, 497 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+ create mode 100644 drivers/mailbox/apple-mailbox.c
+ create mode 100644 include/linux/apple-mailbox.h
+
+-- 
+2.25.1
+
