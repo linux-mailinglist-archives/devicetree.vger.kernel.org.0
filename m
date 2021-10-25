@@ -2,174 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A4043A6BE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 00:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09A1B43A811
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 01:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234316AbhJYWnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 18:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        id S232316AbhJYXVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 19:21:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234268AbhJYWn3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 18:43:29 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3182C061243
-        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 15:41:06 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id l16-20020a9d6a90000000b0054e7ab56f27so16978198otq.12
-        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 15:41:06 -0700 (PDT)
+        with ESMTP id S230219AbhJYXVA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 19:21:00 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3E3C061767
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 16:18:37 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id u5so15164356ljo.8
+        for <devicetree@vger.kernel.org>; Mon, 25 Oct 2021 16:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=rGiovqWqFrjBrCkSq4yv/M/dVdFQ93Lt9w4Vj0XzRp0=;
-        b=e5y4X6m/JLEbzzUCH30q0NucRMH75dvcVNtZW7lTlgRhkeI8fDZaI3MwaJ98oHOBF9
-         9AON2AohLOTJHPDFqfaXruw2v5cfFjOe9ZHV37z/zWk44BCXzi3PvlehCVP91827441C
-         aNRN9n22sKlgYFbllqsXj/Pz7I0B5I8zSrI8o=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=EozrZDVpg+ZP0Rw1M0YUESRPsOtGxy7zLet1izxV1R4=;
+        b=smkFL/O/gJcaZSKKqa4eEGJTIQNWC5hvL6WmIzzicEXAnd6xy5Zj1Pn4gZaBtTGxDw
+         ux6wm++UIxOiahhFFUcXJK84qOB/X80RwdCJJduBFS+Vi/Zay0u4r0+5gU4k6GzLU87J
+         zayKzszoHgtdPUmlLWgL45Tl023sggUKeYuozYTFBtkpyR5/UMAA4jEMycgQXS6Tbum5
+         68IjxW7GW/s3KA7fSAhG3hB9yiRJRJgRUXeY8iPwVajxWy+shY0KR5W1huKhK8UgR9Ly
+         VkGXEEt1NoqULgv/HGRdr/FOzSxR6Zba5pFCMuZgRGUVmvFci5RUecpuQyhE95x6JXv7
+         J7DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=rGiovqWqFrjBrCkSq4yv/M/dVdFQ93Lt9w4Vj0XzRp0=;
-        b=RnQmYp60Nk/J987JjUIiQzvMsBLnmCX3blR9R1RCu09g7Vghyg2sikBhHAOSxqeToZ
-         jqtKgaUgamOZaqMtVo/cYoi6cM5nkYTm9+/h6rAfbhqBfrIAX2LEGJSHnCGE9yGp5R2E
-         Sddqhch76PxlykCCRf1t6D6HWgEvd/gSE/tUJARuomm7JejatmaV/KRnK4mH/ViYAuFH
-         Vk6r3Hb40etv2d4fKj6W/40QSsfGFE8dK3ypJX9q3ODzBGHKQq1EtlQO5jqbwhZ9wF1y
-         rb18KtRVB0knqa9LwOumdAe0iBEiLzb9p6yCmt41h9PcRl3F3q9Rv1sZQPRLnAFwe1lm
-         ++yQ==
-X-Gm-Message-State: AOAM530z5qNaN6B1HTutqBXWBxohIC6wm+hPa6woqu7jjAB0xEzGjzId
-        /8gUGOLTGSSWHfavMs2qYRy6x65hFdneVF6PwgebYw==
-X-Google-Smtp-Source: ABdhPJyrcEmmL456GTam14IOSkmcFoh1X4j7JAYEurQdEfb+O2qaOJEmFfFtS/mARLtrHH0V8dU6F38y+oknUnR1nQE=
-X-Received: by 2002:a05:6830:1c2e:: with SMTP id f14mr15179888ote.159.1635201666169;
- Mon, 25 Oct 2021 15:41:06 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 25 Oct 2021 15:41:05 -0700
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=EozrZDVpg+ZP0Rw1M0YUESRPsOtGxy7zLet1izxV1R4=;
+        b=1r5ABCMFeM6Kv4xpHGaoEpbuc8x65+/Nx7Krh9XJboPDOt9mzaUFqCo0xa7850lg4V
+         tLSjRl0pEoX8sMNmGuT+/Rs/EI0L24mUUqgLDEExwK6zs/SyOyB0ntyv+8Vo+OrHqFM4
+         +5BnRR1Fm2Fs+2DRLnuoKRAwoo5TrozmQNOiNysNVbhfo7ciH13xZqjvdTUr71D/mu4u
+         rcwQckhipBm8TIX45BH+HrDu90mK5QCt9E68BnOVT/fAJrpStQ9Ot5ittjpHsYK6h2vL
+         0T9b0n1ozlPqZaLNZYOSqmtAm3Q0zINkyErfVohxymVA8Zg+4NaTbn2HqEmrBnOTtXDX
+         DIKQ==
+X-Gm-Message-State: AOAM530O8pf/Sl0jljhHWLd01LgGLAmvvHWLOX3bMcQQFbxFz+tNKkVY
+        ZbgVP9EMcQfuYkhTxLStFTihl6ujovxW+GrauG8kzg==
+X-Google-Smtp-Source: ABdhPJz3oG+y2cwWCVoReGxh5LmFxBmvF15RmgJ5849Z41JjU1u1e8u5seAn+rX9J+/v6BBeGp3emvd7euqFBNzqq7M=
+X-Received: by 2002:a2e:9e4e:: with SMTP id g14mr14444810ljk.261.1635203915755;
+ Mon, 25 Oct 2021 16:18:35 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YXck+xCJQBRGqTCw@ripper>
-References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
- <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
- <YXcBK7zqny0s4gd4@ripper> <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
- <YXck+xCJQBRGqTCw@ripper>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Mon, 25 Oct 2021 15:41:05 -0700
-Message-ID: <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
- for dwc3 qcom
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+References: <20211025114214.44617-1-alistair@alistair23.me> <20211025114214.44617-3-alistair@alistair23.me>
+In-Reply-To: <20211025114214.44617-3-alistair@alistair23.me>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 26 Oct 2021 01:18:24 +0200
+Message-ID: <CACRpkdYjBM9Pu=rO8SqfGvpP_fGeD=2YCqh+Rh-bOVq_k2S6CQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] Documentation: DT: bindings: input: Add documentation
+ for cyttsp5
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        Andreas Kemnade <andreas@kemnade.info>, alistair23@gmail.com,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Mylene Josserand <mylene.josserand@free-electrons.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-10-25 14:43:23)
-> On Mon 25 Oct 13:17 PDT 2021, Stephen Boyd wrote:
->
-> > Quoting Bjorn Andersson (2021-10-25 12:10:35)
-> > > On Mon 25 Oct 02:07 PDT 2021, Sandeep Maheswaram wrote:
-> > >
-> > > > Add multi pd bindings to set performance state for cx domain
-> > > > to maintain minimum corner voltage for USB clocks.
-> > > >
-> > > > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> > > > ---
-> > > > v2:
-> > > > Make cx domain mandatory.
-> > > >
-> > > >  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 8 +++++++-
-> > > >  1 file changed, 7 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > > > index 2bdaba0..fd595a8 100644
-> > > > --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > > > +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> > > > @@ -42,7 +42,13 @@ properties:
-> > > >
-> > > >    power-domains:
-> > > >      description: specifies a phandle to PM domain provider node
-> > > > -    maxItems: 1
-> > > > +    minItems: 2
-> > > > +    items:
-> > > > +      - description: cx power domain
-> > > > +      - description: USB gdsc power domain
-> > > > +
-> > > > +  required-opps:
-> > > > +    description: specifies the performance state to power domain
-> > >
-> > > I'm still worried about the fact that we can't just rely on the USB GDSC
-> > > being a subdomin of CX in order to just "turn on" CX.
-> > >
-> > > Afaict accepting this path forward means that for any device that sits
-> > > in a GDSC power domain we will have to replicate this series for the
-> > > related driver.
-> > >
-> >
-> > I suspect the problem is that it's not just "turn on" but wanting to
-> > turn it on and then set the performance state to some value based on the
-> > clk frequency.
->
-> I don't see an opp-table involved, just the required-opps for the
-> purpose of turning CX on a little bit more. Perhaps I'm missing
-> something here though.
+Hi Alistair,
 
-Indeed. There's only one clk frequency for USB so only one performance
-state/required-opps is used. In general that isn't the case and so we'll
-eventually need to map some GDSC on/off state to the clk frequency of
-whatever clk domain is associated with CX for a device.
+On Mon, Oct 25, 2021 at 1:42 PM Alistair Francis <alistair@alistair23.me> w=
+rote:
 
+> From: Myl=C3=A8ne Josserand <mylene.josserand@free-electrons.com>
 >
-> > Maybe the simplest version of that could be supported
-> > somehow by having dev_pm_opp_set_rate() figure out that the 'level'
-> > applies to the parent power domain instead of the child one?
+> Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> documentation. It can use I2C or SPI bus.
+> This touchscreen can handle some defined zone that are designed and
+> sent as button. To be able to customize the keycode sent, the
+> "linux,code" property in a "button" sub-node can be used.
 >
-> Having the performance_state request cascade up through the GDSC sounds
-> like a nice solution; I've not looked at the code to see if this is
-> feasible though.
+> Signed-off-by: Myl=C3=A8ne Josserand <mylene.josserand@free-electrons.com=
+>
+> Message-Id: <20170529144538.29187-3-mylene.josserand@free-electrons.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
 
-When the binding was introduced I recall we punted on the parent child
-conversion stuff. One problem at a time. There's also the possibility
-for a power domain to be parented by multiple power domains so
-translation tables need to account for that.
+> +title: Cypress cyttsp touchscreen controller, generation 5
+(...)
+> +  compatible:
+> +    const: cypress,cyttsp5
 
->
-> > Or we may need to make another part of the OPP binding to indicate the
-> > relationship between the power domain and the OPP and the parent of
-> > the power domain.
->
-> I suspect this would be useful if a power-domain provider needs to
-> translate a performance_state into a different supply-performance_state.
-> Not sure if we have such case currently; these examples are all an
-> adjustable power-domain with "gating" subdomains.
+Is this the real product name? When I rewrote the bindings for
+the original "CYTTSP", actually "Cypress TrueTouch Standard Product"
+it came out that the actual product names were CY8CTMA340
+and CY8CTMA341. "CYTTSP" was a marketing name for the
+whole family.
 
-Even for this case, we should be able to have the GDSC map the on state
-to some performance state in the parent domain. Maybe we need to add
-some code to the gdsc.c file to set a performance state on the parent
-domain when it is turned on. I'm not sure where the value for that perf
-state comes from. I guess we can hardcode it in the driver for now and
-if it needs to be multiple values based on the clk frequency we can push
-it out to an OPP table or something like that.
+See
+Documentation/devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml
 
->
->
-> PS. I think we have the same problem in the display subsystem, the
-> sub-blocks are powered by MDSS_GDSC, which is a subdomain of MMCX. We
-> trust the parent mdss node to keep the GDSC powered and specify MMCX as
-> the power-domain for the children, so that we can affect their levels by
-> respective opp-table.
->
+If the actual products have some product names such as
+CY8* then use these as compatibles instead and just write in the
+decription that it is Cypress TrueTouch Standard Product series 5.
 
-Yes, a GDSC is really a gate on a parent power domain like CX or MMCX,
-etc. Is the display subsystem an example of different clk frequencies
-wanting to change the perf state of CX? If so it's a good place to work
-out the translation scheme for devices that aren't listing the CX power
-domain in DT.
+Yours,
+Linus Walleij
