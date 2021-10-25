@@ -2,91 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54031439E4B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 20:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68A71439E62
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 20:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232608AbhJYSTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 14:19:25 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:47098 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232478AbhJYSTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 14:19:23 -0400
-Received: by mail-ot1-f51.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so16122320ote.13;
-        Mon, 25 Oct 2021 11:17:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=bLfZN28QMCI4m4KB4fkACx23o4Rjd6HbYTlUX1t6irc=;
-        b=QKo8Kx0H5wE+jpCZhs3VbJWbQwMJ8GyFDv9gqlNra59O0/M+harCqjmH6KWbo5ERcr
-         d7QocxWEP79bw7A06SFLhZ4xUJjw8u9ia50tR27kHfrJmTWuVs16QSHBTFDZzYqpqgdi
-         zPiNSo/12E23YpS3orRrYPRZfcZGLKrPC8IkmCFG6wfC15ig+KJGBgS3+YiILZM31CSH
-         RRPWNWPqRFpJoYnS9urMIdmpryl1vgx4UgNXh76GbQJFNVtACaElWZG5AQr7yI7DYZzT
-         fRXGd7s6ILHndwT9nzIHpDHojHmr0csXUS541TNz0++A88gH9B0mqMQdrT/3V2iE8zuF
-         b/tA==
-X-Gm-Message-State: AOAM533K0dDOSDxP4CtWhjiH2kuruDPFu8U6HNDg9eWZIMAKubnqWJzB
-        EddoBSkjXEuUZsfaVM2HzQ==
-X-Google-Smtp-Source: ABdhPJz8+BG6kwGVgKT4pjax5eofi2fAJBOSEhlpU4V7piV9LLWwdwpEoAuNV9IKiFB8x1N0+b9i6g==
-X-Received: by 2002:a9d:72de:: with SMTP id d30mr15244534otk.18.1635185820747;
-        Mon, 25 Oct 2021 11:17:00 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v22sm3096784oot.43.2021.10.25.11.16.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Oct 2021 11:17:00 -0700 (PDT)
-Received: (nullmailer pid 824874 invoked by uid 1000);
-        Mon, 25 Oct 2021 18:16:53 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Akhil R <akhilrajeev@nvidia.com>
-Cc:     rgumasta@nvidia.com, dan.j.williams@intel.com,
-        linux-tegra@vger.kernel.org, ldewangan@nvidia.com,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        kyarlagadda@nvidia.com, jonathanh@nvidia.com, robh+dt@kernel.org,
-        vkoul@kernel.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-In-Reply-To: <1635180046-15276-2-git-send-email-akhilrajeev@nvidia.com>
-References: <1635180046-15276-1-git-send-email-akhilrajeev@nvidia.com> <1635180046-15276-2-git-send-email-akhilrajeev@nvidia.com>
-Subject: Re: [PATCH v10 1/4] dt-bindings: dmaengine: Add doc for tegra gpcdma
-Date:   Mon, 25 Oct 2021 13:16:53 -0500
-Message-Id: <1635185813.793339.824873.nullmailer@robh.at.kernel.org>
+        id S232051AbhJYSYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 14:24:03 -0400
+Received: from marcansoft.com ([212.63.210.85]:33748 "EHLO mail.marcansoft.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231233AbhJYSYD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 14:24:03 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id ED557419B4;
+        Mon, 25 Oct 2021 18:21:33 +0000 (UTC)
+Subject: Re: [PATCH v2 2/8] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
+        Arnd Bergmann <arnd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>
+References: <20211025144718.157794-1-marcan@marcan.st>
+ <20211025144718.157794-3-marcan@marcan.st>
+ <1635185813.758208.824867.nullmailer@robh.at.kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Message-ID: <767a424f-543c-3eda-4b7f-a6113c9cf250@marcan.st>
+Date:   Tue, 26 Oct 2021 03:21:31 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <1635185813.758208.824867.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 22:10:43 +0530, Akhil R wrote:
-> Add DT binding document for Nvidia Tegra GPCDMA controller.
+On 26/10/2021 03.16, Rob Herring wrote:
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  .../bindings/dma/nvidia,tegra186-gpc-dma.yaml      | 108 +++++++++++++++++++++
->  1 file changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> yamllint warnings/errors:
 > 
+> dtschema/dtc warnings/errors:
+> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/power/apple,pmgr-pwrstate.yaml'
+> xargs: dt-doc-validate: exited with status 255; aborting
+> make[1]: *** Deleting file 'Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dt.yaml'
+> Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/power/apple,pmgr-pwrstate.yaml'
+> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/arm/apple/apple,pmgr.example.dt.yaml] Error 255
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1441: dt_binding_check] Error 2
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ah, I guess this is just an order issue. Patches 2/3 should've been 
+swapped... sorry about that, I only ran the checker on the final state, 
+not the intermediate ones.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml:25:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml:28:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.example.dt.yaml: dma-controller@2600000: 'dma-coherent' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1545840
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
