@@ -2,116 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0396743949A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 13:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A66439507
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 13:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbhJYLRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 07:17:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51196 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230126AbhJYLR3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 07:17:29 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1017C60238;
-        Mon, 25 Oct 2021 11:15:07 +0000 (UTC)
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mexwW-001LU4-U6; Mon, 25 Oct 2021 12:15:04 +0100
+        id S233155AbhJYLop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 07:44:45 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:46649 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233116AbhJYLop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 07:44:45 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 856055804A8;
+        Mon, 25 Oct 2021 07:42:22 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 25 Oct 2021 07:42:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version:content-type
+        :content-transfer-encoding; s=fm2; bh=mFmfwKE6NJwjJuKPURxDtcwRnD
+        8ffKIphewM6DnRXhQ=; b=lwgJ0jaDrCSyhplEtJbMrW+0v+CecDvNr4cs4j8u/b
+        V9TVp7FMLa3aFedS5wi5MVDSRF+MTqv5wlkVwNIw39iCustWMlC2pVH3SvtS/PWe
+        kSkTDUK69QiRSADnh5k2zhbi+SPXozX5AaaIHtXEEZmuSPIm5VQX+JyZo9m3fkR/
+        K1dDd+Ep7Jx/qXvfJ2zqxmAqcZB3NFQ0rRtoIG24dm8BtZPhphAJ/s/U0mhSqN5X
+        wEc3qSJfXlvgrmHrOykC0lgbvstvyMBCJ3xlUxsN1cXTiDaTdPrJljn6ctVJsen3
+        ZXZdaq9KS5p1nPBWo1Ps/PAtSs1JSh3lWYEsU7Reqc2g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=mFmfwK
+        E6NJwjJuKPURxDtcwRnD8ffKIphewM6DnRXhQ=; b=WCHzm2JJVY39uMYAzGNmpX
+        pfPI/IPpmMubCpZMTPLXPzwz1ThAWeYBR4FzN1NBmoddCplFpxs+/ntkZG3pQbG4
+        ImQFksbRuhKC+LtZbBBycoCoyPhwL39nc334afKjQ13f3rxuMIHz98gRjTOoDtta
+        V5jOiwF7gRf3A5+UAcfVwQaDe9XXldesfyLcEnIWWv/B+T4g2SDCA8PD6nn5WQig
+        u4ipW6y//eB0u6osltu+i9hIATAzs+D82oVnVDG6N8w8HoCo8/cvmnQOQXxweEi+
+        KgjMiypZPwmV0GbYAqeqaMSp2Y87VtssR/0maobpcHvxvrFa9AZeAlPq5yl1OjqA
+        ==
+X-ME-Sender: <xms:HZh2YQQzrHkVS4HhpDi4nQTAPyseyaYsX8zB0_FLY6Pt9B5PykAhdg>
+    <xme:HZh2YdxszUsyI9wjHo_pBSmq2nXLrj0UZN8VXunpLWMdSNCb1PIT43BAdp7xpxiJs
+    uyd3jsbeNN5RbUboaQ>
+X-ME-Received: <xmr:HZh2Yd1ZdfDGYwdIKcBRgPe_7PnBSdTvkRTvquxX5XvlgUFxXXUjaZZhZ1xT_EpE86zJ4aw07FsL>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefhedggeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofggtgfgsehtqhertd
+    ertdejnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
+    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepffelvdegveefve
+    efvddvffeiteefgfejveegieethfekgefhleeukefhjeehfffgnecuffhomhgrihhnpehl
+    fihnrdhnvghtpdhgihhthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhm
+    vg
+X-ME-Proxy: <xmx:HZh2YUA9U5O4NXgkRqclJ685Yg_oxVxk-V-JFLbn3S7A94QH7ToWbA>
+    <xmx:HZh2YZhYvLa7Ka2TlY9XVOeJoQyOxghCCkJiGUugPGJRP9wuRZtw_Q>
+    <xmx:HZh2YQrl0AL04Uaw0lyK2Z6Eb-t_lcIEOjYYXJPI4wmv4HdILNTxUQ>
+    <xmx:Hph2YeZAypMROMWPXHnBLaROJGcNkJVcP6Z1j4yGleTeLGDddya_UQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 25 Oct 2021 07:42:16 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
+Cc:     andreas@kemnade.info, alistair23@gmail.com,
+        dmitry.torokhov@gmail.com, linus.walleij@linaro.org,
+        robh+dt@kernel.org, rydberg@bitmath.org,
+        mylene.josserand@free-electrons.com,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH 0/4] Add support for the Cypress cyttsp5
+Date:   Mon, 25 Oct 2021 21:42:10 +1000
+Message-Id: <20211025114214.44617-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Date:   Mon, 25 Oct 2021 12:15:04 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>, Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, fancer.lancer@gmail.com,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 11/11] arm64: dts: Add Pensando Elba SoC support
-In-Reply-To: <20211025091731.GA2001@C02TD0UTHF1T.local>
-References: <20211025015156.33133-1-brad@pensando.io>
- <20211025015156.33133-12-brad@pensando.io>
- <20211025091731.GA2001@C02TD0UTHF1T.local>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <a20805de16e1196c2ed46dd949473c9a@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: mark.rutland@arm.com, brad@pensando.io, linux-arm-kernel@lists.infradead.org, arnd@arndb.de, linus.walleij@linaro.org, bgolaszewski@baylibre.com, broonie@kernel.org, fancer.lancer@gmail.com, adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-25 10:17, Mark Rutland wrote:
-> Hi,
-> 
-> On Sun, Oct 24, 2021 at 06:51:56PM -0700, Brad Larson wrote:
->> Add Pensando common and Elba SoC specific device nodes
->> 
->> Signed-off-by: Brad Larson <brad@pensando.io>
-> 
-> [...]
-> 
->> +	timer {
->> +		compatible = "arm,armv8-timer";
->> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) |
->> +					IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) |
->> +					IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) |
->> +					IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) |
->> +					IRQ_TYPE_LEVEL_LOW)>;
->> +	};
-> 
-> The GIC_CPU_MASK_SIMPLE() stuff is meant for GICv2, but as below you
-> have GICv3, where this is not valid, so this should go.
-> 
-> Also, beware that GIC_CPU_MASK_SIMPLE(1) means a single CPU, which
-> doesn't mak sense for the 16 CPUs you have.
-> 
->> +		gic: interrupt-controller@800000 {
->> +			compatible = "arm,gic-v3";
->> +			#interrupt-cells = <3>;
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			ranges;
->> +			interrupt-controller;
->> +			reg = <0x0 0x800000 0x0 0x200000>,	/* GICD */
->> +			      <0x0 0xa00000 0x0 0x200000>;	/* GICR */
-
-This is missing the GICv2 compat regions that the CPUs implement.
-
->> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			gic_its: msi-controller@820000 {
->> +				compatible = "arm,gic-v3-its";
->> +				msi-controller;
->> +				#msi-cells = <1>;
->> +				reg = <0x0 0x820000 0x0 0x10000>;
->> +				socionext,synquacer-pre-its =
->> +							<0xc00000 0x1000000>;
->> +			};
->> +		};
-> 
-> Is there any shared lineage with Synquacer? The commit message didn't
-> describe this quirk.
-
-Funny, it looks like there is a sudden outburst of stupid copy/paste
-among HW designers. TI did the exact same thing recently.
-
-This totally negates all the advantages of having an ITS and makes
-sure that you have all the overhead. Facepalm...
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+This patch series builds on top of [1] and adds support for the cyttsp5=0D
+touchscreen controller for the reMarkable 2.=0D
+=0D
+I first tried to add an I2C HID device. Although the cyttsp5 has some HID=0D
+looking aspects it is not HID compatible. Just in trying to probe the devic=
+e=0D
+I found:=0D
+ - The HID descriptor has extra padding=0D
+ - The HID descriptor sets the high bytes of the descriptor length=0D
+ - The HID descriptor has extra unrecognised tags=0D
+ - The HID reset command doesn't appear to work=0D
+=0D
+I don't think there is a way to use the I2C HID framework with the cyttsp5.=
+=0D
+For anyone interested you can see the work here [2]. In that branch though =
+I=0D
+can only obtain a HID descriptor, nothing else works without more core=0D
+changes.=0D
+=0D
+So instead I rebased the series from [1]. Converted to the new yaml DTS=0D
+documentation, added regulator support and fixed a x/y miscalculation bug.=
+=0D
+=0D
+1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@=
+bootlin.com/=0D
+2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid=0D
+=0D
+Alistair Francis (2):=0D
+  ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen=0D
+  ARM: dts: imx7d: remarkable2: Enable the cyttsp5=0D
+=0D
+Myl=C3=A8ne Josserand (2):=0D
+  Input: Add driver for Cypress Generation 5 touchscreen=0D
+  Documentation: DT: bindings: input: Add documentation for cyttsp5=0D
+=0D
+ .../input/touchscreen/cypress,cyttsp5.yaml    |   72 ++=0D
+ arch/arm/boot/dts/imx7d-remarkable2.dts       |   88 ++=0D
+ arch/arm/configs/imx_v6_v7_defconfig          |    1 +=0D
+ drivers/input/touchscreen/Kconfig             |   14 +=0D
+ drivers/input/touchscreen/Makefile            |    1 +=0D
+ drivers/input/touchscreen/cyttsp5.c           | 1129 +++++++++++++++++=0D
+ 6 files changed, 1305 insertions(+)=0D
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cyp=
+ress,cyttsp5.yaml=0D
+ create mode 100644 drivers/input/touchscreen/cyttsp5.c=0D
+=0D
+-- =0D
+2.31.1=0D
+=0D
