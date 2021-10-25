@@ -2,101 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9A1438C89
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 01:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14712438CB5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 02:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232111AbhJXXXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Oct 2021 19:23:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33518 "EHLO
+        id S231708AbhJYAHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Oct 2021 20:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232100AbhJXXXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 19:23:43 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695E0C061348
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 16:21:22 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id bq11so5737056lfb.10
-        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 16:21:22 -0700 (PDT)
+        with ESMTP id S229554AbhJYAHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Oct 2021 20:07:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74A3CC061745
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 17:05:23 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id w23so4966372lje.7
+        for <devicetree@vger.kernel.org>; Sun, 24 Oct 2021 17:05:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=37EfsXc0CKwE4ZomaFAm5bDGDVpfUse9rWaVkk06N8E=;
-        b=Px9mnr8zu/GzkthMts8NBbM+JmIYRKGyGjWgEap1za4p7rEDWi6W/DG3UrzrCTJFKV
-         WqmW/3GFDsa/3iU950oJlL8CTgo0EG/MrAzum/4+z4tZx/tdqjv6kRLmNz9nDLNSXhMR
-         /nessPAQsKXBUkI0XcT9jXDGqZ+MU/6tBB22oo5HzVdYqfZTvl4rDS4gw/IIoHX3gQZa
-         55+L7DDFyLQkp1CLe6cR3Ej2GdDpAIYZxQ2glhT1Zlf8D/9rAU+MhAnxgNqGnBXD6VMZ
-         ebibQ4JXFr+X0vg1aG/mTYEj11l3kRs5EaWR+o5QfKuV03Of8td6eRncs9IHIen//ec1
-         TBMA==
+        bh=BXs3CPiRM0ktOPn6UKcTUaxBGbDFvG7y/D+eqfm+MiI=;
+        b=EcqtqNeLccqZf+cv2/s25z9obdQyXFWwESdFctu92gglRQdTZilo0i5mW9ktv1CRSH
+         8gcQDYNEbRGQpjfxp/u/Yp8OfTvFYkgPPwTw3RVE94rCfUxv5czaERJlokO+/zV83QrX
+         RHKWpBeCyAIc+olrONkEnxnO7XgRReItJ9JV7LzvfQmiPxP3KKvNqP+/d+eFPXaywCEc
+         TmyNwQm0YDxuzkNjLlb3wIDsjPypsGNEoyrbdKGB2nBh29/DpGCiwy3vMVKw3nmLcMhp
+         /ycA5xhEyOFFyCUim9WUoTxrNWHnhfFLM1Xh8aToH0Ofnzpg5W53/HmH2Xlx4gp07260
+         1vnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=37EfsXc0CKwE4ZomaFAm5bDGDVpfUse9rWaVkk06N8E=;
-        b=c7DjYTnrHDmxpc0dM5U5zTPNYViNDB//RjHiAKcq3qI8Rr4rCkVkR2D2YdVHb/GUzF
-         UK6O24uSttrsKvsOqXXvyel0XsMapGv1qHZQuYIdGlAEGTuwwd6o/DFz3WeA3IcqOiHS
-         qhbx619BsnVV3iw6TrFKu5gSG0fPgOTs3GdtED41kBIyPkBk0ND4PTbgqM4okRDdl8bC
-         +oUArSF/dBZDeCVZ/Iq00BYaUChNPpdD2FKkBxNSHGHptswS8+htdKQU/3wiglKSmpRd
-         abjmpo07xqoTtt2oWnpm6yEV+xlzZpUxJFbxz1GVHHyT6gwxg7kZVF/M2JSNBVAvaWwy
-         wNCA==
-X-Gm-Message-State: AOAM533Gqrr4BUB5Pkd2nhlrYTtPpy9Mwvn0n+tpuls9qrsMEO3kxjtj
-        5a95JZVj6GbRBfy9czPNoYeJPU8SJMCnY2ZY2HEVtA==
-X-Google-Smtp-Source: ABdhPJzKZDyPRJjamiuqfOr8TePEjwRVAwoQEtUyaDMeYRh/KoV/hvptFO78qhdTpPRG1/6yoDMPCROqvbnR4g0v8Ls=
-X-Received: by 2002:a19:6717:: with SMTP id b23mr8743261lfc.95.1635117680743;
- Sun, 24 Oct 2021 16:21:20 -0700 (PDT)
+        bh=BXs3CPiRM0ktOPn6UKcTUaxBGbDFvG7y/D+eqfm+MiI=;
+        b=ve0ru/ITSVgB1P8/YEVruLPm+yqbOZ7raTdwfI7u0w2oFBLI1KXrE2g96/s3NYcfzj
+         MzstFM9+4BDD5Dsad5JfuvyZ1xV5HNTjmpq/NGJcwVxpMVZ0OdzO4bCN4NAyBMxfu/D/
+         1djBEv1ZY7k4rTGudOJ9NG8BjKarEUzedfnQ1zlS/9rPQVJRSGMjXClwcTafaReeMawH
+         BQyEIn+hDUGjsXqgr6R+ixeDqEqlbyJmvFh7nT21K6grujpj7PIKLAn2Smdt/yzGIFvc
+         dQgd6axO7W7lHAtD8MuAmHpqiqKMahIgIMh9RDYUeMBk9TTT/TdOZP4LsOfE6oJbqfRI
+         Exag==
+X-Gm-Message-State: AOAM530lQ0kkikkkAI7W1atOeNxnWvZHZrdJ9US9KT3gPeJNBwzxhvR/
+        Fsz4WFpJKtBsE2Aa3ksCpEp5Q/D3xyUgt8wKCHHxLw==
+X-Google-Smtp-Source: ABdhPJwz/CLcFxBI/cvz+vNv1O1716R9EDbGS/lJN3cLLx8ZY3kiktxsKROfdKUg6qk8vtT+Kjkh2EnAzf/Kw34JXc8=
+X-Received: by 2002:a2e:9e4e:: with SMTP id g14mr7718082ljk.261.1635120321725;
+ Sun, 24 Oct 2021 17:05:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210913192816.1225025-1-robh@kernel.org> <20210913192816.1225025-7-robh@kernel.org>
- <CAL_JsqJiH5ZDpFEC+A+S=EQ5Tp4T_YhFK4A44YEGUY_NW+88qw@mail.gmail.com>
-In-Reply-To: <CAL_JsqJiH5ZDpFEC+A+S=EQ5Tp4T_YhFK4A44YEGUY_NW+88qw@mail.gmail.com>
+References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com> <20211024154027.1479261-4-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211024154027.1479261-4-Mr.Bossman075@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 25 Oct 2021 01:21:09 +0200
-Message-ID: <CACRpkdaYGKv7cPUgQn8VmiMb9ftWygU187NoRACDP3VnMio+HA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] ARM: dts: arm: Update register-bit-led nodes 'reg'
- and node names
-To:     Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+Date:   Mon, 25 Oct 2021 02:05:10 +0200
+Message-ID: <CACRpkdZGAfJATC5MGaJ9AUs8x+nN_rDRATyV44Fkztoat4-ZLw@mail.gmail.com>
+Subject: Re: [PATCH 03/13] dt-bindings: imx: Add pinctrl binding doc for i.MXRT1050
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        giulio.benetti@benettiengineering.com,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Huang Yongcai-B20788 <b20788@freescale.com>,
+        Andy Duan <fugang.duan@nxp.com>,
         linux-clk <linux-clk@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 21, 2021 at 11:16 PM Rob Herring <robh@kernel.org> wrote:
-> On Mon, Sep 13, 2021 at 2:28 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > Add a 'reg' entry for register-bit-led nodes on the Arm Ltd platforms.
-> > The 'reg' entry is the LED control register address. With this, the node
-> > name can be updated to use a generic node name, 'led', and a
-> > unit-address.
-> >
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Liviu Dudau <liviu.dudau@arm.com>
-> > Cc: Sudeep Holla <sudeep.holla@arm.com>
-> > Cc: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  arch/arm/boot/dts/arm-realview-eb.dtsi        | 27 +++++++++++++------
-> >  arch/arm/boot/dts/arm-realview-pb1176.dts     | 27 +++++++++++++------
-> >  arch/arm/boot/dts/arm-realview-pb11mp.dts     | 27 +++++++++++++------
-> >  arch/arm/boot/dts/arm-realview-pbx.dtsi       | 27 +++++++++++++------
-> >  arch/arm/boot/dts/integrator.dtsi             | 23 +++++++++++-----
-> >  arch/arm/boot/dts/mps2.dtsi                   | 10 +++++--
-> >  arch/arm/boot/dts/versatile-ab-ib2.dts        |  6 ++++-
-> >  arch/arm/boot/dts/versatile-ab.dts            | 27 +++++++++++++------
-> >  arch/arm64/boot/dts/arm/juno-motherboard.dtsi | 27 +++++++++++++------
-> >  9 files changed, 144 insertions(+), 57 deletions(-)
->
-> Linus, Can you apply this and patch 7?
+On Sun, Oct 24, 2021 at 5:40 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
 
-I signed them off and sent directly to the SoC tree mailalias.
+> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>
+> Add binding doc for i.MXRT1050 pinctrl driver.
+>
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+
+On this and all the pinctrl stuff I need review from the current
+Freescale maintainers, the fsl,pins stuff is a Freescale pecularity.
+I would hardcode all of this into the driver but there are historical
+reason for why Freescale want it and does it this way.
+(And I don't understand those.)
 
 Yours,
 Linus Walleij
