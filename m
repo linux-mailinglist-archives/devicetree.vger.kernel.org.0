@@ -2,303 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A057439263
-	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9EEA439273
+	for <lists+devicetree@lfdr.de>; Mon, 25 Oct 2021 11:34:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232401AbhJYJct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 05:32:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55720 "EHLO
+        id S232577AbhJYJhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 05:37:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229946AbhJYJct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 05:32:49 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2605AC061745;
-        Mon, 25 Oct 2021 02:30:27 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id r4so15467990edi.5;
-        Mon, 25 Oct 2021 02:30:27 -0700 (PDT)
+        with ESMTP id S232592AbhJYJhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 05:37:13 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28810C061767;
+        Mon, 25 Oct 2021 02:34:52 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id r5so2932043pls.1;
+        Mon, 25 Oct 2021 02:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=R53YJWQNI9IrUHz73mWYVhGKNa735wgVP438s+PtWxs=;
-        b=jPCGpbicayls4H5kUw4y6Hs15D8wGMin5NHOYMWbkwZ/LEax+66T53dK8k1z78IoGU
-         Vk8R6PGrjmAQMErCzUvVoUlOLse3dkwXLnZ+spaEb68bFf4T7IHO1TItvbszI57wcNc8
-         4UoJ4lNHoOxibZuguAbbS5m7GpzLbn53cOcs60nzSXfV9bzmr7YX0YJ9Dbli5XOnLUDN
-         eoPctSHWz35fghoxIxm2Jhs4LbG8AdCFIzVXqSxn4Fz3qWJGsEH+ucl6DUzoobi78Wj/
-         TC1k+lqjSQJnn0/itD/oMUAyhnAz1B8ShsZl0yLAtn+NkOEUqy+C7lsrNnLg12pBVCbI
-         0kQQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cYbf6uzQ8oZx3fhN+OoW9PPWaIszzAceDbsiiDa0Wkk=;
+        b=GNEEdtlNOM5d2yKPDnZx78pxFUUbfo9KVAgwKlBM9nj1Nr1xMb677pxwVB9L2zzgW0
+         SPcCC5ifLzMFDHr971erg6wXTk/I76oXeDIDuZpn4CoYDkBBYlemUbNIdy9UZBfC6lQV
+         gwXDLZk5sPvEAJeOvwi1V080PyzUoJrC1XOcrhKEe/xL19eaQQb6++lPwnlAV9hwcDPE
+         8hWWcthqWV/oUylD4vWdsjqag/AVCBPS5mLy/n/v38txY1lJoTpre39sJdkEVuDQRe3R
+         mTnST4XUPvLbHyJ8xQIRjZktfSQ2vIzf0r/yTnOJvT8qVkZmEPU8R+ku56MI6HT6y89P
+         F4Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=R53YJWQNI9IrUHz73mWYVhGKNa735wgVP438s+PtWxs=;
-        b=48MAduo/fVyefACjGxV2zbrXBIF7gZrHiChwPN8PWvT77v2MCBGb9jx3/uJ+TCevMh
-         I4p9t/ZTO0CQa0uWWLbP0XJTMzlbeMD15xUky07US7CpeTS+TmTlv3ZT6115zbmBX3mt
-         qyIxFdaVlLrWHvyD0mw/9fMdLw6h8sLQ4vrzje1KgRpD6D0I6JWC4YZhCioY+XfmP8o4
-         ih/wf60lDOHRoDTwQBV4jVqC4GaIJMoRyh0QB0wDuo6X+AelwIsWwZ4/32GinvgznEFZ
-         XpttUQqiuXZqC2aqfvo7YT8D3SYcZ5ZxlN8ArMnZEFbPt5r7gkDLapfVJxaY7WIphQ8d
-         i7BA==
-X-Gm-Message-State: AOAM530mEzaxijuz0jgl/aS/KXG/z34cNEHK4Muo0T/kqG9BYvC/FDvN
-        wFJctQuGxXL3PavjoSl8CllqOwAsi/8M346SzaPqrY8XyNFWyQ==
-X-Google-Smtp-Source: ABdhPJzXNLxBSwki7Oi6LnTmuIefzuaPLe/WNB+tRN7m+6fGxr/N2g/J3xAcfPapKG0Du8ngT1WOznZ3+29X9o59/oE=
-X-Received: by 2002:a17:906:9f21:: with SMTP id fy33mr12216320ejc.567.1635154225528;
- Mon, 25 Oct 2021 02:30:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cYbf6uzQ8oZx3fhN+OoW9PPWaIszzAceDbsiiDa0Wkk=;
+        b=d2nG5xiu42tGGtxOd4fYw/VnO8SgklbO60cRphVikbd/oD+YEGBBUMT8vRK2twPrbw
+         VGGGSlfClJB3bOjiD79aVqh6Cmf2BVq6L9cSUOR5dnD+dp4QhpnYo39hspLp4ufYca/Z
+         YAcnEKlAfhBT+FqR+0fXFJVLFdMzdFbsxsySQ/oJTXYTJ9M7GF6/ah3WiEH13eP7tfTN
+         Hk1LWtxNCQTGr0m48+FrxMWqNwi7mWhMvzlKCNlEO7Vy+fNaFDdW9KiiyjQkEc7ePuOD
+         OMJzC6ZI7PShOO0MQt0o+VsweDj3I2q68Qy1vARMNhN/JqCU7v/Bj1vVoSa6+u0HJKy6
+         9Vug==
+X-Gm-Message-State: AOAM531g7U88ymMt+MYUf2vKDd7ssRTqpdZVXLYC8utrfSG1avWYTFcX
+        dUrzcq+JNWUWPZo3SffYaIE=
+X-Google-Smtp-Source: ABdhPJw9lVY1hFPoREYreDbUL2GesnmkNzs3OJn1fuCRazZhPizx/p0V7ZpkJ+3BR1WQnt3+3c/bbw==
+X-Received: by 2002:a17:90b:805:: with SMTP id bk5mr15110734pjb.124.1635154491569;
+        Mon, 25 Oct 2021 02:34:51 -0700 (PDT)
+Received: from nj08008nbu.spreadtrum.com ([240e:47a:878:6a2:e0f0:8dca:6977:afd5])
+        by smtp.gmail.com with ESMTPSA id c9sm15446100pgq.58.2021.10.25.02.34.41
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 25 Oct 2021 02:34:51 -0700 (PDT)
+From:   Kevin Tang <kevin3.tang@gmail.com>
+To:     maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com, kevin3.tang@gmail.com,
+        pony1.wu@gmail.com
+Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 0/6] Add Unisoc's drm kms module
+Date:   Mon, 25 Oct 2021 17:34:12 +0800
+Message-Id: <20211025093418.20545-1-kevin3.tang@gmail.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20210325122832.119147-1-sandberg@mailfence.com>
- <20211019200831.3817-1-maukka@ext.kapsi.fi> <20211019200831.3817-3-maukka@ext.kapsi.fi>
-In-Reply-To: <20211019200831.3817-3-maukka@ext.kapsi.fi>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Oct 2021 12:29:31 +0300
-Message-ID: <CAHp75VfKcS1eRRBypjkQG2D3QiFHOae9Ub1VcT=Mopt2wDAztg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] gpio: gpio-cascade: add generic GPIO cascade
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     Mauri Sandberg <sandberg@mailfence.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 11:10 PM Mauri Sandberg <maukka@ext.kapsi.fi> wrote:
->
-> Adds support for building cascades of GPIO lines. That is, it allows
-> setups when there is one upstream line and multiple cascaded lines, out
-> of which one can be chosen at a time. The status of the upstream line
-> can be conveyed to the selected cascaded line or, vice versa, the status
-> of the cascaded line can be conveyed to the upstream line.
->
-> A multiplexer is being used to select, which cascaded GPIO line is being
-> used at any given time.
->
-> At the moment only input direction is supported. In future it should be
-> possible to add support for output direction, too.
+ChangeList:
+RFC v1:
+1. only upstream modeset and atomic at first commit.
+2. remove some unused code;
+3. use alpha and blend_mode properties;
+3. add yaml support;
+4. remove auto-adaptive panel driver;
+5. bugfix
 
-A nit-pick below and you may have my
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+RFC v2:
+1. add sprd crtc and plane module for KMS, preparing for multi crtc&encoder
+2. remove gem drivers, use generic CMA handlers
+3. remove redundant "module_init", all the sub modules loading by KMS
 
-> Signed-off-by: Mauri Sandberg <maukka@ext.kapsi.fi>
-> ---
-> v6 -> v7:
->  - In Kconfig add info about module name
->  - adhere to new convention that allows lines longer than 80 chars
->  - use dev_probe_err with upstream gpio line too
->  - refactor for cleaner exit of probe function.
-> v5 -> v6:
->  - In Kconfig, remove dependency to OF_GPIO and select only MULTIPLEXER
->  - refactor code preferring one-liners
->  - clean up prints, removing them from success-path.
->  - don't explicitly set gpio_chip.of_node as it's done in the GPIO library
->  - use devm_gpiochip_add_data instead of gpiochip_add
-> v4 -> v5:
->  - renamed gpio-mux-input -> gpio-cascade. refactored code accordingly
->    here and there and changed to use new bindings and compatible string
->    - ambigious and vague 'pin' was rename to 'upstream_line'
->  - dropped Tested-by and Reviewed-by due to changes in bindings
->  - dropped Reported-by suggested by an automatic bot as it was not really
->    appropriate to begin with
->  - functionally it's the same as v4
-> v3 -> v4:
->  - Changed author email
->  - Included Tested-by and Reviewed-by from Drew
-> v2 -> v3:
->  - use managed device resources
->  - update Kconfig description
-> v1 -> v2:
->  - removed .owner from platform_driver as per test bot's instruction
->  - added MODULE_AUTHOR, MODULE_DESCRIPTION, MODULE_LICENSE
->  - added gpio_mux_input_get_direction as it's recommended for all chips
->  - removed because this is input only chip: gpio_mux_input_set_value
->  - removed because they are not needed for input/output only chips:
->      gpio_mux_input_direction_input
->      gpio_mux_input_direction_output
->  - fixed typo in an error message
->  - added info message about successful registration
->  - removed can_sleep flag as this does not sleep while getting GPIO value
->    like I2C or SPI do
->  - Updated description in Kconfig
-> ---
->  drivers/gpio/Kconfig        |  15 +++++
->  drivers/gpio/Makefile       |   1 +
->  drivers/gpio/gpio-cascade.c | 118 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 134 insertions(+)
->  create mode 100644 drivers/gpio/gpio-cascade.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index 37a6f77c86fe..e69457144459 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1694,4 +1694,19 @@ config GPIO_VIRTIO
->
->  endmenu
->
-> +comment "Other GPIO expanders"
-> +
-> +config GPIO_CASCADE
-> +       tristate "General GPIO cascade"
-> +       select MULTIPLEXER
-> +       help
-> +         Say yes here to enable support for generic GPIO cascade.
-> +
-> +         This allows building one-to-many cascades of GPIO lines using
-> +         different types of multiplexers readily available. At the
-> +         moment only input lines are supported.
-> +
-> +         To build the driver as a module choose 'm' and the resulting module
-> +         will be called 'gpio-cascade'.
-> +
->  endif
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 71ee9fc2ff83..e8945456e7ea 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -45,6 +45,7 @@ obj-$(CONFIG_GPIO_BD9571MWV)          += gpio-bd9571mwv.o
->  obj-$(CONFIG_GPIO_BRCMSTB)             += gpio-brcmstb.o
->  obj-$(CONFIG_GPIO_BT8XX)               += gpio-bt8xx.o
->  obj-$(CONFIG_GPIO_CADENCE)             += gpio-cadence.o
-> +obj-$(CONFIG_GPIO_CASCADE)             += gpio-cascade.o
->  obj-$(CONFIG_GPIO_CLPS711X)            += gpio-clps711x.o
->  obj-$(CONFIG_GPIO_SNPS_CREG)           += gpio-creg-snps.o
->  obj-$(CONFIG_GPIO_CRYSTAL_COVE)                += gpio-crystalcove.o
-> diff --git a/drivers/gpio/gpio-cascade.c b/drivers/gpio/gpio-cascade.c
-> new file mode 100644
-> index 000000000000..82001299265e
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-cascade.c
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + *  A generic GPIO cascade driver
-> + *
-> + *  Copyright (C) 2021 Mauri Sandberg <maukka@ext.kapsi.fi>
-> + *
-> + * This allows building cascades of GPIO lines in a manner illustrated
-> + * below:
-> + *
-> + *                 /|---- Cascaded GPIO line 0
-> + *  Upstream      | |---- Cascaded GPIO line 1
-> + *  GPIO line ----+ | .
-> + *                | | .
-> + *                 \|---- Cascaded GPIO line n
-> + *
-> + * A gpio-mux is being used to select, which cascaded line is being
-> + * addressed at any given time.
-> + *
-> + * At the moment only input mode is supported due to lack of means for
-> + * testing output functionality. At least theoretically output should be
-> + * possible with an open drain constructions.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/slab.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mux/consumer.h>
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/gpio/driver.h>
-> +
-> +struct gpio_cascade {
+RFC v3:
+1. multi crtc&encoder design have problem, so rollback to v1
 
-> +       struct device           *parent;
-> +       struct gpio_chip        gpio_chip;
+RFC v4:
+1. update to gcc-linaro-7.5.0
+2. update to Linux 5.6-rc3
+3. remove pm_runtime support
+4. add COMPILE_TEST, remove unused kconfig
+5. "drm_dev_put" on drm_unbind
+6. fix some naming convention issue
+7. remove semaphore lock for crtc flip
+8. remove static variables
 
-Make the gpio_chip first and any container_of become a no-op at compile time!
+RFC v5:
+1. optimize encoder and connector code implementation
+2. use "platform_get_irq" and "platform_get_resource"
+3. drop useless function return type, drop unless debug log
+4. custom properties should be separate, so drop it
+5. use DRM_XXX replase pr_xxx
+6. drop dsi&dphy hal callback ops
+7. drop unless callback ops checking
+8. add comments for sprd dpu structure
 
-> +       struct mux_control      *mux_control;
-> +       struct gpio_desc        *upstream_line;
-> +};
-> +
-> +static struct gpio_cascade *chip_to_cascade(struct gpio_chip *gc)
-> +{
-> +       return container_of(gc, struct gpio_cascade, gpio_chip);
-> +}
-> +
-> +static int gpio_cascade_get_direction(struct gpio_chip *gc,
-> +                                       unsigned int offset)
-> +{
-> +       return GPIO_LINE_DIRECTION_IN;
-> +}
-> +
-> +static int gpio_cascade_get_value(struct gpio_chip *gc, unsigned int offset)
-> +{
-> +       struct gpio_cascade *cas = chip_to_cascade(gc);
-> +       int ret;
-> +
-> +       ret = mux_control_select(cas->mux_control, offset);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = gpiod_get_value(cas->upstream_line);
-> +       mux_control_deselect(cas->mux_control);
-> +       return ret;
-> +}
-> +
-> +static int gpio_cascade_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct gpio_cascade *cas;
-> +       struct mux_control *mc;
-> +       struct gpio_desc *upstream;
-> +       struct gpio_chip *gc;
-> +
-> +       cas = devm_kzalloc(dev, sizeof(*cas), GFP_KERNEL);
-> +       if (!cas)
-> +               return -ENOMEM;
-> +
-> +       mc = devm_mux_control_get(dev, NULL);
-> +       if (IS_ERR(mc))
-> +               return dev_err_probe(dev, PTR_ERR(mc), "unable to get mux-control\n");
-> +
-> +       cas->mux_control = mc;
-> +       upstream = devm_gpiod_get(dev, "upstream",  GPIOD_IN);
-> +       if (IS_ERR(upstream))
-> +               return dev_err_probe(dev, PTR_ERR(upstream), "unable to claim upstream GPIO line\n");
-> +
-> +       cas->upstream_line = upstream;
-> +       cas->parent = dev;
-> +
-> +       gc = &cas->gpio_chip;
-> +       gc->get = gpio_cascade_get_value;
-> +       gc->get_direction = gpio_cascade_get_direction;
-> +       gc->base = -1;
-> +       gc->ngpio = mux_control_states(mc);
-> +       gc->label = dev_name(cas->parent);
-> +       gc->parent = cas->parent;
-> +       gc->owner = THIS_MODULE;
-> +
-> +       platform_set_drvdata(pdev, cas);
-> +       return devm_gpiochip_add_data(dev, &cas->gpio_chip, NULL);
-> +}
-> +
-> +static const struct of_device_id gpio_cascade_id[] = {
-> +       { .compatible = "gpio-cascade" },
-> +       { /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, gpio_cascade_id);
-> +
-> +static struct platform_driver gpio_cascade_driver = {
-> +       .driver = {
-> +               .name           = "gpio-cascade",
-> +               .of_match_table = gpio_cascade_id,
-> +       },
-> +       .probe  = gpio_cascade_probe,
-> +};
-> +module_platform_driver(gpio_cascade_driver);
-> +
-> +MODULE_AUTHOR("Mauri Sandberg <maukka@ext.kapsi.fi>");
-> +MODULE_DESCRIPTION("Generic GPIO cascade");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.25.1
->
+RFC v6:
+1. Access registers via readl/writel
+2. Checking for unsupported KMS properties (format, rotation, blend_mode, etc) on plane_check ops
+3. Remove always true checks for dpu core ops
 
+RFC v7:
+1. Fix DTC unit name warnings
+2. Fix the problem of maintainers
+3. Call drmm_mode_config_init to mode config init
+4. Embed drm_device in sprd_drm and use devm_drm_dev_alloc
+5. Replace DRM_XXX with drm_xxx on KMS module, but not suitable for other subsystems
+6. Remove plane_update stuff, dpu handles all the HW update in crtc->atomic_flush
+7. Dsi&Dphy Code structure adjustment, all move to "sprd/"
+
+v0:
+1. Remove dpu_core_ops stuff layer for sprd drtc driver, but dpu_layer need to keeping.
+   Because all the HW update in crtc->atomic_flush, we need temporary storage all layers for
+   the dpu pageflip of atomic_flush.
+2. Add ports subnode with port@X.
+
+v1:
+1. Remove dphy and dsi graph binding, merge the dphy driver into the dsi.
+2. Add commit messages for Unisoc's virtual nodes.
+
+v2:
+1. Use drm_xxx to replace all DRM_XXX.
+2. Use kzalloc to replace devm_kzalloc for sprd_dsi/sprd_dpu structure init.
+3. Remove dpu_core_ops midlayer.
+
+v3:
+1. Remove dpu_layer midlayer and commit layers by aotmic_update
+
+v4:
+1. Move the devm_drm_dev_alloc to master_ops->bind function.
+2. The managed drmm_mode_config_init() it is no longer necessary for drivers to explicitly call drm_mode_config_cleanup, so delete it.
+3. Use drmm_helpers to allocate crtc ,planes and encoder.
+4. Move allocate crtc ,planes, encoder to bind funtion.
+5. Move rotation enum definitions to crtc layer reg bitfields.
+
+v5:
+1. Remove subdir-ccflgas-y for Makefile.
+2. Keep the selects sorted by alphabet for Kconfig.
+3. Fix the checkpatch warnings.
+4. Use mode_set_nofb instead of mode_valid callback.
+5. Follow the OF-Graph bindings, use of_graph_get_port_by_id instead of of_parse_phandle.
+6. Use zpos to represent the layer position.
+7. Rebase to last drm misc branch.
+8. Remove panel_in port for dsi node.
+9. Drop the dsi ip file prefix.
+10. Add Signed-off-by for dsi&dphy patch.
+11. Use the mode_flags of mipi_dsi_device to setup crtc DPI and EDPI mode.
+
+v6:
+1. Disable and clear interrupts before register dpu IRQ
+2. Init dpi config used by crtc_state->adjusted_mode on mode_set_nofb
+3. Remove enable_irq and disable_irq function call.
+4. Remove drm_format_info function call.
+5. Redesign the way to access the dsi register.
+6. Reduce the dsi_context member variables.
+
+v7:
+1. Fix codeing style issue by checkpatch.
+2. Drop the pll registers structure define.
+3. Use bridge API instead of drm panel API.
+4. Register mipi_dsi_host on probe phase;
+5. Remove iommu error interrupt handling function.
+6. Remove some unused function.
+
+Kevin Tang (6):
+  dt-bindings: display: add Unisoc's drm master bindings
+  drm/sprd: add Unisoc's drm kms master
+  dt-bindings: display: add Unisoc's dpu bindings
+  drm/sprd: add Unisoc's drm display controller driver
+  dt-bindings: display: add Unisoc's mipi dsi controller bindings
+  drm/sprd: add Unisoc's drm mipi dsi&dphy driver
+
+ .../display/sprd/sprd,display-subsystem.yaml  |   64 +
+ .../display/sprd/sprd,sharkl3-dpu.yaml        |   77 ++
+ .../display/sprd/sprd,sharkl3-dsi-host.yaml   |   88 ++
+ drivers/gpu/drm/Kconfig                       |    2 +
+ drivers/gpu/drm/Makefile                      |    1 +
+ drivers/gpu/drm/sprd/Kconfig                  |   13 +
+ drivers/gpu/drm/sprd/Makefile                 |    6 +
+ drivers/gpu/drm/sprd/megacores_pll.c          |  305 +++++
+ drivers/gpu/drm/sprd/sprd_dpu.c               |  884 ++++++++++++++
+ drivers/gpu/drm/sprd/sprd_dpu.h               |  109 ++
+ drivers/gpu/drm/sprd/sprd_drm.c               |  205 ++++
+ drivers/gpu/drm/sprd/sprd_drm.h               |   19 +
+ drivers/gpu/drm/sprd/sprd_dsi.c               | 1065 +++++++++++++++++
+ drivers/gpu/drm/sprd/sprd_dsi.h               |  126 ++
+ 14 files changed, 2964 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,display-subsystem.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sprd/sprd,sharkl3-dsi-host.yaml
+ create mode 100644 drivers/gpu/drm/sprd/Kconfig
+ create mode 100644 drivers/gpu/drm/sprd/Makefile
+ create mode 100644 drivers/gpu/drm/sprd/megacores_pll.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dpu.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_drm.h
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.c
+ create mode 100644 drivers/gpu/drm/sprd/sprd_dsi.h
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.29.0
+
