@@ -2,198 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38ED43B0F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 13:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CD943B13C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 13:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235474AbhJZLUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 07:20:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235476AbhJZLT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 07:19:59 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1184DC061228
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 04:17:32 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id z11-20020a1c7e0b000000b0030db7b70b6bso2752729wmc.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 04:17:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Kwh/zfyHKoZT2T+jmgQ6n/y3v9zeytVaHdrWCJhtta4=;
-        b=JISpblo1QpqxeOS8EDoJTvI5Bw/BdFJL/hBK/RQ+vbPU/0iuXOmORLUvjIDiZO/xBE
-         T0ZdH1mvf/AFdzAC7/bkrwXCz4mEwIS+1Z794ISGMEGmn6BylFz+V7ilV4yBoX107Wi8
-         eqZVaYUERSUdWN+DIvSOPqE3aik8e2+swGdYtpcAy1KZQPyP6TecZpecNCIeTfPXqMfx
-         W/8VB12wvJo4ND2yizs334iBY2HVgIDLl2uo03C2VO6mJzU7Mba0sA8WWHyp5jzzJZkj
-         zluGQWcnqsPMMzFCW0qDken3VWR8Aw2OVHdlHlyQ4mHlH46pIyfqUS7X3T1/dLbq/o7r
-         uWaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Kwh/zfyHKoZT2T+jmgQ6n/y3v9zeytVaHdrWCJhtta4=;
-        b=79eUYQ+2STlfoL1R8t5Jpedoa8NOs6VNoLoEvA1gyjEiYMcnPJFB50REBFvhZ0KFj0
-         fuUScCRHyLLfi+pA5daSOabgfcxuvsZcIWjxfOX75Ah8y+jf11rP24tWzyrDzMDVSrHO
-         y4rXokEpSgtwAc4Fxqe32NHFHh+xuhGYhScccce5U28pdYd61sngm7ntQSXzTOEzAVFd
-         J9HiVqiZNxeF6LNTUV9stAqdrhbJOd2kmprW7LFVgM2SInpWmDCoUgOkoxZhq4rf4KLg
-         xndB9xkcEIGryfC2LrwDrnd1kdjB4zPDPeMjDfqe3IZXQMaU2WDRDSvYS4TYBNWQhw5x
-         MbFQ==
-X-Gm-Message-State: AOAM530Uo/+e0Na83en101f+FcvEj7dBxprdSj7mcEyxbOVWp1uJFlTn
-        i0rIcjEl1G2uD2bT/LQy2M442Q==
-X-Google-Smtp-Source: ABdhPJwJCGRQeFbbJgoNJgdR9iWahce6A+R4RsJFM13g4nnB8u29UOrsOcgj7b6uEQSSpCgrPDdZGA==
-X-Received: by 2002:a1c:f615:: with SMTP id w21mr26551888wmc.16.1635247050708;
-        Tue, 26 Oct 2021 04:17:30 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id l124sm355483wml.8.2021.10.26.04.17.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 04:17:30 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org, bjorn.andersson@linaro.org, robh@kernel.org
-Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.de, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v11 17/17] ASoC: qdsp6: audioreach: add support for q6prm-clocks
-Date:   Tue, 26 Oct 2021 12:16:55 +0100
-Message-Id: <20211026111655.1702-18-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20211026111655.1702-1-srinivas.kandagatla@linaro.org>
-References: <20211026111655.1702-1-srinivas.kandagatla@linaro.org>
+        id S232968AbhJZL3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 07:29:52 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:40692 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234622AbhJZL3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 07:29:51 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635247648; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=+VfAOGNRqKPzh6Cqta9+SYjWQCyLtNY13BI23W5daME=; b=UQld9y53xzkXIEVsO2SnqhnoQn1KwrbqMFb58TATDrB6rDZstjelJsNLKR0QOgIsz9MdOz2+
+ wox7DPwXKz6qhuHzpCguzk49ucZxTTczVk5lFHVzBaNu5p6DUlib1URsoBomZCEaaFvBAz9N
+ cpCbO16kHngdB85ik3FRdP9yipQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 6177e60dfd91319f0ffb7c83 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Oct 2021 11:27:09
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 59418C43616; Tue, 26 Oct 2021 11:27:09 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.1 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D3FDCC4338F;
+        Tue, 26 Oct 2021 11:27:02 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org D3FDCC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v3] ASoC: qcom: soundwire: Enable soundwire bus clock for
+ version 1.6
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1633671232-30310-1-git-send-email-srivasam@codeaurora.org>
+ <YWBXIIjPP7Qunyvf@ripper>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <11a57c35-5e38-1b74-bc70-c1eeeb81fbfe@codeaurora.org>
+Date:   Tue, 26 Oct 2021 16:57:00 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <YWBXIIjPP7Qunyvf@ripper>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add q6prm clocks using existing qdsp6-audio-clock driver
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
----
- sound/soc/qcom/Kconfig              |  4 ++
- sound/soc/qcom/qdsp6/Makefile       |  1 +
- sound/soc/qcom/qdsp6/q6prm-clocks.c | 85 +++++++++++++++++++++++++++++
- 3 files changed, 90 insertions(+)
- create mode 100644 sound/soc/qcom/qdsp6/q6prm-clocks.c
+On 10/8/2021 8:05 PM, Bjorn Andersson wrote:
+Thanks for Your time Bjorn!!!
+> On Thu 07 Oct 22:33 PDT 2021, Srinivasa Rao Mandadapu wrote:
+>
+>> Add support for soundwire 1.6 version to gate RX/TX bus clock.
+>>
+> Are you really adding soundwire 1.6 support in order to gate RX/TX bus
+> clock?
+>
+> Could it be that you're ungating the bus clock so that soundwire 1.6
+> starts working? The commit message should properly describe why you're
+> doing your change.
+Yes. After updating RX/TX CGCR Register so it's started working. Will 
+update proper commit message.
+>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Venkata is the first who certified the origin of this patch, yet you're
+> the author. Either this should be From Venkata (i.e. git commit
+> --author) or perhaps you need a Co-developed-by here to say that you
+> collaborated on this and both certify its origin.
+Okay. Actually Venakta is the Co developer. Will change accordingly.
+>> ---
+>> Changes since v2:
+>>      -- Update error check after ioremap.
+> What about the other things I noted in v2?
+Okay. Will update.
+>
+>> Changes since v1:
+>>      -- Add const name to mask value.
+>>
+>>   drivers/soundwire/qcom.c | 15 ++++++++++++++-
+>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+>> index 0ef79d6..bd6fabd 100644
+>> --- a/drivers/soundwire/qcom.c
+>> +++ b/drivers/soundwire/qcom.c
+>> @@ -109,6 +109,7 @@
+>>   #define SWR_MAX_CMD_ID	14
+>>   #define MAX_FIFO_RD_RETRY 3
+>>   #define SWR_OVERFLOW_RETRY_COUNT 30
+>> +#define SWRM_HCTL_REG_MASK ~BIT(1)
+>>   
+>>   struct qcom_swrm_port_config {
+>>   	u8 si;
+>> @@ -127,6 +128,7 @@ struct qcom_swrm_ctrl {
+>>   	struct device *dev;
+>>   	struct regmap *regmap;
+>>   	void __iomem *mmio;
+>> +	char __iomem *swrm_hctl_reg;
+>>   	struct completion broadcast;
+>>   	struct completion enumeration;
+>>   	struct work_struct slave_work;
+>> @@ -610,6 +612,12 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+>>   	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
+>>   	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
+>>   
+>> +	if (ctrl->swrm_hctl_reg) {
+>> +		val = ioread32(ctrl->swrm_hctl_reg);
+>> +		val &= SWRM_HCTL_REG_MASK;
+> Make a define with a name that clarifies what BIT(1) is and use that
+> here, hiding a magic number in an empty define isn't making this more
+> maintainable.
+>
+> Essentially put the name of the bit in the register description in a
+> define and use that here.
+Okay. Will change name appropriately.
+>
+>> +		iowrite32(val, ctrl->swrm_hctl_reg);
+>> +	}
+>> +
+>>   	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
+>>   
+>>   	/* Enable Auto enumeration */
+>> @@ -1200,7 +1208,7 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>>   	struct qcom_swrm_ctrl *ctrl;
+>>   	const struct qcom_swrm_data *data;
+>>   	int ret;
+>> -	u32 val;
+>> +	int val, swrm_hctl_reg = 0;
+> Don't you get a warning from passing val as an int to a function that
+> takes a u32 pointer?
+Yeah. Will revert val variable type change.
+> Also there's no reason to zero-initialize swrm_hctl_reg.
+Okay. Will change.
+>>   
+>>   	ctrl = devm_kzalloc(dev, sizeof(*ctrl), GFP_KERNEL);
+>>   	if (!ctrl)
+>> @@ -1251,6 +1259,11 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+>>   	ctrl->bus.port_ops = &qcom_swrm_port_ops;
+>>   	ctrl->bus.compute_params = &qcom_swrm_compute_params;
+>>   
+>> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg)) {
+> As I said in my feedback of v2, this property is not documented in the
+> DT binding.
+Okay. Will update dt bindings.
+>
+> But more important, upstream we do not approve of the downstream
+> methodology of having properties pointing to single registers in some
+> memory block somewhere.
+>
+> Describe the hardware block that you reference fully in devicetree and
+> make a proper reference to it.
+>
+> Unfortunately your patch lacks details necessary to know where this
+> register lives, so it's not possible for me to recommend a proper
+> design.
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index 465a2a603401..5b74c5bcc47f 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -96,8 +96,12 @@ config SND_SOC_QDSP6_APM
- 	select SND_SOC_QDSP6_APM_DAI
- 	select SND_SOC_QDSP6_APM_LPASS_DAI
- 
-+config SND_SOC_QDSP6_PRM_LPASS_CLOCKS
-+	tristate
-+
- config SND_SOC_QDSP6_PRM
- 	tristate
-+	select SND_SOC_QDSP6_PRM_LPASS_CLOCKS
- 
- config SND_SOC_QDSP6
- 	tristate "SoC ALSA audio driver for QDSP6"
-diff --git a/sound/soc/qcom/qdsp6/Makefile b/sound/soc/qcom/qdsp6/Makefile
-index c932f8e24b32..3963bf234664 100644
---- a/sound/soc/qcom/qdsp6/Makefile
-+++ b/sound/soc/qcom/qdsp6/Makefile
-@@ -16,3 +16,4 @@ obj-$(CONFIG_SND_SOC_QDSP6_APM) += snd-q6apm.o
- obj-$(CONFIG_SND_SOC_QDSP6_APM_DAI) += q6apm-dai.o
- obj-$(CONFIG_SND_SOC_QDSP6_APM_LPASS_DAI) += q6apm-lpass-dais.o
- obj-$(CONFIG_SND_SOC_QDSP6_PRM) += q6prm.o
-+obj-$(CONFIG_SND_SOC_QDSP6_PRM_LPASS_CLOCKS) += q6prm-clocks.o
-diff --git a/sound/soc/qcom/qdsp6/q6prm-clocks.c b/sound/soc/qcom/qdsp6/q6prm-clocks.c
-new file mode 100644
-index 000000000000..a26cda5140c1
---- /dev/null
-+++ b/sound/soc/qcom/qdsp6/q6prm-clocks.c
-@@ -0,0 +1,85 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2021, Linaro Limited
-+
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/clk-provider.h>
-+#include <linux/module.h>
-+#include <linux/device.h>
-+#include <linux/platform_device.h>
-+#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
-+#include "q6dsp-lpass-clocks.h"
-+#include "q6prm.h"
-+
-+#define Q6PRM_CLK(id) {					\
-+		.clk_id	= id,				\
-+		.q6dsp_clk_id	= Q6PRM_##id,		\
-+		.name = #id,				\
-+		.rate = 19200000,			\
-+	}
-+
-+static const struct q6dsp_clk_init q6prm_clks[] = {
-+	Q6PRM_CLK(LPASS_CLK_ID_PRI_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_PRI_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SEC_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SEC_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_TER_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_TER_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_QUAD_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_QUAD_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SPEAKER_I2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SPEAKER_I2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SPEAKER_I2S_OSR),
-+	Q6PRM_CLK(LPASS_CLK_ID_QUI_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_QUI_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SEN_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_SEN_MI2S_EBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT0_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT1_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT2_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT3_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT4_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT5_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_INT6_MI2S_IBIT),
-+	Q6PRM_CLK(LPASS_CLK_ID_QUI_MI2S_OSR),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA_CORE_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_WSA_CORE_NPL_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_VA_CORE_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_TX_CORE_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_TX_CORE_NPL_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_RX_CORE_NPL_MCLK),
-+	Q6PRM_CLK(LPASS_CLK_ID_VA_CORE_2X_MCLK),
-+	Q6DSP_VOTE_CLK(LPASS_HW_MACRO_VOTE, Q6PRM_HW_CORE_ID_LPASS,
-+		       "LPASS_HW_MACRO"),
-+	Q6DSP_VOTE_CLK(LPASS_HW_DCODEC_VOTE, Q6PRM_HW_CORE_ID_DCODEC,
-+		       "LPASS_HW_DCODEC"),
-+};
-+
-+static const struct q6dsp_clk_desc q6dsp_clk_q6prm __maybe_unused = {
-+	.clks = q6prm_clks,
-+	.num_clks = ARRAY_SIZE(q6prm_clks),
-+	.lpass_set_clk = q6prm_set_lpass_clock,
-+	.lpass_vote_clk = q6prm_vote_lpass_core_hw,
-+	.lpass_unvote_clk = q6prm_unvote_lpass_core_hw,
-+};
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id q6prm_clock_device_id[] = {
-+	{ .compatible = "qcom,q6prm-lpass-clocks", .data = &q6dsp_clk_q6prm },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, q6prm_clock_device_id);
-+#endif
-+
-+static struct platform_driver q6prm_clock_platform_driver = {
-+	.driver = {
-+		.name = "q6prm-lpass-clock",
-+		.of_match_table = of_match_ptr(q6prm_clock_device_id),
-+	},
-+	.probe = q6dsp_clock_dev_probe,
-+};
-+module_platform_driver(q6prm_clock_platform_driver);
-+
-+MODULE_DESCRIPTION("Q6 Proxy Resource Manager LPASS clock driver");
-+MODULE_LICENSE("GPL");
+These Registers lies in LPASS_AUDIO_LPASS_AUDIO_CSR | 0x032A9000 Range.
+
+Register description:
+
+LPASS_AUDIO_SWR_RX_CGCR(0x032A90A0) & LPASS_AUDIO_SWR_TX_CGCR (0x032A90A8)
+
+Bits  Field Name    Description
+1        HW_CTL        HW Dynamic Clock Gating Control Register
+                                  1: HW Controlled
+                                  0: SW Controlled
+0        CLK_ENABLE    Enabling the clock when in SW Controlled Mode
+                                     1: Clock Enabled
+                                      0: Clock Disabled
+> Regards,
+> Bjorn
+>
+>> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
+>> +		if (!ctrl->swrm_hctl_reg)
+>> +			return -ENODEV;
+>> +	}
+>>   	ret = qcom_swrm_get_port_config(ctrl);
+>>   	if (ret)
+>>   		goto err_clk;
+>> -- 
+>> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+>> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+>>
 -- 
-2.21.0
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
