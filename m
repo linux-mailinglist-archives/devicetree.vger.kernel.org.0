@@ -2,45 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85EC543B994
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BBA843B996
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238315AbhJZSbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S236129AbhJZSbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 26 Oct 2021 14:31:06 -0400
-Received: from mout-p-202.mailbox.org ([80.241.56.172]:61004 "EHLO
-        mout-p-202.mailbox.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236129AbhJZSau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:30:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238323AbhJZSav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:30:51 -0400
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [IPv6:2001:67c:2050::465:102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BA61C061348
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 11:28:27 -0700 (PDT)
 Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:105:465:1:4:0])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4Hf0gq50mSzQkFN;
-        Tue, 26 Oct 2021 20:28:23 +0200 (CEST)
-Authentication-Results: spamfilter02.heinlein-hosting.de (amavisd-new);
+        by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Hf0gs0zCvzQjx0;
+        Tue, 26 Oct 2021 20:28:25 +0200 (CEST)
+Authentication-Results: spamfilter04.heinlein-hosting.de (amavisd-new);
         dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
         header.d=mailbox.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1635272901;
+        t=1635272903;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Kwmkfdr1tdKOPf9kwPjK4+8v+qrVHfWTmkeRVh2gk5Q=;
-        b=jAsYDLeYsybyQTLy3CCXXMSh0bMGlWzKoWzZ6ZXc6xOEKdZ3jKCmNfK4G1T5kqMtz2McNK
-        48EZamaTfX347vvkav+n44waRAzv+AdN9IZGC62OTI3JkokemztCN/9A5VdkFkQZk09OGI
-        Ia8ACvhLwDvpP4G+9GA8iuP9Xr1dwl5hLKc3lo7HVlxHiHcVvxsFyEaElCya+g9hETZlYu
-        4bNj590yPzJBj/HEu4f0SGNwOu26PutzTFOUCDHg1jwGc8WrLDpfl+7nVFJEeaTFL2slsD
-        ZKdCVQiMK/TNstQiioesxtvkiPLUD6PP3e3LoR8k2mKCbvW5Sv7bMBr23d0d0A==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ryQlrEDioZG4+xad6o3RcnbusIS4YhCJw9QSvKXY1oo=;
+        b=peiAJo7Iw9hS0WazEEge66oCZtajiUtRLjzhpsayekSpUhmOYkcHI8gbzmgdQTvIO9sSdj
+        mu94cfV/JFKHF5Oz2ipwYTqxPYGtGt+4T3mmvWKzhodVHMOavpvu6TUZwdpGi9AXJscTrt
+        qc0OyizEbtEGaQwG1yZT+i3fhhe2YwH9ZiIU972e/YHUlaYQxknNd/Jpstw5LhzvQHS2rd
+        o0b2AAOrsJHWDxABn8hPQnS+vte0FB25dbCsQISDs2Zv8i1GyFMYdcBAZypMCyIjIrCuDa
+        tzuGhPL137eRTZzWwUKbkCUHNANtCuUBIs2JjoHmPlZJOgmDUkLzqHA8/hZbXg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-transfer-encoding:mime-version:message-id:date:date
-        :subject:subject:from:from:received; s=mail20150812; t=
-        1635272900; bh=OZWgoDAZIwVxdVotKLIbWL9cDngEId/kN0TTaN37g68=; b=a
-        i30sRuivFe5u0Ph3RVWu47o2o+xEnfT+0++k0AQUmpeYLsLkdJKjgGS2ktSYTC5W
-        1EZwPETe3KQ36UyRqAA45gF2ndGwiw0ZU+UyOW3oGbMxHwWzJFuPRN+tulSiHBxS
-        negORHWutt668MgVWHPsy0Lzk3rUwRdVq1UhRZVMej1/jBZymrSWurdBc+pr7GI8
-        yE+xQXsNCxkKTGA1PXzIaG8ebUz38tRstJbxtSlIHxBUWS2h+mRz5toNwX+Sy2tY
-        cIia2uhC1Uaxmyfx4mLsiEyzhBvl/qV/C959qOSpzp0QIY+j5LaCPA5mmKnVs2W7
-        pPLCKHFuXdViMiLRSfTxg==
+        content-transfer-encoding:mime-version:references:in-reply-to
+        :message-id:date:date:subject:subject:from:from:received; s=
+        mail20150812; t=1635272901; bh=5EgXE6bxTwConVMtzgdm1wPI+dWZkofST
+        YmV1fWOES4=; b=a5Nk2zaulje6/P42RRGc8sMAf+LwFVUe+y5T5zAcUUjz1ScZx
+        Klw2nqrCGwVfL1Xc7EFZwBsd0Y26+Hz1pMurmSeVlpvm9ZYGF3sjXYjTMiouy/Ao
+        IT4l7HusaMpQfQx09dVNxIJnduR/T6LFFL6+jDlni+e3Wk00b6VTu1coOT+DDIXH
+        4atrsxZcb2W2ivGZM5zZwozAm3sF+CDi9IUWpaRz1iWWY4UeZAPhT1UWRFujT02u
+        iVo9qksk9VKc7Y3AGQXAkCY4gAF6AU+lKXCWnS3pPLe/POzEFITAQ8jLTFY41kvp
+        KW16k/5KL6JtqWkapB9RzkWfOWOIL5pNAbPQg==
 X-Virus-Scanned: amavisd-new at heinlein-support.de
 From:   Alexander Stein <alexander.stein@mailbox.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -51,158 +55,49 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Alexander Stein <alexander.stein@mailbox.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH v2 1/3] arm64: dts: amlogic: meson-g12: Fix thermal-zones indent
-Date:   Tue, 26 Oct 2021 20:28:11 +0200
-Message-Id: <20211026182813.900775-1-alexander.stein@mailbox.org>
+Subject: [PATCH v2 2/3] arm64: dts: amlogic: meson-g12: Fix GPU operating point table node name
+Date:   Tue, 26 Oct 2021 20:28:12 +0200
+Message-Id: <20211026182813.900775-2-alexander.stein@mailbox.org>
+In-Reply-To: <20211026182813.900775-1-alexander.stein@mailbox.org>
+References: <20211026182813.900775-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5591F1312
+X-Rspamd-Queue-Id: B36971315
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This node is currently at /soc/thermal-zones, but the later introduced
-bindings in commit 1202a442a31f ("dt-bindings: thermal: Add yaml bindings
-for thermal zones") put this at /thermal-zones.
-Fix dtb_check warning by moving the thermal-zones node to /
+Starting with commit 94274f20f6bf ("dt-bindings: opp: Convert to DT
+schema") the opp node name has a mandatory pattern. This change
+fixes the dtbs_check warning:
+gpu-opp-table: $nodename:0: 'gpu-opp-table' does not match
+'^opp-table(-[a-z0-9]+)?$'
+Put the 'gpu' part at the end to match the pattern.
 
+Fixes: 916a0edc43f0 ("arm64: dts: amlogic: meson-g12: add the Mali OPP table and use DVFS")
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
 ---
 Changes in v2:
 * Separated from DT bindings patch in v1 (PATCH 1/4)
-* Dropped the Fixes tag
+* Added Reviewed-by: Neil Armstrong tag
 
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 110 +++++++++---------
- 1 file changed, 55 insertions(+), 55 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 00c6f53290d4..ff987e7ccff2 100644
+index ff987e7ccff2..517519e6e87f 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -159,61 +159,6 @@ &clkc CLKID_PCIE_COMB
- 			status = "disabled";
- 		};
- 
--		thermal-zones {
--			cpu_thermal: cpu-thermal {
--				polling-delay = <1000>;
--				polling-delay-passive = <100>;
--				thermal-sensors = <&cpu_temp>;
--
--				trips {
--					cpu_passive: cpu-passive {
--						temperature = <85000>; /* millicelsius */
--						hysteresis = <2000>; /* millicelsius */
--						type = "passive";
--					};
--
--					cpu_hot: cpu-hot {
--						temperature = <95000>; /* millicelsius */
--						hysteresis = <2000>; /* millicelsius */
--						type = "hot";
--					};
--
--					cpu_critical: cpu-critical {
--						temperature = <110000>; /* millicelsius */
--						hysteresis = <2000>; /* millicelsius */
--						type = "critical";
--					};
--				};
--			};
--
--			ddr_thermal: ddr-thermal {
--				polling-delay = <1000>;
--				polling-delay-passive = <100>;
--				thermal-sensors = <&ddr_temp>;
--
--				trips {
--					ddr_passive: ddr-passive {
--						temperature = <85000>; /* millicelsius */
--						hysteresis = <2000>; /* millicelsius */
--						type = "passive";
--					};
--
--					ddr_critical: ddr-critical {
--						temperature = <110000>; /* millicelsius */
--						hysteresis = <2000>; /* millicelsius */
--						type = "critical";
--					};
--				};
--
--				cooling-maps {
--					map {
--						trip = <&ddr_passive>;
--						cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
--					};
--				};
--			};
--		};
--
- 		ethmac: ethernet@ff3f0000 {
- 			compatible = "amlogic,meson-g12a-dwmac",
- 				     "snps,dwmac-3.70a",
-@@ -2415,6 +2360,61 @@ mali: gpu@ffe40000 {
- 		};
+@@ -58,7 +58,7 @@ efuse: efuse {
+ 		secure-monitor = <&sm>;
  	};
  
-+	thermal-zones {
-+		cpu_thermal: cpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&cpu_temp>;
-+
-+			trips {
-+				cpu_passive: cpu-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				cpu_hot: cpu-hot {
-+					temperature = <95000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "hot";
-+				};
-+
-+				cpu_critical: cpu-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		ddr_thermal: ddr-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <100>;
-+			thermal-sensors = <&ddr_temp>;
-+
-+			trips {
-+				ddr_passive: ddr-passive {
-+					temperature = <85000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "passive";
-+				};
-+
-+				ddr_critical: ddr-critical {
-+					temperature = <110000>; /* millicelsius */
-+					hysteresis = <2000>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map {
-+					trip = <&ddr_passive>;
-+					cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <GIC_PPI 13
+-	gpu_opp_table: gpu-opp-table {
++	gpu_opp_table: opp-table-gpu {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-124999998 {
 -- 
 2.33.1
 
