@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4524B43B5CE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3681643B608
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237019AbhJZPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 11:43:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237002AbhJZPm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 11:42:59 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934EBC061348
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:40:34 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id n7so17019313ljp.5
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:40:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dI3e2yWb/uU+1tnC1/zWVYk4uFqXhgsB4McGikM5lUw=;
-        b=dgqlsNw0H5kyGA5TWB1RzuH7MVg+T2iViWLbbis+jByI8r2y+xQU9cOFSvOLU6ZKwi
-         3KaZDMBvsBp9nlr86Zou84ys64kzpuoVHsSfDA+rfEa1mWlAKvlOGensxU02agst4UAp
-         R2Bj+LwW6QR9ZH1Ddy4MdqlbOvhXCoAc0tNFsCvO6wmlRaw0Qy9E5Cd73l1U9ES991qN
-         /guby18kM499xkdc0KXbPb+WKOaWUd/ZOpVfhP3tyk2Fjt59n4oeM15mwPnvzIVraLp/
-         /wecRv/8zpr5bLyYtG6dvKo/f9h/K4ASKz9BDARltki9+DmNrBIzyxORfk7DPWFZCKng
-         UIow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dI3e2yWb/uU+1tnC1/zWVYk4uFqXhgsB4McGikM5lUw=;
-        b=N4anm92h22uhM5+aNz1VQAgFbKHmsSGYK7iJXKZ/rahwpB2pY39XT15sGd0rFH8A86
-         qneoyBL9Cthfg58leajetG2JXSDP2ArR7LU27N2cfcxx9jussvmlACYtvpXrZFnsQyie
-         j6lwkum1r5uUjtYvGBJDseGTdjRxAu4SlsVfPAzFFgPIiqCRqAcng84YIiuQ86mCqxdZ
-         Bnd3ZV0jnU8+sfjzX+HZ1yHNYVMrun/HFf40c/O7PmODPf6a8xi3tQPnPZVfYTbJEbbE
-         9jyg8oRx0DcU1WmQA1ye+AFT68qOX/776zvS6hLPWrRziL4MOE2mxuO+jkWLX258cBHY
-         62Xg==
-X-Gm-Message-State: AOAM531cEECsVCKahLf0YXJR0D8he0BnWfyhhyJqgWojUp5ggvTdxpH/
-        xyXdjvXF+60xHuhlTmcsda1O+JMcR05rXdrNQFAztA==
-X-Google-Smtp-Source: ABdhPJxjK+2RgtinaImTk9WZkEHEmETy0+4aTjX4JMJv4txyCEICQCRa7hvJGpINMvqMR/q9t/VdpFVs6tZRpTs+f24=
-X-Received: by 2002:a2e:b550:: with SMTP id a16mr27647108ljn.229.1635262832943;
- Tue, 26 Oct 2021 08:40:32 -0700 (PDT)
+        id S231536AbhJZPvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 11:51:02 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:43190 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S236994AbhJZPvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 11:51:00 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19QFC8TH014888;
+        Tue, 26 Oct 2021 17:48:19 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=Z4tfzYw9eG2voXHJI5ARvyFBLH00E40u2YN2hzN5tg8=;
+ b=VQ5nMSkpJtvX3Z/QafgaV8pPl1N/XYcPzuK29C80bQRADauKVHjo7m6sWzDeGnp4lzwc
+ EsgMvP0R1RYf9PFNIiW4KyXSFU5LGSzhWspUD7nZ4ix9gW2SK6vME6EzIoPlYooOM5gl
+ Gc/t7t5sxWlj6fjsBJ/qGqKoofNUIEsJU49UxkRDAXD2EwE4JBozoOAu+DqfkG38Camz
+ domycwJsTx+CO1Dogr/3j/CoYkJxnQhpfANweJr34cQCB3uh6XV37O10pybb7+WUQ50Z
+ uBz4Ih1L4MdvlLtOrC8PBJ62o4vv6gRIdJGNyM9dn65mGvGETN4NxoZ7X36sdBn3MMaL dA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3bxm40r8hm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Oct 2021 17:48:19 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 67987100034;
+        Tue, 26 Oct 2021 17:48:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5F39524FDE1;
+        Tue, 26 Oct 2021 17:48:18 +0200 (CEST)
+Received: from localhost (10.75.127.44) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 26 Oct 2021 17:48:18
+ +0200
+From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 1/1] phy: stm32: fix st,slow-hs-slew-rate with st,decrease-hs-slew-rate
+Date:   Tue, 26 Oct 2021 17:48:17 +0200
+Message-ID: <20211026154817.198937-1-amelie.delaunay@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211021071333.32485-1-clin@suse.com>
-In-Reply-To: <20211021071333.32485-1-clin@suse.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 26 Oct 2021 17:39:55 +0200
-Message-ID: <CAPDyKFrfUmisEO=OXZAi7U9N5gsfZHLWX7gPTHwt_AAsv78NpA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add SDHCI driver support for NXP S32G2
-To:     Chester Lin <clin@suse.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        s32@nxp.com, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Radu Nicolae Pirea <radu-nicolae.pirea@oss.nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        BOUGH CHEN <haibo.chen@nxp.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Matthias Brugger <mbrugger@suse.com>,
-        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-26_04,2021-10-26_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Oct 2021 at 09:13, Chester Lin <clin@suse.com> wrote:
->
-> Hello,
->
-> This is a patch series for initial sdhci support on NXP S32G2 platforms.
-> In the previous work[1], only basic DTs and serial ports are supported for
-> minimum hardware booting. Here we want to add a mmc-host node and add
-> support in the sdhci-esdhc-imx driver so that S32G2 can also mount file
-> system from SDCard but not just ramdisk. As the first step, we choose fixed
-> clocks to fulfill the requirements the mmc host driver needs, and they will
-> be replaced by ARM SCMI clock protocol (0x14) once the SCMI feature are
-> added into S32G2 DT later.
->
-> This patchset has been verified with NXP downstream firmware blobs [ver:
-> bsp27/28/29/30], such as TF-A[2] and U-Boot[3] (BL33) on CodeAurora.
->
-> Thanks,
-> Chester
->
-> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/freescale/s32g2.dtsi
-> [2]: https://source.codeaurora.org/external/autobsps32/arm-trusted-firmware/
-> [3]: https://source.codeaurora.org/external/autobsps32/u-boot/
->
-> Chester Lin (3):
->   dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G2 support
->   mmc: sdhci-esdhc-imx: add NXP S32G2 support
->   arm64: dts: s32g2: add USDHC support
->
->  .../bindings/mmc/fsl-imx-esdhc.yaml           |  1 +
->  arch/arm64/boot/dts/freescale/s32g2.dtsi      | 32 +++++++++++++++++++
->  .../arm64/boot/dts/freescale/s32g274a-evb.dts |  4 +++
->  .../boot/dts/freescale/s32g274a-rdb2.dts      |  4 +++
->  drivers/mmc/host/sdhci-esdhc-imx.c            | 17 ++++++++--
->  5 files changed, 56 insertions(+), 2 deletions(-)
->
+st,decrease-hs-slew-rate is described in phy-stm32-usbphyc.yaml. Then
+fix the property name in driver.
 
-Patch 1 and 2, applied for next, thanks!
+Fixes: 2f5e9f815a2f ("phy: stm32: add phy tuning support")
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+---
+ drivers/phy/st/phy-stm32-usbphyc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Kind regards
-Uffe
+diff --git a/drivers/phy/st/phy-stm32-usbphyc.c b/drivers/phy/st/phy-stm32-usbphyc.c
+index 7df6a63ad37b..e4f4a9be5132 100644
+--- a/drivers/phy/st/phy-stm32-usbphyc.c
++++ b/drivers/phy/st/phy-stm32-usbphyc.c
+@@ -478,7 +478,7 @@ static void stm32_usbphyc_phy_tuning(struct stm32_usbphyc *usbphyc,
+ 	if (!of_property_read_bool(np, "st,no-lsfs-fb-cap"))
+ 		usbphyc_phy->tune |= LFSCAPEN;
+ 
+-	if (of_property_read_bool(np, "st,slow-hs-slew-rate"))
++	if (of_property_read_bool(np, "st,decrease-hs-slew-rate"))
+ 		usbphyc_phy->tune |= HSDRVSLEW;
+ 
+ 	ret = of_property_read_u32(np, "st,tune-hs-dc-level", &val);
+-- 
+2.25.1
+
