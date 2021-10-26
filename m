@@ -2,194 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B0943B592
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4524B43B5CE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:41:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236846AbhJZPa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 11:30:27 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:30714 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236832AbhJZPaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 11:30:24 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19QAURm1014909;
-        Tue, 26 Oct 2021 11:28:00 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 3bx4fav6q5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Oct 2021 11:27:59 -0400
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 19QFRvQZ002791
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 26 Oct 2021 11:27:58 -0400
-Received: from SCSQCASHYB7.ad.analog.com (10.77.17.133) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 26 Oct 2021 08:27:57 -0700
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQCASHYB7.ad.analog.com (10.77.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 26 Oct 2021 08:27:56 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
- Transport; Tue, 26 Oct 2021 08:27:56 -0700
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.136])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 19QFRptV014798;
-        Tue, 26 Oct 2021 11:27:53 -0400
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 2/2] dt-bindings: iio: frequency: add admv1013 doc
-Date:   Tue, 26 Oct 2021 18:27:44 +0300
-Message-ID: <20211026152744.129065-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211026152744.129065-1-antoniu.miclaus@analog.com>
-References: <20211026152744.129065-1-antoniu.miclaus@analog.com>
+        id S237019AbhJZPnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 11:43:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43940 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237002AbhJZPm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 11:42:59 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934EBC061348
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:40:34 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id n7so17019313ljp.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:40:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dI3e2yWb/uU+1tnC1/zWVYk4uFqXhgsB4McGikM5lUw=;
+        b=dgqlsNw0H5kyGA5TWB1RzuH7MVg+T2iViWLbbis+jByI8r2y+xQU9cOFSvOLU6ZKwi
+         3KaZDMBvsBp9nlr86Zou84ys64kzpuoVHsSfDA+rfEa1mWlAKvlOGensxU02agst4UAp
+         R2Bj+LwW6QR9ZH1Ddy4MdqlbOvhXCoAc0tNFsCvO6wmlRaw0Qy9E5Cd73l1U9ES991qN
+         /guby18kM499xkdc0KXbPb+WKOaWUd/ZOpVfhP3tyk2Fjt59n4oeM15mwPnvzIVraLp/
+         /wecRv/8zpr5bLyYtG6dvKo/f9h/K4ASKz9BDARltki9+DmNrBIzyxORfk7DPWFZCKng
+         UIow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dI3e2yWb/uU+1tnC1/zWVYk4uFqXhgsB4McGikM5lUw=;
+        b=N4anm92h22uhM5+aNz1VQAgFbKHmsSGYK7iJXKZ/rahwpB2pY39XT15sGd0rFH8A86
+         qneoyBL9Cthfg58leajetG2JXSDP2ArR7LU27N2cfcxx9jussvmlACYtvpXrZFnsQyie
+         j6lwkum1r5uUjtYvGBJDseGTdjRxAu4SlsVfPAzFFgPIiqCRqAcng84YIiuQ86mCqxdZ
+         Bnd3ZV0jnU8+sfjzX+HZ1yHNYVMrun/HFf40c/O7PmODPf6a8xi3tQPnPZVfYTbJEbbE
+         9jyg8oRx0DcU1WmQA1ye+AFT68qOX/776zvS6hLPWrRziL4MOE2mxuO+jkWLX258cBHY
+         62Xg==
+X-Gm-Message-State: AOAM531cEECsVCKahLf0YXJR0D8he0BnWfyhhyJqgWojUp5ggvTdxpH/
+        xyXdjvXF+60xHuhlTmcsda1O+JMcR05rXdrNQFAztA==
+X-Google-Smtp-Source: ABdhPJxjK+2RgtinaImTk9WZkEHEmETy0+4aTjX4JMJv4txyCEICQCRa7hvJGpINMvqMR/q9t/VdpFVs6tZRpTs+f24=
+X-Received: by 2002:a2e:b550:: with SMTP id a16mr27647108ljn.229.1635262832943;
+ Tue, 26 Oct 2021 08:40:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: Q84t7-W3RyjEoL8MSB7UjAdvcBx2nuvv
-X-Proofpoint-ORIG-GUID: Q84t7-W3RyjEoL8MSB7UjAdvcBx2nuvv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-26_04,2021-10-26_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
- clxscore=1015 adultscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 spamscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2110260086
+References: <20211021071333.32485-1-clin@suse.com>
+In-Reply-To: <20211021071333.32485-1-clin@suse.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 26 Oct 2021 17:39:55 +0200
+Message-ID: <CAPDyKFrfUmisEO=OXZAi7U9N5gsfZHLWX7gPTHwt_AAsv78NpA@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Add SDHCI driver support for NXP S32G2
+To:     Chester Lin <clin@suse.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        s32@nxp.com, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Radu Nicolae Pirea <radu-nicolae.pirea@oss.nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        BOUGH CHEN <haibo.chen@nxp.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Matthias Brugger <mbrugger@suse.com>,
+        "Ivan T . Ivanov" <iivanov@suse.de>, "Lee, Chun-Yi" <jlee@suse.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the ADMV1013 Upconverter.
+On Thu, 21 Oct 2021 at 09:13, Chester Lin <clin@suse.com> wrote:
+>
+> Hello,
+>
+> This is a patch series for initial sdhci support on NXP S32G2 platforms.
+> In the previous work[1], only basic DTs and serial ports are supported for
+> minimum hardware booting. Here we want to add a mmc-host node and add
+> support in the sdhci-esdhc-imx driver so that S32G2 can also mount file
+> system from SDCard but not just ramdisk. As the first step, we choose fixed
+> clocks to fulfill the requirements the mmc host driver needs, and they will
+> be replaced by ARM SCMI clock protocol (0x14) once the SCMI feature are
+> added into S32G2 DT later.
+>
+> This patchset has been verified with NXP downstream firmware blobs [ver:
+> bsp27/28/29/30], such as TF-A[2] and U-Boot[3] (BL33) on CodeAurora.
+>
+> Thanks,
+> Chester
+>
+> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm64/boot/dts/freescale/s32g2.dtsi
+> [2]: https://source.codeaurora.org/external/autobsps32/arm-trusted-firmware/
+> [3]: https://source.codeaurora.org/external/autobsps32/u-boot/
+>
+> Chester Lin (3):
+>   dt-bindings: mmc: fsl-imx-esdhc: add NXP S32G2 support
+>   mmc: sdhci-esdhc-imx: add NXP S32G2 support
+>   arm64: dts: s32g2: add USDHC support
+>
+>  .../bindings/mmc/fsl-imx-esdhc.yaml           |  1 +
+>  arch/arm64/boot/dts/freescale/s32g2.dtsi      | 32 +++++++++++++++++++
+>  .../arm64/boot/dts/freescale/s32g274a-evb.dts |  4 +++
+>  .../boot/dts/freescale/s32g274a-rdb2.dts      |  4 +++
+>  drivers/mmc/host/sdhci-esdhc-imx.c            | 17 ++++++++--
+>  5 files changed, 56 insertions(+), 2 deletions(-)
+>
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- .../bindings/iio/frequency/adi,admv1013.yaml  | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+Patch 1 and 2, applied for next, thanks!
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-new file mode 100644
-index 000000000000..7c22202e1ffd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/frequency/adi,admv1013.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ADMV1013 Microwave Upconverter
-+
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+description: |
-+   Wideband, microwave upconverter optimized for point to point microwave
-+   radio designs operating in the 24 GHz to 44 GHz frequency range.
-+
-+   https://www.analog.com/en/products/admv1013.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,admv1013
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+
-+  clocks:
-+    description:
-+      Definition of the external clock.
-+    minItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: lo_in
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+  vcm-supply:
-+    description:
-+      Analog voltage regulator.
-+
-+  adi,vga-pd:
-+    description:
-+      Power Down the Voltage Gain Amplifier Circuit.
-+    type: boolean
-+
-+  adi,mixer-pd:
-+    description:
-+      Power Down the Mixer Circuit.
-+    type: boolean
-+
-+  adi,quad-pd:
-+    description:
-+      Power Down the Quadrupler.
-+    type: boolean
-+
-+  adi,bg-pd:
-+    description:
-+      Power Down the Transmitter Band Gap.
-+    type: boolean
-+
-+  adi,mixer-if-en:
-+    description:
-+      Enable the Intermediate Frequency Mode.
-+    type: boolean
-+
-+  adi,det-en:
-+    description:
-+      Enable the Envelope Detector.
-+    type: boolean
-+
-+  adi,quad-se-mode:
-+    description:
-+      Switch the LO path from differential to single-ended operation.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [6, 9, 12]
-+
-+  '#clock-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - vcm-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      admv1013@0{
-+        compatible = "adi,admv1013";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+        clocks = <&admv1013_lo>;
-+        clock-names = "lo_in";
-+        vcm-supply = <&vcm>;
-+        adi,quad-se-mode = <12>;
-+        adi,mixer-if-en;
-+        adi,det-en;
-+      };
-+    };
-+...
--- 
-2.33.1
-
+Kind regards
+Uffe
