@@ -2,159 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C27843BDE4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6860843BDE8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:32:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240294AbhJZXdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 19:33:03 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:34553 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240288AbhJZXdD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:33:03 -0400
-Received: by mail-ot1-f54.google.com with SMTP id t17-20020a056830083100b00553ced10177so825737ots.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 16:30:38 -0700 (PDT)
+        id S234618AbhJZXfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 19:35:18 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:37561 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231791AbhJZXfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:35:15 -0400
+Received: by mail-ot1-f41.google.com with SMTP id b4-20020a9d7544000000b00552ab826e3aso1038714otl.4;
+        Tue, 26 Oct 2021 16:32:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YdfJTAEtCAhSe+3h4tTe52kE6X+7iJoFuwPhPxv4gX8=;
-        b=YRreYlHNanCfyV2ZYbmNpzevIpnK2Wt5LKvQsukX/T27H/1QTfJ+yKhWvnkVAx/Q+F
-         7QXIbwxbH4WXUfIRrd13QcAG8g+kB/t6OdgbKA6iGe6QhpoPZtMOzgB4/xomN/GnbXok
-         bx29i9dGPp7lCIu3c3Dsns0ZTmQ0Oyu27hKWf4cdwbFT2aqU4RHYX6fvrUg4l7i6c34d
-         XIXi+c+8YbOE6P1sExXFM2j05Pvj20sCEL5L/sCPCmZ4vgvogHeQXExZCyL83uwSMQdY
-         e3mgMWXqwWS9qxh1zM6H/+eIEG3d0HHDVDro/pwZvIHDMpvYwpMIV8l/Hdcda1x0RkAE
-         XD+Q==
-X-Gm-Message-State: AOAM531iMKb0bbyzefrUxMsqbcJxR0GI+52Er1o0oShmuzE6sd6VVBi2
-        G9LupTHPck6t3whYKmdY9Q==
-X-Google-Smtp-Source: ABdhPJycDdDfw2IphwJoJ9Qcr+cynsM1VQ1injCkHewZ9/51wcYtIag+y+i3rfiH0uhANUwonyEXTQ==
-X-Received: by 2002:a05:6830:19c2:: with SMTP id p2mr21993981otp.27.1635291038361;
-        Tue, 26 Oct 2021 16:30:38 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=kSLSvsmgrH+vviFSMmPGSEilGiuI7PFaSyj8CApF5fU=;
+        b=m8vDReP/TXnOHvvV49uo6Rw3NFirB6qO/ZfT3kSsFSxqR5Vlvn4mrV3B4KbNvdMcPU
+         fJaWNk8SATdxkaQ4bgrPt7Xp2kwTU+kXpLBl+x3X6+k1JlL8pnSrjPb92THUyb5hLDzI
+         DVYNwvdjjpRc0FnRW0PeaEJsBpFp2IgW5GSN6sDGV+u1XdMvLAWxK6B+X5daD2GGcbMB
+         k9gP91VJKhWVXqW4aHv1Q2xu/4qydK3YxS2D2/iQ618nqCvd5pA2YxDBZOadwgrNhYJs
+         f1ZNy9c+8MqPY3bcY1bPa63M5HnoS617MGzS9D9YAx0e2x3C7tqe0ApFuUCZCQ/sY65X
+         rCDw==
+X-Gm-Message-State: AOAM533QK92Nqo0ao+CkMo7RQkjtNyYLzLKArIbrA9fdVRJbgEb6Oyf0
+        HGuorCm+spGL7opsAQqDiw==
+X-Google-Smtp-Source: ABdhPJwB98USJC1MLEdS7c69Ku7Zf4yf+11kHPSUyZPG8lunaaHwG07kPy2N58Ow6F4CUnTHOTZ8hg==
+X-Received: by 2002:a05:6830:1af0:: with SMTP id c16mr21717179otd.16.1635291169019;
+        Tue, 26 Oct 2021 16:32:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s39sm5224402otv.18.2021.10.26.16.30.37
+        by smtp.gmail.com with ESMTPSA id c17sm596350oom.33.2021.10.26.16.32.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 16:30:37 -0700 (PDT)
-Received: (nullmailer pid 3519654 invoked by uid 1000);
-        Tue, 26 Oct 2021 23:30:36 -0000
-Date:   Tue, 26 Oct 2021 18:30:36 -0500
+        Tue, 26 Oct 2021 16:32:48 -0700 (PDT)
+Received: (nullmailer pid 3523336 invoked by uid 1000);
+        Tue, 26 Oct 2021 23:32:47 -0000
+Date:   Tue, 26 Oct 2021 18:32:47 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Mwesigwa Guma <mguma@redhat.com>,
-        Ojaswin Mujoo <ojaswin98@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH 2/2] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to
- json-schema
-Message-ID: <YXiPnO4B9Za43ZDN@robh.at.kernel.org>
-References: <1634475996-6809-1-git-send-email-stefan.wahren@i2se.com>
- <1634475996-6809-3-git-send-email-stefan.wahren@i2se.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht
+Subject: Re: [PATCH v4] dt-bindings: net: nfc: nxp,pn544: Convert txt
+ bindings to yaml
+Message-ID: <YXiQH9ssI088xLuM@robh.at.kernel.org>
+References: <20211017160210.85543-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1634475996-6809-3-git-send-email-stefan.wahren@i2se.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211017160210.85543-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 17, 2021 at 03:06:36PM +0200, Stefan Wahren wrote:
-> This converts the VCHIQ bindings to YAML format.
+On Sun, Oct 17, 2021 at 06:02:10PM +0200, David Heidelberg wrote:
+> Convert bindings for NXP PN544 NFC driver to YAML syntax.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 47 ++++++++++++++++++++++
->  2 files changed, 47 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+> v2
+>  - Krzysztof is a maintainer
+>  - pintctrl dropped
+>  - 4 space indent for example
+>  - nfc node name
+> v3
+>  - remove whole pinctrl
+> v4
+>  - drop clock-frequency, which is inherited by i2c bus
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-> deleted file mode 100644
-> index f331316..0000000
-> --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -Broadcom VCHIQ firmware services
-> -
-> -Required properties:
-> -
-> -- compatible:	Should be "brcm,bcm2835-vchiq" on BCM2835, otherwise
-> -		"brcm,bcm2836-vchiq".
-> -- reg:		Physical base address and length of the doorbell register pair
-> -- interrupts:	The interrupt number
-> -		  See bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
-> -
-> -Example:
-> -
-> -mailbox@7e00b840 {
-> -	compatible = "brcm,bcm2835-vchiq";
-> -	reg = <0x7e00b840 0xf>;
-> -	interrupts = <0 2>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+>  .../bindings/net/nfc/nxp,pn544.yaml           | 56 +++++++++++++++++++
+>  .../devicetree/bindings/net/nfc/pn544.txt     | 33 -----------
+>  2 files changed, 56 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn544.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
 > new file mode 100644
-> index 0000000..2ef6b21
+> index 000000000000..4592d1194a71
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-> @@ -0,0 +1,47 @@
+> +++ b/Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
+> @@ -0,0 +1,56 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-vchiq.yaml#
+> +$id: http://devicetree.org/schemas/net/nfc/nxp,pn544.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Broadcom VCHIQ firmware services
+> +title: NXP Semiconductors PN544 NFC Controller
 > +
 > +maintainers:
-> +  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-> +
-> +description: |
-
-Don't need '|' if there is no formatting to preserve.
-
-> +  The VCHIQ communication channel can be provided by BCM283x and Capri SoCs,
-> +  to communicate with the VPU-side OS services.
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - brcm,bcm2835-vchiq
-> +      - brcm,bcm2836-vchiq
+> +    const: nxp,pn544-i2c
 > +
 > +  reg:
-> +    description: Physical base address and length of the doorbell register pair
-> +    minItems: 1
+> +    maxItems: 1
 > +
 > +  interrupts:
-> +    description: |
-> +      Interrupt number of the doorbell interrupt
-> +      see bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
+> +    maxItems: 1
+> +
+> +  enable-gpios:
+> +    description: Output GPIO pin used for enabling/disabling the PN544
+> +
+> +  firmware-gpios:
+> +    description: Output GPIO pin used to enter firmware download mode
 
-What interrupt controller you are attached to is outside the scope of a 
-binding, so drop the ref. Plus, then we don't have to update it later.
+*-gpios needs to say how many (maxItems: 1). I'll fix when applying.
 
-> +    minItems: 1
 > +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - interrupts
+> +  - enable-gpios
+> +  - firmware-gpios
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    mailbox@7e00b840 {
-> +      compatible = "brcm,bcm2835-vchiq";
-> +      reg = <0x7e00b840 0xf>;
-> +      interrupts = <0 2>;
-> +    };
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
 > +
-> +...
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        nfc@28 {
+> +            compatible = "nxp,pn544-i2c";
+> +            reg = <0x28>;
+> +
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +            enable-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+> +            firmware-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/nfc/pn544.txt b/Documentation/devicetree/bindings/net/nfc/pn544.txt
+> deleted file mode 100644
+> index 2bd82562ce8e..000000000000
+> --- a/Documentation/devicetree/bindings/net/nfc/pn544.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -* NXP Semiconductors PN544 NFC Controller
+> -
+> -Required properties:
+> -- compatible: Should be "nxp,pn544-i2c".
+> -- clock-frequency: I²C work frequency.
+> -- reg: address on the bus
+> -- interrupts: GPIO interrupt to which the chip is connected
+> -- enable-gpios: Output GPIO pin used for enabling/disabling the PN544
+> -- firmware-gpios: Output GPIO pin used to enter firmware download mode
+> -
+> -Optional SoC Specific Properties:
+> -- pinctrl-names: Contains only one value - "default".
+> -- pintctrl-0: Specifies the pin control groups used for this controller.
+> -
+> -Example (for ARM-based BeagleBone with PN544 on I2C2):
+> -
+> -&i2c2 {
+> -
+> -
+> -	pn544: pn544@28 {
+> -
+> -		compatible = "nxp,pn544-i2c";
+> -
+> -		reg = <0x28>;
+> -		clock-frequency = <400000>;
+> -
+> -		interrupt-parent = <&gpio1>;
+> -		interrupts = <17 IRQ_TYPE_LEVEL_HIGH>;
+> -
+> -		enable-gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
+> -		firmware-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+> -	};
+> -};
 > -- 
-> 2.7.4
+> 2.33.0
 > 
 > 
