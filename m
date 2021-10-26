@@ -2,105 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EC0C43BC74
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58FEE43BC86
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239642AbhJZVfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 17:35:53 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:39910 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237275AbhJZVfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:35:52 -0400
-Received: by mail-oi1-f172.google.com with SMTP id s9so560911oiw.6;
-        Tue, 26 Oct 2021 14:33:28 -0700 (PDT)
+        id S239677AbhJZVjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239669AbhJZVjI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:39:08 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09638C061570;
+        Tue, 26 Oct 2021 14:36:44 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id a6so1031212ybq.9;
+        Tue, 26 Oct 2021 14:36:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4wNyPqGE0Nzj26+1d7qK2TZKb0WDGW0xR3NS0/Dm8D8=;
+        b=GEmgQETGyiJphS4CkZY+/W+RfT30EWmPhkSALapYdNnp7ZzzxU7W9CBTByYovl3XTu
+         D1o4ToRTb4bN/71ajbmVU8N4Em1c8Q4hc9b461DCLf0F7hqdnyh7jmgeUBgvdAIZ+1bC
+         op5Z2bIVLdcIGRRGO1vIPOWreM5JcGlu2Zvqh6Az3ccghSTHQ146nyhOjZF10Ggu26jO
+         rXO0ZnJElx0VGUpvt4HjxAADRtNFhtk/eHxODAIIYXQDcYfCZ3FHlLMRaCurRUVHtcEP
+         W29TdhkYvTJdTFzCBG/l/3GqQUW0HaFL/z+IMKoU8gCYeLWm4G/AD/MQJ+VLbuyxnQ8I
+         KK6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=q5ipuM9JztsEYfEdCfwiDc6VyfHQLb5SVFaXPyhJGCE=;
-        b=qeaV7FuDCsKWWxJj3cFbn07yJRHixB/1dSNiosURSLD9i8KJ/qg2mJ2HWJ4QncfKVR
-         nedxzaBBMHcQ6XsHvprRH0TX7i8Ym+UqoPXft8j27sBTxlg76ajy8QmzP4rV6uKBwrlD
-         Ok/AsifCFyoGFRD02xo04EoG/dg7PF3Paz3M5uK5RCbpOLmJOQbGqTvq5jdscdfc8aYN
-         TxYxltisvBzBYXBmWLcCycJWBu5ahexfKvUPwZ6PC5A555j6PAlcYe9l5lP9lIo2BENg
-         z725nv95V1fTUR7u3CNvoG6PtqXRggWghP2A7vbHT+/gj6JmulciWnKd6VB+yBiJwA/G
-         I/gg==
-X-Gm-Message-State: AOAM533tZAVggPSrG+fo2x+0hE4tklP9tn2R3nh5FSsKN47Tv8S5d+sN
-        Px0s+5aR3zeu9HrR9vSlPw==
-X-Google-Smtp-Source: ABdhPJwX/o2BKh61aO10pJ8j2Igz1nCJ9i6GDWL95opy4gu85HlenUnPT8sohds/u9p8HlRSJ5UN4g==
-X-Received: by 2002:a54:4d89:: with SMTP id y9mr979301oix.22.1635284008112;
-        Tue, 26 Oct 2021 14:33:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b9sm4891096ots.77.2021.10.26.14.33.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 14:33:27 -0700 (PDT)
-Received: (nullmailer pid 3296251 invoked by uid 1000);
-        Tue, 26 Oct 2021 21:33:26 -0000
-Date:   Tue, 26 Oct 2021 16:33:26 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Suman Anna <s-anna@ti.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCHv2] dt-bindings: bus: ti-sysc: Update to use yaml binding
-Message-ID: <YXh0JtEnB6uKR/my@robh.at.kernel.org>
-References: <20211015113350.35830-1-tony@atomide.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4wNyPqGE0Nzj26+1d7qK2TZKb0WDGW0xR3NS0/Dm8D8=;
+        b=7pvWeqUn4/hU2irWQg1J9h4evfmcfyRhmJ7UuKUgwfhJJ1OkvznEMci0pKIQRBFq75
+         3oyd5haCjxRbVcob0IdEuCa9Fxwyn3pwypmqS0i2nzO06H/WFng1pDBz6qYdci7viVy9
+         RmLLjHUWWfNTXqViZRHmVI9/IkaNfZytrR+cN5ZC57HojTMXOEMghEGfm7hDxvD54TRU
+         fx6EPpxE+rP+z6JOg/nMlVA0J0BWqB1+vRhmvROVjT0T3DtEL2ZcigNqFMrWwJB+OX0G
+         ZcROQTtPaNXn8dnrokATeYsCp50Ke5rEmZJJosXUiVbFeUc+mqp2qxx5WPU8mfybu95u
+         KDSQ==
+X-Gm-Message-State: AOAM533MndgV8ZuV+0vYBZGoRlXpKnG28+QeytmXoCX6We9s+n8tda04
+        2sE98VbmzF9/eDR8mPHMl6arXeyXjWNc1d/nBIJatVKqGzk=
+X-Google-Smtp-Source: ABdhPJyYcqrrKYkTH7z5pS2QaoRaP8XhF7TcGKpw4QG6fNwhow0uLaanWQMMefPjJDQjEA4NA6a4x+vUzsD+cW4aFGY=
+X-Received: by 2002:a5b:783:: with SMTP id b3mr25680236ybq.328.1635284203236;
+ Tue, 26 Oct 2021 14:36:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211015113350.35830-1-tony@atomide.com>
+References: <20210930121630.17449-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210930121630.17449-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXHv7H3xxEYFLhfBf+Pun-w=F4k5S2RAYJY6qz75QpxhQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXHv7H3xxEYFLhfBf+Pun-w=F4k5S2RAYJY6qz75QpxhQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 26 Oct 2021 22:36:17 +0100
+Message-ID: <CA+V-a8uS6fiHAWbJTXtVJgHPqvtDGPf-RupQGaKJv7wWkurLYw@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/4] pinctrl: renesas: pinctrl-rzg2l: Add support to
+ get/set drive-strength and output-impedance
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 14:33:50 +0300, Tony Lindgren wrote:
-> Update the binding for ti-sysc interconnect target module driver to yaml
-> format.
-> 
-> Note that the old binding was never updated for the need to always specify
-> also the generic compatible "ti,sysc". This is needed for the auxdata
-> for platform clockdomain autoidle related functions.
-> 
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
-> 
-> Changes since v1:
-> 
-> - Update based on comments from Rob
-> 
-> ---
->  .../devicetree/bindings/bus/ti-sysc.txt       | 139 ----------
->  .../devicetree/bindings/bus/ti-sysc.yaml      | 242 ++++++++++++++++++
->  2 files changed, 242 insertions(+), 139 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.txt
->  create mode 100644 Documentation/devicetree/bindings/bus/ti-sysc.yaml
-> 
+Hi Geert,
 
-I reworked the reg-names and clock-names to be more concise and applied. 
-Like this:
+Thank you for the review.
 
-  clock-names:
-    description:
-      Target module clock names like "fck", "ick", "optck1", "optck2"
-      if the clocks are configurable.
-    oneOf:
-      - enum: [ ick, fck, sys_clk ]
-      - items:
-          - const: fck
-          - enum: [ ick. dbclk, osc, sys_clk, dss_clk, ahclkx ]
-      - items:
-          - const: fck
-          - const: phy-clk
-          - const: phy-clk-div
-      - items:
-          - const: fck
-          - const: hdmi_clk
-          - const: sys_clk
-          - const: tv_clk
-      - items:
-          - const: fck
-          - const: ahclkx
-          - const: ahclkr
+On Thu, Oct 7, 2021 at 6:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, Sep 30, 2021 at 2:17 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add support to get/set drive-strength and output-impedance of the pins.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -47,6 +47,7 @@
+> >  #define PIN_CFG_FILONOFF               BIT(9)
+> >  #define PIN_CFG_FILNUM                 BIT(10)
+> >  #define PIN_CFG_FILCLKSEL              BIT(11)
+> > +#define PIN_CFG_GROUP_B                        BIT(12)
+>
+> Perhaps it would be easier to have separate PIN_CFG_IOLH_A and
+> PIN_CFG_IOLH_B flags, instead of a PIN_CFG_IOLH flag and a
+> PIN_CFG_GROUP_B modifier flag?
+>
+Agreed will do that.
 
+> >
+> >  #define RZG2L_MPXED_PIN_FUNCS          (PIN_CFG_IOLH | \
+> >                                          PIN_CFG_SR | \
+>
+> > @@ -484,6 +513,38 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
+> >                 break;
+> >         }
+> >
+> > +       case PIN_CONFIG_OUTPUT_IMPEDANCE:
+> > +       case PIN_CONFIG_DRIVE_STRENGTH: {
+> > +               unsigned int mA[4] = { 2, 4, 8, 12 };
+> > +               unsigned int oi[4] = { 100, 66, 50, 33 };
+>
+> static const
+>
+agreed.
+
+> > +
+> > +               if (param == PIN_CONFIG_DRIVE_STRENGTH) {
+> > +                       if (!(cfg & PIN_CFG_IOLH) || groupb_pin)
+> > +                               return -EINVAL;
+> > +               } else {
+> > +                       if (!(cfg & PIN_CFG_IOLH) || !groupb_pin)
+> > +                               return -EINVAL;
+> > +               }
+> > +
+> > +               spin_lock_irqsave(&pctrl->lock, flags);
+> > +
+> > +               /* handle _L/_H for 32-bit register read/write */
+> > +               addr = pctrl->base + IOLH(port);
+> > +               if (bit >= 4) {
+> > +                       bit -= 4;
+> > +                       addr += 4;
+> > +               }
+> > +
+> > +               reg = readl(addr) & (IOLH_MASK << (bit * 8));
+> > +               reg = reg >> (bit * 8);
+> > +               if (param == PIN_CONFIG_DRIVE_STRENGTH)
+> > +                       arg = mA[reg];
+> > +               else
+> > +                       arg = oi[reg];
+> > +               spin_unlock_irqrestore(&pctrl->lock, flags);
+>
+> I think you've reached the point where it starts to make sense to
+> have helper functions to read and modify these sub-register fields
+> that may be located into the current or next register.
+>
+Ok will add helpers to read and rmw.
+
+> And after that, you can split it in two smaller separate cases for
+> drive strength and output impedance.
+>
+Agreed.
+
+Cheers,
+Prabhakar
+
+> > +               break;
+> > +       }
+> > +
+> >         default:
+> >                 return -ENOTSUPP;
+> >         }
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
