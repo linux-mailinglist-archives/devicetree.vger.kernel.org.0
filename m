@@ -2,54 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8027D43B208
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 14:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D838043B236
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 14:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234479AbhJZMNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 08:13:44 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:59444 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232378AbhJZMNn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 08:13:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=pUT/QsjAVmo309oFjQKn8aNBmEiYdlm9SPuibVKgDMQ=; b=z+gC0Dl9H9PqpHTXY+WEilBpau
-        q89o/HsJV9fF2LYXsxJcql5++f0q5QFTmQ8nQwPA1d7l2kino50rssf5wM0itpA4LsIQKMDz089m3
-        qjW1VQOL3apa2twXCvZ3nFTO9tBKl9DJxI3BuZzZJSp4EBZTcXdULMYL1jny4n21NO5M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mfLIJ-00Bm9B-VU; Tue, 26 Oct 2021 14:11:07 +0200
-Date:   Tue, 26 Oct 2021 14:11:07 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: vf610-zii-dev-rev-b: specify phy-mode for
- external PHYs
-Message-ID: <YXfwW7RRdBKDz3Q4@lunn.ch>
-References: <E1mfIqd-001K4C-RP@rmk-PC.armlinux.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1mfIqd-001K4C-RP@rmk-PC.armlinux.org.uk>
+        id S235851AbhJZMWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 08:22:24 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:50015 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234791AbhJZMWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 08:22:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635250800; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=lxambdPjjCTbsonlXAfW42PgjHSfRJVT1wXjJ/kn1go=; b=mJGdkXXrjKnX9LEs39mfnW9JAuZ2+dLhBMHAjVqookdkU/CeWfqw9u9feMSDU9x1VmxGi96P
+ kgm+msPtcO/K2gAl29YO7muO7yRhykfH5wPdJd32bWi2BGK3C1uvFZ3x2CEM5icWEXR++vLl
+ OtgFYLvUsYFolIEnQqLuclaHzjY=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 6177f25cdaa899cf74e64744 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Oct 2021 12:19:40
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5F6B5C43635; Tue, 26 Oct 2021 12:19:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A001BC43616;
+        Tue, 26 Oct 2021 12:19:34 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A001BC43616
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v4 0/3] Update SoundWire RX and TX cgcr register control
+Date:   Tue, 26 Oct 2021 17:49:21 +0530
+Message-Id: <1635250764-13994-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 26, 2021 at 10:34:23AM +0100, Russell King (Oracle) wrote:
-> Specify the phy-mode for the external PHYs on the third switch on the
-> ZII development rev B board so phylink and phylib knows what mode these
-> interfaces are configured for.
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+This patch series is to add v1.6.0 compatable name for qcom soundwire
+driver and to update soundwire RX and TX cgcr register control.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Changes Since V3:
+    -- Add v1.6.0 compatable name and soundwire data structure.
+    -- Change macro define name properly.
+    -- Update bindings for new property.
+    -- Change commit message description.
+    -- Change signedoff by sequence.
+Changes since v2:
+    -- Update error check after ioremap.
+Changes since v1:
+    -- Add const name to mask value.
+Srinivasa Rao Mandadapu (3):
+  ASoC: qcom: soundwire: Disable soundwire rxtx cgcr hardware control
+  dt-bindings: soundwire: qcom: Add bindings for RX and TX cgcr register
+    control
+  soundwire: qcom: Add compatible name for v1.6.0
 
-    Andrew
+ .../devicetree/bindings/soundwire/qcom,sdw.txt       |  9 +++++++++
+ drivers/soundwire/qcom.c                             | 20 ++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
