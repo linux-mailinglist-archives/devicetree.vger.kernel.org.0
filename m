@@ -2,85 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9255543B0DF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 13:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8054643B0E7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 13:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235381AbhJZLSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 07:18:44 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:47095 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235434AbhJZLSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 07:18:41 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635246977; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=jW2IdxGE8fRVPQ1BAeO5iZu8iomkdSBeoAZ5qJQCMuk=; b=jtFnvGgrKNX0uEMV1oY7zXL2qW1c7moasUbWoaEET/VKRhj0mtKZCqr2Skagj8CqjblU8hib
- IcjdYM30ZZL0dDd1dnlArjTuhEwBzl0541ARC+vlX33y0v5N33r5yXmwFwyVKJtrt/IfVwlI
- 2BwGAbH5SdusLARdj/pdhcqiQvw=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 6177e356e29a872c21f3832e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Oct 2021 11:15:34
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8B564C4338F; Tue, 26 Oct 2021 11:15:33 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.1 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 22F29C4338F;
-        Tue, 26 Oct 2021 11:15:27 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 22F29C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v2] ASoC: qcom: soundwire: Enable soundwire bus clock for
- version 1.6
-To:     Mark Brown <broonie@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633443285-18685-1-git-send-email-srivasam@codeaurora.org>
- <YWBH9gAKIHJMlFlY@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <4f16ca1f-c243-a221-7fec-cc51d985f10b@codeaurora.org>
-Date:   Tue, 26 Oct 2021 16:45:25 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235061AbhJZLTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 07:19:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233252AbhJZLTg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 07:19:36 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75DD7C061745
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 04:17:12 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id p14so12561906wrd.10
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 04:17:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SAaUPE6FJG+GpNbPNLyEkyaoPDH33M7HjsHzJIb6/1E=;
+        b=Nd/lpeXC+qy3myhAqGepqfUv0WbJjfwLQWq6IrcKpCAfy2nkIxtgEsQGFhnSMpQXIP
+         6OtuT4A8injk8xVev3AxXwPwmq+xqYtXX6v9AgvoBujwlh49TkSaH/uKVBduMOcAWEBK
+         yYvlcy2txQIXSFazwKSbWvj7ev3ukPz7u6uCIS91CA+HANpZ7pOBXFqGBn36ydgUBaaw
+         3ROMxT7Y4EAwYCKr53WFqZms0ZE19ehwAEZIvbFHHxltwAl6hXF3Ja9+VzCwURHoi4Ql
+         X9hnAwquo/vg7DEdSfkjSeDD/xu+ixiKmT8nBEqIEqlKL5VoeWh3IOfTxIy/CZ7+BCFY
+         N20w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SAaUPE6FJG+GpNbPNLyEkyaoPDH33M7HjsHzJIb6/1E=;
+        b=u7MudlgCWi+e6ujfsA3Z0WxHXAf7dmSyqSzO4b8S9ZblLIxEcoNPFmfKA+qd4MfqNR
+         rBrVNGM9Pvw5ddw5meo6doRygLN1mkW7aixxalVi1W6Dw1RKAPf+JXYLxp3S5yaE2JVj
+         lZnVzXYQ60HM9xx5JmAitaxjRacEY1kgTbfirMBBsZ6juMQvMB+5HVKrv+xgUz+zVadg
+         W/ExOC4txRgBCa+cpo6rYYpOR7V/COEZk7NS0jVEmIAN4ephvH61XTotNebej3myFXTz
+         OCsz4usBqzU/IRKk4ksj2fnU2cbxWwWnhpN4vo3qKyubG83r+VbSizwSozaW51pNWqN6
+         K9CQ==
+X-Gm-Message-State: AOAM530TM1MfdgcR3oAn9CzwSw2s27PlVrWGFL+UjWbFsCozy1FPkdtN
+        FfeHRHiGZg3uA1KDBtosdh3wWQ==
+X-Google-Smtp-Source: ABdhPJwVx2RXDn1Y4gXJRz/SHVKCi4vJVH1O6eN+c6NhBdUtm3NKDVPLyWuiWUlnY38QOUJJ5cxrFQ==
+X-Received: by 2002:adf:a350:: with SMTP id d16mr31572725wrb.136.1635247031044;
+        Tue, 26 Oct 2021 04:17:11 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id l124sm355483wml.8.2021.10.26.04.17.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Oct 2021 04:17:10 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org, bjorn.andersson@linaro.org, robh@kernel.org
+Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.de, devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v11 00/17] ASoC: qcom: Add AudioReach support
+Date:   Tue, 26 Oct 2021 12:16:38 +0100
+Message-Id: <20211026111655.1702-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <YWBH9gAKIHJMlFlY@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark,
 
-On 10/8/2021 7:00 PM, Mark Brown wrote:
-Thanks for Your time Brown!!!
-> On Tue, Oct 05, 2021 at 07:44:45PM +0530, Srinivasa Rao Mandadapu wrote:
->
->> +	if (!of_property_read_u32(dev->of_node, "qcom,swrm-hctl-reg", &swrm_hctl_reg))
->> +		ctrl->swrm_hctl_reg = devm_ioremap(&pdev->dev, swrm_hctl_reg, 0x4);
-> This is a new DT property so needs an update to the bindings.
-Okay. Will update the bindings and re-post it.
+This version is a respin of v10 fixing a build error in 12/17 patch.
+
+QCOM SoC relevant non-audio patches in this series has been merged into
+the Qualcomm drivers-for-5.16 tree, as this series depends those patches
+an immutable tag is available at:
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
+
+This patchset adds ASoC driver support to configure signal processing
+framework ("AudioReach") which is integral part of Qualcomm next
+generation audio SDK and will be deployed on upcoming Qualcomm chipsets.
+It makes use of ASoC Topology to load graphs on to the DSP which is then
+managed by APM (Audio Processing Manager) service to prepare/start/stop.
+
+Here is simplified high-level block diagram of AudioReach:
+
+ ___________________________________________________________
+|                 CPU (Application Processor)               |
+|  +---------+          +---------+         +----------+    |
+|  |  q6apm  |          |  q6apm  |         |  q6apm   |    |
+|  |   dais  | <------> |         | <-----> |lpass-dais|    |
+|  +---------+          +---------+         +----------+    |
+|                            ^  ^                           |
+|                            |  |           +---------+     |
+|  +---------+               v  +---------->|topology |     |
+|  | q6prm   |          +---------+         |         |     |
+|  |         |<-------->|   GPR   |         +---------+     |
+|  +---------+          +---------+                         |
+|       ^                    ^                              |
+|       |                    |                              |
+|  +----------+              |                              |
+|  |   q6prm  |              |                              |
+|  |lpass-clks|              |                              |
+|  +----------+              |                              |
+|____________________________|______________________________|
+                             |  
+                             | RPMSG (IPC over GLINK)              
+ ____________________________|______________________________
+|                            |                              |
+|    +-----------------------+                              |
+|    |                       |                              |
+|    v                       v              q6 (Audio DSP)  |
+|+-----+    +----------------------------------+            |
+|| PRM |    | APM (Audio Processing Manager)   |            |
+|+-----+    |  . Graph Management              |            |  
+|           |  . Command Handing               |            |  
+|           |  . Event Management              |            |  
+|           |  ...                             |            |  
+|           +----------------------------------+            |  
+|                            ^                              |
+|____________________________|______________________________|
+                             |  
+                             |   LPASS AIF
+ ____________________________|______________________________
+|                            |            Audio I/O         |
+|                            v                              |
+|    +--------------------------------------------------+   |
+|    |                Audio devices                     |   |
+|    | CODEC | HDMI-TX | PCM  | SLIMBUS | I2S |MI2S |...|   |
+|    |                                                  |   |
+|    +--------------------------------------------------+   |
+|___________________________________________________________|
+
+AudioReach has constructs of sub-graph, container and modules.
+Each sub-graph can have N containers and each Container can have N Modules
+and connections between them can be linear or non-linear.
+An audio function can be realized with one or many connected
+sub-graphs. There are also control/event paths between modules that can
+be wired up while building graph to achieve various control mechanism
+between modules. These concepts of Sub-Graph, Containers and Modules
+are represented in ASoC topology.
+
+Here is simple I2S graph with a Write Shared Memory and a
+Volume control module within a single Subgraph (1) with one Container (1)
+and 5 modules.
+
+  ____________________________________________________________
+ |                        Sub-Graph [1]                       |
+ |  _______________________________________________________   |
+ | |                       Container [1]                   |  |
+ | | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]-> [I2S-EP]|  |
+ | |_______________________________________________________|  |
+ |____________________________________________________________|
+
+For now this graph is split into two subgraphs to achieve dpcm like below:
+ ________________________________________________    _________________
+|                Sub-Graph [1]                   |  |  Sub-Graph [2]  |
+|  ____________________________________________  |  |  _____________  |
+| |              Container [1]                 | |  | |Container [2]| |
+| | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]| |  | |   [I2S-EP]  | |
+| |____________________________________________| |  | |_____________| |
+|________________________________________________|  |_________________|
+
+                                                      _________________
+                                                    |  Sub-Graph [3]  |
+                                                    |  _____________  |
+                                                    | |Container [3]| |
+                                                    | |  [DMA-EP]   | |
+                                                    | |_____________| |
+                                                    |_________________|
+
+
+This patchset adds very minimal support for AudioReach which includes
+supporting sub-graphs containing CODEC DMA ports and simple PCM
+Decoder/Encoder and Logger Modules. Additional capabilities will
+be built over time to expose features offered by AudioReach. 
+
+This patchset is Tested on SM8250 SoC based Qualcomm Robotics Platform RB5
+and SM9250 MTP with WSA881X Smart Speaker Amplifiers, DMICs connected via
+VA Macro and WCD938x Codec connected via TX and RX Macro and HDMI audio
+via I2S.
+
+First 10 Patches are mostly reorganization existing Old QDSP Audio
+Framework code and bindings so that we could reuse them on AudioReach.
+
+ASoC topology graphs for DragonBoard RB5 and SM8250 MTP are available at 
+https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/
+and Qualcomm AudioReach DSP headers are available at:
+https://source.codeaurora.org/quic/la/platform/vendor/opensource/arspf-headers
+
+Note: There is one false positive warning in this patchset:
+audioreach.c:80:45: warning: array of flexible structures
+
+Thanks,
+srini
+
+Changes since v10:
+- fix build error during arm64 defconfig build reported by Mark in 12/17 patch
+for audioreach_tplg_init symbol
+
+Srinivas Kandagatla (17):
+  ASoC: dt-bindings: move LPASS dai related bindings out of q6afe
+  ASoC: dt-bindings: move LPASS clocks related bindings out of q6afe
+  ASoC: dt-bindings: rename q6afe.h to q6dsp-lpass-ports.h
+  ASoC: qdsp6: q6afe-dai: move lpass audio ports to common file
+  ASoC: qdsp6: q6afe-clocks: move audio-clocks to common file
+  ASoC: dt-bindings: q6dsp: add q6apm-lpass-dai compatible
+  ASoC: dt-bindings: lpass-clocks: add q6prm clocks compatible
+  ASoC: dt-bindings: add q6apm digital audio stream bindings
+  ASoC: qdsp6: audioreach: add basic pkt alloc support
+  ASoC: qdsp6: audioreach: add q6apm support
+  ASoC: qdsp6: audioreach: add module configuration command helpers
+  ASoC: qdsp6: audioreach: add Kconfig and Makefile
+  ASoC: qdsp6: audioreach: add topology support
+  ASoC: qdsp6: audioreach: add q6apm-dai support
+  ASoC: qdsp6: audioreach: add q6apm lpass dai support
+  ASoC: qdsp6: audioreach: add q6prm support
+  ASoC: qdsp6: audioreach: add support for q6prm-clocks
+
+ .../devicetree/bindings/sound/qcom,q6afe.txt  |  181 ---
+ .../bindings/sound/qcom,q6apm-dai.yaml        |   53 +
+ .../sound/qcom,q6dsp-lpass-clocks.yaml        |   77 ++
+ .../sound/qcom,q6dsp-lpass-ports.yaml         |  205 +++
+ include/dt-bindings/sound/qcom,q6afe.h        |  203 +--
+ .../sound/qcom,q6dsp-lpass-ports.h            |  208 +++
+ include/uapi/sound/snd_ar_tokens.h            |  208 +++
+ sound/soc/qcom/Kconfig                        |   22 +
+ sound/soc/qcom/qdsp6/Makefile                 |   11 +-
+ sound/soc/qcom/qdsp6/audioreach.c             | 1130 +++++++++++++++++
+ sound/soc/qcom/qdsp6/audioreach.h             |  726 +++++++++++
+ sound/soc/qcom/qdsp6/q6afe-clocks.c           |  187 +--
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |  687 +---------
+ sound/soc/qcom/qdsp6/q6apm-dai.c              |  416 ++++++
+ sound/soc/qcom/qdsp6/q6apm-lpass-dais.c       |  260 ++++
+ sound/soc/qcom/qdsp6/q6apm.c                  |  822 ++++++++++++
+ sound/soc/qcom/qdsp6/q6apm.h                  |  152 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c     |  186 +++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h     |   30 +
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |  627 +++++++++
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h      |   22 +
+ sound/soc/qcom/qdsp6/q6prm-clocks.c           |   85 ++
+ sound/soc/qcom/qdsp6/q6prm.c                  |  202 +++
+ sound/soc/qcom/qdsp6/q6prm.h                  |   78 ++
+ sound/soc/qcom/qdsp6/topology.c               | 1113 ++++++++++++++++
+ 25 files changed, 6664 insertions(+), 1227 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-ports.yaml
+ create mode 100644 include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h
+ create mode 100644 include/uapi/sound/snd_ar_tokens.h
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.c
+ create mode 100644 sound/soc/qcom/qdsp6/audioreach.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-dai.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6apm.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-clocks.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm-clocks.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.c
+ create mode 100644 sound/soc/qcom/qdsp6/q6prm.h
+ create mode 100644 sound/soc/qcom/qdsp6/topology.c
 
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.21.0
 
