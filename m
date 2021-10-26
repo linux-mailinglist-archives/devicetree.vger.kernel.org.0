@@ -2,183 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A995543AC04
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 08:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BBDF43ACAC
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 09:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbhJZGMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 02:12:45 -0400
-Received: from mx3.molgen.mpg.de ([141.14.17.11]:44775 "EHLO mx1.molgen.mpg.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231134AbhJZGMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 02:12:44 -0400
-Received: from [192.168.0.2] (ip5f5aef4c.dynamic.kabel-deutschland.de [95.90.239.76])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 5DC7F61E6478B;
-        Tue, 26 Oct 2021 08:10:18 +0200 (CEST)
-Message-ID: <24f55e7d-2f2d-2181-2265-7365d648be8f@molgen.mpg.de>
-Date:   Tue, 26 Oct 2021 08:10:18 +0200
+        id S230433AbhJZHML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 03:12:11 -0400
+Received: from www381.your-server.de ([78.46.137.84]:35550 "EHLO
+        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230414AbhJZHML (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 03:12:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
+         s=default2002; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=bAiPxkcq1Y6Mqy9Co7oacNf9Gp/96uAvHuTosH8SVn8=; b=e6ySv/d3AfLHaWHUfsV1w+aD1f
+        aJ64bJG+MTy+J6h4GZTZnz2Ro34fWref2PVQWpPVhI302oVkjWts7qDmKb8r2t7pIhD0JJkC9q/Cd
+        KCuZ41I/4hj0SBwqDqkseCyaBkZYZd2AN62DFvlPHrrKl4t6/Xl/EPo1z9TCr9rBdCTtv4rS+Fiom
+        uzg9KxN2Qdd3xj3iBs18uJJhqyQCkRRsmuKubV1s83GqhR9hQB/+GBB9a2DXpXA1j9aKKRpUwEQ6/
+        ML5oPt/CMqFC6pDjPbmo75oATVYKjD/zgfilruen4XM1eNA2UbU9TACT92VeJFs88jlIjn1q5K2gy
+        7sqIW8mA==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92.3)
+        (envelope-from <lars@metafoo.de>)
+        id 1mfGaf-000DW6-3j; Tue, 26 Oct 2021 09:09:45 +0200
+Received: from [82.135.83.71] (helo=[192.168.178.20])
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <lars@metafoo.de>)
+        id 1mfGae-000UaZ-R6; Tue, 26 Oct 2021 09:09:44 +0200
+Subject: Re: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
+To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
+        linux-kernel@vger.kernel.org, jic23@kernel.org,
+        linux-iio@vger.kernel.org, git@xilinx.com, michal.simek@xilinx.com,
+        pmeerw@pmeerw.net, devicetree@vger.kernel.org
+Cc:     Manish Narani <manish.narani@xilinx.com>
+References: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com>
+ <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+From:   Lars-Peter Clausen <lars@metafoo.de>
+Message-ID: <03afaedd-8ea5-0379-ac98-db61ac679259@metafoo.de>
+Date:   Tue, 26 Oct 2021 09:09:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH 01/10] clk: aspeed: ast2600: Porting sdhci clock source
-Content-Language: en-US
-To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc:     robh+dt@kernel.org, joel@jms.id.au, mturquette@baylibre.com,
-        sboyd@kernel.org, adrian.hunter@intel.com,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, andrew@aj.id.au, BMC-SW@aspeedtech.com,
-        steven_lee@aspeedtech.com
-References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
- <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Authenticated-Sender: lars@metafoo.de
+X-Virus-Scanned: Clear (ClamAV 0.103.3/26333/Mon Oct 25 10:29:40 2021)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Chin-Ting,
-
-
-Thank you for your patch. Some small things.
-
-Please use imperative mood in the commit messages summary [1]:
-
-clk: aspeed: ast2600: Port SDHCI clock source
-
-On 22.09.21 12:31, Chin-Ting Kuo wrote:
-> - There are two clock sources used to generate
->    SD/SDIO clock, APLL clock and HCLK (200MHz).
->    User can select which clock source should be used
->    by configuring SCU310[8].
-> - The SD/SDIO clock divider selection table SCU310[30:28]
->    is different between AST2600-A1 and AST2600-A2/A3.
->    For AST2600-A1, 200MHz SD/SDIO clock cannot be
->    gotten by the dividers in SCU310[30:28] if APLL
->    is not the multiple of 200MHz and HCLK is 200MHz.
->    For AST2600-A2/A3, a new divider, "1", is added and
->    200MHz SD/SDIO clock can be obtained by adopting HCLK
->    as clock source and setting SCU310[30:28] to 3b'111.
-
-Please reference the datasheet name and version, and please reflow the 
-commit message for 75 characters per line.
-
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> ---
->   drivers/clk/clk-ast2600.c | 69 ++++++++++++++++++++++++++++++++++-----
->   1 file changed, 61 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
-> index bc3be5f3eae1..a6778c18274a 100644
-> --- a/drivers/clk/clk-ast2600.c
-> +++ b/drivers/clk/clk-ast2600.c
-> @@ -168,6 +168,30 @@ static const struct clk_div_table ast2600_div_table[] = {
->   	{ 0 }
->   };
->   
-> +static const struct clk_div_table ast2600_sd_div_a1_table[] = {
-> +	{ 0x0, 2 },
-> +	{ 0x1, 4 },
-> +	{ 0x2, 6 },
-> +	{ 0x3, 8 },
-> +	{ 0x4, 10 },
-> +	{ 0x5, 12 },
-> +	{ 0x6, 14 },
-> +	{ 0x7, 16 },
-> +	{ 0 }
-> +};
+On 10/19/21 5:20 PM, Anand Ashok Dumbre wrote:
+> [...]
+> +#define AMS_CHAN_TEMP(_scan_index, _addr) { \
+> +	.type = IIO_TEMP, \
+> +	.indexed = 1, \
+> +	.address = (_addr), \
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
+> +		BIT(IIO_CHAN_INFO_SCALE) | \
+> +		BIT(IIO_CHAN_INFO_OFFSET), \
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+There is no handling of IIO_CHAN_INFO_SAMP_FREQ in read_raw(). Reading 
+the sampling_frequency attribute always returns -EINVAL.
+> +	.event_spec = ams_temp_events, \
+> +	.scan_index = _scan_index, \
+> +	.num_event_specs = ARRAY_SIZE(ams_temp_events), \
+> +}
 > +
-> +static const struct clk_div_table ast2600_sd_div_a2_table[] = {
-> +	{ 0x0, 2 },
-> +	{ 0x1, 4 },
-> +	{ 0x2, 6 },
-> +	{ 0x3, 8 },
-> +	{ 0x4, 10 },
-> +	{ 0x5, 12 },
-> +	{ 0x6, 14 },
-> +	{ 0x7, 1 },
-> +	{ 0 }
-> +};
-> +
->   /* For hpll/dpll/epll/mpll */
->   static struct clk_hw *ast2600_calc_pll(const char *name, u32 val)
->   {
-> @@ -424,6 +448,11 @@ static const char *const emmc_extclk_parent_names[] = {
->   	"mpll",
->   };
->   
-> +static const char *const sd_extclk_parent_names[] = {
-> +	"hclk",
-> +	"apll",
-> +};
-> +
->   static const char * const vclk_parent_names[] = {
->   	"dpll",
->   	"d1pll",
-> @@ -523,18 +552,42 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
->   		return PTR_ERR(hw);
->   	aspeed_g6_clk_data->hws[ASPEED_CLK_EMMC] = hw;
->   
-> -	/* SD/SDIO clock divider and gate */
-> -	hw = clk_hw_register_gate(dev, "sd_extclk_gate", "hpll", 0,
-> -			scu_g6_base + ASPEED_G6_CLK_SELECTION4, 31, 0,
-> -			&aspeed_g6_clk_lock);
-> +	clk_hw_register_fixed_rate(NULL, "hclk", NULL, 0, 200000000);
-> +
-> +	regmap_read(map, 0x310, &val);
-> +	hw = clk_hw_register_mux(dev, "sd_extclk_mux",
-> +				 sd_extclk_parent_names,
-> +				 ARRAY_SIZE(sd_extclk_parent_names), 0,
-> +				 scu_g6_base + ASPEED_G6_CLK_SELECTION4, 8, 1,
-> +				 0, &aspeed_g6_clk_lock);
->   	if (IS_ERR(hw))
->   		return PTR_ERR(hw);
-> -	hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> -			0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> -			ast2600_div_table,
-> -			&aspeed_g6_clk_lock);
-> +
-> +	hw = clk_hw_register_gate(dev, "sd_extclk_gate", "sd_extclk_mux",
-> +				  0, scu_g6_base + ASPEED_G6_CLK_SELECTION4,
-> +				  31, 0, &aspeed_g6_clk_lock);
->   	if (IS_ERR(hw))
->   		return PTR_ERR(hw);
-> +
-> +	regmap_read(map, 0x14, &val);
-> +	/* AST2600-A2/A3 clock divisor is different from AST2600-A1 */
-> +	if (((val & GENMASK(23, 16)) >> 16) >= 2) {
-> +		/* AST2600-A2/A3 */
-> +		hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> +					0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> +					ast2600_sd_div_a2_table,
-> +					&aspeed_g6_clk_lock);
-> +		if (IS_ERR(hw))
-> +			return PTR_ERR(hw);
-> +	} else {
-> +		/* AST2600-A1 */
-> +		hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
-> +					0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
-> +					ast2600_sd_div_a1_table,
-> +					&aspeed_g6_clk_lock);
-> +		if (IS_ERR(hw))
-> +			return PTR_ERR(hw);
-> +	}
->   	aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
->   
->   	/* MAC1/2 RMII 50MHz RCLK */
-> 
-
-Does Linux already log, if A1 or A2/A3 is detected?
-
-Should a debug message be added, what clock divisor is used?
-
-
-Kind regards,
-
-Paul
+> +#define AMS_CHAN_VOLTAGE(_scan_index, _addr, _alarm) { \
+> +	.type = IIO_VOLTAGE, \
+> +	.indexed = 1, \
+> +	.address = (_addr), \
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | \
+> +		BIT(IIO_CHAN_INFO_SCALE), \
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> +	.event_spec = (_alarm) ? ams_voltage_events : NULL, \
+> +	.scan_index = _scan_index, \
+> +	.num_event_specs = (_alarm) ? ARRAY_SIZE(ams_voltage_events) : 0, \
+> +}
