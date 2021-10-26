@@ -2,124 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41FBA43B4DA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 16:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F51843B51E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236967AbhJZOzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 10:55:32 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:39436
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233612AbhJZOzc (ORCPT
+        id S235958AbhJZPK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 11:10:28 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:54706 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231184AbhJZPK1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 10:55:32 -0400
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        Tue, 26 Oct 2021 11:10:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1635260883;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=RhWBGhTPUXjWCenxI84mF0qWi0IwhDx4oi/aU2tmg8M=;
+        b=I1ir67atA85Bb0tlhILNT4F7JhDGBSnPKom2R6Xi1+haxaXal/OooHvdt0aE9Z/6wS9Ftm
+        JtyHGKt/SFvAYouEzAZRkMwz4NAQ4+cF6ciL+k/mS7/DqBvuCoGAn+1bNRyHA4trih3pY6
+        NIlc2tmxBbCWU2lQkMG3Suah/XZVvZs=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-41-dCr9twRMPm2CU3kpYXEgmw-1; Tue, 26 Oct 2021 11:07:58 -0400
+X-MC-Unique: dCr9twRMPm2CU3kpYXEgmw-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com [10.5.11.23])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8999C3FFFA
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 14:53:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1635259987;
-        bh=FLFyjOECX2AvNUG03Y16Xa3yjaSG0p5S8KEMYABunrs=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=jrY61ghtCUmCMt+Khqongv7L6q1zMfjDjlL5alnq3wwWwnFqr1Ku1MouPEK5P5Fs4
-         zMvHvF6x3vdUjq027iUh21GSun/KfqphOs5SW8iZDwj/I6jozr6h29JZw7dnmEZGfM
-         7qlQKRfOfL7ZuPmxZ/iLNB6qtEjwqBu75qE8cMQkUAgXRkdmpcRe14JwkmWxrjv53E
-         a2N2i0Z3MYhuqE+CJdtLm5qood8dwBJzIEhJa478X/AlTOv83tl3NqXdPLW5M+EgwO
-         ShUurdwrCy1baZFHPgIMgUdkkz1WN4yNusfNEQpzle5W5+PhKSnJwF3QeLw9Wk9t0C
-         nyCzxFSRp/Qqg==
-Received: by mail-lj1-f198.google.com with SMTP id s17-20020a2e2c11000000b002119b8e1336so364210ljs.23
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 07:53:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FLFyjOECX2AvNUG03Y16Xa3yjaSG0p5S8KEMYABunrs=;
-        b=C2VHQ21XLm5K1VpyLzgsaidPZFaxOgAQfDr0V/oIuoRr84xlLHoxRBvfYtI5c5RZGo
-         WI40Ku3xfg3AX9/f0pFQN83/Vgmy5vbyC/iXWix3MzzwAR0+un+2UeGNGwmNUhOGFWZ1
-         KRrDhWqCeMBJVREAm+vkCoMTLdsRWLwQMwLwmiwrUXErkKv8mPZ7qOBJGDZV+h+iw5Zb
-         0dM7ZaJ4oKB8KG0gPtUuG47/J+2cTQTo4Dp9qiPyiW+gP8wLgGLv+SIwfcSByjtoV1D4
-         gMMWV02VPutOKcE6gRhErJZdzVQNJku/kD0Pa610FdA1wAYAi46onXDNjecswNj3Zy1M
-         HZPA==
-X-Gm-Message-State: AOAM530WgKy1wtE7M2iKpnTRtdqpZeDCr/dFgVr5/d9qE8o8bKcoUCz4
-        bPky9ZSupfFBd7ksKoj+aKewvl9miOKNEkhtjs+S/3BtUNwf/4uEQjqKv6mCNLWkDxPkuPuKJ8G
-        u+uN+d2jedG50Fhwg+XqdqUTFSEDT9mQKwC+W5co=
-X-Received: by 2002:a2e:b708:: with SMTP id j8mr26414032ljo.466.1635259987031;
-        Tue, 26 Oct 2021 07:53:07 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw7yFHlYp4WaoDp3jQHqEZPyAcBTUqWSTqaKAo9daRd2erHD77YdKOoek8eu9IXM/FCwnFEtg==
-X-Received: by 2002:a2e:b708:: with SMTP id j8mr26414005ljo.466.1635259986876;
-        Tue, 26 Oct 2021 07:53:06 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f8sm1956093lfq.168.2021.10.26.07.53.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Oct 2021 07:53:06 -0700 (PDT)
-Subject: Re: [PATCH v2 1/1] clk: samsung: exynos850: Register clocks early
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-References: <20211025161254.5575-1-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <cc106f70-7352-c1e3-7bdd-72e070877be3@canonical.com>
-Date:   Tue, 26 Oct 2021 16:53:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 9B1E210B3940;
+        Tue, 26 Oct 2021 15:07:56 +0000 (UTC)
+Received: from dreyauc.ausil.us (unknown [10.22.9.58])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 9F09B19D9D;
+        Tue, 26 Oct 2021 15:07:54 +0000 (UTC)
+From:   Dennis Gilmore <dgilmore@redhat.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     dgilmore@redhat.com, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Florian Klink <flokli@flokli.de>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC
+        support), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: rockchip: helios64: define usb hub and 2.5GbE nic
+Date:   Tue, 26 Oct 2021 10:07:47 -0500
+Message-Id: <20211026150751.70115-1-dgilmore@redhat.com>
 MIME-Version: 1.0
-In-Reply-To: <20211025161254.5575-1-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2021 18:12, Sam Protsenko wrote:
-> Some clocks must be registered before init calls. For example MCT clock
-> (from CMU_PERI) is needed for MCT timer driver, which is registered
-> with TIMER_OF_DECLARE(). By the time we get to core_initcall() used for
-> clk-exynos850 platform driver init, it's already too late. Inability to
-> get "mct" clock in MCT driver leads to kernel panic, as functions
-> registered with *_OF_DECLARE() can't do deferred calls. MCT timer driver
-> can't be fixed either, as it's acting as a clock source and it's
-> essential to register it in start_kernel() -> time_init().
-> 
-> Let's register CMU_PERI clocks early, using CLK_OF_DECLARE_DRIVER(), and
-> do all stuff relying on "struct dev" object (like runtime PM and
-> enabling bus clock) later in platform driver probe. Basically
-> CLK_OF_DECLARE_DRIVER() matches CMU compatible, but clears OF_POPULATED
-> flag, which allows the same device to be matched again later.
-> 
-> Similar issue was discussed at [1] and addressed in commit 1f7db7bbf031
-> ("clk: renesas: cpg-mssr: Add early clock support"), as well as in
-> drivers/clk/mediatek/clk-mt2712.c.
-> 
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20180829132954.64862-2-chris.brandt@renesas.com/
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Register only CMU_PERI clocks early
-> 
-> Notes:
->   - This patch should be applied on top of CMU_APM series
->     (clk: samsung: exynos850: Implement CMU_APM domain)
-> 
->  drivers/clk/samsung/clk-exynos850.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
+Add the 4 ports on the internal hub and define and turn on the 2.5GbE
+nic.
 
+Signed-off-by: Dennis Gilmore <dgilmore@redhat.com>
+---
+ .../dts/rockchip/rk3399-kobol-helios64.dts    | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
+index 26d45cf7ce00..1ffddf860375 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
+@@ -125,6 +125,18 @@ pcie_power: pcie-power {
+ 		vin-supply = <&vcc5v0_perdev>;
+ 	};
+ 
++	usblan_power: usblan-power {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&usb_lan_en>;
++		regulator-name = "usblan_power";
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&vcc5v0_usb>;
++	};
++
+ 	vcc1v8_sys_s0: vcc1v8-sys-s0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc1v8_sys_s0";
+@@ -465,6 +477,11 @@ hdd_b_power_en: hdd-b-power-en {
+ 		vcc5v0_usb_en: vcc5v0-usb-en {
+ 			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
++
++		usb_lan_en: usb-lan-en {
++			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
+ 	};
+ 
+ 	vcc3v0-sd {
+@@ -563,5 +580,43 @@ &usbdrd3_1 {
+ 	usb@fe900000 {
+ 		dr_mode = "host";
+ 		status = "okay";
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		hub@1 {
++			compatible = "usb2109,0815";
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@1 {
++				reg = <1>;
++				#trigger-source-cells = <0>;
++			};
++
++			port@2 {
++				reg = <2>;
++				#trigger-source-cells = <0>;
++			};
++
++			port@3 {
++				reg = <3>;
++				#trigger-source-cells = <0>;
++			};
++
++			device@4 {
++				compatible = "usbbda,8156";
++				reg = <4>;
++
++				#address-cells = <2>;
++				#size-cells = <0>;
++
++				interface@0 {	/* interface 0 of configuration 1 */
++					compatible = "usbbda,8156.config1.0";
++					reg = <0 1>;
++				};
++			};
++		};
+ 	};
+ };
+-- 
+2.32.0
 
-
-Best regards,
-Krzysztof
