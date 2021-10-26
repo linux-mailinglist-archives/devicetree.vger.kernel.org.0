@@ -2,200 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F4843B56A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6140843B58C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 17:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235777AbhJZPYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 11:24:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39680 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231223AbhJZPYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 11:24:11 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E363FC061745
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:21:47 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id s19so19830653wra.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:21:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=lE1Jf5RZ999eTUD2tditSChMc+wv5UffQMX7augoGDc=;
-        b=Gxi0dprOu/xak4Wsfrj7Z2x5nZPVFxmmEPHtTlmkhyzBqPuPtnF7MbQSx4e50VRAJg
-         x6yU6VOQ+M/vGCW/OTp22DOWetmbl59OLLU+oClCk4wkboxA21D9hWKjKOevmxxzUXa/
-         e7xDrZoLjUQWHLnSMdHaKla+fJTDuvpbSiHxfLGQ9D+rH+aWFZvW9/9PPnJqaKSeTuye
-         U409+Y1iee+vk3mWxZP88aRg/s394fandclCdVkXrGfbtWg0j+tuUjgxPOwG6woqxRg9
-         OoN9grfz3ALBJPbPovIaSV320PyhkaPvWMRuqlkmd0EaBhIJ8jfBFAvt35rvT5lVMaH6
-         l1OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=lE1Jf5RZ999eTUD2tditSChMc+wv5UffQMX7augoGDc=;
-        b=6TkRQ85wRXg+z+b/dsGWjU0jooAucvBOIta2oPmcRixGh3+6HmdlVg6BQulpQ2rV3j
-         3peqZKQTlwMD9bVORShXjurKMZKELSE2KW6mt5kSrJguV0OHonEOX5Xf1QdRQwBhy0uT
-         UKCm4krHQ5MdRIq6yCWQaMKr46k0SeEbcv90P93Nzh9aBuqRF5+HJm0lbfdJuu9prNbP
-         unpSD6CYfexlHdVO3gLDMLIglB8oa8sMvEmDqntY0hR2CqA0QRLBG5XOJ+ytt19YlLpg
-         lbKqCkUyzMlgNL7aecMUQ7E6BUdA0W/19w4rBOIECoKvwNGGRrqYkUdcp5bBcHA9EaJD
-         E5SA==
-X-Gm-Message-State: AOAM531yXkN217Ww9fEDc+SKo9raPKHILZSEX7lt8UgYiUCLo4nV/HCq
-        b0n3h760Co1gfgtfqLgDOnZ20w==
-X-Google-Smtp-Source: ABdhPJwtLthLymxJDiZ/cGcx2Z7IgdUx/Ak1EtGQIN/GBB3A1Eg/54k58+T2z4mumRrRmoWH4Q5MAQ==
-X-Received: by 2002:adf:ca09:: with SMTP id o9mr31956782wrh.303.1635261706475;
-        Tue, 26 Oct 2021 08:21:46 -0700 (PDT)
-Received: from lmecxl0524.lme.st.com ([2a04:cec0:1008:8c94:50ee:a5d1:4a7:ad6])
-        by smtp.gmail.com with ESMTPSA id o11sm27934740wry.0.2021.10.26.08.21.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 08:21:45 -0700 (PDT)
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v6 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Date:   Tue, 26 Oct 2021 17:21:27 +0200
-Message-Id: <20211026152128.5834-1-etienne.carriere@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S236752AbhJZPaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 11:30:20 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:19372 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236720AbhJZPaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 11:30:19 -0400
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19QBBn2p013141;
+        Tue, 26 Oct 2021 11:27:55 -0400
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 3bx4fam6ak-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 26 Oct 2021 11:27:55 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 19QFRsGi030985
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 26 Oct 2021 11:27:54 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Tue, 26 Oct 2021 11:27:53 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Tue, 26 Oct 2021 11:27:53 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
+ Transport; Tue, 26 Oct 2021 11:27:53 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.136])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 19QFRptT014798;
+        Tue, 26 Oct 2021 11:27:51 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/2]
+Date:   Tue, 26 Oct 2021 18:27:42 +0300
+Message-ID: <20211026152744.129065-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: __m7n8DMWNj_A19NmlbFzf8TQnW5p_bY
+X-Proofpoint-ORIG-GUID: __m7n8DMWNj_A19NmlbFzf8TQnW5p_bY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-26_04,2021-10-26_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
+ priorityscore=1501 impostorscore=0 mlxscore=0 malwarescore=0
+ suspectscore=0 spamscore=0 mlxlogscore=913 adultscore=0 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2110260086
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-based on an OP-TEE service invocation. The compatible mandates a
-channel ID defined with property "linaro,optee-channel-id".
+The ADMV1013 is a wideband, microwave upconverter optimized
+for point to point microwave radio designs operating in the
+24 GHz to 44 GHz radio frequency (RF) range.
 
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
----
-No change since v5
+Datasheet:
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV1013.pdf
 
-Changes since v4:
- - Fix sram node name in DTS example: s/-shm-/-sram-/
+NOTE:
+Currently depends on 64-bit architecture since the input
+clock that server as Local Oscillator should support values
+in the range 5.4 GHz to 10.25 GHz.
 
-Changes since v3:
- - Add description for linaro,optee-channel-id in patternProperties
-   specifying protocol can optionaly define a dedicated channel id.
- - Fix DTS example (duplicated phandles issue, subnodes ordering)
- - Fix typo in DTS example and description comments.
+We might need some scaling implementation in the clock
+framework so that u64 types are supported when using 32-bit
+architectures.
 
-Changes since v2:
- - Define mandatory property linaro,optee-channel-id
- - Rebased on yaml description file
+Antoniu Miclaus (2):
+  iio: frequency: admv1013: add support for ADMV1013
+  dt-bindings: iio: frequency: add admv1013 doc
 
-Changes since v1:
- - Removed modification regarding mboxes property description.
----
- .../bindings/firmware/arm,scmi.yaml           | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
+ .../bindings/iio/frequency/adi,admv1013.yaml  | 110 ++++
+ drivers/iio/frequency/Kconfig                 |  13 +
+ drivers/iio/frequency/Makefile                |   1 +
+ drivers/iio/frequency/admv1013.c              | 579 ++++++++++++++++++
+ 4 files changed, 703 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+ create mode 100644 drivers/iio/frequency/admv1013.c
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5c4c6782e052..d09ebc80e713 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -38,6 +38,9 @@ properties:
-                      The virtio transport only supports a single device.
-         items:
-           - const: arm,scmi-virtio
-+      - description: SCMI compliant firmware with OP-TEE transport
-+        items:
-+          - const: linaro,scmi-optee
- 
-   interrupts:
-     description:
-@@ -83,6 +86,11 @@ properties:
-     description:
-       SMC id required when using smc or hvc transports
- 
-+  linaro,optee-channel-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Channel specifier required when using OP-TEE transport.
-+
-   protocol@11:
-     type: object
-     properties:
-@@ -195,6 +203,13 @@ patternProperties:
-         minItems: 1
-         maxItems: 2
- 
-+      linaro,optee-channel-id:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Channel specifier required when using OP-TEE transport and
-+          protocol has a dedicated communication channel.
-+        maxItems: 1
-+
-     required:
-       - reg
- 
-@@ -226,6 +241,16 @@ else:
-       - arm,smc-id
-       - shmem
- 
-+  else:
-+    if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: linaro,scmi-optee
-+    then:
-+      required:
-+        - linaro,optee-channel-id
-+
- examples:
-   - |
-     firmware {
-@@ -340,7 +365,48 @@ examples:
-                 reg = <0x11>;
-                 #power-domain-cells = <1>;
-             };
-+        };
-+    };
- 
-+  - |
-+    firmware {
-+        scmi {
-+            compatible = "linaro,scmi-optee";
-+            linaro,optee-channel-id = <0>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            scmi_dvfs1: protocol@13 {
-+                reg = <0x13>;
-+                linaro,optee-channel-id = <1>;
-+                shmem = <&cpu_optee_lpri0>;
-+                #clock-cells = <1>;
-+            };
-+
-+            scmi_clk0: protocol@14 {
-+                reg = <0x14>;
-+                #clock-cells = <1>;
-+            };
-+        };
-+    };
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        sram@51000000 {
-+            compatible = "mmio-sram";
-+            reg = <0x0 0x51000000 0x0 0x10000>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            ranges = <0 0x0 0x51000000 0x10000>;
-+
-+            cpu_optee_lpri0: optee-sram-section@0 {
-+                compatible = "arm,scmi-shmem";
-+                reg = <0x0 0x80>;
-+            };
-         };
-     };
- 
 -- 
-2.17.1
+2.33.1
 
