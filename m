@@ -2,143 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E52543BA0A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ABF543BA49
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 21:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238426AbhJZTAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 15:00:12 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:39436 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbhJZTAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 15:00:11 -0400
-Received: by mail-ot1-f45.google.com with SMTP id e59-20020a9d01c1000000b00552c91a99f7so57018ote.6;
-        Tue, 26 Oct 2021 11:57:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yXb5tcc4h5n8tVs/+ZyUdUiPi8sa74ADcNZ1YwYZr1s=;
-        b=A/qSHwluftK0AAMBAeo4Janw8W+YWllhlyoh8yrbBG5GHPwX6pWd4cgWsy5/ND7FAo
-         SBfm9IGo0SEDAf6lZZghSvuk0eIR1/NjrgUYyqWCOttOmvps3JMYyMs6dli57QXVd/br
-         CVkoWvEDJ7OhGV83QmjmpUO2N9FOXqIsCs9ghoev865OWeAOJY37ERSoKVIKNaTLS12E
-         coJTfWdxIb8tVgFetDK9N8e4612gbZn/lYMf/DmnAu8XhL4z3pcnXwTWSEZCRgTSN4k9
-         UKjcDZlCHewhrlfECPl/O23zFxZ5lXKL86EAkb1Vbh+DzHe6B1InakJ75o/dRZGJw80A
-         Htnw==
-X-Gm-Message-State: AOAM533F+mcZdjpZnUG4ajl1Ba0QItufX/HeFyAiyvB5FjQGt+0N65CB
-        ZqZpt9Z161mk7nq6loxKSw==
-X-Google-Smtp-Source: ABdhPJwEJfXe5iZi4Vv8sIh0PxJX00V4HchBP4pLf1W0FS/HoJN7GA+G5Fl71yFEWjMyw/vG8nFccQ==
-X-Received: by 2002:a9d:57c9:: with SMTP id q9mr2845956oti.281.1635274667337;
-        Tue, 26 Oct 2021 11:57:47 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k26sm596627otp.42.2021.10.26.11.57.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 11:57:46 -0700 (PDT)
-Received: (nullmailer pid 3030040 invoked by uid 1000);
-        Tue, 26 Oct 2021 18:57:45 -0000
-Date:   Tue, 26 Oct 2021 13:57:45 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [v4 06/11] dt-binding: pmu: Add RISC-V PMU DT bindings
-Message-ID: <YXhPqfpXh1VZN07T@robh.at.kernel.org>
-References: <20211025195350.242914-1-atish.patra@wdc.com>
- <20211025195350.242914-7-atish.patra@wdc.com>
+        id S231585AbhJZTJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 15:09:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44730 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231203AbhJZTJH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 15:09:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9D10760EB9;
+        Tue, 26 Oct 2021 19:06:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635275203;
+        bh=IzMOKEpX1yKiMxsXmzBNslElIUcTqo4bLbncuJT+xS4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=CVOD3umHV3oDckvwcmiXIKpwqijuJTkrbg4kqjUaPne/dcrCLgp+vF0ddcB90Nt0A
+         a+ceqCcj5V249Wzr9+xTtAMvBLLkAXio8W0V07sxRAzWVwD6rrNkwVCIZ2flzyX/Rb
+         x55hNgOnmf9JcZcpnUS3YtBBURNs4VfEMHrgOVgqIHjkDY1g6PrT2iEbnqgdLFq1ko
+         OwxhPzmWOvTHMVyZgUaajTo6wQDm2Gllxt3B0LDX4hNjSikkF/bS3VcAMHnrCn2w83
+         rKstYb90QvnN3Gf84Mk2zvzTgzSJYdUjw/EZuRwQeI3W3yVYTUzKcYi4MCyOayAUK7
+         2mo4IxPyyJpmw==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh@kernel.org, bjorn.andersson@linaro.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     tiwai@suse.de, devicetree@vger.kernel.org,
+        pierre-louis.bossart@linux.intel.com, bgoswami@codeaurora.org,
+        alsa-devel@alsa-project.org, plai@codeaurora.org, perex@perex.cz,
+        lgirdwood@gmail.com
+In-Reply-To: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
+References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v9 00/17] ASoC: qcom: Add AudioReach support
+Message-Id: <163527520137.2033755.9597667983083305370.b4-ty@kernel.org>
+Date:   Tue, 26 Oct 2021 20:06:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211025195350.242914-7-atish.patra@wdc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 12:53:45PM -0700, Atish Patra wrote:
-> This patch adds the DT bindings for RISC-V PMU driver. It also defines
-> the interrupt related properties to allow counter overflow interrupt.
+On Wed, 6 Oct 2021 12:39:33 +0100, Srinivas Kandagatla wrote:
+> This version addresses all the comments raised as part of v8 review.
 > 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  .../devicetree/bindings/perf/riscv,pmu.yaml   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+> QCOM SoC relevant non-audio patches in this series has been merged into
+> the Qualcomm drivers-for-5.16 tree, as this series depends those patches
+> an immutable tag is available at:
+> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
 > 
-> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> new file mode 100644
-> index 000000000000..497caad63f16
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pmu/riscv,pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V PMU
-> +
-> +maintainers:
-> +  - Atish Patra <atish.patra@wdc.com>
-> +
-> +description:
-> +  The "Sscofpmf" extension allows the RISC-V PMU counters to overflow and
-> +  generate a local interrupt so that event sampling can be done from user-space.
-> +  The above said ISA extension is an optional extension to maintain backward
-> +  compatibility and will be included in privilege specification v1.12 . That's
-> +  why the interrupt property is marked as optional. The platforms with sscofpmf
-> +  extension should add this property to enable event sampling.
-> +  The device tree node with the compatible string is mandatory for any platform
-> +  that wants to use pmu counter start/stop methods using SBI PMU extension.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - riscv,pmu
+> [...]
 
-Only 1 version? Every implementation detail is discoverable in other 
-ways?
+Applied to
 
-> +
-> +    description:
-> +      Should be "riscv,pmu".
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Don't write free form text of what the schema says.
+Thanks!
 
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 4095
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - None
-> +optional:
+[01/17] ASoC: dt-bindings: move LPASS dai related bindings out of q6afe
+        commit: e1b26ac90287d513699edbb8cae009ec89fe79b7
+[02/17] ASoC: dt-bindings: move LPASS clocks related bindings out of q6afe
+        commit: e44cfc9d82d8189ea15556052eb9d8640804f954
+[03/17] ASoC: dt-bindings: rename q6afe.h to q6dsp-lpass-ports.h
+        commit: e3008b7ccb1dedcea954505ff964a53641d2b980
+[04/17] ASoC: qdsp6: q6afe-dai: move lpass audio ports to common file
+        commit: 95b6cd57e9e8210fca315270ac05ce66fc536703
+[05/17] ASoC: qdsp6: q6afe-clocks: move audio-clocks to common file
+        commit: 9ab71ac372407acc93045931ed9da867b9415360
+[06/17] ASoC: dt-bindings: q6dsp: add q6apm-lpass-dai compatible
+        commit: accaa13167363f22835fe904c3ccee8bd624423d
+[07/17] ASoC: dt-bindings: lpass-clocks: add q6prm clocks compatible
+        commit: c04f02d63d0d9c794df889d396da14f735a270eb
+[08/17] ASoC: dt-bindings: add q6apm digital audio stream bindings
+        commit: 96d0232564c3b16e9a4286f183e1e6d317521a5a
+[09/17] ASoC: qdsp6: audioreach: add basic pkt alloc support
+        commit: 44c28dbdb6195b2a92e1fcb2946d1e987658f8b5
+[10/17] ASoC: qdsp6: audioreach: add q6apm support
+        commit: 5477518b8a0e8a45239646acd80c9bafc4401522
+[11/17] ASoC: qdsp6: audioreach: add module configuration command helpers
+        commit: 25ab80db6b133c20adb9ee39ce5cfdf347c92d5c
+[12/17] ASoC: qdsp6: audioreach: add Kconfig and Makefile
+        commit: cf989b68fcadbeeea1446e50fd8b2f24a0f1275c
+[13/17] ASoC: qdsp6: audioreach: add topology support
+        commit: 36ad9bf1d93d66b901342eab9f8ed6c1537655a6
+[14/17] ASoC: qdsp6: audioreach: add q6apm-dai support
+        commit: 9b4fe0f1cd791d540100d98a3baf94c1f9994647
+[15/17] ASoC: qdsp6: audioreach: add q6apm lpass dai support
+        commit: 30ad723b93ade607a678698e5947a55a4375c3a1
+[16/17] ASoC: qdsp6: audioreach: add q6prm support
+        commit: 9a0e5d6fb16f5a92a8e7e7626666665d0ff79474
+[17/17] ASoC: qdsp6: audioreach: add support for q6prm-clocks
+        commit: d07568686793f840b4144b19e0a52020b5c7bf94
 
-No a json-schema keyword.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> +  - compatible
-> +  - interrupts-extended
-> +
-> +examples:
-> +  - |
-> +    pmu {
-> +      compatible = "riscv,pmu";
-> +      interrupts-extended = <&cpu0intc 13>,
-> +                            <&cpu1intc 13>,
-> +                            <&cpu2intc 13>,
-> +                            <&cpu3intc 13>;
-> +    };
-> +...
-> -- 
-> 2.31.1
-> 
-> 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
