@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 319E943B039
+	by mail.lfdr.de (Postfix) with ESMTP id D282F43B03A
 	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 12:38:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234690AbhJZKlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 06:41:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59176 "EHLO
+        id S234057AbhJZKlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 06:41:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234057AbhJZKlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 06:41:02 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB825C061745
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 03:38:38 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 82-20020a1c0055000000b0032ccc3ad5c1so647068wma.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 03:38:38 -0700 (PDT)
+        with ESMTP id S233416AbhJZKlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 06:41:03 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056BDC061745
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 03:38:40 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id u18so14963573wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 03:38:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=2dEl9+MXeU9ILc1heZjgbaev2CRPnvoQ4/YvbAvAmQM=;
-        b=Wvj+BKhBm4VGMC7KHzY5id/v4UWwUMA6n8H2QiJ94R/hGlGEHoQhZSBVi67jmc2ufp
-         txuZbk0P8Wyyzddgnb6mRHNhe2ZhNiB74oE5B+LW1kaP4hyRJBSd6T2m0LK0HwDj5r0O
-         242BNdJtbBCSp3WfGxa0XDHuX5ztXMOboF++uMJG7ruH5RGx4Zq2oInIjkKI1m2R9xC8
-         VN5XbAyYiFOJE7wDljbPwAnGeBMo1eMWV+kKA8/yYHS8sdAOIRvI29g7mAIwPA5W4ti8
-         WvqnR2TFF0Dh9+jbLxn/LyHibt+L6UPjQdMABWd6rU9ovY4VVPrTZlUmLNN3H1k3Arey
-         xsLQ==
+        bh=ZUTQPGMld1NjfHqBeBgP6Q5d4oV2F6unCGQSSDbPgkI=;
+        b=K+NA3hT8cgsu8NeXDwft35uRQ+2KoEvrDrW+jENpyTKH+oKAW+tkfskUV0S82wJ90r
+         wIoo5LM6lvfliX2eO388SzIA7MrGYB1hKIjHjcwlhQntPucfmfuihzIFWfAiQEznoOu1
+         VhuzDNSZYXQk9CHRx6WUBxEKz6g5QTipayKoLeISkgPxdCSo/r9F4uyhHFduiimphqoe
+         tbDNhmKBAO6J9aDUlHPtVBPRaqZ+HjcgkcTY+MQ8xYUY6B23k2PoXbIGDADbFTYGaq/6
+         TPP7t/VQfmvI+CO5HMQUTb3yYGcPZBZhwpZw+wh8vRQ2DLQ1lMy4aDKj6wBh9NLTbTw6
+         WDCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2dEl9+MXeU9ILc1heZjgbaev2CRPnvoQ4/YvbAvAmQM=;
-        b=qeDMKruohdINHkKjEFD94z+Fe1YthKvkjix90ojUWZ2I9f6KlwsiA4TmYSfbex7iAM
-         mnPOr3hxOqXvlK12805lh2v5duTC4T3LqWdMGQ9B40MwSN4ILZJCx2IKPwyG1mYYzKqK
-         looOhIJ6JxH9tgL1WKmrCivqmVDu0r+qN72SIjQ/Ts61DRyR7pYCzk46bGLHdkU1Qf/a
-         pc8/oN11xNABVyXZu9xR/ct0fkAp/t88PoCyL0pLYM1E6r9H+MV6TSlOwqvnP1PjFnIT
-         tQniBRbWk/R2Jj8RYApgW7FmtVEkAJIt89Ujl9JpGQ5DkBdHA05diTtkl0Phcqy+EmKe
-         R0vw==
-X-Gm-Message-State: AOAM532TpoQJjRenkQimPa4GSi7YUMRswV0hKRiAb+Cr38UBl9v/8Iem
-        OTnp2XKd/WV7Gx4coHhsVgTr8g==
-X-Google-Smtp-Source: ABdhPJwoBnWM4nlbZNJEzSZkG657rzRvTmphTxu+do8W6XvZ27EZCHgRUkJwOGCtA4p/p9T5OthBHw==
-X-Received: by 2002:a05:600c:4f81:: with SMTP id n1mr55547518wmq.63.1635244717523;
-        Tue, 26 Oct 2021 03:38:37 -0700 (PDT)
+        bh=ZUTQPGMld1NjfHqBeBgP6Q5d4oV2F6unCGQSSDbPgkI=;
+        b=6DemLUjYhNze3MxdcJtLOxINvKXuR4qG6KJWpo6nAL5VIBv0KpVYp/A3eABf96IZXe
+         8r6bZMgga7m224De1ewCJVt/u4tvZerhqHf90PYaKInft2yiinjEYpPA4IrT0yPKr46F
+         RKlBEr4RTyqWHf4Xp7Rx5a554Nr9m4TZ5/MVTo5K24PfJTb/KBU3HqOp3BTE2MMH7LW0
+         M/qpP4X+zM0LZKr8+zlEmxOAQLqenEf7SGZPXiAmgzViTI8YvfqEWxh9yI4ykkGPZYlY
+         O+p3z2eSQilZHpfRMTC2tuKemK4d+oYvc0iCIqMQzQHmMAb/yrQydei4nk8NhdWPkm3C
+         dBMg==
+X-Gm-Message-State: AOAM533bUf751lTTCsofYeMWNeSDiMyFywNvql82pMNpEAgWW9o6oHq7
+        2CWYq5i+3f5v8VC9igRpCwul1w==
+X-Google-Smtp-Source: ABdhPJzj2A14U2LgQ95zRukJ2nZ0wqbWBEwoNqx54/9mABKZHZnT5XhsO8BMPjwmcAGXcJmq7xfE5Q==
+X-Received: by 2002:a05:6000:8a:: with SMTP id m10mr30573168wrx.115.1635244718624;
+        Tue, 26 Oct 2021 03:38:38 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id x21sm221397wmc.14.2021.10.26.03.38.36
+        by smtp.gmail.com with ESMTPSA id x21sm221397wmc.14.2021.10.26.03.38.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 03:38:37 -0700 (PDT)
+        Tue, 26 Oct 2021 03:38:38 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, bjorn.andersson@linaro.org, robh@kernel.org
 Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
@@ -54,9 +54,9 @@ Cc:     plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
         alsa-devel@alsa-project.org, lgirdwood@gmail.com,
         bgoswami@codeaurora.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [RESEND PATCH v10 07/17] ASoC: dt-bindings: lpass-clocks: add q6prm clocks compatible
-Date:   Tue, 26 Oct 2021 11:38:05 +0100
-Message-Id: <20211026103815.19468-8-srinivas.kandagatla@linaro.org>
+Subject: [RESEND PATCH v10 08/17] ASoC: dt-bindings: add q6apm digital audio stream bindings
+Date:   Tue, 26 Oct 2021 11:38:06 +0100
+Message-Id: <20211026103815.19468-9-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20211026103815.19468-1-srinivas.kandagatla@linaro.org>
 References: <20211026103815.19468-1-srinivas.kandagatla@linaro.org>
@@ -66,52 +66,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On AudioReach audio Framework access to LPASS ports is via Q6PRM
-(Proxy Resource Manager) service, so add a dedicated lpass-clock compatible
-string for this.
+On AudioReach audio Framework, Audio Streams (PCM/Compressed) are managed by
+Q6APM(Audio Process Manager) service. This patch adds bindings for this DAIs
+exposed by the DSP.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../sound/qcom,q6dsp-lpass-clocks.yaml        | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-index c686164732aa..f83f00737a2f 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6dsp-lpass-clocks.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,q6afe-clocks
-+      - qcom,q6prm-lpass-clocks
- 
-   reg:
-     maxItems: 1
-@@ -54,3 +55,23 @@ examples:
-             };
-         };
-       };
+Hi Rob, 
+
+You might see a dt_binding_check errors as QCOM SoC relevant non-audio patches
+in this series have been merged into the Qualcomm drivers-for-5.16 tree,
+as this series depends those patches an immutable tag is available at:
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git
+tags/20210927135559.738-6-srinivas.kandagatla@linaro.org
+
+thanks,
+srini
+
+ .../bindings/sound/qcom,q6apm-dai.yaml        | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+new file mode 100644
+index 000000000000..5d972784321d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,q6apm-dai.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/qcom,q6apm-dai.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
++title: Qualcomm Audio Process Manager Digital Audio Interfaces binding
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description: |
++  This binding describes the Qualcomm APM DAIs in DSP
++
++properties:
++  compatible:
++    const: qcom,q6apm-dais
++
++  reg:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++required:
++  - compatible
++  - iommus
++  - reg
++
++additionalProperties: false
++
++examples:
 +  - |
 +    #include <dt-bindings/soc/qcom,gpr.h>
 +    gpr {
 +        compatible = "qcom,gpr";
-+        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
 +        #address-cells = <1>;
 +        #size-cells = <0>;
-+        service@2 {
-+            reg = <GPR_PRM_MODULE_IID>;
-+            compatible = "qcom,q6prm";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            clock-controller@2 {
-+              compatible = "qcom,q6prm-lpass-clocks";
-+              reg = <2>;
-+              #clock-cells = <2>;
-+            };
++        qcom,domain = <GPR_DOMAIN_ID_ADSP>;
++        service@1 {
++          compatible = "qcom,q6apm";
++          reg = <1>;
++
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          apm-dai@1 {
++            compatible = "qcom,q6apm-dais";
++            iommus = <&apps_smmu 0x1801 0x0>;
++            reg = <1>;
++          };
 +        };
-+      };
++    };
 -- 
 2.21.0
 
