@@ -2,64 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B40F243BDC9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:22:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D705243BDD1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240261AbhJZXYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 19:24:43 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:41533 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240253AbhJZXYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:24:42 -0400
-Received: by mail-ot1-f48.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so987914ote.8;
-        Tue, 26 Oct 2021 16:22:18 -0700 (PDT)
+        id S236208AbhJZX1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 19:27:51 -0400
+Received: from mail-oo1-f49.google.com ([209.85.161.49]:41706 "EHLO
+        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240276AbhJZX1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:27:50 -0400
+Received: by mail-oo1-f49.google.com with SMTP id t201-20020a4a3ed2000000b002b8c98da3edso291807oot.8;
+        Tue, 26 Oct 2021 16:25:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BlYVCtsIK/ZHSSJFn7jPTA8DCkAvMMkyiTdquv+XGLo=;
-        b=7FxMJMhA9E57FyQL5zYfCX2S+HLbFpnV6yaNTh95ogc6+z1OmTQo7qtrp/aKNIYcAJ
-         Ybvq6ULBiNg8N/I0oIxse/CfEqG1+DiYO7EXvBVwaunxsy4fNQLqmbBCCLtptk9QVTPX
-         MuI50Fxf3Jr0yhpbddkMedfD/zIxBugGW6LW9nfP3q0L9vqnaba/311H8Ey11D9zFXtR
-         sOeNMvXI7ZIlN0/hy9hdBuldAPuKl0OegUa0LjugbM+ZNrPI3NWgQuwC6az6fnSg8t8t
-         gkwl8Dd9TjYk2BMyhcdbJBu8YY5FMMIIyRdm/XlChfkHY8oylxJBNruOXTWbk4MWmB8y
-         99Aw==
-X-Gm-Message-State: AOAM532iL/onpGl7Bt7Y6SpiKdxIa9K8ICLD1pZcxernojNHvA7YXoeh
-        KsUPa09hYHdXK1L6rkuySw==
-X-Google-Smtp-Source: ABdhPJyn70qD8VYRezNuvSOoBBWUBQ7fgcqQi1lPKHXEkDA4p5nn9yrQDtvHoy8o22bFmiPQVQFjxw==
-X-Received: by 2002:a9d:758f:: with SMTP id s15mr21725078otk.78.1635290538156;
-        Tue, 26 Oct 2021 16:22:18 -0700 (PDT)
+        bh=COX6qcOMv7vPVSkX300sUvDrTEmMuSLBZS7S2513Mmw=;
+        b=MzKaAIoInez/5e9tHYr3sRvemPIHNB8M79eJ/f3yRxfzhY1jRzhuCHGlo0JcsvXHKk
+         tnt7HngAYsAGy2ki3QlslmDegQwrUPh0LaNyrH8UllSx3+5ru0c7uR2ugVrWyxNV1vKc
+         fkSYah1KV3q+kvZA7Ku0c0Dv7opPfvTOzUTvJdIfkcne31v+JNGXuj7ZzNJmID8KiFwB
+         +xhwX5RkSo2KDhb/PQzjtL4fS5a3uP3ddwlgFBXfcPMglHvcFGZIeSO8MGwpPgU3iDuZ
+         LOEfBinHr6HiFG9Afa3BUVz9GDY5PD7i0htZpj23E6gwcrgRojI4L4RXjLmJeTLpQkBf
+         c4Sg==
+X-Gm-Message-State: AOAM530cDORcd6SnksgTB8bfOjWsb85Wi1qo7JYLst2oCK38uEJ/UYHs
+        NGiMexMVIF/qyrHh//jHwepdC3PwHA==
+X-Google-Smtp-Source: ABdhPJw9VIQP4mMuRqaMaqZ94kJ7Cn/A9ZuKO3RqfD8xOl9Aii/KrvmCGlr+NhlOlRcgW3g58iI8lA==
+X-Received: by 2002:a4a:d0cd:: with SMTP id u13mr19392608oor.49.1635290725253;
+        Tue, 26 Oct 2021 16:25:25 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l25sm4258274oot.36.2021.10.26.16.22.17
+        by smtp.gmail.com with ESMTPSA id 16sm5171704oty.20.2021.10.26.16.25.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 16:22:17 -0700 (PDT)
-Received: (nullmailer pid 3505593 invoked by uid 1000);
-        Tue, 26 Oct 2021 23:22:16 -0000
-Date:   Tue, 26 Oct 2021 18:22:16 -0500
+        Tue, 26 Oct 2021 16:25:24 -0700 (PDT)
+Received: (nullmailer pid 3510703 invoked by uid 1000);
+        Tue, 26 Oct 2021 23:25:22 -0000
+Date:   Tue, 26 Oct 2021 18:25:22 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Alexey Firago <alexey_firago@mentor.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: Add Maxim Integrated MAX31343
-Message-ID: <YXiNqGVDfYHSLgL/@robh.at.kernel.org>
-References: <20211016192118.255624-1-alexey_firago@mentor.com>
- <20211016192118.255624-3-alexey_firago@mentor.com>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Document
+ role-switch-reset-quirk
+Message-ID: <YXiOYvnKmXNaLnoJ@robh.at.kernel.org>
+References: <20211017125904.69076-1-sven@svenpeter.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211016192118.255624-3-alexey_firago@mentor.com>
+In-Reply-To: <20211017125904.69076-1-sven@svenpeter.dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Oct 2021 22:21:18 +0300, Alexey Firago wrote:
-> It is supported by the rtc-max31343 module.
+On Sun, Oct 17, 2021 at 02:59:03PM +0200, Sven Peter wrote:
+> The dwc3 controller on the Apple M1 must be reset whenever a
+> device is unplugged from the root port and triggers a role
+> switch notification. Document the quirk to enable this behavior.
 > 
-> Signed-off-by: Alexey Firago <alexey_firago@mentor.com>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 > ---
->  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 25ac2c93dc6c..9635e20cab68 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -226,6 +226,12 @@ properties:
+>        avoid -EPROTO errors with usbhid on some devices (Hikey 970).
+>      type: boolean
+>  
+> +  snps,role-switch-reset-quirk:
+> +    description:
+> +      When set, DWC3 will be reset and reinitialized whenever a role switch
+> +      is performed.
+> +    type: boolean
 
-Acked-by: Rob Herring <robh@kernel.org>
+This binding is a example of why we don't do a property per quirk. We 
+end up with a gazillion of them.
+
+Imply this from the SoC specific compatible (I don't recall seeing one 
+for the M1, so that's a problem).
+
+Rob
