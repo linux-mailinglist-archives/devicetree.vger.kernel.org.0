@@ -2,101 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBC443B916
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1584643B959
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:20:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236560AbhJZSNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 14:13:22 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:40503 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235040AbhJZSNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:13:22 -0400
-Received: by mail-oi1-f178.google.com with SMTP id n63so21836213oif.7;
-        Tue, 26 Oct 2021 11:10:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LwN+X4PEi3Ouq9X6OKykFlJGA9GO8zaZsDpJ3nIh2IU=;
-        b=Qi/2+Pr5/cT8G69/r6fgXaQN/XXtP1TrdIN6IQGPhoSsiS2aUmlAOuR6BQbvIueYNY
-         IXFpVqC0HZhbJJis2BO3gj2H9aZNVhD/OckUuuGQQlpDrWvdhuZjVwaClt/UgOayoAee
-         8gVA7HTI2OnDgG7BOXyAvb2/oucX9caWAgAJAroS+RYYs7AnEABzgYTbyQ0/LE1ou72y
-         Y/d1XElEPyTXbCDxBKau0Pbnk10zFVRSRfFylAzQqNsss8JjiqIx2pqzYbyCkouA0ezp
-         wRgrn27qpW4lYLFEcNL1RUN+v99v8LeGQEa6uVv6HmbEFwEOqqEgwz+QFxAI/bIiY0hp
-         4DDg==
-X-Gm-Message-State: AOAM533lapW0SyullYYVKPtb5hgsczF2oMRMpLI0ES1L+zNxuX4pSy8Z
-        cKMYxgXzcTkNDAJ5CwIvvg==
-X-Google-Smtp-Source: ABdhPJxO0G7gdDH3/w0eJlvozSh7pEFCagRG5POucla9GUeZ9R93VkMIf59HbJp1MZLXLSpbSBydTQ==
-X-Received: by 2002:aca:240e:: with SMTP id n14mr239723oic.52.1635271857578;
-        Tue, 26 Oct 2021 11:10:57 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bk8sm5045827oib.57.2021.10.26.11.10.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 11:10:56 -0700 (PDT)
-Received: (nullmailer pid 2952060 invoked by uid 1000);
-        Tue, 26 Oct 2021 18:10:54 -0000
-Date:   Tue, 26 Oct 2021 13:10:54 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
-        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
-        broonie@kernel.org, fancer.lancer@gmail.com,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, olof@lixom.net,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 03/11] dt-bindings: mmc: Add Pensando Elba SoC binding
-Message-ID: <YXhErvvSfKIBvHae@robh.at.kernel.org>
-References: <20211025015156.33133-1-brad@pensando.io>
- <20211025015156.33133-4-brad@pensando.io>
+        id S238239AbhJZSWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 14:22:32 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:4099 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238270AbhJZSWQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:22:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635272393; x=1666808393;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Q2bZm+M9LPNA9PRwSmsHhCtNkExJgxbpQm2azeVP3H4=;
+  b=pcz0CnljwMWuyLuCfwkBgnUlxQ/oZrIkj0CXIi8vr29AKewBrvohrSzj
+   lRgZaZOSTAI80QW9972wMGa6CSw11l+TgdS8D1uPMTsAErSm7m6H0oZAm
+   tOzFXI6SjULi2+0s2R7rl/nzu6slJamTs+cvl7m/HUXUUmySHxYTI6Kv8
+   s=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 26 Oct 2021 11:19:52 -0700
+X-QCInternal: smtphost
+Received: from nalasex01a.na.qualcomm.com ([10.47.209.196])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Oct 2021 11:19:51 -0700
+Received: from c-sanm-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Tue, 26 Oct 2021 11:19:46 -0700
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        "Matthias Kaehlcke" <mka@chromium.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: [PATCH 0/3] Skip phy initialization for DWC3 USB Controllers
+Date:   Tue, 26 Oct 2021 23:49:29 +0530
+Message-ID: <1635272372-9982-1-git-send-email-quic_c_sanm@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211025015156.33133-4-brad@pensando.io>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 24, 2021 at 06:51:48PM -0700, Brad Larson wrote:
-> Pensando Elba ARM 64-bit SoC is integrated with this IP and
-> explicitly controls byte-lane enables resulting in an additional
-> reg property resource.
-> 
-> Signed-off-by: Brad Larson <brad@pensando.io>
-> ---
->  .../devicetree/bindings/mmc/cdns,sdhci.yaml         | 13 ++++++++-----
->  1 file changed, 8 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> index af7442f73881..6c68b7b5abec 100644
-> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> @@ -15,13 +15,16 @@ allOf:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - socionext,uniphier-sd4hc
-> -      - const: cdns,sd4hc
-> +    oneOf:
-> +      - items:
-> +        - enum:
-> +            - socionext,uniphier-sd4hc
-> +            - pensando,elba-emmc
-> +        - const: cdns,sd4hc
->  
->    reg:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
+DWC3 manages PHY by own driver, so skip the management by HCD core.
 
-If there is more than 1, then you need to describe what each entry is.
+Sandeep Maheswaram (3):
+  dt-bindings: usb: usb-xhci: Add bindings for usb-skip-phy-init
+    property
+  usb: host: xhci-plat: Add device property to set XHCI_SKIP_PHY_INIT
+    quirk
+  usb: dwc: host: Set the property usb-skip-phy-init
 
->  
->    interrupts:
->      maxItems: 1
-> -- 
-> 2.17.1
-> 
-> 
+ Documentation/devicetree/bindings/usb/usb-xhci.yaml | 4 ++++
+ drivers/usb/dwc3/host.c                             | 2 ++
+ drivers/usb/host/xhci-plat.c                        | 3 +++
+ 3 files changed, 9 insertions(+)
+
+-- 
+2.7.4
+
