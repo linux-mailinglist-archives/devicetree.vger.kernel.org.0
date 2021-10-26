@@ -2,130 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D24943A974
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 02:53:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85FF43A98C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 03:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235360AbhJZAzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 20:55:33 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:54163 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233234AbhJZAzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 25 Oct 2021 20:55:33 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id DA120580728;
-        Mon, 25 Oct 2021 20:53:09 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Mon, 25 Oct 2021 20:53:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=V0T2kJy73U3uAaMJMaKuV6KJcyjcpfP
-        oCYCDulI/FAk=; b=Z+qVG2iAadM4MbCKcUhZK7A9dVqRKHJZCXjtaFwZL4NvG5f
-        u20dU4z/aLL5RjL3fdlQiuSBkcG+rZGjUXivmWgc6GpROX5oH2PVoG8gyxM3tCPV
-        +zgaopnS4rp1aiF2LalCIKk9pwYQlQNTcw+fvmDybIP+HIjXwqksMc4TlHyAfffS
-        Bg+yozqnUVRkucLZof7Z0zz24m2eC7O3KrYIWc5iGu+qPEanIpPRygxF0+Q0Vtnt
-        dyI2ya3eFjK+yqiQH34gWcras6Bvmnw4LdwfKY2Jh6VYhw5CVLZM03QKODpoPL8r
-        FFW1ie7T6BUw0bD63ONK322g4lYhVEPOy5tf1gQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=V0T2kJ
-        y73U3uAaMJMaKuV6KJcyjcpfPoCYCDulI/FAk=; b=WBSJ4GRJxNzEuiKowL0A82
-        QgmhMIGDAIr9TCG/RR6qYka0JtQjHIJtbp506aw61Ivg8x1wSHhzWgH0IRJWoIB9
-        3PyMvWAmvUx8x9+Vs1kPGetb/4LCi9EJUmmMTVWxTqzI+kTU9+e7sXXagYuGo4Ez
-        XgMu0F31LmPRUylRYcwEMqLy4f/8Pvca1N5aYNTdbv5HaR5LqaehzoTurUpSpEzn
-        GrELCwJuMyxD+dWeyBcCX/QEZfqyWzrN4JdRzW8WSbJLhW/PHoPBc8OT3yx797Hv
-        Q2t3/90E6O1u8XsqfDMmpVOdojDLql9kZL2ckGR4e8DyrMpGGFokEBOsaE7tLjWA
-        ==
-X-ME-Sender: <xms:dVF3YbisDWbGSHxF9z8xdApzqt_B9j05JClaC5yX_0uszojqul4Wqw>
-    <xme:dVF3YYD2lc4fBU-RNRpYkq1DpkaEOdemdfpLPpMjWb9idZ5d7Kayef9CHjb0JPGvB
-    vul_12VkGdwK2OUOQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefiedgfeduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepudfftddvveekfffgteffffeuveegjeelgefhffejtdehtdfhlefgkeef
-    hfefkeeinecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
-    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:dVF3YbFMseYAinOGxo5AcNdSXiQmQlWiToSO5I1Fema7QxPdwZQZ1Q>
-    <xmx:dVF3YYQZdPr9pe6ZXIKVvFzNGTBUyKlknofeKk4qqXG-mrxSMKv9Dw>
-    <xmx:dVF3YYw5TyzcXVz1SVKjtNySWBbNcWClqg6N25styc5hty8uTP8htQ>
-    <xmx:dVF3YTpOp9l8IpeBaBvI0RXlFBDBxiWKBOf4g8moiS-RPkglrTNAhg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 30210AC03DB; Mon, 25 Oct 2021 20:53:09 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-1369-gd055fb5e7c-fm-20211018.002-gd055fb5e
-Mime-Version: 1.0
-Message-Id: <5a235916-f250-48ac-b931-6ec2c5c2ea5d@www.fastmail.com>
-In-Reply-To: <20210922103116.30652-5-chin-ting_kuo@aspeedtech.com>
-References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
- <20210922103116.30652-5-chin-ting_kuo@aspeedtech.com>
-Date:   Tue, 26 Oct 2021 11:22:49 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     BMC-SW@aspeedtech.com, "Steven Lee" <steven_lee@aspeedtech.com>
-Subject: Re: [PATCH 04/10] mmc: Add invert flag for clock phase signedness
-Content-Type: text/plain
+        id S233729AbhJZBJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 21:09:21 -0400
+Received: from szxga03-in.huawei.com ([45.249.212.189]:26196 "EHLO
+        szxga03-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232679AbhJZBJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 21:09:20 -0400
+Received: from dggeme758-chm.china.huawei.com (unknown [172.30.72.55])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4HdYXW3GdLz8tcK;
+        Tue, 26 Oct 2021 09:05:31 +0800 (CST)
+Received: from [127.0.0.1] (10.67.102.125) by dggeme758-chm.china.huawei.com
+ (10.3.19.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.15; Tue, 26
+ Oct 2021 09:06:51 +0800
+Message-ID: <617754AB.60307@hisilicon.com>
+Date:   Tue, 26 Oct 2021 09:06:51 +0800
+From:   Wei Xu <xuwei5@hisilicon.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh@kernel.org>
+CC:     <linuxarm@huawei.com>, <mauro.chehab@huawei.com>,
+        Yu Chen <chenyu56@huawei.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <xuwei5@hisilicon.com>
+Subject: Re: [PATCH v5] dt-bindings: misc: add schema for USB hub on Kirin
+ devices
+References: <f955e7dba47e2e96ca6bfe761a1f998e9b5a4c50.1632814787.git.mchehab+huawei@kernel.org>
+In-Reply-To: <f955e7dba47e2e96ca6bfe761a1f998e9b5a4c50.1632814787.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.67.102.125]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggeme758-chm.china.huawei.com (10.3.19.104)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 22 Sep 2021, at 20:01, Chin-Ting Kuo wrote:
-> The clock phase degree may be between -360 to 360.
-> If the data signal is leading to the clock, the signedness
-> of clock phase is postive, otherwise, the signedness
-> is negative.
->
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Hi Mauro,
 
-The implementation here can't be changed without a change to the 
-binding documentation:
+On 2021/9/28 15:40, Mauro Carvalho Chehab wrote:
+> From: Yu Chen <chenyu56@huawei.com>
+> 
+> This patch adds binding documentation to support USB HUB and
+> USB data role switch of HiSilicon HiKey960 and HiKey970 boards.
+> 
+> [mchehab: updated OF schema and added HiKey970 example]
+> Signed-off-by: Yu Chen <chenyu56@huawei.com>
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/mmc/mmc-controller.yaml?h=v5.15-rc7#n345
+Acked-by: Wei Xu <xuwei5@hisilicon.com>
+
+Thanks!
+
+Best Regards,
+Wei
 
 > ---
->  drivers/mmc/core/host.c  | 10 ++++++----
->  include/linux/mmc/host.h |  2 ++
->  2 files changed, 8 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-> index d4683b1d263f..c2de7cbc7838 100644
-> --- a/drivers/mmc/core/host.c
-> +++ b/drivers/mmc/core/host.c
-> @@ -214,14 +214,16 @@ static void mmc_retune_timer(struct timer_list *t)
->  static void mmc_of_parse_timing_phase(struct device *dev, const char *prop,
->  				      struct mmc_clk_phase *phase)
->  {
-> -	int degrees[2] = {0};
-> +	int degrees[4] = {0};
->  	int rc;
+>  .../bindings/misc/hisilicon,hikey-usb.yaml    | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
 > 
-> -	rc = device_property_read_u32_array(dev, prop, degrees, 2);
-> +	rc = device_property_read_u32_array(dev, prop, degrees, 4);
->  	phase->valid = !rc;
->  	if (phase->valid) {
-> -		phase->in_deg = degrees[0];
-> -		phase->out_deg = degrees[1];
-> +		phase->inv_in_deg = degrees[0] ? true : false;
-> +		phase->in_deg = degrees[1];
-> +		phase->inv_out_deg = degrees[2] ? true : false;
-> +		phase->out_deg = degrees[3];
+> diff --git a/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
+> new file mode 100644
+> index 000000000000..761ab686121a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/hisilicon,hikey-usb.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 Linaro Ltd.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/hisilicon,hikey-usb.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiKey960/970 onboard USB GPIO Hub
+> +
+> +maintainers:
+> +  - John Stultz <john.stultz@linaro.org>
+> +
+> +description: |
+> +  Supports the onboard USB GPIO hubs found on HiKey960/970.
+> +  Such hubs require a power supply for the USB I/O. Depending on the
+> +  exact hub model, after USB I/O is powered up, a reset should be needed.
+> +
+> +  It also acts as a role-switch intermediary to detect the state of
+> +  the USB-C port, to switch the hub into dual-role USB-C or host mode,
+> +  which enables and powers up the onboard USB-A host ports.
+> +
+> +  Schematics about such hubs can be found here:
+> +    https://github.com/96boards/documentation/raw/master/consumer/hikey/hikey960/hardware-docs/HiKey960_Schematics.pdf
+> +    https://www.96boards.org/documentation/consumer/hikey/hikey970/hardware-docs/files/hikey970-schematics.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hisilicon,usbhub
+> +
+> +  typec-vbus-gpios:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: phandle to the typec-vbus gpio
+> +
+> +  otg-switch-gpios:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: phandle to the otg-switch gpio
+> +
+> +  hub-reset-en-gpios:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: phandle to the hub reset gpio
+> +
+> +  usb-role-switch:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: Support role switch.
+> +
+> +  hub-vdd-supply:
+> +    description: regulator for hub power
+> +
+> +  port:
+> +    description: |
+> +      describe hadware connections between USB endpoints.
+> +      Two ports are supported: the first being the endpoint that will
+> +      be notified by this driver, and the second being the endpoint
+> +      that notifies this driver of a role switch.
+> +
+> +required:
+> +  - compatible
+> +  - hub-vdd-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    usb-hub {
+> +        compatible = "hisilicon,usbhub";
+> +        typec-vbus-gpios = <&gpio25 2 GPIO_ACTIVE_HIGH>;
+> +        otg-switch-gpios = <&gpio25 6 GPIO_ACTIVE_HIGH>;
+> +        hub-reset-en-gpios = <&gpio0 3 GPIO_ACTIVE_HIGH>;
+> +        hub-vdd-supply = <&usb_hub_vdd>;
+> +        usb-role-switch;
+> +        port {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            usb_ep0: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&dwc3_role_switch>;
+> +            };
+> +            usb_ep1: endpoint@1 {
+> +                reg = <1>;
+> +                remote-endpoint = <&rt1711h_ep>;
+> +            };
+> +        };
+> +    };
+> 
 
-This fundamentally breaks any in-tree users. We can't do this.
-
-In terms of the binding, if negative phase values are something we must 
-do, we can just extend the value range to include [-359, -1] right? 
-That avoids changing the type of the value positions in the manner this 
-patch does.
-
-Andrew
