@@ -2,139 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB05A43BBC9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 22:44:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967A943BC05
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239269AbhJZUqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 16:46:39 -0400
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:35743 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235782AbhJZUqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 16:46:38 -0400
-Received: by mail-oo1-f52.google.com with SMTP id 64-20020a4a0d43000000b002b866fa13eeso168393oob.2;
-        Tue, 26 Oct 2021 13:44:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=sKAvIqLDA6il9jGsvQNTReGzOWFc+5qNFeKsTSA5leA=;
-        b=GQRQ1Z86SqpGe/w6rX/71Ci9Hj6/cD+XPC+x59249lHp356pzfhpK4sqwyGEEb/q2v
-         ilmlWJ9yP/Vjonwapx80rv1MADhMoGkj2Dav9LuaspQE/1tz/96tqkAg5fmGDP3rpsso
-         6nRWTCGtTVXcg1DS+TK7Lb3l/uYU9weWOtGxQUXbjY8jKZBRxK5p+Fuc3kfKCDKnXgF6
-         fo7eHJAimkJk++fEIoW36agI4CbseDYptPqnDBvWGRnya3hNGLMj2wAkk5OC6wbEqOua
-         KuRKaztjcCXanEV8MRLKrOE0DAyl0MIk7syDZ2/fK27nz045nSJD9DJW+jN5lYpA7J5B
-         hQZg==
-X-Gm-Message-State: AOAM530O6j2jdoLP1mzgSuJm5URqTHuigFLzYHGVDqD4CtVL6I7QKChG
-        Ux8DoZo45IAtwZAE0Yb26w==
-X-Google-Smtp-Source: ABdhPJyqhjrUOx09PvsZZkHfudBVMrkwGkrvFdqS74oVOYbUPmfOJwhdi6WySqpj1sJwJWzNZjIiOw==
-X-Received: by 2002:a4a:e4d1:: with SMTP id w17mr15503167oov.39.1635281053626;
-        Tue, 26 Oct 2021 13:44:13 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l3sm2746051otu.6.2021.10.26.13.44.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 13:44:12 -0700 (PDT)
-Received: (nullmailer pid 3213230 invoked by uid 1000);
-        Tue, 26 Oct 2021 20:44:12 -0000
-Date:   Tue, 26 Oct 2021 15:44:12 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        pavel@ucw.cz, Andrew Lunn <andrew@lunn.ch>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: leds: Allow for multiple colors in the
- `color` property
-Message-ID: <YXhonNXqAy8krqJE@robh.at.kernel.org>
-References: <20211013204424.10961-1-kabel@kernel.org>
- <20211013204424.10961-3-kabel@kernel.org>
+        id S234330AbhJZVIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:08:25 -0400
+Received: from mx3.wp.pl ([212.77.101.10]:22488 "EHLO mx3.wp.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239449AbhJZVIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 17:08:24 -0400
+X-Greylist: delayed 398 seconds by postgrey-1.27 at vger.kernel.org; Tue, 26 Oct 2021 17:08:24 EDT
+Received: (wp-smtpd smtp.wp.pl 32638 invoked from network); 26 Oct 2021 22:59:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
+          t=1635281958; bh=WgW57u+5yEbJUHlDaeErLMbW3u24lbfeHj4ACnB7IUw=;
+          h=From:To:Cc:Subject;
+          b=Wugg7n9O/oDiE6acVmuSQ/SMjOvtm4JeOIKpMT2xGoxbVrlitjbm76N4FMj0oaCOl
+           UgVwf+enWFmng1S3YoMNlPNv+gah/cUTMYRDRpuQCp9fv1+c+xIr1trEA4IYmswp61
+           qzXaneeTrWD+K8Ota6xXbBmLvTwH5pbovp8MHhm8=
+Received: from riviera.nat.ds.pw.edu.pl (HELO LAPTOP-OLEK.lan) (olek2@wp.pl@[194.29.137.1])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <hauke@hauke-m.de>; 26 Oct 2021 22:59:18 +0200
+From:   Aleksander Jan Bajkowski <olek2@wp.pl>
+To:     hauke@hauke-m.de, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: [PATCH 1/2] net: lantiq_xrx200: Hardcode the burst length value
+Date:   Tue, 26 Oct 2021 22:59:01 +0200
+Message-Id: <20211026205902.335936-1-olek2@wp.pl>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211013204424.10961-3-kabel@kernel.org>
+X-WP-DKIM-Status: good (id: wp.pl)                                      
+X-WP-MailID: 43aa16e0fb2cd16703b4d22842b9e459
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000000 [kaNk]                               
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 13, 2021 at 10:44:24PM +0200, Marek Behún wrote:
-> Some RJ-45 connectors have one green/yellow LED wired in the following
-> way:
-> 
->         green
->       +--|>|--+
->       |       |
->   A---+--|<|--+---B
->         yellow
-> 
-> But semantically this is still just one (multi-color) LED (for example
-> it can be controlled by HW as one dual-LED).
-> 
-> This is a case that we do not support in device tree bindings; setting
->   color = <LED_COLOR_ID_MULTI>;
-> or
->   color = <LED_COLOR_ID_RGB>;
-> is wrong, because those are meant for when the controller can mix the
-> "channels", while for our case only one "channel" can be active at a
-> time.
-> 
-> Change the `color` property to accept an (non-empty) array of colors to
-> indicate this case.
-> 
-> Example:
->   ethernet-phy {
->     led@0 {
->       reg = <0>;
->       color = <LED_COLOR_ID_GREEN LED_COLOR_ID_YELLOW>;
->       function = LED_FUNCTION_ID_LAN;
->       trigger-sources = <&eth0>;
->     };
->   };
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  .../devicetree/bindings/leds/common.yaml         | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index 03759d2e125a..492dd3e7f9ac 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -37,13 +37,21 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/string
->  
->    color:
-> -    description:
-> +    description: |
->        Color of the LED. Use one of the LED_COLOR_ID_* prefixed definitions from
->        the header include/dt-bindings/leds/common.h. If there is no matching
->        LED_COLOR_ID available, add a new one.
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -    minimum: 0
-> -    maximum: 9
-> +
-> +      For multi color LEDs there are two cases:
-> +        - the LED can mix the channels (i.e. RGB LED); in this case use
-> +          LED_COLOR_ID_MULTI or LED_COLOR_ID_RGB
-> +        - the LED cannot mix the channels, only one can be active; in this case
-> +          enumerate all the possible colors
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
+All SoCs with this IP core support 8 burst length. Hauke
+suggested to hardcode this value and simplify the driver.
 
-And:
+Link: https://lkml.org/lkml/2021/9/14/1533
+Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+---
+ drivers/net/ethernet/lantiq_xrx200.c | 21 ++++-----------------
+ 1 file changed, 4 insertions(+), 17 deletions(-)
 
-maxItems: 2
+diff --git a/drivers/net/ethernet/lantiq_xrx200.c b/drivers/net/ethernet/lantiq_xrx200.c
+index ecf1e11d9b91..0da09ea81980 100644
+--- a/drivers/net/ethernet/lantiq_xrx200.c
++++ b/drivers/net/ethernet/lantiq_xrx200.c
+@@ -25,6 +25,7 @@
+ #define XRX200_DMA_DATA_LEN	(SZ_64K - 1)
+ #define XRX200_DMA_RX		0
+ #define XRX200_DMA_TX		1
++#define XRX200_DMA_BURST_LEN	8
+ 
+ /* cpu port mac */
+ #define PMAC_RX_IPG		0x0024
+@@ -73,9 +74,6 @@ struct xrx200_priv {
+ 	struct net_device *net_dev;
+ 	struct device *dev;
+ 
+-	int tx_burst_len;
+-	int rx_burst_len;
+-
+ 	__iomem void *pmac_reg;
+ };
+ 
+@@ -323,7 +321,7 @@ static netdev_tx_t xrx200_start_xmit(struct sk_buff *skb,
+ 		goto err_drop;
+ 
+ 	/* dma needs to start on a burst length value aligned address */
+-	byte_offset = mapping % (priv->tx_burst_len * 4);
++	byte_offset = mapping % (XRX200_DMA_BURST_LEN * 4);
+ 
+ 	desc->addr = mapping - byte_offset;
+ 	/* Make sure the address is written before we give it to HW */
+@@ -422,7 +420,8 @@ static int xrx200_dma_init(struct xrx200_priv *priv)
+ 	int ret = 0;
+ 	int i;
+ 
+-	ltq_dma_init_port(DMA_PORT_ETOP, priv->tx_burst_len, rx_burst_len);
++	ltq_dma_init_port(DMA_PORT_ETOP, XRX200_DMA_BURST_LEN,
++			  XRX200_DMA_BURST_LEN);
+ 
+ 	ch_rx->dma.nr = XRX200_DMA_RX;
+ 	ch_rx->dma.dev = priv->dev;
+@@ -531,18 +530,6 @@ static int xrx200_probe(struct platform_device *pdev)
+ 	if (err)
+ 		eth_hw_addr_random(net_dev);
+ 
+-	err = device_property_read_u32(dev, "lantiq,tx-burst-length", &priv->tx_burst_len);
+-	if (err < 0) {
+-		dev_err(dev, "unable to read tx-burst-length property\n");
+-		return err;
+-	}
+-
+-	err = device_property_read_u32(dev, "lantiq,rx-burst-length", &priv->rx_burst_len);
+-	if (err < 0) {
+-		dev_err(dev, "unable to read rx-burst-length property\n");
+-		return err;
+-	}
+-
+ 	/* bring up the dma engine and IP core */
+ 	err = xrx200_dma_init(priv);
+ 	if (err)
+-- 
+2.30.2
 
-2 colors is a neat trick, but I don't see how you'd do more 
-electrically.
-
-> +    items:
-> +      minimum: 0
-> +      maximum: 9
->  
->    function-enumerator:
->      description:
-> -- 
-> 2.32.0
-> 
-> 
