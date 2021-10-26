@@ -2,117 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3246F43A956
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 02:38:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10AFA43A95C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 02:42:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235601AbhJZAka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Oct 2021 20:40:30 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:60863 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235689AbhJZAka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Oct 2021 20:40:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635208687; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=8mByl3gAGfKf4AoJcCSTiFOyD0EhGvwG2hEw0n8Woe8=; b=jZqb/obZxUlHSZoeOVbzKwaFLUM0ENnPQFD5mjLlyA9f37d/VmtNMnKIWZ0chavWiIrJ0xP4
- SeoL/2X5VX0Rw0G/6tqgTP3Jac4+7WRbavyRML4u+X9q/Z4KwH0TyeAUh0QAfZhu2nIVs2is
- a7Mzg2chUiEsm7OJFetYRF+I3uI=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 61774de9fd91319f0f256d14 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 26 Oct 2021 00:38:01
- GMT
-Sender: subbaram=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AE8B2C4361A; Tue, 26 Oct 2021 00:38:00 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.47.233.232] (Global_NAT1.qualcomm.com [129.46.96.20])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: subbaram)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2CA92C4338F;
-        Tue, 26 Oct 2021 00:37:59 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 2CA92C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v10 2/2] leds: Add driver for Qualcomm LPG
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>,
-        Luca Weiss <luca@z3ntu.xyz>
-References: <20211010043912.136640-1-bjorn.andersson@linaro.org>
- <20211010043912.136640-2-bjorn.andersson@linaro.org>
-From:   Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Message-ID: <1ad508af-f7cb-a88f-07d8-5731c5a45403@codeaurora.org>
-Date:   Mon, 25 Oct 2021 17:37:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20211010043912.136640-2-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+        id S235723AbhJZApT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Oct 2021 20:45:19 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:59281 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234876AbhJZApS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 25 Oct 2021 20:45:18 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 88CA4580675;
+        Mon, 25 Oct 2021 20:42:55 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Mon, 25 Oct 2021 20:42:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=KfId3zDeeQQl/KssBDK5CIkF0Ft/Bsc
+        n5IlmX7vmGVQ=; b=W4lnkCAy+fi3mjBX+CM5qW7hAbHq3VZYlD+PMtAShxwH/T3
+        f0C1FVl5eQwqzd8hgesNoANfK9O8gjtlD1EVks9Rbz7NxnH9TsBOBSwZxPoouzrs
+        tD/qmJcZEcPGveCqo/m4wFqAcPRigmoubMt7ETgLT70WCYExweBnNrfYU7VcfTEa
+        4lVgXHNHivZ7ke52osnw0xUEmMwS3FKrdln7bzcLLKzeVbh69XS4FqLO3wxc1Z/O
+        TUZaxLymXwZj3aT+Ac6CAGjuz+7wRgd8IuYPY2QmfY39O5IYBnlupUwzmWTE1FWk
+        wd2CZTTMjmamxiU+QnVjfbEAXjGriV7llQFGuew==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=KfId3z
+        DeeQQl/KssBDK5CIkF0Ft/Bscn5IlmX7vmGVQ=; b=E0Fmka/huuODDXk8U8NmIJ
+        1WcVUjvdrU3fYHSVt6ky7uto4GlfrUM2Ofyhds1xnfDiCmF8GBpWamEO8mqjuBcM
+        hg0PNudUs1yQ5jU/WcI2TcebcnTFuCjW+kDPM+nQ7ueKCzPeE3jvskfeUqSE7O7Z
+        ur9dfFtxu/vrnxyGATk/aOW8O1Pt50doqYk1h/OhC/5uc6Te34OufaZfW2xnP8B8
+        6aUUrT9QQWsCz2bIXSTVQygl7tTrHymeQy3liI01Ii1cGZJgAhxKglUIKDIvWybm
+        +3onXGQotpa1lDj0tLE56M7zm/S6CvuYmhx8Rv7zU0BT4Ypw9cFvxCNFzftCiIXw
+        ==
+X-ME-Sender: <xms:Dk93YdrdScfPNM669ixbDglfvCYJlkGfPhlFj-rovAy7OsJcIZvvEw>
+    <xme:Dk93YfptsxCQlYw-MwV6kMJNzG99CrNzQgr0LhMorY78JyFS9yyhWexcb-8gpt8-i
+    hhtsJmRLLBV4O-qEg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefiedgvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:Dk93YaPHDHcE8xOKScKhhKiak8JaZ0CI9hiinkes00SWVOz-g32h2g>
+    <xmx:Dk93YY7e9NS8MNVG2d582L6fVkNYyTmJZoHkuZJ5V-BNiw2qTVsfvQ>
+    <xmx:Dk93Yc4aYjfRxfyxNUmTcL-y8jZ4XyZzr5BMkATk4MUOTxlPY5zQVA>
+    <xmx:D093YcxuyNIo92npvjc8wF_uKt6VT4dwT4MeEVp75DU127SoyWrNTg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id B396CAC03DB; Mon, 25 Oct 2021 20:42:54 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1369-gd055fb5e7c-fm-20211018.002-gd055fb5e
+Mime-Version: 1.0
+Message-Id: <88c261c2-797a-4803-ac30-24f95a397496@www.fastmail.com>
+In-Reply-To: <20210922103116.30652-4-chin-ting_kuo@aspeedtech.com>
+References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
+ <20210922103116.30652-4-chin-ting_kuo@aspeedtech.com>
+Date:   Tue, 26 Oct 2021 11:12:34 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Chin-Ting Kuo" <chin-ting_kuo@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com, "Steven Lee" <steven_lee@aspeedtech.com>
+Subject: Re: [PATCH 03/10] dts: aspeed: ast2600: Support SDR50 for SD device
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-> +#define LPG_RESOLUTION		512
-
-Just a thought. Having this fixed to 9-bit resolution would require a lot of code churn if this driver ends up supporting higher resolution PWM later. Would it be possible to have this as a parameter in "struct lpg_channel" ?
-
-> +static const unsigned int lpg_clk_rates[] = {1024, 32768, 19200000};
-> +static const unsigned int lpg_pre_divs[] = {1, 3, 5, 6};
-> +
-> +static int lpg_calc_freq(struct lpg_channel *chan, uint64_t period)
-> +{
-> +	unsigned int clk, best_clk = 0;
-> +	unsigned int div, best_div = 0;
-> +	unsigned int m, best_m = 0;
-> +	unsigned int error;
-> +	unsigned int best_err = UINT_MAX;
-> +	u64 best_period = 0;
-> +
-> +	/*
-> +	 * The PWM period is determined by:
-> +	 *
-> +	 *          resolution * pre_div * 2^M
-> +	 * period = --------------------------
-> +	 *                   refclk
-> +	 *
-> +	 * With resolution fixed at 2^9 bits, pre_div = {1, 3, 5, 6} and
-> +	 * M = [0..7].
-> +	 *
-> +	 * This allows for periods between 27uS and 384s, as the PWM framework
-> +	 * wants a period of equal or lower length than requested, reject
-> +	 * anything below 27uS.
-> +	 */
-> +	if (period <= (u64)NSEC_PER_SEC * LPG_RESOLUTION / 19200000)
-> +		return -EINVAL;
-> +
-> +	/* Limit period to largest possible value, to avoid overflows */
-> +	if (period > (u64)NSEC_PER_SEC * LPG_RESOLUTION * 6 * (1 << LPG_MAX_M) / 1024)
-> +		period = (u64)NSEC_PER_SEC * LPG_RESOLUTION * 6 * (1 << LPG_MAX_M) / 2014;
-
-s/2014/1024 ?
-
-Thanks,
-Subbaraman
 
 
+On Wed, 22 Sep 2021, at 20:01, Chin-Ting Kuo wrote:
+> The maximum frequency for SD controller on AST2600 EVB is
+> 100MHz. In order to achieve 100MHz, sd-uhs-sdr50 property
+> should be added and the driver will set the SDR50 supported
+> bit in capability 2 register during probing stage.
+>
+> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+
+As this is a limitation of the SoC it should be done in aspeed-g6.dtsi. 
+Unless I've misunderstood?
+
+Andrew
+
+> ---
+>  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts 
+> b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> index b7eb552640cb..4551dba499c2 100644
+> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> @@ -280,6 +280,7 @@
+>  &sdhci0 {
+>  	status = "okay";
+>  	bus-width = <4>;
+> +	sd-uhs-sdr50;
+>  	max-frequency = <100000000>;
+>  	sdhci-drive-type = /bits/ 8 <3>;
+>  	sdhci-caps-mask = <0x7 0x0>;
+> @@ -292,6 +293,7 @@
+>  &sdhci1 {
+>  	status = "okay";
+>  	bus-width = <4>;
+> +	sd-uhs-sdr50;
+>  	max-frequency = <100000000>;
+>  	sdhci-drive-type = /bits/ 8 <3>;
+>  	sdhci-caps-mask = <0x7 0x0>;
+> -- 
+> 2.17.1
