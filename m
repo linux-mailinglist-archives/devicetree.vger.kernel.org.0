@@ -2,58 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27BF343BC35
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A44D043BC3B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239488AbhJZVVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 17:21:34 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:36822 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237152AbhJZVVT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:21:19 -0400
-Received: by mail-ot1-f45.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so615586otk.3;
-        Tue, 26 Oct 2021 14:18:55 -0700 (PDT)
+        id S239495AbhJZVWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:22:15 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:38484 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235364AbhJZVWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:22:14 -0400
+Received: by mail-oi1-f172.google.com with SMTP id t4so525662oie.5;
+        Tue, 26 Oct 2021 14:19:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=goMSID9C5MFCMICxa57PTxLv5m9FDLARzUx3oz1FuHk=;
-        b=bi4AV8HnrvzIyE7GyWTgetiMc8T5jJTPh98ylC1HZ6JqlLh9mVvJHUFedX6c0c96Sk
-         jaOSVWBOIB/ev6hnnNzg+bIn+es0Bk0w2st0sjm3my9Ibr4wWVk9phKDQM71WAvNb8wB
-         kskjWJz3L0wBEQCDkyFZYVZAcrexbCpnEzi5ucX3olU59YL+LQcofL+LSh3BNo8tXJOj
-         d6Fp8aAXCc+31UBlmQ4myIBKpgVT9wib3GGrWVBncAiTFQ97gUneCKhbA5paKYOwE4jR
-         radZ7nCw+rTM05Yl5QoPAfuLIPvguza9M13oZTE/TdHDf57FCbLThbWuK9swBxuvP6rq
-         BwJQ==
-X-Gm-Message-State: AOAM531M6a8Q9h+VK6ilJ6RiQdQkOcHUEOJyTs1WqT9EjsxhUdkc2YeP
-        HQMLai+nYOs2MlWH6f2rZQ==
-X-Google-Smtp-Source: ABdhPJyvapCYR0gZYgSBZpqnyFlqzWhQmWd3KD8vvfIyHD8p0Hn3fw0cyMxvC/ZnpB8MPdcBBp4epw==
-X-Received: by 2002:a05:6830:4488:: with SMTP id r8mr21302132otv.272.1635283135283;
-        Tue, 26 Oct 2021 14:18:55 -0700 (PDT)
+        bh=YtuFL+DDjYN57vIvaMf5OxVDuH9t3HGano//L4CGuFY=;
+        b=N2PwtMXtDTOMigwBkWQHzNciuBYg72BBCt9i5COHKUhOcFn1S4/zfX6WMuX18waz7/
+         M5ZDBUy3QUxA+MDp58a8wxCdYfIVoN3VbBAUpLP56sjgwzYmmDSyCXEFHAY9KYPr0axz
+         nAZnz9SVakUSmM9sKLODbK9IQdDymAFYLk8haMZGPJrw9pvrvOsxgfpz95ZdxSLAlU+o
+         G9F+ABmyzzPCUw+inRa3KQZvDuskFi0fZlZ1LozlgAPFQeI5ZGdRAAoOtvvdcR0wOEsf
+         KUsE/y3ihHOERFrt2I7dREkqpWw1RcXBHy39strW84PfdK1irymDmXgXTK0UMPkSYGjR
+         m0Yg==
+X-Gm-Message-State: AOAM531XvuvYQV+C91ZVD1ZbuMe3zbh19r7lLwhDFiaqUUn79Nx9muj1
+        iLwREe4iZrz5UBDe13hnnXrEs0Twxw==
+X-Google-Smtp-Source: ABdhPJz0cDDYFbf7NCIWKBGCBrfhTk4dF7R5uxebjjb175aMZMkPHGOblMWPfqiWinh1L0gGWJSIpg==
+X-Received: by 2002:a05:6808:1910:: with SMTP id bf16mr911438oib.17.1635283189371;
+        Tue, 26 Oct 2021 14:19:49 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c17sm5276717ots.35.2021.10.26.14.18.54
+        by smtp.gmail.com with ESMTPSA id q15sm4771394otm.15.2021.10.26.14.19.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 14:18:54 -0700 (PDT)
-Received: (nullmailer pid 3270967 invoked by uid 1000);
-        Tue, 26 Oct 2021 21:18:53 -0000
-Date:   Tue, 26 Oct 2021 16:18:53 -0500
+        Tue, 26 Oct 2021 14:19:48 -0700 (PDT)
+Received: (nullmailer pid 3272618 invoked by uid 1000);
+        Tue, 26 Oct 2021 21:19:47 -0000
+Date:   Tue, 26 Oct 2021 16:19:47 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com,
-        Daniel Lezcano <daniel.lezcano@linaro.org>, monstr@monstr.eu
-Subject: Re: [PATCH] dt-bindings: timer: cadence_ttc: Add power-domains
-Message-ID: <YXhwvaFpaab6LFut@robh.at.kernel.org>
-References: <cc655a72b20790f6d7408b1aaf81c4bf878aafb4.1634286552.git.michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        git@xilinx.com, Rob Herring <robh+dt@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-gpio@vger.kernel.org,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>,
+        monstr@monstr.eu, Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: gpio: zynq: Add power-domains
+Message-ID: <YXhw87Uae2jgYiOI@robh.at.kernel.org>
+References: <655523d7bf9658eb0b8e49a06c8b79a04052e5d5.1634286595.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cc655a72b20790f6d7408b1aaf81c4bf878aafb4.1634286552.git.michal.simek@xilinx.com>
+In-Reply-To: <655523d7bf9658eb0b8e49a06c8b79a04052e5d5.1634286595.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 15 Oct 2021 10:29:14 +0200, Michal Simek wrote:
+On Fri, 15 Oct 2021 10:29:57 +0200, Michal Simek wrote:
 > Describe optional power-domain property to fix dts_check warnings.
 > The similar change was done by commit 8c0aa567146b ("dt-bindings: gpio:
 > fsl-imx-gpio: Add power-domains").
@@ -61,7 +65,7 @@ On Fri, 15 Oct 2021 10:29:14 +0200, Michal Simek wrote:
 > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
 > 
->  Documentation/devicetree/bindings/timer/cdns,ttc.yaml | 3 +++
+>  Documentation/devicetree/bindings/gpio/gpio-zynq.yaml | 3 +++
 >  1 file changed, 3 insertions(+)
 > 
 
