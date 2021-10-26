@@ -2,79 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8164643BDEC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 298FA43BDF3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:36:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240308AbhJZXfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 19:35:24 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:33463 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240306AbhJZXfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:35:23 -0400
-Received: by mail-oi1-f172.google.com with SMTP id q129so1015868oib.0;
-        Tue, 26 Oct 2021 16:32:59 -0700 (PDT)
+        id S234647AbhJZXig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 19:38:36 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:37811 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234584AbhJZXif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:38:35 -0400
+Received: by mail-oi1-f178.google.com with SMTP id o83so953627oif.4;
+        Tue, 26 Oct 2021 16:36:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=U0VixVt2ZHEQsaOQQxe0TrabmQFV0H1KLO4eFGtC0OY=;
-        b=N92iOJHf8qyZ1kcak/t6oUdo2Sddr78+Vr8ZMKtFt0jxv9h1QU2fGxs/f8ia3gwuLc
-         KbrMoeZGjNhX8cpzwv6rD4f8Vn6CKrdg6clu3uOmx0N7N4rnIYapkcc9azGx5h96GPE9
-         nlbd8ES2MAsyvFCxLAkM8nBi53npCfjC+4eYB2X4frjs1n8zhWGrEOXKEntDKLioe7fx
-         ciYvNWQmPhR7fZwBbmsA4jisppMYokyqIWGMI2Zq0Do4mtZ32MU32nGWAWx2axaMgi90
-         eSUCR44YyQpVEsWpMyM6hncMRogCqTMwmyENZjuywHnBjV3kPQGRsUOhwdmqbEuh0lVH
-         tYdA==
-X-Gm-Message-State: AOAM530ZLlHzNodam1a7e56tWVvvKecaxk6A16W8fNNI3jXVAHREDw3v
-        RQA0pmqJFZMXJQstsR501wW3SWbwRg==
-X-Google-Smtp-Source: ABdhPJyJvkFqJzPNJdV7qiSoN+4lX+UiDvnHPGcknDgTNJf499Sd0Wsq3fAsGquHYzzmYFbO++6Alw==
-X-Received: by 2002:a05:6808:e90:: with SMTP id k16mr1302011oil.166.1635291178661;
-        Tue, 26 Oct 2021 16:32:58 -0700 (PDT)
+        bh=aL27fpyh+m4rC09TIGIfGG4t2Fp9eQL4JHIxdInBGZA=;
+        b=l3h5aVRPqHIsqBU3KNzi2rEwR0CPN/68KpNZDBuD/8GxuY7oFFnGu/rbmVGERLLTq/
+         aVmMVpgSZ6qm8n7MlaU5JKiaT9QmsEvwCwcsglfp0rN/r1vVFwtr+hBiuSgQSdNKJoZU
+         Q7fsOfO4hzebueE745q7o2tb8rGxwO4Jv6bn05to+3j81jRyXedDhcYF14dOjZM2LGg+
+         xCIeWw1prCjSQXGmx5LFwRSADYDlYYWM8mLLqK3C5PpMcwxmkPVKIF/ic2rK8xEbkWd4
+         MOC/29DdMj3d5rVzzkw1UM+qhZmQ/Q7OMJcHMw67/CsYpyHFZIVU2G+K4xjlBkHx30RQ
+         bRQQ==
+X-Gm-Message-State: AOAM530tISMMNLNJMfyaOa+Gjj41nrW88r7JypfEYyygcfm3b41Ka+c4
+        GJcvllnazt6+qBpMc304qA==
+X-Google-Smtp-Source: ABdhPJyZ7JY+ahGPMk0kwlKWneszs92Rj1q/CcqeR9fru4UgGFV50VtR3x/IWVNI5i5R53ptJFSmjw==
+X-Received: by 2002:a05:6808:14c2:: with SMTP id f2mr1324097oiw.99.1635291370941;
+        Tue, 26 Oct 2021 16:36:10 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bq10sm3691826oib.25.2021.10.26.16.32.57
+        by smtp.gmail.com with ESMTPSA id w17sm5125073otm.50.2021.10.26.16.36.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 16:32:58 -0700 (PDT)
-Received: (nullmailer pid 3523722 invoked by uid 1000);
-        Tue, 26 Oct 2021 23:32:57 -0000
-Date:   Tue, 26 Oct 2021 18:32:57 -0500
+        Tue, 26 Oct 2021 16:36:10 -0700 (PDT)
+Received: (nullmailer pid 3536854 invoked by uid 1000);
+        Tue, 26 Oct 2021 23:36:09 -0000
+Date:   Tue, 26 Oct 2021 18:36:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh+dt@kernel.org>, ~okias/devicetree@lists.sr.ht,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v4] dt-bindings: net: nfc: nxp,pn544: Convert txt
- bindings to yaml
-Message-ID: <YXiQKS61CUoMhe7W@robh.at.kernel.org>
-References: <20211017160210.85543-1-david@ixit.cz>
+To:     Xin Ji <xji@analogixsemi.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, hsinyi@chromium.org, zhenli@analogixsemi.com,
+        mripard@kernel.org, airlied@linux.ie, span@analogixsemi.com,
+        sam@ravnborg.org, linux-kernel@vger.kernel.org,
+        bliang@analogixsemi.com, drinkcat@google.com, broonie@kernel.org,
+        ricardo.canuelo@collabora.com, daniel@ffwll.ch,
+        laurent.pinchart+renesas@ideasonboard.com
+Subject: Re: [PATCH v11 1/4] dt-bindings:drm/bridge:anx7625:add vendor define
+Message-ID: <YXiQ6Q8zhY+RZRue@robh.at.kernel.org>
+References: <e5f8aed7556535aeaf07b148bdbca7f5aec28203.1628161369.git.xji@analogixsemi.com>
+ <20211018030323.2055114-1-xji@analogixsemi.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211017160210.85543-1-david@ixit.cz>
+In-Reply-To: <20211018030323.2055114-1-xji@analogixsemi.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 17 Oct 2021 18:02:10 +0200, David Heidelberg wrote:
-> Convert bindings for NXP PN544 NFC driver to YAML syntax.
+On Mon, 18 Oct 2021 11:03:23 +0800, Xin Ji wrote:
+> Add 'bus-type' and 'data-lanes' define for port0. Add DP tx lane0,
+> lane1 swing register setting array, and audio enable flag.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> The device which cannot pass DP tx PHY CTS caused by long PCB trace or
+> embedded MUX, adjusting ANX7625 PHY parameters can pass the CTS test. The
+> adjusting type include Pre-emphasis, Vp-p, Rterm(Resistor Termination)
+> and Rsel(Driven Strength). Each lane has maximum 20 registers for
+> these settings.
+> 
+> Signed-off-by: Xin Ji <xji@analogixsemi.com>
 > ---
-> v2
->  - Krzysztof is a maintainer
->  - pintctrl dropped
->  - 4 space indent for example
->  - nfc node name
-> v3
->  - remove whole pinctrl
-> v4
->  - drop clock-frequency, which is inherited by i2c bus
-> 
->  .../bindings/net/nfc/nxp,pn544.yaml           | 56 +++++++++++++++++++
->  .../devicetree/bindings/net/nfc/pn544.txt     | 33 -----------
->  2 files changed, 56 insertions(+), 33 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/nfc/nxp,pn544.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/nfc/pn544.txt
+>  .../display/bridge/analogix,anx7625.yaml      | 65 ++++++++++++++++++-
+>  1 file changed, 63 insertions(+), 2 deletions(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
