@@ -2,93 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BE2E43AD0D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 09:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 453D643AD30
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 09:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbhJZHVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 03:21:37 -0400
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:33630
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230216AbhJZHVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 03:21:37 -0400
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3567D3F172
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 07:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1635232753;
-        bh=FH1FFNDft+d4UJ5a+Tmcxa+X/KfOXYaodjYUQBDcIiY=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=X9YKydnowX/gZZAQum56yZlQqvX4KwqOOX81DnTLUjRYO1IMxmYaoQvmeFrFesI8T
-         WxP39UWTS3YtwF18rHUDusI5F1uJhNACpiYqCqyN02SSMoU+gHOXAbNWSDGIb8LDZv
-         AE2U2BHMRVpQpcN1HZ1GInoPUvJlYcOlnkWaftshHVgDATJFsT/iiPVdWIkz9J60Wj
-         V5u9DrroR/9zVFjYSP/nbqwC+CC+9kgmgalvJo4JArRAy/7gJFU/yNr4ZRHqTxljNm
-         2h9N27ixPCvEYgfl+0XDa6FNSvxuxplc6AL9668oWiViEn8XjdxdPLMf+Dm/vZ1mVn
-         hvLJdpPr+xGDw==
-Received: by mail-lj1-f200.google.com with SMTP id a20-20020a2eb554000000b0020de66f70bcso3935199ljn.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 00:19:13 -0700 (PDT)
+        id S231163AbhJZHaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 03:30:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229540AbhJZHaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 03:30:09 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42E1AC061745
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 00:27:46 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 82-20020a1c0055000000b0032ccc3ad5c1so69291wma.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 00:27:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bBJ3JH2WgYnvwuSIXVR2ON5WYrHTE9TEMenRcZaqf64=;
+        b=O+0SeHGyFN4W7YLsGBd9f6l/5PyyJ/UFeaBvYxfvG0Vnl+F1CH9azZq0UhDoMDYsWj
+         qDbXHwK/KuoAkwzOt+3QBnCFa/GXvFTWeh7r9GvBs6gDQzp65vP9mnbgCirgBzkQyxqq
+         5Q1pV6wOkXvF1S15zWga7c4V2p7OwMH/dzTRtEDPgVbIJizRU7/eBM/ZK7oPaM9j98on
+         aIcuXLc0krAW8SM7EgGUfbv7zf3DP9EfEj1fGxlSelYDHS3pm/go1z73V8+xHvWuq5lW
+         RfEWHhkoaB63lyOTTLeoiUhgpLFN7FB56wVptRdjW+Djo9n4KXBqj/Pr2QY2aRQ6Wy1C
+         rZTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FH1FFNDft+d4UJ5a+Tmcxa+X/KfOXYaodjYUQBDcIiY=;
-        b=qptFoFJXa7YIddJUr5w7gVBoyLLxbTt9OOvGUMdFkVEY4P3HO+C6poYA0lJBXIongm
-         SM+xTDzt8m6OF1HjDhHQT+tbA8RKYSZAYNNTmanTVvapd4iwN8ckIvll+2Grp2Iz4JpM
-         oNe3UkheqzKbHzJUkpucP9As1XhR8iGDQ4X3bUkrTvi6FxVBxtVsqPia02kKsf5zQUo4
-         GeZAju72tNQS7vheVomhcdZ+uOJ2oPKWYukuuPZD5+6e3UTv6Fi0YVaqbdXkTF3LUgOW
-         uGocSVxW0pJCsoLKJnrq5az6pS0Trmu7Fb7YqGgEWNhohGtfgni1kX9W945IQts1vHb7
-         giOA==
-X-Gm-Message-State: AOAM5303gR1K+XA+zOXxxsamPle9NVaaNrrgp28gDzMfenPOWKB63nzy
-        WaAOPLGaYV+yDnqSye2Y2iYgAExnkgUmpxCBA5MkWtw6q0S4GzS8TEoUut9hzvMPZTkt3drO3Yf
-        K6SE3Hk8tJleMHbZHohoyYkkWCPI5Iy2Z4YaCD04=
-X-Received: by 2002:a2e:320f:: with SMTP id y15mr25674970ljy.286.1635232752689;
-        Tue, 26 Oct 2021 00:19:12 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyFep4eQkGOg6ikMGtLloYXk5saWxNeaFxIJ6XGZjp3Lsi8CjpAUf27QhwVxKDsy8yNRRLhkA==
-X-Received: by 2002:a2e:320f:: with SMTP id y15mr25674929ljy.286.1635232752320;
-        Tue, 26 Oct 2021 00:19:12 -0700 (PDT)
-Received: from kozik-lap.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id m7sm488263lfu.110.2021.10.26.00.19.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 00:19:11 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Subject: Re: [PATCH 0/2] Add exynosautov9 chipid support
-Date:   Tue, 26 Oct 2021 09:19:09 +0200
-Message-Id: <163523273932.18107.17184430610258109480.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211021012017.158919-1-chanho61.park@samsung.com>
-References: <CGME20211021012310epcas2p2745335616ece50729db4a6368676b450@epcas2p2.samsung.com> <20211021012017.158919-1-chanho61.park@samsung.com>
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=bBJ3JH2WgYnvwuSIXVR2ON5WYrHTE9TEMenRcZaqf64=;
+        b=WSnr0x5DbxagSK2ELyPe44ESiUpP5UM1b0YnQZxYWPI7RJG1ZD+ib7k5s01+w2qM0k
+         vgfvT0JITlL3l7PlGW4hO78M2yI9rctaC4O06JwHOPj1XT/pQd5ptyuuL4YL9LUUjUGF
+         OnvMnGJWt2HXxZoLBErZA/dUVDRvaZQ5ETX4y+qP6kcbnrZrbbPFsZ+3BU7Lch9jfarN
+         Gl7Q3BS2L8SOZnhP4v47lOFDoH76b1ubYjaXM/8X1yhctAbONL6JUZl11GbJuymZuUGa
+         OlEimLKy5RO4EBTkGVqr8/cb6Duj5QuD+wfMlkaEIm/gatW13iB3+JWG2opb0dV+/X6V
+         O0GQ==
+X-Gm-Message-State: AOAM5312wwbBkuCSHfLvCAVVMArJ8q9L3IMZRDyj0ggZTryx4s525JgY
+        U4dtF0hwCUouKnFCJOHKMF5uaUIolDQeNg==
+X-Google-Smtp-Source: ABdhPJxqOJbVHyzVttUMRIw2o4DLKt4nkv1HGVRnMWVDahphDl4wLHhWq31LDbgwoKyN0kVgIzTKKw==
+X-Received: by 2002:a1c:98c8:: with SMTP id a191mr23254257wme.84.1635233264709;
+        Tue, 26 Oct 2021 00:27:44 -0700 (PDT)
+Received: from [172.20.10.7] ([37.169.6.193])
+        by smtp.gmail.com with ESMTPSA id t6sm12558703wrw.78.2021.10.26.00.27.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Oct 2021 00:27:44 -0700 (PDT)
+Subject: Re: [PATCH 2/4] arm64: dts: amlogic: meson-g12: Fix thermal-zones
+ indent
+To:     Alexander Stein <alexander.stein@mailbox.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20211023214856.30097-1-alexander.stein@mailbox.org>
+ <20211023214856.30097-2-alexander.stein@mailbox.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <fd76f9e2-f3e1-8520-7569-2390edaa538e@baylibre.com>
+Date:   Tue, 26 Oct 2021 09:27:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211023214856.30097-2-alexander.stein@mailbox.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Oct 2021 10:20:15 +0900, Chanho Park wrote:
-> This patchset is built on top of Sam's patchset[1]. Exynos Auto v9 SoC's
-> chipid is compatible with exynos850. So, this uses 850's compatible.
-> 
-> Exynos: CPU[EXYNOSAUTOV9] PRO_ID[0xaaa80000] REV[0x10] Detected
-> 
-> [1]: https://lore.kernel.org/linux-samsung-soc/163428419206.64320.1460944164027641564.b4-ty@canonical.com/
-> 
-> [...]
+Hi,
 
-Applied, thanks!
+On 23/10/2021 23:48, Alexander Stein wrote:
+> This node is currently at /soc/thermal-zones, but the later introduced
+> bindings in commit 1202a442a31f ("dt-bindings: thermal: Add yaml bindings
+> for thermal zones") put this at /thermal-zones.
+> Fix dtb_check warning by moving the thermal-zones node to /
+> 
+> Fixes: e7251ed74ef7 ("arm64: dts: meson: g12: Add minimal thermal zone")
+> Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+> ---
+> I admit I'm a bit unsure about the 'Fixes' tag as at the time when those
+> thermal-zones were added there was no schema present. So there was no bug at
+> the time of writing. I'm ok either way.
 
-[1/2] soc: samsung: exynos-chipid: add exynosautov9 SoC support
-      commit: b417d1e88f32645ed62a00d43c347b4386a0a021
-[2/2] arm64: dts: exynos: add chipid node for exynosautov9 SoC
-      commit: b2f217cc7fbd3e6a097021b8b663328a649ea232
+I'm also unsure about it, either you list all commits that must be present for the fix to be applied,
+or remove it since it's not a bug.
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Neil
+
+> 
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 110 +++++++++---------
+>  1 file changed, 55 insertions(+), 55 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 00c6f53290d4..ff987e7ccff2 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -159,61 +159,6 @@ &clkc CLKID_PCIE_COMB
+>  			status = "disabled";
+>  		};
+>  
+> -		thermal-zones {
+> -			cpu_thermal: cpu-thermal {
+> -				polling-delay = <1000>;
+> -				polling-delay-passive = <100>;
+> -				thermal-sensors = <&cpu_temp>;
+> -
+> -				trips {
+> -					cpu_passive: cpu-passive {
+> -						temperature = <85000>; /* millicelsius */
+> -						hysteresis = <2000>; /* millicelsius */
+> -						type = "passive";
+> -					};
+> -
+> -					cpu_hot: cpu-hot {
+> -						temperature = <95000>; /* millicelsius */
+> -						hysteresis = <2000>; /* millicelsius */
+> -						type = "hot";
+> -					};
+> -
+> -					cpu_critical: cpu-critical {
+> -						temperature = <110000>; /* millicelsius */
+> -						hysteresis = <2000>; /* millicelsius */
+> -						type = "critical";
+> -					};
+> -				};
+> -			};
+> -
+> -			ddr_thermal: ddr-thermal {
+> -				polling-delay = <1000>;
+> -				polling-delay-passive = <100>;
+> -				thermal-sensors = <&ddr_temp>;
+> -
+> -				trips {
+> -					ddr_passive: ddr-passive {
+> -						temperature = <85000>; /* millicelsius */
+> -						hysteresis = <2000>; /* millicelsius */
+> -						type = "passive";
+> -					};
+> -
+> -					ddr_critical: ddr-critical {
+> -						temperature = <110000>; /* millicelsius */
+> -						hysteresis = <2000>; /* millicelsius */
+> -						type = "critical";
+> -					};
+> -				};
+> -
+> -				cooling-maps {
+> -					map {
+> -						trip = <&ddr_passive>;
+> -						cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> -					};
+> -				};
+> -			};
+> -		};
+> -
+>  		ethmac: ethernet@ff3f0000 {
+>  			compatible = "amlogic,meson-g12a-dwmac",
+>  				     "snps,dwmac-3.70a",
+> @@ -2415,6 +2360,61 @@ mali: gpu@ffe40000 {
+>  		};
+>  	};
+>  
+> +	thermal-zones {
+> +		cpu_thermal: cpu-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&cpu_temp>;
+> +
+> +			trips {
+> +				cpu_passive: cpu-passive {
+> +					temperature = <85000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "passive";
+> +				};
+> +
+> +				cpu_hot: cpu-hot {
+> +					temperature = <95000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "hot";
+> +				};
+> +
+> +				cpu_critical: cpu-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		ddr_thermal: ddr-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&ddr_temp>;
+> +
+> +			trips {
+> +				ddr_passive: ddr-passive {
+> +					temperature = <85000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "passive";
+> +				};
+> +
+> +				ddr_critical: ddr-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map {
+> +					trip = <&ddr_passive>;
+> +					cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>  	timer {
+>  		compatible = "arm,armv8-timer";
+>  		interrupts = <GIC_PPI 13
+> 
+
