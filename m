@@ -2,161 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F31843ABDB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 07:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A995543AC04
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 08:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234724AbhJZFvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 01:51:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50232 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbhJZFvx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 01:51:53 -0400
-Received: from mail-ua1-x92a.google.com (mail-ua1-x92a.google.com [IPv6:2607:f8b0:4864:20::92a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216F9C061745;
-        Mon, 25 Oct 2021 22:49:30 -0700 (PDT)
-Received: by mail-ua1-x92a.google.com with SMTP id e10so26961646uab.3;
-        Mon, 25 Oct 2021 22:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Bt8gnFZ7zRXlSxTO50E3NK4ULqXSpvY8WAtWfScUzG0=;
-        b=XvlFPA3yn+iFCXaotivzTIsO+qWlf16GeSElUXWhG3T3M9m/Cj9lW+Yis0yZVM7Cli
-         vKCdl96OEhYMK1MTRZawjaTvU6V4HpDmET0j42lb6aoehCLXEEFXiZ2MeNJteE/GGM7o
-         9mQsk2a1v+CRVPTfZblzsemULBqhRmIKc89xxSl9927Sg0jgb3sKpwM3FnEcPd/RJa7Z
-         nV7eA2eiYNuGBo6WxrF0ARaFqnkRGFn/OQRspkOZO0TLHN3fOJkXFr0LNIgw3kN+i55d
-         UIa5jCN2Xz0OQEeYBxiXb1zz2oYugJ41JVM93ww9jae/5a/JfwWAvARto7/adB/1YE9c
-         +h1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Bt8gnFZ7zRXlSxTO50E3NK4ULqXSpvY8WAtWfScUzG0=;
-        b=40TUtplK/NQHD0Uo3olavEDjG6+2VitGt89BuljoXrSrA5ScS+oj67x7nBqvqJg7vT
-         4oLRV4Fta6CbLINaMHn6W9f+nY3rR88QDReX+TKRhQxG8tX6hA36MdFr7/h0HESno3YE
-         hKDF+SxrlkPm5sFLa0G/hVtDRD3jQ3mX+mJydOh2YHOrYq+n+EbOs1qu/pD1O58w+CIG
-         khYeo7HcqRsW3SX/gEQ7EOFZmZuaGKw7pnr6Zra6BplTrUSzhizMopT98k2wNCPDty9A
-         pJso1xSLhF5KUIMI4RuIZHLam5G4TKGBVtlJvcn5ujFlakQ+nQyVv0QSA+Bamoo1Z9zb
-         4mEA==
-X-Gm-Message-State: AOAM5322/cFDImA8sTEQMpzgF1VDI525lZoSbeLznrUkvPFnIwsMX+uc
-        1ULmGI9j2JuILv+QUaN0UwlVX7Sejv9uT3C99gc=
-X-Google-Smtp-Source: ABdhPJwwQ1QduqebQ2QK3PagmHcpgq321TdFHCBaZL1Z8yoc0Ad/iVuajzcpNOgd85uNPT6zLUnZgT57V0K/7wzLMZM=
-X-Received: by 2002:a9f:3523:: with SMTP id o32mr13839895uao.131.1635227368384;
- Mon, 25 Oct 2021 22:49:28 -0700 (PDT)
+        id S231829AbhJZGMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 02:12:45 -0400
+Received: from mx3.molgen.mpg.de ([141.14.17.11]:44775 "EHLO mx1.molgen.mpg.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231134AbhJZGMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 02:12:44 -0400
+Received: from [192.168.0.2] (ip5f5aef4c.dynamic.kabel-deutschland.de [95.90.239.76])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmenzel)
+        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 5DC7F61E6478B;
+        Tue, 26 Oct 2021 08:10:18 +0200 (CEST)
+Message-ID: <24f55e7d-2f2d-2181-2265-7365d648be8f@molgen.mpg.de>
+Date:   Tue, 26 Oct 2021 08:10:18 +0200
 MIME-Version: 1.0
-References: <CAMhs-H90rD8aHJ+txDzFZ62Ej9_TY=BZMT+1058d=Pm_LfYwPA@mail.gmail.com>
- <20211025211236.GA31293@bhelgaas>
-In-Reply-To: <20211025211236.GA31293@bhelgaas>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Tue, 26 Oct 2021 07:49:16 +0200
-Message-ID: <CAMhs-H_HL3OxfN7dCwbeqjwwufaNWEJJCfQeYk+42CVK8=69Ew@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
- controller driver
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        John Crispin <john@phrozen.org>, NeilBrown <neil@brown.name>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        linux-staging@lists.linux.dev,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH 01/10] clk: aspeed: ast2600: Porting sdhci clock source
+Content-Language: en-US
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Cc:     robh+dt@kernel.org, joel@jms.id.au, mturquette@baylibre.com,
+        sboyd@kernel.org, adrian.hunter@intel.com,
+        linux-aspeed@lists.ozlabs.org, openbmc@lists.ozlabs.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, andrew@aj.id.au, BMC-SW@aspeedtech.com,
+        steven_lee@aspeedtech.com
+References: <20210922103116.30652-1-chin-ting_kuo@aspeedtech.com>
+ <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
+From:   Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20210922103116.30652-2-chin-ting_kuo@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 11:12 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Fri, Oct 22, 2021 at 11:13:39AM +0200, Sergio Paracuellos wrote:
-> > On Fri, Oct 22, 2021 at 10:35 AM Lorenzo Pieralisi
-> > <lorenzo.pieralisi@arm.com> wrote:
-> > >
-> > > On Thu, Oct 21, 2021 at 09:23:35PM +0200, Sergio Paracuellos wrote:
-> > > > On Thu, Oct 21, 2021 at 8:11 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > >
-> > > > > On Thu, Oct 21, 2021 at 07:27:21PM +0200, Sergio Paracuellos wrote:
-> > > > > > On Thu, Oct 21, 2021 at 5:52 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > > > > > Since this is a PCIe (not conventional PCI) controller, I
-> > > > > > > vote for renaming these from:
-> > > > > > >
-> > > > > > >   PCI_MT7621
-> > > > > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
-> > > > > > >   drivers/pci/controller/pci-mt7621.c
-> > > > > > >
-> > > > > > > to:
-> > > > > > >
-> > > > > > >   PCIE_MT7621
-> > > > > > >   Documentation/devicetree/bindings/pci/mediatek,mt7621-pcie.yaml
-> > > > > > >   drivers/pci/controller/pcie-mt7621.c
-> > > > > > >
-> > > > > > > We have a mix of these, with many of the early PCIe
-> > > > > > > drivers being named "pci", but I think that was my mistake
-> > > > > > > and there's no reason to continue it.
-> > > > > >
-> > > > > > I see.
-> > > > > >
-> > > > > > > I can do this locally unless somebody objects.
-> > > > > >
-> > > > > > I have no problem at all. Only one question. Do you mean to
-> > > > > > change compatible string also, or only the name of the file?
-> > > > > > Let me know if I have to do anything.
-> > > > >
-> > > > > I didn't change the compatible string, to avoid a DT
-> > > > > incompatibility.  But I *did* change the Kconfig symbol to
-> > > > > PCIE_MT7621, which could require changes to out-of-tree
-> > > > > .configs.  I'm open to suggestions either way for both things.
-> > > >
-> > > > IMHO, I do think we should not worry about out-of-tree stuff at
-> > > > all.
-> > >
-> > > For Kconfig I tend to agree. For DT I see some "bindings" in the
-> > > staging tree are being deleted and published as official DT
-> > > bindings with this patchset but I believe we still have to keep
-> > > the compatible string backward compatibility regardless because
-> > > there may be firmware out there using it.
-> >
-> > The bindings txt file removed in staging with this patchset was also
-> > added by me three years ago[0], and has been changing until the YAML
-> > bindings are reviewed by Rob and driver updated accordly in this
-> > patchset.
-> >
-> > OpenWRT maintains its own file[1] which I don't know is updated or
-> > not according to the one in staging which I am pretending to
-> > properly mainline for 5.17. But yes, I agree there might be firmware
-> > out there using current compatible string.
-> >
-> > [0]: Commit 5451e22618b8 ("staging: mt7621-pci: dt-bindings: add dt
-> > bindings for mt7621 pcie controller")
-> > [1]: https://github.com/openwrt/openwrt/blob/master/target/linux/ramips/dts/mt7621.dtsi
->
-> OK, for now I left my rework as-is:
->
->   - changed CONFIG_PCI_MT7621 to CONFIG_PCIE_MT7621
->   - renamed mediatek,mt7621-pci.yaml to mediatek,mt7621-pcie.yaml
->   - renamed pci-mt7621.c to pcie-mt7621.c
->   - kept DT compatible string "mediatek,mt7621-pci" in .yaml and .c
->
-> I reason that the Kconfig and filename changes only affect people
-> building kernels or DTs, but a compatible string change would force a
-> DT update to be synchronized with a kernel update.
+Dear Chin-Ting,
 
-This is all ok for me, Bjorn. Thanks for doing this. I guess even if
-we don't force people to a DT update to synchronize things, since
-bindings have been changed until they have been approved, I guess most
-people must upgrade from early not approved DT early versions in any
-case. But in any case I guess that maintaining the compatible string
-is the safest thing to do.
 
->
-> Happy to change this if necessary.
+Thank you for your patch. Some small things.
 
-Best regards,
-    Sergio Paracuellos
+Please use imperative mood in the commit messages summary [1]:
 
->
-> Bjorn
+clk: aspeed: ast2600: Port SDHCI clock source
+
+On 22.09.21 12:31, Chin-Ting Kuo wrote:
+> - There are two clock sources used to generate
+>    SD/SDIO clock, APLL clock and HCLK (200MHz).
+>    User can select which clock source should be used
+>    by configuring SCU310[8].
+> - The SD/SDIO clock divider selection table SCU310[30:28]
+>    is different between AST2600-A1 and AST2600-A2/A3.
+>    For AST2600-A1, 200MHz SD/SDIO clock cannot be
+>    gotten by the dividers in SCU310[30:28] if APLL
+>    is not the multiple of 200MHz and HCLK is 200MHz.
+>    For AST2600-A2/A3, a new divider, "1", is added and
+>    200MHz SD/SDIO clock can be obtained by adopting HCLK
+>    as clock source and setting SCU310[30:28] to 3b'111.
+
+Please reference the datasheet name and version, and please reflow the 
+commit message for 75 characters per line.
+
+> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> ---
+>   drivers/clk/clk-ast2600.c | 69 ++++++++++++++++++++++++++++++++++-----
+>   1 file changed, 61 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/clk/clk-ast2600.c b/drivers/clk/clk-ast2600.c
+> index bc3be5f3eae1..a6778c18274a 100644
+> --- a/drivers/clk/clk-ast2600.c
+> +++ b/drivers/clk/clk-ast2600.c
+> @@ -168,6 +168,30 @@ static const struct clk_div_table ast2600_div_table[] = {
+>   	{ 0 }
+>   };
+>   
+> +static const struct clk_div_table ast2600_sd_div_a1_table[] = {
+> +	{ 0x0, 2 },
+> +	{ 0x1, 4 },
+> +	{ 0x2, 6 },
+> +	{ 0x3, 8 },
+> +	{ 0x4, 10 },
+> +	{ 0x5, 12 },
+> +	{ 0x6, 14 },
+> +	{ 0x7, 16 },
+> +	{ 0 }
+> +};
+> +
+> +static const struct clk_div_table ast2600_sd_div_a2_table[] = {
+> +	{ 0x0, 2 },
+> +	{ 0x1, 4 },
+> +	{ 0x2, 6 },
+> +	{ 0x3, 8 },
+> +	{ 0x4, 10 },
+> +	{ 0x5, 12 },
+> +	{ 0x6, 14 },
+> +	{ 0x7, 1 },
+> +	{ 0 }
+> +};
+> +
+>   /* For hpll/dpll/epll/mpll */
+>   static struct clk_hw *ast2600_calc_pll(const char *name, u32 val)
+>   {
+> @@ -424,6 +448,11 @@ static const char *const emmc_extclk_parent_names[] = {
+>   	"mpll",
+>   };
+>   
+> +static const char *const sd_extclk_parent_names[] = {
+> +	"hclk",
+> +	"apll",
+> +};
+> +
+>   static const char * const vclk_parent_names[] = {
+>   	"dpll",
+>   	"d1pll",
+> @@ -523,18 +552,42 @@ static int aspeed_g6_clk_probe(struct platform_device *pdev)
+>   		return PTR_ERR(hw);
+>   	aspeed_g6_clk_data->hws[ASPEED_CLK_EMMC] = hw;
+>   
+> -	/* SD/SDIO clock divider and gate */
+> -	hw = clk_hw_register_gate(dev, "sd_extclk_gate", "hpll", 0,
+> -			scu_g6_base + ASPEED_G6_CLK_SELECTION4, 31, 0,
+> -			&aspeed_g6_clk_lock);
+> +	clk_hw_register_fixed_rate(NULL, "hclk", NULL, 0, 200000000);
+> +
+> +	regmap_read(map, 0x310, &val);
+> +	hw = clk_hw_register_mux(dev, "sd_extclk_mux",
+> +				 sd_extclk_parent_names,
+> +				 ARRAY_SIZE(sd_extclk_parent_names), 0,
+> +				 scu_g6_base + ASPEED_G6_CLK_SELECTION4, 8, 1,
+> +				 0, &aspeed_g6_clk_lock);
+>   	if (IS_ERR(hw))
+>   		return PTR_ERR(hw);
+> -	hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
+> -			0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
+> -			ast2600_div_table,
+> -			&aspeed_g6_clk_lock);
+> +
+> +	hw = clk_hw_register_gate(dev, "sd_extclk_gate", "sd_extclk_mux",
+> +				  0, scu_g6_base + ASPEED_G6_CLK_SELECTION4,
+> +				  31, 0, &aspeed_g6_clk_lock);
+>   	if (IS_ERR(hw))
+>   		return PTR_ERR(hw);
+> +
+> +	regmap_read(map, 0x14, &val);
+> +	/* AST2600-A2/A3 clock divisor is different from AST2600-A1 */
+> +	if (((val & GENMASK(23, 16)) >> 16) >= 2) {
+> +		/* AST2600-A2/A3 */
+> +		hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
+> +					0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
+> +					ast2600_sd_div_a2_table,
+> +					&aspeed_g6_clk_lock);
+> +		if (IS_ERR(hw))
+> +			return PTR_ERR(hw);
+> +	} else {
+> +		/* AST2600-A1 */
+> +		hw = clk_hw_register_divider_table(dev, "sd_extclk", "sd_extclk_gate",
+> +					0, scu_g6_base + ASPEED_G6_CLK_SELECTION4, 28, 3, 0,
+> +					ast2600_sd_div_a1_table,
+> +					&aspeed_g6_clk_lock);
+> +		if (IS_ERR(hw))
+> +			return PTR_ERR(hw);
+> +	}
+>   	aspeed_g6_clk_data->hws[ASPEED_CLK_SDIO] = hw;
+>   
+>   	/* MAC1/2 RMII 50MHz RCLK */
+> 
+
+Does Linux already log, if A1 or A2/A3 is detected?
+
+Should a debug message be added, what clock divisor is used?
+
+
+Kind regards,
+
+Paul
