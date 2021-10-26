@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F99D43BC17
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68C8343BC1E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235356AbhJZVLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 17:11:14 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:45666 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239452AbhJZVLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:11:07 -0400
-Received: by mail-oi1-f172.google.com with SMTP id z126so432955oiz.12;
-        Tue, 26 Oct 2021 14:08:42 -0700 (PDT)
+        id S235666AbhJZVPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:15:24 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:36625 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232025AbhJZVPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:15:23 -0400
+Received: by mail-ot1-f53.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so594765otk.3;
+        Tue, 26 Oct 2021 14:12:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NdXK3HgVQA4wG/WIv8xw1PiMsq8Yo/IpQgy8pf9x8cc=;
-        b=RVCSJ3kIngKrBc3vOykFlmToOuUJA3L7kGB0kK8iX9oYo57V4SiIy4MrhO7wPj0WNJ
-         hcC3MMomVbiyNk1UzIUDNR6aicnr1GkKu/n1A3rKUz5zY3kJhuDSru6fgAM0+J02ol9M
-         iFzJCWLvO04ujHpVONrRi1WHoihlteScKVp5Ua09Q3nqNNRiy3EpX7NOK7VEyseTT8td
-         Oe/0cSsqO6iYLImDPOS9JeX4+hMewBdPairvWyyQJ3RcUh/4EOC7sY1VxPyGRYqJNuR3
-         LBEF9mOTtGgYybjChJI6fEhfXJEiRzLBVaYzysp93sdazF7qsCe+wZpoUVU0rfVyxZ11
-         S5ew==
-X-Gm-Message-State: AOAM532dLTHCJltl7ArQNiWKSi15tRi1SpiUDiG8Ej4MMpMgarlrgljL
-        u+rebUN/AW8PQUu6WV6H7Q==
-X-Google-Smtp-Source: ABdhPJxpMg6g9+Q4FWWLYqlTpzb38jgJYimtMXdtH5tO0Yf+Nxl3zn/EL9erbhJya5/MpTAJsSqCog==
-X-Received: by 2002:a05:6808:1246:: with SMTP id o6mr863920oiv.136.1635282522259;
-        Tue, 26 Oct 2021 14:08:42 -0700 (PDT)
+        bh=3IzaGKpNTku7T9mnwOZXwZm2WDJJXKS3wu9MraOSP/s=;
+        b=StHlQlXn2lFAozr0bhNhAZDW/x+swcHIHpG3xl6sh7jbmQxflknpJIZi4IuJLFe7Kt
+         p2vcaYZ1fWkxfi820XWmSACgnbyyMkxWC2E1vuKXETbIHjMyKy+CRvkVM5chLCVSF2XL
+         AiUkynGGg3Oow8vN9Jp99Iz1glMSfTfk2581DARMhL9uLXZy54ZFkbyGMtLwtDWOL4Sn
+         k6cul+Widq8l/5qZALBsF4Ufq8iymWHRlZEhFu1vw0mLfsFlrqEarI/ZMfTNjbAzCSUW
+         vllDBSyvfQ+DooMfyVfUNp7oOqi8YC7wI9uCnMT4tb/FZ4oP3fpDeZMtfeKvrBe28+Di
+         rKCw==
+X-Gm-Message-State: AOAM532wIDczuf4Dd+pdwnIc2TO6a+g4U0jIUZI7lBkRk6Jtb9DKhu2C
+        yekWQ/tBYKmfiDvmP5vLEg==
+X-Google-Smtp-Source: ABdhPJxLE2vdj5P0iOzFDhLQUztXrE71ljTlYfkq4U1asAbcxaxhGd64tMwaQxBSGL4rbWB/RFrfqw==
+X-Received: by 2002:a9d:734d:: with SMTP id l13mr21835473otk.238.1635282779328;
+        Tue, 26 Oct 2021 14:12:59 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o12sm4880729oti.21.2021.10.26.14.08.41
+        by smtp.gmail.com with ESMTPSA id w17sm5005333otm.50.2021.10.26.14.12.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 14:08:41 -0700 (PDT)
-Received: (nullmailer pid 3252847 invoked by uid 1000);
-        Tue, 26 Oct 2021 21:08:40 -0000
-Date:   Tue, 26 Oct 2021 16:08:40 -0500
+        Tue, 26 Oct 2021 14:12:58 -0700 (PDT)
+Received: (nullmailer pid 3260336 invoked by uid 1000);
+        Tue, 26 Oct 2021 21:12:57 -0000
+Date:   Tue, 26 Oct 2021 16:12:57 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     phone-devel@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Andy Gross <agross@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Stephen Boyd <sboyd@kernel.org>, Ilia Lin <ilia.lin@kernel.org>
-Subject: Re: [PATCH 2/8] dt-bindings: clk: qcom: msm8996-apcc: Add MSM8996
- Pro compatible
-Message-ID: <YXhuWKZUyT1VqHSV@robh.at.kernel.org>
-References: <20211014083016.137441-1-y.oudjana@protonmail.com>
- <20211014083016.137441-3-y.oudjana@protonmail.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        David Jander <david@protonic.nl>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add an entry for
+ JOZ BV
+Message-ID: <YXhvWbkGJA2GAFeI@robh.at.kernel.org>
+References: <20211014083313.26671-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211014083016.137441-3-y.oudjana@protonmail.com>
+In-Reply-To: <20211014083313.26671-1-o.rempel@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Oct 2021 08:32:04 +0000, Yassine Oudjana wrote:
-> Add a compatible string for msm8996pro-apcc.
+On Thu, 14 Oct 2021 10:33:11 +0200, Oleksij Rempel wrote:
+> Add "joz" entry for JOZ BV: https://joz.nl/en/about-joz/
 > 
-> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,msm8996-apcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
