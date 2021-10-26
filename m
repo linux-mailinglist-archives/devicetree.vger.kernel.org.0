@@ -2,81 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7FF143AE4A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 10:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8323243AE07
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 10:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbhJZIsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 04:48:39 -0400
-Received: from 10.mo584.mail-out.ovh.net ([188.165.33.109]:38171 "EHLO
-        10.mo584.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbhJZIsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 04:48:39 -0400
-X-Greylist: delayed 599 seconds by postgrey-1.27 at vger.kernel.org; Tue, 26 Oct 2021 04:48:38 EDT
-Received: from player693.ha.ovh.net (unknown [10.109.146.211])
-        by mo584.mail-out.ovh.net (Postfix) with ESMTP id 54F922360E
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:29:10 +0000 (UTC)
-Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player693.ha.ovh.net (Postfix) with ESMTPSA id 599E82393585A;
-        Tue, 26 Oct 2021 08:29:03 +0000 (UTC)
-Authentication-Results: garm.ovh; auth=pass (GARM-95G001d1689758-4ca3-4b32-85ae-c73bd53dff71,
-                    D2D2DA125972966749BCF64AB0EA86670254DB21) smtp.auth=rafal@milecki.pl
-X-OVh-ClientIp: 194.187.74.233
-Message-ID: <0f1f7596-2529-845f-9d5e-fee622e9a767@milecki.pl>
-Date:   Tue, 26 Oct 2021 10:29:01 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101
- Thunderbird/94.0
-Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: define RTL8365MB switch on Asus
- RT-AC88U
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        id S234324AbhJZIeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 04:34:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233763AbhJZIeJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 04:34:09 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8B8DC061745
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 01:31:45 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id r6so14232957ljg.6
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 01:31:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hvjBpS0WQUpHH6xnR9S7oADkbGeXX564pPdc4gb5058=;
+        b=VZcjvQUL5lvIUQb7JbjlWotIYeRbEvfm5KDsiTM3mSpS4I5z/RcS3NbV75bZbHlTp7
+         LQcIJRuiLdhEklLz2y7Ca8kne37wZk5Ruqr9O+IePFhNMcaSi+9kdW4NDTTmcMeacCnR
+         l9XQ+tFYGPMNyI9obP1G/xDghH4J4bgVe533MjaSFxH2XxPVItbqio9DpAhbzDfG61iP
+         sgbPcY+WBijIyh8ymmeOjSAvNOMtaVSiXyFKy/y9uw/OpyRJiZ5rDQsTceQrnI4gMoDK
+         4H2fMckERh/J+BnK8QwmWie/zThPezP0IRy0Gn238hR1xAKPlWUm1cqA3NKGCmUjJ1fr
+         cMvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hvjBpS0WQUpHH6xnR9S7oADkbGeXX564pPdc4gb5058=;
+        b=fh0vw27Lr4uTMIKIW5AlGEcfGxXk+qLjZA5u8uOn8haN8dK4zCRemiivZ63SPf1/B4
+         TmY94lhu1WIBPAR1kcdVWDRKbQW04MgVIAnviCoT7WAs1otBLAL6GExX2JMNyj4xzAo+
+         bVdNh/soN8NLxPh4N+RNjCfoGCqebW+n0yHqA6Z6ermJ/i5EO1+u1G+VfPZVBaD3ndZg
+         xPiIMkr8h5ZIYr4HWX9ZZbAQJ2P/G+o5peftmtQ1GAS6/pNEIl7cRUhbI9OsfeheFCTi
+         kxWkDaMAE5s7f9Ev+M9IIk4wo1KHFeZJEcpWSmj2rvoSZP89YcFkJIqWD5ZOsa+nbXOo
+         tk9g==
+X-Gm-Message-State: AOAM532i/If+AJkZmD5ExQ5Yo2bhW/6fe3JLgta8AIkFKlSnFn43DXm2
+        ubkgVA6Qi5mppCYBKvhXKODrww==
+X-Google-Smtp-Source: ABdhPJzsA7vMWo/V630/oC1Bt0cC2WhkKii/4cRJucj3IpqEe90SIEX/iuuHl24z8jwZtEvJNccrHA==
+X-Received: by 2002:a05:651c:1506:: with SMTP id e6mr24696526ljf.129.1635237104122;
+        Tue, 26 Oct 2021 01:31:44 -0700 (PDT)
+Received: from jade.urgonet (h-94-254-48-165.A175.priv.bahnhof.se. [94.254.48.165])
+        by smtp.gmail.com with ESMTPSA id e4sm1944598ljn.131.2021.10.26.01.31.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Oct 2021 01:31:43 -0700 (PDT)
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Cc:     Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20211025213926.21203-1-arinc.unal@arinc9.com>
- <20211025213926.21203-2-arinc.unal@arinc9.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-In-Reply-To: <20211025213926.21203-2-arinc.unal@arinc9.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Marc Zyngier <maz@kernel.org>, jens.vankeirsbilck@kuleuven.be,
+        Jens Wiklander <jens.wiklander@linaro.org>
+Subject: [PATCH v7 0/6] Asynchronous notifications from secure world
+Date:   Tue, 26 Oct 2021 10:31:32 +0200
+Message-Id: <20211026083138.1818705-1-jens.wiklander@linaro.org>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 13571034527869807450
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefjedgtdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepgfetgfetuddujedujeduvddvgfffudeuudeuhedtffevvdetvddvveffgfdvjeffnecuffhomhgrihhnpehrmhhilhgvtghkihdrlhhotggrlhenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieelfedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.10.2021 23:39, Arınç ÜNAL wrote:
-> Define the Realtek RTL8365MB switch without interrupt support on the device tree of Asus RT-AC88U.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+Hi all,
 
-./scripts/checkpatch.pl doesn't like formatting in your patch:
+This adds support for asynchronous notifications from OP-TEE in secure
+world to the OP-TEE driver. This allows a design with a top half and bottom
+half type of driver where the top half runs in secure interrupt context and
+a notifications tells normal world to schedule a yielding call to do the
+bottom half processing.
 
-WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9:
-Define the Realtek RTL8365MB switch without interrupt support on the device tree of Asus RT-AC88U.
+An edge-triggered interrupt is used to notify the driver that there are
+asynchronous notifications pending.
+
+Only the SMC based ABI of the OP-TEE driver gains asynchronous
+notifications. Future support for asynchronous notifications in the FF-A
+based ABI will rely on APIs which are expected to be provided by the FF-A
+driver in a not too distant future.
+
+Most of the patches here are well reviewed, but the last patch "optee: add
+asynchronous notifications" could do with some more attention.
+
+This patchset is also available at
+https://git.linaro.org/people/jens.wiklander/linux-tee.git/log/?h=async_notif_v7
+
+v6->v7:
+* Rebased on 4615e5a34b95 ("optee: add FF-A support") in
+  https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git with
+  34f3c67b8178 ("optee: smc_abi.c: add missing #include <linux/mm.h>")
+  cherry-picked on top. This allows to resolve the conflicts with
+  pull request "[GIT PULL] OP-TEE FF-A for V5.16"
+* Factored out the interrupt handling added in "optee: add asynchronous
+  notifications" to only go into smb_abi.c. A different approach is
+  expected with FF-A once it has asynchronous notifications.
+* Addressed review comments from Sumit Garg:
+  - Replaced 0 and 1 with the macros GIC_SPI and IRQ_TYPE_EDGE_RISING in
+    the example in the bindings.
+  - Replaced the magic number to optee_notif_init() with
+    OPTEE_DEFAULT_MAX_NOTIF_VALUE in the commit "optee: separate notification
+    functions"
+  - Switched back to tagged error path in optee_probe()
+  - Fixed a few nits in "optee: add asynchronous notifications"
+  - Applied Sumit's Reviewed-by on all commits but the last,
+    "optee: add asynchronous notifications"
+
+v5->v6:
+* Rebased on v5.15-rc2
+* Replaced "tee: add tee_dev_open_helper() primitive" with "tee: export
+  teedev_open() and teedev_close_context()" since it turned out that the
+  normal teedev functions could be used instead as noted by Sumit.
+* Changed "optee: add asynchronous notifications" to use the exported
+  teedev_open() and teedev_close_context() functions instead.
+
+v4->v5:
+* Rebased on v5.14-rc7
+* Updated documentation to clarify that one interrupt may represent multiple
+  notifications as requested.
+* Applied Marc's and Rob's tags
+
+v3->v4:
+* Clarfied the expected type of interrypt is edge-triggered, both in
+  the normal documentation and in the DT bindings as requested.
+
+v2->v3:
+* Rebased on v5.14-rc2 which made the patch "dt-bindings: arm: Convert
+  optee binding to json-schema" from the V2 patch set obsolete.
+* Applied Ard's Acked-by on "optee: add asynchronous notifications"
+
+v1->v2:
+* Added documentation
+* Converted optee bindings to json-schema and added interrupt property
+* Configure notification interrupt from DT instead of getting it
+  from secure world, suggested by Ard Biesheuvel <ardb@kernel.org>.
+
+Thanks,
+Jens
 
 
-This change introduces new "make ARCH=arm dtbs_check" validation
-warnings / errors:
 
-arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml:0:0: /switch: failed to match any schema with compatible: ['realtek,rtl8365mb']
-arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml:0:0: /switch/mdio: failed to match any schema with compatible: ['realtek,smi-mdio']
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@0: '#phy-cells' is a required property
-         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@1: '#phy-cells' is a required property
-         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@2: '#phy-cells' is a required property
-         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
-/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@3: '#phy-cells' is a required property
-         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
+Jens Wiklander (6):
+  docs: staging/tee.rst: add a section on OP-TEE notifications
+  dt-bindings: arm: optee: add interrupt property
+  tee: fix put order in teedev_close_context()
+  tee: export teedev_open() and teedev_close_context()
+  optee: separate notification functions
+  optee: add asynchronous notifications
 
-the first two are caused by realtek-smi.txt not being converted to YAML.
-Ignore them.
+ .../arm/firmware/linaro,optee-tz.yaml         |   7 +
+ Documentation/staging/tee.rst                 |  30 +++
+ drivers/tee/optee/Makefile                    |   1 +
+ drivers/tee/optee/core.c                      |   2 +-
+ drivers/tee/optee/ffa_abi.c                   |   6 +-
+ drivers/tee/optee/notif.c                     | 125 +++++++++
+ drivers/tee/optee/optee_msg.h                 |   9 +
+ drivers/tee/optee/optee_private.h             |  28 ++-
+ drivers/tee/optee/optee_rpc_cmd.h             |  31 +--
+ drivers/tee/optee/optee_smc.h                 |  75 +++++-
+ drivers/tee/optee/rpc.c                       |  71 +-----
+ drivers/tee/optee/smc_abi.c                   | 238 +++++++++++++++---
+ drivers/tee/tee_core.c                        |  10 +-
+ include/linux/tee_drv.h                       |  14 ++
+ 14 files changed, 522 insertions(+), 125 deletions(-)
+ create mode 100644 drivers/tee/optee/notif.c
 
-Later are caused by using phy@ instead of ethernet-phy@ and have to be
-fixed.
+-- 
+2.31.1
+
