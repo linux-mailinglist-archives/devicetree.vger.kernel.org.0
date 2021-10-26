@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FABD43BA4B
+	by mail.lfdr.de (Postfix) with ESMTP id E8DE343BA4C
 	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 21:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236876AbhJZTJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230324AbhJZTJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 26 Oct 2021 15:09:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44794 "EHLO mail.kernel.org"
+Received: from mail.kernel.org ([198.145.29.99]:44860 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230324AbhJZTJK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 15:09:10 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3AD496103C;
-        Tue, 26 Oct 2021 19:06:44 +0000 (UTC)
+        id S234008AbhJZTJN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 15:09:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C23F461078;
+        Tue, 26 Oct 2021 19:06:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635275206;
-        bh=8yKOhdKe8YhlO4BO36otqHmmQF6F/cZiYq4YijJBk70=;
+        s=k20201202; t=1635275209;
+        bh=1iYw4lIhjrHBv1FHjuNGWwXkA/++TWK5/5GGig2CxhQ=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Lk08ump9vonhI/303D2pHKyP67+8AOoedqMhekDplTD5TnDiNqbzTcyY4KnwzUbfY
-         JWafjMqCprBQuzpSppEUs5THvm/q/TVrB5/GZtiAsLrXyFZdcsoz/5yr0PZBmHSzUd
-         LhJgcOVkIyIxqfIwwCZwYCFIhzy/3LhvUF0XC/XlPAA1Z1izeJagtWMLnQLHu87Jms
-         Bw2rgaQZoMm7xeIA83Bmn5KA3rtaYErlqUHn5ReEQH3LCkud2RKbwPA/gnNECb9Qff
-         GwrQQHRGwJptZnKoXQc0P0OozaoWeSv3ThvUDBj7Z49EPgVSjOHdhVsCWc2+bSn7nD
-         o7S8+Me4aOTZw==
+        b=HKvmFoN77WOr9TwR0bIyIY4Uv6Mg43Q/Q5+/MZHWqYqk0/lEazOGS/GvNc3Vo3NTt
+         oCjx5nhfqR/oH7VdtJkF/o7cVqHGZc/S816PeJmZ5kuMAgA3DBvC2cgCY/dUWVxv64
+         ic4c8EQYu/72TquDamqrmvqVl8FwUc+tnlxRcf6Kl6lH1CW2H+H8W+noZxfHZG0ZZc
+         Bxf6A81dbFfAK4Xh+ERttCo0yHX78RkcBU+zbJqvy9JmNH0gU/lPa6hHua3zUyu/TP
+         mJuX719SDprXrhxfx5wKx2FQ/zFvKnIP81IxvzCQ0LZt4kfMb7aki4s44gGy90VZ1l
+         5WlpqEbhyMFYw==
 From:   Mark Brown <broonie@kernel.org>
 To:     robh@kernel.org, bjorn.andersson@linaro.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     lgirdwood@gmail.com, tiwai@suse.de, devicetree@vger.kernel.org,
+Cc:     tiwai@suse.de, devicetree@vger.kernel.org,
         pierre-louis.bossart@linux.intel.com, bgoswami@codeaurora.org,
-        alsa-devel@alsa-project.org, plai@codeaurora.org, perex@perex.cz
-In-Reply-To: <20211025171649.17730-1-srinivas.kandagatla@linaro.org>
-References: <20211025171649.17730-1-srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v10 00/17] ASoC: qcom: Add AudioReach support
-Message-Id: <163527520397.2033755.17018333664812052592.b4-ty@kernel.org>
-Date:   Tue, 26 Oct 2021 20:06:43 +0100
+        alsa-devel@alsa-project.org, plai@codeaurora.org, perex@perex.cz,
+        lgirdwood@gmail.com
+In-Reply-To: <20211026103815.19468-1-srinivas.kandagatla@linaro.org>
+References: <20211026103815.19468-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [RESEND PATCH v10 00/17] ASoC: qcom: Add AudioReach support
+Message-Id: <163527520652.2033755.3359869966618651702.b4-ty@kernel.org>
+Date:   Tue, 26 Oct 2021 20:06:46 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,7 +42,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 18:16:32 +0100, Srinivas Kandagatla wrote:
+On Tue, 26 Oct 2021 11:37:58 +0100, Srinivas Kandagatla wrote:
+> Am resending this series as I ended up sending incorrect patches for v10.
+> 
+> Sorry for the resend noise.
+> 
 > This version is a respin of v9 fixing a build error in 12/17 patch.
 > 
 > QCOM SoC relevant non-audio patches in this series has been merged into
