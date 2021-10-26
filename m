@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D8543ADCF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 10:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7FF143AE4A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 10:46:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233200AbhJZIOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 04:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbhJZIOB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 04:14:01 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29244C061745
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 01:11:38 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id h193so13389996pgc.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 01:11:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=XOycsyS8WRs8WZM/52QyGEA5jLYLxAJ/W6Zuel7qkRA=;
-        b=XhkMtoMx3DvL3Xg59E0yYOCmbrpzk659fY+9OOVebS3KOQG9YsEAGnRAdkRotLQOUz
-         Pkc2ryt4GEGz+XsSYIFYp/ToTrb88h/k4p9cYBWTmqy+8gxP4ArGzFtDIaraM0ltmjT2
-         s1TsjXz/2zSs2hFiCVBwLnuFRt/9Xkqyx/6Ci4uIi/+wwQBSdqzEB1VLYXL6ksyfYr0s
-         knujhaOMKvtw5K6AowRQ4tM8v7XMoJRpuAlpTJvN2CKMuHb0dvKV1kLHHhnADDqyQvCY
-         VO49/x4n+bUcbGO6vw1rPFUdrTJJfiokko3OM8w3YsDUeCDTg79z271fbhxfStSYyJ6t
-         OWbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=XOycsyS8WRs8WZM/52QyGEA5jLYLxAJ/W6Zuel7qkRA=;
-        b=ZU5JhvTIcnEu1E/m+pClCyo0xSWREIPSsEeYDxjotAtVVuv6/NskyrV5/3iDmESuvO
-         b6aDr8Da8NO373cC78AELbePascF1AjN9wHCnOZZDvAsriPA19y3HpHcDPVTpXQbmrXe
-         7lGYjamWmLLiu0DCPTlYIvUQln6Q+F8e4F5aEbBOzbPRjB4CQTffNWnHkEy1EG2+NU1M
-         BxMIC6tW91YJbDmK7HGcdNWI9rJbdU2cxkOZvC25lNVOEfEpEPosD1An+tmxeNRUbMDK
-         vmgWhPDihkJdl57itQgtXT7ggC9BGa+MqxlAootmwu4WHEuy+IUpCYsrGakKZCwpbPyN
-         oLjg==
-X-Gm-Message-State: AOAM531ishrXYjVetp7VdoB3m+1V63+COVOMuakTmEbHfq7o7iEUFltK
-        YrqYn1IU6y1wgkCogxHoZFXqX+uYYFIAI/pY1bo=
-X-Google-Smtp-Source: ABdhPJxPYDSMCfWTcAz6nXk2rtdGKesVXxXcR6a4KC+35Jo6xRCqbHxvYClVveXOVN405x55KRs5zYjsJDhDpTu69Ro=
-X-Received: by 2002:a63:b609:: with SMTP id j9mr17661235pgf.132.1635235897051;
- Tue, 26 Oct 2021 01:11:37 -0700 (PDT)
+        id S232001AbhJZIsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 04:48:39 -0400
+Received: from 10.mo584.mail-out.ovh.net ([188.165.33.109]:38171 "EHLO
+        10.mo584.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229654AbhJZIsj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 04:48:39 -0400
+X-Greylist: delayed 599 seconds by postgrey-1.27 at vger.kernel.org; Tue, 26 Oct 2021 04:48:38 EDT
+Received: from player693.ha.ovh.net (unknown [10.109.146.211])
+        by mo584.mail-out.ovh.net (Postfix) with ESMTP id 54F922360E
+        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 08:29:10 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player693.ha.ovh.net (Postfix) with ESMTPSA id 599E82393585A;
+        Tue, 26 Oct 2021 08:29:03 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-95G001d1689758-4ca3-4b32-85ae-c73bd53dff71,
+                    D2D2DA125972966749BCF64AB0EA86670254DB21) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <0f1f7596-2529-845f-9d5e-fee622e9a767@milecki.pl>
+Date:   Tue, 26 Oct 2021 10:29:01 +0200
 MIME-Version: 1.0
-Received: by 2002:a05:6a10:1d86:0:0:0:0 with HTTP; Tue, 26 Oct 2021 01:11:36
- -0700 (PDT)
-Reply-To: ayishagddafio@mail.ru
-From:   Aisha Gaddafi <bunny2320123@gmail.com>
-Date:   Tue, 26 Oct 2021 01:11:36 -0700
-Message-ID: <CA+z0umHBv7szf0odrw25ATCyMmGux8KaCYLM4SkJjgvxDL2eew@mail.gmail.com>
-Subject: Dearest Friend,?
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101
+ Thunderbird/94.0
+Subject: Re: [PATCH 2/2] ARM: dts: BCM5301X: define RTL8365MB switch on Asus
+ RT-AC88U
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20211025213926.21203-1-arinc.unal@arinc9.com>
+ <20211025213926.21203-2-arinc.unal@arinc9.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <20211025213926.21203-2-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 13571034527869807450
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvdefjedgtdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepgfetgfetuddujedujeduvddvgfffudeuudeuhedtffevvdetvddvveffgfdvjeffnecuffhomhgrihhnpehrmhhilhgvtghkihdrlhhotggrlhenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieelfedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dearest Friend,
+On 25.10.2021 23:39, Arınç ÜNAL wrote:
+> Define the Realtek RTL8365MB switch without interrupt support on the device tree of Asus RT-AC88U.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 
-In the name of God, Most Gracious, Most Merciful.
+./scripts/checkpatch.pl doesn't like formatting in your patch:
 
-Peace be upon you and mercy be upon you and blessings be upon you.
-I have the sum of $27.5 million USD for investment, I am interested in
-you for investment project assistance in your country. My name is
-Aisha  Gaddafi and presently living in Oman, I am a Widow and single
-Mother with three Children, the only biological Daughter of late
-Libyan President (Late Colonel Muammar Gaddafi) and presently I am
-under political asylum protection by the Omani Government.
+WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#9:
+Define the Realtek RTL8365MB switch without interrupt support on the device tree of Asus RT-AC88U.
 
-Kindly reply urgently for more details.
 
-my email address below: ayishagddafio@mail.ru
-Thanks
-Yours Truly Aisha
+This change introduces new "make ARCH=arm dtbs_check" validation
+warnings / errors:
+
+arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml:0:0: /switch: failed to match any schema with compatible: ['realtek,rtl8365mb']
+arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml:0:0: /switch/mdio: failed to match any schema with compatible: ['realtek,smi-mdio']
+/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@0: '#phy-cells' is a required property
+         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
+/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@1: '#phy-cells' is a required property
+         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
+/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@2: '#phy-cells' is a required property
+         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
+/home/rmilecki/linux/linux-next/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dt.yaml: phy@3: '#phy-cells' is a required property
+         From schema: /home/rmilecki/.local/lib/python3.6/site-packages/dtschema/schemas/phy/phy-provider.yaml
+
+the first two are caused by realtek-smi.txt not being converted to YAML.
+Ignore them.
+
+Later are caused by using phy@ instead of ethernet-phy@ and have to be
+fixed.
