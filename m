@@ -2,230 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21A6843B291
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 14:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E92D43B319
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 15:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235072AbhJZMpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 08:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231224AbhJZMpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 08:45:15 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB52C061348
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 05:42:52 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id j9so16955818lfu.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 05:42:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HuPXxQ3Dx5OU5hbFOWVQiDy9S2Ab/pqOebTTCbBX458=;
-        b=yp/FjIP2ZykqVytABuEpEZO1uJnOPB/r5RSZXjwbbGVBknnnCJfGJQWPwFNhzbdWPx
-         5b0kfYV+PNchKANblo/AR1ip8GVyob81fsovi0Seo2WABuCQICdFeaudXFmfExFdFG+V
-         vObP8NA2YVpVe/PTSjnGvAnp5xI0ba/iq0RzglKYLQwkak+gTB+X/V98elp1ND8v/hmj
-         X0p+SnQmWdwr0VDaP1vCO6RbHkUkp2EC7S2H4hUoeLdabKo9lVnUhC3mSHjiYBx9j8DS
-         GqaG7gfuZpk7F5dsJE0ISRS6s48eNw/ffU02WhE6I6mUPjU0OcLCph0+shE4xvcCFSSA
-         eUgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HuPXxQ3Dx5OU5hbFOWVQiDy9S2Ab/pqOebTTCbBX458=;
-        b=Y2B51pa5u1cCkhZsTqbJ3zdJ+G7ChaKBfuC6nXQeo0t3CUZ/XpQ3KgvzRQVKl4oZjf
-         vqK1Q1JRrhOoUsAUmk+yZZMFPOOLSvrtyo2gqPsp6O9Bg+inNhU0NOhceA2ez9zvkCJf
-         NbrZMn12jlf6b6XHnTLSxcDgQOnYBdkSaT+XRDS3WVfDm6m/VM6dWkEFuBa+hGLl1x5L
-         rZhgEAjjQrSZl+oCbXR6kjaYMEgz7iP5Qdwu+ai+w3ZYIUINfaAE92wxccf9Vi4VjQPS
-         z+xYrJjleDAPNWeiz1MtaLrlvbItSxc8UzmTDMXosJ33KW9ULuZ5+zyvWn8F99b1wmpo
-         4PlA==
-X-Gm-Message-State: AOAM530zaCX1UTuELVfC7PYx1wE08HYqsnkWOwRDuZ4FRVHftKWmGL/B
-        hPuG8SpM/aBUiAifBP5Sv4vrLw==
-X-Google-Smtp-Source: ABdhPJwtr6cFDc91FwGgkx11o3XI6XVYbNqXOl252C5qhPNnoAkCmQISNhEGbYqHen0kRK1NV8MKuw==
-X-Received: by 2002:a05:6512:108e:: with SMTP id j14mr23034146lfg.274.1635252170309;
-        Tue, 26 Oct 2021 05:42:50 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o26sm2017103ljg.92.2021.10.26.05.42.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Oct 2021 05:42:49 -0700 (PDT)
-Subject: Re: [PATCH v12 2/5] arm64: dts: qcom: sc7280: Add PCIe and PHY
- related nodes
-To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, bhelgaas@google.com,
-        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dianders@chromium.org, mka@chromium.org, vbadigan@codeaurora.org,
-        sallenki@codeaurora.org, manivannan.sadhasivam@linaro.org,
-        linux-pci@vger.kernel.org
-References: <1633628923-25047-1-git-send-email-pmaliset@codeaurora.org>
- <1633628923-25047-3-git-send-email-pmaliset@codeaurora.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <70502702-3f55-46f2-46e4-d3dda4f0294d@linaro.org>
-Date:   Tue, 26 Oct 2021 15:42:47 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S236082AbhJZNXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 09:23:30 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:2950 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231178AbhJZNXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 09:23:30 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635254466; x=1666790466;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=+B0okMOOzcOhjz3TGoccFG745L17Bg3X75cyIf9gkXQ=;
+  b=Qi+9efMswg6fNdbY9YNtM2qgO9SKUItJKN7+PZ3dDGqUxRIfxH8H75wH
+   BZ+NEowylByKz4qMEORZLJwKn8iAASF+7yGJ0i0Ut3zcKowe7xUgAT311
+   mLcxcIl/ESMB7m2jM7ZuyMmPRXvdedAgCJm6aRIebHjZAiiQWBr+b8uR/
+   MLdwrFdrM7fXRdsUZGDG+CfdGougqqKxkPX+xPHOh7wafa7GSkb4CdVDz
+   yqNq9Y9wrSgg2NMIpDHqkCZPSraZkneDL62exVoB2G6kPGfEHLgdFRrxd
+   IEI3yYgDWimg7vm9QnbHgUUG19QC43z51JdIad9WgUZr4cIRJPZfWiJ2k
+   A==;
+IronPort-SDR: zSe+/AVIdjSh8dFU380kdj9tlrs3EYo/2LL4xdSTNv9V5eMtGjPaLqcEUwgHgfrXRMBDJZza1y
+ UKFfVDoCpP/uOc1fOFhRZCaDSwzNw/jOxYO/WIS8H33ZefAhKZnNmxmGDGWsy/ErnxXcFSwxHX
+ YsM/+A41i4rc0SURq3Ska7OaNBHLa4m2Hq2n37p9GlTmwUxspg+cmFD7v2Sc+NAGpb8cYnQgWe
+ Vi0P6YBL2iHP92/dVkrQUB+c+qVVjzw55ZUxCxd/4uN7CGKcjdBZ3MtntQ5cJYuhGixh3mIE7Y
+ uSmFtWuH5d7IrHgCiuIpg4vf
+X-IronPort-AV: E=Sophos;i="5.87,184,1631602800"; 
+   d="scan'208";a="134392532"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Oct 2021 06:21:05 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 26 Oct 2021 06:21:05 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 26 Oct 2021 06:21:00 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <devicetree@vger.kernel.org>
+CC:     <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <eugen.hristev@microchip.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Mihai Sain <mihai.sain@microchip.com>
+Subject: [PATCH] ARM: dts: at91: sama5d2_xplained: remove PA11__SDMMC0_VDDSEL from pinctrl
+Date:   Tue, 26 Oct 2021 16:20:34 +0300
+Message-ID: <20211026132034.678655-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <1633628923-25047-3-git-send-email-pmaliset@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/10/2021 20:48, Prasad Malisetty wrote:
-> Add PCIe controller and PHY nodes for sc7280 SOC.
-> 
-> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 118 +++++++++++++++++++++++++++++++++++
->   1 file changed, 118 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 39635da..cde814f 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -1563,6 +1563,117 @@
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> +		pcie1: pci@1c08000 {
-> +			compatible = "qcom,pcie-sc7280";
-> +			reg = <0 0x01c08000 0 0x3000>,
-> +			      <0 0x40000000 0 0xf1d>,
-> +			      <0 0x40000f20 0 0xa8>,
-> +			      <0 0x40001000 0 0x1000>,
-> +			      <0 0x40100000 0 0x100000>;
-> +
-> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
-> +			device_type = "pci";
-> +			linux,pci-domain = <1>;
-> +			bus-range = <0x00 0xff>;
-> +			num-lanes = <2>;
-> +
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +
-> +			ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-> +
-> +			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "msi";
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 0x7>;
-> +			interrupt-map = <0 0 0 1 &intc 0 434 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 2 &intc 0 435 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 3 &intc 0 438 IRQ_TYPE_LEVEL_HIGH>,
-> +					<0 0 0 4 &intc 0 439 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
-> +				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
-> +				 <&pcie1_lane 0>,
+From: Mihai Sain <mihai.sain@microchip.com>
 
-This should be just <&pcie1_lane>, as the phy doesn't have clock cells.
+I/O voltage for eMMC is always 3.3V because PA11__SDMMC0_VDDSEL is
+tied with 10K resistor to GND. U13 switch S1 is always selected as
+voltage rail of 3.3V for VCCQ power pin from MPU controller and eMMC flash.
+Removing PA11 from pinctrl because it remains unused.
 
-> +				 <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&gcc GCC_PCIE_1_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
-> +				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
-> +				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
-> +				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
-> +
-> +			clock-names = "pipe",
-> +				      "pipe_mux",
-> +				      "phy_pipe",
-> +				      "ref",
-> +				      "aux",
-> +				      "cfg",
-> +				      "bus_master",
-> +				      "bus_slave",
-> +				      "slave_q2a",
-> +				      "tbu",
-> +				      "ddrss_sf_tbu";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
-> +			assigned-clock-rates = <19200000>;
-> +
-> +			resets = <&gcc GCC_PCIE_1_BCR>;
-> +			reset-names = "pci";
-> +
-> +			power-domains = <&gcc GCC_PCIE_1_GDSC>;
-> +
-> +			phys = <&pcie1_lane>;
-> +			phy-names = "pciephy";
-> +
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pcie1_clkreq_n>;
-> +
-> +			iommus = <&apps_smmu 0x1c80 0x1>;
-> +
-> +			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
-> +				    <0x100 &apps_smmu 0x1c81 0x1>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		pcie1_phy: phy@1c0e000 {
-> +			compatible = "qcom,sm8250-qmp-gen3x2-pcie-phy";
-> +			reg = <0 0x01c0e000 0 0x1c0>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
-> +				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> +				 <&gcc GCC_PCIE_CLKREF_EN>,
-> +				 <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
-> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
-> +
-> +			resets = <&gcc GCC_PCIE_1_PHY_BCR>;
-> +			reset-names = "phy";
-> +
-> +			assigned-clocks = <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
-> +			assigned-clock-rates = <100000000>;
-> +
-> +			status = "disabled";
-> +
-> +			pcie1_lane: lanes@1c0e200 {
-> +				reg = <0 0x01c0e200 0 0x170>,
-> +				      <0 0x01c0e400 0 0x200>,
-> +				      <0 0x01c0ea00 0 0x1f0>,
-> +				      <0 0x01c0e600 0 0x170>,
-> +				      <0 0x01c0e800 0 0x200>,
-> +				      <0 0x01c0ee00 0 0xf4>;
-> +				clocks = <&gcc GCC_PCIE_1_PIPE_CLK>;
-> +				clock-names = "pipe0";
-> +
-> +				#phy-cells = <0>;
-> +				#clock-cells = <1>;
-> +				clock-output-names = "pcie_1_pipe_clk";
-> +			};
-> +		};
-> +
->   		ipa: ipa@1e40000 {
->   			compatible = "qcom,sc7280-ipa";
->   
-> @@ -2676,6 +2787,13 @@
->   			gpio-ranges = <&tlmm 0 0 175>;
->   			wakeup-parent = <&pdc>;
->   
-> +			pcie1_clkreq_n: pcie1-clkreq-n {
-> +				pins = "gpio79";
-> +				function = "pcie1_clkreqn";
-> +				drive-strength = <2>;
-> +				bias-pull-up;
-> +			};
-> +
->   			qspi_clk: qspi-clk {
->   				pins = "gpio14";
->   				function = "qspi_clk";
-> 
+Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
+---
+ arch/arm/boot/dts/at91-sama5d2_xplained.dts | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-
+diff --git a/arch/arm/boot/dts/at91-sama5d2_xplained.dts b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+index b1e854f658de..9bf2ec0ba3e2 100644
+--- a/arch/arm/boot/dts/at91-sama5d2_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d2_xplained.dts
+@@ -66,7 +66,7 @@ sdmmc0: sdio-host@a0000000 {
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_sdmmc0_default>;
+ 			non-removable;
+-			mmc-ddr-1_8v;
++			mmc-ddr-3_3v;
+ 			status = "okay";
+ 		};
+ 
+@@ -619,10 +619,9 @@ cmd_data {
+ 						bias-disable;
+ 					};
+ 
+-					ck_cd_rstn_vddsel {
++					ck_cd_rstn {
+ 						pinmux = <PIN_PA0__SDMMC0_CK>,
+ 							 <PIN_PA10__SDMMC0_RSTN>,
+-							 <PIN_PA11__SDMMC0_VDDSEL>,
+ 							 <PIN_PA13__SDMMC0_CD>;
+ 						bias-disable;
+ 					};
 -- 
-With best wishes
-Dmitry
+2.25.1
+
