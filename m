@@ -2,110 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D92FD43B785
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 18:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E00F543B7AE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 18:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237517AbhJZQuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 12:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59926 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237497AbhJZQuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 12:50:12 -0400
-Received: from mail-il1-x12e.google.com (mail-il1-x12e.google.com [IPv6:2607:f8b0:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2C2C061348
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 09:47:48 -0700 (PDT)
-Received: by mail-il1-x12e.google.com with SMTP id s3so18125522ild.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 09:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ieee.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=YKwRxPBjph63txYkU/60zXWK4/WhUFpeAqg9AkQ4hnM=;
-        b=Z9ToptDFzfh/mwbDivSN0t3grjkZ/mCL4ttDd6BrGK6Gt665J8VtTIu2PSSprYwIBc
-         zxg7iBNLk+3xYL/OwS3wZpZ6CnUC4lS1sqSArz9R/Soal4ljp93MM317irp1totwKITO
-         P+kwFix4j2veuUINrqKRyKDr5GDf/jKtrDqkg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YKwRxPBjph63txYkU/60zXWK4/WhUFpeAqg9AkQ4hnM=;
-        b=ojh1rBzI9HzXfAwc37jliRhlapLpP4ynpPSnmNUnTYxighNqInszxgSIqCRIbsh5mV
-         B9sg2CP/KwXVqrBh4282ymdxahnmSfLch6+4hA2CWG/7tcfIs+mYL0X7FmLR4OKz3IcI
-         00J9j6infYjYOfu6uy32y6ynbZ2dER3vSA1pO6/+bh2wvYOXg0ZTeC2JJu4wGnAH+xlo
-         EBGrggBMXpQmaMlt1dKRbAPa8RNm17pmsVUaEbCnssmPu+P9rn8IjlAzTFm2PY3Grz6o
-         0OXPE35EGkOsj6CTpEkLVWyfR88blDQsOuDYCv/pd0vyyUabrCFlmLG0qfa78rAtbY4O
-         o5cw==
-X-Gm-Message-State: AOAM531DZrqvmjgN9jf13FmggJiI4QYg9/zrq6qQp5KC+ajGBl9KCyfi
-        l+BmVV6K4KH+y7P2Vyf6rBgYtQ==
-X-Google-Smtp-Source: ABdhPJz4MwNT6x0eqE/fwWtC2vUza4je3EDZG0CcQCInRJtS+XYPOqPxaxjQXvslMpA88wGXPHKtbQ==
-X-Received: by 2002:a05:6e02:1a23:: with SMTP id g3mr4664396ile.103.1635266867924;
-        Tue, 26 Oct 2021 09:47:47 -0700 (PDT)
-Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.googlemail.com with ESMTPSA id s7sm11616003iow.31.2021.10.26.09.47.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Oct 2021 09:47:47 -0700 (PDT)
-Subject: Re: [PATCH v2] dt-bindings: net: qcom,ipa: IPA does support up to two
- iommus
-To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211026163240.131052-1-david@ixit.cz>
-From:   Alex Elder <elder@ieee.org>
-Message-ID: <2de53575-af6e-5bb9-e7ad-5d924656867d@ieee.org>
-Date:   Tue, 26 Oct 2021 11:47:46 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S235246AbhJZRA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 13:00:26 -0400
+Received: from sender4-op-o14.zoho.com ([136.143.188.14]:17491 "EHLO
+        sender4-op-o14.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233522AbhJZRAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 13:00:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1635267457; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=FyCIGTpYBKOelFK4UjKj7RYoydXjTQjg4rqaYZz1kAtuiLmT915EtJ++vUrP5sX9wIv+S6GOhDBp/NLyjvF62Tcqmb4dZwL15aZSO3bGp7gKYZr/pIFkiler4VZDNcISfb8AtIiA+6/VgIoRY2Z8oj4KEgWONLAkR/GbMBVYSr4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1635267457; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=XxLCRbNpLu8h/WBroB7AjAPtqrIBeRIhh+m81mDDH0A=; 
+        b=MB703Opxm3kFU+2iCB/oCu+zmege6TRXpzQrdk/tqCKw+oVWk3vtrTlmQsE2Kq9Lnm2BjPlrgI5wy7iqvsFiHoElI9MBmfBrFnuDM8iZaVpZMujU//xTNWH1aHmmCi8TYaQDokXG2CKhddJoUzQxBUhZJanwjOvkBHSAl5G8Qag=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1635267457;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding;
+        bh=XxLCRbNpLu8h/WBroB7AjAPtqrIBeRIhh+m81mDDH0A=;
+        b=EOf5NwnyvwdpB4PB+CREg6aM6Y8yLAOcaV5fq3AsbTvsxMSfBpd6jN3YdXncJVJQ
+        W4sTPB+1xMzKkusqKtbjjCEjgrMyub6r/qGFrHK5oawhMzWqNisQdiB1d1b7gGgEynw
+        0+G4aSyLYdUBS+4p+Wn21aWd3WNPclYlopjASziA=
+Received: from localhost.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
+        with SMTPS id 1635267454908711.4948663344269; Tue, 26 Oct 2021 09:57:34 -0700 (PDT)
+From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <ALSI@bang-olufsen.dk>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
+Subject: [PATCH v2 1/2] ARM: dts: BCM5301X: remove unnecessary address & size cells from Asus RT-AC88U
+Date:   Wed, 27 Oct 2021 00:57:03 +0800
+Message-Id: <20211026165703.17997-1-arinc.unal@arinc9.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20211026163240.131052-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/26/21 11:32 AM, David Heidelberg wrote:
-> Fix warnings as:
-> arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml: ipa@1e40000: iommus: [[21, 1504, 0], [21, 1506, 0]] is too long
-> 	From schema: Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+Remove the unnecessary #address-cells & #size-cells in the gpio-keys node
+from the device tree of Asus RT-AC88U.
 
-Looks good to me.  I'm not sure why the minItems is required,
-unless it's to indicate that it must be at least 1 and can't
-be missing.  But iommus is also stated to be required elsewhere
-in the binding.
+Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+---
+ arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-In the future, it's helpful to indicate the command you
-used to produce the warning in your commit message.  And
-furthermore, describing the problem (and not just including
-the error message) is even more helpful.
-
-Reviewed-by: Alex Elder <elder@linaro.org>
-
-> ---
->   Documentation/devicetree/bindings/net/qcom,ipa.yaml | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ipa.yaml b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> index b8a0b392b24e..b86edf67ce62 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ipa.yaml
-> @@ -64,7 +64,8 @@ properties:
->         - const: gsi
->   
->     iommus:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->   
->     clocks:
->       maxItems: 1
-> 
+diff --git a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+index 448060561cd0..b0cee1d87600 100644
+--- a/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
++++ b/arch/arm/boot/dts/bcm47094-asus-rt-ac88u.dts
+@@ -68,8 +68,6 @@ wps {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+ 
+ 		wps {
+ 			label = "WPS";
+-- 
+2.25.1
 
