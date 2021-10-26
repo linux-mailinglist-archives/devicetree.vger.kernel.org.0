@@ -2,305 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E48F43B8EE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A381F43B8F2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236541AbhJZSHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 14:07:04 -0400
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:28652 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236706AbhJZSHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 14:07:02 -0400
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19QEo8Te012605;
-        Tue, 26 Oct 2021 11:04:27 -0700
-Received: from nam11-bn8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2172.outbound.protection.outlook.com [104.47.58.172])
-        by mx0b-0016f401.pphosted.com with ESMTP id 3bx4dx4epe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Oct 2021 11:04:27 -0700
+        id S238042AbhJZSHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 14:07:42 -0400
+Received: from mail-eopbgr70049.outbound.protection.outlook.com ([40.107.7.49]:2532
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S237656AbhJZSHk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 14:07:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cZSK+plgU3nU0MCMlgXPSmtcoFzMLHqYMYmga1ZXFOg=;
+ b=yVqCzq50u7gWzLoHCRCQzQvndHw0jpLz0v7/r7QfhUNM47Zvm/U1xJ+w8e43sbv7nKohRF1Q5zIXqkTUrxb6LC2FX1bOgM5Jtl8rROpJWc3PbU9etBZrGKL+oomCzFX7n061Ey+ZQPkLXsjry7F5cGHun4+ft1/UbErvhXOAVcM=
+Received: from DB6PR1001CA0045.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:4:55::31)
+ by AM0PR08MB2948.eurprd08.prod.outlook.com (2603:10a6:208:5b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Tue, 26 Oct
+ 2021 18:05:10 +0000
+Received: from DB5EUR03FT055.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:4:55:cafe::9f) by DB6PR1001CA0045.outlook.office365.com
+ (2603:10a6:4:55::31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.16 via Frontend
+ Transport; Tue, 26 Oct 2021 18:05:10 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ DB5EUR03FT055.mail.protection.outlook.com (10.152.21.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4628.18 via Frontend Transport; Tue, 26 Oct 2021 18:05:10 +0000
+Received: ("Tessian outbound e27daf245730:v103"); Tue, 26 Oct 2021 18:05:10 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 92931ffaa20e382c
+X-CR-MTA-TID: 64aa7808
+Received: from 00bbfb74e6a2.1
+        by 64aa7808-outbound-1.mta.getcheckrecipient.com id 9E731C55-534E-4891-B4E2-FF865B7DBEAC.1;
+        Tue, 26 Oct 2021 18:04:58 +0000
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 00bbfb74e6a2.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Tue, 26 Oct 2021 18:04:58 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ScMKatPyGY0iD01IWvAXYIMywnTLKWKyyYf41185rkRCGjaSf6R4FbybQQlAgHn+ya9VASf7MnPtLWJDt34A5AcIDXQUpmja718dHilVYpZvjLywBwLZeINSq2Xp8jBZ+tbyzv9cXD8HWycQY4vgLtBu/yn6SKN1vqtL2X94zx/qdNmKMvwuxw/Pmf6gZer5CivEuNRUO2fvj1SMpNgEoAsoanzVs7rWMblmma+ijAtQnCj51fnzLTuLQLI1xVa6nC5IEuLhxzw3OfGglTT15h+EErAQSrs/ag0M0R4e+8qKZ3cR4Of0QwPcgjwGSEjcEDu8tf5EMwud4jUHat3nTA==
+ b=oVkVOnyoVaGenMgQrfYHVQqg2xmSRYbv16mr4pm3nCJOTEEpH7tdbKOXjwAXLoLDvEWrQbnpmqzA3YGpU84dgTzlc8ljCzLBXhxPutBAL25uO8ejLWLi0oECc1WT1uSSRG1ej3/lHMtihjos+UsSRiZeuNOE2bdzYD5wifhLHLlsM7sBle+bHQRmIYdtaGZdLEyUQJS7cXeRiOiYLoC+izKG9CDHIYFbvFgeeG1XFJz8r60IWBBxcfMvBFATKtajdUHBXx1jUhrO9jaQ6lxPcH3pb/mFLQ2goiREg3vPCcE0zjF598P9HsuYSs8tod3ohK3VBkhwxa59/uhFXBHSrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b2C5vIkcNZdwB18YeShNG37v1hwnTcuBYMBq/3IgQgs=;
- b=BkI+BYJFI8MrMHrDM9cZMQxZzzqtMURIvNKUIMotQW2l+BNr0GAd0cRLZ0OsC7lwQ7s7Cl6rFNL0LonffX1ND+xdlHm75OJXShhlsanNZVFNThmLWWfK78Ke4ZOQozq0VQYLEqNFkZc3Wi96jo2qib4Jy/3kWXvGqTS44G47xxQ3y3co5oPEJxPIper4oYsSGm/r6nPFQzWzETPX0WUUP7yAmEw3MtNawsIyB9f4oCdjsXaDWHYO2ausViD5MLwnJBXjMn4NKV2s2r97L7W1ISxM+0tCl1bwp+POFN0vJUhFvfOIeVBEqMUaf0CY2pG63C/3AfTVnoLh52YTleY1Rg==
+ bh=cZSK+plgU3nU0MCMlgXPSmtcoFzMLHqYMYmga1ZXFOg=;
+ b=At2PfyrWp3hhVwkS0MsDpgYeL6xGSy3xTPknbX/jJmDta+t4cV5cZYrpTUVs5yD6RXEUXABXT/47OV3sPJFIUCVnLZbvx3Cuoj0k4Tsdxhv2YaBM3DAgA9Smrc7BCSzLbVdk9oG/ByP/NTF76Le5ZEH4RfoYTdRdKCiiMZDj2OD9+ksIAX1gzrPhW6iUoSps/VhZpHf8fszworL1s/glp7cuqg8eX4f4bK5NGRJGd0vJ42bWMRRoC37WU9Av5qll+9N++vGOZk6s3bs3fdFBhCjqOI3W1bY+3e9zL1zitRuyhGt/EWA7D4kLpWwmqg2cv2dZqj0+8AN9IK8lETvarQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=marvell.onmicrosoft.com; s=selector1-marvell-onmicrosoft-com;
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b2C5vIkcNZdwB18YeShNG37v1hwnTcuBYMBq/3IgQgs=;
- b=gS5fQDyKiRQw5wgTfhdtutpJS2IuOQi92M4zBiHtDAZ4WLHF2nn7ESmOoK9u5rU6h1oRrUkVhXcVK18R+scvHDz5VMkmo9j2faNd/HIPs88Uy4pmP79UHXbKCrW/A/UtBsm7ihSKPtLndWaLGohDKjsHm84ZgwWip+KXQ2SK/+s=
-Received: from BN6PR1801MB2068.namprd18.prod.outlook.com
- (2603:10b6:405:6b::11) by BN8PR18MB2642.namprd18.prod.outlook.com
- (2603:10b6:408:95::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14; Tue, 26 Oct
- 2021 18:04:22 +0000
-Received: from BN6PR1801MB2068.namprd18.prod.outlook.com
- ([fe80::7152:fa66:c68f:4aa1]) by BN6PR1801MB2068.namprd18.prod.outlook.com
- ([fe80::7152:fa66:c68f:4aa1%5]) with mapi id 15.20.4628.020; Tue, 26 Oct 2021
- 18:04:22 +0000
-From:   Bhaskara Budiredla <bbudiredla@marvell.com>
-To:     Will Deacon <will@kernel.org>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Bharat Bhushan <bbhushan2@marvell.com>,
-        Sunil Kovvuri Goutham <sgoutham@marvell.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] Re: [PATCH v6 1/2] drivers: perf: Add LLC-TAD perf counter
- support
-Thread-Topic: [EXT] Re: [PATCH v6 1/2] drivers: perf: Add LLC-TAD perf counter
- support
-Thread-Index: AQHXxDU0fs8Ti3gsr061fUNlWkdeOqvlE5IAgABqEsA=
-Date:   Tue, 26 Oct 2021 18:04:22 +0000
-Message-ID: <BN6PR1801MB206859B1C46EEEB10226EE17DE849@BN6PR1801MB2068.namprd18.prod.outlook.com>
-References: <20211018153057.23217-1-bbudiredla@marvell.com>
- <20211018153057.23217-2-bbudiredla@marvell.com>
- <20211026094356.GA21352@willie-the-truck>
-In-Reply-To: <20211026094356.GA21352@willie-the-truck>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4e49a136-7839-4c3f-720f-08d998ab0a08
-x-ms-traffictypediagnostic: BN8PR18MB2642:
-x-microsoft-antispam-prvs: <BN8PR18MB264231466E316A5030E6C857DE849@BN8PR18MB2642.namprd18.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bJUxZgPMDkuWoDwd2JWHl0EhfmC68YqUvfYeA4nu/+n3eB9CAeDdSsjQwKuH0JpWHnqZHm+vCQ6uL2cmmqTt1V9gAvYgSt32VpSW8QEn6/SZOAjxKCGa0Ott3Gvx0JsP0ICXVHYGZDpHOWdl456xIxorjri0U1c4rsR/gRKA1vCz7PCKY+6b/wAeOJyyd8be2hvx8kWu5aPKf+HBN0q5euFDdIE8WMAXc93gAvERZ8JINgn1svte1Nvw+8fndhdLJsrzu3mx88l6ylWTZv2xOBuYGSHYxNKRYkUpkHclT3XUdEYGNTe/xyo7k8WyPo5H+Jg/2jP0td02vjjDxrbhTwnjuNvMt64b6AmHC97E3amdAgxz7lUIJyoYYeVOj0rI3XC2TZBS/eceovpgbj2N/HTd1lmBAs7D+DvWKI+j/Ia361kusGKL1azrlSrbwPqeCWrCRqHM+6WXCSvvOpCRHgmd6xMFqWcr6WKWYZDXIJqmV3qIAxbdby+48JLwfVk9hH4v/ctc6HfdinfplprkNXZ1edUZ6JqrmfpJzOo/HSBN54+4ByEIZaoJeqOEp2ShOeQa9tYnpYOshoBfY0ObNf8QeOQ6HEGNk510Cw4vbpd5pYdMJ74M37RvR2tSx/8NGqeIiP7Ietvvi8w/4+d7bcIt5xoBYrEnMion5jhFSbrwMyaPUOFitncDb4F91JjeY0va0pEN7nuyWe7m22o+/4kc4IMXDoZjq7IqGvbquhA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR1801MB2068.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(52536014)(6916009)(83380400001)(6506007)(33656002)(508600001)(55016002)(8936002)(7696005)(4326008)(5660300002)(2906002)(8676002)(54906003)(316002)(186003)(76116006)(9686003)(66476007)(66556008)(64756008)(38070700005)(66946007)(66446008)(122000001)(38100700002)(86362001)(71200400001)(26005)(2004002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?f6oam8WSWHyj3vGqQd327d+HmDpMqE0cKFbjHm1vcCI+eG9BEgEc1l+EwKX3?=
- =?us-ascii?Q?bkKEqIF/fS9ROJSJJh6QA6PqbRvktG70eIIotKzwqwO31avvS+D2tNKemkmc?=
- =?us-ascii?Q?y8v+TBw8Jp0+0+nfvzz9Xw3JRIGCilKxrI6ajn8gJdUL8LGd9az9VOPrsN38?=
- =?us-ascii?Q?EvgakESjKYYzJ4IMam3FSl7lfsm6MVMUskPpeGSO8VvbLYyDiiKlXEfBSpO+?=
- =?us-ascii?Q?ragRWCFdVaE9oTfU/Sudc5Df3J4e+heHdhBFN18S4hh4wkq1Gci+QeH3HMCP?=
- =?us-ascii?Q?1thhv7IEKBY9xp3b/xtJW+PB/ZtDKZULk1f4qFdkBhSFW9X9Aq/nZb/67G5B?=
- =?us-ascii?Q?Dc6Fh4XVmS/zDXZjn+TguAlwk86lsGt8rvY4Ir+OMC6CmdhvWGO8SfEAY+Ng?=
- =?us-ascii?Q?MTyltreelSQqgbKJ88Y9DUm+m2wvvXjhfZpVY6fOues97T7t4imfE5f7pbZJ?=
- =?us-ascii?Q?luW1RJCSz8HW5ZcLoKQOahOT5W/3D6NrKP7MqoUx+DAB6dj2jR31BO40kLn0?=
- =?us-ascii?Q?C0QJwyC3jb6hIkrPG8307Ka+A0AX1WolEjIHbEN9VnG1/b163yrzge3/rZAF?=
- =?us-ascii?Q?8nxDEPnoJbdq4O8AnMiGsMmxQ3sI0dNT7QEJVlzv6YkUAktMAhPkkWJA5+Fc?=
- =?us-ascii?Q?yT7NeOcl1buMqmy9OOiYLpSRPZpJAzhii99rN4z47HUxADLgci1e7/v8pskb?=
- =?us-ascii?Q?QCFQyBbxh3nvaLZ+JudbhsFkUOHZQlF+Z30B+y+VeIj/F2eH5z2+yja4ksmq?=
- =?us-ascii?Q?+1MC/b+F01LDH6FKvnrIdVMDFxB2JTM051k7zmZX6uvBNLtbWh4LEaaK92oD?=
- =?us-ascii?Q?4OgJVupYAo1ag7DSsOZH0ou38+LtpBh22SQiNogJ48PyKIFaMOkeFiz9JNxu?=
- =?us-ascii?Q?9H/ERVPB8slDAyieFXdiLpjJhcZyPvCjDhTuVDPfqwC0ub7tV+/H6ZVzWV8G?=
- =?us-ascii?Q?sGu6WXlD1vkyl8Mi8ONwY4ld5qrBkoVYX8gOd3t6YOJTbeu2OAiW4XeoAlGE?=
- =?us-ascii?Q?EI3mBj4HLXQLXhI6HX82p+bJhL2KAbK7eMBLoNibqu+v21z1ipn+GRxynRJG?=
- =?us-ascii?Q?THkoE96se78KWEfzAVgvvYYPxT/0DDVhRZkxcOr2YOg1K2DcehfCw08c3oWP?=
- =?us-ascii?Q?OphstdK8luIfnLnJnSDLnwEXyrPRuSJirbm0/3mDPgxmeq0JGOMh+aHNhMfb?=
- =?us-ascii?Q?rkAnIHooLHDVUSOa4xcVfACMquLo/KDyV6T7cKTJujs+0hYq/mlmxiYqGB+h?=
- =?us-ascii?Q?IbaI8l02rCqoQ/OtIRdncuceU2kI9awnOWV4VEE3h7pQHQHCJfuo8W03MWvT?=
- =?us-ascii?Q?pJlSRnUUKr/QXrnvNKugXtc7XyA8OB+Ir/aE92q6UxJBK3LTcVf02SJDBG9S?=
- =?us-ascii?Q?vcyszUZhAktHMGQBXaz/S3KWRA4HlwdRJv4UU7hDwSRj8QpK+dtdCygbkaRR?=
- =?us-ascii?Q?MNzAhdlZCet+1KWC46lEV1NcExqQ79Tor2IukSXOGLZ1f9MXL3r4fZDdkiH+?=
- =?us-ascii?Q?a1bcNCLdjHQ/Np/YZiy+vXOfg5cDa7RfJelLmqTpvUAFoNRUAGXMV7vjE/OF?=
- =?us-ascii?Q?zo1eIDSdqUF0ve+/1mxcpWZkOq0h07NnsXjVPvrDUY8VwV/bTshAH+z9mHOi?=
- =?us-ascii?Q?HQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=cZSK+plgU3nU0MCMlgXPSmtcoFzMLHqYMYmga1ZXFOg=;
+ b=yVqCzq50u7gWzLoHCRCQzQvndHw0jpLz0v7/r7QfhUNM47Zvm/U1xJ+w8e43sbv7nKohRF1Q5zIXqkTUrxb6LC2FX1bOgM5Jtl8rROpJWc3PbU9etBZrGKL+oomCzFX7n061Ey+ZQPkLXsjry7F5cGHun4+ft1/UbErvhXOAVcM=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from DB8PR08MB5433.eurprd08.prod.outlook.com (2603:10a6:10:118::13)
+ by DB7PR08MB3916.eurprd08.prod.outlook.com (2603:10a6:10:7e::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Tue, 26 Oct
+ 2021 18:04:56 +0000
+Received: from DB8PR08MB5433.eurprd08.prod.outlook.com
+ ([fe80::951e:f504:6b46:28a3]) by DB8PR08MB5433.eurprd08.prod.outlook.com
+ ([fe80::951e:f504:6b46:28a3%9]) with mapi id 15.20.4628.020; Tue, 26 Oct 2021
+ 18:04:54 +0000
+Date:   Tue, 26 Oct 2021 19:04:50 +0100
+From:   Joey Gouly <joey.gouly@arm.com>
+To:     linux-gpio@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd@arm.com
+Subject: Re: [PATCH v5 0/5] pinctrl/GPIO driver for Apple SoCs
+Message-ID: <20211026180450.GA52884@e124191.cambridge.arm.com>
+References: <20211026175815.52703-1-joey.gouly@arm.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211026175815.52703-1-joey.gouly@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: LNXP265CA0041.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:5c::29) To DB8PR08MB5433.eurprd08.prod.outlook.com
+ (2603:10a6:10:118::13)
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR1801MB2068.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4e49a136-7839-4c3f-720f-08d998ab0a08
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2021 18:04:22.1932
+Received: from e124191.cambridge.arm.com (217.140.106.52) by LNXP265CA0041.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:5c::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14 via Frontend Transport; Tue, 26 Oct 2021 18:04:52 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: dc72c0a1-55e4-4c6d-64b6-08d998ab26d0
+X-MS-TrafficTypeDiagnostic: DB7PR08MB3916:|AM0PR08MB2948:
+X-Microsoft-Antispam-PRVS: <AM0PR08MB294834A2F50EC856F8951F4794849@AM0PR08MB2948.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 2zeEeDJL5UKfIl38N+g+KxhfEhHfsx7cF3XT/TpycyCfQT9pelRMSnz3qBrxtBHAZ+yVYz2ZCSbpOkbfm6QDG/aP9RgKWb8FOsju1Uss7xmKUmOJJ2iGzJMHiYnUaADvKrMKW7qznV/TxCYDWFnAPd+l5s1inY4J+Fbh08kpbDaDTy9zsdlnMZ988Ot4JicPDeDUmz7UWTXDVA0uW46QI4VdlWOmnPpHJAHZKq+7h44LYXZmwgB8zmngN1E0sGpEJJyGUgLvUZYFU7v9j+lRwY7hnY7Kn22CGEUNJwrAObx+39uuPIeM0qphzWYZ3RSUHAK6IErocpNYXcZ1ErwHZhWPgtsaiER8J3RlN0ilBmCfWJ0dK9bCgqDEbKLsb1EKZcQ3OtPTQQOn2nMlHyuesUvYsV1GZ1/LHzyj8pAvydhrdKK089iYagcEfW+HPU1sGR54VC8vJ3AVe64ewJsTpmOHFoRIXSFnPcATZi3gPfzUILPA5KgOWhZO/kQjy8lrpMb+7M9g97MnN+NuDvsJo9+SuCG7+kkPnQR4bbl8iRilddyhd1/gxrtUS/p7a6TmaSKuUzGGhTpIQ5GIJVmdL2MkpebrwY4qDYtfv/wOuJ1+2PYKRut5wu6q5EnKq/hueuHocevlKd7U0LjSfh8PtCDhBu2DH0IfQYiMJ6wL3FCMaCK3aST5TUuiysSEE1yIGkQMaI91ZkFOrVgzwocoKdQ7EPKen9Z0bgWRIu+6iR+1Sm8V78BNVBjdVAJ4Ms2NGR/PS6E66bGWIjzAaFwMQ/J9gRQ2s3rhvOH4mAKQu0wNzbNuz6ODPG0zAjxdzvYl0Al+42tNlgjHavaie0Y1Y/u/KYbc9dRUdJdJZq+tXsg=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR08MB5433.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(366004)(47660400002)(508600001)(44832011)(186003)(4744005)(956004)(86362001)(1076003)(966005)(6916009)(5660300002)(8936002)(26005)(33656002)(2906002)(7696005)(316002)(66946007)(66556008)(52116002)(38100700002)(55016002)(4326008)(54906003)(66476007)(38350700002)(8676002)(46800400005);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3916
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB5EUR03FT055.eop-EUR03.prod.protection.outlook.com
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 380b236a-1d8b-40b1-99d2-08d998ab1c4c
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TATHqeFfn/HnTGRGAY+ZzV1kQyb7toUcHYmfFNBYq6gRJfpE3QIEYBYIX86GcDw1IUjad0kuAoV2hWYx5QaxeFegQU7r74Dpkvc6wlOZQcE4O9sxFhM2IUuNxUnpMR6NGdkBi5F4EKuu5t4vv64cp1PJ/nuEQKLnAtjfUH61XB2w+74l0pms3MP6dqPcuYlksjSCcnnjRtCtDDWsPM+8Yiw590bmh/COfSTwX5TCgVDQxVtfHmT9G90Y1oiGD/bpI1gv520lnFRc7QpIuQ1BRdAQInQkmq0lhPqZVeioJqhNvMNRRiOnUJH7n4Fe56OLAlixcmtDs24TrCw/ayMIbv7e5SOtyxvt+nwSkywiwAHPvHoQBVAP2pG/T1TjkeJ/QdaxP6lroiXlLTq8VR/+okup0JfOkcw5zCSqMB+/YkEJP9n45VnH59lMSb3ataBJk7CgDVV5Z4hMpiNFfElk8slcGl13fNgxo2vU9oKmYENCp8xXtEaf8cewS3OTe8Vl06a0/NRDSkeE/Q7luZp3/2JU6lkXGjLGZ/Rs/A0nLpNDhD0i+m5oD+xHY4/hHApqFLXPsvSPULWOaAjEh5rEwkqzc6jaFICeUd/k1URYZhO95ncVSoAexygTnGZN9LbATYDLpisEaBZOOdC8I+REDM0s3uMICpcIayAP+SXN/ZGOg5BT8DXgepRul6+RUW+CbkuClKD1MHDIDXWE1nhWacs0MKwUYCZnFakHmxfP/Fu9kB88c/g0zbMJKhF7caNA3esOS6LNQrX+XihCpY74GSMVLdw0tkJIOvPTq/OYiYz7mYHudWYkef5O8JimymVPpvvzfJdl+IYUoGC5CCbjo49cgd5OPq1BkMJNXtmlPcw=
+X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(6029001)(4636009)(47660400002)(46966006)(36840700001)(186003)(4744005)(86362001)(70206006)(81166007)(336012)(44832011)(7696005)(2906002)(47076005)(956004)(33656002)(8936002)(4326008)(8676002)(70586007)(450100002)(966005)(6916009)(26005)(54906003)(82310400003)(55016002)(498600001)(36860700001)(5660300002)(1076003)(356005)(46800400005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2021 18:05:10.7542
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cAHYdz/l66AkBIDBpfAMjO5+UIHwEkZQ4i+2ptGhnwHE9HMSo62pDqV5wT5ES0EJJ+d0XEvbRD8+V0L4cw4KpA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR18MB2642
-X-Proofpoint-GUID: hxeKJxv_Eme8aIZPXa9JHUVvyNYfHiyO
-X-Proofpoint-ORIG-GUID: hxeKJxv_Eme8aIZPXa9JHUVvyNYfHiyO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-26_05,2021-10-26_01,2020-04-07_01
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc72c0a1-55e4-4c6d-64b6-08d998ab26d0
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB5EUR03FT055.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB2948
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Tue, Oct 26, 2021 at 06:58:10PM +0100, Joey Gouly wrote:
+> Hi all,
+> 
+> Here is the v5 patchset for the Apple pinctrl/GPIO driver.
+> 
+> Changes since v4 [1]:
+>   - Renamed functions to remove duplicate 'gpio'
+>   - Create all 4 functions (gpio, periph1-3)
+>   - Applied Acks/Review tags
+> 
+> There is a branch here with the driver:
+>   https://gitlab.arm.com/linux-arm/jg-open/-/tree/pinctrl_apple_v4
 
->-----Original Message-----
->From: Will Deacon <will@kernel.org>
->Sent: Tuesday, October 26, 2021 3:14 PM
->To: Bhaskara Budiredla <bbudiredla@marvell.com>
->Cc: mark.rutland@arm.com; robh+dt@kernel.org; Bharat Bhushan
-><bbhushan2@marvell.com>; Sunil Kovvuri Goutham
-><sgoutham@marvell.com>; linux-arm-kernel@lists.infradead.org;
->devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
->Subject: [EXT] Re: [PATCH v6 1/2] drivers: perf: Add LLC-TAD perf counter
->support
->
->External Email
->
->----------------------------------------------------------------------
->On Mon, Oct 18, 2021 at 09:00:56PM +0530, Bhaskara Budiredla wrote:
->> This driver adds support for Last-level cache tag-and-data unit
->> (LLC-TAD) PMU that is featured in some of the Marvell's CN10K
->> infrastructure silicons.
->>
->> The LLC is divided into 2N slices distributed across N Mesh tiles in a
->> single-socket configuration. The driver always configures the same
->> counter for all of the TADs. The user would end up effectively
->> reserving one of eight counters in every TAD to look across all TADs.
->> The occurrences of events are aggregated and presented to the user at
->> the end of an application run. The driver does not provide a way for
->> the user to partition TADs so that different TADs are used for
->> different applications.
->
->Is that something you will want to do in the future? If you go with your c=
-urrent
->approach of exposing a single "tad" unit to userspace, then you won't be a=
-ble
->to change that.
->
+Correct url is:
 
-There is no intension to do partitioning of the TADs. I have thrown some li=
-ght on it as it is a point to be stressed upon.
+  https://gitlab.arm.com/linux-arm/jg-open/-/commits/pinctrl_apple_v5/
 
-
->For the L3 PMUs (including on TX2). we expose per-node PMUs so why
->shouldn't we do something similar here and expose each TAD region
->separately? Even if userspace drives them all together, it gives you more
->flexibility in the future if you _do_ want to be partition them up.
->
-
-Marvell has no plans of providing per-node pmu statistics on CN10k platform=
-s.
-
-
->> diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile index
->> 5260b116c7da..2db5418d5b0a 100644
->> --- a/drivers/perf/Makefile
->> +++ b/drivers/perf/Makefile
->> @@ -14,3 +14,4 @@ obj-$(CONFIG_THUNDERX2_PMU) +=3D
->thunderx2_pmu.o
->>  obj-$(CONFIG_XGENE_PMU) +=3D xgene_pmu.o
->>  obj-$(CONFIG_ARM_SPE_PMU) +=3D arm_spe_pmu.o
->>  obj-$(CONFIG_ARM_DMC620_PMU) +=3D arm_dmc620_pmu.o
->> +obj-$(CONFIG_MARVELL_CN10K_TAD_PMU) +=3D
->marvell_cn10k_tad_pmu.o
->> diff --git a/drivers/perf/marvell_cn10k_tad_pmu.c
->> b/drivers/perf/marvell_cn10k_tad_pmu.c
->> new file mode 100644
->> index 000000000000..aebb1a0028dc
->> --- /dev/null
->> +++ b/drivers/perf/marvell_cn10k_tad_pmu.c
->> @@ -0,0 +1,429 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/* Marvell CN10K LLC-TAD perf driver
->> + *
->> + * Copyright (C) 2021 Marvell
->> + *
->> + * This program is free software; you can redistribute it and/or
->> +modify
->> + * it under the terms of the GNU General Public License version 2 as
->> + * published by the Free Software Foundation.
->> + */
->> +
->> +#define pr_fmt(fmt) "tad_pmu: " fmt
->> +
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/of_address.h>
->> +#include <linux/of_device.h>
->> +#include <linux/cpuhotplug.h>
->> +#include <linux/perf_event.h>
->> +#include <linux/platform_device.h>
->> +
->> +#define TAD_PFC_OFFSET		0x0
->> +#define TAD_PFC(counter)	(TAD_PFC_OFFSET | (counter << 3))
->> +#define TAD_PRF_OFFSET		0x100
->> +#define TAD_PRF(counter)	(TAD_PRF_OFFSET | (counter << 3))
->> +#define TAD_PRF_CNTSEL_MASK	0xFF
->> +#define TAD_MAX_COUNTERS	8
->> +
->> +#define to_tad_pmu(p) (container_of(p, struct tad_pmu, pmu))
->> +
->> +struct tad_region {
->> +	void __iomem	*base;
->> +};
->> +
->> +struct tad_pmu {
->> +	struct pmu pmu;
->> +	struct tad_region *regions;
->> +	u32 region_cnt;
->> +	unsigned int cpu;
->> +	struct hlist_node node;
->> +	struct perf_event *events[TAD_MAX_COUNTERS];
->> +	DECLARE_BITMAP(counters_map, TAD_MAX_COUNTERS); };
->> +
->> +static int tad_pmu_cpuhp_state;
->> +
->> +static void tad_pmu_event_counter_read(struct perf_event *event) {
->> +	struct tad_pmu *tad_pmu =3D to_tad_pmu(event->pmu);
->> +	struct hw_perf_event *hwc =3D &event->hw;
->> +	u32 counter_idx =3D hwc->idx;
->> +	u64 delta, prev, new;
->> +	int i;
->> +
->> +	do {
->> +		prev =3D local64_read(&hwc->prev_count);
->> +		for (i =3D 0, new =3D 0; i < tad_pmu->region_cnt; i++)
->> +			new +=3D readq(tad_pmu->regions[i].base +
->> +				     TAD_PFC(counter_idx));
->> +	} while (local64_cmpxchg(&hwc->prev_count, prev, new) !=3D prev);
->
->If we expose each TAD individually, then this won't matter, but I'd be inc=
-lined
->to move the counter summation outside of the cmpxchg() loop given that
->readq (why not _relaxed?) is probably quite slow.
->
-
-As clarified above partitioning of TADs is ruled out and situation of expos=
-ing individual TADs inappropriate.
-
-
->> +
->> +	delta =3D (new - prev) & GENMASK_ULL(63, 0);
->
->This mask doesn't do anything.
->
-
-Agreed, and will delete it.
-
-
->> +	local64_add(delta, &event->count);
->> +}
->> +
->> +static void tad_pmu_event_counter_stop(struct perf_event *event, int
->> +flags) {
->> +	struct tad_pmu *tad_pmu =3D to_tad_pmu(event->pmu);
->> +	struct hw_perf_event *hwc =3D &event->hw;
->> +	u32 counter_idx =3D hwc->idx;
->> +	int i;
->> +
->> +	/* TAD()_PFC() stop counting on the write
->> +	 * which sets TAD()_PRF()[CNTSEL] =3D=3D 0
->> +	 */
->> +	for (i =3D 0; i < tad_pmu->region_cnt; i++)
->> +		writeq_relaxed(0, tad_pmu->regions[i].base +
->> +			       TAD_PRF(counter_idx));
->
->Please use braces around a multi-line conditional statement.
->
-
-Taken.
-
->Will
-
+(I'm guessing the patches will be applied with b4, but just in case..)
 
 Thanks,
-Bhaskara
+Joey
