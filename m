@@ -2,93 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2740343BBFC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 167E543BC13
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:08:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237062AbhJZVGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 17:06:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235827AbhJZVGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:06:01 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1CEC061570;
-        Tue, 26 Oct 2021 14:03:35 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id d6so400956qvb.3;
-        Tue, 26 Oct 2021 14:03:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XG5lbTjVQqOyn0s7cG0no6APYPSE1g9UuIJyOQ6ldbQ=;
-        b=L0Q6Q39KF4ld5D0VLg4Foh6S7OmTuL4NUJHDlWVu8adgjXhgE4sPJgxkeNiiYrl8H5
-         KprWsqQ8R8PY9IgEbm6QTvlQwatPzn6ZFHRV2claSzj4DnHUp5pIjWH8guAKZqsTVv9d
-         UtXb4AQ8yTRsTAkMdaq0hFNvQubso2XBdKzvc=
+        id S239428AbhJZVKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:10:53 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:44733 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239420AbhJZVKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:10:50 -0400
+Received: by mail-ot1-f47.google.com with SMTP id d21-20020a9d4f15000000b0054e677e0ac5so513835otl.11;
+        Tue, 26 Oct 2021 14:08:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XG5lbTjVQqOyn0s7cG0no6APYPSE1g9UuIJyOQ6ldbQ=;
-        b=jKJpWjlJ3A1yrf6PJyVGcEnXA1xBwomZWwqiuusTbjWk9HtVya8f8m6X1AvcvCWNGe
-         Swor5dQPM9CS+URdinONp2uSvcaiRUxqYohQ5Vn14fCCXKKI8UoM0cwNH/TCYgp3in38
-         2KtbKGrZ1S31Rj7kQGnZGZnmqDVQLBSdnmnhwe4oHgny5x++noiXl+aY5xBLbMd/l27k
-         pStcOeglqi8wakU3RGwX9FGG9ju8e4jsy6+zYUW1HCVJR5lYajQ5OGf52LrUllo69IUX
-         Cbd3vlYK360nDV4O8LSLLJDArCJiFvDnkIOmXvH7vUahN8BTHYqH0nup5zBZe47jdHXi
-         1pqA==
-X-Gm-Message-State: AOAM531IFtdX6fkPRBGb4MwD9KEq0EsmePx/wGkDb/Byrq6B3A2ASM9G
-        ATFXrL1ytMovLooAedCIiLYGQ3zTDtKT29NOSGwXM/G8F2E=
-X-Google-Smtp-Source: ABdhPJyS+raPQ3RHzlakqcRijKe8IBgxi3FsZs0B+JL2VJIAV2O/RysAVQOh6SdhYJC6+oczNxVjX85+/VudRV6YotQ=
-X-Received: by 2002:a0c:cdcd:: with SMTP id a13mr19072201qvn.27.1635282214282;
- Tue, 26 Oct 2021 14:03:34 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qf+MGZOD+EH/QKVd28ocI18hHDKyyZZiCGxPxM8SVbU=;
+        b=zlg74YHyju3b+ZLMOqTImEXDkiw1EMGtG96dbxtw6BfWwWkRNHuHg8SubPxbdUizpT
+         io0JlX2ENHDuotE9KwcGSmfMOw4ez12SQaPeVXNIsiK0Dsjl4vQKYPF8qi/PMDn4lC02
+         Xita2efsjqviNWk9yOg4OpjG6WmbT+lezgSlprP2cL1PEw1ukuPDdVEsxsDA+Q3xUwzT
+         orIn0TbR8HYSrnta0WL/iLOGwKQekO63zjxnGnUGS0h+IBxZKJ1kBegkdVTLT/tNLa00
+         emhsp46JSr/A5mvzevXlFFtsI0VG3/GriDYg83MRK164D131jGloHxhAtFF9+Cq0oLgo
+         P2GQ==
+X-Gm-Message-State: AOAM531eIHDv13Qa/20dhqm0MUqBGUYtE9YhQ0zX57/5jM0mdCuzc8AA
+        /qjoYfKzqy2smBwkihypdunc8mOsBw==
+X-Google-Smtp-Source: ABdhPJyckgJ+AIErGvmZtooqTIMJc/q8dE1Aqmg98CxlLU/4B7oGlLnt7dwY8Y59W9EZXZUPAbYqmw==
+X-Received: by 2002:a05:6830:4011:: with SMTP id h17mr21921166ots.208.1635282505533;
+        Tue, 26 Oct 2021 14:08:25 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h17sm4078739oog.17.2021.10.26.14.08.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Oct 2021 14:08:24 -0700 (PDT)
+Received: (nullmailer pid 3252327 invoked by uid 1000);
+        Tue, 26 Oct 2021 21:08:23 -0000
+Date:   Tue, 26 Oct 2021 16:08:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Ilia Lin <ilia.lin@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, phone-devel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH 1/8] dt-bindings: clk: qcom: msm8996-apcc: Add CBF
+Message-ID: <YXhuR2DXfzszSgYf@robh.at.kernel.org>
+References: <20211014083016.137441-1-y.oudjana@protonmail.com>
+ <20211014083016.137441-2-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-References: <20211026200058.2183-1-aladyshev22@gmail.com>
-In-Reply-To: <20211026200058.2183-1-aladyshev22@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 26 Oct 2021 21:03:22 +0000
-Message-ID: <CACPK8Xd5eYpsFNw1jEjv3NaShgzE3zC_Ct29pJM34TfrqRTNtQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add AMD DaytonaX BMC
-To:     Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211014083016.137441-2-y.oudjana@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Konstantin,
+On Thu, 14 Oct 2021 08:31:32 +0000, Yassine Oudjana wrote:
+> Add CBF clock and reg.
+> 
+> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+> ---
+>  .../devicetree/bindings/clock/qcom,msm8996-apcc.yaml   | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
+> 
 
-On Tue, 26 Oct 2021 at 20:01, Konstantin Aladyshev
-<aladyshev22@gmail.com> wrote:
->
-> Add initial version of device tree for the BMC in the AMD DaytonaX
-> platform.
->
-> AMD DaytonaX platform is a customer reference board (CRB) with an
-> Aspeed ast2500 BMC manufactured by AMD.
->
-> Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
-
-This looks good. I have one comment about the GPIOs below.
-
-> +&gpio {
-> +       status = "okay";
-> +       gpio-line-names =
-> +       /*A0-A7*/       "","","FAULT_LED","","","","","",
-> +       /*B0-B7*/       "","","","","","","","",
-> +       /*C0-C7*/       "CHASSIS_ID_BTN","","","","","","","",
-> +       /*D0-D7*/       "","","ASSERT_BMC_READY","","","","","",
-> +       /*E0-E7*/       "MON_P0_RST_BTN","ASSERT_RST_BTN","MON_P0_PWR_BTN","ASSERT_PWR_BTN","",
-> +                       "MON_P0_PWR_GOOD","MON_PWROK","",
-
-For systems that will run openbmc, we try to use naming conventions
-from this document:
-
-https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
-
-If a GPIO is missing from that doc I encourage you to add it.
+Acked-by: Rob Herring <robh@kernel.org>
