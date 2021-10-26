@@ -2,173 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BA1B43B98B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:27:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14C0343B990
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 20:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238289AbhJZSaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 14:30:12 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:41723 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbhJZSaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:30:08 -0400
-Received: by mail-ot1-f49.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so18550570ote.8;
-        Tue, 26 Oct 2021 11:27:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eFp4CK/cIp2DpF9Nk6vMYc4k/uaKBP5Bf1YLZsAxfy8=;
-        b=00NkxEJKPSGLo7KVpbXcVHThJAGIjZf0j6sV2wvSbse8/G3VehtBvhTC1fV/PTpFn5
-         SzNQTElO05kGwFWbIbj88upTYdqdJDr3+bYVRsHBfq/9rfNIdYtaG8kcqoaFpmKLwc+d
-         O4In8eDkTlFHYZ7gKHfw6p5nO8bhextz0F/ZHpnWQBNN/b8JUWJw+AfrFX8X+2lQ8C8l
-         tehufxoh1vZ2XIBUzeXUg6m/O2GkN48j/0yzv0XNzUDcn8xqej5jroWVSyGh2uwwIBPZ
-         GFcjs8RxW6nmsc+NmaWr2icTIKCZfqB6c6BK8koY93jA14aqFOk/U+julh4rh+EIVjYa
-         H+Qw==
-X-Gm-Message-State: AOAM531wBYYC+S8gKtAGXxfcMukTsAsA9OBVLovnIPxhRzeIC3FBrDla
-        36UGqVIrLc/ePuZYGE6RCYsjdX5GtA==
-X-Google-Smtp-Source: ABdhPJwAI3IRkPjjJ3d2IqWje3ojRvX5pfch4KRIpOaHwTTrfF7i8XPhD1CUStoVg+jiE/yJp6STeA==
-X-Received: by 2002:a9d:6c8b:: with SMTP id c11mr4829768otr.50.1635272863827;
-        Tue, 26 Oct 2021 11:27:43 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w9sm4701797otp.64.2021.10.26.11.27.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 11:27:43 -0700 (PDT)
-Received: (nullmailer pid 2979460 invoked by uid 1000);
-        Tue, 26 Oct 2021 18:27:41 -0000
-Date:   Tue, 26 Oct 2021 13:27:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Hector Martin <marcan@marcan.st>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
-        Mark Kettenis <kettenis@openbsd.org>
-Subject: Re: [PATCH v2 3/8] dt-bindings: power: Add apple,pmgr-pwrstate
- binding
-Message-ID: <YXhInb5kWO15YL7W@robh.at.kernel.org>
-References: <20211025144718.157794-1-marcan@marcan.st>
- <20211025144718.157794-4-marcan@marcan.st>
+        id S236936AbhJZSad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 14:30:33 -0400
+Received: from mout-p-202.mailbox.org ([80.241.56.172]:60964 "EHLO
+        mout-p-202.mailbox.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236071AbhJZSac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 14:30:32 -0400
+X-Greylist: delayed 7042 seconds by postgrey-1.27 at vger.kernel.org; Tue, 26 Oct 2021 14:30:32 EDT
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [80.241.60.245])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4Hf0gW0Z9fzQkjH;
+        Tue, 26 Oct 2021 20:28:07 +0200 (CEST)
+Authentication-Results: spamfilter01.heinlein-hosting.de (amavisd-new);
+        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
+        header.d=mailbox.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+        t=1635272885;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=AZ7CvNRkNKSZRoioIP12odIg8mncuskljJovSNkajjY=;
+        b=hM0uB/RxVQUkW+8hELuC72BRLCpspj5OMgptIaHb63QKFAiv1eLhlHQ3kpShDqcy1jFxa6
+        0+b7Unw5Md6sGQx7lH4CsGvrHSzi521Zlspw46fbDBRfGce0vdJODc6LzN1HHeu7KqGI2i
+        Hr7U+xusbZ++WM6/nCXgDEvOoegYnIr4bYPVPcQ03EctEspvWZ/xju0GhbhVF88XvMPoS/
+        DMOT5j9ESlDAoJKmpuwPZdWWlZa5TULpqcon2KSmuAKPyk1uHOXjSKOtnCydUoI89Yk9mR
+        Cdk9cOdgJ6Rs6bIe01t5hMfI2EwtQdlEXj7oTZM04imFcRDwcCSuUplAZf7lYQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
+        content-transfer-encoding:mime-version:message-id:date:date
+        :subject:subject:from:from:received; s=mail20150812; t=
+        1635272884; bh=IqOzMaEIcRsCLB8HfuR5pnAHFnk0pnusfSJHR6k3R8c=; b=q
+        F9JqanHWTutwGdGOaGWFdSoBgHN3GEu1FI33QIvw/XOYMKQ4a2m2zR3GaRk+48q2
+        JL0IBeyAjV2KH10pZyLxKdeqdOF/eM7rCKg8fQ0H5PjV/XQazPGHwCICvHgo+3NR
+        LWu5gAqAFacOQHywd3ROS642NeZzubYYsmXMEyCPIthEyh8YY2WPEsOYCRa9rENY
+        EYC0meZ4kFWuNnth2ZxgeOhhRV0MiDjB8XmZ96zpsoSCizdzSRQDxLj1OWLlut2L
+        haJXMxOihIW2ZviYiOuSiGWEiT6pO2y4+Z0rmawpHeaZs2f9YpVa0j1ay8tibu59
+        T6GGgF8/yD6IrIZk4eD1Q==
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+From:   Alexander Stein <alexander.stein@mailbox.org>
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Alexander Stein <alexander.stein@mailbox.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: [PATCH v2 1/1] ASoC: meson: t9015: Add missing AVDD-supply property
+Date:   Tue, 26 Oct 2021 20:27:54 +0200
+Message-Id: <20211026182754.900688-1-alexander.stein@mailbox.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211025144718.157794-4-marcan@marcan.st>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 1A666130F
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 11:47:13PM +0900, Hector Martin wrote:
-> This syscon child node represents a single SoC device controlled by the
-> PMGR block. This layout allows us to declare all device power state
-> controls (power/clock gating and reset) in the device tree, including
-> dependencies, instead of hardcoding it into the driver. The register
-> layout is uniform.
-> 
-> Each pmgr-pwrstate node provides genpd and reset features, to be
-> consumed by downstream device nodes.
-> 
-> Future SoCs are expected to use backwards compatible registers, and the
-> "apple,pmgr-pwrstate" represents any such interfaces (possibly with
-> additional features gated by the more specific compatible), allowing
-> them to be bound without driver updates. If a backwards incompatible
-> change is introduced in future SoCs, it will require a new compatible,
-> such as "apple,pmgr-pwrstate-v2".
-> 
-> Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> ---
->  .../bindings/power/apple,pmgr-pwrstate.yaml   | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-> new file mode 100644
-> index 000000000000..010f8b641304
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/apple,pmgr-pwrstate.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple SoC PMGR Power States
-> +
-> +maintainers:
-> +  - Hector Martin <marcan@marcan.st>
-> +
-> +allOf:
-> +  - $ref: "power-domain.yaml#"
-> +
-> +description: |
-> +  Apple SoCs include a PMGR block responsible for power management,
-> +  which can control various clocks, resets, power states, and
-> +  performance features. This binding describes the device power
-> +  state registers, which control power states and resets.
-> +
-> +  Each instance of a power controller within the PMGR syscon node
-> +  represents a generic power domain provider, as documented in
-> +  Documentation/devicetree/bindings/power/power-domain.yaml.
-> +  The provider controls a single SoC block. The power hierarchy is
-> +  represented via power-domains relationships between these nodes.
-> +
-> +  See Documentation/devicetree/bindings/arm/apple/apple,pmgr.yaml
-> +  for the top-level PMGR node documentation.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - apple,t8103-pmgr-pwrstate
-> +      - const: apple,pmgr-pwrstate
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#power-domain-cells":
-> +    const: 0
-> +
-> +  "#reset-cells":
-> +    const: 0
-> +
-> +  power-domains:
-> +    description:
-> +      Reference to parent power domains. A domain may have multiple parents,
-> +      and all will be powered up when it is powered.
-> +    minItems: 1
-> +
-> +  label:
-> +    description: |
-> +      Specifies the name of the SoC domain being controlled. This is used to
-> +      name the power/reset domains.
-> +
-> +  apple,always-on:
-> +    description: |
+Fixes the schema check warning "audio-controller@32000: 'AVDD-supply'
+do not match any of the regexes: 'pinctrl-[0-9]+'"
 
-Can drop '|' on these too. Otherwise,
+Fixes: 5c36abcd2621 ("ASoC: meson: add t9015 internal codec binding documentation")
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+Signed-off-by: Alexander Stein <alexander.stein@mailbox.org>
+---
+Thanks all for their review. Here is v2 with the following changes:
+v2:
+* Separated from other meson DT patches (2/4 - 4/4)
+* Adjusted recipients
+* Added missing property in example
+* Adjusted commit message subject
+* Added Reviewed-by: Jerome Brunet tag
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+ Documentation/devicetree/bindings/sound/amlogic,t9015.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> +      Forces this power domain to always be powered up.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#power-domain-cells"
-> +  - "#reset-cells"
-> +  - label
-> +
-> +additionalProperties: false
-> -- 
-> 2.33.0
-> 
-> 
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+index c7613ea728d4..db7b04da0b39 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
++++ b/Documentation/devicetree/bindings/sound/amlogic,t9015.yaml
+@@ -34,6 +34,10 @@ properties:
+   resets:
+     maxItems: 1
+ 
++  AVDD-supply:
++    description:
++      Analogue power supply.
++
+ required:
+   - "#sound-dai-cells"
+   - compatible
+@@ -41,6 +45,7 @@ required:
+   - clocks
+   - clock-names
+   - resets
++  - AVDD-supply
+ 
+ additionalProperties: false
+ 
+@@ -56,4 +61,5 @@ examples:
+         clocks = <&clkc CLKID_AUDIO_CODEC>;
+         clock-names = "pclk";
+         resets = <&reset RESET_AUDIO_CODEC>;
++        AVDD-supply = <&vddao_1v8>;
+     };
+-- 
+2.33.1
+
