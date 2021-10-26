@@ -2,39 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ABF543BA49
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 21:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FABD43BA4B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 21:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231585AbhJZTJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 15:09:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44730 "EHLO mail.kernel.org"
+        id S236876AbhJZTJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 15:09:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44794 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231203AbhJZTJH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 26 Oct 2021 15:09:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9D10760EB9;
-        Tue, 26 Oct 2021 19:06:41 +0000 (UTC)
+        id S230324AbhJZTJK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 15:09:10 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3AD496103C;
+        Tue, 26 Oct 2021 19:06:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635275203;
-        bh=IzMOKEpX1yKiMxsXmzBNslElIUcTqo4bLbncuJT+xS4=;
+        s=k20201202; t=1635275206;
+        bh=8yKOhdKe8YhlO4BO36otqHmmQF6F/cZiYq4YijJBk70=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=CVOD3umHV3oDckvwcmiXIKpwqijuJTkrbg4kqjUaPne/dcrCLgp+vF0ddcB90Nt0A
-         a+ceqCcj5V249Wzr9+xTtAMvBLLkAXio8W0V07sxRAzWVwD6rrNkwVCIZ2flzyX/Rb
-         x55hNgOnmf9JcZcpnUS3YtBBURNs4VfEMHrgOVgqIHjkDY1g6PrT2iEbnqgdLFq1ko
-         OwxhPzmWOvTHMVyZgUaajTo6wQDm2Gllxt3B0LDX4hNjSikkF/bS3VcAMHnrCn2w83
-         rKstYb90QvnN3Gf84Mk2zvzTgzSJYdUjw/EZuRwQeI3W3yVYTUzKcYi4MCyOayAUK7
-         2mo4IxPyyJpmw==
+        b=Lk08ump9vonhI/303D2pHKyP67+8AOoedqMhekDplTD5TnDiNqbzTcyY4KnwzUbfY
+         JWafjMqCprBQuzpSppEUs5THvm/q/TVrB5/GZtiAsLrXyFZdcsoz/5yr0PZBmHSzUd
+         LhJgcOVkIyIxqfIwwCZwYCFIhzy/3LhvUF0XC/XlPAA1Z1izeJagtWMLnQLHu87Jms
+         Bw2rgaQZoMm7xeIA83Bmn5KA3rtaYErlqUHn5ReEQH3LCkud2RKbwPA/gnNECb9Qff
+         GwrQQHRGwJptZnKoXQc0P0OozaoWeSv3ThvUDBj7Z49EPgVSjOHdhVsCWc2+bSn7nD
+         o7S8+Me4aOTZw==
 From:   Mark Brown <broonie@kernel.org>
 To:     robh@kernel.org, bjorn.andersson@linaro.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     tiwai@suse.de, devicetree@vger.kernel.org,
+Cc:     lgirdwood@gmail.com, tiwai@suse.de, devicetree@vger.kernel.org,
         pierre-louis.bossart@linux.intel.com, bgoswami@codeaurora.org,
-        alsa-devel@alsa-project.org, plai@codeaurora.org, perex@perex.cz,
-        lgirdwood@gmail.com
-In-Reply-To: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
-References: <20211006113950.10782-1-srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v9 00/17] ASoC: qcom: Add AudioReach support
-Message-Id: <163527520137.2033755.9597667983083305370.b4-ty@kernel.org>
-Date:   Tue, 26 Oct 2021 20:06:41 +0100
+        alsa-devel@alsa-project.org, plai@codeaurora.org, perex@perex.cz
+In-Reply-To: <20211025171649.17730-1-srinivas.kandagatla@linaro.org>
+References: <20211025171649.17730-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v10 00/17] ASoC: qcom: Add AudioReach support
+Message-Id: <163527520397.2033755.17018333664812052592.b4-ty@kernel.org>
+Date:   Tue, 26 Oct 2021 20:06:43 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -42,8 +41,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Oct 2021 12:39:33 +0100, Srinivas Kandagatla wrote:
-> This version addresses all the comments raised as part of v8 review.
+On Mon, 25 Oct 2021 18:16:32 +0100, Srinivas Kandagatla wrote:
+> This version is a respin of v9 fixing a build error in 12/17 patch.
 > 
 > QCOM SoC relevant non-audio patches in this series has been merged into
 > the Qualcomm drivers-for-5.16 tree, as this series depends those patches
