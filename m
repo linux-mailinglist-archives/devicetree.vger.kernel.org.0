@@ -2,73 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ED2543BC2E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27BF343BC35
+	for <lists+devicetree@lfdr.de>; Tue, 26 Oct 2021 23:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239470AbhJZVTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 17:19:46 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:33346 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232080AbhJZVTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:19:39 -0400
-Received: by mail-ot1-f50.google.com with SMTP id 107-20020a9d0a74000000b00553bfb53348so675596otg.0;
-        Tue, 26 Oct 2021 14:17:15 -0700 (PDT)
+        id S239488AbhJZVVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 17:21:34 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:36822 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237152AbhJZVVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 17:21:19 -0400
+Received: by mail-ot1-f45.google.com with SMTP id p6-20020a9d7446000000b0054e6bb223f3so615586otk.3;
+        Tue, 26 Oct 2021 14:18:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8/SrXILfDig/lomeVjP9F/pME3hMbDlFyEMawRRJ9jo=;
-        b=C+OM+J0Rav/+VM01YRb5BxumRAgux+FtbG33pfivCK0zhc3Fj1JZIMa1hTiOfiqal+
-         bUtaHkqMIq/f9n6CtqTpwVh37i1fld/NVVnDQcflQLeKeGEJVcdYTQg7+hhS8EZaZpJ3
-         Nvoo+LpqWSPk7D8rhvAfqxSDL8/D3CzaGiIBcJNWkr5GBWEw4nCjhCYYitPDkHnX59QQ
-         vmqm4YvBNEHroM02/gx10Jfd6AXf8773IT4qjU8rdXDRsPBq6tc0CoVB9LrFJMh7vczj
-         thCpcmGCPujwbdixJWwT7k3ah9hUKi+X6CUVq58e9aJGnrH2XGhCecNJ0V3SC9EVIHg5
-         InUw==
-X-Gm-Message-State: AOAM533iCbUdxtGIv9nejno8y0xjMhygY5jTnByR0Tic+OiVdYFXmxLh
-        Ykj7NMgWVPbU8NMOFGXcm8wDr9o19w==
-X-Google-Smtp-Source: ABdhPJyU3/GpOrfCyBeuLzT4mA91G664hqEOZhtukXvwz9aEgFHc9GajOknk/2GTZt1YJ2VZu83npA==
-X-Received: by 2002:a9d:715c:: with SMTP id y28mr22144929otj.362.1635283035238;
-        Tue, 26 Oct 2021 14:17:15 -0700 (PDT)
+        bh=goMSID9C5MFCMICxa57PTxLv5m9FDLARzUx3oz1FuHk=;
+        b=bi4AV8HnrvzIyE7GyWTgetiMc8T5jJTPh98ylC1HZ6JqlLh9mVvJHUFedX6c0c96Sk
+         jaOSVWBOIB/ev6hnnNzg+bIn+es0Bk0w2st0sjm3my9Ibr4wWVk9phKDQM71WAvNb8wB
+         kskjWJz3L0wBEQCDkyFZYVZAcrexbCpnEzi5ucX3olU59YL+LQcofL+LSh3BNo8tXJOj
+         d6Fp8aAXCc+31UBlmQ4myIBKpgVT9wib3GGrWVBncAiTFQ97gUneCKhbA5paKYOwE4jR
+         radZ7nCw+rTM05Yl5QoPAfuLIPvguza9M13oZTE/TdHDf57FCbLThbWuK9swBxuvP6rq
+         BwJQ==
+X-Gm-Message-State: AOAM531M6a8Q9h+VK6ilJ6RiQdQkOcHUEOJyTs1WqT9EjsxhUdkc2YeP
+        HQMLai+nYOs2MlWH6f2rZQ==
+X-Google-Smtp-Source: ABdhPJyvapCYR0gZYgSBZpqnyFlqzWhQmWd3KD8vvfIyHD8p0Hn3fw0cyMxvC/ZnpB8MPdcBBp4epw==
+X-Received: by 2002:a05:6830:4488:: with SMTP id r8mr21302132otv.272.1635283135283;
+        Tue, 26 Oct 2021 14:18:55 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g21sm4301009ooc.31.2021.10.26.14.17.14
+        by smtp.gmail.com with ESMTPSA id c17sm5276717ots.35.2021.10.26.14.18.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 14:17:14 -0700 (PDT)
-Received: (nullmailer pid 3267937 invoked by uid 1000);
-        Tue, 26 Oct 2021 21:17:13 -0000
-Date:   Tue, 26 Oct 2021 16:17:13 -0500
+        Tue, 26 Oct 2021 14:18:54 -0700 (PDT)
+Received: (nullmailer pid 3270967 invoked by uid 1000);
+        Tue, 26 Oct 2021 21:18:53 -0000
+Date:   Tue, 26 Oct 2021 16:18:53 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: memory: fsl: convert ifc binding to
- yaml schema
-Message-ID: <YXhwWR7fDrv9L+mY@robh.at.kernel.org>
-References: <20211015005707.1996-1-leoyang.li@nxp.com>
- <20211015005707.1996-2-leoyang.li@nxp.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@xilinx.com,
+        Daniel Lezcano <daniel.lezcano@linaro.org>, monstr@monstr.eu
+Subject: Re: [PATCH] dt-bindings: timer: cadence_ttc: Add power-domains
+Message-ID: <YXhwvaFpaab6LFut@robh.at.kernel.org>
+References: <cc655a72b20790f6d7408b1aaf81c4bf878aafb4.1634286552.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211015005707.1996-2-leoyang.li@nxp.com>
+In-Reply-To: <cc655a72b20790f6d7408b1aaf81c4bf878aafb4.1634286552.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 14 Oct 2021 19:57:06 -0500, Li Yang wrote:
-> Convert the txt binding to yaml format and add description.  Drop the
-> "simple-bus" compatible string from the example and not allowed by the
-> binding any more.  This will help to enforce the correct probe order
-> between parent device and child devices, but will require the ifc driver
-> to probe the child devices to work properly.
+On Fri, 15 Oct 2021 10:29:14 +0200, Michal Simek wrote:
+> Describe optional power-domain property to fix dts_check warnings.
+> The similar change was done by commit 8c0aa567146b ("dt-bindings: gpio:
+> fsl-imx-gpio: Add power-domains").
 > 
-> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
->  .../memory-controllers/fsl/fsl,ifc.yaml       | 113 ++++++++++++++++++
->  .../bindings/memory-controllers/fsl/ifc.txt   |  82 -------------
->  2 files changed, 113 insertions(+), 82 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/fsl,ifc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/fsl/ifc.txt
+> 
+>  Documentation/devicetree/bindings/timer/cdns,ttc.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
