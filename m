@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CD343D1C4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 21:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3F543D2CA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 22:28:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240359AbhJ0TkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 15:40:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58846 "EHLO
+        id S239533AbhJ0UbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 16:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243694AbhJ0TkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 15:40:00 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78DF4C061745;
-        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id z11so2747775plg.8;
-        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
+        with ESMTP id S239236AbhJ0UbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 16:31:03 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF7FC061570;
+        Wed, 27 Oct 2021 13:28:37 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id u21so8705670lff.8;
+        Wed, 27 Oct 2021 13:28:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TlCdU5zouJbzVDOk8Ea867d7FfdiiRN5l9ui9mRuc+o=;
-        b=Ws3+WredrrfaZYQpExt1B9xl4/OoL7LgR2/+qZwE7z7CRPhmNrJaW3alQql2WE8t2p
-         ih9f06N2t4vtL0aXMWiTd1xUxzY76uyyT3CS6akLF0E1XY+AaWU6XM9T1PGU+8vj9KVD
-         N1zZFUE1GIUfFp5p20VR3ILyIrw2L6fZqKEvOBB1RVHJ/ISYlgnei3J7p8AQv8z0ZLa4
-         KVnz+uOra1iHe6fTOKHIlzGpNbxen+B2N9zoLoqijLvABfUGlpPA8iE3JCGig8ksBvzs
-         K1YSKD1LsUR2YQ2Br4JENLEkQ+bqMB2KOHK+kGRakyVU8Kfj5Yvx2aourQd5CUtAZr4e
-         WJ8A==
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=+Tm+JRBtA+6iGY9mamwWy8jFcnaR0g3Jdp4nqWpW8Tg=;
+        b=jmry35JIhA2X1OrQCyY8v/cpooPwSe8y6IUkuxsGaO6EexlwQ8S3UA1ZZv0IQOdRIo
+         uydwO3iyk95Bg7mejbMljjSWxGtRa4NClWV5pGVdpTcRXofRFqNxdsx85fVcT2k47zbo
+         eo1ckvP7d0fTb8f4Av/BMuf5PMpe2ePbmsmI8Fs+6YmYXmWtr5d6AG/qv874VAGtVOSP
+         4QStRvqu4WzMPAliYVEgO7hu/lvRUMrmtGpD3D7w2G8dChf2Xq46eGlv04LhV0/ERYPm
+         VNexs2A3wAEZGzmbnd4zQusfbe35lnMW++wqAEEo/rORqMmELj41+TDnujLyWfSGJ2nf
+         lTkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TlCdU5zouJbzVDOk8Ea867d7FfdiiRN5l9ui9mRuc+o=;
-        b=MatIHfZ9mN4sXduWKbLMfstdUq6sqpMAdF+Htf1xgXYh7EeKrRZYDxcrkmrbENYbEF
-         mX45OEscOFFlX13q6J01kom5PFZbP8chwguw4mG+c4joOAqdTeCwFl0nduKKXnQgM9Q9
-         gc9C6sS3rnkBojCCzpCVJG0tTsJw8Unb4pm7ZVhTF9ovRMXu/XvrB4Ci2ZkY6UR8htsp
-         AYLd80b8O/i7AjEYVByJP0Q0nZoKsPVkZ4rdwuvoXDhw2MTYRyAgj2j/POG7fyLZihvN
-         m8+bjBL+m921vhtlEmQYRstPw7+7pCBHyspcSdKqqSQ/B79vUyqOJCrK5Y/xNGobvu6I
-         bC3Q==
-X-Gm-Message-State: AOAM530xIa8gfN6fSikVXEgmWjmb7kLHbntjgDxWl0Oby00dT1uo51Ij
-        GW8aNL2LjRxGFbgFLa2qavc=
-X-Google-Smtp-Source: ABdhPJwc9AW48PUeNYOhon0nYLGCBbq7y8T04U21uu37hdFYGKFLhrVkCCV0YwRECbm8zVcyR3cD2Q==
-X-Received: by 2002:a17:903:1111:b0:13f:d1d7:fb5c with SMTP id n17-20020a170903111100b0013fd1d7fb5cmr30413888plh.47.1635363454022;
-        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y16sm694497pfl.198.2021.10.27.12.37.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 12:37:33 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     chunkeey@gmail.com, mnhagan88@gmail.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM5301X ARM
-        ARCHITECTURE), Rob Herring <robh+dt@kernel.org>,
-        Jon Mason <jonmason@broadcom.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: BCM5301X: Fix I2C controller interrupt
-Date:   Wed, 27 Oct 2021 12:37:29 -0700
-Message-Id: <20211027193730.3941945-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=+Tm+JRBtA+6iGY9mamwWy8jFcnaR0g3Jdp4nqWpW8Tg=;
+        b=47yVLgDNDjaVcvRdOe4Zn+vggkASeHfpiyaBpgH7bBe5BhUcQjd5+y4UqWYB+Ze+2C
+         ibdEDaxkz/G6AnvIsyawZnrWePaavRJPDZJAmNIe+gEK2/VzoPGXjnA6OnMiZFyV8mv3
+         AgB1I8vSQ7kutjT/KLwpw8f64rSfWuwjDFtOyZoNwClR82kw3raNE7SqzhVqjYtLRGMc
+         1JxkAtry9rmHHRktJl2I4S7B0sH61C0PY8uqipNp7Qjiz//7HzROr3IKybodRr4HPZ/T
+         JF4xIPaoL0/dBMezi2yYH00Ujh7nucM4fJVHks3+QO6V3dYg0h9KCWAOSttTMPQg3NhM
+         GJPw==
+X-Gm-Message-State: AOAM530jWEPNcMYMfsaaL9feE7OjihTRnXo2G4xeMdT5RF67oMfWYP1p
+        ekrRuTZsbqNo5ZS+e7HFiiY=
+X-Google-Smtp-Source: ABdhPJxTdlfb7OTESzXsPyYRJ1jrji0RcpcYc9WCcEORD8h/pt8juakCXT7Ap+kDfTS5/bwei8/ISg==
+X-Received: by 2002:a05:6512:1591:: with SMTP id bp17mr24653796lfb.362.1635366515659;
+        Wed, 27 Oct 2021 13:28:35 -0700 (PDT)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id e8sm93439lfr.215.2021.10.27.13.28.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Oct 2021 13:28:35 -0700 (PDT)
+Message-ID: <f18b283f-67b2-6847-036b-e27cc5a327db@gmail.com>
+Date:   Wed, 27 Oct 2021 22:28:33 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101
+ Thunderbird/94.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Fix I2C controller interrupt
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     chunkeey@gmail.com, mnhagan88@gmail.com,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        "maintainer:BROADCOM BCM5301X ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jon Mason <jonmason@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20211027193730.3941945-1-f.fainelli@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20211027193730.3941945-1-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C interrupt controller line is off by 32 because the datasheet
-describes interrupt inputs into the GIC which are for Shared Peripheral
-Interrupts and are starting at offset 32. The ARM GIC binding expects
-the SPI interrupts to be numbered from 0 relative to the SPI base.
+On 27.10.2021 21:37, Florian Fainelli wrote:
+> The I2C interrupt controller line is off by 32 because the datasheet
+> describes interrupt inputs into the GIC which are for Shared Peripheral
+> Interrupts and are starting at offset 32. The ARM GIC binding expects
+> the SPI interrupts to be numbered from 0 relative to the SPI base.
+> 
+> Fixes: bb097e3e0045 ("ARM: dts: BCM5301X: Add I2C support to the DT")
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
-Fixes: bb097e3e0045 ("ARM: dts: BCM5301X: Add I2C support to the DT")
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- arch/arm/boot/dts/bcm5301x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-index f92089290ccd..ec5de636796e 100644
---- a/arch/arm/boot/dts/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/bcm5301x.dtsi
-@@ -408,7 +408,7 @@ uart2: serial@18008000 {
- 	i2c0: i2c@18009000 {
- 		compatible = "brcm,iproc-i2c";
- 		reg = <0x18009000 0x50>;
--		interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		clock-frequency = <100000>;
--- 
-2.25.1
-
+Thanks for fixing that. I don't have any device utilzing I2C and so
+never notice that issue.
