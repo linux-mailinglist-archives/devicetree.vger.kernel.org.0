@@ -2,191 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B6143CC60
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69A6D43CC9C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242594AbhJ0OkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 10:40:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45998 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238875AbhJ0OkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:40:09 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62606C061570;
-        Wed, 27 Oct 2021 07:37:44 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id z14so4562711wrg.6;
-        Wed, 27 Oct 2021 07:37:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ECYBC4YNujNcfruFWFj5cKTQLy3jB52lzNAq73G9ODI=;
-        b=WbLTG5z/2bX7mQkpZ20I/XHwbLEHWBZUHGye6qS7zMYsl85xenrtP3igf3w8vmbGZl
-         yQ5DU8T0FcbKh2bL3uIZLPTsW2SbJsPu3F178yLzQEmUGO+g45XfTcFynvFwhqv9OO2v
-         qixGGNpRkpGDhuYKCWDSIhJs9gXuKu5t4Pr8R9WmR0Y83mG3mvzsDl5hR0wIX4fOsEjr
-         C87J+9EtyqwDvQ+UrWdlecbtUKDEpQYtmt658iRhoulvUo7mNVWF1lB9VqoSnkJkSizk
-         YAwyYnNWsfrN24nbuGy4eoD9lLzWTbLFfD5dRiVnjQs4hW4A9NduSaDbXIDWbd27+gpt
-         OKvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ECYBC4YNujNcfruFWFj5cKTQLy3jB52lzNAq73G9ODI=;
-        b=RtIMkRfB8+5cGRNTgzI6FZze6dkYQUM8ix3QJ2VeS0VSeLTtMqkYJtRasuk6qAQW0A
-         ND8bxVg+s8DGZqqaBoxo9t6mPp+D2FPtd1oioicMzYz0KPaPTHtTc4NRSjBMhMht5mje
-         jteD2LvTAfKR8N619E+lexpZQmeuh8pfEFuN7nj4nc+LcVlOZjlRQ+RalJ9OwPcyliTc
-         7xDF3JNdd4j4ILb2bxOuIWoKP57AtXS5KVMAEFjZTMQjN4kK+KCp0g74sH6Tvsx6st42
-         RtrC3JvEzfoZc0r9ts7K2vK6xo9cplwsrQpOzl/rR6yE0ETcagP49Iqf52e4YEgov0CH
-         dtRw==
-X-Gm-Message-State: AOAM532JFkavKSWSgjxMX6S7xDxz+ALAL3iR2SxMcSaoWRLSrPVMLSy/
-        i3peDCM/CBKw1NCnR2C6ZA==
-X-Google-Smtp-Source: ABdhPJxM2xWFRcYqepvLXxjzgmiMicba79H5c9p5JTK4rrrGKSDr9cU4H9ZbipquZRtbuWCNQuZc6A==
-X-Received: by 2002:a05:6000:2a2:: with SMTP id l2mr34083026wry.109.1635345462964;
-        Wed, 27 Oct 2021 07:37:42 -0700 (PDT)
-Received: from alex-ThinkPad-E480.. ([2a02:810b:f40:4200:8072:4c96:3e48:9ebf])
-        by smtp.googlemail.com with ESMTPSA id p21sm25866wmc.11.2021.10.27.07.37.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 07:37:42 -0700 (PDT)
-From:   Alex Bee <knaerzche@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: add interrupt and headphone-detection for Rock Pi4's audio codec
-Date:   Wed, 27 Oct 2021 16:37:26 +0200
-Message-Id: <20211027143726.165809-2-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211027143726.165809-1-knaerzche@gmail.com>
-References: <20211027143726.165809-1-knaerzche@gmail.com>
+        id S229676AbhJ0Oqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 10:46:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52014 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229447AbhJ0Oqr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 10:46:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E01E660F21;
+        Wed, 27 Oct 2021 14:44:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635345862;
+        bh=QkaH8i/IP3CIgA/bCVNmnPGWHjIMocsRPHDcPlLjhtw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QBDnQxRc9qXNWz75JROWosZmxmOsmsNEGEaXVE8jUNBYf26QeTA7w36x4CegZq8kX
+         3e0PmaUOkOTztgiWGxzYGAYj/nSNZWmPMxeDvJRNfNSw0oxD/r3iFzJByDP+KnpeA+
+         iBAnX/vQA3SFskmA1l5OjwZPDJbZBvNjJN0YHq72gfOzoSwt9XZ5vlOJPTMfM0IegE
+         cbA7g5Xfx6sZ9kfI7gPh6dqbVEZecZBvFkOg7WBqTT4QChasCZfq81728KLS0xm/Ed
+         Nrt8BvohV87fehXxiTjwR+b/GjrRbPnP9ZNdVjNThODvjzLr3955aWuISrUCK8eID2
+         tVaxKUDb4Lv+A==
+Received: by mail-ed1-f45.google.com with SMTP id m17so10848442edc.12;
+        Wed, 27 Oct 2021 07:44:21 -0700 (PDT)
+X-Gm-Message-State: AOAM530DRu/A9tEkI609X7JWG0CyjPzvoxt8ZJNdZQoxuJasO69pvzmv
+        zHHlxGONvQBJAkSvn5+aeXdqNIr8J6zNWxr4eQ==
+X-Google-Smtp-Source: ABdhPJzZb8un3hSlLPdikzo4LyAdNxP2rheUbz80i2Mi4iVmyOfTj91TmAOW+jBpNU7/41eeL8Fqjsu/ZlGUzLGLsIQ=
+X-Received: by 2002:a17:906:6a0a:: with SMTP id qw10mr23065885ejc.466.1635345846542;
+ Wed, 27 Oct 2021 07:44:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211025144718.157794-1-marcan@marcan.st> <20211025144718.157794-3-marcan@marcan.st>
+ <YXhINE00HG6hbQI4@robh.at.kernel.org> <c0f2587c-ab69-8194-e618-ce7919c1aeb1@marcan.st>
+In-Reply-To: <c0f2587c-ab69-8194-e618-ce7919c1aeb1@marcan.st>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 27 Oct 2021 09:43:54 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJbVcqy8n0EroV=nFZoJ_WAr+JbrDf-c1jso856NghC2A@mail.gmail.com>
+Message-ID: <CAL_JsqJbVcqy8n0EroV=nFZoJ_WAr+JbrDf-c1jso856NghC2A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: arm: apple: Add apple,pmgr binding
+To:     Hector Martin <marcan@marcan.st>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As schematics at [1] and [2] show C- and plus-revisions have interrupt and
-headphone detection lines of ES8316 codec connected.
+On Tue, Oct 26, 2021 at 10:38 PM Hector Martin <marcan@marcan.st> wrote:
+>
+> On 27/10/2021 03.25, Rob Herring wrote:
+> > On Mon, Oct 25, 2021 at 11:47:12PM +0900, Hector Martin wrote:
+> >> +  compatible:
+> >> +    items:
+> >> +      - enum:
+> >> +          - apple,t8103-pmgr
+> >> +          - apple,t8103-minipmgr
+> >> +      - const: apple,pmgr
+> >> +      - const: syscon
+> >> +      - const: simple-mfd
+> >
+> >
+> > 'simple-mfd' means 'there's nothing in this node that any of the child
+> > nodes depend on'. You should be somewhat certain as dropping it later
+> > creates compatibility issues.
+>
+> Hmm, I see simple-mfd turns this into a bus which I guess allows child
+> nodes to be probed without the parent node doing anything special (then
+> we use syscon_node_to_regmap to get the syscon instantiated). Do you
+> have a example use case for doing this without simple-mfd?
 
-Add them to the respective device trees.
+Drivers calling of_platform_populate or devm_of_platform_populate.
 
-[1] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi_4c_v12_sch_20200620.pdf
-[2] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4b_plus_v16_sch_20200628.pdf
+That of course does mean you need a driver. We could probably make the
+syscon driver call these if needed.
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 12 +++++++++++-
- .../boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts     | 11 +++++++++++
- .../boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts     | 11 +++++++++++
- arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts   | 11 +++++++++++
- 4 files changed, 44 insertions(+), 1 deletion(-)
+> At this point I can't think of anything we'd need from the parent node,
+> especially if we end up using this syscon strictly for pwrstate subnodes
+> (which seems likely at this point). One thing that comes to mind is
+> telling the PMP (a coprocessor in charge of power metrics/management)
+> about some domains being turned on/off, which is apparently a thing, but
+> that wouldn't even be in this node; that'd have to be a phandle property
+> in the child nodes referencing a PMP/coprocessor node elsewhere (none of
+> which is implemented right now, and which should be backwards compatible
+> once it is).
+>
+> If it turns out we do have a dep of some sort in the end, could we just
+> have the child node driver return -EPROBE_DEFER until the parent is
+> probed and has made whatever service available? That would allow us to
+> keep simple-mfd, right?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-index 6a434be62819..92acf6ea299b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-@@ -36,7 +36,7 @@ sdio_pwrseq: sdio-pwrseq {
- 		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
- 	};
- 
--	sound {
-+	sound: sound {
- 		compatible = "audio-graph-card";
- 		label = "Analog";
- 		dais = <&i2s0_p0>;
-@@ -543,6 +543,16 @@ bt_wake_l: bt-wake-l {
- 		};
- 	};
- 
-+	es8316 {
-+		hp_detect: hp-detect {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		hp_int: hp-int {
-+			rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
- 	pcie {
- 		pcie_pwr_en: pcie-pwr-en {
- 			rockchip,pins = <2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-index 281a04b2f5e9..f5a68d8d072d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-@@ -12,3 +12,14 @@ / {
- 	model = "Radxa ROCK Pi 4A+";
- 	compatible = "radxa,rockpi4a-plus", "radxa,rockpi4", "rockchip,rk3399";
- };
-+
-+&es8316 {
-+	pinctrl-0 = <&hp_detect &hp_int>;
-+	pinctrl-names = "default";
-+	interrupt-parent = <&gpio1>;
-+	interrupts = <RK_PA1 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
-+&sound {
-+	hp-det-gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+};
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-index dfad13d2ab24..81bea953c891 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-@@ -17,6 +17,13 @@ aliases {
- 	};
- };
- 
-+&es8316 {
-+	pinctrl-0 = <&hp_detect &hp_int>;
-+	pinctrl-names = "default";
-+	interrupt-parent = <&gpio1>;
-+	interrupts = <RK_PA1 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &sdio0 {
- 	status = "okay";
- 
-@@ -31,6 +38,10 @@ brcmf: wifi@1 {
- 	};
- };
- 
-+&sound {
-+	hp-det-gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+};
-+
- &uart0 {
- 	status = "okay";
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-index 99169bcd51c0..0ad7b6e22f70 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
-@@ -17,6 +17,13 @@ aliases {
- 	};
- };
- 
-+&es8316 {
-+	pinctrl-0 = <&hp_detect &hp_int>;
-+	pinctrl-names = "default";
-+	interrupt-parent = <&gpio1>;
-+	interrupts = <RK_PA1 IRQ_TYPE_LEVEL_HIGH>;
-+};
-+
- &sdio0 {
- 	status = "okay";
- 
-@@ -31,6 +38,10 @@ brcmf: wifi@1 {
- 	};
- };
- 
-+&sound {
-+	hp-det-gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+};
-+
- &uart0 {
- 	status = "okay";
- 
--- 
-2.30.2
+That would have saved you, but deferred probe is now a fallback to
+fw_devlink and it makes sure parent driver probes first. That works
+unless there isn't a parent driver which is often the case for
+simple-bus[1]. I think you are okay since 'syscon' means there is a
+driver.
 
+> If it works for you, I'll also just squash the two bindings into one
+> commit for the next spin, since there is a direct dependency at this
+> point and it should make things easier. Otherwise, I can just swap the
+> order if you prefer it that way.
+
+Just swapping seems like less work, but either way.
+
+Rob
+
+[1] https://lore.kernel.org/all/CAL_JsqJcsqjJBe8aULYYMkFtx8OTj2wHANZ=83VMMyJ=AEgReg@mail.gmail.com/
