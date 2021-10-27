@@ -2,165 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E3EA43C0B7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 05:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B4343C0E1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 05:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232781AbhJ0DUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 23:20:00 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:46914 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232200AbhJ0DT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 23:19:59 -0400
-Received: by mail-ot1-f53.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so1621993ote.13;
-        Tue, 26 Oct 2021 20:17:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=e47/W2ZU87sE2bFyI7GCMhtZCn17zwsf8pfY7GIiMUA=;
-        b=dbfotZ0BN4E+43R9r3kcQlFfI4ghAUGr3PLFJmjSv6ouDkc24ydK1TGdBht+x8nLFl
-         Cxn+qM1L5IrdOIX9VyPj540p4aOqm3Fb/SfimQg+E5ZC1hwOQUUBqqkO8t4MbEZ3q2S7
-         LN5AjZkr4yu/GLgl+36MuniUXgN+WlLhxXKhqaiKPSPJtbJMnK46zPXxLsheiV5s/8nQ
-         C3Edye1Eh1VdfNtrxb6r0ZQjuyDVCgVWE0ufolEdP/BPNwvQ1C0Gv2Js+m6ATdCfh0m5
-         5vQVrZ4s8OGfrTGLrBemIq9+VfZbZwUzcuV9/el0e77aKmNWhT6bVeWZVgERw10G2vbN
-         fNRA==
-X-Gm-Message-State: AOAM531X9HpYnj7GqAjiQaORonyqT+O8S8R16ONiaWMJcSM/cGq3vqPr
-        S1nR5DMJ7EhsZK1ydAEaMo/YjglScQ==
-X-Google-Smtp-Source: ABdhPJz7Nci388Hv8c1l1WPsuv6HsXGr83VouK8Gda4GMje9gSPkPC+gQuP5zamjmF2w4/vuOiiUXg==
-X-Received: by 2002:a05:6830:31b9:: with SMTP id q25mr23907664ots.222.1635304654808;
-        Tue, 26 Oct 2021 20:17:34 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i15sm5108585otu.67.2021.10.26.20.17.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 20:17:33 -0700 (PDT)
-Received: (nullmailer pid 3954575 invoked by uid 1000);
-        Wed, 27 Oct 2021 03:17:32 -0000
-Date:   Tue, 26 Oct 2021 22:17:32 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 5/9] dt-bindings: mfd: add Maxim MAX77714 PMIC
-Message-ID: <YXjEzMYd9iYbodxo@robh.at.kernel.org>
-References: <20211019145919.7327-1-luca@lucaceresoli.net>
- <20211019145919.7327-6-luca@lucaceresoli.net>
+        id S239155AbhJ0DlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 23:41:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37264 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232661AbhJ0DlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 23:41:04 -0400
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 989CDC061570;
+        Tue, 26 Oct 2021 20:38:39 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 3469A421F5;
+        Wed, 27 Oct 2021 03:38:30 +0000 (UTC)
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Marc Zyngier <maz@kernel.org>, Arnd Bergmann <arnd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, linux-serial@vger.kernel.org,
+        Mark Kettenis <kettenis@openbsd.org>
+References: <20211025144718.157794-1-marcan@marcan.st>
+ <20211025144718.157794-3-marcan@marcan.st>
+ <YXhINE00HG6hbQI4@robh.at.kernel.org>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v2 2/8] dt-bindings: arm: apple: Add apple,pmgr binding
+Message-ID: <c0f2587c-ab69-8194-e618-ce7919c1aeb1@marcan.st>
+Date:   Wed, 27 Oct 2021 12:38:31 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211019145919.7327-6-luca@lucaceresoli.net>
+In-Reply-To: <YXhINE00HG6hbQI4@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 19, 2021 at 04:59:15PM +0200, Luca Ceresoli wrote:
-> Add bindings for the MAX77714 PMIC with GPIO, RTC and watchdog.
+On 27/10/2021 03.25, Rob Herring wrote:
+> On Mon, Oct 25, 2021 at 11:47:12PM +0900, Hector Martin wrote:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - apple,t8103-pmgr
+>> +          - apple,t8103-minipmgr
+>> +      - const: apple,pmgr
+>> +      - const: syscon
+>> +      - const: simple-mfd
 > 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > 
-> ---
-> 
-> Changes in v2: none
-> ---
->  .../bindings/mfd/maxim,max77714.yaml          | 58 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
-> new file mode 100644
-> index 000000000000..2b0ce3b9bc92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/maxim,max77714.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MAX77714 PMIC with GPIO, RTC and watchdog from Maxim Integrated.
-> +
-> +maintainers:
-> +  - Luca Ceresoli <luca@lucaceresoli.net>
-> +
-> +description: |
-> +  MAX77714 is a Power Management IC with 4 buck regulators, 9
-> +  low-dropout regulators, 8 GPIOs, RTC and watchdog.
+> 'simple-mfd' means 'there's nothing in this node that any of the child
+> nodes depend on'. You should be somewhat certain as dropping it later
+> creates compatibility issues.
 
-Where's the regulators nodes and binding?
+Hmm, I see simple-mfd turns this into a bus which I guess allows child 
+nodes to be probed without the parent node doing anything special (then 
+we use syscon_node_to_regmap to get the syscon instantiated). Do you 
+have a example use case for doing this without simple-mfd?
 
-> +
-> +properties:
-> +  compatible:
-> +    const: maxim,max77714
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +    description:
-> +      The first cell is the IRQ number, the second cell is the trigger type.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - "#interrupt-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic@1c {
-> +            compatible = "maxim,max77714";
-> +            reg = <0x1c>;
-> +            interrupt-parent = <&gpio2>;
-> +            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8d118d7957d2..514ff4a735e5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11386,6 +11386,11 @@ F:	drivers/power/supply/max77650-charger.c
->  F:	drivers/regulator/max77650-regulator.c
->  F:	include/linux/mfd/max77650.h
->  
-> +MAXIM MAX77714 PMIC MFD DRIVER
-> +M:	Luca Ceresoli <luca@lucaceresoli.net>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
-> +
->  MAXIM MAX77802 PMIC REGULATOR DEVICE DRIVER
->  M:	Javier Martinez Canillas <javier@dowhile0.org>
->  L:	linux-kernel@vger.kernel.org
-> -- 
-> 2.25.1
-> 
-> 
+At this point I can't think of anything we'd need from the parent node, 
+especially if we end up using this syscon strictly for pwrstate subnodes 
+(which seems likely at this point). One thing that comes to mind is 
+telling the PMP (a coprocessor in charge of power metrics/management) 
+about some domains being turned on/off, which is apparently a thing, but 
+that wouldn't even be in this node; that'd have to be a phandle property 
+in the child nodes referencing a PMP/coprocessor node elsewhere (none of 
+which is implemented right now, and which should be backwards compatible 
+once it is).
+
+If it turns out we do have a dep of some sort in the end, could we just 
+have the child node driver return -EPROBE_DEFER until the parent is 
+probed and has made whatever service available? That would allow us to 
+keep simple-mfd, right?
+
+If it works for you, I'll also just squash the two bindings into one 
+commit for the next spin, since there is a direct dependency at this 
+point and it should make things easier. Otherwise, I can just swap the 
+order if you prefer it that way.
+
+Ack on the other formatting changes; if the rest of the series looks 
+good to the other folks I'll try to respin this into a v3 soon, to see 
+if we can sneak it in by 5.16, since it'd be nice to have the power 
+domain stuff in there :)
+
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
