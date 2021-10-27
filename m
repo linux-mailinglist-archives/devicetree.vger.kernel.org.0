@@ -2,107 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F40DB43C4F7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B8A43C54F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240738AbhJ0IZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 04:25:05 -0400
-Received: from ixit.cz ([94.230.151.217]:53606 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236550AbhJ0IZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 04:25:04 -0400
-Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 9035720064;
-        Wed, 27 Oct 2021 10:22:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1635322956;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=hSWxFx5H3u7VkFxWrskfDzG37Qm/SgrsmKEi2GSvllg=;
-        b=tdq+tPMYciG8TbHbeeFjH8BrtqjBswRKJe9zDbjF3pMsPdTrndWT0foAd4ApVprRkwpMaY
-        m8k1+AhAwC/UjibgHgjAjtL3hTuYP0nmvVTyuD5nJhBPUNiyUEdllCbnGNcSqDAesoUQvd
-        c08yO/Xry+4rm1l/vZ3SCqL/FNfCpDs=
-Date:   Wed, 27 Oct 2021 10:22:29 +0200
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH v6] dt-bindings: drm/msm/gpu: convert to YAML
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        ~postmarketos/upstreaming@lists.sr.ht, Sean Paul <sean@poorly.run>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>
-Message-Id: <H9NM1R.O70ALO0PAFVF@ixit.cz>
-In-Reply-To: <YW17J03XTvJgfBfj@robh.at.kernel.org>
-References: <20211017144350.70295-1-david@ixit.cz>
-        <YW17J03XTvJgfBfj@robh.at.kernel.org>
-X-Mailer: geary/40.0
+        id S233389AbhJ0IjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 04:39:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232025AbhJ0IjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 04:39:16 -0400
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E109C061570;
+        Wed, 27 Oct 2021 01:36:51 -0700 (PDT)
+Received: by mail-ua1-x929.google.com with SMTP id v3so3393689uam.10;
+        Wed, 27 Oct 2021 01:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FZ/r4xCuzoVfg1rTb4wXv0tkWAM+D0xue0Hb3YHjI8g=;
+        b=hx/mmb90US3JK4Rv1aPCSq2iakKYlaa8JL8gi3Aa5gqa7SIEGjT/dzasJEUcWOhXd6
+         TqrCfrJZ+U41p8/rIOHGv2+Gv9NegbCuoRAu8lrccJb/Z+6bgZOGihSfJFHcCxj0mezO
+         vLwAkl0EBcKM9FzY52mSHildEzuBAWrUPXmwK+sNamGXOmr8iV/Jpi52g8evpodhsTD7
+         MypJBq7HDr3b6wxSpGyisjSlRufItV4lCSxABdTqk057pO5TixZrUuS/Pt6MWoG0qtw5
+         CYvbhGjjLMtDya9sRE89EFypbbHYCx8Ja+Xgch1Rw95sSDJVOcibKC1uShRngNk+rR3q
+         6EYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FZ/r4xCuzoVfg1rTb4wXv0tkWAM+D0xue0Hb3YHjI8g=;
+        b=wZxU3T456r1BmiOgKZSGMaNwqF5kH3egllOcsyMguni+cvSWXwlsvsAHYV5KY33NW+
+         /nN3u6lKyujO/e1d3wZP9iGV6+DJg10/9lE81X+POt92cd3M+w6qBICuhaOvMCNfq3Fd
+         6Do0oJNsztelAR+9hOWMtcSt9ib8mX2xrI+oq725YSolWW0nfH85THVl3aXhch9lsUJo
+         5fQ99tvC+k/UxSyIT1xYkvNk2j75XEjTA2PDf1CO+th+ie7eVvmzEKxFQz4s1b43vSbE
+         YVAV+ily2q1YB6wBHmNchtTtCuniwVEaMi2TV8g4Hqn874/RCwqebT90/n+lMQhfx6kL
+         gi2A==
+X-Gm-Message-State: AOAM530DCP3+iMmdPQ9wDI/80IMPJwlPc7dJmpNOPrlsYAniwCo6g5pg
+        gHcm9DGO4f+hjlbpj0gqaagFMsXhaz/5GzVKvj0pb1V6
+X-Google-Smtp-Source: ABdhPJxF2/sXtDaGXuJCrBIF338MMnb8yU9ZyBUJkt/xtC+CxXBtdSsdH5cSBjpOJYEIiCgbXe6ZSiHuxrXnDW+i/Sk=
+X-Received: by 2002:a67:33ce:: with SMTP id z197mr20051208vsz.13.1635323810559;
+ Wed, 27 Oct 2021 01:36:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+References: <20211019041659.15761-1-sergio.paracuellos@gmail.com> <YXi5Tm5QYirZeFw8@robh.at.kernel.org>
+In-Reply-To: <YXi5Tm5QYirZeFw8@robh.at.kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Wed, 27 Oct 2021 10:36:39 +0200
+Message-ID: <CAMhs-H-Ohts75+ivL4SfriJ5MixtxTDGotcRZoR-Z5nhR=JKjw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mips: convert Ralink SoCs and boards to schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     John Crispin <john@phrozen.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NeilBrown <neil@brown.name>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+On Wed, Oct 27, 2021 at 4:28 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, 19 Oct 2021 06:16:59 +0200, Sergio Paracuellos wrote:
+> > Convert Ralink SoCs and boards bindings to YAML schema.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  .../devicetree/bindings/mips/ralink.txt       | 32 -------
+> >  .../devicetree/bindings/mips/ralink.yaml      | 87 +++++++++++++++++++
+> >  2 files changed, 87 insertions(+), 32 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/mips/ralink.txt
+> >  create mode 100644 Documentation/devicetree/bindings/mips/ralink.yaml
+> >
+>
+> Applied, thanks!
 
-can this patch can go in?
+Thanks, Rob. I cannot see the commit in your 'for-next' branch but I
+guess it is just because you have not pushed it yet from your local
+tree :)
 
-Thank you
-David
-
-
-On Mon, Oct 18 2021 at 08:48:23 -0500, Rob Herring <robh@kernel.org> 
-wrote:
-> On Sun, 17 Oct 2021 16:43:50 +0200, David Heidelberg wrote:
->>  Conversion of text binding for Adreno GPU to the YAML format.
->> 
->>  Signed-off-by: David Heidelberg <david@ixit.cz>
->>  ---
->>  v2:
->>    - added compatbile description from Rob Clark
->>    - dropped reg description
->>    - reg numbers increased to 3 (since we also have uncommon cx_dbgc)
->>    - specified interconnect-names items range
->>    - defined zap-shader as an object and added it's properties
->>    - enforce 0 clocks for Andreno >= 6xx since it's defined in GMU 
->> node
->> 
->>  v3:
->>   - fix patterns (add backslash before dot)
->>   - add additional clocks
->>   - adreno@ -> gpu@
->>   - add few const and change enum to anyOf
->>   - added clock & clock-names placeholder in non-conditional part
->>   (description)
->> 
->>  v4:
->>   - clock & clock-names - true,false instead maxItems
->>   - impl. #stream-id-cells, nvmem-cell-names, nvmem-cells
->>   - dropped requirement on firmware-name in zap_shader
->> 
->>  v5:
->>   - maxOtems -> maxItems typo fix
->> 
->>  v6:
->>   - enum -> const to fix ordering
->>   - opp-table is object
->>   - spacing
->>   - drop undocumented and unused #stream-id-cells
->> 
->>   .../devicetree/bindings/display/msm/gpu.txt   | 157 ----------
->>   .../devicetree/bindings/display/msm/gpu.yaml  | 288 
->> ++++++++++++++++++
->>   2 files changed, 288 insertions(+), 157 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/display/msm/gpu.txt
->>   create mode 100644 
->> Documentation/devicetree/bindings/display/msm/gpu.yaml
->> 
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-
+Best regards,
+    Sergio Paracuellos
