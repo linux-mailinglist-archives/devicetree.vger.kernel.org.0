@@ -2,84 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7B8A43C54F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FEEA43C5AD
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233389AbhJ0IjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 04:39:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
+        id S239678AbhJ0I6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 04:58:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232025AbhJ0IjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 04:39:16 -0400
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E109C061570;
-        Wed, 27 Oct 2021 01:36:51 -0700 (PDT)
-Received: by mail-ua1-x929.google.com with SMTP id v3so3393689uam.10;
-        Wed, 27 Oct 2021 01:36:51 -0700 (PDT)
+        with ESMTP id S231566AbhJ0I6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 04:58:00 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A59FC061570;
+        Wed, 27 Oct 2021 01:55:35 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id n36-20020a17090a5aa700b0019fa884ab85so4530330pji.5;
+        Wed, 27 Oct 2021 01:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FZ/r4xCuzoVfg1rTb4wXv0tkWAM+D0xue0Hb3YHjI8g=;
-        b=hx/mmb90US3JK4Rv1aPCSq2iakKYlaa8JL8gi3Aa5gqa7SIEGjT/dzasJEUcWOhXd6
-         TqrCfrJZ+U41p8/rIOHGv2+Gv9NegbCuoRAu8lrccJb/Z+6bgZOGihSfJFHcCxj0mezO
-         vLwAkl0EBcKM9FzY52mSHildEzuBAWrUPXmwK+sNamGXOmr8iV/Jpi52g8evpodhsTD7
-         MypJBq7HDr3b6wxSpGyisjSlRufItV4lCSxABdTqk057pO5TixZrUuS/Pt6MWoG0qtw5
-         CYvbhGjjLMtDya9sRE89EFypbbHYCx8Ja+Xgch1Rw95sSDJVOcibKC1uShRngNk+rR3q
-         6EYQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=EKr2QPNgvld6bHgGFu9VdTmdSThIn7dNK98xyMZN/Fg=;
+        b=cicOtjHGnv+iHPnA4D9Y7spZmxHA/TPT9GULlIdkGpwYA399ZtG/SZgKmS2d9bD0L+
+         UCowrRDINCixO8X/AmwLB0kDiPDIZLH4UmSA45xnEug4CCd3rFEtYdswxBVj2dZZYAj7
+         wprJePSMNVRL1sgZg4Ti9Na97+qryima/cHBfXRbUNH8USJfdTzX6/wrzM5wVZ6aGecr
+         y/nndcnKBsPB/a5W917ZLciaazalA0NoCGxQQ10ctMSKj8JVltfzmy5GQ5gzZhPb7ZS5
+         ICxUQtg4gefv6p9AnPi6ZGGFWM14iEh4rTG+4USumXB4MzBqlw1hkKjYliYB9tOLpVqn
+         +MNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FZ/r4xCuzoVfg1rTb4wXv0tkWAM+D0xue0Hb3YHjI8g=;
-        b=wZxU3T456r1BmiOgKZSGMaNwqF5kH3egllOcsyMguni+cvSWXwlsvsAHYV5KY33NW+
-         /nN3u6lKyujO/e1d3wZP9iGV6+DJg10/9lE81X+POt92cd3M+w6qBICuhaOvMCNfq3Fd
-         6Do0oJNsztelAR+9hOWMtcSt9ib8mX2xrI+oq725YSolWW0nfH85THVl3aXhch9lsUJo
-         5fQ99tvC+k/UxSyIT1xYkvNk2j75XEjTA2PDf1CO+th+ie7eVvmzEKxFQz4s1b43vSbE
-         YVAV+ily2q1YB6wBHmNchtTtCuniwVEaMi2TV8g4Hqn874/RCwqebT90/n+lMQhfx6kL
-         gi2A==
-X-Gm-Message-State: AOAM530DCP3+iMmdPQ9wDI/80IMPJwlPc7dJmpNOPrlsYAniwCo6g5pg
-        gHcm9DGO4f+hjlbpj0gqaagFMsXhaz/5GzVKvj0pb1V6
-X-Google-Smtp-Source: ABdhPJxF2/sXtDaGXuJCrBIF338MMnb8yU9ZyBUJkt/xtC+CxXBtdSsdH5cSBjpOJYEIiCgbXe6ZSiHuxrXnDW+i/Sk=
-X-Received: by 2002:a67:33ce:: with SMTP id z197mr20051208vsz.13.1635323810559;
- Wed, 27 Oct 2021 01:36:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211019041659.15761-1-sergio.paracuellos@gmail.com> <YXi5Tm5QYirZeFw8@robh.at.kernel.org>
-In-Reply-To: <YXi5Tm5QYirZeFw8@robh.at.kernel.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Wed, 27 Oct 2021 10:36:39 +0200
-Message-ID: <CAMhs-H-Ohts75+ivL4SfriJ5MixtxTDGotcRZoR-Z5nhR=JKjw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mips: convert Ralink SoCs and boards to schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     John Crispin <john@phrozen.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NeilBrown <neil@brown.name>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=EKr2QPNgvld6bHgGFu9VdTmdSThIn7dNK98xyMZN/Fg=;
+        b=3QsJJgvnj+X9bFXJV934TnpAnQ9wd94bgjumfg9csaEu8l/9iFrwLE+Wb4hpfWX75O
+         9xfbQoc64L+fSVma/PrnTSjJ2qywCPriT3GMAJwMKx/gVipipsSB9xL1EXMARo1hDxNW
+         xavJHliUGuXyhLBTmB38CmV1M1n/zb1OyMQj0TjOgiBW/c3CXLxKWgDJ3FZzg9OiFNfQ
+         7kdiXWWtw9KaHOjk3/fR1JA2zmfR37FJac1qoaAidxpe6X4AV6KgYQitQJqa394fbT08
+         WY49CqLdBfHXpcrYFHwIbgecXlBoTInksI0/27x8E0FHpiQcIeQD+BbgHok6SKrmPJVU
+         vEOg==
+X-Gm-Message-State: AOAM531ZSyFdtzXfTh3vxtFscgn3Mv/izsIh2IGXS4oHubmqqivak6c8
+        cMRXdspAvcU5Wb1Ek1aB/Fw=
+X-Google-Smtp-Source: ABdhPJyIpx8uxdUHImBdTBKzGnXsBU3nsi0BPwJG7reF0zHZKeEfdEx/K/uU3sso/0ix7mcWlEMmwg==
+X-Received: by 2002:a17:902:8682:b0:13f:8e12:c977 with SMTP id g2-20020a170902868200b0013f8e12c977mr26635511plo.62.1635324934982;
+        Wed, 27 Oct 2021 01:55:34 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id a15sm8336773pfv.64.2021.10.27.01.55.32
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 27 Oct 2021 01:55:34 -0700 (PDT)
+From:   Wells Lu <wellslutw@gmail.com>
+X-Google-Original-From: Wells Lu <wells.lu@sunplus.com>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     qinjian@cqplus1.com, dvorkin@tibbo.com,
+        Wells Lu <wells.lu@sunplus.com>
+Subject: [PATCH 0/3] Add pin control driver for Sunplus SP7021 SoC
+Date:   Wed, 27 Oct 2021 16:55:23 +0800
+Message-Id: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 27, 2021 at 4:28 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, 19 Oct 2021 06:16:59 +0200, Sergio Paracuellos wrote:
-> > Convert Ralink SoCs and boards bindings to YAML schema.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mips/ralink.txt       | 32 -------
-> >  .../devicetree/bindings/mips/ralink.yaml      | 87 +++++++++++++++++++
-> >  2 files changed, 87 insertions(+), 32 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mips/ralink.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mips/ralink.yaml
-> >
->
-> Applied, thanks!
+This is a patch series for pinctrl driver for Sunplus SP7021 SoC.
 
-Thanks, Rob. I cannot see the commit in your 'for-next' branch but I
-guess it is just because you have not pushed it yet from your local
-tree :)
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Best regards,
-    Sergio Paracuellos
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Wells Lu (3):
+  pinctrl: Add driver for Sunplus SP7021
+  dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
+  devicetree: bindings: pinctrl: Add bindings doc for Sunplus SP7021.
+
+ .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   | 277 ++++++++++
+ MAINTAINERS                                        |  10 +
+ drivers/pinctrl/Kconfig                            |   1 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/sunplus/Kconfig                    |  32 ++
+ drivers/pinctrl/sunplus/Makefile                   |  11 +
+ drivers/pinctrl/sunplus/gpio_inf_sp7021.c          |  48 ++
+ drivers/pinctrl/sunplus/pinctrl_inf_sp7021.c       | 501 +++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl.c                   | 359 +++++++++++++
+ drivers/pinctrl/sunplus/sppctl.h                   | 181 +++++++
+ drivers/pinctrl/sunplus/sppctl_gpio.c              | 136 +++++
+ drivers/pinctrl/sunplus/sppctl_gpio.h              |  73 +++
+ drivers/pinctrl/sunplus/sppctl_gpio_ops.c          | 288 ++++++++++
+ drivers/pinctrl/sunplus/sppctl_gpio_ops.h          |  75 +++
+ drivers/pinctrl/sunplus/sppctl_pinctrl.c           | 593 +++++++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl_pinctrl.h           |  33 ++
+ drivers/pinctrl/sunplus/sppctl_sysfs.c             | 385 +++++++++++++
+ drivers/pinctrl/sunplus/sppctl_sysfs.h             |  33 ++
+ include/dt-bindings/pinctrl/sppctl-sp7021.h        | 136 +++++
+ include/dt-bindings/pinctrl/sppctl.h               |  40 ++
+ 20 files changed, 3213 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sunplus/Kconfig
+ create mode 100644 drivers/pinctrl/sunplus/Makefile
+ create mode 100644 drivers/pinctrl/sunplus/gpio_inf_sp7021.c
+ create mode 100644 drivers/pinctrl/sunplus/pinctrl_inf_sp7021.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio_ops.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio_ops.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_pinctrl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_pinctrl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sysfs.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sysfs.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl-sp7021.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl.h
+
+-- 
+2.7.4
+
