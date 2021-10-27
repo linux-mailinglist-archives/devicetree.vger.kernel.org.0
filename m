@@ -2,125 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06BC143C427
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB0FD43C432
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240566AbhJ0Hor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 03:44:47 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:56155 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238811AbhJ0Hoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 03:44:46 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635320541; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=3ipj9C9Z+CcARpvtwqbGA4rPC5dN+YNxfZHwxGPY7Qc=; b=h7hZqsvk0HTeYaeQun7GsS+IFOHlyn6/0QFn1EjZCUqAJ5CGfuVQ95wv2u2Uefxb2xD/9PYU
- XWh8sLTb85XA0geCiLdBMq5AiptDrvfl0MmgtvB76PnxbxuNi930JZNAvdjQN8obELoD3TVc
- rKwuo7zLvclMRUhwjFfZ/nY09p8=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 617902dd5ca800b6c1cb7e7b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Oct 2021 07:42:21
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7E88EC4360C; Wed, 27 Oct 2021 07:42:21 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-5.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1E47BC43460;
-        Wed, 27 Oct 2021 07:42:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 1E47BC43460
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH 1/3] pinctrl: qcom: Update lpass variant independent
- functions as generic
-To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
-        robh+dt@kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org>
- <1633614519-26680-2-git-send-email-srivasam@codeaurora.org>
- <CAE-0n52Ge_XZr914Ksmq5Myk3FRp7+Sc5P-9jj8wuspKkjXnYw@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <d00db826-5834-be00-d75b-e226e6f751b5@codeaurora.org>
-Date:   Wed, 27 Oct 2021 13:12:10 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S240585AbhJ0HpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 03:45:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240609AbhJ0HpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 03:45:02 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1205C061243
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 00:42:37 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 83so2089984pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 00:42:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nathanrossi.com; s=google;
+        h=date:message-id:in-reply-to:references:from:to:cc:subject
+         :content-transfer-encoding:mime-version;
+        bh=w0Qt4eFFwAV7HcPbIJckv7BKVj7qNf4ejTN1sCpeG30=;
+        b=UbPwgJTc946dOVq5jTaNYlYCHv0eOuNRiP++AZ8m9Dw3EXuDRR4yuZGJxj4W8vtd1a
+         T/CRlq3JFwu3rv3z1uB5jBge696GLrhwLdoMy/sorRvUz3la4xZGtF+g1gtm6Gb3Spc0
+         oFSPqEwj6yUONrsFLUHPd/rdFqt++rkdL4WP41QLSK5GOfdf3cOiC4tw71XHWLOTzHId
+         Yuun6XStccBer4daVa3Zqi78BEhf8KqiL4SrHIHbjAmw3c8sDshKcYhk4kGGol7NZYCJ
+         tqjLfOR3lgCfcBZ+hnUoCXtSF3Wo3nRCB0DeIY/rksWIYzZ3VnTNCxIKamHBLFn0te8W
+         8+fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
+         :cc:subject:content-transfer-encoding:mime-version;
+        bh=w0Qt4eFFwAV7HcPbIJckv7BKVj7qNf4ejTN1sCpeG30=;
+        b=QmO7nIBBgyvZA18Rtf/3WyRYEWs8tkJm4NJJyapvqvMcKvQFiMMinxV8gyTKlWQgO1
+         cpnKNhlCH+uvjNAPS3+589Gn0A+Rg0sEzsRu73SEpHmyJbC/n9fj71kSADh7StA75yVy
+         GFVk5YfRtlfRKR50sxBTrlVoU0sGbrPF81+MODQ7gif3Ja6I/UyAJwlej+nbjOwJU0mF
+         8kk/NcrGJ8Vwmj5vDHh1TkQi7cBryFSpwaNV5XMpOw4qHidXewRSVKvcDgqian+2JxyK
+         R3O4Js2L1/HE2I6FiS39pRb7rtpIb+1mT0VdSu8OAtjkkJgZANDG9UbsECPhj/PRgxGQ
+         /2qw==
+X-Gm-Message-State: AOAM531XUXzsYknviY1IpdRdn3s9md5Gm2p8UQlrzmmxgx+/AF+yA380
+        g5zOOiAqCcP3MuDakK/bxoh2xA==
+X-Google-Smtp-Source: ABdhPJx/aRtvNvnPWp91+GXD506pEy8D8VUk2JvB6N0dvhp3lHYeUPvYnB3Zgd9UbBI6KWsYDe3gzQ==
+X-Received: by 2002:a05:6a00:14c2:b0:47c:2c90:df4f with SMTP id w2-20020a056a0014c200b0047c2c90df4fmr2236201pfu.63.1635320557436;
+        Wed, 27 Oct 2021 00:42:37 -0700 (PDT)
+Received: from [127.0.1.1] (117-20-69-24.751445.bne.nbn.aussiebb.net. [117.20.69.24])
+        by smtp.gmail.com with UTF8SMTPSA id p14sm3334498pjb.9.2021.10.27.00.42.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Oct 2021 00:42:37 -0700 (PDT)
+Date:   Wed, 27 Oct 2021 07:42:12 +0000
+Message-Id: <20211027074212.690611-2-nathan@nathanrossi.com>
+In-Reply-To: <20211027074212.690611-0-nathan@nathanrossi.com>
+References: <20211027074212.690611-0-nathan@nathanrossi.com>
+From:   Nathan Rossi <nathan@nathanrossi.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Nathan Rossi <nathan@nathanrossi.com>,
+        Nathan Rossi <nathan.rossi@digi.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 2/3] dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain property
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n52Ge_XZr914Ksmq5Myk3FRp7+Sc5P-9jj8wuspKkjXnYw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Nathan Rossi <nathan.rossi@digi.com>
 
-On 10/7/2021 11:27 PM, Stephen Boyd wrote:
-Thanks for Your Time Stephen!!!
-> Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:37)
->> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> index 2f19ab4..c0117c5 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> @@ -124,7 +124,8 @@ static const struct pinctrl_pin_desc sm8250_lpi_pins[] = {
->>          PINCTRL_PIN(13, "gpio13"),
->>   };
->>
->> -enum sm8250_lpi_functions {
->> +
-> Please drop this extra newline so the diff makes sense.
-Okay.
->> +enum lpass_lpi_functions {
->>          LPI_MUX_dmic1_clk,
->>          LPI_MUX_dmic1_data,
->>          LPI_MUX_dmic2_clk,
->> @@ -203,7 +204,7 @@ static const struct lpi_pingroup sm8250_groups[] = {
->>          LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
->>   };
->>
->> -static const struct lpi_function sm8250_functions[] = {
->> +static const struct lpi_function lpass_functions[] = {
-> Why not follow the approach of other qcom pinctrl drivers and make a
-> core driver that each SoC uses as a library?
+Add a property to the binding to define the selected shunt voltage gain.
+This specifies the range and accuracy that applies to the shunt circuit.
+This property only applies to devices that have a selectable shunt
+voltage range via PGA or ADCRANGE register configuration.
 
-Actually this driver is for lpass LPI pin control purpose. For this only 
-14 pins are there and mostly fixed for all platforms.
+Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+---
+Changes in v2:
+- Added binding for shunt-gain
+---
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-So I feel for now this approach is fine.
-
->>          LPI_FUNCTION(dmic1_clk),
->>          LPI_FUNCTION(dmic1_data),
->>          LPI_FUNCTION(dmic2_clk),
->> @@ -615,7 +616,7 @@ static int lpi_pinctrl_probe(struct platform_device *pdev)
->>                  return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
->>                                       "Slew resource not provided\n");
->>
->> -       ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
->> +       ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> Please mention in the commit text why this is now optional.
-Okay. will update commit message accordingly.
->
->>          if (ret)
->>                  return dev_err_probe(dev, ret, "Can't get clocks\n");
->>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 180573f26c..6a70e2fe9d 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -36,6 +36,12 @@ properties:
+       Shunt resistor value in micro-Ohm.
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
++  ti,shunt-gain:
++    description:
++      Programmable gain divisor for the shunt voltage accuracy and range. This
++      property only applies to devices that have configurable PGA/ADCRANGE.
++    enum: [1, 2, 4, 8]
++
+ required:
+   - compatible
+   - reg
+---
+2.33.0
