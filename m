@@ -2,187 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF1343CF4D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 19:01:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6B7743CFB0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 19:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234057AbhJ0RDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 13:03:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33128 "EHLO mail.kernel.org"
+        id S243266AbhJ0RcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 13:32:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41868 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233416AbhJ0RDY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 13:03:24 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 542B360FBF;
-        Wed, 27 Oct 2021 17:00:57 +0000 (UTC)
-Date:   Wed, 27 Oct 2021 18:05:22 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <nuno.sa@analog.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: frequency: add admv1013 doc
-Message-ID: <20211027180522.016735f9@jic23-huawei>
-In-Reply-To: <20211027092333.5270-2-antoniu.miclaus@analog.com>
-References: <20211027092333.5270-1-antoniu.miclaus@analog.com>
-        <20211027092333.5270-2-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S243273AbhJ0Rbm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 13:31:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E069A610A4;
+        Wed, 27 Oct 2021 17:29:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635355756;
+        bh=wF4ITQHovrfi+/zFjLWRp1/RkCOOsze0ZdjK6Q3RTvI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=AlNsDPBEV84Pene+w55lrYdugdtmn9Sn6nsAUpH0VQ+rOugxtPjcK5mpkbN7tucK0
+         OrRA0F6uYaswUBHcViU1yUyWc9c5DT4xNgDRRi2edtBGaN8ukx2f1V7sDjJMN97XD9
+         Nf/F9YJOxi1JGSVX47p2BP+iyMoPK55FJy0YhTp9rLSx15wqCkhqd/miC4TDJp+TkL
+         Ns9yqQqAM/Ub0PWHXOqG1NT7njNGgmNTftfH2g881weHDg12Zvy+PbGSF3nyUGQjiE
+         oWb0/mxwx6oyRCPdlJ2FHgZizSGIdK5K5YqTCBuBk8JpArotEnLxx73LQ5HJhZglNY
+         yWOo21a+LXiHQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, lgirdwood@gmail.com,
+        George Song <george.song@maximintegrated.com>
+Cc:     steves.lee@maximintegrated.com, ryans.lee@maximintegrated.com,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        george.song@analog.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211027001431.363-1-george.song@maximintegrated.com>
+References: <20211027001431.363-1-george.song@maximintegrated.com>
+Subject: Re: [RESEND,v6 1/2] ASoC: dt-bindings: max98520: add initial bindings
+Message-Id: <163535575465.4012075.8539101072953032948.b4-ty@kernel.org>
+Date:   Wed, 27 Oct 2021 18:29:14 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 12:23:33 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> Add device tree bindings for the ADMV1013 Upconverter.
+On Wed, 27 Oct 2021 09:14:30 +0900, George Song wrote:
+> add initial bindings for max98520 audio amplifier
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-
-Hi Antoniu,
-
-There are quite a few properties in here that don't feel to me
-like they should be in the device tree.  However, I don't know that
-much about this type of device, so perhaps they just need more
-documentation to reflect how they are describing characteristics
-of the circuits around the device rather than runtime decisions...
-
-Jonathan
-
-> ---
-> no changes in v2.
->  .../bindings/iio/frequency/adi,admv1013.yaml  | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> new file mode 100644
-> index 000000000000..7c22202e1ffd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adi,admv1013.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADMV1013 Microwave Upconverter
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +
-> +description: |
-> +   Wideband, microwave upconverter optimized for point to point microwave
-> +   radio designs operating in the 24 GHz to 44 GHz frequency range.
-> +
-> +   https://www.analog.com/en/products/admv1013.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,admv1013
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 1000000
-> +
-> +  clocks:
-> +    description:
-> +      Definition of the external clock.
-> +    minItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: lo_in
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-> +
-> +  vcm-supply:
-> +    description:
-> +      Analog voltage regulator.
-> +
-> +  adi,vga-pd:
-> +    description:
-This lot all sound like things we should be adjusting at runtime
-as a matter of policy rather than setting in device tree. 
 
-If not, how are they related to how the device is wired up?
+Applied to
 
-> +      Power Down the Voltage Gain Amplifier Circuit.
-> +    type: boolean
-> +
-> +  adi,mixer-pd:
-> +    description:
-> +      Power Down the Mixer Circuit.
-> +    type: boolean
-> +
-> +  adi,quad-pd:
-> +    description:
-> +      Power Down the Quadrupler.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-pd is not clear, if we do want these in dt then spell it out
+Thanks!
 
-> +    type: boolean
-> +
-> +  adi,bg-pd:
-> +    description:
-> +      Power Down the Transmitter Band Gap.
-> +    type: boolean
-> +
-> +  adi,mixer-if-en:
-> +    description:
-> +      Enable the Intermediate Frequency Mode.
-> +    type: boolean
-> +
-> +  adi,det-en:
-> +    description:
-> +      Enable the Envelope Detector.
-> +    type: boolean
-> +
-> +  adi,quad-se-mode:
-> +    description:
-> +      Switch the LO path from differential to single-ended operation.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [6, 9, 12]
+[1/2] ASoC: dt-bindings: max98520: add initial bindings
+      commit: 8af1f903391419809160aef3dac0641fa15680f5
+[2/2] ASoC: max98520: add max98520 audio amplifier driver
+      commit: f88ee76b8645c6da37eec79cfd45f2cc646bd01a
 
-Why these values?  The description sounds boolean...
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> +
-> +  '#clock-cells':
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - vcm-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +      admv1013@0{
-> +        compatible = "adi,admv1013";
-> +        reg = <0>;
-> +        spi-max-frequency = <1000000>;
-> +        clocks = <&admv1013_lo>;
-> +        clock-names = "lo_in";
-> +        vcm-supply = <&vcm>;
-> +        adi,quad-se-mode = <12>;
-> +        adi,mixer-if-en;
-> +        adi,det-en;
-> +      };
-> +    };
-> +...
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
