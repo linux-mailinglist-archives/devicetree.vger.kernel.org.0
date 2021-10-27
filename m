@@ -2,191 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BCAC43C79E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 12:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A5043C7B8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 12:32:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241436AbhJ0K0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 06:26:45 -0400
-Received: from mail-pj1-f43.google.com ([209.85.216.43]:45026 "EHLO
-        mail-pj1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239361AbhJ0K0o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 06:26:44 -0400
-Received: by mail-pj1-f43.google.com with SMTP id oa12-20020a17090b1bcc00b0019f715462a8so1713597pjb.3;
-        Wed, 27 Oct 2021 03:24:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UnmsZvCby2QfeCEq4jG+aVVX0WKqEYUQLOkNbKmiMRI=;
-        b=tBHDUDlgf1VA+HWK/exDOlrgkBI8U5YeSrajEbN+7iYPwiN8kti2mtdEEQbuRUm1kI
-         uTSWAEbe80ieaQAbLBVljUcKIuk1sQY540edgxF79p4PD4AcMqoC5+uMY9pPb4VvQDu4
-         DhHSJkB/fzUFh5c567vDd24vAGLPT9hl5Thadj7isYADByLMfzKPCF+8jM/PLzWGgJLb
-         cXWjmWqUov4S0VuPiNpCaoRiZmhBHlrw6TksnbqmFKz+5q/q0+hmv9Q4yJDiQmD/oeex
-         Fpm1afKQTzCpnnUdIjwhiWzpLHxc4wUff1sGEjcdiF826EUj2+TYq8dXhtBGYDt3OzLW
-         N/+g==
-X-Gm-Message-State: AOAM532jlJlokPE1Kv6pexiqdD0FY3QgVqjn942BvVX0slu8tKAsLAyS
-        PchJw0vwmG3fPIpQ8Z10qOKqLsb7mV5eFh2p5lI=
-X-Google-Smtp-Source: ABdhPJy9gu/cklDFW7ZBJFI7eeGIz+A5/REdeCte6hkFXdam4UvPA67sK7GJF3AQN3H0gdwShtecUWWOG7LdpyM8VEM=
-X-Received: by 2002:a17:90b:238a:: with SMTP id mr10mr3053885pjb.185.1635330258733;
- Wed, 27 Oct 2021 03:24:18 -0700 (PDT)
+        id S239376AbhJ0KfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 06:35:03 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:59162 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241452AbhJ0KfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 06:35:02 -0400
+Received: from [79.2.93.196] (port=39116 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1mfgEV-00G4kG-C9; Wed, 27 Oct 2021 12:32:35 +0200
+Subject: Re: [PATCH v2 6/9] mfd: max77714: Add driver for Maxim MAX77714 PMIC
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+References: <20211019145919.7327-1-luca@lucaceresoli.net>
+ <20211019145919.7327-7-luca@lucaceresoli.net> <YXG060evUw8rnR3O@google.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <3520ff3d-1ec0-5500-7fee-538afa25d413@lucaceresoli.net>
+Date:   Wed, 27 Oct 2021 12:32:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-7-kernel@esmil.dk>
- <163527959276.15791.14765586510805526101@swboyd.mtv.corp.google.com>
- <CANBLGcyYb3yNit=GCy4w2zf2=CRtCJP7aCisR8=9n1f7okfCSg@mail.gmail.com> <163529604399.15791.378104318036812951@swboyd.mtv.corp.google.com>
-In-Reply-To: <163529604399.15791.378104318036812951@swboyd.mtv.corp.google.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 27 Oct 2021 12:24:07 +0200
-Message-ID: <CANBLGcx0Udhaa3S+uSffFcB_KFHXQiMOvn8Fd7ogj+RFxQNAfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 06/16] clk: starfive: Add JH7100 clock generator driver
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YXG060evUw8rnR3O@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 at 02:54, Stephen Boyd <sboyd@kernel.org> wrote:
-> Quoting Emil Renner Berthing (2021-10-26 15:35:36)
-> > On Tue, 26 Oct 2021 at 22:20, Stephen Boyd <sboyd@kernel.org> wrote:
-> > > Quoting Emil Renner Berthing (2021-10-21 10:42:13)
-> > > > +};
-> > > > +
-> > > > +struct clk_starfive_jh7100_priv {
-> > > > +       /* protect registers against overlapping read-modify-write */
-> > > > +       spinlock_t rmw_lock;
-> > >
-> > > Does overlapping mean concurrent?
-> >
-> > Yes, sorry.
-> >
-> > > Do different clks share the same registers?
-> >
-> > No, each clock has their own register, but they use that register both
-> > to gate the clock and other configuration. The Locking chapter of
-> > Documentation/driver-api/clk.rst talks about the prepare lock and the
-> > enable lock and then says:
-> > "However, access to resources that are shared between operations of
-> > the two groups needs to be protected by the drivers. An example of
-> > such a resource would be a register that controls both the clock rate
-> > and the clock enable/disable state."
->
-> Alright got it. Maybe say "protect clk enable and set rate from
-> happening at the same time".
->
-> >
-> > > > +               return ERR_PTR(-EINVAL);
-> > > > +       }
-> > > > +
-> > > > +       if (idx >= JH7100_CLK_PLL0_OUT)
-> > > > +               return priv->pll[idx - JH7100_CLK_PLL0_OUT];
-> > > > +
-> > > > +       return &priv->reg[idx].hw;
-> > > > +}
-> > > > +
-> > > > +static int __init clk_starfive_jh7100_probe(struct platform_device *pdev)
-> > >
-> > > Drop __init as this can be called after kernel init is over.
-> >
-> > Oh interesting, I'd like to know when that can happen. The comment for
-> > the builtin_platform_driver macro says it's just a wrapper for
->
-> I thought this was using module_platform_driver() macro?
->
-> > device_initcall.
-> >
-> > Won't we then need to remove all the __initconst tags too since the
-> > probe function walks through jh7100_clk_data which eventually
-> > references all __initconst data?
->
-> Yes. If it's builtin_platform_driver() it can't be a module/tristate
-> Kconfig, in which case all the init markings can stay.
+Hi Lee,
 
-Yes, it's already bool in the Kconfig file. After looking into this I
-think it's better to do like the rockchip drivers and use
-builtin_platform_driver_probe to make sure the probe function only
-called at kernel init time:
+On 21/10/21 20:43, Lee Jones wrote:
+> On Tue, 19 Oct 2021, Luca Ceresoli wrote:
+[...]
+>> diff --git a/drivers/mfd/max77714.c b/drivers/mfd/max77714.c
+>> new file mode 100644
+>> index 000000000000..4b49d16fe199
+>> --- /dev/null
+>> +++ b/drivers/mfd/max77714.c
+>> @@ -0,0 +1,165 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Maxim MAX77714 MFD Driver
+>> + *
+>> + * Copyright (C) 2021 Luca Ceresoli
+>> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
+>> + */
+>> +
+>> +#include <linux/i2c.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/mfd/core.h>
+>> +#include <linux/mfd/max77714.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +struct max77714 {
+>> +	struct device *dev;
+>> +	struct regmap *regmap;
+>> +	struct regmap_irq_chip_data *irq_data;
+> 
+> Is this used outside of .probe()?
 
-static struct platform_driver clk_starfive_jh7100_driver = {
-        .driver = {
-                .name = "clk-starfive-jh7100",
-                .of_match_table = clk_starfive_jh7100_match,
-                .suppress_bind_attrs = true,
-        },
-};
-builtin_platform_driver_probe(clk_starfive_jh7100_driver,
-clk_starfive_jh7100_probe);
+No.
 
-@Andy: is the supress_bind_attrs what you were asking about?
+>> +/*
+>> + * MAX77714 initially uses the internal, low precision oscillator. Enable
+>> + * the external oscillator by setting the XOSC_RETRY bit. If the external
+>> + * oscillator is not OK (probably not installed) this has no effect.
+>> + */
+>> +static int max77714_setup_xosc(struct max77714 *chip)
+> 
+> May as well just pass 'dev' and 'regmap' to this function and do away
+> with the superfluous struct along with all of it's memory management
+> handling requirements.
 
-> > > > +
-> > > > +               clk->hw.init = &init;
-> > > > +               clk->idx = idx;
-> > > > +               clk->max = jh7100_clk_data[idx].max;
-> > > > +
-> > > > +               ret = clk_hw_register(priv->dev, &clk->hw);
-> > >
-> > > Why not use devm_clk_hw_register()?
-> >
-> > I probably could. Just for my understanding that's just to avoid the
-> > loop on error below, because as a builtin driver the device won't
-> > otherwise go away, right?
->
-> Yes
->
-> >
-> > > > +               if (ret)
-> > > > +                       goto err;
-> > > > +       }
-> > > > +
-> > > > +       ret = devm_of_clk_add_hw_provider(priv->dev, clk_starfive_jh7100_get, priv);
-> > > > +       if (ret)
-> > > > +               goto err;
-> > > > +
-> > > > +       return 0;
-> > > > +err:
-> > > > +       while (idx)
-> > > > +               clk_hw_unregister(&priv->reg[--idx].hw);
-> > > > +       return ret;
-> > > > +}
-> > > > +
-> > > > +static const struct of_device_id clk_starfive_jh7100_match[] = {
-> > > > +       { .compatible = "starfive,jh7100-clkgen" },
-> > > > +       { /* sentinel */ }
-> > > > +};
-> > >
-> > > Please add MODULE_DEVICE_TABLE()
-> >
-> > Will do!
->
-> If it's never going to be a module then don't add any module_* things.
+Good idea!
 
-So does that just mean no MODULE_DEVICE_TABLE or should I also remove
-MODULE_DESCRIPTION, MODULE_AUTHOR and MODULE_LICENSE? I'm just double
-checking because the rockchip drivers seem to have MODULE_DESCRIPTION
-and MODULE_LICENSE lines.
+>> +{
+>> +	/* Internal Crystal Load Capacitance, indexed by value of 32KLOAD bits */
+>> +	static const unsigned int load_cap[4] = {0, 10, 12, 22};
+> 
+> Probably best to define these magic numbers.
+
+Since these numbers do not appear anywhere else I don't find added value in:
+
+  #define MAX77714_LOAD_CAP_0   0
+  #define MAX77714_LOAD_CAP_10  10
+  #define MAX77714_LOAD_CAP_12  12
+  #define MAX77714_LOAD_CAP_22  22
+  [...]
+  static const unsigned int load_cap[4] = {
+      MAX77714_LOAD_CAP_0,
+      MAX77714_LOAD_CAP_10,
+      MAX77714_LOAD_CAP_12,
+      MAX77714_LOAD_CAP_12,
+  };
+
+besides adding lots of lines and lots of "MAX77714_LOAD_CAP_". Even
+worse, there is potential for copy-paste errors -- can you spot it? ;)
+Finally, consider this is not even global but local to a small function.
+
+But I'd rather add the unit ("pF") to either the comment line of the
+array name (load_cap -> load_cap_pf) for clarity. Would that be OK for you?
+
+Apart from this coding style topic I'm OK with all the other
+improvements you proposed to this patch, all of them will be in v3.
+
+Thank you for the detailed review!
+-- 
+Luca
