@@ -2,94 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF2643CBB8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C2BC43CBF0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:20:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242406AbhJ0OO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 10:14:59 -0400
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:40584 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242432AbhJ0OO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:14:58 -0400
-Received: by mail-oo1-f42.google.com with SMTP id m37-20020a4a9528000000b002b83955f771so957538ooi.7;
-        Wed, 27 Oct 2021 07:12:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=LsneOJe1Pj6rcbVZRUHWvbL7fvihA0muo/WGRb93zS0=;
-        b=iLvPqPyuyscD3hg2/nzeCwPTOmiEYMmpz4qDZHQu0gTOYiDVvQ5fHOAfcL3iAZFFTF
-         2o/G3SYKtQsORW/WRsXK0COOUg6cmTt/f5GE556x1rd73xyWeda8s0f/SnPFPGziR4km
-         JN2KyiNuaaE/EhTQaMWJJX84ORazyceV+/soezqrF6TbxGDlTF9IWnhBYKrNiNPn2ssy
-         vr/G1yhEO6wyxWzxBjWKMNOG/3Nm7C99eKIS4TrE87aEG/uV56K5H2LigMjH4tyI6DFv
-         TPMH7DnZ81cO45P9XyvofKJtTyZMolU36GsNnwXxF3s5p/XIGIhrh0clfAuGvlFJELj8
-         Nmig==
-X-Gm-Message-State: AOAM531Kb3gQtRHMDG7W5LzLWhBPT7s1EWIQBWL3EYrwNmX8sBZR29w+
-        kFha+gbeY9HtSj0Iz3zHrMOV8Zksew==
-X-Google-Smtp-Source: ABdhPJwsD40Rm0+OwnHUfh6zr514sAYlnuCSTokESxJDBfvsf1sDdrM4EL+17+CODeIQF2qt2BQwJQ==
-X-Received: by 2002:a05:6820:54e:: with SMTP id n14mr22301768ooj.89.1635343952764;
-        Wed, 27 Oct 2021 07:12:32 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j6sm38053oot.18.2021.10.27.07.12.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 07:12:32 -0700 (PDT)
-Received: (nullmailer pid 862171 invoked by uid 1000);
-        Wed, 27 Oct 2021 14:12:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     geert+renesas@glider.be, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, mathieu.poirier@linaro.org
-In-Reply-To: <20211027073020.17055-2-julien.massot@iot.bzh>
-References: <20211027073020.17055-1-julien.massot@iot.bzh> <20211027073020.17055-2-julien.massot@iot.bzh>
-Subject: Re: [RFC PATCH 1/3] dt-bindings: remoteproc: Add Renesas R-Car
-Date:   Wed, 27 Oct 2021 09:12:28 -0500
-Message-Id: <1635343948.051238.862170.nullmailer@robh.at.kernel.org>
+        id S236500AbhJ0OWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 10:22:44 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:57522 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237845AbhJ0OWm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 10:22:42 -0400
+Received: from [79.2.93.196] (port=40362 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1mfjmo-000I0q-R9; Wed, 27 Oct 2021 16:20:14 +0200
+Subject: Re: [PATCH] dt-bindings: Add a help message when dtschema tools are
+ missing
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Masahiro Yamada <masahiroy@kernel.org>
+References: <20211026171804.2867369-1-robh@kernel.org>
+ <8c6d5a97-14f7-9155-6f90-17e6e33d77c2@lucaceresoli.net>
+ <CAL_JsqLij-yhUJ1+rKODzs2rSKepUDgWUxBwvEu8f_mvKqm5xQ@mail.gmail.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <32f9ef1d-912a-e77f-de98-ee071077e166@lucaceresoli.net>
+Date:   Wed, 27 Oct 2021 16:20:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqLij-yhUJ1+rKODzs2rSKepUDgWUxBwvEu8f_mvKqm5xQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 09:30:18 +0200, Julien Massot wrote:
-> Renesas R-Car SoCs may contains a Realtime processor.
-> This patch adds binding for this remote processor.
+Hi,
+
+On 27/10/21 15:53, Rob Herring wrote:
+> On Wed, Oct 27, 2021 at 2:30 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
+>>
+>> Hi Rob,
+>>
+>> thanks for this patch!
+>>
+>> On 26/10/21 19:18, Rob Herring wrote:
+>>> The dtschema version check works, but is not that clear when dtschema is
+>>> neither installed nor in the PATH. Add a separate check and message if
+>>
+>> Nit: I think it should say "either not installed or not in the PATH".
 > 
-> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
-> ---
->  .../remoteproc/renesas,rcar-rproc.yaml        | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> Right.
 > 
+>>
+>>> dt-doc-validate is not found.
+>>>
+>>> Cc: Luca Ceresoli <luca@lucaceresoli.net>
+>>> Cc: Masahiro Yamada <masahiroy@kernel.org>
+>>> Signed-off-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>  Documentation/devicetree/bindings/Makefile | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+>>> index 8d6d912c6a6a..001b4f62b741 100644
+>>> --- a/Documentation/devicetree/bindings/Makefile
+>>> +++ b/Documentation/devicetree/bindings/Makefile
+>>> @@ -9,6 +9,10 @@ DT_SCHEMA_MIN_VERSION = 2021.2.1
+>>>
+>>>  PHONY += check_dtschema_version
+>>>  check_dtschema_version:
+>>> +     @which $(DT_DOC_CHECKER) >/dev/null || \
+>>> +             { echo "Error: '$(DT_DOC_CHECKER)' not found!" \
+>>> +             "\nEnsure dtschema python package is installed and in your PATH." \
+>>> +             "\nCurrent PATH is:\n$$PATH\n" >&2; false; }
+>>
+>> You need 'echo -e' for the '\n'.
+> 
+> Except dash will just print '-e' and interpret the newlines...
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Oh dear, I always forget about dash...
 
-yamllint warnings/errors:
+> I changed it like this:
+> 
+> @which $(DT_DOC_CHECKER) >/dev/null || \
+> { echo "Error: '$(DT_DOC_CHECKER)' not found!" >&2; \
+>   echo "Ensure dtschema python package is installed and in your PATH." >&2; \
+>   echo "Current PATH is:" >&2; \
+>   echo "$$PATH" >&2; false; }
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:26.17-46: Warning (reg_format): /example-0/reserved-memory/cr7_ram@40040000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:22.13-20: Warning (ranges_format): /example-0/reserved-memory:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #address-cells value
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #size-cells value
-Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+Either that or 'printf', which IIRC is more portable, including with \n.
+But in this simple case I find multiple 'echo's more readable than one
+printf with '\n's.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1546783
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+Luca
