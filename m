@@ -2,198 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D243643D2CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 22:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07EED43D2D7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 22:32:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240868AbhJ0UbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 16:31:20 -0400
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:46679 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240852AbhJ0UbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 16:31:17 -0400
-Received: by mail-ot1-f48.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so5318358ote.13;
-        Wed, 27 Oct 2021 13:28:51 -0700 (PDT)
+        id S235753AbhJ0Uej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 16:34:39 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:33686 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230494AbhJ0Uej (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 16:34:39 -0400
+Received: by mail-oo1-f52.google.com with SMTP id q39-20020a4a962a000000b002b8bb100791so1378279ooi.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 13:32:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7Gt7yecOdAu4EbIT5+gTrHUMc9b48g82wGEBF8mjpDQ=;
-        b=RG3XHZviQGX3vIFKDYwTHmjDRqzfk0ILhcHoyyahloVDFaKnIPgrBDeiWut0D8RNH3
-         4lajx8AsT/hFfgvc1n06CnFW7JtwDXdSUWsa887UrQOszXeTRBkgobuf7BIgYAkChWcr
-         zWXAAxnc2O770mMWHuMAr+O8ETS+ABwP7TKgA1z0i+/0iyV544sgv97W/YZG7r+MfRUv
-         K1eu7l++3V83fKbYhh4lgGaZ5gPEweo94lnltKLT91wvtXzcikjfCyLiyT77bVNawQ7R
-         gMWZYWd7CbyWLm/qdkO8ej4LNLBeztLMAV6JluCVhWs71cK8kKPFWl8XSpcZWUdcsxfN
-         zjyA==
-X-Gm-Message-State: AOAM533sXUM7NkmDQsyaz4yra3WhFnN3mGiA3UKfN6SXAnkonM8B8MSX
-        zIXTopX3iJCpP/pcmYdN9g==
-X-Google-Smtp-Source: ABdhPJxI0okT+tWwLZSJQkZ2bNESj5RO9j1ClK0XZe9EiCGZ3rwINTKkL792OhnRkHUQmV7CNHDEMw==
-X-Received: by 2002:a9d:7987:: with SMTP id h7mr5341884otm.82.1635366531369;
-        Wed, 27 Oct 2021 13:28:51 -0700 (PDT)
+        bh=dCyobkqZQkzSalEez4Iq0YBADjfjqmPa1gmyY2RxB7Y=;
+        b=Ij5/GhUOmm2Tih/G/W3R0WxXmaZpQGvFXeblS6UvClqiPAALQS8FsdWhy4ZmTrYtmz
+         KYyGbtsSfiJ8otg04L9fL1BtUrSjDaFeu4+wff+jbacHVaO/Wlv9hxti/reQL/QxomZT
+         iDj/pp8yHINfC1Q9pMHHQwG63cVu/8r8vj3dXpqrA9Vc5e676ipgt6fSA9AY2iyXh53K
+         XktPinlAqUb4K5nmndFZbjOmN/+2kt1pKPmPUApO9v8fMOiuI58zphgg5O8SE0PvqvIh
+         MRhn3axPPSw4G1JkABwcrN/G0mAq8+N3ND+fOVZjz9HXOJF1uIELREaQNUPsazn3Pobr
+         GqQw==
+X-Gm-Message-State: AOAM531MW5INx4ybhlyFk8KJorSAoeMlJIWjRAC9GMCqXNjfQSvR0xGb
+        2d+JbfL4CVmS9CWsg6B4Ug==
+X-Google-Smtp-Source: ABdhPJzr5mepQbrAdQc0r1ApS1sM4eCK0NSKmmtkdNXQ+AzNpWS64gF5Sod6uTlShQOc1t94rJ5iyQ==
+X-Received: by 2002:a4a:de10:: with SMTP id y16mr23677617oot.4.1635366733450;
+        Wed, 27 Oct 2021 13:32:13 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m34sm332238ooi.16.2021.10.27.13.28.50
+        by smtp.gmail.com with ESMTPSA id d18sm364711ook.14.2021.10.27.13.32.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 13:28:50 -0700 (PDT)
-Received: (nullmailer pid 2096909 invoked by uid 1000);
-        Wed, 27 Oct 2021 20:28:50 -0000
-Date:   Wed, 27 Oct 2021 15:28:50 -0500
+        Wed, 27 Oct 2021 13:32:12 -0700 (PDT)
+Received: (nullmailer pid 2102331 invoked by uid 1000);
+        Wed, 27 Oct 2021 20:32:11 -0000
+Date:   Wed, 27 Oct 2021 15:32:11 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Message-ID: <YXm2gVDJLORPSAfl@robh.at.kernel.org>
-References: <20211026152128.5834-1-etienne.carriere@linaro.org>
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-phy@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 1/7] dt-bindings: mediatek,dpi: Add DP_INTF compatible
+Message-ID: <YXm3S4u8KAWjJfXy@robh.at.kernel.org>
+References: <20211021092707.3562523-1-msp@baylibre.com>
+ <20211021092707.3562523-2-msp@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211026152128.5834-1-etienne.carriere@linaro.org>
+In-Reply-To: <20211021092707.3562523-2-msp@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 26, 2021 at 05:21:27PM +0200, Etienne Carriere wrote:
-> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> based on an OP-TEE service invocation. The compatible mandates a
-> channel ID defined with property "linaro,optee-channel-id".
+On Thu, 21 Oct 2021 11:27:01 +0200, Markus Schneider-Pargmann wrote:
+> DP_INTF is similar to DPI but does not have the exact same feature set
+> or register layouts.
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+> DP_INTF is the sink of the display pipeline that is connected to the
+> DisplayPort controller and encoder unit. It takes the same clocks as
+> DPI.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
-> No change since v5
 > 
-> Changes since v4:
->  - Fix sram node name in DTS example: s/-shm-/-sram-/
+> Notes:
+>     Changes v4 -> v5:
+>     - Newly created patch after realizing that the specific clocks for dpintf were
+>       the same as engine and pixel clocks.
 > 
-> Changes since v3:
->  - Add description for linaro,optee-channel-id in patternProperties
->    specifying protocol can optionaly define a dedicated channel id.
->  - Fix DTS example (duplicated phandles issue, subnodes ordering)
->  - Fix typo in DTS example and description comments.
+>  .../bindings/display/mediatek/mediatek,dpi.yaml       | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
-> Changes since v2:
->  - Define mandatory property linaro,optee-channel-id
->  - Rebased on yaml description file
-> 
-> Changes since v1:
->  - Removed modification regarding mboxes property description.
-> ---
->  .../bindings/firmware/arm,scmi.yaml           | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> index 5c4c6782e052..d09ebc80e713 100644
-> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> @@ -38,6 +38,9 @@ properties:
->                       The virtio transport only supports a single device.
->          items:
->            - const: arm,scmi-virtio
-> +      - description: SCMI compliant firmware with OP-TEE transport
-> +        items:
-> +          - const: linaro,scmi-optee
->  
->    interrupts:
->      description:
-> @@ -83,6 +86,11 @@ properties:
->      description:
->        SMC id required when using smc or hvc transports
->  
-> +  linaro,optee-channel-id:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Channel specifier required when using OP-TEE transport.
-> +
->    protocol@11:
->      type: object
->      properties:
-> @@ -195,6 +203,13 @@ patternProperties:
->          minItems: 1
->          maxItems: 2
->  
-> +      linaro,optee-channel-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description:
-> +          Channel specifier required when using OP-TEE transport and
-> +          protocol has a dedicated communication channel.
-> +        maxItems: 1
 
-Don't need maxItems.
-
-> +
->      required:
->        - reg
->  
-> @@ -226,6 +241,16 @@ else:
->        - arm,smc-id
->        - shmem
->  
-> +  else:
-> +    if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: linaro,scmi-optee
-> +    then:
-> +      required:
-> +        - linaro,optee-channel-id
-> +
->  examples:
->    - |
->      firmware {
-> @@ -340,7 +365,48 @@ examples:
->                  reg = <0x11>;
->                  #power-domain-cells = <1>;
->              };
-> +        };
-> +    };
->  
-> +  - |
-> +    firmware {
-> +        scmi {
-> +            compatible = "linaro,scmi-optee";
-> +            linaro,optee-channel-id = <0>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            scmi_dvfs1: protocol@13 {
-> +                reg = <0x13>;
-> +                linaro,optee-channel-id = <1>;
-> +                shmem = <&cpu_optee_lpri0>;
-> +                #clock-cells = <1>;
-> +            };
-> +
-> +            scmi_clk0: protocol@14 {
-> +                reg = <0x14>;
-> +                #clock-cells = <1>;
-> +            };
-> +        };
-> +    };
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        sram@51000000 {
-> +            compatible = "mmio-sram";
-> +            reg = <0x0 0x51000000 0x0 0x10000>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges = <0 0x0 0x51000000 0x10000>;
-> +
-> +            cpu_optee_lpri0: optee-sram-section@0 {
-> +                compatible = "arm,scmi-shmem";
-> +                reg = <0x0 0x80>;
-> +            };
->          };
->      };
->  
-> -- 
-> 2.17.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
