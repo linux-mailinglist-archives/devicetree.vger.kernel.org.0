@@ -2,196 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 315C743BE1C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 01:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E3C943BE60
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 02:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240349AbhJZXui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 19:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42406 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240346AbhJZXuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 19:50:37 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0339C061570
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 16:48:12 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 83so1086966pgc.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 16:48:12 -0700 (PDT)
+        id S231558AbhJ0ARP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 20:17:15 -0400
+Received: from mail-mw2nam10on2107.outbound.protection.outlook.com ([40.107.94.107]:63502
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230500AbhJ0ARN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 20:17:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FguoIm604WkBryPFfDdkTpIbL6yJ2Fs2U6h+i/OBwjR3Q5wps57MQ9+lEX1uCKChpyip2GPfUaAqOdWHRF1KQod4dvcAE671wkfbg9Pk40CHZTPSf7Tvz1Ywxz4saEb7Tmtz7LaDMLYlSHHvsb5jS3HLvyHpnBx+giG2Xk6NOPzjzGT9IZdoE/sYl7yw0l+A8js77IOP7XdK/eE10x92K7AEef1zWF7wHNJDNwKIri0UehiKxkB+WpeRRTx2kKSWRr09Jcvleb3uQIT3+Gv+8gB+EOudUH5S6ZE5CVXvGlGx3wy5qI7+vgPZsbxgP9wMw0cJuWcASDfnSfsNMJ4SeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=he95tu/GCl1zPM+El5K0fCOl2Pz8Wu6EEHbySF+QOqU=;
+ b=YNKEcuwf449+mBOgi6E9djBn/ojNJ5N/jT6zFS57xlPkai/GpKp9Sig+pjARokX9l6DuTf86ZoYSAO+bSpdBRXf8x/t0jluxBAnBTV6qM2VJvOHAMhdKYTEYyobbXqnlKok3coFfa6AdPGttXc19GsjlL4n9gUB9ahNCFVH04mvCSbOTOUKEyutZ2ueKjwRekhcuiUynehchdc9fszUXGJc5IJIXLKIpZC88v29Sp5M6sYbHiOHlDETMohRSXV0hz+ghxtx1DAiJOC6j0g1tMiaspFGDUENd9elKeZ+RghZKchvM7w6aI8ZVk+UN7IZiOPsH1N0+qhwt4AlBTUCwnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=maximintegrated.com; dmarc=pass action=none
+ header.from=maximintegrated.com; dkim=pass header.d=maximintegrated.com;
+ arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xwza6UlzVfIQQLUuHstHSQWG0hE12xpERozbdrPW5Tg=;
-        b=bL5UUtVmpGXr2E5Swk1wrnFLDjzAL5Db5e0u7N0mi/tqyGsx6+GlK/MkA1PeZ0MiBH
-         UqtEMnzlp4JbqIrOHDLM0X7xwdqxm+Q8XxYRc+jEfslnKpP7/aHhW6qvSVnH6excYZDb
-         VC1IQvQSDaBfc7R44xET+k4hlApI/RL63bhahOqKT9YDZN693dpwNfoCBN4inVtOaevB
-         bGax5fOJWR8FUq3dAHHrM5qU9UXizjS8YLq3e8e4Djy65nS3ZC+ArzwuQMAMNOH12B7A
-         7el8VdsFddT3cD4ORzpcSHthBAHXQqBYYrDgxbVUSfbV3/tcjwQrnBfO5l8NcMVRwpXV
-         V10g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=xwza6UlzVfIQQLUuHstHSQWG0hE12xpERozbdrPW5Tg=;
-        b=jGWulLqLLJuUr1g101zLTtZDHskmpwYS3AfZizQHnp2s9Tp1yueMl2gR+pi/+otZVO
-         4q/j34qfjUxeWzNGySYBECGHWd0ZiwjqYnRoUKuepNZhk0FSeGg9lPGv4jTlosRH/NbC
-         43w28luIybap9eHkvi+7nsM9ARUXNE/ajrn3CbGANBmBoAw2uCMHp68cU4E1kpZSIFz9
-         KvRU3nfRW65t/B57ShTC6/GSmsn/23F2YIiG57YFhjYfhqa6ADe0zohXtem2h81jw2FW
-         Tw87q2t5KzgPxNnPropJUUoTfeYGHoh22tAbx3p+u786pTWKANpL+DSLExBmzu6Q5F0P
-         VNGw==
-X-Gm-Message-State: AOAM532eeAIIcoWLWWq4zpSszZjj3J1h1I7GePnhQzyR3/9/nt3PLt0P
-        Cca65Bat9QP4zwiskRisrwViDQ==
-X-Google-Smtp-Source: ABdhPJyRkUu4Ob775r7anWlvMiPOtSlIC4kpnedNkEQ7aHSpYHADrjTrcPXKvv/WmHKLJfAYPq7/Ng==
-X-Received: by 2002:a63:8243:: with SMTP id w64mr16130369pgd.18.1635292092131;
-        Tue, 26 Oct 2021 16:48:12 -0700 (PDT)
-Received: from localhost ([2620:0:1000:5e10:676c:ab93:f48d:23ae])
-        by smtp.gmail.com with ESMTPSA id ls7sm1981133pjb.16.2021.10.26.16.48.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 16:48:11 -0700 (PDT)
-Date:   Tue, 26 Oct 2021 16:48:11 -0700 (PDT)
-X-Google-Original-Date: Tue, 26 Oct 2021 16:48:02 PDT (-0700)
-Subject:     Re: [PATCH v9 0/8] RISC-V CPU Idle Support
-In-Reply-To: <20211012095857.1314214-1-anup.patel@wdc.com>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu,
-        daniel.lezcano@linaro.org, ulf.hansson@linaro.org,
-        rjw@rjwysocki.net, pavel@ucw.cz, robh+dt@kernel.org,
-        milun.tripathy@gmail.com, Atish Patra <Atish.Patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        liush@allwinnertech.com, anup@brainfault.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Anup Patel <Anup.Patel@wdc.com>
-From:   Palmer Dabbelt <palmerdabbelt@google.com>
-To:     Anup Patel <Anup.Patel@wdc.com>
-Message-ID: <mhng-63e8dc0c-278d-46e3-a617-abe1d68fcc6d@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+ d=maximintegrated.onmicrosoft.com;
+ s=selector2-maximintegrated-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=he95tu/GCl1zPM+El5K0fCOl2Pz8Wu6EEHbySF+QOqU=;
+ b=aJRZYuibXYuWM3nuBaNPaGPRfJF1TVOdnIp1vBhejVNvsTjLyvE7Cf7YqutEFvDom8bPG0EGWBEtwhuOEYb3HdTooyxZKPy9xUI1/208cpDJ3US4Smfn2gVvRQ7uXSj5sb+zhLpSkVbCelukIVGSkLT8MHyHUHc1u3dntsDQhNU=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none
+ header.from=maximintegrated.com;
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com (2603:10b6:a03:b3::15)
+ by SJ0PR11MB5868.namprd11.prod.outlook.com (2603:10b6:a03:42b::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Wed, 27 Oct
+ 2021 00:14:47 +0000
+Received: from BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94]) by BYAPR11MB3671.namprd11.prod.outlook.com
+ ([fe80::49d4:a1dd:5b55:4c94%6]) with mapi id 15.20.4628.020; Wed, 27 Oct 2021
+ 00:14:47 +0000
+From:   George Song <george.song@maximintegrated.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, george.song@analog.com,
+        ryans.lee@maximintegrated.com, steves.lee@maximintegrated.com,
+        George Song <george.song@maximintegrated.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [RESEND,v6 1/2] ASoC: dt-bindings: max98520: add initial bindings
+Date:   Wed, 27 Oct 2021 09:14:30 +0900
+Message-Id: <20211027001431.363-1-george.song@maximintegrated.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SL2PR04CA0016.apcprd04.prod.outlook.com
+ (2603:1096:100:2d::28) To BYAPR11MB3671.namprd11.prod.outlook.com
+ (2603:10b6:a03:b3::15)
+MIME-Version: 1.0
+Received: from SEL-LT-028891.maxim-ic.internal (39.117.232.232) by SL2PR04CA0016.apcprd04.prod.outlook.com (2603:1096:100:2d::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14 via Frontend Transport; Wed, 27 Oct 2021 00:14:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9a1d7c5b-1f01-4b50-be4e-08d998dec8e0
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB5868:
+X-Microsoft-Antispam-PRVS: <SJ0PR11MB586814773372102AEE2E7E13F4859@SJ0PR11MB5868.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2657;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: jigHstzifQXjsL/g9o96OnusSnvR8nu0U4ZJtRKDBZRC+aNbdFhUeLk1XGjw2aKk4fOZcoOxsVhh0HFdKgs5SjrCrm/ozU2dij9I2XLyLkFYN633OOqCqXBUj8lTJ18wH+9f9zh8jOrEgXZ6OIYTVMT0Q+L+ZcLM85tUEkwBqFMEruBFlmvR+D4b6eVkgwbJ3GMnItxesxnM2udIlqDdrj2wyhFswV2L8X7H2MqLhh4ePgcohl4fQouL4wgnxmm652ifV2rSlXrVnJvdXmmTeZAKIa95dGHYfkSqUsCDCUY0xmltILbyeRsNHERlvttMYghQ0/YZJGVLAIIyFeQbkytAyYIH2PivYJILXX+U7MOATTWhk4FJiJ0jxlPwwp3JW0D57i3B2POiOZ+KAJ9FORKhz46mayWuL5w0tFD8cdklmNrETBrbC7gk0WdAyBfnVrR9gvCU7erFtevhqzORMPZqCp71Ch93J0vtxnY7L+lw81HPw6/meARN+xT9JqPJobv1YodLlzWpy/7ovaSQw/mbTnrUFG9KLt4nhVX2Hti/GPzZKqO5JtlYNoEzitNzSpKg3gMKWytuKhGwbetCzZhmwNYFci5zKpR5DVSESrGNrJjQ3/ICJ6DC/kuoTUEDznumyG201BhoDsVDzL4OQoDTTHaGgusP904Z6eXpw20qhHeihjoTyBvZhzME3/7lW/w839Y0kS8WsNPOWI3kdwSbMCQy02cWyZTA645HX9KtWO2kRCaZuBAMhOd0KmhTOlfT2gknSctILheTxZkgTxQzyJw6y7/PxMvqOKxalyslNSo/wq5H7K0ACioXg7f8vT1oL9kiycCA7cZnop4QVQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR11MB3671.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66476007)(6512007)(66556008)(2906002)(36756003)(8676002)(8936002)(38100700002)(5660300002)(1076003)(38350700002)(2616005)(66946007)(186003)(956004)(6666004)(52116002)(4326008)(44832011)(316002)(6486002)(966005)(86362001)(26005)(6506007)(508600001)(54906003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8Y7Djq7M27ZL601laAgEDhudgL5DY3wZbrcfr6vZAAvR2zdrq4i83wxdpGuT?=
+ =?us-ascii?Q?du9vnvWzQBsfSLIoHFXbyJfx3fuHQsx1jdQDVm67OLvJ++f3CQkPC/qc9AEf?=
+ =?us-ascii?Q?llcjOJh3maMTjcaJFe410Qujaj3S1Aw+LHnZKzPsK/JK9kGqPOCo14WBLzZl?=
+ =?us-ascii?Q?EeHxU+5xba7XuReYaa+wZ1O+cHiyp+ithv8oD06WTRl+wRaaXSHcxjlClFrQ?=
+ =?us-ascii?Q?HoE6qKEnhIvPNwoB4eu0+kqPOAE9MSCJpKXU2YoWKYXtEeKU674MW9AgatN6?=
+ =?us-ascii?Q?YSa6ZthYPhORLSHX0YBqkVD5tBvMd0MvKP/iBldWZmHs+/uPBmNqgNYk4ph0?=
+ =?us-ascii?Q?GHkwCHPYmIOAMNykRG7MdWWYVl0mWxBGpKXbRM68Gf+15lTWNFZLHa02H8kw?=
+ =?us-ascii?Q?WWT3HKd193O9u0hfoBKT8AjX2/9h5CIcYHFKLAfp2S6Ed9DbuozANWoD8Ewg?=
+ =?us-ascii?Q?aPRkh+EhcoLdpBSiwo6xupqACq41aYbG3j2O4MnsUJ3VhUnEmWxXNZy2niBj?=
+ =?us-ascii?Q?JALimlsHp/pAFbYbF7Mn4aX+cVqotGyqwCvpDiQoVwdDxQQNgT5kDngplqiS?=
+ =?us-ascii?Q?Twgi7fsn0Fs9C0snhe+AXwghGIEdFwO0Iq2GYHIKmRAwy6E7xw6l6kST6IaI?=
+ =?us-ascii?Q?CvT4kZ/KJPKIRwo8Sz/5NB9HaoLa6J2jzm/iNUhrc6u6w1nDzgyJp1HZgQj+?=
+ =?us-ascii?Q?bQ4MOXkxvgx2IMw7o4H1/PgwjYxqGxYNBZhkU08gAsLcBIFcLfv3GUiLObYv?=
+ =?us-ascii?Q?oMcvaXyAx0KNPUvnPMQCfOZWoxGtKrOea5Ut2ijAHbfXwTGBXDmIPSMC4RfU?=
+ =?us-ascii?Q?hdxg6kKsZJM6ZhhjuGQ4M1haS/ERrDk/FD1S9yqespCJYc2/FZOXRpblJ1Qa?=
+ =?us-ascii?Q?PQ+Bi86E179vvg4YIf2cn5P5l8vIL13mNvWaIJ2wtxKwB+Mkn1em+59nQgl5?=
+ =?us-ascii?Q?gIWl4ulezl7yktcOsjkSw4qa/nIDnnXHcxoCALbreGldrvXC5xLxvDyZUtMv?=
+ =?us-ascii?Q?Dvq4Y9cJIy38cQBbmn+TggYUzUXpf3qkcXZeJhg2UaoCbMOF/cexy0cOdHl9?=
+ =?us-ascii?Q?ckvS1SZBdY8pXjuLTqF6Igw/a5lVBLfCBcnFrwfq1t03BlGORp9c6mLTLBea?=
+ =?us-ascii?Q?hEocPU4v6c0BndXQyTFj1+DJQhWnRjTazoNQf63JLTaIsgNzUype9ODhnlgj?=
+ =?us-ascii?Q?QRTRN4DHCzOH4tTjLoXDMi0OaxlpVL5bi1m3MZrZyl/NJ2jKgqCPtoX98h1/?=
+ =?us-ascii?Q?yWG3Cam+t799mCTPZT/4ZEwdSeuC/pUsBcfuyNdqMD9e64BkuO8Ucs1LsKge?=
+ =?us-ascii?Q?HLyscvVrlWXkc0p7OiohK/8HmfjzdMs5IELHAIiGHbXwzE/OoFgUTEr+TKyZ?=
+ =?us-ascii?Q?6e39Qm7o8niZQV2E6Q1R9eUlw6HJaKl/wlY+UrrjVxToJZiLDyFV6Hi/aobC?=
+ =?us-ascii?Q?A3rM5wDssf0W4sLKijVfurZ6c/ubfI0mvFetkDAi4MB/EVbEmpjN3rKo4Yd/?=
+ =?us-ascii?Q?yz+0Ex8+H8YxtA0lE5gCpiKDgnNC7BzYoj9fML95MgMF7y68/8lP1gNNR/0x?=
+ =?us-ascii?Q?l8xU1aAFv/WL/GHMPC2oBvMJjD26rgM3Qd9xZa404PRLh+zJp/LuUHJQW87O?=
+ =?us-ascii?Q?DaRS6ykgFh4mX+vNmZla80+M7r4I8jFTzSYl+c9/SlKfA9bRzGV24AnAjX/n?=
+ =?us-ascii?Q?7ZaObQ=3D=3D?=
+X-OriginatorOrg: maximintegrated.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a1d7c5b-1f01-4b50-be4e-08d998dec8e0
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB3671.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2021 00:14:47.4766
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd909df-ea69-4788-a554-f24b7854ad03
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: InuaWpDsf7NE/LAbDgJhRYciHgNch/3IyY4otklQdef/ZhuER0mtgvnEfuES5tXE5/nnWAfUWr+tdA6pCqOKIvEB1QSQPLjz9+ZadfdHzn8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5868
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Oct 2021 02:58:49 PDT (-0700), Anup Patel wrote:
-> This series adds RISC-V CPU Idle support using SBI HSM suspend function.
+add initial bindings for max98520 audio amplifier
 
-This all generally looks good to me, I'm just not sure what the spec 
-status is.  If one of you guys says it's frozen then that's good enough 
-for me, please just either point me to something where that's been 
-publicly said or just post here.
+Signed-off-by: George Song <george.song@maximintegrated.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/sound/maxim,max98520.yaml        | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/maxim,max98520.yaml
 
-> The RISC-V SBI CPU idle driver added by this series is highly inspired
-> from the ARM PSCI CPU idle driver.
->
-> At high-level, this series includes the following changes:
-> 1) Preparatory arch/riscv patches (Patches 1 to 3)
-> 2) Defines for RISC-V SBI HSM suspend (Patch 4)
-> 3) Preparatory patch to share code between RISC-V SBI CPU idle driver
->    and ARM PSCI CPU idle driver (Patch 5)
-> 4) RISC-V SBI CPU idle driver and related DT bindings (Patches 6 to 7)
->
-> These patches can be found in riscv_sbi_hsm_suspend_v9 branch at
-> https://github.com/avpatel/linux
->
-> Special thanks Sandeep Tripathy for providing early feeback on SBI HSM
-> support in all above projects (RISC-V SBI specification, OpenSBI, and
-> Linux RISC-V).
->
-> Changes since v8:
->  - Rebased on Linux-5.15-rc5
->  - Fixed DT schema check errors in PATCH7
->
-> Changes since v7:
->  - Rebased on Linux-5.15-rc3
->  - Renamed cpuidle-sbi.c to cpuidle-riscv-sbi.c in PATCH6
->
-> Changes since v6:
->  - Fixed error reported by "make DT_CHECKER_FLAGS=-m dt_binding_check"
->
-> Changes since v5:
->  - Rebased on Linux-5.13-rc5
->  - Removed unnecessary exports from PATCH5
->  - Removed stray ";" from PATCH5
->  - Moved sbi_cpuidle_pd_power_off() under "#ifdef CONFIG_DT_IDLE_GENPD"
->    in PATCH6
->
-> Changes since v4:
->  - Rebased on Linux-5.13-rc2
->  - Renamed all dt_idle_genpd functions to have "dt_idle_" prefix
->  - Added MAINTAINERS file entry for dt_idle_genpd
->
-> Changes since v3:
->  - Rebased on Linux-5.13-rc2
->  - Fixed __cpu_resume_enter() which was broken due to XIP kernel support
->  - Removed "struct dt_idle_genpd_ops" abstraction which simplifies code
->    sharing between ARM PSCI and RISC-V SBI drivers in PATCH5
->
-> Changes since v2:
->  - Rebased on Linux-5.12-rc3
->  - Updated PATCH7 to add common DT bindings for both ARM and RISC-V
->    idle states
->  - Added "additionalProperties = false" for both idle-states node and
->    child nodes in PATCH7
->
-> Changes since v1:
->  - Fixex minor typo in PATCH1
->  - Use just "idle-states" as DT node name for CPU idle states
->  - Added documentation for "cpu-idle-states" DT property in
->    devicetree/bindings/riscv/cpus.yaml
->  - Added documentation for "riscv,sbi-suspend-param" DT property in
->    devicetree/bindings/riscv/idle-states.yaml
->
-> Anup Patel (8):
->   RISC-V: Enable CPU_IDLE drivers
->   RISC-V: Rename relocate() and make it global
->   RISC-V: Add arch functions for non-retentive suspend entry/exit
->   RISC-V: Add SBI HSM suspend related defines
->   cpuidle: Factor-out power domain related code from PSCI domain driver
->   cpuidle: Add RISC-V SBI CPU idle driver
->   dt-bindings: Add common bindings for ARM and RISC-V idle states
->   RISC-V: Enable RISC-V SBI CPU Idle driver for QEMU virt machine
->
->  .../bindings/arm/msm/qcom,idle-state.txt      |   2 +-
->  .../devicetree/bindings/arm/psci.yaml         |   2 +-
->  .../bindings/{arm => cpu}/idle-states.yaml    | 228 ++++++-
->  .../devicetree/bindings/riscv/cpus.yaml       |   6 +
->  MAINTAINERS                                   |  14 +
->  arch/riscv/Kconfig                            |   7 +
->  arch/riscv/Kconfig.socs                       |   3 +
->  arch/riscv/configs/defconfig                  |  15 +-
->  arch/riscv/configs/rv32_defconfig             |   8 +-
->  arch/riscv/include/asm/asm.h                  |  17 +
->  arch/riscv/include/asm/cpuidle.h              |  24 +
->  arch/riscv/include/asm/sbi.h                  |  27 +-
->  arch/riscv/include/asm/suspend.h              |  35 +
->  arch/riscv/kernel/Makefile                    |   2 +
->  arch/riscv/kernel/asm-offsets.c               |   3 +
->  arch/riscv/kernel/cpu_ops_sbi.c               |   2 +-
->  arch/riscv/kernel/head.S                      |  18 +-
->  arch/riscv/kernel/process.c                   |   3 +-
->  arch/riscv/kernel/suspend.c                   |  86 +++
->  arch/riscv/kernel/suspend_entry.S             | 123 ++++
->  drivers/cpuidle/Kconfig                       |   9 +
->  drivers/cpuidle/Kconfig.arm                   |   1 +
->  drivers/cpuidle/Kconfig.riscv                 |  15 +
->  drivers/cpuidle/Makefile                      |   5 +
->  drivers/cpuidle/cpuidle-psci-domain.c         | 138 +---
->  drivers/cpuidle/cpuidle-psci.h                |  15 +-
->  drivers/cpuidle/cpuidle-riscv-sbi.c           | 626 ++++++++++++++++++
->  drivers/cpuidle/dt_idle_genpd.c               | 177 +++++
->  drivers/cpuidle/dt_idle_genpd.h               |  50 ++
+diff --git a/Documentation/devicetree/bindings/sound/maxim,max98520.yaml b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+new file mode 100644
+index 000000000000..b6509cb2c8e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/maxim,max98520.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/maxim,max98520.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim Integrated MAX98520 Speaker Amplifier Driver
++
++maintainers:
++  - George Song <george.song@maximintegrated.com>
++
++properties:
++  compatible:
++    const: maxim,max98520
++
++  reg:
++    maxItems: 1
++    description: I2C address of the device.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      max98520: amplifier@38 {
++        compatible = "maxim,max98520";
++        reg = <0x38>;
++      };
++    };
++
+-- 
+2.25.1
 
-Some of the patches that touch drivers/cpuidle don't have Acks from the 
-subsystem maintainers.  I'm OK taking this through the RISC-V tree, but 
-I'd prefer to have acks first.  I'm also fine doing something like a 
-shared tag between the trees, if that's better for folks.
-
->  29 files changed, 1474 insertions(+), 187 deletions(-)
->  rename Documentation/devicetree/bindings/{arm => cpu}/idle-states.yaml (74%)
->  create mode 100644 arch/riscv/include/asm/cpuidle.h
->  create mode 100644 arch/riscv/include/asm/suspend.h
->  create mode 100644 arch/riscv/kernel/suspend.c
->  create mode 100644 arch/riscv/kernel/suspend_entry.S
->  create mode 100644 drivers/cpuidle/Kconfig.riscv
->  create mode 100644 drivers/cpuidle/cpuidle-riscv-sbi.c
->  create mode 100644 drivers/cpuidle/dt_idle_genpd.c
->  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
