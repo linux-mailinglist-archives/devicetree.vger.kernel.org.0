@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C08B43CF36
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 18:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9329B43CF3D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 18:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243143AbhJ0RBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 13:01:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60158 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237929AbhJ0RBZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 13:01:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8962560EDF;
-        Wed, 27 Oct 2021 16:58:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635353939;
-        bh=kaTwXIJN40QCdVhjU8t/SSdOu1JqzIHQJoWDXuNybm0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=PA786h6onPARN5DmpCKcVlgIhdSBBgu5ndzyI6U+HKZ1g/MA5ycb5ijyGIiMzzQKF
-         u87j4x6sL3i9EluMCuzknSv1hL0GJ57rkRx60UV5/FQ9YmfB22CuCH2pcd5uceVNvA
-         EUR1nZ0y7WK6lw7hTzQk2P9j5TbbT1zdnTR+7LfJNX/9dajtJOFIR9T6/S0PIbpI/t
-         HRg3xpUPL40GcJRSGCMzK4quK/+Du3fAhmUYq8AqwMZ4dEqE4aqS6Clvm1lpvS9u8U
-         vJc0lfGe7ApcWkhkHzaKlt7eQsOK2LhQ0t6ZUVUoKmnCGpU9JA+E2UMXdKsKsXANN5
-         owBvlYRnkpNCw==
-Date:   Wed, 27 Oct 2021 11:58:57 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     Rob Herring <robh@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
-        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
-        <linux-pci@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/6] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20211027165857.GA229979@bhelgaas>
+        id S243135AbhJ0RB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 13:01:56 -0400
+Received: from mail-oo1-f52.google.com ([209.85.161.52]:40572 "EHLO
+        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243158AbhJ0RBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 13:01:38 -0400
+Received: by mail-oo1-f52.google.com with SMTP id m37-20020a4a9528000000b002b83955f771so1132466ooi.7;
+        Wed, 27 Oct 2021 09:59:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3xNLUk6B6HG3KUZQunYiPk6GxwNlFHDYS2KiJ7xOzd0=;
+        b=ghxwW0MTLBPmuJuHTCjyds2HUQbFd0UQbHVCA69CgeXp2DPYC+yh71uw0CkbzSn6hz
+         6qmHMFZYi1QrWrqt7fYIDll6P515rWZNKPgZmnqPVb6QvzejYBbcGXSYlhdOvs5YP8az
+         /hHOmdF2LeSZxe32aWLJk67IowzU7ICnWF+oPPPITns48FVhcSsQaKG79ls0EpbpVXEG
+         D19UWigGEtsG/eWoupPwgwV07tddN/ONRr6L/bxMLq3HEF6eSbEU/hh56KabexD7tzTe
+         3+t9AcoLWvhH7iXMTBRapPv1/+x/UFPGvjMXIWwkh1fF/iDKqPxseLcLKibbI6GViPlm
+         Aw3A==
+X-Gm-Message-State: AOAM533PVVZniVdRj+oR4SV821/gLdioFA6tae7gNiqopbmYLlcYyv1M
+        F2U/WK1yVVHrg9BHN4bBqg==
+X-Google-Smtp-Source: ABdhPJz2mU9EVbEpZu1D4mjpd0zA7Lfg4qao8M88Gqdf0Vnqbz2FDr6xTj3Smo7ox6FLH3iDEajiIw==
+X-Received: by 2002:a4a:eacc:: with SMTP id s12mr8853355ooh.14.1635353952123;
+        Wed, 27 Oct 2021 09:59:12 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id d4sm238597otu.57.2021.10.27.09.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Oct 2021 09:59:11 -0700 (PDT)
+Received: (nullmailer pid 1698392 invoked by uid 1000);
+        Wed, 27 Oct 2021 16:59:10 -0000
+Date:   Wed, 27 Oct 2021 11:59:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Odelu Kukatla <okukatla@codeaurora.org>
+Cc:     sboyd@kernel.org, Georgi Djakov <djakov@kernel.org>,
+        mdtipton@codeaurora.org, Andy Gross <agross@kernel.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+        evgreen@google.com, bjorn.andersson@linaro.org,
+        Rob Herring <robh+dt@kernel.org>, seansw@qti.qualcomm.com,
+        georgi.djakov@linaro.org, saravanak@google.com, elder@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: Re: [v8 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on
+ SC7280
+Message-ID: <YXmFXoKLmDsigVqt@robh.at.kernel.org>
+References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
+ <1634812857-10676-2-git-send-email-okukatla@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+-6iNyxYm4Sf6EsKjmedi8RF-CZKsXs9KXMjaTd_xqnyFL8ZA@mail.gmail.com>
+In-Reply-To: <1634812857-10676-2-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 26, 2021 at 05:27:32PM -0400, Jim Quinlan wrote:
+On Thu, 21 Oct 2021 16:10:55 +0530, Odelu Kukatla wrote:
+> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+> SoCs.
+> 
+> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-> I don't think it matters but our PCIe controllers only have a single
-> root port.
-
-Just to kibitz, and I don't know anything about the DT binding under
-discussion here, but I would prefer if DTs and drivers did not have
-the "single root port" assumption baked deeply in them.
-
-I expect some controllers to support multiple root ports, and it would
-be really nice if the DTs and drivers all had similar structures with
-the single-root-port controllers just being the N=1 case.
-
-For example, some drivers put their per-root port stuff in
-*_add_pcie_port() functions, which I think is a nice way to do it
-because it leaves the door open for calling *_add_pcie_port() in a
-loop.
-
-Ironically, the only driver I see that looks like it currently
-supports multiple root ports is pci-mvebu.c, and it doesn't have an
-_add_pcie_port() function.
-
-Having this sort of consistent structure and naming across drivers is
-a huge help for ongoing maintenance.
-
-Bjorn
+Acked-by: Rob Herring <robh@kernel.org>
