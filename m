@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2208843D36D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 23:02:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C94EF43D372
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 23:02:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240887AbhJ0VEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 17:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
+        id S244169AbhJ0VEv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 17:04:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240757AbhJ0VEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 17:04:30 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A216CC061767
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 14:02:04 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id m11so493966oif.13
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 14:02:04 -0700 (PDT)
+        with ESMTP id S244156AbhJ0VEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 17:04:50 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ABCC061570
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 14:02:24 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id 71-20020a9d034d000000b00553e24ce2b8so805208otv.7
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 14:02:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=R/5mqaAD7u8YJi+R3Jae+PBQwDj790p4urFkBQ9hMFo=;
-        b=S+UqJ+m8jTaSYhorC+Syd7X4CBX+ACkq0K53U150PJZr9KjKvCHPTNCgzhr2HXclZq
-         L2h2Ls+caGi3aAV8Avz6WL4SMICh5WwVpLP96WAJSvzIl326jysPNqo4YR2HLn7O4B/O
-         3+wAqkoyuqzdBmCRaWutqsf+NZkmadJiyYAKY=
+        bh=EWGuNWBIhypYPfhEwftufgfwqDqQ723njHLWk1GFVNA=;
+        b=MmzNbp++wNza27ctdQLLqrbr070EwEsA68FErbYt9pXcWuV/40LvGqgr/h53l2qCvi
+         0gjOxvnnkQeULOA/8abqsLbXqGJFcY4j3WiDOhVr9Cqn2GnOikq6Oy10PEcYqs7fbl/J
+         KfHL0PNMZn2F+HtqLJIz6ei7aNF53jusSnYBw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=R/5mqaAD7u8YJi+R3Jae+PBQwDj790p4urFkBQ9hMFo=;
-        b=q1hPvRjkQ2JyN+HBNGmzgYacFJOj2aL74PGiRfCPAMOSQuMUSgSHWn+k8Vtgm8EFDE
-         /GWxlfdR6Xves2zuvU+fDMkunQUjLb9icyMCMBcOTQSJ1pFld7Vt6crATZJXDXdJh/0B
-         f2Pq7Ki9CAIWom9aE5PLwvGClZTlATewrdF2iuLi273zEIIY4sy7Jz6vlzUN5Qk0cjJI
-         iaV+8s1zatOZHfOyjxJejSOVl6DIobY4GqmpEBZgemixVcR3QmyXcfbPEM+VAxmtzY+K
-         ypQw9KwKXmy7si/kUeJAZLi8EPep9+wL5uVwfF84+/Uwqp+M0bHcNPW7SR+/3uZGCdip
-         Hnnw==
-X-Gm-Message-State: AOAM533Po1xrSYQuUm3ESHPvcH5S8MOJMVD8gGfxG1e8od7wIctL3Iyo
-        9G/M90lig574K45n8NJX1TXXlLJ0DVTUbXZK2rBwmw==
-X-Google-Smtp-Source: ABdhPJzHgjm2QUB1Kb2T5goQlClqfwdgymvtu7rf5vHGAkVJ+BI2qr3BG5waUuMOpv+n1SBt2k7GstXBcM56lBVH6xk=
-X-Received: by 2002:a05:6808:a1d:: with SMTP id n29mr5417189oij.164.1635368524003;
- Wed, 27 Oct 2021 14:02:04 -0700 (PDT)
+        bh=EWGuNWBIhypYPfhEwftufgfwqDqQ723njHLWk1GFVNA=;
+        b=5v3tYWuEtUk3K0O96EP6f28SXa6u/iFGgbAQWNBM7P8zgGJ91efBEJ8+tAT7F2HpJ6
+         EotvxVB3e3p6BD4XiRPQzlEaekCIjGCsYTTt26LtvPxSG+kd2Gj93b+Tm5N4IdHf2Vnr
+         3Efg+3k60Eo6jj6M30r7fkg55LKfY1EP7lZulbwneNKjrPrlaTwJRuIobntDzcLWWXxq
+         HRHgEK57WV/9S1TE9erOaO9nuvfHCqcFiKyD0nTjWbMYBzxaPJy32755Tg+YwYEzQM3U
+         949Ngh920sJ/Y5Ks2sRRoV7Xyt4MHL8Jwa5zvIzTYW0QpybMCdGH4E0Qa6wscCL2QpDo
+         h06Q==
+X-Gm-Message-State: AOAM531qvShz8jDRTbOrmRDYAV4IYJcms9FKmVlCZ4qXPldzYCXRjQYh
+        g06gxN2rG3Qzo2E/xduRZvpV21ktfcyRZQwxOgoRtg==
+X-Google-Smtp-Source: ABdhPJwh99/Sh85MxoTTnuIvD5jp6hvye9B7r5N4NVAEnB3jm3m/LIvK9076YdNwy13oqDkW7nn0cj9KPHILd7ZjSOU=
+X-Received: by 2002:a9d:6e16:: with SMTP id e22mr89272otr.77.1635368544206;
+ Wed, 27 Oct 2021 14:02:24 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 27 Oct 2021 14:02:03 -0700
+ HTTPREST; Wed, 27 Oct 2021 14:02:23 -0700
 MIME-Version: 1.0
-In-Reply-To: <1635250764-13994-3-git-send-email-srivasam@codeaurora.org>
-References: <1635250764-13994-1-git-send-email-srivasam@codeaurora.org> <1635250764-13994-3-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1635250764-13994-4-git-send-email-srivasam@codeaurora.org>
+References: <1635250764-13994-1-git-send-email-srivasam@codeaurora.org> <1635250764-13994-4-git-send-email-srivasam@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Wed, 27 Oct 2021 14:02:03 -0700
-Message-ID: <CAE-0n521XmdKMcsf+jhjjoJuTo0C4JvZZ7dRqU3ZxkTU9hu+kg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: soundwire: qcom: Add bindings for RX
- and TX cgcr register control
+Date:   Wed, 27 Oct 2021 14:02:23 -0700
+Message-ID: <CAE-0n53SMuHkWzNfBUw2Dym5hBGha1rWF-F3W5XpQvuWaULyAg@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] soundwire: qcom: Add compatible name for v1.6.0
 To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
         agross@kernel.org, alsa-devel@alsa-project.org,
         bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
@@ -66,36 +65,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-10-26 05:19:23)
-> Update description for RX and TX cgcr register control property required for
-> soundwire version 1.6.0 and above.
+Quoting Srinivasa Rao Mandadapu (2021-10-26 05:19:24)
+> Update compatible string and master data information in soundwire driver
+> to support v1.6.0 in lpass sc7280 based platform.
 >
 > Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
 > Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  drivers/soundwire/qcom.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> index b93a2b3..91b9086 100644
-> --- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> +++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> @@ -150,6 +150,15 @@ board specific bus parameters.
->                     or applicable for the respective data port.
->                     More info in MIPI Alliance SoundWire 1.0 Specifications.
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 2492190..2b39f4c 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -173,6 +173,11 @@ static struct qcom_swrm_data swrm_v1_5_data = {
+>         .default_cols = 16,
+>  };
 >
-> +- qcom,swrm-hctl-reg:
-> +       Usage: optional
-> +       Value type: <prop-encoded-array>
-> +       Definition: The base address of SoundWire RX and TX cgcr register
-> +                   address space.
+> +static struct qcom_swrm_data swrm_v1_6_data = {
 
-cgcr is "clock gate control register"?
+const?
 
-> +                   This is to update soundwire master rxtx cgcr register field to
-> +                   make clock gating control as software controllable for RX path and
-> +                   TX path which is required for SoundWire version 1.6.0 and above.
-
-Nak. Use clk APIs to control clks, not direct MMIO writes into a
-different device.
+> +       .default_rows = 50,
+> +       .default_cols = 16,
+> +};
+> +
+>  #define to_qcom_sdw(b) container_of(b, struct qcom_swrm_ctrl, bus)
+>
+>  static int qcom_swrm_ahb_reg_read(struct qcom_swrm_ctrl *ctrl, int reg,
