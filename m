@@ -2,108 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A1F243D14A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 20:54:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24CD343D1C4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 21:37:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238770AbhJ0S5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 14:57:11 -0400
-Received: from box.trvn.ru ([194.87.146.52]:56457 "EHLO box.trvn.ru"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230437AbhJ0S5K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 14:57:10 -0400
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id CD5B540479;
-        Wed, 27 Oct 2021 23:54:40 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1635360881; bh=BonGhLg84CWois0icg8TpND/lf5KoZP4O0tUhZHbQ1Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=f2IPSOYrc3Qvp6aQhgRc039cAxfHFxb+20amdVK1WvyBS/PEoBK3kqon9kPAemIyo
-         YRuKX5WNqnTxP5X8FF8IKUUk45c3A0zzuaJ9EWi7Y5FtpOgRGfHUN3Ar8bmF6TcavC
-         GGXuIm/TXLvGTAnBKFTTpGAkcGI7tfsJKMwrmL/EigNRNnVgOInDjwa2GYy+s6eGN7
-         42LWEWidS2FsZ6ahg5pFvqugnwlExfDzioqdWEDGbNsS1skflbBlsoP0+W4DWCR130
-         W08T1yfmi/maBxRqnK0BDvLLy8uzHtUSRDBjPfQ3j0TCXFZV6D6WSDpsWaaljoonTc
-         jyJ3Xnn6iqptQ==
+        id S240359AbhJ0TkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 15:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243694AbhJ0TkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 15:40:00 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78DF4C061745;
+        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id z11so2747775plg.8;
+        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TlCdU5zouJbzVDOk8Ea867d7FfdiiRN5l9ui9mRuc+o=;
+        b=Ws3+WredrrfaZYQpExt1B9xl4/OoL7LgR2/+qZwE7z7CRPhmNrJaW3alQql2WE8t2p
+         ih9f06N2t4vtL0aXMWiTd1xUxzY76uyyT3CS6akLF0E1XY+AaWU6XM9T1PGU+8vj9KVD
+         N1zZFUE1GIUfFp5p20VR3ILyIrw2L6fZqKEvOBB1RVHJ/ISYlgnei3J7p8AQv8z0ZLa4
+         KVnz+uOra1iHe6fTOKHIlzGpNbxen+B2N9zoLoqijLvABfUGlpPA8iE3JCGig8ksBvzs
+         K1YSKD1LsUR2YQ2Br4JENLEkQ+bqMB2KOHK+kGRakyVU8Kfj5Yvx2aourQd5CUtAZr4e
+         WJ8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TlCdU5zouJbzVDOk8Ea867d7FfdiiRN5l9ui9mRuc+o=;
+        b=MatIHfZ9mN4sXduWKbLMfstdUq6sqpMAdF+Htf1xgXYh7EeKrRZYDxcrkmrbENYbEF
+         mX45OEscOFFlX13q6J01kom5PFZbP8chwguw4mG+c4joOAqdTeCwFl0nduKKXnQgM9Q9
+         gc9C6sS3rnkBojCCzpCVJG0tTsJw8Unb4pm7ZVhTF9ovRMXu/XvrB4Ci2ZkY6UR8htsp
+         AYLd80b8O/i7AjEYVByJP0Q0nZoKsPVkZ4rdwuvoXDhw2MTYRyAgj2j/POG7fyLZihvN
+         m8+bjBL+m921vhtlEmQYRstPw7+7pCBHyspcSdKqqSQ/B79vUyqOJCrK5Y/xNGobvu6I
+         bC3Q==
+X-Gm-Message-State: AOAM530xIa8gfN6fSikVXEgmWjmb7kLHbntjgDxWl0Oby00dT1uo51Ij
+        GW8aNL2LjRxGFbgFLa2qavc=
+X-Google-Smtp-Source: ABdhPJwc9AW48PUeNYOhon0nYLGCBbq7y8T04U21uu37hdFYGKFLhrVkCCV0YwRECbm8zVcyR3cD2Q==
+X-Received: by 2002:a17:903:1111:b0:13f:d1d7:fb5c with SMTP id n17-20020a170903111100b0013fd1d7fb5cmr30413888plh.47.1635363454022;
+        Wed, 27 Oct 2021 12:37:34 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y16sm694497pfl.198.2021.10.27.12.37.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Oct 2021 12:37:33 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     chunkeey@gmail.com, mnhagan88@gmail.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM5301X ARM
+        ARCHITECTURE), Rob Herring <robh+dt@kernel.org>,
+        Jon Mason <jonmason@broadcom.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] ARM: dts: BCM5301X: Fix I2C controller interrupt
+Date:   Wed, 27 Oct 2021 12:37:29 -0700
+Message-Id: <20211027193730.3941945-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date:   Wed, 27 Oct 2021 23:54:38 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     dmitry.torokhov@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
-        robh+dt@kernel.org, Michael.Srba@seznam.cz,
-        linus.walleij@linaro.org, broonie@kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings: input: zinitix: Document touch-keys
- support
-In-Reply-To: <4350691.LvFx2qVVIh@g550jk>
-References: <20211027181350.91630-1-nikita@trvn.ru>
- <20211027181350.91630-6-nikita@trvn.ru> <4350691.LvFx2qVVIh@g550jk>
-Message-ID: <351bd499d1326fda5ed9d5c06dce344e@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+The I2C interrupt controller line is off by 32 because the datasheet
+describes interrupt inputs into the GIC which are for Shared Peripheral
+Interrupts and are starting at offset 32. The ARM GIC binding expects
+the SPI interrupts to be numbered from 0 relative to the SPI base.
 
-Luca Weiss писал(а) 27.10.2021 23:33:
-> Hi Nikita,
-> 
-> On Mittwoch, 27. Oktober 2021 20:13:49 CEST Nikita Travkin wrote:
->> In some configrations the touch controller can support the touch-keys.
->> Doucument the linux,keycodes property that enables those keys and
->> specifies the keycodes that should be used to report the key events.
->> 
->> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->> ---
->>  .../bindings/input/touchscreen/zinitix,bt400.yaml         | 8 
->> ++++++++
->>  1 file changed, 8 insertions(+)
->> 
->> diff --git
->> a/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
->> b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
->> index b4e5ba7c0b49..40b243c07fd4 100644
->> --- 
->> a/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
->> +++
->> b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml 
->> @@
->> -79,6 +79,14 @@ properties:
->>      $ref: /schemas/types.yaml#/definitions/uint32
->>      enum: [1, 2]
->> 
->> +  linux,keycodes:
->> +    description: |
->> +      This property specifies an array of keycodes assigned to the
->> +      touch-keys that can be present in some touchscreen 
->> configurations.
->> +    $ref: /schemas/input/input.yaml#/properties/linux,keycodes
->> +    minItems: 1
-> 
-> I think this would suggest all devices using the driver must have at 
-> least
-> keycode declared which doesn't seem to be the desired behavior?
+Fixes: bb097e3e0045 ("ARM: dts: BCM5301X: Add I2C support to the DT")
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+ arch/arm/boot/dts/bcm5301x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-As I haven't added the property to the "required" list I'd read this as
-"If the property is defined it must contain from one to eight elements"
-so I think that *technically* the schema is correct. (Otherwise the
-dt_schema_check would fail verifying the example) However this indeed
-may be true that I could give a better description than "can be present
-in some touchscreen configurations."
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index f92089290ccd..ec5de636796e 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -408,7 +408,7 @@ uart2: serial@18008000 {
+ 	i2c0: i2c@18009000 {
+ 		compatible = "brcm,iproc-i2c";
+ 		reg = <0x18009000 0x50>;
+-		interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
++		interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		clock-frequency = <100000>;
+-- 
+2.25.1
 
-Thanks,
-Nikita
-
-> Regards,
-> Luca
-> 
->> +    maxItems: 8
->> +
->>    touchscreen-size-x: true
->>    touchscreen-size-y: true
->>    touchscreen-fuzz-x: true
