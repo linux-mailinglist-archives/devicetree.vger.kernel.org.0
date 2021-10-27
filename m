@@ -2,175 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E3643BE96
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 02:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 479F443BEA3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 02:54:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235827AbhJ0Aum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 20:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235031AbhJ0Aul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 20:50:41 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07FBC0613B9
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 17:48:16 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id e59-20020a9d01c1000000b00552c91a99f7so1238461ote.6
-        for <devicetree@vger.kernel.org>; Tue, 26 Oct 2021 17:48:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=pO6hebzYNrv+/+pOVUyyRcxmOyAEdYQyaagcCX4YDnU=;
-        b=kZTlKRIgEp17ei/WKStDhVd9uZFLymxrV+fql/20idR53mABoNwMzTsCl+FN+FIKwR
-         Lz6NHPSBNnZoCrSKhle+4q2PazxCKjejYmJS99QqZ4wBZxCvMfB0eE/n9GIjxkTanxkr
-         Sf3KKI/8Zi+xrSdD+NhJ6fy/An+KHG6z5iOYA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=pO6hebzYNrv+/+pOVUyyRcxmOyAEdYQyaagcCX4YDnU=;
-        b=i/rqzDunrjy3G+3ZlxOuWnIDYw5FP2n0ieqh6VB3txnbsCyxkGO+3n5K8mDD2+bYA2
-         Iyph2lbsQCskg5Q9bsU5UCvHLlg5DCd1dxKpDP8N1SA+hnn6ypjYnaG+wmAe+IbYBy5L
-         LamvV4+eQdpWQ9wGb1ak71kILijGa8EFGL+OyR9B04vYRnQ9O0SopwWQKd26VNemOdOV
-         cCNs6R7KfmvozLBo/769qU695bX1LsXkNoUtJEUTPydGNtykvYMpMzab5l/hxMRirbPb
-         d4I+Jlp9gblLazf3zzIUv6TibfzLcfrIi5ITk6ndSgSIXFjGA1MDaO4vKm1TY3f6kqBn
-         zcjw==
-X-Gm-Message-State: AOAM531BhVo7VbYQsypAbLwsCeG0wMbQu7mQG177sajDMPLTJJqu8ccP
-        Q0/yo4PdCpfYUtqgx4B+lZO9PRHdj/LXW6q2T1So5g==
-X-Google-Smtp-Source: ABdhPJwgxXesivM1CiIBtnjbk8y13S1s+YjKODrxZccz+Vo9N9qsPGJ7xTp9upiCfdo0ygI/lb/Czfbc978AI6SYupo=
-X-Received: by 2002:a9d:12f4:: with SMTP id g107mr22343738otg.77.1635295695952;
- Tue, 26 Oct 2021 17:48:15 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 26 Oct 2021 17:48:15 -0700
+        id S235947AbhJ0A4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 20:56:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47760 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232410AbhJ0A4a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 26 Oct 2021 20:56:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 560CA60F0F;
+        Wed, 27 Oct 2021 00:54:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635296045;
+        bh=3wmPlMfs7SR783XTmRV7cR81LzMiYBMO+8TaAiydWkM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=W+ESkAeCUUskZxyaPVVNJSQLz8HBAG1zufvbuDBBq9aLfbxvCgVHNRyEwDhpCaD0u
+         oHHGrJIuVMsKaMJN660eES9zVI6ZuTGSw+QtEXO/3kNu3VZXMRhFWVZUkOOWNHimJi
+         zwKtwSFHkDdtmvJke91XPGHWmVbRSdg9eDy3e7anPX0kaH9xI3vYQEjDhTb1at4OTz
+         xu10tcE+mm6SIX4xTkKFgEdkljbuOldIgZu8uNAgyjBJvV4HzMV/nHGOmgwlG26lFQ
+         f/aBZYM0FGmjzdEFKrU813jTsN8gcKRjB95RH2fdQDNMon7HF1UI4ATU4wQRmWG34j
+         k9u9vXzRpknvA==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <YXdsYlLWnjopyMn/@ripper>
-References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
- <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
- <YXcBK7zqny0s4gd4@ripper> <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
- <YXck+xCJQBRGqTCw@ripper> <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
- <YXdsYlLWnjopyMn/@ripper>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 26 Oct 2021 17:48:15 -0700
-Message-ID: <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
- for dwc3 qcom
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CANBLGcyYb3yNit=GCy4w2zf2=CRtCJP7aCisR8=9n1f7okfCSg@mail.gmail.com>
+References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-7-kernel@esmil.dk> <163527959276.15791.14765586510805526101@swboyd.mtv.corp.google.com> <CANBLGcyYb3yNit=GCy4w2zf2=CRtCJP7aCisR8=9n1f7okfCSg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/16] clk: starfive: Add JH7100 clock generator driver
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Date:   Tue, 26 Oct 2021 17:54:03 -0700
+Message-ID: <163529604399.15791.378104318036812951@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Rajendra
-
-Quoting Bjorn Andersson (2021-10-25 19:48:02)
-> On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
->
+Quoting Emil Renner Berthing (2021-10-26 15:35:36)
+> On Tue, 26 Oct 2021 at 22:20, Stephen Boyd <sboyd@kernel.org> wrote:
+> > Quoting Emil Renner Berthing (2021-10-21 10:42:13)
+> > > +};
+> > > +
+> > > +struct clk_starfive_jh7100_priv {
+> > > +       /* protect registers against overlapping read-modify-write */
+> > > +       spinlock_t rmw_lock;
 > >
-> > When the binding was introduced I recall we punted on the parent child
-> > conversion stuff. One problem at a time. There's also the possibility
-> > for a power domain to be parented by multiple power domains so
-> > translation tables need to account for that.
+> > Does overlapping mean concurrent?
+>=20
+> Yes, sorry.
+>=20
+> > Do different clks share the same registers?
+>=20
+> No, each clock has their own register, but they use that register both
+> to gate the clock and other configuration. The Locking chapter of
+> Documentation/driver-api/clk.rst talks about the prepare lock and the
+> enable lock and then says:
+> "However, access to resources that are shared between operations of
+> the two groups needs to be protected by the drivers. An example of
+> such a resource would be a register that controls both the clock rate
+> and the clock enable/disable state."
+
+Alright got it. Maybe say "protect clk enable and set rate from
+happening at the same time".
+
+>=20
+> > > +               return ERR_PTR(-EINVAL);
+> > > +       }
+> > > +
+> > > +       if (idx >=3D JH7100_CLK_PLL0_OUT)
+> > > +               return priv->pll[idx - JH7100_CLK_PLL0_OUT];
+> > > +
+> > > +       return &priv->reg[idx].hw;
+> > > +}
+> > > +
+> > > +static int __init clk_starfive_jh7100_probe(struct platform_device *=
+pdev)
 > >
->
-> But for this case - and below display case - the subdomain (the device's
-> power-domain) is just a dumb gate. So there is no translation, the given
-> performance_state applies to the parent. Or perhaps such implicitness
-> will come back and bite us?
+> > Drop __init as this can be called after kernel init is over.
+>=20
+> Oh interesting, I'd like to know when that can happen. The comment for
+> the builtin_platform_driver macro says it's just a wrapper for
 
-In the gate case I don't see how the implicitness will ever be a
-problem.
+I thought this was using module_platform_driver() macro?
 
->
-> I don't think we allow a power-domain to be a subdomain of two
-> power-domains - and again it's not applicable to USB or display afaict.
+> device_initcall.
+>=20
+> Won't we then need to remove all the __initconst tags too since the
+> probe function walks through jh7100_clk_data which eventually
+> references all __initconst data?
 
-Ah maybe. I always confuse power domains and genpd.
+Yes. If it's builtin_platform_driver() it can't be a module/tristate
+Kconfig, in which case all the init markings can stay.
 
->
-> > >
-> > > > Or we may need to make another part of the OPP binding to indicate the
-> > > > relationship between the power domain and the OPP and the parent of
-> > > > the power domain.
-> > >
-> > > I suspect this would be useful if a power-domain provider needs to
-> > > translate a performance_state into a different supply-performance_state.
-> > > Not sure if we have such case currently; these examples are all an
-> > > adjustable power-domain with "gating" subdomains.
+>=20
+> > > +
+> > > +               clk->hw.init =3D &init;
+> > > +               clk->idx =3D idx;
+> > > +               clk->max =3D jh7100_clk_data[idx].max;
+> > > +
+> > > +               ret =3D clk_hw_register(priv->dev, &clk->hw);
 > >
-> > Even for this case, we should be able to have the GDSC map the on state
-> > to some performance state in the parent domain. Maybe we need to add
-> > some code to the gdsc.c file to set a performance state on the parent
-> > domain when it is turned on. I'm not sure where the value for that perf
-> > state comes from. I guess we can hardcode it in the driver for now and
-> > if it needs to be multiple values based on the clk frequency we can push
-> > it out to an OPP table or something like that.
+> > Why not use devm_clk_hw_register()?
+>=20
+> I probably could. Just for my understanding that's just to avoid the
+> loop on error below, because as a builtin driver the device won't
+> otherwise go away, right?
+
+Yes
+
+>=20
+> > > +               if (ret)
+> > > +                       goto err;
+> > > +       }
+> > > +
+> > > +       ret =3D devm_of_clk_add_hw_provider(priv->dev, clk_starfive_j=
+h7100_get, priv);
+> > > +       if (ret)
+> > > +               goto err;
+> > > +
+> > > +       return 0;
+> > > +err:
+> > > +       while (idx)
+> > > +               clk_hw_unregister(&priv->reg[--idx].hw);
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static const struct of_device_id clk_starfive_jh7100_match[] =3D {
+> > > +       { .compatible =3D "starfive,jh7100-clkgen" },
+> > > +       { /* sentinel */ }
+> > > +};
 > >
->
-> For the GDSC I believe we only have 1:1 mapping, so implementing
-> set_performance_state to just pass that on to the parent might do the
-> trick (although I haven't thought this through).
->
-> Conceptually I guess this would be like calling clk_set_rate() on a
-> clock gate, relying on it being propagated upwards. The problem here is
-> that the performance_state is just a "random" integer without a well
-> defined unit.
->
+> > Please add MODULE_DEVICE_TABLE()
+>=20
+> Will do!
 
-Right. Ideally it would be in the core code somehow so that if there
-isn't a set_performance_state function we go to the parent or some
-special return value from the function says "call it on my parent". The
-translation scheme could come later so we can translate the "random"
-integer between parent-child domains. At the end of the day the device
-driver wants to set a frequency or runtime pm get the device and let the
-OPP table or power domain code figure out what the level is supposed to
-be.
-
->
->
-> The one case where I believe we talked about having different mapping
-> between the performance_state levels was in the relationship between CX
-> and MX. But I don't think we ever did anything about that...
-
-Hmm alright. I think there's a constraint but otherwise nobody really
-wants to change both at the same time.
-
-> >
-> > Yes, a GDSC is really a gate on a parent power domain like CX or MMCX,
-> > etc. Is the display subsystem an example of different clk frequencies
-> > wanting to change the perf state of CX? If so it's a good place to work
-> > out the translation scheme for devices that aren't listing the CX power
-> > domain in DT.
->
-> Yes, the various display components sits in MDSS_GDSC but the opp-tables
-> needs to change the performance_state of MDSS_GDSC->parent (i.e. CX or
-> MMCX, depending on platform).
->
-> As I said, today we hack this by trusting that the base drm/msm driver
-> will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain for each
-> of these components.
->
->
-> So if we solve this, then that seems to directly map to the static case
-> for USB as well.
->
-
-Got it. So in this case we could have the various display components
-that are in the mdss gdsc domain set their frequency via OPP and then
-have that translate to a level in CX or MMCX. How do we parent the power
-domains outside of DT? I'm thinking that we'll need to do that if MMCX
-is parented by CX or something like that and the drivers for those two
-power domains are different. Is it basic string matching?
+If it's never going to be a module then don't add any module_* things.
