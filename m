@@ -2,190 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A74843C3B0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:19:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 659E843C3C5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240412AbhJ0HWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 03:22:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33586 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240408AbhJ0HWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 03:22:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EA91610A5;
-        Wed, 27 Oct 2021 07:19:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635319175;
-        bh=KG+yrRn87gJ/zy26fF8MDJvZ9hRK+FQIaH3IMKbElLU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SkR7iVHfbOIuRTWm/a/xF6/T5I1pdLAGtl1fEfkptGuValVaqQ+hkwBQUhlyD9XEy
-         17A0Kp/kAmyRl31jlhvnWQCRJqhSg15hm36uHYWV/Cy4TwCCllV886t45ci9lDO+/0
-         aH0uqxxDayyMzomGEX4klS3RFrhv+mGdTnuORFzylRa2bFhhUkTYSUAWWjh6PZWYTn
-         LLtVgF7uqZysNrskuCmljfCNgrfLGdmH8NCjK+Mfy0WF9yt3wknRh9VuWo6u0F47fj
-         XpOUyS6RJpSYj9ZeapclbG0RCv5T2SX77seIxonfQcV1WrSWSyiKQmKh1/eykrDv1b
-         sY1396rUNZpVg==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1mfdDg-00CV5L-Kd; Wed, 27 Oct 2021 08:19:32 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Wei Xu <xuwei5@hisilicon.com>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH 1/1] arm64: dts: HiSilicon: Add support for HiKey 970 PCIe controller hardware
-Date:   Wed, 27 Oct 2021 08:19:25 +0100
-Message-Id: <327bf452173f6b4e10f7ad875802884d9e8109a9.1635318674.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1635318674.git.mchehab+huawei@kernel.org>
-References: <cover.1635318674.git.mchehab+huawei@kernel.org>
+        id S240475AbhJ0HYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 03:24:04 -0400
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:36846 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240471AbhJ0HYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 03:24:03 -0400
+Received: by mail-ua1-f47.google.com with SMTP id e10so3175095uab.3;
+        Wed, 27 Oct 2021 00:21:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XEkFa+Ku/oXy3Y71Wa/RXXm6+I0giMexz18AaglX7hA=;
+        b=250+CIzlUU/59Sd+f3UO1OhOlITbP+7hy0Qhi8HsOyTbfPDvrzRublON81n1DVl5O5
+         l0t6VErruzxoQnNpoyUx9m3UByOgIyhGfIpqxpPuvhFIOb3y8posdsosa7DC3f1loxVn
+         9SZ38pDMvGJ0ZFEqrFN7jyPwHy/hlnWdMg6OeAcVe5LthZOLCOFp/lo16s8mmyhQwqVj
+         7u58eAPxQsJXonwjo5fnEx+dR9KwrZGPerDI0C/oy6vvF7VnCKJFVmKC3zX1wzRdV+pD
+         c5qIee0Vc54TdwehRMKOnY0Q69nyJJKk+BWN1yqHOLaICAOA9HQYLGvZm0hj+UQyPn/m
+         af4w==
+X-Gm-Message-State: AOAM53347eBIECn7xtVyEgz1kKJbQyzt3VTPZi8fEvY4fEQMLYEIo5sZ
+        XnHd6Q6qKIozzlE3hCv7X6ACTtD7Cxum7w==
+X-Google-Smtp-Source: ABdhPJw6IL68kkowHN7Yu0essb69SRPCBVccgeJ+WNljMxXXHKCcC5zM0h3UsdoOsuhcE8Y+eldzBw==
+X-Received: by 2002:a05:6102:cd2:: with SMTP id g18mr28671857vst.25.1635319297590;
+        Wed, 27 Oct 2021 00:21:37 -0700 (PDT)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id m34sm10655938uad.5.2021.10.27.00.21.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Oct 2021 00:21:36 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id ba32so3138073uab.6;
+        Wed, 27 Oct 2021 00:21:36 -0700 (PDT)
+X-Received: by 2002:a05:6102:3a0e:: with SMTP id b14mr747714vsu.41.1635319295910;
+ Wed, 27 Oct 2021 00:21:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211025205631.21151-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUjsVRwB0_TH5HD8CrPsM15K1RLatP_ABODMe2bQ4C2ow@mail.gmail.com>
+In-Reply-To: <CAMuHMdUjsVRwB0_TH5HD8CrPsM15K1RLatP_ABODMe2bQ4C2ow@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 27 Oct 2021 09:21:24 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX4HfLUfDk2eZkBugP_ysL3w+qvZqKSR3e47HG4RTggXw@mail.gmail.com>
+Message-ID: <CAMuHMdX4HfLUfDk2eZkBugP_ysL3w+qvZqKSR3e47HG4RTggXw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/7] memory: renesas-rpc-if: Return error in case
+ devm_ioremap_resource() fails
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Wed, Oct 27, 2021 at 9:17 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Mon, Oct 25, 2021 at 10:57 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Make sure we return error in case devm_ioremap_resource() fails for dirmap
+> > resource.
+> >
+> > Fixes: ca7d8b980b67 ("memory: add Renesas RPC-IF driver")
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/memory/renesas-rpc-if.c
+> > +++ b/drivers/memory/renesas-rpc-if.c
+> > @@ -243,7 +243,7 @@ int rpcif_sw_init(struct rpcif *rpc, struct device *dev)
+> >         res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "dirmap");
+> >         rpc->dirmap = devm_ioremap_resource(&pdev->dev, res);
+> >         if (IS_ERR(rpc->dirmap))
+> > -               rpc->dirmap = NULL;
+> > +               return PTR_ERR(rpc->dirmap);
+>
+> IIRC, it was intentional to make the dirmap optional (because the
+> device can be used without and/or because some variants on other SoCs
+> lack it?).  Unfortunately this is not reflected in the DT bindings
+> (yet?).  All code using the dirmap does check if rpc->dirmap is
+> valid first.
+>
+> >         rpc->size = resource_size(res);
 
-Add DTS bindings for the HiKey 970 board's PCIe hardware.
+Of course this will crash if the dirmap is not present, so for now it's better
+to just bail out.
 
-Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-To mailbombing on a large number of people, only mailing lists were C/C on the cover.
-See [PATCH 0/1] at: https://lore.kernel.org/all/cover.1635318674.git.mchehab+huawei@kernel.org/
+> >
+> >         rpc->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
 
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 107 ++++++++++++++++++++++
- 1 file changed, 107 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 20698cfd0637..78b41336c587 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -176,6 +176,12 @@ sctrl: sctrl@fff0a000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pmctrl: pmctrl@fff31000 {
-+			compatible = "hisilicon,hi3670-pmctrl", "syscon";
-+			reg = <0x0 0xfff31000 0x0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		iomcu: iomcu@ffd7e000 {
- 			compatible = "hisilicon,hi3670-iomcu", "syscon";
- 			reg = <0x0 0xffd7e000 0x0 0x1000>;
-@@ -659,6 +665,107 @@ gpio28: gpio@fff1d000 {
- 			clock-names = "apb_pclk";
- 		};
- 
-+		pcie_phy: pcie-phy@fc000000 {
-+			compatible = "hisilicon,hi970-pcie-phy";
-+			reg = <0x0 0xfc000000 0x0 0x80000>;
-+
-+			phy-supply = <&ldo33>;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-+				 <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
-+				 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+			clock-names = "phy_ref", "aux",
-+				      "apb_phy", "apb_sys",
-+				      "aclk";
-+
-+			/* vboost iboost pre post main */
-+			hisilicon,eye-diagram-param = <0xffffffff 0xffffffff
-+						       0xffffffff 0xffffffff
-+						       0xffffffff>;
-+
-+			#phy-cells = <0>;
-+		};
-+
-+		pcie@f4000000 {
-+			compatible = "hisilicon,kirin970-pcie";
-+			reg = <0x0 0xf4000000 0x0 0x1000000>,
-+			      <0x0 0xfc180000 0x0 0x1000>,
-+			      <0x0 0xf5000000 0x0 0x2000>;
-+			reg-names = "dbi", "apb", "config";
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			phys = <&pcie_phy>;
-+			ranges = <0x02000000 0x0 0x00000000
-+				  0x0 0xf6000000
-+				  0x0 0x02000000>;
-+			num-lanes = <1>;
-+			#interrupt-cells = <1>;
-+			interrupts = <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi";
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0x0 0 0 1
-+					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 2
-+					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 3
-+					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 4
-+					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-+			reset-gpios = <&gpio7 0 0>;
-+			hisilicon,clken-gpios = <&gpio27 3 0>, <&gpio17 0 0>,
-+						<&gpio20 6 0>;
-+			pcie@0,0 { // Lane 0: PCIe switch: Bus 1, Device 0
-+				reg = <0 0 0 0 0>;
-+				compatible = "pciclass,0604";
-+				device_type = "pci";
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				ranges;
-+
-+				pcie@0,0 { // Lane 0: upstream
-+					reg = <0 0 0 0 0>;
-+					compatible = "pciclass,0604";
-+					device_type = "pci";
-+					#address-cells = <3>;
-+					#size-cells = <2>;
-+					ranges;
-+
-+					pcie@1,0 { // Lane 4: M.2
-+						reg = <0x0800 0 0 0 0>;
-+						compatible = "pciclass,0604";
-+						device_type = "pci";
-+						reset-gpios = <&gpio3 1 0>;
-+						#address-cells = <3>;
-+						#size-cells = <2>;
-+						ranges;
-+					};
-+
-+					pcie@5,0 { // Lane 5: Mini PCIe
-+						reg = <0x2800 0 0 0 0>;
-+						compatible = "pciclass,0604";
-+						device_type = "pci";
-+						reset-gpios = <&gpio27 4 0 >;
-+						#address-cells = <3>;
-+						#size-cells = <2>;
-+						ranges;
-+					};
-+
-+					pcie@7,0 { // Lane 6: Ethernet
-+						reg = <0x3800 0 0 0 0>;
-+						compatible = "pciclass,0604";
-+						device_type = "pci";
-+						reset-gpios = <&gpio25 2 0 >;
-+						#address-cells = <3>;
-+						#size-cells = <2>;
-+						ranges;
-+					};
-+				};
-+			};
-+		};
-+
- 		/* UFS */
- 		ufs: ufs@ff3c0000 {
- 			compatible = "hisilicon,hi3670-ufs", "jedec,ufs-2.1";
--- 
-2.31.1
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
