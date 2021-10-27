@@ -2,371 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8225C43C5B6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE47343C60D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 11:04:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241166AbhJ0I6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 04:58:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241077AbhJ0I6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 04:58:06 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55781C061570;
-        Wed, 27 Oct 2021 01:55:41 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id l203so2115089pfd.2;
-        Wed, 27 Oct 2021 01:55:41 -0700 (PDT)
+        id S239830AbhJ0JHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 05:07:20 -0400
+Received: from mail-mw2nam08on2059.outbound.protection.outlook.com ([40.107.101.59]:28416
+        "EHLO NAM04-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236159AbhJ0JHT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 05:07:19 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gwb7aX7zix24NoDOPOcsjv6Zw5XP/HqLliCiZhgjwcMwsuvdCnYXHoM1LL4xcMiAeiiGvDNAD1FME6r9dyc5K+bJWuj0FphkrBrLA1fsRPgPYbais4g0F5sVZUbG9OcXZdJaO6q8pUE8Nq1zhavRfMpbTXkW14Q+oFTGlD1HKTR4uqYvnN22OrmXnsMd3U8KUJWUFK+9kNQ1YPq2UvIRT9QdUzr4BqfD8ZovUGIbwHMucIByePUZO6p7iumtUtD0BM4Y1iTosbvV+G00sDfwSECQpCk9nNznl0xiSobSK15R40wFv4I9W1Pi6uG+yOZyR0ETIiZnXrfKXD9HBEHGrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VxBrtTWsEh87NyiIFV4U6eLkcREoB702bNLRxoutvs4=;
+ b=DXN3QdhzWDQaI10M/BBD7Y5nvLjTtxkRtlfUIZry9ISuPijm+xPCf6qIhFHR3ooOE7ipmprZQERZnzBFH8MTp/Mave41Nhy4lhJ49F/D1+GkdswvvArcYy8MKrsQTB1Tws6SGnTFLkRxPoRLGVXlbu3GEFZKDfG0ARF9l64uSW51gLRPStvaBQMs8ym5hBtgtKAzeJSB+pU5mRMWhaEgkBFkz7Od0IypSP+L04W+ZKxTTd9bt+ERyRwwhC1LcqzJ4kfUzNC0m6sG2jcfgfB5ts6TupNKbVFvL9J7HZUhTaT24GwZ2preCfhah43T72rGrpQfJlKpyzhUPPRaXJJqBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=R3v6MvSfqT1luNHnBpPbyyj67/794LBUC45XQWd31SQ=;
-        b=MpixLa4ddjRWrhASEaXnYjtzHSOABfOuH6s6sYWQaP+3+KeCZpfH2TenRx5KXUsLDl
-         XzBQC8b65bxY/Ltqp/h0cpuR7PQHJsQtJfYIBvDSfReRtI7QOWKnEK0duE4O8AoR+Wzi
-         q0NpHbVEtgyBfOkfV8up6nQdFEnLZ00CyCUJF3IIGyW1+b3hz7Tips5tNmu4ZX/ZjLUK
-         RdL3oUbf7VKhCr4mnsXJX3HAChsX0/vDvxHloNwTxoK72Jl8fLW2gMa0RprWZTpdd8Qe
-         TX3JeUGWbXVEruIx8cMOE52idxcm61d2TJ+keyUB3jMGfB1gDsyr4VL43lpsGv0crQAE
-         bUwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=R3v6MvSfqT1luNHnBpPbyyj67/794LBUC45XQWd31SQ=;
-        b=4ZhhBQwE7A36w9khr7z62Ums6DxCDSb6ptz3vcF7Mq+xRGLFF11gw4iYBasg7ZEmgW
-         RE/pj0kh2UV0h3IdRjL9cqDLPgLLT5f0ZioYlwyl3QjlW53S6hmXq86Psyw89jARPmhr
-         b833YH10r6scjVNKPcYCLBQw8p++Vb4+k/O7o0+BwljAf3HQ877lVeU6pr1UKduhySPy
-         cO0ZqIGgi2C9kdadXaVupo8NgpoxvD+P0wiO0XjObzqmIthSEXKhPGA94LE7nZ/PDuqw
-         5eAr8+0xZlM/MToizZN+WoCATIZvsEmjG0PwYGktsh2bi4JsThxN1NUyK/DFjTTm2wW2
-         G+iA==
-X-Gm-Message-State: AOAM532UoEeXOdepdU9rhsldIuRr++r+EIKoNKfGEcXdAubaBCFrUKDW
-        FOhQPCOXmRmI4CtFEIsRzhg=
-X-Google-Smtp-Source: ABdhPJzBrnEInvI0q/oDAldtcTcujc9ONjFxt6dX/rGbP3WaXTEn2CL5kUMDgiuHBvo4zszGhhxdBQ==
-X-Received: by 2002:a63:b957:: with SMTP id v23mr22253604pgo.74.1635324940748;
-        Wed, 27 Oct 2021 01:55:40 -0700 (PDT)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id a15sm8336773pfv.64.2021.10.27.01.55.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Oct 2021 01:55:40 -0700 (PDT)
-From:   Wells Lu <wellslutw@gmail.com>
-X-Google-Original-From: Wells Lu <wells.lu@sunplus.com>
-To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     qinjian@cqplus1.com, dvorkin@tibbo.com,
-        Wells Lu <wells.lu@sunplus.com>
-Subject: [PATCH 3/3] devicetree: bindings: pinctrl: Add bindings doc for Sunplus SP7021.
-Date:   Wed, 27 Oct 2021 16:55:26 +0800
-Message-Id: <1635324926-22319-4-git-send-email-wells.lu@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
-References: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VxBrtTWsEh87NyiIFV4U6eLkcREoB702bNLRxoutvs4=;
+ b=pUD0jWUAVD5/YRE+d9p3j9aRytIdJAGRCLmg7GkJWnrEmYX8dkSUB8bjRa7LzNRA/s/pa5IZk1m+Jo661xacthnbFeZnSB3WXPztdyTtA8y9e6bvxQUhbUiEDLb9jQzWDLLi+P2TumQRTbdCiY/wtQi6G5eZoI+cEHL4xhiMFAw=
+Received: from BY5PR02MB6916.namprd02.prod.outlook.com (2603:10b6:a03:234::18)
+ by BYAPR02MB5365.namprd02.prod.outlook.com (2603:10b6:a03:66::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.13; Wed, 27 Oct
+ 2021 09:04:51 +0000
+Received: from BY5PR02MB6916.namprd02.prod.outlook.com
+ ([fe80::c8a:dfb7:e411:9ad]) by BY5PR02MB6916.namprd02.prod.outlook.com
+ ([fe80::c8a:dfb7:e411:9ad%7]) with mapi id 15.20.4649.015; Wed, 27 Oct 2021
+ 09:04:51 +0000
+From:   Anand Ashok Dumbre <ANANDASH@xilinx.com>
+To:     Lars-Peter Clausen <lars@metafoo.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        git <git@xilinx.com>, Michal Simek <michals@xilinx.com>,
+        "pmeerw@pmeerw.net" <pmeerw@pmeerw.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     Manish Narani <MNARANI@xilinx.com>
+Subject: RE: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
+Thread-Topic: [PATCH v7 2/4] iio: adc: Add Xilinx AMS driver
+Thread-Index: AQHXxPztLE/r+aVUT0W7KtDOJosftqvk5u0AgAGxjBA=
+Date:   Wed, 27 Oct 2021 09:04:51 +0000
+Message-ID: <BY5PR02MB6916298122D8F4BDEFF67D0FA9859@BY5PR02MB6916.namprd02.prod.outlook.com>
+References: <20211019152048.28983-1-anand.ashok.dumbre@xilinx.com>
+ <20211019152048.28983-3-anand.ashok.dumbre@xilinx.com>
+ <03afaedd-8ea5-0379-ac98-db61ac679259@metafoo.de>
+In-Reply-To: <03afaedd-8ea5-0379-ac98-db61ac679259@metafoo.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: metafoo.de; dkim=none (message not signed)
+ header.d=none;metafoo.de; dmarc=none action=none header.from=xilinx.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 10f19532-b738-426c-dd24-08d99928d5be
+x-ms-traffictypediagnostic: BYAPR02MB5365:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-microsoft-antispam-prvs: <BYAPR02MB5365279ABBE9F693EA7940EFA9859@BYAPR02MB5365.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sI4H7lmDZVE5CN+nWwUPkmWqZmRF/ArbbqghT4mUXNmt+35QlovSSgcVNySKclaFwZangPWfoqa2XDy/Sd9ZXHBsYLKX+aTXRPGbUBFJbebkfnBwBaAuBJ8+im57YC2R3GnOeJFDdLYP+JOmN0gRgeWneh7EGXitt0Wz2g3QyTOxy+TzhLHzOuPx387C3/tK/Zy81UrILiOwBIhEPJbjbfQkYqPCg5Y7ML90/iptjIm11XtDqlm0x9liVkGz9+XhBLSEcgTyL1IzvAM62qQrrdx5oJo1nw4OGCF7GrW3ftvujCRB0+q49YpiCcurtBMkTXEkZko/DDvY20StzTpsnt37SttOrihpFg/IRLSv6rXazrVhkmoabO/NPZJkA9GAVl2r9EAx+N+CqYJnu1ogKcBvDc72dC2HGgV+qfPBMpifJA5kcLZeoy8Ddak2Js0Hc/eln1zYQiX6m4Vio4aIDKRi0cpYNQwNJQ5JjwJyOgt2Qyef3CMNo8CI1pKzUYYHMLWpznTkmvoCo4eMJc6RkG1/VFaZHu37VI/u7qKiD/gXBsiLH5D7p777I/Bwpc4SgafFi2ya6A7I2KhKsTqZsXG/ZysTLVAzode5Pb0b3wiwMhl8YRe/WhR/fM1ATLIRLhR/9F38YYwvwTLSNUSWX9WjKYLIX25ye/Atrpbn3yQBP/af1UDjibiQkhhb6/lESjRw2R95yH1aMxkrbqgryw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6916.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(5660300002)(110136005)(9686003)(33656002)(52536014)(26005)(186003)(76116006)(8936002)(38100700002)(2906002)(122000001)(71200400001)(4326008)(316002)(107886003)(64756008)(53546011)(66556008)(38070700005)(66946007)(66476007)(7696005)(8676002)(6506007)(66446008)(55016002)(86362001)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cWVEV05OZEdkWWJkNGRyNGZoS1U3a0p1T2t6WWhzRVBpM3NzbHd3dnptemFM?=
+ =?utf-8?B?bDRYTm53dUx1VGVRMkFTamJSbkhLelZqbVJxVEZ2cllXQWsxTGI5WUgvZzYy?=
+ =?utf-8?B?enZSNGVUSytEekZnQkVialgxdUpVQTFlbkZHNngvVjRPTUdPeVhnSCttUmND?=
+ =?utf-8?B?cUZuNEEzRjM2LzBCOWFQN3JWRGZ1MlF5UndPNjdRUVVqdW56cmduOHhjTVR2?=
+ =?utf-8?B?Mnk0cE9qdFNsQ2FzY0E2REpYZjNKbWZQTXFBVjFuWWVxc29ZdGVQVGxVYUp3?=
+ =?utf-8?B?U3dWN2NYdngycEZ1T0QwVkJkWU5pZEU0RWZxTTh3TGR0NmhUSEVBT25YTXp0?=
+ =?utf-8?B?K0gwdjdiUS9rdVhZdDFUUENCRmEyWnExUkgvbEU3V1p1ZWdLSy9UdEc4V0hi?=
+ =?utf-8?B?aVluYVc0djdjYjJxQ0FuVDZpcmp4WllVSUlPSXlOdjA2VXpESlpyRitmVGFy?=
+ =?utf-8?B?M0owYUJLK1h5b3d3dW5kSW01TlRPWHpSam1tQjd6bW5aRGdiT081YVh1dEhE?=
+ =?utf-8?B?c2FQRWt2NE9XTlRITjczbjNXVHIzTldLZHZJUUlxVmRxWW1uUnJTcXhXQkh2?=
+ =?utf-8?B?c1g3MnhvTlJVSE1vOW41S3J6bVNVbUZzMG1oTGZWM0hPSDFPa1Jnc0FqTThk?=
+ =?utf-8?B?b3JWT1hqY3BYKzdQb2kwZUViTDdEczRKOE5IQ3d0UkZMc3RkV1NFWnJJT1pI?=
+ =?utf-8?B?MXZYWDFESzNtR1hrYTM1RTh1QTZaZnhHKzE4aCtFdHEwRWRmcklPcXgzRDZp?=
+ =?utf-8?B?VTRZWis5SWFvVTBUN3VTa2JlZ2ZxWEw4QzQyWGtGRWcvdkhPYThLRVZPN2ww?=
+ =?utf-8?B?WEx3THhmMWtZaU5FSklkdFpmblBaYldQMVFjUXFjeDFQbEYyVU1GbGJZZlQ1?=
+ =?utf-8?B?eXJVcHBid3ptRS9PV21uYnorazJYL1NtcGpVZXBiZWdMdFArZ2NTWUk2NWNV?=
+ =?utf-8?B?RmZ1ajZKL0NkaXh2ZGpma1pHSmZ6aVp0bmZ4cnFLK2tiUFdjekhxeWFMQ2Vq?=
+ =?utf-8?B?TXU5QUZIVldlNCtSMzNQalN2S2FQWThmUnp5UzYwSE9Jc2h0UktIZXVyay8w?=
+ =?utf-8?B?UThLeUZGVmVrZVI1VmdsV1FIeWVXSWFBUUJidjU1NXJtRG9BaFhxa0kxTmIx?=
+ =?utf-8?B?bzhBaVRHdUpya3psZHp3RzFjUUlJNStaa20yc2tqTTZOZ09rcDBJd2p6aFpV?=
+ =?utf-8?B?a0VNS252UElvSTRVZTQ0MTh2cW0vbXpjQmJTd0ZtSmlSSmZSdFJ3bFp2RTRT?=
+ =?utf-8?B?aVNHU3JCU2Q3dzVpVGVFZzl1OTFLd2JFazJncFNOcW1VQm1SOWttVU1zbGxD?=
+ =?utf-8?B?djdic0JhWGdlMTNjc3dYWDJrT2czWUJHcGVUL00zVFlMem1leUZia1JBTGd1?=
+ =?utf-8?B?c241WjIxOVF1NXY0Wm5COEo1Tk9qY0RJMlpFQU96dXI1NnRBSGwweW4wa3ll?=
+ =?utf-8?B?YnpwRy9zOU95Y1dDU1gyendpYUxGenFVU1FpenJQVmhwWStlUGRtb2F1UURP?=
+ =?utf-8?B?STd1Rm1hUmttd3VrZzBpT2pIaTZ4MG5zbW9vOXczRW1hUDRJRER4YWVTSjV3?=
+ =?utf-8?B?amZ5Y05CQ0t3RmZpMFVwaytYU29JY2dwaFBoZ3o1QmlDUXhrRzJXMW9ETmlZ?=
+ =?utf-8?B?RUsrYWZ1ZlR2S2h4VXFGMXNFYmQxREo3MGxNcXBkbnhINDhZWmljS1pNNno4?=
+ =?utf-8?B?NG5KK0M2RzRSUGdDM2xYQmY3TWhtYkZObm14eisvNUs1WWxZQWJVdTFRREhz?=
+ =?utf-8?B?WGxkRG54allLVlNZNnF6bVNZNVZUZnU1dTRzQTRBL3BFdXp3Qyt4N3ltUGZU?=
+ =?utf-8?B?MzUyTVVmcFE4MWhsWk1kSndlVWRmU0dTYnFMWEV5OHAvTUdrbENTSUpSdWZs?=
+ =?utf-8?B?OUlqZGVySU96WHI5eVZGcVlSUUhqcjY4QzNVUHUySDBzVm95QjhYREJBOHlI?=
+ =?utf-8?B?TkZjdlJkb3g0RDBQT3c2dytlN09FSXVrRW1HSE4rSndXeHRXKzFvam1OeVRM?=
+ =?utf-8?B?RlhaL3VwTVZYb2xxenlhU1RwWUJDTGRKeTJ6RHlHUUx3WEw4bHBEMGJJaHNK?=
+ =?utf-8?B?R2lvVWZ5UTA1d0k5TElFZUdTV05jcjZ2TEdmNkNNMGE4NlRZam4rTmJ1U0xJ?=
+ =?utf-8?B?RXJvWFVkMW1NLzlkc0dsR2tSaWVJS0FlTWQxMU5zOVJwWlR6RUFPNFNXZkFP?=
+ =?utf-8?Q?MyyP0xo2uxyC4TPcXL+h3K8=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6916.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10f19532-b738-426c-dd24-08d99928d5be
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2021 09:04:51.1461
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LKlGCJlwCatPRKiDrb+sOv6GePLTRkrp/owtNoK5zcUEaeBHlghqJVL7Ij3KKZhURDUhtvdSjJREdmbNEMxyVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5365
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings documentation for Sunplus SP7021.
-
-Signed-off-by: Wells Lu <wells.lu@sunplus.com>
----
- .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   | 277 +++++++++++++++++++++
- MAINTAINERS                                        |   1 +
- 2 files changed, 278 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
-new file mode 100644
-index 0000000..7cfa0ce
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
-@@ -0,0 +1,277 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/sunplus,sp7021-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SP7021 Pin Controller Device Tree Bindings
-+
-+maintainers:
-+  - Dvorkin Dmitry <dvorkin@tibbo.com>
-+  - Wells Lu <wells.lu@sunplus.com>
-+
-+description: |
-+  The Sunplus SP7021 pin controller is used to control SoC pins. Please
-+  refer to pinctrl-bindings.txt in this directory for details of the common
-+  pinctrl bindings used by client devices.
-+
-+  Refer to https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/pages/
-+  1443495991/How+to+setup+pins+of+SP7021+in+device-tree+source
-+
-+  The device node of pin controller of Sunplus SP7021 has following
-+  properties.
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-pctl
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  reg:
-+    items:
-+      - description: Base address and length of the MOON2 registers.
-+      - description: Base address and length of the GPIOXT registers.
-+      - description: Base address and length of the GPIOXT2 registers.
-+      - description: Base address and length of the FIRST registers.
-+      - description: Base address and length of the MOON1 registers.
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+patternProperties:
-+  '^.*$':
-+    if:
-+      type: object
-+    then:
-+      description: |
-+        A pinctrl node should contain at least one subnodes representing the
-+        pins or function-pins group available on the machine. Each subnode
-+        will list the pins it needs, and how they should be configured.
-+
-+        Pinctrl node's client devices use subnodes for desired pin
-+        configuration. Client device subnodes use below standard properties.
-+
-+      properties:
-+        pins:
-+          description: |
-+            Define pins which are used by pinctrl node's client device.
-+
-+            It consists of one or more integers which represents the config
-+            setting for corresponding pin. Please use macro SPPCTL_IOPAD to
-+            define the integers for pins.
-+
-+            The first argument of the macro is pin number, the second is pin
-+            type, the third is type of GPIO, the last is default output state
-+            of GPIO.
-+          $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+        function:
-+          description: |
-+            Define pin-function which is used by pinctrl node's client device.
-+            The name should be one of string in the following enumeration.
-+          $ref: "/schemas/types.yaml#/definitions/string"
-+          enum: [ SPI_FLASH, SPI_FLASH_4BIT, SPI_NAND, CARD0_EMMC, SD_CARD,
-+                  UA0, FPGA_IFX, HDMI_TX, LCDIF, USB0_OTG, USB1_OTG ]
-+
-+        groups:
-+          description: |
-+            Define pin-group in a specified pin-function.
-+            The name should be one of string in the following enumeration.
-+          $ref: "/schemas/types.yaml#/definitions/string"
-+          enum: [ SPI_FLASH1, SPI_FLASH2, SPI_FLASH_4BIT1, SPI_FLASH_4BIT2,
-+                  SPI_NAND, CARD0_EMMC, SD_CARD, UA0, FPGA_IFX, HDMI_TX1,
-+                  HDMI_TX2, HDMI_TX3, LCDIF, USB0_OTG, USB1_OTG ]
-+
-+        zero_func:
-+          description: |
-+            Disabled pins which are not used by pinctrl node's client device.
-+          $ref: /schemas/types.yaml#/definitions/uint32-array
-+
-+      additionalProperties: false
-+
-+      allOf:
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - SPI_FLASH
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - SPI_FLASH1
-+                  - SPI_FLASH2
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - SPI_FLASH_4BIT
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - SPI_FLASH_4BIT1
-+                  - SPI_FLASH_4BIT2
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - SPI_NAND
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - SPI_NAND
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - CARD0_EMMC
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - CARD0_EMMC
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - SD_CARD
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - SD_CARD
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - UA0
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - UA0
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - FPGA_IFX
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - FPGA_IFX
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - HDMI_TX
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - HDMI_TX1
-+                  - HDMI_TX2
-+                  - HDMI_TX3
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - LCDIF
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - LCDIF
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - USB0_OTG
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - USB0_OTG
-+        - if:
-+            properties:
-+              function:
-+                enum:
-+                  - USB1_OTG
-+          then:
-+            properties:
-+              groups:
-+                enum:
-+                  - USB1_OTG
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#gpio-cells"
-+  - gpio-controller
-+  - clocks
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/pinctrl/sppctl-sp7021.h>
-+
-+    pctl: pctl@9C000100 {
-+        compatible = "sunplus,sp7021-pctl";
-+        reg = <0x9C000100 0x100>, <0x9C000300 0x80>, <0x9C000380 0x80>,
-+              <0x9C0032e4 0x1C>, <0x9C000080 0x20>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        clocks = <&clkc GPIO>;
-+        resets = <&rstc RST_GPIO>;
-+
-+        pins_uart0: pins_uart0 {
-+            function = "UA0";
-+            groups = "UA0";
-+        };
-+
-+        pins_uart1: pins_uart1 {
-+            pins = <
-+                SPPCTL_IOPAD(11,SPPCTL_PCTL_G_PMUX,MUXF_UA1_TX,0)
-+                SPPCTL_IOPAD(10,SPPCTL_PCTL_G_PMUX,MUXF_UA1_RX,0)
-+                SPPCTL_IOPAD(7,SPPCTL_PCTL_G_GPIO,0,SPPCTL_PCTL_L_OUT)
-+            >;
-+        };
-+
-+        emmc_mux: emmc_mux {
-+            function = "CARD0_EMMC";
-+            groups = "CARD0_EMMC";
-+        };
-+
-+        mmc1_mux: mmc1_mux {
-+            function = "SD_CARD";
-+            groups = "SD_CARD";
-+            pins = < SPPCTL_IOPAD(91,SPPCTL_PCTL_G_GPIO,0,0) >;
-+        };
-+
-+        hdmi_A_tx1: hdmi_A_tx1_pins {
-+            function = "HDMI_TX";
-+            groups = "HDMI_TX1";
-+        };
-+        hdmi_A_tx2: hdmi_A_tx2_pins {
-+            function = "HDMI_TX";
-+            groups = "HDMI_TX2";
-+        };
-+        hdmi_A_tx3: hdmi_A_tx3_pins {
-+            function = "HDMI_TX";
-+            groups = "HDMI_TX3";
-+        };
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9cae8e7..fe3f359 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14872,6 +14872,7 @@ M:	Wells Lu <wells.lu@sunplus.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- W:	https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-+F:	Documentation/devicetree/bindings/pinctrl/sunplus,*
- F:	drivers/pinctrl/sunplus/
- F:	include/dt-bindings/pinctrl/sppctl*
- 
--- 
-2.7.4
-
+SGkgTGFycywNCg0KVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KDQo+IE9uIDEwLzE5LzIxIDU6MjAg
+UE0sIEFuYW5kIEFzaG9rIER1bWJyZSB3cm90ZToNCj4gPiBbLi4uXQ0KPiA+ICsjZGVmaW5lIEFN
+U19DSEFOX1RFTVAoX3NjYW5faW5kZXgsIF9hZGRyKSB7IFwNCj4gPiArCS50eXBlID0gSUlPX1RF
+TVAsIFwNCj4gPiArCS5pbmRleGVkID0gMSwgXA0KPiA+ICsJLmFkZHJlc3MgPSAoX2FkZHIpLCBc
+DQo+ID4gKwkuaW5mb19tYXNrX3NlcGFyYXRlID0gQklUKElJT19DSEFOX0lORk9fUkFXKSB8IFwN
+Cj4gPiArCQlCSVQoSUlPX0NIQU5fSU5GT19TQ0FMRSkgfCBcDQo+ID4gKwkJQklUKElJT19DSEFO
+X0lORk9fT0ZGU0VUKSwgXA0KPiA+ICsJLmluZm9fbWFza19zaGFyZWRfYnlfYWxsID0gQklUKElJ
+T19DSEFOX0lORk9fU0FNUF9GUkVRKSwgXA0KPiBUaGVyZSBpcyBubyBoYW5kbGluZyBvZiBJSU9f
+Q0hBTl9JTkZPX1NBTVBfRlJFUSBpbiByZWFkX3JhdygpLiBSZWFkaW5nDQo+IHRoZSBzYW1wbGlu
+Z19mcmVxdWVuY3kgYXR0cmlidXRlIGFsd2F5cyByZXR1cm5zIC1FSU5WQUwuDQpDb3JyZWN0LiBJ
+IHdpbGwgcmVtb3ZlIGl0Lg0KDQo+ID4gKwkuZXZlbnRfc3BlYyA9IGFtc190ZW1wX2V2ZW50cywg
+XA0KPiA+ICsJLnNjYW5faW5kZXggPSBfc2Nhbl9pbmRleCwgXA0KPiA+ICsJLm51bV9ldmVudF9z
+cGVjcyA9IEFSUkFZX1NJWkUoYW1zX3RlbXBfZXZlbnRzKSwgXCB9DQo+ID4gKw0KPiA+ICsjZGVm
+aW5lIEFNU19DSEFOX1ZPTFRBR0UoX3NjYW5faW5kZXgsIF9hZGRyLCBfYWxhcm0pIHsgXA0KPiA+
+ICsJLnR5cGUgPSBJSU9fVk9MVEFHRSwgXA0KPiA+ICsJLmluZGV4ZWQgPSAxLCBcDQo+ID4gKwku
+YWRkcmVzcyA9IChfYWRkciksIFwNCj4gPiArCS5pbmZvX21hc2tfc2VwYXJhdGUgPSBCSVQoSUlP
+X0NIQU5fSU5GT19SQVcpIHwgXA0KPiA+ICsJCUJJVChJSU9fQ0hBTl9JTkZPX1NDQUxFKSwgXA0K
+PiA+ICsJLmluZm9fbWFza19zaGFyZWRfYnlfYWxsID0gQklUKElJT19DSEFOX0lORk9fU0FNUF9G
+UkVRKSwgXA0KPiA+ICsJLmV2ZW50X3NwZWMgPSAoX2FsYXJtKSA/IGFtc192b2x0YWdlX2V2ZW50
+cyA6IE5VTEwsIFwNCj4gPiArCS5zY2FuX2luZGV4ID0gX3NjYW5faW5kZXgsIFwNCj4gPiArCS5u
+dW1fZXZlbnRfc3BlY3MgPSAoX2FsYXJtKSA/IEFSUkFZX1NJWkUoYW1zX3ZvbHRhZ2VfZXZlbnRz
+KSA6DQo+IDAsIFwNCj4gPiArfQ0KDQpBbHNvLCBmb3Igc29tZSByZWFzb24sIEkgaGF2ZW7igJl0
+IHJlY2VpdmVkIHJlc3Qgb2YgeW91ciBjb21tZW50cyBpbiB0aGUgbWFpbCwgYnV0IEkgc2VlIHRo
+ZW0gb24gcGF0Y2h3b3JrLg0KSSBhbSBub3Qgc3VyZSBob3cgSSBjYW4gcmVzcG9uZCB0byB0aG9z
+ZSBjb21tZW50cy4NCg0KVGhhbmtzLA0KQW5hbmQNCg==
