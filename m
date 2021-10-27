@@ -2,107 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E3B743C9E0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AB7B43C9C2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:34:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241935AbhJ0MpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 08:45:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47388 "EHLO
+        id S240096AbhJ0MhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 08:37:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241930AbhJ0MpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 08:45:05 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD1CC061570
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 05:42:39 -0700 (PDT)
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 363F883230;
-        Wed, 27 Oct 2021 14:42:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1635338556;
-        bh=dPn6ZThvG6na3Ywg21b3UNeAyKNGJlcW859GbKfn58w=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=iPV7JEdQr0yfrvGWUON2UN44qr8IKwFJsi5UdUtUvfQ3V8KFAheFpfHtB+6IfxWwG
-         IwZv53kiZx0HXIwhwtZe/3Ev0OCLFp1+mVP5rDvTJU+SlQ5wPgRAL33hy6fmwPuN9a
-         VG8Egkc8N4Wvs4yCu3wxZP+PRvFPDd4jo78cKm8BDMQ6+rPQsPRgMrlN8ksVFIKEX0
-         bZJojJvTo8YM34gOLaxzK4JqXBvEd5pzL5UtJFV2SpwnpvG5/Tx55yvQfVhJU3HUsV
-         DjmMGmU6cN8ygmLK/cNR+amzO11NirZlQ/wwXwPq8glDqKh60WC4NLRLz/2vtioXzM
-         sd6Ucn0jOCNXA==
-Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: lvds-codec: Document
- pixel data sampling edge select
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-References: <20211017001204.299940-1-marex@denx.de>
- <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
- <c34f8a7e-eec6-9373-0c52-f6546ad689a8@denx.de>
- <YW3Rw0hZmB6plu+V@pendragon.ideasonboard.com>
- <4f235f45-5c03-eaeb-69ac-3d801a1dd58c@denx.de>
- <YW5qlXPyy6ZOHS6N@pendragon.ideasonboard.com>
- <c3f74fc5-3ec7-f01a-3195-273c28ceec83@denx.de>
- <YXiSoEdKUDRr3K5E@pendragon.ideasonboard.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <8f366113-2516-4599-1885-6a7fcb09524d@denx.de>
-Date:   Wed, 27 Oct 2021 14:29:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S237246AbhJ0MhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 08:37:01 -0400
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3475C061745
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 05:34:35 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:441:6c1a:bc30:46e])
+        by andre.telenet-ops.be with bizsmtp
+        id B0aa260012hfXWm010aaqv; Wed, 27 Oct 2021 14:34:34 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mfi8X-008TuV-O2; Wed, 27 Oct 2021 14:34:33 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mfi8X-00DsSS-Ah; Wed, 27 Oct 2021 14:34:33 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Subject: [PATCH v3] dt-bindings: mfd: bd9571mwv: Convert to json-schema
+Date:   Wed, 27 Oct 2021 14:34:32 +0200
+Message-Id: <76fdd209e6a2dada7ff50b8ad03eb14e7f3547a6.1635338031.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YXiSoEdKUDRr3K5E@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/27/21 1:43 AM, Laurent Pinchart wrote:
+Convert the ROHM BD9571MWV/BD9574MWF Power Management Integrated Circuit
+(PMIC) Device Tree binding documentation to json-schema.
 
-[...]
+Make the "regulators" subnode optional, as not all users describe the
+regulators.
 
->>>>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>>>> index 1faae3e323a4..708de84ac138 100644
->>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
->>>>>>>> @@ -79,6 +79,14 @@ properties:
->>>>>>>>            - port@0
->>>>>>>>            - port@1
->>>>>>>>      
->>>>>>>> +  pclk-sample:
->>>>>>>> +    description:
->>>>>>>> +      Data sampling on rising or falling edge.
->>>>>>>> +    enum:
->>>>>>>> +      - 0  # Falling edge
->>>>>>>> +      - 1  # Rising edge
->>>>>>>> +    default: 0
->>>>>>>> +
->>>>>>>
->>>>>>> Shouldn't this be moved to the endpoint, the same way data-mapping is
->>>>>>> defined as an endpoint property ?
->>>>>>
->>>>>> The strapping is a chip property, not port property, so no.
->>>>>
->>>>> For this particular chip that's true. I'm still not convinced overall.
->>>>> For some cases it could be a per-port property
->>>>
->>>> Can you be more specific about "some cases" ?
->>>
->>> I'm thinking about bridges that could have multiple parallel inputs.
->>
->> Can you draft an example how such a binding would look like within the
->> confines of this lvds-codec.yaml ?
->>
->> I also have to wonder how such a hypothetical device would work, would
->> it serialize two parallel bussed into single LVDS one ?
-> 
-> Such a device would require custom bindings I think, as lvds-codec is
-> limited to a single input and a single output. thine,thc63lvd1024.yaml
-> is an example of such a device.
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+---
+I have listed Marek as the maintainer, as he wrote the original
+bindings.  Marek: Please scream if this is inappropriate ;-)
 
-It seems THC63LVD1024 is LVDS->to->Parallel DPI, so pclk-sample does not 
-seem applicable there either.
+v3:
+  - Add Acked-by,
 
-[...]
+v2:
+  - Add Reviewed-by.
+---
+ .../devicetree/bindings/mfd/bd9571mwv.txt     |  69 ----------
+ .../bindings/mfd/rohm,bd9571mwv.yaml          | 127 ++++++++++++++++++
+ 2 files changed, 127 insertions(+), 69 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/bd9571mwv.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/bd9571mwv.txt b/Documentation/devicetree/bindings/mfd/bd9571mwv.txt
+deleted file mode 100644
+index 1d6413e96c376e4b..0000000000000000
+--- a/Documentation/devicetree/bindings/mfd/bd9571mwv.txt
++++ /dev/null
+@@ -1,69 +0,0 @@
+-* ROHM BD9571MWV/BD9574MWF Power Management Integrated Circuit (PMIC) bindings
+-
+-Required properties:
+- - compatible		: Should be "rohm,bd9571mwv" or "rohm,bd9574mwf".
+- - reg			: I2C slave address.
+- - interrupts		: The interrupt line the device is connected to.
+- - interrupt-controller	: Marks the device node as an interrupt controller.
+- - #interrupt-cells	: The number of cells to describe an IRQ, should be 2.
+-			    The first cell is the IRQ number.
+-			    The second cell is the flags, encoded as trigger
+-			    masks from ../interrupt-controller/interrupts.txt.
+- - gpio-controller      : Marks the device node as a GPIO Controller.
+- - #gpio-cells          : Should be two.  The first cell is the pin number and
+-                            the second cell is used to specify flags.
+-                            See ../gpio/gpio.txt for more information.
+- - regulators:          : List of child nodes that specify the regulator
+-                            initialization data. Child nodes must be named
+-                            after their hardware counterparts:
+-			     - vd09
+-			     - vd18
+-			     - vd25
+-			     - vd33
+-			     - dvfs
+-			    Each child node is defined using the standard
+-			    binding for regulators.
+-
+-Optional properties:
+-  - rohm,ddr-backup-power : Value to use for DDR-Backup Power (default 0).
+-			    This is a bitmask that specifies which DDR power
+-			    rails need to be kept powered when backup mode is
+-			    entered, for system suspend:
+-			      - bit 0: DDR0
+-			      - bit 1: DDR1
+-			      - bit 2: DDR0C
+-			      - bit 3: DDR1C
+-			    These bits match the KEEPON_DDR* bits in the
+-			    documentation for the "BKUP Mode Cnt" register.
+-  - rohm,rstbmode-level: The RSTB signal is configured for level mode, to
+-			 accommodate a toggle power switch (the RSTBMODE pin is
+-			 strapped low).
+-  - rohm,rstbmode-pulse: The RSTB signal is configured for pulse mode, to
+-			 accommodate a momentary power switch (the RSTBMODE pin
+-			 is strapped high).
+-			 The two properties above are mutually exclusive.
+-
+-Example:
+-
+-	pmic: pmic@30 {
+-		compatible = "rohm,bd9571mwv";
+-		reg = <0x30>;
+-		interrupt-parent = <&gpio2>;
+-		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		rohm,ddr-backup-power = <0xf>;
+-		rohm,rstbmode-pulse;
+-
+-		regulators {
+-			dvfs: dvfs {
+-				regulator-name = "dvfs";
+-				regulator-min-microvolt = <750000>;
+-				regulator-max-microvolt = <1030000>;
+-				regulator-boot-on;
+-				regulator-always-on;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
+new file mode 100644
+index 0000000000000000..89f9efee465b8ed0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/rohm,bd9571mwv.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ROHM BD9571MWV/BD9574MWF Power Management Integrated Circuit (PMIC)
++
++maintainers:
++  - Marek Vasut <marek.vasut@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - rohm,bd9571mwv
++      - rohm,bd9574mwf
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++  rohm,ddr-backup-power:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x0
++    maximum: 0xf
++    description: |
++      Value to use for DDR-Backup Power (default 0).
++      This is a bitmask that specifies which DDR power rails need to be kept
++      powered when backup mode is entered, for system suspend:
++        - bit 0: DDR0
++        - bit 1: DDR1
++        - bit 2: DDR0C
++        - bit 3: DDR1C
++      These bits match the KEEPON_DDR* bits in the documentation for the "BKUP
++      Mode Cnt" register.
++
++  rohm,rstbmode-level:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      The RSTB signal is configured for level mode, to accommodate a toggle
++      power switch (the RSTBMODE pin is strapped low).
++
++  rohm,rstbmode-pulse:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      The RSTB signal is configured for pulse mode, to accommodate a momentary
++      power switch (the RSTBMODE pin is strapped high).
++
++  regulators:
++    type: object
++    description:
++      List of child nodes that specify the regulator initialization data.
++      Child nodes must be named after their hardware counterparts.
++
++    patternProperties:
++      "^(vd09|vd18|vd25|vd33|dvfs)$":
++        type: object
++        $ref: ../regulator/regulator.yaml#
++
++        properties:
++          regulator-name:
++            pattern: "^(vd09|vd18|vd25|vd33|dvfs)$"
++
++        unevaluatedProperties: false
++
++    additionalProperties: false
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++  - gpio-controller
++  - '#gpio-cells'
++
++oneOf:
++  - required:
++      - rohm,rstbmode-level
++  - required:
++      - rohm,rstbmode-pulse
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          pmic: pmic@30 {
++                  compatible = "rohm,bd9571mwv";
++                  reg = <0x30>;
++                  interrupt-parent = <&gpio2>;
++                  interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++                  interrupt-controller;
++                  #interrupt-cells = <2>;
++                  gpio-controller;
++                  #gpio-cells = <2>;
++                  rohm,ddr-backup-power = <0xf>;
++                  rohm,rstbmode-pulse;
++
++                  regulators {
++                          dvfs: dvfs {
++                                  regulator-name = "dvfs";
++                                  regulator-min-microvolt = <750000>;
++                                  regulator-max-microvolt = <1030000>;
++                                  regulator-boot-on;
++                                  regulator-always-on;
++                          };
++                  };
++          };
++    };
+-- 
+2.25.1
+
