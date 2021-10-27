@@ -2,72 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3F643C08A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 05:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B2E743C094
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 05:14:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238940AbhJ0DL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Oct 2021 23:11:57 -0400
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:45641 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238908AbhJ0DL4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 23:11:56 -0400
-Received: by mail-oo1-f47.google.com with SMTP id o26-20020a4abe9a000000b002b74bffdef0so441926oop.12;
-        Tue, 26 Oct 2021 20:09:31 -0700 (PDT)
+        id S236416AbhJ0DQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Oct 2021 23:16:26 -0400
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:41894 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233962AbhJ0DQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Oct 2021 23:16:25 -0400
+Received: by mail-ot1-f45.google.com with SMTP id v2-20020a05683018c200b0054e3acddd91so1663369ote.8;
+        Tue, 26 Oct 2021 20:14:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fF9QXgLzosjL4TM7VadwMeUj8EchUoSjjtX4csjl1rU=;
-        b=Ik4rpeqiEtMMizzsZXSF1Z9SbF2klQ9IQIHtnidOqDUpjUDIb6EoG3H9QQerqDf8cY
-         QrVZ2dsnpIoKkVWFrWrEbowWNXMNyFpcZMLUoUIVZmY9cd0A9vr8x6in2N4EMjNX1wF9
-         GlObdZqpPqbLwnHI9ak3foKf/2M5ATUyWkZv28eyLee7b9dofxObokiZHh6Mq9HxbcEd
-         q5l7O+9Lvcmi/M5h9OfHNS43b/MkRKKL2sUz69OZjxM/OX2HxUNh1iXrauPDy/QO9Nor
-         g2vjdpY3zmNBZ2Bk+MolpQrwN7uil0itPXpiFv4P5Ho3LzHmBvPC3m9eB9JL6WAwzJ5s
-         XMYA==
-X-Gm-Message-State: AOAM531Rj2zg1MejIhuuNCAkHfCGuA+KwNgjcMJseSKXuMnxSjsYTHzj
-        9xhh+cz8dAggM8z+fTLglQ==
-X-Google-Smtp-Source: ABdhPJzP41q/WyN+8LLe8tlwuSoBpsMFovkHFy5Yho2Qv71qtpA7ktzQadUc9hIiXylOeSIXG44skQ==
-X-Received: by 2002:a4a:b307:: with SMTP id m7mr4884736ooo.83.1635304171532;
-        Tue, 26 Oct 2021 20:09:31 -0700 (PDT)
+        bh=QZsgutcYXburh6Om3gxFfVkZQgm5rcUqHCp1VMGBB+c=;
+        b=DD85eIA19kt/W1rYc1LnhNG4e71DeR4hgZYzzyIX1U5IfToP+paDESEVJZXluTs3wE
+         Btdhco5IhmoLtSr9yFZ91J9Gems8iY0jtyHFEyEa4og7vh3v0lTdjrcwED82z/U8YfCh
+         auClgKkap7sHuOhYLYvG1tptpJB00hk+JjRuVgGCLvxINexsUMcLybVbR3pKW0SWaBc9
+         IkFhmOTqVst1ymeR9oTq4pBpFoq5M4/uIgLnKyO6vLxSi8IgBLQpmAWU6PjyLKRCEb/w
+         c+oKMjMv1QnPvDmAl8aTxgd1A8og99xB6r9FvK1n/Du7OChKo8e3TGWwNF5QPag7hZ+p
+         OSKw==
+X-Gm-Message-State: AOAM530PqF3CVv6ts4JAvOtgsocT/o15Dqhhe3DpVO2GdvZH9EymdVFy
+        l9AQWyeFVMwrGEY0zKf5dQ==
+X-Google-Smtp-Source: ABdhPJwsYa2fg2xp4ZMiq9mRoWd9HVle2S+Y17/gYBC7E9sJazBCcIUaMe9RAMjnpV09dzXgvdCOfA==
+X-Received: by 2002:a05:6830:30a1:: with SMTP id g1mr22610662ots.54.1635304440594;
+        Tue, 26 Oct 2021 20:14:00 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j6sm4395944oot.18.2021.10.26.20.09.30
+        by smtp.gmail.com with ESMTPSA id r131sm1199208oib.27.2021.10.26.20.13.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Oct 2021 20:09:30 -0700 (PDT)
-Received: (nullmailer pid 3941875 invoked by uid 1000);
-        Wed, 27 Oct 2021 03:09:29 -0000
-Date:   Tue, 26 Oct 2021 22:09:29 -0500
+        Tue, 26 Oct 2021 20:13:59 -0700 (PDT)
+Received: (nullmailer pid 3948938 invoked by uid 1000);
+        Wed, 27 Oct 2021 03:13:58 -0000
+Date:   Tue, 26 Oct 2021 22:13:58 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        khilman@baylibre.com, linux-mediatek@lists.infradead.org,
-        fparent@baylibre.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: thermal: mediatek: Add mt8365
-Message-ID: <YXjC6VkMSrOECEEu@robh.at.kernel.org>
-References: <20211019093404.1913357-1-msp@baylibre.com>
- <20211019093404.1913357-2-msp@baylibre.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: reset: lan966x phy reset driver bindings
+Message-ID: <YXjD9o8ws5KWlafb@robh.at.kernel.org>
+References: <20211019115205.1516311-1-horatiu.vultur@microchip.com>
+ <20211019115205.1516311-2-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211019093404.1913357-2-msp@baylibre.com>
+In-Reply-To: <20211019115205.1516311-2-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Oct 2021 11:34:01 +0200, Markus Schneider-Pargmann wrote:
-> This unit is present on the mt8365 SoC as well. But there is a
-> difference in the usage of an apmixed register.
+On Tue, Oct 19, 2021 at 01:52:04PM +0200, Horatiu Vultur wrote:
+> Document the lan966x phy reset device driving bindings.
+> It is using register access for the internal PHYs and toggles
+> GPIO for external PHYs.
 > 
-> This patch adds a distinct mt8365 to the list of compatibles.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
->  Documentation/devicetree/bindings/thermal/mediatek-thermal.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/reset/lan966x-phy,rst.yaml       | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
+> new file mode 100644
+> index 000000000000..35a32458cafe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/reset/lan966x-phy,rst.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Microchip Lan966x PHY Reset
+> +
+> +maintainers:
+> +  - Horatiu Vultur <horatiu.vultur@microchip.com>
+> +
+> +description: |
+> +  The Microchip Lan966x Switch provides 2 internal PHY which needs to be
+> +  released from reset before they can be accessed. Also it might have external
+> +  PHYs which requires to toggle a GPIO before the access to the PHYs.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^phy-reset@[0-9a-f]+$"
 
-Acked-by: Rob Herring <robh@kernel.org>
+^reset-controller@[0-9a-f]+$
+
+> +
+> +  compatible:
+> +    const: microchip,lan966x-phy-reset
+> +
+> +  reg:
+> +    items:
+> +      - description: internal phy reset registers
+
+Just: maxItems: 1
+
+> +
+> +  reg-names:
+> +    const: phy
+
+Not all that useful with only 1 entry.
+
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  external-phy-reset-gpios:
+> +    description: used for release of reset of the external PHY
+> +    maxItems: 1
+
+This belongs in the external PHY's node.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#reset-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    phy_reset: phy-reset@e2010010 {
+> +        compatible = "microchip,lan966x-phy-reset";
+> +        reg = <0xe2010010 0x14>;
+> +        reg-names = "phy";
+> +        #reset-cells = <1>;
+> +    };
+> -- 
+> 2.33.0
+> 
+> 
