@@ -2,89 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FAF443CC90
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:42:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83EDF43CC5E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:37:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbhJ0Ooi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 10:44:38 -0400
-Received: from brightrain.aerifal.cx ([216.12.86.13]:40322 "EHLO
-        brightrain.aerifal.cx" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbhJ0Ooh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:44:37 -0400
-X-Greylist: delayed 916 seconds by postgrey-1.27 at vger.kernel.org; Wed, 27 Oct 2021 10:44:37 EDT
-Date:   Wed, 27 Oct 2021 10:26:54 -0400
-From:   Rich Felker <dalias@libc.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Russell King <linux@armlinux.org.uk>,
-        James Morse <james.morse@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        Stafford Horne <shorne@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>, x86@kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        "H. Peter Anvin" <hpa@zytor.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-csky@vger.kernel.org, openrisc@lists.librecores.org,
-        linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
-        linux-sh@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 09/12] sh: Use of_get_cpu_hwid()
-Message-ID: <20211027142651.GW7074@brightrain.aerifal.cx>
-References: <20211006164332.1981454-1-robh@kernel.org>
- <20211006164332.1981454-10-robh@kernel.org>
+        id S237679AbhJ0OkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 10:40:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238699AbhJ0OkE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:40:04 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6437C061570;
+        Wed, 27 Oct 2021 07:37:38 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id u18so4568587wrg.5;
+        Wed, 27 Oct 2021 07:37:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TGWbt0DaQKCswEBt0ArwqQnvqc41g6JU5zhKYrPiWaQ=;
+        b=pDTwVgBFo87UyDGWShmU8Dtev0ZcRzpYvlQV7kt71SdaMb+m9heGBhDyFk+2SBwRU3
+         DwfKkUXyW/mCm399z0UXEV8CmFcsM8Hy9CmvXzQDispnVGrO7MVgyy2TR6N3D2Vx5LpQ
+         puLeSWTY65hXS8VRkPCtnK6iqDKBwGEBghH9fvn5AAvK9OM0ODR7PK+Xaj2y9Wolb62H
+         Q92o7tCS67mWgTPJlp8krqQhrxXBXqIVyh8735JbAq8G2Usb8CNup0wXntvUgfJFI4aS
+         LGWimyCP1Uc+kdMGOHCAqLC6It7D1b+yCKiS1R/y+M+JZx1SdMYBXETyo/muHZ6XVFtU
+         iu1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TGWbt0DaQKCswEBt0ArwqQnvqc41g6JU5zhKYrPiWaQ=;
+        b=uVih5zRCCsuAPYGBFFXWsk9V6L32LrFIUr1mFPVBupN0LW+5aI/shCCypswtIynRQJ
+         G8Gt5rt5PhwPBtMZm2fja9qBE6bsijQoCK0tThfen99CnX4r85N2fDANmT/Yr3CLTirh
+         +zJUsD3WqCbnqIxRsEykq//0n9fCtTxPcDvDkj3sVgmKaw0xpV3YmNnE05r0Gxr5OVpI
+         TfDZV+kTisYUnyismkM9GD9HXO4sbmHpExtfTUwr77uFo9oyYTLwCC4YAD1VmneNoQcI
+         DWDvGUGrqvi00gZCUeNXSMwjYVhbbHsRnySyndf5QzViR9TV3QVHp9MHSlo/MUD9Wt+a
+         mvUw==
+X-Gm-Message-State: AOAM532hpIG9e4vr7gECi1DtZishQPuiDvSBBAlr5oR93ztihUTJ93ju
+        FrCw9v+7fJ95jw23G6QTh1x8T2+erFrK
+X-Google-Smtp-Source: ABdhPJwbUhkqT+wluf90XToU2xknGoyv3gvSKRYquezS11x9eVlIvfNpBcu0LsM7zKblTtfbIPXdkA==
+X-Received: by 2002:adf:f50f:: with SMTP id q15mr42084157wro.324.1635345457284;
+        Wed, 27 Oct 2021 07:37:37 -0700 (PDT)
+Received: from alex-ThinkPad-E480.. ([2a02:810b:f40:4200:8072:4c96:3e48:9ebf])
+        by smtp.googlemail.com with ESMTPSA id p21sm25866wmc.11.2021.10.27.07.37.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Oct 2021 07:37:37 -0700 (PDT)
+From:   Alex Bee <knaerzche@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: fix audio-supply for Rock Pi 4
+Date:   Wed, 27 Oct 2021 16:37:25 +0200
+Message-Id: <20211027143726.165809-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211006164332.1981454-10-robh@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 06, 2021 at 11:43:29AM -0500, Rob Herring wrote:
-> Replace open coded parsing of CPU nodes' 'reg' property with
-> of_get_cpu_hwid().
-> 
-> Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
-> Cc: Rich Felker <dalias@libc.org>
-> Cc: linux-sh@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  arch/sh/boards/of-generic.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/sh/boards/of-generic.c b/arch/sh/boards/of-generic.c
-> index 921d76fc3358..f7f3e618e85b 100644
-> --- a/arch/sh/boards/of-generic.c
-> +++ b/arch/sh/boards/of-generic.c
-> @@ -62,9 +62,8 @@ static void sh_of_smp_probe(void)
->  	init_cpu_possible(cpumask_of(0));
->  
->  	for_each_of_cpu_node(np) {
-> -		const __be32 *cell = of_get_property(np, "reg", NULL);
-> -		u64 id = -1;
-> -		if (cell) id = of_read_number(cell, of_n_addr_cells(np));
-> +		u64 id = of_get_cpu_hwid(np, 0);
-> +
->  		if (id < NR_CPUS) {
->  			if (!method)
->  				of_property_read_string(np, "enable-method", &method);
-> -- 
-> 2.30.2
+As stated in the schematics [1] and [2] P5 the APIO5 domain is supplied
+by RK808-D Buck4, which in our case vcc1v8_codec - i.e. a 1.8 V regulator.
 
-Acked-by: Rich Felker <dalias@libc.org>
+Currently only white noise comes from the ES8316's output, which - for
+whatever reason - came up only after the the correct switch from i2s0_8ch_bus
+to i2s0_2ch_bus for i2s0's pinctrl was done.
+
+Fix this by setting the correct regulator for audio-supply.
+
+[1] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4_v13_sch_20181112.pdf
+[2] https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi_4c_v12_sch_20200620.pdf
+
+Fixes: 1b5715c602fd ("arm64: dts: rockchip: add ROCK Pi 4 DTS support")
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+index 98136c88fa49..6a434be62819 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+@@ -502,7 +502,7 @@ &io_domains {
+ 	status = "okay";
+ 
+ 	bt656-supply = <&vcc_3v0>;
+-	audio-supply = <&vcc_3v0>;
++	audio-supply = <&vcc1v8_codec>;
+ 	sdmmc-supply = <&vcc_sdio>;
+ 	gpio1830-supply = <&vcc_3v0>;
+ };
+-- 
+2.30.2
+
