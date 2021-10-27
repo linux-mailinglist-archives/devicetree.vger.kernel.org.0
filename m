@@ -2,191 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE0B943C663
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 11:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40D4F43C674
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 11:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240040AbhJ0J0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 05:26:13 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:37146 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240035AbhJ0J0M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 05:26:12 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19R84iaS013141;
-        Wed, 27 Oct 2021 05:23:46 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 3bx4far2um-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 27 Oct 2021 05:23:46 -0400
-Received: from SCSQMBX10.ad.analog.com (SCSQMBX10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 19R9NiH0011769
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 27 Oct 2021 05:23:45 -0400
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Wed, 27 Oct 2021
- 02:23:43 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Wed, 27 Oct 2021 02:23:43 -0700
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.136])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 19R9NdaE017350;
-        Wed, 27 Oct 2021 05:23:41 -0400
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <nuno.sa@analog.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v2 2/2] dt-bindings: iio: frequency: add admv1013 doc
-Date:   Wed, 27 Oct 2021 12:23:33 +0300
-Message-ID: <20211027092333.5270-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211027092333.5270-1-antoniu.miclaus@analog.com>
-References: <20211027092333.5270-1-antoniu.miclaus@analog.com>
+        id S240943AbhJ0Jd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 05:33:26 -0400
+Received: from mga12.intel.com ([192.55.52.136]:26461 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230195AbhJ0JdZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 05:33:25 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10149"; a="210203097"
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; 
+   d="scan'208";a="210203097"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2021 02:31:00 -0700
+X-IronPort-AV: E=Sophos;i="5.87,186,1631602800"; 
+   d="scan'208";a="635661120"
+Received: from smile.fi.intel.com ([10.237.72.184])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Oct 2021 02:30:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1mffGT-001QWu-IZ;
+        Wed, 27 Oct 2021 12:30:33 +0300
+Date:   Wed, 27 Oct 2021 12:30:33 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-gpio@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-serial@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 06/16] clk: starfive: Add JH7100 clock generator driver
+Message-ID: <YXkcOZnoGd96wjOU@smile.fi.intel.com>
+References: <20211021174223.43310-1-kernel@esmil.dk>
+ <20211021174223.43310-7-kernel@esmil.dk>
+ <163527959276.15791.14765586510805526101@swboyd.mtv.corp.google.com>
+ <CANBLGcyYb3yNit=GCy4w2zf2=CRtCJP7aCisR8=9n1f7okfCSg@mail.gmail.com>
+ <163529604399.15791.378104318036812951@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: v5_-qxBqZtwvCY_9WsYrxfC7F_Kxj5fP
-X-Proofpoint-ORIG-GUID: v5_-qxBqZtwvCY_9WsYrxfC7F_Kxj5fP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-27_03,2021-10-26_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- priorityscore=1501 impostorscore=0 mlxscore=0 malwarescore=0
- suspectscore=0 spamscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2110270057
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <163529604399.15791.378104318036812951@swboyd.mtv.corp.google.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the ADMV1013 Upconverter.
+On Tue, Oct 26, 2021 at 05:54:03PM -0700, Stephen Boyd wrote:
+> Quoting Emil Renner Berthing (2021-10-26 15:35:36)
+> > On Tue, 26 Oct 2021 at 22:20, Stephen Boyd <sboyd@kernel.org> wrote:
+> > > Quoting Emil Renner Berthing (2021-10-21 10:42:13)
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-no changes in v2.
- .../bindings/iio/frequency/adi,admv1013.yaml  | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+...
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-new file mode 100644
-index 000000000000..7c22202e1ffd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/frequency/adi,admv1013.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ADMV1013 Microwave Upconverter
-+
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+description: |
-+   Wideband, microwave upconverter optimized for point to point microwave
-+   radio designs operating in the 24 GHz to 44 GHz frequency range.
-+
-+   https://www.analog.com/en/products/admv1013.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,admv1013
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+
-+  clocks:
-+    description:
-+      Definition of the external clock.
-+    minItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: lo_in
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+  vcm-supply:
-+    description:
-+      Analog voltage regulator.
-+
-+  adi,vga-pd:
-+    description:
-+      Power Down the Voltage Gain Amplifier Circuit.
-+    type: boolean
-+
-+  adi,mixer-pd:
-+    description:
-+      Power Down the Mixer Circuit.
-+    type: boolean
-+
-+  adi,quad-pd:
-+    description:
-+      Power Down the Quadrupler.
-+    type: boolean
-+
-+  adi,bg-pd:
-+    description:
-+      Power Down the Transmitter Band Gap.
-+    type: boolean
-+
-+  adi,mixer-if-en:
-+    description:
-+      Enable the Intermediate Frequency Mode.
-+    type: boolean
-+
-+  adi,det-en:
-+    description:
-+      Enable the Envelope Detector.
-+    type: boolean
-+
-+  adi,quad-se-mode:
-+    description:
-+      Switch the LO path from differential to single-ended operation.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [6, 9, 12]
-+
-+  '#clock-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - vcm-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      admv1013@0{
-+        compatible = "adi,admv1013";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+        clocks = <&admv1013_lo>;
-+        clock-names = "lo_in";
-+        vcm-supply = <&vcm>;
-+        adi,quad-se-mode = <12>;
-+        adi,mixer-if-en;
-+        adi,det-en;
-+      };
-+    };
-+...
+> > > > +static int __init clk_starfive_jh7100_probe(struct platform_device *pdev)
+> > >
+> > > Drop __init as this can be called after kernel init is over.
+> > 
+> > Oh interesting, I'd like to know when that can happen. The comment for
+> > the builtin_platform_driver macro says it's just a wrapper for
+> 
+> I thought this was using module_platform_driver() macro?
+> 
+> > device_initcall.
+> > 
+> > Won't we then need to remove all the __initconst tags too since the
+> > probe function walks through jh7100_clk_data which eventually
+> > references all __initconst data?
+> 
+> Yes. If it's builtin_platform_driver() it can't be a module/tristate
+> Kconfig, in which case all the init markings can stay.
+
+What about bind/unbind attribute?
+
 -- 
-2.33.1
+With Best Regards,
+Andy Shevchenko
+
 
