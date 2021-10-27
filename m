@@ -2,105 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49BC943C94D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D72843C974
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:19:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240256AbhJ0MPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 08:15:14 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:56860 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S239982AbhJ0MPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 08:15:14 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19RAq1gg007199;
-        Wed, 27 Oct 2021 14:12:42 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-type; s=selector1;
- bh=K+V7SoDRwFrj72+BVN9PGl0W0QLtqYKgJ5J1yPfvkds=;
- b=MOt0ClCsAAuqT4WNaIOWc7DnFY6E103KUFNvdXYeSUm9z5aYBUB7KRsehW+2uqaCwrI4
- B6NM2OQ35gYqyhghqre3yKRVTShnFWDqAtXTMAI1aMzxGhaJqfaiXCuOfOx0a+0CJT7q
- 7zs01o8LvenonBMGO+dQBAyrJtPF0+bXGieH/q3gw6tfCQkAWD+20vkzTZXJVWadEu7y
- lZdqUbAyQVe6eZm7E0Im94XRz2a6K5u63BrP6Xp5Xz49eWGk/T7aQtUSlMEY1cwJ1Ddc
- r0ldMwm+JUFz3EO++wC1ORX26b48u9Pg5tiTFI06nDSzghTbobUh4pBNGnYt0lHIyWq+ tQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3by10btbpm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 27 Oct 2021 14:12:42 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 27C61100038;
-        Wed, 27 Oct 2021 14:12:42 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1E82C241850;
-        Wed, 27 Oct 2021 14:12:42 +0200 (CEST)
-Received: from localhost (10.75.127.51) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 27 Oct 2021 14:12:41
- +0200
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-To:     <hminas@synopsys.com>, <gregkh@linuxfoundation.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <amelie.delaunay@foss.st.com>,
-        <fabrice.gasnier@foss.st.com>, <alexandre.torgue@foss.st.com>
-Subject: [PATCH v2] dt-bindings: usb: dwc2: document the port when usb-role-switch is used
-Date:   Wed, 27 Oct 2021 14:12:32 +0200
-Message-ID: <1635336752-14796-1-git-send-email-fabrice.gasnier@foss.st.com>
-X-Mailer: git-send-email 2.7.4
+        id S241880AbhJ0MVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 08:21:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41920 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230420AbhJ0MVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 08:21:31 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1984BC061570;
+        Wed, 27 Oct 2021 05:19:06 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id c28so5655075lfv.13;
+        Wed, 27 Oct 2021 05:19:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rIOeyL3hQU0K0LOdQBmDeeRWDlQgCLP7xNdWmaO63Xc=;
+        b=c/FkzoZrczpNjuuYzv1t8+0uVFd5g1UJjMcsBDfAh3tSKWjWGD2QOvGf/N8+E82j83
+         q2bSBtgtA9k+ojfJJL/+opT0pCOFxXfW/iuOFKe5dp6NaMSIXHh6mvqbSXhfArq+UPga
+         x9cjIcZghphYUEoIP8qr5Jol4271XYS4pFNdreP4809fa2/70wonl7WxPWf1rnzf8rbE
+         UCcbWAEoUmTTVQIliBlYbPV71rLyQyZNXaKkTUdX79daizA7KDggagTFM+Rt6f3eTEYe
+         yiyWHnkUjSsRVM6PgOq//tJ3EvFapOhj9VN+7OZE3AomtK3jsWTRwvTwTXtEUOWuspmN
+         2H8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rIOeyL3hQU0K0LOdQBmDeeRWDlQgCLP7xNdWmaO63Xc=;
+        b=Mml/HZlAoM7lYbzp2pIFH7ykVGG65hAkNKkV6nVe1AdAdhcq/IBqetAI9JrbEPskwp
+         Rvl4n2v1Vr08EF85JHI/PGsuCj3xorrgxR2DQjK2MJzVWlJPMrC11/Jn8GNFLYgchUTO
+         diB+IXZXMIw0GOZBvxs1pFfaOaiVqhiryYtJ0zXUs69d525y7f0rzcs7WldExo5Hdpx+
+         7ia6edqJAle8WUJZnaLsA8lc75GHIzEMzxKUuuNI86mHIr7Es6gsk76swDjj056V+gBy
+         FT632/JefPmJahdpahSi3b1hPTUolMYV8NQWiPlg7mCll+xt4zRGFUpWI4B1Sp2tq6K4
+         biYw==
+X-Gm-Message-State: AOAM533P9bCAuQlTHQ/IzvaV+uOkQguYUWhzavJhiLQsBHKH03Y96HUM
+        vaT8cz1PLGfd5fOG/3HHCSqneS8jEd4=
+X-Google-Smtp-Source: ABdhPJz+Zj8/GwPIkvlflTdc+NLkCswoRcogP4L+NfXXPaq01L2n/T9XXVK9hg8uMEXdFn0iGEfHmg==
+X-Received: by 2002:a05:6512:5c8:: with SMTP id o8mr15617760lfo.339.1635337143169;
+        Wed, 27 Oct 2021 05:19:03 -0700 (PDT)
+Received: from [192.168.2.145] (46-138-41-28.dynamic.spd-mgts.ru. [46.138.41.28])
+        by smtp.googlemail.com with ESMTPSA id bu5sm2178998lfb.50.2021.10.27.05.19.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Oct 2021 05:19:02 -0700 (PDT)
+Subject: Re: [PATCH v1] ARM: dts: elpida_ecb240abacn: Change Elpida compatible
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tony Lindgren <tony@atomide.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-omap@vger.kernel.org
+References: <20211019234059.29877-1-digetx@gmail.com>
+Message-ID: <a584428e-99f7-986e-90d5-7e81ca213158@gmail.com>
+Date:   Wed, 27 Oct 2021 15:19:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-27_04,2021-10-26_01,2020-04-07_01
+In-Reply-To: <20211019234059.29877-1-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the "port" property, which is used with "usb-role-switch"
-to describe the bus connector.
-Definition is inspired from mediatek,mtu3.yaml.
+20.10.2021 02:40, Dmitry Osipenko пишет:
+> Vendor prefix shouldn't start with capital letter. The Elpida Memory
+> compatible was never used in practice, hence just correct the compatible.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  arch/arm/boot/dts/elpida_ecb240abacn.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/elpida_ecb240abacn.dtsi b/arch/arm/boot/dts/elpida_ecb240abacn.dtsi
+> index d87ee4794f83..9698801cbcfb 100644
+> --- a/arch/arm/boot/dts/elpida_ecb240abacn.dtsi
+> +++ b/arch/arm/boot/dts/elpida_ecb240abacn.dtsi
+> @@ -5,7 +5,7 @@
+>  
+>  / {
+>  	elpida_ECB240ABACN: lpddr2 {
+> -		compatible	= "Elpida,ECB240ABACN","jedec,lpddr2-s4";
+> +		compatible	= "elpida,ECB240ABACN","jedec,lpddr2-s4";
+>  		density		= <2048>;
+>  		io-width	= <32>;
+>  
+> 
 
-This fixes some errors seen when running "make dtbs_check":
-... 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-        From schema: ... Documentation/devicetree/bindings/usb/dwc2.yaml
+This patch should go via OMAP tree since there is only OMAP board which
+uses this dtsi. To make it more clear, "elpida" variant is now
+documented in the bindings [1][2].
 
-Note: add dependencies so that 'usb-role-switch' without port is valid or
-both must be present.
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=9e17f71e9c334f14ad6a8ec3edc09c7a4244e12f
 
-Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
----
-Changes in v2:
-Rob's review comments:
-- drop reference to graph.txt
-- drop unneeded quotes
----
- Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+[2]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=001b8b2594db4ea24fbea4c161e665f858917fce
 
-diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-index 10c7d9b..a351f3c 100644
---- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-+++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-@@ -130,6 +130,16 @@ properties:
-     description: If present indicates that we need to reset the PHY when we 
-       detect a wakeup. This is due to a hardware errata.
- 
-+  port:
-+    description:
-+      Any connector to the data bus of this controller should be modelled
-+      using the OF graph bindings specified, if the "usb-role-switch"
-+      property is used.
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+dependencies:
-+  port: [ usb-role-switch ]
-+
- required:
-   - compatible
-   - reg
--- 
-2.7.4
+If there is no interest in taking the patch via OMAP tree, then it may
+go via the DT git tree. Rob, you should pick it up then.
 
+Thanks!
