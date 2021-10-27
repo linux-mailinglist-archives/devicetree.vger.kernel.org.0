@@ -2,37 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2BC43CBF0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B9C43CC0C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236500AbhJ0OWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 10:22:44 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:57522 "EHLO
+        id S235380AbhJ0O00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 10:26:26 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:58642 "EHLO
         hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237845AbhJ0OWm (ORCPT
+        by vger.kernel.org with ESMTP id S238272AbhJ0O00 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 27 Oct 2021 10:22:42 -0400
-Received: from [79.2.93.196] (port=40362 helo=[192.168.101.73])
+        Wed, 27 Oct 2021 10:26:26 -0400
+Received: from [79.2.93.196] (port=40416 helo=[192.168.101.73])
         by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         (Exim 4.94.2)
         (envelope-from <luca@lucaceresoli.net>)
-        id 1mfjmo-000I0q-R9; Wed, 27 Oct 2021 16:20:14 +0200
-Subject: Re: [PATCH] dt-bindings: Add a help message when dtschema tools are
- missing
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Masahiro Yamada <masahiroy@kernel.org>
-References: <20211026171804.2867369-1-robh@kernel.org>
- <8c6d5a97-14f7-9155-6f90-17e6e33d77c2@lucaceresoli.net>
- <CAL_JsqLij-yhUJ1+rKODzs2rSKepUDgWUxBwvEu8f_mvKqm5xQ@mail.gmail.com>
+        id 1mfjqQ-000JQb-LM; Wed, 27 Oct 2021 16:23:58 +0200
+Subject: Re: [PATCH v2 6/9] mfd: max77714: Add driver for Maxim MAX77714 PMIC
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+References: <20211019145919.7327-1-luca@lucaceresoli.net>
+ <20211019145919.7327-7-luca@lucaceresoli.net> <YXG060evUw8rnR3O@google.com>
+ <3520ff3d-1ec0-5500-7fee-538afa25d413@lucaceresoli.net>
+ <YXlXvovUsvOIPYyV@google.com>
 From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <32f9ef1d-912a-e77f-de98-ee071077e166@lucaceresoli.net>
-Date:   Wed, 27 Oct 2021 16:20:14 +0200
+Message-ID: <d5674e8e-34c9-86ca-94cc-dca79ed82496@lucaceresoli.net>
+Date:   Wed, 27 Oct 2021 16:23:57 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLij-yhUJ1+rKODzs2rSKepUDgWUxBwvEu8f_mvKqm5xQ@mail.gmail.com>
+In-Reply-To: <YXlXvovUsvOIPYyV@google.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -50,63 +59,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Lee,
 
-On 27/10/21 15:53, Rob Herring wrote:
-> On Wed, Oct 27, 2021 at 2:30 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
->>
->> Hi Rob,
->>
->> thanks for this patch!
->>
->> On 26/10/21 19:18, Rob Herring wrote:
->>> The dtschema version check works, but is not that clear when dtschema is
->>> neither installed nor in the PATH. Add a separate check and message if
->>
->> Nit: I think it should say "either not installed or not in the PATH".
+On 27/10/21 15:44, Lee Jones wrote:
+> On Wed, 27 Oct 2021, Luca Ceresoli wrote:
 > 
-> Right.
-> 
+>> Hi Lee,
 >>
->>> dt-doc-validate is not found.
+>> On 21/10/21 20:43, Lee Jones wrote:
+>>> On Tue, 19 Oct 2021, Luca Ceresoli wrote:
+>> [...]
+>>>> diff --git a/drivers/mfd/max77714.c b/drivers/mfd/max77714.c
+>>>> new file mode 100644
+>>>> index 000000000000..4b49d16fe199
+>>>> --- /dev/null
+>>>> +++ b/drivers/mfd/max77714.c
+>>>> @@ -0,0 +1,165 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>> +/*
+>>>> + * Maxim MAX77714 MFD Driver
+>>>> + *
+>>>> + * Copyright (C) 2021 Luca Ceresoli
+>>>> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
+>>>> + */
+>>>> +
+>>>> +#include <linux/i2c.h>
+>>>> +#include <linux/interrupt.h>
+>>>> +#include <linux/mfd/core.h>
+>>>> +#include <linux/mfd/max77714.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/regmap.h>
+>>>> +
+>>>> +struct max77714 {
+>>>> +	struct device *dev;
+>>>> +	struct regmap *regmap;
+>>>> +	struct regmap_irq_chip_data *irq_data;
 >>>
->>> Cc: Luca Ceresoli <luca@lucaceresoli.net>
->>> Cc: Masahiro Yamada <masahiroy@kernel.org>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>>  Documentation/devicetree/bindings/Makefile | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
->>> index 8d6d912c6a6a..001b4f62b741 100644
->>> --- a/Documentation/devicetree/bindings/Makefile
->>> +++ b/Documentation/devicetree/bindings/Makefile
->>> @@ -9,6 +9,10 @@ DT_SCHEMA_MIN_VERSION = 2021.2.1
->>>
->>>  PHONY += check_dtschema_version
->>>  check_dtschema_version:
->>> +     @which $(DT_DOC_CHECKER) >/dev/null || \
->>> +             { echo "Error: '$(DT_DOC_CHECKER)' not found!" \
->>> +             "\nEnsure dtschema python package is installed and in your PATH." \
->>> +             "\nCurrent PATH is:\n$$PATH\n" >&2; false; }
+>>> Is this used outside of .probe()?
 >>
->> You need 'echo -e' for the '\n'.
+>> No.
 > 
-> Except dash will just print '-e' and interpret the newlines...
-
-Oh dear, I always forget about dash...
-
-> I changed it like this:
+> Then you don't need to store it in a struct.
 > 
-> @which $(DT_DOC_CHECKER) >/dev/null || \
-> { echo "Error: '$(DT_DOC_CHECKER)' not found!" >&2; \
->   echo "Ensure dtschema python package is installed and in your PATH." >&2; \
->   echo "Current PATH is:" >&2; \
->   echo "$$PATH" >&2; false; }
+> [...]
+> 
+>>>> +	/* Internal Crystal Load Capacitance, indexed by value of 32KLOAD bits */
+>>>> +	static const unsigned int load_cap[4] = {0, 10, 12, 22};
+>>>
+>>> Probably best to define these magic numbers.
+>>
+>> Since these numbers do not appear anywhere else I don't find added value in:
+>>
+>>   #define MAX77714_LOAD_CAP_0   0
+>>   #define MAX77714_LOAD_CAP_10  10
+>>   #define MAX77714_LOAD_CAP_12  12
+>>   #define MAX77714_LOAD_CAP_22  22
+>>   [...]
+>>   static const unsigned int load_cap[4] = {
+>>       MAX77714_LOAD_CAP_0,
+>>       MAX77714_LOAD_CAP_10,
+>>       MAX77714_LOAD_CAP_12,
+>>       MAX77714_LOAD_CAP_12,
+>>   };
+> 
+> I don't find value in that nomenclature either! :)
+> 
+> I was suggesting that you used better, more forthcoming names.
+> 
+>  LOAD_CAPACITANCE_00_pF
+>  LOAD_CAPACITANCE_10_pF
+>  LOAD_CAPACITANCE_12_pF
+>  LOAD_CAPACITANCE_22_pF
+> 
+>> besides adding lots of lines and lots of "MAX77714_LOAD_CAP_". Even
+>> worse, there is potential for copy-paste errors -- can you spot it? ;)
+> 
+> Yes.  Straight away.
+> 
+>> Finally, consider this is not even global but local to a small function.
+>>
+>> But I'd rather add the unit ("pF") to either the comment line of the
+>> array name (load_cap -> load_cap_pf) for clarity. Would that be OK for you?
+> 
+> I did have to read the code again to get a handle on things (probably
+> not a good sign).  To keep things simple, just add "/* pF */" onto the
+> end of the load_cap line for now.  That should clear things up at
+> first glance.
 
-Either that or 'printf', which IIRC is more portable, including with \n.
-But in this simple case I find multiple 'echo's more readable than one
-printf with '\n's.
+Ok, let's see how it works. I'm sending v3 in the next few days.
 
 -- 
 Luca
