@@ -2,94 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 358F543C42F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F98843C451
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240586AbhJ0Ho6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 03:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240579AbhJ0Ho5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 03:44:57 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D77C061243
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 00:42:32 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id h193so2140034pgc.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 00:42:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nathanrossi.com; s=google;
-        h=date:message-id:in-reply-to:references:from:to:cc:subject
-         :content-transfer-encoding:mime-version;
-        bh=ddY1h2eGYLfbs2x7Sg+P0Vwdzd/3/Mm7kKddSfpI7pQ=;
-        b=jxweswx88EQ1DT2GDlWY0j2UWB2n5otSg6v2CVatqOX3mOdiaTpojzwmFuZybKQmy5
-         EepJy9h+5IwGUniPo9BNtky+SCnSE8rAF/Q6+JTN64OWI+W+Gpcyfe6MtWflobIW0yNe
-         Ue8zoGGh4Yh0OIasiGCA9hZGyQa0rfmNgAdeuLRRuXW6Ve9znbngSP/UybjqNH13GhMG
-         d7r/ngNfVNsXLjc9SEAgwgSc0FCmGWT9aQhttLg0B8+Wpz7lWKQMISYZ6cMU2sYMAlU1
-         p5WaSF0Ce7CaWrAFzwptE987o+6zQ5qW0nXtmEh0GPImU+vLmiNyuClZmpbxW17gnMGW
-         AxxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
-         :cc:subject:content-transfer-encoding:mime-version;
-        bh=ddY1h2eGYLfbs2x7Sg+P0Vwdzd/3/Mm7kKddSfpI7pQ=;
-        b=jhlRjouQkd4SsG9uOZ1jiMHJHjLBQJwcmeCdDBvxxJo9BkHUZRl1cCdOY9g9SKZksv
-         cKkZKZL/2b1U0SQ/bbcwnBe7a33yhhjhZ6LowvHbmPWoq6ln4kvsCSPN6wcQrKfDqxNZ
-         ZxJx5JGF729ulj6FIV9cTlXaUXCysZRFjT+boVn7M+HPPBX23gVQVezHFOXI4GPTrBOo
-         81cY6SG58Ulax2BIA8C7UsvKwYlARD3LoO2STcqhyFT+rhd6oj2sbORLaWUeZ90PyyEj
-         80bLwbrGT7NrXj5pjoHqBRNnzkvLeqLJWuiVTZ+JBd40TrdJ5I3rUfROX4SP0kKjgx4z
-         EcAA==
-X-Gm-Message-State: AOAM530+RRSXM+nz5gsrfW+w/7ZVdkXmXkjFgEI5k2ml3q7SZ6lSmbRO
-        uVf9WoEMH+0qf5prxLHHcLF2iHiEaQVTBfla
-X-Google-Smtp-Source: ABdhPJxAJxlOUcK4LXqjoeR5Jr9lGORsfI5EfW1/8kX7JxSL02ICs1SuCB2dkq0Z6axA7BIs3ICulg==
-X-Received: by 2002:a63:3d0f:: with SMTP id k15mr22720996pga.269.1635320551887;
-        Wed, 27 Oct 2021 00:42:31 -0700 (PDT)
-Received: from [127.0.1.1] (117-20-69-24.751445.bne.nbn.aussiebb.net. [117.20.69.24])
-        by smtp.gmail.com with UTF8SMTPSA id e24sm24272826pfn.8.2021.10.27.00.42.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 00:42:31 -0700 (PDT)
-Date:   Wed, 27 Oct 2021 07:42:12 +0000
-Message-Id: <20211027074212.690611-1-nathan@nathanrossi.com>
-In-Reply-To: <20211027074212.690611-0-nathan@nathanrossi.com>
-References: <20211027074212.690611-0-nathan@nathanrossi.com>
-From:   Nathan Rossi <nathan@nathanrossi.com>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Nathan Rossi <nathan@nathanrossi.com>,
-        Nathan Rossi <nathan.rossi@digi.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 1/3] dt-bindings: hwmon: ti,ina2xx: Document ti,ina238
- compatible string
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S240582AbhJ0Hu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 03:50:26 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:53911 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240638AbhJ0Hu0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 03:50:26 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635320881; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=sC0yyA4Ai6oK5LtbInVCUdqb1RatXgE+DLE9qmVuBzE=; b=i0rTeTIoLVnQDRvnmmSjzDrQNjgJ4zIHVTp1BO0fOaORQkr7Q2mBOGGbm9H02J5btmWf9u7t
+ ta2V0Dbd8Tz8vxiiorpij0qBecNIy/I13ovI939iXgQ0Q5idWFw2gK7Vaq1zmIuTayaR1E8D
+ GWnGukB5BZG5W/Zewpt/KFB5jyg=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61790430c75c436a30ca6027 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Oct 2021 07:48:00
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2C6D5C43616; Wed, 27 Oct 2021 07:48:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8E225C43460;
+        Wed, 27 Oct 2021 07:47:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8E225C43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi
+ pinctrl compatible
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org>
+ <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n51qO1q5ZF-fAf2Gma9a2B+iSyoQnJdJ8Fnmsz+DG0rwPg@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <d92c73d1-32b1-8d95-f3b5-ff103b330621@codeaurora.org>
+Date:   Wed, 27 Oct 2021 13:17:52 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <CAE-0n51qO1q5ZF-fAf2Gma9a2B+iSyoQnJdJ8Fnmsz+DG0rwPg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nathan Rossi <nathan.rossi@digi.com>
 
-Document the compatible string for the Texas Instruments INA238, this
-device is a variant of the existing INA2xx devices and has the same
-device tree bindings (shunt resistor).
+On 10/7/2021 11:29 PM, Stephen Boyd wrote:
+> Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:38)
+>> Add device tree binding compatible name for Qualcomm SC7280 LPASS LPI pinctrl driver.
+>>
+>> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>>   Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+>> index e47ebf9..578b283 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+>> @@ -16,7 +16,9 @@ description: |
+>>
+>>   properties:
+>>     compatible:
+>> -    const: qcom,sm8250-lpass-lpi-pinctrl
+>> +    enum:
+>> +      - qcom,sc7280-lpass-lpi-pinctrl
+>> +      - qcom,sm8250-lpass-lpi-pinctrl
+> I suspect we need to split the binding because the function list needs
+> to change. Can you make a whole new file that's probably largely a copy
+> of this file and/or extract the common bits into a meta schema and
+> include that in both the files? Then the function list can be different
+> and the clock property can be omitted in the sc7280 file.
 
-Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
----
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+As most are common functions and fixed number of LPASS Lpi pin 
+configuration across platforms,
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index 6f0443322a..180573f26c 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -26,6 +26,7 @@ properties:
-       - ti,ina226
-       - ti,ina230
-       - ti,ina231
-+      - ti,ina238
- 
-   reg:
-     maxItems: 1
----
-2.33.0
+Only diff is ADSP bypass platforms 2 clocks are optional. Otherwise 
+clock design also same for SC7280 and SM8250 based architecture.
+
+So I feel Keeping common file is better for now.
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
