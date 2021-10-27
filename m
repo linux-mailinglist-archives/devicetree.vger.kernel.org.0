@@ -2,74 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7952643C9B1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E3B743C9E0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 14:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241904AbhJ0Mbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 08:31:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44366 "EHLO
+        id S241935AbhJ0MpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 08:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232724AbhJ0Mbv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 08:31:51 -0400
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F4AC061570
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 05:29:26 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:441:6c1a:bc30:46e])
-        by michel.telenet-ops.be with bizsmtp
-        id B0VP2600B2hfXWm060VP2e; Wed, 27 Oct 2021 14:29:24 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mfi3X-008TpG-AS; Wed, 27 Oct 2021 14:29:23 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mfi3W-00DsMG-NK; Wed, 27 Oct 2021 14:29:22 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: pwm: tpu: Add R-Car M3-W+ device tree bindings
-Date:   Wed, 27 Oct 2021 14:29:22 +0200
-Message-Id: <622e5ac9a841e874f772e0d9d200200706914dac.1635337701.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S241930AbhJ0MpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 08:45:05 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBD1CC061570
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 05:42:39 -0700 (PDT)
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 363F883230;
+        Wed, 27 Oct 2021 14:42:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1635338556;
+        bh=dPn6ZThvG6na3Ywg21b3UNeAyKNGJlcW859GbKfn58w=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=iPV7JEdQr0yfrvGWUON2UN44qr8IKwFJsi5UdUtUvfQ3V8KFAheFpfHtB+6IfxWwG
+         IwZv53kiZx0HXIwhwtZe/3Ev0OCLFp1+mVP5rDvTJU+SlQ5wPgRAL33hy6fmwPuN9a
+         VG8Egkc8N4Wvs4yCu3wxZP+PRvFPDd4jo78cKm8BDMQ6+rPQsPRgMrlN8ksVFIKEX0
+         bZJojJvTo8YM34gOLaxzK4JqXBvEd5pzL5UtJFV2SpwnpvG5/Tx55yvQfVhJU3HUsV
+         DjmMGmU6cN8ygmLK/cNR+amzO11NirZlQ/wwXwPq8glDqKh60WC4NLRLz/2vtioXzM
+         sd6Ucn0jOCNXA==
+Subject: Re: [PATCH v5 1/2] dt-bindings: display: bridge: lvds-codec: Document
+ pixel data sampling edge select
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+References: <20211017001204.299940-1-marex@denx.de>
+ <YW24EbfbtJdMMDRV@pendragon.ideasonboard.com>
+ <c34f8a7e-eec6-9373-0c52-f6546ad689a8@denx.de>
+ <YW3Rw0hZmB6plu+V@pendragon.ideasonboard.com>
+ <4f235f45-5c03-eaeb-69ac-3d801a1dd58c@denx.de>
+ <YW5qlXPyy6ZOHS6N@pendragon.ideasonboard.com>
+ <c3f74fc5-3ec7-f01a-3195-273c28ceec83@denx.de>
+ <YXiSoEdKUDRr3K5E@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <8f366113-2516-4599-1885-6a7fcb09524d@denx.de>
+Date:   Wed, 27 Oct 2021 14:29:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YXiSoEdKUDRr3K5E@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On 10/27/21 1:43 AM, Laurent Pinchart wrote:
 
-Add device tree bindings for TPU found on R-Car M3-W+ SoCs.
+[...]
 
-Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml | 1 +
- 1 file changed, 1 insertion(+)
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+>>>>>>>> index 1faae3e323a4..708de84ac138 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml
+>>>>>>>> @@ -79,6 +79,14 @@ properties:
+>>>>>>>>            - port@0
+>>>>>>>>            - port@1
+>>>>>>>>      
+>>>>>>>> +  pclk-sample:
+>>>>>>>> +    description:
+>>>>>>>> +      Data sampling on rising or falling edge.
+>>>>>>>> +    enum:
+>>>>>>>> +      - 0  # Falling edge
+>>>>>>>> +      - 1  # Rising edge
+>>>>>>>> +    default: 0
+>>>>>>>> +
+>>>>>>>
+>>>>>>> Shouldn't this be moved to the endpoint, the same way data-mapping is
+>>>>>>> defined as an endpoint property ?
+>>>>>>
+>>>>>> The strapping is a chip property, not port property, so no.
+>>>>>
+>>>>> For this particular chip that's true. I'm still not convinced overall.
+>>>>> For some cases it could be a per-port property
+>>>>
+>>>> Can you be more specific about "some cases" ?
+>>>
+>>> I'm thinking about bridges that could have multiple parallel inputs.
+>>
+>> Can you draft an example how such a binding would look like within the
+>> confines of this lvds-codec.yaml ?
+>>
+>> I also have to wonder how such a hypothetical device would work, would
+>> it serialize two parallel bussed into single LVDS one ?
+> 
+> Such a device would require custom bindings I think, as lvds-codec is
+> limited to a single input and a single output. thine,thc63lvd1024.yaml
+> is an example of such a device.
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-index 0171a04257b808e7..1f5c6384182e013a 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,tpu-pwm.yaml
-@@ -35,6 +35,7 @@ properties:
-           - renesas,tpu-r8a7794   # R-Car E2
-           - renesas,tpu-r8a7795   # R-Car H3
-           - renesas,tpu-r8a7796   # R-Car M3-W
-+          - renesas,tpu-r8a77961  # R-Car M3-W+
-           - renesas,tpu-r8a77965  # R-Car M3-N
-           - renesas,tpu-r8a77970  # R-Car V3M
-           - renesas,tpu-r8a77980  # R-Car V3H
--- 
-2.25.1
+It seems THC63LVD1024 is LVDS->to->Parallel DPI, so pclk-sample does not 
+seem applicable there either.
 
+[...]
