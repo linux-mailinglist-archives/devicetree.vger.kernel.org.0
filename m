@@ -2,74 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F027C43D63C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 00:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3050643D653
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 00:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229981AbhJ0WGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 18:06:20 -0400
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:39807 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhJ0WGT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 18:06:19 -0400
-Received: by mail-oi1-f170.google.com with SMTP id s190so4714693oie.6;
-        Wed, 27 Oct 2021 15:03:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HwCdZSodtvLkyfWWv4aoM6TtcXNL3x8BBvrixERndQI=;
-        b=7uRHLYrN3RSGZnIoPaNMfunRqfRPKV1j2W451i8o8XzqPjmaME/f99QYLLHo/iboih
-         3sQlOqj/TYQVIv+KOS0JocRTnLdOATB8wLk9VuoJDu2v+juP8uZKJphY5Lg8Mrzxr1Y0
-         TrfI7tTIdivR/pd9FO7GzoAW7CTpE8cXJdGp43gXQ6bbrLA65ADUUafIA1KCF3/XCOFN
-         XbIvBq9ez7pJxq7YqiVKYcnTSq395XokAbcfTvKyObnYKT2JQrmwWFnmoisJnSMqJwga
-         ig3rTpbsPP+R2Zw1soXqFGZMMy4KRrhMaGIXlZDXrpeFyAntrMYn8Nq1SGtvMIgntoud
-         FJbA==
-X-Gm-Message-State: AOAM531EmcX+QUfi2BaKo6ni/druNV54kcuWndYgw6VoohLU9IS5mNN7
-        0ukj0HBoMYiOreDhfN0QTQ==
-X-Google-Smtp-Source: ABdhPJwhAqhMiSOGICDeao9e3Uvovr/4CVgqZChnKufwCP091o04QifT1B/0u7uUX+ckIH+hwm1Nnw==
-X-Received: by 2002:a05:6808:17a7:: with SMTP id bg39mr180967oib.70.1635372233675;
-        Wed, 27 Oct 2021 15:03:53 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j15sm469441ots.58.2021.10.27.15.03.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 15:03:52 -0700 (PDT)
-Received: (nullmailer pid 2256435 invoked by uid 1000);
-        Wed, 27 Oct 2021 22:03:51 -0000
-Date:   Wed, 27 Oct 2021 17:03:51 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     devicetree@vger.kernel.org, kishon@ti.com, heiko@sntech.de,
-        linux-arm-kernel@lists.infradead.org, vkoul@kernel.org,
-        cl@rock-chips.com, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        michael.riesch@wolfvision.net
-Subject: Re: [PATCH v3 1/3] dt-bindings: phy: rockchip: Add Naneng combo PHY
- bindings
-Message-ID: <YXnMxyuH/aGAvYAY@robh.at.kernel.org>
-References: <20211025080632.32063-1-yifeng.zhao@rock-chips.com>
- <20211025080632.32063-2-yifeng.zhao@rock-chips.com>
+        id S230036AbhJ0WOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 18:14:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229792AbhJ0WOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 18:14:39 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E528C061570;
+        Wed, 27 Oct 2021 15:12:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=vLcvcoDLoRsO1QRkWZDKvUBuvpcc21DXYKf15cUuQwA=; b=gvDkv5wfjyVnLjEmbDanwtnLfB
+        A/QP/9U4V4iMkZodfT0tsu09Qf+vnUJtcgrHiJMcdhe6piNJEL+uVlITUWI6ZRq+2Fa53bjGqqWBM
+        GhKwn77BZVK8lnOq7ZBPqzdOjgnihU0ekuiq9o5ilBEPJ2+XQsWkqp1fkxDuqbqv7bP0G4AOMPT1i
+        JwCxRhMTF6a8S51MbkWZPu5pmi7ye/0LYd8kVVCD9eRcDloBoHPM32jYorH8M+f1wPpacpGoDRGdT
+        YV5cc9OEFrsBGotH6L6nHnqqIDtHrwNgL7rDnLBMwzR2hKb1S6Q0mURz4f25z9m5MLdJ4UA2if4l/
+        oXxbtxug==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mfr9R-006NlZ-56; Wed, 27 Oct 2021 22:12:05 +0000
+Subject: Re: [PATCH 1/3] pinctrl: Add driver for Sunplus SP7021
+To:     Wells Lu <wellslutw@gmail.com>, linus.walleij@linaro.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     qinjian@cqplus1.com, dvorkin@tibbo.com,
+        Wells Lu <wells.lu@sunplus.com>
+References: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
+ <1635324926-22319-2-git-send-email-wells.lu@sunplus.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <3ed37bf9-d698-2a03-60e7-9b357e3abfb4@infradead.org>
+Date:   Wed, 27 Oct 2021 15:12:04 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211025080632.32063-2-yifeng.zhao@rock-chips.com>
+In-Reply-To: <1635324926-22319-2-git-send-email-wells.lu@sunplus.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 16:06:30 +0800, Yifeng Zhao wrote:
-> Add the compatible strings for the Naneng combo PHY found on rockchip SoC.
-> 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> ---
-> 
-> Changes in v3: None
-> Changes in v2:
-> - Fix dtschema/dtc warnings/errors
-> 
->  .../phy/phy-rockchip-naneng-combphy.yaml      | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-naneng-combphy.yaml
-> 
+Hi--
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 10/27/21 1:55 AM, Wells Lu wrote:
+> diff --git a/drivers/pinctrl/sunplus/Kconfig b/drivers/pinctrl/sunplus/Kconfig
+> new file mode 100644
+> index 0000000..93b5ccf
+> --- /dev/null
+> +++ b/drivers/pinctrl/sunplus/Kconfig
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Sunplus Pin control driver configuration
+> +#
+> +
+> +config PINCTRL_SPPCTL
+> +	bool "Sunplus SP7021 pinmux and gpio driver"
+
+Preferably                              GPIO
+
+> +	depends on SOC_SP7021
+> +	select PINMUX
+> +	select GENERIC_PINCTRL_GROUPS
+> +	select CONFIG_GENERIC_PINMUX_FUNCTIONS
+
+	Drop   CONFIG_
+
+> +	select PINCONF
+> +	select GENERIC_PINCONF
+> +	select OF_GPIO
+
+Probably
+	depends on OF && HAS_IOMEM
+Otherwise how do you know that it's safe to do
+	select OF_GPIO
+?
+
+
+> +	select GPIOLIB
+> +	select GPIO_SYSFS
+> +	select GENERIC_IRQ_CHIP
+> +	select GPIOLIB_IRQCHIP
+> +	help
+> +	  Say Y here to support Sunplus SP7021 pinmux controller.
+> +	  The driveer is selected automatically by platform.
+
+	      driver
+
+> +	  This driver requires the pinctrl framework.
+> +	  GPIO is provided by the same driver.
+> +
+> +config PINCTRL_SPPCTL_DEBUG
+> +	bool "Sunplus pinmux specific debug"
+> +	depends on SOC_SP7021 && DEBUG_PINCTRL
+> +	help
+> +	  Say Y if you need to debug Sunplus pinmux driver in-depth.
+> +	  Pin control driver will output more messages if you enable
+> +	  this item. This function is dependent on DEBUG_PINCTRL. It
+> +	  should be enabled first.
+
+
+thanks.
+-- 
+~Randy
