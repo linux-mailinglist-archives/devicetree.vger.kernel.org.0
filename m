@@ -2,146 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F10743C833
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 12:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F87443C86F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 13:21:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239550AbhJ0LCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 07:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52078 "EHLO
+        id S237216AbhJ0LX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 07:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231473AbhJ0LCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 07:02:16 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF003C061570;
-        Wed, 27 Oct 2021 03:59:50 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id u21so5262129lff.8;
-        Wed, 27 Oct 2021 03:59:50 -0700 (PDT)
+        with ESMTP id S237212AbhJ0LX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 07:23:58 -0400
+Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F84C061570
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 04:21:33 -0700 (PDT)
+Received: by mail-yb1-xb44.google.com with SMTP id v7so5568981ybq.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 04:21:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Zsf5W6YqowSseyvuTUMml4+bgTU62PWsyrp4oNO1xMk=;
-        b=HVlZRtxATzTeW9s77vFDU1/2HETT9Vc8F/2vUCf47K4QJbtvN1amTS5v97H6uQ9m5L
-         hVgobVhWgmmJNor2lCPhE1GX6grKq6E1GRGsCSxIBo1iXLAyZ6ARA3n5JLWgohMWhcvn
-         qz+kuyYksI8LPtBnpJXcZ37BHI7XjlHMUaJJepBjIHmNhUkeOdY23NYCq9VtJ5CzCpFQ
-         2swWDx+TQ9eEQpc4yTEEh4+FODH9EPqQofcacFdqEIIwKmbcCgi8EovuLA/DqGoxtHIm
-         m/bhGdtcz50fA2UdUVqIjZwUXV8cOt1K4IXtmGwlnVrPJH1UVhUFneEdi4qKsnTodh81
-         OIhg==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=gbhxMvAYGbSqfpcSxn09gxeDfjPDxDoohtl7lweoc/0=;
+        b=R+xiNshMlQ/8WpvZqMbGHqNEHkHCtoNNDfIYXaLw8tLLppGHlXtfz7sbPjPSsyLUfI
+         dLXVrb6nGF7L8tPWSTG6wPXKB9PhEDi/3u7vugx3ZOlUE4k2FWkTrL0K8YvA5ner5/mK
+         QSYhun+aTBT+iobbg24M2T1+kl/XFQk90/cJ7YomIQiLTN1wQ3oF+azR3SGmGNt8Tp2p
+         hkVwbqjmorRWcSn8lwGTIlKad63p7TQtkpI+q/kdOxOhhpCHKSZhDfEzTm1j2dkw9veG
+         3BMcG53f54jiCyOxplDG6UIlvhVfiaZmsTiJJDk7nOpV09sWXGqGzzjA1YqPYYlbiNd7
+         2t4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Zsf5W6YqowSseyvuTUMml4+bgTU62PWsyrp4oNO1xMk=;
-        b=r3nYNIxlIHmSd50CY9UeP1gL6J+L61H0lAehtgmMwow8yVopavYowZHuVkVYqA7Bjv
-         /gty2SVdVPpBNtL5BYlPniFN2cDQYTgEt5JegSAaLBaVpjIbGBnJeLTglWb8AZ12xWWi
-         n6J9JSbEHdwDuWbS2BKx8BfrqXf230U/QOt/L1yOU8dOnnjLojLB8qIKuF5ZF9PnNE5j
-         Fs2b+p0dmTT1IenaDCwN0fKnigHg7YPPgk695JeP6btf1gbjqKhgGKHLHE/2CndZWBow
-         tT95m2px9Vzlu3qumlyjhKfOKz8fkh+/9vGPL+y4WebVCWGTiSF9XnTODkGfhfQVBNeD
-         nLCQ==
-X-Gm-Message-State: AOAM531Emp1FTXvFhNakLW2tJrlM5VfcHzSJg4nlCNS1Oi7sqsOlpXXy
-        JMXXXVe5TzG7qVNhjqPe48e+ij1Rru2Bd2ZVVuM=
-X-Google-Smtp-Source: ABdhPJw2RtAnvTTu8eKJ1Gu5xdiQKMCSymgMHX2aBMj3kskaGPm2Lg7bnH1qL2p+8Qq1exiko2TgCjBz58gOBrLcDXs=
-X-Received: by 2002:ac2:5d4b:: with SMTP id w11mr29074118lfd.676.1635332388998;
- Wed, 27 Oct 2021 03:59:48 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=gbhxMvAYGbSqfpcSxn09gxeDfjPDxDoohtl7lweoc/0=;
+        b=OSJptNVcmVkIKppSqzaiKiZRMJgCB25QD5fOH4q89Cw6fxyrCKgck3wGaUv4dqvCWp
+         T3TDV0MiGzQDHifYVrYAahzxDlhQrdM8T37wfSpVEGkTOacHryLP1DdTmJXkL7rQ1EL7
+         IXBsQqFXk6ZjhDjmStDPMQ06HBTJXKpr0pHLIGKme0Q9Ux54CtJxT4eSDc6hTE+aKHxn
+         vRUOVm9TxpPYNJ4K2TdqAp+diH7Jlw3lQaC8FLG6DqhSZZw9JHj6J3A9EVY6sXDEdxUM
+         tbNdDoKlfGJ/zi8he4OB+5snPCbM/NSnUUt5Rnpni3AWHg3aLf4AUiWk9BGcOUHOQxCQ
+         HwnQ==
+X-Gm-Message-State: AOAM533G7dwM9Jh9fNlCPsjUXBncHbTDKGX0SaxK4zcfG/BiZn3nd2nH
+        bUBDSJtZshoIaZ2iQMNkdSxtvd61dfRAktCZS00=
+X-Google-Smtp-Source: ABdhPJx0oELEjmlmOGyX46NvxgFfT349sxY+/gtgC0hYzgtB8aXtTNlZ3KQsm5DXXNu/xI5ADNANwaHcj/CRG7e3tUQ=
+X-Received: by 2002:a25:2395:: with SMTP id j143mr3413040ybj.283.1635333692315;
+ Wed, 27 Oct 2021 04:21:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211026200058.2183-1-aladyshev22@gmail.com> <CACPK8Xd5eYpsFNw1jEjv3NaShgzE3zC_Ct29pJM34TfrqRTNtQ@mail.gmail.com>
-In-Reply-To: <CACPK8Xd5eYpsFNw1jEjv3NaShgzE3zC_Ct29pJM34TfrqRTNtQ@mail.gmail.com>
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Date:   Wed, 27 Oct 2021 14:05:45 +0300
-Message-ID: <CACSj6VVTFa0t9WK=R2TucG7eFqUzBsWYFzvsaRt6eXOiFuQORA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add AMD DaytonaX BMC
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Supreeth Venkatesh <supreeth.venkatesh@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        geissonator@yahoo.com
+Received: by 2002:a05:7010:3d95:b0:145:d0f1:ca17 with HTTP; Wed, 27 Oct 2021
+ 04:21:31 -0700 (PDT)
+Reply-To: aabdulwalialhashmi@gmail.com
+From:   Abdulwali Alhashmi <victorjohnson202@gmail.com>
+Date:   Wed, 27 Oct 2021 04:21:31 -0700
+Message-ID: <CAAY7gEup6-9yVm-oppiYS=f=9f+Y4Q-GOkON6_8u2NrKhJ-FaQ@mail.gmail.com>
+Subject: CAN I TRUST YOU
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the comments. Can I ask you some questions about this
-`device-tree-gpio-naming.md`?
+-- 
+Greetings,
 
-1) First of all in my naming I've tried to use naming scheme the same
-as the EthanolX CRB DTS currently has
-(https://github.com/torvalds/linux/blob/d25f27432f80a800a3592db128254c8140bd71bf/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts#L102).
-Do you want me to change GPIO naming in the EthanolX CRB as well?
-2) Also this naming comes from the signal names in the board
-schematics. This way it is clear to check schematics vs DTS. If we use
-this OpenBMC naming style, we will lose that correspondence. Is it
-really good?
-3) In the initial version of the DTS file I've supplied only a minimal
-set of GPIO, that are used by OpenBMC. GPIOs for x86-power-control app
-and led id/fault gpios. With renaming these GPIOs I'm only sure about
-these GPIOs:
+Firstly, I apologize for encroaching into your privacy in this manner
+as it may seem unethical though it is a matter of great importance.
 
-FAULT_LED                  - led-fault
-CHASSIS_ID_BTN        - led-identify
+I am Abdulwali Alhashmi, I work with Cayman National Bank (Cayman Islands).
 
-What about the rest? For example the document doesn't really state
-what the *-button postfix states? Is it for asserting or monitoring
-buttons? How should I name these signals?
+I am contacting you because my status would not permit me to do this
+alone as it is concerning our customer and an investment placed under
+our bank's management over 5 years ago.
 
-ASSERT_BMC_READY
-ASSERT_RST_BTN
-ASSERT_PWR_BTN
+I have a proposal I would love to discuss with you which will be very
+beneficial to both of us. It's regarding my late client who has a huge
+deposit with my bank.
 
-MON_P0_RST_BTN
-MON_P0_PWR_BTN
-MON_P0_PWR_GOOD
-MON_PWROK
+He is from your country and shares the same last name with you.
 
-Can you help me with those?
+I want to seek your consent to present you as the next of kin to my
+late client who died and left a huge deposit with my bank.
 
-4) And what should I do to the board GPIO signals that OpenBMC doesn't
-use? If you look at the EthanolX CRB DTS
-(https://github.com/torvalds/linux/blob/d25f27432f80a800a3592db128254c8140bd71bf/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts#L102)
-it has a ton of GPIOs. Should they be renamed to this OpenBMC style as
-well? Or can they be named exactly like in the schematics?
+I would respectfully request that you keep the contents of this mail
+confidential and respect the integrity of the information you come by
+as a result of this mail.
 
-I've also CCed original author of the `device-tree-gpio-naming.md`
-document Andrew Geissler. Andrew, can you please provide your opinion
-on the subject?
+Please kindly get back to me for more details if I can TRUST YOU.{
+aabdulwalialhashmi@gmail.com }
 
-Best regards,
-Konstantin Aladyshev
-
-On Wed, Oct 27, 2021 at 12:03 AM Joel Stanley <joel@jms.id.au> wrote:
->
-> Hello Konstantin,
->
-> On Tue, 26 Oct 2021 at 20:01, Konstantin Aladyshev
-> <aladyshev22@gmail.com> wrote:
-> >
-> > Add initial version of device tree for the BMC in the AMD DaytonaX
-> > platform.
-> >
-> > AMD DaytonaX platform is a customer reference board (CRB) with an
-> > Aspeed ast2500 BMC manufactured by AMD.
-> >
-> > Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
->
-> This looks good. I have one comment about the GPIOs below.
->
-> > +&gpio {
-> > +       status = "okay";
-> > +       gpio-line-names =
-> > +       /*A0-A7*/       "","","FAULT_LED","","","","","",
-> > +       /*B0-B7*/       "","","","","","","","",
-> > +       /*C0-C7*/       "CHASSIS_ID_BTN","","","","","","","",
-> > +       /*D0-D7*/       "","","ASSERT_BMC_READY","","","","","",
-> > +       /*E0-E7*/       "MON_P0_RST_BTN","ASSERT_RST_BTN","MON_P0_PWR_BTN","ASSERT_PWR_BTN","",
-> > +                       "MON_P0_PWR_GOOD","MON_PWROK","",
->
-> For systems that will run openbmc, we try to use naming conventions
-> from this document:
->
-> https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
->
-> If a GPIO is missing from that doc I encourage you to add it.
+Regards
+Abdulwali Alhashmi
+Treasury and Deposit Management,
+Cayman National Bank Cayman Islands.
