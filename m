@@ -2,70 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C54243CBB6
+	by mail.lfdr.de (Postfix) with ESMTP id CFF2643CBB8
 	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 16:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242413AbhJ0OO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 10:14:58 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:40545 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242406AbhJ0OO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:14:57 -0400
-Received: by mail-oi1-f169.google.com with SMTP id n63so3610817oif.7;
-        Wed, 27 Oct 2021 07:12:32 -0700 (PDT)
+        id S242406AbhJ0OO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 10:14:59 -0400
+Received: from mail-oo1-f42.google.com ([209.85.161.42]:40584 "EHLO
+        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242432AbhJ0OO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 10:14:58 -0400
+Received: by mail-oo1-f42.google.com with SMTP id m37-20020a4a9528000000b002b83955f771so957538ooi.7;
+        Wed, 27 Oct 2021 07:12:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=vfM2rth3vQBvi54BPZNfTBIvZz8fdXl3sKPEL8Q3JAA=;
-        b=Uy8w/eB6eaUrCyb54E6DujTAisy/P54RT6YWm2KHgw1IGiT29iroYITmPDV52K08+J
-         Ie4MhBa1j8wZCtCjp9Um+00PX0OQ42wpCVHYV2Ws0+2tb+gF1WcB0JpQHusPyud9avdz
-         UldFkzZTSnjOWPjHDUpWErPA3ZaIiNyP4K96yDcfaNfQCqjlIObcvc51wq8dANrmSIxw
-         o2DMtGztW+O7BKXX1JQ9fxuJm+3xkd68rVSMlIV0B2nwIB7uAXEzlhfiqpNoSQvc/Snj
-         QFApZBMEXFlj0MW6ICi0JIdKDLlDvolmERl1xr8weErgdCzRAuYuOm1khfu00p/DeiUw
-         YAyw==
-X-Gm-Message-State: AOAM531JkA4t0us7Xx8I2vZyalF7mGtD6NU/Ya32GAlpy1nzCmUO1eWV
-        16f/MwhQQUjcjo1UQjO4f7RxZz8sDQ==
-X-Google-Smtp-Source: ABdhPJwPCdmnTBRsRL+SPwp3S47duSdyQhf973QacpbBr22I+oVye5RueNfagxE+iyIwYk9wGrav/g==
-X-Received: by 2002:a54:4f1d:: with SMTP id e29mr3785660oiy.179.1635343951319;
-        Wed, 27 Oct 2021 07:12:31 -0700 (PDT)
+        bh=LsneOJe1Pj6rcbVZRUHWvbL7fvihA0muo/WGRb93zS0=;
+        b=iLvPqPyuyscD3hg2/nzeCwPTOmiEYMmpz4qDZHQu0gTOYiDVvQ5fHOAfcL3iAZFFTF
+         2o/G3SYKtQsORW/WRsXK0COOUg6cmTt/f5GE556x1rd73xyWeda8s0f/SnPFPGziR4km
+         JN2KyiNuaaE/EhTQaMWJJX84ORazyceV+/soezqrF6TbxGDlTF9IWnhBYKrNiNPn2ssy
+         vr/G1yhEO6wyxWzxBjWKMNOG/3Nm7C99eKIS4TrE87aEG/uV56K5H2LigMjH4tyI6DFv
+         TPMH7DnZ81cO45P9XyvofKJtTyZMolU36GsNnwXxF3s5p/XIGIhrh0clfAuGvlFJELj8
+         Nmig==
+X-Gm-Message-State: AOAM531Kb3gQtRHMDG7W5LzLWhBPT7s1EWIQBWL3EYrwNmX8sBZR29w+
+        kFha+gbeY9HtSj0Iz3zHrMOV8Zksew==
+X-Google-Smtp-Source: ABdhPJwsD40Rm0+OwnHUfh6zr514sAYlnuCSTokESxJDBfvsf1sDdrM4EL+17+CODeIQF2qt2BQwJQ==
+X-Received: by 2002:a05:6820:54e:: with SMTP id n14mr22301768ooj.89.1635343952764;
+        Wed, 27 Oct 2021 07:12:32 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f14sm16805ots.51.2021.10.27.07.12.30
+        by smtp.gmail.com with ESMTPSA id j6sm38053oot.18.2021.10.27.07.12.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Oct 2021 07:12:30 -0700 (PDT)
-Received: (nullmailer pid 862173 invoked by uid 1000);
+        Wed, 27 Oct 2021 07:12:32 -0700 (PDT)
+Received: (nullmailer pid 862171 invoked by uid 1000);
         Wed, 27 Oct 2021 14:12:28 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Nathan Rossi <nathan@nathanrossi.com>
-Cc:     Nathan Rossi <nathan.rossi@digi.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20211027074212.690611-2-nathan@nathanrossi.com>
-References: <20211027074212.690611-0-nathan@nathanrossi.com> <20211027074212.690611-2-nathan@nathanrossi.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain property
+To:     Julien Massot <julien.massot@iot.bzh>
+Cc:     geert+renesas@glider.be, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, mathieu.poirier@linaro.org
+In-Reply-To: <20211027073020.17055-2-julien.massot@iot.bzh>
+References: <20211027073020.17055-1-julien.massot@iot.bzh> <20211027073020.17055-2-julien.massot@iot.bzh>
+Subject: Re: [RFC PATCH 1/3] dt-bindings: remoteproc: Add Renesas R-Car
 Date:   Wed, 27 Oct 2021 09:12:28 -0500
-Message-Id: <1635343948.059457.862172.nullmailer@robh.at.kernel.org>
+Message-Id: <1635343948.051238.862170.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 07:42:12 +0000, Nathan Rossi wrote:
-> From: Nathan Rossi <nathan.rossi@digi.com>
+On Wed, 27 Oct 2021 09:30:18 +0200, Julien Massot wrote:
+> Renesas R-Car SoCs may contains a Realtime processor.
+> This patch adds binding for this remote processor.
 > 
-> Add a property to the binding to define the selected shunt voltage gain.
-> This specifies the range and accuracy that applies to the shunt circuit.
-> This property only applies to devices that have a selectable shunt
-> voltage range via PGA or ADCRANGE register configuration.
-> 
-> Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
 > ---
-> Changes in v2:
-> - Added binding for shunt-gain
-> ---
->  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../remoteproc/renesas,rcar-rproc.yaml        | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -74,33 +67,20 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml: properties:ti,shunt-gain: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('enum' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml: properties:ti,shunt-gain: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	1 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	2 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	4 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	8 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml: ignoring, error in schema: properties: ti,shunt-gain
-warning: no schema found in file: ./Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-Documentation/devicetree/bindings/hwmon/ti,ina2xx.example.dt.yaml:0:0: /example-0/i2c/power-sensor@44: failed to match any schema with compatible: ['ti,ina220']
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:26.17-46: Warning (reg_format): /example-0/reserved-memory/cr7_ram@40040000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:22.13-20: Warning (ranges_format): /example-0/reserved-memory:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #address-cells value
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #size-cells value
+Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1546789
+See https://patchwork.ozlabs.org/patch/1546783
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
