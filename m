@@ -2,192 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FBA43CAED
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 15:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDDE43CAFB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 15:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242206AbhJ0Nov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 09:44:51 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:39451 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242253AbhJ0Nos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 09:44:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635342143; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=J3EW1Zq2am1RTaPdOiCGqfwjRwDl6DkV6HGUmMii8GM=; b=rS93HTxNqQNEqWiIQBsf/J9tecgor3OBPSEX8GIxfRXs9/dagZt5XkQkOA8tGAgXEWbR3Sgw
- /3yi4lHfQ2LHNUPExCbTc+1D+PSQjnmhbeEw08cIt0woinNmkV35bVFZ5WtpwZ7IeETGFexY
- pZzC9TE1IRiO6Wk73cy+FtA2OEE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 617957342e144ac4d3edb16d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 27 Oct 2021 13:42:12
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3FC5EC4360C; Wed, 27 Oct 2021 13:42:12 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9ECC8C4360C;
-        Wed, 27 Oct 2021 13:42:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9ECC8C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: [PATCH v2 3/3] pinctrl: qcom: Add SC7280 lpass pin configuration
-Date:   Wed, 27 Oct 2021 19:11:37 +0530
-Message-Id: <1635342097-2726-4-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635342097-2726-1-git-send-email-srivasam@codeaurora.org>
-References: <1635342097-2726-1-git-send-email-srivasam@codeaurora.org>
+        id S236528AbhJ0NrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 09:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33480 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236017AbhJ0NrD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 09:47:03 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3BFCC061570
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 06:44:37 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id y205-20020a1c7dd6000000b0032cc8c2800fso5422607wmc.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 06:44:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UdVaTsodMMYginVrZpW44w/IBiUpOzJWzGs+CDuRvjI=;
+        b=VkItuuHdr5AVQhI8+5DWjpbWyyEUPBPZOqcspXgcYLbnjsoK95nIWTw3ypTsTpqCOS
+         O5VFsLBzga0QfVk2bPewAKBsD3xKWS8vV0jJomJHsvze3TflcJlxfVBhixanYwpZbURM
+         D750Ag+ueh57X3pVyuBu1Q4rmwJyZC8d+k+ke4CpIFblqxUpCaOp0MfOeAsJENKp8uZ5
+         nN+OxsbJBwzsnmFT0L8yySw8BW6PfqyvD6Y25/mNWAzp6P7WVrLPBZTxNm6QllBAQ4V1
+         REH5DrjRHPPgfIzTboARku10z9YINYw2cauESiBpb47tu32+SXppw8O9JbzCmtWDMFQT
+         rUUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=UdVaTsodMMYginVrZpW44w/IBiUpOzJWzGs+CDuRvjI=;
+        b=uh5wma/6tDZtSjNy+XWJgJXAJqNwlhxJGx/BZ6nmv8YAWBIof35m0AvnZPht6ecvXx
+         C41xZ9aUucUIGmiGma9338Bdm31o0AxxGWgpbC2SX0I2rGc9BhlEFCFtOr+IIO2RMinQ
+         P8zZuga0TupUd4IAn3VqBurbmAI/owwC7lnUCZ8rS02vqIYblpWykKP5EEwyFE5r+VlK
+         aLhOzZduA+TuRn/6r4fcfs0kuyIyr8JKq1lP2Ro0d7/5m7HmEnwlOey5GsOcziSiHeF9
+         Svbxdg8Y4a5gYIupRhYGky5qyytPanMA0QniViNGceE1IupJeCAMK8DCzHrntED+9M+v
+         iRCQ==
+X-Gm-Message-State: AOAM532zwAf8X2ZD/8dxNN8EFOI2o+svBNgXklYSm98CzrckBB/PU5kK
+        JA09hvK2+NbVu68ssp6MW1xEGA==
+X-Google-Smtp-Source: ABdhPJxGf4vRrCceKOIfzIsm8TV9ZqroVYa8Ou1l/8//6iDFOKFMWLjn9c4Mggpk0CkjBIL0Gwe7NA==
+X-Received: by 2002:a05:600c:40c4:: with SMTP id m4mr811612wmh.164.1635342273172;
+        Wed, 27 Oct 2021 06:44:33 -0700 (PDT)
+Received: from google.com ([95.148.6.207])
+        by smtp.gmail.com with ESMTPSA id n10sm1764616wmq.24.2021.10.27.06.44.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Oct 2021 06:44:32 -0700 (PDT)
+Date:   Wed, 27 Oct 2021 14:44:30 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v2 6/9] mfd: max77714: Add driver for Maxim MAX77714 PMIC
+Message-ID: <YXlXvovUsvOIPYyV@google.com>
+References: <20211019145919.7327-1-luca@lucaceresoli.net>
+ <20211019145919.7327-7-luca@lucaceresoli.net>
+ <YXG060evUw8rnR3O@google.com>
+ <3520ff3d-1ec0-5500-7fee-538afa25d413@lucaceresoli.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3520ff3d-1ec0-5500-7fee-538afa25d413@lucaceresoli.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update pin control support for SC7280 LPASS LPI.
+On Wed, 27 Oct 2021, Luca Ceresoli wrote:
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
----
- drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 40 ++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+> Hi Lee,
+> 
+> On 21/10/21 20:43, Lee Jones wrote:
+> > On Tue, 19 Oct 2021, Luca Ceresoli wrote:
+> [...]
+> >> diff --git a/drivers/mfd/max77714.c b/drivers/mfd/max77714.c
+> >> new file mode 100644
+> >> index 000000000000..4b49d16fe199
+> >> --- /dev/null
+> >> +++ b/drivers/mfd/max77714.c
+> >> @@ -0,0 +1,165 @@
+> >> +// SPDX-License-Identifier: GPL-2.0-only
+> >> +/*
+> >> + * Maxim MAX77714 MFD Driver
+> >> + *
+> >> + * Copyright (C) 2021 Luca Ceresoli
+> >> + * Author: Luca Ceresoli <luca@lucaceresoli.net>
+> >> + */
+> >> +
+> >> +#include <linux/i2c.h>
+> >> +#include <linux/interrupt.h>
+> >> +#include <linux/mfd/core.h>
+> >> +#include <linux/mfd/max77714.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/of.h>
+> >> +#include <linux/regmap.h>
+> >> +
+> >> +struct max77714 {
+> >> +	struct device *dev;
+> >> +	struct regmap *regmap;
+> >> +	struct regmap_irq_chip_data *irq_data;
+> > 
+> > Is this used outside of .probe()?
+> 
+> No.
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-index 0bd0c16..17a05a6 100644
---- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-+++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-@@ -122,6 +122,7 @@ static const struct pinctrl_pin_desc lpass_lpi_pins[] = {
- 	PINCTRL_PIN(11, "gpio11"),
- 	PINCTRL_PIN(12, "gpio12"),
- 	PINCTRL_PIN(13, "gpio13"),
-+	PINCTRL_PIN(14, "gpio14"),
- };
- 
- enum lpass_lpi_functions {
-@@ -136,6 +137,7 @@ enum lpass_lpi_functions {
- 	LPI_MUX_i2s1_ws,
- 	LPI_MUX_i2s2_clk,
- 	LPI_MUX_i2s2_data,
-+	LPI_MUX_sc7280_i2s2_data,
- 	LPI_MUX_i2s2_ws,
- 	LPI_MUX_qua_mi2s_data,
- 	LPI_MUX_qua_mi2s_sclk,
-@@ -144,6 +146,7 @@ enum lpass_lpi_functions {
- 	LPI_MUX_swr_rx_data,
- 	LPI_MUX_swr_tx_clk,
- 	LPI_MUX_swr_tx_data,
-+	LPI_MUX_sc7280_swr_tx_data,
- 	LPI_MUX_wsa_swr_clk,
- 	LPI_MUX_wsa_swr_data,
- 	LPI_MUX_gpio,
-@@ -164,8 +167,11 @@ static const unsigned int gpio10_pins[] = { 10 };
- static const unsigned int gpio11_pins[] = { 11 };
- static const unsigned int gpio12_pins[] = { 12 };
- static const unsigned int gpio13_pins[] = { 13 };
-+static const unsigned int gpio14_pins[] = { 14 };
-+
- static const char * const swr_tx_clk_groups[] = { "gpio0" };
- static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
-+static const char * const sc7280_swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio14" };
- static const char * const swr_rx_clk_groups[] = { "gpio3" };
- static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
- static const char * const dmic1_clk_groups[] = { "gpio6" };
-@@ -185,6 +191,7 @@ static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
- static const char * const wsa_swr_clk_groups[] = { "gpio10" };
- static const char * const wsa_swr_data_groups[] = { "gpio11" };
- static const char * const i2s2_data_groups[] = { "gpio12", "gpio12" };
-+static const char * const sc7280_i2s2_data_groups[] = { "gpio12", "gpio13" };
- 
- static const struct lpi_pingroup sm8250_groups[] = {
- 	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-@@ -203,6 +210,24 @@ static const struct lpi_pingroup sm8250_groups[] = {
- 	LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
- };
- 
-+static const struct lpi_pingroup sc7280_groups[] = {
-+	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-+	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-+	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-+	LPI_PINGROUP(5, 12, swr_rx_data, _, _, _),
-+	LPI_PINGROUP(6, NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-+	LPI_PINGROUP(7, NO_SLEW, dmic1_data, i2s1_ws, _, _),
-+	LPI_PINGROUP(8, NO_SLEW, dmic2_clk, i2s1_data, _, _),
-+	LPI_PINGROUP(9, NO_SLEW, dmic2_data, i2s1_data, _, _),
-+	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-+	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-+	LPI_PINGROUP(12, NO_SLEW, dmic3_clk, sc7280_i2s2_data, _, _),
-+	LPI_PINGROUP(13, NO_SLEW, dmic3_data, sc7280_i2s2_data, _, _),
-+	LPI_PINGROUP(14, 6, sc7280_swr_tx_data, _, _, _),
-+};
-+
- static const struct lpi_function lpass_functions[] = {
- 	LPI_FUNCTION(dmic1_clk),
- 	LPI_FUNCTION(dmic1_data),
-@@ -215,6 +240,7 @@ static const struct lpi_function lpass_functions[] = {
- 	LPI_FUNCTION(i2s1_ws),
- 	LPI_FUNCTION(i2s2_clk),
- 	LPI_FUNCTION(i2s2_data),
-+	LPI_FUNCTION(sc7280_i2s2_data),
- 	LPI_FUNCTION(i2s2_ws),
- 	LPI_FUNCTION(qua_mi2s_data),
- 	LPI_FUNCTION(qua_mi2s_sclk),
-@@ -223,6 +249,7 @@ static const struct lpi_function lpass_functions[] = {
- 	LPI_FUNCTION(swr_rx_data),
- 	LPI_FUNCTION(swr_tx_clk),
- 	LPI_FUNCTION(swr_tx_data),
-+	LPI_FUNCTION(sc7280_swr_tx_data),
- 	LPI_FUNCTION(wsa_swr_clk),
- 	LPI_FUNCTION(wsa_swr_data),
- };
-@@ -236,6 +263,15 @@ static struct lpi_pinctrl_variant_data sm8250_lpi_data = {
- 	.nfunctions = ARRAY_SIZE(lpass_functions),
- };
- 
-+static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
-+	.pins = lpass_lpi_pins,
-+	.npins = ARRAY_SIZE(lpass_lpi_pins),
-+	.groups = sc7280_groups,
-+	.ngroups = ARRAY_SIZE(sc7280_groups),
-+	.functions = lpass_functions,
-+	.nfunctions = ARRAY_SIZE(lpass_functions),
-+};
-+
- static int lpi_gpio_read(struct lpi_pinctrl *state, unsigned int pin,
- 			 unsigned int addr)
- {
-@@ -677,6 +713,10 @@ static const struct of_device_id lpi_pinctrl_of_match[] = {
- 	       .compatible = "qcom,sm8250-lpass-lpi-pinctrl",
- 	       .data = &sm8250_lpi_data,
- 	},
-+	{
-+	       .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
-+	       .data = &sc7280_lpi_data,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
+Then you don't need to store it in a struct.
+
+[...]
+
+> >> +	/* Internal Crystal Load Capacitance, indexed by value of 32KLOAD bits */
+> >> +	static const unsigned int load_cap[4] = {0, 10, 12, 22};
+> > 
+> > Probably best to define these magic numbers.
+> 
+> Since these numbers do not appear anywhere else I don't find added value in:
+> 
+>   #define MAX77714_LOAD_CAP_0   0
+>   #define MAX77714_LOAD_CAP_10  10
+>   #define MAX77714_LOAD_CAP_12  12
+>   #define MAX77714_LOAD_CAP_22  22
+>   [...]
+>   static const unsigned int load_cap[4] = {
+>       MAX77714_LOAD_CAP_0,
+>       MAX77714_LOAD_CAP_10,
+>       MAX77714_LOAD_CAP_12,
+>       MAX77714_LOAD_CAP_12,
+>   };
+
+I don't find value in that nomenclature either! :)
+
+I was suggesting that you used better, more forthcoming names.
+
+ LOAD_CAPACITANCE_00_pF
+ LOAD_CAPACITANCE_10_pF
+ LOAD_CAPACITANCE_12_pF
+ LOAD_CAPACITANCE_22_pF
+
+> besides adding lots of lines and lots of "MAX77714_LOAD_CAP_". Even
+> worse, there is potential for copy-paste errors -- can you spot it? ;)
+
+Yes.  Straight away.
+
+> Finally, consider this is not even global but local to a small function.
+> 
+> But I'd rather add the unit ("pF") to either the comment line of the
+> array name (load_cap -> load_cap_pf) for clarity. Would that be OK for you?
+
+I did have to read the code again to get a handle on things (probably
+not a good sign).  To keep things simple, just add "/* pF */" onto the
+end of the load_cap line for now.  That should clear things up at
+first glance.
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
