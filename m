@@ -2,70 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41EF043C47C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 09:57:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40DB43C4F7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Oct 2021 10:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbhJ0IAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 04:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240685AbhJ0IAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 04:00:08 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40A2C061745;
-        Wed, 27 Oct 2021 00:57:43 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 54B171F43DC5
-Subject: Re: [PATCH v12 10/16] soc: mediatek: add mtk-mutex support for mt8195
- vdosys0
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        hsinyi@chromium.org, fshao@chromium.org, moudy.ho@mediatek.com,
-        roy-cw.yeh@mediatek.com, Fabien Parent <fparent@baylibre.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        nancy.lin@mediatek.com, singo.chang@mediatek.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20211026155911.17651-1-jason-jh.lin@mediatek.com>
- <20211026155911.17651-11-jason-jh.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <7906cfbc-4eee-4821-3bd8-002a9bfb2766@collabora.com>
-Date:   Wed, 27 Oct 2021 09:57:39 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S240738AbhJ0IZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 04:25:05 -0400
+Received: from ixit.cz ([94.230.151.217]:53606 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236550AbhJ0IZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 04:25:04 -0400
+Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 9035720064;
+        Wed, 27 Oct 2021 10:22:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1635322956;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=hSWxFx5H3u7VkFxWrskfDzG37Qm/SgrsmKEi2GSvllg=;
+        b=tdq+tPMYciG8TbHbeeFjH8BrtqjBswRKJe9zDbjF3pMsPdTrndWT0foAd4ApVprRkwpMaY
+        m8k1+AhAwC/UjibgHgjAjtL3hTuYP0nmvVTyuD5nJhBPUNiyUEdllCbnGNcSqDAesoUQvd
+        c08yO/Xry+4rm1l/vZ3SCqL/FNfCpDs=
+Date:   Wed, 27 Oct 2021 10:22:29 +0200
+From:   David Heidelberg <david@ixit.cz>
+Subject: Re: [PATCH v6] dt-bindings: drm/msm/gpu: convert to YAML
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+        ~postmarketos/upstreaming@lists.sr.ht, Sean Paul <sean@poorly.run>,
+        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>
+Message-Id: <H9NM1R.O70ALO0PAFVF@ixit.cz>
+In-Reply-To: <YW17J03XTvJgfBfj@robh.at.kernel.org>
+References: <20211017144350.70295-1-david@ixit.cz>
+        <YW17J03XTvJgfBfj@robh.at.kernel.org>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-In-Reply-To: <20211026155911.17651-11-jason-jh.lin@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/10/21 17:59, jason-jh.lin ha scritto:
-> Add mtk-mutex support for mt8195 vdosys0.
-> 
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+Hello Rob,
 
-Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+can this patch can go in?
 
-> ---
-> This patch is base on [1]
+Thank you
+David
+
+
+On Mon, Oct 18 2021 at 08:48:23 -0500, Rob Herring <robh@kernel.org> 
+wrote:
+> On Sun, 17 Oct 2021 16:43:50 +0200, David Heidelberg wrote:
+>>  Conversion of text binding for Adreno GPU to the YAML format.
+>> 
+>>  Signed-off-by: David Heidelberg <david@ixit.cz>
+>>  ---
+>>  v2:
+>>    - added compatbile description from Rob Clark
+>>    - dropped reg description
+>>    - reg numbers increased to 3 (since we also have uncommon cx_dbgc)
+>>    - specified interconnect-names items range
+>>    - defined zap-shader as an object and added it's properties
+>>    - enforce 0 clocks for Andreno >= 6xx since it's defined in GMU 
+>> node
+>> 
+>>  v3:
+>>   - fix patterns (add backslash before dot)
+>>   - add additional clocks
+>>   - adreno@ -> gpu@
+>>   - add few const and change enum to anyOf
+>>   - added clock & clock-names placeholder in non-conditional part
+>>   (description)
+>> 
+>>  v4:
+>>   - clock & clock-names - true,false instead maxItems
+>>   - impl. #stream-id-cells, nvmem-cell-names, nvmem-cells
+>>   - dropped requirement on firmware-name in zap_shader
+>> 
+>>  v5:
+>>   - maxOtems -> maxItems typo fix
+>> 
+>>  v6:
+>>   - enum -> const to fix ordering
+>>   - opp-table is object
+>>   - spacing
+>>   - drop undocumented and unused #stream-id-cells
+>> 
+>>   .../devicetree/bindings/display/msm/gpu.txt   | 157 ----------
+>>   .../devicetree/bindings/display/msm/gpu.yaml  | 288 
+>> ++++++++++++++++++
+>>   2 files changed, 288 insertions(+), 157 deletions(-)
+>>   delete mode 100644 
+>> Documentation/devicetree/bindings/display/msm/gpu.txt
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/display/msm/gpu.yaml
+>> 
 > 
-> [1] soc: mediatek: add mtk mutex support for MT8192
-> - https://patchwork.kernel.org/project/linux-mediatek/patch/1628647802-5127-5-git-send-email-yongqiang.niu@mediatek.com/
-> ---
->   drivers/soc/mediatek/mtk-mutex.c | 95 +++++++++++++++++++++++++++++++-
->   1 file changed, 92 insertions(+), 3 deletions(-)
-> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+
