@@ -2,144 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A117443F330
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 01:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A09CE43F336
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 01:01:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbhJ1Wx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 18:53:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230455AbhJ1Wx1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 18:53:27 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0DD63610FD;
-        Thu, 28 Oct 2021 22:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635461460;
-        bh=ydkKoxvRSo6eu745vRa/TLcQSd9m/D2cxCbmCt1U91c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WxbK//MPZtA68/ToRMphU+vkb5/Yfgthv9Jtryg3u2/fAg/A5jVotZxoTfLJNIuWQ
-         C7rfnf9zYQ6TLbCi9xUJ40hZAjwD+cU0Q0+3TmQPkq5YAqgf2SPV9u9wA4c+i3Wc51
-         lrBGhQOfQIpZXIAwX2JmYjfsOU6lVoTM8OnfoZCVE9Q6UoGpsqUZRqG764a0B0mAHI
-         i/0Tn+TnEQ0rTiMB6L9aYzZXUfGI3gMxJ4y6vT82PPocykVgH+SXK4igES6Qs16paK
-         5+DMNuBPYihmdw5wXeUd08PNOdCafAPOVqA7Wi4TKkQTFmBkoQsuKRmzmy77mpu5f7
-         F7HDfMnvLxIvw==
-Received: by mail-ed1-f50.google.com with SMTP id w15so31200369edc.9;
-        Thu, 28 Oct 2021 15:50:59 -0700 (PDT)
-X-Gm-Message-State: AOAM530m7HYDO4m07CPl53xvXvhKfJykCSBEBWyxnghsf0XtJI51L+9+
-        gwjXCoWex6bdQXMYOCy7kC+jxXJrLJkxo1IZtw==
-X-Google-Smtp-Source: ABdhPJwgX5SnEMO1uWFwKpdNPL1mfAJXywjl8wnll2M9O3paFBcJH0NS1LpQKcFlmeYr12v6w5idAVwktN1A7/eF8/c=
-X-Received: by 2002:a17:907:7d8b:: with SMTP id oz11mr8921097ejc.84.1635461458441;
- Thu, 28 Oct 2021 15:50:58 -0700 (PDT)
+        id S231258AbhJ1Wzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 18:55:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231162AbhJ1Wzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 18:55:39 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33C06C061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:53:12 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id z144so9085300iof.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:53:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uc2Km6o7F/1IiYiUqD9pq3Uh8R2x/7AtlU2jpfGbFzM=;
+        b=mZKOo4BgTVkimqsp+8kAPxj3GzzNr8vtABHndXDrHO5yxVo7aD2+Wd0DfW0P9OWrbx
+         l7aNQ6p1LDkPGKqrHSAsPDTeAmSjONC6oBE8Qt09YYSS9+Tnk1VDytG5dmuXw2Ch/pcB
+         3yfg1XDaYOMkGZrtxXwsxHe/NTSHRFynIo4Ys=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uc2Km6o7F/1IiYiUqD9pq3Uh8R2x/7AtlU2jpfGbFzM=;
+        b=ZWcSMi+ZsZ4zVLPU/gN7Y7rtera+Y8N0hmCdoA0WDyC693sUumli/eJ62bZzHlQ/7S
+         qU+EDwAQq25eO9OJkNVdst6Y9aYvcqNlqy/wkSjLjD6XWPZQuJwgLcARqCFt0zWtls/+
+         qaAPVYzS4USmIugeYhI47/DOI7fjEIl/DgiMFVJOmjDQj39Z3ubQEBNnswwjxSFdPWP0
+         ZuGXw8G0dmYVtUzHisVrj0lxxH2YyKNW4jd5V7XZQff7i749xR9PK6r+z1xupyhWQFmx
+         Lxoc3O4hbiNxr4Xd/cjM3w5OhOII3UuF2btIp/q/4pKpNA723rZzEzykWicUsydKrQsY
+         ry7g==
+X-Gm-Message-State: AOAM5325PPi0N16Ggz5hLUvrGcZ7rniGUCAXHP/ZgqE1ZTo0CmBs66u8
+        5aGNlss/71Z/I86c0d2Ngx0eOq/DEeVwlQ==
+X-Google-Smtp-Source: ABdhPJxDltiqGIhbUzbA4g6jyYZYwU/yCbnwj6CjMKRx/kn8rutaReLFh8lbDGLih7x3TfdBxv9zrQ==
+X-Received: by 2002:a5d:9da2:: with SMTP id ay34mr1090238iob.47.1635461591366;
+        Thu, 28 Oct 2021 15:53:11 -0700 (PDT)
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com. [209.85.166.169])
+        by smtp.gmail.com with ESMTPSA id m1sm2126894ioc.28.2021.10.28.15.53.10
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Oct 2021 15:53:10 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id x9so1027701ilu.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:53:10 -0700 (PDT)
+X-Received: by 2002:a05:6e02:2169:: with SMTP id s9mr5263266ilv.27.1635461590288;
+ Thu, 28 Oct 2021 15:53:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <1634144026-3326-1-git-send-email-fabrice.gasnier@foss.st.com>
- <YXhnLh9OYxUz8dIC@robh.at.kernel.org> <be749cbe-c029-7a24-da0e-94ab363ea07e@foss.st.com>
-In-Reply-To: <be749cbe-c029-7a24-da0e-94ab363ea07e@foss.st.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 28 Oct 2021 17:50:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
-Message-ID: <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: usb: dwc2: document the port when
- usb-role-switch is used
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Cc:     Minas Harutyunyan <hminas@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        devicetree@vger.kernel.org,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
+References: <20211028151022.1.Ie56f55924f5c7706fe3194e710bbef6fdb8b5bc6@changeid>
+In-Reply-To: <20211028151022.1.Ie56f55924f5c7706fe3194e710bbef6fdb8b5bc6@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 28 Oct 2021 15:52:58 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U+rzQcZaihDCZuNd54nmRHTgr7TMThESECZRfxaBNkrg@mail.gmail.com>
+Message-ID: <CAD=FV=U+rzQcZaihDCZuNd54nmRHTgr7TMThESECZRfxaBNkrg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: sc7180: Support Lazor/Limozeen rev9
+To:     Philip Chen <philipchen@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 27, 2021 at 7:05 AM Fabrice Gasnier
-<fabrice.gasnier@foss.st.com> wrote:
->
-> On 10/26/21 10:38 PM, Rob Herring wrote:
-> > On Wed, Oct 13, 2021 at 06:53:46PM +0200, Fabrice Gasnier wrote:
-> >> Document the "port" property, which is used with "usb-role-switch"
-> >> to describe the bus connector.
-> >> Definition is inspired from mediatek,mtu3.yaml.
-> >>
-> >> This fixes some errors seen when running "make dtbs_check":
-> >> ... 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-> >>         From schema: ... Documentation/devicetree/bindings/usb/dwc2.yaml
-> >>
-> >> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
-> >>  1 file changed, 10 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> >> index 10c7d9b..7d1aa53 100644
-> >> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> >> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> >> @@ -130,6 +130,16 @@ properties:
-> >>      description: If present indicates that we need to reset the PHY when we
-> >>        detect a wakeup. This is due to a hardware errata.
-> >>
-> >> +  port:
-> >> +    description:
-> >> +      Any connector to the data bus of this controller should be modelled
-> >> +      using the OF graph bindings specified, if the "usb-role-switch"
-> >> +      property is used. See graph.txt
-> >
-> > Drop 'See graph.txt'
-> >
-> >> +    $ref: /schemas/graph.yaml#/properties/port
-> >> +
-> >> +dependencies:
-> >> +  port: [ 'usb-role-switch' ]
-> >
-> > usb-role-switch without port is valid or both must be present. In case
-> > of the latter, you need to add:
+Hi,
 
-If I wasn't clear, that was a question. Is usb-role-switch without
-port is valid?
+On Thu, Oct 28, 2021 at 3:11 PM Philip Chen <philipchen@chromium.org> wrote:
+>
+> Support Lazor/Limozeen rev9 board where Parade ps8640 is added as the
+> second source edp bridge.
 
->
-> Hi Rob,
->
-> Thanks for your review.
-> I agree with your statement. But I miss something in this proposal:
->
-> >
-> > usb-role-switch: [ port ]
->
-> I tried this without success, when running dt_binding_check.
->
-> For testing, I added locally in the example successively:
->
-> 1 - usb-role-switch (alone)
-> -----
-> +        usb-role-switch;
-> "dwc2.example.dt.yaml: usb@101c0000: 'port' is a dependency of
-> 'usb-role-switch'
->
-> 2 - port without usb-role-switch
-> -----
-> +        //usb-role-switch;
+It probably wouldn't hurt to at least mention in the commit message
+why the include of "sc7180.dtsi" was moved out of
+"sc7180-trogdor-lazor.dtsi" so that people reviewing the change aren't
+confused. Otherwise it just looks arbitrary.
+
+
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ...
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts
+> new file mode 100644
+> index 000000000000..a2a6e2515ee6
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Lazor Limozeen board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
 > +
-> +        port {
-> +          usb_role_sw: endpoint {
-> +            remote-endpoint = <&hs_ep>;
-> +          };
-> +        };
-> dt_binding_check is happy here. But it shouldn't, right ?
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+> +#include "sc7180-trogdor-lazor.dtsi"
+> +#include "sc7180-trogdor-lte-sku.dtsi"
+> +
+> +/ {
+> +       model = "Google Lazor Limozeen without Touchscreen (rev5 - rev8)";
+> +       /* No sku5 post-rev5 */
+> +       compatible = "google,lazor-rev5-sku6", "google,lazor-rev6-sku6",
+> +               "google,lazor-rev7-sku6", "google,lazor-rev8-sku6",
+> +               "google,rev5-sku5", "qcom,sc7180";
 
-You had this?:
+Two issues.
 
-dependencies:
-  usb-role-switch: [ port ]
-  port: [ usb-role-switch ]
+1. "google,rev5-sku5" should probably be "google,lazor-rev5-sku5"
+
+2. rev5-sku5 should sort to the start of the list, not to the end.
 
 
-If both properties have to be present together, then you need the above.
-
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
+> @@ -2,16 +2,18 @@
+>  /*
+>   * Google Lazor Limozeen board device tree source
+>   *
+> - * Copyright 2020 Google LLC.
+> + * Copyright 2021 Google LLC.
+>   */
 >
-> 3 - both (port + usb-role-switch)
-> -----
-> dt_binding_check is ok.
+>  /dts-v1/;
+>
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-parade-ps8640.dtsi"
+>  #include "sc7180-trogdor-lazor.dtsi"
+>  #include "sc7180-trogdor-lte-sku.dtsi"
+>
+>  / {
+> -       model = "Google Lazor Limozeen without Touchscreen";
+> +       model = "Google Lazor Limozeen without Touchscreen (rev9+)";
+>         compatible = "google,lazor-sku6", "google,lazor-sku5", "qcom,sc7180";
+
+Earlier you said "sku5" doesn't exist past -rev5. So it doesn't need
+to be here, right?
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts
+> new file mode 100644
+> index 000000000000..10f48f4b429a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts
+> @@ -0,0 +1,46 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Lazor Limozeen board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
+> +#include "sc7180-trogdor-lazor.dtsi"
+> +#include "sc7180-trogdor-lte-sku.dtsi"
+> +
+> +/ {
+> +       model = "Google Lazor Limozeen (rev4 - rev8)";
+> +       compatible = "google,lazor-rev4-sku4", "google,lazor-rev5-sku4",
+> +               "google,lazor-rev6-sku4", "google,lazor-rev6-sku4",
+
+-rev6 is listed twice and -rev7 is missing.
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
+> new file mode 100644
+> index 000000000000..326ba9f88394
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Lazor board device tree source
+> + *
+> + * Copyright 2020 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-parade-ps8640.dtsi"
+> +#include "sc7180-trogdor-lazor.dtsi"
+> +#include "sc7180-lite.dtsi"
+> +
+> +/ {
+> +       model = "Google Lazor (rev9+) with KB Backlight";
+> +       compatible = "google,lazor-sku2", "qcom,sc7180";
+> +};
+> +
+> +&keyboard_backlight {
+> +       status = "okay";
+> +};
+> +
+> +&panel {
+> +       compatible = "boe,nv133fhm-n62";
+> +};
+
+Why do you need the "panel" here?
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
+> new file mode 100644
+> index 000000000000..a705c956f62b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Lazor board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-parade-ps8640.dtsi"
+> +#include "sc7180-trogdor-lazor.dtsi"
+> +#include "sc7180-trogdor-lte-sku.dtsi"
+> +
+> +/ {
+> +       model = "Google Lazor (rev9+) with LTE";
+> +       compatible = "google,lazor-sku0", "qcom,sc7180";
+> +};
+> +
+> +&ap_sar_sensor {
+> +       status = "okay";
+> +};
+> +
+> +&ap_sar_sensor_i2c {
+> +       status = "okay";
+> +};
+> +
+> +&keyboard_backlight {
+> +       status = "okay";
+> +};
+> +
+> +&panel {
+> +       compatible = "boe,nv133fhm-n62";
+> +};
+
+Why do you need the "panel" hre?
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
+> new file mode 100644
+> index 000000000000..13ff9a851613
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
+> @@ -0,0 +1,22 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Google Lazor board device tree source
+> + *
+> + * Copyright 2021 Google LLC.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7180.dtsi"
+> +#include "sc7180-trogdor-parade-ps8640.dtsi"
+> +#include "sc7180-trogdor-lazor.dtsi"
+> +#include "sc7180-lite.dtsi"
+> +
+> +/ {
+> +       model = "Google Lazor (rev9+)";
+> +       compatible = "google,lazor", "qcom,sc7180";
+> +};
+> +
+> +&panel {
+> +       compatible = "boe,nv133fhm-n62";
+> +};
+
+Why do you need the "panel" here?
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index faf8b807d0ff..286d3594b6ae 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -11,6 +11,7 @@
+>  #include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/clock/qcom,videocc-sc7180.h>
+> +#include <dt-bindings/gpio/gpio.h>
+
+I don't think you should be adding this to sc7180.dtsi. If you need it
+in the bridge chip "fragments" you should add the includes to those.
+
+-Doug
