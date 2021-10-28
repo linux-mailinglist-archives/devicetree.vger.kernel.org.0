@@ -2,116 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C4143E8CA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 21:08:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DCE143E8CE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 21:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230041AbhJ1TLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 15:11:18 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:44978 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbhJ1TLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 15:11:17 -0400
-Received: by mail-oi1-f174.google.com with SMTP id y207so9676502oia.11;
-        Thu, 28 Oct 2021 12:08:50 -0700 (PDT)
+        id S231211AbhJ1TLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 15:11:22 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:45639 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231178AbhJ1TLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 15:11:21 -0400
+Received: by mail-ot1-f53.google.com with SMTP id l16-20020a9d6a90000000b0054e7ab56f27so9975852otq.12;
+        Thu, 28 Oct 2021 12:08:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=XmEzD8UGM0B6lT2koXtP1BSAMmUSnegly1xx1AG9g2c=;
-        b=3rZzKj4N3J7MgZ/LN5ym6F+1DMdHGR5VIQKaf920o87PNPScZUjDuXe0XsPnA3Q+PK
-         ZSUlQPuGAj5jXZdt9icPHT4tpfYK7tCInPCpp+IODLwuLgUnmeC93Ynn/1gJZwuTLI3i
-         AUqDqq4SvSrGl7bOTPw0iAXmNh4/V5TL7UPqpRIDI3iy4usVHy8X1/rBkYClZlzJ3GFb
-         rLtrYma6HHMnG3cUyV1bA0teNFVNoO57JuhmvY5NO2a0UUyzystnn63r9tk1ecm4SiAA
-         FQKX/fJJTGAX2Or4b0LgmFCbabyKzlyle9FI6qX0RqaMxEomOHLatPfTi7goxAGsMXVn
-         d3sg==
-X-Gm-Message-State: AOAM533uU1cEPTwFyDq2a4ZiU0iOR8SwmkyWzuLYEGX5xh89v0Rk1nc3
-        fsNTYh6QUi5Zw/yLrGwwvg==
-X-Google-Smtp-Source: ABdhPJyk3XPWRtCE8GCcVYJDoWZdr+u2qz+lIrXlSKuZERbw161dS8WkqAlD/UaQMrw4XlOhPGM0NA==
-X-Received: by 2002:aca:5b56:: with SMTP id p83mr4513069oib.119.1635448129942;
-        Thu, 28 Oct 2021 12:08:49 -0700 (PDT)
+        bh=tHwyqYZeG12PlwvxWaijeWvT3HLavP643dZAsZIvq2g=;
+        b=Mb2H8Qtuxo+ADAV2jW937vnQJpFGNHljqfzZylm+3HaDwbh2cba57YygdB6BWUBaCn
+         WBX1qlLhxh9oWapqunWkKAfGQ70spVso93j3ODRFrsV605S5j3aqM/5VTX7h1aegjvSa
+         ST9WF2j66WV3dtv7N9BHdq4TKmLax0NW4ckXaAG+sREKLWg1BvEvHWpW6LSgjkxOMJIo
+         14Ln9X3cPd/pyxRshVAiVIC4U/hqIh+kwLeAypeXPN5bWvivVC0KHWU57nyvXNiNn0Xg
+         k4xYAD+2p1qvzZuekO4WKfjz/SR5OwZA8SdXIBorcRxCDeglVMhyDK94JPJ2KWtInYfz
+         Jimw==
+X-Gm-Message-State: AOAM530/i+LuVici1a5eWuHKHkGVF+Bqbkw26w+pvvsaUvlblffkvCbn
+        KC5Cj5dmZkfynVa3vk6lOg==
+X-Google-Smtp-Source: ABdhPJxqVd1DJn9hYajbDWkNVOETuiRVmZt9+VXwhTslZyk5Y43+wUfo/90GMU5kPDLTOAoTTCe1gw==
+X-Received: by 2002:a9d:847:: with SMTP id 65mr374703oty.326.1635448132055;
+        Thu, 28 Oct 2021 12:08:52 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d4sm1610105otu.57.2021.10.28.12.08.48
+        by smtp.gmail.com with ESMTPSA id r22sm1253535otq.5.2021.10.28.12.08.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 12:08:48 -0700 (PDT)
-Received: (nullmailer pid 409848 invoked by uid 1000);
+        Thu, 28 Oct 2021 12:08:51 -0700 (PDT)
+Received: (nullmailer pid 409859 invoked by uid 1000);
         Thu, 28 Oct 2021 19:08:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        cosmin.tanislav@analog.com, Jonathan Cameron <jic23@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-In-Reply-To: <20211028135608.3666940-2-demonsingur@gmail.com>
-References: <20211028134849.3664969-1-demonsingur@gmail.com> <20211028135608.3666940-1-demonsingur@gmail.com> <20211028135608.3666940-2-demonsingur@gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: add AD74413R
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     rdunlap@infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        heikki.krogerus@linux.intel.com, linux@roeck-us.net,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        wcheng@codeaurora.org, bjorn.andersson@linaro.org
+In-Reply-To: <20211028164941.831918-5-bryan.odonoghue@linaro.org>
+References: <20211028164941.831918-1-bryan.odonoghue@linaro.org> <20211028164941.831918-5-bryan.odonoghue@linaro.org>
+Subject: Re: [RESEND PATCH v2 4/7] dt-bindings: usb: Add Qualcomm PMIC PDPHY controller YAML schema
 Date:   Thu, 28 Oct 2021 14:08:48 -0500
-Message-Id: <1635448128.075316.409847.nullmailer@robh.at.kernel.org>
+Message-Id: <1635448128.091392.409858.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 16:56:04 +0300, Cosmin Tanislav wrote:
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+On Thu, 28 Oct 2021 17:49:38 +0100, Bryan O'Donoghue wrote:
+> Add a YAML binding for the power-delivery PHY silicon interface inside
+> Qualcomm's pm8150b hardware block.
 > 
-> Add device tree bindings for AD74413R.
+> The pdphy driver operates with a type-c driver inside of a high level
+> single TCPM device to provide overall TCPM functionality.
 > 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  .../bindings/iio/addac/adi,ad74413r.yaml      | 163 ++++++++++++++++++
->  include/dt-bindings/iio/addac/adi,ad74413r.h  |  30 ++++
->  2 files changed, 193 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->  create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
+>  .../bindings/usb/qcom,pmic-pdphy.yaml         | 115 ++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml:37:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:reg: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:reg: 'maximum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:adi,ch-func: 'minimum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:adi,ch-func: 'maximum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:adi,gpo-config: 'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
-	hint: Scalar and array keywords cannot be mixed
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: patternProperties:^channel@[0-3]$:properties:reg: 'anyOf' conditional failed, one must be fixed:
-	'minimum' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'maximum' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	Additional properties are not allowed ('minimum', 'maximum' were unexpected)
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref']
-	1 is less than the minimum of 2
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: properties:adi,rsense-resistance-ohms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: ignoring, error in schema: patternProperties: ^channel@[0-3]$: properties: adi,gpo-config
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-Error: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dts:23.32-33 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1547508
+See https://patchwork.ozlabs.org/patch/1547614
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
