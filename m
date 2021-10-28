@@ -2,121 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D69E43E857
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 20:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F9E43E865
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 20:35:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhJ1SgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 14:36:24 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:40787 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbhJ1SgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 14:36:24 -0400
-Received: by mail-oi1-f171.google.com with SMTP id n63so9581761oif.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 11:33:57 -0700 (PDT)
+        id S231133AbhJ1Sh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 14:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231175AbhJ1Sh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 14:37:57 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39AD2C061745
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 11:35:30 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id b32so12324993lfv.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 11:35:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n4WzQadX+RqazB/22Gcyj8+qG3ieppJrK8iuTkJY04o=;
+        b=lz9xHVl/WZ2+qnHRULOWJhF3wAg+Qu/4QXcPuEBwjl0bcQxDa7ZcADKsUnqisJL85m
+         9QuxVaumc9MsznWizeq3BP1NSxZv7ZZKlHK0QE7Bt3b1WVXBM4cd1AQ+bZSm9I81B/+y
+         nrw2D9un7XZGlJbRX4HJx4X+vEMQysSSi9CKh4jgzthdODy8xr6DoJz9mecr8DutP+vd
+         4InCy0xFoZRcbF7Xm+9ocRSWR0Nn24L+m+Xtf+ZAVZnWhEQO/f37Miw4CpwOn192h3dY
+         SYx9lUgPK9DHydFFvuDaDUxvKoBcA4cUZN+0GEGni0H3/OF+3HBCMV3nTsr1lj44uFFa
+         XG5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=zHge/Nt+V6oXveriOkSfhWR7KvdNkPR1xSjU4Jlztjw=;
-        b=cBtT/PSKYXwKDG75bbfG/51y+2ugPKr/MRUyLk4gKYGynrfbAwqhY34SYnmpNlDNtO
-         wzZOFNLLHDYyUKx59932haR2DSQCH/WUpMVrg6bXjuCF473g8iMhixrWB92G5Dn7v99O
-         vHjQC4Mm9UOgOaYpHAMcOPWcqPRIIJvWFo9ylYh6Pe/9MUbznci9oSw9KXvZvB2fv7LX
-         Niv8DAxjup6+xF8XazHO0U8ekRScEcmK93hekppbTi0NYyi5EhXtAIw9noR5sGyC74eb
-         QQLV+MYmlccjHEFCaFh0tRkuEEns7B4yckgKsgrYqrDlLFgUpXWBKTRXU8rQ8z4ZUeae
-         Q5Hw==
-X-Gm-Message-State: AOAM532qjTzACr+fhBVNzhJjZYU4q1Eq20Jr5Ax1Djh7FpTu9nz0hJZ0
-        594t0dA1bdykMOxocyXP58dc/hqE3A==
-X-Google-Smtp-Source: ABdhPJwf+xRWyEEF31Uzxg58vZVWanelIjwzEv/7AK60ArEDHdpK8ZNq3CI8ChUthu0UH4HTvhKVqA==
-X-Received: by 2002:a05:6808:5c5:: with SMTP id d5mr3844977oij.173.1635446036644;
-        Thu, 28 Oct 2021 11:33:56 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id f14sm1299033ots.51.2021.10.28.11.33.55
+        bh=n4WzQadX+RqazB/22Gcyj8+qG3ieppJrK8iuTkJY04o=;
+        b=Q/1gixRD+zBpcJekX8PsWsJqIF0siqyHHGjd18fWnDhCMl+EIrfF4MSjl/2jt3CZsV
+         hfSd8c8xQU1oFyIv0quJisYnSxdKumWEiC1XhzLyAaGwdSpj+thRx5i0RhcN2IDYVs/Q
+         CJB61iATbteQ0gsVSG82Hubotfg/xhun9LYnkNqMqjLZ1A/DRqg0sZotdoylQzuyHLnO
+         sSgnFkps08drhg+aj/akVfrR2y05mgNZcbzuGvCpj0PS5Y8+nPMFrNyCsoM4GctWnK0z
+         seto0o1hDxJZxR+ps+l/ecf6nmocQPdZXOlBAnhpriMNRxOFKzZiWAGmClcTGza3nHcB
+         f41A==
+X-Gm-Message-State: AOAM532kAAxCLatRh7j2u46ix+MpjG8hvfXxPCxITX4QY3ch+Tw1o0/r
+        tlJ/pW2aWxBVWOxyaR7WTqx2aw==
+X-Google-Smtp-Source: ABdhPJzw48y/mBL2BnGr0m1Qqbbip97MzoXwpbjKR4smI4OiyzC/sI4MTwQAwE05fJIq4q+TjgD1Pw==
+X-Received: by 2002:a05:6512:b8b:: with SMTP id b11mr5822144lfv.99.1635446128588;
+        Thu, 28 Oct 2021 11:35:28 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id z3sm390466lfh.17.2021.10.28.11.35.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 11:33:55 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH] arm64: Simplify checking for populated DT
-Date:   Thu, 28 Oct 2021 13:33:55 -0500
-Message-Id: <20211028183355.360731-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        Thu, 28 Oct 2021 11:35:28 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/7] watchdog: s3c2410: Add Exynos850 support
+Date:   Thu, 28 Oct 2021 21:35:20 +0300
+Message-Id: <20211028183527.3050-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use of of_scan_flat_dt() function predates libfdt and is discouraged as
-libfdt provides a nicer set of APIs. Rework dt_scan_depth1_nodes to use
-libfdt calls directly. Rather than searching for any node not /chosen or
-/hypervisor, let's just check for something always required which is the
-arch timer.
+Exynos850 WDT IP-core differs a bit from existing platforms:
+  - Another set of PMU registers
+  - Separate WDT instance for each CPU cluster, having different PMU
+    registers/bits
+  - Source clock is different from PCLK
 
-Cc: Catalin Marinas <catalin.marinas@arm.com>
-Cc: Will Deacon <will@kernel.org>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm64/kernel/acpi.c | 29 ++++++-----------------------
- 1 file changed, 6 insertions(+), 23 deletions(-)
+Implement all missing features above and enable Exynos850 WDT support.
 
-diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
-index 1c9c2f7a1c04..f1bb0fb4a604 100644
---- a/arch/arm64/kernel/acpi.c
-+++ b/arch/arm64/kernel/acpi.c
-@@ -22,6 +22,7 @@
- #include <linux/irq_work.h>
- #include <linux/memblock.h>
- #include <linux/of_fdt.h>
-+#include <linux/libfdt.h>
- #include <linux/smp.h>
- #include <linux/serial_core.h>
- #include <linux/pgtable.h>
-@@ -62,29 +63,12 @@ static int __init parse_acpi(char *arg)
- }
- early_param("acpi", parse_acpi);
- 
--static int __init dt_scan_depth1_nodes(unsigned long node,
--				       const char *uname, int depth,
--				       void *data)
-+static bool __init dt_is_populated(void)
- {
--	/*
--	 * Ignore anything not directly under the root node; we'll
--	 * catch its parent instead.
--	 */
--	if (depth != 1)
--		return 0;
--
--	if (strcmp(uname, "chosen") == 0)
--		return 0;
-+	const void *fdt = initial_boot_params;
-+	int node = fdt_node_offset_by_compatible(fdt, -1, "arm,armv8-timer");
- 
--	if (strcmp(uname, "hypervisor") == 0 &&
--	    of_flat_dt_is_compatible(node, "xen,xen"))
--		return 0;
--
--	/*
--	 * This node at depth 1 is neither a chosen node nor a xen node,
--	 * which we do not expect.
--	 */
--	return 1;
-+	return node > 0 ? true : false;
- }
- 
- /*
-@@ -205,8 +189,7 @@ void __init acpi_boot_table_init(void)
- 	 *   and ACPI has not been [force] enabled (acpi=on|force)
- 	 */
- 	if (param_acpi_off ||
--	    (!param_acpi_on && !param_acpi_force &&
--	     of_scan_flat_dt(dt_scan_depth1_nodes, NULL)))
-+	    (!param_acpi_on && !param_acpi_force && dt_is_populated()))
- 		goto done;
- 
- 	/*
+Sam Protsenko (7):
+  dt-bindings: watchdog: Require samsung,syscon-phandle for Exynos7
+  dt-bindings: watchdog: Document Exynos850 watchdog bindings
+  watchdog: s3c2410: Make reset disable optional
+  watchdog: s3c2410: Add support for WDT counter enable
+  watchdog: s3c2410: Introduce separate source clock
+  watchdog: s3c2410: Add Exynos850 support
+  watchdog: s3c2410: Let kernel kick watchdog
+
+ .../bindings/watchdog/samsung-wdt.yaml        |  17 +-
+ drivers/watchdog/s3c2410_wdt.c                | 215 ++++++++++++++----
+ 2 files changed, 190 insertions(+), 42 deletions(-)
+
 -- 
-2.32.0
+2.30.2
 
