@@ -2,99 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A0143F196
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 23:25:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8072943F199
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 23:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231215AbhJ1V12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 17:27:28 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:39450 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231258AbhJ1V1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 17:27:23 -0400
-Received: by mail-oi1-f172.google.com with SMTP id n11so2125926oig.6;
-        Thu, 28 Oct 2021 14:24:56 -0700 (PDT)
+        id S231304AbhJ1V1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 17:27:44 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:35479 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231276AbhJ1V1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 17:27:43 -0400
+Received: by mail-ot1-f47.google.com with SMTP id w12-20020a056830410c00b0054e7ceecd88so10591074ott.2;
+        Thu, 28 Oct 2021 14:25:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/+9j0oumdoKV8InadenLKw12l0iPTZFuQU7jD65clBY=;
-        b=h9tb8XA8PWcN95QxRj99hStS3hrx0XyKglpgB6fpvml9RcgG1X5yFKd6Y8zs5ZLEQG
-         QCzOZ87Niwp934h55ziEA34BPA5v3fgURMI3mV1dIPjVxPbh7Jy+Uzb75FgBLH+r9fbb
-         OYA4Kdfo7VgDMlXlwDAzWD6qkwxby0Hi93PY97+VtZbS9ASnbo8BzqPnzYqQ9G3pElAG
-         Q7YO3rqVdeDbpzQTSZd3PHB4PGHMTdsk7Pa7IX4SLQSdIgDPygWtWZeMpRYzHb86JX29
-         B9ptH1XZeuxVNXDb79UwDbQUjZkrJ5j2TgwuPFCI6+KVm0IpWkTI3vbZag2uKWTCJP6L
-         BF0w==
-X-Gm-Message-State: AOAM532w7eMHaRzd3Szqsn3XTThxKKgpFyLnQ6VmrF6WNn+1LOc4BD6Y
-        eqZs2b4q3ES2lxIRjeKVFg==
-X-Google-Smtp-Source: ABdhPJyol7Yit1pUIy7/O5qZO+VYJE58ICg0rjn0sApJ5miSlwIo1r70+I6ulqza2tan5YOYq0HE7g==
-X-Received: by 2002:a05:6808:158c:: with SMTP id t12mr10804924oiw.74.1635456287531;
-        Thu, 28 Oct 2021 14:24:47 -0700 (PDT)
+        bh=tiWqCEn8GVN6UBWr5phHaRf5bXgt8msHGMp/4TnSjNM=;
+        b=C/Q06E8fxxNQ0e+eOGZVLl3U9u1SYjPefDX0mS6Ik7z1Yhw1ze0zs4ZHmV+QkR+2Hz
+         ZCfo/1ok7uf51TfwLBMhBLzHoHajlsrDTLkgz+WmMgV/s/MXaLTsi22PgcZG2kn5k08U
+         7yujymB30nz0o/2TD36j3ZUmRsDhBrV4ctP70Xz+Prf7nwJUFmaNHJ9sRj0DjCS7DpY0
+         DFpIr3+c9rWSin2R0Frj5YpTG28NlIT0YJbWewZwWpzl1GTt0S8zc5UzqhgN0Y1b9HPL
+         o6ax4ptOF5/9Tm0RYrR18YpCeqQm1MipYHeiPjy3BUN+Kq6NkQ5/jA+aouYp9fJduZHN
+         YokQ==
+X-Gm-Message-State: AOAM532mY3zDbi8yg5K49RjAvsSaxCvIdms2gd7lAihz9sUGLqTAjL6v
+        MB90Co1X3RZpH2dwqmMPPw==
+X-Google-Smtp-Source: ABdhPJwr4ALYGEgcbmKgY/ZDGTsvVBvtKq6AjaPF/9/DxFue2vlljC9/s2Au2mAtmwvzNHo0RzeNew==
+X-Received: by 2002:a05:6830:1c2f:: with SMTP id f15mr5524183ote.63.1635456315658;
+        Thu, 28 Oct 2021 14:25:15 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 90sm1337639otj.70.2021.10.28.14.24.46
+        by smtp.gmail.com with ESMTPSA id l5sm662812otq.64.2021.10.28.14.25.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 14:24:46 -0700 (PDT)
-Received: (nullmailer pid 612214 invoked by uid 1000);
-        Thu, 28 Oct 2021 21:24:45 -0000
-Date:   Thu, 28 Oct 2021 16:24:45 -0500
+        Thu, 28 Oct 2021 14:25:14 -0700 (PDT)
+Received: (nullmailer pid 613028 invoked by uid 1000);
+        Thu, 28 Oct 2021 21:25:14 -0000
+Date:   Thu, 28 Oct 2021 16:25:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
- rohm,clock-output-is-critical property
-Message-ID: <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
-References: <20211020084956.83041-1-marex@denx.de>
- <263da45f-d648-3c65-aed3-e4ba41927911@fi.rohmeurope.com>
- <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     linux-crypto@vger.kernel.org,
+        Elena Reshetova <elena.reshetova@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Prabhjot Khurana <prabhjot.khurana@intel.com>,
+        devicetree@vger.kernel.org, Mark Gross <mgross@linux.intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: Re: [PATCH 4/5] dt-bindings: crypto: Add Keem Bay ECC bindings
+Message-ID: <YXsVOlB6B7PUFixR@robh.at.kernel.org>
+References: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
+ <20211020103538.360614-5-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
+In-Reply-To: <20211020103538.360614-5-daniele.alessandrelli@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 01:06:13PM +0200, Marek Vasut wrote:
-> On 10/20/21 12:14 PM, Vaittinen, Matti wrote:
-> [...]
+On Wed, 20 Oct 2021 11:35:37 +0100, Daniele Alessandrelli wrote:
+> From: Prabhjot Khurana <prabhjot.khurana@intel.com>
 > 
-> > I wonder if this really is something specific to ROHM ICs? Do you think
-> > this would warrant a generic, non vendor specific property? I am Ok with
-> > the ROHM specific property too but it just seems to me this might not be
-> > unique to ROHM IC(s).
-
-I imagine we debated the need for a DT property when critical clocks was 
-added to the kernel.
-
-> > By the way, the very same clk driver where you implemented the property
-> > reading (patch 2/2) is used by few other ROHM PMICs. At least by
-> > BD71837, BD71828, BD71815, BD9576 and BD9573. So the code change here
-> > adds support for this property to all of those PMICs. I wonder if the
-> > property should be mentioned in all of the binding docs... That could be
-> > another argument for making this a generic property and describing it in
-> > clk yaml ;)
-> > 
-> > Well, just my 10 Cents - I am ok with this change as you presented it
-> > here if you don't think this should be generic one.
+> Add Keem Bay Offload and Crypto Subsystem (OCS) Elliptic Curve
+> Cryptography (ECC) device tree bindings.
 > 
-> I think we need something like gpio-hog, except for clock. Some clk-hog
-> maybe ? That would be useful not only here, but also for things where some
-> output generates clock for random stuff which cannot be described in the DT
-> for whatever reason (like e.g. the SoC is used as a substitute for CPLD XTAL
-> and the CPLD isn't connected to the SoC in any other way).
+> Signed-off-by: Prabhjot Khurana <prabhjot.khurana@intel.com>
+> Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> ---
+>  .../crypto/intel,keembay-ocs-ecc.yaml         | 47 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-ecc.yaml
+> 
 
-The justification given in this patch was for an SoC input which should 
-get described so that the clock is handled and kept enabled properly.
-
-The CPLD case would be more interesting, but is there an actual need or 
-just a possible case?
-
-You could use the 'protected-clocks' property here. Maybe that's a bit 
-overloaded between can't access and don't turn off. But what it means is 
-really up the clock controller.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
