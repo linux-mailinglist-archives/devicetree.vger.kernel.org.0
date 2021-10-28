@@ -2,174 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E939C43E6A2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2E4543E69E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230337AbhJ1QyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 12:54:06 -0400
-Received: from ixit.cz ([94.230.151.217]:42626 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230457AbhJ1Qx4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 12:53:56 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id B162520064;
-        Thu, 28 Oct 2021 18:51:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1635439886;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=UKp1ql47JL+USXsrEy5E93P0OLiPl1As1GzW+P8vLKs=;
-        b=uyq7h/BDMOH5QW//nPOGAvS/NMZhEYHk71/kw5bXiA4EGLNubvHeuDYy+r3otIaFMgcOOM
-        mM2YFm3oJhwze1taF4gTQ15lpeNcjgFIOiBcK1MdYJTGjKzAcZ6FkJ4DdXAzvGsYAvETum
-        idcT8etsuhZTot60Zi7ndjxiefBhBIc=
-From:   David Heidelberg <david@ixit.cz>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: power: reset: gpio-poweroff: Convert txt bindings to yaml
-Date:   Thu, 28 Oct 2021 18:50:08 +0200
-Message-Id: <20211028165009.76641-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S230456AbhJ1Qxy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 12:53:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36522 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230437AbhJ1Qxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:53:53 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0C0C0613B9
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:51:25 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id o83so9157067oif.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vdcieApq76aVwV7YeMbL8svFqnVx22XOBF/ZRhqhdrw=;
+        b=VmAzlfQViSU8L2QzalW4BxxyO3g0UOqJWS98/kME2IOfJlFAK1uyLIMYdqNHwB4J3Q
+         tk/T4YqeIUhBk14pYTxaqxaYliGAPfRs4B7iKO3BWERKdjJzRSY/wdOSk/rZBF6ZPKed
+         QiN+Lqj3HC74T4frOj4auTGqAafFJ4KVxg445qaLRQkDIW8MEQ1qREhUkO0c+llAqgK9
+         0uNIvg1RAiBhIvvnVWcDKMrrG54qz3etlmFfWRquIwUpyACrGtpXgw7LdJc93XksOYtx
+         XW2t8kOKZLhJQ81wjMAvsheSde6OVDVyEhSjeXPKh3gRV0YmSwbv1fMqZqXbebUu54ZS
+         rvfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vdcieApq76aVwV7YeMbL8svFqnVx22XOBF/ZRhqhdrw=;
+        b=3dkW2f18rdSYLj7A/7kjz2wZOvwK2tOpkeQtW1CNf2Uqpet03i84B6pcsrz4YIw2gw
+         mt94Quj569KTzHTrcsoRYqxIgXAYFBqBiudxE/0wbTr0qfU3s6KxV3uSFfhBYMbCrqnW
+         M3stgH82n+qrjG2PYDibaEHC5OXn25NJFxk5vV+v1AVNmeD0rvgpCYQXszPMKbNR6WFu
+         25J75Xl0bnaMLHRJJIB4M/Ob7LU5ehq7C/mVn3ujo3OWHiPFGT4QpG5BGtQ2D4Imc0CS
+         D2IP7ii9CSzGiV4Vb/r+rPP3CRLTm+iPKxXHyL6t27ty3xy8TVf6+AbCyO8tbUT1TsCE
+         7MqQ==
+X-Gm-Message-State: AOAM530aTMayFeoiJnpYJrgoXomFzbGF+GmdHJG61p+J5cyZ4xwE6YZy
+        RiUnO5hxxegEqPaGxSbEPxZzbA==
+X-Google-Smtp-Source: ABdhPJxFgbLyfR/ke3FH70Vv9T+iJrawjEp7Pk+BsCSCkyiKAoFyC4dXUhGH3nTTI7DWi8fkZYMzig==
+X-Received: by 2002:a05:6808:171c:: with SMTP id bc28mr9424798oib.18.1635439884570;
+        Thu, 28 Oct 2021 09:51:24 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q15sm1178672otm.15.2021.10.28.09.51.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 09:51:24 -0700 (PDT)
+Date:   Thu, 28 Oct 2021 09:53:14 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd
+ bindings for dwc3 qcom
+Message-ID: <YXrVevUlCJJtbpLi@ripper>
+References: <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper>
+ <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper>
+ <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga>
+ <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+ <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
+ <CAPDyKFoMpmkHgUbRN4pxgW2Gy=aZpS=eVwQrg0ydFbh9_GFG6Q@mail.gmail.com>
+ <e32a59e2-0d8b-3338-5963-81ea07a709ef@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e32a59e2-0d8b-3338-5963-81ea07a709ef@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert power-off action connected to the GPIO documentation to the YAML syntax.
+On Thu 28 Oct 03:46 PDT 2021, Rajendra Nayak wrote:
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-v3:
- - incorporated Sebastian notes
-v2:
- - remove driver specific note about WARN_ON
+> 
+> On 10/28/2021 4:05 PM, Ulf Hansson wrote:
+> > [...]
+> > 
+> > > > > > Got it. So in this case we could have the various display components
+> > > > > > that are in the mdss gdsc domain set their frequency via OPP and then
+> > > > > > have that translate to a level in CX or MMCX. How do we parent the power
+> > > > > > domains outside of DT? I'm thinking that we'll need to do that if MMCX
+> > > > > > is parented by CX or something like that and the drivers for those two
+> > > > > > power domains are different. Is it basic string matching?
+> > > > > 
+> > > > > In one way or another we need to invoke pm_genpd_add_subdomain() to link
+> > > > > the two power-domains (actually genpds) together, like what was done in
+> > > > > 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
+> > > > > 
+> > > > > In the case of MMCX and CX, my impression of the documentation is that
+> > > > > they are independent - but if we need to express that CX is parent of
+> > > > > MMCX, they are both provided by rpmhpd which already supports this by
+> > > > > just specifying .parent on mmcx to point to cx.
+> > > > 
+> > > > I was trying to follow the discussion, but it turned out to be a bit
+> > > > complicated to catch up and answer all things. In any case, let me
+> > > > just add a few overall comments, perhaps that can help to move things
+> > > > forward.
+> > > > 
+> > > > First, one domain can have two parent domains. Both from DT and from
+> > > > genpd point of view, just to make this clear.
+> > > > 
+> > > > Although, it certainly looks questionable to me, to hook up the USB
+> > > > device to two separate power domains, one to control power and one to
+> > > > control performance. Especially, if it's really the same piece of HW
+> > > > that is managing both things.
+> > > []..
+> > > > Additionally, if it's correct to model
+> > > > the USB GDSC power domain as a child to the CX power domain from HW
+> > > > point of view, we should likely do that.
+> > > 
+> > > I think this would still require a few things in genpd, since
+> > > CX and USB GDSC are power domains from different providers.
+> > > Perhaps a pm_genpd_add_subdomain_by_name()?
+> > > 
+> > 
+> > I think of_genpd_add_subdomain() should help to address this. No?
+> 
+> We only describe the provider nodes in DT and not the individual power domains.
+> For instance GCC is the power domain provider which is in DT, and USB GDSC is one
+> of the many power domains it supports, similarly RPMHPD is the provider node in
+> DT and CX is one of the many power domains it supports.
+> So we would need some non-DT way of hooking up power domains from two different
+> providers as parent/child.
+> 
 
- .../bindings/power/reset/gpio-poweroff.txt    | 41 -------------
- .../bindings/power/reset/gpio-poweroff.yaml   | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
- create mode 100644 Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+See 266e5cf39a0f ("arm64: dts: qcom: sm8250: remove mmcx regulator") and
+3652265514f5 ("clk: qcom: gdsc: enable optional power domain support")
 
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-deleted file mode 100644
-index 3e56c1b34a4c..000000000000
---- a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Driver a GPIO line that can be used to turn the power off.
--
--The driver supports both level triggered and edge triggered power off.
--At driver load time, the driver will request the given gpio line and
--install a handler to power off the system. If the optional properties
--'input' is not found, the GPIO line will be driven in the inactive
--state. Otherwise its configured as an input.
--
--When the power-off handler is called, the gpio is configured as an
--output, and drive active, so triggering a level triggered power off
--condition. This will also cause an inactive->active edge condition, so
--triggering positive edge triggered power off. After a delay of 100ms,
--the GPIO is set to inactive, thus causing an active->inactive edge,
--triggering negative edge triggered power off. After another 100ms
--delay the GPIO is driver active again. If the power is still on and
--the CPU still running after a 3000ms delay, a WARN_ON(1) is emitted.
--
--Required properties:
--- compatible : should be "gpio-poweroff".
--- gpios : The GPIO to set high/low, see "gpios property" in
--  Documentation/devicetree/bindings/gpio/gpio.txt. If the pin should be
--  low to power down the board set it to "Active Low", otherwise set
--  gpio to "Active High".
--
--Optional properties:
--- input : Initially configure the GPIO line as an input. Only reconfigure
--  it to an output when the power-off handler is called. If this optional
--  property is not specified, the GPIO is initialized as an output in its
--  inactive state.
--- active-delay-ms: Delay (default 100) to wait after driving gpio active
--- inactive-delay-ms: Delay (default 100) to wait after driving gpio inactive
--- timeout-ms: Time to wait before asserting a WARN_ON(1). If nothing is
--              specified, 3000 ms is used.
--
--Examples:
--
--gpio-poweroff {
--	compatible = "gpio-poweroff";
--	gpios = <&gpio 4 0>;
--	timeout-ms = <3000>;
--};
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-new file mode 100644
-index 000000000000..45d66c775115
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/reset/gpio-poweroff.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPIO controlled power off
-+
-+maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+description: >
-+  System power off support via a GPIO line. When a shutdown is
-+  executed the operating system is expected to switch the GPIO
-+  from inactive to active. After a delay (active-delay-ms) it
-+  is expected to be switched back to inactive. After another
-+  delay (inactive-delay-ms) it is configured as active again.
-+  Finally the operating system assumes the power off failed if
-+  the system is still running after waiting some time (timeout-ms).
-+
-+properties:
-+  compatible:
-+    const: gpio-poweroff
-+
-+  gpios:
-+    maxItems: 1
-+
-+  input:
-+    type: boolean
-+    description: >
-+      Initially configure the GPIO line as an input. Only reconfigure
-+      it to an output when the power-off sequence is initiated. If this optional
-+      property is not specified, the GPIO is initialized as an output in its inactive state.
-+
-+  active-delay-ms:
-+    default: 100
-+    description: Delay to wait after driving gpio active
-+
-+  inactive-delay-ms:
-+    default: 100
-+    description: Delay to wait after driving gpio inactive
-+
-+  timeout-ms:
-+    default: 3000
-+    description: Time to wait before assuming the power off sequence failed.
-+
-+required:
-+  - compatible
-+  - gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio-poweroff {
-+        compatible = "gpio-poweroff";
-+        gpios = <&gpio 4 0>;
-+        timeout-ms = <3000>;
-+    };
--- 
-2.33.0
+MMCX is declared as power-domain for the dispcc (which is correct
+in itself) and the gdsc code will register GDSCs as subdomains of
+the same power-domain.
 
+
+To ensure this code path is invoked the clock driver itself needed this
+6158b94ec807 ("clk: qcom: dispcc-sm8250: use runtime PM for the clock
+controller")
+
+So at least in theory, considering only USB the minimum would be to
+pm_runtime_enable() gcc-7280 and add power-domains = <CX> to the gcc
+node.
+
+
+The "problem" I described would be if there are GDSCs that are
+subdomains of MX - which I've seen hinted in some documentation. If so
+we should to specify both CX and MX as power-domains for &gcc and the
+gdsc implementation needs to be extended to allow us to select between
+the two.
+
+For this I believe a combination of genpd_dev_pm_attach_by_name() and
+of_genpd_add_subdomain() would do the trick.
+
+That is, if there actually are GDSCs exposed by gcc that are not
+subdomains of CX - otherwise none of this is needed.
+
+Regards,
+Bjorn
