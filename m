@@ -2,291 +2,470 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 319AE43DDE4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE17943DDE7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:38:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbhJ1Jjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 05:39:49 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:50038 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbhJ1Jjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:39:45 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 19S9bDZs048274;
-        Thu, 28 Oct 2021 04:37:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1635413833;
-        bh=4ae0zVkqq/aFKxUoPZd93K2WrRWgz7UqCYL87K3EVqA=;
-        h=From:To:CC:Subject:Date;
-        b=CbFIU9DU7MaXguaAjI2oOpg4Gt/rXHUdrYSIUHzgri3ktpYs7RhHBJ64Fgruyi0KK
-         KAeG9+W9XpjIdZ5fUbxJmZL4vTBCGmFMeVy7T60AnhKzw27awE7SR/8Yj7zJpBTYpd
-         W5q8iI0JEIyznluDU1HKtCPns0VVnosSDgzAIaoQ=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 19S9bDUF086498
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 28 Oct 2021 04:37:13 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 28
- Oct 2021 04:37:13 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 28 Oct 2021 04:37:12 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 19S9bBDj058974;
-        Thu, 28 Oct 2021 04:37:12 -0500
-From:   Rahul T R <r-ravikumar@ti.com>
-To:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>,
-        <andrey.gusakov@cogentembedded.com>, <vigneshr@ti.com>,
-        <nm@ti.com>, Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH] dt-bindings: display: bridge: Convert toshiba,tc358767.txt to yaml
-Date:   Thu, 28 Oct 2021 15:06:56 +0530
-Message-ID: <20211028093656.25493-1-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S230086AbhJ1Jkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 05:40:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230115AbhJ1Jkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:40:35 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB3FC061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 02:38:07 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id z14so9040577wrg.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 02:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j5rh0h4mklEWCPl6TjlyfphmPWR42M7gh457kP6GUnk=;
+        b=hUgePhwBXzU22rv3mvh0VSsJYL5F1E63CtpibeCpYyF4HXKcqJLUB43CE36CPQ08/K
+         lsMSjqHJPrardwFZsvgRFt16WZFh0whvbXBGuvCGAz8INFFActeKGsZNc7lxgtPidEW8
+         yhgwxdMjtNP0auqB8O4dbwGiRltNZmPJ4yPGjNbQpPFYKCo0wFt8IiFUoc2fspVDj5F7
+         OYGY05ZGozpcfXDucOtZl33l9IgrI+ozk9W1whp06e2AI3Gig65OQuycx5PctWcB0hEr
+         mFcZKsoh+VeHbQFwjpBzHfdnUmVab1sSN31Y9qp2Zy2sn60bhGeUHj2S17BLbIf5IQwH
+         /Eug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j5rh0h4mklEWCPl6TjlyfphmPWR42M7gh457kP6GUnk=;
+        b=R4EXZeTKyCM53G5NEsZuv4lyK9MDAr1H2LRJwpybne6Za3lhTX5wCOX5+XxG4f6MQv
+         EMjxqFDQ2cJ7ZfI2ByOFM777wXD9XHGayeqcr5cCB/DWL90m0bdxlbqqwKEIlQiUwZHS
+         KcK8bVOcc8iyAsbmHjZfP6Rsd68Fpo3qRMfml9SmIl8SS6qYC5zLadfwQx/WIc3PMUym
+         NRvGp0Q1I8oAGOM3UeoE7xvGONPLCRuRmZczePj/GAqTmLLfvu5zCuB1c9Hfx7JHOgOD
+         b/AvYTOhRNRjO1spJCDYF3kTFmZXOuLCj+nhMbZfuH0rU4JzS5LsLerQAzVw6FV8HKzh
+         dF0A==
+X-Gm-Message-State: AOAM530gttVN3Ajg6IGjUK5SIAyD91aT6RWQ1P4stY7tKHxoiHjcn6iA
+        rSaHjolWypAFcr+CQaORZhX7eA==
+X-Google-Smtp-Source: ABdhPJycfFVG/cjt6RVCDQ/ais1HS1NpohHVhyoVp3Q/nIgk5ohQeXjrk7GESGoWjxl98lkEgMaivA==
+X-Received: by 2002:adf:ec88:: with SMTP id z8mr4270093wrn.4.1635413886466;
+        Thu, 28 Oct 2021 02:38:06 -0700 (PDT)
+Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
+        by smtp.googlemail.com with ESMTPSA id m34sm1037934wms.25.2021.10.28.02.38.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 02:38:06 -0700 (PDT)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Subject: [PATCH v4] dt-bindings: adv748x: Convert bindings to json-schema
+Date:   Thu, 28 Oct 2021 11:37:49 +0200
+Message-Id: <20211028093749.2878541-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert toshiba,tc358767.txt binding to yaml format
+Convert ADV748X analog video decoder documentation to json-schema.
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+While converting the bindings extend it to enforce that all port@n nodes
+shall be encapsulated inside a ports node. This change does not have an
+effect on drivers parsing the ports@n nodes.
+
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 ---
- .../display/bridge/toshiba,tc358767.txt       |  54 ------
- .../display/bridge/toshiba,tc358767.yaml      | 158 ++++++++++++++++++
- 2 files changed, 158 insertions(+), 54 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
- create mode 100644 Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+* Changes since v3
+- For 'interrupt-names' use the pattern
+    minItems: 1
+    maxItems: 3
+    items:
+      enum: [ intrq1, intrq2, intrq3 ]
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
+ Instead of an items list with three '- enum: [ intrq1, intrq2, intrq3 ]'
+ rows.
+
+* Changes since v2
+- Add adv748x.yaml to MAINTAINERS.
+- Update commit message.
+- Add myself to under the maintainers section after talking with Kieran.
+- Split reg in examples in two lines to match reg-names.
+
+* Changes since v1
+- Update commit message to mention the added ports node.
+
+Hello,
+
+This conversion revealed a problem with the Renesas DTSI files for the
+adv7482 nodes. A fix for that have been submitted in a separate patch,
+
+    [PATCH] arm64: dts: renesas: Add ports node to all adv7482 nodes
+
+Kind Regards,
+Niklas Söderlund
+---
+ .../devicetree/bindings/media/i2c/adv748x.txt | 116 ----------
+ .../bindings/media/i2c/adv748x.yaml           | 212 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 213 insertions(+), 116 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.txt b/Documentation/devicetree/bindings/media/i2c/adv748x.txt
 deleted file mode 100644
-index 583c5e9dbe6b..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.txt
+index 4f91686e54a6b939..0000000000000000
+--- a/Documentation/devicetree/bindings/media/i2c/adv748x.txt
 +++ /dev/null
-@@ -1,54 +0,0 @@
--Toshiba TC358767 eDP bridge bindings
+@@ -1,116 +0,0 @@
+-* Analog Devices ADV748X video decoder with HDMI receiver
 -
--Required properties:
-- - compatible: "toshiba,tc358767"
-- - reg: i2c address of the bridge, 0x68 or 0x0f, depending on bootstrap pins
-- - clock-names: should be "ref"
-- - clocks: OF device-tree clock specification for refclk input. The reference
--   clock rate must be 13 MHz, 19.2 MHz, 26 MHz, or 38.4 MHz.
+-The ADV7481 and ADV7482 are multi format video decoders with an integrated
+-HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
+-from three input sources HDMI, analog and TTL.
 -
--Optional properties:
-- - shutdown-gpios: OF device-tree gpio specification for SD pin
--                   (active high shutdown input)
-- - reset-gpios: OF device-tree gpio specification for RSTX pin
--                (active low system reset)
-- - toshiba,hpd-pin: TC358767 GPIO pin number to which HPD is connected to (0 or 1)
-- - ports: the ports node can contain video interface port nodes to connect
--   to a DPI/DSI source and to an eDP/DP sink according to [1][2]:
--    - port@0: DSI input port
--    - port@1: DPI input port
--    - port@2: eDP/DP output port
+-Required Properties:
 -
--[1]: Documentation/devicetree/bindings/graph.txt
--[2]: Documentation/devicetree/bindings/media/video-interfaces.txt
+-  - compatible: Must contain one of the following
+-    - "adi,adv7481" for the ADV7481
+-    - "adi,adv7482" for the ADV7482
+-
+-  - reg: I2C slave addresses
+-    The ADV748x has up to twelve 256-byte maps that can be accessed via the
+-    main I2C ports. Each map has it own I2C address and acts as a standard
+-    slave device on the I2C bus. The main address is mandatory, others are
+-    optional and remain at default values if not specified.
+-
+-Optional Properties:
+-
+-  - interrupt-names: Should specify the interrupts as "intrq1", "intrq2" and/or
+-		     "intrq3". All interrupts are optional. The "intrq3" interrupt
+-		     is only available on the adv7481
+-  - interrupts: Specify the interrupt lines for the ADV748x
+-  - reg-names : Names of maps with programmable addresses.
+-		It shall contain all maps needing a non-default address.
+-		Possible map names are:
+-		  "main", "dpll", "cp", "hdmi", "edid", "repeater",
+-		  "infoframe", "cbus", "cec", "sdp", "txa", "txb"
+-
+-The device node must contain one 'port' child node per device input and output
+-port, in accordance with the video interface bindings defined in
+-Documentation/devicetree/bindings/media/video-interfaces.txt. The port nodes
+-are numbered as follows.
+-
+-	  Name		Type		Port
+-	---------------------------------------
+-	  AIN0		sink		0
+-	  AIN1		sink		1
+-	  AIN2		sink		2
+-	  AIN3		sink		3
+-	  AIN4		sink		4
+-	  AIN5		sink		5
+-	  AIN6		sink		6
+-	  AIN7		sink		7
+-	  HDMI		sink		8
+-	  TTL		sink		9
+-	  TXA		source		10
+-	  TXB		source		11
+-
+-The digital output port nodes, when present, shall contain at least one
+-endpoint. Each of those endpoints shall contain the data-lanes property as
+-described in video-interfaces.txt.
+-
+-Required source endpoint properties:
+-  - data-lanes: an array of physical data lane indexes
+-    The accepted value(s) for this property depends on which of the two
+-    sources are described. For TXA 1, 2 or 4 data lanes can be described
+-    while for TXB only 1 data lane is valid. See video-interfaces.txt
+-    for detailed description.
+-
+-Ports are optional if they are not connected to anything at the hardware level.
 -
 -Example:
--	edp-bridge@68 {
--		compatible = "toshiba,tc358767";
--		reg = <0x68>;
--		shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
--		reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
--		clock-names = "ref";
--		clocks = <&edp_refclk>;
 -
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
+-	video-receiver@70 {
+-		compatible = "adi,adv7482";
+-		reg = <0x70 0x71 0x72 0x73 0x74 0x75
+-		       0x60 0x61 0x62 0x63 0x64 0x65>;
+-		reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
+-			    "infoframe", "cbus", "cec", "sdp", "txa", "txb";
 -
--			port@1 {
--				reg = <1>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
 -
--				bridge_in: endpoint {
--					remote-endpoint = <&dpi_out>;
--				};
+-		interrupt-parent = <&gpio6>;
+-		interrupt-names = "intrq1", "intrq2";
+-		interrupts = <30 IRQ_TYPE_LEVEL_LOW>,
+-			     <31 IRQ_TYPE_LEVEL_LOW>;
+-
+-		port@7 {
+-			reg = <7>;
+-
+-			adv7482_ain7: endpoint {
+-				remote-endpoint = <&cvbs_in>;
 -			};
+-		};
 -
--			port@2 {
--				reg = <2>;
+-		port@8 {
+-			reg = <8>;
 -
--				bridge_out: endpoint {
--					remote-endpoint = <&panel_in>;
--				};
+-			adv7482_hdmi: endpoint {
+-				remote-endpoint = <&hdmi_in>;
+-			};
+-		};
+-
+-		port@a {
+-			reg = <10>;
+-
+-			adv7482_txa: endpoint {
+-				clock-lanes = <0>;
+-				data-lanes = <1 2 3 4>;
+-				remote-endpoint = <&csi40_in>;
+-			};
+-		};
+-
+-		port@b {
+-			reg = <11>;
+-
+-			adv7482_txb: endpoint {
+-				clock-lanes = <0>;
+-				data-lanes = <1>;
+-				remote-endpoint = <&csi20_in>;
 -			};
 -		};
 -	};
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv748x.yaml b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
 new file mode 100644
-index 000000000000..f1541cc05297
+index 0000000000000000..d6353081402bed84
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -0,0 +1,158 @@
++++ b/Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+@@ -0,0 +1,212 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/bridge/toshiba,tc358767.yaml#
++$id: http://devicetree.org/schemas/media/i2c/adv748x.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Toshiba TC358767 eDP bridge bindings
++title: Analog Devices ADV748X video decoder with HDMI receiver
 +
 +maintainers:
-+  - Andrey Gusakov <andrey.gusakov@cogentembedded.com>
++  - Kieran Bingham <kieran.bingham@ideasonboard.com>
++  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
 +
-+description: The TC358767 is bridge device which converts DSI/DPI to eDP/DP
++description:
++  The ADV7481 and ADV7482 are multi format video decoders with an integrated
++  HDMI receiver. They can output CSI-2 on two independent outputs TXA and TXB
++  from three input sources HDMI, analog and TTL.
 +
 +properties:
 +  compatible:
-+    const: toshiba,tc358767
++    items:
++      - enum:
++          - adi,adv7481
++          - adi,adv7482
 +
 +  reg:
-+    enum:
-+      - 0x68
-+      - 0x0f
-+    description: |
-+        i2c address of the bridge, 0x68 or 0x0f, depending on bootstrap pins
++    minItems: 1
++    maxItems: 12
++    description:
++      The ADV748x has up to twelve 256-byte maps that can be accessed via the
++      main I2C ports. Each map has it own I2C address and acts as a standard
++      slave device on the I2C bus. The main address is mandatory, others are
++      optional and remain at default values if not specified.
 +
-+  clock-names:
-+    const: "ref"
++  reg-names:
++    minItems: 1
++    items:
++      - const: main
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
++      - enum: [ dpll, cp, hdmi, edid, repeater, infoframe, cbus, cec, sdp, txa, txb ]
 +
-+  clocks:
-+    maxItems: 1
-+    description: |
-+        OF device-tree clock specification for refclk input. The reference.
-+        clock rate must be 13 MHz, 19.2 MHz, 26 MHz, or 38.4 MHz.
++  interrupts: true
 +
-+  shutdown-gpios:
-+    maxItems: 1
-+    description: |
-+        OF device-tree gpio specification for SD pin(active high shutdown input)
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: |
-+        OF device-tree gpio specification for RSTX pin(active low system reset)
-+
-+  toshiba,hpd-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0
-+      - 1
-+    description: TC358767 GPIO pin number to which HPD is connected to (0 or 1)
++  interrupt-names: true
 +
 +  ports:
 +    $ref: /schemas/graph.yaml#/properties/ports
 +
++    patternProperties:
++      "^port@[0-7]$":
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Input port nodes for analog inputs AIN[0-7].
++
 +    properties:
-+      port@0:
++      port@8:
 +        $ref: /schemas/graph.yaml#/properties/port
-+        description: |
-+            DSI input port. The remote endpoint phandle should be a
-+            reference to a valid DSI output endpoint node
++        description: Input port node for HDMI.
 +
-+      port@1:
++      port@9:
 +        $ref: /schemas/graph.yaml#/properties/port
-+        description: |
-+            DPI input port. The remote endpoint phandle should be a
-+            reference to a valid DPI output endpoint node
++        description: Input port node for TTL.
 +
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: |
-+            eDP/DP output port. The remote endpoint phandle should be a
-+            reference to a valid eDP panel input endpoint node. This port is
-+            optional, treated as DP panel if not defined
++      port@a:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Output port node, single endpoint describing the CSI-2 transmitter TXA.
 +
-+    oneOf:
-+      - required:
-+          - port@0
-+      - required:
-+          - port@1
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
 +
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@b:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Output port node, single endpoint describing the CSI-2 transmitter TXB.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                maxItems: 1
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: adi,adv7481
++    then:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 3
++
++        interrupt-names:
++          minItems: 1
++          maxItems: 3
++          items:
++            enum: [ intrq1, intrq2, intrq3 ]
++    else:
++      properties:
++        interrupts:
++          minItems: 1
++          maxItems: 2
++
++        interrupt-names:
++          minItems: 1
++          maxItems: 2
++          items:
++            enum: [ intrq1, intrq2 ]
++
++additionalProperties: false
 +
 +required:
 +  - compatible
 +  - reg
-+  - clock-names
-+  - clocks
 +  - ports
-+
-+additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    /* DPI input and eDP output */
++    #include <dt-bindings/interrupt-controller/irq.h>
 +
 +    i2c {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +
-+        edp-bridge@68 {
-+            compatible = "toshiba,tc358767";
-+            reg = <0x68>;
-+            shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-+            clock-names = "ref";
-+            clocks = <&edp_refclk>;
++        video-receiver@70 {
++            compatible = "adi,adv7482";
++            reg = <0x70 0x71 0x72 0x73 0x74 0x75
++                   0x60 0x61 0x62 0x63 0x64 0x65>;
++            reg-names = "main", "dpll", "cp", "hdmi", "edid", "repeater",
++                        "infoframe", "cbus", "cec", "sdp", "txa", "txb";
++
++            interrupt-parent = <&gpio6>;
++            interrupts = <30 IRQ_TYPE_LEVEL_LOW>, <31 IRQ_TYPE_LEVEL_LOW>;
++            interrupt-names = "intrq1", "intrq2";
 +
 +            ports {
 +                #address-cells = <1>;
 +                #size-cells = <0>;
 +
-+                port@1 {
-+                    reg = <1>;
++                port@7 {
++                    reg = <7>;
 +
-+                    bridge_in_0: endpoint {
-+                        remote-endpoint = <&dpi_out>;
++                    adv7482_ain7: endpoint {
++                        remote-endpoint = <&cvbs_in>;
 +                    };
 +                };
 +
-+                port@2 {
-+                    reg = <2>;
++                port@8 {
++                    reg = <8>;
 +
-+                    bridge_out: endpoint {
-+                        remote-endpoint = <&panel_in>;
++                    adv7482_hdmi: endpoint {
++                        remote-endpoint = <&hdmi_in>;
 +                    };
 +                };
-+            };
-+        };
-+    };
-+  - |
-+    /* DPI input and DP output */
 +
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
++                port@a {
++                    reg = <10>;
 +
-+        edp-bridge@68 {
-+            compatible = "toshiba,tc358767";
-+            reg = <0x68>;
-+            shutdown-gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio3 24 GPIO_ACTIVE_LOW>;
-+            clock-names = "ref";
-+            clocks = <&edp_refclk>;
++                    adv7482_txa: endpoint {
++                        clock-lanes = <0>;
++                        data-lanes = <1 2 3 4>;
++                        remote-endpoint = <&csi40_in>;
++                    };
++                };
 +
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
++                port@b {
++                    reg = <11>;
 +
-+                port@1 {
-+                    reg = <1>;
-+
-+                    bridge_in_1: endpoint {
-+                        remote-endpoint = <&dpi_out>;
++                    adv7482_txb: endpoint {
++                        clock-lanes = <0>;
++                        data-lanes = <1>;
++                        remote-endpoint = <&csi20_in>;
 +                    };
 +                };
 +            };
 +        };
 +    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ee91c5472bc1540a..6ea3e63cbc7f33c3 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1124,6 +1124,7 @@ M:	Kieran Bingham <kieran.bingham@ideasonboard.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ F:	drivers/media/i2c/adv748x/*
++F:	Documentation/devicetree/bindings/media/i2c/adv748x.yaml
+ 
+ ANALOG DEVICES INC ADV7511 DRIVER
+ M:	Hans Verkuil <hverkuil-cisco@xs4all.nl>
 -- 
-2.17.1
+2.33.1
 
