@@ -2,56 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42EF743E8C4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 21:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D4943E8CC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 21:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230384AbhJ1TIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 15:08:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60244 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230041AbhJ1TH7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 15:07:59 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0F6BC60F38;
-        Thu, 28 Oct 2021 19:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635447932;
-        bh=jqN5CJSNCjfWPZWoiwK5QywvlV0nHRyIzylfePgq9kA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ikD1WZptNVr8h4YQPUV/rQdI8wZ3V/6ZuPPmvsGlP4vsvX/gjvNLAAVCiQjdLXwal
-         IHZHHlNnLGmg/slU2TdhFsYJEybxigsZO8xsb2+KPu/j6lt7uQdHs1Ph2cUPxA5aK1
-         KD56BXRE7IdxEhrjrtdmz0E9LVxRrupcV5FHL6C1wbtsoQ6PE58FgoG8E7VHhNBnsG
-         m7PaKxcKDkoA9ZHhEw3s3ylibQe7GheieU9iE40NawOxrQxLLi06Dwa2eg8FGs9+yl
-         WON0e3p7tfE+fwdPUQtRGjIL4S3jyQXyu4n5ldHQNpglkPpYOPJOXbZ+vaZLn/Sk1X
-         4Lk0T9RqnYBqA==
-Date:   Thu, 28 Oct 2021 12:05:31 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Woojung.Huh@microchip.com>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 net-next 00/10] net: dsa: microchip: DSA driver
- support for LAN937x switch
-Message-ID: <20211028120531.5fd5a599@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20211028164111.521039-1-prasanna.vengateshan@microchip.com>
-References: <20211028164111.521039-1-prasanna.vengateshan@microchip.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S229645AbhJ1TLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 15:11:22 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:41915 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231211AbhJ1TLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 15:11:21 -0400
+Received: by mail-oi1-f178.google.com with SMTP id y128so9692644oie.8;
+        Thu, 28 Oct 2021 12:08:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=IkSb8C7GAFz/mAwKL4VgxHujgz4IrSq9GNcKcWkokn4=;
+        b=Gr+lAm1vaZ5XkhEYGwJB6nfPv6MdRdUH+wknrEfdpVZwOogKhYi6h8QEIT9pZO25v0
+         Tt80MW5fIQg0jcFlF3kK3dyna7N5Hkxbu6Uq0wKcQ9hVqQZ7hiw+O5j/XTjSvlTs1qRc
+         bkdkq9lBsUsGSssaRyi/5w6/5q9MLd8F4VNx0Yxq7J4Dvu7H4kiBWzz6eNndoYFOhtpT
+         ucQI1tHOYpuWkS7aUOYDhceuWPYhqQY52YnCkLZIjQHKpqU0cvkIxHN1Marr1jAeZKqp
+         rsNv9G7XVB4lhRnxd6I8k28w86MSGiql5TRr0suodhRvFNz4ni1CEBUIvg91D/oMGOYn
+         vIGQ==
+X-Gm-Message-State: AOAM530+QB6vOZoeUGqf/S+ZOI/Q4XekTQg1Ejrem4YN8FfeD4xIlJoE
+        nygEif9VZhpdsOZIX5jQNw==
+X-Google-Smtp-Source: ABdhPJzqWUAFj8DoNRI5eeZsudzXO8D2foLGlfAb+RGGA12p5K/FSEre5UJJ5oKhdD2iQuUdrC/ahg==
+X-Received: by 2002:aca:3b89:: with SMTP id i131mr2288170oia.102.1635448133600;
+        Thu, 28 Oct 2021 12:08:53 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h91sm1242529otb.38.2021.10.28.12.08.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 12:08:53 -0700 (PDT)
+Received: (nullmailer pid 409857 invoked by uid 1000);
+        Thu, 28 Oct 2021 19:08:48 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     heikki.krogerus@linux.intel.com, linux@roeck-us.net,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, wcheng@codeaurora.org,
+        gregkh@linuxfoundation.org, linux-arm-msm@vger.kernel.org,
+        rdunlap@infradead.org, linux-usb@vger.kernel.org
+In-Reply-To: <20211028164941.831918-3-bryan.odonoghue@linaro.org>
+References: <20211028164941.831918-1-bryan.odonoghue@linaro.org> <20211028164941.831918-3-bryan.odonoghue@linaro.org>
+Subject: Re: [RESEND PATCH v2 2/7] dt-bindings: usb: Add Qualcomm PMIC type C controller YAML schema
+Date:   Thu, 28 Oct 2021 14:08:48 -0500
+Message-Id: <1635448128.084388.409856.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 22:11:01 +0530 Prasanna Vengateshan wrote:
-> LAN937x is a Multi-Port 100BASE-T1 Ethernet Physical Layer switch  
-> compliant with the IEEE 802.3bw-2015 specification. The device  
-> provides 100 Mbit/s transmit and receive capability over a single 
-> Unshielded Twisted Pair (UTP) cable. LAN937x is successive revision 
-> of KSZ series switch. This series of patches provide the DSA driver  
-> support for Microchip LAN937X switch and it configures through  
-> SPI interface. 
+On Thu, 28 Oct 2021 17:49:36 +0100, Bryan O'Donoghue wrote:
+> Add a YAML binding for the type-c silicon interface inside Qualcomm's
+> pm8150b hardware block.
+> 
+> The type-c driver operates with a pdphy driver inside of a high level
+> single TCPM device.
+> 
+> Based on original work by Wesley.
+> 
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../bindings/usb/qcom,pmic-typec.yaml         | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+> 
 
-Doesn't apply cleanly after 788050256c41 ("net: phy: microchip_t1: add
-cable test support for lan87xx phy") got merged. You'll need to rebase.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/usb/qcom,pmic-typec.example.dt.yaml:0:0: /example-0/pm8150b/typec@1500: failed to match any schema with compatible: ['qcom,pm8150b-typec']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1547612
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
