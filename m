@@ -2,118 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A0F43E597
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 17:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46AC43E621
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:29:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229752AbhJ1QBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 12:01:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44660 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229565AbhJ1QBA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 12:01:00 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A16DA60FC4;
-        Thu, 28 Oct 2021 15:58:30 +0000 (UTC)
-Date:   Thu, 28 Oct 2021 17:02:56 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] iio: add adddac subdirectory
-Message-ID: <20211028170256.5a616bae@jic23-huawei>
-In-Reply-To: <20211028135608.3666940-1-demonsingur@gmail.com>
-References: <20211028134849.3664969-1-demonsingur@gmail.com>
-        <20211028135608.3666940-1-demonsingur@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230246AbhJ1QcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 12:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59574 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230225AbhJ1QcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:32:16 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2F5C061570;
+        Thu, 28 Oct 2021 09:29:49 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id y14-20020a17090a2b4e00b001a5824f4918so1556245pjc.4;
+        Thu, 28 Oct 2021 09:29:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iOMV47zPl+WXbviyBiqlGpEOAdHC+x+zs56ErTuovVc=;
+        b=pL7Bgh3tX9dNjUtKyckQRc2XeD6p6QKslnDUItLeTZ+KIFqI8imYlti7k6O002UtNI
+         CdcDCTnzq9rRBjKIDxAFjj6Xsy8/bxxfWQfGHFgpBflqJLWLbrEdtHFsIIXt7UYdDoTe
+         q+B5cRJwdfPB80P8oEEApP5ur4+xVl/sQoB7QtuA5S/UacVm+4A8EZglenAywIge6U2J
+         rx+HyUJ26dKdW/3Z/rDyElVfCdWslQc6dtyrqbE78OfRfmgS7AbQ2eavr41w9/zZ4ay8
+         QRBG85zDfRe2Z8QpsdQRpyk7W54V6xptNJUUSD+IgX7OYQqcVH2HZg/x5LNm8AFHr4FV
+         nSSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iOMV47zPl+WXbviyBiqlGpEOAdHC+x+zs56ErTuovVc=;
+        b=lrsmagPccaF1wiUGmXBpnoKHvDSL12AzYnqBZY5QgvZpVx+cOgdPgAa7IrYNrI0S3T
+         dEdyNnpkrhVfOIAq6//1lqpT6p3JtHEGKEWN5co9mZoN9FAenOPXfrm8pQjscrSblwxs
+         BpNavOH+Pyo3jsBkVhDYpnU/Xpi0oq+iiiqZzP+Od84qklhYTuIdOqsLgquE2diTC9cS
+         VqWD1BWAHA5pjYeJUtIrOEpELy2ZTmplRb1Ds67vN1Glt8TiM+VlN8l2MyNIvd4CAOon
+         f/NFUicOJnMaAdygpy5d4LZKX8VudCKBIUYoHFphmIOaJNPgCnP6IxiDKDvF76/c1inA
+         zAyw==
+X-Gm-Message-State: AOAM531H8pFPMjRh/fUGCG35OE60CX+FDDCkbbgLjb2ItYrp/UUpMLXF
+        +AQghaHNUKtTXs4l2LkN3OY=
+X-Google-Smtp-Source: ABdhPJxbv77NUT6Q6Ou4dZoDsM+bgTIO25Un8DnF+mGPV5GA9+oGHexjWDC0g96hlAWDmoCYUuS6Hw==
+X-Received: by 2002:a17:90a:7e13:: with SMTP id i19mr5574766pjl.120.1635438589365;
+        Thu, 28 Oct 2021 09:29:49 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id mr2sm2411672pjb.25.2021.10.28.09.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Oct 2021 09:29:48 -0700 (PDT)
+Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211028093059.32535-1-zajec5@gmail.com>
+ <20211028093059.32535-3-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
+Date:   Thu, 28 Oct 2021 09:29:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20211028093059.32535-3-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 16:56:03 +0300
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-> From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+On 10/28/21 2:30 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> For IIO devices that expose both ADC and DAC functionality.
+> Hardware supported by this driver goes back to the old bcm63xx days. It
+> was then reused in BCM7038 and later also in BCM4908.
 > 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-Why v2?
-
-Should be a change log (+ I would suggest a cover letter).
-Also, reply to previous version if there haven't been comments that
-you are replying to..
-
-I'll assume most v1 comments apply to v2 and hence wait for v3.
-
-Please leave some time for others to review these versions before
-sending a v3.  
-
-Jonathan
-
+> Depending on SoC model registers layout differs a bit. This commit
+> introduces support for per-chipset registers offsets & adds BCM4908
+> layout.
+> 
+> Later on BCM63xx SoCs support should be added too (probably as platform
+> devices due to missing DT). Eventually this driver should replace
+> bcm63xx_wdt.c.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  drivers/iio/Kconfig        | 1 +
->  drivers/iio/Makefile       | 1 +
->  drivers/iio/addac/Kconfig  | 8 ++++++++
->  drivers/iio/addac/Makefile | 6 ++++++
->  4 files changed, 16 insertions(+)
->  create mode 100644 drivers/iio/addac/Kconfig
->  create mode 100644 drivers/iio/addac/Makefile
-> 
-> diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
-> index 2334ad249b46..4fb4321a72cb 100644
-> --- a/drivers/iio/Kconfig
-> +++ b/drivers/iio/Kconfig
-> @@ -70,6 +70,7 @@ config IIO_TRIGGERED_EVENT
->  
->  source "drivers/iio/accel/Kconfig"
->  source "drivers/iio/adc/Kconfig"
-> +source "drivers/iio/addac/Kconfig"
->  source "drivers/iio/afe/Kconfig"
->  source "drivers/iio/amplifiers/Kconfig"
->  source "drivers/iio/cdc/Kconfig"
-> diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
-> index 65e39bd4f934..8d48c70fee4d 100644
-> --- a/drivers/iio/Makefile
-> +++ b/drivers/iio/Makefile
-> @@ -15,6 +15,7 @@ obj-$(CONFIG_IIO_TRIGGERED_EVENT) += industrialio-triggered-event.o
->  
->  obj-y += accel/
->  obj-y += adc/
-> +obj-y += addac/
->  obj-y += afe/
->  obj-y += amplifiers/
->  obj-y += buffer/
-> diff --git a/drivers/iio/addac/Kconfig b/drivers/iio/addac/Kconfig
-> new file mode 100644
-> index 000000000000..2e64d7755d5e
-> --- /dev/null
-> +++ b/drivers/iio/addac/Kconfig
-> @@ -0,0 +1,8 @@
-> +#
-> +# ADC DAC drivers
-> +#
-> +# When adding new entries keep the list in alphabetical order
-> +
-> +menu "Analog to digital and digital to analog converters"
-> +
-> +endmenu
-> diff --git a/drivers/iio/addac/Makefile b/drivers/iio/addac/Makefile
-> new file mode 100644
-> index 000000000000..b888b9ee12da
-> --- /dev/null
-> +++ b/drivers/iio/addac/Makefile
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Makefile for industrial I/O ADDAC drivers
-> +#
-> +
-> +# When adding new entries keep the list in alphabetical order
 
+[snip]
+
+> +
+> +static const u16 bcm7038_wdt_regs_bcm4908[] = {
+> +	[BCM63XX_WDT_REG_DEFVAL]	= 0x28,
+> +	[BCM63XX_WDT_REG_CTL]		= 0x2c,
+> +	[BCM63XX_WDT_REG_SOFTRESET]	= 0x34,
+
+I don't understand what you are doing here and why you are not
+offsetting the "reg" property appropriately when you create your
+bcm4908-wdt Device Tree node such that the base starts at 0, and the
+existing driver becomes usable as-is. This does not make any sense to me
+when it is obviously the simplest way to make the driver "accept" the
+resource being passed.
+
+I am going to send my patch series converting the bcm63xx_wdt.c driver
+over to bcm7038_wdt.c, feel free to use or discard it.
+-- 
+Florian
