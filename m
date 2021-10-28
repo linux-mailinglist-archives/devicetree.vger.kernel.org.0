@@ -2,119 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6DD43E3F7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 16:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878AA43E406
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 16:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbhJ1OlH convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 28 Oct 2021 10:41:07 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:54037 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231340AbhJ1Ok5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:40:57 -0400
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 7BEA024000F;
-        Thu, 28 Oct 2021 14:38:26 +0000 (UTC)
-Date:   Thu, 28 Oct 2021 16:38:25 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] net: ocelot: add support to get mac from
- device-tree
-Message-ID: <20211028163825.7ccb1dea@xps-bootlin>
-In-Reply-To: <20211028142254.mbm7gczhhb4h5g3n@skbuf>
-References: <20211028134932.658167-1-clement.leger@bootlin.com>
-        <20211028134932.658167-2-clement.leger@bootlin.com>
-        <20211028140611.m7whuwrzqxp2t53f@skbuf>
-        <20211028161522.6b711bb2@xps-bootlin>
-        <20211028142254.mbm7gczhhb4h5g3n@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S230048AbhJ1Opo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 10:45:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230265AbhJ1Opn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:45:43 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 612ECC061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:43:16 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id c28so13997499lfv.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:43:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=148z8Jno5ibjrSfO3iE+zKfRZ+rTkFE53njyJOvaPpE=;
+        b=FM3+GGUSfg6YDOe1Wo1KLij7xyUbtrOhNvp+MkkZNaMFKzpKBK1xHqInpLPyQ6Fu5+
+         nCwUQODEkDLD+RMo4eYW6XVC8Dc2/aY+djYAUDLKaYKzxEtrl6Mw1M/BxJbOYOosRQuI
+         RSYZ+qCyKm4drPnOA+LrKBrBRhmUYu2nTiyLbGw/RkRHpla6vhj53vxN2YiYG7yDyA/I
+         K7t/VuQ4K3PPYlPOe2CsJEMnLVeK7lNZ7hfjBU0/vjlbCM8Lh783WXExHiU6NYakmIB7
+         h+4q6/zc4jCQW8LJOAsVce89xiPiRSWf+m3scb67KgBxMyzKCPmXVKoPf/2k4kVeuF4B
+         PCJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=148z8Jno5ibjrSfO3iE+zKfRZ+rTkFE53njyJOvaPpE=;
+        b=ewtta+HRsgRNJL1Y4XPxvRan7yvSE/QM6xYWr2CS7Olt5K19zA1TF5RDIm9bHDqeOQ
+         zS4gtZRv2n+HjodjXQnrFkPywF0yfjOAL0G3c/r0MWdasXggGQQgDPUuRW5k3m34m6XV
+         u3m49btIjtc+Gd4H+ufYXmzp82mXDARtlbbwPfEdUeDDLyzUjAMTHdOKoBD9yZIHJYfI
+         C4pFbfkqxoNRUGYuiZQJjZe/bz/141j9WwddlGRp9fvXgczZwi5tPSAOdKsxYXOUJDp0
+         uJJvU1eOjfFUCUmxQGFZFWVit9Nud5/SVwXRKJ/8YY65VeZewFtYS+txMJjk1rMjpsW4
+         KyUA==
+X-Gm-Message-State: AOAM533RKiIebDt+LWzq8CHGRmdRPUnZEMMdTeAuy8MCHQhLLz83NxoZ
+        xpN6VsxGudX8Q1uI/t+LF+oN0g==
+X-Google-Smtp-Source: ABdhPJwtVWJTLzQqQ6CF4sgcVaSbsL/TbZAhf+71RjlxI06EBTx9BcGPNlntpxY18ixgsSk2ylCj6A==
+X-Received: by 2002:ac2:4f02:: with SMTP id k2mr4657354lfr.415.1635432194696;
+        Thu, 28 Oct 2021 07:43:14 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id h31sm332844lfv.111.2021.10.28.07.43.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 07:43:14 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: samsung: pmu: Document Exynos850
+Date:   Thu, 28 Oct 2021 17:43:12 +0300
+Message-Id: <20211028144313.9444-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Thu, 28 Oct 2021 14:22:55 +0000,
-Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
+Exynos850 SoC can reuse PMU driver functionality. Add corresponding
+compatible string to PMU bindings documentation.
 
-> On Thu, Oct 28, 2021 at 04:15:22PM +0200, Clément Léger wrote:
-> > Le Thu, 28 Oct 2021 14:06:12 +0000,
-> > Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
-> >   
-> > > On Thu, Oct 28, 2021 at 03:49:30PM +0200, Clément Léger wrote:  
-> > > > Add support to get mac from device-tree using
-> > > > of_get_mac_address.
-> > > > 
-> > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> > > > ---
-> > > >  drivers/net/ethernet/mscc/ocelot_vsc7514.c | 5 ++++-
-> > > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-> > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c index
-> > > > d51f799e4e86..c39118e5b3ee 100644 ---
-> > > > a/drivers/net/ethernet/mscc/ocelot_vsc7514.c +++
-> > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c @@ -526,7 +526,10
-> > > > @@ static int ocelot_chip_init(struct ocelot *ocelot, const
-> > > > struct ocelot_ops *ops) ocelot_pll5_init(ocelot);
-> > > >  
-> > > > -	eth_random_addr(ocelot->base_mac);
-> > > > +	ret = of_get_mac_address(ocelot->dev->of_node,
-> > > > ocelot->base_mac);    
-> > > 
-> > > Why not per port? This is pretty strange, I think.  
-> > 
-> > Hi Vladimir,
-> > 
-> > Currently, all ports share the same base mac address (5 first
-> > bytes). The final mac address per port is computed in
-> > ocelot_probe_port by adding the port number as the last byte of the
-> > mac_address provided.
-> > 
-> > Clément  
-> 
-> Yes, I know that, but that's not my point.
-> Every switch port should be pretty much compliant with
-> ethernet-controller.yaml, if it could inherit that it would be even
-> better. And since mac-address is an ethernet-controller.yaml property,
-> it is pretty much non-obvious at all that you put the mac-address
-> property directly under the switch, and manually add 0, 1, 2, 3 etc
-> to it. My request was to parse the mac-address property of each port.
-> Like this:
-> 
-> base_mac = random;
-> 
-> for_each_port() {
-> 	err = of_get_mac_address(port_dn, &port_mac);
-> 	if (err)
-> 		port_mac = base_mac + port;
-> }
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Ok indeed. So I will parse each port for a mac-address property. Do you
-also want a fallback to use the switch base mac if not specified in
-port or should I keep the use of a default random mac as the base
-address anyway ?
-
-> 
-> > > > +	if (ret)
-> > > > +		eth_random_addr(ocelot->base_mac);
-> > > > +
-> > > >  	ocelot->base_mac[5] &= 0xf0;
-> > > >  
-> > > >  	return 0;
-> > > > -- 
-> > > > 2.33.0  
-> > >     
->   
+diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+index 17678d9686c1..0bbd89265b28 100644
+--- a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
++++ b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+@@ -24,6 +24,7 @@ select:
+           - samsung,exynos5420-pmu
+           - samsung,exynos5433-pmu
+           - samsung,exynos7-pmu
++          - samsung,exynos850-pmu
+           - samsung-s5pv210-pmu
+   required:
+     - compatible
+@@ -41,6 +42,7 @@ properties:
+           - samsung,exynos5420-pmu
+           - samsung,exynos5433-pmu
+           - samsung,exynos7-pmu
++          - samsung,exynos850-pmu
+           - samsung-s5pv210-pmu
+       - const: syscon
+ 
+-- 
+2.30.2
 
