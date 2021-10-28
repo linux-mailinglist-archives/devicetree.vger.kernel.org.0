@@ -2,447 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C58343DCD8
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 10:14:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 065CC43DD35
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 10:56:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230089AbhJ1IQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 04:16:48 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:42048 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbhJ1IQs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 04:16:48 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635408862; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=GpXPC/18yDkU/LWsLURfMWstQdAZ8ODrJ689zcjar+Y=; b=g1+MjpoaYdZBdbatmSYt3nVKm63nHXUORu3YNh1PpykDdGKfmxTrQsXd6FBB1L/fgDGiMiOO
- fICUVF6Rj5eSDOcFYh30S3LalLp/XEk4Sz3K3qgeAzPPm3Ymish5TlZwHlZeAL3M3nCmXvGz
- /2AJsEhrq3ik8eK+vvzTe9CpovI=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 617a5bd1648aeeca5ce185cb (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Oct 2021 08:14:09
- GMT
-Sender: pillair=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 372D7C4360C; Thu, 28 Oct 2021 08:14:09 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: pillair)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A2534C43617;
-        Thu, 28 Oct 2021 08:14:02 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org A2534C43617
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Rakesh Pillai <pillair@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, ohad@wizery.com,
-        mathieu.poirier@linaro.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de
-Cc:     swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        mpubbise@codeaurora.org, kuabhs@chromium.org,
-        Rakesh Pillai <pillair@codeaurora.org>
-Subject: [PATCH v7 3/3] remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
-Date:   Thu, 28 Oct 2021 13:43:37 +0530
-Message-Id: <1635408817-14426-4-git-send-email-pillair@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635408817-14426-1-git-send-email-pillair@codeaurora.org>
-References: <1635408817-14426-1-git-send-email-pillair@codeaurora.org>
+        id S229934AbhJ1I6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 04:58:33 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:4688 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229877AbhJ1I6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 04:58:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635411366; x=1666947366;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/0UPLaDhy5BJJ6FFv8PzjnYUUj7i5fsxoZCJyakl5BQ=;
+  b=uBvd1HQJgTbCg68hBc0eRGUQDF7mrRjhIfu/GLSdMh2gQ/64QxNSJA1q
+   PJVLsFLr/5fvy8GKAWNiNUUAOrlS9tl+RNF8sPNee5dXM+zX5Zg73Mg+3
+   V1uVfKZ5WF32l4Ya13pw3gBip7vzjVbbxdp0BMCXUd64JP34pOaXeyKIP
+   j7B6avxwceQUmsPm6wjWEDfEAQeVKVawxAJTPlVoviF6PD67eAHdvfeW1
+   SvhrdGoYyZ1gA6VhJgOsVysty+UcFsLLxZmXUsxgMXcCHRIV4FwcIegkP
+   25xuAUliWQOQOkrJRp8CZxkdssKUdXmgLawrl/XwnnVuV6zPGnRm0ACsI
+   g==;
+IronPort-SDR: yty8zBVIjgtCtz9mlh4VOpVaraBtaIwXR43SXtqVi4Z2aTxe5IeCShX5JgUlGtfCL0p8NG5/B4
+ WAmFTQytlmG3zIIt4OstqR6SuscnqgoSpaCcIHapXJlBtPO1NpT43z04jXR0ryh7xjwjnHwh3I
+ siW5OEQAOd5ixyb/RRcctAbvbJh3c7mA5jvkqng+8RznHnn5GQ9Tmlo5qO7btwqVy1FPN2bFG0
+ q6QF3vDgAeC7e6TYgHYlxY7x9BpkOFl6ZSGEkpYb1YZa3ZeFMQlaxRFRhcZixtL6PJD6FXRsA2
+ WxCAhz2RtNc8RCDok0IKhoqp
+X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; 
+   d="scan'208";a="149848806"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Oct 2021 01:56:05 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 28 Oct 2021 01:56:05 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 28 Oct 2021 01:56:04 -0700
+Date:   Thu, 28 Oct 2021 10:57:47 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>, <kishon@ti.com>,
+        <robh+dt@kernel.org>, <andrew@lunn.ch>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 3/3] phy: Add lan966x ethernet serdes PHY driver
+Message-ID: <20211028085747.hhpbcfaevmt4wrl2@soft-dev3-1.localhost>
+References: <20211015123920.176782-1-horatiu.vultur@microchip.com>
+ <20211015123920.176782-4-horatiu.vultur@microchip.com>
+ <YW8HIHTCVgB+URJ5@matsya>
+ <20211020091733.fxph2pq3xa3byvry@soft-dev3-1.localhost>
+ <YXA3VVUGEjUR4HDC@matsya>
+ <YXA6lZBTeA6aNxVD@piout.net>
+ <YXEEcJHuEdFLPyCU@matsya>
+ <20211021091032.ffaoncg5jjdwdeyg@soft-dev3-1.localhost>
+ <YXGoGtbFeKa+TVk2@matsya>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YXGoGtbFeKa+TVk2@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for PIL loading of WPSS processor for SC7280
-- WPSS boot will be requested by the wifi driver and hence
-  disable auto-boot for WPSS.
-- Add a separate shutdown sequence handler for WPSS.
-- Add multiple power-domain voting support
-- Parse firmware-name from dtsi entry
+The 10/21/2021 23:19, Vinod Koul wrote:
+> 
+> On 21-10-21, 11:10, Horatiu Vultur wrote:
+> > The 10/21/2021 11:40, Vinod Koul wrote:
+> > >
+> > > On 20-10-21, 17:49, Alexandre Belloni wrote:
+> > > > On 20/10/2021 21:05:49+0530, Vinod Koul wrote:
+> > > > > > > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > > > > > >
+> > > > > > > Any reason why this is dual licensed, why not GPL only?
+> > > > > >
+> > > > > > No reason, I think I copy this from a different file.
+> > > > >
+> > > > > Please have a chat with your lawyers on the correct license this should
+> > > > > have!
+> > > > Dual GPL and MIT was Microsemi's policy, I'm not sure it carried over to
+> > > > Microchip.
+> > >
+> > > That is why they need to talk to someone and decide what license
+> > > applies :)
+> >
+> > I have changed it to be the same as the one on sparx5 because also
+> > sparx5 is a Microchip product. On sparx5 we used:
+> > 'SPDX-License-Identifier: GPL-2.0-or-later'
+> 
+> Has the code been copied/derived from somewhere/auto generated from
+> scripts/tools or entirely written by you?
 
-Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
----
- drivers/remoteproc/qcom_q6v5_adsp.c | 219 +++++++++++++++++++++++++++++++++---
- 1 file changed, 203 insertions(+), 16 deletions(-)
+Sorry for late reply, but I was out of office without access to the
+emails.
 
-diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
-index 098362e6..7d07e79 100644
---- a/drivers/remoteproc/qcom_q6v5_adsp.c
-+++ b/drivers/remoteproc/qcom_q6v5_adsp.c
-@@ -32,6 +32,7 @@
- 
- /* time out value */
- #define ACK_TIMEOUT			1000
-+#define ACK_TIMEOUT_US			1000000
- #define BOOT_FSM_TIMEOUT		10000
- /* mask values */
- #define EVB_MASK			GENMASK(27, 4)
-@@ -51,6 +52,8 @@
- #define QDSP6SS_CORE_CBCR	0x20
- #define QDSP6SS_SLEEP_CBCR	0x3c
- 
-+#define QCOM_Q6V5_RPROC_PROXY_PD_MAX	3
-+
- struct adsp_pil_data {
- 	int crash_reason_smem;
- 	const char *firmware_name;
-@@ -58,9 +61,13 @@ struct adsp_pil_data {
- 	const char *ssr_name;
- 	const char *sysmon_name;
- 	int ssctl_id;
-+	bool is_wpss;
-+	bool auto_boot;
- 
- 	const char **clk_ids;
- 	int num_clks;
-+	const char **proxy_pd_names;
-+	const char *load_state;
- };
- 
- struct qcom_adsp {
-@@ -93,11 +100,143 @@ struct qcom_adsp {
- 	void *mem_region;
- 	size_t mem_size;
- 
-+	struct device *proxy_pds[QCOM_Q6V5_RPROC_PROXY_PD_MAX];
-+	int proxy_pd_count;
-+
- 	struct qcom_rproc_glink glink_subdev;
- 	struct qcom_rproc_ssr ssr_subdev;
- 	struct qcom_sysmon *sysmon;
-+
-+	int (*shutdown)(struct qcom_adsp *adsp);
- };
- 
-+static int qcom_rproc_pds_attach(struct device *dev, struct device **devs,
-+				 const char **pd_names)
-+{
-+	size_t num_pds = 0;
-+	int ret;
-+	int i;
-+
-+	if (!pd_names)
-+		return 0;
-+
-+	/* Handle single power domain */
-+	if (dev->pm_domain) {
-+		devs[0] = dev;
-+		pm_runtime_enable(dev);
-+		return 1;
-+	}
-+
-+	while (pd_names[num_pds])
-+		num_pds++;
-+
-+	for (i = 0; i < num_pds; i++) {
-+		devs[i] = dev_pm_domain_attach_by_name(dev, pd_names[i]);
-+		if (IS_ERR_OR_NULL(devs[i])) {
-+			ret = PTR_ERR(devs[i]) ? : -ENODATA;
-+			goto unroll_attach;
-+		}
-+	}
-+
-+	return num_pds;
-+
-+unroll_attach:
-+	for (i--; i >= 0; i--)
-+		dev_pm_domain_detach(devs[i], false);
-+
-+	return ret;
-+}
-+
-+static void qcom_rproc_pds_detach(struct qcom_adsp *adsp, struct device **pds,
-+				  size_t pd_count)
-+{
-+	struct device *dev = adsp->dev;
-+	int i;
-+
-+	/* Handle single power domain */
-+	if (dev->pm_domain && pd_count) {
-+		pm_runtime_disable(dev);
-+		return;
-+	}
-+
-+	for (i = 0; i < pd_count; i++)
-+		dev_pm_domain_detach(pds[i], false);
-+}
-+
-+static int qcom_rproc_pds_enable(struct qcom_adsp *adsp, struct device **pds,
-+				 size_t pd_count)
-+{
-+	int ret;
-+	int i;
-+
-+	for (i = 0; i < pd_count; i++) {
-+		dev_pm_genpd_set_performance_state(pds[i], INT_MAX);
-+		ret = pm_runtime_get_sync(pds[i]);
-+		if (ret < 0) {
-+			pm_runtime_put_noidle(pds[i]);
-+			dev_pm_genpd_set_performance_state(pds[i], 0);
-+			goto unroll_pd_votes;
-+		}
-+	}
-+
-+	return 0;
-+
-+unroll_pd_votes:
-+	for (i--; i >= 0; i--) {
-+		dev_pm_genpd_set_performance_state(pds[i], 0);
-+		pm_runtime_put(pds[i]);
-+	}
-+
-+	return ret;
-+}
-+
-+static void qcom_rproc_pds_disable(struct qcom_adsp *adsp, struct device **pds,
-+				   size_t pd_count)
-+{
-+	int i;
-+
-+	for (i = 0; i < pd_count; i++) {
-+		dev_pm_genpd_set_performance_state(pds[i], 0);
-+		pm_runtime_put(pds[i]);
-+	}
-+}
-+
-+static int qcom_wpss_shutdown(struct qcom_adsp *adsp)
-+{
-+	unsigned int val;
-+
-+	regmap_write(adsp->halt_map, adsp->halt_lpass + LPASS_HALTREQ_REG, 1);
-+
-+	/* Wait for halt ACK from QDSP6 */
-+	regmap_read_poll_timeout(adsp->halt_map,
-+				 adsp->halt_lpass + LPASS_HALTACK_REG, val,
-+				 val, 1000, ACK_TIMEOUT_US);
-+
-+	/* Assert the WPSS PDC Reset */
-+	reset_control_assert(adsp->pdc_sync_reset);
-+	/* Place the WPSS processor into reset */
-+	reset_control_assert(adsp->restart);
-+	/* wait after asserting subsystem restart from AOSS */
-+	usleep_range(200, 205);
-+	/* Remove the WPSS reset */
-+	reset_control_deassert(adsp->restart);
-+	/* De-assert the WPSS PDC Reset */
-+	reset_control_deassert(adsp->pdc_sync_reset);
-+
-+	usleep_range(100, 105);
-+
-+	clk_bulk_disable_unprepare(adsp->num_clks, adsp->clks);
-+
-+	regmap_write(adsp->halt_map, adsp->halt_lpass + LPASS_HALTREQ_REG, 0);
-+
-+	/* Wait for halt ACK from QDSP6 */
-+	regmap_read_poll_timeout(adsp->halt_map,
-+				 adsp->halt_lpass + LPASS_HALTACK_REG, val,
-+				 !val, 1000, ACK_TIMEOUT_US);
-+
-+	return 0;
-+}
-+
- static int qcom_adsp_shutdown(struct qcom_adsp *adsp)
- {
- 	unsigned long timeout;
-@@ -193,12 +332,10 @@ static int adsp_start(struct rproc *rproc)
- 	if (ret)
- 		goto disable_irqs;
- 
--	dev_pm_genpd_set_performance_state(adsp->dev, INT_MAX);
--	ret = pm_runtime_get_sync(adsp->dev);
--	if (ret) {
--		pm_runtime_put_noidle(adsp->dev);
-+	ret = qcom_rproc_pds_enable(adsp, adsp->proxy_pds,
-+				    adsp->proxy_pd_count);
-+	if (ret < 0)
- 		goto disable_xo_clk;
--	}
- 
- 	ret = clk_bulk_prepare_enable(adsp->num_clks, adsp->clks);
- 	if (ret) {
-@@ -243,8 +380,7 @@ static int adsp_start(struct rproc *rproc)
- disable_adsp_clks:
- 	clk_bulk_disable_unprepare(adsp->num_clks, adsp->clks);
- disable_power_domain:
--	dev_pm_genpd_set_performance_state(adsp->dev, 0);
--	pm_runtime_put(adsp->dev);
-+	qcom_rproc_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
- disable_xo_clk:
- 	clk_disable_unprepare(adsp->xo);
- disable_irqs:
-@@ -258,8 +394,7 @@ static void qcom_adsp_pil_handover(struct qcom_q6v5 *q6v5)
- 	struct qcom_adsp *adsp = container_of(q6v5, struct qcom_adsp, q6v5);
- 
- 	clk_disable_unprepare(adsp->xo);
--	dev_pm_genpd_set_performance_state(adsp->dev, 0);
--	pm_runtime_put(adsp->dev);
-+	qcom_rproc_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
- }
- 
- static int adsp_stop(struct rproc *rproc)
-@@ -272,7 +407,7 @@ static int adsp_stop(struct rproc *rproc)
- 	if (ret == -ETIMEDOUT)
- 		dev_err(adsp->dev, "timed out on wait\n");
- 
--	ret = qcom_adsp_shutdown(adsp);
-+	ret = adsp->shutdown(adsp);
- 	if (ret)
- 		dev_err(adsp->dev, "failed to shutdown: %d\n", ret);
- 
-@@ -427,6 +562,7 @@ static int adsp_alloc_memory_region(struct qcom_adsp *adsp)
- static int adsp_probe(struct platform_device *pdev)
- {
- 	const struct adsp_pil_data *desc;
-+	const char *firmware_name;
- 	struct qcom_adsp *adsp;
- 	struct rproc *rproc;
- 	int ret;
-@@ -435,12 +571,22 @@ static int adsp_probe(struct platform_device *pdev)
- 	if (!desc)
- 		return -EINVAL;
- 
-+	firmware_name = desc->firmware_name;
-+	ret = of_property_read_string(pdev->dev.of_node, "firmware-name",
-+				      &firmware_name);
-+	if (ret < 0 && ret != -EINVAL) {
-+		dev_err(&pdev->dev, "unable to read firmware-name\n");
-+		return ret;
-+	}
-+
- 	rproc = rproc_alloc(&pdev->dev, pdev->name, &adsp_ops,
--			    desc->firmware_name, sizeof(*adsp));
-+			    firmware_name, sizeof(*adsp));
- 	if (!rproc) {
- 		dev_err(&pdev->dev, "unable to allocate remoteproc\n");
- 		return -ENOMEM;
- 	}
-+
-+	rproc->auto_boot = desc->auto_boot;
- 	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
- 
- 	adsp = (struct qcom_adsp *)rproc->priv;
-@@ -449,6 +595,11 @@ static int adsp_probe(struct platform_device *pdev)
- 	adsp->info_name = desc->sysmon_name;
- 	platform_set_drvdata(pdev, adsp);
- 
-+	if (desc->is_wpss)
-+		adsp->shutdown = qcom_wpss_shutdown;
-+	else
-+		adsp->shutdown = qcom_adsp_shutdown;
-+
- 	ret = adsp_alloc_memory_region(adsp);
- 	if (ret)
- 		goto free_rproc;
-@@ -457,7 +608,13 @@ static int adsp_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto free_rproc;
- 
--	pm_runtime_enable(adsp->dev);
-+	ret = qcom_rproc_pds_attach(adsp->dev, adsp->proxy_pds,
-+				    desc->proxy_pd_names);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "Failed to attach proxy power domains\n");
-+		goto free_rproc;
-+	}
-+	adsp->proxy_pd_count = ret;
- 
- 	ret = adsp_init_reset(adsp);
- 	if (ret)
-@@ -467,8 +624,8 @@ static int adsp_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto disable_pm;
- 
--	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, desc->crash_reason_smem, NULL,
--			     qcom_adsp_pil_handover);
-+	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, desc->crash_reason_smem,
-+			     desc->load_state, qcom_adsp_pil_handover);
- 	if (ret)
- 		goto disable_pm;
- 
-@@ -489,7 +646,8 @@ static int adsp_probe(struct platform_device *pdev)
- 	return 0;
- 
- disable_pm:
--	pm_runtime_disable(adsp->dev);
-+	qcom_rproc_pds_detach(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
-+
- free_rproc:
- 	rproc_free(rproc);
- 
-@@ -506,7 +664,7 @@ static int adsp_remove(struct platform_device *pdev)
- 	qcom_remove_glink_subdev(adsp->rproc, &adsp->glink_subdev);
- 	qcom_remove_sysmon_subdev(adsp->sysmon);
- 	qcom_remove_ssr_subdev(adsp->rproc, &adsp->ssr_subdev);
--	pm_runtime_disable(adsp->dev);
-+	qcom_rproc_pds_detach(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
- 	rproc_free(adsp->rproc);
- 
- 	return 0;
-@@ -518,11 +676,16 @@ static const struct adsp_pil_data adsp_resource_init = {
- 	.ssr_name = "lpass",
- 	.sysmon_name = "adsp",
- 	.ssctl_id = 0x14,
-+	.is_wpss = false,
-+	.auto_boot = true,
- 	.clk_ids = (const char*[]) {
- 		"sway_cbcr", "lpass_ahbs_aon_cbcr", "lpass_ahbm_aon_cbcr",
- 		"qdsp6ss_xo", "qdsp6ss_sleep", "qdsp6ss_core", NULL
- 	},
- 	.num_clks = 7,
-+	.proxy_pd_names = (const char*[]) {
-+		"cx", NULL
-+	},
- };
- 
- static const struct adsp_pil_data cdsp_resource_init = {
-@@ -531,15 +694,39 @@ static const struct adsp_pil_data cdsp_resource_init = {
- 	.ssr_name = "cdsp",
- 	.sysmon_name = "cdsp",
- 	.ssctl_id = 0x17,
-+	.is_wpss = false,
-+	.auto_boot = true,
- 	.clk_ids = (const char*[]) {
- 		"sway", "tbu", "bimc", "ahb_aon", "q6ss_slave", "q6ss_master",
- 		"q6_axim", NULL
- 	},
- 	.num_clks = 7,
-+	.proxy_pd_names = (const char*[]) {
-+		"cx", NULL
-+	},
-+};
-+
-+static const struct adsp_pil_data wpss_resource_init = {
-+	.crash_reason_smem = 626,
-+	.firmware_name = "wpss.mdt",
-+	.ssr_name = "wpss",
-+	.sysmon_name = "wpss",
-+	.ssctl_id = 0x19,
-+	.is_wpss = true,
-+	.auto_boot = false,
-+	.load_state = "wpss",
-+	.clk_ids = (const char*[]) {
-+		"ahb_bdg", "ahb", "rscp", NULL
-+	},
-+	.num_clks = 3,
-+	.proxy_pd_names = (const char*[]) {
-+		"cx", "mx", NULL
-+	},
- };
- 
- static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,qcs404-cdsp-pil", .data = &cdsp_resource_init },
-+	{ .compatible = "qcom,sc7280-wpss-pil", .data = &wpss_resource_init },
- 	{ .compatible = "qcom,sdm845-adsp-pil", .data = &adsp_resource_init },
- 	{ },
- };
+The register file 'lan966x_serdes_regs.h' was autogenerated from some
+internal scripts. Which takes the info from here [1] and generates these
+header files. The reason why we generate them is that is more error proof
+that writting them manually. We are doing the same for sparx5
+registers[2]
+
+The other file 'lan966x_serdes.c' was entirely written by me.
+
+[1] https://github.com/microchip-ung/lan9668_reginfo
+[2] https://elixir.bootlin.com/linux/latest/source/drivers/phy/microchip/sparx5_serdes_regs.h
+
+> 
+> --
+> ~Vinod
+
 -- 
-2.7.4
-
+/Horatiu
