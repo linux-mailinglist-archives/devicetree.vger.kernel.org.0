@@ -2,249 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7067E43DD86
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4067C43DD94
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230091AbhJ1JRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 05:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43606 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbhJ1JRW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:17:22 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 542B9C061745;
-        Thu, 28 Oct 2021 02:14:55 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D0B471F44910
-Subject: Re: [PATCH v1] media: platform: mtk-mdp3: Revise frame change
- criteria
-To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
+        id S229992AbhJ1JU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 05:20:56 -0400
+Received: from mail-lf1-f50.google.com ([209.85.167.50]:38615 "EHLO
+        mail-lf1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229791AbhJ1JUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:20:55 -0400
+Received: by mail-lf1-f50.google.com with SMTP id x27so12185692lfu.5;
+        Thu, 28 Oct 2021 02:18:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=mjPq0XcN0WLHESSI9z9AYQIHnwtAkQDq1tNfhK+52Uo=;
+        b=GDzVUq2J6svMktygy7mdVGLEGls0htECPWBZMmJjVlNEQB7kfXRTcPq0HfGfJf9Q9Q
+         uTuV6WN6IZrjtsf4b0wpQ9jfXX0SZK1pnp3FxkCV3GnuYosTLP739I8/hHXSIhxzWPzm
+         f4DXtWxvCxvnP7+o2WWuA2dTXUPLRdSrnOa+uuTQPM3jrx0cKyaT62j7kEqN4lmrRANM
+         9FNohd8jT5s1mgmN8NxhfWH1KG6uUqrHPBSeWds1Wvh3bWGMIbtOtnUfbztuEE6cJFtM
+         p0FuyVDGYOWjGcVL/ARbHrPmfDZZvBBUwDUlukCBjMewcaWUaMXxyEvrLVGMSBZT/KLr
+         0Xcw==
+X-Gm-Message-State: AOAM531T0KlHsBy1VpMQYz9NsbKJoOz37DcxREZXkuxBETYTQ1afmDkG
+        Cy9dByfAH/0DTMH4vI1cSIM=
+X-Google-Smtp-Source: ABdhPJzyutiN63N10FgeVkDEzId/Yw/uQH4v8u/oTMsZl71U25VvAfYD/00vxtofi0y4WuPEQzDdIQ==
+X-Received: by 2002:a05:6512:3d11:: with SMTP id d17mr3041224lfv.481.1635412707647;
+        Thu, 28 Oct 2021 02:18:27 -0700 (PDT)
+Received: from fedora (d44bs26yxfwtfmx4yyk-4.rev.dnainternet.fi. [2001:14bb:c6:2fb:6813:24a0:454f:2])
+        by smtp.gmail.com with ESMTPSA id bq3sm253760lfb.173.2021.10.28.02.18.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 02:18:26 -0700 (PDT)
+Date:   Thu, 28 Oct 2021 12:18:19 +0300
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     lukas.bulwahn@gmail.com, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Fabien Parent <fparent@baylibre.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        "river . cheng" <river.cheng@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20211028040902.437-1-roy-cw.yeh@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <f2be422f-5b0b-4f9e-d462-0c1308247a1c@collabora.com>
-Date:   Thu, 28 Oct 2021 11:14:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com
+Subject: [RESEND PATCH 0/4] Drop ROHM BD70528 support
+Message-ID: <cover.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <20211028040902.437-1-roy-cw.yeh@mediatek.com>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jgJ3F0fUJZ1Qj6F7"
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/10/21 06:09, roy-cw.yeh ha scritto:
-> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
-> 
-> frame_change will trigger MDP SCP to re-calculate path and parameter.
-> MDP fails when it doesn't get correct parameter to process frame.
-> frame_change raises when size change occurs
-> no matter it happens in input or output frame
-> 
-> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
-> ---
-> This patch is based on [1]
-> [1] Reconfigure SHM to improve performance
->      - https://patchwork.kernel.org/project/linux-mediatek/patch/20211022092827.24631-3-roy-cw.yeh@mediatek.com/
-> ---
->   .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |  2 +
->   .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    | 20 ++++----
->   .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   | 50 +++++++++++++++++++
->   .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  8 +++
->   4 files changed, 71 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
-> index 737082093997..0d2b86019723 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
-> @@ -11,6 +11,7 @@
->   #include <media/v4l2-mem2mem.h>
->   #include <linux/soc/mediatek/mtk-mmsys.h>
->   #include <linux/soc/mediatek/mtk-mutex.h>
-> +#include "mtk-mdp3-regs.h"
->   #include "mtk-mdp3-comp.h"
->   #include "mtk-mdp3-vpu.h"
->   
-> @@ -107,6 +108,7 @@ struct mdp_dev {
->   	atomic_t				cmdq_count;
->   	struct mdp_cmdq_pkt_pool		*cmdq_pool;
->   	struct mdp_cmdq_pkt_pool		*cmdq_d_pool;
-> +	struct mdp_framechange_param		prev_image;
->   };
->   
->   struct mdp_pipe_info {
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
-> index 4684bb3718d3..6cd7bd610715 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
-> @@ -98,8 +98,8 @@ static void mdp_m2m_worker(struct work_struct *work)
->   	struct vb2_v4l2_buffer *src_vb, *dst_vb;
->   	struct img_ipi_frameparam param = {0};
->   	struct mdp_cmdq_param task = {0};
-> +	struct mdp_framechange_param cur_frame = {0};
->   	enum vb2_buffer_state vb_state = VB2_BUF_STATE_ERROR;
-> -	static u8 prev_scenario;
->   	int ret;
->   
->   	if (mdp_m2m_ctx_is_state_set(ctx, MDP_M2M_CTX_ERROR)) {
-> @@ -118,21 +118,23 @@ static void mdp_m2m_worker(struct work_struct *work)
->   	mdp_set_src_config(&param.inputs[0], frame, &src_vb->vb2_buf);
->   	mdp_set_scenario(ctx->mdp_dev, &param, frame);
->   
-> -	if (prev_scenario != param.type) {
-> -		prev_scenario = param.type;
-> +	frame = ctx_get_frame(ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	dst_vb = v4l2_m2m_next_dst_buf(ctx->m2m_ctx);
-> +	mdp_set_dst_config(&param.outputs[0], frame, &dst_vb->vb2_buf);
-> +
-> +	cur_frame.scenario = param.type;
-> +	memcpy(&cur_frame.in, &param.inputs[0], sizeof(cur_frame.in));
-> +	memcpy(&cur_frame.out, &param.outputs[0], sizeof(cur_frame.out));
-> +
-> +	if (mdp_get_framechange(ctx->mdp_dev, &cur_frame))
->   		param.frame_change = true;
-> -	} else {
-> +	else
->   		param.frame_change = (ctx->frame_count == 0) ? true : false;
-> -	}
->   
->   	if (param.frame_change)
->   		dev_info(&ctx->mdp_dev->pdev->dev,
->   			 "MDP Scenario: %d\n", param.type);
->   
-> -	frame = ctx_get_frame(ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> -	dst_vb = v4l2_m2m_next_dst_buf(ctx->m2m_ctx);
-> -	mdp_set_dst_config(&param.outputs[0], frame, &dst_vb->vb2_buf);
-> -
->   	dst_vb->vb2_buf.timestamp = src_vb->vb2_buf.timestamp;
->   	param.timestamp = src_vb->vb2_buf.timestamp;
->   
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c b/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
-> index 91c5e35947d3..e182d27a1c3f 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
-> @@ -434,6 +434,56 @@ static u32 mdp_fmt_get_plane_size(const struct mdp_format *fmt,
->   	return 0;
->   }
->   
-> +int mdp_get_framechange(struct mdp_dev *mdp,
-> +			struct mdp_framechange_param *cur)
 
-This function is returning 0 or 1, so it would be more appropriate to return
-a bool instead.
+--jgJ3F0fUJZ1Qj6F7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +{
-> +	int ret = 0;
+Drop ROHM BD70528 support
 
-This would also be a bool.
+Unfortunately there has not been a big demand for ROHM BD70528
+IC. The few users I know control PMIC from separate M4-core,
+which is not running Linux. I am not aware of any users of this
+Linux driver.
 
-> +	struct mdp_framechange_param *prev;
-> +
-> +	prev = &mdp->prev_image;
-> +	if (prev->scenario != cur->scenario)
-> +		ret = true;
-> +
-> +	if (prev->in.buffer.format.width != cur->in.buffer.format.width ||
+While I did really like this IC and writing the drivers for it,
+seems like these drivers are becoming useless burden. So, I see
+no point in maintaining them. Let's just drop the drivers if
+there is no objections to this series. :(
 
-It's useless to perform other checks if you've already determined that
-ret = true... so I think you should aggregate all checks in one big
-conditional.
+The regulator, WDG and power-supply drivers were already dropped.
 
-if ( (prev->scenario != cur->scenario) ||
-      /* Input buffers */
-      (prev->in.buffer............ || .... ) ||
-      /* Output buffers */
-      (.....) ) {
-	ret = true;
-}
+The RTC and clk drivers remain in use by few other ROHM IC drivers.
+Nevertheless, they are already converted to not depend the BD70528
+defines during previous cycle.
 
-> +	    prev->in.buffer.format.height != cur->in.buffer.format.height)
-> +		ret = true;
-> +
-> +	if (prev->out.buffer.format.width != cur->out.buffer.format.width ||
-> +	    prev->out.buffer.format.height != cur->out.buffer.format.height)
-> +		ret = true;
-> +
-> +	if (prev->out.crop.left != cur->out.crop.left ||
-> +	    prev->out.crop.top != cur->out.crop.top ||
-> +	    prev->out.crop.width != cur->out.crop.width ||
-> +	    prev->out.crop.height != cur->out.crop.height)
-> +		ret = true;
-> +
-> +	dev_dbg(&mdp->pdev->dev,
-> +		"prev[%d] [%d, %d], [%d, %d], [%d, %d, %d, %d]\n", prev->scenario,
-> +		prev->in.buffer.format.width,
-> +		prev->in.buffer.format.height,
-> +		prev->out.buffer.format.width,
-> +		prev->out.buffer.format.height,
-> +		prev->out.crop.left,
-> +		prev->out.crop.top,
-> +		prev->out.crop.width,
-> +		prev->out.crop.height);
-> +
-> +	dev_dbg(&mdp->pdev->dev,
-> +		"cur[%d] [%d, %d], [%d, %d], [%d, %d, %d, %d]\n", cur->scenario,
-> +		cur->in.buffer.format.width,
-> +		cur->in.buffer.format.height,
-> +		cur->out.buffer.format.width,
-> +		cur->out.buffer.format.height,
-> +		cur->out.crop.left,
-> +		cur->out.crop.top,
-> +		cur->out.crop.width,
-> +		cur->out.crop.height);
-> +
-> +	memcpy(prev, cur, sizeof(struct mdp_framechange_param));
-> +	return ret;
-> +}
-> +
->   void mdp_set_scenario(struct mdp_dev *mdp,
->   		      struct img_ipi_frameparam *param,
->   		      struct mdp_frame *frame)
-> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h b/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
-> index 7979ad60ab87..2d0b3e77f959 100644
-> --- a/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
-> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
-> @@ -329,6 +329,12 @@ struct mdp_frameparam {
->   	enum v4l2_quantization		quant;
->   };
->   
-> +struct mdp_framechange_param {
-> +	u8 scenario;
-> +	struct img_input in;
-> +	struct img_output out;
-> +};
-> +
->   int mdp_enum_fmt_mplane(struct mdp_dev *mdp, struct v4l2_fmtdesc *f);
->   const struct mdp_format *mdp_try_fmt_mplane(struct mdp_dev *mdp,
->   					    struct v4l2_format *f,
-> @@ -341,6 +347,8 @@ int mdp_try_crop(struct v4l2_rect *r, const struct v4l2_selection *s,
->   int mdp_check_scaling_ratio(const struct v4l2_rect *crop,
->   			    const struct v4l2_rect *compose, s32 rotation,
->   	const struct mdp_limit *limit);
-> +int mdp_get_framechange(struct mdp_dev *mdp,
-> +			struct mdp_framechange_param *cur);
->   void mdp_set_scenario(struct mdp_dev *mdp,
->   		      struct img_ipi_frameparam *param,
->   		      struct mdp_frame *frame);
-> 
+This series cleans the remaining pieces, GPIO, MFD, dt-bindings and
+MAINTAINER entries. The GPIO code uses defines from MFD - but the GPIO
+part is also depending on MFD KConfig entry - so there should be no
+breakages even if the patches were applied to respective subsystem trees
+and were not carried via single tree.
 
-Regards,
-- Angelo
+---
 
+Matti Vaittinen (4):
+  dt-bindings: mfd: regulator: Drop BD70528 support
+  gpio: bd70528 Drop BD70528 support
+  mfd: bd70528: Drop BD70528 support
+  MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
+
+ .../bindings/mfd/rohm,bd70528-pmic.txt        | 102 -----
+ .../regulator/rohm,bd70528-regulator.txt      |  68 ---
+ MAINTAINERS                                   |   8 -
+ drivers/gpio/Kconfig                          |  11 -
+ drivers/gpio/Makefile                         |   1 -
+ drivers/gpio/gpio-bd70528.c                   | 230 -----------
+ drivers/mfd/Kconfig                           |  17 -
+ drivers/mfd/Makefile                          |   1 -
+ drivers/mfd/rohm-bd70528.c                    | 314 --------------
+ include/linux/mfd/rohm-bd70528.h              | 389 ------------------
+ include/linux/mfd/rohm-generic.h              |   1 -
+ 11 files changed, 1142 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic=
+=2Etxt
+ delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd7052=
+8-regulator.txt
+ delete mode 100644 drivers/gpio/gpio-bd70528.c
+ delete mode 100644 drivers/mfd/rohm-bd70528.c
+ delete mode 100644 include/linux/mfd/rohm-bd70528.h
+
+
+base-commit: 3906fe9bb7f1a2c8667ae54e967dc8690824f4ea
+--=20
+2.31.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--jgJ3F0fUJZ1Qj6F7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmF6asUACgkQeFA3/03a
+ocVy/gf/bkPqEDZsdcNjSeitRlW92B96tpu91eClQ88S3R+MTW9k+45bsZF0ySnl
+r6ApfBGwvhnckNaZp5BYBbU+RzVMa4M1BY4b7u5UcWgfn7FfS3HJEHiOUNazKHqx
+RqcGOPC+F4qhZNigR5LqlGvlf5dV746F+NQMAWV5iscRB2LcWVXbv4Oj4G+RWhf4
+fwaKrM/VyIeTUTxl8U55mu6itRospX4lfblW4jcfaeYvYENTPC7iiNT2g8YxBwNd
+H44KQ7eXAEjmlngReXt5pZFjSFFBw65yvwwk77XKPtctdHo4J3c4PvWqGoUTtDjj
+ayAjthaJ1Fbv6eugkeo50jVPG0uxFA==
+=ELES
+-----END PGP SIGNATURE-----
+
+--jgJ3F0fUJZ1Qj6F7--
