@@ -2,296 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A81D543E668
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7B943E642
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231165AbhJ1QpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 12:45:05 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:16498 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230264AbhJ1Qoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:44:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1635439348; x=1666975348;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=IRSWPvrkGiuKO13PQF9Y7/9y/3GE1hBh3d3HnNSY2R4=;
-  b=yGEU77qhcVrdbt+LSzXCcq4C8Pp8ivlxH7k72uJCjMJ3v+mi825skE7Q
-   pZzpFgz34xjJV/H2CFnMV0Qm6SYEV32D0M6GmxCSQdJGmHAnsEL309T1S
-   kL9fu9hGRvSnGBCAtXLxDrniU1tERCfG/ejslA40SIrrr/8TIgN5c5gpK
-   yQo2ulU/PjDnODxdBZYMIempxGSen6TULShsQxE0awKoG4b/fC6vlufmn
-   v+rDhwKcIIZuv28XqX9LMtT06DSd7OL/WTSDKZeKhSD863gqNyzBhQFHh
-   9ZqFo5tExmGANG/aMjf2Hk9Kn+NpKHFzfKFd07FmUP9njnd35+ZuiAUIv
-   g==;
-IronPort-SDR: EhcU+GAXZyTaWVFVYoWET7P0GP0JV3hv2OT2Ue2IUWdmSj4eUKP5pdvhCcEiakGsSOHizNFMVn
- O5hsuz0ATmT+np4tQv31R+LEYrICsfW4uPrZQOmKqOb5fcI9Jlm7n3jT+Rnp879SI2cb54pbOr
- CQ8mrA1H1l8LvnJXMAs9nBnbp++cjx7eYDHtwDHike3MqXHL4F0YEG6/Lbgjcra/Jkedf0eua3
- 9i1QaZNhMBeJCWY6oh/gWgREQspw/+VgR1rdVD6/hWvZ6lnhRi8G0zpH9nFjDwqVSJ1yyTNhR7
- mpOr6UHrhzbOZUayyVptCyWh
-X-IronPort-AV: E=Sophos;i="5.87,190,1631602800"; 
-   d="scan'208";a="142031899"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Oct 2021 09:42:28 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 28 Oct 2021 09:42:27 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Thu, 28 Oct 2021 09:42:21 -0700
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     <andrew@lunn.ch>, <netdev@vger.kernel.org>, <olteanv@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <Woojung.Huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <f.fainelli@gmail.com>, <devicetree@vger.kernel.org>
-Subject: [PATCH v5 net-next 10/10] net: dsa: microchip: add support for vlan operations
-Date:   Thu, 28 Oct 2021 22:11:11 +0530
-Message-ID: <20211028164111.521039-11-prasanna.vengateshan@microchip.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211028164111.521039-1-prasanna.vengateshan@microchip.com>
-References: <20211028164111.521039-1-prasanna.vengateshan@microchip.com>
+        id S230217AbhJ1QnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 12:43:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33838 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230094AbhJ1QnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:43:20 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C21F8C0613B9
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:40:53 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id x16-20020a9d7050000000b00553d5d169f7so7731506otj.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nDv83QZcQaiq+Plbm4VyDB+yhvLACcbJ2NjM7KsEzV8=;
+        b=uI4ZR5ru2LaDPHj9bcpsj44XEch7MSCsmqVwuw+myYKs4qnXcrtKelw1884YCncfWV
+         mtvDNqZqogyP3nHnY0eCLEs0O0rrld8TfMRBDX8jR/DdnpxXTOlZwucHRU0VrAC+Flt3
+         gpxSS2WLLQY4kTED/T8KFNQONBryluMhLqJhA3kzliWjvYMvFkJlJQxZXZdh05pxfPmC
+         HqD5iQ0/rfDlYcXw30yvWGAtNa6cBmdFJXP5LS++fbH7RRz5KtRkb12ufbHxv4gJSeGL
+         uNU0Z+/25Ny7z3XIfkGexCcyjTyHQnrbnJJ4u0FbEDRCfHj1h7UZVCciDt1Mh0n3c/hL
+         bfIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nDv83QZcQaiq+Plbm4VyDB+yhvLACcbJ2NjM7KsEzV8=;
+        b=k58okKpf8KG6CShrYBH9/ET+jLw7seuJ345ay7emVlpN7g9hnmP7rHkD0UJHH9ufsk
+         24dwkjgO4ma4QwHYL2G+WH2KuFOxEDfZZB0L4KUmmzZThQr1yMP6KHn8AxVRhNK3GVYb
+         TVHg9Fx9/AXuzIDxHVO3isc97TbMlIfRaNFv2g5BiaAU/NKBKjd/1YCUJtnqq4VkXu7C
+         uo+dX3mBk8wAnTIc+HDZJMWRMzquMfRHQ41UTPet16G50Bm5/8qWsRQl1X8plQ4pGFmc
+         2dJTfHIGHvLDc0MQtOkyz/xLJHbafGGOAliiojTkpaXexoxshYvWQiw2NMM69gxeE2Ty
+         HlIA==
+X-Gm-Message-State: AOAM5332pISIjd7jmEUhjX2XCA6Lw9wT5ic8zscf7CcogOE+ygcsvITm
+        tcmy70oCtAO2kgKYE1zOR8OiUA==
+X-Google-Smtp-Source: ABdhPJw2r60lZ0Xz3Yioz3oBvz7xGoZSDI8DoQ4O2wG1kenFPfrF0mSNLOwqDvQvj59WV/zsc3ccfQ==
+X-Received: by 2002:a9d:1b69:: with SMTP id l96mr3006330otl.296.1635439252703;
+        Thu, 28 Oct 2021 09:40:52 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e7sm1109818otq.4.2021.10.28.09.40.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 09:40:52 -0700 (PDT)
+Date:   Thu, 28 Oct 2021 09:42:40 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd
+ bindings for dwc3 qcom
+Message-ID: <YXrTAH5Wk4jAMR+b@ripper>
+References: <YXcBK7zqny0s4gd4@ripper>
+ <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper>
+ <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper>
+ <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga>
+ <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+ <YXlsEF9XZpthecJC@ripper>
+ <CAPDyKFpXdUKeuO2z2-2qG6YtiHmbg3=opfVwG007p1N2AOxGDA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFpXdUKeuO2z2-2qG6YtiHmbg3=opfVwG007p1N2AOxGDA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support for VLAN add, del, prepare and filtering operations.
+On Thu 28 Oct 03:31 PDT 2021, Ulf Hansson wrote:
 
-The VLAN aware is a global setting. Mixed vlan filterings
-are not supported. vlan_filtering_is_global is made as true
-in lan937x_setup function.
+> On Wed, 27 Oct 2021 at 17:09, Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Wed 27 Oct 07:24 PDT 2021, Ulf Hansson wrote:
+> >
+> > > On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
+> > > <bjorn.andersson@linaro.org> wrote:
+> > > >
+> > > > On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
+> > > >
+> > > > > +Rajendra
+> > > > >
+> > > > > Quoting Bjorn Andersson (2021-10-25 19:48:02)
+> > > > > > On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
+> > > > > >
+> > > > > > >
+> > > > > > > When the binding was introduced I recall we punted on the parent child
+> > > > > > > conversion stuff. One problem at a time. There's also the possibility
+> > > > > > > for a power domain to be parented by multiple power domains so
+> > > > > > > translation tables need to account for that.
+> > > > > > >
+> > > > > >
+> > > > > > But for this case - and below display case - the subdomain (the device's
+> > > > > > power-domain) is just a dumb gate. So there is no translation, the given
+> > > > > > performance_state applies to the parent. Or perhaps such implicitness
+> > > > > > will come back and bite us?
+> > > > >
+> > > > > In the gate case I don't see how the implicitness will ever be a
+> > > > > problem.
+> > > > >
+> > > > > >
+> > > > > > I don't think we allow a power-domain to be a subdomain of two
+> > > > > > power-domains - and again it's not applicable to USB or display afaict.
+> > > > >
+> > > > > Ah maybe. I always confuse power domains and genpd.
+> > > > >
+> > > > > >
+> > > > > > > >
+> > > > > > > > > Or we may need to make another part of the OPP binding to indicate the
+> > > > > > > > > relationship between the power domain and the OPP and the parent of
+> > > > > > > > > the power domain.
+> > > > > > > >
+> > > > > > > > I suspect this would be useful if a power-domain provider needs to
+> > > > > > > > translate a performance_state into a different supply-performance_state.
+> > > > > > > > Not sure if we have such case currently; these examples are all an
+> > > > > > > > adjustable power-domain with "gating" subdomains.
+> > > > > > >
+> > > > > > > Even for this case, we should be able to have the GDSC map the on state
+> > > > > > > to some performance state in the parent domain. Maybe we need to add
+> > > > > > > some code to the gdsc.c file to set a performance state on the parent
+> > > > > > > domain when it is turned on. I'm not sure where the value for that perf
+> > > > > > > state comes from. I guess we can hardcode it in the driver for now and
+> > > > > > > if it needs to be multiple values based on the clk frequency we can push
+> > > > > > > it out to an OPP table or something like that.
+> > > > > > >
+> > > > > >
+> > > > > > For the GDSC I believe we only have 1:1 mapping, so implementing
+> > > > > > set_performance_state to just pass that on to the parent might do the
+> > > > > > trick (although I haven't thought this through).
+> > > > > >
+> > > > > > Conceptually I guess this would be like calling clk_set_rate() on a
+> > > > > > clock gate, relying on it being propagated upwards. The problem here is
+> > > > > > that the performance_state is just a "random" integer without a well
+> > > > > > defined unit.
+> > > > > >
+> > > > >
+> > > > > Right. Ideally it would be in the core code somehow so that if there
+> > > > > isn't a set_performance_state function we go to the parent or some
+> > > > > special return value from the function says "call it on my parent". The
+> > > > > translation scheme could come later so we can translate the "random"
+> > > > > integer between parent-child domains.
+> > > >
+> > > > As a proof of concept it should be sufficient to just add an
+> > > > implementation of sc->pd.set_performance_state in gdsc.c. But I agree
+> > > > that it would be nice to push this into some framework code, perhaps
+> > > > made opt-in by some GENPD_FLAG_xyz.
+> > > >
+> > > > > At the end of the day the device
+> > > > > driver wants to set a frequency or runtime pm get the device and let the
+> > > > > OPP table or power domain code figure out what the level is supposed to
+> > > > > be.
+> > > > >
+> > > >
+> > > > Yes and this is already working for the non-nested case - where the
+> > > > single power-domain jumps between performance states as the opp code
+> > > > switches from one opp to another.
+> > > >
+> > > > So if we can list only the child power-domain (i.e. the GDSC) and have
+> > > > the performance_stat requests propagate up to the parent rpmhpd resource
+> > > > I think we're good.
+> > > >
+> > > >
+> > > > Let's give this a spin and confirm that this is the case...
+> > > >
+> > > > > >
+> > > > > >
+> > > > > > The one case where I believe we talked about having different mapping
+> > > > > > between the performance_state levels was in the relationship between CX
+> > > > > > and MX. But I don't think we ever did anything about that...
+> > > > >
+> > > > > Hmm alright. I think there's a constraint but otherwise nobody really
+> > > > > wants to change both at the same time.
+> > > > >
+> > > > > > >
+> > > > > > > Yes, a GDSC is really a gate on a parent power domain like CX or MMCX,
+> > > > > > > etc. Is the display subsystem an example of different clk frequencies
+> > > > > > > wanting to change the perf state of CX? If so it's a good place to work
+> > > > > > > out the translation scheme for devices that aren't listing the CX power
+> > > > > > > domain in DT.
+> > > > > >
+> > > > > > Yes, the various display components sits in MDSS_GDSC but the opp-tables
+> > > > > > needs to change the performance_state of MDSS_GDSC->parent (i.e. CX or
+> > > > > > MMCX, depending on platform).
+> > > > > >
+> > > > > > As I said, today we hack this by trusting that the base drm/msm driver
+> > > > > > will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain for each
+> > > > > > of these components.
+> > > > > >
+> > > > > >
+> > > > > > So if we solve this, then that seems to directly map to the static case
+> > > > > > for USB as well.
+> > > > > >
+> > > > >
+> > > > > Got it. So in this case we could have the various display components
+> > > > > that are in the mdss gdsc domain set their frequency via OPP and then
+> > > > > have that translate to a level in CX or MMCX. How do we parent the power
+> > > > > domains outside of DT? I'm thinking that we'll need to do that if MMCX
+> > > > > is parented by CX or something like that and the drivers for those two
+> > > > > power domains are different. Is it basic string matching?
+> > > >
+> > > > In one way or another we need to invoke pm_genpd_add_subdomain() to link
+> > > > the two power-domains (actually genpds) together, like what was done in
+> > > > 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
+> > > >
+> > > > In the case of MMCX and CX, my impression of the documentation is that
+> > > > they are independent - but if we need to express that CX is parent of
+> > > > MMCX, they are both provided by rpmhpd which already supports this by
+> > > > just specifying .parent on mmcx to point to cx.
+> > >
+> > > I was trying to follow the discussion, but it turned out to be a bit
+> > > complicated to catch up and answer all things. In any case, let me
+> > > just add a few overall comments, perhaps that can help to move things
+> > > forward.
+> > >
+> >
+> > Thanks for jumping in Ulf.
+> >
+> > > First, one domain can have two parent domains. Both from DT and from
+> > > genpd point of view, just to make this clear.
+> > >
+> >
+> > I was under the impression that the only such configuration we supported
+> > was that we can explicitly attach and control multiple PDs from a
+> > driver. I didn't think we could say that a given genpd is a subdomain of
+> > multiple other genpds...
+> >
+> > That said, it's better if we can ignore this, as it doesn't apply to our
+> > problem at hand.
+> >
+> > > Although, it certainly looks questionable to me, to hook up the USB
+> > > device to two separate power domains, one to control power and one to
+> > > control performance. Especially, if it's really the same piece of HW
+> > > that is managing both things. Additionally, if it's correct to model
+> > > the USB GDSC power domain as a child to the CX power domain from HW
+> > > point of view, we should likely do that.
+> > >
+> >
+> > So to clarify, we have the following situation:
+> >
+> > +---------------+
+> > | CX            |
+> > | +-----------+ |
+> > | | USB_GDSC  | |
+> > | | +-------+ | |
+> > | | | dwc3  | | |
+> > | | +-------+ | |
+> > | +-----------+ |
+> > +---------------+
+> >
+> > CX can operate at different performance_states, USB_GDSC can be toggled
+> > on/off and hence dwc3 needs CX to operate at a performance_state meeting
+> > its needs.
+> >
+> > The proposed patch is to list both CX and USB_GDSC as power-domains for
+> > dwc3, in order for the required-opp in the dwc3 to affect CX.
+> 
+> Okay. Then I need to point out that this looks wrong to me.
+> 
 
-Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
----
- drivers/net/dsa/microchip/lan937x_main.c | 188 +++++++++++++++++++++++
- 1 file changed, 188 insertions(+)
+Thank you :)
 
-diff --git a/drivers/net/dsa/microchip/lan937x_main.c b/drivers/net/dsa/microchip/lan937x_main.c
-index 980fd74b3bc1..3f1f86633173 100644
---- a/drivers/net/dsa/microchip/lan937x_main.c
-+++ b/drivers/net/dsa/microchip/lan937x_main.c
-@@ -17,6 +17,14 @@
- #include "ksz_common.h"
- #include "lan937x_dev.h"
- 
-+static int lan937x_wait_vlan_ctrl_ready(struct ksz_device *dev)
-+{
-+	unsigned int val;
-+
-+	return regmap_read_poll_timeout(dev->regmap[0], REG_SW_VLAN_CTRL, val,
-+					!(val & VLAN_START), 10, 1000);
-+}
-+
- static u8 lan937x_get_fid(u16 vid)
- {
- 	if (vid > ALU_FID_SIZE)
-@@ -25,6 +33,97 @@ static u8 lan937x_get_fid(u16 vid)
- 		return vid;
- }
- 
-+static int lan937x_get_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_READ | VLAN_START);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY__4, &data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	vlan_entry->valid = !!(data & VLAN_VALID);
-+	vlan_entry->fid	= data & VLAN_FID_M;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			 &vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_read32(dev, REG_SW_VLAN_ENTRY_PORTS__4,
-+			 &vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, 0);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
-+static int lan937x_set_vlan_table(struct ksz_device *dev, u16 vid,
-+				  struct lan937x_vlan *vlan_entry)
-+{
-+	u32 data;
-+	int ret;
-+
-+	mutex_lock(&dev->vlan_mutex);
-+
-+	data = vlan_entry->valid ? VLAN_VALID : 0;
-+	data |= vlan_entry->fid;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY__4, data);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_UNTAG__4,
-+			  vlan_entry->untag_prtmap);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write32(dev, REG_SW_VLAN_ENTRY_PORTS__4, vlan_entry->fwd_map);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write16(dev, REG_SW_VLAN_ENTRY_INDEX__2, vid & VLAN_INDEX_M);
-+	if (ret < 0)
-+		goto exit;
-+
-+	ret = ksz_write8(dev, REG_SW_VLAN_CTRL, VLAN_START | VLAN_WRITE);
-+	if (ret < 0)
-+		goto exit;
-+
-+	/* wait to be cleared */
-+	ret = lan937x_wait_vlan_ctrl_ready(dev);
-+	if (ret < 0)
-+		goto exit;
-+
-+exit:
-+	mutex_unlock(&dev->vlan_mutex);
-+
-+	return ret;
-+}
-+
- static int lan937x_read_table(struct ksz_device *dev, u32 *table)
- {
- 	int ret;
-@@ -189,6 +288,92 @@ static void lan937x_port_stp_state_set(struct dsa_switch *ds, int port,
- 		ksz_update_port_member(dev, port);
- }
- 
-+static int lan937x_port_vlan_filtering(struct dsa_switch *ds, int port,
-+				       bool flag,
-+				       struct netlink_ext_ack *extack)
-+{
-+	struct ksz_device *dev = ds->priv;
-+
-+	/* enable/disable VLAN mode, once enabled, look up process starts
-+	 * and then forwarding and discarding are done based on port
-+	 * membership of the VLAN table
-+	 */
-+	return lan937x_cfg(dev, REG_SW_LUE_CTRL_0, SW_VLAN_ENABLE, flag);
-+}
-+
-+static int lan937x_port_vlan_add(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan,
-+				 struct netlink_ext_ack *extack)
-+{
-+	bool untagged = vlan->flags & BRIDGE_VLAN_INFO_UNTAGGED;
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	int ret;
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to get vlan table");
-+		return ret;
-+	}
-+
-+	vlan_entry.fid = lan937x_get_fid(vlan->vid);
-+	vlan_entry.valid = true;
-+
-+	/* set/clear switch port when updating vlan table registers */
-+	if (untagged)
-+		vlan_entry.untag_prtmap |= BIT(port);
-+	else
-+		vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	vlan_entry.fwd_map |= BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		NL_SET_ERR_MSG_MOD(extack, "Failed to set vlan table");
-+		return ret;
-+	}
-+
-+	/* change PVID */
-+	if (vlan->flags & BRIDGE_VLAN_INFO_PVID) {
-+		ret = lan937x_pwrite16(dev, port, REG_PORT_DEFAULT_VID,
-+				       vlan->vid);
-+		if (ret < 0) {
-+			NL_SET_ERR_MSG_MOD(extack, "Failed to set pvid");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int lan937x_port_vlan_del(struct dsa_switch *ds, int port,
-+				 const struct switchdev_obj_port_vlan *vlan)
-+{
-+	struct ksz_device *dev = ds->priv;
-+	struct lan937x_vlan vlan_entry;
-+	u16 pvid;
-+	int ret;
-+
-+	lan937x_pread16(dev, port, REG_PORT_DEFAULT_VID, &pvid);
-+
-+	ret = lan937x_get_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to get vlan table\n");
-+		return ret;
-+	}
-+	/* clear port fwd map & untag entries*/
-+	vlan_entry.fwd_map &= ~BIT(port);
-+	vlan_entry.untag_prtmap &= ~BIT(port);
-+
-+	ret = lan937x_set_vlan_table(dev, vlan->vid, &vlan_entry);
-+	if (ret < 0) {
-+		dev_err(dev->dev, "Failed to set vlan table\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int lan937x_port_fdb_add(struct dsa_switch *ds, int port,
- 				const unsigned char *addr, u16 vid)
- {
-@@ -1036,6 +1221,9 @@ const struct dsa_switch_ops lan937x_switch_ops = {
- 	.port_bridge_leave = ksz_port_bridge_leave,
- 	.port_stp_state_set = lan937x_port_stp_state_set,
- 	.port_fast_age = ksz_port_fast_age,
-+	.port_vlan_filtering = lan937x_port_vlan_filtering,
-+	.port_vlan_add = lan937x_port_vlan_add,
-+	.port_vlan_del = lan937x_port_vlan_del,
- 	.port_fdb_dump = lan937x_port_fdb_dump,
- 	.port_fdb_add = lan937x_port_fdb_add,
- 	.port_fdb_del = lan937x_port_fdb_del,
--- 
-2.27.0
+> We should be able to support the needs for dwc3, by letting CX to
+> become the parent domain for USB_GDSC.
+> 
+> If there is something missing from the genpd point of view, for
+> example, let's fix that!
+> 
+> >
+> > > From the performance states point of view, genpd supports propagating
+> > > performance states to parent domains, via a 1:1 mapping of the
+> > > performance state. Note that, we have also quite recently made genpd's
+> > > ->set_performance_state() callback to be optional. A vote for a
+> > > performance state will be propagated to the parent domain, even if the
+> > > child domain would lack the ->set_performance_state() callback.  This
+> > > should be useful, where a child domain relies on its parent domain for
+> > > performance state management, which seems to be the case for the USB
+> > > GDSC/CX power domains, right?
+> > >
+> >
+> > I presume you're referring to the first half of
+> > _genpd_set_performance_state(). This looks to be exactly what Stephen
+> > and I discussed implementing.
+> 
+> Yes.
+> 
+> >
+> > I had a rather messy tree when I looked at this last time, presumably
+> > missing something else to hide this propagation.
+> >
+> >
+> > For the USB_GDSC we today don't describe that as a subdomain of CX, but
+> > per your guidance and the recently introduced 3652265514f5 ("clk: qcom:
+> > gdsc: enable optional power domain support") we should be fairly close
+> > to the solution.
+> 
+> Great!
+> 
+> >
+> >
+> > The one "problem" I can see is that I believe that some of the GDSCs in
+> > GCC should be subdomains of MX, so the above referenced patch would then
+> > need to be extended to allow specifying which of the multiple
+> > power-domains each GDSC should be a subdomain of - something Dmitry and
+> > I did discuss, but wasn't needed for the display GDSC.
+> > Perhaps I'm just misinformed regarding this need though.
+> 
+> I didn't quite follow all of this.
+> 
+> But, perhaps using "#power-domain-cells = <2>" for the power-domain
+> provider can help to specify this for the consumer/child-domain?
+> 
 
+I believe the genpd controller sits in CX, but among the domains
+registered by the driver we find some that are subdomains of CX and some
+that are subdomains of MX.
+
+In the case Dmitry previously implemented, for the display, we have the
+display domain controller sitting in MMCX and it exposes a set of
+domains all being subdomains of MMCX - so 3652265514f5 ("clk: qcom:
+gdsc: enable optional power domain support") simply adds all the domains
+as subdomain of the controllers domain.
+
+Here we would need to specify both power-domains and then make sure for
+each registered domain that it is added as subdomain of the right one.
+
+Hence the quotation marks around "problem", I don't see that we have a
+problem, but it's something lacking in the current implementation.
+
+Regards,
+Bjorn
+
+> >
+> > > In regards to the parsing of the "required-opps" DT binding for a
+> > > device node, I think that should work for cases like these, too. Or is
+> > > there something missing around this?
+> > >
+> >
+> > Given that Sandeep's proposed patch solves his problem without touching
+> > the framework those patches (required-opps) must already have been
+> > picked up.
+> 
+> Right!
+> 
+> Kind regards
+> Uffe
