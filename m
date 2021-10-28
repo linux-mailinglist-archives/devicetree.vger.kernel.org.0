@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2396843E4EC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 17:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B4A543E516
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 17:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbhJ1PWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 11:22:08 -0400
-Received: from mail-eopbgr150055.outbound.protection.outlook.com ([40.107.15.55]:39488
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        id S230250AbhJ1P3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 11:29:33 -0400
+Received: from mail-eopbgr70080.outbound.protection.outlook.com ([40.107.7.80]:26885
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229946AbhJ1PWH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 11:22:07 -0400
+        id S229946AbhJ1P3c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 11:29:32 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VOhikeKHon9lTz4RW/ioiUdJAtfyTfXa5JTRgGxNgqyya6ruqCBEWXYqca0G2hbsrTnRgqv+vKPZc0od/ryGDkCX7fGmZOuXn+q7llo+aqZmt9L4YP+G38Uh81wpnQjS6NNTE6QXnvdZ8uaI8wJaddd1m2T3o3NXxkhprMpM5mRedqvnqQGF6KuJKPj0ACzoXY8kcf5yxlpXUYFabaqLbCGtcD3ZzG6pZikq+TgZ2GO57EFVJKB0OQW/SG2mVtWEtbLt43DDAAFxa4F0XyyTTQxiwjuuyvD9JDgU6f1kl4YJul3UdhqrnPntlSO95UyXgKAuEyxwBRhjCyhWHfNhcg==
+ b=jtsKPvpnjDTAoBGtVFXcJ7xZ/qCYb9ZDWwEWZEe6tCA6dzWtae4bTcByj4VqAz0bSFmjPjU3KxlbSKUImFlZoUQDKJMYXSMfL8UGHVGYoX3EbMrb1Qfb0HKnoQ1Zv5SEQsIEeXsALSdcDkDGMGeKsYfZJCOhGqU1qZO9NO1q+p/FjyeIzMft0/I1kkf+IXSrPBanQnIHaVjKuyFzF+vR2rZ5WmIahUhV4cuLe8Skh4Y4gKEezL1Ca3YTGH1wcCni0jGw736mmu9FO9y9stIgMDEC5ZS7JHFiwtYbEVhqf6/tIvvzCDBMsdF+A06mOYaX3mcWmZKZ64srSRCo3O9CvQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k22uO7OCtONMaJ0CnNpAZrcQaGYxCKpmzsCWLvRa8tU=;
- b=N/ockKxc5bTZx9YaDy4MTlS0KPuu0t1g7ptEW+kxfjboZ3O5YSwjuBhC8KVErP/jH61P1vD4tXtdVQ5nEUQJwIusZYNpMxaMmQWiJaeoiaGsYaLig3/nfTC32tt7jrs6C0TNSgnb2kJ851E3pnrFoxYPrhyobaA/RVQgXIy60nN3Z4XY0fNE4eL5L0UzYIJp4uLf7IekNSBZNQbu7OsdR/E+3eeAVVHzQrePlrVK1VKSGy2CVjiSXCFFq3hJGkJ/gXfRkZq/bpMRqZSwuT3WAunfisnRHv0LmfuqdCh8PhSmmsZWYxWzNW6B1ukP44bO0rLEFQrhGn+8BsxiF+/5eQ==
+ bh=Zjob44z6SipbQO3PR2RKRJxaDNPbR2dI17smRXv1zf8=;
+ b=JuXGN9BbJz/1Y7Xatd/UZzkvCsaTt2Znb2+aeFerRcOFrK7MTHATX7I9gdfSNikzvyboueka92v8SxPS/Bed6nTJO21EUv26Qg402yzoUWd9ZY84OexA4J8qJOtZiKgqQjCQsOcMi9tuJn2L0xQ1I57pIsCmsJfGruCqpNYA0m0MpoVBlBRJstSDsILyF5ywSOPq/6rkUXyzj+8gdx1qPVh2FQiujXufENHZ5Uo69C9Y3i7NR50RgJMylEVWYhu1EwvZuJqR8XiM8/FPOs9g2mW05/P3w1u/IPAE6mebL6odaAv2+o80WArJeQWh6mvqgZogjd3S8hOZsvVGOI+6JQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
  dkim=pass header.d=seco.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k22uO7OCtONMaJ0CnNpAZrcQaGYxCKpmzsCWLvRa8tU=;
- b=ptJzirZmezN8qPoJL6Ts067HFZqdNB3LKKWSK9LmFwXKSMeLsoUz0sOT5hD6iMl1646aDixAqz5ufrDj9zmN3Xlcv+34W/pQjV9cFVeUnshiEbjKachCnGgPiYNkRLwn3WmmtP7DxTxmyBNmwHzuMlFcpCr/pXo8XE7P+aU/Tqc=
+ bh=Zjob44z6SipbQO3PR2RKRJxaDNPbR2dI17smRXv1zf8=;
+ b=x+rU+yBYmw2f4CjrsJFgWADm/nnm3avlbEbf5ygYfzRi9l7kwjCtzx4YgvcJpPGpPmm7XvehW+01/Bvvnx2otN2z+CUUn7orwXxVO0tIZVUJWtDgZX0XsVdhPEI6QQkxw60j9QvUbaRZxW6mzycs7FOEr8kvpBzT8OfF4GB7ORs=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=seco.com;
 Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB7PR03MB4986.eurprd03.prod.outlook.com (2603:10a6:10:74::13) with
+ by DBBPR03MB5365.eurprd03.prod.outlook.com (2603:10a6:10:f1::10) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Thu, 28 Oct
- 2021 15:19:38 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.13; Thu, 28 Oct
+ 2021 15:27:02 +0000
 Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
  ([fe80::a9aa:f363:66e:fadf]) by DB7PR03MB4523.eurprd03.prod.outlook.com
  ([fe80::a9aa:f363:66e:fadf%6]) with mapi id 15.20.4628.020; Thu, 28 Oct 2021
- 15:19:38 +0000
+ 15:27:02 +0000
 From:   Sean Anderson <sean.anderson@seco.com>
 Subject: Re: [PATCH 1/2] dt-bindings: reset: Add generic GPIO reset binding
 To:     Rob Herring <robh@kernel.org>
@@ -45,249 +45,113 @@ Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20211018234923.1769028-1-sean.anderson@seco.com>
  <YXi5CUCEi7YmNxXM@robh.at.kernel.org>
-Message-ID: <47d4c3d3-d6ab-3888-1cde-937551537e3f@seco.com>
-Date:   Thu, 28 Oct 2021 11:19:33 -0400
+ <47d4c3d3-d6ab-3888-1cde-937551537e3f@seco.com>
+Message-ID: <9a9693a6-922d-dac8-a340-1268b96826a8@seco.com>
+Date:   Thu, 28 Oct 2021 11:26:57 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-In-Reply-To: <YXi5CUCEi7YmNxXM@robh.at.kernel.org>
+In-Reply-To: <47d4c3d3-d6ab-3888-1cde-937551537e3f@seco.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR04CA0029.namprd04.prod.outlook.com
- (2603:10b6:208:d4::42) To DB7PR03MB4523.eurprd03.prod.outlook.com
+X-ClientProxiedBy: BL1PR13CA0159.namprd13.prod.outlook.com
+ (2603:10b6:208:2bd::14) To DB7PR03MB4523.eurprd03.prod.outlook.com
  (2603:10a6:10:19::27)
 MIME-Version: 1.0
-Received: from [172.27.1.65] (50.195.82.171) by MN2PR04CA0029.namprd04.prod.outlook.com (2603:10b6:208:d4::42) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend Transport; Thu, 28 Oct 2021 15:19:37 +0000
+Received: from [172.27.1.65] (50.195.82.171) by BL1PR13CA0159.namprd13.prod.outlook.com (2603:10b6:208:2bd::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.4 via Frontend Transport; Thu, 28 Oct 2021 15:27:01 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3dc6e45f-06b6-4e9a-6362-08d99a265b93
-X-MS-TrafficTypeDiagnostic: DB7PR03MB4986:
-X-Microsoft-Antispam-PRVS: <DB7PR03MB4986CA15B8053CE86D2FC18896869@DB7PR03MB4986.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: 88547ac5-7838-46e1-1340-08d99a2763e7
+X-MS-TrafficTypeDiagnostic: DBBPR03MB5365:
+X-Microsoft-Antispam-PRVS: <DBBPR03MB5365FADC6755718DC3E79C6A96869@DBBPR03MB5365.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +BsvAdYuhKE5ZIYuPhZa4xwSV6MWJbaaXuyyoHCSaZaLgZJxF5/RcQyDFT0DbfVS570dNAvMO4A6IMfPIZHmRD1wB4Ou/3xXE6GXfsIAUs9t5qJyl6drnybUCLT0Jy9uEBs908IGn2OxkmlNNF2QJfhD86G4CN/SMiRdnOlT0ids+11CXlxMfGSxXoxpTiF7zneQb1L8N/ikv9oXScsKjkEw0G5NGH7349rFcG/bRi9/4TkM4dbGt5dYTkzOzxkZwECuNz1pGmOJdQHFcLnqBmjcyBVV8pk7vT17EHsY99lyTw88PGv99dAcHLTVYyMTPIVMK9szUWODiSlcwsNgAovGTNdOPE7O1mvwaGUc15JAXiNPnpSLfvVRqHIzGh1E4zb9qluaE1CR0DRAcANoXP8bAN+5KmGRVUZy7QZiaC8Iaqohl07YaAigEVG5DDpB+/TIEIjUgaBtB1UXok7em8XwnWjkypJb5Q0R75KfLwoNGXdwjw0JYDkuvvwJ5GbSrR7fjbIK27lAmbEwIjmGilt2en+ON2Pqmbfh2Scg2XiS+OGPCiHpbjGpMluTZxcl5/VvBU2Hn708vuHpemwghoW91ipcsjiZqW3F6UXha5utvO1rF9PLJNR6ADebuWuMYFhaJZPAWHTONblY/NYNMNttprcNye93QQkHvubtUBa0pYJLCC/baG5WVRwCOKPtH8xmL2xy+brNXTxkf344tfLb7qbMMDmj+faAHBfELeLghXEbcpUbQoue3ogv7r1qGFRvIJFhkHkXqHs2H6iJNaTFjvagiwPyk8dJjg7Lh2R0zbruRfwLnta2w1PwVjVx3JxO+Wol+PVDirbMywjKcn70V/Gux5Ily3oA1hpfLZcz+JTUGrFCflUvzBgPi/U4
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(36756003)(38100700002)(52116002)(186003)(4326008)(16576012)(86362001)(66946007)(31696002)(6486002)(5660300002)(956004)(508600001)(31686004)(6666004)(53546011)(6916009)(44832011)(83380400001)(8936002)(26005)(316002)(66556008)(38350700002)(66476007)(2906002)(966005)(2616005)(8676002)(41533002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: IZiazxbXApsBGvSgRUks2+OeLY2uAyaB1+E7HKDGyjaduIiBnN2SWdoCqOI/Xp6faequPODjMhYd39cpS4vSOFzisr4Pu/5TobRiNqv0+1ZpgisW7cZRCD1X/4YebRJV0ZpPjzbDO3JKRfWgK2d8lWwR881GUj7AnQ5tS/J6gJs79+y21XwYkReD4Mla3g6IdPy/fY6a7kFEkD5e/+5FmgxLPO0GQ+nSenIhUdckVi65rTsYduVM58Fg0p473bqrupZhgf8clYz1DQDoleQjop3wbBW8U4XwJHtjiETr1Xs0XnkQf34iaQssrmfqW3W0lvaQvu/TFVVLgTCuc+LaWMm9I3bX/7JnDAeRVe09E3gmoflGl3r0tDXvwqHaIePL5/LvCIjj1Rs7kKHaAQLdoW0IAI6ewknGR389PgNmiARVRyKUyPUvk/n6g5Dmeoca6+ncjrN6w/XdbWy/0INcW7OW800B8GH0IQD/MbiPloa6rcVq87Km3WYgfjh9+WeJE/Xoyw4kJXLDmCnxMWrpKevGoKuchW/bbDcvK3AalDZd9U3LAExxc1oVMcX+3uuWgHjUsI6pJ053YPd8DljIxyF0HNNE7jXB8xy8MrutzMdHpk1l7XiVcLa4axewQqQWQ8rJ3uCw4ubXqAP4jDVyelphFdsonBeEzCIvEDYU5a9CWk79P2QzDb9gUpBbmkCSSsOPTaBIK/dLKR75AqVgApfsFUgKACwgSLiqJVYCE49El7EWyDXYpCbFm36b3dRjSv7JviKTAdzPlXb677Bo8FEvM+3aNW5AINznczJ9iNk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(186003)(6666004)(6486002)(8936002)(66476007)(8676002)(2616005)(44832011)(26005)(38100700002)(66556008)(36756003)(66946007)(38350700002)(956004)(5660300002)(52116002)(31686004)(6916009)(16576012)(508600001)(83380400001)(316002)(2906002)(4326008)(86362001)(53546011)(31696002)(41533002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TC9UQmhQWE9FYkFLcHp4cHVlcUhkOWVBTnhJbGY0MjZzVThiWDMwU1FlRU5V?=
- =?utf-8?B?WS9ESTRTQjBXYlkvLzlaQi93MEtOaGFOMUNXVTQ1aGVUajJSMjQvQ1h1R3A0?=
- =?utf-8?B?cUhSbWlrSGNrKzl4cTFHaUJob05HaXAyS1loM1hmNTF0WmNkRXdmUnhSMjVy?=
- =?utf-8?B?Qkh1eVNyWmVSdkprSkZlR2xKQTdkRmRuRktCNGtOeTlnb3NlL0tTcmMwbEF2?=
- =?utf-8?B?blRoT0Q3YlNBbEtlUGNCVjZDY2l2S1ExTWdKNXdNYzZmYmlBdGgzUzcvcUZZ?=
- =?utf-8?B?Mk1EZm13eWZoTnZrVnFscEhUQ2xpNUcyVFhjQ1VkbkE1czVNNUhhM3ljeVJn?=
- =?utf-8?B?M0tLbW4vcnNoSUVxQWNJdTk1ZVZ5aXJoY1pDMzd0b2dhWW9tanRPdDNubitr?=
- =?utf-8?B?LzNmYS9pYXBhU2xiWk1ic1Q2M3M0YWUvNGJzY2ROODhySDNhelNUbEUrdllJ?=
- =?utf-8?B?Tk5pb01zQjYyeS9aU0lHZnFmVFdiUVpvR3RRTmhLT0tTU0hvMUdlS3hLQmwx?=
- =?utf-8?B?TUtROGtSYk5XS0Nwa3Y3dWprWGhWRVRXQ2pKMHhYYkZ3NFpFUkUzanA1WGVF?=
- =?utf-8?B?UlRyNW9BRndwdFpTQTlsUXdjc0ZSWkJkUGV0RXdUQUFlaXJ2OE1IM3laM2Iz?=
- =?utf-8?B?dGUwL3RKM25uVStmdGJ2NTd0dG1UQzdlbGhiZlFudERBV0hkaUw4VkhyUGY0?=
- =?utf-8?B?STlVS0hiVzZZUG1yQllFNFJXVWZvZFlUN1pMMXYzbFlRT1RkMVh5RTZvUU1S?=
- =?utf-8?B?YWNySEFUcGNEdTJMNkVsTllFVTRIT2VRcDUwRk5hMm5GQ2E1clc4N3BJdDR2?=
- =?utf-8?B?M3MwR3piWk9ZTkxnWm9SdWNreDJzUWVnbE0xdTNpV2FSdWxTQVlqd09KSTlz?=
- =?utf-8?B?cXZQT3B5Nmk5SnJSTzM0K1JITGxJSWMxd1ZaRWpGb0VRS2tGWGM2S0xtdUtu?=
- =?utf-8?B?OTRVeEg3ZWpocTFPMXFrbjdwZHFFanp1dGpoMW4xQWdiREhIOU1HYlpCWlk4?=
- =?utf-8?B?WnRTcFo5NFlzcnJOaGpVVURKblVCbmVpMVlvNS9CbEVVcy8yZ3VBY21TR2Jx?=
- =?utf-8?B?eGR5UHBkTVlPK1N0bWdaOUc2Mkx1VW82d25HdzVMaGt5UXhiaEZoaTRPSkNZ?=
- =?utf-8?B?R0dhY0dQNVNyWEx1NFMyclJVakJjS1FUaCtqc3FtVytJRkVFSUZPNlFRMEVj?=
- =?utf-8?B?dmJZZzd0TTkvODN4UlNUemhBTWFWNG5YQi9RMGxVR2lsZnNqRlo0ZVVXa3or?=
- =?utf-8?B?Znlxc0h1YVkycFlnWElrQVVHUkpPTHF6bzZqOGxMR3EwL21aRlMvZXZmYSth?=
- =?utf-8?B?MHRneU44SHFieFR2a3pUczFkem5VUWVqWURTOU5HOHFCL0cwb1AvT0k2R3dx?=
- =?utf-8?B?STJNN2Z3SGY5eDRINFlkM2pFT2V0U2x2UitCcjNKcXdRdnR6emZtK2ZkcW4x?=
- =?utf-8?B?emtOanpHbjBmazd6VE53VjZNODdjZ3NPeHR1Sk1XaTNYdzFMaHRXZStVSXFt?=
- =?utf-8?B?ZW5GNUVJRHFwSVlKZnVMOUQyR1d5NmVmMUUyVEtpR0hCRy9JdjRmRzAzQ09K?=
- =?utf-8?B?NktYNXo3aXphM0RFeTA3N01EbmZ4M1lTN3BlKzFIU3Mvbithb2tKSVFRTlBm?=
- =?utf-8?B?U3N4cGRhNDVsZkVjSHFsVG02bWViTWVORUlFZHl3N0ZNLzJlNkE1eHR3ZEd3?=
- =?utf-8?B?NzN2NWNRZDlEbHVWbTR0RGlSVGI0R3lzaE41MzJBUnJRZU5vaWFZSVVzQXQ3?=
- =?utf-8?B?SEIwbGRWU3dob0VEZDdkazdOMFpZYTR4RHZCLzNoVU5iaU4vQ0QxOEVEVldI?=
- =?utf-8?B?NVVPME9RMTRaajVoeEFETkJrVnFtK2dKNnNiL3hjazJnZitsazlyWkNlRExo?=
- =?utf-8?B?K0orQVAzMVlKZ0NDcklwRUZkZnNvaXV4Mk9sdDErMDRyTllEL1daVitGdXBQ?=
- =?utf-8?B?V0pFSlVzSUpKQ2NSN0tiMk10VVFWbUI0UktJRWZPbmhJclpBYjRURXZVSGw3?=
- =?utf-8?B?QjVvMWw0QkVEYWZWSWNrbTVKQVJ2ZHpJcUtveU1xckd2SjN4T1ZzbDRuZW1B?=
- =?utf-8?B?bnNKRS9MbnllZjJhanN5SFdBV0h0Rk41U21CR0hpci9DUUlWQm01TjE0VGtL?=
- =?utf-8?B?akJmNE9LZXVxT1ZUWXBBYzBUSndUVWpsdHd2NWJxK0ppVzRNNTV0bWRjcFdv?=
- =?utf-8?Q?XrYbnJHKlb2WQperKf2esGI=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a25JS3d2YUMxQ0hzWkZGZGh0WU1HR0VNRnFLOHZibnV2UkVJbFJFcGN3OFZP?=
+ =?utf-8?B?QnVsZ1RFVHFFOGxtb2R2aFRST2ZWRlp0MVN2dWYzdXdwOE9QSlhKSStNYnVt?=
+ =?utf-8?B?V0ZSd3ptMmpRMUVSd0ZML3grYUd4Q3Y3K0FJSzVMbnRKaWhycG43eDJVUGZG?=
+ =?utf-8?B?T20yQW1JaXptZWJwcUpZWGNkekt4aXFRZWIxRXFlRGlTZ1NsLys5TkJwdmYz?=
+ =?utf-8?B?dndpV1ZPWFZsc0x3SzVnaEx0bGhxUEtEK1JIQ2NobTNwZldmdGNmdWw0VURR?=
+ =?utf-8?B?bXovMWY3bDBES2wzWTg4bW53bVZMMS82bzZxeFlQZDgremQ3NmlOcjUrUU5h?=
+ =?utf-8?B?eGxPRXhXQUVRR04yL0xiaUtxMGY3Y3pBK3ZIVHg5Z29EYUROVHE4c2lMSEQy?=
+ =?utf-8?B?MFFCSXJrbEpBK0JmNUh4TnYydXRKZ2pmNDJrMnRXRzRXekJ1ejhMNEtCcUpx?=
+ =?utf-8?B?aHpPdit0ZjlwUm5OaFJEamFmSEpXOFhmMjJMK0dTMGlsbDg5aFdGTWUwaEFN?=
+ =?utf-8?B?UzZnQkowbVo0RFhFWW1BMmRKTVpqMVJudDkyc29WV1hweGxTM3hqVDY1MWZU?=
+ =?utf-8?B?RkUwc1ZZUlZqZ0dSTTJ3MC9jRzh3eU9kN0xUM1FVbHNQRzhwQTl3WnV3dFNG?=
+ =?utf-8?B?TmkwbXdOQ1JmdnBwUTR0VkRuVklaSVNaQTZ3enVuQm5vOFV6QmF5bWcyQ2hK?=
+ =?utf-8?B?eDFqSWtlbmpFUThtc1hXUWQ2UGxtY0d4VDZSaDErcHdYQkxBMnJockRBMitU?=
+ =?utf-8?B?MmFuU2J6ZzRkUzN0ZnMya3hMV25VeWlWRUNOdXVCSUJ0ZlBnMVJ4TTFlY2N6?=
+ =?utf-8?B?UTNhZ3pUV3lOYzl4SHhqR2tlc2xyQ3Uzb3o1M2wzVWYyNXhnRmNRY1JYc0VH?=
+ =?utf-8?B?R0dZSng5RHUxNkZxRjkxSEVWaXh0bjk5aEpDeXc4aElITkhaOFo1dnFiU2Ra?=
+ =?utf-8?B?QWNjeUFyWWcxa3l2eWRFTHZSaEZpZ0hLSmthdFcyak5tV09uWkZSMWpHYi92?=
+ =?utf-8?B?Z0hGWGpSYzlpMEJZcHZHWUVLY2VsaHd6MGJQR3R6OVBiOUFkVktSbWExcHh5?=
+ =?utf-8?B?dGMvTUVWV25QWnVOMXdiMmZBekpkUkJnbmsyb1FuVjBzMkVUVTdVemNYZmt6?=
+ =?utf-8?B?VWpjcXV3eEJPc29PQmp6WHYvZ3NOY0crdjN5TFNZbFhUOWNOaTRzU1hGcnhq?=
+ =?utf-8?B?TlZmOG1VRDNjOWNZNWpWanRhMzY3b0pkc2w4YlhRWXFWbjRsNUlWdldvKzhq?=
+ =?utf-8?B?VDVBL3V3c1ZWZnc1M0hJUWNFb1BNbkhQWStyS20xeXh4dzR0SmlxeEVQUXJN?=
+ =?utf-8?B?MGZTanJ0MHhpWndhVm9TclhYQlAwNmdHVFhCZ3YzZHB6bU9CSTM3WlkrU0hk?=
+ =?utf-8?B?aFhjcCs5STJReDQycGJIY3h6cmhMc1pDdWlGS0crZkRFVEpudU4vTmUzbWRr?=
+ =?utf-8?B?NFdSVmp6Z292N0lFbndKQUJiMGFCTDhndTNCNTFCZndCQXJUUHAyY2Nub0VH?=
+ =?utf-8?B?YU0rb3hha0JVLzBja2s0Qkx4VmZhbDJMT3FrcUZyMTAwR1o2TlloM3VZUHJV?=
+ =?utf-8?B?Y1Jhc3ZmN1p3RVRrRE9oVkI3S3phb1Fpc1p5N04vQ0ZvcC9mKzd1ckNEVjRx?=
+ =?utf-8?B?aFFqcHhIVTZqR0FQdGFGMTZxWlk1cXp3T3pwMWd3YXAwbFh1am9GWkxLaHRK?=
+ =?utf-8?B?eVVCcTA5Y3lBZk5TWGtkSEJNS1Y2Ulk0ZzhhMldnZVRkRCswb3hUbktPanND?=
+ =?utf-8?B?elNiTittUW5WNURQRXkwRGpnNk84akdvdk8zT2drc1E5aC9FWWxPSmdIcDFF?=
+ =?utf-8?B?dW52MG9tamUrOTNkbGNUWUpEUWNWYTRnT1pTUllOWVhkclNiZ3M4YVdmVDhz?=
+ =?utf-8?B?and1UWN6ZHI5cGE3SEZ4dWs0QklhS3FMVHNSUEw2bHl4Y0NoeC96UEJRZEtL?=
+ =?utf-8?B?ckxmc1Rsa3lZWTU1T2tUWXNxbWNSNGZZbEp5L0Nma3F4VFlMbERONlRKN1N2?=
+ =?utf-8?B?aWh5NmJ5aFpvd0dZUngzTzhWbGtJTTliRDlVb2FsY1FxRWJocEVCdG1MTzZO?=
+ =?utf-8?B?NEtOeDlRYkNwWUNUMzJDTFpMNVpUS0ZVQ2F6cDd3b1dwMTB0Q0dCamd1QUNm?=
+ =?utf-8?B?eit0U0pVREE5NitTZmd6cnVWZStDQkZ5UVJnYXpXWktLd1htSFo4eWpOeGFa?=
+ =?utf-8?Q?3P+I88eHZyHaRCYmh2jAAPw=3D?=
 X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3dc6e45f-06b6-4e9a-6362-08d99a265b93
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88547ac5-7838-46e1-1340-08d99a2763e7
 X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2021 15:19:38.6835
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2021 15:27:02.1185
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tyq+B+s848faEGeiwP5jkDlZbtNZdzprJoqqu6jAw5G3z7+HtLa8YFuo1TCRAbK+SHBFdoyp6p12Jm37hng+oA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB4986
+X-MS-Exchange-CrossTenant-UserPrincipalName: OZfeb28PenPIYHudUTpz0a9xj01FIoZCeXFFNRCaw+fQYj7UbMnfTWuv6/ICtzMgnpXBE67BW5WQJ+aUbLn3zQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5365
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+(I forgot to finish my thought)
 
-On 10/26/21 10:27 PM, Rob Herring wrote:
-> On Mon, Oct 18, 2021 at 07:49:21PM -0400, Sean Anderson wrote:
->> This adds a binding for a generic GPIO reset driver. This driver is
->> designed to easily add a GPIO-based reset to a driver which expected a
->> reset controller. It offers greater flexibility than a reset-gpios
->> property, and allows for one code path to be shared for GPIO resets and
->> MMIO-based resets.
+On 10/28/21 11:19 AM, Sean Anderson wrote:
+> Hi Rob,
 >
-> I would like to do this last part, but not requiring a binding change.
-> IOW, be able to register any 'reset-gpios' property as a reset provider
-> directly without this added level of indirection.
-
-That would be nice, but it seems like someone would have to go through
-every driver with a reset-gpios property and convert them. Since the
-reset GPIOs are
-
+> On 10/26/21 10:27 PM, Rob Herring wrote:
+>> On Mon, Oct 18, 2021 at 07:49:21PM -0400, Sean Anderson wrote:
+>>> This adds a binding for a generic GPIO reset driver. This driver is
+>>> designed to easily add a GPIO-based reset to a driver which expected a
+>>> reset controller. It offers greater flexibility than a reset-gpios
+>>> property, and allows for one code path to be shared for GPIO resets and
+>>> MMIO-based resets.
 >>
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->> ---
->>
->>  .../devicetree/bindings/reset/gpio-reset.yaml | 93 +++++++++++++++++++
->>  1 file changed, 93 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/reset/gpio-reset.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/reset/gpio-reset.yaml b/Documentation/devicetree/bindings/reset/gpio-reset.yaml
->> new file mode 100644
->> index 000000000000..de2ab074cea3
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/gpio-reset.yaml
->> @@ -0,0 +1,93 @@
->> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+>> I would like to do this last part, but not requiring a binding change.
+>> IOW, be able to register any 'reset-gpios' property as a reset provider
+>> directly without this added level of indirection.
 >
-> GPL-2.0-only not GPL-2.0+
+> That would be nice, but it seems like someone would have to go through
+> every driver with a reset-gpios property and convert them. Since the
+> reset GPIOs are
+...effectively ad-hoc, I think it would be difficult to do a conversion
+in a generic manner (especially since some devices will fail to probe if
+they don't get control of the GPIOs). Maybe this could be done with a
+single reset driver which has reset GPIOs added to it dynamically? E.g.
+when a driver requests a reset named "some-name" and there is a
+reset-gpios property, request the GPIOs and assign them to the reset
+driver, then hand that reset back to the calling driver.
 
-GPL-2.0+ is a strict superset. And bindings are required to be BSD
-anyway. I don't see the issue.
-
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/reset/gpio-reset.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Generic GPIO reset driver
->> +
->> +maintainers:
->> +  - Sean Anderson <seanga2@gmail.com>
->> +
->> +description: |
->> +  This is a generic GPIO reset driver which can provide a reset-controller
->> +  interface for GPIO-based reset lines. This driver always operates with
->> +  logical GPIO values; to invert the polarity, specify GPIO_ACTIVE_LOW in the
->> +  GPIO's flags.
->> +
->> +properties:
->> +  compatible:
->> +    const: gpio-reset
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +
->> +  reset-gpios:
->> +    description: |
->> +      GPIOs to assert when asserting a reset. There is a one-to-one mapping
->> +      between the reset specifier and the index of the GPIO in this list to
->> +      assert.
->> +
->> +  done-gpios:
->> +    description: |
->> +      GPIOs which indicate that the device controlled by the GPIO has exited
->> +      reset. There must be one done GPIO for each reset GPIO, or no done GPIOs
->> +      at all. The driver will wait for up to done-timeout-us for the
->> +      corresponding done GPIO to assert before returning.
->
-> This is odd. Do you have some examples of h/w needing this done signal?
-> It certainly doesn't seem like something we have a generic need for.
-
-Yes [1]. This device has a "reset done" signal, but no reset timings
-specified in the datasheet. I don't know if this is truly needed,
-because we can read the ID register, but it is nice when bringing up the
-device. I left it in because I was using it.
-
-[1] https://lore.kernel.org/netdev/20211004191527.1610759-16-sean.anderson@seco.com/
-
->> +
->> +  pre-assert-us:
->> +    default: 0
->> +    description: |
->> +      Microseconds to delay between when the reset was requested to be
->> +      asserted, and asserting the reset GPIO
->> +
->> +  post-assert-us:
->> +    default: 0
->> +    description: |
->> +      Microseconds to delay after asserting the reset GPIO and before returning
->> +      to the caller.
->> +
->> +  pre-deassert-us:
->> +    default: 0
->> +    description: |
->> +      Microseconds to delay between when the reset was requested to be
->> +      deasserted, and asserting the reset GPIO
->> +
->> +  post-deassert-us:
->> +    default: 0
->> +    description: |
->> +      Microseconds to delay after deasserting the reset GPIO and before
->> +      returning to the caller. This delay is always present, even if the done
->> +      GPIO goes high earlier.
->> +
->> +  done-timeout-us:
->> +    default: 1000
->> +    description:
->> +      Microseconds to wait for the done GPIO to assert after deasserting the
->> +      reset GPIO. If post-deassert-us is present, this property defaults to 10
->> +      times that delay. The timeout starts after waiting for the post deassert
->> +      delay.
->
-> There's a reason we don't have all these timing values in DT. The timing
-> requirements are defined by each device (being reset) and implied by
-> their compatible strings. If we wanted a macro language for power
-> sequence timings of regulators, clocks, resets, enables, etc., then we
-> would have designed such a thing already.
-
-Well, there are already things like reset-assert-us and
-reset-deassert-us in [2, 3, 4] (with different names(!)). Part of what I
-want to address with this device is that there are several existing
-properties which specify various aspects of the above timings. I think
-it would be good to standardize on these. Maybe this should be a
-property which applies to the reset consumer? Analogously, we also
-have assigned-clocks so that not every driver has to know what the
-correct frequency/parent is (especially when they can vary among
-different hardware variations).
+On the other hand, having a separate driver like this makes it easy to
+incrementally convert existing drivers. Although it does require a
+change in bindings.
 
 --Sean
-
-[2] Documentation/devicetree/bindings/net/ethernet-phy.yaml
-[3] Documentation/devicetree/bindings/net/mdio.yaml
-[4] Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml
-
->> +
->> +required:
->> +  - '#reset-cells'
->> +  - compatible
->> +  - reset-gpios
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    pcs_reset: reset-pcs {
->> +        #reset-cells = <1>;
->> +        compatible = "gpio-reset";
->> +        reset-gpios = <&gpio 0 GPIO_ACTIVE_LOW>,
->> +                      <&gpio 1 GPIO_ACTIVE_LOW>,
->> +                      <&gpio 2 GPIO_ACTIVE_LOW>,
->> +                      <&gpio 3 GPIO_ACTIVE_LOW>;
->> +        done-gpios = <&gpio 4 GPIO_ACTIVE_HIGH>,
->> +                     <&gpio 5 GPIO_ACTIVE_HIGH>,
->> +                     <&gpio 6 GPIO_ACTIVE_HIGH>,
->> +                     <&gpio 7 GPIO_ACTIVE_HIGH>;
->> +        post-deassert-us = <100>;
->> +    };
->> --
->> 2.25.1
->>
->>
->
