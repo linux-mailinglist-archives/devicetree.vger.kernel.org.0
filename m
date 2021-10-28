@@ -2,103 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF2B43E6C5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 19:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD67A43E6E8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 19:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbhJ1RII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 13:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbhJ1RIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 13:08:07 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC07C061570;
-        Thu, 28 Oct 2021 10:05:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=HkGYfxxVPcWMTGp2R4d/RlpWmLG/2/mcfu/24wT0+fg=; b=to/pZlYy6m8mMy7hBJXsH3C0Ou
-        fxSKKQTtUakArGZtAGa5ys+DJrPdBTJZcpNXIwa3DVmtRgKCefy7QjNeNYRN5nYQ/t5eQkfigrGJk
-        52UnMW2/NsapzYaw87FM2O0QOhdW7OmefsyVogazJVeDhO7p6MpObUwh3AFYykFLq8QFbVOMeGY9j
-        stJAREGqeV/4RyXvBk3AD+vL+9gHm6UNz2tcMKrJx3WX8t23RfrUthb7rdIaONo0hNTVyfPykv43T
-        +2BkSB4NLEEKnmK/swvviYIGcDCRfbfqa0eXfiljoNn9kY+tt562+LPcoF3KHGXmFc8JXxOGPD9Zg
-        HhTuf56w==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55358)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mg8qQ-0007oe-64; Thu, 28 Oct 2021 18:05:38 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mg8qO-0000VT-Qj; Thu, 28 Oct 2021 18:05:36 +0100
-Date:   Thu, 28 Oct 2021 18:05:36 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 net-next 06/10] net: dsa: microchip: add support for
- phylink management
-Message-ID: <YXrYYL7+NRgUtvN3@shell.armlinux.org.uk>
-References: <20211028164111.521039-1-prasanna.vengateshan@microchip.com>
- <20211028164111.521039-7-prasanna.vengateshan@microchip.com>
+        id S230223AbhJ1RPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 13:15:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230407AbhJ1RPO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 13:15:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A8B10610D2;
+        Thu, 28 Oct 2021 17:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635441167;
+        bh=ibmNM5CAP+qkvNSTKFVFajWtkJ/8NkO96LVf+y9D+nY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ltwsdmgN3hZPosmJF9mNYeN9Be8c7B9vhCrXv1fYbzGAg2V9dkqkElleQgHLjP9H+
+         rd/KtukSITnYFE1yc3NinjDiyMFQPDmrmqcKG89A6jEnZjCwRQ+kW6PnmdWdsF6cnh
+         cmcgoABtLQm2QmWLb/FTCvdkLa3F0Xyk3Oyw303Ix7TuHcPSiX/VIqCMmCd6nAYui8
+         nVRly0H/n8r3unTTFxUlxAfleWEKLD7HPIpNSdDUf1rOduopBn9NrpHcHU2cnuAyvl
+         UEeVTZsb2nBbVS5yqM/whlUXgBq6lqTxsTPel8NvuO47fqoE1163y7gVgHQYBUFOQ8
+         v0LUUJIjObC+g==
+Date:   Thu, 28 Oct 2021 22:42:43 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v3 0/2] dmaengine: qcom: bam_dma: Add "powered remotely"
+ mode for BAM-DMUX
+Message-ID: <YXraCwi0RpShcYnQ@matsya>
+References: <20211018102421.19848-1-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211028164111.521039-7-prasanna.vengateshan@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20211018102421.19848-1-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 10:11:07PM +0530, Prasanna Vengateshan wrote:
-> Support for phylink_validate() and reused KSZ commmon API for
-> phylink_mac_link_down() operation
+On 18-10-21, 12:24, Stephan Gerhold wrote:
+> The BAM Data Multiplexer (BAM-DMUX) provides access to the network data
+> channels of modems integrated into many older Qualcomm SoCs, e.g.
+> Qualcomm MSM8916 or MSM8974.
 > 
-> lan937x_phylink_mac_config configures the interface using
-> lan937x_mac_config and lan937x_phylink_mac_link_up configures
-> the speed/duplex/flow control.
+> Shortly said, BAM-DMUX is built using a simple protocol layer on top of
+> a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
+> a special mode where the modem/remote side is responsible for powering
+> on the BAM when needed but we are responsible to initialize it.
+> The BAM is powered off when unneeded by coordinating power control
+> via bidirectional interrupts from the BAM-DMUX driver.
 > 
-> Currently SGMII & in-band neg are not supported & it will be
-> added later.
-> 
-> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> This series adds one possible solution for handling the "powered remotely"
+> mode in the bam_dma driver.
 
-Hi,
-
-I've just sent "net: dsa: populate supported_interfaces member"
-which adds a hook to allow DSA to populate the newly introduced
-supported_interfaces member of phylink_config. Once this patch is
-merged, it would be great to see any new drivers setting this
-member.
-
-Essentially, the phylink_get_interfaces method is called with the
-DSA switch and port number, and a pointer to the supported_interfaces
-member - which is a bitmap of PHY_INTERFACE_MODEs that are supported
-by this port.
-
-When you have set any bit in the supported interfaces, phylink's
-behaviour when calling your lan937x_phylink_validate changes - it will
-no longer call it with PHY_INTERFACE_MODE_NA, but will instead do a
-bitwalk over the bitmap, and call it for each supported interface type
-instead.
-
-When phylink has a specific interface mode, it will continue to make a
-single call - but only if the interface mode is indicated as supported
-in the supported interfaces bitmap.
-
-Please keep an eye on "net: dsa: populate supported_interfaces member"
-and if you need to respin this series after that patch has been merged,
-please update in regards of this.
-
-Thanks.
+Applied, thanks
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+~Vinod
