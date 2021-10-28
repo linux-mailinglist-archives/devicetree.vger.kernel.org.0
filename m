@@ -2,141 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FD2243DDA0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A245843DDC3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 11:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230116AbhJ1JWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 05:22:07 -0400
-Received: from mail-lf1-f44.google.com ([209.85.167.44]:34793 "EHLO
-        mail-lf1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230124AbhJ1JWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:22:07 -0400
-Received: by mail-lf1-f44.google.com with SMTP id u11so12224703lfs.1;
-        Thu, 28 Oct 2021 02:19:40 -0700 (PDT)
+        id S230057AbhJ1Jdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 05:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47304 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229626AbhJ1Jdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 05:33:38 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0643C061570;
+        Thu, 28 Oct 2021 02:31:11 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id b32so9051958lfv.0;
+        Thu, 28 Oct 2021 02:31:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GJtTeFua6lj9e76ebkvIivdZ4sX1YjABoZmJlmyJ+/0=;
+        b=nDe/JuovQzaDd3onwK8nvQ84ElOBguBnuH3PSYdw1Ybt/WiMzcd7yP7PZgdonxWMWa
+         uf0rA5R7FfsG1dIbzHw9s7jxcnvhCl8opEmCRoyPfo6PMXift0fN/L6LCHRfXhTU1RV+
+         R8jaPLf2oBLtMpFMj83oa/0w5QQ6dCF+ecrPOirFrLJIsokKMX8isphE/ecYn+i+BRf8
+         RbuHPU+e/Dc+IWRXUXBUMQFKekBFcc9Q42WpWRUQzL3PsgigVmONn2YISA5b02Kg7s/N
+         FY0i4pGzEO0IKq+Cgwj0L3bZuF45hQu/1EOGucChLVk7eiuL155AaDakwVx4DNrLznng
+         cY8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2mmhTTP4Qy+KhAe38thA6Tq/Dy9B7Ar6r4uzxdubI4Q=;
-        b=ciLO7bO0DhIfhf8AUnww8ZyL9uTHC9CXJnGz4v0sIDoPSNCH+PO+jnXfR1Q519z6yb
-         PqhNbXveXjd95RJU1MaDalwebhhQR+BFGj8D9SqRJ1alXiDBLpHNZ/aOkOcjIklA0+ev
-         w6JGgK/kYNpYbix+pX2RpEUDIUwqqPU4hge5kVTJ9aII2ky+Ptis8saGWKNIwDfmDz4j
-         BODhlrmpKLiLhlFR6tBADIkH9YKBsphJMcsVxwMygZONy85E3N0xLgHmuM/ZOR4tni8j
-         rBYJcfJMlpGHKHVcP8apRjcJwnIUQThWrPnY7bfCj89HWbEygbTAfpBYwKEbo+BTRnvU
-         ml1Q==
-X-Gm-Message-State: AOAM5322OXopGTNCfo3SAqkTutjJ/EGkKCcPn8Ugnln9km7XvGVWAZXv
-        15k8RdhewTXInQ8Dwf9bC0oJsfZIbpc=
-X-Google-Smtp-Source: ABdhPJx6UcY0PEhhRnmhp+U9YlaEzFRijCH63lG0Pn2VHDPYNTTmzxdAczl6JsQKxF3/u+PEnH/vvA==
-X-Received: by 2002:a05:6512:33a9:: with SMTP id i9mr3091960lfg.82.1635412779433;
-        Thu, 28 Oct 2021 02:19:39 -0700 (PDT)
-Received: from fedora (d44bs26yxfwtfmx4yyk-4.rev.dnainternet.fi. [2001:14bb:c6:2fb:6813:24a0:454f:2])
-        by smtp.gmail.com with ESMTPSA id u6sm256389lfs.21.2021.10.28.02.19.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GJtTeFua6lj9e76ebkvIivdZ4sX1YjABoZmJlmyJ+/0=;
+        b=VgLrPDjMa/W+lcyGe9FETF9bJclPKiyOuCma2f50srZJEY+uIF9aZC8/mMhCeiFQvq
+         rS8RZo5JZsO4pE/4LYcet80lOF63pFtIxRXv7C5Rc9ZUWqcq084v7n3StGlulCdU2BNg
+         nmwMD9D4iUq9Uvs5DMK/CN41ZelHIDp90LktL0bBauJC/iQ6jdpa8GLtWPbnFEcn3j+/
+         5GQHCYMM0ocKF3BusZCp9m8Jlh1M5AsHFsP/+U09qhGhvSxc5NeyAIK0YaNGa0ltl8zb
+         QZkeuIwyJo0gf3egPlIEQON9isSnOpH4Hp3Vp+Y5pXzTLsCMdTXwRZ60NQY/EoCKmBM9
+         +NPA==
+X-Gm-Message-State: AOAM532aeOx3xJyvoIh0zgTdgW/aqcvy1N4/0E8IFP79LyuF+heDl6aH
+        7Siznm7GKftGkBnl3E+d+qA=
+X-Google-Smtp-Source: ABdhPJwD/Nmz+HPNfdTuek7uwHRScDFKgOUBd0NBJdoD1GL1DnpA/2l4Mi5CwPF4XTuDQu2bB8/peA==
+X-Received: by 2002:a05:6512:260e:: with SMTP id bt14mr3078320lfb.129.1635413470075;
+        Thu, 28 Oct 2021 02:31:10 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id o26sm231548ljg.92.2021.10.28.02.31.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 02:19:38 -0700 (PDT)
-Date:   Thu, 28 Oct 2021 12:19:32 +0300
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     lukas.bulwahn@gmail.com, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com
-Subject: [RESEND PATCH 4/4] MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
-Message-ID: <6b8819238dfe43e356c2c5035c5ffe487257bf70.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
+        Thu, 28 Oct 2021 02:31:09 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/3] dt-bindings: watchdog: convert Broadcom's WDT to the json-schema
+Date:   Thu, 28 Oct 2021 11:30:57 +0200
+Message-Id: <20211028093059.32535-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="twiyDOCo1fYStRp7"
-Content-Disposition: inline
-In-Reply-To: <cover.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---twiyDOCo1fYStRp7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This helps validating DTS files. While at it also rename it to bcm63xx.
+It's the first SoC with that hardware block and it's a naming schema
+used for other Broadcom blocks. It's common for some (originally)
+bcm63xx blocks to be reused in newer SoCs (like 7038 or 4908).
 
-The only known BD70528 use-cases are such that the PMIC is controlled
-=66rom separate MCU which is not running Linux. I am not aware of
-any Linux driver users. Furthermore, it seems there is no demand for
-this IC.
-
-Ease the maintenance burden and drop the driver.
-
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- MAINTAINERS | 8 --------
- 1 file changed, 8 deletions(-)
+ .../bindings/watchdog/brcm,bcm63xx-wdt.yaml   | 38 +++++++++++++++++++
+ .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ----------
+ 2 files changed, 38 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm63xx-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f26920f0fa65..08d19fed6609 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16173,27 +16173,19 @@ ROHM POWER MANAGEMENT IC DEVICE DRIVERS
- R:	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
- L:	linux-power@fi.rohmeurope.com
- S:	Supported
--F:	Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
--F:	Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
- F:	drivers/clk/clk-bd718x7.c
--F:	drivers/gpio/gpio-bd70528.c
- F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
--F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
--F:	drivers/power/supply/bd70528-charger.c
--F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71815-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
- F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
--F:	drivers/watchdog/bd70528_wdt.c
- F:	drivers/watchdog/bd9576_wdt.c
--F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
---=20
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm63xx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm63xx-wdt.yaml
+new file mode 100644
+index 000000000000..9d468026550f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm63xx-wdt.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/brcm,bcm63xx-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: BCM63xx watchdog timer
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: brcm,bcm7038-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: >
++      The clock running the watchdog. If no clock is found the driver will
++      default to 27000000 Hz.
++
++unevaluatedProperties: false
++
++required:
++  - reg
++
++examples:
++  - |
++    watchdog@f040a7e8 {
++      compatible = "brcm,bcm7038-wdt";
++      reg = <0xf040a7e8 0x16>;
++      clocks = <&upg_fixed>;
++    };
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+deleted file mode 100644
+index 84122270be8f..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-BCM7038 Watchdog timer
+-
+-Required properties:
+-
+-- compatible : should be "brcm,bcm7038-wdt"
+-- reg : Specifies base physical address and size of the registers.
+-
+-Optional properties:
+-
+-- clocks: The clock running the watchdog. If no clock is found the
+-	  driver will default to 27000000 Hz.
+-
+-Example:
+-
+-watchdog@f040a7e8 {
+-	compatible = "brcm,bcm7038-wdt";
+-	clocks = <&upg_fixed>;
+-	reg = <0xf040a7e8 0x16>;
+-};
+-- 
 2.31.1
 
-
---=20
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =3D]=20
-
---twiyDOCo1fYStRp7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmF6ayQACgkQeFA3/03a
-ocUZcggAp94TIsWGCkaYj4DD9jsBdfY3JaSk4zSi/pHUvIsUeT2gyMKd/1LKNbo4
-mXpip3I5XpAADZTZ1MBb7/0P/AD8xvhyCokMJckY8xaW35khYaD06CZgRE+BPKeT
-iI8osA3on9EGd+FGNlrjxsV7Vk/qSjpa+b0m0cTuXQ7Md2DXuuxczEJx/z6BTV47
-3AvRPAT8veUvQ8nkER/MjqOfBpUipGjKN70v6ZPxPCgMYEcFYQKpiI/xGdHBa/8Y
-mri7f9vQtasylLwmDsoxeDl657vmwoFB+U80fRCUgNrCugqfLoGL1LxI9CelYLdk
-4IMG8wQsmFs+9HaCGjrisArJxrCCyA==
-=y3nR
------END PGP SIGNATURE-----
-
---twiyDOCo1fYStRp7--
