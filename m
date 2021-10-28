@@ -2,196 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80D4F43E9D2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 22:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6427743E9DF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 22:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbhJ1Upc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 16:45:32 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:40895 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230498AbhJ1Upc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 16:45:32 -0400
-Received: by mail-oi1-f180.google.com with SMTP id n63so10099234oif.7;
-        Thu, 28 Oct 2021 13:43:04 -0700 (PDT)
+        id S231260AbhJ1Uvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 16:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231282AbhJ1Uvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 16:51:31 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6FFC061767
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:49:03 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id d13so12357890wrf.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:49:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jrtc27.com; s=gmail.jrtc27.user;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3IvTfylI/s5zjCUTJoTbfVOltBPWwJQSWlH2bF2QUuk=;
+        b=oDbwPY9FhMa5+lI34zwqKLXaGGEJP1uhqTbtRsJgcXK9YE2LdLZaiUk6cnSS0e/z7B
+         NGrVlsXfrFTsjnJAwwqdqoPbDLCN13n0CUMg2Hnu9Bl0kC3Ynqw3gDSy7EFkY5hOaWsV
+         cF0zEMmnNLEFqZq5usfApABvoY2RR5EkszAaoSGt/8bvwq4noNBArvxJqCHhkqxyKzRr
+         TCdGfdedDm8XQDbRwnJRXjlusfgnqW9aWPfo1myOMwH/pLlZhbQeP8c90RfxBdZBXhPs
+         3Z9fNnvvkFYCsQbWi5xjsw9AsZDY36nun2WGqIOWEjNfzCfRof3UPiUFd7N2JMgiPi4q
+         l/yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oVyS3Eyp56LdR9Osn4635yi5S+r7XAQD1bAus+2vp8Q=;
-        b=6YAbdGvnCxUp1ZX07SyZZdyxq+ERfURPWji30YkAsJen65rVtfuL29mdS4W1cmiI6w
-         rzqo7Qq0bb0F+rrw5qLGznYZPFuO39i+MiEh0o3cho8YAXrLH+NFdUgyXE8zgiJypwpJ
-         1EB63902DoT66v4NGqTH8d9SihDL2Q6+RI5f3+IAGCc55HgC4alzeJm8kaWNNgQFK4WU
-         I2pheVoUek2E/hhHskK6A9bPxZedoKv5ijYrTO/c1UIGO0qyAnK62vLPtt4ss6njQa+L
-         RZmvKlO7xZyf27L0maYgEr7zxZUpqS1SLWFlQhTlBhkzWnKkCNorOMPS8ZDCVFpBfoz6
-         tDBw==
-X-Gm-Message-State: AOAM533el5YyRiXIumlvgWBYWgyuu5j6Mm2jdCvSPNuji8HHSk3xyOiE
-        6I58WHLNi78MDx72aYfFtA==
-X-Google-Smtp-Source: ABdhPJyolLYvkvV5OHPwqB7bNj3L45JZhYDhPoeqoEPB6thhWdWkaVkI7ykYPyA8wqX7ss86Iw6O7Q==
-X-Received: by 2002:aca:b982:: with SMTP id j124mr10412558oif.56.1635453784464;
-        Thu, 28 Oct 2021 13:43:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 3sm1364797oif.12.2021.10.28.13.43.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 13:43:03 -0700 (PDT)
-Received: (nullmailer pid 545639 invoked by uid 1000);
-        Thu, 28 Oct 2021 20:43:03 -0000
-Date:   Thu, 28 Oct 2021 15:43:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        rdunlap@infradead.org, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        wcheng@codeaurora.org
-Subject: Re: [RESEND PATCH v2 5/7] dt-bindings: usb: Add Qualcomm PMIC TCPM
- YAML schema
-Message-ID: <YXsLVwLcvlJSQX88@robh.at.kernel.org>
-References: <20211028164941.831918-1-bryan.odonoghue@linaro.org>
- <20211028164941.831918-6-bryan.odonoghue@linaro.org>
+        bh=3IvTfylI/s5zjCUTJoTbfVOltBPWwJQSWlH2bF2QUuk=;
+        b=XkUk6L/ed4Yddi7ex+dIPRY2579SeQKZlvXW5zh/M0gGs5uYS5W81WcGnofrzOqAUC
+         o+resvhR14I2DYQSvNK+XolEdMsJkMsjXE+VAvQgRccsMUz6bIZSW67zz0rYV7tuvgcl
+         gt3GUDnIQjQNW2T0hUouF7Z2llHZUFxk09Oefe2Dj5xbWvbU2P6WSpHN0PKjSQZyvNtC
+         6uprm38aM0+kGbuTuSUOZTUKJBda8TA0RsN1iVPa1kzlcKvabv9Vwec8kp9VUH7au6iV
+         qRRL7ZpfSvzr3S3AItAxDzoERjSdRb+2jyV8g7y0j3UdPVS1PQS9fOyokSz+apOmMdxc
+         V1QQ==
+X-Gm-Message-State: AOAM531sC9z+v3CVxUDyYwCxIid8A+AfFho8NCOS28wpL1eV4wu1OnWI
+        msw7PpjCWnNl8tEK1ED4T1V1jw==
+X-Google-Smtp-Source: ABdhPJz5CVcMhbABFkm8qYpPeC8ZX0TX4ML2WSs+7463nI9XPEFL1WLEfTk4g3/yjS9ylWLJZoLIFw==
+X-Received: by 2002:adf:a78a:: with SMTP id j10mr8764668wrc.231.1635454142409;
+        Thu, 28 Oct 2021 13:49:02 -0700 (PDT)
+Received: from Jessicas-MacBook-Pro.local (global-5-141.nat-2.net.cam.ac.uk. [131.111.5.141])
+        by smtp.gmail.com with ESMTPSA id m34sm2584987wms.25.2021.10.28.13.49.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 28 Oct 2021 13:49:02 -0700 (PDT)
+Received: by Jessicas-MacBook-Pro.local (Postfix, from userid 501)
+        id 6C870927B2D0; Thu, 28 Oct 2021 21:48:54 +0100 (BST)
+Date:   Thu, 28 Oct 2021 21:48:54 +0100
+From:   Jessica Clarke <jrtc27@jrtc27.com>
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     linux-kernel@vger.kernel.org, Anup Patel <anup.patel@wdc.com>,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>,
+        devicetree@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
+        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Chen <vincent.chen@sifive.com>
+Subject: Re: [v4 10/11] riscv: dts: fu740: Add pmu node
+Message-ID: <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
+References: <20211025195350.242914-1-atish.patra@wdc.com>
+ <20211025195350.242914-11-atish.patra@wdc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211028164941.831918-6-bryan.odonoghue@linaro.org>
+In-Reply-To: <20211025195350.242914-11-atish.patra@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 05:49:39PM +0100, Bryan O'Donoghue wrote:
-> Add a YAML description for the pm8150b-tcpm driver. The pm8150b-tcpm
-> encapsulates a type-c block and a pdphy block into one block presented to
-> the tcpm Linux API.
+On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
+> HiFive unmatched supports HPMCounters but does not implement mcountinhibit
+> or sscof extension. Thus, perf monitoring can be used on the unmatched
+> board without sampling.
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Add the PMU node with compatible string so that Linux perf driver can
+> utilize this to enable PMU.
+> 
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
 > ---
->  .../bindings/usb/qcom,pmic-tcpm.yaml          | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
+>  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
-> new file mode 100644
-> index 0000000000000..6dd51a1dd944f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
-> @@ -0,0 +1,110 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/usb/qcom,pmic-tcpm.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm PMIC TCPM Driver
-> +
-> +maintainers:
-> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> +
-> +description: |
-> +  Qualcomm PMIC Type-C Port Manager Driver
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pm8150b-tcpm
-> +
-> +  ports:
-> +    description: Remote endpoint connections
-> +    $ref: /connector/usb-connector.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        description: Remote endpoints for the type-c device
-> +
-> +      port@1:
-> +        description: Remote endpoints for the pdphy device
-> +
-> +      port@2:
-> +         description: Connection to role switch node
+> diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> index abbb960f90a0..b35b96b58820 100644
+> --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> @@ -140,6 +140,9 @@ soc {
+>  		#size-cells = <2>;
+>  		compatible = "simple-bus";
+>  		ranges;
+> +		pmu {
+> +			compatible = "riscv,pmu";
+> +		};
 
-I don't understand these ports. The graph binding should be showing data 
-stream connections. It should look something like a block diagram of the 
-h/w components.
+This is a property of the user-replaceable firmware, not a property of
+the hardware, so having this in the device tree under /soc, let alone
+hard-coded in Linux, is utterly wrong. Why can this not just be probed
+like any other SBI interface? The "Probe SBI extension" interface is
+precisely for this kind of thing.
 
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +      - port@2
-> +
-> +required:
-> +  - compatible
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/usb/pd.h>
-> +    #include <dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h>
-> +    #include <dt-bindings/usb/typec/tcpm/qcom,pmic-usb-pdphy.h>
-> +
-> +    pm8150b_tcpm: pmic-tcpm {
-> +        compatible = "qcom,pmic-tcpm";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        status = "disabled";
-
-Not much point in having a disabled example.
-
-> +        ports {
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                pmic_tcpm_typec: endpoint {
-> +                    remote-endpoint = <&pmic_typec>;
-> +                };
-> +            };
-> +            port@1 {
-> +                reg = <1>;
-> +                pmic_tcpm_pdphy: endpoint {
-> +                    remote-endpoint = <&pmic_pdphy>;
-> +                };
-> +            };
-> +            port@2 {
-> +                ret = <2>;
-> +                usb3_role: endpoint@0 {
-> +                    remote-endpoint = <&dwc3_drd_switch>;
-> +                };
-> +            };
-> +        };
-> +
-> +        connector {
-> +            compatible = "usb-c-connector";
-> +
-> +            power-role = "source";
-> +            data-role = "dual";
-> +            self-powered;
-> +
-> +            source-pdos = <PDO_FIXED(5000, 3000,
-> +                           PDO_FIXED_DUAL_ROLE |
-> +                           PDO_FIXED_USB_COMM |
-> +                           PDO_FIXED_DATA_SWAP)>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    pmic_tcpm_ss_mux: endpoint@0 {
-> +                        remote-endpoint = <&qmp_ss_mux>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.33.0
-> 
-> 
+Jess
