@@ -2,82 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D3D543DBE0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9CE43DBEF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbhJ1HYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 03:24:37 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:27502 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbhJ1HYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:24:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1635405727;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=kOBZjRlCxa2iH7iZrnGYd692rY43y4CmP/9XW3tcKfQ=;
-    b=nP3fEgWu6xJnfqllIlADlnzTrnju370sDmyroJ3WIqU2bwe4TfndmT2MaBVLK0G0f4
-    7R1NS8fhWimfE41KR1/x62xPwzVQSu8fyQhUi3VQXNSnmEyT4n20hqcB+RdEsqz17cH+
-    lglEnTbshGHNhlL1etYfpt9DuGlN/t4Gm4k7LRaSwcEF3bnHjsVZEhbWX0YUjbOo1fPG
-    suL6JDnR8yKTbXrg9GvyICJwVZGtngqjLA2ON5C8XUN98WPCbFZ7KiAKQwYR0tZHgfoF
-    ZuQ0Uzunk2jqg2DmYh3D4UbkStZ+4EVKMwi+caZibCmgUfWuNgRdTqePJAHF2TFFiomR
-    XaQw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKw7/aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.34.1 AUTH)
-    with ESMTPSA id 207811x9S7M79PH
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 28 Oct 2021 09:22:07 +0200 (CEST)
-Date:   Thu, 28 Oct 2021 09:22:05 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Vincent Knecht <vincent.knecht@mailoo.org>, lgirdwood@gmail.com,
-        robh+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v1 1/4] ASoC: codecs: tfa989x: Add switch to allow
- disabling amplifier
-Message-ID: <YXpPnQ2YTo5ZdQnm@gerhold.net>
-References: <20211024085840.1536438-1-vincent.knecht@mailoo.org>
- <20211024085840.1536438-2-vincent.knecht@mailoo.org>
- <YXaMVHo9drCIuD3u@sirena.org.uk>
+        id S229656AbhJ1H2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 03:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47286 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229626AbhJ1H2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:28:46 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1C8C061570;
+        Thu, 28 Oct 2021 00:26:20 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id i13so2054855lfe.4;
+        Thu, 28 Oct 2021 00:26:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=An+PWLgm9KGN3ZMc6V12HECPGYxxsybsWas2GAbfS9c=;
+        b=LcKx75XoCzDyv0KsxRa8EIVtTggERMVMVW374pW7DAVBNZ33LF7adCQ9RGECxrFB+w
+         yJHwxBiT2dYqM4p8BPRy9nKSkAl5p3Uo7C42tASPiUJ72SrmzFH7CQVs1k+qVXC3F1VF
+         skPF9xEF8L8upTlOi5AWdiT5t4piblTAtqXzFgrleKRlndDTTv4OreEfSdkUNXvrTS7s
+         K5DWdozMtt9tMGFKDYXJLPmnrp7lFA+s2nf4OoIyF/wisNVGYbvA/2hYTbLPICeMfK+J
+         ooFNAR7Z3lBu41WoefUsrnQoi1N9x2aBlQ+zKCwfMrBSBYijUsRnxyiV1YbF3on7iE9u
+         bkUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=An+PWLgm9KGN3ZMc6V12HECPGYxxsybsWas2GAbfS9c=;
+        b=XFD4KFESWl4dSZm5s1G2tfo3XpVQ0PUnEBw0ZnMTzpx/oZJgWfKyLUOGBt7AByMrs2
+         IVRmMWUy6iQnYt2amynx4tJtFdrczmiK2677PHxAPKIYqYadGvRNfWCzUC/R5hdoONl+
+         VYCsyZU3vdG0XSbo3GYoLai0wO4fZzuTcs0+YbL+G+iuq8SqcDgBLd5qzFbsLQ8dNj12
+         iYXBP1XzKuhDeDD8ForZp52rV8GloGWweKOtxNajofkVlGIByZwjBSHKbT3NOP2vfwnC
+         jJ6bCEPER8ZV+M8QntmpA7wDxLkrKt2n8nzwZGPKwPpvQGC4LwdRaDZ4OISCYueDpuLF
+         xx+A==
+X-Gm-Message-State: AOAM532pj1D/7Jog1MUrK0Hrc8+/FX7FcsQyzizWDnxSxMHXFv2Uu+fZ
+        o4yAq8Yj+s54068vBgKhmV0=
+X-Google-Smtp-Source: ABdhPJyfOzJGwTUDwgcZTLmFS1lc6/QeQ+Ig43q40Kd5rQQFpKZziM4sJzXi3z7oppp69E6pL9tIPQ==
+X-Received: by 2002:a05:6512:3501:: with SMTP id h1mr2607048lfs.446.1635405978604;
+        Thu, 28 Oct 2021 00:26:18 -0700 (PDT)
+Received: from mobilestation ([95.79.132.211])
+        by smtp.gmail.com with ESMTPSA id r7sm226300lfc.106.2021.10.28.00.26.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 00:26:18 -0700 (PDT)
+Date:   Thu, 28 Oct 2021 10:26:16 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de,
+        linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        broonie@kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, olof@lixom.net, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 04/11] dt-bindings: spi: Add compatible for Pensando
+ Elba SoC
+Message-ID: <20211028072616.p3mazud3vi5jgynk@mobilestation>
+References: <20211025015156.33133-1-brad@pensando.io>
+ <20211025015156.33133-5-brad@pensando.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YXaMVHo9drCIuD3u@sirena.org.uk>
+In-Reply-To: <20211025015156.33133-5-brad@pensando.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 11:52:04AM +0100, Mark Brown wrote:
-> On Sun, Oct 24, 2021 at 10:58:37AM +0200, Vincent Knecht wrote:
-> > From: Stephan Gerhold <stephan@gerhold.net>
-> > 
-> > In some configurations it may be necessary to explicitly disable
-> > the amplifier with an ALSA mixer. An example for this is a stereo
-> > setup with two TFA989X. If only one of them should be used (e.g.
-> > to use it as an earpiece) the other one must be explicitly disabled.
-> > 
-> > Add a virtual "Amp Switch" to implement that. There is no register
-> > for this (SND_SOC_NOPM) so it only prevents DAPM from activating
-> > the amplifier. Also it is inverted (= enabled by default) for
-> > compatibility with devices that do not need this functionality.
+Hello Brad
+
+The patch name "dt-bindings: spi: Add compatible for Pensando Elba
+SoC" doesn't mention to what bindings it is referring to. For the sake
+of having a more representative git log I'd suggest at least to add
+"cdns" vendor name in the title, like: "dt-bindings: spi: cdns: Add ..."
+Otherwise it's impossible to understand to what bindings you're adding
+a new compatibility especially seeing you are doing the similar thing
+for the DW SPI in the next patch.
+
+-Sergey
+
+On Sun, Oct 24, 2021 at 06:51:49PM -0700, Brad Larson wrote:
+> Document the cadence qspi controller compatible for Pensando Elba SoC
+> boards.  The Elba qspi fifo size is 1024.
 > 
-> Why can you not use a standard pin switch on the speaker output for
-> this?
-
-Thanks for the suggestion! For some reason I was not aware of the pin
-switch mechanism... :) We have tried this and it seems to work fine.
-I will submit a separate series to allow setting up the pin switches
-for the qcom sound cards instead.
-
-The other patches in this series are independent of this one and still
-apply cleanly for me. Can you just ignore PATCH 1/4 or would you prefer
-a resend without this patch?
-
-Thanks,
-Stephan
+> Signed-off-by: Brad Larson <brad@pensando.io>
+> ---
+>  Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 0e7087cc8bf9..d4413eced17a 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -20,6 +20,7 @@ properties:
+>                - ti,k2g-qspi
+>                - ti,am654-ospi
+>                - intel,lgm-qspi
+> +              - pensando,elba-qspi
+>            - const: cdns,qspi-nor
+>        - const: cdns,qspi-nor
+>  
+> @@ -38,7 +39,7 @@ properties:
+>      description:
+>        Size of the data FIFO in words.
+>      $ref: "/schemas/types.yaml#/definitions/uint32"
+> -    enum: [ 128, 256 ]
+> +    enum: [ 128, 256, 1024 ]
+>      default: 128
+>  
+>    cdns,fifo-width:
+> -- 
+> 2.17.1
+> 
