@@ -2,94 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 163C143E67A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A57243E67E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 18:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbhJ1Qt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 12:49:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35442 "EHLO
+        id S230149AbhJ1QuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 12:50:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhJ1Qt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:49:26 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F478C061570;
-        Thu, 28 Oct 2021 09:46:59 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id s136so6966183pgs.4;
-        Thu, 28 Oct 2021 09:46:59 -0700 (PDT)
+        with ESMTP id S229761AbhJ1QuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 12:50:11 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2F67C061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:47:43 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id z14so11320975wrg.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 09:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=ffa161gA4EvJtmVnOlg8DPccovJS7ZtlelqcF1oheOw=;
-        b=SsZQl8IrnhYXP6BCnP7VD+eqgxUGrpp5sGi77QQmDCB6L3Gwu9iLhF+QAoWacqqkdS
-         gW4VIDLUlwdo43Wd56pfDAqmbuBrTiUQXKh7PgxNWLNGnledhVlFXKWqn4+dcII20Ct+
-         wSWZDEwo92AtGzkeHgg9YjTGRXV/Eepaa+1GfNaZRR1dyAOjW0/gw+CexWhmBWzQF5oA
-         mVa9jxglddKelInmTW8zcNFZyFfwnpXW7Iv6Khs57olFgYydhFmzFfeHOx9gTKhmMLH8
-         t8qR27fVyrWMBnYWSIrZAQPBJenvp7LitydGIabLG4DrOzgJzPRQMnbhtnvPRjFCVnwM
-         VZYA==
+        bh=MtSx5A+s1uno/sezJRQKPU9Vdfq+oNK7NxdXtZ/qoiY=;
+        b=lc689bvrFmGMIZ8EgNGlZ3KrzUngrRY7OSVciTATvimB2ubXARabcIjx62iVbVhIgx
+         5SXnhXAv3cTuzWdOgm4ayeXqPP8ohFOyzock6g6HkaPdrv87ius3eJrhg/POo++Cat5W
+         SJ4TZ5K5S+GKQeCvHEHOrjonQWiNn57V7/wkZ9wtcTS7u19Iaxputm7K754Y9ZuYVg3Q
+         IRGdE1F8SssbmNvbfUOYybkmJzkEy09FaV6v8MNBCKIrmKFH4SpfEUMGnp2hIfcRDLNU
+         mEjJBnB9W/XcT/vUD6yn2wl+h8t1DIUUwxCsMJQdw3uATmBP9N0Qh0Zqsj6P1aJrZ/I7
+         XCjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=ffa161gA4EvJtmVnOlg8DPccovJS7ZtlelqcF1oheOw=;
-        b=WLZvL++ILpRKn1piO/voF/r51YZzzXpPhQ3/3zX2Ltd306l40ujIBydrxZHOAO0+u1
-         F4oKnxAOyKIyfT5252qWF9B202e99oqZ8Z7SIEN41qqi31wzvtCuvSGk1rd0qFZpc+mK
-         GyZetTIhok6rdWmroyNVY1S+i+SjPiiBUMztUwU1Un/BfHP63J9dfGZ6De1q9oAfuUaw
-         IpSEau2Ic9ZQa/BTcKhgOdElwelInUn/Kpo0OXimo7Bk0Kwg6JdxSvs0u1WmmbC4Uzy7
-         SIp6bmSxLpDvyhmSq7rjsdJXx/Co85Q8+LlZrVruXumQHRG2qD2u4FUPAag59ZQjpnjn
-         Pkmg==
-X-Gm-Message-State: AOAM530IHTOqC1Cs7W6EkdfQbTHVIVfVaexDX8LzBMxwfYboIKBKQC7o
-        6oVCtJrg0i78XrPmS82toOU=
-X-Google-Smtp-Source: ABdhPJx1yi+cEBvD5yaZMWOBTR6AJr4PNm7Igp8eovJQzKBFFnqbtfoRSNg0G8Ip7uYr1Bk6uIM4ww==
-X-Received: by 2002:aa7:96d0:0:b0:47c:efd:9ab4 with SMTP id h16-20020aa796d0000000b0047c0efd9ab4mr5586384pfq.30.1635439618948;
-        Thu, 28 Oct 2021 09:46:58 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id y19sm4011406pfn.23.2021.10.28.09.46.57
+        bh=MtSx5A+s1uno/sezJRQKPU9Vdfq+oNK7NxdXtZ/qoiY=;
+        b=zI+UsDHQw7aBuquz3h0ohHN4qy0tkTOpSy32bmSzHxJn1hstg/BnAseRNgld4qjLXK
+         E2Np0ne0h1u3PSlq/KJCyi9ji3W8hdtFKFO2Ry6GApdDs3RZAOjA9WwBiexFf4owgdPC
+         vPQumyJG4zrVNsFKN/GUAwiQ8zNR1a4M8T02vgWYrTI6tIAtQM4HGSnvff22Ibvf2GrU
+         iMQRTyg5K0NAQG8qMdJdY2jKSewvKcixHf3VKySSlLFF/n64lKOheuluzsUXfRjVzvmw
+         g1fqkkp8hSz7yvO8GESvTA4KpAg26YnHyxlTo3eeo9Vp+FZmbMbJOyNrysTiBhbSEZDe
+         iTMg==
+X-Gm-Message-State: AOAM531LHKt0aX8PypB+YjzHCTDOttdsbz3v4WsuSCjSAY/IPypxyYCv
+        TbLv4m0W1kW6WKmTpx2SFdnCsITAYVQsig==
+X-Google-Smtp-Source: ABdhPJx/A0myJ23cNQ2f+AqwP+juVov54sXiq6msHtv7bYef+09T4PmdUIiMxq+IvjOvN5FU8345JA==
+X-Received: by 2002:a05:6000:1684:: with SMTP id y4mr7097993wrd.252.1635439662301;
+        Thu, 28 Oct 2021 09:47:42 -0700 (PDT)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id y8sm3601724wrq.77.2021.10.28.09.47.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 09:46:58 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     chunkeey@gmail.com, arinc.unal@arinc9.com, mnhagan88@gmail.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM5301X ARM
-        ARCHITECTURE), Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: BCM5301X: Add interrupt properties to GPIO node
-Date:   Thu, 28 Oct 2021 09:46:53 -0700
-Message-Id: <20211028164654.4014646-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        Thu, 28 Oct 2021 09:47:41 -0700 (PDT)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        rdunlap@infradead.org, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     wcheng@codeaurora.org, bryan.odonoghue@linaro.org
+Subject: [RESEND PATCH v2 0/7] Add pm8150b TPCM driver
+Date:   Thu, 28 Oct 2021 17:49:34 +0100
+Message-Id: <20211028164941.831918-1-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GPIO controller is also an interrupt controller provider and is
-currently missing the appropriate 'interrupt-controller' and
-'#interrupt-cells' properties to denote that.
+V2 resend:
+- Adding omitted devicetree mailing list
 
-Fixes: fb026d3de33b ("ARM: BCM5301X: Add Broadcom's bus-axi to the DTS file")
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- arch/arm/boot/dts/bcm5301x.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+V2:
 
-diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-index ec5de636796e..1ff21951d24a 100644
---- a/arch/arm/boot/dts/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/bcm5301x.dtsi
-@@ -242,6 +242,8 @@ chipcommon: chipcommon@0 {
+Guenter Roeck's review
+- Converts suggested qcom_pmic_tcpm_core.c into one-liners
+
+- Adds comment on how polarity is set in set_polarity()
+
+- Removes optional set_current_limit()
+
+- regmap_read/regmap_write
+  Reviwing other pm8150b/spmi drivers I then added in checks for all
+  reamap_read()/regmap_write() calls.
+
+- Fixes (type == TCPC_TX_CABLE_RESET || TCPC_TX_HARD_RESET)
+  thanks I definitely had the blinkers on there and didn't see that at all
+
+- qcom_pmic_tcpm_pdphy_pd_transmit_payload()
+  Treats regmap_read and read value as separate error paths
+
+- qcom_pmic_tcpm_pdphy_set_pd_rx()
+  Replaces boolean if/else with !on as suggested
+
+- Returns -ENODEV not -EINVAL on dev_get_regmap() error
+
+- qcom_pmic_tcpm_pdphy_pd_receive()
+  Guenter asks: "No error return ?"
+  bod: No we are inside an ISR here if we read data we pass that off to TCPM
+       if somehow we don't read the data - it is "junk" there's no value IMO
+       in pushing an error upwards back to the handler.
+
+Heikki Krogerus' review
+- Includes Makefile I missed adding to my git index
+
+- Removes old Kconfig entry for remove driver
+
+Randy Dunlap's review 
+- Rewords drivers/usb/typec/tcpm/Kconfig
+
+- Drops tautology "aggregates togther"
+
+- Corrects spelling typos
+
+BOD's own review
+- Drops redundant include of regmap.h in qcom_pmic_tcpm_core.c
+
+- Propogates qcom_pmic_tcpm_pdphy_disable() error upwards
+
+- Propogates pmic_pdphy_reset() error upwards
+
+- Drops error prints in qcom_pmic_tcpm_pdphy_pd_transmit_payload()
+  I had these in-place during development and don't recall them being
+  triggered even once, they are redundant, remove.
  
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 		};
- 
- 		pcie0: pcie@12000 {
+Differences between the two can be seen by
+git diff usb-next-27-10-21-pm8150b-tcpm-v2..usb-next-25-10-21-pm8150b-tcpm -- drivers/usb/typec/tcpm
+
+Latest bootable series can be found here:
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=usb-next-27-10-21-pm8150b-tcpm-v2
+
+Previous set:
+Link: https://lore.kernel.org/all/20211025150906.176686-1-bryan.odonoghue@linaro.org/T/#t
+
+V1:
+This series adds a set of yaml and a driver to bind together the type-c and
+pdphy silicon in qcom's pm8150b block as a Linux type-c port manager.
+
+As part of that we retire the existing qcom-pmic-typec driver and fully
+replicate its functionality inside of the new block with the additional
+pdphy stuff along with it.
+
+An additional series will follow this one for the SoC and RB5 dtsi and dts
+respectively.
+
+A bootable series can be found here
+
+Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=usb-next-25-10-21-pm8150b-tcpm
+
+Bryan O'Donoghue (7):
+  dt-bindings: usb: Add qcom,pmic-usb-typec dt-binding header
+  dt-bindings: usb: Add Qualcomm PMIC type C controller YAML schema
+  dt-bindings: usb: Add qcom,pmic-usb-pdphy dt-binding header
+  dt-bindings: usb: Add Qualcomm PMIC PDPHY controller YAML schema
+  dt-bindings: usb: Add Qualcomm PMIC TCPM YAML schema
+  usb: typec: qcom: Remove standalone qcom pm8150b typec driver
+  usb: typec: qcom: Add a pm8150b TCPM driver
+
+ .../bindings/usb/qcom,pmic-pdphy.yaml         | 115 ++++
+ .../bindings/usb/qcom,pmic-tcpm.yaml          | 110 +++
+ .../bindings/usb/qcom,pmic-typec.yaml         | 116 ++++
+ MAINTAINERS                                   |   8 +
+ drivers/usb/typec/Kconfig                     |  13 -
+ drivers/usb/typec/Makefile                    |   1 -
+ drivers/usb/typec/qcom-pmic-typec.c           | 262 -------
+ drivers/usb/typec/tcpm/Kconfig                |  11 +
+ drivers/usb/typec/tcpm/Makefile               |   1 +
+ drivers/usb/typec/tcpm/qcom/Makefile          |   6 +
+ .../usb/typec/tcpm/qcom/qcom_pmic_tcpm_core.c | 313 +++++++++
+ .../typec/tcpm/qcom/qcom_pmic_tcpm_pdphy.c    | 606 +++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_tcpm_pdphy.h    |  85 +++
+ .../typec/tcpm/qcom/qcom_pmic_tcpm_typec.c    | 638 ++++++++++++++++++
+ .../typec/tcpm/qcom/qcom_pmic_tcpm_typec.h    | 163 +++++
+ .../usb/typec/tcpm/qcom,pmic-usb-pdphy.h      |  18 +
+ .../usb/typec/tcpm/qcom,pmic-usb-typec.h      |  18 +
+ 17 files changed, 2208 insertions(+), 276 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+ delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/Makefile
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm_core.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm_pdphy.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm_pdphy.h
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm_typec.c
+ create mode 100644 drivers/usb/typec/tcpm/qcom/qcom_pmic_tcpm_typec.h
+ create mode 100644 include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-pdphy.h
+ create mode 100644 include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h
+
 -- 
-2.25.1
+2.33.0
 
