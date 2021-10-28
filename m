@@ -2,225 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD0343D9E6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 05:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8099643DA06
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 05:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbhJ1Diq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 23:38:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbhJ1Diq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 23:38:46 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE32C061570;
-        Wed, 27 Oct 2021 20:36:19 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 50D93276;
-        Thu, 28 Oct 2021 05:36:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1635392176;
-        bh=Kk24UJbZp3UTmptindO7Y74AMuKi5/tk4XGhB8M+H4Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hJZy3v+uKr3FC6Cg3jD6E1LrR515eQlcMTfczn9Lxej7U8WweU+X/qd++mxEyuCgv
-         Rrw8hG4/N5ZlUPUop9VAP4tn32UGMQvd6AibaX5mAcp/f2XbTtvl31mzGw6qcwz9jG
-         31QdDldjTVZcCkOc3X1P1jxqyFl/SKlykfygDAhE=
-Date:   Thu, 28 Oct 2021 06:35:52 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        cstevens@beaconembedded.com,
-        Adam Ford-BE <aford@beaconembedded.com>,
+        id S229735AbhJ1D7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 23:59:48 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:39485 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229801AbhJ1D7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 23:59:48 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635393442; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=m+tIbxcshou06MTQ58i8f/rhVixWQJgIxK9i9z23/4k=; b=A8+7LmPCj8N3K4btuTe2KSR45GFzGlSaPEkH6NvMtWAeVSdfYAE5gSnV+gT8OxgIC2w6/1/N
+ ag0QwB64dmLt4fX0Pw87Ift5Bu7x8HuDxJoizNVQbGmjlEnMM/iOeZRb8QX7Mp2hbrvZHTjG
+ 3bWt1ccVWOwi+Z91YWqm6vQssQQ=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 617a1f93545d7d365f27c2a5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Oct 2021 03:57:07
+ GMT
+Sender: rnayak=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 20798C4360D; Thu, 28 Oct 2021 03:57:07 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
+        version=3.4.0
+Received: from [192.168.0.118] (unknown [49.207.214.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0CE52C4338F;
+        Thu, 28 Oct 2021 03:57:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0CE52C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>
-Subject: Re: [RFC V2 0/5] arm64: dts: imx8mm: Enable CSI and OV5640 Camera
-Message-ID: <YXoamAtFH4fZ9s2E@pendragon.ideasonboard.com>
-References: <20211023203457.1217821-1-aford173@gmail.com>
- <CAOMZO5BwPTWBhqzHgbzbC_UyzOX7LMGxX83H0FaJ-05ddOpqYQ@mail.gmail.com>
- <CAHCN7x+Bj==zd8_VRquv51RYiG9t_CRrB6=3fugaHvQS8PVS+g@mail.gmail.com>
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
+ <YXcBK7zqny0s4gd4@ripper>
+ <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper>
+ <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper>
+ <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga>
+ <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <da877712-dac9-e9d0-0bfc-25bef450eb65@codeaurora.org>
+Date:   Thu, 28 Oct 2021 09:26:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAHCN7x+Bj==zd8_VRquv51RYiG9t_CRrB6=3fugaHvQS8PVS+g@mail.gmail.com>
+In-Reply-To: <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
 
-On Wed, Oct 27, 2021 at 07:39:40PM -0500, Adam Ford wrote:
-> On Sun, Oct 24, 2021 at 7:16 AM Fabio Estevam wrote:
-> >
-> > Hi Adam,
-> >
-> > [Adding Frieder on Cc]
-> >
-> > On Sat, Oct 23, 2021 at 5:35 PM Adam Ford <aford173@gmail.com> wrote:
-> > >
-> > > The imx8mm appears to have both a CSI bridge and mipi-csi-2 drivers.  With
-> > > those enabled, both the imx8mm-evk and imx8mm-beacon boards should be able
-> > > use an OV5640 camera.
-> > >
-> > > The mipi-csi2 driver sets the clock frequency to 333MHz, so the clock parent
-> > > of the CSI1 must be reparented to a faster clock.  On the custom NXP kernel,
-> > > they use IMX8MM_SYS_PLL2_1000M, so that is done in the device tree to match.
-> > >
-> > > With the CSI and mipi_csi2 drivers pointing to an OV5640 camera, the media
-> > > pipeline can be configured with the following:
-> > >
-> > >     media-ctl --links "'ov5640 1-003c':0->'imx7-mipi-csis.0':0[1]"
-> > >
-> > > The camera and various nodes in the pipeline can be configured for UYVY:
-> > >     media-ctl -v -V "'ov5640 1-003c':0 [fmt:UYVY8_1X16/640x480 field:none]"
-> > >     media-ctl -v -V "'csi':0 [fmt:UYVY8_1X16/640x480 field:none]"
-> > >
-> > > With that, the media pipeline looks like:
-> > >
-> > >
-> > > Media controller API version 5.15.0
-> > >
-> > > Media device information
-> > > ------------------------
-> > > driver          imx7-csi
-> > > model           imx-media
-> > > serial
-> > > bus info        platform:32e20000.csi
-> > > hw revision     0x0
-> > > driver version  5.15.0
-> > >
-> > > Device topology
-> > > - entity 1: csi (2 pads, 2 links)
-> > >             type V4L2 subdev subtype Unknown flags 0
-> > >             device node name /dev/v4l-subdev0
-> > >         pad0: Sink
-> > >                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
-> > >                 <- "imx7-mipi-csis.0":1 [ENABLED,IMMUTABLE]
-> > >         pad1: Source
-> > >                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
-> > >                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> > >
-> > > - entity 4: csi capture (1 pad, 1 link)
-> > >             type Node subtype V4L flags 0
-> > >             device node name /dev/video0
-> > >         pad0: Sink
-> > >                 <- "csi":1 [ENABLED,IMMUTABLE]
-> > >
-> > > - entity 10: imx7-mipi-csis.0 (2 pads, 2 links)
-> > >              type V4L2 subdev subtype Unknown flags 0
-> > >              device node name /dev/v4l-subdev1
-> > >         pad0: Sink
-> > >                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
-> > >                 <- "ov5640 1-003c":0 [ENABLED]
-> > >         pad1: Source
-> > >                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
-> > >                 -> "csi":0 [ENABLED,IMMUTABLE]
-> > >
-> > > - entity 15: ov5640 1-003c (1 pad, 1 link)
-> > >              type V4L2 subdev subtype Sensor flags 0
-> > >              device node name /dev/v4l-subdev2
-> > >         pad0: Source
-> > >                 [fmt:UYVY8_1X16/640x480@1/30 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range]
-> > >                 -> "imx7-mipi-csis.0":0 [ENABLED]
-> > >
-> > > When configured, gstreamer can be used to capture 1 frame and store it to a file.
-> > >
-> > > gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
-> > >
-> > > Unfortunately, the video capture never appears to happen.  No errors occur, not
-> > > interrupts are recorded and no errors are recorded.
-> > >
-> > > gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
-> > > Setting pipeline to PAUSED ...
-> > > Pipeline is live and does not need PREROLL ...
-> > > Pipeline is PREROLLED ...
-> > > Setting pipeline to [  114.819632] v4l2_get_link_freq: Link frequency estimated using pixel rate: result might be inaccurate
-> > > PLAYING ...
-> > > New clock: GstSystem[  114.829203] v4l2_get_link_freq: Consider implementing support for V4L2_CID_LINK_FREQ in the transmitter driver
-> > > Clock
-> > > /GstPipeline:pipeline0/GstV4l2Src:v4l2src0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
-> > > /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
-> > > /GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
-> > > /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
-> > >
-> > >
-> > > If anyone has any insight as to what might be wrong, I'd like feedback.
-> > > I posted a device tree that I beleive goes with the newer imx8mm-evk, but
-> > > I do not have this hardware, so I cannot test it.
-> >
-> > It seems that Frieder on Cc managed to get camera capture to work on
-> > i.MX8MM here:
-> > https://git.kontron-electronics.de/sw/misc/linux/-/commits/v5.10-mx8mm-csi
-> >
-> > Hopefully, this can help to figure out what is missing in mainline to
-> > get camera capture to work on i.MX8M.
-> >
-> > I don't have access to an OV5640 camera to connect to the imx8mm-evk
-> > board to try your series.
-> 
-> Fabio,
-> 
-> Thanks for the heads up on that repo.  I was able to use that repo and
-> get still images to capture on an OV5640, but I noticed a fair amount
-> of differences between that repo and what's found in linux-next.
-> 
-> Laurent,
-> 
-> I haven't exhausted the patch differences, but I found at least a few
-> that appear to be missiing upstream, and I am curious to know if/what
-> your opinion is on whether or not they're needed, since the patches on
-> Frieder's repo appear to come from you.
-> [1] - media: imx: imx7-media-csi: Add i.MX8MM identification
 
-This shouldn't make any difference.
-
-> [2] - media: imx: imx7_mipi_csis: Don't set reserved CLK_CTRL field on i.MX8MM
-
-This was based on my analysis of the reference manual, but it turned out
-to be incorrect, the i.MX8MM CSI-2 receiver didn't work at all for me
-with that patch.
-
-> [3] - media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
-
-This one isn't clear to me yet. I'll have to retest, I think I had to
-set dual pixel mode to capture RAW8 and RAW10 with the OV5640, but
-setting it broke raw capture with a different sensor. More investigation
-is needed. In any case, with or without that patch, you should get
-interrupts from the CSIS as the dual pixel mode is related to the
-interface with the CSI bridge.
-
-> media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
+On 10/27/2021 7:54 PM, Ulf Hansson wrote:
+> On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+>>
+>> On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
+>>
+>>> +Rajendra
+>>>
+>>> Quoting Bjorn Andersson (2021-10-25 19:48:02)
+>>>> On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
+>>>>
+>>>>>
+>>>>> When the binding was introduced I recall we punted on the parent child
+>>>>> conversion stuff. One problem at a time. There's also the possibility
+>>>>> for a power domain to be parented by multiple power domains so
+>>>>> translation tables need to account for that.
+>>>>>
+>>>>
+>>>> But for this case - and below display case - the subdomain (the device's
+>>>> power-domain) is just a dumb gate. So there is no translation, the given
+>>>> performance_state applies to the parent. Or perhaps such implicitness
+>>>> will come back and bite us?
+>>>
+>>> In the gate case I don't see how the implicitness will ever be a
+>>> problem.
+>>>
+>>>>
+>>>> I don't think we allow a power-domain to be a subdomain of two
+>>>> power-domains - and again it's not applicable to USB or display afaict.
+>>>
+>>> Ah maybe. I always confuse power domains and genpd.
+>>>
+>>>>
+>>>>>>
+>>>>>>> Or we may need to make another part of the OPP binding to indicate the
+>>>>>>> relationship between the power domain and the OPP and the parent of
+>>>>>>> the power domain.
+>>>>>>
+>>>>>> I suspect this would be useful if a power-domain provider needs to
+>>>>>> translate a performance_state into a different supply-performance_state.
+>>>>>> Not sure if we have such case currently; these examples are all an
+>>>>>> adjustable power-domain with "gating" subdomains.
+>>>>>
+>>>>> Even for this case, we should be able to have the GDSC map the on state
+>>>>> to some performance state in the parent domain. Maybe we need to add
+>>>>> some code to the gdsc.c file to set a performance state on the parent
+>>>>> domain when it is turned on. I'm not sure where the value for that perf
+>>>>> state comes from. I guess we can hardcode it in the driver for now and
+>>>>> if it needs to be multiple values based on the clk frequency we can push
+>>>>> it out to an OPP table or something like that.
+>>>>>
+>>>>
+>>>> For the GDSC I believe we only have 1:1 mapping, so implementing
+>>>> set_performance_state to just pass that on to the parent might do the
+>>>> trick (although I haven't thought this through).
+>>>>
+>>>> Conceptually I guess this would be like calling clk_set_rate() on a
+>>>> clock gate, relying on it being propagated upwards. The problem here is
+>>>> that the performance_state is just a "random" integer without a well
+>>>> defined unit.
+>>>>
+>>>
+>>> Right. Ideally it would be in the core code somehow so that if there
+>>> isn't a set_performance_state function we go to the parent or some
+>>> special return value from the function says "call it on my parent". The
+>>> translation scheme could come later so we can translate the "random"
+>>> integer between parent-child domains.
+>>
+>> As a proof of concept it should be sufficient to just add an
+>> implementation of sc->pd.set_performance_state in gdsc.c. But I agree
+>> that it would be nice to push this into some framework code, perhaps
+>> made opt-in by some GENPD_FLAG_xyz.
+>>
+>>> At the end of the day the device
+>>> driver wants to set a frequency or runtime pm get the device and let the
+>>> OPP table or power domain code figure out what the level is supposed to
+>>> be.
+>>>
+>>
+>> Yes and this is already working for the non-nested case - where the
+>> single power-domain jumps between performance states as the opp code
+>> switches from one opp to another.
+>>
+>> So if we can list only the child power-domain (i.e. the GDSC) and have
+>> the performance_stat requests propagate up to the parent rpmhpd resource
+>> I think we're good.
+>>
+>>
+>> Let's give this a spin and confirm that this is the case...
+>>
+>>>>
+>>>>
+>>>> The one case where I believe we talked about having different mapping
+>>>> between the performance_state levels was in the relationship between CX
+>>>> and MX. But I don't think we ever did anything about that...
+>>>
+>>> Hmm alright. I think there's a constraint but otherwise nobody really
+>>> wants to change both at the same time.
+>>>
+>>>>>
+>>>>> Yes, a GDSC is really a gate on a parent power domain like CX or MMCX,
+>>>>> etc. Is the display subsystem an example of different clk frequencies
+>>>>> wanting to change the perf state of CX? If so it's a good place to work
+>>>>> out the translation scheme for devices that aren't listing the CX power
+>>>>> domain in DT.
+>>>>
+>>>> Yes, the various display components sits in MDSS_GDSC but the opp-tables
+>>>> needs to change the performance_state of MDSS_GDSC->parent (i.e. CX or
+>>>> MMCX, depending on platform).
+>>>>
+>>>> As I said, today we hack this by trusting that the base drm/msm driver
+>>>> will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain for each
+>>>> of these components.
+>>>>
+>>>>
+>>>> So if we solve this, then that seems to directly map to the static case
+>>>> for USB as well.
+>>>>
+>>>
+>>> Got it. So in this case we could have the various display components
+>>> that are in the mdss gdsc domain set their frequency via OPP and then
+>>> have that translate to a level in CX or MMCX. How do we parent the power
+>>> domains outside of DT? I'm thinking that we'll need to do that if MMCX
+>>> is parented by CX or something like that and the drivers for those two
+>>> power domains are different. Is it basic string matching?
+>>
+>> In one way or another we need to invoke pm_genpd_add_subdomain() to link
+>> the two power-domains (actually genpds) together, like what was done in
+>> 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
+>>
+>> In the case of MMCX and CX, my impression of the documentation is that
+>> they are independent - but if we need to express that CX is parent of
+>> MMCX, they are both provided by rpmhpd which already supports this by
+>> just specifying .parent on mmcx to point to cx.
 > 
-> Maybe these don't need to be applied, but they are 'some' of the
-> differences that I see between this 5.10 branch and linux-next .  I
-> know there are more, but
+> I was trying to follow the discussion, but it turned out to be a bit
+> complicated to catch up and answer all things. In any case, let me
+> just add a few overall comments, perhaps that can help to move things
+> forward.
 > 
+> First, one domain can have two parent domains. Both from DT and from
+> genpd point of view, just to make this clear.
 > 
-> [1] - https://git.kontron-electronics.de/sw/misc/linux/-/commit/8ac7ec6db0c260a871038721886dbdb6660ed84c
-> [2] - https://git.kontron-electronics.de/sw/misc/linux/-/commit/0b5727c8eba8c370f7db5eace0243f78992a4dbb
-> [3] - https://git.kontron-electronics.de/sw/misc/linux/-/commit/14befa6bc146b10092a6ac5d0ed4d42c87c6cf27
-> 
-> Frieder et al,
-> 
-> Have you (or anyone) tried CSI cameras on anything newer than 5.10?  I
-> am curious to see if a regression popped in somewhere, but git bisect
-> will make this difficult since there is a fair amount of variation
-> between this custom repo and the upstream.
+> Although, it certainly looks questionable to me, to hook up the USB
+> device to two separate power domains, one to control power and one to
+> control performance. Especially, if it's really the same piece of HW
+> that is managing both things. 
+[]..
+> Additionally, if it's correct to model
+> the USB GDSC power domain as a child to the CX power domain from HW
+> point of view, we should likely do that.
 
-I'll try to run tests on mainline again, but it will have to wait a
-couple of weeks I'm afraid.
+I think this would still require a few things in genpd, since
+CX and USB GDSC are power domains from different providers.
+Perhaps a pm_genpd_add_subdomain_by_name()?
 
 -- 
-Regards,
-
-Laurent Pinchart
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
