@@ -2,202 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA84643DC7F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3E2643DC85
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:56:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbhJ1H4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 03:56:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbhJ1H4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:56:21 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD456C061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:53:54 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id i5so868240wrb.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:53:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
-        b=pelz1Ufc5/UAKeFvt0zU3hIcMd/8+35nlNxNl5AGpEgnNfb5Y+o8BZhEsr1TCLrlzy
-         XZFUOHSTRZ8GLwd1ZhF1bFH6is2FJtXEFJZ0bDSa2tfZVCVbyvw7WVbYAVttAv4SRKw1
-         dKICJLJ+As0pk7cQeiZaB8Q5sgFoKKrCwqWzhkVartmw1zQJEyNSkX7XOIXXhygQUiFw
-         8+VU9UUG7wWVgjmChhlQG1+6P1NTrJp6l/1v+CyjYWA/E43rJYNIdjyLFD6d4VA1c9FR
-         OWTE2yAMeTdZ6p800O/5w8+W8Lmfcl/zsgy65h2K0qe+r0iqBTMGn1wJI3PtLboDQujE
-         P8/w==
+        id S229805AbhJ1H7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 03:59:01 -0400
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:40606 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229626AbhJ1H7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:59:01 -0400
+Received: by mail-ua1-f42.google.com with SMTP id e2so9887569uax.7;
+        Thu, 28 Oct 2021 00:56:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
-        b=3j7fa6krOCr2N0zxfBXBbFueS1Kvh/9a2+3fBbvSc3YAZcFs0UhdgXmT9dR+X/K/gF
-         iRgx7NJfzOQKI6LreCOCqNs/+YvrXg057BZjmLCpArum9VFOOdBwEBASaBdmHOvCB6xl
-         e6rn6EU76L8xovBUuJ+Mq4tbQpz/oJTxL1azwYLqA3iISUrJ5w/sHl2mcvaK650m1fw+
-         fd70dr9bpwpn65ZKIKjrdSaenjYnQPFWreq2ZSpelMqesg9ivr0qk3mImEosXqqqLWSD
-         BgZG4qbLFKdsZ0LTihIMrAd+N3uJ9/TEiQQID3UWc8+hYbPAIGOJUJnEifPidhN0ddYw
-         SMPw==
-X-Gm-Message-State: AOAM5305OOdvVum7GPto9qIDENKouqL0rbhmePG1P2nVCvSVAAAxqSr8
-        pNWSg6zMHmq39ncMI1l1lWWSb3XFHTYXpg==
-X-Google-Smtp-Source: ABdhPJz+2cI7ART9PUdzOV7ARxZXthcWU+MfZsDw5otUo+78hcs2xAypNpMTKVLApLHW/opWjh5A3w==
-X-Received: by 2002:a5d:63c2:: with SMTP id c2mr3578371wrw.174.1635407633242;
-        Thu, 28 Oct 2021 00:53:53 -0700 (PDT)
-Received: from lmecxl0524.lme.st.com ([2a04:cec0:10ad:cd3f:50ee:a5d1:4a7:ad6])
-        by smtp.gmail.com with ESMTPSA id y12sm405677wrn.73.2021.10.28.00.53.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 00:53:52 -0700 (PDT)
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v7 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Date:   Thu, 28 Oct 2021 09:53:43 +0200
-Message-Id: <20211028075344.1688-1-etienne.carriere@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=A0/s1eOk1wef1JTYqbKcsjnrUvxYbUzwinErC1kCUnk=;
+        b=Tuy+KcpIQ2Le/y+aooLSh8nVcFUFa93bBJDUFrxx/5JxeSBwSmQqtcwxuLIfx5vgO2
+         0Z3UQHTU/o+Vbit/oSTUV9/ZX6b0EPJn/z7JfTrHq/V9e8J/1NENeXKe1tYNW+1mZGnT
+         QeULPWPGhmrD8b7T/UDl9SNuFaqEQJWmvD0KphAsjBHxuU14nYgAvkekFL6o/ch3Dq17
+         qShG4ODJXmQ5oFMsZQYakAP3jKyqKw43LqozbDuEb5CZacVOFof4TlBMCjidJg9V2kzk
+         ok/0QgfEd1W8jwsSFXxBlg5KOu3s7WAK9Pgx9iQht/Jr0rNFGbTMgM/ouZC8pjHwnool
+         aSPA==
+X-Gm-Message-State: AOAM533djQIHQD06iRUI2Rv6wY7iexYkJhRoYCBXlnmYySRoHdhTM/sr
+        /xMcXV8pL9mOAYt+ls4gTwx0LS1Wwh6vZg==
+X-Google-Smtp-Source: ABdhPJwOICbnfcaVbrLKMKi7dFAxsRrNEJp8XStRmzYEIUsl5oLp0WxUm9urGj1es28BJJC5AAEUPQ==
+X-Received: by 2002:a67:b202:: with SMTP id b2mr2691833vsf.33.1635407794074;
+        Thu, 28 Oct 2021 00:56:34 -0700 (PDT)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id d22sm355058uan.15.2021.10.28.00.56.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Oct 2021 00:56:33 -0700 (PDT)
+Received: by mail-ua1-f41.google.com with SMTP id f4so9924036uad.4;
+        Thu, 28 Oct 2021 00:56:33 -0700 (PDT)
+X-Received: by 2002:a9f:2584:: with SMTP id 4mr2722380uaf.114.1635407793316;
+ Thu, 28 Oct 2021 00:56:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211027134509.5036-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211027134509.5036-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211027134509.5036-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 28 Oct 2021 09:56:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX81X+1AHp4Dsp70kG1TaYj=x3T8j3xidfLuskjd1Vc6g@mail.gmail.com>
+Message-ID: <CAMuHMdX81X+1AHp4Dsp70kG1TaYj=x3T8j3xidfLuskjd1Vc6g@mail.gmail.com>
+Subject: Re: [PATCH 4/4] pinctrl: renesas: pinctrl-rzg2l: Add support to
+ get/set drive-strength and output-impedance-ohms
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-based on an OP-TEE service invocation. The compatible mandates a
-channel ID defined with property "linaro,optee-channel-id".
+Hi Prabhakar,
 
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
----
-Changes since v6:
- - Remove maxItems from linaro,optee-channel-id description
+On Wed, Oct 27, 2021 at 3:45 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support to get/set drive-strength and output-impedance-ohms
+> for the supported pins.
+>
+> While at it also renamed the below macros to match the HW manual,
+> PIN_CFG_IOLH_SD0 -> PIN_CFG_IO_VMC_SD0
+> PIN_CFG_IOLH_SD1 -> PIN_CFG_IO_VMC_SD1
+> PIN_CFG_IOLH_QSPI -> PIN_CFG_IO_VMC_QSPI
+> PIN_CFG_IOLH_ETH0 -> PIN_CFG_IO_VMC_ETH0
+> PIN_CFG_IOLH_ETH1 -> PIN_CFG_IO_VMC_ETH1
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-No change since v5
+Thanks for the update!
 
-Changes since v4:
- - Fix sram node name in DTS example: s/-shm-/-sram-/
+> ---
+> RFC->v1
+>  * Renamed macros to match HW manual
 
-Changes since v3:
- - Add description for linaro,optee-channel-id in patternProperties
-   specifying protocol can optionaly define a dedicated channel id.
- - Fix DTS example (duplicated phandles issue, subnodes ordering)
- - Fix typo in DTS example and description comments.
+You may want to split that off into a separate patch, as not all lines
+changed are touched for other reasons.
+BTW, where do I find these "VMC" names in the HW manual?
 
-Changes since v2:
- - Define mandatory property linaro,optee-channel-id
- - Rebased on yaml description file
+>  * Added PIN_CFG_IOLH_A/B macros to differentiate Group A/B
+>  * Added helper function to read/rmw pin config
+>  * Included RB tags
 
-Changes since v1:
- - Removed modification regarding mboxes property description.
----
- .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
+> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5c4c6782e052..eae15df36eef 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -38,6 +38,9 @@ properties:
-                      The virtio transport only supports a single device.
-         items:
-           - const: arm,scmi-virtio
-+      - description: SCMI compliant firmware with OP-TEE transport
-+        items:
-+          - const: linaro,scmi-optee
- 
-   interrupts:
-     description:
-@@ -83,6 +86,11 @@ properties:
-     description:
-       SMC id required when using smc or hvc transports
- 
-+  linaro,optee-channel-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Channel specifier required when using OP-TEE transport.
-+
-   protocol@11:
-     type: object
-     properties:
-@@ -195,6 +203,12 @@ patternProperties:
-         minItems: 1
-         maxItems: 2
- 
-+      linaro,optee-channel-id:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Channel specifier required when using OP-TEE transport and
-+          protocol has a dedicated communication channel.
-+
-     required:
-       - reg
- 
-@@ -226,6 +240,16 @@ else:
-       - arm,smc-id
-       - shmem
- 
-+  else:
-+    if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: linaro,scmi-optee
-+    then:
-+      required:
-+        - linaro,optee-channel-id
-+
- examples:
-   - |
-     firmware {
-@@ -340,7 +364,48 @@ examples:
-                 reg = <0x11>;
-                 #power-domain-cells = <1>;
-             };
-+        };
-+    };
-+
-+  - |
-+    firmware {
-+        scmi {
-+            compatible = "linaro,scmi-optee";
-+            linaro,optee-channel-id = <0>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            scmi_dvfs1: protocol@13 {
-+                reg = <0x13>;
-+                linaro,optee-channel-id = <1>;
-+                shmem = <&cpu_optee_lpri0>;
-+                #clock-cells = <1>;
-+            };
-+
-+            scmi_clk0: protocol@14 {
-+                reg = <0x14>;
-+                #clock-cells = <1>;
-+            };
-+        };
-+    };
- 
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        sram@51000000 {
-+            compatible = "mmio-sram";
-+            reg = <0x0 0x51000000 0x0 0x10000>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            ranges = <0 0x0 0x51000000 0x10000>;
-+
-+            cpu_optee_lpri0: optee-sram-section@0 {
-+                compatible = "arm,scmi-shmem";
-+                reg = <0x0 0x80>;
-+            };
-         };
-     };
- 
--- 
-2.17.1
+> +static u32 rzg2l_read_pin_config(void __iomem *addr,
+> +                                u8 bit, u32 mask)
 
+The above fits on a single line.
+
+> +{
+> +       void __iomem *addr_adjust = addr;
+> +       u8 bit_adjust = bit;
+
+No need for these, just operate on addr and bit directly.
+
+> +       u32 reg;
+> +
+> +       if (bit >= 4) {
+> +               bit_adjust -= 4;
+> +               addr_adjust += 4;
+> +       }
+> +
+> +       reg = readl(addr_adjust) & (mask << (bit_adjust * 8));
+> +       return (reg >> (bit_adjust * 8));
+> +}
+> +
+> +static void rzg2l_rmw_pin_config(void __iomem *addr,
+> +                                u8 bit, u32 mask, u32 val)
+> +{
+
+The above fits on a single line.
+
+> +       void __iomem *addr_adjust = addr;
+> +       u8 bit_adjust = bit;
+
+No need for these, just operate on addr and bit directly.
+
+> +       u32 reg;
+> +
+> +       if (bit >= 4) {
+> +               bit_adjust -= 4;
+> +               addr_adjust += 4;
+> +       }
+> +
+> +       reg = readl(addr_adjust) & ~(mask << (bit_adjust * 8));
+> +
+> +       writel(reg | val, addr_adjust);
+
+I think you should handle "val << (bit * 8)" here, instead of in
+all callers.
+
+> +}
+
+Please split the introduction of these helpers (and add conversion
+of the existing PIN_CONFIG_INPUT_ENABLE handling) off into a separate
+patch.
+
+> @@ -484,6 +544,34 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
+>                 break;
+>         }
+>
+> +       case PIN_CONFIG_DRIVE_STRENGTH: {
+> +               static const unsigned int mA[4] = { 2, 4, 8, 12 };
+> +
+> +               if (!(cfg & PIN_CFG_IOLH_A))
+> +                       return -EINVAL;
+> +
+> +               spin_lock_irqsave(&pctrl->lock, flags);
+> +               addr = pctrl->base + IOLH(port);
+> +               reg = rzg2l_read_pin_config(addr, bit, IOLH_MASK);
+> +               arg = mA[reg];
+> +               spin_unlock_irqrestore(&pctrl->lock, flags);
+
+Do you need the spinlock for reading?
+
+> +               break;
+> +       }
+> +
+> +       case PIN_CONFIG_OUTPUT_IMPEDANCE_OHMS: {
+> +               static const unsigned int oi[4] = { 100, 66, 50, 33 };
+> +
+> +               if (!(cfg & PIN_CFG_IOLH_B))
+> +                       return -EINVAL;
+> +
+> +               spin_lock_irqsave(&pctrl->lock, flags);
+> +               addr = pctrl->base + IOLH(port);
+> +               reg = rzg2l_read_pin_config(addr, bit, IOLH_MASK);
+> +               arg = oi[reg];
+> +               spin_unlock_irqrestore(&pctrl->lock, flags);
+
+Likewise.
+
+> +               break;
+> +       }
+> +
+>         default:
+>                 return -ENOTSUPP;
+>         }
+
+> @@ -564,6 +659,49 @@ static int rzg2l_pinctrl_pinconf_set(struct pinctrl_dev *pctldev,
+>                         spin_unlock_irqrestore(&pctrl->lock, flags);
+>                         break;
+>                 }
+> +
+> +               case PIN_CONFIG_DRIVE_STRENGTH: {
+> +                       unsigned int arg = pinconf_to_config_argument(_configs[i]);
+> +                       static const unsigned int mA[4] = { 2, 4, 8, 12 };
+
+Duplicate, move to file scope?
+
+> +
+> +                       if (!(cfg & PIN_CFG_IOLH_A))
+> +                               return -EINVAL;
+> +
+> +                       for (i = 0; i < ARRAY_SIZE(mA); i++) {
+> +                               if (arg == mA[i])
+> +                                       break;
+> +                       }
+> +                       if (i >= ARRAY_SIZE(mA))
+> +                               return -EINVAL;
+> +
+> +                       spin_lock_irqsave(&pctrl->lock, flags);
+> +                       addr = pctrl->base + IOLH(port);
+> +                       rzg2l_rmw_pin_config(addr, bit, IOLH_MASK, (i << (bit * 8)));
+
+Pass pctrl and offset instead of addr (also for rzg2l_read_pin_config,
+for symmetry), and move locking into rzg2l_rmw_pin_config()?
+Taking all of the above into account, that would become:
+
+    rzg2l_rmw_pin_config(pctrl, IOLH(port), bit, IOLH_MASK, i);
+
+> +                       spin_unlock_irqrestore(&pctrl->lock, flags);
+> +                       break;
+> +               }
+> +
+> +               case PIN_CONFIG_OUTPUT_IMPEDANCE_OHMS: {
+> +                       unsigned int arg = pinconf_to_config_argument(_configs[i]);
+> +                       static const unsigned int oi[4] = { 100, 66, 50, 33 };
+
+Duplicate, move to file scope?
+
+> +
+> +                       if (!(cfg & PIN_CFG_IOLH_B))
+> +                               return -EINVAL;
+> +
+> +                       for (i = 0; i < ARRAY_SIZE(oi); i++) {
+> +                               if (arg == oi[i])
+> +                                       break;
+> +                       }
+> +                       if (i >= ARRAY_SIZE(oi))
+> +                               return -EINVAL;
+> +
+> +                       spin_lock_irqsave(&pctrl->lock, flags);
+> +                       addr = pctrl->base + IOLH(port);
+> +                       rzg2l_rmw_pin_config(addr, bit, IOLH_MASK, (i << (bit * 8)));
+
+Likewise.
+
+> +                       spin_unlock_irqrestore(&pctrl->lock, flags);
+> +                       break;
+> +               }
+> +
+>                 default:
+>                         return -EOPNOTSUPP;
+>                 }
+
+The rest looks good to me!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
