@@ -2,700 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5199643E0FC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 14:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA2343E122
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 14:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbhJ1M3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 08:29:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53682 "EHLO mail.kernel.org"
+        id S229835AbhJ1Mq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 08:46:59 -0400
+Received: from ixit.cz ([94.230.151.217]:34964 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229578AbhJ1M3k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 08:29:40 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S229578AbhJ1Mq7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 08:46:59 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 975C860FC0;
-        Thu, 28 Oct 2021 12:27:09 +0000 (UTC)
-Date:   Thu, 28 Oct 2021 13:31:34 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andrea Merello <andrea.merello@gmail.com>
-Cc:     mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
-Subject: Re: [v2 09/10] iio: imu: add BNO055 serdev driver
-Message-ID: <20211028133134.5feed60b@jic23-huawei>
-In-Reply-To: <20211028101840.24632-10-andrea.merello@gmail.com>
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
-        <20211028101840.24632-1-andrea.merello@gmail.com>
-        <20211028101840.24632-10-andrea.merello@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        by ixit.cz (Postfix) with ESMTPSA id DFE2220064;
+        Thu, 28 Oct 2021 14:44:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1635425066;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=IY7xUuDtN9vgHkBumHzvY7GQZ03yGs1caOTK4uqAd4U=;
+        b=IdqazLzgpcorXhJekaImxFXFgNjdsCrGHO6FDKipLs0i/0MOzQr4mNaMaSvUQ/EvFvKRMY
+        BWUCE+pLXchnVEHv/iNgKZrOzmpeZHczpTrA6YitgUsFYjR8OEePnu1s3ywCfN6OtXC2pX
+        qpjUU9CbbyzwtVsVyVUWOBQ22w/AhuQ=
+From:   David Heidelberg <david@ixit.cz>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Mark Brown <broonie@opensource.wolfsonmicro.com>,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: sound: wlf,wm8903: Convert txt bindings to yaml
+Date:   Thu, 28 Oct 2021 14:44:00 +0200
+Message-Id: <20211028124401.37686-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 12:18:39 +0200
-Andrea Merello <andrea.merello@gmail.com> wrote:
+Convert the Wolfson WM8903 Ultra-Low Power Stereo CODEC Device Tree
+binding documentation to json-schema.
 
-> This path adds a serdev driver for communicating to a BNO055 IMU via
-> serial bus, and it enables the BNO055 core driver to work in this
-> scenario.
-> 
-> Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../devicetree/bindings/sound/wlf,wm8903.yaml | 116 ++++++++++++++++++
+ .../devicetree/bindings/sound/wm8903.txt      |  82 -------------
+ 2 files changed, 116 insertions(+), 82 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/wlf,wm8903.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/wm8903.txt
 
-Hi Andrea,
-
-Some comments inline.  Note I'm not that familiar with the serial_dev interface
-so would definitely appreciate input from others on that part.
-
-Jonathan
-> ---
->  drivers/iio/imu/bno055/Kconfig     |   5 +
->  drivers/iio/imu/bno055/Makefile    |   1 +
->  drivers/iio/imu/bno055/bno055_sl.c | 568 +++++++++++++++++++++++++++++
->  3 files changed, 574 insertions(+)
->  create mode 100644 drivers/iio/imu/bno055/bno055_sl.c
-> 
-> diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
-> index d197310661af..941e43f0368d 100644
-> --- a/drivers/iio/imu/bno055/Kconfig
-> +++ b/drivers/iio/imu/bno055/Kconfig
-> @@ -2,3 +2,8 @@
->  
->  config BOSH_BNO055_IIO
->  	tristate
-> +
-> +config BOSH_BNO055_SERIAL
-> +	tristate "Bosh BNO055 attached via serial bus"
-> +	depends on SERIAL_DEV_BUS
-> +	select BOSH_BNO055_IIO
-> diff --git a/drivers/iio/imu/bno055/Makefile b/drivers/iio/imu/bno055/Makefile
-> index c55741d0e96f..7285ade2f4b9 100644
-> --- a/drivers/iio/imu/bno055/Makefile
-> +++ b/drivers/iio/imu/bno055/Makefile
-> @@ -1,3 +1,4 @@
->  # SPDX-License-Identifier: GPL-2.0
->  
->  obj-$(CONFIG_BOSH_BNO055_IIO) += bno055.o
-> +obj-$(CONFIG_BOSH_BNO055_SERIAL) += bno055_sl.o
-> diff --git a/drivers/iio/imu/bno055/bno055_sl.c b/drivers/iio/imu/bno055/bno055_sl.c
-> new file mode 100644
-> index 000000000000..1d1410fdaa7c
-> --- /dev/null
-> +++ b/drivers/iio/imu/bno055/bno055_sl.c
-> @@ -0,0 +1,568 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Serial line interface for Bosh BNO055 IMU (via serdev).
-> + * This file implements serial communication up to the register read/write
-> + * level.
-> + *
-> + * Copyright (C) 2021 Istituto Italiano di Tecnologia
-> + * Electronic Design Laboratory
-> + * Written by Andrea Merello <andrea.merello@iit.it>
-> + *
-> + * This driver is besed on
-> + *	Plantower PMS7003 particulate matter sensor driver
-> + *	Which is
-> + *	Copyright (c) Tomasz Duszynski <tduszyns@gmail.com>
-> + */
-> +
-> +#include <linux/completion.h>
-> +#include <linux/device.h>
-> +#include <linux/errno.h>
-> +#include <linux/jiffies.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/regmap.h>
-> +#include <linux/serdev.h>
-> +
-> +#include "bno055.h"
-> +
-> +/*
-> + * Register writes cmd have the following format
-> + * +------+------+-----+-----+----- ... ----+
-> + * | 0xAA | 0xOO | REG | LEN | payload[LEN] |
-> + * +------+------+-----+-----+----- ... ----+
-> + *
-> + * Register write responses have the following format
-> + * +------+----------+
-> + * | 0xEE | ERROCODE |
-> + * +------+----------+
-> + *
-> + * Register read have the following format
-> + * +------+------+-----+-----+
-> + * | 0xAA | 0xO1 | REG | LEN |
-> + * +------+------+-----+-----+
-> + *
-> + * Successful register read response have the following format
-> + * +------+-----+----- ... ----+
-> + * | 0xBB | LEN | payload[LEN] |
-> + * +------+-----+----- ... ----+
-> + *
-> + * Failed register read response have the following format
-> + * +------+--------+
-> + * | 0xEE | ERRCODE|  (ERRCODE always > 1)
-> + * +------+--------+
-> + *
-> + * Error codes are
-> + * 01: OK
-> + * 02: read/write FAIL
-> + * 04: invalid address
-> + * 05: write on RO
-> + * 06: wrong start byte
-> + * 07: bus overrun
-> + * 08: len too high
-> + * 09: len too low
-> + * 10: bus RX byte timeout (timeout is 30mS)
-> + *
-> + *
-> + * **WORKAROUND ALERT**
-> + *
-> + * Serial communication seems very fragile: the BNO055 buffer seems to overflow
-> + * very easy; BNO055 seems able to sink few bytes, then it needs a brief pause.
-> + * On the other hand, it is also picky on timeout: if there is a pause > 30mS in
-> + * between two bytes then the transaction fails (IMU internal RX FSM resets).
-> + *
-> + * BMU055 has been seen also failing to process commands in case we send them
-> + * too close each other (or if it is somehow busy?)
-> + *
-> + * One idea would be to split data in chunks, and then wait 1-2mS between
-> + * chunks (we hope not to exceed 30mS delay for any reason - which should
-> + * be pretty a lot of time for us), and eventually retry in case the BNO055
-> + * gets upset for any reason. This seems to work in avoiding the overflow
-> + * errors, but indeed it seems slower than just perform a retry when an overflow
-> + * error occur.
-> + * In particular I saw these scenarios:
-> + * 1) If we send 2 bytes per time, then the IMU never(?) overflows.
-> + * 2) If we send 4 bytes per time (i.e. the full header), then the IMU could
-> + *    overflow, but it seem to sink all 4 bytes, then it returns error.
-> + * 3) If we send more than 4 bytes, the IMU could overflow, and I saw it sending
-> + *    error after 4 bytes are sent; we have troubles in synchronizing again,
-> + *    because we are still sending data, and the IMU interprets it as the 1st
-> + *    byte of a new command.
-> + *
-> + * So, we workaround all this in the following way:
-> + * In case of read we don't split the header but we rely on retries; This seems
-> + * convenient for data read (where we TX only the hdr).
-> + * For TX we split the transmission in 2-bytes chunks so that, we should not
-> + * only avoid case 2 (which is still manageable), but we also hopefully avoid
-> + * case 3, that would be by far worse.
-> + */
-> +
-> +/*
-> + * Read operation overhead:
-> + *  4 bytes req + 2byte resp hdr.
-> + *  6 bytes = 60 bit (considering 1start + 1stop bits).
-> + *  60/115200 = ~520uS.
-> + *
-> + * In 520uS we could read back about 34 bytes that means 3 samples, this means
-> + * that in case of scattered read in which the gap is 3 samples or less it is
-> + * still convenient to go for a burst.
-> + * We have to take into account also IMU response time - IMU seems to be often
-> + * reasonably quick to respond, but sometimes it seems to be in some "critical
-> + * section" in which it delays handling of serial protocol.
-> + * By experiment, it seems convenient to burst up to about 5/6-samples-long gap.
-> + */
-> +
-> +#define BNO055_SL_XFER_BURST_BREAK_THRESHOLD 6
-> +
-> +struct bno055_sl_priv {
-> +	struct serdev_device *serdev;
-> +	struct completion cmd_complete;
-> +	enum {
-> +		CMD_NONE,
-> +		CMD_READ,
-> +		CMD_WRITE,
-> +	} expect_response;
-> +	int expected_data_len;
-> +	u8 *response_buf;
-> +
-> +	/**
-> +	 * enum cmd_status - represent the status of a command sent to the HW.
-> +	 * @STATUS_OK:   The command executed successfully.
-> +	 * @STATUS_FAIL: The command failed: HW responded with an error.
-> +	 * @STATUS_CRIT: The command failed: the serial communication failed.
-> +	 */
-> +	enum {
-> +		STATUS_OK = 0,
-> +		STATUS_FAIL = 1,
-> +		STATUS_CRIT = -1
-> +	} cmd_status;
-> +	struct mutex lock;
-> +
-> +	/* Only accessed in behalf of RX callback context. No lock needed. */
-
-would "Only accessed in RX callback context. No lock needed." convey the same meaning?
-
-> +	struct {
-> +		enum {
-> +			RX_IDLE,
-> +			RX_START,
-> +			RX_DATA
-> +		} state;
-> +		int databuf_count;
-> +		int expected_len;
-> +		int type;
-> +	} rx;
-> +
-> +	/* Never accessed in behalf of RX callback context. No lock needed */
-> +	bool cmd_stale;
-> +};
-> +
-> +static int bno055_sl_send_chunk(struct bno055_sl_priv *priv, u8 *data, int len)
-> +{
-> +	int ret;
-> +
-> +	dev_dbg(&priv->serdev->dev, "send (len: %d): %*ph", len, len, data);
-> +	ret = serdev_device_write(priv->serdev, data, len,
-> +				  msecs_to_jiffies(25));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret < len)
-> +		return -EIO;
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Sends a read or write command.
-> + * 'data' can be NULL (used in read case). 'len' parameter is always valid; in
-> + * case 'data' is non-NULL then it must match 'data' size.
-> + */
-> +static int bno055_sl_do_send_cmd(struct bno055_sl_priv *priv,
-> +				 int read, int addr, int len, u8 *data)
-
-Read is a bool, so give it that type.
-
-> +{
-> +	int ret;
-> +	int chunk_len;
-> +	u8 hdr[] = {0xAA, !!read, addr, len};
-> +
-> +	if (read) {
-> +		ret = bno055_sl_send_chunk(priv, hdr, 4);
-> +	} else {
-> +		ret = bno055_sl_send_chunk(priv, hdr, 2);
-> +		if (ret)
-> +			goto fail;
-> +
-> +		usleep_range(2000, 3000);
-> +		ret = bno055_sl_send_chunk(priv, hdr + 2, 2);
-> +	}
-> +	if (ret)
-> +		goto fail;
-> +
-> +	if (data) {
-
-I would flip this condition to reduce indent and make it easy to
-see we are done in the no 'data' case.  Also, does this correspond in
-all cases to read?  If so I would use that as the variable to check.
-
-	if (!data)
-		return 0;
-
-	while (len) {
-...
-
-
-> +		while (len) {
-> +			chunk_len = min(len, 2);
-> +			usleep_range(2000, 3000);
-> +			ret = bno055_sl_send_chunk(priv, data, chunk_len);
-> +			if (ret)
-> +				goto fail;
-> +			data += chunk_len;
-> +			len -= chunk_len;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +fail:
-> +	/* waiting more than 30mS should clear the BNO055 internal state */
-> +	usleep_range(40000, 50000);
-> +	return ret;
-> +}
-> +
-> +static int bno_sl_send_cmd(struct bno055_sl_priv *priv,
-> +			   int read, int addr, int len, u8 *data)
-
-Read looks to be a bool to me not an integer.
-
-> +{
-> +	const int retry_max = 5;
-> +	int retry = retry_max;
-> +	int ret = 0;
-> +
-> +	/*
-> +	 * In case previous command was interrupted we still neet to wait it to
-> +	 * complete before we can issue new commands
-> +	 */
-> +	if (priv->cmd_stale) {
-> +		ret = wait_for_completion_interruptible_timeout(&priv->cmd_complete,
-> +								msecs_to_jiffies(100));
-> +		if (ret == -ERESTARTSYS)
-> +			return -ERESTARTSYS;
-> +
-> +		priv->cmd_stale = false;
-> +		/* if serial protocol broke, bail out */
-> +		if (priv->cmd_status == STATUS_CRIT)
-> +			goto exit;
-
-			return -EIO;
-
-> +	}
-> +
-> +	/*
-> +	 * Try to convince the IMU to cooperate.. as explained in the comments
-> +	 * at the top of this file, the IMU could also refuse the command (i.e.
-> +	 * it is not ready yet); retry in this case.
-> +	 */
-> +	while (retry--) {
-> +		mutex_lock(&priv->lock);
-> +		priv->expect_response = read ? CMD_READ : CMD_WRITE;
-> +		reinit_completion(&priv->cmd_complete);
-> +		mutex_unlock(&priv->lock);
-> +
-> +		if (retry != (retry_max - 1))
-> +			dev_dbg(&priv->serdev->dev, "cmd retry: %d",
-> +				retry_max - retry);
-> +		ret = bno055_sl_do_send_cmd(priv, read, addr, len, data);
-> +		if (ret)
-> +			continue;
-> +
-> +		ret = wait_for_completion_interruptible_timeout(&priv->cmd_complete,
-> +								msecs_to_jiffies(100));
-> +		if (ret == -ERESTARTSYS) {
-> +			priv->cmd_stale = true;
-> +			return -ERESTARTSYS;
-> +		} else if (!ret) {
-> +			ret = -ETIMEDOUT;
-
-			return -ETIMEDOUT;
-
-> +			break;
-> +		}
-> +		ret = 0;
-> +
-> +		/*
-> +		 * Poll if the IMU returns error (i.e busy), break if the IMU
-> +		 * returns OK or if the serial communication broke
-> +		 */
-> +		if (priv->cmd_status <= 0)
-I 'think' this is only place we can break out with status set to anything (with
-the suggested modifications above) so move the if statements from the error path
-here and drop the ret = 0 above.
-
-
-> +			break;
-> +	}
-> +
-> +exit:
-> +	if (ret)
-> +		return ret;
-> +	if (priv->cmd_status == STATUS_CRIT)
-> +		return -EIO;
-> +	if (priv->cmd_status == STATUS_FAIL)
-> +		return -EINVAL;
-> +	return 0;
-> +}
-> +
-> +static int bno055_sl_write_reg(void *context, const void *data, size_t count)
-> +{
-> +	int ret;
-> +	int reg;
-> +	u8 *write_data = (u8 *)data + 1;
-
-Given you dereference data as a u8 * in several places, perhaps a local
-variable to allow you to do it once.
-
-> +	struct bno055_sl_priv *priv = context;
-> +
-> +	if (count < 2) {
-> +		dev_err(&priv->serdev->dev, "Invalid write count %zu", count);
-> +		return -EINVAL;
-> +	}
-> +
-> +	reg = ((u8 *)data)[0];
-> +	dev_dbg(&priv->serdev->dev, "wr reg 0x%x = 0x%x", reg, ((u8 *)data)[1]);
-> +	ret = bno_sl_send_cmd(priv, 0, reg, count - 1, write_data);
-> +
-> +	return ret;
-
-	return bno_sl_send_cmd(...)
-
-> +}
-> +
-> +static int bno055_sl_read_reg(void *context,
-> +			      const void *reg, size_t reg_size,
-> +			      void *val, size_t val_size)
-> +{
-> +	int ret;
-> +	int reg_addr;
-> +	struct bno055_sl_priv *priv = context;
-> +
-> +	if (val_size > 128) {
-> +		dev_err(&priv->serdev->dev, "Invalid read valsize %d",
-> +			val_size);
-> +		return -EINVAL;
-> +	}
-> +
-> +	reg_addr = ((u8 *)reg)[0];
-> +	dev_dbg(&priv->serdev->dev, "rd reg 0x%x (len %d)", reg_addr, val_size);
-> +	mutex_lock(&priv->lock);
-> +	priv->expected_data_len = val_size;
-> +	priv->response_buf = val;
-> +	mutex_unlock(&priv->lock);
-> +
-> +	ret = bno_sl_send_cmd(priv, 1, reg_addr, val_size, NULL);
-> +
-> +	mutex_lock(&priv->lock);
-> +	priv->response_buf = NULL;
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * Handler for received data; this is called from the reicever callback whenever
-> + * it got some packet from the serial bus. The status tell us whether the
-> + * packet is valid (i.e. header ok && received payload len consistent wrt the
-> + * header). It's now our responsability to check whether this is what we
-> + * expected, of whether we got some unexpected, yet valid, packet.
-> + */
-> +static void bno055_sl_handle_rx(struct bno055_sl_priv *priv, int status)
-> +{
-> +	mutex_lock(&priv->lock);
-> +	switch (priv->expect_response) {
-> +	case CMD_NONE:
-> +		dev_warn(&priv->serdev->dev, "received unexpected, yet valid, data from sensor");
-> +		mutex_unlock(&priv->lock);
-> +		return;
-> +
-> +	case CMD_READ:
-> +		priv->cmd_status = status;
-> +		if (status == STATUS_OK &&
-> +		    priv->rx.databuf_count != priv->expected_data_len) {
-> +			/*
-> +			 * If we got here, then the lower layer serial protocol
-> +			 * seems consistent with itself; if we got an unexpected
-> +			 * amount of data then signal it as a non critical error
-> +			 */
-> +			priv->cmd_status = STATUS_FAIL;
-> +			dev_warn(&priv->serdev->dev, "received an unexpected amount of, yet valid, data from sensor");
-> +		}
-> +		break;
-> +
-> +	case CMD_WRITE:
-> +		priv->cmd_status = status;
-> +		break;
-> +	}
-> +
-> +	priv->expect_response = CMD_NONE;
-> +	complete(&priv->cmd_complete);
-> +	mutex_unlock(&priv->lock);
-> +}
-> +
-> +/*
-> + * Serdev receiver FSM. This tracks the serial communication and parse the
-> + * header. It pushes packets to bno055_sl_handle_rx(), eventually communicating
-> + * failures (i.e. malformed packets).
-> + * Ideally it doesn't know anything about upper layer (i.e. if this is the
-> + * packet we were really expecting), but since we copies the payload into the
-> + * receiver buffer (that is not valid when i.e. we don't expect data), we
-> + * snoop a bit in the upper layer..
-> + * Also, we assume to RX one pkt per time (i.e. the HW doesn't send anything
-> + * unless we require to AND we don't queue more than one request per time).
-> + */
-> +static int bno055_sl_receive_buf(struct serdev_device *serdev,
-> +				 const unsigned char *buf, size_t size)
-> +{
-> +	int status;
-> +	struct bno055_sl_priv *priv = serdev_device_get_drvdata(serdev);
-> +	int _size = size;
-
-Why the local variable?
-
-> +
-> +	if (size == 0)
-> +		return 0;
-> +
-> +	dev_dbg(&priv->serdev->dev, "recv (len %zu): %*ph ", size, size, buf);
-> +	switch (priv->rx.state) {
-> +	case RX_IDLE:
-> +		/*
-> +		 * New packet.
-> +		 * Check for its 1st byte, that identifies the pkt type.
-> +		 */
-> +		if (buf[0] != 0xEE && buf[0] != 0xBB) {
-> +			dev_err(&priv->serdev->dev,
-> +				"Invalid packet start %x", buf[0]);
-> +			bno055_sl_handle_rx(priv, STATUS_CRIT);
-> +			break;
-> +		}
-> +		priv->rx.type = buf[0];
-> +		priv->rx.state = RX_START;
-> +		size--;
-> +		buf++;
-> +		priv->rx.databuf_count = 0;
-> +		fallthrough;
-> +
-> +	case RX_START:
-> +		/*
-> +		 * Packet RX in progress, we expect either 1-byte len or 1-byte
-> +		 * status depending by the packet type.
-> +		 */
-> +		if (size == 0)
-> +			break;
-> +
-> +		if (priv->rx.type == 0xEE) {
-> +			if (size > 1) {
-> +				dev_err(&priv->serdev->dev, "EE pkt. Extra data received");
-> +				status = STATUS_CRIT;
-> +
-> +			} else {
-> +				status = (buf[0] == 1) ? STATUS_OK : STATUS_FAIL;
-> +			}
-> +			bno055_sl_handle_rx(priv, status);
-> +			priv->rx.state = RX_IDLE;
-> +			break;
-> +
-> +		} else {
-> +			/*priv->rx.type == 0xBB */
-> +			priv->rx.state = RX_DATA;
-> +			priv->rx.expected_len = buf[0];
-> +			size--;
-> +			buf++;
-> +		}
-> +		fallthrough;
-> +
-> +	case RX_DATA:
-> +		/* Header parsed; now receiving packet data payload */
-> +		if (size == 0)
-> +			break;
-> +
-> +		if (priv->rx.databuf_count + size > priv->rx.expected_len) {
-> +			/*
-> +			 * This is a inconsistency in serial protocol, we lost
-> +			 * sync and we don't know how to handle further data
-> +			 */
-> +			dev_err(&priv->serdev->dev, "BB pkt. Extra data received");
-> +			bno055_sl_handle_rx(priv, STATUS_CRIT);
-> +			priv->rx.state = RX_IDLE;
-> +			break;
-> +		}
-> +
-> +		mutex_lock(&priv->lock);
-> +		/*
-> +		 * NULL e.g. when read cmd is stale or when no read cmd is
-> +		 * actually pending.
-> +		 */
-> +		if (priv->response_buf &&
-> +		    /*
-> +		     * Snoop on the upper layer protocol stuff to make sure not
-> +		     * to write to an invalid memory. Apart for this, let's the
-> +		     * upper layer manage any inconsistency wrt expected data
-> +		     * len (as long as the serial protocol is consistent wrt
-> +		     * itself (i.e. response header is consistent with received
-> +		     * response len.
-> +		     */
-> +		    (priv->rx.databuf_count + size <= priv->expected_data_len))
-> +			memcpy(priv->response_buf + priv->rx.databuf_count,
-> +			       buf, size);
-> +		mutex_unlock(&priv->lock);
-> +
-> +		priv->rx.databuf_count += size;
-> +
-> +		/*
-> +		 * Reached expected len advertised by the IMU for the current
-> +		 * packet. Pass it to the upper layer (for us it is just valid).
-> +		 */
-> +		if (priv->rx.databuf_count == priv->rx.expected_len) {
-> +			bno055_sl_handle_rx(priv, STATUS_OK);
-> +			priv->rx.state = RX_IDLE;
-> +		}
-> +		break;
-> +	}
-> +
-> +	return _size;
-> +}
-> +
-> +static const struct serdev_device_ops bno055_sl_serdev_ops = {
-> +	.receive_buf = bno055_sl_receive_buf,
-> +	.write_wakeup = serdev_device_write_wakeup,
-> +};
-> +
-> +static struct regmap_bus bno055_sl_regmap_bus = {
-> +	.write = bno055_sl_write_reg,
-> +	.read = bno055_sl_read_reg,
-> +};
-> +
-> +static int bno055_sl_probe(struct serdev_device *serdev)
-> +{
-> +	struct bno055_sl_priv *priv;
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(&serdev->dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	serdev_device_set_drvdata(serdev, priv);
-> +	priv->serdev = serdev;
-> +	mutex_init(&priv->lock);
-> +	init_completion(&priv->cmd_complete);
-> +
-> +	serdev_device_set_client_ops(serdev, &bno055_sl_serdev_ops);
-> +	ret = devm_serdev_device_open(&serdev->dev, serdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (serdev_device_set_baudrate(serdev, 115200) != 115200) {
-> +		dev_err(&serdev->dev, "Cannot set required baud rate");
-> +		return -EIO;
-> +	}
-> +
-> +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
-> +	if (ret) {
-> +		dev_err(&serdev->dev, "Cannot set required parity setting");
-> +		return ret;
-> +	}
-> +	serdev_device_set_flow_control(serdev, false);
-> +
-> +	regmap = devm_regmap_init(&serdev->dev, &bno055_sl_regmap_bus,
-> +				  priv, &bno055_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&serdev->dev, "Unable to init register map");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	return bno055_probe(&serdev->dev, regmap,
-> +			    BNO055_SL_XFER_BURST_BREAK_THRESHOLD);
-> +}
-> +
-> +static const struct of_device_id bno055_sl_of_match[] = {
-> +	{ .compatible = "bosch,bno055" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, bno055_sl_of_match);
-> +
-> +static struct serdev_device_driver bno055_sl_driver = {
-> +	.driver = {
-> +		.name = "bno055-sl",
-> +		.of_match_table = bno055_sl_of_match,
-> +	},
-> +	.probe = bno055_sl_probe,
-> +};
-> +module_serdev_device_driver(bno055_sl_driver);
-> +
-> +MODULE_AUTHOR("Andrea Merello <andrea.merello@iit.it>");
-> +MODULE_DESCRIPTION("Bosch BNO055 serdev interface");
-> +MODULE_LICENSE("GPL v2");
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8903.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8903.yaml
+new file mode 100644
+index 000000000000..afdcf9002b60
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8903.yaml
+@@ -0,0 +1,116 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/wlf,wm8903.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: WM8903 audio codec
++
++description: |
++  This device supports I2C only.
++  Pins on the device (for linking into audio routes):
++      * IN1L
++      * IN1R
++      * IN2L
++      * IN2R
++      * IN3L
++      * IN3R
++      * DMICDAT
++      * HPOUTL
++      * HPOUTR
++      * LINEOUTL
++      * LINEOUTR
++      * LOP
++      * LON
++      * ROP
++      * RON
++      * MICBIAS
++
++maintainers:
++  - Mark Brown <broonie@opensource.wolfsonmicro.com>
++
++properties:
++  compatible:
++    const: wlf,wm8903
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++  '#gpio-cells':
++    const: 2
++
++  interrupts:
++    maxItems: 1
++
++  micdet-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description: Default register value for R6 (Mic Bias).
++
++  micdet-delay:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 100
++    description: The debounce delay for microphone detection in mS.
++
++  gpio-cfg:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      minItems: 5
++      maxItems: 5
++      A list of GPIO configuration register values.
++      If absent, no configuration of these registers is performed.
++      If any entry has the value 0xffffffff, that GPIO's
++      configuration will not be modified.
++
++  AVDD-supply:
++    description: Analog power supply regulator on the AVDD pin.
++
++  CPVDD-supply:
++    description: Charge pump supply regulator on the CPVDD pin.
++
++  DBVDD-supply:
++    description: Digital buffer supply regulator for the DBVDD pin.
++
++  DCVDD-supply:
++    description: Digital core supply regulator for the DCVDD pin.
++
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - '#gpio-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      wm8903: codec@1a {
++        compatible = "wlf,wm8903";
++        reg = <0x1a>;
++        interrupts = <347>;
++
++        AVDD-supply = <&fooreg_a>;
++        CPVDD-supply = <&fooreg_b>;
++        DBVDD-supply = <&fooreg_c>;
++        DCVDD-supply = <&fooreg_d>;
++
++        gpio-controller;
++        #gpio-cells = <2>;
++
++        micdet-cfg = <0>;
++        micdet-delay = <100>;
++        gpio-cfg = <
++          0x0600 /* DMIC_LR, output */
++          0x0680 /* DMIC_DAT, input */
++          0x0000 /* GPIO, output, low */
++          0x0200 /* Interrupt, output */
++          0x01a0 /* BCLK, input, active high */
++        >;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/wm8903.txt b/Documentation/devicetree/bindings/sound/wm8903.txt
+deleted file mode 100644
+index 6371c2434afe..000000000000
+--- a/Documentation/devicetree/bindings/sound/wm8903.txt
++++ /dev/null
+@@ -1,82 +0,0 @@
+-WM8903 audio CODEC
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-  - compatible : "wlf,wm8903"
+-
+-  - reg : the I2C address of the device.
+-
+-  - gpio-controller : Indicates this device is a GPIO controller.
+-
+-  - #gpio-cells : Should be two. The first cell is the pin number and the
+-    second cell is used to specify optional parameters (currently unused).
+-
+-Optional properties:
+-
+-  - interrupts : The interrupt line the codec is connected to.
+-
+-  - micdet-cfg : Default register value for R6 (Mic Bias). If absent, the
+-    default is 0.
+-
+-  - micdet-delay : The debounce delay for microphone detection in mS. If
+-    absent, the default is 100.
+-
+-  - gpio-cfg : A list of GPIO configuration register values. The list must
+-    be 5 entries long. If absent, no configuration of these registers is
+-    performed. If any entry has the value 0xffffffff, that GPIO's
+-    configuration will not be modified.
+-
+-  - AVDD-supply : Analog power supply regulator on the AVDD pin.
+-
+-  - CPVDD-supply : Charge pump supply regulator on the CPVDD pin.
+-
+-  - DBVDD-supply : Digital buffer supply regulator for the DBVDD pin.
+-
+-  - DCVDD-supply : Digital core supply regulator for the DCVDD pin.
+-
+-Pins on the device (for linking into audio routes):
+-
+-  * IN1L
+-  * IN1R
+-  * IN2L
+-  * IN2R
+-  * IN3L
+-  * IN3R
+-  * DMICDAT
+-  * HPOUTL
+-  * HPOUTR
+-  * LINEOUTL
+-  * LINEOUTR
+-  * LOP
+-  * LON
+-  * ROP
+-  * RON
+-  * MICBIAS
+-
+-Example:
+-
+-wm8903: codec@1a {
+-	compatible = "wlf,wm8903";
+-	reg = <0x1a>;
+-	interrupts = < 347 >;
+-
+-	AVDD-supply = <&fooreg_a>;
+-	CPVDD-supply = <&fooreg_b>;
+-	DBVDD-supply = <&fooreg_c>;
+-	DCVDC-supply = <&fooreg_d>;
+-
+-	gpio-controller;
+-	#gpio-cells = <2>;
+-
+-	micdet-cfg = <0>;
+-	micdet-delay = <100>;
+-	gpio-cfg = <
+-		0x0600 /* DMIC_LR, output */
+-		0x0680 /* DMIC_DAT, input */
+-		0x0000 /* GPIO, output, low */
+-		0x0200 /* Interrupt, output */
+-		0x01a0 /* BCLK, input, active high */
+-	>;
+-};
+-- 
+2.33.0
 
