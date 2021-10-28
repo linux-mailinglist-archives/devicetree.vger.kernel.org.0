@@ -2,109 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 057DA43F2AC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 00:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4EA843F2BC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 00:27:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231540AbhJ1WYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 18:24:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbhJ1WYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 18:24:30 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90046C061767
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:22:02 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id m11so5656848oif.13
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=safjzndEbzjU2SwVTVE4zVWj+HK5y+hvxFtF+3nUUHI=;
-        b=U0ZkmgyT3PB6z8814OGZKCNDizIxnQdvyYawTAPG4+SG23OU7CcuGn81meGhTVps2h
-         26NJy4m5OjlUnqEWnhqsu9dCo07ur5BZor+93s5vKlA5qdw7WV0S/K9zTk5tQ6ej+TSz
-         5rB5I89fDFJwaM6vz/CYeHumeD+voBqWcR/k4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=safjzndEbzjU2SwVTVE4zVWj+HK5y+hvxFtF+3nUUHI=;
-        b=s4r0LWIyDyJc5zzlTXa4lNJFxotJts8uybTItzv+2U3epRNGJ82GN+xKmgsjGHVxrh
-         rvB8fi6hNbk70iC9Sb+7f1SfVtQgFDKGvP4tDXxlYfvB/0In7wx5i6ysxjOkkK98EjLh
-         5AzhmGN7/UcaXmlTMqWYld3VXmoxMP3K4k0ALbR8eo89CuMfI9EcBJ312JXsWwELSSvd
-         63s7r765An/Md/Sc9yf0HLMFMpXlOPA8egKuFh4e2IrOWC2OU+vTPeNlYOumlwrn03LK
-         TWOGa+b6N2r3NsQDCZhdIt+EQuUoMMqkW654YXMhjEp95RynzriDSppz5N/O12a9dp3U
-         236Q==
-X-Gm-Message-State: AOAM533r/B3BT4g6ZiUfJhjowDpoQdO2Jdt8pbVa1Btv0ISt78WF6cS2
-        gpfUe1LopKaMWOE3chpRd3u/SRtiG4Jz5wu7WwKxEg==
-X-Google-Smtp-Source: ABdhPJxwad3KZP7ykLYAovaRb+WkgtPUCXvy7JwNFEV0mCgGDN/cpVWWW0Gfk8jtDIeN7WucT9ADa66p1oLzUwiatZ8=
-X-Received: by 2002:a05:6808:2128:: with SMTP id r40mr3516798oiw.164.1635459721995;
- Thu, 28 Oct 2021 15:22:01 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 28 Oct 2021 15:22:01 -0700
+        id S231435AbhJ1W3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 18:29:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45306 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231201AbhJ1W3e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 18:29:34 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 514F460724;
+        Thu, 28 Oct 2021 22:27:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635460027;
+        bh=IRb7K8Scugbw79p/NGKJBlQoJGry2ngto823hUEGEXs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Yf5anAcMBtVVkTQpCbcRofd+PD62RsVQ89MO1qIpqtDDFHWzVAdY203I6unG8xVU0
+         XjtsI12TDdIT8OeN6WjCeAZkSftNbH2P8k0Qnhxnfq5cc/pCno4AlAPNTg74KNmInZ
+         wp6E9P+jv7OpZqYdmDP7TZw7pwrzHK1lAnKKkw4DOYbvZ+J67/rtMQDBxatHNY1Ec5
+         Hb0NwuD5QuAUFntWupLvggdszu8bfFXwXLUjZlQp5+k2CKU+7q40HF8/RnTMwyg66d
+         GcglvdZ2hKsG9/xVHTiR3U18t01/IMGlW1ipdwehO14bXwnw0DkGUVR6CStssItnKk
+         wHMw1GZf8Carg==
+Received: by mail-ed1-f54.google.com with SMTP id h7so31425845ede.8;
+        Thu, 28 Oct 2021 15:27:07 -0700 (PDT)
+X-Gm-Message-State: AOAM533POUZP1qmbgEGy05Dz9++vxA73Qexs8o6yVk92HwpSVz+jP2vr
+        13MZKBEUW00CylzH8EN6DxeS9R9yrpTDc9GeMg==
+X-Google-Smtp-Source: ABdhPJzFTlJEyEZBeLoX8gbLZTqeBCF4HRrpqgvzZDMGlEcd9Rlm2NDmyjV99mlD28xMEO+ThsFmdXEcamqMH0cUx/c=
+X-Received: by 2002:a05:6402:348c:: with SMTP id v12mr9451716edc.271.1635460025785;
+ Thu, 28 Oct 2021 15:27:05 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <d92c73d1-32b1-8d95-f3b5-ff103b330621@codeaurora.org>
-References: <1633614519-26680-1-git-send-email-srivasam@codeaurora.org>
- <1633614519-26680-3-git-send-email-srivasam@codeaurora.org>
- <CAE-0n51qO1q5ZF-fAf2Gma9a2B+iSyoQnJdJ8Fnmsz+DG0rwPg@mail.gmail.com> <d92c73d1-32b1-8d95-f3b5-ff103b330621@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Thu, 28 Oct 2021 15:22:01 -0700
-Message-ID: <CAE-0n537neZdwb3vP4=8N5vj0EwYnDnA-U7O=fckPvP52baCrg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi
- pinctrl compatible
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
-        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
-        tiwai@suse.com
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <20211016133322.40771-1-paul@crapouillou.net> <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
+ <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
+In-Reply-To: <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 28 Oct 2021 17:26:54 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to ingenic,*.h
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, list@opendingux.net,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Srinivasa Rao Mandadapu (2021-10-27 00:47:52)
+On Thu, Oct 28, 2021 at 6:46 AM Paul Cercueil <paul@crapouillou.net> wrote:
 >
-> On 10/7/2021 11:29 PM, Stephen Boyd wrote:
-> > Quoting Srinivasa Rao Mandadapu (2021-10-07 06:48:38)
-> >> Add device tree binding compatible name for Qualcomm SC7280 LPASS LPI pinctrl driver.
+> Hi Rob,
+>
+> Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring <robh@kernel.org>
+> a =C3=A9crit :
+> > On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
+> >>  Tidy up a bit the tree, by prefixing all include/dt-bindings/clock/
+> >> files
+> >>  related to Ingenic SoCs with 'ingenic,'.
 > >>
-> >> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> >> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> >> ---
-> >>   Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml | 4 +++-
-> >>   1 file changed, 3 insertions(+), 1 deletion(-)
+> >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> >>  ---
 > >>
-> >> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> >> index e47ebf9..578b283 100644
-> >> --- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> >> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> >> @@ -16,7 +16,9 @@ description: |
+> >>  Notes:
+> >>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
+> >>          x1000.h / x1830.h
 > >>
-> >>   properties:
-> >>     compatible:
-> >> -    const: qcom,sm8250-lpass-lpi-pinctrl
-> >> +    enum:
-> >> +      - qcom,sc7280-lpass-lpi-pinctrl
-> >> +      - qcom,sm8250-lpass-lpi-pinctrl
-> > I suspect we need to split the binding because the function list needs
-> > to change. Can you make a whole new file that's probably largely a copy
-> > of this file and/or extract the common bits into a meta schema and
-> > include that in both the files? Then the function list can be different
-> > and the clock property can be omitted in the sc7280 file.
+> >>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml    | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml    | 4
+> >> ++--
+> >>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml        | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    | 2
+> >> +-
+> >>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  | 2
+> >> +-
+> >>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/net/ingenic,mac.yaml        | 2
+> >> +-
+> >>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml       | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml    | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml      | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml    | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      | 2
+> >> +-
+> >>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml       | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/jz4725b.dtsi                       | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/jz4740.dtsi                        | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/jz4770.dtsi                        | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/jz4780.dtsi                        | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/x1000.dtsi                         | 2
+> >> +-
+> >>   arch/mips/boot/dts/ingenic/x1830.dtsi                         | 2
+> >> +-
+> >>   drivers/clk/ingenic/jz4725b-cgu.c                             | 2
+> >> +-
+> >>   drivers/clk/ingenic/jz4740-cgu.c                              | 2
+> >> +-
+> >>   drivers/clk/ingenic/jz4760-cgu.c                              | 2
+> >> +-
+> >>   drivers/clk/ingenic/jz4770-cgu.c                              | 2
+> >> +-
+> >>   drivers/clk/ingenic/jz4780-cgu.c                              | 2
+> >> +-
+> >>   drivers/clk/ingenic/x1000-cgu.c                               | 2
+> >> +-
+> >>   drivers/clk/ingenic/x1830-cgu.c                               | 2
+> >> +-
+> >>   .../clock/{jz4725b-cgu.h =3D> ingenic,jz4725b-cgu.h}            | 0
+> >>   .../dt-bindings/clock/{jz4740-cgu.h =3D> ingenic,jz4740-cgu.h}  | 0
+> >>   .../dt-bindings/clock/{jz4760-cgu.h =3D> ingenic,jz4760-cgu.h}  | 0
+> >>   .../dt-bindings/clock/{jz4770-cgu.h =3D> ingenic,jz4770-cgu.h}  | 0
+> >>   .../dt-bindings/clock/{jz4780-cgu.h =3D> ingenic,jz4780-cgu.h}  | 0
+> >>   .../dt-bindings/clock/{x1000-cgu.h =3D> ingenic,x1000-cgu.h}    | 0
+> >>   .../dt-bindings/clock/{x1830-cgu.h =3D> ingenic,x1830-cgu.h}    | 0
+> >>   42 files changed, 36 insertions(+), 36 deletions(-)
+> >>   rename include/dt-bindings/clock/{jz4725b-cgu.h =3D>
+> >> ingenic,jz4725b-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{jz4740-cgu.h =3D>
+> >> ingenic,jz4740-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{jz4760-cgu.h =3D>
+> >> ingenic,jz4760-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{jz4770-cgu.h =3D>
+> >> ingenic,jz4770-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{jz4780-cgu.h =3D>
+> >> ingenic,jz4780-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{x1000-cgu.h =3D>
+> >> ingenic,x1000-cgu.h} (100%)
+> >>   rename include/dt-bindings/clock/{x1830-cgu.h =3D>
+> >> ingenic,x1830-cgu.h} (100%)
+> >
+> > Acked-by: Rob Herring <robh@kernel.org>
+> >
+> > However, this will be a pain to merge if there are any new users
+> > coming
+> > in during the merge window. If not, then Stephen can just take this.
+> > If
+> > there are, then at the end of the merge window is the best time. For
+> > that to work, you need to track when all dependent changes are merged
+> > and we need to agree who will pick this up. I usually have fixes from
+> > breakages in the merge window anyways.
 >
-> As most are common functions and fixed number of LPASS Lpi pin
-> configuration across platforms,
->
-> Only diff is ADSP bypass platforms 2 clocks are optional. Otherwise
-> clock design also same for SC7280 and SM8250 based architecture.
->
-> So I feel Keeping common file is better for now.
+> I get Cc'd on all ingenic-related patches, so far I don't see anything
+> that will cause a breakage. I think it would be okay to merge it now
+> (we're at -rc7 after all).
 
-I don't agree. We want to be very strict about what is exposed. It needs
-to match exactly what is supported on the SoC, not be a superset of it.
+Then can you apply this to linux-next and check it all works there.
+Specifically, 'make dt_binding_check dtbs drivers/clk/' needs to work.
+Or confirm you already did that.
+
+Rob
