@@ -2,160 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C01D43E034
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 13:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536DD43E091
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 14:11:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbhJ1Lss convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 28 Oct 2021 07:48:48 -0400
-Received: from aposti.net ([89.234.176.197]:36912 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229835AbhJ1Lsr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 07:48:47 -0400
-Date:   Thu, 28 Oct 2021 12:46:07 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to
- ingenic,*.h
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, list@opendingux.net,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        id S230188AbhJ1MOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 08:14:20 -0400
+Received: from mail-0301.mail-europe.com ([188.165.51.139]:51883 "EHLO
+        mail-0301.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229835AbhJ1MOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 08:14:19 -0400
+Date:   Thu, 28 Oct 2021 12:11:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1635423109;
+        bh=PlW2MEvZvaJsdKC/4jucamYl9ccqJy0+z3t4+X+zwqA=;
+        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+        b=pski+bxVYJ7tX0UwCqLsZ2/vtCRU9WFXuh8Haeu+k48EsX6/xjF09relxyuSKd+Cb
+         c9HA3H//FvdY0FB5v5QW35QskEP10CovBCI9rLaHiM/dD1tzBbHQUw37p54Nri0Y4R
+         +yFSemLmm2jR1GKlgo/bHpu/jtGhUl5/DiKmegEw=
+To:     Kate Doeen <jld3103yt@gmail.com>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Message-Id: <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
-In-Reply-To: <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
-References: <20211016133322.40771-1-paul@crapouillou.net>
-        <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus-common: set venus firmware path
+Message-ID: <76047768-1646-a784-4a0c-eb82bc72c1d9@connolly.tech>
+In-Reply-To: <20211028101957.106034-1-jld3103yt@gmail.com>
+References: <20211028101957.106034-1-jld3103yt@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Kate,
 
-Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring <robh@kernel.org> 
-a écrit :
-> On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
->>  Tidy up a bit the tree, by prefixing all include/dt-bindings/clock/ 
->> files
->>  related to Ingenic SoCs with 'ingenic,'.
->> 
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->> 
->>  Notes:
->>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
->>          x1000.h / x1830.h
->> 
->>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 2 
->> +-
->>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml    | 2 
->> +-
->>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml    | 4 
->> ++--
->>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml        | 2 
->> +-
->>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        | 2 
->> +-
->>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    | 2 
->> +-
->>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  | 2 
->> +-
->>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         | 2 
->> +-
->>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        | 2 
->> +-
->>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       | 2 
->> +-
->>   Documentation/devicetree/bindings/net/ingenic,mac.yaml        | 2 
->> +-
->>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       | 2 
->> +-
->>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    | 2 
->> +-
->>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml | 2 
->> +-
->>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml       | 2 
->> +-
->>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        | 2 
->> +-
->>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml    | 2 
->> +-
->>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml      | 2 
->> +-
->>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml    | 2 
->> +-
->>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   | 2 
->> +-
->>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      | 2 
->> +-
->>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml       | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/jz4725b.dtsi                       | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/jz4740.dtsi                        | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/jz4770.dtsi                        | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/jz4780.dtsi                        | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/x1000.dtsi                         | 2 
->> +-
->>   arch/mips/boot/dts/ingenic/x1830.dtsi                         | 2 
->> +-
->>   drivers/clk/ingenic/jz4725b-cgu.c                             | 2 
->> +-
->>   drivers/clk/ingenic/jz4740-cgu.c                              | 2 
->> +-
->>   drivers/clk/ingenic/jz4760-cgu.c                              | 2 
->> +-
->>   drivers/clk/ingenic/jz4770-cgu.c                              | 2 
->> +-
->>   drivers/clk/ingenic/jz4780-cgu.c                              | 2 
->> +-
->>   drivers/clk/ingenic/x1000-cgu.c                               | 2 
->> +-
->>   drivers/clk/ingenic/x1830-cgu.c                               | 2 
->> +-
->>   .../clock/{jz4725b-cgu.h => ingenic,jz4725b-cgu.h}            | 0
->>   .../dt-bindings/clock/{jz4740-cgu.h => ingenic,jz4740-cgu.h}  | 0
->>   .../dt-bindings/clock/{jz4760-cgu.h => ingenic,jz4760-cgu.h}  | 0
->>   .../dt-bindings/clock/{jz4770-cgu.h => ingenic,jz4770-cgu.h}  | 0
->>   .../dt-bindings/clock/{jz4780-cgu.h => ingenic,jz4780-cgu.h}  | 0
->>   .../dt-bindings/clock/{x1000-cgu.h => ingenic,x1000-cgu.h}    | 0
->>   .../dt-bindings/clock/{x1830-cgu.h => ingenic,x1830-cgu.h}    | 0
->>   42 files changed, 36 insertions(+), 36 deletions(-)
->>   rename include/dt-bindings/clock/{jz4725b-cgu.h => 
->> ingenic,jz4725b-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{jz4740-cgu.h => 
->> ingenic,jz4740-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{jz4760-cgu.h => 
->> ingenic,jz4760-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{jz4770-cgu.h => 
->> ingenic,jz4770-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{jz4780-cgu.h => 
->> ingenic,jz4780-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{x1000-cgu.h => 
->> ingenic,x1000-cgu.h} (100%)
->>   rename include/dt-bindings/clock/{x1830-cgu.h => 
->> ingenic,x1830-cgu.h} (100%)
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> However, this will be a pain to merge if there are any new users 
-> coming
-> in during the merge window. If not, then Stephen can just take this. 
-> If
-> there are, then at the end of the merge window is the best time. For
-> that to work, you need to track when all dependent changes are merged
-> and we need to agree who will pick this up. I usually have fixes from
-> breakages in the merge window anyways.
 
-I get Cc'd on all ingenic-related patches, so far I don't see anything 
-that will cause a breakage. I think it would be okay to merge it now 
-(we're at -rc7 after all).
+On 28/10/2021 11:19, Kate Doeen wrote:
+> Enable loading the Qualcomm Venus video accelerator firmware on OnePlus s=
+dm845 devices.
+>
+> Signed-off-by: Kate Doeen <jld3103yt@gmail.com>
+>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 4 ++++
+>   1 file changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/a=
+rm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index d4355522374a..b405271bbf37 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -641,6 +641,10 @@ mux {
+>   =09};
+>   };
+>
+> +&venus {
+> +=09firmware-name =3D "qcom/sdm845/oneplus6/venus.mbn";
+> +};
+> +
+>   &wifi {
+>   =09status =3D "okay";
+>   =09vdd-0.8-cx-mx-supply =3D <&vreg_l5a_0p8>;
+> --
+> 2.33.1
+>
+Thanks for adding this!
 
-Cheers,
--Paul
+Reviewed-by: Caleb Connolly <caleb@connolly.tech>
 
+--
+Kind Regards,
+Caleb
 
