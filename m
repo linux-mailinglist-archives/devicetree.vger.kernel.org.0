@@ -2,158 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BD3143DFB4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 13:05:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C01D43E034
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 13:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbhJ1LIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 07:08:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52096 "EHLO mail.kernel.org"
+        id S230126AbhJ1Lss convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 28 Oct 2021 07:48:48 -0400
+Received: from aposti.net ([89.234.176.197]:36912 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229835AbhJ1LIG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 07:08:06 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 066E560C51;
-        Thu, 28 Oct 2021 11:05:35 +0000 (UTC)
-Date:   Thu, 28 Oct 2021 12:10:01 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andrea Merello <andrea.merello@gmail.com>
-Cc:     mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
-        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
-        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
-Subject: Re: [v2 10/10] iio: imu: add BNO055 I2C driver
-Message-ID: <20211028121001.73d8abbe@jic23-huawei>
-In-Reply-To: <20211028101840.24632-11-andrea.merello@gmail.com>
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
-        <20211028101840.24632-1-andrea.merello@gmail.com>
-        <20211028101840.24632-11-andrea.merello@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S229835AbhJ1Lsr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 07:48:47 -0400
+Date:   Thu, 28 Oct 2021 12:46:07 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to
+ ingenic,*.h
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, list@opendingux.net,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
+In-Reply-To: <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
+References: <20211016133322.40771-1-paul@crapouillou.net>
+        <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 12:18:40 +0200
-Andrea Merello <andrea.merello@gmail.com> wrote:
+Hi Rob,
 
-> This path adds an I2C driver for communicating to a BNO055 IMU via I2C bus
-> and it enables the BNO055 core driver to work in this scenario.
+Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring <robh@kernel.org> 
+a écrit :
+> On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
+>>  Tidy up a bit the tree, by prefixing all include/dt-bindings/clock/ 
+>> files
+>>  related to Ingenic SoCs with 'ingenic,'.
+>> 
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>> 
+>>  Notes:
+>>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
+>>          x1000.h / x1830.h
+>> 
+>>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 2 
+>> +-
+>>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml    | 2 
+>> +-
+>>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml    | 4 
+>> ++--
+>>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml        | 2 
+>> +-
+>>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        | 2 
+>> +-
+>>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    | 2 
+>> +-
+>>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  | 2 
+>> +-
+>>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         | 2 
+>> +-
+>>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        | 2 
+>> +-
+>>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       | 2 
+>> +-
+>>   Documentation/devicetree/bindings/net/ingenic,mac.yaml        | 2 
+>> +-
+>>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       | 2 
+>> +-
+>>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    | 2 
+>> +-
+>>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml | 2 
+>> +-
+>>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml       | 2 
+>> +-
+>>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        | 2 
+>> +-
+>>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml    | 2 
+>> +-
+>>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml      | 2 
+>> +-
+>>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml    | 2 
+>> +-
+>>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   | 2 
+>> +-
+>>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      | 2 
+>> +-
+>>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml       | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/jz4725b.dtsi                       | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/jz4740.dtsi                        | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/jz4770.dtsi                        | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/jz4780.dtsi                        | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/x1000.dtsi                         | 2 
+>> +-
+>>   arch/mips/boot/dts/ingenic/x1830.dtsi                         | 2 
+>> +-
+>>   drivers/clk/ingenic/jz4725b-cgu.c                             | 2 
+>> +-
+>>   drivers/clk/ingenic/jz4740-cgu.c                              | 2 
+>> +-
+>>   drivers/clk/ingenic/jz4760-cgu.c                              | 2 
+>> +-
+>>   drivers/clk/ingenic/jz4770-cgu.c                              | 2 
+>> +-
+>>   drivers/clk/ingenic/jz4780-cgu.c                              | 2 
+>> +-
+>>   drivers/clk/ingenic/x1000-cgu.c                               | 2 
+>> +-
+>>   drivers/clk/ingenic/x1830-cgu.c                               | 2 
+>> +-
+>>   .../clock/{jz4725b-cgu.h => ingenic,jz4725b-cgu.h}            | 0
+>>   .../dt-bindings/clock/{jz4740-cgu.h => ingenic,jz4740-cgu.h}  | 0
+>>   .../dt-bindings/clock/{jz4760-cgu.h => ingenic,jz4760-cgu.h}  | 0
+>>   .../dt-bindings/clock/{jz4770-cgu.h => ingenic,jz4770-cgu.h}  | 0
+>>   .../dt-bindings/clock/{jz4780-cgu.h => ingenic,jz4780-cgu.h}  | 0
+>>   .../dt-bindings/clock/{x1000-cgu.h => ingenic,x1000-cgu.h}    | 0
+>>   .../dt-bindings/clock/{x1830-cgu.h => ingenic,x1830-cgu.h}    | 0
+>>   42 files changed, 36 insertions(+), 36 deletions(-)
+>>   rename include/dt-bindings/clock/{jz4725b-cgu.h => 
+>> ingenic,jz4725b-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{jz4740-cgu.h => 
+>> ingenic,jz4740-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{jz4760-cgu.h => 
+>> ingenic,jz4760-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{jz4770-cgu.h => 
+>> ingenic,jz4770-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{jz4780-cgu.h => 
+>> ingenic,jz4780-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{x1000-cgu.h => 
+>> ingenic,x1000-cgu.h} (100%)
+>>   rename include/dt-bindings/clock/{x1830-cgu.h => 
+>> ingenic,x1830-cgu.h} (100%)
 > 
-> Signed-off-by: Andrea Merello <andrea.merello@iit.it>
-Hi Andrea,
-
-A few minor things inline.
-
-Jonathan
-
-> ---
->  drivers/iio/imu/bno055/Kconfig      |  6 ++++
->  drivers/iio/imu/bno055/Makefile     |  1 +
->  drivers/iio/imu/bno055/bno055_i2c.c | 54 +++++++++++++++++++++++++++++
->  3 files changed, 61 insertions(+)
->  create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
+> Acked-by: Rob Herring <robh@kernel.org>
 > 
-> diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
-> index 941e43f0368d..87200787d548 100644
-> --- a/drivers/iio/imu/bno055/Kconfig
-> +++ b/drivers/iio/imu/bno055/Kconfig
-> @@ -7,3 +7,9 @@ config BOSH_BNO055_SERIAL
->  	tristate "Bosh BNO055 attached via serial bus"
->  	depends on SERIAL_DEV_BUS
->  	select BOSH_BNO055_IIO
-> +
-> +config BOSH_BNO055_I2C
-> +	tristate "Bosh BNO055 attached via I2C bus"
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	select BOSH_BNO055_IIO
-> diff --git a/drivers/iio/imu/bno055/Makefile b/drivers/iio/imu/bno055/Makefile
-> index 7285ade2f4b9..eaf24018cb28 100644
-> --- a/drivers/iio/imu/bno055/Makefile
-> +++ b/drivers/iio/imu/bno055/Makefile
-> @@ -2,3 +2,4 @@
->  
->  obj-$(CONFIG_BOSH_BNO055_IIO) += bno055.o
->  obj-$(CONFIG_BOSH_BNO055_SERIAL) += bno055_sl.o
-> +obj-$(CONFIG_BOSH_BNO055_I2C) += bno055_i2c.o
-> diff --git a/drivers/iio/imu/bno055/bno055_i2c.c b/drivers/iio/imu/bno055/bno055_i2c.c
-> new file mode 100644
-> index 000000000000..eea0daa6a61d
-> --- /dev/null
-> +++ b/drivers/iio/imu/bno055/bno055_i2c.c
-> @@ -0,0 +1,54 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * I2C interface for Bosh BNO055 IMU.
-> + * This file implements I2C communication up to the register read/write
-> + * level.
+> However, this will be a pain to merge if there are any new users 
+> coming
+> in during the merge window. If not, then Stephen can just take this. 
+> If
+> there are, then at the end of the merge window is the best time. For
+> that to work, you need to track when all dependent changes are merged
+> and we need to agree who will pick this up. I usually have fixes from
+> breakages in the merge window anyways.
 
-Not really. It just uses regmap, so I'd drop this comment.
+I get Cc'd on all ingenic-related patches, so far I don't see anything 
+that will cause a breakage. I think it would be okay to merge it now 
+(we're at -rc7 after all).
 
-> + *
-> + * Copyright (C) 2021 Istituto Italiano di Tecnologia
-> + * Electronic Design Laboratory
-> + * Written by Andrea Merello <andrea.merello@iit.it>
-> + */
-> +
-> +#include <linux/i2c.h>
+Cheers,
+-Paul
 
-Why?  I'm not seeing an i2c specific calls in here.
-
-> +#include <linux/regmap.h>
-> +#include <linux/module.h>
-
-mod_devicetable.h for struct i2c_device_id
- 
-> +
-> +#include "bno055.h"
-> +
-> +#define BNO055_I2C_XFER_BURST_BREAK_THRESHOLD 3 /* FIXME */
-> +
-> +static int bno055_i2c_probe(struct i2c_client *client,
-> +			    const struct i2c_device_id *id)
-> +{
-> +	struct regmap *regmap =
-> +		devm_regmap_init_i2c(client, &bno055_regmap_config);
-> +
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&client->dev, "Unable to init register map");
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	return bno055_probe(&client->dev, regmap,
-> +			    BNO055_I2C_XFER_BURST_BREAK_THRESHOLD);
-> +
-> +	return 0;
-
-?
-
-> +}
-> +
-> +static const struct i2c_device_id bno055_i2c_id[] = {
-> +	{"bno055", 0},
-> +	{ },
-
-It's at terminator, so don't put a comma as we'll never add entries after this.
-
-> +};
-> +MODULE_DEVICE_TABLE(i2c, bno055_i2c_id);
-> +
-> +static struct i2c_driver bno055_driver = {
-> +	.driver = {
-> +		.name = "bno055-i2c",
-> +	},
-> +	.probe = bno055_i2c_probe,
-> +	.id_table = bno055_i2c_id
-> +};
-> +module_i2c_driver(bno055_driver);
-> +
-> +MODULE_AUTHOR("Andrea Merello");
-> +MODULE_DESCRIPTION("Bosch BNO055 I2C interface");
-> +MODULE_LICENSE("GPL v2");
 
