@@ -2,114 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6924843EA0F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 23:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A0143F196
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 23:25:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbhJ1VP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 17:15:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230404AbhJ1VP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 17:15:27 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01DAC061570;
-        Thu, 28 Oct 2021 14:12:59 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id j2so16371832lfg.3;
-        Thu, 28 Oct 2021 14:12:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XF91eiN0iC14ROr83KuAgnnKSRf4eWRTqZgrNJQJHx0=;
-        b=MJLJ1AGyaa1L9ChiUkSb6VfqZe8YaY3CS6pAwhJiIYR2JksscthTc8Gds4kcvEgq5z
-         iaXlIyw2x7pOt0JM/CDAk4Wd4SyMPiGAAgaoaDMmXAmbK6TARMEtB9Zg1McAJtPiZoqz
-         wwBP0fbXEEAdA+KcSKF0uw61NpdynZN57FJSU6ZvnDhgdeLbbmEskxQkf6vz7tURKaYN
-         PyPF5E3sQ4cCgQGQiCCYgapxmuSls7lGhgf1ajVTGlns4ftmM5nR7u3FpydAUzYPW4YI
-         90H/+Hn3UABOsu2zc/lsU0BhrRRY3kKVWNnK2mSN65VN4JxFjut5jWgeesTxQzco4/xQ
-         ZUsQ==
+        id S231215AbhJ1V12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 17:27:28 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:39450 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231258AbhJ1V1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 17:27:23 -0400
+Received: by mail-oi1-f172.google.com with SMTP id n11so2125926oig.6;
+        Thu, 28 Oct 2021 14:24:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=XF91eiN0iC14ROr83KuAgnnKSRf4eWRTqZgrNJQJHx0=;
-        b=oZBUw36gkR0O3k9DNLt8rLX0HX/V0nwhRd8SB3rHJrTTrbm9/gST4bi0rolVRNLZGX
-         05RYxjJEwkW4LhR6zou4vM2i3Vq0+eFDq746o/9xoXapnb5GonxEz1O+vrJUAZgqQu8I
-         XMsui+bJmf7LGoHNFLKn7a2mcAg1Gar+vg2WO6cQV/zFfrbKXg5csLx9KKzo4jJc3biA
-         u/VSd3KFiJmvAUcMQTIwGSDu/wdHoi0z8QYEMSa/QoGF5mH6AXYsV6R+5YS8IvnnvbnF
-         8YFEbm268MZMlADD+9pXgttD21SwWPxJbe+FRlBJh5OgdTSNVaqUAUmu/cYxc5Ag+Ypj
-         0akw==
-X-Gm-Message-State: AOAM532gur5cIDctlOEkkT5yF9G0Z61kQrUcggcnleLNMoQwDA6YLiNT
-        ZKQZ8GWB5bRnjqsQTGNKw1FQX9LqW50=
-X-Google-Smtp-Source: ABdhPJzpUYdLt7duRUCUwabBB4f1hRQD4mkQHJIUDsTOvz/3bmV500KcyoTuhXUeDLXD6gGjzb6rlQ==
-X-Received: by 2002:a05:6512:21b1:: with SMTP id c17mr6717508lft.266.1635455578160;
-        Thu, 28 Oct 2021 14:12:58 -0700 (PDT)
-Received: from [192.168.2.145] (46-138-44-18.dynamic.spd-mgts.ru. [46.138.44.18])
-        by smtp.googlemail.com with ESMTPSA id o21sm422349lfu.77.2021.10.28.14.12.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Oct 2021 14:12:57 -0700 (PDT)
-Subject: Re: [PATCH v3] dt-bindings: opp: Allow multi-worded OPP entry names
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Nishanth Menon <nm@ti.com>, David Heidelberg <david@ixit.cz>,
-        Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20211024215718.28969-1-digetx@gmail.com>
- <YXnCW1KSg2RBIdDy@robh.at.kernel.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c880012e-2986-aa42-6549-f47aa4bb1dde@gmail.com>
-Date:   Fri, 29 Oct 2021 00:12:56 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/+9j0oumdoKV8InadenLKw12l0iPTZFuQU7jD65clBY=;
+        b=h9tb8XA8PWcN95QxRj99hStS3hrx0XyKglpgB6fpvml9RcgG1X5yFKd6Y8zs5ZLEQG
+         QCzOZ87Niwp934h55ziEA34BPA5v3fgURMI3mV1dIPjVxPbh7Jy+Uzb75FgBLH+r9fbb
+         OYA4Kdfo7VgDMlXlwDAzWD6qkwxby0Hi93PY97+VtZbS9ASnbo8BzqPnzYqQ9G3pElAG
+         Q7YO3rqVdeDbpzQTSZd3PHB4PGHMTdsk7Pa7IX4SLQSdIgDPygWtWZeMpRYzHb86JX29
+         B9ptH1XZeuxVNXDb79UwDbQUjZkrJ5j2TgwuPFCI6+KVm0IpWkTI3vbZag2uKWTCJP6L
+         BF0w==
+X-Gm-Message-State: AOAM532w7eMHaRzd3Szqsn3XTThxKKgpFyLnQ6VmrF6WNn+1LOc4BD6Y
+        eqZs2b4q3ES2lxIRjeKVFg==
+X-Google-Smtp-Source: ABdhPJyol7Yit1pUIy7/O5qZO+VYJE58ICg0rjn0sApJ5miSlwIo1r70+I6ulqza2tan5YOYq0HE7g==
+X-Received: by 2002:a05:6808:158c:: with SMTP id t12mr10804924oiw.74.1635456287531;
+        Thu, 28 Oct 2021 14:24:47 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 90sm1337639otj.70.2021.10.28.14.24.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 14:24:46 -0700 (PDT)
+Received: (nullmailer pid 612214 invoked by uid 1000);
+        Thu, 28 Oct 2021 21:24:45 -0000
+Date:   Thu, 28 Oct 2021 16:24:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
+ rohm,clock-output-is-critical property
+Message-ID: <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
+References: <20211020084956.83041-1-marex@denx.de>
+ <263da45f-d648-3c65-aed3-e4ba41927911@fi.rohmeurope.com>
+ <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
 MIME-Version: 1.0
-In-Reply-To: <YXnCW1KSg2RBIdDy@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-28.10.2021 00:19, Rob Herring пишет:
-> On Mon, Oct 25, 2021 at 12:57:18AM +0300, Dmitry Osipenko wrote:
->> Not all OPP entries fit into a single word. In particular NVIDIA Tegra OPP
->> tables use multi-word names where first part is freq and second voltage
->> because different hardware versions use different voltages for the same
->> freqs. Allow OPP entry to have multi-worded name separated by hyphen.
->> This silences DT checker warnings about wrong naming scheme.
->>
->> Reviewed-by: David Heidelberg <david@ixit.cz>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>
->> Changelog:
->>
->> v3: - Viresh Kumar suggested that we shouldn't support postfix variant.
->>       I dropped variant with postfix naming scheme and multi-wording
->>       support of table names.
->>
->> v2: - In addition to a multi-wording support, support of the postfix
->>       *-opp-table naming scheme is added to the updated pattern.
->>
->>  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->> index ae3ae4d39843..f79343960539 100644
->> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
->> @@ -33,7 +33,7 @@ properties:
->>      type: boolean
->>  
->>  patternProperties:
->> -  '^opp-?[0-9]+$':
->> +  '^opp(-[0-9]+)*$':
+On Wed, Oct 20, 2021 at 01:06:13PM +0200, Marek Vasut wrote:
+> On 10/20/21 12:14 PM, Vaittinen, Matti wrote:
+> [...]
 > 
-> This drops support for cases like 'opp1' which there are a ton of. It 
-> should be '^opp(-?[0-9]+)*$' if we want to keep that support.
-> 
-> I'd love to be stricter, but trying to find a balance.
+> > I wonder if this really is something specific to ROHM ICs? Do you think
+> > this would warrant a generic, non vendor specific property? I am Ok with
+> > the ROHM specific property too but it just seems to me this might not be
+> > unique to ROHM IC(s).
 
-Good catch, let me make v4.
+I imagine we debated the need for a DT property when critical clocks was 
+added to the kernel.
+
+> > By the way, the very same clk driver where you implemented the property
+> > reading (patch 2/2) is used by few other ROHM PMICs. At least by
+> > BD71837, BD71828, BD71815, BD9576 and BD9573. So the code change here
+> > adds support for this property to all of those PMICs. I wonder if the
+> > property should be mentioned in all of the binding docs... That could be
+> > another argument for making this a generic property and describing it in
+> > clk yaml ;)
+> > 
+> > Well, just my 10 Cents - I am ok with this change as you presented it
+> > here if you don't think this should be generic one.
+> 
+> I think we need something like gpio-hog, except for clock. Some clk-hog
+> maybe ? That would be useful not only here, but also for things where some
+> output generates clock for random stuff which cannot be described in the DT
+> for whatever reason (like e.g. the SoC is used as a substitute for CPLD XTAL
+> and the CPLD isn't connected to the SoC in any other way).
+
+The justification given in this patch was for an SoC input which should 
+get described so that the clock is handled and kept enabled properly.
+
+The CPLD case would be more interesting, but is there an actual need or 
+just a possible case?
+
+You could use the 'protected-clocks' property here. Maybe that's a bit 
+overloaded between can't access and don't turn off. But what it means is 
+really up the clock controller.
+
+Rob
