@@ -2,176 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC3D43E972
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 22:17:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E17A43E97B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 22:19:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbhJ1UUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 16:20:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54962 "EHLO
+        id S230526AbhJ1UV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 16:21:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230323AbhJ1UUM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 16:20:12 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DDF5C061767
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:17:45 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id p14so12202079wrd.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:17:45 -0700 (PDT)
+        with ESMTP id S230380AbhJ1UV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 16:21:59 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABDB5C061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:19:31 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id n11so1879305oig.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 13:19:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QQHy5W4NO/yZkhM4CUJlGj83LWvnUyD366Fk7aGMOq0=;
-        b=foANG7O14U8sEI7ZM6z8LKCSBA21HEfZaM4bwrYibqI9I+7AD56u4y1BdbkLifkfVm
-         AtrE9CrJTCU7T7u4SCamS3G6CjOUp3rL8f0+28Dkc9RLyFf0l2vYnDOr9ygVQ7W/mPrj
-         2o7df8IPsKQ93pXnjmkq6AwYNd07iCu+J47pHl9u4Eu1X/2nB8cBwipHprKsa9rSAn1k
-         Bm8Kgr7VTpiTm6K2fVsmoqlcJ5P8f8oJl2IGsGtlif97mpifCBf0ivhNGe7qyLv7Qiz6
-         IW52nn/EIWvuVa+ztbwucd0BMpjBYLEWf+wPytCIr7ZTRHpEsHECm8xY9y9NxFEKuGIR
-         QrWw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=8+pW+Cv2NaI2O9/Bb9FqhliPv6hVy3lK+PbepD4NvS8=;
+        b=OmxE+sWTKRTkHBi0PQIS2HpPx+4vIHKeUKvCM0sZxhcIpl/a2JjcK2wRpvcBWN801R
+         FHKZjsSH7Q6OmP1yDBQtyCsTVF9ED7SUz+E6V0M912wQNAnbHFFS9OQwgP/bse3hGjBA
+         ZAkcAqqn5KjipPj8GO+iyUCHhL1WvToZUmTFk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QQHy5W4NO/yZkhM4CUJlGj83LWvnUyD366Fk7aGMOq0=;
-        b=4hG1YF2yTBfvOiz8H3JKnnXvkOLJx+fZAghGmZz5LXJfZXB+6ZAOMNYnxztC6OGWJt
-         bDmhxlIEN7dHMlOi4DnQAMeqk/ZEBPjMWTxbgtQc0VtfsTZZ+Y0w2NRSlMueLUNO50SG
-         F9C+dE7BqP1CkQtyFf/yV4o59vz7TIU8PhN0x7fjNp7NRW/iqSzHwPWzUks7WRfFA5MU
-         iLNcCvLcdabYgAuAIDP19JgaCOgExq8YpvjJXlJiALY5Faib1Nwl2XRCCZgpe2ammJo7
-         GkWs/wGJ0fYCmrt87X2WTq3rwxvdrjxvN7KvzB2zMXe5aHLZgXlYeBUshl6agJS42bCk
-         Pi3Q==
-X-Gm-Message-State: AOAM531/smA1T2+KLN6NsAMn2M7yY+420yvNqgOdf12MNC6Uhb9dF+7Z
-        vpQqFEU6ZAw+DwBQAIS4T56Y1A==
-X-Google-Smtp-Source: ABdhPJwQ1VglxMGcOdndU0OUSIqA7uD0zPYkNbvW3Po5Rb8V6zwfdp3UJXnb4kkrEEhK65pslhw79g==
-X-Received: by 2002:a5d:4f85:: with SMTP id d5mr8741341wru.247.1635452263729;
-        Thu, 28 Oct 2021 13:17:43 -0700 (PDT)
-Received: from Jessicas-MacBook-Pro.local (global-5-141.nat-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id t8sm3835979wrx.47.2021.10.28.13.17.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 28 Oct 2021 13:17:43 -0700 (PDT)
-Received: by Jessicas-MacBook-Pro.local (Postfix, from userid 501)
-        id D60A89279738; Thu, 28 Oct 2021 21:17:42 +0100 (BST)
-Date:   Thu, 28 Oct 2021 21:17:42 +0100
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree@vger.kernel.org, Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>, linux-doc@vger.kernel.org,
-        linux-perf-users@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>
-Subject: Re: [v4 06/11] dt-binding: pmu: Add RISC-V PMU DT bindings
-Message-ID: <YXsFZmRwpQAWhSw0@Jessicas-MacBook-Pro.local>
-References: <20211025195350.242914-1-atish.patra@wdc.com>
- <20211025195350.242914-7-atish.patra@wdc.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=8+pW+Cv2NaI2O9/Bb9FqhliPv6hVy3lK+PbepD4NvS8=;
+        b=JXZaaJxaU6t4n5B2pnmRK2RlACrosXIFAczhK0Ya1v/oA4afpK9dCZqNseUB8AvUau
+         juEdU3GF4rCu6tuzCjYpBxBU5upNcAG6nb6Ufbs29fg6SdzQYclzSJRFtjJpsu/vSXNi
+         H7+YW59xIsflddythrvvRJHlQiaADzdlUTAMKA0U2WwjjLjUqky1ojDiMjmsHO2o00Ne
+         Uw+i3YGHKRt/KEictgG9AuZdmYhue+1CizERX/TCSEvsw4qnEw1ubq+50/3uOr5/cTdC
+         VnIihkRULVEHuRojZnvxZhJHOSRW39/3lTsE/clUoU207ngENyz8CluqjmsyLkD+JMdq
+         nbYg==
+X-Gm-Message-State: AOAM530LkjEc0PnCVyj1FOiTrZCaOtsAljSV3VkQmUVz7QSUJqcJY7fX
+        kfzmWu1BDjzME+BGI5bf2RuF2TFcC25Vze4CuP/5yQ==
+X-Google-Smtp-Source: ABdhPJwAgFwAshEYPiDX5B0LTjjogn3ffVU/64fwyU5aI6fknCUpWocNnULlXm46qn6Wis9pFRp3VFwPWlFKsBfgcqw=
+X-Received: by 2002:a05:6808:2124:: with SMTP id r36mr4872259oiw.64.1635452371018;
+ Thu, 28 Oct 2021 13:19:31 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 Oct 2021 13:19:30 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211025195350.242914-7-atish.patra@wdc.com>
+In-Reply-To: <1635434072-32055-4-git-send-email-quic_c_skakit@quicinc.com>
+References: <1635434072-32055-1-git-send-email-quic_c_skakit@quicinc.com> <1635434072-32055-4-git-send-email-quic_c_skakit@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 28 Oct 2021 13:19:30 -0700
+Message-ID: <CAE-0n51yD6GG9eTn0tivqg0GUme5ONOabQrM0KBDjs5n8WKMYQ@mail.gmail.com>
+Subject: Re: [PATCH V3 3/4] regulator: Add a regulator driver for the PM8008 PMIC
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, collinsd@codeurora.org,
+        subbaram@codeaurora.org, Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 12:53:45PM -0700, Atish Patra wrote:
-> This patch adds the DT bindings for RISC-V PMU driver. It also defines
-> the interrupt related properties to allow counter overflow interrupt.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  .../devicetree/bindings/perf/riscv,pmu.yaml   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/perf/riscv,pmu.yaml b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
+Quoting Satya Priya (2021-10-28 08:14:31)
+> diff --git a/drivers/regulator/qcom-pm8008-regulator.c b/drivers/regulator/qcom-pm8008-regulator.c
 > new file mode 100644
-> index 000000000000..497caad63f16
+> index 0000000..74ba682
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/riscv,pmu.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pmu/riscv,pmu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/drivers/regulator/qcom-pm8008-regulator.c
+> @@ -0,0 +1,269 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* Copyright (c) 2021, The Linux Foundation. All rights reserved. */
 > +
-> +title: RISC-V PMU
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/machine.h>
+> +#include <linux/regulator/of_regulator.h>
 > +
-> +maintainers:
-> +  - Atish Patra <atish.patra@wdc.com>
+> +#define STARTUP_DELAY_USEC             20
+> +#define VSET_STEP_MV                   8
+> +#define VSET_STEP_UV                   (VSET_STEP_MV * 1000)
 > +
-> +description:
-> +  The "Sscofpmf" extension allows the RISC-V PMU counters to overflow and
-> +  generate a local interrupt so that event sampling can be done from user-space.
-> +  The above said ISA extension is an optional extension to maintain backward
-> +  compatibility and will be included in privilege specification v1.12 . That's
-> +  why the interrupt property is marked as optional. The platforms with sscofpmf
-> +  extension should add this property to enable event sampling.
-> +  The device tree node with the compatible string is mandatory for any platform
-> +  that wants to use pmu counter start/stop methods using SBI PMU extension.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - riscv,pmu
+> +#define LDO_ENABLE_REG(base)           (base + 0x46)
 
-This is conflating the Sscofpmf extension with the SBI PMU interface;
-the former is what the hardware supports, the latter is what the
-firmware exposes. The SBI interface exists today and does not require
-overflow interrupts to be supported, so there needs to be a distinction
-between that case and the case where Sscofpmf is supported in both
-hardware and the SBI implementation, which probably means having a
-second compatible string for that case that also includes the generic
-SBI PMU interface as a fallback compatible string.
+Add parenthesis around base as well ((base) + 0x46)
 
-Secondly, I do not think this is the right name for this. The riscv,pmu
-compatible string (or anything of that nature) should be reserved for
-*hardware* that provides usable performance monitoring features to an
-OS. This is not that, this is the SBI interface that requires an OS to
-make firmware calls for any starting, stopping or configuring of a
-counter, which results in an even greater probe effect than is already
-present with frameworks like FreeBSD's HWPMC or Linux's perf (I don't
-know how the two compare on that front, but I imagine Linux is similar
-to FreeBSD). This should have SBI in the name so that it doesn't get in
-the way of real performance monitoring support once the architecture is
-finally mature enough to have S-mode-configurable counters and a
-standardised set of common events like pretty much every other
-architecture.
+> +#define ENABLE_BIT                     BIT(7)
+> +
+> +#define LDO_STATUS1_REG(base)          (base + 0x08)
+> +#define VREG_READY_BIT                 BIT(7)
+> +
+> +#define LDO_VSET_LB_REG(base)          (base + 0x40)
+> +
+> +#define LDO_STEPPER_CTL_REG(base)      (base + 0x3b)
+> +#define DEFAULT_VOLTAGE_STEPPER_RATE   38400
+> +#define STEP_RATE_MASK                 GENMASK(1, 0)
+> +
+> +struct regulator_data {
+> +       const char      *name;
+> +       const char      *supply_name;
+> +       int             min_uv;
+> +       int             max_uv;
+> +       int             min_dropout_uv;
+> +};
+> +
+> +struct pm8008_regulator {
+> +       struct device           *dev;
+> +       struct regmap           *regmap;
+> +       struct regulator_desc   rdesc;
+> +       struct regulator_dev    *rdev;
+> +       struct device_node      *of_node;
 
-Also I do not like the use of PMU, since that is Arm's terminology,
-whereas RISC-V uses HPM, but you've already defined the SBI interface as
-being PMU so I guess that ship has sailed.
+This isn't used outside of probe so please drop it. Same goes for any
+other struct member that we don't need to keep around beyond probe. Drop
+them. rdev?
 
-Jess
+> +       u16                     base;
+> +       int                     step_rate;
+> +};
+> +
+> +static const struct regulator_data reg_data[] = {
+> +       /* name  parent      min_uv  max_uv  headroom_uv */
+> +       { "l1", "vdd_l1_l2",  528000, 1504000, 225000 },
+> +       { "l2", "vdd_l1_l2",  528000, 1504000, 225000 },
+> +       { "l3", "vdd_l3_l4", 1504000, 3400000, 200000 },
+> +       { "l4", "vdd_l3_l4", 1504000, 3400000, 200000 },
+> +       { "l5", "vdd_l5",    1504000, 3400000, 300000 },
+> +       { "l6", "vdd_l6",    1504000, 3400000, 300000 },
+> +       { "l7", "vdd_l7",    1504000, 3400000, 300000 },
+> +       { }
+> +};
+> +
+> +static int pm8008_regulator_get_voltage(struct regulator_dev *rdev)
+> +{
+> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+> +       __le16 mV;
+> +       int rc;
+> +
+> +       rc = regmap_bulk_read(pm8008_reg->regmap,
+> +                       LDO_VSET_LB_REG(pm8008_reg->base), (void *)&mV, 2);
+> +       if (rc < 0) {
+> +               dev_err(pm8008_reg->dev,
+> +                                       "failed to read regulator voltage rc=%d\n", rc);
+
+Put it all on one line?
+
+> +               return rc;
+> +       }
+> +
+> +       return le16_to_cpu(mV) * 1000;
+> +}
+> +
+> +static inline int pm8008_write_voltage(struct pm8008_regulator *pm8008_reg,
+> +                                       int min_uv, int max_uv)
+> +{
+> +       int rc, mv;
+> +       u16 vset_raw;
+> +
+> +       mv = DIV_ROUND_UP(min_uv, 1000);
+> +
+> +       /*
+> +        * Each LSB of regulator is 1mV and the voltage setpoint
+> +        * should be multiple of 8mV(step).
+> +        */
+> +       mv = DIV_ROUND_UP(mv, VSET_STEP_MV) * VSET_STEP_MV;
+> +       if (mv * 1000 > max_uv) {
+> +               dev_err(pm8008_reg->dev,
+> +                       "requested voltage (%d uV) above maximum limit (%d uV)\n",
+> +                               mv*1000, max_uv);
+> +               return -EINVAL;
+> +       }
+> +
+> +       vset_raw = cpu_to_le16(mv);
+> +
+> +       rc = regmap_bulk_write(pm8008_reg->regmap,
+> +                       LDO_VSET_LB_REG(pm8008_reg->base),
+> +                       (const void *)&vset_raw, sizeof(vset_raw));
+> +       if (rc < 0) {
+> +               dev_err(pm8008_reg->dev, "failed to write voltage rc=%d\n", rc);
+
+If this uses the regulator_dev::dev then we'll know which regulator is
+failing, instead of just that some regulator failed inside the PMIC.
+
+> +               return rc;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int pm8008_regulator_set_voltage_time(struct regulator_dev *rdev,
+> +                               int old_uV, int new_uv)
+> +{
+> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+> +
+> +       return DIV_ROUND_UP(abs(new_uv - old_uV), pm8008_reg->step_rate);
+> +}
+> +
+> +static int pm8008_regulator_set_voltage(struct regulator_dev *rdev,
+> +                               int min_uv, int max_uv, unsigned int *selector)
+> +{
+> +       struct pm8008_regulator *pm8008_reg = rdev_get_drvdata(rdev);
+> +       int rc;
+> +
+> +       rc = pm8008_write_voltage(pm8008_reg, min_uv, max_uv);
+> +       if (rc < 0)
+> +               return rc;
+> +
+> +       *selector = DIV_ROUND_UP(min_uv - pm8008_reg->rdesc.min_uV,
+> +                               VSET_STEP_UV);
+> +
+> +       dev_dbg(pm8008_reg->dev, "voltage set to %d\n", min_uv);
+> +       return 0;
+> +}
+> +
+> +static const struct regulator_ops pm8008_regulator_ops = {
+> +       .enable                 = regulator_enable_regmap,
+> +       .disable                = regulator_disable_regmap,
+> +       .is_enabled             = regulator_is_enabled_regmap,
+> +       .set_voltage            = pm8008_regulator_set_voltage,
+
+Can we use set_voltage_sel instead?
+
+> +       .get_voltage            = pm8008_regulator_get_voltage,
+> +       .list_voltage           = regulator_list_voltage_linear,
+> +       .set_voltage_time       = pm8008_regulator_set_voltage_time,
+> +};
+> +
+> +static int pm8008_regulator_of_parse(struct device_node *node,
+> +                       const struct regulator_desc *desc,
+> +                       struct regulator_config *config)
+> +{
+> +       struct pm8008_regulator *pm8008_reg = config->driver_data;
+> +       struct device *dev = config->dev;
+> +       int rc;
+> +       u8 reg;
+> +
+> +       rc = of_property_read_u32(node, "regulator-min-dropout-voltage-microvolt",
+> +                       &pm8008_reg->rdesc.min_dropout_uV);
+> +       if (rc) {
+> +               dev_err(dev, "failed to read min-dropout voltage rc=%d\n", rc);
+> +               return rc;
+> +       }
+> +
+> +       /* get slew rate */
+> +       rc = regmap_bulk_read(pm8008_reg->regmap,
+> +                       LDO_STEPPER_CTL_REG(pm8008_reg->base), (void *)&reg, 1);
+
+Just make reg unsigned int to avoid the cast.
+
+> +       if (rc < 0) {
+> +               dev_err(dev, "%s: failed to read step rate configuration rc=%d\n",
+> +                               pm8008_reg->rdesc.name, rc);
+> +               return rc;
+> +       }
+
+	reg &= STEP_RATE_MASK;
+	pm8008_reg->step_rate = DEFAULT_VOLTAGE_STEPPER_RATE >> reg;
+
+> +       pm8008_reg->step_rate
+> +                       = DEFAULT_VOLTAGE_STEPPER_RATE >> (reg & STEP_RATE_MASK);
+> +
+> +       return 0;
+> +}
+> +
+> +static int pm8008_regulator_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *node = pdev->dev.of_node;
+> +       struct pm8008_regulator *pm8008_reg;
+> +       struct regmap *regmap;
+> +       struct regulator_config reg_config = {};
+> +       const struct regulator_data *reg;
+> +       struct regulator_init_data *init_data;
+> +       int rc;
+> +       u32 base;
+> +
+> +       regmap = dev_get_regmap(dev->parent, NULL);
+> +       if (!regmap) {
+> +               dev_err(dev, "parent regmap is missing\n");
+> +               return -EINVAL;
+> +       }
+> +
+> +       for (reg = &reg_data[0]; reg->name; reg++) {
+> +               pm8008_reg = devm_kzalloc(dev, sizeof(*pm8008_reg), GFP_KERNEL);
+> +
+> +               pm8008_reg->regmap = regmap;
+> +
+> +               pm8008_reg->of_node = of_get_child_by_name(node, reg->name);
+
+This of_node reference needs to be put somewhere.
+
+> +               if (!pm8008_reg->of_node) {
+> +                       dev_err(dev, "child node %s not found\n", reg->name);
+> +                       return -ENODEV;
+> +               }
+> +
+> +               pm8008_reg->dev = dev;
+> +
+> +               rc = of_property_read_u32(pm8008_reg->of_node, "reg", &base);
+> +               if (rc < 0) {
+> +                       dev_err(dev, "%s: failed to get regulator base rc=%d\n",
+> +                                               reg->name, rc);
+> +                       return rc;
+> +               }
+> +               pm8008_reg->base = base;
+> +
+> +               init_data = of_get_regulator_init_data(dev, pm8008_reg->of_node,
+> +                                                       &pm8008_reg->rdesc);
+
+Is this necessary?
+
+> +               if (!init_data) {
+> +                       dev_err(dev, "%s: failed to get regulator data\n", reg->name);
+> +                       return -ENODATA;
+> +               }
+> +
+> +               pm8008_reg->rdesc.type = REGULATOR_VOLTAGE;
+> +               pm8008_reg->rdesc.ops = &pm8008_regulator_ops;
+> +               pm8008_reg->rdesc.name = init_data->constraints.name;
+> +               pm8008_reg->rdesc.supply_name = reg->supply_name;
+> +               pm8008_reg->rdesc.of_match = reg->name;
+> +               pm8008_reg->rdesc.of_parse_cb = pm8008_regulator_of_parse;
+> +               pm8008_reg->rdesc.uV_step = VSET_STEP_UV;
+> +               pm8008_reg->rdesc.min_uV = reg->min_uv;
+> +               pm8008_reg->rdesc.n_voltages
+> +                       = ((reg->max_uv - reg->min_uv)
+> +                               / pm8008_reg->rdesc.uV_step) + 1;
+> +
+> +               pm8008_reg->rdesc.enable_reg = LDO_ENABLE_REG(base);
+> +               pm8008_reg->rdesc.enable_mask = ENABLE_BIT;
+> +               pm8008_reg->rdesc.min_dropout_uV = reg->min_dropout_uv;
+> +
+> +               init_data->constraints.input_uV = init_data->constraints.max_uV;
+> +               reg_config.dev = dev;
+> +               reg_config.init_data = init_data;
+> +               reg_config.driver_data = pm8008_reg;
+> +               reg_config.of_node = pm8008_reg->of_node;
+
+I think we don't need to do this?
 
 > +
-> +    description:
-> +      Should be "riscv,pmu".
+> +               return PTR_ERR_OR_ZERO(devm_regulator_register(dev, &pm8008_reg->rdesc,
+> +                                                               &reg_config));
+
+Why are we returning here? Shouldn't we check return value and only
+return on failure and otherwise continue with registering the rest of
+the regulators?
+
+> +       }
 > +
-> +  interrupts-extended:
-> +    minItems: 1
-> +    maxItems: 4095
+> +       return 0;
+> +}
 > +
-> +additionalProperties: false
-> +
-> +required:
-> +  - None
-> +optional:
-> +  - compatible
-> +  - interrupts-extended
-> +
-> +examples:
-> +  - |
-> +    pmu {
-> +      compatible = "riscv,pmu";
-> +      interrupts-extended = <&cpu0intc 13>,
-> +                            <&cpu1intc 13>,
-> +                            <&cpu2intc 13>,
-> +                            <&cpu3intc 13>;
-> +    };
-> +...
-> -- 
-> 2.31.1
