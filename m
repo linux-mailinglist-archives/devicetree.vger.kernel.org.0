@@ -2,137 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3780243D893
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 03:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80F0F43D8E1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 03:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbhJ1BeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Oct 2021 21:34:14 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38332 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhJ1BeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Oct 2021 21:34:13 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E10A6276;
-        Thu, 28 Oct 2021 03:31:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1635384706;
-        bh=W61TWmkoyqLkITOU7v3m79iwZxMeYw/EwHh8vkM1pK4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MML/9VdlSyvMjHErZJA9uwpyDCjvYZTj4cepHPFtEMOQT2fg5M4MREwyh80hIDK18
-         l1M8v41i3Dg/tVAHEbzAq9faANOPMhpz0kvhUWpJYqbsaSbcssE7/JrRJvtCEWzVaU
-         yBa88W/xVvINuFD3/7tdXLodnaCDDgHMVCKxkbVM=
-Date:   Thu, 28 Oct 2021 04:31:22 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-        cstevens@beaconembedded.com, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC V2 5/5] arm64: dts: imx8mm-evk: Enable OV5640 Camera
-Message-ID: <YXn9aibI1C/+eP5L@pendragon.ideasonboard.com>
-References: <20211023203457.1217821-1-aford173@gmail.com>
- <20211023203457.1217821-6-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211023203457.1217821-6-aford173@gmail.com>
+        id S229700AbhJ1BtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Oct 2021 21:49:15 -0400
+Received: from mx.socionext.com ([202.248.49.38]:57202 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229534AbhJ1BtM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 27 Oct 2021 21:49:12 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 28 Oct 2021 10:46:45 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 2DDEC207616C;
+        Thu, 28 Oct 2021 10:46:45 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 28 Oct 2021 10:46:45 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id B8346B1D51;
+        Thu, 28 Oct 2021 10:46:44 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH v2] dt-bindings: pinctrl: uniphier: Add child node definitions to describe pin mux and configuration
+Date:   Thu, 28 Oct 2021 10:46:39 +0900
+Message-Id: <1635385599-17778-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+In arch/arm/boot/dts/uniphier-pinctrl.dtsi, there are child nodes of
+pinctrl that defines pinmux and pincfg, however, there are no rules about
+that in dt-bindings.
 
-Thank you for the patch.
+'make dtbs_check' results an error with the following message:
 
-On Sat, Oct 23, 2021 at 03:34:56PM -0500, Adam Ford wrote:
-> The schematic shows support for a camera interface, and the NXP
-> kernel shows it is an OV5640.
+   pinctrl: 'ain1', 'ain2', 'ainiec1', 'aout', 'aout1', 'aout2', ...
+   ... 'usb2', 'usb3' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-The camera is an external module though. Should this be a DT overlay ?
+To avoid this issue, add the rules of pinmux and pincfg in each child node
+and grandchild node.
 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> index e033d0257b5a..27217d30b8d8 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
-> @@ -239,6 +239,10 @@ ldo6_reg: LDO6 {
->  	};
->  };
->  
-> +&csi {
-> +	status = "okay";
-> +};
-> +
->  &i2c2 {
->  	clock-frequency = <400000>;
->  	pinctrl-names = "default";
-> @@ -287,6 +291,38 @@ pca6416: gpio@20 {
->  		gpio-controller;
->  		#gpio-cells = <2>;
->  	};
-> +
-> +	camera@3c {
-> +		compatible = "ovti,ov5640";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_ov5640>;
-> +		reg = <0x3c>;
-> +		clocks = <&clk IMX8MM_CLK_CLKO1>;
-> +		clock-names = "xclk";
-> +		assigned-clocks = <&clk IMX8MM_CLK_CLKO1>;
-> +		assigned-clock-parents = <&clk IMX8MM_CLK_24M>;
-> +		assigned-clock-rates = <24000000>;
-> +		powerdown-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> +		reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			/* MIPI CSI-2 bus endpoint */
-> +			ov5640_to_mipi_csi2: endpoint {
-> +				remote-endpoint = <&imx8mm_mipi_csi_in>;
-> +				clock-lanes = <0>;
-> +				data-lanes = <1 2>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&imx8mm_mipi_csi_in {
-> +	remote-endpoint = <&ov5640_to_mipi_csi2>;
-> +	data-lanes = <1 2>;
-> +};
-> +
-> +&mipi_csi2 {
-> +	status = "okay";
->  };
->  
->  &sai3 {
-> @@ -406,6 +442,14 @@ MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400001c3
->  		>;
->  	};
->  
-> +	pinctrl_ov5640: ov5640grp {
-> +		fsl,pins = <
-> +			MX8MM_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x19
-> +			MX8MM_IOMUXC_GPIO1_IO06_GPIO1_IO6		0x19
-> +			MX8MM_IOMUXC_GPIO1_IO14_CCMSRCGPCMIX_CLKO1	0x59
-> +		>;
-> +	};
-> +
->  	pinctrl_pmic: pmicirqgrp {
->  		fsl,pins = <
->  			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x141
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+---
+Changes since v1:
+- Replace additionalProperties with unevaluatedProperties
+- Add additionalProperties for child and grandchild nodes
 
+ .../pinctrl/socionext,uniphier-pinctrl.yaml        | 50 +++++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
+index a804d9bc1602..7e504e003181 100644
+--- a/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
+@@ -26,10 +26,58 @@ properties:
+       - socionext,uniphier-pxs3-pinctrl
+       - socionext,uniphier-nx1-pinctrl
+ 
++additionalProperties:
++  type: object
++
++patternProperties:
++  "^.*$":
++    if:
++      type: object
++    then:
++      allOf:
++        - $ref: pincfg-node.yaml#
++        - $ref: pinmux-node.yaml#
++
++      properties:
++        phandle: true
++        function: true
++        groups: true
++        pins: true
++        bias-pull-up: true
++        bias-pull-down: true
++        bias-pull-pin-default: true
++        drive-strength: true
++
++      additionalProperties:
++        type: object
++
++      patternProperties:
++        "^.*$":
++          if:
++            type: object
++          then:
++            allOf:
++              - $ref: pincfg-node.yaml#
++              - $ref: pinmux-node.yaml#
++
++            properties:
++              phandle: true
++              function: true
++              groups: true
++              pins: true
++              bias-pull-up: true
++              bias-pull-down: true
++              bias-pull-pin-default: true
++              drive-strength: true
++
++            unevaluatedProperties: false
++
++      unevaluatedProperties: false
++
+ required:
+   - compatible
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 -- 
-Regards,
+2.7.4
 
-Laurent Pinchart
