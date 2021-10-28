@@ -2,128 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15CE843DBD3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3D543DBE0
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbhJ1HVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 03:21:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbhJ1HVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:21:24 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F305C061745
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:18:57 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id 71-20020a9d034d000000b00553e24ce2b8so2654760otv.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:18:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NyqCq2t4o73sS9auTSwS2zR2Aay8fzrOFsH/pDZ5BrU=;
-        b=jIqV7VBIVxnQMFYiJMAQqmcStUoqGgwunhx8d24sTqGnbDI0prYhYpCAS0xdfFMk1N
-         VDyUL17EmtS46h9z/gG4+ce3a/bqioOcYt94Y/Y2jVUN5twCvUGOh6uqkMK0DJcxSQm8
-         eh2dYCDn4LiLxvFliJNFF4poqvroTPjsIGe1ch5SSuwpwmbjVQs50egNNYjRMc5wV3MB
-         UgJ4dZ54et6qY8NTRENm3aTOhQEwV73w2jNFlWZ8jUzZ2ZKIWd/ZFoq+PRHt7py9vdHm
-         MrVHwfk0pIXdVIX3LbnZC9IqDcb+Wwb5dyycqh22RXa5ZZJn8tbm/FL6gpLjQ2BejEiX
-         ACnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NyqCq2t4o73sS9auTSwS2zR2Aay8fzrOFsH/pDZ5BrU=;
-        b=ytyW7ekml0b7sQUWtjPScnMgPcoXIHaFfeEaI1+tCqMY3vJ1MLpRJVdI1sJLwP2kXS
-         1+SUQ6fI70gtQkaRb5PJB6Ue/rk9qiv5S7pnMyrBtC3V00jPTLkLq0Ulmy39h/FIKLjA
-         4scFqS9hYVErEca/pQ0JYtgBYMpU54/CpijpOzBwP7mK2Gpme5etOvEVV5/8Lhevnmfi
-         Asoq0x7O/s9eClUlb79NfsnlCTmCmB2B9GazVD/9TAe/khrXBcJ3JX+7/ugwUDOQU13N
-         QUWV9U7JjtTR6aLtNbLscVENuikHv/PIz2kXvPAgs/OKsMvnrwLIBxTFDNqSwbDHblSU
-         BoNQ==
-X-Gm-Message-State: AOAM532l4c8hbEB/Bbn2OObefCkLz4AePSwJcdzpPQbThJwXTCUjOj6d
-        CFmnLBjO5j3EO7w+TRmTQ2ddMfnfzKx+eQT3qpQ/TA==
-X-Google-Smtp-Source: ABdhPJymRvGxOIXywDlySd2vz0CHfCignaGtttk5vy37gKIaRcUYrGNUFcgD20qi0daQkphAcbbLG+h6jiPMs7/aCso=
-X-Received: by 2002:a05:6830:2b28:: with SMTP id l40mr2109071otv.162.1635405536820;
- Thu, 28 Oct 2021 00:18:56 -0700 (PDT)
+        id S229972AbhJ1HYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 03:24:37 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:27502 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229626AbhJ1HYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:24:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1635405727;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=kOBZjRlCxa2iH7iZrnGYd692rY43y4CmP/9XW3tcKfQ=;
+    b=nP3fEgWu6xJnfqllIlADlnzTrnju370sDmyroJ3WIqU2bwe4TfndmT2MaBVLK0G0f4
+    7R1NS8fhWimfE41KR1/x62xPwzVQSu8fyQhUi3VQXNSnmEyT4n20hqcB+RdEsqz17cH+
+    lglEnTbshGHNhlL1etYfpt9DuGlN/t4Gm4k7LRaSwcEF3bnHjsVZEhbWX0YUjbOo1fPG
+    suL6JDnR8yKTbXrg9GvyICJwVZGtngqjLA2ON5C8XUN98WPCbFZ7KiAKQwYR0tZHgfoF
+    ZuQ0Uzunk2jqg2DmYh3D4UbkStZ+4EVKMwi+caZibCmgUfWuNgRdTqePJAHF2TFFiomR
+    XaQw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKw7/aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.34.1 AUTH)
+    with ESMTPSA id 207811x9S7M79PH
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 28 Oct 2021 09:22:07 +0200 (CEST)
+Date:   Thu, 28 Oct 2021 09:22:05 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Vincent Knecht <vincent.knecht@mailoo.org>, lgirdwood@gmail.com,
+        robh+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v1 1/4] ASoC: codecs: tfa989x: Add switch to allow
+ disabling amplifier
+Message-ID: <YXpPnQ2YTo5ZdQnm@gerhold.net>
+References: <20211024085840.1536438-1-vincent.knecht@mailoo.org>
+ <20211024085840.1536438-2-vincent.knecht@mailoo.org>
+ <YXaMVHo9drCIuD3u@sirena.org.uk>
 MIME-Version: 1.0
-References: <20211018102421.19848-1-stephan@gerhold.net> <YXZFGFH5lxDKeenw@matsya>
- <YXZL655lHukjar/x@gerhold.net> <CAH=2NtzfTqkwZum3owipC0kHvX2BMRssqRFmFAXPFkXK_SmN1w@mail.gmail.com>
- <YXpOAlTO80A4tZcT@gerhold.net>
-In-Reply-To: <YXpOAlTO80A4tZcT@gerhold.net>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 28 Oct 2021 12:48:45 +0530
-Message-ID: <CAH=2Ntxx9QKeV-uezT+TM_Vw_jEMbv0uGAE_Y0xKXhkLJh4z9w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] dmaengine: qcom: bam_dma: Add "powered remotely"
- mode for BAM-DMUX
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>, dmaengine@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YXaMVHo9drCIuD3u@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 at 12:45, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> Hi Bhupesh,
->
-> On Thu, Oct 28, 2021 at 12:20:35PM +0530, Bhupesh Sharma wrote:
-> > On Mon, 25 Oct 2021 at 11:47, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > >
-> > > On Mon, Oct 25, 2021 at 11:18:08AM +0530, Vinod Koul wrote:
-> > > > On 18-10-21, 12:24, Stephan Gerhold wrote:
-> > > > > The BAM Data Multiplexer (BAM-DMUX) provides access to the network data
-> > > > > channels of modems integrated into many older Qualcomm SoCs, e.g.
-> > > > > Qualcomm MSM8916 or MSM8974.
-> > > > >
-> > > > > Shortly said, BAM-DMUX is built using a simple protocol layer on top of
-> > > > > a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
-> > > > > a special mode where the modem/remote side is responsible for powering
-> > > > > on the BAM when needed but we are responsible to initialize it.
-> > > > > The BAM is powered off when unneeded by coordinating power control
-> > > > > via bidirectional interrupts from the BAM-DMUX driver.
-> > > > >
-> > > > > This series adds one possible solution for handling the "powered remotely"
-> > > > > mode in the bam_dma driver.
-> > > >
-> > > > This looks good me me. Bhupesh/Stephan what was the conclusion on the
-> > > > the discussion you folks had?
-> > > >
-> > >
-> > > Basically I said I would wait if you still want to take this for 5.16. :)
-> > > There is a conflict with the DT schema conversion in Bhupesh's series,
-> > > but it's trivial to solve no matter which of the patches is applied first.
-> > >
-> > > Since Bhupesh still needs to send v5 as far as I can tell (and has a
-> > > much larger series overall), I think it's fine to apply this one first.
-> > >
-> > > Bhupesh, you can just copy-paste this below qcom,controlled-remotely
-> > > in your DT schema if Vinod applies this patch first:
-> > >
-> > >   qcom,powered-remotely:
-> > >     $ref: /schemas/types.yaml#/definitions/flag
-> > >     description:
-> > >       Indicates that the bam is powered up by a remote processor
-> > >       but must be initialized by the local processor.
-> >
-> > Sure, I can respin my v5 with 'qcom,powered-remotely' property added,
-> > if this series gets applied first.
->
-> Thanks!
->
-> > Can I add you S-o-B to the same?
->
-> I literally just copy-pasted this from "qcom,controlled-remotely" in
-> your patch with the description from my dt-bindings change that already
-> has my S-o-B. I don't think it is necessary to add my S-o-B to your
-> patch as well just for this. :)
+On Mon, Oct 25, 2021 at 11:52:04AM +0100, Mark Brown wrote:
+> On Sun, Oct 24, 2021 at 10:58:37AM +0200, Vincent Knecht wrote:
+> > From: Stephan Gerhold <stephan@gerhold.net>
+> > 
+> > In some configurations it may be necessary to explicitly disable
+> > the amplifier with an ALSA mixer. An example for this is a stereo
+> > setup with two TFA989X. If only one of them should be used (e.g.
+> > to use it as an earpiece) the other one must be explicitly disabled.
+> > 
+> > Add a virtual "Amp Switch" to implement that. There is no register
+> > for this (SND_SOC_NOPM) so it only prevents DAPM from activating
+> > the amplifier. Also it is inverted (= enabled by default) for
+> > compatibility with devices that do not need this functionality.
+> 
+> Why can you not use a standard pin switch on the speaker output for
+> this?
 
-Great, thanks. I will handle the "qcom,controlled-remotely" in my v5 patchset.
+Thanks for the suggestion! For some reason I was not aware of the pin
+switch mechanism... :) We have tried this and it seems to work fine.
+I will submit a separate series to allow setting up the pin switches
+for the qcom sound cards instead.
 
-Otherwise, the series looks good to me, so:
-Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+The other patches in this series are independent of this one and still
+apply cleanly for me. Can you just ignore PATCH 1/4 or would you prefer
+a resend without this patch?
 
-Regards.
+Thanks,
+Stephan
