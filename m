@@ -2,246 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED23443DC7D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EFE043DC47
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:43:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230258AbhJ1Hz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 03:55:56 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:33464 "EHLO inva020.nxp.com"
+        id S229898AbhJ1Hpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 03:45:53 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:20034 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230158AbhJ1Hzm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 03:55:42 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 112B21A1E1C;
-        Thu, 28 Oct 2021 09:53:15 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9C7E31A1E17;
-        Thu, 28 Oct 2021 09:53:14 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 45FCA183AC94;
-        Thu, 28 Oct 2021 15:53:12 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     l.stach@pengutronix.de, marcel.ziswiler@toradex.com,
-        tharvey@gateworks.com, kishon@ti.com, vkoul@kernel.org,
-        robh@kernel.org, galak@kernel.crashing.org, shawnguo@kernel.org
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [PATCH v4 8/8] PCI: imx: Add the imx8mm pcie support
-Date:   Thu, 28 Oct 2021 15:27:17 +0800
-Message-Id: <1635406037-20900-9-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S229800AbhJ1Hpx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 03:45:53 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635407006; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=96tHoOMtRO1exXok+kK2+EI1nRzwGE0x/43rfTggRsA=; b=NTIhCXIA8Bdpo6XwyAMavPfg9d+GhbvlpN7HWkqG+Ia2K61j0ePnPnz1m1+xjV9Prg4pQ82s
+ OqjWWORWrANhSTrmTS2TDudI06eZMK2jR08FSBtZR+nPiKqslsnUVYwLf59colNa1DDPSUYt
+ cLXGVPdTWkAe9lJYy8GT1WYvzUM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 617a549997bbea7fccffef85 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Oct 2021 07:43:21
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4955BC4360D; Thu, 28 Oct 2021 07:43:20 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [49.205.244.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DE83C4338F;
+        Thu, 28 Oct 2021 07:43:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 6DE83C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Bjorn Andersson'" <bjorn.andersson@linaro.org>
+Cc:     <agross@kernel.org>, <ohad@wizery.com>,
+        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <sibis@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1615361290-19238-1-git-send-email-pillair@codeaurora.org> <1615361290-19238-3-git-send-email-pillair@codeaurora.org> <YEj3emYBinvkfaby@builder.lan> <000001d71993$ded6e070$9c84a150$@codeaurora.org> <YVsd1Mt1iRyU2v8i@builder.lan>
+In-Reply-To: <YVsd1Mt1iRyU2v8i@builder.lan>
+Subject: RE: [PATCH 2/2] remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
+Date:   Thu, 28 Oct 2021 13:13:12 +0530
+Message-ID: <001201d7cbcf$7944f4b0$6bcede10$@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain;
+        charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJE4j0s7F0zBoVvuux+nIAAOegXnQHQWOo3AmfgvGsCH521SQL5H+8MqsNR/OA=
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MM PCIe works mostly like the i.MX8MQ one, but has a different PHY
-and allows to output the internal PHY reference clock via the refclk pad.
-Add the i.MX8MM PCIe support based on the standalone PHY driver.
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
----
- drivers/pci/controller/dwc/pci-imx6.c | 73 ++++++++++++++++++++++++---
- 1 file changed, 66 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index 26f49f797b0f..d8c587b4d54f 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -29,6 +29,7 @@
- #include <linux/types.h>
- #include <linux/interrupt.h>
- #include <linux/reset.h>
-+#include <linux/phy/phy.h>
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- 
-@@ -49,6 +50,7 @@ enum imx6_pcie_variants {
- 	IMX6QP,
- 	IMX7D,
- 	IMX8MQ,
-+	IMX8MM,
- };
- 
- #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
-@@ -88,6 +90,7 @@ struct imx6_pcie {
- 	struct device		*pd_pcie;
- 	/* power domain for pcie phy */
- 	struct device		*pd_pcie_phy;
-+	struct phy		*phy;
- 	const struct imx6_pcie_drvdata *drvdata;
- };
- 
-@@ -372,6 +375,8 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX7D:
- 	case IMX8MQ:
- 		reset_control_assert(imx6_pcie->pciephy_reset);
-+		fallthrough;
-+	case IMX8MM:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	case IMX6SX:
-@@ -407,7 +412,8 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- 
- static unsigned int imx6_pcie_grp_offset(const struct imx6_pcie *imx6_pcie)
- {
--	WARN_ON(imx6_pcie->drvdata->variant != IMX8MQ);
-+	WARN_ON(imx6_pcie->drvdata->variant != IMX8MQ &&
-+		imx6_pcie->drvdata->variant != IMX8MM);
- 	return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
- }
- 
-@@ -446,6 +452,13 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 		break;
- 	case IMX7D:
- 		break;
-+	case IMX8MM:
-+		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
-+		if (ret) {
-+			dev_err(dev, "unable to enable pcie_aux clock\n");
-+			break;
-+		}
-+		break;
- 	case IMX8MQ:
- 		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
- 		if (ret) {
-@@ -522,6 +535,14 @@ static void imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 		goto err_ref_clk;
- 	}
- 
-+	switch (imx6_pcie->drvdata->variant) {
-+	case IMX8MM:
-+		if (phy_power_on(imx6_pcie->phy))
-+			dev_err(dev, "unable to power on PHY\n");
-+		break;
-+	default:
-+		break;
-+	}
- 	/* allow the clocks to stabilize */
- 	usleep_range(200, 500);
- 
-@@ -538,6 +559,10 @@ static void imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 	case IMX8MQ:
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 		break;
-+	case IMX8MM:
-+		if (phy_init(imx6_pcie->phy) != 0)
-+			dev_err(dev, "Waiting for PHY ready timeout!\n");
-+		break;
- 	case IMX7D:
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 
-@@ -614,6 +639,8 @@ static void imx6_pcie_configure_type(struct imx6_pcie *imx6_pcie)
- static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- {
- 	switch (imx6_pcie->drvdata->variant) {
-+	case IMX8MM:
-+		break;
- 	case IMX8MQ:
- 		/*
- 		 * TODO: Currently this code assumes external
-@@ -753,6 +780,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 		break;
- 	case IMX7D:
- 	case IMX8MQ:
-+	case IMX8MM:
- 		reset_control_deassert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -871,6 +899,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 				   IMX6Q_GPR12_PCIE_CTL_2, 0);
- 		break;
- 	case IMX7D:
-+	case IMX8MM:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	default:
-@@ -930,6 +959,7 @@ static void imx6_pcie_clk_disable(struct imx6_pcie *imx6_pcie)
- 				   IMX7D_GPR12_PCIE_PHY_REFCLK_SEL);
- 		break;
- 	case IMX8MQ:
-+	case IMX8MM:
- 		clk_disable_unprepare(imx6_pcie->pcie_aux);
- 		break;
- 	default:
-@@ -1043,11 +1073,6 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 	}
- 
- 	/* Fetch clocks */
--	imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
--	if (IS_ERR(imx6_pcie->pcie_phy))
--		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
--				     "pcie_phy clock source missing or invalid\n");
--
- 	imx6_pcie->pcie_bus = devm_clk_get(dev, "pcie_bus");
- 	if (IS_ERR(imx6_pcie->pcie_bus))
- 		return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_bus),
-@@ -1089,10 +1114,39 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 			dev_err(dev, "Failed to get PCIE APPS reset control\n");
- 			return PTR_ERR(imx6_pcie->apps_reset);
- 		}
-+		break;
-+	case IMX8MM:
-+		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
-+		if (IS_ERR(imx6_pcie->pcie_aux))
-+			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
-+					     "pcie_aux clock source missing or invalid\n");
-+		imx6_pcie->apps_reset = devm_reset_control_get_exclusive(dev,
-+									 "apps");
-+		if (IS_ERR(imx6_pcie->apps_reset)) {
-+			dev_err(dev, "Failed to get PCIE APPS reset control\n");
-+			return PTR_ERR(imx6_pcie->apps_reset);
-+		}
-+
-+		imx6_pcie->phy = devm_phy_get(dev, "pcie-phy");
-+		if (IS_ERR(imx6_pcie->phy)) {
-+			if (PTR_ERR(imx6_pcie->phy) == -EPROBE_DEFER)
-+				return -EPROBE_DEFER;
-+			dev_err(dev, "Failed to get PCIE PHY\n");
-+			return PTR_ERR(imx6_pcie->phy);
-+		}
-+
- 		break;
- 	default:
- 		break;
- 	}
-+	/* Don't fetch the pcie_phy clock, if it has abstract PHY driver */
-+	if (imx6_pcie->phy == NULL) {
-+		imx6_pcie->pcie_phy = devm_clk_get(dev, "pcie_phy");
-+		if (IS_ERR(imx6_pcie->pcie_phy))
-+			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_phy),
-+					     "pcie_phy clock source missing or invalid\n");
-+	}
-+
- 
- 	/* Grab turnoff reset */
- 	imx6_pcie->turnoff_reset = devm_reset_control_get_optional_exclusive(dev, "turnoff");
-@@ -1202,6 +1256,10 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 	[IMX8MQ] = {
- 		.variant = IMX8MQ,
- 	},
-+	[IMX8MM] = {
-+		.variant = IMX8MM,
-+		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
-+	},
- };
- 
- static const struct of_device_id imx6_pcie_of_match[] = {
-@@ -1209,7 +1267,8 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx6sx-pcie", .data = &drvdata[IMX6SX], },
- 	{ .compatible = "fsl,imx6qp-pcie", .data = &drvdata[IMX6QP], },
- 	{ .compatible = "fsl,imx7d-pcie",  .data = &drvdata[IMX7D],  },
--	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], } ,
-+	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], },
-+	{ .compatible = "fsl,imx8mm-pcie", .data = &drvdata[IMX8MM], },
- 	{},
- };
- 
--- 
-2.25.1
+> -----Original Message-----
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Sent: Monday, October 4, 2021 8:59 PM
+> To: Rakesh Pillai <pillair@codeaurora.org>
+> Cc: agross@kernel.org; ohad@wizery.com; mathieu.poirier@linaro.org;
+> robh+dt@kernel.org; p.zabel@pengutronix.de; sibis@codeaurora.org; linux-
+> arm-msm@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> Subject: Re: [PATCH 2/2] remoteproc: qcom: q6v5_wpss: Add support for
+> sc7280 WPSS
+> 
+> On Mon 15 Mar 07:08 CDT 2021, Rakesh Pillai wrote:
+> 
+> >
+> >
+> > > -----Original Message-----
+> > > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Sent: Wednesday, March 10, 2021 10:15 PM
+> > > To: Rakesh Pillai <pillair@codeaurora.org>
+> > > Cc: agross@kernel.org; ohad@wizery.com; mathieu.poirier@linaro.org;
+> > > robh+dt@kernel.org; p.zabel@pengutronix.de; sibis@codeaurora.org;
+> > > robh+linux-
+> > > arm-msm@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > > Subject: Re: [PATCH 2/2] remoteproc: qcom: q6v5_wpss: Add support
+> > > for
+> > > sc7280 WPSS
+> > >
+> > > On Wed 10 Mar 01:28 CST 2021, Rakesh Pillai wrote:
+> > >
+> > > > Add support for PIL loading of WPSS processor for SC7280 WPSS boot
+> > > > will be requested by the wifi driver and hence disable auto-boot
+> > > > for WPSS. Also add a separate shutdown sequence handler for WPSS.
+> > > >
+> > > > Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> > > > ---
+> > > >  drivers/remoteproc/qcom_q6v5_adsp.c | 77
+> > > ++++++++++++++++++++++++++++++++++++-
+> > > >  1 file changed, 76 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c
+> > > b/drivers/remoteproc/qcom_q6v5_adsp.c
+> > > > index e024502..dc6b91d 100644
+> > > > --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> > > > +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> > > > @@ -58,6 +58,8 @@ struct adsp_pil_data {
+> > > >  	const char *ssr_name;
+> > > >  	const char *sysmon_name;
+> > > >  	int ssctl_id;
+> > > > +	bool is_wpss;
+> > > > +	bool auto_boot;
+> > > >
+> > > >  	const char **clk_ids;
+> > > >  	int num_clks;
+> > > > @@ -96,8 +98,54 @@ struct qcom_adsp {
+> > > >  	struct qcom_rproc_glink glink_subdev;
+> > > >  	struct qcom_rproc_ssr ssr_subdev;
+> > > >  	struct qcom_sysmon *sysmon;
+> > > > +
+> > > > +	int (*shutdown)(struct qcom_adsp *adsp);
+> > > >  };
+> > > >
+> > > > +static int qcom_wpss_shutdown(struct qcom_adsp *adsp) {
+> > > > +	unsigned long timeout;
+> > > > +	unsigned int val;
+> > > > +	int ret;
+> > > > +
+> > > > +	regmap_write(adsp->halt_map, adsp->halt_lpass +
+> > > LPASS_HALTREQ_REG, 1);
+> > > > +
+> > > > +	/* Wait for halt ACK from QDSP6 */
+> > > > +	timeout = jiffies + msecs_to_jiffies(ACK_TIMEOUT);
+> > > > +	for (;;) {
+> > > > +		ret = regmap_read(adsp->halt_map,
+> > > > +				  adsp->halt_lpass +
+LPASS_HALTACK_REG,
+> > > &val);
+> > > > +		if (ret || val || time_after(jiffies, timeout))
+> > > > +			break;
+> > > > +
+> > > > +		usleep_range(1000, 1100);
+> > > > +	}
+> > > > +
+> > > > +	/* Place the WPSS processor into reset */
+> > > > +	reset_control_assert(adsp->restart);
+> > > > +	/* wait after asserting subsystem restart from AOSS */
+> > > > +	usleep_range(100, 105);
+> > > > +	/* Remove the WPSS reset */
+> > > > +	reset_control_deassert(adsp->restart);
+> > > > +
+> > > > +	usleep_range(100, 105);
+> > > > +
+> > > > +	regmap_write(adsp->halt_map, adsp->halt_lpass +
+> > > LPASS_HALTREQ_REG, 0);
+> > > > +
+> > > > +	/* Wait for halt ACK from QDSP6 */
+> > > > +	timeout = jiffies + msecs_to_jiffies(ACK_TIMEOUT);
+> > > > +	for (;;) {
+> > > > +		ret = regmap_read(adsp->halt_map,
+> > > > +				  adsp->halt_lpass +
+LPASS_HALTACK_REG,
+> > > &val);
+> > > > +		if (ret || !val || time_after(jiffies, timeout))
+> > > > +			break;
+> > > > +
+> > > > +		usleep_range(1000, 1100);
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > >  static int qcom_adsp_shutdown(struct qcom_adsp *adsp)  {
+> > > >  	unsigned long timeout;
+> > > > @@ -270,7 +318,7 @@ static int adsp_stop(struct rproc *rproc)
+> > > >  	if (ret == -ETIMEDOUT)
+> > > >  		dev_err(adsp->dev, "timed out on wait\n");
+> > > >
+> > > > -	ret = qcom_adsp_shutdown(adsp);
+> > > > +	ret = adsp->shutdown(adsp);
+> > > >  	if (ret)
+> > > >  		dev_err(adsp->dev, "failed to shutdown: %d\n", ret);
+> > > >
+> > > > @@ -439,6 +487,8 @@ static int adsp_probe(struct platform_device
+> > > *pdev)
+> > > >  		dev_err(&pdev->dev, "unable to allocate
+remoteproc\n");
+> > > >  		return -ENOMEM;
+> > > >  	}
+> > > > +
+> > > > +	rproc->auto_boot = desc->auto_boot;
+> > > >  	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
+> > > >
+> > > >  	adsp = (struct qcom_adsp *)rproc->priv; @@ -447,6 +497,11 @@
+> > > > static int adsp_probe(struct platform_device
+> > > *pdev)
+> > > >  	adsp->info_name = desc->sysmon_name;
+> > > >  	platform_set_drvdata(pdev, adsp);
+> > > >
+> > > > +	if (desc->is_wpss)
+> > > > +		adsp->shutdown = qcom_wpss_shutdown;
+> > > > +	else
+> > > > +		adsp->shutdown = qcom_adsp_shutdown;
+> > > > +
+> > > >  	ret = adsp_alloc_memory_region(adsp);
+> > > >  	if (ret)
+> > > >  		goto free_rproc;
+> > > > @@ -515,6 +570,8 @@ static const struct adsp_pil_data
+> > > > adsp_resource_init
+> > > = {
+> > > >  	.ssr_name = "lpass",
+> > > >  	.sysmon_name = "adsp",
+> > > >  	.ssctl_id = 0x14,
+> > > > +	.is_wpss = false,
+> > > > +	.auto_boot = true;
+> > > >  	.clk_ids = (const char*[]) {
+> > > >  		"sway_cbcr", "lpass_ahbs_aon_cbcr",
+> > > "lpass_ahbm_aon_cbcr",
+> > > >  		"qdsp6ss_xo", "qdsp6ss_sleep", "qdsp6ss_core", NULL
+@@ -
+> 528,6
+> > > > +585,8 @@ static const struct adsp_pil_data cdsp_resource_init
+> > > = {
+> > > >  	.ssr_name = "cdsp",
+> > > >  	.sysmon_name = "cdsp",
+> > > >  	.ssctl_id = 0x17,
+> > > > +	.is_wpss = false,
+> > > > +	.auto_boot = true;
+> > > >  	.clk_ids = (const char*[]) {
+> > > >  		"sway", "tbu", "bimc", "ahb_aon", "q6ss_slave",
+> > > "q6ss_master",
+> > > >  		"q6_axim", NULL
+> > > > @@ -535,7 +594,23 @@ static const struct adsp_pil_data
+> > > cdsp_resource_init = {
+> > > >  	.num_clks = 7,
+> > > >  };
+> > > >
+> > > > +static const struct adsp_pil_data wpss_resource_init = {
+> > > > +	.crash_reason_smem = 626,
+> > > > +	.firmware_name = "wpss.mdt",
+> > > > +	.ssr_name = "wpss",
+> > > > +	.sysmon_name = "wpss",
+> > > > +	.ssctl_id = 0x19,
+> > > > +	.is_wpss = true,
+> > > > +	.auto_boot = false;
+> > >
+> > > Why is auto_boot false for the WPSS?
+> >
+> > Wifi driver will start the remote processor when it comes up. We do
+> > not want to load it at the start.
+> >
+> 
+> Can you please explain this further?
+> 
+> We've had several cases in the past where functional drivers controls a
+> remoteproc instance and makes assumptions about when the remoteproc is
+> up or not. I would like to ensure that we don't design ourselves into such
+> corner (even though I see that the ath11k code for this was merged a long
+> time ago)
+> 
+> Regards,
+> Bjorn
+> 
+
+Hi Bjorn,
+Yes, the wpss remoteproc is used by ath11k, where it takes care of starting
+the rproc during init.
+Ideally the wpss is not supposed to be started until the wifi driver comes
+up.
+
+If wifi is started/enabled, the wifi driver can take care of starting the
+wpss.
+This is the reason behind keeping auto_boot as false for wpss.
+
+Thanks,
+Rakesh Pillai
+
+
+> > > > 2.7.4
+> > > >
+> >
 
