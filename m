@@ -2,126 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEB3143F20B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 23:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E99D443F239
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 00:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbhJ1Vwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 17:52:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47742 "EHLO
+        id S230476AbhJ1WEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 18:04:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231151AbhJ1Vwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 17:52:37 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A87BCC061767
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 14:50:09 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id z14so12625368wrg.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 14:50:09 -0700 (PDT)
+        with ESMTP id S230420AbhJ1WEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 18:04:14 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 860BFC061767
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:01:47 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id n63so10394326oif.7
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:01:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=4m41viJCJEzsieLP/qKTZliHa6bo3e1wjR1SAfWR2CI=;
-        b=zcX4+7MHAzOmf2IThooIJCjHwfVmnr9wiH1xcbIbt0a6NAXHPht+1LcZ2wuhdxlnpf
-         JDDqPzTAooYLtOxF+S+Y6DlF6alGtVCtC6LDNgIL6tjOVNE1yyPAXz4/OcmCjYNdliUM
-         o1t3gQPt8xFlXmBgx5zomrHIj9lBWlNsAmN9D1QjacCZjnU83qJ5OQeRX+6GVllRo/Yn
-         DX3bpuEKRTjVN6NcC8iply2Z+DeIdDZLm/l9pGnUHtIGSW3tafHkOsCBSk//CStGPA74
-         c7KSHmujw+vIoDoEKJgAcN3AseIMb+WDmQgYlZAiY2XGAcBUr35VId7EoyIkKoBhfzuD
-         y5pA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=kmwgHIUyfSQ6BfCgMiv31EIWkb4KtS9tXlC4mVfy3Iw=;
+        b=gN5xGu8a4JJPCBhhbQEvdKwVpBl+w6OqLRm2f7vkVsZp2n7jyXq1GGexcbQDRstm6+
+         pSaUsIeukgW4o/UppKIiUAxFVWEZFNwnIljG7Qw1UvKBqhiB8XHGS8BgmptYF1hVGxVt
+         BT6/wbMTKqtaxmyrCi6WBLqmC0c8Eo5BIASLI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=4m41viJCJEzsieLP/qKTZliHa6bo3e1wjR1SAfWR2CI=;
-        b=z8/yYNckUw9wsBjbn6nBWR692a7ajvxFR5E5pMxbcBUX76Nn/3uKBncgszqpmpF+f/
-         OOhCG/h0E42YT3yc4T/WiBfQR5erBaUCLQzX/WaBydVEhccLX9MrIVPHNEGmJlEdm9Jj
-         qjOSEqX5Yu02SL45b/wCQ4RZbn9cc+mXkgkAadQ1NT4dx6FOJ3ZcF835L+A37T+L5eF3
-         MBDo2c1H9JFLy7MaTT/odYGDgpaSCWSvbBY/OAcs95Ra7f3XaaXaqp8PyFRfAabfA+p0
-         BH/X08Di0BKV92lQ1tmZ8tnwaHALe0Rv1CnCPGSAq1Rj7JrEDvSEfmNICbSnossB0Fby
-         V/aQ==
-X-Gm-Message-State: AOAM5339ivQsQKZcTXgWZsYHJ4MsqCvxTY5FDIfD9WjkpQEmz60nqFjk
-        rvV/tn1YCInhdyV60BgyesCFLA==
-X-Google-Smtp-Source: ABdhPJzFcb5NgjmqXJpc9tJfNExy2pexPVWMYRLxBUzj5yHHt+cWNsAsuhmh+ys/8gGAbnE6BAmsow==
-X-Received: by 2002:a05:6000:188e:: with SMTP id a14mr8722904wri.223.1635457808096;
-        Thu, 28 Oct 2021 14:50:08 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id n10sm5670862wmq.24.2021.10.28.14.50.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Oct 2021 14:50:07 -0700 (PDT)
-Message-ID: <5f98b4a5-c049-1b74-91e0-ce3a950e663d@linaro.org>
-Date:   Thu, 28 Oct 2021 22:52:08 +0100
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=kmwgHIUyfSQ6BfCgMiv31EIWkb4KtS9tXlC4mVfy3Iw=;
+        b=Nqx0EXvMUfcIxv2vbYGDlTW04NCMjRShSNQfNHn+UZ10LXR5UxZs3X3EtIRNpyaPk2
+         SZPFYZ2nI0Z3P7Xu2fB4FvAKDZ2UTxQ1MvKhp2Wc9WryN4KKs3T+rhVTkND7hdmWwXzk
+         EizHIc+gQffOoPJoffOPmYrTjcue9tvxBrSvtLYajHnhr5swBKnNF96eRkkCSKI3Ufkk
+         LjlANR9+LMGycLF+T7vajpwJcABa3El3eVIObSgCj/TJ5scKTcFW2wMwlxoQX4RzpAXc
+         U8c+B4O0hurZ8iLwc330vqthztAShIvVwnf0smFEZ7hMNwZAOornMDZccsK/kz3yZfi0
+         pB4g==
+X-Gm-Message-State: AOAM532CscM5ejlZ+bj1yLKVkd30PzkFClcRWPRkukBzXiOuk2Z3fskT
+        jvpKAPp/kdCGEULHBUvYhjVXAc6BF1QENSvOjID2Ow==
+X-Google-Smtp-Source: ABdhPJzzhpqn43FGuWlx7LrCWvU8e3n/+ToKKqYdn7jIiVawi/ws1aXxZzBYb0c8kaSvso329auJPQ1ZnsMw1vqxq7Y=
+X-Received: by 2002:a05:6808:23c2:: with SMTP id bq2mr10986132oib.32.1635458506879;
+ Thu, 28 Oct 2021 15:01:46 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 Oct 2021 15:01:46 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Subject: Re: [RESEND PATCH v2 5/7] dt-bindings: usb: Add Qualcomm PMIC TCPM
- YAML schema
-Content-Language: en-US
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        rdunlap@infradead.org, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        wcheng@codeaurora.org
-References: <20211028164941.831918-1-bryan.odonoghue@linaro.org>
- <20211028164941.831918-6-bryan.odonoghue@linaro.org>
- <YXsLVwLcvlJSQX88@robh.at.kernel.org>
- <f37340f7-898b-2863-9337-1ee5ab78de4a@linaro.org>
-In-Reply-To: <f37340f7-898b-2863-9337-1ee5ab78de4a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <001401d7cbfc$f0d1d700$d2758500$@codeaurora.org>
+References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org>
+ <CAE-0n53rkv5SKO74M+7bkuMgaD7tS0k6a8m7KeQL8j3DTHdB_Q@mail.gmail.com> <001401d7cbfc$f0d1d700$d2758500$@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 28 Oct 2021 15:01:46 -0700
+Message-ID: <CAE-0n53KCUoJWdKTY954OviRX4yShigByHB4L3OGTAGQEaHoqQ@mail.gmail.com>
+Subject: RE: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, ohad@wizery.com,
+        p.zabel@pengutronix.de, pillair@codeaurora.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2021 22:46, Bryan O'Donoghue wrote:
-> I thought it would be a mess to have, since we try to keep addresses 
-> linear in DTS files
+Quoting pillair@codeaurora.org (2021-10-28 06:08:39)
+>
+>
+> > -----Original Message-----
+> > From: Stephen Boyd <swboyd@chromium.org>
+> > Sent: Friday, October 8, 2021 12:05 AM
+> > To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
+> > bjorn.andersson@linaro.org; mathieu.poirier@linaro.org; ohad@wizery.com;
+> > p.zabel@pengutronix.de; robh+dt@kernel.org
+> > Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; sibis@codeaurora.org; mpubbise@codeaurora.org;
+> > kuabhs@chromium.org
+> > Subject: Re: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+> >
+> > Quoting Rakesh Pillai (2021-10-03 23:48:50)
+> > > Add support for PIL loading of WPSS co-processor for SC7280 SOCs.
+> > >
+> > > Changes from v4/v5:
+> > > - Add yaml conversion for adsp/cdsp dt-bindings
+> > > - Change clock names in wpss dt-bindings
+> > > - Correct mistake in signed-off enail ID
+> >
+> > Can you keep a running tally here of the full progression of the series?
+> > That helps to look back and make sure we don't make a comment that has
+> > already been made before.
+> >
+> > One more request. Can you add support for 'firmware-name' like there is in
+> > Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt so that we
+> > can install firmware into some namespaced/versioned place instead of
+> > having to put wpss files into /lib/firmware?
+>
+> Hi Stephen,
+> I have posted v7 with the support for firmware-name to be provided in the DT entry.
 
-sic: I thought the following DTS would be messy since the tcpm device 
-would span over all three silicon blocks and should we want to add in 
-charger, the charger would then end up as an out-of-order address.
+Thanks. I didn't see it in my inbox. No Cc for me?
 
-> 
-> 
-> pm8150b_tcpm: pmic-tcpm@1500 {
->      compatible = "qcom,pmic-tcpm";
-> 
-> 
->      pm8150b_typec: typec@1500 {
->          compatible = "qcom,pm8150b-typec";
->          reg = <0x1500>;
->          ports {
->              #address-cells = <1>;
->              #size-cells = <0>;
-> 
->              port@0 {
->                  reg = <0>;
->                  pmic_typec: endpoint {
->                      remote-endpoint = <&pmic_tcpm_typec>;
->                  };
->              };
->          };
->      };
-> 
->      pm8150b_pdphy: pdphy@1700 {
->          compatible = "qcom,pm8150b-pdphy";
->          reg = <0x1700>;
->          ports {
->              #address-cells = <1>;
->              #size-cells = <0>;
-> 
->              port@0 {
->                  reg = <0>;
->                  pmic_pdphy: endpoint {
->                      remote-endpoint = <&pmic_tcpm_pdphy>;
->                  };
->              };
->          };
->      };
-> };
-> 
-> pm8150b_charger: pmic-charger@1600 {
->      /* Consume electrons here */
-> };
+>
+> > It would also be nice to load a
+> > single firmware file instead of having to split the file into many pieces.
+>
+> This would require lot of changes and lot of code duplication from request firmware.
+> Also the base ath11k firmware files have been posted as split files.
+>
 
+Other firmwares have done it so it seems technically possible. So
+nothing is preventing it?
