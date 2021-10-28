@@ -2,202 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E7543E2F1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 16:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DEE243E309
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 16:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbhJ1OCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 10:02:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbhJ1OCn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:02:43 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F019C061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:00:16 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id z200so5062112wmc.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:00:16 -0700 (PDT)
+        id S230400AbhJ1OHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 10:07:49 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:16612 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230195AbhJ1OHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:07:48 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
-        b=v7pv9yFdFEbIlIWFU/23dm3MCFkl8dcEEeRSQjwKDYEhnFoP9/1S063RARz44GmDaM
-         40KEujEAQO6COS4Rz8mlTArmgDPA3OhB1K5E61MyOzEpzqxBBgVfniWqSoUyYA18VHo3
-         pAuhcAVtaJidD75t441nDkL5XG1fxRqhrXKZ1U21rNXagDk/redDafmM7oAyl4xBCuDF
-         Lm4VOHYbzxVhgDpWe/jhXEsDLhlWj46LXveTHSjJVfHUv5vFbk1vE3V5zUhcF+BH9fdh
-         HFefdkS0jhlXyv2KIiqYy3+/j8UiFC//gGtLbwLyP/hradZcqaftkZzGLhyz6b5CzywF
-         XDtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
-        b=Pd2vqKjGlhYEWZTtVYJw8TUJeIRKDa1xR6B7BTdVqYrM9gjU7zcSzpv6dFqLCReMsU
-         9OBr5aYzC4P1aIPoLX/Axh2D1wQCtAPlciqqyJXNYO43DJS9iVKmUzcxREI7vjqp1iwg
-         +Q7qSl8lwSeEcfPdL4vGdz0UvSU5zxI0ewE+G8jycI0JcR61jd/ysgsdpmXXv7mdUIyQ
-         e/O8AzcD4JGzuLj10PDjmHxiPHDcsDs2OfNE0oLZ/S8ffo0qjrtGBHv/zC+ChkNe/HWC
-         EoQvrfQCJFQ3fNy6I/xDC6/eUnGc+bKywswTDFeam1pOylXc0XIE8K+BL/s6/wOHzLSO
-         /PMA==
-X-Gm-Message-State: AOAM533in9mSQbQ+K4qIHyfpKcErQ8CSTRcyEBptcghLdmxlAXmj8XEv
-        qJpjFsVOIa9UPf4/pSpUf5NNQg==
-X-Google-Smtp-Source: ABdhPJwJ+02NUgidXxf8pb1dMVqiMmu/FPmh0/EQ6EzWDLAPhjrT5qeOq6Kx6tIoctfu2ZLbpqUuIg==
-X-Received: by 2002:a05:600c:4f96:: with SMTP id n22mr4773500wmq.168.1635429614704;
-        Thu, 28 Oct 2021 07:00:14 -0700 (PDT)
-Received: from lmecxl0524.lme.st.com ([80.215.4.29])
-        by smtp.gmail.com with ESMTPSA id s3sm6205693wmh.30.2021.10.28.07.00.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 07:00:14 -0700 (PDT)
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Date:   Thu, 28 Oct 2021 16:00:08 +0200
-Message-Id: <20211028140009.23331-1-etienne.carriere@linaro.org>
-X-Mailer: git-send-email 2.17.1
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635429922; x=1666965922;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references;
+  bh=/Z5PQUKKMjzWeSU9bmE98K9hFHikgVsh9PZzWEEOrx8=;
+  b=panOJuzKXWTEijdAZljLBEJy6CAz7+xWrK1RMolqytH4e8Rh0gIsynrT
+   tfEjb+GcUiozCVNexxGrGeO+wGFXwpzYRi65X6xFslYMFOUUQxPREf6CM
+   xI4pJHKpAHkSrfwqFdF7jc7epaBRfIJ3oGDP5T+8BUE6orcyZCeSlyhAG
+   Y=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 28 Oct 2021 07:05:21 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 28 Oct 2021 07:05:20 -0700
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 28 Oct 2021 19:35:04 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 0FA084E6A; Thu, 28 Oct 2021 07:05:02 -0700 (PDT)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org, swboyd@chromium.org,
+        abhinavk@codeaurora.org, Kalyan Thota <quic_kalyant@quicinc.com>
+Subject: [v1] drm/msm/disp/dpu1: set default group ID for CTL.
+Date:   Thu, 28 Oct 2021 07:05:01 -0700
+Message-Id: <1635429901-5734-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-based on an OP-TEE service invocation. The compatible mandates a
-channel ID defined with property "linaro,optee-channel-id".
+From: Kalyan Thota <kalyan_t@codeaurora.org>
 
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
+New required programming in CTL for SC7280. Group ID informs
+HW of which VM owns that CTL. Force this group ID to
+default/disabled until virtualization support is enabled in SW.
+
+Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
 ---
-Changes since v6:
- - Remove maxItems from linaro,optee-channel-id description
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 5 ++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 3 +++
+ 3 files changed, 8 insertions(+), 2 deletions(-)
 
-No change since v5
-
-Changes since v4:
- - Fix sram node name in DTS example: s/-shm-/-sram-/
-
-Changes since v3:
- - Add description for linaro,optee-channel-id in patternProperties
-   specifying protocol can optionaly define a dedicated channel id.
- - Fix DTS example (duplicated phandles issue, subnodes ordering)
- - Fix typo in DTS example and description comments.
-
-Changes since v2:
- - Define mandatory property linaro,optee-channel-id
- - Rebased on yaml description file
-
-Changes since v1:
- - Removed modification regarding mboxes property description.
----
- .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index 5c4c6782e052..eae15df36eef 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -38,6 +38,9 @@ properties:
-                      The virtio transport only supports a single device.
-         items:
-           - const: arm,scmi-virtio
-+      - description: SCMI compliant firmware with OP-TEE transport
-+        items:
-+          - const: linaro,scmi-optee
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index ce6f32a..283605c 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -45,7 +45,7 @@
+ 	(PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
  
-   interrupts:
-     description:
-@@ -83,6 +86,11 @@ properties:
-     description:
-       SMC id required when using smc or hvc transports
+ #define CTL_SC7280_MASK \
+-	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE))
++	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
  
-+  linaro,optee-channel-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      Channel specifier required when using OP-TEE transport.
-+
-   protocol@11:
-     type: object
-     properties:
-@@ -195,6 +203,12 @@ patternProperties:
-         minItems: 1
-         maxItems: 2
+ #define MERGE_3D_SM8150_MASK (0)
  
-+      linaro,optee-channel-id:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Channel specifier required when using OP-TEE transport and
-+          protocol has a dedicated communication channel.
-+
-     required:
-       - reg
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index 4ade44b..57b9be1 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -179,13 +179,16 @@ enum {
  
-@@ -226,6 +240,16 @@ else:
-       - arm,smc-id
-       - shmem
+ /**
+  * CTL sub-blocks
+- * @DPU_CTL_SPLIT_DISPLAY       CTL supports video mode split display
++ * @DPU_CTL_SPLIT_DISPLAY,	CTL supports video mode split display
++ * @DPU_CTL_FETCH_ACTIVE,	Active CTL for fetch HW (SSPPs).
++ * @DPU_CTL_VM_CFG,		CTL supports multiple VMs.
+  * @DPU_CTL_MAX
+  */
+ enum {
+ 	DPU_CTL_SPLIT_DISPLAY = 0x1,
+ 	DPU_CTL_ACTIVE_CFG,
+ 	DPU_CTL_FETCH_ACTIVE,
++	DPU_CTL_VM_CFG,
+ 	DPU_CTL_MAX
+ };
  
-+  else:
-+    if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: linaro,scmi-optee
-+    then:
-+      required:
-+        - linaro,optee-channel-id
-+
- examples:
-   - |
-     firmware {
-@@ -340,7 +364,48 @@ examples:
-                 reg = <0x11>;
-                 #power-domain-cells = <1>;
-             };
-+        };
-+    };
-+
-+  - |
-+    firmware {
-+        scmi {
-+            compatible = "linaro,scmi-optee";
-+            linaro,optee-channel-id = <0>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            scmi_dvfs1: protocol@13 {
-+                reg = <0x13>;
-+                linaro,optee-channel-id = <1>;
-+                shmem = <&cpu_optee_lpri0>;
-+                #clock-cells = <1>;
-+            };
-+
-+            scmi_clk0: protocol@14 {
-+                reg = <0x14>;
-+                #clock-cells = <1>;
-+            };
-+        };
-+    };
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+index 64740ddb..455b06a 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+@@ -498,6 +498,9 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 	u32 intf_active = 0;
+ 	u32 mode_sel = 0;
  
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
++	if ((test_bit(DPU_CTL_VM_CFG, &ctx->caps->features)))
++		mode_sel = 0xf0000000;
 +
-+        sram@51000000 {
-+            compatible = "mmio-sram";
-+            reg = <0x0 0x51000000 0x0 0x10000>;
-+
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            ranges = <0 0x0 0x51000000 0x10000>;
-+
-+            cpu_optee_lpri0: optee-sram-section@0 {
-+                compatible = "arm,scmi-shmem";
-+                reg = <0x0 0x80>;
-+            };
-         };
-     };
+ 	if (cfg->intf_mode_sel == DPU_CTL_MODE_SEL_CMD)
+ 		mode_sel |= BIT(17);
  
 -- 
-2.17.1
+2.7.4
 
