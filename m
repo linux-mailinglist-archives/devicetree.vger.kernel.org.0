@@ -2,569 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 525EC43DED0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 12:26:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3DF143DEE8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 12:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229809AbhJ1K3E convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 28 Oct 2021 06:29:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39750 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229626AbhJ1K3E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 06:29:04 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B37DB60231;
-        Thu, 28 Oct 2021 10:26:35 +0000 (UTC)
-Date:   Thu, 28 Oct 2021 11:31:01 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH v2 1/2] iio: frequency: admv1013: add support for
- ADMV1013
-Message-ID: <20211028113101.0587a658@jic23-huawei>
-In-Reply-To: <CY4PR03MB3399339315289769615E4DCD9B869@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20211027092333.5270-1-antoniu.miclaus@analog.com>
-        <20211027184324.51811ef1@jic23-huawei>
-        <CY4PR03MB3399339315289769615E4DCD9B869@CY4PR03MB3399.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230123AbhJ1Kew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 06:34:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32896 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229868AbhJ1Kes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 06:34:48 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8BE2C0613B9
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 03:32:20 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id x27so12559086lfu.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 03:32:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LDxy8zf16XbblmUbXPDzHFwVyeqRrn2W3qeHn28IFtA=;
+        b=QFzIb5gUTe4RelRe44dkEOHgZU2yh1MtOfT5MUgPyUQuh5lg0977zIgECaPQDdBj94
+         BFkSTYJiWDPxjquU/iRXxSmLnZKzySqv4tRahOT/i3nsIrF/ceZB3jJ/QXzNmerSFdHT
+         j6y7c7+0gwDhuZ6bzFgDB/c7mPjz7k4NTeX9Y1dzMQGAPKIBxQukEzZt80vR0jQYhNts
+         /dYzG66TfgeOSMSGWpzrto+h8hkCtU7cGpd/qGmmXVcNyAKIEJ/Uq9ACZg8z+SDjvb4U
+         B/Cu29e07u78iKlZYDXjsv2EiCilRJvHfgkhYERy5d811QFGeIl8vDSY6m7DQGaIJOSt
+         NzhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LDxy8zf16XbblmUbXPDzHFwVyeqRrn2W3qeHn28IFtA=;
+        b=pgsw8JS+xDdSLtKKkIoJc2POiFVpLKahEQ9DdcxHuqVaGyOfbngGQSBkJrsRoNPrCg
+         tuUJSBFZ2o7YQ84ap+g//Xyx0QDDN93b2Mty7zKOTsCEEX3gombFvPCX55xm0pi840Q6
+         KropoiD8MK1YdfysmAePHgN1TU5XrqUMZB3TVgyiqBHQjOCi1xfMZlPdXF9kGExMwcVr
+         UAVwauIBJw2vEJ83FRX7k883LR2B9f4LGZrIxfhmRM1yRvW+o87lM7YIW0zJBMo0jqNm
+         cGKOHTvRC85m8NuGzCBiq6AFZv1LLPMOveaUPvnNLQ5+NmXW7dkp59x/C2NOUqTBcL0H
+         0gmA==
+X-Gm-Message-State: AOAM5316jsqL8JqX1KKCloIaQviAgGpoAP6YwNgHHBM+qFUg28LOsPS4
+        cinOD9D+4EqW5iyKUWz8KnIo9xlIGztEhI0CqDMrug==
+X-Google-Smtp-Source: ABdhPJwJk0vTvCHQGwtvtA9aKAQOD7odrTm25viS1f/o7JE473vUBTmJCGpXpvGj6R3j3zwwwNZn9hKBQKXCJHHJvBM=
+X-Received: by 2002:a05:6512:1515:: with SMTP id bq21mr3347083lfb.71.1635417138723;
+ Thu, 28 Oct 2021 03:32:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <1635152851-23660-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1635152851-23660-2-git-send-email-quic_c_sanm@quicinc.com>
+ <YXcBK7zqny0s4gd4@ripper> <CAE-0n51k8TycXjEkH7rHYo0j7cYbKJOnOn1keVhx2yyTcBNnvg@mail.gmail.com>
+ <YXck+xCJQBRGqTCw@ripper> <CAE-0n530M3eft-o0qB+yEzGjZgCLMgY==ZgdvwiVCwqqCAVxxA@mail.gmail.com>
+ <YXdsYlLWnjopyMn/@ripper> <CAE-0n51C4dm6bhds=ZZyje-Pcejxjm4MMa3m-VHjFgq7GZGrLw@mail.gmail.com>
+ <YXjbs3Bv6Y3d87EC@yoga> <CAPDyKFrWQdvZX4ukHZoGz73JPfQSgqVrG_4ShMp_GrxL0NKLvg@mail.gmail.com>
+ <YXlsEF9XZpthecJC@ripper>
+In-Reply-To: <YXlsEF9XZpthecJC@ripper>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 28 Oct 2021 12:31:41 +0200
+Message-ID: <CAPDyKFpXdUKeuO2z2-2qG6YtiHmbg3=opfVwG007p1N2AOxGDA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: usb: qcom,dwc3: Add multi-pd bindings
+ for dwc3 qcom
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 10:08:08 +0000
-"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com> wrote:
-
-> Hello Jonathan,
-> 
-> Thanks for the review!
-> 
-> Regarding the interface for the Mixer Offset adjustments: 
-> ADMV1013_MIXER_OFF_ADJ_P
-> ADMV1013_MIXER_OFF_ADJ_N
-> 
-> These parameters are related to the LO feedthrough offset calibration.
-> (LO and sideband suppression)
-> 
-> On this matter, my suggestion would be to add IIO calibration types, something like:
-> IIO_CHAN_INFO_CALIBFEEDTROUGH_POS
-> IIO_CHAN_INFO_CALIBFEEDTROUGH_NEG
-
-These sound too specific to me - we want an interface that is potentially useful
-in other places.  They are affecting the 'channel' which here is
-simply an alt voltage channel, but I'm assuming it's something like
-separate analog tweaks to the positive and negative of the differential pair?
-
-Current channel is represented as a single index, but one route to this would be
-to have it as a differential pair.
-
-out_altvoltage0-1_phase
-for the attribute that applies at the level of the differential pair and
-
-out_altvoltage0_calibbias
-out_altvoltage1_calibbias
-For the P and N signal specific attributes.
-
-I'm kind of guessing what these tweaks actually map to though so that may
-not make sense.
-
-Lars, guessing you are more familiar with this sort of device than me,
-what do you think makes sense here?
-
-Thanks,
-
-Jonathan
-
-
-> 
-> Looking forward to your feedback.
-> 
-> Regards,
-> --
-> Antoniu Miclăuş
-> 
-> > -----Original Message-----
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Wednesday, October 27, 2021 8:43 PM
-> > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> > Cc: robh+dt@kernel.org; linux-iio@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Sa, Nuno
-> > <Nuno.Sa@analog.com>
-> > Subject: Re: [PATCH v2 1/2] iio: frequency: admv1013: add support for
-> > ADMV1013
-> > 
-> > [External]
-> > 
-> > On Wed, 27 Oct 2021 12:23:32 +0300
-> > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-> >   
-> > > The ADMV1013 is a wideband, microwave upconverter optimized
-> > > for point to point microwave radio designs operating in the
-> > > 24 GHz to 44 GHz radio frequency (RF) range.
+On Wed, 27 Oct 2021 at 17:09, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 27 Oct 07:24 PDT 2021, Ulf Hansson wrote:
+>
+> > On Wed, 27 Oct 2021 at 06:55, Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
 > > >
-> > > Datasheet:
-> > > https://www.analog.com/media/en/technical-documentation/data-  
-> > sheets/ADMV1013.pdf  
+> > > On Tue 26 Oct 19:48 CDT 2021, Stephen Boyd wrote:
 > > >
-> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>  
-> > Hi Antoniu.
-> > 
-> > A few small things inline, but main issue in here is the use of the
-> > IIO_VAL_INT_MULTIPLE
-> > There are very very few uses for that type (1 IIRC) and it isn't to combine
-> > multiple
-> > values into a single sysfs attribute as shown here.  As such those offset
-> > interfaces
-> > need a rethink.  We may well have to define some new ABI to support them
-> > but I don't
-> > see a reason to not maintain the normal sysfs rule of one value per attribute.
-> > 
-> > 
-> > ..
-> >   
-> > > diff --git a/drivers/iio/frequency/Makefile  
-> > b/drivers/iio/frequency/Makefile  
-> > > index 518b1e50caef..559922a8196e 100644
-> > > --- a/drivers/iio/frequency/Makefile
-> > > +++ b/drivers/iio/frequency/Makefile
-> > > @@ -7,3 +7,4 @@
-> > >  obj-$(CONFIG_AD9523) += ad9523.o
-> > >  obj-$(CONFIG_ADF4350) += adf4350.o
-> > >  obj-$(CONFIG_ADF4371) += adf4371.o
-> > > +obj-$(CONFIG_ADMV1013) += admv1013.o
-> > > diff --git a/drivers/iio/frequency/admv1013.c  
-> > b/drivers/iio/frequency/admv1013.c  
-> > > new file mode 100644
-> > > index 000000000000..91254605013c
-> > > --- /dev/null
-> > > +++ b/drivers/iio/frequency/admv1013.c
-> > > @@ -0,0 +1,578 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * ADMV1013 driver
-> > > + *
-> > > + * Copyright 2021 Analog Devices Inc.
-> > > + */
-> > > +
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/bitops.h>
-> > > +#include <linux/bits.h>
-> > > +#include <linux/clk.h>
-> > > +#include <linux/clkdev.h>
-> > > +#include <linux/clk-provider.h>
-> > > +#include <linux/device.h>
-> > > +#include <linux/iio/iio.h>
-> > > +#include <linux/module.h>  
-> > Recheck this list.  Should have
-> > property.h and mod_devicetable.h
-> >   
-> > > +#include <linux/notifier.h>
-> > > +#include <linux/regmap.h>  
-> > 
-> > and not regmap as you aren't using it.
-> >   
-> > > +#include <linux/regulator/consumer.h>
-> > > +#include <linux/spi/spi.h>
-> > > +
-> > > +#include <asm/unaligned.h>  
-> > 
-> > ...
-> >   
-> > > +/* ADMV1013_REG_OFFSET_ADJUST_Q Map */
-> > > +#define ADMV1013_MIXER_OFF_ADJ_Q_P_MSK  
-> > 	GENMASK(15, 9)  
-> > > +#define ADMV1013_MIXER_OFF_ADJ_Q_N_MSK		GENMASK(8,  
-> > 2)
-> > Given these two registers have the same form, could you use generic naming
-> > and just have them defined once?
-> >   
-> > > +
-> > > +/* ADMV1013_REG_QUAD Map */
-> > > +#define ADMV1013_QUAD_SE_MODE_MSK		GENMASK(9,  
-> > 6)  
-> > > +#define ADMV1013_QUAD_FILTERS_MSK		GENMASK(3, 0)
-> > > +
-> > > +/* ADMV1013_REG_VVA_TEMP_COMP Map */
-> > > +#define ADMV1013_VVA_TEMP_COMP_MSK  
-> > 	GENMASK(15, 0)  
-> > > +
-> > > +struct admv1013_state {
-> > > +	struct spi_device	*spi;
-> > > +	struct clk		*clkin;
-> > > +	/* Protect against concurrent accesses to the device */  
-> > 
-> > Also against concurrent access to data.  Maybe other state in software as
-> > well?
-> > This comment needs to cover everything the lock protects - if it were just
-> > serialization of accesses to the device then the spi subsystem would handle
-> > that fine for us.
-> >   
-> > > +	struct mutex		lock;
-> > > +	struct regulator	*reg;
-> > > +	struct notifier_block	nb;
-> > > +	unsigned int		quad_se_mode;
-> > > +	bool			vga_pd;
-> > > +	bool			mixer_pd;
-> > > +	bool			quad_pd;
-> > > +	bool			bg_pd;
-> > > +	bool			mixer_if_en;
-> > > +	bool			det_en;
-> > > +	u8			data[3] ____cacheline_aligned;
-> > > +};  
-> > 
-> > ...
-> >   
-> > > +static int admv1013_read_raw(struct iio_dev *indio_dev,
-> > > +			     struct iio_chan_spec const *chan,
-> > > +			     int *val, int *val2, long info)
-> > > +{
-> > > +	struct admv1013_state *st = iio_priv(indio_dev);
-> > > +	unsigned int data;
-> > > +	int ret;
-> > > +
-> > > +	switch (info) {
-> > > +	case IIO_CHAN_INFO_OFFSET:
-> > > +		if (chan->channel2 == IIO_MOD_I) {
-> > > +			ret = admv1013_spi_read(st,  
-> > ADMV1013_REG_OFFSET_ADJUST_I, &data);  
-> > > +			if (ret)
-> > > +				return ret;
-> > > +
-> > > +			*val =  
-> > FIELD_GET(ADMV1013_MIXER_OFF_ADJ_I_P_MSK, data);  
-> > > +			*val2 =  
-> > FIELD_GET(ADMV1013_MIXER_OFF_ADJ_I_N_MSK, data);
-> > 
-> > I mention above about generic naming for these masks.  Advantage is then
-> > that this
-> > code can be
-> > 
-> > 		if (chan->channel2 == IIO_MOD_I)
-> > 			addr = ADMV1013_REG_OFFSET_ADJUST_I;
-> > 		else
-> > 			addr = ADMV1013_REG_OFFSET_ADJUST_Q;
-> > 
-> > 		ret = admv1013_spi_read(st, addr, &data);
-> > 		if (ret)
-> > 			return ret;
-> > 
-> > 		*val = FIELD_GET(ADMV1013_MIXER_OFF_ADJ_P_MSK,
-> > data);
-> > 		*val2 = FIELD_GET(ADMV1013_MIXER_OFF_ADJ_Q_MSK,
-> > data);
-> > 
-> > 		return IIO_VAL_INT_MULTIPLE;
-> > 
-> > However, returning multiple integers is normally reserved for things like
-> > quaternions where the individual parts have no meaning except when they
-> > are all present.
-> > It's not intended for pairs like this. It should also only be used with the special
-> > read_raw_multi callback.
-> > 
-> > So we need to rethink this interface. I'm not entirely sure what it is
-> > doing so I'm open to suggestions on what the interface should be!
-> > The description on the datasheet suggest to me these are for calibration
-> > tweaking
-> > in which case they should be related to calibbias not offset as they aren't
-> > something
-> > we should apply to a raw value in userspace (which is what offset is for).
-> > 
-> >   
-> > > +		} else {
-> > > +			ret = admv1013_spi_read(st,  
-> > ADMV1013_REG_OFFSET_ADJUST_Q, &data);  
-> > > +			if (ret)
-> > > +				return ret;
-> > > +
-> > > +			*val =  
-> > FIELD_GET(ADMV1013_MIXER_OFF_ADJ_Q_P_MSK, data);  
-> > > +			*val2 =  
-> > FIELD_GET(ADMV1013_MIXER_OFF_ADJ_Q_N_MSK, data);  
-> > > +		}
-> > > +
-> > > +		return IIO_VAL_INT_MULTIPLE;
-> > > +	case IIO_CHAN_INFO_PHASE:
-> > > +		if (chan->channel2 == IIO_MOD_I) {
-> > > +			ret = admv1013_spi_read(st,  
-> > ADMV1013_REG_LO_AMP_I, &data);  
-> > > +			if (ret)
-> > > +				return ret;
-> > > +
-> > > +			*val =  
-> > FIELD_GET(ADMV1013_LOAMP_PH_ADJ_I_FINE_MSK, data);
-> > 
-> > As above, the masks match for these two branches of if / else, so with a
-> > generic
-> > name you should be able to share more code and only have to select the
-> > right register.
-> >   
-> > > +		} else {
-> > > +			ret = admv1013_spi_read(st,  
-> > ADMV1013_REG_LO_AMP_Q, &data);  
-> > > +			if (ret)
-> > > +				return ret;
-> > > +
-> > > +			*val =  
-> > FIELD_GET(ADMV1013_LOAMP_PH_ADJ_Q_FINE_MSK, data);  
-> > > +		}
-> > > +
-> > > +		return IIO_VAL_INT;
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +}
-> > > +
-> > > +static int admv1013_write_raw(struct iio_dev *indio_dev,
-> > > +			      struct iio_chan_spec const *chan,
-> > > +			      int val, int val2, long info)
-> > > +{
-> > > +	struct admv1013_state *st = iio_priv(indio_dev);
-> > > +	int ret;
-> > > +
-> > > +	switch (info) {
-> > > +	case IIO_CHAN_INFO_OFFSET:
-> > > +		val2 /= 100000;
-> > > +
-> > > +		if (chan->channel2 == IIO_MOD_I)
-> > > +			ret = admv1013_spi_update_bits(st,  
-> > ADMV1013_REG_OFFSET_ADJUST_I,  
-> > > +  
-> > ADMV1013_MIXER_OFF_ADJ_I_P_MSK |  
-> > > +  
-> > ADMV1013_MIXER_OFF_ADJ_I_N_MSK,  
-> > > +  
-> > FIELD_PREP(ADMV1013_MIXER_OFF_ADJ_I_P_MSK, val) |  
-> > > +  
-> > FIELD_PREP(ADMV1013_MIXER_OFF_ADJ_I_N_MSK, val2));
-> > 
-> > As above, this isn't in inline with the normal ABI conventions so needs a
-> > rethink.  As far as I can
-> > establish these two values are independent though the datasheet provides
-> > limited information.
-> >   
-> > > +		else
-> > > +			ret = admv1013_spi_update_bits(st,  
-> > ADMV1013_REG_OFFSET_ADJUST_Q,  
-> > > +  
-> > ADMV1013_MIXER_OFF_ADJ_Q_P_MSK |  
-> > > +  
-> > ADMV1013_MIXER_OFF_ADJ_Q_N_MSK,  
-> > > +  
-> > FIELD_PREP(ADMV1013_MIXER_OFF_ADJ_Q_P_MSK, val) |  
-> > > +  
-> > FIELD_PREP(ADMV1013_MIXER_OFF_ADJ_Q_N_MSK, val2));  
-> > > +
-> > > +		return ret;
-> > > +	case IIO_CHAN_INFO_PHASE:
-> > > +		if (chan->channel2 == IIO_MOD_I)
-> > > +			return admv1013_spi_update_bits(st,  
-> > ADMV1013_REG_LO_AMP_I,  
-> > > +  
-> > 	ADMV1013_LOAMP_PH_ADJ_I_FINE_MSK,  
-> > > +  
-> > 	FIELD_PREP(ADMV1013_LOAMP_PH_ADJ_I_FINE_MSK, val));  
-> > > +		else
-> > > +			return admv1013_spi_update_bits(st,  
-> > ADMV1013_REG_LO_AMP_Q,  
-> > > +  
-> > 	ADMV1013_LOAMP_PH_ADJ_Q_FINE_MSK,  
-> > > +  
-> > 	FIELD_PREP(ADMV1013_LOAMP_PH_ADJ_Q_FINE_MSK, val));  
-> > > +	default:
-> > > +		return -EINVAL;
-> > > +	}
-> > > +}
-> > > +
-> > > +static int admv1013_update_quad_filters(struct admv1013_state *st)
-> > > +{
-> > > +	unsigned int filt_raw;
-> > > +	u64 rate = clk_get_rate(st->clkin);
-> > > +
-> > > +	if (rate >= 5400000000 && rate <= 7000000000)  
-> > 
-> > To reduce chance of 0s issues you could use the HZ_PER_MHZ definition in
-> > include/linux/units.h
-> > Nice to avoid counting so many zeros when reviewing.
-> >   
-> > > +		filt_raw = 15;
-> > > +	else if (rate >= 5400000000 && rate <= 8000000000)
-> > > +		filt_raw = 10;
-> > > +	else if (rate >= 6600000000 && rate <= 9200000000)
-> > > +		filt_raw = 5;
-> > > +	else
-> > > +		filt_raw = 0;
-> > > +
-> > > +	return __admv1013_spi_update_bits(st, ADMV1013_REG_QUAD,
-> > > +					ADMV1013_QUAD_FILTERS_MSK,
-> > > +  
-> > 	FIELD_PREP(ADMV1013_QUAD_FILTERS_MSK, filt_raw));  
-> > > +}
-> > > +  
-> >   
-> > > +static int admv1013_reg_access(struct iio_dev *indio_dev,
-> > > +			       unsigned int reg,
-> > > +			       unsigned int write_val,
-> > > +			       unsigned int *read_val)
-> > > +{
-> > > +	struct admv1013_state *st = iio_priv(indio_dev);
-> > > +	int ret;
-> > > +
-> > > +	if (read_val)
-> > > +		ret = admv1013_spi_read(st, reg, read_val);  
-> > 
-> > 		return amdv1013_spi_read() etc is a bit more concise for now
-> > loss of readability.
-> >   
-> > > +	else
-> > > +		ret = admv1013_spi_write(st, reg, write_val);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +  
-> > 
-> > ...
-> > 
-> >   
-> > > +
-> > > +#define ADMV1013_CHAN(_channel, rf_comp) {			\
-> > > +	.type = IIO_ALTVOLTAGE,					\
-> > > +	.modified = 1,						\
-> > > +	.output = 1,						\
-> > > +	.indexed = 1,						\
-> > > +	.channel2 = IIO_MOD_##rf_comp,				\
-> > > +	.channel = _channel,					\
-> > > +	.info_mask_separate = BIT(IIO_CHAN_INFO_PHASE) |	\
-> > > +		BIT(IIO_CHAN_INFO_OFFSET)			\
-> > > +	}
-> > > +
-> > > +static const struct iio_chan_spec admv1013_channels[] = {
-> > > +	ADMV1013_CHAN(0, I),
-> > > +	ADMV1013_CHAN(0, Q),
-> > > +};  
-> > 
-> > ...
-> >   
-> > > +
-> > > +static int admv1013_properties_parse(struct admv1013_state *st)
-> > > +{
-> > > +	int ret;
-> > > +	struct spi_device *spi = st->spi;
-> > > +
-> > > +	st->vga_pd = device_property_read_bool(&spi->dev, "adi,vga-pd");
-> > > +	st->mixer_pd = device_property_read_bool(&spi->dev, "adi,mixer-  
-> > pd");  
-> > > +	st->quad_pd = device_property_read_bool(&spi->dev, "adi,quad-  
-> > pd");  
-> > > +	st->bg_pd = device_property_read_bool(&spi->dev, "adi,bg-pd");
-> > > +	st->mixer_if_en = device_property_read_bool(&spi->dev,  
-> > "adi,mixer-if-en");  
-> > > +	st->det_en = device_property_read_bool(&spi->dev, "adi,det-en");  
-> > 
-> > Comments on these in the binding document.
-> >   
-> > > +
-> > > +	ret = device_property_read_u32(&spi->dev, "adi,quad-se-mode",  
-> > &st->quad_se_mode);  
-> > > +	if (ret)
-> > > +		st->quad_se_mode = 12;
-> > > +
-> > > +	st->reg = devm_regulator_get(&spi->dev, "vcm");
-> > > +	if (IS_ERR(st->reg))
-> > > +		return dev_err_probe(&spi->dev, PTR_ERR(st->reg),
-> > > +				     "failed to get the common-mode  
-> > voltage\n");  
-> > > +
-> > > +	st->clkin = devm_clk_get(&spi->dev, "lo_in");
-> > > +	if (IS_ERR(st->clkin))
-> > > +		return dev_err_probe(&spi->dev, PTR_ERR(st->clkin),
-> > > +				     "failed to get the LO input clock\n");
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int admv1013_probe(struct spi_device *spi)
-> > > +{
-> > > +	struct iio_dev *indio_dev;
-> > > +	struct admv1013_state *st;
-> > > +	int ret;
-> > > +
-> > > +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> > > +	if (!indio_dev)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	st = iio_priv(indio_dev);
-> > > +
-> > > +	indio_dev->info = &admv1013_info;
-> > > +	indio_dev->name = "admv1013";
-> > > +	indio_dev->channels = admv1013_channels;
-> > > +	indio_dev->num_channels = ARRAY_SIZE(admv1013_channels);
-> > > +
-> > > +	st->spi = spi;
-> > > +
-> > > +	ret = admv1013_properties_parse(st);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = regulator_enable(st->reg);
-> > > +	if (ret) {
-> > > +		dev_err(&spi->dev, "Failed to enable specified Common-  
-> > Mode Voltage!\n");  
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret = devm_add_action_or_reset(&spi->dev,  
-> > admv1013_reg_disable,  
-> > > +				       st->reg);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = clk_prepare_enable(st->clkin);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = devm_add_action_or_reset(&spi->dev, admv1013_clk_disable,  
-> > st->clkin);  
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	st->nb.notifier_call = admv1013_freq_change;
-> > > +	ret = clk_notifier_register(st->clkin, &st->nb);  
-> > 
-> > There seems to be a devm_clk_notifier_registers() which you should use.
-> >   
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = devm_add_action_or_reset(&spi->dev,  
-> > admv1013_clk_notifier_unreg, st);  
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	mutex_init(&st->lock);
-> > > +
-> > > +	ret = admv1013_init(st);
-> > > +	if (ret) {
-> > > +		dev_err(&spi->dev, "admv1013 init failed\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	ret = devm_add_action_or_reset(&spi->dev,  
-> > admv1013_powerdown, st);  
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return devm_iio_device_register(&spi->dev, indio_dev);
-> > > +}
-> > > +  
-> > 
-> > ...  
-> 
+> > > > +Rajendra
+> > > >
+> > > > Quoting Bjorn Andersson (2021-10-25 19:48:02)
+> > > > > On Mon 25 Oct 15:41 PDT 2021, Stephen Boyd wrote:
+> > > > >
+> > > > > >
+> > > > > > When the binding was introduced I recall we punted on the parent child
+> > > > > > conversion stuff. One problem at a time. There's also the possibility
+> > > > > > for a power domain to be parented by multiple power domains so
+> > > > > > translation tables need to account for that.
+> > > > > >
+> > > > >
+> > > > > But for this case - and below display case - the subdomain (the device's
+> > > > > power-domain) is just a dumb gate. So there is no translation, the given
+> > > > > performance_state applies to the parent. Or perhaps such implicitness
+> > > > > will come back and bite us?
+> > > >
+> > > > In the gate case I don't see how the implicitness will ever be a
+> > > > problem.
+> > > >
+> > > > >
+> > > > > I don't think we allow a power-domain to be a subdomain of two
+> > > > > power-domains - and again it's not applicable to USB or display afaict.
+> > > >
+> > > > Ah maybe. I always confuse power domains and genpd.
+> > > >
+> > > > >
+> > > > > > >
+> > > > > > > > Or we may need to make another part of the OPP binding to indicate the
+> > > > > > > > relationship between the power domain and the OPP and the parent of
+> > > > > > > > the power domain.
+> > > > > > >
+> > > > > > > I suspect this would be useful if a power-domain provider needs to
+> > > > > > > translate a performance_state into a different supply-performance_state.
+> > > > > > > Not sure if we have such case currently; these examples are all an
+> > > > > > > adjustable power-domain with "gating" subdomains.
+> > > > > >
+> > > > > > Even for this case, we should be able to have the GDSC map the on state
+> > > > > > to some performance state in the parent domain. Maybe we need to add
+> > > > > > some code to the gdsc.c file to set a performance state on the parent
+> > > > > > domain when it is turned on. I'm not sure where the value for that perf
+> > > > > > state comes from. I guess we can hardcode it in the driver for now and
+> > > > > > if it needs to be multiple values based on the clk frequency we can push
+> > > > > > it out to an OPP table or something like that.
+> > > > > >
+> > > > >
+> > > > > For the GDSC I believe we only have 1:1 mapping, so implementing
+> > > > > set_performance_state to just pass that on to the parent might do the
+> > > > > trick (although I haven't thought this through).
+> > > > >
+> > > > > Conceptually I guess this would be like calling clk_set_rate() on a
+> > > > > clock gate, relying on it being propagated upwards. The problem here is
+> > > > > that the performance_state is just a "random" integer without a well
+> > > > > defined unit.
+> > > > >
+> > > >
+> > > > Right. Ideally it would be in the core code somehow so that if there
+> > > > isn't a set_performance_state function we go to the parent or some
+> > > > special return value from the function says "call it on my parent". The
+> > > > translation scheme could come later so we can translate the "random"
+> > > > integer between parent-child domains.
+> > >
+> > > As a proof of concept it should be sufficient to just add an
+> > > implementation of sc->pd.set_performance_state in gdsc.c. But I agree
+> > > that it would be nice to push this into some framework code, perhaps
+> > > made opt-in by some GENPD_FLAG_xyz.
+> > >
+> > > > At the end of the day the device
+> > > > driver wants to set a frequency or runtime pm get the device and let the
+> > > > OPP table or power domain code figure out what the level is supposed to
+> > > > be.
+> > > >
+> > >
+> > > Yes and this is already working for the non-nested case - where the
+> > > single power-domain jumps between performance states as the opp code
+> > > switches from one opp to another.
+> > >
+> > > So if we can list only the child power-domain (i.e. the GDSC) and have
+> > > the performance_stat requests propagate up to the parent rpmhpd resource
+> > > I think we're good.
+> > >
+> > >
+> > > Let's give this a spin and confirm that this is the case...
+> > >
+> > > > >
+> > > > >
+> > > > > The one case where I believe we talked about having different mapping
+> > > > > between the performance_state levels was in the relationship between CX
+> > > > > and MX. But I don't think we ever did anything about that...
+> > > >
+> > > > Hmm alright. I think there's a constraint but otherwise nobody really
+> > > > wants to change both at the same time.
+> > > >
+> > > > > >
+> > > > > > Yes, a GDSC is really a gate on a parent power domain like CX or MMCX,
+> > > > > > etc. Is the display subsystem an example of different clk frequencies
+> > > > > > wanting to change the perf state of CX? If so it's a good place to work
+> > > > > > out the translation scheme for devices that aren't listing the CX power
+> > > > > > domain in DT.
+> > > > >
+> > > > > Yes, the various display components sits in MDSS_GDSC but the opp-tables
+> > > > > needs to change the performance_state of MDSS_GDSC->parent (i.e. CX or
+> > > > > MMCX, depending on platform).
+> > > > >
+> > > > > As I said, today we hack this by trusting that the base drm/msm driver
+> > > > > will keep MDSS_GDSC on and listing MMCX (or CX) as power-domain for each
+> > > > > of these components.
+> > > > >
+> > > > >
+> > > > > So if we solve this, then that seems to directly map to the static case
+> > > > > for USB as well.
+> > > > >
+> > > >
+> > > > Got it. So in this case we could have the various display components
+> > > > that are in the mdss gdsc domain set their frequency via OPP and then
+> > > > have that translate to a level in CX or MMCX. How do we parent the power
+> > > > domains outside of DT? I'm thinking that we'll need to do that if MMCX
+> > > > is parented by CX or something like that and the drivers for those two
+> > > > power domains are different. Is it basic string matching?
+> > >
+> > > In one way or another we need to invoke pm_genpd_add_subdomain() to link
+> > > the two power-domains (actually genpds) together, like what was done in
+> > > 3652265514f5 ("clk: qcom: gdsc: enable optional power domain support").
+> > >
+> > > In the case of MMCX and CX, my impression of the documentation is that
+> > > they are independent - but if we need to express that CX is parent of
+> > > MMCX, they are both provided by rpmhpd which already supports this by
+> > > just specifying .parent on mmcx to point to cx.
+> >
+> > I was trying to follow the discussion, but it turned out to be a bit
+> > complicated to catch up and answer all things. In any case, let me
+> > just add a few overall comments, perhaps that can help to move things
+> > forward.
+> >
+>
+> Thanks for jumping in Ulf.
+>
+> > First, one domain can have two parent domains. Both from DT and from
+> > genpd point of view, just to make this clear.
+> >
+>
+> I was under the impression that the only such configuration we supported
+> was that we can explicitly attach and control multiple PDs from a
+> driver. I didn't think we could say that a given genpd is a subdomain of
+> multiple other genpds...
+>
+> That said, it's better if we can ignore this, as it doesn't apply to our
+> problem at hand.
+>
+> > Although, it certainly looks questionable to me, to hook up the USB
+> > device to two separate power domains, one to control power and one to
+> > control performance. Especially, if it's really the same piece of HW
+> > that is managing both things. Additionally, if it's correct to model
+> > the USB GDSC power domain as a child to the CX power domain from HW
+> > point of view, we should likely do that.
+> >
+>
+> So to clarify, we have the following situation:
+>
+> +---------------+
+> | CX            |
+> | +-----------+ |
+> | | USB_GDSC  | |
+> | | +-------+ | |
+> | | | dwc3  | | |
+> | | +-------+ | |
+> | +-----------+ |
+> +---------------+
+>
+> CX can operate at different performance_states, USB_GDSC can be toggled
+> on/off and hence dwc3 needs CX to operate at a performance_state meeting
+> its needs.
+>
+> The proposed patch is to list both CX and USB_GDSC as power-domains for
+> dwc3, in order for the required-opp in the dwc3 to affect CX.
 
+Okay. Then I need to point out that this looks wrong to me.
+
+We should be able to support the needs for dwc3, by letting CX to
+become the parent domain for USB_GDSC.
+
+If there is something missing from the genpd point of view, for
+example, let's fix that!
+
+>
+> > From the performance states point of view, genpd supports propagating
+> > performance states to parent domains, via a 1:1 mapping of the
+> > performance state. Note that, we have also quite recently made genpd's
+> > ->set_performance_state() callback to be optional. A vote for a
+> > performance state will be propagated to the parent domain, even if the
+> > child domain would lack the ->set_performance_state() callback.  This
+> > should be useful, where a child domain relies on its parent domain for
+> > performance state management, which seems to be the case for the USB
+> > GDSC/CX power domains, right?
+> >
+>
+> I presume you're referring to the first half of
+> _genpd_set_performance_state(). This looks to be exactly what Stephen
+> and I discussed implementing.
+
+Yes.
+
+>
+> I had a rather messy tree when I looked at this last time, presumably
+> missing something else to hide this propagation.
+>
+>
+> For the USB_GDSC we today don't describe that as a subdomain of CX, but
+> per your guidance and the recently introduced 3652265514f5 ("clk: qcom:
+> gdsc: enable optional power domain support") we should be fairly close
+> to the solution.
+
+Great!
+
+>
+>
+> The one "problem" I can see is that I believe that some of the GDSCs in
+> GCC should be subdomains of MX, so the above referenced patch would then
+> need to be extended to allow specifying which of the multiple
+> power-domains each GDSC should be a subdomain of - something Dmitry and
+> I did discuss, but wasn't needed for the display GDSC.
+> Perhaps I'm just misinformed regarding this need though.
+
+I didn't quite follow all of this.
+
+But, perhaps using "#power-domain-cells = <2>" for the power-domain
+provider can help to specify this for the consumer/child-domain?
+
+>
+> > In regards to the parsing of the "required-opps" DT binding for a
+> > device node, I think that should work for cases like these, too. Or is
+> > there something missing around this?
+> >
+>
+> Given that Sandeep's proposed patch solves his problem without touching
+> the framework those patches (required-opps) must already have been
+> picked up.
+
+Right!
+
+Kind regards
+Uffe
