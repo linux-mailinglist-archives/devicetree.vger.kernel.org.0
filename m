@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 987D543E195
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 15:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C294943E1A8
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 15:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbhJ1NGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 09:06:53 -0400
-Received: from mail-oo1-f46.google.com ([209.85.161.46]:38742 "EHLO
-        mail-oo1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229981AbhJ1NGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 09:06:52 -0400
-Received: by mail-oo1-f46.google.com with SMTP id z11-20020a4a870b000000b002b883011c77so2101146ooh.5;
-        Thu, 28 Oct 2021 06:04:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rh04sCxAXful7mJSlNTH3IS6uJ0MONEanjW5tEUQbgo=;
-        b=b8bJtIpdlmuDlQuH7lgYngXg1G3ArcS7FOWJo4hhIiuhAuyWEiV/zRmUBhZ8qHDIt5
-         kRq4mDTqXX+1T+KjBThz8ABB8ryZIsbYLa97k8f47AQNd55xOmkPRMntHdo1hDN7y+s1
-         cDcx+U5A1rJu1RUUb2djLkcjGBBiLUDWyaInStTpz/Zr+qfkDfbjL2xeHhnMadNrMO6P
-         a6pqi2LVHe2qZ2Yn+60t0ckBNgyzc82cflQojxLCSZQ6dmOZ0U/7He4cNMkwyqP4HVpB
-         TRzHqIa7OxUswaSeBxhsUUw0jb8MQk1WCSQQdiRzx4sTFYvtWgEW//8MHvG8o3BqDK1m
-         GWvg==
-X-Gm-Message-State: AOAM533xXHhS8vkWeYtqZVvw+//oh+aDY7tRZP5oaOZOmpOTo1+KNF8G
-        qp0Vb2gYKvJgh9oKf3I94ECu3KpUfg==
-X-Google-Smtp-Source: ABdhPJyororwU0p9VmFHSj4JVyIQzHMKAXP25T49oVvAqHkP8Ovdbc8zDQ+t2U488A9WNSdKjxlxwQ==
-X-Received: by 2002:a4a:ea2e:: with SMTP id y14mr2909498ood.26.1635426265232;
-        Thu, 28 Oct 2021 06:04:25 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id bl35sm1113106oib.50.2021.10.28.06.04.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 06:04:24 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH v2] of/unittest: Disable new dtc node_name_vs_property_name and interrupt_map warnings
-Date:   Thu, 28 Oct 2021 08:04:23 -0500
-Message-Id: <20211028130423.4025578-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        id S229603AbhJ1NL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 09:11:27 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:43525 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230157AbhJ1NLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 09:11:22 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635426536; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=Qb7X8st4uzzS9456OTzm8fGK/jpZSE56FlCL1Nrl7ho=; b=IwjFwGb4seB+2Ph6p2PPqWFbP7yUkVMPtpDvP2Z55Crr6uyWB0M6nrleJsOpeh54bNKiyWuw
+ BmQdyN1eB0/PKtH2CJeLSbJWW5RgU1nro+toQ4ZGIjbQizqIL3K0KmPF8L5slF5KufHkuRtE
+ WBS1aG6XB1U/okcFQOq39r4iTGM=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 617aa0e0648aeeca5cd8fd0d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 28 Oct 2021 13:08:48
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9961FC43618; Thu, 28 Oct 2021 13:08:48 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [49.205.244.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 98DE2C4338F;
+        Thu, 28 Oct 2021 13:08:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 98DE2C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Stephen Boyd'" <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <ohad@wizery.com>, <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sibis@codeaurora.org>,
+        <mpubbise@codeaurora.org>, <kuabhs@chromium.org>
+References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org> <CAE-0n53rkv5SKO74M+7bkuMgaD7tS0k6a8m7KeQL8j3DTHdB_Q@mail.gmail.com>
+In-Reply-To: <CAE-0n53rkv5SKO74M+7bkuMgaD7tS0k6a8m7KeQL8j3DTHdB_Q@mail.gmail.com>
+Subject: RE: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+Date:   Thu, 28 Oct 2021 18:38:39 +0530
+Message-ID: <001401d7cbfc$f0d1d700$d2758500$@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKwJKLJ4tjmgoIJWycFdR/OOcUEpALtul/YqiBB3JA=
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The unittest dtbs have various intentional errors which cause warnings.
-With the latest dtc sync to v1.6.1-19-g0a3a9d3449c8, we need to disable
-some new checks: node_name_vs_property_name and interrupt_map warnings.
-These warnings are also generated for static_base_1.dtb, so add
-DTC_FLAGS for it.
 
-Note that the interrupt_map warnings only appear once interrupt_provider
-warning is re-enabled globally.
 
-drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> -----Original Message-----
+> From: Stephen Boyd <swboyd@chromium.org>
+> Sent: Friday, October 8, 2021 12:05 AM
+> To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
+> bjorn.andersson@linaro.org; mathieu.poirier@linaro.org; =
+ohad@wizery.com;
+> p.zabel@pengutronix.de; robh+dt@kernel.org
+> Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; sibis@codeaurora.org; mpubbise@codeaurora.org;
+> kuabhs@chromium.org
+> Subject: Re: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+>=20
+> Quoting Rakesh Pillai (2021-10-03 23:48:50)
+> > Add support for PIL loading of WPSS co-processor for SC7280 SOCs.
+> >
+> > Changes from v4/v5:
+> > - Add yaml conversion for adsp/cdsp dt-bindings
+> > - Change clock names in wpss dt-bindings
+> > - Correct mistake in signed-off enail ID
+>=20
+> Can you keep a running tally here of the full progression of the =
+series?
+> That helps to look back and make sure we don't make a comment that has
+> already been made before.
+>=20
+> One more request. Can you add support for 'firmware-name' like there =
+is in
+> Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt so that we
+> can install firmware into some namespaced/versioned place instead of
+> having to put wpss files into /lib/firmware?=20
 
-Fixes: e76187b9792e ("scripts/dtc: Update to upstream version v1.6.1-19-g0a3a9d3449c8")
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/unittest-data/Makefile | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Hi Stephen,
+I have posted v7 with the support for firmware-name to be provided in =
+the DT entry.
 
-diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
-index a5d2d9254b2c..fbded24c608c 100644
---- a/drivers/of/unittest-data/Makefile
-+++ b/drivers/of/unittest-data/Makefile
-@@ -37,7 +37,9 @@ DTC_FLAGS_overlay_base += -@
- DTC_FLAGS_testcases += -@
- 
- # suppress warnings about intentional errors
--DTC_FLAGS_testcases += -Wno-interrupts_property
-+DTC_FLAGS_testcases += -Wno-interrupts_property \
-+	-Wno-node_name_vs_property_name \
-+	-Wno-interrupt_map
- 
- # Apply overlays statically with fdtoverlay.  This is a build time test that
- # the overlays can be applied successfully by fdtoverlay.  This does not
-@@ -82,6 +84,10 @@ apply_static_overlay_1 := overlay_0.dtbo \
- 
- apply_static_overlay_2 := overlay.dtbo
- 
-+DTC_FLAGS_static_base_1 += -Wno-interrupts_property \
-+	-Wno-node_name_vs_property_name \
-+	-Wno-interrupt_map
-+
- static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
- static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
- 
--- 
-2.32.0
+> It would also be nice to load a
+> single firmware file instead of having to split the file into many =
+pieces.
+
+This would require lot of changes and lot of code duplication from =
+request firmware.
+Also the base ath11k firmware files have been posted as split files.
+
+
+Thanks,
+Rakesh Pillai
 
