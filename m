@@ -2,111 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E78CF43DB85
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 08:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F5D743DBA3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 09:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbhJ1GxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 02:53:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39348 "EHLO
+        id S229801AbhJ1HGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 03:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbhJ1GxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 02:53:14 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5470C061745
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 23:50:47 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id y207so6951161oia.11
-        for <devicetree@vger.kernel.org>; Wed, 27 Oct 2021 23:50:47 -0700 (PDT)
+        with ESMTP id S229626AbhJ1HGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 03:06:13 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4669FC061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:03:47 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id b12so3886398wrh.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 00:03:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RhB5TtItmbKy/D/LyqNoXIL+0hH8TR+DOInrUpggIMw=;
-        b=gCVzF7w18KZYdh7OMaO8PnY+A1/tzIc70keDhzT3QKja1NDvBUN1P6F9I8yz38DUiZ
-         qT4RFWvnqz9Njflew2bWmL6h2w7sDR5hPlZLM7ZMPzmJYinb/1e2wWEhnFMU6Yk9a1oN
-         4DIEYJ3EgJoCZrGMXe+sQsWJzQ3PJVYoLX9K7FG9jGOMXZn5uQxCtuy9mvKpmKwyVgyc
-         a4H536GezG14ZcVSlyEPVbgsngQuYbCpr6gCEnVOdRu/s0IxbrBBMUEE09Dm8gLI1GNh
-         b2ZvRXjPIjsdCAGf2EwC70gFq5qMl3VrJuJaiqNrX+u0KLf3WFF0hPf28xfPNpMfqP5Y
-         khCw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tYJf3pPXy66b6fOeFSuwXiQ13fKQDUAgQENZhWkIem0=;
+        b=pp6s8C2MnjyDkTBNBkmTo91foNk3zr0KIlSe/h+ScJQSuVSn5RIpnlMjwUF8rRJnAn
+         0sakS0pMa5m9GXqERtRNB0As3ROYmhA1IGWtpmzN3pEuABqtvwJqOe8axJ5PjJXfYca2
+         +u7bIud0OjwLEvQuLAcmva0Wu6qGlMjKaQ3czMTk7rwIilv/6zPpskLiJ3ZhSHS1Ywcb
+         3e/BXL1Om2SUgmPhqhhyRvYDS8XQxCICe0vPvTSHOo1+efutMWhexkUKETy+ZZLDiL0v
+         4x592WhTGR84o0987uCjbvXbfQde+kNqBTk4d0ywVkxWrAqqitPPCQig8Vf4X85T/M2e
+         waLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RhB5TtItmbKy/D/LyqNoXIL+0hH8TR+DOInrUpggIMw=;
-        b=ezEnoKLSFZ7tFN2TvfrRULyAZ97+iGvo5DEmjDgJifu3iAkUwma9GWgxVv2tCI2CCZ
-         +6DOmR5k93W9RqukcXkEtfQdg2vv5qx8zSAAvOI+166autgYz2rpClLhZKLjmsGOUmH7
-         o83r/q8vZ/ByYX6HCKd/v9/kFYkopEONuc/aF/5kUNE5ul6YSy7yCDuaZrmHfY+XVrkx
-         BlgshaN/IG3Pe21cs/LHnlbUtx1bQVjURDw94jMKaS+57yM+TEdDKGQQ0m9raZyMRmRO
-         3fK0YAEh9knZelX4Famd53era58Htm7pNrTDFLorkutxsNTl63cxsnfQyBUGM+dEYz4n
-         Oemw==
-X-Gm-Message-State: AOAM531G/M5L6OzRwOKo+V664NWwzipoFfpCEaYtX7v1AgkB4AhI86qb
-        ZivhgOu3UHbV8izDarZpoBvbwI3+TUdLK3xJ7mRl8w==
-X-Google-Smtp-Source: ABdhPJyeymmM+qgZAtXFNqaIPYKMlBDkkAiHEZ/38LNAPz1A6GJEOJD2WkjwOCYb1KilZ0J/+InDe6JfIs+oII9GWC8=
-X-Received: by 2002:aca:58d6:: with SMTP id m205mr7195482oib.126.1635403847232;
- Wed, 27 Oct 2021 23:50:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211018102421.19848-1-stephan@gerhold.net> <YXZFGFH5lxDKeenw@matsya>
- <YXZL655lHukjar/x@gerhold.net>
-In-Reply-To: <YXZL655lHukjar/x@gerhold.net>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 28 Oct 2021 12:20:35 +0530
-Message-ID: <CAH=2NtzfTqkwZum3owipC0kHvX2BMRssqRFmFAXPFkXK_SmN1w@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] dmaengine: qcom: bam_dma: Add "powered remotely"
- mode for BAM-DMUX
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tYJf3pPXy66b6fOeFSuwXiQ13fKQDUAgQENZhWkIem0=;
+        b=DVVJBCOx1oQ2BtEA3iAsytsWt3h6064NT6dK80KxZitloyOIT8oFQOewbLNspO0Gd4
+         /1cEfIQHKic0lXeWPPk4MQ1qbwacOlvRcmcISuKxO24v82++LtRX7GLNKd0AArqIVAO/
+         JPpk35K7L8PTHCi8k1Chb0HTlOs8tnBSjjxbnvMaaWPAtnVjKPwJF0ZL62yfCtZXi12/
+         pYiAti8DLExQor2BtLBf9a9l7vR/AHx3pBLr02214p7avTlhBQP091kklye/MzOWS5UT
+         hRip/DlOgoQaLk3qlz5X6C88MfiACQ3NRA6zgQxLA0DKFyPaN+Xdyn+GNjH2gEWl70tc
+         SBlw==
+X-Gm-Message-State: AOAM533YUuZFseIEd5z3bp1W0aZRYZ8PxSFiirGFxxL4W/1XslmEfORm
+        T4AR36u0pJK3DzpVZ7dpPbA=
+X-Google-Smtp-Source: ABdhPJx82lbZL/Ko7/2tCtLAVKWmH9SkWfTr4pyYw6eZs5gcLHZ+PAeiJTo+6Fcj1g/kal3POynyJA==
+X-Received: by 2002:adf:d1c2:: with SMTP id b2mr3324666wrd.73.1635404625873;
+        Thu, 28 Oct 2021 00:03:45 -0700 (PDT)
+Received: from debian64.daheim (p5b0d7857.dip0.t-ipconnect.de. [91.13.120.87])
+        by smtp.gmail.com with ESMTPSA id y5sm2469651wrd.75.2021.10.28.00.03.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 00:03:45 -0700 (PDT)
+Received: from chuck by debian64.daheim with local (Exim 4.95)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1mfzRw-0003IE-Vy;
+        Thu, 28 Oct 2021 09:03:44 +0200
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>, dmaengine@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
+        Matthew Hagan <mnhagan88@gmail.com>
+Subject: [PATCH v1] ARM: BCM53016: MR32: convert to Broadcom iProc I2C Driver
+Date:   Thu, 28 Oct 2021 09:03:44 +0200
+Message-Id: <20211028070344.12652-1-chunkeey@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephan and Vinod,
+replaces the bit-banged i2c-gpio provided i2c functionality
+with the hardware in the SoC.
 
-On Mon, 25 Oct 2021 at 11:47, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Mon, Oct 25, 2021 at 11:18:08AM +0530, Vinod Koul wrote:
-> > On 18-10-21, 12:24, Stephan Gerhold wrote:
-> > > The BAM Data Multiplexer (BAM-DMUX) provides access to the network data
-> > > channels of modems integrated into many older Qualcomm SoCs, e.g.
-> > > Qualcomm MSM8916 or MSM8974.
-> > >
-> > > Shortly said, BAM-DMUX is built using a simple protocol layer on top of
-> > > a DMA engine (Qualcomm BAM DMA). For BAM-DMUX, the BAM DMA engine runs in
-> > > a special mode where the modem/remote side is responsible for powering
-> > > on the BAM when needed but we are responsible to initialize it.
-> > > The BAM is powered off when unneeded by coordinating power control
-> > > via bidirectional interrupts from the BAM-DMUX driver.
-> > >
-> > > This series adds one possible solution for handling the "powered remotely"
-> > > mode in the bam_dma driver.
-> >
-> > This looks good me me. Bhupesh/Stephan what was the conclusion on the
-> > the discussion you folks had?
-> >
->
-> Basically I said I would wait if you still want to take this for 5.16. :)
-> There is a conflict with the DT schema conversion in Bhupesh's series,
-> but it's trivial to solve no matter which of the patches is applied first.
->
-> Since Bhupesh still needs to send v5 as far as I can tell (and has a
-> much larger series overall), I think it's fine to apply this one first.
->
-> Bhupesh, you can just copy-paste this below qcom,controlled-remotely
-> in your DT schema if Vinod applies this patch first:
->
->   qcom,powered-remotely:
->     $ref: /schemas/types.yaml#/definitions/flag
->     description:
->       Indicates that the bam is powered up by a remote processor
->       but must be initialized by the local processor.
+During review of the MR32, Florian Fainelli pointed out that the
+SoC has a real I2C-controller. Furthermore, the connected pins
+(SDA and SCL) would line up perfectly for use. Back then I couldn't
+get it working though and I left it with i2c-gpio (which worked).
 
-Sure, I can respin my v5 with 'qcom,powered-remotely' property added,
-if this series gets applied first. Can I add you S-o-B to the same?
+Now we know the reason: the interrupt was incorrectly specified.
+(Hence, this patch depends on Florian Fainelli's
+"ARM: dts: BCM5301X: Fix I2C controller interrupt" patch).
 
-Thanks,
-Bhupesh
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Rafał Miłecki <zajec5@gmail.com>
+Cc: Matthew Hagan <mnhagan88@gmail.com>
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+---
+ arch/arm/boot/dts/bcm53016-meraki-mr32.dts | 62 ++++++++++------------
+ 1 file changed, 28 insertions(+), 34 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+index c58e75dde7b3..6ae74c3d85c3 100644
+--- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
++++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+@@ -84,40 +84,6 @@ blue {
+ 			max-brightness = <255>;
+ 		};
+ 	};
+-
+-	i2c {
+-		/*
+-		 * The platform provided I2C does not budge.
+-		 * This is a replacement until I can figure
+-		 * out what are the missing bits...
+-		 */
+-
+-		compatible = "i2c-gpio";
+-		sda-gpios = <&chipcommon 5 GPIO_ACTIVE_HIGH>;
+-		scl-gpios = <&chipcommon 4 GPIO_ACTIVE_HIGH>;
+-		i2c-gpio,delay-us = <10>; /* close to 100 kHz */
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		current_sense: ina219@45 {
+-			compatible = "ti,ina219";
+-			reg = <0x45>;
+-			shunt-resistor = <60000>; /* = 60 mOhms */
+-		};
+-
+-		eeprom: eeprom@50 {
+-			compatible = "atmel,24c64";
+-			reg = <0x50>;
+-			pagesize = <32>;
+-			read-only;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			mac_address: mac-address@66 {
+-				reg = <0x66 0x6>;
+-			};
+-		};
+-	};
+ };
+ 
+ &uart0 {
+@@ -228,3 +194,31 @@ fixed-link {
+ 		};
+ 	};
+ };
++
++&i2c0 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinmux_i2c>;
++
++	clock-frequency = <100000>;
++
++	current_sense: ina219@45 {
++		compatible = "ti,ina219";
++		reg = <0x45>;
++		shunt-resistor = <60000>; /* = 60 mOhms */
++	};
++
++	eeprom: eeprom@50 {
++		compatible = "atmel,24c64";
++		reg = <0x50>;
++		pagesize = <32>;
++		read-only;
++		#address-cells = <1>;
++		#size-cells = <1>;
++
++		mac_address: mac-address@66 {
++			reg = <0x66 0x6>;
++		};
++	};
++};
+-- 
+2.33.1
+
