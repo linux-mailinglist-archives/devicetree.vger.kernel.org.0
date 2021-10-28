@@ -2,183 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4EA843F2BC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 00:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F96E43F2E5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 00:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231435AbhJ1W3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 18:29:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45306 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231201AbhJ1W3e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 18:29:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 514F460724;
-        Thu, 28 Oct 2021 22:27:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635460027;
-        bh=IRb7K8Scugbw79p/NGKJBlQoJGry2ngto823hUEGEXs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Yf5anAcMBtVVkTQpCbcRofd+PD62RsVQ89MO1qIpqtDDFHWzVAdY203I6unG8xVU0
-         XjtsI12TDdIT8OeN6WjCeAZkSftNbH2P8k0Qnhxnfq5cc/pCno4AlAPNTg74KNmInZ
-         wp6E9P+jv7OpZqYdmDP7TZw7pwrzHK1lAnKKkw4DOYbvZ+J67/rtMQDBxatHNY1Ec5
-         Hb0NwuD5QuAUFntWupLvggdszu8bfFXwXLUjZlQp5+k2CKU+7q40HF8/RnTMwyg66d
-         GcglvdZ2hKsG9/xVHTiR3U18t01/IMGlW1ipdwehO14bXwnw0DkGUVR6CStssItnKk
-         wHMw1GZf8Carg==
-Received: by mail-ed1-f54.google.com with SMTP id h7so31425845ede.8;
-        Thu, 28 Oct 2021 15:27:07 -0700 (PDT)
-X-Gm-Message-State: AOAM533POUZP1qmbgEGy05Dz9++vxA73Qexs8o6yVk92HwpSVz+jP2vr
-        13MZKBEUW00CylzH8EN6DxeS9R9yrpTDc9GeMg==
-X-Google-Smtp-Source: ABdhPJzFTlJEyEZBeLoX8gbLZTqeBCF4HRrpqgvzZDMGlEcd9Rlm2NDmyjV99mlD28xMEO+ThsFmdXEcamqMH0cUx/c=
-X-Received: by 2002:a05:6402:348c:: with SMTP id v12mr9451716edc.271.1635460025785;
- Thu, 28 Oct 2021 15:27:05 -0700 (PDT)
+        id S231252AbhJ1Wlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 18:41:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231298AbhJ1Wlh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 18:41:37 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4F2EC061745
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:39:09 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id t4so10493798oie.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 15:39:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=NL2ODXrSm6ZhmFLsby2Ei6hqV0q649I4yE01/l32yPQ=;
+        b=EzEx8hrE3mS6JZIoGFLUs+ApD5NhXSxVevnPM4sWKpiHe9d/BAezq0wvniKjXvDBhq
+         HbWNzFYwXZXAiTw8rUlunRoFkU17UHGYFAGyaiGznIRKixX8NruEmgqBx06xaK3nBDYA
+         4vyCtXotGrGKOamqpYsaqALhn/KSPva5VoJLE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=NL2ODXrSm6ZhmFLsby2Ei6hqV0q649I4yE01/l32yPQ=;
+        b=nXh6WlbL99VlsFoIRoD5CdwKy2JkGtUut+l8gDLbMn+HLIpXlsdgVre3OYZK/nUUl3
+         W3669VCKa2MVnOj7FDsegYiSzFPTX5uvwCmrdwi/M9LtpRvYkBe9YMD7qzagzdnmy3Vv
+         FGcVQt7bGQhhf0AewMoZDbobeBIcsJjNAIifm4N1EPj8wnNZmfKZmWB2s+sO2Umovfqv
+         wAhRr/5Os/EdhzcqmfSNWqZg/dCysV63Qu8Gpu/zx/QmHzcPO4GssyMZ3yE/1AniUcqf
+         jUnWKhpft8iHPMpDApTvPsySJ5oUu9QzznDnf2NP0ZS/Nw/P/sNaAiZtIle60hQx4MFg
+         RsSA==
+X-Gm-Message-State: AOAM530vvELAnnJGGg0kYA4ukaxs/hsabWS26zOHoekgPECM15wFSMdq
+        RRQTlXrjk7sBkn8TKD/o6HMMfo7Ku1ep9ZnyoN0uFg==
+X-Google-Smtp-Source: ABdhPJwNY2fhQGXvyKhKxiZbkYaL+OKNaCpFlag84zdAsz24L+gCDmW3Zn3S1HtqV5VnAkP3JQPd6x+9VqfiQqM2IKQ=
+X-Received: by 2002:a05:6808:2124:: with SMTP id r36mr5406711oiw.64.1635460749103;
+ Thu, 28 Oct 2021 15:39:09 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 28 Oct 2021 15:39:08 -0700
 MIME-Version: 1.0
-References: <20211016133322.40771-1-paul@crapouillou.net> <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
- <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
-In-Reply-To: <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 28 Oct 2021 17:26:54 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to ingenic,*.h
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, list@opendingux.net,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+In-Reply-To: <CAE-0n51PGVQ6GT7RMTQajEM54NLOUZBGPkVKmVaG1JV7Fgv9Ag@mail.gmail.com>
+References: <1634234784-5359-1-git-send-email-pmaliset@codeaurora.org> <CAE-0n51PGVQ6GT7RMTQajEM54NLOUZBGPkVKmVaG1JV7Fgv9Ag@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 28 Oct 2021 15:39:08 -0700
+Message-ID: <CAE-0n51noyV7KW9JcY5-TdERC_RSLQDtdqMR4_LDFHJGGE3yiw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: qcom: sc7280: Add pcie clock support
+To:     Prasad Malisetty <pmaliset@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org,
+        sanm@codeaurora.org, vbadigan@codeaurora.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 6:46 AM Paul Cercueil <paul@crapouillou.net> wrote:
->
-> Hi Rob,
->
-> Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring <robh@kernel.org>
-> a =C3=A9crit :
-> > On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
-> >>  Tidy up a bit the tree, by prefixing all include/dt-bindings/clock/
-> >> files
-> >>  related to Ingenic SoCs with 'ingenic,'.
-> >>
-> >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> >>  ---
-> >>
-> >>  Notes:
-> >>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
-> >>          x1000.h / x1830.h
-> >>
-> >>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml    | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml    | 4
-> >> ++--
-> >>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml        | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    | 2
-> >> +-
-> >>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  | 2
-> >> +-
-> >>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/net/ingenic,mac.yaml        | 2
-> >> +-
-> >>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml       | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml    | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml      | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml    | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      | 2
-> >> +-
-> >>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml       | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/jz4725b.dtsi                       | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/jz4740.dtsi                        | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/jz4770.dtsi                        | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/jz4780.dtsi                        | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/x1000.dtsi                         | 2
-> >> +-
-> >>   arch/mips/boot/dts/ingenic/x1830.dtsi                         | 2
-> >> +-
-> >>   drivers/clk/ingenic/jz4725b-cgu.c                             | 2
-> >> +-
-> >>   drivers/clk/ingenic/jz4740-cgu.c                              | 2
-> >> +-
-> >>   drivers/clk/ingenic/jz4760-cgu.c                              | 2
-> >> +-
-> >>   drivers/clk/ingenic/jz4770-cgu.c                              | 2
-> >> +-
-> >>   drivers/clk/ingenic/jz4780-cgu.c                              | 2
-> >> +-
-> >>   drivers/clk/ingenic/x1000-cgu.c                               | 2
-> >> +-
-> >>   drivers/clk/ingenic/x1830-cgu.c                               | 2
-> >> +-
-> >>   .../clock/{jz4725b-cgu.h =3D> ingenic,jz4725b-cgu.h}            | 0
-> >>   .../dt-bindings/clock/{jz4740-cgu.h =3D> ingenic,jz4740-cgu.h}  | 0
-> >>   .../dt-bindings/clock/{jz4760-cgu.h =3D> ingenic,jz4760-cgu.h}  | 0
-> >>   .../dt-bindings/clock/{jz4770-cgu.h =3D> ingenic,jz4770-cgu.h}  | 0
-> >>   .../dt-bindings/clock/{jz4780-cgu.h =3D> ingenic,jz4780-cgu.h}  | 0
-> >>   .../dt-bindings/clock/{x1000-cgu.h =3D> ingenic,x1000-cgu.h}    | 0
-> >>   .../dt-bindings/clock/{x1830-cgu.h =3D> ingenic,x1830-cgu.h}    | 0
-> >>   42 files changed, 36 insertions(+), 36 deletions(-)
-> >>   rename include/dt-bindings/clock/{jz4725b-cgu.h =3D>
-> >> ingenic,jz4725b-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{jz4740-cgu.h =3D>
-> >> ingenic,jz4740-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{jz4760-cgu.h =3D>
-> >> ingenic,jz4760-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{jz4770-cgu.h =3D>
-> >> ingenic,jz4770-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{jz4780-cgu.h =3D>
-> >> ingenic,jz4780-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{x1000-cgu.h =3D>
-> >> ingenic,x1000-cgu.h} (100%)
-> >>   rename include/dt-bindings/clock/{x1830-cgu.h =3D>
-> >> ingenic,x1830-cgu.h} (100%)
+Quoting Stephen Boyd (2021-10-21 11:06:53)
+> Quoting Prasad Malisetty (2021-10-14 11:06:24)
+> > Add pcie clock phandle for sc7280 SoC and correct
+> > The pcie_1_pipe-clk clock name as same as binding.
 > >
-> > Acked-by: Rob Herring <robh@kernel.org>
-> >
-> > However, this will be a pain to merge if there are any new users
-> > coming
-> > in during the merge window. If not, then Stephen can just take this.
-> > If
-> > there are, then at the end of the merge window is the best time. For
-> > that to work, you need to track when all dependent changes are merged
-> > and we need to agree who will pick this up. I usually have fixes from
-> > breakages in the merge window anyways.
+> > fix: ab7772de8 ("arm64: dts: qcom: SC7280: Add rpmhcc clock controller node")
 >
-> I get Cc'd on all ingenic-related patches, so far I don't see anything
-> that will cause a breakage. I think it would be okay to merge it now
-> (we're at -rc7 after all).
+> This is wrong. Should be
+>
+> Fixes: ab7772de8612 ("arm64: dts: qcom: SC7280: Add rpmhcc clock controller node")
+>
+> > Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> > Reported-by: kernel test robot <lkp@intel.com>
+> >
+> > ---
+> > This change is depends on the below patch series.
+> > https://lkml.org/lkml/2021/10/7/841
+>
+> Why doesn't that patch update this clock cell then?
 
-Then can you apply this to linux-next and check it all works there.
-Specifically, 'make dt_binding_check dtbs drivers/clk/' needs to work.
-Or confirm you already did that.
+Looks like Bjorn already picked it up so that answers my question.
 
-Rob
+>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+> >  1 file changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > index 39635da..78694c1 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> > @@ -569,9 +569,10 @@
+> >                         reg = <0 0x00100000 0 0x1f0000>;
+> >                         clocks = <&rpmhcc RPMH_CXO_CLK>,
+> >                                  <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+> > -                                <0>, <0>, <0>, <0>, <0>, <0>;
+> > +                                <0>, <&pcie1_lane 0>,
+> > +                                <0>, <0>, <0>, <0>;
+> >                         clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+> > -                                     "pcie_0_pipe_clk", "pcie_1_pipe-clk",
+> > +                                     "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+>
+> This can be split from the patch to fix just the name in one patch and
+> then add the pcie1_lane phandle in the next patch. That way new features
+> aren't being mixed together with the string fix.
+>
+
+In addition, I see that Rob sent a patch[1] that fixes the interrupt-map
+in the pcie node. Can you send a similar patch for sc7280? It looks
+wrong. We need another two zeroes like on sdm845.dtsi. So please resend
+this series with three patches and the appropriate Fixes tags.
+
+
+[1] https://lore.kernel.org/r/20210928192210.1842377-1-robh@kernel.org
