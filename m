@@ -2,86 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC86343E77E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 19:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C4143E824
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 20:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230377AbhJ1RsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 13:48:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
+        id S230501AbhJ1STx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 14:19:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230192AbhJ1RsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 13:48:03 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB301C061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 10:45:35 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id f8so6436509edy.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 10:45:35 -0700 (PDT)
+        with ESMTP id S231130AbhJ1STx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 14:19:53 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C5E9C061745
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 11:17:26 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id x66so6721262pfx.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 11:17:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=WZwJd6pQXuj90DgXnmrq+JdASJsQQ5coXQgD2NBlIMM=;
-        b=OIqYyDLlQxMeOKZ4nXRlx1NAcw85xkq79QfDD8ZcUNM+FkPIYy7gLOp9VIO01dJDYU
-         X544PYc84SQbjK5C5T9eNvAOMASyJu5ssydDmrLdGZGewIJwfCFFi4Akl2uwpUKydR8S
-         2LE8ZnX8A3heAsZRNNGphSD9aYVu+xsSWh+csPe2cP7ms6Folo2PFMAq4/KCj9Y+pknP
-         M9bUZ/t84y6WcfZDSC3bTdTpu/dUJWt1rCohezAXX5vBOtqcTq0mj84pCI0XnrYRrbCm
-         AJD6JrKiEK/i+1Wm8BcBLhCRr8XlIJOaRp9jn7UopzWexd9HdgreS40DQkSTFnKMDi8d
-         FH4A==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Y52ZRB3IDHBVDpr1Rvp1n50ku5ULulUN9ndY3ROh08M=;
+        b=LausdrzIB92YfAhjMC2gEOkt8PB1jfiwxKz4iNKXJncNxr+1ppga8XLrjNJCCXMICc
+         7+/zREZ6mp84b+kmnHzDa93pYmr3NNau9ZDirRthuxEd5XHxGXWlz9cRldSF4YEUpdxw
+         z455EcbOlJzlia16aFWzneyTV/e08EiMtEG7ARyHaI/+uB1Ew1RD0XYveYWwNT8IrA5p
+         GswxaQShFDBDWEKsICjizBuKi2mUwiS1UcNHeQlG6mM2Hbz1+iIwKgOJFVRhl3HHb3gV
+         8f8dGXJY2wD9Lv/E8V90uCngD2pzi4CUp1/O0o/0MBflVjGLWqb7QxMemwcb2f0MKRl2
+         OZuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=WZwJd6pQXuj90DgXnmrq+JdASJsQQ5coXQgD2NBlIMM=;
-        b=B/QVSYenhXTo0MYXwDcKWBM9hU2o109x/LAzbn4Tif+upkRcvRVh04BLTCv5kdDXbe
-         yLKddAoqwYLh78Tuvc4wqcQqtlUFO0D8r0o+MxsiOua7ecBNJIddSmlJ4TNCAtNd+wQz
-         TnBn5l4jiJCnMLTN7910e49gpVt592pWq24ax1rL4NeaM545cpnZUQ7XEQaSFutdlMOe
-         aUaD4otziiRmATF2mfB1cxlMy8cXd9o1IktrTnMH4If4RlKieZazlVRu04ujLfGwj9mW
-         /YDAwv/dmRX/jVKnmCrNJIdKnOwXp0M8sNiXZYOu67K6/ZAu/UjG3H0wGdzv4xlKC+gz
-         3Mpw==
-X-Gm-Message-State: AOAM530hQbDZ3u0DIrP/OhatsPp+t19gs9hyyiuGS5GsKD3WBOF6b2Eh
-        OjnfawOdxrmAyh3Q+mc6UCHtOMI7BJEdDShjbBM=
-X-Google-Smtp-Source: ABdhPJzofss3gSG+RqCZf6JfLZH3Hg74XHY0XG1OKCsdQY6sxrnoudMv4DL6PSTXhzgA/uzTsf1CYi8XuUIMfifYkz8=
-X-Received: by 2002:a17:906:5d11:: with SMTP id g17mr7210182ejt.175.1635443134278;
- Thu, 28 Oct 2021 10:45:34 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Y52ZRB3IDHBVDpr1Rvp1n50ku5ULulUN9ndY3ROh08M=;
+        b=aoHkKJn23t9Lrj4e6xucceEnStEPj61KhGwleMQd0pA6VJbbGaGxyGS+Cq43y8icUI
+         zAfeTJSlYr0tN80zE0xwCHiRTUgbTBuXXlREAdhg13UbStD7+XrXBdKshoZaQh2nAcJa
+         8Ha1kr9w0TcRd+NEygJxIRcpEfLKbHe7/OTIzoBp3ZnBxMQUPWvFmIfIYz6MeyfqI5wE
+         G90B19dLz53MJt+ycrSlXSmvvlIOPEyqP6FPV6jRb7scfx47cyl56Qwbs2YK/vmyYWpv
+         AxCEGBJRzwTl23HQyuNC+UHanB7fjMHmuQ57YFCho1vGA4n40YNsM3uxefyvxucAOhXb
+         6Fsw==
+X-Gm-Message-State: AOAM532jPAfx/jTEhjbJ2nZBRW7HXJM3iEANg3MBtdXaa/Jb08LHmUnY
+        sMR5AOvcud63rncKYUq4Q12KfB2uF6/ithxZbvsP/g==
+X-Google-Smtp-Source: ABdhPJzkfzCDcLEPGg3GSvgYlufl7PpvlwzDAMa63BZSm4XkZ3Xu0SukFC+4+ENlNKO998PsNydhzBhDFm0VEA6ANEE=
+X-Received: by 2002:a63:788e:: with SMTP id t136mr4406516pgc.432.1635445045501;
+ Thu, 28 Oct 2021 11:17:25 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:a50:6c8b:0:0:0:0:0 with HTTP; Thu, 28 Oct 2021 10:45:33
- -0700 (PDT)
-Reply-To: jennehkandeh@yahoo.com
-From:   Jenneh Kandeh <efffbi12@gmail.com>
-Date:   Thu, 28 Oct 2021 10:45:33 -0700
-Message-ID: <CANLFAeTVitsz5kRyTg+vfF6TP2gFt6c4OFJ9CpyC8ur8Axdm=A@mail.gmail.com>
-Subject: Re: Regarding Of My Late Father's Fund $10,200,000
-To:     undisclosed-recipients:;
+References: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Thu, 28 Oct 2021 11:17:14 -0700
+Message-ID: <CAJ+vNU3mmv=-19U39dKovAV1zWVPHWZxweDAvhEkW_wSQH1ikA@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] add the imx8m pcie phy driver and imx8mm pcie support
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>, vkoul@kernel.org,
+        Rob Herring <robh@kernel.org>, galak@kernel.crashing.org,
+        Shawn Guo <shawnguo@kernel.org>, linux-phy@lists.infradead.org,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dear,
+On Thu, Oct 28, 2021 at 12:52 AM Richard Zhu <hongxing.zhu@nxp.com> wrote:
+>
+> Refer to the discussion [1] when try to enable i.MX8MM PCIe support,
+> one standalone PCIe PHY driver should be seperated from i.MX PCIe
+> driver when enable i.MX8MM PCIe support.
+>
+> This patch-set adds the standalone PCIe PHY driver suport[1-5], and i.MX8MM
+> PCIe support[6-8] to have whole view to review this patch-set.
+>
+> The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
+> [2] and this patch-set.
+>
+> [1] https://patchwork.ozlabs.org/project/linux-pci/patch/20210510141509.929120-3-l.stach@pengutronix.de/
+> [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210910202640.980366-1-l.stach@pengutronix.de/
+>
+> Main changes v3 --> v4:
+> - Update the yaml to fix syntax error, add maxitems and drop description of phy
+> - Correct the clock name in PHY DT node.
+> - Squash the EVK board relalted dts changes into one patch, and drop the
+>   useless dummy clock and gpio suffix in DT nodes.
+> - Add board specific de-emphasis parameters as DT properties. Thus each board
+>   can specify its actual de-emphasis values.
+> - Update the commit log of PHY driver.
+> - Remove the useless codes from PCIe driver, since they are moved to PHY driver
+> - After the discussion and verification of the CLKREQ# configurations with Tim,
+>   agree to add an optional boolean property "fsl,clkreq-unsupported", indicates
+>   the CLKREQ# signal is hooked or not in HW designs.
+> - Add "Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>" tag, since
+>   Marcel help to test the v3 patch-set.
+>
+> Main changes v2 --> v3:
+> - Regarding Lucas' comments.
+>  - to have a whole view to review the patches, send out the i.MX8MM PCIe support too.
+>  - move the PHY related bits manipulations of the GPR/SRC to standalone PHY driver.
+>  - split the dts changes to SOC and board DT, and use the enum instead of raw value.
+>  - update the license of the dt-binding header file.
+>
+> Changes v1 --> v2:
+> - Update the license of the dt-binding header file to make the license
+>   compatible with dts files.
+> - Fix the dt_binding_check errors.
+>
+> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
+> Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  95 +++++++++++++++++++++++++++++++++
+> arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  55 +++++++++++++++++++
+> arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |  46 +++++++++++++++-
+> drivers/pci/controller/dwc/pci-imx6.c                        |  73 ++++++++++++++++++++++---
+> drivers/phy/freescale/Kconfig                                |   9 ++++
+> drivers/phy/freescale/Makefile                               |   1 +
+> drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 234 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+> include/dt-bindings/phy/phy-imx8-pcie.h                      |  14 +++++
+> 9 files changed, 525 insertions(+), 8 deletions(-)
+>
+> [PATCH v4 1/8] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+> [PATCH v4 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
+> [PATCH v4 3/8] dt-bindings: imx6q-pcie: Add PHY phandles and name
+> [PATCH v4 4/8] arm64: dts: imx8mm: Add the pcie phy support
+> [PATCH v4 5/8] phy: freescale: pcie: Initialize the imx8 pcie
+> [PATCH v4 6/8] arm64: dts: imx8mm: Add the pcie support
+> [PATCH v4 7/8] arm64: dts: imx8mm-evk: Add the pcie support on imx8mm
+> [PATCH v4 8/8] PCI: imx: Add the imx8mm pcie support
 
-I got your contact through the internet due to serious searching for a
-reliable personality.  I am Jenneh Kandeh from FreeTown Capital of
-Sierra Leone. Time of opposed to the government of President Ahmad
-Tejan Kebbah the ex-leader.
+Richard,
 
-Since 21st November, 2005 But I am current residing in Porto-Novo
-Benin due to war of my country, my mother killed on 04/01/2002 for
-Sierra Leone civilian war my father decided to change another
-residence country with me because I am only child for my family bad
-news that my father passed away on 25/11/2018. During the war, My
-father made a lot of money through the illegal sales of Diamonds. To
-the tune of $10,200,000.
+For your v4 series:
 
-This money is currently and secretly kept in ECOWAS security company
-here in Benin, but because of the political turmoil which still exists
-here in Africa, I can not invest the money by myself, hence am
-soliciting your help to help me take these funds into your custody and
-also advise me on how to invest it.
+Reviewed-By: Tim Harvey <tharvey@gateworks.com>
+Tested-By: Tim Harvey <tharvey@gateworks.com>
 
-And I want to add here that if agreed 35% of the total worth of the
-fund will be yours minus your total expenses incurred during the
-clearing of the fund in
-Porto Novo Benin that 35% is a $3,570,000 I would like to invest on
-heavy duty agricultural equipment and earth moving machines to enable
-me go into a full scale mechanized farming.
+I tested this on imx8mm-venice* boards with no CLKREQ# support as well
+as an imx8mm-evk board.
 
-l wait to hear from you
+Thanks again for your effort on this series!
+
+Best regards,
+
+Tim
