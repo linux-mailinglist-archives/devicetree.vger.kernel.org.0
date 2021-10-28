@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3652543DEC0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 12:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A90343DED2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 12:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbhJ1KWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 06:22:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58444 "EHLO
+        id S230054AbhJ1K3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 06:29:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229974AbhJ1KWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 06:22:53 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AFB0C061767;
-        Thu, 28 Oct 2021 03:20:26 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id b71so4504632wmd.0;
-        Thu, 28 Oct 2021 03:20:26 -0700 (PDT)
+        with ESMTP id S229863AbhJ1K3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 06:29:10 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8257AC061570;
+        Thu, 28 Oct 2021 03:26:42 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id w15so22802303edc.9;
+        Thu, 28 Oct 2021 03:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9BgagDVdl/RT1aur7UOCrzXl9Fwq38nLh5I1KlVPcTA=;
-        b=FYlBPKRLawFfgEcbPaU5wC9tGugmmKlkYsybPeZDTF5zEeb3Vd7dqMRBibktjdL4CW
-         zwiLCZnoMWt6A/kJp9TAKyli74xlUtobMuh2abKgT6ujgIiCZp5z0XykLGJMvXIc6YNA
-         6xfE2zuQqXrZvHXoHknBRuyLb+qp8HpGnVVMe/mkxMacS79dSFn/SgtIt1cgpGkx+zO+
-         HOXg52q39e6VI2tU4WbHgtOZxIPIvwAdW13aLrjtRv59LobIKzwflw9xRU4dNDXqSjE4
-         GJu0BEcfcoaKFV+c/IQfiYrs4Iz4UGGb7aLZ87+HTlhiljEqtdgUbCKt25Ts5UfhvSa7
-         i/Kg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=x5pT//UQaL7euDOvojBQvZaQtog7UFRTQVBLvvJ8oFg=;
+        b=M+fk3xpPH0QNFxXsT3zunN3ji29hRoUJpjXF7HyNe2bKWAEbx/T00ytqSdvn3TierB
+         4P4WhavE47ghsinlNHMjzSgCIFLuul5GnqmDZ4p7q42TelA1Fxr0F9U1ijCFNrIMITb5
+         qFuRLlIEA7G/3fpj50tdQ0OlO4vJVzvNeqR56I5DHe2aTx9M5joAP+3fpS/SoGAwQRG2
+         a/wh3o/I4vnva9RH7EGTcDcpGVCUX0CssvcDaYfHPO/b5kRk1Kq5TJH0xGL5kpicXqSh
+         mzvFrP7tqKEu8RzPCdMWMhghfBxZNtGEmcnZy/ax4G/RqcCOv+10d9yVcXiM1iFw0RqH
+         KqpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9BgagDVdl/RT1aur7UOCrzXl9Fwq38nLh5I1KlVPcTA=;
-        b=EfQ9cCw5M6kQR6iI7QdwLK8hJnu+skzeC+9FpTQ0HcU4QsKTzyxaZTLeuY/4Jp8EP/
-         oDKHEgSSk0K2Gcc2Nq5Kzcc4KN5wzzhedTqdAITCL/ZsS0b7GKTKM05rOKFwkznYRXf2
-         5/xe23smwscpJxdI/d1KzHtzKWsFQ/PJOUBEqbxKNrAc2b6BgLFWDjWOPEeR8V91kB1t
-         xn9gpBqH1VzO7Frz+gabhSfDREKfjITYpNwKCqqwPfBtg/RdDGSnc/F4UZvyTygtuhup
-         4l8os6QYWcYuP47keeYWVTmmGPHFWIGKkDzTcC+mgD57Buwu5pnRra1sOLOEJJ0/yYMW
-         M62g==
-X-Gm-Message-State: AOAM533mmD7ZWc43ymq+4/tA+ppEVlZOBCIx2F24tEdSOGgMqdd6yZXw
-        YIVPIcI3fgvTv+kU0dxw/HQ=
-X-Google-Smtp-Source: ABdhPJxXLLDTBD3/CBmjX6uTGo75xNkV/DSf6I/TqR0LIANuSnGEqycrU/0SXtbmB1YTaoaTtOwa2A==
-X-Received: by 2002:a05:600c:2f97:: with SMTP id t23mr11815480wmn.59.1635416424686;
-        Thu, 28 Oct 2021 03:20:24 -0700 (PDT)
-Received: from localhost.localdomain (aftr-37-201-214-170.unity-media.net. [37.201.214.170])
-        by smtp.gmail.com with ESMTPSA id n7sm923064wro.68.2021.10.28.03.20.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 03:20:24 -0700 (PDT)
-From:   Kate Doeen <jld3103yt@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>,
-        Kate Doeen <jld3103yt@gmail.com>
-Subject: [PATCH] arm64: dts: qcom: sdm845-xiaomi-beryllium: set venus firmware path
-Date:   Thu, 28 Oct 2021 12:20:16 +0200
-Message-Id: <20211028102016.106063-1-jld3103yt@gmail.com>
-X-Mailer: git-send-email 2.33.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=x5pT//UQaL7euDOvojBQvZaQtog7UFRTQVBLvvJ8oFg=;
+        b=BltHuszqOb7V3Tmw9RAyCaciqoRNm74ZO+8bu2PMlHpzs6EB/E2sPrDD90HQZsqpnE
+         Her/ycX+uq1OB7NzftfItRwN3JGJdTkohhIdd8Y4N4CEx9QoVFuJtkTPN7gd45P/z3Ga
+         5rRYl3cTlRVG/CzDZNUtBCjUAy5RB2oRdYNEZSPdg+F6qwRnyz+7EPwRo0y5Hh7anAmr
+         qCo5sx/8yyDo9x7iVMXp6AmpEXVz3unaMHmJIL5ERfZM6jfOTBGgi0ckcs+Tog0G6olC
+         Mt8B7o8RJ0VMGOAHHMwMHGlJxdlcDaET1NNV7aa6f6pMXOlQC1KV/ho9Ex3eOqkbPYc6
+         ZxDA==
+X-Gm-Message-State: AOAM5314fgCTs4wqF6yG3uogRKKv7GkuKgktGbU+7t1HJZmz0cykoPnB
+        g1f6Yf3yce4GTdrZyA74SySh9eLt1Ta9+ehBvso=
+X-Google-Smtp-Source: ABdhPJz/zYIXOnJeP7GjMyTLPVa1T7H/UKik6x5mbyUob5+kG0/YmrPcA9VQTRy5QIsk9PXVZ+oeAtYOYM1Oiczwu58=
+X-Received: by 2002:a17:907:7601:: with SMTP id jx1mr4246924ejc.69.1635416801123;
+ Thu, 28 Oct 2021 03:26:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-2-andrea.merello@gmail.com>
+In-Reply-To: <20211028101840.24632-2-andrea.merello@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 28 Oct 2021 13:25:48 +0300
+Message-ID: <CAHp75VdPhNbr6Y7ethsmw_Bd7DZOi4cyFHubPpOxa1LXibkUCQ@mail.gmail.com>
+Subject: Re: [v2 01/10] utils_macro: introduce find_closest_unsorted()
+To:     Andrea Merello <andrea.merello@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable loading the Qualcomm Venus video accelerator firmware on Xiaomi Pocophone F1.
+On Thu, Oct 28, 2021 at 1:18 PM Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> This is similar to find_closest() and find_closest_descending(), but, it
+> doesn't make any assumption about the array being ordered.
 
-Signed-off-by: Kate Doeen <jld3103yt@gmail.com>
- 
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Macros in general are not so welcoming.
+Why do you do it as a macro?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index c60c8c640e17..172c496e9933 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -513,6 +513,10 @@ &usb_1_qmpphy {
- 	vdda-pll-supply = <&vreg_l1a_0p875>;
- };
- 
-+&venus {
-+       firmware-name = "qcom/sdm845/beryllium/venus.mbn";
-+};
-+
- &wcd9340{
- 	pinctrl-0 = <&wcd_intr_default>;
- 	pinctrl-names = "default";
+...
+
+> +#include <linux/math.h>
+
+Wondering if the current header misses other inclusions it's a direct user of.
+
+...
+
+> +/**
+> + * find_closest_unsorted - locate the closest element in a unsorted array
+
+an
+
+> + * @x: The reference value.
+> + * @a: The array in which to look for the closest element.
+> + * @as: Size of 'a'.
+> + *
+> + * Similar to find_closest() but 'a' has no requirement to being sorted
+> + */
+
 -- 
-2.33.1
-
+With Best Regards,
+Andy Shevchenko
