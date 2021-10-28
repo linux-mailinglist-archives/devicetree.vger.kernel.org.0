@@ -2,113 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B45043F36C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 01:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA24F43F388
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 01:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231393AbhJ1X1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 19:27:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41250 "EHLO
+        id S230388AbhJ1XkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 19:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbhJ1X1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 19:27:40 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DE71C0613B9
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:25:13 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id x8so6369846oix.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:25:13 -0700 (PDT)
+        with ESMTP id S229621AbhJ1XkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 19:40:21 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E034EC061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 131so7999609ybc.7
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EDe6iwcvK4P5hlBt+qwjDx1hQlBIPuFbPW/BOYvPeKw=;
-        b=pvWUBJxKggXKZRJmAHjUNCjWEEfpZK8JUSaaafZP78H7+1A+5NYmpfk+cVtbeGUHar
-         Lf0swKVnEKe+9LUm4TIwhMdurYC2eo5C25JQGG/bZ+GX8qeliN6NF7Ha24In6fUQYdJd
-         jaw4sT52NEvwLGvHvTPcUczr8jE1eIgFQQx8rl9li3h48UbCIg3aZZiA5Wt3eZRqAqSx
-         Wu+UB80HIjkcvu84rQ1ZFASW0OtcGEPGTgXWp2MCLoMvAQQcjZgh8dPyq3QEdUdsDk4G
-         pLLVNDgEjcNeBH07jWz2/0x8HP3wPSle7hu6UhljuOV3ZGiyVzIRH3mP7mjFK6RXxUlp
-         GL5w==
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cheY9bIPEAikUChpUOLiNCBs86TVcB1sR5Shc6iQ+Bg=;
+        b=gUq7HVwr4laLdDA+DkVm3Vp/7rVb2c2ngZ2rzoWvp47loWw7K2pDLqjapDGL3+v5aw
+         HprDuKOGdqpVnzO9szaYZiRVrP5maXpDrjj/j/I1Ntk17M6LFV5aplDuKHOrnSZ7lNkk
+         RmXsndUujojn9L33QYe76+RTpfqhr6xgiBevI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EDe6iwcvK4P5hlBt+qwjDx1hQlBIPuFbPW/BOYvPeKw=;
-        b=6wf+8+Nh281XoDWYSrPG5AGyIh+R4VsxgnosXftUB0E2Pgn2WQDF1skJvJAx+OiDro
-         1eh7L0GxDzu1816mKQ2sdD8HXk+UMg0eFS8WdC+KuRlnSjWWqL+gxnHW7P+MrdoRL2e7
-         pznDj1Jo9wQRrmxTtEgw6mFsC+RSZHguOgj9WTGTjlVteaNH/MWPmTO0Bmdh36GQIzKZ
-         fRvMoLawg7C4SCeMnvSu9q7SEqgndBjROrfaWJpegJj3gt2zrjPvDWD2bexoKK+fMbiU
-         DkxHmEI0a1iqGQ2jFkMFuu7Hz+oXNobcY/PTgByk3tpiRykHNqgaihk6A1CVj5wtiWDi
-         MP+w==
-X-Gm-Message-State: AOAM532DYHd3Mu83L6JYjJ5AHCiVlpSQF31OfAUGWnt24XgADcp4yjI+
-        OcyNQRcF3OKPZlfKepZWLLUuBA==
-X-Google-Smtp-Source: ABdhPJw76jtgAGonUXDGNel+tZMapRW9u1aPMw5KM4t4dLEqHc/UEMWzrWlue86K1xN32pjE5r2ntQ==
-X-Received: by 2002:a05:6808:138d:: with SMTP id c13mr11300022oiw.60.1635463512310;
-        Thu, 28 Oct 2021 16:25:12 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id i13sm1500650oig.35.2021.10.28.16.25.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 16:25:11 -0700 (PDT)
-Date:   Thu, 28 Oct 2021 16:27:01 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Odelu Kukatla <okukatla@codeaurora.org>
-Cc:     georgi.djakov@linaro.org, evgreen@google.com,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [v8 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
- provider
-Message-ID: <YXsxxd7f/FaDJEMa@ripper>
-References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
- <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cheY9bIPEAikUChpUOLiNCBs86TVcB1sR5Shc6iQ+Bg=;
+        b=Dq6ysKv8R23Jn+MGSqVWUIW/qGRWBGQhWc7AxaV0f64AB+pCcAYnnA+zwhdz7vx2dL
+         eP05DjJGPbS8CzpHavhwEU/QoYUzVK9HNYO8VMTyl/T8wKIIcgcT0YgcHrIS3WeqfmkW
+         m61iDUR9aD6sssLWC3xg02oxQCHvWDOpvITFHoMK1G/iDg/yj4+JSZu//RZgEqA9MJtn
+         9OIsxoGyc74H9p9pkEe/eSsQdVHuldjHXcnf7STA82wfoDnnG2wiNEY5ZO510q4UCYtw
+         TurmzwfYDoQ17IsoIV+yN108kiGt7riEh2AKormsCvPQ7wzN6fcszychUy65xd+bp4Oh
+         4fAQ==
+X-Gm-Message-State: AOAM530AIoxr92swZ2nmhSAcfQAVr2V78a+rAs68srbBoKS2GsTaRrHA
+        54NqVnWXVcP5nUnKb6XYSSlkftPb762kZkiw7Qqo
+X-Google-Smtp-Source: ABdhPJzSzknSU4EdecKlfWAUlLx9gBS4Hx80KVuVfnFb4yRPxWyPTPMNfFBpM+J1dEVoFJPcf22J0CA/PkPEBwzIyAU=
+X-Received: by 2002:a25:bf8c:: with SMTP id l12mr7950987ybk.87.1635464273081;
+ Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
+References: <20211025195350.242914-1-atish.patra@wdc.com> <20211025195350.242914-11-atish.patra@wdc.com>
+ <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
+In-Reply-To: <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Thu, 28 Oct 2021 16:37:42 -0700
+Message-ID: <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
+Subject: Re: [v4 10/11] riscv: dts: fu740: Add pmu node
+To:     Jessica Clarke <jrtc27@jrtc27.com>
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Anup Patel <anup.patel@wdc.com>,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-perf-users@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Chen <vincent.chen@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 21 Oct 03:40 PDT 2021, Odelu Kukatla wrote:
+On Thu, Oct 28, 2021 at 1:49 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
+>
+> On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
+> > HiFive unmatched supports HPMCounters but does not implement mcountinhibit
+> > or sscof extension. Thus, perf monitoring can be used on the unmatched
+> > board without sampling.
+> >
+> > Add the PMU node with compatible string so that Linux perf driver can
+> > utilize this to enable PMU.
+> >
+> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> > ---
+> >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> > index abbb960f90a0..b35b96b58820 100644
+> > --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> > +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+> > @@ -140,6 +140,9 @@ soc {
+> >               #size-cells = <2>;
+> >               compatible = "simple-bus";
+> >               ranges;
+> > +             pmu {
+> > +                     compatible = "riscv,pmu";
+> > +             };
+>
+> This is a property of the user-replaceable firmware, not a property of
+> the hardware,
 
-> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
-> SoCs.
-> 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index d74a4c8..0b55742 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3687,6 +3687,14 @@
->  			};
->  		};
->  
-> +		epss_l3: interconnect@18590000 {
-> +			compatible = "qcom,sc7280-epss-l3";
-> +			reg = <0 0x18590000 0 0x1000>;
+It's a property of hardware that indicates that the hardware supports PMU.
+Additionally, the counter overflow interrupt number needs to be
+defined through the DT as well
+so that a clean platform driver can be implemented.
 
-This series looks like I would expect, with and without per-core dcvs.
-But can you please explain why this contradict what Sibi says here:
-https://lore.kernel.org/all/1627581885-32165-3-git-send-email-sibis@codeaurora.org/
 
+so having this in the device tree under /soc, let alone
+> hard-coded in Linux, is utterly wrong. Why can this not just be probed
+> like any other SBI interface? The "Probe SBI extension" interface is
+> precisely for this kind of thing.
+>
+SBI extension is anyways probed to verify if the firmware has PMU
+extension or not.
+However, adding the DT property allows different platforms (with or
+without sscof extension)
+to use the same code path.
+
+> Jess
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+
+-- 
 Regards,
-Bjorn
-
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-> +			clock-names = "xo", "alternate";
-> +			#interconnect-cells = <1>;
-> +		};
-> +
->  		cpufreq_hw: cpufreq@18591000 {
->  			compatible = "qcom,cpufreq-epss";
->  			reg = <0 0x18591000 0 0x1000>,
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+Atish
