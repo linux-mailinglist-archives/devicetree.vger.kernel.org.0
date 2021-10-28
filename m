@@ -2,241 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B4B43E2B6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 15:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B57243E2CA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 15:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230523AbhJ1NzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 09:55:25 -0400
-Received: from ixit.cz ([94.230.151.217]:35258 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230370AbhJ1NzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 09:55:12 -0400
-Received: from [192.168.1.138] (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 5D70A20064;
-        Thu, 28 Oct 2021 15:52:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1635429161;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=IhbhJtURt+WnE9ECLdh1gqMi5nXfjMcR+LTiEWo/+2s=;
-        b=fcB6XX4004At1KY3+sfv99iJcibCHwuuu1xRny9RTu2cLvXDlLeMYiamkB25qVGjJHAka4
-        T0q6GYJuGrskIG7yQWiSp6cvF7MuEE9BeAN/CUIJNVe7DBtCp/1s94vHGaDgwaUqd+Odtt
-        RWeqqQcx0NNlwN2ePm2BD2H6aUo6rBs=
-Date:   Thu, 28 Oct 2021 15:52:35 +0200
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH] WIP: dt-bindings: arm: hwmon: gpio-fan: Convert txt
- bindings to yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~okias/devicetree@lists.sr.ht
-Message-Id: <N7XO1R.T7ICL6D5U4CF3@ixit.cz>
-In-Reply-To: <YW86Ffa+zoIZpixu@robh.at.kernel.org>
-References: <20211009104309.45117-1-david@ixit.cz>
-        <YW86Ffa+zoIZpixu@robh.at.kernel.org>
-X-Mailer: geary/40.0
+        id S230477AbhJ1N7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 09:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230435AbhJ1N7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 09:59:19 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B574C061745;
+        Thu, 28 Oct 2021 06:56:52 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id j21so2238716edt.11;
+        Thu, 28 Oct 2021 06:56:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+sTjTaF8WzIIc1JA5L9+qt2x1Ed+2Sbp5MJYlMdnNpw=;
+        b=orj/4hHD1H/QMibvy0wVcX/ojlT24OdkGoJsrG6DLVeB79aEQ/MimEZ4rIa3CAkGT0
+         2QhNY9U8jJJVq8b/yn2cersZb+r38knLTsAVhl0mHdjde10iGflGBzNe/kVrzfAYlaCE
+         oRR1zzIpk5ryfFUE7qseM0j2jfrH5wLX/6WAZou99x9HzvGbHqQudg20ElNr62bSyYOx
+         BqukaLhizz0GKPJ6bJhCxW7JPd7Dnq0igKvrDyaGcYZ0Vy2kUSRXOfJipwy/g2pFh/Z+
+         JhLLTlt8HS0ITcnMuY42B3NtigoEIWJX1YRpHfY8Vu70/iQ4m2+YhcL1Bo1d0V/JWh5z
+         mb8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+sTjTaF8WzIIc1JA5L9+qt2x1Ed+2Sbp5MJYlMdnNpw=;
+        b=A59OUG5E60Sm1eCkFZ/3vZYTP/GPjcatyKW3ggypK+UClyHFJFo9IhS7NjhwjwzS1w
+         SP6yREjJc0+dp5SBr3K8dvbw8UUz46xa5jh3krjDnaK4uFdZfje/5R2NHPadeEwXRcQH
+         znlj9QbHfhaBA2+AG3FtiWWfDTGxPuFBS8p++GKQVNPrbIsbyV1DYDTtDD84bTp0LYAg
+         T2uUfHTT8Xybtrtwt0kiddU7EoWygKq5P8E2+OCCx1TnkwigTxZlIiDkd9YWS/cqIT+G
+         aKSAOKx1568toExEU4zWPPnhjQb6n6MsSuv68dH4WMI+iTyRljEBSUV3aTFgDjYs9C9E
+         V8rA==
+X-Gm-Message-State: AOAM530WzXYhqoKsgwQ7kJ98fs6vkCGad+I0RzPtecsuG7fcQsAu7fWd
+        We3G6WjGEGZatImCMmmEmZs=
+X-Google-Smtp-Source: ABdhPJyHrp87CN6z10YuAmEu/uSaupRW9hzvLm0EiS+ghOttqpU+OHx7xoNYBcGlwxE0ZrjZ1CWDdg==
+X-Received: by 2002:a50:9b4b:: with SMTP id a11mr6408589edj.316.1635429410793;
+        Thu, 28 Oct 2021 06:56:50 -0700 (PDT)
+Received: from demon-pc.localdomain ([188.24.96.74])
+        by smtp.gmail.com with ESMTPSA id gn24sm651039ejc.78.2021.10.28.06.56.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 06:56:50 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     demonsingur@gmail.com, cosmin.tanislav@analog.com,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/3] iio: add adddac subdirectory
+Date:   Thu, 28 Oct 2021 16:56:03 +0300
+Message-Id: <20211028135608.3666940-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211028134849.3664969-1-demonsingur@gmail.com>
+References: <20211028134849.3664969-1-demonsingur@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Cosmin Tanislav <cosmin.tanislav@analog.com>
 
+For IIO devices that expose both ADC and DAC functionality.
 
+Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+---
+ drivers/iio/Kconfig        | 1 +
+ drivers/iio/Makefile       | 1 +
+ drivers/iio/addac/Kconfig  | 8 ++++++++
+ drivers/iio/addac/Makefile | 6 ++++++
+ 4 files changed, 16 insertions(+)
+ create mode 100644 drivers/iio/addac/Kconfig
+ create mode 100644 drivers/iio/addac/Makefile
 
-On Tue, Oct 19 2021 at 16:35:17 -0500, Rob Herring <robh@kernel.org> 
-wrote:
-> On Sat, Oct 09, 2021 at 12:43:09PM +0200, David Heidelberg wrote:
->>  Convert fan devices connected to GPIOs to the YAML syntax.
->> 
->>  Signed-off-by: David Heidelberg <david@ixit.cz>
->>  ---
->>   .../devicetree/bindings/hwmon/gpio-fan.txt    | 41 -----------
->>   .../devicetree/bindings/hwmon/gpio-fan.yaml   | 69 
->> +++++++++++++++++++
->>   2 files changed, 69 insertions(+), 41 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->>   create mode 100644 
->> Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
->> 
->>  diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt 
->> b/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->>  deleted file mode 100644
->>  index f4cfa350f6a1..000000000000
->>  --- a/Documentation/devicetree/bindings/hwmon/gpio-fan.txt
->>  +++ /dev/null
->>  @@ -1,41 +0,0 @@
->>  -Bindings for fan connected to GPIO lines
->>  -
->>  -Required properties:
->>  -- compatible : "gpio-fan"
->>  -
->>  -Optional properties:
->>  -- gpios: Specifies the pins that map to bits in the control value,
->>  -  ordered MSB-->LSB.
->>  -- gpio-fan,speed-map: A mapping of possible fan RPM speeds and the
->>  -  control value that should be set to achieve them. This array
->>  -  must have the RPM values in ascending order.
->>  -- alarm-gpios: This pin going active indicates something is wrong 
->> with
->>  -  the fan, and a udev event will be fired.
->>  -- #cooling-cells: If used as a cooling device, must be <2>
->>  -  Also see:
->>  -  
->> Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
->>  -  min and max states are derived from the speed-map of the fan.
->>  -
->>  -Note: At least one the "gpios" or "alarm-gpios" properties must be 
->> set.
->>  -
->>  -Examples:
->>  -
->>  -	gpio_fan {
->>  -		compatible = "gpio-fan";
->>  -		gpios = <&gpio1 14 1
->>  -			 &gpio1 13 1>;
->>  -		gpio-fan,speed-map = <0    0
->>  -				      3000 1
->>  -				      6000 2>;
->>  -		alarm-gpios = <&gpio1 15 1>;
->>  -	};
->>  -	gpio_fan_cool: gpio_fan {
->>  -		compatible = "gpio-fan";
->>  -		gpios = <&gpio2 14 1
->>  -			 &gpio2 13 1>;
->>  -		gpio-fan,speed-map =	<0    0>,
->>  -					<3000 1>,
->>  -					<6000 2>;
->>  -		alarm-gpios = <&gpio2 15 1>;
->>  -		#cooling-cells = <2>; /* min followed by max */
->>  -	};
->>  diff --git a/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml 
->> b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
->>  new file mode 100644
->>  index 000000000000..e2db65d58a92
->>  --- /dev/null
->>  +++ b/Documentation/devicetree/bindings/hwmon/gpio-fan.yaml
->>  @@ -0,0 +1,69 @@
->>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: "http://devicetree.org/schemas/hwmon/gpio-fan.yaml#"
->>  +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>  +
->>  +title: Bindings for fan connected to GPIO lines
->>  +
->>  +maintainers:
->>  +  - Rob Herring <robh+dt@kernel.org>
-> 
-> Just robh@kernel.org
-> 
->>  +
->>  +properties:
->>  +  compatible:
->>  +    const: gpio-fan
->>  +
->>  +  gpios:
->>  +    description: |
->>  +      Specifies the pins that map to bits in the control value,
->>  +      ordered MSB-->LSB.
-> 
-> minItems: 1
-> maxItems: 7 ?
-> 
->>  +
->>  +  gpio-fan,speed-map:
->>  +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>  +    minItems: 4
->>  +    maxItems: 254
->>  +    description: |
->>  +      A mapping of possible fan RPM speeds and the
->>  +      control value that should be set to achieve them. This array
->>  +      must have the RPM values in ascending order.
-> 
-> Really this should be a uint32-matrix with this schema:
-> 
-> items:
->   minItems: 2
->   maxItems: 127
->   items:
->     - description: fan speed in RPMs
->     - description: control value
-> 
->>  +
->>  +  alarm-gpios:
->>  +    description: |
->>  +      This pin going active indicates something is wrong with
->>  +      the fan, and a udev event will be fired.
-> 
-> maxItems: 1
-> 
-> udev is a linuxism and shouldn't be in the binding.
-> 
->>  +
->>  +  '#cooling-cells':
->>  +    const: 2
->>  +
->>  +required:
->>  +  - compatible
->>  +  - gpio-fan,speed-map
->>  +
->>  +anyOf:
->>  +  - required: [gpios]
-> 
-> How is 'gpios' not always required?
-> 
->>  +  - required: [alarm-gpios]
->>  +
->>  +additionalProperties: false
->>  +
->>  +examples:
->>  +  - |
->>  +    gpio_fan {
->>  +      compatible = "gpio-fan";
->>  +      gpios = <&gpio1 14 1
->>  +               &gpio1 13 1>;
->>  +      gpio-fan,speed-map = <0    0
->>  +                            3000 1
->>  +                            6000 2>;
-> 
-> Brackets needed around each pair.
-
-Well, that's the issue. I would love to use u32-matrix, but all the 
-drivers use < x1 x2 y1 x2 ... z1 z2 > syntax and driver suggests it's 
-the right solution.
-         * Speed map is in the form <RPM ctrl_val RPM ctrl_val ...>
-
-Someone had to rewrite the driver and the DTS files to fix it. We could 
-mark old format as deprecated and use u32-matrix, but for now with 
-current drivers it's not a solution.
-
-What you think? Should I document it as it is (so u32-array)?
-
-David
-
-> 
->>  +      alarm-gpios = <&gpio1 15 1>;
->>  +    };
->>  +  - |
->>  +    gpio_fan_cool: gpio_fan {
->>  +      compatible = "gpio-fan";
->>  +      gpios = <&gpio2 14 1
->>  +               &gpio2 13 1>;
->>  +      gpio-fan,speed-map = <0    0
->>  +                            3000 1
->>  +                            6000 2>;
->>  +      alarm-gpios = <&gpio2 15 1>;
->>  +      #cooling-cells = <2>; /* min followed by max */
->>  +    };
->>  --
->>  2.33.0
->> 
->> 
-
+diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
+index 2334ad249b46..4fb4321a72cb 100644
+--- a/drivers/iio/Kconfig
++++ b/drivers/iio/Kconfig
+@@ -70,6 +70,7 @@ config IIO_TRIGGERED_EVENT
+ 
+ source "drivers/iio/accel/Kconfig"
+ source "drivers/iio/adc/Kconfig"
++source "drivers/iio/addac/Kconfig"
+ source "drivers/iio/afe/Kconfig"
+ source "drivers/iio/amplifiers/Kconfig"
+ source "drivers/iio/cdc/Kconfig"
+diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
+index 65e39bd4f934..8d48c70fee4d 100644
+--- a/drivers/iio/Makefile
++++ b/drivers/iio/Makefile
+@@ -15,6 +15,7 @@ obj-$(CONFIG_IIO_TRIGGERED_EVENT) += industrialio-triggered-event.o
+ 
+ obj-y += accel/
+ obj-y += adc/
++obj-y += addac/
+ obj-y += afe/
+ obj-y += amplifiers/
+ obj-y += buffer/
+diff --git a/drivers/iio/addac/Kconfig b/drivers/iio/addac/Kconfig
+new file mode 100644
+index 000000000000..2e64d7755d5e
+--- /dev/null
++++ b/drivers/iio/addac/Kconfig
+@@ -0,0 +1,8 @@
++#
++# ADC DAC drivers
++#
++# When adding new entries keep the list in alphabetical order
++
++menu "Analog to digital and digital to analog converters"
++
++endmenu
+diff --git a/drivers/iio/addac/Makefile b/drivers/iio/addac/Makefile
+new file mode 100644
+index 000000000000..b888b9ee12da
+--- /dev/null
++++ b/drivers/iio/addac/Makefile
+@@ -0,0 +1,6 @@
++# SPDX-License-Identifier: GPL-2.0
++#
++# Makefile for industrial I/O ADDAC drivers
++#
++
++# When adding new entries keep the list in alphabetical order
+-- 
+2.33.0
 
