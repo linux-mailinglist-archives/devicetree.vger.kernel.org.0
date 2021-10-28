@@ -2,203 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E0343E2DA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 15:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E7543E2F1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 16:00:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbhJ1OAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 10:00:17 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42598 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231151AbhJ1OAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:00:13 -0400
-X-UUID: 1464a5cd677e45688009f47e60029246-20211028
-X-UUID: 1464a5cd677e45688009f47e60029246-20211028
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yc.hung@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1669125369; Thu, 28 Oct 2021 21:57:45 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 28 Oct 2021 21:57:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs10n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Thu, 28 Oct 2021 21:57:43 +0800
-From:   YC Hung <yc.hung@mediatek.com>
-To:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <yc.hung@mediatek.com>, <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <daniel.baluta@nxp.com>, <trevor.wu@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>,
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v4 2/2] dt-bindings: dsp: mediatek: Add mt8195 DSP binding support
-Date:   Thu, 28 Oct 2021 21:57:37 +0800
-Message-ID: <20211028135737.8625-3-yc.hung@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211028135737.8625-1-yc.hung@mediatek.com>
-References: <20211028135737.8625-1-yc.hung@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S231136AbhJ1OCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 10:02:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230508AbhJ1OCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 10:02:43 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F019C061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:00:16 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id z200so5062112wmc.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 07:00:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
+        b=v7pv9yFdFEbIlIWFU/23dm3MCFkl8dcEEeRSQjwKDYEhnFoP9/1S063RARz44GmDaM
+         40KEujEAQO6COS4Rz8mlTArmgDPA3OhB1K5E61MyOzEpzqxBBgVfniWqSoUyYA18VHo3
+         pAuhcAVtaJidD75t441nDkL5XG1fxRqhrXKZ1U21rNXagDk/redDafmM7oAyl4xBCuDF
+         Lm4VOHYbzxVhgDpWe/jhXEsDLhlWj46LXveTHSjJVfHUv5vFbk1vE3V5zUhcF+BH9fdh
+         HFefdkS0jhlXyv2KIiqYy3+/j8UiFC//gGtLbwLyP/hradZcqaftkZzGLhyz6b5CzywF
+         XDtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=hwlpnlC96Iq4yd/qa1MHN9OndDMbSpFJ5nBOkRygT0Y=;
+        b=Pd2vqKjGlhYEWZTtVYJw8TUJeIRKDa1xR6B7BTdVqYrM9gjU7zcSzpv6dFqLCReMsU
+         9OBr5aYzC4P1aIPoLX/Axh2D1wQCtAPlciqqyJXNYO43DJS9iVKmUzcxREI7vjqp1iwg
+         +Q7qSl8lwSeEcfPdL4vGdz0UvSU5zxI0ewE+G8jycI0JcR61jd/ysgsdpmXXv7mdUIyQ
+         e/O8AzcD4JGzuLj10PDjmHxiPHDcsDs2OfNE0oLZ/S8ffo0qjrtGBHv/zC+ChkNe/HWC
+         EoQvrfQCJFQ3fNy6I/xDC6/eUnGc+bKywswTDFeam1pOylXc0XIE8K+BL/s6/wOHzLSO
+         /PMA==
+X-Gm-Message-State: AOAM533in9mSQbQ+K4qIHyfpKcErQ8CSTRcyEBptcghLdmxlAXmj8XEv
+        qJpjFsVOIa9UPf4/pSpUf5NNQg==
+X-Google-Smtp-Source: ABdhPJwJ+02NUgidXxf8pb1dMVqiMmu/FPmh0/EQ6EzWDLAPhjrT5qeOq6Kx6tIoctfu2ZLbpqUuIg==
+X-Received: by 2002:a05:600c:4f96:: with SMTP id n22mr4773500wmq.168.1635429614704;
+        Thu, 28 Oct 2021 07:00:14 -0700 (PDT)
+Received: from lmecxl0524.lme.st.com ([80.215.4.29])
+        by smtp.gmail.com with ESMTPSA id s3sm6205693wmh.30.2021.10.28.07.00.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 07:00:14 -0700 (PDT)
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+Date:   Thu, 28 Oct 2021 16:00:08 +0200
+Message-Id: <20211028140009.23331-1-etienne.carriere@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This describes the mt8195 DSP device tree node.
+Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+based on an OP-TEE service invocation. The compatible mandates a
+channel ID defined with property "linaro,optee-channel-id".
 
-Signed-off-by: YC Hung <yc.hung@mediatek.com>
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
 ---
- .../bindings/dsp/mtk,mt8195-dsp.yaml          | 139 ++++++++++++++++++
- 1 file changed, 139 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
+Changes since v6:
+ - Remove maxItems from linaro,optee-channel-id description
 
-diff --git a/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
-new file mode 100644
-index 000000000000..f113f71ca094
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
-@@ -0,0 +1,139 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dsp/mtk,mt8195-dsp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek mt8195 DSP core
-+
-+maintainers:
-+  - YC Hung <yc.hung@mediatek.com>
-+
-+description: |
-+  Some boards from mt8195 contain a DSP core used for
-+  advanced pre- and post- audio processing.
-+properties:
-+  compatible:
-+    const: mediatek,mt8195-dsp
-+
-+  reg:
-+    maxItems: 2
-+
-+  reg-names:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: mux for audio dsp clock
-+      - description: 26M clock
-+      - description: mux for audio dsp local bus
-+      - description: default audio dsp local bus clock source
-+      - description: clock gate for audio dsp clock
-+      - description: mux for audio dsp access external bus
-+
-+  clock-names:
-+    items:
-+      - const: adsp_sel
-+      - const: clk26m_ck
-+      - const: audio_local_bus
-+      - const: mainpll_d7_d2
-+      - const: scp_adsp_audiodsp
-+      - const: audio_h
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  mboxes:
-+    maxItems: 2
-+
-+  mbox-names:
+No change since v5
+
+Changes since v4:
+ - Fix sram node name in DTS example: s/-shm-/-sram-/
+
+Changes since v3:
+ - Add description for linaro,optee-channel-id in patternProperties
+   specifying protocol can optionaly define a dedicated channel id.
+ - Fix DTS example (duplicated phandles issue, subnodes ordering)
+ - Fix typo in DTS example and description comments.
+
+Changes since v2:
+ - Define mandatory property linaro,optee-channel-id
+ - Rebased on yaml description file
+
+Changes since v1:
+ - Removed modification regarding mboxes property description.
+---
+ .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 5c4c6782e052..eae15df36eef 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -38,6 +38,9 @@ properties:
+                      The virtio transport only supports a single device.
+         items:
+           - const: arm,scmi-virtio
++      - description: SCMI compliant firmware with OP-TEE transport
++        items:
++          - const: linaro,scmi-optee
+ 
+   interrupts:
+     description:
+@@ -83,6 +86,11 @@ properties:
+     description:
+       SMC id required when using smc or hvc transports
+ 
++  linaro,optee-channel-id:
++    $ref: /schemas/types.yaml#/definitions/uint32
 +    description:
-+      Specifies the mailboxes used to communicate with audio DSP
-+    items:
-+      - const: mbox0
-+      - const: mbox1
++      Channel specifier required when using OP-TEE transport.
 +
-+  memory-region:
-+    description:
-+      phandle to a node describing reserved memory (System RAM memory)
-+      used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-+    maxItems: 2
+   protocol@11:
+     type: object
+     properties:
+@@ -195,6 +203,12 @@ patternProperties:
+         minItems: 1
+         maxItems: 2
+ 
++      linaro,optee-channel-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description:
++          Channel specifier required when using OP-TEE transport and
++          protocol has a dedicated communication channel.
 +
-+  sound:
-+    description:
-+      Sound subnode includes ASoC platform, DPTx codec node, and
-+      HDMI codec node.
+     required:
+       - reg
+ 
+@@ -226,6 +240,16 @@ else:
+       - arm,smc-id
+       - shmem
+ 
++  else:
++    if:
++      properties:
++        compatible:
++          contains:
++            const: linaro,scmi-optee
++    then:
++      required:
++        - linaro,optee-channel-id
 +
-+    type: object
+ examples:
+   - |
+     firmware {
+@@ -340,7 +364,48 @@ examples:
+                 reg = <0x11>;
+                 #power-domain-cells = <1>;
+             };
++        };
++    };
 +
-+    properties:
-+      mediatek,platform:
-+        $ref: "/schemas/types.yaml#/definitions/phandle"
-+        description: The phandle of MT8195 ASoC platform.
-+
-+      mediatek,dptx-codec:
-+        $ref: "/schemas/types.yaml#/definitions/phandle"
-+        description: The phandle of MT8195 Display Port Tx codec node.
-+
-+      mediatek,hdmi-codec:
-+        $ref: "/schemas/types.yaml#/definitions/phandle"
-+        description: The phandle of MT8195 HDMI codec node.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - memory-region
-+  - power-domains
-+  - mbox-names
-+  - mboxes
-+  - sound
-+
-+
-+additionalProperties: false
-+
-+examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    adsp: adsp@10803000 {
-+       compatible =  "mediatek,mt8195-dsp";
-+       reg = <0x10803000  0x1000>,
-+             <0x10840000  0x40000>;
-+       reg-names = "cfg", "sram";
-+       interrupts = <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH 0>;
-+       interrupt-names = "wdt";
-+       clocks = <&topckgen 10>, //CLK_TOP_ADSP
-+                <&clk26m>,
-+                <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS
-+                <&topckgen 136>, //CLK_TOP_MAINPLL_D7_D2
-+                <&scp_adsp 0>, //CLK_SCP_ADSP_AUDIODSP
-+                <&topckgen 34>; //CLK_TOP_AUDIO_H
-+       clock-names = "adsp_sel",
-+                     "clk26m_ck",
-+                     "audio_local_bus",
-+                     "mainpll_d7_d2",
-+                     "scp_adsp_audiodsp",
-+                     "audio_h";
-+       memory-region = <&adsp_dma_mem_reserved>,
-+                       <&adsp_mem_reserved>;
-+       power-domains = <&spm 6>; //MT8195_POWER_DOMAIN_ADSP
-+       mbox-names = "mbox0", "mbox1";
-+       mboxes = <&adsp_mailbox 0>, <&adsp_mailbox 1>;
-+       status = "disabled";
-+       sound {
-+              mediatek,dptx-codec = <&dp_tx>;
-+              mediatek,hdmi-codec = <&hdmi0>;
-+              mediatek,platform = <&afe>;
-+             };
-+       };
++    firmware {
++        scmi {
++            compatible = "linaro,scmi-optee";
++            linaro,optee-channel-id = <0>;
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            scmi_dvfs1: protocol@13 {
++                reg = <0x13>;
++                linaro,optee-channel-id = <1>;
++                shmem = <&cpu_optee_lpri0>;
++                #clock-cells = <1>;
++            };
++
++            scmi_clk0: protocol@14 {
++                reg = <0x14>;
++                #clock-cells = <1>;
++            };
++        };
++    };
+ 
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        sram@51000000 {
++            compatible = "mmio-sram";
++            reg = <0x0 0x51000000 0x0 0x10000>;
++
++            #address-cells = <1>;
++            #size-cells = <1>;
++            ranges = <0 0x0 0x51000000 0x10000>;
++
++            cpu_optee_lpri0: optee-sram-section@0 {
++                compatible = "arm,scmi-shmem";
++                reg = <0x0 0x80>;
++            };
+         };
+     };
+ 
 -- 
-2.18.0
+2.17.1
 
