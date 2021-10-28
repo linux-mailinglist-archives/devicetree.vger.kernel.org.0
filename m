@@ -2,158 +2,700 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3946043E0DA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 14:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5199643E0FC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Oct 2021 14:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbhJ1M0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 08:26:22 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:3532 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229998AbhJ1M0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 08:26:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1635423834; x=1666959834;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0Oq6s7AaG3bBjKwD3GLU5KykTSVALr5XWLndoODjwLU=;
-  b=Rue0PgcyZZgsrKknQdIrkBaZNzzj46k7JGO6pSQhVMuqPR24GtgSaY6w
-   D8B196oXaGEELWZ7iDgzJyuovmItZ+2kiw13s8B6JoestoMK1HZR0bmpw
-   S+Gq/iUsqAT3tqJZbIjY7AOxiZ6DV62vCBGfivua8RzhhccK05QTYe+k3
-   1aCHrnYL7i3rAaikCo3Brc7OUJplavf6DVF+fQ/Vd5irBzHKXcb421XAI
-   hJDtv2d9vrXNrpIBJI3n4A73R1AIh3WPOUXXSjvCC/iLn+PlmEDjGeDbx
-   xQQKhofBv2WIvL7MaE2Q0PWzrKj3+IGXndwlZ3v46USFzQnjE+zDoUX+J
-   A==;
-IronPort-SDR: Jvt9IWyJhVgbyC8C7YE7fAwf8FOQFwPQjJpYGNXGuvyTt+PIMFEcAa6JTDfEyUoGL2Hfvmaq2w
- zkokjxpdqcdZObeGyaYVsgJDNYsblmTlPAvakcUsV+KKlllU6BinRfLW99C4jvDTOLFiiJfRNd
- MuaTB72RiiUYZb1UKPwsYqdHulv250M1Fj7u7iXdc8JRinM0ukID43cpoTx4oBSVfpmEeqrKXk
- a3JA/6HV4WJHaB+8NhaQfxMC7DVbsb6Kjtf+DGbo02g+Sq2CK/YcuGIc3zi4lkIrTWnMTcUogx
- H2tJA3Ns9EAQWxB0z8je9So2
-X-IronPort-AV: E=Sophos;i="5.87,189,1631602800"; 
-   d="scan'208";a="134648670"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Oct 2021 05:23:51 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 28 Oct 2021 05:23:51 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 28 Oct 2021 05:23:50 -0700
-Date:   Thu, 28 Oct 2021 14:25:33 +0200
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Peter Rosin <peda@axentia.se>
-CC:     <robh+dt@kernel.org>, <peter.korsgaard@barco.com>,
-        <lars.povlsen@microchip.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] i2c: i2c-mux-gpio: Add support 'select-delay'
- property
-Message-ID: <20211028122533.4o63fuguyqfua5tm@soft-dev3-1.localhost>
-References: <20211013141003.2388495-1-horatiu.vultur@microchip.com>
- <20211013141003.2388495-3-horatiu.vultur@microchip.com>
- <9fe92c02-40af-a077-4189-6f0c0a934745@axentia.se>
+        id S229879AbhJ1M3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 08:29:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53682 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229578AbhJ1M3k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 08:29:40 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 975C860FC0;
+        Thu, 28 Oct 2021 12:27:09 +0000 (UTC)
+Date:   Thu, 28 Oct 2021 13:31:34 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andrea Merello <andrea.merello@gmail.com>
+Cc:     mchehab+huawei@kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        lars@metafoo.de, robh+dt@kernel.org, andy.shevchenko@gmail.com,
+        matt.ranostay@konsulko.com, ardeleanalex@gmail.com,
+        jacopo@jmondi.org, Andrea Merello <andrea.merello@iit.it>
+Subject: Re: [v2 09/10] iio: imu: add BNO055 serdev driver
+Message-ID: <20211028133134.5feed60b@jic23-huawei>
+In-Reply-To: <20211028101840.24632-10-andrea.merello@gmail.com>
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+        <20211028101840.24632-1-andrea.merello@gmail.com>
+        <20211028101840.24632-10-andrea.merello@gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <9fe92c02-40af-a077-4189-6f0c0a934745@axentia.se>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 10/27/2021 12:41, Peter Rosin wrote:
-> 
-> Hi!
+On Thu, 28 Oct 2021 12:18:39 +0200
+Andrea Merello <andrea.merello@gmail.com> wrote:
 
-Hi Peter,
+> This path adds a serdev driver for communicating to a BNO055 IMU via
+> serial bus, and it enables the BNO055 core driver to work in this
+> scenario.
+> 
+> Signed-off-by: Andrea Merello <andrea.merello@iit.it>
 
-> 
-> I'm sorry for the slow response...
-> 
-> On 2021-10-13 16:10, Horatiu Vultur wrote:
-> > Use select-delay property to add a delay once the mux state is changed.
-> > This is required on some platforms to allow the GPIO signals to get
-> > stabilized.
-> >
-> > Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  drivers/i2c/muxes/i2c-mux-gpio.c | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >
-> > diff --git a/drivers/i2c/muxes/i2c-mux-gpio.c b/drivers/i2c/muxes/i2c-mux-gpio.c
-> > index bac415a52b78..1cc69eb67221 100644
-> > --- a/drivers/i2c/muxes/i2c-mux-gpio.c
-> > +++ b/drivers/i2c/muxes/i2c-mux-gpio.c
-> > @@ -13,6 +13,8 @@
-> >  #include <linux/slab.h>
-> >  #include <linux/bits.h>
-> >  #include <linux/gpio/consumer.h>
-> > +#include <linux/delay.h>
-> > +
-> >  /* FIXME: stop poking around inside gpiolib */
-> >  #include "../../gpio/gpiolib.h"
-> >
-> > @@ -20,6 +22,7 @@ struct gpiomux {
-> >       struct i2c_mux_gpio_platform_data data;
-> >       int ngpios;
-> >       struct gpio_desc **gpios;
-> > +     int select_delay;
-> >  };
-> >
-> >  static void i2c_mux_gpio_set(const struct gpiomux *mux, unsigned val)
-> > @@ -29,6 +32,8 @@ static void i2c_mux_gpio_set(const struct gpiomux *mux, unsigned val)
-> >       values[0] = val;
-> >
-> >       gpiod_set_array_value_cansleep(mux->ngpios, mux->gpios, NULL, values);
-> > +     if (mux->select_delay)
-> > +             udelay(mux->select_delay);
-> 
-> Use fsleep(mux->select_delay) if you don't know how long the delay really
-> is.
-> 
-> However, you needlessly invoke the delay even if you do not actually change
-> the state of the mux. In order to fix that, you need to keep track of the
-> current state of the mux, but that's a chunk of boring code to write. If you
-> instead switch to using a mux-gpio from the mux subsystem and point an
-> i2c-mux-gpmux to that instance, you get that for free, and you can make simple
-> changes to the i2c-mux-gpmux driver to get this sorted properly, basically
-> exactly as this patch but with this
-> 
-> -       ret = mux_control_select(mux->control, chan->channel);
-> +       ret = mux_control_select_delay(mux->control, chan->channel,
-> +                                      mux->delay_us);
-> 
-> instead of the udelay/fsleep in this patch. That will invoke the requested
-> delay, but only if too little time has gone by since the latest state change.
+Hi Andrea,
 
-Thanks for the advice! I will change to use i2c-mux-gpmux and make the
-changes there.
+Some comments inline.  Note I'm not that familiar with the serial_dev interface
+so would definitely appreciate input from others on that part.
 
+Jonathan
+> ---
+>  drivers/iio/imu/bno055/Kconfig     |   5 +
+>  drivers/iio/imu/bno055/Makefile    |   1 +
+>  drivers/iio/imu/bno055/bno055_sl.c | 568 +++++++++++++++++++++++++++++
+>  3 files changed, 574 insertions(+)
+>  create mode 100644 drivers/iio/imu/bno055/bno055_sl.c
 > 
-> That interface (mux_control_select_delay) is brand new though, but available
-> in linux-next and scheduled for the next merge window. But, since I fumbled
-> this series it's a bit late for this merge window anyway (sorry again) so
-> that should not be an issue.
+> diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
+> index d197310661af..941e43f0368d 100644
+> --- a/drivers/iio/imu/bno055/Kconfig
+> +++ b/drivers/iio/imu/bno055/Kconfig
+> @@ -2,3 +2,8 @@
+>  
+>  config BOSH_BNO055_IIO
+>  	tristate
+> +
+> +config BOSH_BNO055_SERIAL
+> +	tristate "Bosh BNO055 attached via serial bus"
+> +	depends on SERIAL_DEV_BUS
+> +	select BOSH_BNO055_IIO
+> diff --git a/drivers/iio/imu/bno055/Makefile b/drivers/iio/imu/bno055/Makefile
+> index c55741d0e96f..7285ade2f4b9 100644
+> --- a/drivers/iio/imu/bno055/Makefile
+> +++ b/drivers/iio/imu/bno055/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+>  obj-$(CONFIG_BOSH_BNO055_IIO) += bno055.o
+> +obj-$(CONFIG_BOSH_BNO055_SERIAL) += bno055_sl.o
+> diff --git a/drivers/iio/imu/bno055/bno055_sl.c b/drivers/iio/imu/bno055/bno055_sl.c
+> new file mode 100644
+> index 000000000000..1d1410fdaa7c
+> --- /dev/null
+> +++ b/drivers/iio/imu/bno055/bno055_sl.c
+> @@ -0,0 +1,568 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Serial line interface for Bosh BNO055 IMU (via serdev).
+> + * This file implements serial communication up to the register read/write
+> + * level.
+> + *
+> + * Copyright (C) 2021 Istituto Italiano di Tecnologia
+> + * Electronic Design Laboratory
+> + * Written by Andrea Merello <andrea.merello@iit.it>
+> + *
+> + * This driver is besed on
+> + *	Plantower PMS7003 particulate matter sensor driver
+> + *	Which is
+> + *	Copyright (c) Tomasz Duszynski <tduszyns@gmail.com>
+> + */
+> +
+> +#include <linux/completion.h>
+> +#include <linux/device.h>
+> +#include <linux/errno.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/mutex.h>
+> +#include <linux/regmap.h>
+> +#include <linux/serdev.h>
+> +
+> +#include "bno055.h"
+> +
+> +/*
+> + * Register writes cmd have the following format
+> + * +------+------+-----+-----+----- ... ----+
+> + * | 0xAA | 0xOO | REG | LEN | payload[LEN] |
+> + * +------+------+-----+-----+----- ... ----+
+> + *
+> + * Register write responses have the following format
+> + * +------+----------+
+> + * | 0xEE | ERROCODE |
+> + * +------+----------+
+> + *
+> + * Register read have the following format
+> + * +------+------+-----+-----+
+> + * | 0xAA | 0xO1 | REG | LEN |
+> + * +------+------+-----+-----+
+> + *
+> + * Successful register read response have the following format
+> + * +------+-----+----- ... ----+
+> + * | 0xBB | LEN | payload[LEN] |
+> + * +------+-----+----- ... ----+
+> + *
+> + * Failed register read response have the following format
+> + * +------+--------+
+> + * | 0xEE | ERRCODE|  (ERRCODE always > 1)
+> + * +------+--------+
+> + *
+> + * Error codes are
+> + * 01: OK
+> + * 02: read/write FAIL
+> + * 04: invalid address
+> + * 05: write on RO
+> + * 06: wrong start byte
+> + * 07: bus overrun
+> + * 08: len too high
+> + * 09: len too low
+> + * 10: bus RX byte timeout (timeout is 30mS)
+> + *
+> + *
+> + * **WORKAROUND ALERT**
+> + *
+> + * Serial communication seems very fragile: the BNO055 buffer seems to overflow
+> + * very easy; BNO055 seems able to sink few bytes, then it needs a brief pause.
+> + * On the other hand, it is also picky on timeout: if there is a pause > 30mS in
+> + * between two bytes then the transaction fails (IMU internal RX FSM resets).
+> + *
+> + * BMU055 has been seen also failing to process commands in case we send them
+> + * too close each other (or if it is somehow busy?)
+> + *
+> + * One idea would be to split data in chunks, and then wait 1-2mS between
+> + * chunks (we hope not to exceed 30mS delay for any reason - which should
+> + * be pretty a lot of time for us), and eventually retry in case the BNO055
+> + * gets upset for any reason. This seems to work in avoiding the overflow
+> + * errors, but indeed it seems slower than just perform a retry when an overflow
+> + * error occur.
+> + * In particular I saw these scenarios:
+> + * 1) If we send 2 bytes per time, then the IMU never(?) overflows.
+> + * 2) If we send 4 bytes per time (i.e. the full header), then the IMU could
+> + *    overflow, but it seem to sink all 4 bytes, then it returns error.
+> + * 3) If we send more than 4 bytes, the IMU could overflow, and I saw it sending
+> + *    error after 4 bytes are sent; we have troubles in synchronizing again,
+> + *    because we are still sending data, and the IMU interprets it as the 1st
+> + *    byte of a new command.
+> + *
+> + * So, we workaround all this in the following way:
+> + * In case of read we don't split the header but we rely on retries; This seems
+> + * convenient for data read (where we TX only the hdr).
+> + * For TX we split the transmission in 2-bytes chunks so that, we should not
+> + * only avoid case 2 (which is still manageable), but we also hopefully avoid
+> + * case 3, that would be by far worse.
+> + */
+> +
+> +/*
+> + * Read operation overhead:
+> + *  4 bytes req + 2byte resp hdr.
+> + *  6 bytes = 60 bit (considering 1start + 1stop bits).
+> + *  60/115200 = ~520uS.
+> + *
+> + * In 520uS we could read back about 34 bytes that means 3 samples, this means
+> + * that in case of scattered read in which the gap is 3 samples or less it is
+> + * still convenient to go for a burst.
+> + * We have to take into account also IMU response time - IMU seems to be often
+> + * reasonably quick to respond, but sometimes it seems to be in some "critical
+> + * section" in which it delays handling of serial protocol.
+> + * By experiment, it seems convenient to burst up to about 5/6-samples-long gap.
+> + */
+> +
+> +#define BNO055_SL_XFER_BURST_BREAK_THRESHOLD 6
+> +
+> +struct bno055_sl_priv {
+> +	struct serdev_device *serdev;
+> +	struct completion cmd_complete;
+> +	enum {
+> +		CMD_NONE,
+> +		CMD_READ,
+> +		CMD_WRITE,
+> +	} expect_response;
+> +	int expected_data_len;
+> +	u8 *response_buf;
+> +
+> +	/**
+> +	 * enum cmd_status - represent the status of a command sent to the HW.
+> +	 * @STATUS_OK:   The command executed successfully.
+> +	 * @STATUS_FAIL: The command failed: HW responded with an error.
+> +	 * @STATUS_CRIT: The command failed: the serial communication failed.
+> +	 */
+> +	enum {
+> +		STATUS_OK = 0,
+> +		STATUS_FAIL = 1,
+> +		STATUS_CRIT = -1
+> +	} cmd_status;
+> +	struct mutex lock;
+> +
+> +	/* Only accessed in behalf of RX callback context. No lock needed. */
 
-No worries, I will try to send a new version.
+would "Only accessed in RX callback context. No lock needed." convey the same meaning?
 
-> 
-> Cheers,
-> Peter
-> 
-> >  }
-> >
-> >  static int i2c_mux_gpio_select(struct i2c_mux_core *muxc, u32 chan)
-> > @@ -153,6 +158,8 @@ static int i2c_mux_gpio_probe_fw(struct gpiomux *mux,
-> >       if (fwnode_property_read_u32(dev->fwnode, "idle-state", &mux->data.idle))
-> >               mux->data.idle = I2C_MUX_GPIO_NO_IDLE;
-> >
-> > +     fwnode_property_read_u32(dev->fwnode, "select-delay", &mux->select_delay);
-> > +
-> >       return 0;
-> >  }
-> >
-> >
+> +	struct {
+> +		enum {
+> +			RX_IDLE,
+> +			RX_START,
+> +			RX_DATA
+> +		} state;
+> +		int databuf_count;
+> +		int expected_len;
+> +		int type;
+> +	} rx;
+> +
+> +	/* Never accessed in behalf of RX callback context. No lock needed */
+> +	bool cmd_stale;
+> +};
+> +
+> +static int bno055_sl_send_chunk(struct bno055_sl_priv *priv, u8 *data, int len)
+> +{
+> +	int ret;
+> +
+> +	dev_dbg(&priv->serdev->dev, "send (len: %d): %*ph", len, len, data);
+> +	ret = serdev_device_write(priv->serdev, data, len,
+> +				  msecs_to_jiffies(25));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (ret < len)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +/*
+> + * Sends a read or write command.
+> + * 'data' can be NULL (used in read case). 'len' parameter is always valid; in
+> + * case 'data' is non-NULL then it must match 'data' size.
+> + */
+> +static int bno055_sl_do_send_cmd(struct bno055_sl_priv *priv,
+> +				 int read, int addr, int len, u8 *data)
 
--- 
-/Horatiu
+Read is a bool, so give it that type.
+
+> +{
+> +	int ret;
+> +	int chunk_len;
+> +	u8 hdr[] = {0xAA, !!read, addr, len};
+> +
+> +	if (read) {
+> +		ret = bno055_sl_send_chunk(priv, hdr, 4);
+> +	} else {
+> +		ret = bno055_sl_send_chunk(priv, hdr, 2);
+> +		if (ret)
+> +			goto fail;
+> +
+> +		usleep_range(2000, 3000);
+> +		ret = bno055_sl_send_chunk(priv, hdr + 2, 2);
+> +	}
+> +	if (ret)
+> +		goto fail;
+> +
+> +	if (data) {
+
+I would flip this condition to reduce indent and make it easy to
+see we are done in the no 'data' case.  Also, does this correspond in
+all cases to read?  If so I would use that as the variable to check.
+
+	if (!data)
+		return 0;
+
+	while (len) {
+...
+
+
+> +		while (len) {
+> +			chunk_len = min(len, 2);
+> +			usleep_range(2000, 3000);
+> +			ret = bno055_sl_send_chunk(priv, data, chunk_len);
+> +			if (ret)
+> +				goto fail;
+> +			data += chunk_len;
+> +			len -= chunk_len;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +fail:
+> +	/* waiting more than 30mS should clear the BNO055 internal state */
+> +	usleep_range(40000, 50000);
+> +	return ret;
+> +}
+> +
+> +static int bno_sl_send_cmd(struct bno055_sl_priv *priv,
+> +			   int read, int addr, int len, u8 *data)
+
+Read looks to be a bool to me not an integer.
+
+> +{
+> +	const int retry_max = 5;
+> +	int retry = retry_max;
+> +	int ret = 0;
+> +
+> +	/*
+> +	 * In case previous command was interrupted we still neet to wait it to
+> +	 * complete before we can issue new commands
+> +	 */
+> +	if (priv->cmd_stale) {
+> +		ret = wait_for_completion_interruptible_timeout(&priv->cmd_complete,
+> +								msecs_to_jiffies(100));
+> +		if (ret == -ERESTARTSYS)
+> +			return -ERESTARTSYS;
+> +
+> +		priv->cmd_stale = false;
+> +		/* if serial protocol broke, bail out */
+> +		if (priv->cmd_status == STATUS_CRIT)
+> +			goto exit;
+
+			return -EIO;
+
+> +	}
+> +
+> +	/*
+> +	 * Try to convince the IMU to cooperate.. as explained in the comments
+> +	 * at the top of this file, the IMU could also refuse the command (i.e.
+> +	 * it is not ready yet); retry in this case.
+> +	 */
+> +	while (retry--) {
+> +		mutex_lock(&priv->lock);
+> +		priv->expect_response = read ? CMD_READ : CMD_WRITE;
+> +		reinit_completion(&priv->cmd_complete);
+> +		mutex_unlock(&priv->lock);
+> +
+> +		if (retry != (retry_max - 1))
+> +			dev_dbg(&priv->serdev->dev, "cmd retry: %d",
+> +				retry_max - retry);
+> +		ret = bno055_sl_do_send_cmd(priv, read, addr, len, data);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret = wait_for_completion_interruptible_timeout(&priv->cmd_complete,
+> +								msecs_to_jiffies(100));
+> +		if (ret == -ERESTARTSYS) {
+> +			priv->cmd_stale = true;
+> +			return -ERESTARTSYS;
+> +		} else if (!ret) {
+> +			ret = -ETIMEDOUT;
+
+			return -ETIMEDOUT;
+
+> +			break;
+> +		}
+> +		ret = 0;
+> +
+> +		/*
+> +		 * Poll if the IMU returns error (i.e busy), break if the IMU
+> +		 * returns OK or if the serial communication broke
+> +		 */
+> +		if (priv->cmd_status <= 0)
+I 'think' this is only place we can break out with status set to anything (with
+the suggested modifications above) so move the if statements from the error path
+here and drop the ret = 0 above.
+
+
+> +			break;
+> +	}
+> +
+> +exit:
+> +	if (ret)
+> +		return ret;
+> +	if (priv->cmd_status == STATUS_CRIT)
+> +		return -EIO;
+> +	if (priv->cmd_status == STATUS_FAIL)
+> +		return -EINVAL;
+> +	return 0;
+> +}
+> +
+> +static int bno055_sl_write_reg(void *context, const void *data, size_t count)
+> +{
+> +	int ret;
+> +	int reg;
+> +	u8 *write_data = (u8 *)data + 1;
+
+Given you dereference data as a u8 * in several places, perhaps a local
+variable to allow you to do it once.
+
+> +	struct bno055_sl_priv *priv = context;
+> +
+> +	if (count < 2) {
+> +		dev_err(&priv->serdev->dev, "Invalid write count %zu", count);
+> +		return -EINVAL;
+> +	}
+> +
+> +	reg = ((u8 *)data)[0];
+> +	dev_dbg(&priv->serdev->dev, "wr reg 0x%x = 0x%x", reg, ((u8 *)data)[1]);
+> +	ret = bno_sl_send_cmd(priv, 0, reg, count - 1, write_data);
+> +
+> +	return ret;
+
+	return bno_sl_send_cmd(...)
+
+> +}
+> +
+> +static int bno055_sl_read_reg(void *context,
+> +			      const void *reg, size_t reg_size,
+> +			      void *val, size_t val_size)
+> +{
+> +	int ret;
+> +	int reg_addr;
+> +	struct bno055_sl_priv *priv = context;
+> +
+> +	if (val_size > 128) {
+> +		dev_err(&priv->serdev->dev, "Invalid read valsize %d",
+> +			val_size);
+> +		return -EINVAL;
+> +	}
+> +
+> +	reg_addr = ((u8 *)reg)[0];
+> +	dev_dbg(&priv->serdev->dev, "rd reg 0x%x (len %d)", reg_addr, val_size);
+> +	mutex_lock(&priv->lock);
+> +	priv->expected_data_len = val_size;
+> +	priv->response_buf = val;
+> +	mutex_unlock(&priv->lock);
+> +
+> +	ret = bno_sl_send_cmd(priv, 1, reg_addr, val_size, NULL);
+> +
+> +	mutex_lock(&priv->lock);
+> +	priv->response_buf = NULL;
+> +	mutex_unlock(&priv->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +/*
+> + * Handler for received data; this is called from the reicever callback whenever
+> + * it got some packet from the serial bus. The status tell us whether the
+> + * packet is valid (i.e. header ok && received payload len consistent wrt the
+> + * header). It's now our responsability to check whether this is what we
+> + * expected, of whether we got some unexpected, yet valid, packet.
+> + */
+> +static void bno055_sl_handle_rx(struct bno055_sl_priv *priv, int status)
+> +{
+> +	mutex_lock(&priv->lock);
+> +	switch (priv->expect_response) {
+> +	case CMD_NONE:
+> +		dev_warn(&priv->serdev->dev, "received unexpected, yet valid, data from sensor");
+> +		mutex_unlock(&priv->lock);
+> +		return;
+> +
+> +	case CMD_READ:
+> +		priv->cmd_status = status;
+> +		if (status == STATUS_OK &&
+> +		    priv->rx.databuf_count != priv->expected_data_len) {
+> +			/*
+> +			 * If we got here, then the lower layer serial protocol
+> +			 * seems consistent with itself; if we got an unexpected
+> +			 * amount of data then signal it as a non critical error
+> +			 */
+> +			priv->cmd_status = STATUS_FAIL;
+> +			dev_warn(&priv->serdev->dev, "received an unexpected amount of, yet valid, data from sensor");
+> +		}
+> +		break;
+> +
+> +	case CMD_WRITE:
+> +		priv->cmd_status = status;
+> +		break;
+> +	}
+> +
+> +	priv->expect_response = CMD_NONE;
+> +	complete(&priv->cmd_complete);
+> +	mutex_unlock(&priv->lock);
+> +}
+> +
+> +/*
+> + * Serdev receiver FSM. This tracks the serial communication and parse the
+> + * header. It pushes packets to bno055_sl_handle_rx(), eventually communicating
+> + * failures (i.e. malformed packets).
+> + * Ideally it doesn't know anything about upper layer (i.e. if this is the
+> + * packet we were really expecting), but since we copies the payload into the
+> + * receiver buffer (that is not valid when i.e. we don't expect data), we
+> + * snoop a bit in the upper layer..
+> + * Also, we assume to RX one pkt per time (i.e. the HW doesn't send anything
+> + * unless we require to AND we don't queue more than one request per time).
+> + */
+> +static int bno055_sl_receive_buf(struct serdev_device *serdev,
+> +				 const unsigned char *buf, size_t size)
+> +{
+> +	int status;
+> +	struct bno055_sl_priv *priv = serdev_device_get_drvdata(serdev);
+> +	int _size = size;
+
+Why the local variable?
+
+> +
+> +	if (size == 0)
+> +		return 0;
+> +
+> +	dev_dbg(&priv->serdev->dev, "recv (len %zu): %*ph ", size, size, buf);
+> +	switch (priv->rx.state) {
+> +	case RX_IDLE:
+> +		/*
+> +		 * New packet.
+> +		 * Check for its 1st byte, that identifies the pkt type.
+> +		 */
+> +		if (buf[0] != 0xEE && buf[0] != 0xBB) {
+> +			dev_err(&priv->serdev->dev,
+> +				"Invalid packet start %x", buf[0]);
+> +			bno055_sl_handle_rx(priv, STATUS_CRIT);
+> +			break;
+> +		}
+> +		priv->rx.type = buf[0];
+> +		priv->rx.state = RX_START;
+> +		size--;
+> +		buf++;
+> +		priv->rx.databuf_count = 0;
+> +		fallthrough;
+> +
+> +	case RX_START:
+> +		/*
+> +		 * Packet RX in progress, we expect either 1-byte len or 1-byte
+> +		 * status depending by the packet type.
+> +		 */
+> +		if (size == 0)
+> +			break;
+> +
+> +		if (priv->rx.type == 0xEE) {
+> +			if (size > 1) {
+> +				dev_err(&priv->serdev->dev, "EE pkt. Extra data received");
+> +				status = STATUS_CRIT;
+> +
+> +			} else {
+> +				status = (buf[0] == 1) ? STATUS_OK : STATUS_FAIL;
+> +			}
+> +			bno055_sl_handle_rx(priv, status);
+> +			priv->rx.state = RX_IDLE;
+> +			break;
+> +
+> +		} else {
+> +			/*priv->rx.type == 0xBB */
+> +			priv->rx.state = RX_DATA;
+> +			priv->rx.expected_len = buf[0];
+> +			size--;
+> +			buf++;
+> +		}
+> +		fallthrough;
+> +
+> +	case RX_DATA:
+> +		/* Header parsed; now receiving packet data payload */
+> +		if (size == 0)
+> +			break;
+> +
+> +		if (priv->rx.databuf_count + size > priv->rx.expected_len) {
+> +			/*
+> +			 * This is a inconsistency in serial protocol, we lost
+> +			 * sync and we don't know how to handle further data
+> +			 */
+> +			dev_err(&priv->serdev->dev, "BB pkt. Extra data received");
+> +			bno055_sl_handle_rx(priv, STATUS_CRIT);
+> +			priv->rx.state = RX_IDLE;
+> +			break;
+> +		}
+> +
+> +		mutex_lock(&priv->lock);
+> +		/*
+> +		 * NULL e.g. when read cmd is stale or when no read cmd is
+> +		 * actually pending.
+> +		 */
+> +		if (priv->response_buf &&
+> +		    /*
+> +		     * Snoop on the upper layer protocol stuff to make sure not
+> +		     * to write to an invalid memory. Apart for this, let's the
+> +		     * upper layer manage any inconsistency wrt expected data
+> +		     * len (as long as the serial protocol is consistent wrt
+> +		     * itself (i.e. response header is consistent with received
+> +		     * response len.
+> +		     */
+> +		    (priv->rx.databuf_count + size <= priv->expected_data_len))
+> +			memcpy(priv->response_buf + priv->rx.databuf_count,
+> +			       buf, size);
+> +		mutex_unlock(&priv->lock);
+> +
+> +		priv->rx.databuf_count += size;
+> +
+> +		/*
+> +		 * Reached expected len advertised by the IMU for the current
+> +		 * packet. Pass it to the upper layer (for us it is just valid).
+> +		 */
+> +		if (priv->rx.databuf_count == priv->rx.expected_len) {
+> +			bno055_sl_handle_rx(priv, STATUS_OK);
+> +			priv->rx.state = RX_IDLE;
+> +		}
+> +		break;
+> +	}
+> +
+> +	return _size;
+> +}
+> +
+> +static const struct serdev_device_ops bno055_sl_serdev_ops = {
+> +	.receive_buf = bno055_sl_receive_buf,
+> +	.write_wakeup = serdev_device_write_wakeup,
+> +};
+> +
+> +static struct regmap_bus bno055_sl_regmap_bus = {
+> +	.write = bno055_sl_write_reg,
+> +	.read = bno055_sl_read_reg,
+> +};
+> +
+> +static int bno055_sl_probe(struct serdev_device *serdev)
+> +{
+> +	struct bno055_sl_priv *priv;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(&serdev->dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	serdev_device_set_drvdata(serdev, priv);
+> +	priv->serdev = serdev;
+> +	mutex_init(&priv->lock);
+> +	init_completion(&priv->cmd_complete);
+> +
+> +	serdev_device_set_client_ops(serdev, &bno055_sl_serdev_ops);
+> +	ret = devm_serdev_device_open(&serdev->dev, serdev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (serdev_device_set_baudrate(serdev, 115200) != 115200) {
+> +		dev_err(&serdev->dev, "Cannot set required baud rate");
+> +		return -EIO;
+> +	}
+> +
+> +	ret = serdev_device_set_parity(serdev, SERDEV_PARITY_NONE);
+> +	if (ret) {
+> +		dev_err(&serdev->dev, "Cannot set required parity setting");
+> +		return ret;
+> +	}
+> +	serdev_device_set_flow_control(serdev, false);
+> +
+> +	regmap = devm_regmap_init(&serdev->dev, &bno055_sl_regmap_bus,
+> +				  priv, &bno055_regmap_config);
+> +	if (IS_ERR(regmap)) {
+> +		dev_err(&serdev->dev, "Unable to init register map");
+> +		return PTR_ERR(regmap);
+> +	}
+> +
+> +	return bno055_probe(&serdev->dev, regmap,
+> +			    BNO055_SL_XFER_BURST_BREAK_THRESHOLD);
+> +}
+> +
+> +static const struct of_device_id bno055_sl_of_match[] = {
+> +	{ .compatible = "bosch,bno055" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, bno055_sl_of_match);
+> +
+> +static struct serdev_device_driver bno055_sl_driver = {
+> +	.driver = {
+> +		.name = "bno055-sl",
+> +		.of_match_table = bno055_sl_of_match,
+> +	},
+> +	.probe = bno055_sl_probe,
+> +};
+> +module_serdev_device_driver(bno055_sl_driver);
+> +
+> +MODULE_AUTHOR("Andrea Merello <andrea.merello@iit.it>");
+> +MODULE_DESCRIPTION("Bosch BNO055 serdev interface");
+> +MODULE_LICENSE("GPL v2");
+
