@@ -2,159 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1203543FD20
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 15:07:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FE3643FD2B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 15:11:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbhJ2NKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 09:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbhJ2NKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 09:10:12 -0400
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6931C061714
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 06:07:43 -0700 (PDT)
-Received: by mail-qv1-xf36.google.com with SMTP id k29so6249017qve.6
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 06:07:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RM/bmXapeBMh8+hpkmuvSolriwwEu8yH0p43JcPWCxk=;
-        b=JbrJN6TZUsbo9JpQsvgIVP6KOjV8795JkEAt7GBb1EHJ1OA5nURuxMQ0K2v3Z6Vaj3
-         MT1GY/SYopL87+NU20ZTwHkq8auoreegZImNaxJMuGAKvZtRBclj2VQKCcpoUeLzWtVC
-         imI6YyBK5Hkpvi9BoWCu4eYU+YcigCHMY0KSLezdJrRxnRtSk2WYX5GaC+gX9/qYlPxb
-         qRWqhEaZWwE5kp07fHg+z3Qe0q2LXf7L2cgDjLdbKqcmAOIV4NNCp7fffZ425HRtAPGG
-         2KBecILyimsbz3joFdek1ayqQASemWcmzBwQSoegfJP6RSTyvYdYqNAv5hpYJbF8kWft
-         CA5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RM/bmXapeBMh8+hpkmuvSolriwwEu8yH0p43JcPWCxk=;
-        b=W/zmshMR0B8fCZ2q9ef08oQAFqq8QWytunSqY8FJn68lgSZOCFsvEPFH5pwy98QC2U
-         +jthqteyA0mR+SikdIC5jldxFeBVB/QtpEHYroljYfX0uQlPUmrc87q/0EnBRdysZT2b
-         ivz/ifVVy97jqp/MfYPyA/nXYvNH7B9cHA7dqQQiCdARB4StbRmf230nRgZcrF5Zd3cn
-         phIgCOGN/mA0kLRGCse6gcCs0hVEkRbi/DmVPdaUt8dHcIIIsfFxZ+xmDukf67PP6nyy
-         v2NQh+5fVr0eLxE8/pIBii71oZw544ciTL4vVTxm4bJsILVkPyHJjKga5xN46YAbPTlQ
-         ic3A==
-X-Gm-Message-State: AOAM530k77GndWlMczXwHT4CrzHctky2FoQGn1foFWRlU/B1Z4/cSs7o
-        vOSZsQCoL5gc9r8VQwv3brYlv6so3A6564IzxAPoRA==
-X-Google-Smtp-Source: ABdhPJycrVL9EM1WkDbofkgiWuRPwE5CFOGucVbQDvC5kPJcPytF2VCCGVy5aLeGKxsgBVw0+jTq+rUAmjM0VVg7ak8=
-X-Received: by 2002:a05:6214:229:: with SMTP id j9mr10536899qvt.27.1635512863100;
- Fri, 29 Oct 2021 06:07:43 -0700 (PDT)
+        id S231436AbhJ2NNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 09:13:44 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:56392 "EHLO deadmen.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229603AbhJ2NNn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 09:13:43 -0400
+Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
+        by deadmen.hmeau.com with esmtp (Exim 4.92 #5 (Debian))
+        id 1mgRf7-0002mh-Td; Fri, 29 Oct 2021 21:11:13 +0800
+Received: from herbert by gondobar with local (Exim 4.92)
+        (envelope-from <herbert@gondor.apana.org.au>)
+        id 1mgRey-0003CW-EB; Fri, 29 Oct 2021 21:11:04 +0800
+Date:   Fri, 29 Oct 2021 21:11:04 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+Cc:     linux-crypto@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Prabhjot Khurana <prabhjot.khurana@intel.com>,
+        Elena Reshetova <elena.reshetova@intel.com>
+Subject: Re: [PATCH 0/5] Keem Bay OCS ECC crypto driver
+Message-ID: <20211029131104.GA12278@gondor.apana.org.au>
+References: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
 MIME-Version: 1.0
-References: <1635510619-6715-1-git-send-email-quic_kalyant@quicinc.com>
-In-Reply-To: <1635510619-6715-1-git-send-email-quic_kalyant@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 29 Oct 2021 16:07:32 +0300
-Message-ID: <CAA8EJppXBC43=bWigTwQ-QkMsDVf829LRXokEBKcWJdHOoOezQ@mail.gmail.com>
-Subject: Re: [v2] drm/msm/disp/dpu1: set default group ID for CTL.
-To:     Kalyan Thota <quic_kalyant@quicinc.com>
-Cc:     y@qualcomm.com,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 at 15:30, Kalyan Thota <quic_kalyant@quicinc.com> wrote:
->
-> New required programming in CTL for SC7280. Group ID informs
-> HW of which VM owns that CTL. Force this group ID to
-> default/disabled until virtualization support is enabled in SW.
->
-> Changes in v1:
->  - Fix documentation and add descritpion for the change (Stephen)
->
-> Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+On Wed, Oct 20, 2021 at 11:35:33AM +0100, Daniele Alessandrelli wrote:
+> Hi,
+> 
+> This patch series adds the Intel Keem Bay OCS ECC crypto driver, which
+> enables hardware-accelerated 'ecdh-nist-p256' and 'ecdh-nist-p384' on
+> the Intel Keem Bay SoC.
+> 
+> The following changes to core crypto code are also done:
+> - KPP support is added to the crypto engine (so that the new driver can
+>   use it).
+> - 'crypto/ecc.h' is moved to 'include/crypto/internal' (so that this and
+>   other drivers can use the symbols exported by 'crypto/ecc.c').
+> - A few additional functions from 'crypto/ecc.c' are exported (so that
+>   this and other drivers can use them and avoid code duplication).
+> 
+> The driver passes crypto manager self-tests.
+> 
+> A previous version of this patch series was submitted as an RFC:
+> https://lore.kernel.org/linux-crypto/20201217172101.381772-1-daniele.alessandrelli@linux.intel.com/
+> 
+> Changes from previous RFC submission (RFC-v1):
+> - Switched to the new 'ecdh-nist-p256' and 'ecdh-nist-p384' algorithm
+>   names
+> - Dropped the CONFIG_CRYPTO_DEV_KEEMBAY_OCS_ECDH_GEN_PRIV_KEY_SUPPORT
+>   Kconfig option
+> 
+> Daniele Alessandrelli (2):
+>   crypto: ecc - Move ecc.h to include/crypto/internal
+>   crypto: ecc - Export additional helper functions
+> 
+> Prabhjot Khurana (3):
+>   crypto: engine - Add KPP Support to Crypto Engine
+>   dt-bindings: crypto: Add Keem Bay ECC bindings
+>   crypto: keembay-ocs-ecc - Add Keem Bay OCS ECC Driver
+> 
+>  Documentation/crypto/crypto_engine.rst        |    4 +
+>  .../crypto/intel,keembay-ocs-ecc.yaml         |   47 +
+>  MAINTAINERS                                   |   11 +
+>  crypto/crypto_engine.c                        |   26 +
+>  crypto/ecc.c                                  |   14 +-
+>  crypto/ecdh.c                                 |    2 +-
+>  crypto/ecdsa.c                                |    2 +-
+>  crypto/ecrdsa.c                               |    2 +-
+>  crypto/ecrdsa_defs.h                          |    2 +-
+>  drivers/crypto/keembay/Kconfig                |   19 +
+>  drivers/crypto/keembay/Makefile               |    2 +
+>  drivers/crypto/keembay/keembay-ocs-ecc.c      | 1017 +++++++++++++++++
+>  include/crypto/engine.h                       |    5 +
+>  {crypto => include/crypto/internal}/ecc.h     |   36 +
+>  14 files changed, 1180 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-ecc.yaml
+>  create mode 100644 drivers/crypto/keembay/keembay-ocs-ecc.c
+>  rename {crypto => include/crypto/internal}/ecc.h (90%)
+> 
+> 
+> base-commit: 06f6e365e2ecf799c249bb464aa9d5f055e88b56
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 2 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 5 ++++-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 8 ++++++++
->  3 files changed, 13 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> index ce6f32a..283605c 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-> @@ -45,7 +45,7 @@
->         (PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
->
->  #define CTL_SC7280_MASK \
-> -       (BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE))
-> +       (BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
->
->  #define MERGE_3D_SM8150_MASK (0)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 4ade44b..31af04a 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -179,13 +179,16 @@ enum {
->
->  /**
->   * CTL sub-blocks
-> - * @DPU_CTL_SPLIT_DISPLAY       CTL supports video mode split display
-> + * @DPU_CTL_SPLIT_DISPLAY:     CTL supports video mode split display
-> + * @DPU_CTL_FETCH_ACTIVE:      Active CTL for fetch HW (SSPPs)
-> + * @DPU_CTL_VM_CFG:            CTL config to support multiple VMs
->   * @DPU_CTL_MAX
->   */
->  enum {
->         DPU_CTL_SPLIT_DISPLAY = 0x1,
->         DPU_CTL_ACTIVE_CFG,
->         DPU_CTL_FETCH_ACTIVE,
-> +       DPU_CTL_VM_CFG,
->         DPU_CTL_MAX
->  };
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> index 64740ddb..02da9ec 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-> @@ -36,6 +36,7 @@
->  #define  MERGE_3D_IDX   23
->  #define  INTF_IDX       31
->  #define CTL_INVALID_BIT                 0xffff
-> +#define CTL_DEFAULT_GROUP_ID           0xf
->
->  static const u32 fetch_tbl[SSPP_MAX] = {CTL_INVALID_BIT, 16, 17, 18, 19,
->         CTL_INVALID_BIT, CTL_INVALID_BIT, CTL_INVALID_BIT, CTL_INVALID_BIT, 0,
-> @@ -498,6 +499,13 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
->         u32 intf_active = 0;
->         u32 mode_sel = 0;
->
-> +       /* CTL_TOP[31:28] carries group_id to collate CTL paths
-> +        * per VM. Explicitly disable it until VM support is
-> +        * added in SW. Power on reset value is not disable.
-> +        */
-> +       if ((test_bit(DPU_CTL_VM_CFG, &ctx->caps->features)))
-> +               mode_sel = CTL_DEFAULT_GROUP_ID  << 28;
-> +
->         if (cfg->intf_mode_sel == DPU_CTL_MODE_SEL_CMD)
->                 mode_sel |= BIT(17);
->
-> --
-> 2.7.4
->
-
-
+All applied.  Thanks.
 -- 
-With best wishes
-Dmitry
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
