@@ -2,128 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C84F443FC1D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E7243FC2F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:20:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231465AbhJ2MRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 08:17:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbhJ2MRo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 08:17:44 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23AAAC061570;
-        Fri, 29 Oct 2021 05:15:16 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id k13so16490227ljj.12;
-        Fri, 29 Oct 2021 05:15:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=QgrejLPhmwaonglk/87BMy/DDGpmqiRAYppe9EnRVr4=;
-        b=A+ZNKmDogHyLyOqThrIx2im9JmiBZM2RKr6BJSH7qigfuxjA+8f+l07n60V6RFIyuh
-         tbuDeeQFb7+dcT1TkkJx9y0amDC9u5nrRiQs530v0pPwKY30ppmJ0Fr6XTbFfXBAn4Ec
-         VyrbIxwdnn0coVj4CEi1sH5ac0nEdmo3eBfzORRIh0CURMwmL1Kb8ITgW2KGlbzflVWV
-         KgC+62xHdg/V5Mr/IGsoQMdtdYWvwNC5Y5bYwGRC+yuHTwnH1xx/lzdqdiZIQ8kBTZ5G
-         xs90qJ7Rzu2lzV0MFcVpdgtwWOE9x4GDkjPXd6/Ac7sUgox/fZBuwgIUwsfMOrXtB+D/
-         fQWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QgrejLPhmwaonglk/87BMy/DDGpmqiRAYppe9EnRVr4=;
-        b=wnR+4tUjSjfyfjrunowKlE56EzWjiV6qCSDfV9+hyDp7fTkQsPf/yHLRVoEAokA1mk
-         ASIR6/aE7Lf5rZkPBPF7vK24BsLzbdhxktp3yhRy2vhmAAlrySGm4MAUYrQ+fr5en/z2
-         /XONoosGDMcJ7oR/28vsDL6iuP3xqERt+sc5QCeESoyubRizftehtT3zQbUXwHiwjvzK
-         RgGf6f2SNxWJjBJzHNTWqPUWINC7vdtr/FBxoMzMlSU0kkMaBuT474/RpTnad/rlzN9C
-         jbW18BemfIVJxHVECIrPMUzpeNqU/aKSetBD/ZIGXZfjtEKQCJX0EFaVS1vZrbOMyHPC
-         O6kQ==
-X-Gm-Message-State: AOAM533icwwSHIdgdb1uKVwbqAFoWf2LOtvti2qe/3+eQW65TiWgpA+2
-        B4DJpyeGo/j4NRzh1D3tXQ8=
-X-Google-Smtp-Source: ABdhPJwzkAT1GAvW+n6j0hL4OQ+xEvaDsck59irti/Fx/wWDpRJw4y6eDPz7RLt76q/2JVdywsyQBg==
-X-Received: by 2002:a05:651c:893:: with SMTP id d19mr11634382ljq.236.1635509713081;
-        Fri, 29 Oct 2021 05:15:13 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id x7sm590496lfu.116.2021.10.29.05.15.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 05:15:12 -0700 (PDT)
-Message-ID: <578ae650-e5c0-cb86-8f34-18736e5d9239@gmail.com>
-Date:   Fri, 29 Oct 2021 14:15:09 +0200
+        id S231605AbhJ2MWu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 08:22:50 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:55592 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231601AbhJ2MWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 08:22:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635510020; x=1667046020;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=GH9CUITwRufk4xnD31PbwjH6SiZ6yCHMETPuYDf1vk8=;
+  b=swAuMjbBQ4NA/OsnY2w3hp974AvKa1iCqHMzFRsU2HrbsbCAj/+79exe
+   luhJJIe5VRizh6QeZSvkOGpRU30ajU1qYTMjL83TPDC8ryJk6gpt10JvJ
+   OU3oEwcDPW3nEiaQhLeesD/vM8dFz1YOt8xJY3z5Lzs3J0j37o9IzAczl
+   Btqjlat+MoI9atyopgs80ggjRNauwlaJd7EUhuA5SnOBD+mzO9wHw/nMS
+   ChLieZag1WNvRfFQHSL/Dik9Q7pKusoe9Jvdaie7w82Sfzwti8qjnKCH1
+   sBqVP+0oj73Fh+f4gPVtkMD+J6t6n1uwJ0inUGreYSnwJjXmERusFPuL+
+   A==;
+IronPort-SDR: PUco+yRvZamRV2pgyG27WadXduE9srN709E+aK8FD7SuFB/Ul5MCZ/FHtPLz1xOPbVum365pnT
+ xQTeKQe6AZwQRmScsOIOb270lxcJ0NGPEsrRuRWwUjEFC4Mh/NbiSBMposnkdX57AbreKk6V1v
+ 31TDlY2sUH8YBqvMSFafNKW6F57+Ixga6jNM/P/gG9XaCW83x9sVdyjPzjJia40p+edWT9bBYU
+ PECoSiN1ZcCkDIMCswTc8nBI1200H3SYDS7I+w9rUb9omvunVGvg0gzrh4hLN7JEsP2WaNXBlD
+ s/hwkWmbO8W+rIBi1K2joW0W
+X-IronPort-AV: E=Sophos;i="5.87,192,1631602800"; 
+   d="scan'208";a="142144831"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Oct 2021 05:20:20 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 29 Oct 2021 05:20:19 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 29 Oct 2021 05:20:17 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+        <kavyasree.kotagiri@microchip.com>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [RFC PATCH v2 0/3] Extend lan966x clock driver for clock gating support
+Date:   Fri, 29 Oct 2021 14:19:26 +0200
+Message-ID: <20211029121929.2811811-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101
- Thunderbird/94.0
-Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211028093059.32535-1-zajec5@gmail.com>
- <20211028093059.32535-3-zajec5@gmail.com>
- <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
- <ce6ccb22-a81c-336e-4b2e-44f9ad6de246@roeck-us.net>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <ce6ccb22-a81c-336e-4b2e-44f9ad6de246@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.10.2021 18:57, Guenter Roeck wrote:
-> On 10/28/21 9:29 AM, Florian Fainelli wrote:
->> On 10/28/21 2:30 AM, Rafał Miłecki wrote:
->>> From: Rafał Miłecki <rafal@milecki.pl>
->>>
->>> Hardware supported by this driver goes back to the old bcm63xx days. It
->>> was then reused in BCM7038 and later also in BCM4908.
->>>
->>> Depending on SoC model registers layout differs a bit. This commit
->>> introduces support for per-chipset registers offsets & adds BCM4908
->>> layout.
->>>
->>> Later on BCM63xx SoCs support should be added too (probably as platform
->>> devices due to missing DT). Eventually this driver should replace
->>> bcm63xx_wdt.c.
->>>
-> Seems unrelated / irrelevant in this commit log, except maybe after '---'.
-> 
->>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>> ---
->>
->> [snip]
->>
->>> +
->>> +static const u16 bcm7038_wdt_regs_bcm4908[] = {
->>> +    [BCM63XX_WDT_REG_DEFVAL]    = 0x28,
-> 
-> REG_DEFVAL is an odd name for this register. I can see that the
-> bcm63xx driver uses it, but in reality it seems to be the timeout
-> value, not some default value, only the bcm63xx driver doesn't
-> seem to use it properly. I think REG_TIMEOUT or similar would
-> be a much better name.
+This patch series depends on the following series, therefor keep it as RFC.
+https://www.spinics.net/lists/linux-clk/msg62795.html
 
-I used name used in Broadcom's SDK (and as I guess also in their
-documentation too).
+This patch series extend the clock driver to support also clock gating.
 
-Take a look at this BCM60333 example:
+v1->v2:
+ - add Acked-by tag for patch 2
+ - make the resource for clock gating as an optional resource
 
-typedef struct Timer {
-	uint32	TimerInts;		/* 0x00 */
-	uint32	TimerCtl0;		/* 0x04 */
-	uint32	TimerCtl1;		/* 0x08 */
-	uint32	TimerCtl2;		/* 0x0c */
-	uint32	TimerCnt0;		/* 0x10 */
-	uint32	TimerCnt1;		/* 0x14 */
-	uint32	TimerCnt2;		/* 0x18 */
-	uint32	WatchDogDefCount;	/* 0x1c */
-	uint32	WatchDogCtl;		/* 0x20 */
-	uint32	WDResetCount;		/* 0x24 */
-} Timer;
+Horatiu Vultur (3):
+  dt-bindings: clock: lan966x: Extend for clock gate support
+  dt-bindings: clock: lan966x: Extend includes with clock gates
+  clk: lan966x: Extend lan966x clock driver for clock gating support
 
-I got impression that Linux driver registers names usually follow what
-is used in hardware documentation.
+ .../bindings/clock/microchip,lan966x-gck.yaml |  3 +-
+ drivers/clk/clk-lan966x.c                     | 78 ++++++++++++++++++-
+ include/dt-bindings/clock/microchip,lan966x.h |  8 +-
+ 3 files changed, 83 insertions(+), 6 deletions(-)
+
+-- 
+2.33.0
+
