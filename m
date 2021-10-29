@@ -2,81 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E8FF43FFA2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 17:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B19043FFC8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 17:43:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229626AbhJ2Pgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 11:36:31 -0400
-Received: from mga17.intel.com ([192.55.52.151]:30194 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229527AbhJ2Pgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 11:36:31 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10151"; a="211458436"
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; 
-   d="scan'208";a="211458436"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2021 08:34:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; 
-   d="scan'208";a="448402110"
-Received: from lkp-server02.sh.intel.com (HELO c20d8bc80006) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 29 Oct 2021 08:34:00 -0700
-Received: from kbuild by c20d8bc80006 with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mgTtH-0000RY-S3; Fri, 29 Oct 2021 15:33:59 +0000
-Date:   Fri, 29 Oct 2021 23:33:52 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Rob Herring <robh@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     kbuild-all@lists.01.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH] arm64: fix boolconv.cocci warnings
-Message-ID: <20211029153352.GA69389@7705b72ac8e7>
-References: <20211028183355.360731-1-robh@kernel.org>
+        id S230016AbhJ2Ppn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 11:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229979AbhJ2Ppj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 11:45:39 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FCFC061570
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:43:10 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id 62so5609541iou.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:43:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=q5s/8xkc6JVRM6bEb8OhlyoI/YVKOLteofx/UwaueHs=;
+        b=j49ycKsWUe6RznNxV8tqlhqNOrOnVsXrUaN1B4C0H9bfBPmCHeoKQuwO2NFqu+EdJp
+         JxhKWtvcpacb28yTT41vmdnqnmT8q3yYSLO0ZVBJIB2/lRkgqFQaJLukUYblCMBdMr7k
+         ll0cx/jTdK8gupCUaJ0boy8+xvvOnw4afLbg1znlvCdN9/On6r1bpBHBk7IjArlK2PuO
+         UE9vjq+bsamdTjCx0sfWlT5JA8paSyE0Wmr1M/kCbwXmh6YjTXj17mZv7p90SZWaZApM
+         YPKCcQX2UmeyBNPGKDQfMfYflsVeasB+zuSe+76SYo8iRs+EKZkMpOx1KMYE2KMUJtBj
+         lYsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=q5s/8xkc6JVRM6bEb8OhlyoI/YVKOLteofx/UwaueHs=;
+        b=kLyrk78CQVVrWpxJDhMAQ58vXA+g6YRuzCoMC9lq2m3yo1ZMfVgLsBTeO3Ub5SgrUq
+         UCDuZVIEXzN9kQ+F6u101rH0ME6Sdf43seCJcHtVFjCaiYIX3DjParkQgh0Mot5Lu1NX
+         KuvOsLUCQk31HWEHuTrsTRpgKJqtrRT4KJr3XURQCcYAHrGjQSJoynrvLjhtZQAXWsTy
+         SiRtrwo4NrEgSsr8DREXqRIYyV7HIvKDzJtltekwEZugoDRNB3V3IMdS1P+Nb2pG4CqY
+         XeDGdfmKxmc0e0bBnqvhBRNSpHOB8AftcWLqKVgx7KLKNZHLhpNdkvBeIlQC44jtKFhT
+         CJ0g==
+X-Gm-Message-State: AOAM531XGlLkGe9At9whvoJmhVgaNEg/Nk2HhNOVc8BKfeZRmhUk+Bw5
+        uBaVSn09UZ5SdLBNH5ac70P/+RxqR4HiJjFM210=
+X-Google-Smtp-Source: ABdhPJzckYaG1cl0peFbU2maytr1PMkRHJA6ITGqhoI1KSnpE/k+moK5YTOkRVBOSYZ7k18xqryLdF04DIsXslb0Jgk=
+X-Received: by 2002:a6b:7c46:: with SMTP id b6mr8683711ioq.129.1635522189586;
+ Fri, 29 Oct 2021 08:43:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028183355.360731-1-robh@kernel.org>
-X-Patchwork-Hint: ignore
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: by 2002:a05:6602:140f:0:0:0:0 with HTTP; Fri, 29 Oct 2021 08:43:09
+ -0700 (PDT)
+Reply-To: lawrencetansanco.y@gmail.com
+From:   Lawrence Tansanco <ca829661@gmail.com>
+Date:   Fri, 29 Oct 2021 16:43:09 +0100
+Message-ID: <CAJu4WphDuHSd=7qsBOVXoKFeXZFgyXNuWEyTxDaE-ZsPZV+ZEw@mail.gmail.com>
+Subject: THANKS FOR YOUR RESPONSE AND GOD BLESS
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: kernel test robot <lkp@intel.com>
+.
+I will like to disclose something very important to you,
+get back to me for more details please.
 
-arch/arm64/kernel/acpi.c:71:26-31: WARNING: conversion to bool not needed here
-
- Remove unneeded conversion to bool
-
-Semantic patch information:
- Relational and logical operators evaluate to bool,
- explicit conversion is overly verbose and unneeded.
-
-Generated by: scripts/coccinelle/misc/boolconv.cocci
-
-CC: Rob Herring <robh@kernel.org>
-Reported-by: kernel test robot <lkp@intel.com>
-Signed-off-by: kernel test robot <lkp@intel.com>
----
-
-url:    https://github.com/0day-ci/linux/commits/Rob-Herring/arm64-Simplify-checking-for-populated-DT/20211029-023532
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-next/core
-:::::: branch date: 21 hours ago
-:::::: commit date: 21 hours ago
-
- acpi.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
---- a/arch/arm64/kernel/acpi.c
-+++ b/arch/arm64/kernel/acpi.c
-@@ -68,7 +68,7 @@ static bool __init dt_is_populated(void)
- 	const void *fdt = initial_boot_params;
- 	int node = fdt_node_offset_by_compatible(fdt, -1, "arm,armv8-timer");
- 
--	return node > 0 ? true : false;
-+	return node > 0;
- }
- 
- /*
+Regards.
+Mr Lawrence Tansanco Y.
