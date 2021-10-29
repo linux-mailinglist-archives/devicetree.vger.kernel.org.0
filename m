@@ -2,183 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD03A43FEB3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 16:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A5143FEBA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 16:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbhJ2Oys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 10:54:48 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:56840 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229501AbhJ2Oys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 10:54:48 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19TDDB1d031438;
-        Fri, 29 Oct 2021 16:52:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=I1juxWCbFobtAQIbrKW1gjVS0UkgsEenVBQr32iMpWc=;
- b=cUjW0fCFUkxrpDLYpGUU2+Rjec67+uiIE7jgCN8GypfCENziuHwR+/6PR7jSO111tyQn
- 8xQRlGQsVr63YqWXmvK8jB9rxa/Joahi3wdS0Gf/Y8dg59IB6KsosPp5qOw9TzSbShj0
- z9ePYaDCoCPYh4hRB2uAUnSjgcZxV9F6U3WrfVe1Id9bHGZSfJEJfeCA2QDQGApC8QRv
- YLB5nkswb+gVzzVMALfdtbMrk+jUCdgRJmgg54wy5mm6/iiEYkw/lEhDhLLY+BD5W3uw
- d/YsWPG74JZ3oZBG1dg6MesUHDVrRY9MocoG88xGHwiyHgk3hNnvbpjzwtqjz4yJ1bZT jg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3c0c4y2qp2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 29 Oct 2021 16:52:13 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3C3A710002A;
-        Fri, 29 Oct 2021 16:52:11 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3035B2C41F5;
-        Fri, 29 Oct 2021 16:52:11 +0200 (CEST)
-Received: from [10.48.0.126] (10.75.127.51) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 29 Oct
- 2021 16:52:10 +0200
-Subject: Re: [PATCH] dt-bindings: usb: dwc2: document the port when
- usb-role-switch is used
-To:     Rob Herring <robh@kernel.org>
-CC:     Minas Harutyunyan <hminas@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-References: <1634144026-3326-1-git-send-email-fabrice.gasnier@foss.st.com>
- <YXhnLh9OYxUz8dIC@robh.at.kernel.org>
- <be749cbe-c029-7a24-da0e-94ab363ea07e@foss.st.com>
- <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
-From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-Message-ID: <c5e5b327-4f92-4623-56d3-62e6f7dc8604@foss.st.com>
-Date:   Fri, 29 Oct 2021 16:52:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229571AbhJ2O4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 10:56:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47854 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229549AbhJ2O4V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 10:56:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CE987610FD;
+        Fri, 29 Oct 2021 14:53:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635519232;
+        bh=5LTp5jc3eDq9xjCbBlddVmUCvBpA1/tGAU/Q0N5abB8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MvmhyBaiFRNLb4z/SfvPcx/oQQJjYYyLSh+65fEqpTq+RrHdWtDPRp2nyeYmyJ8ZB
+         SV7VqEmEGnG0Pmgn1pRrmkQvQToBsw6OQd3ahsREAu/VPZNNtPSYSKRZr5z2wOBiug
+         59nKPoEjA4FnGFB0SQOjHrTN855in4B0NehrGaT/mEg1K2iAAfCDkeirl6gwmNccDJ
+         EkYarLBlzxs3ivv51S8azwvJNTBAHEKLYfXUlbqQhAsI87mwXCSh70DFjlPGiWPRPk
+         4Ox2O5Pa3B9wPPVjjL09x7fWLFsHJVNE7xFfpSk+PV4RO+YunR+BLSN5UoAMtHlzt6
+         sXlLZz14V8sVg==
+Received: by mail-ed1-f46.google.com with SMTP id w1so20608804edd.0;
+        Fri, 29 Oct 2021 07:53:52 -0700 (PDT)
+X-Gm-Message-State: AOAM5320e2TxI63z9wNJu0F7C9h9a6kj169oUs3iMOoMrdOY2CAvNR+/
+        G1cqlQWko1SQ7TVejXGh325Y9ePpfEkkqZGzGw==
+X-Google-Smtp-Source: ABdhPJzbB0cSGKHpb2uX+fdxvl2megjjmrAVPnRerDGXcV/l0EJOlQTfSNErn+Jvm4BBLgKOHn7ZEq4uDbg/RaSYCLE=
+X-Received: by 2002:a17:907:869e:: with SMTP id qa30mr13992481ejc.320.1635519228586;
+ Fri, 29 Oct 2021 07:53:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-29_03,2021-10-29_01,2020-04-07_01
+References: <20211016133322.40771-1-paul@crapouillou.net> <YXiNLZ9ne8D8uv82@robh.at.kernel.org>
+ <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net> <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
+ <BQMQ1R.WLWA4YQT423M3@crapouillou.net>
+In-Reply-To: <BQMQ1R.WLWA4YQT423M3@crapouillou.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 29 Oct 2021 09:53:36 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+wKTZvwT7Xjt_db1ZF+KBgLe5tcRB+mNny0hT=y8h2=g@mail.gmail.com>
+Message-ID: <CAL_Jsq+wKTZvwT7Xjt_db1ZF+KBgLe5tcRB+mNny0hT=y8h2=g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to ingenic,*.h
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>, list@opendingux.net,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/29/21 12:50 AM, Rob Herring wrote:
-> On Wed, Oct 27, 2021 at 7:05 AM Fabrice Gasnier
-> <fabrice.gasnier@foss.st.com> wrote:
->>
->> On 10/26/21 10:38 PM, Rob Herring wrote:
->>> On Wed, Oct 13, 2021 at 06:53:46PM +0200, Fabrice Gasnier wrote:
->>>> Document the "port" property, which is used with "usb-role-switch"
->>>> to describe the bus connector.
->>>> Definition is inspired from mediatek,mtu3.yaml.
->>>>
->>>> This fixes some errors seen when running "make dtbs_check":
->>>> ... 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
->>>>         From schema: ... Documentation/devicetree/bindings/usb/dwc2.yaml
->>>>
->>>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
->>>>  1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
->>>> index 10c7d9b..7d1aa53 100644
->>>> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
->>>> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
->>>> @@ -130,6 +130,16 @@ properties:
->>>>      description: If present indicates that we need to reset the PHY when we
->>>>        detect a wakeup. This is due to a hardware errata.
->>>>
->>>> +  port:
->>>> +    description:
->>>> +      Any connector to the data bus of this controller should be modelled
->>>> +      using the OF graph bindings specified, if the "usb-role-switch"
->>>> +      property is used. See graph.txt
->>>
->>> Drop 'See graph.txt'
->>>
->>>> +    $ref: /schemas/graph.yaml#/properties/port
->>>> +
->>>> +dependencies:
->>>> +  port: [ 'usb-role-switch' ]
->>>
->>> usb-role-switch without port is valid or both must be present. In case
->>> of the latter, you need to add:
-> 
-> If I wasn't clear, that was a question. Is usb-role-switch without
-> port is valid?
+On Fri, Oct 29, 2021 at 7:01 AM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Hi Rob,
+>
+> Le jeu., oct. 28 2021 at 17:26:54 -0500, Rob Herring <robh@kernel.org>
+> a =C3=A9crit :
+> > On Thu, Oct 28, 2021 at 6:46 AM Paul Cercueil <paul@crapouillou.net>
+> > wrote:
+> >>
+> >>  Hi Rob,
+> >>
+> >>  Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring
+> >> <robh@kernel.org>
+> >>  a =C3=A9crit :
+> >>  > On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
+> >>  >>  Tidy up a bit the tree, by prefixing all
+> >> include/dt-bindings/clock/
+> >>  >> files
+> >>  >>  related to Ingenic SoCs with 'ingenic,'.
+> >>  >>
+> >>  >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> >>  >>  ---
+> >>  >>
+> >>  >>  Notes:
+> >>  >>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
+> >>  >>          x1000.h / x1830.h
+> >>  >>
+> >>  >>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml
+> >> | 4
+> >>  >> ++--
+> >>  >>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/net/ingenic,mac.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/jz4725b.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/jz4740.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/jz4770.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/jz4780.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/x1000.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   arch/mips/boot/dts/ingenic/x1830.dtsi
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/jz4725b-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/jz4740-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/jz4760-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/jz4770-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/jz4780-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/x1000-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   drivers/clk/ingenic/x1830-cgu.c
+> >> | 2
+> >>  >> +-
+> >>  >>   .../clock/{jz4725b-cgu.h =3D> ingenic,jz4725b-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{jz4740-cgu.h =3D> ingenic,jz4740-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{jz4760-cgu.h =3D> ingenic,jz4760-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{jz4770-cgu.h =3D> ingenic,jz4770-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{jz4780-cgu.h =3D> ingenic,jz4780-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{x1000-cgu.h =3D> ingenic,x1000-cgu.h}
+> >> | 0
+> >>  >>   .../dt-bindings/clock/{x1830-cgu.h =3D> ingenic,x1830-cgu.h}
+> >> | 0
+> >>  >>   42 files changed, 36 insertions(+), 36 deletions(-)
+> >>  >>   rename include/dt-bindings/clock/{jz4725b-cgu.h =3D>
+> >>  >> ingenic,jz4725b-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{jz4740-cgu.h =3D>
+> >>  >> ingenic,jz4740-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{jz4760-cgu.h =3D>
+> >>  >> ingenic,jz4760-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{jz4770-cgu.h =3D>
+> >>  >> ingenic,jz4770-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{jz4780-cgu.h =3D>
+> >>  >> ingenic,jz4780-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{x1000-cgu.h =3D>
+> >>  >> ingenic,x1000-cgu.h} (100%)
+> >>  >>   rename include/dt-bindings/clock/{x1830-cgu.h =3D>
+> >>  >> ingenic,x1830-cgu.h} (100%)
+> >>  >
+> >>  > Acked-by: Rob Herring <robh@kernel.org>
+> >>  >
+> >>  > However, this will be a pain to merge if there are any new users
+> >>  > coming
+> >>  > in during the merge window. If not, then Stephen can just take
+> >> this.
+> >>  > If
+> >>  > there are, then at the end of the merge window is the best time.
+> >> For
+> >>  > that to work, you need to track when all dependent changes are
+> >> merged
+> >>  > and we need to agree who will pick this up. I usually have fixes
+> >> from
+> >>  > breakages in the merge window anyways.
+> >>
+> >>  I get Cc'd on all ingenic-related patches, so far I don't see
+> >> anything
+> >>  that will cause a breakage. I think it would be okay to merge it now
+> >>  (we're at -rc7 after all).
+> >
+> > Then can you apply this to linux-next and check it all works there.
+> > Specifically, 'make dt_binding_check dtbs drivers/clk/' needs to work.
+> > Or confirm you already did that.
+>
+> I did it on Linus' master branch and it all worked.
+>
+> But indeed, it does conflict on linux-next since
+> Documentation/devicetree/bindings/spi/ingenic,spi.yaml was added there.
+>
+> Should I rebase the patchset on top of linux-next?
 
-Hi Rob,
+Yes, but no one can apply that until all the dependencies land in
+Linus' tree yet we still want it in -rc1 so that there's not cross
+tree dependencies in the next cycle. Or Mark can provide a stable
+branch to Stephen. Like I said, it's a pain.
 
-Ah ok... I didn't get it was a question.
-So, usb-role-switch without port is valid.
+In any case, at this point Stephen needs to comment.
 
-> 
->>
->> Hi Rob,
->>
->> Thanks for your review.
->> I agree with your statement. But I miss something in this proposal:
->>
->>>
->>> usb-role-switch: [ port ]
->>
->> I tried this without success, when running dt_binding_check.
->>
->> For testing, I added locally in the example successively:
->>
->> 1 - usb-role-switch (alone)
->> -----
->> +        usb-role-switch;
->> "dwc2.example.dt.yaml: usb@101c0000: 'port' is a dependency of
->> 'usb-role-switch'
->>
->> 2 - port without usb-role-switch
->> -----
->> +        //usb-role-switch;
->> +
->> +        port {
->> +          usb_role_sw: endpoint {
->> +            remote-endpoint = <&hs_ep>;
->> +          };
->> +        };
->> dt_binding_check is happy here. But it shouldn't, right ?
-> 
-> You had this?:
-> 
-> dependencies:
->   usb-role-switch: [ port ]
->   port: [ usb-role-switch ]
-
-no, above test was only with "usb-role-switch: [ port ]"
-
-> 
-> 
-> If both properties have to be present together, then you need the above.
-
-This isn't the case. The only constraints here is, if port is used, then
-usb-role-switch must be set.
-
-dependencies:
-  port: [ usb-role-switch ]
-
-V2 is under review, with the above.
-
-BR,
-Fabrice
-> 
->>
->> 3 - both (port + usb-role-switch)
->> -----
->> dt_binding_check is ok.
+Rob
