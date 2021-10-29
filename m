@@ -2,184 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8FDC440577
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 00:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3A24405B5
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 01:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231628AbhJ2WaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 18:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
+        id S231506AbhJ2XSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 19:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231548AbhJ2WaW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 18:30:22 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 613F8C061203
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:53 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id l1so4026755pfu.5
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:53 -0700 (PDT)
+        with ESMTP id S229441AbhJ2XSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 19:18:44 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55FF5C061570
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 16:16:15 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so15650226ote.13
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 16:16:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pBGj7qKKms3b2NXRBKaGnHpCJouTkoQqy6fKnEekhNY=;
-        b=HnbdUP09jt/Ip+O+QEZkJAXPTGAdoEOmiuIo7tioz6ookERAs68KtEBMoC462xl/me
-         kb2Og2bKOMc7h9F1zyB1a8NltGPJi3bAdgaMkQ42Ru3oQsjrYMNNW+f2L5m60GHj9UB3
-         eMub9B2fIa6iBDm8GBsRqxLeCWQmMF7dyljWQ=
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=uMV5MnFfkKefQ2tbPRsUD5YZmW9QbmFtZJrDLkSD6+0=;
+        b=STHz8Aj6W76pYT0kuSqNaq1WJC9GulCds76IHfUeIt1O8u5A77pNvkovyZ2y2PCy57
+         0QQnCaBzMHfkQruVpFQTAoYfaXkMe2+AW/ChJWS5gdzBD6dofQrsFPS3B7gThd2LkonB
+         B28vIB3hU7aXp08AMOYz97qAwKLf/QpPN/iiY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pBGj7qKKms3b2NXRBKaGnHpCJouTkoQqy6fKnEekhNY=;
-        b=OoZ81pGQsk42QRsOqleY6KbihYv7DodTb5H15PiZh940S6DTsHoxnT/Uxbs3NHCWiW
-         iuDKUd/0FVMDHtsaNtRzWIEEkByKaBFpj3T7t53Y4jlg98JlrNlFDNlc8HCXtKX5RZ3h
-         /2Y4QJAIeYgnfNIJHT4ZPoLabP0fwn8K35ylwVwWmbHKU+/wyP+PZkzjAmAqQBSdi+ND
-         tw/0+bGWh/P6lLeIGZAs9PRrP1faIaFvMzZ7XcsYEoG508FnlB+NHESoINCYbdnHAIya
-         5KVOFJEqVS0gi1U0ljBfkpSElfsDKyyMpZ3WeaM6b2hPZ5aLhRUYi84dqX7fRXjqLiHH
-         cD5A==
-X-Gm-Message-State: AOAM532wATYk+c1RABrvwKpBTCGFwoLxvUZkdwUQ0ihnfmokvpdTF4TW
-        /+H8Z4DJgMZGp6lCtUw7puMphQ==
-X-Google-Smtp-Source: ABdhPJyhStJ5juboVFPzsjtTdtdTQzEsB1jPXhWgGnAadxRg2EvPj3HJ4quI2OMUP0sEyC29HswtDg==
-X-Received: by 2002:a62:4e87:0:b0:47b:dbbf:c6f0 with SMTP id c129-20020a624e87000000b0047bdbbfc6f0mr13518472pfb.47.1635546472895;
-        Fri, 29 Oct 2021 15:27:52 -0700 (PDT)
-Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:e956:ddc4:6e27:e270])
-        by smtp.gmail.com with ESMTPSA id v14sm7756660pff.199.2021.10.29.15.27.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Oct 2021 15:27:52 -0700 (PDT)
-From:   Philip Chen <philipchen@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     swboyd@chromium.org, dianders@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=uMV5MnFfkKefQ2tbPRsUD5YZmW9QbmFtZJrDLkSD6+0=;
+        b=MzYVh+/XqwnigUsZfA2VeJ6yFwQD9s9UUH6Ek4/wkyhBP7/XrX/56UmXredxu/3sGP
+         z4Op2X68CZhaPSYdfwVegWUSeNwHoaKxR4+RuimNQSJdB/lbVAvm8iLZPM2ldSOu/7DK
+         Dr15r+oOleVUeatW6pHNzMyKjm8ATT7dapWvaO3C2lLlqjAmbJNQwaN3/zcXwq9uESC1
+         mtAygoslpFcOxL9bU+QeNgAjoPtThAXb8zw8eV5hCq1L6Bpwbng9utrYxqaydOTCXj5F
+         WommGB3wets6RETDTVTVG77EmjtHgB8dp7dFYYNeoMWUiSEfZyeFRZakKhwNrwTWliI6
+         UUfQ==
+X-Gm-Message-State: AOAM53376lo5Z/FF7LFHMsAXss9Mx/y0XVUCNDErTnXZd4VPq+jgBuV4
+        PjW9rkzJQCteXyd/jog79BobvgdQNfIrdXRTRz6BL5AeClw=
+X-Google-Smtp-Source: ABdhPJztdLh3pY1cRiqB2jxVVOj4HxOlVnDkSKoHezYWDzleRlRBWoWgasBh3OcRcKgESqNofhNIVE7NdulWZyQvqc8=
+X-Received: by 2002:a9d:6e16:: with SMTP id e22mr10520977otr.77.1635549374671;
+ Fri, 29 Oct 2021 16:16:14 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 29 Oct 2021 18:16:14 -0500
+MIME-Version: 1.0
+In-Reply-To: <20211029152647.v3.2.If23c83a786fc4d318a1986f43803f22b4b1d82cd@changeid>
+References: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+ <20211029152647.v3.2.If23c83a786fc4d318a1986f43803f22b4b1d82cd@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 29 Oct 2021 18:16:14 -0500
+Message-ID: <CAE-0n50JTi+62Nzs+Lc4h4PGDdzEV2Ojm+OD+sqM1LDqC_QSow@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] arm64: dts: sc7180: Specify "data-lanes" for DSI
+ host output
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Philip Chen <philipchen@chromium.org>
+Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: sc7180: Support Homestar rev4
-Date:   Fri, 29 Oct 2021 15:27:43 -0700
-Message-Id: <20211029152647.v3.4.If7aaa8e36f1269acae5488035bd62ce543756bf8@changeid>
-X-Mailer: git-send-email 2.33.1.1089.g2158813163f-goog
-In-Reply-To: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
-References: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support Homestar rev4 board where Parade ps8640 is added as the
-second source edp bridge.
+Quoting Philip Chen (2021-10-29 15:27:41)
+> MSM DSI host driver actually parses "data-lanes" in DT and compare
+> it with the number of DSI lanes the bridge driver sets for
+> mipi_dsi_device. So we need to always specify "data-lanes" for the
+> DSI host output. As of now, "data-lanes" is added to ti-sn65dsi86 dts
+> fragment, but missing in parade-ps8640 dts fragment, which requires
+> a fixup.
 
-Support different edp bridge chips in different board revisions,
-now we move the #incldue line of the edp bridge dts fragment (e.g.
-sc7180-trogdor-ti-sn65dsi86.dtsi) from "sc7180-trogdor-homestar.dtsi"
-to per-board-rev dts files.
+I don't see data-lanes required in the schema, and
+dsi_host_parse_lane_data() seems happy to continue without it. I do see
+that num_data_lanes isn't set though. Does this patch fix it?
 
-Since the edp bridge dts fragment overrides 'dsi0_out', which is
-defined in "sc7180.dtsi", move the #incldue line of "sc7180.dtsi" from
-"sc7180-trogdor-homestar.dtsi" to per-board-rev dts files too, before
-the #include line of the edp bridge dts fragment.
-
-Signed-off-by: Philip Chen <philipchen@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-
-(no changes since v2)
-
-Changes in v2:
-- Explain why "sc7180.dtsi" is moved out of "sc7180-trogdor-homestar.dtsi"
-  in the commit message.
-
- arch/arm64/boot/dts/qcom/Makefile               |  1 +
- .../dts/qcom/sc7180-trogdor-homestar-r2.dts     |  2 ++
- .../dts/qcom/sc7180-trogdor-homestar-r3.dts     |  6 ++++--
- .../dts/qcom/sc7180-trogdor-homestar-r4.dts     | 17 +++++++++++++++++
- .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi  |  3 ---
- 5 files changed, 24 insertions(+), 5 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f637c4d3729f..ba99aba1d51a 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-index db6c2da67cea..70032983fb65 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-@@ -7,6 +7,8 @@
- 
- /dts-v1/;
- 
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- #include "sc7180-trogdor-homestar.dtsi"
- 
- / {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-index 3fd8aa5bb7a6..e92e2e9e48ed 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-@@ -7,9 +7,11 @@
- 
- /dts-v1/;
- 
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- #include "sc7180-trogdor-homestar.dtsi"
- 
- / {
--	model = "Google Homestar (rev3+)";
--	compatible = "google,homestar", "qcom,sc7180";
-+	model = "Google Homestar (rev3)";
-+	compatible = "google,homestar-rev3", "qcom,sc7180";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-new file mode 100644
-index 000000000000..fb27106bbb4a
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Homestar board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-homestar.dtsi"
-+
-+/ {
-+	model = "Google Homestar (rev4+)";
-+	compatible = "google,homestar", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index 4ab890b2a1d4..f32369af1351 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -5,13 +5,10 @@
-  * Copyright 2021 Google LLC.
-  */
- 
--#include "sc7180.dtsi"
--
- ap_ec_spi: &spi6 {};
- ap_h1_spi: &spi0 {};
- 
- #include "sc7180-trogdor.dtsi"
--#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
- / {
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
--- 
-2.33.1.1089.g2158813163f-goog
-
+----8<----
+diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c
+b/drivers/gpu/drm/msm/dsi/dsi_host.c
+index e269df285136..f6fba07220e5 100644
+--- a/drivers/gpu/drm/msm/dsi/dsi_host.c
++++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+@@ -1696,6 +1696,7 @@ static int dsi_host_parse_lane_data(struct
+msm_dsi_host *msm_host,
+ 	if (!prop) {
+ 		DRM_DEV_DEBUG(dev,
+ 			"failed to find data lane mapping, using default\n");
++		msm_host->num_data_lanes = 4;
+ 		return 0;
+ 	}
