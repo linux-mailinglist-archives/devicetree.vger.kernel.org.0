@@ -2,310 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4AE43FC8F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 536C843FCC7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231891AbhJ2Mr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 08:47:29 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:18679 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231785AbhJ2Mr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 08:47:26 -0400
-X-IronPort-AV: E=Sophos;i="5.87,192,1631545200"; 
-   d="scan'208";a="98635628"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 29 Oct 2021 21:44:56 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 397EF438CAF0;
-        Fri, 29 Oct 2021 21:44:54 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 5/5] pinctrl: renesas: pinctrl-rzg2l: Add support to get/set drive-strength and output-impedance-ohms
-Date:   Fri, 29 Oct 2021 13:44:37 +0100
-Message-Id: <20211029124437.20721-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S230492AbhJ2M7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 08:59:34 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:64247 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230475AbhJ2M7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 08:59:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635512226; x=1667048226;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kGqPbd0h3tvmjh82j7vteTCNPQqaMIaKsYGT5beGgLU=;
+  b=xJiSMQqeuLRmiBYE9IPUHun/owSuBJKI6jooM+GXYTiflqksr/UG2VVt
+   bdiyCGd7QeFfPPvI2fi449VIjQBz+hQK2UBcQDEsOzYqTaob1NO4Wxj99
+   vpTHxaHUOgCuRjT2tUu3iHDjtcV5Sw3q6ra5BPXUpDtzCzJ1uHr9J0F0/
+   MkxqkAKINEFscsWtOJMFR/ZDDevlKRnjah5nmVgQoI5SnDA10k5Yribdl
+   WiJ6ypwuCjpa7PaHTdf/oUYm4JwFlH7EE6s3Hmcv/7RhGSaDUcj2IUZrt
+   iSvJd5nZp5XCO6y/0tGjB1UZ1XyvQgetIIE+iZoJ0OQC3mhgYYLrsyhgV
+   w==;
+IronPort-SDR: DAZjWUtulJBBB+Sw4lw8dphJRnUfomseQVj3P2jeJuGVl+u/1f7GH2lM+L9L4feTgTVH/tbYq+
+ +A28zKes9lJcrq98/vvir+BPU+dxnS2jWsHHlEqiMGpYM8hIjtoMiajqeuw76jtdr3Sovu/UEL
+ vSQo41q7z23mMqbs1fqeprBQcnSrTx4nK1BmJwUz++aH8Xbad6lIjl7ohmexC8tP0CjnpmuDzn
+ iIKTCI0j4YaXIC4HvirSw/zwvFwhpBEOXqqx3EUJc5vsNdXSP1dbk1mMf9QDKjode8lMZ4ZLFj
+ 0U4WFgZ2jcwafARO9B/LG69+
+X-IronPort-AV: E=Sophos;i="5.87,193,1631602800"; 
+   d="scan'208";a="137336076"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Oct 2021 05:57:05 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 29 Oct 2021 05:57:05 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Fri, 29 Oct 2021 05:57:04 -0700
+Date:   Fri, 29 Oct 2021 14:58:48 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <p.zabel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: lan966x phy reset driver bindings
+Message-ID: <20211029125848.k4vwmzxpljbwlve6@soft-dev3-1.localhost>
+References: <20211019115205.1516311-1-horatiu.vultur@microchip.com>
+ <20211019115205.1516311-2-horatiu.vultur@microchip.com>
+ <YXjD9o8ws5KWlafb@robh.at.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YXjD9o8ws5KWlafb@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RZ/G2L supports two groups of pins Group-A and Group-B. For Group-A
-pins drive-strength can be configured and for Group-B output-impedance
-can be configured.
+The 10/26/2021 22:13, Rob Herring wrote:
 
-This patch splits PIN_CFG_IOLH macro to PIN_CFG_IOLH_A/B and adds
-support to get/set drive-strength and output-impedance-ohms for the
-supported pins.
+Hi Rob,
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- drivers/pinctrl/renesas/pinctrl-rzg2l.c | 159 ++++++++++++++++--------
- 1 file changed, 110 insertions(+), 49 deletions(-)
+> 
+> On Tue, Oct 19, 2021 at 01:52:04PM +0200, Horatiu Vultur wrote:
+> > Document the lan966x phy reset device driving bindings.
+> > It is using register access for the internal PHYs and toggles
+> > GPIO for external PHYs.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  .../bindings/reset/lan966x-phy,rst.yaml       | 53 +++++++++++++++++++
+> >  1 file changed, 53 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
+> > new file mode 100644
+> > index 000000000000..35a32458cafe
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/reset/lan966x-phy,rst.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Microchip Lan966x PHY Reset
+> > +
+> > +maintainers:
+> > +  - Horatiu Vultur <horatiu.vultur@microchip.com>
+> > +
+> > +description: |
+> > +  The Microchip Lan966x Switch provides 2 internal PHY which needs to be
+> > +  released from reset before they can be accessed. Also it might have external
+> > +  PHYs which requires to toggle a GPIO before the access to the PHYs.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^phy-reset@[0-9a-f]+$"
+> 
+> ^reset-controller@[0-9a-f]+$
 
-diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-index 348fc8dd74e6..f02d76c4966b 100644
---- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-+++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-@@ -35,20 +35,21 @@
- #define MUX_FUNC(pinconf)	(((pinconf) & MUX_FUNC_MASK) >> MUX_FUNC_OFFS)
- 
- /* PIN capabilities */
--#define PIN_CFG_IOLH			BIT(0)
--#define PIN_CFG_SR			BIT(1)
--#define PIN_CFG_IEN			BIT(2)
--#define PIN_CFG_PUPD			BIT(3)
--#define PIN_CFG_IO_VMC_SD0		BIT(4)
--#define PIN_CFG_IO_VMC_SD1		BIT(5)
--#define PIN_CFG_IO_VMC_QSPI		BIT(6)
--#define PIN_CFG_IO_VMC_ETH0		BIT(7)
--#define PIN_CFG_IO_VMC_ETH1		BIT(8)
--#define PIN_CFG_FILONOFF		BIT(9)
--#define PIN_CFG_FILNUM			BIT(10)
--#define PIN_CFG_FILCLKSEL		BIT(11)
--
--#define RZG2L_MPXED_PIN_FUNCS		(PIN_CFG_IOLH | \
-+#define PIN_CFG_IOLH_A			BIT(0)
-+#define PIN_CFG_IOLH_B			BIT(1)
-+#define PIN_CFG_SR			BIT(2)
-+#define PIN_CFG_IEN			BIT(3)
-+#define PIN_CFG_PUPD			BIT(4)
-+#define PIN_CFG_IO_VMC_SD0		BIT(5)
-+#define PIN_CFG_IO_VMC_SD1		BIT(6)
-+#define PIN_CFG_IO_VMC_QSPI		BIT(7)
-+#define PIN_CFG_IO_VMC_ETH0		BIT(8)
-+#define PIN_CFG_IO_VMC_ETH1		BIT(9)
-+#define PIN_CFG_FILONOFF		BIT(10)
-+#define PIN_CFG_FILNUM			BIT(11)
-+#define PIN_CFG_FILCLKSEL		BIT(12)
-+
-+#define RZG2L_MPXED_PIN_FUNCS		(PIN_CFG_IOLH_A | \
- 					 PIN_CFG_SR | \
- 					 PIN_CFG_PUPD | \
- 					 PIN_CFG_FILONOFF | \
-@@ -86,6 +87,7 @@
- #define PMC(n)			(0x0200 + 0x10 + (n))
- #define PFC(n)			(0x0400 + 0x40 + (n) * 4)
- #define PIN(n)			(0x0800 + 0x10 + (n))
-+#define IOLH(n)			(0x1010 + (n) * 8 - 0x10)
- #define IEN(n)			(0x1800 + (n) * 8)
- #define PWPR			(0x3014)
- #define SD_CH(n)		(0x3000 + (n) * 4)
-@@ -103,6 +105,7 @@
- #define PVDD_MASK		0x01
- #define PFC_MASK		0x07
- #define IEN_MASK		0x01
-+#define IOLH_MASK		0x03
- 
- #define PM_INPUT		0x1
- #define PM_OUTPUT		0x2
-@@ -139,6 +142,9 @@ struct rzg2l_pinctrl {
- 	spinlock_t			lock;
- };
- 
-+static const unsigned int iolh_groupa_mA[] = { 2, 4, 8, 12 };
-+static const unsigned int iolh_groupb_oi[] = { 100, 66, 50, 33 };
-+
- static void rzg2l_pinctrl_set_pfc_mode(struct rzg2l_pinctrl *pctrl,
- 				       u8 port, u8 pin, u8 func)
- {
-@@ -501,7 +507,7 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
- 	unsigned int arg = 0;
- 	unsigned long flags;
- 	void __iomem *addr;
--	u32 port = 0;
-+	u32 port = 0, reg;
- 	u32 cfg = 0;
- 	u8 bit = 0;
- 
-@@ -549,6 +555,24 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
- 		break;
- 	}
- 
-+	case PIN_CONFIG_DRIVE_STRENGTH: {
-+		if (!(cfg & PIN_CFG_IOLH_A))
-+			return -EINVAL;
-+
-+		reg = rzg2l_read_pin_config(pctrl, port_pin, IOLH(port), bit, IOLH_MASK);
-+		arg = iolh_groupa_mA[reg];
-+		break;
-+	}
-+
-+	case PIN_CONFIG_OUTPUT_IMPEDANCE_OHMS: {
-+		if (!(cfg & PIN_CFG_IOLH_B))
-+			return -EINVAL;
-+
-+		reg = rzg2l_read_pin_config(pctrl, port_pin, IOLH(port), bit, IOLH_MASK);
-+		arg = iolh_groupb_oi[reg];
-+		break;
-+	}
-+
- 	default:
- 		return -ENOTSUPP;
- 	}
-@@ -627,6 +651,43 @@ static int rzg2l_pinctrl_pinconf_set(struct pinctrl_dev *pctldev,
- 			spin_unlock_irqrestore(&pctrl->lock, flags);
- 			break;
- 		}
-+
-+		case PIN_CONFIG_DRIVE_STRENGTH: {
-+			unsigned int arg = pinconf_to_config_argument(_configs[i]);
-+			unsigned int index;
-+
-+			if (!(cfg & PIN_CFG_IOLH_A))
-+				return -EINVAL;
-+
-+			for (index = 0; index < ARRAY_SIZE(iolh_groupa_mA); index++) {
-+				if (arg == iolh_groupa_mA[index])
-+					break;
-+			}
-+			if (index >= ARRAY_SIZE(iolh_groupa_mA))
-+				return -EINVAL;
-+
-+			rzg2l_rmw_pin_config(pctrl, port_pin, IOLH(port), bit, IOLH_MASK, index);
-+			break;
-+		}
-+
-+		case PIN_CONFIG_OUTPUT_IMPEDANCE_OHMS: {
-+			unsigned int arg = pinconf_to_config_argument(_configs[i]);
-+			unsigned int index;
-+
-+			if (!(cfg & PIN_CFG_IOLH_B))
-+				return -EINVAL;
-+
-+			for (index = 0; index < ARRAY_SIZE(iolh_groupb_oi); index++) {
-+				if (arg == iolh_groupb_oi[index])
-+					break;
-+			}
-+			if (index >= ARRAY_SIZE(iolh_groupb_oi))
-+				return -EINVAL;
-+
-+			rzg2l_rmw_pin_config(pctrl, port_pin, IOLH(port), bit, IOLH_MASK, index);
-+			break;
-+		}
-+
- 		default:
- 			return -EOPNOTSUPP;
- 		}
-@@ -953,75 +1014,75 @@ static  struct rzg2l_dedicated_configs rzg2l_dedicated_pins[] = {
- 	{ "NMI", RZG2L_SINGLE_PIN_PACK(0x1, 0,
- 	 (PIN_CFG_FILONOFF | PIN_CFG_FILNUM | PIN_CFG_FILCLKSEL)) },
- 	{ "TMS/SWDIO", RZG2L_SINGLE_PIN_PACK(0x2, 0,
--	 (PIN_CFG_SR | PIN_CFG_IOLH | PIN_CFG_IEN)) },
-+	 (PIN_CFG_SR | PIN_CFG_IOLH_A | PIN_CFG_IEN)) },
- 	{ "TDO", RZG2L_SINGLE_PIN_PACK(0x3, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN)) },
-+	 (PIN_CFG_IOLH_A | PIN_CFG_SR | PIN_CFG_IEN)) },
- 	{ "AUDIO_CLK1", RZG2L_SINGLE_PIN_PACK(0x4, 0, PIN_CFG_IEN) },
- 	{ "AUDIO_CLK2", RZG2L_SINGLE_PIN_PACK(0x4, 1, PIN_CFG_IEN) },
- 	{ "SD0_CLK", RZG2L_SINGLE_PIN_PACK(0x6, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_CMD", RZG2L_SINGLE_PIN_PACK(0x6, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_RST#", RZG2L_SINGLE_PIN_PACK(0x6, 2,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA0", RZG2L_SINGLE_PIN_PACK(0x7, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA1", RZG2L_SINGLE_PIN_PACK(0x7, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA2", RZG2L_SINGLE_PIN_PACK(0x7, 2,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA3", RZG2L_SINGLE_PIN_PACK(0x7, 3,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA4", RZG2L_SINGLE_PIN_PACK(0x7, 4,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA5", RZG2L_SINGLE_PIN_PACK(0x7, 5,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA6", RZG2L_SINGLE_PIN_PACK(0x7, 6,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD0_DATA7", RZG2L_SINGLE_PIN_PACK(0x7, 7,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD0)) },
- 	{ "SD1_CLK", RZG2L_SINGLE_PIN_PACK(0x8, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_SD1))},
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_SD1)) },
- 	{ "SD1_CMD", RZG2L_SINGLE_PIN_PACK(0x8, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
- 	{ "SD1_DATA0", RZG2L_SINGLE_PIN_PACK(0x9, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
- 	{ "SD1_DATA1", RZG2L_SINGLE_PIN_PACK(0x9, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
- 	{ "SD1_DATA2", RZG2L_SINGLE_PIN_PACK(0x9, 2,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
- 	{ "SD1_DATA3", RZG2L_SINGLE_PIN_PACK(0x9, 3,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IEN | PIN_CFG_IO_VMC_SD1)) },
- 	{ "QSPI0_SPCLK", RZG2L_SINGLE_PIN_PACK(0xa, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI0_IO0", RZG2L_SINGLE_PIN_PACK(0xa, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI0_IO1", RZG2L_SINGLE_PIN_PACK(0xa, 2,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI0_IO2", RZG2L_SINGLE_PIN_PACK(0xa, 3,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI0_IO3", RZG2L_SINGLE_PIN_PACK(0xa, 4,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI0_SSL", RZG2L_SINGLE_PIN_PACK(0xa, 5,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_SPCLK", RZG2L_SINGLE_PIN_PACK(0xb, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_IO0", RZG2L_SINGLE_PIN_PACK(0xb, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_IO1", RZG2L_SINGLE_PIN_PACK(0xb, 2,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_IO2", RZG2L_SINGLE_PIN_PACK(0xb, 3,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_IO3", RZG2L_SINGLE_PIN_PACK(0xb, 4,
--	 (PIN_CFG_IOLH | PIN_CFG_SR  | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR  | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI1_SSL", RZG2L_SINGLE_PIN_PACK(0xb, 5,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI_RESET#", RZG2L_SINGLE_PIN_PACK(0xc, 0,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI_WP#", RZG2L_SINGLE_PIN_PACK(0xc, 1,
--	 (PIN_CFG_IOLH | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
-+	 (PIN_CFG_IOLH_B | PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
- 	{ "QSPI_INT#", RZG2L_SINGLE_PIN_PACK(0xc, 2, (PIN_CFG_SR | PIN_CFG_IO_VMC_QSPI)) },
--	{ "WDTOVF_PERROUT#", RZG2L_SINGLE_PIN_PACK(0xd, 0, (PIN_CFG_IOLH | PIN_CFG_SR)) },
-+	{ "WDTOVF_PERROUT#", RZG2L_SINGLE_PIN_PACK(0xd, 0, (PIN_CFG_IOLH_A | PIN_CFG_SR)) },
- 	{ "RIIC0_SDA", RZG2L_SINGLE_PIN_PACK(0xe, 0, PIN_CFG_IEN) },
- 	{ "RIIC0_SCL", RZG2L_SINGLE_PIN_PACK(0xe, 1, PIN_CFG_IEN) },
- 	{ "RIIC1_SDA", RZG2L_SINGLE_PIN_PACK(0xe, 2, PIN_CFG_IEN) },
+I will update this
+
+> 
+> > +
+> > +  compatible:
+> > +    const: microchip,lan966x-phy-reset
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: internal phy reset registers
+> 
+> Just: maxItems: 1
+
+Same here
+
+> 
+> > +
+> > +  reg-names:
+> > +    const: phy
+> 
+> Not all that useful with only 1 entry.
+
+And here
+
+> 
+> > +
+> > +  "#reset-cells":
+> > +    const: 1
+> > +
+> > +  external-phy-reset-gpios:
+> > +    description: used for release of reset of the external PHY
+> > +    maxItems: 1
+> 
+> This belongs in the external PHY's node.
+
+My problem is if I put this in the external PHY's node, once the switch
+gets reset it would reset also the GPIO pin and then it can't connect
+to the external PHYs anymore.
+
+The switch will need anyway to call this driver to release the reset of
+the internal PHYs, so I was thinking to put also the release of the
+external PHYs in the same driver.
+
+Initially we wanted to extend the 'sparx5-switch-reset' driver to do
+this but the output of that discussion was to have 2 different drivers,
+one for the switch and one for the PHYs.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - "#reset-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    phy_reset: phy-reset@e2010010 {
+> > +        compatible = "microchip,lan966x-phy-reset";
+> > +        reg = <0xe2010010 0x14>;
+> > +        reg-names = "phy";
+> > +        #reset-cells = <1>;
+> > +    };
+> > --
+> > 2.33.0
+> >
+> >
+
 -- 
-2.17.1
-
+/Horatiu
