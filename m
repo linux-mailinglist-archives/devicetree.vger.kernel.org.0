@@ -2,158 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3951D43FB82
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAAD443FB95
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbhJ2Llj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 07:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232002AbhJ2Llg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 07:41:36 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B09CC061745;
-        Fri, 29 Oct 2021 04:39:08 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bi35so20465188lfb.9;
-        Fri, 29 Oct 2021 04:39:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=qJzklZpGj5IXKN74jgp5chH+GE9GUHfg2wVqbEJMfWc=;
-        b=JWQ80sVeiD8+A8HH6SUb9qpLmSibGoLqbpi4IzK8Pz9YuhmrlBR+eX0SvfUfbObWeU
-         lseL7LCw0EvwbFQHwrMBJ71bieM6gO/QUcHo4aJhQVSaO9gCYUiEvcInvo3XOMaYCnV7
-         1RJociLasj0B02ca0TR17ZyaXgihQmoxPm5zTPvfckaPykwAqVZY9yEd44jpb0j/5ULB
-         8/IuWoAxt1MIy/7dhRGgOT+20Q0H4KHQjvN7W+C10pUa+uNwmqFIs65ObwmTKccxvSGm
-         wYSyBYnViU5+ehcSTsk+kqD1L1RXJXYT4XptVxjqBuLesMV0YZL01iV1QhhF2c8TvPQC
-         ER/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qJzklZpGj5IXKN74jgp5chH+GE9GUHfg2wVqbEJMfWc=;
-        b=wC7vUyAyriOal5mv/roslOTvjqaPqV5DtmOJxj3hyMPpBjHodGuhfazJ5yAx6rpN3y
-         ZzLQUy4YSQCvr3MX4yu3mNGrKblQZ0tud8O3zFWNcTBck5Z/7xdW33RDfnotpk7p93of
-         cRwdiC40mHaYo2Lp63udrceFoxFtfgml3kX9bF68PgRX3D70ohvMhH/hQpQLytatKU+z
-         cubFtuj1dNtNGm10uOoqM0CGb4WbL6iFvC/VoXgxwPeLi0SByi8pFv83wa9fszrh9GzU
-         5f5id+hmBXvf+uF+dkwqjLiU0DC9O31k8X6xwgRjYPF5UKnU1oqV2U/d71xDXuvuFjH8
-         DkAQ==
-X-Gm-Message-State: AOAM531tPYgE2ssn5xIHXzfp6UCc9GbWDpJfP8IoK1QxlXo7Zx6As2ua
-        uBoMQKWyihD410Yk0j+FhPQ=
-X-Google-Smtp-Source: ABdhPJy5/b5lP4aTitbmcfJyxV+6UrNtq64C/L6kmlRQh+ReKmVLVbSqNKOwvG5PQq5w+6mczTkHLg==
-X-Received: by 2002:a05:6512:b01:: with SMTP id w1mr10026569lfu.508.1635507546409;
-        Fri, 29 Oct 2021 04:39:06 -0700 (PDT)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id s26sm481858ljc.59.2021.10.29.04.39.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 04:39:05 -0700 (PDT)
-Message-ID: <9d57d026-19f3-e92d-4c02-d7e8e2c2bc25@gmail.com>
-Date:   Fri, 29 Oct 2021 13:39:02 +0200
+        id S231945AbhJ2Lnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 07:43:35 -0400
+Received: from ixit.cz ([94.230.151.217]:51092 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231926AbhJ2Lnf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 07:43:35 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 15ED220064;
+        Fri, 29 Oct 2021 13:41:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1635507665;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=JVovMsGgjFRk/Bmjox2YczakbZiYn8efZOf5TyMV8cs=;
+        b=dDarri+tU/27QxuJZLADRt1tp4mduZ+CVkB6JQFy43SBQ0PlU2EtCLKqo4iyOpxqGVP/CN
+        d1lkI9gOAkgA+n7/DbBCVl0MChOLS766Fpnos/pXreqePfATwMJ/7/J0v9EfE7vFKYLC7d
+        ZVkuWZCkHOVIccuc8NpobZUmmMNrHcs=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mq: fix the schema check errors for fsl,tmu-calibration
+Date:   Fri, 29 Oct 2021 13:40:49 +0200
+Message-Id: <20211029114050.39520-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101
- Thunderbird/94.0
-Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211028093059.32535-1-zajec5@gmail.com>
- <20211028093059.32535-3-zajec5@gmail.com>
- <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[Rob: please kindly comment on this]
+fsl,tmu-calibration is in u32-matrix. Use matching property syntax.
+No functional changes. Fixes warnings as:
+$ make dtbs_check
+...
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 103, 11, 111, 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 87, 131079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
+        From schema: /home/ubuntu/projects_remote/linux/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+...
 
-On 28.10.2021 18:29, Florian Fainelli wrote:
-> On 10/28/21 2:30 AM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Hardware supported by this driver goes back to the old bcm63xx days. It
->> was then reused in BCM7038 and later also in BCM4908.
->>
->> Depending on SoC model registers layout differs a bit. This commit
->> introduces support for per-chipset registers offsets & adds BCM4908
->> layout.
->>
->> Later on BCM63xx SoCs support should be added too (probably as platform
->> devices due to missing DT). Eventually this driver should replace
->> bcm63xx_wdt.c.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
-> 
-> [snip]
-> 
->> +
->> +static const u16 bcm7038_wdt_regs_bcm4908[] = {
->> +	[BCM63XX_WDT_REG_DEFVAL]	= 0x28,
->> +	[BCM63XX_WDT_REG_CTL]		= 0x2c,
->> +	[BCM63XX_WDT_REG_SOFTRESET]	= 0x34,
-> 
-> I don't understand what you are doing here and why you are not
-> offsetting the "reg" property appropriately when you create your
-> bcm4908-wdt Device Tree node such that the base starts at 0, and the
-> existing driver becomes usable as-is. This does not make any sense to me
-> when it is obviously the simplest way to make the driver "accept" the
-> resource being passed.
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 87 ++++++++++++-----------
+ 1 file changed, 44 insertions(+), 43 deletions(-)
 
-I believe that DT binding should cover the whole hardware block and
-describe it (here: use proper compatible to allow recognizing block
-variant).
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 972766b67a15..50088b110ad4 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -429,49 +429,50 @@ tmu: tmu@30260000 {
+ 				clocks = <&clk IMX8MQ_CLK_TMU_ROOT>;
+ 				little-endian;
+ 				fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x70061>;
+-				fsl,tmu-calibration = <0x00000000 0x00000023
+-						       0x00000001 0x00000029
+-						       0x00000002 0x0000002f
+-						       0x00000003 0x00000035
+-						       0x00000004 0x0000003d
+-						       0x00000005 0x00000043
+-						       0x00000006 0x0000004b
+-						       0x00000007 0x00000051
+-						       0x00000008 0x00000057
+-						       0x00000009 0x0000005f
+-						       0x0000000a 0x00000067
+-						       0x0000000b 0x0000006f
+-
+-						       0x00010000 0x0000001b
+-						       0x00010001 0x00000023
+-						       0x00010002 0x0000002b
+-						       0x00010003 0x00000033
+-						       0x00010004 0x0000003b
+-						       0x00010005 0x00000043
+-						       0x00010006 0x0000004b
+-						       0x00010007 0x00000055
+-						       0x00010008 0x0000005d
+-						       0x00010009 0x00000067
+-						       0x0001000a 0x00000070
+-
+-						       0x00020000 0x00000017
+-						       0x00020001 0x00000023
+-						       0x00020002 0x0000002d
+-						       0x00020003 0x00000037
+-						       0x00020004 0x00000041
+-						       0x00020005 0x0000004b
+-						       0x00020006 0x00000057
+-						       0x00020007 0x00000063
+-						       0x00020008 0x0000006f
+-
+-						       0x00030000 0x00000015
+-						       0x00030001 0x00000021
+-						       0x00030002 0x0000002d
+-						       0x00030003 0x00000039
+-						       0x00030004 0x00000045
+-						       0x00030005 0x00000053
+-						       0x00030006 0x0000005f
+-						       0x00030007 0x00000071>;
++				fsl,tmu-calibration =
++						<0x00000000 0x00000023>,
++						<0x00000001 0x00000029>,
++						<0x00000002 0x0000002f>,
++						<0x00000003 0x00000035>,
++						<0x00000004 0x0000003d>,
++						<0x00000005 0x00000043>,
++						<0x00000006 0x0000004b>,
++						<0x00000007 0x00000051>,
++						<0x00000008 0x00000057>,
++						<0x00000009 0x0000005f>,
++						<0x0000000a 0x00000067>,
++						<0x0000000b 0x0000006f>,
++
++						<0x00010000 0x0000001b>,
++						<0x00010001 0x00000023>,
++						<0x00010002 0x0000002b>,
++						<0x00010003 0x00000033>,
++						<0x00010004 0x0000003b>,
++						<0x00010005 0x00000043>,
++						<0x00010006 0x0000004b>,
++						<0x00010007 0x00000055>,
++						<0x00010008 0x0000005d>,
++						<0x00010009 0x00000067>,
++						<0x0001000a 0x00000070>,
++
++						<0x00020000 0x00000017>,
++						<0x00020001 0x00000023>,
++						<0x00020002 0x0000002d>,
++						<0x00020003 0x00000037>,
++						<0x00020004 0x00000041>,
++						<0x00020005 0x0000004b>,
++						<0x00020006 0x00000057>,
++						<0x00020007 0x00000063>,
++						<0x00020008 0x0000006f>,
++
++						<0x00030000 0x00000015>,
++						<0x00030001 0x00000021>,
++						<0x00030002 0x0000002d>,
++						<0x00030003 0x00000039>,
++						<0x00030004 0x00000045>,
++						<0x00030005 0x00000053>,
++						<0x00030006 0x0000005f>,
++						<0x00030007 0x00000071>;
+ 				#thermal-sensor-cells =  <1>;
+ 			};
+ 
+-- 
+2.33.0
 
-That's because (as far as I understand) DT should be used to describe
-hardware as closely as possible. I think it shouldn't be adjusted to
-make mapping match Linux's driver implementation.
-
-
-So if:
-1. Hardware block is mapped at 0xff800400
-2. It has interesting registers at 0xff800428 and 0xff80042c
-
-I think mapping should use:
-reg = <0xff800400 0x3c>;
-even if we don't use the first N registers.
-
-That way, at some point, you can extend Linux (or whatever) driver to
-use extra registers without reworking the whole binding. That's why I
-think we need to map whole hardware block & handle different registers
-layouts in a driver.
-
-
-Now, that is something I learnt from various DT discussions but I still
-may got it wrong. I'd like to ask Rob to comment on this.
-
-
-Let me also paste my summary of BCM4908's block I extracted from
-Broadcom's header:
-
-typedef struct Timer {
-	uint32	TimerCtl0;		/* 0x00 */
-	uint32	TimerCtl1;		/* 0x04 */
-	uint32	TimerCtl2;		/* 0x08 */
-	uint32	TimerCtl3;		/* 0x0c */
-	uint32	TimerCnt0;		/* 0x10 */
-	uint32	TimerCnt1;		/* 0x14 */
-	uint32	TimerCnt2;		/* 0x18 */
-	uint32	TimerCnt3;		/* 0x1c */
-	uint32	TimerMask;		/* 0x20 */
-	uint32	TimerInts;		/* 0x24 */
-	uint32	WatchDogDefCount;	/* 0x28 */
-	uint32	WatchDogCtl;		/* 0x2c */
-	uint32	WDResetCount;		/* 0x30 */
-	uint32	SoftRst;		/* 0x34 */
-	uint32	ResetStatus;		/* 0x38 */
-	uint32	ResetReason;		/* 0x3c */
-	uint32	spare[3];		/* 0x40-0x4b */
-};
