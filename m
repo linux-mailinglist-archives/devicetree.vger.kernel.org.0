@@ -2,114 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E2E043F532
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 05:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5576643F556
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 05:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231565AbhJ2DJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 23:09:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231558AbhJ2DJv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 23:09:51 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703E4C061570;
-        Thu, 28 Oct 2021 20:07:23 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id v29so6527625qtc.10;
-        Thu, 28 Oct 2021 20:07:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JzpSqhfurME8Pq0Oj5kWfxHhRUriyDiyzwnmh7G0kCo=;
-        b=APYTuOapfUYrLTwWxUvlvvWNhQqx8FvllGIngRYNIDU7++9ckmIOU3ZR44uClRjJkZ
-         ZbSKW6rc9MIBk0D14RSS3XBIr3KuxWOlLaIvCzPZ63kil/c+J50mcKtY98KJTy3rok2t
-         hfV28rmS/eG7025BSr1uxT7P2lPw3qRZfdiFCsa40YrNpeWZE3n0+2RhYmEi1aPTKqU7
-         LQuPpbc4ABJDWOaH0Ggtzl8SWwg2NKL2uCRZJp9uiXSaS+pxLNynE4Lan0ZxTDbCGZeY
-         jvSNd5eJrmX7SHWq83a8ZfVQsB0GTwXcm0vYl2D3Skrk4PPOlY0WUsI6mwfJ6IwvODW+
-         Vl7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JzpSqhfurME8Pq0Oj5kWfxHhRUriyDiyzwnmh7G0kCo=;
-        b=kYE936bsaG9sp/iNQwMRebcQ6+lpt+iSCwy3owhOzDK7z8zSkd2ezgsM34uxdiFpYp
-         kA592XQO0K3UJjLbjgy+6rl+wzpoS/bHFiHGXQObw1X+FjV78cr8N+uQvzYlIAdiFZSN
-         lXvx4VW3qhsT8ROwh4rkXuD91fiJJIGyDNYGRrH59rbS/C6/bOs4yqrYV+xqzU5mgbsf
-         MQK6efML1qRAxC+8BVMotZLQiNnzEdZ5SFkWmlJ+lDAjVMdaV/lpuMSKlfEVJaUYDNHJ
-         Hz1HJqBmAD4gVPr8dF7sW8MRHLGHoulH4yhedoEtkaChIiaVeBVoslpet1toPIZNPNxQ
-         N3QA==
-X-Gm-Message-State: AOAM531GNKAJWt3yCy7PUzNz+8IAZe1qAOsP58H+BoXDyulvrprsXVGJ
-        cLDSgmjBQKILr6QzonjpJSFF/aZr45o=
-X-Google-Smtp-Source: ABdhPJx/OHw1cubR3WX0YUbY/1y+8ExPJySpa76Cs56rMMJTu84RLvUcDwT5R2sXGUWUEulzTAx37w==
-X-Received: by 2002:a05:622a:1209:: with SMTP id y9mr9264405qtx.13.1635476842531;
-        Thu, 28 Oct 2021 20:07:22 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id bq41sm3444283qkb.26.2021.10.28.20.07.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Oct 2021 20:07:22 -0700 (PDT)
-Subject: Re: [PATCH 1/1] of: unittest: fix dts for interrupt-map provider
- build warning
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20211029005802.2047081-1-frowand.list@gmail.com>
- <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <e353b41d-48f9-5349-8b89-bafe9ab5101e@gmail.com>
-Date:   Thu, 28 Oct 2021 22:07:21 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231663AbhJ2D2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 23:28:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52842 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231617AbhJ2D1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 23:27:48 -0400
+X-UUID: 89590e3dd02041abade32d94539f5899-20211029
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xAZ3nAnsOrl8Ct8D2Vi4hu3IaxpDjpE6ODDFPn66SOM=;
+        b=NuouUxrbI7ngrTBRUGkMvAZ6GV17ls9AQH/NYdPPHWs24q5ZjVozKS4b8b+c3S7qItB+M1u7UNeQUSgFQ0VkzNOk+NRetVcBN7dz52NoPiOEWtYZNc+rNgIVCTTU2ZiiAXAOqESj3Js2+fTwPtrQ5ocHrn8/+C2XF9ld0wiI+qk=;
+X-UUID: 89590e3dd02041abade32d94539f5899-20211029
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 606793645; Fri, 29 Oct 2021 11:25:15 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Fri, 29 Oct 2021 11:25:13 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkmbs10n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 29 Oct 2021 11:25:12 +0800
+Message-ID: <31ec034a50949e5859fc10bf8e0dfacdb0b6bd50.camel@mediatek.com>
+Subject: Re: [PATCH v7, 11/15] media: mtk-vcodec: Add core thread
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+CC:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Fritz Koenig" <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Fri, 29 Oct 2021 11:25:12 +0800
+In-Reply-To: <YWgitrqT9sWyELpr@fedora>
+References: <20211011070247.792-1-yunfei.dong@mediatek.com>
+         <20211011070247.792-12-yunfei.dong@mediatek.com> <YWgitrqT9sWyELpr@fedora>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/28/21 9:07 PM, Rob Herring wrote:
-> On Thu, Oct 28, 2021 at 7:58 PM <frowand.list@gmail.com> wrote:
->>
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> Fix kernel build warning:
->> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
->>
->> A recently implemented dtc compiler warning reported the dts problem.
->>
->> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->> ---
->>  drivers/of/unittest-data/tests-interrupts.dtsi | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
->> index 9b60a549f502..8c2b91b998aa 100644
->> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
->> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
->> @@ -31,6 +31,7 @@ test_intmap0: intmap0 {
->>
->>                         test_intmap1: intmap1 {
->>                                 #interrupt-cells = <2>;
->> +                               #address-cells = <1>;
-> 
-> Notice that we have 2 nodes with interrupt-map here. One has
-> '#address-cells' and one doesn't. Why? Because we need to test that
-> the code can handle both cases.> 
-> The dtc warnings are more what should 'new' users do. I don't know
-> what DTs don't have #address-cells, but my guess is ancient ones.
-> 
-> Rob
-> 
+SGkgRXplcXVpZWwsDQoNCiAgIDEuIFRoYW5rcyBmb3IgeW91ciBzdWdnZXN0aW9uLg0KT24gVGh1
+LCAyMDIxLTEwLTE0IGF0IDA5OjI5IC0wMzAwLCBFemVxdWllbCBHYXJjaWEgd3JvdGU6DQo+IEhp
+IFl1bmZlaSwNCj4gDQo+IE9uIE1vbiwgT2N0IDExLCAyMDIxIGF0IDAzOjAyOjQzUE0gKzA4MDAs
+IFl1bmZlaSBEb25nIHdyb3RlOg0KPiA+IENvcmUgdGhyZWFkOg0KPiA+IDEuIEdldHMgbGF0X2J1
+ZiBmcm9tIGNvcmUgbXNnIHF1ZXVlLg0KPiA+IDIuIFByb2NlZWRzIGNvcmUgZGVjb2RlLg0KPiA+
+IDMuIFB1dHMgdGhlIGxhdF9idWYgYmFjayB0byBsYXQgbXNnIHF1ZXVlLg0KPiA+IA0KPiA+IEJv
+dGggSDI2NCBhbmQgVlA5IHJlbHkgb24gdGhlIGNvcmUgdGhyZWFkLg0KPiA+IA0KPiANCj4gQXZv
+aWQgdGhlIGt0aHJlYWQgQVBJIGFuZCBpbnN0ZWFkIGdvIHdpdGggdGhlIHdvcmtxdWV1ZSBBUEku
+DQo+IA0KPiBTZWUgRG9jdW1lbnRhdGlvbi9jb3JlLWFwaS93b3JrcXVldWUucnN0IGFuZA0KPiBp
+bmNsdWRlL2xpbnV4L3dvcmtxdWV1ZS5oLg0KPiANCkZpeCBpdCBpbiBwYXRjaCB2OC4NCj4gVGhh
+bmtzIQ0KPiBFemVxdWllbA0KPiANClRoYW5rcw0KWXVuZmVpIERvbmcNCj4gPiBTaWduZWQtb2Zm
+LWJ5OiBZdW5mZWkgRG9uZyA8eXVuZmVpLmRvbmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+
+ICAuLi4vcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19kcnYuYyAgfCAxMiArKysr
+KysrDQo+ID4gIC4uLi9wbGF0Zm9ybS9tdGstdmNvZGVjL210a192Y29kZWNfZHJ2LmggICAgICB8
+ICA3ICsrKysNCj4gPiAgLi4uL3BsYXRmb3JtL210ay12Y29kZWMvdmRlY19tc2dfcXVldWUuYyAg
+ICAgIHwgMzINCj4gPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIC4uLi9wbGF0Zm9ybS9tdGst
+dmNvZGVjL3ZkZWNfbXNnX3F1ZXVlLmggICAgICB8ICA2ICsrKysNCj4gPiAgNCBmaWxlcyBjaGFu
+Z2VkLCA1NyBpbnNlcnRpb25zKCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVk
+aWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19kcnYuYyANCj4gPiBiL2RyaXZl
+cnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19kcnYuYw0KPiA+IGlu
+ZGV4IGUyMWUwYzRiY2Q4Ni4uZGU4M2UzYjgyMWI0IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMv
+bWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19kcnYuYw0KPiA+ICsrKyBi
+L2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9tdGtfdmNvZGVjX2RlY19kcnYuYw0K
+PiA+IEBAIC0zNjQsNiArMzY0LDE4IEBAIHN0YXRpYyBpbnQgbXRrX3Zjb2RlY19wcm9iZShzdHJ1
+Y3QNCj4gPiBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4gIAkJZ290byBlcnJfZGVjX3BtOw0K
+PiA+ICAJfQ0KPiA+ICANCj4gPiArCWlmIChWREVDX0xBVF9BUkNIKGRldi0+dmRlY19wZGF0YS0+
+aHdfYXJjaCkpIHsNCj4gPiArCQl2ZGVjX21zZ19xdWV1ZV9pbml0X2N0eCgmZGV2LT5tc2dfcXVl
+dWVfY29yZV9jdHgsDQo+ID4gKwkJCU1US19WREVDX0NPUkUpOw0KPiA+ICsJCWRldi0+a3RocmVh
+ZF9jb3JlID0NCj4gPiBrdGhyZWFkX3J1bih2ZGVjX21zZ19xdWV1ZV9jb3JlX3RoZWFkLCBkZXYs
+DQo+ID4gKwkJCSJtdGstJXMiLCAiY29yZSIpOw0KPiA+ICsJCWlmIChJU19FUlIoZGV2LT5rdGhy
+ZWFkX2NvcmUpKSB7DQo+ID4gKwkJCWRldl9lcnIoJnBkZXYtPmRldiwgIkZhaWxlZCB0byBjcmVh
+dGUgY29yZQ0KPiA+IHRocmVhZCIpOw0KPiA+ICsJCQlyZXQgPSBQVFJfRVJSKGRldi0+a3RocmVh
+ZF9jb3JlKTsNCj4gPiArCQkJZ290byBlcnJfcmVzOw0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiAr
+DQo+ID4gIAlmb3IgKGkgPSAwOyBpIDwgTVRLX1ZERUNfSFdfTUFYOyBpKyspDQo+ID4gIAkJbXV0
+ZXhfaW5pdCgmZGV2LT5kZWNfbXV0ZXhbaV0pOw0KPiA+ICAJc3Bpbl9sb2NrX2luaXQoJmRldi0+
+aXJxbG9jayk7DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZj
+b2RlYy9tdGtfdmNvZGVjX2Rydi5oDQo+ID4gYi9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay12
+Y29kZWMvbXRrX3Zjb2RlY19kcnYuaA0KPiA+IGluZGV4IDlkMDcyYzA4MmY3My4uNjhhOWIxYTJk
+M2IzIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2RlYy9t
+dGtfdmNvZGVjX2Rydi5oDQo+ID4gKysrIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstdmNv
+ZGVjL210a192Y29kZWNfZHJ2LmgNCj4gPiBAQCAtMjcsNiArMjcsNyBAQA0KPiA+ICAjZGVmaW5l
+IE1US19WQ09ERUNfTUFYX1BMQU5FUwkzDQo+ID4gICNkZWZpbmUgTVRLX1Y0TDJfQkVOQ0hNQVJL
+CTANCj4gPiAgI2RlZmluZSBXQUlUX0lOVFJfVElNRU9VVF9NUwkxMDAwDQo+ID4gKyNkZWZpbmUg
+VkRFQ19MQVRfQVJDSChod19hcmNoKSAoKGh3X2FyY2gpID49DQo+ID4gTVRLX1ZERUNfTEFUX1NJ
+TkdMRV9DT1JFKQ0KPiA+ICANCj4gPiAgLyoNCj4gPiAgICogZW51bSBtdGtfaHdfcmVnX2lkeCAt
+IE1USyBodyByZWdpc3RlciBiYXNlIGluZGV4DQo+ID4gQEAgLTQ2Niw2ICs0NjcsOSBAQCBzdHJ1
+Y3QgbXRrX3Zjb2RlY19lbmNfcGRhdGEgew0KPiA+ICAgKiBAY29tcF9kZXY6IGNvbXBvbmVudCBo
+YXJkd2FyZSBkZXZpY2UNCj4gPiAgICogQGNvbXBvbmVudF9ub2RlOiBjb21wb25lbnQgbm9kZQ0K
+PiA+ICAgKg0KPiA+ICsgKiBAa3RocmVhZF9jb3JlOiB0aHJlYWQgdXNlZCBmb3IgY29yZSBoYXJk
+d2FyZSBkZWNvZGUNCj4gPiArICogQG1zZ19xdWV1ZV9jb3JlX2N0eDogbXNnIHF1ZXVlIGNvbnRl
+eHQgdXNlZCBmb3IgY29yZSB0aHJlYWQNCj4gPiArICoNCj4gPiAgICogQGhhcmR3YXJlX2JpdG1h
+cDogdXNlZCB0byByZWNvcmQgaGFyZHdhcmUgaXMgcmVhZHkgb3Igbm90DQo+ID4gICAqLw0KPiA+
+ICBzdHJ1Y3QgbXRrX3Zjb2RlY19kZXYgew0KPiA+IEBAIC01MDgsNiArNTEyLDkgQEAgc3RydWN0
+IG10a192Y29kZWNfZGV2IHsNCj4gPiAgCXZvaWQgKmNvbXBfZGV2W01US19WREVDX0hXX01BWF07
+DQo+ID4gIAlzdHJ1Y3QgZGV2aWNlX25vZGUgKmNvbXBvbmVudF9ub2RlW01US19WREVDX0hXX01B
+WF07DQo+ID4gIA0KPiA+ICsJc3RydWN0IHRhc2tfc3RydWN0ICprdGhyZWFkX2NvcmU7DQo+ID4g
+KwlzdHJ1Y3QgdmRlY19tc2dfcXVldWVfY3R4IG1zZ19xdWV1ZV9jb3JlX2N0eDsNCj4gPiArDQo+
+ID4gIAlERUNMQVJFX0JJVE1BUChoYXJkd2FyZV9iaXRtYXAsIE1US19WREVDX0hXX01BWCk7DQo+
+ID4gIH07DQo+ID4gIA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210
+ay12Y29kZWMvdmRlY19tc2dfcXVldWUuYw0KPiA+IGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9t
+dGstdmNvZGVjL3ZkZWNfbXNnX3F1ZXVlLmMNCj4gPiBpbmRleCBkNjZlZDk4Yzc5YTkuLjY2NWY1
+NzFlYWI0YiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay12Y29k
+ZWMvdmRlY19tc2dfcXVldWUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRr
+LXZjb2RlYy92ZGVjX21zZ19xdWV1ZS5jDQo+ID4gQEAgLTI1NiwzICsyNTYsMzUgQEAgdm9pZCB2
+ZGVjX21zZ19xdWV1ZV9kZWluaXQoDQo+ID4gIAkJCWtmcmVlKGxhdF9idWYtPnByaXZhdGVfZGF0
+YSk7DQo+ID4gIAl9DQo+ID4gIH0NCj4gPiArDQo+ID4gK2ludCB2ZGVjX21zZ19xdWV1ZV9jb3Jl
+X3RoZWFkKHZvaWQgKmRhdGEpDQo+ID4gK3sNCj4gPiArCXN0cnVjdCBtdGtfdmNvZGVjX2RldiAq
+ZGV2ID0gZGF0YTsNCj4gPiArCXN0cnVjdCB2ZGVjX2xhdF9idWYgKmxhdF9idWY7DQo+ID4gKwlz
+dHJ1Y3QgbXRrX3Zjb2RlY19jdHggKmN0eDsNCj4gPiArDQo+ID4gKwlzZXRfZnJlZXphYmxlKCk7
+DQo+ID4gKwlmb3IgKDs7KSB7DQo+ID4gKwkJdHJ5X3RvX2ZyZWV6ZSgpOw0KPiA+ICsJCWlmIChr
+dGhyZWFkX3Nob3VsZF9zdG9wKCkpDQo+ID4gKwkJCWJyZWFrOw0KPiA+ICsNCj4gPiArCQlsYXRf
+YnVmID0gdmRlY19tc2dfcXVldWVfZHFidWYoJmRldi0NCj4gPiA+bXNnX3F1ZXVlX2NvcmVfY3R4
+KTsNCj4gPiArCQlpZiAoIWxhdF9idWYpDQo+ID4gKwkJCWNvbnRpbnVlOw0KPiA+ICsNCj4gPiAr
+CQljdHggPSBsYXRfYnVmLT5jdHg7DQo+ID4gKwkJbXRrX3Zjb2RlY19zZXRfY3Vycl9jdHgoZGV2
+LCBjdHgsIE1US19WREVDX0NPUkUpOw0KPiA+ICsNCj4gPiArCQlpZiAoIWxhdF9idWYtPmNvcmVf
+ZGVjb2RlKQ0KPiA+ICsJCQltdGtfdjRsMl9lcnIoIkNvcmUgZGVjb2RlIGNhbGxiYWNrIGZ1bmMg
+aXMNCj4gPiBOVUxMIik7DQo+ID4gKwkJZWxzZQ0KPiA+ICsJCQlsYXRfYnVmLT5jb3JlX2RlY29k
+ZShsYXRfYnVmKTsNCj4gPiArDQo+ID4gKwkJbXRrX3Zjb2RlY19zZXRfY3Vycl9jdHgoZGV2LCBO
+VUxMLCBNVEtfVkRFQ19DT1JFKTsNCj4gPiArCQl2ZGVjX21zZ19xdWV1ZV9xYnVmKCZjdHgtPm1z
+Z19xdWV1ZS5sYXRfY3R4LCBsYXRfYnVmKTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwltdGtfdjRs
+Ml9kZWJ1ZygzLCAiVmlkZW8gQ2FwdHVyZSBUaHJlYWQgRW5kIik7DQo+ID4gKwlyZXR1cm4gMDsN
+Cj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay12Y29k
+ZWMvdmRlY19tc2dfcXVldWUuaA0KPiA+IGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstdmNv
+ZGVjL3ZkZWNfbXNnX3F1ZXVlLmgNCj4gPiBpbmRleCAxOTA1Y2U3MTM1OTIuLmI1NzQ1YjE0NDE0
+MCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay12Y29kZWMvdmRl
+Y19tc2dfcXVldWUuaA0KPiA+ICsrKyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLXZjb2Rl
+Yy92ZGVjX21zZ19xdWV1ZS5oDQo+ID4gQEAgLTE0OCw0ICsxNDgsMTAgQEAgdm9pZCB2ZGVjX21z
+Z19xdWV1ZV9kZWluaXQoDQo+ID4gIAlzdHJ1Y3QgdmRlY19tc2dfcXVldWUgKm1zZ19xdWV1ZSwN
+Cj4gPiAgCXN0cnVjdCBtdGtfdmNvZGVjX2N0eCAqY3R4KTsNCj4gPiAgDQo+ID4gKy8qKg0KPiA+
+ICsgKiB2ZGVjX21zZ19xdWV1ZV9jb3JlX3RoZWFkIC0gdXNlZCBmb3IgY29yZSBkZWNvZGVyLg0K
+PiA+ICsgKiBAZGF0YTogcHJpdmF0ZSBkYXRhIHVzZWQgZm9yIGVhY2ggY29kZWMNCj4gPiArICov
+DQo+ID4gK2ludCB2ZGVjX21zZ19xdWV1ZV9jb3JlX3RoZWFkKHZvaWQgKmRhdGEpOw0KPiA+ICsN
+Cj4gPiAgI2VuZGlmDQo+ID4gLS0gDQo+ID4gMi4yNS4xDQo+ID4gDQo=
 
-I had hoped to build all of the .dts files in the Linux tree, with the
-new dtc, but did not get to that today.  That should flush out any
-cases that would result in build fail from the new approach of treating
-all warnings as errors.  I may get to that tomorrow.
-
-If there any any existing .dts files that will trigger the interrupt
-map warning, will we require that they be fixed so that the build will
-not fail?
-
--Frank
