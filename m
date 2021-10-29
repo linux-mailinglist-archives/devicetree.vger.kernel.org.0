@@ -2,53 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA24F43F388
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 01:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B40D43F3B0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbhJ1XkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 19:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44006 "EHLO
+        id S230055AbhJ2AJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 20:09:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbhJ1XkV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 19:40:21 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E034EC061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id 131so7999609ybc.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
+        with ESMTP id S230227AbhJ2AJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:09:33 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A96E7C061767
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:07:05 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id k7so13043571wrd.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:07:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cheY9bIPEAikUChpUOLiNCBs86TVcB1sR5Shc6iQ+Bg=;
-        b=gUq7HVwr4laLdDA+DkVm3Vp/7rVb2c2ngZ2rzoWvp47loWw7K2pDLqjapDGL3+v5aw
-         HprDuKOGdqpVnzO9szaYZiRVrP5maXpDrjj/j/I1Ntk17M6LFV5aplDuKHOrnSZ7lNkk
-         RmXsndUujojn9L33QYe76+RTpfqhr6xgiBevI=
+        d=jrtc27.com; s=gmail.jrtc27.user;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=JM9ovXUoMQGYKoaMhT3SRYdxd24hIbjK2ebF0cmxAXY=;
+        b=ZuKxTiy+FIXkT3r4QoosEwipVKEPKjVz65mQqrv9DXeFRdrLUGpI2Kx7CpiV1vYZQP
+         G1hSiEXVntdl/cYopDkTkhVDyOiw/TBpwm3anuceKfqCzmDWpyi9MrhZz8vyVGDK5dXL
+         uTaQ8gU6a6gd8J7agSEI60+jPY8eMHR28xu6L2UtsiPZsXc0QLHC8WTFiKVu33ZPGT+H
+         7kvPcLCBRs4RjmfmQ+Jar5fgLOGGlhRXG3nqIRlKh5mmdmCI34GzNSZONWyNSC7gSmz5
+         +f4xvWGiODrGTqq3sUB5E7Avtk07HR41a/Q3Tg4J6Wn/qPXSS3YT5WNFF4lohG0Rym26
+         BpsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cheY9bIPEAikUChpUOLiNCBs86TVcB1sR5Shc6iQ+Bg=;
-        b=Dq6ysKv8R23Jn+MGSqVWUIW/qGRWBGQhWc7AxaV0f64AB+pCcAYnnA+zwhdz7vx2dL
-         eP05DjJGPbS8CzpHavhwEU/QoYUzVK9HNYO8VMTyl/T8wKIIcgcT0YgcHrIS3WeqfmkW
-         m61iDUR9aD6sssLWC3xg02oxQCHvWDOpvITFHoMK1G/iDg/yj4+JSZu//RZgEqA9MJtn
-         9OIsxoGyc74H9p9pkEe/eSsQdVHuldjHXcnf7STA82wfoDnnG2wiNEY5ZO510q4UCYtw
-         TurmzwfYDoQ17IsoIV+yN108kiGt7riEh2AKormsCvPQ7wzN6fcszychUy65xd+bp4Oh
-         4fAQ==
-X-Gm-Message-State: AOAM530AIoxr92swZ2nmhSAcfQAVr2V78a+rAs68srbBoKS2GsTaRrHA
-        54NqVnWXVcP5nUnKb6XYSSlkftPb762kZkiw7Qqo
-X-Google-Smtp-Source: ABdhPJzSzknSU4EdecKlfWAUlLx9gBS4Hx80KVuVfnFb4yRPxWyPTPMNfFBpM+J1dEVoFJPcf22J0CA/PkPEBwzIyAU=
-X-Received: by 2002:a25:bf8c:: with SMTP id l12mr7950987ybk.87.1635464273081;
- Thu, 28 Oct 2021 16:37:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211025195350.242914-1-atish.patra@wdc.com> <20211025195350.242914-11-atish.patra@wdc.com>
- <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
-In-Reply-To: <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Thu, 28 Oct 2021 16:37:42 -0700
-Message-ID: <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=JM9ovXUoMQGYKoaMhT3SRYdxd24hIbjK2ebF0cmxAXY=;
+        b=pxDIwaSmdRr8JRJomEGN3OgC8uigO3aGFK9nEEN8nZuEjUs6bxeVTXMTI+h794AkPI
+         /jenrcaBykEva1nRPrP8g1VQ9BAUngo4PO+XjgBLFtDh5NQl26hQLDUm+crfmOv01SiD
+         NIaoNXx/lSYjFIvJT+uPErOWdOz1Mu6NuWKfmmV2haZN6rF35q36wmP5iBJUecEJuu0H
+         EsMvUPdi/WvwN7mN0Yu6we9nhimCJu24f8QIGR6hxood75wxiiW5AcjwCkwJlACQLY03
+         5GAuddDhUzMPajNLnBNJeqTwEetpN1IEdLi6Qisbjgc4Oi34LYfvWeWL9zn7J/wiTGX8
+         9Lig==
+X-Gm-Message-State: AOAM533pzjku1fEzNC0ZPrSkRMn0VcJvD8V86HG3M3XsQZ+GkyTXygno
+        BRnpJ3VVvsdnRs/NRnUZeV5tZg==
+X-Google-Smtp-Source: ABdhPJxTZjsXKcFp8GnpfePalwr6klJnooGoh56zJ/LCNGXAeML3ODkDshvA2ZbtNAjmvvc7tNctjg==
+X-Received: by 2002:adf:dc43:: with SMTP id m3mr9937982wrj.66.1635466024151;
+        Thu, 28 Oct 2021 17:07:04 -0700 (PDT)
+Received: from smtpclient.apple (global-5-141.nat-2.net.cam.ac.uk. [131.111.5.141])
+        by smtp.gmail.com with ESMTPSA id h14sm8013871wmq.34.2021.10.28.17.07.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Oct 2021 17:07:03 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
 Subject: Re: [v4 10/11] riscv: dts: fu740: Add pmu node
-To:     Jessica Clarke <jrtc27@jrtc27.com>
+From:   Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
+Date:   Fri, 29 Oct 2021 01:07:02 +0100
 Cc:     Atish Patra <atish.patra@wdc.com>,
         "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
         Anup Patel <anup.patel@wdc.com>,
@@ -66,67 +71,115 @@ Cc:     Atish Patra <atish.patra@wdc.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
         Vincent Chen <vincent.chen@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <EDB030D6-D37A-43D6-9027-222794FDA80D@jrtc27.com>
+References: <20211025195350.242914-1-atish.patra@wdc.com>
+ <20211025195350.242914-11-atish.patra@wdc.com>
+ <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
+ <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
+To:     Atish Patra <atishp@atishpatra.org>
+X-Mailer: Apple Mail (2.3654.120.0.1.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 1:49 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
->
-> On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
-> > HiFive unmatched supports HPMCounters but does not implement mcountinhibit
-> > or sscof extension. Thus, perf monitoring can be used on the unmatched
-> > board without sampling.
-> >
-> > Add the PMU node with compatible string so that Linux perf driver can
-> > utilize this to enable PMU.
-> >
-> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> > ---
-> >  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> > index abbb960f90a0..b35b96b58820 100644
-> > --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> > +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> > @@ -140,6 +140,9 @@ soc {
-> >               #size-cells = <2>;
-> >               compatible = "simple-bus";
-> >               ranges;
-> > +             pmu {
-> > +                     compatible = "riscv,pmu";
-> > +             };
->
-> This is a property of the user-replaceable firmware, not a property of
-> the hardware,
+On 29 Oct 2021, at 00:37, Atish Patra <atishp@atishpatra.org> wrote:
+>=20
+> On Thu, Oct 28, 2021 at 1:49 PM Jessica Clarke <jrtc27@jrtc27.com> =
+wrote:
+>>=20
+>> On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
+>>> HiFive unmatched supports HPMCounters but does not implement =
+mcountinhibit
+>>> or sscof extension. Thus, perf monitoring can be used on the =
+unmatched
+>>> board without sampling.
+>>>=20
+>>> Add the PMU node with compatible string so that Linux perf driver =
+can
+>>> utilize this to enable PMU.
+>>>=20
+>>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+>>> ---
+>>> arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
+>>> 1 file changed, 3 insertions(+)
+>>>=20
+>>> diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi =
+b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>>> index abbb960f90a0..b35b96b58820 100644
+>>> --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>>> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>>> @@ -140,6 +140,9 @@ soc {
+>>>              #size-cells =3D <2>;
+>>>              compatible =3D "simple-bus";
+>>>              ranges;
+>>> +             pmu {
+>>> +                     compatible =3D "riscv,pmu";
+>>> +             };
+>>=20
+>> This is a property of the user-replaceable firmware, not a property =
+of
+>> the hardware,
+>=20
+> It's a property of hardware that indicates that the hardware supports =
+PMU.
 
-It's a property of hardware that indicates that the hardware supports PMU.
-Additionally, the counter overflow interrupt number needs to be
-defined through the DT as well
-so that a clean platform driver can be implemented.
+All RISC-V hardware provides the CSRs, they=E2=80=99re part of the =
+privileged
+spec and not marked optional. How many aren=E2=80=99t hard-wired to zero =
+is up
+to the implementation. But even then you can=E2=80=99t know from the =
+hardware
+alone what is supported; the firmware has to enable S-mode (and
+U-mode)=E2=80=99s ability to read them, so you can=E2=80=99t assume =
+anything in a
+static device tree hard-coded in Linux about what firmware has done.
+Since you currently have to query the firmware to determine what=E2=80=99s=
 
+available to you anyway, I see no benefit from having a node in the
+device tree that tells you your firmware *might* have counters you can
+use.
 
-so having this in the device tree under /soc, let alone
-> hard-coded in Linux, is utterly wrong. Why can this not just be probed
-> like any other SBI interface? The "Probe SBI extension" interface is
-> precisely for this kind of thing.
->
-SBI extension is anyways probed to verify if the firmware has PMU
-extension or not.
-However, adding the DT property allows different platforms (with or
-without sscof extension)
-to use the same code path.
+> Additionally, the counter overflow interrupt number needs to be
+> defined through the DT as well
+> so that a clean platform driver can be implemented.
 
-> Jess
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+The interrupt number is specified as 13 by the Sscofmpf spec.
+But that=E2=80=99s not relevant here, the FU740 predates and doesn=E2=80=99=
+t implement
+Sscofmpf, meaning there is no interrupt to even define here. And as I
+said on the other patch, don=E2=80=99t conflate =E2=80=9CSBI PMU =
+firmware interface is
+supported=E2=80=9D and =E2=80=9CSscofmpf is implemented in the =
+hardware=E2=80=9D; the former
+should be discovered by talking to firmware, and the latter should be
+discovered like any other extension (however that ends up happening).
 
+>> so having this in the device tree under /soc, let alone
+>> hard-coded in Linux, is utterly wrong. Why can this not just be =
+probed
+>> like any other SBI interface? The "Probe SBI extension" interface is
+>> precisely for this kind of thing.
+>>=20
+> SBI extension is anyways probed to verify if the firmware has PMU
+> extension or not.
+> However, adding the DT property allows different platforms (with or
+> without sscof extension)
+> to use the same code path.
 
+You don=E2=80=99t need a device tree for that; that same code path can =
+just be
+=E2=80=9Cuse the existing standard firmware interface=E2=80=9D. That =
+also has the
+benefit that it=E2=80=99s not tied to device tree and so works =
+identically for
+ACPI, rather than needing an ACPI version of it.
 
--- 
-Regards,
-Atish
+I see nothing here that can=E2=80=99t be discovered through pre-existing =
+means.
+If it can be discovered without use of the device tree then it does not
+belong in the device tree; the device tree is purely for things that
+cannot otherwise be discovered.
+
+Jess
+
