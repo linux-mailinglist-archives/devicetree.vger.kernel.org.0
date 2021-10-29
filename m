@@ -2,132 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF77B43F8D3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA8343F8DD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232305AbhJ2IbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 04:31:05 -0400
-Received: from mail-ua1-f52.google.com ([209.85.222.52]:40627 "EHLO
-        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232313AbhJ2IbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 04:31:03 -0400
-Received: by mail-ua1-f52.google.com with SMTP id e2so16726347uax.7;
-        Fri, 29 Oct 2021 01:28:35 -0700 (PDT)
+        id S232481AbhJ2IeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 04:34:18 -0400
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41174
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232469AbhJ2IeQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 04:34:16 -0400
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B43913F19E
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:31:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1635496307;
+        bh=f9xGfy2IVXtAZrt0FZMC98EWuEmmved4QRdbre5fxcg=;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
+         In-Reply-To:Content-Type;
+        b=QiCk8XpOVvEfRfn4Zn18AUJo9CsnumZzQY68YywMXP/hwhGUI0PCfiWVfCQrG8kee
+         yoeFi5smlIB1LK4kJeNmsjg6jzFzdFKr0I8V7gOv7/+3Rs9k6YQkak7/26tqpCGCXB
+         5VBrPi77S6IC+wVNBls3yMaw4LaQdMa+zpOdNEjYoN+671Pxf/DjDFdtbE9JCrPCHE
+         qGDVqlxCZkFwIxHQooAR7PL7rVz39Xcp92Vnn8u8Ihg+lb7hIxxEzdGONuJOYm8KuZ
+         8eSpRJIQyI/giJ3so7S/KQauMJIg0guiwYfYTPpvLtSS699a3xkXEOU50F7098WnqL
+         jRR8J6sMMTe2g==
+Received: by mail-lf1-f70.google.com with SMTP id x205-20020a19c7d6000000b003ffdde261b9so2127714lff.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 01:31:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7D7n4zKwOftMKeYPi/HfP+/e549fNZjw4uN7YVlzcCA=;
-        b=REpTAMCuEcvBcZG05BYr+owNep+eUsDzFLRgCXGhxUZIvHUKqENJYFI5sq8UOdr/HK
-         UCR5kYlCR6TQER9BohbSRAl1zWXpzMbBMEEp7AzR6U4jsfBOmuRzoGNOqTaUcTsp/xAC
-         /FbHQb8W520hRGnvPMmsL90LW6R8NLJzd6XcRNeAjsEKAnzi0NqX3BHaO2nFNUUASDsr
-         n5jhlYury4C9dAqYUW4/sgVQ5lHaiofCOfXcZoINMphRDO9/++TMcc69+CMLaFVATWQ2
-         5+8/dYsAVEEymbREETqNlBjBp2L/PyWTnyTaydbMxnlO1ANvRO5gZE3rZSPowTWZBz6s
-         fPRg==
-X-Gm-Message-State: AOAM530DuQXlFzUjo9+IT+zkFBPKAr9tliLtesAIDFndHtFjN1zxbSge
-        zSgiwOWPs6dHlYretm/IrkjZU57pWJ3p8g==
-X-Google-Smtp-Source: ABdhPJwIGmVfHea/XDDWhijIQkLFnGrqabW3gf7oUEUOifyOSEE+9aM5YMvwt1mgN7Na+AP8aXdJdA==
-X-Received: by 2002:a67:b149:: with SMTP id z9mr10823866vsl.16.1635496114717;
-        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
-        by smtp.gmail.com with ESMTPSA id w4sm794698uae.20.2021.10.29.01.28.34
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=f9xGfy2IVXtAZrt0FZMC98EWuEmmved4QRdbre5fxcg=;
+        b=cMZ9Rrp0YJloUsVi9ZQHBJxDoEOQ9ZnuDjG2q2QXWoLbUk+kFdwQFP8jzG4q4sFdbJ
+         7+AbMG1gwYOKxQZ8ODIwIINi1n791puBx3sm2fp1KA4DizkmAX/joFdqjTYNOMpm/+0h
+         RaOu4pw3jemVUtEYERsi8wgqm/VZkDdIOu7iX9uGGY9fhSFk94p1YOO1KUzxX2WRdXkc
+         ECnTESeGao/6fu0nMSn9IHTwjcihrURlNjArV2G+bXZ1rYenYM3l9iWN5DJmWOGsfY0u
+         oAiKFRHKbN89rt6WWukCLfUsYiytdkmHiui4izxAYIFMuAENBWZTN9iGVBe7oxCeLFks
+         5K/w==
+X-Gm-Message-State: AOAM533cTk/qhiBqckd8wLsX4eKkBrTr/ve6E61wW934jPqD8g77e98u
+        3TTa1huijd3JVZbCNFt7gzTb/N+cqcHc6mvIJPMp8Yz6TPdM6M8oh7XIOUfdCOLn77GpwOZnpn7
+        S0bEwIM7bIWrz00IaTYhZ25oNbYxGyga9lewDNrY=
+X-Received: by 2002:a05:6512:1153:: with SMTP id m19mr9014903lfg.418.1635496306698;
+        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx9Hyrds2Q0O6D4rKzUGcomrQuWNDbWOqCF/kGuCYTGcoX6Ii/2ymVukRDR0lH5EXL4eD4+Rw==
+X-Received: by 2002:a05:6512:1153:: with SMTP id m19mr9014892lfg.418.1635496306554;
+        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
+Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id d27sm551447ljo.15.2021.10.29.01.31.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
-Received: by mail-vk1-f182.google.com with SMTP id bc10so4250270vkb.1;
-        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
-X-Received: by 2002:a05:6122:804:: with SMTP id 4mr9584050vkj.7.1635496113976;
- Fri, 29 Oct 2021 01:28:33 -0700 (PDT)
+        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: samsung: pmu: Document Exynos850
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211028144313.9444-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <53a13ca3-a83e-b9ad-192c-b711657e2979@canonical.com>
+Date:   Fri, 29 Oct 2021 10:31:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <cover.1634822085.git.geert+renesas@glider.be> <1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be>
- <YXtIsCnJ+L5zqCVk@robh.at.kernel.org> <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
-In-Reply-To: <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 29 Oct 2021 10:28:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
-Message-ID: <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] [RFC] dt-bindings: display: bridge: nxp,tda998x:
- Convert to json-schema
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211028144313.9444-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
+On 28/10/2021 16:43, Sam Protsenko wrote:
+> Exynos850 SoC can reuse PMU driver functionality. Add corresponding
+> compatible string to PMU bindings documentation.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Thanks for your comments!
+Looks good, but will have to wait for merge window to finish.
 
-On Fri, Oct 29, 2021 at 10:08 AM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
-> On Thu, Oct 28, 2021 at 08:04:48PM -0500, Rob Herring wrote:
-> > On Thu, Oct 21, 2021 at 03:18:53PM +0200, Geert Uytterhoeven wrote:
-> > > +    properties:
-> > > +      port@0:
-> > > +        type: object
-> > > +        description: FIXME
-> >
-> > Looks like the input from the example
-> >
-> > > +
-> > > +      port@1:
-> > > +        type: object
-> > > +        description: FIXME
-> >
-> > Presumably the output to connector or another bridge.
->
-> This is changing the binding. The original had:
->
-> Required node:
->   - port: Input port node with endpoint definition, as described
->         in Documentation/devicetree/bindings/graph.txt
-
-Indeed, cfr. "Add ports hierarchy, as an alternative to port." in the
-patch description. Some users use port, other use ports with one or
-two port subnodes.
-
-> The above change appears to require that tda998x now has two ports.
-
-No, you can still use port:
-
-+oneOf:
-+  - required:
-+      - port
-+  - required:
-+      - ports
-
-When using ports, no further requirements are set, but perhaps port@0
-should be made required in that case?
-
-> This goes against current usage in DT and the example.
-
-The original example didn't even have the original required input
-port node, so it was incomplete.
-
-arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts has two port subnodes.
-Is that wrong?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
