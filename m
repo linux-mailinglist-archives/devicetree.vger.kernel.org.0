@@ -2,95 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA37440EC2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 15:16:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5E9D440F8D
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 17:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbhJaOSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 10:18:37 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:39650 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbhJaOSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 10:18:36 -0400
-Received: by mail-oi1-f180.google.com with SMTP id n11so13027298oig.6;
-        Sun, 31 Oct 2021 07:16:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=xC+QLTIobuHa0Z6oCpAsqleWAEnn6kGUDyvkKP96ljo=;
-        b=QT8AUMPSTi/P7BL/8wU/rIAZNARhRYDx0dPdVHEDtNunXmPxfj3n9SpBC4cSq7Ukrz
-         Lzjqss3kcroCEWjFR1uA5WBgeicl327D88rfZ4vRfhZ/yYThUHH46F/bpvCaMzTjAJqm
-         yanZmklbHMp3cyYA2ag+DhbErH8e/AEAup+Tk048zOn/O8MezTiSFqAuSp2/sMp7bMNj
-         wf6eYU4wp6qztnjLJcnaZM+qw+MblutJLUNVypgDzNMl0OW/7VNYcvoVGnegDZeR1LNY
-         8a5HNbpoIKSXVyDx/3jCrxIRDAWT16kzPS6hoQ32KTXTFLfZEQJJtMR9w8y1pPytrdga
-         C0ug==
-X-Gm-Message-State: AOAM533PDxGzJoZ8iF5qthNBuENHw5iMA0vWOxrPGgNd71/l0uvTKje0
-        JiZ4QynRKjwa8guKkO3EeA==
-X-Google-Smtp-Source: ABdhPJzefT/prrdJgYTE9ha1AUY+mLo2O1FCTNvTIM/vM02p0FQa4ro2FSPdNyMBSbCws/igy2KEsg==
-X-Received: by 2002:a05:6808:1187:: with SMTP id j7mr16179962oil.135.1635689764746;
-        Sun, 31 Oct 2021 07:16:04 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l12sm3432395otf.22.2021.10.31.07.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Oct 2021 07:16:03 -0700 (PDT)
-Received: (nullmailer pid 2444173 invoked by uid 1000);
-        Sun, 31 Oct 2021 14:16:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Lee Jones <lee.jones@linaro.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20211029202505.7106-1-zajec5@gmail.com>
-References: <20211029202505.7106-1-zajec5@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: convert Broadcom's WDT to the json-schema
-Date:   Sun, 31 Oct 2021 09:16:02 -0500
-Message-Id: <1635689762.721738.2444172.nullmailer@robh.at.kernel.org>
+        id S229960AbhJaQxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 12:53:41 -0400
+Received: from ixit.cz ([94.230.151.217]:41868 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229838AbhJaQxj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Oct 2021 12:53:39 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 745DF236BE;
+        Fri, 29 Oct 2021 13:49:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1635508196;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5E4M99vMPTvOFmcUC+iHe20MffqlLM2e2yyycVCMrFc=;
+        b=x/6JTSGL7EvLUnu1jDXAHmvK0BgihWBaAzBpLB5VseZ4ZQW7DAFaDLwJIOWrMW6d7EmXJO
+        7rkL/Qe3/FDJH3twa56e+yWRj1QEjVucJD97hW1MV4EYbyy6Xa9USQ2JA75Kblxpjr1mo6
+        Zdk0xio1jfVXFgkgJXwpowKavksrYvs=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v2 2/3] arm64: dts: make dts use gpio-fan matrix instead of array
+Date:   Fri, 29 Oct 2021 13:49:45 +0200
+Message-Id: <20211029114948.41841-2-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211029114948.41841-1-david@ixit.cz>
+References: <20211029114948.41841-1-david@ixit.cz>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 22:25:04 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> This helps validating DTS files.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ---------
->  .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 40 +++++++++++++++++++
->  2 files changed, 40 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
->  create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
-> 
+No functional changes.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Adjust to comply with dt-schema requirements
+and make possible to validate values.
 
-yamllint warnings/errors:
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 9 +++++----
+ arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts    | 5 +++--
+ 4 files changed, 10 insertions(+), 8 deletions(-)
 
-dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/watchdog/brcm,bcm7038-wdt.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1548262
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 86bdc0baf032..fbbcacf24f2e 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -52,10 +52,11 @@ gpio_fan: gpio-fan {
+ 		gpios = <&gpio GPIODV_14 GPIO_ACTIVE_HIGH
+ 			 &gpio GPIODV_15 GPIO_ACTIVE_HIGH>;
+ 		/* Dummy RPM values since fan is optional */
+-		gpio-fan,speed-map = <0 0
+-				      1 1
+-				      2 2
+-				      3 3>;
++		gpio-fan,speed-map =
++				<0 0>,
++				<1 1>,
++				<2 2>,
++				<3 3>;
+ 		#cooling-cells = <2>;
+ 	};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+index a3b9d615a3b4..e34045d10a12 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
+@@ -39,7 +39,7 @@ reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
+ 
+ 	fan: gpio-fan {
+ 		compatible = "gpio-fan";
+-		gpio-fan,speed-map = <0 0 8600 1>;
++		gpio-fan,speed-map = <0 0>, <8600 1>;
+ 		gpios = <&gpio3 5 GPIO_ACTIVE_HIGH>;
+ 		#cooling-cells = <2>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
+index 46b0f97a0b1c..4af535866d1f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
+@@ -44,7 +44,7 @@ dc_12v: dc-12v {
+ 	fan0: gpio-fan {
+ 		#cooling-cells = <2>;
+ 		compatible = "gpio-fan";
+-		gpio-fan,speed-map = <0 0 3000 1>;
++		gpio-fan,speed-map = <0 0>, <3000 1>;
+ 		gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
+ 		status = "okay";
+ 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+index 4d4b2a301b1a..8af3763daaba 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+@@ -30,8 +30,9 @@ gmac1_clkin: external-gmac1-clock {
+ 	fan: gpio_fan {
+ 		compatible = "gpio-fan";
+ 		gpios = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
+-		gpio-fan,speed-map = <0    0
+-				      4500 1>;
++		gpio-fan,speed-map =
++				<   0 0>,
++				<4500 1>;
+ 		#cooling-cells = <2>;
+ 	};
+ 
+-- 
+2.33.0
 
