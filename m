@@ -2,311 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 867B843F41A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E05443F421
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:48:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbhJ2As4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 20:48:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59210 "EHLO
+        id S231423AbhJ2AvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 20:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbhJ2As4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:48:56 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C7DC061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:46:27 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id y80so19788459ybe.12
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:46:27 -0700 (PDT)
+        with ESMTP id S231420AbhJ2AvS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:51:18 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AF7BC061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:48:50 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id v138so14390958ybb.8
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:48:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=l6Z3hT+hoYUW7qrKxZESd0pukUxNUCHLDPZeenOW/D0=;
-        b=khFVs2e+ZwZHQITeBI3M2rwpL93M5POCAArAMwpxaIVBJEEOn7qjKFSTPvphPYZ7c7
-         OsPcTAY2POG+no9hjyixS2PRWzogYb2Z3wfFLctLSoUT8pyN5D6QvzFG1qpp7giH66dU
-         9B7T8l0Jt777BH7yXZF6fRVO0betB6QU/3kiE=
+        bh=RR10NcdVnk1TXpaY9k+McyemxyXRCAjJsI5p8UJyeEE=;
+        b=je1Q1O+E+IAMH50n6kSYsYBq9DP2BbOqvwHFjhTQwTnTpPDQW/KLax+sy3hh1Ti83A
+         KBvlt0NDKjloxRzR46VYgbrCrj92wJfs3v7xQ4kAwamgXAy8ntZsv90ahoYFtM6FZZdm
+         SjY0gcrVltLksvtwLXhUsPPxvyrEHQalRHfY4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=l6Z3hT+hoYUW7qrKxZESd0pukUxNUCHLDPZeenOW/D0=;
-        b=G/due9LK/WWi08slakz6oO1FBAWvApycz500XVBvZe/UJq5+t2BVNexIZsGe2R2v7g
-         jKi8guFJDJg29s0JYsCoh+lro254JxRmM9wAORcNFxilmA5HfeJi1vtseqQ6J+3KzeB2
-         FAXydFuC5IzPryq1vOfdpS4hpLHXdgA/LLRW4/I75ktQds5awzmMte1O4HuTJCsbOLDU
-         eirXdbMaZ8yhiUNSPr1wLC5qzHGsSxp3GG+AEucU3tJbJHZ9y8mPL7mC5QgYtgiTUTOI
-         qlXz8J4udMubb3JAMJW4px3Yh38ad48vx/t4EYm9PM5w9ZJgmOyM/CAsJKhrG1+QrR29
-         fsbA==
-X-Gm-Message-State: AOAM5339uLbkPezYoEwyVf9UtyEBAIWVxTqHEspWgrV1dB+NwFcJoAfN
-        TiQWqa52lQekKUyHkqJLjrQxwHHNrlnFnu7znAVXQQ==
-X-Google-Smtp-Source: ABdhPJxPwky/F6s2t1I6WNK1/lBij5lmyyuYaFgfio7iVRgTCxUufysCtNj7mCoV8QnCQu2o4r3sM8n4bulAKE9b9ts=
-X-Received: by 2002:a25:aa32:: with SMTP id s47mr7287894ybi.57.1635468387075;
- Thu, 28 Oct 2021 17:46:27 -0700 (PDT)
+        bh=RR10NcdVnk1TXpaY9k+McyemxyXRCAjJsI5p8UJyeEE=;
+        b=mvKITfDXQJOEoTZRWY0gQH3DyFl641RgpXs6iHYuTIqMvxqtVI68nOo0/JPvVbDMYx
+         toprwQnca519s2ayDUrDW/yxHDNPvp9n7MbTOa3WVruQ4uwxEohxzCJW3xnZy1Op0vkR
+         6E3LvtB+hDcTYinxcIP1+3vjXMeZnrPUL90PsFODgZsQCpWZpJEnmQYf86UEfqKMICcR
+         6GchOqZat19MOrFDVBnZ0pfQBZqDNFmNNE/mCEvkeaD4/7ewSH2obsWIb9tuVX32/6A/
+         5W7ZnnbI1IaXyDv7FXgCYbASJwEZVy1c+JSXz9glhxr50ZyxaUGYuWTgoDoskaI6QTa9
+         ntqQ==
+X-Gm-Message-State: AOAM531CZwnIi7AxjnHuhL1FIxl1nle5Fx/tzMxlciqpKcU7oDrG4y5o
+        j4nLsPadmSIiavKJZkh/PG0TxEZDN4I0FbjVjot2fg==
+X-Google-Smtp-Source: ABdhPJzD4b97WCfq3smhAQB1MAvemDvB1d9B3h0Ln65gRGIoRqbA0/LnneC7xpA4e6pDgx19TQrwGNOZjnx7kLhiOxk=
+X-Received: by 2002:a25:bfce:: with SMTP id q14mr4166387ybm.508.1635468529683;
+ Thu, 28 Oct 2021 17:48:49 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211028151022.1.Ie56f55924f5c7706fe3194e710bbef6fdb8b5bc6@changeid>
- <CAD=FV=U+rzQcZaihDCZuNd54nmRHTgr7TMThESECZRfxaBNkrg@mail.gmail.com>
-In-Reply-To: <CAD=FV=U+rzQcZaihDCZuNd54nmRHTgr7TMThESECZRfxaBNkrg@mail.gmail.com>
+ <CAE-0n50XwcLBmOBaRiF-qW=R-HfanjviteEzmMDbDuPJruX65g@mail.gmail.com>
+In-Reply-To: <CAE-0n50XwcLBmOBaRiF-qW=R-HfanjviteEzmMDbDuPJruX65g@mail.gmail.com>
 From:   Philip Chen <philipchen@chromium.org>
-Date:   Thu, 28 Oct 2021 17:46:16 -0700
-Message-ID: <CA+cxXh=HxM4c-OJw8zwjUAVV3AbVggD3Kx8kHwXREmNmE83=TA@mail.gmail.com>
+Date:   Thu, 28 Oct 2021 17:48:39 -0700
+Message-ID: <CA+cxXhnu38eOJtuvHdS0Wyy7LmjmTMn9qjoVOqcNYK3F1xhrmQ@mail.gmail.com>
 Subject: Re: [PATCH 1/2] arm64: dts: sc7180: Support Lazor/Limozeen rev9
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>, dianders@chromium.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Stephen,
 
-On Thu, Oct 28, 2021 at 3:53 PM Doug Anderson <dianders@chromium.org> wrote:
+On Thu, Oct 28, 2021 at 4:00 PM Stephen Boyd <swboyd@chromium.org> wrote:
 >
-> Hi,
->
-> On Thu, Oct 28, 2021 at 3:11 PM Philip Chen <philipchen@chromium.org> wrote:
-> >
-> > Support Lazor/Limozeen rev9 board where Parade ps8640 is added as the
-> > second source edp bridge.
->
-> It probably wouldn't hurt to at least mention in the commit message
-> why the include of "sc7180.dtsi" was moved out of
-> "sc7180-trogdor-lazor.dtsi" so that people reviewing the change aren't
-> confused. Otherwise it just looks arbitrary.
-Sure, I updated the commit message in v2.
-
->
->
-> > Signed-off-by: Philip Chen <philipchen@chromium.org>
-> > ...
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts
-> > new file mode 100644
-> > index 000000000000..a2a6e2515ee6
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r5.dts
-> > @@ -0,0 +1,31 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor Limozeen board device tree source
-> > + *
-> > + * Copyright 2021 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-trogdor-lte-sku.dtsi"
-> > +
-> > +/ {
-> > +       model = "Google Lazor Limozeen without Touchscreen (rev5 - rev8)";
-> > +       /* No sku5 post-rev5 */
-> > +       compatible = "google,lazor-rev5-sku6", "google,lazor-rev6-sku6",
-> > +               "google,lazor-rev7-sku6", "google,lazor-rev8-sku6",
-> > +               "google,rev5-sku5", "qcom,sc7180";
->
-> Two issues.
->
-> 1. "google,rev5-sku5" should probably be "google,lazor-rev5-sku5"
-Thanks for the catch. I fixed it in v2.
->
-> 2. rev5-sku5 should sort to the start of the list, not to the end.
-Thanks. I fixed it in v2.
->
->
-> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r9.dts
-> > @@ -2,16 +2,18 @@
-> >  /*
-> >   * Google Lazor Limozeen board device tree source
-> >   *
-> > - * Copyright 2020 Google LLC.
-> > + * Copyright 2021 Google LLC.
+> Quoting Philip Chen (2021-10-28 15:11:31)
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > index 8b79fbb75756..69666f92176a 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
+> > @@ -5,13 +5,10 @@
+> >   * Copyright 2020 Google LLC.
 > >   */
 > >
-> >  /dts-v1/;
+> > -#include "sc7180.dtsi"
+> > -
+> >  ap_ec_spi: &spi6 {};
+> >  ap_h1_spi: &spi0 {};
+>
+> Can we get rid of this node swap now? I think it is only around because
+> early on we swapped the EC and H1 spi interfaces and then we had to swap
+> it every time we made a new board.
+>
+> $ git grep ap_ec_spi
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi:ap_ec_spi: &spi6 {};
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi:ap_ec_spi: &spi6 {};
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi:ap_ec_spi: &spi6 {};
+> arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts:ap_ec_spi: &spi6 {};
+>
+> It feels like we'd be better off leaving that quirk in trogdor-r0, which
+> conveniently isn't upstream, and then relabel the spi nodes in
+> sc7180-trogdor.dtsi now. Otherwise I look at this and have to remember
+> that whenever this dtsi file is included, we've already included the
+> sc7180.dtsi file before it, so that the relabel actually works.
+
+I agree it'll be great if we can get rid of the node swap.
+It's out of the scope of this patch series though.
+We should probably send a separate patch for this change later?
+
+>
 > >
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-parade-ps8640.dtsi"
-> >  #include "sc7180-trogdor-lazor.dtsi"
-> >  #include "sc7180-trogdor-lte-sku.dtsi"
+> >  #include "sc7180-trogdor.dtsi"
+> > -#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
 > >
-> >  / {
-> > -       model = "Google Lazor Limozeen without Touchscreen";
-> > +       model = "Google Lazor Limozeen without Touchscreen (rev9+)";
-> >         compatible = "google,lazor-sku6", "google,lazor-sku5", "qcom,sc7180";
->
-> Earlier you said "sku5" doesn't exist past -rev5. So it doesn't need
-> to be here, right?
-Correct. I removed "sku5" support here in v2.
-
->
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts
-> > new file mode 100644
-> > index 000000000000..10f48f4b429a
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-r4.dts
-> > @@ -0,0 +1,46 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor Limozeen board device tree source
-> > + *
-> > + * Copyright 2021 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-trogdor-lte-sku.dtsi"
-> > +
-> > +/ {
-> > +       model = "Google Lazor Limozeen (rev4 - rev8)";
-> > +       compatible = "google,lazor-rev4-sku4", "google,lazor-rev5-sku4",
-> > +               "google,lazor-rev6-sku4", "google,lazor-rev6-sku4",
->
-> -rev6 is listed twice and -rev7 is missing.
-Thanks for the catch.
-I fixed it in v2.
-
->
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-> > new file mode 100644
-> > index 000000000000..326ba9f88394
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
-> > @@ -0,0 +1,26 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor board device tree source
-> > + *
-> > + * Copyright 2020 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-parade-ps8640.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-lite.dtsi"
-> > +
-> > +/ {
-> > +       model = "Google Lazor (rev9+) with KB Backlight";
-> > +       compatible = "google,lazor-sku2", "qcom,sc7180";
-> > +};
-> > +
-> > +&keyboard_backlight {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&panel {
-> > +       compatible = "boe,nv133fhm-n62";
-> > +};
->
-> Why do you need the "panel" here?
-Oops, I forgot it's been added in the lazor dtsi file.
-I removed it in v2.
-
->
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-> > new file mode 100644
-> > index 000000000000..a705c956f62b
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-lte.dts
-> > @@ -0,0 +1,34 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor board device tree source
-> > + *
-> > + * Copyright 2021 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-parade-ps8640.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-trogdor-lte-sku.dtsi"
-> > +
-> > +/ {
-> > +       model = "Google Lazor (rev9+) with LTE";
-> > +       compatible = "google,lazor-sku0", "qcom,sc7180";
-> > +};
-> > +
-> > +&ap_sar_sensor {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&ap_sar_sensor_i2c {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&keyboard_backlight {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&panel {
-> > +       compatible = "boe,nv133fhm-n62";
-> > +};
->
-> Why do you need the "panel" hre?
-Oops, I removed it in v2.
-
->
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
-> > new file mode 100644
-> > index 000000000000..13ff9a851613
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9.dts
-> > @@ -0,0 +1,22 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor board device tree source
-> > + *
-> > + * Copyright 2021 Google LLC.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sc7180.dtsi"
-> > +#include "sc7180-trogdor-parade-ps8640.dtsi"
-> > +#include "sc7180-trogdor-lazor.dtsi"
-> > +#include "sc7180-lite.dtsi"
-> > +
-> > +/ {
-> > +       model = "Google Lazor (rev9+)";
-> > +       compatible = "google,lazor", "qcom,sc7180";
-> > +};
-> > +
-> > +&panel {
-> > +       compatible = "boe,nv133fhm-n62";
-> > +};
->
-> Why do you need the "panel" here?
-Oops, I removed it in v2.
->
->
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > index faf8b807d0ff..286d3594b6ae 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > @@ -11,6 +11,7 @@
-> >  #include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
-> >  #include <dt-bindings/clock/qcom,rpmh.h>
-> >  #include <dt-bindings/clock/qcom,videocc-sc7180.h>
-> > +#include <dt-bindings/gpio/gpio.h>
->
-> I don't think you should be adding this to sc7180.dtsi. If you need it
-> in the bridge chip "fragments" you should add the includes to those.
->
-> -Doug
+> >  &ap_sar_sensor {
+> >         semtech,cs0-ground;
