@@ -2,117 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF1743FFD6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 17:50:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3813743FFFE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 18:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbhJ2PxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 11:53:10 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:40206 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229527AbhJ2PxI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 11:53:08 -0400
-Received: from [77.244.183.192] (port=63784 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mgU9N-006Jdk-Cn; Fri, 29 Oct 2021 17:50:37 +0200
-Subject: Re: [PATCH v2 5/9] dt-bindings: mfd: add Maxim MAX77714 PMIC
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211019145919.7327-1-luca@lucaceresoli.net>
- <20211019145919.7327-6-luca@lucaceresoli.net>
- <YXjEzMYd9iYbodxo@robh.at.kernel.org>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <3ab50bfd-982a-5d78-39ba-683b687ca78f@lucaceresoli.net>
-Date:   Fri, 29 Oct 2021 17:50:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229662AbhJ2QE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 12:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229607AbhJ2QE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 12:04:56 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DD15C061570
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 09:02:27 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mgUKj-0001W9-3d; Fri, 29 Oct 2021 18:02:21 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mgUKh-0006Al-1t; Fri, 29 Oct 2021 18:02:19 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mgUKh-0003mh-0g; Fri, 29 Oct 2021 18:02:19 +0200
+Date:   Fri, 29 Oct 2021 18:02:16 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: pwm: tpu: Add R-Car M3-W+ device tree
+ bindings
+Message-ID: <20211029160216.cggflsvqdggt62h3@pengutronix.de>
+References: <622e5ac9a841e874f772e0d9d200200706914dac.1635337701.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-In-Reply-To: <YXjEzMYd9iYbodxo@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2y6n5cp24bll7th4"
+Content-Disposition: inline
+In-Reply-To: <622e5ac9a841e874f772e0d9d200200706914dac.1635337701.git.geert+renesas@glider.be>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On 27/10/21 05:17, Rob Herring wrote:
-> On Tue, Oct 19, 2021 at 04:59:15PM +0200, Luca Ceresoli wrote:
->> Add bindings for the MAX77714 PMIC with GPIO, RTC and watchdog.
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>
->> ---
->>
->> Changes in v2: none
->> ---
->>  .../bindings/mfd/maxim,max77714.yaml          | 58 +++++++++++++++++++
->>  MAINTAINERS                                   |  5 ++
->>  2 files changed, 63 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->> new file mode 100644
->> index 000000000000..2b0ce3b9bc92
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
->> @@ -0,0 +1,58 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/maxim,max77714.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MAX77714 PMIC with GPIO, RTC and watchdog from Maxim Integrated.
->> +
->> +maintainers:
->> +  - Luca Ceresoli <luca@lucaceresoli.net>
->> +
->> +description: |
->> +  MAX77714 is a Power Management IC with 4 buck regulators, 9
->> +  low-dropout regulators, 8 GPIOs, RTC and watchdog.
-> 
-> Where's the regulators nodes and binding?
+--2y6n5cp24bll7th4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-As discussed for the v1 patches [0]:
+On Wed, Oct 27, 2021 at 02:29:22PM +0200, Geert Uytterhoeven wrote:
+> From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>=20
+> Add device tree bindings for TPU found on R-Car M3-W+ SoCs.
+>=20
+> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-No plan to add them, sorry.
+=46rom the PWM POV:
 
-I know, complete bindings are better than incomplete bindings. But in
-the foreseeable future I don't need to do anything on the regulators
-(even though it might happen at some point). And since their setting is
-possibly non trivial, I'm not going to study them to write a complete
-bindings document and then make no use of it.
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-Is it a problem for you?
+Best regards
+Uwe
 
-[0]
-https://lore.kernel.org/lkml/4fc0fe37-1a25-4058-6326-a14e32ef18f5@lucaceresoli.net/
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
--- 
-Luca
+--2y6n5cp24bll7th4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmF8GwQACgkQwfwUeK3K
+7Ak32Af/XUBSBteU5D4Q4RnsqT8ZzGypJMQPbYaxReT5D72Jr+iSGqCzlXGOMsSX
+Wb8mHyrxIdFFK5gblw5doRTNLALhAbPxzCIq/9ntrW9f5D0RohuBFT8LiH+kiTW/
+OS5yW+3gtVb6LASBFmTqI3uJiF7pFjZbMLpB7ejvesqX+NVMA58EdpkyXIxgBVZX
+kfu48DR6XBbnobBudyFv017QCbDz7/4A+jpe5zgieOdC9iWyFDG/I6bbomwIEX61
+hoscnuNEoSTzL5jS2O9zVmZH+QwRPySKsc6L6FsNdpc8JRWK/jQXM21/7vlOwsjr
+s/qvmxQNmlzzVQyhyM+qW/tkWxLGBg==
+=KKJF
+-----END PGP SIGNATURE-----
+
+--2y6n5cp24bll7th4--
