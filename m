@@ -2,131 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F00F43FE9E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 16:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD03A43FEB3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 16:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbhJ2OrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 10:47:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45970 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229511AbhJ2OrM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 10:47:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C884611CB;
-        Fri, 29 Oct 2021 14:44:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635518684;
-        bh=JXq063lxP5NdObYVfsylEOeDpQ9heda2NljDpPAKCVY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pwIj0TbCChJdPc7ZRljY9/z91EdKF/FwQJvaAalrsJxPz7mrgEECL8PcZXoM9vSl5
-         tYKW3kl6h1zRV+580CPZdqJwcC0mw6W+o+ZZbRd830NMSOkU1TV7zkeLsL5WBoGhlP
-         sp0xydfFgSaSocdQEPLvSMWwVvpCSw3hNHIBuviafOjJna+lSAZPCTKJiA7EbsrCLN
-         4aQedFp+HHqccwyRw2wWrHtYFaQ5I8JOF0SO2x3v6j8PTmaIB40QXYSwTqRqG6VcQn
-         dFvDh1pEMaJDqJQT0hcxcLWp7wCQvTtXSOiELuxnprUksK+wuAPSnMeVggopNPf6vZ
-         rRKI5ksr0b0xg==
-Received: by mail-ed1-f45.google.com with SMTP id w15so39627795edc.9;
-        Fri, 29 Oct 2021 07:44:44 -0700 (PDT)
-X-Gm-Message-State: AOAM531mNebXHUeGaT/+cJQTCkynfd2/TieWRN2b3OfY/h/on8j8yzfG
-        TpjMPzJyL3tiO8qwmI3DCXhClAk1HRhRKzKaeg==
-X-Google-Smtp-Source: ABdhPJzgKku5UI29pWp+EBd22f3zuolB3qfN6dXWo83KbECOM1/m8h0OEK7iECxDyOFCsyGMYpk0WwXYpKdvn2KU2O0=
-X-Received: by 2002:a17:906:d553:: with SMTP id cr19mr13689318ejc.128.1635518682351;
- Fri, 29 Oct 2021 07:44:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211021174223.43310-1-kernel@esmil.dk> <20211021174223.43310-12-kernel@esmil.dk>
- <YXtTUGC5P41JtvoR@robh.at.kernel.org> <CANBLGcx3L1DmqjzqRAb+vEYWZTTxeGNUVx=BUfDuw=h3q5Nkgg@mail.gmail.com>
-In-Reply-To: <CANBLGcx3L1DmqjzqRAb+vEYWZTTxeGNUVx=BUfDuw=h3q5Nkgg@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 29 Oct 2021 09:44:30 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLBZV6ADY-B+3HCkxT1KpBJ5s3kcUfewSYf_rJ8HTu9Mw@mail.gmail.com>
-Message-ID: <CAL_JsqLBZV6ADY-B+3HCkxT1KpBJ5s3kcUfewSYf_rJ8HTu9Mw@mail.gmail.com>
-Subject: Re: [PATCH v2 11/16] dt-bindings: pinctrl: Add StarFive JH7100 bindings
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S229511AbhJ2Oys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 10:54:48 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:56840 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229501AbhJ2Oys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 10:54:48 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19TDDB1d031438;
+        Fri, 29 Oct 2021 16:52:13 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=I1juxWCbFobtAQIbrKW1gjVS0UkgsEenVBQr32iMpWc=;
+ b=cUjW0fCFUkxrpDLYpGUU2+Rjec67+uiIE7jgCN8GypfCENziuHwR+/6PR7jSO111tyQn
+ 8xQRlGQsVr63YqWXmvK8jB9rxa/Joahi3wdS0Gf/Y8dg59IB6KsosPp5qOw9TzSbShj0
+ z9ePYaDCoCPYh4hRB2uAUnSjgcZxV9F6U3WrfVe1Id9bHGZSfJEJfeCA2QDQGApC8QRv
+ YLB5nkswb+gVzzVMALfdtbMrk+jUCdgRJmgg54wy5mm6/iiEYkw/lEhDhLLY+BD5W3uw
+ d/YsWPG74JZ3oZBG1dg6MesUHDVrRY9MocoG88xGHwiyHgk3hNnvbpjzwtqjz4yJ1bZT jg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3c0c4y2qp2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 29 Oct 2021 16:52:13 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 3C3A710002A;
+        Fri, 29 Oct 2021 16:52:11 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3035B2C41F5;
+        Fri, 29 Oct 2021 16:52:11 +0200 (CEST)
+Received: from [10.48.0.126] (10.75.127.51) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 29 Oct
+ 2021 16:52:10 +0200
+Subject: Re: [PATCH] dt-bindings: usb: dwc2: document the port when
+ usb-role-switch is used
+To:     Rob Herring <robh@kernel.org>
+CC:     Minas Harutyunyan <hminas@synopsys.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+References: <1634144026-3326-1-git-send-email-fabrice.gasnier@foss.st.com>
+ <YXhnLh9OYxUz8dIC@robh.at.kernel.org>
+ <be749cbe-c029-7a24-da0e-94ab363ea07e@foss.st.com>
+ <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Message-ID: <c5e5b327-4f92-4623-56d3-62e6f7dc8604@foss.st.com>
+Date:   Fri, 29 Oct 2021 16:52:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqJPbJiNi5=YT3siGrb-vu2+Ex6Xa5=XQQ9NR2iMv-3Fxg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-10-29_03,2021-10-29_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 8:00 AM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> On Fri, 29 Oct 2021 at 03:50, Rob Herring <robh@kernel.org> wrote:
-> > On Thu, Oct 21, 2021 at 07:42:18PM +0200, Emil Renner Berthing wrote:
-> > > +patternProperties:
-> > > +  '-[0-9]*$':
-> >
-> > Can you make this more specific. As-is, '-' and 'foo-' are valid.
-> >
-> > > +    type: object
-> > > +    patternProperties:
-> > > +      '-pins*$':
-> >
-> > So foo-pinsssssss is okay? Drop the '*' or use ? if you intend to
-> > support 'foo-pin'.
->
-> Ah, thanks. Both this and the pattern above was taken from
-> pinctrl/mediatek,mt6779-pinctrl.yaml if anyone feels like fixing that
-> too. I see now that '-[0-9]+$' and '-pins$' is more common. I'll just
-> use that.
->
-> > > +        type: object
-> > > +        description: |
-> > > +          A pinctrl node should contain at least one subnode representing the
-> > > +          pinctrl groups available on the machine. Each subnode will list the
-> > > +          pins it needs, and how they should be configured, with regard to
-> > > +          muxer configuration, bias, input enable/disable, input schmitt
-> > > +          trigger enable/disable, slew-rate and drive strength.
-> > > +        $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> > > +
-> > > +        properties:
-> > > +          pins:
-> > > +            description: |
-> > > +              The list of pin identifiers that properties in the node apply to.
-> > > +              This should be set using either the PAD_GPIO or PAD_FUNC_SHARE
-> > > +              macro. Either this or "pinmux" has to be specified.
-> > > +
-> > > +          pinmux:
-> > > +            description: |
-> > > +              The list of GPIO identifiers and their mux settings that
-> > > +              properties in the node apply to. This should be set using the
-> > > +              GPIOMUX macro. Either this or "pins" has to be specified.
-> > > +
-> > > +          bias-disable: true
-> > > +
-> > > +          bias-pull-up:
-> > > +            type: boolean
-> >
-> > Already has a type. Need to reference the common schema.
->
-> Right, but the common schema specifies one of boolean or uint32. Is
-> there a way to reference that, but still say that this binding
-> supports only the boolean version?
+On 10/29/21 12:50 AM, Rob Herring wrote:
+> On Wed, Oct 27, 2021 at 7:05 AM Fabrice Gasnier
+> <fabrice.gasnier@foss.st.com> wrote:
+>>
+>> On 10/26/21 10:38 PM, Rob Herring wrote:
+>>> On Wed, Oct 13, 2021 at 06:53:46PM +0200, Fabrice Gasnier wrote:
+>>>> Document the "port" property, which is used with "usb-role-switch"
+>>>> to describe the bus connector.
+>>>> Definition is inspired from mediatek,mtu3.yaml.
+>>>>
+>>>> This fixes some errors seen when running "make dtbs_check":
+>>>> ... 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+>>>>         From schema: ... Documentation/devicetree/bindings/usb/dwc2.yaml
+>>>>
+>>>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+>>>> ---
+>>>>  Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
+>>>>  1 file changed, 10 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>>> index 10c7d9b..7d1aa53 100644
+>>>> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>>> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+>>>> @@ -130,6 +130,16 @@ properties:
+>>>>      description: If present indicates that we need to reset the PHY when we
+>>>>        detect a wakeup. This is due to a hardware errata.
+>>>>
+>>>> +  port:
+>>>> +    description:
+>>>> +      Any connector to the data bus of this controller should be modelled
+>>>> +      using the OF graph bindings specified, if the "usb-role-switch"
+>>>> +      property is used. See graph.txt
+>>>
+>>> Drop 'See graph.txt'
+>>>
+>>>> +    $ref: /schemas/graph.yaml#/properties/port
+>>>> +
+>>>> +dependencies:
+>>>> +  port: [ 'usb-role-switch' ]
+>>>
+>>> usb-role-switch without port is valid or both must be present. In case
+>>> of the latter, you need to add:
+> 
+> If I wasn't clear, that was a question. Is usb-role-switch without
+> port is valid?
 
-Okay, then keep this.
+Hi Rob,
 
-Rob
+Ah ok... I didn't get it was a question.
+So, usb-role-switch without port is valid.
+
+> 
+>>
+>> Hi Rob,
+>>
+>> Thanks for your review.
+>> I agree with your statement. But I miss something in this proposal:
+>>
+>>>
+>>> usb-role-switch: [ port ]
+>>
+>> I tried this without success, when running dt_binding_check.
+>>
+>> For testing, I added locally in the example successively:
+>>
+>> 1 - usb-role-switch (alone)
+>> -----
+>> +        usb-role-switch;
+>> "dwc2.example.dt.yaml: usb@101c0000: 'port' is a dependency of
+>> 'usb-role-switch'
+>>
+>> 2 - port without usb-role-switch
+>> -----
+>> +        //usb-role-switch;
+>> +
+>> +        port {
+>> +          usb_role_sw: endpoint {
+>> +            remote-endpoint = <&hs_ep>;
+>> +          };
+>> +        };
+>> dt_binding_check is happy here. But it shouldn't, right ?
+> 
+> You had this?:
+> 
+> dependencies:
+>   usb-role-switch: [ port ]
+>   port: [ usb-role-switch ]
+
+no, above test was only with "usb-role-switch: [ port ]"
+
+> 
+> 
+> If both properties have to be present together, then you need the above.
+
+This isn't the case. The only constraints here is, if port is used, then
+usb-role-switch must be set.
+
+dependencies:
+  port: [ usb-role-switch ]
+
+V2 is under review, with the above.
+
+BR,
+Fabrice
+> 
+>>
+>> 3 - both (port + usb-role-switch)
+>> -----
+>> dt_binding_check is ok.
