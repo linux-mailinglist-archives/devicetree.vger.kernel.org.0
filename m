@@ -2,110 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6029143F478
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 03:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F28A143F45D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 03:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbhJ2Bow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 21:44:52 -0400
-Received: from sp1.canonet.ne.jp ([210.134.165.88]:54088 "EHLO
-        sp1.canonet.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbhJ2Bow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 21:44:52 -0400
-X-Greylist: delayed 643 seconds by postgrey-1.27 at vger.kernel.org; Thu, 28 Oct 2021 21:44:51 EDT
-Received: from csp1.canonet.ne.jp (unknown [172.21.160.41])
-        by sp1.canonet.ne.jp (Postfix) with ESMTP id 0C5BF1E2121;
-        Fri, 29 Oct 2021 10:31:38 +0900 (JST)
-Received: from echeck1.canonet.ne.jp ([172.21.160.31])
-        by csp1 with ESMTP
-        id gGk1mo1qDN3wPgGk5mAmXE; Fri, 29 Oct 2021 10:31:38 +0900
-X-CNT-CMCheck-Reason: "undefined", "v=2.4 cv=FqG7Q0nq c=1 sm=1 tr=0
- ts=617b4efa cx=g_jp:t_eml p=jS_m2ZRBfqgA:10 p=J6NwUhtvX1eaRd5jVJ0A:9
- a=pfbPvPf18X2prx6cd4zkIA==:117 a=tZJh02MRJqx6YQIfqiKbZA==:17
- a=PlGk70OYzacA:10 a=Dyoqhi_TatcA:10 a=Cfj4BQAnxiAA:10 a=8gfv0ekSlNoA:10
- a=x7bEGLp0ZPQA:10 a=pGLkceISAAAA:8 a=Ft8UYL4EG9YA:10 a=BQXGylkD5y8A:10
- a=J0s5x_g6e59_nfSmIxx9:22"
-X-CNT-CMCheck-Score: 100.00
-Received: from echeck1.canonet.ne.jp (localhost [127.0.0.1])
-        by esets.canonet.ne.jp (Postfix) with ESMTP id 841FF1C0252;
-        Fri, 29 Oct 2021 10:31:37 +0900 (JST)
-X-Virus-Scanner: This message was checked by ESET Mail Security
-        for Linux/BSD. For more information on ESET Mail Security,
-        please, visit our website: http://www.eset.com/.
-Received: from smtp1.canonet.ne.jp (smtp1.canonet.ne.jp [172.21.160.21])
-        by echeck1.canonet.ne.jp (Postfix) with ESMTP id 7BC241C024D;
-        Fri, 29 Oct 2021 10:31:37 +0900 (JST)
-Received: from User (66-76-33-5.mnwlcmta01.com.sta.suddenlink.net [66.76.33.5])
-        by smtp1.canonet.ne.jp (Postfix) with ESMTPA id 38B9515F967;
-        Fri, 29 Oct 2021 10:30:37 +0900 (JST)
-Reply-To: <t8901658jtg@foxmail.com>
-From:   "Tony" <mail@akiyama-estate.co.jp>
-Subject: Re: THE TRUTH/SECRET ABOUT YOUR FUND
-Date:   Fri, 29 Oct 2021 01:31:40 -0000
+        id S231371AbhJ2BfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 21:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231269AbhJ2BfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 21:35:01 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C67BAC061570;
+        Thu, 28 Oct 2021 18:32:33 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id gh1so5349601qvb.8;
+        Thu, 28 Oct 2021 18:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pDbmTFmdUa1vOFovfEjzfndFY1x7Eiw6Kvd3FWDkoxc=;
+        b=VSKovtfAXRDGln/ro6n8sMyFekczXY1eZL1Vs6yQnGCyL/B71u90blTbUPv/Lh9G+E
+         AviMJm3uAkjgGNIvgeWw+wVPDLDaZbLY9MXpn8TmhFp12noEwyJm0Zt4xlXoQuMiLAbx
+         3UhTBSb1Mvk3m/C5RH6av4ecX9wVEF9UWtBUkoYbGiMSRbcafB5u2JVIWtnv4qZ841NK
+         TMzyuCiRa9/S7n0zeTwlyflVN/aeRZMEuP1KcmlxaJqgHPdNyomzts+K0ouTDIKRf3qW
+         mmENiWzEWLXhTKGf9hGv3EZ46Ox0e9s/knwJywRZWk2IchUZB3ZfDuPqHMVuRDdd2GcD
+         1kPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pDbmTFmdUa1vOFovfEjzfndFY1x7Eiw6Kvd3FWDkoxc=;
+        b=NYybBB7oK0K1pXcQlxP91iQp79NrVs02Se2UJJpVuNReibmi6OvwY5v+gN/lCnYvcw
+         nrLLukOG8fChSJvHQhJ8sQwFqIE8YyXmYOWrMiXng073kGZw+VChECqBpySnouJmX8rV
+         97knFtQfjXj8x8m+oC5hnexOSS4Ga06ppJxBu2izRjscbb+aSGITCOTG7QbhuOljUbSi
+         pOox9cWFWz/ZyCTO3+uA9IWN5cFyVpcN7o/p8vdtkT7wowhoi8tHD9YmMcF9Xcof7Pf8
+         tKI7Npz4z51hsCGgpXm52lAU3p+3ssbW6OI6TPDpmBOw9pPHPI9r4nJPHF5IV/684b6L
+         bVrQ==
+X-Gm-Message-State: AOAM532MRUpOSDTikKfsVCwx5wvwXbQQ8YNKz6Mf4tsZ8RqsyvLPmayC
+        Yde1GB1lbZepKD8H+Pp+TAQ=
+X-Google-Smtp-Source: ABdhPJyrHjdj9XEFnRSkldMt/4/bkKu/0E5F2TesyOmk7mzCDa1MO0CC/b/Nxz1xs3dhtFkmkob2LA==
+X-Received: by 2002:a05:6214:300c:: with SMTP id ke12mr7716024qvb.41.1635471152973;
+        Thu, 28 Oct 2021 18:32:32 -0700 (PDT)
+Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id az12sm2991612qkb.28.2021.10.28.18.32.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 18:32:32 -0700 (PDT)
+From:   frowand.list@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] of: unittest: fix EXPECT text for gpio hog errors
+Date:   Thu, 28 Oct 2021 20:32:25 -0500
+Message-Id: <20211029013225.2048695-1-frowand.list@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-X-EsetResult: clean, %VIRUSNAME%
-X-ESET-AS: R=SPAM;S=100;OP=CALC;TIME=1635471097;VERSION=7907;MC=712767906;TRN=14;CRV=0;IPC=66.76.33.5;SP=4;SIPS=1;PI=5;F=0
-X-I-ESET-AS: RN=584:0,442,624:1;RNP=t8923458jtg@gmail.com,t8901658jtg@foxmail.com
-X-ESET-Antispam: SPAM
-Message-Id: <20211029013137.841FF1C0252@echeck1.canonet.ne.jp>
-To:     undisclosed-recipients:;
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am Mr Tony. a computer scientist working with central bank of Lome Togo. I just started work with central bank of Lome Togo. and I came across your file which was marked X and your released disk  painted RED, I took time to study it and found out that you have paid VIRTUALLY all fees and but the fund was not released to you.
+From: Frank Rowand <frank.rowand@sony.com>
 
-The most annoying thing is that they won't tell you the truth that  no account will they ever release the fund to you,instead they allow you spend money unnecessarily, I do not intend to work here all the days of my life, I can release this fund to you if you can certify me of my security.I needed to do this because you need to know the statues of your Funds and cause for the delay,Please this is like a Mafia setting in Lome Togo, you may not understand it because you are not a Togolese.
+The console message text for gpio hog errors does not match
+what unittest expects.
 
-The only thing needed to release this fund is the Anti drug/terrorist clearance certificate which will be tendered to any of your nominated bank and the INTERNAL REVENUE SERVICE(IRS)for clearance of the transferred amount in your account.Once the Anti drug /terrorist clearance certificate is obtained funds will immediately reflect in your bank within 10 Minutes,the certificate is all that is needed to complete this transaction.
+Fixes: f4056e705b2ef ("of: unittest: add overlay gpio test to catch gpio hog problem")
+Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+---
+ drivers/of/unittest.c | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Note that the actual funds is valued at $5 MILLION USD and the president made a compensation fund release for all unpaid beneficiary valued at $1 million usd.Listed below are the mafia's and banks behind the non release of your funds that i managed to sneak out for your kind perusal.
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 8c056972a6dd..5b85a2a3792a 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -1688,19 +1688,19 @@ static void __init of_unittest_overlay_gpio(void)
+ 	 */
+ 
+ 	EXPECT_BEGIN(KERN_INFO,
+-		     "GPIO line <<int>> (line-B-input) hogged as input\n");
++		     "gpio-<<int>> (line-B-input): hogged as input\n");
+ 
+ 	EXPECT_BEGIN(KERN_INFO,
+-		     "GPIO line <<int>> (line-A-input) hogged as input\n");
++		     "gpio-<<int>> (line-A-input): hogged as input\n");
+ 
+ 	ret = platform_driver_register(&unittest_gpio_driver);
+ 	if (unittest(ret == 0, "could not register unittest gpio driver\n"))
+ 		return;
+ 
+ 	EXPECT_END(KERN_INFO,
+-		   "GPIO line <<int>> (line-A-input) hogged as input\n");
++		   "gpio-<<int>> (line-A-input): hogged as input\n");
+ 	EXPECT_END(KERN_INFO,
+-		   "GPIO line <<int>> (line-B-input) hogged as input\n");
++		   "gpio-<<int>> (line-B-input): hogged as input\n");
+ 
+ 	unittest(probe_pass_count + 2 == unittest_gpio_probe_pass_count,
+ 		 "unittest_gpio_probe() failed or not called\n");
+@@ -1727,7 +1727,7 @@ static void __init of_unittest_overlay_gpio(void)
+ 	chip_request_count = unittest_gpio_chip_request_count;
+ 
+ 	EXPECT_BEGIN(KERN_INFO,
+-		     "GPIO line <<int>> (line-D-input) hogged as input\n");
++		     "gpio-<<int>> (line-D-input): hogged as input\n");
+ 
+ 	/* overlay_gpio_03 contains gpio node and child gpio hog node */
+ 
+@@ -1735,7 +1735,7 @@ static void __init of_unittest_overlay_gpio(void)
+ 		 "Adding overlay 'overlay_gpio_03' failed\n");
+ 
+ 	EXPECT_END(KERN_INFO,
+-		   "GPIO line <<int>> (line-D-input) hogged as input\n");
++		   "gpio-<<int>> (line-D-input): hogged as input\n");
+ 
+ 	unittest(probe_pass_count + 1 == unittest_gpio_probe_pass_count,
+ 		 "unittest_gpio_probe() failed or not called\n");
+@@ -1774,7 +1774,7 @@ static void __init of_unittest_overlay_gpio(void)
+ 	 */
+ 
+ 	EXPECT_BEGIN(KERN_INFO,
+-		     "GPIO line <<int>> (line-C-input) hogged as input\n");
++		     "gpio-<<int>> (line-C-input): hogged as input\n");
+ 
+ 	/* overlay_gpio_04b contains child gpio hog node */
+ 
+@@ -1782,7 +1782,7 @@ static void __init of_unittest_overlay_gpio(void)
+ 		 "Adding overlay 'overlay_gpio_04b' failed\n");
+ 
+ 	EXPECT_END(KERN_INFO,
+-		   "GPIO line <<int>> (line-C-input) hogged as input\n");
++		   "gpio-<<int>> (line-C-input): hogged as input\n");
+ 
+ 	unittest(chip_request_count + 1 == unittest_gpio_chip_request_count,
+ 		 "unittest_gpio_chip_request() called %d times (expected 1 time)\n",
+-- 
+Frank Rowand <frank.rowand@sony.com>
 
-1) Prof. Charles soludo
-2) Senator  Mark
-3) Chief Joseph Sanusi
-4) Dr. R. Rasheed
-5) Barrister Awele Ugorji
-6) Mr Roland Ngwa
-7) Barrister Ucheuzo Williams
-8) Mr. Ernest Chukwudi Obi
-9) Dr. Patrick Aziza
-Deputy Governor - Policy / Board Member
-10) Mr. Tunde Lemo
-Deputy Governor - Financial Sector Surveillance / Board Member
-11) Mrs. W. D. A. Mshelia
-Deputy Governor - Corporate Services / Board Members
-12) Mrs. Okonjo Iweala
-13) Mrs. Rita Ekwesili
-14) Barr Jacob Onyema
-15) Dr. Godwin Oboh: Director Union Bank Of Nigeria.
-16) Mr John Collins: Global Diplomat Director.
-17) Foreign fund diplomatic courier
-18) Barr. Becky Owens
-19)Rev. Steven Jones
-20) bank of Africa
-21)Mrs. Debbie Hargrove
-22)Mr. Micheal Wagner
-23)Barr. Isa Farid
-24)Dr. Raymond Faye
-25)Ibraheem Fashola
-26)Dr. Leslie Fawaz
-27)Mercy Fajaroo
-28)Walter K. Falana
-29)Azeez Fatou
-30)Ibrahim Fabumi
-31)Daniel Faras
-32)Micheal Faras
-
-Do get in touch with me immediately with my direct  Email id  t8923458jtg@gmail.com  to conclude this final transaction immediately,and also send to me your convenient tel/fax numbers for easy communications.
-
-Thanks while i look forward to your positive reply.
-
-Regards,
-Mr Tony
