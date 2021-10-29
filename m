@@ -2,100 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C30F343F9F1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 11:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D28D843F9F8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 11:34:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231531AbhJ2Jfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 05:35:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbhJ2Jfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 05:35:41 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9571C061570;
-        Fri, 29 Oct 2021 02:33:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=CndVQumI3AmJcTN9QjVmztpnvBa8Y3ayGPnj6RHPOAk=; b=S5rvlnm+YWnjZXwjESU4Cg9RkO
-        1oBbvOtf8vlGrivD0exvKmG0JIpjsoc+PTkH6ccKmlrERZzQcrxC4uSvu1FnUXch/g3Ufoyx+4Zbc
-        7watAkRcNQcZ1voNNBWUYuEa+90pWl6GPIEPMwxRkQzhQMigIYRkDqAVqNCf7tCNAiIRCp4KVj62X
-        LouPAmvZsuDT+DZ6CqZKAc9C2Jm3V3eNuEkSrmQKDA7Wvgig0EmQYekp/Xbw87PLOEy74YkdG/6MF
-        +ZNGJpole4xXsYrl23p3ChgLFSBr0OAbWQ2TTZ6S+T1rQrdC1lOyRwiRJRfshHGYhNykv+D+SHeQu
-        31MQr1DA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55376)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mgOG1-0008SP-Si; Fri, 29 Oct 2021 10:33:05 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mgOFz-0001Uu-OQ; Fri, 29 Oct 2021 10:33:03 +0100
-Date:   Fri, 29 Oct 2021 10:33:03 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 3/3] [RFC] dt-bindings: display: bridge: nxp,tda998x:
- Convert to json-schema
-Message-ID: <YXu/zwjYqoqYgfLx@shell.armlinux.org.uk>
-References: <cover.1634822085.git.geert+renesas@glider.be>
- <1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be>
- <YXtIsCnJ+L5zqCVk@robh.at.kernel.org>
- <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
- <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
+        id S231462AbhJ2Jgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 05:36:42 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:27563 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231273AbhJ2Jgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 05:36:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635500053; x=1667036053;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=UA3mT5pGOwCaE2esRTHjdF4YdhrEwD31Y+BDYVHSjPc=;
+  b=LKIuMt/EZRc++R79R19IWHXVXvQ6jIVdABCMRQS6HoEnSJaIF80c2gWj
+   6JpFF0uz1eJofeCO/fQ5Jixb98NO/6jUf+AerMY5df+X9BIzKoMCiHfWe
+   EtKbintIrkpUyK1cf7CbGaUjNp6EpV01lZfPhY+VB99oZIKGvroEMLAyT
+   ugrzJKfo86IlcLL3o1jCYWVe53P33kHzklZZ7Q2kIoZM/eRtno8NbLmwt
+   t3mXRniqba6Qtmh2dMeEIBkv+wDNZkfmx2boyXA8vyvb9SmF8viwKR9sh
+   s5tsq5pbSadUkpfKrFwP0oQBUy5+AlhexL85+r0ZDp6gs7o8Wv4fbcVPg
+   g==;
+IronPort-SDR: Z58UCXVOAmV806wBgMO50/n0HZgZnw7G1JwQKLqIqeVHFwthiQt5BSlTkE6j+OPpzGmOqnYKZE
+ BX3rzmXI32YiQ94NsCkLl+wCZg3vREV+VltPjcEW0v1ZY9m8ziURxvyhSuNMfl4twwOllq0qig
+ w+Y1rn6zTkLBQfHdGfVpGf5rCZe+lPXjJvFUbbcwjGTtFWKcDluyqZm38HWopf88CYuFJEYD9p
+ eQ50GtQnYK2JnwmkgRl1myG7cFYeFBTH05QsT+3r7Vv1YhBLNO0A4n3YB0Eco6CdVDGB/YNtEF
+ V5YTuJ9SlKZjYmeOcgpMZtrZ
+X-IronPort-AV: E=Sophos;i="5.87,192,1631602800"; 
+   d="scan'208";a="134776882"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Oct 2021 02:34:13 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 29 Oct 2021 02:34:13 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Fri, 29 Oct 2021 02:34:12 -0700
+Date:   Fri, 29 Oct 2021 11:35:56 +0200
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+CC:     <mturquette@baylibre.com>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>, <kavyasree.kotagiri@microchip.com>,
+        <eugen.hristev@microchip.com>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 3/3] clk: lan966x: Extend lan966x clock driver for
+ clock gating support
+Message-ID: <20211029093556.tdvroyommqi5xb6g@soft-dev3-1.localhost>
+References: <20211019084449.1411060-1-horatiu.vultur@microchip.com>
+ <20211019084449.1411060-4-horatiu.vultur@microchip.com>
+ <163548971798.15791.952778566228263608@swboyd.mtv.corp.google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <163548971798.15791.952778566228263608@swboyd.mtv.corp.google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 10:28:22AM +0200, Geert Uytterhoeven wrote:
-> Hi Russell,
-> 
-> Thanks for your comments!
-> 
-> No, you can still use port:
-> 
-> +oneOf:
-> +  - required:
-> +      - port
-> +  - required:
-> +      - ports
-> 
-> When using ports, no further requirements are set, but perhaps port@0
-> should be made required in that case?
+The 10/28/2021 23:41, Stephen Boyd wrote:
 
-Maybe I don't understand the binding description then, but to me it
-looks like you require both port@0 and port@1.
+Hi Stephen,
 
-The reality of the driver is that it makes almost no use of the graph
-itself, except via drm_of_find_possible_crtcs() to find the connected
-CRTCs. If it is connected to an I2S source, then it probably needs a
-port specification for that. If someone wants to describe the HDMI
-connector (which I don't see any point in) then they likely need a
-port specification for that too. However, the driver itself doesn't
-care about any of those.
+> 
+> Quoting Horatiu Vultur (2021-10-19 01:44:49)
+> > diff --git a/drivers/clk/clk-lan966x.c b/drivers/clk/clk-lan966x.c
+> > index 19bec94e1551..40be47092a31 100644
+> > --- a/drivers/clk/clk-lan966x.c
+> > +++ b/drivers/clk/clk-lan966x.c
+> > @@ -188,26 +202,64 @@ static struct clk_hw *lan966x_gck_clk_register(struct device *dev, int i)
+> >         return &priv->hw;
+> >  };
+> >
+> > +static int lan966x_gate_clk_register(struct device *dev,
+> > +                                    struct clk_hw_onecell_data *hw_data,
+> > +                                    void __iomem *gate_base)
+> > +{
+> > +       int i;
+> > +
+> > +       for (i = GCK_GATE_UHPHS; i < N_CLOCKS; ++i) {
+> > +               int idx = i - GCK_GATE_UHPHS;
+> > +
+> > +               hw_data->hws[i] =
+> > +                       clk_hw_register_gate(dev, clk_gate_desc[idx].name,
+> 
+> Use devm?
 
-So, describing the port nodes makes no sense.
+I couldn't find any devm_clk_hw_register_gate or something similar for
+the gate.
+
+> 
+> > +                                            "lan966x", 0, base,
+> > +                                            clk_gate_desc[idx].bit_idx,
+> > +                                            0, &clk_gate_lock);
+> > +
+> > +               if (IS_ERR(hw_data->hws[i]))
+> > +                       return dev_err_probe(dev, PTR_ERR(hw_data->hws[i]),
+> > +                                            "failed to register %s clock\n",
+> > +                                            clk_gate_desc[idx].name);
+> > +       }
+> > +
+> > +       return 0;
+> > +}
+> > +
+> > +static void lan966x_gate_clk_unregister(struct clk_hw_onecell_data *hw_data)
+> > +{
+> > +       int i;
+> > +
+> > +       for (i = GCK_GATE_UHPHS; i < N_CLOCKS; ++i)
+> 
+> for (int i =
+> 
+> should suffice
+
+That would not work. I will get the error:
+error: ‘for’ loop initial declarations are only allowed in C99 or C11 mode
+
+> 
+> > +               if (!IS_ERR(hw_data->hws[i]))
+> > +                       clk_hw_unregister(hw_data->hws[i]);
+> > +}
+> > +
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+/Horatiu
