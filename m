@@ -2,52 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE6F743FAA4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 12:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B4543FAC7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 12:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbhJ2KXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 06:23:50 -0400
-Received: from foss.arm.com ([217.140.110.172]:36770 "EHLO foss.arm.com"
+        id S231694AbhJ2Kfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 06:35:52 -0400
+Received: from mx.socionext.com ([202.248.49.38]:15999 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231622AbhJ2KXu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 06:23:50 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CB0171FB;
-        Fri, 29 Oct 2021 03:21:21 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C132C3F5A1;
-        Fri, 29 Oct 2021 03:21:20 -0700 (PDT)
-Date:   Fri, 29 Oct 2021 11:21:18 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Message-ID: <20211029102118.GG6526@e120937-lin>
-References: <20211028140009.23331-1-etienne.carriere@linaro.org>
+        id S231721AbhJ2Kfv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 06:35:51 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 29 Oct 2021 19:33:22 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 3BABC207616C;
+        Fri, 29 Oct 2021 19:33:22 +0900 (JST)
+Received: from 172.31.9.53 (172.31.9.53) by m-FILTER with ESMTP; Fri, 29 Oct 2021 19:33:22 +0900
+Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
+        by iyokan2.css.socionext.com (Postfix) with ESMTP id DAAC2B62AB;
+        Fri, 29 Oct 2021 19:33:21 +0900 (JST)
+Received: from [10.212.181.14] (unknown [10.212.181.14])
+        by yuzu2.css.socionext.com (Postfix) with ESMTP id 6EA1EB6291;
+        Fri, 29 Oct 2021 19:33:21 +0900 (JST)
+Subject: Re: [PATCH v2 7/8] dt-bindings: phy: uniphier-ahci: Add bindings for
+ Pro4 SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1634687888-23900-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1634687888-23900-8-git-send-email-hayashi.kunihiko@socionext.com>
+ <YXsSPm1SdvaeDwbq@robh.at.kernel.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <9db1cd5a-c4f0-a1d2-2681-e8c58ee540ee@socionext.com>
+Date:   Fri, 29 Oct 2021 19:33:21 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028140009.23331-1-etienne.carriere@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <YXsSPm1SdvaeDwbq@robh.at.kernel.org>
+Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 04:00:08PM +0200, Etienne Carriere wrote:
-> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> based on an OP-TEE service invocation. The compatible mandates a
-> channel ID defined with property "linaro,optee-channel-id".
+Hi Rob,
+
+On 2021/10/29 6:12, Rob Herring wrote:
+> On Wed, Oct 20, 2021 at 08:58:07AM +0900, Kunihiko Hayashi wrote:
+>> Update AHCI-PHY binding document for UniPhier Pro4 SoC. Add a compatible
+>> string, clock and reset lines for the SoC to the document.
+>>
+>> Pro4 AHCI-PHY needs to control additional GIO clock line and reset lines
+>> ("pm", "tx", and "rx").
+>>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   .../bindings/phy/socionext,uniphier-ahci-phy.yaml    | 20
+> ++++++++++++++++----
+>>   1 file changed, 16 insertions(+), 4 deletions(-)
+>>
+>> diff --git
+> a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+> b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.yaml
+>> index 745c525ce6b9..67415f7ebe8c 100644
+>> --- a/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.
+> yaml
+>> +++ b/Documentation/devicetree/bindings/phy/socionext,uniphier-ahci-phy.
+> yaml
+>> @@ -16,6 +16,7 @@ maintainers:
+>>   properties:
+>>     compatible:
+>>       enum:
+>> +      - socionext,uniphier-pro4-ahci-phy
+>>         - socionext,uniphier-pxs2-ahci-phy
+>>         - socionext,uniphier-pxs3-ahci-phy
+>>   
+>> @@ -30,6 +31,9 @@ properties:
+>>   
+>>     clock-names:
+>>       oneOf:
+>> +      - items:          # for Pro4
+>> +          - const: gio
+>> +          - const: link
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> ---
+> Add new entries on the end...
+> 
+>>         - items:          # for PXs2
+>>             - const: link
+> 
+> So add 'gio' here.
+> 
+> And add 'minItems: 1' in this entry.
+> 
+> There's also an error in 'clocks' as it needs 'minItems: 1'
 
-Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+I see.
+I'll add "minItems: 1", and fix the item order.
 
-Thanks,
-Cristian
+> 
+>>         - items:          # for others
+>> @@ -37,12 +41,20 @@ properties:
+>>             - const: phy
+>>   
+>>     resets:
+>> -    maxItems: 2
+>> +    minItems: 2
+>> +    maxItems: 5
+>>   
+>>     reset-names:
+>> -    items:
+>> -      - const: link
+>> -      - const: phy
+>> +    oneOf:
+>> +      - items:          # for Pro4
+>> +          - const: gio
+>> +          - const: link
+>> +          - const: pm
+>> +          - const: tx
+>> +          - const: rx
+>> +      - items:          # for others
+>> +          - const: link
+>> +          - const: phy
+>>   
+>>   required:
+>>     - compatible
+>> -- 
+>> 2.7.4
 
+Thank you,
+
+---
+Best Regards
+Kunihiko Hayashi
