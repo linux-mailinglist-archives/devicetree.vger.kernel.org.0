@@ -2,86 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47AEE4402CD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 21:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59534402DE
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 21:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230261AbhJ2TGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 15:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51842 "EHLO
+        id S230268AbhJ2TJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 15:09:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230024AbhJ2TGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 15:06:35 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC63C061766
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id n13-20020a9d710d000000b005558709b70fso8407478otj.10
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
+        with ESMTP id S230381AbhJ2TJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 15:09:30 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3E0C061714
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:07:01 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id w193so14795394oie.1
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:07:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=msvWE2t5mYMtRDZ8I+17Fkh9yjZ5rWivjCZQNykv7fk=;
-        b=h8ZNXZO6Y41SOBnORBN6mWRYXD8NiYviTASTihebDxoUBuG4reKkOwBjpj+PhwUfIR
-         EV5RM3FzdALQPD4l4MUqP3QJRnMHFt/0jEojgCD2KmkD14HzRAd3+BkSsi/qrM3jG9+U
-         JTXeDZrrA9GfjTCcPg4wlcAMDm50yudFoBXYM=
+         :subject:to;
+        bh=JIoJB0nrnD/FFJ0kl/mJlxgFsqLGnc24ub0V7Q5LiC0=;
+        b=bJM3Q7f+i/afuWWCMK9Zl6Ay4ZGeoSmIMwgY9LnPih51xxl3kIoujkSsqObWesITLf
+         6UujLqHi2tSvD7sUnjd6EaTZDSz3nEgQYkppvar8Qjp1Xv6DYm169z1MzVoio623ojKw
+         SaXvZd35gNBBe55rjV6qIHWDfnQzq6Z8I73Zs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=msvWE2t5mYMtRDZ8I+17Fkh9yjZ5rWivjCZQNykv7fk=;
-        b=hLAw0xEUrXSvL7Tn6MV1vos9J2yB+r4LPnDcu5JWIIwAK2GXQJ556hz7tvtZHqf/GW
-         ZxSUIgt0vH+/CQtmf/i0O8SZdCEC5pWBbZWEEUvtjUlaVaNf3ohNZGPyWCMJ0jOBYt1s
-         QFzP3QYFibyYU40pILzzyxc58xONLZNrif0dzt2cUc5Fl8TgHBHUuk5IK+ai+pRIRQev
-         6yg4AvQ+tqKNRcELprVO3r1nj66+FSJTytbs3fvzIZqGuE2kSb4NDWT/ghS5TZnZgkOn
-         eZivPtrUepBOeo0nwhirEdLfI7S/6HM6WTFUzw70Zk7PILpEPPELfsxBXdmb1bL0IkWE
-         m14g==
-X-Gm-Message-State: AOAM533AfwgmWAMKCJgBD8g6nQenbBLEni57rASRl6Vkv+3ZA8bJFhBN
-        Kina9I2stWq4yP8BSy1K1mkMvXe9Y2towED5hy1Kqg==
-X-Google-Smtp-Source: ABdhPJwejTge5mxVTo1xpsG7+GmYiYIEclbSkYga1ic0Puo/7kWiWy21jY9P4cFhgjzOxE55swj6TqN6+gG4s2vvMTY=
-X-Received: by 2002:a9d:7655:: with SMTP id o21mr9902382otl.126.1635534245276;
- Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
+         :user-agent:date:message-id:subject:to;
+        bh=JIoJB0nrnD/FFJ0kl/mJlxgFsqLGnc24ub0V7Q5LiC0=;
+        b=Qc90BIrhM2SwG5jmo1mmZwl3Gg8rDtxZnmrojZARveakn11UOngTXGyywLpI3caVK7
+         sm77/iW00g9FvO4bJ9UcSzKTiiNZtiG/pGwCFlRxkZ0nYepRElsaUku0Du+QMlefp85P
+         P481vCf82k9PWVqJGWRWd98wmO3sBVW8UfKhD4Tb8/XEMumXu8Y5kO3KMmMmpWVbONUF
+         WW2FiHDlXSoluMSc52s3SghiS95NH8GRUBbzHHFwPlolEp3lMUs0zhZ8ZfRWNygFdB3B
+         Hc0HGqpzjSTP2/QGIWwIFLhAaVbxz6eShdDvp4mb5/SzAmQFHiDRVbu8FLKTJgs96xTl
+         6v5Q==
+X-Gm-Message-State: AOAM532tm7SqYzSaThUfwx5fRJc8hx948faGalmyJD6waCTUZMYJVGgZ
+        4G5MsEPvXOaEUB91sF3lr2WZaNWV5jJh0bY1w0ff1w==
+X-Google-Smtp-Source: ABdhPJx9DGm5zi/J5DHIHPM2ULFvb0dn5vpJfei1NgjU04Cz6QeqMDgJeGhpiv+KN0Wgad1XtCZqRxBYp0XeOm27aYk=
+X-Received: by 2002:a05:6808:2124:: with SMTP id r36mr9693318oiw.64.1635534421166;
+ Fri, 29 Oct 2021 12:07:01 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 29 Oct 2021 14:04:04 -0500
+ HTTPREST; Fri, 29 Oct 2021 14:07:00 -0500
 MIME-Version: 1.0
-In-Reply-To: <000201d7ccb2$300dba50$90292ef0$@codeaurora.org>
-References: <1635408817-14426-1-git-send-email-pillair@codeaurora.org>
- <1635408817-14426-3-git-send-email-pillair@codeaurora.org>
- <CAE-0n50z=h-avn+K-weZnZFVN7nsR=fLAtge7jFZ0JLx2JvP2w@mail.gmail.com> <000201d7ccb2$300dba50$90292ef0$@codeaurora.org>
+In-Reply-To: <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
+References: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org> <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Fri, 29 Oct 2021 14:04:04 -0500
-Message-ID: <CAE-0n5155J4vvvFES9V5=v+nX3BhZsBgZxkB=uLQOPij=-sf-Q@mail.gmail.com>
-Subject: RE: [PATCH v7 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, ohad@wizery.com,
-        p.zabel@pengutronix.de, pillair@codeaurora.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sibis@codeaurora.org, mpubbise@codeaurora.org, kuabhs@chromium.org
+Date:   Fri, 29 Oct 2021 14:07:00 -0500
+Message-ID: <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
+ machine bindings
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting pillair@codeaurora.org (2021-10-29 03:46:03)
->
-> > > +
-> > > +        glink-edge {
-> > > +            interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
-> > > +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-> > > +                                         IRQ_TYPE_EDGE_RISING>;
-> > > +            mboxes = <&ipcc IPCC_CLIENT_WPSS
-> > > +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> > > +
-> > > +            label = "wpss";
-> > > +            qcom,remote-pid = <13>;
-> >
-> > There are a few properties here that don't seem to be required. Is that
-> > intentional?
->
-> Hi Stephen,
-> All the properties in the example are listed as required (except for status, which will be removed in the subsequent patchset).
-> Do you mean the glink-edge node properties ?
+Quoting Srinivasa Rao Mandadapu (2021-10-29 08:04:35)
+> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> new file mode 100644
+> index 0000000..3a781c8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> @@ -0,0 +1,170 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google SC7280-Herobrine ASoC sound card driver
+> +
+> +maintainers:
+> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> +  - Judy Hsiao <judyhsiao@chromium.org>
+> +
+> +description:
+> +  This binding describes the SC7280 sound card which uses LPASS for audio.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - google,sc7280-herobrine
+> +
+> +  audio-routing:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> +    description:
+> +      A list of the connections between audio components. Each entry is a
+> +      pair of strings, the first being the connection's sink, the second
+> +      being the connection's source.
+> +
+> +  model:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: User specified audio sound card name
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^dai-link@[0-9a-f]$":
+> +    description:
+> +      Each subnode represents a dai link. Subnodes of each dai links would be
+> +      cpu/codec dais.
+> +
+> +    type: object
+> +
+> +    properties:
+> +      link-name:
+> +        description: Indicates dai-link name and PCM stream name.
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        maxItems: 1
+> +
+> +      reg:
+> +        maxItems: 1
+> +        description: dai link address.
+> +
+> +      cpu:
+> +        description: Holds subnode which indicates cpu dai.
+> +        type: object
+> +        properties:
+> +          sound-dai: true
 
-Yes I mean all the properties in the glink-edge node. Are they required?
-If so then we need to list them in the schema.
+Is sound-dai required? And additionalProperties is false? I think we
+need that yet again.
+
+> +
+> +      codec:
+> +        description: Holds subnode which indicates codec dai.
+> +        type: object
+> +        properties:
+> +          sound-dai: true
+> +
+
+Same here.
+
+> +    required:
+> +      - link-name
+> +      - cpu
+> +      - codec
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
