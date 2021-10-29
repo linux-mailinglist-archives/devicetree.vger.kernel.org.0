@@ -2,80 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ACE643F4CB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 04:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A009043F4CF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 04:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbhJ2CKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 22:10:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38380 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231348AbhJ2CKR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 22:10:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 68FE860F02;
-        Fri, 29 Oct 2021 02:07:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635473269;
-        bh=UXO2jb8+ezJ2SMUULWwSCcFcl++e/vE5BJFAyMyQ2Aw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ThnLp6yx0xW5I7VY5LlJFd3PKGHYRZe0BWw/1tIAdjTlcCUCE6Y0GulHHnJA9tIv6
-         GCkUSqgt5IaEXV3rvs8N+DmrntWvzc4VpDgVe0RsQxfYDUUGrRZ4L6nZTn5LqoINqJ
-         hLUM+bligfS1MqHMTG/D5UxOp/gsRnPAZmw5f3Xw+jiihAsmPUXG9GtJI/srMZlaQ2
-         MKcrsYhBUwdYZwVArqqOsR1zCpCwBKduCHlXvtG4u73fuGmfTtPhiSTTinR8wv6YCP
-         Vul0eTur+0hekddrdVoYjLjdZTvCyY5VkyMTGKdgQIPf7q+L2oenjpI5ugYK42M9yh
-         QP8z2+gbUVE3A==
-Received: by mail-ed1-f45.google.com with SMTP id z20so33150791edc.13;
-        Thu, 28 Oct 2021 19:07:49 -0700 (PDT)
-X-Gm-Message-State: AOAM531iLJqFYmPxFbPuafEKMEkiI3sY/6XinOTk4wLwcGdy74Gs2llf
-        YUWLRfPdXGVE0yxf0/BZU/gI/v7Hdc+fJ0QVvQ==
-X-Google-Smtp-Source: ABdhPJx/ocNQD9wn9e7w/52aPfNEKWBmdZr077TMGcH/Bt9fSDjCzMLgvaDlX++E853RZ9o/CcAYDsPVn4BZRONPi7Q=
-X-Received: by 2002:a05:6402:206b:: with SMTP id bd11mr11428236edb.145.1635473267940;
- Thu, 28 Oct 2021 19:07:47 -0700 (PDT)
+        id S231463AbhJ2CLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 22:11:36 -0400
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:33689 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231448AbhJ2CLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 22:11:35 -0400
+Received: by mail-ot1-f52.google.com with SMTP id 107-20020a9d0a74000000b00553bfb53348so11540229otg.0;
+        Thu, 28 Oct 2021 19:09:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cWT55KoR46afDHHTQr+hX72a4Tyq57TAn7zjfIMOc1U=;
+        b=N/VM1+wY2gfoSxEOhetbz+TCZViHfSkDOxzwU/Z9gSjXhzUew2nA/TxQQCDVB28aiv
+         kKOJ+4MPzajB7P0t0RM3HJV/sHQbSW2P4MtzztIXmNunRv6CsPEaJf1NJwTQI1SQ3lc0
+         AXxke5mOHa4bYEDMuwScCUFwxNuRooOJXnJc2gyvDWkbriaQYOMFGNSbU2nCgfkWaRkB
+         KBXWARoABMG/915LxLOcYnSRbYZXesDXTkK7NV7773zqv/1kRRJTJS96tPna4pn1plmY
+         NIKhBo57/L4DYK6q9m7N28xdMuv15L7M5gn/ruipnERNDfaLygVNFToSrZq1nsVSk4Ul
+         uKwA==
+X-Gm-Message-State: AOAM530h6e1FIQegXetdQEuOFzMi0wcLfjoxudRg2qHV54wrPSdVKzKJ
+        kc//aERJAhTu1u7CqfazSyKiQnO9lA==
+X-Google-Smtp-Source: ABdhPJzaWCjjFr1fS5Jxk1z/oZsTLBNd6jBpfBqk1GK/TBDa+H96OL9Ovs2kTaM8jPuEgKUqN2sM9g==
+X-Received: by 2002:a05:6830:4106:: with SMTP id w6mr6385835ott.55.1635473347721;
+        Thu, 28 Oct 2021 19:09:07 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w18sm1695511ott.29.2021.10.28.19.09.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 19:09:07 -0700 (PDT)
+Received: (nullmailer pid 1015369 invoked by uid 1000);
+        Fri, 29 Oct 2021 02:09:06 -0000
+Date:   Thu, 28 Oct 2021 21:09:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-usb@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: dwc2: Add otg-rev property
+ documentation
+Message-ID: <YXtXwhXcGOqj8Pv8@robh.at.kernel.org>
+References: <20211024003652.227772-1-marex@denx.de>
 MIME-Version: 1.0
-References: <20211029005802.2047081-1-frowand.list@gmail.com>
-In-Reply-To: <20211029005802.2047081-1-frowand.list@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 28 Oct 2021 21:07:36 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com>
-Message-ID: <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] of: unittest: fix dts for interrupt-map provider
- build warning
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211024003652.227772-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 7:58 PM <frowand.list@gmail.com> wrote:
->
-> From: Frank Rowand <frank.rowand@sony.com>
->
-> Fix kernel build warning:
-> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
->
-> A recently implemented dtc compiler warning reported the dts problem.
->
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+On Sun, Oct 24, 2021 at 02:36:52AM +0200, Marek Vasut wrote:
+> Copy the otg-rev property documentation from usb-drd.yaml into the DWC2
+> binding document, since some users of the DWC2 IP like STM32MP1 use the
+> otg-rev property in DT bindings for this controller.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > ---
->  drivers/of/unittest-data/tests-interrupts.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
-> index 9b60a549f502..8c2b91b998aa 100644
-> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
-> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
-> @@ -31,6 +31,7 @@ test_intmap0: intmap0 {
->
->                         test_intmap1: intmap1 {
->                                 #interrupt-cells = <2>;
-> +                               #address-cells = <1>;
+> NOTE: Shouldn't this somehow be part of the USB core bindings instead?
 
-Notice that we have 2 nodes with interrupt-map here. One has
-'#address-cells' and one doesn't. Why? Because we need to test that
-the code can handle both cases.
+Yes, usb-drd.yaml IIRC
 
-The dtc warnings are more what should 'new' users do. I don't know
-what DTs don't have #address-cells, but my guess is ancient ones.
-
-Rob
+> ---
+>  Documentation/devicetree/bindings/usb/dwc2.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> index 10c7d9b6cc53f..254436c19870b 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
+> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+> @@ -120,6 +120,16 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>      description: size of periodic tx fifo per endpoint (except ep0) in gadget mode.
+>  
+> +  otg-rev:
+> +    description:
+> +      Tells usb driver the release number of the OTG and EH supplement with
+> +      which the device and its descriptors are compliant, in binary-coded
+> +      decimal (i.e. 2.0 is 0200H). This property is used if any real OTG
+> +      features (HNP/SRP/ADP) is enabled. If ADP is required, otg-rev should be
+> +      0x0200 or above.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0x0100, 0x0120, 0x0130, 0x0200]
+> +
+>    snps,need-phy-for-wake:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description: If present indicates that the phy needs to be left on for 
+> -- 
+> 2.33.0
+> 
+> 
