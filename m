@@ -2,158 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 596FE43FB97
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20AB943FBA2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:45:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231913AbhJ2Lor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 07:44:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35084 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231807AbhJ2Loq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 07:44:46 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F910C061570;
-        Fri, 29 Oct 2021 04:42:18 -0700 (PDT)
-Received: from [IPv6:2a02:810a:880:f54:6141:93b5:19a6:af87] (unknown [IPv6:2a02:810a:880:f54:6141:93b5:19a6:af87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7CB8E1F45953;
-        Fri, 29 Oct 2021 12:42:16 +0100 (BST)
-Subject: Re: [PATCH v8, 04/17] media: mtk-vcodec: Build decoder pm file as
- module
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Collabora Kernel ML <kernel@collabora.com>
-References: <20211029035527.454-1-yunfei.dong@mediatek.com>
- <20211029035527.454-5-yunfei.dong@mediatek.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <367efd7e-667c-6c0f-a36e-0eff6d323f48@collabora.com>
-Date:   Fri, 29 Oct 2021 13:42:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229772AbhJ2Lrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 07:47:47 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:11457 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229692AbhJ2Lrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 07:47:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635507918; x=1667043918;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=E5Oi1K3kkRiAM71vuOqErVhZeeiDouXckBeZRHGiwKA=;
+  b=BAupIeHwEtW5siaRSxsP6+hO4PUWAPhmQbOXvFud34x1JLcjBlTW4EfB
+   vTufZd/xmEiIBTOjD7xy8r4ZsQ1vO0zjUKMpV0OyCronyaesfmhhnu3+m
+   wUW1zHNwORIF5WgF4HYnnsezJpiOeS2NSICUYziHZMGAUDHdhyU4iP595
+   k=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 29 Oct 2021 04:45:18 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Oct 2021 04:45:17 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Fri, 29 Oct 2021 04:45:16 -0700
+Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Fri, 29 Oct 2021 04:45:13 -0700
+From:   Satya Priya <quic_c_skakit@quicinc.com>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <mka@chromium.org>, <swboyd@chromium.org>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: [PATCH V3 0/4] Add PM8350C PMIC PWM support for backlight
+Date:   Fri, 29 Oct 2021 17:14:49 +0530
+Message-ID: <1635507893-25490-1-git-send-email-quic_c_skakit@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20211029035527.454-5-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series depends on [1], which adds driver for Qualcomm LPG.
 
+[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=560587&state=%2A&archive=both
 
-On 29.10.21 05:55, Yunfei Dong wrote:
-> Need to build decoder pm file as module for master and comp
-> use the same pm interface.
+Satya Priya (1):
+  arm64: dts: qcom: Enable pm8350c pwm for sc7280-idp2
 
-Do you still use the component framework in this patchset?
-In the cover letter you write: "- Use of_platform_populate to manage multi hardware, not component framework for patch 4/15"
-If that frameworks is not used anymore you should also change the commit log, and maybe this patch is not needed anymore?
+satya priya (3):
+  dt-bindings: leds: Add pm8350c pmic support
+  leds: Add pm8350c support to Qualcomm LPG driver
+  arm64: dts: qcom: pm8350c: Add pwm support
 
-Thanks,
-Dafna
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
-> v8: add new patch to build pm file as module
-> ---
->   drivers/media/platform/mtk-vcodec/Makefile            | 6 ++++--
->   drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c | 9 +++++++++
->   2 files changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/Makefile b/drivers/media/platform/mtk-vcodec/Makefile
-> index ca8e9e7a9c4e..5d36e05535d7 100644
-> --- a/drivers/media/platform/mtk-vcodec/Makefile
-> +++ b/drivers/media/platform/mtk-vcodec/Makefile
-> @@ -2,7 +2,8 @@
->   
->   obj-$(CONFIG_VIDEO_MEDIATEK_VCODEC) += mtk-vcodec-dec.o \
->   				       mtk-vcodec-enc.o \
-> -				       mtk-vcodec-common.o
-> +				       mtk-vcodec-common.o \
-> +				       mtk-vcodec-dec-common.o
->   
->   mtk-vcodec-dec-y := vdec/vdec_h264_if.o \
->   		vdec/vdec_vp8_if.o \
-> @@ -14,7 +15,8 @@ mtk-vcodec-dec-y := vdec/vdec_h264_if.o \
->   		mtk_vcodec_dec.o \
->   		mtk_vcodec_dec_stateful.o \
->   		mtk_vcodec_dec_stateless.o \
-> -		mtk_vcodec_dec_pm.o \
-> +
-> +mtk-vcodec-dec-common-y := mtk_vcodec_dec_pm.o
->   
->   mtk-vcodec-enc-y := venc/venc_vp8_if.o \
->   		venc/venc_h264_if.o \
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
-> index 20bd157a855c..09a281e3065a 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c
-> @@ -77,12 +77,14 @@ int mtk_vcodec_init_dec_pm(struct platform_device *pdev,
->   	put_device(pm->larbvdec);
->   	return ret;
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_init_dec_pm);
->   
->   void mtk_vcodec_release_dec_pm(struct mtk_vcodec_pm *pm)
->   {
->   	pm_runtime_disable(pm->dev);
->   	put_device(pm->larbvdec);
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_release_dec_pm);
->   
->   int mtk_vcodec_dec_pw_on(struct mtk_vcodec_pm *pm)
->   {
-> @@ -94,6 +96,7 @@ int mtk_vcodec_dec_pw_on(struct mtk_vcodec_pm *pm)
->   
->   	return ret;
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_dec_pw_on);
->   
->   void mtk_vcodec_dec_pw_off(struct mtk_vcodec_pm *pm)
->   {
-> @@ -103,6 +106,7 @@ void mtk_vcodec_dec_pw_off(struct mtk_vcodec_pm *pm)
->   	if (ret)
->   		mtk_v4l2_err("pm_runtime_put_sync fail %d", ret);
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_dec_pw_off);
->   
->   void mtk_vcodec_dec_clock_on(struct mtk_vcodec_pm *pm)
->   {
-> @@ -129,6 +133,7 @@ void mtk_vcodec_dec_clock_on(struct mtk_vcodec_pm *pm)
->   	for (i -= 1; i >= 0; i--)
->   		clk_disable_unprepare(dec_clk->clk_info[i].vcodec_clk);
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_dec_clock_on);
->   
->   void mtk_vcodec_dec_clock_off(struct mtk_vcodec_pm *pm)
->   {
-> @@ -139,3 +144,7 @@ void mtk_vcodec_dec_clock_off(struct mtk_vcodec_pm *pm)
->   	for (i = dec_clk->clk_num - 1; i >= 0; i--)
->   		clk_disable_unprepare(dec_clk->clk_info[i].vcodec_clk);
->   }
-> +EXPORT_SYMBOL_GPL(mtk_vcodec_dec_clock_off);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("Mediatek video decoder driver");
-> 
+ Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml |  1 +
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi                     |  7 +++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts                  |  4 ++++
+ drivers/leds/rgb/leds-qcom-lpg.c                          | 13 +++++++++++++
+ 4 files changed, 25 insertions(+)
+
+-- 
+2.7.4
+
