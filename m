@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA13B43F85A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7D343F882
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:04:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232300AbhJ2IEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 04:04:35 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:39076
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232259AbhJ2IEe (ORCPT
+        id S232304AbhJ2IHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 04:07:18 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:52470
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232351AbhJ2IHR (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 04:04:34 -0400
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        Fri, 29 Oct 2021 04:07:17 -0400
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E8AFF3F19F
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:02:05 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id EF9083F19B
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:04:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1635494525;
-        bh=YZHX5XPqeCgDiFoFSMyeZ0BtWYEy7HV1zu3lUGcO6rM=;
+        s=20210705; t=1635494688;
+        bh=gORZX0yVzoq2Pz3qmNV7v4k3dxqbLEeJY96EVFHtvGw=;
         h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
          In-Reply-To:Content-Type;
-        b=O2ZpQ6RwzJoEDU+snFjWALD9NtoI2SD1BKJPe0deqeOgV6Eby/T2AAuTM2+5FB0oM
-         Uq0uCPojpx4DU73W5u89P6owkkQ/tWf8ZsPPXrXLJmJ2BQNyVjw4Q4eqqZOw00NVNe
-         tbrdKvrX793lXdDQIH1YZOdxxay1ZLF5Z5TqZWAMeatHGLUJnZLdOpiOVFIzxTvrre
-         rFt9p4PhaRIucva+cOzpvI1Eo1CEVYFTS7NDe92HQYes4q5f+/Y8EKfK7O2mx5SOui
-         hnroIafOqO1GOcf0bjXLW6STFTokL4GOVm1M4b0t0v+z4ON0jk8yLnMXf1zfDlsoxK
-         6bGSRxRw4cAyw==
-Received: by mail-lf1-f71.google.com with SMTP id h21-20020a0565123c9500b003ffa23a0577so3830421lfv.18
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 01:02:05 -0700 (PDT)
+        b=ERtWDP61cuauom36zc0DovRS+G/4rmwPGjl3ZtjUm3vvSsuy41csvlnY+67FEfX9w
+         oRtfc1jCNjjpH2uV8RI5sNSj9kgmakjHc+6h+cAww08n89Izz4F4xrvAVbhiN3u3ED
+         JInrHFqpqOwzTXO2pHtPLW6c1tfynoy1UGnDL+VETHGxFtUmjbDJMSmNZR8KkN4AGd
+         m5xFN3locVXivfC+ONQRtXmeAKfxrTRmnjyu/Xqrp3kKPqqlfAVjwW7dB9nsWzJgy6
+         eRg+qho6RoDXqjFcn+LD4I0Z5jf3bINBuWObSY4dB0nBk6RYKn6ziGFU7hzSXwZq+Z
+         dsPorw2JibR3g==
+Received: by mail-lj1-f200.google.com with SMTP id v17-20020a2e7a11000000b002118bb7d585so2793470ljc.4
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 01:04:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=YZHX5XPqeCgDiFoFSMyeZ0BtWYEy7HV1zu3lUGcO6rM=;
-        b=nbJ8Jkl+fVCq+uwJowXIha5JBihXxvg3bMkE0iuAa7hbOI09NT7PQMWRG1kwhkXU1+
-         5e/4cSdWvbidoXmbvTA+fyID3RBbacOpVDdoVOcER+w+SJax/tK7kKM51m/P0dSuvbum
-         V686PyZuJ++YRRW0P5utWm5SH0CHAObydOIvj8CQ63L+O5NQcK9S1WAly26VA/9Jn/OH
-         0gJxUThdhi2Z29ed14g43D2yvL1S6p6O0FAOEX9IrIbYJQn0it3a/sXVjkhcpQfNIJ7k
-         vaaMQA0+WAl5TBm8FNyQc+WJ6rBBmkvETwtSARz107l3akzbMt3eXotXo/GJxm67PI4C
-         003g==
-X-Gm-Message-State: AOAM531KUs5xar+zqbAzd4sAjEQKOwDE+xXYQaWViwpoGd2UUSARDLmS
-        mYHWaqAzLTSqjIDBhnaDEr44vH2hymgW04Mk6PhZDZ5qFgRWZdu8hNUc8AHOIkJDgoyhPdwziUi
-        wQ2X22XsOQEWoBFt8s4hpVkSp0cd67UeK16t3gC8=
-X-Received: by 2002:ac2:44d5:: with SMTP id d21mr9087002lfm.484.1635494525297;
-        Fri, 29 Oct 2021 01:02:05 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyAjnJ8XQoAHqEARf5VyzKcgRTHX/sDddni3/2wZIwVLFfjC+xdgOo+HOWeD/ogCW/dZJmcIA==
-X-Received: by 2002:ac2:44d5:: with SMTP id d21mr9086978lfm.484.1635494525019;
-        Fri, 29 Oct 2021 01:02:05 -0700 (PDT)
+        bh=gORZX0yVzoq2Pz3qmNV7v4k3dxqbLEeJY96EVFHtvGw=;
+        b=BsXB8l5OdB09vUCKuXxeBKgjYh+SCIpN0Ad13SXcGxspwnp1E1S7Dz4TL4fB9hj4pP
+         2I/C94ERNaeZg34M7cRmS0JXdSatoBZ2a4Shz/kRy5wFqWSd9LFmoQRgCw+Uc/aYZHNR
+         IIUSYLA7VvU9BiG5RD5gBf/JLRaaw/ku2u+1LT8xv3x5JG7EqAs4awssXs/A+25rfh5u
+         5P/CvO1dLTbAUDAlnx//k6GJu79pT0ubIkuAg9na0nkUIlKFgj4mh40TomQWibMU77a7
+         ffieVv8WyqfBwJior6Hdq2uzB/FF5p4cVt7yCX2oqPgfyUXzJk+QHbgzv/UlwsH8/HFH
+         CUug==
+X-Gm-Message-State: AOAM5325ljHeBTTMYOWBrtpk3qp/IfVPOSso1B31qX0F7Ye12HBkdUX7
+        7xSgly/RXKiXk5ojXMw3+Xk0cZJFReojBaJ51lUmE3KK0L2pLPFKaFWXa8NsKAWodf/DSlQpF0Y
+        vHTldu1Iu0lctgEA4Uw2BH3iyQ7LZ92+gXAnEeoo=
+X-Received: by 2002:a05:6512:114f:: with SMTP id m15mr9740357lfg.140.1635494688391;
+        Fri, 29 Oct 2021 01:04:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwbyLMzs+ms2kQOLdOYd2/yiv+HtnDZo2M293OptXi22K4l4nItsFMCPCA4hNH+rhY4cNTzlw==
+X-Received: by 2002:a05:6512:114f:: with SMTP id m15mr9740342lfg.140.1635494688236;
+        Fri, 29 Oct 2021 01:04:48 -0700 (PDT)
 Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id c27sm537130lfm.59.2021.10.29.01.02.04
+        by smtp.gmail.com with ESMTPSA id c24sm537891lfc.155.2021.10.29.01.04.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 01:02:04 -0700 (PDT)
-Subject: Re: [PATCH 2/7] dt-bindings: watchdog: Document Exynos850 watchdog
- bindings
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Fri, 29 Oct 2021 01:04:47 -0700 (PDT)
+Subject: Re: [PATCH 3/7] watchdog: s3c2410: Make reset disable optional
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
 References: <20211028183527.3050-1-semen.protsenko@linaro.org>
- <20211028183527.3050-3-semen.protsenko@linaro.org>
+ <20211028183527.3050-4-semen.protsenko@linaro.org>
+ <b9c33def-6b12-1e5a-4449-b1e0869a0e3a@roeck-us.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <33c823c6-c105-68f1-e7c8-de6c27c5c33c@canonical.com>
-Date:   Fri, 29 Oct 2021 10:02:03 +0200
+Message-ID: <2a5ff8d0-c665-e25e-cb40-51326db2e26a@canonical.com>
+Date:   Fri, 29 Oct 2021 10:04:47 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211028183527.3050-3-semen.protsenko@linaro.org>
+In-Reply-To: <b9c33def-6b12-1e5a-4449-b1e0869a0e3a@roeck-us.net>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -80,66 +80,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2021 20:35, Sam Protsenko wrote:
-> Exynos850 SoC has two CPU clusters:
->   - cluster 0: contains CPUs #0, #1, #2, #3
->   - cluster 1: contains CPUs #4, #5, #6, #7
+On 29/10/2021 02:16, Guenter Roeck wrote:
+> On 10/28/21 11:35 AM, Sam Protsenko wrote:
+>> Not all SoCs have AUTOMATIC_WDT_RESET_DISABLE register, examples are
+>> Exynos850 and Exynos9. On such chips reset disable register shouldn't be
+>> accessed. Provide a way to avoid handling that register. This is done by
+>> introducing separate callbacks to driver data structure: one for reset
+>> disable register, and one for mask reset register. Now those callbacks
+>> can be checked and called only when those were set in driver data.
+>>
+>> This commit doesn't bring any functional change to existing devices, but
+>> merely provides an infrastructure for upcoming chips support.
+>>
 > 
-> Each cluster has its own dedicater watchdog timer. Those WDT instances
-> are controlled using different bits in PMU registers, so there should be
-> two different compatible strings (for each cluster), to tell the driver
-> which bits to use for each WDT instance.
+> That doesn't explain why the callbacks are needed instead of additional
+> feature flags.
 > 
-> Also on Exynos850 the peripheral clock and the source clock are two
-> different clocks. Provide a way to specify two clocks in watchdog device
-> tree node.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  .../devicetree/bindings/watchdog/samsung-wdt.yaml  | 14 ++++++++++++--
->  1 file changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-> index 93cd77a6e92c..19c7f7767559 100644
-> --- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-> @@ -22,16 +22,24 @@ properties:
->        - samsung,exynos5250-wdt                # for Exynos5250
->        - samsung,exynos5420-wdt                # for Exynos5420
->        - samsung,exynos7-wdt                   # for Exynos7
-> +      - samsung,exynos850-cl0-wdt             # for Exynos850 (CPU cluster 0)
-> +      - samsung,exynos850-cl1-wdt             # for Exynos850 (CPU cluster 1)
 
-I would prefer to have one compatible and additional u32 property
-pointing to cluster index. The driver would use this property to adjust
-the PMU register offsets or bits.
-
-Why? Because if next time you have three clusters, you will need to make
-three compatibles for something which differs by only two register
-offsets. Both watchdog instances (or three in some unspecified future)
-are here the same, they just control different blocks, therefore should
-accept some parameter instead of making them different compatibles.
-
->  
->    reg:
->      maxItems: 1
->  
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: Peripheral clock used for register interface; if it's the
-> +                     only clock, it's also a source clock
-> +      - description: Source clock (optional)
->  
->    clock-names:
-> +    minItems: 1
->      items:
->        - const: watchdog
-> +      - const: watchdog_src
-
-Don't you require src clock on Exynos850?
-
+Or why not skipping the disable operations if disable_reg is not provided?
 
 
 Best regards,
