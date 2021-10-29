@@ -2,129 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F1E44052C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 23:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01246440570
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 00:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231512AbhJ2V5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 17:57:23 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124]:53967 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231497AbhJ2V5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 17:57:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1635544493;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=0y+js0xn4d9o0dcNrtOtPbAxb1UW1ZkQOz94yRpKQ10=;
-        b=R4nsTKeCsVzLmZW5wI5jQ1vbc7HII3zknhWYalo+YtT1xtVcbcdB9VR1LEnL4hER5kQ6Cu
-        YRs/QWGMhFzEi/GuL+y6tI1mjcRIUw+smrNVyXokDndeoZ5IRcgmNT8enmJbonRPLBWlnW
-        EyfKieiHLV+J8v4FzjhJAY5e9fhZwzM=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-31-7IRzyhJ8NwehXcWCwbuXTQ-1; Fri, 29 Oct 2021 17:54:50 -0400
-X-MC-Unique: 7IRzyhJ8NwehXcWCwbuXTQ-1
-Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id AB13D8018AC;
-        Fri, 29 Oct 2021 21:54:48 +0000 (UTC)
-Received: from cmirabil.remote.csb (unknown [10.22.8.50])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id A30FC18351;
-        Fri, 29 Oct 2021 21:54:46 +0000 (UTC)
-From:   Charles Mirabile <cmirabil@redhat.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Charles Mirabile <cmirabil@redhat.com>,
-        Lee Jones <lee.jones@linaro.org>,
+        id S231246AbhJ2WaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 18:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229546AbhJ2WaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 18:30:17 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC1BC061570
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id na16-20020a17090b4c1000b0019f5bb661f9so8326459pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5FiNpbWsQ1AURQ4l0x934XjrZg11DiQc/mByDM5SptY=;
+        b=YKY5vW9oso/yUk/J5kLStrUj/F7QkEJ10L0nXgOVB+n0AfBHbcrPxSRwViZ/uhQEhI
+         Fkqt9HboOiKw36BecKSTetqOAZpc1LzXlZ+hGEMde8vMT5icQk/XkfyQBiaAJMSxOL0g
+         epWK0UJAZ5kwJ+tYxy4Se5szspr0bHfW+7ALE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5FiNpbWsQ1AURQ4l0x934XjrZg11DiQc/mByDM5SptY=;
+        b=cMrTw/zSYh+fSvpqXbVvG/U7CxsnLNn8qBZUgDlrjyzBvGGh0titypUy58NNxhAbeH
+         uiXkKBimpPWcRAcbv1f++Hcqwftl/z5WKBMqXTbWDoAQRGEyRyDJpv1qGT2WZ3plc1X8
+         Wo4u6eI0+grDEwlpADl77yRXphCDWviprskKkU1Xut9RQHXF+1jGFZqDcEPkgYjhuO58
+         RcT2K/bbsl9cKbtw7JlJSrBOynRSvDDUL9RtdxFrXzy3uZEDQzCe1fID4hBCP2ZmoyyM
+         TQyXhmv9y+hi0oEVscDDsWSPeuxYv17YxGKL+/KWLSMhkSlWAAU+nuDTG/O76GSnPOvu
+         5H1Q==
+X-Gm-Message-State: AOAM530vgK6k4A8n4f+R+PrWoPOU7lrd6DjQKeAkUU7g5/5yQY5HYeMU
+        ZbZFjLp32eQM3L5d6Ti7mqbHoA==
+X-Google-Smtp-Source: ABdhPJxOUrAr8JIx2irI6EQjMHkdS9XbqnP128y/F33ONCuGC4zmm/ZspZ/svgol1Cl5BxIgFpF2sg==
+X-Received: by 2002:a17:90b:1b11:: with SMTP id nu17mr22487040pjb.129.1635546468388;
+        Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:e956:ddc4:6e27:e270])
+        by smtp.gmail.com with ESMTPSA id v14sm7756660pff.199.2021.10.29.15.27.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     swboyd@chromium.org, dianders@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Serge Schneider <serge@raspberrypi.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
-        linux-rpi-kernel@lists.infradead.org, fedora-rpi@googlegroups.com,
-        Mwesigwa Guma <mguma@redhat.com>,
-        Joel Savitz <jsavitz@redhat.com>
-Subject: [PATCH 4/5] Documentation: bindings/mfd: sensehat: Raspberry Pi Sense HAT device tree binding
-Date:   Fri, 29 Oct 2021 17:55:15 -0400
-Message-Id: <20211029215516.801593-5-cmirabil@redhat.com>
-In-Reply-To: <20211029215516.801593-1-cmirabil@redhat.com>
-References: <20211029215516.801593-1-cmirabil@redhat.com>
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v3 1/4] arm64: dts: sc7180: Include gpio.h in edp bridge dts
+Date:   Fri, 29 Oct 2021 15:27:40 -0700
+Message-Id: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+X-Mailer: git-send-email 2.33.1.1089.g2158813163f-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the device tree binding
-for the Sense HAT in yaml form.
+The edp bridge dts fragment files use the macros defined in
+'dt-bindings/gpio/gpio.h'.
 
-Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
-Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
-Signed-off-by: Joel Savitz <jsavitz@redhat.com>
+To help us more flexibly order the #include lines of dts files in a
+board-revision-specific dts file, let's include the gpio header in the
+bridge dts fragment files themselves.
+
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 ---
- .../bindings/mfd/raspberrypi,sensehat.yaml    | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
 
-diff --git a/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-new file mode 100644
-index 000000000000..e00cd02a3752
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+$id: http://devicetree.org/schemas/mfd/raspberrypi,sensehat.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+(no changes since v1)
+
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+index a3d69540d4e4..6a84fba178d6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+@@ -5,6 +5,8 @@
+  * Copyright 2021 Google LLC.
+  */
+ 
++#include <dt-bindings/gpio/gpio.h>
 +
-+title: Raspberry Pi Sensehat
+ / {
+ 	pp3300_brij_ps8640: pp3300-brij-ps8640 {
+ 		compatible = "regulator-fixed";
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+index 97d5e45abd1d..6dbf413e4e5b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+@@ -5,6 +5,8 @@
+  * Copyright 2021 Google LLC.
+  */
+ 
++#include <dt-bindings/gpio/gpio.h>
 +
-+maintainers:
-+  - Charles Mirabile <cmirabil@redhat.com>
-+  - Mwesigwa Guma <mguma@redhat.com>
-+  - Joel Savitz <jsavitz@redhat.com>
-+
-+description: |
-+  The Raspberry Pi Sensehat is an addon board originally developed
-+  for the Raspberry Pi that has a joystick and an 8x8 RGB LED display
-+  as well as several environmental sensors. It connects via i2c and
-+  a gpio for irq.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+        - raspberrypi,sensehat
-+        - rpi,rpisense
-+
-+  reg:
-+    items:
-+      - description: i2c bus address
-+
-+  keys-int-gpios:
-+    items:
-+      - description: gpio pin for joystick interrupt
-+
-+required:
-+  - compatible
-+  - reg
-+  - keys-int-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      sensehat@46 {
-+        compatible = "raspberrypi,sensehat";
-+        reg = <0x46>;
-+        keys-int-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-+      };
-+    };
+ &dsi0_out {
+ 	remote-endpoint = <&sn65dsi86_in>;
+ 	data-lanes = <0 1 2 3>;
 -- 
-2.31.1
+2.33.1.1089.g2158813163f-goog
 
