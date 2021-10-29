@@ -2,140 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CEF743F3EB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B34E343F401
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:41:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231382AbhJ2AdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 20:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55680 "EHLO
+        id S231407AbhJ2Anu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 20:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231361AbhJ2AdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:33:24 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45CD4C061570;
-        Thu, 28 Oct 2021 17:30:57 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so11116002ote.13;
-        Thu, 28 Oct 2021 17:30:57 -0700 (PDT)
+        with ESMTP id S231286AbhJ2Ant (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:43:49 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1290C061570
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:41:21 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id om14so5974030pjb.5
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:41:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bvmi8DsyrWipthpn0ItITFLCLn9V8U2XeLVX9tq1EWI=;
-        b=UdhoI8+i5oUFI2wil6UpdvMWaICsJYyJ9oyQXmxsLos4lvVwRweK1YbKtGoyXHy/eK
-         Y0xcRdpJ0JSx1Q0waYIC924kb17fWxsyzTQSsWsBvzk+cpLn/rLw7sr87+7azqaZe+XT
-         Hb8C33JdEQf3DH5W6cit2sigGnayLge0WWxH/V/oFA6NmoKBWBlpZGPg88GOZW+ZDHOa
-         0Z1jXxOc0W5cyu+F1ZXYMrYcZcE26OV9olC6TG//XhNEh2kQrmi9hM9E3URs/FhARUtd
-         fXiXnDQnK9LiqBgMdDb8uRAtqBuH2q3CjKwj8NxbUNcBD4FDVBNypzbsDr/vSP9iqvll
-         E2dA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vCbr9sHhPoOYTttiMC9wrUBW6ygnU7eeaDDHFz4/imE=;
+        b=ECAx9YAlPnA1iDQafmSAgZSeqWS3vJClmNYWenxzFskKGgJJu/Enn7b9+gLoiXpAJL
+         y9Ih/K3w255iNuV83wasztitEUlwySOreXKHMiXo6mX7jRTwBUD1Q/WW22LvH3Z3rXTQ
+         qcfcyrGM5LkMOLKL6B4cvgFIXV73K0KbqHDVg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bvmi8DsyrWipthpn0ItITFLCLn9V8U2XeLVX9tq1EWI=;
-        b=WB6USDvTgi+R0cr7rHTI/4YCiQ3nDd7O4Vbtl/rAYqd7ASEVgdxGldIk0Lk89wbWkb
-         3jbo6OH/rjQ4QEIs7SgKX8tMh3V3kmIZ0YAad3ndDCiqeUnlg7PcZ+xiTIiw25R9P2mL
-         D30lki1AzhKglY8UhvWjhazbZS0aVoV3ZX2mS8NMZlRVDVOmr+b2cliFMEihUAnaFUoa
-         re0PEonGv4bIJ6fCvY1eDJ6sFRjnwDybFc/rBYDaDWRNdJt2BoGOrJKb25xVTZBiNSGq
-         aHRT05cI3k1sD3jtSQy0YkbLAuHHn9Fzjr+E6khSzQA6R4uhntMTHBpzaT1q4jbb522r
-         2KLQ==
-X-Gm-Message-State: AOAM530yFujMvkT+kxwLLL8EJejsvLXvQDoyCBbdvRUGIwFJfEoyJEOL
-        iGLynNkPFVNfgEYH35DSOqZzla0BpVI=
-X-Google-Smtp-Source: ABdhPJwMWsxKBhaxoxjCqeI93dO9gfkpiTRMtByD/pm5SiVR8iDKiAHnAw7GnFd3+ltydMOt687HHQ==
-X-Received: by 2002:a05:6830:1af0:: with SMTP id c16mr5905034otd.16.1635467456422;
-        Thu, 28 Oct 2021 17:30:56 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w12sm1350126oop.19.2021.10.28.17.30.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Oct 2021 17:30:55 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211028183527.3050-1-semen.protsenko@linaro.org>
- <20211028183527.3050-8-semen.protsenko@linaro.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 7/7] watchdog: s3c2410: Let kernel kick watchdog
-Message-ID: <1ad6b625-4388-bc78-e258-eae0b9357b96@roeck-us.net>
-Date:   Thu, 28 Oct 2021 17:30:54 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        bh=vCbr9sHhPoOYTttiMC9wrUBW6ygnU7eeaDDHFz4/imE=;
+        b=rLo5sBxBdcsgcP5kZMaDq5OnmuEaf/xBLAc0hD0vF0tboCMRxHUVP19G94ZffqzDrI
+         pD/Ti9ljdDnV2xG8qfQOEIi5ckQuySNDZb81DX8HVJ7HexlmbiR4xO6n25We7I7+1TQj
+         nIJ12ecSma5RIulJ4WcQTZ6wdgXrlfOdiXz9UQ9hs8xwxX6b1tc1wOPpsaJCPaF+kY6K
+         jPz4Mi31VxREQ42Na//QouOyv1XDKfuUlcn8Zdr7vVTtvX7fswVggdoEHdVoOGeLm8oy
+         JofbEVvyYXF6ABbNKoXJg5+FhEgQDLcsir1rESzhWXGkQfRtRl+4y3tX07BRvydEaiZX
+         OqAA==
+X-Gm-Message-State: AOAM5331BajQZaffxUMfkOMdTWlkGPUqhxqi28YzP1n7MP3+K264ou1G
+        CThWyrlLcC2MMGILcOoDsgPHEg==
+X-Google-Smtp-Source: ABdhPJw1+zcw8qqYdbD+AuRBSzHxdUw5h2idj0R/H3v8Uv47IRYiimIrRoNqpSgTqGVKd80DDLomLw==
+X-Received: by 2002:a17:902:bf02:b0:13f:cfdd:804e with SMTP id bi2-20020a170902bf0200b0013fcfdd804emr6744632plb.1.1635468081547;
+        Thu, 28 Oct 2021 17:41:21 -0700 (PDT)
+Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:e956:ddc4:6e27:e270])
+        by smtp.gmail.com with ESMTPSA id s2sm4373846pfe.215.2021.10.28.17.41.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Oct 2021 17:41:21 -0700 (PDT)
+From:   Philip Chen <philipchen@chromium.org>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, swboyd@chromium.org,
+        Philip Chen <philipchen@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 1/3] arm64: dts: sc7180: Include gpio.h in edp bridge dts
+Date:   Thu, 28 Oct 2021 17:41:15 -0700
+Message-Id: <20211028174015.v2.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+X-Mailer: git-send-email 2.33.1.1089.g2158813163f-goog
 MIME-Version: 1.0
-In-Reply-To: <20211028183527.3050-8-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/28/21 11:35 AM, Sam Protsenko wrote:
-> When "tmr_atboot" module param is set, the watchdog is started in
-> driver's probe. In that case, also set WDOG_HW_RUNNING bit to let
-> watchdog core driver know it's running. This way wathcdog core can kick
-> the watchdog for us (if CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED option is
-> enabled), until user space takes control.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->   drivers/watchdog/s3c2410_wdt.c | 26 +++++++++++++++-----------
->   1 file changed, 15 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> index ca082b1226e3..9af014ff1468 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -732,6 +732,21 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->   	wdt->wdt_device.bootstatus = s3c2410wdt_get_bootstatus(wdt);
->   	wdt->wdt_device.parent = dev;
->   
-> +	/*
-> +	 * If "tmr_atboot" param is non-zero, start the watchdog right now. Also
-> +	 * set WDOG_HW_RUNNING bit, so that watchdog core can kick the watchdog.
-> +	 *
-> +	 * If we're not enabling the watchdog, then ensure it is disabled if it
-> +	 * has been left running from the bootloader or other source.
-> +	 */
-> +	if (tmr_atboot && started == 0) {
-> +		dev_info(dev, "starting watchdog timer\n");
-> +		s3c2410wdt_start(&wdt->wdt_device);
-> +		set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
-> +	} else if (!tmr_atboot) {
-> +		s3c2410wdt_stop(&wdt->wdt_device);
-> +	}
-> +
+The edp bridge dts fragment files use the macros defined in
+'dt-bindings/gpio/gpio.h'.
 
-This doesn't cover the case where the watchdog is already enabled by the BIOS.
-In that case, WDOG_HW_RUNNING won't be set, and the watchdog will time out
-if the userspace handler is not loaded fast enough. The code should consistently
-set WDOG_HW_RUNNING if the watchdog is running.
+To help us more flexibly order the #include lines of dts files in a
+board-revision-specific dts file, let's include the gpio header in the
+bridge dts fragment files themselves.
 
-Guenter
+Signed-off-by: Philip Chen <philipchen@chromium.org>
+---
 
->   	ret = watchdog_register_device(&wdt->wdt_device);
->   	if (ret)
->   		goto err_cpufreq;
-> @@ -740,17 +755,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->   	if (ret < 0)
->   		goto err_unregister;
->   
-> -	if (tmr_atboot && started == 0) {
-> -		dev_info(dev, "starting watchdog timer\n");
-> -		s3c2410wdt_start(&wdt->wdt_device);
-> -	} else if (!tmr_atboot) {
-> -		/* if we're not enabling the watchdog, then ensure it is
-> -		 * disabled if it has been left running from the bootloader
-> -		 * or other source */
-> -
-> -		s3c2410wdt_stop(&wdt->wdt_device);
-> -	}
-> -
->   	platform_set_drvdata(pdev, wdt);
->   
->   	/* print out a statement of readiness */
-> 
+(no changes since v1)
+
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi | 2 ++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+index a3d69540d4e4..6a84fba178d6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
+@@ -5,6 +5,8 @@
+  * Copyright 2021 Google LLC.
+  */
+ 
++#include <dt-bindings/gpio/gpio.h>
++
+ / {
+ 	pp3300_brij_ps8640: pp3300-brij-ps8640 {
+ 		compatible = "regulator-fixed";
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+index 97d5e45abd1d..6dbf413e4e5b 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
+@@ -5,6 +5,8 @@
+  * Copyright 2021 Google LLC.
+  */
+ 
++#include <dt-bindings/gpio/gpio.h>
++
+ &dsi0_out {
+ 	remote-endpoint = <&sn65dsi86_in>;
+ 	data-lanes = <0 1 2 3>;
+-- 
+2.33.1.1089.g2158813163f-goog
 
