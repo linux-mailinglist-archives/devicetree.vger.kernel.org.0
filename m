@@ -2,247 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 533A743F5D3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 05:56:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7296743F5F3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 06:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231899AbhJ2D66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 23:58:58 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:44838 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231915AbhJ2D60 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 23:58:26 -0400
-X-UUID: d29733e3cbff4a01bc447e8779531e69-20211029
-X-UUID: d29733e3cbff4a01bc447e8779531e69-20211029
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 22090018; Fri, 29 Oct 2021 11:55:57 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 29 Oct 2021 11:55:55 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 29 Oct 2021 11:55:54 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "AngeloGioacchino Del Regno" 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v8, 17/17] media: mtk-vcodec: Use codec type to separate different hardware
-Date:   Fri, 29 Oct 2021 11:55:27 +0800
-Message-ID: <20211029035527.454-18-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211029035527.454-1-yunfei.dong@mediatek.com>
-References: <20211029035527.454-1-yunfei.dong@mediatek.com>
+        id S230133AbhJ2EZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 00:25:25 -0400
+Received: from mswedge2.sunplus.com ([60.248.182.106]:47484 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229504AbhJ2EZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 00:25:24 -0400
+X-Greylist: delayed 2556 seconds by postgrey-1.27 at vger.kernel.org; Fri, 29 Oct 2021 00:25:23 EDT
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.17.9.112
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(64987:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 29 Oct 2021 11:40:05 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 29 Oct 2021 11:40:00 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 29 Oct
+ 2021 11:40:00 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Wells Lu <wellslutw@gmail.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>
+Subject: RE: [PATCH 1/3] pinctrl: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH 1/3] pinctrl: Add driver for Sunplus SP7021
+Thread-Index: AQHXyxB2JVFfQiM840ywI8+A3Cqbqavm4xsAgAJpvBA=
+Date:   Fri, 29 Oct 2021 03:40:00 +0000
+Message-ID: <930472fa25b7462aa49e33d694e4d759@sphcmbx02.sunplus.com.tw>
+References: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
+ <1635324926-22319-2-git-send-email-wells.lu@sunplus.com>
+ <3ed37bf9-d698-2a03-60e7-9b357e3abfb4@infradead.org>
+In-Reply-To: <3ed37bf9-d698-2a03-60e7-9b357e3abfb4@infradead.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are just one core thread, in order to separeate different
-hardware, using codec type to separeate it in scp driver.
-
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 12 ++++---
- .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 34 ++++++++++++++++---
- .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  4 +++
- 3 files changed, 41 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-index 9d8079c4f976..c488f0c40190 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-+++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-@@ -35,6 +35,8 @@ enum vdec_ipi_msgid {
-  * @msg_id	: vdec_ipi_msgid
-  * @vpu_inst_addr : VPU decoder instance address. Used if ABI version < 2.
-  * @inst_id     : instance ID. Used if the ABI version >= 2.
-+ * @codec_type	: Codec fourcc
-+ * @reserved	: reserved param
-  */
- struct vdec_ap_ipi_cmd {
- 	uint32_t msg_id;
-@@ -42,6 +44,8 @@ struct vdec_ap_ipi_cmd {
- 		uint32_t vpu_inst_addr;
- 		uint32_t inst_id;
- 	};
-+	uint32_t codec_type;
-+	uint32_t reserved;
- };
- 
- /**
-@@ -59,12 +63,12 @@ struct vdec_vpu_ipi_ack {
- /**
-  * struct vdec_ap_ipi_init - for AP_IPIMSG_DEC_INIT
-  * @msg_id	: AP_IPIMSG_DEC_INIT
-- * @reserved	: Reserved field
-+ * @codec_type	: Codec fourcc
-  * @ap_inst_addr	: AP video decoder instance address
-  */
- struct vdec_ap_ipi_init {
- 	uint32_t msg_id;
--	uint32_t reserved;
-+	uint32_t codec_type;
- 	uint64_t ap_inst_addr;
- };
- 
-@@ -77,7 +81,7 @@ struct vdec_ap_ipi_init {
-  *	H264 decoder [0]:buf_sz [1]:nal_start
-  *	VP8 decoder  [0]:width/height
-  *	VP9 decoder  [0]:profile, [1][2] width/height
-- * @reserved	: Reserved field
-+ * @codec_type	: Codec fourcc
-  */
- struct vdec_ap_ipi_dec_start {
- 	uint32_t msg_id;
-@@ -86,7 +90,7 @@ struct vdec_ap_ipi_dec_start {
- 		uint32_t inst_id;
- 	};
- 	uint32_t data[3];
--	uint32_t reserved;
-+	uint32_t codec_type;
- };
- 
- /**
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-index bfd8e87dceff..c84fac52fe26 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-+++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-@@ -100,18 +100,29 @@ static void vpu_dec_ipi_handler(void *data, unsigned int len, void *priv)
- 
- static int vcodec_vpu_send_msg(struct vdec_vpu_inst *vpu, void *msg, int len)
- {
--	int err;
-+	int err, id, msgid;
- 
--	mtk_vcodec_debug(vpu, "id=%X", *(uint32_t *)msg);
-+	msgid = *(uint32_t *)msg;
-+	mtk_vcodec_debug(vpu, "id=%X", msgid);
- 
- 	vpu->failure = 0;
- 	vpu->signaled = 0;
- 
--	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, vpu->id, msg,
-+	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-+		if (msgid == AP_IPIMSG_DEC_CORE ||
-+			msgid == AP_IPIMSG_DEC_CORE_END)
-+			id = vpu->core_id;
-+		else
-+			id = vpu->id;
-+	} else {
-+		id = vpu->id;
-+	}
-+
-+	err = mtk_vcodec_fw_ipi_send(vpu->ctx->dev->fw_handler, id, msg,
- 				     len, 2000);
- 	if (err) {
- 		mtk_vcodec_err(vpu, "send fail vpu_id=%d msg_id=%X status=%d",
--			       vpu->id, *(uint32_t *)msg, err);
-+			       id, msgid, err);
- 		return err;
- 	}
- 
-@@ -131,6 +142,7 @@ static int vcodec_send_ap_ipi(struct vdec_vpu_inst *vpu, unsigned int msg_id)
- 		msg.vpu_inst_addr = vpu->inst_addr;
- 	else
- 		msg.inst_id = vpu->inst_id;
-+	msg.codec_type = vpu->codec_type;
- 
- 	err = vcodec_vpu_send_msg(vpu, &msg, sizeof(msg));
- 	mtk_vcodec_debug(vpu, "- id=%X ret=%d", msg_id, err);
-@@ -149,14 +161,25 @@ int vpu_dec_init(struct vdec_vpu_inst *vpu)
- 
- 	err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler, vpu->id,
- 					 vpu->handler, "vdec", NULL);
--	if (err != 0) {
-+	if (err) {
- 		mtk_vcodec_err(vpu, "vpu_ipi_register fail status=%d", err);
- 		return err;
- 	}
- 
-+	if (vpu->ctx->dev->vdec_pdata->hw_arch == MTK_VDEC_LAT_SINGLE_CORE) {
-+		err = mtk_vcodec_fw_ipi_register(vpu->ctx->dev->fw_handler,
-+					 vpu->core_id, vpu->handler,
-+					 "vdec", NULL);
-+		if (err) {
-+			mtk_vcodec_err(vpu, "vpu_ipi_register core fail status=%d", err);
-+			return err;
-+		}
-+	}
-+
- 	memset(&msg, 0, sizeof(msg));
- 	msg.msg_id = AP_IPIMSG_DEC_INIT;
- 	msg.ap_inst_addr = (unsigned long)vpu;
-+	msg.codec_type = vpu->codec_type;
- 
- 	mtk_vcodec_debug(vpu, "vdec_inst=%p", vpu);
- 
-@@ -187,6 +210,7 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu, uint32_t *data, unsigned int len)
- 
- 	for (i = 0; i < len; i++)
- 		msg.data[i] = data[i];
-+	msg.codec_type = vpu->codec_type;
- 
- 	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
- 	mtk_vcodec_debug(vpu, "- ret=%d", err);
-diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-index ae24b75d1649..802660770a87 100644
---- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-+++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-@@ -14,6 +14,7 @@ struct mtk_vcodec_ctx;
- /**
-  * struct vdec_vpu_inst - VPU instance for video codec
-  * @id          : ipi msg id for each decoder
-+ * @core_id     : core id used to separate different hardware
-  * @vsi         : driver structure allocated by VPU side and shared to AP side
-  *                for control and info share
-  * @failure     : VPU execution result status, 0: success, others: fail
-@@ -26,9 +27,11 @@ struct mtk_vcodec_ctx;
-  * @dev		: platform device of VPU
-  * @wq          : wait queue to wait VPU message ack
-  * @handler     : ipi handler for each decoder
-+ * @codec_type     : used codec type to separate different codecs
-  */
- struct vdec_vpu_inst {
- 	int id;
-+	int core_id;
- 	void *vsi;
- 	int32_t failure;
- 	uint32_t inst_addr;
-@@ -38,6 +41,7 @@ struct vdec_vpu_inst {
- 	struct mtk_vcodec_ctx *ctx;
- 	wait_queue_head_t wq;
- 	mtk_vcodec_ipi_handler handler;
-+	unsigned int codec_type;
- };
- 
- /**
--- 
-2.25.1
-
+SGkgU2lyLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmV2aWV3Lg0KDQpJIG1vZGlmaWVkIGVycm9y
+cyBpbiBLY29uZmlnIHlvdSBwb2ludGVkIG91dC4NCg0KQ291bGQgeW91IHBsZWFzZSB0ZWFjaCBt
+ZSB3aGF0IGlzIHRoZSBuZXh0IHN0ZXAgSSBuZWVkIHRvIGRvDQooVGhpcyBpcyBteSBmaXJzdCBz
+dWJtaXNzaW9uIHRvIExpbnV4IGtlcm5lbCBtYWluLWxpbmUpPw0KDQoxLiBTaG91bGQgSSBtYWtl
+IGEgcGF0Y2ggW1BBVEhDIDEvMyB2Ml0gZm9yIEtjb25maWcgYW5kIHN1Ym1pdCANCiAgYWdhaW4/
+DQoyLiBPciB3YWl0IGZvciBvdGhlciBmaWxlcyBvZiB0aGUgcGF0Y2ggW1BBVENIIDEvM10gYmVp
+bmcgDQogIHJldmlld2VkIGFuZCB0aGVuIHN1Ym1pdCBwYXRjaCBhZ2Fpbi4NCjMuIEF0IGZpcnN0
+IHBhdGNoLCBJIHVzZWQgJ2dpdCBzZW5kLWVtYWlsJyBjb21tYW5kIHRvIHNlbmQgYSANCiAgcGF0
+Y2ggc2VyaWVzLiBUaGUgY29tbWFuZCBpczoNCiAgZ2l0IHNlbmQtZW1haWwgXA0KICAtLXRvIGxp
+bnVzLndhbGxlaWpAbGluYXJvLm9yZyBcDQogIC0tdG8gbGludXgtZ3Bpb0B2Z2VyLmtlcm5lbC5v
+cmcgXA0KICAtLXRvIGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcgXA0KICAtLXRvIHJvYmgr
+ZHRAa2VybmVsLm9yZyBcDQogIC0tdG8gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcgXA0KICAt
+LWNjIGR2b3JraW5AdGliYm8uY29tIFwNCiAgLS1jYyBxaW5qaWFuQGNxcGx1czEuY29tIFwNCiAg
+LS10aHJlYWQgMDAwKi5wYXRjaA0KICBQbGVhc2UgdGVhY2ggbWUgd2hhdCBjb21tYW5kIG9wdGlv
+bnMgb2YgJ2dpdCBzZW5kLWVtYWlsJyANCiAgSSBzaG91bGQgdXNlIHRvIHNlbmQgdGhlIHZlcnNp
+b24gMiBwYXRjaC4NCjQuIElmIHRoaXMgaXMgbm90IGEgY29ycmVjdCB3YXkgdG8gcmVwbHkgeW91
+ciBlbWFpbCwgcGxlYXNlIHRlYWNoIA0KICBtZSBob3cgdG8gcmVwbHkgbWFpbnRhaW5lcnMnIGVt
+YWlsLg0KDQoNCkJlc3QgcmVnYXJkcywNCg0KV2VsbHMgTHUNCg0K
