@@ -2,136 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE668440225
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 20:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92FA2440290
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 20:52:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbhJ2Siq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 14:38:46 -0400
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:45900 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbhJ2Siq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 14:38:46 -0400
-Received: by mail-ot1-f45.google.com with SMTP id l16-20020a9d6a90000000b0054e7ab56f27so14753710otq.12;
-        Fri, 29 Oct 2021 11:36:17 -0700 (PDT)
+        id S229826AbhJ2SzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 14:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230084AbhJ2SzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 14:55:15 -0400
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1675FC061570;
+        Fri, 29 Oct 2021 11:52:47 -0700 (PDT)
+Received: by mail-oi1-x229.google.com with SMTP id y128so14664202oie.8;
+        Fri, 29 Oct 2021 11:52:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ldSSeVAlvOj4l8QLMah9LAJhWoH7wMHLjFmgtahfoQ0=;
+        b=KoXyKwkCjQp9WMUR5gh503BBhGxyWKs0Gg4Wgi+EkPP3TcpjRH1EAzJ3glxkaOIsp1
+         ZB2bQii6UKEccvcgY/nFkiu2iHTnzhrrCWbqTNjsWoTjj6y2Vd20ycyuXp80CKWGWgTy
+         DVYNCHEWb2YSZxwvIBW/hTNVHtqVUy7UCbT3/SxPwlHx2cG36TxAZJ7HTWeGGYMx96cM
+         8KgRjX9fv8oEcPiplRu/SsoQd1dyRkJxwdDDrZRzIGYGxj0nMWTyS41yUG4EDwStF+oS
+         zI7230e0M/lZWyO1n4PsTdtAJAucu63vs7ye3o3RfvbaywofjCN/FLGixQG2sJXYOKO0
+         HAkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9uRR5TXqJPhhQ7gzJBqfQmySfPcuUynmfm/TwLsNXtU=;
-        b=Kq7VgQCktxipI0uxF2guAQwzrzsTpI1TGoRpbrPGXvxYlW81Aimx91za3p/17aKj+E
-         ZmVVU6cuuG9wnu08SkzFmmYLvGTkhKZvfKMtHgXmGB6I3V358sNiQirH0G197Z9lahSS
-         20qQuOHFVGbJM9iTP1UIUCRm4/c7o6w9mo2U8iMgiLOw/Z1K8n1OkwSCzW541nEYXVzZ
-         ZCqEj1JWNwpNhr5r7cJ1xBu8yRI9rsNeNMAz88jF5+L4AYuxGIsifwTN0SASysmTjN6O
-         KMfjVO+wNH7x/LUeMpzWyq9Z0OvedZ3Wkwq0CWW/BUaMQlRqxEL0CNsoRM55E94FaPgI
-         bqdQ==
-X-Gm-Message-State: AOAM532Ud0fzMAakoqDqPCuZHLgRpUXW5Bu1g9SdDO0VCKDq+AcJrzzM
-        DPC4BkCzd0427rtnFQ1tT6wfHyK2uw==
-X-Google-Smtp-Source: ABdhPJzia4fp+apruMEoc3kYBHNbIa0IMI71HVAj1Ka62UQpykUrdtGjtARLA94Fyhm5tGB/yONIUQ==
-X-Received: by 2002:a05:6830:270c:: with SMTP id j12mr7089086otu.142.1635532576709;
-        Fri, 29 Oct 2021 11:36:16 -0700 (PDT)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id p13sm351283oom.28.2021.10.29.11.36.15
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=ldSSeVAlvOj4l8QLMah9LAJhWoH7wMHLjFmgtahfoQ0=;
+        b=CND9qkrFNDMKAhmaXI8JPFhfY9Hn89Yc9644loz63/Aauw6hm7BDBD5n+PrlkJrtMf
+         aQhIeZrQwAYlezTuvJGg7sAatfuYXpbDckZZL5GidihY0gJnhPH7wlhiPw29W+2UgJa+
+         b/eK/JDBOHS/JveURsWIbr5nc0rb+gQskcw2Qxfr/CO6axr5UGqBpKC8unNPpca+jfQI
+         pB2GwQ7j0O4SdFqBHORrcHn93plh5e1V/sjeLyKYwjCJ4SBH9f9XJiycJdzZZJVN9LLV
+         JYrE1S32J6xPwMwTtw/QLhsbxm6EfDyVAbfckSVHdP83qtlR8ltf8d8soHAbAWXb/16e
+         yu1w==
+X-Gm-Message-State: AOAM530YISFz8spGz900lsTHMdYxeYD0EpGOUhRNHM+GzgbTveqfspe8
+        7KyU8Ew1t9Me9iWgGJEJucs=
+X-Google-Smtp-Source: ABdhPJyjEjslkxWcZG5a7lHRh11XgnWlPh8v6MplDYzTY9R31CsIogZW4U690v8sDlzB0w21uomSlA==
+X-Received: by 2002:aca:6703:: with SMTP id z3mr9530433oix.131.1635533566474;
+        Fri, 29 Oct 2021 11:52:46 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id p14sm1890114oov.0.2021.10.29.11.52.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Oct 2021 11:36:16 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: [PATCH] of/fdt: Remove of_scan_flat_dt() usage for __fdt_scan_reserved_mem()
-Date:   Fri, 29 Oct 2021 13:36:15 -0500
-Message-Id: <20211029183615.2721777-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        Fri, 29 Oct 2021 11:52:45 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 29 Oct 2021 11:52:43 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, rafal@milecki.pl,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "maintainer:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        "open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "moderated list:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 6/7] MIPS: BCM63XX: Provide platform data to watchdog
+ device
+Message-ID: <20211029185243.GA1722149@roeck-us.net>
+References: <20211029183430.4086765-1-f.fainelli@gmail.com>
+ <20211029183430.4086765-7-f.fainelli@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211029183430.4086765-7-f.fainelli@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use of the of_scan_flat_dt() function predates libfdt and is discouraged
-as libfdt provides a nicer set of APIs. Rework __fdt_scan_reserved_mem()
-to be called directly and use libfdt.
+On Fri, Oct 29, 2021 at 11:34:29AM -0700, Florian Fainelli wrote:
+> In order to utilize the bcm7038_wdt.c driver which needs to know the
+> clock name to obtain, pass it via platform data using the
+> bcm7038_wdt_platform_data structure.
+> 
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- drivers/of/fdt.c | 52 ++++++++++++++++++++++--------------------------
- 1 file changed, 24 insertions(+), 28 deletions(-)
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 4546572af24b..bdca35284ceb 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -562,39 +562,35 @@ static int __init __reserved_mem_check_root(unsigned long node)
- }
- 
- /*
-- * __fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
-+ * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
-  */
--static int __init __fdt_scan_reserved_mem(unsigned long node, const char *uname,
--					  int depth, void *data)
-+static int __init fdt_scan_reserved_mem(void)
- {
--	static int found;
--	int err;
--
--	if (!found && depth == 1 && strcmp(uname, "reserved-memory") == 0) {
--		if (__reserved_mem_check_root(node) != 0) {
--			pr_err("Reserved memory: unsupported node format, ignoring\n");
--			/* break scan */
--			return 1;
--		}
--		found = 1;
--		/* scan next node */
--		return 0;
--	} else if (!found) {
--		/* scan next node */
--		return 0;
--	} else if (found && depth < 2) {
--		/* scanning of /reserved-memory has been finished */
--		return 1;
-+	int node, child;
-+	const void *fdt = initial_boot_params;
-+
-+	node = fdt_path_offset(fdt, "/reserved-memory");
-+	if (node < 0)
-+		return -ENODEV;
-+
-+	if (__reserved_mem_check_root(node) != 0) {
-+		pr_err("Reserved memory: unsupported node format, ignoring\n");
-+		return -EINVAL;
- 	}
- 
--	if (!of_fdt_device_is_available(initial_boot_params, node))
--		return 0;
-+	fdt_for_each_subnode(child, fdt, node) {
-+		const char *uname;
-+		int err;
- 
--	err = __reserved_mem_reserve_reg(node, uname);
--	if (err == -ENOENT && of_get_flat_dt_prop(node, "size", NULL))
--		fdt_reserved_mem_save_node(node, uname, 0, 0);
-+		if (!of_fdt_device_is_available(fdt, child))
-+			continue;
- 
--	/* scan next node */
-+		uname = fdt_get_name(fdt, child, NULL);
-+
-+		err = __reserved_mem_reserve_reg(child, uname);
-+		if (err == -ENOENT && of_get_flat_dt_prop(child, "size", NULL))
-+			fdt_reserved_mem_save_node(child, uname, 0, 0);
-+	}
- 	return 0;
- }
- 
-@@ -645,7 +641,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
- 		early_init_dt_reserve_memory_arch(base, size, false);
- 	}
- 
--	of_scan_flat_dt(__fdt_scan_reserved_mem, NULL);
-+	fdt_scan_reserved_mem();
- 	fdt_init_reserved_mem();
- 	fdt_reserve_elfcorehdr();
- }
--- 
-2.32.0
+We'll need an Ack from a MIPS maintainer for this patch to
+be able to apply it through the watchdog tree.
 
+Guenter
+
+> ---
+>  arch/mips/bcm63xx/dev-wdt.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/mips/bcm63xx/dev-wdt.c b/arch/mips/bcm63xx/dev-wdt.c
+> index 2a2346a99bcb..42130914a3c2 100644
+> --- a/arch/mips/bcm63xx/dev-wdt.c
+> +++ b/arch/mips/bcm63xx/dev-wdt.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/platform_data/bcm7038_wdt.h>
+>  #include <bcm63xx_cpu.h>
+>  
+>  static struct resource wdt_resources[] = {
+> @@ -19,11 +20,18 @@ static struct resource wdt_resources[] = {
+>  	},
+>  };
+>  
+> +static struct bcm7038_wdt_platform_data bcm63xx_wdt_pdata = {
+> +	.clk_name	= "periph",
+> +};
+> +
+>  static struct platform_device bcm63xx_wdt_device = {
+>  	.name		= "bcm63xx-wdt",
+>  	.id		= -1,
+>  	.num_resources	= ARRAY_SIZE(wdt_resources),
+>  	.resource	= wdt_resources,
+> +	.dev		= {
+> +		.platform_data = &bcm63xx_wdt_pdata,
+> +	},
+>  };
+>  
+>  int __init bcm63xx_wdt_register(void)
+> -- 
+> 2.25.1
+> 
