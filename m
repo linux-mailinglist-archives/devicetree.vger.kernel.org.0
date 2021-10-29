@@ -2,170 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE79343F3B4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7633A43F3C3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230520AbhJ2ALP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 20:11:15 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:58040 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229804AbhJ2ALO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 28 Oct 2021 20:11:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1635466126;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Ke1RR/yh2Lw9wS2LgxkSgK8p4zl57sqmHmt240T7mE8=;
-        b=RINcuWG/svr6ndmznZAih+D01zRkswIves9HAW4mfokKOX3HUEtcQykv+kcodI9R8En/pH
-        bEPwKPjOn5QYEY2DL/NWuN2Nu0nk4nWy8IwqmPQByFpu28FQwiCnXponRhXhEWYvMEgmxE
-        5rtIzXwD7R1mAnnr1vmywsjqwQY3t5Q=
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-473-eJYWqEDROXicWuLqiGVR8g-1; Thu, 28 Oct 2021 20:08:45 -0400
-X-MC-Unique: eJYWqEDROXicWuLqiGVR8g-1
-Received: by mail-qv1-f71.google.com with SMTP id jz13-20020a0562140e6d00b00387252642e5so4836334qvb.14
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:08:45 -0700 (PDT)
+        id S231186AbhJ2ASp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 20:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230227AbhJ2ASo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:18:44 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19067C061570;
+        Thu, 28 Oct 2021 17:16:17 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id 107-20020a9d0a74000000b00553bfb53348so11187566otg.0;
+        Thu, 28 Oct 2021 17:16:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UDNsthRDfQMdy5Xi4IJABZmUUiTqa8/5eXuKi4F/AG0=;
+        b=a7WSvFBLa2mgCXrzxhxUDHvgRfgkAhzfymRUKWtTgFGLNnXvm3HT2ay4nM2NSiB+EI
+         hoSlC4xnD5eXpv55CC2RoYF3/rJuf3KFvzNtYA2rV96UjjRGIXetPOWRbnBKnj39btuR
+         oOQ8xYWrEvpXXr3jGvspghinUXMkxiaznlk/yj2mexTmlNxgIkM2Q71Fe0PBG21pLo+Z
+         CbJcFcI5IFvw4Z24M5IvX+Fjkls2jcU7NY9XUE14UE5fTlhE9/UP3pH9vkBatqfC/t17
+         810aqmLxqi5S5LC0w9e+crNtqyXehveUIXExsA8ubPNXRx0B+BBpT77p6KkA9f1wDWog
+         Hj1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ke1RR/yh2Lw9wS2LgxkSgK8p4zl57sqmHmt240T7mE8=;
-        b=4pe4sUfNyATkhfBYlQ6HRe7Gy8aNU0TE21W1crad55rXdFZVO34EYGow+s3zBkNWrO
-         Y5GgJCnPCrjmZ6rBE25Cxa1K+pcKE97ZNCYYhhLfVXkmou9SfsYNENnzSI8PAIHTq5ZH
-         1CaqvHMiUjNOsXJJJNGGwpqLgcqB90x/UIq+SJMg5O7YOW6UmHzh9tJL9SWJ/ax/8cYq
-         a8FXlj04gQKzESSwxe46jz19r8Sm7IaA7R+2c82p/xOCHL48yhoPfZGSVzwUMmd18+xs
-         B4HZCVMWFOMuB3Y6kJyJlYKnI+3MUzagl1iND7N/iX81RZPiZWLAa4oevjSkVhYESY7i
-         7rBg==
-X-Gm-Message-State: AOAM533reYxVjlVnfU/BiVOLK2HzW7W7U9CM95k/Y28zeO3SN9ZCvzT9
-        8QioluB6vuuxN1tq8BeDw8dJFQFrfGU/r4yiQ6zGUuRquF0gMj5mEpyila8GBxHs9YXGJTDARgf
-        MSFo33elchcIttpfu8rWjmfKhV1rMeA+kdTA9cA==
-X-Received: by 2002:a05:6214:2608:: with SMTP id gu8mr3538037qvb.18.1635466124338;
-        Thu, 28 Oct 2021 17:08:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJylNxarNV97CLBKGSh04boGFTKqTFzoyBWJzfMvavg7iSpapV71rVFB8MJzAYfXc/7HhcAXXFMvY7OmwJ17Vrg=
-X-Received: by 2002:a05:6214:2608:: with SMTP id gu8mr3538003qvb.18.1635466123884;
- Thu, 28 Oct 2021 17:08:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211020095926.735938-1-flokli@flokli.de>
-In-Reply-To: <20211020095926.735938-1-flokli@flokli.de>
-From:   Dennis Gilmore <dgilmore@redhat.com>
-Date:   Thu, 28 Oct 2021 19:08:32 -0500
-Message-ID: <CAJesf3Opx3KBPgBdQbKYTdBkoWhuuvphKm6BoVoaqrs_JBz13g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Enable HDD power on helios64
-To:     Florian Klink <flokli@flokli.de>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Aditya Prayoga <aditya@kobol.io>,
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UDNsthRDfQMdy5Xi4IJABZmUUiTqa8/5eXuKi4F/AG0=;
+        b=B5usOeSdnF94x+dvyCwU9+FoOlgXg3+iiSxUjE4z9Aog4itPQRWXSjozFg0uc64Nuj
+         d0Ikp2UH07TVnlk5WLnK+NkHR8Mp9SK3BLXZ3uwEC1JfgJd+99g/BC54lry+Diz3TqMQ
+         Kmd7XWEq/vwipRf+6wGUqQZJqzbUlbr09rkqZMhu5ZgYDnPLMMs7QnIFVwq0KM9wghHu
+         CeErG0DcJZHPkotFTcg75qxEM6UY8CZhOfmO4MuSvw9vH1s7J1o7ApmCt1IMzR00hedo
+         VMUqANZK/kQCk59W4sj4nN07x/IOI3KhGiPyoOFHpThkNK1nXIDEKX0+O8tva5fJpX8H
+         kQJA==
+X-Gm-Message-State: AOAM530lmKVEZ5pwT9R4gQLFJOgDcEnnVCKeWVQEjkTX/9DZQ3/Wi/Ja
+        MuF+dnjg/qL0Prao4dQxb58/sWvQsoQ=
+X-Google-Smtp-Source: ABdhPJwdY9EbvZtq4Rt8XxQ+XVKVZJn1nxNjBs5WqSUmWVnE4tN85eFEdcmN4KRFOrOESsKSWFtrGA==
+X-Received: by 2002:a9d:5541:: with SMTP id h1mr6025457oti.229.1635466576180;
+        Thu, 28 Oct 2021 17:16:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id f14sm1340879oop.8.2021.10.28.17.16.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Oct 2021 17:16:15 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 4/7] watchdog: s3c2410: Add support for WDT counter enable
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-rockchip@lists.infradead.org,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211028183527.3050-1-semen.protsenko@linaro.org>
+ <20211028183527.3050-5-semen.protsenko@linaro.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <e69282af-738b-e56e-026a-1e3adcec6a51@roeck-us.net>
+Date:   Thu, 28 Oct 2021 17:16:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211028183527.3050-5-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested-by: Dennis Gilmore <dgilmore@redhat.com>
-
-On Thu, Oct 28, 2021 at 11:37 AM Florian Klink <flokli@flokli.de> wrote:
->
-> This adds the hdd_{a,b}_power blocks present in the armbian helios64
-> dts. [1]
->
-> Without those powered up, no HDDs will appear (except one connected via
-> the m.2 slot).
->
-> From https://wiki.kobol.io/helios64/sata/#hdd-power:
->
-> > The power delivery of the HDDs is divided into two group:
-> >
-> >     HDD Rail A (Max. 3x Drives)
-> >     HDD Rail B (Max. 2x Drives)
-> >
-> > Helios64 implements a power staggering approach where HDD Rail A will be
-> > powered up first, then few seconds later HDD Rail B will be powered up.
-> > This power control scenario is performed to reduce the inrush current
-> > during disk spin-up.
->
-> In practice, this power staggering approach will be included in the
-> bootloader (not in the kernel), as we might want to boot from a SATA
-> drive.
->
-> From my experiments, if the bootloader doesn't implement the power
-> staggering, only one HDD will get recognized (probably cause the others
-> didn't boot due to few power).
->
-> Still, it makes sense to expose this block in the device-tree, so the
-> kernel can ensure both rails are on (and this can be shared with
-> u-boot).
->
-> [1] https://github.com/armbian/build/blob/744ea89a589d62cb6f409baab60fc6664520bc39/patch/kernel/archive/rockchip64-5.14/add-board-helios64.patch
->
-> Signed-off-by: Florian Klink <flokli@flokli.de>
+On 10/28/21 11:35 AM, Sam Protsenko wrote:
+> On new Exynos chips (like Exynos850) WDT counter must be enabled to make
+> WDT functional. It's done via CLUSTERx_NONCPU_OUT register, in
+> CNT_EN_WDT bit. Add infrastructure needed to enable that counter.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->  .../dts/rockchip/rk3399-kobol-helios64.dts    | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> index 738cfd21df3e..93745dcc2af6 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> @@ -82,6 +82,30 @@ led-1 {
->                 };
->         };
->
-> +       hdd_a_power: hdd-a-power {
-> +               compatible = "regulator-fixed";
-> +               enable-active-high;
-> +               gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-0 = <&hdd_a_power_en>;
-> +               pinctrl-names = "default";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-name = "hdd_a_power";
-> +               startup-delay-us = <2000000>;
-> +       };
-> +
-> +       hdd_b_power: hdd-b-power {
-> +               compatible = "regulator-fixed";
-> +               enable-active-high;
-> +               gpio = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-0 = <&hdd_b_power_en>;
-> +               pinctrl-names = "default";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-name = "hdd_b_power";
-> +               startup-delay-us = <2000000>;
-> +       };
-> +
->         pcie_power: pcie-power {
->                 compatible = "regulator-fixed";
->                 enable-active-high;
-> @@ -422,6 +446,14 @@ pmic_int_l: pmic-int-l {
->         };
->
->         power {
-> +               hdd_a_power_en: hdd-a-power-en {
-> +                       rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-> +               };
-> +
-> +               hdd_b_power_en: hdd-b-power-en {
-> +                       rockchip,pins = <1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-> +               };
-> +
->                 vcc5v0_usb_en: vcc5v0-usb-en {
->                         rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
->                 };
-> --
-> 2.33.0
->
+>   drivers/watchdog/s3c2410_wdt.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> index 7c163a257d3c..a5ef7171a90e 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -97,12 +97,16 @@ struct s3c2410_wdt;
+>    * @rst_stat_reg: Offset in pmureg for the register that has the reset status.
+>    * @rst_stat_bit: Bit number in the rst_stat register indicating a watchdog
+>    * reset.
+> + * @cnt_en_reg: Offset in pmureg for the register that enables WDT counter.
+> + * @cnt_en_bit: Bit number for "watchdog counter enable" in cnt_en register.
+>    * @quirks: A bitfield of quirks.
+>    * @disable_auto_reset: If set, this function will be called to disable
+>    * automatic setting the WDT as a reset reason in RST_STAT on CPU reset; uses
+>    * disable_reg field.
+>    * @mask_reset: If set, this function will be called to mask WDT reset request;
+>    * uses mask_reset_reg and mask_bit fields.
+> + * @enable_counter: If set, this function will be called to enable WDT counter;
+> + * uses cnt_en_reg and cnt_en_bit fields.
+>    */
+>   
+>   struct s3c2410_wdt_variant {
+> @@ -111,9 +115,12 @@ struct s3c2410_wdt_variant {
+>   	int mask_bit;
+>   	int rst_stat_reg;
+>   	int rst_stat_bit;
+> +	int cnt_en_reg;
+> +	int cnt_en_bit;
+>   	u32 quirks;
+>   	int (*disable_auto_reset)(struct s3c2410_wdt *wdt, bool mask);
+>   	int (*mask_reset)(struct s3c2410_wdt *wdt, bool mask);
+> +	int (*enable_counter)(struct s3c2410_wdt *wdt, bool mask);
 
+Unless there are different enable functions in the future,
+the function is unnecessary. This can be handled as feature bit.
 
--- 
-Dennis Gilmore
-Multiple Architecture Portfolio Enablement
-T: +1-312-660-3523
+>   };
+>   
+>   struct s3c2410_wdt {
+> @@ -132,6 +139,7 @@ struct s3c2410_wdt {
+>   
+>   static int s3c2410wdt_disable_wdt_reset(struct s3c2410_wdt *wdt, bool mask);
+>   static int s3c2410wdt_mask_wdt_reset(struct s3c2410_wdt *wdt, bool mask);
+> +static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en);
+>   
+>   static const struct s3c2410_wdt_variant drv_data_s3c2410 = {
+>   	.quirks = 0
+> @@ -246,6 +254,20 @@ static int s3c2410wdt_mask_wdt_reset(struct s3c2410_wdt *wdt, bool mask)
+>   	return ret;
+>   }
+>   
+> +static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en)
+> +{
+> +	const u32 mask_val = 1 << wdt->drv_data->cnt_en_bit;
+
+BIT()
+
+> +	const u32 val = en ? mask_val : 0;
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(wdt->pmureg, wdt->drv_data->cnt_en_reg,
+> +				 mask_val, val);
+> +	if (ret < 0)
+> +		dev_err(wdt->dev, "failed to update reg(%d)\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+>   static int s3c2410wdt_enable(struct s3c2410_wdt *wdt, bool en)
+>   {
+>   	int ret;
+> @@ -262,6 +284,12 @@ static int s3c2410wdt_enable(struct s3c2410_wdt *wdt, bool en)
+>   			return ret;
+>   	}
+>   
+> +	if (wdt->drv_data->enable_counter) {
+> +		ret = wdt->drv_data->enable_counter(wdt, en);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+>   	return 0;
+>   }
+>   
+> 
 
