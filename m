@@ -2,102 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDC243FACD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 12:34:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81FC943FADC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 12:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231836AbhJ2Kg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 06:36:26 -0400
-Received: from ixit.cz ([94.230.151.217]:48590 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231827AbhJ2KgX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 06:36:23 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id CFA7920064;
-        Fri, 29 Oct 2021 12:33:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1635503633;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=e1zxTl02rhGQS8X3GLUw3pjPiqt2F1UW8BN7yf2w+7k=;
-        b=W3Qe8n3mP0KGmRH6GsfqJnh5J7pJwuC+3Vd8R2jyTVrvCnyefr0c0tEvxYlKkuvKks1NgS
-        YmyyAfq71FuIki5jqVIKnZUfKTKGzyLHwm6bH/vDh0VeS5ug+YheAgQXK6vfSsDFdE+HnU
-        2z/y3Y+xEICHIaYyRY9Eibgp9foe108=
-From:   David Heidelberg <david@ixit.cz>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: qcom: update USB nodes with new platform specific compatible
-Date:   Fri, 29 Oct 2021 12:33:39 +0200
-Message-Id: <20211029103340.26828-2-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211029103340.26828-1-david@ixit.cz>
-References: <20211029103340.26828-1-david@ixit.cz>
+        id S231721AbhJ2KlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 06:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231719AbhJ2KlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 06:41:10 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AACF4C061570
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 03:38:42 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id i14so11909640ioa.13
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 03:38:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=gGITGgQx/jtRAELMn8b1SKl58yOqlK05OidTnBYKz8w=;
+        b=e+AE2z/MkSwf9UdJr5wHW40d8uexkt5CGXmRjzfpPTtjCjFdYYW91vAplk5oKkkiK9
+         K6WTZHL69vvsgVXcGhr8dWgp8Vej2hGAAF8hXqN9dWApJecFLQp6jknGIYAi5YwyU+Sk
+         IXZaaeRQROXYkxxDob/WLrrvTsRMLj0CsGlTyTIltQazRsMo4AFDmAtJamSaJz78I9xM
+         cFfW5uGEMgGgsFBS7uaI64akpoKHmiybmzolydAgBXH+NYauJ1dBr64LtNVdw9Fx4vVe
+         p/HlUSwP8UiqzdNcyYleawkDfbj9NSJp5O1ihzY66+dV+cNfroZwcEwoksXWBDjaQI4L
+         R/3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=gGITGgQx/jtRAELMn8b1SKl58yOqlK05OidTnBYKz8w=;
+        b=M2ANz7Bfcu1AAfvU6CwrRNCZCAYOdN25UhMIWhvN70hkJH/w3chsF7eY8XkQ1oZx4J
+         zOVMh+kXAuLJvOwEz3PcYY6NWewSdYSlL39cErXjp3GVDb/L2cHnWNVmHzpZcvdb3qWH
+         MPRkd/u6hX+wyoku6rcT/V7+2XMECmm8d8dxmqgwqIIGIvZXrNGJkHo+iLowK4Ci/SHF
+         1Fq/KFMEbQhfG5qN6wTfILGvHlu4Np9ni8Y7uZH0doNs7WRYaMLnR183vfaoPOoST6vz
+         OoQhLpBTSt7LzmTTiBcei7OXRtQlijyDTzhFrvWQDtpd60wGgKc+xWq/KJC5fSvppE7o
+         5g4g==
+X-Gm-Message-State: AOAM533gqUC+3EvuAOVAPSyeC7Xr3AT+LE14Fc4xSx1eLR6uLQGL8oKo
+        SUMrvunKsuHzQNMvfqaADmzx/gVa3EWbrhulXk4=
+X-Google-Smtp-Source: ABdhPJyp7V3Gdd4+0N/8AwWAmb5c51N6x6lSGZTYbrfskCDTaFOgQPFL+1z/hx7ZfcEYKyGhlwKJgOjBuVonFyXP+wA=
+X-Received: by 2002:a05:6602:2e95:: with SMTP id m21mr7489139iow.21.1635503922081;
+ Fri, 29 Oct 2021 03:38:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Reply-To: davilakhylie1@gmx.com
+Sender: estermanela6@gmail.com
+Received: by 2002:a92:7b13:0:0:0:0:0 with HTTP; Fri, 29 Oct 2021 03:38:41
+ -0700 (PDT)
+From:   Davila Khylie <davilakhylie64@gmail.com>
+Date:   Fri, 29 Oct 2021 03:38:41 -0700
+X-Google-Sender-Auth: t2JsBQb3fE6uzeU8kHrVM5bo_OU
+Message-ID: <CAD52ZHyAT2R7vwsRGfC9SuMFNgRoLgW1nbET5W8H8=_Y-1+zgA@mail.gmail.com>
+Subject: Hello i need your urgent response,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To match dwc3 documentation, add compatible for platform.
+Hello Dear,
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 4 ++--
- arch/arm/boot/dts/qcom-ipq8064.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index ff1bdb10ad19..7dec0553636e 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -637,7 +637,7 @@ usb3_hs_phy: hsphy@a6000 {
- 		};
- 
- 		usb3: usb3@8af8800 {
--			compatible = "qcom,dwc3";
-+			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
- 			reg = <0x8af8800 0x100>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -669,7 +669,7 @@ usb2_hs_phy: hsphy@a8000 {
- 		};
- 
- 		usb2: usb2@60f8800 {
--			compatible = "qcom,dwc3";
-+			compatible = "qcom,ipq4019-dwc3", "qcom,dwc3";
- 			reg = <0x60f8800 0x100>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-index 11481313bdb6..996f4458d9fc 100644
---- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-@@ -1080,7 +1080,7 @@ ss_phy_0: phy@100f8830 {
- 		};
- 
- 		usb3_0: usb3@100f8800 {
--			compatible = "qcom,dwc3", "syscon";
-+			compatible = "qcom,ipq8064-dwc3", "qcom,dwc3";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			reg = <0x100f8800 0x8000>;
-@@ -1122,7 +1122,7 @@ ss_phy_1: phy@110f8830 {
- 		};
- 
- 		usb3_1: usb3@110f8800 {
--			compatible = "qcom,dwc3", "syscon";
-+			compatible = "qcom,ipq8064-dwc3", "qcom,dwc3";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			reg = <0x110f8800 0x8000>;
--- 
-2.33.0
-
+Please did you receive my last message to you?  I have something
+urgent and important to discuss with you, please reply back to me as
+soon as possible. Davila Khylie.
