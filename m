@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01246440570
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 00:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D128440572
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 00:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231246AbhJ2WaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 18:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41462 "EHLO
+        id S231575AbhJ2WaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 18:30:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229546AbhJ2WaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 18:30:17 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEC1BC061570
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id na16-20020a17090b4c1000b0019f5bb661f9so8326459pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+        with ESMTP id S231401AbhJ2WaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 18:30:19 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C23C061714
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:50 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id a26so10417177pfr.11
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 15:27:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5FiNpbWsQ1AURQ4l0x934XjrZg11DiQc/mByDM5SptY=;
-        b=YKY5vW9oso/yUk/J5kLStrUj/F7QkEJ10L0nXgOVB+n0AfBHbcrPxSRwViZ/uhQEhI
-         Fkqt9HboOiKw36BecKSTetqOAZpc1LzXlZ+hGEMde8vMT5icQk/XkfyQBiaAJMSxOL0g
-         epWK0UJAZ5kwJ+tYxy4Se5szspr0bHfW+7ALE=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=8p+7yp48w7//WEs7Ji/brBBMvp8OpaoSralsz2SZ1rQ=;
+        b=hOdKuoyb/kTIYG3+Aimk41yC5VZLTMT9+gJASOR6FGE9iMV23NyGIqMRLjJMPr2Cih
+         4fmeKDUOYqplEoMVe14eVFcURaPSmirM8dfmWYUVN87OVal5ZxgTQv1jAlpCdFmhtX/c
+         ApfjOlpTyWHoApvNBQfveWmGahrcb6Ez06LWA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5FiNpbWsQ1AURQ4l0x934XjrZg11DiQc/mByDM5SptY=;
-        b=cMrTw/zSYh+fSvpqXbVvG/U7CxsnLNn8qBZUgDlrjyzBvGGh0titypUy58NNxhAbeH
-         uiXkKBimpPWcRAcbv1f++Hcqwftl/z5WKBMqXTbWDoAQRGEyRyDJpv1qGT2WZ3plc1X8
-         Wo4u6eI0+grDEwlpADl77yRXphCDWviprskKkU1Xut9RQHXF+1jGFZqDcEPkgYjhuO58
-         RcT2K/bbsl9cKbtw7JlJSrBOynRSvDDUL9RtdxFrXzy3uZEDQzCe1fID4hBCP2ZmoyyM
-         TQyXhmv9y+hi0oEVscDDsWSPeuxYv17YxGKL+/KWLSMhkSlWAAU+nuDTG/O76GSnPOvu
-         5H1Q==
-X-Gm-Message-State: AOAM530vgK6k4A8n4f+R+PrWoPOU7lrd6DjQKeAkUU7g5/5yQY5HYeMU
-        ZbZFjLp32eQM3L5d6Ti7mqbHoA==
-X-Google-Smtp-Source: ABdhPJxOUrAr8JIx2irI6EQjMHkdS9XbqnP128y/F33ONCuGC4zmm/ZspZ/svgol1Cl5BxIgFpF2sg==
-X-Received: by 2002:a17:90b:1b11:: with SMTP id nu17mr22487040pjb.129.1635546468388;
-        Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=8p+7yp48w7//WEs7Ji/brBBMvp8OpaoSralsz2SZ1rQ=;
+        b=mLvrIz8UmrTlrtkGhxw5xG0j19XAaSt8T8NjYuPcpjpkdn4qbXPT+Tb1z3DxtO8itq
+         LVkxCE6Izmnv7IABqqRxc6rDvTLwUvMnkSje1d7QOzj1EVncFOi2Gf9jHLePB+1QHV4t
+         p3+FXFJpnWs4MgfP8Yk2QJKNpAv9mS8IXeC3auWig74XfRZApufjvPYBW2n9tVoWEaCQ
+         P6NlwHumYjnZNXvRnyBPrS8CDJUlwCHdPyBXGqIU3yX/8EBmwBIuYb7STzQqQ04QPm47
+         jv29TWtLFr5/lDTVPId3FycKXwtgpw2cK3PmXv8GbZrOhmMKEc9JN90KIFrvBaZODZDn
+         XKiQ==
+X-Gm-Message-State: AOAM531K1K7esT5PpjEKC+uP46SJuFZ1GzAf/NzhHj156ICtc+7PICRj
+        Sv2yiNNGFgXJ3Au2Np4bvrnkEg==
+X-Google-Smtp-Source: ABdhPJxnzZSyIvS4cPeOnXvq/PbcoYEMgbjFgjqr7TNr9LSSaEZ7Ci2Tr6ySneYvz3lBsDdSQLpIlA==
+X-Received: by 2002:a05:6a00:ac1:b0:44c:4dc6:b897 with SMTP id c1-20020a056a000ac100b0044c4dc6b897mr13921865pfl.25.1635546469875;
+        Fri, 29 Oct 2021 15:27:49 -0700 (PDT)
 Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:e956:ddc4:6e27:e270])
-        by smtp.gmail.com with ESMTPSA id v14sm7756660pff.199.2021.10.29.15.27.47
+        by smtp.gmail.com with ESMTPSA id v14sm7756660pff.199.2021.10.29.15.27.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Oct 2021 15:27:48 -0700 (PDT)
+        Fri, 29 Oct 2021 15:27:49 -0700 (PDT)
 From:   Philip Chen <philipchen@chromium.org>
 To:     LKML <linux-kernel@vger.kernel.org>
 Cc:     swboyd@chromium.org, dianders@chromium.org,
@@ -52,59 +52,65 @@ Cc:     swboyd@chromium.org, dianders@chromium.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 1/4] arm64: dts: sc7180: Include gpio.h in edp bridge dts
-Date:   Fri, 29 Oct 2021 15:27:40 -0700
-Message-Id: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+Subject: [PATCH v3 2/4] arm64: dts: sc7180: Specify "data-lanes" for DSI host output
+Date:   Fri, 29 Oct 2021 15:27:41 -0700
+Message-Id: <20211029152647.v3.2.If23c83a786fc4d318a1986f43803f22b4b1d82cd@changeid>
 X-Mailer: git-send-email 2.33.1.1089.g2158813163f-goog
+In-Reply-To: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+References: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The edp bridge dts fragment files use the macros defined in
-'dt-bindings/gpio/gpio.h'.
+MSM DSI host driver actually parses "data-lanes" in DT and compare
+it with the number of DSI lanes the bridge driver sets for
+mipi_dsi_device. So we need to always specify "data-lanes" for the
+DSI host output. As of now, "data-lanes" is added to ti-sn65dsi86 dts
+fragment, but missing in parade-ps8640 dts fragment, which requires
+a fixup.
 
-To help us more flexibly order the #include lines of dts files in a
-board-revision-specific dts file, let's include the gpio header in the
-bridge dts fragment files themselves.
+Since we'll do 4-lane DSI regardless of which bridge chip is used,
+instead of adding "data-lanes" to parade-ps8640 dts fragment, let's
+just move "data-lanes" from the bridge dts to sc7180-trogdor.dtsi.
 
 Signed-off-by: Philip Chen <philipchen@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 ---
 
 (no changes since v1)
 
- arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi | 2 ++
- arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi  | 2 ++
- 2 files changed, 4 insertions(+)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi | 1 -
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi              | 4 ++++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-index a3d69540d4e4..6a84fba178d6 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-parade-ps8640.dtsi
-@@ -5,6 +5,8 @@
-  * Copyright 2021 Google LLC.
-  */
- 
-+#include <dt-bindings/gpio/gpio.h>
-+
- / {
- 	pp3300_brij_ps8640: pp3300-brij-ps8640 {
- 		compatible = "regulator-fixed";
 diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-index 97d5e45abd1d..6dbf413e4e5b 100644
+index 6dbf413e4e5b..f869e6a343c1 100644
 --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-ti-sn65dsi86.dtsi
-@@ -5,6 +5,8 @@
-  * Copyright 2021 Google LLC.
-  */
+@@ -9,7 +9,6 @@
  
-+#include <dt-bindings/gpio/gpio.h>
-+
  &dsi0_out {
  	remote-endpoint = <&sn65dsi86_in>;
- 	data-lanes = <0 1 2 3>;
+-	data-lanes = <0 1 2 3>;
+ };
+ 
+ edp_brij_i2c: &i2c2 {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index d4f4441179fc..bd5909ffb3dc 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -603,6 +603,10 @@ &dsi0 {
+ 	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+ };
+ 
++&dsi0_out {
++	data-lanes = <0 1 2 3>;
++};
++
+ &dsi_phy {
+ 	status = "okay";
+ 	vdds-supply = <&vdda_mipi_dsi0_pll>;
 -- 
 2.33.1.1089.g2158813163f-goog
 
