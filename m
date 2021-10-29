@@ -2,183 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652A743FBED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E114843FBF6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231588AbhJ2L7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 07:59:49 -0400
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:58674 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231593AbhJ2L7k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 07:59:40 -0400
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19TBUfrU032509;
-        Fri, 29 Oct 2021 04:57:05 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=n3gJgqHdF1ncsUhhKl3qdKR/rglxHdG/0jKnJwu9G6o=;
- b=BrMz8xLff0ivJWTU5piWiaYtU4PaIQ4YXWIyrr5HchRKthmmNMy8PLt7OC/cKBTCdF6A
- YWG7jCIpaCUlgOxDlBx8PfbuBlrLpY6jTZy+SofHUfmpCxsdvcb4tKzd0Cubq06/8K2W
- fYfm8Lr6GT4J0aJf6OURkbJhzXvZDnQVERT08f01oNVw3a2biON3JemEuV51iT0UEzss
- Bmgut2xv5gbwzVC76h4S1R+jR6/go2Mu/AtKXHdqpGbWAWB9tUEroiAgCQv9f2cQndcZ
- ZA5VDBxon3n4AiWgiq1CokisMWtS9AVkviJhJc+rdLooaJfLNxgd5RPpowHzIrW4a9wc Gw== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0a-0016f401.pphosted.com with ESMTP id 3c0g54g31t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Fri, 29 Oct 2021 04:57:05 -0700
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Fri, 29 Oct
- 2021 04:57:04 -0700
-Received: from bbhushan2.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Fri, 29 Oct 2021 04:57:01 -0700
-From:   Bharat Bhushan <bbhushan2@marvell.com>
-To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <bbudiredla@marvell.com>, <sgoutham@marvell.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Bharat Bhushan <bbhushan2@marvell.com>
-Subject: [PATCH v6 4/4] perf/marvell: cn10k DDR perf event core ownership
-Date:   Fri, 29 Oct 2021 17:26:43 +0530
-Message-ID: <20211029115643.32351-5-bbhushan2@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211029115643.32351-1-bbhushan2@marvell.com>
-References: <20211029115643.32351-1-bbhushan2@marvell.com>
+        id S230486AbhJ2MEJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Oct 2021 08:04:09 -0400
+Received: from aposti.net ([89.234.176.197]:37894 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229930AbhJ2MEG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 08:04:06 -0400
+Date:   Fri, 29 Oct 2021 13:01:23 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to
+ ingenic,*.h
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, list@opendingux.net,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <BQMQ1R.WLWA4YQT423M3@crapouillou.net>
+In-Reply-To: <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
+References: <20211016133322.40771-1-paul@crapouillou.net>
+        <YXiNLZ9ne8D8uv82@robh.at.kernel.org> <VCRO1R.FQ8R7TN6NPYP3@crapouillou.net>
+        <CAL_Jsq+wU=R_F3iNRfMaZtKUftQLDR2d-4Mt98QMWgt3HkOvQQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-GUID: _E3nCSHCuIUG3Cj2J3SkyKYoMrnRP7AM
-X-Proofpoint-ORIG-GUID: _E3nCSHCuIUG3Cj2J3SkyKYoMrnRP7AM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-29_02,2021-10-29_01,2020-04-07_01
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As DDR perf event counters are not per core, so they should be accessed
-only by one core at a time. Select new core when previously owning core
-is going offline.
+Hi Rob,
 
-Signed-off-by: Bharat Bhushan <bbhushan2@marvell.com>
----
-v1->v6
- - No Change
+Le jeu., oct. 28 2021 at 17:26:54 -0500, Rob Herring <robh@kernel.org> 
+a écrit :
+> On Thu, Oct 28, 2021 at 6:46 AM Paul Cercueil <paul@crapouillou.net> 
+> wrote:
+>> 
+>>  Hi Rob,
+>> 
+>>  Le mar., oct. 26 2021 at 18:20:13 -0500, Rob Herring 
+>> <robh@kernel.org>
+>>  a écrit :
+>>  > On Sat, Oct 16, 2021 at 02:33:21PM +0100, Paul Cercueil wrote:
+>>  >>  Tidy up a bit the tree, by prefixing all 
+>> include/dt-bindings/clock/
+>>  >> files
+>>  >>  related to Ingenic SoCs with 'ingenic,'.
+>>  >>
+>>  >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  >>  ---
+>>  >>
+>>  >>  Notes:
+>>  >>      v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
+>>  >>          x1000.h / x1830.h
+>>  >>
+>>  >>   Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/display/ingenic,ipu.yaml    
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/display/ingenic,lcd.yaml    
+>> | 4
+>>  >> ++--
+>>  >>   Documentation/devicetree/bindings/dma/ingenic,dma.yaml        
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    
+>> | 2
+>>  >> +-
+>>  >>   .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  
+>> | 2
+>>  >> +-
+>>  >>   .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/net/ingenic,mac.yaml        
+>> | 2
+>>  >> +-
+>>  >>   .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml 
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/rng/ingenic,trng.yaml       
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/serial/ingenic,uart.yaml    
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/sound/ingenic,aic.yaml      
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/sound/ingenic,codec.yaml    
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      
+>> | 2
+>>  >> +-
+>>  >>   Documentation/devicetree/bindings/usb/ingenic,musb.yaml       
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/jz4725b.dtsi                       
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/jz4740.dtsi                        
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/jz4770.dtsi                        
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/jz4780.dtsi                        
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/x1000.dtsi                         
+>> | 2
+>>  >> +-
+>>  >>   arch/mips/boot/dts/ingenic/x1830.dtsi                         
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/jz4725b-cgu.c                             
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/jz4740-cgu.c                              
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/jz4760-cgu.c                              
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/jz4770-cgu.c                              
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/jz4780-cgu.c                              
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/x1000-cgu.c                               
+>> | 2
+>>  >> +-
+>>  >>   drivers/clk/ingenic/x1830-cgu.c                               
+>> | 2
+>>  >> +-
+>>  >>   .../clock/{jz4725b-cgu.h => ingenic,jz4725b-cgu.h}            
+>> | 0
+>>  >>   .../dt-bindings/clock/{jz4740-cgu.h => ingenic,jz4740-cgu.h}  
+>> | 0
+>>  >>   .../dt-bindings/clock/{jz4760-cgu.h => ingenic,jz4760-cgu.h}  
+>> | 0
+>>  >>   .../dt-bindings/clock/{jz4770-cgu.h => ingenic,jz4770-cgu.h}  
+>> | 0
+>>  >>   .../dt-bindings/clock/{jz4780-cgu.h => ingenic,jz4780-cgu.h}  
+>> | 0
+>>  >>   .../dt-bindings/clock/{x1000-cgu.h => ingenic,x1000-cgu.h}    
+>> | 0
+>>  >>   .../dt-bindings/clock/{x1830-cgu.h => ingenic,x1830-cgu.h}    
+>> | 0
+>>  >>   42 files changed, 36 insertions(+), 36 deletions(-)
+>>  >>   rename include/dt-bindings/clock/{jz4725b-cgu.h =>
+>>  >> ingenic,jz4725b-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{jz4740-cgu.h =>
+>>  >> ingenic,jz4740-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{jz4760-cgu.h =>
+>>  >> ingenic,jz4760-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{jz4770-cgu.h =>
+>>  >> ingenic,jz4770-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{jz4780-cgu.h =>
+>>  >> ingenic,jz4780-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{x1000-cgu.h =>
+>>  >> ingenic,x1000-cgu.h} (100%)
+>>  >>   rename include/dt-bindings/clock/{x1830-cgu.h =>
+>>  >> ingenic,x1830-cgu.h} (100%)
+>>  >
+>>  > Acked-by: Rob Herring <robh@kernel.org>
+>>  >
+>>  > However, this will be a pain to merge if there are any new users
+>>  > coming
+>>  > in during the merge window. If not, then Stephen can just take 
+>> this.
+>>  > If
+>>  > there are, then at the end of the merge window is the best time. 
+>> For
+>>  > that to work, you need to track when all dependent changes are 
+>> merged
+>>  > and we need to agree who will pick this up. I usually have fixes 
+>> from
+>>  > breakages in the merge window anyways.
+>> 
+>>  I get Cc'd on all ingenic-related patches, so far I don't see 
+>> anything
+>>  that will cause a breakage. I think it would be okay to merge it now
+>>  (we're at -rc7 after all).
+> 
+> Then can you apply this to linux-next and check it all works there.
+> Specifically, 'make dt_binding_check dtbs drivers/clk/' needs to work.
+> Or confirm you already did that.
 
- drivers/perf/marvell_cn10k_ddr_pmu.c | 50 ++++++++++++++++++++++++++--
- include/linux/cpuhotplug.h           |  1 +
- 2 files changed, 49 insertions(+), 2 deletions(-)
+I did it on Linus' master branch and it all worked.
 
-diff --git a/drivers/perf/marvell_cn10k_ddr_pmu.c b/drivers/perf/marvell_cn10k_ddr_pmu.c
-index 21fccb9090c5..bef0cee3a46a 100644
---- a/drivers/perf/marvell_cn10k_ddr_pmu.c
-+++ b/drivers/perf/marvell_cn10k_ddr_pmu.c
-@@ -129,6 +129,7 @@ struct cn10k_ddr_pmu {
- 	int active_events;
- 	struct perf_event *events[DDRC_PERF_NUM_COUNTERS];
- 	struct hrtimer hrtimer;
-+	struct hlist_node node;
- };
- 
- #define to_cn10k_ddr_pmu(p)	container_of(p, struct cn10k_ddr_pmu, pmu)
-@@ -610,6 +611,24 @@ static enum hrtimer_restart cn10k_ddr_pmu_timer_handler(struct hrtimer *hrtimer)
- 	return HRTIMER_RESTART;
- }
- 
-+static int cn10k_ddr_pmu_offline_cpu(unsigned int cpu, struct hlist_node *node)
-+{
-+	struct cn10k_ddr_pmu *pmu = hlist_entry_safe(node, struct cn10k_ddr_pmu,
-+						     node);
-+	unsigned int target;
-+
-+	if (cpu != pmu->cpu)
-+		return 0;
-+
-+	target = cpumask_any_but(cpu_online_mask, cpu);
-+	if (target >= nr_cpu_ids)
-+		return 0;
-+
-+	perf_pmu_migrate_context(&pmu->pmu, cpu, target);
-+	pmu->cpu = target;
-+	return 0;
-+}
-+
- static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu;
-@@ -661,18 +680,31 @@ static int cn10k_ddr_perf_probe(struct platform_device *pdev)
- 	hrtimer_init(&ddr_pmu->hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
- 	ddr_pmu->hrtimer.function = cn10k_ddr_pmu_timer_handler;
- 
-+	cpuhp_state_add_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	ret = perf_pmu_register(&ddr_pmu->pmu, name, -1);
- 	if (ret)
--		return ret;
-+		goto error;
- 
- 	pr_info("CN10K DDR PMU Driver for ddrc@%llx\n", res->start);
- 	return 0;
-+error:
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+	return ret;
- }
- 
- static int cn10k_ddr_perf_remove(struct platform_device *pdev)
- {
- 	struct cn10k_ddr_pmu *ddr_pmu = platform_get_drvdata(pdev);
- 
-+	cpuhp_state_remove_instance_nocalls(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				&ddr_pmu->node);
-+
- 	perf_pmu_unregister(&ddr_pmu->pmu);
- 	return 0;
- }
-@@ -695,12 +727,26 @@ static struct platform_driver cn10k_ddr_pmu_driver = {
- 
- static int __init cn10k_ddr_pmu_init(void)
- {
--	return platform_driver_register(&cn10k_ddr_pmu_driver);
-+	int ret;
-+
-+	ret = cpuhp_setup_state_multi(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
-+				"perf/marvell/cn10k/ddr:online", NULL,
-+				cn10k_ddr_pmu_offline_cpu);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_driver_register(&cn10k_ddr_pmu_driver);
-+	if (ret)
-+		cpuhp_remove_multi_state(
-+				CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
-+	return ret;
- }
- 
- static void __exit cn10k_ddr_pmu_exit(void)
- {
- 	platform_driver_unregister(&cn10k_ddr_pmu_driver);
-+	cpuhp_remove_multi_state(CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE);
- }
- 
- module_init(cn10k_ddr_pmu_init);
-diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-index 832d8a74fa59..a4b521f12b58 100644
---- a/include/linux/cpuhotplug.h
-+++ b/include/linux/cpuhotplug.h
-@@ -227,6 +227,7 @@ enum cpuhp_state {
- 	CPUHP_AP_PERF_ARM_QCOM_L3_ONLINE,
- 	CPUHP_AP_PERF_ARM_APM_XGENE_ONLINE,
- 	CPUHP_AP_PERF_ARM_CAVIUM_TX2_UNCORE_ONLINE,
-+	CPUHP_AP_PERF_ARM_MARVELL_CN10K_DDR_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_NEST_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_CORE_IMC_ONLINE,
- 	CPUHP_AP_PERF_POWERPC_THREAD_IMC_ONLINE,
--- 
-2.17.1
+But indeed, it does conflict on linux-next since 
+Documentation/devicetree/bindings/spi/ingenic,spi.yaml was added there.
+
+Should I rebase the patchset on top of linux-next?
+
+-Paul
+
 
