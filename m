@@ -2,97 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A524B440319
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 21:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21D8B4403B1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 22:03:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbhJ2T1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 15:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56630 "EHLO
+        id S229474AbhJ2UFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 16:05:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbhJ2T1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 15:27:45 -0400
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3F0C061570
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:25:16 -0700 (PDT)
-Received: by mail-ua1-x92d.google.com with SMTP id v20so20005159uaj.9
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:25:16 -0700 (PDT)
+        with ESMTP id S229458AbhJ2UFx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 16:05:53 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65DFC061570;
+        Fri, 29 Oct 2021 13:03:24 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id v1-20020a17090a088100b001a21156830bso11426815pjc.1;
+        Fri, 29 Oct 2021 13:03:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iOhkeO72w3GegdH+UyM0cQ4je/Oq7dw9gY0y8l00Dps=;
-        b=BpYkTOMfIuxl1LvyX+8FrzDYBlDk2ILzW92lnelWdll4LauIavVrbIPnAdsBba0Bay
-         9GJPOu/gc7iBsuroJcRmM5lFQTkB4KMxWzntnKzRtuF6APyI1rZYLwj1RWgS2b3AqL28
-         W1ZOYWW/N2Ert+OifD7ruHFgHUxPG7dTZIav8RyjyScTzUYcLo9O3a45doCe1j8rvHTM
-         4cJz19rDuihHt7YuFsYSwrKnZzIwaThqghVxPcpbJmMU2HXGA+43vMqONmFbciTK/TYL
-         GaZsyRWAUFJafjTZ4bOeV8XLUAVo7C+kccYIKaEwihABlZwGP36nNgrQTvIGBKkyl5nc
-         gx1g==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=CD0Ppn2nedztgflSM0GT6miv660hCRYTlpvYGrTEVmc=;
+        b=c40Rae/wnHyVhugcgh192ae3Q6rIm71vIlXZyddZ+BApyZvnhsj2KW21ZIoxspIbNB
+         NfIOUjrGjI3T4v6U0yPoUfT9ZEJrWUO5ErGsnx3iu9TbBOWeKtgEXJ+BW2deeO03elW9
+         Sg9QV2srOzOUbmEiP2CuEHjaxcNJE6yiuMTW1jVYKMgNgfMpbsVyYRsKPVlN8C0fyhch
+         lKRk1OoLddxC395H1BiT2gHTncnp6mJtXgVJ9otaG9fChs2jOQ0t0mdeqRH8tOTzkxho
+         Nsgc9WKY55PEqSmEDXNDgyPYYh75S5ipXfkoUoxdvPVy8BljWMePEGCmy/FDzJu2kfWu
+         2Lig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iOhkeO72w3GegdH+UyM0cQ4je/Oq7dw9gY0y8l00Dps=;
-        b=pyiXFI3bWJu/G0HIVCm3Yo+snSzEgpF2JwWzYLJ7iy2zlUfJXhoVBDko/vpsbePBsx
-         jPICFzbeVOOo7wj8glfWoilc3pkITtY5ZGH04wvO8KzBtV9rkm4I5ZA91GOuv3AMZvJz
-         tTXm1c1ZjhL/kbiAshLzfQxA+ZmtMZdRtZZhkuCmmi0wihvEsk2K63fqT9sihQCVPQia
-         HjsaqqbeGIvapkWhOQBddxwBt/k/cNjxdII0RHd1ocKY0UTquJyUVa2e/BOVujE3yeMa
-         3thpQw0ADLdJ3ONijjPvsZBqSQEsSJkkx12GnXmPexvgaNZ/Ul0wjOiY/y7SjcJvhfjy
-         uhXA==
-X-Gm-Message-State: AOAM531Is9WwmX/1pnbZrFwxCS8PibZEohFaMBhk8OQh3JcKSbOqfVNV
-        CKw1YophIYbAaNRDg3N7M0PJ5HV6vOYNdEEoGR70RA==
-X-Google-Smtp-Source: ABdhPJxLz+zekne4P7GYaeUWmfz8nQqPqtIf+Pn0XUP0NhGOqQedWV6arFH39XiTpXDM/Najz07v14Z2+6erQK70Hlg=
-X-Received: by 2002:a67:f1ca:: with SMTP id v10mr15087571vsm.55.1635535515312;
- Fri, 29 Oct 2021 12:25:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211028183527.3050-1-semen.protsenko@linaro.org>
- <20211028183527.3050-4-semen.protsenko@linaro.org> <b9c33def-6b12-1e5a-4449-b1e0869a0e3a@roeck-us.net>
- <2a5ff8d0-c665-e25e-cb40-51326db2e26a@canonical.com>
-In-Reply-To: <2a5ff8d0-c665-e25e-cb40-51326db2e26a@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 29 Oct 2021 22:25:03 +0300
-Message-ID: <CAPLW+4kd0Woxenf2DUJTRD2zCn9gSg6Wq0Vbt+EjSM5zeTDvHQ@mail.gmail.com>
-Subject: Re: [PATCH 3/7] watchdog: s3c2410: Make reset disable optional
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=CD0Ppn2nedztgflSM0GT6miv660hCRYTlpvYGrTEVmc=;
+        b=TPmzCDNh+SokN8rr08pU6vWTk6xpOKgVon095wrBr4VllyTezWYHRVxzZVOPnNVea9
+         lD7dWFTLEfXatZV0r+1CSuGAfglWYwET7lrfEUDhwU6cwTIdXj9CCjVIoCzuMzqgW5En
+         JsYmM1OlsZ+/qg2vERXsoLb7ELzyOcCHGgXKGBpeimxgTEeAcs55bsucqZW+ArC0HSOK
+         NuCU+6gfgQpgOh05c3X4Ek/y+25O8nNqzR8YeD6zUN7kBaZ64gvUFeJSPvxdzu6LKI1v
+         Z+gAHxOzeBs6j4lVdPQbkrkU7NTH8PEHZXtXk25G452TTZGWZnYc0wzTu34rsbkmKuTQ
+         lYtA==
+X-Gm-Message-State: AOAM533yTkyzBRgdrpSPDkwkBdFckriLZGQSUNn8fB4+T6MJJDB3rhuC
+        usonl1u43Jn29qGI5qSShmh0Scel3L/RJA==
+X-Google-Smtp-Source: ABdhPJy/KfEnayPUU1Tvi9Lcz5RXzn6GtjdRqeUCch1RvSVVaIRIZN0uDw8aiq9PZTcYhoO8Aq09Cw==
+X-Received: by 2002:a17:90b:1bd1:: with SMTP id oa17mr13380789pjb.26.1635537804185;
+        Fri, 29 Oct 2021 13:03:24 -0700 (PDT)
+Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
+        by smtp.gmail.com with ESMTPSA id j16sm8775041pfj.16.2021.10.29.13.03.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Oct 2021 13:03:23 -0700 (PDT)
+From:   Jim Quinlan <jim2101024@gmail.com>
+To:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
+        james.quinlan@broadcom.com
+Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-kernel@vger.kernel.org (open list),
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH v6 0/9] PCI: brcmstb: have host-bridge turn on sub-device power
+Date:   Fri, 29 Oct 2021 16:03:08 -0400
+Message-Id: <20211029200319.23475-1-jim2101024@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 at 11:04, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 29/10/2021 02:16, Guenter Roeck wrote:
-> > On 10/28/21 11:35 AM, Sam Protsenko wrote:
-> >> Not all SoCs have AUTOMATIC_WDT_RESET_DISABLE register, examples are
-> >> Exynos850 and Exynos9. On such chips reset disable register shouldn't be
-> >> accessed. Provide a way to avoid handling that register. This is done by
-> >> introducing separate callbacks to driver data structure: one for reset
-> >> disable register, and one for mask reset register. Now those callbacks
-> >> can be checked and called only when those were set in driver data.
-> >>
-> >> This commit doesn't bring any functional change to existing devices, but
-> >> merely provides an infrastructure for upcoming chips support.
-> >>
-> >
-> > That doesn't explain why the callbacks are needed instead of additional
-> > feature flags.
-> >
->
-> Or why not skipping the disable operations if disable_reg is not provided?
->
+v6
+     -- Dropped the idea of a placeholder regulator
+        property (brcm-ep-a-supply). (MarkB)
+     -- device_initialize() now called once.  Two
+        commits were added for this.  (GKH)
+     -- In two cases, separated a single function 
+        into two or more functions (MarkB)
+     -- "(void)foo();" => "foo()".  Note that although
+        foo() returns an int, in this instance it is being
+	invoked within a function returning void, and foo()
+	already executes a dev_err() on error. (MarkB)
+     -- Added a commit to correct PCIe interrupts in YAML.
+     -- Removed "device_type = "pci";" for the EP node
+        in the YAML example.
+     -- Updated the URL related to the voltage regulator
+        names on GitHub.  Note that I added vpciev3v3aux.
 
-Yeah, that was my first thought too :) Then I figured disable_reg is
-offset, and 0x0 is a valid offset too. Anyway, I'll rework this patch
-using quirks, as discussed above. Will send v2 soon.
+v5 [NOTE: It has been a while since v4.  Sorry]
+     -- See "PCI: allow for callback to prepare nascent subdev"
+        commit message for the cornerstone of this patchset
+        and the reasons behind it.  This is a new commit.
+     -- The RC driver now looks into its DT children and
+        turns on regulators for a sub-device, and this occurs
+	prior to PCIe link as it must.
+     -- Dropped commits not related to the focus of this patchset.
 
->
-> Best regards,
-> Krzysztof
+v4 [NOTE: I'm not sure this fixes RobH and MarkB constraints but I'd
+          like to use this pullreq as a basis for future discussion.]
+   [Commit: Add bindings for ...]
+     -- Fix syntax error in YAML bindings example (RobH)
+     -- {vpcie12v,vpcie3v3}-supply props are back in root complex DT node
+        (I believe RobH said this was okay)
+   [Commit: Add control of ..]
+     -- Do not do global search for regulator; now we look specifically
+        for the property {vpcie12v,vpcie3v3}-supply in the root complex
+	DT node and then call devm_regulator_bulk_get() (MarkB)
+     -- Use devm_regulator_bulk_get() (Bjorn)
+     -- s/EP/slot0 device/ (Bjorn)
+     -- Spelling, capitalization (Bjorn)
+     -- Have brcm_phy_stop() return a void (Bjorn)
+   [Commit: Do not turn off ...]
+     -- Capitalization (Bjorn)
+   [Commit: Check return value ...]
+     -- Commit message content (Bjorn)
+     -- Move 6/6 hunk to 2/6 where it belongs (Bjorn)
+     -- Move the rest of 6/6 before all other commits (Bjorn)
+
+v3 -- Driver now searches for EP DT subnode for any regulators to turn on.
+      If present, these regulators have the property names
+      "vpcie12v-supply" and "vpcie3v3-supply".  The existence of these
+      regulators in the EP subnode are currently pending as a pullreq
+      in pci-bus.yaml at
+      https://github.com/devicetree-org/dt-schema/pull/54
+      (MarkB, RobH).
+   -- Check return of brcm_set_regulators() (Florian)
+   -- Specify one regulator string per line for easier update (Florian)
+   -- Author/Committer/Signoff email changed from that of V2 from
+      'james.quinlan@broadcom.com' to 'jim2101024@gmail.com'.
+
+v2 -- Use regulator bulk API rather than multiple calls (MarkB).
+
+v1 -- Bindings are added for fixed regulators that may power the EP device.
+   -- The brcmstb RC driver is modified to control these regulators
+      during probe, suspend, and resume.
+   -- 7216 type SOCs have additional error reporting HW and a
+      panic handler is added to dump its info.
+   -- A missing return value check is added.
+
+Jim Quinlan (9):
+  dt-bindings: PCI: correct brcmstb interrupts, interrupt-map.
+  dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
+  PCI: move pci_device_add() call
+  PCI: separate device_initialize() from pci_device_add()
+  PCI: allow for callback to prepare nascent subdev
+  PCI: brcmstb: split brcm_pcie_setup() into two funcs
+  PCI: brcmstb: Add control of subdevice voltage regulators
+  PCI: brcmstb: Do not turn off regulators if EP can wake up
+  PCI: brcmstb: change brcm_phy_stop() to return void
+
+ .../bindings/pci/brcm,stb-pcie.yaml           |  35 ++-
+ drivers/pci/controller/pcie-brcmstb.c         | 243 ++++++++++++++++--
+ drivers/pci/iov.c                             |   1 +
+ drivers/pci/probe.c                           |  61 +++--
+ include/linux/pci.h                           |   4 +
+ 5 files changed, 308 insertions(+), 36 deletions(-)
+
+-- 
+2.17.1
+
