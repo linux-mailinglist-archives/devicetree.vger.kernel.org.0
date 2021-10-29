@@ -2,136 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D11CA4403B6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 22:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3540440402
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 22:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231157AbhJ2UGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 16:06:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37132 "EHLO
+        id S229458AbhJ2U1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 16:27:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbhJ2UF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 16:05:59 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EB6C061714;
-        Fri, 29 Oct 2021 13:03:29 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id x7so5190782pfh.7;
-        Fri, 29 Oct 2021 13:03:29 -0700 (PDT)
+        with ESMTP id S229441AbhJ2U1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 16:27:38 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A567AC061570;
+        Fri, 29 Oct 2021 13:25:09 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id u5so18674405ljo.8;
+        Fri, 29 Oct 2021 13:25:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=i/xlFeFGzhcgynIWoi7Dy7maGf++a2Lj0CJo9lD52eo=;
-        b=GepHwVrZxe/sGAtgAU8y/aOWlfk5bidJZKMNnGKBvVhd1O0yS5ZYRsSnZs5PEupDOD
-         XFh/8vpZICKn/+OD5sx6PcsEwM5EtZMdAmFgLVXQIfIIIhLe2ht3JKiXYzTcXov15tDs
-         04O+okmaQnyLH8PY/fX8La0HKBwZD62f2HF+uCsCUifL3BNyYDPOqsojH1eJB3xniGA7
-         SYpp7Jr/sq+NP1YoXCG7I+/fSy0jhpbjYOALDDOqlzO8TPFTOojDFoiI00a6WzyWLDyT
-         YKa6eyT6ypCyuDBG7ZzQ9JBZhs07SOMpMrw4L/XiweSpu1zZeSMCUsD98qsUZFPe/UiT
-         qZzg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uwSQ5O46XQWq/lDnechLXeMde+M4E9bl0BI41ywS9so=;
+        b=qFHa+Y0nq19Wnz1rYDkGGnQ7CPH8tO2/O/fq8Kwcy7a/S7ublc/0U1PsykHPMEjRBV
+         mJCZop8bzU6RGKjK7x686hQZBcHhBAehEraBgbAtnzqyGJ0stJ2QZm6ayAXA7lqRUJrn
+         v4QWRBaHpRadOFfU3eyb6qfRMzYoXEQVQ8U+rAoiCXo3y/q2IzhivXi4Ds9yXi/3sst0
+         ozqUaeT4xVto5IVVligZHVrxdkcRDXX3+WgYrdY86uJ8Fdt9rNkpw3CcSNxjXCAr+Kay
+         SZo4eQOQkHbsn2rPmP9MHtcsENy6zxtxT+izm2LtibT304gStT13ERDGAqRR5oY24s5Y
+         sC4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=i/xlFeFGzhcgynIWoi7Dy7maGf++a2Lj0CJo9lD52eo=;
-        b=PCv1EU+dyYkzfsRrM3DMLUPbBAzhRI994X46OcPzWlqEb23rhwaHZvp3KbdgO/t/GW
-         qkT23tAvv6Lf0abYAb/uSUxrM8QhafAMmR4I4RCJC4wITIlit0IxQDeJz2XELlIgIBtL
-         wgeqhxMBBgILOxyAIxrReoEJY+0CrgMon4KDmwapaVfL6gvBLSdMKlpn2ssm3YoOumFB
-         /aO9UTpRs+M7arx8Y9nGsYZEQX2JamL1T8Fn8YkJ96yknngEALeFL8/fDNq6SxXCOkMr
-         ogVG1SNGw23P7ubuCj4cfuxLA/4TxPFnZSUUYylDuS4L0ONJ0DKrc7f6FCx9VIrfft/F
-         ao+Q==
-X-Gm-Message-State: AOAM532ODlkt7lOn3WiEmwEhi7Y1rFQTgaZzbegmxH8GLb9KXJmCrm+V
-        coBnu/3vs1vN1OAtT5i5GWCIOsrnSrSPlw==
-X-Google-Smtp-Source: ABdhPJwvZSqQE/QbehqXCsHdQjyZTJdGYntsE57MxjyPpWUTC+sJLUK5O246dAdal1NwP+lGT+k1Hw==
-X-Received: by 2002:a62:754a:0:b0:47c:36b0:652 with SMTP id q71-20020a62754a000000b0047c36b00652mr12805931pfc.1.1635537809046;
-        Fri, 29 Oct 2021 13:03:29 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id j16sm8775041pfj.16.2021.10.29.13.03.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uwSQ5O46XQWq/lDnechLXeMde+M4E9bl0BI41ywS9so=;
+        b=NwyJh03Jmv8VLvqwNMchp8gI6pRHmYugwu9q3xlr0ciLkeoRBV9o+DlYxfs8+9d7iA
+         akNAZIhja7UoV6Pd/VZn3C1J7+ROknS47YWwY8aCuEumuDoNDNTbESRL8T+6cbTvd6ma
+         +FDVhRcGATkwEv36znBjY/PdXWsP+ZlBc9ji7X/m7ENoqsNGcxZQxRxaKTM93JjTO/qk
+         uRCT1DoqxkfJUXtB8s2jrt8Qlz6EA/4VblqvKQlTlSR4kwVkPvAIOnYRj3BE1lu1TF9s
+         kA45BEujRzNYJkeLGZmBnUR7MStF51y0lo2MgQjmLM/YlJGMsYbaNSesWT+Wqa9s9WPN
+         QFhw==
+X-Gm-Message-State: AOAM530zPc8ZziO4VQZKYxiM2CEk5Xue4TxseuzsjCt2LfIOy7FTQXi/
+        UCq49EPa+MB3k5QnxcJNBC0=
+X-Google-Smtp-Source: ABdhPJwM7qQIaQzjKAfq7HyW7IxgXBps3wCGWHUVtI6GyptFa1yoEs+L5X/1tC8iQmGC3lWoaniORA==
+X-Received: by 2002:a05:651c:510:: with SMTP id o16mr14152214ljp.359.1635539107957;
+        Fri, 29 Oct 2021 13:25:07 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id c19sm692715lfv.225.2021.10.29.13.25.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Oct 2021 13:03:28 -0700 (PDT)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
+        Fri, 29 Oct 2021 13:25:07 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
 Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v6 2/9] dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
-Date:   Fri, 29 Oct 2021 16:03:10 -0400
-Message-Id: <20211029200319.23475-3-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211029200319.23475-1-jim2101024@gmail.com>
-References: <20211029200319.23475-1-jim2101024@gmail.com>
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 1/2] dt-bindings: watchdog: convert Broadcom's WDT to the json-schema
+Date:   Fri, 29 Oct 2021 22:25:04 +0200
+Message-Id: <20211029202505.7106-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-allows optional regulators to be attached and controlled by the PCIe RC
-driver.  That being said, this driver searches in the DT subnode (the EP
-node, eg pci-ep@0,0) for the regulator property.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-The use of a regulator property in the pcie EP subnode such as
-"vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-file at
+This helps validating DTS files.
 
-https://github.com/devicetree-org/dt-schema/pull/63
-
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- .../bindings/pci/brcm,stb-pcie.yaml           | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ---------
+ .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 40 +++++++++++++++++++
+ 2 files changed, 40 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 508e5dce1282..d90d867deb5c 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -62,6 +62,10 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  vpcie12v-supply: true
-+  vpcie3v3-supply: true
-+  vpcie3v3aux-supply: true
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+deleted file mode 100644
+index 84122270be8f..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-BCM7038 Watchdog timer
+-
+-Required properties:
+-
+-- compatible : should be "brcm,bcm7038-wdt"
+-- reg : Specifies base physical address and size of the registers.
+-
+-Optional properties:
+-
+-- clocks: The clock running the watchdog. If no clock is found the
+-	  driver will default to 27000000 Hz.
+-
+-Example:
+-
+-watchdog@f040a7e8 {
+-	compatible = "brcm,bcm7038-wdt";
+-	clocks = <&upg_fixed>;
+-	reg = <0xf040a7e8 0x16>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+new file mode 100644
+index 000000000000..69e5a1ef6a1f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/brcm,bcm63xx-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
-@@ -158,5 +162,28 @@ examples:
-                                  <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-                     brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
++title: BCM7038 watchdog timer
 +
-+                    /* PCIe bridge */
-+                    pci@0,0 {
-+                            #address-cells = <3>;
-+                            #size-cells = <2>;
-+                            reg = <0x0 0x0 0x0 0x0 0x0>;
-+                            compatible = "pciclass,0604";
-+                            device_type = "pci";
-+                            ranges;
++allOf:
++  - $ref: "watchdog.yaml#"
 +
-+                            /* PCIe endpoint */
-+                            pci-ep@0,0 {
-+                                    assigned-addresses =
-+                                        <0x82010000 0x0 0xf8000000 0x6 0x00000000 0x0 0x2000>;
-+                                    reg = <0x0 0x0 0x0 0x0 0x0>;
-+                                    compatible = "pci14e4,1688";
-+                                    vpcie3v3-supply = <&vreg7>;
-+                                    #address-cells = <3>;
-+                                    #size-cells = <2>;
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Justin Chen <justinpopo6@gmail.com>
++  - Rafał Miłecki <rafal@milecki.pl>
 +
-+                                    ranges;
-+                            };
-+                    };
-             };
-     };
++properties:
++  compatible:
++    const: brcm,bcm7038-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: >
++      The clock running the watchdog. If no clock is found the driver will
++      default to 27000000 Hz.
++
++unevaluatedProperties: false
++
++required:
++  - reg
++
++examples:
++  - |
++    watchdog@f040a7e8 {
++      compatible = "brcm,bcm7038-wdt";
++      reg = <0xf040a7e8 0x16>;
++      clocks = <&upg_fixed>;
++    };
 -- 
-2.17.1
+2.31.1
 
