@@ -2,91 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DA8343F8DD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FC6D43F917
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232481AbhJ2IeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 04:34:18 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41174
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232469AbhJ2IeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 04:34:16 -0400
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id B43913F19E
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 08:31:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1635496307;
-        bh=f9xGfy2IVXtAZrt0FZMC98EWuEmmved4QRdbre5fxcg=;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-         In-Reply-To:Content-Type;
-        b=QiCk8XpOVvEfRfn4Zn18AUJo9CsnumZzQY68YywMXP/hwhGUI0PCfiWVfCQrG8kee
-         yoeFi5smlIB1LK4kJeNmsjg6jzFzdFKr0I8V7gOv7/+3Rs9k6YQkak7/26tqpCGCXB
-         5VBrPi77S6IC+wVNBls3yMaw4LaQdMa+zpOdNEjYoN+671Pxf/DjDFdtbE9JCrPCHE
-         qGDVqlxCZkFwIxHQooAR7PL7rVz39Xcp92Vnn8u8Ihg+lb7hIxxEzdGONuJOYm8KuZ
-         8eSpRJIQyI/giJ3so7S/KQauMJIg0guiwYfYTPpvLtSS699a3xkXEOU50F7098WnqL
-         jRR8J6sMMTe2g==
-Received: by mail-lf1-f70.google.com with SMTP id x205-20020a19c7d6000000b003ffdde261b9so2127714lff.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 01:31:47 -0700 (PDT)
+        id S232504AbhJ2IpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 04:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51030 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232492AbhJ2IpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 04:45:05 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B940C061570;
+        Fri, 29 Oct 2021 01:42:37 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id t11so6360845plq.11;
+        Fri, 29 Oct 2021 01:42:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=YUKn1ogiGUUPet0SlrPCeqQwsaI/lAIcv7mQESFrswU=;
+        b=KHZ9tSM/6FrUtHundLMRPoZNDRF99RaPChTPxWrs5AGwoSpbs3BRtKLtbFHWIjNmk4
+         uYcaEB5ZjYVAr6OQ2+MK5ciwwxsg96V/EAHI3pv1uynQGriCFH6xlQumpD8dZY+c0Moh
+         gGquU4YytcQa7mvXD0uz1u76doWKGv+Nnh1kff3SxjScfwae6jZY6dH3g/PXoQK/KAmO
+         87HtcjDFRMWZ41SYpLHR99nT/WxUVWmvlSzIWJwydtD1LtYBUaP+rcIoqToQTGq1B4ZY
+         TCrhad0OZ4IXsw7eo6L5a+Q9j4yGqGbucq9RQY3lc362wMUbPQvmpIfMVICJyTDgudkY
+         64iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=f9xGfy2IVXtAZrt0FZMC98EWuEmmved4QRdbre5fxcg=;
-        b=cMZ9Rrp0YJloUsVi9ZQHBJxDoEOQ9ZnuDjG2q2QXWoLbUk+kFdwQFP8jzG4q4sFdbJ
-         7+AbMG1gwYOKxQZ8ODIwIINi1n791puBx3sm2fp1KA4DizkmAX/joFdqjTYNOMpm/+0h
-         RaOu4pw3jemVUtEYERsi8wgqm/VZkDdIOu7iX9uGGY9fhSFk94p1YOO1KUzxX2WRdXkc
-         ECnTESeGao/6fu0nMSn9IHTwjcihrURlNjArV2G+bXZ1rYenYM3l9iWN5DJmWOGsfY0u
-         oAiKFRHKbN89rt6WWukCLfUsYiytdkmHiui4izxAYIFMuAENBWZTN9iGVBe7oxCeLFks
-         5K/w==
-X-Gm-Message-State: AOAM533cTk/qhiBqckd8wLsX4eKkBrTr/ve6E61wW934jPqD8g77e98u
-        3TTa1huijd3JVZbCNFt7gzTb/N+cqcHc6mvIJPMp8Yz6TPdM6M8oh7XIOUfdCOLn77GpwOZnpn7
-        S0bEwIM7bIWrz00IaTYhZ25oNbYxGyga9lewDNrY=
-X-Received: by 2002:a05:6512:1153:: with SMTP id m19mr9014903lfg.418.1635496306698;
-        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx9Hyrds2Q0O6D4rKzUGcomrQuWNDbWOqCF/kGuCYTGcoX6Ii/2ymVukRDR0lH5EXL4eD4+Rw==
-X-Received: by 2002:a05:6512:1153:: with SMTP id m19mr9014892lfg.418.1635496306554;
-        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
-Received: from [192.168.3.161] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id d27sm551447ljo.15.2021.10.29.01.31.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 01:31:46 -0700 (PDT)
-Subject: Re: [PATCH 1/2] dt-bindings: samsung: pmu: Document Exynos850
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211028144313.9444-1-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <53a13ca3-a83e-b9ad-192c-b711657e2979@canonical.com>
-Date:   Fri, 29 Oct 2021 10:31:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211028144313.9444-1-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=YUKn1ogiGUUPet0SlrPCeqQwsaI/lAIcv7mQESFrswU=;
+        b=Jk+oUFqmpuoKpAaG1BVtu5duRhf9wC+sdBiVDaXORULFxje2Cy+PNF0bmwS4PPLzk3
+         0D2YkZ+ZYIHowyvB4U9ykmk6WIM/pvqS0jzh+RseyiTGz5ojsrWc9RM/fOlaowTJqhMx
+         LECmQ6Mgyb7yS0xF/G9vWH/WWeAmMcPlIwJ2B/Ngh3LqjTEO3abDlFp3Ub4tuwl//h8y
+         fKyZ6zvEeEhoXjNm4zI0lvNflDUMoYvqLu7wwV+T456kIBoYzgV1gJTU7dg4CxLbw78q
+         XPkynJIIRuoZ9fzX2kuINL9CHnF41fpJlu+7cwrMHJoHUDHihJzEVRMP7ctEuIsg9enW
+         PyRQ==
+X-Gm-Message-State: AOAM531tIo2P/WAbOEDHXryk2wL6Ru1s6cAe/rQYj3NUZoxgoxcMXeLn
+        1sTjKr1d1PnJfrD3Gi7TrHI=
+X-Google-Smtp-Source: ABdhPJxQfheZOYpdw+3YgK1VyTxx93SUIR990hRVvPoZbma6XjXu7NBQbV1xOv/YHyjjRg7zOm9WWQ==
+X-Received: by 2002:a17:90a:4801:: with SMTP id a1mr18298354pjh.156.1635496956380;
+        Fri, 29 Oct 2021 01:42:36 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id ml14sm1471424pjb.43.2021.10.29.01.42.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 29 Oct 2021 01:42:36 -0700 (PDT)
+From:   "LH.Kuo" <lhjeff911@gmail.com>
+X-Google-Original-From: "LH.Kuo" <lh.kuo@sunplus.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     dvorkin@tibbo.com, qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
+Subject: [PATCH 0/2] This is a patch series for I2C driver for Sunplus SP7021 SoC.
+Date:   Fri, 29 Oct 2021 16:42:33 +0800
+Message-Id: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2021 16:43, Sam Protsenko wrote:
-> Exynos850 SoC can reuse PMU driver functionality. Add corresponding
-> compatible string to PMU bindings documentation.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Looks good, but will have to wait for merge window to finish.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Best regards,
-Krzysztof
+LH.Kuo (2):
+  I2C: Add I2C driver for Sunplus SP7021
+  devicetree bindings I2C Add bindings doc for Sunplus SP7021
+
+ .../devicetree/bindings/i2c/i2c-sunplus.yaml       |   82 +
+ MAINTAINERS                                        |   39 +-
+ drivers/i2c/busses/Kconfig                         |   10 +
+ drivers/i2c/busses/Makefile                        |    1 +
+ drivers/i2c/busses/i2c-sunplus.c                   | 1936 ++++++++++++++++++++
+ 5 files changed, 2052 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
+ create mode 100644 drivers/i2c/busses/i2c-sunplus.c
+
+-- 
+2.7.4
+
