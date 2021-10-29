@@ -2,96 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F44943F8B9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF77B43F8D3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232422AbhJ2IYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 04:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46302 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232433AbhJ2IYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 04:24:08 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085EEC061570;
-        Fri, 29 Oct 2021 01:21:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=R+jZXij5/Xk2QpRoQVNw9PyvFwMYQKCNbuQ5IodArJs=; b=nn/grtlZsdiZ92/B5exkDezvj+
-        VL5sSPnLJWNGAmDVwis600h9Ro4QmOFsZBafp8VhMtPKVnscZeVkSZrYgpPh8sHIvGf8Jngfp//1L
-        QTOqH2Tkif94bqxKVJaR9u+IpFGNRIrD84YAk76LQcaIwmFisyhMHBl849Bu5GIkrIJicw245G5Hk
-        32O3Z/edQ76y09Gt8vpP/2qfD8yuePIx6YXssIBBSNCrVWaJp+6XVWHFPou3IEUq7EX5CG52hFaa6
-        ZbZF7G+ZMv4TOc5cFxMUdol5OGRtlCjN1Xv4ooCDjnNA0cjkQdLZWU9NulqW1I0+sSXB2aiOMrS7l
-        SnxZHdrg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55374)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mgN8q-0008Oe-6Y; Fri, 29 Oct 2021 09:21:37 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mgN8p-0001So-6W; Fri, 29 Oct 2021 09:21:35 +0100
-Date:   Fri, 29 Oct 2021 09:21:35 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-Cc:     andrew@lunn.ch, netdev@vger.kernel.org, olteanv@gmail.com,
-        robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
-        Woojung.Huh@microchip.com, hkallweit1@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, linux-kernel@vger.kernel.org,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 net-next 06/10] net: dsa: microchip: add support for
- phylink management
-Message-ID: <YXuvD2PJukHqytHe@shell.armlinux.org.uk>
-References: <20211029052256.144739-1-prasanna.vengateshan@microchip.com>
- <20211029052256.144739-7-prasanna.vengateshan@microchip.com>
+        id S232305AbhJ2IbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 04:31:05 -0400
+Received: from mail-ua1-f52.google.com ([209.85.222.52]:40627 "EHLO
+        mail-ua1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232313AbhJ2IbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 04:31:03 -0400
+Received: by mail-ua1-f52.google.com with SMTP id e2so16726347uax.7;
+        Fri, 29 Oct 2021 01:28:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7D7n4zKwOftMKeYPi/HfP+/e549fNZjw4uN7YVlzcCA=;
+        b=REpTAMCuEcvBcZG05BYr+owNep+eUsDzFLRgCXGhxUZIvHUKqENJYFI5sq8UOdr/HK
+         UCR5kYlCR6TQER9BohbSRAl1zWXpzMbBMEEp7AzR6U4jsfBOmuRzoGNOqTaUcTsp/xAC
+         /FbHQb8W520hRGnvPMmsL90LW6R8NLJzd6XcRNeAjsEKAnzi0NqX3BHaO2nFNUUASDsr
+         n5jhlYury4C9dAqYUW4/sgVQ5lHaiofCOfXcZoINMphRDO9/++TMcc69+CMLaFVATWQ2
+         5+8/dYsAVEEymbREETqNlBjBp2L/PyWTnyTaydbMxnlO1ANvRO5gZE3rZSPowTWZBz6s
+         fPRg==
+X-Gm-Message-State: AOAM530DuQXlFzUjo9+IT+zkFBPKAr9tliLtesAIDFndHtFjN1zxbSge
+        zSgiwOWPs6dHlYretm/IrkjZU57pWJ3p8g==
+X-Google-Smtp-Source: ABdhPJwIGmVfHea/XDDWhijIQkLFnGrqabW3gf7oUEUOifyOSEE+9aM5YMvwt1mgN7Na+AP8aXdJdA==
+X-Received: by 2002:a67:b149:: with SMTP id z9mr10823866vsl.16.1635496114717;
+        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id w4sm794698uae.20.2021.10.29.01.28.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id bc10so4250270vkb.1;
+        Fri, 29 Oct 2021 01:28:34 -0700 (PDT)
+X-Received: by 2002:a05:6122:804:: with SMTP id 4mr9584050vkj.7.1635496113976;
+ Fri, 29 Oct 2021 01:28:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211029052256.144739-7-prasanna.vengateshan@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <cover.1634822085.git.geert+renesas@glider.be> <1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be>
+ <YXtIsCnJ+L5zqCVk@robh.at.kernel.org> <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
+In-Reply-To: <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 29 Oct 2021 10:28:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
+Message-ID: <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] [RFC] dt-bindings: display: bridge: nxp,tda998x:
+ Convert to json-schema
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
+        <linux-omap@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Russell,
 
-Sorry for missing this.
+Thanks for your comments!
 
-The use of bitmap_foo() seems to have not been commented on, which
-are now unnecessary as linkmode_foo() helpers were added in
-b31cdffa2329 ("net: phy: Move linkmode helpers to somewhere public").
+On Fri, Oct 29, 2021 at 10:08 AM Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+> On Thu, Oct 28, 2021 at 08:04:48PM -0500, Rob Herring wrote:
+> > On Thu, Oct 21, 2021 at 03:18:53PM +0200, Geert Uytterhoeven wrote:
+> > > +    properties:
+> > > +      port@0:
+> > > +        type: object
+> > > +        description: FIXME
+> >
+> > Looks like the input from the example
+> >
+> > > +
+> > > +      port@1:
+> > > +        type: object
+> > > +        description: FIXME
+> >
+> > Presumably the output to connector or another bridge.
+>
+> This is changing the binding. The original had:
+>
+> Required node:
+>   - port: Input port node with endpoint definition, as described
+>         in Documentation/devicetree/bindings/graph.txt
 
-On Fri, Oct 29, 2021 at 10:52:52AM +0530, Prasanna Vengateshan wrote:
-> +static void lan937x_phylink_validate(struct dsa_switch *ds, int port,
-> +				     unsigned long *supported,
-> +				     struct phylink_link_state *state)
-> +{
-> +	struct ksz_device *dev = ds->priv;
-> +	__ETHTOOL_DECLARE_LINK_MODE_MASK(mask) = { 0, };
-> +
-> +	/* Check for unsupported interfaces */
-> +	if (!phy_interface_mode_is_rgmii(state->interface) &&
-> +	    state->interface != PHY_INTERFACE_MODE_RMII &&
-> +	    state->interface != PHY_INTERFACE_MODE_MII &&
-> +	    state->interface != PHY_INTERFACE_MODE_NA &&
-> +	    state->interface != PHY_INTERFACE_MODE_INTERNAL) {
-> +		bitmap_zero(supported, __ETHTOOL_LINK_MODE_MASK_NBITS);
+Indeed, cfr. "Add ports hierarchy, as an alternative to port." in the
+patch description. Some users use port, other use ports with one or
+two port subnodes.
 
-		linkmode_zero(supported);
+> The above change appears to require that tda998x now has two ports.
 
-...
-> +
-> +	bitmap_and(supported, supported, mask, __ETHTOOL_LINK_MODE_MASK_NBITS);
-> +	bitmap_and(state->advertising, state->advertising, mask,
-> +		   __ETHTOOL_LINK_MODE_MASK_NBITS);
+No, you can still use port:
 
-	linkmode_and(supported, supported, mask);
-	linkmode_and(state->advertising, state->advertising, mask);
++oneOf:
++  - required:
++      - port
++  - required:
++      - ports
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+When using ports, no further requirements are set, but perhaps port@0
+should be made required in that case?
+
+> This goes against current usage in DT and the example.
+
+The original example didn't even have the original required input
+port node, so it was incomplete.
+
+arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts has two port subnodes.
+Is that wrong?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
