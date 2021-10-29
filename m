@@ -2,113 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BD34405D2
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 01:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0694405F4
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 01:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbhJ2Xhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 19:37:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56256 "EHLO
+        id S231592AbhJ2X7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 19:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231527AbhJ2Xhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 19:37:42 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4433FC061570
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 16:35:13 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id bm39so5112179oib.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 16:35:13 -0700 (PDT)
+        with ESMTP id S231401AbhJ2X7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 19:59:54 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AB7BC061570;
+        Fri, 29 Oct 2021 16:57:25 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id bl14so10984274qkb.4;
+        Fri, 29 Oct 2021 16:57:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=PpuLCz4ga4Gy0Gh5NWyC/cRzLKCgj8drSbwewDSyv/8=;
-        b=Oypysc3NkHamf8CiPca5foDaX4rg23TW2UfyCEtKHki7XkSRFky2YWN++WJHWmmJfM
-         mkbIXUlJiHkGkFVw0c/Wd75fdP21uSCZwExRYIbzXB2Rigp33corJIq+pUtKGGsxtcri
-         X/+yJqOEoqN2mgG9ALqWp7+NFJ1ZXJhqcrTLc=
+        d=gmail.com; s=20210112;
+        h=subject:references:to:cc:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=3KbvN+2PJvSq+0CefMz33c78Os83xV0bDXtnD0xUFVU=;
+        b=iOd0SRqmW8ANsZwlIQEPEi3y9OMrzCaajPqCmCNkRSkVNxVsP795J0OziZOoMck81H
+         56dysg0e6c+5LI2KRhskLmYWX+xyYSH9UbgBxYdJBFc5qpoO1l2QwpCHkhaceni4K+M6
+         asqARqiI8fUsigiy+tLbwuVF8wDl8qoMR9/RtDryan42u7yKrrSnt5MBxmqwSxhoX9xb
+         8kzNnMX40+08pEIeVPPat2395v/gCfallrM6v1/Cqq89bRuHRqJ2m3TOaUxca5kzzG2P
+         /KT8eIDfuEfAC8q05QQJ2log3c8tmATwZdQCA5oYUCPQU08BCLlWFWvI7LO/2MhN1ySi
+         bVwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=PpuLCz4ga4Gy0Gh5NWyC/cRzLKCgj8drSbwewDSyv/8=;
-        b=NO8CElkL4URrLiGQAaSR/XBaX1g3z4K7VPG+MqW49Fk8mD94Dau+x15GnLUmvIzA6x
-         CuDr9NlHkPCgjSQgrM3Y+YBNt4AjYvj+dPDAU4LB+Aa+rcYKecVAbQ2Cs50OFS4PUq5d
-         ZRJ8NOJ4Zh1iFkWn4YU7bcMdCMKnLOAtdJIWrgZu2LP8BntnKs7a3H0K4W97c3aVMPFO
-         DFH2X+bte4dNh73ouTAqP5pczzDwR7fo1wNbIG39zEl3GHzDMVNcRUiF40tLdhfJh0cO
-         gp8Y4cynzkfPctAMWvGDrvOQhqVnZQtDCjWRpA7OKOPPZ7uchucIqPSEpulhTcjhCQCX
-         GI1Q==
-X-Gm-Message-State: AOAM531NcAA2VYsayU2An/S8/a4fItD/bo6rwGEiD3jBFWZLKoqI258G
-        GuHRxdEqj+uqP32ehNMlGFCipUZVCP/COGzyxf6/BA==
-X-Google-Smtp-Source: ABdhPJyWaT+MMZqBwZXfDN3Io0Rslk8aTKIOKmbket2sdZ9RXXz9r/tqr4x0CJsA9ge/fs17qFtWdQqKRcAGi4vSJEk=
-X-Received: by 2002:a05:6808:2307:: with SMTP id bn7mr2111471oib.32.1635550512672;
- Fri, 29 Oct 2021 16:35:12 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 29 Oct 2021 18:35:12 -0500
+        h=x-gm-message-state:subject:references:to:cc:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=3KbvN+2PJvSq+0CefMz33c78Os83xV0bDXtnD0xUFVU=;
+        b=7sx1n+0nL0EY9zUbD0Flg1kvZP5WitHK7VLyUjP8/Iyi56rN1GbepbAEY6TyTOTyrg
+         n+HdhD7MrhA9spJBBwGwj0++9uMwFSCNWuKIwcuaUZTo0WeqYZi3zH7MROcGaei5O/6V
+         3McbfBPSXrOKwYHTDWlj5FbbvZ36yaFfS+80anElowG4f+0m/jH8NXN3nAyZqRryf7sC
+         wm6XKEsLdhUE7d3SVVRp2e5/IaeQnQx0Wz1JcKiP9lMr2EZIDEZJhGOVbA8iFco3eh75
+         F6p76SjRlB4W/meLzUviJxtDAQQUZgS72ZYupTQ8ryUmK25BlzvT37M8M7JMlzabFIKE
+         pZjQ==
+X-Gm-Message-State: AOAM531yL3sRb4r+ReMaagrJskPMI4HvT+Uql6p8YV60pIgoNVI9cIfo
+        IbkN7mpS5gvragL5Z3zkRMZfryWALBs=
+X-Google-Smtp-Source: ABdhPJyrwtsQ+tLDumVxBeeMbR3YLW4VuguFkggMI1LT3xtaiPYxO0+0RKoNi09siq4/1uNnf5KjNg==
+X-Received: by 2002:a37:88c2:: with SMTP id k185mr11789362qkd.227.1635551844368;
+        Fri, 29 Oct 2021 16:57:24 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id g1sm4006810qtb.4.2021.10.29.16.57.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Oct 2021 16:57:24 -0700 (PDT)
+Subject: Fwd: [Bug 214867] New: UBSAN: shift-out-of-bounds in
+ drivers/of/unittest.c:1933:36
+References: <bug-214867-211671@https.bugzilla.kernel.org/>
+To:     Frank Rowand <frowand.list@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Erhard F." <erhard_f@mailbox.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+X-Forwarded-Message-Id: <bug-214867-211671@https.bugzilla.kernel.org/>
+Message-ID: <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
+Date:   Fri, 29 Oct 2021 18:57:23 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CA+cxXhmswiRa7urqXAtF0r6qtAMs1PVMydqGM49O6koOOfUDdA@mail.gmail.com>
-References: <20211029152647.v3.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
- <20211029152647.v3.2.If23c83a786fc4d318a1986f43803f22b4b1d82cd@changeid>
- <CAE-0n50JTi+62Nzs+Lc4h4PGDdzEV2Ojm+OD+sqM1LDqC_QSow@mail.gmail.com> <CA+cxXhmswiRa7urqXAtF0r6qtAMs1PVMydqGM49O6koOOfUDdA@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 29 Oct 2021 18:35:12 -0500
-Message-ID: <CAE-0n535BjC_6Q31RBahdDeuEE1WXCJfG=M3ykB75X=5mnLq4A@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] arm64: dts: sc7180: Specify "data-lanes" for DSI
- host output
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <bug-214867-211671@https.bugzilla.kernel.org/>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Philip Chen (2021-10-29 16:24:58)
-> Hi Stephen,
->
-> On Fri, Oct 29, 2021 at 4:16 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Philip Chen (2021-10-29 15:27:41)
-> > > MSM DSI host driver actually parses "data-lanes" in DT and compare
-> > > it with the number of DSI lanes the bridge driver sets for
-> > > mipi_dsi_device. So we need to always specify "data-lanes" for the
-> > > DSI host output. As of now, "data-lanes" is added to ti-sn65dsi86 dts
-> > > fragment, but missing in parade-ps8640 dts fragment, which requires
-> > > a fixup.
-> >
-> > I don't see data-lanes required in the schema, and
-> > dsi_host_parse_lane_data() seems happy to continue without it. I do see
-> > that num_data_lanes isn't set though. Does this patch fix it?
-> The problem I see is from dsi_host_attach().
-> If there is no "data-lanes" in DT, num_data_lanes would be 0.
-> Then dsi_host_attach() would return -EINVAL.
 
-Ok, got it.
+Reported in bugzilla, forwarding to the mail lists and maintainers.
 
->
-> >
-> > ----8<----
-> > diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > index e269df285136..f6fba07220e5 100644
-> > --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> > @@ -1696,6 +1696,7 @@ static int dsi_host_parse_lane_data(struct
-> > msm_dsi_host *msm_host,
-> >         if (!prop) {
-> >                 DRM_DEV_DEBUG(dev,
-> >                         "failed to find data lane mapping, using default\n");
-> > +               msm_host->num_data_lanes = 4;
-> >                 return 0;
-> >         }
->
-> I haven't tried.
-> But I think it can fix the problem I described above.
-> Would you like to send it as a separate patch?
-> Or I can do it.
+-Frank
 
-Sure feel free to send it as another patch. Or fix the schema to make
-data-lanes required. I think fixing the driver is probably better so
-that we don't have to set data-lanes when it's the default 4 lanes. At
-least I think 4 lanes is the default.
+
+-------- Forwarded Message --------
+Subject: [Bug 214867] New: UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36
+Date: Fri, 29 Oct 2021 13:59:02 +0000
+From: bugzilla-daemon@bugzilla.kernel.org
+
+
+https://bugzilla.kernel.org/show_bug.cgi?id=214867
+
+            Bug ID: 214867
+           Summary: UBSAN: shift-out-of-bounds in
+                    drivers/of/unittest.c:1933:36
+           Product: Platform Specific/Hardware
+           Version: 2.5
+    Kernel Version: 5.15-rc7
+          Hardware: PPC-64
+                OS: Linux
+              Tree: Mainline
+            Status: NEW
+          Severity: normal
+          Priority: P1
+         Component: PPC-64
+          Assignee: platform_ppc-64@kernel-bugs.osdl.org
+          Reporter: erhard_f@mailbox.org
+                CC: bugzilla.kernel.org@frowand.com
+        Regression: No
+
+Created attachment 299361
+  --> https://bugzilla.kernel.org/attachment.cgi?id=299361&action=edit
+kernel dmesg (kernel 5.15-rc7, Talos II)
+
+UBSAN catches this at boot on my Talos II.
+
+[...]
+### dt-test ### EXPECT / : GPIO line <<int>> (line-C-input) hogged as input
+================================================================================
+UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36
+shift exponent -1 is negative
+CPU: 2 PID: 1 Comm: swapper/0 Not tainted 5.15.0-rc7-TalosII #1
+Call Trace:
+[c000000004163700] [c0000000008ffaa8] .dump_stack_lvl+0xa4/0x100 (unreliable)
+[c000000004163790] [c0000000008fb46c] .ubsan_epilogue+0x10/0x70
+[c000000004163800] [c0000000008fb270]
+.__ubsan_handle_shift_out_of_bounds+0x1f0/0x34c
+[c000000004163910] [c000000000ad94a0] .of_unittest_untrack_overlay+0x6c/0xe0
+[c0000000041639a0] [c000000002098ff8] .of_unittest+0x4c50/0x59f8
+[c000000004163b60] [c000000000011b5c] .do_one_initcall+0x7c/0x4f0
+[c000000004163c50] [c00000000200300c] .kernel_init_freeable+0x704/0x858
+[c000000004163d90] [c000000000012730] .kernel_init+0x20/0x190
+[c000000004163e10] [c00000000000ce78] .ret_from_kernel_thread+0x58/0x60
+================================================================================
+### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if
+overlay removed, property: /testcase-data-2/substation@100/status
+[...]
+
+-- 
+You may reply to this email to add a comment.
+
+You are receiving this mail because:
+You are on the CC list for the bug.
