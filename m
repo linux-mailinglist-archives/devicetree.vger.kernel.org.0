@@ -2,288 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C281443FB39
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:09:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2160843FB50
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 13:25:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231861AbhJ2LLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 07:11:41 -0400
-Received: from mail-eopbgr70101.outbound.protection.outlook.com ([40.107.7.101]:36482
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231815AbhJ2LLk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 07:11:40 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WD1McM9RpBwWn+tJYBxcyH7TUec9PdMUD6v/+KY2vA7mDEQxIWaruTMriWikWLB4walH7d4aIOrGHVEotrnyKaNT3N1m9RWTAET686EddXKsjhm4YG1kamJt3J8h59cKhJ3ko9Ko4OcViXCdK/3VSbPTQa9nH8nKyAABfK99D/dkwlK7U0OxTwleFwqysACXM5U4AfFZyz3/ohUCkI1rfY+SkOkVqxd1L2NXlww9dEqBNGXtbAXGYsWIckTD2q6HdRjkDuAt4AaZ4xQEYHxN+d6oFAMxkBDuqp3QufwFYjRawZV8reUXU9ZFMkrj39x6nJZtA8QruKfcA0vW6rhGSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=q8Klbc9IW6+EBmGIXy+303/t8OdFzagZcwdjZn+fduc=;
- b=CQwupPk51/Bn0wzUZe85Bzxd2FYVLG2ozkcJfWmkHN4HobuPY2XnzXYXtxXagvKJwpJU8LoYn3WuEy/wE7zS2H+ZgUqj0Q3J1hty85v/B0Yc6kYWYJ3oW17fcCAd3Hd8PRt9noj7cDITpTtmp6acTKKTDZsnVa92RQmaK49zXyrfI6XMMyPv9CeVvIp0VrV4EhTru03jw7iEouswLFNKnyLnYE6mOgGSh0M41yjlhWnYXV2bIN0p7YZYtZoPUuuWBFDxjs82EAEPbjN7o5LoFdIuJSB+pODXSOPEzHkyCDBCR18zX2SpVbUGvAR+xClRz23RVghHiIIvRdosk/qwLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q8Klbc9IW6+EBmGIXy+303/t8OdFzagZcwdjZn+fduc=;
- b=GvVSLFdHZqD7Kcr2E/mydQ+uRwO4n++f9vT17ujwSm6i8guLv14CxcxhpIpI5ILZvZnsP18UK3/BWU1iibxEuSNKH01LGn6Zk1wKa192T3JnJ+XfcpRN8Plr5aF1pBcSBGj/w4qmFvzbmb+GTTRwxzdNg06eH8gGJXLN1BFqW6k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
- by AM0PR10MB2676.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:12c::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4628.18; Fri, 29 Oct
- 2021 11:09:08 +0000
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::96d:7b11:1f16:a316]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::96d:7b11:1f16:a316%4]) with mapi id 15.20.4649.015; Fri, 29 Oct 2021
- 11:09:08 +0000
-Message-ID: <b63738b2-9e3a-0d21-a845-ca3be8b00892@kontron.de>
-Date:   Fri, 29 Oct 2021 13:09:00 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [RFC V2 0/5] arm64: dts: imx8mm: Enable CSI and OV5640 Camera
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>, Fabio Estevam <festevam@gmail.com>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        cstevens@beaconembedded.com,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20211023203457.1217821-1-aford173@gmail.com>
- <CAOMZO5BwPTWBhqzHgbzbC_UyzOX7LMGxX83H0FaJ-05ddOpqYQ@mail.gmail.com>
- <CAHCN7x+Bj==zd8_VRquv51RYiG9t_CRrB6=3fugaHvQS8PVS+g@mail.gmail.com>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <CAHCN7x+Bj==zd8_VRquv51RYiG9t_CRrB6=3fugaHvQS8PVS+g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS9PR06CA0325.eurprd06.prod.outlook.com
- (2603:10a6:20b:45b::14) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:157::14)
+        id S231538AbhJ2L11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 07:27:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230492AbhJ2L10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 07:27:26 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CEB7C061570;
+        Fri, 29 Oct 2021 04:24:58 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id d3so15653163wrh.8;
+        Fri, 29 Oct 2021 04:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DPGT6EUAlraqd/w6sEA+D7Ix1Gyx1G5HP1PHalM05U4=;
+        b=J3y4C4t2fcaY4GN/FXjXriBeRhkFD2rsz6XCXLaSElDUTekqaguUf8Wu7PjjNynDj5
+         16gjveiw7sXk7TlAygummz/IeJBUF3pn9VYq2mOrpXWGRaBF8v+F98EGPVoM4OkoK2Iu
+         6Frkry3JpfPFMjDwLWjaJJ4hlu9Dzx6n9+6YmD/Jl1wgcDx/j3HriCaZIfWatWsx9ysl
+         MzvtORsRb4F1f1L4fK3jbIcVnF3CtIjsvdbO83xzDZH78+w6HoEdRkq6ZMNL8d8ZXTmv
+         rdmbOlVsbO7y7QijhotMDnW0lavAk+3RouSyrMm1EOPYnw0da/uOFmj7oSOCjCn6DwrY
+         5LTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DPGT6EUAlraqd/w6sEA+D7Ix1Gyx1G5HP1PHalM05U4=;
+        b=NmfJUDuLvpuvDN4JpHgpURi5B/enSEgjYryTBD+k6q7MglX2fUtqvKffVtyWHaSca7
+         K1oM/8GD76NLsaEbCnSHyRR2Lcg5ZpDFw6iUIWpPvk2Esf9xb1VDSwu8pYV4WjB51zjz
+         B/K8bmRzYXK54KkDlsvkoM4wX3eUqPyghXX0KFcpOue+a7rxbKS3ES2vVNwtHjmPiTiX
+         pHrvsprEg/FwH+x8oLoRGYAiWP1EdFCROlODXPg9LphZdFORtjEsv0lnftiZu8RMcPlZ
+         HLPeQ9wj/ttdN2bmLYMYAsiWLw+xliie3fUx/uFzZAxb6Hja9EZWB9oauHxPOHfOW2OV
+         t0dw==
+X-Gm-Message-State: AOAM533bErpcFzS4arkjKaqMuWizGjGKLCiy/OJ3lC1UjogyMqvOH3jW
+        ZgP5SchqrqF+iYKR8vflXEm3OpSgwpE=
+X-Google-Smtp-Source: ABdhPJwldtJeX0nZAbo5YdMAz7rfWLLt0/NVdwm6ZBnkNLV0fkbhD5tfpRwj9pD7I57kb/u8gjtlhg==
+X-Received: by 2002:adf:a143:: with SMTP id r3mr13406217wrr.8.1635506696733;
+        Fri, 29 Oct 2021 04:24:56 -0700 (PDT)
+Received: from skbuf ([188.25.175.102])
+        by smtp.gmail.com with ESMTPSA id x6sm6229660wro.63.2021.10.29.04.24.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Oct 2021 04:24:56 -0700 (PDT)
+Date:   Fri, 29 Oct 2021 14:24:54 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     andrew@lunn.ch, netdev@vger.kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, Woojung.Huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 net-next 01/10] dt-bindings: net: dsa: dt bindings for
+ microchip lan937x
+Message-ID: <20211029112454.a765gtse5vyk4feq@skbuf>
+References: <20211029052256.144739-1-prasanna.vengateshan@microchip.com>
+ <20211029052256.144739-2-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-Received: from [192.168.10.35] (46.142.71.102) by AS9PR06CA0325.eurprd06.prod.outlook.com (2603:10a6:20b:45b::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14 via Frontend Transport; Fri, 29 Oct 2021 11:09:05 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 64761047-8b8a-42cf-7be7-08d99acc8753
-X-MS-TrafficTypeDiagnostic: AM0PR10MB2676:
-X-Microsoft-Antispam-PRVS: <AM0PR10MB2676D64272365D676BD14F49E9879@AM0PR10MB2676.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Mo2M6D9p3G6BNk/tbmti6yEP9D1WgA2AmsjHJCRLlTBgStdrXA8H6+rkHHTC9U5NC4im79xRUYdhu7ye/b2+5q/3mj3b+BcrBWaXNZiExoXPp5Ezh7oMM3c/HXjjMO1LOXCqPgxtxMQTtXetlyjRWbHH81AhYS5CIvoC38/hyLYLdOzm71VKjxMYECEvkGBBaYph/VIZDWJGwL4TROgtajoroA7gcn5Ll6UDYKYW0ogwTcjTZIGmIR16iSHvy8L3yCVWvMZ4llHjjdtG86T93Pw7oo1LHU3kX+6dFKRsW1Kq/DonlSCovkuhAQcHyCJ5YwdueU7r3GmTXMj+SZUuzONjYTvm4ePmAEnVwKw/LaBtHqDHj/lK4TVrqQAge1vNPdjZCDccUFeEohhlZekNDweJ2bHiI8uCBHYsYTGGV1y9Hk6gp/LgSv1IBRF1tvHl0l7F2i/hZIQGjwEahnTw5ov25TE7s4R1S5/RJfn889puI2D5cojAJfDpIXyhEGnGmNDWwZBDzS7rVto/Yo2lkPOPmU2wmVQECroHVcT5e4LZupRi0NgTyjmsqMJZi4RTg3KCE9gNU11c2+KWOUmbrgjPd1mVHQuVjLter78hQ3Ymi8JKrpz6ZkkqfVAS/zPxzS7Wuh7XXMhNc8j4GxFl4If/TSMimtGamVxv70wnirORTeOGewHIlDDOZcX3zsoJRjcTW3Y7gfBlRIKfmfXW+GRGC3m9zaILzczG0Pw3ImoQ+DhIz9Q7X6rJNhyAnPdl22NYL7HqTpdZI+6uHcpmCguIk74pQ6rLJVcJUxYnWrvl03Ig5P3ZGLuCOnnUkNh+Rs9IKXWkMcDzPjGaYckfHZ1pMlplXMzZBwNN7PFK1LQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(508600001)(8936002)(86362001)(38100700002)(5660300002)(16576012)(186003)(36756003)(966005)(66946007)(26005)(53546011)(54906003)(66556008)(66476007)(956004)(45080400002)(2616005)(44832011)(7416002)(83380400001)(316002)(6666004)(6486002)(8676002)(2906002)(31686004)(4326008)(31696002)(110136005)(32563001)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWxKSjdkY2hKRGx6dDZLREw1R2QvZjZXclI4VDlnajVPRFk5emNENEhTVzYv?=
- =?utf-8?B?dnBLaFBwMnlEVTBqT0hTZnJhWUtyaThjUjdWSTEvZlQ2QmhpSHY3TFNSTUpU?=
- =?utf-8?B?U1dLRDRwcHdIN0s1VnRuME0raUUySGk3NGRHUm5jUFZTckxJMktyRmg0MkZW?=
- =?utf-8?B?QlZ5MWJmZ2VmZ2lKL3dIbkY0MXdkcTdZQzdVaDRDazhzTHIwYnc4dmZUekR2?=
- =?utf-8?B?WmsyWDNoVlhYYUFQRjNNUVRLY2cxM0ZQM09sMTlEQS9wTmtvZXpJYVVVYW9T?=
- =?utf-8?B?VDY1MkhIck1SRElXVThNWDFwanZCTDJvL0wyUFhyS2dEZE1iTmhlSGpmaVRZ?=
- =?utf-8?B?ZHNUb2pySTZYTnppWHBFREJxb1UrQ3NKMWgxNTh1VUt5Tm9HZFhJRk9TWis1?=
- =?utf-8?B?Q2ZZakh1azdtTUE1WndwTnNwV1BxdllOaW9yemxaVFNvQktMZkFqV2FOTlNz?=
- =?utf-8?B?cDh0bGxNZjVQeXQ3N1FmNkZDZitSVXVIVWxYK1BibU1yQUlVZjR4Z3EyY3ps?=
- =?utf-8?B?U1pmNEZxRzBKRGMxN3V4a3pYUVhPcC9IUjNWUzFWSTVLRDZZVFo3YVVLbklm?=
- =?utf-8?B?bTBiWlBUSHJmNVY4M2dNKytxY3dxMUdpSWtsL2V4Y2hBSlhHRlUyeWprYmlr?=
- =?utf-8?B?S0U0MzVaSzQ3MWtnU1lhMEduMDh4OVJXSHBEK2FUYklSejF3ODByaGV4NmFM?=
- =?utf-8?B?YngrVzkrNnJCZDhBMWQ2U3lKdjBXNTFmRHpLOUovcEF6VjM4bFYrWm1tMERn?=
- =?utf-8?B?Ky81SUdnVmFpWWk0VGV3WWNTbVJGR1R3K3JnYWViSHJGalFkNjZEMUNwN2hC?=
- =?utf-8?B?QzY4d2xCNzFMVytVK01McUlaektaZzU4OXp4dWRXdmx5Njk1d1d5Z01HVkFW?=
- =?utf-8?B?VlNidCs2dVpmUWJNbXcrWGkvbXlka1o0Z1p0Vk1GSVByUy9kaExTSThwaCtU?=
- =?utf-8?B?OTIxNVNyazZaSTRiSnQ3dWRpemllWnFHa0lJLzYxMFoxZ0Y0V3J3eG9oUzVU?=
- =?utf-8?B?SmZicENQOWY1R0MzSG1QSTRlYU1oL05lN1JyTWNoZkg4RnZqaVVWazUyOHNr?=
- =?utf-8?B?TVR1bWFMakdlRXBFbTUrRmZ5cWxXY0Jaai9mWi9oQXYzbVFHU3phazBhcXZi?=
- =?utf-8?B?aFpxNVJUVDF5VzQ4TWY5dlNkQUNwQk5zNVo1aHB2eUo5RkhXaDFZWXV2d1o3?=
- =?utf-8?B?VmZhVit3ZjZLNlRQemRmL2lQditpUDAyQklBQVRvTjJRdGxYbWtKb1hidFpx?=
- =?utf-8?B?aXdtL09PQUxaaU1VbUFRbCthNVM2K0tYelIzcGpQcGgvbFNEMkZKR1RoMElU?=
- =?utf-8?B?U0RwZGFxMXpEaEJLdVluSzI3K1duR2JsVkRZSGtlN2E5OW9YbTNtTmdBNVNO?=
- =?utf-8?B?amNxejhOWEJWZGNXYzNGN2llNTZicGthUm1KRk1rRDJldmpRdUNad29INUNY?=
- =?utf-8?B?YUF1RHRxaUw0WFA2VmZnKzZBbHpLQzA1ZnlLMTNESWxGeWxLOHpzQTRnTUpK?=
- =?utf-8?B?ZUZCTFFNRCtFeXlocXBKVmhyZVBCNkxHV0hYNnh6RmJmb21QOUhPYld2T1M0?=
- =?utf-8?B?T2VJRG1iOWdWdzI4VFlteE1qYWhHWkh0TWIxT1ozeWJ0cGVqR2gvOXNnRUpJ?=
- =?utf-8?B?T2d0Q2htV1Mxd3Bxc3VxZldlbmJTRVUxSDJkQ3VNZGxLL1BSV0Q1RjVwcFB2?=
- =?utf-8?B?TE5JUnhwM0RhcjJsNEdTSTNqWExBejdPMFp2Y0dJTktzV1granQ3VHRhOW1q?=
- =?utf-8?B?RGtoR1FPNjlnL3Z3dVlKQTNkMG85MzhKbW5JT1M0dlloVk1HMUxBWnZTdHMv?=
- =?utf-8?B?NS9MQ2oxQys4aVdGMW9Eb1FWbDRlbWxGYnhZKzEzbU5GMGhJeDV2RisxZ3oz?=
- =?utf-8?B?VzFWZlh3WnlJV2JUZDV2QmZ6MU1laVQyOXRPZTVJYlU3dU9DcjZuV2pQQmFL?=
- =?utf-8?B?ZS9LRlJGRXFUVEVPUkkxNTRHZjAzSE5LWmNudldCMnpVMXpSeE84MkxLTG5M?=
- =?utf-8?B?NnZHdlB1bUV3ZXlGNThYVDNUemcxZ3N4eEo3N1pNb2drQ051Z0RqeHowcFI5?=
- =?utf-8?B?Z1AvMDN2K1VpY1dRQ0NRMDJDU3lneFB6dk0yQjZYUlJTMGdvVXEyZTVZSGVX?=
- =?utf-8?B?eTVvZDJKYzJTOW55cGdlcEFkdFpFSTVFTkp0WVdkelo5Z1JweXVyNXlqWXda?=
- =?utf-8?B?NTdJMHRSTFBCVTJsNDdEaldhR2d4R2tuMlNvMEhJeHJxN1pKSzJjNS9vaE44?=
- =?utf-8?Q?VYV0S2iTstWoYM0yseRZ3kZuvojfaeRNfxUdm4uyCs=3D?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64761047-8b8a-42cf-7be7-08d99acc8753
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2021 11:09:08.6115
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xwCiKG5l63Cm+9bvGZ0uHt83F+3BZfFoVAw1kGwgDs78y8bvpVXy+BrXNYa+iC+ezjMBeLqFutNnB2SNuPEw0exkaJi0iQvxvGUjzyUbchc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2676
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211029052256.144739-2-prasanna.vengateshan@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.10.21 02:39, Adam Ford wrote:
-> On Sun, Oct 24, 2021 at 7:16 AM Fabio Estevam <festevam@gmail.com> wrote:
->>
->> Hi Adam,
->>
->> [Adding Frieder on Cc]
->>
->> On Sat, Oct 23, 2021 at 5:35 PM Adam Ford <aford173@gmail.com> wrote:
->>>
->>> The imx8mm appears to have both a CSI bridge and mipi-csi-2 drivers.  With
->>> those enabled, both the imx8mm-evk and imx8mm-beacon boards should be able
->>> use an OV5640 camera.
->>>
->>> The mipi-csi2 driver sets the clock frequency to 333MHz, so the clock parent
->>> of the CSI1 must be reparented to a faster clock.  On the custom NXP kernel,
->>> they use IMX8MM_SYS_PLL2_1000M, so that is done in the device tree to match.
->>>
->>> With the CSI and mipi_csi2 drivers pointing to an OV5640 camera, the media
->>> pipeline can be configured with the following:
->>>
->>>     media-ctl --links "'ov5640 1-003c':0->'imx7-mipi-csis.0':0[1]"
->>>
->>> The camera and various nodes in the pipeline can be configured for UYVY:
->>>     media-ctl -v -V "'ov5640 1-003c':0 [fmt:UYVY8_1X16/640x480 field:none]"
->>>     media-ctl -v -V "'csi':0 [fmt:UYVY8_1X16/640x480 field:none]"
->>>
->>> With that, the media pipeline looks like:
->>>
->>>
->>> Media controller API version 5.15.0
->>>
->>> Media device information
->>> ------------------------
->>> driver          imx7-csi
->>> model           imx-media
->>> serial
->>> bus info        platform:32e20000.csi
->>> hw revision     0x0
->>> driver version  5.15.0
->>>
->>> Device topology
->>> - entity 1: csi (2 pads, 2 links)
->>>             type V4L2 subdev subtype Unknown flags 0
->>>             device node name /dev/v4l-subdev0
->>>         pad0: Sink
->>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
->>>                 <- "imx7-mipi-csis.0":1 [ENABLED,IMMUTABLE]
->>>         pad1: Source
->>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:lim-range]
->>>                 -> "csi capture":0 [ENABLED,IMMUTABLE]
->>>
->>> - entity 4: csi capture (1 pad, 1 link)
->>>             type Node subtype V4L flags 0
->>>             device node name /dev/video0
->>>         pad0: Sink
->>>                 <- "csi":1 [ENABLED,IMMUTABLE]
->>>
->>> - entity 10: imx7-mipi-csis.0 (2 pads, 2 links)
->>>              type V4L2 subdev subtype Unknown flags 0
->>>              device node name /dev/v4l-subdev1
->>>         pad0: Sink
->>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
->>>                 <- "ov5640 1-003c":0 [ENABLED]
->>>         pad1: Source
->>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte170m xfer:709 ycbcr:601 quantization:lim-range]
->>>                 -> "csi":0 [ENABLED,IMMUTABLE]
->>>
->>> - entity 15: ov5640 1-003c (1 pad, 1 link)
->>>              type V4L2 subdev subtype Sensor flags 0
->>>              device node name /dev/v4l-subdev2
->>>         pad0: Source
->>>                 [fmt:UYVY8_1X16/640x480@1/30 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range]
->>>                 -> "imx7-mipi-csis.0":0 [ENABLED]
->>>
->>> When configured, gstreamer can be used to capture 1 frame and store it to a file.
->>>
->>> gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
->>>
->>> Unfortunately, the video capture never appears to happen.  No errors occur, not
->>> interrupts are recorded and no errors are recorded.
->>>
->>> gst-launch-1.0 -v v4l2src num-buffers=1 ! video/x-raw,format=UYVY,width=640,height=480,framerate=60/1 ! filesink location=test
->>> Setting pipeline to PAUSED ...
->>> Pipeline is live and does not need PREROLL ...
->>> Pipeline is PREROLLED ...
->>> Setting pipeline to [  114.819632] v4l2_get_link_freq: Link frequency estimated using pixel rate: result might be inaccurate
->>> PLAYING ...
->>> New clock: GstSystem[  114.829203] v4l2_get_link_freq: Consider implementing support for V4L2_CID_LINK_FREQ in the transmitter driver
->>> Clock
->>> /GstPipeline:pipeline0/GstV4l2Src:v4l2src0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
->>> /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
->>> /GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
->>> /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps = video/x-raw, format=(string)UYVY, width=(int)640, height=(int)480, framerate=(fraction)60/1, interlace-mode=(string)progressive, colorimetry=(string)bt709
->>>
->>>
->>> If anyone has any insight as to what might be wrong, I'd like feedback.
->>> I posted a device tree that I beleive goes with the newer imx8mm-evk, but
->>> I do not have this hardware, so I cannot test it.
->>
->> It seems that Frieder on Cc managed to get camera capture to work on
->> i.MX8MM here:
->> https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommits%2Fv5.10-mx8mm-csi&amp;data=04%7C01%7Cfrieder.schrempf%40kontron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637709783979195945%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=PbGqhzb2mbUA2SD44%2BosK8rNkK12m1LRd6W4tvkawno%3D&amp;reserved=0
->>
->> Hopefully, this can help to figure out what is missing in mainline to
->> get camera capture to work on i.MX8M.
->>
->> I don't have access to an OV5640 camera to connect to the imx8mm-evk
->> board to try your series.
+On Fri, Oct 29, 2021 at 10:52:47AM +0530, Prasanna Vengateshan wrote:
+> Documentation in .yaml format and updates to the MAINTAINERS
+> Also 'make dt_binding_check' is passed.
 > 
-> Fabio,
-> 
-> Thanks for the heads up on that repo.  I was able to use that repo and
-> get still images to capture on an OV5640, but I noticed a fair amount
-> of differences between that repo and what's found in linux-next.
-> 
-> Laurent,
-> 
-> I haven't exhausted the patch differences, but I found at least a few
-> that appear to be missiing upstream, and I am curious to know if/what
-> your opinion is on whether or not they're needed, since the patches on
-> Frieder's repo appear to come from you.
-> [1] - media: imx: imx7-media-csi: Add i.MX8MM identification
-> [2] - media: imx: imx7_mipi_csis: Don't set reserved CLK_CTRL field on i.MX8MM
-> [3] - media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
-> 
-> media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
-> 
-> Maybe these don't need to be applied, but they are 'some' of the
-> differences that I see between this 5.10 branch and linux-next .  I
-> know there are more, but
-> 
-> 
-> [1] - https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F8ac7ec6db0c260a871038721886dbdb6660ed84c&amp;data=04%7C01%7Cfrieder.schrempf%40kontron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637709783979195945%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=j1iuXWljDd8wA5M44KwLCb%2F21tpdOnKZuJazl25bXbQ%3D&amp;reserved=0
-> [2] - https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F0b5727c8eba8c370f7db5eace0243f78992a4dbb&amp;data=04%7C01%7Cfrieder.schrempf%40kontron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637709783979205943%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=buWbZF0tYfVmibQgBbKJM1PF%2Fw7%2BVO9jhXRCI1zf7TI%3D&amp;reserved=0
-> [3] - https://eur04.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F14befa6bc146b10092a6ac5d0ed4d42c87c6cf27&amp;data=04%7C01%7Cfrieder.schrempf%40kontron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C637709783979205943%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=60iLhs0G0FtQegNp9XtVxAhvZEcltdAGGMNAm2l1cSs%3D&amp;reserved=0
-> 
-> Frieder et al,
-> 
-> Have you (or anyone) tried CSI cameras on anything newer than 5.10?  I
-> am curious to see if a regression popped in somewhere, but git bisect
-> will make this difficult since there is a fair amount of variation
-> between this custom repo and the upstream.
+> Introduced rx-internal-delay-ps & tx-internal-delay-ps for RGMII
+> internal delay along with min/max values. This is to address the
+> Vladimir proposal from the previous revision and mdio details
+> are added as suggested by Rob.
 
-No, I haven't done anything with CSI on a more recent kernel. And I only
-used CSI with the tree above and the ADV7280M bridge. I don't have any
-hardware with a sensor/camera.
+This sort of meta-information does not really belong in a commit
+message, there is...
 
-In case you haven't seen this already, here is a thread with some notes
-about my testing results:
-https://patchwork.kernel.org/project/linux-media/cover/20210215042741.28850-1-laurent.pinchart@ideasonboard.com/.
+> 
+> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+> ---
+
+...this area for it. People of the future won't have any idea what is
+the previous revision or who Vladimir is.
+
+>  .../bindings/net/dsa/microchip,lan937x.yaml   | 180 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 181 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> new file mode 100644
+> index 000000000000..0bc16894c8c4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> @@ -0,0 +1,180 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/dsa/microchip,lan937x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: LAN937x Ethernet Switch Series Tree Bindings
+> +
+> +maintainers:
+> +  - UNGLinuxDriver@microchip.com
+> +
+> +allOf:
+> +  - $ref: dsa.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - microchip,lan9370
+> +      - microchip,lan9371
+> +      - microchip,lan9372
+> +      - microchip,lan9373
+> +      - microchip,lan9374
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 50000000
+> +
+> +  reset-gpios:
+> +    description: Optional gpio specifier for a reset line
+> +    maxItems: 1
+> +
+> +  mdio:
+> +    $ref: /schemas/net/mdio.yaml#
+> +    unevaluatedProperties: false
+> +
+> +patternProperties:
+> +  "^(ethernet-)?ports$":
+> +    patternProperties:
+> +      "^(ethernet-)?port@[0-7]+$":
+> +        allOf:
+> +          - if:
+> +              properties:
+> +                phy-mode:
+> +                  contains:
+> +                    enum:
+> +                      - rgmii
+> +                      - rgmii-rxid
+> +                      - rgmii-txid
+> +                      - rgmii-id
+> +            then:
+> +              properties:
+> +                rx-internal-delay-ps:
+> +                  $ref: "#/$defs/internal-delay-ps"
+> +                tx-internal-delay-ps:
+> +                  $ref: "#/$defs/internal-delay-ps"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +$defs:
+> +  internal-delay-ps:
+> +    description: Delay is in pico seconds
+> +    minimum: 2170
+> +    maximum: 4000
+> +    default: 0
+
+Why is the default value smaller than the minimum? What kind of minimum is that?
+If the hardware does not accept the continuous range of values between
+2170 and 4000, just enumerate the valid discrete values. It takes 30
+seconds to write a bash script. That's one of the reasons why I added a
+$def in nxp,sja1105.rst for this in the first place, to avoid
+duplicating that enumeration.
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    //Ethernet switch connected via spi to the host
+> +    ethernet {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fixed-link {
+> +        speed = <1000>;
+> +        full-duplex;
+> +      };
+> +    };
+> +
+> +    spi {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      lan9374: switch@0 {
+> +        compatible = "microchip,lan9374";
+> +        reg = <0>;
+> +
+> +        spi-max-frequency = <44000000>;
+> +
+> +        ethernet-ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          port@0 {
+> +            reg = <0>;
+> +            label = "lan1";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy0>;
+> +          };
+> +          port@1 {
+> +            reg = <1>;
+> +            label = "lan2";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy1>;
+> +          };
+> +          port@2 {
+> +            reg = <2>;
+> +            label = "lan4";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy2>;
+> +          };
+> +          port@3 {
+> +            reg = <3>;
+> +            label = "lan6";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy3>;
+> +          };
+> +          port@4 {
+> +            reg = <4>;
+> +            phy-mode = "rgmii";
+> +            ethernet = <&ethernet>;
+> +            fixed-link {
+> +              speed = <1000>;
+> +              full-duplex;
+> +            };
+> +          };
+> +          port@5 {
+> +            reg = <5>;
+> +            label = "lan7";
+> +            phy-mode = "rgmii";
+> +            fixed-link {
+> +              speed = <1000>;
+> +              full-duplex;
+> +            };
+> +          };
+> +          port@6 {
+> +            reg = <6>;
+> +            label = "lan5";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy4>;
+> +          };
+> +          port@7 {
+> +            reg = <7>;
+> +            label = "lan3";
+> +            phy-mode = "internal";
+> +            phy-handle = <&t1phy5>;
+> +          };
+> +        };
+> +
+> +        mdio {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          t1phy0: ethernet-phy@0{
+> +            reg = <0x0>;
+> +          };
+> +          t1phy1: ethernet-phy@1{
+> +            reg = <0x1>;
+> +          };
+> +          t1phy2: ethernet-phy@2{
+> +            reg = <0x2>;
+> +          };
+> +          t1phy3: ethernet-phy@3{
+> +            reg = <0x3>;
+> +          };
+> +          t1phy4: ethernet-phy@6{
+> +            reg = <0x6>;
+> +          };
+> +          t1phy5: ethernet-phy@7{
+> +            reg = <0x7>;
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3b85f039fbf9..9dfd8169dcdf 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12312,6 +12312,7 @@ M:	UNGLinuxDriver@microchip.com
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> +F:	Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+>  F:	drivers/net/dsa/microchip/*
+>  F:	include/linux/platform_data/microchip-ksz.h
+>  F:	net/dsa/tag_ksz.c
+> -- 
+> 2.27.0
+> 
