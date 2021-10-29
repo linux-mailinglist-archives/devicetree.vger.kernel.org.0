@@ -2,218 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C494D440165
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 19:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1807C440169
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 19:45:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbhJ2RqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 13:46:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33316 "EHLO
+        id S230041AbhJ2Rri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 13:47:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230030AbhJ2RqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 13:46:14 -0400
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E335BC061570;
-        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
-Received: by mail-oi1-x22f.google.com with SMTP id k8so1349597oik.7;
-        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
+        with ESMTP id S229837AbhJ2Rrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 13:47:37 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AC2EC061714
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 10:45:09 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id t7so10555489pgl.9
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 10:45:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=FTkcYmcnvDVDfmqYNOsTg+b+QGCCyVr4hlpcZtSPOrQ=;
-        b=oGDyHdhFcwMN8OMqxQMJYnpurQ5JEeNVMbxMCSuGR6D1D7d148pxNFbo/tY6uypssX
-         sNQZ/yssDRRPinJECJh/8IorxcKG/VRt/L7KA6ei5WHhQ2nmu7bKSz+3Hd09QpJyVhdU
-         rzg9LCpSCNn6yFYGSwm6r3L1b4Es+M+ff01ezNqB/DD6bm0zmTcvuU6uCtXyYTuYsepT
-         5dBTQXlzr5gbHdKYEyn5MMsMtohpE7W6LJTFUIczZI7XtqAgWyxffdG5ihRH7mLMpNCw
-         0vPtzEVqC+X6NLX5ytxB7Xr3rWoV5rnVlyiEGUU6XoO2vONpoowDRVuYLuP2WpumXICc
-         oF5A==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=b0whYJmcB0jB6pJojgKADy8b4ZuzyqAW5Yum6n3qtZM=;
+        b=nQomA4mbZ2UHLPvDns1D/25xRZvNOn1MxebhUEjYX3KEzcK/CsrugvsRPiCkCnGQBt
+         +9SXtjyxAmt3hVInXOIGee4RZxxneF0vz40JgKcpfPMuufvPis87qbtKxLpnYR1+qcZT
+         74FVbBCqO4yznrAh4b3Qlbw+PieO/GVD85A2/i3UUWLDrrU4sI20wwGTuTdHDu33yXR5
+         XBzdwaqV5nOHTp42Fg+g4JcQSScY4RAT0QNMujZXZyvtKzovDE/CeOZ5kBsaUttd54w2
+         TTmzjow8k++Ali4TTiy2ul8w/pPrpoeDiZpiqYJ0a6EiAdQmSc8UocVwnSgMZ2CDM8yf
+         pB+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=FTkcYmcnvDVDfmqYNOsTg+b+QGCCyVr4hlpcZtSPOrQ=;
-        b=LSOFfmN2fEqjHa13wBKmMaRvj4+UdczPjpk37oTaAuWtMYfoQqgT/1ut4fT/PO/viv
-         Cun/VYQgS6r7vHS+LOTDHRsSJyBMwoZBhn8zKBjfm/rS+t9RlxIkiH9jvB1Re7kmuqby
-         BqODYOmY9yv53Gxmuz6+SQrD+rzn09OTA17slAZsuRhCb1+liFycz824jz6mDVOEhAwD
-         m8zf9cjPgsrm/alHdbqcNVGU7FI7OxLVN36z5DfU2W1Tlqm5cg4X1x1W+5VSiBL33udB
-         F7B6JX3pBRnrwoJGvImEfoRG92YUSMDBwkSJMcSX+A/ptH+YA2Kuvqx1DHMKnLMfV7bB
-         IMYA==
-X-Gm-Message-State: AOAM533kT6SokEVAnHBAtdQTEhmAtetGq9YzaMFne5vKNVNH3bghqRF7
-        8DA/4HIgq2qqqrhE5cIrDFc=
-X-Google-Smtp-Source: ABdhPJzPjENVKzxG5XA4KtpqzFkHdaXPa/nygQKueAJoDVo2yvi7LjhDpgYdY81HwWPXj7YMnbLrkQ==
-X-Received: by 2002:aca:3e86:: with SMTP id l128mr14865109oia.120.1635529425253;
-        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e32sm1935914oow.30.2021.10.29.10.43.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 10:43:44 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211028093059.32535-1-zajec5@gmail.com>
- <20211028093059.32535-3-zajec5@gmail.com>
- <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
- <9d57d026-19f3-e92d-4c02-d7e8e2c2bc25@gmail.com>
- <YXvxMHmx2i56sXdI@robh.at.kernel.org>
- <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
-Message-ID: <a14d1265-9e8f-6011-3f34-0881c0c49dd5@roeck-us.net>
-Date:   Fri, 29 Oct 2021 10:43:42 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=b0whYJmcB0jB6pJojgKADy8b4ZuzyqAW5Yum6n3qtZM=;
+        b=TGURa/IKnU02b6c0oTBdKOHNCa0bStz3ZoA+jjHh+iLPYkDWqXwqjuTuuXPxQ6A/8G
+         mmJTz6SxuhIxzsZf4bke8CmOrqZ+hCX5MzdD358tXwKAzbvGJSD67ecpH08SzK5PC3vJ
+         QUXPRR2iA/Ez9oGK+u48iVp7N/WXc6RxdcUMbTwZSzZTbOqF477+gf5R9dPctih/6nYJ
+         ej5z/ee9NnrTTUb0ICBIV4ct7ED2hB0x1A/M+XJ0dkr99m0cW+IEIFyKEC+iZUNF014P
+         8wdkOkBzgKo7v7Ig+iqODrb21GQdLOI17ML0gm+tGQmqilkOGF83rKWlTX6Zx3WhAq/9
+         evGg==
+X-Gm-Message-State: AOAM531Dmq/PS6v9oQvj0aq3K0kksRfxWOW7UPQuF9oallUJxUAQx7a7
+        jlZM7ekaS+MRl1tphq9JTFss/xwfiN7swkRCdEuyug==
+X-Google-Smtp-Source: ABdhPJylbJBntPJCmTgb6kablqvflLQTyVhPTi/x4VT6rljBmEef/wGDO8GZfqQFTMbSpnM1OQAaXt4NB71LaxX0SUs=
+X-Received: by 2002:aa7:8149:0:b0:44c:916c:1fdb with SMTP id
+ d9-20020aa78149000000b0044c916c1fdbmr12597647pfn.34.1635529508590; Fri, 29
+ Oct 2021 10:45:08 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
+ <1635406037-20900-6-git-send-email-hongxing.zhu@nxp.com> <8e182179c6c60f0b6cf8a89c1b829d8225a055d5.camel@toradex.com>
+ <AS8PR04MB8676A86DE53D6C98456DDC7E8C879@AS8PR04MB8676.eurprd04.prod.outlook.com>
+In-Reply-To: <AS8PR04MB8676A86DE53D6C98456DDC7E8C879@AS8PR04MB8676.eurprd04.prod.outlook.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 29 Oct 2021 10:44:57 -0700
+Message-ID: <CAJ+vNU0iggqkQgsqKz3Y8KQjZxd2d1aq-ujgG=rRKo6EjcN=0w@mail.gmail.com>
+Subject: Re: [PATCH v4 5/8] phy: freescale: pcie: Initialize the imx8 pcie
+ standalone phy driver
+To:     Richard Zhu <hongxing.zhu@nxp.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Cc:     "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/29/21 9:45 AM, Florian Fainelli wrote:
-> On 10/29/21 6:03 AM, Rob Herring wrote:
->> On Fri, Oct 29, 2021 at 01:39:02PM +0200, Rafał Miłecki wrote:
->>> [Rob: please kindly comment on this]
->>>
->>> On 28.10.2021 18:29, Florian Fainelli wrote:
->>>> On 10/28/21 2:30 AM, Rafał Miłecki wrote:
->>>>> From: Rafał Miłecki <rafal@milecki.pl>
->>>>>
->>>>> Hardware supported by this driver goes back to the old bcm63xx days. It
->>>>> was then reused in BCM7038 and later also in BCM4908.
->>>>>
->>>>> Depending on SoC model registers layout differs a bit. This commit
->>>>> introduces support for per-chipset registers offsets & adds BCM4908
->>>>> layout.
->>>>>
->>>>> Later on BCM63xx SoCs support should be added too (probably as platform
->>>>> devices due to missing DT). Eventually this driver should replace
->>>>> bcm63xx_wdt.c.
->>>>>
->>>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->>>>> ---
->>>>
->>>> [snip]
->>>>
->>>>> +
->>>>> +static const u16 bcm7038_wdt_regs_bcm4908[] = {
->>>>> +	[BCM63XX_WDT_REG_DEFVAL]	= 0x28,
->>>>> +	[BCM63XX_WDT_REG_CTL]		= 0x2c,
->>>>> +	[BCM63XX_WDT_REG_SOFTRESET]	= 0x34,
->>>>
->>>> I don't understand what you are doing here and why you are not
->>>> offsetting the "reg" property appropriately when you create your
->>>> bcm4908-wdt Device Tree node such that the base starts at 0, and the
->>>> existing driver becomes usable as-is. This does not make any sense to me
->>>> when it is obviously the simplest way to make the driver "accept" the
->>>> resource being passed.
->>>
->>> I believe that DT binding should cover the whole hardware block and
->>> describe it (here: use proper compatible to allow recognizing block
->>> variant).
->>>
->>> That's because (as far as I understand) DT should be used to describe
->>> hardware as closely as possible. I think it shouldn't be adjusted to
->>> make mapping match Linux's driver implementation.
->>>
->>>
->>> So if:
->>> 1. Hardware block is mapped at 0xff800400
->>> 2. It has interesting registers at 0xff800428 and 0xff80042c
->>>
->>> I think mapping should use:
->>> reg = <0xff800400 0x3c>;
->>> even if we don't use the first N registers.
->>>
->>> That way, at some point, you can extend Linux (or whatever) driver to
->>> use extra registers without reworking the whole binding. That's why I
->>> think we need to map whole hardware block & handle different registers
->>> layouts in a driver.
->>
->> Yes, that's the correct thing to do.
-> 
-> So in the future if we happen to want to manage the hardware timers in
-> that block, they would be part of the watchdog driver? I am fairly sure
-> they won't be, so you will be creating a composite driver/MFD to
-> separate out the functions, more likely. So you might as well create
-> sub-nodes.
-> 
->>
->> The question is whether you'd need sub nodes for the other functions.
->> Folks tend to want to have sub nodes for convenience which isn't really
->> needed and then requires a DT update ('cause they add nodes as adding
->> drivers).
-> 
-> Sorry but not, this is getting completely ridiculous, the
-> 
->>
->> Based on the registers, you really don't need sub nodes here.
-> 
-> I sort of disagree here, the watchdog is a part of a sundry timer block
-> here, but it is logically broken up into different parts and if if I
-> were to imagine how this would map into different drivers, I can easily
-> see that we would have:
-> 
-> - a driver to manage the timer interrupt controller
-> - a driver to manage each of the 3 hardware timers, be they clockevent
-> or else
-> - a driver to manage the watchdog
-> 
-> The simplest way to get there, and also because these same timer blocks
-> are actually spread in other parts of STB chips just like the watchdog
-> is, but in a different layout where they stand on their own was the main
-> drive for defining the bcm7038_wdt binding the way it was.
-> 
-> Rafal, I appreciate that you are trying to leverage the bcm7038_wdt
-> driver and this is better than the previous patch set, but I really do
-> not see why having the watchdog driver not manage the *exact* subset of
-> the register space needed (starting at 0x28) is not being done.
+On Fri, Oct 29, 2021 at 1:45 AM Richard Zhu <hongxing.zhu@nxp.com> wrote:
+>
+>
+> > -----Original Message-----
+> > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> > Sent: Friday, October 29, 2021 4:13 PM
+> > To: kishon@ti.com; vkoul@kernel.org; robh@kernel.org;
+> > l.stach@pengutronix.de; shawnguo@kernel.org;
+> > tharvey@gateworks.com; galak@kernel.crashing.org; Richard Zhu
+> > <hongxing.zhu@nxp.com>
+> > Cc: linux-phy@lists.infradead.org; linux-arm-kernel@lists.infradead.org=
+;
+> > kernel@pengutronix.de; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
+> > Subject: Re: [PATCH v4 5/8] phy: freescale: pcie: Initialize the imx8 p=
+cie
+> > standalone phy driver
+> >
+> > On Thu, 2021-10-28 at 15:27 +0800, Richard Zhu wrote:
+> > > Add the standalone i.MX8 PCIe PHY driver.
+> > >
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> >
+> > Unfortunately, this version no longer works for our
+> > IMX8_PCIE_REFCLK_PAD_OUTPUT use-case. Further comments in- lined
+> > below.
+> >
+> [Richard Zhu] Sorry to hear about that. Then, it seems that this bit shou=
+ld be
+>  set anyway.
+> It's hard to understand this bit refer to the RM document. Sigh =E2=98=B9=
+.
+> Would set the AUX_EN bit later.
+>
+> > > ---
+> > >  drivers/phy/freescale/Kconfig              |   9 +
+> > >  drivers/phy/freescale/Makefile             |   1 +
+> > >  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 234
+> > > +++++++++++++++++++++
+> > >  3 files changed, 244 insertions(+)
+> > >  create mode 100644 drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> > >
+> > > diff --git a/drivers/phy/freescale/Kconfig
+> > > b/drivers/phy/freescale/Kconfig index 320630ffe3cd..de9ee7020f76
+> > > 100644
+> > > --- a/drivers/phy/freescale/Kconfig
+> > > +++ b/drivers/phy/freescale/Kconfig
+> > > @@ -14,3 +14,12 @@ config PHY_MIXEL_MIPI_DPHY
+> > >         help
+> > >           Enable this to add support for the Mixel DSI PHY as
+> > found
+> > >           on NXP's i.MX8 family of SOCs.
+> > > +
+> > > +config PHY_FSL_IMX8M_PCIE
+> > > +       tristate "Freescale i.MX8 PCIE PHY"
+> >
+> > Above description is missing the M as in i.MX 8M.
+> [Richard Zhu] Okay, would be added later.
+> Thanks.
+>
+> >
+> > > +       depends on OF && HAS_IOMEM
+> > > +       select GENERIC_PHY
+> > > +       default ARCH_MXC && ARM64
+> > > +       help
+> > > +         Enable this to add support for the PCIE PHY as found on
+> > > +         i.MX8M family of SOCs.
+> > > diff --git a/drivers/phy/freescale/Makefile
+> > > b/drivers/phy/freescale/Makefile index 1d02e3869b45..55d07c742ab0
+> > > 100644
+> > > --- a/drivers/phy/freescale/Makefile
+> > > +++ b/drivers/phy/freescale/Makefile
+> > > @@ -1,3 +1,4 @@
+> > >  # SPDX-License-Identifier: GPL-2.0-only
+> > >  obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)       +=3D
+> > phy-fsl-imx8mq-usb.o
+> > >  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)      +=3D
+> > phy-fsl-imx8-mipi-dphy.o
+> > > +obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)       +=3D
+> > phy-fsl-imx8m-pcie.o
+> > > diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> > > b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> > > new file mode 100644
+> > > index 000000000000..4b4402eaddcc
+> > > --- /dev/null
+> > > +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> > > @@ -0,0 +1,234 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright 2021 NXP
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/iopoll.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/mfd/syscon.h>
+> > > +#include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/phy/phy.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/regmap.h>
+> > > +#include <linux/reset.h>
+> > > +#include <dt-bindings/phy/phy-imx8-pcie.h>
+> > > +
+> > > +#define IMX8MM_PCIE_PHY_CMN_REG061     0x184 #define
+> > > +ANA_PLL_CLK_OUT_TO_EXT_IO_EN  BIT(0) #define
+> > > +IMX8MM_PCIE_PHY_CMN_REG062     0x188 #define
+> > > +ANA_PLL_CLK_OUT_TO_EXT_IO_SEL BIT(3) #define
+> > > +IMX8MM_PCIE_PHY_CMN_REG063     0x18C #define
+> > > +AUX_PLL_REFCLK_SEL_SYS_PLL    GENMASK(7, 6) #define
+> > > +IMX8MM_PCIE_PHY_CMN_REG064     0x190
+> > #define  ANA_AUX_RX_TX_SEL_TX
+> > > +BIT(7)
+> > #define  ANA_AUX_RX_TERM_GND_EN                BIT(3)
+> > #define
+> > > +ANA_AUX_TX_TERM               BIT(2) #define
+> > > +IMX8MM_PCIE_PHY_CMN_REG065     0x194
+> > #define  ANA_AUX_RX_TERM
+> > > +(BIT(7) | BIT(4))
+> > #define  ANA_AUX_TX_LVL
+> > > +GENMASK(3, 0) #define
+> > IMX8MM_PCIE_PHY_CMN_REG75      0x1D4 #define
+> > > +PCIE_PHY_CMN_REG75_PLL_DONE   0x3 #define
+> > PCIE_PHY_TRSV_REG5
+> > > +0x414 #define  PCIE_PHY_TRSV_REG5_GEN1_DEEMP 0x2D #define
+> > > +PCIE_PHY_TRSV_REG6             0x418 #define
+> > > +PCIE_PHY_TRSV_REG6_GEN2_DEEMP 0xF
+> > > +
+> > > +#define IMX8MM_GPR_PCIE_REF_CLK_SEL    GENMASK(25, 24)
+> > #define
+> > > +IMX8MM_GPR_PCIE_REF_CLK_PLL
+> > > +FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x3) #define
+> > > +IMX8MM_GPR_PCIE_REF_CLK_EXT
+> > > +FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x2) #define
+> > > +IMX8MM_GPR_PCIE_AUX_EN         BIT(19) #define
+> > > +IMX8MM_GPR_PCIE_CMN_RST                BIT(18)
+> > #define
+> > > +IMX8MM_GPR_PCIE_POWER_OFF      BIT(17) #define
+> > IMX8MM_GPR_PCIE_SSC_EN
+> > > +BIT(16) #define
+> > IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE        BIT(9)
+> > > +
+> > > +struct imx8_pcie_phy {
+> > > +       void __iomem            *base;
+> > > +       struct clk              *clk;
+> > > +       struct phy              *phy;
+> > > +       struct regmap           *iomuxc_gpr;
+> > > +       struct reset_control    *reset;
+> > > +       u32                     refclk_pad_mode;
+> > > +       u32                     tx_deemph_gen1;
+> > > +       u32                     tx_deemph_gen2;
+> > > +       bool                    clkreq_unused; };
+> > > +
+> > > +static int imx8_pcie_phy_init(struct phy *phy) {
+> > > +       int ret;
+> > > +       u32 val, pad_mode;
+> > > +       struct imx8_pcie_phy *imx8_phy =3D phy_get_drvdata(phy);
+> > > +
+> > > +       reset_control_assert(imx8_phy->reset);
+> > > +
+> > > +       pad_mode =3D imx8_phy->refclk_pad_mode;
+> > > +       /* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't
+> > hooked */
+> > > +       regmap_update_bits(imx8_phy->iomuxc_gpr,
+> > IOMUXC_GPR14,
+> > >
+> > +                          IMX8MM_GPR_PCIE_AUX_EN_
+> > OVERRIDE,
+> > > +                          imx8_phy->clkreq_unused ?
+> > > +                          0 :
+> > IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
+> > > +       regmap_update_bits(imx8_phy->iomuxc_gpr,
+> > IOMUXC_GPR14,
+> > > +                          IMX8MM_GPR_PCIE_AUX_EN,
+> > > +                          pad_mode =3D=3D
+> > IMX8_PCIE_REFCLK_PAD_INPUT ?
+> > > +                          IMX8MM_GPR_PCIE_AUX_EN :
+> > 0);
+> >
+> > V3 had IMX8MM_GPR_PCIE_AUX_EN always enabled. Turns out V4
+> > stopped working for our output use-case as it only enables it for the i=
+nput
+> > use-case. If I enable this one always it starts working again.
+> [Richard Zhu] See my comment above.
+> Sorry to bring the regression on your board.
+>
 
-Agreed, especially since other sub-devices of bcm4908 are alredy modeled
-this way. See arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi.
-At this point, before accepting anything, I'll want to have an explanation
-how and why the watchdog interface is handled differently than, say,
-its reset controller. Also, I'd like to understand the memory region
-assigned to bcm7038, which happens to be something like:
+Marcel,
 
-     compatible = "brcm,bcm7038-wdt";
-         reg = <0xf040a7e8 0x16>;
+Your board does not use an external clk, but does it hook up CLKREQ#
+from the socket to either I2C4_SCL or UART4_RXD and pin muxed as such?
 
-because it seems unlikely that this is a chip subsystem that just happens
-to start at such an odd boundary. More specifically, I see in actual
-.dtsi files data such as:
+For my board that uses an external clk and does not connect CLKREQ# to
+the IMX8MM I need to disable that bit. As Richard says we have invalid
+documentation for these bits unfortunately which is not helping.
 
-                 watchdog: watchdog@4066a8 {
-                         clocks = <&upg_clk>;
-                         compatible = "brcm,bcm7038-wdt";
-                         reg = <0x4066a8 0x14>;
-                         status = "disabled";
-                 };
-...
-                 timers: timer@406680 {
-                         compatible = "brcm,brcmstb-timers";
-                         reg = <0x406680 0x40>;
-                 };
+Richard, when we do figure out proper documentation for these bits I
+suggest you also add a comment block right above their #defines in the
+phy driver with the correct documentation to avoid future confusion.
+NXP has had so many mistakes in the various IMX8M RM's and I fear they
+will never get fixed.
 
-So there happen to be timers in the same region, and the offset
-between timer and watchdog registers is 0x28. Coincidentally, that
-just happens to be the extra offset defined in this patch for the
-bcm4908 watchdog. Really ? Sorry, this sounds very inconsistent
-and arbitrary to me.
+Best regards,
 
-Overall, I suspect I'll have to see datasheets if we really end up
-having different offsets for each chip, because I'll want to confirm
-that the watchdog subsystem isn't treated differently than other
-subsystems, and that the offset calculations are appropriate and
-consistent across the different chips.
-
-Guenter
+Tim
