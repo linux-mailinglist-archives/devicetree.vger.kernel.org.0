@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DBC843F743
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E569643F74B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232067AbhJ2GhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 02:37:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50512 "EHLO
+        id S232101AbhJ2Gi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 02:38:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232005AbhJ2GhG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 02:37:06 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC652C061570
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:34:38 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id bm39so1535289oib.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:34:38 -0700 (PDT)
+        with ESMTP id S232063AbhJ2GiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 02:38:24 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0012EC061714
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:35:55 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id n13-20020a9d710d000000b005558709b70fso5793704otj.10
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:35:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=GQ7Y/cBRSLim6Rx9vEWWjTsJPB80yq9sZIwcvs7gvvg=;
-        b=k3bLbfKh2BZGGq8q1i8iPyVo3TB1kmbTpSuFslveGQrRVY8WJLpAu3MpbNY5TQIqYn
-         F+UzbpGpF46xQ5k52eQhh1SM+a+n/WkgMVExBUwsDZZJSszj+mINu4tXFC9AIQBOLtIs
-         deBLZErlM1mgAA2yTQJDneVP+aNHQsCHRZXLk=
+        bh=dkdO3Icgb7DUlOmsuPxDkO8TG7olzzHWl3o3c3JSly0=;
+        b=iQ+FZtH/C+L5mW9JwCuoepEJ6FvgYOvKGFKTS52GdNtfBqat4FsD3mDJTB92gScY+x
+         llHNiUtTABHa4tQCnLB7x4HsRW5rNK5m18bWSG1Vx0qAyGSilkSNPHZqhpnKpJhCkfrn
+         5D5K1OpL2JmUWqL89+JqfAihCj4QZjrKMEe0U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=GQ7Y/cBRSLim6Rx9vEWWjTsJPB80yq9sZIwcvs7gvvg=;
-        b=pRxZuxtndcSpnwfvnfr7K4UptyXIAR2uqlLYSVguwogKHFB4aHedXCkNBGj5cf/mw8
-         3BBd8FnbeUpljzFsowB5nVZCTlbO/F6x48XMJArmWtxofGBTZOQkOG6RO7PRGdezVm1E
-         RqMGNMBhOs8cq60a+PBCqiAzPMyXVDtZG1dVI/2jlLI9nSqOWtmyeN3W9cqaLxkmVzXt
-         ar1F+urZNDolqjl21lqLsPWVmZg8d0JnntdOHa4F2KW5tWLlPJc6T2o2SKviQ1LSndis
-         fBpUgcdsyAx8vSrV/KXEnLpxmbh+UfMb21iRJbTm1vqrq3mD+hgz79g8hD+Vh6bv9fyE
-         05CA==
-X-Gm-Message-State: AOAM531koahNJBCaMBZUamDZeTS0erpj72UreGPXkCuCm/ne8IGE6U2j
-        sH2c6eLeRKko7/hdWJJhPeR+wH18WFRVvtpGUcotaQ==
-X-Google-Smtp-Source: ABdhPJwm/KO+spYF3fCUYZRIMVRbTzcVCYfzPWRbqmPfNKUDsp9cZJThNvNy9br2eX4E4Vf2AW7jjo0ee5jf117j+q0=
-X-Received: by 2002:a05:6808:2124:: with SMTP id r36mr6747996oiw.64.1635489278381;
- Thu, 28 Oct 2021 23:34:38 -0700 (PDT)
+        bh=dkdO3Icgb7DUlOmsuPxDkO8TG7olzzHWl3o3c3JSly0=;
+        b=2eC8iqCKzAlDoLbcHgQf+rlnnOxir7m1VmbtVfE7PwWIniPdBg0GpNMKF5vKFcVY5W
+         OniidR6wUkrn/wHnKmO0tAEjW+ry9X4lYc/f7j0pFH5hLKc79MdshV2vIX5pa36ttxNY
+         q08I7CRGAf67jW2bWFsQ4X1LDtKUI7tV/f2aLDeD+LiXcDc2t4I8eon33GFrTDF4L2co
+         Xm1/gQwxU9qQnA4u8v4ruASjxcdT/5uLnPAD+rJmNt+YXyT/zutSedGUayM/xLvzH5E+
+         39IvFWXj7sRU9IHilorU8Z4LRgAqX8+QgQigU8L6CjzrXS+GpOa8ayvW02eCHs75zmBx
+         wwSg==
+X-Gm-Message-State: AOAM533gJi9izghrMZXZ/2/n/eVPEP6AXeAz1/c+yoV/2svsDwLw1s5N
+        Vv0mZVwPVt6ZeIrpkge3P2tjoIeHI/ejfoTRdsSymw==
+X-Google-Smtp-Source: ABdhPJwspusB4f+oAyCp/cycI/Hh2DqX/KyThqqZdJTHZPzfWH2gfegrDIP57d1k9LEBFhCBJe3cUlTKHKtanKNWTpU=
+X-Received: by 2002:a9d:7655:: with SMTP id o21mr7102048otl.126.1635489355350;
+ Thu, 28 Oct 2021 23:35:55 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 28 Oct 2021 23:34:38 -0700
+ HTTPREST; Thu, 28 Oct 2021 23:35:55 -0700
 MIME-Version: 1.0
-In-Reply-To: <CA+cxXhnu38eOJtuvHdS0Wyy7LmjmTMn9qjoVOqcNYK3F1xhrmQ@mail.gmail.com>
-References: <20211028151022.1.Ie56f55924f5c7706fe3194e710bbef6fdb8b5bc6@changeid>
- <CAE-0n50XwcLBmOBaRiF-qW=R-HfanjviteEzmMDbDuPJruX65g@mail.gmail.com> <CA+cxXhnu38eOJtuvHdS0Wyy7LmjmTMn9qjoVOqcNYK3F1xhrmQ@mail.gmail.com>
+In-Reply-To: <20211028174015.v2.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
+References: <20211028174015.v2.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Thu, 28 Oct 2021 23:34:38 -0700
-Message-ID: <CAE-0n52-DTb17sewUiZ2znQWWexkpf5YbFsBaQdd3Z0n+BZqzw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: sc7180: Support Lazor/Limozeen rev9
-To:     Philip Chen <philipchen@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, dianders@chromium.org,
-        Andy Gross <agross@kernel.org>,
+Date:   Thu, 28 Oct 2021 23:35:54 -0700
+Message-ID: <CAE-0n51jMivTJ+o6W1wKH-Z8T6qOCX6bYEi1n1tNs2APJqGDGg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: sc7180: Include gpio.h in edp bridge dts
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Philip Chen <philipchen@chromium.org>
+Cc:     dianders@chromium.org, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
@@ -62,44 +61,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Philip Chen (2021-10-28 17:48:39)
-> Hi Stephen,
+Quoting Philip Chen (2021-10-28 17:41:15)
+> The edp bridge dts fragment files use the macros defined in
+> 'dt-bindings/gpio/gpio.h'.
 >
-> On Thu, Oct 28, 2021 at 4:00 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Philip Chen (2021-10-28 15:11:31)
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> > > index 8b79fbb75756..69666f92176a 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi
-> > > @@ -5,13 +5,10 @@
-> > >   * Copyright 2020 Google LLC.
-> > >   */
-> > >
-> > > -#include "sc7180.dtsi"
-> > > -
-> > >  ap_ec_spi: &spi6 {};
-> > >  ap_h1_spi: &spi0 {};
-> >
-> > Can we get rid of this node swap now? I think it is only around because
-> > early on we swapped the EC and H1 spi interfaces and then we had to swap
-> > it every time we made a new board.
-> >
-> > $ git grep ap_ec_spi
-> > arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz.dtsi:ap_ec_spi: &spi6 {};
-> > arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor.dtsi:ap_ec_spi: &spi6 {};
-> > arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom.dtsi:ap_ec_spi: &spi6 {};
-> > arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts:ap_ec_spi: &spi6 {};
-> >
-> > It feels like we'd be better off leaving that quirk in trogdor-r0, which
-> > conveniently isn't upstream, and then relabel the spi nodes in
-> > sc7180-trogdor.dtsi now. Otherwise I look at this and have to remember
-> > that whenever this dtsi file is included, we've already included the
-> > sc7180.dtsi file before it, so that the relabel actually works.
+> To help us more flexibly order the #include lines of dts files in a
+> board-revision-specific dts file, let's include the gpio header in the
+> bridge dts fragment files themselves.
 >
-> I agree it'll be great if we can get rid of the node swap.
-> It's out of the scope of this patch series though.
-> We should probably send a separate patch for this change later?
->
+> Signed-off-by: Philip Chen <philipchen@chromium.org>
+> ---
 
-Ok.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
