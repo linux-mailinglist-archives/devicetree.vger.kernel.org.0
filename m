@@ -2,277 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B888243FC4C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D1E643FC57
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 14:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231557AbhJ2M1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 08:27:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbhJ2M1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 08:27:37 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2939CC061745
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 05:25:08 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id p14so15858997wrd.10
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 05:25:08 -0700 (PDT)
+        id S231365AbhJ2MdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 08:33:07 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:17184 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230134AbhJ2MdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 08:33:06 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=w7ERDMxld9y+CPUnX75l8Ta0sFWie18coBUraZlyenY=;
-        b=KoIfAALYtn/x4ST7dyMPyMUL21tc/UEqneS4L9orO2RmQSLOPMraMaM4Ive3ZB47Pr
-         FQOEDMWe5ToTjOF9mXQxjNDlm5DgRpxW4+cjydO3mYptYWMFTNX8tFPkJnjTCRb6dZR5
-         hAyT9b84MLVMwGmdhg76Q7PBjSnEo6i6l0WNxM1/7J2lLGER4dS/xPBKXrRZ5xzHIR/z
-         SZDVFpxyqxwRvYiydNNBgRMgef8PsCLY8rPTm9uNOYFUZG16hba7AEO4NWcAwRICLoZR
-         +WcUysteLWWPWxshpXd0fTpMRLUgn2pikWxycci1yv+hht3zQVYCCRlc7jJrKCBuhwql
-         yfQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=w7ERDMxld9y+CPUnX75l8Ta0sFWie18coBUraZlyenY=;
-        b=GBJnToOZz/n3kh5L/p1LvtQiBXeEJkkpBtn8EazD0CnBqRWBz0soNO7CZeG4uFxzuU
-         7WpetlUzZY3MEKoccYveZXgfNIcJnH8xiCYO3bH28dDsUExxth9u0cb8LZ7mxS+2NgXj
-         VGVZ91nJI24auOUZpNnl8E4kGPJsNEhEifOXL60dc7Ncv8HIInuMj3rGiOq6Eijw1eek
-         YxZIVLZxq3hoeWiwcYAYt9TQpJsw90cn/a+cDEP6ys7ALRoH8+QK+xoi/05t42PTwMVE
-         jH+Ko1wH78K8YfpwURYLBFmGivu9gKQCnQvBigTqn7m6TKe8U7LCd5FWu9tldsYIj148
-         Vadw==
-X-Gm-Message-State: AOAM532N3nWecv2nM4mc9H/Cdc6zoZg0NeKGS4ejXPLW/fgPTgVBevng
-        TQUVIZ42yJ91pIeN9iTMa+ZH2g==
-X-Google-Smtp-Source: ABdhPJzNeOWy0F/lHFywLb8P0P+Btkiv6onzYuaN22VjLXYuj/K536/O12T/6Kdme13KBlIKknwohA==
-X-Received: by 2002:adf:e992:: with SMTP id h18mr13746461wrm.21.1635510306627;
-        Fri, 29 Oct 2021 05:25:06 -0700 (PDT)
-Received: from smtpclient.apple (global-5-141.nat-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id q18sm8807724wmc.7.2021.10.29.05.25.05
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 29 Oct 2021 05:25:05 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [v4 10/11] riscv: dts: fu740: Add pmu node
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <CAOnJCUJjzmW=QobLPKAWYGppFeoJXjT2Ee6eG2-H=s2mnei=RQ@mail.gmail.com>
-Date:   Fri, 29 Oct 2021 13:25:04 +0100
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-perf-users@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FE94A3CF-44B9-442A-B985-4ED86BF039EE@jrtc27.com>
-References: <20211025195350.242914-1-atish.patra@wdc.com>
- <20211025195350.242914-11-atish.patra@wdc.com>
- <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local>
- <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
- <EDB030D6-D37A-43D6-9027-222794FDA80D@jrtc27.com>
- <CAOnJCUJjzmW=QobLPKAWYGppFeoJXjT2Ee6eG2-H=s2mnei=RQ@mail.gmail.com>
-To:     Atish Patra <atishp@atishpatra.org>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635510638; x=1667046638;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references;
+  bh=WX6+oirQgO/61V41wJZp+jdW5MNtOfx/cOe7FPtKI0k=;
+  b=DPSyIGUUFBd5OSTpUMA5zIjHON5HryYFIBX+WQYnqjWRuwW+sOF2stTN
+   /Q2bXp4Dd4fttusVvi+0mOaupBfI8j1oyQXaZqkjwMasvP0UW1d+S/Llt
+   MxctR/nsy9+GAf6py4boFMSEZMetFEa18lnuoqFLEI0FQSw8jTDOQtDSF
+   8=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 29 Oct 2021 05:30:38 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 29 Oct 2021 05:30:35 -0700
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 29 Oct 2021 18:00:22 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id E01DE4D8B; Fri, 29 Oct 2021 05:30:21 -0700 (PDT)
+From:   Kalyan Thota <quic_kalyant@quicinc.com>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, mkrishn@codeaurora.org, swboyd@chromium.org,
+        abhinavk@codeaurora.org
+Subject: [v2] drm/msm/disp/dpu1: set default group ID for CTL.
+Date:   Fri, 29 Oct 2021 05:30:19 -0700
+Message-Id: <1635510619-6715-1-git-send-email-quic_kalyant@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29 Oct 2021, at 07:05, Atish Patra <atishp@atishpatra.org> wrote:
->=20
-> On Thu, Oct 28, 2021 at 5:07 PM Jessica Clarke <jrtc27@jrtc27.com> =
-wrote:
->>=20
->> On 29 Oct 2021, at 00:37, Atish Patra <atishp@atishpatra.org> wrote:
->>>=20
->>> On Thu, Oct 28, 2021 at 1:49 PM Jessica Clarke <jrtc27@jrtc27.com> =
-wrote:
->>>>=20
->>>> On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
->>>>> HiFive unmatched supports HPMCounters but does not implement =
-mcountinhibit
->>>>> or sscof extension. Thus, perf monitoring can be used on the =
-unmatched
->>>>> board without sampling.
->>>>>=20
->>>>> Add the PMU node with compatible string so that Linux perf driver =
-can
->>>>> utilize this to enable PMU.
->>>>>=20
->>>>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
->>>>> ---
->>>>> arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
->>>>> 1 file changed, 3 insertions(+)
->>>>>=20
->>>>> diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi =
-b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
->>>>> index abbb960f90a0..b35b96b58820 100644
->>>>> --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
->>>>> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
->>>>> @@ -140,6 +140,9 @@ soc {
->>>>>             #size-cells =3D <2>;
->>>>>             compatible =3D "simple-bus";
->>>>>             ranges;
->>>>> +             pmu {
->>>>> +                     compatible =3D "riscv,pmu";
->>>>> +             };
->>>>=20
->>>> This is a property of the user-replaceable firmware, not a property =
-of
->>>> the hardware,
->>>=20
->>> It's a property of hardware that indicates that the hardware =
-supports PMU.
->>=20
->> All RISC-V hardware provides the CSRs, they=E2=80=99re part of the =
-privileged
->> spec and not marked optional. How many aren=E2=80=99t hard-wired to =
-zero is up
->> to the implementation. But even then you can=E2=80=99t know from the =
-hardware
->> alone what is supported; the firmware has to enable S-mode (and
->> U-mode)=E2=80=99s ability to read them, so you can=E2=80=99t assume =
-anything in a
->> static device tree hard-coded in Linux about what firmware has done.
->> Since you currently have to query the firmware to determine what=E2=80=99=
-s
->> available to you anyway, I see no benefit from having a node in the
->> device tree that tells you your firmware *might* have counters you =
-can
->> use.
->>=20
->>> Additionally, the counter overflow interrupt number needs to be
->>> defined through the DT as well
->>> so that a clean platform driver can be implemented.
->>=20
->> The interrupt number is specified as 13 by the Sscofmpf spec.
->> But that=E2=80=99s not relevant here, the FU740 predates and =
-doesn=E2=80=99t implement
->> Sscofmpf, meaning there is no interrupt to even define here. And as I
->> said on the other patch, don=E2=80=99t conflate =E2=80=9CSBI PMU =
-firmware interface is
->> supported=E2=80=9D and =E2=80=9CSscofmpf is implemented in the =
-hardware=E2=80=9D; the former
->> should be discovered by talking to firmware, and the latter should be
->> discovered like any other extension (however that ends up happening).
->=20
-> Presence of sscof extension can be discovered through general =
-extension
-> discovery mechanism (probably a separate DT node..that's a separate =
-discussion).
->=20
-> However, the interrupt number discovery has to be through DT so the
-> platform driver
-> can probe the DT to figure out that.
+New required programming in CTL for SC7280. Group ID informs
+HW of which VM owns that CTL. Force this group ID to
+default/disabled until virtualization support is enabled in SW.
 
-No, you=E2=80=99re not reading what I said. It=E2=80=99s specified to be =
-13 in the
-Sscofmpf spec, there is zero need to encode information in the device
-tree that is already mandated by a specification. We don=E2=80=99t put =
-that
-supervisor software interrupts are 1 nor that supervisor timer
-interrupts are 5 in the device tree, so we also don=E2=80=99t need to =
-put that
-supervisor counter overflow interrupts are 13 in it. We *do* currently
-put machine timer interrupt information from the CLINT in the device
-tree, and both supervisor and machine external interrupt information
-from the PLIC, but that is not to tell you what=E2=80=99s already =
-specified
-(that they=E2=80=99re interrupts 7, 11 and 9 respectively), it=E2=80=99s =
-to tell you
-which order the per-hart registers are in in the CLINT, and which order
-the contexts are in in the PLIC. If it were up to me that would=E2=80=99ve=
- been
-expressed a different way as it=E2=80=99s an ugly encoding, rather =
-redundant
-and not the nicest to decode in software, but it=E2=80=99s too late for =
-that.
-Though with the ACLINT, APLIC and other AIA parts on the horizon I hope
-we can get saner bindings for those that don=E2=80=99t repeat those =
-mistakes.
-But the point is, if it=E2=80=99s specified by the spec, it doesn=E2=80=99=
-t need to go
-in the device tree, the device tree is for telling you all the things
-you don=E2=80=99t, and can=E2=80=99t, already know.
+Changes in v1:
+ - Fix documentation and add descritpion for the change (Stephen)
 
->>>> so having this in the device tree under /soc, let alone
->>>> hard-coded in Linux, is utterly wrong. Why can this not just be =
-probed
->>>> like any other SBI interface? The "Probe SBI extension" interface =
-is
->>>> precisely for this kind of thing.
->>>>=20
->>> SBI extension is anyways probed to verify if the firmware has PMU
->>> extension or not.
->>> However, adding the DT property allows different platforms (with or
->>> without sscof extension)
->>> to use the same code path.
->>=20
->> You don=E2=80=99t need a device tree for that; that same code path =
-can just be
->> =E2=80=9Cuse the existing standard firmware interface=E2=80=9D. That =
-also has the
->> benefit that it=E2=80=99s not tied to device tree and so works =
-identically for
->> ACPI, rather than needing an ACPI version of it.
->>=20
->=20
-> I don't disagree with that argument. However, we need a DT node for
-> interrupt number as explained in the above.
-> A DT based platform driver allows us to provide a unified code path
-> which can handle both kinds of platforms described below.
->=20
-> 1. Platforms without sscof extension
-> 2. Platforms with sscof extension that requires a DT node for =
-interrupt number
->=20
-> Otherwise, the driver has to do the following things in order.
->=20
-> 1. Probe PMU extension
-> 2. first check if sscof extension is present in the special RISC-V ISA
-> extension DT node (which is yet to finalize)
-> 3. If sscof extension is present then register for a DT based platform =
-driver.
-> 4. Otherwise, register a simple platform driver.
->=20
-> I am not completely opposed to doing that if there is a strong
-> technical issue with the current approach.
+Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 5 ++++-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 8 ++++++++
+ 3 files changed, 13 insertions(+), 2 deletions(-)
 
-Nope, it=E2=80=99s:
-
-1. Probe PMU SBI extension
-2. Register a driver
-3. If Sscofmpf is present, register for interrupt 13
-
-Or perhaps with 2 and 3 swapped.
-
-You=E2=80=99re making this far too complicated by being fixated on =
-needing
-device tree in there somewhere. You don=E2=80=99t need it at all except
-possibly to tell you that Sscofmpf is supported, which should be done
-the same as any other supervisor extension like Svnapot or Svpbmt.
-
-Jess
-
->> I see nothing here that can=E2=80=99t be discovered through =
-pre-existing means.
->> If it can be discovered without use of the device tree then it does =
-not
->> belong in the device tree; the device tree is purely for things that
->> cannot otherwise be discovered.
->>=20
->> Jess
->>=20
->=20
->=20
-> --=20
-> Regards,
-> Atish
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+index ce6f32a..283605c 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+@@ -45,7 +45,7 @@
+ 	(PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
+ 
+ #define CTL_SC7280_MASK \
+-	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE))
++	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
+ 
+ #define MERGE_3D_SM8150_MASK (0)
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+index 4ade44b..31af04a 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+@@ -179,13 +179,16 @@ enum {
+ 
+ /**
+  * CTL sub-blocks
+- * @DPU_CTL_SPLIT_DISPLAY       CTL supports video mode split display
++ * @DPU_CTL_SPLIT_DISPLAY:	CTL supports video mode split display
++ * @DPU_CTL_FETCH_ACTIVE:	Active CTL for fetch HW (SSPPs)
++ * @DPU_CTL_VM_CFG:		CTL config to support multiple VMs
+  * @DPU_CTL_MAX
+  */
+ enum {
+ 	DPU_CTL_SPLIT_DISPLAY = 0x1,
+ 	DPU_CTL_ACTIVE_CFG,
+ 	DPU_CTL_FETCH_ACTIVE,
++	DPU_CTL_VM_CFG,
+ 	DPU_CTL_MAX
+ };
+ 
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+index 64740ddb..02da9ec 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
+@@ -36,6 +36,7 @@
+ #define  MERGE_3D_IDX   23
+ #define  INTF_IDX       31
+ #define CTL_INVALID_BIT                 0xffff
++#define CTL_DEFAULT_GROUP_ID		0xf
+ 
+ static const u32 fetch_tbl[SSPP_MAX] = {CTL_INVALID_BIT, 16, 17, 18, 19,
+ 	CTL_INVALID_BIT, CTL_INVALID_BIT, CTL_INVALID_BIT, CTL_INVALID_BIT, 0,
+@@ -498,6 +499,13 @@ static void dpu_hw_ctl_intf_cfg_v1(struct dpu_hw_ctl *ctx,
+ 	u32 intf_active = 0;
+ 	u32 mode_sel = 0;
+ 
++	/* CTL_TOP[31:28] carries group_id to collate CTL paths
++	 * per VM. Explicitly disable it until VM support is
++	 * added in SW. Power on reset value is not disable.
++	 */
++	if ((test_bit(DPU_CTL_VM_CFG, &ctx->caps->features)))
++		mode_sel = CTL_DEFAULT_GROUP_ID  << 28;
++
+ 	if (cfg->intf_mode_sel == DPU_CTL_MODE_SEL_CMD)
+ 		mode_sel |= BIT(17);
+ 
+-- 
+2.7.4
 
