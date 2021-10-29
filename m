@@ -2,85 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56AD0440469
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 22:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2022444046F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 22:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231425AbhJ2U5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 16:57:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57084 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230253AbhJ2U5Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 16:57:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8172A61075;
-        Fri, 29 Oct 2021 20:54:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635540895;
-        bh=pOJQpgaSJK6t2EtQjZhIopjYqTh/FOv6CfFCmJ6dhqE=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=uS4HqaU85jBAkWVmi6fs6wzFG4WpNMC6VW447pGwOE+NKlvNBnhPvm4cdRS9InG/b
-         bu11Ky4Ccr3F9Uxf3o0vtuSd8WdKyd1/a3UHaV0bGxVu06yq/MDsME2H3tBuy57bv1
-         vA9X1746ZihdPiJJ2FbJZBAqTnotLaPRDkY+Ev2nE9shgUngx7bk2bQ7R5f/yGDWop
-         yY7j2BGx55uz5QNVZagVJsUqtBoUojgqvBzcLAw5OwpeMHaK1POpmF4WM280kHuCmV
-         cmwcZBniKmeo2aWcem3Q3sYFU63/sRXLGjFNS+BMC8BeTLzbDjyZrG63CPi5u/A6bW
-         /Su2O7yYK4MCQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Trevor Wu <trevor.wu@mediatek.com>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, tiwai@suse.com
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, aaronyu@google.com,
-        pierre-louis.bossart@linux.intel.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-In-Reply-To: <20211020071428.14297-1-trevor.wu@mediatek.com>
-References: <20211020071428.14297-1-trevor.wu@mediatek.com>
-Subject: Re: [RESEND,v2 0/2] ASoC: mediatek: Add support for MT8195 sound card with rt1011 and rt5682
-Message-Id: <163554089329.1997146.2620727675711869109.b4-ty@kernel.org>
-Date:   Fri, 29 Oct 2021 21:54:53 +0100
+        id S231611AbhJ2U5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 16:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230334AbhJ2U5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 16:57:50 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 687D4C061714;
+        Fri, 29 Oct 2021 13:55:21 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id v193so10285120pfc.4;
+        Fri, 29 Oct 2021 13:55:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=QYbseYhKxTr9fJBl8ehiwzBXY+1XMJKsk2yK23bAITo=;
+        b=kT8GFGUSps7Ht3FvdqD6pKams0fRSyJvzESw3YVCdmtxHgbvcp4laYRXfbERr9eMV4
+         t5W+BJU9EbCIEFD6V1Naj68chXsaiTqcvy5l2o4PyQds9HZito0FHrGvm28fMHVlOrkj
+         uTQoz+9S3reFYqeDMTYnWQzmH4vuehmlcFVm4VBvc5FbN59gGMkF5le8G2PT9EzYxJoQ
+         3xKtlu/4Y1mri1/yNGVA5vbKU7ehNims+v9YZ91xq0EZp1GNTo1Ay+/2qqKSCITqeTGu
+         PMLqLNWTxnsTeJ8QzJLHGvKQIR/W+xfrhtl2Bw3Bs0mXk5LhLrvgNdVMVxiugxLCvUid
+         a3Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=QYbseYhKxTr9fJBl8ehiwzBXY+1XMJKsk2yK23bAITo=;
+        b=nUg0cViRMtoXU4VAq0T2Je6G6mU/uCYjyBxT+e1pL74yULwsjkNfJQavGxSeklt75h
+         bWURnfFxKJlOy++WYyq4kVQUAqhFzbvE0RwQeF26bj582PO9UbkEHGJeLCjG1CnaqLnP
+         YOqApcIe79JxHUyu/2BTzj6O/0oUY7U6uOczARLS0q9527x6L9jbdwSHNcn5zh1q1Uu6
+         sn/Txgc5HWWzFXSTEfhl4DV+NzZ37LWq2mk/m+vS7BR3tN2SjqwwX4Gzql8Bzm9opbpg
+         vbwIDSzdmJIOB+rUQFSMCeDXRbJWmTRAnwnGv7/EtPfZnvO2yJxuT0/v9ihlrGwuTHzo
+         70HA==
+X-Gm-Message-State: AOAM532d++1Wva5k0n3LndJkZwoDLjyTxGqlNdKzegKl6O+o8FeHz4Gu
+        h9VF5aeqNvbPg16eGCEL2Jc=
+X-Google-Smtp-Source: ABdhPJyFMkRhmBw6XmMtK9HWBDlZSrwA9ptmgang4zpouPvZmLiIq4ge47Tw1SE/2Zh0gqvEYbcFjA==
+X-Received: by 2002:a63:5fcc:: with SMTP id t195mr426828pgb.332.1635540920901;
+        Fri, 29 Oct 2021 13:55:20 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id m4sm1864714pjs.1.2021.10.29.13.55.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Oct 2021 13:55:20 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: convert Broadcom's WDT to the
+ json-schema
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211029202505.7106-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <7dae9f8b-b73e-fecf-35dd-1d64db8fde51@gmail.com>
+Date:   Fri, 29 Oct 2021 13:55:19 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20211029202505.7106-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Oct 2021 15:14:26 +0800, Trevor Wu wrote:
-> This series of patches adds support for mt8195 board with mt6359, rt1011
-> and rt5682.
-> Patches are based on broonie tree "for-next" branch.
+On 10/29/21 1:25 PM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Changes since v1:
->   - refined code based on Pierre-Louis's suggestions
->   - added missing of_node_put
->   - fixed wrong fixup assignment on HDMITX
+> This helps validating DTS files.
 > 
-> [...]
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] ASoC: mediatek: mt8195: add machine driver with mt6359, rt1011 and rt5682
-      commit: 0261e36477cfa2608468c1300e30cb667c5e1269
-[2/2] dt-bindings: mediatek: mt8195: add mt8195-mt6359-rt1011-rt5682 document
-      commit: 6c8552ebba7742e7128134859846e17edbfdf222
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
