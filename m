@@ -2,209 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4089043F6ED
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:05:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2960A43F6FD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231918AbhJ2GIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 02:08:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231890AbhJ2GIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 02:08:22 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FFBC061766
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:05:54 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id d10so10733156ybe.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 23:05:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Ef7CgH5bstiFbSOUk78qZ1LgQ+HaUKVN7yqdDJbvgJM=;
-        b=Lu4P/PB9F9ghzQlQ1gTf3elDPEt0VhIoLYh95RM87su3kRebBW0vq9G4CCKAYPcy6R
-         wkQEqfeatb5Rz8ZoPPZqQNjN6n4ggXEmgDcY+rgzkpTnH3K0Lyuja8CkAHIwskQe6tmC
-         l+xuWdDlokRksbYia9moXY+odalbngjOHN3oo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ef7CgH5bstiFbSOUk78qZ1LgQ+HaUKVN7yqdDJbvgJM=;
-        b=7oD+O1V7Cc25skMQghG7SaDNPQWWlKDOPziTvqnz7UlRlnfchYowuoxFmKCRTrZzN+
-         xZwN92fH63g/0oZvwco7CIIwEFieT3NrmIHJ2ZhwtlnZP8jd2qXdQqLbYOAlnpXPYK7y
-         Eeg7VN3VdTIwQSK4My7OORgME3WkHXHmufRI9od4cNhc985mH/SC7ZkVN7Lq1eeCm5H3
-         1D3SR2Rv6hytBYUbERs372A1rrwAzryb38HkUN3XE1IJU2KW0hdTfP/vAOlc5EVWLi9Y
-         /gvVP3yCrNfq9vr/dpXbJOb2VUUFziBa4je1lGtVFRq8Z/lDPk+URMkPZlfKPjvbHmvA
-         steA==
-X-Gm-Message-State: AOAM531PRrw+CJfaWapYmt8JBbFwxqwNZdRDNH2LfhF/w0OexTDs+WV7
-        Et3fgBURlzDbA35wexEKtiyc5XA2Drv2rK23rpfu
-X-Google-Smtp-Source: ABdhPJyAbwZ9hvTFa/radJfuWMS3aMdr2KxRKeUkW7bQFbqcD1sB+dxag58TbQt8Fx9iY4ymtLyrLQiBHBB94EUg6MQ=
-X-Received: by 2002:a25:5341:: with SMTP id h62mr9970718ybb.481.1635487553445;
- Thu, 28 Oct 2021 23:05:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211025195350.242914-1-atish.patra@wdc.com> <20211025195350.242914-11-atish.patra@wdc.com>
- <YXsMtrmuavGAHk8S@Jessicas-MacBook-Pro.local> <CAOnJCULqwZvK52nczp2HNinDCBjThnbGbvJpAvdameny1fK4Vw@mail.gmail.com>
- <EDB030D6-D37A-43D6-9027-222794FDA80D@jrtc27.com>
-In-Reply-To: <EDB030D6-D37A-43D6-9027-222794FDA80D@jrtc27.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Thu, 28 Oct 2021 23:05:42 -0700
-Message-ID: <CAOnJCUJjzmW=QobLPKAWYGppFeoJXjT2Ee6eG2-H=s2mnei=RQ@mail.gmail.com>
-Subject: Re: [v4 10/11] riscv: dts: fu740: Add pmu node
-To:     Jessica Clarke <jrtc27@jrtc27.com>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-perf-users@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S231983AbhJ2GMK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Oct 2021 02:12:10 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:44389 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231964AbhJ2GMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 02:12:09 -0400
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E4A3E240003;
+        Fri, 29 Oct 2021 06:09:37 +0000 (UTC)
+Date:   Fri, 29 Oct 2021 08:09:37 +0200
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vincent Chen <vincent.chen@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] net: ocelot: add support to get mac from
+ device-tree
+Message-ID: <20211029080937.152f1876@fixe.home>
+In-Reply-To: <20211028145142.xjgd3u2xz7kpijtl@skbuf>
+References: <20211028134932.658167-1-clement.leger@bootlin.com>
+        <20211028134932.658167-2-clement.leger@bootlin.com>
+        <20211028140611.m7whuwrzqxp2t53f@skbuf>
+        <20211028161522.6b711bb2@xps-bootlin>
+        <20211028142254.mbm7gczhhb4h5g3n@skbuf>
+        <20211028163825.7ccb1dea@xps-bootlin>
+        <20211028145142.xjgd3u2xz7kpijtl@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 5:07 PM Jessica Clarke <jrtc27@jrtc27.com> wrote:
->
-> On 29 Oct 2021, at 00:37, Atish Patra <atishp@atishpatra.org> wrote:
-> >
-> > On Thu, Oct 28, 2021 at 1:49 PM Jessica Clarke <jrtc27@jrtc27.com> wrot=
-e:
-> >>
-> >> On Mon, Oct 25, 2021 at 12:53:49PM -0700, Atish Patra wrote:
-> >>> HiFive unmatched supports HPMCounters but does not implement mcountin=
-hibit
-> >>> or sscof extension. Thus, perf monitoring can be used on the unmatche=
-d
-> >>> board without sampling.
-> >>>
-> >>> Add the PMU node with compatible string so that Linux perf driver can
-> >>> utilize this to enable PMU.
-> >>>
-> >>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> >>> ---
-> >>> arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 3 +++
-> >>> 1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/=
-boot/dts/sifive/fu740-c000.dtsi
-> >>> index abbb960f90a0..b35b96b58820 100644
-> >>> --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> >>> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-> >>> @@ -140,6 +140,9 @@ soc {
-> >>>              #size-cells =3D <2>;
-> >>>              compatible =3D "simple-bus";
-> >>>              ranges;
-> >>> +             pmu {
-> >>> +                     compatible =3D "riscv,pmu";
-> >>> +             };
-> >>
-> >> This is a property of the user-replaceable firmware, not a property of
-> >> the hardware,
-> >
-> > It's a property of hardware that indicates that the hardware supports P=
-MU.
->
-> All RISC-V hardware provides the CSRs, they=E2=80=99re part of the privil=
-eged
-> spec and not marked optional. How many aren=E2=80=99t hard-wired to zero =
-is up
-> to the implementation. But even then you can=E2=80=99t know from the hard=
-ware
-> alone what is supported; the firmware has to enable S-mode (and
-> U-mode)=E2=80=99s ability to read them, so you can=E2=80=99t assume anyth=
-ing in a
-> static device tree hard-coded in Linux about what firmware has done.
-> Since you currently have to query the firmware to determine what=E2=80=99=
-s
-> available to you anyway, I see no benefit from having a node in the
-> device tree that tells you your firmware *might* have counters you can
-> use.
->
-> > Additionally, the counter overflow interrupt number needs to be
-> > defined through the DT as well
-> > so that a clean platform driver can be implemented.
->
-> The interrupt number is specified as 13 by the Sscofmpf spec.
-> But that=E2=80=99s not relevant here, the FU740 predates and doesn=E2=80=
-=99t implement
-> Sscofmpf, meaning there is no interrupt to even define here. And as I
-> said on the other patch, don=E2=80=99t conflate =E2=80=9CSBI PMU firmware=
- interface is
-> supported=E2=80=9D and =E2=80=9CSscofmpf is implemented in the hardware=
-=E2=80=9D; the former
-> should be discovered by talking to firmware, and the latter should be
-> discovered like any other extension (however that ends up happening).
+Le Thu, 28 Oct 2021 14:51:43 +0000,
+Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
 
-Presence of sscof extension can be discovered through general extension
-discovery mechanism (probably a separate DT node..that's a separate discuss=
-ion).
+> On Thu, Oct 28, 2021 at 04:38:25PM +0200, Clément Léger wrote:
+> > Le Thu, 28 Oct 2021 14:22:55 +0000,
+> > Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
+> >   
+> > > On Thu, Oct 28, 2021 at 04:15:22PM +0200, Clément Léger wrote:  
+> > > > Le Thu, 28 Oct 2021 14:06:12 +0000,
+> > > > Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
+> > > >     
+> > > > > On Thu, Oct 28, 2021 at 03:49:30PM +0200, Clément Léger
+> > > > > wrote:    
+> > > > > > Add support to get mac from device-tree using
+> > > > > > of_get_mac_address.
+> > > > > > 
+> > > > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > > > > > ---
+> > > > > >  drivers/net/ethernet/mscc/ocelot_vsc7514.c | 5 ++++-
+> > > > > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
+> > > > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c index
+> > > > > > d51f799e4e86..c39118e5b3ee 100644 ---
+> > > > > > a/drivers/net/ethernet/mscc/ocelot_vsc7514.c +++
+> > > > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c @@ -526,7
+> > > > > > +526,10 @@ static int ocelot_chip_init(struct ocelot
+> > > > > > *ocelot, const struct ocelot_ops *ops)
+> > > > > > ocelot_pll5_init(ocelot); 
+> > > > > > -	eth_random_addr(ocelot->base_mac);
+> > > > > > +	ret = of_get_mac_address(ocelot->dev->of_node,
+> > > > > > ocelot->base_mac);      
+> > > > > 
+> > > > > Why not per port? This is pretty strange, I think.    
+> > > > 
+> > > > Hi Vladimir,
+> > > > 
+> > > > Currently, all ports share the same base mac address (5 first
+> > > > bytes). The final mac address per port is computed in
+> > > > ocelot_probe_port by adding the port number as the last byte of
+> > > > the mac_address provided.
+> > > > 
+> > > > Clément    
+> > > 
+> > > Yes, I know that, but that's not my point.
+> > > Every switch port should be pretty much compliant with
+> > > ethernet-controller.yaml, if it could inherit that it would be
+> > > even better. And since mac-address is an ethernet-controller.yaml
+> > > property, it is pretty much non-obvious at all that you put the
+> > > mac-address property directly under the switch, and manually add
+> > > 0, 1, 2, 3 etc to it. My request was to parse the mac-address
+> > > property of each port. Like this:
+> > > 
+> > > base_mac = random;
+> > > 
+> > > for_each_port() {
+> > > 	err = of_get_mac_address(port_dn, &port_mac);
+> > > 	if (err)
+> > > 		port_mac = base_mac + port;
+> > > }  
+> > 
+> > Ok indeed. So I will parse each port for a mac-address property. Do
+> > you also want a fallback to use the switch base mac if not
+> > specified in port or should I keep the use of a default random mac
+> > as the base address anyway ?  
+> 
+> Isn't the pseudocode I posted above explicit enough? Sorry...
+> Keep doing what the driver is doing right now, with an optional
+> mac-address override per port.
+> Why would we read the mac-address property of the switch? Which other
+> switch driver does that? Are there device trees in circulation where
+> this is being done?
 
-However, the interrupt number discovery has to be through DT so the
-platform driver
-can probe the DT to figure out that.
+BTW, this is actually done on sparx5 switch driver.
 
->
-> >> so having this in the device tree under /soc, let alone
-> >> hard-coded in Linux, is utterly wrong. Why can this not just be probed
-> >> like any other SBI interface? The "Probe SBI extension" interface is
-> >> precisely for this kind of thing.
-> >>
-> > SBI extension is anyways probed to verify if the firmware has PMU
-> > extension or not.
-> > However, adding the DT property allows different platforms (with or
-> > without sscof extension)
-> > to use the same code path.
->
-> You don=E2=80=99t need a device tree for that; that same code path can ju=
-st be
-> =E2=80=9Cuse the existing standard firmware interface=E2=80=9D. That also=
- has the
-> benefit that it=E2=80=99s not tied to device tree and so works identicall=
-y for
-> ACPI, rather than needing an ACPI version of it.
->
-
-I don't disagree with that argument. However, we need a DT node for
-interrupt number as explained in the above.
-A DT based platform driver allows us to provide a unified code path
-which can handle both kinds of platforms described below.
-
-1. Platforms without sscof extension
-2. Platforms with sscof extension that requires a DT node for interrupt num=
-ber
-
-Otherwise, the driver has to do the following things in order.
-
-1. Probe PMU extension
-2. first check if sscof extension is present in the special RISC-V ISA
-extension DT node (which is yet to finalize)
-3. If sscof extension is present then register for a DT based platform driv=
-er.
-4. Otherwise, register a simple platform driver.
-
-I am not completely opposed to doing that if there is a strong
-technical issue with the current approach.
-
-> I see nothing here that can=E2=80=99t be discovered through pre-existing =
-means.
-> If it can be discovered without use of the device tree then it does not
-> belong in the device tree; the device tree is purely for things that
-> cannot otherwise be discovered.
->
-> Jess
->
+> 
+> > > > > > +	if (ret)
+> > > > > > +		eth_random_addr(ocelot->base_mac);
+> > > > > > +
+> > > > > >  	ocelot->base_mac[5] &= 0xf0;
+> > > > > >  
+> > > > > >  	return 0;
+> > > > > > -- 
+> > > > > > 2.33.0    
+> > > > >       
+> > >     
+>   
 
 
---=20
-Regards,
-Atish
+
+-- 
+Clément Léger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
