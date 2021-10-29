@@ -2,139 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F28A143F45D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 03:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A87843F463
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 03:36:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbhJ2BfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 21:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231269AbhJ2BfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 21:35:01 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C67BAC061570;
-        Thu, 28 Oct 2021 18:32:33 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id gh1so5349601qvb.8;
-        Thu, 28 Oct 2021 18:32:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pDbmTFmdUa1vOFovfEjzfndFY1x7Eiw6Kvd3FWDkoxc=;
-        b=VSKovtfAXRDGln/ro6n8sMyFekczXY1eZL1Vs6yQnGCyL/B71u90blTbUPv/Lh9G+E
-         AviMJm3uAkjgGNIvgeWw+wVPDLDaZbLY9MXpn8TmhFp12noEwyJm0Zt4xlXoQuMiLAbx
-         3UhTBSb1Mvk3m/C5RH6av4ecX9wVEF9UWtBUkoYbGiMSRbcafB5u2JVIWtnv4qZ841NK
-         TMzyuCiRa9/S7n0zeTwlyflVN/aeRZMEuP1KcmlxaJqgHPdNyomzts+K0ouTDIKRf3qW
-         mmENiWzEWLXhTKGf9hGv3EZ46Ox0e9s/knwJywRZWk2IchUZB3ZfDuPqHMVuRDdd2GcD
-         1kPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pDbmTFmdUa1vOFovfEjzfndFY1x7Eiw6Kvd3FWDkoxc=;
-        b=NYybBB7oK0K1pXcQlxP91iQp79NrVs02Se2UJJpVuNReibmi6OvwY5v+gN/lCnYvcw
-         nrLLukOG8fChSJvHQhJ8sQwFqIE8YyXmYOWrMiXng073kGZw+VChECqBpySnouJmX8rV
-         97knFtQfjXj8x8m+oC5hnexOSS4Ga06ppJxBu2izRjscbb+aSGITCOTG7QbhuOljUbSi
-         pOox9cWFWz/ZyCTO3+uA9IWN5cFyVpcN7o/p8vdtkT7wowhoi8tHD9YmMcF9Xcof7Pf8
-         tKI7Npz4z51hsCGgpXm52lAU3p+3ssbW6OI6TPDpmBOw9pPHPI9r4nJPHF5IV/684b6L
-         bVrQ==
-X-Gm-Message-State: AOAM532MRUpOSDTikKfsVCwx5wvwXbQQ8YNKz6Mf4tsZ8RqsyvLPmayC
-        Yde1GB1lbZepKD8H+Pp+TAQ=
-X-Google-Smtp-Source: ABdhPJyrHjdj9XEFnRSkldMt/4/bkKu/0E5F2TesyOmk7mzCDa1MO0CC/b/Nxz1xs3dhtFkmkob2LA==
-X-Received: by 2002:a05:6214:300c:: with SMTP id ke12mr7716024qvb.41.1635471152973;
-        Thu, 28 Oct 2021 18:32:32 -0700 (PDT)
-Received: from localhost.localdomain (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id az12sm2991612qkb.28.2021.10.28.18.32.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 18:32:32 -0700 (PDT)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] of: unittest: fix EXPECT text for gpio hog errors
-Date:   Thu, 28 Oct 2021 20:32:25 -0500
-Message-Id: <20211029013225.2048695-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S231161AbhJ2Bid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 21:38:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33594 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229950AbhJ2Bid (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 28 Oct 2021 21:38:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 428D161156;
+        Fri, 29 Oct 2021 01:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635471365;
+        bh=T6GOjxRPDeunaWfoQlIqxwtH/ryHC6tgJEYN67Sc7TM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FF2p68gfMnV1hn2o67ha1jWFcjeW9bWEZI+2Hd1OeMeXQffd4l9NYjjSLUnzJj8c2
+         wydhclTsM0DWihnXg+hNglseL38vDZAogkMgrVxbo6QHStuNwnFrVOd6h8vLxlCeil
+         +WjsrSoMGe0XG7fG+pAuQXOZDyv5BflW+5UkZAbzYNvJcZ3xzk6FGp+rUWmgyJyWJ2
+         QGqZNrH9q1cM3s1rR89JPbRtJQ1Y0EOJqQUTzMvanqKBrYG2iF7BlQNmjuHfzua0cr
+         d5CuraVprdBUkVMbaWxXY8EFAL2WwOZyDsIUoUY9t/aqiubkwSzZ5YIy3UVcQz3LbW
+         SA0CH41adayyQ==
+Received: by mail-ed1-f50.google.com with SMTP id g10so32238281edj.1;
+        Thu, 28 Oct 2021 18:36:05 -0700 (PDT)
+X-Gm-Message-State: AOAM530FvnpbQHfK7uqRw/iASMUzbiWIQ5vrdZ3i8g5l4KaKP4ep7wMX
+        rUqyZj9mw2oYMUArZgJBRq621BbKBYKWDSIRDw==
+X-Google-Smtp-Source: ABdhPJxakIdbFZtjjDoY5WYj+rMrkwV5zFP3b/YfXdeu6lFutkJmex9WYAJ5Gj0hy0AQd0VijtznXGSoGv7HTeRqN80=
+X-Received: by 2002:a50:da06:: with SMTP id z6mr10927175edj.355.1635471363711;
+ Thu, 28 Oct 2021 18:36:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211018234923.1769028-1-sean.anderson@seco.com>
+ <YXi5CUCEi7YmNxXM@robh.at.kernel.org> <47d4c3d3-d6ab-3888-1cde-937551537e3f@seco.com>
+In-Reply-To: <47d4c3d3-d6ab-3888-1cde-937551537e3f@seco.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 28 Oct 2021 20:35:52 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL3oZXJJ5_i4BRGpvWu1X8QFB7OGG=D+zLvvWb=UR1mWg@mail.gmail.com>
+Message-ID: <CAL_JsqL3oZXJJ5_i4BRGpvWu1X8QFB7OGG=D+zLvvWb=UR1mWg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: Add generic GPIO reset binding
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+On Thu, Oct 28, 2021 at 10:19 AM Sean Anderson <sean.anderson@seco.com> wrote:
+>
+> Hi Rob,
+>
+> On 10/26/21 10:27 PM, Rob Herring wrote:
+> > On Mon, Oct 18, 2021 at 07:49:21PM -0400, Sean Anderson wrote:
+> >> This adds a binding for a generic GPIO reset driver. This driver is
+> >> designed to easily add a GPIO-based reset to a driver which expected a
+> >> reset controller. It offers greater flexibility than a reset-gpios
+> >> property, and allows for one code path to be shared for GPIO resets and
+> >> MMIO-based resets.
+> >
+> > I would like to do this last part, but not requiring a binding change.
+> > IOW, be able to register any 'reset-gpios' property as a reset provider
+> > directly without this added level of indirection.
+>
+> That would be nice, but it seems like someone would have to go through
+> every driver with a reset-gpios property and convert them. Since the
+> reset GPIOs are
 
-The console message text for gpio hog errors does not match
-what unittest expects.
+All that has to happen is when a driver requests a reset, the reset
+subsystem can check for a 'reset-gpios' when there is not a 'resets'
+property. If it finds one, then it can either instantiate a reset
+provider or add that GPIO to an existing provider. Then you can
+convert drivers one by one, or not.
 
-Fixes: f4056e705b2ef ("of: unittest: add overlay gpio test to catch gpio hog problem")
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
- drivers/of/unittest.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+> >>
+> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> >> ---
+> >>
+> >>  .../devicetree/bindings/reset/gpio-reset.yaml | 93 +++++++++++++++++++
+> >>  1 file changed, 93 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/reset/gpio-reset.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/reset/gpio-reset.yaml b/Documentation/devicetree/bindings/reset/gpio-reset.yaml
+> >> new file mode 100644
+> >> index 000000000000..de2ab074cea3
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/reset/gpio-reset.yaml
+> >> @@ -0,0 +1,93 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
+> >
+> > GPL-2.0-only not GPL-2.0+
+>
+> GPL-2.0+ is a strict superset. And bindings are required to be BSD
+> anyway. I don't see the issue.
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 8c056972a6dd..5b85a2a3792a 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1688,19 +1688,19 @@ static void __init of_unittest_overlay_gpio(void)
- 	 */
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "GPIO line <<int>> (line-B-input) hogged as input\n");
-+		     "gpio-<<int>> (line-B-input): hogged as input\n");
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "GPIO line <<int>> (line-A-input) hogged as input\n");
-+		     "gpio-<<int>> (line-A-input): hogged as input\n");
- 
- 	ret = platform_driver_register(&unittest_gpio_driver);
- 	if (unittest(ret == 0, "could not register unittest gpio driver\n"))
- 		return;
- 
- 	EXPECT_END(KERN_INFO,
--		   "GPIO line <<int>> (line-A-input) hogged as input\n");
-+		   "gpio-<<int>> (line-A-input): hogged as input\n");
- 	EXPECT_END(KERN_INFO,
--		   "GPIO line <<int>> (line-B-input) hogged as input\n");
-+		   "gpio-<<int>> (line-B-input): hogged as input\n");
- 
- 	unittest(probe_pass_count + 2 == unittest_gpio_probe_pass_count,
- 		 "unittest_gpio_probe() failed or not called\n");
-@@ -1727,7 +1727,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	chip_request_count = unittest_gpio_chip_request_count;
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "GPIO line <<int>> (line-D-input) hogged as input\n");
-+		     "gpio-<<int>> (line-D-input): hogged as input\n");
- 
- 	/* overlay_gpio_03 contains gpio node and child gpio hog node */
- 
-@@ -1735,7 +1735,7 @@ static void __init of_unittest_overlay_gpio(void)
- 		 "Adding overlay 'overlay_gpio_03' failed\n");
- 
- 	EXPECT_END(KERN_INFO,
--		   "GPIO line <<int>> (line-D-input) hogged as input\n");
-+		   "gpio-<<int>> (line-D-input): hogged as input\n");
- 
- 	unittest(probe_pass_count + 1 == unittest_gpio_probe_pass_count,
- 		 "unittest_gpio_probe() failed or not called\n");
-@@ -1774,7 +1774,7 @@ static void __init of_unittest_overlay_gpio(void)
- 	 */
- 
- 	EXPECT_BEGIN(KERN_INFO,
--		     "GPIO line <<int>> (line-C-input) hogged as input\n");
-+		     "gpio-<<int>> (line-C-input): hogged as input\n");
- 
- 	/* overlay_gpio_04b contains child gpio hog node */
- 
-@@ -1782,7 +1782,7 @@ static void __init of_unittest_overlay_gpio(void)
- 		 "Adding overlay 'overlay_gpio_04b' failed\n");
- 
- 	EXPECT_END(KERN_INFO,
--		   "GPIO line <<int>> (line-C-input) hogged as input\n");
-+		   "gpio-<<int>> (line-C-input): hogged as input\n");
- 
- 	unittest(chip_request_count + 1 == unittest_gpio_chip_request_count,
- 		 "unittest_gpio_chip_request() called %d times (expected 1 time)\n",
--- 
-Frank Rowand <frank.rowand@sony.com>
+Not everyone agrees with GPLv3. What about GPLv4, v5, etc.? You're
+okay with them no matter what they say?
 
+The issue is many people pay no attention. Just copy whatever they
+started from, or put whatever they want. The dts files are a mess. The
+binding docs all defaulted to GPL2. So I'm fixing the mess with
+bindings and that means dictating the license.
+
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/reset/gpio-reset.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Generic GPIO reset driver
+> >> +
+> >> +maintainers:
+> >> +  - Sean Anderson <seanga2@gmail.com>
+> >> +
+> >> +description: |
+> >> +  This is a generic GPIO reset driver which can provide a reset-controller
+> >> +  interface for GPIO-based reset lines. This driver always operates with
+> >> +  logical GPIO values; to invert the polarity, specify GPIO_ACTIVE_LOW in the
+> >> +  GPIO's flags.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: gpio-reset
+> >> +
+> >> +  '#reset-cells':
+> >> +    const: 1
+> >> +
+> >> +  reset-gpios:
+> >> +    description: |
+> >> +      GPIOs to assert when asserting a reset. There is a one-to-one mapping
+> >> +      between the reset specifier and the index of the GPIO in this list to
+> >> +      assert.
+> >> +
+> >> +  done-gpios:
+> >> +    description: |
+> >> +      GPIOs which indicate that the device controlled by the GPIO has exited
+> >> +      reset. There must be one done GPIO for each reset GPIO, or no done GPIOs
+> >> +      at all. The driver will wait for up to done-timeout-us for the
+> >> +      corresponding done GPIO to assert before returning.
+> >
+> > This is odd. Do you have some examples of h/w needing this done signal?
+> > It certainly doesn't seem like something we have a generic need for.
+>
+> Yes [1]. This device has a "reset done" signal, but no reset timings
+> specified in the datasheet. I don't know if this is truly needed,
+> because we can read the ID register, but it is nice when bringing up the
+> device. I left it in because I was using it.
+
+Okay, but done-gpios belongs in the device node that has a done
+signal. Your binding pretty assumes you always have one because you
+need equal numbers of reset and done gpios.
+
+Anyways, I don't think this binding is going anywhere.
+
+>
+> [1] https://lore.kernel.org/netdev/20211004191527.1610759-16-sean.anderson@seco.com/
+>
+> >> +
+> >> +  pre-assert-us:
+> >> +    default: 0
+> >> +    description: |
+> >> +      Microseconds to delay between when the reset was requested to be
+> >> +      asserted, and asserting the reset GPIO
+> >> +
+> >> +  post-assert-us:
+> >> +    default: 0
+> >> +    description: |
+> >> +      Microseconds to delay after asserting the reset GPIO and before returning
+> >> +      to the caller.
+> >> +
+> >> +  pre-deassert-us:
+> >> +    default: 0
+> >> +    description: |
+> >> +      Microseconds to delay between when the reset was requested to be
+> >> +      deasserted, and asserting the reset GPIO
+> >> +
+> >> +  post-deassert-us:
+> >> +    default: 0
+> >> +    description: |
+> >> +      Microseconds to delay after deasserting the reset GPIO and before
+> >> +      returning to the caller. This delay is always present, even if the done
+> >> +      GPIO goes high earlier.
+> >> +
+> >> +  done-timeout-us:
+> >> +    default: 1000
+> >> +    description:
+> >> +      Microseconds to wait for the done GPIO to assert after deasserting the
+> >> +      reset GPIO. If post-deassert-us is present, this property defaults to 10
+> >> +      times that delay. The timeout starts after waiting for the post deassert
+> >> +      delay.
+> >
+> > There's a reason we don't have all these timing values in DT. The timing
+> > requirements are defined by each device (being reset) and implied by
+> > their compatible strings. If we wanted a macro language for power
+> > sequence timings of regulators, clocks, resets, enables, etc., then we
+> > would have designed such a thing already.
+>
+> Well, there are already things like reset-assert-us and
+> reset-deassert-us in [2, 3, 4] (with different names(!)).
+
+Yes, things evolve poorly. What's just one more property added at a time.
+
+> Part of what I
+> want to address with this device is that there are several existing
+> properties which specify various aspects of the above timings. I think
+> it would be good to standardize on these. Maybe this should be a
+> property which applies to the reset consumer? Analogously, we also
+> have assigned-clocks so that not every driver has to know what the
+> correct frequency/parent is (especially when they can vary among
+> different hardware variations).
+
+Yes, there are some examples, but you won't find many new examples.
+The rule is power sequencing requirements/timing is implied by the
+device's compatible string.
+
+You are looking at just reset. What about timing WRT regulators and
+clocks for starters?
+
+Rob
