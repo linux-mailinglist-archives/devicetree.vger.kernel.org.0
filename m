@@ -2,127 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA21643FEE4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 17:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BFCC43FEFB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 17:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbhJ2PD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 11:03:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:39128 "EHLO foss.arm.com"
+        id S229636AbhJ2PHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 11:07:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:14639 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229635AbhJ2PD5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 11:03:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 793851FB;
-        Fri, 29 Oct 2021 08:01:28 -0700 (PDT)
-Received: from lakrids.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AC1353F73D;
-        Fri, 29 Oct 2021 08:01:27 -0700 (PDT)
-Date:   Fri, 29 Oct 2021 16:01:25 +0100
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: Simplify checking for populated DT
-Message-ID: <20211029150125.GE24060@lakrids.cambridge.arm.com>
-References: <20211029144055.2365814-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211029144055.2365814-1-robh@kernel.org>
-User-Agent: Mutt/1.11.1+11 (2f07cb52) (2018-12-01)
+        id S229542AbhJ2PHY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 11:07:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635519896; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=oPGjudR+Un5EU6ZOSmx6tyKNck5MPX/hhprTNqox2XM=; b=cf/q6olDdVNimg6ecVjqqWAeP0FwS1H99WtC0UysBfLoiZb1BjCAwCHAb7nn627BzmxG/Htm
+ BIzIOorx443qZ7RLmsVQwm6riXzrc0/IdKRrPa7eoZhMkvpKyBaRN3WVQJ0m0Eqk54sFB8ts
+ KQ8/meqnFb0IWD95O2akFkarSOI=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 617c0d952e144ac4d38d6866 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 29 Oct 2021 15:04:53
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D235EC43460; Fri, 29 Oct 2021 15:04:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 49166C4338F;
+        Fri, 29 Oct 2021 15:04:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 49166C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v4 0/2] Machine driver to support LPASS SC7280 sound card registration
+Date:   Fri, 29 Oct 2021 20:34:34 +0530
+Message-Id: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 09:40:55AM -0500, Rob Herring wrote:
-> Use of the of_scan_flat_dt() function predates libfdt and is discouraged
-> as libfdt provides a nicer set of APIs. Rework dt_scan_depth1_nodes to
-> use libfdt calls directly, and rename it to dt_is_stub() to reflect
-> exactly what it checking.
-> 
-> Cc: Catalin Marinas <catalin.marinas@arm.com>
-> Cc: Will Deacon <will@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+This patch set is to add support for SC7280 sound card registration and
+to add dt-bindings documentation file.
 
-Thanks for reworking this; it looks good to me:
+This patch set depends on the dt-bindings header patch
+  -- https://patchwork.kernel.org/project/alsa-devel/list/?series=543829
 
-Reviewed-by: Mark Rutland <mark.rutland@arm.com>
+Srinivasa Rao Mandadapu (2):
+  ASoC: google: dt-bindings: Add sc7280-herobrine machine bindings
+  ASoC: qcom: SC7280: Add machine driver
+Changes Since V3:
+    -- Change audio jack playpause key value.
+Changes Since V2:
+    -- updated required field in bindings
+    -- updated Return type check with proper enum in sc7280.c
+    -- Updated Header name and Typos in sc7280.c
+Changes Since V1:
+    -- Indentation changes and typo.
 
-Thanks,
-Mark.
+ .../bindings/sound/google,sc7280-herobrine.yaml    | 170 ++++++++++
+ sound/soc/qcom/Kconfig                             |  12 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/sc7280.c                            | 343 +++++++++++++++++++++
+ 4 files changed, 527 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+ create mode 100644 sound/soc/qcom/sc7280.c
 
-> ---
-> v2:
->  - Keep checking for only stub nodes
-> 
->  arch/arm64/kernel/acpi.c | 35 ++++++++++++++---------------------
->  1 file changed, 14 insertions(+), 21 deletions(-)
-> 
-> diff --git a/arch/arm64/kernel/acpi.c b/arch/arm64/kernel/acpi.c
-> index 1c9c2f7a1c04..7df733427e04 100644
-> --- a/arch/arm64/kernel/acpi.c
-> +++ b/arch/arm64/kernel/acpi.c
-> @@ -22,6 +22,7 @@
->  #include <linux/irq_work.h>
->  #include <linux/memblock.h>
->  #include <linux/of_fdt.h>
-> +#include <linux/libfdt.h>
->  #include <linux/smp.h>
->  #include <linux/serial_core.h>
->  #include <linux/pgtable.h>
-> @@ -62,29 +63,22 @@ static int __init parse_acpi(char *arg)
->  }
->  early_param("acpi", parse_acpi);
->  
-> -static int __init dt_scan_depth1_nodes(unsigned long node,
-> -				       const char *uname, int depth,
-> -				       void *data)
-> +static bool __init dt_is_stub(void)
->  {
-> -	/*
-> -	 * Ignore anything not directly under the root node; we'll
-> -	 * catch its parent instead.
-> -	 */
-> -	if (depth != 1)
-> -		return 0;
-> +	int node;
->  
-> -	if (strcmp(uname, "chosen") == 0)
-> -		return 0;
-> +	fdt_for_each_subnode(node, initial_boot_params, 0) {
-> +		const char *name = fdt_get_name(initial_boot_params, node, NULL);
-> +		if (strcmp(name, "chosen") == 0)
-> +			continue;
-> +		if (strcmp(name, "hypervisor") == 0 &&
-> +		    of_flat_dt_is_compatible(node, "xen,xen"))
-> +			continue;
->  
-> -	if (strcmp(uname, "hypervisor") == 0 &&
-> -	    of_flat_dt_is_compatible(node, "xen,xen"))
-> -		return 0;
-> +		return false;
-> +	}
->  
-> -	/*
-> -	 * This node at depth 1 is neither a chosen node nor a xen node,
-> -	 * which we do not expect.
-> -	 */
-> -	return 1;
-> +	return true;
->  }
->  
->  /*
-> @@ -205,8 +199,7 @@ void __init acpi_boot_table_init(void)
->  	 *   and ACPI has not been [force] enabled (acpi=on|force)
->  	 */
->  	if (param_acpi_off ||
-> -	    (!param_acpi_on && !param_acpi_force &&
-> -	     of_scan_flat_dt(dt_scan_depth1_nodes, NULL)))
-> +	    (!param_acpi_on && !param_acpi_force && !dt_is_stub()))
->  		goto done;
->  
->  	/*
-> -- 
-> 2.32.0
-> 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
