@@ -2,114 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C3A43FA14
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 11:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 818D143FA2A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 11:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbhJ2JnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 05:43:07 -0400
-Received: from mail-ua1-f47.google.com ([209.85.222.47]:36712 "EHLO
-        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229927AbhJ2JnG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 05:43:06 -0400
-Received: by mail-ua1-f47.google.com with SMTP id e10so17075114uab.3;
-        Fri, 29 Oct 2021 02:40:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kxaElWGr4Lmnn2exo86aWmthYySNpu5Jzk9GyO0DlvQ=;
-        b=D0SFi0fE92ToZfNkSTGl8eYA+2J8+9d3rXxlfV+JYpTCa2KqfYZPRVR74vkugnK5bf
-         RmoxqY9REL+K7LHS0GfbBwVR4ism+23Af334rNZcCgtWxlezQzy9KRahnjyZJxUFZdHA
-         +NkFAGRvRViEJ8MYq/dL2AE+QvLZLo6pUZn5kghm3rci6mG8VgBXHWfn5/l+0+0woCCB
-         EDUpsjVFcEtGA4vZA4Nd+Q+N4CQ3O9UD3f968nElVsRiha4za4VYrLEiQ8HL3jNnN7kO
-         ZvHP5ntNaSq865WqjUITZnh3TLQfl4n+dNydwEa0mJ42st0BU0BwDSPEnSgpR2RwwV0C
-         cZKw==
-X-Gm-Message-State: AOAM531MxsdWGU9cY5UqGYX7HZQ2SXhRx45KQurB8xsSRXXjTQ5VV7te
-        zDjdx6kr+z6M9zGRPoPeWrJbkBx0I2QtWw==
-X-Google-Smtp-Source: ABdhPJz1NSk172EumyENO/IVnefP+yBDh6gDEJxGrmAk0jRfM9Be6k/oazHi+nm4nu9130NjfLdM+w==
-X-Received: by 2002:a67:b24e:: with SMTP id s14mr10922853vsh.27.1635500437873;
-        Fri, 29 Oct 2021 02:40:37 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id r10sm894826vkp.27.2021.10.29.02.40.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 02:40:37 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id h4so17066703uaw.1;
-        Fri, 29 Oct 2021 02:40:37 -0700 (PDT)
-X-Received: by 2002:a05:6102:3a0e:: with SMTP id b14mr10173444vsu.41.1635500437263;
- Fri, 29 Oct 2021 02:40:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1634822085.git.geert+renesas@glider.be> <1f6bf58d76efc2e869b800534b818d1451ef98a2.1634822085.git.geert+renesas@glider.be>
- <YXtIsCnJ+L5zqCVk@robh.at.kernel.org> <YXusEUpTBUdvS7LY@shell.armlinux.org.uk>
- <CAMuHMdX+Ke54zyi2Z2ROk-2xpbcXU6+FFH71gEz0vEBXCAgVXw@mail.gmail.com> <YXu/zwjYqoqYgfLx@shell.armlinux.org.uk>
-In-Reply-To: <YXu/zwjYqoqYgfLx@shell.armlinux.org.uk>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 29 Oct 2021 11:40:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUFp_GN-GLtrXVDQP5A8iM-jLWTQbM0p4g1bdVokxhOaw@mail.gmail.com>
-Message-ID: <CAMuHMdUFp_GN-GLtrXVDQP5A8iM-jLWTQbM0p4g1bdVokxhOaw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] [RFC] dt-bindings: display: bridge: nxp,tda998x:
- Convert to json-schema
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        David Airlie <airlied@linux.ie>,
+        id S231526AbhJ2Jru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 05:47:50 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52910 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231504AbhJ2Jrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 05:47:48 -0400
+X-UUID: 5107aa49ecb54fbdb59b0f1e543166fc-20211029
+X-UUID: 5107aa49ecb54fbdb59b0f1e543166fc-20211029
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1738094414; Fri, 29 Oct 2021 17:45:14 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 29 Oct 2021 17:45:12 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Fri, 29 Oct 2021 17:45:11 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
         Daniel Vetter <daniel@ffwll.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "open list:TI ETHERNET SWITCH DRIVER (CPSW)" 
-        <linux-omap@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v1] media: mtk-vcodec: Align width and height to 64
+Date:   Fri, 29 Oct 2021 17:45:10 +0800
+Message-ID: <20211029094510.2411-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
+User get width and height are 64 align when set format. Need to make
+sure all is 64 align when use width and height to calculate buffer size.
 
-On Fri, Oct 29, 2021 at 11:33 AM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
-> On Fri, Oct 29, 2021 at 10:28:22AM +0200, Geert Uytterhoeven wrote:
-> > No, you can still use port:
-> >
-> > +oneOf:
-> > +  - required:
-> > +      - port
-> > +  - required:
-> > +      - ports
-> >
-> > When using ports, no further requirements are set, but perhaps port@0
-> > should be made required in that case?
->
-> Maybe I don't understand the binding description then, but to me it
-> looks like you require both port@0 and port@1.
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+ drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-"make dtbs_check" disagrees.
+diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+index 946c23088308..28c17204f9a1 100644
+--- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
++++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+@@ -562,8 +562,8 @@ static void get_pic_info(struct vdec_h264_slice_inst *inst,
+ {
+ 	struct mtk_vcodec_ctx *ctx = inst->ctx;
+ 
+-	ctx->picinfo.buf_w = (ctx->picinfo.pic_w + 15) & 0xFFFFFFF0;
+-	ctx->picinfo.buf_h = (ctx->picinfo.pic_h + 31) & 0xFFFFFFE0;
++	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, 64);
++	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, 64);
+ 	ctx->picinfo.fb_sz[0] = ctx->picinfo.buf_w * ctx->picinfo.buf_h;
+ 	ctx->picinfo.fb_sz[1] = ctx->picinfo.fb_sz[0] >> 1;
+ 	inst->vsi_ctx.dec.cap_num_planes =
+-- 
+2.25.1
 
-> The reality of the driver is that it makes almost no use of the graph
-> itself, except via drm_of_find_possible_crtcs() to find the connected
-> CRTCs. If it is connected to an I2S source, then it probably needs a
-> port specification for that. If someone wants to describe the HDMI
-> connector (which I don't see any point in) then they likely need a
-
-I can't comment on the point of describing the HDMI connector.
-
-> port specification for that too. However, the driver itself doesn't
-> care about any of those.
-
-DT describes hardware, not software limitations.
-
-> So, describing the port nodes makes no sense.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
