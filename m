@@ -2,70 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4BC4402C4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 21:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47AEE4402CD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 21:04:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231362AbhJ2TFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 15:05:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51506 "EHLO
+        id S230261AbhJ2TGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 15:06:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbhJ2TFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 15:05:13 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF54C061767
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:02:43 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id x27-20020a9d459b000000b0055303520cc4so14858536ote.13
-        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:02:43 -0700 (PDT)
+        with ESMTP id S230024AbhJ2TGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 15:06:35 -0400
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC63C061766
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
+Received: by mail-ot1-x32b.google.com with SMTP id n13-20020a9d710d000000b005558709b70fso8407478otj.10
+        for <devicetree@vger.kernel.org>; Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=GpCIhA9+wByobLj7T+jx3wSH4gGS8i8uDhYC2c+0spk=;
-        b=H40YBjSl24IpyRNc3tR66GsznVBBR73W06kOgCkhC7aRGCLDor1RpsqCxk8Mi5zLxU
-         +ajnUrDPlbQHfzTz/5YT3x2kjitBtAxwmSEHw8CyAgPSRH5VjCKNATtDO0zGlfVfzNzH
-         Zq+kUFRrMGBsFJM8P2xhzdu6PvKRPpCejAV4g=
+        bh=msvWE2t5mYMtRDZ8I+17Fkh9yjZ5rWivjCZQNykv7fk=;
+        b=h8ZNXZO6Y41SOBnORBN6mWRYXD8NiYviTASTihebDxoUBuG4reKkOwBjpj+PhwUfIR
+         EV5RM3FzdALQPD4l4MUqP3QJRnMHFt/0jEojgCD2KmkD14HzRAd3+BkSsi/qrM3jG9+U
+         JTXeDZrrA9GfjTCcPg4wlcAMDm50yudFoBXYM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=GpCIhA9+wByobLj7T+jx3wSH4gGS8i8uDhYC2c+0spk=;
-        b=7CtLpanSrgQ34QsIZgh4ZChCBwSZZYqtM+b1mAWiJoe/8b9gdclH4RF76UwukHMUrG
-         kZRxNFtx+lBTKnlb92IioSZ9CGEt7n2bHRLfWTLBIlM4nCCfyyc88iDO4A2mIvGoEyRj
-         nW5d2eIHifkWHfrP+TyeYiTNspHdxV0sRsD9YBwsA9F6FSMh3qXMrFirIlMCTPG91ZTe
-         gCMgeo4UrxSubd4N9/HIbWexFZCQy2DY5xKWd0U1J/bbBX+WWa/sQf6XUzCgNBL983i5
-         0mnLj4SsOMrdjW0RNZFgN0q/UZSukPh+1GaaywrON6UPHd8OFPafg/Sqyiyi2jF1/Z66
-         RoYg==
-X-Gm-Message-State: AOAM533ImvLIb5j/mvoUMZBKTaFoypC5T2SDGaSo5qRelKTmjbz4qVJW
-        V6ioCOVYQKdAJK5oiRCjA2F6/4Y9WuR8w7hIdd8uJ22sKfs=
-X-Google-Smtp-Source: ABdhPJwD5Ms7XyyP5ZQv+IuN7Q47sYd9whm72ehzsLFfBOZr7vCMUfWm6H/7b9AIUtvxagjeaRAhHVPH2FHST3pAUUk=
-X-Received: by 2002:a05:6830:1290:: with SMTP id z16mr2795567otp.159.1635534163270;
- Fri, 29 Oct 2021 12:02:43 -0700 (PDT)
+        bh=msvWE2t5mYMtRDZ8I+17Fkh9yjZ5rWivjCZQNykv7fk=;
+        b=hLAw0xEUrXSvL7Tn6MV1vos9J2yB+r4LPnDcu5JWIIwAK2GXQJ556hz7tvtZHqf/GW
+         ZxSUIgt0vH+/CQtmf/i0O8SZdCEC5pWBbZWEEUvtjUlaVaNf3ohNZGPyWCMJ0jOBYt1s
+         QFzP3QYFibyYU40pILzzyxc58xONLZNrif0dzt2cUc5Fl8TgHBHUuk5IK+ai+pRIRQev
+         6yg4AvQ+tqKNRcELprVO3r1nj66+FSJTytbs3fvzIZqGuE2kSb4NDWT/ghS5TZnZgkOn
+         eZivPtrUepBOeo0nwhirEdLfI7S/6HM6WTFUzw70Zk7PILpEPPELfsxBXdmb1bL0IkWE
+         m14g==
+X-Gm-Message-State: AOAM533AfwgmWAMKCJgBD8g6nQenbBLEni57rASRl6Vkv+3ZA8bJFhBN
+        Kina9I2stWq4yP8BSy1K1mkMvXe9Y2towED5hy1Kqg==
+X-Google-Smtp-Source: ABdhPJwejTge5mxVTo1xpsG7+GmYiYIEclbSkYga1ic0Puo/7kWiWy21jY9P4cFhgjzOxE55swj6TqN6+gG4s2vvMTY=
+X-Received: by 2002:a9d:7655:: with SMTP id o21mr9902382otl.126.1635534245276;
+ Fri, 29 Oct 2021 12:04:05 -0700 (PDT)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 29 Oct 2021 14:02:42 -0500
+ HTTPREST; Fri, 29 Oct 2021 14:04:04 -0500
 MIME-Version: 1.0
-In-Reply-To: <1635507893-25490-5-git-send-email-quic_c_skakit@quicinc.com>
-References: <1635507893-25490-1-git-send-email-quic_c_skakit@quicinc.com> <1635507893-25490-5-git-send-email-quic_c_skakit@quicinc.com>
+In-Reply-To: <000201d7ccb2$300dba50$90292ef0$@codeaurora.org>
+References: <1635408817-14426-1-git-send-email-pillair@codeaurora.org>
+ <1635408817-14426-3-git-send-email-pillair@codeaurora.org>
+ <CAE-0n50z=h-avn+K-weZnZFVN7nsR=fLAtge7jFZ0JLx2JvP2w@mail.gmail.com> <000201d7ccb2$300dba50$90292ef0$@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Fri, 29 Oct 2021 14:02:42 -0500
-Message-ID: <CAE-0n53u5mJSApfEn5t7PxRMDfwHBu3iLdDC0V1Brt-5K=YHyA@mail.gmail.com>
-Subject: Re: [PATCH V3 4/4] arm64: dts: qcom: Enable pm8350c pwm for sc7280-idp2
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     mka@chromium.org, linux-leds@vger.kernel.org,
+Date:   Fri, 29 Oct 2021 14:04:04 -0500
+Message-ID: <CAE-0n5155J4vvvFES9V5=v+nX3BhZsBgZxkB=uLQOPij=-sf-Q@mail.gmail.com>
+Subject: RE: [PATCH v7 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+To:     agross@kernel.org, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, ohad@wizery.com,
+        p.zabel@pengutronix.de, pillair@codeaurora.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
+        sibis@codeaurora.org, mpubbise@codeaurora.org, kuabhs@chromium.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya (2021-10-29 04:44:53)
-> Enable pm8350c pmic pwm support for backlight on sc7280-idp2.
+Quoting pillair@codeaurora.org (2021-10-29 03:46:03)
 >
-> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> ---
+> > > +
+> > > +        glink-edge {
+> > > +            interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
+> > > +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
+> > > +                                         IRQ_TYPE_EDGE_RISING>;
+> > > +            mboxes = <&ipcc IPCC_CLIENT_WPSS
+> > > +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> > > +
+> > > +            label = "wpss";
+> > > +            qcom,remote-pid = <13>;
+> >
+> > There are a few properties here that don't seem to be required. Is that
+> > intentional?
+>
+> Hi Stephen,
+> All the properties in the example are listed as required (except for status, which will be removed in the subsequent patchset).
+> Do you mean the glink-edge node properties ?
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Yes I mean all the properties in the glink-edge node. Are they required?
+If so then we need to list them in the schema.
