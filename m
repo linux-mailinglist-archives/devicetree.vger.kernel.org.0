@@ -2,142 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2960A43F6FD
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 016E543F718
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 08:22:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231983AbhJ2GMK convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Oct 2021 02:12:10 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:44389 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231964AbhJ2GMJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 02:12:09 -0400
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E4A3E240003;
-        Fri, 29 Oct 2021 06:09:37 +0000 (UTC)
-Date:   Fri, 29 Oct 2021 08:09:37 +0200
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] net: ocelot: add support to get mac from
- device-tree
-Message-ID: <20211029080937.152f1876@fixe.home>
-In-Reply-To: <20211028145142.xjgd3u2xz7kpijtl@skbuf>
-References: <20211028134932.658167-1-clement.leger@bootlin.com>
-        <20211028134932.658167-2-clement.leger@bootlin.com>
-        <20211028140611.m7whuwrzqxp2t53f@skbuf>
-        <20211028161522.6b711bb2@xps-bootlin>
-        <20211028142254.mbm7gczhhb4h5g3n@skbuf>
-        <20211028163825.7ccb1dea@xps-bootlin>
-        <20211028145142.xjgd3u2xz7kpijtl@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S232004AbhJ2GY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 02:24:28 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:12887 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231964AbhJ2GY2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 02:24:28 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635488519; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=Yel3esmV8ei5iyYJSk+StxllpC/vBvdmQ3GqhawlDvw=; b=jYPAdadsxL0VS9vb9sepW0xq1KKVNyZ29r4T5+B6bh9chC6i+jBk97emlvh1twaCqt+Y17sd
+ Nix9LpeobkSUVmuqLbeMzhYydpXKlamyVLJ6A3a0tfO3wyscVcy1ccljD678hPS7MF4jy8WU
+ 2yu80BH9oRe40JybZa758HEY8F0=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 617b9307c8c1b282a5bd3697 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 29 Oct 2021 06:21:59
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 26CE2C43460; Fri, 29 Oct 2021 06:21:59 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [49.205.244.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BD7CEC4338F;
+        Fri, 29 Oct 2021 06:21:53 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BD7CEC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Stephen Boyd'" <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <ohad@wizery.com>, <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sibis@codeaurora.org>,
+        <mpubbise@codeaurora.org>, <kuabhs@chromium.org>
+References: <1633330133-29617-1-git-send-email-pillair@codeaurora.org> <CAE-0n53rkv5SKO74M+7bkuMgaD7tS0k6a8m7KeQL8j3DTHdB_Q@mail.gmail.com> <001401d7cbfc$f0d1d700$d2758500$@codeaurora.org> <CAE-0n53KCUoJWdKTY954OviRX4yShigByHB4L3OGTAGQEaHoqQ@mail.gmail.com>
+In-Reply-To: <CAE-0n53KCUoJWdKTY954OviRX4yShigByHB4L3OGTAGQEaHoqQ@mail.gmail.com>
+Subject: RE: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+Date:   Fri, 29 Oct 2021 11:51:49 +0530
+Message-ID: <000001d7cc8d$467fe1c0$d37fa540$@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain;
+        charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKwJKLJ4tjmgoIJWycFdR/OOcUEpALtul/YAs7NybQC8YyikanzYCeQ
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Thu, 28 Oct 2021 14:51:43 +0000,
-Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
-
-> On Thu, Oct 28, 2021 at 04:38:25PM +0200, Clément Léger wrote:
-> > Le Thu, 28 Oct 2021 14:22:55 +0000,
-> > Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
-> >   
-> > > On Thu, Oct 28, 2021 at 04:15:22PM +0200, Clément Léger wrote:  
-> > > > Le Thu, 28 Oct 2021 14:06:12 +0000,
-> > > > Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
-> > > >     
-> > > > > On Thu, Oct 28, 2021 at 03:49:30PM +0200, Clément Léger
-> > > > > wrote:    
-> > > > > > Add support to get mac from device-tree using
-> > > > > > of_get_mac_address.
-> > > > > > 
-> > > > > > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> > > > > > ---
-> > > > > >  drivers/net/ethernet/mscc/ocelot_vsc7514.c | 5 ++++-
-> > > > > >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/net/ethernet/mscc/ocelot_vsc7514.c
-> > > > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c index
-> > > > > > d51f799e4e86..c39118e5b3ee 100644 ---
-> > > > > > a/drivers/net/ethernet/mscc/ocelot_vsc7514.c +++
-> > > > > > b/drivers/net/ethernet/mscc/ocelot_vsc7514.c @@ -526,7
-> > > > > > +526,10 @@ static int ocelot_chip_init(struct ocelot
-> > > > > > *ocelot, const struct ocelot_ops *ops)
-> > > > > > ocelot_pll5_init(ocelot); 
-> > > > > > -	eth_random_addr(ocelot->base_mac);
-> > > > > > +	ret = of_get_mac_address(ocelot->dev->of_node,
-> > > > > > ocelot->base_mac);      
-> > > > > 
-> > > > > Why not per port? This is pretty strange, I think.    
-> > > > 
-> > > > Hi Vladimir,
-> > > > 
-> > > > Currently, all ports share the same base mac address (5 first
-> > > > bytes). The final mac address per port is computed in
-> > > > ocelot_probe_port by adding the port number as the last byte of
-> > > > the mac_address provided.
-> > > > 
-> > > > Clément    
-> > > 
-> > > Yes, I know that, but that's not my point.
-> > > Every switch port should be pretty much compliant with
-> > > ethernet-controller.yaml, if it could inherit that it would be
-> > > even better. And since mac-address is an ethernet-controller.yaml
-> > > property, it is pretty much non-obvious at all that you put the
-> > > mac-address property directly under the switch, and manually add
-> > > 0, 1, 2, 3 etc to it. My request was to parse the mac-address
-> > > property of each port. Like this:
-> > > 
-> > > base_mac = random;
-> > > 
-> > > for_each_port() {
-> > > 	err = of_get_mac_address(port_dn, &port_mac);
-> > > 	if (err)
-> > > 		port_mac = base_mac + port;
-> > > }  
-> > 
-> > Ok indeed. So I will parse each port for a mac-address property. Do
-> > you also want a fallback to use the switch base mac if not
-> > specified in port or should I keep the use of a default random mac
-> > as the base address anyway ?  
-> 
-> Isn't the pseudocode I posted above explicit enough? Sorry...
-> Keep doing what the driver is doing right now, with an optional
-> mac-address override per port.
-> Why would we read the mac-address property of the switch? Which other
-> switch driver does that? Are there device trees in circulation where
-> this is being done?
-
-BTW, this is actually done on sparx5 switch driver.
-
-> 
-> > > > > > +	if (ret)
-> > > > > > +		eth_random_addr(ocelot->base_mac);
-> > > > > > +
-> > > > > >  	ocelot->base_mac[5] &= 0xf0;
-> > > > > >  
-> > > > > >  	return 0;
-> > > > > > -- 
-> > > > > > 2.33.0    
-> > > > >       
-> > >     
->   
 
 
+> -----Original Message-----
+> From: Stephen Boyd <swboyd@chromium.org>
+> Sent: Friday, October 29, 2021 3:32 AM
+> To: agross@kernel.org; bjorn.andersson@linaro.org;
+> mathieu.poirier@linaro.org; ohad@wizery.com; p.zabel@pengutronix.de;
+> pillair@codeaurora.org; robh+dt@kernel.org
+> Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; sibis@codeaurora.org; mpubbise@codeaurora.org;
+> kuabhs@chromium.org
+> Subject: RE: [PATCH v6 0/3] Add support for sc7280 WPSS PIL loading
+>=20
+> Quoting pillair@codeaurora.org (2021-10-28 06:08:39)
+> >
+> >
+> > > -----Original Message-----
+> > > From: Stephen Boyd <swboyd@chromium.org>
+> > > Sent: Friday, October 8, 2021 12:05 AM
+> > > To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
+> > > bjorn.andersson@linaro.org; mathieu.poirier@linaro.org;
+> > > ohad@wizery.com; p.zabel@pengutronix.de; robh+dt@kernel.org
+> > > Cc: linux-arm-msm@vger.kernel.org; devicetree@vger.kernel.org;
+> > > linux- kernel@vger.kernel.org; sibis@codeaurora.org;
+> > > mpubbise@codeaurora.org; kuabhs@chromium.org
+> > > Subject: Re: [PATCH v6 0/3] Add support for sc7280 WPSS PIL =
+loading
+> > >
+> > > Quoting Rakesh Pillai (2021-10-03 23:48:50)
+> > > > Add support for PIL loading of WPSS co-processor for SC7280 =
+SOCs.
+> > > >
+> > > > Changes from v4/v5:
+> > > > - Add yaml conversion for adsp/cdsp dt-bindings
+> > > > - Change clock names in wpss dt-bindings
+> > > > - Correct mistake in signed-off enail ID
+> > >
+> > > Can you keep a running tally here of the full progression of the =
+series?
+> > > That helps to look back and make sure we don't make a comment that
+> > > has already been made before.
+> > >
+> > > One more request. Can you add support for 'firmware-name' like =
+there
+> > > is in Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt =
+so
+> > > that we can install firmware into some namespaced/versioned place
+> > > instead of having to put wpss files into /lib/firmware?
+> >
+> > Hi Stephen,
+> > I have posted v7 with the support for firmware-name to be provided =
+in the
+> DT entry.
+>=20
+> Thanks. I didn't see it in my inbox. No Cc for me?
+>=20
+> >
+> > > It would also be nice to load a
+> > > single firmware file instead of having to split the file into many =
+pieces.
+> >
+> > This would require lot of changes and lot of code duplication from =
+request
+> firmware.
+> > Also the base ath11k firmware files have been posted as split files.
+> >
+>=20
+> Other firmwares have done it so it seems technically possible. So =
+nothing is
+> preventing it?
 
--- 
-Clément Léger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+Yes it should be possible.
+I can probably add that support and post it as a different patch series, =
+so as to
+not club it with the current patch series. Does that sound okay ?
+
+Thanks,
+Rakesh Pillai.
+
