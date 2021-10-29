@@ -2,181 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71A7043F406
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75A043F40B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 02:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231455AbhJ2AoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Oct 2021 20:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58096 "EHLO
+        id S231484AbhJ2Aok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Oct 2021 20:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231453AbhJ2AoO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:44:14 -0400
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BF6C0613B9
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:41:47 -0700 (PDT)
-Received: by mail-pg1-x52c.google.com with SMTP id b4so1112387pgh.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:41:47 -0700 (PDT)
+        with ESMTP id S231448AbhJ2Aoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Oct 2021 20:44:39 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290CFC061745
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:42:12 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id o12so19942184ybk.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Oct 2021 17:42:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I9emccBjxIUKCazA5NlmCKoYwEhSE/Ii2FhA4UznN5A=;
-        b=hptQ6NfM9kgGdpm18xSquI4pxrrC/WROjj1EsjD5DGn3bcVZA1hEN5MEBjxgpP09ac
-         b/jUrV4wpWEoZYy2wGFW7BHk8cJyXp6DYC0c5Aq03lafir7TgGYbMJylJJJhmgfgDK2E
-         oExV3wQZmW7hj0gNAXkekbgwgwLf4XiQuK9MY=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pb+iwuiJ8p/4MIMVnIOyQbjDhcWFiizWoltni+EWZmI=;
+        b=ZBJrpw6UbIRQuOY2Y8gUJZIlZtVkMHenS1p7jpUc9LBXjUjDnGV94wYKC6w2m5GuW0
+         /lacn6LcB1nXlSd+HZobc4M+T+Zh0OUjj9nJxBJKHEhf/2etIlDq4kcXGKWpCuRjpndf
+         QkgRA8ooZlRgCudzMPNhHBsTtirhjwZDOtlyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I9emccBjxIUKCazA5NlmCKoYwEhSE/Ii2FhA4UznN5A=;
-        b=3+UBjkiPEV5ypBJjh4s0YCB5TkepzaaEZYz0g4z0n86Nk8D8NGBzzCT3jfg1ToMZTB
-         TgR6Eb88HZ4Es4StSTfNnL+sbBVtA+F14r+zax6yK5EfvGQZolpAPaVYwBwcfGmDtXsP
-         XHigC8fDkrZn/v94DXvVGkQtiWcxDME9d+IWib/x0D0Nhr8/tH/VrpWpLSNSnGcy0j4I
-         6YeEa9bq9pP5ydBR85p4CskFfOFyCHZ/4vUZS5RJ4Q9pZ1Lu6y3wIUWHnSUm9SVL7UAo
-         9w8k7o4j00jY60zzTV54QhRtPajWQzEPhkLgjPhJEWVlFG2LDNUfopCMT4TgJwY7CcmP
-         G9BA==
-X-Gm-Message-State: AOAM533McA6a+bbFEgM2jvqE8Uo43EANy0ou18BKVAOYl3TNwJsz1yXj
-        t6kJjC2+F7diuNLhnx0RhRaGDw==
-X-Google-Smtp-Source: ABdhPJzgsterO23hTorJ3opyoseKbT+GzfbBnxDSohKnB1sq5iI6WAlo7pQCfUJTyN70+X1P4EDUOA==
-X-Received: by 2002:a63:1cd:: with SMTP id 196mr5668549pgb.39.1635468106740;
-        Thu, 28 Oct 2021 17:41:46 -0700 (PDT)
-Received: from philipchen.mtv.corp.google.com ([2620:15c:202:201:e956:ddc4:6e27:e270])
-        by smtp.gmail.com with ESMTPSA id s2sm4373846pfe.215.2021.10.28.17.41.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Oct 2021 17:41:46 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pb+iwuiJ8p/4MIMVnIOyQbjDhcWFiizWoltni+EWZmI=;
+        b=GkRTPOvccCvwpR2iYpuTQG9/RatDpxD3wl4Efe7c0CyphtMczmZp1Dhe6asJjwiQQZ
+         DZNLPO8TkquJPeAbqHwqmU7hCZrbJF1HyfFJwTJjkoO13mr8Capqi+p7a2aWupP81sVj
+         lyI5bqD9uDyi/Zm+H/59oUpnaOEkSXyYIhJPtwAWrqOMdbxByMairJ7rIraPalPMzuIR
+         kNXP3vRf6WfRWPWfNI4QJ0BtnA/sagXiOg8xcO/HDaqaVvzLoQyA+sIIcORwwWr5a9jO
+         4vNBhKUg2DZJQ905BgpTge2EjbqhvBjePQKcSAJD9wL8c4L5umYxzj5I4y/wVKN+QGND
+         JDRw==
+X-Gm-Message-State: AOAM53178EZS4CubTdeSHm+MMDoVdEwjM+00aisOeYpaiFEJgfg68t2K
+        zz6WeA2ej1xxT6c23+vjoocnka/HM1KgGCX6l9Agug==
+X-Google-Smtp-Source: ABdhPJwOuNGQu8+3XrKEjWdE1HBVStgkNtYlbLjd708bFv3LC9VpaMwoGHcvAUiEjfxZRiz81b6ggRubWZkXPsS3e4M=
+X-Received: by 2002:a25:a567:: with SMTP id h94mr8504221ybi.532.1635468131444;
+ Thu, 28 Oct 2021 17:42:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211028151022.1.Ie56f55924f5c7706fe3194e710bbef6fdb8b5bc6@changeid>
+ <20211028151022.2.Ib9070172c8173d8e44c10352f68f2f507a151782@changeid> <CAD=FV=UK0KABr5NchZgrjSFa+7G7Ez_JPcgCVnsN0K1q++O-AA@mail.gmail.com>
+In-Reply-To: <CAD=FV=UK0KABr5NchZgrjSFa+7G7Ez_JPcgCVnsN0K1q++O-AA@mail.gmail.com>
 From:   Philip Chen <philipchen@chromium.org>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     dianders@chromium.org, swboyd@chromium.org,
-        Philip Chen <philipchen@chromium.org>,
+Date:   Thu, 28 Oct 2021 17:42:00 -0700
+Message-ID: <CA+cxXhmV6dvk-980_kNSrAijX6Qbdn9gd7eshRQeWbgbJD7Lcg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: sc7180: Support Homestar rev4
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: sc7180: Support Homestar rev4
-Date:   Thu, 28 Oct 2021 17:41:17 -0700
-Message-Id: <20211028174015.v2.3.If7aaa8e36f1269acae5488035bd62ce543756bf8@changeid>
-X-Mailer: git-send-email 2.33.1.1089.g2158813163f-goog
-In-Reply-To: <20211028174015.v2.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
-References: <20211028174015.v2.1.Ie17e51ad3eb91d72826ce651ca2786534a360210@changeid>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support Homestar rev4 board where Parade ps8640 is added as the
-second source edp bridge.
+Hi
 
-Support different edp bridge chips in different board revisions,
-now we move the #incldue line of the edp bridge dts fragment (e.g.
-sc7180-trogdor-ti-sn65dsi86.dtsi) from "sc7180-trogdor-homestar.dtsi"
-to per-board-rev dts files.
+On Thu, Oct 28, 2021 at 3:55 PM Doug Anderson <dianders@chromium.org> wrote:
+>
+> Hi,
+>
+> On Thu, Oct 28, 2021 at 3:11 PM Philip Chen <philipchen@chromium.org> wrote:
+> >
+> > Support Homestar rev4 board where Parade ps8640 is added as the
+> > second source edp bridge.
+>
+> Similar suggestion about mentioning why the include of "sc7180.dtsi"
+> moved around, but otherwise looks good.
 
-Since the edp bridge dts fragment overrides 'dsi0_out', which is
-defined in "sc7180.dtsi", move the #incldue line of "sc7180.dtsi" from
-"sc7180-trogdor-homestar.dtsi" to per-board-rev dts files too, before
-the #include line of the edp bridge dts fragment.
+Thanks! I updated the commit message in v2.
 
-Signed-off-by: Philip Chen <philipchen@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
-
-Changes in v2:
-- Explain why "sc7180.dtsi" is moved out of "sc7180-trogdor-homestar.dtsi"
-  in the commit message.
-
- arch/arm64/boot/dts/qcom/Makefile               |  1 +
- .../dts/qcom/sc7180-trogdor-homestar-r2.dts     |  2 ++
- .../dts/qcom/sc7180-trogdor-homestar-r3.dts     |  6 ++++--
- .../dts/qcom/sc7180-trogdor-homestar-r4.dts     | 17 +++++++++++++++++
- .../boot/dts/qcom/sc7180-trogdor-homestar.dtsi  |  3 ---
- 5 files changed, 24 insertions(+), 5 deletions(-)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f637c4d3729f..ba99aba1d51a 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r3-lte.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-homestar-r4.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-index db6c2da67cea..70032983fb65 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r2.dts
-@@ -7,6 +7,8 @@
- 
- /dts-v1/;
- 
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- #include "sc7180-trogdor-homestar.dtsi"
- 
- / {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-index 3fd8aa5bb7a6..e92e2e9e48ed 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r3.dts
-@@ -7,9 +7,11 @@
- 
- /dts-v1/;
- 
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- #include "sc7180-trogdor-homestar.dtsi"
- 
- / {
--	model = "Google Homestar (rev3+)";
--	compatible = "google,homestar", "qcom,sc7180";
-+	model = "Google Homestar (rev3)";
-+	compatible = "google,homestar-rev3", "qcom,sc7180";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-new file mode 100644
-index 000000000000..fb27106bbb4a
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar-r4.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Homestar board device tree source
-+ *
-+ * Copyright 2021 Google LLC.
-+ */
-+
-+/dts-v1/;
-+
-+#include "sc7180.dtsi"
-+#include "sc7180-trogdor-parade-ps8640.dtsi"
-+#include "sc7180-trogdor-homestar.dtsi"
-+
-+/ {
-+	model = "Google Homestar (rev4+)";
-+	compatible = "google,homestar", "qcom,sc7180";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-index 4ab890b2a1d4..f32369af1351 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-homestar.dtsi
-@@ -5,13 +5,10 @@
-  * Copyright 2021 Google LLC.
-  */
- 
--#include "sc7180.dtsi"
--
- ap_ec_spi: &spi6 {};
- ap_h1_spi: &spi0 {};
- 
- #include "sc7180-trogdor.dtsi"
--#include "sc7180-trogdor-ti-sn65dsi86.dtsi"
- 
- / {
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
--- 
-2.33.1.1089.g2158813163f-goog
-
+>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
