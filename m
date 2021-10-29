@@ -2,132 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E886440152
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 19:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C494D440165
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 19:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbhJ2Rg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 13:36:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59420 "EHLO
+        id S230075AbhJ2RqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 13:46:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbhJ2Rg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 13:36:26 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69461C061570;
-        Fri, 29 Oct 2021 10:33:57 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id bi29so10065901qkb.5;
-        Fri, 29 Oct 2021 10:33:57 -0700 (PDT)
+        with ESMTP id S230030AbhJ2RqO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 13:46:14 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E335BC061570;
+        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id k8so1349597oik.7;
+        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
+        h=sender:to:cc:references:from:subject:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7PYz8amIMiCGzOswnVMPnWhcArdnBZe4XYPwWVEAP4g=;
-        b=Z1yHRiySw6moWokSrZHTRWzRgu/4VWnZNY9KU/855rM3/Rm4l42cjTLdgJrrskDhBj
-         F0HldJwKCkO0xurugoXJysqVrc9DZi/Dg3Q/bFHblpeY11XegTEr6xvO+PZLhQl/68kU
-         DOLsgj1IIqEVcRxGuMHlukP1FoK03Jdk8Ill8vFXXnw9AtdznydE5maA4JnHogV+vzBW
-         7stXp/8k0nTzDNbBeOfBzzqYH8gdQ+PuUEL7T5Q1JO3/FC5FjGufiLqZiZnIdahzNXIG
-         PYKvSfAhTe+owz4mW4kfYQqN+UitGt35XrPoZx3y2FMiE6W6ZGas0ByDqY0AtmGMQtET
-         IlIA==
+        bh=FTkcYmcnvDVDfmqYNOsTg+b+QGCCyVr4hlpcZtSPOrQ=;
+        b=oGDyHdhFcwMN8OMqxQMJYnpurQ5JEeNVMbxMCSuGR6D1D7d148pxNFbo/tY6uypssX
+         sNQZ/yssDRRPinJECJh/8IorxcKG/VRt/L7KA6ei5WHhQ2nmu7bKSz+3Hd09QpJyVhdU
+         rzg9LCpSCNn6yFYGSwm6r3L1b4Es+M+ff01ezNqB/DD6bm0zmTcvuU6uCtXyYTuYsepT
+         5dBTQXlzr5gbHdKYEyn5MMsMtohpE7W6LJTFUIczZI7XtqAgWyxffdG5ihRH7mLMpNCw
+         0vPtzEVqC+X6NLX5ytxB7Xr3rWoV5rnVlyiEGUU6XoO2vONpoowDRVuYLuP2WpumXICc
+         oF5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:sender:to:cc:references:from:subject:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=7PYz8amIMiCGzOswnVMPnWhcArdnBZe4XYPwWVEAP4g=;
-        b=wOhHj1XBfdMXfwObnADTojVFOfHlRbn46gnJ58+0/wj+Hi8HrGUACcDjupI/nRc0O7
-         m3/cc2trMm9nN7kB9hoCBJENUZvXNRpiu2rLvimb6ju3DhTj+xSA10OQG5zTvf6aCEwG
-         /FalO9xSepN9LjaFs6kDCgoE5G8DrEZOyy7UaoeRnR7UvYFsR/pLKmgwIuc6Fiby9Kx8
-         q9vlCKwjg1PIjZaujETv0WYYwbsAQMWWIGvswUnoAw35A7M5Echv+spEhUP3ZReAtkAJ
-         NQCJWeNw04INRSBun1aAslA7qYyKjsmcXh7G7D5oaRS1TNsjJOg182+vejP/DsHDw1e1
-         o6UA==
-X-Gm-Message-State: AOAM531VliCJTKF+rMAnewpuNUmYItG9RcPuL61vfo5Oq4UHKFkiHu+0
-        jIv0PdsiJdHZ9n3jb/a/0OE=
-X-Google-Smtp-Source: ABdhPJyu8n7mNnL1HaMwMHht/b6Jv+f1W6V1QFZG6Mq9QcDhDwFjl+1/N7YJDJ4zrVgnRmkvu0Qy4g==
-X-Received: by 2002:a05:620a:1707:: with SMTP id az7mr10204906qkb.276.1635528836639;
-        Fri, 29 Oct 2021 10:33:56 -0700 (PDT)
-Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id d23sm4405736qtm.11.2021.10.29.10.33.55
+        bh=FTkcYmcnvDVDfmqYNOsTg+b+QGCCyVr4hlpcZtSPOrQ=;
+        b=LSOFfmN2fEqjHa13wBKmMaRvj4+UdczPjpk37oTaAuWtMYfoQqgT/1ut4fT/PO/viv
+         Cun/VYQgS6r7vHS+LOTDHRsSJyBMwoZBhn8zKBjfm/rS+t9RlxIkiH9jvB1Re7kmuqby
+         BqODYOmY9yv53Gxmuz6+SQrD+rzn09OTA17slAZsuRhCb1+liFycz824jz6mDVOEhAwD
+         m8zf9cjPgsrm/alHdbqcNVGU7FI7OxLVN36z5DfU2W1Tlqm5cg4X1x1W+5VSiBL33udB
+         F7B6JX3pBRnrwoJGvImEfoRG92YUSMDBwkSJMcSX+A/ptH+YA2Kuvqx1DHMKnLMfV7bB
+         IMYA==
+X-Gm-Message-State: AOAM533kT6SokEVAnHBAtdQTEhmAtetGq9YzaMFne5vKNVNH3bghqRF7
+        8DA/4HIgq2qqqrhE5cIrDFc=
+X-Google-Smtp-Source: ABdhPJzPjENVKzxG5XA4KtpqzFkHdaXPa/nygQKueAJoDVo2yvi7LjhDpgYdY81HwWPXj7YMnbLrkQ==
+X-Received: by 2002:aca:3e86:: with SMTP id l128mr14865109oia.120.1635529425253;
+        Fri, 29 Oct 2021 10:43:45 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e32sm1935914oow.30.2021.10.29.10.43.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Oct 2021 10:33:56 -0700 (PDT)
-Subject: Re: [PATCH 1/1] of: unittest: fix dts for interrupt-map provider
- build warning
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20211029005802.2047081-1-frowand.list@gmail.com>
- <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com>
- <e353b41d-48f9-5349-8b89-bafe9ab5101e@gmail.com>
- <CAL_JsqJi8h+DnnZCb-S2apDfMGF6PimQC+ViXB+X0oa4fWPcJg@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <de51f09d-1a63-c798-b434-a610b68e592b@gmail.com>
-Date:   Fri, 29 Oct 2021 12:33:55 -0500
+        Fri, 29 Oct 2021 10:43:44 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211028093059.32535-1-zajec5@gmail.com>
+ <20211028093059.32535-3-zajec5@gmail.com>
+ <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com>
+ <9d57d026-19f3-e92d-4c02-d7e8e2c2bc25@gmail.com>
+ <YXvxMHmx2i56sXdI@robh.at.kernel.org>
+ <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
+Message-ID: <a14d1265-9e8f-6011-3f34-0881c0c49dd5@roeck-us.net>
+Date:   Fri, 29 Oct 2021 10:43:42 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJi8h+DnnZCb-S2apDfMGF6PimQC+ViXB+X0oa4fWPcJg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/29/21 8:16 AM, Rob Herring wrote:
-> On Thu, Oct 28, 2021 at 10:07 PM Frank Rowand <frowand.list@gmail.com> wrote:
+On 10/29/21 9:45 AM, Florian Fainelli wrote:
+> On 10/29/21 6:03 AM, Rob Herring wrote:
+>> On Fri, Oct 29, 2021 at 01:39:02PM +0200, Rafał Miłecki wrote:
+>>> [Rob: please kindly comment on this]
+>>>
+>>> On 28.10.2021 18:29, Florian Fainelli wrote:
+>>>> On 10/28/21 2:30 AM, Rafał Miłecki wrote:
+>>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>>
+>>>>> Hardware supported by this driver goes back to the old bcm63xx days. It
+>>>>> was then reused in BCM7038 and later also in BCM4908.
+>>>>>
+>>>>> Depending on SoC model registers layout differs a bit. This commit
+>>>>> introduces support for per-chipset registers offsets & adds BCM4908
+>>>>> layout.
+>>>>>
+>>>>> Later on BCM63xx SoCs support should be added too (probably as platform
+>>>>> devices due to missing DT). Eventually this driver should replace
+>>>>> bcm63xx_wdt.c.
+>>>>>
+>>>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>>>> ---
+>>>>
+>>>> [snip]
+>>>>
+>>>>> +
+>>>>> +static const u16 bcm7038_wdt_regs_bcm4908[] = {
+>>>>> +	[BCM63XX_WDT_REG_DEFVAL]	= 0x28,
+>>>>> +	[BCM63XX_WDT_REG_CTL]		= 0x2c,
+>>>>> +	[BCM63XX_WDT_REG_SOFTRESET]	= 0x34,
+>>>>
+>>>> I don't understand what you are doing here and why you are not
+>>>> offsetting the "reg" property appropriately when you create your
+>>>> bcm4908-wdt Device Tree node such that the base starts at 0, and the
+>>>> existing driver becomes usable as-is. This does not make any sense to me
+>>>> when it is obviously the simplest way to make the driver "accept" the
+>>>> resource being passed.
+>>>
+>>> I believe that DT binding should cover the whole hardware block and
+>>> describe it (here: use proper compatible to allow recognizing block
+>>> variant).
+>>>
+>>> That's because (as far as I understand) DT should be used to describe
+>>> hardware as closely as possible. I think it shouldn't be adjusted to
+>>> make mapping match Linux's driver implementation.
+>>>
+>>>
+>>> So if:
+>>> 1. Hardware block is mapped at 0xff800400
+>>> 2. It has interesting registers at 0xff800428 and 0xff80042c
+>>>
+>>> I think mapping should use:
+>>> reg = <0xff800400 0x3c>;
+>>> even if we don't use the first N registers.
+>>>
+>>> That way, at some point, you can extend Linux (or whatever) driver to
+>>> use extra registers without reworking the whole binding. That's why I
+>>> think we need to map whole hardware block & handle different registers
+>>> layouts in a driver.
 >>
->> On 10/28/21 9:07 PM, Rob Herring wrote:
->>> On Thu, Oct 28, 2021 at 7:58 PM <frowand.list@gmail.com> wrote:
->>>>
->>>> From: Frank Rowand <frank.rowand@sony.com>
->>>>
->>>> Fix kernel build warning:
->>>> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
->>>>
->>>> A recently implemented dtc compiler warning reported the dts problem.
->>>>
->>>> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
->>>> ---
->>>>  drivers/of/unittest-data/tests-interrupts.dtsi | 1 +
->>>>  1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
->>>> index 9b60a549f502..8c2b91b998aa 100644
->>>> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
->>>> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
->>>> @@ -31,6 +31,7 @@ test_intmap0: intmap0 {
->>>>
->>>>                         test_intmap1: intmap1 {
->>>>                                 #interrupt-cells = <2>;
->>>> +                               #address-cells = <1>;
->>>
->>> Notice that we have 2 nodes with interrupt-map here. One has
->>> '#address-cells' and one doesn't. Why? Because we need to test that
->>> the code can handle both cases.>
->>> The dtc warnings are more what should 'new' users do. I don't know
->>> what DTs don't have #address-cells, but my guess is ancient ones.
->>>
->>> Rob
->>>
+>> Yes, that's the correct thing to do.
+> 
+> So in the future if we happen to want to manage the hardware timers in
+> that block, they would be part of the watchdog driver? I am fairly sure
+> they won't be, so you will be creating a composite driver/MFD to
+> separate out the functions, more likely. So you might as well create
+> sub-nodes.
+> 
 >>
->> I had hoped to build all of the .dts files in the Linux tree, with the
->> new dtc, but did not get to that today.  That should flush out any
->> cases that would result in build fail from the new approach of treating
->> all warnings as errors.  I may get to that tomorrow.
+>> The question is whether you'd need sub nodes for the other functions.
+>> Folks tend to want to have sub nodes for convenience which isn't really
+>> needed and then requires a DT update ('cause they add nodes as adding
+>> drivers).
 > 
-> They are still just warnings. You mean the requirement to be warning
-> free? That's not new for dts files.
+> Sorry but not, this is getting completely ridiculous, the
 > 
->> If there any any existing .dts files that will trigger the interrupt
->> map warning, will we require that they be fixed so that the build will
->> not fail?
+>>
+>> Based on the registers, you really don't need sub nodes here.
 > 
-> I already submitted patches for them.
+> I sort of disagree here, the watchdog is a part of a sundry timer block
+> here, but it is logically broken up into different parts and if if I
+> were to imagine how this would map into different drivers, I can easily
+> see that we would have:
+> 
+> - a driver to manage the timer interrupt controller
+> - a driver to manage each of the 3 hardware timers, be they clockevent
+> or else
+> - a driver to manage the watchdog
+> 
+> The simplest way to get there, and also because these same timer blocks
+> are actually spread in other parts of STB chips just like the watchdog
+> is, but in a different layout where they stand on their own was the main
+> drive for defining the bcm7038_wdt binding the way it was.
+> 
+> Rafal, I appreciate that you are trying to leverage the bcm7038_wdt
+> driver and this is better than the previous patch set, but I really do
+> not see why having the watchdog driver not manage the *exact* subset of
+> the register space needed (starting at 0x28) is not being done.
 
-OK, I'll drop this patchk, and instead create a patch that documents
-why the unittest .dts is missing #address-cells.
+Agreed, especially since other sub-devices of bcm4908 are alredy modeled
+this way. See arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi.
+At this point, before accepting anything, I'll want to have an explanation
+how and why the watchdog interface is handled differently than, say,
+its reset controller. Also, I'd like to understand the memory region
+assigned to bcm7038, which happens to be something like:
 
--Frank
+     compatible = "brcm,bcm7038-wdt";
+         reg = <0xf040a7e8 0x16>;
 
-> 
-> Rob
-> 
+because it seems unlikely that this is a chip subsystem that just happens
+to start at such an odd boundary. More specifically, I see in actual
+.dtsi files data such as:
 
+                 watchdog: watchdog@4066a8 {
+                         clocks = <&upg_clk>;
+                         compatible = "brcm,bcm7038-wdt";
+                         reg = <0x4066a8 0x14>;
+                         status = "disabled";
+                 };
+...
+                 timers: timer@406680 {
+                         compatible = "brcm,brcmstb-timers";
+                         reg = <0x406680 0x40>;
+                 };
+
+So there happen to be timers in the same region, and the offset
+between timer and watchdog registers is 0x28. Coincidentally, that
+just happens to be the extra offset defined in this patch for the
+bcm4908 watchdog. Really ? Sorry, this sounds very inconsistent
+and arbitrary to me.
+
+Overall, I suspect I'll have to see datasheets if we really end up
+having different offsets for each chip, because I'll want to confirm
+that the watchdog subsystem isn't treated differently than other
+subsystems, and that the offset calculations are appropriate and
+consistent across the different chips.
+
+Guenter
