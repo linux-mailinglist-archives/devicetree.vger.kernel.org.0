@@ -2,176 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C67F443F91C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 10:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B74B43F96D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 11:10:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232559AbhJ2IpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 04:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232539AbhJ2IpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 04:45:09 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4971FC061767;
-        Fri, 29 Oct 2021 01:42:41 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id x7so3622247pfh.7;
-        Fri, 29 Oct 2021 01:42:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=uDTCJZU7DhCB0VVCsGKEbP1g8fUFF2GRuEeusaByhjo=;
-        b=QRPETtFsr7C7ddN4PLleARPQ9JjjNNE4rpkXwO1R+h8hs5IWz3EkmWPyqDnEBYVGNm
-         c98Gt0yXhGYojoaJSe84FnVgi5TLI0fg4ZovyemdewSqcjJQaEyDE3cMoNaChCbLErpQ
-         ohAhaHmoIkMQHQ9XPdWM/SqN9hwE/GwjwZN6zJjC4Lis2Fq+TP374+ZJRGGrgMSV3blc
-         Dcmp9McU5rwmCaUG4wNvPeqNllIJmZkt7NC75P/BrIEBXiBm/Jlk3mS2Fr0/4AczJQIV
-         Ye5VWapUpZXcPWvzaGziChdWim9FsrEiCygEqkBaTEi3Aev435yjwiDRKwewJoKf3x/J
-         uZyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=uDTCJZU7DhCB0VVCsGKEbP1g8fUFF2GRuEeusaByhjo=;
-        b=vW9SDTKFg6pmMSOm4eI2m1TZm9KKNDXxoyd/FHznKUzSGfICAwTQFzhqPQhbCn/u31
-         6cWyzDRj7LGfsZ/w+xCdCks297wbBbO5j0v0bQKw7NW9EGwGSrrcgCoBMWYzOKy159F7
-         Si5FGgtA1PsBMX9F/MHfQylBQ3IEh0j9pudRoDPuJUau3G1XMXN6ZBfpVRAfWx012jpK
-         Kk5+t4awF7T4WeORT9RXrXueox4PA6gTG3Ue06yUZofM7S5dDORJoASWxUUj3jYvRXDQ
-         2GF4YRXbq4Kytwku01uMYvn9yAlCbO8mPxUDMlE8w2rA/OKzmd8aarJ2gnHcXXShshLA
-         /nZA==
-X-Gm-Message-State: AOAM5334feKqB7oPx+VpiMLfypbLQnyAa7A0xqqDTF3ICHhoYMXK/3Q1
-        hcxP85KWwGZC+XSHR/GSO4Q=
-X-Google-Smtp-Source: ABdhPJzRfUOPUVKf5rmn9tT+CBtylw25DCwfQvB2MDmDAshtyWtJAhnSNO5w3+PsxSB8pPpFTvTJYw==
-X-Received: by 2002:a05:6a00:1309:b0:44d:4d1e:c930 with SMTP id j9-20020a056a00130900b0044d4d1ec930mr9486642pfu.65.1635496960821;
-        Fri, 29 Oct 2021 01:42:40 -0700 (PDT)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id ml14sm1471424pjb.43.2021.10.29.01.42.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 29 Oct 2021 01:42:40 -0700 (PDT)
-From:   "LH.Kuo" <lhjeff911@gmail.com>
-X-Google-Original-From: "LH.Kuo" <lh.kuo@sunplus.com>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     dvorkin@tibbo.com, qinjian@cqplus1.com, wells.lu@sunplus.com,
-        "LH.Kuo" <lh.kuo@sunplus.com>
-Subject: [PATCH 2/2] devicetree bindings I2C Add bindings doc for Sunplus SP7021
-Date:   Fri, 29 Oct 2021 16:42:35 +0800
-Message-Id: <1635496955-13985-3-git-send-email-lh.kuo@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
-References: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
+        id S231405AbhJ2JMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 05:12:49 -0400
+Received: from [113.204.237.245] ([113.204.237.245]:55472 "EHLO
+        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231361AbhJ2JMq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 05:12:46 -0400
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.28.114.216
+        by cqmailgates with MailGates ESMTP Server V5.0(10981:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Fri, 29 Oct 2021 16:45:59 +0800 (CST)
+From:   Qin Jian <qinjian@cqplus1.com>
+To:     robh+dt@kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
+        maz@kernel.org, p.zabel@pengutronix.de, broonie@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        wells.lu@sunplus.com, Qin Jian <qinjian@cqplus1.com>
+Subject: [PATCH v2 0/8] Add Sunplus SP7021 SoC Support
+Date:   Fri, 29 Oct 2021 16:44:26 +0800
+Message-Id: <cover.1635496594.git.qinjian@cqplus1.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings I2C Add bindings doc for Sunplus SP7021
+This patch series add Sunplus SP7021 SoC support.
 
-Signed-off-by: LH.Kuo <lh.kuo@sunplus.com>
----
- .../devicetree/bindings/i2c/i2c-sunplus.yaml       | 82 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates many
+peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and etc.) into a
+single chip. It is designed for industrial control.
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml b/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
-new file mode 100644
-index 0000000..7e2f827
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-sunplus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus's I2C controller
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+maintainers:
-+  - lh.kuo <lh.kuo@sunplus.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-i2cm
-+      - sunplus,q645-i2cm
-+
-+  reg:
-+    items:
-+      - description: Base address and length of the I2C registers
-+      - description: Base address and length of the I2C DMA registers
-+
-+  reg-names:
-+    items:
-+      - const: i2cm
-+      - const: i2cmdma
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000 ]
-+
-+  pinctrl-names:
-+    description:
-+      A pinctrl state named "default" must be defined.
-+    const: default
-+
-+  pinctrl-0:
-+    description:
-+      A phandle to the default pinctrl state.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - resets
-+  - pinctrl-names
-+  - pinctrl-0
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2cm0: i2c@9C004600 {
-+        compatible = "sunplus,sp7021-i2cm";
-+        reg = <0x9c004600 0x80>, <0x9c004680 0x80>;
-+        reg-names = "i2cm", "i2cmdma";
-+        interrupt-parent = <&intc>;
-+        interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clkc I2CM0>;
-+        resets = <&rstc RST_I2CM0>;
-+        clock-frequency = <100000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2cm0_pins>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c89a3b1..7dc9bea 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17951,6 +17951,7 @@ SUNPLUS I2C CONTROLLER INTERFACE DRIVER
- M:	LH Kuo <lh.kuo@sunplus.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
- F:	drivers/i2c/busses/i2c-sunplus.c
- 
- SUPERH
--- 
-2.7.4
+SP7021 consists of two chips (dies) in a package. One is called C-chip
+(computing chip). It is a 4-core ARM Cortex A7 CPU. It adopts high-level
+process (22 nm) for high performance computing. The other is called P-
+chip (peripheral chip). It has many peripherals and an ARM A926 added
+especially for real-time control. P-chip is made for customers. It adopts
+low-level process (ex: 0.11 um) to reduce cost.
 
+Refer to (for documentations):
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+
+Refer to (applications):
+https://tibbo.com/store/plus1.html
+
+Refer to (applications):
+http://www.sinovoip.com.cn/ecp_view.asp?id=586
+
+Changes in v2:
+- sunplus,sp7021-intc.yaml: add descrption for "#interrupt-cells", interrupts
+- sunplus,sp7021-intc.yaml: drop "ext0-mask"/"ext1-mask" from DT
+- sunplus,sp7021-intc.yaml: fix example.dt too long error
+- irq-sp7021-intc.c: major rewrite
+- all files with dual license
+
+Qin Jian (8):
+  dt-bindings: vendor-prefixes: Add Sunplus
+  dt-bindings: arm: sunplus: Add bindings for Sunplus SP7021 SoC boards
+  dt-bindings: reset: Add bindings for SP7021 reset driver
+  reset: Add Sunplus SP7021 reset driver
+  dt-bindings: clock: Add bindings for SP7021 clock driver
+  clk: Add Sunplus SP7021 clock driver
+  dt-bindings: interrupt-controller: Add bindings for SP7021 interrupt
+    controller
+  irqchip: Add support for Sunplus SP7021 interrupt controller
+
+ .../bindings/arm/sunplus,sp7021.yaml          |  27 +
+ .../bindings/clock/sunplus,sp7021-clkc.yaml   |  38 +
+ .../sunplus,sp7021-intc.yaml                  |  59 ++
+ .../bindings/reset/sunplus,reset.yaml         |  40 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  16 +
+ drivers/clk/Kconfig                           |   8 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-sp7021.c                      | 770 ++++++++++++++++++
+ drivers/irqchip/Kconfig                       |   9 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sp7021-intc.c             | 324 ++++++++
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sunplus.c                 | 159 ++++
+ include/dt-bindings/clock/sp-sp7021.h         | 112 +++
+ .../interrupt-controller/sp7021-intc.h        |  24 +
+ include/dt-bindings/reset/sp-sp7021.h         |  99 +++
+ 18 files changed, 1699 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+ create mode 100644 drivers/clk/clk-sp7021.c
+ create mode 100644 drivers/irqchip/irq-sp7021-intc.c
+ create mode 100644 drivers/reset/reset-sunplus.c
+ create mode 100644 include/dt-bindings/clock/sp-sp7021.h
+ create mode 100644 include/dt-bindings/interrupt-controller/sp7021-intc.h
+ create mode 100644 include/dt-bindings/reset/sp-sp7021.h
+
+--
+2.33.1
