@@ -2,102 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE3643FD2B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 15:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 265D743FD44
+	for <lists+devicetree@lfdr.de>; Fri, 29 Oct 2021 15:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231436AbhJ2NNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 09:13:44 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:56392 "EHLO deadmen.hmeau.com"
+        id S231612AbhJ2NTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 09:19:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39242 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229603AbhJ2NNn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 29 Oct 2021 09:13:43 -0400
-Received: from gondobar.mordor.me.apana.org.au ([192.168.128.4] helo=gondobar)
-        by deadmen.hmeau.com with esmtp (Exim 4.92 #5 (Debian))
-        id 1mgRf7-0002mh-Td; Fri, 29 Oct 2021 21:11:13 +0800
-Received: from herbert by gondobar with local (Exim 4.92)
-        (envelope-from <herbert@gondor.apana.org.au>)
-        id 1mgRey-0003CW-EB; Fri, 29 Oct 2021 21:11:04 +0800
-Date:   Fri, 29 Oct 2021 21:11:04 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-Cc:     linux-crypto@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        Prabhjot Khurana <prabhjot.khurana@intel.com>,
-        Elena Reshetova <elena.reshetova@intel.com>
-Subject: Re: [PATCH 0/5] Keem Bay OCS ECC crypto driver
-Message-ID: <20211029131104.GA12278@gondor.apana.org.au>
-References: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
+        id S229603AbhJ2NTH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 29 Oct 2021 09:19:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 03BB961177;
+        Fri, 29 Oct 2021 13:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635513399;
+        bh=RiA7v1UBw9bN85yztLRB2RKleXrpK0l0Cd+7QnD9leY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Yarp0kQCNE+EG0rFEoofE1AuKzcmUjWKynudNPh8dKdmbMCfIKy9oydTWhsAvgeVl
+         +lKsutatCom53T0ZvT4SMtsziM3O2XsJeOGN7WkCkO2FbiIfDXN31kwmyuOiW3PiyJ
+         ZkE+ijThFLp35gISDCAwldrkJ3PALUGpcS9WsxMuoz12tqf9eXMxgplodaar0NUtSX
+         NBpVqL4u4JgGnmAGb9qas+iXnzrOqoMTyFGWjBAdXFpGfT8dcwlQbBeBwCOnvz2CAP
+         JWFZt39BO3xR5ZnJaiGscn0r7E9iLkm5/Z59z9ZWH7mxi/phIjqgVwt+X6FIp/vu9z
+         mW7wubYV3CfLA==
+Received: by mail-ed1-f53.google.com with SMTP id w15so38685031edc.9;
+        Fri, 29 Oct 2021 06:16:38 -0700 (PDT)
+X-Gm-Message-State: AOAM5308U27S/+bjV6FeYHtvI+j+CPOmatrW6OM8a7GxHv+5z1iXvk+4
+        X+ACBDwY6FDUtR5SuxMBLD9AIt3pijaiGBqJhQ==
+X-Google-Smtp-Source: ABdhPJyOLH6l45ltb4SfKRRdLuabWqV3OWUGmPX9aWDIzlIp6GcBJWOo0KFheQcnkS09ZjdwlmPQhbLND7TBzXxOGYA=
+X-Received: by 2002:a05:6402:206b:: with SMTP id bd11mr15475405edb.145.1635513397430;
+ Fri, 29 Oct 2021 06:16:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211020103538.360614-1-daniele.alessandrelli@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211029005802.2047081-1-frowand.list@gmail.com>
+ <CAL_JsqJujq0K9tF+m3qQ5GhC-yo7-vj9HRhF69UmrWA7tZv7DA@mail.gmail.com> <e353b41d-48f9-5349-8b89-bafe9ab5101e@gmail.com>
+In-Reply-To: <e353b41d-48f9-5349-8b89-bafe9ab5101e@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 29 Oct 2021 08:16:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJi8h+DnnZCb-S2apDfMGF6PimQC+ViXB+X0oa4fWPcJg@mail.gmail.com>
+Message-ID: <CAL_JsqJi8h+DnnZCb-S2apDfMGF6PimQC+ViXB+X0oa4fWPcJg@mail.gmail.com>
+Subject: Re: [PATCH 1/1] of: unittest: fix dts for interrupt-map provider
+ build warning
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 20, 2021 at 11:35:33AM +0100, Daniele Alessandrelli wrote:
-> Hi,
-> 
-> This patch series adds the Intel Keem Bay OCS ECC crypto driver, which
-> enables hardware-accelerated 'ecdh-nist-p256' and 'ecdh-nist-p384' on
-> the Intel Keem Bay SoC.
-> 
-> The following changes to core crypto code are also done:
-> - KPP support is added to the crypto engine (so that the new driver can
->   use it).
-> - 'crypto/ecc.h' is moved to 'include/crypto/internal' (so that this and
->   other drivers can use the symbols exported by 'crypto/ecc.c').
-> - A few additional functions from 'crypto/ecc.c' are exported (so that
->   this and other drivers can use them and avoid code duplication).
-> 
-> The driver passes crypto manager self-tests.
-> 
-> A previous version of this patch series was submitted as an RFC:
-> https://lore.kernel.org/linux-crypto/20201217172101.381772-1-daniele.alessandrelli@linux.intel.com/
-> 
-> Changes from previous RFC submission (RFC-v1):
-> - Switched to the new 'ecdh-nist-p256' and 'ecdh-nist-p384' algorithm
->   names
-> - Dropped the CONFIG_CRYPTO_DEV_KEEMBAY_OCS_ECDH_GEN_PRIV_KEY_SUPPORT
->   Kconfig option
-> 
-> Daniele Alessandrelli (2):
->   crypto: ecc - Move ecc.h to include/crypto/internal
->   crypto: ecc - Export additional helper functions
-> 
-> Prabhjot Khurana (3):
->   crypto: engine - Add KPP Support to Crypto Engine
->   dt-bindings: crypto: Add Keem Bay ECC bindings
->   crypto: keembay-ocs-ecc - Add Keem Bay OCS ECC Driver
-> 
->  Documentation/crypto/crypto_engine.rst        |    4 +
->  .../crypto/intel,keembay-ocs-ecc.yaml         |   47 +
->  MAINTAINERS                                   |   11 +
->  crypto/crypto_engine.c                        |   26 +
->  crypto/ecc.c                                  |   14 +-
->  crypto/ecdh.c                                 |    2 +-
->  crypto/ecdsa.c                                |    2 +-
->  crypto/ecrdsa.c                               |    2 +-
->  crypto/ecrdsa_defs.h                          |    2 +-
->  drivers/crypto/keembay/Kconfig                |   19 +
->  drivers/crypto/keembay/Makefile               |    2 +
->  drivers/crypto/keembay/keembay-ocs-ecc.c      | 1017 +++++++++++++++++
->  include/crypto/engine.h                       |    5 +
->  {crypto => include/crypto/internal}/ecc.h     |   36 +
->  14 files changed, 1180 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-ecc.yaml
->  create mode 100644 drivers/crypto/keembay/keembay-ocs-ecc.c
->  rename {crypto => include/crypto/internal}/ecc.h (90%)
-> 
-> 
-> base-commit: 06f6e365e2ecf799c249bb464aa9d5f055e88b56
+On Thu, Oct 28, 2021 at 10:07 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 10/28/21 9:07 PM, Rob Herring wrote:
+> > On Thu, Oct 28, 2021 at 7:58 PM <frowand.list@gmail.com> wrote:
+> >>
+> >> From: Frank Rowand <frank.rowand@sony.com>
+> >>
+> >> Fix kernel build warning:
+> >> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> >>
+> >> A recently implemented dtc compiler warning reported the dts problem.
+> >>
+> >> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> >> ---
+> >>  drivers/of/unittest-data/tests-interrupts.dtsi | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >>
+> >> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
+> >> index 9b60a549f502..8c2b91b998aa 100644
+> >> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
+> >> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
+> >> @@ -31,6 +31,7 @@ test_intmap0: intmap0 {
+> >>
+> >>                         test_intmap1: intmap1 {
+> >>                                 #interrupt-cells = <2>;
+> >> +                               #address-cells = <1>;
+> >
+> > Notice that we have 2 nodes with interrupt-map here. One has
+> > '#address-cells' and one doesn't. Why? Because we need to test that
+> > the code can handle both cases.>
+> > The dtc warnings are more what should 'new' users do. I don't know
+> > what DTs don't have #address-cells, but my guess is ancient ones.
+> >
+> > Rob
+> >
+>
+> I had hoped to build all of the .dts files in the Linux tree, with the
+> new dtc, but did not get to that today.  That should flush out any
+> cases that would result in build fail from the new approach of treating
+> all warnings as errors.  I may get to that tomorrow.
 
-All applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+They are still just warnings. You mean the requirement to be warning
+free? That's not new for dts files.
+
+> If there any any existing .dts files that will trigger the interrupt
+> map warning, will we require that they be fixed so that the build will
+> not fail?
+
+I already submitted patches for them.
+
+Rob
