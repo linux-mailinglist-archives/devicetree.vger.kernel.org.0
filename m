@@ -2,136 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 604A24406A0
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 03:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CCA4406CD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 03:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229734AbhJ3BNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 21:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49018 "EHLO
+        id S229694AbhJ3Br7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 21:47:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229656AbhJ3BNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 21:13:20 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF12C061570;
-        Fri, 29 Oct 2021 18:10:51 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id bk22so4406019qkb.6;
-        Fri, 29 Oct 2021 18:10:51 -0700 (PDT)
+        with ESMTP id S229656AbhJ3Br6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 21:47:58 -0400
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4F6C061570;
+        Fri, 29 Oct 2021 18:45:29 -0700 (PDT)
+Received: by mail-qk1-x72a.google.com with SMTP id bp7so5957873qkb.10;
+        Fri, 29 Oct 2021 18:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KiHgAm6bAVmqKKaX9zBnP/GQ6TBFMsyS9/nMvi1BERs=;
-        b=ILPvvvksrCbx69o9/Il9TNGfavAy6nHY/cCCE3AZEgP1ci9xFW2My50WtKqauc0HyW
-         k5dsmJVVacVEkb2UskKttbtpEmWl/XUfhvdBhnoj/tveOgvqaQ3dWHlzFl7V59oc1XGY
-         2NGs2OZuixkVOfaAyQ7gM3FuR6C6Kad0uPCZSwupsjsr1uCEMWxk2S50G6O+DFX3Wr28
-         EViS7KqWkGi8evWtVCS5sHTdVqemURT5txzIiJa9+/38KofRCjPj5v+JQTooGCp3Jhce
-         YU+u7qqVqdBG/Zmo7u/vXW01OeGhdUDE2KrQsl0tX06NaS0CBkaaNjVEkOgzraAyC4R+
-         nupw==
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iNQ0++hmy0A6R3WdtnuMuf9ZRK3yKg0+/OsDBDaHLUw=;
+        b=aypbOqafFEourQou7KVhHk7s2A3iyPBWtMWL8dYUtRY1LUJgt+bS+ENIN2tBL7ZrxF
+         GnGgPge5Zadb2aTYhoSANZjzVPKCraUgYPVoovRkXpKS8d/KJeUrX/l034nnUDWsTFDH
+         z4hY+7RhXcIuhVWJa12MiJb3OxSDKOQkHA4AvohJOpmdyxoNGN+v06nSS52NUjFp4HXd
+         H+B06ihPBoNV9uthwRZxosTkK/Aa7dKEght6dfF6DK3zwTPKhN/ItZ3cFF9h4FxDk//H
+         l0vA5Pqv/5QwVjMfBjN+3PG87tSsWBkv0XaDwpBagpDGWqVu5YEnN9SP6Rw69LYhjCWH
+         toUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=KiHgAm6bAVmqKKaX9zBnP/GQ6TBFMsyS9/nMvi1BERs=;
-        b=mmyEOZQM4zMSWSdG0tVqOAhToU8dNF4Op/fhA7er+7MvYosdQ9kCAntKPJAMtHuXNm
-         NCGB/kNtV2VSgRU9hIV4IWM5jIsNSEWkhLVtDTH41x5PtRF8De5zZlpMwUapdmFKtHMw
-         RoDPDpcEJaCXfOlIWMXdL9GMyZ2OLjwibDmijCW//vDnUjFSn1D/PraFrsDyuQZ/cDGk
-         5+qbnfTz5DuKWgV4MzsmvWs+2n77x/nD00OcCQ5uJP+GuGWpHGtTyH0TWyQdLgQzorVy
-         xjR2mLrpNuvDs+aCpzJfpgdCIJhJgPl4IQtHMC6DX+iQmZdpjSz3ltpJ0p2r6zM334k4
-         3hJA==
-X-Gm-Message-State: AOAM531Uw9VVgqi3RxZuHoq+ROCiQ360nHe8hD06A7CiY4jcf0igglT0
-        Se40m5au7K6OfRuyoMOUBgg=
-X-Google-Smtp-Source: ABdhPJwwZFyf63BLym48PP+jtXbbtWua7hJUCRLMXoCmFkxtLnO1KlaqgEFHQev1xS7q7QeGUJmfxQ==
-X-Received: by 2002:a05:620a:1901:: with SMTP id bj1mr9223045qkb.325.1635556250661;
-        Fri, 29 Oct 2021 18:10:50 -0700 (PDT)
-Received: from localhost.localdomain (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
-        by smtp.gmail.com with ESMTPSA id q13sm5322138qkl.7.2021.10.29.18.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Oct 2021 18:10:50 -0700 (PDT)
-From:   frowand.list@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] of: unittest: document intentional interrupt-map provider build warning
-Date:   Fri, 29 Oct 2021 20:10:39 -0500
-Message-Id: <20211030011039.2106946-1-frowand.list@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        bh=iNQ0++hmy0A6R3WdtnuMuf9ZRK3yKg0+/OsDBDaHLUw=;
+        b=I9cINYyUhp4JTcZXUc5qJdS8RAMbn2Q8O8wvvTP+06zMNd3C47jmMuzplaRHWjnsnL
+         P4JVg5nTK1j8Cy8ub13nQr5af/lhaOf2rfwlpuQCNKRvzHSAvGYadlSH3QjXn/nHI89Z
+         fYiHfKItxX+WsPDuC5obXBFTH1LYUokQsjYtFxXuVKPnpXqtcTw0VcUUWRA8HazgxWL+
+         z3QZ7zUDvWqunWafV3PNhM732nk/4fuUhh3xnZqUDcq5lf1F/2FYUTuOu3OthbTSCHkT
+         /A+NicZDMh+N3Or4iFQDiAVElPiRIjx67lQWdgllPA9IiyiuHYkoGu9xnpC+BgUuoADg
+         XADg==
+X-Gm-Message-State: AOAM531rN5MXBI2vk6C+zA2AvJx+v78b5yU4O+FeUmnMb9b2jWL6N32J
+        XpKCNH/gg+Tl30w1hWyZlEs=
+X-Google-Smtp-Source: ABdhPJyqHJXkjHfPFqLXj+W310DuAE7tkqY5CwBlO9pBcSJCtFVkE7f75XNwlHmyolK6IRuRemfHRg==
+X-Received: by 2002:a05:620a:bd6:: with SMTP id s22mr11451090qki.306.1635558328632;
+        Fri, 29 Oct 2021 18:45:28 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.ky.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id b193sm3098436qkg.3.2021.10.29.18.45.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Oct 2021 18:45:28 -0700 (PDT)
+Subject: Re: [PATCH v2] of/unittest: Disable new dtc
+ node_name_vs_property_name and interrupt_map warnings
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+References: <20211028130423.4025578-1-robh@kernel.org>
+ <ab53d658-aeec-7606-3089-3b1e8b299138@gmail.com>
+Message-ID: <23f6c4f5-531d-56e1-1d68-305c37c01510@gmail.com>
+Date:   Fri, 29 Oct 2021 20:45:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <ab53d658-aeec-7606-3089-3b1e8b299138@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Rowand <frank.rowand@sony.com>
+On 10/28/21 8:12 PM, Frank Rowand wrote:
+> Hi Rob,
+> 
+> On 10/28/21 8:04 AM, Rob Herring wrote:
+>> The unittest dtbs have various intentional errors which cause warnings.
+>> With the latest dtc sync to v1.6.1-19-g0a3a9d3449c8, we need to disable
+>> some new checks: node_name_vs_property_name and interrupt_map warnings.
+>> These warnings are also generated for static_base_1.dtb, so add
+>> DTC_FLAGS for it.
+>>
+>> Note that the interrupt_map warnings only appear once interrupt_provider
+>> warning is re-enabled globally.
+>>
+>> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+>>
+>> Fixes: e76187b9792e ("scripts/dtc: Update to upstream version v1.6.1-19-g0a3a9d3449c8")
+>> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+>> ---
+>>  drivers/of/unittest-data/Makefile | 8 +++++++-
+>>  1 file changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
+>> index a5d2d9254b2c..fbded24c608c 100644
+>> --- a/drivers/of/unittest-data/Makefile
+>> +++ b/drivers/of/unittest-data/Makefile
+>> @@ -37,7 +37,9 @@ DTC_FLAGS_overlay_base += -@
+>>  DTC_FLAGS_testcases += -@
+>>  
+>>  # suppress warnings about intentional errors
+>> -DTC_FLAGS_testcases += -Wno-interrupts_property
+>> +DTC_FLAGS_testcases += -Wno-interrupts_property \
+>> +	-Wno-node_name_vs_property_name \
+>> +	-Wno-interrupt_map
+>>  
+>>  # Apply overlays statically with fdtoverlay.  This is a build time test that
+>>  # the overlays can be applied successfully by fdtoverlay.  This does not
+>> @@ -82,6 +84,10 @@ apply_static_overlay_1 := overlay_0.dtbo \
+>>  
+>>  apply_static_overlay_2 := overlay.dtbo
+>>  
+>> +DTC_FLAGS_static_base_1 += -Wno-interrupts_property \
+>> +	-Wno-node_name_vs_property_name \
+>> +	-Wno-interrupt_map
+>> +
+>>  static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
+>>  static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
+>>  
+>>
+> 
+> Thanks for splitting the DTC_FLAGS into per file values.
+> 
+> I dug into the unittest code that uses the dts node that causes the
+> interrupt map warning and do not see any reason not to fix the dts
+> so that the warning will not occur, instead of masking it with
+> the DTC_FLAGS.  I just now submitted a patch to fix the .dtsi at
+> 
+>   https://lore.kernel.org/all/20211029005802.2047081-1-frowand.list@gmail.com/
 
-A recently implemented dtc compiler warning reports a dts problem
-via a build warning:
+That thread ended up deciding that the .dtsi should not be fixed to
+avoid the warning (it was a deliberate error to allow a specific test),
 
-   drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+so for the [v2] patch that started this thread:
 
-The warning will be addressed by a separate patch by suppressing the
-warning for .dts files that include this .dtsi.  This patch documents
-why the warning is due to a deliberately incorrect .dtsi file so that
-no one will fix the .dtsi file to prevent the build warning.
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
+Tested-by: Frank Rowand <frowand.list@gmail.com>
 
-Signed-off-by: Frank Rowand <frank.rowand@sony.com>
----
- .../of/unittest-data/tests-interrupts.dtsi    | 19 +++++++++++++++++++
- drivers/of/unittest.c                         |  6 ++++++
- 2 files changed, 25 insertions(+)
-
-diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
-index 9b60a549f502..8c8d267d4d3c 100644
---- a/drivers/of/unittest-data/tests-interrupts.dtsi
-+++ b/drivers/of/unittest-data/tests-interrupts.dtsi
-@@ -31,6 +31,21 @@ test_intmap0: intmap0 {
- 
- 			test_intmap1: intmap1 {
- 				#interrupt-cells = <2>;
-+				/*
-+				 * #address-cells is required
-+				 *
-+				 * The property is not provided in this node to
-+				 * test that the code will properly handle
-+				 * this case for legacy .dts files.
-+				 *
-+				 * Not having #address-cells will result in a
-+				 * warning from dtc starting with
-+				 * version v1.6.1-19-g0a3a9d3449c8
-+				 * The warning is suppressed by adding
-+				 * -Wno-interrupts_property to the Makefile
-+				 * for all .dts files this include this .dtsi
-+				#address-cells = <1>;
-+				 */
- 				interrupt-map = <0x5000 1 2 &test_intc0 15>;
- 			};
- 
-@@ -46,6 +61,10 @@ interrupts1 {
- 
- 			interrupts-extended0 {
- 				reg = <0x5000 0x100>;
-+				/*
-+				 * Do not remove &test_intmap1 from this
-+				 * property - see comment in node intmap1
-+				 */
- 				interrupts-extended = <&test_intc0 1>,
- 						      <&test_intc1 2 3 4>,
- 						      <&test_intc2 5 6>,
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 8c056972a6dd..04bfef8f67c3 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -1129,6 +1129,12 @@ static void __init of_unittest_parse_interrupts_extended(void)
- 			passed &= (args.args[1] == 14);
- 			break;
- 		case 6:
-+			/*
-+			 * Tests child node that is missing property
-+			 * #address-cells.  See the comments in
-+			 * drivers/of/unittest-data/tests-interrupts.dtsi
-+			 * nodes intmap1 and interrupts-extended0
-+			 */
- 			passed &= !rc;
- 			passed &= (args.args_count == 1);
- 			passed &= (args.args[0] == 15);
--- 
-Frank Rowand <frank.rowand@sony.com>
+> 
+> -Frank
+> 
 
