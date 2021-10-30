@@ -2,147 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDAD644062D
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 02:06:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1454E44062F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 02:07:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231527AbhJ3AJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Oct 2021 20:09:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35008 "EHLO
+        id S231154AbhJ3AKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Oct 2021 20:10:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231154AbhJ3AJR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 20:09:17 -0400
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [IPv6:2001:67c:2050::465:101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 603ACC061570;
-        Fri, 29 Oct 2021 17:06:48 -0700 (PDT)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Hh02s1kQXzQk34;
-        Sat, 30 Oct 2021 02:06:45 +0200 (CEST)
-Authentication-Results: spamfilter04.heinlein-hosting.de (amavisd-new);
-        dkim=pass (2048-bit key) reason="pass (just generated, assumed good)"
-        header.d=mailbox.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-        t=1635552403;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:  in-reply-to:in-reply-to;
-        bh=dY0qrvj76zWCSKOL4itCCWMl5wR6AHMfGCEQfwklEAE=;
-        b=aGAAp+GS4vAfKWP0yH+xNU8EqfIKil2lW+/KxJwiJZIYoYDwBg4xlCxBW0/kSyzSugERgy
-        SCaiLzVl7zs6et4nqD8x0bBWxAdKWB6TIwRDVjF8RFMxrrSZH6e7viAopbb1tQqJoRmk1B
-        CeqiQKobIzK6XbbleiLKRcxi41RH+gKPYkd5+75bwu1uQmCp/cQopblIkM6CZxtOVnn0i7
-        BeuTFTuU3PoumGr2sA1YRLfteVfEIn5Pc2vZffyWZS5jN5sMGSjZl31OmTH8m5TLztmXJl
-        96m2/j3C/RmN3Ldj5rGLU9pVxDSvPDWPNUkaKgty8A7i/a7c0luAHdoQZyXghw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mailbox.org; h=
-        content-transfer-encoding:content-type:content-type:mime-version
-        :in-reply-to:message-id:subject:subject:from:from:date:date
-        :received; s=mail20150812; t=1635552402; bh=sE3ydF4zle5ia1vV+TD9
-        hm4uPa48BuAInimrUVD8Ck0=; b=dWbtRF0NPIPyNyKjjL7SBbsA+7XstmRTkHP3
-        ln5QLhx5QB8p9qtC2Zt8C9X3pErnFBDP+VIjnR9b4YH4Dgj7dKHkKq0I+Gr9Gpc+
-        V8FuX8n+/rifb1PPvh0CI1Jowz64VSEhrgi9NSeITEBPz94VjzEI93tzH+KAG7Ft
-        G394TmH+uazmaNgHzP7cIKZKRlsdWvKJjG3n1JA6lFarqxrw47tZd3I67bWcomPJ
-        C4h9zS0pClFL3feODprqjbfb656NoEoA3owjGO3/W2QjIo+OUMTEAhJGrBFgDf9/
-        Q/00HBuDA+v7Sm6Vdt3byq2k8E2MYNQGj37E1j0RObsvM+GvmA==
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Date:   Sat, 30 Oct 2021 02:06:40 +0200
-From:   "Erhard F." <erhard_f@mailbox.org>
-To:     frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, erhard_f@mailbox.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+        with ESMTP id S229546AbhJ3AKY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Oct 2021 20:10:24 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52CC0C061570;
+        Fri, 29 Oct 2021 17:07:55 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id s1so9312591qta.13;
+        Fri, 29 Oct 2021 17:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qERu0voFr9suiiWnQnSGc4TpiaTJ1ubRw/T4rhUUEPI=;
+        b=ivGMDFI435kbxGVOiM/mRzp9xBPVeFXNCEaTVAjKfBP2o/363zLH68vJTBu44B4zIF
+         Dbu2/pA4gb8IgfntswVbl6UCARhM8EjTogG7SSxbwGGrAACSTZK/MrgXsJdF1zOONTWd
+         drOVxoilbYwzfhI3wPgbXUKuJoO7P3zZcZL7F5pQOIbmQJVmNxxjjkRHfHULixJCmlBx
+         KNZ95j9XD9BgmqrCuufcZfNPo8P2dAOJ1+YgFSo7CMYSbIOkn5MjF87mEMGXu5XekV05
+         S7e160dMQ+GyfI5FJBSg5Q1RDj2eDjVJdnuPNP/XOfGJqJJ3Uebt03H0pbWAdW2XM2hh
+         ypxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=qERu0voFr9suiiWnQnSGc4TpiaTJ1ubRw/T4rhUUEPI=;
+        b=KV8a/4qctUZmtvTWWk7+9+zDR/Y/06VgIuBNJqTaAiHzDPe88t2Np0c9xfG6S44crV
+         bIKa1itEPu1qNHJvsgq1OWQJBn9DI2YqJ1CprOhFnc93MdgFl412SLY6cGWhoNWZqS90
+         VfwWVRSvwtwUVKo/qT3eZNJ2KKtbpELpCEGOfWS8Ad5qejUfKroRIKvqr5fhXMGQPNkh
+         mbmnqtujhJMGjDaAfhiTsMR41q8/CqXniFw0mRSVPBK4SoU4S9UsHDRIiUk9ygiW0gMb
+         EokMT1H5Xd10rbaSDE6rpEqFBx21X+Bcn2DAzA6oATFPekQhcD2BeIrghOLR7hmv3FOO
+         UUXw==
+X-Gm-Message-State: AOAM531pdIDPisQ3lyhIssQySx+Iyx0ucJ6DJhLXE7AS5Ck2efTp/pyM
+        xM4uqKTKqmRjLIYhWjKoJxM=
+X-Google-Smtp-Source: ABdhPJz3TVx3XLNS0Gzsr/FLZvzDSL7+0sRDMUf0+A2HSgJc09gW5kHG2q+4Dr1tAVvLmaTrNx1ylw==
+X-Received: by 2002:ac8:10a:: with SMTP id e10mr15181091qtg.406.1635552474549;
+        Fri, 29 Oct 2021 17:07:54 -0700 (PDT)
+Received: from [192.168.1.49] (c-67-187-90-124.hsd1.tn.comcast.net. [67.187.90.124])
+        by smtp.gmail.com with ESMTPSA id g11sm5812614qko.31.2021.10.29.17.07.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Oct 2021 17:07:54 -0700 (PDT)
 Subject: Re: Fwd: [Bug 214867] New: UBSAN: shift-out-of-bounds in
  drivers/of/unittest.c:1933:36
-Message-ID: <20211030020640.30a0964c@yea>
-In-Reply-To: <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Erhard F." <erhard_f@mailbox.org>
+References: <bug-214867-211671@https.bugzilla.kernel.org/>
+ <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <a83c3242-acc9-03da-d559-04e4baba75ca@gmail.com>
+Date:   Fri, 29 Oct 2021 19:07:53 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 83537569
+In-Reply-To: <c474a371-b524-1da8-4a67-e72cf8f2b0f7@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(In reply to Arnd Bergmann from comment #2)
-> My guess is that 'id' is negative here, which means it fails to tigger the
-> WARN_ON() but ends up still being out of range.
+On 10/29/21 6:57 PM, Frank Rowand wrote:
 > 
-> Can you try changing it to 'unsigned int id'?
-When I change it to static void of_unittest_untrack_overlay(unsigned int id) I get no UBSAN message but this warning:
+> Reported in bugzilla, forwarding to the mail lists and maintainers.
+> 
+> -Frank
+> 
+> 
+> -------- Forwarded Message --------
+> Subject: [Bug 214867] New: UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36
+> Date: Fri, 29 Oct 2021 13:59:02 +0000
+> From: bugzilla-daemon@bugzilla.kernel.org
+> 
+> 
+> https://bugzilla.kernel.org/show_bug.cgi?id=214867
+> 
+>             Bug ID: 214867
+>            Summary: UBSAN: shift-out-of-bounds in
+>                     drivers/of/unittest.c:1933:36
+>            Product: Platform Specific/Hardware
+>            Version: 2.5
+>     Kernel Version: 5.15-rc7
+>           Hardware: PPC-64
+>                 OS: Linux
+>               Tree: Mainline
+>             Status: NEW
+>           Severity: normal
+>           Priority: P1
+>          Component: PPC-64
+>           Assignee: platform_ppc-64@kernel-bugs.osdl.org
+>           Reporter: erhard_f@mailbox.org
+>                 CC: bugzilla.kernel.org@frowand.com
+>         Regression: No
+> 
+> Created attachment 299361
+>   --> https://bugzilla.kernel.org/attachment.cgi?id=299361&action=edit
+> kernel dmesg (kernel 5.15-rc7, Talos II)
+> 
+> UBSAN catches this at boot on my Talos II.
+> 
+> [...]
+> ### dt-test ### EXPECT / : GPIO line <<int>> (line-C-input) hogged as input
+> ================================================================================
+> UBSAN: shift-out-of-bounds in drivers/of/unittest.c:1933:36
+> shift exponent -1 is negative
+> CPU: 2 PID: 1 Comm: swapper/0 Not tainted 5.15.0-rc7-TalosII #1
+> Call Trace:
+> [c000000004163700] [c0000000008ffaa8] .dump_stack_lvl+0xa4/0x100 (unreliable)
+> [c000000004163790] [c0000000008fb46c] .ubsan_epilogue+0x10/0x70
+> [c000000004163800] [c0000000008fb270]
+> .__ubsan_handle_shift_out_of_bounds+0x1f0/0x34c
+> [c000000004163910] [c000000000ad94a0] .of_unittest_untrack_overlay+0x6c/0xe0
+> [c0000000041639a0] [c000000002098ff8] .of_unittest+0x4c50/0x59f8
+> [c000000004163b60] [c000000000011b5c] .do_one_initcall+0x7c/0x4f0
+> [c000000004163c50] [c00000000200300c] .kernel_init_freeable+0x704/0x858
+> [c000000004163d90] [c000000000012730] .kernel_init+0x20/0x190
+> [c000000004163e10] [c00000000000ce78] .ret_from_kernel_thread+0x58/0x60
+> ================================================================================
+> ### dt-test ### EXPECT \ : OF: overlay: WARNING: memory leak will occur if
+> overlay removed, property: /testcase-data-2/substation@100/status
+> [...]
+> 
 
-------------[ cut here ]------------
-WARNING: CPU: 0 PID: 1 at drivers/of/unittest.c:1931 .of_unittest_untrack_overlay+0x20/0xac
-Modules linked in:
-CPU: 0 PID: 1 Comm: swapper/0 Not tainted 5.15.0-rc7-TalosII+ #2
-NIP:  c000000000ad9368 LR: c000000002099000 CTR: 0000000000000000
-REGS: c000000004163700 TRAP: 0700   Not tainted  (5.15.0-rc7-TalosII+)
-MSR:  9000000000029032 <SF,HV,EE,ME,IR,DR,RI>  CR: 44004242  XER: 20040000
-CFAR: c000000002098ffc IRQMASK: 0 
-GPR00: c000000002098f74 c0000000041639a0 c0000000023b2f00 ffffffffffffffff 
-GPR04: c000000002270b90 0000000000000000 c000000004163794 c0000000027744d8 
-GPR08: 00000007fdaf2000 0000000000000001 0000000000000000 00000000ffffffff 
-GPR12: 0000000024004242 c0000000031d5000 b086ed6156fceb64 c0000000022718d8 
-GPR16: d5cb61e74edefbbf 0000000000000000 c0000000010840b0 c000000001084078 
-GPR20: c000000000e0df58 c0000000021d6120 0000000000000000 c000200004d579f0 
-GPR24: c0000000020ad0a0 c0000000022713c8 c0000000031c9110 0000000000000000 
-GPR28: c000000000e0d110 c0000000031c9158 7bba9c880526c811 c0000000041639a0 
-NIP [c000000000ad9368] .of_unittest_untrack_overlay+0x20/0xac
-LR [c000000002099000] .of_unittest+0x4c5c/0x5a04
-Call Trace:
-[c0000000041639a0] [c000000002098f74] .of_unittest+0x4bd0/0x5a04 (unreliable)
-[c000000004163b60] [c000000000011b5c] .do_one_initcall+0x7c/0x4f0
-[c000000004163c50] [c00000000200300c] .kernel_init_freeable+0x704/0x858
-[c000000004163d90] [c000000000012730] .kernel_init+0x20/0x190
-[c000000004163e10] [c00000000000ce78] .ret_from_kernel_thread+0x58/0x60
-Instruction dump:
-60000000 60000000 38600000 4e800020 3d22ffec e929e4ca 2c090000 4d800020 
-7c691850 39200001 28030100 7d20481e <0b090000> 7c0802a6 fb81ffe0 fba1ffe8 
-irq event stamp: 514764
-hardirqs last  enabled at (514763): [<c0000000004398e4>] .__slab_free+0x394/0x590
-hardirqs last disabled at (514764): [<c0000000000312bc>] .interrupt_enter_prepare.constprop.0+0xec/0x150
-softirqs last  enabled at (509346): [<c000000000d845cc>] .__do_softirq+0x4cc/0x714
-softirqs last disabled at (509339): [<c0000000000f6eb8>] .__irq_exit_rcu+0x148/0x1b0
----[ end trace 0c8618d488a1a13d ]---
+Further comment in Bugzilla are:
+
+----------  comment 1:
+
+ Erhard F. 2021-10-29 14:00:20 UTC
+
+Created attachment 299363 [details]
+kernel .config (kernel 5.15-rc7, Talos II)
+
+ # lspci 
+0000:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0000:01:00.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Turks XT [Radeon HD 6670/7670]
+0000:01:00.1 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] Turks HDMI Audio [Radeon HD 6500/6600 / 6700M Series]
+0001:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0001:01:00.0 Non-Volatile memory controller: Phison Electronics Corporation Device 5008 (rev 01)
+0002:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0003:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0003:01:00.0 USB controller: Texas Instruments TUSB73x0 SuperSpeed USB 3.0 xHCI Host Controller (rev 02)
+0004:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0004:01:00.0 Ethernet controller: Broadcom Inc. and subsidiaries NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+0004:01:00.1 Ethernet controller: Broadcom Inc. and subsidiaries NetXtreme BCM5719 Gigabit Ethernet PCIe (rev 01)
+0005:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0005:01:00.0 PCI bridge: ASPEED Technology, Inc. AST1150 PCI-to-PCI Bridge (rev 04)
+0005:02:00.0 VGA compatible controller: ASPEED Technology, Inc. ASPEED Graphics Family (rev 41)
+0030:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0031:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0032:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
+0033:00:00.0 PCI bridge: IBM POWER9 Host Bridge (PHB4)
 
 
-In unittest.c id generally seems to be derived from a constant and counted downwards in loops.
+----------  comment 2:
 
-[...]
-#define MAX_UNITTEST_OVERLAYS   256
-[...]
-static void of_unittest_destroy_tracked_overlays(void)
+[reply] [−] Comment 2 Arnd Bergmann 2021-10-29 14:06:48 UTC
+
+This is the function that triggers it:
+
+static void of_unittest_untrack_overlay(int id)
 {
-        int id, ret, defers, ovcs_id;
-
         if (overlay_first_id < 0)
                 return;
-
-        /* try until no defers */
-        do {
-                defers = 0;
-                /* remove in reverse order */
-                for (id = MAX_UNITTEST_OVERLAYS - 1; id >= 0; id--) {
-                        if (!of_unittest_overlay_tracked(id))
-                                continue;
-
-                        ovcs_id = id + overlay_first_id;
-                        ret = of_overlay_remove(&ovcs_id);
-                        if (ret == -ENODEV) {
-                                pr_warn("%s: no overlay to destroy for #%d\n",
-                                        __func__, id + overlay_first_id);
-                                continue;
-                        }
-                        if (ret != 0) {
-                                defers++;
-                                pr_warn("%s: overlay destroy failed for #%d\n",
-                                        __func__, id + overlay_first_id);
-                                continue;
-                        }
-
-                        of_unittest_untrack_overlay(id);
-                }
-        } while (defers > 0);
+        id -= overlay_first_id;
+        if (WARN_ON(id >= MAX_UNITTEST_OVERLAYS))
+                return;
+        overlay_id_bits[BIT_WORD(id)] &= ~BIT_MASK(id);
 }
 
-It should not get negative with the "id >= 0" above in the for-loop. But from it's purpose it should be an unsigned int probably. It would need to be changed in the whole unittest.c though as it is used as int in several other places, e.g. 
-static long of_unittest_overlay_tracked(int id)
-static void of_unittest_track_overlay(int id)
+My guess is that 'id' is negative here, which means it fails to tigger the
+WARN_ON() but ends up still being out of range.
+
+Can you try changing it to 'unsigned int id'?
+
+
+----------  More info from me, but I did not comment in bugzilla
+
+line 1933 is the final line of of_unittest_untrack_overlay()
+(see comment 2 for context):
+
+1933         overlay_id_bits[BIT_WORD(id)] &= ~BIT_MASK(id);
