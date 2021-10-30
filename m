@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 495D6440989
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 16:30:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 475CE4409C6
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 16:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbhJ3Oc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Oct 2021 10:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51308 "EHLO
+        id S231912AbhJ3PB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Oct 2021 11:01:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhJ3Oc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Oct 2021 10:32:28 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E43BBC061766
-        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 07:29:57 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id b125so5176077vkb.9
-        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 07:29:57 -0700 (PDT)
+        with ESMTP id S231932AbhJ3PBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Oct 2021 11:01:55 -0400
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8507C061766
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 07:59:24 -0700 (PDT)
+Received: by mail-ua1-x933.google.com with SMTP id e10so23729664uab.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 07:59:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=VMhKSdU6XagNLXTgt9QjxAYogFasaRabTgH/D5jR5AM=;
-        b=wk4c0Top+HACPm4/cX6Jg9EnZZnbUAD1f7LYK/iZiY50ThuaUqmmSeyOIwmhqsqXG4
-         7xXtrJ55s1G1N/VPfXw7Rlim8Ug0ucHpq751UaXmtKoaHAlm2NS12k02E8C0ao0cK2ig
-         8aOu6Nh7yatfeP1mxj9DshqTTDh5d9hW8Dt5Lc2cpMMEF+2K1IS1beaes+WaBIuV0jq+
-         ZukKhnAmRABQ4iLbTpS6AHmzBYAz8atWqGEjNPnl+oOmtlIrOxD9Y8nEGbZ8XqHe8bxR
-         nwkhuRSNMZTuhbc2b9n7veZyxxE/1IVLxXqbMxhYuuNRy1oiekZlonNLckjYudYC/LpS
-         o/ng==
+        bh=0IjuqMahHdNyaBa78KGlOS1qX5NWSlF1KJ8cpnmB4bo=;
+        b=z1sF5/OAquI+FlHqfRehlQbtZOKE6BKQgQDa9tdlQeULWC6/Ql4LeRHjP9b2mbwnbF
+         ZoW2XP3sRQA13MFiEknh9tI2OhyaSd0BlzOyyLHgLxcIjw85jL0jSDyONyU3MZTjqZV9
+         gR/RqBEfuo4LIqFfDSSWApS+ZOVlDRLIi801eWZHvgmfiYGnB7ZgZzU9gc/nWL54CPtI
+         pse+3G0VG2wguiPseWMWc6XjNi0/q3utmrI+mBFuCvB3BL8cIO4mNKIKBWPDMgoAquZw
+         z/SOgVPxeBf6SGknKPVRgh7O9e9H7PBT0zQwZEZOfM4J6huX4O/xCWciWwdQ5qYzm9OJ
+         jZWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=VMhKSdU6XagNLXTgt9QjxAYogFasaRabTgH/D5jR5AM=;
-        b=APfgFpqOwLPdKvkP0S8/vdajr3RKscwY1mTiZevFzwC1dED8vnW4yqtCMD23GDl2zp
-         GaMdUmJ3tLc1A1K3Mhp5Xd9ZeEimeIW14LOdb2RPn2JA240+pgSDO7Z4AtfwYgjdXu7l
-         tAgfXNpNNZXH5AmlEF50gfaxGh7MsLA0Jsc71PYcd9sNGpb2KPMYjV3XHix2L+FJhGE2
-         ikLp4v2ZlQFQlszLfLEfm5KjRDQeOubSrNkkb9Q3lCkpjtr11Qry9IrcgQy/O6NZMnjv
-         jXmvEE4YtVm0bUj16Eus5GWbQopQ+fVBFYmcxNKZB9IgqIzGeX49CP44cCOCy+7dllSB
-         eIpA==
-X-Gm-Message-State: AOAM530SeQO9YJeIqYr9jobMzrnJ9aMWg4BOgQqWtTeoKDLy7jqxOL8x
-        eghsdPCs+QPYRjtGm7ej6BhQ0YqNkEV8vdtEGgVxGw==
-X-Google-Smtp-Source: ABdhPJxaZ8cFeixxgFJVOy/L0An8U8TaIKGXQZ6pfcVVK7L6np/koDpst87RmD2gtupsxTmqOU30TOwNGydmoikZF6g=
-X-Received: by 2002:a05:6122:130c:: with SMTP id e12mr7364332vkp.12.1635604196137;
- Sat, 30 Oct 2021 07:29:56 -0700 (PDT)
+        bh=0IjuqMahHdNyaBa78KGlOS1qX5NWSlF1KJ8cpnmB4bo=;
+        b=TaiYmkLKmjG6XOXXyYg43OOTWxW+Q7JESZWjuTfQSbSrWhc+YCsFWBdfWuOcLwZTXt
+         OrwsTydDqngsUrdeanEmm5diPdhZGhiFwZzEdmM7wDDmOdkI9f2AWa0XG7VjKDX4ongw
+         g9rA+lfy52pPjCzVk6cKL3cW+cOwQSFH77jdkrCd8pmBnlB0ZjmjF9V6OmB7y1dPLgCY
+         uObCpGAAeGUpO2cqVgqzpxuHxJIBHT7Rn4YW7gpoCcp1s4LXtxEjLnGbTYXHmFU1DuJm
+         hZ1Dbx68qxHedoBZbwnXR+HS+CyfLu37rvbYpg5TAjzg2Iph9mUBl7V1Oudnpg4Fv9sj
+         5axw==
+X-Gm-Message-State: AOAM532MUcY3jcKYhLGqSc6VDf7JFQQqKVoWHyrej4Hk4BzzernRgt7D
+        DtSmQsgAYEHRcROtxZ1sB3EFPLwoxd3U7vFbfTeeuQ==
+X-Google-Smtp-Source: ABdhPJxDhOV4vhLCRmEjPxZkOuXxUpyliwM+EbagMxU4ME2yXJ2VOL2OJ15KLaUPqo4z2kLfTiMBauGtOVfyan2d8j0=
+X-Received: by 2002:a67:ed5a:: with SMTP id m26mr20207720vsp.35.1635605963872;
+ Sat, 30 Oct 2021 07:59:23 -0700 (PDT)
 MIME-Version: 1.0
 References: <20211028183527.3050-1-semen.protsenko@linaro.org>
- <20211028183527.3050-8-semen.protsenko@linaro.org> <1ad6b625-4388-bc78-e258-eae0b9357b96@roeck-us.net>
-In-Reply-To: <1ad6b625-4388-bc78-e258-eae0b9357b96@roeck-us.net>
+ <20211028183527.3050-8-semen.protsenko@linaro.org> <94e19dfb-5283-8826-c421-0ff140a370ab@canonical.com>
+In-Reply-To: <94e19dfb-5283-8826-c421-0ff140a370ab@canonical.com>
 From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Sat, 30 Oct 2021 17:29:44 +0300
-Message-ID: <CAPLW+4kphtac24fcpVUENAMUAdHp2fkzJ0N_r_63Soq6R2VZBg@mail.gmail.com>
+Date:   Sat, 30 Oct 2021 17:59:12 +0300
+Message-ID: <CAPLW+4nLNkvLf=5KZTmBFe8JFU0=srT9X0m_bYR7V4Vz7A2LeQ@mail.gmail.com>
 Subject: Re: [PATCH 7/7] watchdog: s3c2410: Let kernel kick watchdog
-To:     Guenter Roeck <linux@roeck-us.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         linux-watchdog@vger.kernel.org,
         devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
@@ -65,19 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 at 03:30, Guenter Roeck <linux@roeck-us.net> wrote:
+On Fri, 29 Oct 2021 at 11:20, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> On 10/28/21 11:35 AM, Sam Protsenko wrote:
+> On 28/10/2021 20:35, Sam Protsenko wrote:
 > > When "tmr_atboot" module param is set, the watchdog is started in
 > > driver's probe. In that case, also set WDOG_HW_RUNNING bit to let
 > > watchdog core driver know it's running. This way wathcdog core can kick
+>
+> s/wathcdog/watchdog/
+>
 > > the watchdog for us (if CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED option is
 > > enabled), until user space takes control.
+>
+> This does not explain why you move the code around. I guess you miss
+> here information that we should start the watchdog before registering
+> it? If so please explain why.
+>
+
+Will do in v2, thanks.
+
 > >
 > > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > > ---
-> >   drivers/watchdog/s3c2410_wdt.c | 26 +++++++++++++++-----------
-> >   1 file changed, 15 insertions(+), 11 deletions(-)
+> >  drivers/watchdog/s3c2410_wdt.c | 26 +++++++++++++++-----------
+> >  1 file changed, 15 insertions(+), 11 deletions(-)
 > >
 > > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
 > > index ca082b1226e3..9af014ff1468 100644
@@ -102,24 +114,6 @@ On Fri, 29 Oct 2021 at 03:30, Guenter Roeck <linux@roeck-us.net> wrote:
 > > +             s3c2410wdt_stop(&wdt->wdt_device);
 > > +     }
 > > +
->
-> This doesn't cover the case where the watchdog is already enabled by the BIOS.
-> In that case, WDOG_HW_RUNNING won't be set, and the watchdog will time out
-> if the userspace handler is not loaded fast enough. The code should consistently
-> set WDOG_HW_RUNNING if the watchdog is running.
->
-
-As I understand, in the case when bootloader started the watchdog, the
-driver just stops it. You can see it in the code you replied to.
-
-    } else if (!tmr_atboot) {
-            s3c2410wdt_stop(&wdt->wdt_device);
-
-In other words, having "tmr_atboot" module param makes it irrelevant
-whether bootloader enabled WDT or no.
-
-> Guenter
->
 > >       ret = watchdog_register_device(&wdt->wdt_device);
 > >       if (ret)
 > >               goto err_cpufreq;
@@ -143,3 +137,6 @@ whether bootloader enabled WDT or no.
 > >       /* print out a statement of readiness */
 > >
 >
+>
+> Best regards,
+> Krzysztof
