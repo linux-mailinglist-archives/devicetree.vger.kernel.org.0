@@ -2,102 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86C40440A13
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 17:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30DE1440A4D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 18:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbhJ3P57 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 30 Oct 2021 11:57:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58824 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231830AbhJ3P57 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 30 Oct 2021 11:57:59 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9AF1460ED3;
-        Sat, 30 Oct 2021 15:55:26 +0000 (UTC)
-Date:   Sat, 30 Oct 2021 16:59:54 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-Cc:     Cosmin Tanislav <demonsingur@gmail.com>,
-        "Tanislav, Cosmin" <Cosmin.Tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] iio: add adddac subdirectory
-Message-ID: <20211030165954.459b978f@jic23-huawei>
-In-Reply-To: <PH0PR03MB63660FDDC3504DD4ABD1D76999879@PH0PR03MB6366.namprd03.prod.outlook.com>
-References: <20211028134849.3664969-1-demonsingur@gmail.com>
-        <20211028135608.3666940-1-demonsingur@gmail.com>
-        <PH0PR03MB63660FDDC3504DD4ABD1D76999879@PH0PR03MB6366.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S229879AbhJ3RC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Oct 2021 13:02:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229734AbhJ3RC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Oct 2021 13:02:26 -0400
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 990F9C061746
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 09:59:55 -0700 (PDT)
+Received: by mail-ua1-x930.google.com with SMTP id i6so9853797uae.6
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 09:59:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=l/0UUkqf6KFkNkf6dBZ0pEkCS7X6LutBL6LgNXt9kNw=;
+        b=COYcjMZHo2AhOT7Qmebs1O2714sucGcw4oOFWAZd04mujHCpsr49AG3HZtjw7Im4lg
+         ePKoBnjK9WgnzD/v5lNJMx61C/iclRy9VF3dc8XjgNfIEOeaMPRkrQ3RdG7oTsbcL0q9
+         qBJlNogLLIxUKBwUJZw5zUIGd9KoXRjJlKKLKHRVjGetr89QqXKZ6Mz75aHEqIWtSKVP
+         mqvnOV4YEnoasMfw2yTM4pF3va7X9XaC1HbVOM/jn4DaZk7Iqcooo7Io0KcxKU8RbrsD
+         sNLPWVQMO0Yx7KIVpU40dbfdaxXTs0re1gHao8v4RsL/SFjGvnuIw9G/XT4iJngYCfxs
+         h/jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=l/0UUkqf6KFkNkf6dBZ0pEkCS7X6LutBL6LgNXt9kNw=;
+        b=TGEnPORbaqdOzXiwMyf270dwPPZt1BzNWUIIQG792bwBPUTEosmGS4RcQuXhrNPidT
+         F7HLzV4uMcrlMpSj77QfGPYYurzUHfgQ5waSrDsXiK9+TnSSFdJHX7Up5t/idKaP2cgD
+         jJ9MW3DjoXLKjghCLX4w6WiM3kZf9ZmStMYoox/Gihb3oARVY9fR6Ay990obeuSqllcg
+         PluFkbZv926vsVzvjxXeVHwkbaceyF3NrHXB2A9potApkeiKfq+6BFPtLjNC2AYgMcM9
+         /lDm39RQiDczW4dCfoxG/n6EH0hSBjnGafWQo7TcSJBedjTS8dBXPkc58VOTmpKavVg+
+         RySw==
+X-Gm-Message-State: AOAM531c/dZtAQCe2ZStDwXnZwaZQ9qo0dOiEmiOVZ+iYqasEboh4JiH
+        pytdVN0pETda4pKUPGevHHZg04JcpRTGvrKNVR0OjA==
+X-Google-Smtp-Source: ABdhPJwgB0TnW1VjXBlaMl6cHb/t+9CrkGOL3PBxBmLXFG83NcAttneComJazLR0qQ/0pGpbtjvvvjluJNY70x4qme8=
+X-Received: by 2002:a05:6102:3ece:: with SMTP id n14mr1827009vsv.55.1635613194472;
+ Sat, 30 Oct 2021 09:59:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20211028183527.3050-1-semen.protsenko@linaro.org>
+ <20211028183527.3050-8-semen.protsenko@linaro.org> <1ad6b625-4388-bc78-e258-eae0b9357b96@roeck-us.net>
+ <CAPLW+4kphtac24fcpVUENAMUAdHp2fkzJ0N_r_63Soq6R2VZBg@mail.gmail.com> <7c9a8dd4-7607-55a2-3d65-a445fa246667@roeck-us.net>
+In-Reply-To: <7c9a8dd4-7607-55a2-3d65-a445fa246667@roeck-us.net>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sat, 30 Oct 2021 19:59:42 +0300
+Message-ID: <CAPLW+4kTANfSaw5g=rnJUJTMcT_J1Z8ju09kzmAPE70U_8KWDQ@mail.gmail.com>
+Subject: Re: [PATCH 7/7] watchdog: s3c2410: Let kernel kick watchdog
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-watchdog@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 08:00:05 +0000
-"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+On Sat, 30 Oct 2021 at 18:14, Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 10/30/21 7:29 AM, Sam Protsenko wrote:
+> > On Fri, 29 Oct 2021 at 03:30, Guenter Roeck <linux@roeck-us.net> wrote:
+> >>
+> >> On 10/28/21 11:35 AM, Sam Protsenko wrote:
+> >>> When "tmr_atboot" module param is set, the watchdog is started in
+> >>> driver's probe. In that case, also set WDOG_HW_RUNNING bit to let
+> >>> watchdog core driver know it's running. This way wathcdog core can kick
+> >>> the watchdog for us (if CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED option is
+> >>> enabled), until user space takes control.
+> >>>
+> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> >>> ---
+> >>>    drivers/watchdog/s3c2410_wdt.c | 26 +++++++++++++++-----------
+> >>>    1 file changed, 15 insertions(+), 11 deletions(-)
+> >>>
+> >>> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> >>> index ca082b1226e3..9af014ff1468 100644
+> >>> --- a/drivers/watchdog/s3c2410_wdt.c
+> >>> +++ b/drivers/watchdog/s3c2410_wdt.c
+> >>> @@ -732,6 +732,21 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+> >>>        wdt->wdt_device.bootstatus = s3c2410wdt_get_bootstatus(wdt);
+> >>>        wdt->wdt_device.parent = dev;
+> >>>
+> >>> +     /*
+> >>> +      * If "tmr_atboot" param is non-zero, start the watchdog right now. Also
+> >>> +      * set WDOG_HW_RUNNING bit, so that watchdog core can kick the watchdog.
+> >>> +      *
+> >>> +      * If we're not enabling the watchdog, then ensure it is disabled if it
+> >>> +      * has been left running from the bootloader or other source.
+> >>> +      */
+> >>> +     if (tmr_atboot && started == 0) {
+> >>> +             dev_info(dev, "starting watchdog timer\n");
+> >>> +             s3c2410wdt_start(&wdt->wdt_device);
+> >>> +             set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
+> >>> +     } else if (!tmr_atboot) {
+> >>> +             s3c2410wdt_stop(&wdt->wdt_device);
+> >>> +     }
+> >>> +
+> >>
+> >> This doesn't cover the case where the watchdog is already enabled by the BIOS.
+> >> In that case, WDOG_HW_RUNNING won't be set, and the watchdog will time out
+> >> if the userspace handler is not loaded fast enough. The code should consistently
+> >> set WDOG_HW_RUNNING if the watchdog is running.
+> >>
+> >
+> > As I understand, in the case when bootloader started the watchdog, the
+> > driver just stops it. You can see it in the code you replied to.
+> >
+> >      } else if (!tmr_atboot) {
+> >              s3c2410wdt_stop(&wdt->wdt_device);
+> >
+> > In other words, having "tmr_atboot" module param makes it irrelevant
+> > whether bootloader enabled WDT or no.
+> >
+>
+> Sure, but I am concerned about "if (tmr_atboot && started)", which doesn't
+> set WDOG_HW_RUNNING with your current code, and I was looking for something
+> like
+>
+>         if (tmr_atboot) {
+>                 if (!started) {
+>                         dev_info(dev, "starting watchdog timer\n");
+>                         s3c2410wdt_start(&wdt->wdt_device);
+>                 }
+>                 set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
+>         } else {
+>                 s3c2410wdt_stop(&wdt->wdt_device);
+>         }
+>
 
-> Hi,
-> 
-> > -----Original Message-----
-> > From: Cosmin Tanislav <demonsingur@gmail.com>
-> > Sent: Thursday, October 28, 2021 3:56 PM
-> > Cc: demonsingur@gmail.com; Tanislav, Cosmin
-> > <Cosmin.Tanislav@analog.com>; Lars-Peter Clausen
-> > <lars@metafoo.de>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>; Jonathan Cameron
-> > <jic23@kernel.org>; Rob Herring <robh+dt@kernel.org>; linux-
-> > iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org
-> > Subject: [PATCH v2 1/3] iio: add adddac subdirectory
-> > 
-> > [External]
-> > 
-> > From: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> > 
-> > For IIO devices that expose both ADC and DAC functionality.
-> > 
-> > Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> > ---  
-> 
-> One thing here that I'm not too sure is the naming of the directory.
-> I'm starting to see in ADI more and more of this highly integrated devices... For
-> example this one [1], is something we have someone already working one
-> and it has ADCs, DAC, amplifiers. So, I'm just wondering if now
-> it's not the time where we just have a generic enough place for these kind
-> of "combo" devices? Being that said, I have no idea about what name we could
-> give :)
-> 
-> [1]: https://www.analog.com/media/en/technical-documentation/data-sheets/AD7293.pdf
-> - Nuno Sá
+Wow, I really overlooked that case. Nice catch! Not having '} else {'
+section is vicious...
 
-Naming is always fun. I don't want to have combo start picking up IMUs so
-we need to be a bit careful.
+Though if started != 0, it means s3c2410wdt_set_heartbeat() failed to
+set wdd->timeout, and without that the watchdog core won't be able to
+calculate correctly ping interval in watchdog_next_keepalive(), and
+WDOG_HW_RUNNING bit won't do much good, right? So I'll probably just
+call s3c2410wdt_stop() in that case, to be on the safe side.
 
-We could take the approach we have done with proximity and light sensors of effectively
-declaring one type to the dominant one.  There it's a bit clearer though - you don't
-buy a proximity sensor if you want to just measure light levels.
+Also this 'started' variable name is misleading, I'll convert it to
+"bool timeout_ok" while at it.
 
-Here there isn't always a dominant type.  The example here is titled input / output
-device so no preference of one over the other.  The GPIO stuff is kind of a feature
-bolted on, so ADDAC is generic enough.
-
-For the ad7293 it does call it a Power Amplifiers 'with' the other stuff so maybe
-just sticking to amplifier as the type is the way to go. 
-
-Meh, to a certain extent it doesn't matter - we can safely move these around
-once we have more of them in the tree.  The adt7316 is still in staging and
-is an ADDAC as well so I think we should put that category in for now.
-
-Jonathan
-
-> 
-> 
-
+> Guenter
