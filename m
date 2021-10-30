@@ -2,176 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F484408C3
-	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 14:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387B3440922
+	for <lists+devicetree@lfdr.de>; Sat, 30 Oct 2021 15:30:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbhJ3MmG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Oct 2021 08:42:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55616 "EHLO
+        id S230004AbhJ3NdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Oct 2021 09:33:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230082AbhJ3MmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Oct 2021 08:42:06 -0400
-Received: from mail-vk1-xa2b.google.com (mail-vk1-xa2b.google.com [IPv6:2607:f8b0:4864:20::a2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47910C061570
-        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 05:39:36 -0700 (PDT)
-Received: by mail-vk1-xa2b.google.com with SMTP id d130so5922087vke.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 05:39:36 -0700 (PDT)
+        with ESMTP id S229989AbhJ3NdM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Oct 2021 09:33:12 -0400
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AB55C061570
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 06:30:42 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id g8so48533896edb.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Oct 2021 06:30:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6BWVd5QSBtmNHqdFIHqNMkh8yS32RlgmgzQWHgLjOEU=;
-        b=BIk7S5Jt5fOttx6WIIVZ4XVMO+4ht7jw3rzpyd4mZD3HIIQ4wH0lVisbqbM3rkraxb
-         0adAQWNStbetUIcfOku+EpFTBMsVEmmcy1b9LG5yb4lIzUVuws6f42N8bAuDAEOC7inL
-         3l1fPSPvos+CgQHtAk4yMbCtCoU5f/j9XEUBl26Y+IbRScrzjsbbz2ZLibAcUjddbHJ8
-         qSA5y/wyG/2p/B2QiAr/LlnZCx4iyv2eSbFHQRrUuVxAg6rVKwsIUw3FOekNySMUFSdo
-         /TDJprrbF8h9CDe5e3uE1dVq48gNGcS1MhON9R9tmo9dcDuXfS11SQtJdAL/Z35SjRtV
-         RCQw==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=O+09ecmnb/9jWuWcWGJF4ObwAU+S1yrbzPdS+SHe7KM=;
+        b=G4WYru7wOXEnB85ROkOefZI5YCCGhjeIPVo3O6k0Hj9tQrfxGVMhKGjt8qPIF7ctXx
+         V0QH6kQmm0GRXKOs1IJ2IQDRhBdce4KxyFMhIM7mtV+XQN2e48+L61qleLE5Q8122mOQ
+         XMX1V6ndYSxiM30Am/CcUF8zZCTUT+slzoKS0+1BSWFzS/4EWYaKhGrDr/996v7kx2tf
+         zwnAqGyejL8BTFY/a+J5W4b36nrYr+T205vetzNh6AtSin9VB3x1IuMVml1iw04/ie93
+         faCPXKNnudDdnGzl+obZcvltmq2kR/5E2RNNkX/A2nPacX4Dw7y9lkFCvFjhuf0157ga
+         a6uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6BWVd5QSBtmNHqdFIHqNMkh8yS32RlgmgzQWHgLjOEU=;
-        b=ATqxexS87jmjE8vS6S1+fikYG32jzUyuRt/nNaAr5Sppz/ziR+DW9CpMxw6rLbpao3
-         o/wGoS92G6bT3Up0kYXMRIoOxr1VVggqAIJrL02HQ0q/JTm3LaE3QGUMhPDAdxn5InQC
-         VOKGZW89iM03QvLbKThA7Rs7xWN0fKuxdY9mhElUhp9wqDVz1mpLMLBbVm+tyVfB1K7H
-         Ksv22XOyEwbA5qB9OfZzxj6WV3JFuL1HI3u5j8abPCboYicJ8CKAgPrz/BUcr+h+UOvA
-         8PVQ1Wyb7dAEd9ZlGWG0NRjWeBtxn/q8mDWFzO2ks/iOO0yBA2Z4SxbyOQ1hNgIPTE1G
-         Jflw==
-X-Gm-Message-State: AOAM532bVg7RsP6paNiardjJVcL5bHG0IljjZWrZkZVL6kXDfnbkoXQr
-        l5GSfX2ojxCnLb/dyX/cFKPhN1ZJcFZea/G/DQ8GMbEF/qqqrQ==
-X-Google-Smtp-Source: ABdhPJz6tsNOjN5h6qxnvEq0t7Wd/uAi4kksAnKEO7rGE848rRZEP/NXJiVLxio4ezKk5aHVO15OqAgSNrAeSen2Pq0=
-X-Received: by 2002:a05:6122:da0:: with SMTP id bc32mr17945585vkb.4.1635597575199;
- Sat, 30 Oct 2021 05:39:35 -0700 (PDT)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=O+09ecmnb/9jWuWcWGJF4ObwAU+S1yrbzPdS+SHe7KM=;
+        b=vv/vSXW7kL38yT8H0nHNzm1VgFnVWmTnLfADwi1PHZrQJdmA/acmeGz61IMbXSoacF
+         hOE+qAbjW+olfU9n6QVt/GApqWX9AR3HRtsI4I2cxDPBhBzRnl/v/uJwAFsVU+4Bp8k1
+         da83VsQUllCfsS6Sug2S0TH5wsjUUy5d2Yx8vjo7c45Y8HI80WMUCO7cJDVdNBOU9iBJ
+         jy2BS1ym6aFiUq3HH+ArCJKbq65LyN0Wz2x2joQzROdmTGnWuegnztHcGZ2JHgBHVsxC
+         l8WVnuTMfxROJP/vzuODJBJMfVbbmMby0vyf7li5qSlRMYX8vBiNOyq/0NagCwWvrZzr
+         dP3w==
+X-Gm-Message-State: AOAM53084aZ28n5Oh+FzZggPz/uLTj2ly5be5vc6+gTGDwgH2OaNCn/F
+        7hGLq5XxufzTGzIFta4c7GLeBTfuCXqVPwRmN1Y=
+X-Google-Smtp-Source: ABdhPJwbBKcNEZGGl0OIEd3Ohkoz4j7LGethZWglOnxTwKX0FNbeTf2EQCie3zwKs5a/At2nZE29+dz26F64ff/6XGg=
+X-Received: by 2002:aa7:c1c3:: with SMTP id d3mr1776866edp.254.1635600641052;
+ Sat, 30 Oct 2021 06:30:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211028183527.3050-1-semen.protsenko@linaro.org>
- <20211028183527.3050-6-semen.protsenko@linaro.org> <51128b74-de5d-1758-282b-1d4c5250a38d@roeck-us.net>
-In-Reply-To: <51128b74-de5d-1758-282b-1d4c5250a38d@roeck-us.net>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Sat, 30 Oct 2021 15:39:23 +0300
-Message-ID: <CAPLW+4mnAV0yHdYFtosYfS2jcAUa4qvScvmohBKvqTBHz-5CFQ@mail.gmail.com>
-Subject: Re: [PATCH 5/7] watchdog: s3c2410: Introduce separate source clock
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Received: by 2002:a17:906:c1da:0:0:0:0 with HTTP; Sat, 30 Oct 2021 06:30:40
+ -0700 (PDT)
+Reply-To: nancy.kipkalya@yahoo.com
+From:   NANCY KIPKALYA <nkipkalya@gmail.com>
+Date:   Sat, 30 Oct 2021 14:30:40 +0100
+Message-ID: <CAJiVTN2y1PQb93Edd2PuvaiMd9yzi9SqGno_HZUx1nJ_dcCO5A@mail.gmail.com>
+Subject: DEAR, READ AND GET BACK TO ME
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 at 03:21, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 10/28/21 11:35 AM, Sam Protsenko wrote:
-> > Some Exynos chips (like Exynos850) have dedicated source clock. That
-> > clock is provided from device tree as "watchdog_src" clock. In such
-> > case, "watchdog" clock is just a peripheral clock used for register
-> > interface. If "watchdog_src" is present, use its rate instead of
-> > "watchdog" for all timer related calculations.
-> >
->
-> If the "watchdog_src" clock is present, is "watchdog" clock still needed ?
-> Please state that explicitly, since it is kind of unusual.
->
+DEAR, READ AND GET BACK TO ME
 
-Done, I've reworded the commit message. Will send v2 soon, thanks.
 
-> Guenter
->
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> >   drivers/watchdog/s3c2410_wdt.c | 33 +++++++++++++++++++++++++++------
-> >   1 file changed, 27 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> > index a5ef7171a90e..bfc5872ca497 100644
-> > --- a/drivers/watchdog/s3c2410_wdt.c
-> > +++ b/drivers/watchdog/s3c2410_wdt.c
-> > @@ -126,6 +126,8 @@ struct s3c2410_wdt_variant {
-> >   struct s3c2410_wdt {
-> >       struct device           *dev;
-> >       struct clk              *clock;
-> > +     struct clk              *clock_src;
-> > +     unsigned long           freq_src;
-> >       void __iomem            *reg_base;
-> >       unsigned int            count;
-> >       spinlock_t              lock;
-> > @@ -213,10 +215,8 @@ MODULE_DEVICE_TABLE(platform, s3c2410_wdt_ids);
-> >
-> >   /* functions */
-> >
-> > -static inline unsigned int s3c2410wdt_max_timeout(struct clk *clock)
-> > +static inline unsigned int s3c2410wdt_max_timeout(unsigned long freq)
-> >   {
-> > -     unsigned long freq = clk_get_rate(clock);
-> > -
-> >       return S3C2410_WTCNT_MAXCNT / (freq / (S3C2410_WTCON_PRESCALE_MAX + 1)
-> >                                      / S3C2410_WTCON_MAXDIV);
-> >   }
-> > @@ -364,7 +364,7 @@ static int s3c2410wdt_set_heartbeat(struct watchdog_device *wdd,
-> >                                   unsigned int timeout)
-> >   {
-> >       struct s3c2410_wdt *wdt = watchdog_get_drvdata(wdd);
-> > -     unsigned long freq = clk_get_rate(wdt->clock);
-> > +     unsigned long freq = wdt->freq_src;
-> >       unsigned int count;
-> >       unsigned int divisor = 1;
-> >       unsigned long wtcon;
-> > @@ -627,13 +627,27 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
-> >               return ret;
-> >       }
-> >
-> > +     /* "watchdog_src" clock is optional; if it's not present -- just skip */
-> > +     wdt->clock_src = devm_clk_get(dev, "watchdog_src");
-> > +     if (!IS_ERR(wdt->clock_src)) {
-> > +             ret = clk_prepare_enable(wdt->clock_src);
-> > +             if (ret < 0) {
-> > +                     dev_err(dev, "failed to enable source clock\n");
-> > +                     ret = PTR_ERR(wdt->clock_src);
-> > +                     goto err_clk;
-> > +             }
-> > +             wdt->freq_src = clk_get_rate(wdt->clock_src);
-> > +     } else {
-> > +             wdt->freq_src = clk_get_rate(wdt->clock);
-> > +     }
-> > +
-> >       wdt->wdt_device.min_timeout = 1;
-> > -     wdt->wdt_device.max_timeout = s3c2410wdt_max_timeout(wdt->clock);
-> > +     wdt->wdt_device.max_timeout = s3c2410wdt_max_timeout(wdt->freq_src);
-> >
-> >       ret = s3c2410wdt_cpufreq_register(wdt);
-> >       if (ret < 0) {
-> >               dev_err(dev, "failed to register cpufreq\n");
-> > -             goto err_clk;
-> > +             goto err_clk_src;
-> >       }
-> >
-> >       watchdog_set_drvdata(&wdt->wdt_device, wdt);
-> > @@ -707,6 +721,10 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
-> >    err_cpufreq:
-> >       s3c2410wdt_cpufreq_deregister(wdt);
-> >
-> > + err_clk_src:
-> > +     if (!IS_ERR(wdt->clock_src))
-> > +             clk_disable_unprepare(wdt->clock_src);
-> > +
-> >    err_clk:
-> >       clk_disable_unprepare(wdt->clock);
-> >
-> > @@ -727,6 +745,9 @@ static int s3c2410wdt_remove(struct platform_device *dev)
-> >
-> >       s3c2410wdt_cpufreq_deregister(wdt);
-> >
-> > +     if (!IS_ERR(wdt->clock_src))
-> > +             clk_disable_unprepare(wdt->clock_src);
-> > +
-> >       clk_disable_unprepare(wdt->clock);
-> >
-> >       return 0;
-> >
->
+I am writing this mail to you with tears and sorrow from my heart.
+With due respect , trust and humanity, honestly, I will really like to
+have a good relationship with you and i have a special reason why I
+decided to contact you, is due to the urgency of my situation, My name
+is Miss Nancy Kipkalya Kones, 30yrs old female and I held from Kenya
+in East Africa. The plane crashed on the Tuesday 10th, June, 2008.
+
+You can read more about the crash through the below site:
+
+http://edition.cnn.com/2008/WORLD/africa/06/10/kenya.crash/index.html
+
+After the burial of my father, my stepmother and uncle conspired and
+sold my father's property to an Italian Expertrate which the shared
+the money among themselves and live nothing for me. One faithful
+morning, I opened my father's briefcase and found out the documents
+which he have deposited huge amount of money in one bank in Burkina
+Faso with my name as the next of kin. The amount is( $8. 5USD ), and I
+have confirmed from the bank in Burkina Faso on my arrival, It is my
+intention to compensate you with 30% of the total money for your
+services and the balance shall be my capital in your establishment. I
+will like to disclose much to you if you can help me to relocate to
+your country because my stepmother has threatened to assonate me.
+
+AWAITING YOUR URGENT AND POSITIVE RESPONSE,I shall appreciate an
+urgent message indicating your ability and willingness to handle this
+transaction sincerely. Please do keep this only to your self for now
+until the bank will transfer the fund. I have the documents for the
+claims.
+
+Yours Sincerely
+
+Miss Nancy Kipkalya Kones
