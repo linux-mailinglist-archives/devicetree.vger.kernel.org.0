@@ -2,141 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DA41440E05
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 13:08:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6088C440E2E
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 13:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbhJaML3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 08:11:29 -0400
-Received: from mout.kundenserver.de ([212.227.17.13]:37195 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbhJaML3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 08:11:29 -0400
-Received: from localhost.localdomain ([37.4.249.122]) by
- mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1Mn2iP-1n64Gr3FQt-00k6kE; Sun, 31 Oct 2021 13:08:34 +0100
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Mwesigwa Guma <mguma@redhat.com>,
-        Ojaswin Mujoo <ojaswin98@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-staging@lists.linux.dev,
-        Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V2 2/2] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to json-schema
-Date:   Sun, 31 Oct 2021 13:08:06 +0100
-Message-Id: <1635682086-3200-3-git-send-email-stefan.wahren@i2se.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
-References: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
-X-Provags-ID: V03:K1:BvkruI4+bJ2+q1yCTzxfbVcw0LKTklBvoa5CX0rTeOR4nuyH2vX
- gwmqRAZgCnPZcCZGgAV+E6D/4s1oLsmL47vTc9WnGuB19+wj6ngMQWadWFg6EEqpcFuMM/S
- Jomv1NxSA7ixJP7eXm9FtXqmeTSmRdX2E0alEZLIneZmkMrvtTKnQ2SRdyqG+mdwBsxINy2
- cH2w9bns7y3z3qdoGph2A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:mxChIPk60zw=:vl5z3GZGrpSdcVIgRwisV0
- 4GfB6epJIR8s+TyrD9xm0LWcxbHfrfz53nioUEyEK62hoTglwLnUYaQ1vaW5cwdACQHHPF1e1
- 63CJnj898NLtE0w7KL8mVFPDJJzpmzJeV497snIU7grcGE5Ys3Ad2Ubkl/6Aipa9w/fITmM2Z
- peqDgXVbebaA8Az5qSBsTWJsuPcaR4j8RQE6JAEanMTwjs6ncSoiWoxkHuOnPeEgmikSNwKEx
- xaRpeHMm/X1kvAeApG9Aj6InyxRZ1uYU2lv6PiSrJGVa++U1pq9i9ZiWH4W9q0UIc/zNxtCV5
- gtvJnXVMzi03EZlCERcUagY9+r+KMlhaZeV4AfAsWcDFGASEl1ObkbVyOx4WYX9WmtXzpYU5P
- 9TeQJI1LaFM0UyD/Th2AzXEdpgTu6JYfmgg5AK9/vmms1nSyNB8NS7hYI9ilP193WvXB0m5pP
- Q/AjNvQV+uwkl5OyoI8xNp0MDRLp36Ub3c/ZA7p9rbgKh4i718bb7Uzkse8yc/Dca5cjCOoL2
- lIRJ93exd+SKJvSiPhjXAXyRxHD6mHBiMMGR92gqAKj1GCGhQSG4j22+FoYZVkpNixTjxaoGE
- ocAfMWrDr+b11WIFW/M5CAQGBCHNQphfYXFd38b9c7VerY4nGhiuhmvquV+3NOoymNtxEjnHS
- N6/KykaMTv5r3WP05dyiOjt83xm3P37rb375adTEKWip22AITPHRq08gjyEhS+0oWm7/9YvGC
- /sRocNe/RyQSI2Hk
+        id S230304AbhJaMYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 08:24:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229863AbhJaMYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 08:24:06 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2145AC061714
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 05:21:34 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 5so53955066edw.7
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 05:21:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n4WzQadX+RqazB/22Gcyj8+qG3ieppJrK8iuTkJY04o=;
+        b=ohtuIdd4vh9qNNrqP0VjTTJDPBrzB0ztQ0p8vC1WTfmdgdOsQ7a4fhhKuvoTknKvJ2
+         pBUe4pjmDRWlQtGyGIN7BMT4m5E43rWeUEhE13R+jk5eRo+INCNMvLU1NKUhsFyWy+Kz
+         yStHRoKMXIsuwCLobZixKYneIVHRvP4Hlx36ILnoGDfIcvNIj686xa02xepgHPcseiky
+         /Vve3f6VPZOTA1nphyBFJxKQYIJ1Dc2ccgCx80v6rIMo1TY4mW+dU+Yz43kY805au2OO
+         X+zSiZaIW1qfmCZVyOAHo+N31bcfHhq2Cjtjm1VV2bvR0Lhaxf9Eu7V9lweTYmoIiKpL
+         37Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=n4WzQadX+RqazB/22Gcyj8+qG3ieppJrK8iuTkJY04o=;
+        b=V4T3Kr8IqCh6ME77AzzZWEaPS02CVrh5h8cruiG4jm3nn3NVPNH1b+EYYV3O+y+V81
+         +GZYdNpPOrbtbeMLnF2ErAfxmUZKA26O6HlcEcH+ofCIyFugTStQrBCSMJsRCDIzV9F6
+         qx9RLKi7osJHxQN31pFCBrjOVS9OmqdQTrRZoO4mnyV3dNlcLnwUCWFJwgDFe8D8OKv/
+         c1k7WS9a6L40rgdFV63nIiLehGxUCTNTO3k1i/WidYv/XKMY6ptVt13zBAYdGEFBPU5I
+         eu8e1wm4XdyiNFvkyGffF9PooR9ShVV9Da3kfbdQGtFGaCsJ6koCbpHJuTDqkvzKHTch
+         bzuw==
+X-Gm-Message-State: AOAM531iQmwzT7bvKUc1HjExJHNalA+ptst2NI9iIgvzhsSwLk8B6w4A
+        650g7XuFPVQ7Gll3B57i/VaNqg==
+X-Google-Smtp-Source: ABdhPJw0qzYV1pHGqTvipYoNRo19NlreHlylwDp56Zx9kLdJoDn/xaNBjZzq0ojs9jwRzRB9mYLyKg==
+X-Received: by 2002:a17:906:3947:: with SMTP id g7mr28787664eje.407.1635682892627;
+        Sun, 31 Oct 2021 05:21:32 -0700 (PDT)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id s16sm7398690edd.32.2021.10.31.05.21.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 31 Oct 2021 05:21:32 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/7] watchdog: s3c2410: Add Exynos850 support
+Date:   Sun, 31 Oct 2021 14:21:24 +0200
+Message-Id: <20211031122131.30097-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the VCHIQ bindings to YAML format.
+Exynos850 WDT IP-core differs a bit from existing platforms:
+  - Another set of PMU registers
+  - Separate WDT instance for each CPU cluster, having different PMU
+    registers/bits
+  - Source clock is different from PCLK
 
-Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
----
- .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
- .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 45 ++++++++++++++++++++++
- 2 files changed, 45 insertions(+), 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
- create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+Implement all missing features above and enable Exynos850 WDT support.
 
-diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-deleted file mode 100644
-index f331316..0000000
---- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Broadcom VCHIQ firmware services
--
--Required properties:
--
--- compatible:	Should be "brcm,bcm2835-vchiq" on BCM2835, otherwise
--		"brcm,bcm2836-vchiq".
--- reg:		Physical base address and length of the doorbell register pair
--- interrupts:	The interrupt number
--		  See bindings/interrupt-controller/brcm,bcm2835-armctrl-ic.txt
--
--Example:
--
--mailbox@7e00b840 {
--	compatible = "brcm,bcm2835-vchiq";
--	reg = <0x7e00b840 0xf>;
--	interrupts = <0 2>;
--};
-diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-new file mode 100644
-index 0000000..a1d5cd4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-vchiq.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom VCHIQ firmware services
-+
-+maintainers:
-+  - Nicolas Saenz Julienne <nsaenz@kernel.org>
-+
-+description:
-+  The VCHIQ communication channel can be provided by BCM283x and Capri SoCs,
-+  to communicate with the VPU-side OS services.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm2835-vchiq
-+      - brcm,bcm2836-vchiq
-+
-+  reg:
-+    description: Physical base address and length of the doorbell register pair
-+    minItems: 1
-+
-+  interrupts:
-+    description: Interrupt number of the doorbell interrupt
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mailbox@7e00b840 {
-+      compatible = "brcm,bcm2835-vchiq";
-+      reg = <0x7e00b840 0xf>;
-+      interrupts = <0 2>;
-+    };
-+
-+...
+Sam Protsenko (7):
+  dt-bindings: watchdog: Require samsung,syscon-phandle for Exynos7
+  dt-bindings: watchdog: Document Exynos850 watchdog bindings
+  watchdog: s3c2410: Make reset disable optional
+  watchdog: s3c2410: Add support for WDT counter enable
+  watchdog: s3c2410: Introduce separate source clock
+  watchdog: s3c2410: Add Exynos850 support
+  watchdog: s3c2410: Let kernel kick watchdog
+
+ .../bindings/watchdog/samsung-wdt.yaml        |  17 +-
+ drivers/watchdog/s3c2410_wdt.c                | 215 ++++++++++++++----
+ 2 files changed, 190 insertions(+), 42 deletions(-)
+
 -- 
-2.7.4
+2.30.2
 
