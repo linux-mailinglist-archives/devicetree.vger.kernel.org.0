@@ -2,65 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AD13440FDF
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 18:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F264E44106A
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 20:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230227AbhJaRqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 13:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35974 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230258AbhJaRqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 13:46:37 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67101C061570
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 10:44:04 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id i3so2369784lfu.4
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 10:44:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=u/kNorK5ll05f6uJ248Gdii6muuXMKnIBhBngzHcpUE=;
-        b=FuOpUfKuXPKg/gw/zbkVGGO/Mkgz929zfxdcJi8LNIBuiD3FZI31hD6w2XdYxPEbRX
-         d9OecMeG0WUhnF1SJqDMEwPNds5L8t5B1NGK0SzUD2dL0wj3dt/9pAczcibCsRe0yKxS
-         GlSsqwP87dk3VLSDTNRROkntZ1sZDvbYI2suTCuhCcDfDbO/o8URnevbwojPNfHZXlor
-         d+wzPjRUuUc+lpZki0TyNRuKzwjpgxcjRgduqk7GQ8L/TUhXy+7YFDicyEp0eOGYIfzz
-         f79VHDomRW9dSCfgzO12gGUKnfCTayOFje86NXREsOWF9jmwLVB6nJcN9bYf9Z1EhsKD
-         JP5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=u/kNorK5ll05f6uJ248Gdii6muuXMKnIBhBngzHcpUE=;
-        b=tOJr5guMfUdPq2CQraystKchlKblRGJdfG63TkOumKjxjT0Pq3Y6lDwIldQ5jlTAZN
-         oxCOZiRJ4fiF8fUBEXHcIQPtVghh4+u31AtrApswTuGzCMpBbBFawlncnHQvndibwEdv
-         /+8LVHpBQF4iqhcFKtn8/HfV4QsA5FbI9H6cc6oXVtT6CRv1hcW9TIT28FI5KeKjxc/3
-         jHxZU0puxsg09PZjXGhRSY3UFEoRxfhKnzeCoiZlYTEUc39RqGfp4AIxfY2RZGOQIYnB
-         BzMdMTaSW+AJejOvlJabJjeGgSPtaA9TV90z+c089qKJ4gplvkdlIg7LNONCSYHi0wE/
-         XZBw==
-X-Gm-Message-State: AOAM5324DQjhiNkC3/+Y+T/TsYVA9HTzDcmlTc1S3w86oR4USt4UpfZz
-        sHsKQHMUbnoXWXSvTNhBA13bv+62yN3UKu4N7jc=
-X-Google-Smtp-Source: ABdhPJx2Xsys5REusyogkyN+q0BqYrxP9VmvitsCftjVol9AvEPuKdbsu1hCyQfZgpGblzcTdXF2rQN/v6Gazpsbg8U=
-X-Received: by 2002:a05:6512:13a1:: with SMTP id p33mr23503813lfa.648.1635702242674;
- Sun, 31 Oct 2021 10:44:02 -0700 (PDT)
+        id S230388AbhJaTV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 15:21:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38506 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230041AbhJaTV1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Oct 2021 15:21:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4404060E90;
+        Sun, 31 Oct 2021 19:18:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635707935;
+        bh=f0CNKowKnu0Y0hiZPNL/Xt4UG4lZmb6ehucdY8vg27Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KLhwvol/qTGHkqgaYhWhBmgSeNeYqCYfYGZkxd4MIQ01WsczxY8u7G0dz1LCrie5S
+         Oz4cNcOUN5bquC/vAbsZbbZDOwm93wWQldoheXP3uQ+fhodlJORFAUtoXrJybnyjD+
+         DGtUVlJSHLvwAaHu+eM4HAu7TVbbQp1R4qGAvAdPszhue9v92GVPyWHZSHYvgFjnwv
+         ddMEnP8C+/xyuiAAAHnLJeY8pa9R7EuDd+7cNYQPEyQz/vu6nWOyS32QTa3TPyHAhN
+         l431NTL17tO5EK6IROTl+uRG+GKpSPxoExynYNuKoj150QiUMo0LAio+dnIASzhMaC
+         vnsFmrGKwtrEQ==
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To:     netdev@vger.kernel.org, Russell King <rmk+kernel@armlinux.org.uk>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH net-next] dt-bindings: ethernet-controller: support multiple PHY connection types
+Date:   Sun, 31 Oct 2021 20:18:49 +0100
+Message-Id: <20211031191849.15583-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Received: by 2002:a05:6520:1d5:b0:14c:d721:f6d6 with HTTP; Sun, 31 Oct 2021
- 10:44:02 -0700 (PDT)
-Reply-To: kofa19god73@gmail.com
-From:   "Dr. Kofa" <legaldocgoldlive1960690000@gmail.com>
-Date:   Sun, 31 Oct 2021 17:44:02 +0000
-Message-ID: <CABu0iam17ZqXvV+u=4_chSdvO4QBMGLX5G4NERTNmVWyxGK8=Q@mail.gmail.com>
-Subject: Re;
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello, Greetings.
-Dear, friend i contacted you and sent my email. About my legal detail,
-partnership/capital investment issue, to handle and discuss with your
-understanding/cooperation okay.
+Sometimes, an ethernet PHY may communicate with ethernet controller with
+different PHY connection types, and the software should be able to choose
+between them.
 
-Respond back for more benefit and legal information.
+Existing example is one SerDes lane capable of `1000base-x`,
+`2500base-x` and `sgmii` when connecting Marvell switches with Marvell
+ethernet controller. Currently we mention only one of these modes in
+device-tree, and software assumes the other modes are also supported,
+since they use the same SerDes lanes. But a board may be able to support
+`1000base-x` and not support `2500base-x`, for example due to the higher
+frequency not working correctly on a particular board.
 
-Regards,
+Another example is the Marvell 88X3310 PHY, which supports connecting
+the MAC with the PHY with `xaui` and `rxaui`. The MAC may also support
+both modes, but it is possible that a particular board doesn't have
+these modes wired (since they use multiple SerDes lanes).
+
+In order for the kernel to know which modes are supported on the board,
+we need to be able to specify them all in the device-tree.
+
+Change the property `phy-connection-type` of an ethernet controller to
+be an array of the enumerated strings, with at least one item defined,
+if the property is mentioned.
+
+Signed-off-by: Marek Behún <kabel@kernel.org>
+---
+ .../bindings/net/ethernet-controller.yaml     | 88 ++++++++++---------
+ 1 file changed, 45 insertions(+), 43 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+index b0933a8c295a..05a02fdc7ca9 100644
+--- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
++++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+@@ -56,49 +56,51 @@ properties:
+     description:
+       Specifies interface type between the Ethernet device and a physical
+       layer (PHY) device.
+-    enum:
+-      # There is not a standard bus between the MAC and the PHY,
+-      # something proprietary is being used to embed the PHY in the
+-      # MAC.
+-      - internal
+-      - mii
+-      - gmii
+-      - sgmii
+-      - qsgmii
+-      - tbi
+-      - rev-mii
+-      - rmii
+-      - rev-rmii
+-
+-      # RX and TX delays are added by the MAC when required
+-      - rgmii
+-
+-      # RGMII with internal RX and TX delays provided by the PHY,
+-      # the MAC should not add the RX or TX delays in this case
+-      - rgmii-id
+-
+-      # RGMII with internal RX delay provided by the PHY, the MAC
+-      # should not add an RX delay in this case
+-      - rgmii-rxid
+-
+-      # RGMII with internal TX delay provided by the PHY, the MAC
+-      # should not add an TX delay in this case
+-      - rgmii-txid
+-      - rtbi
+-      - smii
+-      - xgmii
+-      - trgmii
+-      - 1000base-x
+-      - 2500base-x
+-      - 5gbase-r
+-      - rxaui
+-      - xaui
+-
+-      # 10GBASE-KR, XFI, SFI
+-      - 10gbase-kr
+-      - usxgmii
+-      - 10gbase-r
+-      - 25gbase-r
++    minItems: 1
++    items:
++      enum:
++        # There is not a standard bus between the MAC and the PHY,
++        # something proprietary is being used to embed the PHY in the
++        # MAC.
++        - internal
++        - mii
++        - gmii
++        - sgmii
++        - qsgmii
++        - tbi
++        - rev-mii
++        - rmii
++        - rev-rmii
++
++        # RX and TX delays are added by the MAC when required
++        - rgmii
++
++        # RGMII with internal RX and TX delays provided by the PHY,
++        # the MAC should not add the RX or TX delays in this case
++        - rgmii-id
++
++        # RGMII with internal RX delay provided by the PHY, the MAC
++        # should not add an RX delay in this case
++        - rgmii-rxid
++
++        # RGMII with internal TX delay provided by the PHY, the MAC
++        # should not add an TX delay in this case
++        - rgmii-txid
++        - rtbi
++        - smii
++        - xgmii
++        - trgmii
++        - 1000base-x
++        - 2500base-x
++        - 5gbase-r
++        - rxaui
++        - xaui
++
++        # 10GBASE-KR, XFI, SFI
++        - 10gbase-kr
++        - usxgmii
++        - 10gbase-r
++        - 25gbase-r
+ 
+   phy-mode:
+     $ref: "#/properties/phy-connection-type"
+-- 
+2.32.0
+
