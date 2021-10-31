@@ -2,72 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78174440DA6
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 10:36:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69989440DB5
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 10:57:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbhJaJjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 05:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
+        id S229934AbhJaJ7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 05:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229638AbhJaJjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 05:39:16 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03B2C061570
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 02:36:44 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id h7so54729728ede.8
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 02:36:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=0KvQkxFdmSckOXJpLXZtURzOqfI2/nRXk2vwKc98xhg=;
-        b=bJfar7WCzNKPTRFMl6Bo2KuZkUlxDi/w73c8iGP4QsWeQKdaZbHCO0q5UCPWRHe64D
-         U3Vu4naR05Q63LlEDzT0FcwyIm7FQTAPNgYD133e7R7rAGm8ByntnmC1ArgYnDapAml7
-         z6y5CmPz4NHty4cUA2KFx9wF8H4ZoW1gSQKdpP2Gnn9XrAJI5caDsKbCuy2ieSh9CAkQ
-         GX4nLDtdUyDbd301ifwrLLlPfvSRw8uSSQhtdvTHnXe4+Q7A40baEJA9JaQIhOJe2Vyp
-         fsMTrNMpb+eB5gM+VSVY3CK+wqgTd/2Hge23gGndQP3DGBBwTgRlAlG6btGlkvuhikWK
-         D9CQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=0KvQkxFdmSckOXJpLXZtURzOqfI2/nRXk2vwKc98xhg=;
-        b=3TzI0y9aV/fnOqbpe12pcFwKvryokUfDd73gmDbMmTLIY++My4O2G5RlwbOXy7SHhS
-         3AgsTdguGedkpTt4spsoiO283O8tqvhortZdjeXaRcQro3j9NTMUOAzsQn01r2lj4QkD
-         wlraA+CFXx/5VRxIvFzmA/4WTaecBcdzxyuzau5hOBbNF1SXSSSLPaGjrH6vXwwIoYFP
-         GlSAeWj5owBIID2f26twu3vKyMWJbcWgT4HwxkN3nFCX1UEJEwPpHPIzJg0a3WASUiLl
-         u89IJl3UZjkx+VL66soG+8Ga7BmlfRfMEisMgPMLpGffbopQeRMmoib0dmldEfXFRtoy
-         xKEQ==
-X-Gm-Message-State: AOAM530FHxKvbA1Gv9HcIfSnEuWT6SBgxRcBn1gs91IajzvIh/+k5BA6
-        oeFnXkBgXCDmfZ2knSn5fY4TbIbhUOrWE4W0NQs=
-X-Google-Smtp-Source: ABdhPJzsn9afXyllnNffGkW+AnD/rV6YyzY5oLnk5aCzx0UOSeH1Vv/T7DnweW6F4biMVFFeES3snDXDIJkMrFGpNxY=
-X-Received: by 2002:a05:6402:50cd:: with SMTP id h13mr31547563edb.27.1635673001951;
- Sun, 31 Oct 2021 02:36:41 -0700 (PDT)
+        with ESMTP id S229660AbhJaJ7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 05:59:30 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37700C061570;
+        Sun, 31 Oct 2021 02:56:57 -0700 (PDT)
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 969BD8119C;
+        Sun, 31 Oct 2021 10:56:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1635674215;
+        bh=7AYbWGTGcCNOgK5bfSPIOgJQ5VoaoHBTv0b+B2mNrcQ=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Xo92MBscHd8bMFnCMMN1IaOUBFE3f+MKKekTR7XxAOjQtLolN2MWtaMyKJtfn4FSY
+         GQu6bBr0+2vC7E0HAnvXQA95/9R+o1zHk8mlw2JbHBMMJG/2UsUYxLRXgFRIHYsGl+
+         aEyzb1y9c6FY7GdttCyAP8sduhKTKNhnzxoZ4wtfDWfvA6tzb4EwZYTIYwInubLcqL
+         HT/7nVbxe6okxFmhusdmhdmoTPCbIlVK/0wE4DtU3752cfMDs5NvbZEzZMWZd/Rodm
+         syXFMYOLL0Zp6PeiUJl/I22KRchROFtqDbsBYdeRqPy+Vbuz53yGxOXrON3iiNpwph
+         GoXN0P1kKJw2w==
+Subject: Re: [PATCH] dt-bindings: usb: dwc2: Add otg-rev property
+ documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-usb@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+References: <20211024003652.227772-1-marex@denx.de>
+ <YXtXwhXcGOqj8Pv8@robh.at.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <90d58857-8f71-fb47-66fa-d54cffab779f@denx.de>
+Date:   Sun, 31 Oct 2021 10:56:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Received: by 2002:ab4:a332:0:0:0:0:0 with HTTP; Sun, 31 Oct 2021 02:36:41
- -0700 (PDT)
-Reply-To: enzocarranza99@gmail.com
-From:   ENZO CARRANZA <jacobbarney57@gmail.com>
-Date:   Sun, 31 Oct 2021 12:36:41 +0300
-Message-ID: <CALM1g1NWnv-a8SsnYp7Mrq7JYYUx=HUSDhL2ua=wrXSJau8qNA@mail.gmail.com>
-Subject: Greetings to You
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YXtXwhXcGOqj8Pv8@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From : Mr. Enzo Carranza
-Fax: +34 932 71 56 35
-Email: enzocarranza99@gmail.com
+On 10/29/21 4:09 AM, Rob Herring wrote:
+> On Sun, Oct 24, 2021 at 02:36:52AM +0200, Marek Vasut wrote:
+>> Copy the otg-rev property documentation from usb-drd.yaml into the DWC2
+>> binding document, since some users of the DWC2 IP like STM32MP1 use the
+>> otg-rev property in DT bindings for this controller.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> ---
+>> NOTE: Shouldn't this somehow be part of the USB core bindings instead?
+> 
+> Yes, usb-drd.yaml IIRC
 
-
-Dear Friend,
-I had no choice but to approach you via this method because I have
-a BUSINESS PROPOSAL that will interest you and will be of mutual benefit to us.
-
-Kindly get back to me so I can give you the full details.
-Thank you.
-
-Kind regards
-Mr. Enzo Carranza
-Financial Management Consultant.
+Right, drop this patch, since the patchset from Fabrice is better and 
+does exactly what I was wondering about in the NOTE.
