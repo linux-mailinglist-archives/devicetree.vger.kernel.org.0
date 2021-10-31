@@ -2,73 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69989440DB5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 10:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83619440DD5
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 11:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbhJaJ7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 05:59:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbhJaJ7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 05:59:30 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37700C061570;
-        Sun, 31 Oct 2021 02:56:57 -0700 (PDT)
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 969BD8119C;
-        Sun, 31 Oct 2021 10:56:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1635674215;
-        bh=7AYbWGTGcCNOgK5bfSPIOgJQ5VoaoHBTv0b+B2mNrcQ=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Xo92MBscHd8bMFnCMMN1IaOUBFE3f+MKKekTR7XxAOjQtLolN2MWtaMyKJtfn4FSY
-         GQu6bBr0+2vC7E0HAnvXQA95/9R+o1zHk8mlw2JbHBMMJG/2UsUYxLRXgFRIHYsGl+
-         aEyzb1y9c6FY7GdttCyAP8sduhKTKNhnzxoZ4wtfDWfvA6tzb4EwZYTIYwInubLcqL
-         HT/7nVbxe6okxFmhusdmhdmoTPCbIlVK/0wE4DtU3752cfMDs5NvbZEzZMWZd/Rodm
-         syXFMYOLL0Zp6PeiUJl/I22KRchROFtqDbsBYdeRqPy+Vbuz53yGxOXrON3iiNpwph
-         GoXN0P1kKJw2w==
-Subject: Re: [PATCH] dt-bindings: usb: dwc2: Add otg-rev property
- documentation
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-usb@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-References: <20211024003652.227772-1-marex@denx.de>
- <YXtXwhXcGOqj8Pv8@robh.at.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <90d58857-8f71-fb47-66fa-d54cffab779f@denx.de>
-Date:   Sun, 31 Oct 2021 10:56:54 +0100
+        id S229660AbhJaKbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 06:31:45 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:62804 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229638AbhJaKbp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Oct 2021 06:31:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1635676154;
+  x=1667212154;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=jsBsR890SDq8iXow8DAd3AfZ518QJ0LNOOKg1GmL9mk=;
+  b=T7MOJhwnQs9r6XKRfwTxS5lYsbxWhz3urBCPue8FPtTNlwX6o8PGaNWL
+   C+9ggesCx8vofqAUFNA0lnvZ42MPA8nA42r8dMDeehbNTZgFq2K7YAEF8
+   3UMPmNXzGDwB1igsvHJ+YBKf6vdceLN+IVOBPiOzoqCn5DQKvPZwQOGWf
+   Oqf8htWR1ggYV15+KlEa3z7dulqxZkWeVOBqNz98h5taMSU5vcLIxYk8H
+   YKwGUEaJC8VQuvsWdwSBGaPKIuAUTjo4OOpvwkeOBD2Q8q8w0k9NpZFNl
+   +BJClsg5HmtzrIit6jBGukHpq7CQv6mJJh7vqsrHnGGefhFPUM2lBA71d
+   A==;
+Subject: Re: [PATCH 1/2] rtc: rs5c372: Add support for trim configuration
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Pavel Modilaynen <Pavel.Modilaynen@axis.com>
+CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lkml@axis.com" <lkml@axis.com>, kernel <kernel@axis.com>
+References: <20211030225054.32114-1-pavel.modilaynen@axis.com>
+ <20211030225054.32114-2-pavel.modilaynen@axis.com>
+ <YX3N9b6P4w1kSGfp@piout.net>
+From:   Pavel Modilaynen <pavelmn@axis.com>
+Message-ID: <6cc22970-fa11-ccb4-c155-62396a7e3890@axis.com>
+Date:   Sun, 31 Oct 2021 11:29:12 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <YXtXwhXcGOqj8Pv8@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <YX3N9b6P4w1kSGfp@piout.net>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail05w.axis.com
+ (10.20.40.11)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/29/21 4:09 AM, Rob Herring wrote:
-> On Sun, Oct 24, 2021 at 02:36:52AM +0200, Marek Vasut wrote:
->> Copy the otg-rev property documentation from usb-drd.yaml into the DWC2
->> binding document, since some users of the DWC2 IP like STM32MP1 use the
->> otg-rev property in DT bindings for this controller.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> ---
->> NOTE: Shouldn't this somehow be part of the USB core bindings instead?
-> 
-> Yes, usb-drd.yaml IIRC
+Hi Alexandre,
 
-Right, drop this patch, since the patchset from Fabrice is better and 
-does exactly what I was wondering about in the NOTE.
+
+On 10/31/21 12:57 AM, Alexandre Belloni wrote:
+> Hello,
+> 
+> Please use the proper RTC interface by implementing .set_offset and
+> .read_offset.
+
+I am not sure about .set/read_offset. It looks as runtime adjustment 
+interface,
+however this Xtal trimming parameter is based on schematics and Xtal 
+capacitance (datasheet parameter).
+It is found by calibration procedure based on RTC clock output (the 
+procedure and calculation of trimming parameter is described in datasheets).
+So, I would like to say that this parameter is functionally close to
+"quartz-load-femtofarads" for rtc-pcf8523/pcf85063.
+
+> 
+> On 31/10/2021 00:50:53+0200, Pavel Modilaynen wrote:
+>> From: Pavel Modilaynen <pavelmn@axis.com>
+>> 
+>> Add support for oscillation adjustment register RS5C372_REG_TRIM
+>> setting that is needed to accommodate for effective crystal
+>> capacitance.
+>> 
+>> Use optional property ricoh,trim that should contain
+>> raw value to setup this register. According to
+>> datasheets for RS5C372, R2025S/D, RV5C38[67] and R222[13]
+>> the value will be converted to a number of ticks that
+>> is to be subtracted or added when the second digits read
+>> 00, 20 or 40 seconds.
+>> 
+>> Signed-off-by: Pavel Modilaynen <pavelmn@axis.com>
+>> ---
+>>  drivers/rtc/rtc-rs5c372.c | 18 +++++++++++++++++-
+>>  1 file changed, 17 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/drivers/rtc/rtc-rs5c372.c b/drivers/rtc/rtc-rs5c372.c
+>> index 80980414890c..3a2db0326669 100644
+>> --- a/drivers/rtc/rtc-rs5c372.c
+>> +++ b/drivers/rtc/rtc-rs5c372.c
+>> @@ -13,6 +13,7 @@
+>>  #include <linux/slab.h>
+>>  #include <linux/module.h>
+>>  #include <linux/of_device.h>
+>> +#include <linux/of.h>
+>>  
+>>  /*
+>>   * Ricoh has a family of I2C based RTCs, which differ only slightly from
+>> @@ -560,6 +561,8 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+>>  {
+>>        unsigned char buf[2];
+>>        int addr, i, ret = 0;
+>> +     struct i2c_client *client = rs5c372->client;
+>> +     u8 trim = 0;
+>>  
+>>        addr   = RS5C_ADDR(RS5C_REG_CTRL1);
+>>        buf[0] = rs5c372->regs[RS5C_REG_CTRL1];
+>> @@ -599,9 +602,22 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+>>                break;
+>>        }
+>>  
+>> +     /* optional setup of xtal trimming */
+>> +     if (!of_property_read_u8(client->dev.of_node, "ricoh,trim", &trim)) {
+>> +             if (rs5c372->type != rtc_r2221tl && (trim & ~RS5C372_TRIM_MASK)) {
+>> +                     dev_warn(&client->dev, "Erroneous setting for ricoh,trim in devicetree\n");
+>> +             } else {
+>> +                     int addr = RS5C_ADDR(RS5C372_REG_TRIM);
+>> +                     int ret = i2c_smbus_write_byte_data(client, addr, trim);
+>> +
+>> +                     if (unlikely(ret < 0))
+>> +                             return ret;
+>> +             }
+>> +     }
+>> +
+>>        for (i = 0; i < sizeof(buf); i++) {
+>>                addr = RS5C_ADDR(RS5C_REG_CTRL1 + i);
+>> -             ret = i2c_smbus_write_byte_data(rs5c372->client, addr, buf[i]);
+>> +             ret = i2c_smbus_write_byte_data(client, addr, buf[i]);
+>>                if (unlikely(ret < 0))
+>>                        return ret;
+>>        }
+>> -- 
+>> 2.20.1
+>> 
+> 
+> -- 
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com <https://bootlin.com>
