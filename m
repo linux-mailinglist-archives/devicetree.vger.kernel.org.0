@@ -2,109 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DD43440EC3
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 15:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA37440EC2
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 15:16:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229747AbhJaOSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 10:18:39 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:39653 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbhJaOSi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 10:18:38 -0400
-Received: by mail-oi1-f181.google.com with SMTP id n11so13027432oig.6;
-        Sun, 31 Oct 2021 07:16:06 -0700 (PDT)
+        id S229736AbhJaOSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 10:18:37 -0400
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:39650 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229681AbhJaOSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 10:18:36 -0400
+Received: by mail-oi1-f180.google.com with SMTP id n11so13027298oig.6;
+        Sun, 31 Oct 2021 07:16:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=7+WutpRKSgAxKB6SSYx+7xcYxePUoAkpe1h+WmxLKBc=;
-        b=wdQviT/atZG3BFpDOFb1qv2FWbiZvQUdVLwOfiBDWeq8e5sC0ANssGmqtzNL9AhNIm
-         f660BXZvIPmUPyLaROWgpJ4tW4sYPnlxIxWtHW/HxiZZaf04W3Q97fMpC48O46byVcVU
-         jWR1qAAbiO40fJuuDyySBXPkDi/EHeiYwngIt7TwU7T7PPqoTq+6ZmGlWF+mjNIR2AZR
-         PltzxOLfIVujafllZOGjZDdB7iD+e4V6Vn1YMHdZLmhr84G+AwfIz+lu5aEggYTdL2Zj
-         xPu1+ImxXcD4KcxdOKboAus2p7ixXitugwDNIWeOEG2WxsQXlLhzKC5Xh5+q235x3wYF
-         RKkQ==
-X-Gm-Message-State: AOAM5301ZYwVElCtuGTCpz27jbXFqLLFoYQN7o2YFm37DGhI2U/PXMvv
-        rA3x8YVifxct6XPIPlt1AA7rCHqlxg==
-X-Google-Smtp-Source: ABdhPJylsheODMLLBuJtDPN5aZrTLHRyUgBP9GYP4P7rvuelDad3zoPXMkuAir42tdLFrJ8H+XmcQQ==
-X-Received: by 2002:a05:6808:8d3:: with SMTP id k19mr20870159oij.163.1635689766457;
-        Sun, 31 Oct 2021 07:16:06 -0700 (PDT)
+        bh=xC+QLTIobuHa0Z6oCpAsqleWAEnn6kGUDyvkKP96ljo=;
+        b=QT8AUMPSTi/P7BL/8wU/rIAZNARhRYDx0dPdVHEDtNunXmPxfj3n9SpBC4cSq7Ukrz
+         Lzjqss3kcroCEWjFR1uA5WBgeicl327D88rfZ4vRfhZ/yYThUHH46F/bpvCaMzTjAJqm
+         yanZmklbHMp3cyYA2ag+DhbErH8e/AEAup+Tk048zOn/O8MezTiSFqAuSp2/sMp7bMNj
+         wf6eYU4wp6qztnjLJcnaZM+qw+MblutJLUNVypgDzNMl0OW/7VNYcvoVGnegDZeR1LNY
+         8a5HNbpoIKSXVyDx/3jCrxIRDAWT16kzPS6hoQ32KTXTFLfZEQJJtMR9w8y1pPytrdga
+         C0ug==
+X-Gm-Message-State: AOAM533PDxGzJoZ8iF5qthNBuENHw5iMA0vWOxrPGgNd71/l0uvTKje0
+        JiZ4QynRKjwa8guKkO3EeA==
+X-Google-Smtp-Source: ABdhPJzefT/prrdJgYTE9ha1AUY+mLo2O1FCTNvTIM/vM02p0FQa4ro2FSPdNyMBSbCws/igy2KEsg==
+X-Received: by 2002:a05:6808:1187:: with SMTP id j7mr16179962oil.135.1635689764746;
+        Sun, 31 Oct 2021 07:16:04 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f14sm3123106otf.33.2021.10.31.07.16.05
+        by smtp.gmail.com with ESMTPSA id l12sm3432395otf.22.2021.10.31.07.16.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Oct 2021 07:16:05 -0700 (PDT)
-Received: (nullmailer pid 2444176 invoked by uid 1000);
+        Sun, 31 Oct 2021 07:16:03 -0700 (PDT)
+Received: (nullmailer pid 2444173 invoked by uid 1000);
         Sun, 31 Oct 2021 14:16:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, tglx@linutronix.de,
-        manivannan.sadhasivam@linaro.org, maz@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, linux-arm-msm@vger.kernel.org,
-        sboyd@kernel.org
-In-Reply-To: <1635552042-16250-2-git-send-email-quic_vamslank@quicinc.com>
-References: <1635552042-16250-1-git-send-email-quic_vamslank@quicinc.com> <1635552042-16250-2-git-send-email-quic_vamslank@quicinc.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: Add SDX65 GCC clock bindings
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Lee Jones <lee.jones@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Justin Chen <justinpopo6@gmail.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20211029202505.7106-1-zajec5@gmail.com>
+References: <20211029202505.7106-1-zajec5@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: convert Broadcom's WDT to the json-schema
 Date:   Sun, 31 Oct 2021 09:16:02 -0500
-Message-Id: <1635689762.736828.2444175.nullmailer@robh.at.kernel.org>
+Message-Id: <1635689762.721738.2444172.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 17:00:37 -0700, quic_vamslank@quicinc.com wrote:
-> From: Vamsi krishna Lanka <quic_vamslank@quicinc.com>
+On Fri, 29 Oct 2021 22:25:04 +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Add device tree bindings for global clock controller on SDX65 SOCs.
+> This helps validating DTS files.
 > 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  .../devicetree/bindings/clock/qcom,gcc-sdx65.yaml  |  78 +++++++++++++
->  include/dt-bindings/clock/qcom,gcc-sdx65.h         | 122 +++++++++++++++++++++
->  2 files changed, 200 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx65.h
+>  .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ---------
+>  .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 40 +++++++++++++++++++
+>  2 files changed, 40 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml:71:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.example.dts'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 434, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 120, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 65, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 71, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.example.dts] Error 1
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml:  while scanning a block scalar
-  in "<unicode string>", line 65, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 71, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/clock/qcom,gcc-sdx65.yaml
-make: *** [Makefile:1441: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/watchdog/brcm,bcm7038-wdt.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1548429
+See https://patchwork.ozlabs.org/patch/1548262
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
