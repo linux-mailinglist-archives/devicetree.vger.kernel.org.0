@@ -2,145 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83619440DD5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 11:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B016D440DF9
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 12:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbhJaKbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 06:31:45 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:62804 "EHLO smtp2.axis.com"
+        id S229697AbhJaLnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 07:43:41 -0400
+Received: from ixit.cz ([94.230.151.217]:40008 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229638AbhJaKbp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Oct 2021 06:31:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1635676154;
-  x=1667212154;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=jsBsR890SDq8iXow8DAd3AfZ518QJ0LNOOKg1GmL9mk=;
-  b=T7MOJhwnQs9r6XKRfwTxS5lYsbxWhz3urBCPue8FPtTNlwX6o8PGaNWL
-   C+9ggesCx8vofqAUFNA0lnvZ42MPA8nA42r8dMDeehbNTZgFq2K7YAEF8
-   3UMPmNXzGDwB1igsvHJ+YBKf6vdceLN+IVOBPiOzoqCn5DQKvPZwQOGWf
-   Oqf8htWR1ggYV15+KlEa3z7dulqxZkWeVOBqNz98h5taMSU5vcLIxYk8H
-   YKwGUEaJC8VQuvsWdwSBGaPKIuAUTjo4OOpvwkeOBD2Q8q8w0k9NpZFNl
-   +BJClsg5HmtzrIit6jBGukHpq7CQv6mJJh7vqsrHnGGefhFPUM2lBA71d
-   A==;
-Subject: Re: [PATCH 1/2] rtc: rs5c372: Add support for trim configuration
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Pavel Modilaynen <Pavel.Modilaynen@axis.com>
-CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lkml@axis.com" <lkml@axis.com>, kernel <kernel@axis.com>
-References: <20211030225054.32114-1-pavel.modilaynen@axis.com>
- <20211030225054.32114-2-pavel.modilaynen@axis.com>
- <YX3N9b6P4w1kSGfp@piout.net>
-From:   Pavel Modilaynen <pavelmn@axis.com>
-Message-ID: <6cc22970-fa11-ccb4-c155-62396a7e3890@axis.com>
-Date:   Sun, 31 Oct 2021 11:29:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S229638AbhJaLnk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Oct 2021 07:43:40 -0400
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 2446B24E71;
+        Sun, 31 Oct 2021 12:32:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1635679972;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=F+8gu9hZCCdEjt5uT/O7323gSxFeIkUT6UKFNzqTy2o=;
+        b=bAMrXFCTCljUDf5oM9CfK7UtrwI1DLTqIm5MEFDYtqadhoSNVdHYxY/KZYVXdjAiV6dfEQ
+        BrJ++SiWduMge1wCgna2L7YdQ0tcUQEkQl5oByKYS2IHHwwjgMXj8XsHSHIeGo0hKdZ7cl
+        86nx8i2baMo+Ubt1Rj59mXIFZzmYZB8=
+From:   David Heidelberg <david@ixit.cz>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Thierry Reding <treding@nvidia.com>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: phy: Tegra194 P2U convert to YAML
+Date:   Sun, 31 Oct 2021 12:32:36 +0100
+Message-Id: <20211031113236.29712-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-In-Reply-To: <YX3N9b6P4w1kSGfp@piout.net>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail05w.axis.com
- (10.20.40.11)
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
+Convert Tegra194 P2U binding to the YAML format.
 
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ .../bindings/phy/phy-tegra194-p2u.txt         | 28 ------------
+ .../bindings/phy/phy-tegra194-p2u.yaml        | 44 +++++++++++++++++++
+ 2 files changed, 44 insertions(+), 28 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml
 
-On 10/31/21 12:57 AM, Alexandre Belloni wrote:
-> Hello,
-> 
-> Please use the proper RTC interface by implementing .set_offset and
-> .read_offset.
+diff --git a/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt b/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+deleted file mode 100644
+index d23ff90baad5..000000000000
+--- a/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
++++ /dev/null
+@@ -1,28 +0,0 @@
+-NVIDIA Tegra194 P2U binding
+-
+-Tegra194 has two PHY bricks namely HSIO (High Speed IO) and NVHS (NVIDIA High
+-Speed) each interfacing with 12 and 8 P2U instances respectively.
+-A P2U instance is a glue logic between Synopsys DesignWare Core PCIe IP's PIPE
+-interface and PHY of HSIO/NVHS bricks. Each P2U instance represents one PCIe
+-lane.
+-
+-Required properties:
+-- compatible: For Tegra19x, must contain "nvidia,tegra194-p2u".
+-- reg: Should be the physical address space and length of respective each P2U
+-       instance.
+-- reg-names: Must include the entry "ctl".
+-
+-Required properties for PHY port node:
+-- #phy-cells: Defined by generic PHY bindings.  Must be 0.
+-
+-Refer to phy/phy-bindings.txt for the generic PHY binding properties.
+-
+-Example:
+-
+-p2u_hsio_0: phy@3e10000 {
+-	compatible = "nvidia,tegra194-p2u";
+-	reg = <0x03e10000 0x10000>;
+-	reg-names = "ctl";
+-
+-	#phy-cells = <0>;
+-};
+diff --git a/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml b/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml
+new file mode 100644
+index 000000000000..9a89d05efbda
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/phy-tegra194-p2u.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: NVIDIA Tegra194 P2U binding
++
++maintainers:
++  - Thierry Reding <treding@nvidia.com>
++
++description: >
++  Tegra194 has two PHY bricks namely HSIO (High Speed IO) and NVHS (NVIDIA High
++  Speed) each interfacing with 12 and 8 P2U instances respectively.
++  A P2U instance is a glue logic between Synopsys DesignWare Core PCIe IP's PIPE
++  interface and PHY of HSIO/NVHS bricks. Each P2U instance represents one PCIe
++  lane.
++
++properties:
++  compatible:
++    const: nvidia,tegra194-p2u
++
++  reg:
++    maxItems: 1
++    description: Should be the physical address space and length of respective each P2U instance.
++
++  reg-names:
++    items:
++      - const: ctl
++
++  '#phy-cells':
++    const: 0
++
++additionalProperties: false
++
++examples:
++  - |
++    p2u_hsio_0: phy@3e10000 {
++        compatible = "nvidia,tegra194-p2u";
++        reg = <0x03e10000 0x10000>;
++        reg-names = "ctl";
++
++        #phy-cells = <0>;
++    };
+-- 
+2.33.0
 
-I am not sure about .set/read_offset. It looks as runtime adjustment 
-interface,
-however this Xtal trimming parameter is based on schematics and Xtal 
-capacitance (datasheet parameter).
-It is found by calibration procedure based on RTC clock output (the 
-procedure and calculation of trimming parameter is described in datasheets).
-So, I would like to say that this parameter is functionally close to
-"quartz-load-femtofarads" for rtc-pcf8523/pcf85063.
-
-> 
-> On 31/10/2021 00:50:53+0200, Pavel Modilaynen wrote:
->> From: Pavel Modilaynen <pavelmn@axis.com>
->> 
->> Add support for oscillation adjustment register RS5C372_REG_TRIM
->> setting that is needed to accommodate for effective crystal
->> capacitance.
->> 
->> Use optional property ricoh,trim that should contain
->> raw value to setup this register. According to
->> datasheets for RS5C372, R2025S/D, RV5C38[67] and R222[13]
->> the value will be converted to a number of ticks that
->> is to be subtracted or added when the second digits read
->> 00, 20 or 40 seconds.
->> 
->> Signed-off-by: Pavel Modilaynen <pavelmn@axis.com>
->> ---
->>  drivers/rtc/rtc-rs5c372.c | 18 +++++++++++++++++-
->>  1 file changed, 17 insertions(+), 1 deletion(-)
->> 
->> diff --git a/drivers/rtc/rtc-rs5c372.c b/drivers/rtc/rtc-rs5c372.c
->> index 80980414890c..3a2db0326669 100644
->> --- a/drivers/rtc/rtc-rs5c372.c
->> +++ b/drivers/rtc/rtc-rs5c372.c
->> @@ -13,6 +13,7 @@
->>  #include <linux/slab.h>
->>  #include <linux/module.h>
->>  #include <linux/of_device.h>
->> +#include <linux/of.h>
->>  
->>  /*
->>   * Ricoh has a family of I2C based RTCs, which differ only slightly from
->> @@ -560,6 +561,8 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
->>  {
->>        unsigned char buf[2];
->>        int addr, i, ret = 0;
->> +     struct i2c_client *client = rs5c372->client;
->> +     u8 trim = 0;
->>  
->>        addr   = RS5C_ADDR(RS5C_REG_CTRL1);
->>        buf[0] = rs5c372->regs[RS5C_REG_CTRL1];
->> @@ -599,9 +602,22 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
->>                break;
->>        }
->>  
->> +     /* optional setup of xtal trimming */
->> +     if (!of_property_read_u8(client->dev.of_node, "ricoh,trim", &trim)) {
->> +             if (rs5c372->type != rtc_r2221tl && (trim & ~RS5C372_TRIM_MASK)) {
->> +                     dev_warn(&client->dev, "Erroneous setting for ricoh,trim in devicetree\n");
->> +             } else {
->> +                     int addr = RS5C_ADDR(RS5C372_REG_TRIM);
->> +                     int ret = i2c_smbus_write_byte_data(client, addr, trim);
->> +
->> +                     if (unlikely(ret < 0))
->> +                             return ret;
->> +             }
->> +     }
->> +
->>        for (i = 0; i < sizeof(buf); i++) {
->>                addr = RS5C_ADDR(RS5C_REG_CTRL1 + i);
->> -             ret = i2c_smbus_write_byte_data(rs5c372->client, addr, buf[i]);
->> +             ret = i2c_smbus_write_byte_data(client, addr, buf[i]);
->>                if (unlikely(ret < 0))
->>                        return ret;
->>        }
->> -- 
->> 2.20.1
->> 
-> 
-> -- 
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com <https://bootlin.com>
