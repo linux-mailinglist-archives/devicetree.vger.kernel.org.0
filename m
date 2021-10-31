@@ -2,128 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC8744110F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 22:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2392F4410E8
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 22:02:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230049AbhJaVnj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 17:43:39 -0400
-Received: from ixit.cz ([94.230.151.217]:43194 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230025AbhJaVnj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Oct 2021 17:43:39 -0400
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        id S230106AbhJaVEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 17:04:37 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48876
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230025AbhJaVEf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 31 Oct 2021 17:04:35 -0400
+Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 48A1823D91;
-        Sat, 30 Oct 2021 14:17:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1635596277;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=FR7paib0uEl/sED3/mdXPaDr+eojob1hVhc0mmDwmaQ=;
-        b=V7deDvKAoAijgrcoJYKl84VyHZiVhsRr/EbyTU+Raf8Ldt5fnxv7Rd6cOSnf/c7fLtjuzB
-        IKp886hB2PJZHV5oHefoS7ikPAEDRcIt9pdhhMSKNw5tLzI3dkS++bwkRnKdPv7afAYzg8
-        /JRelF4Jl4yPQep3mYblWWcf4PxA8B4=
-From:   David Heidelberg <david@ixit.cz>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, - <kernel@puri.sm>
-Cc:     ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: sound: gtm601: convert to YAML
-Date:   Sat, 30 Oct 2021 14:17:52 +0200
-Message-Id: <20211030121753.50191-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4BBCF3F1A3
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 21:02:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1635714122;
+        bh=QbKbnaoV2KXGBM6TzkEibB/CEZ4oJ69i89CznmqAF6U=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=JTeq7pLNMPmxZ1OvFzeNXPVr0Lflu8YzDGp6zon7iA00LJ8b5BM+K4hqe5EJiADIn
+         Kfog8OF74BSecGGXV1Yg9BJrSemDWljrt3XKCAadSAcK2Z4U9l6Pc8ZT4zd3MRxZ1K
+         wr2ukWyeRrrqqy4tavAwaaEnyk0SmRlXorbVPyluItRwTBUqpBSEF2fT14ZbV+8qZz
+         3awOrlaRkVGZnLO5YLmZ4cbAWJ1/tmswYLPv12SZCJjKssBLIAsPDppHMkt+MHZuTO
+         0hxocVpukJke3XSwaMCGsmgnIq7XQ189XKWgqUvVZS6mlXDq5fFSOZ0S68e6HDTvsf
+         uS0wPIpK8IZlA==
+Received: by mail-lj1-f199.google.com with SMTP id m11-20020a2e97cb000000b00212f89f3888so1507225ljj.21
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 14:02:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QbKbnaoV2KXGBM6TzkEibB/CEZ4oJ69i89CznmqAF6U=;
+        b=LxIJQNgBq1Ihr7j3QWFtFMhUpZSwWzDyKILUytofP6PEWZqKK3ZYSF216RDszH0NzV
+         f//48rE09Dw8llRUZeImkIBAFWrLE3qQAxAQwa1SBrVnbXz38iW9ZUq5+6J3QS3fecaL
+         itZTjz4iRutcwsVC1tNqRUF/0SHuWNHrneDurUVNVkD4zKuvb4T1T8OivQ7K0bsk4w3L
+         cNpKlzrwRaOSQMdzt4bo9MzdxNmmd4Z0aRbP4sVvCTQBVxuzkzDuhSCiFPEa1pe4HwMc
+         B+UIwVjWSBJ716dgBmOEkojxejITz5X8NYQOzYYYr75uFkTqpL8JDYLe1glZI5GddGfP
+         UhzA==
+X-Gm-Message-State: AOAM533ypVKLjXPgFQYuk6tbzA+Tj3jzDyJiLJkvAkUW718LMIlcE0z3
+        Ppp9aeuCoLvuNRrRrR6+ib1rdYm8hQ53UIEfvHj2QPXU/uk5xW2w/G/TGNQ2STj+HZ+5/pCQ/Nu
+        Zb9g8xJff5lh9k+xYYFPwYW9BLkhpGJO/Vv+xsNk=
+X-Received: by 2002:a2e:9d8a:: with SMTP id c10mr19135172ljj.87.1635714121729;
+        Sun, 31 Oct 2021 14:02:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxW2R5HvD0SE2FYyrFy/3wQVAELnRelZMvlWsCFqGLWCrouWi+Gss03AKNkEEgXDI0wAJKyaw==
+X-Received: by 2002:a2e:9d8a:: with SMTP id c10mr19135156ljj.87.1635714121574;
+        Sun, 31 Oct 2021 14:02:01 -0700 (PDT)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id p17sm1236619lfu.209.2021.10.31.14.02.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Oct 2021 14:02:01 -0700 (PDT)
+Message-ID: <19c8e1e3-0958-afbf-a22d-47dd56da4485@canonical.com>
+Date:   Sun, 31 Oct 2021 22:02:00 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Subject: Re: [PATCH] ARM: dts: exynos/i9100: Fix Bluetooth node
+Content-Language: en-US
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211030121410.65834-1-paul@crapouillou.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211030121410.65834-1-paul@crapouillou.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert GTM601 binding to the YAML format.
+On 30/10/2021 14:14, Paul Cercueil wrote:
+> The reset GPIO was marked active-high, which is against what's specified
+> in the documentation. Mark the reset GPIO as active-low. With this
+> change, Bluetooth can now be used on the i9100.
+> 
+> Also switch away from using the deprecated 'host-wakeup-gpios' property,
+> and use a 'host-wakeup' interrupt instead.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
-v2:
- - add #sound-dai-cells
- - put kernel@puri.sm into maintainers
+Thanks for the patch, but please split it into two commits and add a
+"Fixes" tag for the "reset-gpios" one.
 
- .../devicetree/bindings/sound/gtm601.txt      | 19 ----------
- .../devicetree/bindings/sound/gtm601.yaml     | 36 +++++++++++++++++++
- 2 files changed, 36 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/gtm601.txt
- create mode 100644 Documentation/devicetree/bindings/sound/gtm601.yaml
+All rest looks good, nice patch!
 
-diff --git a/Documentation/devicetree/bindings/sound/gtm601.txt b/Documentation/devicetree/bindings/sound/gtm601.txt
-deleted file mode 100644
-index efa32a486c4a..000000000000
---- a/Documentation/devicetree/bindings/sound/gtm601.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--GTM601 UMTS modem audio interface CODEC
--
--This device has no configuration interface. The sample rate and channels are
--based on the compatible string
--	"option,gtm601" = 8kHz mono
--	"broadmobi,bm818" = 48KHz stereo
--
--Required properties:
--
--  - compatible : one of
--	"option,gtm601"
--	"broadmobi,bm818"
--
--
--Example:
--
--codec: gtm601_codec {
--	compatible = "option,gtm601";
--};
-diff --git a/Documentation/devicetree/bindings/sound/gtm601.yaml b/Documentation/devicetree/bindings/sound/gtm601.yaml
-new file mode 100644
-index 000000000000..e81a6aa75522
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/gtm601.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/gtm601.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GTM601 UMTS modem audio interface CODEC
-+
-+maintainers:
-+  - kernel@puri.sm
-+
-+description: >
-+  This device has no configuration interface. The sample rate and channels are
-+  based on the compatible string
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: broadmobi,bm818
-+          - const: option,gtm601
-+      - items:
-+          - enum:
-+              - broadmobi,bm818  # 48 kHz stereo
-+              - option,gtm601  # 8 kHz mono
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gtm601_codec {
-+        compatible = "option,gtm601";
-+    };
--- 
-2.33.0
-
+Best regards,
+Krzysztof
