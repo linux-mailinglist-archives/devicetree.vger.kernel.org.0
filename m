@@ -2,116 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 330E5440EA2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 14:20:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1997E440EB0
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 14:39:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbhJaNW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 09:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35400 "EHLO
+        id S229791AbhJaNmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 09:42:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229626AbhJaNW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 09:22:58 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECD4C061570;
-        Sun, 31 Oct 2021 06:20:26 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id x27so31130106lfu.5;
-        Sun, 31 Oct 2021 06:20:26 -0700 (PDT)
+        with ESMTP id S229662AbhJaNmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 09:42:12 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF99C061570;
+        Sun, 31 Oct 2021 06:39:40 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id g8so55669186edb.2;
+        Sun, 31 Oct 2021 06:39:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=4Ml4HoePorbB3uwkIfZq01AIVq0ZLevX5o6NsPpTI0c=;
-        b=Z3igLXnvuoQJi5FZI1JWL5XpYtUVODbUdysV9oUu5OA3HDGCPOzuRbO7WVkArCUQrg
-         wgiG7jp1XeX1iz2oD4i/mtdZvM9Skf2wEz4OZ/nhZcTXLbDG7s7NeSC6ty1ZINRWX7oE
-         tzY8CPLppOpZY0ufRBzwHiPe88ubKrX5Sw5iMA6rD4dq05XCHtjw1xm1tBE5a7Fc9hvt
-         dD+7JuGa+vtqjJt8cqXk3BL7i2lFCnzxnMIbu6cbNCkohEiWPeOKEca9l7qWWZNNBGvS
-         wv7X1r98dboww6i/4/5HX3+XP/1Hsq7JuH9Iu5vUS9LFnRLGg1Eng7C9PKrT/P8fJWX4
-         Ywmw==
+        bh=HlMh35IhqIvGxxgOt31fGBtNAf8lyJLuXm2KrWmpoQY=;
+        b=fIXezh6FIQdOq6A5ScpnfkFvsR8z+jhViy/eHjJOxwEAW2Js7Pbo7LOWsftM1b3MT0
+         l9REuu/hBPWne+/qrtLjm+9/v33MZiXTiLqHhuHaReD6qS61U7sMsFWrK5gvfrKn6Mef
+         jI5x/HxuV088g3pWzYEVY8gzP81PBcijRwEmPGxtzpWhel1cWdv8+4cArRWAAB+H8XkG
+         p97dMMQ1faCVJ8+c775P6nqk5smHD2wqcVRaUF1Prw4hx6/mVCOLvD0hOeobY1+ydDn3
+         aTtsetejf3eGmhrL50DtDUYC5Ka1zUi1s6wtEt/l/8U7NyhVffmLB4R/f9MUo/l024jX
+         UoNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=4Ml4HoePorbB3uwkIfZq01AIVq0ZLevX5o6NsPpTI0c=;
-        b=SvUOyMaFUifPGvy3eGjC41x4BYOhFvlOyWxJxvTt028E9iF0SVtXmaxy9LPS4IuQHJ
-         ibry2PigUSJYIFwAwzCr3ugc3qChYk0MAq1eXNJr4vnCbTcmvrfXqqq8mSCQuSUZNHbS
-         XlJoP23NpgFwBvkbh+cUsF56sB35IhbNjrnfgKuwHQZJdPu+lXRqhSxUKLxoufy9BWmU
-         Ouzg9o5ruOawykOaR3Qf2A5tGDzo+0m9v221/nEBMfl1CDv/ot4caN4m4sTPEaNGPHQe
-         uzTM05khL/2wIX+kRdzEUDY0ur4HBd9mjceeekCo9NPwSzqh/uaJt7jzhiUZaOTjF00W
-         8z2Q==
-X-Gm-Message-State: AOAM531RE+Yq1zvMTS5O+f2VmSou3rqLMsz2YzNSJP1+MoIV0mQYQIuw
-        aHKNv7Ripjtma/g0v61uGM8ujdQO0w91hZRSpvA9xQuf/J9BcQ==
-X-Google-Smtp-Source: ABdhPJwP5ltZLEYCpy4Y5wYCMLT1QMQ2cfYoIJAC3xlPjQsGl38qoc2SBcUim8j5r+MqhRS8M8IuZ3nlHwBbfTcu4u4=
-X-Received: by 2002:a05:6512:260e:: with SMTP id bt14mr22784564lfb.129.1635686424771;
- Sun, 31 Oct 2021 06:20:24 -0700 (PDT)
+        bh=HlMh35IhqIvGxxgOt31fGBtNAf8lyJLuXm2KrWmpoQY=;
+        b=ZxKmHUvdB8R2irCcX4107GMSoAnbXq9wFHtEzJQPEkcHyHZG0hu60sGMk4w65WCK4Y
+         e2ANhngPTEf3t8d1UOc07PyhmzJzXVzg7ItA2WLYCELoUhMe96yMxRG2olntYGNU9XHx
+         GRdphxJanNxa+noP+pg3FNsy1hxGzab34SdUs4hp9obHEUKNEMeNxOJBT30TIVBVwWgN
+         g1zwaQc8/64g7eL4meFThPE5wrqWr4G1yWkF89doNAzY6INBpBQyOKr7LqwNiR2G93PS
+         wAWAaCpyvtXg6a4uP8QXxoErUhCgw1AHZxF9jVYn7Ed9EAMV6kureo8VEVYO6IbHeqln
+         ZICA==
+X-Gm-Message-State: AOAM532LRjWbtEYJab1QlzczccDg1v6ILKN4YhdDVNP5qwanYhzJ3B1Y
+        dpHGyEjjOPDc0NEDlnXc9lO9wFfqjQ8PdYbIYI0=
+X-Google-Smtp-Source: ABdhPJyqXbqAUnEL9XFKsNv9cd0DxL6zpCd3jmuJqoKmiy5Msq+cHTvCh8UuGU8iS5nlTm8QqnHQDzdvrjMSrogsbf0=
+X-Received: by 2002:a50:9ee3:: with SMTP id a90mr26708325edf.224.1635687578842;
+ Sun, 31 Oct 2021 06:39:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-11-brad@pensando.io>
-In-Reply-To: <20211025015156.33133-11-brad@pensando.io>
+References: <20211026175815.52703-1-joey.gouly@arm.com> <20211026175815.52703-5-joey.gouly@arm.com>
+In-Reply-To: <20211026175815.52703-5-joey.gouly@arm.com>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 31 Oct 2021 15:19:48 +0200
-Message-ID: <CAHp75Vejm7exqWY9XcaJQCqLgUvoM5E93=0JV2Wew7T6WzTKpg@mail.gmail.com>
-Subject: Re: [PATCH v3 10/11] spi: dw: Add support for Pensando Elba SoC
-To:     Brad Larson <brad@pensando.io>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
+Date:   Sun, 31 Oct 2021 15:39:01 +0200
+Message-ID: <CAHp75Vc8-sZX-aMtR9o5_=_X0y6ALYCXR2W3Y4389=xD7c__nw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/5] pinctrl: add pinctrl/GPIO driver for Apple SoCs
+To:     Joey Gouly <joey.gouly@arm.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>,
+        Stan Skowronek <stan@corellium.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 25, 2021 at 4:54 AM Brad Larson <brad@pensando.io> wrote:
+On Wed, Oct 27, 2021 at 5:28 AM Joey Gouly <joey.gouly@arm.com> wrote:
 >
-> The Pensando Elba SoC includes a DW apb_ssi v4 controller
-> with device specific chip-select control.  The Elba SoC
-> provides four chip-selects where the native DW IP supports
-> two chip-selects.
+> This driver adds support for the pinctrl / GPIO hardware found
+> on some Apple SoCs.
 
 ...
 
-> +static void dw_spi_elba_set_cs(struct spi_device *spi, bool enable)
+> +#include <dt-bindings/pinctrl/apple.h>
+
+bits.h is missed
+
+> +#include <linux/gpio/driver.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/pinctrl/pinctrl.h>
+> +#include <linux/pinctrl/pinmux.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+
+...
+
+> +struct regmap_config regmap_config = {
+> +       .reg_bits = 32,
+> +       .val_bits = 32,
+> +       .reg_stride = 4,
+> +       .cache_type = REGCACHE_FLAT,
+> +       .max_register = 512 * sizeof(u32),
+> +       .num_reg_defaults_raw = 512,
+> +       .use_relaxed_mmio = true
+
+Would be good to have a comma.
+
+> +};
+
+...
+
+> +// No locking needed to mask/unmask IRQs as the interrupt mode is per pin-register.
+
+Wrong style.
+
+...
+
+> +static uint32_t apple_gpio_get_reg(struct apple_gpio_pinctrl *pctl,
+> +                                  unsigned int pin)
 > +{
-> +       struct dw_spi *dws = spi_master_get_devdata(spi->master);
-> +       struct dw_spi_mmio *dwsmmio = container_of(dws, struct dw_spi_mmio, dws);
-> +       struct dw_spi_elba *dwselba = dwsmmio->priv;
-
-> +       u8 cs = spi->chip_select;
-
-Much easier to maintain and follow the code (in the future) if this
-assignment is broken to two parts, i.e...
-
+> +       unsigned int val = 0;
 > +
+> +       regmap_read(pctl->map, REG_GPIO(pin), &val);
+> +       return val;
 
-...like this
+Better
 
-       cs = spi->chip_select;
-       if (cs < 2) {
-         ...
+unsigned int val;
+int ret;
 
-> +       if (cs < 2) {
-> +               /* overridden native chip-select */
-> +               elba_spics_set_cs(dwselba, spi->chip_select, enable);
+ret = regmap_read(...);
+if (ret)
+  return 0;
+
+return val;
+
+> +}
+
+...
+
+> +       ret = of_property_count_u32_elems(node, "pinmux");
+> +       if (ret <= 0) {
+> +               dev_err(pctl->dev,
+> +                       "missing or empty pinmux property in node %pOFn.\n",
+> +                       node);
+> +               return ret;
+
+This is incorrect. It always happens when somebody is in hurry :-)
+
 > +       }
 
 ...
 
-> +       regmap = syscon_node_to_regmap(args.np);
-> +       if (IS_ERR(regmap)) {
-> +               dev_err(&pdev->dev, "could not map pensando,spics\n");
-> +               return PTR_ERR(regmap);
-> +       }
+> +       apple_gpio_set_reg(
+> +               pctl, group, REG_GPIOx_PERIPH | REG_GPIOx_INPUT_ENABLE,
+> +               FIELD_PREP(REG_GPIOx_PERIPH, func) | REG_GPIOx_INPUT_ENABLE);
 
-Why not return dev_err_probe()?
+Strange indentation.
+
+...
+
+> +       return (FIELD_GET(REG_GPIOx_MODE, reg) == REG_GPIOx_OUT) ?
+> +                      GPIO_LINE_DIRECTION_OUT : GPIO_LINE_DIRECTION_IN;
+
+Easier to read with
+ if ()
+   return X
+return Y
+
+...
+
+> +       apple_gpio_set_reg(pctl, offset, REG_GPIOx_DATA,
+> +                          value ? REG_GPIOx_DATA : 0);
+
+One line?
+
+> +}
+
+
+...
+
+> +       struct apple_gpio_pinctrl *pctl =
+> +               gpiochip_get_data(irq_data_get_irq_chip_data(data));
+
+One line?
+
+> +       unsigned int irqgrp =
+> +               FIELD_GET(REG_GPIOx_GRP, apple_gpio_get_reg(pctl, data->hwirq));
+
+Ditto.
+
+> +       writel(BIT(data->hwirq & 31),
+
+% 32 can also do and be more specific.
+
+> +              pctl->base + REG_IRQ(irqgrp, data->hwirq));
+
+One line?
+
+...
+
+> +static void apple_gpio_irq_mask(struct irq_data *data)
+> +{
+> +       struct apple_gpio_pinctrl *pctl =
+> +               gpiochip_get_data(irq_data_get_irq_chip_data(data));
+
+Missed blank line.
+
+> +       apple_gpio_set_reg(pctl, data->hwirq, REG_GPIOx_MODE,
+> +                          FIELD_PREP(REG_GPIOx_MODE, REG_GPIOx_IN_IRQ_OFF));
+> +}
+
+...
+
+> +       if (!of_property_read_bool(pctl->dev->of_node, "gpio-controller"))
+> +               return dev_err_probe(pctl->dev, -ENODEV,
+> +                                    "No gpio-controller property\n");
+
+Still not sure why we need this check.
+
+...
+
+> +       pctl->gpio_chip.of_node = pctl->dev->of_node;
+
+It should be done by the OF GPIO library.
+
+
+> +               for (i = 0; i < girq->num_parents; i++) {
+
+> +                       ret = platform_get_irq(to_platform_device(pctl->dev),
+> +                                              i);
+
+This looks ugly even if you take the 80 char rule to your heart (it
+has exceptions and here is one of them).
+
+...
+
+> +       ret = devm_gpiochip_add_data(pctl->dev, &pctl->gpio_chip, pctl);
+> +out:
+
+out_free_irq_data:
+
+(or alike)
+
+> +       kfree(girq->parents);
+> +       kfree(irq_data);
+
+...
+
+> +       static const char* pinmux_functions[] = {
+> +               "gpio", "periph1", "periph2", "periph3"
+> +       };
+
+...
+
+I see it seems pending, so some of the above may be addressed with
+follow up, some may be left unconsidered.
 
 -- 
 With Best Regards,
