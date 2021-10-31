@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47EE3440E06
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 13:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E84F8440E04
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 13:08:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbhJaMLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 08:11:33 -0400
-Received: from mout.kundenserver.de ([217.72.192.75]:34037 "EHLO
+        id S230046AbhJaML3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 08:11:29 -0400
+Received: from mout.kundenserver.de ([212.227.17.13]:36397 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbhJaMLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 08:11:33 -0400
+        with ESMTP id S229638AbhJaML3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 08:11:29 -0400
 Received: from localhost.localdomain ([37.4.249.122]) by
  mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MEFrX-1mXYjU1zXx-00ADxg; Sun, 31 Oct 2021 13:08:33 +0100
+ id 1MvsR7-1mxIoQ3yWl-00swQs; Sun, 31 Oct 2021 13:08:34 +0100
 From:   Stefan Wahren <stefan.wahren@i2se.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -26,47 +26,54 @@ Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-staging@lists.linux.dev,
         Stefan Wahren <stefan.wahren@i2se.com>
-Subject: [PATCH V2 0/2] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to json-schemas
-Date:   Sun, 31 Oct 2021 13:08:04 +0100
-Message-Id: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
+Subject: [PATCH V2 1/2] ARM: dts: bcm283x: Drop fallback compatible for vchiq
+Date:   Sun, 31 Oct 2021 13:08:05 +0100
+Message-Id: <1635682086-3200-2-git-send-email-stefan.wahren@i2se.com>
 X-Mailer: git-send-email 2.7.4
-X-Provags-ID: V03:K1:eqjFY6C7Np2lLLbNby1RAONQKssAEFOeH6WmUp9aERNlBYhm+tD
- RZeL5GXZ2V9vCNSo9KV+zvQcdkP3uW6tGi6NEnzJx51cfHUc5Br0cyWl8U8VEbb0XmxLy88
- BEF9f+6y452DV6grbEwEDqzB93Qg4xoVB/MGtnEw7c3+EQj2Gtl20fEo0FMpJHMf5yiQcUl
- jmffULX94O5rIOxqWkXjg==
+In-Reply-To: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
+References: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
+X-Provags-ID: V03:K1:ulQB8P8DB86F6bZYbKr9KxNanL/NIBPH3ICHoUxDCXumR3GySzL
+ NSbAWqx5jb1vwvFL8TjwXY3x4hGAjlxviXgCj0DOX/fQxjVkWuTBeb2do8pfxFdA1XmMGMs
+ PRfxwZJNCal8lLQBK7Jk0AnWPzYA+3jfKlQdkerJcv4WYMhK+saXGZ2FpghmGeJGxULPwqK
+ /iTTuEwHuTerIWsAq6iMQ==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:TsuFm19u64Y=:jvDq0J7+z8p9iTuK/ViI8p
- 3KUS388uiwHZ8PaNWxixBujLhwYK36x29xV0m9HtRdaf+FpaCGfJeak0e//q1yBH/8QfXF8Ph
- GtiV/K72gZKkc54p/v+tgwua/JPv0IuU35W0omX30Rj5+/0IyUO6fA1HK/wn4/ZwgyRj+nG6c
- R5X+e9j8s90vzPn1+Q0pIDHw8Wybs1YjKP4aMlXvkiSg1J6I9d4TOKwIS7pbIHNG5pgaQ7sGT
- GIuDbB6iDiYNnJA6oLE/dqhzXCrMvYfQby7o19SMQX8Og+L1fKEhuft6YksZAfa/mTVjyBNEA
- txaRvD6eDeq2cvXNe7/5StMsrr59/G7tKgEnhp5QrIe4YwKphXEIPKQYbPbc4VVtJ+rlAGf1Y
- P7thY1d8+gb1TFCrkL5abjkDCCgQVM1YVEHk4cN+N9sRKwfwdpqWraqEaHAg8CKnysc0ZYzip
- moYtRMLP7Q5VyP+No8RBFc0YOqSawYyueajEMtbHchqAozvbrK733HTFRiASh7dK6ZDDjgEP5
- S5e7j4fPaGswYVmBCKI9m0gdVzDranG57rLjI0jqsi3r7+QQEUelhBb0hE6BlmExNqVmSW607
- Jic2YpfqN1w24lj1kEVsC3kv8qRmckT1TxBTpK+oSd+bALpR8Kzc90lEqJL3i7GtQRYJI+n/0
- 5Pzrb2sEFjucRkBlM/7sRssRjENAZmFs1dFty8nUpJT5aRPN9dOB6hMoITnbXURM4ZuPOvlrZ
- sOsN5c6JdkqTPsTr
+X-UI-Out-Filterresults: notjunk:1;V03:K0:KOKz8qQmFC4=:1oDApW1xH5hyb3pjv6zDad
+ Sn05Ay6B3POwGxE+NfB6IlsC6kwByVcSNbBcc5E0tqCIHx4jcMSJghcCHT6i0saasu+mmjiEO
+ 4N8gt1eGow56JHnLZ5/mwIXzmGK/JVCSbKBUe/8sWOnI7q7damSq2kR0dnvfqORJAa4/a3gsl
+ gR5MPuD1I/fH4F21aImCRqLVb8i11tjMuPxPrLxht+KxzZmmkDQjfFVfTKeBJ6oBNx5I9CKQh
+ o52/jM1AczXT+okLuczHb7oijGnbMtpG39yU1gvorWdTJiJhL0axQk2ubkgoHgBmIB6TbQm/P
+ kCgtZHzXkRrZXU6Y2Q/1yxmKSrLL8dYzAB4k2gmov2IxoSOf+CGgYVcPVAYTY9lPjNPKxbSqU
+ 1saM6WQGsN14qizsJuHlVZXoH8frG2ROVEsgmx0/mPFN2ifRu7je/vLTmF3bjVvRuQc0vLSTm
+ l2AfYljX31oSQQ7zg7dSj/PMg93DTSexpAu9d3RAjt+wjHkHoJpTvfTEtC2QA4fU1WXY8z4wR
+ 1T+/BTrO6e2BOQaPsO+P3WJISQTjGggHp8QtmWaRBsJa7Y3mwjivdlXPgjf+VmXsQr5jvj/Na
+ QvltVr+76X9SE4X5HhKJWWMLQ1Ev3EHeCVPp0dhPD+5cFNBT3DHjiFbz8s80adTIjJmk/t3vc
+ C+TLAZt/bJK6EjB8LcjTykpwx/mkebR+oZ0OkF8hFlBPqc/a7MUz0mfuocAiG8DKT0GuTgMCk
+ iGwlOXPIuxUMvtux
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series converts the VCHIQ bindings to YAML format.
+With introduction of SoC specific vchiq compatible in 2018, we kept the
+original "brcm,bcm2835-vchiq" as a fallback for older Kernel versions.
+Now this fallback isn't necessary anymore. So before we create a DT schema
+which also handles this fallback better fix this on the DTS side.
 
-Changes in V2:
-- drop some unnecessary points in the binding as suggested by Rob Herring
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+---
+ arch/arm/boot/dts/bcm2836-rpi.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Stefan Wahren (2):
-  ARM: dts: bcm283x: Drop fallback compatible for vchiq
-  dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq to json-schema
-
- .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
- .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 45 ++++++++++++++++++++++
- arch/arm/boot/dts/bcm2836-rpi.dtsi                 |  2 +-
- 3 files changed, 46 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
- create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
-
+diff --git a/arch/arm/boot/dts/bcm2836-rpi.dtsi b/arch/arm/boot/dts/bcm2836-rpi.dtsi
+index c4c858b..f98e0e4 100644
+--- a/arch/arm/boot/dts/bcm2836-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2836-rpi.dtsi
+@@ -2,5 +2,5 @@
+ #include "bcm2835-rpi.dtsi"
+ 
+ &vchiq {
+-	compatible = "brcm,bcm2836-vchiq", "brcm,bcm2835-vchiq";
++	compatible = "brcm,bcm2836-vchiq";
+ };
 -- 
 2.7.4
 
