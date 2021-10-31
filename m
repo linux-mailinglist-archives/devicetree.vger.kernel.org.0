@@ -2,211 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F7FC440E65
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 13:23:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8ED0440E89
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 14:06:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232456AbhJaMZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 08:25:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51026 "EHLO
+        id S229877AbhJaNJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 09:09:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232146AbhJaMZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 08:25:12 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CDE0C06120B
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 05:22:38 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id w15so55106405edc.9
-        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 05:22:38 -0700 (PDT)
+        with ESMTP id S229626AbhJaNJO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 09:09:14 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E30DC061570;
+        Sun, 31 Oct 2021 06:06:42 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u21so31047045lff.8;
+        Sun, 31 Oct 2021 06:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3iEY6GQYQz83dpV+fT6R+J5oU7g9/XFul1oWQ/m49lI=;
-        b=paMNXcWgNsqVxxXLElooVUCI5zgF9Hx8RgxZ2SqhdtT64USC0+p7vplys9LI42Uk+1
-         XcU4l37vhiQcoRIWt5azDuYrnmh5IDKVqJc2xo/tk8KjqUUnlgSmmo4z9NkvrcU3SSX5
-         QoN4cEBdqEFK6lU+VVqu6DYrBL1qV2xiY1ny52WZRRYLeQpL/MYhO+j/03383iBqwu8P
-         RmzESNsirHGqn4jcwi801Dial2eRQkEliy84+LkWS1TprmKj0oHbrNH75HxsPQuJlhEl
-         SX9IMToBjQAihJR4aIzFvGGKsjBCXpjLOVv2nMhhF/Rn7p+nTy2kDV30CrexMJ0fbxfK
-         B+YQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HnA4agtvoe5bY8VDS5ihdFhbJWN6EIjsWlUJf/KpvEg=;
+        b=CmaQHx6bEFgb0QO4CmJHd/SgHy+uYvlYGANFpzXePelKTbEdOMj9dxnaTIXbb4w4ly
+         +KEsckeR2tebik7NiuQtUcq0kBK9VOQF9VbU1KhgoKr4HXDvrNUSeCoB0prE2BUCRXF3
+         Wf3M94WdTNZdQpaoJu/HF2oNrVJ0l7ZhX0V77B0sNQiFFWAjdxQYJLuTe4j5Z8XCOObq
+         bnPrFfyt0OnqjyQiecblcjKF8PTWaiOsfGJDDpCgIb8ZhS9efRuol12zcDM5Q/I6z3uA
+         mr5BhOtIocvA4LVOu9YaHaGOg7m5JvJuGD0Bl0TRDLQP1Dm/A8cri2IH+8L/6tYB4uxc
+         r2NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3iEY6GQYQz83dpV+fT6R+J5oU7g9/XFul1oWQ/m49lI=;
-        b=YILDpfQ2mSH6hfh99sfCZn1ic2aalbHCPtUekLdzmg7W+VH4djHLqaFQiLiQVquXSj
-         8nQmuKNvRyiIJkXe1CEScV+cjd77bdLWv4gkXeZKjd+h1NUzD60yd8Gt97ZBgz82VYkU
-         ToR+U0y4zoqyEjZcCZWuUPofWMoBiiKmOWCZwXHNeA2OErd6IfV3ajBBWywRV+PjK8ys
-         J7sfh4C+YeqF9ZQnSkslm9hbUE3nAIndNRrFY+nr/AKvRtlvz7LOwmM4HEbx7EjGofQZ
-         DcyFheya57/JVBSBxwaKuSTS1fMNtiQ2u96BMke9NcXBZZ5+fwWM3tRpI1voGDXrMvia
-         AYGQ==
-X-Gm-Message-State: AOAM532D2PF/xECaIL/iaRoehUzZr0ZwjMVQt9OJmIAo67erE0c9eb4y
-        AHUbChFtCWqZnzSEpu7CmhreHA==
-X-Google-Smtp-Source: ABdhPJxPnAd54K37gzIe2vTLOeK3l83domUTd7RNcjPhHCG0f0Gc1/AJpu51uIXA6chLbUgrUG730g==
-X-Received: by 2002:aa7:da10:: with SMTP id r16mr9332682eds.56.1635682956847;
-        Sun, 31 Oct 2021 05:22:36 -0700 (PDT)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id eg33sm4316607edb.77.2021.10.31.05.22.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Oct 2021 05:22:36 -0700 (PDT)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 12/12] watchdog: s3c2410: Add Exynos850 support
-Date:   Sun, 31 Oct 2021 14:22:16 +0200
-Message-Id: <20211031122216.30212-13-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211031122216.30212-1-semen.protsenko@linaro.org>
-References: <20211031122216.30212-1-semen.protsenko@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HnA4agtvoe5bY8VDS5ihdFhbJWN6EIjsWlUJf/KpvEg=;
+        b=ui+PwBWfwBITTdHFwos5BHxcuntYWU5Tat2ItzCu0wvXqA8N3Xg6tg99aaXMCaYgyx
+         HluFojxe4bNf1L0cekqK5tVC3FbkujCm3gzIE7NTqc9ZWGxMfPApfUmACq5luG4I+P2m
+         VED2XQnAaREdC0fzbKzrXxjGFoqmR7sEQSIeZ5BO+y00V3xUcqW6ZZTtZ4N7iqyKJNPm
+         6pXDuTPoR81bbgxg+/xMfQcLi7/9HxwIcnWqb91qPN1f4jkp9hli06wV2kmUWOxAj0Wi
+         VIZEYmsZMNZ0ZIL+/XsHSn3yTq5lleRjFahN7VutjuV7g2eNsDJJnoWnOilib/6lyTNl
+         4Rug==
+X-Gm-Message-State: AOAM532+cdd1dWL/pcN0WCb9zxYLSsziqywfOlEOkPK/OQAiQlXCEmxz
+        ZIJ1gBGMZTHPtnjNMGZE8A5oRYmeNux5NUVbZZmeKQqTB9c=
+X-Google-Smtp-Source: ABdhPJye681stA1OkK1J5HPFPb/3HDU+gJAlfKObEtPg9qAInOF1LWCXpQyhtpk28xb7ryeb6q65WrH5U+kKilaUpF4=
+X-Received: by 2002:a05:6512:260e:: with SMTP id bt14mr22723388lfb.129.1635685601025;
+ Sun, 31 Oct 2021 06:06:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <cover.1635412162.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sun, 31 Oct 2021 15:06:05 +0200
+Message-ID: <CAHp75Vf12Lx=demULkNhgP=YpnfdH15Y9T5C7PUA4uo=0J15ZQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH 0/4] Drop ROHM BD70528 support
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynos850 is a bit different from SoCs already supported in WDT driver:
-  - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
-    always 0; .disable_auto_reset callback is not set for that reason
-  - MASK_WDT_RESET_REQUEST register is replaced with
-    CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
-    reset interrupt it's now enabled with the same value; .mask_reset
-    callback is reused for that functionality though
-  - To make WDT functional, WDT counter needs to be enabled in
-    CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
-    callback
+On Thu, Oct 28, 2021 at 12:18 PM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
+>
+> Drop ROHM BD70528 support
 
-Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-instance. Different PMU registers and bits are used for each cluster. So
-driver data is now modified in probe, adding needed info depending on
-cluster index passed from device tree.
+I am always for the code removal, but the Q here is do you think there
+won't be similar chips that may utilize the code and avoid duplication
+in the future?
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - Used single compatible for Exynos850, populating missing driver data in
-    probe
-  - Added "index" property to specify CPU cluster index
-
- drivers/watchdog/s3c2410_wdt.c | 68 +++++++++++++++++++++++++++++++++-
- 1 file changed, 66 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-index 8fdda2ede1c3..457b725c30ac 100644
---- a/drivers/watchdog/s3c2410_wdt.c
-+++ b/drivers/watchdog/s3c2410_wdt.c
-@@ -56,6 +56,14 @@
- #define EXYNOS5_RST_STAT_REG_OFFSET		0x0404
- #define EXYNOS5_WDT_DISABLE_REG_OFFSET		0x0408
- #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET	0x040c
-+#define EXYNOS850_CLUSTER0_NONCPU_OUT		0x1220
-+#define EXYNOS850_CLUSTER0_NONCPU_INT_EN	0x1244
-+#define EXYNOS850_CLUSTER1_NONCPU_OUT		0x1620
-+#define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
-+
-+#define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
-+#define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
-+
- #define QUIRK_HAS_WTCLRINT_REG			(1 << 0)
- #define QUIRK_HAS_PMU_MASK_RESET		(1 << 1)
- #define QUIRK_HAS_PMU_RST_STAT			(1 << 2)
-@@ -171,6 +179,21 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
- 		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
- };
- 
-+static const struct s3c2410_wdt_variant drv_data_exynos850 = {
-+	/*
-+	 * Next fields will be set in probe(), based on cluster index:
-+	 *   - .mask_reset_reg
-+	 *   - .rst_stat_bit
-+	 *   - .cnt_en_reg
-+	 */
-+	.mask_reset_inv = true,
-+	.mask_bit = 2,
-+	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-+	.cnt_en_bit = 7,
-+	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-+		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-+};
-+
- static const struct of_device_id s3c2410_wdt_match[] = {
- 	{ .compatible = "samsung,s3c2410-wdt",
- 	  .data = &drv_data_s3c2410 },
-@@ -182,6 +205,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
- 	  .data = &drv_data_exynos5420 },
- 	{ .compatible = "samsung,exynos7-wdt",
- 	  .data = &drv_data_exynos7 },
-+	{ .compatible = "samsung,exynos850-wdt",
-+	  .data = &drv_data_exynos850 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-@@ -548,15 +573,51 @@ static inline const struct s3c2410_wdt_variant *
- s3c2410_get_wdt_drv_data(struct platform_device *pdev)
- {
- 	const struct s3c2410_wdt_variant *variant;
-+	struct s3c2410_wdt_variant *data;
-+	struct device *dev = &pdev->dev;
- 
--	variant = of_device_get_match_data(&pdev->dev);
-+	variant = of_device_get_match_data(dev);
- 	if (!variant) {
- 		/* Device matched by platform_device_id */
- 		variant = (struct s3c2410_wdt_variant *)
- 			   platform_get_device_id(pdev)->driver_data;
- 	}
- 
--	return variant;
-+	/* Have to copy driver data over to keep its const qualifier intact */
-+	data = devm_kmemdup(dev, variant, sizeof(*variant), GFP_KERNEL);
-+	if (!data)
-+		return NULL;
-+
-+	/* Populate missing fields for Exynos850 w.r.t. cluster index */
-+	if (variant == &drv_data_exynos850) {
-+		u32 index;
-+		int err;
-+
-+		err = of_property_read_u32(dev->of_node, "samsung,index",
-+					   &index);
-+		if (err) {
-+			dev_err(dev, "failed to get cluster index\n");
-+			return NULL;
-+		}
-+
-+		switch (index) {
-+		case 0:
-+			data->mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN;
-+			data->rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT;
-+			data->cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT;
-+			break;
-+		case 1:
-+			data->mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN;
-+			data->rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT;
-+			data->cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT;
-+			break;
-+		default:
-+			dev_err(dev, "wrong cluster index: %u\n", index);
-+			return NULL;
-+		}
-+	}
-+
-+	return data;
- }
- 
- static int s3c2410wdt_probe(struct platform_device *pdev)
-@@ -576,6 +637,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
- 	wdt->wdt_device = s3c2410_wdd;
- 
- 	wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
-+	if (!wdt->drv_data)
-+		return -EINVAL;
-+
- 	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
- 		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
- 						"samsung,syscon-phandle");
 -- 
-2.30.2
-
+With Best Regards,
+Andy Shevchenko
