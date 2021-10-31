@@ -2,100 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C49C440DA4
-	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 10:35:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78174440DA6
+	for <lists+devicetree@lfdr.de>; Sun, 31 Oct 2021 10:36:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbhJaJhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Oct 2021 05:37:55 -0400
-Received: from ip-15.mailobj.net ([213.182.54.15]:39994 "EHLO msg-4.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230289AbhJaJhy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 31 Oct 2021 05:37:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1635672917; bh=vJl6wad1L8/qQsHFiM4x6jV7Ba+rQVM5va0SBcOMf20=;
-        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
-        b=LzxmPc/r6zetKg6txq7wv8VVsphGY7Op2zZIYzlWtTyAHkyvmx+4XEhbEKwB71+IY
-         xoavisHzSRMTP8qxoYTgfYN24arihCi/PgkKLzudF2DyGzWZxk/ZYE0yo5wwpIJJtm
-         0EfvpdBGGmlBkLQEFR5XELFZgErhUsazWaW94gCQ=
-Received: by b-6.in.mailobj.net [192.168.90.16] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Sun, 31 Oct 2021 10:35:17 +0100 (CET)
-X-EA-Auth: G/xCF6IFwpi4luFdXUamameEVAkt81gKAIbtu5Egt8p0gvNt1SPUyLj91+xiitzXK6u5pr4rxNuIK+Zi5dCB7bwmSewjjv/Bi+qA5GH7yRo=
-Message-ID: <a2f4bcd22b896f05ec3f33809f577cf9e889f270.camel@mailoo.org>
-Subject: Re: [PATCH v1 3/4] ASoC: dt-bindings: nxp, tfa989x: Add rcv-gpios
- property for tfa9897
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        stephan@gerhold.net, linux-kernel@vger.kernel.org, tiwai@suse.com,
-        lgirdwood@gmail.com, broonie@kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Date:   Sun, 31 Oct 2021 10:35:15 +0100
-In-Reply-To: <YXtYtsPCeh937oF6@robh.at.kernel.org>
-References: <20211024085840.1536438-1-vincent.knecht@mailoo.org>
-         <20211024085840.1536438-4-vincent.knecht@mailoo.org>
-         <YXtYtsPCeh937oF6@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-2.fc34) 
+        id S230076AbhJaJjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Oct 2021 05:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229638AbhJaJjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Oct 2021 05:39:16 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B03B2C061570
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 02:36:44 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id h7so54729728ede.8
+        for <devicetree@vger.kernel.org>; Sun, 31 Oct 2021 02:36:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=0KvQkxFdmSckOXJpLXZtURzOqfI2/nRXk2vwKc98xhg=;
+        b=bJfar7WCzNKPTRFMl6Bo2KuZkUlxDi/w73c8iGP4QsWeQKdaZbHCO0q5UCPWRHe64D
+         U3Vu4naR05Q63LlEDzT0FcwyIm7FQTAPNgYD133e7R7rAGm8ByntnmC1ArgYnDapAml7
+         z6y5CmPz4NHty4cUA2KFx9wF8H4ZoW1gSQKdpP2Gnn9XrAJI5caDsKbCuy2ieSh9CAkQ
+         GX4nLDtdUyDbd301ifwrLLlPfvSRw8uSSQhtdvTHnXe4+Q7A40baEJA9JaQIhOJe2Vyp
+         fsMTrNMpb+eB5gM+VSVY3CK+wqgTd/2Hge23gGndQP3DGBBwTgRlAlG6btGlkvuhikWK
+         D9CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=0KvQkxFdmSckOXJpLXZtURzOqfI2/nRXk2vwKc98xhg=;
+        b=3TzI0y9aV/fnOqbpe12pcFwKvryokUfDd73gmDbMmTLIY++My4O2G5RlwbOXy7SHhS
+         3AgsTdguGedkpTt4spsoiO283O8tqvhortZdjeXaRcQro3j9NTMUOAzsQn01r2lj4QkD
+         wlraA+CFXx/5VRxIvFzmA/4WTaecBcdzxyuzau5hOBbNF1SXSSSLPaGjrH6vXwwIoYFP
+         GlSAeWj5owBIID2f26twu3vKyMWJbcWgT4HwxkN3nFCX1UEJEwPpHPIzJg0a3WASUiLl
+         u89IJl3UZjkx+VL66soG+8Ga7BmlfRfMEisMgPMLpGffbopQeRMmoib0dmldEfXFRtoy
+         xKEQ==
+X-Gm-Message-State: AOAM530FHxKvbA1Gv9HcIfSnEuWT6SBgxRcBn1gs91IajzvIh/+k5BA6
+        oeFnXkBgXCDmfZ2knSn5fY4TbIbhUOrWE4W0NQs=
+X-Google-Smtp-Source: ABdhPJzsn9afXyllnNffGkW+AnD/rV6YyzY5oLnk5aCzx0UOSeH1Vv/T7DnweW6F4biMVFFeES3snDXDIJkMrFGpNxY=
+X-Received: by 2002:a05:6402:50cd:: with SMTP id h13mr31547563edb.27.1635673001951;
+ Sun, 31 Oct 2021 02:36:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Received: by 2002:ab4:a332:0:0:0:0:0 with HTTP; Sun, 31 Oct 2021 02:36:41
+ -0700 (PDT)
+Reply-To: enzocarranza99@gmail.com
+From:   ENZO CARRANZA <jacobbarney57@gmail.com>
+Date:   Sun, 31 Oct 2021 12:36:41 +0300
+Message-ID: <CALM1g1NWnv-a8SsnYp7Mrq7JYYUx=HUSDhL2ua=wrXSJau8qNA@mail.gmail.com>
+Subject: Greetings to You
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 28 octobre 2021 =C3=A0 21:13 -0500, Rob Herring a =C3=A9crit=C2=A0=
-:
-> On Sun, Oct 24, 2021 at 10:58:39AM +0200, Vincent Knecht wrote:
-> > Add optional rcv-gpios property specific to tfa9897 receiver mode.
-> >=20
-> > Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> > ---
-> > =C2=A0.../devicetree/bindings/sound/nxp,tfa989x.yaml=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 10 ++++++++++
-> > =C2=A01 file changed, 10 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> > b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> > index 7667471be1e4..a9e15baedafd 100644
-> > --- a/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
-> > @@ -12,6 +12,16 @@ maintainers:
-> > =C2=A0allOf:
-> > =C2=A0=C2=A0 - $ref: name-prefix.yaml#
-> > =C2=A0
-> > +=C2=A0 - if:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 con=
-st: nxp,tfa9897
-> > +=C2=A0=C2=A0=C2=A0 then:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rcv-gpios:
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 description: op=
-tional GPIO to be asserted when receiver mode is enabled.
->=20
-> Did you test this works?=20
->=20
-> You have to define the property outside the if/then schema at the top=20
-> level. Then use an if/then schema to restrict it (rcv-gpios: false).
-
-Sorry, I only tested validation with dt_binding_check.
-
-I'll send another version later today with
-if:
-  not:
-    properties:
-      compatible:
-        const: nxp,tfa9897
-then:
-  properties:
-    rcv-gpios: false
-and a tfa9897 example section, which passes the check and fails
-if rcv-gpio is added to tfa9895.
-
-Thank you
+From : Mr. Enzo Carranza
+Fax: +34 932 71 56 35
+Email: enzocarranza99@gmail.com
 
 
+Dear Friend,
+I had no choice but to approach you via this method because I have
+a BUSINESS PROPOSAL that will interest you and will be of mutual benefit to us.
 
+Kindly get back to me so I can give you the full details.
+Thank you.
+
+Kind regards
+Mr. Enzo Carranza
+Financial Management Consultant.
