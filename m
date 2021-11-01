@@ -2,342 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB6B441F09
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 18:13:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58005441F4D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 18:29:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbhKARPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 13:15:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231348AbhKARPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 13:15:49 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7854BC061714
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 10:13:16 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id r5so12006563pls.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 10:13:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wdqCpUlvU6wF+mGxAfUmSzaTVGq81b17l3fG6ZaPWuo=;
-        b=Q2DZHqK7daGgHSHRVvG2CfDT+/ho7RTvcEBSh85maNG/s4pZJQieO4kTP79fAbCAPA
-         OPmIcixKqYcJKgsYKKollJkYWnvrRN023PdNFWI8amX/jxq6Oxd084q2FQikJkWtyv7X
-         r480dj400zFRpTXsaRxEXEhov2ZQehXvBwvNjXx6COLgw4VO2n0ZzbOfwc81x1zcjv/E
-         TWIIHrmkBHRRIT5MXAdeHMn1FT1lurhqVoaSrE2Fa4kKh5ARMi91O7pHSNk0eExOwvLZ
-         bx8ZD7m3Y4SyYiVKoENMjTldSSWEJmbz7KOe6l6qCa9EiPEj42azRkFat7bjYgMypu9P
-         lmnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wdqCpUlvU6wF+mGxAfUmSzaTVGq81b17l3fG6ZaPWuo=;
-        b=yAGrqFZzLPq3VuujTlF4RdxFSTJtXyNf+41pCd71DUJ2mDIzT4Ix8IRrkVY0leGseY
-         s27TsOG/qqjK0QQsmhegvnEUYqtBklgBHKiWpUqZgogtFuuQX4whffGVHkGQYuKRbdLe
-         EZOEVzFNaky12B1deAjdHKiaNWFUocIr/Hua1V70My3SS+Z/BNTTRI3qDfT1K8TYp90S
-         eMMKa1D2sPycFe0Z+rF2zWbgoZDC7nK0l+3n/baCcmUpTfs4OdzTa6jE7bCqUud+NTiR
-         Sgm6M82sDHLUc4/761XYTKgOBifu47fn71A5a7yHDrk+0o+04Hb8O0iotPfJ1mZuJ4AO
-         FmQw==
-X-Gm-Message-State: AOAM531h0Zhlc/9IdQw7+oFZN+FLjKO5wrkqYuOY/IfwvPfneQmrsHve
-        bqVdtyurQbTtaFFi/XY3irOoWOJbgGl/hALJCwrfKQ==
-X-Google-Smtp-Source: ABdhPJzez5x02qA8cmpUv9PKnmM5oQCuwvmbs6y9Eo9F3LZElN77MIoE271XFmpDHBMWRfJpYhLmGTpZfCvN/y41AuU=
-X-Received: by 2002:a17:902:d48f:b0:141:f290:b75d with SMTP id
- c15-20020a170902d48f00b00141f290b75dmr5220502plg.12.1635786795870; Mon, 01
- Nov 2021 10:13:15 -0700 (PDT)
+        id S231402AbhKARbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 13:31:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54212 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230246AbhKARbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 13:31:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5B2AA6108F;
+        Mon,  1 Nov 2021 17:28:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635787739;
+        bh=2cJQ0z+eLg6oK6BPQeDhyJnQMwy8kofAHvVb19izHF4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KmjWI6zQF6+Xx/MxkR5vHWVocTw2Xf4m1SqOOf8wv/J8BkEwEONNA+OVpiSXE03oW
+         4exKX9Wcaf/eK6gr8QsQ0hY0e/X92veHhmwxSciBq0avm7V65GyPUI+ZQw46pVKOpw
+         fHiyKSWBdt65MEO4p+3KicsKMUmMdfJn2hSi7teyJWvUUOuLpzXSkcXYMmfcTaqj4t
+         MspcEyj4V16VbIxnP7KfACunaD3g6Xr3yo8LPM+KvdamDbCFE3mhM0EPE2CAo90w9F
+         hYPGvp7+rUnslDzuYLgpVVMBdz27eQsrwDqmUrlA4ihhAB5aBT7jlSSvjWZFeDnReQ
+         +lEmBuaxC8A4Q==
+Received: by mail-ed1-f41.google.com with SMTP id g10so66497865edj.1;
+        Mon, 01 Nov 2021 10:28:59 -0700 (PDT)
+X-Gm-Message-State: AOAM5320GakIFIbl63nYct8clDRR+cOPL0rW5O4NVaNfj/E4w6YSKX55
+        O9mgDk5Zz5Z0LECEqMCZjSuHnyUqawa65dU6fQ==
+X-Google-Smtp-Source: ABdhPJzkwoHospvWPt75rQ9pj3Q9ByRQ+4JTXMeqeD/nsnG4kv3oJZ2NTVWtriGCZu4WdnuCkBVl/I7sTIJhXcJO/UY=
+X-Received: by 2002:a05:6402:84d:: with SMTP id b13mr43627187edz.6.1635787737776;
+ Mon, 01 Nov 2021 10:28:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1635406037-20900-1-git-send-email-hongxing.zhu@nxp.com>
- <1635406037-20900-6-git-send-email-hongxing.zhu@nxp.com> <8e182179c6c60f0b6cf8a89c1b829d8225a055d5.camel@toradex.com>
- <AS8PR04MB8676A86DE53D6C98456DDC7E8C879@AS8PR04MB8676.eurprd04.prod.outlook.com>
- <CAJ+vNU0iggqkQgsqKz3Y8KQjZxd2d1aq-ujgG=rRKo6EjcN=0w@mail.gmail.com> <AS8PR04MB8676C9518B3285CE96EC741E8C8A9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB8676C9518B3285CE96EC741E8C8A9@AS8PR04MB8676.eurprd04.prod.outlook.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 1 Nov 2021 10:13:04 -0700
-Message-ID: <CAJ+vNU1kPHPxT1JbpVCqxOLAnf6rWjY8C2aiL9Tb66Rdnby1eA@mail.gmail.com>
-Subject: Re: [PATCH v4 5/8] phy: freescale: pcie: Initialize the imx8 pcie
- standalone phy driver
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
+References: <20211028093059.32535-1-zajec5@gmail.com> <20211028093059.32535-3-zajec5@gmail.com>
+ <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com> <9d57d026-19f3-e92d-4c02-d7e8e2c2bc25@gmail.com>
+ <YXvxMHmx2i56sXdI@robh.at.kernel.org> <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
+In-Reply-To: <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 1 Nov 2021 12:28:45 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+sXqhxriDCrpWXrWTFoTi6zqQATyPfqZ2d9-H-smC-Qg@mail.gmail.com>
+Message-ID: <CAL_Jsq+sXqhxriDCrpWXrWTFoTi6zqQATyPfqZ2d9-H-smC-Qg@mail.gmail.com>
+Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 1, 2021 at 1:19 AM Richard Zhu <hongxing.zhu@nxp.com> wrote:
+On Fri, Oct 29, 2021 at 11:45 AM Florian Fainelli <f.fainelli@gmail.com> wr=
+ote:
 >
-> > -----Original Message-----
-> > From: Tim Harvey <tharvey@gateworks.com>
-> > Sent: Saturday, October 30, 2021 1:45 AM
-> > To: Richard Zhu <hongxing.zhu@nxp.com>; Marcel Ziswiler
-> > <marcel.ziswiler@toradex.com>
-> > Cc: kishon@ti.com; vkoul@kernel.org; robh@kernel.org;
-> > l.stach@pengutronix.de; shawnguo@kernel.org;
-> > galak@kernel.crashing.org; linux-phy@lists.infradead.org;
-> > linux-arm-kernel@lists.infradead.org; kernel@pengutronix.de;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; dl-linux-imx
-> > <linux-imx@nxp.com>
-> > Subject: Re: [PATCH v4 5/8] phy: freescale: pcie: Initialize the imx8 p=
-cie
-> > standalone phy driver
+> On 10/29/21 6:03 AM, Rob Herring wrote:
+> > On Fri, Oct 29, 2021 at 01:39:02PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote=
+:
+> >> [Rob: please kindly comment on this]
+> >>
+> >> On 28.10.2021 18:29, Florian Fainelli wrote:
+> >>> On 10/28/21 2:30 AM, Rafa=C5=82 Mi=C5=82ecki wrote:
+> >>>> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >>>>
+> >>>> Hardware supported by this driver goes back to the old bcm63xx days.=
+ It
+> >>>> was then reused in BCM7038 and later also in BCM4908.
+> >>>>
+> >>>> Depending on SoC model registers layout differs a bit. This commit
+> >>>> introduces support for per-chipset registers offsets & adds BCM4908
+> >>>> layout.
+> >>>>
+> >>>> Later on BCM63xx SoCs support should be added too (probably as platf=
+orm
+> >>>> devices due to missing DT). Eventually this driver should replace
+> >>>> bcm63xx_wdt.c.
+> >>>>
+> >>>> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >>>> ---
+> >>>
+> >>> [snip]
+> >>>
+> >>>> +
+> >>>> +static const u16 bcm7038_wdt_regs_bcm4908[] =3D {
+> >>>> +  [BCM63XX_WDT_REG_DEFVAL]        =3D 0x28,
+> >>>> +  [BCM63XX_WDT_REG_CTL]           =3D 0x2c,
+> >>>> +  [BCM63XX_WDT_REG_SOFTRESET]     =3D 0x34,
+> >>>
+> >>> I don't understand what you are doing here and why you are not
+> >>> offsetting the "reg" property appropriately when you create your
+> >>> bcm4908-wdt Device Tree node such that the base starts at 0, and the
+> >>> existing driver becomes usable as-is. This does not make any sense to=
+ me
+> >>> when it is obviously the simplest way to make the driver "accept" the
+> >>> resource being passed.
+> >>
+> >> I believe that DT binding should cover the whole hardware block and
+> >> describe it (here: use proper compatible to allow recognizing block
+> >> variant).
+> >>
+> >> That's because (as far as I understand) DT should be used to describe
+> >> hardware as closely as possible. I think it shouldn't be adjusted to
+> >> make mapping match Linux's driver implementation.
+> >>
+> >>
+> >> So if:
+> >> 1. Hardware block is mapped at 0xff800400
+> >> 2. It has interesting registers at 0xff800428 and 0xff80042c
+> >>
+> >> I think mapping should use:
+> >> reg =3D <0xff800400 0x3c>;
+> >> even if we don't use the first N registers.
+> >>
+> >> That way, at some point, you can extend Linux (or whatever) driver to
+> >> use extra registers without reworking the whole binding. That's why I
+> >> think we need to map whole hardware block & handle different registers
+> >> layouts in a driver.
 > >
-> > On Fri, Oct 29, 2021 at 1:45 AM Richard Zhu <hongxing.zhu@nxp.com>
-> > wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > > Sent: Friday, October 29, 2021 4:13 PM
-> > > > To: kishon@ti.com; vkoul@kernel.org; robh@kernel.org;
-> > > > l.stach@pengutronix.de; shawnguo@kernel.org;
-> > tharvey@gateworks.com;
-> > > > galak@kernel.crashing.org; Richard Zhu <hongxing.zhu@nxp.com>
-> > > > Cc: linux-phy@lists.infradead.org;
-> > > > linux-arm-kernel@lists.infradead.org;
-> > > > kernel@pengutronix.de; devicetree@vger.kernel.org;
-> > > > linux-kernel@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
-> > > > Subject: Re: [PATCH v4 5/8] phy: freescale: pcie: Initialize the
-> > > > imx8 pcie standalone phy driver
-> > > >
-> > > > On Thu, 2021-10-28 at 15:27 +0800, Richard Zhu wrote:
-> > > > > Add the standalone i.MX8 PCIe PHY driver.
-> > > > >
-> > > > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > > > Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> > > >
-> > > > Unfortunately, this version no longer works for our
-> > > > IMX8_PCIE_REFCLK_PAD_OUTPUT use-case. Further comments in-
-> > lined
-> > > > below.
-> > > >
-> > > [Richard Zhu] Sorry to hear about that. Then, it seems that this bit
-> > > should be  set anyway.
-> > > It's hard to understand this bit refer to the RM document. Sigh =E2=
-=98=B9.
-> > > Would set the AUX_EN bit later.
-> > >
-> > > > > ---
-> > > > >  drivers/phy/freescale/Kconfig              |   9 +
-> > > > >  drivers/phy/freescale/Makefile             |   1 +
-> > > > >  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 234
-> > > > > +++++++++++++++++++++
-> > > > >  3 files changed, 244 insertions(+)  create mode 100644
-> > > > > drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> > > > >
-> > > > > diff --git a/drivers/phy/freescale/Kconfig
-> > > > > b/drivers/phy/freescale/Kconfig index 320630ffe3cd..de9ee7020f76
-> > > > > 100644
-> > > > > --- a/drivers/phy/freescale/Kconfig
-> > > > > +++ b/drivers/phy/freescale/Kconfig
-> > > > > @@ -14,3 +14,12 @@ config PHY_MIXEL_MIPI_DPHY
-> > > > >         help
-> > > > >           Enable this to add support for the Mixel DSI PHY as
-> > > > found
-> > > > >           on NXP's i.MX8 family of SOCs.
-> > > > > +
-> > > > > +config PHY_FSL_IMX8M_PCIE
-> > > > > +       tristate "Freescale i.MX8 PCIE PHY"
-> > > >
-> > > > Above description is missing the M as in i.MX 8M.
-> > > [Richard Zhu] Okay, would be added later.
-> > > Thanks.
-> > >
-> > > >
-> > > > > +       depends on OF && HAS_IOMEM
-> > > > > +       select GENERIC_PHY
-> > > > > +       default ARCH_MXC && ARM64
-> > > > > +       help
-> > > > > +         Enable this to add support for the PCIE PHY as found on
-> > > > > +         i.MX8M family of SOCs.
-> > > > > diff --git a/drivers/phy/freescale/Makefile
-> > > > > b/drivers/phy/freescale/Makefile index
-> > 1d02e3869b45..55d07c742ab0
-> > > > > 100644
-> > > > > --- a/drivers/phy/freescale/Makefile
-> > > > > +++ b/drivers/phy/freescale/Makefile
-> > > > > @@ -1,3 +1,4 @@
-> > > > >  # SPDX-License-Identifier: GPL-2.0-only
-> > > > >  obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)       +=3D
-> > > > phy-fsl-imx8mq-usb.o
-> > > > >  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)      +=3D
-> > > > phy-fsl-imx8-mipi-dphy.o
-> > > > > +obj-$(CONFIG_PHY_FSL_IMX8M_PCIE)       +=3D
-> > > > phy-fsl-imx8m-pcie.o
-> > > > > diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> > > > > b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..4b4402eaddcc
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> > > > > @@ -0,0 +1,234 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0+
-> > > > > +/*
-> > > > > + * Copyright 2021 NXP
-> > > > > + */
-> > > > > +
-> > > > > +#include <linux/clk.h>
-> > > > > +#include <linux/io.h>
-> > > > > +#include <linux/iopoll.h>
-> > > > > +#include <linux/delay.h>
-> > > > > +#include <linux/mfd/syscon.h>
-> > > > > +#include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
-> > > > > +#include <linux/module.h>
-> > > > > +#include <linux/phy/phy.h>
-> > > > > +#include <linux/platform_device.h> #include <linux/regmap.h>
-> > > > > +#include <linux/reset.h> #include
-> > > > > +<dt-bindings/phy/phy-imx8-pcie.h>
-> > > > > +
-> > > > > +#define IMX8MM_PCIE_PHY_CMN_REG061     0x184 #define
-> > > > > +ANA_PLL_CLK_OUT_TO_EXT_IO_EN  BIT(0) #define
-> > > > > +IMX8MM_PCIE_PHY_CMN_REG062     0x188 #define
-> > > > > +ANA_PLL_CLK_OUT_TO_EXT_IO_SEL BIT(3) #define
-> > > > > +IMX8MM_PCIE_PHY_CMN_REG063     0x18C #define
-> > > > > +AUX_PLL_REFCLK_SEL_SYS_PLL    GENMASK(7, 6) #define
-> > > > > +IMX8MM_PCIE_PHY_CMN_REG064     0x190
-> > > > #define  ANA_AUX_RX_TX_SEL_TX
-> > > > > +BIT(7)
-> > > > #define  ANA_AUX_RX_TERM_GND_EN                BIT(3)
-> > > > #define
-> > > > > +ANA_AUX_TX_TERM               BIT(2) #define
-> > > > > +IMX8MM_PCIE_PHY_CMN_REG065     0x194
-> > > > #define  ANA_AUX_RX_TERM
-> > > > > +(BIT(7) | BIT(4))
-> > > > #define  ANA_AUX_TX_LVL
-> > > > > +GENMASK(3, 0) #define
-> > > > IMX8MM_PCIE_PHY_CMN_REG75      0x1D4 #define
-> > > > > +PCIE_PHY_CMN_REG75_PLL_DONE   0x3 #define
-> > > > PCIE_PHY_TRSV_REG5
-> > > > > +0x414 #define  PCIE_PHY_TRSV_REG5_GEN1_DEEMP 0x2D
-> > #define
-> > > > > +PCIE_PHY_TRSV_REG6             0x418 #define
-> > > > > +PCIE_PHY_TRSV_REG6_GEN2_DEEMP 0xF
-> > > > > +
-> > > > > +#define IMX8MM_GPR_PCIE_REF_CLK_SEL    GENMASK(25, 24)
-> > > > #define
-> > > > > +IMX8MM_GPR_PCIE_REF_CLK_PLL
-> > > > > +FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x3) #define
-> > > > > +IMX8MM_GPR_PCIE_REF_CLK_EXT
-> > > > > +FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x2) #define
-> > > > > +IMX8MM_GPR_PCIE_AUX_EN         BIT(19) #define
-> > > > > +IMX8MM_GPR_PCIE_CMN_RST                BIT(18)
-> > > > #define
-> > > > > +IMX8MM_GPR_PCIE_POWER_OFF      BIT(17) #define
-> > > > IMX8MM_GPR_PCIE_SSC_EN
-> > > > > +BIT(16) #define
-> > > > IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE        BIT(9)
-> > > > > +
-> > > > > +struct imx8_pcie_phy {
-> > > > > +       void __iomem            *base;
-> > > > > +       struct clk              *clk;
-> > > > > +       struct phy              *phy;
-> > > > > +       struct regmap           *iomuxc_gpr;
-> > > > > +       struct reset_control    *reset;
-> > > > > +       u32                     refclk_pad_mode;
-> > > > > +       u32                     tx_deemph_gen1;
-> > > > > +       u32                     tx_deemph_gen2;
-> > > > > +       bool                    clkreq_unused; };
-> > > > > +
-> > > > > +static int imx8_pcie_phy_init(struct phy *phy) {
-> > > > > +       int ret;
-> > > > > +       u32 val, pad_mode;
-> > > > > +       struct imx8_pcie_phy *imx8_phy =3D phy_get_drvdata(phy);
-> > > > > +
-> > > > > +       reset_control_assert(imx8_phy->reset);
-> > > > > +
-> > > > > +       pad_mode =3D imx8_phy->refclk_pad_mode;
-> > > > > +       /* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't
-> > > > hooked */
-> > > > > +       regmap_update_bits(imx8_phy->iomuxc_gpr,
-> > > > IOMUXC_GPR14,
-> > > > >
-> > > > +                          IMX8MM_GPR_PCIE_AUX_EN_
-> > > > OVERRIDE,
-> > > > > +                          imx8_phy->clkreq_unused ?
-> > > > > +                          0 :
-> > > > IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-> > > > > +       regmap_update_bits(imx8_phy->iomuxc_gpr,
-> > > > IOMUXC_GPR14,
-> > > > > +                          IMX8MM_GPR_PCIE_AUX_EN,
-> > > > > +                          pad_mode =3D=3D
-> > > > IMX8_PCIE_REFCLK_PAD_INPUT ?
-> > > > > +                          IMX8MM_GPR_PCIE_AUX_EN :
-> > > > 0);
-> > > >
-> > > > V3 had IMX8MM_GPR_PCIE_AUX_EN always enabled. Turns out V4
-> > stopped
-> > > > working for our output use-case as it only enables it for the input
-> > > > use-case. If I enable this one always it starts working again.
-> > > [Richard Zhu] See my comment above.
-> > > Sorry to bring the regression on your board.
-> > >
-> >
-> > Marcel,
-> >
-> > Your board does not use an external clk, but does it hook up CLKREQ#
-> > from the socket to either I2C4_SCL or UART4_RXD and pin muxed as
-> > such?
-> >
-> > For my board that uses an external clk and does not connect CLKREQ# to
-> > the IMX8MM I need to disable that bit. As Richard says we have invalid
-> > documentation for these bits unfortunately which is not helping.
-> >
-> > Richard, when we do figure out proper documentation for these bits I
-> > suggest you also add a comment block right above their #defines in the
-> > phy driver with the correct documentation to avoid future confusion.
-> > NXP has had so many mistakes in the various IMX8M RM's and I fear they
-> > will never get fixed.
-> [Richard Zhu] Hi Tim:
-> I took look at the validation codes, and found that the AUX_EN is always
->  set to be 1b'1. Whatever the reference clock mode is selected.
-> I'm sending a query email to design team, but I'm not sure I can get resp=
-onse
-> in time.
-> Can you help to take a double tests at your board when AUX_EN(bit19 of GP=
-R14)
-> is set to be 1b'1 firstly?
-> Thanks in advanced.
+> > Yes, that's the correct thing to do.
 >
+> So in the future if we happen to want to manage the hardware timers in
+> that block, they would be part of the watchdog driver? I am fairly sure
+> they won't be, so you will be creating a composite driver/MFD to
+> separate out the functions, more likely. So you might as well create
+> sub-nodes.
 
-Richard and Marcel,
+There is no requirement that an MFD have child nodes. They are done
+both ways. If you need some internal kernel restructuring, then I
+don't care (as DT maintainer).
 
-I apologize, my mistake I was referring to GPR14 bit 9 and not bit19
-in my testing above.
+We very commonly have a single node that's both clock and reset
+provider for example. It's primarily when the sub blocks consume
+different DT resources that you need sub-nodes.
 
-I tested leaving bit 9 set and this still works on my boards with ext
-clk and no CLKREQ# as well as imx8mm-evk with ext clk and CLKREQ#.
+> > The question is whether you'd need sub nodes for the other functions.
+> > Folks tend to want to have sub nodes for convenience which isn't really
+> > needed and then requires a DT update ('cause they add nodes as adding
+> > drivers).
+>
+> Sorry but not, this is getting completely ridiculous, the
 
-So the change on top of your v4 would be:
+Huh?
 
-diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-index 4b4402eaddcc..003f575b36f0 100644
---- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-+++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-@@ -73,8 +73,7 @@ static int imx8_pcie_phy_init(struct phy *phy)
-                           0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-        regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-                           IMX8MM_GPR_PCIE_AUX_EN,
--                          pad_mode =3D=3D IMX8_PCIE_REFCLK_PAD_INPUT ?
--                          IMX8MM_GPR_PCIE_AUX_EN : 0);
-+                          IMX8MM_GPR_PCIE_AUX_EN);
-        regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-                           IMX8MM_GPR_PCIE_POWER_OFF, 0);
-        regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+>
+> >
+> > Based on the registers, you really don't need sub nodes here.
+>
+> I sort of disagree here, the watchdog is a part of a sundry timer block
+> here, but it is logically broken up into different parts and if if I
+> were to imagine how this would map into different drivers, I can easily
+> see that we would have:
+>
+> - a driver to manage the timer interrupt controller
+> - a driver to manage each of the 3 hardware timers, be they clockevent
+> or else
+> - a driver to manage the watchdog
 
-Marcel, does this look right for your board?
+You know the h/w better than me. I was giving my opinion based only on
+the limited information presented.
 
-Best regards,
+> The simplest way to get there, and also because these same timer blocks
+> are actually spread in other parts of STB chips just like the watchdog
+> is, but in a different layout where they stand on their own was the main
+> drive for defining the bcm7038_wdt binding the way it was.
 
-Tim
+A sub-block reused in different blocks is a decent reason for sub-nodes.
+
+Most important for me is that the binding be complete and not have to
+change in an incompatible way in the future. The more detailed you
+make the binding, the harder it will be to get right. It's the same
+reason we moved away from doing a clock per node for clock trees. So,
+if you want child nodes, then you need to define all of them.
+
+Rob
