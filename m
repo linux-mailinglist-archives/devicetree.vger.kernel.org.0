@@ -2,168 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E83D5441505
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 09:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4600441512
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 09:11:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231894AbhKAIKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 04:10:09 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:62128 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231841AbhKAIKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 04:10:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1635754053; x=1667290053;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=pTXbIMogLm/Gpj95PGTVNgiDG10a/0swbYRYN9YELKM=;
-  b=mTOpu/HfZjwJprU9IV8QUbsc69bmA9BdvalgYXAj+aIRWKSaVW3i7nZw
-   rfhYt+AG75ss83FaiY5KYgVr1tsoLe9oJ7/WMbVcwnBGrilvBazcRBbCM
-   75sTCz2d+nx2N67ReHpWXynSgzhFz1AvB5Tl5uXGfVp3/KiPAfmO2q22X
-   pjB/hRtxylyytf61f5eel4VP+fy2sR+eY1Bbd9nEx+286TS13cN3esbKC
-   +Z/Jr/5tv+te6iIl4v065fc9BqkdJSsYYpSPoRyc0YbM9SJdoz9c6BMB2
-   N3Pv/lbvyv+v9/b2W+FPci+Rp+nvIenvXpKt5o9fy8QW4GFP/6EytluAB
-   Q==;
-IronPort-SDR: 8LdzmjO3bGiw3y0W+PqfK8JZtx+b7iTcqRLQVfiNIwubloD/ELxti2T79xBASE5zan7qNf9bdU
- jKd6bQQ9p/FSLkXhy1clFEiDnI2jeI71ZokkIs7c/lyt1/zs0nfujghV4k2Of4J0JZdHjxIYk9
- HEE9t8p9QQCgmkC+5julh4Ybo2DBcfiXks8GcUA/KStgl8WrV5lK7bRz2U93FfzkuvRhktQ8E0
- 5OOn8gGTsSbWJChlFE9JTHdcL6wvTSuwa5ch+YHKUZJoYxqsVDnmqpGk2BX3ReN5MueD9JVc2m
- SGVwXJAQB0BrdpZB37K1n/Fe
-X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; 
-   d="scan'208";a="74923451"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Nov 2021 01:07:32 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 1 Nov 2021 01:07:32 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Mon, 1 Nov 2021 01:07:30 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <kavyasree.kotagiri@microchip.com>, <eugen.hristev@microchip.com>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [RFC PATCH v3 4/4] clk: lan966x: Extend lan966x clock driver for clock gating support
-Date:   Mon, 1 Nov 2021 09:08:45 +0100
-Message-ID: <20211101080845.3343836-5-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211101080845.3343836-1-horatiu.vultur@microchip.com>
-References: <20211101080845.3343836-1-horatiu.vultur@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+        id S231614AbhKAIOD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 04:14:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231472AbhKAIOB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 04:14:01 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D220C061714;
+        Mon,  1 Nov 2021 01:11:27 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id iq11so4662791pjb.3;
+        Mon, 01 Nov 2021 01:11:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=J9QT2lHWekz3y2luPuBfa/44XsdKO2ND6DuwVMfcAzw=;
+        b=JOC3FnY6vmzclt30T9ywNFncB8JUYf8Ot3HU0/enGDVoWXg60vQWfm2PYYdORwJ0Ge
+         uJlbcg4Zdl3TG+FHE2mhvaUpzs3K5k5J5NnFWe7MVhbqwKc3k24d1TL5YiBF/YZUjWRN
+         zk8ROcL8EUEcFVyxJytxHybsWu41+IFCO+SlXBDcp/lRRW9ptUmy2OXc6rwAdi4RHOmz
+         TAhNNDcTCVTOCg8cES1DHaqbRhzt9v7jT8bwfwnYJndR/MFDEpJBTBVtEWOSb04YuYeU
+         MLiyRGU27/Fiv/oRMt9LxxlRRxNJMjMcP1ad3ZFSrCYpMrkuZt5HXseEOeXMJjcad4B8
+         N3Ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=J9QT2lHWekz3y2luPuBfa/44XsdKO2ND6DuwVMfcAzw=;
+        b=TS/LitFrF7FT5rDecOR+v7DbkE+9d5ss+JhOjIVZ/gbeVzpX26ewdEdDSJQLkT8JNc
+         ROSrrGytLG4D3RLPPeUdjpgSVvgUvoVzfYZyenFco8YrqsSeycumo8PVQw6Hjk91QuyL
+         9IhOy7XO5OmSnVdcAj2ze3KL4CyaUtzaWq9RMzxLccC9HjVjRrMiYQZNFq26/cZJ0FUb
+         pzfM0kQdqkhCJia3IRxh9kIIXm2BpAO08FaTSKuomh4ddpFJXPZ6Xud6jn/sc6aCXK+k
+         ojujwXTV7QN0IibtA5+vmZge56kPBQEFyB05SiMbkHpyhBzrVcVYIMze5X/idKe8tG1E
+         7eug==
+X-Gm-Message-State: AOAM531pX6ej8SoGc1XB6wTXuTIiYMyyPMJK8Te9F7DC0izaP88A2Szq
+        MmVST0IreLAsWowtkQh/JME=
+X-Google-Smtp-Source: ABdhPJzr68vZLGPkmyiaFiHoAgFgE+LlvljKsj6pdJSQM1U+uLIl6MSNATSYt0vqbJodSVslryXkpQ==
+X-Received: by 2002:a17:90b:4acd:: with SMTP id mh13mr4213888pjb.230.1635754286998;
+        Mon, 01 Nov 2021 01:11:26 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id d2sm15732606pfj.42.2021.11.01.01.11.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Nov 2021 01:11:26 -0700 (PDT)
+From:   Wells Lu <wellslutw@gmail.com>
+X-Google-Original-From: Wells Lu <wells.lu@sunplus.com>
+To:     linus.walleij@linaro.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     qinjian@cqplus1.com, dvorkin@tibbo.com,
+        Wells Lu <wells.lu@sunplus.com>
+Subject: [PATCH v2 0/3] This is a patch series for pinctrl driver for Sunplus SP7021 SoC.
+Date:   Mon,  1 Nov 2021 16:11:14 +0800
+Message-Id: <1635754277-32429-1-git-send-email-wells.lu@sunplus.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
+References: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the clock driver to add support also for clock gating. The
-following peripherals can be gated: UHPHS, UDPHS, MCRAMC, HMATRIX.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- drivers/clk/clk-lan966x.c | 59 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 56 insertions(+), 3 deletions(-)
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-diff --git a/drivers/clk/clk-lan966x.c b/drivers/clk/clk-lan966x.c
-index 19bec94e1551..328ded6b2eae 100644
---- a/drivers/clk/clk-lan966x.c
-+++ b/drivers/clk/clk-lan966x.c
-@@ -48,6 +48,20 @@ static struct clk_init_data init = {
- 	.num_parents = ARRAY_SIZE(lan966x_gck_pdata),
- };
- 
-+struct clk_gate_soc_desc {
-+	const char *name;
-+	int bit_idx;
-+};
-+
-+static const struct clk_gate_soc_desc clk_gate_desc[] = {
-+	{ "uhphs", 11 },
-+	{ "udphs", 10 },
-+	{ "mcramc", 9 },
-+	{ "hmatrix", 8 },
-+	{ }
-+};
-+
-+static DEFINE_SPINLOCK(clk_gate_lock);
- static void __iomem *base;
- 
- static int lan966x_gck_enable(struct clk_hw *hw)
-@@ -188,11 +202,37 @@ static struct clk_hw *lan966x_gck_clk_register(struct device *dev, int i)
- 	return &priv->hw;
- };
- 
-+static int lan966x_gate_clk_register(struct device *dev,
-+				     struct clk_hw_onecell_data *hw_data,
-+				     void __iomem *gate_base)
-+{
-+	int i;
-+
-+	for (i = GCK_GATE_UHPHS; i < N_CLOCKS; ++i) {
-+		int idx = i - GCK_GATE_UHPHS;
-+
-+		hw_data->hws[i] =
-+			devm_clk_hw_register_gate(dev, clk_gate_desc[idx].name,
-+						  "lan966x", 0, base,
-+						  clk_gate_desc[idx].bit_idx,
-+						  0, &clk_gate_lock);
-+
-+		if (IS_ERR(hw_data->hws[i]))
-+			return dev_err_probe(dev, PTR_ERR(hw_data->hws[i]),
-+					     "failed to register %s clock\n",
-+					     clk_gate_desc[idx].name);
-+	}
-+
-+	return 0;
-+}
-+
- static int lan966x_clk_probe(struct platform_device *pdev)
- {
- 	struct clk_hw_onecell_data *hw_data;
- 	struct device *dev = &pdev->dev;
--	int i;
-+	void __iomem *gate_base;
-+	struct resource *res;
-+	int i, ret;
- 
- 	hw_data = devm_kzalloc(dev, struct_size(hw_data, hws, N_CLOCKS),
- 			       GFP_KERNEL);
-@@ -205,9 +245,9 @@ static int lan966x_clk_probe(struct platform_device *pdev)
- 
- 	init.ops = &lan966x_gck_ops;
- 
--	hw_data->num = N_CLOCKS;
-+	hw_data->num = GCK_GATE_UHPHS;
- 
--	for (i = 0; i < N_CLOCKS; i++) {
-+	for (i = 0; i < GCK_GATE_UHPHS; i++) {
- 		init.name = clk_names[i];
- 		hw_data->hws[i] = lan966x_gck_clk_register(dev, i);
- 		if (IS_ERR(hw_data->hws[i])) {
-@@ -217,6 +257,19 @@ static int lan966x_clk_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-+	if (res) {
-+		gate_base = devm_ioremap_resource(&pdev->dev, res);
-+		if (IS_ERR(gate_base))
-+			return PTR_ERR(gate_base);
-+
-+		hw_data->num = N_CLOCKS;
-+
-+		ret = lan966x_gate_clk_register(dev, hw_data, gate_base);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, hw_data);
- }
- 
+Changes in v2:
+ - Addressed all comments from Mr. Randy Dunlap.
+ - Added more 'defines' in dt-bindings header files (forgot to add in v1).
+ - Modified vendor name in MAINTAINERS file.
+
+Wells Lu (3):
+  pinctrl: Add driver for Sunplus SP7021
+  dt-bindings: pinctrl: Add dt-bindings for Sunplus SP7021
+  devicetree: bindings: pinctrl: Add bindings doc for Sunplus SP7021.
+
+ .../bindings/pinctrl/sunplus,sp7021-pinctrl.yaml   | 277 ++++++++++
+ MAINTAINERS                                        |  10 +
+ drivers/pinctrl/Kconfig                            |   1 +
+ drivers/pinctrl/Makefile                           |   1 +
+ drivers/pinctrl/sunplus/Kconfig                    |  33 ++
+ drivers/pinctrl/sunplus/Makefile                   |  11 +
+ drivers/pinctrl/sunplus/gpio_inf_sp7021.c          |  48 ++
+ drivers/pinctrl/sunplus/pinctrl_inf_sp7021.c       | 501 +++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl.c                   | 359 +++++++++++++
+ drivers/pinctrl/sunplus/sppctl.h                   | 181 +++++++
+ drivers/pinctrl/sunplus/sppctl_gpio.c              | 136 +++++
+ drivers/pinctrl/sunplus/sppctl_gpio.h              |  73 +++
+ drivers/pinctrl/sunplus/sppctl_gpio_ops.c          | 288 ++++++++++
+ drivers/pinctrl/sunplus/sppctl_gpio_ops.h          |  75 +++
+ drivers/pinctrl/sunplus/sppctl_pinctrl.c           | 593 +++++++++++++++++++++
+ drivers/pinctrl/sunplus/sppctl_pinctrl.h           |  33 ++
+ drivers/pinctrl/sunplus/sppctl_sysfs.c             | 385 +++++++++++++
+ drivers/pinctrl/sunplus/sppctl_sysfs.h             |  33 ++
+ include/dt-bindings/pinctrl/sppctl-sp7021.h        | 171 ++++++
+ include/dt-bindings/pinctrl/sppctl.h               |  40 ++
+ 20 files changed, 3249 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/sunplus,sp7021-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/sunplus/Kconfig
+ create mode 100644 drivers/pinctrl/sunplus/Makefile
+ create mode 100644 drivers/pinctrl/sunplus/gpio_inf_sp7021.c
+ create mode 100644 drivers/pinctrl/sunplus/pinctrl_inf_sp7021.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio_ops.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_gpio_ops.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_pinctrl.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_pinctrl.h
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sysfs.c
+ create mode 100644 drivers/pinctrl/sunplus/sppctl_sysfs.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl-sp7021.h
+ create mode 100644 include/dt-bindings/pinctrl/sppctl.h
+
 -- 
-2.33.0
+2.7.4
 
