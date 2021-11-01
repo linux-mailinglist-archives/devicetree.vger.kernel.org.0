@@ -2,77 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7641E4420B9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:22:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67D624420C2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:23:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232553AbhKATYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 15:24:32 -0400
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:35486 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhKATYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:24:32 -0400
-Received: by mail-oi1-f181.google.com with SMTP id x8so22132018oix.2;
-        Mon, 01 Nov 2021 12:21:58 -0700 (PDT)
+        id S232598AbhKATZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 15:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232546AbhKATZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:25:51 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8373C061714;
+        Mon,  1 Nov 2021 12:23:17 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id t11so12661929ljh.6;
+        Mon, 01 Nov 2021 12:23:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=D2lApqNHzsz7xil/t1thYPGHgz5hJH6hdTcmgav0Z2Y=;
+        b=ZMDQ4KU4Ztk1q1EzVP1gpUttPH/NBeKhQO43kzd4eiY78Wp4UTGd3kFtf0+1sJEh7Y
+         azAuOUO1lznnOs0dgiEDXQLEbyoUVIOX9U6kjCQgwfbW+6svpUNTBljwOIm7gOz6RyvA
+         jzzRiXfJ6ELz5CZjGbsyItQYnsCygdK9u7WUcE2gAi11fu9iTCPJYhJGlaocZKImm/hD
+         KDYLPWfRp3ZeFNE6JD9kovT37PzyGlL1m4kGFIRBmMG7BOqfRvRUBpHwHZNx5XmSDTvf
+         Coa5GJrLiW8eprTCedMjriyXLdLSHQjofyVNRqZrCjvleQ/KTQYpZXFv3I+m/MGS/VK4
+         cAsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CK8bDl/UZF3iJElpM0AUZ8j3XZuMtTVDa42QmfBmzIg=;
-        b=iGBGHlowYwzp8ZLK5CoWRa0m2noAmcSFOdV0p5NkbKRxGyHi2CSNI6PhO8cFsSaJSZ
-         iizLeyJeSJ2MxinriMdka/Jmj9lEB4VkECYO39t9bN7Z8SVHQKPnvGndACCLaHb4KiOG
-         9GWgInej3/5SJ3t4gCUvQxTZ1or965PL+3c+Z7Jm6bwfuxSMzPe4hq/4VUc4Az8Ows29
-         gTYNFZzNhXyJHH50m0On/xSZoZGoYMxiT0ghlyKAnnY/CPjvinBUet51Ff2ILW9AgAJj
-         hSpWOyhaVHe3Q3xsEzKBe7JItkzoohAcGdBcd1Bs/I6v3lTHH0hwIJX9dfG13nZhpIfy
-         e6hQ==
-X-Gm-Message-State: AOAM5308mz+LiUtdkHbjyi/dcEDJelfqEvwl04xmzCxAAj1/jVdsq3le
-        qlDSGduQKuEEWblKuwEKyzgZlP/+cQ==
-X-Google-Smtp-Source: ABdhPJxbovHOnNGmkHJoaK9iKIkmrwObE/xyfVNB/TKcn30ifdXMxz2LnyePis97GkWQgLPBIywSuA==
-X-Received: by 2002:a05:6808:3d2:: with SMTP id o18mr769126oie.121.1635794518037;
-        Mon, 01 Nov 2021 12:21:58 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bi40sm569733oib.51.2021.11.01.12.21.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 12:21:57 -0700 (PDT)
-Received: (nullmailer pid 869326 invoked by uid 1000);
-        Mon, 01 Nov 2021 19:21:56 -0000
-Date:   Mon, 1 Nov 2021 14:21:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 01/12] dt-bindings: watchdog: Require
- samsung,syscon-phandle for Exynos7
-Message-ID: <YYA+VH5PLSFvq1H0@robh.at.kernel.org>
-References: <20211031122216.30212-1-semen.protsenko@linaro.org>
- <20211031122216.30212-2-semen.protsenko@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D2lApqNHzsz7xil/t1thYPGHgz5hJH6hdTcmgav0Z2Y=;
+        b=3hneM6yQX13xOo+rfD16pYwnozyhcjLed9bTikMtOvDzBAoWP37P7KtG2Hxzejzq8o
+         5zxIOtwsTUiRlCbCvSLS8hJ2J9ARYvS3iD60XI0MBsnEj2G1J6Jv4yKufm5X1e+OWfBb
+         ecLDkMjPELaEAbgD3BA9kVuKI8zcEvSjOob03x7J+XCrZjgSzLqXgczZNImZPrLwfKg3
+         SOyGAMT3Lj4cmGuvajHTqJMQLtEEbRW22EIpZFCCOG25i2DID7jSzfXriGMMmEK3T9zN
+         Dm0HxVqE04tH63HKc/HXRqlZlBe7q/uoWB6l739u/DJCG5VziEAaeR+q67iS8EEI+kAo
+         MoCA==
+X-Gm-Message-State: AOAM530N0Br2QSuO+rOIoppD/tr485HuEHBAMkYJI9UsA5RCj32JR9g/
+        mflM9kJafJGv5mrxW26PE6XkZq25fnbPi775K2k=
+X-Google-Smtp-Source: ABdhPJxwFl1xhc28ZpQsiTutYAPoyUnYHYNNbyek8wLOpzupjilR01u0JLrLrTAshIIND9/MmUZuP6qreXhSnH2EBMY=
+X-Received: by 2002:a2e:9496:: with SMTP id c22mr3412967ljh.407.1635794596270;
+ Mon, 01 Nov 2021 12:23:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211031122216.30212-2-semen.protsenko@linaro.org>
+References: <20211026175815.52703-1-joey.gouly@arm.com> <20211026175815.52703-5-joey.gouly@arm.com>
+ <CAHp75Vc8-sZX-aMtR9o5_=_X0y6ALYCXR2W3Y4389=xD7c__nw@mail.gmail.com> <20211101175326.GA14846@e124191.cambridge.arm.com>
+In-Reply-To: <20211101175326.GA14846@e124191.cambridge.arm.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 1 Nov 2021 21:22:26 +0200
+Message-ID: <CAHp75VfpCnvAj_5J+5N+9qtVZdEQe-+TVSKaVKTcJhFqqGOUZw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/5] pinctrl: add pinctrl/GPIO driver for Apple SoCs
+To:     Joey Gouly <joey.gouly@arm.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>,
+        Stan Skowronek <stan@corellium.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Oct 2021 14:22:05 +0200, Sam Protsenko wrote:
-> Exynos7 watchdog driver is clearly indicating that its dts node must
-> define syscon phandle property. That was probably forgotten, so add it.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Fixes: 2b9366b66967 ("watchdog: s3c2410_wdt: Add support for Watchdog device on Exynos7")
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
-> Changes in v2:
->   - Added R-b tag by Krzysztof Kozlowski
->   - Added "Fixes" tag
-> 
->  Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
+On Mon, Nov 1, 2021 at 7:53 PM Joey Gouly <joey.gouly@arm.com> wrote:
+> On Sun, Oct 31, 2021 at 03:39:01PM +0200, Andy Shevchenko wrote:
+> > On Wed, Oct 27, 2021 at 5:28 AM Joey Gouly <joey.gouly@arm.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+...
+
+> > > +       ret = of_property_count_u32_elems(node, "pinmux");
+> > > +       if (ret <= 0) {
+> > > +               dev_err(pctl->dev,
+> > > +                       "missing or empty pinmux property in node %pOFn.\n",
+> > > +                       node);
+> > > +               return ret;
+
+if (ret == 0)
+ dev_err();
+ return 0;
+
+> > This is incorrect. It always happens when somebody is in hurry :-)
+> I don't understand which bit you are saying is incorrect here, can you expand on your comment?
+
+See above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
