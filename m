@@ -2,66 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0BE64422BA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 22:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE354422BD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 22:36:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231990AbhKAVgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 17:36:45 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:45746 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbhKAVgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 17:36:44 -0400
-Received: by mail-ot1-f50.google.com with SMTP id l16-20020a9d6a90000000b0054e7ab56f27so27163750otq.12;
-        Mon, 01 Nov 2021 14:34:11 -0700 (PDT)
+        id S230395AbhKAViv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 17:38:51 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:39919 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229712AbhKAViu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 17:38:50 -0400
+Received: by mail-ot1-f42.google.com with SMTP id x16-20020a9d7050000000b00553d5d169f7so25513735otj.6;
+        Mon, 01 Nov 2021 14:36:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Z8yRxOz3s2WTsVm7FQuknGf83woeCl9finIZOSk+7SE=;
-        b=lervt4SKIGc5TaCaJxl/a8grxRiwyfw7e8ImIgR84oWywAMBRhlSfTgaIJO9/NWapE
-         YEa89Tu1XMwnkXfE0kYt4gEPjsnZVVwIOlexM9zbataKwl5mpEtOIM3mmwoJlVhG+nEI
-         teVgXl1uPDAFYhBGSGD8tIQQJwwutu0l9cGMNRckPlFTvj+eBwHVTHgCnyDOhwmVpaC6
-         4DnNrmzA2sdsgAUD4MHJ80nY7yz/igDgYbqN0J6nO8uqTL0op+ABnhFVt7OEYacGwd01
-         UuuoBDm38uT+r8YZONhqiLl6Pqry0QZ3MNtEynQvMrmQFwQFItGLZY2TLvH/y3MDe5kH
-         SBaA==
-X-Gm-Message-State: AOAM533xw6zepw0NfehHT5MDfvSIGagTbLw//zYMXrIb3ZIzGXTO6mSp
-        IGhtlS+IUwIVYtI3pbC492UpT1EdhQ==
-X-Google-Smtp-Source: ABdhPJxNLLoF3dWU4T+Pq+CWqVsnicIHqD56pH0I6Am5juc1pJTriQ+v+d37Rybq9UHIRIC3sR5K5A==
-X-Received: by 2002:a9d:1c8f:: with SMTP id l15mr8501691ota.337.1635802450905;
-        Mon, 01 Nov 2021 14:34:10 -0700 (PDT)
+        bh=90wG7Obp9B6dHPtoVog3pPpxjm6DgW7vC5lI8mfDfgw=;
+        b=EIkvxP+vQ0dTcJZwNUSTCt+ExRKhytVH+9jNzhV6O4vePsXxEopZY8wmgBpYVYgmjb
+         bt6F41QHUooqz/Jm2wqZOOvXwVqjWuyocGfLn+Gg3uB/eQtJ6tLjFH1gxMAL05b6+v6d
+         ScF7EhJq1Fsw/8u1fK2ppNnt6qpAgreNduabJ2mQyt1kJUt9S4ZzXhx6mZt1u5CCJjr0
+         m527mgiNSfcxsUKT7Scq/QXpdo0u2lYBxC0WPQeAYx8fezLWz5bIpoUPqBThP/BEMFr4
+         Q1qZBvljOUQRxESbMYwwOPlc3r4UUu39fbDdlA8ntaamhZ3+P7vDXIXT1GUWy5P9Too9
+         XLjg==
+X-Gm-Message-State: AOAM532bWbZUwWIKMyTcsFFlGQmwAuVQ8LTI95ptRk4AMyww/jv0jHLD
+        o7nHTT+F+3GkRGYJlMNMjg==
+X-Google-Smtp-Source: ABdhPJwquV8eZYTxZdXaRA68R4NjOW8NuGpiTfWm1kpe3K8ni8vHnYs09eSX4/Vl3p8SCq+h1VeKmQ==
+X-Received: by 2002:a9d:2f61:: with SMTP id h88mr23067465otb.36.1635802576755;
+        Mon, 01 Nov 2021 14:36:16 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m23sm4394890oom.34.2021.11.01.14.34.09
+        by smtp.gmail.com with ESMTPSA id w5sm4528865otq.46.2021.11.01.14.36.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 14:34:10 -0700 (PDT)
-Received: (nullmailer pid 1104793 invoked by uid 1000);
-        Mon, 01 Nov 2021 21:34:09 -0000
-Date:   Mon, 1 Nov 2021 16:34:09 -0500
+        Mon, 01 Nov 2021 14:36:16 -0700 (PDT)
+Received: (nullmailer pid 1108565 invoked by uid 1000);
+        Mon, 01 Nov 2021 21:36:15 -0000
+Date:   Mon, 1 Nov 2021 16:36:15 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     devicetree@vger.kernel.org, David Lechner <david@lechnology.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: net: ti,bluetooth: Document default
- max-speed
-Message-ID: <YYBdUWHe0Rkh1TIq@robh.at.kernel.org>
-References: <0c6a08c714aeb6dd96b5a54a45b0b5b1cfb49ad1.1635338283.git.geert+renesas@glider.be>
+Cc:     Dikshita Agarwal <dikshita@codeaurora.org>,
+        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] bindings: media: venus: Drop bogus maxItems for
+ power-domain-names
+Message-ID: <YYBdzwshhM5fmsEE@robh.at.kernel.org>
+References: <097d8602906e9db279728330c6cf2837be184704.1635338663.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0c6a08c714aeb6dd96b5a54a45b0b5b1cfb49ad1.1635338283.git.geert+renesas@glider.be>
+In-Reply-To: <097d8602906e9db279728330c6cf2837be184704.1635338663.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 14:38:37 +0200, Geert Uytterhoeven wrote:
-> Document the default value of max-speed, as used by
-> linux/drivers/bluetooth/hci_ll.c.
+On Wed, Oct 27, 2021 at 02:45:30PM +0200, Geert Uytterhoeven wrote:
+> make dt_binding_check:
+
+I'd say it's redundant rather than bogus.
+
 > 
+>     Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml: ignoring, error in schema: properties: power-domain-names
+>     warning: no schema found in file: Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+> 
+> Fixes: e48b839b6699c226 ("media: dt-bindings: media: venus: Add sc7280 dt schema")
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/net/ti,bluetooth.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+>  Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 
-Applied, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
+
