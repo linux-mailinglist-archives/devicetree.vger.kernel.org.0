@@ -2,89 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D68442028
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 19:38:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1793442045
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 19:49:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232046AbhKASlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 14:41:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49212 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231822AbhKASlF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Nov 2021 14:41:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A50360C40;
-        Mon,  1 Nov 2021 18:38:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635791912;
-        bh=W/465Gonb/T0JqYrNNmIPOX1fgL6mxL95dFICGRyvTk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iHLRDNtGoZE27FcSIAI/F13Fhr3dTzeSEvPxV1cJAkTaQACBsohjM6/6WpXuFQlfi
-         ZBX5BMqlqZpfQ7jiSBVGWlY9uR0M7Z9G/hAHH0av3jmJS7ELm+l8c3ifbCQokC411U
-         r3WkuXu9R2OLFTOmcGGnt66mQjJNaG5Bu5KqdInjni788VbqPGdYwEECNttkMD5ofd
-         ZhLJLOHGGpC13Z4rhXZx8mTcn36r9aOzOI48LeM6lio2Dlp7Dsy7pyUAYxYIlrzy57
-         0Mc/qZLnrCLpaSKIZ7gm0eVlJKhZzXGbT6kEUlbpZcfc6mJ51gWYpTt+Pu1TX6/CR0
-         Odu/nYYmg8zWg==
-Date:   Mon, 1 Nov 2021 18:38:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     YC Hung <yc.hung@mediatek.com>, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, matthias.bgg@gmail.com,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>, trevor.wu@mediatek.com,
-        allen-kh.cheng@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v4 1/2] ASoC: SOF: mediatek: Add mt8195 dsp clock support
-Message-ID: <YYA0IgOPGIt0TT0O@sirena.org.uk>
-References: <20211028135737.8625-1-yc.hung@mediatek.com>
- <20211028135737.8625-2-yc.hung@mediatek.com>
- <YXwoB7FtRw0AzgcD@sirena.org.uk>
- <CAEnQRZCQHxctG+3L72Xx3083shytF478ONGGpZf0A-6-+nFE=w@mail.gmail.com>
+        id S232103AbhKASvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 14:51:46 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:42632 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232100AbhKASvk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 14:51:40 -0400
+Received: by mail-ot1-f47.google.com with SMTP id v19-20020a9d69d3000000b00555a7318f31so14489637oto.9;
+        Mon, 01 Nov 2021 11:49:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=H7wFgbeLMuUv4++Ly+4nu5qsuu1wVGNwUtHn/JRfj8Q=;
+        b=kyEFBbOvjdfWCW+vwycyC3tv6vcGYTTriLxOQCeHImdWZ19ms/ou2IVg4YcsRU/vvU
+         wBiyYfzXbuAu2y+RvcgTqBuRaTGpWzPvtAXxFvCCQ9ekmJ4KwjNHkOe4OXesLHV9AHa8
+         KmX6Bd5Sr8OqlrZaWYKPNqAhBUq32QWMiFBIajWJ2WdIwnoccHLCNKpgpUiinwIFX6Up
+         65aMXLtb7omaOSMEc1OOuuK8XmepIRNDG0vlmljxeTMdkKxHLNcFmZMqy0ihT6w0duVQ
+         VXzvl7f/fx6CcLzpGDGO3N2WHMVQJ8/v1ZXOoghB+h5bqeG6ErznWx4P84GV1bz65+1H
+         PFeA==
+X-Gm-Message-State: AOAM5331ZGJIRwhonzicrcKH2kLq81c/FGi4bNcOfKDeSbINJISN5NTL
+        IgvmQY1jHp5idjJGlyhKgRXTp/O5tA==
+X-Google-Smtp-Source: ABdhPJwOH3OGownRZ9Fvz+SijRxwkSjoLikgygUWYcUfS9iA8bYqhjT3m323jyxbtuICTpdVNFhn6g==
+X-Received: by 2002:a05:6830:3498:: with SMTP id c24mr7839863otu.263.1635792542039;
+        Mon, 01 Nov 2021 11:49:02 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e20sm1751291oow.5.2021.11.01.11.49.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Nov 2021 11:49:01 -0700 (PDT)
+Received: (nullmailer pid 813055 invoked by uid 1000);
+        Mon, 01 Nov 2021 18:49:00 -0000
+Date:   Mon, 1 Nov 2021 13:49:00 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Alex Elder <elder@kernel.org>, linux-arm-msm@vger.kernel.org,
+        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: net: qcom,ipa: IPA does support up to
+ two iommus
+Message-ID: <YYA2nEd6jkSwx8QW@robh.at.kernel.org>
+References: <20211026163240.131052-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="t3purBc6q6T2VLLY"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAEnQRZCQHxctG+3L72Xx3083shytF478ONGGpZf0A-6-+nFE=w@mail.gmail.com>
-X-Cookie: Don't Worry, Be Happy.
+In-Reply-To: <20211026163240.131052-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 26 Oct 2021 18:32:40 +0200, David Heidelberg wrote:
+> Fix warnings as:
+> arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml: ipa@1e40000: iommus: [[21, 1504, 0], [21, 1506, 0]] is too long
+> 	From schema: Documentation/devicetree/bindings/net/qcom,ipa.yaml
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  Documentation/devicetree/bindings/net/qcom,ipa.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
---t3purBc6q6T2VLLY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Nov 01, 2021 at 07:56:04PM +0200, Daniel Baluta wrote:
-> On Fri, Oct 29, 2021 at 8:00 PM Mark Brown <broonie@kernel.org> wrote:
-
-> > This doesn't apply against current code, there's no such file upstream.
-> > Please check and resend.
-
-> This patch was sent only to get an Ack-by for 2/2 from Rob Herring.
-> The patch will go first to SOF tree and then I will
-> send you a patch based on your for-next branch.
-
-> YC sorry for not being more explicit. I think the right way was to
-> mark this patch series as [RFC PATCH].
-
-Please don't send me anything that's not targetted for mainline.
-
---t3purBc6q6T2VLLY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGANCEACgkQJNaLcl1U
-h9C5XAf/ZnMi0VtMydTyjyAMioMHmBfWGL4fveMkiZQPSYLoiblCk0AaGzHUCyBq
-PrT7qz+dVzaKjttBR/Y+Ljc6tecBjX722HXPGXJ0Cu5i4w2nuQqgrGiXAcj34LeD
-wnV+C8IJBtALNo8yWJfg1bnUtHalkpRetQsT20T8t8UIvylou9wmtm1xOyAKD5o/
-BYLXHVkYW6vhX3sZ7CHXIGhy1YNk8sE+oeyAnBlyVL+x9H93aTOz4FKGywsnnN1F
-VFaf1vTMXMfLow7XHsAWFIDohc7mWNMnlZYPY7g3UrjT0aQtE8ZbBUVoxGL4O06h
-BnhMWg1Wy2bhz5/KfjPbTSh6Udv3gg==
-=Wieg
------END PGP SIGNATURE-----
-
---t3purBc6q6T2VLLY--
+Applied, thanks!
