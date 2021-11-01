@@ -2,117 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD3A5441BD8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:40:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C59441C02
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:57:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbhKANmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 09:42:32 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:36825 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231828AbhKANmc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Nov 2021 09:42:32 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635773999; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=oCiwHNpAGx+7qf4ko0KtXb5a49/AVJ95iHboNyo0CEo=;
- b=rTVnfd6y1S2+jkheATYPJ1ufg/mDicRJxAxaUil7QFptlvrA7FP0Vt2rUnFQhG+Im1dkePRj
- JKYamBH9auHnYWmOAFqiEKtZpD7HIcSOf//YgWQDQKBJOlT2xqeInBsNFU4P0EJjDvO2SHBq
- Nl3UDVkKotL4O/lPmCtU1C4zGyU=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 617fee2d2e144ac4d3ef0af4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Nov 2021 13:39:57
- GMT
-Sender: okukatla=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id ED320C43617; Mon,  1 Nov 2021 13:39:56 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: okukatla)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 435E1C4338F;
-        Mon,  1 Nov 2021 13:39:56 +0000 (UTC)
+        id S231789AbhKAOAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 10:00:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229826AbhKAOAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 10:00:30 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D56BC061714
+        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 06:57:57 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id j75so17100178ybj.6
+        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 06:57:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=mAlvUNbq9Bd9ZMAPg9xaRqxDvS0SsWvOE++Qcabg7SMSOaipM/nWTAWp9VABAy6/jx
+         WIFBuKDZrRbOs7PUG5miXWhvclgGaHyDIWVQaLhnrNejH2Fjzieve58x2PmatjcpraW8
+         2hZNrxIt8XO0c1RSzIXdn+Zbn29Yyq02v4Ca1LPY6uOqoDwxb9BeeDdr98agh5gYFc6p
+         xrmYEWUMvNapSNpdZxVOAWHA6gHP98KobWpYCxapThtjl4c5mHYTM4drZeJNVdXVErwG
+         U3xe4cvSQlCvwouR80t8hW9SMUeR1XNAbmQEghmVPAAEi4SldQJhdYOUd7s+Kn+lfykG
+         A+EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=U2NJz9qNmiL2cBFaf4eopLGPFmoN5zZa5P4gTFYrm/q1VmcG9wnE4nFAz550pii5OV
+         o+Z9mypDwiTtYxXY3sKqvnfv9hg9zuyFX/2ENshvV6mFHBcv5cgM+D9crmPrRfh7ze+H
+         CHpHNrr/uZO8JJGgwxdfqz8ili1aKBcJClIn7BikZKE7m0/rVWM9hO4eLrHGM6F1BOtN
+         sOdsmD9BKO7ghkV8ZsMjQZKU5111mP9mWThJT617OV8e0RH/m9FsdDcRci335huUpGoZ
+         aJLlCqVyeWLr1t4kgAnlYha/tB7DjaTueJM/gQoPNYSBsDnpp+WZhXHVIjbyJKJitXbf
+         Cc3w==
+X-Gm-Message-State: AOAM530RL7xQHMBldjnfibn1SotnOqW6XBrkDdOf/qBaveHIX2VVzWp8
+        EFOtLPuD/Anx4cS27aCy3KUbcC2iIXI/5A4IGlA=
+X-Google-Smtp-Source: ABdhPJz90tk6Lz7iHJA9sbdcXetP8mpmtCkWQ590ljHYoyRnMKVysdfCSD4z9vgV9Sl/zq1hmMMJCQ0bF2ru1j108SA=
+X-Received: by 2002:a25:3104:: with SMTP id x4mr31941062ybx.512.1635775076395;
+ Mon, 01 Nov 2021 06:57:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 01 Nov 2021 19:09:56 +0530
-From:   okukatla@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     georgi.djakov@linaro.org, evgreen@google.com,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
-Subject: Re: [v8 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
- provider
-In-Reply-To: <YXsxxd7f/FaDJEMa@ripper>
-References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
- <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
- <YXsxxd7f/FaDJEMa@ripper>
-Message-ID: <fc4ef5ecd91401f49411cf138b0da526@codeaurora.org>
-X-Sender: okukatla@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Reply-To: christopherdaniel830@gmail.com
+Sender: dc2200110@gmail.com
+Received: by 2002:a05:7010:128a:b0:150:18e:7d0a with HTTP; Mon, 1 Nov 2021
+ 06:57:55 -0700 (PDT)
+From:   Christopher Daniel <christopherdaniel830@gmail.com>
+Date:   Mon, 1 Nov 2021 13:57:55 +0000
+X-Google-Sender-Auth: wUXRFA9JSvaBEC74DYj0zXmInCw
+Message-ID: <CAJrG7Yza_gzXZoH7xA7SseaaKaCNWU1-qfRNkuzFG2H_WJJLmA@mail.gmail.com>
+Subject: Hello Dear
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-29 04:57, Bjorn Andersson wrote:
-> On Thu 21 Oct 03:40 PDT 2021, Odelu Kukatla wrote:
-> 
->> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
->> SoCs.
->> 
->> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index d74a4c8..0b55742 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -3687,6 +3687,14 @@
->>  			};
->>  		};
->> 
->> +		epss_l3: interconnect@18590000 {
->> +			compatible = "qcom,sc7280-epss-l3";
->> +			reg = <0 0x18590000 0 0x1000>;
-> 
-> This series looks like I would expect, with and without per-core dcvs.
-> But can you please explain why this contradict what Sibi says here:
-> https://lore.kernel.org/all/1627581885-32165-3-git-send-email-sibis@codeaurora.org/
-> 
-> Regards,
-> Bjorn
-> 
-Thanks for Review!
-Sibi's patch will be dropped, it is not required with my updated patch 
-series:
-https://lore.kernel.org/all/1627581885-32165-3-git-send-email-sibis@codeaurora.org/
->> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
->> +			clock-names = "xo", "alternate";
->> +			#interconnect-cells = <1>;
->> +		};
->> +
->>  		cpufreq_hw: cpufreq@18591000 {
->>  			compatible = "qcom,cpufreq-epss";
->>  			reg = <0 0x18591000 0 0x1000>,
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
->> 
+.
+I wish to invite you to participate in our Investment Funding Program,
+get back to me for more details if interested please.
+
+Regards.
+Christopher Daniel.
