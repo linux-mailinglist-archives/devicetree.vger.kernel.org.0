@@ -2,121 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E979442413
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18093442423
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:36:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbhKAXh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 19:37:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
+        id S231455AbhKAXjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 19:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbhKAXhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 19:37:25 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920E1C061714;
-        Mon,  1 Nov 2021 16:34:51 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id h14so16621199qtb.3;
-        Mon, 01 Nov 2021 16:34:51 -0700 (PDT)
+        with ESMTP id S229523AbhKAXjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 19:39:25 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5F7C061714
+        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 16:36:51 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id v29so16098126qtc.10
+        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 16:36:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Qe/jf30Y3o/pmc26ACLNjuS8JmQeoQQ3eNfoksRErqQ=;
-        b=meyqyUd/ZQyFTlOFbpQmDWQBblRqcdcrSUKWso+9ZuYNublXe/ZttCH0W4VdQjJwSG
-         7/EPsTeoo+WkMvDC1cOTQjJh7gVZUABjpKsY7SR6uFh8yqsrjAHIEBIX3Km5Dsq2Y+Ob
-         SnDXPeVMXiO8jugBR67Bvhix80sc4zcO6KoiCYVhtCPTi39BnakPo5MFx7jaH3l2URmb
-         Sh5+SyCQh3qIHa4JXkxf2XNrNcb6kUwjxzMGOk+cfaCRwkATpuom1R4bdlBRZYTiXQoA
-         dTZlLZpdj9KfLY13M8iqYjkn14dAB6fqmNENU9JlJlivYefautnTK/6H6Qdb8vZnDXL7
-         wKqQ==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Pmid3FU5YvCxo0zgOGInuBcMmgEuXW80FVg90+iTmBQ=;
+        b=TI5IZanq3Fhrg9BqUaGHomQGExeanmPBRt6rkePMxm+nhhpNKkkWjJOc0GsInRMNk7
+         VPlRfeqdhel3q3OV8PBcmLt79mL3j2cNQ6RJ8mmzNWYqOf7SBgHXjQFzYyKKzHKIGCkt
+         dJv7isjhUh3GOcHeYHSDDq426L916mLlzJGUo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Qe/jf30Y3o/pmc26ACLNjuS8JmQeoQQ3eNfoksRErqQ=;
-        b=WFT6OLZJ7y560zQh2CrmnXxS0r06VXy44lJAh9LiAKTMbT2TgQcc5oFDZ2HBqSVpnf
-         k/AyAaSNbgiW6B5QLDznWXmkFROUjTkHYCrTW0vEN6Jnw560JwxAl3sTSgapKnL3dWmm
-         ULvYRxmVZJcbftW/YHXgRyEthNK7z7nPX9bwTq48qG3BJCiruecV2yjUds5g+02hkPC9
-         FaqhJdk9EGRWeA7PlU0WYhFIT2go52pYfwz7sG6hDdEsWNlbsjhUNxHNCwPV/PqONJUG
-         czTfFUJJK47R8PbrHkno8IUp6a759biIrzqyGMKo8VUQkPsEGKoPJiH23NjmPZLhy2lk
-         iQ5w==
-X-Gm-Message-State: AOAM533Q1YSRpXh3FQa7Nn1FrqI5Y3GVO92EDJVsVUL7cgTBcE4bY6D5
-        vbEgxwRgQeHwXAbnT+ZzKDI=
-X-Google-Smtp-Source: ABdhPJzszAm1hNUhWdNj2F3b33eIBAlQhcRdClkzaW2WFdJoN9bdZELkbTvPnuJLuvdKLmw9qyoaWg==
-X-Received: by 2002:a05:622a:54a:: with SMTP id m10mr27961206qtx.239.1635809690756;
-        Mon, 01 Nov 2021 16:34:50 -0700 (PDT)
-Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id m6sm11260918qti.38.2021.11.01.16.34.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Nov 2021 16:34:50 -0700 (PDT)
-Message-ID: <58e5ec6a-7b85-3935-f859-6670600ac6a2@gmail.com>
-Date:   Mon, 1 Nov 2021 19:34:48 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Pmid3FU5YvCxo0zgOGInuBcMmgEuXW80FVg90+iTmBQ=;
+        b=znl8kafc9GXEtYqUy9iPSNtLgUk3D0/onaCCDvN5Uu1CTO3jO1ZBF5/dBJXtWxgDuR
+         y4/2brMkjIHEYtaDEjdv/D5BqyFXrZwLjeqYDs4AtHXB1/ssv1L+GeNcOPnj9nYYbwgd
+         JoMb72D5Yk7uHFuo6gdD/aoVsa5LiYa1pL2Rn0HvvquMAqgr2DkuaaaHPwpQNQMv5kvf
+         QcndGjUR6xAMXnbgm56fv8zUrs0MJHeIhs/2XYRuaGeWlCkTRLI9g6tNZWDlYmW1Wc2N
+         s4M9tN2N0SWJ+Ez7bBdSx88IXZNQ2+YHcIrUiSKpCQMNPbXD2PZI2kgOeTmD7Ivc/uG1
+         GzjA==
+X-Gm-Message-State: AOAM532i6BDzaCVUXomdTIKtw7/t4ay9d29UG2265Hz1EKrMuz72U3CS
+        an0UcV1tWkLWc3oRhg1cuQbNsA/m/Fk8r/l82JM=
+X-Google-Smtp-Source: ABdhPJyRea5xbiVxpgagPn5g8jYKHqnv1Wr8Iudl5+8G0cJaDNMGFdAblrI+/llOFZb3xgPlWKt9BlHm3lZ6cZ5SSD8=
+X-Received: by 2002:ac8:5e49:: with SMTP id i9mr32849455qtx.145.1635809810659;
+ Mon, 01 Nov 2021 16:36:50 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-lpuart: add i.MXRT
- compatible
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
-        b20788@freescale.com, fugang.duan@nxp.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
- <20211024154027.1479261-9-Mr.Bossman075@gmail.com>
- <YYBKh1KYrWTzm+5G@robh.at.kernel.org>
-From:   Jesse Taube <mr.bossman075@gmail.com>
-In-Reply-To: <YYBKh1KYrWTzm+5G@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+In-Reply-To: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Mon, 1 Nov 2021 23:36:38 +0000
+Message-ID: <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
+Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
+To:     Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
+        Zev Weiss <zev@bewilderbeest.net>
+Cc:     Rob Herring <robh+dt@kernel.org>, Corey Minyard <minyard@acm.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 1 Nov 2021 at 23:18, <jae.hyun.yoo@intel.com> wrote:
+>
+> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+>
+> Hello all,
+>
+> This series is for appliying below fix to all Aspped LPC sub drivers.
+> https://lore.kernel.org/all/20201208091748.1920-1-wangzhiqiang.bj@bytedance.com/
+>
+> An LPC sub driver can be enabled without using the lpc-ctrl driver or it
+> can be registered ahead of lpc-ctrl depends on each system configuration and
+> this difference introduces that LPC can be enabled without heart beating of
+> LCLK so it causes improper handling on host interrupts when the host sends
+> interrupts in that time frame. Then kernel eventually forcibly disables the
+> interrupt with dumping stack and printing a 'nobody cared this irq' message
+> out.
+>
+> To prevent this issue, all LPC sub drivers should enable LCLK individually
+> so this patch adds clock control logic into the remaining Aspeed LPC sub
+> drivers.
 
+Thanks for sending this out!
 
-On 11/1/21 16:13, Rob Herring wrote:
-> On Sun, Oct 24, 2021 at 11:40:22AM -0400, Jesse Taube wrote:
->> Add i.MXRT documentation for compatible string.
->>
->> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
->> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
->> ---
->>  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->> index a90c971b4f1f..4b4340def2aa 100644
->> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->> @@ -21,6 +21,7 @@ properties:
->>            - fsl,ls1028a-lpuart
->>            - fsl,imx7ulp-lpuart
->>            - fsl,imx8qm-lpuart
->> +          - fsl,imxrt-lpuart
-> 
-> Actually, 'rt' is not a single part is it? If the variations are same 
-> die, but fused off then no need to distinguish. Otherwise, these should 
-> be SoC specific.
-> 
-I don't exactly know what "but fused off" means I would assume
-disconnected but on-die? The imxrtxxx is a series that has the same UART
-controller across them. Should I add ACK?
-> Same applies to other compatible strings.
-> 
->>        - items:
->>            - const: fsl,imx8qxp-lpuart
->>            - const: fsl,imx7ulp-lpuart
->> -- 
->> 2.33.0
->>
->>
+This will resolve a few of the issues we have in the issue tracker:
+
+https://github.com/openbmc/linux/issues/210
+https://github.com/openbmc/linux/issues/130
+
+The patches look good to me. I think you've just missed Corey's PR for
+v5.16, but I will stick them in the openbmc tree once they've had a
+review.
+
+Cheers,
+
+Joel
+
+>
+> Please review this series.
+>
+> Thanks,
+> Jae
+>
+> Jae Hyun Yoo (4):
+>   ARM: dts: aspeed: add LCLK setting into LPC IBT node
+>   ipmi: bt: add clock control logic
+>   ARM: dts: aspeed: add LCLK setting into LPC KCS nodes
+>   ipmi: kcs_bmc_aspeed: add clock control logic
+>
+>  arch/arm/boot/dts/aspeed-g4.dtsi   |  1 +
+>  arch/arm/boot/dts/aspeed-g5.dtsi   |  5 +++++
+>  arch/arm/boot/dts/aspeed-g6.dtsi   |  5 +++++
+>  drivers/char/ipmi/bt-bmc.c         | 24 ++++++++++++++++++++++-
+>  drivers/char/ipmi/kcs_bmc_aspeed.c | 31 ++++++++++++++++++++++++++----
+>  5 files changed, 61 insertions(+), 5 deletions(-)
+>
+> --
+> 2.25.1
+>
