@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C1A14420B6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:21:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7641E4420B9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:22:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232093AbhKATXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 15:23:52 -0400
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:34709 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhKATXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:23:52 -0400
-Received: by mail-oi1-f174.google.com with SMTP id w193so26469688oie.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 12:21:18 -0700 (PDT)
+        id S232553AbhKATYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 15:24:32 -0400
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:35486 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229549AbhKATYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:24:32 -0400
+Received: by mail-oi1-f181.google.com with SMTP id x8so22132018oix.2;
+        Mon, 01 Nov 2021 12:21:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=IHEXqz8f4V58xggUiJsoHJioyZZs6cSm/XqeqYEpeTU=;
-        b=vy4l3WMJidbuNukzm42wHRWhiS8eGyJ2zjYOUgPsLfyS4NbrsKJsZByIGDAxaZm2W6
-         27v4LyXTE/wHgNPb8xa6L7n4HClDfB5xpTiSlxwntUUfb2KKXLkA8QdPTqztupDBR68L
-         r/TFGWo5yPMglIdTFHTPpupjaNqWhb3zKLgCqdD97ATInF6Xclnp8kQPzA0+2o5iN2oN
-         0aD9NpRLRNSy2rMFAbleoUYRtA6uai4URkhdiOPqz1JbzSJKpxHH2K+Ts0AM93TwzvBK
-         Y3fGlM6g4TrcYK5AgFGxIZgepwg8RfLxroQul/6GruEpU7ZxP6noCwOuBOr++K6vBv2U
-         Omyg==
-X-Gm-Message-State: AOAM532xL3XOc1TD17peNJMMw39wE02HQLD6JgLmMlI3WU5zUrHjkt09
-        oSESOiBXJizg1m1nulgBMA==
-X-Google-Smtp-Source: ABdhPJwpx3d6wNHdX/AjX1YdO2WbjDeTZkYA5MtvVOj0szNXGgSxw6yMQaI9RifVBVTrTlMRI51M9Q==
-X-Received: by 2002:a54:418a:: with SMTP id 10mr821593oiy.13.1635794478401;
-        Mon, 01 Nov 2021 12:21:18 -0700 (PDT)
+        bh=CK8bDl/UZF3iJElpM0AUZ8j3XZuMtTVDa42QmfBmzIg=;
+        b=iGBGHlowYwzp8ZLK5CoWRa0m2noAmcSFOdV0p5NkbKRxGyHi2CSNI6PhO8cFsSaJSZ
+         iizLeyJeSJ2MxinriMdka/Jmj9lEB4VkECYO39t9bN7Z8SVHQKPnvGndACCLaHb4KiOG
+         9GWgInej3/5SJ3t4gCUvQxTZ1or965PL+3c+Z7Jm6bwfuxSMzPe4hq/4VUc4Az8Ows29
+         gTYNFZzNhXyJHH50m0On/xSZoZGoYMxiT0ghlyKAnnY/CPjvinBUet51Ff2ILW9AgAJj
+         hSpWOyhaVHe3Q3xsEzKBe7JItkzoohAcGdBcd1Bs/I6v3lTHH0hwIJX9dfG13nZhpIfy
+         e6hQ==
+X-Gm-Message-State: AOAM5308mz+LiUtdkHbjyi/dcEDJelfqEvwl04xmzCxAAj1/jVdsq3le
+        qlDSGduQKuEEWblKuwEKyzgZlP/+cQ==
+X-Google-Smtp-Source: ABdhPJxbovHOnNGmkHJoaK9iKIkmrwObE/xyfVNB/TKcn30ifdXMxz2LnyePis97GkWQgLPBIywSuA==
+X-Received: by 2002:a05:6808:3d2:: with SMTP id o18mr769126oie.121.1635794518037;
+        Mon, 01 Nov 2021 12:21:58 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t22sm2349564otd.25.2021.11.01.12.21.17
+        by smtp.gmail.com with ESMTPSA id bi40sm569733oib.51.2021.11.01.12.21.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 12:21:17 -0700 (PDT)
-Received: (nullmailer pid 868227 invoked by uid 1000);
-        Mon, 01 Nov 2021 19:21:16 -0000
-Date:   Mon, 1 Nov 2021 14:21:16 -0500
+        Mon, 01 Nov 2021 12:21:57 -0700 (PDT)
+Received: (nullmailer pid 869326 invoked by uid 1000);
+        Mon, 01 Nov 2021 19:21:56 -0000
+Date:   Mon, 1 Nov 2021 14:21:56 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     Ray Jui <rjui@broadcom.com>, Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Ojaswin Mujoo <ojaswin98@gmail.com>,
-        Scott Branden <sbranden@broadcom.com>,
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Mwesigwa Guma <mguma@redhat.com>, devicetree@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH V2 2/2] dt-bindings: soc: bcm: Convert brcm,bcm2835-vchiq
- to json-schema
-Message-ID: <YYA+LDHLJTmQVHWp@robh.at.kernel.org>
-References: <1635682086-3200-1-git-send-email-stefan.wahren@i2se.com>
- <1635682086-3200-3-git-send-email-stefan.wahren@i2se.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 01/12] dt-bindings: watchdog: Require
+ samsung,syscon-phandle for Exynos7
+Message-ID: <YYA+VH5PLSFvq1H0@robh.at.kernel.org>
+References: <20211031122216.30212-1-semen.protsenko@linaro.org>
+ <20211031122216.30212-2-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1635682086-3200-3-git-send-email-stefan.wahren@i2se.com>
+In-Reply-To: <20211031122216.30212-2-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Oct 2021 13:08:06 +0100, Stefan Wahren wrote:
-> This converts the VCHIQ bindings to YAML format.
+On Sun, 31 Oct 2021 14:22:05 +0200, Sam Protsenko wrote:
+> Exynos7 watchdog driver is clearly indicating that its dts node must
+> define syscon phandle property. That was probably forgotten, so add it.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Fixes: 2b9366b66967 ("watchdog: s3c2410_wdt: Add support for Watchdog device on Exynos7")
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.txt        | 17 --------
->  .../bindings/soc/bcm/brcm,bcm2835-vchiq.yaml       | 45 ++++++++++++++++++++++
->  2 files changed, 45 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+> Changes in v2:
+>   - Added R-b tag by Krzysztof Kozlowski
+>   - Added "Fixes" tag
+> 
+>  Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
