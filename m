@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C424422DF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 22:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E5A44236D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 23:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbhKAVoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 17:44:01 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:46829 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231126AbhKAVoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 17:44:00 -0400
-Received: by mail-oi1-f177.google.com with SMTP id bd30so7227788oib.13;
-        Mon, 01 Nov 2021 14:41:26 -0700 (PDT)
+        id S229654AbhKAWbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 18:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230167AbhKAWbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 18:31:36 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567E1C061714;
+        Mon,  1 Nov 2021 15:29:02 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id w1so15302484edd.10;
+        Mon, 01 Nov 2021 15:29:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SL/dUv9NeV5l6fj8QBhu4yVmqmYR87PTtYyOH7UVUlQ=;
+        b=ZGmaJw5uBiWyA0084+vSVCrlqA10cIe/GdXRhpeNExvDrjTipfz7P9KUMVn+yNQigY
+         WXw1xwI1k4ZHdiJASwwomyraKXRc8/t3DStAgpxntoMjAtiBLd0ViJbjZH4Se9uq4hl9
+         tzlBqSvRdoZRLDAZfIZ/ByD1bFAfZRbKItL7YyWZsYsoIV17lqC1W0WKBTG352VbJlW4
+         RZKfFqA7LS2NA7gYiJLgbyt01t/PDyZNmYf8PqQ5bkmKDamB45J3Q8f6nMFNywJuIQeJ
+         1Nn+d8DAiYzgIF+t/nVTpa+OCyVMtQVU1pA8BqCIwIx7t6/M26q6WauhPzyGF/n6MHGO
+         1B+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=A6FxAXBsKZP0yj/RpBLDVTK9cKXs6Qez6TJZQFcJ8oQ=;
-        b=1T9qQbSXSrf+mfuszihUIWgUkgdHlkIWfhc2sKWm6aZBOAKDTPYn7s1hJLNoulbA90
-         CkA5UArl3EKqShrwHJOxll7tPbb4mWdGMPTx1hd3hpbO0w33suUcgtuWePSK9/EGCWjJ
-         DvO07FmO0Rz/9p+CVY2fMJBAIK51C9Cpq9om4FXWIUV3TL6cbLG1ChLfB279XdIab+c3
-         hPEppRj/rLFCwyhDjzPb/bNvVO0ijsVoP3tle4u/y/Sm89r8T/I1nHW+84WqW2vrCO+4
-         QL1ZctEgCvveX1JaBM4v1b3+tkuAvfRaozEXHsbNIIkwqSdYxYT9jFBi/vOIFN/kDSal
-         ewoQ==
-X-Gm-Message-State: AOAM532P1LUBLT2cSdlVtlztR8+8eiAfrz9uZUvhCXnwwrwTpAaTy7Zt
-        P5tv4yYPelW1rkxGqqiEug==
-X-Google-Smtp-Source: ABdhPJxh3uBAXCXUynE5eHGoL97bZpj7QVPk/IqAMdi9E7+iRjtcVWi3uuMxehReUu8yHtVJ2uMqMg==
-X-Received: by 2002:a54:4f0d:: with SMTP id e13mr1433818oiy.110.1635802886245;
-        Mon, 01 Nov 2021 14:41:26 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j3sm3479888oig.15.2021.11.01.14.41.25
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SL/dUv9NeV5l6fj8QBhu4yVmqmYR87PTtYyOH7UVUlQ=;
+        b=ovS7fClVbnptWFexBCEiGxDOhGJjVkQeSUa2GUj1C5+8wP8aNeSpFsGIwJ3xw2mWjd
+         z80PSyIjS3UMYaV+RhTP9UxZ+Ts9HhEG3so3D3sE9hwnfi13aErNOgMqtv8qgJ3ajn6w
+         UsZUZuYUkLeFkoKU/mFHcXALdGh0Lkkm/SJaDJd4q4e5ZytscnbMLb6wHZKAJ8SiAgx4
+         mb28cP+sTehrEuzaFAQq+YmZuUeka3HvRhrZQAHHuiaCnS9Guy42Ln8pZ/2Mfitz3bHr
+         FcZnw+NPBdGdoy1A329ioxZ3QgmcOjHuSoJEqftHqa0+BqTxzONZKPCs/TKGiUL661dX
+         2UYg==
+X-Gm-Message-State: AOAM532YXiOCJ8kE0IxwM/zKfIiS/Ze50bjI5iW2OLcq4up3R/dAL2Ii
+        Gb+nCHNhNLNmNkvkXX+avLw=
+X-Google-Smtp-Source: ABdhPJyr8rTDPGuD0RPW+QinoxB9FvG8wlApebXWSRd1WYp9AQ5LoaB81Ea7Nn9myVtaQ9MfXBTgzg==
+X-Received: by 2002:a05:6402:274c:: with SMTP id z12mr12405523edd.151.1635805741014;
+        Mon, 01 Nov 2021 15:29:01 -0700 (PDT)
+Received: from tom-desktop.station (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
+        by smtp.gmail.com with ESMTPSA id w3sm9780294edj.63.2021.11.01.15.28.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 14:41:25 -0700 (PDT)
-Received: (nullmailer pid 1117584 invoked by uid 1000);
-        Mon, 01 Nov 2021 21:41:24 -0000
-Date:   Mon, 1 Nov 2021 16:41:24 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nikita Travkin <nikita@trvn.ru>
-Cc:     dmitry.torokhov@gmail.com, Michael.Srba@seznam.cz,
-        linus.walleij@linaro.org, broonie@kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 5/6] dt-bindings: input: zinitix: Document touch-keys
- support
-Message-ID: <YYBfBHGgKkGFhD50@robh.at.kernel.org>
-References: <20211027181350.91630-1-nikita@trvn.ru>
- <20211027181350.91630-6-nikita@trvn.ru>
+        Mon, 01 Nov 2021 15:29:00 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alice Guo <alice.guo@nxp.com>, Adam Ford <aford173@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8m: add syscon node for display_blk_ctrl module regs
+Date:   Mon,  1 Nov 2021 23:28:55 +0100
+Message-Id: <20211101222857.6940-1-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211027181350.91630-6-nikita@trvn.ru>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 27, 2021 at 11:13:49PM +0500, Nikita Travkin wrote:
-> In some configrations the touch controller can support the touch-keys.
-> Doucument the linux,keycodes property that enables those keys and
-> specifies the keycodes that should be used to report the key events.
-> 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  .../bindings/input/touchscreen/zinitix,bt400.yaml         | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
-> index b4e5ba7c0b49..40b243c07fd4 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
-> @@ -79,6 +79,14 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [1, 2]
->  
-> +  linux,keycodes:
-> +    description: |
-> +      This property specifies an array of keycodes assigned to the
-> +      touch-keys that can be present in some touchscreen configurations.
-> +    $ref: /schemas/input/input.yaml#/properties/linux,keycodes
+Add system controller node for registers of module Display Block Control
+(DISPLAY_BLK_CTRL, base address: 0x32e28000).
+The DISPLAY_BLK_CTRL module contains general purpose registers (GPRs),
+which control varied features of the associated peripherals.
+Reference: IMX8MMRM Rev. 3, 11/2020, p 3897
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Instead, reference input.yaml at the top-level.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index 2f632e8ca388..3e496b457e1a 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -961,6 +961,11 @@ aips4: bus@32c00000 {
+ 			#size-cells = <1>;
+ 			ranges = <0x32c00000 0x32c00000 0x400000>;
+ 
++			dispmix_gpr: display-gpr@32e28000 {
++				compatible = "fsl, imx8mm-iomuxc-gpr", "syscon";
++				reg = <0x32e28000 0x100>;
++			};
++
+ 			usbotg1: usb@32e40000 {
+ 				compatible = "fsl,imx8mm-usb", "fsl,imx7d-usb";
+ 				reg = <0x32e40000 0x200>;
+-- 
+2.25.1
 
-> +    minItems: 1
-> +    maxItems: 8
-> +
->    touchscreen-size-x: true
->    touchscreen-size-y: true
->    touchscreen-fuzz-x: true
-> -- 
-> 2.30.2
-> 
-> 
