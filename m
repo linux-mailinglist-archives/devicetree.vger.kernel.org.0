@@ -2,436 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B994423B7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:05:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 571A94423D5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229780AbhKAXIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 19:08:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbhKAXIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 19:08:18 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66567C061714
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 16:05:44 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id r5so13074258pls.1
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 16:05:44 -0700 (PDT)
+        id S232391AbhKAXRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 19:17:17 -0400
+Received: from smtp1.axis.com ([195.60.68.17]:1836 "EHLO smtp1.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229684AbhKAXRQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 19:17:16 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9CpEpS1HhrDtahw6Og/fi/QfGmg5lbMtVJGCvxcpCP8=;
-        b=olfAbFQ9Fbh/DoH+pVslXII3B39zAgQ5iJEBwDfouTm7CKTKpaX1glpJULxI/SRuWt
-         Qcn2h/maYyuByNXbD4vnBIHmB1CXvN5PhII3/1zjqEVBhnL/djtDdmSGjcgmRv8RSn+I
-         tLxY+etgUx99Zf/iE8c2fPBTAbal6NmRtI118uZ8b4bbGlMRcMlfcSyoeqKWEXdyFQbF
-         o5b2gnUdwiXyqo/tdjEyDxwHfJivtWo5WAAATSmOYnV7ShBF4ENhtkjxHLgHq8047EcP
-         NFlxfFBPqbi4odEWOzpZcoozkOl3p7EGvB5ijw77LuWZ5Yl6riDOkTGmYiIs3anvnmos
-         y/Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9CpEpS1HhrDtahw6Og/fi/QfGmg5lbMtVJGCvxcpCP8=;
-        b=7zhYEXdQgDctQ7AhsgKG9evzK/8yq1TEKD6dwjQoPL1TpfnoGqAEbV6sTIPQ27iP02
-         bILPE6dO5oFSnYSTRrU/Wx/OOnH6h9w/M6xy1Gcqlm1BbzPnZIUR7Q1XKyZEotdkAh2R
-         GCpHVjYRdkIYuxKaObe71tUFBWDOoNkPOSZP+bBJPIgh7UwzhTpKXvB4EkFOS0jXSGdU
-         smMqEUu1tw513EGId6+wnK0PdoykzVxCs8j0Ck2qNWDWPIT/4KuVdLMTk3jzuK8nLETv
-         9uD6Ic+doUMDIp6jPzeF9eEVKGNhzkhz+1csGM5wpvaHemVwTjINszTaC5ncRoE75L4t
-         YZyg==
-X-Gm-Message-State: AOAM5325E14vkdylhD5aHKdjWv0Luc4ARiyCDZBdoK8xzb+sgHjo89gT
-        Vml7k2VmRUU9wlB7Wjt52xunn2TPXhAsiG7AJMdsWjS1eeNML2us
-X-Google-Smtp-Source: ABdhPJwNF1IYWjIR6wn7XpoAdbeYz0xSMkAmgL6UzGuX3fBuQuqGNIE25yHenpr8hLJbz6WsWz7qg+nSzus8NkVGSP0=
-X-Received: by 2002:a17:90b:1e4b:: with SMTP id pi11mr2134594pjb.179.1635807943331;
- Mon, 01 Nov 2021 16:05:43 -0700 (PDT)
+  d=axis.com; q=dns/txt; s=axis-central1; t=1635808482;
+  x=1667344482;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=z3BN2Y8GN2zH9YpSG6dTXVGhEXvbYAAcpFEo7GO+5qk=;
+  b=Z5IAA+HpshSSSTzpxgNNcawcCyk/h3nlgTMDaFujzrpF7o5YoU3jxWn6
+   p1486O4qDGx5iMmgIxW0NJ58fy3OFXhqrvzAsli+SzQc8OcwlM+u4hNpS
+   49xJO39uULgHWGe/LD9qS78joVykmHy3P3uWfZuY0LclWVxiV7wM+7PDT
+   kT5RF7bRDUyZ4tEOeFmS9eAK8ngQPZXphi8nukrF2oYJvBlYE4Z3wOxUx
+   qlaZUpA1vRTshnP25EP0ssXnWOLSY8BODqS8rXaEy6/howETsP+b3YP0Q
+   qid6noBYgd6aFgswyVktZ3X2emPfSXgCY08SmMlZd1zRkJbeXQx0EDnKJ
+   Q==;
+Subject: Re: [PATCH 1/2] rtc: rs5c372: Add support for trim configuration
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Pavel Modilaynen <Pavel.Modilaynen@axis.com>
+CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>
+References: <20211030225054.32114-1-pavel.modilaynen@axis.com>
+ <20211030225054.32114-2-pavel.modilaynen@axis.com>
+ <YX3N9b6P4w1kSGfp@piout.net> <6cc22970-fa11-ccb4-c155-62396a7e3890@axis.com>
+ <YYAwkZ0RmhyfSewe@piout.net>
+From:   Pavel Modilaynen <pavelmn@axis.com>
+Message-ID: <2cd99097-043e-8aed-bc0d-a4d9fa8a38e8@axis.com>
+Date:   Tue, 2 Nov 2021 00:14:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211023203457.1217821-1-aford173@gmail.com> <CAOMZO5BwPTWBhqzHgbzbC_UyzOX7LMGxX83H0FaJ-05ddOpqYQ@mail.gmail.com>
- <CAHCN7x+Bj==zd8_VRquv51RYiG9t_CRrB6=3fugaHvQS8PVS+g@mail.gmail.com> <b63738b2-9e3a-0d21-a845-ca3be8b00892@kontron.de>
-In-Reply-To: <b63738b2-9e3a-0d21-a845-ca3be8b00892@kontron.de>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 1 Nov 2021 16:05:32 -0700
-Message-ID: <CAJ+vNU0pt73obejn-wnC7QEExRWUAOCfcKRv__4x8+WWdPJsag@mail.gmail.com>
-Subject: Re: [RFC V2 0/5] arm64: dts: imx8mm: Enable CSI and OV5640 Camera
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Adam Ford <aford173@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        cstevens@beaconembedded.com,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YYAwkZ0RmhyfSewe@piout.net>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail05w.axis.com (10.20.40.11) To se-mail05w.axis.com
+ (10.20.40.11)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 4:11 AM Frieder Schrempf
-<frieder.schrempf@kontron.de> wrote:
->
-> On 28.10.21 02:39, Adam Ford wrote:
-> > On Sun, Oct 24, 2021 at 7:16 AM Fabio Estevam <festevam@gmail.com> wrot=
-e:
-> >>
-> >> Hi Adam,
-> >>
-> >> [Adding Frieder on Cc]
-> >>
-> >> On Sat, Oct 23, 2021 at 5:35 PM Adam Ford <aford173@gmail.com> wrote:
-> >>>
-> >>> The imx8mm appears to have both a CSI bridge and mipi-csi-2 drivers. =
- With
-> >>> those enabled, both the imx8mm-evk and imx8mm-beacon boards should be=
- able
-> >>> use an OV5640 camera.
-> >>>
-> >>> The mipi-csi2 driver sets the clock frequency to 333MHz, so the clock=
- parent
-> >>> of the CSI1 must be reparented to a faster clock.  On the custom NXP =
-kernel,
-> >>> they use IMX8MM_SYS_PLL2_1000M, so that is done in the device tree to=
- match.
-> >>>
-> >>> With the CSI and mipi_csi2 drivers pointing to an OV5640 camera, the =
-media
-> >>> pipeline can be configured with the following:
-> >>>
-> >>>     media-ctl --links "'ov5640 1-003c':0->'imx7-mipi-csis.0':0[1]"
-> >>>
-> >>> The camera and various nodes in the pipeline can be configured for UY=
-VY:
-> >>>     media-ctl -v -V "'ov5640 1-003c':0 [fmt:UYVY8_1X16/640x480 field:=
-none]"
-> >>>     media-ctl -v -V "'csi':0 [fmt:UYVY8_1X16/640x480 field:none]"
-> >>>
-> >>> With that, the media pipeline looks like:
-> >>>
-> >>>
-> >>> Media controller API version 5.15.0
-> >>>
-> >>> Media device information
-> >>> ------------------------
-> >>> driver          imx7-csi
-> >>> model           imx-media
-> >>> serial
-> >>> bus info        platform:32e20000.csi
-> >>> hw revision     0x0
-> >>> driver version  5.15.0
-> >>>
-> >>> Device topology
-> >>> - entity 1: csi (2 pads, 2 links)
-> >>>             type V4L2 subdev subtype Unknown flags 0
-> >>>             device node name /dev/v4l-subdev0
-> >>>         pad0: Sink
-> >>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xf=
-er:srgb ycbcr:601 quantization:lim-range]
-> >>>                 <- "imx7-mipi-csis.0":1 [ENABLED,IMMUTABLE]
-> >>>         pad1: Source
-> >>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:srgb xf=
-er:srgb ycbcr:601 quantization:lim-range]
-> >>>                 -> "csi capture":0 [ENABLED,IMMUTABLE]
-> >>>
-> >>> - entity 4: csi capture (1 pad, 1 link)
-> >>>             type Node subtype V4L flags 0
-> >>>             device node name /dev/video0
-> >>>         pad0: Sink
-> >>>                 <- "csi":1 [ENABLED,IMMUTABLE]
-> >>>
-> >>> - entity 10: imx7-mipi-csis.0 (2 pads, 2 links)
-> >>>              type V4L2 subdev subtype Unknown flags 0
-> >>>              device node name /dev/v4l-subdev1
-> >>>         pad0: Sink
-> >>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte17=
-0m xfer:709 ycbcr:601 quantization:lim-range]
-> >>>                 <- "ov5640 1-003c":0 [ENABLED]
-> >>>         pad1: Source
-> >>>                 [fmt:UYVY8_1X16/640x480 field:none colorspace:smpte17=
-0m xfer:709 ycbcr:601 quantization:lim-range]
-> >>>                 -> "csi":0 [ENABLED,IMMUTABLE]
-> >>>
-> >>> - entity 15: ov5640 1-003c (1 pad, 1 link)
-> >>>              type V4L2 subdev subtype Sensor flags 0
-> >>>              device node name /dev/v4l-subdev2
-> >>>         pad0: Source
-> >>>                 [fmt:UYVY8_1X16/640x480@1/30 field:none colorspace:sr=
-gb xfer:srgb ycbcr:601 quantization:full-range]
-> >>>                 -> "imx7-mipi-csis.0":0 [ENABLED]
-> >>>
-> >>> When configured, gstreamer can be used to capture 1 frame and store i=
-t to a file.
-> >>>
-> >>> gst-launch-1.0 -v v4l2src num-buffers=3D1 ! video/x-raw,format=3DUYVY=
-,width=3D640,height=3D480,framerate=3D60/1 ! filesink location=3Dtest
-> >>>
-> >>> Unfortunately, the video capture never appears to happen.  No errors =
-occur, not
-> >>> interrupts are recorded and no errors are recorded.
-> >>>
-> >>> gst-launch-1.0 -v v4l2src num-buffers=3D1 ! video/x-raw,format=3DUYVY=
-,width=3D640,height=3D480,framerate=3D60/1 ! filesink location=3Dtest
-> >>> Setting pipeline to PAUSED ...
-> >>> Pipeline is live and does not need PREROLL ...
-> >>> Pipeline is PREROLLED ...
-> >>> Setting pipeline to [  114.819632] v4l2_get_link_freq: Link frequency=
- estimated using pixel rate: result might be inaccurate
-> >>> PLAYING ...
-> >>> New clock: GstSystem[  114.829203] v4l2_get_link_freq: Consider imple=
-menting support for V4L2_CID_LINK_FREQ in the transmitter driver
-> >>> Clock
-> >>> /GstPipeline:pipeline0/GstV4l2Src:v4l2src0.GstPad:src: caps =3D video=
-/x-raw, format=3D(string)UYVY, width=3D(int)640, height=3D(int)480, framera=
-te=3D(fraction)60/1, interlace-mode=3D(string)progressive, colorimetry=3D(s=
-tring)bt709
-> >>> /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps =3D=
- video/x-raw, format=3D(string)UYVY, width=3D(int)640, height=3D(int)480, f=
-ramerate=3D(fraction)60/1, interlace-mode=3D(string)progressive, colorimetr=
-y=3D(string)bt709
-> >>> /GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps =3D vi=
-deo/x-raw, format=3D(string)UYVY, width=3D(int)640, height=3D(int)480, fram=
-erate=3D(fraction)60/1, interlace-mode=3D(string)progressive, colorimetry=
-=3D(string)bt709
-> >>> /GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps =
-=3D video/x-raw, format=3D(string)UYVY, width=3D(int)640, height=3D(int)480=
-, framerate=3D(fraction)60/1, interlace-mode=3D(string)progressive, colorim=
-etry=3D(string)bt709
-> >>>
-> >>>
-> >>> If anyone has any insight as to what might be wrong, I'd like feedbac=
-k.
-> >>> I posted a device tree that I beleive goes with the newer imx8mm-evk,=
- but
-> >>> I do not have this hardware, so I cannot test it.
-> >>
-> >> It seems that Frieder on Cc managed to get camera capture to work on
-> >> i.MX8MM here:
-> >> https://eur04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgi=
-t.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommits%2Fv5.10-mx8mm-cs=
-i&amp;data=3D04%7C01%7Cfrieder.schrempf%40kontron.de%7Cfe4f7347385f4185b1c6=
-08d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf1%7C0%7C0%7C63770978397919594=
-5%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha=
-WwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DPbGqhzb2mbUA2SD44%2BosK8rNkK12m1LRd6W4=
-tvkawno%3D&amp;reserved=3D0
-> >>
-> >> Hopefully, this can help to figure out what is missing in mainline to
-> >> get camera capture to work on i.MX8M.
-> >>
-> >> I don't have access to an OV5640 camera to connect to the imx8mm-evk
-> >> board to try your series.
-> >
-> > Fabio,
-> >
-> > Thanks for the heads up on that repo.  I was able to use that repo and
-> > get still images to capture on an OV5640, but I noticed a fair amount
-> > of differences between that repo and what's found in linux-next.
-> >
-> > Laurent,
-> >
-> > I haven't exhausted the patch differences, but I found at least a few
-> > that appear to be missiing upstream, and I am curious to know if/what
-> > your opinion is on whether or not they're needed, since the patches on
-> > Frieder's repo appear to come from you.
-> > [1] - media: imx: imx7-media-csi: Add i.MX8MM identification
-> > [2] - media: imx: imx7_mipi_csis: Don't set reserved CLK_CTRL field on =
-i.MX8MM
-> > [3] - media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
-> >
-> > media: imx: imx7_mipi_csis: Set dual pixel mode for RAW formats
-> >
-> > Maybe these don't need to be applied, but they are 'some' of the
-> > differences that I see between this 5.10 branch and linux-next .  I
-> > know there are more, but
-> >
-> >
-> > [1] - https://eur04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F=
-%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F8ac7ec6db0=
-c260a871038721886dbdb6660ed84c&amp;data=3D04%7C01%7Cfrieder.schrempf%40kont=
-ron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf=
-1%7C0%7C0%7C637709783979195945%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3Dj1iuXWljD=
-d8wA5M44KwLCb%2F21tpdOnKZuJazl25bXbQ%3D&amp;reserved=3D0
-> > [2] - https://eur04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F=
-%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F0b5727c8eb=
-a8c370f7db5eace0243f78992a4dbb&amp;data=3D04%7C01%7Cfrieder.schrempf%40kont=
-ron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf=
-1%7C0%7C0%7C637709783979205943%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DbuWbZF0tY=
-fVmibQgBbKJM1PF%2Fw7%2BVO9jhXRCI1zf7TI%3D&amp;reserved=3D0
-> > [3] - https://eur04.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F=
-%2Fgit.kontron-electronics.de%2Fsw%2Fmisc%2Flinux%2F-%2Fcommit%2F14befa6bc1=
-46b10092a6ac5d0ed4d42c87c6cf27&amp;data=3D04%7C01%7Cfrieder.schrempf%40kont=
-ron.de%7Cfe4f7347385f4185b1c608d999ab75b5%7C8c9d3c973fd941c8a2b1646f3942daf=
-1%7C0%7C0%7C637709783979205943%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAi=
-LCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D60iLhs0G0=
-FtQegNp9XtVxAhvZEcltdAGGMNAm2l1cSs%3D&amp;reserved=3D0
-> >
-> > Frieder et al,
-> >
-> > Have you (or anyone) tried CSI cameras on anything newer than 5.10?  I
-> > am curious to see if a regression popped in somewhere, but git bisect
-> > will make this difficult since there is a fair amount of variation
-> > between this custom repo and the upstream.
->
-> No, I haven't done anything with CSI on a more recent kernel. And I only
-> used CSI with the tree above and the ADV7280M bridge. I don't have any
-> hardware with a sensor/camera.
->
-> In case you haven't seen this already, here is a thread with some notes
-> about my testing results:
-> https://patchwork.kernel.org/project/linux-media/cover/20210215042741.288=
-50-1-laurent.pinchart@ideasonboard.com/.
+Hi Alexandre,
+
+On 11/1/21 7:23 PM, Alexandre Belloni wrote:
+> On 31/10/2021 11:29:12+0100, Pavel Modilaynen wrote:
+>> On 10/31/21 12:57 AM, Alexandre Belloni wrote:
+>> > Hello,
+>> > 
+>> > Please use the proper RTC interface by implementing .set_offset and
+>> > .read_offset.
+>> 
+>> I am not sure about .set/read_offset. It looks as runtime adjustment
+>> interface,
+>> however this Xtal trimming parameter is based on schematics and Xtal
+>> capacitance (datasheet parameter).
+>> It is found by calibration procedure based on RTC clock output (the
+>> procedure and calculation of trimming parameter is described in datasheets).
+>> So, I would like to say that this parameter is functionally close to
+>> "quartz-load-femtofarads" for rtc-pcf8523/pcf85063.
+>> 
+> 
+> quartz-load-femtofarads is for analog trimming which this RTC doesn't
+> have, both CD and CG are set to 10pF. .set/read_offset are for digital
+> trimming which is what you are configuring here. You definitively want
+> to be able to do that at runtime as you need to adjust for temperature
+> and ageing of the crystal (datasheet, page 14: "For those systems that
+> have temperature detection precision of clock function may be increased
+> by correcting clock error according to temperature fluctuations.")
 >
 
-For what it's worth I've got another test setup for IMX8MM CSI
-capture. I have a Raspberry Pi Camera module v2 connected to an
-imx8mm-venice-gw73xx board. This is a IMX219 8.28MP camera with a
-4-lane CSI connection.
+Thank you for reply.
 
-Putting Adam's patch 'arm64: dts: imx8mm: Add CSI nodes' as well as
-the 'blk-ctl series on top of 5.15 and adding support to my dt via:
+I am not denying the need in runtime adjustment related to
+temperature, aging and precision, which you are referring by excerpt 
+from p.14.
 
-commit 87f908a57f48bd7375113991434c2923d65506ac (HEAD -> v5.15-venice)
-Author: Tim Harvey <tharvey@gateworks.com>
-Date:   Wed Oct 27 15:45:23 2021 -0700
+I would like to make a point that Xtal trimming is for coarse grained 
+adjustment (pages 36-39), primarily related to Xtal capacitance CL (not 
+CD/CG). Our goal is to keep a reasonable  drift of ,say, <1 second per 
+day and for Xtal that we use with 12.5pF RTC manufacturer recommends 
+using 0x23 value for adjustment. In this case we act according to (A) 
+course from page 38:
 
-    arm64: dts: imx8mm-venice-gw73xx: add rpi camera module v2
+"Adjustment of clock is not made for IC (no adjustment) and any CL value 
+may be used for the crystal oscillator. Precision fluctuations of a 
+crystal oscillator may be selected as long as clock precision allows. 
+Obtain the central frequency as described in section 2.2 using several 
+crystal oscillator and ICs, determine an adjustment value as
+described in “2.4 Time Trimming Circuit” which shall be set to the 
+RS5C372A/B."
 
-    Add support for rpi camera module v2 which is an IMX219 8MP module:
-     - https://datasheets.raspberrypi.com/camera/camera-v2-schematics.pdf
-     - has its own on-board 24MHz osc so no clock required from baseboard
-     - pin 11 enables 1.8V and 2.8V LDO which is connected to
-       GW73xx MIPI_GPIO4 (IMX8MM GPIO1_IO1). imx219 driver does not
-       support powerdown-gpios and using gpio1 as reset-gpios
 
-    Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-index 7b00b6b5bb38..b708c80d884b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw73xx.dtsi
-@@ -35,6 +35,13 @@
-                };
-        };
-
-+       cam24m: cam24m {
-+               compatible =3D "fixed-clock";
-+               #clock-cells =3D <0>;
-+               clock-frequency =3D <24000000>;
-+               clock-output-names =3D "cam24m";
-+       };
-+
-        pcie0_refclk: pcie0-refclk {
-                compatible =3D "fixed-clock";
-                #clock-cells =3D <0>;
-@@ -100,6 +107,19 @@
-        };
- };
-
-+&csi {
-+       status =3D "okay";
-+};
-+
-+&imx8mm_mipi_csi_in {
-+       remote-endpoint =3D <&imx219_to_mipi_csi2>;
-+       data-lanes =3D <1 2>;
-+};
-+
-+&mipi_csi2 {
-+       status =3D "okay";
-+};
-+
- /* off-board header */
- &ecspi2 {
-        pinctrl-names =3D "default";
-@@ -132,6 +152,25 @@
-        pinctrl-names =3D "default";
-        pinctrl-0 =3D <&pinctrl_i2c3>;
-        status =3D "okay";
-+
-+       imx219: sensor@10 {
-+               compatible =3D "sony,imx219";
-+               pinctrl-names =3D "default";
-+               pinctrl-0 =3D <&pinctrl_imx219>;
-+               reg =3D <0x10>;
-+               clocks =3D <&cam24m>;
-+               reset-gpios =3D <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+
-+               port {
-+                       /* MIPI CSI-2 bus endpoint */
-+                       imx219_to_mipi_csi2: endpoint {
-+                               remote-endpoint =3D <&imx8mm_mipi_csi_in>;
-+                               clock-lanes =3D <0>;
-+                               data-lanes =3D <1 2>;
-+                               link-frequencies =3D /bits/ 64 <456000000>;
-+                       };
-+               };
-+       };
- };
-
- &pcie_phy {
-@@ -297,6 +336,12 @@
-                >;
-        };
-
-+       pinctrl_imx219: imx219grp {
-+               fsl,pins =3D <
-+                       MX8MM_IOMUXC_GPIO1_IO01_GPIO1_IO1       0x41
-+               >;
-+       };
-+
-        pinctrl_pcie0: pcie0grp {
-                fsl,pins =3D <
-                        MX8MM_IOMUXC_SAI1_RXD4_GPIO4_IO6        0x41
-
-While the IMX219 supports up to 4 MIPI CSI2 lanes and a variety of
-resolutions up to 8MP, the IMX219 driver (drivers/media/i2c/imx219.c)
-currently supports only 2 lanes, and a few different resolutions
-including 1080p@30fps (cropped FOV), 1640x1232@30fps (2x2 binned),
-640x480@30fps (cropped) with RAW8 and RAW10 formats.
-
-I'm setting up the pipeline like this:
-media-ctl --links "'imx219 2-0010':0->'imx7-mipi-csis.0':0[1]"
-media-ctl -v -V "'imx219 2-0010':0 [fmt:SRGGB10/640x480 field:none]"
-media-ctl -v -V "'csi':0 [fmt:SRGGB10/640x480 field:none]"
-
-and capture:
-gst-launch-1.0 -v v4l2src num-buffers=3D1 !
-video/x-bayer,format=3Drggb,width=3D640,height=3D480,framerate=3D30/1 !
-filesink location=3Dtest
-
-The above hangs after:
-Setting pipeline to PAUSED ...
-Pipeline is live and does not need PREROLL ...
-Setting pipeline to PLAYING ...
-/GstPipeline:pipeline0/GstV4l2Src:v4l2src0.GstPad:src: caps =3D
-video/x-bayer, format=3D(string)rggb, width=3D(int)640, height=3D(int)480,
-framerate=3D(fraction)30/1, interlace-mode=3D(string)progressive
-New clock: GstSystemClock
-/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:src: caps =3D
-video/x-bayer, format=3D(string)rggb, width=3D(int)640, height=3D(int)480,
-framerate=3D(fraction)30/1, interlace-mode=3D(string)progressive
-/GstPipeline:pipeline0/GstFileSink:filesink0.GstPad:sink: caps =3D
-video/x-bayer, format=3D(string)rggb, width=3D(int)640, height=3D(int)480,
-framerate=3D(fraction)30/1, interlace-mode=3D(string)progressive
-/GstPipeline:pipeline0/GstCapsFilter:capsfilter0.GstPad:sink: caps =3D
-video/x-bayer, format=3D(string)rggb, width=3D(int)640, height=3D(int)480,
-framerate=3D(fraction)30/1, interlace-mode=3D(string)progressive
-
-I've tried Laurent's 'media: imx: imx7_mipi_csis: Set dual pixel mode
-for RAW formats' patch with the same results.
-
-Let me know if any of you have some ideas here.
-
-Best regards,
-
-Tim
+>> > 
+>> > On 31/10/2021 00:50:53+0200, Pavel Modilaynen wrote:
+>> > > From: Pavel Modilaynen <pavelmn@axis.com>
+>> > > 
+>> > > Add support for oscillation adjustment register RS5C372_REG_TRIM
+>> > > setting that is needed to accommodate for effective crystal
+>> > > capacitance.
+>> > > 
+>> > > Use optional property ricoh,trim that should contain
+>> > > raw value to setup this register. According to
+>> > > datasheets for RS5C372, R2025S/D, RV5C38[67] and R222[13]
+>> > > the value will be converted to a number of ticks that
+>> > > is to be subtracted or added when the second digits read
+>> > > 00, 20 or 40 seconds.
+>> > > 
+>> > > Signed-off-by: Pavel Modilaynen <pavelmn@axis.com>
+>> > > ---
+>> > >   drivers/rtc/rtc-rs5c372.c | 18 +++++++++++++++++-
+>> > >   1 file changed, 17 insertions(+), 1 deletion(-)
+>> > > 
+>> > > diff --git a/drivers/rtc/rtc-rs5c372.c b/drivers/rtc/rtc-rs5c372.c
+>> > > index 80980414890c..3a2db0326669 100644
+>> > > --- a/drivers/rtc/rtc-rs5c372.c
+>> > > +++ b/drivers/rtc/rtc-rs5c372.c
+>> > > @@ -13,6 +13,7 @@
+>> > >   #include <linux/slab.h>
+>> > >   #include <linux/module.h>
+>> > >   #include <linux/of_device.h>
+>> > > +#include <linux/of.h>
+>> > >   /*
+>> > >    * Ricoh has a family of I2C based RTCs, which differ only slightly from
+>> > > @@ -560,6 +561,8 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+>> > >   {
+>> > >         unsigned char buf[2];
+>> > >         int addr, i, ret = 0;
+>> > > +     struct i2c_client *client = rs5c372->client;
+>> > > +     u8 trim = 0;
+>> > >         addr   = RS5C_ADDR(RS5C_REG_CTRL1);
+>> > >         buf[0] = rs5c372->regs[RS5C_REG_CTRL1];
+>> > > @@ -599,9 +602,22 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+>> > >                 break;
+>> > >         }
+>> > > +     /* optional setup of xtal trimming */
+>> > > +     if (!of_property_read_u8(client->dev.of_node, "ricoh,trim", &trim)) {
+>> > > +             if (rs5c372->type != rtc_r2221tl && (trim & ~RS5C372_TRIM_MASK)) {
+>> > > +                     dev_warn(&client->dev, "Erroneous setting for ricoh,trim in devicetree\n");
+>> > > +             } else {
+>> > > +                     int addr = RS5C_ADDR(RS5C372_REG_TRIM);
+>> > > +                     int ret = i2c_smbus_write_byte_data(client, addr, trim);
+>> > > +
+>> > > +                     if (unlikely(ret < 0))
+>> > > +                             return ret;
+>> > > +             }
+>> > > +     }
+>> > > +
+>> > >         for (i = 0; i < sizeof(buf); i++) {
+>> > >                 addr = RS5C_ADDR(RS5C_REG_CTRL1 + i);
+>> > > -             ret = i2c_smbus_write_byte_data(rs5c372->client, addr, buf[i]);
+>> > > +             ret = i2c_smbus_write_byte_data(client, addr, buf[i]);
+>> > >                 if (unlikely(ret < 0))
+>> > >                         return ret;
+>> > >         }
+>> > > -- 
+>> > > 2.20.1
+>> > > 
+>> > 
+>> > -- 
+>> > Alexandre Belloni, co-owner and COO, Bootlin
+>> > Embedded Linux and Kernel engineering
+>> > https://bootlin.com <https://bootlin.com> <https://bootlin.com 
+> <https://bootlin.com>>
+> 
+> -- 
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com <https://bootlin.com>
