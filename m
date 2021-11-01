@@ -2,154 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E95A442410
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:34:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E979442413
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 00:34:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbhKAXg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 19:36:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39054 "EHLO
+        id S229728AbhKAXh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 19:37:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbhKAXg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 19:36:58 -0400
-Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A29C061714
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 16:34:24 -0700 (PDT)
-Received: by mail-qv1-xf2d.google.com with SMTP id b11so8879462qvm.7
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 16:34:24 -0700 (PDT)
+        with ESMTP id S229523AbhKAXhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 19:37:25 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920E1C061714;
+        Mon,  1 Nov 2021 16:34:51 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id h14so16621199qtb.3;
+        Mon, 01 Nov 2021 16:34:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=76RMjnoXPjwirFsKHB7iHBCUdiCcGHMsVhyPA6k+egA=;
-        b=nPMvyvjF0zj2silLmqDM2HS7695J3dZCiwA/l6z8FVmixdi/W1xDj18O1zPLh4LUFz
-         27K99x4FpYngSCP4NBmNfFEfYIaVDTm1/2Bg25xXvgqjRqGPcSjSLxpxANXBuT2iM+8y
-         JP2KzpBfOINB/0q9P8RFBD3QLIvosqGiPKP7c=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Qe/jf30Y3o/pmc26ACLNjuS8JmQeoQQ3eNfoksRErqQ=;
+        b=meyqyUd/ZQyFTlOFbpQmDWQBblRqcdcrSUKWso+9ZuYNublXe/ZttCH0W4VdQjJwSG
+         7/EPsTeoo+WkMvDC1cOTQjJh7gVZUABjpKsY7SR6uFh8yqsrjAHIEBIX3Km5Dsq2Y+Ob
+         SnDXPeVMXiO8jugBR67Bvhix80sc4zcO6KoiCYVhtCPTi39BnakPo5MFx7jaH3l2URmb
+         Sh5+SyCQh3qIHa4JXkxf2XNrNcb6kUwjxzMGOk+cfaCRwkATpuom1R4bdlBRZYTiXQoA
+         dTZlLZpdj9KfLY13M8iqYjkn14dAB6fqmNENU9JlJlivYefautnTK/6H6Qdb8vZnDXL7
+         wKqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=76RMjnoXPjwirFsKHB7iHBCUdiCcGHMsVhyPA6k+egA=;
-        b=B7jufk7qzlsfMhvFh+Xo7Whobzw6b5qBkX6bFzsWfCYujAwPG86wKM9bR/oOXJ2wqC
-         tgzTP5KJPjOjQoEHQ/oh9KgefsMbGFkHyXxORQNXZcGdSAZwwnB6lcoUZt9BiXDuFi/W
-         e7jMcKvQe3ViEZE2qtHcIypb92yvvud8/ie1PJQmoBvKhraQKk3CP2n0lTvJ+0ehbLzs
-         cMTErt8RBtvjM7jaaTSjwLSu7y09xAcJYhp76GCz1fSVlfPPcdAWy+C+9Qg+2m74ggke
-         eDTAFfbKIaI8Fmnxi3zpAgOfogf3QykpBv5VnzCINzGoPDuq6iPDr+D2l9jsF2Bh+jTL
-         LUQA==
-X-Gm-Message-State: AOAM531bSNitKVAMLr4IX7ytWVfI9WRP5RWDwsAGg2FdBFOl3gFL3hSN
-        GYNxfyoEVpOJuxCnn1EKjr2GY2VhSC/FCAAinAR1zgda
-X-Google-Smtp-Source: ABdhPJxQlLMMwkddOTL4uZwYA9UAhQj8QLRlH7FrNeXHAwJM6ieVXUOUzBUep+EV7fOQx6XZeAYTXN2ge3VwRihdW0E=
-X-Received: by 2002:a05:6214:5002:: with SMTP id jo2mr31550933qvb.27.1635809663240;
- Mon, 01 Nov 2021 16:34:23 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Qe/jf30Y3o/pmc26ACLNjuS8JmQeoQQ3eNfoksRErqQ=;
+        b=WFT6OLZJ7y560zQh2CrmnXxS0r06VXy44lJAh9LiAKTMbT2TgQcc5oFDZ2HBqSVpnf
+         k/AyAaSNbgiW6B5QLDznWXmkFROUjTkHYCrTW0vEN6Jnw560JwxAl3sTSgapKnL3dWmm
+         ULvYRxmVZJcbftW/YHXgRyEthNK7z7nPX9bwTq48qG3BJCiruecV2yjUds5g+02hkPC9
+         FaqhJdk9EGRWeA7PlU0WYhFIT2go52pYfwz7sG6hDdEsWNlbsjhUNxHNCwPV/PqONJUG
+         czTfFUJJK47R8PbrHkno8IUp6a759biIrzqyGMKo8VUQkPsEGKoPJiH23NjmPZLhy2lk
+         iQ5w==
+X-Gm-Message-State: AOAM533Q1YSRpXh3FQa7Nn1FrqI5Y3GVO92EDJVsVUL7cgTBcE4bY6D5
+        vbEgxwRgQeHwXAbnT+ZzKDI=
+X-Google-Smtp-Source: ABdhPJzszAm1hNUhWdNj2F3b33eIBAlQhcRdClkzaW2WFdJoN9bdZELkbTvPnuJLuvdKLmw9qyoaWg==
+X-Received: by 2002:a05:622a:54a:: with SMTP id m10mr27961206qtx.239.1635809690756;
+        Mon, 01 Nov 2021 16:34:50 -0700 (PDT)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id m6sm11260918qti.38.2021.11.01.16.34.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Nov 2021 16:34:50 -0700 (PDT)
+Message-ID: <58e5ec6a-7b85-3935-f859-6670600ac6a2@gmail.com>
+Date:   Mon, 1 Nov 2021 19:34:48 -0400
 MIME-Version: 1.0
-References: <20211101233751.49222-1-jae.hyun.yoo@intel.com> <20211101233751.49222-4-jae.hyun.yoo@intel.com>
-In-Reply-To: <20211101233751.49222-4-jae.hyun.yoo@intel.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 1 Nov 2021 23:34:11 +0000
-Message-ID: <CACPK8XcVUEdxjJTOQDf2S-VL3rbwMctQH=v3teyrEgCk__1MVg@mail.gmail.com>
-Subject: Re: [PATCH -next 3/4] ARM: dts: aspeed: add LCLK setting into LPC KCS nodes
-To:     Jae Hyun Yoo <jae.hyun.yoo@intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Corey Minyard <minyard@acm.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cedric Le Goater <clg@kaod.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        openipmi-developer@lists.sourceforge.net
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-lpuart: add i.MXRT
+ compatible
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
+        b20788@freescale.com, fugang.duan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+ <20211024154027.1479261-9-Mr.Bossman075@gmail.com>
+ <YYBKh1KYrWTzm+5G@robh.at.kernel.org>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <YYBKh1KYrWTzm+5G@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Nov 2021 at 23:18, <jae.hyun.yoo@intel.com> wrote:
->
-> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->
-> Add LCLK clock setting into LPC KCS nodes to enable the LCLK by
-> individual LPC sub drivers.
->
-> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-> ---
->  arch/arm/boot/dts/aspeed-g5.dtsi | 4 ++++
->  arch/arm/boot/dts/aspeed-g6.dtsi | 4 ++++
->  2 files changed, 8 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
-> index d0cc4be2de59..7495f93c5069 100644
-> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
-> @@ -446,6 +446,7 @@ kcs1: kcs@24 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x24 0x1>, <0x30 0x1>, <0x3c 0x1>;
->                                         interrupts = <8>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> @@ -453,6 +454,7 @@ kcs2: kcs@28 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x28 0x1>, <0x34 0x1>, <0x40 0x1>;
->                                         interrupts = <8>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> @@ -460,6 +462,7 @@ kcs3: kcs@2c {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x2c 0x1>, <0x38 0x1>, <0x44 0x1>;
->                                         interrupts = <8>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> @@ -467,6 +470,7 @@ kcs4: kcs@114 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x114 0x1>, <0x118 0x1>, <0x11c 0x1>;
->                                         interrupts = <8>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index 465c3549fdc3..891b862363a7 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -520,6 +520,7 @@ kcs1: kcs@24 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x24 0x1>, <0x30 0x1>, <0x3c 0x1>;
->                                         interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         kcs_chan = <1>;
->                                         status = "disabled";
->                                 };
-> @@ -528,6 +529,7 @@ kcs2: kcs@28 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x28 0x1>, <0x34 0x1>, <0x40 0x1>;
->                                         interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_HIGH>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> @@ -535,6 +537,7 @@ kcs3: kcs@2c {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x2c 0x1>, <0x38 0x1>, <0x44 0x1>;
->                                         interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> @@ -542,6 +545,7 @@ kcs4: kcs@114 {
->                                         compatible = "aspeed,ast2500-kcs-bmc-v2";
->                                         reg = <0x114 0x1>, <0x118 0x1>, <0x11c 0x1>;
->                                         interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
-> +                                       clocks = <&syscon ASPEED_CLK_GATE_LCLK>;
->                                         status = "disabled";
->                                 };
->
-> --
-> 2.25.1
->
+On 11/1/21 16:13, Rob Herring wrote:
+> On Sun, Oct 24, 2021 at 11:40:22AM -0400, Jesse Taube wrote:
+>> Add i.MXRT documentation for compatible string.
+>>
+>> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>> index a90c971b4f1f..4b4340def2aa 100644
+>> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>            - fsl,ls1028a-lpuart
+>>            - fsl,imx7ulp-lpuart
+>>            - fsl,imx8qm-lpuart
+>> +          - fsl,imxrt-lpuart
+> 
+> Actually, 'rt' is not a single part is it? If the variations are same 
+> die, but fused off then no need to distinguish. Otherwise, these should 
+> be SoC specific.
+> 
+I don't exactly know what "but fused off" means I would assume
+disconnected but on-die? The imxrtxxx is a series that has the same UART
+controller across them. Should I add ACK?
+> Same applies to other compatible strings.
+> 
+>>        - items:
+>>            - const: fsl,imx8qxp-lpuart
+>>            - const: fsl,imx7ulp-lpuart
+>> -- 
+>> 2.33.0
+>>
+>>
