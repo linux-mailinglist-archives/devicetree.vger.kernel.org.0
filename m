@@ -2,168 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A123144209B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:15:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E18F4420B4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 20:20:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231509AbhKATSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 15:18:09 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:46977 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbhKATSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:18:03 -0400
-Received: by mail-oi1-f171.google.com with SMTP id bd30so6660918oib.13;
-        Mon, 01 Nov 2021 12:15:30 -0700 (PDT)
+        id S229900AbhKATXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 15:23:13 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:41707 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229549AbhKATXN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 15:23:13 -0400
+Received: by mail-oi1-f169.google.com with SMTP id y128so26401508oie.8;
+        Mon, 01 Nov 2021 12:20:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=DqIH/19WB5yGkWAd62vmxTju2mfY4URIJiT2axl3O5E=;
-        b=3TP0cNw3sTZt2H/Q0y8HwQHcoW7EdfI5CrHNb4FIIta7RBr1Twg5Z6xH7NGY/FKfUk
-         egoi4UQs2P9L9J91E5pK/Z7F/lFy81Um8JD9EVgSbgLm4S18YFLcCsjO6n/6iNIcwajE
-         HmijlSntdk7Fu3CdkiLxN1mpM7IH0v9PKTP6KNgM9AFNfI1E+MG9+d/J6nWDQuXoiw++
-         GkPxE4/zNH97DrRnGBWjK+CYB3Gse5icNq5Qv408grkqut6ZCRjZscN457fJbV0cxLuQ
-         GV6Ajnn2ESr3TQJ9p1QqaFhi0WQvqDv5pgf+v5PoWpPX0Z/XVpLXNwKENl7foYIuTPlP
-         afCQ==
-X-Gm-Message-State: AOAM531kW9W9efRBOjPyaIP8Sp6kU+XOW1HMntd6DXK2CpdTqd4a0IZX
-        UpBYqf5ErWMUnNFW0EM2nA==
-X-Google-Smtp-Source: ABdhPJz5r3kgiovu/5/K6XyflpoY5iiU6kz8sgO3oNNlaG86JQ8NQI5dQhARDgQzYudNxb2Il1LJmQ==
-X-Received: by 2002:a54:4e98:: with SMTP id c24mr798395oiy.144.1635794129865;
-        Mon, 01 Nov 2021 12:15:29 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=qnlgup2nPuigrBK07/+ipFujxJBXEGw/fmGyNY/BIAA=;
+        b=LfaM9AKPcnrRlgW8T2vUuVMVVhoXiC085XSo66mIyRzFuJsauuBOyXFVKIBjd1xJe0
+         I0ovTEKd6Ns3M7zxFblO3TQI+BQIJe9DVYbakcV+uj9wyZl4iVDcTo+k1nUTKHNmJPDF
+         RrACS8mD1ogjr5TNoIMmeLyQeRctBB8JEqs42pSaBdPbLqVvfBsWKxulWk/i98hGiIFb
+         aNY6ZRSo6frZzleuq+fzXS5p3+mK5bAM9D+548wVvGLOKVw7vD30MLj6HHg+qU4WiF08
+         7kfJzdNRBACr2gQfy8JZQYEiY7PzwGNrG953FZTlLzdYhnfMKAi4sqzbDnmOejsUhgnb
+         pPiw==
+X-Gm-Message-State: AOAM5336mdUJscO9bbXbm5jZRfsgeSew/BTKc7b4G1fhEL/Bfcdu2kqR
+        tec1/p3EHu3As2wAkbogww==
+X-Google-Smtp-Source: ABdhPJydRoF7Coj/95HW2ujIlqgiT94jABT8VFdmFF8KXQFh4ELSGADKjE89MgQcKWhaTCt1xae/ig==
+X-Received: by 2002:a05:6808:3d2:: with SMTP id o18mr762987oie.121.1635794439033;
+        Mon, 01 Nov 2021 12:20:39 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a13sm4317605oiy.9.2021.11.01.12.15.28
+        by smtp.gmail.com with ESMTPSA id n10sm2166547ooj.42.2021.11.01.12.20.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 12:15:29 -0700 (PDT)
-Received: (nullmailer pid 858303 invoked by uid 1000);
-        Mon, 01 Nov 2021 19:15:28 -0000
-Date:   Mon, 1 Nov 2021 14:15:28 -0500
+        Mon, 01 Nov 2021 12:20:38 -0700 (PDT)
+Received: (nullmailer pid 866927 invoked by uid 1000);
+        Mon, 01 Nov 2021 19:20:32 -0000
+Date:   Mon, 1 Nov 2021 14:20:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/2] dt-bindings: mfd: add Broadcom's timer MFD block
-Message-ID: <YYA80E2/JUm01fGw@robh.at.kernel.org>
-References: <20211029202505.7106-1-zajec5@gmail.com>
- <20211029202505.7106-2-zajec5@gmail.com>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        ~okias/devicetree@lists.sr.ht, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Thierry Reding <treding@nvidia.com>,
+        linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: Tegra194 P2U convert to YAML
+Message-ID: <YYA+APGxn2i8ZVj/@robh.at.kernel.org>
+References: <20211031113236.29712-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211029202505.7106-2-zajec5@gmail.com>
+In-Reply-To: <20211031113236.29712-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 10:25:05PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Sun, 31 Oct 2021 12:32:36 +0100, David Heidelberg wrote:
+> Convert Tegra194 P2U binding to the YAML format.
 > 
-> This block is called timer in documentation but it actually behaves like
-> a MFD.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../bindings/mfd/brcm,timer-mfd.yaml          | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,timer-mfd.yaml
+>  .../bindings/phy/phy-tegra194-p2u.txt         | 28 ------------
+>  .../bindings/phy/phy-tegra194-p2u.yaml        | 44 +++++++++++++++++++
+>  2 files changed, 44 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,timer-mfd.yaml b/Documentation/devicetree/bindings/mfd/brcm,timer-mfd.yaml
-> new file mode 100644
-> index 000000000000..0060b6c443a7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,timer-mfd.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/brcm,timer-mfd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom's timer MFD
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +description: |
-> +  Broadcom's timer is a block used in multiple SoCs (e.g., BCM4908, BCM63xx,
-> +  BCM7038). Despite its name it's not strictly a timer device. It consists of:
-> +  timers, watchdog and software reset handler.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: brcm,timer-mfd
 
-'mfd' is a Linuxism. Name it what Broadcom calls the block. There should 
-be at least as many compatibles as there are variations of register 
-layouts.
-
-> +      - const: simple-mfd
-> +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges: true
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +patternProperties:
-> +  '^watchdog@[a-f0-9]+$':
-> +    $ref: ../watchdog/brcm,bcm7038-wdt.yaml
-
-/schema/watchdog/...
-
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    timer_mfd: timer-mfd@ff800400 {
-> +        compatible = "brcm,timer-mfd", "simple-mfd", "syscon";
-> +        reg = <0xff800400 0x4c>;
-> +        ranges = <0x0 0xff800400 0x4c>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        watchdog@28 {
-> +            compatible = "brcm,bcm7038-wdt";
-> +            reg = <0x28 0x8>;
-> +        };
-
-Don't you need a timer node? Make the binding complete.
-
-> +    };
-> +
-> +    reboot {
-> +        compatible = "syscon-reboot";
-> +        regmap = <&timer_mfd>;
-
-Make this a child node of the timer.
-
-> +        offset = <0x34>;
-
-Use 'reg'. If "syscon-reboot" doesn't allow that, add it.
-
-> +        mask = <1>;
-
-
-> +    };
-> -- 
-> 2.31.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
