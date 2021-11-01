@@ -2,180 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58005441F4D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 18:29:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6966B441FA1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 18:53:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbhKARbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 13:31:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54212 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230246AbhKARbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Nov 2021 13:31:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5B2AA6108F;
-        Mon,  1 Nov 2021 17:28:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635787739;
-        bh=2cJQ0z+eLg6oK6BPQeDhyJnQMwy8kofAHvVb19izHF4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=KmjWI6zQF6+Xx/MxkR5vHWVocTw2Xf4m1SqOOf8wv/J8BkEwEONNA+OVpiSXE03oW
-         4exKX9Wcaf/eK6gr8QsQ0hY0e/X92veHhmwxSciBq0avm7V65GyPUI+ZQw46pVKOpw
-         fHiyKSWBdt65MEO4p+3KicsKMUmMdfJn2hSi7teyJWvUUOuLpzXSkcXYMmfcTaqj4t
-         MspcEyj4V16VbIxnP7KfACunaD3g6Xr3yo8LPM+KvdamDbCFE3mhM0EPE2CAo90w9F
-         hYPGvp7+rUnslDzuYLgpVVMBdz27eQsrwDqmUrlA4ihhAB5aBT7jlSSvjWZFeDnReQ
-         +lEmBuaxC8A4Q==
-Received: by mail-ed1-f41.google.com with SMTP id g10so66497865edj.1;
-        Mon, 01 Nov 2021 10:28:59 -0700 (PDT)
-X-Gm-Message-State: AOAM5320GakIFIbl63nYct8clDRR+cOPL0rW5O4NVaNfj/E4w6YSKX55
-        O9mgDk5Zz5Z0LECEqMCZjSuHnyUqawa65dU6fQ==
-X-Google-Smtp-Source: ABdhPJzkwoHospvWPt75rQ9pj3Q9ByRQ+4JTXMeqeD/nsnG4kv3oJZ2NTVWtriGCZu4WdnuCkBVl/I7sTIJhXcJO/UY=
-X-Received: by 2002:a05:6402:84d:: with SMTP id b13mr43627187edz.6.1635787737776;
- Mon, 01 Nov 2021 10:28:57 -0700 (PDT)
+        id S230206AbhKAR4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 13:56:25 -0400
+Received: from mail-am6eur05on2082.outbound.protection.outlook.com ([40.107.22.82]:2145
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229802AbhKAR4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 13:56:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dF4DmACALsuEiEdsxY9+MaxaHt2pfq7dltunaQpICWE=;
+ b=1nWjmS54aLAb1xT0hJkdEFXKIkWm3ZvFSeAUSRK1+oW2PHDVif4cLJOcycW7d77GAH13DB4wbwXFxeqHfnBXBx2bC6kAKmZfEoAP7ISU+RPxgnYGOfe74x86Nq8BnIW1ZdW5Wgk2n8qw6nADovTzM7NYkrKd35Ir11Lfc0gATUU=
+Received: from DB8PR09CA0014.eurprd09.prod.outlook.com (2603:10a6:10:a0::27)
+ by HE1PR0802MB2201.eurprd08.prod.outlook.com (2603:10a6:3:cc::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.18; Mon, 1 Nov
+ 2021 17:53:47 +0000
+Received: from DB5EUR03FT062.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:10:a0:cafe::69) by DB8PR09CA0014.outlook.office365.com
+ (2603:10a6:10:a0::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.14 via Frontend
+ Transport; Mon, 1 Nov 2021 17:53:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
+ smtp.mailfrom=arm.com; dkim=pass (signature was verified)
+ header.d=armh.onmicrosoft.com;dmarc=pass action=none header.from=arm.com;
+Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
+ 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
+ client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
+Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
+ DB5EUR03FT062.mail.protection.outlook.com (10.152.20.197) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4649.14 via Frontend Transport; Mon, 1 Nov 2021 17:53:47 +0000
+Received: ("Tessian outbound 6ebd41198c5d:v108"); Mon, 01 Nov 2021 17:53:47 +0000
+X-CheckRecipientChecked: true
+X-CR-MTA-CID: 84951f99555887c4
+X-CR-MTA-TID: 64aa7808
+Received: from fc66fcdfe44a.1
+        by 64aa7808-outbound-1.mta.getcheckrecipient.com id 266CA750-4A36-41A2-9ED2-8221FABDDA0F.1;
+        Mon, 01 Nov 2021 17:53:40 +0000
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com
+    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id fc66fcdfe44a.1
+    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
+    Mon, 01 Nov 2021 17:53:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EO7eITOuAeOne4jfha2Zcp+PrCRo7Kjr6XGtm4KKLFsNr5NXGWfjIeCSXiqkzZH7kJ8fLshDY2EXtNntrbHX5SWGuLLXVp05UoCN7p4dUB9Zs9tZXIpKafNHpTMo0DmP0aDGIi/ENeK8fuiyE39llCnPXc89C3p+p00hS+7HiEdYtBPxTvQHYIgZlq6aQXuMDTtZ4JRYcYnqf3NqoUbN2vGho9VIQ8UBSkU3VhJGhkJ3/sBl4vJ8cm+kRkkDdVteqaQYaUMB+um4RgeYWBB9mwVRD7+BiZ+Bg3B14ErZYiZg9Wt11ddGburRkiwtqn2rmfBHM3wWpamu1Q8EjX1Wxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dF4DmACALsuEiEdsxY9+MaxaHt2pfq7dltunaQpICWE=;
+ b=U8StV/srH7yEmWRpHGsL/zLncZ7xBt6/62j1cux8sJQXpHIXyGKocJqEkTbKohL5v3ujmb8OQypIHSvn+StR4CtGB/0d32RYXnjOqE3eGRRaHQLOqCbPW0egUTg5aRbF3jOZ/gLXlkoVQD4qJ6u6WXw4S/nqASNa855QiqkCQlWaw+/xlYvT+9enZObdmAHCr63BArhGfRoHYhVHmFwpggRvd5oCjersOtj66U+Be5Ms0LidrmcebYo8He+IHtIuOQi5ST41ZHXLsfoPOZNH+5Tw77+VhKkZn8f5IJaJ3gcssnvfPLRimX/wRBu7NlFceKew3PZ014HOZ2rjitZ1xw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
+ header.d=arm.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
+ s=selector2-armh-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dF4DmACALsuEiEdsxY9+MaxaHt2pfq7dltunaQpICWE=;
+ b=1nWjmS54aLAb1xT0hJkdEFXKIkWm3ZvFSeAUSRK1+oW2PHDVif4cLJOcycW7d77GAH13DB4wbwXFxeqHfnBXBx2bC6kAKmZfEoAP7ISU+RPxgnYGOfe74x86Nq8BnIW1ZdW5Wgk2n8qw6nADovTzM7NYkrKd35Ir11Lfc0gATUU=
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+Received: from DB8PR08MB5433.eurprd08.prod.outlook.com (2603:10a6:10:118::13)
+ by DB7PR08MB2972.eurprd08.prod.outlook.com (2603:10a6:5:1b::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15; Mon, 1 Nov
+ 2021 17:53:29 +0000
+Received: from DB8PR08MB5433.eurprd08.prod.outlook.com
+ ([fe80::f169:9645:e7f:7dec]) by DB8PR08MB5433.eurprd08.prod.outlook.com
+ ([fe80::f169:9645:e7f:7dec%7]) with mapi id 15.20.4649.019; Mon, 1 Nov 2021
+ 17:53:28 +0000
+Date:   Mon, 1 Nov 2021 17:53:26 +0000
+From:   Joey Gouly <joey.gouly@arm.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hector Martin <marcan@marcan.st>,
+        Marc Zyngier <maz@kernel.org>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Sven Peter <sven@svenpeter.dev>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>,
+        Stan Skowronek <stan@corellium.com>
+Subject: Re: [PATCH v5 4/5] pinctrl: add pinctrl/GPIO driver for Apple SoCs
+Message-ID: <20211101175326.GA14846@e124191.cambridge.arm.com>
+References: <20211026175815.52703-1-joey.gouly@arm.com>
+ <20211026175815.52703-5-joey.gouly@arm.com>
+ <CAHp75Vc8-sZX-aMtR9o5_=_X0y6ALYCXR2W3Y4389=xD7c__nw@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vc8-sZX-aMtR9o5_=_X0y6ALYCXR2W3Y4389=xD7c__nw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: LO2P265CA0178.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a::22) To DB8PR08MB5433.eurprd08.prod.outlook.com
+ (2603:10a6:10:118::13)
 MIME-Version: 1.0
-References: <20211028093059.32535-1-zajec5@gmail.com> <20211028093059.32535-3-zajec5@gmail.com>
- <f78d1573-4909-039d-8647-d4fc13205f47@gmail.com> <9d57d026-19f3-e92d-4c02-d7e8e2c2bc25@gmail.com>
- <YXvxMHmx2i56sXdI@robh.at.kernel.org> <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
-In-Reply-To: <1df7e7cd-aa4c-c692-ff7f-8ee27780a6a9@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 1 Nov 2021 12:28:45 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+sXqhxriDCrpWXrWTFoTi6zqQATyPfqZ2d9-H-smC-Qg@mail.gmail.com>
-Message-ID: <CAL_Jsq+sXqhxriDCrpWXrWTFoTi6zqQATyPfqZ2d9-H-smC-Qg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] watchdog: bcm7038_wdt: support BCM4908 SoC
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from e124191.cambridge.arm.com (217.140.106.52) by LO2P265CA0178.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:a::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.15 via Frontend Transport; Mon, 1 Nov 2021 17:53:27 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 45013959-cb48-478e-cb1d-08d99d608dce
+X-MS-TrafficTypeDiagnostic: DB7PR08MB2972:|HE1PR0802MB2201:
+X-Microsoft-Antispam-PRVS: <HE1PR0802MB2201656A588FC001716B70D3948A9@HE1PR0802MB2201.eurprd08.prod.outlook.com>
+x-checkrecipientrouted: true
+NoDisclaimer: true
+X-MS-Oob-TLC-OOBClassifiers: OLM:4125;OLM:4125;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: xKEUebI9czDo82qgEg5zs0rW5F2wmSusUhtQeow7khGBodztNCd8mJK4mJsfYjoC+mHQknATQY7dEhb3fxruYHNMrceWm0WSOe9GbzsczjEHUThv8gghTomHHyva0BeWMHUSPOiYAR6o0gRWMkTpmVKaWaOdxH+V/YU0qLH7BCayXm+R8c4LqFdDXoRmVzQfTrlgqpEyxfee7zgSVB3KS39lnm0smVjt/PMzyb7WQUkMvK9uBJenPi/qxs7W5u9e+fvrAd3DEU4Cn3KVEzMkGY2lvM6V+XwD+HLq0Swd/lbW4NevF5r4tob0ZopsTEH63FudILn/80G9x0GfBqcs9fiTR2/sdDDo32/jg8DGEnmglikw3P5Qnczr0K7c1ASa9g61umg44RHhbqXktlI0jLgalkJENeYF4v3386L9jLco3zSvD5kfvaTMg/sQPxCN2Jp78RYG6I6fazHoGpJGVtvRp4b0n5n+w4HsdYLi5HpNsTWA4BR3T2YWE4luw1nyfOxBGbdolkpvggsf7f1+kdKQEGsaUzx8rs4Eis8XL3gVndu/eHZtNBEoVSnAzxGM1hiKPJdszI30oI/x9oAFCSRavWFBNJuoQVTUBYTCJwroZ5inwmkejUjyBFPEGX/Gk4w5W7o6aah+JfAcWMAvL3Hylrf6iLikzTXgyt8eD1qwj/KccJcPtihbOplX1/de7CzkS50yiRyfbWlINRNcvKbD4YyghWsykN6khASgfpU=
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR08MB5433.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(366004)(47660400002)(7696005)(316002)(66946007)(66476007)(66556008)(38100700002)(38350700002)(52116002)(6916009)(53546011)(186003)(86362001)(7416002)(508600001)(55016002)(26005)(33656002)(2906002)(54906003)(1076003)(44832011)(4326008)(8936002)(8676002)(5660300002)(4744005)(956004)(46800400005);DIR:OUT;SFP:1101;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB2972
+Original-Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=arm.com;
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB5EUR03FT062.eop-EUR03.prod.protection.outlook.com
+X-MS-Office365-Filtering-Correlation-Id-Prvs: d3d7c8e5-5d20-49c5-4d01-08d99d60826a
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8tlEPKG9gRLbxN+z/NqQkotkupGM7Oy4+ykxUPNi31HU+iAaznSq71s7y5C/hgM5JV7MZ4QIAdn/0OnYxgBFFwGhYjZtyo3+2QgjT30TDIS41qZ8Jrp12fYa5B95+VQcAARzaEGHXj0TXmEbmqlwRqaBpOrJikQnLjFf+3njtruRPxy2p93woNparqHaH76pC8+LVRD9HGmSeZsybVgupF4TB2gtyW2yI1lBX+N/hcAW4JOuZDu6f7kyXyzMHpiAqcaeT0z7V+pSdSZoivzZ49Mgy049jHWBhiaKe9mvZ5cP1mEQgEehAlaFV8gsQBpxNdDlZ/bzjHcOdQ6gVZ7W1q1cDXQBf2lwW8/zlVG/P4mzeL540ucDvFYqg5PD4mURjRoEUVgcGUaQteJc0w1nNmoOJApqRUxUgrRwtlOzVTBCXF6cwEugijBJe/3BXdU35wdqsyEI8STZmJLGmwjcOarnscfs+ekzGaPqpB1pbtsr9jhA9GTu2W8K4HeR9ACrVJJrZIYOLbYXTs5cgfDp+xeR98qDxfSyiTVv3+eq4qcWOepfzHOrzP8gtIqCZMI9gGvm9QV2PermGbCe4fkkb1OpKf6j2YhhmHUeoa6zelHnvYB1rlIgyY7WOrKv/XhqBnobCUhkKT56wNZIFJVcqh1X2tPxQa8TUgIFVUTAIXcle0krv+slS7p0SYHTv+wR+Q+enrwgH/4kdWQFv3kQSD6f2psbBIbrg9dsD4l2BeA=
+X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(6029001)(4636009)(47660400002)(46966006)(36840700001)(54906003)(33656002)(82310400003)(70206006)(107886003)(4744005)(55016002)(336012)(1076003)(70586007)(36860700001)(44832011)(47076005)(6862004)(53546011)(956004)(4326008)(508600001)(8936002)(26005)(186003)(8676002)(5660300002)(450100002)(356005)(86362001)(2906002)(81166007)(7696005)(316002)(46800400005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: arm.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2021 17:53:47.0977
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45013959-cb48-478e-cb1d-08d99d608dce
+X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
+X-MS-Exchange-CrossTenant-AuthSource: DB5EUR03FT062.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0802MB2201
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 11:45 AM Florian Fainelli <f.fainelli@gmail.com> wr=
-ote:
->
-> On 10/29/21 6:03 AM, Rob Herring wrote:
-> > On Fri, Oct 29, 2021 at 01:39:02PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote=
-:
-> >> [Rob: please kindly comment on this]
-> >>
-> >> On 28.10.2021 18:29, Florian Fainelli wrote:
-> >>> On 10/28/21 2:30 AM, Rafa=C5=82 Mi=C5=82ecki wrote:
-> >>>> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >>>>
-> >>>> Hardware supported by this driver goes back to the old bcm63xx days.=
- It
-> >>>> was then reused in BCM7038 and later also in BCM4908.
-> >>>>
-> >>>> Depending on SoC model registers layout differs a bit. This commit
-> >>>> introduces support for per-chipset registers offsets & adds BCM4908
-> >>>> layout.
-> >>>>
-> >>>> Later on BCM63xx SoCs support should be added too (probably as platf=
-orm
-> >>>> devices due to missing DT). Eventually this driver should replace
-> >>>> bcm63xx_wdt.c.
-> >>>>
-> >>>> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >>>> ---
-> >>>
-> >>> [snip]
-> >>>
-> >>>> +
-> >>>> +static const u16 bcm7038_wdt_regs_bcm4908[] =3D {
-> >>>> +  [BCM63XX_WDT_REG_DEFVAL]        =3D 0x28,
-> >>>> +  [BCM63XX_WDT_REG_CTL]           =3D 0x2c,
-> >>>> +  [BCM63XX_WDT_REG_SOFTRESET]     =3D 0x34,
-> >>>
-> >>> I don't understand what you are doing here and why you are not
-> >>> offsetting the "reg" property appropriately when you create your
-> >>> bcm4908-wdt Device Tree node such that the base starts at 0, and the
-> >>> existing driver becomes usable as-is. This does not make any sense to=
- me
-> >>> when it is obviously the simplest way to make the driver "accept" the
-> >>> resource being passed.
-> >>
-> >> I believe that DT binding should cover the whole hardware block and
-> >> describe it (here: use proper compatible to allow recognizing block
-> >> variant).
-> >>
-> >> That's because (as far as I understand) DT should be used to describe
-> >> hardware as closely as possible. I think it shouldn't be adjusted to
-> >> make mapping match Linux's driver implementation.
-> >>
-> >>
-> >> So if:
-> >> 1. Hardware block is mapped at 0xff800400
-> >> 2. It has interesting registers at 0xff800428 and 0xff80042c
-> >>
-> >> I think mapping should use:
-> >> reg =3D <0xff800400 0x3c>;
-> >> even if we don't use the first N registers.
-> >>
-> >> That way, at some point, you can extend Linux (or whatever) driver to
-> >> use extra registers without reworking the whole binding. That's why I
-> >> think we need to map whole hardware block & handle different registers
-> >> layouts in a driver.
+Hi Andy,
+
+On Sun, Oct 31, 2021 at 03:39:01PM +0200, Andy Shevchenko wrote:
+> On Wed, Oct 27, 2021 at 5:28 AM Joey Gouly <joey.gouly@arm.com> wrote:
 > >
-> > Yes, that's the correct thing to do.
->
-> So in the future if we happen to want to manage the hardware timers in
-> that block, they would be part of the watchdog driver? I am fairly sure
-> they won't be, so you will be creating a composite driver/MFD to
-> separate out the functions, more likely. So you might as well create
-> sub-nodes.
+> > This driver adds support for the pinctrl / GPIO hardware found
+> > on some Apple SoCs.
+> 
+> ...
+> 
+> > +       ret = of_property_count_u32_elems(node, "pinmux");
+> > +       if (ret <= 0) {
+> > +               dev_err(pctl->dev,
+> > +                       "missing or empty pinmux property in node %pOFn.\n",
+> > +                       node);
+> > +               return ret;
+> 
+> This is incorrect. It always happens when somebody is in hurry :-)
+I don't understand which bit you are saying is incorrect here, can you expand on your comment?
 
-There is no requirement that an MFD have child nodes. They are done
-both ways. If you need some internal kernel restructuring, then I
-don't care (as DT maintainer).
+[...]
 
-We very commonly have a single node that's both clock and reset
-provider for example. It's primarily when the sub blocks consume
-different DT resources that you need sub-nodes.
+Thanks for the other comments, I'll prepare a patch addressing it soon.
 
-> > The question is whether you'd need sub nodes for the other functions.
-> > Folks tend to want to have sub nodes for convenience which isn't really
-> > needed and then requires a DT update ('cause they add nodes as adding
-> > drivers).
->
-> Sorry but not, this is getting completely ridiculous, the
-
-Huh?
-
->
-> >
-> > Based on the registers, you really don't need sub nodes here.
->
-> I sort of disagree here, the watchdog is a part of a sundry timer block
-> here, but it is logically broken up into different parts and if if I
-> were to imagine how this would map into different drivers, I can easily
-> see that we would have:
->
-> - a driver to manage the timer interrupt controller
-> - a driver to manage each of the 3 hardware timers, be they clockevent
-> or else
-> - a driver to manage the watchdog
-
-You know the h/w better than me. I was giving my opinion based only on
-the limited information presented.
-
-> The simplest way to get there, and also because these same timer blocks
-> are actually spread in other parts of STB chips just like the watchdog
-> is, but in a different layout where they stand on their own was the main
-> drive for defining the bcm7038_wdt binding the way it was.
-
-A sub-block reused in different blocks is a decent reason for sub-nodes.
-
-Most important for me is that the binding be complete and not have to
-change in an incompatible way in the future. The more detailed you
-make the binding, the harder it will be to get right. It's the same
-reason we moved away from doing a clock per node for clock trees. So,
-if you want child nodes, then you need to define all of them.
-
-Rob
+Thanks,
+Joey
