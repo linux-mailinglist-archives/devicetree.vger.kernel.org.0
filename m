@@ -2,78 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B63414418C6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 10:49:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1C7441929
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 10:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbhKAJvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 05:51:13 -0400
-Received: from mail.zeus.flokli.de ([88.198.15.28]:55402 "EHLO zeus.flokli.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232514AbhKAJtR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Nov 2021 05:49:17 -0400
-Received: from localhost (dslb-094-221-236-183.094.221.pools.vodafone-ip.de [94.221.236.183])
-        (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: flokli@flokli.de)
-        by zeus.flokli.de (Postfix) with ESMTPSA id 34FFE11E59DA;
-        Mon,  1 Nov 2021 09:46:42 +0000 (UTC)
-Date:   Mon, 1 Nov 2021 10:46:41 +0100
-From:   Florian Klink <flokli@flokli.de>
-To:     Dennis Gilmore <dgilmore@redhat.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: helios64: add variables for pcie
- completion
-Message-ID: <20211101094641.cseo7fvrzyzh2pkl@tp>
-References: <20211029005323.144652-1-dgilmore@redhat.com>
+        id S231989AbhKAJ6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 05:58:48 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:3437 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231695AbhKAJ5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 05:57:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635760498; x=1667296498;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=mSuwzvbFosgXR+t/J5/7W7IMTcUGeCP7rMs5ACbUzzo=;
+  b=SvFYPHhUtaFbwtj+iF2VmE4blSoBErrBHw5BzjSFv38ldexePwenQob1
+   Dc2xhJpRvdTECH2d8oO3KhkkcY2l4ysggd3cLQd86x2mYw7BbzaxJM714
+   DvufcMxZ/6GzVaE2g65lCUFxgx9MhJEyGG57ZxI11mun9J43wG9Jj3bc8
+   PYSTDImHF6ZE35imm0RVd5jmuxg7vzP6fnFVGuo2BvBZiRsY7hIueDJzZ
+   kUvgoyt6xKJP8zY8QZMLlXDKDyZxF0/P8acSjfChJ6tENf+nyGAiJ6Ss3
+   1iB/zQ0yh7dBZI/H+GecR9rcdTAxoxzUXCnC5oOG8rF3e/TBH99cSLVgx
+   g==;
+IronPort-SDR: SX2FJxAMsva8Jy9RyHBd2k0pUMCtDKYCGpM9PAT001hMltTdpldEzqaGatAmZoZL6Qu0RuJXUx
+ sjGDE8XDhgFvD3kialKVm5Sb/jsAo+tR7a0W/F//m8bm5IAJB2aNrlCaqGWrdqZzH8Q18s69oB
+ ubMclwfNAuUFOzCUnU71pRQBCpTs4R6YaY9cG7JVQw2XS2Tt4NG45e3xa0woEN+LZY2mBDWMql
+ W/1ZH4b+i3O6I7ob+QaXcOxh90CASJt2cRLCqsGGHM+SFOC5tP4mQmZ2nzstPar9GcpZD/Iwwl
+ hUaNiCNM+6Yy42+3kaQ4nVXO
+X-IronPort-AV: E=Sophos;i="5.87,198,1631602800"; 
+   d="scan'208";a="74934026"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 01 Nov 2021 02:54:56 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 1 Nov 2021 02:54:56 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 1 Nov 2021 02:54:53 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Kavyasree.Kotagiri@microchip.com>
+Subject: [PATCH v3 0/2]  Extend pinctrl-ocelot driver for lan966x
+Date:   Mon, 1 Nov 2021 15:24:49 +0530
+Message-ID: <20211101095451.5831-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20211029005323.144652-1-dgilmore@redhat.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Acked-By: Florian Klink <flokli@flokli.de>
+This patch series extends pinctrl-ocelot driver to support lan966x.
 
-On 21-10-28 19:53:19, Dennis Gilmore wrote:
->without ep-gpios defined u-boot does not initialise PCIe
->rockchip_pcie pcie@f8000000: failed to find ep-gpios property
->
->additionally set max-link-speed and pinctrl-names for completeness
->
->with this patch and the ones from Florian Klink applied to the dts
->file in u-boot sata drives show up in both u-boot and linux
->
->Signed-off-by: Dennis Gilmore <dgilmore@redhat.com>
->---
-> arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts | 3 +++
-> 1 file changed, 3 insertions(+)
->
->diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
->index 9c2b45012daa..1e4042a7fdc3 100644
->--- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
->+++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
->@@ -534,7 +534,10 @@ &pcie_phy {
-> };
->
-> &pcie0 {
->+	ep-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
->+	max-link-speed = <2>;
-> 	num-lanes = <2>;
->+	pinctrl-names = "default";
-> 	status = "okay";
->
-> 	vpcie12v-supply = <&vcc12v_dcin>;
->-- 
->2.32.0
+v2 -> v3:
+- Removed extra new lines in pinctrl-ocelot.
+- Reverted sparx5_desc changes which are done by mistake.
+
+v1 -> v2:
+- Use consistent name lan966x everywhere.
+
+Kavyasree Kotagiri (2):
+  dt-bindings: pinctrl: ocelot: add lan966x SoC support
+  pinctrl: ocelot: Extend support for lan966x
+
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |   3 +-
+ drivers/pinctrl/pinctrl-ocelot.c              | 416 ++++++++++++++++++
+ 2 files changed, 418 insertions(+), 1 deletion(-)
 
 -- 
-Florian Klink
+2.17.1
+
