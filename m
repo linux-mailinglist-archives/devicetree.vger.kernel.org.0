@@ -2,96 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24969441BA2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1397441BC1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbhKANWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 09:22:45 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:33787 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231794AbhKANWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 09:22:44 -0400
-Received: by mail-ot1-f46.google.com with SMTP id 107-20020a9d0a74000000b00553bfb53348so25326345otg.0;
-        Mon, 01 Nov 2021 06:20:11 -0700 (PDT)
+        id S231284AbhKANec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 09:34:32 -0400
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:34611 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230417AbhKANec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 09:34:32 -0400
+Received: by mail-oi1-f172.google.com with SMTP id w193so24968207oie.1;
+        Mon, 01 Nov 2021 06:31:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=NQsXgN1/B5gwjOVAAacfDLhfdCYF4Dwe+DAjivz+Nyc=;
-        b=kaDXexlIPEfQISaVbZXCafx1c5ElYiRWmllHY65SZTvEqJ8U89znHlYyNRfE5vXzlq
-         HTsBUcRfsK9JIk5g64oc5/vfr6lkeYwNFZWFzS0JxAD15QQwFz6m4meHR7i4TuYhlK8A
-         /Z3H1xoLdWeyOMH12x02rhaovVdsN9FhoxmJNXu/PyZlMKjX41JRTl3ZR6zfYt6z5t7D
-         V+G9WPPKbYQ3ttZqq01roSm6EiZP+vt4Jt+moe0O2OC58fuz0XHMKxUM3vfwsXcRx7ng
-         CWKVaIirJ6ARro9qeZSADxvCNYTnQeJVvHA3+ADX21zDI5XrVjGI5f10CN6ESwC5jESS
-         8uuQ==
-X-Gm-Message-State: AOAM5328t/rG4VrCYTSciZctzgwvSkMu1FkIUIsaYMZJ9Seh0f+zEbX+
-        2nvAJRqmKWuz5ImVrgXqxGUCScKAmA==
-X-Google-Smtp-Source: ABdhPJyzU4cxvEcItOGfrwaiiIz8T6WXPuadFqxeg4zVhDDGAM4Y5N64HkjfJRt7VwCNAaxicAaTwA==
-X-Received: by 2002:a9d:a64:: with SMTP id 91mr13798795otg.198.1635772810834;
-        Mon, 01 Nov 2021 06:20:10 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eLcsxVzfHQolZIB0ZbYhFO4KAcs8yfy79NWqwxrx0tI=;
+        b=zv9P0LNkxYjXbHCySzZSkdUAi7rgVB4KU2CveJNlDHL4XM8K2TLHwNBo12ZRQ2euYp
+         qGf8z6tttwgb1GXIP/5ll3bTY3NPrP6VeXXc0WMQZB1Uy28+7o/lyNwQBPGkEuVfj2Sz
+         TbjgVpK+5ShRXxJi70wJ0WJ0/9Set2CYB5V/KUX0AEo7KVyPd2Sn25qQ+zEjWwY5sZfZ
+         wgYV+J6IfT+dhzs3uNg8YU91tcIBnjlarj9ETjjYVZGUkIcKedrSTSBYu3xBAyj3NEH3
+         Y1uBZCU5ilMHa0c7qpFYiU6jqdDLdmy6PlnoNcUvXmivbEv3k/NRJ8BqF0uLy3m+05Vx
+         0lcg==
+X-Gm-Message-State: AOAM5312+uYPX6L5UPmgbvpEsw6p956FJKoPo7K6yh+UpZUfYTfTLA36
+        rOQ3mQEUy+5lDHP0KeyjTA==
+X-Google-Smtp-Source: ABdhPJyi2B3TGNdhhoSZVcT2+ar1R4LGVp3YRhTJz4BmGGV6/kl4Fi83W6pKB5mrlIJ8hHGVPYBMDw==
+X-Received: by 2002:a05:6808:231e:: with SMTP id bn30mr5597153oib.93.1635773518362;
+        Mon, 01 Nov 2021 06:31:58 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x28sm4236076ote.24.2021.11.01.06.20.09
+        by smtp.gmail.com with ESMTPSA id s21sm1680874otp.57.2021.11.01.06.31.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 06:20:09 -0700 (PDT)
-Received: (nullmailer pid 278147 invoked by uid 1000);
-        Mon, 01 Nov 2021 13:20:09 -0000
+        Mon, 01 Nov 2021 06:31:57 -0700 (PDT)
+Received: (nullmailer pid 298367 invoked by uid 1000);
+        Mon, 01 Nov 2021 13:31:56 -0000
+Date:   Mon, 1 Nov 2021 08:31:56 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     "hammer.hsieh" <hammerh0314@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        "hammer.hsieh" <hammer.hsieh@sunplus.com>,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        p.zabel@pengutronix.de, wells.lu@sunplus.com,
-        tony.huang@sunplus.com, jirislaby@kernel.org
-In-Reply-To: <1635752903-14968-2-git-send-email-hammer.hsieh@sunplus.com>
-References: <1635752903-14968-1-git-send-email-hammer.hsieh@sunplus.com> <1635752903-14968-2-git-send-email-hammer.hsieh@sunplus.com>
-Subject: Re: [PATCH 1/2] dt-bindings:serial:Add bindings doc for Sunplus SoC UART Driver
-Date:   Mon, 01 Nov 2021 08:20:09 -0500
-Message-Id: <1635772809.026695.278146.nullmailer@robh.at.kernel.org>
+To:     frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] of: unittest: document intentional interrupt-map
+ provider build warning
+Message-ID: <YX/sTGG/WUqhDzr4@robh.at.kernel.org>
+References: <20211030011039.2106946-1-frowand.list@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211030011039.2106946-1-frowand.list@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Nov 2021 15:48:22 +0800, hammer.hsieh wrote:
-> Add bindings doc for Sunplus SoC UART Driver
+On Fri, Oct 29, 2021 at 08:10:39PM -0500, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
 > 
-> Signed-off-by: hammer.hsieh <hammer.hsieh@sunplus.com>
+> A recently implemented dtc compiler warning reports a dts problem
+> via a build warning:
+> 
+>    drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> 
+> The warning will be addressed by a separate patch by suppressing the
+> warning for .dts files that include this .dtsi.  This patch documents
+> why the warning is due to a deliberately incorrect .dtsi file so that
+> no one will fix the .dtsi file to prevent the build warning.
+> 
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
 > ---
->  .../devicetree/bindings/serial/sunplus,uart.yaml   | 116 +++++++++++++++++++++
->  MAINTAINERS                                        |   5 +
->  2 files changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/sunplus,uart.yaml
+>  .../of/unittest-data/tests-interrupts.dtsi    | 19 +++++++++++++++++++
+>  drivers/of/unittest.c                         |  6 ++++++
+>  2 files changed, 25 insertions(+)
 > 
+> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
+> index 9b60a549f502..8c8d267d4d3c 100644
+> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
+> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
+> @@ -31,6 +31,21 @@ test_intmap0: intmap0 {
+>  
+>  			test_intmap1: intmap1 {
+>  				#interrupt-cells = <2>;
+> +				/*
+> +				 * #address-cells is required
+> +				 *
+> +				 * The property is not provided in this node to
+> +				 * test that the code will properly handle
+> +				 * this case for legacy .dts files.
+> +				 *
+> +				 * Not having #address-cells will result in a
+> +				 * warning from dtc starting with
+> +				 * version v1.6.1-19-g0a3a9d3449c8
+> +				 * The warning is suppressed by adding
+> +				 * -Wno-interrupts_property to the Makefile
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+s/interrupts_property/interrupt_map/
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/serial/sunplus,uart.yaml:36:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/serial/sunplus,uart.yaml:39:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/serial/sunplus,uart.yaml:42:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
-./Documentation/devicetree/bindings/serial/sunplus,uart.yaml:45:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+I'll fix when applying.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/serial/sunplus,uart.example.dts:20:18: fatal error: dt-bindings/clock/sp-sp7021.h: No such file or directory
-   20 |         #include <dt-bindings/clock/sp-sp7021.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/serial/sunplus,uart.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1548996
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> +				 * for all .dts files this include this .dtsi
+> +				#address-cells = <1>;
+> +				 */
+>  				interrupt-map = <0x5000 1 2 &test_intc0 15>;
+>  			};
+>  
+> @@ -46,6 +61,10 @@ interrupts1 {
+>  
+>  			interrupts-extended0 {
+>  				reg = <0x5000 0x100>;
+> +				/*
+> +				 * Do not remove &test_intmap1 from this
+> +				 * property - see comment in node intmap1
+> +				 */
+>  				interrupts-extended = <&test_intc0 1>,
+>  						      <&test_intc1 2 3 4>,
+>  						      <&test_intc2 5 6>,
+> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+> index 8c056972a6dd..04bfef8f67c3 100644
+> --- a/drivers/of/unittest.c
+> +++ b/drivers/of/unittest.c
+> @@ -1129,6 +1129,12 @@ static void __init of_unittest_parse_interrupts_extended(void)
+>  			passed &= (args.args[1] == 14);
+>  			break;
+>  		case 6:
+> +			/*
+> +			 * Tests child node that is missing property
+> +			 * #address-cells.  See the comments in
+> +			 * drivers/of/unittest-data/tests-interrupts.dtsi
+> +			 * nodes intmap1 and interrupts-extended0
+> +			 */
+>  			passed &= !rc;
+>  			passed &= (args.args_count == 1);
+>  			passed &= (args.args[0] == 15);
+> -- 
+> Frank Rowand <frank.rowand@sony.com>
+> 
+> 
