@@ -2,134 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1397441BC1
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3A5441BD8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 14:40:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231284AbhKANec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 09:34:32 -0400
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:34611 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230417AbhKANec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 09:34:32 -0400
-Received: by mail-oi1-f172.google.com with SMTP id w193so24968207oie.1;
-        Mon, 01 Nov 2021 06:31:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=eLcsxVzfHQolZIB0ZbYhFO4KAcs8yfy79NWqwxrx0tI=;
-        b=zv9P0LNkxYjXbHCySzZSkdUAi7rgVB4KU2CveJNlDHL4XM8K2TLHwNBo12ZRQ2euYp
-         qGf8z6tttwgb1GXIP/5ll3bTY3NPrP6VeXXc0WMQZB1Uy28+7o/lyNwQBPGkEuVfj2Sz
-         TbjgVpK+5ShRXxJi70wJ0WJ0/9Set2CYB5V/KUX0AEo7KVyPd2Sn25qQ+zEjWwY5sZfZ
-         wgYV+J6IfT+dhzs3uNg8YU91tcIBnjlarj9ETjjYVZGUkIcKedrSTSBYu3xBAyj3NEH3
-         Y1uBZCU5ilMHa0c7qpFYiU6jqdDLdmy6PlnoNcUvXmivbEv3k/NRJ8BqF0uLy3m+05Vx
-         0lcg==
-X-Gm-Message-State: AOAM5312+uYPX6L5UPmgbvpEsw6p956FJKoPo7K6yh+UpZUfYTfTLA36
-        rOQ3mQEUy+5lDHP0KeyjTA==
-X-Google-Smtp-Source: ABdhPJyi2B3TGNdhhoSZVcT2+ar1R4LGVp3YRhTJz4BmGGV6/kl4Fi83W6pKB5mrlIJ8hHGVPYBMDw==
-X-Received: by 2002:a05:6808:231e:: with SMTP id bn30mr5597153oib.93.1635773518362;
-        Mon, 01 Nov 2021 06:31:58 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id s21sm1680874otp.57.2021.11.01.06.31.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 06:31:57 -0700 (PDT)
-Received: (nullmailer pid 298367 invoked by uid 1000);
-        Mon, 01 Nov 2021 13:31:56 -0000
-Date:   Mon, 1 Nov 2021 08:31:56 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] of: unittest: document intentional interrupt-map
- provider build warning
-Message-ID: <YX/sTGG/WUqhDzr4@robh.at.kernel.org>
-References: <20211030011039.2106946-1-frowand.list@gmail.com>
+        id S231808AbhKANmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 09:42:32 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:36825 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231828AbhKANmc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 09:42:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635773999; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=oCiwHNpAGx+7qf4ko0KtXb5a49/AVJ95iHboNyo0CEo=;
+ b=rTVnfd6y1S2+jkheATYPJ1ufg/mDicRJxAxaUil7QFptlvrA7FP0Vt2rUnFQhG+Im1dkePRj
+ JKYamBH9auHnYWmOAFqiEKtZpD7HIcSOf//YgWQDQKBJOlT2xqeInBsNFU4P0EJjDvO2SHBq
+ Nl3UDVkKotL4O/lPmCtU1C4zGyU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 617fee2d2e144ac4d3ef0af4 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 01 Nov 2021 13:39:57
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id ED320C43617; Mon,  1 Nov 2021 13:39:56 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 435E1C4338F;
+        Mon,  1 Nov 2021 13:39:56 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211030011039.2106946-1-frowand.list@gmail.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 01 Nov 2021 19:09:56 +0530
+From:   okukatla@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     georgi.djakov@linaro.org, evgreen@google.com,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        mdtipton@codeaurora.org, sibis@codeaurora.org,
+        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+Subject: Re: [v8 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
+ provider
+In-Reply-To: <YXsxxd7f/FaDJEMa@ripper>
+References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
+ <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
+ <YXsxxd7f/FaDJEMa@ripper>
+Message-ID: <fc4ef5ecd91401f49411cf138b0da526@codeaurora.org>
+X-Sender: okukatla@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 08:10:39PM -0500, frowand.list@gmail.com wrote:
-> From: Frank Rowand <frank.rowand@sony.com>
+On 2021-10-29 04:57, Bjorn Andersson wrote:
+> On Thu 21 Oct 03:40 PDT 2021, Odelu Kukatla wrote:
 > 
-> A recently implemented dtc compiler warning reports a dts problem
-> via a build warning:
+>> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
+>> SoCs.
+>> 
+>> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
+>>  1 file changed, 8 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index d74a4c8..0b55742 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -3687,6 +3687,14 @@
+>>  			};
+>>  		};
+>> 
+>> +		epss_l3: interconnect@18590000 {
+>> +			compatible = "qcom,sc7280-epss-l3";
+>> +			reg = <0 0x18590000 0 0x1000>;
 > 
->    drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> This series looks like I would expect, with and without per-core dcvs.
+> But can you please explain why this contradict what Sibi says here:
+> https://lore.kernel.org/all/1627581885-32165-3-git-send-email-sibis@codeaurora.org/
 > 
-> The warning will be addressed by a separate patch by suppressing the
-> warning for .dts files that include this .dtsi.  This patch documents
-> why the warning is due to a deliberately incorrect .dtsi file so that
-> no one will fix the .dtsi file to prevent the build warning.
+> Regards,
+> Bjorn
 > 
-> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> ---
->  .../of/unittest-data/tests-interrupts.dtsi    | 19 +++++++++++++++++++
->  drivers/of/unittest.c                         |  6 ++++++
->  2 files changed, 25 insertions(+)
-> 
-> diff --git a/drivers/of/unittest-data/tests-interrupts.dtsi b/drivers/of/unittest-data/tests-interrupts.dtsi
-> index 9b60a549f502..8c8d267d4d3c 100644
-> --- a/drivers/of/unittest-data/tests-interrupts.dtsi
-> +++ b/drivers/of/unittest-data/tests-interrupts.dtsi
-> @@ -31,6 +31,21 @@ test_intmap0: intmap0 {
->  
->  			test_intmap1: intmap1 {
->  				#interrupt-cells = <2>;
-> +				/*
-> +				 * #address-cells is required
-> +				 *
-> +				 * The property is not provided in this node to
-> +				 * test that the code will properly handle
-> +				 * this case for legacy .dts files.
-> +				 *
-> +				 * Not having #address-cells will result in a
-> +				 * warning from dtc starting with
-> +				 * version v1.6.1-19-g0a3a9d3449c8
-> +				 * The warning is suppressed by adding
-> +				 * -Wno-interrupts_property to the Makefile
-
-s/interrupts_property/interrupt_map/
-
-I'll fix when applying.
-
-> +				 * for all .dts files this include this .dtsi
-> +				#address-cells = <1>;
-> +				 */
->  				interrupt-map = <0x5000 1 2 &test_intc0 15>;
->  			};
->  
-> @@ -46,6 +61,10 @@ interrupts1 {
->  
->  			interrupts-extended0 {
->  				reg = <0x5000 0x100>;
-> +				/*
-> +				 * Do not remove &test_intmap1 from this
-> +				 * property - see comment in node intmap1
-> +				 */
->  				interrupts-extended = <&test_intc0 1>,
->  						      <&test_intc1 2 3 4>,
->  						      <&test_intc2 5 6>,
-> diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-> index 8c056972a6dd..04bfef8f67c3 100644
-> --- a/drivers/of/unittest.c
-> +++ b/drivers/of/unittest.c
-> @@ -1129,6 +1129,12 @@ static void __init of_unittest_parse_interrupts_extended(void)
->  			passed &= (args.args[1] == 14);
->  			break;
->  		case 6:
-> +			/*
-> +			 * Tests child node that is missing property
-> +			 * #address-cells.  See the comments in
-> +			 * drivers/of/unittest-data/tests-interrupts.dtsi
-> +			 * nodes intmap1 and interrupts-extended0
-> +			 */
->  			passed &= !rc;
->  			passed &= (args.args_count == 1);
->  			passed &= (args.args[0] == 15);
-> -- 
-> Frank Rowand <frank.rowand@sony.com>
-> 
-> 
+Thanks for Review!
+Sibi's patch will be dropped, it is not required with my updated patch 
+series:
+https://lore.kernel.org/all/1627581885-32165-3-git-send-email-sibis@codeaurora.org/
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+>> +			clock-names = "xo", "alternate";
+>> +			#interconnect-cells = <1>;
+>> +		};
+>> +
+>>  		cpufreq_hw: cpufreq@18591000 {
+>>  			compatible = "qcom,cpufreq-epss";
+>>  			reg = <0 0x18591000 0 0x1000>,
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>> a Linux Foundation Collaborative Project
+>> 
