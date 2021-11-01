@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA5C4422C2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 22:37:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B707F4422CA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 22:37:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbhKAVjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 17:39:44 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:33467 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbhKAVjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 17:39:43 -0400
-Received: by mail-oi1-f178.google.com with SMTP id bm39so16479388oib.0;
-        Mon, 01 Nov 2021 14:37:09 -0700 (PDT)
+        id S229712AbhKAVka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 17:40:30 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:33540 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231775AbhKAVk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 17:40:29 -0400
+Received: by mail-ot1-f46.google.com with SMTP id 107-20020a9d0a74000000b00553bfb53348so27280716otg.0;
+        Mon, 01 Nov 2021 14:37:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JAg6KdmFAXzUuXNGb8fBqgMEGAaw9CamDaT7qNQbpL8=;
-        b=BFbYFvOgo4qczFwcTGwoh1NMg9NghgZ64w8H/3kX25aczxExOvtBRTChxdDViq0l3O
-         KHFw8MnplHEaz2xcRhXqxX2fPUyhRtjB+T0k0JqDrQosqWs7JORhY2u7kS1/6YCzqv77
-         ZMcVu6Rj11qvTNzgCyw39/A9EcIgzIUFqZwq2VIi5jVBUV+yn8FdF5WcjluRpwnKTCEi
-         f2e444638QC8SUWDfHFxOlcHZMw84lB28KxSFVxArd2DAc5MNz34YZztSaUJVF58CBtt
-         bFZMFYVwWyscw3lNdxVe3Fj9UB1gnP0vfzwC4AMG0vEGcEPQTOllhAIvu8vmTDOJmX6J
-         9+kQ==
-X-Gm-Message-State: AOAM5314XpmgnjkG6HgMC8yDrtpxEcoXx40f9NODJfUKdE9BVIXxR8Jo
-        impye1mJnKEa4rQn2HBJzYARvaFNcg==
-X-Google-Smtp-Source: ABdhPJwwHJSQi7dkJRcGUNwGb6a7bA1FO3rXq7O3icm5Iokg0YPIWwbrh3XTqnkeg8LqfAGHRmgsWQ==
-X-Received: by 2002:aca:42c5:: with SMTP id p188mr1447707oia.125.1635802629571;
-        Mon, 01 Nov 2021 14:37:09 -0700 (PDT)
+        bh=qQTVlkt8JIT08MNLJfjE2Iyh+KuYXs7SGP4eDewcQkc=;
+        b=S71eUpii/nI/545xjhxVbMXl2LaN7TKL+MHcYIVvfMzuSfCXAVvJPF+yo46qWp4pWO
+         CEQdJ3bkHva8Gmb5W70mGK5ctiY2Nd3LXz54qs2Sil3MQsPPcUFFmXtmCSRgzqk526Ao
+         lbA6H0sETBm8mUrp+g+FRInJgOTshgxUKtx9u7PG+IYFffFy1ITPzBax13lYjSqkxI+t
+         YL89AordVmlkIKgz/Xpxubk6lQIzXyDkrVGLo/A+XQ5DjUpcgOEvnzeImwDqoRfpK3Es
+         blcHrlBALsVLjwqezzF55MIopMOhWM4FEQdD/EJodQmx4U0+Ej31I7uKKdtihmyTE2e1
+         B0cw==
+X-Gm-Message-State: AOAM530YH8E0fIyHRbr3duhkbuPc3LBuTEhF9UpCObEoMPEGQG4maQZ7
+        0viW00IXJl0egxR4Hnl9zQ==
+X-Google-Smtp-Source: ABdhPJzIDgo+8pYPy46CVkrg9V/51zgyaIkdXiKqkSB2mtA4pn3h6Tw757HAgz1bP+AwA4EVkKQa/g==
+X-Received: by 2002:a05:6830:1dd6:: with SMTP id a22mr23555547otj.201.1635802675499;
+        Mon, 01 Nov 2021 14:37:55 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id z22sm4001594oth.63.2021.11.01.14.37.08
+        by smtp.gmail.com with ESMTPSA id i18sm2044824otl.0.2021.11.01.14.37.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 14:37:09 -0700 (PDT)
-Received: (nullmailer pid 1110199 invoked by uid 1000);
-        Mon, 01 Nov 2021 21:37:07 -0000
-Date:   Mon, 1 Nov 2021 16:37:07 -0500
+        Mon, 01 Nov 2021 14:37:55 -0700 (PDT)
+Received: (nullmailer pid 1111652 invoked by uid 1000);
+        Mon, 01 Nov 2021 21:37:54 -0000
+Date:   Mon, 1 Nov 2021 16:37:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     srinivas.kandagatla@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, judyhsiao@chromium.org,
-        bjorn.andersson@linaro.org, agross@kernel.org, perex@perex.cz,
-        bgoswami@codeaurora.org, devicetree@vger.kernel.org,
-        swboyd@chromium.org, rohitkr@codeaurora.org, broonie@kernel.org,
-        lgirdwood@gmail.com,
-        Venkata Prasad Potturu <potturu@codeaurora.org>,
-        plai@codeaurora.org, alsa-devel@alsa-project.org, tiwai@suse.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi
- pinctrl compatible
-Message-ID: <YYBeA7Qt2vhFoMeO@robh.at.kernel.org>
-References: <1635342097-2726-1-git-send-email-srivasam@codeaurora.org>
- <1635342097-2726-3-git-send-email-srivasam@codeaurora.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: pincfg-node: Add
+ "output-impedance-ohms" property
+Message-ID: <YYBeMvCniK0D9bGu@robh.at.kernel.org>
+References: <20211027134509.5036-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211027134509.5036-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1635342097-2726-3-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <20211027134509.5036-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 19:11:36 +0530, Srinivasa Rao Mandadapu wrote:
-> Add device tree binding compatible name for Qualcomm SC7280 LPASS LPI pinctrl driver.
+On Wed, 27 Oct 2021 14:45:06 +0100, Lad Prabhakar wrote:
+> On RZ/G2L SoC for Group-B pins, output impedance can be configured. This
+> patch documents "output-impedance-ohms" property in pincfg-node.yaml so
+> that other platforms requiring such feature can make use of this property.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> RFC->v1
+>  * Dropped type
+>  * Renamed output-impedance -> output-impedance-ohms
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
