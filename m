@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88647442140
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 21:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9892C442171
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 21:11:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229636AbhKAUEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 16:04:31 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:34668 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbhKAUEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 16:04:31 -0400
-Received: by mail-oi1-f178.google.com with SMTP id w193so26633858oie.1;
-        Mon, 01 Nov 2021 13:01:57 -0700 (PDT)
+        id S230438AbhKAUNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 16:13:25 -0400
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:38577 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230233AbhKAUNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 16:13:25 -0400
+Received: by mail-oi1-f176.google.com with SMTP id t4so26582665oie.5;
+        Mon, 01 Nov 2021 13:10:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vKbU3K+WrEp4o3QSdl7uJ5u0m9E6kBLDNmgHPy+kDDM=;
-        b=u7ot7sA50uXMPix8B+B1TXNVaK0O9tjeMgI2RlSJSYpIny15K7NKzNv4hq3GqqA3nd
-         EzpCcMMSz7PyGoci7XvAW2pzZaGas+Atu1DwCOn7rMPENEAHkYR8UDCfSkZw2kef/IJC
-         p4SKd1GxeWDND2htcLzRN0+XG2tbnKzBNyNmTlVnJ1GIm4I2krwcbmeY3wub7CtEhxaN
-         qKxK+FEwWB3PY5R6/xMDb5R8T5AX4byG91LH6imUHO3dnMkfygRgkKOq5SnjxfFFlVgt
-         0tAnz10Y5YwJxDZpscMSDOeNp9ArwYaBvLG6c+nabkBk8CXfTsDKuKDacuw2TC+vHugZ
-         VTcg==
-X-Gm-Message-State: AOAM53317AZDxMIypndxoWJBBvrggEUhc4hPZwhb0TbfAUfldAiKbXVP
-        avXb+PIkdcOfJnxvzIA9NA==
-X-Google-Smtp-Source: ABdhPJzu9huACWQR3JSRs6TW0bAUKDyIXz9rtmEFdctQS4TyLEu9YE4GVHGZhVUykEvaSkqL5HdO7w==
-X-Received: by 2002:a05:6808:2201:: with SMTP id bd1mr1004520oib.73.1635796917384;
-        Mon, 01 Nov 2021 13:01:57 -0700 (PDT)
+        bh=YoPr0Kx00n/4wfXS6DjD6CcxN8CXGBgVqxsaU5uGgD0=;
+        b=wPg/WnraeIVUENgftfE6oKk0RWR2nRMbaF/HWW5RFWB6WZl07ble2r84omT0e0wvP+
+         NSUBD5Tvj1wFxV/Qk5Gjf5l3ZMbzSaqjdwANxwPwo8m3wwFhaKvSRjx3bblzy7Z+mcbu
+         im1OrEObUJ+o+lYmmEeSMNC8/OGxPqG8/8WjWW8a4FcTgeAuXUWgl49Xt9cW8/qlpIFV
+         oIYB0KUiH7CbAcvxEvA5KUScER0QbATh/ni7LcL8QN7PVRnh5Nil0cNEhWGnRX3tKQ4K
+         0zF+2CdoIK3QDBXoXSEMJoYBlunamfIsBmdQUP2ANMPrrYk6xDkHk6wVCdY/ELGUj9gQ
+         GhSQ==
+X-Gm-Message-State: AOAM533gGfq9jzHC1p38aQCYNZ+t2j+aTep+1h/s36RJoX/f1Ig17lMf
+        5HZgDwDB/TN0l3SrVld5BA==
+X-Google-Smtp-Source: ABdhPJy6tmrwBgKtRi9dAo1kDwvxy9RZo62SehMKvvN4By4omxUupe1TXERv1fMuoG9m/jB/5Xhp/A==
+X-Received: by 2002:a05:6808:1151:: with SMTP id u17mr1060525oiu.38.1635797451074;
+        Mon, 01 Nov 2021 13:10:51 -0700 (PDT)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g15sm4551923oiy.8.2021.11.01.13.01.56
+        by smtp.gmail.com with ESMTPSA id v25sm2524981otn.30.2021.11.01.13.10.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 13:01:56 -0700 (PDT)
-Received: (nullmailer pid 943361 invoked by uid 1000);
-        Mon, 01 Nov 2021 20:01:55 -0000
-Date:   Mon, 1 Nov 2021 15:01:55 -0500
+        Mon, 01 Nov 2021 13:10:50 -0700 (PDT)
+Received: (nullmailer pid 958604 invoked by uid 1000);
+        Mon, 01 Nov 2021 20:10:48 -0000
+Date:   Mon, 1 Nov 2021 15:10:48 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     tommy-huang <tommy_huang@aspeedtech.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, daniel@ffwll.ch,
-        BMC-SW@aspeedtech.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au, airlied@linux.ie
-Subject: Re: [PATCH 4/4] dt-bindings: gpu: Add ASPEED GFX bindings document
-Message-ID: <YYBHsy3Ed3Ss9281@robh.at.kernel.org>
-References: <20211101110107.29010-1-tommy_huang@aspeedtech.com>
- <20211101110107.29010-5-tommy_huang@aspeedtech.com>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
+        b20788@freescale.com, fugang.duan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: Re: [PATCH 03/13] dt-bindings: imx: Add pinctrl binding doc for
+ i.MXRT1050
+Message-ID: <YYBJyKv61p/sk1PE@robh.at.kernel.org>
+References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+ <20211024154017.5X5YE5S_x5KJDGyYyx5jd-8m4gybur1xerb15SgFAiY@z>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211101110107.29010-5-tommy_huang@aspeedtech.com>
+In-Reply-To: <20211024154017.5X5YE5S_x5KJDGyYyx5jd-8m4gybur1xerb15SgFAiY@z>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Nov 2021 19:01:07 +0800, tommy-huang wrote:
-> Add ast2600-gfx description for gfx driver.
+On Sun, Oct 24, 2021 at 11:40:17AM -0400, Jesse Taube wrote:
+> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
 > 
-> Signed-off-by: tommy-huang <tommy_huang@aspeedtech.com>
+> Add binding doc for i.MXRT1050 pinctrl driver.
+> 
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 > ---
->  Documentation/devicetree/bindings/gpu/aspeed-gfx.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  include/dt-bindings/pinctrl/pins-imxrt1050.h | 993 +++++++++++++++++++
+>  1 file changed, 993 insertions(+)
+>  create mode 100644 include/dt-bindings/pinctrl/pins-imxrt1050.h
 > 
+> diff --git a/include/dt-bindings/pinctrl/pins-imxrt1050.h b/include/dt-bindings/pinctrl/pins-imxrt1050.h
+> new file mode 100644
+> index 000000000000..a29031ab3de0
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/pins-imxrt1050.h
+> @@ -0,0 +1,993 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
 
-
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Needs to match the .dts files which has BSD-3-Clause. The rest of i.MX 
+uses MIT IIRC. You should align with that.
