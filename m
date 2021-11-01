@@ -2,98 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6A4D442187
-	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 21:14:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15A9A44219F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Nov 2021 21:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbhKAUQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 16:16:38 -0400
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:39777 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbhKAUQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 16:16:37 -0400
-Received: by mail-oi1-f177.google.com with SMTP id n11so18510971oig.6;
-        Mon, 01 Nov 2021 13:14:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Sj56GUTpPgRS7oqOggzrlIvilkSN16Fc0q8+soup5ug=;
-        b=e6cs/icy3sBFvHw7f4DT3lPifNi98zIdHzT46v9bh2zKxLJJkhhdRD/sd2vgfeU48E
-         jWjI3W9thzjDBEpqIbHnvtubAWmm5BQRyyafeEVsQuk37L5N2wkG1r2N/sEgXpYGdZtf
-         StHaZYrkk8E8ZsFU7ZLHb8js8uJLcE1fk8onCaNgMHyw5ov3S3u6xzaiMXHQbzG9BqgW
-         3wjyWGRm3SFwhdiU6qdFwcF5+A303EcdHstuEZvtutgEE7G++qZ/9rrZswTTqY4crCDe
-         K2a/5yXSF+ViLgTEDH4SCj9D1JcLW2/ofkzIa9MhYdFf1gfgt4anvgyrLGBYx3XbgOEH
-         q87Q==
-X-Gm-Message-State: AOAM533ZkHDa0DxwxGyXDX6Okjwzn51g8ct+wBzjoYqeflPm4X7aflud
-        QF8vNb/gnhoWy60Bj5Di9w==
-X-Google-Smtp-Source: ABdhPJw4z4KW2KWTYje7OKN2C81USrvHcH4TcTdLEGXf0B/pSdBvEpDjI866C/Ip1rWhs9d+cREpGw==
-X-Received: by 2002:a05:6808:f8e:: with SMTP id o14mr1063812oiw.89.1635797642815;
-        Mon, 01 Nov 2021 13:14:02 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 46sm4354343otd.2.2021.11.01.13.14.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 13:14:02 -0700 (PDT)
-Received: (nullmailer pid 963901 invoked by uid 1000);
-        Mon, 01 Nov 2021 20:13:59 -0000
-Date:   Mon, 1 Nov 2021 15:13:59 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
-        b20788@freescale.com, fugang.duan@nxp.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-lpuart: add i.MXRT
- compatible
-Message-ID: <YYBKh1KYrWTzm+5G@robh.at.kernel.org>
-References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
- <20211024154027.1479261-9-Mr.Bossman075@gmail.com>
+        id S230108AbhKAU0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 16:26:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43786 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229560AbhKAU0a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 16:26:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D00E61058;
+        Mon,  1 Nov 2021 20:23:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635798237;
+        bh=feSTcRc2actU+HHo2pcgOZswEK9+Krw1YkXnHhxgUtc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=k6/BV6czCRnhMubWyz+TvKRLAdfLuZ6hVCq4/8MWd4wluVUqTYwxezxQIkHpVGLCi
+         9qekMnUAVBMJ9vDxkS2TRXfI/zIhh1o1L2vKlETOW8wbwXlwNKhND0P3W8rIokSQir
+         MndHf7pqpC8YM377htnlXMhggAH9KgPFAfJouRRXl3nM3w7wOWhKtxX8wb8Vwlfp7w
+         0A2HCfyDkFV/nNR4STfwHOOTFQ3ZKZxvqAiK4PsNvkqWJ1mg2Gzaoq7BQ8MH+9CSgC
+         rl8dYgsQwa3OKzx9P2ojjTcr/aV9svuFi509I/vCr5XiU0Zx1EZkwouGCOcCUlQ0Ad
+         xkLHGtHEuIUgg==
+Received: by mail-ed1-f43.google.com with SMTP id w1so14389714edd.10;
+        Mon, 01 Nov 2021 13:23:56 -0700 (PDT)
+X-Gm-Message-State: AOAM531U4l0NOB7TqC2TawJCuTIDv9zsA0DJmsBwdCNcIf4wH2wthEFV
+        Y7Bm/4KSjrGGAQ+dlQzN33Znu82Hr1hzTYHsqQ==
+X-Google-Smtp-Source: ABdhPJxerSbOAL+RQjUEcSRK11YYr4XJkk1k3y92Df/MixrQUqwOf/jtSj37gCjipDXUeK8l900VtO/oHXaq6BA8PhM=
+X-Received: by 2002:aa7:dc13:: with SMTP id b19mr28817292edu.145.1635798235443;
+ Mon, 01 Nov 2021 13:23:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211024154027.1479261-9-Mr.Bossman075@gmail.com>
+References: <20211024180628.2992108-1-piyush.mehta@xilinx.com> <20211024180628.2992108-2-piyush.mehta@xilinx.com>
+In-Reply-To: <20211024180628.2992108-2-piyush.mehta@xilinx.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 1 Nov 2021 15:23:44 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKu6vr3iCz1G7MtK6gyqAvn4s4mpuLOwPzJDEmyZeROig@mail.gmail.com>
+Message-ID: <CAL_JsqKu6vr3iCz1G7MtK6gyqAvn4s4mpuLOwPzJDEmyZeROig@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: misc: Add binding for Microchip
+ usb2244 Controller
+To:     Piyush Mehta <piyush.mehta@xilinx.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        --to=robh+dt@kernel.org, Matthias Kaehlcke <mka@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Al Cooper <alcooperx@gmail.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>, Srinivas Goud <sgoud@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 24, 2021 at 11:40:22AM -0400, Jesse Taube wrote:
-> Add i.MXRT documentation for compatible string.
-> 
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+On Sun, Oct 24, 2021 at 1:06 PM Piyush Mehta <piyush.mehta@xilinx.com> wrot=
+e:
+>
+
+Your email is somewhat corrupted. Lore has a warning:
+
+[-- Warning: decoded text below may be mangled, UTF-8 assumed --]
+[-- Attachment #1: Type: text/plain; charset=3D"y", Size: 2065 bytes --]
+
+Maybe it's the '--to=3Drobh+dt@kernel.org' email...
+
+> Microchip's USB224x family of Hi-Speed USB 2.0 flash media card controlle=
+rs
+> provides an ultra-fast interface between a USB host controller and flash
+> media cards.
+>
+> Add dt-bindings documentation for Microchip's usb2244 Controller.
+> USB224x is a USB 2.0 compliant ultra fast USB 2.0 multi-format,
+> SD/MMC, and MS Flash Media Controllers.
+>
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
 > ---
->  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> index a90c971b4f1f..4b4340def2aa 100644
-> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> @@ -21,6 +21,7 @@ properties:
->            - fsl,ls1028a-lpuart
->            - fsl,imx7ulp-lpuart
->            - fsl,imx8qm-lpuart
-> +          - fsl,imxrt-lpuart
+>  .../devicetree/bindings/usb/microchip,usb2244.yaml | 43 ++++++++++++++++=
+++++++
+>  1 file changed, 43 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,usb22=
+44.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/usb/microchip,usb2244.yaml=
+ b/Documentation/devicetree/bindings/usb/microchip,usb2244.yaml
+> new file mode 100644
+> index 0000000..ecab0cb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/microchip,usb2244.yaml
+> @@ -0,0 +1,43 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/usb/microchip,usb2244.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Bindings for the Microchip USB2244 Ultra Fast USB-SD Controller
+> +
+> +description:
+> +  Microchip=E2=80=99s USB224x is a USB 2.0 compliant, Hi-Speed bulk only=
+ mass
+> +  storage class peripheral controller intended for reading and writing
+> +  to popular flash media from the xDPicture Card=E2=84=A2, Memory Stick=
+=C2=AE (MS),
+> +  Secure Digital (SD), and MultiMediaCard=E2=84=A2 (MMC) families.
+> +
+> +  USB224x is a flash media card reader solution fully compliant with the
+> +  USB 2.0 specification
+> +
+> +maintainers:
+> +  - Piyush Mehta <piyush.mehta@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,usb2244
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      The phandle and specifier for the GPIO that controls the RESET lin=
+e of
+> +      flash media controller.
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    usb {
+> +       compatible =3D "microchip,usb2244";
 
-Actually, 'rt' is not a single part is it? If the variations are same 
-die, but fused off then no need to distinguish. Otherwise, these should 
-be SoC specific.
+This needs to be a USB device under a USB controller node. See usb-device.y=
+aml.
 
-Same applies to other compatible strings.
-
->        - items:
->            - const: fsl,imx8qxp-lpuart
->            - const: fsl,imx7ulp-lpuart
-> -- 
-> 2.33.0
-> 
-> 
+> +       reset-gpios =3D <&gpio 2 GPIO_ACTIVE_HIGH>;
+> +    };
+> --
+> 2.7.4
+>
