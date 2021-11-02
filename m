@@ -2,239 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B50C442B9E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 11:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7424C442BED
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 11:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbhKBK3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 06:29:37 -0400
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:34056
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229720AbhKBK3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 06:29:36 -0400
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S230362AbhKBK7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 06:59:45 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:28919 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230109AbhKBK7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 06:59:44 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635850630; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=fl4PsWpMd3O4F7G5HgD/5x9EXzeEBpRqdmiUnedU7UA=; b=PCMRUtPGPIZBj6DdPvXz6GK9HyFhhLRoP5FRFLsscCq/gwK018mquKrGa3ScAi7qyTPN9zJX
+ wtpiWf1OJdN2yj41ERWmj7Pbl0QRhLrj3LA8qpXZFR8v60/8lrKuC9RKhCJQVHiKb9Q//2/8
+ 5CNvB0BQYYA4CwEr7QfEqcNeRxI=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 618119825c66efd372c5fb4a (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Nov 2021 10:57:06
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 41B76C43618; Tue,  2 Nov 2021 10:57:05 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-5.4 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 825533F1AA
-        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 10:27:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1635848821;
-        bh=z7iR2z2NcJ9akwvGR6IqY6ukUGo8KAYdmWM+4kNqiCM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=ol0FXBj8QQm4b9PO8lVgI6/DPLPXaUEWqwoZ7r/enL8zBo7jw15gY8LE0NzlrDxCU
-         R/nKDchbnpygPqHhq9nBS8TpiKK0y6ghj7Z5lPr5ZiBO+i10SkwgyAuSWXWtaqdCQt
-         bWCoFBlIfgG1oLLwW4rD+M9mpBqs64a+C4QHEYzO4jsmpCIttCTVYbM1J633u3aBn5
-         Eq3aI6K5ULO+/I3lUWzO0F/FFh9FGcK5PZdBqqver/WWL5zN5mNYm7lexfqG642kF5
-         V32q3b5QxXWWAClnw2y78p6Ux1xtwuUp13AI4VqcLXYbW4kvqnxm+GVj5hJVzu/pjP
-         2oJwBd04pduww==
-Received: by mail-lj1-f199.google.com with SMTP id v23-20020a2e87d7000000b0021768392240so211994ljj.23
-        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 03:27:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=z7iR2z2NcJ9akwvGR6IqY6ukUGo8KAYdmWM+4kNqiCM=;
-        b=sSGL9soVp508dVAgGGHRORnP0ZEdw6oljIUH7pDPSSjhm6L48h442GWEVf1WqPrJcV
-         zuAn/RVnvV761nE26lflryeIG49Kj342m7vY4FHFDLaWz1swlEuuO3oI6hpCH41QdQN8
-         +MOWP4dsXDJoeVVWUGv5Q0wI8fn8YTgaXfYKrDrc+QTYwvYWHmAMxN2oCdRHETS4ahm+
-         upwNDa1MnIiFtTtlXkA2+d/uK0sCNv7Z+xdDoJtMvcLRxyKmS9qO36NjSHL6crQ1GnL2
-         2YfBskcf3kZVKsz2sHmTA7Lc4UPnpR1wWs9AkBiQMq0o9hCHq6i0Il5Q5T+QP0+9L/eK
-         XPcQ==
-X-Gm-Message-State: AOAM531YXgg1Ed2AFd2wC1cZ/LviQ/Xu+2E7YkgSC7tRiVJCSndH6FRv
-        AyWuaTQfWpQF2AaRIXbD2U6DxflYsGBhXVpOe1a6kv/VzFqUxnF2QDZw+jBFmQ+tQmiJ67geQ4Z
-        CjC96VgUjohPGiYdAfX7/H5cDY/NR649xMItYZoU=
-X-Received: by 2002:a2e:9c7:: with SMTP id 190mr6786846ljj.91.1635848820894;
-        Tue, 02 Nov 2021 03:27:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy9RXSO6O8i0cxbH6VeQ1bTaNuMb4C0T926QQaLyS4vIwYlPhOOokjb14C5NjX5TMoM8ZdeuA==
-X-Received: by 2002:a2e:9c7:: with SMTP id 190mr6786816ljj.91.1635848820636;
-        Tue, 02 Nov 2021 03:27:00 -0700 (PDT)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id h1sm1642556lfu.277.2021.11.02.03.26.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Nov 2021 03:27:00 -0700 (PDT)
-Message-ID: <02e4cd1f-47bf-9bc7-b46c-b6c30943c0b7@canonical.com>
-Date:   Tue, 2 Nov 2021 11:26:59 +0100
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 86E07C4338F;
+        Tue,  2 Nov 2021 10:56:59 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 86E07C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
+ machine bindings
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+References: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org>
+ <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org>
+Date:   Tue, 2 Nov 2021 16:26:57 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Subject: Re: [PATCH v2 12/12] watchdog: s3c2410: Add Exynos850 support
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211031122216.30212-1-semen.protsenko@linaro.org>
- <20211031122216.30212-13-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211031122216.30212-13-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/10/2021 13:22, Sam Protsenko wrote:
-> Exynos850 is a bit different from SoCs already supported in WDT driver:
->   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
->     always 0; .disable_auto_reset callback is not set for that reason
->   - MASK_WDT_RESET_REQUEST register is replaced with
->     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
->     reset interrupt it's now enabled with the same value; .mask_reset
->     callback is reused for that functionality though
->   - To make WDT functional, WDT counter needs to be enabled in
->     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
->     callback
-> 
-> Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-> instance. Different PMU registers and bits are used for each cluster. So
-> driver data is now modified in probe, adding needed info depending on
-> cluster index passed from device tree.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Used single compatible for Exynos850, populating missing driver data in
->     probe
->   - Added "index" property to specify CPU cluster index
-> 
->  drivers/watchdog/s3c2410_wdt.c | 68 +++++++++++++++++++++++++++++++++-
->  1 file changed, 66 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> index 8fdda2ede1c3..457b725c30ac 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -56,6 +56,14 @@
->  #define EXYNOS5_RST_STAT_REG_OFFSET		0x0404
->  #define EXYNOS5_WDT_DISABLE_REG_OFFSET		0x0408
->  #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET	0x040c
-> +#define EXYNOS850_CLUSTER0_NONCPU_OUT		0x1220
-> +#define EXYNOS850_CLUSTER0_NONCPU_INT_EN	0x1244
-> +#define EXYNOS850_CLUSTER1_NONCPU_OUT		0x1620
-> +#define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
-> +
-> +#define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
-> +#define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
-> +
->  #define QUIRK_HAS_WTCLRINT_REG			(1 << 0)
->  #define QUIRK_HAS_PMU_MASK_RESET		(1 << 1)
->  #define QUIRK_HAS_PMU_RST_STAT			(1 << 2)
-> @@ -171,6 +179,21 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
->  		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
->  };
->  
-> +static const struct s3c2410_wdt_variant drv_data_exynos850 = {
-> +	/*
-> +	 * Next fields will be set in probe(), based on cluster index:
-> +	 *   - .mask_reset_reg
-> +	 *   - .rst_stat_bit
-> +	 *   - .cnt_en_reg
-> +	 */
-> +	.mask_reset_inv = true,
-> +	.mask_bit = 2,
-> +	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> +	.cnt_en_bit = 7,
-> +	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-> +		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-> +};
-> +
->  static const struct of_device_id s3c2410_wdt_match[] = {
->  	{ .compatible = "samsung,s3c2410-wdt",
->  	  .data = &drv_data_s3c2410 },
-> @@ -182,6 +205,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
->  	  .data = &drv_data_exynos5420 },
->  	{ .compatible = "samsung,exynos7-wdt",
->  	  .data = &drv_data_exynos7 },
-> +	{ .compatible = "samsung,exynos850-wdt",
-> +	  .data = &drv_data_exynos850 },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-> @@ -548,15 +573,51 @@ static inline const struct s3c2410_wdt_variant *
->  s3c2410_get_wdt_drv_data(struct platform_device *pdev)
->  {
->  	const struct s3c2410_wdt_variant *variant;
-> +	struct s3c2410_wdt_variant *data;
-> +	struct device *dev = &pdev->dev;
->  
-> -	variant = of_device_get_match_data(&pdev->dev);
-> +	variant = of_device_get_match_data(dev);
->  	if (!variant) {
->  		/* Device matched by platform_device_id */
->  		variant = (struct s3c2410_wdt_variant *)
->  			   platform_get_device_id(pdev)->driver_data;
->  	}
->  
-> -	return variant;
-> +	/* Have to copy driver data over to keep its const qualifier intact */
-> +	data = devm_kmemdup(dev, variant, sizeof(*variant), GFP_KERNEL);
-> +	if (!data)
-> +		return NULL;
-> +
-> +	/* Populate missing fields for Exynos850 w.r.t. cluster index */
-> +	if (variant == &drv_data_exynos850) {
-> +		u32 index;
-> +		int err;
 
-Another approach is to:
-1. Define two variants for Exynos850 (s3c2410_wdt_variants), kind of
-like before,
-2. if (variant == &drv_data_exynos850)
-a. Read the index
-b. If index is 0, return first variant,
-c. If index is 1, return the second variant,
-d. Else - NULL.
+On 10/30/2021 12:37 AM, Stephen Boyd wrote:
+Thanks for Your time Stephen!!!
+> Quoting Srinivasa Rao Mandadapu (2021-10-29 08:04:35)
+>> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+>> new file mode 100644
+>> index 0000000..3a781c8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+>> @@ -0,0 +1,170 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Google SC7280-Herobrine ASoC sound card driver
+>> +
+>> +maintainers:
+>> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> +  - Judy Hsiao <judyhsiao@chromium.org>
+>> +
+>> +description:
+>> +  This binding describes the SC7280 sound card which uses LPASS for audio.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - google,sc7280-herobrine
+>> +
+>> +  audio-routing:
+>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>> +    description:
+>> +      A list of the connections between audio components. Each entry is a
+>> +      pair of strings, the first being the connection's sink, the second
+>> +      being the connection's source.
+>> +
+>> +  model:
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    description: User specified audio sound card name
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  "^dai-link@[0-9a-f]$":
+>> +    description:
+>> +      Each subnode represents a dai link. Subnodes of each dai links would be
+>> +      cpu/codec dais.
+>> +
+>> +    type: object
+>> +
+>> +    properties:
+>> +      link-name:
+>> +        description: Indicates dai-link name and PCM stream name.
+>> +        $ref: /schemas/types.yaml#/definitions/string
+>> +        maxItems: 1
+>> +
+>> +      reg:
+>> +        maxItems: 1
+>> +        description: dai link address.
+>> +
+>> +      cpu:
+>> +        description: Holds subnode which indicates cpu dai.
+>> +        type: object
+>> +        properties:
+>> +          sound-dai: true
+> Is sound-dai required? And additionalProperties is false? I think we
+> need that yet again.
+Okay. Will mark additionalPropertiesas true.
+>
+>> +
+>> +      codec:
+>> +        description: Holds subnode which indicates codec dai.
+>> +        type: object
+>> +        properties:
+>> +          sound-dai: true
+>> +
+> Same here.
+>
+>> +    required:
+>> +      - link-name
+>> +      - cpu
+>> +      - codec
+>> +      - reg
+>> +
+>> +    additionalProperties: false
+>> +
 
-This way you won't need to copy the memory on the fly, just use
-different const data. Benefits: less memory allocations, entire drvdata
-set in one place (so nicely visible), drvdata populated safely via const.
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-> +
-> +		err = of_property_read_u32(dev->of_node, "samsung,index",
-> +					   &index);
-> +		if (err) {
-> +			dev_err(dev, "failed to get cluster index\n");
-> +			return NULL;
-> +		}
-> +
-> +		switch (index) {
-> +		case 0:
-> +			data->mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN;
-> +			data->rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT;
-> +			data->cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT;
-> +			break;
-> +		case 1:
-> +			data->mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN;
-> +			data->rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT;
-> +			data->cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT;
-> +			break;
-> +		default:
-> +			dev_err(dev, "wrong cluster index: %u\n", index);
-> +			return NULL;
-> +		}
-> +	}
-> +
-> +	return data;
->  }
->  
->  static int s3c2410wdt_probe(struct platform_device *pdev)
-> @@ -576,6 +637,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->  	wdt->wdt_device = s3c2410_wdd;
->  
->  	wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
-> +	if (!wdt->drv_data)
-> +		return -EINVAL;
-> +
->  	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
->  		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
->  						"samsung,syscon-phandle");
-> 
-
-
-Best regards,
-Krzysztof
