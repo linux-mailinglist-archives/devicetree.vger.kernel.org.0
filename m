@@ -2,210 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C5B44386E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DFBB4438AC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:44:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbhKBW3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 18:29:09 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:53462 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229685AbhKBW3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 18:29:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1635891992; x=1667427992;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FpZTv+Z+2lWKcOts96nJlKZCg2JsGS0+rRKM65iulVM=;
-  b=VdmgN+BbuSfgTTwHsoZ+HLsUqpt96NkCblJ64e+YfEv2ojdAz1slbLlE
-   JQlakautbVqMilG6WHm1RIROnEAl/3ZBJ7iMmNDc1gUC3DUnMDK0LoHpU
-   c7yN5Z/BORqqtMkl1QuiqxzECshz/OcokeljJlf/FJ7HjQ45fQUW5JFZG
-   dZGthzLv+DggYGe2CFUeYmPh3EuZImlcGzm1iwqSL7fbnryLhpVJQ72V+
-   bIVo00cZm/IqpJQdnip5DGlCJV2avMkuQbvSZyrz2PblB7+XWlasZ4+LM
-   LCVgi7V0nQqhpJ6wrHLbVCi2j/6nbFOUrRhTMioBT4myunkAdmYqU3Ow9
-   w==;
-IronPort-SDR: 90pESWtmXU12Vwip6F1YE6osK1PcbC1fP10AN/IT5owFxkAgaujgLtNzgmuMkNxnMnnZdUWiCj
- Zc0YJLqgahIQdO4pfOqo0Z0+eXCQPx3x50BYXVDBeSYKUXC70i/m53QRHszDzh/NuIhDk6e8m5
- X05/rEclNiIPwqqqu7L1GIDxaEZhTuhW57nkP0Fnao+oMd1SkKda7xBuLAKxKC5hTi8RJQ3ghN
- hd5A9O/hrZf4nD8khqYUy0wYkb9tHTN7mgoITawZ+N8v78w+HOvGAEJPFHFhgBy9Qsz+H3OAYa
- eXMClHpPg164nyuAtbFRuoHp
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
-   d="scan'208";a="135257817"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Nov 2021 15:26:30 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 2 Nov 2021 15:26:11 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 2 Nov 2021 15:26:11 -0700
-Date:   Tue, 2 Nov 2021 23:27:57 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Peter Rosin <peda@axentia.se>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c-mux: Add property for settle time
-Message-ID: <20211102222757.ny4c7gdnyxm3gorw@soft-dev3-1.localhost>
-References: <20211101122545.3417624-1-horatiu.vultur@microchip.com>
- <20211101122545.3417624-2-horatiu.vultur@microchip.com>
- <fb0ca91d-f5fa-5977-7574-8926d8d0e3bb@axentia.se>
- <20211101213201.wdjsuexuuinepu3m@soft-dev3-1.localhost>
- <YYGFYLtehnDOgA9d@robh.at.kernel.org>
+        id S229736AbhKBWqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 18:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229685AbhKBWqk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 18:46:40 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76EDCC061714;
+        Tue,  2 Nov 2021 15:44:04 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id ee33so2628069edb.8;
+        Tue, 02 Nov 2021 15:44:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LDnLbQUA7eyK1FrDO7VrlZC4VQ3RUSvHLnAoAvoZuOc=;
+        b=LmY8iRfTTKzcFKxpKJUZaG1G77If5TNT9NJ8reyrdO8Kw8HmqSMogK8+FRYVT7Ak4q
+         pg+n01qQ+ks8LcRf/ms8jIV+K5jnryBcMwehAnyZhSzDVTyqsXwTyXRblGHcXOxPiKzo
+         bR1z2eLwiXxiMjqh49/LxQ2Rr82fw//4jxjlR7ZdJ2alozrXSxrB9bepMUfAzwnOMFdb
+         h3l7w1QHs+f7gayW0aRaukyMm6YcvDP/SI/bFD6bEjfEvLBT9JB1i752YXcw6xVCnqDy
+         3wsUlllmsFsFSCa8IrNLHcj7qkK+7gaAja6Yw+3rP4N1t551EZOUkcwP+cEDMpj1UMLZ
+         OdgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LDnLbQUA7eyK1FrDO7VrlZC4VQ3RUSvHLnAoAvoZuOc=;
+        b=xqjZ/BHvYAncVol2+QO3MdN0c0Om5DHBNTU2JhkI1SxKcKWlhBBltl150uA8h+kXZ5
+         6ypC0VrLsYIDekpuKAO9OPvnp56M8RM7qqcjja76IoKROziR/MjhRCS5GOtv+C315JqF
+         H3OiwAWpUJRRbKpHkZou0TlrvjUIM8liCf5dTfRnhm9+GUHlVf/B6n12oTyso0X64BG8
+         /uTiccri+sNGVXW6HZsHBh1ikn4AzSQunO0c20p5QQaDKduXQd2cz5E98b/4eYcCpQ+f
+         DZYXZ9P8e6YLyJVXPO/F4g2VawxlTd9z3Do3XlShx1gARZ++LLixYWjlhYoLdb4LDi25
+         4pFw==
+X-Gm-Message-State: AOAM532q5eMWn37tq6/HmwcOgmHqkJKcAeux21jXLd7CznYsO1beMJpD
+        AFiQeLAx9lvxf/z4QgdcEGk=
+X-Google-Smtp-Source: ABdhPJyfX+Es3nzz+CM8s/jrO5166B1Fk/2V22GKG3Qj9qhStAoxFdqbv0reUmd4k6YAJd4OkyWdzA==
+X-Received: by 2002:a17:907:3eaa:: with SMTP id hs42mr48695778ejc.429.1635893043028;
+        Tue, 02 Nov 2021 15:44:03 -0700 (PDT)
+Received: from tom-ThinkPad-T470p (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
+        by smtp.gmail.com with ESMTPSA id z22sm163651edc.83.2021.11.02.15.44.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 15:44:02 -0700 (PDT)
+Date:   Tue, 2 Nov 2021 23:43:58 +0100
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>, Alice Guo <alice.guo@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Michael Tretter <m.tretter@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8m: add syscon node for display_blk_ctrl
+ module regs
+Message-ID: <20211102224358.GA4637@tom-ThinkPad-T470p>
+References: <20211101222857.6940-1-tomm.merciai@gmail.com>
+ <c04d4af6-8c7b-da23-d562-78324948ac35@pengutronix.de>
+ <20211101225827.GA9208@tom-desktop>
+ <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
+ <20211102115739.GA48972@tom-ThinkBook-14-G2-ARE>
+ <CAHCN7xLoePWS33HsFANcHQB2-VgQVNG40EgDoz+-xba810XPBQ@mail.gmail.com>
+ <20211102154742.GA86474@tom-ThinkBook-14-G2-ARE>
+ <CAHCN7xJtDtBNJ-rFcveya8TGr8+jA-HrDBxPYfZx=fiv7w5UPA@mail.gmail.com>
+ <CAJ+vNU0DRMuVMgibc1Ag3HdPXFq1Mzs-q0Znb0aLukYVvKc1gA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YYGFYLtehnDOgA9d@robh.at.kernel.org>
+In-Reply-To: <CAJ+vNU0DRMuVMgibc1Ag3HdPXFq1Mzs-q0Znb0aLukYVvKc1gA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/02/2021 13:37, Rob Herring wrote:
-
-Hi Rob,
-
-> 
-> On Mon, Nov 01, 2021 at 10:32:01PM +0100, Horatiu Vultur wrote:
-> > The 11/01/2021 15:32, Peter Rosin wrote:
+On Tue, Nov 02, 2021 at 11:18:53AM -0700, Tim Harvey wrote:
+> On Tue, Nov 2, 2021 at 9:08 AM Adam Ford <aford173@gmail.com> wrote:
 > >
-> > Hi Peter,
-> >
+> > On Tue, Nov 2, 2021 at 10:47 AM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
 > > >
-> > > On 2021-11-01 13:25, Horatiu Vultur wrote:
-> > > > Some HW requires some time for the signals to settle after the muxing is
-> > > > changed. Allow this time to be specified in device tree.
+> > > On Tue, Nov 02, 2021 at 07:23:06AM -0500, Adam Ford wrote:
+> > > > The upcoming 5.16 kernel will have a new blk-ctrl driver which will
+> > > > work in conjunction with the GPC.  You can see it in linux-next [1],
+> > > > and I would expect it to be present in 5.16-rc1 once the merge is
+> > > > done.
 > > > >
-> > > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/i2c/i2c-mux.yaml | 6 ++++++
-> > > >  1 file changed, 6 insertions(+)
+> > > > In [1], Look for :
 > > > >
-> > > > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > > index 24cac36037f5..4628ff6340c1 100644
-> > > > --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > > @@ -29,6 +29,12 @@ properties:
-> > > >    '#size-cells':
-> > > >      const: 0
+> > > > disp_blk_ctrl: blk-ctrl@32e28000 {
+> > > >     compatible = "fsl,imx8mm-disp-blk-ctrl", "syscon";
 > > > >
-> > > > +  settle-time-us:
-> > > > +    default: 0
-> > > > +    description:
-> > > > +      The time required for the signals to settle. Currently only the
-> > > > +      i2c-mux-gpmux driver supports this optional binding.
-> > >
-> > > The information about how i2c-mux-gpmux is special is bound to go stale,
-> > > and I don't think we should mention such specific details in the binding.
-> > > What I meant was a generic warnings about optional bindings perhaps not
-> > > being supported by all drivers, along the lines of this from i2c.txt:
-> > >
-> > > "These properties may not be supported by all drivers. However, if a driver
-> > >  wants to support one of the below features, it should adapt these bindings."
-> > >
-> > > However, I now notice that this sentence makes no sense. It looks like it
-> > > should be s/adapt/adopt/.
-> > >
-> > > And, in the i2c-mux.yaml case it can simply say "Optional properties"
-> > > instead of "These properites" (which refers to a subset of properties
-> > > immediately below the text) since with a yaml binding it is always
-> > > clear which properties are optional and which are required. Lastly, I
-> > > guess this warning belongs in the description.
-> > >
-> > > > +
-> > > >  patternProperties:
-> > > >    '^i2c@[0-9a-f]+$':
-> > > >      $ref: /schemas/i2c/i2c-controller.yaml
+> > > > It creates a bunch of virtual power domains which are effectively the
+> > > > resets for the VPU, CSI, DSI, and LCDIF [2].
 > > > >
+> > > > Basically, to pull the respective device out of reset, you'd reference
+> > > > them using power-domains.  I have an RFC patch for the CSI located [3]
+> > > > which should bring the GPC power domain up, then take the CSI bridge
+> > > > and MIPI_CSI out of reset using the blk-ctrl.  A few of us are still
+> > > > investigating the CSI bridge and mipi_csi drivers to determine what's
+> > > > going wrong, but  inside that patch, you'll see that we reference
+> > > > "power-domains = <&disp_blk_ctrl IMX8MM_DISPBLK_PD_CSI_BRIDGE>;" and
+> > > > "power-domains = <&disp_blk_ctrl IMX8MM_DISPBLK_PD_MIPI_CSI>;" which
+> > > > are part of the new blk-ctrl driver @32e2800.  Other peripherals like
+> > > > LCD, DSI, and the VPU's should be able to reference their respective
+> > > > power domains to activate the corresponding resets after enabling the
+> > > > proper GPC power domain.
 > > >
-> > > Since this is the first optional property, you now need to specify what
-> > > properties are required, which is everything but settle-time-us. If you
-> > > don't, all properties are required. Which is not what we want...
+> > >   Hi Adam,
+> > >   Then is all done right. Using this this new driver/dts node eLCDIF/mipi_dsi
+> > >   module are out of reset. Thanks for the tips. I'm trying to get eLCDIF/mipi_dsi
+> > >   work on mainline. I try to get work
 > > >
-> > > Something like this should do it, I think:
+> > >   - eLCDIF using: mxsfb_drv.c
+> > >   - mipi_dsi using: nwl-dsi.c
 > > >
-> > > required:
-> > >   - compatible
-> > >   - '#address-cells'
-> > >   - '#size-cells'
+> > >   What do you think about? You think that can be a good way ( taking
+> > >   imx8mq as reference )?
 > >
-> > Thanks for a detail explanation but I am still struggling with these
-> > bindings. Were you thinking to have something like this?
+> > The DSI controller for the 8MM and 8MN is not the same as the DSI
+> > controller on the 8MQ, but the LCDIF controller should be compatible.
 > >
-> > ---
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > index 24cac36037f5..c9fde1bb0fea 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > @@ -19,6 +19,9 @@ description: |+
-> >    populating the i2c child busses.  If an 'i2c-mux' subnode is present, only
-> >    subnodes of this will be considered as i2c child busses.
+> > There have been several attempts to support the 8MM DSI, but none of
+> > them have been accepted for various reasons.
 > >
-> > +  Optional properties may not be supported by all drivers. However, if a driver
-> > +  wants to support one of the below features, it should adopt these bindings.
-> > +
-> >  properties:
-> >    $nodename:
-> >      pattern: '^(i2c-?)?mux'
-> > @@ -29,6 +32,11 @@ properties:
-> >    '#size-cells':
-> >      const: 0
+> > The latest was found here [1], but others [2]  and [3] , when used
+> > together, do something similar.
 > >
-> > +  settle-time-us:
-> > +    default: 0
-> > +    description:
-> > +      The time required for the signals to settle.
-> > +
-> >  patternProperties:
-> >    '^i2c@[0-9a-f]+$':
-> >      $ref: /schemas/i2c/i2c-controller.yaml
-> > @@ -41,6 +49,11 @@ patternProperties:
+> > If memory serves, the main issue has to do with the fact that the DSIM
+> > controller in the 8MM and 8MN is also present in one of the Samsung
+> > processors, and the goal is to rework those drivers so we'll have one
+> > driver that supports both Samsung progressors and NXP instead of
+> > having two duplicate drivers doing the same thing. When whatever
+> > driver is chosen is ready, it'll be likely that the LCDIF will use
+> > power-domains = <&disp_blk_ctrl MX8MM_DISPBLK_PD_LCDIF> and the DSI
+> > node will use power-domains = <&disp_blk_ctrl
+> > IMX8MM_DISPBLK_PD_MIPI_DSI> to pull their respective devices out of
+> > reset and enable the gpc.
 > >
-> >  additionalProperties: true
 > >
-> > +required:
-> > +  - compatible
+> > [1] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=510489&archive=both&state=*
+> > [2] - https://patchwork.kernel.org/project/dri-devel/list/?series=347439&archive=both&state=*
+> > [3] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=359775&archive=both&state=*
 > 
-> compatible should not be required here.
+> Adam,
 > 
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> >  examples:
-> >    - |
-> >      /*
-> > ---
-> >
-> > If I have this then my problem is with the required properties because then I
-> > start to get new warnings once I run:
-> >
-> > make ARCH=arm CROSS_COMPILE=arm-linux- dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> >
-> > For example, one of new the warnings is this:
-> >
-> > /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: 'compatible' is a required property
-> >       From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#address-cells' is a required property
-> >       From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#size-cells' is a required property
-> >       From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> Thanks for the good summary... I was just putting this info together
+> as well. I'm also interested to see if anyone has made progress on
+> IMX8MM MIPI DSI display. Now that blk-ctl and most of the dt bindings
+> have been merged for 5.16 I think we are just down to the drm/exynos
+> driver issue.
 > 
-> This is because of the $nodename pattern being pretty lax and matches
-> on mux-mii-hog by mistake. We have 2 options. Change the nodename
-> pattern to '^(i2c-?)?mux(@.*)?$' or add 'select: false'. The former
-> would still match on 'mux' or 'mux@.*' which might still have problems.
-> For the latter, we just need to make sure all the i2c-mux schemas have a
-> $ref to this schema. Also, with that change we'd stop checking 'i2c-mux'
-> nodes that don't yet have a specific schema. That said, I do lean toward
-> the latter option.
-
-From what I can see there are only two i2c-mux schemas and both of them
-have a $ref to this schema [1][2]
-
-[1] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/i2c/i2c-mux-gpmux.yaml#L33
-[2] https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml#L16
-
+> Added Frieder, Jagan, and Michael to the thread.
 > 
-> Rob
+> Best Regards,
+> 
+> Tim
 
--- 
-/Horatiu
+  Hi Adam,
+  Thanks again for your explanation. Then, now the main goal is refactoring
+  exynos dsim driver as bridge driver in order to support both imx8mm and exynos
+  SOC. I'll investigate on it.
+
+  Regards,
+  Thanks
