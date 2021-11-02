@@ -2,152 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2FA442711
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 07:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 868F844274C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 07:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbhKBGYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 02:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbhKBGYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 02:24:45 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C207C061714;
-        Mon,  1 Nov 2021 23:22:11 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id o14so4286834plg.5;
-        Mon, 01 Nov 2021 23:22:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/FiCnWHVe2ZLA8swVG1jWBiytbZWzyx2jovClyWrlJU=;
-        b=TpJAhHUU0WvIhvNisTss2InEVL0Rh9P/wX4ItbPj1xKNh4RNUU+u/5NabytTNT3gXQ
-         3SBoj1q0dedN7aoCPtIGxs4dGmSUHZBMicqCA+2pbHdzHlhTX9BKnT4r6wkfC2zgbo53
-         /9tuCzsf/eEfXr/nS+Nk8fJ3Pe2E0mMiOVJgSpoLAKqIceNk5bCX2yiiKoxnBXnG66fj
-         GEuXTh1d3N4lcIUSE7Vq6hMjflLqTsIAUQ0/2F95szuyhUMzDnD+96TRwq41wSMIEZq/
-         E9HM9n8cvpbT1Nsozv98zOD8BAct/96AwuWLvKOPNaL0Ukl7PTgUISjk/MD1R0uAGvfK
-         hOMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/FiCnWHVe2ZLA8swVG1jWBiytbZWzyx2jovClyWrlJU=;
-        b=ZYYHKLrd43qNmeRLs5qa6YjwksXZfPJVeGPApFod6uPTyBPm4VibC93TuT5YH+9LbI
-         l3P+VdTws8ZV05VlngrlSrTg5U9iKpY0mGd2aHH97Yx6kgyrA9jypcnhpz5Wl+/Jqkj6
-         xilUjuFv9WLuQM6EEguG0zXGb5Syey0VTulfoSSxP9wmoU3MmACBQeIKdTi6YHlYj+B5
-         OKeKK1js1S4p35RkaaFWJj3oSxI/9d2aZe1K4hQBytwX7Rmx5xEYugUjbee3gARNChI0
-         FI0lrsiTlJrjNs0TkCDDYw156Uz8lX7BnXroXxerRNO/wRZNR4uK74afs/JQemIJurtB
-         KPjg==
-X-Gm-Message-State: AOAM532KGTdeePCaUjIX7RtAOHGnB+tdy9NX6T9oY/yvG8q7gCuIA9TT
-        RGv3fKnxAh524zMZ/syeipw=
-X-Google-Smtp-Source: ABdhPJwcHoyUlzfKRjUlLS1F/fhoket/EgcvM0g1Cv3oBbkaD/6cRVQ1d2O2D7lpMgY7GGU/ptwurQ==
-X-Received: by 2002:a17:903:32c5:b0:141:eb39:30b7 with SMTP id i5-20020a17090332c500b00141eb3930b7mr10289277plr.41.1635834130843;
-        Mon, 01 Nov 2021 23:22:10 -0700 (PDT)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id v2sm14859402pga.57.2021.11.01.23.22.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Nov 2021 23:22:10 -0700 (PDT)
-From:   Vincent Shih <vincent.sunplus@gmail.com>
-X-Google-Original-From: Vincent Shih <vincent.shih@sunplus.com>
-To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Vincent Shih <vincent.shih@sunplus.com>
-Subject: [PATCH 2/2] dt-bindings: rtc: Convert Sunplus RTC to json-schema
-Date:   Tue,  2 Nov 2021 14:22:03 +0800
-Message-Id: <1635834123-24668-3-git-send-email-vincent.shih@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
-References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
+        id S229699AbhKBGzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 02:55:07 -0400
+Received: from mailout2.samsung.com ([203.254.224.25]:56778 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229497AbhKBGzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 02:55:06 -0400
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20211102065230epoutp02bde1efee1230241c05cf736a1be282be~zqCFC3cNH0270202702epoutp020
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 06:52:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20211102065230epoutp02bde1efee1230241c05cf736a1be282be~zqCFC3cNH0270202702epoutp020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1635835950;
+        bh=wS/jmuvM4qAKR807Ic3nzZ+xQuFDJ3F6FgK1M5KZxME=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=j3iAMkb22n0e60Ks1WBbt8z78S83GjHMTDi5ufjL/hpuBjVrIe5hWldPFxjwt8HwP
+         JIs1Xim/2JJ8hmuRxgTJ+qgw7z9wJgrjl8DYoBzXB52OwtUwL50UBt84mIbPf9Z3k7
+         SUkyy5JmD5pvtEszxrWy1BmyPYwMOY2Ck1kH16P0=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20211102065229epcas2p42104f4ffe535c684048d521849933b61~zqCEjfhl43242432424epcas2p4h;
+        Tue,  2 Nov 2021 06:52:29 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.97]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4Hk0vJ4bcHz4x9Pr; Tue,  2 Nov
+        2021 06:52:12 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+        epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        69.9B.51767.810E0816; Tue,  2 Nov 2021 15:52:09 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+        20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c~zqBwuha470205102051epcas2p26;
+        Tue,  2 Nov 2021 06:52:08 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20211102065208epsmtrp1a4904db0730b039650fda05d91c5de38~zqBwt0Kgr2140821408epsmtrp1u;
+        Tue,  2 Nov 2021 06:52:08 +0000 (GMT)
+X-AuditID: b6c32a45-447ff7000000ca37-dc-6180e01881eb
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        CC.AE.08738.810E0816; Tue,  2 Nov 2021 15:52:08 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211102065208epsmtip27929960488e5cb593528a17f9f6660c4~zqBwlIgJz1529515295epsmtip2e;
+        Tue,  2 Nov 2021 06:52:08 +0000 (GMT)
+From:   Chanho Park <chanho61.park@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Chanho Park <chanho61.park@samsung.com>
+Subject: [PATCH] arm64: dts: exynosautov9: drop
+ samsung,ufs-shareability-reg-offset
+Date:   Tue,  2 Nov 2021 15:48:26 +0900
+Message-Id: <20211102064826.15796-1-chanho61.park@samsung.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDKsWRmVeSWpSXmKPExsWy7bCmqa7kg4ZEg7uvmCwu79e2mH/kHKvF
+        xrc/mCxmnN/HZNG69wi7A6vHrIZeNo9NqzrZPPq2rGL0+LxJLoAlKtsmIzUxJbVIITUvOT8l
+        My/dVsk7ON453tTMwFDX0NLCXEkhLzE31VbJxSdA1y0zB2itkkJZYk4pUCggsbhYSd/Opii/
+        tCRVISO/uMRWKbUgJafAvECvODG3uDQvXS8vtcTK0MDAyBSoMCE7Y9LCBSwFe7krOm62szYw
+        tnB1MXJySAiYSCx6u5C9i5GLQ0hgB6PE5vVfmCCcT4wSzZcuMYNUCQl8ZpRoa4qE6fj58Toz
+        RNEuRokD+9azQDgfGSVebJvECFLFJqArseX5KzBbRCBe4v68x0BjOTiYBXIkHm1RAwkLC4RK
+        bN19iQnEZhFQlVjWtZwFpIRXwE7i4IUKiF3yEhMn3GMHsXkFBCVOznzCAmIzA8Wbt84Gu0FC
+        YBe7xNRlCxkhGlwklmw4wQRhC0u8Or6FHcKWknjZ38YO0dDNKNH66D9UYjWjRGejD4RtL/Fr
+        +hZWiDs1Jdbv0gcxJQSUJY7cgtrLJ9Fx+C87RJhXoqNNCKJRXeLA9uksELasRPecz6wQJR4S
+        bXuqICEYKzHtRjvTBEb5WUiemYXkmVkIaxcwMq9iFEstKM5NTy02KjCEx2hyfu4mRnCy03Ld
+        wTj57Qe9Q4xMHIyHGCU4mJVEeJmPNiQK8aYkVlalFuXHF5XmpBYfYjQFhu5EZinR5Hxgus0r
+        iTc0sTQwMTMzNDcyNTBXEue1FM1OFBJITyxJzU5NLUgtgulj4uCUamCa+dRa9O+PnM2Lk2cf
+        WuaecXOZ9fL8eVpCVnV/ZbYcX/pDTCcvkjnx+ZUPOY4VV251rpjnHdewuVF0y9T0RJX1qVJ/
+        N8k/T2sLTt0x9+/aD1rxyn9z51xbrZhoYrpra/fniBtTIj52c+hkHr5yerFKWNfCvbPzQgXk
+        pX1uHnf8FdvKy7rhS+CBm1OcKnSVxVI4b/733D/hrMunV7uzXZuSZ08Pru58lfnKzUpQT1xg
+        oXVMS8Jjhm2vryVrv/1mz6F28eNV8YAb+847bnCdsP9d+JXirxuyN3aV1EikO6zvKd+WG6v3
+        hO9gEOeZlVeYZ0/33itk5BXYdiyZxfCNwZnFwgtc+u4tYTNzDv4qUXdWiaU4I9FQi7moOBEA
+        IB39TP8DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprHLMWRmVeSWpSXmKPExsWy7bCSvK7Eg4ZEg0d7VS0u79e2mH/kHKvF
+        xrc/mCxmnN/HZNG69wi7A6vHrIZeNo9NqzrZPPq2rGL0+LxJLoAlissmJTUnsyy1SN8ugStj
+        0sIFLAV7uSs6brazNjC2cHUxcnJICJhI/Px4nbmLkYtDSGAHo8T3fc+ZIBKyEs/e7WCHsIUl
+        7rccYYUoes8osenVHjaQBJuArsSW568YQWwRgXiJ9YfugdnMAnkSf5dOAmsWFgiWOLvmJTOI
+        zSKgKrGsazlLFyMHB6+AncTBCxUQ8+UlJk64B1bOKyAocXLmExaIMfISzVtnM09g5JuFJDUL
+        SWoBI9MqRsnUguLc9NxiwwKjvNRyveLE3OLSvHS95PzcTYzgINTS2sG4Z9UHvUOMTByMhxgl
+        OJiVRHiZjzYkCvGmJFZWpRblxxeV5qQWH2KU5mBREue90HUyXkggPbEkNTs1tSC1CCbLxMEp
+        1cCk1n7zVolAtTLHtaSwHQVKvfv4tVfWSUwTUvq8j7sxVIp30eewdZsFO0+vydU/Pm+9jc1q
+        xja/2P77jjOUZr/I2vEj6OQuT4tfJWeMPq2SkJ959PhjPpXXrxJD/l18XH/iWsni13fXse3w
+        XJa9fM4n8+7lK03VXPzVuj6Lmm5m/6Sj68C6YgO/btX9jpakV9Z810tvFj3+szhX99ysJbVs
+        HO+W5F15MOfY48LmOfe8ElbKZh94xso5ceMe12CWDP4p0gFPj9xd2WE4afdRYbnoc8tbt3yW
+        adv8q/o2/54djWJPdrH7ldpY6TV/Vbu6V4OrKD9v+zGVryyXG61D777xkpZXMP3DyuDud2Rp
+        3pe/SizFGYmGWsxFxYkAP7s10bECAAA=
+X-CMS-MailID: 20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c
+References: <CGME20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c@epcas2p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Sunplus RTC to json-schema
+samsung,ufs-shareability-reg-offset is not necessary anymore since it
+was integrated into the second argument of samsung,sysreg.
 
-Signed-off-by: Vincent Shih <vincent.shih@sunplus.com>
+Signed-off-by: Chanho Park <chanho61.park@samsung.com>
 ---
- .../bindings/rtc/sunplus,sp7021-rtc.yaml           | 58 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
+This is a modification of [1] which is already started the pull-request.
+It has been changed a bit while reviewing DT property[2] and the changed
+version has been merged into scsi tree[3].
 
-diff --git a/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml b/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
-new file mode 100644
-index 0000000..e494c2f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/sunplus,sp7021-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus sp7021 Real Time Clock controller
-+
-+maintainers:
-+  - Vincent Shih <vincent.shih@sunplus.com>
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    items:
-+      - const: rtc_reg
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - resets
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    rtc: serial@9c003A00 {
-+        compatible = "sunplus,sp7021-rtc";
-+        reg = <0x9c003A00 0x80>;
-+        reg-names = "rtc_reg";
-+        clocks = <&clkc RTC>;
-+        resets = <&rstc RST_RTC>;
-+        interrupt-parent = <&intc>;
-+        interrupts = <163 IRQ_TYPE_EDGE_RISING>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6c1a535..c6774d1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17949,6 +17949,7 @@ SUNPLUS RTC DRIVER
- M:	Vincent Shih <vincent.shih@sunplus.com>
- L:	linux-rtc@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
- F:	drivers/rtc/rtc-sunplus.c
- 
- SUPERH
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git/commit/?h=next/dt64&id=31bbac5263aa63dfc8bfed2180bb6a5a3c531681
+[2]: https://lore.kernel.org/linux-samsung-soc/011e01d7c410$4a420340$dec609c0$@samsung.com/T/#u
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git/commit/?h=5.16/scsi-staging&id=cc52e15397cc5dc773d3c6792b98352d3209f93f
+
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+index 3e4727344b4a..a960c0bc2dba 100644
+--- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
+@@ -296,8 +296,7 @@ ufs_0: ufs0@17e00000 {
+ 			pinctrl-0 = <&ufs_rst_n &ufs_refclk_out>;
+ 			phys = <&ufs_0_phy>;
+ 			phy-names = "ufs-phy";
+-			samsung,sysreg = <&syscon_fsys2>;
+-			samsung,ufs-shareability-reg-offset = <0x710>;
++			samsung,sysreg = <&syscon_fsys2 0x710>;
+ 			status = "disabled";
+ 		};
+ 	};
 -- 
-2.7.4
+2.31.1.442.g7e391989789d
 
