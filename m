@@ -2,183 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45875443040
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4F7144305E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbhKBOZu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 2 Nov 2021 10:25:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbhKBOZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:25:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E0AC061714
-        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 07:23:15 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mhugw-000560-4X; Tue, 02 Nov 2021 15:23:10 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mhugk-004FAn-K7; Tue, 02 Nov 2021 15:22:58 +0100
-Message-ID: <7f4925be01831bce1e48efa8ee7eb6983c818a9c.camel@pengutronix.de>
-Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Vincent Shih <vincent.sunplus@gmail.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Vincent Shih <vincent.shih@sunplus.com>
-Date:   Tue, 02 Nov 2021 15:22:58 +0100
-In-Reply-To: <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
-References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
-         <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        id S231347AbhKBO3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 10:29:01 -0400
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:42641 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhKBO3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:29:00 -0400
+Received: by mail-ot1-f43.google.com with SMTP id v19-20020a9d69d3000000b00555a7318f31so18123536oto.9;
+        Tue, 02 Nov 2021 07:26:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ybDM+hUM3xOM5lhSEIQCqJAJ0LZBOaNAwK7NDmERGn8=;
+        b=dITorztgljXZvk4QUvmfTT3HOU8+j+qU79JTYtaVKZSMIWUu7cigdHaU9zx03uWWBi
+         Z05vXHFc53EDB7X61rkqRb2+azxhhhxilyVDr8lC8Er2gHCGs5PycVubDU9/oSxAmTxu
+         h8GXouMfQKAIBlFRKVHHpVtnGddbdA2bhTuk73Ka7h0c2ARTFx2xNvLngv1fJriHd4cY
+         fDU3/CaQoJGcJd8CT7bdzYxf5CGT4QmC6h5krKXOCvkYgdk+ErZS/HuQzTh65bW0THMr
+         la4IoQL+7v6SCfMNBbRxNUtE4j1w4dcmixdu4C4buRHv8PCCy2mDaqzCX6TXupImNYfI
+         xb5Q==
+X-Gm-Message-State: AOAM5311jWQOcz1mTwrr2ygHTd7UKbDET17P62s23x5sGV7rnrWCA/f+
+        B32tMaSJnSyb8xHZZ3FCBw==
+X-Google-Smtp-Source: ABdhPJwPx1RNRtMRuC19qCVctPzJYibBZo7/4LuTyrqlqLE8XI2fj3QxePUMZDVWuKGqsyglTrhizg==
+X-Received: by 2002:a9d:67d2:: with SMTP id c18mr12508564otn.185.1635863185541;
+        Tue, 02 Nov 2021 07:26:25 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a6sm484535otl.33.2021.11.02.07.26.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 07:26:25 -0700 (PDT)
+Received: (nullmailer pid 2820996 invoked by uid 1000);
+        Tue, 02 Nov 2021 14:26:23 -0000
+Date:   Tue, 2 Nov 2021 09:26:23 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        ohad@wizery.com, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sibis@codeaurora.org, mpubbise@codeaurora.org, kuabhs@chromium.org
+Subject: Re: [PATCH v7 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
+ support
+Message-ID: <YYFKj4ySpEz3Usvr@robh.at.kernel.org>
+References: <1635408817-14426-1-git-send-email-pillair@codeaurora.org>
+ <1635408817-14426-3-git-send-email-pillair@codeaurora.org>
+ <CAE-0n50z=h-avn+K-weZnZFVN7nsR=fLAtge7jFZ0JLx2JvP2w@mail.gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n50z=h-avn+K-weZnZFVN7nsR=fLAtge7jFZ0JLx2JvP2w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-11-02 at 14:22 +0800, Vincent Shih wrote:
-[...]
-> +static int sp_rtc_probe(struct platform_device *plat_dev)
-> +{
-> +	int ret;
-> +	int err, irq;
-> +	struct rtc_device *rtc = NULL;
-> +	struct resource *res;
-> +	void __iomem *reg_base = NULL;
-> +
-> +	FUNC_DEBUG();
+On Thu, Oct 28, 2021 at 03:08:24PM -0700, Stephen Boyd wrote:
+> Quoting Rakesh Pillai (2021-10-28 01:13:36)
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
+> > new file mode 100644
+> > index 0000000..96d11a4
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
+> > @@ -0,0 +1,194 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-wpss-pil.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm SC7280 WPSS Peripheral Image Loader
+> > +
+> > +maintainers:
+> > +  - Bjorn Andersson <bjorn.andersson@linaro.org>
+> > +
+> > +description:
+> > +  This document defines the binding for a component that loads and boots firmware
+> > +  on the Qualcomm Technology Inc. WPSS.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,sc7280-wpss-pil
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      The base address and size of the qdsp6ss register
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: Watchdog interrupt
+> > +      - description: Fatal interrupt
+> > +      - description: Ready interrupt
+> > +      - description: Handover interrupt
+> > +      - description: Stop acknowledge interrupt
+> > +      - description: Shutdown acknowledge interrupt
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: wdog
+> > +      - const: fatal
+> > +      - const: ready
+> > +      - const: handover
+> > +      - const: stop-ack
+> > +      - const: shutdown-ack
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: GCC WPSS AHB BDG Master clock
+> > +      - description: GCC WPSS AHB clock
+> > +      - description: GCC WPSS RSCP clock
+> > +      - description: XO clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: ahb_bdg
+> > +      - const: ahb
+> > +      - const: rscp
+> > +      - const: xo
+> > +
+> > +  power-domains:
+> > +    items:
+> > +      - description: CX power domain
+> > +      - description: MX power domain
+> > +
+> > +  power-domain-names:
+> > +    items:
+> > +      - const: cx
+> > +      - const: mx
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: AOSS restart
+> > +      - description: PDC SYNC
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: restart
+> > +      - const: pdc_sync
+> > +
+> > +  memory-region:
+> 
+> Does it need
+> 
+>     $ref: /schemas/types.yaml#/definitions/phandle
+> 
+> because it's a phandle?
 
-Drop these.
+No, standard property that already has a type.
 
-> +	memset(&sp_rtc, 0, sizeof(sp_rtc));
-> +
-> +	// find and map our resources
-> +	res = platform_get_resource_byname(plat_dev, IORESOURCE_MEM, RTC_REG_NAME);
-> +	RTC_DEBUG("res = 0x%x\n", res->start);
-
-Drop, this will crash if res == NULL.
-
-> +
-> +	if (res) {
-> +		reg_base = devm_ioremap_resource(&plat_dev->dev, res);
-> +		if (IS_ERR(reg_base))
-> +			RTC_ERR("%s devm_ioremap_resource fail\n", RTC_REG_NAME);
-> +	}
-> +	RTC_DEBUG("reg_base = 0x%lx\n", (unsigned long)reg_base);
-
-Drop or use dev_dbg() instead.
-
-> +
-> +	// clk
-> +	sp_rtc.rtcclk = devm_clk_get(&plat_dev->dev, NULL);
-> +	RTC_DEBUG("sp_rtc->clk = 0x%lx\n", (unsigned long)sp_rtc.rtcclk);
-> +	if (IS_ERR(sp_rtc.rtcclk))
-> +		RTC_DEBUG("devm_clk_get fail\n");
-> +
-> +	ret = clk_prepare_enable(sp_rtc.rtcclk);
-
-Only enable the clock after all resources are requested. That will
-simplify the error path.
-
-> +
-> +	// reset
-> +	sp_rtc.rstc = devm_reset_control_get(&plat_dev->dev, NULL);
-
-Use devm_reset_control_get_exclusive() instead.
-This should be done before clk_prepare_enable().
-
-> +	RTC_DEBUG("sp_rtc->rstc = 0x%lx\n", (unsigned long)sp_rtc.rstc);
-> +	if (IS_ERR(sp_rtc.rstc)) {
-> +		ret = PTR_ERR(sp_rtc.rstc);
-> +		RTC_ERR("SPI failed to retrieve reset controller: %d\n", ret);
-> +		goto free_clk;
-
-Then you could use return dev_err_probe() here.
-
-> +	}
-> +
-> +	ret = reset_control_deassert(sp_rtc.rstc);
-
-Same as for the clock, only deassert the reset after all resources are
-requested.
-
-> +	if (ret)
-> +		goto free_clk;
-> +
-> +	rtc_reg_ptr = (struct sp_rtc_reg *)(reg_base);
-> +
-> +	// Keep RTC from system reset
-> +	writel((1 << (16+4)) | (1 << 4), &rtc_reg_ptr->rtc_ctrl);
-> +
-> +	// request irq
-> +	irq = platform_get_irq(plat_dev, 0);
-
-This should be done before clk_prepare_enable().
-
-> +	if (irq < 0) {
-> +		RTC_ERR("platform_get_irq failed\n");
-> +		goto free_reset_assert;
-> +	}
-> +
-> +	err = devm_request_irq(&plat_dev->dev, irq, rtc_irq_handler,
-> +					IRQF_TRIGGER_RISING, "rtc irq", plat_dev);
-> +	if (err) {
-> +		RTC_ERR("devm_request_irq failed: %d\n", err);
-> +		goto free_reset_assert;
-> +	}
-> +
-> +	// Get charging-mode.
-> +	ret = of_property_read_u32(plat_dev->dev.of_node, "charging-mode", &sp_rtc.charging_mode);
-
-This could be done before clk_prepare_enable().
-
-> +	if (ret) {
-> +		RTC_ERR("Failed to retrieve \'charging-mode\'!\n");
-> +		goto free_reset_assert;
-> +	}
-> +	sp_rtc_set_batt_charge_ctrl(sp_rtc.charging_mode);
-> +
-> +	device_init_wakeup(&plat_dev->dev, 1);
-> +
-> +	rtc = devm_rtc_device_register(&plat_dev->dev, "sp7021-rtc", &sp_rtc_ops, THIS_MODULE);
-> +	if (IS_ERR(rtc)) {
-> +		ret = PTR_ERR(rtc);
-> +		goto free_reset_assert;
-> +	}
-> +
-> +	platform_set_drvdata(plat_dev, rtc);
-> +
-> +	RTC_INFO("sp7021-rtc loaded\n");
-
-Use dev_info() instead.
-
-> +
-> +	return 0;
-> +
-> +free_reset_assert:
-> +	reset_control_assert(sp_rtc.rstc);
-> +free_clk:
-> +	clk_disable_unprepare(sp_rtc.rtcclk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int sp_rtc_remove(struct platform_device *plat_dev)
-> +{
-> +	reset_control_assert(sp_rtc.rstc);
-
-	clk_disable_unprepare(sp_rtc.rtcclk);
-
-
-regards
-Philipp
+Rob
