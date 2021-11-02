@@ -2,75 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12EA444359B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 19:29:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25EAA4435B3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 19:37:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbhKBScR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 14:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235121AbhKBScQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 14:32:16 -0400
-Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C304C061714;
-        Tue,  2 Nov 2021 11:29:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=metanate.com; s=stronger; h=Content-Transfer-Encoding:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Content-Type:Reply-To:
-        Content-ID:Content-Description;
-        bh=+Ul1n4yoKPptLWY+ebpdvAt82oUzxqM4aKQK6FDToeg=; b=oWN+hPiA3Tz2M+Ohb60VR6NptS
-        HViu5Oqxd4JwyPmvY2/8aOB+0p6PqVM/0Uvdyo8C9cO8lQRDeCH3teiWxH6yS1zNApGZkBOkzNoDS
-        SC0HKPykdoeER0vv9RoPgfeZ6TpjiO7UniwV5OIt/N/zVAlUpxZ/JJW5PoMfE9ge3MvXhBX4kshCe
-        UQzSUCu0zrqmCeCvBHC+Wv/qBVIVHGmMVWtHkhqcY/01eracWI5BUPtD2kFTo1atBLzJalSdr930F
-        uHkmJrXf/wFasshmp3/2Ap2UpaMqYyDyDS2NlW+FPIPob6f5bA/BuNt6RW7eCPgZ/lmtCL1PNh4K6
-        Vh13EQ7w==;
-Received: from [81.174.171.191] (helo=donbot.metanate.com)
-        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <john@metanate.com>)
-        id 1mhyXK-0004Uv-FX; Tue, 02 Nov 2021 18:29:30 +0000
-From:   John Keeping <john@metanate.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Andy Yan <andyshrk@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        John Keeping <john@metanate.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: fix rk3399-leez-p710 vcc3v3-lan supply
-Date:   Tue,  2 Nov 2021 18:29:08 +0000
-Message-Id: <20211102182908.3409670-3-john@metanate.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211102182908.3409670-1-john@metanate.com>
-References: <20211102182908.3409670-1-john@metanate.com>
+        id S235096AbhKBSkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 14:40:05 -0400
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:44909 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235069AbhKBSj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 14:39:57 -0400
+Received: by mail-ot1-f49.google.com with SMTP id o10-20020a9d718a000000b00554a0fe7ba0so118859otj.11;
+        Tue, 02 Nov 2021 11:37:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=2A2UDvJi9kp6H/LtkNAZQfbLqAmYaqz9ZqP/gIursqU=;
+        b=3FPtUaPS+WNkNwgLguUPpcvHf8JVTiUdljt3bzF6jDsUwY7xoNNZu3MKECUB8bTJ9x
+         ttEE4R0ESRTVpmFhBBh+pVUYIcNOa+PppHcOuvm6xSuazrjhmOJHLMKsbzb4EpedQxai
+         Zy9V7k9CzxzcdIZwUY32Bgv+wCZJBY3eXNTOrfhvttL/OyRKJNjCGJkJo1KuDZ1gaM+a
+         7iEuse4h9dpa8W7mspgB8hl0LV/Sy9/re5NQ5t6+ZBgmPn+TPdNncmtxeUYDOK1E63Ej
+         QkfQiNSGXdCA38BSJ2tmgS86jt5IVHQACk7qScWaW/+Z2SS67S25rI9G72ZBoDRS+E7+
+         b0vQ==
+X-Gm-Message-State: AOAM5304g1QgGD2z3a9k5b3NV4qjgwc3QmvFLO+qp3vhrGGlEB2Jn08r
+        tZYjdYK87io7CU9nTlR/voA3aMWg9g==
+X-Google-Smtp-Source: ABdhPJz3B5TEDANfU82YOIztONed4+CortgJTLLEow4f7R/qN+5SQ6YWQ17cqlhWs70Ahg+xbE1PUA==
+X-Received: by 2002:a9d:774c:: with SMTP id t12mr21559726otl.282.1635878242175;
+        Tue, 02 Nov 2021 11:37:22 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bm5sm4404968oib.16.2021.11.02.11.37.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 11:37:21 -0700 (PDT)
+Received: (nullmailer pid 3233546 invoked by uid 1000);
+        Tue, 02 Nov 2021 18:37:20 -0000
+Date:   Tue, 2 Nov 2021 13:37:20 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     Peter Rosin <peda@axentia.se>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c-mux: Add property for settle time
+Message-ID: <YYGFYLtehnDOgA9d@robh.at.kernel.org>
+References: <20211101122545.3417624-1-horatiu.vultur@microchip.com>
+ <20211101122545.3417624-2-horatiu.vultur@microchip.com>
+ <fb0ca91d-f5fa-5977-7574-8926d8d0e3bb@axentia.se>
+ <20211101213201.wdjsuexuuinepu3m@soft-dev3-1.localhost>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated: YES
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211101213201.wdjsuexuuinepu3m@soft-dev3-1.localhost>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Correct a typo in the vin-supply property.  The input supply is
-always-on, so this mistake doesn't affect whether the supply is actually
-enabled correctly.
+On Mon, Nov 01, 2021 at 10:32:01PM +0100, Horatiu Vultur wrote:
+> The 11/01/2021 15:32, Peter Rosin wrote:
+> 
+> Hi Peter,
+> 
+> > 
+> > On 2021-11-01 13:25, Horatiu Vultur wrote:
+> > > Some HW requires some time for the signals to settle after the muxing is
+> > > changed. Allow this time to be specified in device tree.
+> > >
+> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/i2c/i2c-mux.yaml | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> > > index 24cac36037f5..4628ff6340c1 100644
+> > > --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> > > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> > > @@ -29,6 +29,12 @@ properties:
+> > >    '#size-cells':
+> > >      const: 0
+> > >
+> > > +  settle-time-us:
+> > > +    default: 0
+> > > +    description:
+> > > +      The time required for the signals to settle. Currently only the
+> > > +      i2c-mux-gpmux driver supports this optional binding.
+> > 
+> > The information about how i2c-mux-gpmux is special is bound to go stale,
+> > and I don't think we should mention such specific details in the binding.
+> > What I meant was a generic warnings about optional bindings perhaps not
+> > being supported by all drivers, along the lines of this from i2c.txt:
+> > 
+> > "These properties may not be supported by all drivers. However, if a driver
+> >  wants to support one of the below features, it should adapt these bindings."
+> > 
+> > However, I now notice that this sentence makes no sense. It looks like it
+> > should be s/adapt/adopt/.
+> > 
+> > And, in the i2c-mux.yaml case it can simply say "Optional properties"
+> > instead of "These properites" (which refers to a subset of properties
+> > immediately below the text) since with a yaml binding it is always
+> > clear which properties are optional and which are required. Lastly, I
+> > guess this warning belongs in the description.
+> > 
+> > > +
+> > >  patternProperties:
+> > >    '^i2c@[0-9a-f]+$':
+> > >      $ref: /schemas/i2c/i2c-controller.yaml
+> > >
+> > 
+> > Since this is the first optional property, you now need to specify what
+> > properties are required, which is everything but settle-time-us. If you
+> > don't, all properties are required. Which is not what we want...
+> > 
+> > Something like this should do it, I think:
+> > 
+> > required:
+> >   - compatible
+> >   - '#address-cells'
+> >   - '#size-cells'
+> 
+> Thanks for a detail explanation but I am still struggling with these
+> bindings. Were you thinking to have something like this?
+> 
+> ---
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> index 24cac36037f5..c9fde1bb0fea 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> @@ -19,6 +19,9 @@ description: |+
+>    populating the i2c child busses.  If an 'i2c-mux' subnode is present, only
+>    subnodes of this will be considered as i2c child busses.
+> 
+> +  Optional properties may not be supported by all drivers. However, if a driver
+> +  wants to support one of the below features, it should adopt these bindings.
+> +
+>  properties:
+>    $nodename:
+>      pattern: '^(i2c-?)?mux'
+> @@ -29,6 +32,11 @@ properties:
+>    '#size-cells':
+>      const: 0
+> 
+> +  settle-time-us:
+> +    default: 0
+> +    description:
+> +      The time required for the signals to settle.
+> +
+>  patternProperties:
+>    '^i2c@[0-9a-f]+$':
+>      $ref: /schemas/i2c/i2c-controller.yaml
+> @@ -41,6 +49,11 @@ patternProperties:
+> 
+>  additionalProperties: true
+> 
+> +required:
+> +  - compatible
 
-Fixes: fc702ed49a86 ("arm64: dts: rockchip: Add dts for Leez RK3399 P710 SBC")
-Signed-off-by: John Keeping <john@metanate.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+compatible should not be required here.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-index 7c93f840bc64..e890166e7fd4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-@@ -55,7 +55,7 @@ vcc3v3_lan: vcc3v3-lan {
- 		regulator-boot-on;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		vim-supply = <&vcc3v3_sys>;
-+		vin-supply = <&vcc3v3_sys>;
- 	};
- 
- 	vcc3v3_sys: vcc3v3-sys {
--- 
-2.33.1
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +
+>  examples:
+>    - |
+>      /*
+> ---
+> 
+> If I have this then my problem is with the required properties because then I
+> start to get new warnings once I run:
+> 
+> make ARCH=arm CROSS_COMPILE=arm-linux- dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> 
+> For example, one of new the warnings is this:
+> 
+> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: 'compatible' is a required property
+> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#address-cells' is a required property
+> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#size-cells' is a required property
+> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
 
+This is because of the $nodename pattern being pretty lax and matches 
+on mux-mii-hog by mistake. We have 2 options. Change the nodename 
+pattern to '^(i2c-?)?mux(@.*)?$' or add 'select: false'. The former 
+would still match on 'mux' or 'mux@.*' which might still have problems. 
+For the latter, we just need to make sure all the i2c-mux schemas have a 
+$ref to this schema. Also, with that change we'd stop checking 'i2c-mux' 
+nodes that don't yet have a specific schema. That said, I do lean toward 
+the latter option.
+
+Rob
