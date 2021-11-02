@@ -2,140 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A2C44265D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 05:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F9FD4426BF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 06:28:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231555AbhKBEZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 00:25:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45924 "EHLO
+        id S229990AbhKBFax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 01:30:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbhKBEZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 00:25:08 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C408C061714;
-        Mon,  1 Nov 2021 21:22:34 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id w1so17433157edd.10;
-        Mon, 01 Nov 2021 21:22:33 -0700 (PDT)
+        with ESMTP id S230005AbhKBFav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 01:30:51 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E4DDC0613F5
+        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 22:28:17 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id p18so10916638plf.13
+        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 22:28:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8wvlsTEh9v6d7t2lqZ3L4fn0Kl7+4KHrTzQoMERiXTg=;
-        b=VrxGInNXD0B4oQVm8NkWETycecI5eXLtWhb8kTg8HD4lP84ibgT0vUOVkIwSzT1eEy
-         yoxOeUGulCy8lX1byszNOYTqIOIXQSOsXAiJVV/cCAbdRhLjy/CUXp3BSXeALbhODKM/
-         UzRDsNG69E6VYV1/whtSuUFkTMrwI1m3CyvQdl719RtpChPfZXX9C2kSfl2UK+Ecqd68
-         OCQ+E27sOrMNbd0obOeiSSmdeUVO2oQhLu+1bNHdr+wYRXvc+NBEOw8ApWusvZAzyuHx
-         U6mx6hk3xUQNAthJdVZWvuF3Ni3qS5jXAL0E8PJ75+ACrjalFtxdUeEN2SGJ2w7OI3VC
-         kfRA==
+        d=nathanrossi.com; s=google;
+        h=date:message-id:in-reply-to:references:from:to:cc:subject
+         :content-transfer-encoding:mime-version;
+        bh=ddY1h2eGYLfbs2x7Sg+P0Vwdzd/3/Mm7kKddSfpI7pQ=;
+        b=gwmn2ZjJcnxOyqAnLS8H4wwi8yTOW3eNImQ+znCVvqycgN5fpO0nBU/ELClCz2w75c
+         nt5dP4SvmyLw+j1ZN6utGKQ4gRpwYs4Qge0NXIHN6DS07S9lm6/dfHlT1u/Z+cLBuhGm
+         Ng2nd9GUOvFB3KjHKMzmfv06ORLplk8rNtiFzv58MG03HtFKYuCIvOoqQWtERFM8yZMn
+         c/0xBn5/9BFCWtLny7NWaiUqqxCg3d+cZMf/lQ8qqYljXOejtmtV5kUsMt/1km/zucB4
+         zYGj3bSpjSk4ubiD+tqImcLKnjPIEcnRAZ7Z4uheKMxdu4ftg3VqJLUcOIYThJs//3Uf
+         QleQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8wvlsTEh9v6d7t2lqZ3L4fn0Kl7+4KHrTzQoMERiXTg=;
-        b=FOM2YOXW3T3Rn06i36139QLpdvjbdnj1NbTWr1iGNizRmNmheddshpuzOwcn9ob/vy
-         00GCkKt2fFsPkoJrkk4QNQFq3zJj+OsL1BAj8g9ilATMNYmMm8uPRHuQ8ud7LsmY/Q39
-         pBNHjd6snnPPR7aYni9n4uM+4Ew4PjoeO57+9vyDhoiEyAcHhkFefdr+SSnGpk/igEFW
-         ejD6syW+QCiVPZYEJS/YgEO8aea8Sr8oiqxo4oVGoq6NCFRhIZ1PCMhUqO+tKYdL8kOq
-         r+3PSMgb7pdnrSODH2hg9NpXJgOHHR5MjWZM4/C+5TegQPmuskxD/CYaWpA+t9M2H63W
-         SpTA==
-X-Gm-Message-State: AOAM532xdNUFOZMdfNmrQ4y5EUR/x67KYR+hMWrue56mz4tRGL1yNT5I
-        sBlu5HsMxxRZUjEudQaY+bh772FfXCnfLFivqRs=
-X-Google-Smtp-Source: ABdhPJz04lDpzZsKg7vUXthp25hdWbyRKaHlNT+vcWzgKd1s76PCi4SjNQat12axJKG6PcfAq/CMGarHTyyNgg2o2BM=
-X-Received: by 2002:a17:906:284e:: with SMTP id s14mr41215732ejc.332.1635826952470;
- Mon, 01 Nov 2021 21:22:32 -0700 (PDT)
+        h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
+         :cc:subject:content-transfer-encoding:mime-version;
+        bh=ddY1h2eGYLfbs2x7Sg+P0Vwdzd/3/Mm7kKddSfpI7pQ=;
+        b=RKAWdtCZj4PGwrr+E1H+xLZDXeaQNzvoEhKjPMmUY7WFJL1Wj48Ej8eIzkrYBeVfUl
+         4bEY6NGCVQxchVTAcFDwuvIGUN3snBMxubcg+Nlx0PhkZC+vlNiLGiDIx/k+H0/0QypD
+         792Q3prR6psG8oGr09czuHSmiGSoiqHQE8+zErMNiXPWYvFdi2jiJ0p4r5WMwhsMTZ84
+         1JDyTKfBV+VEaUSBthFq3LTv6yRO8Sn+DI68AYXpncqwhDn1TvSUln+fy2B5gQxel/zE
+         OBIJajo4DRmeYvjL+acTSQKywFjcvAB28F7wwZR0e4aFdoI3zWu/TjBRtVYB6mUVuktQ
+         eCDQ==
+X-Gm-Message-State: AOAM530SeRwbbuCzmt8pdwoswRfErwb27gyC+7LMbhlpskiByTku1Ppa
+        L1qzenIQ7Ph0R/lPP3sZyANoOQ==
+X-Google-Smtp-Source: ABdhPJyzQyW2vVc977ENPz6lzXGwxknQqwgLYJJ8BApXSW9HGT7quZVgRxyGTVFmvNMsz6VR1dnIAw==
+X-Received: by 2002:a17:902:758c:b0:141:4c99:22b3 with SMTP id j12-20020a170902758c00b001414c9922b3mr29400168pll.40.1635830896759;
+        Mon, 01 Nov 2021 22:28:16 -0700 (PDT)
+Received: from [127.0.1.1] (117-20-69-24.751445.bne.nbn.aussiebb.net. [117.20.69.24])
+        by smtp.gmail.com with UTF8SMTPSA id x9sm14344439pga.28.2021.11.01.22.28.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Nov 2021 22:28:16 -0700 (PDT)
+Date:   Tue, 02 Nov 2021 05:27:54 +0000
+Message-Id: <20211102052754.817220-1-nathan@nathanrossi.com>
+In-Reply-To: <20211102052754.817220-0-nathan@nathanrossi.com>
+References: <20211102052754.817220-0-nathan@nathanrossi.com>
+From:   Nathan Rossi <nathan@nathanrossi.com>
+To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Nathan Rossi <nathan@nathanrossi.com>,
+        Nathan Rossi <nathan.rossi@digi.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: hwmon: ti,ina2xx: Document ti,ina238
+ compatible string
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20211101222857.6940-1-tomm.merciai@gmail.com> <c04d4af6-8c7b-da23-d562-78324948ac35@pengutronix.de>
- <20211101225827.GA9208@tom-desktop>
-In-Reply-To: <20211101225827.GA9208@tom-desktop>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 1 Nov 2021 23:22:21 -0500
-Message-ID: <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8m: add syscon node for display_blk_ctrl
- module regs
-To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>, Alice Guo <alice.guo@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 1, 2021 at 5:58 PM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
->
-> On Mon, Nov 01, 2021 at 11:35:49PM +0100, Ahmad Fatoum wrote:
-> > Hello Tommaso,
-> >
-> > On 01.11.21 23:28, Tommaso Merciai wrote:
-> > > Add system controller node for registers of module Display Block Control
-> > > (DISPLAY_BLK_CTRL, base address: 0x32e28000).
-> > > The DISPLAY_BLK_CTRL module contains general purpose registers (GPRs),
-> > > which control varied features of the associated peripherals.
-> > > Reference: IMX8MMRM Rev. 3, 11/2020, p 3897
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > index 2f632e8ca388..3e496b457e1a 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > @@ -961,6 +961,11 @@ aips4: bus@32c00000 {
-> > >                     #size-cells = <1>;
-> > >                     ranges = <0x32c00000 0x32c00000 0x400000>;
-> > >
-> > > +                   dispmix_gpr: display-gpr@32e28000 {
-> > > +                           compatible = "fsl, imx8mm-iomuxc-gpr", "syscon";
-> >
-> > Please read vendor patches before submitting them. The space
-> > is out-of-place in the compatible and the compatible is wrong:
-> > This doesn't look like a i.MX8MM pin controller.
-> >
-> > Cheers,
-> > Ahmad
->
->   Hi Ahmad,
->   Thanks for your review. Do you think this is correct?
->
->   compatible = "fsl,imx8mm-dispmix-gpr", "syscon";
->
->   Let me know.
+From: Nathan Rossi <nathan.rossi@digi.com>
 
-There was already a driver created for the blk-ctrl stuff and it has a
-device tree binding at 32e28000.  It's tied into the power-domain
-system, so if you want to enable the csi, dsi, or lcd, etc. you can
-just reference the blt-ctrl power domain index, and it enables the
-device's gpc power domain and takes the corresponding device out of
-reset.
+Document the compatible string for the Texas Instruments INA238, this
+device is a variant of the existing INA2xx devices and has the same
+device tree bindings (shunt resistor).
 
-adam
->
->   Thanks,
->   Tommaso
->
-> >
-> > > +                           reg = <0x32e28000 0x100>;
-> > > +                   };
-> > > +
-> > >                     usbotg1: usb@32e40000 {
-> > >                             compatible = "fsl,imx8mm-usb", "fsl,imx7d-usb";
-> > >                             reg = <0x32e40000 0x200>;
-> > >
-> >
-> >
-> > --
-> > Pengutronix e.K.                           |                             |
-> > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+---
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 6f0443322a..180573f26c 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -26,6 +26,7 @@ properties:
+       - ti,ina226
+       - ti,ina230
+       - ti,ina231
++      - ti,ina238
+ 
+   reg:
+     maxItems: 1
+---
+2.33.0
