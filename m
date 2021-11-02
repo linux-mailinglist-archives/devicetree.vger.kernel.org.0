@@ -2,123 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5384426C2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 06:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE734426F0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 07:01:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbhKBFa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 01:30:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbhKBFa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 01:30:57 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D743FC061764
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 22:28:22 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id b4so12079079pgh.10
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nathanrossi.com; s=google;
-        h=date:message-id:in-reply-to:references:from:to:cc:subject
-         :content-transfer-encoding:mime-version;
-        bh=lJnV+kITEwNEZxgW0EEwkSDW1MfbZOcjYoFW6kKKYcY=;
-        b=NK3AXJ9sUzOeFZfFNuCSHsmgcdy5famNh4IOfV6dhZgSoUIpg/TuKxSy7ZTYJ4U4qO
-         IebE1+JsyfP0bYZgtagN/MelZcQVHSQKmaeq5aCRBY1V6j1uO3sHLRTvcV4e+y37uf+z
-         hoRuOym/BqkyB7GQLiEvjT+ZO+CMxR5sMjWbItd3lQPd87dMjdq6JH5x4hucyNE+bwKx
-         LOEBT4XRMdTOAFh/2HaB3oMNPoNiESg/DIPZrxQZEJxITE18nJkXNLK5ymxZR++nZ98f
-         271jN5J0N+Fyh2wmq4TwusK0JmWLh49ByveFULqBPkyescoMNno6cTTY+eQYil41O3M9
-         NWdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
-         :cc:subject:content-transfer-encoding:mime-version;
-        bh=lJnV+kITEwNEZxgW0EEwkSDW1MfbZOcjYoFW6kKKYcY=;
-        b=xeOUVAG5E3JpR3aJzbn1+eAqlafXRJv9O4bYD2lMljDfBislH5VpiZtixt08BdF6FK
-         Bt+T0ZkrucGhULYGCSnIqeDa4jhKaLgmhhGmmBwAw0sf+slicL4fuRxjG0P0a4NbEXki
-         atoOBttj1JqQBk7j71ZAyYIWA6FI92p8ijr8zYrN9/dMECDzjTp6lUtr5PwVAyrKcDla
-         wAy+nreDRtK24bopceKnZ1FUjo3/x2PgfsoEXAosJPIlNTAgKlaq6r6y6V1A2X/fi4tA
-         fd/HIZWUqmgrL6RXZmjD32W5CjER43XkxnO+JnQlYAvaBE7EYHrZFsy5VpTJbAJfpbl9
-         ZW4A==
-X-Gm-Message-State: AOAM532VTU40nIsPX2HONSQyTkKWfpIsrTXWGlGKqXybCey2P9PlHjJn
-        V/uI2E9C/5U89Qd9TyEBXNFMRg==
-X-Google-Smtp-Source: ABdhPJy06dW+UZGRFNKjWP1TfKaeRYJreAi0Y/kXtrqrJJd8UVUeVYdEolF2DcqQvkJFgp+4ppjzvg==
-X-Received: by 2002:a63:fd03:: with SMTP id d3mr17864964pgh.199.1635830902444;
-        Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
-Received: from [127.0.1.1] (117-20-69-24.751445.bne.nbn.aussiebb.net. [117.20.69.24])
-        by smtp.gmail.com with UTF8SMTPSA id mp16sm1109758pjb.1.2021.11.01.22.28.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
-Date:   Tue, 02 Nov 2021 05:27:54 +0000
-Message-Id: <20211102052754.817220-2-nathan@nathanrossi.com>
-In-Reply-To: <20211102052754.817220-0-nathan@nathanrossi.com>
-References: <20211102052754.817220-0-nathan@nathanrossi.com>
-From:   Nathan Rossi <nathan@nathanrossi.com>
-To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Nathan Rossi <nathan@nathanrossi.com>,
-        Nathan Rossi <nathan.rossi@digi.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v4 2/3] dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain property
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        id S230084AbhKBGDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 02:03:37 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:38340 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229877AbhKBGDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 02:03:37 -0400
+X-UUID: bafc3f3e0fd44b78b066c231ddbe3d21-20211102
+X-UUID: bafc3f3e0fd44b78b066c231ddbe3d21-20211102
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1926329016; Tue, 02 Nov 2021 14:00:58 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 2 Nov 2021 14:00:57 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkexhb02.mediatek.inc (172.21.101.103) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 2 Nov 2021 14:00:57 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Tue, 2 Nov 2021 14:00:56 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/3] dt-bindings: usb: mtk-xhci: add support ip-sleep for mt8195
+Date:   Tue, 2 Nov 2021 14:00:47 +0800
+Message-ID: <20211102060049.1843-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nathan Rossi <nathan.rossi@digi.com>
+There are 4 USB controllers on MT8195, each controller's wakeup control is
+different, add some spicific versions for them.
 
-Add a property to the binding to define the selected shunt voltage gain.
-This specifies the range and accuracy that applies to the shunt circuit.
-This property only applies to devices that have a selectable shunt
-voltage range via PGA or ADCRANGE register configuration.
-
-Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 ---
-Changes in v2:
-- Added binding for shunt-gain
+ .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml          | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Changes in v3:
-- Fix schema error, setting $ref to uint32
-- Improve the description to detail exactly how to define the property
-  and how the property affects initial device configuration and
-  calculation of values
----
- .../devicetree/bindings/hwmon/ti,ina2xx.yaml        | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index 180573f26c..47af97bb4c 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -36,6 +36,27 @@ properties:
-       Shunt resistor value in micro-Ohm.
-     $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index 11f7bacd4e2b..41efb51638d1 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -146,7 +146,11 @@ properties:
+             2 - used by mt2712 etc, revision 2 following IPM rule;
+             101 - used by mt8183, specific 1.01;
+             102 - used by mt8192, specific 1.02;
+-          enum: [1, 2, 101, 102]
++            103 - used by mt8195, IP0, specific 1.03;
++            104 - used by mt8195, IP1, specific 1.04;
++            105 - used by mt8195, IP2, specific 1.05;
++            106 - used by mt8195, IP3, specific 1.06;
++          enum: [1, 2, 101, 102, 103, 104, 105, 106]
  
-+  ti,shunt-gain:
-+    description: |
-+      Programmable gain divisor for the shunt voltage accuracy and range. This
-+      property only applies to devices that have configurable PGA/ADCRANGE. The
-+      gain value is used configure the gain and to convert the shunt voltage,
-+      current and power register values when reading measurements from the
-+      device.
-+
-+      For devices that have a configurable PGA (e.g. INA209, INA219, INA220),
-+      the gain value maps directly with the PG bits of the config register.
-+
-+      For devices that have ADCRANGE configuration (e.g. INA238) a shunt-gain
-+      value of 1 maps to ADCRANGE=1 where no gain divisor is applied to the
-+      shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
-+      voltage range is used.
-+
-+      The default value is device dependent, and is defined by the reset value
-+      of PGA/ADCRANGE in the respective configuration registers.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8]
-+
- required:
-   - compatible
-   - reg
----
-2.33.0
+   mediatek,u3p-dis-msk:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-- 
+2.18.0
+
