@@ -2,75 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4901443062
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67E37443068
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231446AbhKBOaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 10:30:13 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:43621 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbhKBOaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:30:08 -0400
-Received: by mail-ot1-f54.google.com with SMTP id n13-20020a9d710d000000b005558709b70fso23762796otj.10;
-        Tue, 02 Nov 2021 07:27:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iJsAkCsAmGZv5gRDRXSkbNwK6vmPsC2LYUXejh0824s=;
-        b=o//fYDtEvJhuc7bEeMJiG0Z4MeQ7n1XfTyzgFFta+JuZF71p8wKg4E9AP9jtqkSTuV
-         p8RFSRuETZNyMlCe5GVPybVD70ZnZt9WAxFal1k/w+mJtw9QB/5r4mUOlQ+Ilto3dG4B
-         YrETMgFgL59zrqBNPNW6NM5tWoVmGumUkE4+dVkBsE0gQQDxfTirXrRmSddeJTpIqnwa
-         3Hir0AecTn7k3WCDo+e7SUA7iIT9WzeEF6i93NRLHRq5O0qjqdnLSo91XBT3aVx1gJNh
-         Hjy5sWlKbmj07CyVc2+In5vrU4nFHOebjNYac2IQekJihtTXByroponKwl/gLJ+PkDmA
-         ij8A==
-X-Gm-Message-State: AOAM533gOjr0Kk8Qd4RviVn5VwKY5u8IpAxHO+CBju7hBemtsvDuFvwW
-        I7Sc5lK1+qq8mdWxFDFd8g==
-X-Google-Smtp-Source: ABdhPJzGWhZyyJSZnmIhNcfiPdiSLvkAudb19QtTakiAtFsSxK1EZgasqAS8pi+xSgZqWWJm66Ifag==
-X-Received: by 2002:a9d:518a:: with SMTP id y10mr21488710otg.143.1635863253170;
-        Tue, 02 Nov 2021 07:27:33 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j25sm3377889oos.23.2021.11.02.07.27.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 07:27:32 -0700 (PDT)
-Received: (nullmailer pid 2822626 invoked by uid 1000);
-        Tue, 02 Nov 2021 14:27:31 -0000
-Date:   Tue, 2 Nov 2021 09:27:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     devicetree@vger.kernel.org, james.quinlan@broadcom.com,
-        Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-kernel@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        linux-pci@vger.kernel.org, Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 1/9] dt-bindings: PCI: correct brcmstb interrupts,
- interrupt-map.
-Message-ID: <YYFK0xL1YI40OgZF@robh.at.kernel.org>
-References: <20211029200319.23475-1-jim2101024@gmail.com>
- <20211029200319.23475-2-jim2101024@gmail.com>
+        id S229712AbhKBObJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 10:31:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54074 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229557AbhKBObG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 10:31:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9805D60EDF;
+        Tue,  2 Nov 2021 14:28:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635863312;
+        bh=dWdXSCcnw3jZb4r6IQdTU0jM8stw16sY6pQ9ZwDV/YY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=XpjXiLsE+cn6KB6gmM8Wy0tKNv5w0x07517PCtevNR4tWE6/Qd6GuVE/pv+EEolbZ
+         vokmQVcijgf0HdhhxVw41gXVg1937TKjWGIeBlU/XIiBJ5A8T/NciVteZEZBVbRUKG
+         Dy9Kl4WfGSv119B4lZx4/7qFMqZeIvp6auSluzlUOlJzgV3OuLkwMTjlAuZhnyyc/3
+         6d0T3kW7UNtSc3Q035ZrmX1d6U/zj43Rrk3xL9xP85I7mfFZNb+JxnE6AJnaHpFvPI
+         kTLrzvYleMQFKSSqRFqDHFzVkJlxS+vz/WNLibhLiXBAXwVpyn9EC7LSGQeZoq0tMB
+         SMLOuRWDd/PPQ==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     robh+dt@kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: socfpga: dts: fix qspi node compatible
+Date:   Tue,  2 Nov 2021 09:28:27 -0500
+Message-Id: <20211102142827.1545889-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211029200319.23475-2-jim2101024@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 16:03:09 -0400, Jim Quinlan wrote:
-> The "pcie" and "msi" interrupts were given the same interrupt when they are
-> actually different.  Interrupt-map only had the INTA entry; the INTB, INTC,
-> and INTD entries are added.
-> 
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
-> 
+The QSPI flash node needs to have the required "jedec,spi-nor" in the
+compatible string.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Fixes: 1df99da8953 ("ARM: dts: socfpga: Enable QSPI in Arria10 devkit")
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts   | 2 +-
+ arch/arm/boot/dts/socfpga_arria5_socdk.dts         | 2 +-
+ arch/arm/boot/dts/socfpga_cyclone5_socdk.dts       | 2 +-
+ arch/arm/boot/dts/socfpga_cyclone5_sockit.dts      | 2 +-
+ arch/arm/boot/dts/socfpga_cyclone5_socrates.dts    | 2 +-
+ arch/arm/boot/dts/socfpga_cyclone5_sodia.dts       | 2 +-
+ arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 4 ++--
+ 7 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
+index 2b645642b935..2a745522404d 100644
+--- a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
++++ b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
+@@ -12,7 +12,7 @@ &qspi {
+ 	flash0: n25q00@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q00aa";
++		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
+ 
+diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
+index 90e676e7019f..1b02d46496a8 100644
+--- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
++++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
+@@ -119,7 +119,7 @@ &qspi {
+ 	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q256a";
++		compatible = "micron,n25q256a", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
+ 
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
+index 6f138b2b2616..51bb436784e2 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
+@@ -124,7 +124,7 @@ &qspi {
+ 	flash0: n25q00@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q00";
++		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+ 		reg = <0>;	/* chip select */
+ 		spi-max-frequency = <100000000>;
+ 
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts b/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
+index c155ff02eb6e..cae9ddd5ed38 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
+@@ -169,7 +169,7 @@ &qspi {
+ 	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q00";
++		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
+ 
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts b/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
+index 8d5d3996f6f2..ca18b959e655 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
+@@ -80,7 +80,7 @@ &qspi {
+ 	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q256a";
++		compatible = "micron,n25q256a", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
+ 		m25p,fast-read;
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
+index 99a71757cdf4..3f7aa7bf0863 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
+@@ -116,7 +116,7 @@ &qspi {
+ 	flash0: n25q512a@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q512a";
++		compatible = "micron,n25q512a", "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <100000000>;
+ 
+diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+index a060718758b6..25874e1b9c82 100644
+--- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
++++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
+@@ -224,7 +224,7 @@ &qspi {
+ 	n25q128@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q128";
++		compatible = "micron,n25q128", "jedec,spi-nor";
+ 		reg = <0>;		/* chip select */
+ 		spi-max-frequency = <100000000>;
+ 		m25p,fast-read;
+@@ -241,7 +241,7 @@ n25q128@0 {
+ 	n25q00@1 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "n25q00";
++		compatible = "micron,mt25qu02g", "jedec,spi-nor";
+ 		reg = <1>;		/* chip select */
+ 		spi-max-frequency = <100000000>;
+ 		m25p,fast-read;
+-- 
+2.25.1
+
