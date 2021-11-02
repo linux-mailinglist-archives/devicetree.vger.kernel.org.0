@@ -2,80 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D06934427EB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 08:13:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F90444286C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 08:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230450AbhKBHPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 03:15:44 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:23493 "EHLO
+        id S230255AbhKBHeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 03:34:00 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:48271 "EHLO
         so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbhKBHPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 03:15:43 -0400
+        with ESMTP id S229770AbhKBHd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 03:33:56 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635837189; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=KZMn3JM90Lz0p3flftlVAHmLRP1ej20KZZkGlmNqfOI=; b=bGW/ep4GavAoWQkhxuFmp7u57/3mMqBAiNzAJd8zVSOsk8td7iZT/rT/+xdnkJ+JVMVkyTo0
- vXbJq8FYIUHwl+fhkf5Q69CICesr5dxWDrFxeGr1GlwYAtxAxyM6Lu6v2anHEqp8TkeFhmHZ
- T1dRrHXSFXRVTW9KKCbD9UnahQE=
+ s=smtp; t=1635838282; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ZtcWXP/DICrrVoa56QdFrH9TdBdluRLfCuEUwQ9cLuU=; b=r325H3wZBLEIIujUglq9Jlta/r0yRa5yUV1/hs0XWH4kVcV3J5f2gZGEv+G3WiGHSlQZN3rW
+ SGPI1ciBTNTR1RBS3CV1c/BvvYZ1EN4CE8O9qFw8SkF48KvXYL5Q+1e3xcbvdGVEPnNhJMea
+ NDmplYFnGcT73tEqroVE/b0pNn0=
 X-Mailgun-Sending-Ip: 198.61.254.9
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 6180e4975c66efd3722a986b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Nov 2021 07:11:19
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 6180e949aeb23905560adf2c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Nov 2021 07:31:21
  GMT
-Sender: zijuhu=codeaurora.org@mg.codeaurora.org
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3D268C43616; Tue,  2 Nov 2021 07:11:18 +0000 (UTC)
+        id 5FD0BC4360D; Tue,  2 Nov 2021 07:31:21 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
         autolearn=no autolearn_force=no version=3.4.0
-Received: from zijuhu-gv.qualcomm.com (unknown [180.166.53.21])
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: zijuhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5BDEFC4338F;
-        Tue,  2 Nov 2021 07:11:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 5BDEFC4338F
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7B5DFC4360D;
+        Tue,  2 Nov 2021 07:31:15 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7B5DFC4360D
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Zijun Hu <zijuhu@codeaurora.org>
-To:     davem@davemloft.net, rjliao@codeaurora.org, kuba@kernel.org,
-        robh+dt@kernel.org, bgodavar@codeaurora.org
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
-        zijuhu@codeaurora.org, Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: [PATCH v1 2/3] dt-bindings: net: bluetooth: Add device tree bindings for QTI bluetooth MAPLE
-Date:   Tue,  2 Nov 2021 15:11:09 +0800
-Message-Id: <1635837069-1293-1-git-send-email-zijuhu@codeaurora.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v4 00/10] Add support for audio on SC7280 based targets
+Date:   Tue,  2 Nov 2021 13:00:55 +0530
+Message-Id: <1635838265-27346-1-git-send-email-srivasam@codeaurora.org>
 X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zijun Hu <quic_zijuhu@quicinc.com>
+This patch set is to add support for Audio over wcd codec,
+digital mics, through digital codecs and without ADSP.
+This patch set depends on:
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=570161
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=572615
+	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=559677
 
-Add device tree bindings for QTI bluetooth MAPLE.
+Changes Since V3:
+    -- Remove redundant power domain controls. As power domains can be configured from dtsi.
+Changes Since V2:
+    -- Split lpass sc7280 cpu driver patch and create regmap config patch.
+    -- Create patches based on latest kernel tip.
+    -- Add helper function to get dma control and lpaif handle.
+    -- Remove unused variables.
+Changes Since V1:
+    -- Typo errors fix
+    -- CPU driver readable/writable apis optimization.
+    -- Add Missing config patch
+    -- Add Common api for repeated dmactl initialization.
 
-Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
----
- Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Srinivasa Rao Mandadapu (10):
+  ASoC: qcom: Move lpass_pcm_data structure to lpass header
+  ASoC: qcom: lpass: Add dma fields for codec dma lpass interface
+  ASoC: qcom: Add register definition for codec rddma and wrdma
+  ASoC: qcom: Add lpass CPU driver for codec dma control
+  ASoC: qcom: Add helper function to get dma control and lpaif handle
+  ASoC: qcom: Add support for codec dma driver
+  ASoC: qcom: Add regmap config support for codec dma driver
+  ASoC: dt-bindings: Add SC7280 sound card bindings
+  ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio
+  ASoC: qcom: SC7280: Update config for building codec dma drivers
 
-diff --git a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-index f93c6e7a1b59..9f0508c4dd16 100644
---- a/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-+++ b/Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml
-@@ -23,6 +23,7 @@ properties:
-       - qcom,wcn3998-bt
-       - qcom,qca6390-bt
-       - qcom,wcn6750-bt
-+      - qcom,maple-bt
- 
-   enable-gpios:
-     maxItems: 1
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  69 ++-
+ sound/soc/qcom/Kconfig                             |  13 +
+ sound/soc/qcom/Makefile                            |   4 +
+ sound/soc/qcom/common.c                            |  39 ++
+ sound/soc/qcom/common.h                            |   1 +
+ sound/soc/qcom/lpass-cdc-dma.c                     | 195 ++++++++
+ sound/soc/qcom/lpass-cpu.c                         | 245 +++++++++-
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 103 ++++-
+ sound/soc/qcom/lpass-platform.c                    | 513 ++++++++++++++++++---
+ sound/soc/qcom/lpass-sc7280.c                      | 417 +++++++++++++++++
+ sound/soc/qcom/lpass.h                             | 150 ++++++
+ 11 files changed, 1670 insertions(+), 79 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+ create mode 100644 sound/soc/qcom/lpass-sc7280.c
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, a Linux Foundation Collaborative Project
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
