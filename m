@@ -2,361 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 785F2443A04
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 00:50:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57633443A16
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 00:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbhKBXxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 19:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58168 "EHLO
+        id S230457AbhKBX5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 19:57:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229934AbhKBXxL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 19:53:11 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C78ADC061714
-        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 16:50:35 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id j2so1706715lfg.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 16:50:35 -0700 (PDT)
+        with ESMTP id S229960AbhKBX5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 19:57:11 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46219C061714;
+        Tue,  2 Nov 2021 16:54:36 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id ay20so689368qkb.7;
+        Tue, 02 Nov 2021 16:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fVBGk1MYyCWrNZI+cGnXDaPmanq61gpSQuTYWAYJ+rg=;
-        b=ct6rwWB5FRv5Mti6ZNWlPXqu8r/Q2ELC3sZ//jRtNp/MEx7eF4jfyZIdP733Qhi1LS
-         3zUM+Cdkey0NBeVZZhuNPNH/nkmYS7FtlOwQEYFYI/lFgzIj9UOxmiuKiZhImhAA8sFp
-         +FvtNKpYI8yOZM5EGEQIgMkFwHA37YNcBlF3i6ercceteicQIpR+V4nvzLEyj1/e85nD
-         6OL7Gp0bxn/3ZI02LjXDUH+G6TeVjTQrA9NVp/4A7FfeC2VOwEccVrYvKpl4b/Y1Xxgb
-         WDqOU90M4L2K0yG/V6diro/qFJxz6Hbml+w28liXPAycWrahis2aOW+7+x7i28fSid5m
-         xWlQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=LUJiTUBUz+nDDvCf1YrbjU2s+1FnYiIkeo+EME3kWwE=;
+        b=BNApYS/cqy5Q8pdJ6jerjEhOsDIbqWdYf8uPLunlFYkDoZhIBYDV7KLx9u1GGpwkbx
+         VDeMVUv2ZWvR9TRrck38B+vOyhfL9gTBUy629STDqNUMp1uGHHayoc7tZXW8D6YU6To9
+         kUvOO+J/uKtfxlmdUxI+rWQFwuy7C+ika/nna4YYGHKvLgLcTPbT6GxAQLPmCbwaoUg1
+         6fyU5H9l69w0bBtEA1OhYyxBIrSSOoXKjB1V27h1u8Cykxgs0k6m2y8CLpIlhK1dFLW4
+         tSNxarNGJIzfTiMXyL/IoiAOFpa+k+W9VH7iCSucuZNt0iM7bA1bkFYZdkr7zuLJGx5t
+         FSbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=fVBGk1MYyCWrNZI+cGnXDaPmanq61gpSQuTYWAYJ+rg=;
-        b=Fvh7fV8TWBX0XSclxOdUyQFBVMsSMr9WVqMtXzaT9PQoE8vKfmHzmqi/Yf5pVNPJwu
-         +LpuP50kjDJFhYkuK7yeFP7Ev0I0FEFhk+cUDecrLiEV2ISPj2pJAncq3gsx3gwoIVhw
-         0bH9VD4mxXy/1TW1hShI1TZCjjgS5RHGzSaXDxDmyjOqKjhefGHiIYR7Kj6cecK9zIEs
-         PfNDtEWsptIcBlCPPY9Lz8S5gULApOBTgxpdrBvR/gJT9j4qX6TF5toMnQrLFGg9y2l5
-         IaJlHOSjYDuuX9m1fG4VanTBEmVJZK8usbsNnQc8i5he10r40J903LI3MUaPVtuB44Jt
-         rluA==
-X-Gm-Message-State: AOAM532Hfu4gNRYyNW/k0V0roGDwpvLE4b/qA5akqhii/ruegC19qF6Q
-        YxJDnJpjTzvN8voIsguGZe392A==
-X-Google-Smtp-Source: ABdhPJzVjWt0dzeXhRVr9LeJ7wx4S7kb2JiWs4DZ1Y5b+WPKmsokaDHCGflD/Im5gu1IMPh0Ik3PVA==
-X-Received: by 2002:a05:6512:2022:: with SMTP id s2mr36121348lfs.661.1635897034131;
-        Tue, 02 Nov 2021 16:50:34 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id o17sm30262lfg.211.2021.11.02.16.50.32
+        bh=LUJiTUBUz+nDDvCf1YrbjU2s+1FnYiIkeo+EME3kWwE=;
+        b=sWQ9curxuOlQcjmc4DU6GSxlQ+FlatpwLvk+kDmrC2A49c+HhVg4SQd2x4qEr7Oqu2
+         iwqztHwN2Spa0BUNbA7ptmo5BJQg+kkmwG7pSJzaKvC+m4PC/fnFjkUZLL/9IM3MR8Fx
+         K9wt3szx45E1ko6ysxGmpMv/OGImPMDxp/30NrRj/yuZM2SK03MPOz/5hwrnBdAYeCXl
+         RFaKgo0CvsgK9sM/7QdrM82EhlEQ1p+ADmiub7SnnUu5tI9+KApJ4WU4WR4hV/vaKmeI
+         sl+G5LyOmAI3Bnad/KRFG1hJ9Wq7y/7HQEcvRkjmreA60NxlLq4SzstpbqRbeSFQIn9g
+         weqQ==
+X-Gm-Message-State: AOAM531ifXzUvh1XvqBwYUz4M0JYtxlPYwrRiMiIt41iFk8ILnsBW2/R
+        g59qxz5pbgYMbcMQo7tbNFk=
+X-Google-Smtp-Source: ABdhPJzxro4hWmMP7y5iTOVWvZMs+GGc/IGEN1fn/TBo+Ziw7KfVlQyzMaZ6cwWeXs/C99ERXXqZjA==
+X-Received: by 2002:a05:620a:4150:: with SMTP id k16mr16278131qko.186.1635897275437;
+        Tue, 02 Nov 2021 16:54:35 -0700 (PDT)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id w1sm382768qtj.28.2021.11.02.16.54.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Nov 2021 16:50:33 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] arm64: dts: qcom: msm8996: Revamp reserved memory
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>, Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210926190555.278589-1-y.oudjana@protonmail.com>
- <20210926190555.278589-2-y.oudjana@protonmail.com>
- <YXTNL7boyiRFKQiV@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <4455e52f-7e8a-c431-9977-dcf4aefe9822@linaro.org>
-Date:   Wed, 3 Nov 2021 02:50:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        Tue, 02 Nov 2021 16:54:35 -0700 (PDT)
+Message-ID: <e2f81ad7-9c58-3e39-fbb0-5ef3132bba7d@gmail.com>
+Date:   Tue, 2 Nov 2021 19:54:33 -0400
 MIME-Version: 1.0
-In-Reply-To: <YXTNL7boyiRFKQiV@builder.lan>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH v2 12/13] ARM: dts: imx: add i.MXRT1050-EVK support
+Content-Language: en-US
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+ <20211102225701.98944-13-Mr.Bossman075@gmail.com>
+ <CAOMZO5DV-6dKnaGMgARhtv7mq-nOr9jO-XUWAJDmJWwNxc+B1g@mail.gmail.com>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <CAOMZO5DV-6dKnaGMgARhtv7mq-nOr9jO-XUWAJDmJWwNxc+B1g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/10/2021 06:04, Bjorn Andersson wrote:
-> On Sun 26 Sep 14:06 CDT 2021, Yassine Oudjana wrote:
-> 
->> Fix a total overlap between zap_shader_region and slpi_region, and rename
->> all regions to match the naming convention in other Qualcomm SoC device trees.
->>
->> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> 
-> FYI, I like this series, but I held off applying it because I wanted to
-> verify that the shuffling of the memory regions works on the existing
-> 8996 boards.
-> 
-> Unfortunately it didn't work, either with or without the shuffling on
-> the db820c - and I've not found the time to figure out why that is. I
-> hope to get back to this shortly (or that someone else will figure it
-> out and provide a tested-by)
 
-I gave this a test too on my db820c. Usually the board MSS will crash 
-after ~0.1 - 0.15 seconds after booting up, then during recovery the 
-board will crash/reboot somewhere at the end of q6v5_mss_load() (and 
-typically after successful q6v5_rmb_mba_wait() call.
 
-Occasionally (approximately 1 of 20) the MSS will not crash, presenting 
-PDS service to the userspace. Even in this state it doesn't seem to be 
-able to lock the gps location (but this might be related to the big UART 
-mezzanine sitting on top of the board).
-
-Unfortunately there seem to be no SLPI firmware for the db820c, so I can 
-not test slpi.
-
-A notice regarding the patchset itself. It looks like pil_q6v5_mss.c 
-driver misses mx and cx proxy power domains for the MSS_MSM8996 case.
-
+On 11/2/21 19:42, Fabio Estevam wrote:
+> On Tue, Nov 2, 2021 at 7:57 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
 > 
-> Regards,
-> Bjorn
-> 
->> ---
->>   .../dts/qcom/msm8996-sony-xperia-tone.dtsi    | 18 ++++--
->>   .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 18 +++---
->>   arch/arm64/boot/dts/qcom/msm8996.dtsi         | 63 ++++++++++---------
->>   3 files changed, 55 insertions(+), 44 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
->> index 507396c4d23b..4c26e66f0610 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
->> @@ -13,9 +13,10 @@
->>   #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->>   #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
->>   
->> -/delete-node/ &slpi_region;
->> -/delete-node/ &venus_region;
->> -/delete-node/ &zap_shader_region;
->> +/delete-node/ &adsp_mem;
->> +/delete-node/ &slpi_mem;
->> +/delete-node/ &venus_mem;
->> +/delete-node/ &gpu_mem;
->>   
->>   / {
->>   	qcom,msm-id = <246 0x30001>; /* MSM8996 V3.1 (Final) */
->> @@ -46,18 +47,23 @@ cont_splash_mem: memory@83401000 {
->>   			no-map;
->>   		};
->>   
->> -		zap_shader_region: gpu@90400000 {
->> +		adsp_mem: adsp@8ea00000 {
->> +			reg = <0x0 0x8ea00000 0x0 0x1a00000>;
->> +			no-map;
->> +		};
+>> +/ {
+>> +       model = "NXP IMXRT1050-evk board";
+>> +       compatible = "fsl,imxrt1050-evk", "fsl,imxrt1050";
 >> +
->> +		gpu_mem: gpu@90400000 {
->>   			compatible = "shared-dma-pool";
->>   			reg = <0x0 0x90400000 0x0 0x2000>;
->>   			no-map;
->>   		};
->>   
->> -		slpi_region: memory@90500000 {
->> +		slpi_mem: memory@90500000 {
->>   			reg = <0 0x90500000 0 0xa00000>;
->>   			no-map;
->>   		};
->>   
->> -		venus_region: memory@90f00000 {
->> +		venus_mem: memory@90f00000 {
->>   			reg = <0 0x90f00000 0 0x500000>;
->>   			no-map;
->>   		};
->> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
->> index d239b01b8505..a5e7bccadba2 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
->> @@ -66,32 +66,32 @@ memory@88800000 {
->>   
->>   		/* This platform has all PIL regions offset by 0x1400000 */
->>   		/delete-node/ mpss@88800000;
->> -		mpss_region: mpss@89c00000 {
->> +		mpss_mem: mpss@89c00000 {
->>   			reg = <0x0 0x89c00000 0x0 0x6200000>;
->>   			no-map;
->>   		};
->>   
->>   		/delete-node/ adsp@8ea00000;
->> -		adsp_region: adsp@8ea00000 {
->> +		adsp_mem: adsp@8fe00000 {
->>   			reg = <0x0 0x8fe00000 0x0 0x1b00000>;
->>   			no-map;
->>   		};
->>   
->> -		/delete-node/ slpi@90b00000;
->> -		slpi_region: slpi@91900000 {
->> +		/delete-node/ slpi@90500000;
->> +		slpi_mem: slpi@91900000 {
->>   			reg = <0x0 0x91900000 0x0 0xa00000>;
->>   			no-map;
->>   		};
->>   
->> -		/delete-node/ gpu@8f200000;
->> -		zap_shader_region: gpu@92300000 {
->> +		/delete-node/ gpu@90f00000;
->> +		gpu_mem: gpu@92300000 {
->>   			compatible = "shared-dma-pool";
->>   			reg = <0x0 0x92300000 0x0 0x2000>;
->>   			no-map;
->>   		};
->>   
->>   		/delete-node/ venus@91000000;
->> -		venus_region: venus@90400000 {
->> +		venus_mem: venus@92400000 {
->>   			reg = <0x0 0x92400000 0x0 0x500000>;
->>   			no-map;
->>   		};
->> @@ -107,7 +107,7 @@ ramoops@92900000 {
->>   			pmsg-size = <0x40000>;
->>   		};
->>   
->> -		/delete-node/ rmtfs@86700000;
->> +		/delete-node/ rmtfs;
->>   		rmtfs@f6c00000 {
->>   			compatible = "qcom,rmtfs-mem";
->>   			reg = <0 0xf6c00000 0 0x200000>;
->> @@ -118,7 +118,7 @@ rmtfs@f6c00000 {
->>   		};
->>   
->>   		/delete-node/ mba@91500000;
->> -		mba_region: mba@f6f00000 {
->> +		mba_mem: mba@f6f00000 {
->>   			reg = <0x0 0xf6f00000 0x0 0x100000>;
->>   			no-map;
->>   		};
->> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> index eb3ec5ff46eb..1495fff6ffc9 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
->> @@ -384,60 +384,65 @@ reserved-memory {
->>   		#size-cells = <2>;
->>   		ranges;
->>   
->> -		mba_region: mba@91500000 {
->> -			reg = <0x0 0x91500000 0x0 0x200000>;
->> +		hyp_mem: memory@85800000 {
->> +			reg = <0x0 0x85800000 0x0 0x600000>;
->>   			no-map;
->>   		};
->>   
->> -		slpi_region: slpi@90b00000 {
->> -			reg = <0x0 0x90b00000 0x0 0xa00000>;
->> +		xbl_mem: memory@85e00000 {
->> +			reg = <0x0 0x85e00000 0x0 0x200000>;
->>   			no-map;
->>   		};
->>   
->> -		venus_region: venus@90400000 {
->> -			reg = <0x0 0x90400000 0x0 0x700000>;
->> +		smem_mem: smem-mem@86000000 {
->> +			reg = <0x0 0x86000000 0x0 0x200000>;
->>   			no-map;
->>   		};
->>   
->> -		adsp_region: adsp@8ea00000 {
->> -			reg = <0x0 0x8ea00000 0x0 0x1a00000>;
->> +		tz_mem: memory@86200000 {
->> +			reg = <0x0 0x86200000 0x0 0x2600000>;
->>   			no-map;
->>   		};
->>   
->> -		mpss_region: mpss@88800000 {
->> -			reg = <0x0 0x88800000 0x0 0x6200000>;
->> +		rmtfs_mem: rmtfs {
->> +			compatible = "qcom,rmtfs-mem";
+>> +       chosen {
+>> +               bootargs = "root=/dev/ram";
+> 
+> No need to pass bootargs here.
+> 
+>> +               stdout-path = &lpuart1;
+>> +       };
 >> +
->> +			size = <0x0 0x200000>;
->> +			alloc-ranges = <0x0 0xa0000000 0x0 0x2000000>;
->>   			no-map;
+>> +       aliases {
+>> +               gpio0 = &gpio1;
+>> +               gpio1 = &gpio2;
+>> +               gpio2 = &gpio3;
+>> +               gpio3 = &gpio4;
+>> +               gpio4 = &gpio5;
+>> +               mmc0 = &usdhc1;
+>> +               serial0 = &lpuart1;
+>> +       };
 >> +
->> +			qcom,client-id = <1>;
->> +			qcom,vmid = <15>;
->>   		};
->>   
->> -		smem_mem: smem-mem@86000000 {
->> -			reg = <0x0 0x86000000 0x0 0x200000>;
->> +		mpss_mem: mpss@88800000 {
->> +			reg = <0x0 0x88800000 0x0 0x6200000>;
->>   			no-map;
->>   		};
->>   
->> -		memory@85800000 {
->> -			reg = <0x0 0x85800000 0x0 0x800000>;
->> +		adsp_mem: adsp@8ea00000 {
->> +			reg = <0x0 0x8ea00000 0x0 0x1b00000>;
->>   			no-map;
->>   		};
->>   
->> -		memory@86200000 {
->> -			reg = <0x0 0x86200000 0x0 0x2600000>;
->> +		slpi_mem: slpi@90500000 {
->> +			reg = <0x0 0x90500000 0x0 0xa00000>;
->>   			no-map;
->>   		};
->>   
->> -		rmtfs@86700000 {
->> -			compatible = "qcom,rmtfs-mem";
->> -
->> -			size = <0x0 0x200000>;
->> -			alloc-ranges = <0x0 0xa0000000 0x0 0x2000000>;
->> +		gpu_mem: gpu@90f00000 {
->> +			compatible = "shared-dma-pool";
->> +			reg = <0x0 0x90f00000 0x0 0x100000>;
->>   			no-map;
->> +		};
->>   
->> -			qcom,client-id = <1>;
->> -			qcom,vmid = <15>;
->> +		venus_mem: venus@91000000 {
->> +			reg = <0x0 0x91000000 0x0 0x500000>;
->> +			no-map;
->>   		};
->>   
->> -		zap_shader_region: gpu@8f200000 {
->> -			compatible = "shared-dma-pool";
->> -			reg = <0x0 0x90b00000 0x0 0xa00000>;
->> +		mba_mem: mba@91500000 {
->> +			reg = <0x0 0x91500000 0x0 0x200000>;
->>   			no-map;
->>   		};
->>   	};
->> @@ -1013,7 +1018,7 @@ opp-133000000 {
->>   			};
->>   
->>   			zap-shader {
->> -				memory-region = <&zap_shader_region>;
->> +				memory-region = <&gpu_mem>;
->>   			};
->>   		};
->>   
->> @@ -2001,7 +2006,7 @@ venus: video-codec@c00000 {
->>   				 <&venus_smmu 0x2c>,
->>   				 <&venus_smmu 0x2d>,
->>   				 <&venus_smmu 0x31>;
->> -			memory-region = <&venus_region>;
->> +			memory-region = <&venus_mem>;
->>   			status = "disabled";
->>   
->>   			video-decoder {
->> @@ -3008,7 +3013,7 @@ adsp_pil: remoteproc@9300000 {
->>   			clocks = <&xo_board>;
->>   			clock-names = "xo";
->>   
->> -			memory-region = <&adsp_region>;
->> +			memory-region = <&adsp_mem>;
->>   
->>   			qcom,smem-states = <&smp2p_adsp_out 0>;
->>   			qcom,smem-state-names = "stop";
->> -- 
->> 2.33.0
->>
->>
-
-
--- 
-With best wishes
-Dmitry
+>> +       memory@0 {
+> 
+> memory@80000000
+> 
+> Building with W=1 should give a dtc warning due to the unit address
+> and reg mismatch.
+Oh that makes sense.
+I guess I'm going to have to figure out how to get warnings to work as I 
+couldn't last time I tried.
+> 
+>> +               device_type = "memory";
+>> +               reg = <0x80000000 0x2000000>;
+>> +       };
+>> +
+> 
+> Unneeded blank line.
+>> +
+>> +&iomuxc {
+>> +       pinctrl-names = "default";
+>> +
+>> +       imxrt1050-evk {
+> 
+> No need for this imxrt1050-evk container.
+I was wondering if that was needed, u-boot has it, good to know.
+> 
+>> +               pinctrl_lpuart1: lpuart1grp {
+>> +                       fsl,pins = <
+>> +                               MXRT1050_IOMUXC_GPIO_AD_B0_12_LPUART1_TXD
+>> +                                       0xf1
+> 
+> Put it on a single line. It helps readability. Same applies globally.
+>> +&usdhc1 {
+>> +       pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
+>> +       pinctrl-0 = <&pinctrl_usdhc0>;
+>> +       pinctrl-1 = <&pinctrl_usdhc0>;
+>> +       pinctrl-2 = <&pinctrl_usdhc0>;
+>> +       pinctrl-3 = <&pinctrl_usdhc0>;
+>> +       status = "okay";
+>> +
+>> +       cd-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
+> 
+> Make 'status' to be the last property. Remove the blank line.
+> 
+>> +               edma1: dma-controller@400e8000 {
+>> +                       #dma-cells = <2>;
+>> +                       compatible = "fsl,imx7ulp-edma";
+>> +                       reg = <0x400e8000 0x4000>,
+>> +                               <0x400ec000 0x4000>;
+>> +                       dma-channels = <32>;
+>> +                       interrupts = <0>,
+>> +                               <1>,
+>> +                               <2>,
+>> +                               <3>,
+>> +                               <4>,
+>> +                               <5>,
+>> +                               <6>,
+>> +                               <7>,
+>> +                               <8>,
+>> +                               <9>,
+>> +                               <10>,
+>> +                               <11>,
+>> +                               <12>,
+>> +                               <13>,
+>> +                               <14>,
+>> +                               <15>,
+>> +                               <16>;
+> 
+> Please group more elements into the same line.
+> 
+> Putting one entry per line makes it extremely long.
+> 
+>> +               gpio5: gpio@400c0000 {
+>> +                       compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
+>> +                       reg = <0x400c0000 0x4000>;
+>> +                       interrupts = <88>,
+>> +                               <89>;
+> 
+> Put the interrupts into a single line.
+> 
+Ah all these make sense, will fix, sry about that.
