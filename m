@@ -2,75 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8CE4434A6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 18:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9924434AD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 18:40:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234482AbhKBRkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 13:40:04 -0400
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:43669 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbhKBRkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 13:40:04 -0400
-Received: by mail-oi1-f169.google.com with SMTP id o4so31031805oia.10;
-        Tue, 02 Nov 2021 10:37:29 -0700 (PDT)
+        id S232041AbhKBRmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 13:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230214AbhKBRme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 13:42:34 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF67C061714
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 10:39:59 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id p16so201019lfa.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 10:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=VyoOlx1f4bY9qJ0WEn854eIaH9saJD/psl6FGa9mBmM=;
+        b=WPTeV8ynE58AEckp6Zti21E4ZoNIbSKW+r8TqdZbNpCXDrbmSazZNjXQO+dnOW6HXP
+         jlvJ3j1MuKZrPPGwYw9rvGT1LtIUiqKdtmPZLB0cZR6EDt+ZE27/PIpzqPwgX8XVG58o
+         3vdKx8pu4QV9dNCF6vy5j8St7qCOalgYF8/tCU9Qyq2EpSKEe4ZxBlTxu/YU7Du9Kexn
+         Vv83/tvVe3w3p7aS/w/+FC1rTB2Hvy7iyTEShojhA1LTmoeTobPQgTP5M+5HR1IWNrNF
+         UJOi2XRWYfzXcB+q2H/6Fxg9n/awJB/3+iM8jAUMqjs9Zc+phoeVsde7IIEwt83uxSQW
+         917Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=I4wS/MeApg+acnjIPcmIJRjqzT3xZ9ohIefTe2eA5Ww=;
-        b=YL5pLW4vosf9iSz6oAAuJr+PHyni+O/SwLdZ0O+K1RYZzB8tgi19GZld3bhstBinLw
-         NZd4VkF/VnTKz9bGsUj5xUqTYxpA5Vj0rTK1+9XjS/vJd+RcLi7Qe/YMkYrwll8/mAHe
-         qGbvCUPC4oQAOIuOcxSZPqdW3IzxomzV08so89b5oMqyzmjNYFJnAP9KnqX2DaoQMwoG
-         kJGGHuuk4dFY1F27AMsjTawaaJpEXgRhUQD1Lr4htrrBF5AyyeILUcFzlQ9XK5FSqLQi
-         bVAn0DX3arFXnGq/EF0+YwUGzHeYxisnJ9/E803Ei1nVctlJL1nxhD08MgM8zgt9E9s/
-         0Nvg==
-X-Gm-Message-State: AOAM531LNUqGaQOCQVYvghUdZU1tSrC6py9UjLWgzRQwIBZSIAKqaVSL
-        LffjMlEiAMIdne+BFXg1SA==
-X-Google-Smtp-Source: ABdhPJwFt7oZf3aTr+9ZIpmdhnMpkMuBp6BB+Cfvx0lXcBpv3bbPDYT7FEjrIJFQ4+bQKQlHHGLxdQ==
-X-Received: by 2002:aca:d956:: with SMTP id q83mr6099213oig.165.1635874648601;
-        Tue, 02 Nov 2021 10:37:28 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m14sm4199586ooe.39.2021.11.02.10.37.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 10:37:28 -0700 (PDT)
-Received: (nullmailer pid 3130452 invoked by uid 1000);
-        Tue, 02 Nov 2021 17:37:27 -0000
-Date:   Tue, 2 Nov 2021 12:37:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Richard van Schagen <vschagen@icloud.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com,
-        herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org,
-        davem@davemloft.net, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: crypto: Add Mediatek EIP-93 crypto
- engine
-Message-ID: <YYF3V0FzIwhIuyNK@robh.at.kernel.org>
-References: <20211028015800.3449040-1-vschagen@icloud.com>
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:content-transfer-encoding;
+        bh=VyoOlx1f4bY9qJ0WEn854eIaH9saJD/psl6FGa9mBmM=;
+        b=Dgdv0ALIisp3mKLmdE8HJXqtGanZZ1s1VPCIOx40xpHf9zd/KCE41IxCeMRdXPY5bx
+         4pE6Oz/e/x/AH5uUwno9sjoYbjqvblSlOG05+BNXqkSKejXUuMKnc4NAQKnz+Jd+bwDT
+         rcMQEclnfZ2PCyaTadYtv3h1XszIOAzx0Krad8qqbsA5dVttvY0KpUjhVKPpByCKxLVZ
+         Y392ITzSVg4TrBJkREdyFFjbilOhNXycV46b96FaeBhxjnVeh23JtHwdoY07kY3xOxam
+         JbzgIRw1broZJsCXrbDjx7R6FurQOC6YY69P7N/b7UJo56H5Xwkm45EN9xUdg0vBzvYK
+         Saww==
+X-Gm-Message-State: AOAM530BqV457kq6RJzJ1fgSZatINnzkEtWdikmw9ClOKwhYkw4HXHMD
+        g6ss0KG48rCY3vwOZyCBXUepgLg+f9TRNyPiEVDlbGhZtG9dHwHx
+X-Google-Smtp-Source: ABdhPJyBXYMcir7nn1l20mKd0yoNb9SCITFli48J+8tr5XYmczVqMqfb9mAsQJqO84yWd+R9H4H/+udAvoOcYcC9gZk=
+X-Received: by 2002:a05:6512:3502:: with SMTP id h2mr35018886lfs.283.1635874797367;
+ Tue, 02 Nov 2021 10:39:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028015800.3449040-1-vschagen@icloud.com>
+Sender: smithwilson780@gmail.com
+Received: by 2002:a2e:5811:0:0:0:0:0 with HTTP; Tue, 2 Nov 2021 10:39:56 -0700 (PDT)
+From:   DINA MCKENNA <dinamckennahowley@gmail.com>
+Date:   Tue, 2 Nov 2021 17:39:56 +0000
+X-Google-Sender-Auth: POIyKsFwb6Eouin8O-MmGmNNro8
+Message-ID: <CADh0mystyn-wL4yf9eC7Y03ff+=N0JnunBxRVO5wKn33s94U8w@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 09:58:00 +0800, Richard van Schagen wrote:
-> Add bindings for the Mediatek EIP-93 crypto engine.
-> 
-> Signed-off-by: Richard van Schagen <vschagen@icloud.com>
-> ---
-> Changes since V3:
->  - Corrected typo
->  - Removed "interrupt-parent"
-> 
-> Changes since V2:
->  - Adding 2 missing "static" which got lost in my editing (sorry)
-> 
-> Changes since V1
->  - Add missing #include to examples
-> 
->  .../bindings/crypto/mediatek,mtk-eip93.yaml   | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/mediatek,mtk-eip93.yaml
-> 
+Hello my dear ,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+ I sent this mail praying it will get to you in a good condition of
+health, since I myself are in a very critical health condition in
+which I sleep every night without knowing if I may be alive to see the
+next day. I bring peace and love to you. It is by the grace of God, I
+had no choice than to do what is lawful and right in the sight of God
+for eternal life and in the sight of man, for witness of God=E2=80=99s merc=
+y
+and glory upon my life. I am Mrs. Dina Mckenna Howley., a widow. I am
+suffering from a long time brain tumor, It has defiled all forms of
+medical treatment, and right now I have about a few months to leave,
+according to medical experts. The situation has gotten complicated
+recently with my inability to hear proper, am communicating with you
+with the help of the chief nurse herein the hospital, from all
+indication my conditions is really deteriorating and it is quite
+obvious that, according to my doctors they have advised me that I may
+not live too long, Because this illness has gotten to a very bad
+stage. I plead that you will not expose or betray this trust and
+confidence that I am about to repose on you for the mutual benefit of
+the orphans and the less privilege. I have some funds I inherited from
+my late husband, the sum of ($ 11,000,000.00, Eleven Million Dollars).
+Having known my condition, I decided to donate this fund to you
+believing that you will utilize it the way i am going to instruct
+herein. I need you to assist me and reclaim this money and use it for
+Charity works therein your country for orphanages and gives justice
+and help to the poor, needy and widows says The Lord." Jeremiah
+22:15-16.=E2=80=9C and also build schools for less privilege that will be
+named after my late husband if possible and to promote the word of God
+and the effort that the house of God is maintained. I do not want a
+situation where this money will be used in an ungodly manner. That's
+why I'm taking this decision. I'm not afraid of death, so I know where
+I'm going. I accept this decision because I do not have any child who
+will inherit this money after I die. Please I want your sincerely and
+urgent answer to know if you will be able to execute this project for
+the glory of God, and I will give you more information on how the fund
+will be transferred to your bank account. May the grace, peace, love
+and the truth in the Word of God be with you and all those that you
+love and care for.
+
+I'm waiting for your immediate reply..
+
+May God Bless you,
+Mrs. Dina Mckenna..
