@@ -2,203 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57633443A16
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 00:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8FD9443A1B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 00:55:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230457AbhKBX5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 19:57:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbhKBX5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 19:57:11 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46219C061714;
-        Tue,  2 Nov 2021 16:54:36 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id ay20so689368qkb.7;
-        Tue, 02 Nov 2021 16:54:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LUJiTUBUz+nDDvCf1YrbjU2s+1FnYiIkeo+EME3kWwE=;
-        b=BNApYS/cqy5Q8pdJ6jerjEhOsDIbqWdYf8uPLunlFYkDoZhIBYDV7KLx9u1GGpwkbx
-         VDeMVUv2ZWvR9TRrck38B+vOyhfL9gTBUy629STDqNUMp1uGHHayoc7tZXW8D6YU6To9
-         kUvOO+J/uKtfxlmdUxI+rWQFwuy7C+ika/nna4YYGHKvLgLcTPbT6GxAQLPmCbwaoUg1
-         6fyU5H9l69w0bBtEA1OhYyxBIrSSOoXKjB1V27h1u8Cykxgs0k6m2y8CLpIlhK1dFLW4
-         tSNxarNGJIzfTiMXyL/IoiAOFpa+k+W9VH7iCSucuZNt0iM7bA1bkFYZdkr7zuLJGx5t
-         FSbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LUJiTUBUz+nDDvCf1YrbjU2s+1FnYiIkeo+EME3kWwE=;
-        b=sWQ9curxuOlQcjmc4DU6GSxlQ+FlatpwLvk+kDmrC2A49c+HhVg4SQd2x4qEr7Oqu2
-         iwqztHwN2Spa0BUNbA7ptmo5BJQg+kkmwG7pSJzaKvC+m4PC/fnFjkUZLL/9IM3MR8Fx
-         K9wt3szx45E1ko6ysxGmpMv/OGImPMDxp/30NrRj/yuZM2SK03MPOz/5hwrnBdAYeCXl
-         RFaKgo0CvsgK9sM/7QdrM82EhlEQ1p+ADmiub7SnnUu5tI9+KApJ4WU4WR4hV/vaKmeI
-         sl+G5LyOmAI3Bnad/KRFG1hJ9Wq7y/7HQEcvRkjmreA60NxlLq4SzstpbqRbeSFQIn9g
-         weqQ==
-X-Gm-Message-State: AOAM531ifXzUvh1XvqBwYUz4M0JYtxlPYwrRiMiIt41iFk8ILnsBW2/R
-        g59qxz5pbgYMbcMQo7tbNFk=
-X-Google-Smtp-Source: ABdhPJzxro4hWmMP7y5iTOVWvZMs+GGc/IGEN1fn/TBo+Ziw7KfVlQyzMaZ6cwWeXs/C99ERXXqZjA==
-X-Received: by 2002:a05:620a:4150:: with SMTP id k16mr16278131qko.186.1635897275437;
-        Tue, 02 Nov 2021 16:54:35 -0700 (PDT)
-Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id w1sm382768qtj.28.2021.11.02.16.54.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Nov 2021 16:54:35 -0700 (PDT)
-Message-ID: <e2f81ad7-9c58-3e39-fbb0-5ef3132bba7d@gmail.com>
-Date:   Tue, 2 Nov 2021 19:54:33 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH v2 12/13] ARM: dts: imx: add i.MXRT1050-EVK support
-Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
+        id S231372AbhKBX5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 19:57:36 -0400
+Received: from smtpcmd13146.aruba.it ([62.149.156.146]:39806 "EHLO
+        smtpcmd13146.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231348AbhKBX5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 19:57:36 -0400
+Received: from ubuntu.localdomain ([146.241.216.221])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id i3cHmA3UmueW5i3cHmi7mG; Wed, 03 Nov 2021 00:54:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1635897298; bh=lxKa0R/N2V9lnw8D/qjyjBrgkz3JIBzj+PLVCUDY1VI=;
+        h=From:To:Subject:Date:MIME-Version;
+        b=IMy/Bd/FiTnSd4HDQScVFOwBJNWWBfrkfl/r7AdI7t/0V+VHJZmnk+IEI345dCC+6
+         6icrwwN9DxU3+ge8UHxqnHQYbkr4LFYTHpfCXks4+eZo6Av6Arfl/WKcebFtbKQ+tq
+         TzDMm5RzwLfmz6UkKxsRrrUm2Z/iGF3YNRwKnfypgVinwTJnDOfaL4m72+lxXJUbY/
+         +aYx2u2fPbdUwV13wcS1x/Us945dyFInRP+/pEYGZLp+np5G8I5jv1VVLPMDAlHEaa
+         saPl6QTZk44BiL+owElnw491dmI0dsCf5B9WuT5cLHwquRMV9+vwMpcYHAuprP+z9H
+         3S1eXTH0M/6xg==
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Rob Herring <robh+dt@kernel.org>, Daniel Mack <daniel@zonque.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Robert Jarzmik <robert.jarzmik@free.fr>,
+        Russell King <linux@armlinux.org.uk>,
         Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-serial@vger.kernel.org
-References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
- <20211102225701.98944-13-Mr.Bossman075@gmail.com>
- <CAOMZO5DV-6dKnaGMgARhtv7mq-nOr9jO-XUWAJDmJWwNxc+B1g@mail.gmail.com>
-From:   Jesse Taube <mr.bossman075@gmail.com>
-In-Reply-To: <CAOMZO5DV-6dKnaGMgARhtv7mq-nOr9jO-XUWAJDmJWwNxc+B1g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/7] Fix wrong static ip autoconf in some dts and defconfig
+Date:   Wed,  3 Nov 2021 00:54:49 +0100
+Message-Id: <20211102235456.710617-1-giulio.benetti@benettiengineering.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4wfJoqa7/5X3zvyqu+leAL+qFrlfPpI1qsGjjEgSgJI7xGzotWNX4760UB55nZwU32pdOGecuXpCNjNVua2dhdvxFcQ3LuYmAjNWZCPWTNayyGKZhX12+t
+ G0XcBmyTKtSaBgoAZ/k7IyvKACJNqLFSORbnVgPIUJvIjLCR+Pbmo7Eir+0WYVMaYyfDQlWc0EabIk9LKKBq+Yes6vvIG7lY3C4NJZBuZNA25s5QMT3MRNyC
+ ec+GZzesrxjQBERJ7RyeSf8QkzTE7tDVtm6xihZeI8KOXM5j1utd+i6SvP56e2/JWxTSYX2GXsAlftAsWLnHtOFehu5AiwiFQxYS8lT2PfqeJE2tTKLmIrct
+ 6ZQ3yBJe5INbYFYeWq4ySCwCCl8RZ7Qbg5Jf51zi0NXqEdy4M8pm5ImSnvDcuOnf3mn/iDG2Nuy4OPEIU4ByYr9UfRX/YEnH3ufe84yxQtp/p/OOtTJV0MLf
+ LArW8jqmpmxnU3SUUFAWzMQvY6vzkyK6Cn8OJpKxBDk4qaFt8U9icaPz5R3XhS/NslNlxGqvoWTOpedyfKc2Zp7NSHu3THdvqv28nB4y3TQcWFgeIvLMslu/
+ RaTiUXPJI2yg5Gd3/7s/ffhWVQTia38iVoVZ9T7d3119js/rivwpy3oeWeUOplAPZXnqtx1zgvSMNs2HmukRyXCvPVlNkTs+ekAlmrV8cgC6fA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+While trying to have a working nfsroot through RNDIS on sunxi I've found
+that in bootargs <autoconf> must be set to 'off' to use a static ip setup,
+but I've also found that the following boards have it set to 'on' that is
+not the <autoconf> setting for static ip as stated here:
+https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
 
+And most of all on sunxi RNDIS it doesn't work as static ip nfsroot.
 
-On 11/2/21 19:42, Fabio Estevam wrote:
-> On Tue, Nov 2, 2021 at 7:57 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
-> 
->> +/ {
->> +       model = "NXP IMXRT1050-evk board";
->> +       compatible = "fsl,imxrt1050-evk", "fsl,imxrt1050";
->> +
->> +       chosen {
->> +               bootargs = "root=/dev/ram";
-> 
-> No need to pass bootargs here.
-> 
->> +               stdout-path = &lpuart1;
->> +       };
->> +
->> +       aliases {
->> +               gpio0 = &gpio1;
->> +               gpio1 = &gpio2;
->> +               gpio2 = &gpio3;
->> +               gpio3 = &gpio4;
->> +               gpio4 = &gpio5;
->> +               mmc0 = &usdhc1;
->> +               serial0 = &lpuart1;
->> +       };
->> +
->> +       memory@0 {
-> 
-> memory@80000000
-> 
-> Building with W=1 should give a dtc warning due to the unit address
-> and reg mismatch.
-Oh that makes sense.
-I guess I'm going to have to figure out how to get warnings to work as I 
-couldn't last time I tried.
-> 
->> +               device_type = "memory";
->> +               reg = <0x80000000 0x2000000>;
->> +       };
->> +
-> 
-> Unneeded blank line.
->> +
->> +&iomuxc {
->> +       pinctrl-names = "default";
->> +
->> +       imxrt1050-evk {
-> 
-> No need for this imxrt1050-evk container.
-I was wondering if that was needed, u-boot has it, good to know.
-> 
->> +               pinctrl_lpuart1: lpuart1grp {
->> +                       fsl,pins = <
->> +                               MXRT1050_IOMUXC_GPIO_AD_B0_12_LPUART1_TXD
->> +                                       0xf1
-> 
-> Put it on a single line. It helps readability. Same applies globally.
->> +&usdhc1 {
->> +       pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
->> +       pinctrl-0 = <&pinctrl_usdhc0>;
->> +       pinctrl-1 = <&pinctrl_usdhc0>;
->> +       pinctrl-2 = <&pinctrl_usdhc0>;
->> +       pinctrl-3 = <&pinctrl_usdhc0>;
->> +       status = "okay";
->> +
->> +       cd-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
-> 
-> Make 'status' to be the last property. Remove the blank line.
-> 
->> +               edma1: dma-controller@400e8000 {
->> +                       #dma-cells = <2>;
->> +                       compatible = "fsl,imx7ulp-edma";
->> +                       reg = <0x400e8000 0x4000>,
->> +                               <0x400ec000 0x4000>;
->> +                       dma-channels = <32>;
->> +                       interrupts = <0>,
->> +                               <1>,
->> +                               <2>,
->> +                               <3>,
->> +                               <4>,
->> +                               <5>,
->> +                               <6>,
->> +                               <7>,
->> +                               <8>,
->> +                               <9>,
->> +                               <10>,
->> +                               <11>,
->> +                               <12>,
->> +                               <13>,
->> +                               <14>,
->> +                               <15>,
->> +                               <16>;
-> 
-> Please group more elements into the same line.
-> 
-> Putting one entry per line makes it extremely long.
-> 
->> +               gpio5: gpio@400c0000 {
->> +                       compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
->> +                       reg = <0x400c0000 0x4000>;
->> +                       interrupts = <88>,
->> +                               <89>;
-> 
-> Put the interrupts into a single line.
-> 
-Ah all these make sense, will fix, sry about that.
+Unfortunately I don't have such boards to give a build and a test, so if
+there is someone who could give a try it would be great.
+
+Best regards
+---
+Giulio Benetti
+Benetti Engineering sas
+
+Giulio Benetti (7):
+  ARM: dts: mmp2-brownstone: fix wrong static ip autoconf
+  ARM: dts: pxa168-aspenite: fix wrong static ip autoconf
+  ARM: dts: pxa910-dkb: fix wrong static ip autoconf
+  ARM: mmp2: update mmp2_defconfig to fix wrong static ip autoconf
+  ARM: pxa168: update pxa168_defconfig to fix wrong static ip autoconf
+  ARM: pxa3xx: update pxa3xx_defconfig to fix wrong static ip autoconf
+  ARM: pxa910: update pxa910_defconfig to fix wrong static ip autoconf
+
+ arch/arm/boot/dts/mmp2-brownstone.dts | 2 +-
+ arch/arm/boot/dts/pxa168-aspenite.dts | 2 +-
+ arch/arm/boot/dts/pxa910-dkb.dts      | 2 +-
+ arch/arm/configs/mmp2_defconfig       | 2 +-
+ arch/arm/configs/pxa168_defconfig     | 2 +-
+ arch/arm/configs/pxa3xx_defconfig     | 2 +-
+ arch/arm/configs/pxa910_defconfig     | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
+
+-- 
+2.25.1
+
