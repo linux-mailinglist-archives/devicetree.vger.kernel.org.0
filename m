@@ -2,256 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE70F44392C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED67F44393C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 00:01:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231696AbhKBXBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 19:01:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232166AbhKBXA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 19:00:29 -0400
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E86DC079785;
-        Tue,  2 Nov 2021 15:57:27 -0700 (PDT)
-Received: by mail-qv1-xf30.google.com with SMTP id bu11so645067qvb.0;
-        Tue, 02 Nov 2021 15:57:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=faYsQkoH+za1MQCwAYJ7NuwAaVZGTQV023m/UbZTbUo=;
-        b=M5dKuVvuuSOnbIGPW2WU4MB2VK288BRNL2x2c0n9AmDbt8z5muPFfhuXIVy6zbrkZ5
-         wkK2cwfU/Dv0d3Pvtrwe3JhFxJb2vLpnGVvJa3DU2aKRDDVvfl6vg72egHl92wgXPqM+
-         /Ts/Nfat3Z6ENW3F3WEeDMuegD71w/92vlAZYUuxetPbYRYDgxOiSxWQs2bKqhuDnp7f
-         WNZb4NSKFzFe8Rbf/RKmIhq4jkvOGaGg+OEtFBGuAaTevIucI+BXELir7fETNbB5LaoZ
-         SiMPLnA4cnncd4mbGhCHqTEu88AVehICt+4MYAB7dkJnh1mrgev0LuDXatgrE0Fo7i/m
-         oXPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=faYsQkoH+za1MQCwAYJ7NuwAaVZGTQV023m/UbZTbUo=;
-        b=rT/Jsvc2gFwWA9r+upaEd5gxAPy4bPe36PoDGaIW76K3LxxZyJ9qhmXFTbuRk0cYv0
-         wZF8Mqklc2D+Mgz6WrPEDKNjyefE6emSIVGbqYR3ec7suRGzUUSWxBFremmOqVnKb2d9
-         o7MJepgh/b5K5wQQTPDyl3pz5cx74c09Xgkgd3SqnVHiC1nl5Qguh1p8MYbGz1pvdblq
-         S1J5uxsV1XkhjNADoY+/KKX1oIvL0uWxId8AYkzGcC482eES7SGfOl7mDKAIpHlMmv2N
-         /pgDso8FQ9y+WPoFB1qxuCo8KirrIDe6jnAUMTLlcU3Wi6ltF5R9oWgcd084yzurPlq7
-         gWyw==
-X-Gm-Message-State: AOAM5319F6D8Xb6ZnN2LCPgvaQm9MdRShdZK6vouYL6HZVLFR++PlpnK
-        SJjBuufG0iDzYtxlTS9E0Jw=
-X-Google-Smtp-Source: ABdhPJwpGlv2PFrNgmHP40Uv4ohZC5QvSgu5a75wm5y6HdaTYKB2U49QyDGCNyfI6WDN2yUEzdJ0sw==
-X-Received: by 2002:a05:6214:2428:: with SMTP id gy8mr7666266qvb.18.1635893846378;
-        Tue, 02 Nov 2021 15:57:26 -0700 (PDT)
-Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id v19sm351222qtk.6.2021.11.02.15.57.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 15:57:25 -0700 (PDT)
-From:   Jesse Taube <mr.bossman075@gmail.com>
-X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
-To:     linux-imx@nxp.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Subject: [PATCH v2 13/13] ARM: imxrt_defconfig: add i.MXRT family defconfig
-Date:   Tue,  2 Nov 2021 18:57:01 -0400
-Message-Id: <20211102225701.98944-14-Mr.Bossman075@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
-References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+        id S231218AbhKBXDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 19:03:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42258 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231237AbhKBXDu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 19:03:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7BDD9610FC;
+        Tue,  2 Nov 2021 23:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635894075;
+        bh=7za+8VmhH4SxMCrBIhExSwc/wQW3n+Vvx3HN8L5btUs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qQbivG04eHT15U/V2m2PwaBBPFbE5pVw7WjSuXzqoMurMg2XPb6lgmin/IW7TEMsF
+         piloRynOMg45zxgMmUVwKr6HBfB8OoVgMiKxtWbiCXxlWu5zSyggyK9OYIPgJC/U5i
+         cqUgwErSBcNc+57oqIrzktTKjuA7Qz32UrWCpfgl5IxOHejMdwJD+U/x/S9ArCBQ/y
+         SVp3XProKhSZF//j1UGCVzvPzyWJiC+eOqCXEZ1aWYFJU8jKRc3l55R8ZS+5FSVlHh
+         HeszrbniuIOzqB9VFhNzyVG8ZWSe1Kqos54ryk6MM/yCRDfOeM/jRRQ/nKldCQOuIF
+         HawWfv0R39FqQ==
+Received: by mail-ed1-f53.google.com with SMTP id w1so2706720edd.10;
+        Tue, 02 Nov 2021 16:01:15 -0700 (PDT)
+X-Gm-Message-State: AOAM532yv8RmUR4Cos0QegikI/+l3wjfZLOpHAmpRgTrmiGWL2TfSLt/
+        46zFe5DpDZAoXtBqabJouo9boXUF5LYr2ptw3g==
+X-Google-Smtp-Source: ABdhPJyxcbs6CeDuocmUunjumDamTIqOyunUODX58iyrgJqIgEl0epR4GlZ5r5q83N+6egY+pDHL/wbGbLb5XYffH4A=
+X-Received: by 2002:a50:f18c:: with SMTP id x12mr36623804edl.357.1635894073762;
+ Tue, 02 Nov 2021 16:01:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211026155911.17651-1-jason-jh.lin@mediatek.com> <20211026155911.17651-7-jason-jh.lin@mediatek.com>
+In-Reply-To: <20211026155911.17651-7-jason-jh.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 3 Nov 2021 07:01:02 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9TQei1sP4D4eFsS+dPvisonaNtUu-JEmmhff53y1pwkw@mail.gmail.com>
+Message-ID: <CAAOTY_9TQei1sP4D4eFsS+dPvisonaNtUu-JEmmhff53y1pwkw@mail.gmail.com>
+Subject: Re: [PATCH v12 06/16] dt-bindings: display: mediatek: add mt8195 SoC
+ binding for vdosys0
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fei Shao <fshao@chromium.org>,
+        Moudy Ho <moudy.ho@mediatek.com>, roy-cw.yeh@mediatek.com,
+        Fabien Parent <fparent@baylibre.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
+        DTML <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+Hi, Jason:
 
-Add generic i.MXRT family defconfig.
+jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=88=
+26=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8811:59=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Add mt8195 SoC binding to AAL, CCORR, COLOR, DITHER, GAMMA, MERGE,
+> MUTEX, OVL and RDMA yaml schema for vdosys0.
 
-Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
----
-V1->V2:
-* Nothing done
----
- arch/arm/configs/imxrt_defconfig | 157 +++++++++++++++++++++++++++++++
- 1 file changed, 157 insertions(+)
- create mode 100644 arch/arm/configs/imxrt_defconfig
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-diff --git a/arch/arm/configs/imxrt_defconfig b/arch/arm/configs/imxrt_defconfig
-new file mode 100644
-index 000000000000..d673745a5462
---- /dev/null
-+++ b/arch/arm/configs/imxrt_defconfig
-@@ -0,0 +1,157 @@
-+# CONFIG_LOCALVERSION_AUTO is not set
-+CONFIG_SYSVIPC=y
-+CONFIG_USELIB=y
-+CONFIG_NO_HZ=y
-+CONFIG_HIGH_RES_TIMERS=y
-+CONFIG_BPF_SYSCALL=y
-+CONFIG_PREEMPT_VOLUNTARY=y
-+CONFIG_BSD_PROCESS_ACCT=y
-+CONFIG_BSD_PROCESS_ACCT_V3=y
-+CONFIG_PSI=y
-+CONFIG_IKCONFIG=y
-+CONFIG_IKCONFIG_PROC=y
-+CONFIG_LOG_BUF_SHIFT=18
-+CONFIG_MEMCG=y
-+CONFIG_BLK_CGROUP=y
-+CONFIG_CFS_BANDWIDTH=y
-+CONFIG_CGROUP_PIDS=y
-+CONFIG_CGROUP_RDMA=y
-+CONFIG_CGROUP_FREEZER=y
-+CONFIG_CGROUP_DEVICE=y
-+CONFIG_CGROUP_CPUACCT=y
-+CONFIG_CGROUP_PERF=y
-+CONFIG_CGROUP_BPF=y
-+CONFIG_NAMESPACES=y
-+CONFIG_USER_NS=y
-+CONFIG_CHECKPOINT_RESTORE=y
-+CONFIG_SCHED_AUTOGROUP=y
-+CONFIG_RELAY=y
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_EXPERT=y
-+CONFIG_SGETMASK_SYSCALL=y
-+# CONFIG_FUTEX is not set
-+CONFIG_KALLSYMS_ALL=y
-+CONFIG_PC104=y
-+# CONFIG_SLUB_DEBUG is not set
-+# CONFIG_COMPAT_BRK is not set
-+CONFIG_SLAB_FREELIST_RANDOM=y
-+CONFIG_SLAB_FREELIST_HARDENED=y
-+CONFIG_PROFILING=y
-+# CONFIG_MMU is not set
-+CONFIG_ARCH_MXC=y
-+CONFIG_SOC_IMXRT=y
-+# CONFIG_ARM_DMA_MEM_BUFFERABLE is not set
-+CONFIG_SET_MEM_PARAM=y
-+CONFIG_DRAM_BASE=0x80000000
-+CONFIG_DRAM_SIZE=0x02000000
-+CONFIG_HZ_250=y
-+CONFIG_FORCE_MAX_ZONEORDER=14
-+CONFIG_PARAVIRT=y
-+# CONFIG_ATAGS is not set
-+CONFIG_CMDLINE="console=ttyS0 root=/dev/mmcblk0p2 rw earlycon rootwait"
-+CONFIG_BLK_DEV_BSGLIB=y
-+CONFIG_BLK_DEV_INTEGRITY=y
-+CONFIG_BLK_DEV_ZONED=y
-+CONFIG_BLK_DEV_THROTTLING=y
-+CONFIG_BLK_WBT=y
-+CONFIG_BLK_SED_OPAL=y
-+CONFIG_PARTITION_ADVANCED=y
-+CONFIG_BSD_DISKLABEL=y
-+CONFIG_MINIX_SUBPARTITION=y
-+CONFIG_SOLARIS_X86_PARTITION=y
-+CONFIG_UNIXWARE_DISKLABEL=y
-+CONFIG_LDM_PARTITION=y
-+CONFIG_CMDLINE_PARTITION=y
-+# CONFIG_MQ_IOSCHED_KYBER is not set
-+CONFIG_BINFMT_FLAT=y
-+CONFIG_CLEANCACHE=y
-+CONFIG_ZPOOL=y
-+CONFIG_ZBUD=y
-+CONFIG_Z3FOLD=y
-+CONFIG_UEVENT_HELPER=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+# CONFIG_STANDALONE is not set
-+CONFIG_FW_LOADER_USER_HELPER=y
-+CONFIG_FW_LOADER_USER_HELPER_FALLBACK=y
-+CONFIG_IMX_WEIM=y
-+CONFIG_BLK_DEV_LOOP=y
-+CONFIG_BLK_DEV_RAM=y
-+CONFIG_BLK_DEV_RAM_COUNT=1
-+CONFIG_BLK_DEV_RAM_SIZE=65536
-+# CONFIG_INPUT_KEYBOARD is not set
-+# CONFIG_INPUT_MOUSE is not set
-+# CONFIG_SERIO is not set
-+CONFIG_LEGACY_PTY_COUNT=2
-+CONFIG_SERIAL_FSL_LPUART=y
-+CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
-+CONFIG_SERIAL_NONSTANDARD=y
-+CONFIG_SERIAL_DEV_BUS=y
-+CONFIG_TTY_PRINTK=y
-+CONFIG_TTY_PRINTK_LEVEL=7
-+CONFIG_PINCTRL_IMXRT1050=y
-+CONFIG_GPIO_SYSFS=y
-+CONFIG_GPIO_MXC=y
-+# CONFIG_HWMON is not set
-+# CONFIG_HID is not set
-+# CONFIG_USB_SUPPORT is not set
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_MMC_SDHCI_PLTFM=y
-+CONFIG_MMC_SDHCI_ESDHC_IMX=y
-+CONFIG_DMADEVICES=y
-+CONFIG_FSL_EDMA=y
-+# CONFIG_MX3_IPU is not set
-+# CONFIG_VIRTIO_MENU is not set
-+# CONFIG_VHOST_MENU is not set
-+CONFIG_MEMORY=y
-+CONFIG_EXT2_FS=y
-+CONFIG_EXT2_FS_XATTR=y
-+CONFIG_EXT2_FS_POSIX_ACL=y
-+CONFIG_EXT2_FS_SECURITY=y
-+CONFIG_EXT3_FS=y
-+CONFIG_EXT3_FS_POSIX_ACL=y
-+CONFIG_EXT3_FS_SECURITY=y
-+# CONFIG_FILE_LOCKING is not set
-+# CONFIG_DNOTIFY is not set
-+CONFIG_QUOTA=y
-+# CONFIG_PRINT_QUOTA_WARNING is not set
-+CONFIG_AUTOFS4_FS=y
-+CONFIG_VFAT_FS=y
-+CONFIG_FAT_DEFAULT_UTF8=y
-+CONFIG_EXFAT_FS=y
-+CONFIG_CONFIGFS_FS=y
-+# CONFIG_MISC_FILESYSTEMS is not set
-+CONFIG_NLS_DEFAULT="cp437"
-+CONFIG_NLS_CODEPAGE_437=y
-+CONFIG_NLS_ASCII=y
-+CONFIG_NLS_ISO8859_1=y
-+CONFIG_NLS_UTF8=y
-+CONFIG_LSM="yama,loadpin,integrity,apparmor"
-+# CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
-+# CONFIG_CRYPTO_HW is not set
-+CONFIG_PRINTK_TIME=y
-+CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
-+CONFIG_CONSOLE_LOGLEVEL_QUIET=15
-+CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
-+CONFIG_DYNAMIC_DEBUG=y
-+# CONFIG_DEBUG_BUGVERBOSE is not set
-+CONFIG_DEBUG_INFO=y
-+CONFIG_DEBUG_INFO_DWARF4=y
-+CONFIG_GDB_SCRIPTS=y
-+CONFIG_MAGIC_SYSRQ=y
-+CONFIG_MAGIC_SYSRQ_DEFAULT_ENABLE=0x01b6
-+CONFIG_DEBUG_FS=y
-+CONFIG_PAGE_POISONING=y
-+CONFIG_SCHED_STACK_END_CHECK=y
-+CONFIG_SOFTLOCKUP_DETECTOR=y
-+CONFIG_DEFAULT_HUNG_TASK_TIMEOUT=1
-+# CONFIG_SCHED_DEBUG is not set
-+CONFIG_SCHEDSTATS=y
-+CONFIG_STACKTRACE=y
-+CONFIG_DEBUG_USER=y
-+CONFIG_DEBUG_LL=y
-+CONFIG_DEBUG_UNCOMPRESS=y
-+CONFIG_EARLY_PRINTK=y
-+# CONFIG_RUNTIME_TESTING_MENU is not set
-+CONFIG_MEMTEST=y
--- 
-2.33.1
-
+>
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml   | 1 +
+>  .../devicetree/bindings/display/mediatek/mediatek,ccorr.yaml | 5 +++++
+>  .../devicetree/bindings/display/mediatek/mediatek,color.yaml | 1 +
+>  .../bindings/display/mediatek/mediatek,dither.yaml           | 1 +
+>  .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml | 1 +
+>  .../devicetree/bindings/display/mediatek/mediatek,merge.yaml | 2 ++
+>  .../devicetree/bindings/display/mediatek/mediatek,mutex.yaml | 5 +++--
+>  .../devicetree/bindings/display/mediatek/mediatek,ovl.yaml   | 5 +++++
+>  .../devicetree/bindings/display/mediatek/mediatek,rdma.yaml  | 2 ++
+>  9 files changed, 21 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.=
+yaml
+> index 92a350ab9722..311bbf05a967 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yam=
+l
+> @@ -28,6 +28,7 @@ properties:
+>                - mediatek,mt2712-disp-aal
+>                - mediatek,mt8183-disp-aal
+>                - mediatek,mt8192-disp-aal
+> +              - mediatek,mt8195-disp-aal
+>            - enum:
+>                - mediatek,mt8173-disp-aal
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ccorr.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,cc=
+orr.yaml
+> index 7840e12d4caf..60752ce45d49 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.y=
+aml
+> @@ -25,6 +25,11 @@ properties:
+>            - const: mediatek,mt8183-disp-ccorr
+>        - items:
+>            - const: mediatek,mt8192-disp-ccorr
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8195-disp-ccorr
+> +          - enum:
+> +              - mediatek,mt8192-disp-ccorr
+>
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+color.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,co=
+lor.yaml
+> index 7a249ba8584c..f6636869909c 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,color.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,color.y=
+aml
+> @@ -38,6 +38,7 @@ properties:
+>            - enum:
+>                - mediatek,mt8183-disp-color
+>                - mediatek,mt8192-disp-color
+> +              - mediatek,mt8195-disp-color
+>            - enum:
+>                - mediatek,mt8173-disp-color
+>    reg:
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dither.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,d=
+ither.yaml
+> index 316374315962..d4fa75bb19a3 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.=
+yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dither.=
+yaml
+> @@ -27,6 +27,7 @@ properties:
+>        - items:
+>            - enum:
+>                - mediatek,mt8192-disp-dither
+> +              - mediatek,mt8195-disp-dither
+>            - enum:
+>                - mediatek,mt8183-disp-dither
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ga=
+mma.yaml
+> index 1c53ce20a71e..8ce612b016ab 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.y=
+aml
+> @@ -28,6 +28,7 @@ properties:
+>        - items:
+>            - enum:
+>                - mediatek,mt8192-disp-gamma
+> +              - mediatek,mt8195-disp-gamma
+>            - enum:
+>                - mediatek,mt8183-disp-gamma
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
+rge.yaml
+> index 614721bdbf73..28be8ffeb429 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> @@ -23,6 +23,8 @@ properties:
+>      oneOf:
+>        - items:
+>            - const: mediatek,mt8173-disp-merge
+> +      - items:
+> +          - const: mediatek,mt8195-disp-merge
+>
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+mutex.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mu=
+tex.yaml
+> index 90f11e12a55e..6eca525eced0 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.y=
+aml
+> @@ -4,7 +4,7 @@
+>  $id: http://devicetree.org/schemas/display/mediatek/mediatek,mutex.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+> -title: Mediatek display mutex
+> +title: Mediatek mutex
+>
+>  maintainers:
+>    - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> @@ -36,7 +36,8 @@ properties:
+>            - const: mediatek,mt8183-disp-mutex
+>        - items:
+>            - const: mediatek,mt8192-disp-mutex
+> -
+> +      - items:
+> +          - const: mediatek,mt8195-disp-mutex
+>    reg:
+>      maxItems: 1
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+ovl.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.=
+yaml
+> index 50552428150f..a6dbbd65166e 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yam=
+l
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yam=
+l
+> @@ -35,6 +35,11 @@ properties:
+>                - mediatek,mt2712-disp-ovl
+>            - enum:
+>                - mediatek,mt2701-disp-ovl
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8195-disp-ovl
+> +          - enum:
+> +              - mediatek,mt8183-disp-ovl
+>
+>    reg:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+rdma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdm=
+a.yaml
+> index 8393a25a3781..0dcde0749078 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.ya=
+ml
+> @@ -29,6 +29,8 @@ properties:
+>            - const: mediatek,mt8173-disp-rdma
+>        - items:
+>            - const: mediatek,mt8183-disp-rdma
+> +      - items:
+> +          - const: mediatek,mt8195-disp-rdma
+>        - items:
+>            - enum:
+>                - mediatek,mt7623-disp-rdma
+> --
+> 2.18.0
+>
