@@ -2,125 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB94443331
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A24C444333E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234659AbhKBQmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 12:42:14 -0400
-Received: from mga06.intel.com ([134.134.136.31]:16209 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230297AbhKBQmL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Nov 2021 12:42:11 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="292150604"
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
-   d="scan'208";a="292150604"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2021 09:38:29 -0700
-X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
-   d="scan'208";a="583667612"
-Received: from nlibermx-mobl.amr.corp.intel.com (HELO [10.209.55.177]) ([10.209.55.177])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2021 09:38:25 -0700
-Message-ID: <3ad1f139-1951-b99e-3df0-4a34a2044809@linux.intel.com>
-Date:   Tue, 2 Nov 2021 09:38:24 -0700
+        id S231579AbhKBQnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 12:43:20 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:34309 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231314AbhKBQnT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 12:43:19 -0400
+Received: by mail-ot1-f41.google.com with SMTP id t17-20020a056830083100b00553ced10177so30615281ots.1;
+        Tue, 02 Nov 2021 09:40:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=e5GlJ8JHBJ/9O+bLCp/KS0OxnO+d96GJAcEfTy+w1v8=;
+        b=6iUiadjxYCyT03HnBKTV/nCKdHN82L/mh98+YbYGJRdG2DquEBs9fZDmcQuEQcsN9/
+         Ytey437ldmvJpB3bVNmEylwk9lxQdC8zO9l5rs2Din0CHB/SXsymkCnKiQMLDfZO65wE
+         k/qew+nX61T4Yvyl2WmEMveatxSG3B42WkB4h1ImrczUDAm1rNAVp2bC0n7EegcXqWBJ
+         YfQ1C5g9NsWEYxJHDYsliX+HJQ/f5CjJLfzosUwM+F+0B4cIhUfqFqBUcFCXyJsRw+Um
+         tPWTnjRPbYmbpaQ83pUGvhh9uuUzBZ5X6w1Kyqoxp7bfdudPjvf1ijHE1g3g/XBZHLjU
+         2Wig==
+X-Gm-Message-State: AOAM532svrKFMLzO1E4ivgkF2ZUNZkCpMUSQGw+o0hP4q0FKYTCSjQcj
+        kp4hI1SokdU/IvJOnDJ5MQ==
+X-Google-Smtp-Source: ABdhPJzE0adcVTqLogDw/8gNDG3NR3Ik4X8ekV4rjvUQCgy7mvTK9W/vxhu/1hcxpHE33/f8ncxwrQ==
+X-Received: by 2002:a9d:847:: with SMTP id 65mr23693262oty.326.1635871244046;
+        Tue, 02 Nov 2021 09:40:44 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bo35sm3941838oib.40.2021.11.02.09.40.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 09:40:43 -0700 (PDT)
+Received: (nullmailer pid 3033197 invoked by uid 1000);
+        Tue, 02 Nov 2021 16:40:42 -0000
+Date:   Tue, 2 Nov 2021 11:40:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, kishon@ti.com, vkoul@kernel.org,
+        galak@kernel.crashing.org, shawnguo@kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v5 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
+Message-ID: <YYFqCptm9m7Onbrv@robh.at.kernel.org>
+References: <1635820355-27009-1-git-send-email-hongxing.zhu@nxp.com>
+ <1635820355-27009-3-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
-Content-Language: en-US
-To:     minyard@acm.org, Joel Stanley <joel@jms.id.au>
-Cc:     Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
-        Zev Weiss <zev@bewilderbeest.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cedric Le Goater <clg@kaod.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        openipmi-developer@lists.sourceforge.net
-References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
- <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
- <20211102122241.GK4667@minyard.net>
-From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-In-Reply-To: <20211102122241.GK4667@minyard.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1635820355-27009-3-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/2/2021 5:22 AM, Corey Minyard wrote:
-> On Mon, Nov 01, 2021 at 11:36:38PM +0000, Joel Stanley wrote:
->> On Mon, 1 Nov 2021 at 23:18, <jae.hyun.yoo@intel.com> wrote:
->>>
->>> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
->>>
->>> Hello all,
->>>
->>> This series is for appliying below fix to all Aspped LPC sub drivers.
->>> https://lore.kernel.org/all/20201208091748.1920-1-wangzhiqiang.bj@bytedance.com/
->>>
->>> An LPC sub driver can be enabled without using the lpc-ctrl driver or it
->>> can be registered ahead of lpc-ctrl depends on each system configuration and
->>> this difference introduces that LPC can be enabled without heart beating of
->>> LCLK so it causes improper handling on host interrupts when the host sends
->>> interrupts in that time frame. Then kernel eventually forcibly disables the
->>> interrupt with dumping stack and printing a 'nobody cared this irq' message
->>> out.
->>>
->>> To prevent this issue, all LPC sub drivers should enable LCLK individually
->>> so this patch adds clock control logic into the remaining Aspeed LPC sub
->>> drivers.
->>
->> Thanks for sending this out!
->>
->> This will resolve a few of the issues we have in the issue tracker:
->>
->> https://github.com/openbmc/linux/issues/210
->> https://github.com/openbmc/linux/issues/130
->>
->> The patches look good to me. I think you've just missed Corey's PR for
->> v5.16, but I will stick them in the openbmc tree once they've had a
->> review.
+On Tue, Nov 02, 2021 at 10:32:29AM +0800, Richard Zhu wrote:
+> Add dt-binding for the standalone i.MX8 PCIe PHY driver.
 > 
-> We can still get them in to 5.16 if it's important for that; this is a
-> bug fix, after all, and it's early.  I just need to know the urgency.
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
+> Tested-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  .../bindings/phy/fsl,imx8-pcie-phy.yaml       | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
 > 
-> Get the Reviewed-by's in and add the bindings and I can get it into the
-> next tree for a bit, then I can submit.  We may be in rc1 by then, but
-> that's ok.
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
+> new file mode 100644
+> index 000000000000..b9f89e343b0b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,imx8-pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8 SoC series PCIe PHY Device Tree Bindings
+> +
+> +maintainers:
+> +  - Richard Zhu <hongxing.zhu@nxp.com>
+> +
+> +properties:
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8mm-pcie-phy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: PHY module clock
 
-Thanks Corey! I'll submit v2 soon.
+The description doesn't really add much. Just 'maxItems: 1'.
 
-Jae
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref
+> +
+> +  resets:
+> +    items:
+> +      - description: Phandles to PCIe-related reset lines exposed by SRC
+> +          IP block.
 
+More than 1 phandle? The schema says only 1. Again, for only 1, you can 
+use just 'maxItems: 1'.
+
+> +
+> +  reset-names:
+> +    items:
+> +      - const: pciephy
+> +
+> +  fsl,refclk-pad-mode:
+> +    description: |
+> +      Specifies the mode of the refclk pad used. It can be UNUSED(PHY
+> +      refclock is derived from SoC internal source), INPUT(PHY refclock
+> +      is provided externally via the refclk pad) or OUTPUT(PHY refclock
+> +      is derived from SoC internal source and provided on the refclk pad).
+> +      Refer include/dt-bindings/phy/phy-imx8-pcie.h for the constants
+> +      to be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2 ]
+> +
+> +  fsl,tx-deemph-gen1:
+> +    description: Gen1 De-emphasis value (optional required).
+
+Optional or required?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +
+> +  fsl,tx-deemph-gen2:
+> +    description: Gen2 De-emphasis value (optional required).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +
+> +  fsl,clkreq-unsupported:
+> +    type: boolean
+> +    description: A boolean property indicating the CLKREQ# signal is
+> +      not supported in the board design (optional)
+> +
+> +required:
+> +  - "#phy-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - fsl,refclk-pad-mode
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mm-clock.h>
+> +    #include <dt-bindings/phy/phy-imx8-pcie.h>
+> +    #include <dt-bindings/reset/imx8mq-reset.h>
+> +
+> +    pcie_phy: pcie-phy@32f00000 {
+> +            compatible = "fsl,imx8mm-pcie-phy";
+> +            reg = <0x32f00000 0x10000>;
+> +            clocks = <&clk IMX8MM_CLK_PCIE1_PHY>;
+> +            clock-names = "ref";
+> +            assigned-clocks = <&clk IMX8MM_CLK_PCIE1_PHY>;
+> +            assigned-clock-rates = <100000000>;
+> +            assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_100M>;
+> +            resets = <&src IMX8MQ_RESET_PCIEPHY>;
+> +            reset-names = "pciephy";
+> +            fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+> +            #phy-cells = <0>;
+> +    };
+> +...
+> -- 
+> 2.25.1
 > 
-> -corey
 > 
->>
->> Cheers,
->>
->> Joel
->>
->>>
->>> Please review this series.
->>>
->>> Thanks,
->>> Jae
->>>
->>> Jae Hyun Yoo (4):
->>>    ARM: dts: aspeed: add LCLK setting into LPC IBT node
->>>    ipmi: bt: add clock control logic
->>>    ARM: dts: aspeed: add LCLK setting into LPC KCS nodes
->>>    ipmi: kcs_bmc_aspeed: add clock control logic
->>>
->>>   arch/arm/boot/dts/aspeed-g4.dtsi   |  1 +
->>>   arch/arm/boot/dts/aspeed-g5.dtsi   |  5 +++++
->>>   arch/arm/boot/dts/aspeed-g6.dtsi   |  5 +++++
->>>   drivers/char/ipmi/bt-bmc.c         | 24 ++++++++++++++++++++++-
->>>   drivers/char/ipmi/kcs_bmc_aspeed.c | 31 ++++++++++++++++++++++++++----
->>>   5 files changed, 61 insertions(+), 5 deletions(-)
->>>
->>> --
->>> 2.25.1
->>>
