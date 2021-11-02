@@ -2,243 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 455244433F4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E11D3443420
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:57:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235120AbhKBQxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 12:53:01 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:37412 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235122AbhKBQwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 12:52:20 -0400
-Received: by mail-ot1-f52.google.com with SMTP id v40-20020a056830092800b0055591caa9c6so22612566ott.4;
-        Tue, 02 Nov 2021 09:49:45 -0700 (PDT)
+        id S234767AbhKBQ7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 12:59:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47658 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234514AbhKBQ7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 12:59:41 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DB79C061714
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 09:57:06 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id f4so20152730edx.12
+        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 09:57:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCu1OGKsqLNAMoqhoi0VbX309V/fJGalAsnrlUQrsDo=;
+        b=jhu6aCoeAMLlRocldjYOcix0kXuZl4gF71djpFefPdNOQGs30if/nnpDdlta5lT1tK
+         zA4ndWgiL7ifZJNHiMTU8lS3fqxHSZVeWUdYATfxTKNZMY7yJTyorp7FCYwkJAICszxB
+         aBh3pZLPuD4FI4gO8tPbzWMkbcRo0Ao3EMD36Lt+G8wk9EmRpJ2MshD3T8c/9BcTBZzA
+         WbrXYBvSWfIId4REndbN+/IWwa8P9+BhBB6kEnwzkmmmFjMiNaKTOKU5TCCzqi1oXkns
+         YbMD7HmFic111lZjl8nMX0xSyj9Rloq2sIZfaWIGYWiHqPtvjz08pOJU1ModxmApv/dV
+         oxbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=w7OCrf7rifBBMWTmL311h+DC3U5MFxTs2snFaNj8QNE=;
-        b=LM3y2a7JI1YhOrIDZ59kMtb9ut+/k6UC3Ag0Moa17StwNXEco7Ha2WwvVqpk996jez
-         IAAbXnSh4mr6hgO3jmqgHWe+8FGRrxfiuslDFpDxcTHRALQ6mtwmvo5jdo9Q8oYCjYRm
-         dj1HT34FhTCl7U4r+atYZSJfc2rrKlAR8XAUvsgY6BSc707wnJYp5XijHE2eLc750DqJ
-         8F2GlTv1qfZrlqqhKpisJTg5F2Zzq4IM7rS1slPPdILIE5tIXIatvu90t33qCaUiO/42
-         Qh59RMFdIkqKnyOA8ftZ+iz4+ubCMAYSqFnZiJcfrIqx6oZFrCPdbsEktqI5ihYKOoZ3
-         0Ctg==
-X-Gm-Message-State: AOAM531r+PU7+6xSCB+rUxmT8yz3n2NqMvHEvNVGS8m6iR9Cv+defe/U
-        PHfX70RJ1usM3Te0GPFFkA==
-X-Google-Smtp-Source: ABdhPJxNkprmX4LIkrnpupfOPtMxMkApEBcH/bSyncViTFJO8577qI0GbUK13qW17fKIYl7dW5ZQaw==
-X-Received: by 2002:a9d:6e16:: with SMTP id e22mr27466399otr.77.1635871785382;
-        Tue, 02 Nov 2021 09:49:45 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id q5sm5218662otg.1.2021.11.02.09.49.44
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rCu1OGKsqLNAMoqhoi0VbX309V/fJGalAsnrlUQrsDo=;
+        b=coRtGCYzpvLOnELtWCXwYe9DuwGtrNXEGOEc8G8enEhiESGYBv2OENULDOrJ2XKjA8
+         4acGOMHL4DGlDfyoURjenUB7L0KjRbmu8WoU5UXMls/F6fOxKRd8OEoc/7t3FDRb4Oly
+         MfYLo1/7vm2Qh02nx3BSeENInQkhyI6/Qmc0Mdt3rPmw9gDS4Hnf8J6VZT0/fPVxEL4j
+         TgNPmpoPzQG6/egbyNsVCSDocKtoHuiU8LPFUVbRnNWQxNzy2cwi9ZeSndzfqaomLowK
+         qp7lfJeV7hZ2bLh6p7FUxNHzpC4qWRi7zUTOC4btR8p9XcCxN07IkR3P0q3Qa33OFbFQ
+         WWJQ==
+X-Gm-Message-State: AOAM531sbyDCG+VOzawmNPHlIE2XhJdEBEFJoL3bALDadpLvbHshIdxn
+        wdFcANgNdJpUf2BZrRHjTXwY6w==
+X-Google-Smtp-Source: ABdhPJzTosDjNnPa+McFAm74Eaoj7BA3wjXHP3B/EHUfYt66n/QukfZLd9zrH9DUO8kLXNhJ9WyyYA==
+X-Received: by 2002:a17:907:3f83:: with SMTP id hr3mr46861059ejc.555.1635872224732;
+        Tue, 02 Nov 2021 09:57:04 -0700 (PDT)
+Received: from fedora.. (cpezg-94-253-144-183-cbl.xnet.hr. [94.253.144.183])
+        by smtp.googlemail.com with ESMTPSA id i22sm10816297edu.93.2021.11.02.09.57.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 09:49:44 -0700 (PDT)
-Received: (nullmailer pid 3049381 invoked by uid 1000);
-        Tue, 02 Nov 2021 16:49:43 -0000
-Date:   Tue, 2 Nov 2021 11:49:43 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     YC Hung <yc.hung@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, daniel.baluta@nxp.com,
-        trevor.wu@mediatek.com, allen-kh.cheng@mediatek.com,
-        angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v4 2/2] dt-bindings: dsp: mediatek: Add mt8195 DSP
- binding support
-Message-ID: <YYFsJ+J9m7QBGpmB@robh.at.kernel.org>
-References: <20211028135737.8625-1-yc.hung@mediatek.com>
- <20211028135737.8625-3-yc.hung@mediatek.com>
+        Tue, 02 Nov 2021 09:57:04 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, lee.jones@linaro.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, andrew@lunn.ch,
+        andy.shevchenko@gmail.com
+Cc:     Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v7 1/6] mfd: simple-mfd-i2c: Add Delta TN48M CPLD support
+Date:   Tue,  2 Nov 2021 17:56:52 +0100
+Message-Id: <20211102165657.3428995-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028135737.8625-3-yc.hung@mediatek.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 28, 2021 at 09:57:37PM +0800, YC Hung wrote:
-> This describes the mt8195 DSP device tree node.
-> 
-> Signed-off-by: YC Hung <yc.hung@mediatek.com>
-> ---
->  .../bindings/dsp/mtk,mt8195-dsp.yaml          | 139 ++++++++++++++++++
->  1 file changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
-> new file mode 100644
-> index 000000000000..f113f71ca094
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dsp/mtk,mt8195-dsp.yaml
-> @@ -0,0 +1,139 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dsp/mtk,mt8195-dsp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek mt8195 DSP core
-> +
-> +maintainers:
-> +  - YC Hung <yc.hung@mediatek.com>
-> +
-> +description: |
-> +  Some boards from mt8195 contain a DSP core used for
-> +  advanced pre- and post- audio processing.
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8195-dsp
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    maxItems: 2
+Delta TN48M switches have a Lattice CPLD that serves
+multiple purposes including being a GPIO expander.
 
-Need to define what each entry is and the names for them.
+So, lets use the simple I2C MFD driver to provide the MFD core.
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    maxItems: 1
+Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
+provide a common symbol on which the subdevice drivers can depend on.
 
-Need to define the name. Though -names with 1 entry is not that useful.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+---
+Changes in v2:
+* Drop the custom MFD driver and header
+* Use simple I2C MFD driver
+---
+ drivers/mfd/Kconfig          | 10 ++++++++++
+ drivers/mfd/simple-mfd-i2c.c |  1 +
+ 2 files changed, 11 insertions(+)
 
-> +
-> +  clocks:
-> +    items:
-> +      - description: mux for audio dsp clock
-> +      - description: 26M clock
-> +      - description: mux for audio dsp local bus
-> +      - description: default audio dsp local bus clock source
-> +      - description: clock gate for audio dsp clock
-> +      - description: mux for audio dsp access external bus
-> +
-> +  clock-names:
-> +    items:
-> +      - const: adsp_sel
-> +      - const: clk26m_ck
-> +      - const: audio_local_bus
-> +      - const: mainpll_d7_d2
-> +      - const: scp_adsp_audiodsp
-> +      - const: audio_h
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  mboxes:
-> +    maxItems: 2
-> +
-> +  mbox-names:
-> +    description:
-> +      Specifies the mailboxes used to communicate with audio DSP
-> +    items:
-> +      - const: mbox0
-> +      - const: mbox1
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index ad15be6b86bc..3701657e831d 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -297,6 +297,16 @@ config MFD_ASIC3
+ 	  This driver supports the ASIC3 multifunction chip found on many
+ 	  PDAs (mainly iPAQ and HTC based ones)
+ 
++config MFD_TN48M_CPLD
++	tristate "Delta Networks TN48M switch CPLD driver"
++	depends on I2C
++	select MFD_SIMPLE_MFD_I2C
++	help
++	  Select this option to enable support for Delta Networks TN48M switch
++	  CPLD. It consists of reset and GPIO drivers. CPLD provides GPIOS-s
++	  for the SFP slots as well as power supply related information.
++	  SFP support depends on the GPIO driver being selected.
++
+ config PMIC_DA903X
+ 	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
+ 	depends on I2C=y
+diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+index 87f684cff9a1..af8e91781417 100644
+--- a/drivers/mfd/simple-mfd-i2c.c
++++ b/drivers/mfd/simple-mfd-i2c.c
+@@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+ 
+ static const struct of_device_id simple_mfd_i2c_of_match[] = {
+ 	{ .compatible = "kontron,sl28cpld" },
++	{ .compatible = "delta,tn48m-cpld" },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+-- 
+2.33.1
 
-Is there not a specific function for each mailbox? You already have an 
-index implicitly.
-
-> +
-> +  memory-region:
-> +    description:
-> +      phandle to a node describing reserved memory (System RAM memory)
-> +      used by DSP (see bindings/reserved-memory/reserved-memory.txt)
-> +    maxItems: 2
-
-1 phandle or 2? If 2, what is each one for?
-
-> +
-> +  sound:
-> +    description:
-> +      Sound subnode includes ASoC platform, DPTx codec node, and
-> +      HDMI codec node.
-> +
-> +    type: object
-
-       additionalProperties: false
-
-Though why do you need a child node here in the first place?
-
-> +
-> +    properties:
-> +      mediatek,platform:
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        description: The phandle of MT8195 ASoC platform.
-> +
-> +      mediatek,dptx-codec:
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        description: The phandle of MT8195 Display Port Tx codec node.
-> +
-> +      mediatek,hdmi-codec:
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        description: The phandle of MT8195 HDMI codec node.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - memory-region
-> +  - power-domains
-> +  - mbox-names
-> +  - mboxes
-> +  - sound
-> +
-> +
-
-Extra blank line.
-
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    adsp: adsp@10803000 {
-
-dsp@...
-
-> +       compatible =  "mediatek,mt8195-dsp";
-> +       reg = <0x10803000  0x1000>,
-> +             <0x10840000  0x40000>;
-> +       reg-names = "cfg", "sram";
-> +       interrupts = <GIC_SPI 694 IRQ_TYPE_LEVEL_HIGH 0>;
-> +       interrupt-names = "wdt";
-> +       clocks = <&topckgen 10>, //CLK_TOP_ADSP
-> +                <&clk26m>,
-> +                <&topckgen 107>, //CLK_TOP_AUDIO_LOCAL_BUS
-> +                <&topckgen 136>, //CLK_TOP_MAINPLL_D7_D2
-> +                <&scp_adsp 0>, //CLK_SCP_ADSP_AUDIODSP
-> +                <&topckgen 34>; //CLK_TOP_AUDIO_H
-> +       clock-names = "adsp_sel",
-> +                     "clk26m_ck",
-> +                     "audio_local_bus",
-> +                     "mainpll_d7_d2",
-> +                     "scp_adsp_audiodsp",
-> +                     "audio_h";
-> +       memory-region = <&adsp_dma_mem_reserved>,
-> +                       <&adsp_mem_reserved>;
-> +       power-domains = <&spm 6>; //MT8195_POWER_DOMAIN_ADSP
-> +       mbox-names = "mbox0", "mbox1";
-> +       mboxes = <&adsp_mailbox 0>, <&adsp_mailbox 1>;
-> +       status = "disabled";
-
-Don't disable your example. Drop status.
-
-> +       sound {
-> +              mediatek,dptx-codec = <&dp_tx>;
-> +              mediatek,hdmi-codec = <&hdmi0>;
-> +              mediatek,platform = <&afe>;
-> +             };
-> +       };
-> -- 
-> 2.18.0
-> 
-> 
