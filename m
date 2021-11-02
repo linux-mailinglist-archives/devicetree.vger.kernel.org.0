@@ -2,189 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25EAA4435B3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 19:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8038344366B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 20:21:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235096AbhKBSkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 14:40:05 -0400
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:44909 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235069AbhKBSj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 14:39:57 -0400
-Received: by mail-ot1-f49.google.com with SMTP id o10-20020a9d718a000000b00554a0fe7ba0so118859otj.11;
-        Tue, 02 Nov 2021 11:37:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2A2UDvJi9kp6H/LtkNAZQfbLqAmYaqz9ZqP/gIursqU=;
-        b=3FPtUaPS+WNkNwgLguUPpcvHf8JVTiUdljt3bzF6jDsUwY7xoNNZu3MKECUB8bTJ9x
-         ttEE4R0ESRTVpmFhBBh+pVUYIcNOa+PppHcOuvm6xSuazrjhmOJHLMKsbzb4EpedQxai
-         Zy9V7k9CzxzcdIZwUY32Bgv+wCZJBY3eXNTOrfhvttL/OyRKJNjCGJkJo1KuDZ1gaM+a
-         7iEuse4h9dpa8W7mspgB8hl0LV/Sy9/re5NQ5t6+ZBgmPn+TPdNncmtxeUYDOK1E63Ej
-         QkfQiNSGXdCA38BSJ2tmgS86jt5IVHQACk7qScWaW/+Z2SS67S25rI9G72ZBoDRS+E7+
-         b0vQ==
-X-Gm-Message-State: AOAM5304g1QgGD2z3a9k5b3NV4qjgwc3QmvFLO+qp3vhrGGlEB2Jn08r
-        tZYjdYK87io7CU9nTlR/voA3aMWg9g==
-X-Google-Smtp-Source: ABdhPJz3B5TEDANfU82YOIztONed4+CortgJTLLEow4f7R/qN+5SQ6YWQ17cqlhWs70Ahg+xbE1PUA==
-X-Received: by 2002:a9d:774c:: with SMTP id t12mr21559726otl.282.1635878242175;
-        Tue, 02 Nov 2021 11:37:22 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bm5sm4404968oib.16.2021.11.02.11.37.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 11:37:21 -0700 (PDT)
-Received: (nullmailer pid 3233546 invoked by uid 1000);
-        Tue, 02 Nov 2021 18:37:20 -0000
-Date:   Tue, 2 Nov 2021 13:37:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     Peter Rosin <peda@axentia.se>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c-mux: Add property for settle time
-Message-ID: <YYGFYLtehnDOgA9d@robh.at.kernel.org>
-References: <20211101122545.3417624-1-horatiu.vultur@microchip.com>
- <20211101122545.3417624-2-horatiu.vultur@microchip.com>
- <fb0ca91d-f5fa-5977-7574-8926d8d0e3bb@axentia.se>
- <20211101213201.wdjsuexuuinepu3m@soft-dev3-1.localhost>
+        id S230344AbhKBTYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 15:24:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229791AbhKBTYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 15:24:12 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A35C061714;
+        Tue,  2 Nov 2021 12:21:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=y7NmXxmwgNpuEsIAHDr8sgPMHa6A/nAcTvtGWxZXzeI=; b=OVECd4bQpwqdFBu7KHEkYG2Vcn
+        vMCT3NQhvvIzWlTRdSvrUOXAVw7hy8Gle1CndoQdDI3eDblsNpslKIbJnmCjZXV+4iHHmMuSvicrl
+        i8ToskSx2IU+EJL+v9froy266qnDomOIyQCG54iSBTe3ZLY5ilxxxTIlAoDPVASp+ypnOvIX39JXP
+        /W0DgxKFFqLzgH7QAPm4FE+MBHyUu8WbNhxug7I78SbIDjuK9LpsfmetV+etd5Z7iKxNzxMahRgHz
+        fIp9CB8HSsHmsNcaOtAZv/uVJuaW+8btPAhM0cq7UY/SKg8+A/dbg2afseLM+gK3L7O7ZgIWSTRmg
+        s1JjkiGQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mhzLj-002nSc-Mp; Tue, 02 Nov 2021 19:21:35 +0000
+Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
+To:     Vincent Shih <vincent.sunplus@gmail.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     Vincent Shih <vincent.shih@sunplus.com>
+References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
+ <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <1ebf36aa-2680-81b2-aa26-d8b4d10c80ec@infradead.org>
+Date:   Tue, 2 Nov 2021 12:21:34 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211101213201.wdjsuexuuinepu3m@soft-dev3-1.localhost>
+In-Reply-To: <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 01, 2021 at 10:32:01PM +0100, Horatiu Vultur wrote:
-> The 11/01/2021 15:32, Peter Rosin wrote:
-> 
-> Hi Peter,
-> 
-> > 
-> > On 2021-11-01 13:25, Horatiu Vultur wrote:
-> > > Some HW requires some time for the signals to settle after the muxing is
-> > > changed. Allow this time to be specified in device tree.
-> > >
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/i2c/i2c-mux.yaml | 6 ++++++
-> > >  1 file changed, 6 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > index 24cac36037f5..4628ff6340c1 100644
-> > > --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> > > @@ -29,6 +29,12 @@ properties:
-> > >    '#size-cells':
-> > >      const: 0
-> > >
-> > > +  settle-time-us:
-> > > +    default: 0
-> > > +    description:
-> > > +      The time required for the signals to settle. Currently only the
-> > > +      i2c-mux-gpmux driver supports this optional binding.
-> > 
-> > The information about how i2c-mux-gpmux is special is bound to go stale,
-> > and I don't think we should mention such specific details in the binding.
-> > What I meant was a generic warnings about optional bindings perhaps not
-> > being supported by all drivers, along the lines of this from i2c.txt:
-> > 
-> > "These properties may not be supported by all drivers. However, if a driver
-> >  wants to support one of the below features, it should adapt these bindings."
-> > 
-> > However, I now notice that this sentence makes no sense. It looks like it
-> > should be s/adapt/adopt/.
-> > 
-> > And, in the i2c-mux.yaml case it can simply say "Optional properties"
-> > instead of "These properites" (which refers to a subset of properties
-> > immediately below the text) since with a yaml binding it is always
-> > clear which properties are optional and which are required. Lastly, I
-> > guess this warning belongs in the description.
-> > 
-> > > +
-> > >  patternProperties:
-> > >    '^i2c@[0-9a-f]+$':
-> > >      $ref: /schemas/i2c/i2c-controller.yaml
-> > >
-> > 
-> > Since this is the first optional property, you now need to specify what
-> > properties are required, which is everything but settle-time-us. If you
-> > don't, all properties are required. Which is not what we want...
-> > 
-> > Something like this should do it, I think:
-> > 
-> > required:
-> >   - compatible
-> >   - '#address-cells'
-> >   - '#size-cells'
-> 
-> Thanks for a detail explanation but I am still struggling with these
-> bindings. Were you thinking to have something like this?
-> 
-> ---
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> index 24cac36037f5..c9fde1bb0fea 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> @@ -19,6 +19,9 @@ description: |+
->    populating the i2c child busses.  If an 'i2c-mux' subnode is present, only
->    subnodes of this will be considered as i2c child busses.
-> 
-> +  Optional properties may not be supported by all drivers. However, if a driver
-> +  wants to support one of the below features, it should adopt these bindings.
-> +
->  properties:
->    $nodename:
->      pattern: '^(i2c-?)?mux'
-> @@ -29,6 +32,11 @@ properties:
->    '#size-cells':
->      const: 0
-> 
-> +  settle-time-us:
-> +    default: 0
-> +    description:
-> +      The time required for the signals to settle.
-> +
->  patternProperties:
->    '^i2c@[0-9a-f]+$':
->      $ref: /schemas/i2c/i2c-controller.yaml
-> @@ -41,6 +49,11 @@ patternProperties:
-> 
->  additionalProperties: true
-> 
-> +required:
-> +  - compatible
+Hi--
 
-compatible should not be required here.
+On 11/1/21 11:22 PM, Vincent Shih wrote:
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index e1bc521..0c205d2 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -1028,6 +1028,16 @@ config RTC_DRV_DS1685_FAMILY
+>   	  This driver can also be built as a module. If so, the module
+>   	  will be called rtc-ds1685.
+>   
+> +config RTC_DRV_SUNPLUS
+> +	bool "Sunplus SP7021 RTC"
+> +	depends on SOC_SP7021
+> +	help
+> +		Say 'yse' to get support for Sunplus SP7021 real-time clock
 
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
->  examples:
->    - |
->      /*
-> ---
-> 
-> If I have this then my problem is with the required properties because then I
-> start to get new warnings once I run:
-> 
-> make ARCH=arm CROSS_COMPILE=arm-linux- dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> 
-> For example, one of new the warnings is this:
-> 
-> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: 'compatible' is a required property
-> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#address-cells' is a required property
-> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> /home/hvultur/linux/arch/arm/boot/dts/am335x-icev2.dt.yaml: mux-mii-hog: '#size-cells' is a required property
-> 	From schema: /home/hvultur/linux/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
+		     yes
 
-This is because of the $nodename pattern being pretty lax and matches 
-on mux-mii-hog by mistake. We have 2 options. Change the nodename 
-pattern to '^(i2c-?)?mux(@.*)?$' or add 'select: false'. The former 
-would still match on 'mux' or 'mux@.*' which might still have problems. 
-For the latter, we just need to make sure all the i2c-mux schemas have a 
-$ref to this schema. Also, with that change we'd stop checking 'i2c-mux' 
-nodes that don't yet have a specific schema. That said, I do lean toward 
-the latter option.
+> +		(RTC) for industrial applications.
+> +		It provides RTC status check, timer/alarm functionalities,
+> +		user data reservation only with battery with voltage over 2.5V,
+> +		RTC power status check and battery charge.
 
-Rob
+
+Also please follow coding-style for Kconfig files:
+
+(from Documentation/process/coding-style.rst, section 10):
+
+For all of the Kconfig* configuration files throughout the source tree,
+the indentation is somewhat different.  Lines under a ``config`` definition
+are indented with one tab, while help text is indented an additional two
+spaces.
+
+
+thanks.
+-- 
+~Randy
