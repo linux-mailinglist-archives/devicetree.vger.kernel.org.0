@@ -2,91 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53CCB442F04
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 14:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60103442F35
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 14:44:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230109AbhKBNXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 09:23:50 -0400
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:44834 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229712AbhKBNXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 09:23:50 -0400
-Received: by mail-ot1-f50.google.com with SMTP id o10-20020a9d718a000000b00554a0fe7ba0so24116084otj.11;
-        Tue, 02 Nov 2021 06:21:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8DD3rCF6jBxu4k+OYCUU4GMceJRCBHyNxQokvIcdkO4=;
-        b=lZC6dW+r0ykbpIFmBuVLXcuPRhyoKzOO7wIyiECOl1LCzz57KLM7iSo/BaMMVsZ0ol
-         Q8Ne93DizisG0jzsRBufwzjKY/ib5viSPEvzRI9UNcEPDe01wovGpfWidWuTsqgcE0Sk
-         4ujRcoWI5SDUeHulqLufqYTBkC1qtUsUWL6p7DYHnfp09eo3EXvbKaGZIGxXKJW0XpNY
-         Ft4XennP3oxUU0ex3m0lDCcmfBRMfHGsmIkQOoKVRi7lWpqia3s5jNb042v/GOaZAtOe
-         M6tUnKp45WAJfls0qj2feTyvOQT4uMF/EdwC8dKYC9J3jIU17+ojbe8IGBTYtaIJUMIV
-         Kqsw==
-X-Gm-Message-State: AOAM533Tef2eRhJr51otMSGJtXJDq2zbkLo7tdHc333cHXV6Bx6STHtN
-        MczGTVZFhyCh6Uun9+/9dQ==
-X-Google-Smtp-Source: ABdhPJyHOy9mKMNd012qXkVOWSu+GYz663s1Yp7e611ut1ZGm5A+ouAXTHU3DSQKL0pFSujy0eXx+w==
-X-Received: by 2002:a05:6830:4033:: with SMTP id i19mr26131739ots.320.1635859275084;
-        Tue, 02 Nov 2021 06:21:15 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 8sm5057177oix.29.2021.11.02.06.21.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 06:21:14 -0700 (PDT)
-Received: (nullmailer pid 2714011 invoked by uid 1000);
-        Tue, 02 Nov 2021 13:21:13 -0000
-Date:   Tue, 2 Nov 2021 08:21:13 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Message-ID: <YYE7SV886ihwD31f@robh.at.kernel.org>
-References: <20211028140009.23331-1-etienne.carriere@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028140009.23331-1-etienne.carriere@linaro.org>
+        id S230403AbhKBNrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 09:47:25 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:63332 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230124AbhKBNrY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 09:47:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1635860690; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=beDd0wHfJo46gYVTwDYf4tIPrmM5O/oEQzr1869j1GY=; b=C1JU7wi3/OpWERzWr196QejuRcolN2DfDE8v4ECLL5mZtlO6kSsad22Y+W1UsXC4YqUKlzzo
+ 7fDIeic7/aWVwMQs3RGd8tJ4hlmIKHWWXicfFiGztL4WYUsU/x5NFg0hQH2bh3Op3BG8VpFq
+ MfkiJdhvuuSl9bTi1cLJIFA2p7A=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 618140cfaeb23905569c005c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Nov 2021 13:44:47
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 542DCC43619; Tue,  2 Nov 2021 13:44:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 89350C4338F;
+        Tue,  2 Nov 2021 13:44:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 89350C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Rakesh Pillai <pillair@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, ohad@wizery.com,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org,
+        Rakesh Pillai <pillair@codeaurora.org>
+Subject: [PATCH v8 0/3] Add support for sc7280 WPSS PIL loading
+Date:   Tue,  2 Nov 2021 19:14:30 +0530
+Message-Id: <1635860673-12146-1-git-send-email-pillair@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 16:00:08 +0200, Etienne Carriere wrote:
-> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> based on an OP-TEE service invocation. The compatible mandates a
-> channel ID defined with property "linaro,optee-channel-id".
-> 
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> ---
-> Changes since v6:
->  - Remove maxItems from linaro,optee-channel-id description
-> 
-> No change since v5
-> 
-> Changes since v4:
->  - Fix sram node name in DTS example: s/-shm-/-sram-/
-> 
-> Changes since v3:
->  - Add description for linaro,optee-channel-id in patternProperties
->    specifying protocol can optionaly define a dedicated channel id.
->  - Fix DTS example (duplicated phandles issue, subnodes ordering)
->  - Fix typo in DTS example and description comments.
-> 
-> Changes since v2:
->  - Define mandatory property linaro,optee-channel-id
->  - Rebased on yaml description file
-> 
-> Changes since v1:
->  - Removed modification regarding mboxes property description.
-> ---
->  .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
-> 
+Add support for PIL loading of WPSS co-processor for SC7280 SOCs.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Changes from v7:
+- Use "interrupts" instead of "interrupts-extended" in DT bindings.
+- Add glink-edge properties in DT bindings.
+- Use size_t for "proxy_pd_count" in wpss remoteproc driver
+
+Changes from v6:
+- Fixed the dt-bindings check in qcom,sc7280-wpss-pil.yaml
+- Fixed CDSP dt-bindings example node (compatible, glink-edge)
+- Fixed the clock-names used in wpss driver
+- Add support to get firmware-name from DTSI entry for wpss.
+
+Changes from v4/v5:
+- Add yaml conversion for adsp/cdsp dt-bindings
+- Change clock names in wpss dt-bindings
+- Correct mistake in signed-off enail ID
+
+Rakesh Pillai (3):
+  dt-bindings: remoteproc: qcom: adsp: Convert binding to YAML
+  dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+  remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
+
+ .../bindings/remoteproc/qcom,hexagon-v56.txt       | 140 -------------
+ .../bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml  | 161 +++++++++++++++
+ .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 217 ++++++++++++++++++++
+ .../bindings/remoteproc/qcom,sdm845-adsp-pil.yaml  | 160 +++++++++++++++
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 219 +++++++++++++++++++--
+ 5 files changed, 741 insertions(+), 156 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
+
+-- 
+2.7.4
+
