@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E37443068
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4922B44306F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:31:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbhKBObJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 10:31:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54074 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229557AbhKBObG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Nov 2021 10:31:06 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9805D60EDF;
-        Tue,  2 Nov 2021 14:28:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635863312;
-        bh=dWdXSCcnw3jZb4r6IQdTU0jM8stw16sY6pQ9ZwDV/YY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=XpjXiLsE+cn6KB6gmM8Wy0tKNv5w0x07517PCtevNR4tWE6/Qd6GuVE/pv+EEolbZ
-         vokmQVcijgf0HdhhxVw41gXVg1937TKjWGIeBlU/XIiBJ5A8T/NciVteZEZBVbRUKG
-         Dy9Kl4WfGSv119B4lZx4/7qFMqZeIvp6auSluzlUOlJzgV3OuLkwMTjlAuZhnyyc/3
-         6d0T3kW7UNtSc3Q035ZrmX1d6U/zj43Rrk3xL9xP85I7mfFZNb+JxnE6AJnaHpFvPI
-         kTLrzvYleMQFKSSqRFqDHFzVkJlxS+vz/WNLibhLiXBAXwVpyn9EC7LSGQeZoq0tMB
-         SMLOuRWDd/PPQ==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     robh+dt@kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] ARM: socfpga: dts: fix qspi node compatible
-Date:   Tue,  2 Nov 2021 09:28:27 -0500
-Message-Id: <20211102142827.1545889-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        id S230522AbhKBOdx convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 2 Nov 2021 10:33:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230411AbhKBOdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:33:51 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99917C061767
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 07:31:16 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mhuoi-0006Af-GS; Tue, 02 Nov 2021 15:31:12 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mhuof-004FRU-PC; Tue, 02 Nov 2021 15:31:09 +0100
+Message-ID: <96ea286255e411c194eadd418bd82336830557c8.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] SPI: Add SPI driver for Sunplus SP7021
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     "LH.Kuo" <lhjeff911@gmail.com>, broonie@kernel.org,
+        robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     dvorkin@tibbo.com, qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
+Date:   Tue, 02 Nov 2021 15:31:09 +0100
+In-Reply-To: <1635747525-31243-2-git-send-email-lh.kuo@sunplus.com>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+         <1635747525-31243-2-git-send-email-lh.kuo@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI flash node needs to have the required "jedec,spi-nor" in the
-compatible string.
+On Mon, 2021-11-01 at 14:18 +0800, LH.Kuo wrote:
+[...]
+> +static int pentagram_spi_controller_probe(struct platform_device *pdev)
+> +{
+> +	struct resource *res;
+> +	int ret;
+> +	int mode;
+> +	unsigned int max_freq;
+> +	struct spi_controller *ctlr;
+> +	struct pentagram_spi_master *pspim;
+> +
+> +	FUNC_DBG();
 
-Fixes: 1df99da8953 ("ARM: dts: socfpga: Enable QSPI in Arria10 devkit")
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts   | 2 +-
- arch/arm/boot/dts/socfpga_arria5_socdk.dts         | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_socdk.dts       | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_sockit.dts      | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_socrates.dts    | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_sodia.dts       | 2 +-
- arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts | 4 ++--
- 7 files changed, 8 insertions(+), 8 deletions(-)
+Drop these.
 
-diff --git a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-index 2b645642b935..2a745522404d 100644
---- a/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-+++ b/arch/arm/boot/dts/socfpga_arria10_socdk_qspi.dts
-@@ -12,7 +12,7 @@ &qspi {
- 	flash0: n25q00@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00aa";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm/boot/dts/socfpga_arria5_socdk.dts b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-index 90e676e7019f..1b02d46496a8 100644
---- a/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-+++ b/arch/arm/boot/dts/socfpga_arria5_socdk.dts
-@@ -119,7 +119,7 @@ &qspi {
- 	flash: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q256a";
-+		compatible = "micron,n25q256a", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-index 6f138b2b2616..51bb436784e2 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_socdk.dts
-@@ -124,7 +124,7 @@ &qspi {
- 	flash0: n25q00@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;	/* chip select */
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts b/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
-index c155ff02eb6e..cae9ddd5ed38 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_sockit.dts
-@@ -169,7 +169,7 @@ &qspi {
- 	flash: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts b/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
-index 8d5d3996f6f2..ca18b959e655 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_socrates.dts
-@@ -80,7 +80,7 @@ &qspi {
- 	flash: flash@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q256a";
-+		compatible = "micron,n25q256a", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 		m25p,fast-read;
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-index 99a71757cdf4..3f7aa7bf0863 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_sodia.dts
-@@ -116,7 +116,7 @@ &qspi {
- 	flash0: n25q512a@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q512a";
-+		compatible = "micron,n25q512a", "jedec,spi-nor";
- 		reg = <0>;
- 		spi-max-frequency = <100000000>;
- 
-diff --git a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-index a060718758b6..25874e1b9c82 100644
---- a/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-+++ b/arch/arm/boot/dts/socfpga_cyclone5_vining_fpga.dts
-@@ -224,7 +224,7 @@ &qspi {
- 	n25q128@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q128";
-+		compatible = "micron,n25q128", "jedec,spi-nor";
- 		reg = <0>;		/* chip select */
- 		spi-max-frequency = <100000000>;
- 		m25p,fast-read;
-@@ -241,7 +241,7 @@ n25q128@0 {
- 	n25q00@1 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "n25q00";
-+		compatible = "micron,mt25qu02g", "jedec,spi-nor";
- 		reg = <1>;		/* chip select */
- 		spi-max-frequency = <100000000>;
- 		m25p,fast-read;
--- 
-2.25.1
+[...]
+> +	/* clk*/
+> +	pspim->spi_clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(pspim->spi_clk)) {
+> +		dev_err(&pdev->dev, "devm_clk_get fail\n");
+> +		goto free_alloc;
+> +	}
+> +	ret = clk_prepare_enable(pspim->spi_clk);
 
+Move this and reset_control_deassert() as far back as possible.
+
+> +	if (ret)
+> +		goto free_alloc;
+> +
+> +	/* reset*/
+> +	pspim->rstc = devm_reset_control_get(&pdev->dev, NULL);
+
+Use devm_reset_control_get_exclusive() instead.
+This should be done before clk_prepare_enable().
+
+> +	dev_dbg(&pdev->dev, "pspim->rstc : 0x%x\n", (unsigned int)pspim->rstc);
+> +	if (IS_ERR(pspim->rstc)) {
+> +		ret = PTR_ERR(pspim->rstc);
+> +		dev_err(&pdev->dev, "SPI failed to retrieve reset controller: %d\n", ret);
+> +		goto free_clk;
+> +	}
+> +	ret = reset_control_deassert(pspim->rstc);
+
+Same as the clock, I'd move this after the dma allocations.
+
+> +	if (ret)
+> +		goto free_clk;
+> +
+> +	/* dma alloc*/
+> +	pspim->tx_dma_vir_base = dma_alloc_coherent(&pdev->dev, bufsiz,
+> +					&pspim->tx_dma_phy_base, GFP_ATOMIC);
+
+Consider using dmam_alloc_coherent, same for rx_dma_vir_base.
+
+regards
+Philipp
