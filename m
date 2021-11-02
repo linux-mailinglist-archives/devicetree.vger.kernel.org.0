@@ -2,158 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F3A5442B10
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 10:52:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD74442A9E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 10:46:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230140AbhKBJzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 05:55:00 -0400
-Received: from 5.mo548.mail-out.ovh.net ([188.165.49.213]:39061 "EHLO
-        5.mo548.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229869AbhKBJzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 05:55:00 -0400
-X-Greylist: delayed 991 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Nov 2021 05:54:59 EDT
-Received: from mxplan5.mail.ovh.net (unknown [10.108.1.72])
-        by mo548.mail-out.ovh.net (Postfix) with ESMTPS id 5D66321070;
-        Tue,  2 Nov 2021 09:35:49 +0000 (UTC)
-Received: from kaod.org (37.59.142.101) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2308.15; Tue, 2 Nov
- 2021 10:35:48 +0100
-Authentication-Results: garm.ovh; auth=pass (GARM-101G004e727d65d-8397-4210-84a7-829b0dd3b7f5,
-                    5C292F81AE153BA05FA9CE80812C04756C1C1785) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <194999c0-e9b3-1b0d-3739-faa2b7f72391@kaod.org>
-Date:   Tue, 2 Nov 2021 10:35:46 +0100
+        id S229970AbhKBJsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 05:48:43 -0400
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45742
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230362AbhKBJsm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 05:48:42 -0400
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 72BDF3F1B4
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 09:46:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1635846366;
+        bh=AIE9FAySoNRsrP7PrL6ZA4sX/6rA6VP1KSokv/7FLdQ=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=iMxqROzVM8xBNf+M8akn9ynW+el17BQvEtDkn//gaBeQtWUk9PBjWU2TYLEtG+87V
+         2u0FkWA5OtgWsQb72kfh4kiL3OryjL52eTGXvUaQWnh2UDxas8A0FIhOepvfcZexW9
+         2Qu7V3HZCeuD93jxUImPvXG0+YSBJXimuI6LowVnWXCcrK+8kjrXcjlCOT7H1rcPOa
+         yX5VoXtRxNf6nEmR9D1olDkZ0zt6EIpaID845ikWLyQC6/2Fiui8h9FlqOhVnIlP0J
+         pmhpAj0ksusCH0XKNP5HszW8xzzlpKCSmbt4sfoY7XFXMkOlhCd3FI3ZNMmPCUIuvu
+         U/cBmoWlQvTtA==
+Received: by mail-lj1-f197.google.com with SMTP id n9-20020a2e9049000000b00212acec7473so6930262ljg.22
+        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 02:46:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AIE9FAySoNRsrP7PrL6ZA4sX/6rA6VP1KSokv/7FLdQ=;
+        b=tw8XnV4QoI7GHs647l67BdlLcVidoBaRRHoDIuKxT6Qq7vl0EjMFtvwtzmv1v+NgMK
+         WoQ7KzllUvYDsDBRrZtmtFVka4H4LjcadYmpavlSN4R9yznp5KIbOohrHZ1kuNZl5SAK
+         1afJQ+YyeQN+YpBsAYJ7DpKJGwOj/MUwjQi/U9KUSx/jo73Yr8fOSxgw9qfjQlbI8ECi
+         EtFGvEcimHHi6kS/XV0nGgq2aQw8/7NJqmIQrLAK+WL9ZfpGHM+y+GFOB0sB5t2xJXNO
+         JvybCxC90qNfOQkhCr4y/Q1KgQ7cRQphU5ZA9BaWkPETfbY805n19QxLPPHH77M+Juc5
+         MCBQ==
+X-Gm-Message-State: AOAM530q2yd+U97GAxEdp7PUTgVvdFliYE1wt4oJRmk0onHmUhtYDNSp
+        ucFEiYqmmUJjmJpBTUuImo2aox/EtGfjwuDPxu6wP2SVe9XrOv6FkwiZtgiRXStWkP0LgJYMqJ6
+        EGuM6x0dJtpaLRkcqULiUf/mp+rHBk9Vs0Cauu1E=
+X-Received: by 2002:a05:651c:158e:: with SMTP id h14mr2640502ljq.401.1635846365895;
+        Tue, 02 Nov 2021 02:46:05 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw341bie4LqR7uIAJM+FCfENRp0QNBPgOqp2JCB6H+SjqSWv2AkkbKW3S3/KlpYJAuR7O6XxQ==
+X-Received: by 2002:a05:651c:158e:: with SMTP id h14mr2640474ljq.401.1635846365566;
+        Tue, 02 Nov 2021 02:46:05 -0700 (PDT)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id y19sm1637963lfa.123.2021.11.02.02.46.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Nov 2021 02:46:05 -0700 (PDT)
+Message-ID: <ab1d3a57-37fb-2329-33a4-8fe40a472518@canonical.com>
+Date:   Tue, 2 Nov 2021 10:46:04 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Subject: Re: [PATCH -next 2/4] ipmi: bt: add clock control logic
+ Thunderbird/91.1.2
+Subject: Re: [PATCH v2 02/12] dt-bindings: watchdog: Document Exynos850
+ watchdog bindings
 Content-Language: en-US
-To:     <jae.hyun.yoo@intel.com>, Rob Herring <robh+dt@kernel.org>,
-        Corey Minyard <minyard@acm.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>,
-        <openipmi-developer@lists.sourceforge.net>
-References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
- <20211101233751.49222-3-jae.hyun.yoo@intel.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20211101233751.49222-3-jae.hyun.yoo@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.101]
-X-ClientProxiedBy: DAG1EX2.mxp5.local (172.16.2.2) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: b52a7976-2078-43c7-9601-4622d6a06c64
-X-Ovh-Tracer-Id: 465278140314979317
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvtddrvdehhedgtdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepieegvdffkeegfeetuddttddtveduiefhgeduffekiedtkeekteekhfffleevleelnecukfhppedtrddtrddtrddtpdefjedrheelrddugedvrddutddunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhrtghpthhtohepohhpvghnihhpmhhiqdguvghvvghlohhpvghrsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhnvght
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211031122216.30212-1-semen.protsenko@linaro.org>
+ <20211031122216.30212-3-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211031122216.30212-3-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/2/21 00:37, jae.hyun.yoo@intel.com wrote:
-> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+On 31/10/2021 13:22, Sam Protsenko wrote:
+> Exynos850 SoC has two CPU clusters:
+>   - cluster 0: contains CPUs #0, #1, #2, #3
+>   - cluster 1: contains CPUs #4, #5, #6, #7
 > 
-> If LPC BT driver is registered ahead of lpc-ctrl module, LPC BT
-> hardware block will be enabled without heart beating of LCLK until
-> lpc-ctrl enables the LCLK. This issue causes improper handling on
-> host interrupts when the host sends interrupts in that time frame.
-> Then kernel eventually forcibly disables the interrupt with
-> dumping stack and printing a 'nobody cared this irq' message out.
+> Each cluster has its own dedicated watchdog timer. Those WDT instances
+> are controlled using different bits in PMU registers, new
+> "samsung,index" property is added to tell the driver which bits to use
+> for defined watchdog node.
 > 
-> To prevent this issue, all LPC sub drivers should enable LCLK
-> individually so this patch adds clock control logic into the LPC
-> BT driver.
+> Also on Exynos850 the peripheral clock and the source clock are two
+> different clocks. Provide a way to specify two clocks in watchdog device
+> tree node.
 > 
-> Fixes: 54f9c4d0778b ("ipmi: add an Aspeed BT IPMI BMC driver")
-> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-
-LGTM,
-
-Reviewed-by: Cédric Le Goater <clg@kaod.org>
-
-Thanks,
-
-C.
-
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
->   drivers/char/ipmi/bt-bmc.c | 24 +++++++++++++++++++++++-
->   1 file changed, 23 insertions(+), 1 deletion(-)
+> Changes in v2:
+>   - Stated explicitly that Exynos850 driver requires 2 clocks
+>   - Used single compatible for Exynos850
+>   - Added "index" property to specify CPU cluster index
+>   - Fixed a typo in commit message: dedicater -> dedicated
 > 
-> diff --git a/drivers/char/ipmi/bt-bmc.c b/drivers/char/ipmi/bt-bmc.c
-> index 7450904e330a..a20f92cc7b18 100644
-> --- a/drivers/char/ipmi/bt-bmc.c
-> +++ b/drivers/char/ipmi/bt-bmc.c
-> @@ -5,6 +5,7 @@
->   
->   #include <linux/atomic.h>
->   #include <linux/bt-bmc.h>
-> +#include <linux/clk.h>
->   #include <linux/errno.h>
->   #include <linux/interrupt.h>
->   #include <linux/io.h>
-> @@ -62,6 +63,7 @@ struct bt_bmc {
->   	wait_queue_head_t	queue;
->   	struct timer_list	poll_timer;
->   	struct mutex		mutex;
-> +	struct clk		*clk;
->   };
->   
->   static atomic_t open_count = ATOMIC_INIT(0);
-> @@ -423,6 +425,19 @@ static int bt_bmc_probe(struct platform_device *pdev)
->   	if (IS_ERR(bt_bmc->base))
->   		return PTR_ERR(bt_bmc->base);
->   
-> +	bt_bmc->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(bt_bmc->clk)) {
-> +		rc = PTR_ERR(bt_bmc->clk);
-> +		if (rc != -EPROBE_DEFER)
-> +			dev_err(dev, "Unable to get clock\n");
-> +		return rc;
-> +	}
-> +	rc = clk_prepare_enable(bt_bmc->clk);
-> +	if (rc) {
-> +		dev_err(dev, "Unable to enable clock\n");
-> +		return rc;
-> +	}
+>  .../bindings/watchdog/samsung-wdt.yaml        | 44 +++++++++++++++++--
+>  1 file changed, 40 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> index 93cd77a6e92c..f29d0ca4eced 100644
+> --- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+> @@ -22,25 +22,32 @@ properties:
+>        - samsung,exynos5250-wdt                # for Exynos5250
+>        - samsung,exynos5420-wdt                # for Exynos5420
+>        - samsung,exynos7-wdt                   # for Exynos7
+> +      - samsung,exynos850-wdt                 # for Exynos850
+>  
+>    reg:
+>      maxItems: 1
+>  
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    clock-names:
+> -    items:
+> -      - const: watchdog
+> +    minItems: 1
+> +    maxItems: 2
+>  
+>    interrupts:
+>      maxItems: 1
+>  
+> +  samsung,index:
+
+Slightly more descriptive, e.g.:
+samsung,cluster-index
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Index of CPU cluster on which watchdog is running (in case of Exynos850)
 > +
->   	mutex_init(&bt_bmc->mutex);
->   	init_waitqueue_head(&bt_bmc->queue);
->   
-> @@ -433,7 +448,7 @@ static int bt_bmc_probe(struct platform_device *pdev)
->   	rc = misc_register(&bt_bmc->miscdev);
->   	if (rc) {
->   		dev_err(dev, "Unable to register misc device\n");
-> -		return rc;
-> +		goto err;
->   	}
->   
->   	bt_bmc_config_irq(bt_bmc, pdev);
-> @@ -457,6 +472,11 @@ static int bt_bmc_probe(struct platform_device *pdev)
->   	clr_b_busy(bt_bmc);
->   
->   	return 0;
-> +
-> +err:
-> +	clk_disable_unprepare(bt_bmc->clk);
-> +
-> +	return rc;
->   }
->   
->   static int bt_bmc_remove(struct platform_device *pdev)
-> @@ -466,6 +486,8 @@ static int bt_bmc_remove(struct platform_device *pdev)
->   	misc_deregister(&bt_bmc->miscdev);
->   	if (bt_bmc->irq < 0)
->   		del_timer_sync(&bt_bmc->poll_timer);
-> +	clk_disable_unprepare(bt_bmc->clk);
-> +
->   	return 0;
->   }
->   
+>    samsung,syscon-phandle:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+>        Phandle to the PMU system controller node (in case of Exynos5250,
+> -      Exynos5420 and Exynos7).
+> +      Exynos5420, Exynos7 and Exynos850).
+>  
+>  required:
+>    - compatible
+> @@ -59,9 +66,38 @@ allOf:
+>                - samsung,exynos5250-wdt
+>                - samsung,exynos5420-wdt
+>                - samsung,exynos7-wdt
+> +              - samsung,exynos850-wdt
+>      then:
+>        required:
+>          - samsung,syscon-phandle
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - samsung,exynos850-wdt
+> +    then:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Bus clock, used for register interface
+> +            - description: Source clock (driving watchdog counter)
+> +        clock-names:
+> +          items:
+> +            - const: watchdog
+> +            - const: watchdog_src
+> +        samsung,index:
+> +          enum: [0, 1]
+> +      required:
+> +        - samsung,index
+> +    else:
+> +      properties:
+> +        clocks:
+> +          items:
+> +            - description: Bus clock, which is also a source clock
+> +        clock-names:
+> +          items:
+> +            - const: watchdog
+
+Also under this else:
+   samsung,cluster-index: false
+
+>  
+>  unevaluatedProperties: false
+>  
 > 
 
+
+Best regards,
+Krzysztof
