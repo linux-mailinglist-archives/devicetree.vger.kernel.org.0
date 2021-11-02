@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBAD4426BC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 06:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C5384426C2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 06:28:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbhKBFaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 01:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59958 "EHLO
+        id S230237AbhKBFa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 01:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbhKBFaq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 01:30:46 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F057EC061764
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 22:28:11 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id o14so4110288plg.5
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 22:28:11 -0700 (PDT)
+        with ESMTP id S230322AbhKBFa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 01:30:57 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D743FC061764
+        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 22:28:22 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id b4so12079079pgh.10
+        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nathanrossi.com; s=google;
-        h=date:message-id:from:to:cc:subject:content-transfer-encoding
-         :mime-version;
-        bh=QlpUYZWJN3/9X1Sv9NBkaK62CkOEjlr+CDsqVlIgJIQ=;
-        b=VcRT5oMz40A1iuJxETkuWzR1Vl5jIU1zwV/Vro2E9brtgZli9NpwLSQKlH2s4IE6oH
-         g7pmk0/qRVgI5jdFOD8YJRh/sQH3LafWUwnmSXUruakT2vOdlynLgjAkzTGCklI5Sj9d
-         5iO2/BUISEvk50LuONeKmuUoiItmIswzmo81uOikqbYiih9FNMdXCw/aUee/A0NG55UU
-         G/gZNRjX7wmqsGmyFlul5tUD+ELOdwrL45jq70t5i/nWHcNWJj5dHGxM4RH1Y+m55kG4
-         jBl7Zb5JDDPM5agzjC+1+5clMPwgrsgfjzdd63FFsJkxrYcNV+zkuyx5jzL8zWv13Hjy
-         Ycew==
+        h=date:message-id:in-reply-to:references:from:to:cc:subject
+         :content-transfer-encoding:mime-version;
+        bh=lJnV+kITEwNEZxgW0EEwkSDW1MfbZOcjYoFW6kKKYcY=;
+        b=NK3AXJ9sUzOeFZfFNuCSHsmgcdy5famNh4IOfV6dhZgSoUIpg/TuKxSy7ZTYJ4U4qO
+         IebE1+JsyfP0bYZgtagN/MelZcQVHSQKmaeq5aCRBY1V6j1uO3sHLRTvcV4e+y37uf+z
+         hoRuOym/BqkyB7GQLiEvjT+ZO+CMxR5sMjWbItd3lQPd87dMjdq6JH5x4hucyNE+bwKx
+         LOEBT4XRMdTOAFh/2HaB3oMNPoNiESg/DIPZrxQZEJxITE18nJkXNLK5ymxZR++nZ98f
+         271jN5J0N+Fyh2wmq4TwusK0JmWLh49ByveFULqBPkyescoMNno6cTTY+eQYil41O3M9
+         NWdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:from:to:cc:subject
-         :content-transfer-encoding:mime-version;
-        bh=QlpUYZWJN3/9X1Sv9NBkaK62CkOEjlr+CDsqVlIgJIQ=;
-        b=Er31HU1pDcodkBgfLqrm4HRblsy0AwTBKxrzwIeOqMHRlRlxsDC6DSoEMan9y1LMfh
-         ktF3LQgCdhJeM7iQgZKYCFmBkpoLzy+uG8mT+EhZLOfPSum/z3eyz/U993RWt0Pcnty6
-         lzDOf6vNoY44HapZBW4FHzkzb7ZJbqrgErCCV0qcEe7L7HUhzV7kPQObcJJkTEnsKIcV
-         2XA4u8sAuF/hpKECZ3sCSI6PboheGbrjZMzSvdoJ4/OshHUD3D1u/SUyE2xy/Q835QGE
-         1V2PG4mcwVk0izwIjfV54sEbgXgv4Fbe46365scDPlb8wAP8DD9UcM4x++ImMMpfsV4s
-         iPqw==
-X-Gm-Message-State: AOAM532cQm+kXtvXzulm2zxJhxZWKDRlu+5lcs5i/8EhGBPmuBOFSx7H
-        QoDak6mj/RfCXESSK0Zowf4ciw==
-X-Google-Smtp-Source: ABdhPJzuDVWGP+lXj/vcnFmLXxhIH2xPyjrhlDR+8qGpshWFZDc1SCjZ0I6dIerx58XolVvFTjBCKw==
-X-Received: by 2002:a17:90a:34b:: with SMTP id 11mr4146832pjf.188.1635830891243;
-        Mon, 01 Nov 2021 22:28:11 -0700 (PDT)
+        h=x-gm-message-state:date:message-id:in-reply-to:references:from:to
+         :cc:subject:content-transfer-encoding:mime-version;
+        bh=lJnV+kITEwNEZxgW0EEwkSDW1MfbZOcjYoFW6kKKYcY=;
+        b=xeOUVAG5E3JpR3aJzbn1+eAqlafXRJv9O4bYD2lMljDfBislH5VpiZtixt08BdF6FK
+         Bt+T0ZkrucGhULYGCSnIqeDa4jhKaLgmhhGmmBwAw0sf+slicL4fuRxjG0P0a4NbEXki
+         atoOBttj1JqQBk7j71ZAyYIWA6FI92p8ijr8zYrN9/dMECDzjTp6lUtr5PwVAyrKcDla
+         wAy+nreDRtK24bopceKnZ1FUjo3/x2PgfsoEXAosJPIlNTAgKlaq6r6y6V1A2X/fi4tA
+         fd/HIZWUqmgrL6RXZmjD32W5CjER43XkxnO+JnQlYAvaBE7EYHrZFsy5VpTJbAJfpbl9
+         ZW4A==
+X-Gm-Message-State: AOAM532VTU40nIsPX2HONSQyTkKWfpIsrTXWGlGKqXybCey2P9PlHjJn
+        V/uI2E9C/5U89Qd9TyEBXNFMRg==
+X-Google-Smtp-Source: ABdhPJy06dW+UZGRFNKjWP1TfKaeRYJreAi0Y/kXtrqrJJd8UVUeVYdEolF2DcqQvkJFgp+4ppjzvg==
+X-Received: by 2002:a63:fd03:: with SMTP id d3mr17864964pgh.199.1635830902444;
+        Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
 Received: from [127.0.1.1] (117-20-69-24.751445.bne.nbn.aussiebb.net. [117.20.69.24])
-        by smtp.gmail.com with UTF8SMTPSA id j6sm14293344pgq.0.2021.11.01.22.28.07
+        by smtp.gmail.com with UTF8SMTPSA id mp16sm1109758pjb.1.2021.11.01.22.28.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Nov 2021 22:28:10 -0700 (PDT)
+        Mon, 01 Nov 2021 22:28:22 -0700 (PDT)
 Date:   Tue, 02 Nov 2021 05:27:54 +0000
-Message-Id: <20211102052754.817220-0-nathan@nathanrossi.com>
+Message-Id: <20211102052754.817220-2-nathan@nathanrossi.com>
+In-Reply-To: <20211102052754.817220-0-nathan@nathanrossi.com>
+References: <20211102052754.817220-0-nathan@nathanrossi.com>
 From:   Nathan Rossi <nathan@nathanrossi.com>
 To:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+        linux-kernel@vger.kernel.org
 Cc:     Nathan Rossi <nathan@nathanrossi.com>,
         Nathan Rossi <nathan.rossi@digi.com>,
         Guenter Roeck <linux@roeck-us.net>,
         Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v4 0/3] Driver for TI INA238 I2C Power Monitor
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v4 2/3] dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain property
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
@@ -68,32 +69,56 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Nathan Rossi <nathan.rossi@digi.com>
 
+Add a property to the binding to define the selected shunt voltage gain.
+This specifies the range and accuracy that applies to the shunt circuit.
+This property only applies to devices that have a selectable shunt
+voltage range via PGA or ADCRANGE register configuration.
+
+Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
+---
 Changes in v2:
-- Added device tree binding for ti,shunt-gain to specify the target
-  ADCRANGE for the ina238
-- Reworked ina238 driver to use hwmon_chip_info API, and addressed
-  various review comments
+- Added binding for shunt-gain
 
 Changes in v3:
-- Fix schema error for ti,shunt-gain binding
-- Address review comments
+- Fix schema error, setting $ref to uint32
+- Improve the description to detail exactly how to define the property
+  and how the property affects initial device configuration and
+  calculation of values
+---
+ .../devicetree/bindings/hwmon/ti,ina2xx.yaml        | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Changes in v4:
-- Change ina238_data.gain type to int
-
-Nathan Rossi (3):
-  dt-bindings: hwmon: ti,ina2xx: Document ti,ina238 compatible string
-  dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain property
-  hwmon: Driver for Texas Instruments INA238
-
- .../devicetree/bindings/hwmon/ti,ina2xx.yaml  |  22 +
- Documentation/hwmon/ina238.rst                |  56 ++
- Documentation/hwmon/index.rst                 |   1 +
- drivers/hwmon/Kconfig                         |  12 +
- drivers/hwmon/Makefile                        |   1 +
- drivers/hwmon/ina238.c                        | 644 ++++++++++++++++++
- 6 files changed, 736 insertions(+)
- create mode 100644 Documentation/hwmon/ina238.rst
- create mode 100644 drivers/hwmon/ina238.c
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 180573f26c..47af97bb4c 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -36,6 +36,27 @@ properties:
+       Shunt resistor value in micro-Ohm.
+     $ref: /schemas/types.yaml#/definitions/uint32
+ 
++  ti,shunt-gain:
++    description: |
++      Programmable gain divisor for the shunt voltage accuracy and range. This
++      property only applies to devices that have configurable PGA/ADCRANGE. The
++      gain value is used configure the gain and to convert the shunt voltage,
++      current and power register values when reading measurements from the
++      device.
++
++      For devices that have a configurable PGA (e.g. INA209, INA219, INA220),
++      the gain value maps directly with the PG bits of the config register.
++
++      For devices that have ADCRANGE configuration (e.g. INA238) a shunt-gain
++      value of 1 maps to ADCRANGE=1 where no gain divisor is applied to the
++      shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
++      voltage range is used.
++
++      The default value is device dependent, and is defined by the reset value
++      of PGA/ADCRANGE in the respective configuration registers.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 4, 8]
++
+ required:
+   - compatible
+   - reg
 ---
 2.33.0
