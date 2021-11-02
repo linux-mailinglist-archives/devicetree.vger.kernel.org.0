@@ -2,320 +2,574 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D665442A45
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 10:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 61A04442A83
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 10:37:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbhKBJXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 05:23:06 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:26898 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbhKBJXA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 05:23:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1635844825; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=/ArAa7CKyy271Bn0zdX9atBBD7gM0Jd9fV9o5Gr98f8=;
- b=pQMfLIyp8YVMGqijYGrlSA2fVB19xjFX48ReXwXWKQp/UClSytptFvZ5jshi9ax5kFmZnrxP
- 0Ko78gCuZ1wGyD8zeG+mcR6Eqhzsk6ueEQbRSxe1K0hn7nGaaC3HZC5/pQYc8qEw7k4DZTTE
- cxjrbngBGjQx/sMozRX5a6vil0Q=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 618102c9aeb23905565bf94f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 02 Nov 2021 09:20:09
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AA01FC43616; Tue,  2 Nov 2021 09:20:09 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0D7E4C4338F;
-        Tue,  2 Nov 2021 09:20:07 +0000 (UTC)
+        id S230281AbhKBJj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 05:39:56 -0400
+Received: from vm1.sequanux.org ([188.165.36.56]:52369 "EHLO vm1.sequanux.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229823AbhKBJj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 05:39:56 -0400
+X-Greylist: delayed 421 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Nov 2021 05:39:54 EDT
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by vm1.sequanux.org (Postfix) with ESMTP id C07D4512003;
+        Tue,  2 Nov 2021 10:30:17 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at vm1.sequanux.org
+Received: from vm1.sequanux.org ([127.0.0.1])
+        by localhost (vm1.sequanux.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 4KCfXqq-e3RC; Tue,  2 Nov 2021 10:30:14 +0100 (CET)
+Received: from localhost (softwrestling.org [188.165.144.248])
+        by vm1.sequanux.org (Postfix) with ESMTPSA id 59B50512001;
+        Tue,  2 Nov 2021 10:30:14 +0100 (CET)
+Date:   Tue, 2 Nov 2021 10:30:14 +0100
+From:   Simon Guinot <simon.guinot@sequanux.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] ARM: dts: make dts use gpio-fan matrix instead of
+ array
+Message-ID: <20211102093014.GL13663@kw.sim.vm.gnt>
+References: <20211029114948.41841-1-david@ixit.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Tue, 02 Nov 2021 14:50:07 +0530
-From:   schowdhu@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bryan O'Donoghue <pure.logic@nexus-software.ie>,
-        Greg KH <greg@kroah.com>, linux-kernel@vger.kernel.org,
-        ckadabi@codeaurora.org, tsoni@codeaurora.org,
-        bryanh@codeaurora.org, psodagud@codeaurora.org,
-        satyap@codeaurora.org, pheragu@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Subject: Re: [PATCH V0 1/7] dt-bindings: connector: Add property for eud type
- c connector
-In-Reply-To: <YWT/buCujyK3D0WE@yoga>
-References: <cover.1633343547.git.schowdhu@codeaurora.org>
- <246c9d24da27b6ce91d5f1e536fa96ac5656a0b2.1633343547.git.schowdhu@codeaurora.org>
- <YVsttQySDnaXxOuI@robh.at.kernel.org>
- <b3d10d7b874c11462604a5f78bc0e8cf@codeaurora.org> <YVx/U+w8zS6/P6oa@ripper>
- <ad4f944d1166882c80a91b3fbbd15fc5@codeaurora.org> <YWT/buCujyK3D0WE@yoga>
-Message-ID: <561c9e09cb7cbee29e297515934809ea@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3xQkynibq3FKlJyM"
+Content-Disposition: inline
+In-Reply-To: <20211029114948.41841-1-david@ixit.cz>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-10-12 08:52, Bjorn Andersson wrote:
-> On Thu 07 Oct 04:25 CDT 2021, schowdhu@codeaurora.org wrote:
-> 
->> On 2021-10-05 22:07, Bjorn Andersson wrote:
->> > On Tue 05 Oct 06:11 PDT 2021, schowdhu@codeaurora.org wrote:
->> >
->> > > On 2021-10-04 22:07, Rob Herring wrote:
->> > > > On Mon, Oct 04, 2021 at 04:46:19PM +0530, Souradeep Chowdhury wrote:
->> > > > > Added the property for EUD(Embedded USB Debug) connector.Added
->> > > > > the "reg" and "interrupts" property which is needed for EUD.
->> > > >
->> > > > You are going to need a better explanation of this h/w.
->> > >
->> > > Ack. Will update this with the detailed hardware description
->> > > in the next version.
->> > >
->> > > >
->> > > > >
->> > > > > Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
->> > > > > ---
->> > > > >  .../devicetree/bindings/connector/usb-connector.yaml      | 15
->> > > > > +++++++++++++++
->> > > > >  1 file changed, 15 insertions(+)
->> > > > >
->> > > > > diff --git
->> > > > > a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> > > > > b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> > > > > index 7eb8659..908129f 100644
->> > > > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> > > > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
->> > > > > @@ -30,6 +30,21 @@ properties:
->> > > > >            - const: samsung,usb-connector-11pin
->> > > > >            - const: usb-b-connector
->> > > > >
->> > > > > +      - items:
->> > > > > +          - enum:
->> > > > > +              - qcom,sc7280-usb-connector-eud
->> > > > > +          - const: qcom,usb-connector-eud
->> > > > > +          - const: usb-c-connector
->> > > > > +
->> > > > > +  reg:
->> > > > > +    items:
->> > > > > +      - description: EUD Base Register Region
->> > > > > +      - description: EUD Mode Manager Region
->> > > >
->> > > > A connector node represents the physical connector on a board. That
->> > > > can't really be an MMIO peripheral. Maybe you need a node for EUD and
->> > > > then it should have a connector child node? Don't really know without
->> > > > understanding this h/w.
->> > >
->> > > As per the previous discussion on the EUD, it was agreed upon to map
->> > > EUD
->> > > as a type C connector and use Role-Switch to change the USB role
->> > > instead
->> > > of extcon interface that was being used previously. The link for the
->> > > same
->> > > is as follows:-
->> > >
->> > > https://lore.kernel.org/lkml/5db1a666-62ec-c850-6626-ad33d337b452@codeaurora.org/
->> > >
->> >
->> > Not using extcon is the right thing, but perhaps we should make the EUD
->> > a role_switch provider and client, so that we can describe how it sits
->> > inbetween the connector and the controller.
->> >
->> > That way it has the power to pass through or override requests from the
->> > upstream role-switcher, based on the status of EUD.
->> >
->> >
->> > That said, I'm still curious to what happens if I renegotiate the roles
->> > dynamically in a Type-C environment, while enabling EUD. How would the
->> > device on the other end of the cable know that it's supposed to be a
->> > host? Or there's simply a reset of the link when this happens?
->> >
->> > Thanks,
->> > Bjorn
->> 
->> Hi Bjorn,
->> 
-> 
-> Hi Souradeep
-> 
->> By making EUD Role-Switch provider and client do you mean that
->> we should have a EUD node which will have a connector node as
->> child and this connector node will have a port that points towards
->> the drd role-switch?
->> 
->> So that my device tree node will look like the following in that case
->> 
->> eud@88e0000 {
->>         compatible = "qcom,usb-connector-eud";
->>         reg = <0 0x88e0000 0 0x2000>,
->>               <0 0x88e2000 0 0x1000>;
->>         interrupt-parent = <&pdc>;
->>         interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
->>         usb_con: connector {
->>                 compatible = "usb-c-connector";
->>                 label = "USB-C";
->>                 port {
->>                       eud_usb_output: endpoint {
->>                       remote-endpoint = <&eud_usb3_input>;
->>                  };
->>         };
->> 
->> };
->> 
->> 
->> @usb2 {
->>     dwc3 {
->>        usb-role-switch;
->>        port {
->>              eud_usb3_input: endpoint {
->>                    remote-endpoint = <&eud_usb_output>;
->>              };
->>      };
->> };
-> 
-> While your "output" and "input" matches the direction of the role
-> switching, I think the connection should be describe in the other
-> direction.
-> 
-> Also my suggestion was that EUD is both connector for the dwc3 and has 
-> a
-> reference to the connector described in the TypeC controller - to
-> properly describe the relationship:
-> 
->   DWC -> EUD -> connector
-> 
-> With the role switching request going from the connector (pmic_glink
-> driver) to DWC through the EUD, which can override the vote.
-> 
-> 
-> That said, this is just my suggestion. You need to ensure that Rob
-> understands the hardware design well enough to approve your proposed
-> binding.
-> 
-> 
-> E.g. The connector in the EUD isn't a usb-c-connector, it's some
-> type of internal connection, the next step in that chain is the actual
-> usb-c-connector.
-> 
-> Regards,
-> Bjorn
-> 
->> 
->> Also EUD functions only in device mode, so when the role-switch is 
->> done by
->> the controller
->> to set the device mode, the PC on the other end becomes the host.
->> 
->> Thanks,
->> Souradeep
 
-Hi Bjorn/Robb,
+--3xQkynibq3FKlJyM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Following is how my EUD design looks like
+Hi David,
 
-My device tree node will look like as follows
+For the LaCie and Seagate boards:
 
+Acked-by: Simon Guinot <simon.guinot@sequanux.org>
 
-eud@88e0000 {
-         compatible = "qcom,usb-connector-eud";
-         reg = <0 0x88e0000 0 0x2000>,
-                   <0 0x88e2000 0 0x1000>;
-         interrupt-parent = <&pdc>;
-         interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-          ports {
-                 #address-cells = <2>;
-                 #size-cells = <2>;
-                 port@0 {
-                         reg = <0>;
-                         usb2_eud: endpoint {
-                                 remote-endpoint = <&eud_ep>;
-                         };
-                 };
-         };
-};
+In addition, can you ensure that the example in
+Documentation/devicetree/bindings/hwmon/gpio-fan.txt is updated as well ?
 
+Thanks.
 
-@usb2 {
-     dwc3 {
-        usb-role-switch;
-         usb_con: eud_usb_connector {
-                 compatible = “usb-connector-eud", "usb-c-connector";
-                 ports {
-                         #address-cells = <2>;
-                         #size-cells = <2>;
-                         port@0 {
-                                 reg = <0>;
-                                 eud_ep: endpoint {
-                                         remote-endpoint = <&usb2_eud>;
-                                 };
-                         };
-               };
-};
+Simon
 
+On Fri, Oct 29, 2021 at 01:49:44PM +0200, David Heidelberg wrote:
+> No functional changes.
+>=20
+> Adjust to comply with dt-schema requirements
+> and make possible to validate values.
+>=20
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  arch/arm/boot/dts/armada-370-rd.dts           |   2 +-
+>  .../boot/dts/armada-370-seagate-nas-2bay.dts  |   8 +-
+>  .../boot/dts/armada-370-seagate-nas-4bay.dts  |   8 +-
+>  .../boot/dts/armada-370-synology-ds213j.dts   |  16 +--
+>  .../boot/dts/armada-385-synology-ds116.dts    |  16 +--
+>  arch/arm/boot/dts/armada-388-gp.dts           |   4 +-
+>  arch/arm/boot/dts/kirkwood-dnskw.dtsi         |   6 +-
+>  .../boot/dts/kirkwood-linkstation-6282.dtsi   |   9 +-
+>  .../boot/dts/kirkwood-linkstation-lswxl.dts   |   9 +-
+>  arch/arm/boot/dts/kirkwood-lsxl.dtsi          |   9 +-
+>  arch/arm/boot/dts/kirkwood-ns2max.dts         |  18 ++--
+>  arch/arm/boot/dts/kirkwood-ns2mini.dts        |  18 ++--
+>  arch/arm/boot/dts/kirkwood-synology.dtsi      | 102 +++++++++---------
+>  arch/arm/boot/dts/mvebu-linkstation-fan.dtsi  |   8 +-
+>  arch/arm/boot/dts/tegra30-ouya.dts            |   4 +-
+>  15 files changed, 123 insertions(+), 114 deletions(-)
+>=20
+> diff --git a/arch/arm/boot/dts/armada-370-rd.dts b/arch/arm/boot/dts/arma=
+da-370-rd.dts
+> index c910d157a686..041c99b99921 100644
+> --- a/arch/arm/boot/dts/armada-370-rd.dts
+> +++ b/arch/arm/boot/dts/armada-370-rd.dts
+> @@ -96,7 +96,7 @@ button {
+>  			gpio-fan {
+>  				compatible =3D "gpio-fan";
+>  				gpios =3D <&gpio0 8 GPIO_ACTIVE_HIGH>;
+> -				gpio-fan,speed-map =3D <0 0 3000 1>;
+> +				gpio-fan,speed-map =3D <0 0>, <3000 1>;
+>  				pinctrl-0 =3D <&fan_pins>;
+>  				pinctrl-names =3D "default";
+>  			};
+> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-2bay.dts b/arch/arm=
+/boot/dts/armada-370-seagate-nas-2bay.dts
+> index 8dd242e668e6..6ec3dd3337f4 100644
+> --- a/arch/arm/boot/dts/armada-370-seagate-nas-2bay.dts
+> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-2bay.dts
+> @@ -25,9 +25,9 @@ / {
+> =20
+>  	gpio-fan {
+>  		gpio-fan,speed-map =3D
+> -			<   0 3
+> -			  950 2
+> -			 1400 1
+> -			 1800 0>;
+> +			<   0 3>,
+> +			< 950 2>,
+> +			<1400 1>,
+> +			<1800 0>;
+>  	};
+>  };
+> diff --git a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts b/arch/arm=
+/boot/dts/armada-370-seagate-nas-4bay.dts
+> index 3cf70c72c5ca..d62e32e9ddb5 100644
+> --- a/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
+> +++ b/arch/arm/boot/dts/armada-370-seagate-nas-4bay.dts
+> @@ -109,10 +109,10 @@ NS_V2_LED_ON   1 0
+> =20
+>  	gpio-fan {
+>  		gpio-fan,speed-map =3D
+> -			<   0 3
+> -			  800 2
+> -			  1050 1
+> -			  1300 0>;
+> +			<   0 3>,
+> +			< 800 2>,
+> +			<1050 1>,
+> +			<1300 0>;
+>  	};
+>  };
+> =20
+> diff --git a/arch/arm/boot/dts/armada-370-synology-ds213j.dts b/arch/arm/=
+boot/dts/armada-370-synology-ds213j.dts
+> index 64f2ce254fb6..88aa2b7c4962 100644
+> --- a/arch/arm/boot/dts/armada-370-synology-ds213j.dts
+> +++ b/arch/arm/boot/dts/armada-370-synology-ds213j.dts
+> @@ -113,14 +113,14 @@ gpio-fan-32-38 {
+>  			 &gpio2  0 GPIO_ACTIVE_HIGH
+>  			 &gpio2  1 GPIO_ACTIVE_HIGH>;
+>  		alarm-gpios =3D <&gpio1 6 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       1000 1
+> -				       1150 2
+> -				       1350 4
+> -				       1500 3
+> -				       1650 5
+> -				       1750 6
+> -				       1900 7 >;
+> +		gpio-fan,speed-map =3D <   0 0>,
+> +				     <1000 1>,
+> +				     <1150 2>,
+> +				     <1350 4>,
+> +				     <1500 3>,
+> +				     <1650 5>,
+> +				     <1750 6>,
+> +				     <1900 7>;
+>  	};
+> =20
+>  	gpio-leds {
+> diff --git a/arch/arm/boot/dts/armada-385-synology-ds116.dts b/arch/arm/b=
+oot/dts/armada-385-synology-ds116.dts
+> index d8769956cbfc..26c6ef47354c 100644
+> --- a/arch/arm/boot/dts/armada-385-synology-ds116.dts
+> +++ b/arch/arm/boot/dts/armada-385-synology-ds116.dts
+> @@ -131,14 +131,14 @@ gpio-fan {
+>  			gpios =3D <&gpio1 18 GPIO_ACTIVE_HIGH>,
+>  				<&gpio1 17 GPIO_ACTIVE_HIGH>,
+>  				<&gpio1 16 GPIO_ACTIVE_HIGH>;
+> -			gpio-fan,speed-map =3D <   0 0
+> -					      1500 1
+> -					      2500 2
+> -					      3000 3
+> -					      3400 4
+> -					      3700 5
+> -					      3900 6
+> -					      4000 7>;
+> +			gpio-fan,speed-map =3D <   0 0>,
+> +					     <1500 1>,
+> +					     <2500 2>,
+> +					     <3000 3>,
+> +					     <3400 4>,
+> +					     <3700 5>,
+> +					     <3900 6>,
+> +					     <4000 7>;
+>  			#cooling-cells =3D <2>;
+>  		};
+> =20
+> diff --git a/arch/arm/boot/dts/armada-388-gp.dts b/arch/arm/boot/dts/arma=
+da-388-gp.dts
+> index 9d873257ac45..9f8d7ab2c897 100644
+> --- a/arch/arm/boot/dts/armada-388-gp.dts
+> +++ b/arch/arm/boot/dts/armada-388-gp.dts
+> @@ -237,8 +237,8 @@ pcie@3,0 {
+>  		gpio-fan {
+>  			compatible =3D "gpio-fan";
+>  			gpios =3D <&expander1 3 GPIO_ACTIVE_HIGH>;
+> -			gpio-fan,speed-map =3D <	 0 0
+> -					      3000 1>;
+> +			gpio-fan,speed-map =3D <	 0 0>,
+> +					     <3000 1>;
+>  		};
+>  	};
+> =20
+> diff --git a/arch/arm/boot/dts/kirkwood-dnskw.dtsi b/arch/arm/boot/dts/ki=
+rkwood-dnskw.dtsi
+> index eb917462b219..0738eb679fcd 100644
+> --- a/arch/arm/boot/dts/kirkwood-dnskw.dtsi
+> +++ b/arch/arm/boot/dts/kirkwood-dnskw.dtsi
+> @@ -38,9 +38,9 @@ gpio_fan {
+>  		pinctrl-names =3D "default";
+>  		gpios =3D <&gpio1 14 GPIO_ACTIVE_HIGH
+>  			 &gpio1 13 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <0    0
+> -				      3000 1
+> -				      6000 2>;
+> +		gpio-fan,speed-map =3D <0    0>,
+> +				     <3000 1>,
+> +				     <6000 2>;
+>  	};
+> =20
+>  	gpio_poweroff {
+> diff --git a/arch/arm/boot/dts/kirkwood-linkstation-6282.dtsi b/arch/arm/=
+boot/dts/kirkwood-linkstation-6282.dtsi
+> index 377b6e970259..dfac2045a1eb 100644
+> --- a/arch/arm/boot/dts/kirkwood-linkstation-6282.dtsi
+> +++ b/arch/arm/boot/dts/kirkwood-linkstation-6282.dtsi
+> @@ -118,10 +118,11 @@ gpio_fan {
+>  		gpios =3D <&gpio0 17 GPIO_ACTIVE_LOW
+>  			 &gpio0 16 GPIO_ACTIVE_LOW>;
+> =20
+> -		gpio-fan,speed-map =3D <0 3
+> -				1500 2
+> -				3250 1
+> -				5000 0>;
+> +		gpio-fan,speed-map =3D
+> +				<   0 3>,
+> +				<1500 2>,
+> +				<3250 1>,
+> +				<5000 0>;
+> =20
+>  		alarm-gpios =3D <&gpio1 11 GPIO_ACTIVE_HIGH>;
+>  	};
+> diff --git a/arch/arm/boot/dts/kirkwood-linkstation-lswxl.dts b/arch/arm/=
+boot/dts/kirkwood-linkstation-lswxl.dts
+> index c6024b569423..0425df8cb91c 100644
+> --- a/arch/arm/boot/dts/kirkwood-linkstation-lswxl.dts
+> +++ b/arch/arm/boot/dts/kirkwood-linkstation-lswxl.dts
+> @@ -69,10 +69,11 @@ gpio_fan {
+>  		gpios =3D <&gpio1 16 GPIO_ACTIVE_LOW
+>  			 &gpio1 15 GPIO_ACTIVE_LOW>;
+> =20
+> -		gpio-fan,speed-map =3D <0 3
+> -				1500 2
+> -				3250 1
+> -				5000 0>;
+> +		gpio-fan,speed-map =3D
+> +				<   0 3>,
+> +				<1500 2>,
+> +				<3250 1>,
+> +				<5000 0>;
+> =20
+>  		alarm-gpios =3D <&gpio1 8 GPIO_ACTIVE_HIGH>;
+>  	};
+> diff --git a/arch/arm/boot/dts/kirkwood-lsxl.dtsi b/arch/arm/boot/dts/kir=
+kwood-lsxl.dtsi
+> index 7b151acb9984..74009ed9e423 100644
+> --- a/arch/arm/boot/dts/kirkwood-lsxl.dtsi
+> +++ b/arch/arm/boot/dts/kirkwood-lsxl.dtsi
+> @@ -167,10 +167,11 @@ gpio_fan {
+>  		pinctrl-names =3D "default";
+>  		gpios =3D <&gpio0 19 GPIO_ACTIVE_LOW
+>  		         &gpio0 18 GPIO_ACTIVE_LOW>;
+> -		gpio-fan,speed-map =3D <0    3
+> -		                      1500 2
+> -		                      3250 1
+> -		                      5000 0>;
+> +		gpio-fan,speed-map =3D
+> +				<0    3>,
+> +				<1500 2>,
+> +				<3250 1>,
+> +				<5000 0>;
+>  		alarm-gpios =3D <&gpio1 8 GPIO_ACTIVE_HIGH>;
+>  	};
+> =20
+> diff --git a/arch/arm/boot/dts/kirkwood-ns2max.dts b/arch/arm/boot/dts/ki=
+rkwood-ns2max.dts
+> index c0a087e77408..044958bc55da 100644
+> --- a/arch/arm/boot/dts/kirkwood-ns2max.dts
+> +++ b/arch/arm/boot/dts/kirkwood-ns2max.dts
+> @@ -29,15 +29,15 @@ &gpio0  7 GPIO_ACTIVE_LOW
+>  			 &gpio1  1 GPIO_ACTIVE_LOW
+>  			 &gpio0 23 GPIO_ACTIVE_LOW>;
+>  		gpio-fan,speed-map =3D
+> -			<   0  0
+> -			 1500 15
+> -			 1700 14
+> -			 1800 13
+> -			 2100 12
+> -			 3100 11
+> -			 3300 10
+> -			 4300  9
+> -			 5500  8>;
+> +			<   0  0>,
+> +			<1500 15>,
+> +			<1700 14>,
+> +			<1800 13>,
+> +			<2100 12>,
+> +			<3100 11>,
+> +			<3300 10>,
+> +			<4300  9>,
+> +			<5500  8>;
+>  		alarm-gpios =3D <&gpio0 25 GPIO_ACTIVE_LOW>;
+>  	};
+> =20
+> diff --git a/arch/arm/boot/dts/kirkwood-ns2mini.dts b/arch/arm/boot/dts/k=
+irkwood-ns2mini.dts
+> index 5b9fa14b6428..3fbe008f9141 100644
+> --- a/arch/arm/boot/dts/kirkwood-ns2mini.dts
+> +++ b/arch/arm/boot/dts/kirkwood-ns2mini.dts
+> @@ -30,15 +30,15 @@ &gpio0  7 GPIO_ACTIVE_LOW
+>  			 &gpio1  1 GPIO_ACTIVE_LOW
+>  			 &gpio0 23 GPIO_ACTIVE_LOW>;
+>  		gpio-fan,speed-map =3D
+> -			<   0  0
+> -			 3000 15
+> -			 3180 14
+> -			 4140 13
+> -			 4570 12
+> -			 6760 11
+> -			 7140 10
+> -			 7980  9
+> -			 9200  8>;
+> +			<   0  0>,
+> +			<3000 15>,
+> +			<3180 14>,
+> +			<4140 13>,
+> +			<4570 12>,
+> +			<6760 11>,
+> +			<7140 10>,
+> +			<7980  9>,
+> +			<9200  8>;
+>  		alarm-gpios =3D <&gpio0 25 GPIO_ACTIVE_LOW>;
+>  	};
+> =20
+> diff --git a/arch/arm/boot/dts/kirkwood-synology.dtsi b/arch/arm/boot/dts=
+/kirkwood-synology.dtsi
+> index 217bd374e52b..00adca68ae95 100644
+> --- a/arch/arm/boot/dts/kirkwood-synology.dtsi
+> +++ b/arch/arm/boot/dts/kirkwood-synology.dtsi
+> @@ -286,14 +286,15 @@ gpio-fan-150-32-35 {
+>  		gpios =3D <&gpio1 0 GPIO_ACTIVE_HIGH
+>  			 &gpio1 1 GPIO_ACTIVE_HIGH
+>  			 &gpio1 2 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2200 1
+> -				       2500 2
+> -				       3000 4
+> -				       3300 3
+> -				       3700 5
+> -				       3800 6
+> -				       4200 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2200 1>,
+> +				<2500 2>,
+> +				<3000 4>,
+> +				<3300 3>,
+> +				<3700 5>,
+> +				<3800 6>,
+> +				<4200 7>;
+>  	};
+> =20
+>  	gpio-fan-150-15-18 {
+> @@ -306,14 +307,15 @@ gpio-fan-150-15-18 {
+>  			 &gpio0 16 GPIO_ACTIVE_HIGH
+>  			 &gpio0 17 GPIO_ACTIVE_HIGH>;
+>  		alarm-gpios =3D <&gpio0 18 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2200 1
+> -				       2500 2
+> -				       3000 4
+> -				       3300 3
+> -				       3700 5
+> -				       3800 6
+> -				       4200 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2200 1>,
+> +				<2500 2>,
+> +				<3000 4>,
+> +				<3300 3>,
+> +				<3700 5>,
+> +				<3800 6>,
+> +				<4200 7>;
+>  	};
+> =20
+>  	gpio-fan-100-32-35 {
+> @@ -326,14 +328,15 @@ gpio-fan-100-32-35 {
+>  			 &gpio1 1 GPIO_ACTIVE_HIGH
+>  			 &gpio1 2 GPIO_ACTIVE_HIGH>;
+>  		alarm-gpios =3D <&gpio1 3 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2500 1
+> -				       3100 2
+> -				       3800 3
+> -				       4600 4
+> -				       4800 5
+> -				       4900 6
+> -				       5000 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2500 1>,
+> +				<3100 2>,
+> +				<3800 3>,
+> +				<4600 4>,
+> +				<4800 5>,
+> +				<4900 6>,
+> +				<5000 7>;
+>  	};
+> =20
+>  	gpio-fan-100-15-18 {
+> @@ -346,14 +349,15 @@ gpio-fan-100-15-18 {
+>  			 &gpio0 16 GPIO_ACTIVE_HIGH
+>  			 &gpio0 17 GPIO_ACTIVE_HIGH>;
+>  		alarm-gpios =3D <&gpio0 18 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2500 1
+> -				       3100 2
+> -				       3800 3
+> -				       4600 4
+> -				       4800 5
+> -				       4900 6
+> -				       5000 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2500 1>,
+> +				<3100 2>,
+> +				<3800 3>,
+> +				<4600 4>,
+> +				<4800 5>,
+> +				<4900 6>,
+> +				<5000 7>;
+>  	};
+> =20
+>  	gpio-fan-100-15-35-1 {
+> @@ -366,14 +370,15 @@ gpio-fan-100-15-35-1 {
+>  			 &gpio0 16 GPIO_ACTIVE_HIGH
+>  			 &gpio0 17 GPIO_ACTIVE_HIGH>;
+>  		alarm-gpios =3D <&gpio1 3 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2500 1
+> -				       3100 2
+> -				       3800 3
+> -				       4600 4
+> -				       4800 5
+> -				       4900 6
+> -				       5000 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2500 1>,
+> +				<3100 2>,
+> +				<3800 3>,
+> +				<4600 4>,
+> +				<4800 5>,
+> +				<4900 6>,
+> +				<5000 7>;
+>  	};
+> =20
+>  	gpio-fan-100-15-35-3 {
+> @@ -388,14 +393,15 @@ &gpio0 16 GPIO_ACTIVE_HIGH
+>  		alarm-gpios =3D <&gpio1 3 GPIO_ACTIVE_HIGH
+>  			       &gpio1 12 GPIO_ACTIVE_HIGH
+>  			       &gpio1 13 GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <    0 0
+> -				       2500 1
+> -				       3100 2
+> -				       3800 3
+> -				       4600 4
+> -				       4800 5
+> -				       4900 6
+> -				       5000 7 >;
+> +		gpio-fan,speed-map =3D
+> +				<   0 0>,
+> +				<2500 1>,
+> +				<3100 2>,
+> +				<3800 3>,
+> +				<4600 4>,
+> +				<4800 5>,
+> +				<4900 6>,
+> +				<5000 7>;
+>  	};
+> =20
+>  	gpio-leds-alarm-12 {
+> diff --git a/arch/arm/boot/dts/mvebu-linkstation-fan.dtsi b/arch/arm/boot=
+/dts/mvebu-linkstation-fan.dtsi
+> index e172029a0c4d..a260c42dbda3 100644
+> --- a/arch/arm/boot/dts/mvebu-linkstation-fan.dtsi
+> +++ b/arch/arm/boot/dts/mvebu-linkstation-fan.dtsi
+> @@ -50,10 +50,10 @@ gpio_fan {
+>  		pinctrl-names =3D "default";
+> =20
+>  		gpio-fan,speed-map =3D
+> -			<0		3
+> -			1500	2
+> -			3250	1
+> -			5000	0>;
+> +			<   0 3>,
+> +			<1500 2>,
+> +			<3250 1>,
+> +			<5000 0>;
+>  	};
+>  };
+> =20
+> diff --git a/arch/arm/boot/dts/tegra30-ouya.dts b/arch/arm/boot/dts/tegra=
+30-ouya.dts
+> index a93bc452d315..19aa9c2169fd 100644
+> --- a/arch/arm/boot/dts/tegra30-ouya.dts
+> +++ b/arch/arm/boot/dts/tegra30-ouya.dts
+> @@ -426,8 +426,8 @@ trusted-foundations {
+>  	fan: gpio_fan {
+>  		compatible =3D "gpio-fan";
+>  		gpios =3D <&gpio TEGRA_GPIO(J, 2) GPIO_ACTIVE_HIGH>;
+> -		gpio-fan,speed-map =3D <0    0
+> -				      4500 1>;
+> +		gpio-fan,speed-map =3D <0    0>,
+> +				     <4500 1>;
+>  		#cooling-cells =3D <2>;
+>  	};
+> =20
+> --=20
+> 2.33.0
+>=20
+>=20
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-So, I am putting a connector node as a child of dwc3 node which can be 
-connected to the EUD node via ports. I am keeping EUD as a separate 
-device tree node.
+--3xQkynibq3FKlJyM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I can get the device equivalent to the connector by doing the following 
-in EUD driver
+-----BEGIN PGP SIGNATURE-----
 
-dev = usb_of_get_companion_dev(&pdev->dev);
+iQIzBAEBCgAdFiEEXW8DgovlR3VS5hA0zyg/RDPmszoFAmGBBSUACgkQzyg/RDPm
+szrF/A//afDhRKbRfHK+l6dA3pbw5kKycEuxOUo+ZnDjXxf/6IYKzmSYPmtp4V0s
+qjeXaI0ICJX0Ma4y7JxnHfMLbN6ba9owbi5CLP4SQvhPXeq/OUG0MtedLq84c8ca
+slHkgjK04Vuyadrl7UvTBdn/m1ve08obBPTSjcUgeIzgSNMq4p/OxHuRRwRum91t
+n6Uu62BQtPwRTO1PpHfQknkB+dVGkdLA6BA4q31V7fsmsezcrYIUmhwnPFxoYmss
+R4CemjxTRFe4G+m8KsxJSFfcJXPomwFptCC9bVb+OA2kQ7eYUlcEOGJjVTH7xrAo
+YoS0bBp8/uYUKVNce/4VCUQou+Eowxx0+uG4ExIY5qKrnipyp7HLygj3Zxr4JVP5
+B5cNRMpQ6Bi2h0xm1g8FPcc00n9x/ji/XedGQDMlrPA7GP60kk9LZLTtFIyTqUmH
+ptiNjugFG2HAK1y7RKvWD8WrQHmVkyFM7gMRFpuhZzrKRWakUNUCmhdfJKWTKgf5
+Z0QhPOXEfluKfZ+TfE8rMwQ3ecDXUgdkwq+tV/NKtIX3fRgpZu+ulZgb4EJFD8xc
+ILzCtbufFr02QENKF6d3ZyxrEivWr26BlTw5mc9fpqaistKrWsNbKIOalqc/V+xe
+iA0GL+4LpyhrpJMdaR2SaVJR1ThLLekZX7N8AUDRZ7fwmGO6NwU=
+=YlsE
+-----END PGP SIGNATURE-----
 
-Once I get the device, I can then do
-
-role_sw = usb_role_switch_get(dev);
-
-This will give me the role switch reference which can be used to set 
-device or host role.
-
-The advantage here is that
-
--> I am keeping the existing yamls untouched which won't be the case if 
-I map EUD as child of dwc3.
-
-->This is also consistent with EUD hardware since EUD is not a connector 
-in itself but it needs a connector to function
-   because it can work only in device mode so the role-switch needs to be 
-done.
-
-Let me know your thoughts regarding this.
-
-Thanks,
-Souradeep
-
-
->> 
->> >
->> > > >
->> > > > > +
->> > > > > +  interrupts:
->> > > > > +    description:
->> > > > > +      EUD interrupt
->> > > > > +
->> > > > >    label:
->> > > > >      description: Symbolic name for the connector.
->> > > > >
->> > > > > --
->> > > > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a
->> > > > > member
->> > > > > of Code Aurora Forum, hosted by The Linux Foundation
->> > > > >
->> > > > >
+--3xQkynibq3FKlJyM--
