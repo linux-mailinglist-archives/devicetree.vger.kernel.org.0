@@ -2,106 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 386E1443029
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45875443040
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:23:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230271AbhKBOVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 10:21:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51710 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229530AbhKBOVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Nov 2021 10:21:03 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 2F0FB60EBB;
-        Tue,  2 Nov 2021 14:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635862708;
-        bh=qOB5WMuYpIlALms7I++ESh95onbe/bA+rU+eBx4I4Fk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=XoaOYISZbEeWyK9tRWTR37Jsk9jurujng5wyY52op4eXUfcCf+18ChbrFncdxOMtn
-         /X4LT6uiwNEODGWOWAguSLiN77hLLxuilaAkLyQS5cGL2d4LeR7kC7CUldM/mHxlDo
-         Ablk9FJDhtacoW855I3V+EoIjNXFyuor2oo+2oiNMNdWzzawxKwoNe8wlz9M3tUrVY
-         ywWhGSrHC8QLPqXO7KMLuzpvbRugzAL/UscJiOdsSNo8tj6bja4yLcZzLMzLzZ03rD
-         Y7i30c5f0zdvjVFl3dmr/ph9FrHvrYQi2GnqUrd7VAmX14cGTgwKP2OpvF15BldLRn
-         x6etj9G186fPA==
-Received: by mail-ed1-f48.google.com with SMTP id ee33so5580536edb.8;
-        Tue, 02 Nov 2021 07:18:28 -0700 (PDT)
-X-Gm-Message-State: AOAM533n6jj3u4hxWRG81Sp1VmfRguO4xT5J29KfrM5rgUVp0Dq4TqKP
-        YnyZFtxWMBjJH7WoctjT0PuWyuBUvHf5qiUiog==
-X-Google-Smtp-Source: ABdhPJyEJB9X6BsjiuknIZKb6IX4uzR9u7dyWMAP44n4tWQU5OoekyF3SHDoYpgBBnNTB8O+nTrZ+jKoTTonAuttmlE=
-X-Received: by 2002:a50:da06:: with SMTP id z6mr51404191edj.355.1635862706659;
- Tue, 02 Nov 2021 07:18:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211025103322.160913-1-robert.foss@linaro.org>
- <20211025103322.160913-2-robert.foss@linaro.org> <YYBOXQOXM8USks0G@robh.at.kernel.org>
- <CAG3jFytkHi06uaP8RFaS9cma68S9oz_AcAtkMxCrPKGXBTtfsA@mail.gmail.com>
-In-Reply-To: <CAG3jFytkHi06uaP8RFaS9cma68S9oz_AcAtkMxCrPKGXBTtfsA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 2 Nov 2021 09:18:14 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+u6hwj+hzj54KCWNG4u=oOkysK9y_rTwJozmRiWBLNKA@mail.gmail.com>
-Message-ID: <CAL_Jsq+u6hwj+hzj54KCWNG4u=oOkysK9y_rTwJozmRiWBLNKA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] media: dt-bindings: media: camss: Document
- clock-lanes property
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Todor Tomov <todor.too@gmail.com>,
-        "Gross, Andy" <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
+        id S230436AbhKBOZu convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 2 Nov 2021 10:25:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230419AbhKBOZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:25:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E0AC061714
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 07:23:15 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mhugw-000560-4X; Tue, 02 Nov 2021 15:23:10 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mhugk-004FAn-K7; Tue, 02 Nov 2021 15:22:58 +0100
+Message-ID: <7f4925be01831bce1e48efa8ee7eb6983c818a9c.camel@pengutronix.de>
+Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Vincent Shih <vincent.sunplus@gmail.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Vincent Shih <vincent.shih@sunplus.com>
+Date:   Tue, 02 Nov 2021 15:22:58 +0100
+In-Reply-To: <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
+         <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 2, 2021 at 6:49 AM Robert Foss <robert.foss@linaro.org> wrote:
->
-> On Mon, 1 Nov 2021 at 21:30, Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Oct 25, 2021 at 12:33:22PM +0200, Robert Foss wrote:
-> > > The clock-lanes property corresponds to a hardware register field
-> > > that is required to be set, in order to enable the CSI clock signal.
-> > >
-> > > The physical lane of the clock signal is not programmable, but only
-> > > togglable On or Off, which what BIT(7) of the
-> > > CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(5) register controls.
-> > >
-> > > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/media/qcom,msm8996-camss.yaml        | 5 +++++
-> > >  .../devicetree/bindings/media/qcom,sdm660-camss.yaml         | 5 +++++
-> > >  .../devicetree/bindings/media/qcom,sdm845-camss.yaml         | 5 +++++
-> > >  3 files changed, 15 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> > > index 38be41e932f0..d4da1fad12cf 100644
-> > > --- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> > > @@ -106,6 +106,11 @@ properties:
-> > >
-> > >              properties:
-> > >                clock-lanes:
-> > > +                description:
-> > > +                  The index of the clock-lane is not programmable by
-> > > +                  the hardware, but is required to define a CSI port.
-> > > +                  Lane 7 reflects the hardware register field that enables
-> > > +                  the clock lane.
-> >
-> > If it is fixed, then it should not be required. Fix the required part.
-> >
-> > >                  items:
-> > >                    - const: 7
-> >
-> > I don't know how we let that in, but this should be the lane number.
-> > Each binding can't be making up its own interpretation.
->
-> If the clock lane number isn't programmable, can clock-lanes be omitted?
+On Tue, 2021-11-02 at 14:22 +0800, Vincent Shih wrote:
+[...]
+> +static int sp_rtc_probe(struct platform_device *plat_dev)
+> +{
+> +	int ret;
+> +	int err, irq;
+> +	struct rtc_device *rtc = NULL;
+> +	struct resource *res;
+> +	void __iomem *reg_base = NULL;
+> +
+> +	FUNC_DEBUG();
 
-Yes, that would be the correct thing to do.
+Drop these.
 
-Rob
+> +	memset(&sp_rtc, 0, sizeof(sp_rtc));
+> +
+> +	// find and map our resources
+> +	res = platform_get_resource_byname(plat_dev, IORESOURCE_MEM, RTC_REG_NAME);
+> +	RTC_DEBUG("res = 0x%x\n", res->start);
+
+Drop, this will crash if res == NULL.
+
+> +
+> +	if (res) {
+> +		reg_base = devm_ioremap_resource(&plat_dev->dev, res);
+> +		if (IS_ERR(reg_base))
+> +			RTC_ERR("%s devm_ioremap_resource fail\n", RTC_REG_NAME);
+> +	}
+> +	RTC_DEBUG("reg_base = 0x%lx\n", (unsigned long)reg_base);
+
+Drop or use dev_dbg() instead.
+
+> +
+> +	// clk
+> +	sp_rtc.rtcclk = devm_clk_get(&plat_dev->dev, NULL);
+> +	RTC_DEBUG("sp_rtc->clk = 0x%lx\n", (unsigned long)sp_rtc.rtcclk);
+> +	if (IS_ERR(sp_rtc.rtcclk))
+> +		RTC_DEBUG("devm_clk_get fail\n");
+> +
+> +	ret = clk_prepare_enable(sp_rtc.rtcclk);
+
+Only enable the clock after all resources are requested. That will
+simplify the error path.
+
+> +
+> +	// reset
+> +	sp_rtc.rstc = devm_reset_control_get(&plat_dev->dev, NULL);
+
+Use devm_reset_control_get_exclusive() instead.
+This should be done before clk_prepare_enable().
+
+> +	RTC_DEBUG("sp_rtc->rstc = 0x%lx\n", (unsigned long)sp_rtc.rstc);
+> +	if (IS_ERR(sp_rtc.rstc)) {
+> +		ret = PTR_ERR(sp_rtc.rstc);
+> +		RTC_ERR("SPI failed to retrieve reset controller: %d\n", ret);
+> +		goto free_clk;
+
+Then you could use return dev_err_probe() here.
+
+> +	}
+> +
+> +	ret = reset_control_deassert(sp_rtc.rstc);
+
+Same as for the clock, only deassert the reset after all resources are
+requested.
+
+> +	if (ret)
+> +		goto free_clk;
+> +
+> +	rtc_reg_ptr = (struct sp_rtc_reg *)(reg_base);
+> +
+> +	// Keep RTC from system reset
+> +	writel((1 << (16+4)) | (1 << 4), &rtc_reg_ptr->rtc_ctrl);
+> +
+> +	// request irq
+> +	irq = platform_get_irq(plat_dev, 0);
+
+This should be done before clk_prepare_enable().
+
+> +	if (irq < 0) {
+> +		RTC_ERR("platform_get_irq failed\n");
+> +		goto free_reset_assert;
+> +	}
+> +
+> +	err = devm_request_irq(&plat_dev->dev, irq, rtc_irq_handler,
+> +					IRQF_TRIGGER_RISING, "rtc irq", plat_dev);
+> +	if (err) {
+> +		RTC_ERR("devm_request_irq failed: %d\n", err);
+> +		goto free_reset_assert;
+> +	}
+> +
+> +	// Get charging-mode.
+> +	ret = of_property_read_u32(plat_dev->dev.of_node, "charging-mode", &sp_rtc.charging_mode);
+
+This could be done before clk_prepare_enable().
+
+> +	if (ret) {
+> +		RTC_ERR("Failed to retrieve \'charging-mode\'!\n");
+> +		goto free_reset_assert;
+> +	}
+> +	sp_rtc_set_batt_charge_ctrl(sp_rtc.charging_mode);
+> +
+> +	device_init_wakeup(&plat_dev->dev, 1);
+> +
+> +	rtc = devm_rtc_device_register(&plat_dev->dev, "sp7021-rtc", &sp_rtc_ops, THIS_MODULE);
+> +	if (IS_ERR(rtc)) {
+> +		ret = PTR_ERR(rtc);
+> +		goto free_reset_assert;
+> +	}
+> +
+> +	platform_set_drvdata(plat_dev, rtc);
+> +
+> +	RTC_INFO("sp7021-rtc loaded\n");
+
+Use dev_info() instead.
+
+> +
+> +	return 0;
+> +
+> +free_reset_assert:
+> +	reset_control_assert(sp_rtc.rstc);
+> +free_clk:
+> +	clk_disable_unprepare(sp_rtc.rtcclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static int sp_rtc_remove(struct platform_device *plat_dev)
+> +{
+> +	reset_control_assert(sp_rtc.rstc);
+
+	clk_disable_unprepare(sp_rtc.rtcclk);
+
+
+regards
+Philipp
