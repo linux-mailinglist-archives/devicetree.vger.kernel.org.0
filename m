@@ -2,109 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D05FF4438B0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB5F4438CC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbhKBWqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 18:46:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54012 "EHLO mail.kernel.org"
+        id S230409AbhKBW5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 18:57:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60892 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230248AbhKBWqu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Nov 2021 18:46:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 85B5161058;
-        Tue,  2 Nov 2021 22:44:14 +0000 (UTC)
+        id S229685AbhKBW5C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 18:57:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7648561105;
+        Tue,  2 Nov 2021 22:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635893054;
-        bh=xlJTg+g45NA5Jmaqfo0H1zJ7M0aSNbSpGn8R3qo/alA=;
+        s=k20201202; t=1635893667;
+        bh=vZAm7ovxBi6d/ZH+uziWTG6NBTualBYKsCvLvL3Gx7g=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=J3E8y0mMMimFVMbrPwTI/vuLIbS5uGyGpj0wTtaionlsJrkEZvjuqdEcZYJCbGoqC
-         VnR72U8fFhgoSs3c6iwvcNl7Q6Lk24uo1cQLeJHNL2VqBjUlIbUSTuzokk+3KdooQG
-         9AdOmz6ri1V1FKeE93/vitgRtGKkBdyI3un1SXq/UYn46bTcCEOg00dUZAkq/6ONZB
-         VcgtqN/485DnHb4EfdiB3y4FMFkK1RZ0Z/XMYcffQv/QzhM6Fh67KOU7rgTHpmf4Fc
-         y41ieGpHxDUZM2ti0JC3T0sCeTeK6TUdOYr5ZbzOI6vGPnnQYi+jJCaMKEFro/AUI/
-         1HVR4qyzYonKg==
-Received: by mail-ed1-f44.google.com with SMTP id o8so2701547edc.3;
-        Tue, 02 Nov 2021 15:44:14 -0700 (PDT)
-X-Gm-Message-State: AOAM530htOJ4PyPsvP7U6nbz9frq7QZ0HDWigrLJ1gq/cwnx4Gn/mBXR
-        ukjiSjNI5NGU59EW6V0e1poN3CGnHv1krANOJw==
-X-Google-Smtp-Source: ABdhPJwWkcHLupHM+eSOeq+xd9impIHRTT3qkTjxiKN/kL5YOlS59jRuQo/tHhUYUb2vMifYDtwGGYH3OoSmTPh7gC0=
-X-Received: by 2002:a17:907:16ac:: with SMTP id hc44mr26056561ejc.363.1635893052996;
- Tue, 02 Nov 2021 15:44:12 -0700 (PDT)
+        b=opY/abwJOWe66VHhwlVSS287YA1M9yULIi5wQIYoJ96jO4hPky0vB6vi6tafilMD7
+         rFkhmoLtQ0JjoO8LGuoGLus6tF2fIduGVRZrrxl51/4nWYnKX6dKCQmBd2uSI9wlMD
+         UO1XahuUVS5GKl3M0Aq9gJC4BEv6fCqD0q/CztW5e7meAcaEELHE3R2JXtckUw0jPy
+         z9VAQruKylB+jiZA16OORnFfBMF6rFzu7wr/0EvG1Cg0KZUTyId6/tOrFKoGJf1Uai
+         AP8H78hxGwQ6Ru8B4/CqaU93n8Gf4J+XTNIO9nFkSdgPnmTW9hS6RjiTF0OsrhHByR
+         HNvU7DC6mlsLg==
+Received: by mail-ed1-f45.google.com with SMTP id z20so2592137edc.13;
+        Tue, 02 Nov 2021 15:54:27 -0700 (PDT)
+X-Gm-Message-State: AOAM530YFzKW8liIBqYhqi1MWaZoZkmyk8Kfl2QuOBbC127wjqbZrplX
+        1xxztsa92j/GRSWWDUnADlqIYlY2PRj2/U0L9Q==
+X-Google-Smtp-Source: ABdhPJwvOPkHrOahXa3xj/c9OSX7wBr+wcK0xwNgYPaLagkYmgf2JQOlOc1GXKmuNsno2PWPju9ZZUGHXtyfOv39J7g=
+X-Received: by 2002:a17:907:2ce1:: with SMTP id hz1mr49090047ejc.241.1635893665770;
+ Tue, 02 Nov 2021 15:54:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <097d8602906e9db279728330c6cf2837be184704.1635338663.git.geert+renesas@glider.be>
- <YYBdzwshhM5fmsEE@robh.at.kernel.org> <CAMuHMdUvy9oVCv+3HJ_dZr6Rm4iP8FPwTETxq+j2ja_BR1=c5A@mail.gmail.com>
-In-Reply-To: <CAMuHMdUvy9oVCv+3HJ_dZr6Rm4iP8FPwTETxq+j2ja_BR1=c5A@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 2 Nov 2021 17:44:00 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJTMORDCAb=9nuSaKiHgVgw6wb4jQw7ppMmuru-MZ1uuQ@mail.gmail.com>
-Message-ID: <CAL_JsqJTMORDCAb=9nuSaKiHgVgw6wb4jQw7ppMmuru-MZ1uuQ@mail.gmail.com>
-Subject: Re: [PATCH] bindings: media: venus: Drop bogus maxItems for power-domain-names
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Dikshita Agarwal <dikshita@codeaurora.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211026155911.17651-1-jason-jh.lin@mediatek.com> <20211026155911.17651-6-jason-jh.lin@mediatek.com>
+In-Reply-To: <20211026155911.17651-6-jason-jh.lin@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 3 Nov 2021 06:54:14 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__cyFB6VyKFUZsy+-9+Nz7QTR4QiGUXQApOdiFXQESi4g@mail.gmail.com>
+Message-ID: <CAAOTY__cyFB6VyKFUZsy+-9+Nz7QTR4QiGUXQApOdiFXQESi4g@mail.gmail.com>
+Subject: Re: [PATCH v12 05/16] dt-bindings: display: mediatek: merge: add
+ additional prop for mt8195
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fei Shao <fshao@chromium.org>,
+        Moudy Ho <moudy.ho@mediatek.com>, roy-cw.yeh@mediatek.com,
+        Fabien Parent <fparent@baylibre.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
+        DTML <devicetree@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 2, 2021 at 3:42 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Mon, Nov 1, 2021 at 10:36 PM Rob Herring <robh@kernel.org> wrote:
-> > On Wed, Oct 27, 2021 at 02:45:30PM +0200, Geert Uytterhoeven wrote:
-> > > make dt_binding_check:
-> >
-> > I'd say it's redundant rather than bogus.
->
-> I wrote "bogus", as the "redundant" ones typically give:
->
->                 hint: "maxItems" is not needed with an "items" list
->
-> And I didn't get that here?
+Hi, Jason:
 
-Any schema file with an error shows up twice. First there's all the
-specific errors with details. Then there's what you reference which is
-all the schemas that we're skipping. If you set DT_SCHEMA_FILES now,
-you should only see the second case for other schema files.
+jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=88=
+26=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8811:59=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> add MERGE additional properties description for mt8195:
+> 1. async clock
+> 2. fifo setting enable
+> 3. reset controller
 
-So it's probably better to reference the actual error:
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
 
-Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml:
-properties:power-domain-names: {'minItems': 2, 'maxItems': 3, 'items':
-[{'const': 'venus'}, {'const': 'vcodec0'}, {'const': 'cx'}]} should
-not be valid under {'required': ['maxItems']}
- hint: "maxItems" is not needed with an "items" list
- from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-
-> > >     Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml: ignoring, error in schema: properties: power-domain-names
-> > >     warning: no schema found in file: Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-> > >
-> > > Fixes: e48b839b6699c226 ("media: dt-bindings: media: venus: Add sc7280 dt schema")
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > ---
-> > >  Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 -
-> > >  1 file changed, 1 deletion(-)
-> >
-> > Acked-by: Rob Herring <robh@kernel.org>
 >
-> Thanks!
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
+> ---
+>  .../display/mediatek/mediatek,merge.yaml      | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 >
-> Gr{oetje,eeting}s,
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
+rge.yaml
+> index 75beeb207ceb..614721bdbf73 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
+aml
+> @@ -36,8 +36,28 @@ properties:
+>        Documentation/devicetree/bindings/power/power-domain.yaml for deta=
+ils.
 >
->                         Geert
+>    clocks:
+> +    maxItems: 2
+>      items:
+>        - description: MERGE Clock
+> +      - description: MERGE Async Clock
+> +          Controlling the synchronous process between MERGE and other di=
+splay
+> +          function blocks cross clock domain.
+> +
+> +  clock-names:
+> +    maxItems: 2
+> +    items:
+> +      - const: merge
+> +      - const: merge_async
+> +
+> +  mediatek,merge-fifo-en:
+> +    description:
+> +      The setting of merge fifo is mainly provided for the display laten=
+cy
+> +      buffer to ensure that the back-end panel display data will not be
+> +      underrun, a little more data is needed in the fifo.
+> +      According to the merge fifo settings, when the water level is dete=
+cted
+> +      to be insufficient, it will trigger RDMA sending ultra and preulra
+> +      command to SMI to speed up the data rate.
+> +    type: boolean
 >
+>    mediatek,gce-client-reg:
+>      description:
+> @@ -50,6 +70,11 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>      maxItems: 1
+>
+> +  resets:
+> +    description: reset controller
+> +      See Documentation/devicetree/bindings/reset/reset.txt for details.
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -67,3 +92,16 @@ examples:
+>          power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
+>          clocks =3D <&mmsys CLK_MM_DISP_MERGE>;
+>      };
+> +
+> +    merge5: disp_vpp_merge5@1c110000 {
+> +        compatible =3D "mediatek,mt8195-disp-merge";
+> +        reg =3D <0 0x1c110000 0 0x1000>;
+> +        interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        clocks =3D <&vdosys1 CLK_VDO1_VPP_MERGE4>,
+> +                 <&vdosys1 CLK_VDO1_MERGE4_DL_ASYNC>;
+> +        clock-names =3D "merge","merge_async";
+> +        power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +        mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c11XXXX 0x0000 0x1000=
+>;
+> +        mediatek,merge-fifo-en =3D <1>;
+> +        resets =3D <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC>;
+> +    };
 > --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 2.18.0
 >
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
