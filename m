@@ -2,116 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07144442609
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 04:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1FC244260F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 04:32:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231613AbhKBDbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 23:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34166 "EHLO
+        id S231836AbhKBDez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 23:34:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbhKBDbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 23:31:44 -0400
-Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F617C061714
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 20:29:10 -0700 (PDT)
-Received: by mail-qt1-x836.google.com with SMTP id h14so16981617qtb.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 20:29:10 -0700 (PDT)
+        with ESMTP id S231639AbhKBDez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 23:34:55 -0400
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCAEC061714;
+        Mon,  1 Nov 2021 20:32:20 -0700 (PDT)
+Received: by mail-qt1-x82f.google.com with SMTP id 19so16205259qtt.7;
+        Mon, 01 Nov 2021 20:32:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LbZDx6RLiMrCpFDLIQL6rmuGnSugSGQ3Nvv9b+v8Ry4=;
-        b=cPps30E1mKIRTCIRPCKk1MzXMjmCw+8/NnxEtqligTCGSQAdqEdZk5va84NsYgNItL
-         RyVJ/ITqL9aA8wskWFq1pKuGXXXmuCF1qfHJ5jkSgimf+arTork/++r+6K75lFjds+WN
-         DI32nXAnGIekBEv6cQ2OKUF7NwjJTuFvvwZ9s=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=q5xMzCydsOIW4HjjOOaSLM7lfTR/flQAzXNP4pGjc9U=;
+        b=U78XbMRz+qE4VaDT7oxdXMYQ/jmLMdehcG/VGRktZQktJubRPUJJxkDuurnUVcehvR
+         0IVl+Bh8/FvVmGYH0T4OrasWQIxlVo8Xb1iFXzppqXv/ZlEVRbdeJlkg2EZKL0Apzzxr
+         N/T/zKCLkEisYWxqhKHKRNBx4rUreKGAnd+6L+JfdYsNc1CBxBr/RvxCQj0yo1K/IGRp
+         F7zpiLslbTYhnGt+xhwmCDtEU/nuWehaVE5wmzLHlDX5gdHLp8uXFah9L9a2Q7AKHd2x
+         pU/d19XiG/UwuGXsckmXZhBKKDlLZO2pDMmmh0MBxg5KsyIwf/RERiu/tJdz4TutwaPO
+         gpsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LbZDx6RLiMrCpFDLIQL6rmuGnSugSGQ3Nvv9b+v8Ry4=;
-        b=JgdCU0AiyZoq4FXdpDxdBwSJu+ysy00mmSBN1GyutwHbLFTMnqyEAn4rsObmxhypWe
-         Smb91xQDgjkmIScpPJEGvMTA29L40zpa8jU/P2/ldLCCEd9nusK4ZHkLxFhwNcvbBJOy
-         4GY9NO7tduCR0aOqU30dIy3XSQOyHj3MYr4QJagh5vXs1B0k9JV9j/U+52RJiXSG3Oc/
-         5rWMiAV1flLc9wugUneKgGWswR+0ur0fiIJfqxVOwryIVGhirCIJx9OhEiw4csdAb8Bk
-         2mKkLMnLzXctxcQsWpCFbXZ50dsF1XKL8fONdaH+ULybUguWFT2Q0AkPFcijOxOcLzHA
-         n0iw==
-X-Gm-Message-State: AOAM533FXsR62jOYKc99udrxG8ZbSOFK8TtOIAl01iV6/qrOxDj79wOc
-        I6A4QttREDBtyc2vyBPpm7MdQKK4j3r9UdPAjqw=
-X-Google-Smtp-Source: ABdhPJz/yhS9s3prGdIS4/h5cMOgyU9mocT/KpsW4wd3ZxMd0KgkaRpGR1li6TnoBvwaNd+ckUHx8iZKpGqxkLyskjg=
-X-Received: by 2002:ac8:5cd5:: with SMTP id s21mr10724169qta.392.1635823749370;
- Mon, 01 Nov 2021 20:29:09 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=q5xMzCydsOIW4HjjOOaSLM7lfTR/flQAzXNP4pGjc9U=;
+        b=ezlAEB+FPSgNjK6EDP5rlYxUE69xwvp9ZQojc0fvntTbBkgH0nlX5xgR9aq8hdEQ8k
+         WkrNlXOMMY8qgHRer8lkZAiPAvM3ToDGJEQlCumfoLAShug1MYLGBrjCbCB7OE1sJVan
+         J9kruwypcCqIeTSuEX+qpOuTnm1kuOClqrxERHgX9xv7ukuG4ywLY3A1EjBJsRTOnjtk
+         GTsJq5EUBd2HJRYGXVkEyESO4PVScf6tGoEWTkGBEpRsXreXGibI2cel1B6ZZv4YQ5Io
+         lfvp+ycA4gQfhr/AVQslJd0ZVSExev/0NK39sNqEb0QHuJn6h9g2C32EGzzQXcRAvVlE
+         Lh1g==
+X-Gm-Message-State: AOAM531UJX6HuN9m9KiZ3n+j2vPs/cEPtViu0iJUPiyM650Md6hNkbXR
+        2yS3Xm1bdBOGwKPuEonsq0E=
+X-Google-Smtp-Source: ABdhPJzF5RqaqayWs3xAVNhdtWPF99fNOWgT7/fdcJTkR9sKGuVAuM+WBDmRff/bw28k+/7FBj68Fg==
+X-Received: by 2002:a05:622a:1441:: with SMTP id v1mr35430791qtx.45.1635823939799;
+        Mon, 01 Nov 2021 20:32:19 -0700 (PDT)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id l22sm81668qtq.45.2021.11.01.20.32.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Nov 2021 20:32:19 -0700 (PDT)
+Message-ID: <071c0b81-be62-8fc3-cf0a-d8a74a9a556c@gmail.com>
+Date:   Mon, 1 Nov 2021 23:32:17 -0400
 MIME-Version: 1.0
-References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
- <20211101233751.49222-5-jae.hyun.yoo@intel.com> <HK0PR06MB3779F8E273396ED805EE5D81918B9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-In-Reply-To: <HK0PR06MB3779F8E273396ED805EE5D81918B9@HK0PR06MB3779.apcprd06.prod.outlook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 2 Nov 2021 03:28:57 +0000
-Message-ID: <CACPK8XesLdb+Cbi3ZYrOahRHbXQi3L=cQXax=RV2=PrjiPQBew@mail.gmail.com>
-Subject: Re: [PATCH -next 4/4] ipmi: kcs_bmc_aspeed: add clock control logic
-To:     ChiaWei Wang <chiawei_wang@aspeedtech.com>
-Cc:     "jae.hyun.yoo@intel.com" <jae.hyun.yoo@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Corey Minyard <minyard@acm.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cedric Le Goater <clg@kaod.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "openipmi-developer@lists.sourceforge.net" 
-        <openipmi-developer@lists.sourceforge.net>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Jenmin Yuan <jenmin_yuan@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH 03/13] dt-bindings: imx: Add pinctrl binding doc for
+ i.MXRT1050
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, stefan@agner.ch,
+        linus.walleij@linaro.org, gregkh@linuxfoundation.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, adrian.hunter@intel.com,
+        jirislaby@kernel.org, giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, leonard.crestez@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20211024154027.1479261-1-Mr.Bossman075@gmail.com>
+ <20211024154017.5X5YE5S_x5KJDGyYyx5jd-8m4gybur1xerb15SgFAiY@z>
+ <YYBJyKv61p/sk1PE@robh.at.kernel.org>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <YYBJyKv61p/sk1PE@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Nov 2021 at 03:16, ChiaWei Wang <chiawei_wang@aspeedtech.com> wrote:
->
-> Hi Jae,
->
-> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
-> >
-> > From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> >
-> > If LPC KCS driver is registered ahead of lpc-ctrl module, LPC KCS block will be
-> > enabled without heart beating of LCLK until lpc-ctrl enables the LCLK. This
-> > issue causes improper handling on host interrupts when the host sends
-> > interrupts in that time frame.
-> > Then kernel eventually forcibly disables the interrupt with dumping stack and
-> > printing a 'nobody cared this irq' message out.
-> >
-> > To prevent this issue, all LPC sub drivers should enable LCLK individually so this
-> > patch adds clock control logic into the LPC KCS driver.
->
-> Have all LPC sub drivers could result in entire LPC block down if any of them disables the clock (e.g. driver unload).
-> The LPC devices such as SIO can be used before kernel booting, even without any BMC firmware.
-> Thereby, we recommend to make LCLK critical or guarded by protected clock instead of having all LPC sub drivers hold the LCLK control.
->
-> The previous discussion for your reference:
-> https://lkml.org/lkml/2020/9/28/153
 
-Please read the entire thread. The conclusion:
 
-https://lore.kernel.org/all/CACPK8XdBmkhZ8mcSFmDAFV8k7Qj7ajBL8TVKfK8c+5aneUMHZw@mail.gmail.com/
-
-That is, for the devices that have a driver loaded can enable the
-clock. When they are unloaded, they will reduce the reference count
-until the last driver is unloaded. eg:
-
-https://elixir.bootlin.com/linux/latest/source/drivers/clk/clk.c#L945
-
-There was another fork to the thread, where we suggested that a
-protected clocks binding could be added:
-
-https://lore.kernel.org/all/160269577311.884498.8429245140509326318@swboyd.mtv.corp.google.com/
-
-If you wish to use this mechanism for eg. SIO clocks, then I encourage
-Aspeed to submit a patch to do that.
-
-Cheers,
-
-Joel
+On 11/1/21 16:10, Rob Herring wrote:
+> On Sun, Oct 24, 2021 at 11:40:17AM -0400, Jesse Taube wrote:
+>> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>>
+>> Add binding doc for i.MXRT1050 pinctrl driver.
+>>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>> ---
+>>   include/dt-bindings/pinctrl/pins-imxrt1050.h | 993 +++++++++++++++++++
+>>   1 file changed, 993 insertions(+)
+>>   create mode 100644 include/dt-bindings/pinctrl/pins-imxrt1050.h
+>>
+>> diff --git a/include/dt-bindings/pinctrl/pins-imxrt1050.h b/include/dt-bindings/pinctrl/pins-imxrt1050.h
+>> new file mode 100644
+>> index 000000000000..a29031ab3de0
+>> --- /dev/null
+>> +++ b/include/dt-bindings/pinctrl/pins-imxrt1050.h
+>> @@ -0,0 +1,993 @@
+>> +/* SPDX-License-Identifier: GPL-2.0+ */
+> 
+> Needs to match the .dts files which has BSD-3-Clause. The rest of i.MX
+> uses MIT IIRC. You should align with that.
+> 
+It seems to use "GPL-2.0+ OR MIT", I shall replace the both with that.
