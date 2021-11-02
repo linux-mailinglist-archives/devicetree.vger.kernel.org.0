@@ -2,163 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB5F4438CC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E303A4438DA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 23:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230409AbhKBW5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 18:57:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229685AbhKBW5C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Nov 2021 18:57:02 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7648561105;
-        Tue,  2 Nov 2021 22:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635893667;
-        bh=vZAm7ovxBi6d/ZH+uziWTG6NBTualBYKsCvLvL3Gx7g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=opY/abwJOWe66VHhwlVSS287YA1M9yULIi5wQIYoJ96jO4hPky0vB6vi6tafilMD7
-         rFkhmoLtQ0JjoO8LGuoGLus6tF2fIduGVRZrrxl51/4nWYnKX6dKCQmBd2uSI9wlMD
-         UO1XahuUVS5GKl3M0Aq9gJC4BEv6fCqD0q/CztW5e7meAcaEELHE3R2JXtckUw0jPy
-         z9VAQruKylB+jiZA16OORnFfBMF6rFzu7wr/0EvG1Cg0KZUTyId6/tOrFKoGJf1Uai
-         AP8H78hxGwQ6Ru8B4/CqaU93n8Gf4J+XTNIO9nFkSdgPnmTW9hS6RjiTF0OsrhHByR
-         HNvU7DC6mlsLg==
-Received: by mail-ed1-f45.google.com with SMTP id z20so2592137edc.13;
-        Tue, 02 Nov 2021 15:54:27 -0700 (PDT)
-X-Gm-Message-State: AOAM530YFzKW8liIBqYhqi1MWaZoZkmyk8Kfl2QuOBbC127wjqbZrplX
-        1xxztsa92j/GRSWWDUnADlqIYlY2PRj2/U0L9Q==
-X-Google-Smtp-Source: ABdhPJwvOPkHrOahXa3xj/c9OSX7wBr+wcK0xwNgYPaLagkYmgf2JQOlOc1GXKmuNsno2PWPju9ZZUGHXtyfOv39J7g=
-X-Received: by 2002:a17:907:2ce1:: with SMTP id hz1mr49090047ejc.241.1635893665770;
- Tue, 02 Nov 2021 15:54:25 -0700 (PDT)
+        id S229835AbhKBW7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 18:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229747AbhKBW7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 18:59:41 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0574C061714;
+        Tue,  2 Nov 2021 15:57:05 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id bq14so619517qkb.1;
+        Tue, 02 Nov 2021 15:57:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KIYisbZsaWO2J//hyz2WxZPwqBd239vjWte2s5yR2ys=;
+        b=LL2bPORTmHw5LJecj4U/ZA0GNrmoo7CQe0IRKm7B8NabGS0i4Zmp0WLIxzChPUQSgq
+         AeU4nFkaupYIQzpLkKphcy0RuzmbeMDUx/WuoBOWfIREIWo4U0JZ6Pm64KI7qQ+y7nLk
+         T4++3+zUDvm2qtP5zFRZGvLElcEzTfyt1MBCpvx2/+jSTFkdzQbezCl9+pPU1/+3u7G3
+         xcEs7R/s00fiiXVExSt6uBoUu5jIr0z9FyfEzIke42ETx3Vt6QDOTBj3u6lo5a4NqpHt
+         WdzG1aCWfdpxFqZX8Gk195mbhQTaar8LeuBmJv4Z6xUJPN0tGNh1333R7biHfaTBfRBH
+         BFFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KIYisbZsaWO2J//hyz2WxZPwqBd239vjWte2s5yR2ys=;
+        b=TjVURAReaeFzpJo+5LV2/eKJLZSdr6AyZLlad0nJdWe+lhxX8m3z2Vi1xHMkpDChAP
+         4weuO/5+tKuzyNRysTaICP71CTTmIwd1ru3n2vIWAagy/hq6frKLMPs6vJkx9o9YFaMW
+         Sudrval11jgI3zBi9+2Pii4EkUfHIvf4Ayr57Wmx98gOHlN5XwCidYviLhjtXZXPsKLi
+         u8Y7B7+yptBA8ze//bPufqD37HoMc52+GxUErDEob9Djg4wz1oEdnhuDac/ZeNja41Mz
+         +LoaUFqtJEWzqpuQNUT0Ka9ltJRptj4QsCFm1LAUoArsvXc9Ss8mB3KxnPRu8fxusCrZ
+         f2Cg==
+X-Gm-Message-State: AOAM532edoG564KhUgsX73dB3fh1VPme2QznttpqV8EDfSb2PE5QERsr
+        M68fMm2khAEjlISgIG7DFKU=
+X-Google-Smtp-Source: ABdhPJz6W+2d5SZUl1RkGSRUkSfqY9CHmb9HCjjkEoKiGlQNTqAyGyj8o91AAI6XjdcklmMMiXHbnQ==
+X-Received: by 2002:a05:620a:40c4:: with SMTP id g4mr25496206qko.14.1635893824295;
+        Tue, 02 Nov 2021 15:57:04 -0700 (PDT)
+Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id v19sm351222qtk.6.2021.11.02.15.57.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 15:57:03 -0700 (PDT)
+From:   Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
+To:     linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-serial@vger.kernel.org
+Subject: [PATCH v2 00/13] Add initial support for the i.MXRTxxxx SoC family starting from i.IMXRT1050 SoC.
+Date:   Tue,  2 Nov 2021 18:56:48 -0400
+Message-Id: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20211026155911.17651-1-jason-jh.lin@mediatek.com> <20211026155911.17651-6-jason-jh.lin@mediatek.com>
-In-Reply-To: <20211026155911.17651-6-jason-jh.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 3 Nov 2021 06:54:14 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__cyFB6VyKFUZsy+-9+Nz7QTR4QiGUXQApOdiFXQESi4g@mail.gmail.com>
-Message-ID: <CAAOTY__cyFB6VyKFUZsy+-9+Nz7QTR4QiGUXQApOdiFXQESi4g@mail.gmail.com>
-Subject: Re: [PATCH v12 05/16] dt-bindings: display: mediatek: merge: add
- additional prop for mt8195
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fei Shao <fshao@chromium.org>,
-        Moudy Ho <moudy.ho@mediatek.com>, roy-cw.yeh@mediatek.com,
-        Fabien Parent <fparent@baylibre.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+This patchset contains:
+- i.MXRT10xx family infrastructure
+- i.MXRT1050 pinctrl driver adaption
+- i.MXRT1050 clock driver adaption
+- i.MXRT1050 sd-card driver adaption
+- i.MXRT1050 uart driver adaption
+- i.MXRT1050-evk basic support
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=88=
-26=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8811:59=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> add MERGE additional properties description for mt8195:
-> 1. async clock
-> 2. fifo setting enable
-> 3. reset controller
+The i.MXRTxxxx family that could have support by Linux actually spreads
+from i.MXRT1020 to i.MXRT1170 with the first one supporting 1 USB OTG &
+100M ethernet with a cortex-M7@500Mhz up to the latter with i.MXRT1170
+with cortex-M7@1Ghz and cortex-M4@400Mhz, 2MB of internal SRAM, 2D GPU,
+2x 1Gb and 1x 100Mb ENET. The i.MXRT family is NXP's answer to
+STM32F7XX, as it uses only simple SDRAM, it gives the chance of a 4 or
+less layer PCBs. Seeing that these chips are comparable to the
+STM32F7XXs which have linux ported to them it seems reasonable to add
+support for them.
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Giving Linux support to this family should ease the development process,
+instead of using a RTOS they could use Embedded Linux allowing for more
+portability, ease of design and will broaden the scope of people using
+embedded linux.
 
->
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> ---
->  .../display/mediatek/mediatek,merge.yaml      | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
-merge.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,me=
-rge.yaml
-> index 75beeb207ceb..614721bdbf73 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,merge.y=
-aml
-> @@ -36,8 +36,28 @@ properties:
->        Documentation/devicetree/bindings/power/power-domain.yaml for deta=
-ils.
->
->    clocks:
-> +    maxItems: 2
->      items:
->        - description: MERGE Clock
-> +      - description: MERGE Async Clock
-> +          Controlling the synchronous process between MERGE and other di=
-splay
-> +          function blocks cross clock domain.
-> +
-> +  clock-names:
-> +    maxItems: 2
-> +    items:
-> +      - const: merge
-> +      - const: merge_async
-> +
-> +  mediatek,merge-fifo-en:
-> +    description:
-> +      The setting of merge fifo is mainly provided for the display laten=
-cy
-> +      buffer to ensure that the back-end panel display data will not be
-> +      underrun, a little more data is needed in the fifo.
-> +      According to the merge fifo settings, when the water level is dete=
-cted
-> +      to be insufficient, it will trigger RDMA sending ultra and preulra
-> +      command to SMI to speed up the data rate.
-> +    type: boolean
->
->    mediatek,gce-client-reg:
->      description:
-> @@ -50,6 +70,11 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      maxItems: 1
->
-> +  resets:
-> +    description: reset controller
-> +      See Documentation/devicetree/bindings/reset/reset.txt for details.
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -67,3 +92,16 @@ examples:
->          power-domains =3D <&spm MT8173_POWER_DOMAIN_MM>;
->          clocks =3D <&mmsys CLK_MM_DISP_MERGE>;
->      };
-> +
-> +    merge5: disp_vpp_merge5@1c110000 {
-> +        compatible =3D "mediatek,mt8195-disp-merge";
-> +        reg =3D <0 0x1c110000 0 0x1000>;
-> +        interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        clocks =3D <&vdosys1 CLK_VDO1_VPP_MERGE4>,
-> +                 <&vdosys1 CLK_VDO1_MERGE4_DL_ASYNC>;
-> +        clock-names =3D "merge","merge_async";
-> +        power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-> +        mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c11XXXX 0x0000 0x1000=
->;
-> +        mediatek,merge-fifo-en =3D <1>;
-> +        resets =3D <&vdosys1 MT8195_VDOSYS1_SW0_RST_B_MERGE4_DL_ASYNC>;
-> +    };
-> --
-> 2.18.0
->
+The EVK has very little SDRAM, generally 32MB starting from
+i.MXRT1020(the lowest P/N), although the i.MXRT1160/70 provide instead
+64MB of SDRAM for more functionality.
+
+At the moment we do not support XIP for either u-boot or Linux but it
+should be done in the future. XIP will also save SDRAM.
+
+Another interesting fact is the amount of internal SRAM, as the P/N
+increases the SRAM will reach up to 2MB(some could be for cache and
+some would be for video).
+
+Also, some parts have embed flash of 4MB that can be used for
+u-boot/Linux, if both correctly sized it will leave the SDRAM free.
+
+External flash can be Quad SPI and HyperFlash, so throughput would be
+decent.
+
+The i.MXRT11xx series supports MIPI interface too.
+
+The family in general provide CAN bus, audio I/O, 1 or more
+USB(otg/host), 1 or more 100Mb/1Gb ethernet, camera interface, sd-card.
+
+All this can be used for simple GUIs, web-servers, point-of-sale
+stations, etc.
+
+Giulio Benetti (5):
+  ARM: imx: add initial support for i.MXRT10xx family
+  pinctrl: freescale: Add i.MXRT1050 pinctrl driver support
+  dt-bindings: imx: Add clock binding for i.MXRT1050
+  ARM: dts: imx: add i.MXRT1050-EVK support
+  ARM: imxrt_defconfig: add i.MXRT family defconfig
+
+Jesse Taube (8):
+  dt-bindings: pinctrl: add i.MXRT1050 pinctrl binding doc
+  ARM: dts: imxrt1050-pinfunc: Add pinctrl binding header
+  dt-bindings: clock: imx: Add documentation for i.MXRT clock
+  clk: imx: Add initial support for i.MXRT clock driver
+  dt-bindings: serial: fsl-lpuart: add i.MXRT compatible
+  tty: serial: fsl_lpuart: add i.MXRT support
+  dt-bindings: mmc: fsl-imx-esdhc: add i.MXRT compatible string
+  mmc: sdhci-esdhc-imx: Add sdhc support for i.MXRT series
+
+ .../bindings/clock/imxrt-clock.yaml           |  70 ++
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   1 +
+ .../bindings/pinctrl/fsl,imxrt1050.yaml       |  83 ++
+ .../bindings/serial/fsl-lpuart.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/imxrt1050-evk.dts           |  89 ++
+ arch/arm/boot/dts/imxrt1050-pinfunc.h         | 993 ++++++++++++++++++
+ arch/arm/boot/dts/imxrt1050.dtsi              | 187 ++++
+ arch/arm/configs/imxrt_defconfig              | 157 +++
+ arch/arm/mach-imx/Kconfig                     |   7 +
+ arch/arm/mach-imx/Makefile                    |   2 +
+ arch/arm/mach-imx/mach-imxrt.c                |  19 +
+ drivers/clk/imx/Kconfig                       |   4 +
+ drivers/clk/imx/Makefile                      |   1 +
+ drivers/clk/imx/clk-imxrt.c                   | 149 +++
+ drivers/mmc/host/sdhci-esdhc-imx.c            |   7 +
+ drivers/pinctrl/freescale/Kconfig             |   7 +
+ drivers/pinctrl/freescale/Makefile            |   1 +
+ drivers/pinctrl/freescale/pinctrl-imxrt1050.c | 349 ++++++
+ drivers/tty/serial/fsl_lpuart.c               |   8 +
+ include/dt-bindings/clock/imxrt1050-clock.h   |  72 ++
+ 21 files changed, 2209 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/imxrt-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imxrt1050.yaml
+ create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
+ create mode 100644 arch/arm/boot/dts/imxrt1050-pinfunc.h
+ create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
+ create mode 100644 arch/arm/configs/imxrt_defconfig
+ create mode 100644 arch/arm/mach-imx/mach-imxrt.c
+ create mode 100644 drivers/clk/imx/clk-imxrt.c
+ create mode 100644 drivers/pinctrl/freescale/pinctrl-imxrt1050.c
+ create mode 100644 include/dt-bindings/clock/imxrt1050-clock.h
+
+-- 
+2.33.1
+
