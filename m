@@ -2,131 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB87344371B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 21:15:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3288144373E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 21:23:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231312AbhKBURu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 16:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38162 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbhKBURt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 16:17:49 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447F8C061714;
-        Tue,  2 Nov 2021 13:15:14 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id ee33so1591480edb.8;
-        Tue, 02 Nov 2021 13:15:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PqKC2t1Z5DmsnmpUEFoy3liKWP90tFs8sH60erHgihQ=;
-        b=fEzLluxtpVt49nA4nW9VmHwOB8olNv+cr8vCPFXRg0BkU9xXcs+9xohjH/dbJb/JZm
-         Jn3Q3DM8vHyiyVHH9L88UrLBov1G/x2g9AS8+xnhPdqgsW3BSmt0mE0+OlmkbrDrd0jp
-         9LhOL8TleGNjvJ8eV+5+vmURHblBY/BVRfriYPyvzd8G/vkEED7FSUuW1YE22Qfbf+qg
-         jaNSsvv5/ym05HE998urmd/1qGbYVG5FTeSoz5dM7zj779osugHcFdEe8INh9MBGEafG
-         RUGhXbDGYgkziz96URb0Gr84f6OovpS6941kwHY0lsVhfWJNPA2rtK8XlwpQjnxrR9PT
-         kDjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PqKC2t1Z5DmsnmpUEFoy3liKWP90tFs8sH60erHgihQ=;
-        b=fUgb6F/H2CHsjqnm2CtZxT9pZjkonJxxVSE3KZsDrsPwR4Y+ofRFAcEXIlk5a5L5hP
-         K4gnH4OtO9J5YKN9Mp5SESn/WSUpWYaAF5UE5IOw5O+zltOWBPpXQoVvNRUAxThosLB0
-         mqdCxdASor+jfjJkRoMn3fmFhftc026iHUIj/DvTCLAA822qzTwPoupFVq3JW1fM4f3i
-         HbhL41uaNF47Xsc31RIaylYVXZ5O6wUiH4fusMgSy6p7Hlz3wOdlwPS/JRriyh/2Jn1i
-         Cw28vPpbVROTaB6OmVPQrXEWAzIRnV6PGy5cNW8ErjkirwKL7hL0WUspqARvmQr/rq6x
-         iVKg==
-X-Gm-Message-State: AOAM531tsuz2pwsT5x4P0tOBQeXHsJ4MKjShQRB1YqukBSXHYWG1RdRr
-        +g3B9+wzJnSJJYx5HWAmQ3/jCH/Rq/1MnwACYeM=
-X-Google-Smtp-Source: ABdhPJxCzvbiL8SrPnqlEyRkEgG13MVi98u1HbMKyGOzzMrOjh5GeBgylI4pX9nKhd44bj3Ih6Nc/FPn8GJISHkbprU=
-X-Received: by 2002:a17:906:1707:: with SMTP id c7mr47407307eje.377.1635884112761;
- Tue, 02 Nov 2021 13:15:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-15-kernel@esmil.dk>
-In-Reply-To: <20211102161125.1144023-15-kernel@esmil.dk>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 2 Nov 2021 22:14:23 +0200
-Message-ID: <CAHp75VeyC9nW0zSD9Hz23ypN8jQqU+JXOAG=oJfhebq4ptmm1w@mail.gmail.com>
-Subject: Re: [PATCH v3 14/16] serial: 8250_dw: Add StarFive JH7100 quirk
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        id S230257AbhKBU0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 16:26:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58038 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229813AbhKBU0U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 16:26:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4034D60462;
+        Tue,  2 Nov 2021 20:23:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635884624;
+        bh=5/wUb1AWpBNaKON4oOaqQttekyeoARbnRgqGLCkMou0=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=Ww7CID6qUi7oaozin+hVUniWUALaUwIHE9B3OUCTIiKGh6QG6Ktb+0jML8xT/Gz4Y
+         niYd1WI2051WzDINfKvIfM83O4T2xtKnnjtj9Xgxsw8jLJTZ2wHs6Mlt5bK9XlVRvq
+         S2Xo5dvBXcciT4IabfPft7JGWPHHNTCkXbSBhR6U1d2PDr0LGneTtzL5k4YEI8DlPU
+         l8UJut50WAIjlHP2fkw/ddB4uh+FncZ4aJzIHXg4ubjcXE5++DrgldoQgyAI7fGk3a
+         NSSsk6PCpYmN9zaNMRjJlvYnZs/7G7/oQttr31z+RhBY+QpB8K5P6zmuRrvM5hNvgQ
+         yVwSolQV/oSQg==
+Message-ID: <67f172376783be95d4ae8ee049f3b27b2b519cf9.camel@kernel.org>
+Subject: Re: [PATCH v18 1/6] tpm_tis: Fix expected bit handling and send all
+ bytes in one shot without last byte in exception
+From:   Jarkko Sakkinen <jarkko@kernel.org>
+To:     amirmizi6@gmail.com, Eyal.Cohen@nuvoton.com,
+        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
+        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org,
+        benoit.houyere@st.com, eajames@linux.ibm.com, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
+        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
+        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
+        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
+Date:   Tue, 02 Nov 2021 22:23:42 +0200
+In-Reply-To: <20211102152056.241769-2-amirmizi6@gmail.com>
+References: <20211102152056.241769-1-amirmizi6@gmail.com>
+         <20211102152056.241769-2-amirmizi6@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.40.4-1 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 2, 2021 at 6:44 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
->
-> On the StarFive JH7100 RISC-V SoC the UART core clocks can't be set to
-> exactly 16 * 115200Hz and many other common bitrates. Trying this will
-> only result in a higher input clock, but low enough that the UART's
-> internal divisor can't come close enough to the baud rate target.
-> So rather than try to set the input clock it's better to skip the
-> clk_set_rate call and rely solely on the UART's internal divisor.
+On Tue, 2021-11-02 at 17:20 +0200, amirmizi6@gmail.com wrote:
+> From: Amir Mizinski <amirmizi6@gmail.com>
+>=20
+> Currently, the driver polls the TPM_STS.stsValid field until TRUE; then i=
+t
+> reads TPM_STS register again to verify only that TPM_STS.expect field is
+> FALSE (i.e., it ignores TPM_STS.stsValid).
+> Since TPM_STS.stsValid represents the TPM_STS.expect validity, a check of
+> only one of these fields is wrong. Fix this condition so that both fields
+> are checked in the same TPM_STS register read.
+>=20
+> Modify the signature of wait_for_tpm_stat() to tpm_tis_wait_for_stat(),
+> adding an additional "expected" parameter to its call.
+> tpm_tis_wait_for_stat() is now polling the TPM_STS with a mask and waits
+> for the value in "expected". This modification adds the ability to check =
+if
+> certain TPM_STS bits have been cleared.
+> For example, use the new parameter to check in status that TPM_STS_VALID
+> is set and also that TPM_STS_EXPECT is zeroed. This prevents a racy
+> check.
+>=20
+> Suggested-by: Benoit Houyere <benoit.houyere@st.com>
+> Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
 
-Bingo!
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Thank you, this looks legit now!
 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> ---
->  drivers/tty/serial/8250/8250_dw.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-> index 53f57c3b9f42..1769808031c5 100644
-> --- a/drivers/tty/serial/8250/8250_dw.c
-> +++ b/drivers/tty/serial/8250/8250_dw.c
-> @@ -414,6 +414,8 @@ static void dw8250_quirks(struct uart_port *p, struct dw8250_data *data)
->
->                 if (of_device_is_compatible(np, "marvell,armada-38x-uart"))
->                         p->serial_out = dw8250_serial_out38x;
-> +               if (of_device_is_compatible(np, "starfive,jh7100-uart"))
-> +                       p->set_termios = dw8250_do_set_termios;
->
->         } else if (acpi_dev_present("APMC0D08", NULL, -1)) {
->                 p->iotype = UPIO_MEM32;
-> @@ -696,6 +698,7 @@ static const struct of_device_id dw8250_of_match[] = {
->         { .compatible = "cavium,octeon-3860-uart" },
->         { .compatible = "marvell,armada-38x-uart" },
->         { .compatible = "renesas,rzn1-uart" },
-> +       { .compatible = "starfive,jh7100-uart" },
->         { /* Sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, dw8250_of_match);
-> --
-> 2.33.1
->
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-
--- 
-With Best Regards,
-Andy Shevchenko
+/Jarkko
