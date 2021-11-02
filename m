@@ -2,89 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A404442ECF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 14:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7DE442F00
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 14:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230442AbhKBNJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 09:09:59 -0400
-Received: from mail-ua1-f53.google.com ([209.85.222.53]:34383 "EHLO
-        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhKBNJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 09:09:59 -0400
-Received: by mail-ua1-f53.google.com with SMTP id b3so14116097uam.1;
-        Tue, 02 Nov 2021 06:07:24 -0700 (PDT)
+        id S231303AbhKBNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 09:22:53 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:42514 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231284AbhKBNWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 09:22:52 -0400
+Received: by mail-ot1-f44.google.com with SMTP id v19-20020a9d69d3000000b00555a7318f31so17848440oto.9;
+        Tue, 02 Nov 2021 06:20:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tkTP1A6qXwuEKMshM23kAiOxOnfyNG09RSd2SDdbGyo=;
-        b=z8e0J1nieleGMnzCPbDHie1tyoi3tjWXmJ140MP56l8rSjtLQFNYYK640Qv5ddEYW8
-         FCX1h52nSyUeThkjQvUq44gvTJnasMGnUdPYPi7G6PtcG/H7yOxIjgrL1XKwinExP8z7
-         Qmm2f7tNIe2d1lN+vPedadncpBI9UhM8xudRY89s3BRp2l8/ntkLnWiV0gTO+5YmEZx5
-         65X5U4AwvmBNH6o66tR9Gsx8Bt4HtwC5b56nMjlHII+QFJTkL4aFy3xSp1qctWkOXRMq
-         raMI45jYX0s/ourGcBFhYrZXhCQnVfXZrN6jmcmZtDmini5RugaO9uG/XF3YIm3GFp3w
-         QSIg==
-X-Gm-Message-State: AOAM532k36tVDMO/YgdJDxNrc4rDZykVG3hh5FkbKA2FvYywton0j6Tp
-        iQJiVO6bVcg0F1Z9bdQRZ2uotM6vDRq0lQ==
-X-Google-Smtp-Source: ABdhPJwRNAFNZ8yhbfEJs5QBG37QCf6jkQvcThO2yFgrzkdIImvau0dFmwIDrZuJDIcBl9WNaQEi6A==
-X-Received: by 2002:a05:6102:374e:: with SMTP id u14mr20640127vst.28.1635858442866;
-        Tue, 02 Nov 2021 06:07:22 -0700 (PDT)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id u17sm877290vsk.25.2021.11.02.06.07.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Nov 2021 06:07:22 -0700 (PDT)
-Received: by mail-vk1-f180.google.com with SMTP id bc10so9541646vkb.1;
-        Tue, 02 Nov 2021 06:07:21 -0700 (PDT)
-X-Received: by 2002:a1f:2906:: with SMTP id p6mr15272478vkp.19.1635858441673;
- Tue, 02 Nov 2021 06:07:21 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Wzh03PSR5cG30V8z75lqhDgLPLd/dGpZFScd2ass+5k=;
+        b=o1nExjEX/2rXNoqeDMPekc6/YrOE/nf5NzwvXK+S+Xf7I7kjn6pjdqgnpqcN4pQglp
+         OAkI+t+Yw2DkpejTEwhBmZQPrqJxs5KdFnqFpppb973mwZLwmKZDPJTC5d3WG76nkfRv
+         UTTA/7cA2on1FejSTeNwWcMJBgPcKMMqouWJk0IbtueKj8yvRuWXN8zWx9I/OXxxGsUh
+         /T1R0v0CKr/w66SNPZYuBzfUJ6Yli9w8htGQ4EFTkcXwrYzRzkK1A17oTZxFJ2pi5FIN
+         c/Fm4MvX17QelfvZr3fHXQnIQbS0L6xehdp8qrmbYiOuw3bcHSzRovUvdJ54gRYlXG+1
+         TH4g==
+X-Gm-Message-State: AOAM5336Fz/qY0J87rxMQmRhypORgMeqbZcoXndLriX17QcNIs6dk0dm
+        14c1Zz21c5/vtMWvM/n64Q==
+X-Google-Smtp-Source: ABdhPJylcpLZGGhjNZtShUe5v5UatdNYwEtQFFpIY7evw1cIgDGu/sW4FpuuHD6AA0I7V7iuV9K/eQ==
+X-Received: by 2002:a9d:490e:: with SMTP id e14mr26734803otf.194.1635859217009;
+        Tue, 02 Nov 2021 06:20:17 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p133sm4848317oia.11.2021.11.02.06.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 06:20:16 -0700 (PDT)
+Received: (nullmailer pid 2712189 invoked by uid 1000);
+        Tue, 02 Nov 2021 13:20:15 -0000
+Date:   Tue, 2 Nov 2021 08:20:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, jonathanh@nvidia.com,
+        kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com,
+        thierry.reding@gmail.com, vkoul@kernel.org
+Subject: Re: [PATCH v11 1/4] dt-bindings: dmaengine: Add doc for tegra gpcdma
+Message-ID: <YYE7D2W721a1L4Mb@robh.at.kernel.org>
+References: <1635427419-22478-1-git-send-email-akhilrajeev@nvidia.com>
+ <1635427419-22478-2-git-send-email-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
-References: <20210928203815.77175-1-luca@z3ntu.xyz> <20210928203815.77175-2-luca@z3ntu.xyz>
-In-Reply-To: <20210928203815.77175-2-luca@z3ntu.xyz>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 2 Nov 2021 14:07:10 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWfMeLOvWYWQPEYokddz=vPQ=pbicrmmb79oC211Nw=WQ@mail.gmail.com>
-Message-ID: <CAMuHMdWfMeLOvWYWQPEYokddz=vPQ=pbicrmmb79oC211Nw=WQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: apq8026-lg-lenok: rename board vendor
-To:     Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm-soc <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1635427419-22478-2-git-send-email-akhilrajeev@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
-
-On Tue, Sep 28, 2021 at 10:39 PM Luca Weiss <luca@z3ntu.xyz> wrote:
-> In order to avoid having prefixes for multiple internal divisions of LG
-> use the "lg" prefix instead of "lge".
->
-> Fixes: ad3f04b7bef6 ("ARM: dts: qcom: Add support for LG G Watch R")
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+On Thu, Oct 28, 2021 at 06:53:36PM +0530, Akhil R wrote:
+> Add DT binding document for Nvidia Tegra GPCDMA controller.
+> 
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  arch/arm/boot/dts/Makefile                                      | 2 +-
->  .../{qcom-apq8026-lge-lenok.dts => qcom-apq8026-lg-lenok.dts}   | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->  rename arch/arm/boot/dts/{qcom-apq8026-lge-lenok.dts => qcom-apq8026-lg-lenok.dts} (99%)
+>  .../bindings/dma/nvidia,tegra186-gpc-dma.yaml      | 115 +++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> new file mode 100644
+> index 0000000..bc97efc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> @@ -0,0 +1,115 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/nvidia,tegra186-gpc-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra GPC DMA Controller Device Tree Bindings
+> +
+> +description: |
+> +  The Tegra General Purpose Central (GPC) DMA controller is used for faster
+> +  data transfers between memory to memory, memory to device and device to
+> +  memory.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Rajesh Gumasta <rgumasta@nvidia.com>
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nvidia,tegra186-gpcdma
+> +          - nvidia,tegra194-gpcdma
+> +      - items:
+> +          - const: nvidia,tegra186-gpcdma
+> +          - const: nvidia,tegra194-gpcdma
 
-What about the second board DTS using "lge"?
-arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+One of these is wrong. Either 186 has a fallback to 194 or it doesn't.
 
-Gr{oetje,eeting}s,
+> +
+> +  "#dma-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description: |
 
-                        Geert
+Don't need '|' if there's no formatting.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +      Should contain all of the per-channel DMA interrupts in
+> +      ascending order with respect to the DMA channel index.
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +  resets:
+> +    description: |
+> +      Should contain the reset phandle for gpcdma.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Not really a useful description. Drop.
+
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: gpcdma
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  dma-coherent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - resets
+> +  - reset-names
+> +  - "#dma-cells"
+> +  - iommus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/tegra186-mc.h>
+> +    #include <dt-bindings/reset/tegra186-reset.h>
+> +
+> +    dma-controller@2600000 {
+> +        compatible = "nvidia,tegra186-gpcdma";
+> +        reg = <0x2600000 0x0>;
+> +        resets = <&bpmp TEGRA186_RESET_GPCDMA>;
+> +        reset-names = "gpcdma";
+> +        interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+> +        #dma-cells = <1>;
+> +        iommus = <&smmu TEGRA186_SID_GPCDMA_0>;
+> +        dma-coherent;
+> +    };
+> +...
+> -- 
+> 2.7.4
+> 
+> 
