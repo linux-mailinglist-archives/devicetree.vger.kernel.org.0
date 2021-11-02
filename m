@@ -2,185 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4EB442D57
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 12:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10A6E442DB9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 13:22:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbhKBMCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 08:02:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35764 "EHLO
+        id S229577AbhKBMZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 08:25:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbhKBMCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 08:02:24 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3BFC061764;
-        Tue,  2 Nov 2021 04:59:49 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id f4so16838692edx.12;
-        Tue, 02 Nov 2021 04:59:49 -0700 (PDT)
+        with ESMTP id S229557AbhKBMZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 08:25:19 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32E31C061714
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 05:22:45 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id j9so7149864qvm.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 05:22:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=N1MA3mUQUD45yT94qOFRtxfboeojPu7769q+5n2e95U=;
-        b=eaeodNiCdFu6kygSOBwFyjgtxQZ8UKZRVasgID9j3Py2ph64D/wlQ7sqpAjhDEzDGr
-         dY5ejbrzGI+n3xG5nMBmdEixxbDbSfaeawjLjGcUe7j3/yr5PyXWLjChtd/2XfQGLV0a
-         izF5nwwUG+XeSO4WvUTglMMP+mikcxbPSQudxWpx72vjda0/KiTm3R4TY+uMINSDVYDT
-         KuV5lrP2XezyET23RjT81J+QphdIDOtUvvTsAd/s5bJfaFQx53J7a34C+JQuCA58b7LJ
-         AaAmaoY82wfoWqhOj9Ohy4EiHOU5OSIBx1UmAfYlUARls8SZYoLORM3pfHOSZ01Lbxz5
-         wXuQ==
+        h=sender:date:from:to:cc:subject:message-id:reply-to:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=524j3weIMUBYVohdC3QFfF1dIv9YteXIYBPPUPdtNZI=;
+        b=gqgGeoKVcua9Eja33WGYMqhcVmZEluUj9WI0JxTO7JMhAdAoofYhm2DMUWOe17ogJR
+         YDX/jP/LWDCq+gD2PsifYEkFXkAqj0TeWKjv8g6eL6UYjeUQ2IKoeMYqLuBZ42U5I4I0
+         9YB2oOvhoBqvmDTHilv2hZdUT3u4Y+g1fFuYD5iKP41w6fXEFPbl5sF8HIK/+vQs53+v
+         0hBOnuLTxg8XM4uvOOUvZEi5uUXE3Hs4IZPwaSGA5KLogHVkP//DzKiN2RrQd5AG2pyB
+         u6hD3gNXIdU8EP/PVBGUbxmjidwtSM1TwsATBbtAriVFXAIbYgDbWGHxuaIa8AtPdR2j
+         DpfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=N1MA3mUQUD45yT94qOFRtxfboeojPu7769q+5n2e95U=;
-        b=DwByY3GT32SIoVSp6HUUaYMTQ1N6BQl+b1/NBMdzT84oNguAMpw0D4GDMIyrpwdcIu
-         4ZSMtCb0PmfIRgaMeyCtQz2RyDQf3ZqWnKqUYm+3VMmijcz8VTsArGtVmCJ1MxJJavEn
-         zXXxldkCkVykzv87ChXtAn34CKO+5doxZ238kHsWWNuIAUKjsGpWJoz8DwWLUwpwSYeM
-         nNvD8bk1PxgBBDJsSNclzNvFYChoq3ohI3GHweCtKbh8ujNmIJrVaPts6vsCD5U7jjcp
-         POfaQ5IfVimn2oLTeMwOsIqGRkTvrjL+PZYrZgDpVftMP2JkUazqUAgWZNZ3jtK6Oe8O
-         QZmg==
-X-Gm-Message-State: AOAM531LmBmSlCSNWQ9r1LR+3ZhIvXCBAQpxgtsGas8qFXXO9llYQX5T
-        aOPiVjHMMYNutWEctSW/U1B1o8l5wgQ=
-X-Google-Smtp-Source: ABdhPJxuohi01BIE2bXm36DfyLcn+CCVbR5gWWWzD7H1HjrsXv9utlYwI7cKekCpP4A4gMLbcyhOzw==
-X-Received: by 2002:a17:906:1382:: with SMTP id f2mr45516613ejc.144.1635854387951;
-        Tue, 02 Nov 2021 04:59:47 -0700 (PDT)
-Received: from tom-ThinkBook-14-G2-ARE ([89.42.6.254])
-        by smtp.gmail.com with ESMTPSA id m15sm11430016edd.5.2021.11.02.04.59.46
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :reply-to:references:mime-version:content-disposition:in-reply-to;
+        bh=524j3weIMUBYVohdC3QFfF1dIv9YteXIYBPPUPdtNZI=;
+        b=NbFFOV7FSjL3UhsfkWl8qXUTtuyiIAXYM36dy7j6z6kuAV7xMftahbdPGimb4QtLON
+         e17VgTJKe7bo+3MoEOidabn/fwAhAfvS5LnNCYEkCDhZ9KxraQPNMT4WJZC8v0eyCa/b
+         blH+qg0CyOnVa3HAJkWwCLT7plviLCXyp4YgeUZsWy/nSi4qVGwk1Z6AZEmQ9uh0NCTG
+         apBV+P916jV6uyHXc8IeV+HPQYYtBATRJ0SBJlVg1XHJbePha8fR7Zxy/YPMpyGZJ5+a
+         Fm/WA9+WnA5fUcu1jXWDsAMrNL90IFOx9k6iunCZ8Hj6dJRwl1gvdypePkYUmYzhsvLH
+         S+vQ==
+X-Gm-Message-State: AOAM531N1T42zoTxs3dq+Q9mJCnFvU5q/YQc6a2j2xTAI7F8dwBPLm9r
+        l5rJ1IANoeOHBKCTc8GtVA==
+X-Google-Smtp-Source: ABdhPJwC+GW2Z14j8Ar7+l/yPNFCH4WawZMyhX5wmqOW3DdYy7QDet5X850by09ALefKzmA4gePHeQ==
+X-Received: by 2002:a05:6214:2584:: with SMTP id fq4mr17116466qvb.53.1635855764249;
+        Tue, 02 Nov 2021 05:22:44 -0700 (PDT)
+Received: from serve.minyard.net ([47.184.156.158])
+        by smtp.gmail.com with ESMTPSA id i11sm48290qtq.44.2021.11.02.05.22.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 04:59:47 -0700 (PDT)
-Date:   Tue, 2 Nov 2021 12:59:21 +0100
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>, Alice Guo <alice.guo@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tue, 02 Nov 2021 05:22:43 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:b4e0:932d:f90c:fafb])
+        by serve.minyard.net (Postfix) with ESMTPSA id C9A0B1800BA;
+        Tue,  2 Nov 2021 12:22:42 +0000 (UTC)
+Date:   Tue, 2 Nov 2021 07:22:41 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
+        Zev Weiss <zev@bewilderbeest.net>,
         Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH] arm64: dts: imx8m: add syscon node for display_blk_ctrl
- module regs
-Message-ID: <20211102115739.GA48972@tom-ThinkBook-14-G2-ARE>
-References: <20211101222857.6940-1-tomm.merciai@gmail.com>
- <c04d4af6-8c7b-da23-d562-78324948ac35@pengutronix.de>
- <20211101225827.GA9208@tom-desktop>
- <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net
+Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
+Message-ID: <20211102122241.GK4667@minyard.net>
+Reply-To: minyard@acm.org
+References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+ <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
+In-Reply-To: <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 01, 2021 at 11:22:21PM -0500, Adam Ford wrote:
-> On Mon, Nov 1, 2021 at 5:58 PM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
+On Mon, Nov 01, 2021 at 11:36:38PM +0000, Joel Stanley wrote:
+> On Mon, 1 Nov 2021 at 23:18, <jae.hyun.yoo@intel.com> wrote:
 > >
-> > On Mon, Nov 01, 2021 at 11:35:49PM +0100, Ahmad Fatoum wrote:
-> > > Hello Tommaso,
-> > >
-> > > On 01.11.21 23:28, Tommaso Merciai wrote:
-> > > > Add system controller node for registers of module Display Block Control
-> > > > (DISPLAY_BLK_CTRL, base address: 0x32e28000).
-> > > > The DISPLAY_BLK_CTRL module contains general purpose registers (GPRs),
-> > > > which control varied features of the associated peripherals.
-> > > > Reference: IMX8MMRM Rev. 3, 11/2020, p 3897
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
-> > > >  1 file changed, 5 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > > index 2f632e8ca388..3e496b457e1a 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > > @@ -961,6 +961,11 @@ aips4: bus@32c00000 {
-> > > >                     #size-cells = <1>;
-> > > >                     ranges = <0x32c00000 0x32c00000 0x400000>;
-> > > >
-> > > > +                   dispmix_gpr: display-gpr@32e28000 {
-> > > > +                           compatible = "fsl, imx8mm-iomuxc-gpr", "syscon";
-> > >
-> > > Please read vendor patches before submitting them. The space
-> > > is out-of-place in the compatible and the compatible is wrong:
-> > > This doesn't look like a i.MX8MM pin controller.
-> > >
-> > > Cheers,
-> > > Ahmad
+> > From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
 > >
-> >   Hi Ahmad,
-> >   Thanks for your review. Do you think this is correct?
+> > Hello all,
 > >
-> >   compatible = "fsl,imx8mm-dispmix-gpr", "syscon";
+> > This series is for appliying below fix to all Aspped LPC sub drivers.
+> > https://lore.kernel.org/all/20201208091748.1920-1-wangzhiqiang.bj@bytedance.com/
 > >
-> >   Let me know.
+> > An LPC sub driver can be enabled without using the lpc-ctrl driver or it
+> > can be registered ahead of lpc-ctrl depends on each system configuration and
+> > this difference introduces that LPC can be enabled without heart beating of
+> > LCLK so it causes improper handling on host interrupts when the host sends
+> > interrupts in that time frame. Then kernel eventually forcibly disables the
+> > interrupt with dumping stack and printing a 'nobody cared this irq' message
+> > out.
+> >
+> > To prevent this issue, all LPC sub drivers should enable LCLK individually
+> > so this patch adds clock control logic into the remaining Aspeed LPC sub
+> > drivers.
 > 
-> There was already a driver created for the blk-ctrl stuff and it has a
-> device tree binding at 32e28000.  It's tied into the power-domain
-> system, so if you want to enable the csi, dsi, or lcd, etc. you can
-> just reference the blt-ctrl power domain index, and it enables the
-> device's gpc power domain and takes the corresponding device out of
-> reset.
+> Thanks for sending this out!
+> 
+> This will resolve a few of the issues we have in the issue tracker:
+> 
+> https://github.com/openbmc/linux/issues/210
+> https://github.com/openbmc/linux/issues/130
+> 
+> The patches look good to me. I think you've just missed Corey's PR for
+> v5.16, but I will stick them in the openbmc tree once they've had a
+> review.
 
-  Hi Adam,
-  You mean using the gpcv2.c driver?
-  
-  drivers/soc/imx/gpcv2.c
+We can still get them in to 5.16 if it's important for that; this is a
+bug fix, after all, and it's early.  I just need to know the urgency.
 
-  With the following node, to put out of reset eLCDIF and mipi_dsi:
+Get the Reviewed-by's in and add the bindings and I can get it into the
+next tree for a bit, then I can submit.  We may be in rc1 by then, but
+that's ok.
 
-  gpc: gpc@303a0000 {
-	compatible = "fsl,imx8mm-gpc";
-	reg = <0x303a0000 0x10000>;
-	interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
-	interrupt-parent = <&gic>;
-	interrupt-controller;
-	#interrupt-cells = <3>;
-
-	pgc {
-
-	 #address-cells = <1>;
-	 #size-cells = <0>;
-	 pgc_mipi: power-domain@0 {
-					#power-domain-cells = <0>;
-					reg = <IMX8M_POWER_DOMAIN_MIPI>;
- 				  };
-
-	pgc_disp: power-domain@7 {
-					#power-domain-cells = <0>;
-					reg = <IMX8M_POWER_DOMAIN_DISP>;
- 				 };
-   };
-  };
-
-  Let me know.
-
-  Thanks,
-  Tommaso
+-corey
 
 > 
-> adam
+> Cheers,
+> 
+> Joel
+> 
 > >
-> >   Thanks,
-> >   Tommaso
+> > Please review this series.
 > >
-> > >
-> > > > +                           reg = <0x32e28000 0x100>;
-> > > > +                   };
-> > > > +
-> > > >                     usbotg1: usb@32e40000 {
-> > > >                             compatible = "fsl,imx8mm-usb", "fsl,imx7d-usb";
-> > > >                             reg = <0x32e40000 0x200>;
-> > > >
-> > >
-> > >
-> > > --
-> > > Pengutronix e.K.                           |                             |
-> > > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> > > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> > Thanks,
+> > Jae
+> >
+> > Jae Hyun Yoo (4):
+> >   ARM: dts: aspeed: add LCLK setting into LPC IBT node
+> >   ipmi: bt: add clock control logic
+> >   ARM: dts: aspeed: add LCLK setting into LPC KCS nodes
+> >   ipmi: kcs_bmc_aspeed: add clock control logic
+> >
+> >  arch/arm/boot/dts/aspeed-g4.dtsi   |  1 +
+> >  arch/arm/boot/dts/aspeed-g5.dtsi   |  5 +++++
+> >  arch/arm/boot/dts/aspeed-g6.dtsi   |  5 +++++
+> >  drivers/char/ipmi/bt-bmc.c         | 24 ++++++++++++++++++++++-
+> >  drivers/char/ipmi/kcs_bmc_aspeed.c | 31 ++++++++++++++++++++++++++----
+> >  5 files changed, 61 insertions(+), 5 deletions(-)
+> >
+> > --
+> > 2.25.1
+> >
