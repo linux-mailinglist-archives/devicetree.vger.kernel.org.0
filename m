@@ -2,121 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42D544431A3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 16:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6415443176
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 16:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234168AbhKBP2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 11:28:43 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:47482 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234599AbhKBP2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 11:28:40 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 1A2FMgOT005904;
-        Tue, 2 Nov 2021 17:22:42 +0200
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10140)
-        id E47BB63A1D; Tue,  2 Nov 2021 17:22:53 +0200 (IST)
-From:   amirmizi6@gmail.com
-To:     Eyal.Cohen@nuvoton.com, jarkko@kernel.org, oshrialkoby85@gmail.com,
-        alexander.steffen@infineon.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org, benoit.houyere@st.com,
-        eajames@linux.ibm.com, joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com,
-        Amir Mizinski <amirmizi6@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v18 6/6] tpm: Add YAML schema for TPM TIS I2C options
-Date:   Tue,  2 Nov 2021 17:20:56 +0200
-Message-Id: <20211102152056.241769-7-amirmizi6@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20211102152056.241769-1-amirmizi6@gmail.com>
-References: <20211102152056.241769-1-amirmizi6@gmail.com>
+        id S234301AbhKBPYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 11:24:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232761AbhKBPYy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 11:24:54 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE0FC061714;
+        Tue,  2 Nov 2021 08:22:19 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id l13so43689685lfg.6;
+        Tue, 02 Nov 2021 08:22:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KtEPX2fvz2bHKMErtGoD/T8bBkILX2HzJEJylUqYa+M=;
+        b=hbN+HJjBkutSURpJVSD+mcskxqjFPaJfW4ZqZNAggLehdEltjTJVQ5NKsSxQ5qRvvZ
+         rc3dVT0jQspBKkT8KmWvbsip7K8zSzAGHesnFUQBa998juM+ym698yGaRT2iQSHd38Qx
+         2ZWm638uePx2zSj2CP+iTWI2r8ZOgQhz6va9TpmypkFQ8fRvcYxoN9GjUxYfJxpZWQvc
+         N+IJulVVSwAU4KkYJCKl/OVekB+RNGlfuS+zUQN/nAFBVFI87xoi/ZMhhOWw47hTZLel
+         gQYu+MSEACPLDi1g4oeY5K0gxLvOk48WigGVubo0R5Km424A+MpG/QKxPQKXVTWbb0i4
+         nuVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KtEPX2fvz2bHKMErtGoD/T8bBkILX2HzJEJylUqYa+M=;
+        b=BY97qFg4mrjvxkaIpMRyJPVB/kEfgy3RzuLfrxNVmDgKR5hKcBV/N3qwU64kD3ms1M
+         ZCeX3L6IQbrRt3bGqbJvteCmnW56aeKE59XgzqowmOpMSCnvRWqdJk4r/OHzM+RmOi8H
+         dmckXlwppXBdUJn/9wzitS5I/aySK7mFrKjF8GNgZgUa+rzA/+h/+7JXaDVqqxKGif0G
+         SNhoKrH6fe7Kyr8gjZz71qZaSwLcIFVuIBen/LnCa26urtoBJw0Bil7VigVZbSOEMdFn
+         /p0FapGsSXEVADdRi9mp5iS2DzsKlK0Y6kxNzVe26eZo4vOtalB5IVqhnGw7EVggaaqI
+         M8dA==
+X-Gm-Message-State: AOAM530QeJVNlAZFm8AjROghJBnptgAevoTt6Wlm2HyaK2whUBzKgDqi
+        5Ika3DYTRYQFtau2BkYnTJMawbtHYBs=
+X-Google-Smtp-Source: ABdhPJwq4SU4gjcvTcIZ/txMGmzkGemcIOIzPLoP3wB1gpljy9kaHLHnQiqg8+fdp3+zHRL/9VEKJg==
+X-Received: by 2002:a19:654a:: with SMTP id c10mr32917656lfj.670.1635866537503;
+        Tue, 02 Nov 2021 08:22:17 -0700 (PDT)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id a24sm250952lfr.151.2021.11.02.08.22.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 08:22:17 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH RFC 0/3] reset: syscon-reboot: add "reg" property support
+Date:   Tue,  2 Nov 2021 16:22:04 +0100
+Message-Id: <20211102152207.11891-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Amir Mizinski <amirmizi6@gmail.com>
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Add a YAML schema to support tpm tis i2c related dt-bindings for the I2c
-PTP based physical layer.
+During my work on MFD binding for Broadcom's TWD block I received
+comment from Rob saying that "syscon-reboot" should use "reg" property.
+I'm not sure if my understanding & implementation are correct so I'm
+sending this RFC.
 
-This patch adds the documentation for corresponding device tree bindings of
-I2C based Physical TPM.
-Refer to the 'I2C Interface Definition' section in
-'TCG PC Client PlatformTPMProfile(PTP) Specification' publication
-for specification.
+What bothers me is non-standard "reg" property usage. Treating it as a
+simple (unsigned) integer number means different logic when it comes to
+ranges.
 
-Signed-off-by: Amir Mizinski <amirmizi6@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/security/tpm/tpm-tis-i2c.yaml         | 52 ++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
+Consider this example:
 
-diff --git a/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-new file mode 100644
-index 0000000..217ba8e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/security/tpm/tpm-tis-i2c.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/security/tpm/tpm-tis-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: I2C PTP based TPM Device Tree Bindings
-+
-+maintainers:
-+  - Amir Mizinski <amirmizi6@gmail.com>
-+
-+description:
-+  Device Tree Bindings for I2C based Trusted Platform Module(TPM).
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          # Nuvoton's Trusted Platform Module (TPM) (NPCT75x)
-+          - nuvoton,npct75x
-+      - const: tcg,tpm-tis-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupt:
-+    maxItems: 1
-+
-+  crc-checksum:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Set this flag to enable CRC checksum.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      tpm@2e {
-+        compatible = "nuvoton,npct75x", "tcg,tpm-tis-i2c";
-+        reg = <0x2e>;
-+        crc-checksum;
-+      };
-+    };
-+...
+timer@400 {
+	compatible = "simple-mfd", "syscon";
+	reg = <0x400 0x3c>;
+	ranges;
+
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	reboot@434 {
+		compatible = "syscon-reboot";
+		reg = <0x34 0x4>;
+		mask = <0x1>;
+	};
+};
+
+I've reboot@434 node with reg 0x34. Also 0x4 is ignored but must be
+present because of of MFD addressing.
+
+Please review this idea / binding / implementation.
+
+Rafał Miłecki (3):
+  dt-bindings: power: reset: syscon-reboot: use non-deprecated example
+  dt-bindings: power: reset: syscon-reboot: add "reg" property
+  power: reset: syscon-reboot: support "reg" property
+
+ .../bindings/power/reset/syscon-reboot.yaml   | 28 +++++++++++++------
+ drivers/power/reset/syscon-reboot.c           |  9 ++++--
+ 2 files changed, 26 insertions(+), 11 deletions(-)
+
 -- 
-2.7.4
+2.31.1
 
