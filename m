@@ -2,80 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB723442524
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 02:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4DC14425CE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 03:58:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbhKBBap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Nov 2021 21:30:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229479AbhKBBap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Nov 2021 21:30:45 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59496C061714
-        for <devicetree@vger.kernel.org>; Mon,  1 Nov 2021 18:28:11 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id ay20so3021368qkb.7
-        for <devicetree@vger.kernel.org>; Mon, 01 Nov 2021 18:28:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:sender:from:date:message-id:subject:to;
-        bh=O+HKlGGQWNv8NYic1b25xcKgjmle04QTeM1bUfWe8yk=;
-        b=Vxc1msZSYG3v7TwumBwsStM175I8lOHSauFeg5lNgUzKSe6gNEyR45lw40ePeddPPK
-         gFT6HD4XPKNRCSRoa+ZjN7Lr9LfhCbYbv59fOYgy12y2J+NEisXV2A2QSn8ZWz49D65u
-         UZcQSr9TUOc1Eswzf58Im5x1TPfnt9h5MqYQTow5aYlaJbkPiJbrEtI6F3LV5PoAevVH
-         UeH6c+vx/U4z/75htrn4smENvPz1VjrWB6SbOqCQL2btq3S6LMXiSmglj4ueUiDQrCJt
-         VvUia/S0FwqQfIcbby9DaWdoeUhLGN/aWAsT+oLG7lI4CdomuYyMAt4S1+1SJ4dUUh2Y
-         p1Ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
-         :to;
-        bh=O+HKlGGQWNv8NYic1b25xcKgjmle04QTeM1bUfWe8yk=;
-        b=Bbai+26GFrPz00nn3R+u/Jk7hoTjuUMLczi8ZQkG7+qoFdgmOzvxnoJFDyoDZ362G+
-         eTeRDB7WMiQughJWbU8RxGfBWkeFz40MG36lxHsH6mLQXy3InvuIidwXLaA3MjVaPqqN
-         OMhYBEadtJZW5sQFGbVjtdh9+85l3vacSEzPyC5BhShR73lFv26R6m3ZZ/c8ehECXaJH
-         pGt/E64JG2MctHrJ7w969zBFFC3pweSdZULNYg6tBUbkIihj7PeZUlNwzK1D9qXg5IK6
-         ekis/W33OORHiJuoO63i6VJXIebDL6X7TII0y+h2XGpxdkj5CnykxvOkJjjGN2/z4S93
-         lA7g==
-X-Gm-Message-State: AOAM530Y32WZ+WFrLmgvA3jgGvUK5NlPVx4QHMHZBmJlPIy6J2Y+vPwC
-        RbvDayfw7CyN8TPzeYvBZv+FaPFQtTqUGKsm/xc=
-X-Google-Smtp-Source: ABdhPJyRm6q5YpPdik3Fa4W9wNry0scUexJVBXb0npOA62eTf7HXi7IMR/1MHRDVtx7VlxtYt7rJRkvEp18hZty+fEM=
-X-Received: by 2002:a05:620a:123b:: with SMTP id v27mr19487429qkj.268.1635816490285;
- Mon, 01 Nov 2021 18:28:10 -0700 (PDT)
-MIME-Version: 1.0
-Sender: mrs.biyufungchi10@gmail.com
-Received: by 2002:ad4:5b8c:0:0:0:0:0 with HTTP; Mon, 1 Nov 2021 18:28:09 -0700 (PDT)
-From:   "Mrs. Rita Hassan" <ritahassan02@gmail.com>
-Date:   Tue, 2 Nov 2021 01:28:09 +0000
-X-Google-Sender-Auth: pnWJHNEm6QKOFfJ3bmFB0u-FE6U
-Message-ID: <CAJERLDJpwE0Os=x0TH_f_pZt279FuSZwXUkx3Puy83x3PyzFcA@mail.gmail.com>
-Subject: urgent respond.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        id S231508AbhKBDBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Nov 2021 23:01:07 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51748 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229526AbhKBDBH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Nov 2021 23:01:07 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E12812001BA;
+        Tue,  2 Nov 2021 03:58:31 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7E3A2200168;
+        Tue,  2 Nov 2021 03:58:31 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C4D8B183AD05;
+        Tue,  2 Nov 2021 10:58:29 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     l.stach@pengutronix.de, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, kishon@ti.com, vkoul@kernel.org,
+        robh@kernel.org, galak@kernel.crashing.org, shawnguo@kernel.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: [PATCH v5 0/8] Add the imx8m pcie phy driver and imx8mm pcie support
+Date:   Tue,  2 Nov 2021 10:32:27 +0800
+Message-Id: <1635820355-27009-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please forgive me for stressing you with my predicaments as I know
-that this letter may come to you as big surprise. Actually, I came
-across your E-mail from my personal search afterward I decided to
-email you directly believing that you will be honest to fulfill my
-final wish before i die.
+Refer to the discussion [1] when try to enable i.MX8MM PCIe support,
+one standalone PCIe PHY driver should be seperated from i.MX PCIe
+driver when enable i.MX8MM PCIe support.
 
-Meanwhile, I am Mrs. Rita, 62 years old,I am suffering from a long
-time cancer and from all indication my condition is really
-deteriorating As a matter of fact, registered nurse by profession
-while my husband was dealing on Gold Dust and Gold Dory Bars till his
-sudden death the year 2019 then I took over his business till date. In
-fact,at this moment I have a deposit sum of $5.5million dollars with
-one of the leading bank.
+This patch-set adds the standalone PCIe PHY driver suport[1-5], and i.MX8MM
+PCIe support[6-8] to have whole view to review this patch-set.
 
-Therefore, I want you to receive the money and take 30% to take care
-of yourself and family while 70% should be use basically on
-humanitarian purposes mostly to orphanages home, Motherless babies
-home,contact me for more details on this email.
-(ritahassan02@gmail.com )
+The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
+[2] and this patch-set. And tested by Tim and Marcel on the different
+reference clock modes boards.
 
-Yours Faithfully
+[1] https://patchwork.ozlabs.org/project/linux-pci/patch/20210510141509.929120-3-l.stach@pengutronix.de/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210910202640.980366-1-l.stach@pengutronix.de/
 
-Mrs. Rita Hassan.
+Main changes v4 --> v5:
+- Set the AUX_EN always 1b'1, thus it can fix the regression introduced in v4
+  series on Marcel's board.
+- Use the lower-case letter in the devicetreee refer to Marcel's comments.
+- Since the default value of the deemphasis parameters are zero, only set
+  the deemphasis registers when the input paramters are none zero.
+
+Main changes v3 --> v4:
+- Update the yaml to fix syntax error, add maxitems and drop description of phy
+- Correct the clock name in PHY DT node.
+- Squash the EVK board relalted dts changes into one patch, and drop the
+  useless dummy clock and gpio suffix in DT nodes.
+- Add board specific de-emphasis parameters as DT properties. Thus each board
+  can specify its actual de-emphasis values.
+- Update the commit log of PHY driver.
+- Remove the useless codes from PCIe driver, since they are moved to PHY driver
+- After the discussion and verification of the CLKREQ# configurations with Tim,
+  agree to add an optional boolean property "fsl,clkreq-unsupported", indicates
+  the CLKREQ# signal is hooked or not in HW designs.
+- Add "Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>" tag, since
+  Marcel help to test the v3 patch-set.
+
+Main changes v2 --> v3:
+- Regarding Lucas' comments.
+ - to have a whole view to review the patches, send out the i.MX8MM PCIe support too.
+ - move the PHY related bits manipulations of the GPR/SRC to standalone PHY driver.
+ - split the dts changes to SOC and board DT, and use the enum instead of raw value.
+ - update the license of the dt-binding header file.
+
+Changes v1 --> v2:
+- Update the license of the dt-binding header file to make the license
+  compatible with dts files.
+- Fix the dt_binding_check errors.
+
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  95 ++++++++++++++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  55 +++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |  46 +++++++++++++++-
+drivers/pci/controller/dwc/pci-imx6.c                        |  73 ++++++++++++++++++++++---
+drivers/phy/freescale/Kconfig                                |   9 ++++
+drivers/phy/freescale/Makefile                               |   1 +
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 237 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+include/dt-bindings/phy/phy-imx8-pcie.h                      |  14 +++++
+9 files changed, 528 insertions(+), 8 deletions(-)
+
+[PATCH v5 1/8] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+[PATCH v5 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
+[PATCH v5 3/8] dt-bindings: imx6q-pcie: Add PHY phandles and name
+[PATCH v5 4/8] arm64: dts: imx8mm: Add the pcie phy support
+[PATCH v5 5/8] phy: freescale: pcie: Initialize the imx8 pcie
+[PATCH v5 6/8] arm64: dts: imx8mm: Add the pcie support
+[PATCH v5 7/8] arm64: dts: imx8mm-evk: Add the pcie support on imx8mm
+[PATCH v5 8/8] PCI: imx: Add the imx8mm pcie support
