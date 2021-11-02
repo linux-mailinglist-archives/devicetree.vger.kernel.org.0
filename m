@@ -2,299 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E55E0443374
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F86443399
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 17:46:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234883AbhKBQqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 12:46:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234707AbhKBQqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 12:46:48 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF54AC06118D;
-        Tue,  2 Nov 2021 09:12:12 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id m14so24530823edd.0;
-        Tue, 02 Nov 2021 09:12:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=n3D3isQYQoZt8oK+QagFyG/F4ee/acgQw48favSVe0E=;
-        b=dljsXv3wZeh8L5SZBGkLn6Pt+w3Saj23K1mjCSrTEgOWc/68atJmLq05wJs6FL7xxh
-         SIS7v5MG7pbqSgcnyDOEp8PWErMj0F0ctDDlM4lF1BoMVkXW5Y3Sp+vjaxrC8lkiUSli
-         gcVGHCDHjCodm5u8tBjp8LjIuCwdSpJMJkTK6eP+mma8bk87BDhtiJztT21OggOqurCj
-         /0hNVRrz2WnFye6g+9vcUnvedC8aRQDW+x+24ww6klSRKCDKx1e7jHOLB54Jwdtm0ulm
-         mR/UX3HgKvY9vGFAAXvhTIghvJIXQ5+jDAI7s2v109xY1YroDwwpXFHg/XFilnXvucy2
-         Tt5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=n3D3isQYQoZt8oK+QagFyG/F4ee/acgQw48favSVe0E=;
-        b=5jnXYkJxRphCx9ZcXiEvHjc8CSgnUaLWX0qObC7BmGri8bf2EjtJTfqEGQ4Ar/t3mC
-         +rV6F/GQt8OfRgSIcS5OFYzCv1CPnHBotMw8l3JrvsHGS+ioLYfCwc/GovZS31Nr+yta
-         wIocGJD76z+upEv4pkM3xP1rpm70LbNC4HpP99fBOwd9xWgnPRj41is6a35ec2GlfaUH
-         KoOMl3QUk1TYugaSuR71HE8oZWqNjN+28+dxMQm2dnH6/oQtHogAWRSenP6myUe4pHH+
-         y0MYK67FzcPaJN4dqd0hH9FTxXcNLHHcix8Nn1cuk4DPtXyq+/YIrqZnKN/eZEcjJuO1
-         Rj4A==
-X-Gm-Message-State: AOAM533z7+r/HMGwJuqYATrMyU9pe46sYm+qpvwhXgzKs87+6p9VOVT4
-        zN9Zj532K09eopSgqI/a9eA=
-X-Google-Smtp-Source: ABdhPJwqsnQ8XwkGvDCTh7wJhlcnFGeqD1H43P++XZjui4DqdM1Mm5nlAPqbxstxZhhXo8If7vSMyA==
-X-Received: by 2002:a17:907:961a:: with SMTP id gb26mr45903415ejc.527.1635869529075;
-        Tue, 02 Nov 2021 09:12:09 -0700 (PDT)
-Received: from stitch.. (80.71.140.73.ipv4.parknet.dk. [80.71.140.73])
-        by smtp.gmail.com with ESMTPSA id c7sm8451374ejd.91.2021.11.02.09.12.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Nov 2021 09:12:08 -0700 (PDT)
-Sender: Emil Renner Berthing <emil.renner.berthing@gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-To:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 16/16] RISC-V: Add BeagleV Starlight Beta device tree
-Date:   Tue,  2 Nov 2021 17:11:25 +0100
-Message-Id: <20211102161125.1144023-17-kernel@esmil.dk>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211102161125.1144023-1-kernel@esmil.dk>
-References: <20211102161125.1144023-1-kernel@esmil.dk>
+        id S234662AbhKBQtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 12:49:09 -0400
+Received: from mga09.intel.com ([134.134.136.24]:5710 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232720AbhKBQrq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 12:47:46 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10156"; a="231168592"
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
+   d="scan'208";a="231168592"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2021 09:35:35 -0700
+X-IronPort-AV: E=Sophos;i="5.87,203,1631602800"; 
+   d="scan'208";a="583666391"
+Received: from nlibermx-mobl.amr.corp.intel.com (HELO [10.209.55.177]) ([10.209.55.177])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Nov 2021 09:35:32 -0700
+Message-ID: <edaeb540-aa31-d143-4320-cb2a73f0070f@linux.intel.com>
+Date:   Tue, 2 Nov 2021 09:35:31 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH -next 4/4] ipmi: kcs_bmc_aspeed: add clock control logic
+Content-Language: en-US
+To:     Joel Stanley <joel@jms.id.au>,
+        ChiaWei Wang <chiawei_wang@aspeedtech.com>
+Cc:     "jae.hyun.yoo@intel.com" <jae.hyun.yoo@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Corey Minyard <minyard@acm.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "openipmi-developer@lists.sourceforge.net" 
+        <openipmi-developer@lists.sourceforge.net>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Jenmin Yuan <jenmin_yuan@aspeedtech.com>
+References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+ <20211101233751.49222-5-jae.hyun.yoo@intel.com>
+ <HK0PR06MB3779F8E273396ED805EE5D81918B9@HK0PR06MB3779.apcprd06.prod.outlook.com>
+ <CACPK8XesLdb+Cbi3ZYrOahRHbXQi3L=cQXax=RV2=PrjiPQBew@mail.gmail.com>
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+In-Reply-To: <CACPK8XesLdb+Cbi3ZYrOahRHbXQi3L=cQXax=RV2=PrjiPQBew@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial device tree for the BeagleV Starlight Beta board. About 300
-of these boards were sent out as part of a now cancelled BeagleBoard.org
-project.
+On 11/1/2021 8:28 PM, Joel Stanley wrote:
+> On Tue, 2 Nov 2021 at 03:16, ChiaWei Wang <chiawei_wang@aspeedtech.com> wrote:
+>>
+>> Hi Jae,
+>>
+>>> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
+>>>
+>>> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+>>>
+>>> If LPC KCS driver is registered ahead of lpc-ctrl module, LPC KCS block will be
+>>> enabled without heart beating of LCLK until lpc-ctrl enables the LCLK. This
+>>> issue causes improper handling on host interrupts when the host sends
+>>> interrupts in that time frame.
+>>> Then kernel eventually forcibly disables the interrupt with dumping stack and
+>>> printing a 'nobody cared this irq' message out.
+>>>
+>>> To prevent this issue, all LPC sub drivers should enable LCLK individually so this
+>>> patch adds clock control logic into the LPC KCS driver.
+>>
+>> Have all LPC sub drivers could result in entire LPC block down if any of them disables the clock (e.g. driver unload).
+>> The LPC devices such as SIO can be used before kernel booting, even without any BMC firmware.
+>> Thereby, we recommend to make LCLK critical or guarded by protected clock instead of having all LPC sub drivers hold the LCLK control.
+>>
+>> The previous discussion for your reference:
+>> https://lkml.org/lkml/2020/9/28/153
+> 
+> Please read the entire thread. The conclusion:
+> 
+> https://lore.kernel.org/all/CACPK8XdBmkhZ8mcSFmDAFV8k7Qj7ajBL8TVKfK8c+5aneUMHZw@mail.gmail.com/
+> 
+> That is, for the devices that have a driver loaded can enable the
+> clock. When they are unloaded, they will reduce the reference count
+> until the last driver is unloaded. eg:
+> 
+> https://elixir.bootlin.com/linux/latest/source/drivers/clk/clk.c#L945
+> 
+> There was another fork to the thread, where we suggested that a
+> protected clocks binding could be added:
+> 
+> https://lore.kernel.org/all/160269577311.884498.8429245140509326318@swboyd.mtv.corp.google.com/
+> 
+> If you wish to use this mechanism for eg. SIO clocks, then I encourage
+> Aspeed to submit a patch to do that.
 
-I2C timing data is based on the device tree in the vendor u-boot port.
-Heartbeat LED added by Geert.
+We are revisiting the aged discussion. Thanks for bringing it back.
 
-Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-Co-developed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
- arch/riscv/boot/dts/Makefile                  |   1 +
- arch/riscv/boot/dts/starfive/Makefile         |   2 +
- .../dts/starfive/jh7100-beaglev-starlight.dts | 164 ++++++++++++++++++
- 3 files changed, 167 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/Makefile
- create mode 100644 arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
+I agree with Joel that a clock should be enabled only on systems that
+need the clock actually so it should be configurable by a device driver
+or through device tree setting, not by the static setting in
+clk-ast2600.c code. So that's the reason why I stopped upstreaming below
+change for making BCLK as a critical clock.
 
-diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index fe996b88319e..ff174996cdfd 100644
---- a/arch/riscv/boot/dts/Makefile
-+++ b/arch/riscv/boot/dts/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- subdir-y += sifive
-+subdir-y += starfive
- subdir-$(CONFIG_SOC_CANAAN_K210_DTB_BUILTIN) += canaan
- subdir-y += microchip
- 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-new file mode 100644
-index 000000000000..0ea1bc15ab30
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+dtb-$(CONFIG_SOC_STARFIVE) += jh7100-beaglev-starlight.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
-new file mode 100644
-index 000000000000..c9af67f7a0d2
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dts
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2021 StarFive Technology Co., Ltd.
-+ * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
-+ */
-+
-+/dts-v1/;
-+#include "jh7100.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/pinctrl-starfive.h>
-+
-+/ {
-+	model = "BeagleV Starlight Beta";
-+	compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
-+
-+	aliases {
-+		serial0 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	cpus {
-+		timebase-frequency = <6250000>;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000 0x2 0x0>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-ack {
-+			gpios = <&gpio 43 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+			label = "ack";
-+		};
-+	};
-+};
-+
-+&gpio {
-+	i2c0_pins: i2c0-0 {
-+		i2c-pins {
-+			pinmux = <GPIOMUX(62, GPO_LOW,
-+				  GPO_I2C0_PAD_SCK_OEN,
-+				  GPI_I2C0_PAD_SCK_IN)>,
-+				 <GPIOMUX(61, GPO_LOW,
-+				  GPO_I2C0_PAD_SDA_OEN,
-+				  GPI_I2C0_PAD_SDA_IN)>;
-+			bias-disable; /* external pull-up */
-+			input-enable;
-+			input-schmitt-enable;
-+		};
-+	};
-+
-+	i2c1_pins: i2c1-0 {
-+		i2c-pins {
-+			pinmux = <GPIOMUX(47, GPO_LOW,
-+				  GPO_I2C1_PAD_SCK_OEN,
-+				  GPI_I2C1_PAD_SCK_IN)>,
-+				 <GPIOMUX(48, GPO_LOW,
-+				  GPO_I2C1_PAD_SDA_OEN,
-+				  GPI_I2C1_PAD_SDA_IN)>;
-+			bias-pull-up;
-+			input-enable;
-+			input-schmitt-enable;
-+		};
-+	};
-+
-+	i2c2_pins: i2c2-0 {
-+		i2c-pins {
-+			pinmux = <GPIOMUX(60, GPO_LOW,
-+				  GPO_I2C2_PAD_SCK_OEN,
-+				  GPI_I2C2_PAD_SCK_IN)>,
-+				 <GPIOMUX(59, GPO_LOW,
-+				  GPO_I2C2_PAD_SDA_OEN,
-+				  GPI_I2C2_PAD_SDA_IN)>;
-+			bias-disable; /* external pull-up */
-+			input-enable;
-+			input-schmitt-enable;
-+		};
-+	};
-+
-+	uart3_pins: uart3-0 {
-+		rx-pins {
-+			pinmux = <GPIOMUX(13, GPO_LOW, GPO_DISABLE,
-+				  GPI_UART3_PAD_SIN)>;
-+			bias-pull-up;
-+			drive-strength = <14>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
-+		tx-pins {
-+			pinmux = <GPIOMUX(14, GPO_UART3_PAD_SOUT,
-+				  GPO_ENABLE, GPI_NONE)>;
-+			bias-disable;
-+			drive-strength = <35>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	clock-frequency = <100000>;
-+	i2c-sda-hold-time-ns = <300>;
-+	i2c-sda-falling-time-ns = <500>;
-+	i2c-scl-falling-time-ns = <500>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0_pins>;
-+	status = "okay";
-+
-+	pmic@5e {
-+		compatible = "ti,tps65086";
-+		reg = <0x5e>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		regulators {
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	i2c-sda-hold-time-ns = <300>;
-+	i2c-sda-falling-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <100>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pins>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	clock-frequency = <100000>;
-+	i2c-sda-hold-time-ns = <300>;
-+	i2c-sda-falling-time-ns = <500>;
-+	i2c-scl-falling-time-ns = <500>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c2_pins>;
-+	status = "okay";
-+};
-+
-+&osc_sys {
-+	clock-frequency = <25000000>;
-+};
-+
-+&osc_aud {
-+	clock-frequency = <27000000>;
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart3_pins>;
-+	status = "okay";
-+};
--- 
-2.33.1
+https://www.spinics.net/lists/linux-clk/msg44836.html
 
+Instead, I submitted these two changes to make it configurable through
+device tree setting.
+
+https://lists.ozlabs.org/pipermail/linux-aspeed/2020-January/003394.html
+https://lists.ozlabs.org/pipermail/linux-aspeed/2020-January/003339.html
+
+But these were not accepted too.
+
+And recently, Samuel introduced a better and more generic way.
+
+https://lore.kernel.org/all/20200903040015.5627-2-samuel@sholland.org/
+
+But it's not accepted yet either.
+
+
+Chiawei,
+
+Please refine the mechanism and submit a change to make SIO clocks
+configurable through device tree setting. I believe that we can keep
+this patch series even with the change, or it can be modified and
+adjusted if needed after the SIO clocks fix is accepted.
+
+Thanks,
+Jae
