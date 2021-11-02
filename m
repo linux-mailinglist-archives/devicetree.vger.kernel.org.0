@@ -2,89 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E0F1442D36
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 12:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF4EB442D57
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 12:59:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230345AbhKBLyD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 2 Nov 2021 07:54:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
+        id S229931AbhKBMCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 08:02:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229720AbhKBLyC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 07:54:02 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9B84C061714
-        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 04:51:27 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mhsJx-0004RX-3V; Tue, 02 Nov 2021 12:51:17 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mhsJv-0049ko-1l; Tue, 02 Nov 2021 12:51:15 +0100
-Message-ID: <34481cb056c4bc4dc355571713675f141350e04d.camel@pengutronix.de>
-Subject: Re: [PATCH v3 3/8] dt-bindings: reset: Add bindings for SP7021
- reset driver
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Qin Jian <qinjian@cqplus1.com>, robh+dt@kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, maz@kernel.org,
-        broonie@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, wells.lu@sunplus.com
-Date:   Tue, 02 Nov 2021 12:51:14 +0100
-In-Reply-To: <852e24e942cf40b8240ced4de4ac78acc7694355.1635737544.git.qinjian@cqplus1.com>
-References: <cover.1635737544.git.qinjian@cqplus1.com>
-         <852e24e942cf40b8240ced4de4ac78acc7694355.1635737544.git.qinjian@cqplus1.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S230170AbhKBMCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 08:02:24 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D3BFC061764;
+        Tue,  2 Nov 2021 04:59:49 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id f4so16838692edx.12;
+        Tue, 02 Nov 2021 04:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=N1MA3mUQUD45yT94qOFRtxfboeojPu7769q+5n2e95U=;
+        b=eaeodNiCdFu6kygSOBwFyjgtxQZ8UKZRVasgID9j3Py2ph64D/wlQ7sqpAjhDEzDGr
+         dY5ejbrzGI+n3xG5nMBmdEixxbDbSfaeawjLjGcUe7j3/yr5PyXWLjChtd/2XfQGLV0a
+         izF5nwwUG+XeSO4WvUTglMMP+mikcxbPSQudxWpx72vjda0/KiTm3R4TY+uMINSDVYDT
+         KuV5lrP2XezyET23RjT81J+QphdIDOtUvvTsAd/s5bJfaFQx53J7a34C+JQuCA58b7LJ
+         AaAmaoY82wfoWqhOj9Ohy4EiHOU5OSIBx1UmAfYlUARls8SZYoLORM3pfHOSZ01Lbxz5
+         wXuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=N1MA3mUQUD45yT94qOFRtxfboeojPu7769q+5n2e95U=;
+        b=DwByY3GT32SIoVSp6HUUaYMTQ1N6BQl+b1/NBMdzT84oNguAMpw0D4GDMIyrpwdcIu
+         4ZSMtCb0PmfIRgaMeyCtQz2RyDQf3ZqWnKqUYm+3VMmijcz8VTsArGtVmCJ1MxJJavEn
+         zXXxldkCkVykzv87ChXtAn34CKO+5doxZ238kHsWWNuIAUKjsGpWJoz8DwWLUwpwSYeM
+         nNvD8bk1PxgBBDJsSNclzNvFYChoq3ohI3GHweCtKbh8ujNmIJrVaPts6vsCD5U7jjcp
+         POfaQ5IfVimn2oLTeMwOsIqGRkTvrjL+PZYrZgDpVftMP2JkUazqUAgWZNZ3jtK6Oe8O
+         QZmg==
+X-Gm-Message-State: AOAM531LmBmSlCSNWQ9r1LR+3ZhIvXCBAQpxgtsGas8qFXXO9llYQX5T
+        aOPiVjHMMYNutWEctSW/U1B1o8l5wgQ=
+X-Google-Smtp-Source: ABdhPJxuohi01BIE2bXm36DfyLcn+CCVbR5gWWWzD7H1HjrsXv9utlYwI7cKekCpP4A4gMLbcyhOzw==
+X-Received: by 2002:a17:906:1382:: with SMTP id f2mr45516613ejc.144.1635854387951;
+        Tue, 02 Nov 2021 04:59:47 -0700 (PDT)
+Received: from tom-ThinkBook-14-G2-ARE ([89.42.6.254])
+        by smtp.gmail.com with ESMTPSA id m15sm11430016edd.5.2021.11.02.04.59.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Nov 2021 04:59:47 -0700 (PDT)
+Date:   Tue, 2 Nov 2021 12:59:21 +0100
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>, Alice Guo <alice.guo@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [PATCH] arm64: dts: imx8m: add syscon node for display_blk_ctrl
+ module regs
+Message-ID: <20211102115739.GA48972@tom-ThinkBook-14-G2-ARE>
+References: <20211101222857.6940-1-tomm.merciai@gmail.com>
+ <c04d4af6-8c7b-da23-d562-78324948ac35@pengutronix.de>
+ <20211101225827.GA9208@tom-desktop>
+ <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xLDHCQoA41FJpP3GY+nbFm99zf=tspHSOXkeFogMF22+A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-11-01 at 13:01 +0800, Qin Jian wrote:
-> Add documentation to describe Sunplus SP7021 reset driver bindings.
+On Mon, Nov 01, 2021 at 11:22:21PM -0500, Adam Ford wrote:
+> On Mon, Nov 1, 2021 at 5:58 PM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
+> >
+> > On Mon, Nov 01, 2021 at 11:35:49PM +0100, Ahmad Fatoum wrote:
+> > > Hello Tommaso,
+> > >
+> > > On 01.11.21 23:28, Tommaso Merciai wrote:
+> > > > Add system controller node for registers of module Display Block Control
+> > > > (DISPLAY_BLK_CTRL, base address: 0x32e28000).
+> > > > The DISPLAY_BLK_CTRL module contains general purpose registers (GPRs),
+> > > > which control varied features of the associated peripherals.
+> > > > Reference: IMX8MMRM Rev. 3, 11/2020, p 3897
+> > > > ---
+> > > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 5 +++++
+> > > >  1 file changed, 5 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > index 2f632e8ca388..3e496b457e1a 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > > > @@ -961,6 +961,11 @@ aips4: bus@32c00000 {
+> > > >                     #size-cells = <1>;
+> > > >                     ranges = <0x32c00000 0x32c00000 0x400000>;
+> > > >
+> > > > +                   dispmix_gpr: display-gpr@32e28000 {
+> > > > +                           compatible = "fsl, imx8mm-iomuxc-gpr", "syscon";
+> > >
+> > > Please read vendor patches before submitting them. The space
+> > > is out-of-place in the compatible and the compatible is wrong:
+> > > This doesn't look like a i.MX8MM pin controller.
+> > >
+> > > Cheers,
+> > > Ahmad
+> >
+> >   Hi Ahmad,
+> >   Thanks for your review. Do you think this is correct?
+> >
+> >   compatible = "fsl,imx8mm-dispmix-gpr", "syscon";
+> >
+> >   Let me know.
 > 
-> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
-> ---
->  .../bindings/reset/sunplus,reset.yaml         | 40 ++++++++
->  MAINTAINERS                                   |  2 +
->  include/dt-bindings/reset/sp-sp7021.h         | 99 +++++++++++++++++++
->  3 files changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
->  create mode 100644 include/dt-bindings/reset/sp-sp7021.h
+> There was already a driver created for the blk-ctrl stuff and it has a
+> device tree binding at 32e28000.  It's tied into the power-domain
+> system, so if you want to enable the csi, dsi, or lcd, etc. you can
+> just reference the blt-ctrl power domain index, and it enables the
+> device's gpc power domain and takes the corresponding device out of
+> reset.
+
+  Hi Adam,
+  You mean using the gpcv2.c driver?
+  
+  drivers/soc/imx/gpcv2.c
+
+  With the following node, to put out of reset eLCDIF and mipi_dsi:
+
+  gpc: gpc@303a0000 {
+	compatible = "fsl,imx8mm-gpc";
+	reg = <0x303a0000 0x10000>;
+	interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+	interrupt-parent = <&gic>;
+	interrupt-controller;
+	#interrupt-cells = <3>;
+
+	pgc {
+
+	 #address-cells = <1>;
+	 #size-cells = <0>;
+	 pgc_mipi: power-domain@0 {
+					#power-domain-cells = <0>;
+					reg = <IMX8M_POWER_DOMAIN_MIPI>;
+ 				  };
+
+	pgc_disp: power-domain@7 {
+					#power-domain-cells = <0>;
+					reg = <IMX8M_POWER_DOMAIN_DISP>;
+ 				 };
+   };
+  };
+
+  Let me know.
+
+  Thanks,
+  Tommaso
+
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/sunplus,reset.yaml b/Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-> new file mode 100644
-> index 000000000..bf55f4ee2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Co., Ltd. 2021
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/reset/sunplus,reset.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Sunplus SoC Reset Controller
-> +
-> +maintainers:
-> +  - Qin Jian <qinjian@cqplus1.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sunplus,sp7021-reset # Reset Controller on SP7021 and compatible SoCs
-> +      - sunplus,q645-reset # Reset Controller on Q645 and compatible SoCs
-
-The commit message only mentions SP7021. Should Q645 be added later, or
-is this patch missing the binding header for Q655?
-
-regards
-Philipp
+> adam
+> >
+> >   Thanks,
+> >   Tommaso
+> >
+> > >
+> > > > +                           reg = <0x32e28000 0x100>;
+> > > > +                   };
+> > > > +
+> > > >                     usbotg1: usb@32e40000 {
+> > > >                             compatible = "fsl,imx8mm-usb", "fsl,imx7d-usb";
+> > > >                             reg = <0x32e40000 0x200>;
+> > > >
+> > >
+> > >
+> > > --
+> > > Pengutronix e.K.                           |                             |
+> > > Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> > > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
