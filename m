@@ -2,132 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36CCF442FA1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:00:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 386E1443029
+	for <lists+devicetree@lfdr.de>; Tue,  2 Nov 2021 15:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231357AbhKBOC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 10:02:56 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:21806 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231267AbhKBOC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 10:02:56 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1A2BZ9q7019241;
-        Tue, 2 Nov 2021 10:00:21 -0400
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3c2g25nhqt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 02 Nov 2021 10:00:20 -0400
-Received: from SCSQMBX10.ad.analog.com (SCSQMBX10.ad.analog.com [10.77.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1A2E0Iep063923
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 2 Nov 2021 10:00:19 -0400
-Received: from SCSQCASHYB6.ad.analog.com (10.77.17.132) by
- SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 2 Nov 2021 07:00:18 -0700
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQCASHYB6.ad.analog.com (10.77.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 2 Nov 2021 07:00:17 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
- Transport; Tue, 2 Nov 2021 07:00:17 -0700
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.121])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1A2E0CvE031291;
-        Tue, 2 Nov 2021 10:00:15 -0400
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 2/2] dt-bindings:iio:amplifiers: add ad7293 doc
-Date:   Tue, 2 Nov 2021 15:59:47 +0200
-Message-ID: <20211102135947.131223-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211102135947.131223-1-antoniu.miclaus@analog.com>
-References: <20211102135947.131223-1-antoniu.miclaus@analog.com>
+        id S230271AbhKBOVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 10:21:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51710 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229530AbhKBOVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 10:21:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2F0FB60EBB;
+        Tue,  2 Nov 2021 14:18:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1635862708;
+        bh=qOB5WMuYpIlALms7I++ESh95onbe/bA+rU+eBx4I4Fk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XoaOYISZbEeWyK9tRWTR37Jsk9jurujng5wyY52op4eXUfcCf+18ChbrFncdxOMtn
+         /X4LT6uiwNEODGWOWAguSLiN77hLLxuilaAkLyQS5cGL2d4LeR7kC7CUldM/mHxlDo
+         Ablk9FJDhtacoW855I3V+EoIjNXFyuor2oo+2oiNMNdWzzawxKwoNe8wlz9M3tUrVY
+         ywWhGSrHC8QLPqXO7KMLuzpvbRugzAL/UscJiOdsSNo8tj6bja4yLcZzLMzLzZ03rD
+         Y7i30c5f0zdvjVFl3dmr/ph9FrHvrYQi2GnqUrd7VAmX14cGTgwKP2OpvF15BldLRn
+         x6etj9G186fPA==
+Received: by mail-ed1-f48.google.com with SMTP id ee33so5580536edb.8;
+        Tue, 02 Nov 2021 07:18:28 -0700 (PDT)
+X-Gm-Message-State: AOAM533n6jj3u4hxWRG81Sp1VmfRguO4xT5J29KfrM5rgUVp0Dq4TqKP
+        YnyZFtxWMBjJH7WoctjT0PuWyuBUvHf5qiUiog==
+X-Google-Smtp-Source: ABdhPJyEJB9X6BsjiuknIZKb6IX4uzR9u7dyWMAP44n4tWQU5OoekyF3SHDoYpgBBnNTB8O+nTrZ+jKoTTonAuttmlE=
+X-Received: by 2002:a50:da06:: with SMTP id z6mr51404191edj.355.1635862706659;
+ Tue, 02 Nov 2021 07:18:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: TG0gVOD6GLlg0IOZdoJbvLjZ7G23UBvN
-X-Proofpoint-GUID: TG0gVOD6GLlg0IOZdoJbvLjZ7G23UBvN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-02_08,2021-11-02_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- spamscore=0 mlxlogscore=882 suspectscore=0 bulkscore=0 mlxscore=0
- impostorscore=0 malwarescore=0 priorityscore=1501 clxscore=1015
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111020083
+References: <20211025103322.160913-1-robert.foss@linaro.org>
+ <20211025103322.160913-2-robert.foss@linaro.org> <YYBOXQOXM8USks0G@robh.at.kernel.org>
+ <CAG3jFytkHi06uaP8RFaS9cma68S9oz_AcAtkMxCrPKGXBTtfsA@mail.gmail.com>
+In-Reply-To: <CAG3jFytkHi06uaP8RFaS9cma68S9oz_AcAtkMxCrPKGXBTtfsA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 2 Nov 2021 09:18:14 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+u6hwj+hzj54KCWNG4u=oOkysK9y_rTwJozmRiWBLNKA@mail.gmail.com>
+Message-ID: <CAL_Jsq+u6hwj+hzj54KCWNG4u=oOkysK9y_rTwJozmRiWBLNKA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] media: dt-bindings: media: camss: Document
+ clock-lanes property
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Todor Tomov <todor.too@gmail.com>,
+        "Gross, Andy" <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Andrey Konovalov <andrey.konovalov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the AD7293 Power Amplifier.
+On Tue, Nov 2, 2021 at 6:49 AM Robert Foss <robert.foss@linaro.org> wrote:
+>
+> On Mon, 1 Nov 2021 at 21:30, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Oct 25, 2021 at 12:33:22PM +0200, Robert Foss wrote:
+> > > The clock-lanes property corresponds to a hardware register field
+> > > that is required to be set, in order to enable the CSI clock signal.
+> > >
+> > > The physical lane of the clock signal is not programmable, but only
+> > > togglable On or Off, which what BIT(7) of the
+> > > CSIPHY_3PH_CMN_CSI_COMMON_CTRLn(5) register controls.
+> > >
+> > > Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/media/qcom,msm8996-camss.yaml        | 5 +++++
+> > >  .../devicetree/bindings/media/qcom,sdm660-camss.yaml         | 5 +++++
+> > >  .../devicetree/bindings/media/qcom,sdm845-camss.yaml         | 5 +++++
+> > >  3 files changed, 15 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+> > > index 38be41e932f0..d4da1fad12cf 100644
+> > > --- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
+> > > @@ -106,6 +106,11 @@ properties:
+> > >
+> > >              properties:
+> > >                clock-lanes:
+> > > +                description:
+> > > +                  The index of the clock-lane is not programmable by
+> > > +                  the hardware, but is required to define a CSI port.
+> > > +                  Lane 7 reflects the hardware register field that enables
+> > > +                  the clock lane.
+> >
+> > If it is fixed, then it should not be required. Fix the required part.
+> >
+> > >                  items:
+> > >                    - const: 7
+> >
+> > I don't know how we let that in, but this should be the lane number.
+> > Each binding can't be making up its own interpretation.
+>
+> If the clock lane number isn't programmable, can clock-lanes be omitted?
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- .../bindings/iio/amplifiers/adi,ad7293.yaml   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ad7293.yaml
+Yes, that would be the correct thing to do.
 
-diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ad7293.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ad7293.yaml
-new file mode 100644
-index 000000000000..b9cfd4621fb7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ad7293.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/amplifiers/adi,ad7293.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: AD7293 12-Bit Power Amplifier Current Controller with ADC,
-+       DACs, Temperature and Current Sensors
-+
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+description: |
-+   Power Amplifier drain current controller containing functionality
-+   for general-purpose monitoring and control of current, voltage,
-+   and temperature, integrated into a single chip solution with an
-+   SPI-compatible interface.
-+
-+   https://www.analog.com/en/products/ad7293.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7293
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      ad7293@0 {
-+        compatible = "adi,ad7293";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+      };
-+    };
-+...
--- 
-2.33.1
-
+Rob
