@@ -2,120 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B604448C5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D074448F7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbhKCTNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 15:13:22 -0400
-Received: from smtpcmd0756.aruba.it ([62.149.156.56]:34294 "EHLO
-        smtpcmd0756.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231157AbhKCTNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 15:13:22 -0400
-Received: from [192.168.153.129] ([146.241.216.221])
-        by Aruba Outgoing Smtp  with ESMTPSA
-        id iLehmQUVD4n4riLehmFuEJ; Wed, 03 Nov 2021 20:10:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1635966644; bh=0/31yxmO9a/oC0P8HSIAOi7F4D8XhUglntlI8cyweIg=;
-        h=Subject:To:From:Date:MIME-Version:Content-Type;
-        b=JHt8XzSjYLi1rWyUyi2ykyjLwTWrBHdvKgItGaNHY9vgQDx4CIXQIBALXxgxMWPRM
-         oGtbjIF7McsY1X/k1uP2Acdeqw2BIas+OYupr81C2Dcca7XMa2Vp0Sp0FJTrwpcsSX
-         gFRfNMSc4dWtlo/n9+z2VXPjPRkCSC59N3R0G8+8JwmsfgviQHXTaF7kvRBJuWubei
-         hx+F0V/WiqGSUyEdMZ1mqAWtMsH7ZhpC7rP9NDKtvKOajBIDiWHDZJL7lyTxdyUfDg
-         n4sufjnQVMtJZjMUz4pfih0uAXT2MavO/91P0GGzNZ/d33kaReBHi5j6jAzzW4d6FZ
-         +cACDqCxUK6YQ==
-Subject: Re: [PATCH v2 11/13] mmc: sdhci-esdhc-imx: Add sdhc support for
- i.MXRT series
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Jesse Taube <mr.bossman075@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-serial@vger.kernel.org
-References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
- <20211102225701.98944-12-Mr.Bossman075@gmail.com>
- <CAOMZO5AxMXxDkNDqGJDhtepqSUxGRCWO+L=c67O==4fx66M7XQ@mail.gmail.com>
- <c1610093-95ae-68d3-57ae-93b1bc9715d7@gmail.com>
- <5ebe48f5-7b9c-be99-d50c-65a056084b96@benettiengineering.com>
- <CAOMZO5DHCYaxzSASKq6Bk8ALkiQeVjPOHOyk-pKYepJFJk6oFQ@mail.gmail.com>
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-Message-ID: <78cba8ec-72b0-89b8-d6e3-09ecea19ca7b@benettiengineering.com>
-Date:   Wed, 3 Nov 2021 20:10:39 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230353AbhKCTdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 15:33:43 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45642 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229697AbhKCTdn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Nov 2021 15:33:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=cDxZEgsBvG6iig5CDrhw19H0EN2SLZIC0/Kvs9EyApA=; b=gmj0V+SP7kqiQv7v5WyFuUgR2i
+        u2SrW66hYSLro8AtOX4Q8eBA91/DmHcrq58DDst+cyJr5hJkIYBzo6uAxrkXrChrZHQBkNjsPOqom
+        uQc38i7Bzau6+1adeo4bAjPmOaSqnuDjtX3yCgtnhhDxiQv3nS7OaBlybSqsSjYIQ0fE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1miLyD-00CX8c-Dv; Wed, 03 Nov 2021 20:30:49 +0100
+Date:   Wed, 3 Nov 2021 20:30:49 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YYLjaYCQHzqBzN1l@lunn.ch>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
+ <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-In-Reply-To: <CAOMZO5DHCYaxzSASKq6Bk8ALkiQeVjPOHOyk-pKYepJFJk6oFQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfF6/WWjL7PJeZTTfz9UiWozyugqncNHx9tTkfwkkeDbnl31INXrmdyJqCSDLjNgQNAiX+KEFaL/glNmQk4hLNz+e91vJZFmZ3NF5I4POniLdU+133jcp
- XzXAVa/DOc7iJ7Umt9dQCiK70yv+dPSCm6DyvEHh3sPzUmjoblvN2rbQedLd/KRav15zduP3h7pa3TBT7GXnqFDja1xM10FZDIRnNyWpakY0+K6IpWr9CtRp
- RbGD2bB0eWYl2pgQ6oK7rgqwkfBiXt6WBqx32YZalbWMiwFTgFZXYFX2bhI4iGNXtHbYX6M7a2P6awc9yt+RpNOC46ceA2OSF2GD2nNLCCA85tkJbOLpIuW+
- 2qJ4tYuOUeifsY8fJ1OAWVgvpme4hq+Jn9KOnjeL9hMJkqLhKlMoFBWG4ZFAjx6P+T/WjW84919f5FBekomjfNlXPtI2bx8LowHcHVMxxtgWKrIy8/HCjQse
- hMtGvQbiPuqHqMSGKMU0Q3721Q7hTJXFuObQDrhcRED7Kw6KTtE+Aczv5xnK+GZFMBgayrKg+SPoimBROvDme87huk7quiukeu+sSdj2ldoS4sJzD14db2fG
- fUZGCElF1aWolDYn3zDRnuI9aNLyzS3y1bYpg51QmCdVikiJpSb9nuEDd32x1YmU5g6bp8wj6JvNaeEdLN+hZ8C98TiPIvfIAQlyjNyu4rl6AtSJkRa0xbkl
- Oqwe2dhAY8fi/AdyGAOTkGT9EcPX6i/VjPEh3HGAOLI7lQRyq0Do61LOcfvBUvIvN4UdwfKqBwD9s9EPIMQEYbN3mTdK+1FUVYNZBAwyyypuvn/FOjtDyP2H
- JMyFerHaBWkngEyHrqz25mjCOQMODTDTsNvvVliBq93lDPsgK3mJEl0Habe+NGvFA2p8EJtf0FwLgL0DRkJHzdhMV88ocFN+5a1+J0RrGZr4w1tABUN/5cm1
- WudLVrZSILp4LPugdLhbdtWqzTVqLr7Z5bwjuyY0ykWP1Okhj8x8edAs9QHPcNhSXogZq6iiuo5o1gC6xSOGhsYvQsVxL3miS8s3fPyG/QjEvDLLBWrnRyF1
- 0glwqRkuoJSHoK/FA3aAdIQ9Aeg2lDGEs3pbsWIwLor0bSAzNFFlUwrWmx7Z5ykPs8sZoNMAWTJRAnNPRjzG87S0dPFSboLuLSo=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio, Jesse, Rob, All,
+> config NET_VENDOR_SUNPLUS
+> 	bool "Sunplus devices"
+> 	default y
+> 	depends on ARCH_SUNPLUS
 
-On 11/3/21 6:51 PM, Fabio Estevam wrote:
-> Hi Giulio,
-> 
-> On Tue, Nov 2, 2021 at 8:30 PM Giulio Benetti
-> <giulio.benetti@benettiengineering.com> wrote:
-> 
->> If we add every SoC we will end up having a long list for every device
->> driver. At the moment it would be 7 parts:
->> 1) imxrt1020
->> 2) imxrt1024
->> .
->> .
->> .
->> 7) imxrt1170
->>
->> Is it ok anyway?
-> 
-> As this patch adds the support for imxrt1050, I would go with
-> "fsl,imxrt1050-usdhc" for now.
-> 
+Does it actually depend on ARCH_SUNPLUS? What do you make use of?
 
-Ok, then it's the same as pointed by Rob for lpuart[1]; @Jesse: we will 
-do the same for all peripherals(more or less) since it seems there are 
-little differences in the i.MXRT family.
+Ideally, you want it to also build with COMPILE_TEST, so that the
+driver gets build by 0-day and all the other build bots.
 
-[1]: 
-https://lore.kernel.org/lkml/D0A3E11F-FEDE-4B2D-90AB-63DFC245A935@benettiengineering.com/T/
+> 	---help---
+> 	  If you have a network (Ethernet) card belonging to this
+> 	  class, say Y here.
+> 
+> 	  Note that the answer to this question doesn't directly
+> 	  affect the kernel: saying N will just cause the configurator
+> 	  to skip all the questions about Sunplus cards. If you say Y,
+> 	  you will be asked for your specific card in the following
+> 	  questions.
+> 
+> if NET_VENDOR_SUNPLUS
+> 
+> config SP7021_EMAC
+> 	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
+> 	depends on ETHERNET && SOC_SP7021
 
-Thanks a lot
-Best regards
--- 
-Giulio Benetti
-Benetti Engineering sas
+Does it actually depend on SOC_SP7021 to build?
+
+     Andrew
