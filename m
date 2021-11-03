@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E533E443EDD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 10:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE966443EE1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 10:03:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbhKCJFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 05:05:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39894 "EHLO
+        id S231920AbhKCJFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 05:05:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbhKCJFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 05:05:40 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12FBC061203
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 02:03:04 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id p16so3822591lfa.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 02:03:04 -0700 (PDT)
+        with ESMTP id S231709AbhKCJFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 05:05:42 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79F25C061203
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 02:03:05 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 17so2695035ljq.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 02:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=l1pD+W54nOd1j1DXeZbD9xPUudJRVhA/hpogE5bgZ98=;
-        b=W5gPWqqL/vTOCl0ikB/He/Iy6BoWQ0Gn8ugg0PNm8wupYGpo3e3eYLEgb8FY7ldvGX
-         SRZwUJZfVue7mJEnOViHYc5X47Nq4voUBE0a6OKSX1+9QfkYFN4uQqrdLMkZVNR3F9N7
-         TOuMBzYeHww3ZNADfeU5FhHlGZTqIJ1qt0w+qIfIQW7lQVvoR9DqcvAbS1kP72xCyigx
-         xwgokiBrHPHXFukSLrcvKyzI7ZOyyvV4IkmOvR7UbiTLAX31A0jLsCpEmT5P0amhTJog
-         0z5ls78qhhdpnV23dt541mOYqsEvNuF93jRuriu0cjnGHxp1yw6kSnLz2yf0Lt0cO3Y5
-         J6qg==
+        bh=wDFhL54jBz3G05V/OraPaakr11gEhiPI9haVEV4Ys5E=;
+        b=JrbkOJN0AVTm6aU03vDx3RA7J3nBQq4dZa143tOdEgrSo7btHpTOx99WIZ/Ux9cVAI
+         P4y1XDNIgA+r0IulEXK4zuoXLG5PAPr5bc9n6widMRrpCG+vIrQIkNOlIimZgXPkgsZq
+         tG7os6N3rCTTTlwnplk24JpP02zL/aP6hFgKgtJdb8kmF/yM/Qxx10WXQz4GSsXcuH76
+         OXlNleVoGGpr1KaXJdrMvws8NoRfIoxTcPVYbHGHSkTZUC8Pt+WzWxi79zukB3Swp+SF
+         1Ul/eZQRyUinBps9OsfaaQrMNS+AwOiskYcVb9gyowMOWDyGhF6wBIHTH6mjoehruamB
+         zyzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=l1pD+W54nOd1j1DXeZbD9xPUudJRVhA/hpogE5bgZ98=;
-        b=HvweBPzF9BoZSkwqzBanJmfQRr0V+y8+894JaVduTr5CVR4Q5WOpqKpLB/Ds0jLnr/
-         DVRoUIKbzKHpEMlQZq6B9TuzFxRDNdjHRw7KiDZ48qUvcIfHsC8KzGwbdB550ecBeBam
-         BKUCDa1UfMFMCXwCiYCPovUBc6vbOcXpH0SQdtgqevtnWAtGcPzdOtpSqBN5l4OJz9xw
-         yCBB+fSiBZOPkcsJkwjCClTnOjfUT7a6k0ENhW/B52IGIFWnFAhdn0yXwF3OVjGX2h7M
-         oDbZVOaoqS1ea1By0H1svJ7cYtEMvvq1j7bZASSMR5wIatazY8TlRXeC9Ef4EtF5hs2g
-         8bKQ==
-X-Gm-Message-State: AOAM532JkjONh1sr6kzCYpb5J/ZrzqI26Xydwtf3eZhEFzRtIhVZHSKY
-        yiJ6aY7NYPDEHu5tQGZVUtSzxg==
-X-Google-Smtp-Source: ABdhPJwnUcDDLnd9SouT4svV7Vbgm80iZWY9qCLuCd/a2zGcE97Tfy89TXyAetWh/lcgVSZCknb11A==
-X-Received: by 2002:a05:6512:310c:: with SMTP id n12mr25109316lfb.688.1635930182929;
-        Wed, 03 Nov 2021 02:03:02 -0700 (PDT)
+        bh=wDFhL54jBz3G05V/OraPaakr11gEhiPI9haVEV4Ys5E=;
+        b=5bc/8hHu+JSLMxLyKJQS43sg0QppC1D1aLsD8vbtA7dWKVKAffSszGlAHdinABogmd
+         +fsssv4olW2xqG73EMhHQ5rWpGcTydsD+V2EWlZsHzr95zldHfzQyf63dngixc9mwe/e
+         u7HuuLRU5AgRNaiKCNs94m1jBhAwKyuAGksCRVSRftnXe9j5c2PqTwOS4zZAep7UwViw
+         +Qc+Wy0BTQaESKcH5C6niKQV+eq6nlJvSd9Ixk2oBQFfcCCo4ndWvkWlDRdCbi6Mi6KN
+         DqPXyA9Dbs5RkQDNzxFBZQDuTzoZZVWGOoIx3QpO1JpdpR/MsfiKg1H84zx7ZFw0TI30
+         wbdg==
+X-Gm-Message-State: AOAM533KeFKIZiJMlw1ymiq0mU3ViEExWfrwirqTU/IYn1SOTYKxG+SE
+        hX+kXYLS7x94Qt2QquS7PmI5HA==
+X-Google-Smtp-Source: ABdhPJy2IrqOF3ogwb+7EqZn1rFu3bhrk8vJtGRNZ5plknFzvRDWYEdyK53VxBLOuXPASCA5Skn+bQ==
+X-Received: by 2002:a2e:9e13:: with SMTP id e19mr45531615ljk.494.1635930183843;
+        Wed, 03 Nov 2021 02:03:03 -0700 (PDT)
 Received: from jade.urgonet (h-94-254-48-165.A175.priv.bahnhof.se. [94.254.48.165])
-        by smtp.gmail.com with ESMTPSA id w16sm124373lfr.233.2021.11.03.02.03.02
+        by smtp.gmail.com with ESMTPSA id w16sm124373lfr.233.2021.11.03.02.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 02:03:02 -0700 (PDT)
+        Wed, 03 Nov 2021 02:03:03 -0700 (PDT)
 From:   Jens Wiklander <jens.wiklander@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
@@ -59,11 +59,10 @@ Cc:     Jerome Forissier <jerome@forissier.org>,
         Jonathan Corbet <corbet@lwn.net>,
         Ard Biesheuvel <ardb@kernel.org>,
         Marc Zyngier <maz@kernel.org>, jens.vankeirsbilck@kuleuven.be,
-        Jens Wiklander <jens.wiklander@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v8 2/6] dt-bindings: arm: optee: add interrupt property
-Date:   Wed,  3 Nov 2021 10:02:51 +0100
-Message-Id: <20211103090255.998070-3-jens.wiklander@linaro.org>
+        Jens Wiklander <jens.wiklander@linaro.org>
+Subject: [PATCH v8 3/6] tee: fix put order in teedev_close_context()
+Date:   Wed,  3 Nov 2021 10:02:52 +0100
+Message-Id: <20211103090255.998070-4-jens.wiklander@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211103090255.998070-1-jens.wiklander@linaro.org>
 References: <20211103090255.998070-1-jens.wiklander@linaro.org>
@@ -73,46 +72,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds an optional interrupt property to the optee binding.
+Prior to this patch was teedev_close_context() calling tee_device_put()
+before teedev_ctx_put() leading to teedev_ctx_release() accessing
+ctx->teedev just after the reference counter was decreased on the
+teedev. Fix this by calling teedev_ctx_put() before tee_device_put().
 
+Fixes: 217e0250cccb ("tee: use reference counting for tee_context")
 Reviewed-by: Sumit Garg <sumit.garg@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Marc Zyngier <maz@kernel.org>
 Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
 ---
- .../devicetree/bindings/arm/firmware/linaro,optee-tz.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/tee/tee_core.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-index c24047c1fdd5..9a426110a14a 100644
---- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-+++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-@@ -24,6 +24,12 @@ properties:
-   compatible:
-     const: linaro,optee-tz
+diff --git a/drivers/tee/tee_core.c b/drivers/tee/tee_core.c
+index 2b37bc408fc3..85102d12d716 100644
+--- a/drivers/tee/tee_core.c
++++ b/drivers/tee/tee_core.c
+@@ -98,8 +98,10 @@ void teedev_ctx_put(struct tee_context *ctx)
  
-+  interrupts:
-+    maxItems: 1
-+    description: |
-+      This interrupt which is used to signal an event by the secure world
-+      software is expected to be edge-triggered.
+ static void teedev_close_context(struct tee_context *ctx)
+ {
+-	tee_device_put(ctx->teedev);
++	struct tee_device *teedev = ctx->teedev;
 +
-   method:
-     enum: [smc, hvc]
-     description: |
-@@ -42,10 +48,12 @@ additionalProperties: false
+ 	teedev_ctx_put(ctx);
++	tee_device_put(teedev);
+ }
  
- examples:
-   - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-     firmware  {
-         optee  {
-             compatible = "linaro,optee-tz";
-             method = "smc";
-+            interrupts = <GIC_SPI 187 IRQ_TYPE_EDGE_RISING>;
-         };
-     };
- 
+ static int tee_open(struct inode *inode, struct file *filp)
 -- 
 2.31.1
 
