@@ -2,203 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD714440CA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 12:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B5BB4440E8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 12:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbhKCLvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 07:51:41 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38711 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232011AbhKCLvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 07:51:35 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 60AC6580751;
-        Wed,  3 Nov 2021 07:48:58 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Wed, 03 Nov 2021 07:48:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=TzoRqF1p5zbP2
-        vPKhDksUN7ws6peTohrQ2WAt/oVnos=; b=HK4BG8Rk1gv7eCQrOc/8a/CnnpFG0
-        Y8n0Z5NfYhPLjSKa6gqSG7knqwIeKD9jO1l3H4ZYbV18UvVz2umVZP+JXMuKz3sg
-        TLNphvEPYZjW0TRvSE3sFCkJ8YmkV4U9miguGM4UTwYcdt/sIffdzZxdLwRnX6Rp
-        xD34NaQ5+Xoo2er0Ajtijwe2Gc4Qh1QaMIFb5klTMqiP8EUmcEN5mX1CbEQKPsBY
-        XXwXlPnE77Z1d3RW2+Etk0TDNO7WZWSlZRp0SEjmEbKibejOe11nsOmvdh2z9mWT
-        OnhUjaJzqftcnf4Ik9jX8wWdLdoLxtzDvGNNO7C9EPew75BVZ8rArWFug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=TzoRqF1p5zbP2vPKhDksUN7ws6peTohrQ2WAt/oVnos=; b=MpwQOhD/
-        XXrViqdAsN2uixwwdt2mNdajVaVfd3nbeYz8zTBizQISdWtvLZYsiDFc1E53szn4
-        9nGYxEYj9mM0Dgerb5iK2dx5I26QbT1VFTCnmYbLO5YTTCW/4bAR+SCqa5qpYlrS
-        FcBQsDBaBeGdS0n6fhZyHIKCt5J6OS7VeuRD3w23HNDvnDM55FXMzIVjpv/gTvsp
-        QCPuAzP3I7HiUP87grQarTtA3VeCDwW43A6l5t/uGmBlm+3nmWwsmK/F7cRNF8A/
-        NKXGQgzvFOWcXnlLlS/juj0rM8xAz9lQ6y0s3ycynpTVAP/iLHct9NhOrTGDuNwV
-        wwlhhEDG+WZd+A==
-X-ME-Sender: <xms:KneCYejDtLKOwd8obxJ8lTMtI6GcCIeeqiQULRiOmhoMUe_971rYsA>
-    <xme:KneCYfD1z5AAPx2CogfV4L3XNomKWVLHJaz1YrH2goRaWYMH_HFGAoNRUQ-LC4rY1
-    uOA324wm83gVR5cSKQ>
-X-ME-Received: <xmr:KneCYWGvIVB6hSxR4hJOrxi1AvYBh7crmzGvB_hwFubHCScG1JCAoaPlQzLHLwhc0umG-WvzIRg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtddvgdefvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgeegtdetjeekge
-    eguefgheeuvedugedvteejveeiudegvddtkeffkeehtdetudfhnecuvehluhhsthgvrhfu
-    ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
-    htrghirhdvfedrmhgv
-X-ME-Proxy: <xmx:KneCYXQ-OHLc86FqCKbozjxEDwfRUVgNrzW94y2lU-d8FpKffxSYTg>
-    <xmx:KneCYbyTQpHUmS5fxdIyP9IqKeYFlgvdnzCM85JCvbnuyLrMczfm9w>
-    <xmx:KneCYV5rSmQvxnGm1nidBMUN3vg5CVQi6qutAHTXTFdRc8PTTXqK6w>
-    <xmx:KneCYQqNpWi_Ugssl0brUSCmm9s9QJPNEf60Hn46RzLW6jHPbnO9_w>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 3 Nov 2021 07:48:53 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     mylene.josserand@free-electrons.com, linus.walleij@linaro.org,
-        andreas@kemnade.info, rydberg@bitmath.org,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v2 4/4] ARM: dts: imx7d: remarkable2: Enable the cyttsp5
-Date:   Wed,  3 Nov 2021 21:48:30 +1000
-Message-Id: <20211103114830.62711-5-alistair@alistair23.me>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211103114830.62711-1-alistair@alistair23.me>
-References: <20211103114830.62711-1-alistair@alistair23.me>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231539AbhKCL70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 07:59:26 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:1749 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230304AbhKCL70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Nov 2021 07:59:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1635940610; x=1667476610;
+  h=from:to:cc:subject:date:message-id;
+  bh=cjhnmPP4t88UZMMLaFP7ZtwjNBar69LtAKhaM+uSXnc=;
+  b=UfLCmL/xkZ2Mxe5G7iTx/wQtudAW0c/VUb+9tFegs8bSKZR5C6C7Y/1t
+   XZt9bLWPfoJcAumwj41Wvw/pz/OgBia+eP/JVGBegtoqFXK0FWCO/KZQM
+   opjlHpvlBFNLYwUhAghp0svnVW/Py4qmE0huJbpWYd6Pd/BBmcH92n2AO
+   RatyxrHLfv0JikSjS27NVtuR87gP4tU28BaCENPpXEShgYLkum3MCEVKu
+   IYT2JDTqQR2XJOkTeN9sn+IF5wemxFrhblNlu+P0Rw+cEf9hFDZ5eHyoh
+   TcNZ5qoyhtQNBSshqT9zot/R7TW7Hgmejan/GXVNfyasgn9VYNbnd9uF5
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.87,205,1631570400"; 
+   d="scan'208";a="20323803"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 03 Nov 2021 12:56:49 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 03 Nov 2021 12:56:49 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 03 Nov 2021 12:56:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1635940609; x=1667476609;
+  h=from:to:cc:subject:date:message-id;
+  bh=cjhnmPP4t88UZMMLaFP7ZtwjNBar69LtAKhaM+uSXnc=;
+  b=e+P3KzFf69Ipq+h4nsYjk6dl0HEzxVbKgxWRaKPhULNPwmvvMR8usCJV
+   zsN5dsFVMBQ1AYWe61VHPm454HnCjh/7NQHYFxr1PX4LrA57S5XsZ4CPl
+   P0L+8TD1vI2GaBQaMJYXGgt0r4QgPDooqkt9kAZg0uleiTKs1VVLwJW1r
+   XPFcJ0SLLF2wOxMm5g5i/xMMSTHuSGnSIYoTE5jOvCoNZfijPNZemPlaD
+   UCVideA0J2cR4v0C8VGo1T8fSWcVW8sFOcwbtfTan9skmqZakoiITKiP/
+   mOW71HH0uuwKHVqWyQG8MMU9BVJ9YipoRkK0ai3JyT5Y918eaL0UvGh1N
+   g==;
+X-IronPort-AV: E=Sophos;i="5.87,205,1631570400"; 
+   d="scan'208";a="20323800"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 03 Nov 2021 12:56:48 +0100
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 9F067280065;
+        Wed,  3 Nov 2021 12:56:48 +0100 (CET)
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Subject: [PATCH v2 1/3] dt-bindings: arm: fsl: add TQ-Systems boards based on i.MX6Q/QP/DL
+Date:   Wed,  3 Nov 2021 12:56:16 +0100
+Message-Id: <20211103115618.13927-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/imx7d-remarkable2.dts | 89 +++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+The TQ-Systems MBa6x mainboard can be used with TQMa6 variants with
+i.MX6Q/QP/DL SoCs (TQMa6Q/QP/DL). The TQMa6Q and DL exist in two variants:
+The newer variants "A" have a hardware workaround for Erratum ERR006687,
+while variants "B" are missing such a workaround, so it needs to be
+handled in software. The erratum was fixed in i.MX6QP, so no "A" variant
+of the TQMa6QP exists.
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 89cbf13097a4..cb5c63963a3c 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+
+v2: no changes, added Reviewed-by from v1
+
+
+ .../devicetree/bindings/arm/fsl.yaml          | 35 +++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 0b595b26061f..57b003f4eff1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -323,6 +323,20 @@ properties:
+           - const: toradex,apalis_imx6q
+           - const: fsl,imx6q
  
- #include "imx7d.dtsi"
-+#include <dt-bindings/input/linux-event-codes.h>
++      - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
++        items:
++          - const: tq,imx6q-mba6x-a
++          - const: tq,mba6a               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6q-tqma6q-a
++          - const: fsl,imx6q
++
++      - description: TQ-Systems TQMa6Q SoM (variant B) on MBa6x
++        items:
++          - const: tq,imx6q-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6q-tqma6q-b
++          - const: fsl,imx6q
++
+       - description: i.MX6QP based Boards
+         items:
+           - enum:
+@@ -344,6 +358,13 @@ properties:
+           - const: phytec,imx6qdl-pcm058  # PHYTEC phyCORE-i.MX6
+           - const: fsl,imx6qp
  
- / {
- 	model = "reMarkable 2.0";
-@@ -34,6 +35,18 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <150>;
- 	};
++      - description: TQ-Systems TQMa6QP SoM on MBa6x
++        items:
++          - const: tq,imx6qp-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6qp-tqma6qp-b
++          - const: fsl,imx6qp
++
+       - description: i.MX6DL based Boards
+         items:
+           - enum:
+@@ -482,6 +503,20 @@ properties:
+           - const: dh,imx6s-dhcom-som
+           - const: fsl,imx6dl
  
-+	reg_touch: regulator-touch {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_TOUCH";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pinctrl_touch_reg>;
-+		pinctrl-1 = <&pinctrl_touch_reg>;
-+		gpio = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
++      - description: TQ-Systems TQMa6DL SoM (variant A) on MBa6x
++        items:
++          - const: tq,imx6dl-mba6x-a
++          - const: tq,mba6a               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6dl-tqma6dl-a
++          - const: fsl,imx6dl
 +
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		pinctrl-names = "default";
-@@ -51,6 +64,59 @@ &clks {
- 	assigned-clock-rates = <0>, <32768>;
- };
- 
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
++      - description: TQ-Systems TQMa6DL SoM (variant B) on MBa6x
++        items:
++          - const: tq,imx6dl-mba6x-b
++          - const: tq,mba6b               # Expected by bootloader, to be removed in the future
++          - const: tq,imx6dl-tqma6dl-b
++          - const: fsl,imx6dl
 +
-+	tsc@24 {
-+		compatible = "cypress,tt21000";
-+		reg = <0x24>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touch>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&gpio1 13 0>;
-+		vdd-supply = <&reg_touch>;
-+		touchscreen-size-x = <880>;
-+		touchscreen-size-y = <1280>;
-+
-+		button@0 {
-+			linux,code = <KEY_HOMEPAGE>;
-+		};
-+
-+		button@1 {
-+			linux,code = <KEY_MENU>;
-+		};
-+
-+		button@2 {
-+			linux,code = <KEY_BACK>;
-+		};
-+
-+		button@3 {
-+			linux,code = <KEY_SEARCH>;
-+		};
-+
-+		button@4 {
-+			linux,code = <KEY_VOLUMEDOWN>;
-+		};
-+
-+		button@5 {
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+
-+		button@6 {
-+			linux,code = <KEY_CAMERA>;
-+		};
-+
-+		button@7 {
-+			linux,code = <KEY_POWER>;
-+		};
-+	};
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -125,6 +191,29 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
- 		>;
- 	};
- 
-+	pinctrl_touch: touchgrp {
-+		fsl,pins = <
-+			/* CYTTSP interrupt */
-+			MX7D_PAD_GPIO1_IO14__GPIO1_IO14		0x54
-+			/* CYTTSP reset */
-+			MX7D_PAD_GPIO1_IO13__GPIO1_IO13		0x04
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C3_SDA__I2C3_SDA		0x4000007f
-+			MX7D_PAD_I2C3_SCL__I2C3_SCL		0x4000007f
-+		>;
-+	};
-+
-+	pinctrl_touch_reg: touchreggrp {
-+		fsl,pins = <
-+			/* TOUCH_PWR_EN */
-+			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x14
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
+       - description: i.MX6SL based Boards
+         items:
+           - enum:
 -- 
-2.31.1
+2.17.1
 
