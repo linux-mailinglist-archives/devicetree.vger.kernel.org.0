@@ -2,151 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8807B443B97
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 03:49:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3F38443BDA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 04:31:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbhKCCvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 22:51:40 -0400
-Received: from smtpcmd11117.aruba.it ([62.149.156.117]:43123 "EHLO
-        smtpcmd11117.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230049AbhKCCvg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 22:51:36 -0400
-Received: from smtpclient.apple ([146.241.216.221])
-        by Aruba Outgoing Smtp  with ESMTPA
-        id i6KdmWeslumo4i6KdmXOCm; Wed, 03 Nov 2021 03:48:58 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-        t=1635907738; bh=vn0en0EIlHgkPwPZZERx136vgq1/nmIMJ6ZT4dkZqag=;
-        h=Content-Type:From:Mime-Version:Subject:Date:To;
-        b=J9naTf+IAohR2xOuGFgEzMfooC6CT8nvH3rCcxEWgk4ynOkf9Na/5Aqb8CB1TYo6O
-         E72mOAH0K6Haxm+L3WXrEe/q9WMjDSlZd5pngARGRVwsq1+tUy5onszIqxfCDTHDSw
-         FJqY5awdjZXgfm/Z33r99rSTvYbfrSaei0yvkgo895UNDUgzzsfwvlsL4GZT5zf8g4
-         mlgBpKAQEB6xb/Nih89L56sQBD2benwgBCFHMJXdhbWd1w9XRNB2i+f+KJ5UaLAXax
-         xyAM63MAPZlAmH/xCTEiZZWeY0G7t6TrNo2hUg29dncGJPIvgBy6Z765r06VGFHqS3
-         /ZU34wbBbftfA==
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-lpuart: add i.MXRT compatible
-Date:   Wed, 3 Nov 2021 03:48:54 +0100
-Message-Id: <D0A3E11F-FEDE-4B2D-90AB-63DFC245A935@benettiengineering.com>
-References: <CAL_JsqJR6EfDsmwPmXxgdaC1GB7CLGYpjmDnOkD_f53Frsq6LA@mail.gmail.com>
-Cc:     Jesse Taube <mr.bossman075@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Anson Huang <b20788@freescale.com>,
-        Fugang Duan <fugang.duan@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-In-Reply-To: <CAL_JsqJR6EfDsmwPmXxgdaC1GB7CLGYpjmDnOkD_f53Frsq6LA@mail.gmail.com>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: iPhone Mail (18H17)
-X-CMAE-Envelope: MS4wfATmIMv5GA3j34nA+iOgc1h+7L3tNW3abl9oCE6PZB8OMXI5H3mb85Frc03sGYy21FlO+oJkV4yTBbwgW5Rj/0du+RvtJQeN4d3pTWoUGmPhXXFYvLcV
- QNuPaJZ09aPj0+mshEem7c3H/dDtmBF6Js+GbUpl3X77ZVu54p7RysYHkjD72LZmj1H9nrKMau+2FU6gAH8OfwkJcqu+K/QuRnCIGQyGPr3XRSCMWIAeXcnh
- 14cBS5S+yv55Rx3kGkl8t/GASJe4FVaWXcwh2TmSlklGOJv0BnitVeN15pb+g3w02oFJrUgKwPJ60fOGTuEBSmuaWhDSUp0BnITKWVtU8NWjCdg22E/rK3ua
- UvuthcK4Gt+pMHdeNuelu7OQNeUa4osFW/xmS2SqnXAjQ/zXPIoKDZ9wYTW69+lVlUjcEQaQSIL5cDlAWhgyLYe58s0lVB+PUteYTjf5XPopnlNbF4BlhSUn
- 1703ZYebBfSnDYcMuwywTgcke/l6oZOuiSXUAER9Kw+NQDUTm6vTA1zd63V6/2mI8V6fIuErDfUgGhwidKoWGZgy8w0lMux5lnPF152l3b+t+PRXsgoo8Fup
- vyE5oPOG87RvxafyxS+PGYtiDRSgb5g6gBK+6HKCBnCITIepAP0MxaYELLdoZIxHd2jQNXlyEXbPoapsLfCN839NHGj5xtHTF+RdCX6xRJLv7QbeBGv2lxdk
- WQuMJJl1glCO71l/9HImQMgssA4qHKsCwrUS4eVH4UwdhuKJRRfzXYZJNepCANMb5jUUomkTVI3BMVMYPLFcPn2lylrtW6uuvCzwHaPbLJuHEchajyGi9mPy
- cNs/j1wljxUbrkXF2DSbjxuGxED1hrUDrV4auoDE5lUYgSroodiTneWziQtrRVB/JzYl4C6iYazCH18QbLDLZc0W24SBjADnoy2c3JaRoN05Me4ZYOFsc4Lp
- Rc/MtcuLY1/6kPE7+x4/Pu0oLxAPRi9gvMjOAn+TcU4p3/lAW2Cj8/Kzy9ZtRUlfltDpjFZJDqdxAgCh7oCj9sIreifIVrSwfCx6JcENijeCT6gpQ4OzTaxq
- mwcnYVUpvxOA21nMdUUvMEJlVoadyglqlr9tgcp/tZNlXbX2jPakmS1Bx/8Q/gOFJTP6kTQF5NkXBVxbUWxgSoRnllcDGy2LlCt2WmbbdKWGh7d8jt98gwJD
- czQA9XU4BZVnndLpD6YTF4YbKlfBqXsPIzN57bT3ahyvfyxxMEVyQ+no+RY503EiVcfZf3vMJa6jb/9lw3xxrA==
+        id S229974AbhKCDdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 23:33:43 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:42508 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229506AbhKCDdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 23:33:42 -0400
+X-UUID: e2aa08772cd34549a1ee95d620a867cb-20211103
+X-UUID: e2aa08772cd34549a1ee95d620a867cb-20211103
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <ben.tseng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1632646972; Wed, 03 Nov 2021 11:31:01 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 3 Nov 2021 11:30:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs10n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.3 via Frontend Transport; Wed, 3 Nov 2021 11:30:59 +0800
+From:   Ben Tseng <ben.tseng@mediatek.com>
+To:     Fan Chen <fan.chen@mediatek.com>, Zhang Rui <rui.zhang@intel.com>,
+        "Daniel Lezcano" <daniel.lezcano@linaro.org>,
+        <linux-pm@vger.kernel.org>, <srv_heupstream@mediatek.com>
+CC:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Ben Tseng <ben.tseng@mediatek.com>
+Subject: [PATCH 1/1] arm64: dts: mt8183-kukui: Update Tboard sensor mapping table
+Date:   Wed, 3 Nov 2021 11:30:44 +0800
+Message-ID: <20211103033044.2777-1-ben.tseng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob, Jesse, All,
+According to auxadc change the readback value from raw data to Vsense.
+Update the tboard table that temperature map to Vsense.
 
-> Il giorno 3 nov 2021, alle ore 01:49, Rob Herring <robh@kernel.org> ha scr=
-itto:
->=20
-> =EF=BB=BFOn Mon, Nov 1, 2021 at 6:34 PM Jesse Taube <mr.bossman075@gmail.c=
-om> wrote:
->>=20
->>=20
->>=20
->>> On 11/1/21 16:13, Rob Herring wrote:
->>> On Sun, Oct 24, 2021 at 11:40:22AM -0400, Jesse Taube wrote:
->>>> Add i.MXRT documentation for compatible string.
->>>>=20
->>>> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
->>>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
->>>> ---
->>>> Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
->>>> 1 file changed, 1 insertion(+)
->>>>=20
->>>> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b=
-/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->>>> index a90c971b4f1f..4b4340def2aa 100644
->>>> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->>>> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
->>>> @@ -21,6 +21,7 @@ properties:
->>>>           - fsl,ls1028a-lpuart
->>>>           - fsl,imx7ulp-lpuart
->>>>           - fsl,imx8qm-lpuart
->>>> +          - fsl,imxrt-lpuart
->>>=20
->>> Actually, 'rt' is not a single part is it? If the variations are same
->>> die, but fused off then no need to distinguish. Otherwise, these should
->>> be SoC specific.
->>>=20
->> I don't exactly know what "but fused off" means I would assume
->> disconnected but on-die?
->=20
-> Right. Or not pinned out is another possibility.
->=20
->> The imxrtxxx is a series that has the same UART
->> controller across them. Should I add ACK?
->=20
-> Looking at the errata docs briefly, there's at least 2 die as some of
-> the errata docs give the mask id. So they aren't necessarily 'the
-> same'.
+pull-up voltage: 1800 mv
+pull-up resistor: 75K
 
-Thank you for pointing, we=E2=80=99ve missed this particular.
+Vsense = pull-up voltage * Rntc / ( pull-up resistor + Rntc )
 
-> You want the compatible strings to be specific enough to handle
-> any differences or errata. If you only care about the imxrt1050, then
-> I'd just use that and move on.
+Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
 
-We plan to add from imxrt1020 to imxrt1170 and eventual new SoC, so we defin=
-itely need separate
-.compatible strings.
+---
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 108 +++++++++---------
+ 1 file changed, 54 insertions(+), 54 deletions(-)
 
-@Jesse, can you please update with =E2=80=98fsl,imxrt1050=E2=80=9D?
-
-> Otherwise, maybe someone from NXP wants
-> to comment?
-
-Any NXP comment is welcome!
-
-Best regards
-Giulio Benetti
-Benetti engineering sas
-
->=20
-> Rob
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 8e9cf36a9a41..65447de64f06 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -151,33 +151,33 @@
+ 		#thermal-sensor-cells = <0>;
+ 		io-channels = <&auxadc 0>;
+ 		io-channel-names = "sensor-channel";
+-		temperature-lookup-table = <    (-5000) 4241
+-						0 4063
+-						5000 3856
+-						10000 3621
+-						15000 3364
+-						20000 3091
+-						25000 2810
+-						30000 2526
+-						35000 2247
+-						40000 1982
+-						45000 1734
+-						50000 1507
+-						55000 1305
+-						60000 1122
+-						65000 964
+-						70000 827
+-						75000 710
+-						80000 606
+-						85000 519
+-						90000 445
+-						95000 382
+-						100000 330
+-						105000 284
+-						110000 245
+-						115000 213
+-						120000 183
+-						125000 161>;
++		temperature-lookup-table = <    (-5000) 1553
++						0 1488
++						5000 1412
++						10000 1326
++						15000 1232
++						20000 1132
++						25000 1029
++						30000 925
++						35000 823
++						40000 726
++						45000 635
++						50000 552
++						55000 478
++						60000 411
++						65000 353
++						70000 303
++						75000 260
++						80000 222
++						85000 190
++						90000 163
++						95000 140
++						100000 121
++						105000 104
++						110000 90
++						115000 78
++						120000 67
++						125000 59>;
+ 	};
+ 
+ 	tboard_thermistor2: thermal-sensor2 {
+@@ -185,33 +185,33 @@
+ 		#thermal-sensor-cells = <0>;
+ 		io-channels = <&auxadc 1>;
+ 		io-channel-names = "sensor-channel";
+-		temperature-lookup-table = <    (-5000) 4241
+-						0 4063
+-						5000 3856
+-						10000 3621
+-						15000 3364
+-						20000 3091
+-						25000 2810
+-						30000 2526
+-						35000 2247
+-						40000 1982
+-						45000 1734
+-						50000 1507
+-						55000 1305
+-						60000 1122
+-						65000 964
+-						70000 827
+-						75000 710
+-						80000 606
+-						85000 519
+-						90000 445
+-						95000 382
+-						100000 330
+-						105000 284
+-						110000 245
+-						115000 213
+-						120000 183
+-						125000 161>;
++		temperature-lookup-table = <    (-5000) 1553
++						0 1488
++						5000 1412
++						10000 1326
++						15000 1232
++						20000 1132
++						25000 1029
++						30000 925
++						35000 823
++						40000 726
++						45000 635
++						50000 552
++						55000 478
++						60000 411
++						65000 353
++						70000 303
++						75000 260
++						80000 222
++						85000 190
++						90000 163
++						95000 140
++						100000 121
++						105000 104
++						110000 90
++						115000 78
++						120000 67
++						125000 59>;
+ 	};
+ };
+ 
+-- 
+2.18.0
 
