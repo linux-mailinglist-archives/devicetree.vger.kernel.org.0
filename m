@@ -2,125 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB7F3444894
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 19:49:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E58CE4448AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 19:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbhKCSwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 14:52:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33848 "EHLO
+        id S229703AbhKCS6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 14:58:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229772AbhKCSw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 14:52:28 -0400
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A5ACC061203;
-        Wed,  3 Nov 2021 11:49:51 -0700 (PDT)
-Received: by mail-pl1-x62d.google.com with SMTP id t21so3116697plr.6;
-        Wed, 03 Nov 2021 11:49:51 -0700 (PDT)
+        with ESMTP id S229697AbhKCS6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 14:58:42 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC558C061714;
+        Wed,  3 Nov 2021 11:56:05 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id e65so3181553pgc.5;
+        Wed, 03 Nov 2021 11:56:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=XxDFU6zngH2MiSJPUrDOxFHmK942PXrD/2AGczC8Ul8=;
-        b=pZG5T96zGfFKOpbOk4/fe7AakdF5UfixT2t71nwLmhH5Mx0X+IqI0nA1ljOfxTfLuH
-         BplUo3adJ8WAG5PaZT5lVlKfHBk0oQzabZ/g4SUiOYrQPEN7Yo+c1jKM4MamKeiww10n
-         DdHaN09TRhET2EMztgaY6Pc8BfS7jpN8wh8MZ7WckLx0UMiW4oSogYTIhpCvJTVR10GZ
-         O5OPrMn8nbqKa8rQLbYP1PY+tlfSA4n1Y1ZplmD1zzEtQ1qvgVFHOQF0FOQe9KgyloG6
-         HKyl4g8GpreFi6bV8OGgBJbm8QLWoseN5CqHiAlRIuj7VE1tNcjciO2MJrP1cwxz7CxX
-         5SVw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q/BrXCmOSs3/mGKmysJ1cd+BoUzUQUIDjvCN0RCeiw8=;
+        b=NSwMeLR1j7w1qSNmkTnf3xnPLC9Z3bdnDxsH7+/ioFXR4avq8tZT9vmiGNvbnV2pU6
+         c0dhQ+XuYG/CDn41eo/FSLoPNl9qr18l4LCKP25Y8Sz8lyKB2V5UOyvIFQkByv9HeBRF
+         dklqbvtdB6dVDIkU44FVEul9rkGIYHJSivnFWQik0CfibTKzB7Z7XljaEgJWmmW6cSra
+         v1bWC9uhksYBnlo0mwi1IvIbMpWizCRGbbgcDVXMSVPitJcbNTFB/K1UkPjGmGvWWasL
+         dFahh/CabnqdAWwY2y49s51dvPGlZ3VWPEJK9m9ZstH7Tl5505E2J4MW3ltCbvBwayd2
+         mdKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=XxDFU6zngH2MiSJPUrDOxFHmK942PXrD/2AGczC8Ul8=;
-        b=31Tva6kz14KjKbVqxhjQPohEiUph6TMyksfK6poXcNCuLGX6Ad1D0AdTHI/6katVKX
-         /XxtDyJUDeXrDFCgIpmwtnT0GB8s6v9LzKfWLWtpFcI522R9phoCMHg5ixa6Hj1BmWiK
-         7c7kl7SxVgBdLj1ss384jgcgdgxtzg6zEsASthkNlkjdCBxKBN/TH5n1V8GCCPvSqIMn
-         Q1iqntzKkTTVmuUziYtVWu11QHQt47sDywwBZ5wxxTZ8kcP7SDPqztvMUu9EBIhHPbuS
-         z0AJ+88SzbmHJkRz1sE2dUe9FW5+7PNPgJ5CvL+LEvrST/qWRZG3crRfARD14L5n5xw4
-         2Kkw==
-X-Gm-Message-State: AOAM531tzNPgRPV6D4u5kygeTfmPEMUjM48VME0lXY6/2phoDlU8jK6v
-        /cG7R4X0habqEcpp82T9p6i84NxXIln/gw==
-X-Google-Smtp-Source: ABdhPJwATqSP80m9Am/wm/Wa6I9Nc5RO2ocnh2+BqVcYLRdPASPmpaMTg8hrU7YBav6nVeR3Ynw2qg==
-X-Received: by 2002:a17:90b:3802:: with SMTP id mq2mr16547475pjb.213.1635965390969;
-        Wed, 03 Nov 2021 11:49:50 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id j6sm2379065pgq.0.2021.11.03.11.49.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 11:49:50 -0700 (PDT)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v7 2/7] dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
-Date:   Wed,  3 Nov 2021 14:49:32 -0400
-Message-Id: <20211103184939.45263-3-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211103184939.45263-1-jim2101024@gmail.com>
-References: <20211103184939.45263-1-jim2101024@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q/BrXCmOSs3/mGKmysJ1cd+BoUzUQUIDjvCN0RCeiw8=;
+        b=U06X4u2Dt/8TJxcfFsJ7GBrnGTNeSpPcbCwtFyTngA3g61cf4YvN3P7FqthnZYi5vJ
+         etg3Qanv8S99583B8+YdalWnRcbqtX8wTvf6X6L9WWhD5xqJSmG6Oskinl7eikTl+nXf
+         2J4sSZeIyTStqfpCBODbg9awzkZ3m0TtxXBMXOSpIFOseri2KQA38OzRfBKsWPA6AHuU
+         36w3QafG+ep0POk+I7GqaHRa+HvBTp3UgBGH3OLzbttM4bYBW+GPuqU9+/X3qe1/zPch
+         jTEjjfJFrkRsCIoNsSsBNuB/j01gNcm/uVYAqjyQvNtdLh5M3jZPAw2oXgpm2EL0XD44
+         ayxQ==
+X-Gm-Message-State: AOAM530fLY3gxo93sa+Ww5Ty6X07qsAGoyzi3yiPraBw8fEDOl4wh2ty
+        Drwv9WCkOokrzepDiyAGo9AEYW1ki3P77q+GYLM=
+X-Google-Smtp-Source: ABdhPJxTZj1iVDBD+igMJrt6cgGEXt4/wkX17YOCZmoKy2lm82ZBJHpFyBB4oHn84FqNgmFsQb1EVGcZzaNAkqRMyV4=
+X-Received: by 2002:a63:ed0e:: with SMTP id d14mr3402467pgi.92.1635965764955;
+ Wed, 03 Nov 2021 11:56:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20211103135313.6428-1-tomm.merciai@gmail.com>
+In-Reply-To: <20211103135313.6428-1-tomm.merciai@gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 3 Nov 2021 13:55:54 -0500
+Message-ID: <CAHCN7xLOkvahKSzuUAe5d4sBMoMs51PHDt3G5PB+jEtDkRf30Q@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm: Add NOC node
+To:     Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-allows optional regulators to be attached and controlled by the PCIe RC
-driver.  That being said, this driver searches in the DT subnode (the EP
-node, eg pci-ep@0,0) for the regulator property.
+On Wed, Nov 3, 2021 at 8:53 AM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
+>
+> Add support for dynamic frequency scaling of the main NOC configuration
+> on imx8mm.
+>
+> References:
+>  - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
+>  - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
+>  - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
+>  - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/ \
+>    arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
+>
 
-The use of a regulator property in the pcie EP subnode such as
-"vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-file at
+You're missing the signed-off-by tag.
 
-https://github.com/devicetree-org/dt-schema/pull/63
+From what I can tell, the default NOC clock is 750MHz.  With this
+patch enabled, i can manually change the NOC clock to 150, 375 or 750,
+but it's not clear to me what this impacts.  In the 8MQ, there are a
+couple peripherals that are linked to the NOC, but we don't have those
+same peripherals enabled in the 8mm.  The
+dt-bindings/interconnect/imx8mq.h list more NOC references than are
+used in the device tree, so it's unclear to me if and what we need to
+reference anything in the 8MM based on
+dt-bindings/interconnect/imx8mm.h
 
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
----
- .../bindings/pci/brcm,stb-pcie.yaml           | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+adam
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 508e5dce1282..ef2427320b7d 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -158,5 +158,28 @@ examples:
-                                  <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-                     brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-+
-+                    /* PCIe bridge */
-+                    pci@0,0 {
-+                            #address-cells = <3>;
-+                            #size-cells = <2>;
-+                            reg = <0x0 0x0 0x0 0x0 0x0>;
-+                            compatible = "pciclass,0604";
-+                            device_type = "pci";
-+                            vpcie3v3-supply = <&vreg7>;
-+                            ranges;
-+
-+                            /* PCIe endpoint */
-+                            pci-ep@0,0 {
-+                                    assigned-addresses =
-+                                        <0x82010000 0x0 0xf8000000 0x6 0x00000000 0x0 0x2000>;
-+                                    reg = <0x0 0x0 0x0 0x0 0x0>;
-+                                    compatible = "pci14e4,1688";
-+                                    #address-cells = <3>;
-+                                    #size-cells = <2>;
-+
-+                                    ranges;
-+                            };
-+                    };
-             };
-     };
--- 
-2.17.1
-
+> ---
+> Changes since v1:
+>  - Fix noc_opp_table frequencies taking NXP bsp as reference
+>  - Add reference link to nxp imx8mm dtsi on commit body
+>
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index c2f3f118f82e..1bcc5e361ca3 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
+>                         };
+>                 };
+>
+> +               noc: interconnect@32700000 {
+> +                       compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
+> +                       reg = <0x32700000 0x100000>;
+> +                       clocks = <&clk IMX8MM_CLK_NOC>;
+> +                       fsl,ddrc = <&ddrc>;
+> +                       #interconnect-cells = <1>;
+> +                       operating-points-v2 = <&noc_opp_table>;
+> +
+> +                       noc_opp_table: opp-table {
+> +                               compatible = "operating-points-v2";
+> +
+> +                               opp-150M {
+> +                                       opp-hz = /bits/ 64 <150000000>;
+> +                               };
+> +
+> +                               opp-375M {
+> +                                       opp-hz = /bits/ 64 <375000000>;
+> +                               };
+> +
+> +                               opp-750M {
+> +                                       opp-hz = /bits/ 64 <750000000>;
+> +                               };
+> +                       };
+> +               };
+> +
+>                 aips2: bus@30400000 {
+>                         compatible = "fsl,aips-bus", "simple-bus";
+>                         reg = <0x30400000 0x400000>;
+> --
+> 2.25.1
+>
