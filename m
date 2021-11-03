@@ -2,1257 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0550443D97
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 08:16:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 143A8443E09
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 09:09:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232050AbhKCHTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 03:19:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbhKCHTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 03:19:20 -0400
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAB2AC061714;
-        Wed,  3 Nov 2021 00:16:44 -0700 (PDT)
-Received: by mail-pg1-x530.google.com with SMTP id t7so1605020pgl.9;
-        Wed, 03 Nov 2021 00:16:44 -0700 (PDT)
+        id S230430AbhKCIMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 04:12:02 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:44066 "EHLO
+        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229504AbhKCIMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 04:12:01 -0400
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1A2Lq2p6003834;
+        Wed, 3 Nov 2021 04:09:23 -0400
+Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2108.outbound.protection.outlook.com [104.47.70.108])
+        by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 3c3dmg9sfg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 03 Nov 2021 04:09:23 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lyiaii2l4SeqDQ7OlT5/2VTeEiFPDqvG7UMT+qFDLsTsN+WozFoXDA6fbA/zpuKUeJwL6rYL4KHj+PI8zlZtpg/TjJCvYgTU0evk53NKuP7HUZTmOpGu5ERnILDUgS9HRiYfoQJd1VfPGaqARXZ3Abi4KgKnNozodNq0szt6rRTfLu9FrTwXXU7u8rny4nradpATmpP4kY6M6AQxnWQOWMKYHjMcMfHvC80qtWnOUxreacec68Zn6As0dy2vr+8jb51mw2/dOpfyasdU5N/EB5EDAlPLJMOalPO+7AktfaLbx0di8YmF0CzC0ckaQ2SfuHDxI6T4aX5Nrt+7KddZ9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ghnJkLPueUY5c69urIIuuobZQFW31ez9lt+LQrYnA00=;
+ b=fIhIl2pgvD+Tugb1bUg0z5o2rpiolQ+9qk+mbs02PsbEZDfhntQCj1oQD6mlpDzccUqj213knbmOo59qov0j+AMkr+MZH62julO6VEXqO//jCj1PXqkxY9E3cVeL9IzcTX0BkManSKR5Wt5vkEHb0lH3cfZQwykss2zHjMrltCCjnupPhBZ6EAOtKiqW++ELc76WZBUDU4iGQdUCif5f1CVhEt1WZzXBt365vhGriMJdupr5FcszLZqF6zIohGtdPBIFCQhil+vLles9sztl9Q6kntoYcBX4OxTIeq6QvtxbdNfbNMiVnJ+4gR4yhTBS814zlm4WFQcPh+E8h1nxRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sw2ZfxdhteQblMHs+KiJAQ/BwsczDF3dqqFFUzXxrXE=;
-        b=T1ppavJnFKWb16xfwDAB8AemYcwiaiSud5MMCedgSfnCWOflus8tK1K9pI04o99oWU
-         7U8qYJ7G2bFCjZrJXaD7MsEZI5V69SVHG8OjKPqj/p+TFTqu1HVWsHOGEeP91jOC+60M
-         iYFe5nqZmfge/Ta6B2nQuv6+hSFiJvYWjAAh+0gCmM4hm0XVz1i83edwU0vWpaKL494i
-         tE08nodeunw6K1qYXHgmlQd6VcuhGuOwlBaWsHlStjwJwKb3KH/98H8Aonl/F93uUeIr
-         /rWsxW8KJ6aaqa1D8kZu0Ky/yuG7CFJ7kAP9L3rRRDl+rY0qzSlLU+Bi5jEyH/LJtxfK
-         uF+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sw2ZfxdhteQblMHs+KiJAQ/BwsczDF3dqqFFUzXxrXE=;
-        b=C865/4SisCQv8YCoG0tIKlkcIIG8l6oP2UkcHN/f7/hS3OquTHeR54DL4t7pHdejnt
-         I30RyW52+hiuJn17Pb3n9YAi3EGXYSuzIXstfwmmhLYoRB4Ws/ALjVxrQ/sQGFLBsssg
-         x5khr6p1Pkwj0PLrplgIofQXuEoZLgAZNrFNUCmjD/6oVV0UiaJK/5ECGaIwL//ARFnn
-         +NgLjWCMLOF4IlRsyqf7dGJS1JxLKb+12AmM5BiM21AEfopxPCJaPkgMt/XEKnhMPyW5
-         Wv2dpJqSNBVDl211K0VEqmkIy0N9yHtiY+h/OyDMtWs5gxZetG50bnsXgRNpGWzwMQ1k
-         zpcA==
-X-Gm-Message-State: AOAM533VsLOhvawqnEW9Rnh/1ySn1mhuDDOSl6Ddk9u/vhe/Go7KVoe6
-        3xET7XJOlY7dXWGMtWoz8t4=
-X-Google-Smtp-Source: ABdhPJxfUtmBMU09f037nYGfNCimCCCS2wUatgv2jcaqjr2OkX3AWUQJqMM1sg6TRB3LXHp1ABMf9g==
-X-Received: by 2002:a62:7f4a:0:b0:44d:292f:cc24 with SMTP id a71-20020a627f4a000000b0044d292fcc24mr42299793pfd.58.1635923804171;
-        Wed, 03 Nov 2021 00:16:44 -0700 (PDT)
-Received: from howard-System-Product-Name.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id b2sm1039281pgh.33.2021.11.03.00.16.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 00:16:43 -0700 (PDT)
-From:   Howard Chiu <howard10703049@gmail.com>
-X-Google-Original-From: Howard Chiu <howard.chiu@quantatw.com>
-To:     arnd@arndb.de, olof@lixom.net, robh+dt@kernel.org, joel@jms.id.au,
-        andrew@aj.id.au
-Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        Howard Chiu <howard.chiu@quantatw.com>
-Subject: [PATCH v1] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Date:   Wed,  3 Nov 2021 15:14:18 +0800
-Message-Id: <20211103071417.388388-1-howard.chiu@quantatw.com>
-X-Mailer: git-send-email 2.25.1
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ghnJkLPueUY5c69urIIuuobZQFW31ez9lt+LQrYnA00=;
+ b=5M+NtvXsdFJxBCzddpEabsfsj5GT15F8c2F8joDSkmCpg22QNWrbnQNcfd2qiAXxj+Vc7TJiviHFiCNM6Od49eu/FUtxYA8FzQL1x0nYALqIRt8jrRYhiAZucELGMKHHiTJLR2fekNA0HuYJcVFd2zHc/B292snzDKkTB7eg/Fw=
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
+ by CY4PR03MB2885.namprd03.prod.outlook.com (2603:10b6:903:134::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.17; Wed, 3 Nov
+ 2021 08:09:21 +0000
+Received: from CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::b5b1:cee4:fcd:5ea0]) by CY4PR03MB3399.namprd03.prod.outlook.com
+ ([fe80::b5b1:cee4:fcd:5ea0%3]) with mapi id 15.20.4649.019; Wed, 3 Nov 2021
+ 08:09:20 +0000
+From:   "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Sa, Nuno" <Nuno.Sa@analog.com>
+Subject: RE: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
+Thread-Topic: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
+Thread-Index: AQHXzwfj21y5Dnr/k0eZeDeswgk2M6vwhjwAgADvSCA=
+Date:   Wed, 3 Nov 2021 08:09:20 +0000
+Message-ID: <CY4PR03MB3399E5DC1D8A966C7CFC8C049B8C9@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20211101100420.70304-1-antoniu.miclaus@analog.com>
+ <20211101100420.70304-2-antoniu.miclaus@analog.com>
+ <YYF6cPSDroPz/wun@robh.at.kernel.org>
+In-Reply-To: <YYF6cPSDroPz/wun@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?iso-8859-2?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcYW1pY2xhdX?=
+ =?iso-8859-2?Q?NcYXBwZGF0YVxyb2FtaW5nXDA5ZDg0OWI2LTMyZDMtNGE0MC04NWVlLTZi?=
+ =?iso-8859-2?Q?ODRiYTI5ZTM1Ylxtc2dzXG1zZy01NmM5ZmI0ZS0zYzdkLTExZWMtYWJlNC?=
+ =?iso-8859-2?Q?1kNDgxZDc1MDZkZGVcYW1lLXRlc3RcNTZjOWZiNTAtM2M3ZC0xMWVjLWFi?=
+ =?iso-8859-2?Q?ZTQtZDQ4MWQ3NTA2ZGRlYm9keS50eHQiIHN6PSI0NjIyIiB0PSIxMzI4MD?=
+ =?iso-8859-2?Q?QwMDU1NzY3MTk0MjYiIGg9InlHOTNiQ0dNNWY4UXF5bWl5MC9TdDZRZUpz?=
+ =?iso-8859-2?Q?OD0iIGlkPSIiIGJsPSIwIiBibz0iMSIgY2k9ImNBQUFBRVJIVTFSU1JVRk?=
+ =?iso-8859-2?Q?5DZ1VBQUVvQ0FBQkNQQ1laaXREWEFiV09kVmx6UjhhUHRZNTFXWE5IeG84?=
+ =?iso-8859-2?Q?REFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFIQUFBQURhQVFBQUFBQUFBQU?=
+ =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFFQUFRQUJBQUFBWFEvampRQUFBQUFBQUFBQUFB?=
+ =?iso-8859-2?Q?QUFBSjRBQUFCaEFHUUFhUUJmQUhNQVpRQmpBSFVBY2dCbEFGOEFjQUJ5QU?=
+ =?iso-8859-2?Q?c4QWFnQmxBR01BZEFCekFGOEFaZ0JoQUd3QWN3QmxBRjhBWmdCdkFITUFh?=
+ =?iso-8859-2?Q?UUIwQUdrQWRnQmxBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQU?=
+ =?iso-8859-2?Q?FBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdV?=
+ =?iso-8859-2?Q?QVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURFQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FBQUFBQUNlQUFBQVlRQmtB?=
+ =?iso-8859-2?Q?R2tBWHdCekFHVUFZd0IxQUhJQVpRQmZBSEFBY2dCdkFHb0FaUUJqQUhRQW?=
+ =?iso-8859-2?Q?N3QmZBSFFBYVFCbEFISUFNZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-2?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
+ =?iso-8859-2?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?iso-8859-2?Q?QUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFBPT0iLz48L21ldGE+?=
+x-dg-rorf: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=analog.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f85b67e4-2e0f-41c7-6ddf-08d99ea13d7b
+x-ms-traffictypediagnostic: CY4PR03MB2885:
+x-microsoft-antispam-prvs: <CY4PR03MB2885B06B5842ED55C0CB42119B8C9@CY4PR03MB2885.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zS1J6Op2JA02sDx/M7DGnVVKfZXgXxHE0MhpIWGKsf32QNxJMhOj52s1qGjaxsrlRHWxJCmq2kqsowaZgL5UzHOpAbzKE1Vv1yaysH7cKjiTT1qhk3gcuWQpFCkWjXwDtpsm6VmFEPuVymflGV4vbP4Qk9Zyc/4fyiOo1yVlMDbnm29FcCqKqjlck2ijJZUgvy8E5fxmtLnNhbWH0aF4BF8JarAFWfbucbByul8BXSZIU2hzs9gijcPt0UC4CiA1Q9j6sRY6PbrMktJuvbLRW28PFSDt6jKwTiZvvE5VS0EzmjfR3vuwQQy1OsIdZQE9tqiI0uW4i2FF7OiNW8QrSw5EU592EuXJhSBmZabk5InwGLDdCaWAodViY0i7ivLCwHtXzxSCe0KAL0VgH5O05zWdQ6E8vqGhvNalXj35z5BkFSuNeE5rszbz/yN/t0R8Apb3Zte/PrtPWmnKBArPz+xoB3ndmqbHzvuDHUIzB5SO9xMfn4M45y0I0v+STdUyDhgTilu9WWM3McZAu2acVl7M+lv7j/NbK2MpRApZY19Y/aweYdSWPF/hGlSSY5Iv0Vbg0RTFtfSgZnwJojxu/dgLWvLnPqVDhucKlvzKxMC5Wrjbo/C1Xji45wUZ3yRk0TfyrDi9aFF2E0utkp1IA2NLSKHoZ5XpQBXr3fRmutMVPLd9NZFMdai03bg0HdX6x3MBinUOnj1dLoQNkuvj3T+5GF1udeRZbHb7jJ9pevuHeZFVJD5gUL8YBf4Tr3qrCB9s2ZQUyfglPIzLh1QSw9wyEQquxRyULkIe0Fq6K0/d4gGl5z2UYGrOXT+uzPFsIV33dNXmKCt2O3YRfIWKsQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(66574015)(38070700005)(26005)(966005)(107886003)(52536014)(6916009)(8676002)(2906002)(508600001)(316002)(186003)(33656002)(71200400001)(8936002)(38100700002)(66476007)(66446008)(66556008)(86362001)(76116006)(5660300002)(122000001)(66946007)(64756008)(6506007)(4326008)(55016002)(9686003)(7696005)(83380400001)(53546011)(54906003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?bE3cdQgsZSM4GIDt+uEEJ8uG+tuiTHKDbZ/QUiUH5AZ3lVfwx44TvtGEX3?=
+ =?iso-8859-2?Q?d5u4A/gz3quxu0DPBYASSyxZQ4JpbKkwjmeA+aaWdejEA6tTXh4gXsdoc9?=
+ =?iso-8859-2?Q?HIzGEWUNg0gER6KvCZxzi/IrZ55uAOXjJLf3w8m3RTOQOqi+o0BtA8fr2j?=
+ =?iso-8859-2?Q?mo3tvLAiTbzbVBw+L/K/PRgYRZRWqiVGZJm+6SXTmDKrmOx9tThIPd5sjQ?=
+ =?iso-8859-2?Q?S+0k1/7CM9Rlp9yd/FOx3lR7sDafTdifMQBPfLgfW/jnPia0j8PWh+qGj5?=
+ =?iso-8859-2?Q?ez/gyV6GvjbpcoLiAUUnfMbHJExsu/q/f0gg6LL6P0Gjc3gr/p0fk/TWAU?=
+ =?iso-8859-2?Q?eqkUYkyog40NTMmHUgIwMcA3d4bE67cun5g+KYLMtHQVp5Sk5uJMA3VRQx?=
+ =?iso-8859-2?Q?bS4fe3bq1pT1kdyJC5Jo0qR5UIjDf+itdA0cFskTCg4SxQ7AiiCZhwwPX9?=
+ =?iso-8859-2?Q?Gx6YVJHgwIjTFktHq22VqWBVyWgBvG9Hew5yQq8BTjDRZHq6ZNjIsx/JX3?=
+ =?iso-8859-2?Q?3d747Y/WE/EWwd8FcEKxyaDh07pMbRfKhlUwvXXodl9fZJqra6m8ii+Axu?=
+ =?iso-8859-2?Q?yPGQ8kEblapY3cOx2bnLENFrhn7Qd1uuXE5q4T02aq6LEQ0hSE8GhTnBII?=
+ =?iso-8859-2?Q?OFk3nsCxEB4xGx+eS6UJfvhuSZtgaMGQDqZQuMn1oCNyopZ8j8XQdt3QRt?=
+ =?iso-8859-2?Q?jxWDfLIANDG65nvlczV16OWKHF726k1TZ+Wb3IUSt1SDxsNW1DgU++3ckG?=
+ =?iso-8859-2?Q?wybyfQTeig+kZDi3zGfwme9e/aDO1u/SewInZ0gjO0HTcVWumBkTlPWB32?=
+ =?iso-8859-2?Q?k+/Ka2gV1S8Kq/AoFIjDhHRVpK2nKOr41tJEvS5Z/9zMSP2Hohrbn1zIHG?=
+ =?iso-8859-2?Q?Vggk2tEbEekebKN//RWNQ23a4+q8Cc9+rWmvKTMYLKsdMSXTKE9VTw7cd4?=
+ =?iso-8859-2?Q?huMBByuiR0iO9uaT+P7Jatdh4hjV5JlfG9ZbG0Cm5ERS5GSsWFl4B5wDaX?=
+ =?iso-8859-2?Q?qdQTO6vXvKAYY22IsvXc+LozeJXbxGWJGysBCXYOhEYrBjuDy9k0DASAfy?=
+ =?iso-8859-2?Q?hFwQXPxH12HjPeQ7zxjZvQnbiE5Wb+mbL3nU3I0sX6nIQ0H08UyNtDuxTN?=
+ =?iso-8859-2?Q?FKnfItkEh0i/hFTE2wVP4IM8R7/wMNEy6aiAGNUo6WJRD+idO1NPkuaUAB?=
+ =?iso-8859-2?Q?+zAawnnht28Q2+6Kf0zo2pY+K+OlzOgEOw8Oge9MTbSJhe2w8DYe+gp3Zj?=
+ =?iso-8859-2?Q?auP+eVB3JCgI3IUGsdBbJi3sQNdsdF+ypDMraKkPp3MDnqCQZzFaaE1bBU?=
+ =?iso-8859-2?Q?FEWCFT1qKbp3Rt6llv1iH/RcS9Q/GdANh5aNxfzAmudpQeTQMqIzGFBZFr?=
+ =?iso-8859-2?Q?HcAc4P4NSRrQRdlXjNW17rn9P+4PwvO/qwHu81Wd6IjiP4/lInH+T2Z6/0?=
+ =?iso-8859-2?Q?EH6njOSd78t+b0vrrIW7iWnFzA3NB3TeFYTFrIVBTRk3Ae8T5Z63pGkCrt?=
+ =?iso-8859-2?Q?6FwoqqVFnwPa+aN2WEH4rIZUOD+jTV6nahc5eOatV2uUC4OJZ+Zdu3YD4i?=
+ =?iso-8859-2?Q?W38nfhXG/0yoUHHJ5SvnJtmE8l7GYPhBvRCyWDtxPaP48SJB1cDuumD+9v?=
+ =?iso-8859-2?Q?59kdyc7bCjNkYiVfnZu1y0P0s3GIo5r2sZWqEKuqG5Y8eVeEfAyn0Kc8Jf?=
+ =?iso-8859-2?Q?MpokjMN+8l0Sic74/Xb4LpToWj8ynxvKXk2chmLIDg1Zq3KX/Guhsp+bz6?=
+ =?iso-8859-2?Q?WsNw=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f85b67e4-2e0f-41c7-6ddf-08d99ea13d7b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2021 08:09:20.6009
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EPikJnTgBLYVCTTPSWwtKwCBz7W95K6T2g8XXpUf0xI+AUbG2UzqghBGp9bSSZXCLEa1QBMTDMZ7V9rXNuU0+9pKc3Rp2Og45imTgCXzEJA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR03MB2885
+X-Proofpoint-GUID: GvlCdTMym0HxP5GdqzuitKLDDGaPGitI
+X-Proofpoint-ORIG-GUID: GvlCdTMym0HxP5GdqzuitKLDDGaPGitI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-03_02,2021-11-02_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 adultscore=0 bulkscore=0 mlxlogscore=999 impostorscore=0
+ mlxscore=0 phishscore=0 spamscore=0 priorityscore=1501 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2111030049
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initial introduction of Facebook Bletchley equipped with
-Aspeed 2600 BMC SoC.
+Hello Rob,
 
-Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
----
- arch/arm/boot/dts/Makefile                    |    1 +
- .../dts/aspeed-bmc-facebook-bletchley.dts     | 1160 +++++++++++++++++
- 2 files changed, 1161 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
+These properties are fixed and available in the datasheet (binary format):
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV101=
+3.pdf
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 7e0934180724..2cc2d804e75a 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1474,6 +1474,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-wedge400.dtb \
- 	aspeed-bmc-facebook-yamp.dtb \
- 	aspeed-bmc-facebook-yosemitev2.dtb \
-+	aspeed-bmc-facebook-bletchley.dtb \
- 	aspeed-bmc-ibm-everest.dtb \
- 	aspeed-bmc-ibm-rainier.dtb \
- 	aspeed-bmc-ibm-rainier-1s4u.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-new file mode 100644
-index 000000000000..af30be95fb23
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -0,0 +1,1160 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 Facebook Inc.
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/leds-pca955x.h>
-+#include <dt-bindings/usb/pd.h>
-+
-+/ {
-+	model = "Facebook Bletchley BMC";
-+	compatible = "facebook,bletchley-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS4,115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+		  <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+		  <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+		  <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	spi_gpio: spi-gpio {
-+		status = "okay";
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-sck = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-+		gpio-mosi = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-+		gpio-miso = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-+
-+		tpmdev@0 {
-+			compatible = "tcg,tpm_tis-spi";
-+			spi-max-frequency = <33000000>;
-+			reg = <0>;
-+		};
-+	};
-+
-+	switchphy: ethernet-phy@0 {
-+		// Fixed-link
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sys_log_id {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&front_leds 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 8 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 9 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 10 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 11 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 12 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 13 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 14 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 15 GPIO_ACTIVE_HIGH>;
-+		};
-+		sled0_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled0_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_ember {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&switchphy>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii3_default>;
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+};
-+
-+&spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <100000000>;
-+	};
-+};
-+
-+&uart5 {
-+	// Workaround for A0
-+	compatible = "snps,dw-apb-uart";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled0_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED0_BMC_CCG5_INT","SLED0_INA230_ALERT","SLED0_P12V_STBY_ALERT",
-+		"SLED0_SSD_ALERT","SLED0_MS_DETECT","SLED0_MD_REF_PWM","",
-+		"SLED0_MD_STBY_RESET","SLED0_MD_IOEXP_EN_FAULT","SLED0_MD_DIR","SLED0_MD_DECAY",
-+		"SLED0_MD_MODE1","SLED0_MD_MODE2","SLED0_MD_MODE3","SLED0_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled0_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED0_EMBER_LED","SLED0_BLUE_LED","SLED0_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled0_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled1_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED1_BMC_CCG5_INT","SLED1_INA230_ALERT","SLED1_P12V_STBY_ALERT",
-+		"SLED1_SSD_ALERT","SLED1_MS_DETECT","SLED1_MD_REF_PWM","",
-+		"SLED1_MD_STBY_RESET","SLED1_MD_IOEXP_EN_FAULT","SLED1_MD_DIR","SLED1_MD_DECAY",
-+		"SLED1_MD_MODE1","SLED1_MD_MODE2","SLED1_MD_MODE3","SLED1_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled1_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED1_EMBER_LED","SLED1_BLUE_LED","SLED1_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled1_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled2_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED2_BMC_CCG5_INT","SLED2_INA230_ALERT","SLED2_P12V_STBY_ALERT",
-+		"SLED2_SSD_ALERT","SLED2_MS_DETECT","SLED2_MD_REF_PWM","",
-+		"SLED2_MD_STBY_RESET","SLED2_MD_IOEXP_EN_FAULT","SLED2_MD_DIR","SLED2_MD_DECAY",
-+		"SLED2_MD_MODE1","SLED2_MD_MODE2","SLED2_MD_MODE3","SLED2_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled2_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED2_EMBER_LED","SLED2_BLUE_LED","SLED2_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled2_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled3_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED3_BMC_CCG5_INT","SLED3_INA230_ALERT","SLED3_P12V_STBY_ALERT",
-+		"SLED3_SSD_ALERT","SLED3_MS_DETECT","SLED3_MD_REF_PWM","",
-+		"SLED3_MD_STBY_RESET","SLED3_MD_IOEXP_EN_FAULT","SLED3_MD_DIR","SLED3_MD_DECAY",
-+		"SLED3_MD_MODE1","SLED3_MD_MODE2","SLED3_MD_MODE3","SLED3_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled3_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED3_EMBER_LED","SLED3_BLUE_LED","SLED3_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled3_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled4_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED4_BMC_CCG5_INT","SLED4_INA230_ALERT","SLED4_P12V_STBY_ALERT",
-+		"SLED4_SSD_ALERT","SLED4_MS_DETECT","SLED4_MD_REF_PWM","",
-+		"SLED4_MD_STBY_RESET","SLED4_MD_IOEXP_EN_FAULT","SLED4_MD_DIR","SLED4_MD_DECAY",
-+		"SLED4_MD_MODE1","SLED4_MD_MODE2","SLED4_MD_MODE3","SLED4_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled4_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED4_EMBER_LED","SLED4_BLUE_LED","SLED4_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled4_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	/* TODO: Add HSC MP5023 */
-+	/* TODO: Add ADC INA230 */
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled5_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED5_BMC_CCG5_INT","SLED5_INA230_ALERT","SLED5_P12V_STBY_ALERT",
-+		"SLED5_SSD_ALERT","SLED5_MS_DETECT","SLED5_MD_REF_PWM","",
-+		"SLED5_MD_STBY_RESET","SLED5_MD_IOEXP_EN_FAULT","SLED5_MD_DIR","SLED5_MD_DECAY",
-+		"SLED5_MD_MODE1","SLED5_MD_MODE2","SLED5_MD_MODE3","SLED5_AC_PWR_EN";
-+
-+		gpio@0 {
-+			reg = <0>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+		};
-+	};
-+
-+	sled5_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED5_EMBER_LED","SLED5_BLUE_LED","SLED5_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	sled5_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf85263";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+
-+	hdc1080@40 {
-+		compatible = "ti,hdc1080";
-+		reg = <0x40>;
-+	};
-+
-+	front_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SYSTEM_LOG_ID_LED","PWRGD_P5V_STBY","PWRGD_P1V0_DVDD","PWRGD_P1V0_AVDD",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+
-+	adm1278@11 {
-+		compatible = "adi,adm1278";
-+		reg = <0x11>;
-+	};
-+
-+	tmp421@4c {
-+		compatible = "ti,tmp421";
-+		reg = <0x4c>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	fan_ioexp: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"FAN0_PRSNT","FAN1_PRSNT","FAN2_PRSNT","FAN3_PRSNT",
-+		"FAN0_PWRGD","FAN1_PWRGD","FAN2_PWRGD","FAN3_PWRGD",
-+		"","","","",
-+		"","","","";
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@8 {
-+			reg = <8>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@9 {
-+			reg = <9>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@10 {
-+			reg = <10>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@11 {
-+			reg = <11>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@12 {
-+			reg = <12>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@13 {
-+			reg = <13>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@14 {
-+			reg = <14>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+		gpio@15 {
-+			reg = <15>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+};
-+
-+&i2c13 {
-+	multi-master;
-+	aspeed,hw-timeout-ms = <1000>;
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"alert_sled1","alert_sled2",
-+			"alert_sled3","alert_sled4",
-+			"alert_sled5","alert_sled6",
-+			"p12v_aux_alert1","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&adc0 {
-+	vref = <1800>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	vref = <2500>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default
-+		&pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
--- 
-2.25.1
+Please see Page 37 of 39, Table 15, QUAD_SE_MODE.
 
+Regards,
+--
+Antoniu Micl=E3u=BA
+
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Tuesday, November 2, 2021 7:51 PM
+> To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
+> Cc: jic23@kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.o=
+rg;
+> linux-kernel@vger.kernel.org; Sa, Nuno <Nuno.Sa@analog.com>
+> Subject: Re: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
+>=20
+> [External]
+>=20
+> On Mon, Nov 01, 2021 at 12:04:20PM +0200, Antoniu Miclaus wrote:
+> > Add device tree bindings for the ADMV1013 Upconverter.
+> >
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> >  .../bindings/iio/frequency/adi,admv1013.yaml  | 119
+> ++++++++++++++++++
+> >  1 file changed, 119 insertions(+)
+> >  create mode 100644
+> Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> >
+> > diff --git
+> a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> > new file mode 100644
+> > index 000000000000..47993253a586
+> > --- /dev/null
+> > +++
+> b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
+> > @@ -0,0 +1,119 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id:
+> https://urldefense.com/v3/__http://devicetree.org/schemas/iio/frequency
+> /adi,admv1013.yaml*__;Iw!!A3Ni8CS0y2Y!uTDPalOgj6YS_vZ6bsDSbA_Qna6Q
+> OwMpoRxzo6nn06i5TNuGWZEk9PvtbC6SKQGXrugy$
+> > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-
+> schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!uTDPalOgj6YS_vZ6bsDSbA_Qna6Q
+> OwMpoRxzo6nn06i5TNuGWZEk9PvtbC6SKYugV1fM$
+> > +
+> > +title: ADMV1013 Microwave Upconverter
+> > +
+> > +maintainers:
+> > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > +
+> > +description: |
+> > +   Wideband, microwave upconverter optimized for point to point
+> microwave
+> > +   radio designs operating in the 24 GHz to 44 GHz frequency range.
+> > +
+> > +   https://www.analog.com/en/products/admv1013.html
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,admv1013
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 1000000
+> > +
+> > +  clocks:
+> > +    description:
+> > +      Definition of the external clock.
+> > +    minItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: lo_in
+> > +
+> > +  clock-output-names:
+> > +    maxItems: 1
+> > +
+> > +  vcm-supply:
+> > +    description:
+> > +      Analog voltage regulator.
+> > +
+> > +  adi,vga-powerdown:
+> > +    description:
+> > +      Power Down the Voltage Gain Amplifier Circuit available at
+> > +      BG_RBIAS2 pin.
+> > +    type: boolean
+> > +
+> > +  adi,mixer-powerdown:
+> > +    description:
+> > +      Power Down the Mixer Circuit. Enable to put the block in
+> > +      a power down state.
+> > +    type: boolean
+> > +
+> > +  adi,quad-powerdown:
+> > +    description:
+> > +      Power Down the Quadrupler. Enable to put the block in
+> > +      a power down state.
+> > +    type: boolean
+> > +
+> > +  adi,bg-powerdown:
+> > +    description:
+> > +      Power Down the Transmitter Band Gap. Enable to put the part in
+> > +      a power down state.
+> > +    type: boolean
+> > +
+> > +  adi,mixer-if-enable:
+> > +    description:
+> > +      Enable the Intermediate Frequency Mode. Either IF Mode or I/Q Mo=
+de
+> > +      can be enabled at a time.
+> > +    type: boolean
+> > +
+> > +  adi,detector-enable:
+> > +    description:
+> > +      Enable the Envelope Detector available at output pins VENV_P and
+> > +      VENV_N. Disable to reduce power consumption.
+> > +    type: boolean
+> > +
+> > +  adi,quad-se-mode:
+> > +    description:
+> > +      Switch the LO path from differential to single-ended operation.
+> > +      Set value 6 for Single-Ended Mode, Negative Side Disabled.
+> > +      Set value 9 for Single-Ended Mode, Positive Side Disabled.
+> > +      Set value 12 for Differential Mode.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [6, 9, 12]
+>=20
+> All these vendor properties are fixed based on the board design or
+> something a user may want to change? The latter does not belong in DT.
+>=20
+> Rob
