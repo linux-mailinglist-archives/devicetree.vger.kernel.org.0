@@ -2,352 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7FD8443B76
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 03:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8807B443B97
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 03:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbhKCCpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 22:45:21 -0400
-Received: from mail-4318.protonmail.ch ([185.70.43.18]:55345 "EHLO
-        mail-4318.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229650AbhKCCpU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 22:45:20 -0400
-Date:   Wed, 03 Nov 2021 02:42:34 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1635907362;
-        bh=4uE4ykr+J3w0ILwejY+w4R1tl1K1S3DQISYVJru9WIo=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=oNdMb84kxJLOuKJGGqb9XOBzzo/ol1iwEkqF6hmU/AIydbuY1Z18gZJndGmFvSGSJ
-         YhAgTdTpqO46MB/aJvUU3n6wzb4e/ckvBokfLmt6Tb5+MzsQnhnGRHEcgz/cMAo6nc
-         0r4AWDYtJBEilLehVE0Mh0T3YapjsA+CFw4KfV8o=
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>, Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH v2 1/5] arm64: dts: qcom: msm8996: Revamp reserved memory
-Message-ID: <91b184266e545efcc5969fe6661b50da82351119.camel@protonmail.com>
-In-Reply-To: <4455e52f-7e8a-c431-9977-dcf4aefe9822@linaro.org>
-References: <20210926190555.278589-1-y.oudjana@protonmail.com> <20210926190555.278589-2-y.oudjana@protonmail.com> <YXTNL7boyiRFKQiV@builder.lan> <4455e52f-7e8a-c431-9977-dcf4aefe9822@linaro.org>
-MIME-Version: 1.0
+        id S229680AbhKCCvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 22:51:40 -0400
+Received: from smtpcmd11117.aruba.it ([62.149.156.117]:43123 "EHLO
+        smtpcmd11117.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230049AbhKCCvg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 22:51:36 -0400
+Received: from smtpclient.apple ([146.241.216.221])
+        by Aruba Outgoing Smtp  with ESMTPA
+        id i6KdmWeslumo4i6KdmXOCm; Wed, 03 Nov 2021 03:48:58 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1635907738; bh=vn0en0EIlHgkPwPZZERx136vgq1/nmIMJ6ZT4dkZqag=;
+        h=Content-Type:From:Mime-Version:Subject:Date:To;
+        b=J9naTf+IAohR2xOuGFgEzMfooC6CT8nvH3rCcxEWgk4ynOkf9Na/5Aqb8CB1TYo6O
+         E72mOAH0K6Haxm+L3WXrEe/q9WMjDSlZd5pngARGRVwsq1+tUy5onszIqxfCDTHDSw
+         FJqY5awdjZXgfm/Z33r99rSTvYbfrSaei0yvkgo895UNDUgzzsfwvlsL4GZT5zf8g4
+         mlgBpKAQEB6xb/Nih89L56sQBD2benwgBCFHMJXdhbWd1w9XRNB2i+f+KJ5UaLAXax
+         xyAM63MAPZlAmH/xCTEiZZWeY0G7t6TrNo2hUg29dncGJPIvgBy6Z765r06VGFHqS3
+         /ZU34wbBbftfA==
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: [PATCH 08/13] dt-bindings: serial: fsl-lpuart: add i.MXRT compatible
+Date:   Wed, 3 Nov 2021 03:48:54 +0100
+Message-Id: <D0A3E11F-FEDE-4B2D-90AB-63DFC245A935@benettiengineering.com>
+References: <CAL_JsqJR6EfDsmwPmXxgdaC1GB7CLGYpjmDnOkD_f53Frsq6LA@mail.gmail.com>
+Cc:     Jesse Taube <mr.bossman075@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        SoC Team <soc@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Anson Huang <b20788@freescale.com>,
+        Fugang Duan <fugang.duan@nxp.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel@vger.kernel.org,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+In-Reply-To: <CAL_JsqJR6EfDsmwPmXxgdaC1GB7CLGYpjmDnOkD_f53Frsq6LA@mail.gmail.com>
+To:     Rob Herring <robh@kernel.org>
+X-Mailer: iPhone Mail (18H17)
+X-CMAE-Envelope: MS4wfATmIMv5GA3j34nA+iOgc1h+7L3tNW3abl9oCE6PZB8OMXI5H3mb85Frc03sGYy21FlO+oJkV4yTBbwgW5Rj/0du+RvtJQeN4d3pTWoUGmPhXXFYvLcV
+ QNuPaJZ09aPj0+mshEem7c3H/dDtmBF6Js+GbUpl3X77ZVu54p7RysYHkjD72LZmj1H9nrKMau+2FU6gAH8OfwkJcqu+K/QuRnCIGQyGPr3XRSCMWIAeXcnh
+ 14cBS5S+yv55Rx3kGkl8t/GASJe4FVaWXcwh2TmSlklGOJv0BnitVeN15pb+g3w02oFJrUgKwPJ60fOGTuEBSmuaWhDSUp0BnITKWVtU8NWjCdg22E/rK3ua
+ UvuthcK4Gt+pMHdeNuelu7OQNeUa4osFW/xmS2SqnXAjQ/zXPIoKDZ9wYTW69+lVlUjcEQaQSIL5cDlAWhgyLYe58s0lVB+PUteYTjf5XPopnlNbF4BlhSUn
+ 1703ZYebBfSnDYcMuwywTgcke/l6oZOuiSXUAER9Kw+NQDUTm6vTA1zd63V6/2mI8V6fIuErDfUgGhwidKoWGZgy8w0lMux5lnPF152l3b+t+PRXsgoo8Fup
+ vyE5oPOG87RvxafyxS+PGYtiDRSgb5g6gBK+6HKCBnCITIepAP0MxaYELLdoZIxHd2jQNXlyEXbPoapsLfCN839NHGj5xtHTF+RdCX6xRJLv7QbeBGv2lxdk
+ WQuMJJl1glCO71l/9HImQMgssA4qHKsCwrUS4eVH4UwdhuKJRRfzXYZJNepCANMb5jUUomkTVI3BMVMYPLFcPn2lylrtW6uuvCzwHaPbLJuHEchajyGi9mPy
+ cNs/j1wljxUbrkXF2DSbjxuGxED1hrUDrV4auoDE5lUYgSroodiTneWziQtrRVB/JzYl4C6iYazCH18QbLDLZc0W24SBjADnoy2c3JaRoN05Me4ZYOFsc4Lp
+ Rc/MtcuLY1/6kPE7+x4/Pu0oLxAPRi9gvMjOAn+TcU4p3/lAW2Cj8/Kzy9ZtRUlfltDpjFZJDqdxAgCh7oCj9sIreifIVrSwfCx6JcENijeCT6gpQ4OzTaxq
+ mwcnYVUpvxOA21nMdUUvMEJlVoadyglqlr9tgcp/tZNlXbX2jPakmS1Bx/8Q/gOFJTP6kTQF5NkXBVxbUWxgSoRnllcDGy2LlCt2WmbbdKWGh7d8jt98gwJD
+ czQA9XU4BZVnndLpD6YTF4YbKlfBqXsPIzN57bT3ahyvfyxxMEVyQ+no+RY503EiVcfZf3vMJa6jb/9lw3xxrA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-11-03 at 03:50 +0400, Dmitry Baryshkov wrote:
-> On 24/10/2021 06:04, Bjorn Andersson wrote:
-> > On Sun 26 Sep 14:06 CDT 2021, Yassine Oudjana wrote:
-> >=20
-> > > Fix a total overlap between zap_shader_region and slpi_region, and re=
-name
-> > > all regions to match the naming convention in other Qualcomm SoC devi=
-ce trees.
-> > >=20
-> > > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> >=20
-> > FYI, I like this series, but I held off applying it because I wanted to
-> > verify that the shuffling of the memory regions works on the existing
-> > 8996 boards.
-> >=20
-> > Unfortunately it didn't work, either with or without the shuffling on
-> > the db820c - and I've not found the time to figure out why that is. I
-> > hope to get back to this shortly (or that someone else will figure it
-> > out and provide a tested-by)
+Hello Rob, Jesse, All,
+
+> Il giorno 3 nov 2021, alle ore 01:49, Rob Herring <robh@kernel.org> ha scr=
+itto:
 >=20
-> I gave this a test too on my db820c. Usually the board MSS will crash
-> after ~0.1 - 0.15 seconds after booting up, then during recovery the
-> board will crash/reboot somewhere at the end of q6v5_mss_load() (and
-> typically after successful q6v5_rmb_mba_wait() call.
+> =EF=BB=BFOn Mon, Nov 1, 2021 at 6:34 PM Jesse Taube <mr.bossman075@gmail.c=
+om> wrote:
+>>=20
+>>=20
+>>=20
+>>> On 11/1/21 16:13, Rob Herring wrote:
+>>> On Sun, Oct 24, 2021 at 11:40:22AM -0400, Jesse Taube wrote:
+>>>> Add i.MXRT documentation for compatible string.
+>>>>=20
+>>>> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>>>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>>>> ---
+>>>> Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 1 +
+>>>> 1 file changed, 1 insertion(+)
+>>>>=20
+>>>> diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b=
+/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>>>> index a90c971b4f1f..4b4340def2aa 100644
+>>>> --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>>>> +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+>>>> @@ -21,6 +21,7 @@ properties:
+>>>>           - fsl,ls1028a-lpuart
+>>>>           - fsl,imx7ulp-lpuart
+>>>>           - fsl,imx8qm-lpuart
+>>>> +          - fsl,imxrt-lpuart
+>>>=20
+>>> Actually, 'rt' is not a single part is it? If the variations are same
+>>> die, but fused off then no need to distinguish. Otherwise, these should
+>>> be SoC specific.
+>>>=20
+>> I don't exactly know what "but fused off" means I would assume
+>> disconnected but on-die?
+>=20
+> Right. Or not pinned out is another possibility.
+>=20
+>> The imxrtxxx is a series that has the same UART
+>> controller across them. Should I add ACK?
+>=20
+> Looking at the errata docs briefly, there's at least 2 die as some of
+> the errata docs give the mask id. So they aren't necessarily 'the
+> same'.
 
-> Occasionally (approximately 1 of 20) the MSS will not crash, presenting
-> PDS service to the userspace. Even in this state it doesn't seem to be
-> able to lock the gps location (but this might be related to the big UART
-> mezzanine sitting on top of the board).
+Thank you for pointing, we=E2=80=99ve missed this particular.
 
-I've had MSS crash on xiaomi-scorpio too, but far less often. It seemed
-like some sort of race condition, as it only happened when ADSP and MSS
-were booted at the same time. To workaround this, I delayed loading of
-the rmtfs service to leave some time between booting ADSP and MSS.
+> You want the compatible strings to be specific enough to handle
+> any differences or errata. If you only care about the imxrt1050, then
+> I'd just use that and move on.
+
+We plan to add from imxrt1020 to imxrt1170 and eventual new SoC, so we defin=
+itely need separate
+.compatible strings.
+
+@Jesse, can you please update with =E2=80=98fsl,imxrt1050=E2=80=9D?
+
+> Otherwise, maybe someone from NXP wants
+> to comment?
+
+Any NXP comment is welcome!
+
+Best regards
+Giulio Benetti
+Benetti engineering sas
 
 >=20
-> Unfortunately there seem to be no SLPI firmware for the db820c, so I can
-> not test slpi.
->=20
-> A notice regarding the patchset itself. It looks like pil_q6v5_mss.c
-> driver misses mx and cx proxy power domains for the MSS_MSM8996 case.
-
-I didn't notice that. I guess they stay on and MSS is able to boot
-anyway. I'll add them similar to PATCH 2/5.
-
->=20
-> >=20
-> > Regards,
-> > Bjorn
-> >=20
-> > > ---
-> > >   .../dts/qcom/msm8996-sony-xperia-tone.dtsi    | 18 ++++--
-> > >   .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 18 +++---
-> > >   arch/arm64/boot/dts/qcom/msm8996.dtsi         | 63 ++++++++++------=
----
-> > >   3 files changed, 55 insertions(+), 44 deletions(-)
-> > >=20
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b=
-/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> > > index 507396c4d23b..4c26e66f0610 100644
-> > > --- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-> > > @@ -13,9 +13,10 @@
-> > >   #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> > >   #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-> > >=20
-> > > -/delete-node/ &slpi_region;
-> > > -/delete-node/ &venus_region;
-> > > -/delete-node/ &zap_shader_region;
-> > > +/delete-node/ &adsp_mem;
-> > > +/delete-node/ &slpi_mem;
-> > > +/delete-node/ &venus_mem;
-> > > +/delete-node/ &gpu_mem;
-> > >=20
-> > >   / {
-> > >   =09qcom,msm-id =3D <246 0x30001>; /* MSM8996 V3.1 (Final) */
-> > > @@ -46,18 +47,23 @@ cont_splash_mem: memory@83401000 {
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09zap_shader_region: gpu@90400000 {
-> > > +=09=09adsp_mem: adsp@8ea00000 {
-> > > +=09=09=09reg =3D <0x0 0x8ea00000 0x0 0x1a00000>;
-> > > +=09=09=09no-map;
-> > > +=09=09};
-> > > +
-> > > +=09=09gpu_mem: gpu@90400000 {
-> > >   =09=09=09compatible =3D "shared-dma-pool";
-> > >   =09=09=09reg =3D <0x0 0x90400000 0x0 0x2000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09slpi_region: memory@90500000 {
-> > > +=09=09slpi_mem: memory@90500000 {
-> > >   =09=09=09reg =3D <0 0x90500000 0 0xa00000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09venus_region: memory@90f00000 {
-> > > +=09=09venus_mem: memory@90f00000 {
-> > >   =09=09=09reg =3D <0 0x90f00000 0 0x500000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/ar=
-ch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> > > index d239b01b8505..a5e7bccadba2 100644
-> > > --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> > > @@ -66,32 +66,32 @@ memory@88800000 {
-> > >=20
-> > >   =09=09/* This platform has all PIL regions offset by 0x1400000 */
-> > >   =09=09/delete-node/ mpss@88800000;
-> > > -=09=09mpss_region: mpss@89c00000 {
-> > > +=09=09mpss_mem: mpss@89c00000 {
-> > >   =09=09=09reg =3D <0x0 0x89c00000 0x0 0x6200000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > >   =09=09/delete-node/ adsp@8ea00000;
-> > > -=09=09adsp_region: adsp@8ea00000 {
-> > > +=09=09adsp_mem: adsp@8fe00000 {
-> > >   =09=09=09reg =3D <0x0 0x8fe00000 0x0 0x1b00000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09/delete-node/ slpi@90b00000;
-> > > -=09=09slpi_region: slpi@91900000 {
-> > > +=09=09/delete-node/ slpi@90500000;
-> > > +=09=09slpi_mem: slpi@91900000 {
-> > >   =09=09=09reg =3D <0x0 0x91900000 0x0 0xa00000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09/delete-node/ gpu@8f200000;
-> > > -=09=09zap_shader_region: gpu@92300000 {
-> > > +=09=09/delete-node/ gpu@90f00000;
-> > > +=09=09gpu_mem: gpu@92300000 {
-> > >   =09=09=09compatible =3D "shared-dma-pool";
-> > >   =09=09=09reg =3D <0x0 0x92300000 0x0 0x2000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > >   =09=09/delete-node/ venus@91000000;
-> > > -=09=09venus_region: venus@90400000 {
-> > > +=09=09venus_mem: venus@92400000 {
-> > >   =09=09=09reg =3D <0x0 0x92400000 0x0 0x500000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > > @@ -107,7 +107,7 @@ ramoops@92900000 {
-> > >   =09=09=09pmsg-size =3D <0x40000>;
-> > >   =09=09};
-> > >=20
-> > > -=09=09/delete-node/ rmtfs@86700000;
-> > > +=09=09/delete-node/ rmtfs;
-> > >   =09=09rmtfs@f6c00000 {
-> > >   =09=09=09compatible =3D "qcom,rmtfs-mem";
-> > >   =09=09=09reg =3D <0 0xf6c00000 0 0x200000>;
-> > > @@ -118,7 +118,7 @@ rmtfs@f6c00000 {
-> > >   =09=09};
-> > >=20
-> > >   =09=09/delete-node/ mba@91500000;
-> > > -=09=09mba_region: mba@f6f00000 {
-> > > +=09=09mba_mem: mba@f6f00000 {
-> > >   =09=09=09reg =3D <0x0 0xf6f00000 0x0 0x100000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/=
-dts/qcom/msm8996.dtsi
-> > > index eb3ec5ff46eb..1495fff6ffc9 100644
-> > > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > > @@ -384,60 +384,65 @@ reserved-memory {
-> > >   =09=09#size-cells =3D <2>;
-> > >   =09=09ranges;
-> > >=20
-> > > -=09=09mba_region: mba@91500000 {
-> > > -=09=09=09reg =3D <0x0 0x91500000 0x0 0x200000>;
-> > > +=09=09hyp_mem: memory@85800000 {
-> > > +=09=09=09reg =3D <0x0 0x85800000 0x0 0x600000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09slpi_region: slpi@90b00000 {
-> > > -=09=09=09reg =3D <0x0 0x90b00000 0x0 0xa00000>;
-> > > +=09=09xbl_mem: memory@85e00000 {
-> > > +=09=09=09reg =3D <0x0 0x85e00000 0x0 0x200000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09venus_region: venus@90400000 {
-> > > -=09=09=09reg =3D <0x0 0x90400000 0x0 0x700000>;
-> > > +=09=09smem_mem: smem-mem@86000000 {
-> > > +=09=09=09reg =3D <0x0 0x86000000 0x0 0x200000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09adsp_region: adsp@8ea00000 {
-> > > -=09=09=09reg =3D <0x0 0x8ea00000 0x0 0x1a00000>;
-> > > +=09=09tz_mem: memory@86200000 {
-> > > +=09=09=09reg =3D <0x0 0x86200000 0x0 0x2600000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09mpss_region: mpss@88800000 {
-> > > -=09=09=09reg =3D <0x0 0x88800000 0x0 0x6200000>;
-> > > +=09=09rmtfs_mem: rmtfs {
-> > > +=09=09=09compatible =3D "qcom,rmtfs-mem";
-> > > +
-> > > +=09=09=09size =3D <0x0 0x200000>;
-> > > +=09=09=09alloc-ranges =3D <0x0 0xa0000000 0x0 0x2000000>;
-> > >   =09=09=09no-map;
-> > > +
-> > > +=09=09=09qcom,client-id =3D <1>;
-> > > +=09=09=09qcom,vmid =3D <15>;
-> > >   =09=09};
-> > >=20
-> > > -=09=09smem_mem: smem-mem@86000000 {
-> > > -=09=09=09reg =3D <0x0 0x86000000 0x0 0x200000>;
-> > > +=09=09mpss_mem: mpss@88800000 {
-> > > +=09=09=09reg =3D <0x0 0x88800000 0x0 0x6200000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09memory@85800000 {
-> > > -=09=09=09reg =3D <0x0 0x85800000 0x0 0x800000>;
-> > > +=09=09adsp_mem: adsp@8ea00000 {
-> > > +=09=09=09reg =3D <0x0 0x8ea00000 0x0 0x1b00000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09memory@86200000 {
-> > > -=09=09=09reg =3D <0x0 0x86200000 0x0 0x2600000>;
-> > > +=09=09slpi_mem: slpi@90500000 {
-> > > +=09=09=09reg =3D <0x0 0x90500000 0x0 0xa00000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09rmtfs@86700000 {
-> > > -=09=09=09compatible =3D "qcom,rmtfs-mem";
-> > > -
-> > > -=09=09=09size =3D <0x0 0x200000>;
-> > > -=09=09=09alloc-ranges =3D <0x0 0xa0000000 0x0 0x2000000>;
-> > > +=09=09gpu_mem: gpu@90f00000 {
-> > > +=09=09=09compatible =3D "shared-dma-pool";
-> > > +=09=09=09reg =3D <0x0 0x90f00000 0x0 0x100000>;
-> > >   =09=09=09no-map;
-> > > +=09=09};
-> > >=20
-> > > -=09=09=09qcom,client-id =3D <1>;
-> > > -=09=09=09qcom,vmid =3D <15>;
-> > > +=09=09venus_mem: venus@91000000 {
-> > > +=09=09=09reg =3D <0x0 0x91000000 0x0 0x500000>;
-> > > +=09=09=09no-map;
-> > >   =09=09};
-> > >=20
-> > > -=09=09zap_shader_region: gpu@8f200000 {
-> > > -=09=09=09compatible =3D "shared-dma-pool";
-> > > -=09=09=09reg =3D <0x0 0x90b00000 0x0 0xa00000>;
-> > > +=09=09mba_mem: mba@91500000 {
-> > > +=09=09=09reg =3D <0x0 0x91500000 0x0 0x200000>;
-> > >   =09=09=09no-map;
-> > >   =09=09};
-> > >   =09};
-> > > @@ -1013,7 +1018,7 @@ opp-133000000 {
-> > >   =09=09=09};
-> > >=20
-> > >   =09=09=09zap-shader {
-> > > -=09=09=09=09memory-region =3D <&zap_shader_region>;
-> > > +=09=09=09=09memory-region =3D <&gpu_mem>;
-> > >   =09=09=09};
-> > >   =09=09};
-> > >=20
-> > > @@ -2001,7 +2006,7 @@ venus: video-codec@c00000 {
-> > >   =09=09=09=09 <&venus_smmu 0x2c>,
-> > >   =09=09=09=09 <&venus_smmu 0x2d>,
-> > >   =09=09=09=09 <&venus_smmu 0x31>;
-> > > -=09=09=09memory-region =3D <&venus_region>;
-> > > +=09=09=09memory-region =3D <&venus_mem>;
-> > >   =09=09=09status =3D "disabled";
-> > >=20
-> > >   =09=09=09video-decoder {
-> > > @@ -3008,7 +3013,7 @@ adsp_pil: remoteproc@9300000 {
-> > >   =09=09=09clocks =3D <&xo_board>;
-> > >   =09=09=09clock-names =3D "xo";
-> > >=20
-> > > -=09=09=09memory-region =3D <&adsp_region>;
-> > > +=09=09=09memory-region =3D <&adsp_mem>;
-> > >=20
-> > >   =09=09=09qcom,smem-states =3D <&smp2p_adsp_out 0>;
-> > >   =09=09=09qcom,smem-state-names =3D "stop";
-> > > --
-> > > 2.33.0
-> > >=20
-> > >=20
->=20
->=20
-> --
-> With best wishes
-> Dmitry
-
-
+> Rob
 
