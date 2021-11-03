@@ -2,79 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4001E4448BE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:09:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B604448C5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:10:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230382AbhKCTL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 15:11:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38224 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbhKCTL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 15:11:57 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 227DAC061714
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 12:09:21 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id p18so3085986plf.13
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 12:09:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0huV3+NvHX9kbEHkMOSRG/Cqq2BBTevpjeGjT71XeTg=;
-        b=Kl0JxVBB9T5o/4GfJ/TvkzAZmu8Fm/tINQiRiwQ4qiVam2CMQDdbHYoYD5fox1cITc
-         lTR3Yl99wOAsu4cXnyJ6V03JYuB9uAFLUHmes2+RWR/7IW1HkAwK5QmVL6X+erS+neg8
-         afBfAeceoZy7AxZxzQMKUzc/G8LLuH673uZTEr1mMA7zs3GX66yatQxL9sNG+omJEckN
-         oy6qCuMoehM9LBDhpZKpduukNdLh7y5kAQy/FGgAOU1XelkBFvqxrezs85ml8Z9F1Rlt
-         Jc8fJnWW5fXsrWB2VZWH6vATMiMkaLSBezeIGtNbDMrFqbKkg5lH9vPvmd0rTpMsHir8
-         JSoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0huV3+NvHX9kbEHkMOSRG/Cqq2BBTevpjeGjT71XeTg=;
-        b=lbvj/RkyKoO4vV5eGiXVFqpnl8U3c8OzX+E8eTfXNWg3yv9GTUc+JN0YovXWGA27P4
-         1k/b+thJNTTJY1w+pmA1INz2hQ5X1346FKMZAaTTOcJJt1VfcZQSb8srBPUQIe9woM4x
-         70ZOa3z2Dvpl68gurGh+edJWbq453M844zgbuMgJ8BrdqvXxjvNUe4iej8dZo5piRU32
-         h/gPgqLHvN1pGymJktObtx8/9/6orN8Gmi9Jysev0DSOk0EVOFuSM6YpnhiFD/ijQdrs
-         QtYcQb9k5hmlaE8J0RC7I80nUtXmYitSeAgLS6IZEOeIJLxeDLtqX/xzaQP4ZXkTudD2
-         ezqA==
-X-Gm-Message-State: AOAM5300DBJ86mpz0RJY0i0o2aCzxPg0ge1waEg+E2Dabi8MJG6qHro2
-        tG8AQfteuIpFQWdBkF4Mq+sT18gjj/g=
-X-Google-Smtp-Source: ABdhPJybalEkvCrcoxkcM2X4OU+ubznrLF1kphWPPNDADFcG9QvB6jtYMEEYqHRDRoL/J31eJl4j3g==
-X-Received: by 2002:a17:90a:9915:: with SMTP id b21mr16472850pjp.195.1635966560659;
-        Wed, 03 Nov 2021 12:09:20 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id w1sm987833pgb.50.2021.11.03.12.09.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 12:09:20 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-9?b?QXL9bucg3E5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Alvin =?iso-8859-2?q?=A9ipraga?= <ALSI@bang-olufsen.dk>,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        id S231392AbhKCTNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 15:13:22 -0400
+Received: from smtpcmd0756.aruba.it ([62.149.156.56]:34294 "EHLO
+        smtpcmd0756.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231157AbhKCTNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 15:13:22 -0400
+Received: from [192.168.153.129] ([146.241.216.221])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id iLehmQUVD4n4riLehmFuEJ; Wed, 03 Nov 2021 20:10:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1635966644; bh=0/31yxmO9a/oC0P8HSIAOi7F4D8XhUglntlI8cyweIg=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=JHt8XzSjYLi1rWyUyi2ykyjLwTWrBHdvKgItGaNHY9vgQDx4CIXQIBALXxgxMWPRM
+         oGtbjIF7McsY1X/k1uP2Acdeqw2BIas+OYupr81C2Dcca7XMa2Vp0Sp0FJTrwpcsSX
+         gFRfNMSc4dWtlo/n9+z2VXPjPRkCSC59N3R0G8+8JwmsfgviQHXTaF7kvRBJuWubei
+         hx+F0V/WiqGSUyEdMZ1mqAWtMsH7ZhpC7rP9NDKtvKOajBIDiWHDZJL7lyTxdyUfDg
+         n4sufjnQVMtJZjMUz4pfih0uAXT2MavO/91P0GGzNZ/d33kaReBHi5j6jAzzW4d6FZ
+         +cACDqCxUK6YQ==
+Subject: Re: [PATCH v2 11/13] mmc: sdhci-esdhc-imx: Add sdhc support for
+ i.MXRT series
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Jesse Taube <mr.bossman075@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] ARM: dts: BCM5301X: define RTL8365MB switch on Asus RT-AC88U
-Date:   Wed,  3 Nov 2021 12:09:18 -0700
-Message-Id: <20211103190918.193875-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211026165703.17997-2-arinc.unal@arinc9.com>
-References: <20211026165703.17997-1-arinc.unal@arinc9.com> <20211026165703.17997-2-arinc.unal@arinc9.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+ <20211102225701.98944-12-Mr.Bossman075@gmail.com>
+ <CAOMZO5AxMXxDkNDqGJDhtepqSUxGRCWO+L=c67O==4fx66M7XQ@mail.gmail.com>
+ <c1610093-95ae-68d3-57ae-93b1bc9715d7@gmail.com>
+ <5ebe48f5-7b9c-be99-d50c-65a056084b96@benettiengineering.com>
+ <CAOMZO5DHCYaxzSASKq6Bk8ALkiQeVjPOHOyk-pKYepJFJk6oFQ@mail.gmail.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <78cba8ec-72b0-89b8-d6e3-09ecea19ca7b@benettiengineering.com>
+Date:   Wed, 3 Nov 2021 20:10:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOMZO5DHCYaxzSASKq6Bk8ALkiQeVjPOHOyk-pKYepJFJk6oFQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfF6/WWjL7PJeZTTfz9UiWozyugqncNHx9tTkfwkkeDbnl31INXrmdyJqCSDLjNgQNAiX+KEFaL/glNmQk4hLNz+e91vJZFmZ3NF5I4POniLdU+133jcp
+ XzXAVa/DOc7iJ7Umt9dQCiK70yv+dPSCm6DyvEHh3sPzUmjoblvN2rbQedLd/KRav15zduP3h7pa3TBT7GXnqFDja1xM10FZDIRnNyWpakY0+K6IpWr9CtRp
+ RbGD2bB0eWYl2pgQ6oK7rgqwkfBiXt6WBqx32YZalbWMiwFTgFZXYFX2bhI4iGNXtHbYX6M7a2P6awc9yt+RpNOC46ceA2OSF2GD2nNLCCA85tkJbOLpIuW+
+ 2qJ4tYuOUeifsY8fJ1OAWVgvpme4hq+Jn9KOnjeL9hMJkqLhKlMoFBWG4ZFAjx6P+T/WjW84919f5FBekomjfNlXPtI2bx8LowHcHVMxxtgWKrIy8/HCjQse
+ hMtGvQbiPuqHqMSGKMU0Q3721Q7hTJXFuObQDrhcRED7Kw6KTtE+Aczv5xnK+GZFMBgayrKg+SPoimBROvDme87huk7quiukeu+sSdj2ldoS4sJzD14db2fG
+ fUZGCElF1aWolDYn3zDRnuI9aNLyzS3y1bYpg51QmCdVikiJpSb9nuEDd32x1YmU5g6bp8wj6JvNaeEdLN+hZ8C98TiPIvfIAQlyjNyu4rl6AtSJkRa0xbkl
+ Oqwe2dhAY8fi/AdyGAOTkGT9EcPX6i/VjPEh3HGAOLI7lQRyq0Do61LOcfvBUvIvN4UdwfKqBwD9s9EPIMQEYbN3mTdK+1FUVYNZBAwyyypuvn/FOjtDyP2H
+ JMyFerHaBWkngEyHrqz25mjCOQMODTDTsNvvVliBq93lDPsgK3mJEl0Habe+NGvFA2p8EJtf0FwLgL0DRkJHzdhMV88ocFN+5a1+J0RrGZr4w1tABUN/5cm1
+ WudLVrZSILp4LPugdLhbdtWqzTVqLr7Z5bwjuyY0ykWP1Okhj8x8edAs9QHPcNhSXogZq6iiuo5o1gC6xSOGhsYvQsVxL3miS8s3fPyG/QjEvDLLBWrnRyF1
+ 0glwqRkuoJSHoK/FA3aAdIQ9Aeg2lDGEs3pbsWIwLor0bSAzNFFlUwrWmx7Z5ykPs8sZoNMAWTJRAnNPRjzG87S0dPFSboLuLSo=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021 00:57:06 +0800, Arınç ÜNAL <arinc.unal@arinc9.com> wrote:
-> Define the Realtek RTL8365MB switch without interrupt support on the device
-> tree of Asus RT-AC88U.
-> 
-> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
-> ---
+Hi Fabio, Jesse, Rob, All,
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+On 11/3/21 6:51 PM, Fabio Estevam wrote:
+> Hi Giulio,
+> 
+> On Tue, Nov 2, 2021 at 8:30 PM Giulio Benetti
+> <giulio.benetti@benettiengineering.com> wrote:
+> 
+>> If we add every SoC we will end up having a long list for every device
+>> driver. At the moment it would be 7 parts:
+>> 1) imxrt1020
+>> 2) imxrt1024
+>> .
+>> .
+>> .
+>> 7) imxrt1170
+>>
+>> Is it ok anyway?
+> 
+> As this patch adds the support for imxrt1050, I would go with
+> "fsl,imxrt1050-usdhc" for now.
+> 
+
+Ok, then it's the same as pointed by Rob for lpuart[1]; @Jesse: we will 
+do the same for all peripherals(more or less) since it seems there are 
+little differences in the i.MXRT family.
+
+[1]: 
+https://lore.kernel.org/lkml/D0A3E11F-FEDE-4B2D-90AB-63DFC245A935@benettiengineering.com/T/
+
+Thanks a lot
+Best regards
+-- 
+Giulio Benetti
+Benetti Engineering sas
