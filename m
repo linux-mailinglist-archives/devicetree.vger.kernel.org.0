@@ -2,113 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F26444AC8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 23:18:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4512A444AED
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 23:45:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230395AbhKCWVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 18:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52438 "EHLO
+        id S229852AbhKCWs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 18:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbhKCWVW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 18:21:22 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3389DC061203
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 15:18:45 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id n13-20020a9d710d000000b005558709b70fso5551692otj.10
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 15:18:45 -0700 (PDT)
+        with ESMTP id S229698AbhKCWs2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 18:48:28 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C889EC061714
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 15:45:51 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id gh1so4046400qvb.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 15:45:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KbAK3E9gZ0Rf65SdcooIGvTrnplapjhc1zBGEcQwMw0=;
-        b=FxVPe4f6LLQG7z67e383KouBmt/gDlXT01XhIyLpbOX1ubzbbveB/WebH8mdxVvBux
-         BoQH4kuafbBqw6mw9q2LJ5bCsnmHZjtsQis9+tdQGfJEaHQtqef8LpIiCNjy4zhacaad
-         m2NtcBHHSDnN+apNFNe73D1Cuixq/t5Rdm+xilmYnpWW0EbPBnJ0FHq9wO6rWLyJVII1
-         Xg32sN6EyH9QtS5md7S68uOiB819/jerOrmoyhxNGFQeiTm7iCDv8frX9kEA4BZzI620
-         aS7Pe8/2CPHahmk+nHDWlTKg9OlZO4wzwtgcpkZHdW1TRpqXLUggXsjQGEn8Lpn4/vUi
-         Y7pw==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nfe3D7clHGl1YZgkT5Ms1GXNSAPyz9/B35wGZ6BRdJA=;
+        b=euRqBpHe7zof/gB/pdWm00nUw8LAFIzWvENcia2nOQMD2qz1YnuiNRezwdzo38FXUo
+         2q5KmkChXs2ZtGgnd9wZY/P9FTU3Zfc9V2/i3nTZFGzyHp6gU9v4SJqv8grVvOieatZX
+         pvCloJ6RcCSdwejgGZXUiGz6W5m6hReIcmig8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KbAK3E9gZ0Rf65SdcooIGvTrnplapjhc1zBGEcQwMw0=;
-        b=szM3VdDJoOL8DhaeVvlDzLi6Qm9gsYGhRIfRvNfdp96SSjRASXVU76dyO1eVc4klT7
-         QzCJ+BoHkcnR4B7ACA/WrqnK7Fl9/WvQQU4dwhjeQse9gX23ihsI5ZQFqpCR5qUc1z4L
-         u3JUWohk08uJN47N1byEJ+sqH6CaO+QBnCNRjN/wPwVuxzJzMRKOheulZ1yJSEDxNxDX
-         vlaQ8E9SyGauU4lOttUc00sk80d1zWXgta4HT7JlStkK3VM598Pwskuq6ASzLdvDjviM
-         tLHCDM0ZKF00q1xs1q8IYPg5WiUYKG/FdPPf+kFx9BoKXom2GhdZMR0E2Frrxv2tn+/z
-         2+KQ==
-X-Gm-Message-State: AOAM530zzLdw1Kq4rbZqW3sgYG94GoGUXVvJ0eb2ErPXsbdr+trn0dsp
-        YkKY1Ruh1ePHKQ1WQLF14TE1TA==
-X-Google-Smtp-Source: ABdhPJwE3gWlnEHH4Dmdjy/djjbu/ePiC4Xgep2d/Vs4xE4zOZ7x255+QMBS6qvbjDXdOMBbreC0yQ==
-X-Received: by 2002:a9d:774c:: with SMTP id t12mr28285120otl.282.1635977924469;
-        Wed, 03 Nov 2021 15:18:44 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s21sm879524otp.57.2021.11.03.15.18.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 15:18:43 -0700 (PDT)
-Date:   Wed, 3 Nov 2021 15:20:24 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Fenglin Wu <quic_fenglinw@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        collinsd@codeaurora.org, subbaram@codeaurora.org
-Subject: Re: [PATCH v1] dt-bindings: convert qcom,spmi-pmic-arb binding to
- YAML format
-Message-ID: <YYMLKCspjdyaKWUK@ripper>
-References: <1635836275-8873-1-git-send-email-quic_fenglinw@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nfe3D7clHGl1YZgkT5Ms1GXNSAPyz9/B35wGZ6BRdJA=;
+        b=yk+M8BEdiYbWcwV/IzfIu/Q+yibDjpDw8Iu/yeKqAGn4nR+bPCoFZbbs5HMQywrV8p
+         9ffmyhZJh7EENUH4azOpS8BRg0XsQ8zSUMpgMmWJdzmh+RK6gO430vf29pISt2hSgeCk
+         GvOEZsEofuGNsJZf6vg2az0Gnquz7V5zqu6PmSXurc3VwEt4obwfK8cw0OeygQo+oVQ0
+         Ui92v7H9X6jkBHnYoCaCli+DGRUZ/nhA8igL+YcR6va3pZ3G6ZFo40amfyf9IPZKaOqe
+         adj7jsLQyPtWv7vWJkpSvZIHlIs8T6+URH3dywns9Oj8JB/8OLu9PhHGghww63bg6ARb
+         R+Ig==
+X-Gm-Message-State: AOAM533xB5fmmVn7KURB15d5VBciKthcc8WavU2wwo99tGQ4Q5i+NZXF
+        HrXUpPmxLKU04rERfWHzxvHj+zyF3GDBiDPV8+s=
+X-Google-Smtp-Source: ABdhPJyBiuFpsngJvByWOWn/hd5diNY6ZjO2cLNra4+McwuXCw/CxnR55yD0wt8Ff3yfRdCVM6/BkLr0XUpHaiHuzhk=
+X-Received: by 2002:a0c:c784:: with SMTP id k4mr46084501qvj.43.1635979550880;
+ Wed, 03 Nov 2021 15:45:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1635836275-8873-1-git-send-email-quic_fenglinw@quicinc.com>
+References: <20211102203717.96794-1-jae.hyun.yoo@intel.com>
+ <20211102203717.96794-6-jae.hyun.yoo@intel.com> <1635902437.654631.3880388.nullmailer@robh.at.kernel.org>
+ <8db279c9-4c76-91a5-3617-a17effb2d103@linux.intel.com> <CAL_Jsq+SwCqFycKz4+agRsB3qr4Rbfra55Q6tNbMH2bNtoX+hA@mail.gmail.com>
+ <796e0c02-5bca-e8a9-a17f-898aafec237f@linux.intel.com>
+In-Reply-To: <796e0c02-5bca-e8a9-a17f-898aafec237f@linux.intel.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 3 Nov 2021 22:45:38 +0000
+Message-ID: <CACPK8Xcwkz1QLOvN0MiSkX+jj2NZY10--1qo7M8UMyEmQQtYmA@mail.gmail.com>
+Subject: Re: [PATCH -next v2 5/6] dt-bindings: ipmi: aspeed,kcs-bmc: add
+ 'clocks' as a required property
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        openipmi-developer@lists.sourceforge.net,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Cedric Le Goater <clg@kaod.org>,
+        Corey Minyard <minyard@acm.org>,
+        ChiaWei Wang <chiawei_wang@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 01 Nov 23:57 PDT 2021, Fenglin Wu wrote:
-[..]
-> diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> new file mode 100644
-> index 0000000..05bb114
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spmi/qcom,spmi-pmic-arb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm SPMI PMIC Arbiter
-> +
-> +maintainers:
-> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
-> +
-> +description: |
-> +  The SPMI PMIC Arbiter is found on Snapdragon chipsets. It is an SPMI
-> +  controller with wrapping arbitration logic to allow for multiple
-> +  on-chip devices to control a single SPMI master.
-> +
-> +  The PMIC Arbiter can also act as an interrupt controller, providing
-> +  interrupts to slave devices.
-> +
-> +  See Documentation/devicetree/bindings/spmi/spmi.yaml for the generic
-> +  SPMI controller binding requirements for child nodes.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^qcom,spmi@.*"
+On Wed, 3 Nov 2021 at 17:27, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
+>
+> On 11/3/2021 9:29 AM, Rob Herring wrote:
 
-Node names should never contain "qcom,". Seems the agreed upon node
-named should be "spmi@.*".
+> > It's possible that 'clocks' was always required or that it never
+> > worked without clocks, then this change is okay. Looking at this
+> > patch, I have no way to know that. The commit message has to explain
+> > that. A commit message needs to answer WHY are you making the change.
+> > You don't really need WHAT the change is as anyone can read the diff.
+>
+> Then what would be better? Would it be good enough if I add more detail
+> commit message including a note that dtb recompiling is required? Or,
+> should I change this series to treat the 'clocks' as an optional
+> property? Can you please share your thought?
 
-The rest looks like a reasonable conversion to me.
+Make it essential. It was only by accident that things have worked
+without this change.
 
-[..]
-> +examples:
-> +  - |
-> +    qcom,spmi@fc4cf000 {
-
-Regards,
-Bjorn
+While keeping backwards compatibility with dtbs is a goal we strive
+for, in practice we use the dtb from the corresponding kernel source
+tree, so as long as the patch to the driver is applied in the same
+place as the patch to the device tree no systems will break.
