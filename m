@@ -2,480 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7809B443A8B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 01:41:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03A61443A77
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 01:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230248AbhKCAoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Nov 2021 20:44:08 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:56709 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbhKCAoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Nov 2021 20:44:08 -0400
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id E8755C758A
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 00:38:40 +0000 (UTC)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 4B05EC0002;
-        Wed,  3 Nov 2021 00:38:17 +0000 (UTC)
-Date:   Wed, 3 Nov 2021 01:36:05 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Vincent Shih <vincent.sunplus@gmail.com>
-Cc:     a.zummo@towertech.it, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Vincent Shih <vincent.shih@sunplus.com>
-Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
-Message-ID: <YYHZdXqpNqzusQ5n@piout.net>
-References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
- <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+        id S230363AbhKCAi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Nov 2021 20:38:59 -0400
+Received: from mail-mw2nam12on2075.outbound.protection.outlook.com ([40.107.244.75]:45148
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229804AbhKCAi6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Nov 2021 20:38:58 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YIQb/TJa1WKdWZN4a5Gbp66swYpVq61q951zix3vSCZHLDznBYG00scnTcU6c2d4pTT4XyKZUhL86Keehjk/Toza/QO12P3Yf+qB8SR4/dDaM/gcBrBLW3MROS51g9nFFRHUJu4ov8QYSI7KvkMdRZLJe5WTFodfh5qBbeavAiOCjNKgnrv+CDuAlIY6p8mz7rasqo4exI8BVXJSOssXvwXC8LnVPqjG/szsBEWQGX3YCNGIGByjBwPnLDSwRVgTg0zg2xp45FaGvj5Qe51CvUwwptpyiAfsSXJxt6UtEuJoN+EnU2T+dDSUhgOoAqZvXivtFtg38LY5W1p5dpyzeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VH5jxM49JMmiKzgqtmIyfO7TI/XvZiQSEiiVMHZm78g=;
+ b=EeRPUj3xJ1wuYBU2BC5uQ9AZV408khkgzTkDUHtbttdRUmdz11KZyeAbm3ILOpuL5xHPBsYDPtwORLRSp+WKeIGJEYopMIj4Pz/L8SIuvSqUq+uknKuXOgOyQi6/5icC1B7CHT/NdYuHT17nFFfpVvCP38ZoX9GXJz2DJz/1FHyDa7mJlXYJQrkQYv0MBY9SrkMO0czngoGFH8RfcVycko6OYLp3o1rYtF7AY5hYEM+Klnvh7C7PVqW1IyVwmt82p3BQGssqN4MXD/L8DXD2L0/8caBr+Qq39MDjAhR0Z2y4HkujDedOJCyvuFldyBTlrXdxtwbsP/a9OIS9mGJ6+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VH5jxM49JMmiKzgqtmIyfO7TI/XvZiQSEiiVMHZm78g=;
+ b=F8i1m1nk53TK6MJLy26Ctwvbv5Ocs4W/jpznZKq5LQ2Ln8Y6RFYxa02b6v7/MbMz03YKaWpsx3T2SLcUz+iCA+K8rfEmcXUN37SggXpaTO9oQpDwJkrOmayRvyTv6bohqfrAj3kFAvlQjHqhpU5J3j+tYCvdfkrxInUNQgQtLiJhHIMzqx2YfKFzLQckKYfsnErQUGPbGSX5ZbqzrBEUsZTJ0HyquKhVo2cZKkp/XEH0T2ecgB07/hnmWVg2x5+pj7mv3seUqozKIrD/mmh6LKbeJRXFb7FV7fz+G6JfgIhm6kY+A5hNxDB7c7g8FnX/dKg6XmVhaCiVzV8Kpm62Ow==
+Received: from BN9P223CA0013.NAMP223.PROD.OUTLOOK.COM (2603:10b6:408:10b::18)
+ by BN6PR12MB1553.namprd12.prod.outlook.com (2603:10b6:405:6::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10; Wed, 3 Nov
+ 2021 00:36:20 +0000
+Received: from BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:10b:cafe::9) by BN9P223CA0013.outlook.office365.com
+ (2603:10b6:408:10b::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
+ Transport; Wed, 3 Nov 2021 00:36:20 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
+ smtp.mailfrom=nvidia.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.34; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.34) by
+ BN8NAM11FT060.mail.protection.outlook.com (10.13.177.211) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4669.10 via Frontend Transport; Wed, 3 Nov 2021 00:36:20 +0000
+Received: from [172.17.173.69] (172.20.187.6) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 3 Nov
+ 2021 00:36:18 +0000
+Subject: Re: [RFC v2 02/11] drivers: Add hardware timestamp engine (HTE)
+To:     Randy Dunlap <rdunlap@infradead.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <linux-kernel@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <warthog618@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <robh+dt@kernel.org>
+References: <20210930232617.6396-1-dipenp@nvidia.com>
+ <20210930232617.6396-3-dipenp@nvidia.com>
+ <010426c7-74ed-33fb-0c06-c42408cffc0e@infradead.org>
+X-Nvconfidentiality: public
+From:   Dipen Patel <dipenp@nvidia.com>
+Message-ID: <b720c238-a285-9741-4209-c22166765fa3@nvidia.com>
+Date:   Tue, 2 Nov 2021 17:37:16 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+In-Reply-To: <010426c7-74ed-33fb-0c06-c42408cffc0e@infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [172.20.187.6]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1fb6aebe-1182-48a6-e78d-08d99e61f4ac
+X-MS-TrafficTypeDiagnostic: BN6PR12MB1553:
+X-Microsoft-Antispam-PRVS: <BN6PR12MB155330E16F0159DD19B242A6AE8C9@BN6PR12MB1553.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: qRDYA76A6dabcRcYmh3ZFTV8+MvtrRg2XeKI6Witt1SrGqLlLGeC/4IHeIJrLZdPzyerBKlkwUR7Dm0Wc+TNbZuJ0EDrBDMwU2IaiiWz1VA0cDWmZO395gJ2rs51Hxqa1zFaH6aDB/vPQyXxncHk+A0KUvNZbMnTQbnf3g4FZ4kbK+DCRe6ZXwOZOkZSzV5BjcQ4XepXNmgUVodIt3VnsDU25mw8DgNV960nJx++sf3JEhMNdCGUeXLNt7TAXhI8FgeFw5Bbzqymw5lY4o9jWyNStOzs46s/mllguEahzsD8WhldU4GCg2ePdsuAif5YitOKWA9mx1ri+XLRmgdVx8RLslbaJ4Utu7To8gi0mH/UF05DwG8+v94yamkr5Cmkyxo9WuBTqOe4AhHh4lEIzIw6zuSIZgd4Vz3xp+mlssjnGEhfAjhhwaBFQaz9FoP4OQup/EMJ81cCYrF2BD/o7D0gReB5h8JT1xwIKaqySJTJ0tuoKZh+X7eR5KzmfgsGbs8iuOJB6NFc+1EgyWH/lTMQ9z4AjIXFdlN67nNY/umGNuppEVut4szGSzHIFA8agz21KOJk47YAsIe69oaAO7JCK54+GM6lOW9ieRLzeXzGImpNb/zjeLjC8nrjWsMTfqvAVBByOvcvSkyuq4MaSFRvOJUy+U7AUrXHPXtlXix0BLSlcTqD01HFrzTNg9aiSAg57FCYzpxf+QyygR6C7cnGeQNRKMNIUTZ8O7pwLDWTx8Uz7S+xT1sSFwqNSKM1L4/GDCugBeYA0Lz0Ya9AzL5Anm9HAJVKIJATKO17IO0=
+X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(36906005)(47076005)(8936002)(83380400001)(508600001)(110136005)(7416002)(70206006)(2616005)(26005)(31686004)(316002)(86362001)(16526019)(921005)(2906002)(36860700001)(70586007)(31696002)(356005)(7636003)(8676002)(36756003)(336012)(5660300002)(53546011)(16576012)(186003)(426003)(82310400003)(43740500002)(2101003)(83996005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2021 00:36:20.1805
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fb6aebe-1182-48a6-e78d-08d99e61f4ac
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT060.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1553
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Randy,
 
-On 02/11/2021 14:22:02+0800, Vincent Shih wrote:
-> +/**************************************************************************************************/
-> +/* How to test RTC:										  */
-> +/*												  */
-> +/* 1. use kernel commands									  */
-> +/* hwclock - query and set the hardware clock (RTC)						  */
-> +/*												  */
-> +/* (for i in `seq 5`; do (echo ------ && echo -n 'date      : ' && date && echo -n 'hwclock -r: ' */
-> +/*								&& hwclock -r; sleep 1); done)	  */
-> +/* date 121209002014 # Set system to 2014/Dec/12 09:00						  */
-> +/* (for i in `seq 5`; do (echo ------ && echo -n 'date      : ' && date && echo -n 'hwclock -r: ' */
-> +/*								&& hwclock -r; sleep 1); done)	  */
-> +/* hwclock -s # Set the System Time from the Hardware Clock					  */
-> +/* (for i in `seq 5`; do (echo ------ && echo -n 'date      : ' && date && echo -n 'hwclock -r: ' */
-> +/*								&& hwclock -r; sleep 1); done)	  */
-> +/* date 121213002014 # Set system to 2014/Dec/12 13:00						  */
-> +/* (for i in `seq 5`; do (echo ------ && echo -n 'date      : ' && date && echo -n 'hwclock -r: ' */
-> +/*								&& hwclock -r; sleep 1); done)	  */
-> +/* hwclock -w # Set the Hardware Clock to the current System Time				  */
-> +/* (for i in `seq 10000`; do (echo ------ && echo -n 'date  : ' && date && echo -n 'hwclock -r: ' */
-> +/*								&& hwclock -r; sleep 1); done)	  */
-> +/*												  */
-> +/* How to setup alarm (e.g., 10 sec later):							  */
-> +/*     echo 0 > /sys/class/rtc/rtc0/wakealarm && nnn=`date '+%s'` && echo $nnn && \		  */
-> +/*     nnn=`expr $nnn + 10` && echo $nnn > /sys/class/rtc/rtc0/wakealarm			  */
-> +/*												  */
-> +/* 2. use RTC Driver Test Program (\linux\application\module_test\rtc\rtc-test.c)		  */
-> +/*												  */
-> +/**************************************************************************************************/
+I will implement all your suggestions in RFC v3.
 
-I don't feel this is a super useful comment, especially since it is
-buried in a driver and this basically says to use rtctest.c
 
-> +#include <linux/module.h>
-> +#include <linux/err.h>
-> +#include <linux/rtc.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/clk.h>
-> +#include <linux/reset.h>
-> +#include <linux/of.h>
-> +#include <linux/ktime.h>
-> +#include <linux/io.h>
+Best Regards,
 
-This list has to be sorted
+Dipen Patel
 
-> +
-> +/* ---------------------------------------------------------------------------------------------- */
-> +#define FUNC_DEBUG() pr_debug("[RTC] Debug: %s(%d)\n", __func__, __LINE__)
-> +
-> +#define RTC_DEBUG(fmt, args ...) pr_debug("[RTC] Debug: " fmt, ## args)
-> +#define RTC_INFO(fmt, args ...) pr_info("[RTC] Info: " fmt, ## args)
-> +#define RTC_WARN(fmt, args ...) pr_warn("[RTC] Warning: " fmt, ## args)
-> +#define RTC_ERR(fmt, args ...) pr_err("[RTC] Error: " fmt, ## args)
-> +/* ---------------------------------------------------------------------------------------------- */
-> +
-> +struct sunplus_rtc {
-> +	struct clk *rtcclk;
-> +	struct reset_control *rstc;
-> +	unsigned long set_alarm_again;
-> +	u32 charging_mode;
-> +};
-> +
-> +struct sunplus_rtc sp_rtc;
-> +
-> +#define RTC_REG_NAME		"rtc_reg"
-> +
-> +struct sp_rtc_reg {
-> +	unsigned int rsv00;
-> +	unsigned int rsv01;
-> +	unsigned int rsv02;
-> +	unsigned int rsv03;
-> +	unsigned int rsv04;
-> +	unsigned int rsv05;
-> +	unsigned int rsv06;
-> +	unsigned int rsv07;
-> +	unsigned int rsv08;
-> +	unsigned int rsv09;
-> +	unsigned int rsv10;
-> +	unsigned int rsv11;
-> +	unsigned int rsv12;
-> +	unsigned int rsv13;
-> +	unsigned int rsv14;
-> +	unsigned int rsv15;
-> +	unsigned int rtc_ctrl;
-> +	unsigned int rtc_timer_out;
-> +	unsigned int rtc_divider;
-> +	unsigned int rtc_timer_set;
-> +	unsigned int rtc_alarm_set;
-> +	unsigned int rtc_user_data;
-> +	unsigned int rtc_reset_record;
-> +	unsigned int rtc_battery_ctrl;
-> +	unsigned int rtc_trim_ctrl;
-> +	unsigned int rsv25;
-> +	unsigned int rsv26;
-> +	unsigned int rsv27;
-> +	unsigned int rsv28;
-> +	unsigned int rsv29;
-> +	unsigned int rsv30;
-> +	unsigned int rsv31;
-> +};
-
-We don't use that kind of structs, please use defines and offsets.
-
-> +
-> +static struct sp_rtc_reg *rtc_reg_ptr;
-> +
-> +static void sp_get_seconds(unsigned long *secs)
-> +{
-> +	*secs = (unsigned long)readl(&rtc_reg_ptr->rtc_timer_out);
-> +}
-> +
-> +static void sp_set_seconds(unsigned long secs)
-> +{
-> +	writel((u32)secs, &rtc_reg_ptr->rtc_timer_set);
-> +}
-> +
-> +static int sp_rtc_read_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	unsigned long secs;
-> +
-> +	sp_get_seconds(&secs);
-> +	rtc_time64_to_tm(secs, tm);
-> +	RTC_DEBUG("%s:  RTC date/time to %d-%d-%d, %02d:%02d:%02d.\r\n",
-> +		__func__, tm->tm_mday, tm->tm_mon + 1, tm->tm_year,
-> +					tm->tm_hour, tm->tm_min, tm->tm_sec);
-> +
-> +	return rtc_valid_tm(tm);
-> +}
-> +
-> +int sp_rtc_get_time(struct rtc_time *tm)
-> +{
-> +	unsigned long secs;
-> +
-> +	sp_get_seconds(&secs);
-> +	rtc_time64_to_tm(secs, tm);
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(sp_rtc_get_time);
-> +
-
-Why is this exported?
-
-> +static int sp_rtc_suspend(struct platform_device *pdev, pm_message_t state)
-> +{
-> +	FUNC_DEBUG();
-> +
-> +	// Keep RTC from system reset
-> +	writel((1 << (16+4)) | (1 << 4), &rtc_reg_ptr->rtc_ctrl);
-> +
-
-Plenty of magic values here, please explain.
-
-> +	return 0;
-> +}
-> +
-> +static int sp_rtc_resume(struct platform_device *pdev)
-> +{
-> +	/*						*/
-> +	/* Because RTC is still powered during suspend,	*/
-> +	/* there is nothing to do here.			*/
-> +	/*						*/
-> +	FUNC_DEBUG();
-> +
-> +	// Keep RTC from system reset
-> +	writel((1 << (16+4)) | (1 << 4), &rtc_reg_ptr->rtc_ctrl);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sp_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> +{
-> +	unsigned long secs;
-> +
-> +	secs = rtc_tm_to_time64(tm);
-> +	RTC_DEBUG("%s, secs = %lu\n", __func__, secs);
-> +	sp_set_seconds(secs);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sp_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	struct rtc_device *rtc = dev_get_drvdata(dev);
-> +	unsigned long alarm_time;
-> +
-> +	alarm_time = rtc_tm_to_time64(&alrm->time);
-> +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, (u32)(alarm_time));
-> +
-> +	if (alarm_time > 0xFFFFFFFF)
-> +		return -EINVAL;
-
-Please set the range of the rtc properly and the core will do this check
-for you.
-
-> +
-> +	if ((rtc->aie_timer.enabled) && (rtc->aie_timer.node.expires == ktime_set(alarm_time, 0))) {
-> +		if (rtc->uie_rtctimer.enabled)
-> +			sp_rtc.set_alarm_again = 1;
-> +	}
-
-You have to explain that.
-
-> +
-> +	writel((u32)alarm_time, &rtc_reg_ptr->rtc_alarm_set);
-> +	wmb();			// make sure settings are effective.
-
-doesn't writel come with a barrier?
-
-> +
-> +	// enable alarm for update irq
-> +	if (rtc->uie_rtctimer.enabled)
-> +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
-> +	else if (!rtc->aie_timer.enabled)
-> +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
-
-Magic values, please explain also, I'm not sure why you need to look at
-uie_rtctimer and aie_timer as your RTC seems capable of having an alarm
-every seconds.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int sp_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alrm)
-> +{
-> +	unsigned int alarm_time;
-> +
-> +	alarm_time = readl(&rtc_reg_ptr->rtc_alarm_set);
-> +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, alarm_time);
-> +	rtc_time64_to_tm((unsigned long)(alarm_time), &alrm->time);
-> +
-
-You have to also set whether the alarm is enabled or not, else, simply
-don't bother returning anything.
-
-> +	return 0;
-> +}
-> +
-> +static int sp_rtc_alarm_irq_enable(struct device *dev, unsigned int enabled)
-> +{
-> +	struct rtc_device *rtc = dev_get_drvdata(dev);
-> +
-> +	if (enabled)
-> +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
-> +	else if (!rtc->uie_rtctimer.enabled)
-> +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct rtc_class_ops sp_rtc_ops = {
-> +	.read_time =		sp_rtc_read_time,
-> +	.set_time =		sp_rtc_set_time,
-> +	.set_alarm =		sp_rtc_set_alarm,
-> +	.read_alarm =		sp_rtc_read_alarm,
-> +	.alarm_irq_enable =	sp_rtc_alarm_irq_enable,
-> +};
-> +
-> +static irqreturn_t rtc_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct platform_device *plat_dev = dev_id;
-> +	struct rtc_device *rtc = platform_get_drvdata(plat_dev);
-> +
-> +	if (rtc->uie_rtctimer.enabled) {
-> +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_UF);
-> +		RTC_DEBUG("[RTC] update irq\n");
-> +
-> +		if (sp_rtc.set_alarm_again == 1) {
-> +			sp_rtc.set_alarm_again = 0;
-> +			rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
-> +			RTC_DEBUG("[RTC] alarm irq\n");
-> +		}
-> +	} else {
-> +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
-> +		RTC_DEBUG("[RTC] alarm irq\n");
-> +	}
-
-I'm pretty sure you can get rid of most of that and stop looking at
-uie_rtctimer.
-
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +/* ---------------------------------------------------------------------------------------------- */
-> +/* mode   bat_charge_rsel   bat_charge_dsel   bat_charge_en     Remarks				  */
-> +/* 0xE            x              x                 0            Disable				  */
-> +/* 0x1            0              0                 1            0.86mA (2K Ohm with diode)	  */
-> +/* 0x5            1              0                 1            1.81mA (250 Ohm with diode)	  */
-> +/* 0x9            2              0                 1            2.07mA (50 Ohm with diode)	  */
-> +/* 0xD            3              0                 1            16.0mA (0 Ohm with diode)	  */
-> +/* 0x3            0              1                 1            1.36mA (2K Ohm without diode)	  */
-> +/* 0x7            1              1                 1            3.99mA (250 Ohm without diode)	  */
-> +/* 0xB            2              1                 1            4.41mA (50 Ohm without diode)	  */
-> +/* 0xF            3              1                 1            16.0mA (0 Ohm without diode)	  */
-> +/* ---------------------------------------------------------------------------------------------- */
-> +static void sp_rtc_set_batt_charge_ctrl(u32 _mode)
-> +{
-> +	u8 m = _mode & 0x000F;
-> +
-> +	RTC_DEBUG("battery charge mode: 0x%X\n", m);
-> +	writel((0x000F << 16) | m, &rtc_reg_ptr->rtc_battery_ctrl);
-> +}
-> +
-> +static int sp_rtc_probe(struct platform_device *plat_dev)
-> +{
-> +	int ret;
-> +	int err, irq;
-> +	struct rtc_device *rtc = NULL;
-> +	struct resource *res;
-> +	void __iomem *reg_base = NULL;
-> +
-> +	FUNC_DEBUG();
-> +
-> +	memset(&sp_rtc, 0, sizeof(sp_rtc));
-> +
-> +	// find and map our resources
-> +	res = platform_get_resource_byname(plat_dev, IORESOURCE_MEM, RTC_REG_NAME);
-> +	RTC_DEBUG("res = 0x%x\n", res->start);
-> +
-> +	if (res) {
-> +		reg_base = devm_ioremap_resource(&plat_dev->dev, res);
-> +		if (IS_ERR(reg_base))
-> +			RTC_ERR("%s devm_ioremap_resource fail\n", RTC_REG_NAME);
-> +	}
-> +	RTC_DEBUG("reg_base = 0x%lx\n", (unsigned long)reg_base);
-> +
-> +	// clk
-> +	sp_rtc.rtcclk = devm_clk_get(&plat_dev->dev, NULL);
-> +	RTC_DEBUG("sp_rtc->clk = 0x%lx\n", (unsigned long)sp_rtc.rtcclk);
-> +	if (IS_ERR(sp_rtc.rtcclk))
-> +		RTC_DEBUG("devm_clk_get fail\n");
-> +
-> +	ret = clk_prepare_enable(sp_rtc.rtcclk);
-> +
-> +	// reset
-> +	sp_rtc.rstc = devm_reset_control_get(&plat_dev->dev, NULL);
-> +	RTC_DEBUG("sp_rtc->rstc = 0x%lx\n", (unsigned long)sp_rtc.rstc);
-> +	if (IS_ERR(sp_rtc.rstc)) {
-> +		ret = PTR_ERR(sp_rtc.rstc);
-> +		RTC_ERR("SPI failed to retrieve reset controller: %d\n", ret);
-> +		goto free_clk;
-> +	}
-> +
-> +	ret = reset_control_deassert(sp_rtc.rstc);
-> +	if (ret)
-> +		goto free_clk;
-> +
-> +	rtc_reg_ptr = (struct sp_rtc_reg *)(reg_base);
-> +
-> +	// Keep RTC from system reset
-> +	writel((1 << (16+4)) | (1 << 4), &rtc_reg_ptr->rtc_ctrl);
-> +
-> +	// request irq
-> +	irq = platform_get_irq(plat_dev, 0);
-> +	if (irq < 0) {
-> +		RTC_ERR("platform_get_irq failed\n");
-> +		goto free_reset_assert;
-> +	}
-> +
-> +	err = devm_request_irq(&plat_dev->dev, irq, rtc_irq_handler,
-> +					IRQF_TRIGGER_RISING, "rtc irq", plat_dev);
-> +	if (err) {
-> +		RTC_ERR("devm_request_irq failed: %d\n", err);
-> +		goto free_reset_assert;
-> +	}
-> +
-> +	// Get charging-mode.
-> +	ret = of_property_read_u32(plat_dev->dev.of_node, "charging-mode", &sp_rtc.charging_mode);
-> +	if (ret) {
-> +		RTC_ERR("Failed to retrieve \'charging-mode\'!\n");
-> +		goto free_reset_assert;
-> +	}
-> +	sp_rtc_set_batt_charge_ctrl(sp_rtc.charging_mode);
-
-There are generic trickle charger property, please use those.
-
-> +
-> +	device_init_wakeup(&plat_dev->dev, 1);
-> +
-> +	rtc = devm_rtc_device_register(&plat_dev->dev, "sp7021-rtc", &sp_rtc_ops, THIS_MODULE);
-> +	if (IS_ERR(rtc)) {
-> +		ret = PTR_ERR(rtc);
-> +		goto free_reset_assert;
-> +	}
-
-Use devm_rtc_allocate_device/devm_rtc_register_device instead.
-
-> +
-> +	platform_set_drvdata(plat_dev, rtc);
-> +
-> +	RTC_INFO("sp7021-rtc loaded\n");
-> +
-> +	return 0;
-> +
-> +free_reset_assert:
-> +	reset_control_assert(sp_rtc.rstc);
-> +free_clk:
-> +	clk_disable_unprepare(sp_rtc.rtcclk);
-> +
-> +	return ret;
-> +}
-> +
-> +static int sp_rtc_remove(struct platform_device *plat_dev)
-> +{
-> +	reset_control_assert(sp_rtc.rstc);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id sp_rtc_of_match[] = {
-> +	{ .compatible = "sunplus,sp7021-rtc" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, sp_rtc_of_match);
-> +
-> +static struct platform_driver sp_rtc_driver = {
-> +	.probe   = sp_rtc_probe,
-> +	.remove  = sp_rtc_remove,
-> +	.suspend = sp_rtc_suspend,
-> +	.resume  = sp_rtc_resume,
-> +	.driver  = {
-> +		.name = "sp7021-rtc",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = sp_rtc_of_match,
-> +	},
-> +};
-> +module_platform_driver(sp_rtc_driver);
-> +
-> +MODULE_AUTHOR("Vincent Shih <vincent.shih@sunplus.com>");
-> +MODULE_DESCRIPTION("Sunplus RTC driver");
-> +MODULE_LICENSE("GPL v2");
-> +
-> -- 
-> 2.7.4
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+On 10/1/21 4:53 PM, Randy Dunlap wrote:
+> On 9/30/21 4:26 PM, Dipen Patel wrote:
+>> diff --git a/drivers/hte/Kconfig b/drivers/hte/Kconfig
+>> new file mode 100644
+>> index 000000000000..6fdf243d281b
+>> --- /dev/null
+>> +++ b/drivers/hte/Kconfig
+>> @@ -0,0 +1,22 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +menuconfig HTE
+>> +    bool "Hardware Timestamping Engine (HTE) Support"
+>> +    help
+>> +      Hardware Timestamping Engine (HTE) Support.
+>> +
+>> +      Some devices provide hardware timestamping engine which can timestamp
+>
+>                    provide a hardware
+>
+>> +      certain device lines/signals in realtime. This way to provide
+>
+>                                                 This provides a
+>
+>> +      hardware assisted timestamp to generic signals like GPIOs, IRQs lines
+>
+>       hardware-assisted                              like GPIOs or IRQ lines.
+>
+>
+>> +      comes with benefit for the applications like autonomous machines
+>
+>       It comes with a benefit for applications like
+>
+>> +      needing accurate timestamping event with less jitter.
+>> +
+>> +      This framework provides a generic interface to such HTE devices
+>> +      within the Linux kernel. It provides an API to register and
+>> +      unregister a HTE provider chip, configurable sw buffer to
+>
+>                                                    software
+>
+>> +      store the timestamps, push the timestamp from the HTE providers and
+>> +      retrieve timestamps for the consumers. It also provides means for the
+>> +      consumers to request signals it wishes to hardware timestamp and
+>> +      release them if not required.
+>> +
+>> +      If unsure, say no.
+>
+>
+> HTH.
