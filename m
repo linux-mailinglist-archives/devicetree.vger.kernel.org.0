@@ -2,105 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FEF7444467
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 16:11:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E8644449C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 16:23:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231636AbhKCPOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 11:14:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39768 "EHLO
+        id S232460AbhKCP0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 11:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231450AbhKCPOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 11:14:10 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BDA5C06120A
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 08:11:33 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id y8so4389654ljm.4
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 08:11:33 -0700 (PDT)
+        with ESMTP id S231860AbhKCP0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 11:26:19 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45F0C061205
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 08:23:42 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id p17so1539879qkj.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 08:23:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nw4lw3QdWRjlNxPGRbwuhTvxj/pxfOmMSn4h4+Uf8y4=;
-        b=ca8FIdWOsgZurU2wKXFP/wrDipadzFVOuQO1FksS8gQ/3KwUoo2tAL3sBBDHH31vxd
-         AtcEVGDkkEmzc7VrGykHVoDcIz2+dzRKvxQGnzIrCrKBJypTGzvYet7tYVnx4Ffb1Nec
-         7OtdEeOofKVwjvfqcvMSFxKIXTdeTR1cPrGctSt5E9LlWgFr5d/VZ0XdA0SZfmKjbo7c
-         Le1S7vFeerX9EwUeFHJFWhnJF6G8G/j0ED60SA/aVrLdHMPRDlRjfkAfKjRTJZTIjWkK
-         qUEL2jq8FQ8C2OKY83cxaBjMIE1LKdjZ+c9sQq9tPLOF7ZB0Ze0NB+j5Ahl7wEpVEANw
-         fDAw==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=yNC62w+2HzH2SSJhKHtvCjiHcp3DcKu13in8YXC3L58=;
+        b=M+/I/5Hft2NlUO4i9S63IGXtD51pzlQDc0ULTbi6L/ghNtnKUooxVNq/SoYMwi/zvp
+         3ahh0cL98Kl38mypdfi39VAQKnvM/O3y38/UAns84MaTzcyyJ+7s6fg16KXNdcyRBZdT
+         FwODxzltEwj1ZghagD2B9aw/e/BwPbzu9QAVS5hZ0zT4PepwV/BfoXga0U50Xa5fQyN4
+         2hBub2Hq19bZtgvlv6/vmGGs+wyeckvmviP0QMeRRaep6xcFXm1e+zgC9ZiHl4l4Rc94
+         bNvoyhpmW60gS7MVRSnt79hvX7pZnMn8yVimbCbRD8Gq1xatvxtdtWw8ZjwfynRbIXCP
+         rhbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nw4lw3QdWRjlNxPGRbwuhTvxj/pxfOmMSn4h4+Uf8y4=;
-        b=0znTQmgy1kcGTQkOe2uykFpGmu44GUHDeBTglszY78p951rkr/XrRvFiSAlCHjA7UJ
-         Gzs4RL1bYlsw8+W5iaVa0qMLu7pmOQLvoEg5j6GkNrKeSIeG9fUXIOCrp1MG9UtBEKod
-         1N9mLkoIJXKdsWPRhOhkOqn3fFsHsHNtLpqJb1xScXvpeqo9yhJEf7esknrON17VtGLO
-         pnWwqtMclf0Bg+XEN7+0c9oN+Ec7N4gsqfc5jcO0tOJZEV1ofpZeRYrle6Yj95Hd1qlh
-         dB3Hu+s+vFKtWDCyBXrqwBiRY/AO8BtJVf9W2To+OcmEpZysBUENxcEx3xVwS/O/3MJ4
-         zMpw==
-X-Gm-Message-State: AOAM533QFverlDwLEWZ8CCtIofnc3gVE22vld5O0iY14WxDX+YWZMTPr
-        Mt97SbfsD2KmU8vTcXcPqyg=
-X-Google-Smtp-Source: ABdhPJwTpJkWvurpf4sUrvT5F7IoRvgQdE67o5LHmudIX3zYW0DieyPYt3EUzvqRNnmD+WHgo7j/ZQ==
-X-Received: by 2002:a05:651c:160e:: with SMTP id f14mr42824957ljq.379.1635952291983;
-        Wed, 03 Nov 2021 08:11:31 -0700 (PDT)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id p3sm224107ljc.25.2021.11.03.08.11.31
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=yNC62w+2HzH2SSJhKHtvCjiHcp3DcKu13in8YXC3L58=;
+        b=uKc84/569Z33GgM7UARuB7MfakRKoV87AK1xojkTcbIPO2iR7zpIn7LUd0dFiMnIVE
+         x1pDG899WASMZUzJgOxUANYfvxhakMZYrBjczx1wtKsAh32gaM8Xl4hDjz/3bww4avrp
+         g7IwN354WBUdEi9EJXq3lXiOarOUH/GwnNBSO5cym/3PdSaQZZwVk9QyOJCOM3hXTkC9
+         XYhz3N0QQHov7BX0dwHIeQGJ1o6T/d1CPIx1rhpCMzp04P4ZNnGyeBugHjGkv9/g8LeK
+         M+eQ6lASoxKwivelwVJo409kAHHBD1zVp54oS9ze7SOaxPUuVdjWBlfCPTokgevutleI
+         4pYw==
+X-Gm-Message-State: AOAM531nTs5KcUu69r/KwE64J30V667/lKMHxLG1EXpmbbiRyRELKzfR
+        nQG81kMfsqoS+CYxUo6p5iRaFQ==
+X-Google-Smtp-Source: ABdhPJy4df7FJ5jzZA9CX3XJtZc5nqiiuNWg/WwEWiY+wux4cxWLrQ/cnNXjtkeLmUJr9/v8V9RPUQ==
+X-Received: by 2002:a05:620a:2f4:: with SMTP id a20mr12095070qko.123.1635953020908;
+        Wed, 03 Nov 2021 08:23:40 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
+        by smtp.gmail.com with ESMTPSA id m20sm1736604qkp.57.2021.11.03.08.23.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 08:11:31 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+        Wed, 03 Nov 2021 08:23:40 -0700 (PDT)
+Message-ID: <b398917ca0c467d83c795f02f751609a52d56edb.camel@ndufresne.ca>
+Subject: Re: [PATCH v2] media: mtk-vcodec: Align width and height to 64 bytes
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Steve Cho <stevecho@google.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/2] mtd: rawnand: brcmnand: support "no-wp" DT property
-Date:   Wed,  3 Nov 2021 16:11:17 +0100
-Message-Id: <20211103151117.18690-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211103151117.18690-1-zajec5@gmail.com>
-References: <20211103151117.18690-1-zajec5@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Wed, 03 Nov 2021 11:23:38 -0400
+In-Reply-To: <20211103033708.14469-1-yunfei.dong@mediatek.com>
+References: <20211103033708.14469-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.0 (3.42.0-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Le mercredi 03 novembre 2021 à 11:37 +0800, Yunfei Dong a écrit :
+> Width and height need to 64 bytes aligned when setting the format.
+> Need to make sure all is 64 bytes align when use width and height to
+> calculate buffer size.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Change-Id: I39886b1a6b433c92565ddbf297eb193456eec1d2
 
-Some boards may use WP-capable controller but still have WP not
-connected. This change fixes:
-[    1.175550] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-[    1.184524] bcm63138_nand ff801800.nand: nand #WP expected on
-[    1.285547] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-[    1.294516] bcm63138_nand ff801800.nand: nand #WP expected on
-[    1.395548] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-[    1.404517] bcm63138_nand ff801800.nand: nand #WP expected on
+Perhaps avoid this tag later ? Another perhaps, there is a tag to indicate which
+patch introduce that bug, if you add this tag, the patch will be automatically
+backported into relevant stable kernel. The format is:
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- drivers/mtd/nand/raw/brcmnand/brcmnand.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> Fixes: <short-hash> ("<short commit description")
 
-diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-index f75929783b94..8b6167457f0c 100644
---- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-+++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-@@ -714,7 +714,8 @@ static int brcmnand_revision_init(struct brcmnand_controller *ctrl)
- 	if (ctrl->nand_version >= 0x0500)
- 		ctrl->features |= BRCMNAND_HAS_1K_SECTORS;
- 
--	if (ctrl->nand_version >= 0x0700)
-+	if (ctrl->nand_version >= 0x0700 &&
-+	    !of_property_read_bool(ctrl->dev->of_node, "no-wp"))
- 		ctrl->features |= BRCMNAND_HAS_WP;
- 	else if (of_property_read_bool(ctrl->dev->of_node, "brcm,nand-has-wp"))
- 		ctrl->features |= BRCMNAND_HAS_WP;
--- 
-2.31.1
+Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+
+> ---
+>  drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h        | 1 +
+>  drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c | 4 ++--
+>  2 files changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> index e30806c1faea..66cd6d2242c3 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> @@ -11,6 +11,7 @@
+>  #include <media/videobuf2-core.h>
+>  #include <media/v4l2-mem2mem.h>
+>  
+> +#define VCODEC_DEC_ALIGNED_64 64
+>  #define VCODEC_CAPABILITY_4K_DISABLED	0x10
+>  #define VCODEC_DEC_4K_CODED_WIDTH	4096U
+>  #define VCODEC_DEC_4K_CODED_HEIGHT	2304U
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> index d402fc4bda69..e1a3011772a9 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> +++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> @@ -562,8 +562,8 @@ static void get_pic_info(struct vdec_h264_slice_inst *inst,
+>  {
+>  	struct mtk_vcodec_ctx *ctx = inst->ctx;
+>  
+> -	ctx->picinfo.buf_w = (ctx->picinfo.pic_w + 15) & 0xFFFFFFF0;
+> -	ctx->picinfo.buf_h = (ctx->picinfo.pic_h + 31) & 0xFFFFFFE0;
+> +	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, VCODEC_DEC_ALIGNED_64);
+> +	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, VCODEC_DEC_ALIGNED_64);
+>  	ctx->picinfo.fb_sz[0] = ctx->picinfo.buf_w * ctx->picinfo.buf_h;
+>  	ctx->picinfo.fb_sz[1] = ctx->picinfo.fb_sz[0] >> 1;
+>  	inst->vsi_ctx.dec.cap_num_planes =
 
