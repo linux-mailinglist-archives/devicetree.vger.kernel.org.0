@@ -2,125 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 884B9443F11
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 10:13:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31736443F1F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 10:18:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhKCJP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 05:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42316 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231925AbhKCJP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 05:15:56 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BA91C061205;
-        Wed,  3 Nov 2021 02:13:20 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id d10so4763095ybe.3;
-        Wed, 03 Nov 2021 02:13:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=B9PO03tEZQxGDCWOiWP9E4WHsaZ/xui8yPJ2nq9Ie+E=;
-        b=KNkljUFA7c2Z2y1ulLlQsP7Ck0sCiTe9vVMCyYsujALg8/+6C1sTuzdfujkKce2TSP
-         2qc3FJADfMuB/Dkf3wAWX1tNWyKGhsi1X/vIYT2I4dFb63ADvugoIAjwBSoyf1YVnCuP
-         UjYlAlHZcTxh0mAA4eF++mz/VcVZH/iXBLc5TBoplRRfdKWSc24lMgXTGcX1Mo//I4lb
-         0wBsK+ruU1brPD+R1um24lQM9ztWRNvk7R2gcznkFTeJy5TuZjos7StSNgZ5u4dJUh8y
-         EQg/PS+44XnptkjqcWiQ438ZCekYA8zhoxGBkJYeVkUfHs3DqCDZ2J8TuLeP48JKv9Fe
-         IpKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=B9PO03tEZQxGDCWOiWP9E4WHsaZ/xui8yPJ2nq9Ie+E=;
-        b=qjze0JxdvXZdTesxmngL0FM8MI1Y6BKhRQ5T3zOgOQKU8RZErcKJnqUe7gbv+7b8ov
-         Jsl+MLYZZOMZLOGNBEaGR4Ld7Rbsgejn7+FKUSBK5Y1LfNnX3W6KbPaASWMV5u6xo78g
-         d+PQuydPbNA8H7CxELm4asxfiTz8e8EzcmSjr7WiuVuve5Z641QmsizP5tsBy8wQ3yBp
-         J+IxW+8xlrKV3DSlE2uOqJ4j1tdzErmvggCOTcBZLOeeXQmVLSN0DrVmTEZqfRDluwme
-         G3HT5xcfwkXlPsAHuceyXrzoKlmshcF524wLObg76yRO3e2luwe5fQyv0ZuZmzhrxNNb
-         UaSA==
-X-Gm-Message-State: AOAM530ojlcCuYhGZxsEDTigbRnlTqRCrObNPahpeIAzuI67mIIVdZCs
-        hOR284oknolZSM1xTW/SarJecfpHNWS7pLpEC2cofGoWZ79b0g==
-X-Google-Smtp-Source: ABdhPJy1YH1/YROO6BKv2SUado0SiJ9R1kr1ijbKaVjaSEbKjRERIu7xzUuf3qc1RKL89AnRU8esbXV+6wS1mZageH0=
-X-Received: by 2002:a25:dc4d:: with SMTP id y74mr16947684ybe.422.1635930799289;
- Wed, 03 Nov 2021 02:13:19 -0700 (PDT)
+        id S231547AbhKCJU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 05:20:58 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:19427 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230463AbhKCJU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 05:20:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1635931101; x=1667467101;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QfHR3Cra0DJdP8QD9ujWRugo8vll6siTTDc+rrxgmn0=;
+  b=hQpe7EwOLq6AjcI3Q535itXJzGsrTvQfS/bRuH+CglHAjx7kvLfXSSa1
+   F5iEYnVCIM8+3RIYmWqLVxA4hXeptMC8vxBToepfTV9Lp2VcXHF7b4YwH
+   Lxw8ranEUcsehxUJyWkoJFUq8naO52fxfy0H1fFIdh9lupK4VOtu2Oq4Z
+   b038+rpN5syGyawyTh4F8Iy2mejj2Gta8b8LSEshXtljPLTIrPDCy7PWa
+   YD0in1SIDawl85T/RNSQlhdSVJXAfy6ddgfgkmDhuXlwKE37OS4SCVA2T
+   9z0emGT7zl+4M484TnoRSs9uGLxQSUFAwIMQXFxF7d9mJbvnGohqOjftM
+   w==;
+IronPort-SDR: H7ZdxvYVi+aC9L+jAmJ7VLnjyXwZTA6xPLPn9gRaPGJc4L9nxPTwl2M8Wf/ytgP41mdXf6B7TP
+ TVS1ouvz4gP0lZzVrIOWUM1QJKpUVzOwgU8axRV5Fwnn/mzRt3/FRSVSGMNb+ArAquSwxStsHS
+ Sddus6L05JkAlNp1PTElll9+IcyqMa6mc6oyqvr6zHsjaB2rzczUO36HmGgebcfphhL2dOG+7B
+ doEMBlpiJt8WdhH2RYaYgZpcaQiKkBuH1IZ6oXDvQD1jvGto/wSdg55ER+j6gTZ/6VQZrhvB3q
+ x2wE1mY/rCZb2nxrdyXsZvNI
+X-IronPort-AV: E=Sophos;i="5.87,205,1631602800"; 
+   d="scan'208";a="142631579"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Nov 2021 02:18:21 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 3 Nov 2021 02:18:21 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 3 Nov 2021 02:18:19 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <peda@axentia.se>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH v4 0/2] i2c-mux-gpmux: Support settle-time-us property
+Date:   Wed, 3 Nov 2021 10:18:37 +0100
+Message-ID: <20211103091839.1665672-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <YYElefbpP4pwfmUl@shikoro> <CA+V-a8uJxeSr=uoF14gccuSLG7WRqRk8X8uD9UDoxKPGM8hGgQ@mail.gmail.com>
- <YYJLSCE9ak2I/9A/@ninjato>
-In-Reply-To: <YYJLSCE9ak2I/9A/@ninjato>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 3 Nov 2021 09:12:53 +0000
-Message-ID: <CA+V-a8sidj+FXF0k4dPCgZz2RUHyKsghc75-=Ka2vCkJEFP+xg@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] memory: renesas-rpc-if: Add support for RZ/G2L
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-mtd@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Add support for settle-time-us property. If this is defined in device
+tree then add this delay to mux APIs.
 
-On Wed, Nov 3, 2021 at 8:41 AM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> Hi Prabhakar,
->
-> > Oops I missed that, does the below look good?
->
-> Yes, only a minor nit.
->
-> >
-> > #define RPCIF_PHYADD_ADD_MD 0x00
-> > #define RPCIF_PHYADD_ADD_RDLSEL 0x22
-> > #define RPCIF_PHYADD_ADD_FDLSEL 0x24
-> > #define RPCIF_PHYADD_ADD_RDLMON 0x26
-> > #define RPCIF_PHYADD_ADD_FDLMON 0x28
-> >
-> > #define RPCIF_PHYADD_ACCEN BIT(31)
-> > #define RPCIF_PHYADD_RW BIT(30)
->
-> Maybe we could leave this because we don't use it? You decide.
->
-Agreed will drop RPCIF_PHYADD_RW macro.
+v3->v4:
+ - update i2c-mux.yaml by adding required and select properties
 
-> > > +     regmap_write(rpc->regmap, RPCIF_PHYWR, 0x00000030);
-> > > +     regmap_write(rpc->regmap, RPCIF_PHYADD, 0x80000032);
-> > >
-> > For the above do you have any suggestions? As I couldn't find any
-> > details about it or shall I just go with magic numbers for now?
->
-> Ack. I couldn't find docs about these as well. I suggest to add a
-> comment where this value came from. We can ask the BSP and/or HW team
-> for details and update this pair incrementally.
->
-Thanks, I'll add a comment stating the values have come from the
-RZ/G2L HW manual.
+v2->v3:
+ - move the binding changes into i2c-mux.yaml
+ - read at a later point the DT property 'settle-time-us'
 
-Cheers,
-Prabhakar
+v1->v2:
+ - add the changes to i2c-mux-gpmux instead of i2c-mux-gpio to be able
+   to use mux_control_select_delay
 
-> > thanks, once we agree upon above I shall re-spin v3.
->
-> Cool, looking forward to it!
->
-> Happy hacking,
->
->    Wolfram
->
+Horatiu Vultur (2):
+  dt-bindings: i2c-mux: Add property for settle time
+  i2c-mux-gpmux: Support settle-time-us property
+
+ Documentation/devicetree/bindings/i2c/i2c-mux.yaml | 14 ++++++++++++++
+ drivers/i2c/muxes/i2c-mux-gpmux.c                  |  4 +++-
+ 2 files changed, 17 insertions(+), 1 deletion(-)
+
+-- 
+2.33.0
+
