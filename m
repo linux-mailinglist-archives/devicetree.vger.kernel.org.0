@@ -2,136 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D46D4445E1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 17:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D85DB444648
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 17:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232101AbhKCQcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 12:32:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34576 "EHLO mail.kernel.org"
+        id S232860AbhKCQyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 12:54:14 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45476 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232762AbhKCQcB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Nov 2021 12:32:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B71466103B
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 16:29:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1635956964;
-        bh=xOABt8qeC9A9l4bh2g20t12RpjOx+xP+axBwdu8bH/I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GZSJjQ48wZjcfH7tl25HcL8kmr+AlKyxrxBqT76PSP4cejcR1Nb6OYRxNd755zSR4
-         qALHv9ix8TTb9DQYrPAi2g1Zurg+RmG8RD3ciMPP0RhjCxUoBUcYDHHv3ONOmsRkC2
-         ncY7swG6dRw6Qow9V3T2SmAhP9urLxODoaeIPkb18qC6V23JbrhvJC7X+Y5ACkrR8R
-         ar2Voo7bRtH0IdHcKx30OHc62Dajg3lVN99knoQuxuk/0ebu64Z6gITTUoEGZJHpE4
-         BxVE9XX2ve27Fm7OarEnUCqAezOxUeFOtHg4Go6UM1T+F9m5ZNx0IhLgGUOA7ydFo9
-         7BgqRm1mioNYg==
-Received: by mail-ed1-f45.google.com with SMTP id 5so10927150edw.7
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 09:29:24 -0700 (PDT)
-X-Gm-Message-State: AOAM530lSbA0Bc95IjKmGn/w2WrYNzRSNSn3nFoy9xvzSdJp4drAnm7R
-        T54dBgaaALp0d2s918aJsNv9kBsuIpIxy7sf1w==
-X-Google-Smtp-Source: ABdhPJwrgCpf59XLe8AzG7aA287qwiUonBjeXHhzxNgyHuhZcky+70ZcLVmG9yQtmb7fXidrSaVea6PBkVRNdzGFm1M=
-X-Received: by 2002:a50:da06:: with SMTP id z6mr61608023edj.355.1635956959583;
- Wed, 03 Nov 2021 09:29:19 -0700 (PDT)
+        id S229894AbhKCQyO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Nov 2021 12:54:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=LoVd7Wmm4TPrtbMmrNBoE6nwq6Zb/G9Z6/gwUQBowxM=; b=eyTZKTEHMYWjzs0RERchgXYL1B
+        oeu7zlVS1lKjoUzkuPeLKc67E69yIhc/S0XOkXr85JDKz2f5p/qvpF4xLGLXYi/gAPMZpTMxvn7Nb
+        KQot8Nw6ynKUeWOuW+qUsYmC/8pH7HKe2XBlFvTWzbYx4n31vKe3e9xZ1BMAAubJmmz8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1miJU1-00CWZP-Av; Wed, 03 Nov 2021 17:51:29 +0100
+Date:   Wed, 3 Nov 2021 17:51:29 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu <wellslutw@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        Wells Lu <wells.lu@sunplus.com>
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YYK+EeCOu/BXBXDi@lunn.ch>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
 MIME-Version: 1.0
-References: <20211102203717.96794-1-jae.hyun.yoo@intel.com>
- <20211102203717.96794-6-jae.hyun.yoo@intel.com> <1635902437.654631.3880388.nullmailer@robh.at.kernel.org>
- <8db279c9-4c76-91a5-3617-a17effb2d103@linux.intel.com>
-In-Reply-To: <8db279c9-4c76-91a5-3617-a17effb2d103@linux.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 3 Nov 2021 11:29:08 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+SwCqFycKz4+agRsB3qr4Rbfra55Q6tNbMH2bNtoX+hA@mail.gmail.com>
-Message-ID: <CAL_Jsq+SwCqFycKz4+agRsB3qr4Rbfra55Q6tNbMH2bNtoX+hA@mail.gmail.com>
-Subject: Re: [PATCH -next v2 5/6] dt-bindings: ipmi: aspeed,kcs-bmc: add
- 'clocks' as a required property
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     jae.hyun.yoo@intel.com, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        openipmi-developer@lists.sourceforge.net,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, Cedric Le Goater <clg@kaod.org>,
-        Corey Minyard <minyard@acm.org>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 3, 2021 at 11:08 AM Jae Hyun Yoo
-<jae.hyun.yoo@linux.intel.com> wrote:
->
-> Hi Rob,
->
-> On 11/2/2021 6:20 PM, Rob Herring wrote:
-> > On Tue, 02 Nov 2021 13:37:16 -0700, jae.hyun.yoo@intel.com wrote:
-> >> From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> >>
-> >> Add 'clocks' as a required property.
-> >>
-> >> Signed-off-by: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-> >> ---
-> >> v1 -> v2:
-> >> Changes sinve v1:
-> >>   - Added 'clocks' property into kcs-bmc bindings using
-> >>     'aspeed,ast2400-kcs-bmc.yaml' because it's not merged into
-> >>     'aspeed-lpc.yaml' yet. The bindings merging could be done using a
-> >>     separate patch later.
-> >>
-> >>   .../devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml   | 7 +++++++
-> >>   1 file changed, 7 insertions(+)
-> >>
-> >
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> >
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> >
-> > Full log is available here: https://patchwork.ozlabs.org/patch/1549943
-> >
-> >
-> > kcs@114: 'clocks' is a required property
-> >       arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-inspur-nf5280m6.dt.yaml
-> >
-> > kcs@24: 'clocks' is a required property
-> >       arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dt.yaml
-> >
-> > kcs@28: 'clocks' is a required property
-> >       arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dt.yaml
-> >
-> > kcs@2c: 'clocks' is a required property
-> >       arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-bytedance-g220a.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dt.yaml
-> >       arch/arm/boot/dts/aspeed-bmc-inspur-nf5280m6.dt.yaml
-> >
->
-> #4/6 in this patch adds 'clocks' into aspeed-g5.dtsi and aspeed-g6.dtsi
-> as a default property and all above dts files include the dtsi file so
-> these warning shouldn't be seen. Is it a result after applying all
-> changes in this series or just after cherry picking #5/6 patch only?
+> +config NET_VENDOR_SUNPLUS
+> +	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
 
-Only patch 5 is applied.
+The "with L2 Switch" is causing lots of warning bells to ring for me.
 
-> I tested 'dtbs_check' before submitting this series I tested it again
-> and got the same good result like below.
->
-> Aren't the above warnings false positive? Or did I miss something?
+I don't see any references to switchdev or DSA in this driver. How is
+the switch managed? There have been a few examples in the past of
+similar two port switches being first supported in Dual MAC
+mode. Later trying to actually use the switch in the Linux was always
+ran into problems, and basically needed a new driver. So i want to
+make sure you don't have this problem.
 
-What you missed is this is an ABI. You cannot make something required
-that was not required before. If the driver follows the schema and
-makes 'clocks' required, then old DTBs with a new kernel will break.
+In the Linux world, Ethernet switches default to having there
+ports/interfaces separated. This effectively gives you your dual MAC
+mode by default.  You then create a Linux bridge, and add the
+ports/interfaces to the bridge. switchdev is used to offload the
+bridge, telling the hardware to enable the L2 switch between the
+ports.
 
-It's possible that 'clocks' was always required or that it never
-worked without clocks, then this change is okay. Looking at this
-patch, I have no way to know that. The commit message has to explain
-that. A commit message needs to answer WHY are you making the change.
-You don't really need WHAT the change is as anyone can read the diff.
+So you don't need the mode parameter in DT. switchdev tells you
+this. Switchdev gives user space access to the address table etc.
 
-Rob
+> +obj-$(CONFIG_NET_VENDOR_SUNPLUS) += sp_l2sw.o
+...
+> +struct l2sw_common {
+
+Please change your prefix. l2sw is a common prefix, there are other
+silicon vendors using l2sw. I would suggest sp_l2sw or spl2sw.
+
+> +static int ethernet_do_ioctl(struct net_device *net_dev, struct ifreq *ifr, int cmd)
+> +{
+> +	struct l2sw_mac *mac = netdev_priv(net_dev);
+> +	struct l2sw_common *comm = mac->comm;
+> +	struct mii_ioctl_data *data = if_mii(ifr);
+> +	unsigned long flags;
+> +
+> +	pr_debug(" if = %s, cmd = %04x\n", ifr->ifr_ifrn.ifrn_name, cmd);
+> +	pr_debug(" phy_id = %d, reg_num = %d, val_in = %04x\n", data->phy_id,
+> +		 data->reg_num, data->val_in);
+
+You should not be using any of the pr_ functions. You have a net_dev,
+so netdev_dbg().
+
+> +
+> +	// Check parameters' range.
+> +	if ((cmd == SIOCGMIIREG) || (cmd == SIOCSMIIREG)) {
+> +		if (data->reg_num > 31) {
+> +			pr_err(" reg_num (= %d) excesses range!\n", (int)data->reg_num);
+
+Don't spam the kernel log for things like this.
+
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	switch (cmd) {
+> +	case SIOCGMIIPHY:
+> +		if (comm->dual_nic && (strcmp(ifr->ifr_ifrn.ifrn_name, "eth1") == 0))
+
+You cannot rely on the name, systemd has probably renamed it. If you
+have using phylib correctly, net_dev->phydev is what you want.
+
+
+> +			return comm->phy2_addr;
+> +		else
+> +			return comm->phy1_addr;
+> +
+> +	case SIOCGMIIREG:
+> +		spin_lock_irqsave(&comm->ioctl_lock, flags);
+> +		data->val_out = mdio_read(data->phy_id, data->reg_num);
+> +		spin_unlock_irqrestore(&comm->ioctl_lock, flags);
+> +		pr_debug(" val_out = %04x\n", data->val_out);
+> +		break;
+> +
+> +	case SIOCSMIIREG:
+> +		spin_lock_irqsave(&comm->ioctl_lock, flags);
+> +		mdio_write(data->phy_id, data->reg_num, data->val_in);
+> +		spin_unlock_irqrestore(&comm->ioctl_lock, flags);
+> +		break;
+> +
+
+You should be using phylink_mii_ioctl() or phy_mii_ioctl().
+
+You locking is also suspect.
+
+> +static int ethernet_change_mtu(struct net_device *ndev, int new_mtu)
+> +{
+> +	if (netif_running(ndev))
+> +		return -EBUSY;
+> +
+> +	if (new_mtu < 68 || new_mtu > ETH_DATA_LEN)
+> +		return -EINVAL;
+
+The core will do this for you, if you set the values in the ndev
+correct at probe time.
+
+> +
+> +	ndev->mtu = new_mtu;
+> +
+> +	return 0;
+> +}
+> +
+
+
+> +static int mdio_access(u8 op_cd, u8 dev_reg_addr, u8 phy_addr, u32 wdata)
+> +{
+> +	u32 value, time = 0;
+> +
+> +	HWREG_W(phy_cntl_reg0, (wdata << 16) | (op_cd << 13) | (dev_reg_addr << 8) | phy_addr);
+> +	wmb();			// make sure settings are effective.
+
+That suggests you are using the wrong macros to access the registers.
+
+> +	do {
+> +		if (++time > MDIO_RW_TIMEOUT_RETRY_NUMBERS) {
+> +			pr_err(" mdio failed to operate!\n");
+> +			time = 0;
+> +		}
+> +
+> +		value = HWREG_R(phy_cntl_reg1);
+> +	} while ((value & 0x3) == 0);
+
+include/linux/iopoll.h.
+
+
+> +	if (time == 0)
+> +		return -1;
+
+-ETIMDEOUT. One of the advantages of iopoll.h is that reusing code
+ avoids issues like this.
+
+> +u32 mdio_read(u32 phy_id, u16 regnum)
+> +{
+> +	int ret;
+
+Please check for C45 and return -EOPNOTSUPP.
+
+> +
+> +	ret = mdio_access(MDIO_READ_CMD, regnum, phy_id, 0);
+> +	if (ret < 0)
+> +		return -EIO;
+> +
+> +	return ret;
+> +}
+> +
+> +u32 mdio_write(u32 phy_id, u32 regnum, u16 val)
+> +{
+> +	int ret;
+> +
+
+Please check for C45 and return -EOPNOTSUPP.
+
+> +	ret = mdio_access(MDIO_WRITE_CMD, regnum, phy_id, val);
+> +	if (ret < 0)
+> +		return -EIO;
+> +
+> +	return 0;
+> +}
+> +
+> +inline void tx_trigger(void)
+
+No inline functions in C code. Let the compiler decide.
+
+> +int phy_cfg(struct l2sw_mac *mac)
+> +{
+> +	// Bug workaround:
+> +	// Flow-control of phy should be enabled. L2SW IP flow-control will refer
+> +	// to the bit to decide to enable or disable flow-control.
+> +	mdio_write(mac->comm->phy1_addr, 4, mdio_read(mac->comm->phy1_addr, 4) | (1 << 10));
+> +	mdio_write(mac->comm->phy2_addr, 4, mdio_read(mac->comm->phy2_addr, 4) | (1 << 10));
+
+This should be in the PHY driver. The MAC driver should never need to
+touch PHY registers.
+
+> +++ b/drivers/net/ethernet/sunplus/l2sw_mdio.c
+> @@ -0,0 +1,118 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright Sunplus Technology Co., Ltd.
+> + *       All rights reserved.
+> + */
+> +
+> +#include "l2sw_mdio.h"
+> +
+> +static int mii_read(struct mii_bus *bus, int phy_id, int regnum)
+> +{
+> +	return mdio_read(phy_id, regnum);
+> +}
+> +
+> +static int mii_write(struct mii_bus *bus, int phy_id, int regnum, u16 val)
+> +{
+> +	return mdio_write(phy_id, regnum, val);
+> +}
+> +
+> +u32 mdio_init(struct platform_device *pdev, struct net_device *net_dev)
+> +{
+> +	struct l2sw_mac *mac = netdev_priv(net_dev);
+> +	struct mii_bus *mii_bus;
+> +	struct device_node *mdio_node;
+> +	u32 ret;
+> +
+> +	mii_bus = mdiobus_alloc();
+> +	if (!mii_bus) {
+> +		pr_err(" Failed to allocate mdio_bus memory!\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	mii_bus->name = "sunplus_mii_bus";
+> +	mii_bus->parent = &pdev->dev;
+> +	mii_bus->priv = mac;
+> +	mii_bus->read = mii_read;
+> +	mii_bus->write = mii_write;
+> +	snprintf(mii_bus->id, MII_BUS_ID_SIZE, "%s-mii", dev_name(&pdev->dev));
+> +
+> +	mdio_node = of_get_parent(mac->comm->phy1_node);
+> +	ret = of_mdiobus_register(mii_bus, mdio_node);
+> +	if (ret) {
+> +		pr_err(" Failed to register mii bus (ret = %d)!\n", ret);
+> +		mdiobus_free(mii_bus);
+> +		return ret;
+> +	}
+> +
+> +	mac->comm->mii_bus = mii_bus;
+> +	return ret;
+> +}
+> +
+> +void mdio_remove(struct net_device *net_dev)
+> +{
+> +	struct l2sw_mac *mac = netdev_priv(net_dev);
+> +
+> +	if (mac->comm->mii_bus) {
+> +		mdiobus_unregister(mac->comm->mii_bus);
+> +		mdiobus_free(mac->comm->mii_bus);
+> +		mac->comm->mii_bus = NULL;
+> +	}
+> +}
+
+You MDIO code is pretty scattered around. Please bring it all together
+in one file.
+
+> +static void mii_linkchange(struct net_device *netdev)
+> +{
+> +}
+
+Nothing to do? Seems very odd. Don't you need to tell the MAC it
+should do 10Mbps or 100Mbps? What about pause?
+
+> +
+> +int mac_phy_probe(struct net_device *netdev)
+> +{
+> +	struct l2sw_mac *mac = netdev_priv(netdev);
+> +	struct phy_device *phydev;
+> +	int i;
+> +
+> +	phydev = of_phy_connect(mac->net_dev, mac->comm->phy1_node, mii_linkchange,
+> +				0, PHY_INTERFACE_MODE_RGMII_ID);
+
+You should not hard code PHY_INTERFACE_MODE_RGMII_ID. Use the DT
+property "phy-mode"
+
+> +	if (!phydev) {
+> +		pr_err(" \"%s\" has no phy found\n", netdev->name);
+> +		return -1;
+
+-ENODEV;
+
+Never use -1, pick an error code.
+
+> +	}
+> +
+> +	if (mac->comm->phy2_node) {
+> +		of_phy_connect(mac->net_dev, mac->comm->phy2_node, mii_linkchange,
+> +			       0, PHY_INTERFACE_MODE_RGMII_ID);
+> +	}
+> +
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_Pause_BIT, phydev->supported);
+> +	linkmode_clear_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT, phydev->supported);
+
+So the MAC does not support pause? I'm then confused about phy_cfg().
+
+   Andrew
