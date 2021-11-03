@@ -2,118 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 122064447BF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 18:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F40DE4447C2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 18:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbhKCRxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 13:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
+        id S230191AbhKCRyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 13:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229888AbhKCRx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 13:53:29 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD833C061714
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 10:50:52 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id k2so3133210pff.11
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 10:50:52 -0700 (PDT)
+        with ESMTP id S229697AbhKCRyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 13:54:00 -0400
+Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEA77C061714;
+        Wed,  3 Nov 2021 10:51:23 -0700 (PDT)
+Received: by mail-ua1-x92e.google.com with SMTP id b17so6091629uas.0;
+        Wed, 03 Nov 2021 10:51:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cec1IkGMyor9VWmtx4jxePpP/Ury3qWcerMb8kIcD10=;
-        b=O3z2y09w9dx+iV6Qr5gJ98blbky1rfmN7YLMMxfIfhxNjTy5u1uuiOOcNenEJIHEGu
-         XUJMzbtjN4O04iwjKDTNuTUtDBeR1rtHgd2v6Zzrjb7P/vzaTAM4L7m0BKXRpKOc16Ux
-         TsuJJFZqENF9TyOjHHY/dSG7O+yn862e96nU5iB0M6yBxlcggVwzRmHP5+ZVSYXQaPQT
-         vYxsCJbUKA0CcAIDxeWMUkSn473dUUiTsbLp30zeTaQWpvtLWQ4VuimyjqGmcVbLcgQm
-         guiURi0D0S1fMkfTOVLg77JBZsHTzUGjxVyWAMAajtKBGiylFbmxBAfb711JFSEKVxbj
-         enRg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y16TxmkBvfqZgNLIXU85g39fksG0Qn9oks7FAgvFiCM=;
+        b=fPXyM8mzP3xvv8wh3rn4V3uaO87BNrn0AJ9Qk+6md27hPqHI7elIBnRFfZrMbkrB8z
+         HMRAMWtnw0XtczVwAoKFJVJIdYOkvt8HQYEM8C6xTdZXiSzf4OZxmxoe6Y08fRhREPSJ
+         XIWi2Lh6dvIz44V28gaJTn+LjOAiatp6weuHgHr8HN783Bom+vt60CdU1nql8hJzFwAf
+         8xk0AzN3X2eOPziruIBW+zMsjC7zIG02FuAJFh5F++waTBxWkxxKZf6WCNIdprizOMbW
+         Xm+0CZZTDVOgSmjSd7lFoDAmPZFRD0BUunnY1+vhJaIeWPGb9aoKk/6xNIoKE9mP9EBy
+         QQOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cec1IkGMyor9VWmtx4jxePpP/Ury3qWcerMb8kIcD10=;
-        b=MoGrAMI+i4V8uoN2h4q8CetYoQos2hUwYo70CH5YLLJIX/1KErN/widWfxWaN3wmmK
-         Rm2vut7mGVAFkXBBJVFRA7sKVnrGHithzf+ujatj/hiQKYemLHcVvFD6iu00BG1G2WxT
-         fgRhoXziU4RuwvHpI1bnr/pDc+BMIOsObfdKn7dJfxfOhOC1C1bk7MHuWCs+wF1ZfQKf
-         Ua3p0AapO/KVTcZbEA/CJ/ZQKdykTD7NWLMVKxuj6iPJD1jIVuvv4RrPLy9vBWzqoXVV
-         xQYbIlgqhczJKVPOjOzs+T+omSnn6yjt9WJz5+HY79xTxIxZxbFf5YDojAZ4+FQt3Ed0
-         jcAg==
-X-Gm-Message-State: AOAM531SwYknOIFOjHK2HOFBDN9opovvsaq9W/jFJWd9TrzLQEcHdslm
-        20w6w3075vyDm5sEXRS9NMX3o/xw0do=
-X-Google-Smtp-Source: ABdhPJziEKjMSokadyHzCpjSZKz9g11QPkrnoRXfNJa4HHDydIbiElCjq/m9KN2WmMeXUinShR1MaQ==
-X-Received: by 2002:a05:6a00:b48:b0:47c:23e:ecb7 with SMTP id p8-20020a056a000b4800b0047c023eecb7mr45757989pfo.42.1635961852304;
-        Wed, 03 Nov 2021 10:50:52 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id r25sm2287533pge.61.2021.11.03.10.50.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Nov 2021 10:50:51 -0700 (PDT)
-Subject: Re: [PATCH 2/2] mtd: rawnand: brcmnand: support "no-wp" DT property
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211103151117.18690-1-zajec5@gmail.com>
- <20211103151117.18690-2-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <c59157a1-2c15-928f-f5a7-fab7128e8dd2@gmail.com>
-Date:   Wed, 3 Nov 2021 10:50:48 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y16TxmkBvfqZgNLIXU85g39fksG0Qn9oks7FAgvFiCM=;
+        b=6ed8Ak2NxFyuoGWkmmzeNtFP+9ujHdtv9ZDijobAHU4OlBvshZxm2U188Q9L5z5dK/
+         fmT/ex04l0kVE2zarxz6Gk/8lG7Elfd7l2NCv//B5gEChpJnmFfKPtdFfoqrVdAln8m4
+         Vdx1knm2xcNgXy7Ie0RYCeNGQa+ECDf+QyNhkWhDDtzdAl+8c5xuFWAZ0AYHNJk9BTQT
+         tCrJPQf0kyw2zxNfzg01+R5xXegX0poj4npcKcgJjwlm4Qgg8DyGl8Yl8Mxa4k89YgEV
+         dBiQH8zd+0AmJ+suvBt4VdJzBZ/TYADHMgH99ZORQq/Z5pVH8yItVNcCPamWLsS4mAIx
+         CISA==
+X-Gm-Message-State: AOAM532KKTYw+5sL9nIyLuKDlMc9GmQU6KRqXWs9JMN8H57Nx/BWTHb9
+        tx2NYG0H7boJX16/FijrcDVGygK40wCcgHTwII8=
+X-Google-Smtp-Source: ABdhPJx8cB1VYKTTJlveYA1FJ28sZ0zZeouC+gUZUYrWW2QvfiO2tYkKYYUUJqVe1q+ewdOqhm9/EvWuL40E8vwi7uo=
+X-Received: by 2002:ab0:6ca7:: with SMTP id j7mr39236673uaa.133.1635961882870;
+ Wed, 03 Nov 2021 10:51:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20211103151117.18690-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+ <20211102225701.98944-12-Mr.Bossman075@gmail.com> <CAOMZO5AxMXxDkNDqGJDhtepqSUxGRCWO+L=c67O==4fx66M7XQ@mail.gmail.com>
+ <c1610093-95ae-68d3-57ae-93b1bc9715d7@gmail.com> <5ebe48f5-7b9c-be99-d50c-65a056084b96@benettiengineering.com>
+In-Reply-To: <5ebe48f5-7b9c-be99-d50c-65a056084b96@benettiengineering.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 3 Nov 2021 14:51:12 -0300
+Message-ID: <CAOMZO5DHCYaxzSASKq6Bk8ALkiQeVjPOHOyk-pKYepJFJk6oFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 11/13] mmc: sdhci-esdhc-imx: Add sdhc support for
+ i.MXRT series
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>
+Cc:     Jesse Taube <mr.bossman075@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/21 8:11 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Some boards may use WP-capable controller but still have WP not
-> connected. This change fixes:
-> [    1.175550] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-> [    1.184524] bcm63138_nand ff801800.nand: nand #WP expected on
-> [    1.285547] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-> [    1.294516] bcm63138_nand ff801800.nand: nand #WP expected on
-> [    1.395548] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
-> [    1.404517] bcm63138_nand ff801800.nand: nand #WP expected on
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  drivers/mtd/nand/raw/brcmnand/brcmnand.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> index f75929783b94..8b6167457f0c 100644
-> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
-> @@ -714,7 +714,8 @@ static int brcmnand_revision_init(struct brcmnand_controller *ctrl)
->  	if (ctrl->nand_version >= 0x0500)
->  		ctrl->features |= BRCMNAND_HAS_1K_SECTORS;
->  
-> -	if (ctrl->nand_version >= 0x0700)
-> +	if (ctrl->nand_version >= 0x0700 &&
-> +	    !of_property_read_bool(ctrl->dev->of_node, "no-wp"))
->  		ctrl->features |= BRCMNAND_HAS_WP;
+Hi Giulio,
 
-Should not this be a logical OR here or rather, should it be moved out
-of the check on ctrl->nand_version entirely? What revision of the NAND
-controller do you have on that chip?
+On Tue, Nov 2, 2021 at 8:30 PM Giulio Benetti
+<giulio.benetti@benettiengineering.com> wrote:
 
->  	else if (of_property_read_bool(ctrl->dev->of_node, "brcm,nand-has-wp"))
->  		ctrl->features |= BRCMNAND_HAS_WP;
-> 
+> If we add every SoC we will end up having a long list for every device
+> driver. At the moment it would be 7 parts:
+> 1) imxrt1020
+> 2) imxrt1024
+> .
+> .
+> .
+> 7) imxrt1170
+>
+> Is it ok anyway?
 
-
--- 
-Florian
+As this patch adds the support for imxrt1050, I would go with
+"fsl,imxrt1050-usdhc" for now.
