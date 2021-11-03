@@ -2,116 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285E544426D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0EA74442BE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:53:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231151AbhKCNct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 09:32:49 -0400
-Received: from mail-pl1-f170.google.com ([209.85.214.170]:39819 "EHLO
-        mail-pl1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbhKCNct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:32:49 -0400
-Received: by mail-pl1-f170.google.com with SMTP id t21so2476608plr.6;
-        Wed, 03 Nov 2021 06:30:13 -0700 (PDT)
+        id S231970AbhKCN4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 09:56:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232033AbhKCNz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:55:58 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17583C06120A;
+        Wed,  3 Nov 2021 06:53:22 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id m14so9528285edd.0;
+        Wed, 03 Nov 2021 06:53:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dfUFmaE5TGftvuGL4qHxLuZZEptBzH+lcqE9KzsoXGM=;
+        b=Jf1azWXHQGcZ+fZtVcffWmqE0TjjnOeYCBc6wWasWhsJPS+EyIlCb+E7Y2AVfH5ice
+         J6OEjjELuwDgG1shxFq3RdyWucjescEqudtEDZBi6RbslrXYeluaIONomAzItMs50tZM
+         R5ylYvz26n2YGNFk59UgnmDxpzF1yEKtQyYiEQ3vgNQzD2FM0VNcgSeV/zzgT0C/3bIL
+         zVNfro6OK/cQz+Mp6Tas727z4AbqVHjfM+jaMREDMk0ypEcZtJ4WKrS3w8Xft0FuNT3t
+         Bn5Ugdo9BQjKZBfFMoZb6FNo9DIjAov+k/NTsj5K4vlCJnZrE82g4iK7GcXRgCcoVcix
+         H6ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zTMij4riOHLD0cKrMBvNEsbDWm7ejt3VqpUfGJxdY7w=;
-        b=w30Fme3CiHvQKDNNkdMfjSHphx+3+lFFr1hGo321h/V5Bds7z0YYBldKhx0jwNySYP
-         +GDvLyZsJjFpGGaMXdpqOA5/9lpeib/OZmtoQRiLMKGW/D6uVgVp/6wE1k/d2DBGH5Eq
-         Mjwof52X93V2oTu1sosUUFrM3pXcisZaKQewZG87h/9Z+YW9BruOTegvLmlpLi6gwCcq
-         VEECimDokKnnvxmnY4VqSw48eBPIlSV/09PDUpgTCkk9HgrcnzyXFvfJsVIioyDJtdKk
-         jflWWPBdEaruc1AM51uqgWdLe7qpyNlxFlMMpV4K/a275d34BdwCPMS1KyhRz99eEKH1
-         EKvw==
-X-Gm-Message-State: AOAM531fDikhil/13SuoviOWCDCPWrHTq5AoJzxuVQuUtgAeq7fMJbSL
-        uq9klRlng0/wSpXs5/qJwuNQrA6SKsKCVUxBfQQ=
-X-Google-Smtp-Source: ABdhPJwNq6Q76J7qXE/0eAQN5HimezZY3rwDPmoANzNGDoGAXLzuRGbdMKq3Oek9Nc0X4IigXZvlpuqyhJ7hmGVXXQg=
-X-Received: by 2002:a17:902:a60f:b0:141:8996:3fe with SMTP id
- u15-20020a170902a60f00b00141899603femr37563503plq.71.1635946212677; Wed, 03
- Nov 2021 06:30:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=dfUFmaE5TGftvuGL4qHxLuZZEptBzH+lcqE9KzsoXGM=;
+        b=OXL+GVDuPliBnejD6NqJyv9jehHmnH4N0L01Q2Ic8HxK4SN8m8PvrRIys6W2d6HlBF
+         g6P4PbB3SpRtBoBw+RmvxOdZLAQ6/Js0E95ximrXwdycoq4ENpYR/Kw1O7YD+Z4Hr8Ra
+         4BWkkFv7sYobkzMkpd2r6Yi/d+clgAt4igvSG3AnsUxw62/ut1UQHEKPj9GcMXfw4cJ3
+         swOpLaA7/isB/0nhx0S0ApUX/5ep+ZKOIw0tKm4kg82I/+HlnpBjYoGEEydo3wQ0+ftP
+         Ch44MlQPnDdUFhzWUNYZWBrfYMJD5AZ4zcv9D0FeJF/v9LpO4ahaDsr5K2zDXPoPpja/
+         Tq6A==
+X-Gm-Message-State: AOAM531qmxidJ28Y9K6mLjQZGedxssWoHqSwU8Oq+Hf+5/Y7a1DNWMlh
+        hKGk7Qbozne6I2h41gIhs1E=
+X-Google-Smtp-Source: ABdhPJw4gowrGcHdX8t8zp8CVWwIrlYyg4ac+gAgxzIynDCzNMXgKm9Rk1nbNF17m7KktWbyFJvCiA==
+X-Received: by 2002:a05:6402:438f:: with SMTP id o15mr197151edc.235.1635947597131;
+        Wed, 03 Nov 2021 06:53:17 -0700 (PDT)
+Received: from tom-desktop.station (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
+        by smtp.gmail.com with ESMTPSA id g10sm1341017edr.56.2021.11.03.06.53.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Nov 2021 06:53:16 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Adam Ford <aford173@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mm: Add NOC node
+Date:   Wed,  3 Nov 2021 14:53:11 +0100
+Message-Id: <20211103135313.6428-1-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-12-kernel@esmil.dk>
- <1635902437.610819.3880381.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1635902437.610819.3880381.nullmailer@robh.at.kernel.org>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Wed, 3 Nov 2021 14:30:01 +0100
-Message-ID: <CANBLGcwTB27kSRC7HCAJvrk7T0zyj1eM1i4YHj8Prar6JLqTYA@mail.gmail.com>
-Subject: Re: [PATCH v3 11/16] dt-bindings: pinctrl: Add StarFive JH7100 bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Fu Wei <tekkamanninja@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Nov 2021 at 02:20, Rob Herring <robh@kernel.org> wrote:
-> On Tue, 02 Nov 2021 17:11:20 +0100, Emil Renner Berthing wrote:
-> > Add bindings for the GPIO/pin controller on the JH7100 RISC-V SoC by
-> > StarFive Ltd. This is a test chip for their upcoming JH7110 SoC.
-> >
-> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> > ---
-> >
-> > @Linus: I'm really struggling to find a good way to describe how pin
-> > muxing works on the JH7100. As you can see I've now resorted to
-> > ascii-art to try to explain it, but please let me know if it's still
-> > unclear.
-> >
-> >  .../pinctrl/starfive,jh7100-pinctrl.yaml      | 307 ++++++++++++++++++
-> >  1 file changed, 307 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.example.dts:19:18: fatal error: dt-bindings/clock/starfive-jh7100.h: No such file or directory
->    19 |         #include <dt-bindings/clock/starfive-jh7100.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1441: dt_binding_check] Error 2
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1549835
+Add support for dynamic frequency scaling of the main NOC configuration
+on imx8mm.
 
-Hi Rob.
+References:
+ - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
+ - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
+ - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
+ - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/ \
+   arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
 
-It seems like your bot didn't add the clock header because the patch
-already has an Acked-by from you.
+---
+Changes since v1:
+ - Fix noc_opp_table frequencies taking NXP bsp as reference
+ - Add reference link to nxp imx8mm dtsi on commit body
 
-/Emil
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index c2f3f118f82e..1bcc5e361ca3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
+ 			};
+ 		};
+ 
++		noc: interconnect@32700000 {
++			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
++			reg = <0x32700000 0x100000>;
++			clocks = <&clk IMX8MM_CLK_NOC>;
++			fsl,ddrc = <&ddrc>;
++			#interconnect-cells = <1>;
++			operating-points-v2 = <&noc_opp_table>;
++
++			noc_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-150M {
++					opp-hz = /bits/ 64 <150000000>;
++				};
++
++				opp-375M {
++					opp-hz = /bits/ 64 <375000000>;
++				};
++
++				opp-750M {
++					opp-hz = /bits/ 64 <750000000>;
++				};
++			};
++		};
++
+ 		aips2: bus@30400000 {
+ 			compatible = "fsl,aips-bus", "simple-bus";
+ 			reg = <0x30400000 0x400000>;
+-- 
+2.25.1
+
