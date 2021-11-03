@@ -2,129 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0EA74442BE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:53:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC3C4442C8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231970AbhKCN4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 09:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49876 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232033AbhKCNz6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:55:58 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17583C06120A;
-        Wed,  3 Nov 2021 06:53:22 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id m14so9528285edd.0;
-        Wed, 03 Nov 2021 06:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dfUFmaE5TGftvuGL4qHxLuZZEptBzH+lcqE9KzsoXGM=;
-        b=Jf1azWXHQGcZ+fZtVcffWmqE0TjjnOeYCBc6wWasWhsJPS+EyIlCb+E7Y2AVfH5ice
-         J6OEjjELuwDgG1shxFq3RdyWucjescEqudtEDZBi6RbslrXYeluaIONomAzItMs50tZM
-         R5ylYvz26n2YGNFk59UgnmDxpzF1yEKtQyYiEQ3vgNQzD2FM0VNcgSeV/zzgT0C/3bIL
-         zVNfro6OK/cQz+Mp6Tas727z4AbqVHjfM+jaMREDMk0ypEcZtJ4WKrS3w8Xft0FuNT3t
-         Bn5Ugdo9BQjKZBfFMoZb6FNo9DIjAov+k/NTsj5K4vlCJnZrE82g4iK7GcXRgCcoVcix
-         H6ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=dfUFmaE5TGftvuGL4qHxLuZZEptBzH+lcqE9KzsoXGM=;
-        b=OXL+GVDuPliBnejD6NqJyv9jehHmnH4N0L01Q2Ic8HxK4SN8m8PvrRIys6W2d6HlBF
-         g6P4PbB3SpRtBoBw+RmvxOdZLAQ6/Js0E95ximrXwdycoq4ENpYR/Kw1O7YD+Z4Hr8Ra
-         4BWkkFv7sYobkzMkpd2r6Yi/d+clgAt4igvSG3AnsUxw62/ut1UQHEKPj9GcMXfw4cJ3
-         swOpLaA7/isB/0nhx0S0ApUX/5ep+ZKOIw0tKm4kg82I/+HlnpBjYoGEEydo3wQ0+ftP
-         Ch44MlQPnDdUFhzWUNYZWBrfYMJD5AZ4zcv9D0FeJF/v9LpO4ahaDsr5K2zDXPoPpja/
-         Tq6A==
-X-Gm-Message-State: AOAM531qmxidJ28Y9K6mLjQZGedxssWoHqSwU8Oq+Hf+5/Y7a1DNWMlh
-        hKGk7Qbozne6I2h41gIhs1E=
-X-Google-Smtp-Source: ABdhPJw4gowrGcHdX8t8zp8CVWwIrlYyg4ac+gAgxzIynDCzNMXgKm9Rk1nbNF17m7KktWbyFJvCiA==
-X-Received: by 2002:a05:6402:438f:: with SMTP id o15mr197151edc.235.1635947597131;
-        Wed, 03 Nov 2021 06:53:17 -0700 (PDT)
-Received: from tom-desktop.station (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
-        by smtp.gmail.com with ESMTPSA id g10sm1341017edr.56.2021.11.03.06.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 06:53:16 -0700 (PDT)
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Adam Ford <aford173@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: imx8mm: Add NOC node
-Date:   Wed,  3 Nov 2021 14:53:11 +0100
-Message-Id: <20211103135313.6428-1-tomm.merciai@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S232365AbhKCN44 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Nov 2021 09:56:56 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:33827 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232135AbhKCN4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:56:30 -0400
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 060911BF207;
+        Wed,  3 Nov 2021 13:53:51 +0000 (UTC)
+Date:   Wed, 3 Nov 2021 14:53:51 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 3/6] net: ocelot: pre-compute injection frame header
+ content
+Message-ID: <20211103145351.793538c3@fixe.home>
+In-Reply-To: <20211103123811.im5ua7kirogoltm7@skbuf>
+References: <20211103091943.3878621-1-clement.leger@bootlin.com>
+        <20211103091943.3878621-4-clement.leger@bootlin.com>
+        <20211103123811.im5ua7kirogoltm7@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for dynamic frequency scaling of the main NOC configuration
-on imx8mm.
+Le Wed, 3 Nov 2021 12:38:12 +0000,
+Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
 
-References:
- - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
- - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
- - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
- - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/ \
-   arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
+> On Wed, Nov 03, 2021 at 10:19:40AM +0100, Clément Léger wrote:
+> > IFH preparation can take quite some time on slow processors (up to
+> > 5% in a iperf3 test for instance). In order to reduce the cost of
+> > this preparation, pre-compute IFH since most of the parameters are
+> > fixed per port. Only rew_op and vlan tag will be set when sending
+> > if different than 0. This allows to remove entirely the calls to
+> > packing() with basic usage. In the same time, export this function
+> > that will be used by FDMA.
+> > 
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > ---  
+> 
+> Honestly, this feels a bit cheap/gimmicky, and not really the
+> fundamental thing to address. In my testing of a similar idea (see
+> commits 67c2404922c2 ("net: dsa: felix: create a template for the DSA
+> tags on xmit") and then 7c4bb540e917 ("net: dsa: tag_ocelot: create
+> separate tagger for Seville"), the net difference is not that stark,
+> considering that now you need to access one more memory region which
+> you did not need before, do a memcpy, and then patch the IFH anyway
+> for the non-constant stuff.
 
----
-Changes since v1:
- - Fix noc_opp_table frequencies taking NXP bsp as reference
- - Add reference link to nxp imx8mm dtsi on commit body
+The memcpy is neglectable and the patching happens only in a few
+cases (at least vs the packing function call). The VSC7514 CPU is really
+slow and lead to 2.5% up to 5% time spent in packing() when using iperf3
+and depending on the use case (according to ftrace).
 
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+> 
+> Certainly, for the calls to ocelot_port_inject_frame() from DSA, I
+> would prefer not having this pre-computed IFH.
+> 
+> Could you provide some before/after performance numbers and perf
+> counters?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index c2f3f118f82e..1bcc5e361ca3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
- 			};
- 		};
- 
-+		noc: interconnect@32700000 {
-+			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-+			reg = <0x32700000 0x100000>;
-+			clocks = <&clk IMX8MM_CLK_NOC>;
-+			fsl,ddrc = <&ddrc>;
-+			#interconnect-cells = <1>;
-+			operating-points-v2 = <&noc_opp_table>;
-+
-+			noc_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-150M {
-+					opp-hz = /bits/ 64 <150000000>;
-+				};
-+
-+				opp-375M {
-+					opp-hz = /bits/ 64 <375000000>;
-+				};
-+
-+				opp-750M {
-+					opp-hz = /bits/ 64 <750000000>;
-+				};
-+			};
-+		};
-+
- 		aips2: bus@30400000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x30400000 0x400000>;
+I will make another round of measure to confirm my previous number and
+check the impact on the injection rate on ocelot.
+
+> 
+> >  drivers/net/ethernet/mscc/ocelot.c | 23 ++++++++++++++++++-----
+> >  include/soc/mscc/ocelot.h          |  5 +++++
+> >  2 files changed, 23 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/net/ethernet/mscc/ocelot.c
+> > b/drivers/net/ethernet/mscc/ocelot.c index
+> > e6c18b598d5c..97693772595b 100644 ---
+> > a/drivers/net/ethernet/mscc/ocelot.c +++
+> > b/drivers/net/ethernet/mscc/ocelot.c @@ -1076,20 +1076,29 @@ bool
+> > ocelot_can_inject(struct ocelot *ocelot, int grp) }
+> >  EXPORT_SYMBOL(ocelot_can_inject);
+> >  
+> > +void ocelot_ifh_port_set(void *ifh, struct ocelot_port *port, u32
+> > rew_op,
+> > +			 u32 vlan_tag)
+> > +{
+> > +	memcpy(ifh, port->ifh, OCELOT_TAG_LEN);
+> > +
+> > +	if (vlan_tag)
+> > +		ocelot_ifh_set_vlan_tci(ifh, vlan_tag);
+> > +	if (rew_op)
+> > +		ocelot_ifh_set_rew_op(ifh, rew_op);
+> > +}
+> > +EXPORT_SYMBOL(ocelot_ifh_port_set);
+> > +
+> >  void ocelot_port_inject_frame(struct ocelot *ocelot, int port, int
+> > grp, u32 rew_op, struct sk_buff *skb)
+> >  {
+> > +	struct ocelot_port *port_s = ocelot->ports[port];
+> >  	u32 ifh[OCELOT_TAG_LEN / 4] = {0};
+> >  	unsigned int i, count, last;
+> >  
+> >  	ocelot_write_rix(ocelot, QS_INJ_CTRL_GAP_SIZE(1) |
+> >  			 QS_INJ_CTRL_SOF, QS_INJ_CTRL, grp);
+> >  
+> > -	ocelot_ifh_set_bypass(ifh, 1);
+> > -	ocelot_ifh_set_dest(ifh, BIT_ULL(port));
+> > -	ocelot_ifh_set_tag_type(ifh, IFH_TAG_TYPE_C);
+> > -	ocelot_ifh_set_vlan_tci(ifh, skb_vlan_tag_get(skb));
+> > -	ocelot_ifh_set_rew_op(ifh, rew_op);
+> > +	ocelot_ifh_port_set(ifh, port_s, rew_op,
+> > skb_vlan_tag_get(skb)); 
+> >  	for (i = 0; i < OCELOT_TAG_LEN / 4; i++)
+> >  		ocelot_write_rix(ocelot, ifh[i], QS_INJ_WR, grp);
+> > @@ -2128,6 +2137,10 @@ void ocelot_init_port(struct ocelot *ocelot,
+> > int port) 
+> >  	skb_queue_head_init(&ocelot_port->tx_skbs);
+> >  
+> > +	ocelot_ifh_set_bypass(ocelot_port->ifh, 1);
+> > +	ocelot_ifh_set_dest(ocelot_port->ifh, BIT_ULL(port));
+> > +	ocelot_ifh_set_tag_type(ocelot_port->ifh, IFH_TAG_TYPE_C);
+> > +
+> >  	/* Basic L2 initialization */
+> >  
+> >  	/* Set MAC IFG Gaps
+> > diff --git a/include/soc/mscc/ocelot.h b/include/soc/mscc/ocelot.h
+> > index fef3a36b0210..b3381c90ff3e 100644
+> > --- a/include/soc/mscc/ocelot.h
+> > +++ b/include/soc/mscc/ocelot.h
+> > @@ -6,6 +6,7 @@
+> >  #define _SOC_MSCC_OCELOT_H
+> >  
+> >  #include <linux/ptp_clock_kernel.h>
+> > +#include <linux/dsa/ocelot.h>
+> >  #include <linux/net_tstamp.h>
+> >  #include <linux/if_vlan.h>
+> >  #include <linux/regmap.h>
+> > @@ -623,6 +624,8 @@ struct ocelot_port {
+> >  
+> >  	struct net_device		*bridge;
+> >  	u8				stp_state;
+> > +
+> > +	u8				ifh[OCELOT_TAG_LEN];
+> >  };
+> >  
+> >  struct ocelot {
+> > @@ -754,6 +757,8 @@ void __ocelot_target_write_ix(struct ocelot
+> > *ocelot, enum ocelot_target target, bool ocelot_can_inject(struct
+> > ocelot *ocelot, int grp); void ocelot_port_inject_frame(struct
+> > ocelot *ocelot, int port, int grp, u32 rew_op, struct sk_buff *skb);
+> > +void ocelot_ifh_port_set(void *ifh, struct ocelot_port *port, u32
+> > rew_op,
+> > +			 u32 vlan_tag);
+> >  int ocelot_xtr_poll_frame(struct ocelot *ocelot, int grp, struct
+> > sk_buff **skb); void ocelot_drain_cpu_queue(struct ocelot *ocelot,
+> > int grp); 
+> > -- 
+> > 2.33.0
+>   
+
+
+
 -- 
-2.25.1
-
+Clément Léger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
