@@ -2,126 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C0E444096
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 12:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 533644440AE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 12:38:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231491AbhKCL3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 07:29:55 -0400
-Received: from smtp-out1.suse.de ([195.135.220.28]:45942 "EHLO
-        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbhKCL3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 07:29:54 -0400
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id D71022191C;
-        Wed,  3 Nov 2021 11:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1635938836; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tHDQTPPlwCBAfRJ/hGFL2abVzTPFrE2eh29ZrCMP+eo=;
-        b=zgN6OeaJMiUC71gW8J3hYQmmu98d2zj6I18FMXfCe4igQpLSMpZVJ55RrmVufK3f0itps0
-        ieGtgAgFh97DC4dzfBhYoGi+62uGJUMV9xB37jhWkhJyNcCaqw6T9P5X4z6mlO29+v8+0/
-        6ixTmeaPCa+GhjZ56uR5J7Ttg8KKRpM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1635938836;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tHDQTPPlwCBAfRJ/hGFL2abVzTPFrE2eh29ZrCMP+eo=;
-        b=zlJfnthIOJPrejOKglZy+LPazj7KEMSF2GIQQH12rYNR/q5COlwhfvPTtBnEz8TViuWyDH
-        zMtRZdbRck8AO/Cg==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 47DBC13DC1;
-        Wed,  3 Nov 2021 11:27:16 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id B1ipDhRygmGCMwAAMHmgww
-        (envelope-from <dkirjanov@suse.de>); Wed, 03 Nov 2021 11:27:16 +0000
-Subject: Re: [PATCH 0/2] This is a patch series of ethernet driver for Sunplus
- SP7021 SoC.
-To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        id S230331AbhKCLkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 07:40:43 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:53537 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230250AbhKCLkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 07:40:42 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 64634580680;
+        Wed,  3 Nov 2021 07:38:05 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Wed, 03 Nov 2021 07:38:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=Bh+TVp5AmthS4YjYhwT0Gon4om
+        Ev2M/f0yD7Lqts/Ww=; b=I18lUOorQbLua8S7MzWMzK297Wb4xWgYCtlmxJMHAz
+        PgrysecQb5FRrzvgIBLtUGLq3D1haQObBYrblbQKpjpYK/hGJSHxCMusj+VZd2u3
+        063dZsxnWcVH9hEuYdsrJHx43W1SDGzf4kF4eIb3u6Q6ldp1o8CWfC2iG4R30jYX
+        s45A9DATLGhqBn0FqojTZaj+amCSM8IuZy+0ctKetg4BHdbGlUJ6ltTT3WFGo4cK
+        Dmdlw48I+3zhZHIeILQq8Hicp/bg7gUZ1dkT/me3ifIQ+KwOV4QVG4gdjwR9ZGgH
+        bFaQyzkdTf8E0Iv4lFnMrd+sculS9qp5ElBE7brqU2iQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Bh+TVp5AmthS4YjYh
+        wT0Gon4omEv2M/f0yD7Lqts/Ww=; b=LYLhHN5t2MXvDlMiSqFMmdOn/Ggm0JzgA
+        117boKapBsJX11FsB+dDME76zNpiUmAHvDi22FwzNqXEA9BMkqrtgpZvAyIZqWRO
+        j1OIMBLW8RO9yOPBMeotpOqZ6RtSDkcJR47rSr67pDFOLeZAQyOiFCiHYdKTFJuR
+        3yrEjZE6c+PI/FkPzG+myG4jhueEcPKm6uj6p5m+xke2SoKdN2O++f0Ht+EIkBpI
+        psiB+xd0IrxNRWTdOiCGCwHSRtV13HObBe5ynr2eDraQxl/2L3euotpxAOgRcBDU
+        NUJHfPR9yfLenJenIAhHS2CKsYSQKn8R5VM2E6MjGoGExvkzbYbzQ==
+X-ME-Sender: <xms:nXSCYYk20NLMQyghHFw0xJu9uYe7xFZeAWLevcJbl5DtNsKctNE_-g>
+    <xme:nXSCYX1q6C8WD6Zt_AcZMAaTImT7IdwKCDXkY5stZw3PkqDnjAetBnPb3vBRPyl3v
+    qB886amOvYcNRSVVyU>
+X-ME-Received: <xmr:nXSCYWr9Pb6puFI09UuvSY0nK9nh86TTN2Jc5I8L4QT87ky-wtYLasgnyIM1p_uA91YddIVKRz8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrtddvgdeftdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
+    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
+    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
+    hirhdvfedrmhgv
+X-ME-Proxy: <xmx:nXSCYUmOrYAYe2v64K3G23Pj_-PuTPEgWFaJO6TsLFpQm0MR1NbvRA>
+    <xmx:nXSCYW3vSm3FbWeeGn15NtOMfp7rmkrFX9VUPMU6x2xh5M-SO68G0g>
+    <xmx:nXSCYbt7ZpvQgECR7B9o21qdXL66Q9fsOcomjauYy3DUYTuMN4-RIA>
+    <xmx:nXSCYfs2sENOh54shoa0n0l76-i9VunkPeP-4rmP2NiOGA0yfXyOHg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 3 Nov 2021 07:38:00 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     dmitry.torokhov@gmail.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, benjamin.tissoires@redhat.com
+Cc:     linux-imx@nxp.com, jikos@kernel.org, linux-input@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Cc:     Wells Lu <wells.lu@sunplus.com>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
-From:   Denis Kirjanov <dkirjanov@suse.de>
-Message-ID: <588dea1c-db2e-8e6c-d559-3ba53b0ae820@suse.de>
-Date:   Wed, 3 Nov 2021 14:27:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        linux-arm-kernel@lists.infradead.org, alistair23@gmail.com,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v14 1/3] HID: quirks: Allow inverting the absolute X/Y values
+Date:   Wed,  3 Nov 2021 21:37:46 +1000
+Message-Id: <20211103113748.61046-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <cover.1635936610.git.wells.lu@sunplus.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: ru
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add a HID_QUIRK_X_INVERT/HID_QUIRK_Y_INVERT quirk that can be used
+to invert the X/Y values.
 
+Signed-off-by: Alistair Francis <alistair@alistair23.me>
+---
+ drivers/hid/hid-input.c | 6 ++++++
+ include/linux/hid.h     | 2 ++
+ 2 files changed, 8 insertions(+)
 
-11/3/21 2:02 PM, Wells Lu пишет:
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
-> etc.) into a single chip. It is designed for industrial control
-> applications.
+diff --git a/drivers/hid/hid-input.c b/drivers/hid/hid-input.c
+index 4b5ebeacd283..173fcd3d92df 100644
+--- a/drivers/hid/hid-input.c
++++ b/drivers/hid/hid-input.c
+@@ -1328,6 +1328,12 @@ void hidinput_hid_event(struct hid_device *hid, struct hid_field *field, struct
+ 
+ 	input = field->hidinput->input;
+ 
++	if (usage->type == EV_ABS &&
++		(((*quirks & HID_QUIRK_X_INVERT) && usage->code == ABS_X) ||
++		 ((*quirks & HID_QUIRK_Y_INVERT) && usage->code == ABS_Y))) {
++			value = field->logical_maximum - value;
++	}
++
+ 	if (usage->hat_min < usage->hat_max || usage->hat_dir) {
+ 		int hat_dir = usage->hat_dir;
+ 		if (!hat_dir)
+diff --git a/include/linux/hid.h b/include/linux/hid.h
+index 9e067f937dbc..4959385ca588 100644
+--- a/include/linux/hid.h
++++ b/include/linux/hid.h
+@@ -349,6 +349,8 @@ struct hid_item {
+ /* BIT(9) reserved for backward compatibility, was NO_INIT_INPUT_REPORTS */
+ #define HID_QUIRK_ALWAYS_POLL			BIT(10)
+ #define HID_QUIRK_INPUT_PER_APP			BIT(11)
++#define HID_QUIRK_X_INVERT			BIT(12)
++#define HID_QUIRK_Y_INVERT			BIT(13)
+ #define HID_QUIRK_SKIP_OUTPUT_REPORTS		BIT(16)
+ #define HID_QUIRK_SKIP_OUTPUT_REPORT_ID		BIT(17)
+ #define HID_QUIRK_NO_OUTPUT_REPORTS_ON_INTR_EP	BIT(18)
+-- 
+2.31.1
 
-The series should pe prefixes with net-next
-
-> 
-> Refer to:
-> https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-> https://tibbo.com/store/plus1.html
-> 
-> Wells Lu (2):
->    devicetree: bindings: net: Add bindings doc for Sunplus SP7021.
->    net: ethernet: Add driver for Sunplus SP7021
-> 
->   .../bindings/net/sunplus,sp7021-l2sw.yaml          | 123 ++++
->   MAINTAINERS                                        |   8 +
->   drivers/net/ethernet/Kconfig                       |   1 +
->   drivers/net/ethernet/Makefile                      |   1 +
->   drivers/net/ethernet/sunplus/Kconfig               |  20 +
->   drivers/net/ethernet/sunplus/Makefile              |   6 +
->   drivers/net/ethernet/sunplus/l2sw_define.h         | 221 ++++++
->   drivers/net/ethernet/sunplus/l2sw_desc.c           | 233 ++++++
->   drivers/net/ethernet/sunplus/l2sw_desc.h           |  21 +
->   drivers/net/ethernet/sunplus/l2sw_driver.c         | 779 +++++++++++++++++++++
->   drivers/net/ethernet/sunplus/l2sw_driver.h         |  23 +
->   drivers/net/ethernet/sunplus/l2sw_hal.c            | 422 +++++++++++
->   drivers/net/ethernet/sunplus/l2sw_hal.h            |  47 ++
->   drivers/net/ethernet/sunplus/l2sw_int.c            | 326 +++++++++
->   drivers/net/ethernet/sunplus/l2sw_int.h            |  16 +
->   drivers/net/ethernet/sunplus/l2sw_mac.c            |  68 ++
->   drivers/net/ethernet/sunplus/l2sw_mac.h            |  24 +
->   drivers/net/ethernet/sunplus/l2sw_mdio.c           | 118 ++++
->   drivers/net/ethernet/sunplus/l2sw_mdio.h           |  19 +
->   drivers/net/ethernet/sunplus/l2sw_register.h       |  99 +++
->   20 files changed, 2575 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/net/sunplus,sp7021-l2sw.yaml
->   create mode 100644 drivers/net/ethernet/sunplus/Kconfig
->   create mode 100644 drivers/net/ethernet/sunplus/Makefile
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_define.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_desc.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_desc.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_driver.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_driver.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_hal.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_hal.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_int.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_int.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_mac.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_mac.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_mdio.c
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_mdio.h
->   create mode 100644 drivers/net/ethernet/sunplus/l2sw_register.h
-> 
