@@ -2,180 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 461DB444712
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 18:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 122064447BF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 18:50:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbhKCRcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 13:32:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50644 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229780AbhKCRcA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Nov 2021 13:32:00 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 07F8761101;
-        Wed,  3 Nov 2021 17:29:20 +0000 (UTC)
-Date:   Wed, 3 Nov 2021 17:33:55 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 3/3] iio: addac: add AD74413R driver
-Message-ID: <20211103173355.5dd39406@jic23-huawei>
-In-Reply-To: <CAA+onPN89FJwUFRc3P7ROxPW1qcbSFSq9XxyA-UZw6Mx3XEO-A@mail.gmail.com>
-References: <20211028134849.3664969-1-demonsingur@gmail.com>
-        <20211028134849.3664969-3-demonsingur@gmail.com>
-        <20211028165847.4baa8566@jic23-huawei>
-        <CAA+onPPObFeXQwJ450M=5Ue3uE6Cui0M0X49qgn_U1D6su=BcA@mail.gmail.com>
-        <20211030165406.149b9036@jic23-huawei>
-        <CAA+onPN89FJwUFRc3P7ROxPW1qcbSFSq9XxyA-UZw6Mx3XEO-A@mail.gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230463AbhKCRxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 13:53:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229888AbhKCRx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 13:53:29 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD833C061714
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 10:50:52 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id k2so3133210pff.11
+        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 10:50:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=cec1IkGMyor9VWmtx4jxePpP/Ury3qWcerMb8kIcD10=;
+        b=O3z2y09w9dx+iV6Qr5gJ98blbky1rfmN7YLMMxfIfhxNjTy5u1uuiOOcNenEJIHEGu
+         XUJMzbtjN4O04iwjKDTNuTUtDBeR1rtHgd2v6Zzrjb7P/vzaTAM4L7m0BKXRpKOc16Ux
+         TsuJJFZqENF9TyOjHHY/dSG7O+yn862e96nU5iB0M6yBxlcggVwzRmHP5+ZVSYXQaPQT
+         vYxsCJbUKA0CcAIDxeWMUkSn473dUUiTsbLp30zeTaQWpvtLWQ4VuimyjqGmcVbLcgQm
+         guiURi0D0S1fMkfTOVLg77JBZsHTzUGjxVyWAMAajtKBGiylFbmxBAfb711JFSEKVxbj
+         enRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=cec1IkGMyor9VWmtx4jxePpP/Ury3qWcerMb8kIcD10=;
+        b=MoGrAMI+i4V8uoN2h4q8CetYoQos2hUwYo70CH5YLLJIX/1KErN/widWfxWaN3wmmK
+         Rm2vut7mGVAFkXBBJVFRA7sKVnrGHithzf+ujatj/hiQKYemLHcVvFD6iu00BG1G2WxT
+         fgRhoXziU4RuwvHpI1bnr/pDc+BMIOsObfdKn7dJfxfOhOC1C1bk7MHuWCs+wF1ZfQKf
+         Ua3p0AapO/KVTcZbEA/CJ/ZQKdykTD7NWLMVKxuj6iPJD1jIVuvv4RrPLy9vBWzqoXVV
+         xQYbIlgqhczJKVPOjOzs+T+omSnn6yjt9WJz5+HY79xTxIxZxbFf5YDojAZ4+FQt3Ed0
+         jcAg==
+X-Gm-Message-State: AOAM531SwYknOIFOjHK2HOFBDN9opovvsaq9W/jFJWd9TrzLQEcHdslm
+        20w6w3075vyDm5sEXRS9NMX3o/xw0do=
+X-Google-Smtp-Source: ABdhPJziEKjMSokadyHzCpjSZKz9g11QPkrnoRXfNJa4HHDydIbiElCjq/m9KN2WmMeXUinShR1MaQ==
+X-Received: by 2002:a05:6a00:b48:b0:47c:23e:ecb7 with SMTP id p8-20020a056a000b4800b0047c023eecb7mr45757989pfo.42.1635961852304;
+        Wed, 03 Nov 2021 10:50:52 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id r25sm2287533pge.61.2021.11.03.10.50.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Nov 2021 10:50:51 -0700 (PDT)
+Subject: Re: [PATCH 2/2] mtd: rawnand: brcmnand: support "no-wp" DT property
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211103151117.18690-1-zajec5@gmail.com>
+ <20211103151117.18690-2-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <c59157a1-2c15-928f-f5a7-fab7128e8dd2@gmail.com>
+Date:   Wed, 3 Nov 2021 10:50:48 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20211103151117.18690-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Nov 2021 16:17:24 +0200
-Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-> > Too much context removed. I had to go back and look earlier in the thread
-> > to work out what was being discussed.  Particularly as I think these  
-> aren't
-> > even in order!  
+On 11/3/21 8:11 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> I'm sorry, I'm new to the LKML.
+> Some boards may use WP-capable controller but still have WP not
+> connected. This change fixes:
+> [    1.175550] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
+> [    1.184524] bcm63138_nand ff801800.nand: nand #WP expected on
+> [    1.285547] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
+> [    1.294516] bcm63138_nand ff801800.nand: nand #WP expected on
+> [    1.395548] bcm63138_nand ff801800.nand: timeout on status poll (expected c0000040 got c00000c0)
+> [    1.404517] bcm63138_nand ff801800.nand: nand #WP expected on
 > 
-> > > > Rule it out in the dt binding and enforce it at probe time not here  
-> which
-> > > is far too late.  
-> > > > As below, this should be prevented at probe time not runtime.  
-> > >
-> > > This is done so that the GPIO indices are kept the same as the hardware
-> > > channels, 0, 1, 2, 3.
-> > > Depending on their mode, some GPIOs can only be read and some of them  
-> can
-> > > only be written to.
-> > > I'm not sure how you would want to do this at probe time?  
-> >
-> > I'm not totally following, but took more a look at the datasheet.
-> >
-> > Device has 4 GPO pins whch is fine.  Those are simple output only pins.  
-> For
-> > those, if they are in a mode where you are controlling them then you can
-> > cache the value - if they are in comparator mode then they aren't really
-> > acting as GPIO pins at all the value you are reading is reflecting the
-> > input on the other side of the device on a different pin. So in that
-> > case don't register these with the GPIO subsystem at all.
-> > Instead you are registering channels selected from A,B,C,D
-> >  
-> > >
-> > > Logic parallel mode is reserved for set_multiple, when the GPIO is in  
-> logic
-> > > mode.  
-> > So, it took me a while to understand what we would loose by 'only'  
-> providing
-> > the logic parallel mode.  If we only had logic high / logic low as the  
-> options
-> > then a sensible driver option would be to map any GPO configuration to the
-> > logic parallel mode.  It enables more functionality.  However, that got  
-> me thinking
-> > for why we had high impedance and 100kOhms as options.
-> >
-> > These allow you to implement shared buses over these pins.  Which  
-> incidentally
-> > should probably be mapped through to the various gpio subsystem controls
-> > to reflect these options.
-> >
-> > So the state combinations you might well have would be...
-> >
-> > Logic low / logic high
-> > 100kOhm pull down / logic high (something like an i2c bus would use this)
-> > tristate so logic low / logic high / high impedance.(don't care or off)
-> >
-> > Other than the first one, these require you to not be in the GPO mode.
-> >
-> > However, this is all stuff that depends on what these are wired to - so  
-> the
-> > dts should reflect that rather than simply setting the mode to one of
-> >
-> > +          0 - GPO_CONFIG_100K_PULL_DOWN
-> > +          1 - GPO_CONFIG_LOGIC
-> > +          3 - GPO_CONFIG_DEBOUNCED_COMPARATOR
-> > +          4 - GPO_CONFIG_HIGH_IMPEDANCE
-> >
-> > The only exception being the debounce comparator. So the question is where
-> > would that be wired to?
-> >  
-> > > GPIOs are referred to as GPO in the datasheet, so I used this name in  
-> the
-> > > driver too.  
-> >
-> > Sort of... As above, the output pins are GPO, the input pins are the ones
-> > the comparator is running on - whilst there value is relected on the  
-> outputs
-> > when in the right mode (and that's the only one you can read them in) they
-> > are not the same channel.  I'm not sure they should map to the same  
-> index...
-> >  
-> > >  
-> > > > Error out of this function is fine, but why not just leave this  
-> channel
-> > > disabled
-> > > rather than failing to probe which I think is what will currently  
-> happen?
-> > >
-> > > Sure, I could make invalid channel and gpo functions fallback to default
-> > > function.
-> > > But why tolerate errors in the dts configuration?  
-> >
-> > I don't think it is an error but rather a function you haven't enabled yet
-> > in a specific driver.  dts is for the hardware, not your particular  
-> driver.
-> >
-> > Mind you, I think the binding around this needs to change entirely anyway
-> > so this will probably not end up relevant.  
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  drivers/mtd/nand/raw/brcmnand/brcmnand.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> Okay, so after some more thought I realized where I went wrong with
-> this implementation. I'm writing down my ideas before I go implement
-> it so we can get on the same page.
+> diff --git a/drivers/mtd/nand/raw/brcmnand/brcmnand.c b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> index f75929783b94..8b6167457f0c 100644
+> --- a/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> +++ b/drivers/mtd/nand/raw/brcmnand/brcmnand.c
+> @@ -714,7 +714,8 @@ static int brcmnand_revision_init(struct brcmnand_controller *ctrl)
+>  	if (ctrl->nand_version >= 0x0500)
+>  		ctrl->features |= BRCMNAND_HAS_1K_SECTORS;
+>  
+> -	if (ctrl->nand_version >= 0x0700)
+> +	if (ctrl->nand_version >= 0x0700 &&
+> +	    !of_property_read_bool(ctrl->dev->of_node, "no-wp"))
+>  		ctrl->features |= BRCMNAND_HAS_WP;
+
+Should not this be a logical OR here or rather, should it be moved out
+of the check on ctrl->nand_version entirely? What revision of the NAND
+controller do you have on that chip?
+
+>  	else if (of_property_read_bool(ctrl->dev->of_node, "brcm,nand-has-wp"))
+>  		ctrl->features |= BRCMNAND_HAS_WP;
 > 
-> Device-tree configuration should only specify if a gpo is in comparator
-> mode or not. When not in comparator mode, the gpo is in output mode.
-> When in output mode, it is exposed as an output-only gpio pin.
-> 
-> When a channel is in digital input mode, an input-only gpio is exposed
-> for the value of the comparator result, which can be read via the
-> DIN_COMP_OUT register.
 
-Yes, though I think you also need to somehow reflect that it's an entirely
-different input rather than being the same pin as the output gpios
-would be on if in that mode.  I'm not sure how you would do that in the
-gpio subsystem, possibly the offset?
 
-> 
-> Regarding high impedance and pull down resistor, should I be implementing
-> these features by implementing gpio_chip->set_config function and
-> handling the PIN_CONFIG_BIAS_HIGH_IMPEDANCE,
-> PIN_CONFIG_BIAS_PULL_DOWN flags?
-
-Yes, I think so.
-
-> 
-> The comparator also has a setting for debounce time, so I could also handle
-> PIN_CONFIG_INPUT_DEBOUNCE.
-
-Sound right to me, but gpio people may disagree :)
-
-Jonathan
-
-> 
-> Thank you for your patience.
-> Cosmin.
-
+-- 
+Florian
