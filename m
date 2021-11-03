@@ -2,154 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C19A3444244
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 285E544426D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 14:30:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230435AbhKCNW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 09:22:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42212 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbhKCNWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:22:25 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12576C061714;
-        Wed,  3 Nov 2021 06:19:49 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id o8so9178441edc.3;
-        Wed, 03 Nov 2021 06:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iBw1yCNAA4AvNhG6fsCpNeC6xd4fv5a0QO7+TeMW5tA=;
-        b=HTIoVNTxRT6hNM5LESbhnxcGZT7AvCkDzzgpLZhbYoUYfyHgpYWtcPNB9nSZweVMeT
-         lzZhxLQaJLYt9Wd1f/djPCvUAFW21ZOYGzFj6OHdfl8pt2Qn6uFhAI70gfD5Hx6HqtXB
-         q0WIKRsR/g0+OiM04hRDMrasK2TVVfgYWkPpCTWPv7u9sTNGMY4BjI4OEgTq/FuGNTtw
-         lHRCtBvdw0s03AaZvOOihBhPhz8l6QFJWB60kdMAIO8KniJgBKkSD4EUFHHPmVpDKtD2
-         4GUsgh4ry0Jpm7jIMNx7r34GpJ8q0yfHetZEsnCQP1IoWsQbTgMP0Bht19kx9o7qxtcE
-         /jfQ==
+        id S231151AbhKCNct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 09:32:49 -0400
+Received: from mail-pl1-f170.google.com ([209.85.214.170]:39819 "EHLO
+        mail-pl1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230152AbhKCNct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 09:32:49 -0400
+Received: by mail-pl1-f170.google.com with SMTP id t21so2476608plr.6;
+        Wed, 03 Nov 2021 06:30:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=iBw1yCNAA4AvNhG6fsCpNeC6xd4fv5a0QO7+TeMW5tA=;
-        b=HJRbMqXhHkFQIhAiHOuSGcJaouW6mHgyzBlf7V3ClxMEUAYGYwE0yVh1ettLVy9qXN
-         eY7Ke80Q1+fvpJT83g0Qta0vzR+sF5156yoffFE+KIb63TR/I1hzZG8ofnHFk5RDOVP9
-         cbKS7hVrhtEjft4Q50WKyH9V4WALlxEJ50AA1zxAwDvVhhrdLoye8+CQyCOQv92mxz0H
-         dXcCJRbKSokhJLBMD7abzn6uGrqvctWWbOTMPJZJd9AftPXQHBE6kobGCZUN8JqRJn0N
-         O28IkyLi7VtXfsQZNaUQd6BHiKuzNhn5oxl7ujtdCFgbrWAo7jl8iADsCrz23ajKMn5P
-         uzug==
-X-Gm-Message-State: AOAM5330rkugB+koiXMDjDutjX9sH15cylPpImoK8Ku/eiDykrjYVvf6
-        Cozp1N/FSUHTUyD8NfVqAzr9UCP9rz4/fuf5d2o=
-X-Google-Smtp-Source: ABdhPJymNaCzymWXJ7HPOMdKPi+w3XAJ/Jbn3I1ltpX9fSk5Hp/PjzgUNq7MBbIr63pBoadGGQ1dyVlQOddMi+IlfKQ=
-X-Received: by 2002:a17:907:75f0:: with SMTP id jz16mr4601572ejc.77.1635945586742;
- Wed, 03 Nov 2021 06:19:46 -0700 (PDT)
+        bh=zTMij4riOHLD0cKrMBvNEsbDWm7ejt3VqpUfGJxdY7w=;
+        b=w30Fme3CiHvQKDNNkdMfjSHphx+3+lFFr1hGo321h/V5Bds7z0YYBldKhx0jwNySYP
+         +GDvLyZsJjFpGGaMXdpqOA5/9lpeib/OZmtoQRiLMKGW/D6uVgVp/6wE1k/d2DBGH5Eq
+         Mjwof52X93V2oTu1sosUUFrM3pXcisZaKQewZG87h/9Z+YW9BruOTegvLmlpLi6gwCcq
+         VEECimDokKnnvxmnY4VqSw48eBPIlSV/09PDUpgTCkk9HgrcnzyXFvfJsVIioyDJtdKk
+         jflWWPBdEaruc1AM51uqgWdLe7qpyNlxFlMMpV4K/a275d34BdwCPMS1KyhRz99eEKH1
+         EKvw==
+X-Gm-Message-State: AOAM531fDikhil/13SuoviOWCDCPWrHTq5AoJzxuVQuUtgAeq7fMJbSL
+        uq9klRlng0/wSpXs5/qJwuNQrA6SKsKCVUxBfQQ=
+X-Google-Smtp-Source: ABdhPJwNq6Q76J7qXE/0eAQN5HimezZY3rwDPmoANzNGDoGAXLzuRGbdMKq3Oek9Nc0X4IigXZvlpuqyhJ7hmGVXXQg=
+X-Received: by 2002:a17:902:a60f:b0:141:8996:3fe with SMTP id
+ u15-20020a170902a60f00b00141899603femr37563503plq.71.1635946212677; Wed, 03
+ Nov 2021 06:30:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211103124329.171124-1-tomm.merciai@gmail.com>
-In-Reply-To: <20211103124329.171124-1-tomm.merciai@gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 3 Nov 2021 08:19:34 -0500
-Message-ID: <CAHCN7x+MbLJ=JLLJBK1_XpW7CtP5NUqZixB0AHnDg=r83uC2Bw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mm: Add NOC node
-To:     Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Peng Fan <peng.fan@nxp.com>, Alice Guo <alice.guo@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
+References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-12-kernel@esmil.dk>
+ <1635902437.610819.3880381.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1635902437.610819.3880381.nullmailer@robh.at.kernel.org>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Wed, 3 Nov 2021 14:30:01 +0100
+Message-ID: <CANBLGcwTB27kSRC7HCAJvrk7T0zyj1eM1i4YHj8Prar6JLqTYA@mail.gmail.com>
+Subject: Re: [PATCH v3 11/16] dt-bindings: pinctrl: Add StarFive JH7100 bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Abel Vesa <abelvesa@kernel.org>
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Fu Wei <tekkamanninja@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 3, 2021 at 7:43 AM Tommaso Merciai <tomm.merciai@gmail.com> wrote:
+On Wed, 3 Nov 2021 at 02:20, Rob Herring <robh@kernel.org> wrote:
+> On Tue, 02 Nov 2021 17:11:20 +0100, Emil Renner Berthing wrote:
+> > Add bindings for the GPIO/pin controller on the JH7100 RISC-V SoC by
+> > StarFive Ltd. This is a test chip for their upcoming JH7110 SoC.
+> >
+> > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > ---
+> >
+> > @Linus: I'm really struggling to find a good way to describe how pin
+> > muxing works on the JH7100. As you can see I've now resorted to
+> > ascii-art to try to explain it, but please let me know if it's still
+> > unclear.
+> >
+> >  .../pinctrl/starfive,jh7100-pinctrl.yaml      | 307 ++++++++++++++++++
+> >  1 file changed, 307 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.yaml
+> >
 >
-> Add support for dynamic frequency scaling of the main NOC configuration
-> on imx8mm.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 >
-> References:
->  - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
->  - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
->  - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
-> ---
-
-+ Abel
-
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> yamllint warnings/errors:
 >
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index c2f3f118f82e..c5f64abcecff 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
->                         };
->                 };
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.example.dts:19:18: fatal error: dt-bindings/clock/starfive-jh7100.h: No such file or directory
+>    19 |         #include <dt-bindings/clock/starfive-jh7100.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/pinctrl/starfive,jh7100-pinctrl.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1441: dt_binding_check] Error 2
 >
-> +               noc: interconnect@32700000 {
-> +                       compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-> +                       reg = <0x32700000 0x100000>;
-> +                       clocks = <&clk IMX8MM_CLK_NOC>;
-> +                       fsl,ddrc = <&ddrc>;
-> +                       #interconnect-cells = <1>;
-> +                       operating-points-v2 = <&noc_opp_table>;
-> +
-> +                       noc_opp_table: opp-table {
-> +                               compatible = "operating-points-v2";
-> +
-> +                               opp-133M {
-> +                                       opp-hz = /bits/ 64 <133333333>;
-> +                               };
-> +
-> +                               opp-400M {
-> +                                       opp-hz = /bits/ 64 <400000000>;
-> +                               };
-> +
-> +                               opp-800M {
-> +                                       opp-hz = /bits/ 64 <800000000>;
-> +                               };
-
-When I look at the opp table from the NXP's custom kernel [1] , they
-have a different opp table with a max frequency of 750MHz instead of
-800MHz.  The i.MX8MM Ref manual shows there is something at 3270_0000,
-but it doesn't go into details of the registers there. However the max
-speed of the NOC clock does appear to be 800MHz and not the 750 MHz
-listed in the NXP kernel.
-
-However, In the clk node of imx8mm.dtsi file, the IMX8MM_CLK_NOC
-parent is set to IMX8MM_SYS_PLL3_OUT and IMX8MM_SYS_PLL3_OUT is set to
-750MHz, so I think setting the IMX8MM_CLK_NOC to 800MHz is likely not
-what we want if we're setting this clock parent and clock rate to
-750MHz.  However if the NOC operates correctly at 800MHz when the
-parent is set to IMX8MM_SYS_PLL1_800M, it might make sense.  Looking
-at the imx8mq.dtsi file, it appears that the NOC node is referencing
-the ddrc node, and the imx8mq is able to operate the ddrc at 800MHz,
-while I beleive the 8MM is capped at 750M.
-
-Since I do not know if the NOC is tied to the processor speed, the
-DRAM speed, or it runs independently, I can't say with any confidence
-what it should be and/or how to test it, but I would assume that with
-the ddrc node capped at 750MHz, the opp table in the NXP kernel is
-probably the correct one.
-
-[1] - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
-
-adam
-
-> +                       };
-> +               };
-> +
->                 aips2: bus@30400000 {
->                         compatible = "fsl,aips-bus", "simple-bus";
->                         reg = <0x30400000 0x400000>;
-> --
-> 2.25.1
+> doc reference errors (make refcheckdocs):
 >
+> See https://patchwork.ozlabs.org/patch/1549835
+
+Hi Rob.
+
+It seems like your bot didn't add the clock header because the patch
+already has an Acked-by from you.
+
+/Emil
