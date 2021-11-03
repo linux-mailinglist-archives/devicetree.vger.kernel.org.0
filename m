@@ -2,188 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7EE2443C25
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 05:21:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3D14443C33
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 05:24:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbhKCEYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 00:24:08 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34298 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230059AbhKCEYH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 00:24:07 -0400
-X-UUID: cb9d0a0e1d574e2198d3f0d473b6d596-20211103
-X-UUID: cb9d0a0e1d574e2198d3f0d473b6d596-20211103
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <james.lo@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 607324921; Wed, 03 Nov 2021 12:21:29 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Wed, 3 Nov 2021 12:21:28 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 3 Nov 2021 12:21:27 +0800
-From:   James Lo <james.lo@mediatek.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        James Lo <james.lo@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Henry Chen <henryc.chen@mediatek.com>
-Subject: [v13 4/4] spmi: mediatek: Add support for MT8195
-Date:   Wed, 3 Nov 2021 12:21:03 +0800
-Message-ID: <20211103042103.4984-5-james.lo@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211103042103.4984-1-james.lo@mediatek.com>
-References: <20211103042103.4984-1-james.lo@mediatek.com>
+        id S231352AbhKCE1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 00:27:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231340AbhKCE1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 00:27:09 -0400
+Received: from mail-il1-x12c.google.com (mail-il1-x12c.google.com [IPv6:2607:f8b0:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 425C6C061203
+        for <devicetree@vger.kernel.org>; Tue,  2 Nov 2021 21:24:33 -0700 (PDT)
+Received: by mail-il1-x12c.google.com with SMTP id j28so1300967ila.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Nov 2021 21:24:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qd9niP3KfEBMw4HIl0dxDVF+NpZQ1ObcVJeYPjAsGSc=;
+        b=HPtJMRW5T8UxUkbBR6GaM63fFwANkJW6W9Bif4jilZl+sVzZSwZ1/A0VDVRuvcxg01
+         TeJn8wEHZi8eGbuexfg5M4xTXOhj9T9JpIx+WeE9g2sMuKGHYIuRRTbmZkQt7GQLiEoP
+         rI2LD+XBU5OE14Y19R6r5EqQue09SKki/n10I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qd9niP3KfEBMw4HIl0dxDVF+NpZQ1ObcVJeYPjAsGSc=;
+        b=GZ4hO1yjQYZTZrWeBWu+sB8T2URoF7uu6tCAbUbtlrts8Rp1oYOH3oumgh/eWlBpzy
+         CBuDvucJiibcrnP036xRS44hGHTyWJiptdU+Ob3pUpahyjvqwZvSdTDV+Sy8gCkSEu1G
+         WHUY5VviCGaRqOx2VdWV58Q/BhKOXIxfrVzoNbIduoijrbSkCe2Xa0eZODLJh1Ty68XA
+         VTVAksYet4G2oJEu45ZOHnYGLSJsDt2w/2Krw+V7Gw5OmIGLoX+QOv7DcwaCgFZwTecW
+         iLj0VsT5TJd3G5qb1UVAIb4UmfYgIr4N9rwWXCev+bN8XUziDeryaWv6LkwA8sA9L/mX
+         +K6w==
+X-Gm-Message-State: AOAM530YobB30b2M2mSHirZjGeaMZ8TbTvsKyyqIWPqDUr7Mar+UyPN7
+        VI3+Fd2EZW56lNU5V/vuCx0bZ4cZqrDgg29xpIqxYQ==
+X-Google-Smtp-Source: ABdhPJy3oZIzJMttIMrK4JQVP+jPpcvnejYcs3cfvoEQi/cY6TDF0e9IPwvsIsX+mmqGss9bK7IZIXnvXQrZKbO7xvk=
+X-Received: by 2002:a05:6e02:1aa2:: with SMTP id l2mr17121937ilv.114.1635913472602;
+ Tue, 02 Nov 2021 21:24:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20211103033044.2777-1-ben.tseng@mediatek.com>
+In-Reply-To: <20211103033044.2777-1-ben.tseng@mediatek.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 3 Nov 2021 12:24:06 +0800
+Message-ID: <CAJMQK-jJYoBLoY2aw=BuhowJ7AENK_8y=GHVq5opHKfq5gD45Q@mail.gmail.com>
+Subject: Re: [PATCH 1/1] arm64: dts: mt8183-kukui: Update Tboard sensor
+ mapping table
+To:     Ben Tseng <ben.tseng@mediatek.com>
+Cc:     Fan Chen <fan.chen@mediatek.com>, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, srv_heupstream@mediatek.com,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add spmi support for MT8195.
+On Wed, Nov 3, 2021 at 11:31 AM Ben Tseng <ben.tseng@mediatek.com> wrote:
+>
+> According to auxadc change the readback value from raw data to Vsense.
+> Update the tboard table that temperature map to Vsense.
+>
+> pull-up voltage: 1800 mv
+> pull-up resistor: 75K
+>
+> Vsense = pull-up voltage * Rntc / ( pull-up resistor + Rntc )
+>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+>
 
-Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Acked-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/spmi/spmi-mtk-pmif.c | 88 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
 
-diff --git a/drivers/spmi/spmi-mtk-pmif.c b/drivers/spmi/spmi-mtk-pmif.c
-index 3283d0a5903c..c5946494087f 100644
---- a/drivers/spmi/spmi-mtk-pmif.c
-+++ b/drivers/spmi/spmi-mtk-pmif.c
-@@ -152,6 +152,54 @@ static const u32 mt6873_regs[] = {
- 	[PMIF_SWINF_3_STA] =	0x0CE8,
- };
- 
-+static const u32 mt8195_regs[] = {
-+	[PMIF_INIT_DONE] = 0x0000,
-+	[PMIF_INF_EN] = 0x0024,
-+	[PMIF_ARB_EN] = 0x0150,
-+	[PMIF_CMDISSUE_EN] = 0x03B8,
-+	[PMIF_TIMER_CTRL] = 0x03E4,
-+	[PMIF_SPI_MODE_CTRL] = 0x0408,
-+	[PMIF_IRQ_EVENT_EN_0] = 0x0420,
-+	[PMIF_IRQ_FLAG_0] = 0x0428,
-+	[PMIF_IRQ_CLR_0] = 0x042C,
-+	[PMIF_IRQ_EVENT_EN_1] = 0x0430,
-+	[PMIF_IRQ_FLAG_1] = 0x0438,
-+	[PMIF_IRQ_CLR_1] = 0x043C,
-+	[PMIF_IRQ_EVENT_EN_2] = 0x0440,
-+	[PMIF_IRQ_FLAG_2] = 0x0448,
-+	[PMIF_IRQ_CLR_2] = 0x044C,
-+	[PMIF_IRQ_EVENT_EN_3] = 0x0450,
-+	[PMIF_IRQ_FLAG_3] = 0x0458,
-+	[PMIF_IRQ_CLR_3] = 0x045C,
-+	[PMIF_IRQ_EVENT_EN_4] = 0x0460,
-+	[PMIF_IRQ_FLAG_4] = 0x0468,
-+	[PMIF_IRQ_CLR_4] = 0x046C,
-+	[PMIF_WDT_EVENT_EN_0] = 0x0474,
-+	[PMIF_WDT_FLAG_0] = 0x0478,
-+	[PMIF_WDT_EVENT_EN_1] = 0x047C,
-+	[PMIF_WDT_FLAG_1] = 0x0480,
-+	[PMIF_SWINF_0_ACC] = 0x0800,
-+	[PMIF_SWINF_0_WDATA_31_0] = 0x0804,
-+	[PMIF_SWINF_0_RDATA_31_0] = 0x0814,
-+	[PMIF_SWINF_0_VLD_CLR] = 0x0824,
-+	[PMIF_SWINF_0_STA] = 0x0828,
-+	[PMIF_SWINF_1_ACC] = 0x0840,
-+	[PMIF_SWINF_1_WDATA_31_0] = 0x0844,
-+	[PMIF_SWINF_1_RDATA_31_0] = 0x0854,
-+	[PMIF_SWINF_1_VLD_CLR] = 0x0864,
-+	[PMIF_SWINF_1_STA] = 0x0868,
-+	[PMIF_SWINF_2_ACC] = 0x0880,
-+	[PMIF_SWINF_2_WDATA_31_0] = 0x0884,
-+	[PMIF_SWINF_2_RDATA_31_0] = 0x0894,
-+	[PMIF_SWINF_2_VLD_CLR] = 0x08A4,
-+	[PMIF_SWINF_2_STA] = 0x08A8,
-+	[PMIF_SWINF_3_ACC] = 0x08C0,
-+	[PMIF_SWINF_3_WDATA_31_0] = 0x08C4,
-+	[PMIF_SWINF_3_RDATA_31_0] = 0x08D4,
-+	[PMIF_SWINF_3_VLD_CLR] = 0x08E4,
-+	[PMIF_SWINF_3_STA] = 0x08E8,
-+};
-+
- enum spmi_regs {
- 	SPMI_OP_ST_CTRL,
- 	SPMI_GRP_ID_EN,
-@@ -165,6 +213,15 @@ enum spmi_regs {
- 	SPMI_REC3,
- 	SPMI_REC4,
- 	SPMI_MST_DBG,
-+
-+	/* MT8195 spmi regs */
-+	SPMI_MST_RCS_CTRL,
-+	SPMI_SLV_3_0_EINT,
-+	SPMI_SLV_7_4_EINT,
-+	SPMI_SLV_B_8_EINT,
-+	SPMI_SLV_F_C_EINT,
-+	SPMI_REC_CMD_DEC,
-+	SPMI_DEC_DBG,
- };
- 
- static const u32 mt6873_spmi_regs[] = {
-@@ -182,6 +239,28 @@ static const u32 mt6873_spmi_regs[] = {
- 	[SPMI_MST_DBG] =	0x00fc,
- };
- 
-+static const u32 mt8195_spmi_regs[] = {
-+	[SPMI_OP_ST_CTRL] = 0x0000,
-+	[SPMI_GRP_ID_EN] = 0x0004,
-+	[SPMI_OP_ST_STA] = 0x0008,
-+	[SPMI_MST_SAMPL] = 0x000C,
-+	[SPMI_MST_REQ_EN] = 0x0010,
-+	[SPMI_MST_RCS_CTRL] = 0x0014,
-+	[SPMI_SLV_3_0_EINT] = 0x0020,
-+	[SPMI_SLV_7_4_EINT] = 0x0024,
-+	[SPMI_SLV_B_8_EINT] = 0x0028,
-+	[SPMI_SLV_F_C_EINT] = 0x002C,
-+	[SPMI_REC_CTRL] = 0x0040,
-+	[SPMI_REC0] = 0x0044,
-+	[SPMI_REC1] = 0x0048,
-+	[SPMI_REC2] = 0x004C,
-+	[SPMI_REC3] = 0x0050,
-+	[SPMI_REC4] = 0x0054,
-+	[SPMI_REC_CMD_DEC] = 0x005C,
-+	[SPMI_DEC_DBG] = 0x00F8,
-+	[SPMI_MST_DBG] = 0x00FC,
-+};
-+
- static u32 pmif_readl(struct pmif *arb, enum pmif_regs reg)
- {
- 	return readl(arb->base + arb->data->regs[reg]);
-@@ -345,6 +424,12 @@ static const struct pmif_data mt6873_pmif_arb = {
- 	.soc_chan = 2,
- };
- 
-+static const struct pmif_data mt8195_pmif_arb = {
-+	.regs = mt8195_regs,
-+	.spmimst_regs = mt8195_spmi_regs,
-+	.soc_chan = 2,
-+};
-+
- static int mtk_spmi_probe(struct platform_device *pdev)
- {
- 	struct pmif *arb;
-@@ -433,6 +518,9 @@ static const struct of_device_id mtk_spmi_match_table[] = {
- 	{
- 		.compatible = "mediatek,mt6873-spmi",
- 		.data = &mt6873_pmif_arb,
-+	}, {
-+		.compatible = "mediatek,mt8195-spmi",
-+		.data = &mt8195_pmif_arb,
- 	}, {
- 		/* sentinel */
- 	},
--- 
-2.18.0
-
+> ---
+>  .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 108 +++++++++---------
+>  1 file changed, 54 insertions(+), 54 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index 8e9cf36a9a41..65447de64f06 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -151,33 +151,33 @@
+>                 #thermal-sensor-cells = <0>;
+>                 io-channels = <&auxadc 0>;
+>                 io-channel-names = "sensor-channel";
+> -               temperature-lookup-table = <    (-5000) 4241
+> -                                               0 4063
+> -                                               5000 3856
+> -                                               10000 3621
+> -                                               15000 3364
+> -                                               20000 3091
+> -                                               25000 2810
+> -                                               30000 2526
+> -                                               35000 2247
+> -                                               40000 1982
+> -                                               45000 1734
+> -                                               50000 1507
+> -                                               55000 1305
+> -                                               60000 1122
+> -                                               65000 964
+> -                                               70000 827
+> -                                               75000 710
+> -                                               80000 606
+> -                                               85000 519
+> -                                               90000 445
+> -                                               95000 382
+> -                                               100000 330
+> -                                               105000 284
+> -                                               110000 245
+> -                                               115000 213
+> -                                               120000 183
+> -                                               125000 161>;
+> +               temperature-lookup-table = <    (-5000) 1553
+> +                                               0 1488
+> +                                               5000 1412
+> +                                               10000 1326
+> +                                               15000 1232
+> +                                               20000 1132
+> +                                               25000 1029
+> +                                               30000 925
+> +                                               35000 823
+> +                                               40000 726
+> +                                               45000 635
+> +                                               50000 552
+> +                                               55000 478
+> +                                               60000 411
+> +                                               65000 353
+> +                                               70000 303
+> +                                               75000 260
+> +                                               80000 222
+> +                                               85000 190
+> +                                               90000 163
+> +                                               95000 140
+> +                                               100000 121
+> +                                               105000 104
+> +                                               110000 90
+> +                                               115000 78
+> +                                               120000 67
+> +                                               125000 59>;
+>         };
+>
+>         tboard_thermistor2: thermal-sensor2 {
+> @@ -185,33 +185,33 @@
+>                 #thermal-sensor-cells = <0>;
+>                 io-channels = <&auxadc 1>;
+>                 io-channel-names = "sensor-channel";
+> -               temperature-lookup-table = <    (-5000) 4241
+> -                                               0 4063
+> -                                               5000 3856
+> -                                               10000 3621
+> -                                               15000 3364
+> -                                               20000 3091
+> -                                               25000 2810
+> -                                               30000 2526
+> -                                               35000 2247
+> -                                               40000 1982
+> -                                               45000 1734
+> -                                               50000 1507
+> -                                               55000 1305
+> -                                               60000 1122
+> -                                               65000 964
+> -                                               70000 827
+> -                                               75000 710
+> -                                               80000 606
+> -                                               85000 519
+> -                                               90000 445
+> -                                               95000 382
+> -                                               100000 330
+> -                                               105000 284
+> -                                               110000 245
+> -                                               115000 213
+> -                                               120000 183
+> -                                               125000 161>;
+> +               temperature-lookup-table = <    (-5000) 1553
+> +                                               0 1488
+> +                                               5000 1412
+> +                                               10000 1326
+> +                                               15000 1232
+> +                                               20000 1132
+> +                                               25000 1029
+> +                                               30000 925
+> +                                               35000 823
+> +                                               40000 726
+> +                                               45000 635
+> +                                               50000 552
+> +                                               55000 478
+> +                                               60000 411
+> +                                               65000 353
+> +                                               70000 303
+> +                                               75000 260
+> +                                               80000 222
+> +                                               85000 190
+> +                                               90000 163
+> +                                               95000 140
+> +                                               100000 121
+> +                                               105000 104
+> +                                               110000 90
+> +                                               115000 78
+> +                                               120000 67
+> +                                               125000 59>;
+>         };
+>  };
+>
+> --
+> 2.18.0
+>
