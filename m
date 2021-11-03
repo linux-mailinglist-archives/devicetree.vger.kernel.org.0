@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4512A444AED
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 23:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D16444B41
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 00:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbhKCWs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 18:48:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbhKCWs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 18:48:28 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C889EC061714
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 15:45:51 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id gh1so4046400qvb.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 15:45:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nfe3D7clHGl1YZgkT5Ms1GXNSAPyz9/B35wGZ6BRdJA=;
-        b=euRqBpHe7zof/gB/pdWm00nUw8LAFIzWvENcia2nOQMD2qz1YnuiNRezwdzo38FXUo
-         2q5KmkChXs2ZtGgnd9wZY/P9FTU3Zfc9V2/i3nTZFGzyHp6gU9v4SJqv8grVvOieatZX
-         pvCloJ6RcCSdwejgGZXUiGz6W5m6hReIcmig8=
+        id S230140AbhKCXKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 19:10:39 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:37524 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230108AbhKCXKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 19:10:38 -0400
+Received: by mail-oi1-f171.google.com with SMTP id o83so6177890oif.4;
+        Wed, 03 Nov 2021 16:08:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nfe3D7clHGl1YZgkT5Ms1GXNSAPyz9/B35wGZ6BRdJA=;
-        b=yk+M8BEdiYbWcwV/IzfIu/Q+yibDjpDw8Iu/yeKqAGn4nR+bPCoFZbbs5HMQywrV8p
-         9ffmyhZJh7EENUH4azOpS8BRg0XsQ8zSUMpgMmWJdzmh+RK6gO430vf29pISt2hSgeCk
-         GvOEZsEofuGNsJZf6vg2az0Gnquz7V5zqu6PmSXurc3VwEt4obwfK8cw0OeygQo+oVQ0
-         Ui92v7H9X6jkBHnYoCaCli+DGRUZ/nhA8igL+YcR6va3pZ3G6ZFo40amfyf9IPZKaOqe
-         adj7jsLQyPtWv7vWJkpSvZIHlIs8T6+URH3dywns9Oj8JB/8OLu9PhHGghww63bg6ARb
-         R+Ig==
-X-Gm-Message-State: AOAM533xB5fmmVn7KURB15d5VBciKthcc8WavU2wwo99tGQ4Q5i+NZXF
-        HrXUpPmxLKU04rERfWHzxvHj+zyF3GDBiDPV8+s=
-X-Google-Smtp-Source: ABdhPJyBiuFpsngJvByWOWn/hd5diNY6ZjO2cLNra4+McwuXCw/CxnR55yD0wt8Ff3yfRdCVM6/BkLr0XUpHaiHuzhk=
-X-Received: by 2002:a0c:c784:: with SMTP id k4mr46084501qvj.43.1635979550880;
- Wed, 03 Nov 2021 15:45:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20211102203717.96794-1-jae.hyun.yoo@intel.com>
- <20211102203717.96794-6-jae.hyun.yoo@intel.com> <1635902437.654631.3880388.nullmailer@robh.at.kernel.org>
- <8db279c9-4c76-91a5-3617-a17effb2d103@linux.intel.com> <CAL_Jsq+SwCqFycKz4+agRsB3qr4Rbfra55Q6tNbMH2bNtoX+hA@mail.gmail.com>
- <796e0c02-5bca-e8a9-a17f-898aafec237f@linux.intel.com>
-In-Reply-To: <796e0c02-5bca-e8a9-a17f-898aafec237f@linux.intel.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 3 Nov 2021 22:45:38 +0000
-Message-ID: <CACPK8Xcwkz1QLOvN0MiSkX+jj2NZY10--1qo7M8UMyEmQQtYmA@mail.gmail.com>
-Subject: Re: [PATCH -next v2 5/6] dt-bindings: ipmi: aspeed,kcs-bmc: add
- 'clocks' as a required property
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        openipmi-developer@lists.sourceforge.net,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Cedric Le Goater <clg@kaod.org>,
-        Corey Minyard <minyard@acm.org>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=WLuVuAYOP3Qwoy+azSFg/EZlpahDAhqD21l4wQ3l8XI=;
+        b=JOP/UUiCM6ltd4PdXnuPKqh9m3nEuqmfM6zAF1Yd4L7IyoSVRJJ2S/a2AO9MWcyXEk
+         C0jXSaTk8IOwmdA+zhJpLlVp+0zRL31c2y5kY6/CkTfUzlXYgIfNfRAF5SSglgQsLXh/
+         v0Dk90gMB6Gv4qpRdjlJ8xOAnuxdcGLW5bSA6Mp0H3tcA7hgSVbPnGB1dGiZ58qTJ07n
+         LWuyRGs2qOXyC4otBPD7KegIn7Yugd4fZi+AL2k41saoTSRywlhIvOspILuyfILgMLUD
+         IczIoQLfrKxMBWzuTAZTVfG6zHaPj919zqpxVGjK3vcOrOUOvNfnB/5z0EuOEh+NFVyg
+         RuhA==
+X-Gm-Message-State: AOAM532Xq2NUIAm1xsL30rX4J8lza8xeoWNjWfPQkwJO0TmQ39oYF4Gx
+        dX22HgSsQ1Ku8lemdkeBqTVF2nWaOQ==
+X-Google-Smtp-Source: ABdhPJw4sVaiqSveYzsN2BnL3m300eMWJQg6pmuG4SixypC7Kx3qEJ9i6nd6n5e83pvMvIwwnqlULw==
+X-Received: by 2002:a05:6808:23d4:: with SMTP id bq20mr14026296oib.112.1635980880825;
+        Wed, 03 Nov 2021 16:08:00 -0700 (PDT)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 62sm896752ooa.47.2021.11.03.16.07.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Nov 2021 16:08:00 -0700 (PDT)
+Received: (nullmailer pid 1941684 invoked by uid 1000);
+        Wed, 03 Nov 2021 23:07:59 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linus.walleij@linaro.org, rydberg@bitmath.org,
+        dmitry.torokhov@gmail.com, linux-input@vger.kernel.org,
+        alistair23@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, mylene.josserand@free-electrons.com,
+        andreas@kemnade.info
+In-Reply-To: <20211103114830.62711-3-alistair@alistair23.me>
+References: <20211103114830.62711-1-alistair@alistair23.me> <20211103114830.62711-3-alistair@alistair23.me>
+Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add documentation for cyttsp5
+Date:   Wed, 03 Nov 2021 18:07:59 -0500
+Message-Id: <1635980879.208363.1941683.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Nov 2021 at 17:27, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
->
-> On 11/3/2021 9:29 AM, Rob Herring wrote:
+On Wed, 03 Nov 2021 21:48:28 +1000, Alistair Francis wrote:
+> From: Mylène Josserand <mylene.josserand@free-electrons.com>
+> 
+> Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> documentation. It can use I2C or SPI bus.
+> This touchscreen can handle some defined zone that are designed and
+> sent as button. To be able to customize the keycode sent, the
+> "linux,code" property in a "button" sub-node can be used.
+> 
+> Signed-off-by: Mylène Josserand <mylene.josserand@free-electrons.com>
+> Message-Id: <20170529144538.29187-3-mylene.josserand@free-electrons.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> ---
+>  .../input/touchscreen/cypress,tt21000.yaml    | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+> 
 
-> > It's possible that 'clocks' was always required or that it never
-> > worked without clocks, then this change is okay. Looking at this
-> > patch, I have no way to know that. The commit message has to explain
-> > that. A commit message needs to answer WHY are you making the change.
-> > You don't really need WHAT the change is as anyone can read the diff.
->
-> Then what would be better? Would it be good enough if I add more detail
-> commit message including a note that dtb recompiling is required? Or,
-> should I change this series to treat the 'clocks' as an optional
-> property? Can you please share your thought?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Make it essential. It was only by accident that things have worked
-without this change.
+yamllint warnings/errors:
 
-While keeping backwards compatibility with dtbs is a goal we strive
-for, in practice we use the dtb from the corresponding kernel source
-tree, so as long as the patch to the driver is applied in the same
-place as the patch to the device tree no systems will break.
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/input/touchscreen/cypress,tt21000.yaml#
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:37.26-39.19: Warning (unit_address_vs_reg): /example-0/i2c/touchscreen@24/button@0: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:41.26-43.19: Warning (unit_address_vs_reg): /example-0/i2c/touchscreen@24/button@1: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:45.26-47.19: Warning (unit_address_vs_reg): /example-0/i2c/touchscreen@24/button@2: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml:0:0: /example-0/i2c/touchscreen@24: failed to match any schema with compatible: ['cypress,tt2100']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1550218
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
