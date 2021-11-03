@@ -2,133 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E8644449C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 16:23:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BAF64444F3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 16:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbhKCP0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 11:26:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42556 "EHLO
+        id S231765AbhKCPym (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 11:54:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231860AbhKCP0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 11:26:19 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B45F0C061205
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 08:23:42 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id p17so1539879qkj.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 08:23:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=yNC62w+2HzH2SSJhKHtvCjiHcp3DcKu13in8YXC3L58=;
-        b=M+/I/5Hft2NlUO4i9S63IGXtD51pzlQDc0ULTbi6L/ghNtnKUooxVNq/SoYMwi/zvp
-         3ahh0cL98Kl38mypdfi39VAQKnvM/O3y38/UAns84MaTzcyyJ+7s6fg16KXNdcyRBZdT
-         FwODxzltEwj1ZghagD2B9aw/e/BwPbzu9QAVS5hZ0zT4PepwV/BfoXga0U50Xa5fQyN4
-         2hBub2Hq19bZtgvlv6/vmGGs+wyeckvmviP0QMeRRaep6xcFXm1e+zgC9ZiHl4l4Rc94
-         bNvoyhpmW60gS7MVRSnt79hvX7pZnMn8yVimbCbRD8Gq1xatvxtdtWw8ZjwfynRbIXCP
-         rhbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=yNC62w+2HzH2SSJhKHtvCjiHcp3DcKu13in8YXC3L58=;
-        b=uKc84/569Z33GgM7UARuB7MfakRKoV87AK1xojkTcbIPO2iR7zpIn7LUd0dFiMnIVE
-         x1pDG899WASMZUzJgOxUANYfvxhakMZYrBjczx1wtKsAh32gaM8Xl4hDjz/3bww4avrp
-         g7IwN354WBUdEi9EJXq3lXiOarOUH/GwnNBSO5cym/3PdSaQZZwVk9QyOJCOM3hXTkC9
-         XYhz3N0QQHov7BX0dwHIeQGJ1o6T/d1CPIx1rhpCMzp04P4ZNnGyeBugHjGkv9/g8LeK
-         M+eQ6lASoxKwivelwVJo409kAHHBD1zVp54oS9ze7SOaxPUuVdjWBlfCPTokgevutleI
-         4pYw==
-X-Gm-Message-State: AOAM531nTs5KcUu69r/KwE64J30V667/lKMHxLG1EXpmbbiRyRELKzfR
-        nQG81kMfsqoS+CYxUo6p5iRaFQ==
-X-Google-Smtp-Source: ABdhPJy4df7FJ5jzZA9CX3XJtZc5nqiiuNWg/WwEWiY+wux4cxWLrQ/cnNXjtkeLmUJr9/v8V9RPUQ==
-X-Received: by 2002:a05:620a:2f4:: with SMTP id a20mr12095070qko.123.1635953020908;
-        Wed, 03 Nov 2021 08:23:40 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id m20sm1736604qkp.57.2021.11.03.08.23.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 08:23:40 -0700 (PDT)
-Message-ID: <b398917ca0c467d83c795f02f751609a52d56edb.camel@ndufresne.ca>
-Subject: Re: [PATCH v2] media: mtk-vcodec: Align width and height to 64 bytes
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Steve Cho <stevecho@google.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Wed, 03 Nov 2021 11:23:38 -0400
-In-Reply-To: <20211103033708.14469-1-yunfei.dong@mediatek.com>
-References: <20211103033708.14469-1-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.0 (3.42.0-1.fc35) 
+        with ESMTP id S229885AbhKCPym (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 11:54:42 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E2CC061714;
+        Wed,  3 Nov 2021 08:52:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=QtBcDmePoYyEOlHlNKyccMMS2h7KJBCiJJZSMM3TdMk=; b=Ql2c1y3bVmcJUr6BfUuMTWbFrZ
+        dLGh2UBFXY1Io0ffarLFjF8KBV5c53d05RIFSwkjRR0YAZnjziyC79CZbiuahnx9Kt68TrEA9s7nd
+        zoqlpx+cMmIeK1uqdNkdpw0XDv80scECHhnq05Aqi6a4ABY3RRRhM1R6FqvU7Q5wYUPZWiiq9qdRr
+        1vvqzP/LR9TjGj81kl7dmSxyR7L12u00Y6Tdv4iuhQ2s3KbaySrdjGywUStsNc6ZtE0Uu44L5VGUT
+        bZv9XCsujkqIqgUxhw+8irMNPdCznMCUSnPxeq4gLIcNRUqYgc9CgagRxQpyfHFoYiOnKhVUY2Oed
+        cq4JsXnQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1miIYS-005bsf-Uo; Wed, 03 Nov 2021 15:52:01 +0000
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Cc:     Wells Lu <wells.lu@sunplus.com>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
+Date:   Wed, 3 Nov 2021 08:52:00 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mercredi 03 novembre 2021 à 11:37 +0800, Yunfei Dong a écrit :
-> Width and height need to 64 bytes aligned when setting the format.
-> Need to make sure all is 64 bytes align when use width and height to
-> calculate buffer size.
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> Change-Id: I39886b1a6b433c92565ddbf297eb193456eec1d2
+Hi--
 
-Perhaps avoid this tag later ? Another perhaps, there is a tag to indicate which
-patch introduce that bug, if you add this tag, the patch will be automatically
-backported into relevant stable kernel. The format is:
+On 11/3/21 4:02 AM, Wells Lu wrote:
+> diff --git a/drivers/net/ethernet/sunplus/Kconfig b/drivers/net/ethernet/sunplus/Kconfig
+> new file mode 100644
+> index 0000000..a9e3a4c
+> --- /dev/null
+> +++ b/drivers/net/ethernet/sunplus/Kconfig
+> @@ -0,0 +1,20 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Sunplus Ethernet device configuration
+> +#
+> +
+> +config NET_VENDOR_SUNPLUS
+> +	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
+> +	depends on ETHERNET && SOC_SP7021
+> +	select PHYLIB
+> +	select PINCTRL_SPPCTL
+> +	select COMMON_CLK_SP7021
+> +	select RESET_SUNPLUS
+> +	select NVMEM_SUNPLUS_OCOTP
+> +	help
+> +	  If you have Sunplus dual 10M/100M Ethernet (with L2 switch)
+> +	  devices, say Y.
+> +	  The network device supports dual 10M/100M Ethernet interfaces,
+> +	  or one 10/100M Ethernet interface with two LAN ports.
+> +	  To compile this driver as a module, choose M here.  The module
+> +	  will be called sp_l2sw.
 
-> Fixes: <short-hash> ("<short commit description")
+Please use NET_VENDOR_SUNPLUS in the same way that other
+NET_VENDOR_wyxz kconfig symbols are used. It should just enable
+or disable any specific device drivers under it.
 
-Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
 
-> ---
->  drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h        | 1 +
->  drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c | 4 ++--
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-> index e30806c1faea..66cd6d2242c3 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-> @@ -11,6 +11,7 @@
->  #include <media/videobuf2-core.h>
->  #include <media/v4l2-mem2mem.h>
->  
-> +#define VCODEC_DEC_ALIGNED_64 64
->  #define VCODEC_CAPABILITY_4K_DISABLED	0x10
->  #define VCODEC_DEC_4K_CODED_WIDTH	4096U
->  #define VCODEC_DEC_4K_CODED_HEIGHT	2304U
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-> index d402fc4bda69..e1a3011772a9 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-> +++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-> @@ -562,8 +562,8 @@ static void get_pic_info(struct vdec_h264_slice_inst *inst,
->  {
->  	struct mtk_vcodec_ctx *ctx = inst->ctx;
->  
-> -	ctx->picinfo.buf_w = (ctx->picinfo.pic_w + 15) & 0xFFFFFFF0;
-> -	ctx->picinfo.buf_h = (ctx->picinfo.pic_h + 31) & 0xFFFFFFE0;
-> +	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, VCODEC_DEC_ALIGNED_64);
-> +	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, VCODEC_DEC_ALIGNED_64);
->  	ctx->picinfo.fb_sz[0] = ctx->picinfo.buf_w * ctx->picinfo.buf_h;
->  	ctx->picinfo.fb_sz[1] = ctx->picinfo.fb_sz[0] >> 1;
->  	inst->vsi_ctx.dec.cap_num_planes =
-
+-- 
+~Randy
