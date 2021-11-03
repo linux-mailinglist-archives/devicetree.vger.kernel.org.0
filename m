@@ -2,106 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D5EB44493D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:56:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F270444944
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 20:59:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231576AbhKCT7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 15:59:01 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:51055 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231343AbhKCT65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 15:58:57 -0400
-X-IronPort-AV: E=Sophos;i="5.87,206,1631545200"; 
-   d="scan'208";a="99386768"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 04 Nov 2021 04:56:20 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7B90240E5D50;
-        Thu,  4 Nov 2021 04:56:18 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: rzg2l-smarc: Enable SCIF2 on carrier board
-Date:   Wed,  3 Nov 2021 19:56:00 +0000
-Message-Id: <20211103195600.23964-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211103195600.23964-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20211103195600.23964-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S230199AbhKCUB5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Nov 2021 16:01:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60698 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229697AbhKCUBv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Nov 2021 16:01:51 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E6B9F61073;
+        Wed,  3 Nov 2021 19:59:12 +0000 (UTC)
+Date:   Wed, 3 Nov 2021 20:03:46 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/2] iio: frequency: admv1013: add support for
+ ADMV1013
+Message-ID: <20211103200325.3416988c@jic23-huawei>
+In-Reply-To: <PH0PR03MB6366548C1CE5476989662F74998B9@PH0PR03MB6366.namprd03.prod.outlook.com>
+References: <20211101100420.70304-1-antoniu.miclaus@analog.com>
+        <PH0PR03MB6366548C1CE5476989662F74998B9@PH0PR03MB6366.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SCIF2 interface is available on PMOD1 connector (CN7) on carrier board,
-This patch adds pinmux and scif2 node to carrier board dtsi file.
+On Tue, 2 Nov 2021 10:09:15 +0000
+"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi | 28 ++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+> > +#define ADMV1013_CHAN_PHASE(_channel, rf_comp) {		\
+> > +	.type = IIO_ALTVOLTAGE,					\
+> > +	.modified = 1,						\
+> > +	.output = 1,						\
+> > +	.indexed = 1,						\
+> > +	.channel2 = IIO_MOD_##rf_comp,				\
+> > +	.channel = _channel,					\
+> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_PHASE)		\
+> > +	}
+> > +
+> > +#define ADMV1013_CHAN_CALIB(_channel, rf_comp) {		\
+> > +	.type = IIO_ALTVOLTAGE,					\
+> > +	.modified = 1,						\
+> > +	.output = 1,						\
+> > +	.indexed = 1,						\
+> > +	.channel2 = IIO_MOD_##rf_comp,				\
+> > +	.channel = _channel,					\
+> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_CALIBBIAS)	\
+> > +	}
+> > +
+> > +static const struct iio_chan_spec admv1013_channels[] = {
+> > +	ADMV1013_CHAN_PHASE(0, I),
+> > +	ADMV1013_CHAN_PHASE(0, Q),
+> > +	ADMV1013_CHAN_CALIB(0, I),
+> > +	ADMV1013_CHAN_CALIB(0, Q),
+> > +	ADMV1013_CHAN_CALIB(1, I),
+> > +	ADMV1013_CHAN_CALIB(1, Q),
+> > +};
+> > +  
+> 
+> Hmm, If I'm not missing nothing this leads to something like:
+> 
+> out_altvoltage0_i_phase
+> out_altvoltage0_q_phase
+> out_altvoltage0_i_calibbias
+> out_altvoltage0_q_calibbias
+> out_altvoltage1_i_calibbias
+> out_altvoltage1_q_calibbias
+> 
+> To me it is really non obvious that index 1 also applies to the same
+> channel. I see that we have this like this probably because we
+> can't use modified and differential at the same time, right?
+> 
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 2863e487a640..4c32f068a1f0 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -21,9 +21,13 @@
-  *
-  */
- 
-+/* comment the #define statement to disable SCIF2 (SER0) on PMOD1 (CN7) */
-+#define PMOD1_SER0	1
-+
- / {
- 	aliases {
- 		serial0 = &scif0;
-+		serial1 = &scif2;
- 		i2c0 = &i2c0;
- 		i2c1 = &i2c1;
- 		i2c3 = &i2c3;
-@@ -208,6 +212,13 @@
- 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
- 	};
- 
-+	scif2_pins: scif2 {
-+		pinmux = <RZG2L_PORT_PINMUX(48, 0, 1)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(48, 1, 1)>, /* RxD */
-+			 <RZG2L_PORT_PINMUX(48, 3, 1)>, /* CTS# */
-+			 <RZG2L_PORT_PINMUX(48, 4, 1)>; /* RTS# */
-+	};
-+
- 	sd1-pwr-en-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(39, 2) GPIO_ACTIVE_HIGH>;
-@@ -277,6 +288,23 @@
- 	status = "okay";
- };
- 
-+/*
-+ * To enable SCIF2 (SER0) on PMOD1 (CN7)
-+ * SW1 should be at position 2->3 so that SER0_CTS# line is activated
-+ * SW2 should be at position 2->3 so that SER0_TX line is activated
-+ * SW3 should be at position 2->3 so that SER0_RX line is activated
-+ * SW4 should be at position 2->3 so that SER0_RTS# line is activated
-+ */
-+#if PMOD1_SER0
-+&scif2 {
-+	pinctrl-0 = <&scif2_pins>;
-+	pinctrl-names = "default";
-+
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+#endif
-+
- &sdhi1 {
- 	pinctrl-0 = <&sdhi1_pins>;
- 	pinctrl-1 = <&sdhi1_pins_uhs>;
--- 
-2.17.1
+Indeed, this is the problem you mentioned in the discussion on v2
+My suggestion of making it clear it is a differential channel and then
+applying calibbias to the parts doesn't work as it would need to
+have both modifiers and a second channel index.
+As for why that is an issue, it comes down to trying to keep the
+event interface descriptive, but still minimal.  We basically ran
+out of bits and at the time I couldn't think of a reason we'd want
+both differential and a modifier...
+
+> Jonathan, I'm not sure what should be the done here... From the top of my
+> head  I guess we can either:
+> 
+> * drop the modifiers (not perfect but also not that bad IMO)
+> * tweak something adding extended info (not really neat)
+True, it's not neat but might be the way forwards for 'now'.. We don't have
+events or anything on this driver, so we could make it look right without any
+risk of not being able to extend it.  However it will probably come back to bite
+us and userspace may not expect whatever we do.
+Horrible though it is you could use extend_name - which was originally intended
+to let us 'label special purpose channels'.  It was a bad idea, but is there and
+not going way any time soon.
+
+If you did the differential thing and set extend_name = "i" etc that
+might get us around the internal issue of reusing channel2 for mod and differential
+channel.
+
+> * or handling this in the core with a new variable. Of course, we would need
+> to be careful to not break existing drivers...
+
+We would end up something hardly ever used so I'm doubtful that's a good
+idea until we have some visibility of how common it would be.
+
+> 
+> Not sure if labels could also be something to use... Any suggestion from your
+> side?
+
+Let me think a bit more on this for a day or two...
+
+Jonathan
+
+> 
+> - Nuno Sá
+> 
 
