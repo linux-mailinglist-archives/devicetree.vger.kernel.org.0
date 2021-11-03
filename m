@@ -2,152 +2,657 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1968F444982
-	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 21:26:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0400444987
+	for <lists+devicetree@lfdr.de>; Wed,  3 Nov 2021 21:28:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230122AbhKCU2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 16:28:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
+        id S230216AbhKCUbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 16:31:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231420AbhKCU2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 16:28:52 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45887C061208;
-        Wed,  3 Nov 2021 13:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
-        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
-        bh=k3I/nJavgx6XiiROVgxCaTtXsXUugWiGTr0ZFK/7s6k=; b=OyrJd/sPOFafUSCoJeCGPd0mgc
-        oCUb/DEEwSd+WUrC1HSo/PvXCke7ooNDhZSuoOstA+2eRs1+w7itOz7XXe774dOKg+/dRiOCvud7l
-        ZMvCLMtz4xPKPAy77jtMWS2wGAW1RFlVCFz5oNddBW8E+bVgi8QN9PvBFK7/bGX0VkMzug5AxVFFZ
-        xScE/DjpFFdyC6iVb3ifwKw/dvaXbx88e0BLxLEndnE3sIpAV2JCh5Tter03PfDJ/Ouhn+uTYD4HE
-        d1pNI35RarMTOKrPeoeMvT2kIrRAn9DjPj3E565QkxiSQC4GWA6A80vtxfvuie/A0Rx2GwBKN1LUq
-        TiLfnd+Q==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1miMpp-006UsQ-6I; Wed, 03 Nov 2021 20:26:13 +0000
-Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-To:     =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
- <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <07456b90-a83c-b1b9-20d4-b70a746148a5@infradead.org>
-Date:   Wed, 3 Nov 2021 13:26:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S230172AbhKCUbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 16:31:24 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02B99C061714;
+        Wed,  3 Nov 2021 13:28:48 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id D55E81F45BC8
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     aisheng.dong@nxp.com, ariel.dalessandro@collabora.com,
+        festevam@gmail.com, ioana.ciornei@nxp.com,
+        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
+        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
+        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
+        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, tharvey@gateworks.com
+Subject: [PATCH] arm64: dts: imx8mn-bsh-smm-s2/pro: Add iMX8MN BSH SMM S2 boards
+Date:   Wed,  3 Nov 2021 17:28:19 -0300
+Message-Id: <20211103202819.326661-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/21 11:08 AM, Wells Lu 呂芳騰 wrote:
->>
->> Hi--
->>
->> On 11/3/21 4:02 AM, Wells Lu wrote:
->>> diff --git a/drivers/net/ethernet/sunplus/Kconfig
->>> b/drivers/net/ethernet/sunplus/Kconfig
->>> new file mode 100644
->>> index 0000000..a9e3a4c
->>> --- /dev/null
->>> +++ b/drivers/net/ethernet/sunplus/Kconfig
->>> @@ -0,0 +1,20 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +#
->>> +# Sunplus Ethernet device configuration #
->>> +
->>> +config NET_VENDOR_SUNPLUS
->>> +	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
->>> +	depends on ETHERNET && SOC_SP7021
->>> +	select PHYLIB
->>> +	select PINCTRL_SPPCTL
->>> +	select COMMON_CLK_SP7021
->>> +	select RESET_SUNPLUS
->>> +	select NVMEM_SUNPLUS_OCOTP
->>> +	help
->>> +	  If you have Sunplus dual 10M/100M Ethernet (with L2 switch)
->>> +	  devices, say Y.
->>> +	  The network device supports dual 10M/100M Ethernet interfaces,
->>> +	  or one 10/100M Ethernet interface with two LAN ports.
->>> +	  To compile this driver as a module, choose M here.  The module
->>> +	  will be called sp_l2sw.
->>
->> Please use NET_VENDOR_SUNPLUS in the same way that other
->> NET_VENDOR_wyxz kconfig symbols are used. It should just enable or
->> disable any specific device drivers under it.
->>
->>
->> --
->> ~Randy
-> 
-> I looked up Kconfig file of other vendors, but not sure what I should do.
-> Do I need to modify Kconfig file in the form as shown below?
+Introduce BSH SystemMaster (SMM) S2 board family, which consists of:
+iMX8MN SMM S2 and iMX8MN SMM S2 PRO boards.
 
-Hi,
+Add support for iMX8MN BSH SMM S2 board:
 
-Yes, this is the correct general idea, but also consider
-Andrew's comments.
+- 256 MiB DDR3 RAM
+- 512 MiB NAND
+- Megabit Ethernet PHY
+- Wi-Fi 802.11 a/b/g/n/ac with Bluetooth 5.0
+- USB-OTG (peripheral mode)
 
-Thanks.
+Add support for iMX8MN BSH SMM S2 PRO board:
 
-> # SPDX-License-Identifier: GPL-2.0
-> #
-> # Sunplus device configuration
-> #
-> 
-> config NET_VENDOR_SUNPLUS
-> 	bool "Sunplus devices"
-> 	default y
-> 	depends on ARCH_SUNPLUS
-> 	---help---
-> 	  If you have a network (Ethernet) card belonging to this
-> 	  class, say Y here.
-> 
-> 	  Note that the answer to this question doesn't directly
-> 	  affect the kernel: saying N will just cause the configurator
-> 	  to skip all the questions about Sunplus cards. If you say Y,
-> 	  you will be asked for your specific card in the following
-> 	  questions.
-> 
-> if NET_VENDOR_SUNPLUS
-> 
-> config SP7021_EMAC
-> 	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
-> 	depends on ETHERNET && SOC_SP7021
-> 	select PHYLIB
-> 	select PINCTRL_SPPCTL
-> 	select COMMON_CLK_SP7021
-> 	select RESET_SUNPLUS
-> 	select NVMEM_SUNPLUS_OCOTP
-> 	help
-> 	  If you have Sunplus dual 10M/100M Ethernet (with L2 switch)
-> 	  devices, say Y.
-> 	  The network device supports dual 10M/100M Ethernet interfaces,
-> 	  or one 10/100M Ethernet interface with two LAN ports.
-> 	  To compile this driver as a module, choose M here.  The module
-> 	  will be called sp_l2sw.
-> 
-> endif # NET_VENDOR_SUNPLUS
-> 
-> Best regards,
-> Wells
-> 
+- 512 MiB DDR3 RAM
+- 8 GiB eMMC
+- Megabit Ethernet PHY
+- Wi-Fi 802.11 a/b/g/n/ac with Bluetooth 5.0
+- USB-OTG (peripheral mode)
 
+Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +
+ .../freescale/imx8mn-bsh-smm-s2-common.dtsi   | 426 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mn-bsh-smm-s2.dts  |  48 ++
+ .../dts/freescale/imx8mn-bsh-smm-s2pro.dts    |  80 ++++
+ 4 files changed, 556 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index db9e36ebe932..6c51c5e2b943 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -45,6 +45,8 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw73xx-0x.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7901.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-venice-gw7902.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+new file mode 100644
+index 000000000000..108a29d4e7ae
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2-common.dtsi
+@@ -0,0 +1,426 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2021 Collabora Ltd.
++ * Copyright 2021 BSH Hausgeraete GmbH
++ */
++
++/dts-v1/;
++
++#include "imx8mn.dtsi"
++
++/ {
++	chosen {
++		stdout-path = &uart4;
++	};
++
++	fec_supply: fec_supply_en {
++		compatible = "regulator-fixed";
++		regulator-name = "tja1101_en";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&gpio2 20 GPIO_ACTIVE_HIGH>;
++		vin-supply = <&buck4_reg>;
++		enable-active-high;
++	};
++
++	usdhc2_pwrseq: usdhc2_pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_usdhc2_pwrseq>;
++		reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&A53_0 {
++	cpu-supply = <&buck2_reg>;
++};
++
++&A53_1 {
++	cpu-supply = <&buck2_reg>;
++};
++
++&A53_2 {
++	cpu-supply = <&buck2_reg>;
++};
++
++&A53_3 {
++	cpu-supply = <&buck2_reg>;
++};
++
++&ecspi2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_espi2>;
++	status = "okay";
++};
++
++&fec1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_fec1>;
++	phy-mode = "rmii";
++	phy-handle = <&ethphy0>;
++	phy-supply = <&fec_supply>;
++	fsl,magic-packet;
++	status = "okay";
++
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <0>;
++			reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <20>;
++			reset-deassert-us = <2000>;
++		};
++	};
++};
++
++&i2c1 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c1>;
++	status = "okay";
++
++	pmic: bd71847@4b {
++		compatible = "rohm,bd71847";
++		reg = <0x4b>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_pmic>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++		rohm,reset-snvs-powered;
++
++		#clock-cells = <0>;
++		clocks = <&osc_32k 0>;
++		clock-output-names = "clk-32k-out";
++
++		regulators {
++			buck1_reg: BUCK1 {
++				/* PMIC_BUCK1 - VDD_SOC */
++				regulator-name = "buck1";
++				regulator-min-microvolt = <700000>;
++				regulator-max-microvolt = <1300000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <1250>;
++			};
++
++			buck2_reg: BUCK2 {
++				/* PMIC_BUCK2 - VDD_ARM */
++				regulator-name = "buck2";
++				regulator-min-microvolt = <700000>;
++				regulator-max-microvolt = <1300000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <1250>;
++			};
++
++			buck3_reg: BUCK3 {
++				/* PMIC_BUCK5 - VDD_DRAM_VPU_GPU */
++				regulator-name = "buck3";
++				regulator-min-microvolt = <700000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buck4_reg: BUCK4 {
++				/* PMIC_BUCK6 - VDD_3V3 */
++				regulator-name = "buck4";
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buck5_reg: BUCK5 {
++				/* PMIC_BUCK7 - VDD_1V8 */
++				regulator-name = "buck5";
++				regulator-min-microvolt = <1605000>;
++				regulator-max-microvolt = <1995000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buck6_reg: BUCK6 {
++				/* PMIC_BUCK8 - NVCC_DRAM */
++				regulator-name = "buck6";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <1400000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo1_reg: LDO1 {
++				/* PMIC_LDO1 - NVCC_SNVS_1V8 */
++				regulator-name = "ldo1";
++				regulator-min-microvolt = <1600000>;
++				regulator-max-microvolt = <1900000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo2_reg: LDO2 {
++				/* PMIC_LDO2 - VDD_SNVS_0V8 */
++				regulator-name = "ldo2";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <900000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo3_reg: LDO3 {
++				/* PMIC_LDO3 - VDDA_1V8 */
++				regulator-name = "ldo3";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo4_reg: LDO4 {
++				/* PMIC_LDO4 - VDD_MIPI_0V9 */
++				regulator-name = "ldo4";
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo6_reg: LDO6 {
++				/* PMIC_LDO6 - VDD_MIPI_1V2 */
++				regulator-name = "ldo6";
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++&i2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	status = "okay";
++};
++
++&i2c4 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c4>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart2>;
++	status = "okay";
++};
++
++&uart3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart3>;
++	assigned-clocks = <&clk IMX8MN_CLK_UART3>;
++	assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_80M>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_bluetooth>;
++		shutdown-gpios = <&gpio1 15 GPIO_ACTIVE_HIGH>;
++		device-wakeup-gpios = <&gpio1 18 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
++		max-speed = <3000000>;
++	};
++};
++
++/* Console */
++&uart4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart4>;
++	status = "okay";
++};
++
++&usbotg1 {
++	dr_mode = "peripheral";
++	disable-over-current;
++	status = "okay";
++};
++
++&usdhc2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc2>;
++	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
++	mmc-pwrseq = <&usdhc2_pwrseq>;
++	bus-width = <4>;
++	non-removable;
++	status = "okay";
++
++	brcmf: bcrmf@1 {
++		compatible = "brcm,bcm4329-fmac";
++		reg = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_wlan>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "host-wake";
++	};
++};
++
++&wdog1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdog>;
++	fsl,ext-reset-output;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_espi2: espi2grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK            0x082
++			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI            0x082
++			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO            0x082
++			MX8MN_IOMUXC_ECSPI2_SS0_ECSPI2_SS0		0x040
++		>;
++	};
++
++	pinctrl_i2c1: i2c1grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL			0x400000c2
++			MX8MN_IOMUXC_I2C1_SDA_I2C1_SDA			0x400000c2
++		>;
++	};
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_I2C3_SCL_I2C3_SCL			0x400000c2
++			MX8MN_IOMUXC_I2C3_SDA_I2C3_SDA			0x400000c2
++		>;
++	};
++
++	pinctrl_i2c4: i2c4grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL			0x400000c2
++			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA			0x400000c2
++		>;
++	};
++
++	pinctrl_pmic: pmicirq {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x040
++		>;
++	};
++
++	pinctrl_uart4: uart4grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_UART4_RXD_UART4_DCE_RX		0x040
++			MX8MN_IOMUXC_UART4_TXD_UART4_DCE_TX		0x040
++		>;
++	};
++
++	pinctrl_usdhc2_pwrseq: usdhc2pwrseqgrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x040	/* WL_REG_ON */
++		>;
++	};
++
++	pinctrl_usdhc2: usdhc2grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x090
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d0
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d0
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d0
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d0
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d0
++		>;
++	};
++
++	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x094
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d4
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d4
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d4
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d4
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d4
++		>;
++	};
++
++	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK			0x096
++			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD			0x0d6
++			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x0d6
++			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x0d6
++			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x0d6
++			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x0d6
++		>;
++	};
++
++	pinctrl_wlan: wlangrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x0d6	/* GPIO_0 - WIFI_GPIO_0 */
++			MX8MN_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x0d6	/* GPIO_1 - WIFI_GPIO_1 */
++			MX8MN_IOMUXC_GPIO1_IO04_GPIO1_IO4		0x0d6	/* BT_GPIO_5 - WIFI_GPIO_5 */
++			MX8MN_IOMUXC_SPDIF_RX_GPIO5_IO4			0x0d6	/* I2S_CLK - WIFI_GPIO_6 */
++		>;
++	};
++
++	pinctrl_uart2: uart2grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX		0x040
++			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX		0x040
++		>;
++	};
++
++	pinctrl_uart3: uart3grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_UART3_TXD_UART3_DCE_TX		0x040
++			MX8MN_IOMUXC_UART3_RXD_UART3_DCE_RX		0x040
++			MX8MN_IOMUXC_ECSPI1_MISO_UART3_DCE_CTS_B	0x040
++			MX8MN_IOMUXC_ECSPI1_SS0_UART3_DCE_RTS_B		0x040
++		>;
++	};
++
++	pinctrl_bluetooth: bluetoothgrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO15_GPIO1_IO15		0x044	/* BT_REG_ON */
++			MX8MN_IOMUXC_ENET_TD3_GPIO1_IO18		0x046	/* BT_DEV_WAKE */
++			MX8MN_IOMUXC_ENET_RD2_GPIO1_IO28		0x090	/* BT_HOST_WAKE */
++		>;
++	};
++
++	pinctrl_wdog: wdoggrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x046
++		>;
++	};
++
++	pinctrl_fec1: fec1grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_ENET_MDC_ENET1_MDC			0x002
++			MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO		0x002
++			MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x090
++			MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x090
++			MX8MN_IOMUXC_ENET_RXC_ENET1_RX_ER		0x090
++			MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x016
++			MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x016
++			MX8MN_IOMUXC_ENET_TD2_ENET1_TX_CLK		0x016
++			MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x016
++			MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x090
++			MX8MN_IOMUXC_ENET_TXC_ENET1_TX_ER		0x016
++			MX8MN_IOMUXC_SD2_CD_B_GPIO2_IO12		0x150	/* RMII_INT - ENET_INT */
++			MX8MN_IOMUXC_SD2_WP_GPIO2_IO20			0x150	/* RMII_EN - ENET_EN */
++			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19		0x016	/* RMII_WAKE - GPIO_ENET_WAKE */
++			MX8MN_IOMUXC_ENET_RD3_GPIO1_IO29		0x016	/* RMII_RESET - GPIO_ENET_RST */
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+new file mode 100644
+index 000000000000..33f98582eace
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2.dts
+@@ -0,0 +1,48 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2021 Collabora Ltd.
++ * Copyright 2021 BSH Hausgeraete GmbH
++ */
++
++/dts-v1/;
++
++#include "imx8mn-bsh-smm-s2-common.dtsi"
++
++/ {
++	model = "BSH SMM S2";
++	compatible = "bsh,imx8mn-bsh-smm-s2", "fsl,imx8mn";
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x0 0x40000000 0x0 0x10000000>;
++	};
++};
++
++&gpmi {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpmi_nand>;
++	nand-on-flash-bbt;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_gpmi_nand: gpmi-nand {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_ALE_RAWNAND_ALE		0x00000096
++			MX8MN_IOMUXC_NAND_CE0_B_RAWNAND_CE0_B		0x00000096
++			MX8MN_IOMUXC_NAND_CLE_RAWNAND_CLE		0x00000096
++			MX8MN_IOMUXC_NAND_DATA00_RAWNAND_DATA00		0x00000096
++			MX8MN_IOMUXC_NAND_DATA01_RAWNAND_DATA01		0x00000096
++			MX8MN_IOMUXC_NAND_DATA02_RAWNAND_DATA02		0x00000096
++			MX8MN_IOMUXC_NAND_DATA03_RAWNAND_DATA03		0x00000096
++			MX8MN_IOMUXC_NAND_DATA04_RAWNAND_DATA04		0x00000096
++			MX8MN_IOMUXC_NAND_DATA05_RAWNAND_DATA05		0x00000096
++			MX8MN_IOMUXC_NAND_DATA06_RAWNAND_DATA06		0x00000096
++			MX8MN_IOMUXC_NAND_DATA07_RAWNAND_DATA07		0x00000096
++			MX8MN_IOMUXC_NAND_RE_B_RAWNAND_RE_B		0x00000096
++			MX8MN_IOMUXC_NAND_READY_B_RAWNAND_READY_B	0x00000056
++			MX8MN_IOMUXC_NAND_WE_B_RAWNAND_WE_B		0x00000096
++			MX8MN_IOMUXC_NAND_WP_B_RAWNAND_WP_B		0x00000096
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+new file mode 100644
+index 000000000000..c6a8ed6745c1
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mn-bsh-smm-s2pro.dts
+@@ -0,0 +1,80 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright 2021 Collabora Ltd.
++ * Copyright 2021 BSH Hausgeraete GmbH
++ */
++
++/dts-v1/;
++
++#include "imx8mn-bsh-smm-s2-common.dtsi"
++
++/ {
++	model = "BSH SMM S2 PRO";
++	compatible = "bsh,imx8mn-bsh-smm-s2pro", "fsl,imx8mn";
++
++	memory@40000000 {
++		device_type = "memory";
++		reg = <0x0 0x40000000 0x0 0x20000000>;
++	};
++};
++
++/* eMMC */
++&usdhc1 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000090
++			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d0
++			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d0
++			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d0
++			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d0
++			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d0
++			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d0
++			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d0
++			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d0
++			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d0
++			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x090
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000094
++			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d4
++			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d4
++			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d4
++			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d4
++			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d4
++			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d4
++			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d4
++			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d4
++			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d4
++			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x094
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
++		fsl,pins = <
++			MX8MN_IOMUXC_SD1_CLK_USDHC1_CLK			0x40000096
++			MX8MN_IOMUXC_SD1_CMD_USDHC1_CMD			0x0d6
++			MX8MN_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x0d6
++			MX8MN_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x0d6
++			MX8MN_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x0d6
++			MX8MN_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x0d6
++			MX8MN_IOMUXC_SD1_DATA4_USDHC1_DATA4		0x0d6
++			MX8MN_IOMUXC_SD1_DATA5_USDHC1_DATA5		0x0d6
++			MX8MN_IOMUXC_SD1_DATA6_USDHC1_DATA6		0x0d6
++			MX8MN_IOMUXC_SD1_DATA7_USDHC1_DATA7		0x0d6
++			MX8MN_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x096
++		>;
++	};
++};
 -- 
-~Randy
+2.30.2
+
