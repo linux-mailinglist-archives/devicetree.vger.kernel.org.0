@@ -2,124 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FCF4450B1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 09:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3A84450C6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 10:00:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhKDI7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 04:59:48 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:16453 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbhKDI7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 04:59:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1636016230; x=1667552230;
-  h=date:from:to:subject:message-id:references:mime-version:
-   in-reply-to;
-  bh=uYP98T1lWdkr5+qrsVnyqqWos9v2lmU4T/cfxWtY65g=;
-  b=ldbKJDQvVRrSuaDyGG4T2GIqusnZThjZDFE4MWxKr+9tQV0JjemSBESK
-   hTTwcvxFXF5X2/43AeeEyWezc5kknKs38mK8shspYnr0mGffgwSbzu+C9
-   mhLds/jindLSJfzxNHq994Ei9qlGwhjorT6McqfeU/zThIaCYHlG3otm0
-   m+kS9S1ORgQqRb6dX0BbPpQ+mZsUpwOmxO+14OSzNYu8R9UD7auN1uVwI
-   0cc5xgkL+SPreClgwfoeK6HAaTe0UzCc91wznhddtYkY5GLjWcVUpIQPV
-   hoWCf5OrvK3p5kAn0pX57nnjz/orRk4WGptflas6XuH6OWAlxDGb95BAg
-   A==;
-IronPort-SDR: Zu/2WzzgZHxh5zmp4AQdIS+JXQvZxh1va+aIBdVN/FDUwh5kAFORlUYQlk7a4+lmgyHsNj8Oud
- 1V2eoNF62rhpsPDfiUZ3fWs4vb81nMZ50Zx910+QOG/GK3w37JZ4a4W83o9ARlW5NZIVDlN5j0
- mQ3f5DALmXxXZWh2AR22KsVgYFG0dE3AIh/q7KiQQQSeWWxBnuiO+RaC2fcQBElRHcbMrue3S+
- ZrDQW5TPNNDb3wUP60YGnJXDz0hp0XO5K0QeD+omiFLJqBOIjQPMynyuUHsGT4ihPHK5e18qYL
- zwZ4MbV6bYk1nEC76D3tZ17P
-X-IronPort-AV: E=Sophos;i="5.87,208,1631602800"; 
-   d="scan'208";a="150696948"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2021 01:57:10 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 4 Nov 2021 01:57:10 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 4 Nov 2021 01:57:09 -0700
-Date:   Thu, 4 Nov 2021 09:58:56 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <kishon@ti.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <andrew@lunn.ch>, <alexandre.belloni@bootlin.com>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/3] phy: Add driver for lan966x Serdes driver
-Message-ID: <20211104085856.tlvwwbpgyv2djdyz@soft-dev3-1.localhost>
-References: <20211020094229.1760793-1-horatiu.vultur@microchip.com>
+        id S230468AbhKDJDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 05:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230478AbhKDJCz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 05:02:55 -0400
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E67F5C06127A
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 02:00:15 -0700 (PDT)
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:bf08:f0c1:3ec1:1bfc])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id E6B8026C25B;
+        Thu,  4 Nov 2021 10:00:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1636016413;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=aSVaAzJ3m5980KKgm3JRaFImGZ0s3xafSnre4Y/uNJU=;
+        b=UnK9Aj4wg7GMeEqd89bq+LKinLThwgLHmSxpS8+5EifF2rysoZidBPNmOQdpzBjsoPM3WG
+        4q5x4Mx+5WHhjSMc7dr0AWsIfFUZO9zJMM6fdOX7dq0J2jF3uIuIXaWa4cbdPySLW5lPe8
+        EIgjA1LbLlMODhAcBwGOIzRb9jqcJn1GQ6BDkAUfIdijC2MG/CKZeGvUjMHtbznRCSYMq5
+        BnnYYYcjeSmYmm1vAxK7OD94/pHHtQlEYpiTQIxZ9Vn3MClJUVKNp0FNdhpbeBSKfkYOjQ
+        SrKh65A69VZpw7TSvWmfaf73Qh6uY5gsndFctCjaRdU0bUoXuu2s9wYNum8fQA==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v2 0/2] Add Realtek Otto WDT support
+Date:   Thu,  4 Nov 2021 09:59:51 +0100
+Message-Id: <20211104085952.13572-1-sander@svanheule.net>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211020094229.1760793-1-horatiu.vultur@microchip.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kishon, Vinod,
+This watchdog timer is found on Realtek's Otto MIPS platforms, including the
+RTL838x, RTL839x, and RTL930x series of ethernet switch SoCs. It has a number
+of reset modes (SoC, CPU, software), and can provide pretimeout interrupts.
 
-Please let me know if you have more comments to this patch series.
-Do you think it would be possible to get it in 5.16?
+The timer has two timeout phases. Both phases have a maximum duration of 32
+prescaled clock ticks, which is ca. 43s with a clock of 200MHz:
+- Phase 1: During this phase, the WDT can be pinged to reset the timeout.
+- Phase 2: Starts after phase 1 has timed out, and only serves to give the
+  system some time to clean up, or notify others that it's going to reset.
+  During this phase, pinging the WDT has no effect, and a reset is unavoidable.
 
-The 10/20/2021 11:42, Horatiu Vultur wrote:
-> This patch serie adds support for Microchip lan966x serdes. The lan966x
-> device contains has 7 interfaces, consisting of 2 copper transceivers,
-> 3 Serdes and 2 RGMII interfaces. Two of the Serdes support QSGMII.
-> The driver also adds the functionality of "muxing" the interfaces to
-> different logical ports.
-> 
-> The following table shows which interfaces can be supported by the port.
-> 
-> PortNumber    Max Speed    Ethernet interface options
->     0            1Gbps       CuPHY, 1G SGMII or QSGMII
->     1            1Gbps       CuPHY, 1G SGMII or QSGMII
->     2          2.5Gbps       2.5G SGMII, QSGMII, RGMII
->     3          2.5Gbps       2.5G SGMII, QSGMII, RGMII
->     4          2.5Gbps       2.5G SGMII, QSGMII
->     5            1Gbps       QSGMII, RGMII
->     6            1Gbps       QSGMII, RGMII
->     7            1Gbps       QSGMII
-> 
-> v3->v4:
-> - update description of the driver
-> - removed unused registers
-> - use bitfield operations in the registers
-> - add macros for PLL configuration
-> - move macros and structs at the top of the file
-> 
-> v2->v3:
-> - remove unused includes
-> - add missing '...' in microchip,lan966x-serdes.yaml
-> - rename lan966x-serdes.h to phy-lan966x-serdes.h
-> - Rename CU->PHY and RG->RGMII
-> - update commit message for PATCH 2
-> 
-> v1->v2:
-> - replace the regmap with iomem
-> - update DT bindings
-> 
-> 
-> Horatiu Vultur (3):
->   dt-bindings: phy: Add lan966x-serdes binding
->   dt-bindings: phy: Add constants for lan966x serdes
->   phy: Add lan966x ethernet serdes PHY driver
-> 
->  .../phy/microchip,lan966x-serdes.yaml         |  59 ++
->  drivers/phy/microchip/Kconfig                 |   8 +
->  drivers/phy/microchip/Makefile                |   1 +
->  drivers/phy/microchip/lan966x_serdes.c        | 548 ++++++++++++++++++
->  drivers/phy/microchip/lan966x_serdes_regs.h   | 209 +++++++
->  include/dt-bindings/phy/phy-lan966x-serdes.h  |  14 +
->  6 files changed, 839 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
->  create mode 100644 drivers/phy/microchip/lan966x_serdes.c
->  create mode 100644 drivers/phy/microchip/lan966x_serdes_regs.h
->  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
-> 
-> -- 
-> 2.33.0
-> 
+The driver has been tested on a Zyxel GS1900-8 (RTL8380, mainline kernel and
+OpenWrt), a Zyxel GS1900-48 (RTL8393, mainline), a Netgear GS110TPPv1
+(RTL8381, mainline), and a Zyxel XGS1250-12 (RTL9203B, Openwrt).
+
+Main changes since v1:
+Link: https://lore.kernel.org/all/cover.1634131707.git.sander@svanheule.net/
+- Drop implementation of phase2 irq, since it is only triggered on system reset
+- Drop redundant value checks and lock
+- Add RTL930x compatibility
+
+Sander Vanheule (2):
+  dt-bindings: watchdog: Realtek Otto WDT binding
+  watchdog: Add Realtek Otto watchdog timer
+
+ .../bindings/watchdog/realtek,otto-wdt.yaml   |  91 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/realtek_otto_wdt.c           | 359 ++++++++++++++++++
+ 5 files changed, 471 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+ create mode 100644 drivers/watchdog/realtek_otto_wdt.c
 
 -- 
-/Horatiu
+2.31.1
+
