@@ -2,106 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AEEA4452F4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 13:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B1C445321
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 13:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230143AbhKDM1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 08:27:17 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:41678 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231137AbhKDM1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 08:27:17 -0400
-X-UUID: 06b80ee489ee47bdbc4de284346ce807-20211104
-X-UUID: 06b80ee489ee47bdbc4de284346ce807-20211104
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 80758421; Thu, 04 Nov 2021 20:24:31 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 4 Nov 2021 20:24:29 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 4 Nov 2021 20:24:28 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Steve Cho <stevecho@google.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S229843AbhKDMhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 08:37:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229505AbhKDMhI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 08:37:08 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D949C061714;
+        Thu,  4 Nov 2021 05:34:30 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id c206so5168205iof.2;
+        Thu, 04 Nov 2021 05:34:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aSDFeDkO0qaLEtNK76O8NQimr+zDhbv1igoxk25YmPY=;
+        b=E1DVTWypHI2O3f/jSult45xc4Nyet5nYf4oCkBxkNAF3ggPghzVdYPA1jCTjFxGi+4
+         0gxaT98/tY8ziYzhlBwzJoKieroEL7j/vsFEzX2lZcYMQSJD+ymAzVbYGaa6Kcfd3ZyD
+         io3gGk3bAqSzjp1kVPH9xpBfSYXJh+Lw2k9LWIHv0fCoZLzyt5HxChxRA3aG2Tkq6+wS
+         kODFZYk9ugSw9G4IWZfyAiH6ZSnmvNOgZoXiOPuwtBaUiRxvJ/azHPABI1jsH31b8DvK
+         FCtm9m+KRoUuRPtNY3MtUMku1SSxhc7Jjgimy+RmRqfq0ks+BhjZMqRbZl0tUNb9Tt/e
+         h/Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aSDFeDkO0qaLEtNK76O8NQimr+zDhbv1igoxk25YmPY=;
+        b=Vil2qyxa+qN6SzjrVM7ectpPB8mfGe4lFahGOR0H2ZJOdDiiy5d3d2Hx28F5HsG14W
+         75MyH+9lBzXwvxf16/BkY67fuDJj/btxhDtPemEaoMZ3GhDVvM8Ajy0SV/Hx5+QXHdhx
+         QzYQN2jToc92VgjCoqMArFskzT2Eqt+vDotFYLJa+Ti8vFP3b67eAf/iIEWPP7igpkVI
+         GBsMdJIGC1g6vL+DnD2yf8H142LDfLcI2tF69qgPLlWpHl2yc2dh1MGgHyvOUqu2IU9N
+         RvspGzMCT7LFMTh1akzonUjAdsPKVvxeiLuHZRZ3T4Q7MYjhJSv9W9XdUKprnKsAYkP4
+         jRTg==
+X-Gm-Message-State: AOAM530BoCwjatOKgKoiVGeQYCaLHmkRPZ0KoTNuIZLtd/cZjymhxHKq
+        Q+QiYgX34SCNIeHsQFc0740=
+X-Google-Smtp-Source: ABdhPJw6M9RYSmqHFJvybY+a+KomOfFaWSSqh7ifj2ugVv7FmZS+hyQlTz+463uXwfx9IfqdHLDjug==
+X-Received: by 2002:a6b:6a17:: with SMTP id x23mr6170895iog.165.1636029269668;
+        Thu, 04 Nov 2021 05:34:29 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:e81d:737a:bb84:83ba])
+        by smtp.gmail.com with ESMTPSA id o10sm2632156ilc.56.2021.11.04.05.34.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Nov 2021 05:34:28 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-        Steve Cho <stevecho@chromium.org>
-Subject: [PATCH v3] media: mtk-vcodec: Align width and height to 64 bytes
-Date:   Thu, 4 Nov 2021 20:24:26 +0800
-Message-ID: <20211104122426.9597-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-beacon: Enable USB Controllers
+Date:   Thu,  4 Nov 2021 07:34:11 -0500
+Message-Id: <20211104123411.397205-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Width and height need to 64 bytes aligned when setting the format.
-Need to make sure all is 64 bytes align when use width and height to
-calculate buffer size.
+The i.MX8M Mini has two available USB controllers.  On the
+imx8mm-beacon board, USB1 is routed to a mini-USB port with
+OTG functionality.  USB2 is routed to a USB hub which has
+three host-only ports connected to it.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-Tested-by: Steve Cho <stevecho@chromium.org>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h        | 1 +
- drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-index e30806c1faea..66cd6d2242c3 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
-@@ -11,6 +11,7 @@
- #include <media/videobuf2-core.h>
- #include <media/v4l2-mem2mem.h>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+index 6f5e63696ec0..4097a66163b2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-baseboard.dtsi
+@@ -43,6 +43,17 @@ reg_audio: regulator-audio {
+ 		enable-active-high;
+ 	};
  
-+#define VCODEC_DEC_ALIGNED_64 64
- #define VCODEC_CAPABILITY_4K_DISABLED	0x10
- #define VCODEC_DEC_4K_CODED_WIDTH	4096U
- #define VCODEC_DEC_4K_CODED_HEIGHT	2304U
-diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-index d402fc4bda69..e1a3011772a9 100644
---- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-+++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
-@@ -562,8 +562,8 @@ static void get_pic_info(struct vdec_h264_slice_inst *inst,
- {
- 	struct mtk_vcodec_ctx *ctx = inst->ctx;
++	reg_usbotg1: regulator-usbotg1 {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_reg_usb_otg1>;
++		regulator-name = "usb_otg_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
+ 	reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "VSD_3V3";
+@@ -169,6 +180,24 @@ &uart3 {
+ 	status = "okay";
+ };
  
--	ctx->picinfo.buf_w = (ctx->picinfo.pic_w + 15) & 0xFFFFFFF0;
--	ctx->picinfo.buf_h = (ctx->picinfo.pic_h + 31) & 0xFFFFFFE0;
-+	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, VCODEC_DEC_ALIGNED_64);
-+	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, VCODEC_DEC_ALIGNED_64);
- 	ctx->picinfo.fb_sz[0] = ctx->picinfo.buf_w * ctx->picinfo.buf_h;
- 	ctx->picinfo.fb_sz[1] = ctx->picinfo.fb_sz[0] >> 1;
- 	inst->vsi_ctx.dec.cap_num_planes =
++&usbotg1 {
++	vbus-supply = <&reg_usbotg1>;
++	disable-over-current;
++	dr_mode="otg";
++	status = "okay";
++};
++
++&usbotg2 {
++	pinctrl-names = "default";
++	disable-over-current;
++	dr_mode="host";
++	status = "okay";
++};
++
++&usbphynop2 {
++	reset-gpios = <&pca6416_1 7 GPIO_ACTIVE_HIGH>;
++};
++
+ &usdhc2 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ 	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
+@@ -215,6 +244,12 @@ MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
+ 		>;
+ 	};
+ 
++	pinctrl_reg_usb_otg1: usbotg1grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI3_RXC_GPIO4_IO29     0x19
++		>;
++	};
++
+ 	pinctrl_sai3: sai3grp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
 -- 
-2.25.1
+2.32.0
 
