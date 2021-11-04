@@ -2,84 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4B1444E6E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 06:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22046444EA1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 07:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229866AbhKDFpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 01:45:34 -0400
-Received: from mswedge2.sunplus.com ([60.248.182.106]:54304 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229824AbhKDFpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 01:45:34 -0400
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(53140:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Thu, 04 Nov 2021 13:32:03 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Thu, 4 Nov 2021 13:31:57 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Thu, 4 Nov 2021
- 13:31:57 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxbhgAgAClKgD//5f5gIABJz+w
-Date:   Thu, 4 Nov 2021 05:31:57 +0000
-Message-ID: <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
- <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
- <YYLjaYCQHzqBzN1l@lunn.ch>
-In-Reply-To: <YYLjaYCQHzqBzN1l@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S229968AbhKDGKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 02:10:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48370 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229912AbhKDGKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Nov 2021 02:10:45 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C7521610FC;
+        Thu,  4 Nov 2021 06:08:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636006087;
+        bh=u78YSZDJYfigsy7GL5G4yNXKMBMaWKzma9S8XVynMwU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IfwmvxhgW5ygKsNG9ghm67gSI+9in4oE7VZi3M9NdBRTc7q7OKEc/v9JxqqreH519
+         2FgObB627O+Vd4jwdfJjO+vKq6HIQ1097QFpWEgz7T3mJtq1yn/zcLC5L3r7oFb0uY
+         i0K9/lkCxsDNYzEy/5aKapx0UOzDqPa2MKAwCWPKaupiAxQzmJVXPaGAe0fl/HATd6
+         XTeA4CgrxElzaF7mL/u2mVC3dk8EwlFUf1IvUrIxBoD8M9b81zZU21V2OdgCHVricw
+         DQwL36KZEUr2jTz3eD2ZHvydn6x7uzu633WI34AZjYV38KfCuGkm5syr1MYN23ozmH
+         h8vxWyWrUh1hg==
+Received: by mail-ed1-f52.google.com with SMTP id f8so17633091edy.4;
+        Wed, 03 Nov 2021 23:08:07 -0700 (PDT)
+X-Gm-Message-State: AOAM532I4UpweDp5D1l87q2x5FY6F25ofghiOrm355o9QLPvC3l89Bhk
+        Irtm4xwvx8uG3n6mMcoW1tGyuoJPUkyd/LG1ryg=
+X-Google-Smtp-Source: ABdhPJyBVxTLTZ4b6DuU6NgWddxlcUlTiORn1PjxDqGqHxAT4Fs7BTZ9YjXfyqWgfOtH18SsScYUNl5vcRMqFHPTJCI=
+X-Received: by 2002:a50:bf48:: with SMTP id g8mr67634296edk.10.1636006086162;
+ Wed, 03 Nov 2021 23:08:06 -0700 (PDT)
 MIME-Version: 1.0
+References: <20211104014039.26772-1-zhiyong.tao@mediatek.com> <20211104014039.26772-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20211104014039.26772-2-zhiyong.tao@mediatek.com>
+From:   Sean Wang <sean.wang@kernel.org>
+Date:   Wed, 3 Nov 2021 23:07:55 -0700
+X-Gmail-Original-Message-ID: <CAGp9LzpEG_6w6fvmjaBAW3ihKQZm4uMEy9-5MaLLWkeu+QFqeQ@mail.gmail.com>
+Message-ID: <CAGp9LzpEG_6w6fvmjaBAW3ihKQZm4uMEy9-5MaLLWkeu+QFqeQ@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: mediatek: fix global-out-of-bounds issue
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        hui.liu@mediatek.com, Light Hsieh <light.hsieh@mediatek.com>,
+        =?UTF-8?B?U2VhbiBXYW5nICjnjovlv5fkupgp?= <sean.wang@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>, rex-bc.chen@mediatek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNClRoYW5rcyBhIGxvdCBmb3IgcmV2aWV3Lg0KDQo+IA0KPiA+IGNvbmZpZyBORVRfVkVO
-RE9SX1NVTlBMVVMNCj4gPiAJYm9vbCAiU3VucGx1cyBkZXZpY2VzIg0KPiA+IAlkZWZhdWx0IHkN
-Cj4gPiAJZGVwZW5kcyBvbiBBUkNIX1NVTlBMVVMNCj4gDQo+IERvZXMgaXQgYWN0dWFsbHkgZGVw
-ZW5kIG9uIEFSQ0hfU1VOUExVUz8gV2hhdCBkbyB5b3UgbWFrZSB1c2Ugb2Y/DQoNCkFSQ0hfU1VO
-UExVUyB3aWxsIGJlIGRlZmluZWQgZm9yIFN1bnBsdXMgZmFtaWx5IHNlcmllcyBTb0MuDQpFdGhl
-cm5ldCBkZXZpY2VzIG9mIFN1bnBsdXMgYXJlIGRlc2lnbmVkIGFuZCB1c2VkIGZvciBTdW5wbHVz
-IFNvQy4NClNvIGZhciwgb25seSB0d28gU29DIG9mIFN1bnBsdXMgaGF2ZSB0aGUgbmV0d29yayBk
-ZXZpY2UuDQpJJ2QgbGlrZSB0byBzaG93IHVwIHRoZSBzZWxlY3Rpb24gb25seSBmb3IgU3VucGx1
-cyBTb0MuDQoNCj4gDQo+IElkZWFsbHksIHlvdSB3YW50IGl0IHRvIGFsc28gYnVpbGQgd2l0aCBD
-T01QSUxFX1RFU1QsIHNvIHRoYXQgdGhlIGRyaXZlciBnZXRzDQo+IGJ1aWxkIGJ5IDAtZGF5IGFu
-ZCBhbGwgdGhlIG90aGVyIGJ1aWxkIGJvdHMuDQoNCkkgYW0gbm90IHN1cmUgaWYgdGhpcyBpcyBt
-YW5kYXRvcnkgb3Igbm90Lg0KU2hvdWxkIEkgYWRkIENPTVBJTEVfVEVTVCBhcyBiZWxvdz8NCg0K
-CWRlcGVuZHMgb24gQVJDSF9TVU5QTFVTIHwgQ09NUElMRV9URVNUDQoNCj4gDQo+ID4gCS0tLWhl
-bHAtLS0NCj4gPiAJICBJZiB5b3UgaGF2ZSBhIG5ldHdvcmsgKEV0aGVybmV0KSBjYXJkIGJlbG9u
-Z2luZyB0byB0aGlzDQo+ID4gCSAgY2xhc3MsIHNheSBZIGhlcmUuDQo+ID4NCj4gPiAJICBOb3Rl
-IHRoYXQgdGhlIGFuc3dlciB0byB0aGlzIHF1ZXN0aW9uIGRvZXNuJ3QgZGlyZWN0bHkNCj4gPiAJ
-ICBhZmZlY3QgdGhlIGtlcm5lbDogc2F5aW5nIE4gd2lsbCBqdXN0IGNhdXNlIHRoZSBjb25maWd1
-cmF0b3INCj4gPiAJICB0byBza2lwIGFsbCB0aGUgcXVlc3Rpb25zIGFib3V0IFN1bnBsdXMgY2Fy
-ZHMuIElmIHlvdSBzYXkgWSwNCj4gPiAJICB5b3Ugd2lsbCBiZSBhc2tlZCBmb3IgeW91ciBzcGVj
-aWZpYyBjYXJkIGluIHRoZSBmb2xsb3dpbmcNCj4gPiAJICBxdWVzdGlvbnMuDQo+ID4NCj4gPiBp
-ZiBORVRfVkVORE9SX1NVTlBMVVMNCj4gPg0KPiA+IGNvbmZpZyBTUDcwMjFfRU1BQw0KPiA+IAl0
-cmlzdGF0ZSAiU3VucGx1cyBEdWFsIDEwTS8xMDBNIEV0aGVybmV0ICh3aXRoIEwyIHN3aXRjaCkg
-ZGV2aWNlcyINCj4gPiAJZGVwZW5kcyBvbiBFVEhFUk5FVCAmJiBTT0NfU1A3MDIxDQo+IA0KPiBE
-b2VzIGl0IGFjdHVhbGx5IGRlcGVuZCBvbiBTT0NfU1A3MDIxIHRvIGJ1aWxkPw0KPiANCj4gICAg
-ICBBbmRyZXcNCg0KWWVzLCB0aGUgZGV2aWNlIGlzIG5vdyBvbmx5IGZvciBTdW5wbHVzIFNQNzAy
-MSBTb0MuDQpEZXZpY2VzIGluIGVhY2ggU29DIG1heSBoYXZlIGEgYml0IGRpZmZlcmVuY2UgYmVj
-YXVzZSBvZiBhZGRpbmcgbmV3IA0KZnVuY3Rpb24gb3IgaW1wcm92aW5nIHNvbWV0aGluZy4NCg0K
+HI, Zhiyong
+
+On Wed, Nov 3, 2021 at 6:40 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
+>
+> From: Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
+>
+> When eint virtual eint number is greater than gpio number,
+> it maybe produce 'desc[eint_n]' size globle-out-of-bounds issue.
+>
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> Signed-off-by: Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
+> ---
+>  drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> index 45ebdeba985a..9d57c897835c 100644
+> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> @@ -286,7 +286,8 @@ static int mtk_xt_get_gpio_n(void *data, unsigned long eint_n,
+>         *gpio_chip = &hw->chip;
+>
+>         /* Be greedy to guess first gpio_n is equal to eint_n */
+> -       if (desc[eint_n].eint.eint_n == eint_n)
+> +       if (((*gpio_chip)->ngpio > eint_n) &&
+
+please use "hw->soc->npins > eint_n" to perform the boundary check to
+be consistent with the other places for the same purpose
+
+> +           desc[eint_n].eint.eint_n == eint_n)
+>                 *gpio_n = eint_n;
+>         else
+>                 *gpio_n = mtk_xt_find_eint_num(hw, eint_n);
+> --
+> 2.25.1
+>
