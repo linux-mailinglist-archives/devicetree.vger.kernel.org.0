@@ -2,81 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD2EA44565B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 16:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9D64445676
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 16:39:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbhKDPdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 11:33:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230102AbhKDPda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 11:33:30 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 342E5C061714
-        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 08:30:52 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id b15so3520523edd.7
-        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 08:30:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M+COtvf8+vi8Ame9eqBQdGnMVyl2IED6RewYN1F2OFg=;
-        b=4Xsh4IK7kDExeMBYlvtxlMszcSU6a4MlzPyPm4CsN9rtwJ7HXYq5rqALaIX6A/Wa9+
-         MXOpvuKYqadDBfUO6fIX5zXQ70hPcpf+xLl4YhPG4xKmA4ifJXiOWrA1uIYhTEZtLbB2
-         B35meMFcG/E5ZGLLRaJfMrf3bD1tbGJzt4aTsMPnKg1z4FbTCq/ZlAXW8PVoTBwCgKMB
-         fBJtFVmo1y5F/lC/XrSmUMnhRSlSqPjUKk0nb7GGVCqE1qZlo6/0saCJkGYBK6GqfKip
-         nLB2HjACKV/qPW88gXdLmoyGh855xX+3MbXFhZ/DYAd+fnBxKUcu/mI+BgrH7pVEdk15
-         663g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M+COtvf8+vi8Ame9eqBQdGnMVyl2IED6RewYN1F2OFg=;
-        b=iGd4SI2uXsPcwIj6HaGPGqULe+QNalANhOtCCzafX+WdAi0JWM3ycq/FFcbUHb4Ozs
-         LK21FCPw7lk3/2K+10JEPgvzZOBwVLp7GqEZayrg9MMqAr33SN0UkaQ1tmWznBCvPdyb
-         jbvhlWmC0iIf54y5b3gXxmLfSP09wKloyq7fSqlu47DGPU9WNr4K3MRIxDeVEydFcX5U
-         WQ4FzY2qPS5aIXEALt++hPdpinZyR7LsZHBejTz5rzhDncV30dz8hC4XtB7dzh1kBhvK
-         pPjM0XwST7rBetx+D1itTPBhRnXDwkmbtdPBubcyjwNJpqCJDCSJZxu7aTmWpPnsnvTR
-         tepw==
-X-Gm-Message-State: AOAM5338FwAYyULPgG3zXL2L1rzWi+4x0+0GzhvOoD3VaA8yhY1caiqa
-        4GJK8D1sk+vno9rZj7iixYi/wWXCPsZmSyKslnAsmw==
-X-Google-Smtp-Source: ABdhPJy2UNzo37eDLa95hvWTCuRgJWES7H+FIc7Pf6QWBH9kQXR3cSgC7tpos9FO1y1FCzGDSQXU0sxJSRS68l6x7p0=
-X-Received: by 2002:a17:906:5343:: with SMTP id j3mr63319978ejo.538.1636039836026;
- Thu, 04 Nov 2021 08:30:36 -0700 (PDT)
+        id S231371AbhKDPlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 11:41:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42760 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231341AbhKDPlr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Nov 2021 11:41:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F2109610FD;
+        Thu,  4 Nov 2021 15:39:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636040349;
+        bh=33691hjBX9cadGoNuJzUiBoacTbjKNGx8fgHdxnQIQw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NBp55FzKYxropmUNncWTfpvAEjPc/Yu8oqJK2u3YOsk5m/En/j7Bpm+EP3D7MKN3t
+         yQR8Hq7NEYxbZdyB0vj0BxYacEjwI1oT8GCQ0apH3XudV1TIhYef54Dd4q6E6MZVaW
+         gvylekx8Cts46ms8jezMX80mEeJhXX34EMUO6PNBMMiPbKlyWtjyzPq3aqDPmf4EP1
+         ityBueCMVcwFsPI0/xsXzuiTu3Lvrm2zLX5syOP/bWZ6/BbZZys0M/9Jw4U1Yt285W
+         5JqfDrYERFsWks5bOSxaXR1own0RBt5X4JfQ5gRlmqKxhSoVaVICXnUzIbNUOzpoAw
+         vvslMfivQEspg==
+Date:   Thu, 4 Nov 2021 15:39:03 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Trevor Wu <trevor.wu@mediatek.com>
+Cc:     tiwai@suse.com, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, yc.hung@mediatek.com,
+        daniel.baluta@nxp.com
+Subject: Re: [PATCH 3/4] ASoC: mediatek: mt8195: separate the common code
+ from machine driver
+Message-ID: <YYP+l7tMofYoB+aC@sirena.org.uk>
+References: <20211103100040.11933-1-trevor.wu@mediatek.com>
+ <20211103100040.11933-4-trevor.wu@mediatek.com>
 MIME-Version: 1.0
-References: <20211016141839.45460-1-joey.gouly@arm.com> <20211016141839.45460-2-joey.gouly@arm.com>
- <CACRpkdac+NYMSHg_KCb2xQpnFaJMBfGT_7Mk+Kst1WrK9As_ZA@mail.gmail.com>
-In-Reply-To: <CACRpkdac+NYMSHg_KCb2xQpnFaJMBfGT_7Mk+Kst1WrK9As_ZA@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 4 Nov 2021 16:30:25 +0100
-Message-ID: <CAMRc=MeXf9wxk6=b7WnjN_Rb5fB3c8g6suo0A830Npc5-dhWVA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] gpio: Allow per-parent interrupt data
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Joey Gouly <joey.gouly@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Marc Zyngier <maz@kernel.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Kettenis <kettenis@openbsd.org>, nd <nd@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="c/fvPxmf2qWNcw9j"
+Content-Disposition: inline
+In-Reply-To: <20211103100040.11933-4-trevor.wu@mediatek.com>
+X-Cookie: Motorized vehicles only.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 17, 2021 at 12:37 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> Top-posting because I need a nod from Bartosz that I can
-> merge this patch with the rest in the pinctrl tree.
->
-> Bartosz: I can also offer this one patch in an immutable branch
-> as well so you can pull it in as well.
->
-> Yours,
-> Linus Walleij
 
-Hey! Sorry, didn't see it. Yes please take it.
+--c/fvPxmf2qWNcw9j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Acked-by: Bartosz Golaszewski <brgl@bgdev.pl>
+On Wed, Nov 03, 2021 at 06:00:39PM +0800, Trevor Wu wrote:
+> Because we will add DSP support, an new machine driver for the same
+> board is required. BE and codec configuration will use the same code
+> when machine driver is designed for the same board.
+
+I don't follow why the DSP support requires a new driver?  Shouldn't all
+systems with the DSP present be using it?
+
+--c/fvPxmf2qWNcw9j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGD/pYACgkQJNaLcl1U
+h9BAqgf/Us8BcF+vWFc8NQqr1anc/z5wXrFIw7io61z4wr+ALcAiqTXbLnt7KKse
+vtZMFvaxL3V/QbElufEk96G8jEXIrjYRuLAubtVQDl0a3LAtlQ8Se2ynhzu2Ib12
+Rf8pihv2OkEOM8Cj11mnLnokKBRQPj/CeloGdaE0xvVqlrO+ymOTdXZ8luP69uI5
+kCIYGzh3zlGA8G/aT88Doxmc9T5mgCoj9eu35oxN3h05bf4/h5kN77JHL6eiK5op
+h3Xb2ql5Kaok5XZ1R4ZSbc6DhTY8xtsmfBkR7wZwPkmpXyXU9H4FTQXqib55VyXA
+q5NZy4f9SyI9MoQnUgLHSiijyH5mQA==
+=N3h7
+-----END PGP SIGNATURE-----
+
+--c/fvPxmf2qWNcw9j--
