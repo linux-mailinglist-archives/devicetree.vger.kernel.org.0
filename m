@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C23445A35
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 20:04:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6EB0445AE7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 21:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234195AbhKDTGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 15:06:51 -0400
-Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:41358
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233947AbhKDTGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 15:06:50 -0400
-X-Greylist: delayed 104113 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Nov 2021 15:06:49 EDT
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(13488:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Fri, 05 Nov 2021 03:03:42 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Fri, 5 Nov 2021 03:03:43 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 5 Nov 2021
- 03:03:43 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Randy Dunlap <rdunlap@infradead.org>,
-        Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxbhgAgAClKgD//5f5gIABJz+w///9xoCAANUOEP//hOQAABHi4LA=
-Date:   Thu, 4 Nov 2021 19:03:43 +0000
-Message-ID: <72446c510f05480f9967c32df8787d46@sphcmbx02.sunplus.com.tw>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
- <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
- <YYLjaYCQHzqBzN1l@lunn.ch>
- <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
- <YYPZN9hPBJTBzVUl@lunn.ch>
- <c51d2927eedb4f3999b8361a44526a07@sphcmbx02.sunplus.com.tw>
- <YYQkqkZOwOhTa+VD@lunn.ch>
-In-Reply-To: <YYQkqkZOwOhTa+VD@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S231750AbhKDUHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 16:07:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230162AbhKDUHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 16:07:54 -0400
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14EBBC061714
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 13:05:16 -0700 (PDT)
+Received: by mail-ua1-x92b.google.com with SMTP id p37so12024172uae.8
+        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 13:05:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=hmuzU/cql7byCBs7STZGSIVd40TrY40KFv1H/t1XmFg=;
+        b=qLD0bmEek2709JmBV5evhkqZbwBcG+MOlsmaGodHLx+3KKIES5HQIEi8R1CyHwUgZN
+         yqBV5+wSK6WtPNDZ4YZvHTKL8n3XYrlfiCHC+1soFFHEQQxfHbZw54/w2pmXlyiWABt1
+         tV9j/FXgtqj8BOQxB/qT/BHnVIDy6+7a1uWR1lMAdiK8NXdGm09gpw/y0BUN1793bgz6
+         tVaj7a6O0wLSyeq3YM75OBJ0B60ZXwaHk3hhSpHYT9nGarJzojF8OwqLOAESRzctrTFq
+         TKCUCHnODhyDqSG6cRbsJO454tERR9zq5C8RfmWSGZSyLzambI7pAShOKmm8SapWdI6L
+         jzSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=hmuzU/cql7byCBs7STZGSIVd40TrY40KFv1H/t1XmFg=;
+        b=EIbqwd2q3Gy1zNkwpiDksjNOg8dn9aoghiFntGcvTtLkgd+jdl5Jyxxnl4rpoJVwXd
+         ubhoHuu602BVjRzUBxnOoJcEcJFFbYQKDZodcYhxxWZv0IzfyYxCEyG7or3NDfMCoSoO
+         jWkn6ImrvQvDGS34iGRVNfkHeNUEQZXcipE2oPrn7UhoDa6VrDSSbaqcAULDAULT5HD9
+         UrJtKYvNGLJiSFKHkluFu/ybsJXZRIZLyFcBjwlRlwQJMlEBL/Y9OeJQ/8o0U2YFbfoC
+         hwvrakOmsU48iKvWJtNvpHt+6NJ1tQpjCmuUFNKF3qa/xx/k3zsCDPHofujMy/6xpdoX
+         qV+A==
+X-Gm-Message-State: AOAM5316E+iolpCAOYhHM9QjQU6V2CQ0EA4C9CaNpqJbV3Y1Bvs61WrK
+        Foe5UtIUo1zAS0xeBozoa6+IaEplFlgi1GmTw/I=
+X-Google-Smtp-Source: ABdhPJzq4HLM0VG/16Q/ZGF5UeVotgFtM7ANHZGSzEbgdE1bapPXJ7Gh4i9kWpAGa+nQhlAVVXMZ9WPXx9HKP9aOEGk=
+X-Received: by 2002:a67:e057:: with SMTP id n23mr25986584vsl.13.1636056314775;
+ Thu, 04 Nov 2021 13:05:14 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 2002:ab0:6095:0:0:0:0:0 with HTTP; Thu, 4 Nov 2021 13:05:14 -0700 (PDT)
+Reply-To: michellederoma422@gmail.com
+From:   Info Finance Firm Donation <kh9138858@gmail.com>
+Date:   Thu, 4 Nov 2021 22:05:14 +0200
+Message-ID: <CAF0vhB892RJOocnSe5Ck6OJmudNm2ohPCMSnRVE3GZzg1CjGWw@mail.gmail.com>
+Subject: CONTACT ME FOR YOUR GIVE AWAY DONATION...
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+IE5vLCB3ZSBvbmx5IGRldmVsb3AgYXJtLWJhc2VkIFNvQywgbmV2ZXIgZm9yIHg4NiBvciBt
-aXBzLg0KPiA+IFdlIG5ldmVyIGNvbXBpbGUgdGhlIGRyaXZlciBmb3IgeDg2IG9yIG1pcHMgbWFj
-aGluZS4NCj4gDQo+IFlvdSBkb24ndCwgYnV0IHRoZSBMaW51eCBjb21tdW5pdHkgZG9lcyBidWls
-ZCBmb3IgdGhvc2UgYXJjaGl0ZWN0dXJlcy4gTW9zdA0KPiBwZW9wbGUgZG8gdHJlZSB3aWRlIHJl
-ZmFjdG9yaW5nIHdvcmsgdXNpbmcgeDg2LiBUcmVlIHdpZGUgY2xlYW51cHMgdXNpbmcgeDg2LA0K
-PiBldGMuIEFueSBjaGFuZ2VzIGxpa2UgdGhhdCBjb3VsZCB0b3VjaCB5b3VyIGRyaXZlci4gVGhl
-IGhhcmRlciBpcyBpdCB0byBidWlsZCwgdGhlDQo+IGxlc3MgYnVpbGQgdGVzdGluZyBpdCB3aWxs
-IGdldCwgYW5kIHRyZWUgd2lkZSBjaGFuZ2VzIHdoaWNoIGJyZWFrIGl0IGFyZSBsZXNzIGxpa2Vs
-eQ0KPiB0byBnZXQgbm90aWNlZC4gIFNvIHlvdSByZWFsbHkgZG8gd2FudCBpdCB0byBjb21waWxl
-IGNsZWFubHkgZm9yIGFsbA0KPiBhcmNoaXRlY3R1cmVzLiBJZiBpdCBkb2VzIG5vdCwgaXQgbm9y
-bWFsbHkgYWN0dWFsbHkgbWVhbnMgeW91IGFyZSBkb2luZw0KPiBzb21ldGhpbmcgd3JvbmcsIHNv
-bWV0aGluZyB5b3UgbmVlZCB0byBmaXggYW55d2F5LiBTbyBwbGVhc2UgZG8gYnVpbGQgaXQgZm9y
-DQo+IHg4NiBhbmQgbWFrZSBzdXJlIGl0IGJ1aWxkcyBjbGVhbmx5Lg0KPiANCj4gCSAgQW5kcmV3
-DQoNCk9rLCBJIHVuZGVyc3RhbmQuDQpJJ2xsIGFkZCBDT01QSUxFX1RFU1QgYW5kIGNvbXBpbGUg
-ZHJpdmVyIGZvciB4ODYuDQoNClRoYW5rcywNCg==
+Greetings, How are you doing. I have emailed you earlier on without
+any response from you. I want you to make use of this $640,000
+donation offer from me to you. Email me for more details:
+michellederoma422@gmail.com
+
+Sincerely,
+Michelle
