@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6206444E20
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 06:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D4B1444E6E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 06:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230521AbhKDFMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 01:12:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230011AbhKDFMO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 01:12:14 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADBC9C061714;
-        Wed,  3 Nov 2021 22:09:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=DlU9hmw4W8D9x6aVOx0iFXlJ+qpIS36/C+b8G40GJkE=; b=pslMV/T+V+ssGajnysctcPW9c4
-        7HZaM79NzDGy2w5GuPU0YREHlw7YVP0rGrk4uaMSpbMkejUzF/rD0Ys0a2uaGoFq9BiHlH+cFr9Mx
-        kQgI4u8shJGTRhCSQa3+rMqw/bzJcgdR78OIreWQNx8TJiwLMxg7FLiUHfSGUsSLCATEcLmEQGdWn
-        2S80VNW366tCEMmCuPR3dalvG1tt0uhybCXbDgSYncMaBSZocjo2b81JkGUlbtdwfB39wzVrHUog2
-        uhSBu/DK8kJyqybDC93UzpIoLso9Hm95A3mjHTh4Do8J+ixzRHSaZ8jefwCfkS0ggEmFZ6+OT977i
-        1A0b+1pQ==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1miV0L-007s7W-3M; Thu, 04 Nov 2021 05:09:37 +0000
-Subject: Re: [PATCH v4 06/10] clk: Add Sunplus SP7021 clock driver
-To:     Qin Jian <qinjian@cqplus1.com>, robh+dt@kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, maz@kernel.org,
-        p.zabel@pengutronix.de, linux@armlinux.org.uk, broonie@kernel.org,
-        arnd@arndb.de, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, wells.lu@sunplus.com
-References: <cover.1635993377.git.qinjian@cqplus1.com>
- <2373006c300bfde8b0a1470f81d252d3766ae1c3.1635993377.git.qinjian@cqplus1.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <6d5986ac-68ef-5537-8882-f34b8436d16a@infradead.org>
-Date:   Wed, 3 Nov 2021 22:09:36 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S229866AbhKDFpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 01:45:34 -0400
+Received: from mswedge2.sunplus.com ([60.248.182.106]:54304 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229824AbhKDFpe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 01:45:34 -0400
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.17.9.202
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(53140:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Thu, 04 Nov 2021 13:32:03 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Thu, 4 Nov 2021 13:31:57 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Thu, 4 Nov 2021
+ 13:31:57 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Randy Dunlap <rdunlap@infradead.org>,
+        Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxbhgAgAClKgD//5f5gIABJz+w
+Date:   Thu, 4 Nov 2021 05:31:57 +0000
+Message-ID: <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
+ <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
+ <YYLjaYCQHzqBzN1l@lunn.ch>
+In-Reply-To: <YYLjaYCQHzqBzN1l@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-In-Reply-To: <2373006c300bfde8b0a1470f81d252d3766ae1c3.1635993377.git.qinjian@cqplus1.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/21 7:57 PM, Qin Jian wrote:
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index c5b3dc973..1cd7ae7a3 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -334,6 +334,15 @@ config COMMON_CLK_VC5
->   	  This driver supports the IDT VersaClock 5 and VersaClock 6
->   	  programmable clock generators.
->   
-> +config COMMON_CLK_SP7021
-> +	bool "Clock driver for Sunplus SP7021 SoC"
-> +	help
-> +	  This driver supports the Sunplus SP7021 SoC clocks.
-> +	  It implemented SP7021 PLLs/gate.
-
-	     implements
-
-> +	  Not all features of the PLL are currently supported
-> +	  by the driver.
-> +	  This driver is selected automatically by platform config.
-
-
--- 
-~Randy
+SGksDQoNClRoYW5rcyBhIGxvdCBmb3IgcmV2aWV3Lg0KDQo+IA0KPiA+IGNvbmZpZyBORVRfVkVO
+RE9SX1NVTlBMVVMNCj4gPiAJYm9vbCAiU3VucGx1cyBkZXZpY2VzIg0KPiA+IAlkZWZhdWx0IHkN
+Cj4gPiAJZGVwZW5kcyBvbiBBUkNIX1NVTlBMVVMNCj4gDQo+IERvZXMgaXQgYWN0dWFsbHkgZGVw
+ZW5kIG9uIEFSQ0hfU1VOUExVUz8gV2hhdCBkbyB5b3UgbWFrZSB1c2Ugb2Y/DQoNCkFSQ0hfU1VO
+UExVUyB3aWxsIGJlIGRlZmluZWQgZm9yIFN1bnBsdXMgZmFtaWx5IHNlcmllcyBTb0MuDQpFdGhl
+cm5ldCBkZXZpY2VzIG9mIFN1bnBsdXMgYXJlIGRlc2lnbmVkIGFuZCB1c2VkIGZvciBTdW5wbHVz
+IFNvQy4NClNvIGZhciwgb25seSB0d28gU29DIG9mIFN1bnBsdXMgaGF2ZSB0aGUgbmV0d29yayBk
+ZXZpY2UuDQpJJ2QgbGlrZSB0byBzaG93IHVwIHRoZSBzZWxlY3Rpb24gb25seSBmb3IgU3VucGx1
+cyBTb0MuDQoNCj4gDQo+IElkZWFsbHksIHlvdSB3YW50IGl0IHRvIGFsc28gYnVpbGQgd2l0aCBD
+T01QSUxFX1RFU1QsIHNvIHRoYXQgdGhlIGRyaXZlciBnZXRzDQo+IGJ1aWxkIGJ5IDAtZGF5IGFu
+ZCBhbGwgdGhlIG90aGVyIGJ1aWxkIGJvdHMuDQoNCkkgYW0gbm90IHN1cmUgaWYgdGhpcyBpcyBt
+YW5kYXRvcnkgb3Igbm90Lg0KU2hvdWxkIEkgYWRkIENPTVBJTEVfVEVTVCBhcyBiZWxvdz8NCg0K
+CWRlcGVuZHMgb24gQVJDSF9TVU5QTFVTIHwgQ09NUElMRV9URVNUDQoNCj4gDQo+ID4gCS0tLWhl
+bHAtLS0NCj4gPiAJICBJZiB5b3UgaGF2ZSBhIG5ldHdvcmsgKEV0aGVybmV0KSBjYXJkIGJlbG9u
+Z2luZyB0byB0aGlzDQo+ID4gCSAgY2xhc3MsIHNheSBZIGhlcmUuDQo+ID4NCj4gPiAJICBOb3Rl
+IHRoYXQgdGhlIGFuc3dlciB0byB0aGlzIHF1ZXN0aW9uIGRvZXNuJ3QgZGlyZWN0bHkNCj4gPiAJ
+ICBhZmZlY3QgdGhlIGtlcm5lbDogc2F5aW5nIE4gd2lsbCBqdXN0IGNhdXNlIHRoZSBjb25maWd1
+cmF0b3INCj4gPiAJICB0byBza2lwIGFsbCB0aGUgcXVlc3Rpb25zIGFib3V0IFN1bnBsdXMgY2Fy
+ZHMuIElmIHlvdSBzYXkgWSwNCj4gPiAJICB5b3Ugd2lsbCBiZSBhc2tlZCBmb3IgeW91ciBzcGVj
+aWZpYyBjYXJkIGluIHRoZSBmb2xsb3dpbmcNCj4gPiAJICBxdWVzdGlvbnMuDQo+ID4NCj4gPiBp
+ZiBORVRfVkVORE9SX1NVTlBMVVMNCj4gPg0KPiA+IGNvbmZpZyBTUDcwMjFfRU1BQw0KPiA+IAl0
+cmlzdGF0ZSAiU3VucGx1cyBEdWFsIDEwTS8xMDBNIEV0aGVybmV0ICh3aXRoIEwyIHN3aXRjaCkg
+ZGV2aWNlcyINCj4gPiAJZGVwZW5kcyBvbiBFVEhFUk5FVCAmJiBTT0NfU1A3MDIxDQo+IA0KPiBE
+b2VzIGl0IGFjdHVhbGx5IGRlcGVuZCBvbiBTT0NfU1A3MDIxIHRvIGJ1aWxkPw0KPiANCj4gICAg
+ICBBbmRyZXcNCg0KWWVzLCB0aGUgZGV2aWNlIGlzIG5vdyBvbmx5IGZvciBTdW5wbHVzIFNQNzAy
+MSBTb0MuDQpEZXZpY2VzIGluIGVhY2ggU29DIG1heSBoYXZlIGEgYml0IGRpZmZlcmVuY2UgYmVj
+YXVzZSBvZiBhZGRpbmcgbmV3IA0KZnVuY3Rpb24gb3IgaW1wcm92aW5nIHNvbWV0aGluZy4NCg0K
