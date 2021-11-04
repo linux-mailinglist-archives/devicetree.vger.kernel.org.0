@@ -2,240 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC77A4453CF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 14:25:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C51B0445434
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 14:44:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231136AbhKDN2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 09:28:16 -0400
-Received: from smtp2.axis.com ([195.60.68.18]:14478 "EHLO smtp2.axis.com"
+        id S230494AbhKDNrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 09:47:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40598 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230494AbhKDN2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 09:28:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1636032338;
-  x=1667568338;
-  h=date:from:to:cc:subject:message-id:mime-version;
-  bh=ZXqX5g8V54rNfLbNdWs0ycEBdy13+empV4eOsvCyi0A=;
-  b=HO5e7vOJaljqGiOPrsVoe6mtcKWzD6PJZjbAa3q7yo+Xh0WQbz901CV1
-   BTu7v2c5bNo3fAyL9Y8XHFuN27IQBHRJBYdzMoMKzo/5Pyv8ibhtARfme
-   n8AmT9X+39E6P+Ds2qhUq2T2FZEk2UMjPu9MVKUGp3E8ZSLA8EkGBWV62
-   AY337qy0bXaJImqjF/ONgRqZMqNf73aKDic37DMFQV7bVPbz5Lb53yLiY
-   cY2yu+BfPSwFz/FM0e0qSrCaWCqTW//Djd6DkuDxMdw/txWepNvoXPbLp
-   R6Ye4vNWXO95KXVAoUmyhUFhrp7oFkwuCJUZ4YMvpUchewhrNaP+38s4y
-   w==;
-Date:   Thu, 4 Nov 2021 14:25:31 +0100
-From:   Ricard Wanderlof <ricardw@axis.com>
-X-X-Sender: ricardw@lnxricardw1.se.axis.com
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     alsa-devel <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: sound: tlv320adc3xxx: New codec driver
-Message-ID: <alpine.DEB.2.21.2111041421580.31205@lnxricardw1.se.axis.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S229869AbhKDNrS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Nov 2021 09:47:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9C32A6112D;
+        Thu,  4 Nov 2021 13:44:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636033480;
+        bh=2IZ1MpOoH9S3y2ci4QxGhZ12rQuQHoqmEAL5qJFT5Xg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Rva4quG1xXSuZKkw+aH6M3vlpYaIsNXvtBFL/C2EMp6lMinWTM4oFYTRgxotAFTvy
+         bbEW+q/DhK2iM7J3zJ1rZ0x2xOHNca9+H0DJM4hd7zlYJd0sTd68qgUJwRYZwdvc1/
+         dr/YxTiSGOrLoM8CaPlTmXoY3M60qKC5CpDU/l+qJLu1pLctocrDy3/JC2Rz9uKy50
+         Je6nVROX6LfgK3nYf4UDKau/jmp8n8ENh58k4jQBJM+iVludlwzsh2YNAu7KgsBc6n
+         2qq3FkdbKLtaDjdyOtXIHRsDz6Oz8vfTbfCKFTdRsI6s1pu7naMZpQn/M07ODBPTSS
+         Yhdq5XltB08Gw==
+Date:   Thu, 4 Nov 2021 13:44:35 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] regulator: qcom_spmi: do no register unused regulators
+Message-ID: <YYPjw6f4mPeslcGK@sirena.org.uk>
+References: <20211104004351.2206578-1-dmitry.baryshkov@linaro.org>
+ <YYOYZ1cEFFJhX2ae@gerhold.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail04w.axis.com (10.20.40.10) To se-mail07w.axis.com
- (10.20.40.13)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="h3V8QfBcIZ6fJVOy"
+Content-Disposition: inline
+In-Reply-To: <YYOYZ1cEFFJhX2ae@gerhold.net>
+X-Cookie: Motorized vehicles only.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-DT bindings for tlv320adc3xxx driver, currently supporting
-Texas Instruments TLV320ADC3001 and TLV320ADC3101 audio ADCs.
+--h3V8QfBcIZ6fJVOy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
----
- .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
- include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
- 2 files changed, 165 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
- create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
+On Thu, Nov 04, 2021 at 09:23:03AM +0100, Stephan Gerhold wrote:
+> On Thu, Nov 04, 2021 at 03:43:51AM +0300, Dmitry Baryshkov wrote:
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
-new file mode 100644
-index 000000000000..c4fed6335230
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tlv320adc3xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TLV320ADC3001/TLV320ADC3101 Stereo ADC
-+
-+maintainers:
-+  - Ricard Wanderlof <ricardw@axis.com>
-+
-+description: |
-+  Texas Instruments TLV320ADC3001 and TLV320ADC3101 Stereo ADC
-+  https://www.ti.com/product/TLV320ADC3001
-+  https://www.ti.com/product/TLV320ADC3101
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tlv320adc3001
-+      - ti,tlv320adc3101
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C address
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO pin used for codec reset (RESET pin)
-+
-+  clocks:
-+    maxItems: 1
-+    description: Master clock (MCLK)
-+
-+  ti,dmdin-gpio1:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
-+      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
-+      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
-+      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
-+      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
-+      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
-+      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
-+      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
-+    default: 0
-+    description: |
-+      Configuration for DMDIN/GPIO1 pin.
-+
-+      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
-+      ALSA control "GPIOx Output" to appear, as a switch control.
-+
-+  ti,dmclk-gpio2:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not used
-+      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
-+      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
-+      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
-+      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX reg
-+      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
-+      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
-+      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
-+    default: 0
-+    description: |
-+      Configuration for DMCLK/GPIO2 pin.
-+
-+      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
-+      ALSA control "GPIOx Output" to appear, as a switch control.
-+
-+      Note that there is currently no support for reading the GPIO pins as
-+      inputs.
-+
-+  ti,micbias1-vg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
-+      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
-+      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
-+      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
-+    default: 0
-+    description: |
-+      Mic bias voltage output on MICBIAS1 pin
-+
-+  ti,micbias2-vg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_MICBIAS_OFF		- Mic bias is powered down
-+      - 1 # ADC3XXX_MICBIAS_2_0V	- Mic bias is set to 2.0V
-+      - 2 # ADC3XXX_MICBIAS_2_5V	- Mic bias is set to 2.5V
-+      - 3 # ADC3XXX_MICBIAS_AVDD	- Mic bias is same as AVDD supply
-+    default: 0
-+    description: |
-+      Mic bias voltage output on MICBIAS2 pin
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/sound/tlv320adc3xxx.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        tlv320adc3101: tlv320adc3101@18 {
-+            compatible = "ti,tlv320adc3101";
-+            reg = <0x18>;
-+            reset-gpios = <&gpio_pc 3 GPIO_ACTIVE_LOW>;
-+            clocks = <&audio_mclk>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            ti,dmdin-gpio1 = <ADC3XXX_GPIO_GPO>;
-+            ti,micbias1-vg = <ADC3XXX_MICBIAS_AVDD>;
-+        };
-+    };
-+
-+    audio_mclk: clock {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <24576000>;
-+    };
-+...
-diff --git a/include/dt-bindings/sound/tlv320adc3xxx.h b/include/dt-bindings/sound/tlv320adc3xxx.h
-new file mode 100644
-index 000000000000..59ed510e6cf1
---- /dev/null
-+++ b/include/dt-bindings/sound/tlv320adc3xxx.h
-@@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Devicetree bindings definitions for tlv320adc3xxx driver.
-+ *
-+ * Copyright (C) 2021 Axis Communications AB
-+ */
-+#ifndef __DT_TLV320ADC3XXX_H
-+#define __DT_TLV320ADC3XXX_H
-+
-+#define ADC3XXX_GPIO_DISABLED		0 /* I/O buffers powered down */
-+#define ADC3XXX_GPIO_INPUT		1 /* Various non-GPIO inputs */
-+#define ADC3XXX_GPIO_GPI		2 /* General purpose input */
-+#define ADC3XXX_GPIO_GPO		3 /* General purpose output */
-+#define ADC3XXX_GPIO_CLKOUT		4 /* Source set in reg. CLKOUT_MUX */
-+#define ADC3XXX_GPIO_INT1		5 /* INT1 output */
-+#define ADC3XXX_GPIO_INT2		6 /* INT2 output */
-+/* value 7 is reserved */
-+#define ADC3XXX_GPIO_SECONDARY_BCLK	8 /* Codec interface secondary BCLK */
-+#define ADC3XXX_GPIO_SECONDARY_WCLK	9 /* Codec interface secondary WCLK */
-+#define ADC3XXX_GPIO_ADC_MOD_CLK	10 /* Clock output for digital mics */
-+/* values 11-15 reserved */
-+
-+#define ADC3XXX_MICBIAS_OFF		0 /* Micbias pin powered off */
-+#define ADC3XXX_MICBIAS_2_0V		1 /* Micbias pin set to 2.0V */
-+#define ADC3XXX_MICBIAS_2_5V		2 /* Micbias pin set to 2.5V */
-+#define ADC3XXX_MICBIAS_AVDD		3 /* Use AVDD voltage for micbias pin */
-+
-+#endif /* __DT_TLV320ADC3XXX_H */
--- 
-2.20.1
+> > Typically SPMI interface to PMIC regulators on Qualcomm platforms is
+> > used to supplement RPM interface in cases where direct control is
+> > required (e.g. for the APCC or GFX regulators). Registering all possible
+> > regulators is thus not required and may be potentially harmfull if
+> > somebody tries to setup those directly. Thus register only regulators
+> > that are really used in the device tree and ignore all unused
+> > regulators.
 
--- 
-Ricard Wolf Wanderlof                           ricardw(at)axis.com
-Axis Communications AB, Lund, Sweden            www.axis.com
-Phone +46 46 272 2016                           Fax +46 46 13 61 30
+> Shouldn't the missing regulator constraints already take care of that?
+> If you don't setup any voltage etc in the device tree it should
+> effectively make the regulator read-only.
+
+Right, we won't touch the hardware configuration unless there are
+constraints explicitly permitting it.  Drivers should always register
+any regulators that are physically present unconditionally, the core
+will only make changes if the system integration permits it.  Open
+coding this in drivers just causes code duplication and creates issues
+if there's changes in the generic bindings.
+
+--h3V8QfBcIZ6fJVOy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGD48IACgkQJNaLcl1U
+h9AOPwf/USfd+yxesPi2E56+4jeZ7wPWZnC5lBakLqilvg+fkDIgd7G8bzlo7gJt
+PZbrn/izn7EYLyjipcvori557X3TEstcwJQrvA0AaF/57tDEP2Ttam/ygcO8MCtV
+Mgi+McbnQXPUj4mGCzTKM+bLdFwDZFOTIgcdeeoGgSGMeaxjBPL6TMUIuZnzUHsn
+0x2exb/aCNOFjCZ/sq578HsytQz3epkSQvFsKXfmWNSLovAtaPshba0HcOi7oByi
+deqOMDoGAM3sfCx8dX/1OzQ4FHlmI49Iv6BInhDgDfofuPtFAmcX6Xm4voLxuNpK
+kai0WitpT6lGhXAlKqOhyItaGIlSwQ==
+=9orx
+-----END PGP SIGNATURE-----
+
+--h3V8QfBcIZ6fJVOy--
