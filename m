@@ -2,87 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C98445702
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:17:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9712445708
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:18:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231556AbhKDQTg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 12:19:36 -0400
-Received: from mga06.intel.com ([134.134.136.31]:56306 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231508AbhKDQTg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 12:19:36 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="292570868"
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; 
-   d="scan'208";a="292570868"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2021 09:16:58 -0700
-X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; 
-   d="scan'208";a="468521539"
-Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.209.121.122]) ([10.209.121.122])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2021 09:16:57 -0700
-Message-ID: <27c6e902-7cb3-97c6-f4db-b31a81869115@linux.intel.com>
-Date:   Thu, 4 Nov 2021 09:16:57 -0700
+        id S231706AbhKDQVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 12:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40346 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231700AbhKDQVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 12:21:02 -0400
+Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E398C061714;
+        Thu,  4 Nov 2021 09:18:24 -0700 (PDT)
+Received: by mail-il1-x131.google.com with SMTP id i9so6703470ilu.8;
+        Thu, 04 Nov 2021 09:18:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lLrp2dpY6LYuH9Q0YveCLTWGjslIqfEizqHI6RtJBnI=;
+        b=naargcuYU+PjHGywec7wUD34JYXhz7wE9qJYA9EVzvdAMqeKUr4jQSoPryyLU1zgX+
+         FZ+Uun5vHr5izE9vW1TtT1688bTuMmnkk78w9z1aMw87W2azLgYmSCGAWAgSWpGeNeLG
+         rKVjW4lt7ufyykDpoQpkU9s6KhiFfQ9gDC9p3GLrc+EsMQ6cOehNp1UoeNsmtBcbInxI
+         gbCehyYQ1L9TLYsCVKUl6pLJ4dmrYgRrOzScyLRgZs/02BLm/kmfKGWtjVkp4y2xc7Vy
+         u06XImS2wIfKR0qfnJTK9oYC9S4mYPZ0BtIvRa5A1Jv0ersCmSSIAIqMlPDFQZazeutD
+         +xrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lLrp2dpY6LYuH9Q0YveCLTWGjslIqfEizqHI6RtJBnI=;
+        b=4ykUc1OUgx8vqSOpLR9L3sdWMtCYyIHlpm1OAwSqPxeCd3/wDwoQTN4bJ+T4BQZZzr
+         CtikjQQay0nt4Nvm5WA0Fb8jta1O6kVntTqEOgEWMxY/W1a9VIjQvIb7aMOHNU4LxGzB
+         HJMmv5vuA7Y7OZqaJyeaClseJf7R4nb6wrPujxWTtceL2462a6F0r7xv2b+YgRdZnQ7D
+         AljsbnN/zKNJFDWJMFSZIlC4Zmnw6PkpEKxpet8IYcAtpOIcuB6r9Pa979a8sZrnHX1r
+         vjWszN6++HUxRx5adUkfrbsFOVbR31qzhFac/JxR9caOhgG2/R3635FRb4x5KPKIGqZA
+         2KiA==
+X-Gm-Message-State: AOAM530MYiX3/+v+I0SPHhbamm8u43wwu7jTq4f+VWg/X4P3TQcrqqbq
+        uhwfp7oICOEuxPtIn6k91I8=
+X-Google-Smtp-Source: ABdhPJwW2IEfYXJUHpPOD731IVhI4uaT5j4Nm9eE6ojC0HDrqcu1Rp6WUUIuj1tTHtlR80JQB8CbiQ==
+X-Received: by 2002:a05:6e02:1bec:: with SMTP id y12mr2715870ilv.74.1636042703712;
+        Thu, 04 Nov 2021 09:18:23 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:e81d:737a:bb84:83ba])
+        by smtp.gmail.com with ESMTPSA id e17sm3266326iow.18.2021.11.04.09.18.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Nov 2021 09:18:22 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, ariel.dalessandro@collabora.com,
+        krzk@kernel.org, tharvey@gateworks.com, l.stach@pengutronix.de,
+        devicetree@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
+Date:   Thu,  4 Nov 2021 11:17:55 -0500
+Message-Id: <20211104161804.587250-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH -next v2 5/6] dt-bindings: ipmi: aspeed,kcs-bmc: add
- 'clocks' as a required property
-Content-Language: en-US
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        openipmi-developer@lists.sourceforge.net,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Cedric Le Goater <clg@kaod.org>,
-        Corey Minyard <minyard@acm.org>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>
-References: <20211102203717.96794-1-jae.hyun.yoo@intel.com>
- <20211102203717.96794-6-jae.hyun.yoo@intel.com>
- <1635902437.654631.3880388.nullmailer@robh.at.kernel.org>
- <8db279c9-4c76-91a5-3617-a17effb2d103@linux.intel.com>
- <CAL_Jsq+SwCqFycKz4+agRsB3qr4Rbfra55Q6tNbMH2bNtoX+hA@mail.gmail.com>
- <796e0c02-5bca-e8a9-a17f-898aafec237f@linux.intel.com>
- <CACPK8Xcwkz1QLOvN0MiSkX+jj2NZY10--1qo7M8UMyEmQQtYmA@mail.gmail.com>
-From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-In-Reply-To: <CACPK8Xcwkz1QLOvN0MiSkX+jj2NZY10--1qo7M8UMyEmQQtYmA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/2021 3:45 PM, Joel Stanley wrote:
-> On Wed, 3 Nov 2021 at 17:27, Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com> wrote:
->>
->> On 11/3/2021 9:29 AM, Rob Herring wrote:
-> 
->>> It's possible that 'clocks' was always required or that it never
->>> worked without clocks, then this change is okay. Looking at this
->>> patch, I have no way to know that. The commit message has to explain
->>> that. A commit message needs to answer WHY are you making the change.
->>> You don't really need WHAT the change is as anyone can read the diff.
->>
->> Then what would be better? Would it be good enough if I add more detail
->> commit message including a note that dtb recompiling is required? Or,
->> should I change this series to treat the 'clocks' as an optional
->> property? Can you please share your thought?
-> 
-> Make it essential. It was only by accident that things have worked
-> without this change.
-> 
-> While keeping backwards compatibility with dtbs is a goal we strive
-> for, in practice we use the dtb from the corresponding kernel source
-> tree, so as long as the patch to the driver is applied in the same
-> place as the patch to the device tree no systems will break.
+The i.MX8M Nano is similar to the i.MX8M Mini in some ways, but very 
+different in others.  With the blk-ctrl driver for Mini in place, 
+this series expands the blk-ctrl driver to support the Nano which
+opens the door for additional functions in the future.  As part of
+this series, it also addresses some issues in the GPCv2 driver and
+finally adds support for enabling USB and GPU.
 
-Okay. I'll keep 'clocks' property as a required property and will make
-the commit message of this patch more descriptive. Thanks a lot for your
-feedback.
+V3:  Fixes an the yaml example
+V2:  Fixes the clock count in the blk-ctrl
 
-Cheers,
-Jae
+Adam Ford (9):
+  soc: imx: gpcv2: keep i.MX8MN gpumix bus clock enabled
+  soc: imx: gpcv2: Add dispmix and mipi domains to imx8mn
+  dt-bindings: power: imx8mn: add defines for DISP blk-ctrl domains
+  dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
+  soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP blk-ctrl
+  arm64: dts: imx8mn: add GPC node
+  arm64: dts: imx8mn: put USB controller into power-domains
+  arm64: dts: imx8mn: add DISP blk-ctrl
+  arm64: dts: imx8mn: Enable GPU
+
+ .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     |  97 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     | 103 ++++++++++++++++++
+ drivers/soc/imx/gpcv2.c                       |  26 +++++
+ drivers/soc/imx/imx8m-blk-ctrl.c              |  75 ++++++++++++-
+ include/dt-bindings/power/imx8mn-power.h      |   5 +
+ 5 files changed, 305 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
+
+-- 
+2.32.0
 
