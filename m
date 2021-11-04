@@ -2,156 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA854456DB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B31B54456E5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:09:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbhKDQLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 12:11:48 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:34037 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231639AbhKDQLr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 12:11:47 -0400
-X-IronPort-AV: E=Sophos;i="5.87,209,1631545200"; 
-   d="scan'208";a="99217955"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2021 01:09:09 +0900
-Received: from localhost.localdomain (unknown [10.226.92.57])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9B2AF4017894;
-        Fri,  5 Nov 2021 01:09:06 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-Date:   Thu,  4 Nov 2021 16:08:56 +0000
-Message-Id: <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
-References: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
+        id S231658AbhKDQMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 12:12:21 -0400
+Received: from mga03.intel.com ([134.134.136.65]:8892 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231639AbhKDQMV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Nov 2021 12:12:21 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10157"; a="231682658"
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; 
+   d="scan'208";a="231682658"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2021 09:09:42 -0700
+X-IronPort-AV: E=Sophos;i="5.87,209,1631602800"; 
+   d="scan'208";a="468519314"
+Received: from yoojae-mobl.amr.corp.intel.com (HELO [10.209.121.122]) ([10.209.121.122])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2021 09:09:41 -0700
+Message-ID: <f9203632-4730-dba6-49a7-240b45a00bed@linux.intel.com>
+Date:   Thu, 4 Nov 2021 09:09:41 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
+Content-Language: en-US
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     Joel Stanley <joel@jms.id.au>,
+        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Corey Minyard <minyard@acm.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net
+References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+ <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
+ <YYHSHoELvKRI4Zh1@hatter.bewilderbeest.net>
+ <d2a18e3b-cb02-37b5-cad8-45c3e8ff3bb4@linux.intel.com>
+ <YYHYMKDD7hz15ceR@hatter.bewilderbeest.net>
+ <63678f47-8b4a-1385-a755-bc7c2316ca0d@linux.intel.com>
+ <YYHhMGm4C0srTW1x@hatter.bewilderbeest.net>
+ <768252cc-2466-3b4b-9087-549b83e00a81@linux.intel.com>
+ <YYM78OxYMYwiFzWD@hatter.bewilderbeest.net>
+From:   Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+In-Reply-To: <YYM78OxYMYwiFzWD@hatter.bewilderbeest.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the WDT hardware in the RZ/G2L series.
+On 11/3/2021 6:48 PM, Zev Weiss wrote:
+> On Wed, Nov 03, 2021 at 08:56:10AM PDT, Jae Hyun Yoo wrote:
+>>
+>> Hi Zev,
+>>
+>> Not sure but looks like one of LPC functions is enabled while kernel
+>> booting.
+> 
+> Looks like that was exactly the clue I needed -- obvious in retrospect, 
+> but I realize now that I'm only seeing this happen when I bypass the 
+> normal shutdown sequence via 'reboot -f'; with a plain 'reboot' I don't 
+> hit any problems.  Can you reproduce it that way?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../bindings/watchdog/renesas,wdt.yaml        | 72 ++++++++++++++-----
- 1 file changed, 54 insertions(+), 18 deletions(-)
+My system doesn't follow the reproduction pattern. What I usually do to
+reproduce it is, making a host reset and followed by making a BMC reset
+then host will try to send something through KCS channel and snoop-80
+while BMC LPC drivers are being loaded. It's not easy to reproduce it
+using my system and it's very timing sensitive.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index ab66d3f0c476..f9f7f7207d6d 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -10,9 +10,6 @@ maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
-   - Geert Uytterhoeven <geert+renesas@glider.be>
- 
--allOf:
--  - $ref: "watchdog.yaml#"
--
- properties:
-   compatible:
-     oneOf:
-@@ -22,6 +19,11 @@ properties:
-               - renesas,r7s9210-wdt      # RZ/A2
-           - const: renesas,rza-wdt       # RZ/A
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-+          - const: renesas,rzg2l-wdt     # RZ/G2L
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -56,11 +58,13 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
-+  interrupts: true
- 
--  clocks:
--    maxItems: 1
-+  interrupt-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -75,17 +79,49 @@ required:
-   - reg
-   - clocks
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          enum:
--            - renesas,rza-wdt
--then:
--  required:
--    - power-domains
--    - resets
-+allOf:
-+  - $ref: "watchdog.yaml#"
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - renesas,rza-wdt
-+    then:
-+      required:
-+        - power-domains
-+        - resets
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        interrupt-names:
-+          items:
-+            - const: wdt
-+            - const: perrout
-+        clocks:
-+          items:
-+            - description: Main clock
-+            - description: Register access clock
-+        clock-names:
-+          items:
-+            - const: oscclk
-+            - const: pclk
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        clocks:
-+          maxItems: 1
- 
- additionalProperties: false
- 
--- 
-2.17.1
+As I suggested in previous email, disable all LPC sub functions and
+enable back one by one. It could help for identifying which LPC sub
+module causes the issue.
 
+-Jae
