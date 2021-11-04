@@ -2,102 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1968445340
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 13:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7317445372
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 13:59:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbhKDMru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 08:47:50 -0400
-Received: from www.zeus03.de ([194.117.254.33]:47402 "EHLO mail.zeus03.de"
+        id S231589AbhKDNC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 09:02:27 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46826 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230148AbhKDMrq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 08:47:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=+kTKuWi1KBJCz7hjSDpP2i1Qo+Q+
-        ZWQgJdDBSE4IGf4=; b=Ib9IJhAxcjX5AwnXZqEGcWEJd7yKE7PxCVonshEjvWt8
-        uigEBGE6rC5lyyZE0wte/wqCCup9nM91W9ELGXHut7XaBdufpIoewFW8eSeY3TJ5
-        lIXvWMdK8wmWU5/O4q7xrN4YLvIT3VGyX9u7XhAUao1e2OzoFbY4aUVdSExQuw8=
-Received: (qmail 81302 invoked from network); 4 Nov 2021 13:45:06 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Nov 2021 13:45:06 +0100
-X-UD-Smtp-Session: l3s3148p1@Qm1j5fXP+owgAwDPXxEYAC+KuIjTJuUc
-Date:   Thu, 4 Nov 2021 13:45:04 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Duc Nguyen <duc.nguyen.ub@renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: pwm: tpu: Add R-Car V3U device tree bindings
-Message-ID: <YYPV0PVC9dwnxG1I@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Duc Nguyen <duc.nguyen.ub@renesas.com>,
-        Rob Herring <robh@kernel.org>
-References: <8ec1e2aadfc894a3cc8c412e266b87220fa0404e.1635337616.git.geert+renesas@glider.be>
- <20211029160303.lv6je33mjr6zk7xh@pengutronix.de>
+        id S230091AbhKDNC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Nov 2021 09:02:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=qUQyBRAgGmRlb0+C03q/ctsuzfX/uEhANwydd0iDgN8=; b=DR
+        L0yMOeYxW8plL2J6VYC5lIOiSnKkoEFOat5lpZqxwXHT8wyjgkZwOkB513lpQPRd9OKTPVRLLghMv
+        D8JbWp/89sTd5KELaQV/aFNdiNgIh3tlBByWAZ1Hc4fEFcypgZFWQpqgoD96ba5UrQMDzEUe0t0xP
+        AlgiWgWKuFFHkwE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1micL9-00CaoT-Qb; Thu, 04 Nov 2021 13:59:35 +0100
+Date:   Thu, 4 Nov 2021 13:59:35 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Randy Dunlap <rdunlap@infradead.org>,
+        Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YYPZN9hPBJTBzVUl@lunn.ch>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
+ <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
+ <YYLjaYCQHzqBzN1l@lunn.ch>
+ <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eeNA7lFuO6FAma0L"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211029160303.lv6je33mjr6zk7xh@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 04, 2021 at 05:31:57AM +0000, Wells Lu 呂芳騰 wrote:
+> Hi,
+> 
+> Thanks a lot for review.
+> 
+> > 
+> > > config NET_VENDOR_SUNPLUS
+> > > 	bool "Sunplus devices"
+> > > 	default y
+> > > 	depends on ARCH_SUNPLUS
+> > 
+> > Does it actually depend on ARCH_SUNPLUS? What do you make use of?
+> 
+> ARCH_SUNPLUS will be defined for Sunplus family series SoC.
+> Ethernet devices of Sunplus are designed and used for Sunplus SoC.
+> So far, only two SoC of Sunplus have the network device.
+> I'd like to show up the selection only for Sunplus SoC.
 
---eeNA7lFuO6FAma0L
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So it does not actually depend on ARCH_SUNPLUS. There are a few cases
+where drivers have needed to call into arch specific code, which stops
+them building for any other arch.
 
-On Fri, Oct 29, 2021 at 06:03:03PM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> On Wed, Oct 27, 2021 at 02:28:09PM +0200, Geert Uytterhoeven wrote:
-> > From: Duc Nguyen <duc.nguyen.ub@renesas.com>
-> >=20
-> > Add device tree bindings for TPU with the PWM controller found
-> > on R-Car V3U SoCs.
-> >=20
-> > Signed-off-by: Duc Nguyen <duc.nguyen.ub@renesas.com>
-> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->=20
-> From PWM POV:
->=20
-> Acked-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+> > Ideally, you want it to also build with COMPILE_TEST, so that the driver gets
+> > build by 0-day and all the other build bots.
+> 
+> I am not sure if this is mandatory or not.
+> Should I add COMPILE_TEST as below?
+> 
+> 	depends on ARCH_SUNPLUS | COMPILE_TEST
 
-Uwe, thanks for the ack. Do such changes go via the PWM tree usually?
+Yes.
 
+> Yes, the device is now only for Sunplus SP7021 SoC.
+> Devices in each SoC may have a bit difference because of adding new 
+> function or improving something.
 
---eeNA7lFuO6FAma0L
-Content-Type: application/pgp-signature; name="signature.asc"
+If it will compile with COMPILE_TEST on x86, mips, etc, you should
+allow it to compile with COMPILE_TEST. You get better compile testing
+that way.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGD1dAACgkQFA3kzBSg
-KbaSmw//Yw6nDwRIQX2Uz7fKhBz2/BwvGHMm0fBCHBag29vYaNHE+QW1U3DrSThy
-5UUcFdiiGX+YsV4kJx5CXEoY4y1dH0Jo/GefsRw/1Tte9wZpkK1cjSW1tmA8mXPp
-tse1BebtCbrTttyaoiL+dZ628/LXSg2F7KzxDTTak3J17IYlIkUZCSsWKdoz23Ez
-/k995yHySr8SHJxP+Ifk0jdzBhU2TzDsKR2Z8rNpseCCxZzaNs/LJBj9sORqAzf4
-e7g3SzXRy+8upYgEcoErfe4SweAcXw3ep5foRY/mJQ5q73TqSLby91JVRjc6h8oW
-cb6T+nVp0QHU+QC3k6aOnZHXITIzPEz3OibZhjijz5QONGP8Wr9gmpYcS7udsWfp
-2lqhgEN1Rwm5xf8OWEiOGyDHPuVi100L0CflYAdLOUeEL2LJpXLcRM4FK8thrca2
-U12OU3WAn6Ao+HK3QTUtgogn26ZyutYMG59JsQPZOF+7oVw2Ja2jipjF+qIZrydU
-mg715Q5uPQ2SFbYwQtPT25nyTy9SsfLSna+l97jB82l1g1lbMkOrwMOPTaDXmXF5
-gJ1jIFLQdrfw1zKfUd9qYnhE1tuqHawtx1bOcQshFMyN/7pCVKTyEbzZ6pC4MXJS
-PTxTtAatCTeCzBrR3sFqzMajpDOgtPR6XGwwedJ+7N8uc1kh1Ak=
-=eDH1
------END PGP SIGNATURE-----
-
---eeNA7lFuO6FAma0L--
+     Andrew
