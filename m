@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E4F44520F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 12:15:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACF31445225
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 12:23:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbhKDLSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 07:18:09 -0400
-Received: from mail-4318.protonmail.ch ([185.70.43.18]:19975 "EHLO
-        mail-4318.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229809AbhKDLSI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 07:18:08 -0400
-Date:   Thu, 04 Nov 2021 11:15:18 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1636024529;
-        bh=dxv8tLH49ZU8FUAl83ntsTkN/OPH8j/yTkPqyb84NMA=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=wqkG6uoka5TSr/C9hMgAThs5uYHqBZPcIKiyOeG6edIS0ntpI4tR85bjBPf5mBw39
-         w2OzT0jr9LG07kylB9L7XYCCzvXhWLvFKKPi9Ov9Az11SV8F/mUobnLhzOXgx8iuzF
-         i4KSjpnRdS38NHWvLo7HFvnFr3EJ1FmlW9WMBfKs=
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH] arm64: dts: qcom: msm8996-xiaomi-common: Change TUSB320 to TUSB320L
-Message-ID: <20211104111454.105875-1-y.oudjana@protonmail.com>
+        id S231176AbhKDL0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 07:26:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:35026 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230401AbhKDL0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 07:26:14 -0400
+X-UUID: cba8ff7de2e743fe8bfd9afaedeff196-20211104
+X-UUID: cba8ff7de2e743fe8bfd9afaedeff196-20211104
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 94376343; Thu, 04 Nov 2021 19:23:33 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 4 Nov 2021 19:23:31 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 4 Nov 2021 19:23:31 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <rex-bc.chen@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v1 0/1]  Mediatek pinctrl patch 
+Date:   Thu, 4 Nov 2021 19:23:28 +0800
+Message-ID: <20211104112329.8446-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This platform actually doesn't have TUSB320, but rather TUSB320L.
-The TUSB320 compatible string was used due to lack of support for
-TUSB320L, and it was close enough to detect cable plug-in and
-direction, but it was limited to upstream facing port mode only.
-Now that support for TUSB320L is added[1], change node name and
-compatible to match and allow it to be properly reset and have
-its mode set to dual-role port.
+This series includes 1 patches:
+1. fix global-out-of-bounds issue.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+Changes in patch v1:
+1. change check eint number boundary condition.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/com=
-mit/?id=3Dce0320bd3872038569be360870e2d5251b975692
----
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Zhiyong Tao (1):
+  pinctrl: mediatek: fix global-out-of-bounds issue
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm=
-64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index 01e573f0dfbf..7a9fcbe9bb31 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -207,8 +207,8 @@ &blsp2_i2c3 {
- =09status =3D "okay";
- =09label =3D "TYPEC_I2C";
-=20
--=09typec: tusb320@47 {
--=09=09compatible =3D "ti,tusb320";
-+=09typec: tusb320l@47 {
-+=09=09compatible =3D "ti,tusb320l";
- =09=09reg =3D <0x47>;
- =09=09interrupt-parent =3D <&tlmm>;
- =09=09interrupts =3D <63 IRQ_TYPE_EDGE_RISING>;
---=20
-2.33.1
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+--
+2.18.0
 
 
