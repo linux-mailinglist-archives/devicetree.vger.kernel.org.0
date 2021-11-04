@@ -2,219 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4FA744599B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 19:22:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C42624459E0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 19:39:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234167AbhKDSYx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 4 Nov 2021 14:24:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58316 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234121AbhKDSYx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 14:24:53 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E97B7611EF;
-        Thu,  4 Nov 2021 18:22:12 +0000 (UTC)
-Date:   Thu, 4 Nov 2021 18:26:47 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Sa, Nuno" <Nuno.Sa@analog.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
-Message-ID: <20211104182647.29ae2bc4@jic23-huawei>
-In-Reply-To: <CY4PR03MB3399682ABFC08090528FED2C9B8C9@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20211101100420.70304-1-antoniu.miclaus@analog.com>
-        <20211101100420.70304-2-antoniu.miclaus@analog.com>
-        <YYF6cPSDroPz/wun@robh.at.kernel.org>
-        <CY4PR03MB3399E5DC1D8A966C7CFC8C049B8C9@CY4PR03MB3399.namprd03.prod.outlook.com>
-        <CY4PR03MB3399682ABFC08090528FED2C9B8C9@CY4PR03MB3399.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S231649AbhKDSmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 14:42:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229850AbhKDSmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 14:42:32 -0400
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E0E4C061714;
+        Thu,  4 Nov 2021 11:39:54 -0700 (PDT)
+Received: by mail-oi1-x22f.google.com with SMTP id d12so7301953oij.5;
+        Thu, 04 Nov 2021 11:39:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=y9Efx+J0DfgYNexjEZQcHJbnOqe+k5YWBbpHhhOQDTM=;
+        b=Wl/7qGL5cCeNtI9eWKQHiX0Kk+ZiVRNexsoF4RQfzyDvYZ0X4ZHLrjr0b44PrVRUk7
+         Tx0SYoWTFmUI7ikv0DAp83GyL8EA2oqKUzTdGeVi4po5bDZrqD3/jBepQaAs6cHHHiND
+         T0YQ2Yz/3NpNP4vxVqstDLBKAFTSdJ57bZ0/etr9bThL01tqX2IoYkOROYnvt0n2J7IY
+         COl1wxoVfcTDf528Nc49NPQYbko89GuAF/2ZvNUJwl9F96Wx0aVRnuygPUKlmgZq+5x5
+         tp+fXHA85KmecOZY8UPO8zyTrhUSwsX67NCgvaXCxWDea6lm17k3n16IKCShlKNogqyl
+         9CWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=y9Efx+J0DfgYNexjEZQcHJbnOqe+k5YWBbpHhhOQDTM=;
+        b=iAhaqLGBrdFjC4eREoKgJgTXOeVMdnP2l3cmJ2B7CcIodK5xKvH4AewevRXG94Z2UU
+         KqrIb5bgNgxataNSaY27J6VKpLgGZIWvmZQyWrpilapIsSRJs+trGNtxD0dRg9wC9gWN
+         5Vz6joadqLF+7T95xVvba/PfI5C6TYvCN74XmDcRiT3IBUYfljAD1cTmjAhlDz9jIeEY
+         1upQ1MVXtlisPQqQ6jS2OlB0gS7dYRfBxBuZUPebAzEIEnsYtWQRRH6dakZ2V328/bcx
+         wfXP6lsgJ+/AS8H6dizAw70Zslmfl9Vfn0CPPnb6GrispSsh93ggJlIYVMyVX8jcum1r
+         eN/A==
+X-Gm-Message-State: AOAM533xJyCgSzbVWzcIuNSzhrjgTwEDs3N/8PvIaGueDXqiBy12Ikpv
+        bh+L5NLR6W27AoQeGqNsGY0=
+X-Google-Smtp-Source: ABdhPJwVqQdcn5Wa5xbrJ8uTj6JC2mtBJeHifXkXNvXMry28cLMDi8b2qbKQiF+berR532peOHZ/Qw==
+X-Received: by 2002:aca:4405:: with SMTP id r5mr17698488oia.4.1636051192751;
+        Thu, 04 Nov 2021 11:39:52 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t12sm1807386oiw.39.2021.11.04.11.39.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Nov 2021 11:39:52 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v3 1/7] dt-bindings: watchdog: convert Broadcom's WDT to
+ the json-schema
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "maintainer:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        "open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "moderated list:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211103231327.385186-1-f.fainelli@gmail.com>
+ <20211103231327.385186-2-f.fainelli@gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <22e6f9b0-8d2e-14ee-12f1-0f911a72a467@roeck-us.net>
+Date:   Thu, 4 Nov 2021 11:39:49 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20211103231327.385186-2-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Nov 2021 14:30:56 +0000
-"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com> wrote:
-
-> Example:
-> In the setup that we tested the driver, we had a clock chip that was hardware-routed only to the positive side of the local oscillator input (LOP pin) from admv1013.
+On 11/3/21 4:13 PM, Florian Fainelli wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Therefore, I think keeping the property in the DT might be useful.
-
-I think Rob's question was more general than that one property... See below.
+> This helps validating DTS files.
 > 
-> Regards,
-> --
-> Antoniu Miclăuş
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>   .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ---------
+>   .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 40 +++++++++++++++++++
+>   2 files changed, 40 insertions(+), 19 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
 > 
-> > -----Original Message-----
-> > From: Miclaus, Antoniu
-> > Sent: Wednesday, November 3, 2021 10:09 AM
-> > To: Rob Herring <robh@kernel.org>
-> > Cc: jic23@kernel.org; linux-iio@vger.kernel.org; devicetree@vger.kernel.org;
-> > linux-kernel@vger.kernel.org; Sa, Nuno <Nuno.Sa@analog.com>
-> > Subject: RE: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
-> > 
-> > Hello Rob,
-> > 
-> > These properties are fixed and available in the datasheet (binary format):
-> > https://www.analog.com/media/en/technical-documentation/data-
-> > sheets/ADMV1013.pdf
-> > 
-> > Please see Page 37 of 39, Table 15, QUAD_SE_MODE.
-> > 
-> > Regards,
-> > --
-> > Antoniu Miclăuş
-> >   
-> > > -----Original Message-----
-> > > From: Rob Herring <robh@kernel.org>
-> > > Sent: Tuesday, November 2, 2021 7:51 PM
-> > > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> > > Cc: jic23@kernel.org; linux-iio@vger.kernel.org;  
-> > devicetree@vger.kernel.org;  
-> > > linux-kernel@vger.kernel.org; Sa, Nuno <Nuno.Sa@analog.com>
-> > > Subject: Re: [PATCH v3 2/2] dt-bindings: iio: frequency: add admv1013 doc
-> > >
-> > > [External]
-> > >
-> > > On Mon, Nov 01, 2021 at 12:04:20PM +0200, Antoniu Miclaus wrote:  
-> > > > Add device tree bindings for the ADMV1013 Upconverter.
-> > > >
-> > > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > > ---
-> > > >  .../bindings/iio/frequency/adi,admv1013.yaml  | 119  
-> > > ++++++++++++++++++  
-> > > >  1 file changed, 119 insertions(+)
-> > > >  create mode 100644  
-> > > Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml  
-> > > >
-> > > > diff --git  
-> > > a/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml
-> > > b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml  
-> > > > new file mode 100644
-> > > > index 000000000000..47993253a586
-> > > > --- /dev/null
-> > > > +++  
-> > > b/Documentation/devicetree/bindings/iio/frequency/adi,admv1013.yaml  
-> > > > @@ -0,0 +1,119 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id:  
-> > >  
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/iio/frequency  
-> > >  
-> > /adi,admv1013.yaml*__;Iw!!A3Ni8CS0y2Y!uTDPalOgj6YS_vZ6bsDSbA_Qna6Q  
-> > > OwMpoRxzo6nn06i5TNuGWZEk9PvtbC6SKQGXrugy$  
-> > > > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-  
-> > >  
-> > schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!uTDPalOgj6YS_vZ6bsDSbA_Qna6Q  
-> > > OwMpoRxzo6nn06i5TNuGWZEk9PvtbC6SKYugV1fM$  
-> > > > +
-> > > > +title: ADMV1013 Microwave Upconverter
-> > > > +
-> > > > +maintainers:
-> > > > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > > +
-> > > > +description: |
-> > > > +   Wideband, microwave upconverter optimized for point to point  
-> > > microwave  
-> > > > +   radio designs operating in the 24 GHz to 44 GHz frequency range.
-> > > > +
-> > > > +   https://www.analog.com/en/products/admv1013.html
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - adi,admv1013
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  spi-max-frequency:
-> > > > +    maximum: 1000000
-> > > > +
-> > > > +  clocks:
-> > > > +    description:
-> > > > +      Definition of the external clock.
-> > > > +    minItems: 1
-> > > > +
-> > > > +  clock-names:
-> > > > +    items:
-> > > > +      - const: lo_in
-> > > > +
-> > > > +  clock-output-names:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  vcm-supply:
-> > > > +    description:
-> > > > +      Analog voltage regulator.
-> > > > +
-> > > > +  adi,vga-powerdown:
-> > > > +    description:
-> > > > +      Power Down the Voltage Gain Amplifier Circuit available at
-> > > > +      BG_RBIAS2 pin.
-> > > > +    type: boolean
+> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+> deleted file mode 100644
+> index 84122270be8f..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -BCM7038 Watchdog timer
+> -
+> -Required properties:
+> -
+> -- compatible : should be "brcm,bcm7038-wdt"
+> -- reg : Specifies base physical address and size of the registers.
+> -
+> -Optional properties:
+> -
+> -- clocks: The clock running the watchdog. If no clock is found the
+> -	  driver will default to 27000000 Hz.
+> -
+> -Example:
+> -
+> -watchdog@f040a7e8 {
+> -	compatible = "brcm,bcm7038-wdt";
+> -	clocks = <&upg_fixed>;
+> -	reg = <0xf040a7e8 0x16>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+> new file mode 100644
+> index 000000000000..69e5a1ef6a1f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/brcm,bcm63xx-wdt.yaml#
 
-What wiring would make it sensible to always have this powered down?
-If we can describe that rather than vga-powerdown then that is what should
-be in the binding.  If there isn't any wiring based justification and this
-is just turning off part of the device, then it should not be in the binding.
+Looks like this requires
 
-> > > > +
-> > > > +  adi,mixer-powerdown:
-> > > > +    description:
-> > > > +      Power Down the Mixer Circuit. Enable to put the block in
-> > > > +      a power down state.
+s/63xx/7038/
 
-Same for all these other power downs.
+Guenter
 
-> > > > +    type: boolean
-> > > > +
-> > > > +  adi,quad-powerdown:
-> > > > +    description:
-> > > > +      Power Down the Quadrupler. Enable to put the block in
-> > > > +      a power down state.
-> > > > +    type: boolean
-> > > > +
-> > > > +  adi,bg-powerdown:
-> > > > +    description:
-> > > > +      Power Down the Transmitter Band Gap. Enable to put the part in
-> > > > +      a power down state.
-> > > > +    type: boolean
-> > > > +
-> > > > +  adi,mixer-if-enable:
-> > > > +    description:
-> > > > +      Enable the Intermediate Frequency Mode. Either IF Mode or I/Q  
-> > Mode  
-> > > > +      can be enabled at a time.
-> > > > +    type: boolean
-> > > > +
-> > > > +  adi,detector-enable:
-> > > > +    description:
-> > > > +      Enable the Envelope Detector available at output pins VENV_P and
-> > > > +      VENV_N. Disable to reduce power consumption.
-> > > > +    type: boolean
-> > > > +
-> > > > +  adi,quad-se-mode:
-> > > > +    description:
-> > > > +      Switch the LO path from differential to single-ended operation.
-> > > > +      Set value 6 for Single-Ended Mode, Negative Side Disabled.
-> > > > +      Set value 9 for Single-Ended Mode, Positive Side Disabled.
-> > > > +      Set value 12 for Differential Mode.
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > +    enum: [6, 9, 12]  
-> > >
-> > > All these vendor properties are fixed based on the board design or
-> > > something a user may want to change? The latter does not belong in DT.
-> > >
-> > > Rob  
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BCM7038 watchdog timer
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +maintainers:
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +  - Justin Chen <justinpopo6@gmail.com>
+> +  - Rafał Miłecki <rafal@milecki.pl>
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,bcm7038-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description: >
+> +      The clock running the watchdog. If no clock is found the driver will
+> +      default to 27000000 Hz.
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    watchdog@f040a7e8 {
+> +      compatible = "brcm,bcm7038-wdt";
+> +      reg = <0xf040a7e8 0x16>;
+> +      clocks = <&upg_fixed>;
+> +    };
+> 
 
