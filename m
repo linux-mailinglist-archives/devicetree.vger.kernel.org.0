@@ -2,77 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0A4444D17
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 02:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7165F444D22
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 02:54:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232909AbhKDBvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 21:51:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232908AbhKDBvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 21:51:14 -0400
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8544FC061714
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 18:48:37 -0700 (PDT)
-Received: from hatter.bewilderbeest.net (97-113-240-219.tukw.qwest.net [97.113.240.219])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E1862373;
-        Wed,  3 Nov 2021 18:48:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1635990517;
-        bh=CkPGfIGdJl1Sm1jvL44ZO2+ID8zt4FiR+y+7s0H1yZI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MCLLMK1eNlLmUSFwuTCCKFYiMHqzqedGFHRwcU30yLMztv6y1e9AWemNn9ScMfmE0
-         sMthE9AG3P7UW56IMhJPKMA2NpK6lPUQ78JvvrkDJJcI/6jZ6RDHTx15oQa78oVxTI
-         VEzslz/RHf9aBc2RJ4oF7DDhvhy0bYOjGu1JkUGU=
-Date:   Wed, 3 Nov 2021 18:48:32 -0700
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Cc:     Joel Stanley <joel@jms.id.au>,
-        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Corey Minyard <minyard@acm.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Cedric Le Goater <clg@kaod.org>,
-        Haiyue Wang <haiyue.wang@linux.intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        openipmi-developer@lists.sourceforge.net
-Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
-Message-ID: <YYM78OxYMYwiFzWD@hatter.bewilderbeest.net>
-References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
- <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
- <YYHSHoELvKRI4Zh1@hatter.bewilderbeest.net>
- <d2a18e3b-cb02-37b5-cad8-45c3e8ff3bb4@linux.intel.com>
- <YYHYMKDD7hz15ceR@hatter.bewilderbeest.net>
- <63678f47-8b4a-1385-a755-bc7c2316ca0d@linux.intel.com>
- <YYHhMGm4C0srTW1x@hatter.bewilderbeest.net>
- <768252cc-2466-3b4b-9087-549b83e00a81@linux.intel.com>
+        id S232869AbhKDB4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 21:56:54 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:18668 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231945AbhKDB4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 21:56:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1635990857; x=1667526857;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=xHDRhxBwYvWNSiLaJE2QebAyd+xmjgZ4zT973gaed6A=;
+  b=yycPZc367/5yb5t19o+0AqfXwiO4UTtyPXv+Jdr852yuPTp5NwDC7oUm
+   FkTAanEV/iotPZavDUpcRjt8JgP8DWWyfMFgl8Dd0Y1pUiskR4GFO3ZlM
+   nNaadlE30KZvsCQklmEqOgt48sh3PzzSsIZSt+4ZGl+BVj2Bs3DJ8eqsB
+   g=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 03 Nov 2021 18:54:17 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2021 18:54:16 -0700
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7;
+ Wed, 3 Nov 2021 18:54:16 -0700
+Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.7; Wed, 3 Nov 2021
+ 18:54:13 -0700
+Message-ID: <8be3ee89-7fa9-4611-3fda-c152ca9fa444@quicinc.com>
+Date:   Thu, 4 Nov 2021 09:54:11 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <768252cc-2466-3b4b-9087-549b83e00a81@linux.intel.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v1] dt-bindings: convert qcom,spmi-pmic-arb binding to
+ YAML format
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <collinsd@codeaurora.org>, <subbaram@codeaurora.org>
+References: <1635836275-8873-1-git-send-email-quic_fenglinw@quicinc.com>
+ <YYMLKCspjdyaKWUK@ripper>
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+In-Reply-To: <YYMLKCspjdyaKWUK@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 03, 2021 at 08:56:10AM PDT, Jae Hyun Yoo wrote:
+
+On 2021/11/4 6:20, Bjorn Andersson wrote:
+> On Mon 01 Nov 23:57 PDT 2021, Fenglin Wu wrote:
+> [..]
+>> diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>> new file mode 100644
+>> index 0000000..05bb114
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
+>> @@ -0,0 +1,122 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spmi/qcom,spmi-pmic-arb.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm SPMI PMIC Arbiter
+>> +
+>> +maintainers:
+>> +  - Fenglin Wu <quic_fenglinw@quicinc.com>
+>> +
+>> +description: |
+>> +  The SPMI PMIC Arbiter is found on Snapdragon chipsets. It is an SPMI
+>> +  controller with wrapping arbitration logic to allow for multiple
+>> +  on-chip devices to control a single SPMI master.
+>> +
+>> +  The PMIC Arbiter can also act as an interrupt controller, providing
+>> +  interrupts to slave devices.
+>> +
+>> +  See Documentation/devicetree/bindings/spmi/spmi.yaml for the generic
+>> +  SPMI controller binding requirements for child nodes.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^qcom,spmi@.*"
+> Node names should never contain "qcom,". Seems the agreed upon node
+> named should be "spmi@.*".
 >
->Hi Zev,
+> The rest looks like a reasonable conversion to me.
 >
->Not sure but looks like one of LPC functions is enabled while kernel
->booting. 
->
-
-Looks like that was exactly the clue I needed -- obvious in retrospect, 
-but I realize now that I'm only seeing this happen when I bypass the 
-normal shutdown sequence via 'reboot -f'; with a plain 'reboot' I don't 
-hit any problems.  Can you reproduce it that way?
-
-
-Zev
-
+> [..]
+Thanks, I will update it in patch V2.
+>> +examples:
+>> +  - |
+>> +    qcom,spmi@fc4cf000 {
+> Regards,
+> Bjorn
