@@ -2,120 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 769F5445158
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 10:52:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBBD74451BE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 11:50:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbhKDJzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 05:55:19 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56132 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229809AbhKDJzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 05:55:19 -0400
-X-UUID: aea61afcbd5647fe98e74fb0f2433ad9-20211104
-X-UUID: aea61afcbd5647fe98e74fb0f2433ad9-20211104
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <james.lo@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1794290791; Thu, 04 Nov 2021 17:52:37 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 4 Nov 2021 17:52:36 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs10n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 4 Nov 2021 17:52:36 +0800
-Message-ID: <4c3036d8181c788fbf047883e2f49172edbe3f0f.camel@mediatek.com>
-Subject: Re: [RESEND, v13 2/4] dt-bindings: spmi: document binding for the
- Mediatek SPMI controller
-From:   James Lo <james.lo@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>, <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 4 Nov 2021 17:52:36 +0800
-In-Reply-To: <1635944770.215632.1040288.nullmailer@robh.at.kernel.org>
-References: <20211103081021.9917-1-james.lo@mediatek.com>
-         <20211103081021.9917-3-james.lo@mediatek.com>
-         <1635944770.215632.1040288.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S230407AbhKDKwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 06:52:44 -0400
+Received: from mail-4324.protonmail.ch ([185.70.43.24]:21931 "EHLO
+        mail-4324.protonmail.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229809AbhKDKwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 06:52:44 -0400
+Date:   Thu, 04 Nov 2021 10:49:58 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail; t=1636023004;
+        bh=z448LsLqxuCD7eN18l1DbCUT+hxRdhKv6fijjUVKwBg=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=Z6TqAsqSfjHOQcKTnXcTkMOILrbbLEBISzTBphdIaSm0HUSNcrCuHP/Vd20e93+Q7
+         fXWI51o5pet/d9eljXED4sH3EOalYJkXK5KZCVLL1c6Th5qgsLHnhV8vkwzO8sLr4m
+         yf17FUclXaUh66hqjoSTPSdNqO20x6c4j7KTF+z4=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: [PATCH] arm64: dts: qcom: msm8996-xiaomi-scorpio: Add touchkey controller
+Message-ID: <20211104104932.104046-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2021-11-03 at 08:06 -0500, Rob Herring wrote:
-> On Wed, 03 Nov 2021 16:10:19 +0800, James Lo wrote:
-> > This adds documentation for the SPMI controller found on Mediatek
-> > SoCs.
-> > 
-> > Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> > ---
-> >  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      | 76
-> > +++++++++++++++++++
-> >  1 file changed, 76 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-
-> pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584],
-> [268603392, 256]] is too long
-> 	From schema: /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-
-> pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584],
-> [268603392, 256]] is too long
-> 	From schema: /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/spmi.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See 
-> https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/1550144__;!!CTRNKA9wMg0ARbw!yBdAIu8sF9FdGe9H9yO19pC0PvopKz_1DwYCmY0g5pqXvOC6acHZh_NfySMb2x_n$
->  
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+Add a node and pin states for Cypress StreetFighter touchkey
+controller.
 
-Dear Rob,
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-Due to [RESEND,v13,2/4] depends on [RESEND,v13,1/4],
-so we local can pass yaml when apply all 4 patches,
-and fail only apply [RESEND,v13,2/4] as your bot's result.
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts b/arch/arm=
+64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
+index e5b8402b1ed6..27a45ddbb5bd 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
+@@ -60,6 +60,20 @@ &adsp_pil {
+ };
+=20
+ &blsp2_i2c6 {
++=09touchkey: touchkey@28 {
++=09=09compatible =3D "cypress,sf3155";
++=09=09reg =3D <0x28>;
++=09=09interrupt-parent =3D <&tlmm>;
++=09=09interrupts =3D <77 IRQ_TYPE_EDGE_FALLING>;
++=09=09avdd-supply =3D <&vreg_l6a_1p8>;
++=09=09vdd-supply =3D <&vdd_3v2_tp>;
++=09=09linux,keycodes =3D <KEY_BACK KEY_MENU>;
++
++=09=09pinctrl-names =3D "default", "sleep";
++=09=09pinctrl-0 =3D <&touchkey_default>;
++=09=09pinctrl-1 =3D <&touchkey_sleep>;
++=09};
++
+ =09touchscreen: atmel-mxt-ts@4a {
+ =09=09compatible =3D "atmel,maxtouch";
+ =09=09reg =3D <0x4a>;
+@@ -416,6 +430,20 @@ &tlmm {
+ =09=09"RFFE1_DATA",=09=09/* GPIO_148 */
+ =09=09"RFFE1_CLK";=09=09/* GPIO_149 */
+=20
++=09touchkey_default: touchkey_default {
++=09=09pins =3D "gpio77";
++=09=09function =3D "gpio";
++=09=09drive-strength =3D <16>;
++=09=09bias-pull-up;
++=09};
++
++=09touchkey_sleep: touchkey_sleep {
++=09=09pins =3D "gpio77";
++=09=09function =3D "gpio";
++=09=09drive-strength =3D <2>;
++=09=09bias-disable;
++=09};
++
+ =09touchscreen_default: touchscreen_default {
+ =09=09pins =3D "gpio75", "gpio125";
+ =09=09function =3D "gpio";
+--=20
+2.33.1
 
-Should we merge [RESEND,v13,2/4] and [RESEND,v13,2/4] to one patch ?
-Or Could your bot help to run yaml check for all 4 patches applied (one
-series) ?
-
-
-Many thanks
 
