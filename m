@@ -2,137 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2CDC444C9F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 01:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6CF444CB2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 01:43:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233008AbhKDAgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 20:36:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54240 "EHLO
+        id S231216AbhKDAqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 20:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbhKDAgb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 20:36:31 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC5F3C08EC0B
-        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 17:29:54 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id g3so6671158ljm.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 17:29:54 -0700 (PDT)
+        with ESMTP id S231210AbhKDAqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 20:46:31 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F4DC061203
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 17:43:54 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id h11so6782754ljk.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 17:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Zkqig23M8IsP/fRu3AwBnptobBWJF7yS8RO3lyj9QcE=;
-        b=hl6IBdUJAD9FGqtkauBeE7REGASKjzI5QixhBfnz2Au1dpZvlDExt8F22qIOAoKYob
-         qvNM69+lBZVUZlL4NnwSdZo94n+gOKuMnk3Ht1+r5A03c08i4RqQaaR4/7X05askvkk4
-         hO95DtOUOEEEy6mRsyoR0sc1PihQWx9nNKcNlEQryhtfO4kCjBje4Z7vZgr0z5BPjYrz
-         wBMEA6gO/+4h1y1DJ7MCTeTgkwEXYxCcD0xEKSzOuP2vJMJ+7fMCBdVnOPzqHJ43DEnv
-         4Hc2vxfyzlMV1pPW/XVp5qQLlJesl7oSPJmtgpBkJjAKcDiPpSMPxzZLzv9UjkPrdb9/
-         A1JQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1eSkm1GpRtyX3va1o0mfl2NJ0JHmaWEpDja9I5uhN/U=;
+        b=D9UflifN8D661FpjdtNhGUGaB6sgzlPjJI3VTq2EcutIfnO1kqmqYa6Cmpkd3HLGRC
+         7L7Qf4uu8TM1EJ/NR7cf3tF3mn7lh2gLp2tSHcs48JsuDDNfN9aJhXql58ypfCMMm3lQ
+         xUWdLiKHkCw9n6IkIqac7xosLVmmHZr9j8XmLv1o8NAexZJ1wt75zhDF1OTMsGCbppwu
+         ocjsKHkuuXheFskd0oyaK83pkaDqM6+hLBLgcW8JeJ/4U7LCqT03GvEfuRE+fTrPe+Gh
+         aVAucvnfD8VHK8exLZ29ayVV7bpV65Bgc4XNge+UBKlvB+mgNncDWgZrst4ubSNhYUhe
+         YxBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Zkqig23M8IsP/fRu3AwBnptobBWJF7yS8RO3lyj9QcE=;
-        b=oJ1kt80RBoasLJI0HU+3m04DGRFSaJcSqzm3DtRgmIrxUoBxgRtm4sPTNg7QrUzS1L
-         N5yyUkMRuS4/kYnclAx/pag9fRlW0zxcgAZVBRBkKd49pVSzi0kT0+8KER3+GZpExguO
-         EBe3n3Q3a6MWb0aEJPnov3DyfJc5VNJlwyA18NmADkzXhV3bfiFyRtt0JwXVfRc3r4Xs
-         tLk6EV11vQQ84LV3u/KWGMBia9Jdx6PKj1rKtUF2LbtKRtgFOIFnzmRZ3xaqS989yoOu
-         0cU7fk7SjsTFSW2O1TA6HrticreMVSBTyxzxqgy5hDA5mIbFG598OdA5lLXU7T0Sd55w
-         0dlA==
-X-Gm-Message-State: AOAM531n22pmHJ3kZESnYiMScQGfwDSAWBHeYtb+dY1pcjVQayiJifjO
-        xmd55JojlTc8DzknNKtsD7FwGw==
-X-Google-Smtp-Source: ABdhPJz3xvgGSw9czI1qHocVY83lpIzTvC6PS6oXax1aBOQIVphdS0Gj9LHjMUowFYi4kHGQmUM5eQ==
-X-Received: by 2002:a2e:9d09:: with SMTP id t9mr50493167lji.400.1635985793102;
-        Wed, 03 Nov 2021 17:29:53 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1eSkm1GpRtyX3va1o0mfl2NJ0JHmaWEpDja9I5uhN/U=;
+        b=wZzxKTm33vuDJ74CR5DHq/fB0VNcwVLXLXRp8OIUyGtEkd2diB+pYnwO31fAngmdbC
+         YksUtCyqPe7MkRLhlLpxAbVcLw3xcCEhATSsD6lOaqMHxLJTYhrMkMw3p4J5p/D63RQR
+         segagnU7XwPZlctyY0zgmDSYv7i1QTrgXpTdQpZiZSd2cpTDRQkVl3En5q2/ahxbxPOH
+         e9uv1pDDnhvWEXwQtj9nsbQoIEe3DtwbRb+9Hu8oMu/wMG7LTsDMrkQ6w/Vuw436v5Sc
+         DNy3oYLDNHSjA0SboMzDHZGAYSL8LZkmaU3wAffwwws2D7n0rUdzD346dMwQRxKPz9ne
+         u00g==
+X-Gm-Message-State: AOAM532//NwuOaF1gAee+FGqZ58cW2fQjCdsA+chAnhsXsCtwUcWtdOP
+        toBUZgJ4rlci1ZQNafjjpkg1Eg==
+X-Google-Smtp-Source: ABdhPJxsOZl31izwRga4tPivLecWj5FqNk3eDeEBEhAvcZYzdQzS/VzZOhYf7RKt1ktSmFlP8j+oOQ==
+X-Received: by 2002:a2e:a603:: with SMTP id v3mr46056763ljp.228.1635986632871;
+        Wed, 03 Nov 2021 17:43:52 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 188sm329861ljf.71.2021.11.03.17.29.52
+        by smtp.gmail.com with ESMTPSA id v11sm334465ljh.56.2021.11.03.17.43.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Nov 2021 17:29:52 -0700 (PDT)
+        Wed, 03 Nov 2021 17:43:52 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Subject: [PATCH 5/5] arm64: dts: qcom: msm8996-sony-xperia-tone: fix SPMI regulators declaration
-Date:   Thu,  4 Nov 2021 03:29:49 +0300
-Message-Id: <20211104002949.2204727-5-dmitry.baryshkov@linaro.org>
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] regulator: qcom_spmi: do no register unused regulators
+Date:   Thu,  4 Nov 2021 03:43:51 +0300
+Message-Id: <20211104004351.2206578-1-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211104002949.2204727-1-dmitry.baryshkov@linaro.org>
-References: <20211104002949.2204727-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device tree for the Sony Xperia tone family of devices specifies
-S9+S10+S11 SAW regulator as a part of the pmi8994_spmi_regulators device
-tree node. However PMI8994 does not have these regulators, they are part
-of the PM8994 device. All other MSM8996-based devices list them in the
-pm8994_spmi_regulators device tree node. Move them accordingly.
+Typically SPMI interface to PMIC regulators on Qualcomm platforms is
+used to supplement RPM interface in cases where direct control is
+required (e.g. for the APCC or GFX regulators). Registering all possible
+regulators is thus not required and may be potentially harmfull if
+somebody tries to setup those directly. Thus register only regulators
+that are really used in the device tree and ignore all unused
+regulators.
 
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../dts/qcom/msm8996-sony-xperia-tone.dtsi    | 29 ++++++++++---------
- 1 file changed, 16 insertions(+), 13 deletions(-)
+ drivers/regulator/qcom_spmi-regulator.c | 20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-index 4c26e66f0610..11acd9e31a75 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
-@@ -595,34 +595,37 @@ pmi-gpio10-nc {
- 	};
- };
+diff --git a/drivers/regulator/qcom_spmi-regulator.c b/drivers/regulator/qcom_spmi-regulator.c
+index 41424a3366d0..5e68c3829e50 100644
+--- a/drivers/regulator/qcom_spmi-regulator.c
++++ b/drivers/regulator/qcom_spmi-regulator.c
+@@ -2147,20 +2147,29 @@ static int qcom_spmi_regulator_probe(struct platform_device *pdev)
+ 			dev_err(dev, "ERROR reading SAW regmap\n");
+ 	}
  
--&pmi8994_spmi_regulators {
-+&pm8994_spmi_regulators {
- 	qcom,saw-reg = <&saw3>;
- 
--	vdd_gfx:
--	pmi8994_s2: s2 {
--		/* Pinned to a high value for now to avoid random crashes. */
--		regulator-min-microvolt = <1015000>;
--		regulator-max-microvolt = <1015000>;
--		regulator-name = "vdd_gfx";
--		regulator-always-on;
--	};
+-	for (reg = match->data; reg->name; reg++) {
 -
--	pmi8994_s9: s9 {
-+	pm8994_s9: s9 {
- 		qcom,saw-slave;
- 	};
++	for_each_child_of_node(node, reg_node) {
+ 		if (saw_regmap) {
+-			reg_node = of_get_child_by_name(node, reg->name);
+ 			reg_prop = of_find_property(reg_node, "qcom,saw-slave",
+ 						    &lenp);
+-			of_node_put(reg_node);
+ 			if (reg_prop)
+ 				continue;
+ 		}
  
--	pmi8994_s10: s10 {
-+	pm8994_s10: s10 {
- 		qcom,saw-slave;
- 	};
- 
--	pmi8994_s11: s11 {
-+	pm8994_s11: s11 {
- 		qcom,saw-leader;
-+		regulator-name = "vdd_apcc";
- 		regulator-always-on;
- 		regulator-min-microvolt = <470000>;
- 		regulator-max-microvolt = <1140000>;
- 	};
- };
- 
-+&pmi8994_spmi_regulators {
-+	vdd_gfx:
-+	pmi8994_s2: s2 {
-+		/* Pinned to a high value for now to avoid random crashes. */
-+		regulator-min-microvolt = <1015000>;
-+		regulator-max-microvolt = <1015000>;
-+		regulator-name = "vdd_gfx";
-+		regulator-always-on;
-+	};
-+};
++		for (reg = match->data; reg->name; reg++) {
++			if (of_node_name_eq(reg_node, reg->name))
++				break;
++		}
 +
- &pmi8994_wled {
- 	status = "okay";
- 	default-brightness = <512>;
++		if (!reg->name) {
++			dev_err(dev, "No regulator matches device node %pOF\n", reg_node);
++			continue;
++		}
++
+ 		vreg = devm_kzalloc(dev, sizeof(*vreg), GFP_KERNEL);
+-		if (!vreg)
++		if (!vreg) {
++			of_node_put(reg_node);
+ 			return -ENOMEM;
++		}
+ 
+ 		vreg->dev = dev;
+ 		vreg->base = reg->base;
+@@ -2211,6 +2220,7 @@ static int qcom_spmi_regulator_probe(struct platform_device *pdev)
+ 		rdev = devm_regulator_register(dev, &vreg->desc, &config);
+ 		if (IS_ERR(rdev)) {
+ 			dev_err(dev, "failed to register %s\n", name);
++			of_node_put(reg_node);
+ 			return PTR_ERR(rdev);
+ 		}
+ 
 -- 
 2.33.0
 
