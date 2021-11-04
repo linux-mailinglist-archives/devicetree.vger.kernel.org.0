@@ -2,97 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0806C44506A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 09:36:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 975C14450AC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 09:56:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbhKDIik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 04:38:40 -0400
-Received: from [113.204.237.245] ([113.204.237.245]:57400 "EHLO
-        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230084AbhKDIij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 04:38:39 -0400
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by cqmailgates with MailGates ESMTP Server V5.0(16727:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 04 Nov 2021 16:35:07 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 4 Nov 2021 16:35:00 +0800
-Received: from CQEXMAIL01.cqplus1.com ([fe80::f436:deb3:dd20:6b5]) by
- CQEXMAIL01.cqplus1.com ([fe80::f436:deb3:dd20:6b5%4]) with mapi id
- 15.01.2176.009; Thu, 4 Nov 2021 16:35:00 +0800
-From:   =?gb2312?B?cWluamlhblvx+72hXQ==?= <qinjian@cqplus1.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        =?gb2312?B?V2VsbHMgTHUghc63vPJ2?= <wells.lu@sunplus.com>
-Subject: =?gb2312?B?tPC4tDogW1BBVENIIHY0IDAwLzEwXSBBZGQgU3VucGx1cyBTUDcwMjEgU29D?=
- =?gb2312?Q?_Support?=
-Thread-Topic: [PATCH v4 00/10] Add Sunplus SP7021 SoC Support
-Thread-Index: AQHX0SjJ2ipTnH6SmUuBHDnmt6AZUKvygdKAgACJW1A=
-Date:   Thu, 4 Nov 2021 08:35:00 +0000
-Message-ID: <98b3e76029bb4d7096de462c46bca08d@cqplus1.com>
-References: <cover.1635496594.git.qinjian@cqplus1.com>
-        <cover.1635993377.git.qinjian@cqplus1.com> <8735oc9voy.wl-maz@kernel.org>
-In-Reply-To: <8735oc9voy.wl-maz@kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.18]
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S230229AbhKDI7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 04:59:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52484 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230365AbhKDI7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 04:59:23 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B269C061714;
+        Thu,  4 Nov 2021 01:56:45 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id m14so18335100edd.0;
+        Thu, 04 Nov 2021 01:56:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pVKKVOY8NO+dksMBPuUmTHd9F3MhTNHBaA8ZGUBvIsE=;
+        b=ePw9SbEQmydKhkGRQnzd5dMcFnGihRyF6TUTYBb78WBqUiqHD41qxHbHrKcmgCBXeE
+         alBVmD/WqQeeOCR+/4mQd4kkPsa1s+EL40vOYlz1aVQg3GPl0foJTL7BNQxu+/gt9Ogq
+         YI1nYZuqROuiJC+xKiAbZMhrV27Iqr1c2CPUyG5jgvVp/rRv/8yXjAXibkmlki/8nPzd
+         2RjcNg6ijW7hJdAZ6uS6GD7J8ZNo8EEM5xQH/tsZUKezKyPPgiQR3AouvP2MCiQgwuxB
+         4ZzzucqzsdrJl91h4wFVO1e0w7gYnbCw6b7AWc0BDmE9pgPhRrvVDWE942aoIRUI/mC8
+         1jaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pVKKVOY8NO+dksMBPuUmTHd9F3MhTNHBaA8ZGUBvIsE=;
+        b=2Rhi6wp3Ipm52rv80zHFFr2KZ5T09EgpIi+VmDVTcHjDkLVhl7zOF15kyCaa59jts7
+         tAoY0Xy6MHTaKv4r7m/mPLloCuTuFlbBNTNgYLnkrr9Vuv0/TLl2JADCqfJkY6N+gx9d
+         b0xd1v7rtQXNuKxyyN85UwIXTbydFuNeCAAB/vJMFO3bcCmR+QnN6mgUR42yJiqkbq/6
+         aZMGTJHfdlnbFYHkcwACajrvYPnykx5Zs2HNtGhbq4e9vzNcpcCW8GcIVvbdXWj0fMct
+         JNd3aXarnMSVu7A+jRl6fk4Cgr8fCDyX6AY6FZMc09I85kRy6bRFhGIadpWzFu25xUdX
+         CbHg==
+X-Gm-Message-State: AOAM531qjEC7wDWaiH2D/NbwERMO2g/cScjDXTe1vRK2HIqTHEy1ws1E
+        za2enx63obg+PGBddmYqx0Y=
+X-Google-Smtp-Source: ABdhPJwUmmZnpPOMtvLLQ4kgiyIKN0WRmq2IFjg3vGd3qXOTP5qbyWv6+FmKDXcF5hLdaxLibCDkxA==
+X-Received: by 2002:a17:907:6e1c:: with SMTP id sd28mr28734479ejc.28.1636016204095;
+        Thu, 04 Nov 2021 01:56:44 -0700 (PDT)
+Received: from tom-desktop.station (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
+        by smtp.gmail.com with ESMTPSA id dt4sm2360756ejb.27.2021.11.04.01.56.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Nov 2021 01:56:43 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: imx8mm: Add NOC node
+Date:   Thu,  4 Nov 2021 09:56:17 +0100
+Message-Id: <20211104085620.6048-1-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TWFyYywNCg0KR290IGl0LiBUaGFuayB5b3UgZm9yIHJlbWluZGluZyBtZS4NCkknbSBzb3JyeSBm
-b3IgdGhlIHByZXZpb3VzIG1pc3Rha2UuDQoNCg0KPiAtLS0tLdPKvP7Urbz+LS0tLS0NCj4gt6K8
-/sjLOiBNYXJjIFp5bmdpZXIgPG1hekBrZXJuZWwub3JnPg0KPiC3osvNyrG85DogMjAyMcTqMTHU
-wjTI1SAxNjoyMw0KPiDK1bz+yMs6IHFpbmppYW5b8fu9oV0gPHFpbmppYW5AY3FwbHVzMS5jb20+
-DQo+ILOty806IHJvYmgrZHRAa2VybmVsLm9yZzsgbXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb207IHNi
-b3lkQGtlcm5lbC5vcmc7IHAuemFiZWxAcGVuZ3V0cm9uaXguZGU7IGxpbnV4QGFybWxpbnV4Lm9y
-Zy51azsNCj4gYnJvb25pZUBrZXJuZWwub3JnOyBhcm5kQGFybmRiLmRlOyBsaW51eC1hcm0ta2Vy
-bmVsQGxpc3RzLmluZnJhZGVhZC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51
-eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1jbGtAdmdlci5rZXJuZWwub3JnOyBX
-ZWxscyBMdSCFzre88nYgPHdlbGxzLmx1QHN1bnBsdXMuY29tPg0KPiDW98ziOiBSZTogW1BBVENI
-IHY0IDAwLzEwXSBBZGQgU3VucGx1cyBTUDcwMjEgU29DIFN1cHBvcnQNCj4gDQo+IFFpbiwNCj4g
-DQo+IE9uIFRodSwgMDQgTm92IDIwMjEgMDI6NTY6NTcgKzAwMDAsDQo+IFFpbiBKaWFuIDxxaW5q
-aWFuQGNxcGx1czEuY29tPiB3cm90ZToNCj4gPg0KPiA+IFRoaXMgcGF0Y2ggc2VyaWVzIGFkZCBT
-dW5wbHVzIFNQNzAyMSBTb0Mgc3VwcG9ydC4NCj4gPg0KPiA+IFN1bnBsdXMgU1A3MDIxIGlzIGFu
-IEFSTSBDb3J0ZXggQTcgKDQgY29yZXMpIGJhc2VkIFNvQy4gSXQgaW50ZWdyYXRlcyBtYW55DQo+
-ID4gcGVyaXBoZXJhbHMgKGV4OiBVQVJULCBJMkMsIFNQSSwgU0RJTywgZU1NQywgVVNCLCBTRCBj
-YXJkIGFuZCBldGMuKSBpbnRvIGENCj4gPiBzaW5nbGUgY2hpcC4gSXQgaXMgZGVzaWduZWQgZm9y
-IGluZHVzdHJpYWwgY29udHJvbC4NCj4gPg0KPiA+IFNQNzAyMSBjb25zaXN0cyBvZiB0d28gY2hp
-cHMgKGRpZXMpIGluIGEgcGFja2FnZS4gT25lIGlzIGNhbGxlZCBDLWNoaXANCj4gPiAoY29tcHV0
-aW5nIGNoaXApLiBJdCBpcyBhIDQtY29yZSBBUk0gQ29ydGV4IEE3IENQVS4gSXQgYWRvcHRzIGhp
-Z2gtbGV2ZWwNCj4gPiBwcm9jZXNzICgyMiBubSkgZm9yIGhpZ2ggcGVyZm9ybWFuY2UgY29tcHV0
-aW5nLiBUaGUgb3RoZXIgaXMgY2FsbGVkIFAtDQo+ID4gY2hpcCAocGVyaXBoZXJhbCBjaGlwKS4g
-SXQgaGFzIG1hbnkgcGVyaXBoZXJhbHMgYW5kIGFuIEFSTSBBOTI2IGFkZGVkDQo+ID4gZXNwZWNp
-YWxseSBmb3IgcmVhbC10aW1lIGNvbnRyb2wuIFAtY2hpcCBpcyBtYWRlIGZvciBjdXN0b21lcnMu
-IEl0IGFkb3B0cw0KPiA+IGxvdy1sZXZlbCBwcm9jZXNzIChleDogMC4xMSB1bSkgdG8gcmVkdWNl
-IGNvc3QuDQo+IA0KPiBUaGF0J3MgdGhlIDNyZCB2ZXJzaW9uIG9mIHRoaXMgc2VyaWVzIHNpbmNl
-IEZyaWRheSwgdHdvIG9mIHRoZW0gZHVyaW5nDQo+IHRoZSBtZXJnZSB3aW5kb3cuIEFsbCB5b3Ug
-YXJlIGFjaGlldmluZyBpcyB0byBhY3R1YWxseSAqZGVsYXkqIHRoZQ0KPiByZXZpZXcgcHJvY2Vz
-cyAoYXQgdGhpcyByYXRlLCBJJ2xsIHByb2JhYmx5IHdhaXQgdW50aWwgdjExIGJlZm9yZSBJDQo+
-IHRha2UgYW5vdGhlciBsb29rIGF0IGl0KS4NCj4gDQo+IERvY3VtZW50YXRpb24vcHJvY2Vzcy9z
-dWJtaXR0aW5nLXBhdGNoZXMucnN0IHN0YXRlcyBpdCBjbGVhcmx5Og0KPiANCj4gPHF1b3RlPg0K
-PiBXYWl0IGZvciBhIG1pbmltdW0gb2Ygb25lIHdlZWsgYmVmb3JlIHJlc3VibWl0dGluZw0KPiA8
-L3F1b3RlPg0KPiANCj4gU28gcGxlYXNlIGxlYXZlIHBlb3BsZSB0aGUgdGltZSB0byBhY3R1YWxs
-eSBkbyBhIGdvb2QgcmV2aWV3IGpvYiwgYW5kDQo+IHRha2UgdGhlIG9wcG9ydHVuaXR5IHRvIHJl
-dmlldyB5b3VyIG93biBwYXRjaGVzIGJlZm9yZSBwb3N0aW5nIHRoZW0NCj4gYWdhaW4uDQo+IA0K
-PiBUaGFua3MsDQo+IA0KPiAJTS4NCj4gDQo+IC0tDQo+IFdpdGhvdXQgZGV2aWF0aW9uIGZyb20g
-dGhlIG5vcm0sIHByb2dyZXNzIGlzIG5vdCBwb3NzaWJsZS4NCg==
+Add support for dynamic frequency scaling of the main NOC configuration
+on imx8mm.
+
+References:
+ - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
+ - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
+ - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
+ - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/ \
+   arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
+
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+---
+Changes since v1:
+ - Fix noc_opp_table frequencies taking NXP bsp as reference
+ - Add reference link to nxp imx8mm dtsi on commit body
+
+ Changes since v2:
+ - Add missing signed-off line
+
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index c2f3f118f82e..1bcc5e361ca3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
+ 			};
+ 		};
+ 
++		noc: interconnect@32700000 {
++			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
++			reg = <0x32700000 0x100000>;
++			clocks = <&clk IMX8MM_CLK_NOC>;
++			fsl,ddrc = <&ddrc>;
++			#interconnect-cells = <1>;
++			operating-points-v2 = <&noc_opp_table>;
++
++			noc_opp_table: opp-table {
++				compatible = "operating-points-v2";
++
++				opp-150M {
++					opp-hz = /bits/ 64 <150000000>;
++				};
++
++				opp-375M {
++					opp-hz = /bits/ 64 <375000000>;
++				};
++
++				opp-750M {
++					opp-hz = /bits/ 64 <750000000>;
++				};
++			};
++		};
++
+ 		aips2: bus@30400000 {
+ 			compatible = "fsl,aips-bus", "simple-bus";
+ 			reg = <0x30400000 0x400000>;
+-- 
+2.25.1
+
