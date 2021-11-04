@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 325024453A6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 14:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 929AC4453B6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 14:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231217AbhKDNR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 09:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
+        id S231672AbhKDNWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 09:22:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231160AbhKDNR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 09:17:27 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E71C061714
-        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 06:14:49 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1micZo-0002J3-BX; Thu, 04 Nov 2021 14:14:44 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1micZm-0005KK-Iz; Thu, 04 Nov 2021 14:14:42 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1micZm-0007IK-Hr; Thu, 04 Nov 2021 14:14:42 +0100
-Date:   Thu, 4 Nov 2021 14:14:42 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Duc Nguyen <duc.nguyen.ub@renesas.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: pwm: tpu: Add R-Car V3U device tree bindings
-Message-ID: <20211104131442.b3yzmdmq2fylkbpz@pengutronix.de>
-References: <8ec1e2aadfc894a3cc8c412e266b87220fa0404e.1635337616.git.geert+renesas@glider.be>
- <20211029160303.lv6je33mjr6zk7xh@pengutronix.de>
- <YYPV0PVC9dwnxG1I@ninjato>
+        with ESMTP id S231160AbhKDNWZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 09:22:25 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31567C06127A
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 06:19:47 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id u11so7193796plf.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 06:19:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6znl9g1aF/ktgrLgP4pKgxmC6R6G/5lzoN2lQ83r4Mg=;
+        b=SScnlvLKSBYSwGgZP4vXFrjpR6++jonn1IAkJ/8MW2BJSA2mHq9ozIp5zOWltU4txf
+         KEcAkUp7XKW/+xjgW7JHZmku4Gs1DG1S9cxWEc9mAGaJjLIp/M4m6vr+GREIlJkTIG1M
+         Q30ULMEpm+YSsPBT+BzB4nLMw1tkXFptMuD90=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6znl9g1aF/ktgrLgP4pKgxmC6R6G/5lzoN2lQ83r4Mg=;
+        b=Yu2WC1kehWl/0lO9QJVZxqPMq5sZCkDhcCEa6n1ISqEP8PEbxGqiJe5bKZ9aFMlOPf
+         ZKgUYH7soBMg2wBL22ydR0DnYw8OBFGRfyETBkrvIx2qvhpK/lur0BusAOfQPsAiLSzn
+         YbJ3EveEteevclHOm4/NifhbZOpRYM9KOOALM0u0114Xe1WaNfWM7fyFemJ6b48sPEgn
+         R7tuuB0ak7EupGVF3RwZP8OpVIpehIKtlwyw79AaC7IDnG4toxW7kZkhMmEUg6zM6sEv
+         RuekhR4fgFpbRmRzHBk9rivnzET6T4/L8VXTi1Co4KcneS8N3aBABmGj+5ZNYNhrt9uC
+         vlKQ==
+X-Gm-Message-State: AOAM5326KlLd4nE1VSyKJNDRpIj0wOkeXcRrImNrKX8zFFZt9Wo6XqjI
+        E1pHuRlC7iSVEN0kGDrw9N6FQGF8DY2tKpoCZa+Hug==
+X-Google-Smtp-Source: ABdhPJwRuqvbL3YNO+3lAhAYC8fQPcfdCceIuT0J9FcvnJEdBufdZI50ieoIk0wLUXqk5ffazI6KxxaDW3Yu6J/9Ljs=
+X-Received: by 2002:a17:902:6a86:b0:13f:f048:9778 with SMTP id
+ n6-20020a1709026a8600b0013ff0489778mr44611543plk.27.1636031986615; Thu, 04
+ Nov 2021 06:19:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6d7huwtxdjrm6neu"
-Content-Disposition: inline
-In-Reply-To: <YYPV0PVC9dwnxG1I@ninjato>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211016102232.202119-1-michael@amarulasolutions.com> <YWrFIz08A8ZVKXvi@ravnborg.org>
+In-Reply-To: <YWrFIz08A8ZVKXvi@ravnborg.org>
+From:   Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Date:   Thu, 4 Nov 2021 14:19:33 +0100
+Message-ID: <CAOf5uwnv=MxqK772YJ3mggkqFQJW+Z3_WrCNHgDPTpDH8d-2Xw@mail.gmail.com>
+Subject: Re: [PATCH 0/5] Add support for Wanchanglong panel used in px30-evb v11
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sam
 
---6d7huwtxdjrm6neu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sat, Oct 16, 2021 at 2:27 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Michael,
+>
+> On Sat, Oct 16, 2021 at 10:22:27AM +0000, Michael Trimarchi wrote:
+> > This patch series add support for W552946ABA panel. This panel is used
+> > in px30-evb v11. All the patches can be applied on top of drm-fixes
+> > branch. The last patch is suppose to fix a race when the panel is built
+> > in. Tested on px30 evb
+> >
+> > Michael Trimarchi (5):
+> >   dt-bindings: vendor-prefix: add Wanchanglong Electronics Technology
+> >   drm/panel: ilitek-ili9881d: add support for Wanchanglong W552946ABA
+> >     panel
+> >   dt-bindings: ili9881c: add compatible string for Wanchanglong
+> >     w552946aba
+> >   drm/panel: ilitek-ili9881c: Make gpio-reset optional
+> The four patches has been applied to drm-misc-next.
+>
 
-On Thu, Nov 04, 2021 at 01:45:04PM +0100, Wolfram Sang wrote:
-> On Fri, Oct 29, 2021 at 06:03:03PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Oct 27, 2021 at 02:28:09PM +0200, Geert Uytterhoeven wrote:
-> > > From: Duc Nguyen <duc.nguyen.ub@renesas.com>
-> > >=20
-> > > Add device tree bindings for TPU with the PWM controller found
-> > > on R-Car V3U SoCs.
-> > >=20
-> > > Signed-off-by: Duc Nguyen <duc.nguyen.ub@renesas.com>
-> > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >=20
-> > From PWM POV:
-> >=20
-> > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
->=20
-> Uwe, thanks for the ack. Do such changes go via the PWM tree usually?
+I sent another fix on the same panel. Are those patches queued on some tree?
 
-Yes, but it's Thierry who manages the git tree, so my Ack is mostly
-cosmetic. And I said "From PWM POV" because I didn't want to judge if
-the added SoC really exists.
+> >   drm/bridge: dw-mipi-dsi: Fix dsi registration during drm probing
+> This patch looks like it does not belong in this series.
+> Anyway - commented on it as I did not understand the code.
+>
+>         Sam
 
-Best regards and sorry for the confusion,
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---6d7huwtxdjrm6neu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGD3L8ACgkQwfwUeK3K
-7AmxrAf9GdirV3O0EBkEBm3gFTZLTdWsRqY7hG1z/CdbVA70h84X97FY21hD5WNq
-x7uAAd+OSN0l1Jo4MpNb6+Z9jEj9JZZB/IQuM+ig5NQ4lWJ3PYD4C+An+jW6jLuo
-xuUhchp7FIHn1VfsP9N+nFzKA4S44/btztYn/CCCLQ36MWt9aRUvhlCek5LNXyVd
-KChAETNYUNN6cK266PoobGDyyqv8aWIcPiVulG2ensbaGSYFJVWwiEP2g5MZInjA
-BgesGTYyE+4AXyK4z/IIz/fRR7kIesZXXiB/E57U3iBtdngJiE1Uh0mmulKGywmt
-yl6zU41dSo+jTkbWaj0a/ofQvWrEsA==
-=KYbz
------END PGP SIGNATURE-----
-
---6d7huwtxdjrm6neu--
+Michael
