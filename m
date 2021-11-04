@@ -2,94 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7317445372
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 13:59:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 325024453A6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 14:14:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbhKDNC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 09:02:27 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46826 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230091AbhKDNC0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 09:02:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=qUQyBRAgGmRlb0+C03q/ctsuzfX/uEhANwydd0iDgN8=; b=DR
-        L0yMOeYxW8plL2J6VYC5lIOiSnKkoEFOat5lpZqxwXHT8wyjgkZwOkB513lpQPRd9OKTPVRLLghMv
-        D8JbWp/89sTd5KELaQV/aFNdiNgIh3tlBByWAZ1Hc4fEFcypgZFWQpqgoD96ba5UrQMDzEUe0t0xP
-        AlgiWgWKuFFHkwE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1micL9-00CaoT-Qb; Thu, 04 Nov 2021 13:59:35 +0100
-Date:   Thu, 4 Nov 2021 13:59:35 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Randy Dunlap <rdunlap@infradead.org>,
-        Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Message-ID: <YYPZN9hPBJTBzVUl@lunn.ch>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <d0217eed-a8b7-8eb9-7d50-4bf69cd38e03@infradead.org>
- <159ab76ac7114da983332aadc6056c08@sphcmbx02.sunplus.com.tw>
- <YYLjaYCQHzqBzN1l@lunn.ch>
- <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
+        id S231217AbhKDNR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 09:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231160AbhKDNR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 09:17:27 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E71C061714
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 06:14:49 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1micZo-0002J3-BX; Thu, 04 Nov 2021 14:14:44 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1micZm-0005KK-Iz; Thu, 04 Nov 2021 14:14:42 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1micZm-0007IK-Hr; Thu, 04 Nov 2021 14:14:42 +0100
+Date:   Thu, 4 Nov 2021 14:14:42 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Duc Nguyen <duc.nguyen.ub@renesas.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: pwm: tpu: Add R-Car V3U device tree bindings
+Message-ID: <20211104131442.b3yzmdmq2fylkbpz@pengutronix.de>
+References: <8ec1e2aadfc894a3cc8c412e266b87220fa0404e.1635337616.git.geert+renesas@glider.be>
+ <20211029160303.lv6je33mjr6zk7xh@pengutronix.de>
+ <YYPV0PVC9dwnxG1I@ninjato>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6d7huwtxdjrm6neu"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <36d5bc6d40734ae0a9c1fb26d258f49f@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <YYPV0PVC9dwnxG1I@ninjato>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 04, 2021 at 05:31:57AM +0000, Wells Lu 呂芳騰 wrote:
-> Hi,
-> 
-> Thanks a lot for review.
-> 
-> > 
-> > > config NET_VENDOR_SUNPLUS
-> > > 	bool "Sunplus devices"
-> > > 	default y
-> > > 	depends on ARCH_SUNPLUS
-> > 
-> > Does it actually depend on ARCH_SUNPLUS? What do you make use of?
-> 
-> ARCH_SUNPLUS will be defined for Sunplus family series SoC.
-> Ethernet devices of Sunplus are designed and used for Sunplus SoC.
-> So far, only two SoC of Sunplus have the network device.
-> I'd like to show up the selection only for Sunplus SoC.
 
-So it does not actually depend on ARCH_SUNPLUS. There are a few cases
-where drivers have needed to call into arch specific code, which stops
-them building for any other arch.
+--6d7huwtxdjrm6neu
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > Ideally, you want it to also build with COMPILE_TEST, so that the driver gets
-> > build by 0-day and all the other build bots.
-> 
-> I am not sure if this is mandatory or not.
-> Should I add COMPILE_TEST as below?
-> 
-> 	depends on ARCH_SUNPLUS | COMPILE_TEST
+On Thu, Nov 04, 2021 at 01:45:04PM +0100, Wolfram Sang wrote:
+> On Fri, Oct 29, 2021 at 06:03:03PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Oct 27, 2021 at 02:28:09PM +0200, Geert Uytterhoeven wrote:
+> > > From: Duc Nguyen <duc.nguyen.ub@renesas.com>
+> > >=20
+> > > Add device tree bindings for TPU with the PWM controller found
+> > > on R-Car V3U SoCs.
+> > >=20
+> > > Signed-off-by: Duc Nguyen <duc.nguyen.ub@renesas.com>
+> > > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > > Acked-by: Rob Herring <robh@kernel.org>
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >=20
+> > From PWM POV:
+> >=20
+> > Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+>=20
+> Uwe, thanks for the ack. Do such changes go via the PWM tree usually?
 
-Yes.
+Yes, but it's Thierry who manages the git tree, so my Ack is mostly
+cosmetic. And I said "From PWM POV" because I didn't want to judge if
+the added SoC really exists.
 
-> Yes, the device is now only for Sunplus SP7021 SoC.
-> Devices in each SoC may have a bit difference because of adding new 
-> function or improving something.
+Best regards and sorry for the confusion,
+Uwe
 
-If it will compile with COMPILE_TEST on x86, mips, etc, you should
-allow it to compile with COMPILE_TEST. You get better compile testing
-that way.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-     Andrew
+--6d7huwtxdjrm6neu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGD3L8ACgkQwfwUeK3K
+7AmxrAf9GdirV3O0EBkEBm3gFTZLTdWsRqY7hG1z/CdbVA70h84X97FY21hD5WNq
+x7uAAd+OSN0l1Jo4MpNb6+Z9jEj9JZZB/IQuM+ig5NQ4lWJ3PYD4C+An+jW6jLuo
+xuUhchp7FIHn1VfsP9N+nFzKA4S44/btztYn/CCCLQ36MWt9aRUvhlCek5LNXyVd
+KChAETNYUNN6cK266PoobGDyyqv8aWIcPiVulG2ensbaGSYFJVWwiEP2g5MZInjA
+BgesGTYyE+4AXyK4z/IIz/fRR7kIesZXXiB/E57U3iBtdngJiE1Uh0mmulKGywmt
+yl6zU41dSo+jTkbWaj0a/ofQvWrEsA==
+=KYbz
+-----END PGP SIGNATURE-----
+
+--6d7huwtxdjrm6neu--
