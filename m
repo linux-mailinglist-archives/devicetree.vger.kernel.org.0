@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DAE4456D5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA854456DB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 17:09:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231660AbhKDQLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 12:11:44 -0400
+        id S231664AbhKDQLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 12:11:48 -0400
 Received: from relmlor1.renesas.com ([210.160.252.171]:34037 "EHLO
         relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231642AbhKDQLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 12:11:43 -0400
+        by vger.kernel.org with ESMTP id S231639AbhKDQLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 12:11:47 -0400
 X-IronPort-AV: E=Sophos;i="5.87,209,1631545200"; 
-   d="scan'208";a="99217943"
+   d="scan'208";a="99217955"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2021 01:09:03 +0900
+  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2021 01:09:09 +0900
 Received: from localhost.localdomain (unknown [10.226.92.57])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id EEFCB4017749;
-        Fri,  5 Nov 2021 01:09:00 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9B2AF4017894;
+        Fri,  5 Nov 2021 01:09:06 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Guenter Roeck <linux@roeck-us.net>,
@@ -30,66 +30,128 @@ Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
         Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         linux-renesas-soc@vger.kernel.org
-Subject: [RFC 0/4] Add WDT driver for RZ/G2L
-Date:   Thu,  4 Nov 2021 16:08:54 +0000
-Message-Id: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
+Subject: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
+Date:   Thu,  4 Nov 2021 16:08:56 +0000
+Message-Id: <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
+References: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series aims to add WDT driver support for RZ/G2L SoC's.
+Describe the WDT hardware in the RZ/G2L series.
 
-WDT has 3 channels
-1) CH0 to check the operation of Cortex-A55-CPU Core0
-2) CH1 to check the operation of Cortex-A55-CPU Core1
-3) CH2 to check the operation of Cortex-M33 CPU
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ .../bindings/watchdog/renesas,wdt.yaml        | 72 ++++++++++++++-----
+ 1 file changed, 54 insertions(+), 18 deletions(-)
 
-WDT IP supports 
-1) Normal Watchdog Timer Function
-2) Reset Request Function due to CPU Parity Error
-
-Once the software activates the watchdog timer, the watchdog timer does
-not stop until it is reset.
-
-The WDT Overflow System Reset Register (CPG_WDTOVF_RST) and 
-WDT Reset Selector Register (CPG_WDTRST_SEL) are in CPG IP
-block.
-
-Current driver support is basic normal Watchdog Timer Function.
-
-Later will extend support to identify the WDT channel that generated
-the reset request using CPG_WDTOVF_RST. Need to figure out how to expose
-this to WDT driver from CPG driver?
-
-and also Reset Request Function due to CPU Parity Error.
-
-Tested WDT driver with selftests tool and reboot command
-
-All 3 channels tested with below command.
-
-cat /dev/watchdog  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800808; done
-cat /dev/watchdog1  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800c08; done
-cat /dev/watchdog2 & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800408; done
-
-Please share your valuable comments.
-
-Biju Das (4):
-  clk: renesas: rzg2l: Add support for watchdog reset selection
-  dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-  clk: renesas: r9a07g044: Add WDT clock and reset entries
-  watchdog: Add Watchdog Timer driver for RZ/G2L
-
- .../bindings/watchdog/renesas,wdt.yaml        |  72 +++--
- drivers/clk/renesas/r9a07g044-cpg.c           |  37 +++
- drivers/clk/renesas/rzg2l-cpg.c               |   6 +
- drivers/clk/renesas/rzg2l-cpg.h               |  14 +
- drivers/watchdog/Kconfig                      |   8 +
- drivers/watchdog/Makefile                     |   1 +
- drivers/watchdog/rzg2l_wdt.c                  | 281 ++++++++++++++++++
- 7 files changed, 401 insertions(+), 18 deletions(-)
- create mode 100644 drivers/watchdog/rzg2l_wdt.c
-
+diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+index ab66d3f0c476..f9f7f7207d6d 100644
+--- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+@@ -10,9 +10,6 @@ maintainers:
+   - Wolfram Sang <wsa+renesas@sang-engineering.com>
+   - Geert Uytterhoeven <geert+renesas@glider.be>
+ 
+-allOf:
+-  - $ref: "watchdog.yaml#"
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -22,6 +19,11 @@ properties:
+               - renesas,r7s9210-wdt      # RZ/A2
+           - const: renesas,rza-wdt       # RZ/A
+ 
++      - items:
++          - enum:
++              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
++          - const: renesas,rzg2l-wdt     # RZ/G2L
++
+       - items:
+           - enum:
+               - renesas,r8a7742-wdt      # RZ/G1H
+@@ -56,11 +58,13 @@ properties:
+   reg:
+     maxItems: 1
+ 
+-  interrupts:
+-    maxItems: 1
++  interrupts: true
+ 
+-  clocks:
+-    maxItems: 1
++  interrupt-names: true
++
++  clocks: true
++
++  clock-names: true
+ 
+   power-domains:
+     maxItems: 1
+@@ -75,17 +79,49 @@ required:
+   - reg
+   - clocks
+ 
+-if:
+-  not:
+-    properties:
+-      compatible:
+-        contains:
+-          enum:
+-            - renesas,rza-wdt
+-then:
+-  required:
+-    - power-domains
+-    - resets
++allOf:
++  - $ref: "watchdog.yaml#"
++
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - renesas,rza-wdt
++    then:
++      required:
++        - power-domains
++        - resets
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - renesas,rzg2l-wdt
++    then:
++      properties:
++        interrupts:
++          maxItems: 2
++        interrupt-names:
++          items:
++            - const: wdt
++            - const: perrout
++        clocks:
++          items:
++            - description: Main clock
++            - description: Register access clock
++        clock-names:
++          items:
++            - const: oscclk
++            - const: pclk
++    else:
++      properties:
++        interrupts:
++          maxItems: 1
++        clocks:
++          maxItems: 1
+ 
+ additionalProperties: false
+ 
 -- 
 2.17.1
 
