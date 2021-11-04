@@ -2,135 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 975C14450AC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 09:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90FCF4450B1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 09:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbhKDI7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 04:59:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52484 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbhKDI7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 04:59:23 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B269C061714;
-        Thu,  4 Nov 2021 01:56:45 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id m14so18335100edd.0;
-        Thu, 04 Nov 2021 01:56:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pVKKVOY8NO+dksMBPuUmTHd9F3MhTNHBaA8ZGUBvIsE=;
-        b=ePw9SbEQmydKhkGRQnzd5dMcFnGihRyF6TUTYBb78WBqUiqHD41qxHbHrKcmgCBXeE
-         alBVmD/WqQeeOCR+/4mQd4kkPsa1s+EL40vOYlz1aVQg3GPl0foJTL7BNQxu+/gt9Ogq
-         YI1nYZuqROuiJC+xKiAbZMhrV27Iqr1c2CPUyG5jgvVp/rRv/8yXjAXibkmlki/8nPzd
-         2RjcNg6ijW7hJdAZ6uS6GD7J8ZNo8EEM5xQH/tsZUKezKyPPgiQR3AouvP2MCiQgwuxB
-         4ZzzucqzsdrJl91h4wFVO1e0w7gYnbCw6b7AWc0BDmE9pgPhRrvVDWE942aoIRUI/mC8
-         1jaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pVKKVOY8NO+dksMBPuUmTHd9F3MhTNHBaA8ZGUBvIsE=;
-        b=2Rhi6wp3Ipm52rv80zHFFr2KZ5T09EgpIi+VmDVTcHjDkLVhl7zOF15kyCaa59jts7
-         tAoY0Xy6MHTaKv4r7m/mPLloCuTuFlbBNTNgYLnkrr9Vuv0/TLl2JADCqfJkY6N+gx9d
-         b0xd1v7rtQXNuKxyyN85UwIXTbydFuNeCAAB/vJMFO3bcCmR+QnN6mgUR42yJiqkbq/6
-         aZMGTJHfdlnbFYHkcwACajrvYPnykx5Zs2HNtGhbq4e9vzNcpcCW8GcIVvbdXWj0fMct
-         JNd3aXarnMSVu7A+jRl6fk4Cgr8fCDyX6AY6FZMc09I85kRy6bRFhGIadpWzFu25xUdX
-         CbHg==
-X-Gm-Message-State: AOAM531qjEC7wDWaiH2D/NbwERMO2g/cScjDXTe1vRK2HIqTHEy1ws1E
-        za2enx63obg+PGBddmYqx0Y=
-X-Google-Smtp-Source: ABdhPJwUmmZnpPOMtvLLQ4kgiyIKN0WRmq2IFjg3vGd3qXOTP5qbyWv6+FmKDXcF5hLdaxLibCDkxA==
-X-Received: by 2002:a17:907:6e1c:: with SMTP id sd28mr28734479ejc.28.1636016204095;
-        Thu, 04 Nov 2021 01:56:44 -0700 (PDT)
-Received: from tom-desktop.station (net-188-153-110-208.cust.vodafonedsl.it. [188.153.110.208])
-        by smtp.gmail.com with ESMTPSA id dt4sm2360756ejb.27.2021.11.04.01.56.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Nov 2021 01:56:43 -0700 (PDT)
-From:   Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     tomm.merciai@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: imx8mm: Add NOC node
-Date:   Thu,  4 Nov 2021 09:56:17 +0100
-Message-Id: <20211104085620.6048-1-tomm.merciai@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S230084AbhKDI7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 04:59:48 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:16453 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230365AbhKDI7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 04:59:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1636016230; x=1667552230;
+  h=date:from:to:subject:message-id:references:mime-version:
+   in-reply-to;
+  bh=uYP98T1lWdkr5+qrsVnyqqWos9v2lmU4T/cfxWtY65g=;
+  b=ldbKJDQvVRrSuaDyGG4T2GIqusnZThjZDFE4MWxKr+9tQV0JjemSBESK
+   hTTwcvxFXF5X2/43AeeEyWezc5kknKs38mK8shspYnr0mGffgwSbzu+C9
+   mhLds/jindLSJfzxNHq994Ei9qlGwhjorT6McqfeU/zThIaCYHlG3otm0
+   m+kS9S1ORgQqRb6dX0BbPpQ+mZsUpwOmxO+14OSzNYu8R9UD7auN1uVwI
+   0cc5xgkL+SPreClgwfoeK6HAaTe0UzCc91wznhddtYkY5GLjWcVUpIQPV
+   hoWCf5OrvK3p5kAn0pX57nnjz/orRk4WGptflas6XuH6OWAlxDGb95BAg
+   A==;
+IronPort-SDR: Zu/2WzzgZHxh5zmp4AQdIS+JXQvZxh1va+aIBdVN/FDUwh5kAFORlUYQlk7a4+lmgyHsNj8Oud
+ 1V2eoNF62rhpsPDfiUZ3fWs4vb81nMZ50Zx910+QOG/GK3w37JZ4a4W83o9ARlW5NZIVDlN5j0
+ mQ3f5DALmXxXZWh2AR22KsVgYFG0dE3AIh/q7KiQQQSeWWxBnuiO+RaC2fcQBElRHcbMrue3S+
+ ZrDQW5TPNNDb3wUP60YGnJXDz0hp0XO5K0QeD+omiFLJqBOIjQPMynyuUHsGT4ihPHK5e18qYL
+ zwZ4MbV6bYk1nEC76D3tZ17P
+X-IronPort-AV: E=Sophos;i="5.87,208,1631602800"; 
+   d="scan'208";a="150696948"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2021 01:57:10 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 4 Nov 2021 01:57:10 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 4 Nov 2021 01:57:09 -0700
+Date:   Thu, 4 Nov 2021 09:58:56 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <kishon@ti.com>, <vkoul@kernel.org>, <robh+dt@kernel.org>,
+        <andrew@lunn.ch>, <alexandre.belloni@bootlin.com>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 0/3] phy: Add driver for lan966x Serdes driver
+Message-ID: <20211104085856.tlvwwbpgyv2djdyz@soft-dev3-1.localhost>
+References: <20211020094229.1760793-1-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20211020094229.1760793-1-horatiu.vultur@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for dynamic frequency scaling of the main NOC configuration
-on imx8mm.
+Hi Kishon, Vinod,
 
-References:
- - i.MX 8M Mini Applications Processor RM, Rev. 3, 11/2020
- - f18e6d573b80 arm64: dts: imx8mq: Add NOC node
- - 912b9dacf3f0 arm64: dts: imx8mq: increase NOC clock to 800 MHz
- - https://source.codeaurora.org/external/imx/linux-imx/tree/arch/ \
-   arm64/boot/dts/freescale/imx8mm.dtsi?h=lf-5.10.y
+Please let me know if you have more comments to this patch series.
+Do you think it would be possible to get it in 5.16?
 
-Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
----
-Changes since v1:
- - Fix noc_opp_table frequencies taking NXP bsp as reference
- - Add reference link to nxp imx8mm dtsi on commit body
+The 10/20/2021 11:42, Horatiu Vultur wrote:
+> This patch serie adds support for Microchip lan966x serdes. The lan966x
+> device contains has 7 interfaces, consisting of 2 copper transceivers,
+> 3 Serdes and 2 RGMII interfaces. Two of the Serdes support QSGMII.
+> The driver also adds the functionality of "muxing" the interfaces to
+> different logical ports.
+> 
+> The following table shows which interfaces can be supported by the port.
+> 
+> PortNumber    Max Speed    Ethernet interface options
+>     0            1Gbps       CuPHY, 1G SGMII or QSGMII
+>     1            1Gbps       CuPHY, 1G SGMII or QSGMII
+>     2          2.5Gbps       2.5G SGMII, QSGMII, RGMII
+>     3          2.5Gbps       2.5G SGMII, QSGMII, RGMII
+>     4          2.5Gbps       2.5G SGMII, QSGMII
+>     5            1Gbps       QSGMII, RGMII
+>     6            1Gbps       QSGMII, RGMII
+>     7            1Gbps       QSGMII
+> 
+> v3->v4:
+> - update description of the driver
+> - removed unused registers
+> - use bitfield operations in the registers
+> - add macros for PLL configuration
+> - move macros and structs at the top of the file
+> 
+> v2->v3:
+> - remove unused includes
+> - add missing '...' in microchip,lan966x-serdes.yaml
+> - rename lan966x-serdes.h to phy-lan966x-serdes.h
+> - Rename CU->PHY and RG->RGMII
+> - update commit message for PATCH 2
+> 
+> v1->v2:
+> - replace the regmap with iomem
+> - update DT bindings
+> 
+> 
+> Horatiu Vultur (3):
+>   dt-bindings: phy: Add lan966x-serdes binding
+>   dt-bindings: phy: Add constants for lan966x serdes
+>   phy: Add lan966x ethernet serdes PHY driver
+> 
+>  .../phy/microchip,lan966x-serdes.yaml         |  59 ++
+>  drivers/phy/microchip/Kconfig                 |   8 +
+>  drivers/phy/microchip/Makefile                |   1 +
+>  drivers/phy/microchip/lan966x_serdes.c        | 548 ++++++++++++++++++
+>  drivers/phy/microchip/lan966x_serdes_regs.h   | 209 +++++++
+>  include/dt-bindings/phy/phy-lan966x-serdes.h  |  14 +
+>  6 files changed, 839 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/microchip,lan966x-serdes.yaml
+>  create mode 100644 drivers/phy/microchip/lan966x_serdes.c
+>  create mode 100644 drivers/phy/microchip/lan966x_serdes_regs.h
+>  create mode 100644 include/dt-bindings/phy/phy-lan966x-serdes.h
+> 
+> -- 
+> 2.33.0
+> 
 
- Changes since v2:
- - Add missing signed-off line
-
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 25 +++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index c2f3f118f82e..1bcc5e361ca3 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -719,6 +719,31 @@ pgc_mipi: power-domain@11 {
- 			};
- 		};
- 
-+		noc: interconnect@32700000 {
-+			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-+			reg = <0x32700000 0x100000>;
-+			clocks = <&clk IMX8MM_CLK_NOC>;
-+			fsl,ddrc = <&ddrc>;
-+			#interconnect-cells = <1>;
-+			operating-points-v2 = <&noc_opp_table>;
-+
-+			noc_opp_table: opp-table {
-+				compatible = "operating-points-v2";
-+
-+				opp-150M {
-+					opp-hz = /bits/ 64 <150000000>;
-+				};
-+
-+				opp-375M {
-+					opp-hz = /bits/ 64 <375000000>;
-+				};
-+
-+				opp-750M {
-+					opp-hz = /bits/ 64 <750000000>;
-+				};
-+			};
-+		};
-+
- 		aips2: bus@30400000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x30400000 0x400000>;
 -- 
-2.25.1
-
+/Horatiu
