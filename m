@@ -2,103 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B38445C4D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 23:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34129445C6B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 23:53:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbhKDWna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 18:43:30 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:49130 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232405AbhKDWn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 18:43:28 -0400
-Received: from Monstersaurus.ksquared.org.uk.beta.tailscale.net (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2565C1A38;
-        Thu,  4 Nov 2021 23:40:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1636065640;
-        bh=Ke/7jCHKY/MA2ufwzX82PXTTZCN9dB+7CWdPtDBMSWY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nYNv3QfVY05+v59ceCLwcLTQPuSqbmazfAgRjwQYUgGvdZ/MbaTEwtK7elmSgeKAk
-         KZE94Ojba/YrmmT3khzJTqvwf0wTIjzjuGiGf5ejOXZYfm1cowCziaJMUcHPr2Q7ET
-         6g4CO0atHws3t330u/SSGxi3cWRZAe0uXaMDNdao=
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-To:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: r8a779a0: Fix thermal bindings
-Date:   Thu,  4 Nov 2021 22:40:33 +0000
-Message-Id: <20211104224033.3997504-10-kieran.bingham+renesas@ideasonboard.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211104224033.3997504-1-kieran.bingham+renesas@ideasonboard.com>
-References: <20211104224033.3997504-1-kieran.bingham+renesas@ideasonboard.com>
+        id S231869AbhKDW4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 18:56:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230522AbhKDW4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 18:56:04 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E221C061203
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 15:53:26 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id w1so26951030edd.10
+        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 15:53:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VaaNOGobytyErlzeuWKHVMN+JarWlcxJWqZAgz0U4Ac=;
+        b=FlDR1CIlE6iRQnoU9OBH1RPrCi8GzrhNWlj5EC+Gthsht2PmwwAxK16cLula+lgUPs
+         HOI/5cwUZAWe7lQVsc2+ydn3+DIrEiblam9I9N3nf2gypDgJfzSNZUMs8t2sFXv5a00G
+         P9yaDiisNl5dxds3OnAz3aysPkEnhpFd1qZqirqO7wN9hgfOtG3sanlPhY/EX3YJWB2a
+         l2dVkbCnPpQddHFc8namR2MuSEXffsyLyDIbbl+XJh8sS+etmHrnUFliTGK7r2JUjG7X
+         eRCWK35JXuzREcuuesNh3s2soD3NCib6F2QgnT+bjkyI1xtoXTMSccyr0ClCkhgCCk4/
+         1PDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VaaNOGobytyErlzeuWKHVMN+JarWlcxJWqZAgz0U4Ac=;
+        b=SMFLGXYIWVKxc7LQvJQ/cecUvbfJGDU3l29UtrfrEhR6e6He1/zTNwpOVg7iGEg0dh
+         rAgPbzpTQPh94gtfat6QO35jKXLcF5dcZABrH0ZMYP93+z0QdMyW6fGHwxkKd+LJmuyV
+         A7mQMTaOS4mLB08k813wUSgzIjNm5MLyXSzDHRX0ajkwS/yHkALeW8sQfURAsqvjljr3
+         fPt5nqCy3F3CjtzNCMckU1P3zmW6QukqPzndZILQKV/ORiyxfBIjiMujUQaOo1Qr9mtn
+         x+no/FNhFzzxJhPegHHIVmqLe/f07u4O+pH3ycpLH7N8HkGFO7ULwvmNr2c5a+XhdY9q
+         ustA==
+X-Gm-Message-State: AOAM5324RcemlUTnxeRpWCqOzM9QG6UZzOq9lBSRbiXbQJO47hryJerB
+        FnmYyYBG2hWNeRaQMqjXcOiCXOVKEY5rPxp3s+xc2Q==
+X-Google-Smtp-Source: ABdhPJzUrnvUCW/c69Ez93sR4uzeVeBsL/wv91s5v5bUJWtKFABC5QThvyqPWPpbeJXV+eImBVpvq8PzbROnddUV+80=
+X-Received: by 2002:a17:906:a3c4:: with SMTP id ca4mr64446282ejb.529.1636066404493;
+ Thu, 04 Nov 2021 15:53:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-12-brad@pensando.io>
+ <20211025091731.GA2001@C02TD0UTHF1T.local>
+In-Reply-To: <20211025091731.GA2001@C02TD0UTHF1T.local>
+From:   Brad Larson <brad@pensando.io>
+Date:   Thu, 4 Nov 2021 15:53:13 -0700
+Message-ID: <CAK9rFnx7DgS3TYMmu5NBacV_6WC_UwJ=u7n3e_fGd0RpEcg3kA@mail.gmail.com>
+Subject: Re: [PATCH v3 11/11] arm64: dts: Add Pensando Elba SoC support
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding node names for the thermal zones are not successfully
-validated by the dt-schemas.
+Hi Mark,
 
-Fix the validation by changing from sensor-thermalN to sensorN-thermal
-and sensor_thermalN to sensorN_thermal.
+On Mon, Oct 25, 2021 at 2:17 AM Mark Rutland <mark.rutland@arm.com> wrote:
+>
+> Hi,
+>
+> On Sun, Oct 24, 2021 at 06:51:56PM -0700, Brad Larson wrote:
+> > Add Pensando common and Elba SoC specific device nodes
+> >
+> > Signed-off-by: Brad Larson <brad@pensando.io>
+>
+> [...]
+>
+> > +     timer {
+> > +             compatible = "arm,armv8-timer";
+> > +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) |
+> > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) |
+> > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) |
+> > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) |
+> > +                                     IRQ_TYPE_LEVEL_LOW)>;
+> > +     };
+>
+> The GIC_CPU_MASK_SIMPLE() stuff is meant for GICv2, but as below you
+> have GICv3, where this is not valid, so this should go.
+>
+> Also, beware that GIC_CPU_MASK_SIMPLE(1) means a single CPU, which
+> doesn't mak sense for the 16 CPUs you have.
+>
 
-Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
----
- arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+Thanks for pointing this out.  Elba SoC is a GICv3 implementation and looking
+at other device tree files we should be using this:
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-index e53f8b983c30..733fbeff9c13 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-@@ -2718,7 +2718,7 @@ prr: chipid@fff00044 {
- 	};
- 
- 	thermal-zones {
--		sensor_thermal1: sensor-thermal1 {
-+		sensor1_thermal: sensor1-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 			thermal-sensors = <&tsc 0>;
-@@ -2732,7 +2732,7 @@ sensor1_crit: sensor1-crit {
- 			};
- 		};
- 
--		sensor_thermal2: sensor-thermal2 {
-+		sensor2_thermal: sensor2-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 			thermal-sensors = <&tsc 1>;
-@@ -2746,7 +2746,7 @@ sensor2_crit: sensor2-crit {
- 			};
- 		};
- 
--		sensor_thermal3: sensor-thermal3 {
-+		sensor3_thermal: sensor3-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 			thermal-sensors = <&tsc 2>;
-@@ -2760,7 +2760,7 @@ sensor3_crit: sensor3-crit {
- 			};
- 		};
- 
--		sensor_thermal4: sensor-thermal4 {
-+		sensor4_thermal: sensor4-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 			thermal-sensors = <&tsc 3>;
-@@ -2774,7 +2774,7 @@ sensor4_crit: sensor4-crit {
- 			};
- 		};
- 
--		sensor_thermal5: sensor-thermal5 {
-+		sensor5_thermal: sensor5-thermal {
- 			polling-delay-passive = <250>;
- 			polling-delay = <1000>;
- 			thermal-sensors = <&tsc 4>;
--- 
-2.30.2
+        timer {
+                compatible = "arm,armv8-timer";
+                interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(16) |
+                                        IRQ_TYPE_LEVEL_LOW)>,
+                             <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(16) |
+                                        IRQ_TYPE_LEVEL_LOW)>,
+                             <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(16) |
+                                        IRQ_TYPE_LEVEL_LOW)>,
+                             <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(16) |
+                                        IRQ_TYPE_LEVEL_LOW)>;
+        };
 
+> > +             gic: interrupt-controller@800000 {
+> > +                     compatible = "arm,gic-v3";
+> > +                     #interrupt-cells = <3>;
+> > +                     #address-cells = <2>;
+> > +                     #size-cells = <2>;
+> > +                     ranges;
+> > +                     interrupt-controller;
+> > +                     reg = <0x0 0x800000 0x0 0x200000>,      /* GICD */
+> > +                           <0x0 0xa00000 0x0 0x200000>;      /* GICR */
+> > +                     interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +                     gic_its: msi-controller@820000 {
+> > +                             compatible = "arm,gic-v3-its";
+> > +                             msi-controller;
+> > +                             #msi-cells = <1>;
+> > +                             reg = <0x0 0x820000 0x0 0x10000>;
+> > +                             socionext,synquacer-pre-its =
+> > +                                                     <0xc00000 0x1000000>;
+> > +                     };
+> > +             };
+>
+> Is there any shared lineage with Synquacer? The commit message didn't
+> describe this quirk.
+
+There is no shared lineage with Synqacer.  We are solving the same issue
+with the same mechanism.  I'll add a comment to this DTS node.
+
+Thanks,
+Brad
