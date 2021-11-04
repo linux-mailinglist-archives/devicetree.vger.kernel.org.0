@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2B5E444C9B
+	by mail.lfdr.de (Postfix) with ESMTP id E4530444C9C
 	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 01:33:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232921AbhKDAgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232925AbhKDAgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 3 Nov 2021 20:36:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54280 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231248AbhKDAg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 20:36:29 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42C92C035446
+        with ESMTP id S231137AbhKDAga (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 20:36:30 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B62C03401C
         for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 17:29:53 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id d12so5019333lfv.6
+Received: by mail-lj1-x22f.google.com with SMTP id t11so6681183ljh.6
         for <devicetree@vger.kernel.org>; Wed, 03 Nov 2021 17:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=adL1IrmcLNQtAx1Tnay7Q/BSBEO+RgzR6etkjNuPGQw=;
-        b=dvZUgAx7KXoERuUSSvaLjKf/80b2OEIShKFciFGUEi//ZsLveE89bQjvWBJvR3q/e9
-         6cHOFJauYothvfFtiuPQElQtM2BaSWnY9KxgZBw/sgfY5guSkw6MLjFh//+QADEwtmew
-         Lec6nOVkixQgB5rEKIM491R1OKnW8pp1dig53yhax19R4u+964DLcfH320l+33UL+vLI
-         LwDlUbxvXtYCdBChCQhtfafkDNfdFhZW8VrY1mfLggjDB/vaMZW7Xjg1V1DOiEgRZ4HR
-         NknH8eOnKO8q6l52iCUlbT1PKtYUOvewReqXXVTynTNELuenEFIIhFW3MzGdQO663Gan
-         5SbA==
+        bh=KwyY4/D7bezVbBRBW5e3v6w/N7ORNMVBOazMTzAPF+M=;
+        b=KnpNWOuseBLTTpZa23dA4LUt8VyZsfnJ9xN/IpZFHqPCv9EumZYx4+ZC6JN48Il8UQ
+         ryE9dr5EHUR8khM72Xver0pip6kpry9S64kt7Qf4rbNiCWohb7GvQTy5Ku3fF8rKSEcA
+         KzrGE5J1Ak+2nO60NFXhp80ii6nXq3fJBAZHwN9ZNvYZexifg99FNj9MogncvNxQA6Qw
+         c5ld4EoKPPJOTnvRjBX2WpKqMXvXGh/oYAFNStKmhhWMxV9ShGk0cO19+ANmGPQZiXlR
+         NNgB+Sr0Ye9H/b0/kc1kpB6ZnHFixf0qg5LVQMSCzN6qoRhkBvzViQElQxhq8MtW5dKq
+         wdIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=adL1IrmcLNQtAx1Tnay7Q/BSBEO+RgzR6etkjNuPGQw=;
-        b=d1F5216HXZKxUO549skiNxuunBnAm3E1TXOkSw4OStgzPCoZsIRMoIUpo5tVv4cqRN
-         eDgMRBn0x9ERTN6yOpIvLs3odV+YBpsr5z71H2cYqqhpmAS2QK81FUBhglRtBOO2lyzk
-         GahlG3h6rKJSKUHSbiV2d8XCXhzFYBGXWaTu5nKetuZ7ienzGFBbu5RA83uO4zK2VuJo
-         CCplkQLIA4oFMx/zotvWffDNqiioFSqosxlvQ/2yO6x44oQwf97oFMIuQw0VdPY3Vhx1
-         JGS8Uohst9mQzJbsLTkVbKFYXO2HGHsUxP/H1W3Tca5ziqJSM6djll2azRjesik0gbvn
-         BPLg==
-X-Gm-Message-State: AOAM531UVDdNPCgqx7NxZ2i6GNAYqSxO1CIpQoSu+CsDChu+bUQsZgFA
-        ht6RmoMaSX4jl77lnixaLFJhIw==
-X-Google-Smtp-Source: ABdhPJxaywt9gKzzLUY9ujPiuTY1vz+i6qcWVqmsccKuKtOUkNhpiylxodQOTLpES0RZTUmlkhFKtg==
-X-Received: by 2002:a05:6512:3b24:: with SMTP id f36mr19694904lfv.585.1635985791690;
-        Wed, 03 Nov 2021 17:29:51 -0700 (PDT)
+        bh=KwyY4/D7bezVbBRBW5e3v6w/N7ORNMVBOazMTzAPF+M=;
+        b=KKIIk94eiH4XRHlmhWuRmdvG38FfIpDtM6CT8wuMtx4r04unJ5J2XGUfDscMWwKgqe
+         8WJ4KW3Bm3eU61k9nZEuzWprXuidqhCzyI96xQ0vlGQ+sFmpFlF1cxfxvuiT2DP2zbTx
+         XW9RQMmE7PxMdWgjS/5nTwOpMPO57TcFijyqrohJMBdmwJH/M77AJB+lWVLe5sGyYLIw
+         MizTOiMcNfAk5TEPjLQMzuLKS/sgBQxd8nrwBKPmnjPhH717pFlaNAOykW6BNleZpvxj
+         AGYhGwVNMbrqbvpL3szV+8VxaENRxbTGfSTSxRV/EO2WV9ThNjuukxZVw4lY45jwrHh7
+         lR/A==
+X-Gm-Message-State: AOAM532k84g1/swVpZBGt3SXKPWM24OE+PBkYKogu3GJxCRZXUuRuZT7
+        Pv8v6x7MbgOfxxHgajonRURbdMrB82/nhw==
+X-Google-Smtp-Source: ABdhPJxUd+5BjpDN/ny1QhfwVI4BWi+eYfuKy3JcrLP6IdXRBdDO60nOE99aVJe2YFAWzAHGS7FhiQ==
+X-Received: by 2002:a2e:85c8:: with SMTP id h8mr36780225ljj.432.1635985792337;
+        Wed, 03 Nov 2021 17:29:52 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
         by smtp.gmail.com with ESMTPSA id 188sm329861ljf.71.2021.11.03.17.29.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
@@ -51,10 +51,11 @@ From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/5] arm64: dts: qcom:apq8096-db820c: correct lvs1 and lvs2 supply property
-Date:   Thu,  4 Nov 2021 03:29:47 +0300
-Message-Id: <20211104002949.2204727-3-dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: [PATCH 4/5] arm64: dts: qcom: msm8994-sony-xperia-kitakami: correct lvs1 and lvs2 supply property
+Date:   Thu,  4 Nov 2021 03:29:48 +0300
+Message-Id: <20211104002949.2204727-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211104002949.2204727-1-dmitry.baryshkov@linaro.org>
 References: <20211104002949.2204727-1-dmitry.baryshkov@linaro.org>
@@ -69,24 +70,25 @@ specify the supply regulator for LVS1 and LVS2 (following the pin name
 in the PMIC datasheet). Correct the board's device tree property, so
 that the regulator supply is setup properly.
 
+Cc: Konrad Dybcio <konrad.dybcio@somainline.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 2 +-
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 9dbac589482b..28403d2ffd31 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -715,7 +715,7 @@ pm8994-regulators {
- 		vdd_l17_l29-supply = <&vph_pwr_bbyp>;
- 		vdd_l20_l21-supply = <&vph_pwr_bbyp>;
- 		vdd_l25-supply = <&vreg_s3a_1p3>;
--		vdd_lvs1_lvs2-supply = <&vreg_s4a_1p8>;
-+		vdd_lvs1_2-supply = <&vreg_s4a_1p8>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+index 48de66bf19c4..7cc564d8ca7c 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+@@ -223,7 +223,7 @@ pm8994_regulators: pm8994-regulators {
+ 		vdd_l17_l29-supply = <&pmi8994_bby>;
+ 		vdd_l20_l21-supply = <&pmi8994_bby>;
+ 		vdd_l25-supply = <&pm8994_s3>;
+-		vdd_lvs1_lvs2-supply = <&pm8994_s4>;
++		vdd_lvs1_2-supply = <&pm8994_s4>;
  
- 		vreg_s3a_1p3: s3 {
- 			regulator-name = "vreg_s3a_1p3";
+ 		/* S1, S2, S6 and S12 are managed by RPMPD */
+ 
 -- 
 2.33.0
 
