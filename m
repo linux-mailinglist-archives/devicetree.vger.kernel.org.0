@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53894444D0E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 02:40:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0A4444D17
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 02:48:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbhKDBn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Nov 2021 21:43:26 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:60176 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232918AbhKDBnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 21:43:24 -0400
-X-UUID: dd3ec9a3dceb43678b58dfa50f612cf4-20211104
-X-UUID: dd3ec9a3dceb43678b58dfa50f612cf4-20211104
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1202912524; Thu, 04 Nov 2021 09:40:45 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 4 Nov 2021 09:40:43 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 4 Nov 2021 09:40:42 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
-        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
-        <sean.wang@kernel.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
-        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
-        Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
-Subject: [PATCH] pinctrl: mediatek: fix global-out-of-bounds issue
-Date:   Thu, 4 Nov 2021 09:40:39 +0800
-Message-ID: <20211104014039.26772-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211104014039.26772-1-zhiyong.tao@mediatek.com>
-References: <20211104014039.26772-1-zhiyong.tao@mediatek.com>
+        id S232909AbhKDBvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Nov 2021 21:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232908AbhKDBvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Nov 2021 21:51:14 -0400
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8544FC061714
+        for <devicetree@vger.kernel.org>; Wed,  3 Nov 2021 18:48:37 -0700 (PDT)
+Received: from hatter.bewilderbeest.net (97-113-240-219.tukw.qwest.net [97.113.240.219])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id E1862373;
+        Wed,  3 Nov 2021 18:48:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1635990517;
+        bh=CkPGfIGdJl1Sm1jvL44ZO2+ID8zt4FiR+y+7s0H1yZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MCLLMK1eNlLmUSFwuTCCKFYiMHqzqedGFHRwcU30yLMztv6y1e9AWemNn9ScMfmE0
+         sMthE9AG3P7UW56IMhJPKMA2NpK6lPUQ78JvvrkDJJcI/6jZ6RDHTx15oQa78oVxTI
+         VEzslz/RHf9aBc2RJ4oF7DDhvhy0bYOjGu1JkUGU=
+Date:   Wed, 3 Nov 2021 18:48:32 -0700
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
+Cc:     Joel Stanley <joel@jms.id.au>,
+        Jae Hyun Yoo <jae.hyun.yoo@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Corey Minyard <minyard@acm.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Cedric Le Goater <clg@kaod.org>,
+        Haiyue Wang <haiyue.wang@linux.intel.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net
+Subject: Re: [PATCH -next 0/4] Add LCLK control into Aspeed LPC sub drivers
+Message-ID: <YYM78OxYMYwiFzWD@hatter.bewilderbeest.net>
+References: <20211101233751.49222-1-jae.hyun.yoo@intel.com>
+ <CACPK8XfBi+jY5ftLqsEVXHe01SQBNpTSwo+WtXN3=YUQnXACtw@mail.gmail.com>
+ <YYHSHoELvKRI4Zh1@hatter.bewilderbeest.net>
+ <d2a18e3b-cb02-37b5-cad8-45c3e8ff3bb4@linux.intel.com>
+ <YYHYMKDD7hz15ceR@hatter.bewilderbeest.net>
+ <63678f47-8b4a-1385-a755-bc7c2316ca0d@linux.intel.com>
+ <YYHhMGm4C0srTW1x@hatter.bewilderbeest.net>
+ <768252cc-2466-3b4b-9087-549b83e00a81@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <768252cc-2466-3b4b-9087-549b83e00a81@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
+On Wed, Nov 03, 2021 at 08:56:10AM PDT, Jae Hyun Yoo wrote:
+>
+>Hi Zev,
+>
+>Not sure but looks like one of LPC functions is enabled while kernel
+>booting. 
+>
 
-When eint virtual eint number is greater than gpio number,
-it maybe produce 'desc[eint_n]' size globle-out-of-bounds issue.
+Looks like that was exactly the clue I needed -- obvious in retrospect, 
+but I realize now that I'm only seeing this happen when I bypass the 
+normal shutdown sequence via 'reboot -f'; with a plain 'reboot' I don't 
+hit any problems.  Can you reproduce it that way?
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-Signed-off-by: Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
----
- drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-index 45ebdeba985a..9d57c897835c 100644
---- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-@@ -286,7 +286,8 @@ static int mtk_xt_get_gpio_n(void *data, unsigned long eint_n,
- 	*gpio_chip = &hw->chip;
- 
- 	/* Be greedy to guess first gpio_n is equal to eint_n */
--	if (desc[eint_n].eint.eint_n == eint_n)
-+	if (((*gpio_chip)->ngpio > eint_n) &&
-+	    desc[eint_n].eint.eint_n == eint_n)
- 		*gpio_n = eint_n;
- 	else
- 		*gpio_n = mtk_xt_find_eint_num(hw, eint_n);
--- 
-2.25.1
+Zev
 
