@@ -2,78 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E65D9445107
-	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 10:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93A72445116
+	for <lists+devicetree@lfdr.de>; Thu,  4 Nov 2021 10:28:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230390AbhKDJYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 05:24:31 -0400
-Received: from polaris.svanheule.net ([84.16.241.116]:37700 "EHLO
-        polaris.svanheule.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230335AbhKDJYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 05:24:31 -0400
-Received: from [10.104.240.139] (unknown [195.176.0.34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sander@svanheule.net)
-        by polaris.svanheule.net (Postfix) with ESMTPSA id 6A13B26C27B;
-        Thu,  4 Nov 2021 10:21:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-        s=mail1707; t=1636017712;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=y70bAvqnCv4oVjmWTcG3uLPetllC23Wd0oU9QdEYhIo=;
-        b=E/+HXaAGvMgBUpuiKfMI76bfoc0rO7n3cmhDQCTnvjE6CRMwlGypRTkbxqq2ndIYbz3Sf4
-        wP6xQJ8j93JTBDU5rhrEa8YbFw96yYRcH4yBS+OIX2xOMvvYfKnQbIe8UgMD4DAUHDNGiU
-        IN7AJ0BySc+I90iNHe293EJrXwXvPthYV/oeapyZIVD16UcE72wxNOZTxZAkqn/1BD33qs
-        +AX5FOhrRKkSwCJgRm2wtxrj7SDDCVJQhvQxD93hgCeLehWbOAoPwbahqAjHZHSrCQ9E9W
-        WL7BAFIql5q8TgMAof9ZqlhV5EE/PSpq8aS6VuFdXh1kAfOtEX0REx3x3ykH+A==
-Message-ID: <d8d5f82e89151b09098ed0cf3f5b0827d2868cd7.camel@svanheule.net>
-Subject: Re: [PATCH v2 2/2] watchdog: Add Realtek Otto watchdog timer
-From:   Sander Vanheule <sander@svanheule.net>
-To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Date:   Thu, 04 Nov 2021 10:21:50 +0100
-In-Reply-To: <20211104085952.13572-3-sander@svanheule.net>
-References: <20211104085952.13572-1-sander@svanheule.net>
-         <20211104085952.13572-3-sander@svanheule.net>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.0 (3.42.0-1.fc35) 
+        id S230252AbhKDJaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 05:30:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230511AbhKDJao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 05:30:44 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDDEBC06127A
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 02:28:06 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1miZ2G-0001z0-3I; Thu, 04 Nov 2021 10:27:52 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1miZ2D-0004vs-Gv; Thu, 04 Nov 2021 10:27:49 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1miZ2D-0006bU-Fh; Thu, 04 Nov 2021 10:27:49 +0100
+Date:   Thu, 4 Nov 2021 10:27:49 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 1/4] dt-bindings: mfd: qcom,tcsr: document ipq6018
+ compatible
+Message-ID: <20211104092749.g5o77cyutustnnxq@pengutronix.de>
+References: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="axfpnblzfqfbqyz7"
+Content-Disposition: inline
+In-Reply-To: <5c95bcf62a9d08208a7da19f0b1cec0689502b9a.1630323987.git.baruch@tkos.co.il>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-11-04 at 09:59 +0100, Sander Vanheule wrote:
-> +       do {
-> +               if (prescale > OTTO_WDT_PRESCALE_MAX)
-> +                       return -EINVAL;
-> +
-> +               tick_ms = otto_wdt_tick_ms(ctrl, prescale);
-> +               total_ticks = div_round_ticks(timeout_ms, tick_ms, 2);
-> +               phase1_ticks = div_round_ticks(timeout_ms - pretimeout_ms, tick_ms,
-> 1);
-> +               phase2_ticks = total_ticks - phase1_ticks;
-> +
-> +               prescale++;
-> +       } while (phase1_ticks > OTTO_WDT_PHASE_TICKS_MAX
-> +               || phase2_ticks > OTTO_WDT_PHASE_TICKS_MAX);
-> +
-> +       v = ioread32(ctrl->base + OTTO_WDT_REG_CTRL);
-> +
-> +       v &= ~(OTTO_WDT_CTRL_PRESCALE | OTTO_WDT_CTRL_PHASE1 |
-> OTTO_WDT_CTRL_PHASE2);
-> +       v |= FIELD_PREP(OTTO_WDT_CTRL_PHASE1, phase1_ticks - 1);
-> +       v |= FIELD_PREP(OTTO_WDT_CTRL_PHASE2, phase2_ticks - 1);
-> +       v |= FIELD_PREP(OTTO_WDT_CTRL_PRESCALE, prescale);
 
-I dropped the prescale_next variable here, but now the wrong prescale value is used
-after the loop. I'll send out a v3 shortly.
+--axfpnblzfqfbqyz7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best,
-Sander
+On Mon, Aug 30, 2021 at 02:46:24PM +0300, Baruch Siach wrote:
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mfd/qcom,tcsr.txt b/Docume=
+ntation/devicetree/bindings/mfd/qcom,tcsr.txt
+> index e90519d566a3..c5f4f0ddfcc3 100644
+> --- a/Documentation/devicetree/bindings/mfd/qcom,tcsr.txt
+> +++ b/Documentation/devicetree/bindings/mfd/qcom,tcsr.txt
+> @@ -6,6 +6,7 @@ registers via syscon.
+> =20
+>  Required properties:
+>  - compatible:	Should contain:
+> +		"qcom,tcsr-ipq6018", "syscon", "simple-mfd" for IPQ6018
+>  		"qcom,tcsr-ipq8064", "syscon" for IPQ8064
+>  		"qcom,tcsr-apq8064", "syscon" for APQ8064
+>  		"qcom,tcsr-msm8660", "syscon" for MSM8660
+
+I wonder about why qcom,tcsr-ipq6018 should use simple-mfd, but the
+others don't. Assuming there is a deeper reason, mentioning that in the
+commit log (or depending on the reason maybe even in the binding?)
+sounds sensible.
+
+Best regards
+Uwe
+
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--axfpnblzfqfbqyz7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGDp5IACgkQwfwUeK3K
+7AlRiwgAnht5hNJHsev9Rk8E8Qo0hnqepiYdg85X6ffdIPRc4nHYDXRsUZzk4Lh0
+kDiboeyCEtTPF7M5ZxrcZTPc7ImsYdv/kxzcY9M/odxSHCYuGEI3UuTLqMcU53Mx
+ivoxb1jzA38DrMPX/Ux3nXiTVFJGsvykArpye+GibOmZtD5VYncGRF6TKQYOcWe1
+Ab2Fnb7CM9Ev1/sWnG7GUHomADQkUe9P9XKRN1HN34MDxB6mWRG668SZaFbUiNwM
+kOV4rZ1QjXESzK14qNZmLzHSOoKWrzoI3sk3Jbo3tlwDDqje53U2s2WTaSIVlc19
+R17Y3Xf0XPKnmD1sY+jdtlvUz7hRjQ==
+=2T9n
+-----END PGP SIGNATURE-----
+
+--axfpnblzfqfbqyz7--
