@@ -2,96 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB622446AB0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 22:47:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCD4F446B29
+	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 00:19:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233137AbhKEVuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 17:50:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58260 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231553AbhKEVuF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 17:50:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AA75160E05;
-        Fri,  5 Nov 2021 21:47:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636148845;
-        bh=TQs0+F04/oKVbMgAcjYQgO7ye1O8bHJYSXZeXUSAv9c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r2IMv+U5qcRAO1iEFR9rcNHnHZlqQoN8aW9FajqOhSK+E5XpvUkolfN8LwCzGxqgz
-         vPlVLY1nODh99w7H/yD5STBeInuphVQywNZLzofvtX3nw++SQMDy0JPz+RbuiSvnvW
-         wmLejAY99RIrax2QnPMK79F9VRvpFahTgeXEPWail5HZNmJoSVUesObrf/QGSd7CWb
-         GmA9Y6NSMNyRKaNbin6mF8hkTqwA6SAE5l+oZK6ZlaP8J3oDla0dOdwXLzZl1Gl8XA
-         V9I/ChMsQf78Pu3XrrKLbqnZ447NByHAZJnSBkW3B1ID8FXCyG7ztPXdjX71gUN61q
-         m6kQbAlVQAtuw==
-Date:   Fri, 5 Nov 2021 22:47:16 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
-Cc:     Codrin Ciubotariu - M19940 <Codrin.Ciubotariu@microchip.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches - M43218 <Ludovic.Desroches@microchip.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] i2c: at91: Add support for programmable clock source
-Message-ID: <YYWmZMc8eVq5SZYj@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>,
-        Codrin Ciubotariu - M19940 <Codrin.Ciubotariu@microchip.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        Ludovic Desroches - M43218 <Ludovic.Desroches@microchip.com>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20211012140718.2138278-1-horatiu.vultur@microchip.com>
- <8a775c67-00a3-1dbe-daa3-09a537f482d8@microchip.com>
- <20211013114144.7j4scdaq2rjfmiwn@soft-dev3-1.localhost>
+        id S230063AbhKEXWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 19:22:33 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:43731 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229745AbhKEXWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 19:22:33 -0400
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 5402222247;
+        Sat,  6 Nov 2021 00:19:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1636154391;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+ukrhMc54po+ZfQV2fTWAEE2CL/83wEHkoyByYstNRw=;
+        b=GisVo0g7LTEr/fa44vtS/Dv/YWGkBQ2o2qKsZwez0J11m8tPhzWRtbGVS85ABgDizYpDQY
+        ovorPpoYHafmxmL+W+GA7bkx5xJ4vria+Dt34veOqhppgp+hOlXMzSrL7xSt9LZU3pA2n5
+        /VOURDLKkTvuL7h7WIOPVtDvqoEzR0w=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FaPzQSzCwWwdczBx"
-Content-Disposition: inline
-In-Reply-To: <20211013114144.7j4scdaq2rjfmiwn@soft-dev3-1.localhost>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sat, 06 Nov 2021 00:19:51 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 2/6] gpio: Add Delta TN48M CPLD GPIO driver
+In-Reply-To: <CA+HBbNEEPHLbJSdWPdxWb5gASha_NavJrEBBRkbvzEW2aDSjmQ@mail.gmail.com>
+References: <20211102165657.3428995-1-robert.marko@sartura.hr>
+ <20211102165657.3428995-2-robert.marko@sartura.hr>
+ <CAHp75VdnQq76f5Xeo5LCq83sr4TbcXY_mtZ4x_rFzUkS01BYZg@mail.gmail.com>
+ <CA+HBbNEEPHLbJSdWPdxWb5gASha_NavJrEBBRkbvzEW2aDSjmQ@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <cd0b876b5a043de21179eea01ca0344c@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am 2021-11-05 12:34, schrieb Robert Marko:
+> On Tue, Nov 2, 2021 at 8:28 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+>> 
+>> On Tue, Nov 2, 2021 at 6:57 PM Robert Marko <robert.marko@sartura.hr> 
+>> wrote:
+>> >
+>> > Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
+>> > expander.
+>> >
+>> > The CPLD provides 12 pins in total on the TN48M, but on more advanced
+>> > switch models it provides up to 192 pins, so the driver is extendable
+>> > to support more switches.
+>> 
+>> ...
+>> 
+>> > +static int tn48m_gpio_probe(struct platform_device *pdev)
+>> > +{
+>> 
+>> > +       const struct tn48m_gpio_config *gpio_config = NULL;
+>> > +       struct gpio_regmap_config config = {0};
+>> 
+>> I don't see a point in assigning these variables.
+> 
+> Hi,
+> The NULL one isn't required, but the regmap one is, otherwise the
+> devm_gpio_regmap_register call will
+> return -EINVAL.
+> 
+> It will fail here:
+> https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpio-regmap.c#L209
+> 
+> I see that Michael Walle who did the GPIO regmap uses it as well in
+> the Kontron CPLD driver.
+> Michael, can you shed some light on this?
 
---FaPzQSzCwWwdczBx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I guess this was already clarified? Because you don't set
+all the properties of the config you have to initialize it.
+Otherwise anything could happen.
 
-
-> I think actually I will drop this patch series because apparently
-> lan966x works fine also with the peripheral clock. So then no changes
-> are required.
-
-Not even patch 1/2?
-
-
---FaPzQSzCwWwdczBx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGFpmAACgkQFA3kzBSg
-KbZAqxAAowoqz8CdQEFSo9FvrZdqjhMjxp+PhybAQqbhg0clVa6dBaddregADvq9
-97zB/W53PXmFHLvnQLO7WkvlxTyvY/nJ23g+vYhNL8NYO5GOnAzQ0m4LANJeWYLW
-Tn7iEQOrN84/Fo6gi5Pjsk+j6Hn//F3ytW1OqPxJOY1Jdu1A8Rjl0Sfa6PUJ7ijG
-Wx/FqLBhMpR4Ejmhz+kOdGvGnF21xEtt6o8NTd2IBbVaqdqSH00bfDCz0W86fdRY
-V8e9frIUe4M9fvBYk0j30K9TS7GbTug5AxHAPD7IOKLJSWL+7SH9xbRG4DxSBx4v
-gSzPxeQ/Yt59CBUitlYt5Dbr3940B2qOkFc0pER+l8Xe9oir0CdYrW3FUJu6J7fL
-0HvKRU5IBu41oVT36KkDVNpt5yGe2dd/IpCyjTcckI98nNh09TxvuFaxQUnSbNFf
-1lPMe5F7494+nKTKPyv6TfgxZUFyfk170sjYBajEtxYps8dkvd1ydYRDlQhUlQkv
-cQT18/M+hFaxzScKy/opfTnRDRtoeF9PLy4ltrjRuH8elTqgziySNTjj0E63ctoE
-KDhdH6/FJTCQ3gSnZUUhEP7BnRIMO4Xb+gDCF46PDAoOFC/kUGCnFGE0psSimo0E
-vU1aDlqXXRjauIOpZTbswbnGROtNr16uEmLuRAJtjrfUrUsxFVU=
-=pkHS
------END PGP SIGNATURE-----
-
---FaPzQSzCwWwdczBx--
+-michael
