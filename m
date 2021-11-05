@@ -2,82 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D4A4464C2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 15:22:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0DE446508
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 15:36:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233165AbhKEOYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 10:24:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
+        id S233093AbhKEOjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 10:39:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbhKEOYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 10:24:42 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DF9C061714;
-        Fri,  5 Nov 2021 07:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=HyYi72yML6OQWdSkYrfcpZ4V9EJK/wqUJrTKISMtJd0=; b=IzM84mtTW4vnuDabPKxA8fb8Vu
-        Ld+rAKKycyZTtYhqJXSbRHitp27cqqvReeMucoIJA+Gv0MMI26qwDvy2nMBqCpfF/hc4f/tSDr6b5
-        8EopE4euE+8te1br3JIE159Vjp5J7JQNUrZs4aKE4VexXtg5otO+vgxOR2cri6qTdu2U=;
-Received: from p200300ccff0899001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff08:9900:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mj06O-0004fE-0M; Fri, 05 Nov 2021 15:21:56 +0100
-Date:   Fri, 5 Nov 2021 15:21:54 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mylene.josserand@free-electrons.com, linus.walleij@linaro.org,
-        rydberg@bitmath.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        alistair23@gmail.com
-Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add
- documentation for cyttsp5
-Message-ID: <20211105152154.20f5cbd1@aktux>
-In-Reply-To: <20211103114830.62711-3-alistair@alistair23.me>
-References: <20211103114830.62711-1-alistair@alistair23.me>
-        <20211103114830.62711-3-alistair@alistair23.me>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S232865AbhKEOjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 10:39:11 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69091C061714;
+        Fri,  5 Nov 2021 07:36:31 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id b12so14077004wrh.4;
+        Fri, 05 Nov 2021 07:36:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xvMjGcobnBgLs7ZPSv8hX0I0/4KkCNQdWW3Z/W7d/b4=;
+        b=IB25lQ1JPmF23njjHdeiU6z1mNDbFN6QEZH54rKox/jHMRLTohC1oewAkk/HCoXwr1
+         f/Xw4G2k/ESLpOWF/XSkRULZZra1jBpoSxnv7xZZuroh+Z5mI4JJes8OD38/9Qqc0uF7
+         ZZkS7DS4aa9qpR9DfjMujEsfZsmZDBTqvbJB7CC7tHRhToDMmQXaF1Gyazr0KBT1Xb6Q
+         /+YeDNG2q2RaMq2Jl9W1k6sJH4UNxOW9AdQiswxawhq/g//vOdfKkUhRBeObrP8c4xIr
+         J/UQr0JfjxbAqR0Awourre10x/eJULBPmHUjyS7ZgNGXGF/DnudTUIkXhFkgplqCi20E
+         AS/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xvMjGcobnBgLs7ZPSv8hX0I0/4KkCNQdWW3Z/W7d/b4=;
+        b=f+UYJiGSDS8EyfHe4N5iBNAujVIZO8ZCgDon7fPsb+vemwfjrolEigHgzh5Sa3zmk1
+         S9Go/B2MnzAuJSYZ54APgYALfCfsn31lnVxaUKOCOSuDzNjTy1AAGIf9u5Z1WDfYuXhf
+         4K/FatL76gM61/3Zfehn/qf8p4XoFaqKpCqSh463jITj4uJqzmzuaqwYJE7iqsqq2MB8
+         avRYTJaSVwnvBqOVkklOHN9PqfhxHjLxrDSwFUj0UkmNg6A4tITFxWQOyNa5S7748wpk
+         9Q1oqD/eejfnVFXDmrk84w0615treJBB/U6RuWvvKF3zLsJTRFljNTK5AmZ6o8Xckmtz
+         m7iw==
+X-Gm-Message-State: AOAM532QxFhBXtHx6RCAHhfWTlpJLlNqKQfWSfwUfr7Jpbdqs7g49Buw
+        mrQY/uWRoW36l/tjt28O8W3qj7rNYenJyw==
+X-Google-Smtp-Source: ABdhPJyeeJKJvHRvpLq0b+2TdSjZvOz0j8oKTFETeEWsdESJjCTyNXfeqK0D8zGKC3Q6zi3OVRleHg==
+X-Received: by 2002:adf:dc0d:: with SMTP id t13mr73158647wri.158.1636122990015;
+        Fri, 05 Nov 2021 07:36:30 -0700 (PDT)
+Received: from demon-pc.localdomain ([188.24.96.74])
+        by smtp.gmail.com with ESMTPSA id z5sm15140839wmp.26.2021.11.05.07.36.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Nov 2021 07:36:29 -0700 (PDT)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     demonsingur@gmail.com, cosmin.tanislav@analog.com,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: [PATCH v3 0/3] Add AD74413R driver
+Date:   Fri,  5 Nov 2021 16:35:47 +0200
+Message-Id: <20211105143550.1783528-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+V1 -> V2
+ * sign off using company email
 
-I finally found time to test this.
+V2 -> V3
+ * replace gpo config firmware flag with one flag specifying whether gpo is in
+   comparator mode
+ * create two separate gpiochips, one output-only for GPO pins not in
+   comparator mode and one input-only for the value of digital input channels
+ * wire up all gpo functionalities using pinconf
+ * keep number of characters per line under 80
+ * rework locking
+ * do not invalidate other chip revisions
+ * do not set indio device parent
+ * print probe error for refin regulator
+ * move conversion from range register value to range / offset / raw offset
+   into separate function
+ * module.h -> mod_devicetable.h
+ * use generic firmware interface functions
+ * add comment regarding cache alignment
+ * add comment regarding ADC channels buffered read setup
+ * un-inline comment regarding 100us delay for conversion start
+ * inline return statements
+ * remove assignments to val2 where not necessary
+ * local_channels -> chans
+ * index -> i
+ * channel_config -> config
+ * IIO_ALTVOLTAGE -> IIO_VOLTAGE
+ * .info_mask_shared_by_type_available -> .info_mask_separate_available
+ * remove unlikely probe error messages
+ * use an array indexed by channel function for retrieving iio channels
+ * count iio channels while parsing
+ * move HART rate rejection outside of setter
+ * move channel function validation outside of setter
+ * use SPI messages for read and write
+ * validate DAC code earlier
+ * simplify switches to only handle existing iio channels
+ * pass indio_dev into functions needing access to it
+ * pass spi into devm_regmap_init
+ * dt-bindings: sort compatibles
+ * dt-bindings: remove driver word from description
+ * dt-bindings: remove refin supply description
+ * dt-bindings: specify channel function default value
+ * dt-bindings: remove maxItems from scalar value
 
-On Wed,  3 Nov 2021 21:48:28 +1000
-Alistair Francis <alistair@alistair23.me> wrote:
+Cosmin Tanislav (3):
+  iio: add adddac subdirectory
+  dt-bindings: iio: add AD74413R
+  iio: addac: add AD74413R driver
 
-[...]
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        touchscreen@24 {
-> +            compatible = "cypress,tt2100";
-> +            reg = <0x24>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&tp_reset_ds203>;
-> +            interrupt-parent = <&pio>;
-> +            interrupts = <1 5 IRQ_TYPE_LEVEL_LOW>;
-hmm, in the code is IRQ_TRIGGER_FALLING but here is LEVEL_LOW, hmm what
-it is really?
+ .../bindings/iio/addac/adi,ad74413r.yaml      |  153 ++
+ MAINTAINERS                                   |    9 +
+ drivers/iio/Kconfig                           |    1 +
+ drivers/iio/Makefile                          |    1 +
+ drivers/iio/addac/Kconfig                     |   20 +
+ drivers/iio/addac/Makefile                    |    7 +
+ drivers/iio/addac/ad74413r.c                  | 1492 +++++++++++++++++
+ include/dt-bindings/iio/addac/adi,ad74413r.h  |   21 +
+ 8 files changed, 1704 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+ create mode 100644 drivers/iio/addac/Kconfig
+ create mode 100644 drivers/iio/addac/Makefile
+ create mode 100644 drivers/iio/addac/ad74413r.c
+ create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
 
-> +            reset-gpios = <&pio 7 1 GPIO_ACTIVE_HIGH>;
+-- 
+2.33.1
 
-hmm, if the reset gpio at the chip is active low (I guess it is) that
-would indicate an inverter between SoC and gpio. So a nonstandard setup
-as an example, probably not a good idea.
-
-Regards,
-Andreas
