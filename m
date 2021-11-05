@@ -2,260 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B54D446326
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 13:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 436764463A8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 13:53:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232912AbhKEMJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 08:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232884AbhKEMJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 08:09:06 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D454C061714;
-        Fri,  5 Nov 2021 05:06:27 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id o8so32195918edc.3;
-        Fri, 05 Nov 2021 05:06:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NvZt6wor/iWsNZUw+MTwLF1bGSr9r7fC7l43DBngm7Y=;
-        b=mf8haO4WnkW6v0mwqaqCeV66+ffu/pRcM82c3sSY/a3mRm0bZL7jugBOk2iIZJYCXV
-         gu4SF3vjrcmcDVcRs15JoYrgkHTwlEAGtOCQmJ9itC/QIl6/ZqNoc4S5lQ1tdiFDELe/
-         s4gV6rF9qBkDHQZ90oatqAEHZGF0AHFxsX0i1c3fLJ1X44kuW7PfjjtTur9N3e91T7Mt
-         eE4InmnEttBgrnHEessMH+Fm/4kG/GYL17UkUO7tzW647uQLlOiNN6ExnzYGOFM4jv9P
-         sXEVPRsUaII89FfOOvmdhNw1lH7pOAA61l9CEIQbQm3y3c2+zX/EuxMym3Un2pje+9ai
-         zjSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NvZt6wor/iWsNZUw+MTwLF1bGSr9r7fC7l43DBngm7Y=;
-        b=jMlSy++zjIdDSHyL76iiSlws/vuKrBC3HfGZzA1yHT0o8mRzm5YUoXZjmzL/Um3KEo
-         VvXYyXvZxsbIvW32kl3SBrZyGQCiRoGNv+CUUBkAGd79WT+tA1SDzCd+3EXsMbWSP8sV
-         8vwhLTq6Asw0yORYfzdBXsQyG6a4OcuLSwNTHDpzEpszfzI+95fzHAGedT1st10yj0wl
-         vI+TmGEPXl0D3ptVdnKtBe8qvlvoKKZEr4WwWfu4geZErk3jha6B5+xXLIkMce8i3oBj
-         AI1yujLsuAk4U6NiggutUalDNRUH1dtHis2dU4+u52u2i87xUlUwZzhatj+DdkFjAHFX
-         tn4w==
-X-Gm-Message-State: AOAM531wSCOW2oMrxwDFdnQPbpto5TVe0rrlGVjo5S55MjWoZmP+g6SS
-        EvhhavuE5RpFm1JDttqCf98vE6GI5gG9X9Fw+Sg=
-X-Google-Smtp-Source: ABdhPJzBKOMRsn7/mETWtYLffBLGvwD2CL3LdZo7pzN8bHN+tdd9NeutA5GzqbyC3ghHcdSd1B6XFy6GbmCwV7pY9qs=
-X-Received: by 2002:a17:906:2887:: with SMTP id o7mr69346049ejd.425.1636113985627;
- Fri, 05 Nov 2021 05:06:25 -0700 (PDT)
+        id S231579AbhKEMzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 08:55:38 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:51511 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229740AbhKEMzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 08:55:37 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 4D1D4100005;
+        Fri,  5 Nov 2021 12:52:55 +0000 (UTC)
+Date:   Fri, 5 Nov 2021 13:52:55 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Vincent Shih =?utf-8?B?5pa96YyV6bS7?= <vincent.shih@sunplus.com>
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
+Message-ID: <YYUpJ14jqK9gT4RD@piout.net>
+References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
+ <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
+ <YYHZdXqpNqzusQ5n@piout.net>
+ <6b70a97056fe4ab79326b472227899da@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-References: <20211105113859.101868-1-robert.marko@sartura.hr> <20211105113859.101868-2-robert.marko@sartura.hr>
-In-Reply-To: <20211105113859.101868-2-robert.marko@sartura.hr>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Nov 2021 14:05:38 +0200
-Message-ID: <CAHp75Vc0M4CSd=ywj45jsDYKb4uL8c=FPjNnD2_ZuVAw2BDrXw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/6] gpio: Add Delta TN48M CPLD GPIO driver
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6b70a97056fe4ab79326b472227899da@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 5, 2021 at 1:39 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
-> expander.
->
-> The CPLD provides 12 pins in total on the TN48M, but on more advanced
-> switch models it provides up to 192 pins, so the driver is extendable
-> to support more switches.
+On 05/11/2021 12:05:22+0000, Vincent Shih 施錕鴻 wrote:
+> > > +static int sp_rtc_set_alarm(struct device *dev, struct rtc_wkalrm
+> > > +*alrm) {
+> > > +	struct rtc_device *rtc = dev_get_drvdata(dev);
+> > > +	unsigned long alarm_time;
+> > > +
+> > > +	alarm_time = rtc_tm_to_time64(&alrm->time);
+> > > +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, (u32)(alarm_time));
+> > > +
+> > > +	if (alarm_time > 0xFFFFFFFF)
+> > > +		return -EINVAL;
+> > 
+> > Please set the range of the rtc properly and the core will do this check for you.
+> 
+> I modified it as the following statements
+> 
+> #define RTC_ALARM_SET 0x50		//register offset
+> #define ALARM_SET 0xFFFFFFFF		//field in the register
+> If (alarm_time > ALARM_SET)
+>       return -EINVAL;
+> 
+> Is it applicable??
+> 
 
-With or without nit-pick below
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+No, please set the rtc .range_min and .range_max and the core will do
+the check for you.
 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
-> Changes in v8:
-> * No need to assing NULL to gpio_config per Andys comment
->
-> Changes in v7:
-> * Change compatibles, reduce their number
-> * Rework the driver to be easily extendible to support more devices
-> * Use match data to populate configuration
-> * Drop reviews and ACK-s as the driver changed
->
-> Changes in v6:
-> * Drop unused header
-> * Return the return value of device_property_read_u32()
-> instead of a hardcoded return
->
-> Changes in v2:
-> * Rewrite to use simple I2C MFD and GPIO regmap
-> * Drop DT bindings for pin numbering
-> ---
->  drivers/gpio/Kconfig      |  12 +++++
->  drivers/gpio/Makefile     |   1 +
->  drivers/gpio/gpio-tn48m.c | 100 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 113 insertions(+)
->  create mode 100644 drivers/gpio/gpio-tn48m.c
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index fab571016adf..31b83271f954 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -1344,6 +1344,18 @@ config GPIO_TIMBERDALE
->         help
->         Add support for the GPIO IP in the timberdale FPGA.
->
-> +config GPIO_TN48M_CPLD
-> +       tristate "Delta Networks TN48M switch CPLD GPIO driver"
-> +       depends on MFD_TN48M_CPLD
-> +       select GPIO_REGMAP
-> +       help
-> +         This enables support for the GPIOs found on the Delta
-> +         Networks TN48M switch Lattice CPLD. It provides 12 pins in total,
-> +         they are input-only or ouput-only type.
-> +
-> +         This driver can also be built as a module. If so, the
-> +         module will be called gpio-tn48m.
-> +
->  config GPIO_TPS65086
->         tristate "TI TPS65086 GPO"
->         depends on MFD_TPS65086
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 32a32659866a..93abc7461e45 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -148,6 +148,7 @@ obj-$(CONFIG_GPIO_TEGRA186)         += gpio-tegra186.o
->  obj-$(CONFIG_GPIO_TEGRA)               += gpio-tegra.o
->  obj-$(CONFIG_GPIO_THUNDERX)            += gpio-thunderx.o
->  obj-$(CONFIG_GPIO_TIMBERDALE)          += gpio-timberdale.o
-> +obj-$(CONFIG_GPIO_TN48M_CPLD)          += gpio-tn48m.o
->  obj-$(CONFIG_GPIO_TPIC2810)            += gpio-tpic2810.o
->  obj-$(CONFIG_GPIO_TPS65086)            += gpio-tps65086.o
->  obj-$(CONFIG_GPIO_TPS65218)            += gpio-tps65218.o
-> diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
-> new file mode 100644
-> index 000000000000..485565813ad4
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-tn48m.c
-> @@ -0,0 +1,100 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Delta TN48M CPLD GPIO driver
-> + *
-> + * Copyright (C) 2021 Sartura Ltd.
-> + *
-> + * Author: Robert Marko <robert.marko@sartura.hr>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/gpio/regmap.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +enum tn48m_gpio_type {
-> +       TN48M_GP0 = 1,
-> +       TN48M_GPI,
-> +};
-> +
-> +struct tn48m_gpio_config {
-> +       int ngpio;
-> +       int ngpio_per_reg;
-> +       enum tn48m_gpio_type type;
-> +};
-> +
-> +static const struct tn48m_gpio_config tn48m_gpo_config = {
-> +       .ngpio = 4,
-> +       .ngpio_per_reg = 4,
-> +       .type = TN48M_GP0,
-> +};
-> +
-> +static const struct tn48m_gpio_config tn48m_gpi_config = {
-> +       .ngpio = 4,
-> +       .ngpio_per_reg = 4,
-> +       .type = TN48M_GPI,
-> +};
-> +
-> +static int tn48m_gpio_probe(struct platform_device *pdev)
-> +{
-> +       const struct tn48m_gpio_config *gpio_config;
+> > 
+> > > +
+> > > +	if ((rtc->aie_timer.enabled) && (rtc->aie_timer.node.expires ==
+> > ktime_set(alarm_time, 0))) {
+> > > +		if (rtc->uie_rtctimer.enabled)
+> > > +			sp_rtc.set_alarm_again = 1;
+> > > +	}
+> > 
+> > You have to explain that.
+> 
+> Since the alarm and update interrupts use the same HW one, rtc->aie_timer.enabled,
+> rtc->uie_rtctimer.enabled and sp_rtc.set_alarm_again are used to distinguish between
+> alarm interrupt and update one in rtc_irq_handler() (RTC_UF or RTC_AF). There is
+> only alarm interrupt supported in out HW. I found the update interrupt is implemented
+> by the alarm one in kernel.
+> 
+> > 
+> > > +
+> > > +	writel((u32)alarm_time, &rtc_reg_ptr->rtc_alarm_set);
+> > > +	wmb();			// make sure settings are effective.
+> > 
+> > doesn't writel come with a barrier?
+> 
+> It is useless. I will remove it.
+> 
+> > 
+> > > +
+> > > +	// enable alarm for update irq
+> > > +	if (rtc->uie_rtctimer.enabled)
+> > > +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
+> > > +	else if (!rtc->aie_timer.enabled)
+> > > +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
+> > 
+> > Magic values, please explain also, I'm not sure why you need to look at
+> > uie_rtctimer and aie_timer as your RTC seems capable of having an alarm
+> > every seconds.
+> 
+> 1. I will give the definitions for that magic values.
+> 2. It is for update interrupt. rtc_alarm_irq_enable() will call alarm_irq_enable()
+>   to enable HW alarm interrupt , but rtc_update_irq_enable() will not. Therefore
+>   the HW interrupt for update one is enabled here. Otherwise how can I enable
+>   HW alarm interrupt for update one??
+> 
 
-> +       struct gpio_regmap_config config = {0};
+From the .set_alarm point of view, there is no difference between a
+regular alarm and the uie alarm set by the core. alrm.enabled will
+always be enabled.
 
-I see, I mixed this up with regmap itself.
+> > 
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int sp_rtc_read_alarm(struct device *dev, struct rtc_wkalrm
+> > > +*alrm) {
+> > > +	unsigned int alarm_time;
+> > > +
+> > > +	alarm_time = readl(&rtc_reg_ptr->rtc_alarm_set);
+> > > +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, alarm_time);
+> > > +	rtc_time64_to_tm((unsigned long)(alarm_time), &alrm->time);
+> > > +
+> > 
+> > You have to also set whether the alarm is enabled or not, else, simply don't
+> > bother returning anything.
+> 
+> I will modify it.
+> 
+> > 
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int sp_rtc_alarm_irq_enable(struct device *dev, unsigned int
+> > > +enabled) {
+> > > +	struct rtc_device *rtc = dev_get_drvdata(dev);
+> > > +
+> > > +	if (enabled)
+> > > +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
+> > > +	else if (!rtc->uie_rtctimer.enabled)
+> > > +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static const struct rtc_class_ops sp_rtc_ops = {
+> > > +	.read_time =		sp_rtc_read_time,
+> > > +	.set_time =		sp_rtc_set_time,
+> > > +	.set_alarm =		sp_rtc_set_alarm,
+> > > +	.read_alarm =		sp_rtc_read_alarm,
+> > > +	.alarm_irq_enable =	sp_rtc_alarm_irq_enable,
+> > > +};
+> > > +
+> > > +static irqreturn_t rtc_irq_handler(int irq, void *dev_id) {
+> > > +	struct platform_device *plat_dev = dev_id;
+> > > +	struct rtc_device *rtc = platform_get_drvdata(plat_dev);
+> > > +
+> > > +	if (rtc->uie_rtctimer.enabled) {
+> > > +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_UF);
+> > > +		RTC_DEBUG("[RTC] update irq\n");
+> > > +
+> > > +		if (sp_rtc.set_alarm_again == 1) {
+> > > +			sp_rtc.set_alarm_again = 0;
+> > > +			rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
+> > > +			RTC_DEBUG("[RTC] alarm irq\n");
+> > > +		}
+> > > +	} else {
+> > > +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
+> > > +		RTC_DEBUG("[RTC] alarm irq\n");
+> > > +	}
+> > 
+> > I'm pretty sure you can get rid of most of that and stop looking at uie_rtctimer.
+> 
+> rtc->aie_timer.enabled, rtc->uie_rtctimer.enabled and sp_rtc.set_alarm_again are
+> used to distinguish between alarm interrupt and update one. There 3 conditions for
+> triggering the alarm interrupt :
+> 1. only alarm
+> 2. only update
+> 3. alarm and update together
+> 
 
-One nit-pick, though. The 0 there is not needed, the common use is {}.
+No, stop emulating UIE in your driver and let the core handle that. If
+UIE is enabled for the RTC, it will set up an alarm every second. Your
+driver doesn't have to handle the difference.
 
-> +       struct regmap *regmap;
-> +       u32 base;
-> +       int ret;
-> +
-> +       if (!pdev->dev.parent)
-> +               return -ENODEV;
-> +
-> +       gpio_config = device_get_match_data(&pdev->dev);
-> +       if (!gpio_config)
-> +               return -ENODEV;
-> +
-> +       ret = device_property_read_u32(&pdev->dev, "reg", &base);
-> +       if (ret)
-> +               return ret;
-> +
-> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +       if (!regmap)
-> +               return -ENODEV;
-> +
-> +       config.regmap = regmap;
-> +       config.parent = &pdev->dev;
-> +       config.ngpio = gpio_config->ngpio;
-> +       config.ngpio_per_reg = gpio_config->ngpio_per_reg;
-> +       switch (gpio_config->type) {
-> +       case TN48M_GP0:
-> +               config.reg_set_base = base;
-> +               break;
-> +       case TN48M_GPI:
-> +               config.reg_dat_base = base;
-> +               break;
-> +       default:
-> +               return -EINVAL;
-> +       }
-> +
-> +       return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-> +}
-> +
-> +static const struct of_device_id tn48m_gpio_of_match[] = {
-> +       { .compatible = "delta,tn48m-gpo", .data = &tn48m_gpo_config },
-> +       { .compatible = "delta,tn48m-gpi", .data = &tn48m_gpi_config },
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
-> +
-> +static struct platform_driver tn48m_gpio_driver = {
-> +       .driver = {
-> +               .name = "delta-tn48m-gpio",
-> +               .of_match_table = tn48m_gpio_of_match,
-> +       },
-> +       .probe = tn48m_gpio_probe,
-> +};
-> +module_platform_driver(tn48m_gpio_driver);
-> +
-> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> +MODULE_DESCRIPTION("Delta TN48M CPLD GPIO driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.33.1
->
 
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
