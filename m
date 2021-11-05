@@ -2,107 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBED4462B9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 12:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED1094462C6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 12:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232479AbhKELcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 07:32:32 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:3922 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232477AbhKELc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 07:32:26 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1A50Y995019438;
-        Fri, 5 Nov 2021 07:29:46 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3c4t6f2pmp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 05 Nov 2021 07:29:46 -0400
-Received: from SCSQMBX10.ad.analog.com (SCSQMBX10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 1A5BTiJK018153
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 5 Nov 2021 07:29:45 -0400
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Fri, 5 Nov 2021 04:29:43 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by scsqmbx11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
- Transport; Fri, 5 Nov 2021 04:29:43 -0700
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1A5BTbk2016952;
-        Fri, 5 Nov 2021 07:29:41 -0400
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v4 3/3] Documentation:ABI:testing:admv1013: add ABI docs
-Date:   Fri, 5 Nov 2021 13:29:30 +0200
-Message-ID: <20211105112930.122017-4-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211105112930.122017-1-antoniu.miclaus@analog.com>
-References: <20211105112930.122017-1-antoniu.miclaus@analog.com>
+        id S232493AbhKELhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 07:37:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43950 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229785AbhKELg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 07:36:59 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9CDC061714
+        for <devicetree@vger.kernel.org>; Fri,  5 Nov 2021 04:34:19 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id f10so9153113ilu.5
+        for <devicetree@vger.kernel.org>; Fri, 05 Nov 2021 04:34:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=37ldEtgbRfj0gqJFzrwwBrgWWYf34odeJI+ew8Grfis=;
+        b=YolaZi91DDInT1dsVjqw+qJjbqUg/DG2N5OtKURQJqUi1AtMdKBQ4T/eN8i9EQTu0K
+         x38l3saebRQUlavZpRqAx1otsI5SWyxMUwdPY7d8riV7CvuHEL4d0TIBeJ1YnX8faTt7
+         EtRTyQvUDH9AwYmipszH6ap767jpkXr93M1ci73GT2aj5hQIm8OQ2q3uZtOBOkOT+XNC
+         78WMvGvksnwxlVkLXhXdSK/k/QzxjU73Jtyft4sXbFvWCz2n298EWpmNKY/PvaM3xT3U
+         6UiRThnJWbvRXMYFYTk7jR1IFNpnCZZj2UNXWO0Q/ebuMp8UtS7GWZxmpqJAUD/eLA13
+         pIlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=37ldEtgbRfj0gqJFzrwwBrgWWYf34odeJI+ew8Grfis=;
+        b=YLn1w0bVSmpzK0/zD9hSuzge2dqlyNR/ipjTRHvRZEphXhpofH8BeTmh1SzBh6ahxv
+         rgPkCKBjlHOgDpOkWB5aibua4rqFPpd48Ipj5U67u8cRUZRg8YtwWOabhRoe8Hf4KcIK
+         Y9LPYQbJ7wE00SV8edAaai6e0I7OKXIkLCacYoFhoAS0UBPiWks4oHnh8BsD2BQC8xlw
+         bq5f1beTyk2KTmY5lgJSju11y6WjPg94p2mowL59A/m5sSKlsDIrSVQ6SPANA2gDxpcd
+         1+bmEdZDl7sVH5ec9pOxO4Mn7n9ZliuepjtBSRs63BYdjMderAKCCktUA02jy6F7rokk
+         LlKA==
+X-Gm-Message-State: AOAM533BCZm7dvNFNxUpV97KSGx9HgQDQGRzv1Hs/VMOCJfrNj5crWWx
+        6M2+3HVAgImUJInBLQ1WU1B4DO8QM4uzv9kEsTF5kg==
+X-Google-Smtp-Source: ABdhPJyqSxx6zA492c2fosRkmsEeZkENhNp9Ep1J+ItnlqIdyZs5DCFE4cjf+WNodDJC9IapBTWEyMozmEqtlF1Dd1Y=
+X-Received: by 2002:a05:6e02:1a4e:: with SMTP id u14mr28496369ilv.159.1636112059176;
+ Fri, 05 Nov 2021 04:34:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 25fAEDbZ74pFKj2nyww-Bf3sJFjEXCuv
-X-Proofpoint-ORIG-GUID: 25fAEDbZ74pFKj2nyww-Bf3sJFjEXCuv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-05_01,2021-11-03_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- phishscore=0 priorityscore=1501 bulkscore=0 impostorscore=0 malwarescore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2111050067
+References: <20211102165657.3428995-1-robert.marko@sartura.hr>
+ <20211102165657.3428995-2-robert.marko@sartura.hr> <CAHp75VdnQq76f5Xeo5LCq83sr4TbcXY_mtZ4x_rFzUkS01BYZg@mail.gmail.com>
+In-Reply-To: <CAHp75VdnQq76f5Xeo5LCq83sr4TbcXY_mtZ4x_rFzUkS01BYZg@mail.gmail.com>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Fri, 5 Nov 2021 12:34:08 +0100
+Message-ID: <CA+HBbNEEPHLbJSdWPdxWb5gASha_NavJrEBBRkbvzEW2aDSjmQ@mail.gmail.com>
+Subject: Re: [PATCH v7 2/6] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Michael Walle <michael@walle.cc>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the Local Oscillator Feedthrough Offset
-calibration.
+On Tue, Nov 2, 2021 at 8:28 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+>
+> On Tue, Nov 2, 2021 at 6:57 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> >
+> > Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
+> > expander.
+> >
+> > The CPLD provides 12 pins in total on the TN48M, but on more advanced
+> > switch models it provides up to 192 pins, so the driver is extendable
+> > to support more switches.
+>
+> ...
+>
+> > +static int tn48m_gpio_probe(struct platform_device *pdev)
+> > +{
+>
+> > +       const struct tn48m_gpio_config *gpio_config = NULL;
+> > +       struct gpio_regmap_config config = {0};
+>
+> I don't see a point in assigning these variables.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- .../testing/sysfs-bus-iio-frequency-admv1013  | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
+Hi,
+The NULL one isn't required, but the regmap one is, otherwise the
+devm_gpio_regmap_register call will
+return -EINVAL.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-new file mode 100644
-index 000000000000..f52cd55a66c6
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-@@ -0,0 +1,27 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_i_lo_feedthrough_offset_calib_positive
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration I Positive
-+		in the Intermediate Frequency mode.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_i_lo_feedthrough_offset_calib_negative
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration I Negative
-+		in the Intermediate Frequency mode.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_q_lo_feedthrough_offset_calib_positive
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration Q Positive
-+		in the Intermediate Frequency mode.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_q_lo_feedthrough_offset_calib_negative
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration Q Negative
-+		in the Intermediate Frequency mode.
+It will fail here:
+https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpio-regmap.c#L209
+
+I see that Michael Walle who did the GPIO regmap uses it as well in
+the Kontron CPLD driver.
+Michael, can you shed some light on this?
+
+Regards,
+Robert
+>
+> > +       struct regmap *regmap;
+> > +       u32 base;
+> > +       int ret;
+> > +
+> > +       if (!pdev->dev.parent)
+> > +               return -ENODEV;
+> > +
+> > +       gpio_config = device_get_match_data(&pdev->dev);
+> > +       if (!gpio_config)
+> > +               return -ENODEV;
+> > +
+> > +       ret = device_property_read_u32(&pdev->dev, "reg", &base);
+> > +       if (ret)
+> > +               return ret;
+> > +
+> > +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> > +       if (!regmap)
+> > +               return -ENODEV;
+>
+> > +}
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+
+
+
 -- 
-2.33.1
-
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
