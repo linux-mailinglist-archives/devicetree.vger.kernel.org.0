@@ -2,230 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C8DD446439
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 829D4446451
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:42:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231959AbhKENj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 09:39:58 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:48430 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229924AbhKENj6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 09:39:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=denP3kmSD6IXR8Bp1s7m9uM6u56hzDvbAqHxvI7j02Q=; b=12
-        HqT2rdS+lE5Bso3joKwGtg8uf59mmk815YjYTlOvjsWwKwRoBttM7ZZ9ii+j3LHcI1wICHKGuI2np
-        ebpEYydeu3CNx9KLRZwqf8micGdzVT7ZfJLiXaEPL3vNjC2A77D/V0fDU5tEvzbi9jacyP9KMlT1S
-        FuVJ27SlFtHNV30=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mizP1-00Cg6c-F5; Fri, 05 Nov 2021 14:37:07 +0100
-Date:   Fri, 5 Nov 2021 14:37:07 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Message-ID: <YYUzgyS6pfQOmKRk@lunn.ch>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <YYK+EeCOu/BXBXDi@lunn.ch>
- <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
+        id S232830AbhKENpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 09:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232410AbhKENpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 09:45:32 -0400
+Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D0AC061205;
+        Fri,  5 Nov 2021 06:42:53 -0700 (PDT)
+Received: by mail-il1-x135.google.com with SMTP id k1so9478182ilo.7;
+        Fri, 05 Nov 2021 06:42:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FJVMN8J4fSdVamG2Tu6JD0TQF0L5ocpUKb2/MzMiTRQ=;
+        b=A4kIRCh+R1s7T5qNJGo2RHDB8a/X5QXZCV/tWNkM0gd9AGXz4tQlX0xgBxbUb9A3tj
+         8EgfMqW5nMkScjVDnolJbFiybGyo8TOAThRt4Cji5z1WnQippwdW/z8K4JQvM+HVmTu9
+         XVYausyOqi332Zw2Td4Wp8+LLysqOXTe5GGZdt1apKtCo6VOifWeFxX8WI83GdGUFsP5
+         ISIlFqfNoMa1rbZ4qa8Ky8n5YTRgXlTwDecEPuIFzqvxkfv/rzmKoWwtcUSROIYY76ZR
+         PI9ZFr1ITa4DWso0mCSzRbT3xWbsTKJZ3LRADyI6oaGLt53jQ5QqhmAb1rupqoBX0tlR
+         JGtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FJVMN8J4fSdVamG2Tu6JD0TQF0L5ocpUKb2/MzMiTRQ=;
+        b=G6xueb+gQJ+ON7ohCSidzs/LoBkhzoTshbpL0Om7WyJP3KX17W6OQJw/5kQHIuiusY
+         O1NR0jrK0huNUmlG/pmzRJh+OaSJ5N9WDlDGswYojhejHlSADUi6nJqpDEedxp8CZZ1H
+         kmhfIVwMZqAMknjLpjJ07GjoVErLG6URSIbJFhZ7ETq2ePL/ShEtsRPI3U/DmR0fFrzj
+         tcRF6Q1F5q9m5RIaHg3WFRic4MdI1UPIS5hVXPrvdNFic9HycieVAP9nfQMwuEaUouoo
+         NY6JR0MPjK8AgKSsxxNTu48vpynBlyObKx7unVRCnT0aXGayBzOTv/OQApvR8JRd0AAZ
+         wtvA==
+X-Gm-Message-State: AOAM5319fMg1YObnThykqz1ZTutSWpEC6Tq0pqK10CMVrEnY6Fp+u8pF
+        6TuTfk/79bUC5uDlNNupNjs=
+X-Google-Smtp-Source: ABdhPJy/sYAZAytj/M9FqrjFeO4wsLbFO+aQIVqWJUJvqJxMT2sgXWKziGVZgXj+E9E5VU56HsLTmw==
+X-Received: by 2002:a05:6e02:180d:: with SMTP id a13mr38231436ilv.117.1636119772392;
+        Fri, 05 Nov 2021 06:42:52 -0700 (PDT)
+Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
+        by smtp.gmail.com with ESMTPSA id j15sm4537909ile.65.2021.11.05.06.42.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Nov 2021 06:42:50 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     tharvey@gateworks.com, frieder.schrempf@kontron.de,
+        linux-media@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        aford@beaconembedded.com, cstevens@beaconembedded.com,
+        Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+Date:   Fri,  5 Nov 2021 08:42:24 -0500
+Message-Id: <20211105134228.731331-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +config NET_VENDOR_SUNPLUS
-> > > +	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
-> > 
-> > The "with L2 Switch" is causing lots of warning bells to ring for me.
-> > 
-> > I don't see any references to switchdev or DSA in this driver. How is the
-> > switch managed? There have been a few examples in the past of similar two
-> > port switches being first supported in Dual MAC mode. Later trying to
-> > actually use the switch in the Linux was always ran into problems, and
-> > basically needed a new driver. So i want to make sure you don't have this
-> > problem.
-> > 
-> > In the Linux world, Ethernet switches default to having there
-> > ports/interfaces separated. This effectively gives you your dual MAC mode by
-> > default.  You then create a Linux bridge, and add the ports/interfaces to the
-> > bridge. switchdev is used to offload the bridge, telling the hardware to
-> > enable the L2 switch between the ports.
-> > 
-> > So you don't need the mode parameter in DT. switchdev tells you this.
-> > Switchdev gives user space access to the address table etc.
-> 
-> The L2 switch of Ethernet of SP7021 is not used to forward packets 
-> between two network interfaces.
-> 
-> Sunplus Dual Ethernet devices consists of one CPU port, two LAN 
-> ports, and a L2 switch. L2 switch is a circuitry which receives packets 
-> from CPU or LAN ports and then forwards them other ports. Rules of 
-> forwarding packets are set by driver.
-> 
-> Ethernet driver of SP7021 of Sunplus supports 3 operation modes:
->   - Dual NIC mode
->   - An NIC with two LAN ports mode (daisy-chain mode)
->   - An NIC with two LAN ports mode 2
-> 
-> Dual NIC mode
-> Ethernet driver creates two net-device interfaces (eg: eth0 and eth1). 
-> Each has its dedicated LAN port. For example, LAN port 0 is for 
-> net-device interface eth0. LAN port 1 is for net-device interface 
-> eth1. Packets from LAN port 0 will be always forwarded to eth0 and 
-> vice versa by L2 switch. Similarly, packets from LAN port 1 will be 
-> always forwarded to eth1 and vice versa by L2 switch. Packets will 
-> never be forwarded between two LAN ports, or between eth0 and 
-> LAN port 1, or between eth1 and LAN port 0. The two network 
-> devices work independently.
-> 
-> An NIC with two LAN ports mode (daisy-chain mode)
-> Ethernet driver creates one net-device interface (eg: eth0), but the 
-> net-device interface has two LAN ports. In this mode, a packet from 
-> one LAN port will be either forwarded to net-device interface (eht0) 
-> if its destination address matches MAC address of net-device 
-> interface (eth0), or forwarded to other LAN port. A packet from 
-> net-device interface (eth0) will be forwarded to a LAN port if its 
-> destination address is learnt by L2 switch, or forwarded to both 
-> LAN ports if its destination has not been learnt yet.
-> 
-> An NIC with two LAN ports mode 2
-> This mode is similar to “An NIC with two LAN ports mode”. The 
-> difference is that a packet from net-device interface (eth0) will be 
-> always forwarded to both LAN ports. Learning function of L2 switch 
-> is turned off in this mode. This means L2 switch will never learn the 
-> source address of a packet. So, it always forward packets to both 
-> LAN ports. This mode works like you have 2-port Ethernet hub.
+Most of the blk-ctrl reset bits are found in one register, however
+there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+out of reset or the MIPI_CSI hangs.
 
-So here you describe how the hardware can be used. Dual is two
-interfaces. Daisy-chain is what you get by taking those two interfaces
-and adding them to a bridge. The bridge then forwards frames between
-the interfaces and the CPU as needed, based on learning. And your
-third mode is the bridge always performs flooding.
+Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+ drivers/soc/imx/imx8m-blk-ctrl.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-A linux driver must follow the linux networking model. You cannot make
-up your own model. In the linux world, you model the external
-ports. The hardware always has two external ports, so you need to
-always have two netdev interfaces. To bridge packets between those two
-interfaces, you create a bridge and you add the interfaces to the
-bridge. That is the model you need to follow. switchdev gives you the
-API calls you need to implement this.
-
-> > > +struct l2sw_common {
-> > 
-> > Please change your prefix. l2sw is a common prefix, there are other silicon
-> > vendors using l2sw. I would suggest sp_l2sw or spl2sw.
-> 
-> Ok, I'll modify two struct names in next patch as shown below:
-> l2sw_common --> sp_common
-> l2sw_mac --> sp_mac
-> 
-> Should I also modify prefix of file name?
-
-You need to modify the prefix everywhere you use it.  Function names,
-variable names, all symbols. Search and replace throughout the whole
-code.
-
-> > > +			return -EINVAL;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	switch (cmd) {
-> > > +	case SIOCGMIIPHY:
-> > > +		if (comm->dual_nic && (strcmp(ifr->ifr_ifrn.ifrn_name, "eth1") ==
-> > > +0))
-> > 
-> > You cannot rely on the name, systemd has probably renamed it. If you have
-> > using phylib correctly, net_dev->phydev is what you want.
-> 
-> Ok, I'll use name of the second net device to do compare, 
-> instead of using fixed string "eth1", in next patch.
-
-No. There are always two interfaces. You always have two netdev
-structures. Each netdev structure has a phydev. So use netdev->phydev.
-
-This is another advantage of the Linux model. In your daisy chain
-mode, how do i control the two PHYs? How do i see one is up and one is
-down? How do i configure one to 10Half and the other 100Full?
-
-> > > +int phy_cfg(struct l2sw_mac *mac)
-> > > +{
-> > > +	// Bug workaround:
-> > > +	// Flow-control of phy should be enabled. L2SW IP flow-control will refer
-> > > +	// to the bit to decide to enable or disable flow-control.
-> > > +	mdio_write(mac->comm->phy1_addr, 4,
-> > mdio_read(mac->comm->phy1_addr, 4) | (1 << 10));
-> > > +	mdio_write(mac->comm->phy2_addr, 4,
-> > mdio_read(mac->comm->phy2_addr,
-> > > +4) | (1 << 10));
-> > 
-> > This should be in the PHY driver. The MAC driver should never need to touch
-> > PHY registers.
-> 
-> Sunplus Ethernet MAC integrates MDIO controller. 
-> So Ethernet driver has MDIO- and PHY-related code. 
-> To work-around a circuitry bug, we need to enable 
-> bit 10 of register 4 of PHY.
-> Where should we place the code?
-
-The silicon is integrated, but it is still a collection of standard
-blocks. Linux models those blocks independently. There is a subsystem
-for the MAC, a subsystem for the MDIO bus master and a subsystem for
-the PHY. You register a driver with each of these subsystems. PHY
-drivers live in drivers/net/phy. Put a PHY driver in there, which
-includes this workaround.
-
-> > > +static void mii_linkchange(struct net_device *netdev) { }
-> > 
-> > Nothing to do? Seems very odd. Don't you need to tell the MAC it should do
-> > 10Mbps or 100Mbps? What about pause?
-> 
-> No, hardware does it automatically.
-> Sunplus MAC integrates MDIO controller.
-> It reads PHY status and set MAC automatically.
-
-The PHY is external? So you have no idea what PHY that is? It could be
-a Marvell PHY, a microchip PHY, an Atheros PHY. Often PHYs have
-pages. In order to read the temperature sensor you change the page,
-read a register, and then hopefully change the page back again. If the
-PHY supports Fibre as well as copper, it can put the fibre registers
-in a second page. The PHY driver knows about this, it will flip the
-pages as needed. The phylib core has a mutex, so that only one
-operation happens at a time. So a page flip does not happen
-unexpectedly.
-
-Your MAC hardware does not take this mutex. It has no idea what page
-is selected when it reads registers. Instead of getting the basic mode
-register, it could get the LED control register...
-
-The MAC should never directly access the PHY. Please disable this
-hardware, and use the mii_linkchange callback to configure the MAC.
-
-> > So the MAC does not support pause? I'm then confused about phy_cfg().
+diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+index 519b3651d1d9..5506bd075c35 100644
+--- a/drivers/soc/imx/imx8m-blk-ctrl.c
++++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+@@ -17,6 +17,7 @@
  
-> Yes, MAC supports pause. MAC (hardware) takes care of pause 
-> automatically.
-> 
-> Should I remove the two lines?
+ #define BLK_SFT_RSTN	0x0
+ #define BLK_CLK_EN	0x4
++#define BLK_MIPI_RESET_DIV	0x8
+ 
+ struct imx8m_blk_ctrl_domain;
+ 
+@@ -36,6 +37,7 @@ struct imx8m_blk_ctrl_domain_data {
+ 	const char *gpc_name;
+ 	u32 rst_mask;
+ 	u32 clk_mask;
++	u32 mipi_rst_mask;
+ };
+ 
+ #define DOMAIN_MAX_CLKS 3
+@@ -78,6 +80,7 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+ 
+ 	/* put devices into reset */
+ 	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
++	regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_rst_mask);
+ 
+ 	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
+ 	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+@@ -99,6 +102,7 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+ 
+ 	/* release reset */
+ 	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
++	regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_rst_mask);
+ 
+ 	/* disable upstream clocks */
+ 	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+@@ -122,6 +126,7 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+ 	/* put devices into reset and disable clocks */
+ 	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+ 	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
++	regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_rst_mask);
+ 
+ 	/* power down upstream GPC domain */
+ 	pm_runtime_put(domain->power_dev);
+@@ -488,6 +493,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+ 		.gpc_name = "mipi-csi",
+ 		.rst_mask = BIT(3) | BIT(4),
+ 		.clk_mask = BIT(10) | BIT(11),
++		.mipi_rst_mask = BIT(16) | BIT(17),
+ 	},
+ };
+ 
+-- 
+2.32.0
 
-Yes.
-
-And you need to configure the MAC based on the results of the
-auto-neg.
-
-	Andrew
