@@ -2,175 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6B94465AF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D79484465C3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233495AbhKEP3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 11:29:12 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:53131 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233488AbhKEP3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 11:29:11 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id C37B9100007;
-        Fri,  5 Nov 2021 15:26:29 +0000 (UTC)
-Date:   Fri, 5 Nov 2021 16:26:29 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Pavel Modilaynen <pavelmn@axis.com>
-Cc:     Pavel Modilaynen <Pavel.Modilaynen@axis.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@axis.com>
-Subject: Re: [PATCH 1/2] rtc: rs5c372: Add support for trim configuration
-Message-ID: <YYVNJR0oAGuvOv6t@piout.net>
-References: <20211030225054.32114-1-pavel.modilaynen@axis.com>
- <20211030225054.32114-2-pavel.modilaynen@axis.com>
- <YX3N9b6P4w1kSGfp@piout.net>
- <6cc22970-fa11-ccb4-c155-62396a7e3890@axis.com>
- <YYAwkZ0RmhyfSewe@piout.net>
- <2cd99097-043e-8aed-bc0d-a4d9fa8a38e8@axis.com>
+        id S233557AbhKEPdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 11:33:18 -0400
+Received: from mx1.tq-group.com ([93.104.207.81]:26763 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233558AbhKEPdO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Nov 2021 11:33:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1636126235; x=1667662235;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=oRR20EjSccrFQYUYLWils29Cevmq6Y1DX5OtWOQacQ8=;
+  b=UL65kDo6qLRXLn7X5CWHHlJhqovVfoDTJ21kdiFPDQERZfzYjOWbQyBi
+   e7hpOhKEbfH3MCqNgcTklL6AX0KK9TaQcEPZo3tAUhrQ1hSkZ8r5ZxgvC
+   q5pGE5H0kF+9MDLh4DuB9RSivteOWUG+6EkJFCEqQMSEEipXfnAU5xfrB
+   OvvFSeC6qt7Ordngt4LGGnbg4DxDyQZ9oeV311XtzVX7ZWeCXZ6Tii9oM
+   Q1OIH6p+V1KZ9B/Y02JhkNYfly6j2xJM4JWbMYwTwCx3BK+sitO6ufFWq
+   y6dnh9BGrpJ22hyKCDoQbdbe5LYmlYsY27a9SMFpeGsr6CDtIkl+cPPMF
+   w==;
+X-IronPort-AV: E=Sophos;i="5.87,212,1631570400"; 
+   d="scan'208";a="20358797"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 05 Nov 2021 16:30:34 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 05 Nov 2021 16:30:34 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 05 Nov 2021 16:30:34 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1636126234; x=1667662234;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=oRR20EjSccrFQYUYLWils29Cevmq6Y1DX5OtWOQacQ8=;
+  b=dIY4FmAQIP9kJcFnC6SzxnNjJQ3W7+28cXoIa8bNBBbQ09kea5O7XRWv
+   UVsqD9phpbBhfvhQpSxAVIYI3Eb4zGljevgRTkthzRtvLNv4t9G4O9KTv
+   hrkY4bEg4dAbCnoxZvxaCuFZUZvnQwrL/uBj0dp5bbAa2D36o6/3vK0JT
+   TMnC/HfILiE3AIvaNqbuhjiVfvWS2rMan/OU+hxxTXzu4xCA8MM15WCrF
+   fhefjt4MBoR4TkAnp1TAFBtXf9LQB3ycS06fOnj34cuFWO865Hlm9wCp9
+   FK2TR4Cq83MPobEtVJ9A3qdzGFQF4jkfE67kcbdto2pffP0oxpauEoqvs
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.87,212,1631570400"; 
+   d="scan'208";a="20358795"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 05 Nov 2021 16:30:33 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AE6AC280065;
+        Fri,  5 Nov 2021 16:30:33 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/7] Support for some TQMa8M* boards
+Date:   Fri,  5 Nov 2021 16:30:18 +0100
+Message-Id: <20211105153025.187106-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2cd99097-043e-8aed-bc0d-a4d9fa8a38e8@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/11/2021 00:14:39+0100, Pavel Modilaynen wrote:
-> Hi Alexandre,
-> 
-> On 11/1/21 7:23 PM, Alexandre Belloni wrote:
-> > On 31/10/2021 11:29:12+0100, Pavel Modilaynen wrote:
-> > > On 10/31/21 12:57 AM, Alexandre Belloni wrote:
-> > > > Hello,
-> > > > > Please use the proper RTC interface by implementing .set_offset
-> > > and
-> > > > .read_offset.
-> > > 
-> > > I am not sure about .set/read_offset. It looks as runtime adjustment
-> > > interface,
-> > > however this Xtal trimming parameter is based on schematics and Xtal
-> > > capacitance (datasheet parameter).
-> > > It is found by calibration procedure based on RTC clock output (the
-> > > procedure and calculation of trimming parameter is described in datasheets).
-> > > So, I would like to say that this parameter is functionally close to
-> > > "quartz-load-femtofarads" for rtc-pcf8523/pcf85063.
-> > > 
-> > 
-> > quartz-load-femtofarads is for analog trimming which this RTC doesn't
-> > have, both CD and CG are set to 10pF. .set/read_offset are for digital
-> > trimming which is what you are configuring here. You definitively want
-> > to be able to do that at runtime as you need to adjust for temperature
-> > and ageing of the crystal (datasheet, page 14: "For those systems that
-> > have temperature detection precision of clock function may be increased
-> > by correcting clock error according to temperature fluctuations.")
-> > 
-> 
-> Thank you for reply.
-> 
-> I am not denying the need in runtime adjustment related to
-> temperature, aging and precision, which you are referring by excerpt from
-> p.14.
-> 
-> I would like to make a point that Xtal trimming is for coarse grained
-> adjustment (pages 36-39), primarily related to Xtal capacitance CL (not
-> CD/CG). Our goal is to keep a reasonable  drift of ,say, <1 second per day
-> and for Xtal that we use with 12.5pF RTC manufacturer recommends using 0x23
-> value for adjustment. In this case we act according to (A) course from page
-> 38:
-> 
-> "Adjustment of clock is not made for IC (no adjustment) and any CL value may
-> be used for the crystal oscillator. Precision fluctuations of a crystal
-> oscillator may be selected as long as clock precision allows. Obtain the
-> central frequency as described in section 2.2 using several crystal
-> oscillator and ICs, determine an adjustment value as
-> described in “2.4 Time Trimming Circuit” which shall be set to the
-> RS5C372A/B."
-> 
+Thanks everyone for their review on v1!
 
-This doesn't prevent you from using the .set/read_offset interface.
-Simply have a startup script that forcibly set the hardcoded value if
-this is what you want. However, I'm pretty sure your products have NTP
-which allows to precisely set a calculated value instead of an hardcoded
-one.
+Changes in v2:
+* Rebased to next-20211101
+* Added Rob's Acked-By on Patch for DT bindings
+* for other changes please refer to individual patches
 
-> 
-> > > > > On 31/10/2021 00:50:53+0200, Pavel Modilaynen wrote:
-> > > > > From: Pavel Modilaynen <pavelmn@axis.com>
-> > > > > > > Add support for oscillation adjustment register
-> > > RS5C372_REG_TRIM
-> > > > > setting that is needed to accommodate for effective crystal
-> > > > > capacitance.
-> > > > > > > Use optional property ricoh,trim that should contain
-> > > > > raw value to setup this register. According to
-> > > > > datasheets for RS5C372, R2025S/D, RV5C38[67] and R222[13]
-> > > > > the value will be converted to a number of ticks that
-> > > > > is to be subtracted or added when the second digits read
-> > > > > 00, 20 or 40 seconds.
-> > > > > > > Signed-off-by: Pavel Modilaynen <pavelmn@axis.com>
-> > > > > ---
-> > > > >   drivers/rtc/rtc-rs5c372.c | 18 +++++++++++++++++-
-> > > > >   1 file changed, 17 insertions(+), 1 deletion(-)
-> > > > > > > diff --git a/drivers/rtc/rtc-rs5c372.c
-> > > b/drivers/rtc/rtc-rs5c372.c
-> > > > > index 80980414890c..3a2db0326669 100644
-> > > > > --- a/drivers/rtc/rtc-rs5c372.c
-> > > > > +++ b/drivers/rtc/rtc-rs5c372.c
-> > > > > @@ -13,6 +13,7 @@
-> > > > >   #include <linux/slab.h>
-> > > > >   #include <linux/module.h>
-> > > > >   #include <linux/of_device.h>
-> > > > > +#include <linux/of.h>
-> > > > >   /*
-> > > > >    * Ricoh has a family of I2C based RTCs, which differ only slightly from
-> > > > > @@ -560,6 +561,8 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
-> > > > >   {
-> > > > >         unsigned char buf[2];
-> > > > >         int addr, i, ret = 0;
-> > > > > +     struct i2c_client *client = rs5c372->client;
-> > > > > +     u8 trim = 0;
-> > > > >         addr   = RS5C_ADDR(RS5C_REG_CTRL1);
-> > > > >         buf[0] = rs5c372->regs[RS5C_REG_CTRL1];
-> > > > > @@ -599,9 +602,22 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
-> > > > >                 break;
-> > > > >         }
-> > > > > +     /* optional setup of xtal trimming */
-> > > > > +     if (!of_property_read_u8(client->dev.of_node, "ricoh,trim", &trim)) {
-> > > > > +             if (rs5c372->type != rtc_r2221tl && (trim & ~RS5C372_TRIM_MASK)) {
-> > > > > +                     dev_warn(&client->dev, "Erroneous setting for ricoh,trim in devicetree\n");
-> > > > > +             } else {
-> > > > > +                     int addr = RS5C_ADDR(RS5C372_REG_TRIM);
-> > > > > +                     int ret = i2c_smbus_write_byte_data(client, addr, trim);
-> > > > > +
-> > > > > +                     if (unlikely(ret < 0))
-> > > > > +                             return ret;
-> > > > > +             }
-> > > > > +     }
-> > > > > +
-> > > > >         for (i = 0; i < sizeof(buf); i++) {
-> > > > >                 addr = RS5C_ADDR(RS5C_REG_CTRL1 + i);
-> > > > > -             ret = i2c_smbus_write_byte_data(rs5c372->client, addr, buf[i]);
-> > > > > +             ret = i2c_smbus_write_byte_data(client, addr, buf[i]);
-> > > > >                 if (unlikely(ret < 0))
-> > > > >                         return ret;
-> > > > >         }
-> > > > > -- > > 2.20.1
-> > > > > > > -- > Alexandre Belloni, co-owner and COO, Bootlin
-> > > > Embedded Linux and Kernel engineering
-> > > > https://bootlin.com <https://bootlin.com> <https://bootlin.com
-> > <https://bootlin.com>>
-> > 
-> > -- 
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com <https://bootlin.com>
+Note on TQMa8Mx:
+Due to CPU errata cpuidle is broken and needs to be disabled, see [1] for
+pending patch.
+
+This patch set adds support for the following modules:
+* TQMa8Mx
+* TQMa8MxML
+* TQMa8MxNL
+
+Each of the modules is available with different i.MX8M variants, the
+bootloader modifies the device tree and disabled paripherals which
+are not available on the actual hardware.
+
+All of them can be attached to the same mainboard MBa8Mx, although
+TQMa8MxML & TQMa8MxNL need an adapter. For that reason there is a single
+mainboard .dtsi file named mba8mx.dtsi.
+
+There is a .dtsi file for each module named imx8m?-tmqa8m*.dts.
+
+Finally there is the final .dts file which includes the mainboard and
+the attached module and contains the missing connection, prominently clk
+and pinctrl defines.
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20211105095535.3920998-1-alexander.stein@ew.tq-group.com/
+
+Alexander Stein (7):
+  dt-bindings: arm: fsl: add TQMa8MxML boards
+  arm64: dts: freescale: add initial tree for TQMa8MQML with i.MX8MM
+  arm64: defconfig: enable drivers for TQ TQMa8MxML-MBa8Mx
+  dt-bindings: arm: fsl: add TQMa8MxNL boards
+  arm64: dts: freescale: add initial tree for TQMa8MQNL with i.MX8MN
+  dt-bindings: arm: fsl: add TQMa8Mx boards
+  arm64: dts: freescale: add initial tree for TQMa8Mx with i.MX8M
+
+ .../devicetree/bindings/arm/fsl.yaml          |  31 ++
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +
+ .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 299 +++++++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  | 353 +++++++++++++++
+ .../dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 283 ++++++++++++
+ .../boot/dts/freescale/imx8mn-tqma8mqnl.dtsi  | 340 +++++++++++++++
+ .../dts/freescale/imx8mq-tqma8mq-mba8mx.dts   | 412 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mq-tqma8mq.dtsi    | 378 ++++++++++++++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     | 283 ++++++++++++
+ arch/arm64/configs/defconfig                  |   7 +
+ 10 files changed, 2389 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/mba8mx.dtsi
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.25.1
+
