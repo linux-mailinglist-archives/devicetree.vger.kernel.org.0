@@ -2,115 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4511445CDB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 01:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CED2445CE1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 01:02:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232458AbhKEADZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 20:03:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52092 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232435AbhKEADZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Nov 2021 20:03:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4EADE6121E;
-        Fri,  5 Nov 2021 00:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636070446;
-        bh=gecQ0nukzSqLw2rZdP9krP19f9e4VSUL6mOBSXKSTkY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mK4Mr1FteUnVP4YznUeFazG/YgAGzji5dNB8U9oXl9/J2au6HJlsFtPKH3c/vrr9R
-         nBjRXntR4RCXAfvkn2rfwnBtZ0vdOBKxI69bXnXKLVRGPe1rz43MTypJv3VoavIvQd
-         XCCkiLhsV7icEhCsC+lbJJgG/OC15dNBohIURONMEaYly9uc6+M9USvPUoxZVdvzs0
-         pNzEyrqgWdlOzyIxaefijWzhak/3bJe282XXuYAzvsX1evgPmaRstHb5oggZr2+RVm
-         w9BkU+arQa4O0qjhJwuMRkf59ckoCRGfnXgNcVPbvX9iF9A7NOG3nN9zLpG6mhikB7
-         Hw7Ex91dkoIdA==
-Received: by mail-ed1-f50.google.com with SMTP id ee33so27316182edb.8;
-        Thu, 04 Nov 2021 17:00:46 -0700 (PDT)
-X-Gm-Message-State: AOAM533zqctJeDigIPbp32zLdSysrwyfHWYDtiyvQ+QaDDd9iVGXJswD
-        4zJPOvUDmb07tLjYYX8d+y35/maJYpDPDVtP0Q==
-X-Google-Smtp-Source: ABdhPJx/WMm8hJQXmws5vs/A8Eq/kJboI9Ajg4xbaZCnrwqe3NFwsFluqpKG7WJR/yu5SJJOXENMxG3a9r06A35Nhwg=
-X-Received: by 2002:a17:907:7f2a:: with SMTP id qf42mr524429ejc.388.1636070444817;
- Thu, 04 Nov 2021 17:00:44 -0700 (PDT)
+        id S229725AbhKEAFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 20:05:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60370 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232422AbhKEAFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 20:05:00 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810B9C061203
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 17:02:16 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id r4so26364946edi.5
+        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 17:02:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HOphd7Vw+yHC8lqA1EFBT5Der5nQd77Uyr9RS3TE3vY=;
+        b=ojAFxlvXXrY1p/+SCZHNI7vZKCcculw8iwC2NB/OnEXmwSfS5TMU8io5BA6UvqotV6
+         Lu0brpWxP9c61Un72pLgyWZ3YQYH1VCkWP44lc5QdKl7kAgwDSH+9tbOhVy5/j10uH55
+         yupyF0xr7R9A4rIMZf6XiTwIAcW6VuIdu1kjsTCW+ufFooXR8AfmOKtW6GKbHe5peSEb
+         xHmdEFu0X2dazlU7X3BE5QM1gwZEtsktpeKN9AH24rIr8l4JUXSEAB6GmdxNl2QE1LSu
+         nJGQKw32D7zUVU/RBnNN/23Bc3WC1QqQvbZ1UIAbz4+TbesqMlENDvCogHkU7Bs4IboY
+         ZPsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HOphd7Vw+yHC8lqA1EFBT5Der5nQd77Uyr9RS3TE3vY=;
+        b=e0xxT90/7Fh+zyAogOYjecmPkUMzB39BC10vwAN6d3m+mXyOl9oqRSKKmMz6D0cDuQ
+         RExsT2xs4WF4064N3c+JtAPIZ/demRONQpA7I6RCPv8jwQiEw/LEiQs+Wte7+wcpVwhB
+         KCc1mRIXOoAi8ITxbTMFYmzStQ0OHk+9SnTv2XsOfi4CY0kmyerAfvJ8M29xroJxE+V6
+         vFYCiFInBlw+Mu3+pD8n+QTGI0/mSXLfnsHVj06eRuMyQca0faEIWpOJHEu6zi4QQZR5
+         agmz1F33Xpa4dBsp0JHVkvbpdCr88EazUx8ELgb4N44kJeCCOVxmCeJAZRDNDBVpU9FK
+         0tWw==
+X-Gm-Message-State: AOAM531nO4zIlrxryW2mI853BOuyScnGB3SXOgJsyT2dZqLrHyIBva5C
+        D6U0RzXFQxM6+GbD3GUq1Nqg7sAXemdmq12F6WfSEQ==
+X-Google-Smtp-Source: ABdhPJxOPpYinyvLA0o3crm9sNVZWqIh0PTIeVd1zqa9HAyW2SKHBi/7U4L6LYyUfGY3YXZzKF/K+/23bYyzZsAdBDo=
+X-Received: by 2002:a17:907:1dd5:: with SMTP id og21mr16511258ejc.233.1636070535098;
+ Thu, 04 Nov 2021 17:02:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211029075203.17093-1-nancy.lin@mediatek.com> <20211029075203.17093-18-nancy.lin@mediatek.com>
-In-Reply-To: <20211029075203.17093-18-nancy.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 5 Nov 2021 08:00:32 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-PMzZu-nKweOpL_ybEPAaGD4PpaO=7zsY2rb=B8ubG3A@mail.gmail.com>
-Message-ID: <CAAOTY_-PMzZu-nKweOpL_ybEPAaGD4PpaO=7zsY2rb=B8ubG3A@mail.gmail.com>
-Subject: Re: [PATCH v7 17/20] drm/mediatek: add mediatek-drm plane color
- encoding info
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>
-Cc:     CK Hu <ck.hu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-12-brad@pensando.io>
+ <20211025091731.GA2001@C02TD0UTHF1T.local> <a20805de16e1196c2ed46dd949473c9a@kernel.org>
+In-Reply-To: <a20805de16e1196c2ed46dd949473c9a@kernel.org>
+From:   Brad Larson <brad@pensando.io>
+Date:   Thu, 4 Nov 2021 17:02:04 -0700
+Message-ID: <CAK9rFnxH=DtC9vEJJCXkGEWjvg2E8vHPUcRy9rJpo34Furtmvw@mail.gmail.com>
+Subject: Re: [PATCH v3 11/11] arm64: dts: Add Pensando Elba SoC support
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        singo.chang@mediatek.com,
-        srv_heupstream <srv_heupstream@mediatek.com>
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Nancy:
+Hi Marc,
 
-Nancy.Lin <nancy.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B410=E6=9C=8829=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=883:52=E5=AF=AB=E9=81=93=EF=BC=9A
+On Mon, Oct 25, 2021 at 4:15 AM Marc Zyngier <maz@kernel.org> wrote:
 >
-> Add plane color encoding information for color space conversion.
-> It's a preparation for adding support for mt8195 ovl_adaptor mdp_rdma
-> csc control.
+> On 2021-10-25 10:17, Mark Rutland wrote:
+> > Hi,
+> >
+> > On Sun, Oct 24, 2021 at 06:51:56PM -0700, Brad Larson wrote:
+> >> Add Pensando common and Elba SoC specific device nodes
+> >>
+> >> Signed-off-by: Brad Larson <brad@pensando.io>
+> >
+> > [...]
+> >> +            gic: interrupt-controller@800000 {
+> >> +                    compatible = "arm,gic-v3";
+> >> +                    #interrupt-cells = <3>;
+> >> +                    #address-cells = <2>;
+> >> +                    #size-cells = <2>;
+> >> +                    ranges;
+> >> +                    interrupt-controller;
+> >> +                    reg = <0x0 0x800000 0x0 0x200000>,      /* GICD */
+> >> +                          <0x0 0xa00000 0x0 0x200000>;      /* GICR */
+>
+> This is missing the GICv2 compat regions that the CPUs implement.
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Is this what is described as optional in the GIC architecture specification
+where a GICv3 system can run restricted GICv2 code?  Can you point
+me in the right direction in the spec and example dts node if needed.
 
+> >> +                    interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> >> +
+> >> +                    gic_its: msi-controller@820000 {
+> >> +                            compatible = "arm,gic-v3-its";
+> >> +                            msi-controller;
+> >> +                            #msi-cells = <1>;
+> >> +                            reg = <0x0 0x820000 0x0 0x10000>;
+> >> +                            socionext,synquacer-pre-its =
+> >> +                                                    <0xc00000 0x1000000>;
+> >> +                    };
+> >> +            };
+> >
+> > Is there any shared lineage with Synquacer? The commit message didn't
+> > describe this quirk.
 >
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_plane.c | 1 +
->  drivers/gpu/drm/mediatek/mtk_drm_plane.h | 1 +
->  2 files changed, 2 insertions(+)
+> Funny, it looks like there is a sudden outburst of stupid copy/paste
+> among HW designers. TI did the exact same thing recently.
 >
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.c b/drivers/gpu/drm/m=
-ediatek/mtk_drm_plane.c
-> index 734a1fb052df..81bd5d6e8df5 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.c
-> @@ -137,6 +137,7 @@ static void mtk_plane_update_new_state(struct drm_pla=
-ne_state *new_state,
->         mtk_plane_state->pending.width =3D drm_rect_width(&new_state->dst=
-);
->         mtk_plane_state->pending.height =3D drm_rect_height(&new_state->d=
-st);
->         mtk_plane_state->pending.rotation =3D new_state->rotation;
-> +       mtk_plane_state->pending.color_encoding =3D new_state->color_enco=
-ding;
->  }
->
->  static void mtk_plane_atomic_async_update(struct drm_plane *plane,
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_plane.h b/drivers/gpu/drm/m=
-ediatek/mtk_drm_plane.h
-> index d454bece9535..2d5ec66e3df1 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_plane.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_plane.h
-> @@ -24,6 +24,7 @@ struct mtk_plane_pending_state {
->         bool                            dirty;
->         bool                            async_dirty;
->         bool                            async_config;
-> +       enum drm_color_encoding         color_encoding;
->  };
->
->  struct mtk_plane_state {
-> --
-> 2.18.0
->
+> This totally negates all the advantages of having an ITS and makes
+> sure that you have all the overhead. Facepalm...
+
+Some background may help explain.  To generate an LPI a peripheral must
+write to the GITS_TRANSLATER (a specific address). For the ITS to know
+which translations apply to the generated interrupts, it must know which
+peripheral performed the write. The ID of the peripheral is known as its
+DeviceID, which is often carried along with the write as an AXI sideband
+signal.
+
+The Elba SoC doesn't carry the DeviceID, so we have to conjure one up
+between the peripheral and the ITS.  Instead of telling a peripheral to target
+the GITS_TRANSLATER directly, we instead direct it to a specific offset
+within a pre-ITS address range (our own IP block).  For writes that land in
+that memory range, we derive the DeviceID from (offset >> 2).  The pre-ITS
+block then sends (DeviceID, data) to the GITS_TRANSLATER.
+
+The hardware designer came up with the Pre-ITS mechanism in Feb 2018.
+When we looked at the upstream kernel later (we developed on 4.14)
+we found that not only did it support something similar, it supported the
+exact scheme we are using.
+
+Thanks,
+Brad
