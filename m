@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 001C04462E0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 12:39:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3CB4462E1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 12:39:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232692AbhKELlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 07:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45058 "EHLO
+        id S232667AbhKELly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 07:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232665AbhKELls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 07:41:48 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BC3C06120A
-        for <devicetree@vger.kernel.org>; Fri,  5 Nov 2021 04:39:09 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id r12so31983969edt.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Nov 2021 04:39:09 -0700 (PDT)
+        with ESMTP id S232671AbhKELlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 07:41:50 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 617C3C06120C
+        for <devicetree@vger.kernel.org>; Fri,  5 Nov 2021 04:39:10 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id r4so31255180edi.5
+        for <devicetree@vger.kernel.org>; Fri, 05 Nov 2021 04:39:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=m4bFx6IdGK9SGY5fBjAkncPO0+75+NMay8+xTfQ7Xuo=;
-        b=vuxjQdfGYIXuTrQQZnRH8HNL2J5MUX50fdzVp4aKBDek35gQAeQjZ6JIfvo7/va5aH
-         IgECzYnWWOGT0KMe5JG2TqmynMjTZbFcV/hE8T+HyQWoJ9CcbjqD7DVy66K5/N1ISuYh
-         6m7RSiswoy+XuOKUQW54+pPxJHxmEHJaDOC65groA7k7QMHxAFDNJBzP01jEUEc7NL9U
-         LQ7NuhIbYh75TD3QS0kUzjQExrM3EuoAjhtluqvFLDE1qgkoh99hQx2OAo1aO5r+9EUI
-         IdC/IsiQYRyUkFjZTgqPQwpeUDLnKY80mPSmF6rh/FajxQlWX3ogg9VSOqjKSPJb+o/2
-         WMew==
+        bh=Ck6CnoOUEpGTUA7mAEjajeF6BgfIwURf2ogwlOV0P5c=;
+        b=jmLBKKyKZ8Ekwd8uM8vB3tZ+PPyyhmcVZq2ecajkPXURrhRvA8olhb+jkvV9VP5Ef0
+         CdF7zr+OIiA1xk9njuhrggek/F14dtzsIynJCxtcwYg4jutcZ3NtUAay7XR1HBNdFMSG
+         NYqBAQJWwA6mWo7bdz0kOWo+fRTqX9qB3a46wuW9ebEjSG+2PQG+PDMSWLzc1m84JN6k
+         y6iyveiy1U0CVbrY/5tl7DCHBjqH3BoVNk9oAEt78TacX+6tgkv8wAlr8USOnww94IKj
+         33IReUWs55pYrJgHob8M+YDRgyncHBPO3U0GCcH3e3fnrC6DAd2sKX7gV9mbgHQ9rWmV
+         STdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=m4bFx6IdGK9SGY5fBjAkncPO0+75+NMay8+xTfQ7Xuo=;
-        b=se9nj1Xs5zmtQh7kdT7OzGmnSoqMV/LhSAb9xMwWutPyC9kfdKTfNGa+X9QTlMzEvf
-         S6VY1jbr1bcwilt41fJrgITqOOKlGJ7ftw6OWmwKxoApGZfjhIbE7YKDNb1LDg1lfnyR
-         ws9zH2rFvPjr4v1D13CO/KItLUngtH91wpOyoWH9TMqOJxxYmK1da//Wp+G6OnNIkGVA
-         q8/CUCAkpqyjG1umjbzCGAQ/LbRz63oKpF5/5nA1/TeB3TtJ5eK3ROxM9VA8/c4Avgne
-         JrK9+DVmGOaRdhOvHRLzEQG4a759Qfus/a0orz/gerra+V9iq8WSvrfJcgfNpjdnB1H0
-         Yz4A==
-X-Gm-Message-State: AOAM532LAa5jFwnUMqNTPCZeCybcyDTrjxmhmn0CZAoQeCpqgmuqI4AU
-        27J17KJnRrp1Ih2kzY1rgPXGmw==
-X-Google-Smtp-Source: ABdhPJxcMKncD5A0RmQ0Dnk5OSfe8ePAR38WITtdjEBd/Jifgc2nDvTy3NCxTnV341BN2iHOsNTG0Q==
-X-Received: by 2002:a50:9d49:: with SMTP id j9mr76005676edk.39.1636112347334;
-        Fri, 05 Nov 2021 04:39:07 -0700 (PDT)
+        bh=Ck6CnoOUEpGTUA7mAEjajeF6BgfIwURf2ogwlOV0P5c=;
+        b=CeTxTv7DzibjyfVsp9nPrH5Mq+x04bA8WRFGbfmHh0eSVq4ZKbtSgzFdxZWntfGpFS
+         jfnMGvum6dlWKAZ0OKqTBz0RVJVuQvzNqGuyACmdqNgMLhbx7XzsOL7n1k3cAKfZWjD8
+         A90OXTQH0d3FEEVZhv+O1+k+SlUlafkppc5N2LQ4b2olU3CDWb4xOIAFpbIyBkGN+zGG
+         iK6whBopLVrKyaI3cOaOdDJnfH6cCGW98Cj/adT9+1IcjfkNFltRZkiX1fuL4VkF+JYQ
+         noF7/0AxKaQuS+LDikfrjQLtzAQlfh9eLB5K7xfiKkQu7Et1F66pFYTz9DeCA/yuqVyJ
+         GaVQ==
+X-Gm-Message-State: AOAM5313fqOawR8cF5E1LFsdp+w6DoU4/rUqvph/UzPCCN541MUOb5xQ
+        /9RRaP48Rfcz2JJaxvva+0W868uxBIkZSA==
+X-Google-Smtp-Source: ABdhPJwQJ6pI2myDid81p56qbL+BAalAoh+JzDW0wFzYPYZCMHeodMIpnqBmUyjdDFPX+nQoHngiHA==
+X-Received: by 2002:a17:907:e86:: with SMTP id ho6mr51083665ejc.197.1636112348961;
+        Fri, 05 Nov 2021 04:39:08 -0700 (PDT)
 Received: from fedora.. (dh207-99-83.xnet.hr. [88.207.99.83])
-        by smtp.googlemail.com with ESMTPSA id bn20sm4011325ejb.5.2021.11.05.04.39.06
+        by smtp.googlemail.com with ESMTPSA id bn20sm4011325ejb.5.2021.11.05.04.39.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 04:39:06 -0700 (PDT)
+        Fri, 05 Nov 2021 04:39:08 -0700 (PDT)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
         robh+dt@kernel.org, lee.jones@linaro.org, p.zabel@pengutronix.de,
@@ -54,9 +54,9 @@ To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
         linux-kernel@vger.kernel.org, andy.shevchenko@gmail.com,
         michael@walle.cc
 Cc:     luka.perkov@sartura.hr, Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v8 2/6] gpio: Add Delta TN48M CPLD GPIO driver
-Date:   Fri,  5 Nov 2021 12:38:55 +0100
-Message-Id: <20211105113859.101868-2-robert.marko@sartura.hr>
+Subject: [PATCH v8 3/6] dt-bindings: reset: Add Delta TN48M
+Date:   Fri,  5 Nov 2021 12:38:56 +0100
+Message-Id: <20211105113859.101868-3-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211105113859.101868-1-robert.marko@sartura.hr>
 References: <20211105113859.101868-1-robert.marko@sartura.hr>
@@ -66,81 +66,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
-expander.
-
-The CPLD provides 12 pins in total on the TN48M, but on more advanced
-switch models it provides up to 192 pins, so the driver is extendable
-to support more switches.
+Add header for the Delta TN48M CPLD provided
+resets.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
-Changes in v8:
-* No need to assing NULL to gpio_config per Andys comment
+ include/dt-bindings/reset/delta,tn48m-reset.h | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 include/dt-bindings/reset/delta,tn48m-reset.h
 
-Changes in v7:
-* Change compatibles, reduce their number
-* Rework the driver to be easily extendible to support more devices
-* Use match data to populate configuration
-* Drop reviews and ACK-s as the driver changed
-
-Changes in v6:
-* Drop unused header
-* Return the return value of device_property_read_u32()
-instead of a hardcoded return
-
-Changes in v2:
-* Rewrite to use simple I2C MFD and GPIO regmap
-* Drop DT bindings for pin numbering
----
- drivers/gpio/Kconfig      |  12 +++++
- drivers/gpio/Makefile     |   1 +
- drivers/gpio/gpio-tn48m.c | 100 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 113 insertions(+)
- create mode 100644 drivers/gpio/gpio-tn48m.c
-
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index fab571016adf..31b83271f954 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1344,6 +1344,18 @@ config GPIO_TIMBERDALE
- 	help
- 	Add support for the GPIO IP in the timberdale FPGA.
- 
-+config GPIO_TN48M_CPLD
-+	tristate "Delta Networks TN48M switch CPLD GPIO driver"
-+	depends on MFD_TN48M_CPLD
-+	select GPIO_REGMAP
-+	help
-+	  This enables support for the GPIOs found on the Delta
-+	  Networks TN48M switch Lattice CPLD. It provides 12 pins in total,
-+	  they are input-only or ouput-only type.
-+
-+	  This driver can also be built as a module. If so, the
-+	  module will be called gpio-tn48m.
-+
- config GPIO_TPS65086
- 	tristate "TI TPS65086 GPO"
- 	depends on MFD_TPS65086
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 32a32659866a..93abc7461e45 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -148,6 +148,7 @@ obj-$(CONFIG_GPIO_TEGRA186)		+= gpio-tegra186.o
- obj-$(CONFIG_GPIO_TEGRA)		+= gpio-tegra.o
- obj-$(CONFIG_GPIO_THUNDERX)		+= gpio-thunderx.o
- obj-$(CONFIG_GPIO_TIMBERDALE)		+= gpio-timberdale.o
-+obj-$(CONFIG_GPIO_TN48M_CPLD)		+= gpio-tn48m.o
- obj-$(CONFIG_GPIO_TPIC2810)		+= gpio-tpic2810.o
- obj-$(CONFIG_GPIO_TPS65086)		+= gpio-tps65086.o
- obj-$(CONFIG_GPIO_TPS65218)		+= gpio-tps65218.o
-diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
+diff --git a/include/dt-bindings/reset/delta,tn48m-reset.h b/include/dt-bindings/reset/delta,tn48m-reset.h
 new file mode 100644
-index 000000000000..485565813ad4
+index 000000000000..d4e9ed12de3e
 --- /dev/null
-+++ b/drivers/gpio/gpio-tn48m.c
-@@ -0,0 +1,100 @@
-+// SPDX-License-Identifier: GPL-2.0-only
++++ b/include/dt-bindings/reset/delta,tn48m-reset.h
+@@ -0,0 +1,20 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
 +/*
 + * Delta TN48M CPLD GPIO driver
 + *
@@ -149,97 +90,17 @@ index 000000000000..485565813ad4
 + * Author: Robert Marko <robert.marko@sartura.hr>
 + */
 +
-+#include <linux/device.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/gpio/regmap.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
++#ifndef _DT_BINDINGS_RESET_TN48M_H
++#define _DT_BINDINGS_RESET_TN48M_H
 +
-+enum tn48m_gpio_type {
-+	TN48M_GP0 = 1,
-+	TN48M_GPI,
-+};
++#define CPU_88F7040_RESET	0
++#define CPU_88F6820_RESET	1
++#define MAC_98DX3265_RESET	2
++#define PHY_88E1680_RESET	3
++#define PHY_88E1512_RESET	4
++#define POE_RESET		5
 +
-+struct tn48m_gpio_config {
-+	int ngpio;
-+	int ngpio_per_reg;
-+	enum tn48m_gpio_type type;
-+};
-+
-+static const struct tn48m_gpio_config tn48m_gpo_config = {
-+	.ngpio = 4,
-+	.ngpio_per_reg = 4,
-+	.type = TN48M_GP0,
-+};
-+
-+static const struct tn48m_gpio_config tn48m_gpi_config = {
-+	.ngpio = 4,
-+	.ngpio_per_reg = 4,
-+	.type = TN48M_GPI,
-+};
-+
-+static int tn48m_gpio_probe(struct platform_device *pdev)
-+{
-+	const struct tn48m_gpio_config *gpio_config;
-+	struct gpio_regmap_config config = {0};
-+	struct regmap *regmap;
-+	u32 base;
-+	int ret;
-+
-+	if (!pdev->dev.parent)
-+		return -ENODEV;
-+
-+	gpio_config = device_get_match_data(&pdev->dev);
-+	if (!gpio_config)
-+		return -ENODEV;
-+
-+	ret = device_property_read_u32(&pdev->dev, "reg", &base);
-+	if (ret)
-+		return ret;
-+
-+	regmap = dev_get_regmap(pdev->dev.parent, NULL);
-+	if (!regmap)
-+		return -ENODEV;
-+
-+	config.regmap = regmap;
-+	config.parent = &pdev->dev;
-+	config.ngpio = gpio_config->ngpio;
-+	config.ngpio_per_reg = gpio_config->ngpio_per_reg;
-+	switch (gpio_config->type) {
-+	case TN48M_GP0:
-+		config.reg_set_base = base;
-+		break;
-+	case TN48M_GPI:
-+		config.reg_dat_base = base;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
-+}
-+
-+static const struct of_device_id tn48m_gpio_of_match[] = {
-+	{ .compatible = "delta,tn48m-gpo", .data = &tn48m_gpo_config },
-+	{ .compatible = "delta,tn48m-gpi", .data = &tn48m_gpi_config },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
-+
-+static struct platform_driver tn48m_gpio_driver = {
-+	.driver = {
-+		.name = "delta-tn48m-gpio",
-+		.of_match_table = tn48m_gpio_of_match,
-+	},
-+	.probe = tn48m_gpio_probe,
-+};
-+module_platform_driver(tn48m_gpio_driver);
-+
-+MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-+MODULE_DESCRIPTION("Delta TN48M CPLD GPIO driver");
-+MODULE_LICENSE("GPL");
++#endif /* _DT_BINDINGS_RESET_TN48M_H */
 -- 
 2.33.1
 
