@@ -2,286 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76090446401
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 625B6446426
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:30:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232847AbhKENVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 09:21:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39290 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232822AbhKENVt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 09:21:49 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A915C061714;
-        Fri,  5 Nov 2021 06:19:07 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id c8so16276148ede.13;
-        Fri, 05 Nov 2021 06:19:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KXvIXUwdhnwsQptNDf+LXPNje9m2HJqMbS8TaZl13qU=;
-        b=Wxyy6A94A1dtcmgVO2w9xOAJFu2vlvVvgNdW1VUKN5OnHC8ltP4Udg1gQ+tTw9MCw7
-         cnLfbP46WBPOQ+4zebvlEKdZHeAtyCZoTvMsk2evB0nHG9+yYCTDhpX7cZaeiKBcbG77
-         jw3lBmn0/QCmsw8QzPp/U28QEIB7NseTjcpHHUb67irBrBdvMlBeJlO9hzt1oD7aGvzk
-         S1k6dtiI0flb5G97yh7OYr6crvd0FZYZy0iwsrE5PsIHmbXReoFUohp42Cp9X9xIQALh
-         2e2fdmdZt6D5xG954hnogGPk2OKDB2GQo3ANaMjTUpdh1ERyCQfrG0DStjxMVI4Otj5Q
-         B4AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KXvIXUwdhnwsQptNDf+LXPNje9m2HJqMbS8TaZl13qU=;
-        b=oILcyJIOe38HOhihH3l4JmcSFu0iR/NM7+04BdEJsBE9P55n5eWZg4W/iJxq2Pk6gn
-         nGUTSOWrHErdIDjyXlB1e1XQiVo/fmdM4WtUyRl66MTfXe0OBZ9JjDh8Q/vWIhFYbNaX
-         Jy+7hZhHsVfx+ws1Do/Tb39ZVkBHpw/eMwvBPXVCkym6AQtLPhwT5kyHIc3ppd40fkpV
-         sWRy/6hrz8h24CvIMZbK0qasja0kU0JkdvcjnQEZT/e+NLuSfAD2h3rgoUwE964leKXD
-         VBWd1EpnDhh3LFRYNOVnnCHpUNLunLvuLptmvt8d0rTQyg71b4cE8I5UrLJAc5F5+gKX
-         BS/w==
-X-Gm-Message-State: AOAM532QXJf5ESjVvmFjZv9K7F8Nxr7XIE6Bf2pLPYQo9vc6g9/sgj/s
-        faqAJqMxhL/TkZN9y+a4K3ciufrQ50nJAJQ+xsc=
-X-Google-Smtp-Source: ABdhPJwg31MBG3tQ0eaKTNytMOXJUg3q3Ol5S4BWN+X969S6WXyWEwwgTiSTDBWCU12L+R7UdTh1rJuS8LNsNcATH6Y=
-X-Received: by 2002:a17:906:ecac:: with SMTP id qh12mr13588799ejb.377.1636118346018;
- Fri, 05 Nov 2021 06:19:06 -0700 (PDT)
+        id S233026AbhKENcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 09:32:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37382 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232957AbhKENcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Nov 2021 09:32:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A91D61101;
+        Fri,  5 Nov 2021 13:30:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636119002;
+        bh=mWKgiLiqyBozrdDt2IL3sh1nM4cVgTMzzQcmq0TcnkQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H5OLpa3k4y1B934tTm2A7l322K2c0ySciU0R2kY8zf9+r/TvQIb106K3/ezP7K+RT
+         tSR0qVhBtQjah2ssuXzVFgCCJDOAbDT3RjZH0FXf9r143lfkv9+T9+K/VKvmroDHE9
+         rqiS0ig9Vr/o4wowieHcVp0gbtLX6NVAHAykxWnrieWnv3LzITNKTVjiuiHPTSywNe
+         KQqy1t9x+Dev+af2Xf5B1FviyZwQ6RNbPjvZkSvLKxGH5UOD+oYysKETMlLQq08iGU
+         ze4p7slLkS5Cqbu+bYkT//ODClGiseasb+9Hwc1RGLYlBrw0EG2Vn+JxWnAc1KJnQK
+         MAhpRJZARmcHQ==
+Date:   Fri, 5 Nov 2021 13:29:57 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: Re: [PATCH 1/2] SPI: Add SPI driver for Sunplus SP7021
+Message-ID: <YYUx1VxyvL5evRA6@sirena.org.uk>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <1635747525-31243-2-git-send-email-lh.kuo@sunplus.com>
+ <YYAzrDuLYQt4U06J@sirena.org.uk>
+ <1c5b8e435d614772a5c0af8d5c633941@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-References: <20211105113859.101868-1-robert.marko@sartura.hr> <20211105113859.101868-4-robert.marko@sartura.hr>
-In-Reply-To: <20211105113859.101868-4-robert.marko@sartura.hr>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Nov 2021 15:18:18 +0200
-Message-ID: <CAHp75Vct5JG=y=yvnUoeuSwDiqXJHwFDC9hPxRF4W1P4AcK8_g@mail.gmail.com>
-Subject: Re: [PATCH v8 4/6] reset: Add Delta TN48M CPLD reset controller
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Luka Perkov <luka.perkov@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="XjvkUaH+EetQzKru"
+Content-Disposition: inline
+In-Reply-To: <1c5b8e435d614772a5c0af8d5c633941@sphcmbx02.sunplus.com.tw>
+X-Cookie: For recreational use only.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 5, 2021 at 1:39 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Delta TN48M CPLD exposes resets for the following:
-> * 88F7040 SoC
-> * 88F6820 SoC
-> * 98DX3265 switch MAC-s
-> * 88E1680 PHY-s
-> * 88E1512 PHY
-> * PoE PSE controller
->
-> Controller supports only self clearing resets.
 
-After addressing below,
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+--XjvkUaH+EetQzKru
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
-> ---
-> Changes in v8:
-> * Drop of.h and include mod_devicetable.h per Andys comment
-> * Mark the units used in timeout and sleep defines for the timeout poller
->
-> Changes in v5:
-> * Allow COMPILE_TEST as well
-> * Default to MFD_TN48M_CPLD
->
-> Changes in v4:
-> * Drop assert and deassert as only self-clearing
-> resets are support by the HW
-> * Make sure that reset is cleared before returning
-> from reset.
-> ---
->  drivers/reset/Kconfig       |  10 +++
->  drivers/reset/Makefile      |   1 +
->  drivers/reset/reset-tn48m.c | 128 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 139 insertions(+)
->  create mode 100644 drivers/reset/reset-tn48m.c
->
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 5656cac04b4c..e76aba5f4c84 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -243,6 +243,16 @@ config RESET_TI_SYSCON
->           you wish to use the reset framework for such memory-mapped devices,
->           say Y here. Otherwise, say N.
->
-> +config RESET_TN48M_CPLD
-> +       tristate "Delta Networks TN48M switch CPLD reset controller"
-> +       depends on MFD_TN48M_CPLD || COMPILE_TEST
-> +       default MFD_TN48M_CPLD
-> +       help
-> +         This enables the reset controller driver for the Delta TN48M CPLD.
-> +         It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
-> +         switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
-> +         Microchip PD69200 PoE PSE controller.
+On Fri, Nov 05, 2021 at 03:12:32AM +0000, Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=
+=AA wrote:
 
-Since it's a tristate, the common practice is to mentioned the module
-name in the help.
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
 
->  config RESET_UNIPHIER
->         tristate "Reset controller driver for UniPhier SoCs"
->         depends on ARCH_UNIPHIER || COMPILE_TEST
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index ea8b8d9ca565..79beab92324f 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
->  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
->  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
->  obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
-> +obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
->  obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
->  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
->  obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
-> diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
-> new file mode 100644
-> index 000000000000..6889e9173577
-> --- /dev/null
-> +++ b/drivers/reset/reset-tn48m.c
-> @@ -0,0 +1,128 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Delta TN48M CPLD reset driver
-> + *
-> + * Copyright (C) 2021 Sartura Ltd.
-> + *
-> + * Author: Robert Marko <robert.marko@sartura.hr>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset-controller.h>
-> +
-> +#include <dt-bindings/reset/delta,tn48m-reset.h>
-> +
-> +#define TN48M_RESET_REG                0x10
-> +
-> +#define TN48M_RESET_TIMEOUT_US 125000
-> +#define TN48M_RESET_SLEEP_US   10
-> +
-> +struct tn48_reset_map {
-> +       u8 bit;
-> +};
-> +
-> +struct tn48_reset_data {
-> +       struct reset_controller_dev rcdev;
-> +       struct regmap *regmap;
-> +};
-> +
-> +static const struct tn48_reset_map tn48m_resets[] = {
-> +       [CPU_88F7040_RESET] = {0},
-> +       [CPU_88F6820_RESET] = {1},
-> +       [MAC_98DX3265_RESET] = {2},
-> +       [PHY_88E1680_RESET] = {4},
-> +       [PHY_88E1512_RESET] = {6},
-> +       [POE_RESET] = {7},
-> +};
-> +
-> +static inline struct tn48_reset_data *to_tn48_reset_data(
-> +                       struct reset_controller_dev *rcdev)
-> +{
-> +       return container_of(rcdev, struct tn48_reset_data, rcdev);
-> +}
-> +
-> +static int tn48m_control_reset(struct reset_controller_dev *rcdev,
-> +                              unsigned long id)
-> +{
-> +       struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> +       unsigned int val;
-> +
-> +       regmap_update_bits(data->regmap, TN48M_RESET_REG,
-> +                          BIT(tn48m_resets[id].bit), 0);
-> +
-> +       return regmap_read_poll_timeout(data->regmap,
-> +                                       TN48M_RESET_REG,
-> +                                       val,
-> +                                       val & BIT(tn48m_resets[id].bit),
-> +                                       TN48M_RESET_SLEEP_US,
-> +                                       TN48M_RESET_TIMEOUT_US);
-> +}
-> +
-> +static int tn48m_control_status(struct reset_controller_dev *rcdev,
-> +                               unsigned long id)
-> +{
-> +       struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
-> +       unsigned int regval;
-> +       int ret;
-> +
-> +       ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       if (BIT(tn48m_resets[id].bit) & regval)
-> +               return 0;
-> +       else
-> +               return 1;
-> +}
-> +
-> +static const struct reset_control_ops tn48_reset_ops = {
-> +       .reset          = tn48m_control_reset,
-> +       .status         = tn48m_control_status,
-> +};
-> +
-> +static int tn48m_reset_probe(struct platform_device *pdev)
-> +{
-> +       struct tn48_reset_data *data;
-> +       struct regmap *regmap;
-> +
-> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +       if (!regmap)
-> +               return -ENODEV;
-> +
-> +       data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +       if (!data)
-> +               return -ENOMEM;
-> +
-> +       data->regmap = regmap;
-> +
-> +       data->rcdev.owner = THIS_MODULE;
-> +       data->rcdev.ops = &tn48_reset_ops;
-> +       data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
-> +       data->rcdev.of_node = pdev->dev.of_node;
-> +
-> +       return devm_reset_controller_register(&pdev->dev, &data->rcdev);
-> +}
-> +
-> +static const struct of_device_id tn48m_reset_of_match[] = {
-> +       { .compatible = "delta,tn48m-reset", },
+> > > +++ b/drivers/spi/spi-sunplus-sp7021.c
+> > > @@ -0,0 +1,1356 @@
+> > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > +/*
+> > > + * Sunplus SPI controller driver
+> > > + *
+> > > + * Author: Sunplus Technology Co., Ltd.
 
-Comma inside {} is not required.
+> > Please make the entire comment a C++ one so things look more intentiona=
+l.
 
-> +       { }
-> +};
-> +MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
-> +
-> +static struct platform_driver tn48m_reset_driver = {
-> +       .driver = {
-> +               .name = "delta-tn48m-reset",
-> +               .of_match_table = tn48m_reset_of_match,
-> +       },
-> +       .probe = tn48m_reset_probe,
-> +};
-> +module_platform_driver(tn48m_reset_driver);
-> +
-> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
-> +MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
-> +MODULE_LICENSE("GPL");
-> --
-> 2.33.1
->
+> Sorry I don't understand. Is there a explanation?
 
+Make the entire comment block C++ style - //
 
--- 
-With Best Regards,
-Andy Shevchenko
+> > If the device has a GPIO chip select it should use the core support for=
+ GPIO
+> > chip selects rather than open coding.
+
+> Sorry But I didn't find the core function support to use simply. The core=
+ function is too complicated for me.
+
+What did you try and in what way was it complicated?  There's lots of
+other drivers using this and it's generally resulted in less code in the
+drivers so it seems this should be soemthing we can solve.
+
+> > > +	if (RW_phase =3D=3D SPI_SLAVE_WRITE) {
+
+> > > +	} else if (RW_phase =3D=3D SPI_SLAVE_READ) {
+
+> > These two cases share no code, they should probably be separate functio=
+ns
+> > (and what happens if it's an unknown phase?).
+
+> The slave mode of SP7021 is only half duplex.
+
+Not sure that really addresses the concern?
+
+> > > +	if (pspim->tx_cur_len < data_len) {
+> > > +		len_temp =3D min(pspim->data_unit, data_len);
+> > > +		sp7021spi_wb(pspim, len_temp);
+> > > +	}
+
+> > What if there's more data?
+
+> SP7021 only support 16bytes FIFO transfer.
+
+It can transfer more than one FIFO's worth of data though can't it?
+
+> > I find it difficult to convince myself that this isn't going to have an=
+y overflow
+> > issues, and it'll break operation with anything that does any manipulat=
+ion of
+> > chip select during the message.  Given that the device uses GPIO chip s=
+elects
+> > I'd expect it to just implement transfer_one() and not handle messages =
+at all.
+> > This would greatly simplify the code.
+
+> More conditions will be checked in the spi-message function.
+> In this case, only rx-date is allocated for each transfer of the  message.
+
+Part of the issue with both this and the previous section is code
+clarity - it's not just if the code is correct, it's if it's clear that
+the code is correct.
+
+> > So we are using transfer_one?  In that case I'm very confused why the d=
+river
+> > would be walking a transfer list...
+
+> And the spi of SP7021 includes two working modes: spi-master and spi-slave
+>=20
+> SP7021 spi-master : full-duplex  FIFO-mode only.
+> SP7021 spi-slave : helf-duplex  DMA-mode
+
+> It seems that linux can contain these two modes in one drive. And this is=
+ what I need.
+> Because many registers are overlapped, if they are used in different driv=
+es,=20
+> they will crash if they are declared.
+
+I think the driver needs to be restructured so it's clear which bits
+apply to which mode, it's basically two completely separate code paths.
+I have to say that it's really very surprising that the two different
+modes use such completely different control mechanisms, normally the
+differentiation would be more triggered by performance reasons.
+
+--XjvkUaH+EetQzKru
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGFMdQACgkQJNaLcl1U
+h9Bqjwf+LNBPkZ4s2u6+i9R8vT+a3nNJiUhnlikJJTHPLmlE5gNOOXMs7JGYOtfj
+3O2E7/DNGcuu7ad8cTUXmZ4dVGSHhbA8GS8FsK/JN3a3MVd21oogPoeJc0c1yooP
+3AqEZDKXWdFXx61IZYzSTe0Ga3zhIe5Cn4b708uZ7EeCeav6dKJlRS9Ot0bWlOY+
+G1Hmanv1oRMfqkETlCyBCuMk8OJ12XioOhTNnezeHgaEKIvgIOV/ZJ4b31OngH+o
+XIv/rkP0vuuFGgqYyeTSwo1/DigsjjVs0AAAr3hvphrIIRdO3JEOjFZLNrdQxBsz
+szmI5rwe5naM9OL9XuDMAhdVtFBcFA==
+=F6B1
+-----END PGP SIGNATURE-----
+
+--XjvkUaH+EetQzKru--
