@@ -2,196 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 436764463A8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 13:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76090446401
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:19:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231579AbhKEMzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 08:55:38 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:51511 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbhKEMzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 08:55:37 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 4D1D4100005;
-        Fri,  5 Nov 2021 12:52:55 +0000 (UTC)
-Date:   Fri, 5 Nov 2021 13:52:55 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Vincent Shih =?utf-8?B?5pa96YyV6bS7?= <vincent.shih@sunplus.com>
-Cc:     Vincent Shih <vincent.sunplus@gmail.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] rtc: Add driver for Sunplus SP7021
-Message-ID: <YYUpJ14jqK9gT4RD@piout.net>
-References: <1635834123-24668-1-git-send-email-vincent.shih@sunplus.com>
- <1635834123-24668-2-git-send-email-vincent.shih@sunplus.com>
- <YYHZdXqpNqzusQ5n@piout.net>
- <6b70a97056fe4ab79326b472227899da@sphcmbx02.sunplus.com.tw>
+        id S232847AbhKENVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 09:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39290 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232822AbhKENVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 09:21:49 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A915C061714;
+        Fri,  5 Nov 2021 06:19:07 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id c8so16276148ede.13;
+        Fri, 05 Nov 2021 06:19:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KXvIXUwdhnwsQptNDf+LXPNje9m2HJqMbS8TaZl13qU=;
+        b=Wxyy6A94A1dtcmgVO2w9xOAJFu2vlvVvgNdW1VUKN5OnHC8ltP4Udg1gQ+tTw9MCw7
+         cnLfbP46WBPOQ+4zebvlEKdZHeAtyCZoTvMsk2evB0nHG9+yYCTDhpX7cZaeiKBcbG77
+         jw3lBmn0/QCmsw8QzPp/U28QEIB7NseTjcpHHUb67irBrBdvMlBeJlO9hzt1oD7aGvzk
+         S1k6dtiI0flb5G97yh7OYr6crvd0FZYZy0iwsrE5PsIHmbXReoFUohp42Cp9X9xIQALh
+         2e2fdmdZt6D5xG954hnogGPk2OKDB2GQo3ANaMjTUpdh1ERyCQfrG0DStjxMVI4Otj5Q
+         B4AQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KXvIXUwdhnwsQptNDf+LXPNje9m2HJqMbS8TaZl13qU=;
+        b=oILcyJIOe38HOhihH3l4JmcSFu0iR/NM7+04BdEJsBE9P55n5eWZg4W/iJxq2Pk6gn
+         nGUTSOWrHErdIDjyXlB1e1XQiVo/fmdM4WtUyRl66MTfXe0OBZ9JjDh8Q/vWIhFYbNaX
+         Jy+7hZhHsVfx+ws1Do/Tb39ZVkBHpw/eMwvBPXVCkym6AQtLPhwT5kyHIc3ppd40fkpV
+         sWRy/6hrz8h24CvIMZbK0qasja0kU0JkdvcjnQEZT/e+NLuSfAD2h3rgoUwE964leKXD
+         VBWd1EpnDhh3LFRYNOVnnCHpUNLunLvuLptmvt8d0rTQyg71b4cE8I5UrLJAc5F5+gKX
+         BS/w==
+X-Gm-Message-State: AOAM532QXJf5ESjVvmFjZv9K7F8Nxr7XIE6Bf2pLPYQo9vc6g9/sgj/s
+        faqAJqMxhL/TkZN9y+a4K3ciufrQ50nJAJQ+xsc=
+X-Google-Smtp-Source: ABdhPJwg31MBG3tQ0eaKTNytMOXJUg3q3Ol5S4BWN+X969S6WXyWEwwgTiSTDBWCU12L+R7UdTh1rJuS8LNsNcATH6Y=
+X-Received: by 2002:a17:906:ecac:: with SMTP id qh12mr13588799ejb.377.1636118346018;
+ Fri, 05 Nov 2021 06:19:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6b70a97056fe4ab79326b472227899da@sphcmbx02.sunplus.com.tw>
+References: <20211105113859.101868-1-robert.marko@sartura.hr> <20211105113859.101868-4-robert.marko@sartura.hr>
+In-Reply-To: <20211105113859.101868-4-robert.marko@sartura.hr>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Nov 2021 15:18:18 +0200
+Message-ID: <CAHp75Vct5JG=y=yvnUoeuSwDiqXJHwFDC9hPxRF4W1P4AcK8_g@mail.gmail.com>
+Subject: Re: [PATCH v8 4/6] reset: Add Delta TN48M CPLD reset controller
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Luka Perkov <luka.perkov@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/11/2021 12:05:22+0000, Vincent Shih 施錕鴻 wrote:
-> > > +static int sp_rtc_set_alarm(struct device *dev, struct rtc_wkalrm
-> > > +*alrm) {
-> > > +	struct rtc_device *rtc = dev_get_drvdata(dev);
-> > > +	unsigned long alarm_time;
-> > > +
-> > > +	alarm_time = rtc_tm_to_time64(&alrm->time);
-> > > +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, (u32)(alarm_time));
-> > > +
-> > > +	if (alarm_time > 0xFFFFFFFF)
-> > > +		return -EINVAL;
-> > 
-> > Please set the range of the rtc properly and the core will do this check for you.
-> 
-> I modified it as the following statements
-> 
-> #define RTC_ALARM_SET 0x50		//register offset
-> #define ALARM_SET 0xFFFFFFFF		//field in the register
-> If (alarm_time > ALARM_SET)
->       return -EINVAL;
-> 
-> Is it applicable??
-> 
+On Fri, Nov 5, 2021 at 1:39 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>
+> Delta TN48M CPLD exposes resets for the following:
+> * 88F7040 SoC
+> * 88F6820 SoC
+> * 98DX3265 switch MAC-s
+> * 88E1680 PHY-s
+> * 88E1512 PHY
+> * PoE PSE controller
+>
+> Controller supports only self clearing resets.
 
-No, please set the rtc .range_min and .range_max and the core will do
-the check for you.
+After addressing below,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-> > 
-> > > +
-> > > +	if ((rtc->aie_timer.enabled) && (rtc->aie_timer.node.expires ==
-> > ktime_set(alarm_time, 0))) {
-> > > +		if (rtc->uie_rtctimer.enabled)
-> > > +			sp_rtc.set_alarm_again = 1;
-> > > +	}
-> > 
-> > You have to explain that.
-> 
-> Since the alarm and update interrupts use the same HW one, rtc->aie_timer.enabled,
-> rtc->uie_rtctimer.enabled and sp_rtc.set_alarm_again are used to distinguish between
-> alarm interrupt and update one in rtc_irq_handler() (RTC_UF or RTC_AF). There is
-> only alarm interrupt supported in out HW. I found the update interrupt is implemented
-> by the alarm one in kernel.
-> 
-> > 
-> > > +
-> > > +	writel((u32)alarm_time, &rtc_reg_ptr->rtc_alarm_set);
-> > > +	wmb();			// make sure settings are effective.
-> > 
-> > doesn't writel come with a barrier?
-> 
-> It is useless. I will remove it.
-> 
-> > 
-> > > +
-> > > +	// enable alarm for update irq
-> > > +	if (rtc->uie_rtctimer.enabled)
-> > > +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
-> > > +	else if (!rtc->aie_timer.enabled)
-> > > +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
-> > 
-> > Magic values, please explain also, I'm not sure why you need to look at
-> > uie_rtctimer and aie_timer as your RTC seems capable of having an alarm
-> > every seconds.
-> 
-> 1. I will give the definitions for that magic values.
-> 2. It is for update interrupt. rtc_alarm_irq_enable() will call alarm_irq_enable()
->   to enable HW alarm interrupt , but rtc_update_irq_enable() will not. Therefore
->   the HW interrupt for update one is enabled here. Otherwise how can I enable
->   HW alarm interrupt for update one??
-> 
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> ---
+> Changes in v8:
+> * Drop of.h and include mod_devicetable.h per Andys comment
+> * Mark the units used in timeout and sleep defines for the timeout poller
+>
+> Changes in v5:
+> * Allow COMPILE_TEST as well
+> * Default to MFD_TN48M_CPLD
+>
+> Changes in v4:
+> * Drop assert and deassert as only self-clearing
+> resets are support by the HW
+> * Make sure that reset is cleared before returning
+> from reset.
+> ---
+>  drivers/reset/Kconfig       |  10 +++
+>  drivers/reset/Makefile      |   1 +
+>  drivers/reset/reset-tn48m.c | 128 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 139 insertions(+)
+>  create mode 100644 drivers/reset/reset-tn48m.c
+>
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 5656cac04b4c..e76aba5f4c84 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -243,6 +243,16 @@ config RESET_TI_SYSCON
+>           you wish to use the reset framework for such memory-mapped devices,
+>           say Y here. Otherwise, say N.
+>
+> +config RESET_TN48M_CPLD
+> +       tristate "Delta Networks TN48M switch CPLD reset controller"
+> +       depends on MFD_TN48M_CPLD || COMPILE_TEST
+> +       default MFD_TN48M_CPLD
+> +       help
+> +         This enables the reset controller driver for the Delta TN48M CPLD.
+> +         It provides reset signals for Armada 7040 and 385 SoC-s, Alleycat 3X
+> +         switch MAC-s, Alaska OOB ethernet PHY, Quad Alaska ethernet PHY-s and
+> +         Microchip PD69200 PoE PSE controller.
 
-From the .set_alarm point of view, there is no difference between a
-regular alarm and the uie alarm set by the core. alrm.enabled will
-always be enabled.
+Since it's a tristate, the common practice is to mentioned the module
+name in the help.
 
-> > 
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int sp_rtc_read_alarm(struct device *dev, struct rtc_wkalrm
-> > > +*alrm) {
-> > > +	unsigned int alarm_time;
-> > > +
-> > > +	alarm_time = readl(&rtc_reg_ptr->rtc_alarm_set);
-> > > +	RTC_DEBUG("%s, alarm_time: %u\n", __func__, alarm_time);
-> > > +	rtc_time64_to_tm((unsigned long)(alarm_time), &alrm->time);
-> > > +
-> > 
-> > You have to also set whether the alarm is enabled or not, else, simply don't
-> > bother returning anything.
-> 
-> I will modify it.
-> 
-> > 
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int sp_rtc_alarm_irq_enable(struct device *dev, unsigned int
-> > > +enabled) {
-> > > +	struct rtc_device *rtc = dev_get_drvdata(dev);
-> > > +
-> > > +	if (enabled)
-> > > +		writel((0x003F << 16) | 0x17, &rtc_reg_ptr->rtc_ctrl);
-> > > +	else if (!rtc->uie_rtctimer.enabled)
-> > > +		writel((0x0007 << 16) | 0x0, &rtc_reg_ptr->rtc_ctrl);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct rtc_class_ops sp_rtc_ops = {
-> > > +	.read_time =		sp_rtc_read_time,
-> > > +	.set_time =		sp_rtc_set_time,
-> > > +	.set_alarm =		sp_rtc_set_alarm,
-> > > +	.read_alarm =		sp_rtc_read_alarm,
-> > > +	.alarm_irq_enable =	sp_rtc_alarm_irq_enable,
-> > > +};
-> > > +
-> > > +static irqreturn_t rtc_irq_handler(int irq, void *dev_id) {
-> > > +	struct platform_device *plat_dev = dev_id;
-> > > +	struct rtc_device *rtc = platform_get_drvdata(plat_dev);
-> > > +
-> > > +	if (rtc->uie_rtctimer.enabled) {
-> > > +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_UF);
-> > > +		RTC_DEBUG("[RTC] update irq\n");
-> > > +
-> > > +		if (sp_rtc.set_alarm_again == 1) {
-> > > +			sp_rtc.set_alarm_again = 0;
-> > > +			rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
-> > > +			RTC_DEBUG("[RTC] alarm irq\n");
-> > > +		}
-> > > +	} else {
-> > > +		rtc_update_irq(rtc, 1, RTC_IRQF | RTC_AF);
-> > > +		RTC_DEBUG("[RTC] alarm irq\n");
-> > > +	}
-> > 
-> > I'm pretty sure you can get rid of most of that and stop looking at uie_rtctimer.
-> 
-> rtc->aie_timer.enabled, rtc->uie_rtctimer.enabled and sp_rtc.set_alarm_again are
-> used to distinguish between alarm interrupt and update one. There 3 conditions for
-> triggering the alarm interrupt :
-> 1. only alarm
-> 2. only update
-> 3. alarm and update together
-> 
+>  config RESET_UNIPHIER
+>         tristate "Reset controller driver for UniPhier SoCs"
+>         depends on ARCH_UNIPHIER || COMPILE_TEST
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index ea8b8d9ca565..79beab92324f 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -31,6 +31,7 @@ obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
+>  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
+>  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
+>  obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
+> +obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
+>  obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+>  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+>  obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+> diff --git a/drivers/reset/reset-tn48m.c b/drivers/reset/reset-tn48m.c
+> new file mode 100644
+> index 000000000000..6889e9173577
+> --- /dev/null
+> +++ b/drivers/reset/reset-tn48m.c
+> @@ -0,0 +1,128 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Delta TN48M CPLD reset driver
+> + *
+> + * Copyright (C) 2021 Sartura Ltd.
+> + *
+> + * Author: Robert Marko <robert.marko@sartura.hr>
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/reset-controller.h>
+> +
+> +#include <dt-bindings/reset/delta,tn48m-reset.h>
+> +
+> +#define TN48M_RESET_REG                0x10
+> +
+> +#define TN48M_RESET_TIMEOUT_US 125000
+> +#define TN48M_RESET_SLEEP_US   10
+> +
+> +struct tn48_reset_map {
+> +       u8 bit;
+> +};
+> +
+> +struct tn48_reset_data {
+> +       struct reset_controller_dev rcdev;
+> +       struct regmap *regmap;
+> +};
+> +
+> +static const struct tn48_reset_map tn48m_resets[] = {
+> +       [CPU_88F7040_RESET] = {0},
+> +       [CPU_88F6820_RESET] = {1},
+> +       [MAC_98DX3265_RESET] = {2},
+> +       [PHY_88E1680_RESET] = {4},
+> +       [PHY_88E1512_RESET] = {6},
+> +       [POE_RESET] = {7},
+> +};
+> +
+> +static inline struct tn48_reset_data *to_tn48_reset_data(
+> +                       struct reset_controller_dev *rcdev)
+> +{
+> +       return container_of(rcdev, struct tn48_reset_data, rcdev);
+> +}
+> +
+> +static int tn48m_control_reset(struct reset_controller_dev *rcdev,
+> +                              unsigned long id)
+> +{
+> +       struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+> +       unsigned int val;
+> +
+> +       regmap_update_bits(data->regmap, TN48M_RESET_REG,
+> +                          BIT(tn48m_resets[id].bit), 0);
+> +
+> +       return regmap_read_poll_timeout(data->regmap,
+> +                                       TN48M_RESET_REG,
+> +                                       val,
+> +                                       val & BIT(tn48m_resets[id].bit),
+> +                                       TN48M_RESET_SLEEP_US,
+> +                                       TN48M_RESET_TIMEOUT_US);
+> +}
+> +
+> +static int tn48m_control_status(struct reset_controller_dev *rcdev,
+> +                               unsigned long id)
+> +{
+> +       struct tn48_reset_data *data = to_tn48_reset_data(rcdev);
+> +       unsigned int regval;
+> +       int ret;
+> +
+> +       ret = regmap_read(data->regmap, TN48M_RESET_REG, &regval);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       if (BIT(tn48m_resets[id].bit) & regval)
+> +               return 0;
+> +       else
+> +               return 1;
+> +}
+> +
+> +static const struct reset_control_ops tn48_reset_ops = {
+> +       .reset          = tn48m_control_reset,
+> +       .status         = tn48m_control_status,
+> +};
+> +
+> +static int tn48m_reset_probe(struct platform_device *pdev)
+> +{
+> +       struct tn48_reset_data *data;
+> +       struct regmap *regmap;
+> +
+> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +       if (!regmap)
+> +               return -ENODEV;
+> +
+> +       data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +       if (!data)
+> +               return -ENOMEM;
+> +
+> +       data->regmap = regmap;
+> +
+> +       data->rcdev.owner = THIS_MODULE;
+> +       data->rcdev.ops = &tn48_reset_ops;
+> +       data->rcdev.nr_resets = ARRAY_SIZE(tn48m_resets);
+> +       data->rcdev.of_node = pdev->dev.of_node;
+> +
+> +       return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+> +}
+> +
+> +static const struct of_device_id tn48m_reset_of_match[] = {
+> +       { .compatible = "delta,tn48m-reset", },
 
-No, stop emulating UIE in your driver and let the core handle that. If
-UIE is enabled for the RTC, it will set up an alarm every second. Your
-driver doesn't have to handle the difference.
+Comma inside {} is not required.
 
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, tn48m_reset_of_match);
+> +
+> +static struct platform_driver tn48m_reset_driver = {
+> +       .driver = {
+> +               .name = "delta-tn48m-reset",
+> +               .of_match_table = tn48m_reset_of_match,
+> +       },
+> +       .probe = tn48m_reset_probe,
+> +};
+> +module_platform_driver(tn48m_reset_driver);
+> +
+> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+> +MODULE_DESCRIPTION("Delta TN48M CPLD reset driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.33.1
+>
 
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With Best Regards,
+Andy Shevchenko
