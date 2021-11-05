@@ -2,91 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30B69446559
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:00:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FA97446562
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:02:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233360AbhKEPCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 11:02:41 -0400
-Received: from mga12.intel.com ([192.55.52.136]:59734 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233308AbhKEPCk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 11:02:40 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="211961558"
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; 
-   d="scan'208";a="211961558"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2021 07:59:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; 
-   d="scan'208";a="639840117"
-Received: from kuha.fi.intel.com ([10.237.72.166])
-  by fmsmga001.fm.intel.com with SMTP; 05 Nov 2021 07:59:49 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 05 Nov 2021 16:59:48 +0200
-Date:   Fri, 5 Nov 2021 16:59:48 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org
-Subject: Re: [PATCH v3 6/7] usb: typec: qcom: Remove standalone qcom pm8150b
- typec driver
-Message-ID: <YYVG5DZJdNfZyj8x@kuha.fi.intel.com>
-References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
- <20211105033558.1573552-7-bryan.odonoghue@linaro.org>
+        id S233381AbhKEPEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 11:04:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34484 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233378AbhKEPEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 11:04:36 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E59ECC061714;
+        Fri,  5 Nov 2021 08:01:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=HEBvWRg9S4l41qj5CuJ9xd8WUMjF45Gsh7boop/TI/8=; b=exjT7KNvOAVNQofMTz4xN+rh/+
+        rghIpP6ikdGyFT05k2paeUz32XPxNsFZP5Um9+H1tYYr8q6EeyW+i9y/gHZuursjvbc9L5qFvwj/4
+        dCTgxw8CD9KnvLvp0IUf5mCj+sAcNNGFtzOjYZrRzK8QLagQCyrl7DwGKNAI272patCA=;
+Received: from p200300ccff0899001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff08:9900:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mj0j2-0004v0-Kt; Fri, 05 Nov 2021 16:01:52 +0100
+Date:   Fri, 5 Nov 2021 16:01:51 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mylene.josserand@free-electrons.com, linus.walleij@linaro.org,
+        rydberg@bitmath.org, dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        alistair23@gmail.com,
+        =?UTF-8?B?TXlsw6huZQ==?= Josserand <mylene.josserand@bootlin.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: Re: [PATCH v2 1/4] Input: Add driver for Cypress Generation 5
+ touchscreen
+Message-ID: <20211105160151.4d97d587@aktux>
+In-Reply-To: <20211103114830.62711-2-alistair@alistair23.me>
+References: <20211103114830.62711-1-alistair@alistair23.me>
+        <20211103114830.62711-2-alistair@alistair23.me>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211105033558.1573552-7-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 05, 2021 at 03:35:57AM +0000, Bryan O'Donoghue wrote:
-> Remove the standalone PMIC Type-C driver. We have implemented a full TCPM
-> driver which covers and extends the functionality in this driver.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  drivers/usb/typec/Kconfig           |  13 --
->  drivers/usb/typec/Makefile          |   1 -
->  drivers/usb/typec/qcom-pmic-typec.c | 262 ----------------------------
->  3 files changed, 276 deletions(-)
->  delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
-> 
-> diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-> index ab480f38523aa..61fba7bd1671d 100644
-> --- a/drivers/usb/typec/Kconfig
-> +++ b/drivers/usb/typec/Kconfig
-> @@ -75,19 +75,6 @@ config TYPEC_STUSB160X
->  	  If you choose to build this driver as a dynamically linked module, the
->  	  module will be called stusb160x.ko.
->  
-> -config TYPEC_QCOM_PMIC
-> -	tristate "Qualcomm PMIC USB Type-C driver"
-> -	depends on ARCH_QCOM || COMPILE_TEST
-> -	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
-> -	help
-> -	  Driver for supporting role switch over the Qualcomm PMIC.  This will
-> -	  handle the USB Type-C role and orientation detection reported by the
-> -	  QCOM PMIC if the PMIC has the capability to handle USB Type-C
-> -	  detection.
-> -
-> -	  It will also enable the VBUS output to connected devices when a
-> -	  DFP connection is made.
+On Wed,  3 Nov 2021 21:48:27 +1000
+Alistair Francis <alistair@alistair23.me> wrote:
 
-I don't like that you create point where the support is temporarily
-removed for this hardware. I know Guenter asked that you remove the
-old driver in a separate patch, but I believe at that point you were
-also proposing different config option name for the new driver, so you
-could have removed the old driver only after you added the new one.
+[...]
+> +static int cyttsp5_probe(struct device *dev, struct regmap *regmap, int irq,
+> +			 const char *name)
+> +{
+> +	struct cyttsp5 *ts;
+> +	struct cyttsp5_sysinfo *si;
+> +	int rc = 0, i;
+> +
+> +	ts = devm_kzalloc(dev, sizeof(*ts), GFP_KERNEL);
+> +	if (!ts)
+> +		return -ENOMEM;
+> +
+> +	/* Initialize device info */
+> +	ts->regmap = regmap;
+> +	ts->dev = dev;
+> +	si = &ts->sysinfo;
+> +	dev_set_drvdata(dev, ts);
+> +
+> +	/* Initialize mutexes and spinlocks */
+> +	mutex_init(&ts->system_lock);
+> +
+> +	/* Initialize wait queue */
+> +	init_waitqueue_head(&ts->wait_q);
+> +
+> +	/* Power up the device */
+> +	ts->vdd = regulator_get(dev, "vdd");
+> +	if (IS_ERR(ts->vdd)) {
+> +		rc = PTR_ERR(ts->vdd);
+> +		dev_set_drvdata(dev, NULL);
+> +		kfree(ts);
+> +		return rc;
+> +	}
+> +
+> +	rc = regulator_enable(ts->vdd);
+> +	if (rc) {
+> +		regulator_put(ts->vdd);
+> +		dev_set_drvdata(dev, NULL);
+> +		kfree(ts);
+> +		return rc;
+> +	}
+> +
+> +	/* Reset the gpio to be in a reset state */
+> +	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
 
-Since you now use the same configuration option name - which makes
-perfect sense to me - I think you need to refactor this series. Maybe
-you could first just move the old driver under drivers/usb/typec/tcpm/
-in one patch, and then modify and slit it in another patch.
+        so we deassert reset for
 
-thanks,
+> +	if (IS_ERR(ts->reset_gpio)) {
+> +		rc = PTR_ERR(ts->reset_gpio);	
+> +		dev_err(dev, "Failed to request reset gpio, error %d\n", rc);
+> +		return rc;
+> +	}
+	
+	almost no time 
+> +	gpiod_set_value(ts->reset_gpio, 1);
 
--- 
-heikki
+        and then assert it, keeping the chip in reset
+> +
+> +	/* Need a delay to have device up */
+> +	msleep(20);
+> +
+	and why it should wake up?
+
+	I reversed the logic here to test. I have 
+
+        reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
+
+	in my tests.
+
+> +	rc = devm_request_threaded_irq(dev, irq, NULL, cyttsp5_handle_irq,
+> +				       IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+> +				       name, ts);
+        falling or level low (according to the example in the
+        dt schema)?	
+
+Regards,
+Andreas
