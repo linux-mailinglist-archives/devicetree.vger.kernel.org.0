@@ -2,168 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 625B6446426
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C8DD446439
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 14:37:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233026AbhKENcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 09:32:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37382 "EHLO mail.kernel.org"
+        id S231959AbhKENj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 09:39:58 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48430 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232957AbhKENcl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 09:32:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6A91D61101;
-        Fri,  5 Nov 2021 13:30:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636119002;
-        bh=mWKgiLiqyBozrdDt2IL3sh1nM4cVgTMzzQcmq0TcnkQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=H5OLpa3k4y1B934tTm2A7l322K2c0ySciU0R2kY8zf9+r/TvQIb106K3/ezP7K+RT
-         tSR0qVhBtQjah2ssuXzVFgCCJDOAbDT3RjZH0FXf9r143lfkv9+T9+K/VKvmroDHE9
-         rqiS0ig9Vr/o4wowieHcVp0gbtLX6NVAHAykxWnrieWnv3LzITNKTVjiuiHPTSywNe
-         KQqy1t9x+Dev+af2Xf5B1FviyZwQ6RNbPjvZkSvLKxGH5UOD+oYysKETMlLQq08iGU
-         ze4p7slLkS5Cqbu+bYkT//ODClGiseasb+9Hwc1RGLYlBrw0EG2Vn+JxWnAc1KJnQK
-         MAhpRJZARmcHQ==
-Date:   Fri, 5 Nov 2021 13:29:57 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>
-Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        id S229924AbhKENj6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Nov 2021 09:39:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=denP3kmSD6IXR8Bp1s7m9uM6u56hzDvbAqHxvI7j02Q=; b=12
+        HqT2rdS+lE5Bso3joKwGtg8uf59mmk815YjYTlOvjsWwKwRoBttM7ZZ9ii+j3LHcI1wICHKGuI2np
+        ebpEYydeu3CNx9KLRZwqf8micGdzVT7ZfJLiXaEPL3vNjC2A77D/V0fDU5tEvzbi9jacyP9KMlT1S
+        FuVJ27SlFtHNV30=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mizP1-00Cg6c-F5; Fri, 05 Nov 2021 14:37:07 +0100
+Date:   Fri, 5 Nov 2021 14:37:07 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
-        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: Re: [PATCH 1/2] SPI: Add SPI driver for Sunplus SP7021
-Message-ID: <YYUx1VxyvL5evRA6@sirena.org.uk>
-References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
- <1635747525-31243-2-git-send-email-lh.kuo@sunplus.com>
- <YYAzrDuLYQt4U06J@sirena.org.uk>
- <1c5b8e435d614772a5c0af8d5c633941@sphcmbx02.sunplus.com.tw>
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YYUzgyS6pfQOmKRk@lunn.ch>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <YYK+EeCOu/BXBXDi@lunn.ch>
+ <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="XjvkUaH+EetQzKru"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1c5b8e435d614772a5c0af8d5c633941@sphcmbx02.sunplus.com.tw>
-X-Cookie: For recreational use only.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> > > +config NET_VENDOR_SUNPLUS
+> > > +	tristate "Sunplus Dual 10M/100M Ethernet (with L2 switch) devices"
+> > 
+> > The "with L2 Switch" is causing lots of warning bells to ring for me.
+> > 
+> > I don't see any references to switchdev or DSA in this driver. How is the
+> > switch managed? There have been a few examples in the past of similar two
+> > port switches being first supported in Dual MAC mode. Later trying to
+> > actually use the switch in the Linux was always ran into problems, and
+> > basically needed a new driver. So i want to make sure you don't have this
+> > problem.
+> > 
+> > In the Linux world, Ethernet switches default to having there
+> > ports/interfaces separated. This effectively gives you your dual MAC mode by
+> > default.  You then create a Linux bridge, and add the ports/interfaces to the
+> > bridge. switchdev is used to offload the bridge, telling the hardware to
+> > enable the L2 switch between the ports.
+> > 
+> > So you don't need the mode parameter in DT. switchdev tells you this.
+> > Switchdev gives user space access to the address table etc.
+> 
+> The L2 switch of Ethernet of SP7021 is not used to forward packets 
+> between two network interfaces.
+> 
+> Sunplus Dual Ethernet devices consists of one CPU port, two LAN 
+> ports, and a L2 switch. L2 switch is a circuitry which receives packets 
+> from CPU or LAN ports and then forwards them other ports. Rules of 
+> forwarding packets are set by driver.
+> 
+> Ethernet driver of SP7021 of Sunplus supports 3 operation modes:
+>   - Dual NIC mode
+>   - An NIC with two LAN ports mode (daisy-chain mode)
+>   - An NIC with two LAN ports mode 2
+> 
+> Dual NIC mode
+> Ethernet driver creates two net-device interfaces (eg: eth0 and eth1). 
+> Each has its dedicated LAN port. For example, LAN port 0 is for 
+> net-device interface eth0. LAN port 1 is for net-device interface 
+> eth1. Packets from LAN port 0 will be always forwarded to eth0 and 
+> vice versa by L2 switch. Similarly, packets from LAN port 1 will be 
+> always forwarded to eth1 and vice versa by L2 switch. Packets will 
+> never be forwarded between two LAN ports, or between eth0 and 
+> LAN port 1, or between eth1 and LAN port 0. The two network 
+> devices work independently.
+> 
+> An NIC with two LAN ports mode (daisy-chain mode)
+> Ethernet driver creates one net-device interface (eg: eth0), but the 
+> net-device interface has two LAN ports. In this mode, a packet from 
+> one LAN port will be either forwarded to net-device interface (eht0) 
+> if its destination address matches MAC address of net-device 
+> interface (eth0), or forwarded to other LAN port. A packet from 
+> net-device interface (eth0) will be forwarded to a LAN port if its 
+> destination address is learnt by L2 switch, or forwarded to both 
+> LAN ports if its destination has not been learnt yet.
+> 
+> An NIC with two LAN ports mode 2
+> This mode is similar to “An NIC with two LAN ports mode”. The 
+> difference is that a packet from net-device interface (eth0) will be 
+> always forwarded to both LAN ports. Learning function of L2 switch 
+> is turned off in this mode. This means L2 switch will never learn the 
+> source address of a packet. So, it always forward packets to both 
+> LAN ports. This mode works like you have 2-port Ethernet hub.
 
---XjvkUaH+EetQzKru
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So here you describe how the hardware can be used. Dual is two
+interfaces. Daisy-chain is what you get by taking those two interfaces
+and adding them to a bridge. The bridge then forwards frames between
+the interfaces and the CPU as needed, based on learning. And your
+third mode is the bridge always performs flooding.
 
-On Fri, Nov 05, 2021 at 03:12:32AM +0000, Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=
-=AA wrote:
+A linux driver must follow the linux networking model. You cannot make
+up your own model. In the linux world, you model the external
+ports. The hardware always has two external ports, so you need to
+always have two netdev interfaces. To bridge packets between those two
+interfaces, you create a bridge and you add the interfaces to the
+bridge. That is the model you need to follow. switchdev gives you the
+API calls you need to implement this.
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+> > > +struct l2sw_common {
+> > 
+> > Please change your prefix. l2sw is a common prefix, there are other silicon
+> > vendors using l2sw. I would suggest sp_l2sw or spl2sw.
+> 
+> Ok, I'll modify two struct names in next patch as shown below:
+> l2sw_common --> sp_common
+> l2sw_mac --> sp_mac
+> 
+> Should I also modify prefix of file name?
 
-> > > +++ b/drivers/spi/spi-sunplus-sp7021.c
-> > > @@ -0,0 +1,1356 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +/*
-> > > + * Sunplus SPI controller driver
-> > > + *
-> > > + * Author: Sunplus Technology Co., Ltd.
+You need to modify the prefix everywhere you use it.  Function names,
+variable names, all symbols. Search and replace throughout the whole
+code.
 
-> > Please make the entire comment a C++ one so things look more intentiona=
-l.
-
-> Sorry I don't understand. Is there a explanation?
-
-Make the entire comment block C++ style - //
-
-> > If the device has a GPIO chip select it should use the core support for=
- GPIO
-> > chip selects rather than open coding.
-
-> Sorry But I didn't find the core function support to use simply. The core=
- function is too complicated for me.
-
-What did you try and in what way was it complicated?  There's lots of
-other drivers using this and it's generally resulted in less code in the
-drivers so it seems this should be soemthing we can solve.
-
-> > > +	if (RW_phase =3D=3D SPI_SLAVE_WRITE) {
-
-> > > +	} else if (RW_phase =3D=3D SPI_SLAVE_READ) {
-
-> > These two cases share no code, they should probably be separate functio=
-ns
-> > (and what happens if it's an unknown phase?).
-
-> The slave mode of SP7021 is only half duplex.
-
-Not sure that really addresses the concern?
-
-> > > +	if (pspim->tx_cur_len < data_len) {
-> > > +		len_temp =3D min(pspim->data_unit, data_len);
-> > > +		sp7021spi_wb(pspim, len_temp);
+> > > +			return -EINVAL;
+> > > +		}
 > > > +	}
+> > > +
+> > > +	switch (cmd) {
+> > > +	case SIOCGMIIPHY:
+> > > +		if (comm->dual_nic && (strcmp(ifr->ifr_ifrn.ifrn_name, "eth1") ==
+> > > +0))
+> > 
+> > You cannot rely on the name, systemd has probably renamed it. If you have
+> > using phylib correctly, net_dev->phydev is what you want.
+> 
+> Ok, I'll use name of the second net device to do compare, 
+> instead of using fixed string "eth1", in next patch.
 
-> > What if there's more data?
+No. There are always two interfaces. You always have two netdev
+structures. Each netdev structure has a phydev. So use netdev->phydev.
 
-> SP7021 only support 16bytes FIFO transfer.
+This is another advantage of the Linux model. In your daisy chain
+mode, how do i control the two PHYs? How do i see one is up and one is
+down? How do i configure one to 10Half and the other 100Full?
 
-It can transfer more than one FIFO's worth of data though can't it?
+> > > +int phy_cfg(struct l2sw_mac *mac)
+> > > +{
+> > > +	// Bug workaround:
+> > > +	// Flow-control of phy should be enabled. L2SW IP flow-control will refer
+> > > +	// to the bit to decide to enable or disable flow-control.
+> > > +	mdio_write(mac->comm->phy1_addr, 4,
+> > mdio_read(mac->comm->phy1_addr, 4) | (1 << 10));
+> > > +	mdio_write(mac->comm->phy2_addr, 4,
+> > mdio_read(mac->comm->phy2_addr,
+> > > +4) | (1 << 10));
+> > 
+> > This should be in the PHY driver. The MAC driver should never need to touch
+> > PHY registers.
+> 
+> Sunplus Ethernet MAC integrates MDIO controller. 
+> So Ethernet driver has MDIO- and PHY-related code. 
+> To work-around a circuitry bug, we need to enable 
+> bit 10 of register 4 of PHY.
+> Where should we place the code?
 
-> > I find it difficult to convince myself that this isn't going to have an=
-y overflow
-> > issues, and it'll break operation with anything that does any manipulat=
-ion of
-> > chip select during the message.  Given that the device uses GPIO chip s=
-elects
-> > I'd expect it to just implement transfer_one() and not handle messages =
-at all.
-> > This would greatly simplify the code.
+The silicon is integrated, but it is still a collection of standard
+blocks. Linux models those blocks independently. There is a subsystem
+for the MAC, a subsystem for the MDIO bus master and a subsystem for
+the PHY. You register a driver with each of these subsystems. PHY
+drivers live in drivers/net/phy. Put a PHY driver in there, which
+includes this workaround.
 
-> More conditions will be checked in the spi-message function.
-> In this case, only rx-date is allocated for each transfer of the  message.
+> > > +static void mii_linkchange(struct net_device *netdev) { }
+> > 
+> > Nothing to do? Seems very odd. Don't you need to tell the MAC it should do
+> > 10Mbps or 100Mbps? What about pause?
+> 
+> No, hardware does it automatically.
+> Sunplus MAC integrates MDIO controller.
+> It reads PHY status and set MAC automatically.
 
-Part of the issue with both this and the previous section is code
-clarity - it's not just if the code is correct, it's if it's clear that
-the code is correct.
+The PHY is external? So you have no idea what PHY that is? It could be
+a Marvell PHY, a microchip PHY, an Atheros PHY. Often PHYs have
+pages. In order to read the temperature sensor you change the page,
+read a register, and then hopefully change the page back again. If the
+PHY supports Fibre as well as copper, it can put the fibre registers
+in a second page. The PHY driver knows about this, it will flip the
+pages as needed. The phylib core has a mutex, so that only one
+operation happens at a time. So a page flip does not happen
+unexpectedly.
 
-> > So we are using transfer_one?  In that case I'm very confused why the d=
-river
-> > would be walking a transfer list...
+Your MAC hardware does not take this mutex. It has no idea what page
+is selected when it reads registers. Instead of getting the basic mode
+register, it could get the LED control register...
 
-> And the spi of SP7021 includes two working modes: spi-master and spi-slave
->=20
-> SP7021 spi-master : full-duplex  FIFO-mode only.
-> SP7021 spi-slave : helf-duplex  DMA-mode
+The MAC should never directly access the PHY. Please disable this
+hardware, and use the mii_linkchange callback to configure the MAC.
 
-> It seems that linux can contain these two modes in one drive. And this is=
- what I need.
-> Because many registers are overlapped, if they are used in different driv=
-es,=20
-> they will crash if they are declared.
+> > So the MAC does not support pause? I'm then confused about phy_cfg().
+ 
+> Yes, MAC supports pause. MAC (hardware) takes care of pause 
+> automatically.
+> 
+> Should I remove the two lines?
 
-I think the driver needs to be restructured so it's clear which bits
-apply to which mode, it's basically two completely separate code paths.
-I have to say that it's really very surprising that the two different
-modes use such completely different control mechanisms, normally the
-differentiation would be more triggered by performance reasons.
+Yes.
 
---XjvkUaH+EetQzKru
-Content-Type: application/pgp-signature; name="signature.asc"
+And you need to configure the MAC based on the results of the
+auto-neg.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGFMdQACgkQJNaLcl1U
-h9Bqjwf+LNBPkZ4s2u6+i9R8vT+a3nNJiUhnlikJJTHPLmlE5gNOOXMs7JGYOtfj
-3O2E7/DNGcuu7ad8cTUXmZ4dVGSHhbA8GS8FsK/JN3a3MVd21oogPoeJc0c1yooP
-3AqEZDKXWdFXx61IZYzSTe0Ga3zhIe5Cn4b708uZ7EeCeav6dKJlRS9Ot0bWlOY+
-G1Hmanv1oRMfqkETlCyBCuMk8OJ12XioOhTNnezeHgaEKIvgIOV/ZJ4b31OngH+o
-XIv/rkP0vuuFGgqYyeTSwo1/DigsjjVs0AAAr3hvphrIIRdO3JEOjFZLNrdQxBsz
-szmI5rwe5naM9OL9XuDMAhdVtFBcFA==
-=F6B1
------END PGP SIGNATURE-----
-
---XjvkUaH+EetQzKru--
+	Andrew
