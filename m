@@ -2,117 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A06445CF5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 01:13:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9752E445CF9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 01:16:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232517AbhKEAQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Nov 2021 20:16:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34650 "EHLO
+        id S232370AbhKEAT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Nov 2021 20:19:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232546AbhKEAQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 20:16:25 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA5EC06120E
-        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 17:13:46 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id ee33so27404604edb.8
-        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 17:13:46 -0700 (PDT)
+        with ESMTP id S232531AbhKEAT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Nov 2021 20:19:26 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08859C061208
+        for <devicetree@vger.kernel.org>; Thu,  4 Nov 2021 17:16:48 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id v11so24649485edc.9
+        for <devicetree@vger.kernel.org>; Thu, 04 Nov 2021 17:16:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pensando.io; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IhgAEkTJECpIqTDL/ENLizRv8mhp9DKt9XOklg+3I0E=;
-        b=ZY9tceljvnofycAv9BIK/1dgqJWFJUN15uDkr55E7aCBUrYsVfhBP+wQrXBG7jVNRL
-         P8ndUiQ3g9pc/N/1Ve+JjtH7EVHjm/zBNN+1D16sVhvfNoE6OeUxlt40m0spMpv/sO37
-         +v7+zxIXXLcU+dyOR3Xs/ZGpIMYxERdoG7pkZrik/61sn1pwziXfgC5ayCDP4YvCqyDf
-         0ce08dZjKRZ5vlaGoORvHNycU5ed5fynSbHJrcHJKpgnKrxjYgspNmEggyebv4BcdgVm
-         p428yZwYhl8qLMvC+MEndxSuSYaoAxHgmKGYMO+vZuAo25zcyXXZ697UrAqx7Zsu15Fs
-         zQ2g==
+        bh=hW9j4fRXjsypK2LBZZotu05pU22OkQcuc/ncvw3x6RI=;
+        b=pbIJjLoXkL+canYdkoXsZCKefEFoq5u/2hu4PbFu0Z9ulwm6TbIKZS+7llSC6UkqPT
+         fAGdAVF6yuqhnjlUtumqpTgwaLZ05FTlUmuly04laT8N6TIDlkZocXSWC4iP4AqRF/Uf
+         lMagwJa1i/DnzdIoXkkVKMX1YN1vJN27FrebxqykazSNJm3hWbKtB1eHHDaRnM/BH/1Z
+         VK7oMhV4/NQCNjWyrLI8AXwH/Ye8iY2RHuyCrVreO6oFFozIGopvZgvGTGYi5zg/RNDz
+         731xqF16tC5AT8TzfC2lxTEjpWPd72lIWjIpTY9j/JbD6ttGUyne/jfGQrHTlhITQujj
+         31aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=IhgAEkTJECpIqTDL/ENLizRv8mhp9DKt9XOklg+3I0E=;
-        b=N+MkeklFm2ePGGwf7qo114Oxo2NPhmeoB1s29WxUKRpvGF3AxfO6pbYjV9zv5r0CC9
-         UWfC4t4k78ZLeYRopZJ1rn8ozUcsZB9/jiTSSKWGdXWniH92PbdQ6wHK/HyNZiuz2b3v
-         017G2w8WGSiGjoWoF6840Wrb1H/PUtqRC8tlJZfZgyM2febhNqNfDzyjfatm2YqFTsfg
-         PqNFzWLMUwcRZX/j8f61aV89vk+I+gRhdRqWZzLPCoSCpAX8xrc3clcqGEpDr4KPH6TO
-         Fa3prtR7NRP8AfRH4m31TbHABp1NbivOTQ25eIuB+yhgWxu72MUYc1rDm6XXDz5FNbKi
-         vG9Q==
-X-Gm-Message-State: AOAM5305P6urNNZZBBdn1AGk/o3eCf/oHiBr4K5i2Qpp3scwpHnQqZMk
-        wG8xwkfiIy/APcUqH1LYBdjrGjvOJQptsujK0nM4Tw==
-X-Google-Smtp-Source: ABdhPJxFuIEUo5C+4vx/YHqoFhN3Iksc8LjQ08WNM9GqIe3SHw3kWZZCIQuufKgOtnhH5tSjlXA7ZPWX2h7Zhr4uIlQ=
-X-Received: by 2002:a50:9dca:: with SMTP id l10mr73680807edk.61.1636071224938;
- Thu, 04 Nov 2021 17:13:44 -0700 (PDT)
+        bh=hW9j4fRXjsypK2LBZZotu05pU22OkQcuc/ncvw3x6RI=;
+        b=EgM8GVVwhGmBDg3FYi74eFsACGsMt+ZlzRXV3aKXEZq2zL/RhIKG30hEB5UrllEkH8
+         uVdmpt0oGfpjNOBYKlGVHxplviwyhJ2svsLQouXqz0kyaFvIMck0eKXoZKIOToVJfPCR
+         dMRs8lrRZY6Ue/zVT/mHAFPKn2Mrd29SYGkn7MLlJ8iklvosa7eenBDPkB7zlciiTT3P
+         ai6qttvnvZrAdh/XSLY2FNB38grTklAlQTRuQmr404I7DN/W13Skd8RuRqjNEaesZmnX
+         klLj0ZfVEbnXUhlkuxyoBqGgEMxIovqRVyEpLlq+xrpWsyRg/ZL/uyM2I0Nn/5pfrBDn
+         jaTw==
+X-Gm-Message-State: AOAM533aDH4QVz892IghL7VwfTHwkGEa8zQbbQ7Zq3qskMmaZ6/pUoxs
+        OT05yP+ZG8NgFFkxufpluoLT2EHUvfJmIiczgi8YIw==
+X-Google-Smtp-Source: ABdhPJz8yDJeZ8Q0sgfBTWu3SvmDy7lzOQpVKbpjk+LSezMt+JHLrZz0I/msEWacixVpHsKXSMOg6bcbbeR3bcnzBbw=
+X-Received: by 2002:a17:906:a3c4:: with SMTP id ca4mr64932317ejb.529.1636071406508;
+ Thu, 04 Nov 2021 17:16:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-4-brad@pensando.io>
- <1635166454.830065.190977.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1635166454.830065.190977.nullmailer@robh.at.kernel.org>
+References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-3-brad@pensando.io>
+ <YXnG10suyQYqYv5T@robh.at.kernel.org>
+In-Reply-To: <YXnG10suyQYqYv5T@robh.at.kernel.org>
 From:   Brad Larson <brad@pensando.io>
-Date:   Thu, 4 Nov 2021 17:13:34 -0700
-Message-ID: <CAK9rFnwP-7LAZFABrkwMk=jWF=y7+3Y_p3ivbpZQ5dH=9sy6xQ@mail.gmail.com>
-Subject: Re: [PATCH v3 03/11] dt-bindings: mmc: Add Pensando Elba SoC binding
+Date:   Thu, 4 Nov 2021 17:16:35 -0700
+Message-ID: <CAK9rFny1wHxuRa0uZkmsSoNncYV4V-6wsHdo10QXZnrYYmGtUQ@mail.gmail.com>
+Subject: Re: [PATCH v3 02/11] dt-bindings: Add vendor prefix for Pensando Systems
 To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
         Linus Walleij <linus.walleij@linaro.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Olof Johansson <olof@lixom.net>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, Oct 27, 2021 at 2:38 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Sun, Oct 24, 2021 at 06:51:47PM -0700, Brad Larson wrote:
+> > Add vendor prefix for Pensando Systems: https://pensando.io
+>
+> This should be before patch 1.
 
-On Mon, Oct 25, 2021 at 5:54 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Sun, 24 Oct 2021 18:51:48 -0700, Brad Larson wrote:
-> > Pensando Elba ARM 64-bit SoC is integrated with this IP and
-> > explicitly controls byte-lane enables resulting in an additional
-> > reg property resource.
-> >
-> > Signed-off-by: Brad Larson <brad@pensando.io>
-> > ---
-> >  .../devicetree/bindings/mmc/cdns,sdhci.yaml         | 13 ++++++++-----
-> >  1 file changed, 8 insertions(+), 5 deletions(-)
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml:20:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
->
-> dtschema/dtc warnings/errors:
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/patch/1545481
->
-> This check can fail if there are any dependencies. The base for a patch
-> series is generally the most recent rc1.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
->
+ack, will order this way for re-spin of the patch set.
 
-yamllint was not installed, it is now and dtschema is updated to run again
-before re-submit.
-
-Thanks,
+Thanks
 Brad
