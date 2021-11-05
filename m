@@ -2,95 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A70B7446578
-	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6B94465AF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Nov 2021 16:26:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233328AbhKEPLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 11:11:15 -0400
-Received: from mga11.intel.com ([192.55.52.93]:62671 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229680AbhKEPLO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 11:11:14 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10158"; a="229377692"
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; 
-   d="scan'208";a="229377692"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2021 08:02:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,212,1631602800"; 
-   d="scan'208";a="639841114"
-Received: from kuha.fi.intel.com ([10.237.72.166])
-  by fmsmga001.fm.intel.com with SMTP; 05 Nov 2021 08:02:08 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 05 Nov 2021 17:02:08 +0200
-Date:   Fri, 5 Nov 2021 17:02:08 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org
-Subject: Re: [PATCH v3 6/7] usb: typec: qcom: Remove standalone qcom pm8150b
- typec driver
-Message-ID: <YYVHcHC1Gm92VxEM@kuha.fi.intel.com>
-References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
- <20211105033558.1573552-7-bryan.odonoghue@linaro.org>
- <YYVG5DZJdNfZyj8x@kuha.fi.intel.com>
+        id S233495AbhKEP3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 11:29:12 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:53131 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233488AbhKEP3L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 11:29:11 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id C37B9100007;
+        Fri,  5 Nov 2021 15:26:29 +0000 (UTC)
+Date:   Fri, 5 Nov 2021 16:26:29 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Pavel Modilaynen <pavelmn@axis.com>
+Cc:     Pavel Modilaynen <Pavel.Modilaynen@axis.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>
+Subject: Re: [PATCH 1/2] rtc: rs5c372: Add support for trim configuration
+Message-ID: <YYVNJR0oAGuvOv6t@piout.net>
+References: <20211030225054.32114-1-pavel.modilaynen@axis.com>
+ <20211030225054.32114-2-pavel.modilaynen@axis.com>
+ <YX3N9b6P4w1kSGfp@piout.net>
+ <6cc22970-fa11-ccb4-c155-62396a7e3890@axis.com>
+ <YYAwkZ0RmhyfSewe@piout.net>
+ <2cd99097-043e-8aed-bc0d-a4d9fa8a38e8@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <YYVG5DZJdNfZyj8x@kuha.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2cd99097-043e-8aed-bc0d-a4d9fa8a38e8@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 05, 2021 at 04:59:53PM +0200, Heikki Krogerus wrote:
-> On Fri, Nov 05, 2021 at 03:35:57AM +0000, Bryan O'Donoghue wrote:
-> > Remove the standalone PMIC Type-C driver. We have implemented a full TCPM
-> > driver which covers and extends the functionality in this driver.
-> > 
-> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > ---
-> >  drivers/usb/typec/Kconfig           |  13 --
-> >  drivers/usb/typec/Makefile          |   1 -
-> >  drivers/usb/typec/qcom-pmic-typec.c | 262 ----------------------------
-> >  3 files changed, 276 deletions(-)
-> >  delete mode 100644 drivers/usb/typec/qcom-pmic-typec.c
-> > 
-> > diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-> > index ab480f38523aa..61fba7bd1671d 100644
-> > --- a/drivers/usb/typec/Kconfig
-> > +++ b/drivers/usb/typec/Kconfig
-> > @@ -75,19 +75,6 @@ config TYPEC_STUSB160X
-> >  	  If you choose to build this driver as a dynamically linked module, the
-> >  	  module will be called stusb160x.ko.
-> >  
-> > -config TYPEC_QCOM_PMIC
-> > -	tristate "Qualcomm PMIC USB Type-C driver"
-> > -	depends on ARCH_QCOM || COMPILE_TEST
-> > -	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
-> > -	help
-> > -	  Driver for supporting role switch over the Qualcomm PMIC.  This will
-> > -	  handle the USB Type-C role and orientation detection reported by the
-> > -	  QCOM PMIC if the PMIC has the capability to handle USB Type-C
-> > -	  detection.
-> > -
-> > -	  It will also enable the VBUS output to connected devices when a
-> > -	  DFP connection is made.
+On 02/11/2021 00:14:39+0100, Pavel Modilaynen wrote:
+> Hi Alexandre,
 > 
-> I don't like that you create point where the support is temporarily
-> removed for this hardware. I know Guenter asked that you remove the
-> old driver in a separate patch, but I believe at that point you were
-> also proposing different config option name for the new driver, so you
-> could have removed the old driver only after you added the new one.
+> On 11/1/21 7:23 PM, Alexandre Belloni wrote:
+> > On 31/10/2021 11:29:12+0100, Pavel Modilaynen wrote:
+> > > On 10/31/21 12:57 AM, Alexandre Belloni wrote:
+> > > > Hello,
+> > > > > Please use the proper RTC interface by implementing .set_offset
+> > > and
+> > > > .read_offset.
+> > > 
+> > > I am not sure about .set/read_offset. It looks as runtime adjustment
+> > > interface,
+> > > however this Xtal trimming parameter is based on schematics and Xtal
+> > > capacitance (datasheet parameter).
+> > > It is found by calibration procedure based on RTC clock output (the
+> > > procedure and calculation of trimming parameter is described in datasheets).
+> > > So, I would like to say that this parameter is functionally close to
+> > > "quartz-load-femtofarads" for rtc-pcf8523/pcf85063.
+> > > 
+> > 
+> > quartz-load-femtofarads is for analog trimming which this RTC doesn't
+> > have, both CD and CG are set to 10pF. .set/read_offset are for digital
+> > trimming which is what you are configuring here. You definitively want
+> > to be able to do that at runtime as you need to adjust for temperature
+> > and ageing of the crystal (datasheet, page 14: "For those systems that
+> > have temperature detection precision of clock function may be increased
+> > by correcting clock error according to temperature fluctuations.")
+> > 
 > 
-> Since you now use the same configuration option name - which makes
-> perfect sense to me - I think you need to refactor this series. Maybe
-> you could first just move the old driver under drivers/usb/typec/tcpm/
-> in one patch, and then modify and slit it in another patch.
+> Thank you for reply.
+> 
+> I am not denying the need in runtime adjustment related to
+> temperature, aging and precision, which you are referring by excerpt from
+> p.14.
+> 
+> I would like to make a point that Xtal trimming is for coarse grained
+> adjustment (pages 36-39), primarily related to Xtal capacitance CL (not
+> CD/CG). Our goal is to keep a reasonable  drift of ,say, <1 second per day
+> and for Xtal that we use with 12.5pF RTC manufacturer recommends using 0x23
+> value for adjustment. In this case we act according to (A) course from page
+> 38:
+> 
+> "Adjustment of clock is not made for IC (no adjustment) and any CL value may
+> be used for the crystal oscillator. Precision fluctuations of a crystal
+> oscillator may be selected as long as clock precision allows. Obtain the
+> central frequency as described in section 2.2 using several crystal
+> oscillator and ICs, determine an adjustment value as
+> described in “2.4 Time Trimming Circuit” which shall be set to the
+> RS5C372A/B."
+> 
 
-Or just merge this patch to the next one.
+This doesn't prevent you from using the .set/read_offset interface.
+Simply have a startup script that forcibly set the hardcoded value if
+this is what you want. However, I'm pretty sure your products have NTP
+which allows to precisely set a calculated value instead of an hardcoded
+one.
 
-thanks,
+> 
+> > > > > On 31/10/2021 00:50:53+0200, Pavel Modilaynen wrote:
+> > > > > From: Pavel Modilaynen <pavelmn@axis.com>
+> > > > > > > Add support for oscillation adjustment register
+> > > RS5C372_REG_TRIM
+> > > > > setting that is needed to accommodate for effective crystal
+> > > > > capacitance.
+> > > > > > > Use optional property ricoh,trim that should contain
+> > > > > raw value to setup this register. According to
+> > > > > datasheets for RS5C372, R2025S/D, RV5C38[67] and R222[13]
+> > > > > the value will be converted to a number of ticks that
+> > > > > is to be subtracted or added when the second digits read
+> > > > > 00, 20 or 40 seconds.
+> > > > > > > Signed-off-by: Pavel Modilaynen <pavelmn@axis.com>
+> > > > > ---
+> > > > >   drivers/rtc/rtc-rs5c372.c | 18 +++++++++++++++++-
+> > > > >   1 file changed, 17 insertions(+), 1 deletion(-)
+> > > > > > > diff --git a/drivers/rtc/rtc-rs5c372.c
+> > > b/drivers/rtc/rtc-rs5c372.c
+> > > > > index 80980414890c..3a2db0326669 100644
+> > > > > --- a/drivers/rtc/rtc-rs5c372.c
+> > > > > +++ b/drivers/rtc/rtc-rs5c372.c
+> > > > > @@ -13,6 +13,7 @@
+> > > > >   #include <linux/slab.h>
+> > > > >   #include <linux/module.h>
+> > > > >   #include <linux/of_device.h>
+> > > > > +#include <linux/of.h>
+> > > > >   /*
+> > > > >    * Ricoh has a family of I2C based RTCs, which differ only slightly from
+> > > > > @@ -560,6 +561,8 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+> > > > >   {
+> > > > >         unsigned char buf[2];
+> > > > >         int addr, i, ret = 0;
+> > > > > +     struct i2c_client *client = rs5c372->client;
+> > > > > +     u8 trim = 0;
+> > > > >         addr   = RS5C_ADDR(RS5C_REG_CTRL1);
+> > > > >         buf[0] = rs5c372->regs[RS5C_REG_CTRL1];
+> > > > > @@ -599,9 +602,22 @@ static int rs5c_oscillator_setup(struct rs5c372 *rs5c372)
+> > > > >                 break;
+> > > > >         }
+> > > > > +     /* optional setup of xtal trimming */
+> > > > > +     if (!of_property_read_u8(client->dev.of_node, "ricoh,trim", &trim)) {
+> > > > > +             if (rs5c372->type != rtc_r2221tl && (trim & ~RS5C372_TRIM_MASK)) {
+> > > > > +                     dev_warn(&client->dev, "Erroneous setting for ricoh,trim in devicetree\n");
+> > > > > +             } else {
+> > > > > +                     int addr = RS5C_ADDR(RS5C372_REG_TRIM);
+> > > > > +                     int ret = i2c_smbus_write_byte_data(client, addr, trim);
+> > > > > +
+> > > > > +                     if (unlikely(ret < 0))
+> > > > > +                             return ret;
+> > > > > +             }
+> > > > > +     }
+> > > > > +
+> > > > >         for (i = 0; i < sizeof(buf); i++) {
+> > > > >                 addr = RS5C_ADDR(RS5C_REG_CTRL1 + i);
+> > > > > -             ret = i2c_smbus_write_byte_data(rs5c372->client, addr, buf[i]);
+> > > > > +             ret = i2c_smbus_write_byte_data(client, addr, buf[i]);
+> > > > >                 if (unlikely(ret < 0))
+> > > > >                         return ret;
+> > > > >         }
+> > > > > -- > > 2.20.1
+> > > > > > > -- > Alexandre Belloni, co-owner and COO, Bootlin
+> > > > Embedded Linux and Kernel engineering
+> > > > https://bootlin.com <https://bootlin.com> <https://bootlin.com
+> > <https://bootlin.com>>
+> > 
+> > -- 
+> > Alexandre Belloni, co-owner and COO, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com <https://bootlin.com>
 
 -- 
-heikki
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
