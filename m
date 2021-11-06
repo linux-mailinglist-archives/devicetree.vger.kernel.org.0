@@ -2,144 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03E3C446BC6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 02:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 961C1446C06
+	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 03:25:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233643AbhKFBdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 21:33:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33954 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231963AbhKFBdO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Nov 2021 21:33:14 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 53C10611CE;
-        Sat,  6 Nov 2021 01:30:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636162233;
-        bh=02topxTHAKThTBTO3zqDJ42JdAkAX0HtqC0Y3dyHDO4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bSUfk72v4gVL76Pufs+Vep/nBUKmVCUx7AEjw4b8a+DvrEpt0bPhp/BiReiKv4E3l
-         mYAiv/VypSVL8AmEslrvfQvjoLHycS2WI4SD7RHYIPA3u1ZwOmdOCIuX1HFqBzc25M
-         Y4J1viSGnQL+EDyvlB66JRtKPwKvd+2rUwZw8Fe4ONPlghum73i1+l8T7pnJUpeq8e
-         mXABvTQuLsy+JI6wdZJ0/wvUt8e6hNHpXlRsTqyDEq9129Zi9IwA+XkkFm66mWWqAd
-         tE7f8LFr24Lp2K6E8xFNvVzWwApBVPbxNvtdc1AcV+y3fjgsdHIkusncqVq9d4PPa9
-         O2o9jSN5p4dFw==
-Received: by mail-ed1-f41.google.com with SMTP id m14so38158526edd.0;
-        Fri, 05 Nov 2021 18:30:33 -0700 (PDT)
-X-Gm-Message-State: AOAM533Y2KGFVb1Y4DQ3kAzx0BLhH+2hRT0E5OLLlI4poMKfVmx5vBBG
-        0DU3KPNrIZq4Sgf2m/J/zO80lsv+oltpYIKaLg==
-X-Google-Smtp-Source: ABdhPJxnUmIJLji323JYPjuxpKBPy6Ndvgj+6MG4lN/0vDFEDITAF/DyPe1a/jS0M0oVZrMBXPAX17mREqfK/9RxrPY=
-X-Received: by 2002:a17:906:66d2:: with SMTP id k18mr25705246ejp.320.1636162231741;
- Fri, 05 Nov 2021 18:30:31 -0700 (PDT)
+        id S231672AbhKFC1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 22:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230081AbhKFC1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 22:27:48 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C97C061570;
+        Fri,  5 Nov 2021 19:25:08 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id p8so8473956pgh.11;
+        Fri, 05 Nov 2021 19:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HS5tdtnjvtjCMr7mW88LxdLfRIjrhjbdJc8HlrChIEg=;
+        b=ZLrSv+yowWNqO2SF/2PhBAyu9ur4ZKQJcEVVZI3a4W87NomWXLbhOwA4kvAydlemk/
+         gHJN0Xai9afiz1Vd+CkU5S07wQI5mbxi+DXTlE5LHbIbPyMFw3eXZV/4OR9XwAWwttIC
+         MiF4SRTPASsl3rs7NNE9BhOQqqLPV7Ci/kVxRB9pYVcothwp57QOy4lpAcpEDPfCMYcm
+         R5xFAgOkEkIyYygCVVuDZSvqG1VmNYar2MRhFGTBKJthVu+OqzwFncZRJIf2ZZeGfIF/
+         wAIzaU4xnj0NQioQ87s0nOQgqy6IHjRiHRYS663i0qYpLeWb+cyrjdaaghHw0dS8yw73
+         loew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HS5tdtnjvtjCMr7mW88LxdLfRIjrhjbdJc8HlrChIEg=;
+        b=kh7wlNWSKjf/9lScdaP6GKOjUCmzi/oXV4JHiFGIRh5AjU59BD2gl57Jiz3dldkRXy
+         VqswE6QUifgUrd2KNcKehhPv5t9RMQWTXQIDvTOHG7BmCitVMPCJmfpQWXubbS4WWWuw
+         w+dpShITElu1pqGcN3Owm/EHLoeCdnGqOWHd58BRwFx95XmLoHmVGKbLi1AssnyAI0bU
+         YjiZ8b6qyzqd69bxD/UVb5YqAKfEQYsTaRoqw1Cu/Nd6N8SF1acvE4KFxtu7w9sYGwNO
+         NkyfV82NhVbvc+maB2Y0nDT7WLuUM0JZmZ1awGtj6Z6S+ZhXwp6bt95OdkPiAlvP8pXm
+         gUTQ==
+X-Gm-Message-State: AOAM530NsBYwGz8y3CGdYP5wMljzI/88ZQwku1bp5OES3YtxxugctaYm
+        kjshQmpCkpVthWyJpHMdhcI=
+X-Google-Smtp-Source: ABdhPJzqz+LPA78908kez9PRo7qqfIpvJ5Vf1VtQiAQoyfpvTnE4hiu4jdgouLouIs9gqZ9yoclf+g==
+X-Received: by 2002:a63:1cd:: with SMTP id 196mr47171777pgb.39.1636165507644;
+        Fri, 05 Nov 2021 19:25:07 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:837c:e765:475f:22d3])
+        by smtp.gmail.com with ESMTPSA id a21sm8678162pfv.67.2021.11.05.19.25.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Nov 2021 19:25:06 -0700 (PDT)
+Date:   Fri, 5 Nov 2021 19:25:04 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mylene.josserand@free-electrons.com, linus.walleij@linaro.org,
+        andreas@kemnade.info, rydberg@bitmath.org, robh+dt@kernel.org,
+        alistair23@gmail.com
+Subject: Re: [PATCH v2 4/4] ARM: dts: imx7d: remarkable2: Enable the cyttsp5
+Message-ID: <YYXngKCBbAkkxEKj@google.com>
+References: <20211103114830.62711-1-alistair@alistair23.me>
+ <20211103114830.62711-5-alistair@alistair23.me>
 MIME-Version: 1.0
-References: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org>
- <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
- <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com> <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org>
-In-Reply-To: <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 5 Nov 2021 20:30:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLxJ4HYUEcdCu-5EiakXe9e3yueOdxRa24K2r04F1Zqeg@mail.gmail.com>
-Message-ID: <CAL_JsqLxJ4HYUEcdCu-5EiakXe9e3yueOdxRa24K2r04F1Zqeg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
- machine bindings
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        "Gross, Andy" <agross@kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        judyhsiao@chromium.org, Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Patrick Lai <plai@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211103114830.62711-5-alistair@alistair23.me>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 2, 2021 at 5:57 AM Srinivasa Rao Mandadapu
-<srivasam@codeaurora.org> wrote:
->
->
-> On 10/30/2021 12:37 AM, Stephen Boyd wrote:
-> Thanks for Your time Stephen!!!
-> > Quoting Srinivasa Rao Mandadapu (2021-10-29 08:04:35)
-> >> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-> >> new file mode 100644
-> >> index 0000000..3a781c8
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-> >> @@ -0,0 +1,170 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Google SC7280-Herobrine ASoC sound card driver
-> >> +
-> >> +maintainers:
-> >> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> >> +  - Judy Hsiao <judyhsiao@chromium.org>
-> >> +
-> >> +description:
-> >> +  This binding describes the SC7280 sound card which uses LPASS for audio.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - google,sc7280-herobrine
-> >> +
-> >> +  audio-routing:
-> >> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> >> +    description:
-> >> +      A list of the connections between audio components. Each entry is a
-> >> +      pair of strings, the first being the connection's sink, the second
-> >> +      being the connection's source.
-> >> +
-> >> +  model:
-> >> +    $ref: /schemas/types.yaml#/definitions/string
-> >> +    description: User specified audio sound card name
-> >> +
-> >> +  "#address-cells":
-> >> +    const: 1
-> >> +
-> >> +  "#size-cells":
-> >> +    const: 0
-> >> +
-> >> +patternProperties:
-> >> +  "^dai-link@[0-9a-f]$":
-> >> +    description:
-> >> +      Each subnode represents a dai link. Subnodes of each dai links would be
-> >> +      cpu/codec dais.
-> >> +
-> >> +    type: object
-> >> +
-> >> +    properties:
-> >> +      link-name:
-> >> +        description: Indicates dai-link name and PCM stream name.
-> >> +        $ref: /schemas/types.yaml#/definitions/string
-> >> +        maxItems: 1
-> >> +
-> >> +      reg:
-> >> +        maxItems: 1
-> >> +        description: dai link address.
-> >> +
-> >> +      cpu:
-> >> +        description: Holds subnode which indicates cpu dai.
-> >> +        type: object
-> >> +        properties:
-> >> +          sound-dai: true
-> > Is sound-dai required? And additionalProperties is false? I think we
-> > need that yet again.
-> Okay. Will mark additionalPropertiesas true.
+On Wed, Nov 03, 2021 at 09:48:30PM +1000, Alistair Francis wrote:
+> +	tsc@24 {
+> +		compatible = "cypress,tt21000";
+> +		reg = <0x24>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_touch>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio1 13 0>;
 
-'additiionalProperties: true' is almost never right. It's generally
-only correct for schemas that are incomplete collections of
-properties.
+Reset lines are almost universally active low. Are you sure it is active
+high in your case?
 
-Rob
+Thanks.
+
+-- 
+Dmitry
