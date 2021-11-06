@@ -2,98 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A554C446B90
-	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 01:24:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E3C446BC6
+	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 02:30:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbhKFA1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 20:27:11 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:43802 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbhKFA1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 20:27:11 -0400
-Received: by mail-ot1-f46.google.com with SMTP id i16-20020a9d68d0000000b0055c630be045so4792940oto.10;
-        Fri, 05 Nov 2021 17:24:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=PHkUHNRSgGKJJ5x9Czw+f8F7S8eqegCyS+KNmMqDioo=;
-        b=uVjHedOK5PqfV0i/5qKSVyxyHXSydvmGz1RfIQgpI5Alj5om76mC63mkPE2RI1Q+N4
-         ZIPVgjIEzmp8OnupG4UVsDk8khGEotjXZ5Vz+b/bqX3qn+Bi8P6ulCesljxjrBBCNLfb
-         y13hPfsXAKB6J5L0Y3nW8EyvgbotV3DO6LOWKtPHRk+VtY8HWkrWi/2dtuql8oUkboVk
-         /hQVYmtrAAAq2KuZcVhQkpRCudJxr65LJyHL71JiHvqAOXZdu7NEeuiIqkuBAbWorool
-         Z1sam3+UatuMVPYHDzb5zA2vXpy0hA1lqTitSGyNF6lWRNVOyJNeM5HGAU18BgUgLTzB
-         xC4Q==
-X-Gm-Message-State: AOAM533GgGJ2jnEQcscBs5uJzUMnDe+237X7yDtJEl40gqEkFmnd/13u
-        h6j9YcHcmPuEX3IWKckl6Q==
-X-Google-Smtp-Source: ABdhPJzEpM2oE758JPy/Vs1YwXoKf/P2GJ3dymT26SjQaUm9cxMcWji+fZiLc4GiOkNPvVWdzbIRag==
-X-Received: by 2002:a9d:850:: with SMTP id 74mr17617558oty.349.1636158270293;
-        Fri, 05 Nov 2021 17:24:30 -0700 (PDT)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id p12sm1491083otp.79.2021.11.05.17.24.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 17:24:29 -0700 (PDT)
-Received: (nullmailer pid 2112791 invoked by uid 1000);
-        Sat, 06 Nov 2021 00:24:28 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        cosmin.tanislav@analog.com,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-In-Reply-To: <20211105143550.1783528-3-demonsingur@gmail.com>
-References: <20211105143550.1783528-1-demonsingur@gmail.com> <20211105143550.1783528-3-demonsingur@gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: add AD74413R
-Date:   Fri, 05 Nov 2021 19:24:28 -0500
-Message-Id: <1636158268.701301.2112790.nullmailer@robh.at.kernel.org>
+        id S233643AbhKFBdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Nov 2021 21:33:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33954 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231963AbhKFBdO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Nov 2021 21:33:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 53C10611CE;
+        Sat,  6 Nov 2021 01:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636162233;
+        bh=02topxTHAKThTBTO3zqDJ42JdAkAX0HtqC0Y3dyHDO4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bSUfk72v4gVL76Pufs+Vep/nBUKmVCUx7AEjw4b8a+DvrEpt0bPhp/BiReiKv4E3l
+         mYAiv/VypSVL8AmEslrvfQvjoLHycS2WI4SD7RHYIPA3u1ZwOmdOCIuX1HFqBzc25M
+         Y4J1viSGnQL+EDyvlB66JRtKPwKvd+2rUwZw8Fe4ONPlghum73i1+l8T7pnJUpeq8e
+         mXABvTQuLsy+JI6wdZJ0/wvUt8e6hNHpXlRsTqyDEq9129Zi9IwA+XkkFm66mWWqAd
+         tE7f8LFr24Lp2K6E8xFNvVzWwApBVPbxNvtdc1AcV+y3fjgsdHIkusncqVq9d4PPa9
+         O2o9jSN5p4dFw==
+Received: by mail-ed1-f41.google.com with SMTP id m14so38158526edd.0;
+        Fri, 05 Nov 2021 18:30:33 -0700 (PDT)
+X-Gm-Message-State: AOAM533Y2KGFVb1Y4DQ3kAzx0BLhH+2hRT0E5OLLlI4poMKfVmx5vBBG
+        0DU3KPNrIZq4Sgf2m/J/zO80lsv+oltpYIKaLg==
+X-Google-Smtp-Source: ABdhPJxnUmIJLji323JYPjuxpKBPy6Ndvgj+6MG4lN/0vDFEDITAF/DyPe1a/jS0M0oVZrMBXPAX17mREqfK/9RxrPY=
+X-Received: by 2002:a17:906:66d2:: with SMTP id k18mr25705246ejp.320.1636162231741;
+ Fri, 05 Nov 2021 18:30:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org>
+ <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com> <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org>
+In-Reply-To: <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 5 Nov 2021 20:30:20 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLxJ4HYUEcdCu-5EiakXe9e3yueOdxRa24K2r04F1Zqeg@mail.gmail.com>
+Message-ID: <CAL_JsqLxJ4HYUEcdCu-5EiakXe9e3yueOdxRa24K2r04F1Zqeg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
+ machine bindings
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        "Gross, Andy" <agross@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Patrick Lai <plai@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Nov 2021 16:35:49 +0200, Cosmin Tanislav wrote:
-> Add device tree bindings for AD74413R.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-> ---
->  .../bindings/iio/addac/adi,ad74413r.yaml      | 153 ++++++++++++++++++
->  include/dt-bindings/iio/addac/adi,ad74413r.h  |  21 +++
->  2 files changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->  create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
-> 
+On Tue, Nov 2, 2021 at 5:57 AM Srinivasa Rao Mandadapu
+<srivasam@codeaurora.org> wrote:
+>
+>
+> On 10/30/2021 12:37 AM, Stephen Boyd wrote:
+> Thanks for Your time Stephen!!!
+> > Quoting Srinivasa Rao Mandadapu (2021-10-29 08:04:35)
+> >> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> >> new file mode 100644
+> >> index 0000000..3a781c8
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> >> @@ -0,0 +1,170 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Google SC7280-Herobrine ASoC sound card driver
+> >> +
+> >> +maintainers:
+> >> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> >> +  - Judy Hsiao <judyhsiao@chromium.org>
+> >> +
+> >> +description:
+> >> +  This binding describes the SC7280 sound card which uses LPASS for audio.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - google,sc7280-herobrine
+> >> +
+> >> +  audio-routing:
+> >> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> >> +    description:
+> >> +      A list of the connections between audio components. Each entry is a
+> >> +      pair of strings, the first being the connection's sink, the second
+> >> +      being the connection's source.
+> >> +
+> >> +  model:
+> >> +    $ref: /schemas/types.yaml#/definitions/string
+> >> +    description: User specified audio sound card name
+> >> +
+> >> +  "#address-cells":
+> >> +    const: 1
+> >> +
+> >> +  "#size-cells":
+> >> +    const: 0
+> >> +
+> >> +patternProperties:
+> >> +  "^dai-link@[0-9a-f]$":
+> >> +    description:
+> >> +      Each subnode represents a dai link. Subnodes of each dai links would be
+> >> +      cpu/codec dais.
+> >> +
+> >> +    type: object
+> >> +
+> >> +    properties:
+> >> +      link-name:
+> >> +        description: Indicates dai-link name and PCM stream name.
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +        maxItems: 1
+> >> +
+> >> +      reg:
+> >> +        maxItems: 1
+> >> +        description: dai link address.
+> >> +
+> >> +      cpu:
+> >> +        description: Holds subnode which indicates cpu dai.
+> >> +        type: object
+> >> +        properties:
+> >> +          sound-dai: true
+> > Is sound-dai required? And additionalProperties is false? I think we
+> > need that yet again.
+> Okay. Will mark additionalPropertiesas true.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+'additiionalProperties: true' is almost never right. It's generally
+only correct for schemas that are incomplete collections of
+properties.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: properties:adi,rsense-resistance-ohms: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml: ignoring, error in schema: properties: adi,rsense-resistance-ohms
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
-Error: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dts:23.32-33 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1551417
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
