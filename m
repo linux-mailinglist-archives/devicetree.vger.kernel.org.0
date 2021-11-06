@@ -2,127 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDC9446E27
-	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 14:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 489D9446E44
+	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 15:23:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234239AbhKFNnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Nov 2021 09:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50288 "EHLO
+        id S233668AbhKFO0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Nov 2021 10:26:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234406AbhKFNnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Nov 2021 09:43:16 -0400
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2010C061570
-        for <devicetree@vger.kernel.org>; Sat,  6 Nov 2021 06:40:35 -0700 (PDT)
-Received: by mail-io1-xd36.google.com with SMTP id p193so13891325iod.8
-        for <devicetree@vger.kernel.org>; Sat, 06 Nov 2021 06:40:35 -0700 (PDT)
+        with ESMTP id S233614AbhKFO0G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Nov 2021 10:26:06 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2892AC061570;
+        Sat,  6 Nov 2021 07:23:25 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id t5-20020a17090a4e4500b001a0a284fcc2so5402304pjl.2;
+        Sat, 06 Nov 2021 07:23:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=b4rYg5SOz5rOM5p5ctP9uplrloJl2DRm6ET8X/kYdOk=;
-        b=fbFf1jrMsj/pY0p4Ko/3rM6z2gTqdX0NP/OjoOS0afP5MAZnQiOZoihgq/saU6zeG1
-         yUgBkgvLkmWxK4UdbfxDBmI40jcs7q+HYCWDX/tTraFqZv3jC/6H2W7s+nA7juQAUQZh
-         cBeSFbzkdulV0Ykc/uP/53Rtgi4xBOb1Kkzrg0bY3WighhhEpNh6RXnyDNHkXcVatCvz
-         E8uXmQdZTCBnbhlACDFQEaMikDBbbvZYUXT3EKmrivIatlIUJ5PrWSSwxSzNabLNSLUn
-         HnjGHzw/I3hka+NHFf8dcs3ydNGPl/tMwDCoZKB0QHO9F29fMPGLyv3ObdsP5+O6ENi+
-         fRVg==
+        h=from:to:cc:subject:date:message-id;
+        bh=hq+4Vsu97LBFL6wCsWyPt3va/75TDS9sonocRI27F48=;
+        b=IbCYME7dpSm3Tp1aj3zGo8L8h3H+p0ACCWTmZgCX2Zl9US9pKz0eO5yzQWEokCklZB
+         zjJ2R3/TtJYBZkARFn/csyoAtvTuzOZlzaCReNIZ61MKyzgDSkPxFvkyNdR3QH/a7nvK
+         34F6r63sM8qttDu0XSvlMu0ih32OFiJlTW9X2akSJCCEuyUGqzrKQTWeb09O3DatGZra
+         tNi7UD1t9reaXc9Ka6CHPJ/KvxGR1hhmvqkm0Dkq2h79WWzJMRqEtnkZnl44M8duN9wG
+         sF9jyKu+7CmBHbeRrmF5djRUvH7gQSfNPqVwQ1iL6YCpSbzprg+Dm6xfQgDG6TzIvdfH
+         RglA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=b4rYg5SOz5rOM5p5ctP9uplrloJl2DRm6ET8X/kYdOk=;
-        b=7bqZ+NN81VRPib9WZP8/mOChNFDppUh0NuF5a1mYTZfEg8C2/YpKyRCms13AQCDGoR
-         MI1B7srY6ssNl5cEApmBa2WxwF1nxgoNz0Hi23mLp3/Ji9GFDbVGAC6I5ktz/9xP8ZAQ
-         xoW3hSkfWfbfFV2G8km2BnjRnoaR7WaJmMFi4suZ+5up/kFYh7BO1R4shH7JwLsBFBd2
-         wtmx2ADW6NM94UjxUrsCXCnTspZKZwaBtW7h1t0cKeiym0NCnAnhdDSSY83urxQHvNva
-         lbm7FVCA1Zi/BmC/J/tYL7k8+i0Uf1TaIOYeiRIXhuuAT3+RViHQi/+STeaP9wl0p5oT
-         IDww==
-X-Gm-Message-State: AOAM532/lIzaMkV/ENfB/a2fNsZ/N4JnnFTJzliefon5jPDE0KAAGtE+
-        PNpMwRbbZ9iGoajGZxFttcj6YbsPAc7FmvHjHi8=
-X-Google-Smtp-Source: ABdhPJwPriX1x5NskblSx84lPUaRbtE82Az+eQUzIN+cr6mZy5Kf5lmiSxVU+Vtj6a8GvI2wWMA2xEkMBWGmnzvs8JA=
-X-Received: by 2002:a6b:c991:: with SMTP id z139mr4275514iof.41.1636206035236;
- Sat, 06 Nov 2021 06:40:35 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:a05:6602:2f03:0:0:0:0 with HTTP; Sat, 6 Nov 2021 06:40:34
- -0700 (PDT)
-Reply-To: msbelinaya892@gmail.com
-From:   msbelinaya <raymondmicheal919@gmail.com>
-Date:   Sat, 6 Nov 2021 13:40:34 +0000
-Message-ID: <CAM6ZuAMpDf8LFaAhTC87=wEwKiTyM18XOAANt2rfzvxq9aNS8A@mail.gmail.com>
-Subject: =?UTF-8?Q?T=C3=BCrkei?=
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=hq+4Vsu97LBFL6wCsWyPt3va/75TDS9sonocRI27F48=;
+        b=Uyu977t6jPRl43o2XlCi/Y9Iqw0jh4hoy2HZa6piwMKW9yWx3wi7hgKeqk5O8Sql4Y
+         CTlrznsftMRCEZbKvTjn5vrp4SMatseV+7XaggG452kG7PSH60enCSyKxlQtc4zLvtZW
+         oMX2JW+8t3Qr6MJzxXB/rPKa7FEou4oi6XB+LS5nVNQe1Q4xl4jlm8kcQx9gWJHnfnt5
+         QcJTAg0K0h6TUWJ4JaKl61lHTRpmGSSJ38sKgI6vbVnXshuy9AS+UVw6L30hVqMbrV3f
+         8YW3DNAyek/toswyWIc6Hi+HtUkHHrRIT6bfHE9WYe/3xfcGOpbNTWUtwQEwaAFlYGJO
+         4PEw==
+X-Gm-Message-State: AOAM533t/fne01v6SrRHL491pMO8vNr3iKmPCIycOf6aZCqXroOHuq+O
+        Cl2lt6nrxnBs2BXLsr8AHzXptf1id20=
+X-Google-Smtp-Source: ABdhPJzCIvEQFUREbXqSs3e1dOl+iJaYLi0z1ZTfCk80pEBKYApexIvmiUJInDJPbrJ9sGSH4ljiLg==
+X-Received: by 2002:a17:90a:bb84:: with SMTP id v4mr38861487pjr.4.1636208604662;
+        Sat, 06 Nov 2021 07:23:24 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id m4sm10859258pjs.1.2021.11.06.07.23.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 06 Nov 2021 07:23:24 -0700 (PDT)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+X-Google-Original-From: Tony Huang <tony.huang@sunplus.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, Tony Huang <tony.huang@sunplus.com>
+Subject: [PATCH 0/2] Add mmc driver for Sunplus SP7021 SOC
+Date:   Sat,  6 Nov 2021 22:23:16 +0800
+Message-Id: <1636208598-18234-1-git-send-email-tony.huang@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ich biete meine Freundschaft an und glaube, dass Sie mich mit gutem
-Herzen akzeptieren werden. Ich wurde gedr=C3=A4ngt, Sie zu kontaktieren und
-zu sehen, wie wir einander am besten unterst=C3=BCtzen k=C3=B6nnen. Ich bin=
- Frau
-Kodjovi Hegbor aus der T=C3=BCrkei und arbeite als Divisionsleiterin f=C3=
-=BCr
-Operationen bei der StandardBNP bank limited Turkey . Ich glaube, es
-ist der Wille Gottes, dass ich Ihnen jetzt begegnen werde. Ich habe
-ein wichtiges gesch=C3=A4ftliches Gespr=C3=A4ch, das ich mit Ihnen teilen
-m=C3=B6chte, von dem ich glaube, dass es Sie interessiert, da es mit Ihrem
-Nachnamen in Verbindung steht und Sie davon profitieren werden.
+This is a patch series for mmc driver for Sunplus SP7021 SOC.
 
- Im Jahr 2006 hat ein B=C3=BCrger Ihres Landes bei meiner Bank ein
-Nicht-Residentenkonto f=C3=BCr 36 Monate des Kalenders im Wert von
-=C2=A38.400.000,00 eingerichtet. Das Ablaufdatum f=C3=BCr diesen Depotvertr=
-ag
-war der 16. Januar 2009. Leider starb er w=C3=A4hrend einer Gesch=C3=A4ftsr=
-eise
-bei einem t=C3=B6dlichen Erdbeben am 12. Mai 2008 in Sichuan, China, bei
-dem mindestens 68.000 Menschen ums Leben kamen.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Das Management meiner Bank hat noch nichts von seinem Tod erfahren,
-ich wusste davon, weil er mein Freund war und ich sein Kontof=C3=BChrer
-war, als das Konto vor meiner Bef=C3=B6rderung er=C3=B6ffnet wurde. Jedoch =
-Herr
- erw=C3=A4hnte bei der Kontoer=C3=B6ffnung keine n=C3=A4chsten Verwandten/E=
-rben, und
-er war nicht verheiratet und hatte keine Kinder. Letzte Woche hat
-meine Bankdirektion mich gebeten, Anweisungen zu geben, was mit seinen
-Geldern zu tun ist, wenn der Vertrag verl=C3=A4ngert werden soll.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Ich wei=C3=9F, dass dies passieren wird, und deshalb habe ich nach einem
-Mittel gesucht, um mit der Situation umzugehen, denn wenn meine
-Bankdirektoren wissen, dass sie tot sind und keinen Erben haben,
-werden sie das Geld f=C3=BCr ihren pers=C3=B6nlichen Gebrauch nehmen, also =
-Ich
-m=C3=B6chte nicht, dass so etwas passiert. Als ich Ihren Nachnamen sah, war
-ich gl=C3=BCcklich und suche jetzt Ihre Mitarbeit, um Sie als Next of
-Kin/Erbe des Kontos zu pr=C3=A4sentieren, da Sie den gleichen Nachnamen wie
-er haben und meine Bankzentrale das Konto freigeben wird f=C3=BCr dich. Es
-besteht kein Risiko; die Transaktion wird im Rahmen einer legitimen
-Vereinbarung ausgef=C3=BChrt, die Sie vor Rechtsverletzungen sch=C3=BCtzt.
+Tony Huang (2):
+  dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+  mmc: Add mmc driver for Sunplus SP7021
 
-Es ist besser, dass wir das Geld beanspruchen, als es den
-Bankdirektoren zu erlauben, es zu nehmen, sie sind bereits reich. Ich
-bin kein gieriger Mensch, daher schlage ich vor, dass wir das Geld zu
-gleichen Teilen teilen, 50/50% auf beide Parteien. Mein Anteil wird
-mir helfen, mein eigenes Unternehmen zu gr=C3=BCnden und den Erl=C3=B6s f=
-=C3=BCr
-wohlt=C3=A4tige Zwecke zu verwenden, was mein Traum war.
+ .../devicetree/bindings/mmc/sunplus-mmc.yaml       |   64 +
+ MAINTAINERS                                        |    7 +
+ drivers/mmc/host/Kconfig                           |    9 +
+ drivers/mmc/host/Makefile                          |    1 +
+ drivers/mmc/host/sunplus_mmc.c                     | 1593 ++++++++++++++++++++
+ drivers/mmc/host/sunplus_mmc.h                     |  181 +++
+ 6 files changed, 1855 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
+ create mode 100644 drivers/mmc/host/sunplus_mmc.c
+ create mode 100644 drivers/mmc/host/sunplus_mmc.h
 
-Teilen Sie mir Ihre Meinung zu meinem Vorschlag mit, bitte, ich
-brauche wirklich Ihre Hilfe bei dieser Transaktion. Ich habe Sie
-ausgew=C3=A4hlt, um mir zu helfen, nicht durch mein eigenes Tun, mein
-Lieber, sondern bei Gott wollte ich, dass Sie wissen, dass ich mir
-Zeit zum Beten genommen habe =C3=BCber diese Mitteilung, bevor ich Sie
-jemals kontaktiert habe, teilen Sie mir Ihre Meinung dazu mit und
-behandeln Sie diese Informationen bitte als STRENG GEHEIM. Nach Erhalt
-Ihrer Antwort, ausschlie=C3=9Flich =C3=BCber meine pers=C3=B6nliche E-Mail-=
-Adresse,
-msbelinaya892@gmail.com
-gibt Ihnen Details zur Transaktion. Und eine Kopie der
-Einlagenbescheinigung des Fonds sowie die Gr=C3=BCndungsurkunde der
-Gesellschaft, die den Fonds erstellt hat.
-Gott segne, in Erwartung Ihrer dringenden Antwort
-Mit freundlichen Gr=C3=BC=C3=9Fen
-Frau Kodjovi Hegbor
-msbelinaya892@gmail.com
+-- 
+2.7.4
+
