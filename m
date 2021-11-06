@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 961C1446C06
-	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 03:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EDA3446C67
+	for <lists+devicetree@lfdr.de>; Sat,  6 Nov 2021 05:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231672AbhKFC1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Nov 2021 22:27:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45912 "EHLO
+        id S233736AbhKFExS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Nov 2021 00:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbhKFC1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Nov 2021 22:27:48 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58C97C061570;
-        Fri,  5 Nov 2021 19:25:08 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id p8so8473956pgh.11;
-        Fri, 05 Nov 2021 19:25:08 -0700 (PDT)
+        with ESMTP id S233726AbhKFExR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Nov 2021 00:53:17 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80A2EC06120B
+        for <devicetree@vger.kernel.org>; Fri,  5 Nov 2021 21:50:36 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id t11so18354513ljh.6
+        for <devicetree@vger.kernel.org>; Fri, 05 Nov 2021 21:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HS5tdtnjvtjCMr7mW88LxdLfRIjrhjbdJc8HlrChIEg=;
-        b=ZLrSv+yowWNqO2SF/2PhBAyu9ur4ZKQJcEVVZI3a4W87NomWXLbhOwA4kvAydlemk/
-         gHJN0Xai9afiz1Vd+CkU5S07wQI5mbxi+DXTlE5LHbIbPyMFw3eXZV/4OR9XwAWwttIC
-         MiF4SRTPASsl3rs7NNE9BhOQqqLPV7Ci/kVxRB9pYVcothwp57QOy4lpAcpEDPfCMYcm
-         R5xFAgOkEkIyYygCVVuDZSvqG1VmNYar2MRhFGTBKJthVu+OqzwFncZRJIf2ZZeGfIF/
-         wAIzaU4xnj0NQioQ87s0nOQgqy6IHjRiHRYS663i0qYpLeWb+cyrjdaaghHw0dS8yw73
-         loew==
+        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
+        bh=xRc3IHUizmviQEjT/aA/BX2eK4NRIQ6MOKbVgrtXYgk=;
+        b=Bz9kgxF17Lnqk0Ix9PMFDztCPNNSJZzr/kDW4M3zHPBOIlINv/F6eMTSj0NmyE77Pl
+         vnflYw0jg5XvnYF5t0r/fvwT08XMvM34qT3/qirZSZhrCgOMgcwfQXmAmPitxms0aEtH
+         zb2Q1WlA1+SvDeSyD+I0MmEgyRqr/+/qwBfGqXOClYlpbHA2EGuSyD7Pqczb1sUQr/2G
+         YKJgCyZkeuFfkpT2HX4yMG9uM61Dr3wOCYL9qN5paDo6uapqLWs8x/fQbVkJlBy1TcfC
+         2cxr5VmhV7/rIlT6PZr5XyVEMHhTaMgPCTTTVkHWjOthcxHkir21UejX2Ez8Pk9UrGqm
+         vhfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HS5tdtnjvtjCMr7mW88LxdLfRIjrhjbdJc8HlrChIEg=;
-        b=kh7wlNWSKjf/9lScdaP6GKOjUCmzi/oXV4JHiFGIRh5AjU59BD2gl57Jiz3dldkRXy
-         VqswE6QUifgUrd2KNcKehhPv5t9RMQWTXQIDvTOHG7BmCitVMPCJmfpQWXubbS4WWWuw
-         w+dpShITElu1pqGcN3Owm/EHLoeCdnGqOWHd58BRwFx95XmLoHmVGKbLi1AssnyAI0bU
-         YjiZ8b6qyzqd69bxD/UVb5YqAKfEQYsTaRoqw1Cu/Nd6N8SF1acvE4KFxtu7w9sYGwNO
-         NkyfV82NhVbvc+maB2Y0nDT7WLuUM0JZmZ1awGtj6Z6S+ZhXwp6bt95OdkPiAlvP8pXm
-         gUTQ==
-X-Gm-Message-State: AOAM530NsBYwGz8y3CGdYP5wMljzI/88ZQwku1bp5OES3YtxxugctaYm
-        kjshQmpCkpVthWyJpHMdhcI=
-X-Google-Smtp-Source: ABdhPJzqz+LPA78908kez9PRo7qqfIpvJ5Vf1VtQiAQoyfpvTnE4hiu4jdgouLouIs9gqZ9yoclf+g==
-X-Received: by 2002:a63:1cd:: with SMTP id 196mr47171777pgb.39.1636165507644;
-        Fri, 05 Nov 2021 19:25:07 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:837c:e765:475f:22d3])
-        by smtp.gmail.com with ESMTPSA id a21sm8678162pfv.67.2021.11.05.19.25.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Nov 2021 19:25:06 -0700 (PDT)
-Date:   Fri, 5 Nov 2021 19:25:04 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mylene.josserand@free-electrons.com, linus.walleij@linaro.org,
-        andreas@kemnade.info, rydberg@bitmath.org, robh+dt@kernel.org,
-        alistair23@gmail.com
-Subject: Re: [PATCH v2 4/4] ARM: dts: imx7d: remarkable2: Enable the cyttsp5
-Message-ID: <YYXngKCBbAkkxEKj@google.com>
-References: <20211103114830.62711-1-alistair@alistair23.me>
- <20211103114830.62711-5-alistair@alistair23.me>
+        h=x-gm-message-state:mime-version:reply-to:sender:from:date
+         :message-id:subject:to;
+        bh=xRc3IHUizmviQEjT/aA/BX2eK4NRIQ6MOKbVgrtXYgk=;
+        b=gWyE6erzeAuyP+sX8Orgm8bp3DmgirTPgszincnKLQVOpZUL854llR1qKvkgAirvk3
+         0ae6uXLHho8i/OgmO7LLv8xKY5azO0Lk36ck16+xakHNw+0D8bUfYofUQc5JlLpjE/T1
+         WgDeVDKoJ1Jzm8c+EA4rM0VFb2Bfow3ojp0mK7cfS8DNyDeIQjQN68RBTSgQAycw25z3
+         2lssQkLMxrLyTyrLw9JC8qFIRaUyAxyUaGIcesPn+0/Mq/L3BhBxE8ebHpzft54R9isT
+         35XkaOcmkTtl16ohboa2Jy6/rGNNJ4HUFbKPVgHhGMXMRd5/tCQ3icePHrm5jhAwFji1
+         mz8w==
+X-Gm-Message-State: AOAM530jVVitCrs8FQMyknhJtUOs8U3ctoNomwOOcimtNMerTTQVQxUc
+        UPiboQxOv+RFxm4S6mbQzlrO7RDfXMcneZ7AIFg=
+X-Google-Smtp-Source: ABdhPJyMFRUwC8RdVFE+gcH/VVgEzXz5JxWgYAZS5wZkHSr7EebKKS4wGOkrP8jerHPiizGc8rXWn55/7ZUpyk4ySWg=
+X-Received: by 2002:a05:651c:513:: with SMTP id o19mr41423328ljp.108.1636174234264;
+ Fri, 05 Nov 2021 21:50:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211103114830.62711-5-alistair@alistair23.me>
+Reply-To: godwinppter@gmail.com
+Sender: nataichalinossa01@gmail.com
+Received: by 2002:a05:6512:15a8:0:0:0:0 with HTTP; Fri, 5 Nov 2021 21:50:33
+ -0700 (PDT)
+From:   Godwin Pete <godwinnpeter@gmail.com>
+Date:   Sat, 6 Nov 2021 05:50:33 +0100
+X-Google-Sender-Auth: yNjWOIAxIc0cloJ0dtqvmtOGC7M
+Message-ID: <CAAkWb02W7bLoR7ZGR5xji_veLbXBDJDHX=HbO4wAgyapr39sgg@mail.gmail.com>
+Subject: It's my pleasure to inform you
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 03, 2021 at 09:48:30PM +1000, Alistair Francis wrote:
-> +	tsc@24 {
-> +		compatible = "cypress,tt21000";
-> +		reg = <0x24>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_touch>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-> +		reset-gpios = <&gpio1 13 0>;
+Hi,
 
-Reset lines are almost universally active low. Are you sure it is active
-high in your case?
+How are you doing? I am very happy to inform you about my success. I'm
+currently out of the country for an investment with part of my share,
+after completing the transfer with an Indian business man. But i will
+visit your country, next year, after the completion of my project.
+Please, contact my secretary to send you the (ATM) card which I've
+already credited with the sum of ($500,000.00). Just contact her to
+help you in receiving the (ATM) card. I've explained everything to her
+before my trip. This is what I can do for you because, you couldn't
+help in the transfer, but for the fact that you're the person whom
+I've contacted initially, for the transfer. I decided to give this
+($500,000.00) as a compensation for being contacted initially for the
+transfer. I always try to make the difference, in dealing with people
+any time I come in contact with them. I'm also trying to show that I'm
+quite a different person from others whose may have a different
+purpose within them. I believe that you will render some help to me
+when I, will visit your country, for another investment there. So
+contact my secretary for the card, Her contact are as follows,
 
-Thanks.
+Full name: Mrs, Jovita Dumuije,
+Country: Burkina Faso
+Email: jovitadumuije@gmail.com
 
--- 
-Dmitry
+Thanks, and hope for a good corporation with you in future.
+
+Godwin Peter,
