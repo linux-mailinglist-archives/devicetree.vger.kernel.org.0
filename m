@@ -2,208 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A87D44751D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 20:05:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D650544753D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 20:20:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234673AbhKGTIi convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 7 Nov 2021 14:08:38 -0500
-Received: from aposti.net ([89.234.176.197]:54376 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229990AbhKGTIh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Nov 2021 14:08:37 -0500
-Date:   Sun, 07 Nov 2021 19:05:35 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI
- driver and LCD controllers
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Boddie <paul@boddie.org.uk>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jon as Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <BDU72R.SAKM4CQWCUKI2@crapouillou.net>
-In-Reply-To: <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
-        <O7VI0R.CRIG8R7O0OOI3@crapouillou.net> <3514743.EH6qe8WxYI@jason>
-        <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
-        <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+        id S229503AbhKGTXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 14:23:25 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:34516 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233834AbhKGTXV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 14:23:21 -0500
+Received: by mail-oi1-f171.google.com with SMTP id bg25so23586130oib.1;
+        Sun, 07 Nov 2021 11:20:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=r1/wcCU/2X1I1Y5JLtP+b/0PYuwkoBpy63PD+ijntA4=;
+        b=sDfEXnMnRmWnvZ3LwFMNxyQkR4vvIMexEljFCodigxeHNxQ3njyk1G7NIh5mz+rQqy
+         NiHZezq3C2TWQtaxfB7xvZIQJ2Rkb1I1dSXtyWEYKaW9I2SjOZ2VPd8mDglyQDQHiSjw
+         /0sfmOwfrjLaBat55BKYMYR9N8Mu/bxWRfEQYNb4AqkNNhzdC+Z8mhoVFA7RlQw/FOUH
+         juebuetITryX8vrV1Ow7F+KV1O7/V107bbMExxyVGQdEwUXKp+igq/NMuCD3M67HrPjF
+         cngLy52X8zpijmpNcXHRh7S/jjL4xCh0D7Ri6hdtwg1uPo9r+z55czzKotNHG7JNWuVQ
+         gxHw==
+X-Gm-Message-State: AOAM531JDX1eSEATioN62oDb2rQsvJIejweu91ZtOdKGvUDFcwa4b/Wv
+        9TqeTxfGEiYCuXJCsT/p3A==
+X-Google-Smtp-Source: ABdhPJzEUvEsha8d49NX1P6EOkdOY8Nv3eLZZ3xuEKDjM4jFGhTBU1+upmwtuoWD0mh/bp/aKWrBJw==
+X-Received: by 2002:a05:6808:170e:: with SMTP id bc14mr34049600oib.86.1636312837939;
+        Sun, 07 Nov 2021 11:20:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h1sm2628351oom.12.2021.11.07.11.20.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Nov 2021 11:20:37 -0800 (PST)
+Received: (nullmailer pid 1404562 invoked by uid 1000);
+        Sun, 07 Nov 2021 19:20:36 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     wells.lu@sunplus.com, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, robh+dt@kernel.org,
+        ulf.hansson@linaro.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, Tony Huang <tony.huang@sunplus.com>
+In-Reply-To: <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
+References: <1636208598-18234-1-git-send-email-tony.huang@sunplus.com> <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
+Subject: Re: [PATCH 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+Date:   Sun, 07 Nov 2021 13:20:36 -0600
+Message-Id: <1636312836.425525.1404561.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Le dim., nov. 7 2021 at 14:45:37 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Hi Paul,
+On Sat, 06 Nov 2021 22:23:17 +0800, Tony Huang wrote:
+> Add mmc yaml file for Sunplus SP7021
 > 
->>  Am 05.10.2021 um 23:52 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->>  Hi Paul,
->> 
->>  Le mar., oct. 5 2021 at 23:44:12 +0200, Paul Boddie 
->> <paul@boddie.org.uk> a écrit :
->>>  On Tuesday, 5 October 2021 22:50:12 CEST Paul Cercueil wrote:
->>>>  Hi Nikolaus & Paul,
->>>>  Le mar., oct. 5 2021 at 14:29:17 +0200, H. Nikolaus Schaller
->>>  <hns@goldelico.com> a écrit :
->>>>  >
->>>>  > diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>>  > b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>>  > index 9e34f433b9b5..c3c18a59c377 100644
->>>>  > --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>>  > +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>>>  > @@ -424,6 +424,51 @@ i2c4: i2c@10054000 {
->>>>  >
->>>>  >  		status = "disabled";
->>>>  >
->>>>  >  	};
->>>>  >
->>>>  > +	hdmi: hdmi@10180000 {
->>>>  > +		compatible = "ingenic,jz4780-dw-hdmi";
->>>>  > +		reg = <0x10180000 0x8000>;
->>>>  > +		reg-io-width = <4>;
->>>>  > +
->>>>  > +		clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
->>>>  > +		clock-names = "iahb", "isfr";
->>>>  > +
->>>>  > +		assigned-clocks = <&cgu JZ4780_CLK_HDMI>;
->>>>  > +		assigned-clock-rates = <27000000>;
->>>>  Any reason why this is set to 27 MHz? Is it even required? 
->>>> Because with
->>>>  the current ci20.dts, it won't be clocked at anything but 48 MHz.
->>>  EXCLK will be 48MHz, but the aim is to set the HDMI peripheral 
->>> clock to 27MHz,
->>>  which is supposedly required. I vaguely recall a conversation 
->>> about whether we
->>>  were doing this right, but I don't recall any conclusion.
->> 
->>  But right now your HDMI clock is 48 MHz and HDMI works.
-> 
-> Is it? How did you find out?
-> 
-> And have you tried to remove assigned-clocks from jz4780.dtsi?
-> 
-> 1. I read back:
-> 
-> root@letux:~# cat /sys/kernel/debug/clk/hdmi/clk_rate
-> 26909090
-> root@letux:~#
-> 
-> So for me it seems to be running at ~27 MHz.
-> 
-> 2. If I remove the assigned-clocks or assigned-clock-rates from DT
-> the boot process hangs shortly after initializing drm.
-> 
-> 3. If I set assigned-clock-rates = <48000000>, HDMI also works.
-> 
-> I get it read back from /sys/kernel/debug/clk/hdmi/clk_rate
-> of 46736842.
-> 
-> 4. Conclusions:
-> * assigned-clocks are required
-> * it does not matter if 27 or 48 MHz
-> * I have no idea which value is more correct
-> * so I'd stay on the safe side of 27 MHz
-> 
-> 5. But despite that found, please look into the programming
-> manual section 18.1.2.16. There is an
-> 
-> "Import Note: The clock must be between 18M and 27M, it occurs
-> fatal error if exceeding the range. "
-
-Ok, that's the important information that was missing.
-
-So 27 MHz is OK.
-
-> 6. Therefore I think it *may* work overclocked with 48MHz
-> but is not guaranteed or reliable above 27 MHz.
-> 
-> So everything is ok here.
-
-One thing though - the "assigned-clocks" and "assigned-clock-rates", 
-while it works here, should be moved to the CGU node, to respect the 
-YAML schemas.
-
-Cheers,
--Paul
-
-> 
->> 
->>>>  > +
->>>>  > +		interrupt-parent = <&intc>;
->>>>  > +		interrupts = <3>;
->>>>  > +
->>>>  > +		/* ddc-i2c-bus = <&i2c4>; */
->>>>  > +
->>>>  > +		status = "disabled";
->>>>  > +	};
->>>>  > +
->>>>  > +	lcdc0: lcdc0@13050000 {
->>>>  > +		compatible = "ingenic,jz4780-lcd";
->>>>  > +		reg = <0x13050000 0x1800>;
->>>>  > +
->>>>  > +		clocks = <&cgu JZ4780_CLK_TVE>, <&cgu JZ4780_CLK_LCD0PIXCLK>;
->>>>  > +		clock-names = "lcd", "lcd_pclk";
->>>>  > +
->>>>  > +		interrupt-parent = <&intc>;
->>>>  > +		interrupts = <31>;
->>>>  > +
->>>>  > +		status = "disabled";
->>>>  I think you can keep lcdc0 enabled by default (not lcdc1 though), 
->>>> since
->>>>  it is highly likely that you'd want that.
->>>  As far as I know, the clock gating for the LCD controllers acts 
->>> like a series
->>>  circuit, meaning that they both need to be enabled. Some testing 
->>> seemed to
->>>  confirm this. Indeed, I seem to remember only enabling one clock 
->>> and not
->>>  getting any output until I figured this weird arrangement out.
->> 
->>  I'm not talking about clocks though, but about LCDC0 and LCDC1.
-> 
-> Ah, you mean status = "okay"; vs. status = "disabled";
-> 
-> Well, IMHO it is common practise to keep SoC subsystems disabled by
-> default (to save power and boot time) unless a board specific DTS 
-> explicitly
-> requests the SoC feature to be active. See for example mmc0, mmc1 or 
-> i2c0..i2c4.
-> 
-> All these are disabled in jz4780.dtsi and partially enabled in 
-> ci20.dts.
-> 
-> Why should lcdc0 be an exception in jz4780.dtsi?
-> 
-> BR and thanks,
-> Nikolaus
+> Signed-off-by: Tony Huang <tony.huang@sunplus.com>
+> ---
+>  .../devicetree/bindings/mmc/sunplus-mmc.yaml       | 64 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
 > 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mmc/sunplus-mmc.example.dts:21:18: fatal error: dt-bindings/clock/sp-sp7021.h: No such file or directory
+   21 |         #include <dt-bindings/clock/sp-sp7021.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/mmc/sunplus-mmc.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+MAINTAINERS: Documentation/devicetree/bindings/mmc/sunplu-mmc.yaml
+
+See https://patchwork.ozlabs.org/patch/1551671
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
