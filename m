@@ -2,213 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D3E44731E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 14:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1377447397
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 16:56:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235413AbhKGNsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 08:48:42 -0500
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.175]:14529 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbhKGNsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 08:48:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636292738;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=IUc2QJfZvKVpNPLQO06V15aBwBXtE3TaY9v9c4KrZsM=;
-    b=fqLzXb2UhysqRDNzD+S2Zk+/MroOToOZvONeUoHdL6Rz3bvRrcp8MugsYf2DJZseIy
-    pZtVfccDMOcNmS/UHbz8Ad4+N4objU7P/umYVohzmQjVhXYqOfyKK6mmu50MGaTxsV5g
-    s6BjUUecIKnZqmqPx1f+kVKRAO9CSM+l55uMxaNyUseep29yQs2rwpRODEt5pZ1eWyS6
-    fwHOO4r3ry2q0aYUc6oYnSVPhVtCAY9zI8+ZAG9z8LoO9fIp7D2MDRWji4qKlt5gwPWH
-    ZCKBlG9KiONzEKmQR6FtJIgIw41OjTtsnw2zS0+8hyG7ltSEm5C9r6pjfmIhi/W52JnA
-    iMkw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3jcR+"
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.1 DYNA|AUTH)
-    with ESMTPSA id 902c63xA7DjcFoL
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Sun, 7 Nov 2021 14:45:38 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI
- driver and LCD controllers
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
-Date:   Sun, 7 Nov 2021 14:45:37 +0100
-Cc:     Paul Boddie <paul@boddie.org.uk>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jon as Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
- <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
- <O7VI0R.CRIG8R7O0OOI3@crapouillou.net> <3514743.EH6qe8WxYI@jason>
- <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S235660AbhKGP6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 10:58:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51488 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234160AbhKGP6v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 10:58:51 -0500
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A572AC061570
+        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 07:56:08 -0800 (PST)
+Received: by mail-ua1-x935.google.com with SMTP id s13so11329152uaj.11
+        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 07:56:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/dUrUhWqyLP8WM0V+cyk5RPHoq6Vsv356iF7D4jd0LU=;
+        b=xNk/aFt0nlcqfGZxa8z1NMcoEYaLROEd+q1T/FZqP8iBh8+WMl8V3jM5fojORNqxhu
+         1pgnYN4goukUI4a/FSQjo7BeC9x2RWrbj1JB86Lb2QHVKBYLfF3K/YnkzDX8zJjtrVi0
+         CcUwiQ6E+cwI05POa6Qs3OFBoktCVX50dFqFjcmiJ52vilzQclJTC8+D4ipjkWDtLmIb
+         4k3G8v+O+3HidI58DG5Fh3DWeVimo/9fZeLg/er4lO0LL8VN+4H/mlTCXsYXbAb7PQJ4
+         bq/5tPTwc5ErPhCwK0kMMUunr2XNBZgVwJBUK7WoqbFEE8Tb2MFuS0Fn7/gSyqUseAKh
+         smpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/dUrUhWqyLP8WM0V+cyk5RPHoq6Vsv356iF7D4jd0LU=;
+        b=vDMFk7hZcfsYyZJZDHWxquWp1WwWC1809VO1UVTehgt01NZNPkIaAzfVt2g+3gRXL9
+         GQ2d/hd5kqCJSnp6gB/RpX7T8MKtcE7AneBhKCZwEVDFPvmjTbXAX21MCQPlPUOPdjLm
+         r3hrtgD+U0TTtsA7goPlZ7p9IPk3mH40IG3FoL4OWYyXSNSJ/eqAEQX/raAC3c7ZPiyh
+         kIPLp/+OFOycp62j87w+bE4u3G9BPuS/p8Ayku3DZQShmoazT3bmqQonf2/QEX8Tditv
+         i6psLofJWs38WhJ5GK6XqfySYSB26vhDX7JAfax8c9r5XwJaTNeVFyIs7eDtdjbzuz6N
+         6iTQ==
+X-Gm-Message-State: AOAM531zKqIX0XjjoBrOzEGITpXaMj3fMiuXdRCakC43mQ1fYhcMKb60
+        YY097pZv3pngjsWP/1H7jIjPMa2jad6/higkaQmDiQ==
+X-Google-Smtp-Source: ABdhPJzo5QcHxd8IjUSEcK55pKPecD8oqKbgP6kh4igUzaB6PKwet/IuC8W9IKNKc8TprL33kRlD8HcGyWbv2oRRvos=
+X-Received: by 2002:a67:ab48:: with SMTP id k8mr93028958vsh.30.1636300567660;
+ Sun, 07 Nov 2021 07:56:07 -0800 (PST)
+MIME-Version: 1.0
+References: <20211031122216.30212-1-semen.protsenko@linaro.org>
+ <20211031122216.30212-11-semen.protsenko@linaro.org> <a63f37a9-ea04-2606-e4f5-1170c4e59db2@canonical.com>
+In-Reply-To: <a63f37a9-ea04-2606-e4f5-1170c4e59db2@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sun, 7 Nov 2021 17:55:55 +0200
+Message-ID: <CAPLW+4mhD+k03S1cR-AdNk4etPiK=wsCoR4+o39gDe==XdoY8w@mail.gmail.com>
+Subject: Re: [PATCH v2 10/12] watchdog: s3c2410: Support separate source clock
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Tue, 2 Nov 2021 at 12:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 31/10/2021 13:22, Sam Protsenko wrote:
+> > Right now all devices supported in the driver have the single clock: it
+> > acts simultaneously as a bus clock (providing register interface
+> > clocking) and source clock (driving watchdog counter). Some newer Exynos
+> > chips, like Exynos850, have two separate clocks for that. In that case
+> > two clocks will be passed to the driver from the resource provider, e.g.
+> > Device Tree. Provide necessary infrastructure to support that case:
+> >   - use source clock's rate for all timer related calculations
+> >   - use bus clock to gate/ungate the register interface
+> >
+> > All devices that use the single clock are kept intact: if only one clock
+> > is passed from Device Tree, it will be used for both purposes as before.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v2:
+> >   - Reworded commit message to be more formal
+> >   - Used separate "has_src_clk" trait to tell if source clock is present
+> >   - Renamed clock variables to match their purpose
+> >   - Removed caching source clock rate, obtaining it in place each time instead
+> >   - Renamed err labels for more consistency
+> >
+> >  drivers/watchdog/s3c2410_wdt.c | 52 +++++++++++++++++++++++++---------
+> >  1 file changed, 39 insertions(+), 13 deletions(-)
+> >
+> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> > index fdb1a1e9bd04..c733917c5470 100644
+> > --- a/drivers/watchdog/s3c2410_wdt.c
+> > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > @@ -118,7 +118,9 @@ struct s3c2410_wdt_variant {
+> >
+> >  struct s3c2410_wdt {
+> >       struct device           *dev;
+> > -     struct clk              *clock;
+> > +     struct clk              *bus_clk; /* for register interface (PCLK) */
+> > +     struct clk              *src_clk; /* for WDT counter */
+> > +     bool                    has_src_clk;
+>
+> Why do you need the has_src_clk value? If clk_get() fails, just store
+> there NULL and clk API will handle it.
+>
 
-> Am 05.10.2021 um 23:52 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi Paul,
->=20
-> Le mar., oct. 5 2021 at 23:44:12 +0200, Paul Boddie =
-<paul@boddie.org.uk> a =C3=A9crit :
->> On Tuesday, 5 October 2021 22:50:12 CEST Paul Cercueil wrote:
->>> Hi Nikolaus & Paul,
->>> Le mar., oct. 5 2021 at 14:29:17 +0200, H. Nikolaus Schaller
->> <hns@goldelico.com> a =C3=A9crit :
->>> >
->>> > diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>> > b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>> > index 9e34f433b9b5..c3c18a59c377 100644
->>> > --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>> > +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>> > @@ -424,6 +424,51 @@ i2c4: i2c@10054000 {
->>> >
->>> >  		status =3D "disabled";
->>> >
->>> >  	};
->>> >
->>> > +	hdmi: hdmi@10180000 {
->>> > +		compatible =3D "ingenic,jz4780-dw-hdmi";
->>> > +		reg =3D <0x10180000 0x8000>;
->>> > +		reg-io-width =3D <4>;
->>> > +
->>> > +		clocks =3D <&cgu JZ4780_CLK_AHB0>, <&cgu =
-JZ4780_CLK_HDMI>;
->>> > +		clock-names =3D "iahb", "isfr";
->>> > +
->>> > +		assigned-clocks =3D <&cgu JZ4780_CLK_HDMI>;
->>> > +		assigned-clock-rates =3D <27000000>;
->>> Any reason why this is set to 27 MHz? Is it even required? Because =
-with
->>> the current ci20.dts, it won't be clocked at anything but 48 MHz.
->> EXCLK will be 48MHz, but the aim is to set the HDMI peripheral clock =
-to 27MHz,
->> which is supposedly required. I vaguely recall a conversation about =
-whether we
->> were doing this right, but I don't recall any conclusion.
->=20
-> But right now your HDMI clock is 48 MHz and HDMI works.
+I've added that 'has_src_clk' field for somewhat different reason.
 
-Is it? How did you find out?
+1. As we discussed earlier, in case when src_clk is not present, I do
+'src_clk = bus_clk' in v2. This way I don't have to check if src_clk
+is NULL every time and use bus_clk to get rate. If I set src_clk =
+NULL, I'll have to add selector code, which wouldn't be so elegant,
+and contradicts what we've discussed.
+2. On the other hand, I don't want to enable bus_clk twice in case
+when src_clk is not present, that just doesn't feel right (user would
+see incorrect refcount value in DebugFS, etc). And if "clk_src =
+bus_clk', and I haven't enabled it second time, then I shouldn't try
+to disable it second time, right?
 
-And have you tried to remove assigned-clocks from jz4780.dtsi?
+The only way I can see to accomplish (1) and (2) together, is to use
+that 'has_src_clk' flag. For me it still looks better than enabling
+bus_clk twice, or checking if clk_src is NULL every time we need to
+get clock rate. Please let me know if you still have a strong opinion
+on this one.
 
-1. I read back:
-
-root@letux:~# cat /sys/kernel/debug/clk/hdmi/clk_rate
-26909090
-root@letux:~#=20
-
-So for me it seems to be running at ~27 MHz.
-
-2. If I remove the assigned-clocks or assigned-clock-rates from DT
-the boot process hangs shortly after initializing drm.
-
-3. If I set assigned-clock-rates =3D <48000000>, HDMI also works.
-
-I get it read back from /sys/kernel/debug/clk/hdmi/clk_rate
-of 46736842.
-
-4. Conclusions:
-* assigned-clocks are required
-* it does not matter if 27 or 48 MHz
-* I have no idea which value is more correct
-* so I'd stay on the safe side of 27 MHz
-
-5. But despite that found, please look into the programming
-manual section 18.1.2.16. There is an
-
-"Import Note: The clock must be between 18M and 27M, it occurs
-fatal error if exceeding the range. "
-
-6. Therefore I think it *may* work overclocked with 48MHz
-but is not guaranteed or reliable above 27 MHz.
-
-So everything is ok here.
-
->=20
->>> > +
->>> > +		interrupt-parent =3D <&intc>;
->>> > +		interrupts =3D <3>;
->>> > +
->>> > +		/* ddc-i2c-bus =3D <&i2c4>; */
->>> > +
->>> > +		status =3D "disabled";
->>> > +	};
->>> > +
->>> > +	lcdc0: lcdc0@13050000 {
->>> > +		compatible =3D "ingenic,jz4780-lcd";
->>> > +		reg =3D <0x13050000 0x1800>;
->>> > +
->>> > +		clocks =3D <&cgu JZ4780_CLK_TVE>, <&cgu =
-JZ4780_CLK_LCD0PIXCLK>;
->>> > +		clock-names =3D "lcd", "lcd_pclk";
->>> > +
->>> > +		interrupt-parent =3D <&intc>;
->>> > +		interrupts =3D <31>;
->>> > +
->>> > +		status =3D "disabled";
->>> I think you can keep lcdc0 enabled by default (not lcdc1 though), =
-since
->>> it is highly likely that you'd want that.
->> As far as I know, the clock gating for the LCD controllers acts like =
-a series
->> circuit, meaning that they both need to be enabled. Some testing =
-seemed to
->> confirm this. Indeed, I seem to remember only enabling one clock and =
-not
->> getting any output until I figured this weird arrangement out.
->=20
-> I'm not talking about clocks though, but about LCDC0 and LCDC1.
-
-Ah, you mean status =3D "okay"; vs. status =3D "disabled";
-
-Well, IMHO it is common practise to keep SoC subsystems disabled by
-default (to save power and boot time) unless a board specific DTS =
-explicitly
-requests the SoC feature to be active. See for example mmc0, mmc1 or =
-i2c0..i2c4.
-
-All these are disabled in jz4780.dtsi and partially enabled in ci20.dts.
-
-Why should lcdc0 be an exception in jz4780.dtsi?
-
-BR and thanks,
-Nikolaus
-
+> Best regards,
+> Krzysztof
