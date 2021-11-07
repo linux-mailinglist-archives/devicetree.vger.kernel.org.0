@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCF64472AA
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 12:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05EE54472B4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 12:24:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234530AbhKGL1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 06:27:02 -0500
-Received: from smtp-32-i2.italiaonline.it ([213.209.12.32]:55594 "EHLO
+        id S234550AbhKGL11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 06:27:27 -0500
+Received: from smtp-32-i2.italiaonline.it ([213.209.12.32]:58633 "EHLO
         libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234527AbhKGL07 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Nov 2021 06:26:59 -0500
+        id S234637AbhKGL10 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Nov 2021 06:27:26 -0500
 Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
  ([213.45.67.127])
         by smtp-32.iol.local with ESMTPA
-        id jgG9mbDBMCVSejgGImjsKc; Sun, 07 Nov 2021 12:23:11 +0100
+        id jgG9mbDBMCVSejgGumjsSv; Sun, 07 Nov 2021 12:23:43 +0100
 x-libjamoibt: 1601
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1636284191; bh=/RtRMxLlau35AAxlbttJa46gfPKV9O1Mqz0UuIGedPw=;
+        t=1636284223; bh=EEtrSSWFEIEm+hm9c1Utn/zMqEcLWIoArC5KJHteRL4=;
         h=From;
-        b=Z9tiAtDuV5Q65+jOl+8oZi9av8IuOlop/zGi5Z2X0QXf8n7EU3ZbzvKwS3hwwd77k
-         dxWrLwVXfg/y0rhaHLiIJYky6AHI0/fc32gv9NdF0axqB/Hh7ApagIlnggZnAJOVuD
-         xgjJpHl3XUi4sv0RyExh61MqHH0x5bonNX+q/1z3Dvulfi5ASo+p+SwLMXwPj8Lkof
-         PLrGbsd5V0IHv4qQdfqEMIu536jrKg88l+w0Y7huoGgS6n0J2yu+xS2JmgqsqmjoLm
-         xKyHjQqX9tFP2MgpzeEb0nIHk6RZQj0+hWUJ79tIwvgdmGsUcRbWiWN/PAYtCVWq5C
-         fyLRDhqSY1I7Q==
-X-CNFS-Analysis: v=2.4 cv=M/2Ilw8s c=1 sm=1 tr=0 ts=6187b71f cx=a_exe
- a=Vk63IOK+/LoQucGDvce7tA==:117 a=Vk63IOK+/LoQucGDvce7tA==:17
- a=nPkVdOmOLM6dsaJkhv8A:9
+        b=r66t5NSVq2vowqyc1m9pZkYXi/Is2VZMWYAgE8fJOeQcN9IQ3ZE0K1q1GfmJLRCqF
+         +IEqPkIH7SqL1hkbJK+othUcleul13hojyIqJnx6NC06zFSEyftJBB4joDB2wSTDa4
+         9i9g5iGEBBSOaEKBzO0uDKXE7P8JGmV2nYR2ytqSm3i2zoIUCTOskw3JtgaXa7QJGp
+         1/FbHRfJULW8CWMK6T7xuLklzT5MDUJ+8UALHqqwE99CAntlhqzyefq8zHAvjgqgT8
+         GsMfCBbNPb2NWP8t7JUR2HjSFawWqCbu1a9E1VA1V+DpLzis1MQyKHROWgTupW+t2T
+         s2ccXJuoN0GDw==
+X-CNFS-Analysis: v=2.4 cv=M/2Ilw8s c=1 sm=1 tr=0 ts=6187b73f cx=a_exe
+ a=Vk63IOK+/LoQucGDvce7tA==:117 a=Vk63IOK+/LoQucGDvce7tA==:17 a=VwQbUJbxAAAA:8
+ a=WGf4WTbLby2_tS91RlMA:9 a=AjGcO6oz07-iQ99wixmX:22
 From:   Dario Binacchi <dariobin@libero.it>
 To:     linux-kernel@vger.kernel.org
 Cc:     linux-input@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
@@ -36,43 +36,45 @@ Cc:     linux-input@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Dario Binacchi <dariobin@libero.it>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [RESEND PATCH 0/6] input: touchscreen: am335x: fix and improvements
-Date:   Sun,  7 Nov 2021 12:22:30 +0100
-Message-Id: <20211107112236.7969-1-dariobin@libero.it>
+Subject: [RESEND PATCH 4/6] dt-bindings: input: ti-tsc-adc: fix tsc node example
+Date:   Sun,  7 Nov 2021 12:22:34 +0100
+Message-Id: <20211107112236.7969-5-dariobin@libero.it>
 X-Mailer: git-send-email 2.17.1
-X-CMAE-Envelope: MS4xfA4yCIDbgDz2hxKRaYbsHXWwuq+27Sbp/kiUrM0D6sEbov7Zpae3hBc/u7Ost0HHukyUGoFz61rfCY54kdq6lf6AaEaHSbeul094xYv+SrOmb3PL6AUi
- tGLzOtU6hSwhvubFRPA2bpPZnjBRfleICDjeI761/YAKJOwi83WLXgt6aNofdAQW4oXdlfm7FjB1Hp/4tulvbhaLDh5WjO0/ux4dEgEmOkgoQZnXlazKOUHj
- nPIjVU37yU2Q2zKY/aJfcLhTfYCqjE6BdkmSBNUQmmWs06UafxmroE0yX1cHtV70Wa2oHcdDrfFPFgT1XkGhq/l1YpnMNBIBPlsmHDRmnDMa3qH2MCNOe39x
- NT/kkmQM9+cWAUMnOCoYnAHfXp2gCaTfsHp6OvFxSHsKw+wvKoVKmfqqUn+3+Z6uS3D/HmJ8Fv0BI3i+PV90u/nHiRmII1fhV/hwy7U0OUaNWdEtrUC1AFYX
- B10jh2sk2FgRrd2iFvDzTzkx1gzGa+kFhceFdA==
+In-Reply-To: <20211107112236.7969-1-dariobin@libero.it>
+References: <20211107112236.7969-1-dariobin@libero.it>
+X-CMAE-Envelope: MS4xfGJiT1p+RKZwKdMcJkkVOvukmmvGCfoREfMzSsL7AL23Wlv9dD6Ysj1MPiO60BIVswz4NWCZ3/IayEp3nrNMEjkIzRTnTfsX7ioBma+pwc4e6wCGVitC
+ 8bARPidV7a16pxWfRStWCMda9wzGW/cUI/IWVjsaunoAv1CyYXN3iduhbOMcbV8dLdQhnkSznPCpKkEhmxD7f5bvfMUUEBDo0p/iBgFKmUWmDVB7jfIpnENo
+ DmIgC+pqjarzMwW4zNmGms1JdPLZPwGVsEU385ewB4WracoX9P55E4K1BQGkqpG+YQvSC/xCCGarrmpjCb7pwzL8DER6FHsvkrBSODNGRMrwlo6zXOzDXHgI
+ ceCyAjAn5Alm31PeSEg4+RZr8ENlwcIwJT19pCzXQ4oPq74gxZUoQnrvHqQE01Zmp7Kb2k+/ewCx2j2Qpq/tH5LZPUUul1X12kFmcNq4gTqGgzH8+XNfkPWD
+ W+EfGrccxOGQscRKK3gNsmRqh1q9VPlxyVULKA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The commit c9aeb249bf72e ("Input: ti_am335x_tsc - fix spelling mistake
+in TSC/ADC DT binding") didn't fix the typo mistake in the tsc node of
+the example.
 
-This series grew out of a touchscreen validation activity on a custom
-board. Oscilloscope measurements and driver source analysis led to these
-patches.
+Signed-off-by: Dario Binacchi <dariobin@libero.it>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-Added Rob Herring 'Acked-by' tag to commit "dt-bindings: input:
-ti-tsc-adc: fix tsc node example".
+ .../devicetree/bindings/input/touchscreen/ti-tsc-adc.txt        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-
-Dario Binacchi (6):
-  input: ti_am335x_tsc: set ADCREFM for X configuration
-  input: ti_am335x_tsc: fix STEPCONFIG setup for Z2
-  input: ti_am335x_tsc: lower the X and Y sampling time
-  dt-bindings: input: ti-tsc-adc: fix tsc node example
-  mfd: ti_am335x_tscadc: fix reading a tsc property from DT
-  mfd: ti_am335x_tscadc: drop the CNTRLREG_8WIRE macro
-
- .../bindings/input/touchscreen/ti-tsc-adc.txt  |  2 +-
- drivers/input/touchscreen/ti_am335x_tsc.c      | 18 +++++++++++++-----
- drivers/mfd/ti_am335x_tscadc.c                 |  7 ++++++-
- include/linux/mfd/ti_am335x_tscadc.h           |  1 -
- 4 files changed, 20 insertions(+), 8 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
+index aad5e34965eb..2013fd7c4a10 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
++++ b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
+@@ -77,7 +77,7 @@ Example:
+ 		tsc {
+ 			ti,wires = <4>;
+ 			ti,x-plate-resistance = <200>;
+-			ti,coordiante-readouts = <5>;
++			ti,coordinate-readouts = <5>;
+ 			ti,wire-config = <0x00 0x11 0x22 0x33>;
+ 			ti,charge-delay = <0x400>;
+ 		};
 -- 
 2.17.1
 
