@@ -2,170 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11ECF44721B
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 08:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DCF64472AA
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 12:24:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235206AbhKGH7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 02:59:41 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:42418 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S235187AbhKGH7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 02:59:39 -0500
-X-UUID: ddf747f5b5f64936bdd647253b11e4ab-20211107
-X-UUID: ddf747f5b5f64936bdd647253b11e4ab-20211107
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 437193593; Sun, 07 Nov 2021 15:56:54 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sun, 7 Nov 2021 15:56:53 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkexhb02.mediatek.inc (172.21.101.103) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 7 Nov 2021 15:56:53 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Sun, 7 Nov 2021 15:56:52 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yz Wu <yz.wu@mediatek.com>
-Subject: [PATCH 6/6] arm64: dts: mediatek: mt8195: add efuse node and cells
-Date:   Sun, 7 Nov 2021 15:56:46 +0800
-Message-ID: <20211107075646.4366-6-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+        id S234530AbhKGL1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 06:27:02 -0500
+Received: from smtp-32-i2.italiaonline.it ([213.209.12.32]:55594 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234527AbhKGL07 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Nov 2021 06:26:59 -0500
+Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
+ ([213.45.67.127])
+        by smtp-32.iol.local with ESMTPA
+        id jgG9mbDBMCVSejgGImjsKc; Sun, 07 Nov 2021 12:23:11 +0100
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1636284191; bh=/RtRMxLlau35AAxlbttJa46gfPKV9O1Mqz0UuIGedPw=;
+        h=From;
+        b=Z9tiAtDuV5Q65+jOl+8oZi9av8IuOlop/zGi5Z2X0QXf8n7EU3ZbzvKwS3hwwd77k
+         dxWrLwVXfg/y0rhaHLiIJYky6AHI0/fc32gv9NdF0axqB/Hh7ApagIlnggZnAJOVuD
+         xgjJpHl3XUi4sv0RyExh61MqHH0x5bonNX+q/1z3Dvulfi5ASo+p+SwLMXwPj8Lkof
+         PLrGbsd5V0IHv4qQdfqEMIu536jrKg88l+w0Y7huoGgS6n0J2yu+xS2JmgqsqmjoLm
+         xKyHjQqX9tFP2MgpzeEb0nIHk6RZQj0+hWUJ79tIwvgdmGsUcRbWiWN/PAYtCVWq5C
+         fyLRDhqSY1I7Q==
+X-CNFS-Analysis: v=2.4 cv=M/2Ilw8s c=1 sm=1 tr=0 ts=6187b71f cx=a_exe
+ a=Vk63IOK+/LoQucGDvce7tA==:117 a=Vk63IOK+/LoQucGDvce7tA==:17
+ a=nPkVdOmOLM6dsaJkhv8A:9
+From:   Dario Binacchi <dariobin@libero.it>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-input@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rachna Patil <rachna@ti.com>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Dario Binacchi <dariobin@libero.it>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RESEND PATCH 0/6] input: touchscreen: am335x: fix and improvements
+Date:   Sun,  7 Nov 2021 12:22:30 +0100
+Message-Id: <20211107112236.7969-1-dariobin@libero.it>
+X-Mailer: git-send-email 2.17.1
+X-CMAE-Envelope: MS4xfA4yCIDbgDz2hxKRaYbsHXWwuq+27Sbp/kiUrM0D6sEbov7Zpae3hBc/u7Ost0HHukyUGoFz61rfCY54kdq6lf6AaEaHSbeul094xYv+SrOmb3PL6AUi
+ tGLzOtU6hSwhvubFRPA2bpPZnjBRfleICDjeI761/YAKJOwi83WLXgt6aNofdAQW4oXdlfm7FjB1Hp/4tulvbhaLDh5WjO0/ux4dEgEmOkgoQZnXlazKOUHj
+ nPIjVU37yU2Q2zKY/aJfcLhTfYCqjE6BdkmSBNUQmmWs06UafxmroE0yX1cHtV70Wa2oHcdDrfFPFgT1XkGhq/l1YpnMNBIBPlsmHDRmnDMa3qH2MCNOe39x
+ NT/kkmQM9+cWAUMnOCoYnAHfXp2gCaTfsHp6OvFxSHsKw+wvKoVKmfqqUn+3+Z6uS3D/HmJ8Fv0BI3i+PV90u/nHiRmII1fhV/hwy7U0OUaNWdEtrUC1AFYX
+ B10jh2sk2FgRrd2iFvDzTzkx1gzGa+kFhceFdA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add efuse node and cells used by t-phy to fix the bit shift issue
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-Depend on:
+This series grew out of a touchscreen validation activity on a custom
+board. Oscilloscope measurements and driver source analysis led to these
+patches.
 
-  [v4,1/1] arm64: dts: Add Mediatek SoC MT8195 and evaluation board dts and Makefile
-  https://patchwork.kernel.org/patch/12509911
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 61 ++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+Added Rob Herring 'Acked-by' tag to commit "dt-bindings: input:
+ti-tsc-adc: fix tsc node example".
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 263eebfd2ea1..7fb23c1cb8cc 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -933,6 +933,55 @@
- 			status = "disabled";
- 		};
- 
-+		efuse: efuse@11c10000 {
-+			compatible = "mediatek,mt8195-efuse", "mediatek,efuse";
-+			reg = <0 0x11c10000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			status = "disabled";
-+
-+			u3_tx_imp_p0: usb3-tx-imp@184 {
-+				reg = <0x184 0x1>;
-+				bits = <0 5>;
-+			};
-+			u3_rx_imp_p0: usb3-rx-imp@184 {
-+				reg = <0x184 0x2>;
-+				bits = <5 5>;
-+			};
-+			u3_intr_p0: usb3-intr@185 {
-+				reg = <0x185 0x1>;
-+				bits = <2 6>;
-+			};
-+			comb_tx_imp_p1: usb3-tx-imp@186 {
-+				reg = <0x186 0x1>;
-+				bits = <0 5>;
-+			};
-+			comb_rx_imp_p1: usb3-rx-imp@186 {
-+				reg = <0x186 0x2>;
-+				bits = <5 5>;
-+			};
-+			comb_intr_p1: usb3-intr@187 {
-+				reg = <0x187 0x1>;
-+				bits = <2 6>;
-+			};
-+			u2_intr_p0: usb2-intr-p0@188 {
-+				reg = <0x188 0x1>;
-+				bits = <0 5>;
-+			};
-+			u2_intr_p1: usb2-intr-p1@188 {
-+				reg = <0x188 0x2>;
-+				bits = <5 5>;
-+			};
-+			u2_intr_p2: usb2-intr-p2@189 {
-+				reg = <0x189 0x1>;
-+				bits = <2 5>;
-+			};
-+			u2_intr_p3: usb2-intr-p3@189 {
-+				reg = <0x189 0x2>;
-+				bits = <7 5>;
-+			};
-+		};
-+
- 		u3phy2: t-phy@11c40000 {
- 			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
- 			#address-cells = <1>;
-@@ -986,6 +1035,8 @@
- 				reg = <0x0 0x700>;
- 				clocks = <&clk26m>;
- 				clock-names = "ref";
-+				nvmem-cells = <&u2_intr_p1>;
-+				nvmem-cell-names = "intr";
- 				#phy-cells = <1>;
- 			};
- 
-@@ -993,6 +1044,10 @@
- 				reg = <0x700 0x700>;
- 				clocks = <&clk26m>;
- 				clock-names = "ref";
-+				nvmem-cells = <&comb_intr_p1>,
-+					      <&comb_rx_imp_p1>,
-+					      <&comb_tx_imp_p1>;
-+				nvmem-cell-names = "intr", "rx_imp", "tx_imp";
- 				#phy-cells = <1>;
- 			};
- 		};
-@@ -1008,6 +1063,8 @@
- 				reg = <0x0 0x700>;
- 				clocks = <&clk26m>;
- 				clock-names = "ref";
-+				nvmem-cells = <&u2_intr_p0>;
-+				nvmem-cell-names = "intr";
- 				#phy-cells = <1>;
- 			};
- 
-@@ -1015,6 +1072,10 @@
- 				reg = <0x700 0x700>;
- 				clocks = <&clk26m>;
- 				clock-names = "ref";
-+				nvmem-cells = <&u3_intr_p0>,
-+					      <&u3_rx_imp_p0>,
-+					      <&u3_tx_imp_p0>;
-+				nvmem-cell-names = "intr", "rx_imp", "tx_imp";
- 				#phy-cells = <1>;
- 			};
- 		};
+
+
+Dario Binacchi (6):
+  input: ti_am335x_tsc: set ADCREFM for X configuration
+  input: ti_am335x_tsc: fix STEPCONFIG setup for Z2
+  input: ti_am335x_tsc: lower the X and Y sampling time
+  dt-bindings: input: ti-tsc-adc: fix tsc node example
+  mfd: ti_am335x_tscadc: fix reading a tsc property from DT
+  mfd: ti_am335x_tscadc: drop the CNTRLREG_8WIRE macro
+
+ .../bindings/input/touchscreen/ti-tsc-adc.txt  |  2 +-
+ drivers/input/touchscreen/ti_am335x_tsc.c      | 18 +++++++++++++-----
+ drivers/mfd/ti_am335x_tscadc.c                 |  7 ++++++-
+ include/linux/mfd/ti_am335x_tscadc.h           |  1 -
+ 4 files changed, 20 insertions(+), 8 deletions(-)
+
 -- 
-2.18.0
+2.17.1
 
