@@ -2,233 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF434473B2
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 17:17:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 793B04474B8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 18:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234805AbhKGQU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 11:20:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56490 "EHLO
+        id S236025AbhKGSAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 13:00:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235048AbhKGQUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 11:20:25 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC69FC061746
-        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 08:17:42 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id e10so26978049uab.3
-        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 08:17:42 -0800 (PST)
+        with ESMTP id S229892AbhKGSAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 13:00:38 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9BFC061570;
+        Sun,  7 Nov 2021 09:57:55 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id j21so53219108edt.11;
+        Sun, 07 Nov 2021 09:57:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t7xMZVtk+GkT0Ad4djTgQGpUumW4/C6aQ//HAOY+M7k=;
-        b=qrkjoAs/fBxtAbYnZ//tjZPnT865qxaXGGjpBa7hi1+l9eLVjSIWrRmjwdU/2DcuaB
-         q1YPZQ2oFH9noFXS+zwtLwvw2axnbvQX6qvnJZEKI9dyBnavLeCiHcjw8GoQaXDLZ6ko
-         9/wD3aeoF8dYn8I3uKK2ujmCWzan2rnu691QND6pGPy3D6sotevEesRcDz0nxubKRi9D
-         +7PHD5XDQtKCGyaWHzarny+eELcTJ30JcDhmVu/bLlDouLtMXa6tqhJ8M+cA5ejVqkqV
-         gp+S5w1xNbvpL771+OZJSI6uj2gzJ8wGvjZEOvyqUOj8Pk2AKGviDFGkDBo3KSt3EYR3
-         HluQ==
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G3mP+YGCKggx5500tPqrkylkPVd3AA/X5efbd8Pm5Nw=;
+        b=SyHl0gwgU95wsCHTnLovgxpELT1b3PqbDEhf8R3eZwkrdu1up6nbtnW1YLipKhlq6r
+         pKFm0xwS4VML6UzPMwWE+nm7EPESD7C05V3sC7kjgHYsyUWCp+eTTXThcOgdG9XTZ/V9
+         AnNbHxznINp6SdUFV1oRg5A6K4Rh7nTUZEejWaCDJrH4kyXpV80QGg77uCWeAiLFBTqM
+         XiXv5Z4o0lkCZXV43Ux/w9kZWHYzaw7OVyji64mNxw8mphMoNetnJojjrVg+mwaR3oMG
+         2q5pVGEeA5e0R+RWU6a9bX70x6gxFCOhJ6V16hLbme+XXj88mjL/7b5mbs598vboY2zk
+         QX7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t7xMZVtk+GkT0Ad4djTgQGpUumW4/C6aQ//HAOY+M7k=;
-        b=e6Kb0qINZdkM+9cXbUTxAIjx4F3HwOn1IGpeCi1toG6gX5Bl9zDdFZNCFzmYuRm9E1
-         szzLoIjMhUeL19sxc/lH6xO4XmZODNbeYE/Dt/vwWmVwXEj+GOwi1W05pIeOsp6Rvszx
-         1b03fTbo3ge6EHUuci9OCxqPgKyk+002Ok5ocrSiHRUpozqQ1FULnjR7luG93s9IGfD7
-         JKS8gI1PzLHuVYCVtBiT4hrtm8LyPeLwJJHH73o54V7SlLtOs74CA1f2BrRtRhzVrmA9
-         2YYchrpIXPxweXr9CXgHyv3Cn1uOG2Z8dkEEGZTi1lN4Xf0YLw73I8UA3A6zcVZxa6RB
-         QeJQ==
-X-Gm-Message-State: AOAM532q79Y3goyXV2Yjdym3RW5QveyYytQU5pX1ZmLxjPtN1BcsGAbn
-        qK0hTi50ckmbg/EOpDBZIR8yd/ik78QNrLymZnVgPw==
-X-Google-Smtp-Source: ABdhPJx9na6KgzgTa2a6Fl9rs1m4BaQVX93gFlqN9bcazVXIDAqBdVq9aYvXAF1znhsfu3tBctfOm+DOY0FYNuYX+Us=
-X-Received: by 2002:a67:ab48:: with SMTP id k8mr93223469vsh.30.1636301861809;
- Sun, 07 Nov 2021 08:17:41 -0800 (PST)
-MIME-Version: 1.0
-References: <20211031122216.30212-1-semen.protsenko@linaro.org>
- <20211031122216.30212-13-semen.protsenko@linaro.org> <02e4cd1f-47bf-9bc7-b46c-b6c30943c0b7@canonical.com>
-In-Reply-To: <02e4cd1f-47bf-9bc7-b46c-b6c30943c0b7@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Sun, 7 Nov 2021 18:17:29 +0200
-Message-ID: <CAPLW+4=HZytu3Cxsea_HjrR2FzAVd0uEVZvqp9pT4xB=WqhKUQ@mail.gmail.com>
-Subject: Re: [PATCH v2 12/12] watchdog: s3c2410: Add Exynos850 support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G3mP+YGCKggx5500tPqrkylkPVd3AA/X5efbd8Pm5Nw=;
+        b=A1i1dM9zT2hqqAJCyWTznxoKjL5TAS+5MCeu224sVh+EyZjwZVG07YvVDsoBeboSlb
+         sNH5kDxP3wA1QA8iasoOVo5C9rfIzr88VXYe9epzoWIc3/YYvcm0QWnhDcpSDrN8Tk53
+         Kb/3SzBe556ojGPuic5R4s9r+ww4sR71epUy7bqcems7cSOkWyHzXFAuvWE+wghvvsxO
+         w7FThhzZkaEbgqCgUfeGv3y7ZTHHqUas3MfbG8uGtKNOl8yYuhRrcPreBSEGqkdcNnMe
+         Ll/NL12z/lnhKgGhee4/RH1KuAKI+SyrLJVRCrNLlQ4TMvkoPMiNnaQJGxRlQq8U9qYF
+         U9Dw==
+X-Gm-Message-State: AOAM531fYvUCW/yOpmfWSyaxQfMi0P0y3JiPzrDrNdZruncaNqJzUt9k
+        b8JnMpJGuO2yg64vyTiw5r8=
+X-Google-Smtp-Source: ABdhPJwGnCFgCDfYf7IlSKqxXlPtNxWC4nZUCINPgI+YnYhCjxKqXLgfb+3NUXiusHfk0YxY37lOsA==
+X-Received: by 2002:a17:906:1599:: with SMTP id k25mr34857609ejd.298.1636307873408;
+        Sun, 07 Nov 2021 09:57:53 -0800 (PST)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.googlemail.com with ESMTPSA id m11sm4251182edd.58.2021.11.07.09.57.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Nov 2021 09:57:53 -0800 (PST)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: [RFC PATCH 0/6] Adds support for PHY LEDs with offload triggers
+Date:   Sun,  7 Nov 2021 18:57:12 +0100
+Message-Id: <20211107175718.9151-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Nov 2021 at 12:27, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 31/10/2021 13:22, Sam Protsenko wrote:
-> > Exynos850 is a bit different from SoCs already supported in WDT driver:
-> >   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
-> >     always 0; .disable_auto_reset callback is not set for that reason
-> >   - MASK_WDT_RESET_REQUEST register is replaced with
-> >     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
-> >     reset interrupt it's now enabled with the same value; .mask_reset
-> >     callback is reused for that functionality though
-> >   - To make WDT functional, WDT counter needs to be enabled in
-> >     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
-> >     callback
-> >
-> > Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-> > instance. Different PMU registers and bits are used for each cluster. So
-> > driver data is now modified in probe, adding needed info depending on
-> > cluster index passed from device tree.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> > Changes in v2:
-> >   - Used single compatible for Exynos850, populating missing driver data in
-> >     probe
-> >   - Added "index" property to specify CPU cluster index
-> >
-> >  drivers/watchdog/s3c2410_wdt.c | 68 +++++++++++++++++++++++++++++++++-
-> >  1 file changed, 66 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> > index 8fdda2ede1c3..457b725c30ac 100644
-> > --- a/drivers/watchdog/s3c2410_wdt.c
-> > +++ b/drivers/watchdog/s3c2410_wdt.c
-> > @@ -56,6 +56,14 @@
-> >  #define EXYNOS5_RST_STAT_REG_OFFSET          0x0404
-> >  #define EXYNOS5_WDT_DISABLE_REG_OFFSET               0x0408
-> >  #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET    0x040c
-> > +#define EXYNOS850_CLUSTER0_NONCPU_OUT                0x1220
-> > +#define EXYNOS850_CLUSTER0_NONCPU_INT_EN     0x1244
-> > +#define EXYNOS850_CLUSTER1_NONCPU_OUT                0x1620
-> > +#define EXYNOS850_CLUSTER1_NONCPU_INT_EN     0x1644
-> > +
-> > +#define EXYNOS850_CLUSTER0_WDTRESET_BIT              24
-> > +#define EXYNOS850_CLUSTER1_WDTRESET_BIT              23
-> > +
-> >  #define QUIRK_HAS_WTCLRINT_REG                       (1 << 0)
-> >  #define QUIRK_HAS_PMU_MASK_RESET             (1 << 1)
-> >  #define QUIRK_HAS_PMU_RST_STAT                       (1 << 2)
-> > @@ -171,6 +179,21 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
-> >                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
-> >  };
-> >
-> > +static const struct s3c2410_wdt_variant drv_data_exynos850 = {
-> > +     /*
-> > +      * Next fields will be set in probe(), based on cluster index:
-> > +      *   - .mask_reset_reg
-> > +      *   - .rst_stat_bit
-> > +      *   - .cnt_en_reg
-> > +      */
-> > +     .mask_reset_inv = true,
-> > +     .mask_bit = 2,
-> > +     .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> > +     .cnt_en_bit = 7,
-> > +     .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-> > +               QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-> > +};
-> > +
-> >  static const struct of_device_id s3c2410_wdt_match[] = {
-> >       { .compatible = "samsung,s3c2410-wdt",
-> >         .data = &drv_data_s3c2410 },
-> > @@ -182,6 +205,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
-> >         .data = &drv_data_exynos5420 },
-> >       { .compatible = "samsung,exynos7-wdt",
-> >         .data = &drv_data_exynos7 },
-> > +     { .compatible = "samsung,exynos850-wdt",
-> > +       .data = &drv_data_exynos850 },
-> >       {},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-> > @@ -548,15 +573,51 @@ static inline const struct s3c2410_wdt_variant *
-> >  s3c2410_get_wdt_drv_data(struct platform_device *pdev)
-> >  {
-> >       const struct s3c2410_wdt_variant *variant;
-> > +     struct s3c2410_wdt_variant *data;
-> > +     struct device *dev = &pdev->dev;
-> >
-> > -     variant = of_device_get_match_data(&pdev->dev);
-> > +     variant = of_device_get_match_data(dev);
-> >       if (!variant) {
-> >               /* Device matched by platform_device_id */
-> >               variant = (struct s3c2410_wdt_variant *)
-> >                          platform_get_device_id(pdev)->driver_data;
-> >       }
-> >
-> > -     return variant;
-> > +     /* Have to copy driver data over to keep its const qualifier intact */
-> > +     data = devm_kmemdup(dev, variant, sizeof(*variant), GFP_KERNEL);
-> > +     if (!data)
-> > +             return NULL;
-> > +
-> > +     /* Populate missing fields for Exynos850 w.r.t. cluster index */
-> > +     if (variant == &drv_data_exynos850) {
-> > +             u32 index;
-> > +             int err;
->
-> Another approach is to:
-> 1. Define two variants for Exynos850 (s3c2410_wdt_variants), kind of
-> like before,
-> 2. if (variant == &drv_data_exynos850)
-> a. Read the index
-> b. If index is 0, return first variant,
-> c. If index is 1, return the second variant,
-> d. Else - NULL.
->
-> This way you won't need to copy the memory on the fly, just use
-> different const data. Benefits: less memory allocations, entire drvdata
-> set in one place (so nicely visible), drvdata populated safely via const.
->
+This is another attempt in adding support for PHY LEDs. Most of the
+times Switch/PHY have connected multiple LEDs that are controlled by HW
+based on some rules/event. Currently we lack any support for a generic
+way to control the HW part and normally we either never implement the
+feature or only add control for brightness or hw blink.
 
-That's definitely better. Not sure how I missed that. Anyway, thanks
-for review. Will send v3 soon, addressing all your comments (except
-the one about src_clk in PATCH 10/12 -- need to discuss it further, I
-guess).
+This is based on Marek idea of providing some API to cled but use a
+different implementation that in theory should be more generilized.
 
-> > +
-> > +             err = of_property_read_u32(dev->of_node, "samsung,index",
-> > +                                        &index);
-> > +             if (err) {
-> > +                     dev_err(dev, "failed to get cluster index\n");
-> > +                     return NULL;
-> > +             }
-> > +
-> > +             switch (index) {
-> > +             case 0:
-> > +                     data->mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN;
-> > +                     data->rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT;
-> > +                     data->cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT;
-> > +                     break;
-> > +             case 1:
-> > +                     data->mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN;
-> > +                     data->rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT;
-> > +                     data->cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT;
-> > +                     break;
-> > +             default:
-> > +                     dev_err(dev, "wrong cluster index: %u\n", index);
-> > +                     return NULL;
-> > +             }
-> > +     }
-> > +
-> > +     return data;
-> >  }
-> >
-> >  static int s3c2410wdt_probe(struct platform_device *pdev)
-> > @@ -576,6 +637,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
-> >       wdt->wdt_device = s3c2410_wdd;
-> >
-> >       wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
-> > +     if (!wdt->drv_data)
-> > +             return -EINVAL;
-> > +
-> >       if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
-> >               wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> >                                               "samsung,syscon-phandle");
-> >
->
->
-> Best regards,
-> Krzysztof
+The current idea is:
+- LED driver implement 2 API (trigger and configure). They are used to
+  put the LED in offload mode and to configure the various trigger.
+- We have offload triggers that are used to expose to userspace the
+  supported offload triggers and set the offload mode on trigger
+  activation.
+- The PHY will declare the supported offload triggers using the
+  linux,supported-offload-triggers binding in the dts.
+- Only supported triggers from linux,supported-offload-triggers will be
+  exposed by the offload trigger to userspace via sysfs. Other won't be
+  configurable as they are not supported by the LED driver.
+- The LED driver will set how the Offload mode is activated/disabled and
+  will set a configure function to set each supported offload triggers.
+  This function provide 3 different mode enable/disable/read that
+  will enable or disable the offload trigger or read the current status.
+- On offload trigger activation, only the offload mode is triggered but
+  the offload triggers are not configured. This means that the LED will
+  run in offload mode but will have the default rules/event set by the
+  device by default. To change this the user will have to operate via
+  userspace (or we can consider adding another binding in the dts to
+  declare also a default trigger configuration)
+
+Each LED driver will have to declare explicit support for the offload
+trigger (or return not supported error code) as we pass a u32 flag that
+the LED driver will elaborate and understand what is referring to (based
+on the current active trigger).
+
+I posted a user for this new implementation that will benefit from this
+and will add a big feature to it. Currently qca8k can have up to 3 LEDs
+connected to each PHY port and we have some device that have only one of
+them connected and the default configuration won't work for that.
+
+Ansuel Smith (5):
+  leds: permit to declare supported offload triggers
+  leds: add function to configure offload leds
+  leds: trigger: add offload-phy-activity trigger
+  net: dsa: qca8k: add LEDs support
+  dt-bindings: net: dsa: qca8k: add LEDs definition example
+
+Marek Behún (1):
+  leds: trigger: add API for HW offloading of triggers
+
+ .../devicetree/bindings/net/dsa/qca8k.yaml    |  30 ++
+ Documentation/leds/leds-class.rst             |  38 ++
+ drivers/leds/led-class.c                      |  15 +-
+ drivers/leds/led-triggers.c                   |   1 +
+ drivers/leds/trigger/Kconfig                  |  35 ++
+ drivers/leds/trigger/Makefile                 |   1 +
+ .../trigger/ledtrig-offload-phy-activity.c    | 151 ++++++++
+ drivers/net/dsa/Kconfig                       |   9 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/qca8k-leds.c                  | 361 ++++++++++++++++++
+ drivers/net/dsa/qca8k.c                       |   4 +-
+ drivers/net/dsa/qca8k.h                       |  64 ++++
+ include/linux/leds.h                          |  76 ++++
+ 13 files changed, 783 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/leds/trigger/ledtrig-offload-phy-activity.c
+ create mode 100644 drivers/net/dsa/qca8k-leds.c
+
+-- 
+2.32.0
+
