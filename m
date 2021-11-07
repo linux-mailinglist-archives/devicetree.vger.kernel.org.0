@@ -2,97 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1053B447625
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 22:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41843447630
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 23:06:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235535AbhKGWCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 17:02:25 -0500
-Received: from relay08.th.seeweb.it ([5.144.164.169]:40959 "EHLO
-        relay08.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234620AbhKGWCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 17:02:24 -0500
-Received: from [192.168.1.222] (adsl-d210.84-47-0.t-com.sk [84.47.0.210])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 42BA53EC75;
-        Sun,  7 Nov 2021 22:59:34 +0100 (CET)
-Date:   Sun, 07 Nov 2021 22:59:28 +0100
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sdm660-xiaomi-lavender: Enable
- Simple Framebuffer
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S235871AbhKGWJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 17:09:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37756 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235687AbhKGWJO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Nov 2021 17:09:14 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 323666056B;
+        Sun,  7 Nov 2021 22:06:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636322790;
+        bh=toI6HLlxwBPJ5YPKt3v20fsa6jRRPdPSmuMIZD208hs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Nre9H+8pGNFdOGG0uQxbXTanDSfBtfCUCT8iXIoMeRhHTHlRZWnBGAlpdE3S2+0E2
+         /9t4B8MLVV2Defde7KvNb3Iyg10lBenk2MlIIZxOauBfpv73Kd1L/5kpo0izMf7FSc
+         ZN7+vRLRaI/YSQ/zqcYOM2weeY6ofbDfaQUJrVIGxZZml6woT2djYsXNQpb2kjYzWc
+         m4zcZSeHvC+tsojPfXBc8eCPNguo1Re6Az+HNkwqmfBh3nL4zxGss0zoQTU4nUfP1T
+         Y5LQABiFLI5YQYmIUwwc+gZKb2FHZKEP7QUBwKJLEJf16FEOPIHcPGF+mC9MblRLQu
+         srhmsugpzuQHQ==
+Date:   Sun, 7 Nov 2021 23:06:24 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
-        paul.bouchara@somainline.org,
-        angelogioacchino.delregno@somainline.org
-Message-Id: <4F282R.RHJ19SO89IMI3@somainline.org>
-In-Reply-To: <20211107195511.3346734-7-danct12@riseup.net>
-References: <20211107195511.3346734-1-danct12@riseup.net>
-        <20211107195511.3346734-7-danct12@riseup.net>
-X-Mailer: geary/40.0
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH 2/6] leds: permit to declare supported offload
+ triggers
+Message-ID: <20211107230624.5251eccb@thinkpad>
+In-Reply-To: <20211107175718.9151-3-ansuelsmth@gmail.com>
+References: <20211107175718.9151-1-ansuelsmth@gmail.com>
+        <20211107175718.9151-3-ansuelsmth@gmail.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Martin Botka <martin.botka@somainline.org>
+On Sun,  7 Nov 2021 18:57:14 +0100
+Ansuel Smith <ansuelsmth@gmail.com> wrote:
 
-On Mon, Nov 8 2021 at 02:55:10 AM +0700, Dang Huynh 
-<danct12@riseup.net> wrote:
-> This lets the user sees the framebuffer console.
+> With LEDs that can be offload driven, permit to declare supported triggers
+> in the dts and add them to the cled struct to be used by the related
+> offload trigger. This is particurally useful for phy that have support
+> for HW blinking on tx/rx traffic or based on the speed link.
 > 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
->  .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 19 
-> +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts 
-> b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> index 30e564927cd7..d6599881f1ac 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> @@ -23,7 +23,21 @@ aliases {
->  	};
-> 
->  	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
->  		stdout-path = "serial0:115200n8";
-> +
-> +		framebuffer0: framebuffer@9d400000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x9d400000 0 (1080 * 2340 * 4)>;
-> +			width = <1080>;
-> +			height = <2340>;
-> +			stride = <(1080 * 4)>;
-> +			format = "a8r8g8b8";
-> +			status= "okay";
-> +		};
->  	};
-> 
->  	vph_pwr: vph-pwr-regulator {
-> @@ -64,6 +78,11 @@ ramoops@a0000000 {
->  			ftrace-size = <0x0>;
->  			pmsg-size = <0x20000>;
->  		};
-> +
-> +		cont_splash_mem: cont-splash-region@9d400000 {
-> +			reg = <0x0 0x9d400000 0x0 0x23ff000>;
-> +			no-map;
-> +		};
->  	};
->  };
-> 
-> --
-> 2.33.1
-> 
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 
+NAK. The device-tree shouldn't define this, only the LED's function as
+designated by the manufacturer of the device.
 
+Marek
