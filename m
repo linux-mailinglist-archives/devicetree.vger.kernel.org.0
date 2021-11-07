@@ -2,79 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05EE54472B4
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 12:24:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF39A4472E8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 13:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234550AbhKGL11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 06:27:27 -0500
-Received: from smtp-32-i2.italiaonline.it ([213.209.12.32]:58633 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234637AbhKGL10 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Nov 2021 06:27:26 -0500
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([213.45.67.127])
-        by smtp-32.iol.local with ESMTPA
-        id jgG9mbDBMCVSejgGumjsSv; Sun, 07 Nov 2021 12:23:43 +0100
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1636284223; bh=EEtrSSWFEIEm+hm9c1Utn/zMqEcLWIoArC5KJHteRL4=;
-        h=From;
-        b=r66t5NSVq2vowqyc1m9pZkYXi/Is2VZMWYAgE8fJOeQcN9IQ3ZE0K1q1GfmJLRCqF
-         +IEqPkIH7SqL1hkbJK+othUcleul13hojyIqJnx6NC06zFSEyftJBB4joDB2wSTDa4
-         9i9g5iGEBBSOaEKBzO0uDKXE7P8JGmV2nYR2ytqSm3i2zoIUCTOskw3JtgaXa7QJGp
-         1/FbHRfJULW8CWMK6T7xuLklzT5MDUJ+8UALHqqwE99CAntlhqzyefq8zHAvjgqgT8
-         GsMfCBbNPb2NWP8t7JUR2HjSFawWqCbu1a9E1VA1V+DpLzis1MQyKHROWgTupW+t2T
-         s2ccXJuoN0GDw==
-X-CNFS-Analysis: v=2.4 cv=M/2Ilw8s c=1 sm=1 tr=0 ts=6187b73f cx=a_exe
- a=Vk63IOK+/LoQucGDvce7tA==:117 a=Vk63IOK+/LoQucGDvce7tA==:17 a=VwQbUJbxAAAA:8
- a=WGf4WTbLby2_tS91RlMA:9 a=AjGcO6oz07-iQ99wixmX:22
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-input@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Rachna Patil <rachna@ti.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Dario Binacchi <dariobin@libero.it>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [RESEND PATCH 4/6] dt-bindings: input: ti-tsc-adc: fix tsc node example
-Date:   Sun,  7 Nov 2021 12:22:34 +0100
-Message-Id: <20211107112236.7969-5-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211107112236.7969-1-dariobin@libero.it>
-References: <20211107112236.7969-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfGJiT1p+RKZwKdMcJkkVOvukmmvGCfoREfMzSsL7AL23Wlv9dD6Ysj1MPiO60BIVswz4NWCZ3/IayEp3nrNMEjkIzRTnTfsX7ioBma+pwc4e6wCGVitC
- 8bARPidV7a16pxWfRStWCMda9wzGW/cUI/IWVjsaunoAv1CyYXN3iduhbOMcbV8dLdQhnkSznPCpKkEhmxD7f5bvfMUUEBDo0p/iBgFKmUWmDVB7jfIpnENo
- DmIgC+pqjarzMwW4zNmGms1JdPLZPwGVsEU385ewB4WracoX9P55E4K1BQGkqpG+YQvSC/xCCGarrmpjCb7pwzL8DER6FHsvkrBSODNGRMrwlo6zXOzDXHgI
- ceCyAjAn5Alm31PeSEg4+RZr8ENlwcIwJT19pCzXQ4oPq74gxZUoQnrvHqQE01Zmp7Kb2k+/ewCx2j2Qpq/tH5LZPUUul1X12kFmcNq4gTqGgzH8+XNfkPWD
- W+EfGrccxOGQscRKK3gNsmRqh1q9VPlxyVULKA==
+        id S232912AbhKGNBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 08:01:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232575AbhKGNBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 08:01:09 -0500
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00E6C061570;
+        Sun,  7 Nov 2021 04:58:26 -0800 (PST)
+Received: by mail-vk1-xa29.google.com with SMTP id d128so6872843vkf.11;
+        Sun, 07 Nov 2021 04:58:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9eV/fdHf8QRKIzUhm9qgNCJRObaanecr1jKTW7PsmiE=;
+        b=YweIuKvSjvNXAv5B1ORFz3gmKdwNAYjzjYysp3f1OlylgxFJy49Xnftk0tm7B9nA9K
+         tL7hd8vxkTkfM043NUmgjiaRlMXWtVKOJ78czGS/WAl/EFOLiNr6SMCmJ7Z5SXI0FmdZ
+         kMePv3P/jKbRQ1ErhZp3Gng90mC9nLdwQvftFUNbQfx/op1e9AuWf79w8TvC5mHUSCR+
+         QSOnAoomPvl9/o7PIvPy4jphdRFqKtGSq50DZ+MvqvEa+2ifL3mazObY8af1+k+WBvPF
+         Z/T3lP6dMHGsoGNQzLDu13PX/XG1wzr9AQVI90hoHR9MXFE9AZlc0B9trlMoi5E4NWF+
+         4SYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9eV/fdHf8QRKIzUhm9qgNCJRObaanecr1jKTW7PsmiE=;
+        b=Ujjv5I+fhUV0ZGjh4D6AA52Jz01RJUC0uYNczjIrVSvB8eFe4p6F2OszpNuWO0+Vc6
+         qFYzM9BAanyePoZrE4RHGUU+peMBqDB05nkCMqcpoxFFZjY+eXsRgDHD50WdXpRyN8fF
+         96KQZ1ejJsXx4VLJHSEUa4WylaUUPKVy+0wrJTRvRnukHzvIx3upkUdbEFSVz3LTeXxo
+         FwkzN2pCOCngI+0vIWo3P0iFI3+qfIAzYuugDzTwEZ+LwhiOeHCFRYfQpGkiID4PLgBC
+         MgRg8eEjCLT8JoN9r4b3TWw/3ZII6LZUJiLRSgciVCoNY1aVHMxqDUhNyiQOh4itFi2O
+         7RtQ==
+X-Gm-Message-State: AOAM532dxAzD3ZUUtbPHHFhnfnL2xJEdAkgrCqU1HxSbjSvSQe6DmUXQ
+        Ci8I5lnEnH0rXTQHr4HeNWpuNy9gSDrDNwNYyWc=
+X-Google-Smtp-Source: ABdhPJw4DjqiCXrpo2VfjymWHq7nqcAz8E1V9PCFd+PGP3AwtaysBg/9QAcNjYY2wFEWeuh0v/lpvhvPf8yi04v8SRw=
+X-Received: by 2002:a1f:9158:: with SMTP id t85mr19564442vkd.8.1636289905985;
+ Sun, 07 Nov 2021 04:58:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20211106155427.753197-1-aford173@gmail.com>
+In-Reply-To: <20211106155427.753197-1-aford173@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 7 Nov 2021 09:58:15 -0300
+Message-ID: <CAOMZO5AZLT7SmpH007S5oZg7k+qJdmHTxb+CpvyXXZJtXQf4ww@mail.gmail.com>
+Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+To:     Adam Ford <aford173@gmail.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit c9aeb249bf72e ("Input: ti_am335x_tsc - fix spelling mistake
-in TSC/ADC DT binding") didn't fix the typo mistake in the tsc node of
-the example.
+Hi Adam,
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
-Acked-by: Rob Herring <robh@kernel.org>
----
+On Sat, Nov 6, 2021 at 12:54 PM Adam Ford <aford173@gmail.com> wrote:
+>
+> Most of the blk-ctrl reset bits are found in one register, however
+> there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> out of reset or the MIPI_CSI hangs.
+>
+> Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
- .../devicetree/bindings/input/touchscreen/ti-tsc-adc.txt        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-index aad5e34965eb..2013fd7c4a10 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti-tsc-adc.txt
-@@ -77,7 +77,7 @@ Example:
- 		tsc {
- 			ti,wires = <4>;
- 			ti,x-plate-resistance = <200>;
--			ti,coordiante-readouts = <5>;
-+			ti,coordinate-readouts = <5>;
- 			ti,wire-config = <0x00 0x11 0x22 0x33>;
- 			ti,charge-delay = <0x400>;
- 		};
--- 
-2.17.1
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
