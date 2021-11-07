@@ -2,107 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2429E447577
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 21:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF3DA44758C
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 21:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236402AbhKGUIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 15:08:07 -0500
-Received: from mx1.riseup.net ([198.252.153.129]:35010 "EHLO mx1.riseup.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236383AbhKGUIF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 7 Nov 2021 15:08:05 -0500
-Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
-         client-signature RSA-PSS (2048 bits) client-digest SHA256)
-        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
-        by mx1.riseup.net (Postfix) with ESMTPS id 4HnQ3R21dpzDrhC;
-        Sun,  7 Nov 2021 11:56:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-        t=1636314963; bh=H5TSzC40aRVwGWGMaw5goomGgd7XGwJA1Z2Jw1JsVfA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Gd5EkgWt6tcv/dyxrwbZC63Gjhsx1naUDAPV3wPAvSGoKijXyD79UECXVD8p6H7KW
-         6/SIwAMqA0yI001oeRvtumTTraHruyA0F/Q8NPmmggo1zhOVhIzURUjoFfF3485bGr
-         0ErFj+T4MmMxkDyb+oib1L3WHJDfQTo3mYz0auc0=
-X-Riseup-User-ID: A90CA907D0BB05E5B3A226CB280CD9A0CDD45754D187F57A772E4E7AC55480D7
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-         by fews1.riseup.net (Postfix) with ESMTPSA id 4HnQ3N1R98z5vkF;
-        Sun,  7 Nov 2021 11:55:59 -0800 (PST)
-From:   Dang Huynh <danct12@riseup.net>
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, paul.bouchara@somainline.org,
-        angelogioacchino.delregno@somainline.org
-Subject: [PATCH 7/7] arm64: dts: qcom: sdm660-xiaomi-lavender: Add USB
-Date:   Mon,  8 Nov 2021 02:55:11 +0700
-Message-Id: <20211107195511.3346734-8-danct12@riseup.net>
-In-Reply-To: <20211107195511.3346734-1-danct12@riseup.net>
-References: <20211107195511.3346734-1-danct12@riseup.net>
+        id S229544AbhKGUMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 15:12:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229520AbhKGUMs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 15:12:48 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECFEAC061570
+        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 12:10:04 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id x27so31533621lfu.5
+        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 12:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=msSuyuNN1qGawUOx+wJjclYFd7Ehg7HyYzhPy0YPAk0=;
+        b=IN2RRNGntX9tMVMocKjOGDRhyawZPt5ubBMt2sIibQ4/3/uyNJGSQZs0B5A2mA+Vwg
+         47CEAgZdJfT8BOj0TFzpScDZIHYaimQDj9wIimPH499GqeHDHzs+cwe20h1SK0zEsycz
+         NKovjHKpNQycC2VDmvSlTyLDpHm8O6FzZEIzIp4yxPZq3LRtCY31XLbzAlSKXaBsWX96
+         BGj2hdVg+3GZX1vx8WFWDfFf4vt/C7o/JXfNoSuX3oIN+OLMw2XGsrEJAhL7kMZEcO8L
+         vMnZ/qgKRFJAnpyNIb2OlaVwX0eWXdbHSOJjQUljP/Ha79yw3ZF2yPPFxtUaPcqlIgei
+         A3Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=msSuyuNN1qGawUOx+wJjclYFd7Ehg7HyYzhPy0YPAk0=;
+        b=qX5OsV/VTJwYxUnUIylMvOwWwl+oJUD0X/ebjYQpj7xw/zHxUpntN62VT17Co269E9
+         yDr3eDSAmm8PGDAw5C5C9v8fxM+EOd3wGmxP9Q7pyWGnwsktd4eSkvU1zajNflk9eBvR
+         Zwh3+Sd3EVXWz9VuQiuerEhc5grMK1QQVdXz7a+o0kbOxy7IrY2I0u7rV6udMNgSjRm4
+         nM8VIsNaLUct/7QAaEg533JZUmypaetjOAOtVsRlDb94JWlKwI7HsQ1i9Yym8eq325u8
+         S8D8pjbIAQP9UxoiCVFWHo9wHADND8nq1sdVOYlkqmVJVeXD/tmsvRzWOVMlObdF9WAH
+         I6Dw==
+X-Gm-Message-State: AOAM53207StES+oSgGWkFVrYwznvgzTrTZc2ZpWI6isZHhZQjya/oDxX
+        Hw5BLuOcYJ9A6AcB3+SmzIMHcTmAhtQ4igTtMbI=
+X-Google-Smtp-Source: ABdhPJxlha4bkZYw2mReLfelE1Voe56yJhVyzHoqZbNfN5TxChPMse9i4MP30D1/0hvjsl1TmtTHP39catMZ1dGsrLA=
+X-Received: by 2002:a05:6512:b8f:: with SMTP id b15mr4291938lfv.443.1636315803178;
+ Sun, 07 Nov 2021 12:10:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a2e:864e:0:0:0:0:0 with HTTP; Sun, 7 Nov 2021 12:10:02 -0800 (PST)
+Reply-To: cja6665@gmail.com
+From:   Charles <allenbarry6654@gmail.com>
+Date:   Sun, 7 Nov 2021 21:10:02 +0100
+Message-ID: <CAEdKyV5mPbY7MfN0U8U1ms1mWd3A05CWXtS_G1bWGhYHCSW=_w@mail.gmail.com>
+Subject: RE
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable and configure DWC3 and QUSB2 PHY to enable USB
-functionality on the Redmi Note 7.
-
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
- .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-index d6599881f1ac..b54191f1f152 100644
---- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-@@ -84,6 +84,15 @@ cont_splash_mem: cont-splash-region@9d400000 {
- 			no-map;
- 		};
- 	};
-+
-+	/*
-+	 * Until we hook up type-c detection, we
-+	 * have to stick with this. But it works.
-+	 */
-+	extcon_usb: extcon-usb {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 58 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &blsp1_uart2 {
-@@ -100,6 +109,13 @@ voldown {
- 	};
- };
- 
-+&qusb2phy {
-+	status = "okay";
-+
-+	vdd-supply = <&vreg_l1b_0p925>;
-+	vdda-phy-dpdm-supply = <&vreg_l7b_3p125>;
-+};
-+
- &rpm_requests {
- 	pm660l-regulators {
- 		compatible = "qcom,rpm-pm660l-regulators";
-@@ -405,3 +421,12 @@ &sdhc_2 {
- &tlmm {
- 	gpio-reserved-ranges = <8 4>;
- };
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "peripheral";
-+	extcon = <&extcon_usb>;
-+};
 -- 
-2.33.1
-
+YOUR EMAIL ACCOUNT HAS BE SELECTED FOR  A $3,500,000.00 DONATION FOR
+CHARITY. PLEASE CONTACT US FOR MORE INFORMATION
