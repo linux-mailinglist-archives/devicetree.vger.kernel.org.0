@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDEF74475B7
-	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 21:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F3F4475BC
+	for <lists+devicetree@lfdr.de>; Sun,  7 Nov 2021 21:30:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236483AbhKGUck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Nov 2021 15:32:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55558 "EHLO
+        id S236463AbhKGUcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Nov 2021 15:32:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236465AbhKGUcg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 15:32:36 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E7DC061205
-        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 12:29:52 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id t11so25491555ljh.6
-        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 12:29:52 -0800 (PST)
+        with ESMTP id S236487AbhKGUci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Nov 2021 15:32:38 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10DF0C061714
+        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 12:29:54 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id y26so31537139lfa.11
+        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 12:29:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Lj9NeaWb79mXFwj71iu93EU8KXH6mdMUVf2fcebYSxI=;
-        b=ymRvvAXWIhYda+K0PwHaihL31QnlqkaRxA9dkSTpncZWtiXOf7CbLCOmPJwkyPe2cc
-         3Lx7gi4rkrVnV4PTzs8eG7tpcQpMtny/ZX97Zzr0cmcmaKulesL0BFI5b8z9R1/BM5G3
-         DhyXH4LwV+2H9OxvaGmPsmA8J0wpNysfgmPw6bbLpRie3DWOcP7RuDSrvDJ2p64KUIA8
-         2mCe3K0QIaGzY2jlRYD4P2gKq2DCOCxObCocNKb08t6TwIZdlsjTrCjb42UcRUMVYy9G
-         q9xZsMKHzlo4S+bRQNlNplY04Is1FbmHqIyNygWc1xmvOqY7z8Yy0h/6je15YdEmlT/F
-         Nkpg==
+        bh=iLKLfoVwJNu4r8/+qUFz6o9Y+DOB/hZ4XDcDw1uqaHQ=;
+        b=e3VgPMSAzLAnZ44gUoWpXW5KvtMb7Vf3Dxs9lQwW6VLg57vjV6y1ATnysS5FN1/kBD
+         8nMNvwYZB99Kf7pZoqWbJx90oGd+hbqKHWqE08g5rxnXuxxVrdBOtMsjFS1nfQ7TkKEo
+         dOEujjER+zjIExdFLcbivbfeykFNJ0In5xlSoi+M59Rg5PUhWWdt9FOnHjszvolrT7lq
+         Tnhsdie6WxKDOmyVSCLnmv5aJDfX7mv910xb50ePwsAjMtrx0D5XTIxA1mc/bB6dhNsD
+         4NMfhnZSL/p7Pr9VsDX6O9FGf9qLg8R3IrZo4mKapGgCJ1BCsX8H7t3c308MfBvuZAyd
+         0LgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Lj9NeaWb79mXFwj71iu93EU8KXH6mdMUVf2fcebYSxI=;
-        b=a0e+3GogP8jXN+NoPf0X8DhiaUHzGWGvRTBlUPoG4EvsfHnxstDSM4bTGyWD89k0hw
-         f8BFi8slcbUonI20a5+BrpZWWKzS4qjWWADQ5LACgU6WjLDHe5eWttGq64wl4FtT8YcM
-         eBtoeOSke6NXbjWDuwObHqwtt7FLYR95hVuX7UvhRVIf5ugXEFvoDncPDL6IYJd2nrBB
-         MYSg5gY60e0ALDR1ITbDP31G++kbi+o6G6RGfHZ991Riporij1gNdp55DzvC6eiNiuwS
-         g9rto+lxvNxHG2uqdvOrwJE+X32heOv4hKsjqs4R+cZN7zQUNAQ6l7ZJ6toPPh5fh9z7
-         /lUg==
-X-Gm-Message-State: AOAM531L+7IBGJDOs7UBOY1x9pumUScVX7cwvU9GCQVDvARelrQ1UQge
-        i2/jDXXTHo2/XQPF1EeG1G/kfA==
-X-Google-Smtp-Source: ABdhPJz26YA3soNYgOodYqUw5+Hg3uqwT4KvuIYqs+qWfXgJk3TLTWBNXEqhmPprqZUpkNNw8b8YuQ==
-X-Received: by 2002:a2e:9a8c:: with SMTP id p12mr10186084lji.526.1636316990633;
-        Sun, 07 Nov 2021 12:29:50 -0800 (PST)
+        bh=iLKLfoVwJNu4r8/+qUFz6o9Y+DOB/hZ4XDcDw1uqaHQ=;
+        b=Dey+zk4IcPu13FGm+gUFU/Ia3/Ckbl1qlCeEgKNUKL2PPnW8HOihF/WnF+Cz4uR2ML
+         zOvZe60vatihZHeCSCNI9DtevqQNA/UqV4QL6b9IUWZ7lidPDiSm7BGD9FJuOZM42FTJ
+         gqQJMVRHEpwmV3BSnbHLijKnGO/lIhxgLJadvIJiEnWMAYHGbWPG3L6muVCvU4vQYfFL
+         yHm2BCAx53TMPmYllcplWlBzcF8ARXoI6Wj0RANVZfxko9C2SNdNXyNd6mT2TDwwa2R7
+         hdJHwY1Axlnv9Rt3g6MU7Zmo4g5/zpIfwRbeKbu5wP0eBbt6ChObm3OT8rtTv/+6npM4
+         dbVQ==
+X-Gm-Message-State: AOAM5315HnGVmVLanBEAvOC8vBtA0To3QLbs+h2LKEODy68eiuhJLPt8
+        XbCkBxq+ucTvqf0pzkAT2tyIPw==
+X-Google-Smtp-Source: ABdhPJwDdQX1V2BSXClLvTMM3lN0haGxLEVG3UUOjN/yIKSoRQUXlslUz2LRf1mWXVIq666jdHR09g==
+X-Received: by 2002:a05:6512:10c5:: with SMTP id k5mr69608972lfg.677.1636316992448;
+        Sun, 07 Nov 2021 12:29:52 -0800 (PST)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id bq3sm1572994lfb.173.2021.11.07.12.29.49
+        by smtp.gmail.com with ESMTPSA id j20sm1573345lfu.199.2021.11.07.12.29.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Nov 2021 12:29:50 -0800 (PST)
+        Sun, 07 Nov 2021 12:29:52 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Guenter Roeck <linux@roeck-us.net>,
@@ -55,9 +55,9 @@ To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
 Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v3 03/12] watchdog: s3c2410: Fail probe if can't find valid timeout
-Date:   Sun,  7 Nov 2021 22:29:34 +0200
-Message-Id: <20211107202943.8859-4-semen.protsenko@linaro.org>
+Subject: [PATCH v3 04/12] watchdog: s3c2410: Let kernel kick watchdog
+Date:   Sun,  7 Nov 2021 22:29:35 +0200
+Message-Id: <20211107202943.8859-5-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211107202943.8859-1-semen.protsenko@linaro.org>
 References: <20211107202943.8859-1-semen.protsenko@linaro.org>
@@ -67,75 +67,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Driver can't work properly if there no valid timeout was found in
-s3c2410wdt_set_heartbeat(). Ideally, that function should be reworked in
-a way that it's always able to find some valid timeout. As a temporary
-solution let's for now just fail the driver probe in case the valid
-timeout can't be found in s3c2410wdt_set_heartbeat() function.
+When "tmr_atboot" module param is set, the watchdog is started in
+driver's probe. In that case, also set WDOG_HW_RUNNING bit to let
+watchdog core driver know it's running. This way watchdog core can kick
+the watchdog for us (if CONFIG_WATCHDOG_HANDLE_BOOT_ENABLED option is
+enabled), until user space takes control.
+
+WDOG_HW_RUNNING bit must be set before registering the watchdog. So the
+"tmr_atboot" handling code is moved before watchdog registration, to
+avoid performing the same check twice. This is also logical because
+WDOG_HW_RUNNING bit makes WDT core expect actually running watchdog.
 
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Suggested-by: Guenter Roeck <linux@roeck-us.net>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
 Changes in v3:
   - Added R-b tag by Krzysztof Kozlowski
 
 Changes in v2:
-  - (none): it's a new patch
+  - Added explanation on moving the code block to commit message
+  - [PATCH 03/12] handles the case when tmr_atboot is present but valid
+    timeout wasn't found
 
- drivers/watchdog/s3c2410_wdt.c | 21 ++++++++++-----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
+ drivers/watchdog/s3c2410_wdt.c | 26 +++++++++++++++-----------
+ 1 file changed, 15 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-index 2395f353e52d..00421cf22556 100644
+index 00421cf22556..0845c05034a1 100644
 --- a/drivers/watchdog/s3c2410_wdt.c
 +++ b/drivers/watchdog/s3c2410_wdt.c
-@@ -515,7 +515,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
- 	struct s3c2410_wdt *wdt;
- 	struct resource *wdt_irq;
- 	unsigned int wtcon;
--	int started = 0;
- 	int ret;
+@@ -604,6 +604,21 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+ 	wdt->wdt_device.bootstatus = s3c2410wdt_get_bootstatus(wdt);
+ 	wdt->wdt_device.parent = dev;
  
- 	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-@@ -581,15 +580,15 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
- 	ret = s3c2410wdt_set_heartbeat(&wdt->wdt_device,
- 					wdt->wdt_device.timeout);
- 	if (ret) {
--		started = s3c2410wdt_set_heartbeat(&wdt->wdt_device,
--					S3C2410_WATCHDOG_DEFAULT_TIME);
--
--		if (started == 0)
--			dev_info(dev,
--				 "tmr_margin value out of range, default %d used\n",
-+		ret = s3c2410wdt_set_heartbeat(&wdt->wdt_device,
-+					       S3C2410_WATCHDOG_DEFAULT_TIME);
-+		if (ret == 0) {
-+			dev_warn(dev, "tmr_margin value out of range, default %d used\n",
- 				 S3C2410_WATCHDOG_DEFAULT_TIME);
--		else
--			dev_info(dev, "default timer value is out of range, cannot start\n");
-+		} else {
-+			dev_err(dev, "failed to use default timeout\n");
-+			goto err_cpufreq;
-+		}
- 	}
- 
- 	ret = devm_request_irq(dev, wdt_irq->start, s3c2410wdt_irq, 0,
-@@ -613,10 +612,10 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
++	/*
++	 * If "tmr_atboot" param is non-zero, start the watchdog right now. Also
++	 * set WDOG_HW_RUNNING bit, so that watchdog core can kick the watchdog.
++	 *
++	 * If we're not enabling the watchdog, then ensure it is disabled if it
++	 * has been left running from the bootloader or other source.
++	 */
++	if (tmr_atboot) {
++		dev_info(dev, "starting watchdog timer\n");
++		s3c2410wdt_start(&wdt->wdt_device);
++		set_bit(WDOG_HW_RUNNING, &wdt->wdt_device.status);
++	} else {
++		s3c2410wdt_stop(&wdt->wdt_device);
++	}
++
+ 	ret = watchdog_register_device(&wdt->wdt_device);
+ 	if (ret)
+ 		goto err_cpufreq;
+@@ -612,17 +627,6 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
  	if (ret < 0)
  		goto err_unregister;
  
--	if (tmr_atboot && started == 0) {
-+	if (tmr_atboot) {
- 		dev_info(dev, "starting watchdog timer\n");
- 		s3c2410wdt_start(&wdt->wdt_device);
--	} else if (!tmr_atboot) {
-+	} else {
- 		/* if we're not enabling the watchdog, then ensure it is
- 		 * disabled if it has been left running from the bootloader
- 		 * or other source */
+-	if (tmr_atboot) {
+-		dev_info(dev, "starting watchdog timer\n");
+-		s3c2410wdt_start(&wdt->wdt_device);
+-	} else {
+-		/* if we're not enabling the watchdog, then ensure it is
+-		 * disabled if it has been left running from the bootloader
+-		 * or other source */
+-
+-		s3c2410wdt_stop(&wdt->wdt_device);
+-	}
+-
+ 	platform_set_drvdata(pdev, wdt);
+ 
+ 	/* print out a statement of readiness */
 -- 
 2.30.2
 
