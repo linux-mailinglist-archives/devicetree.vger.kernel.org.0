@@ -2,277 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D3A24499F4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D9364499FA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:34:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238955AbhKHQg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 11:36:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238873AbhKHQg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:36:28 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCED8C061570;
-        Mon,  8 Nov 2021 08:33:43 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id j21so64682130edt.11;
-        Mon, 08 Nov 2021 08:33:43 -0800 (PST)
+        id S240011AbhKHQgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:36:42 -0500
+Received: from mail-eopbgr1400099.outbound.protection.outlook.com ([40.107.140.99]:26944
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238873AbhKHQgl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 11:36:41 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=CVC0g3HUmcyYaKfnZ166MXmv6Bb2PHdTyRIySV3xiGptNXOILLnsw9XmhBDkjg+D67d7mrlXsApF1s4YUtxOJ1lv/F8Z4JrZRG5k3JdGiUOxpfnHdE5TGefjNg5geZfwITRBkyvK9VfCF9xlFPF1CTNQYaGgwsKSPwajDkgrjxmm3J5JqAByrATA+6LVHJ5vuwUhn1fAsjELNPSKAGSjaeCCjP2Z+ad7R7nQIFbvpQZb3YQc/sYCQ+VhHt9jyikvPJP1P012r2l1BzLRyyDO2fZyobQ8Dqi8JIV7CRz2EpsL0sLgSAdsNvrgJK4xZOkoCPfZnHRd613en63W4emiJA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OOCPl+5jZijD1pIroLS6bhNLQhGMMCGe1NN2k0PKHA4=;
+ b=Wnw7LPqbBjI5KlLkvlSwN35+eOSN84oob7pHXoUsXBFmSsYH8IzI/YKufhNF9kR6kqL9JccccrzpHwz10pKjNra1IMtIPlCMsj4JMqmj3vego3KKqYsgzews7GL6lDvcSRcND4k+mHE+dhJc0J7aIDKfz6oOANLbtlDivShRwvf4PZH3MxReZt+0zGvbJhLht/2WPWzfzzImhVt8ysIEJEzqVGwsc9m6kfkOxWPX1PbYa2h3dzVDhH0XMmrMEY/WnH/yxv4wT/kdy0J1YEXOqMvjeAU8rhIEw9fkdJGgx6M4EnAD0J1pHnnxPjkAJrEvLjbO131MVka0VVjVUhKwug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9Rxa4GOx2fwvlQZ2whnc/TnhfZE1p0pc42KpiRaylhs=;
-        b=n/8qnSZC3Cjp/oZ7CLEJ2X6v9P73IFL7f911sxu+p/MF2O04o5WsKr08m6/BfoPYl9
-         /GhDWWFwCRE3OQKw6skOR7QTvO9ys2RG48tJh+RAubTHvLvK6bnBuysJ+UK5s9cDoCpK
-         SHoCZPXZSgdBh8vCV+qGIHOUBDELv/pNmFqyr/oZUkYWYvV/pUeCPBbslHoP9LUWxHQS
-         pTvBRUAIhO1CLl7JzjS7d9jZSNkhIaSaD3mClEVQxA1WXxL3+2OwKmMT3u75VcBabHZX
-         uLwh/vHcYU10p/Z5fA7XHumMA60YmwaHkm0SMNnoI5lxJTkUvDdewY+SgYtJBF7/hHrO
-         xB5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9Rxa4GOx2fwvlQZ2whnc/TnhfZE1p0pc42KpiRaylhs=;
-        b=Tk1IcvH97atLRQnbz50J+bSgM2U8cFCDM/M5bHm7G2S+8deQYiJT7pu6e2wz8xbjup
-         Kz1UPxP8pzoq82Z/gPi2afKMhdQo+Smr5BNyooBrtO1m89VD6/7Z+VsYLDh4ZJqyAfCu
-         xCaMgyYPph+BHgQp01XJztdjI3174Bf6YOXX0YYFfNtgSviGbFloN+O1T/nD/XPpMPPw
-         jyD3yOs307l0RSsqQvNQhQlYfAWXogqowZ03OfJCN74LrWCZ8ehEjrVKH/YvO6tWcJ1v
-         AzkYt6tr468JUD2idKTkspQERALBLGfVOMFQa7EV9eO5XQ/83sR2DWgwnikB37FMSV+W
-         5SIA==
-X-Gm-Message-State: AOAM533KeKSthzygSeCWL+xJ9KyxmjFH0lXOCsKh2jDlhJScUgA0R2YJ
-        U4/wiS6Xv3QQ9B6sJmyoZKzHLjs7hYgccv/MnN4=
-X-Google-Smtp-Source: ABdhPJzUbBKXNcxWwqbBJXazNeHjGX+wrr3eBVTqDpa+ZR9NhtiVwzLUbkHmYS7g+jGomDrMzjw634dhURflNo53ues=
-X-Received: by 2002:a05:6402:3508:: with SMTP id b8mr448425edd.347.1636389220044;
- Mon, 08 Nov 2021 08:33:40 -0800 (PST)
-MIME-Version: 1.0
-References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
-In-Reply-To: <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 8 Nov 2021 10:33:28 -0600
-Message-ID: <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OOCPl+5jZijD1pIroLS6bhNLQhGMMCGe1NN2k0PKHA4=;
+ b=Aih024xMRspikKQtiEAEAEfl/ovDyLpbGPujmxMq5933wZd292a84gKpxTTT3v45qLcjg3L+je2eedbjy/YRHMl6OAy+5Q+aTfjThyNTugqNNVwB4gE3nNgVq7O98MBRvruWXoIG71zyjQkltq9ofRvW8sFLf8gxrwigXWbiQZI=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSBPR01MB5048.jpnprd01.prod.outlook.com (2603:1096:604:38::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.13; Mon, 8 Nov
+ 2021 16:33:53 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c0bd:405a:cdd3:f153]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c0bd:405a:cdd3:f153%9]) with mapi id 15.20.4669.016; Mon, 8 Nov 2021
+ 16:33:52 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for
+ RZ/G2L
+Thread-Topic: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for
+ RZ/G2L
+Thread-Index: AQHX0ZZNHOtq05IgGUCn6i3dBHS8Qav50YMAgAAHpYA=
+Date:   Mon, 8 Nov 2021 16:33:51 +0000
+Message-ID: <OS0PR01MB5922BD0EB1CEC3CFDE6C0AD486919@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20211104160858.15550-1-biju.das.jz@bp.renesas.com>
+ <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
+ <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
+In-Reply-To: <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linux-m68k.org; dkim=none (message not signed)
+ header.d=none;linux-m68k.org; dmarc=none action=none
+ header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 263643b6-76eb-42a7-3f05-08d9a2d58cc3
+x-ms-traffictypediagnostic: OSBPR01MB5048:
+x-microsoft-antispam-prvs: <OSBPR01MB50485103A328EA4C45158B4786919@OSBPR01MB5048.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y8rzD8y4y2wnLhZkWeQKsW6+16IwuEtW7Nw+SUY6T40U5ElzX4vGBzDdSoBx4oQOxsjF9S4fjjr9qEPSagC8smlm7MRF4XdNTiRpkEs/Xq0ZeyMRZK2swS5fEXb19nsC1hmVqM0UcfDGQ6xtmG3hxwo9JtTBFHEgh/9rea8AySaThapFu1+EfDycokFc+SRq4n0fJYxSBGjgEHFBUzolNthzQQlkKgWrwQ/YUW/PWem6ZjMSt7W/eG96X5pLS2EYeh6dd3H/9o3Assgg6BDmS3WaDytpl/RKkA2FyWbVXGYC+R3WISCVh15Plouf/XElFdZnHjhDmWuPdNGWQhEQmEnFhdkq8ngqVLGXdqvf5M0MCFq6UgeB0VzzsmClmkWsytTk6ZyeZ9V4APrbij7UsTpIKEEVSUQBGeHV0KDInJrWvXKCgS/XU2F3L0vmCnphsF0zUns3hRnSoY/Nbgpdk4UE7zVUSflV27CICkSdeRNexOH4F317ma+2iqQxXaow1qGb3aqLPikcZtnzIaKy6m4KNe96hdZqjoOKoZdw/ppcAxizPrwT6GyLc5nMx+p39iBWvkDf9PkFFjh7S1pBofa5qi/Gqd6ICMDOgU4bryZD5zyMv67S5pkhnTkzeRhz4UgDdR/LfocO4TReV61ukh28WxKMxsQo46dH8OYu8YS2K/LeusTpnd6x6orQ/Eq4pNfYgyh6pYrn68ZyAEfdNg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(53546011)(6506007)(316002)(8936002)(5660300002)(55016002)(4326008)(7696005)(8676002)(71200400001)(64756008)(66476007)(66446008)(66556008)(86362001)(9686003)(66946007)(122000001)(54906003)(76116006)(6916009)(38100700002)(508600001)(52536014)(2906002)(38070700005)(33656002)(83380400001)(26005)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NWdkNU5UM0lObUx6TFlmWTFYYWVnTkpmN3QvQ2ZtdGRCYUJvOVNoa1ZzNGg4?=
+ =?utf-8?B?YzdmeGYxZU1YVnlxYUZWYWxvS1pUeVorUTdUWTViQlpndURXRjlZck5kd01V?=
+ =?utf-8?B?ZTE4V2w4ZktnS25mQ0lkWVNIbUR4dGtNbTZ0VEtQTThKa3ZPcTJwaEoyOVhR?=
+ =?utf-8?B?N1U0WU1xekNmNnJKMzU4dzRzZVNRN05hcWR4azVhZjhKdVVHTWppOEwwQytM?=
+ =?utf-8?B?SmVnU010NE40TDVYS0p6T1FqUHZWSjg1WG1kelBLVmhjbTVaTDREZWs4VWdK?=
+ =?utf-8?B?QVBNcHp2Y3lNQkFwUVh5K29USVF1ZmJTSFE2NzNmbUF2ZXJZSDZDVW9tK1Ez?=
+ =?utf-8?B?VHJUWVY1Vkd4S0NvZ2JiTDZ5Q3d6b2V2b3BjZUd1dkhsWm01M0FzTGNkMElh?=
+ =?utf-8?B?aVk0dWFLWW04RXdtNkhlZS9VVUc4ejFpR2J1RDFrMU0vclFNNGxBRytYS0lx?=
+ =?utf-8?B?a25EalpyZ3JWVnVsWVN2cXBsc1dPdWhYazYxODlTMElGRlNKa2FLVVZVSlJM?=
+ =?utf-8?B?ckxHcTVtdCtCUXMyaDVIY1YrS3pkcFhDVnVPRDVqeTduMlBGUDVmVjBLeFMy?=
+ =?utf-8?B?aHFqRE1HV2syZGF4cFBnRVdOQjQwUFlmT21KYkJqK2RrTUJyYzY0ZHowb1hw?=
+ =?utf-8?B?TEdQUFo5VElyMFBQV3U5RzVnMUxETnJJQzlXeFBvRGVDUmxsVmRUQ2xRcFJq?=
+ =?utf-8?B?Zll3cmZZb29md1hteGI4ZEN2NDBUN2Q0YmR5R2JtWkpqU3dnc1JPNmw2WmNs?=
+ =?utf-8?B?aXd4N1N5WkF6dnNIUUZVL2ZYVXJyYktwWklBMXZaY3NRTFI1WFBYTmhOZzZN?=
+ =?utf-8?B?UTFJSlNYTVJ6YnNzRVNpeWhZMDI4N2tUS2J4Y1ZLSzNZME9LcWN4dnNiS3hq?=
+ =?utf-8?B?TmhONDVueXczc0FMNXdlK1ZOU21pOTNCUDV6TTAwRVV3dHBTVU93L2NkTGQ2?=
+ =?utf-8?B?M2ZjVEZHRVc4d28rL1FpMmNSUGw0bmd5dmFHTE9VcVVKTVpENVlpbjNtYVBV?=
+ =?utf-8?B?QnE1YWtaS0hQS2tjZFk2a05UdjYzS0pCcU4vK051SlhBUFJWLytHcm1HZmZO?=
+ =?utf-8?B?UDUvU3VmbXlPdW5NUlJTdWt3cWw4RTdJbW0yZEwyejZxVDBvSVhUQTZyQXNX?=
+ =?utf-8?B?aWhRemNRaC9wQkZJVVZKZ05ia0R2cTFlWDRvQm5QL3NGRmcwYzZETExsY1R6?=
+ =?utf-8?B?Wnpsa0Y0NExuL0NWWFpZZUM1aE1kd0JMbGhJdnhxakY4cjdZRDZDMGxKNjBG?=
+ =?utf-8?B?UExJV2NTcXB2NUpCRCt1dC9maWFsQStHSS9xek1XVFdLeG4yNmdUVzlVekxD?=
+ =?utf-8?B?YTVpTXNDdEJQdUxQR1R2VkYwKzZoTlpYaWN4eXA2S1AwOWxxY3FiSHhlb21u?=
+ =?utf-8?B?L05IZmNDNkZqRmErelZoNmlRSitwSkdpOWljcTl6Y1ora1UrTVZ5TjdlUkV1?=
+ =?utf-8?B?S09wdmsyRGlMQVUyb1lGVEE1RS9MSFZnN2g5cEtIVkVvZUV3bFB0TC8ycTZx?=
+ =?utf-8?B?SmpWVnZlMFpxTjRpelAzdHgwSnBlMUUxTlZwZlNOQ2htY2FvSzNlVVc1SGZ3?=
+ =?utf-8?B?MTE2MTdiem1laXk2cGVxRG1BOXhTYSs4ZnNFVnVZU2FiWjFEK0lwcHg2S1lr?=
+ =?utf-8?B?UHE4QnArVnlyMUN5TGphUWxNWWF0dHpDNHRxdTZNUVZDR3lOUldUVjNaL0lh?=
+ =?utf-8?B?ZXZsbk9zUXptdkdMbmRuUStRalZ1cGRySFBpYjA0ek5Jc0FIdGlUSVd1TG9E?=
+ =?utf-8?B?VElUdVFPeHVnRE9yRGJ1aHF6THVvcjVhVjBBZlBFYUxVRlY3c2RHWU1zOThP?=
+ =?utf-8?B?OXlQaXErbEtaZTVjenJJMmRXMFdWQ01Ebm9hUjY3ZmVZR2hDRTFzVW43aUlR?=
+ =?utf-8?B?Mm5NakRSNXBMTURvNFBaeEpVemsreC9jNlgralk1RTUxcXhQZnUyVmg5ei83?=
+ =?utf-8?B?VUJGS0NORG5BUHd1US95U2xTM2xVc2hsbFRpQnR1eDNZQ210S015THl0d20y?=
+ =?utf-8?B?N2k5eWpjSkNXbi9EdzFKbUNMVkdBRzUxbFM2dGkzNU44Y3A4eVdFSGZiVnZO?=
+ =?utf-8?B?Z0o1anlWQXFKMzBzWk9HSU9RVEJzcnFkM1E2V2RLZ09xM2dpRU5iUkIxUU1G?=
+ =?utf-8?B?NWhtcnJWSmc5QXRpQ1k0bDZxWklqVFRLNktCdnBqWWZ1aktVd2g3SlhiOVZk?=
+ =?utf-8?B?ajVxQXVnMmlVanZVbVBlUHl5aklFNElJcWZDUWNHTFl3VTdQcFByQ0FZYnFw?=
+ =?utf-8?B?dmIweDY4cW9kY0VTZXJPSThObFlnPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 263643b6-76eb-42a7-3f05-08d9a2d58cc3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Nov 2021 16:33:51.9968
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ebYttgQKy5J7bmInSPHV9JSLuzmulxx9EE851fmbs+ZHhzWmnR45a1CWeV59yRhID/7IYiNd7QL80f/L1gYINmsrw0xY4imF3GaTpu5yeUM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB5048
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 8, 2021 at 7:59 AM Nicolas Dufresne <nicolas@ndufresne.ca> wrot=
-e:
->
-> Hi Adam,
->
-> thanks for you work, I'll try and reply  about the GStreamer questions be=
-low, if
-> you have further question feel free to ask.
->
-> Le samedi 06 novembre 2021 =C3=A0 13:37 -0500, Adam Ford a =C3=A9crit :
-> > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
-> > to be related to the video decoders used on the i.MX8MQ, but because of
-> > how the Mini handles the power domains, the VPU driver does not need to
-> > handle all the functions, so a new compatible flag is required.
-> >
-> > This is an RFC because I don't have functional video on my system yet,
-> > and I'm hoping there might be people who do and can help test this.
-> > I have only tested this far enough to see they enumerate and appear
-> > as /dev/videoX and /dev/mediaX devices.
->
-> I will check the patchset, but you need in the mini-variant to disable th=
-e G1
-> post processor, because this block was fused out. We didn't make it optio=
-nal
-
-Thanks for being willing to review this.
-
-> from the start as according to the V1 of the TRM it was there, but that e=
-rror
-> was corrected in V3.
-
-Thanks for the clarification.  It wasn't obvious to me, because in
-some instances the PP looked like it was there and sometimes not
-there.  I'll remove the postproc stuff.
-
->
-> >
-> > I am also curious to know if/what gstreamer plugins are necessary.  In
-> > NXP's custom kernel, there are IMX-specific plugins, and I was hoping t=
-here
-> > would be more generic plugins that I can use to test.  I am hoping some
-> > of the linux-media experts might chime in on how to best test.
->
-> I will recommend using GStreamer 1.19.3 or main branch (GStreamer is now =
-a
-> single git repo). You will then be able to test Hantro G1 decoding of MPE=
-G2,
-> H264 and VP8. Remember that the related plugin depends on libgudev (a gli=
-b
-> binding of udev).
-
-Thanks for the tip.
-
->
-> For the encoder, I believe only JPEG maybe supported, since this is all t=
-here is
-> mainline for RK3288 (and perhaps other RK). But this will need testing an=
-d
-> debugging as the G1 version is slightly newer on NXP SoC.
-
-For what it's worth the G1 seems to repond cleanly to the inquiries
-from v42-compliance.
-The G2 throws some splat when I run v4l2-compliance, but I am still
-investigating that.
-
-[  405.456979] ------------[ cut here ]------------
-[  405.464173] WARNING: CPU: 0 PID: 563 at mm/page_alloc.c:5344
-__alloc_pages+0x5a4/0xbe0
-[  405.472104] Modules linked in: 8021q garp mrp stp llc caam_jr
-caamhash_desc caamalg_desc crypto_engine rng_core authenc libdes
-imx7_media_csi(C) crct10dif_ce imx_media_common(C)
-snd_soc_fsl_asoc_card imx7_mipi_csis(C) snd_soc_imx_audmux
-snd_soc_simple_card_utils fsl_imx8_ddr_perf imx8m_ddrc brcmfmac
-brcmutil hantro_vpu(C) v4l2_h264 v4l2_mem2mem videobuf2_vmalloc
-videobuf2_dma_contig videobuf2_memops cfg80211 ov5640 videobuf2_v4l2
-v4l2_fwnode v4l2_async videobuf2_common videodev etnaviv gpu_sched
-hci_uart mc btqca btbcm snd_soc_wm8962 at24 spi_imx rtc_pcf85363
-rtc_snvs clk_bd718x7 spi_bitbang snvs_pwrkey snd_soc_fsl_sai
-imx_pcm_dma caam error bluetooth imx8mm_thermal ecdh_generic
-imx_cpufreq_dt ecc rfkill fuse drm ipv6
-[  405.535835] CPU: 0 PID: 563 Comm: v4l2-compliance Tainted: G      D
- C        5.15.0-next-20211105-00010-g4bb8e8a25d3c-dirty #28
-[  405.547401] Hardware name: Beacon EmbeddedWorks i.MX8M Mini
-Development Kit (DT)
-[  405.554797] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=
-=3D--)
-[  405.561762] pc : __alloc_pages+0x5a4/0xbe0
-[  405.565861] lr : __dma_direct_alloc_pages+0x17c/0x1e0
-[  405.570917] sp : ffff800012443810
-[  405.574232] x29: ffff800012443810 x28: 0000000000000000 x27: ffff0000052=
-88220
-[  405.581375] x26: 0000000000000034 x25: 0000000000000000 x24: ffff0000002=
-59010
-[  405.588517] x23: ffff80001011ab7c x22: ffff000000259010 x21: 00000000fff=
-fffff
-[  405.595659] x20: 0000000000000cc1 x19: 0000000000000000 x18: 00000000000=
-00000
-[  405.602803] x17: 0000000000000000 x16: 0000000000000000 x15: 00000000000=
-00000
-[  405.609947] x14: 0000000000000001 x13: 0000000000000000 x12: 00000000000=
-00000
-[  405.617090] x11: ffff80001241d000 x10: ffff00000528833a x9 : ffff0000052=
-8832a
-[  405.624232] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 00000000000=
-00cc0
-[  405.631378] x5 : 00000000bfffffff x4 : ffff000009e30dc0 x3 : 00000000000=
-00000
-[  405.638520] x2 : 0000000000000000 x1 : 0000000000000001 x0 : 00000000000=
-00cc1
-[  405.645666] Call trace:
-[  405.648113]  __alloc_pages+0x5a4/0xbe0
-[  405.651862]  __dma_direct_alloc_pages+0x17c/0x1e0
-[  405.656569]  dma_direct_alloc+0x70/0x310
-[  405.660494]  dma_alloc_attrs+0x7c/0xe4
-[  405.664246]  hantro_hevc_get_ref_buf+0x15c/0x184 [hantro_vpu]
-[  405.670021]  hantro_g2_hevc_dec_run+0x3b8/0x1910 [hantro_vpu]
-[  405.675791]  device_run+0xac/0x110 [hantro_vpu]
-[  405.680345]  v4l2_m2m_try_run+0xac/0x1b0 [v4l2_mem2mem]
-[  405.685598]  v4l2_m2m_ioctl_streamon+0x84/0xa0 [v4l2_mem2mem]
-[  405.691366]  v4l_streamon+0x28/0x34 [videodev]
-[  405.695877]  __video_do_ioctl+0x178/0x3dc [videodev]
-[  405.700897]  video_usercopy+0x368/0x6dc [videodev]
-[  405.705745]  video_ioctl2+0x1c/0x30 [videodev]
-[  405.710246]  v4l2_ioctl+0x44/0x64 [videodev]
-[  405.714574]  __arm64_sys_ioctl+0xac/0xf0
-[  405.718502]  invoke_syscall+0x48/0x114
-[  405.722258]  el0_svc_common.constprop.0+0xd4/0xfc
-[  405.726969]  do_el0_svc+0x2c/0x94
-[  405.730286]  el0_svc+0x28/0x80
-[  405.733348]  el0t_64_sync_handler+0xa8/0x130
-[  405.737619]  el0t_64_sync+0x1a0/0x1a4
-[  405.741287] ---[ end trace 270ed4a899803006 ]---
-
-The H1 encoder seems to hang the system when I run v4l2-compliance on
-it when H1 is set up as I submitted the patch.  I tried dropping all
-the encoder formats except the JPEG format, and it doesn't hang any
-more, but it also doesn't really do anything.
-The datasheet only references VPU_H1 as supporting VP8 and H.264, so I
-am not sure JPEG is even supported.
-
-The log from v4l2-compliance on the H1 with everything except the JPEG
-removed looks like:
-
-root@beacon-imx8mm-kit:~# v4l2-compliance -d2
-v4l2-compliance SHA: not available
-, 64 bits, 64-bit time_t
-
-Segmentation fault
-root@beacon-imx8mm-kit:~#
-Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
-: Internal error: Oops: 96000004 [#2] SMP
-
-Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
-: Code: 52800001 aa1403e0 d2801802 95c31ab9 (b9400aa1)
-
-I want to install Gstreamer, but I don't have functioning DSI video,
-so I am not entirely sure how I will go about testing the decoders
-except by using fakesink
-
-If the G1 ends up working with some of the newer Gstreamer stuff, I
-might just submit a formal patch to just enable the G1 for now.
-
-adam
->
-> >
-> > Lastly, I didn't update any device tree binding YAML files, because
-> > I know there have been some discussions about the power domains on the
-> > imx8mq, and I wasn't sure if the imx8mm should get a separate YAML file
-> > or if the existing one for te imx8mq should just be modified.
-> >
-> > This will likely require the following series in order to apply correct=
-ly:
-> > https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D57=
-6407
-> >
-> > Adam Ford (5):
-> >   media: hantro: Add support for i.MX8M Mini
-> >   arm64: dts: imx8mm:  Enable VPU-G1 and VPU-G2
-> >   media: hantro: Rename ROCKCHIP_VPU_ENC_FMT to HANTRO_VPU_ENC_FMT
-> >   media: hantro: Add H1 encoder support on i.MX8M Mini
-> >   arm64: dts: imx8mm:  Enable Hantro H1 Encoder
-> >
-> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  61 ++++++++
-> >  drivers/staging/media/hantro/hantro_drv.c     |   3 +
-> >  drivers/staging/media/hantro/hantro_hw.h      |  19 ++-
-> >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 143 ++++++++++++++++++
-> >  .../staging/media/hantro/rockchip_vpu_hw.c    |  26 ++--
-> >  5 files changed, 231 insertions(+), 21 deletions(-)
-> >
->
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IFN1YmplY3Q6IFJlOiBb
+UkZDIDIvNF0gZHQtYmluZGluZ3M6IHdhdGNoZG9nOiByZW5lc2FzLHdkdDogQWRkIHN1cHBvcnQg
+Zm9yDQo+IFJaL0cyTA0KPiANCj4gSGkgQmlqdSwNCj4gDQo+IE9uIFRodSwgTm92IDQsIDIwMjEg
+YXQgNTowOSBQTSBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+IHdyb3Rl
+Og0KPiA+IERlc2NyaWJlIHRoZSBXRFQgaGFyZHdhcmUgaW4gdGhlIFJaL0cyTCBzZXJpZXMuDQo+
+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5j
+b20+DQo+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+IA0KPiA+IC0tLSBhL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy9yZW5lc2FzLHdkdC55YW1sDQo+ID4g
+KysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3dhdGNoZG9nL3JlbmVzYXMs
+d2R0LnlhbWwNCj4gDQo+ID4gQEAgLTc1LDE3ICs3OSw0OSBAQCByZXF1aXJlZDoNCj4gPiAgICAt
+IHJlZw0KPiA+ICAgIC0gY2xvY2tzDQo+ID4NCj4gPiAtaWY6DQo+ID4gLSAgbm90Og0KPiA+IC0g
+ICAgcHJvcGVydGllczoNCj4gPiAtICAgICAgY29tcGF0aWJsZToNCj4gPiAtICAgICAgICBjb250
+YWluczoNCj4gPiAtICAgICAgICAgIGVudW06DQo+ID4gLSAgICAgICAgICAgIC0gcmVuZXNhcyxy
+emEtd2R0DQo+ID4gLXRoZW46DQo+ID4gLSAgcmVxdWlyZWQ6DQo+ID4gLSAgICAtIHBvd2VyLWRv
+bWFpbnMNCj4gPiAtICAgIC0gcmVzZXRzDQo+ID4gK2FsbE9mOg0KPiA+ICsgIC0gJHJlZjogIndh
+dGNoZG9nLnlhbWwjIg0KPiA+ICsNCj4gPiArICAtIGlmOg0KPiA+ICsgICAgICBub3Q6DQo+ID4g
+KyAgICAgICAgcHJvcGVydGllczoNCj4gPiArICAgICAgICAgIGNvbXBhdGlibGU6DQo+ID4gKyAg
+ICAgICAgICAgIGNvbnRhaW5zOg0KPiA+ICsgICAgICAgICAgICAgIGVudW06DQo+ID4gKyAgICAg
+ICAgICAgICAgICAtIHJlbmVzYXMscnphLXdkdA0KPiA+ICsgICAgdGhlbjoNCj4gPiArICAgICAg
+cmVxdWlyZWQ6DQo+ID4gKyAgICAgICAgLSBwb3dlci1kb21haW5zDQo+ID4gKyAgICAgICAgLSBy
+ZXNldHMNCj4gPiArDQo+ID4gKyAgLSBpZjoNCj4gPiArICAgICAgcHJvcGVydGllczoNCj4gPiAr
+ICAgICAgICBjb21wYXRpYmxlOg0KPiA+ICsgICAgICAgICAgY29udGFpbnM6DQo+ID4gKyAgICAg
+ICAgICAgIGVudW06DQo+ID4gKyAgICAgICAgICAgICAgLSByZW5lc2FzLHJ6ZzJsLXdkdA0KPiA+
+ICsgICAgdGhlbjoNCj4gPiArICAgICAgcHJvcGVydGllczoNCj4gPiArICAgICAgICBpbnRlcnJ1
+cHRzOg0KPiA+ICsgICAgICAgICAgbWF4SXRlbXM6IDINCj4gPiArICAgICAgICBpbnRlcnJ1cHQt
+bmFtZXM6DQo+ID4gKyAgICAgICAgICBpdGVtczoNCj4gPiArICAgICAgICAgICAgLSBjb25zdDog
+d2R0DQo+ID4gKyAgICAgICAgICAgIC0gY29uc3Q6IHBlcnJvdXQNCj4gPiArICAgICAgICBjbG9j
+a3M6DQo+ID4gKyAgICAgICAgICBpdGVtczoNCj4gPiArICAgICAgICAgICAgLSBkZXNjcmlwdGlv
+bjogTWFpbiBjbG9jaw0KPiA+ICsgICAgICAgICAgICAtIGRlc2NyaXB0aW9uOiBSZWdpc3RlciBh
+Y2Nlc3MgY2xvY2sNCj4gPiArICAgICAgICBjbG9jay1uYW1lczoNCj4gPiArICAgICAgICAgIGl0
+ZW1zOg0KPiA+ICsgICAgICAgICAgICAtIGNvbnN0OiBvc2NjbGsNCj4gPiArICAgICAgICAgICAg
+LSBjb25zdDogcGNsaw0KPiANCj4gVXN1YWxseSB3ZSBwdXQgdGhlIGludGVybmFsIG1vZHVsZSBj
+bG9jayBmaXJzdC4NCk9LLiBXaWxsIHB1dCBpbnRlcm5hbCBtb2R1bGUgY2xvY2sgZmlyc3QuDQo+
+IA0KPiBQbGVhc2UgYWRkIChhdCBsZWFzdCB0aGUgZmlyc3Qgb25lKToNCj4gDQo+ICAgICAgcmVx
+dWlyZWQ6DQo+ICAgICAgICAtIGNsb2NrLW5hbWVzDQo+ICAgICAgICAtIGludGVycnVwdC1uYW1l
+cw0KDQpPaywgd2lsbCBhZGQgdGhlIHNhbWUuDQoNClJlZ2FyZHMsDQpCaWp1DQoNCj4gDQo+ID4g
+KyAgICBlbHNlOg0KPiA+ICsgICAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAgIGludGVycnVw
+dHM6DQo+ID4gKyAgICAgICAgICBtYXhJdGVtczogMQ0KPiA+ICsgICAgICAgIGNsb2NrczoNCj4g
+PiArICAgICAgICAgIG1heEl0ZW1zOiAxDQo+ID4NCj4gPiAgYWRkaXRpb25hbFByb3BlcnRpZXM6
+IGZhbHNlDQo+IA0KPiBHcntvZXRqZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgIEdlZXJ0DQo+IA0KPiAtLQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBs
+b3RzIG9mIExpbnV4IGJleW9uZCBpYTMyIC0tIGdlZXJ0QGxpbnV4LQ0KPiBtNjhrLm9yZw0KPiAN
+Cj4gSW4gcGVyc29uYWwgY29udmVyc2F0aW9ucyB3aXRoIHRlY2huaWNhbCBwZW9wbGUsIEkgY2Fs
+bCBteXNlbGYgYSBoYWNrZXIuDQo+IEJ1dCB3aGVuIEknbSB0YWxraW5nIHRvIGpvdXJuYWxpc3Rz
+IEkganVzdCBzYXkgInByb2dyYW1tZXIiIG9yIHNvbWV0aGluZw0KPiBsaWtlIHRoYXQuDQo+ICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0gTGludXMgVG9ydmFsZHMNCg==
