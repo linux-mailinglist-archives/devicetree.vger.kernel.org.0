@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4C6447C60
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:56:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F6F447CA1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 10:17:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238225AbhKHI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 03:59:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238200AbhKHI7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 03:59:41 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FD1C061570
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 00:56:57 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mk0SK-0003eP-Uo; Mon, 08 Nov 2021 09:56:45 +0100
-Message-ID: <a77d867eb42649d63356a62309e93ca78394f82f.camel@pengutronix.de>
-Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     tharvey@gateworks.com, frieder.schrempf@kontron.de,
-        linux-media@vger.kernel.org, laurent.pinchart@ideasonboard.com,
-        aford@beaconembedded.com, cstevens@beaconembedded.com,
-        jagan@amarulasolutions.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Mon, 08 Nov 2021 09:56:40 +0100
-In-Reply-To: <20211106155427.753197-1-aford173@gmail.com>
-References: <20211106155427.753197-1-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S235335AbhKHJU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 04:20:27 -0500
+Received: from mga17.intel.com ([192.55.52.151]:41360 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233715AbhKHJU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 04:20:27 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10161"; a="212928192"
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
+   d="scan'208";a="212928192"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2021 01:17:28 -0800
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
+   d="scan'208";a="544398855"
+Received: from smile.fi.intel.com ([10.237.72.184])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Nov 2021 01:17:21 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andy.shevchenko@gmail.com>)
+        id 1mk0m3-004cLP-Ea;
+        Mon, 08 Nov 2021 11:17:07 +0200
+Date:   Mon, 8 Nov 2021 11:17:07 +0200
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     Yury Norov <yury.norov@gmail.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 09/16] reset: starfive-jh7100: Add StarFive JH7100
+ reset driver
+Message-ID: <YYjrE/+1wxgGEAKJ@smile.fi.intel.com>
+References: <20211102161125.1144023-1-kernel@esmil.dk>
+ <20211102161125.1144023-10-kernel@esmil.dk>
+ <CAHp75Ve-P8DR00mtRP_NkrXgB4nsZ+qBkgBen94iTcPqxQYUOg@mail.gmail.com>
+ <CANBLGcyb=TAP0h2WuxBAjRvpN9n7Dt1Hvh5yE8NMOwm3ixZWuA@mail.gmail.com>
+ <CAHp75Vcg3En=xH+kz0GgAMGUoo5FABo2HwGoHd=7QgGVrYkYXg@mail.gmail.com>
+ <CANBLGczrGwexRGvGxa9C+yzaSHZF_d5+AaebeLUX5BXFxipr=A@mail.gmail.com>
+ <CANBLGcztx0DL=U06QPJ5XT4ra=kx2QAZxxP=0bjfgQ0skhv3Bg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANBLGcztx0DL=U06QPJ5XT4ra=kx2QAZxxP=0bjfgQ0skhv3Bg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Samstag, dem 06.11.2021 um 10:54 -0500 schrieb Adam Ford:
-> Most of the blk-ctrl reset bits are found in one register, however
-> there are two bits in offset 8 for pulling the MIPI DPHY out of reset
-> and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
-> out of reset or the MIPI_CSI hangs.
-> 
-> Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+On Thu, Nov 04, 2021 at 01:15:46PM +0100, Emil Renner Berthing wrote:
+> On Tue, 2 Nov 2021 at 22:17, Emil Renner Berthing <kernel@esmil.dk> wrote:
 
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+...
 
-> ---
-> 
-> V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
->      Rename the new register to mipi_phy_rst_mask
->      Encapsulate the edits to this register with an if-statement
-> 
->  drivers/soc/imx/imx8m-blk-ctrl.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> index 519b3651d1d9..581eb4bc7f7d 100644
-> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> @@ -17,6 +17,7 @@
->  
->  #define BLK_SFT_RSTN	0x0
->  #define BLK_CLK_EN	0x4
-> +#define BLK_MIPI_RESET_DIV	0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
->  
->  struct imx8m_blk_ctrl_domain;
->  
-> @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
->  	const char *gpc_name;
->  	u32 rst_mask;
->  	u32 clk_mask;
-> +
-> +	/*
-> +	 * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
-> +	 * which is used to control the reset for the MIPI Phy.
-> +	 * Since it's only present in certain circumstances,
-> +	 * an if-statement should be used before setting and clearing this
-> +	 * register.
-> +	 */
-> +	u32 mipi_phy_rst_mask;
->  };
->  
->  #define DOMAIN_MAX_CLKS 3
-> @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
->  
->  	/* put devices into reset */
->  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> +	if (data->mipi_phy_rst_mask)
-> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
->  
->  	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
->  	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
-> @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
->  
->  	/* release reset */
->  	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> +	if (data->mipi_phy_rst_mask)
-> +		regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
->  
->  	/* disable upstream clocks */
->  	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
-> @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
->  	struct imx8m_blk_ctrl *bc = domain->bc;
->  
->  	/* put devices into reset and disable clocks */
-> +	if (data->mipi_phy_rst_mask)
-> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
-> +
->  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
->  	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
->  
-> @@ -488,6 +505,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
->  		.gpc_name = "mipi-csi",
->  		.rst_mask = BIT(3) | BIT(4),
->  		.clk_mask = BIT(10) | BIT(11),
-> +		.mipi_phy_rst_mask = BIT(16) | BIT(17),
->  	},
->  };
->  
+> I'd really like to understand your reasoning here. As far as I can
+> tell reading 2 adjacent 32bit registers with a 64bit read as you're
+> proposing is exactly what would cause endian issues. Eg. on little
+> endian you'd get reg0 | reg1 << 32 whereas on big-endian you'd get
+> reg0 << 32 | reg1.
+
+Nope, it won't. The endianess is a property of both CPU and device.
+
+The I/O accessors, such as readl()/writel() and iowrtieXX()/ioreadXX()
+are _always_ LE.
+
+So, writeq() will properly put bits to their places in case device is LE.
+And most devices are LE (or should be). Of course there are cases, but then
+you have to specify them explicitly.
+
+My motive here is simple as that the device is definitely a set of a few
+128-bit bitmaps (in registers) and using bitmap _is_ representing hardware
+in the kernel. Using something else will deviate from that (maybe not too
+far, but still...).
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
