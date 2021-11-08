@@ -2,131 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39012447BCC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B61B9447BDD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237259AbhKHIbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 03:31:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
+        id S238018AbhKHIf4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 03:35:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237245AbhKHIbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 03:31:08 -0500
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407C7C061714
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 00:28:24 -0800 (PST)
-Received: by mail-il1-x130.google.com with SMTP id f10so16069207ilu.5
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 00:28:24 -0800 (PST)
+        with ESMTP id S238011AbhKHIfz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 03:35:55 -0500
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F93EC061714
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 00:33:11 -0800 (PST)
+Received: by mail-ua1-x934.google.com with SMTP id az37so29900003uab.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 00:33:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0lEfzRhEv5nLfiUNxNLUbl+a6LR8Um12H8MIrdzaUE8=;
-        b=Bj2FPDb5XEY1QTxJkJ96nDpx0QX6fremmFOktl+5WbL4QJQ0UF9kfVRh6hIXXIszzS
-         JVXX69E959ZITaQ2UfNCwCoilKGQ8xOtVDJEU4k5otGI/C+pOqwgB1qay6bwOZUCVhZo
-         kikTcghNiGTTQ8vwinbywDQtJ4a33cxQVO9ik=
+        bh=eXgMKC9k7dVBPc7GXJ0i9A3v0PLbEQVurYRUswXeJ14=;
+        b=GMUrD9cF4ys0Ne5QeiY1boHEUmgLrJKogjRUJYv+JOiOlCLwsHPpus6RLIpS1aTKEc
+         b9ZmfolezMysdzYltsRvw38VDRkFvWSASXeRyimw2zzvCQX6337hJfcOxyKjscOpct5F
+         NZItoB+PrucYaFhbhqzaHmjIndbDJdCCLj4j4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0lEfzRhEv5nLfiUNxNLUbl+a6LR8Um12H8MIrdzaUE8=;
-        b=bMD5HYwwKV/pczUblI7u32yfXC34si8LhBWwAXRidGbcaGPyDyQJsfCFiwtcogIndL
-         FWacDNplGPNj9RU8n+lF3rzrU7kKKcHaNwEWWQyIhBYvjIlYgGOwC//cbiWdEF2+v5gd
-         zvaeHc6A2n8dU/nLLOEDdmCGe+9kvFEoPRtOAMYGVrQjQrtV1cK1lff2qPjXy9lRPfCL
-         z4pmgh7EHrPg+bpsUKp8GOUcOhsttg843r81wKW2Qv6CJb/6QYz5m1R6yi3tTsEqxoY+
-         xjWvtzNbkbArZYmQo8wDp34wYuKNz15+6GJqBq0hL0lP0qKfqidpxak6fcbVa/sqXs+b
-         DbGg==
-X-Gm-Message-State: AOAM5321WY50Xa31M2HhtE1wf+6MDQXOKViSDJomZisiUvtIsz3cN0rj
-        aDTeAU0ych223EdSMqF1jgHOzWDDRDq7QYrX5GeuDg==
-X-Google-Smtp-Source: ABdhPJzZ2sLmjcU/xcMOLtZRTFE1A/1jUa95N+Xr7vk+BsL9XbPBxFalg+nFVb8TYFPMvIbL0DATPFhlQBQQHsp7uDk=
-X-Received: by 2002:a05:6e02:1aa2:: with SMTP id l2mr42399910ilv.114.1636360103665;
- Mon, 08 Nov 2021 00:28:23 -0800 (PST)
+        bh=eXgMKC9k7dVBPc7GXJ0i9A3v0PLbEQVurYRUswXeJ14=;
+        b=UXrdEeH0gPXmPCWz7VlVry9qvCbadkZi2/E2WMelrTqVxSuXSG9gMFqjmWnDk0dAKD
+         dvv0/FIPeSWkylEowA+jmuSKuZLB556iDFC26njn9fb3Si5dEeNRUFBYWhABmLF6EddI
+         8GzEMpSZVFx1iQT7v83XT3ABR4CVfyGQ/Bq+vFNYjh15ugKP8VQq/r+V+YQChSv0rmmo
+         Ez56hvIcVZe7U9J3rYrUaP11iLXn3vzj+t5h1nc12WleMseFwIALblYSVJLUulshK4E4
+         XfQhnsZwjuG7SkppesSmIPvjwK/HNZGUdDD0iqhAwYc+nCdQn7H5Ig6xCEP2vKrGq5o/
+         3acA==
+X-Gm-Message-State: AOAM533NPO9yp57RDKd6+yiYhPXHfabSCCZ1PbIvKPjZx9+b19sjqkeB
+        fu2S3HEPRyB/nOI3fD7QcL+VyJt2s6M/enqIxAHp1g==
+X-Google-Smtp-Source: ABdhPJxwvn1gZ+jImt6Emh1mXxnrYYIBQQzRFhinEsRuVwhdIgr19u7Y2YDFSD1M4Tpw0lPsAeAjgdJjgrfOjizmG1U=
+X-Received: by 2002:a67:ae47:: with SMTP id u7mr101092748vsh.7.1636360390609;
+ Mon, 08 Nov 2021 00:33:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20211108072711.1628566-1-hsinyi@chromium.org> <20211108072711.1628566-7-hsinyi@chromium.org>
- <CAGXv+5GD7KU4i+P--6RShhMu32Rhf-g6SZF8SRDscc4XEG4QrQ@mail.gmail.com>
-In-Reply-To: <CAGXv+5GD7KU4i+P--6RShhMu32Rhf-g6SZF8SRDscc4XEG4QrQ@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Mon, 8 Nov 2021 16:27:58 +0800
-Message-ID: <CAJMQK-iHHitbgxk5q2Z8dRt=o2XwX=WK5dbi+xcZ6Jk4MQzzig@mail.gmail.com>
-Subject: Re: [PATCH 7/7] dt-bindings: arm64: dts: mediatek: Add sku22 for
- mt8183 kakadu board
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20211104112329.8446-1-zhiyong.tao@mediatek.com> <20211104112329.8446-2-zhiyong.tao@mediatek.com>
+In-Reply-To: <20211104112329.8446-2-zhiyong.tao@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Mon, 8 Nov 2021 16:32:59 +0800
+Message-ID: <CAGXv+5EWCkcC51nNF4k1FgEsVhuiQADCiOcdSLtU9yMb-8Q0GA@mail.gmail.com>
+Subject: Re: [PATCH v1] pinctrl: mediatek: fix global-out-of-bounds issue
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org, mark.rutland@arm.com,
+        matthias.bgg@gmail.com, sean.wang@kernel.org,
+        srv_heupstream@mediatek.com, hui.liu@mediatek.com,
+        light.hsieh@mediatek.com, sean.wang@mediatek.com,
+        seiya.wang@mediatek.com, rex-bc.chen@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 8, 2021 at 4:10 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> On Mon, Nov 8, 2021 at 3:29 PM Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> >
-> > Add sku22 which uses different audio codec than previous kakadu board.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> >  Documentation/devicetree/bindings/arm/mediatek.yaml | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > index 99e7f8e294cd03..da5f9ecc1a9b37 100644
-> > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> > @@ -161,8 +161,11 @@ properties:
-> >            - const: mediatek,mt8183
-> >        - description: Google Kakadu (ASUS Chromebook Detachable CM3)
-> >          items:
-> > -          - const: google,kakadu-rev3
-> > -          - const: google,kakadu-rev2
-> > +          - enum:
-> > +              - google,kakadu-rev2
-> > +              - google,kakadu-rev2-sku22
-> > +              - google,kakadu-rev3
-> > +              - google,kakadu-rev3-sku22
-> >            - const: google,kakadu
-> >            - const: mediatek,mt8183
->
-> This matches
->
->     "google,kakadu-rev[23](-sku22)?", "google,kakadu", "mediatek,mt8183",
->
-> which isn't what you want. You want:
->
->     "google,kakadu-rev3", "google,kakadu-rev2", "google,kakadu",
->     "mediatek,mt8183"
->
-> or
->
->     "google,kakadu-rev3-sku22", "google,kakadu-rev2-sku22", "google,kakadu",
->     "mediatek,mt8183"
->
-> I think the following is closer, but I'm not sure if nesting "items" is valid.
->
-> items:
->   - oneOf:
->     - items:
->       - const: google,kakadu-rev3-sku22
->       - const: google,kakadu-rev2-sku22
->     - items:
->       - const: google,kakadu-rev3
->       - const: google,kakadu-rev2
->   - const: google,kakadu
->   - const: mediatek,mt8183
->
-How about
+On Thu, Nov 4, 2021 at 7:24 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
 
-items:
-  - enum:
-        - google,kakadu-rev2
-        - google,kakadu-rev2-sku22
-  - enum:
-        - google,kakadu-rev3
-        - google,kakadu-rev3-sku22
-  - const: google,kakadu
-   ....
+This should be tagged as v2. Your first submission, not tagged with any
+version or RFC/RFT, is v1.
 
+> When eint virtual eint number is greater than gpio number,
+> it maybe produce 'desc[eint_n]' size globle-out-of-bounds issue.
 >
-> ChenYu
+> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+> Signed-off-by: Guodong Liu <guodong.liu@mediatek.corp-partner.google.com>
+
+Guodong's Signed-off-by here is confusing, as they are not the author nor
+the submitter, and as far as the mailing list is concerned they have not
+handled this patch either.
+
+Looks like the original patch is from https://crrev.com/c/3233623 ?
+
+It's customary to preserve the authorship and append your Signed-off-by
+when submitting patches written by others.
+
+> ---
+>  drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> index 45ebdeba985a..12163d3c4bcb 100644
+> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
+> @@ -285,8 +285,12 @@ static int mtk_xt_get_gpio_n(void *data, unsigned long eint_n,
+>         desc = (const struct mtk_pin_desc *)hw->soc->pins;
+>         *gpio_chip = &hw->chip;
+>
+> -       /* Be greedy to guess first gpio_n is equal to eint_n */
+> -       if (desc[eint_n].eint.eint_n == eint_n)
+> +       /*
+> +        * Be greedy to guess first gpio_n is equal to eint_n.
+> +        * Only eint virtual eint number is greater than gpio number.
+> +        */
+> +       if (hw->soc->npins > eint_n &&
+
+Nit: I believe it's more common to have the variable on the left, and the
+invariable on the right, but maybe it's just me:
+
+    if (eint_n < hw->soc->npins && ...
+
+Either way is OK I guess.
+
+
+ChenYu
+
+> +           desc[eint_n].eint.eint_n == eint_n)
+>                 *gpio_n = eint_n;
+>         else
+>                 *gpio_n = mtk_xt_find_eint_num(hw, eint_n);
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
