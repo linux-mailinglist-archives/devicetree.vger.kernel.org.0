@@ -2,134 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10141449759
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:01:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13634449766
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:06:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240669AbhKHPEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 10:04:12 -0500
-Received: from phobos.denx.de ([85.214.62.61]:49126 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240664AbhKHPEM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 10:04:12 -0500
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 677C983176;
-        Mon,  8 Nov 2021 16:01:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1636383684;
-        bh=VW6XSQLYJ9hNWv0H95auB8+BwWLkGYH+tDrXB+ybyKk=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=vInYaAnAqS5cbYJNtZgdZPtp5P83QrWlYfCvuEsLD3PjJwAtIfJVeYsrxT9ANR79z
-         ur2G8rf5k5qTnWXFgZBjoG4gSH91x57YG7p1ts49MDE1A10nhZJ4vK4WwUB99T7hf5
-         w0qJNd3NTZDTXT+0kzbO2mzJFbnqMs6tj8+aIsfBDE3er/Z7j3IGkTwY+NnkcLxzYE
-         ZQCMJuPwhQueMyQjlcammR2XPu/7wv6fsAh5oQHChAjP2M47QHcbmwGescBlDPskga
-         gkTSboRBZCfvYSc4T8JbLI4fTYO24e4nxdCBIbb/2YK0c0As3HkC4aiFsvdJUnKJhd
-         +BdbzeTIn3jKQ==
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
- rohm,clock-output-is-critical property
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>
-References: <20211020084956.83041-1-marex@denx.de>
- <263da45f-d648-3c65-aed3-e4ba41927911@fi.rohmeurope.com>
- <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
- <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <cd8b50cf-409f-20a4-ce5b-0e94701d9ab3@denx.de>
-Date:   Mon, 8 Nov 2021 16:01:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S238659AbhKHPJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 10:09:13 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:41805 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236457AbhKHPJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 10:09:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1636383987; x=1667919987;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8SrEU9XI/OEo5uTJNfmiDpAr5AwL1FBJ0ig/W9RdeJY=;
+  b=uVT1wnJxxS7GgFyYEjB0ZVgGtyFscrseVnsFUZmcirIQOfYoCvUbPApg
+   KMNCD6wdpcdlFnsFP3mS/aK6ibYOkTR2zcFi6VIeKndP+uuRfHZK79MZw
+   +EOcxvgoZNcb6oeAOjuBHTSdud7HlDe90ddKHoE5CZLWJD3j++hlsZPTV
+   ce5AbYUdtwUKmsgaq+qjqx5sjUKhucm/7/EdcL/yQiN1oA4/y75+uP6BT
+   iDRJLIL4P+E5uGyjiopt6dyPJG1vW9JaCVyA0XT28aUh5DuWf2YquWqRm
+   wi1eghMc78q7cMeFmCM6zNcFNECREpLi0BXXJjf8IDnaaZ2lnqW4YN4ri
+   A==;
+IronPort-SDR: rKaUUnhxQEuffL258X7HEch2+KTgcTsz45WpCwjQFqdvi8jf1EDK/efkqY6IZ8ZUpCzJsKfE4K
+ fgxIdeqoyQBgLCKd+c5YqltwAtfrElduaVhZivZVIyZNykcinto/2oJdjfbZVi8qpomr8qiY+5
+ xvIo0j6fITV7ox+ZkTGm3VHcDlg3p/F8tKywsi/ROTKcRlaZHem9FmP1RYErwPj0c0fq/yJExn
+ Ge+EtfgudJp/+8PUoXcjGOeNR++YFCHA8AGfjsFN/WY8+sr7YVPwvi8LXrQVx/OEJV9KmkbI0f
+ 1vRBKjAwQ16j2JOLIbTgLjaZ
+X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
+   d="scan'208";a="135847455"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Nov 2021 08:06:22 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 8 Nov 2021 08:06:19 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Mon, 8 Nov 2021 08:06:15 -0700
+From:   <conor.dooley@microchip.com>
+To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
+        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
+        <gregkh@linuxfoundation.org>, <lewis.hanly@microchip.com>,
+        <conor.dooley@microchip.com>, <daire.mcnamara@microchip.com>,
+        <atish.patra@wdc.com>, <ivan.griffin@microchip.com>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-crypto@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
+        <bin.meng@windriver.com>
+Subject: [PATCH 00/13]Update the icicle kit device tree
+Date:   Mon, 8 Nov 2021 15:05:41 +0000
+Message-ID: <20211108150554.4457-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/28/21 11:24 PM, Rob Herring wrote:
-> On Wed, Oct 20, 2021 at 01:06:13PM +0200, Marek Vasut wrote:
->> On 10/20/21 12:14 PM, Vaittinen, Matti wrote:
->> [...]
->>
->>> I wonder if this really is something specific to ROHM ICs? Do you think
->>> this would warrant a generic, non vendor specific property? I am Ok with
->>> the ROHM specific property too but it just seems to me this might not be
->>> unique to ROHM IC(s).
-> 
-> I imagine we debated the need for a DT property when critical clocks was
-> added to the kernel.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Have you got some reference to this debate ?
+This series updates the microchip icicle kit device tree by adding a host
+of peripherals, and some updates to the memory map. In addition, the device
+tree has been split into a third part, which contains "soft" peripherals 
+that are in the fpga fabric.
 
-I think something like clk-hog , similar to gpio-hog , would be useful, 
-since we could also configure the critical clock frequency in DT.
+Several of the entries are for peripherals that have not get had their drivers
+upstreamed, so in those cases the dt bindings are included where appropriate
+in order to avoid as many "DT compatible string <x> appears un-documented" 
+errors as possible.
 
->>> By the way, the very same clk driver where you implemented the property
->>> reading (patch 2/2) is used by few other ROHM PMICs. At least by
->>> BD71837, BD71828, BD71815, BD9576 and BD9573. So the code change here
->>> adds support for this property to all of those PMICs. I wonder if the
->>> property should be mentioned in all of the binding docs... That could be
->>> another argument for making this a generic property and describing it in
->>> clk yaml ;)
->>>
->>> Well, just my 10 Cents - I am ok with this change as you presented it
->>> here if you don't think this should be generic one.
->>
->> I think we need something like gpio-hog, except for clock. Some clk-hog
->> maybe ? That would be useful not only here, but also for things where some
->> output generates clock for random stuff which cannot be described in the DT
->> for whatever reason (like e.g. the SoC is used as a substitute for CPLD XTAL
->> and the CPLD isn't connected to the SoC in any other way).
-> 
-> The justification given in this patch was for an SoC input which should
-> get described so that the clock is handled and kept enabled properly.
+Depends on mpfs clock driver series [1] to provide:
+dt-bindings/clock/microchip,mpfs-clock.h
+and on the other changes to the icicle/mpfs device tree
+that are already in linux/riscv/for-next.
 
-This is the case I had here, yes. Although I've been running into 
-similar requirements repeatedly for almost a decade, I'm surprised 
-nobody implemented something like this yet.
+[1] https://lore.kernel.org/linux-clk/20210818141102.36655-2-daire.mcnamara@microchip.com/
 
-> The CPLD case would be more interesting, but is there an actual need or
-> just a possible case?
+Conor Dooley (11):
+  dt-bindings: soc/microchip: update sys ctrlr compat string
+  dt-bindings: riscv: update microchip polarfire binds
+  dt-bindings: i2c: add bindings for microchip mpfs i2c
+  dt-bindings: rng: add bindings for microchip mpfs rng
+  dt-bindings: rtc: add bindings for microchip mpfs rtc
+  dt-bindings: soc/microchip: add bindings for mpfs system services
+  dt-bindings: gpio: add bindings for microchip mpfs gpio
+  dt-bindings: spi: add bindings for microchip mpfs spi
+  dt-bindings: usb: add bindings for microchip mpfs musb
+  riscv: icicle-kit: update microchip icicle kit device tree
+  MAINTAINERS: update riscv/microchip entry
 
-This is an iMX53 board from 2012 or so, where they figured they don't 
-need an XTal for the CPLD because the SoC has this OSC_OUT and that can 
-be used to supply clock to the CPLD at just the frequency they need. So 
-the SoC is a clock source for the CPLD, and that's all there is to it.
+Ivan Griffin (2):
+  dt-bindings: interrupt-controller: add defines for riscv-hart
+  dt-bindings: interrupt-controller: add defines for mpfs-plic
 
-So far I hacked it in the clock driver to keep the clock running at 
-specific rate, but that hack has been a thorn in my side for long enough.
+ .../bindings/gpio/microchip,mpfs-gpio.yaml    | 108 ++++++
+ .../bindings/i2c/microchip,mpfs-i2c.yaml      |  74 ++++
+ .../microchip,polarfire-soc-mailbox.yaml      |   4 +-
+ .../devicetree/bindings/riscv/microchip.yaml  |   1 +
+ .../bindings/rng/microchip,mpfs-rng.yaml      |  31 ++
+ .../bindings/rtc/microchip,mfps-rtc.yaml      |  61 ++++
+ .../microchip,mpfs-generic-service.yaml       |  31 ++
+ ...icrochip,polarfire-soc-sys-controller.yaml |   4 +-
+ .../bindings/spi/microchip,mpfs-spi.yaml      |  72 ++++
+ .../bindings/usb/microchip,mpfs-usb-host.yaml |  70 ++++
+ MAINTAINERS                                   |   2 +
+ .../dts/microchip/microchip-mpfs-fabric.dtsi  |  21 ++
+ .../microchip/microchip-mpfs-icicle-kit.dts   | 159 +++++++--
+ .../boot/dts/microchip/microchip-mpfs.dtsi    | 333 ++++++++++++++----
+ drivers/mailbox/mailbox-mpfs.c                |   1 +
+ .../microchip,mpfs-plic.h                     | 199 +++++++++++
+ .../interrupt-controller/riscv-hart.h         |  19 +
+ 17 files changed, 1103 insertions(+), 87 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+ create mode 100644 Documentation/devicetree/bindings/i2c/microchip,mpfs-i2c.yaml
+ create mode 100644 Documentation/devicetree/bindings/rng/microchip,mpfs-rng.yaml
+ create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-generic-service.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.yaml
+ create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
+ create mode 100644 include/dt-bindings/interrupt-controller/microchip,mpfs-plic.h
+ create mode 100644 include/dt-bindings/interrupt-controller/riscv-hart.h
 
-> You could use the 'protected-clocks' property here. Maybe that's a bit
-> overloaded between can't access and don't turn off. But what it means is
-> really up the clock controller.
+-- 
+2.33.1
 
-This does not seem to describe what is needed here, protected-clock are 
-used to tell OS not to touch certain clock because they are protected by 
-e.g. firmware access restriction, it does not say anything about whether 
-the clock are critical. Also, it seems to be a non-generic property only 
-for some qualcomm clock driver.
-
-commit 48d7f160b10711f014bf07b574c73452646c9fdd
-[...]
-dt-bindings: clk: Introduce 'protected-clocks' property
-
-Add a generic clk property for clks which are not intended to be used by
-the OS due to security restrictions put in place by firmware. For
-example, on some Qualcomm firmwares reading or writing certain clk
-registers causes the entire system to reboot, but on other firmwares
-reading and writing those same registers is required to make devices
-like QSPI work. Rather than adding one-off properties each time a new
-set of clks appears to be protected, let's add a generic clk property to
-describe any set of clks that shouldn't be touched by the OS. This way
-we never need to register the clks or use them in certain firmware
-configurations.
