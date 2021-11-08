@@ -2,336 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C684E447B6F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 08:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37189447BB3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237235AbhKHH6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 02:58:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35626 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237272AbhKHH6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 02:58:06 -0500
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF643C061764;
-        Sun,  7 Nov 2021 23:55:21 -0800 (PST)
-Received: by mail-pj1-x1031.google.com with SMTP id gb13-20020a17090b060d00b001a674e2c4a8so8159695pjb.4;
-        Sun, 07 Nov 2021 23:55:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=e49D5wvHS1g3lmmCG0MF20nmuejShsd1i9ZTCZnfYBk=;
-        b=KW8EGSPyYGndjmnn2hiI71grvTBv8Lg3MlH7EK6Ev+RvF3/JATUPgPLCNAazFiyHOw
-         cBxeA1ZrXK5PlSh6u56MRhxEhyIeId9YhoA+h4Te9xb94aJKoZvZKyjuQ8h/NUlsqrQ6
-         NlfKqAzKCQh/vElKVCXa9bwFKeavJG4Qhp/SJ0MpOD9QCpCEnzQ1pwxAfek/7iwbLebe
-         TzU7WS8gRHBImTBw828XaB7SfbmCMniCM3QiNOgcj1lKAUrywGqiXOR0aKnZxSLGopLA
-         QUxwmnrPn1TycPq4XJua+dPQ9igfLNfgU/mYKmLqbfwfjANQcHvetCtFb3eHN6JY17Rb
-         uGhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=e49D5wvHS1g3lmmCG0MF20nmuejShsd1i9ZTCZnfYBk=;
-        b=S2D+GMfC91OPr5sfTZndQ8iegQrKeSAKScD4wRBEV1uVoyj0j5wHdJTaPhLeo9oz3h
-         LxCkdde9/i3+CK+tbKJKIM8exS1CLBmx/7lh8+qnRuslQsxqh1f6qNRH7oJASN9vh1CT
-         +jWKGBbvPOLVZfuzr/RAjwouQkVR83v3QW+Gmlsqs8W6SjluGXn8Om3Rwoc0s+RIsA8p
-         Ermv5M4JrGFIzlclFf8yuxTHeQpGwOTHy3069aK4R+JVa3mF9J0Y5hw49Tix+1hRUlXT
-         vw6Fr1nXX9y8SR2FEVp1wFxqlGPnz2/BmGke3XwXVkZT2Uwhecl/WkSqmKc00azPkB55
-         6YIQ==
-X-Gm-Message-State: AOAM532ZJ93xkvMIY9ch/rXM8IVlezx/e1hlA5Qu+ZRQrTaE45LpGVbU
-        xkDr15jVcELLhY2mSTVZqdKKBTXc8oLJWw==
-X-Google-Smtp-Source: ABdhPJxYrVEmXnc27wqrwe4T7bj79/ODehxQiR+0t1lX3H2ulUaXVIa5Pdkbs88HgZ6CDHkLuslP6Q==
-X-Received: by 2002:a17:903:2445:b0:142:830:ea8e with SMTP id l5-20020a170903244500b001420830ea8emr41909663pls.54.1636358121426;
-        Sun, 07 Nov 2021 23:55:21 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id ep15sm1631150pjb.3.2021.11.07.23.55.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 07 Nov 2021 23:55:21 -0800 (PST)
-From:   Edwin chiu <edwinchiu0505tw@gmail.com>
-X-Google-Original-From: Edwin chiu <edwin.chiu@sunplus.com>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org
-Cc:     Edwin chiu <edwin.chiu@sunplus.com>
-Subject: [PATCH 2/2] cpuidle:sunplus:create cpuidle driver for sunplus sp7021
-Date:   Mon,  8 Nov 2021 15:55:10 +0800
-Message-Id: <5b22c45fb15e59e0060d07d43b242ed8db031788.1636356928.git.edwin.chiu@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1636356928.git.edwin.chiu@sunplus.com>
-References: <cover.1636356928.git.edwin.chiu@sunplus.com>
-In-Reply-To: <cover.1636356928.git.edwin.chiu@sunplus.com>
-References: <cover.1636356928.git.edwin.chiu@sunplus.com>
+        id S237898AbhKHIZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 03:25:44 -0500
+Received: from mswedge2.sunplus.com ([60.248.182.106]:39328 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S237880AbhKHIZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 03:25:44 -0500
+X-Greylist: delayed 1190 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Nov 2021 03:25:43 EST
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.17.9.112
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(53126:0:AUTH_RELAY)
+        (envelope-from <tony.huang@sunplus.com>); Mon, 08 Nov 2021 16:02:57 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Mon, 8 Nov 2021 16:02:52 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 8 Nov 2021
+ 16:02:52 +0800
+From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        Tony Huang <tonyhuang.sunplus@gmail.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+CC:     =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: RE: [PATCH 2/2] mmc: Add mmc driver for Sunplus SP7021
+Thread-Topic: [PATCH 2/2] mmc: Add mmc driver for Sunplus SP7021
+Thread-Index: AQHX0xnrVkLZ1EJZzk2i1wkvK0MjAqv2FiQAgAMuw4A=
+Date:   Mon, 8 Nov 2021 08:02:52 +0000
+Message-ID: <6ac06fbd9280493ea2f34c6b6f7714ef@sphcmbx02.sunplus.com.tw>
+References: <1636208598-18234-1-git-send-email-tony.huang@sunplus.com>
+ <1636208598-18234-3-git-send-email-tony.huang@sunplus.com>
+ <3da7cacf-d5ab-9f08-6d15-a75cf952d43d@infradead.org>
+In-Reply-To: <3da7cacf-d5ab-9f08-6d15-a75cf952d43d@infradead.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.54]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create cpuidle driver for sunplus sp7021 chip
-
-Signed-off-by: Edwin chiu <edwin.chiu@sunplus.com>
----
- MAINTAINERS                                   |   5 +-
- drivers/cpuidle/Kconfig.arm                   |   7 +
- drivers/cpuidle/Makefile                      |   1 +
- drivers/cpuidle/cpuidle-sunplus.c             | 185 ++++++++++++++++++++++++++
- include/linux/platform_data/cpuidle-sunplus.h |  14 ++
- 5 files changed, 211 insertions(+), 1 deletion(-)
- create mode 100644 drivers/cpuidle/cpuidle-sunplus.c
- create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 52f17ec..050fe3b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17949,7 +17949,10 @@ SUNPLUS CPUIDLE DRIVER
- M:	Edwin Chiu <edwin.chiu@sunplus.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
--
-+F:	drivers/cpuidle/Kconfig.arm
-+F:	drivers/cpuidle/Makefile
-+F:	drivers/cpuidle/cpuidle-sunplus.c
-+F:	include/linux/platform_data/cpuidle-sunplus.h
- 
- SUPERH
- M:	Yoshinori Sato <ysato@users.sourceforge.jp>
-diff --git a/drivers/cpuidle/Kconfig.arm b/drivers/cpuidle/Kconfig.arm
-index 334f83e..ad9956c 100644
---- a/drivers/cpuidle/Kconfig.arm
-+++ b/drivers/cpuidle/Kconfig.arm
-@@ -117,3 +117,10 @@ config ARM_QCOM_SPM_CPUIDLE
- 	  The Subsystem Power Manager (SPM) controls low power modes for the
- 	  CPU and L2 cores. It interface with various system drivers to put
- 	  the cores in low power modes.
-+
-+config ARM_SUNPLUS_CPUIDLE
-+	bool "CPU Idle Driver For SUNPLUS SoCs"
-+	depends on !ARM64
-+	select DT_IDLE_STATES
-+	help
-+	  Select this to enable cpuidle on SP7021 processors.
-diff --git a/drivers/cpuidle/Makefile b/drivers/cpuidle/Makefile
-index 26bbc5e..0a020d1 100644
---- a/drivers/cpuidle/Makefile
-+++ b/drivers/cpuidle/Makefile
-@@ -25,6 +25,7 @@ obj-$(CONFIG_ARM_PSCI_CPUIDLE)		+= cpuidle-psci.o
- obj-$(CONFIG_ARM_PSCI_CPUIDLE_DOMAIN)	+= cpuidle-psci-domain.o
- obj-$(CONFIG_ARM_TEGRA_CPUIDLE)		+= cpuidle-tegra.o
- obj-$(CONFIG_ARM_QCOM_SPM_CPUIDLE)	+= cpuidle-qcom-spm.o
-+obj-$(CONFIG_ARM_SUNPLUS_CPUIDLE)		+= cpuidle-sunplus.o
- 
- ###############################################################################
- # MIPS drivers
-diff --git a/drivers/cpuidle/cpuidle-sunplus.c b/drivers/cpuidle/cpuidle-sunplus.c
-new file mode 100644
-index 0000000..4a7a0c0
---- /dev/null
-+++ b/drivers/cpuidle/cpuidle-sunplus.c
-@@ -0,0 +1,185 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * ARM/ARM64 generic CPU idle driver.
-+ *
-+ * Copyright (C) 2014 ARM Ltd.
-+ * Author: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-+ */
-+#define pr_fmt(fmt) "CPUidle arm: " fmt
-+
-+#include <linux/cpu_cooling.h>
-+#include <linux/cpuidle.h>
-+#include <linux/cpumask.h>
-+#include <linux/cpu_pm.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/slab.h>
-+#include <linux/platform_data/cpuidle-sunplus.h>
-+
-+#include <asm/cpuidle.h>
-+#include <asm/suspend.h>
-+
-+#include "dt_idle_states.h"
-+
-+static int sp7021_wfi_finisher(unsigned long flags)
-+{
-+	cpu_v7_do_idle();   // idle to WFI
-+
-+	return -1;
-+}
-+
-+static int sp7021_enter_idle_state(struct cpuidle_device *dev,
-+				struct cpuidle_driver *drv, int idx)
-+{
-+	int ret;
-+
-+  // if idx=0, call cpu_do_idle()
-+	if (!idx) {
-+		cpu_v7_do_idle();
-+		return idx;
-+	}
-+
-+	// if idx>0, call cpu_suspend()
-+	ret = cpu_pm_enter();
-+	if (!ret) {
-+	/*
-+	 * Pass idle state index to cpuidle_suspend which in turn
-+	 * will call the CPU ops suspend protocol with idle index as a
-+	 * parameter.
-+	 */
-+		ret = cpu_suspend(idx, sp7021_wfi_finisher);
-+	  //cpu_pm_exit();
-+	}
-+	cpu_pm_exit();
-+
-+	return ret ? -1:idx;
-+}
-+
-+static struct cpuidle_driver sp7021_idle_driver __initdata = {
-+	.name = "sp7021_idle",
-+	.owner = THIS_MODULE,
-+	/*
-+	 * State at index 0 is standby wfi and considered standard
-+	 * on all ARM platforms. If in some platforms simple wfi
-+	 * can't be used as "state 0", DT bindings must be implemented
-+	 * to work around this issue and allow installing a special
-+	 * handler for idle state index 0.
-+	 */
-+	.states[0] = {
-+		.enter                  = sp7021_enter_idle_state,
-+		.exit_latency           = 1,
-+		.target_residency       = 1,
-+		.power_usage		= UINT_MAX,
-+		.name                   = "WFI",
-+		.desc                   = "ARM WFI",
-+	}
-+};
-+
-+static const struct of_device_id sp7021_idle_state_match[] __initconst = {
-+	{ .compatible = "arm,idle-state",
-+		.data = sp7021_enter_idle_state },
-+	{ },
-+};
-+
-+/*
-+ * arm_idle_init - Initializes arm cpuidle driver
-+ *
-+ * Initializes arm cpuidle driver for all CPUs, if any CPU fails
-+ * to register cpuidle driver then rollback to cancel all CPUs
-+ * registration.
-+ */
-+static int __init sp7021_idle_init(void)
-+{
-+	int cpu, ret;
-+	struct cpuidle_driver *drv;
-+	struct cpuidle_device *dev;
-+
-+	drv = kmemdup(&sp7021_idle_driver, sizeof(*drv), GFP_KERNEL);
-+	if (!drv)
-+		return -ENOMEM;
-+
-+	drv->cpumask = (struct cpumask *)cpumask_of(cpu);
-+	/*
-+	 * Initialize idle states data, starting at index 1.  This
-+	 * driver is DT only, if no DT idle states are detected (ret
-+	 * == 0) let the driver initialization fail accordingly since
-+	 * there is no reason to initialize the idle driver if only
-+	 * wfi is supported.
-+	 */
-+	ret = dt_init_idle_driver(drv, sp7021_idle_state_match, 1);
-+	if (ret <= 0)
-+		return ret ? : -ENODEV;
-+
-+	ret = cpuidle_register_driver(drv);
-+	if (ret) {
-+		pr_err("Failed to register cpuidle driver\n");
-+		return ret;
-+	}
-+
-+	/*
-+	 * Call arch CPU operations in order to initialize
-+	 * idle states suspend back-end specific data
-+	 */
-+	for_each_possible_cpu(cpu) {
-+		/*
-+		 * Skip the cpuidle device initialization if the reported
-+		 * failure is a HW misconfiguration/breakage (-ENXIO)
-+		 */
-+		if (ret == -ENXIO)
-+			continue;
-+
-+		if (ret) {
-+			pr_err("CPU %d failed to init idle CPU ops\n", cpu);
-+			goto out_fail;
-+		}
-+		dev = kzalloc(sizeof(*dev), GFP_KERNEL);
-+		if (!dev) {
-+			ret = -ENOMEM;
-+			goto out_fail;
-+		}
-+		dev->cpu = cpu;
-+
-+		ret = cpuidle_register_device(dev);
-+		if (ret) {
-+			pr_err("Failed to register cpuidle device for CPU %d\n", cpu);
-+			kfree(dev);
-+			goto out_fail;
-+		}
-+	}
-+
-+	return 0;
-+
-+out_fail:
-+	while (--cpu >= 0) {
-+		dev = per_cpu(cpuidle_devices, cpu);
-+		cpuidle_unregister_device(dev);
-+		kfree(dev);
-+	}
-+	cpuidle_unregister_driver(drv);
-+
-+	return ret;
-+}
-+static int __init idle_init(void)
-+{
-+	int ret;
-+
-+	if (of_machine_is_compatible("sunplus,sp7021-achip")) {
-+		sp7021_idle_init();
-+		ret = 0;
-+	}	else
-+		ret = -1;
-+
-+	if (ret) {
-+		pr_err("failed to cpuidle init\n");
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+device_initcall(idle_init);
-+
-+MODULE_AUTHOR("Edwin Chiu <edwin.chiu@sunplus.com>");
-+MODULE_DESCRIPTION("Sunplus sp7021 cpuidle driver");
-+MODULE_LICENSE("GPL");
-diff --git a/include/linux/platform_data/cpuidle-sunplus.h b/include/linux/platform_data/cpuidle-sunplus.h
-new file mode 100644
-index 0000000..43e6001
---- /dev/null
-+++ b/include/linux/platform_data/cpuidle-sunplus.h
-@@ -0,0 +1,14 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * This program is free software; you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2 as
-+ * published by the Free Software Foundation.
-+ */
-+
-+#ifndef __CPUIDLE_SP7021_H
-+#define __CPUIDLE_SP7021_H
-+
-+
-+extern int cpu_v7_do_idle(void);
-+
-+#endif
--- 
-2.7.4
-
+RGVhciBSYW5keToNCj4gW3Jlc2VuZGluZywgaGFkIHNvbWUga2luZCBvZiBlbWFpbCBlcnJvciBv
+biB0aGUgZmlyc3QgdHJ5XQ0KPiANCj4gT24gMTEvNi8yMSA3OjIzIEFNLCBUb255IEh1YW5nIHdy
+b3RlOg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0L0tjb25maWcgYi9kcml2ZXJz
+L21tYy9ob3N0L0tjb25maWcgaW5kZXgNCj4gPiBjY2MxNDhjLi4yYTc4Y2JjIDEwMDY0NA0KPiA+
+IC0tLSBhL2RyaXZlcnMvbW1jL2hvc3QvS2NvbmZpZw0KPiA+ICsrKyBiL2RyaXZlcnMvbW1jL2hv
+c3QvS2NvbmZpZw0KPiA+IEBAIC0xNCw2ICsxNCwxNSBAQCBjb25maWcgTU1DX0RFQlVHDQo+ID4g
+ICAJICBhZGRlZCBob3N0IGRyaXZlcnMgcGxlYXNlIGRvbid0IGludmVudCB0aGVpciBwcml2YXRl
+IG1hY3JvIGZvcg0KPiA+ICAgCSAgZGVidWdnaW5nLg0KPiA+DQo+ID4gK2NvbmZpZyBNTUNfU1VO
+UExVUw0KPiA+ICsJdHJpc3RhdGUgIlN1bnBsdXMgU1A3MDIxIE1NQyBDb250cm9sbGVyIg0KPiA+
+ICsJZGVwZW5kcyBvbiBBUkNIX1NVTlBMVVMgfHwgU09DX0kxNDMgfHwgU09DX1E2NDUNCj4gPiAr
+CWRlZmF1bHQgeQ0KPiANCj4gSXMgdGhpcyBuZWVkZWQgdG8gYmUgYWJsZSB0byBib290PyAgVGhh
+dCdzIGFib3V0IHRoZSBvbmx5IHJlYXNvbiB0aGF0ICJkZWZhdWx0DQo+IHkiIGNvdWxkIGJlIGp1
+c3RpZmllZC4NCg0KWWVzLCBpdCBuZWVkcyB0byBiZSBhYmxlIHRvIGJlIGJvb3QuDQoNCj4gDQo+
+ID4gKwloZWxwDQo+ID4gKwkJSWYgeW91IHNheSB5ZXMgaGVyZSwgeW91IHdpbGwgZ2V0IHN1cHBv
+cnQgZm9yIGVNTUMgaG9zdCBpbnRlcmZhY2UNCj4gPiArCQlvbiBzdW5wbHVzIFNvY3MuDQo+IA0K
+PiAJCSAgIFN1bnBsdXMgU29Dcy4NCg0KSSB3aWxsIG1vZGlmeS4NCg0KPiANCj4gPiArCQlJZiB1
+bnN1cmUsIHNheSBOLg0KPiA+ICsJCVN1bnBsdXMgIGVNTUMgSG9zdCBDb250cm9sbGVyIHY0LjUx
+IHN1cHBvcnQiDQo+IA0KPiBXaGF0IGlzIHRoYXQgbGFzdCBsaW5lIGZvcj8NCg0KSSB3aWxsIHJl
+bW92ZSBsYXN0IGxpbmUuDQoNCj4gDQo+IEFuZCBhbGwgbGluZXMgb2YgdGhlIGhlbHAgdGV4dCBz
+aG91bGQgYmUgaW5kZW50ZWQgd2l0aCBvbmUgdGFiICsgMiBzcGFjZXMgcGVyDQo+IGNvZGluZy1z
+dHlsZS5yc3QuDQoNCk9rLCBJIHVuZGVyc3RhbmQNCg0KPiANCj4gdGhhbmtzLg0KPiAtLQ0KPiB+
+UmFuZHkNCg==
