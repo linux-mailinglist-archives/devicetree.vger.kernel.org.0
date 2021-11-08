@@ -2,98 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5144C4497D7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:09:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DA8B4497F6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:16:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240870AbhKHPLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 10:11:48 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:23991 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240863AbhKHPKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 10:10:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1636384072; x=1667920072;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zstF7h07gTp/nSKCbQQYFsltrxG1f82P+gEsZAQgpqk=;
-  b=02kxndMFCiYXF30RPQQL+JnxhzfbfJ3vsL3k/li9U0rExwve71qJ9+ys
-   hGdlgZl2yXj7ydkam6b6BVN+ouOnQm7UgMFQaqA2iadowR88L4knZu6Yi
-   OdKELw5x8Nbw0Dg3rZ9WwuMCO8ZZ4k2rl9fV+NL9FrKKL+bHT0iv2HJ0V
-   heUB7Qnvcy7qz/7L7CO6OLTlyO/+UA3FYQSg1niVfu2080xXqoigtW6Je
-   8KpF+lNMpWiUi2RQdwRDb2JkbmKfphzvJwcZYfFVpg5nRO1OiHpG5/BW4
-   9GwHFi2hGG23Ldx917Ldg/TjQQdkGbiLuF5a3ntKNRjcxORp3BYVNTCTC
-   A==;
-IronPort-SDR: Eogmog9AAXgm4HnCJJNC5JQfchpBBEOXSO9Szw9Yd6IV1QVflnJrLHXeS92sou3QG5r9z3DAb0
- u/vPYB9PXTmDijeXfeSAE9Hw4D4QxiXyUiKC9SwSKVmc1uAhYqH7vf8zdmGoYTggva0kJsP7WW
- xE6IUll8rSK8YEXhlMRqt23eNZIlsvjl8CCURx7fsPBrrnRdUJfG8wKqpwRsLOg34SZRx07PTB
- 7qRZ86+1cqR97sBJlnGgEoxG+SNGDATG2j6o5Iz8k1VKg4t6bzGcO1bfWINExTZ8NeOfVpmOcA
- yK/txlrGNY6Mc976wnSszjAU
-X-IronPort-AV: E=Sophos;i="5.87,218,1631602800"; 
-   d="scan'208";a="138382872"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Nov 2021 08:07:50 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 8 Nov 2021 08:07:49 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Mon, 8 Nov 2021 08:07:45 -0700
-From:   <conor.dooley@microchip.com>
-To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
-        <gregkh@linuxfoundation.org>, <lewis.hanly@microchip.com>,
-        <conor.dooley@microchip.com>, <daire.mcnamara@microchip.com>,
-        <atish.patra@wdc.com>, <ivan.griffin@microchip.com>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-crypto@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <geert@linux-m68k.org>,
-        <bin.meng@windriver.com>
-Subject: [PATCH 13/13] MAINTAINERS: update riscv/microchip entry
-Date:   Mon, 8 Nov 2021 15:05:54 +0000
-Message-ID: <20211108150554.4457-14-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211108150554.4457-1-conor.dooley@microchip.com>
-References: <20211108150554.4457-1-conor.dooley@microchip.com>
+        id S237094AbhKHPTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 10:19:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231127AbhKHPTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 10:19:04 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4BBC061570;
+        Mon,  8 Nov 2021 07:16:19 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id o8so63794735edc.3;
+        Mon, 08 Nov 2021 07:16:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=c1o8VuFV0ex5mfdL4xyBALnF6n9F6qHpOK09h+9rf8g=;
+        b=H27fZX1z/J39dmx5ZvhB+Zjd/Ahz3nOLNMPA8vLb8Xm2jJ5NNDOIMTtHe090eOtOFU
+         DD/UFLFvddxNItBc/qNVrzgLM6s1d5nsbc2ES0evNQ/4s+72n9mcaXT8RZv4BAF1RY7b
+         szvrS6jfzexdx1T0N3WH4x2FaM6GOZHKStAmaO5A0sC6qsgJTzq/XVKQsAug0VRcYzII
+         pbrCWxDiWV2Z6iJos5t6YZ3i3NRnMBhkA9iIjCLQtZl6xCLBChO26K5O3b/CAydNqhOg
+         IHtuS/bODnqA6Ck7F1ffSd98H9bH6xwC4SPb+E4MDBdZBYGszCkHQaKIMFM1Xu9qxZX/
+         DhTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=c1o8VuFV0ex5mfdL4xyBALnF6n9F6qHpOK09h+9rf8g=;
+        b=3bswvzK28r6EXMOtC4iJzId/TQ4tii5U+EAu8MIHH8Im0ghIUxKzEtLxHTWcQh/jPi
+         UZO85VgRzH3G+mWxmd59VoMawiJG07RH4cOujp7YwPrKD9A0mJY2XxEibqSexDoaButD
+         tJWSX2SiZFAxpLpGz0Arv4XOLz18YG9cefk/PVXhj8hwgvXmgQ5411pVbR3wsxFVkZk4
+         +uV8gvAUo+EEE0b58d9NXrnpbeudCq44lB8cXzaxQhPysVHNTkfGL0PngV1dIcxjloaS
+         bmeDtk6jhfYsQST/zYz+NVlUMV/Er+f3X2Emh+H8mf9GJlE1WEgOuKyc6ws5YM3ePCl9
+         q/9Q==
+X-Gm-Message-State: AOAM531xxhCvjChCJR0P82yOyCz3MHmCyK3R7Ppi1TKnDjxci+jV/BKl
+        +XS6ZE1nyFdtAYDHLOZkg/M=
+X-Google-Smtp-Source: ABdhPJwjEyIFnc/Rjx2b9L48SpZXLmyPNORFLclvTaJrHwA6uQV6fc9x3apU8YExeVxFBkzNqYyUVw==
+X-Received: by 2002:a17:906:c156:: with SMTP id dp22mr103436ejc.168.1636384578278;
+        Mon, 08 Nov 2021 07:16:18 -0800 (PST)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id n1sm9216809edf.45.2021.11.08.07.16.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 07:16:18 -0800 (PST)
+Date:   Mon, 8 Nov 2021 16:16:13 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
+ triggers
+Message-ID: <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
+References: <20211108002500.19115-1-ansuelsmth@gmail.com>
+ <20211108002500.19115-2-ansuelsmth@gmail.com>
+ <YYkuZwQi66slgfTZ@lunn.ch>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YYkuZwQi66slgfTZ@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Nov 08, 2021 at 03:04:23PM +0100, Andrew Lunn wrote:
+> > +static inline int led_trigger_offload(struct led_classdev *led_cdev)
+> > +{
+> > +	int ret;
+> > +
+> > +	if (!led_cdev->trigger_offload)
+> > +		return -EOPNOTSUPP;
+> > +
+> > +	ret = led_cdev->trigger_offload(led_cdev, true);
+> > +	led_cdev->offloaded = !ret;
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static inline void led_trigger_offload_stop(struct led_classdev *led_cdev)
+> > +{
+> > +	if (!led_cdev->trigger_offload)
+> > +		return;
+> > +
+> > +	if (led_cdev->offloaded) {
+> > +		led_cdev->trigger_offload(led_cdev, false);
+> > +		led_cdev->offloaded = false;
+> > +	}
+> > +}
+> > +#endif
+> 
+> I think there should be two calls into the cdev driver, not this
+> true/false parameter. trigger_offload_start() and
+> trigger_offload_stop().
+> 
 
-Update the riscv/microchip entry by adding the microchip dts
-directory and myself as maintainer
+To not add too much function to the struct, can we introduce one
+function that both enable and disable the hw mode?
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+> There are also a number of PHYs which don't allow software blinking of
+> the LED. So for them, trigger_offload_stop() is going to return
+> -EOPNOTSUPP. And you need to handle that correctly.
+> 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ca6d6fde85cf..a0000ddd02fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16077,8 +16077,10 @@ K:	riscv
- 
- RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
- M:	Lewis Hanly <lewis.hanly@microchip.com>
-+M:	Conor Dooley <conor.dooley@microchip.com>
- L:	linux-riscv@lists.infradead.org
- S:	Supported
-+F:	arch/riscv/boot/dts/microchip/
- F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/soc/microchip/
- F:	include/soc/microchip/mpfs.h
+So we have PHYs that can only work in offload or off. Correct?
+
+> It would be go to also document the expectations of
+> trigger_offload_stop(). Should it leave the LED in whatever state it
+> was, or force it off? 
+>
+
+I think it should be put off. Do you agree? (also the brightness should
+be set to 0 in this case)
+
+>      Andrew
+
 -- 
-2.33.1
-
+	Ansuel
