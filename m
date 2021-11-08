@@ -2,77 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 463FE447E68
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB988447E74
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:05:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231720AbhKHLF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 06:05:56 -0500
-Received: from mout.kundenserver.de ([212.227.126.187]:58335 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238910AbhKHLF4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:05:56 -0500
-Received: from mail-wr1-f45.google.com ([209.85.221.45]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MSqbe-1nA03c49Uc-00UHud; Mon, 08 Nov 2021 12:03:11 +0100
-Received: by mail-wr1-f45.google.com with SMTP id w29so14559493wra.12;
-        Mon, 08 Nov 2021 03:03:10 -0800 (PST)
-X-Gm-Message-State: AOAM532eDYCOSBAWCHrUZkB871X5ti5E9+qbuwwFWkn32J1KeVUqdYqT
-        mWrs5INyP8z305x1yK72N2x9QN8zeyqcWDNUQKQ=
-X-Google-Smtp-Source: ABdhPJy1erNX8fF7ulGvPd1TRxZV7x2ms9z1OT7kssRXLHNyHZBuyfkRsjeEk1P3lUSFJb32WfHLjmyqvlZVtzbrkHY=
-X-Received: by 2002:adf:df89:: with SMTP id z9mr60460271wrl.336.1636369390566;
- Mon, 08 Nov 2021 03:03:10 -0800 (PST)
+        id S238947AbhKHLIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 06:08:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238974AbhKHLI3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:08:29 -0500
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26382C061714;
+        Mon,  8 Nov 2021 03:05:45 -0800 (PST)
+Received: by mail-ua1-x936.google.com with SMTP id p37so29516815uae.8;
+        Mon, 08 Nov 2021 03:05:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=teGM/aRfgsF+v1uRkOKwMF4DSOKKVhKqEf5p4Z5SiaU=;
+        b=ZFRoTUThOk+PwhJrD1Eag/Ir8bvPTzXitLWo7Qm9cG6hDuajRaS2ubnIpafa8hqelx
+         WL1fNfta5V2hrroNvZl7LbQpF7RKN5VCsa+xO7FSCsfSuNMAainm2YA5tikS3fTjEUPS
+         S7nUbti/rK0oZP1HtN/XSxIxymWHxiWgH+ZPUlRC52qAjrfBrS8Syo1prKFyQ6DlVzln
+         5LDkWXVj5zr7B1fhibrk9qbyr+E/YxYr9pPfgdbsos4R5YM1hocn1dMvKBm3IZjjBO2b
+         Yn8nOBvKre4xDiI1eLzRKslQWYixvbxMRJUOumfHVZk+aCAbdz5QT9hQoQMfG7unHNdL
+         DBpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=teGM/aRfgsF+v1uRkOKwMF4DSOKKVhKqEf5p4Z5SiaU=;
+        b=VYf44b+g8j7e+ZzLqU77Ss/6QSnpvrsaBVhAVibDU2Z2XdEJMVoJdy/ZpN1tzNQLtw
+         UpFcLQP3jvDbWO2icV9ufzoKPPeYrkvzN4ECQDFJuM0Im5O6Su0K+bQqfuVrkQ4Ps2tJ
+         +TcP0ntwom7+ECHliaE/SOxTa3QlWSH1/mNjlgbV+KyOMZ5jRQVcdabQHUCrU1O7RzO7
+         jHwfunHjebyesB25/oa3fWN1F5XTNVcuoqouuQkQj8q19IB0bCBgI0rEmAtzW5TtaVWT
+         /Q9CWCY3MU/OFjb2DHNghAetj6a219cb/A2mMIyGLvQHxbPqHw9ALZENOnRTYR5a6IMD
+         7LgQ==
+X-Gm-Message-State: AOAM532ZZK+5gDqfN3JyzdK1ONH1f5+5RFnUCrSOv5dcT8SFLG48ZL19
+        M4r3DYgSGP2AEJNHqUj+031Jd2AJczdJb1afi/s=
+X-Google-Smtp-Source: ABdhPJzVAd63faUQ9SQu882FRAjDvxBCJF8XbXAIW/sxogjQqNvAFil9hhvBomoaLzfx7bRe0gBj4+p/TaTuRNYF97E=
+X-Received: by 2002:a05:6102:3166:: with SMTP id l6mr16896002vsm.51.1636369544315;
+ Mon, 08 Nov 2021 03:05:44 -0800 (PST)
 MIME-Version: 1.0
-References: <1636364713-21451-1-git-send-email-sugaya.taichi@socionext.com>
-In-Reply-To: <1636364713-21451-1-git-send-email-sugaya.taichi@socionext.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 8 Nov 2021 12:02:54 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1-9u0wpNh5E--gMA_Qh0g9GvpL=SzL=278SqLeEp62cQ@mail.gmail.com>
-Message-ID: <CAK8P3a1-9u0wpNh5E--gMA_Qh0g9GvpL=SzL=278SqLeEp62cQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Add clock node and phandles for M10V platform
-To:     Sugaya Taichi <sugaya.taichi@socionext.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        DTML <devicetree@vger.kernel.org>,
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-2-andrea.merello@gmail.com>
+ <CAHp75VdPhNbr6Y7ethsmw_Bd7DZOi4cyFHubPpOxa1LXibkUCQ@mail.gmail.com>
+In-Reply-To: <CAHp75VdPhNbr6Y7ethsmw_Bd7DZOi4cyFHubPpOxa1LXibkUCQ@mail.gmail.com>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Mon, 8 Nov 2021 12:05:33 +0100
+Message-ID: <CAN8YU5OAdrivQuLAaQ8FyGbmGSR_Heb2Vz44PHgeQ=rrYuQBLQ@mail.gmail.com>
+Subject: Re: [v2 01/10] utils_macro: introduce find_closest_unsorted()
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Takao Orito <orito.takao@socionext.com>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        jmondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:cTnpR7Ea8geh6KC5sAHosJWU88s8ONzwgqd4huBgCzETNWKvV6I
- 8ZgE64xECuUzFHBbILlFHg3f2ftiBOGDp4AO+lhiGq4fKpvdjwUIljtuiEaTLGZptS1HqQA
- w5IdDIzFfvmg6tnw2kf1iL4LxLuUKkGNkmBsrEobnxLLFN7Y+tHu7LRjHnySxX7YFER92SO
- 0DXlm9OcCQ5iJ6EVcmQVQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:QaGgXqdfzss=:Hp3pUb2G1MgpfXp6WSlMJj
- Xn+sl13YwNE1Biora3cBmnXEi0WlDV00aT8UO4NR4z6dHKgqWmhNva64X1ysyFb65m7UbBT6r
- ixQAcdcqO9WGKT0fqN7v083OUaugSzveYQcK8L4xRXEU/NSn44SzEylg+eF2B36WQGid6yc8G
- 33NYaj3MQbDuiEgT+wOvEqh40LRlJip0PtS0Odpr0wbWh14GlyV7aoGREr1SVrniR5dz1/Ax9
- t9B36NELPjfVBT6vC14l2+/qQPz/zpAQBkW35FLz3ItorKdO2BpHhdR2QeUGgZq6aEKpv6Wox
- lCx4XK3zXxxbC4nrmw7lwhZ6AhDRqTJbeiEjPrHEVaEDvn//MOZuFiMvU9zYEYBlDQ458LrJM
- kxEoiUZetPPhDhrob1Sa0sEwXbmFljRxVgBCV1i8qTUFHn6FqPdf01Ok6zqU101aP/DFUWAZY
- Oo//z6kpAdm7ho1hW39pl9eSAhdgqL5sbJnwUAkopHF7+nrp2YfEzX8LhQ3IyQ/B/pJFg6Kjr
- Iur2clCFGApNfWECK+FcVBqHQDaxf46K7eTHzw87O+qBokE+BE5NRj/M5ibfF7cQYLg69pOr4
- vX/s9Wliy4qN7x4+YgqRnk67AR5C8PdqLbhA5xZdBOpY098rh9DTlUO6MDGgtm86ajNWwH5RK
- jwZp05PuJdtr4zHxvpdNbMWRNT90G0XDMzIS3M4XsZ0DTm6yDMfGmETJMi09Gb/0c/g1dd4Zi
- cgdkeJX0x43xfi8T3SS69pjxoFVO4TiroDjoSWouGmWIJfb9XNXPxbRRLvlKk7aZSL2xo0IUY
- 8LJibXuzk8QdDXAHDP3RzDy+8RO+5RI9VetCHP8wqQJoCvNxuE=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 8, 2021 at 10:45 AM Sugaya Taichi
-<sugaya.taichi@socionext.com> wrote:
+Il giorno gio 28 ott 2021 alle ore 12:26 Andy Shevchenko
+<andy.shevchenko@gmail.com> ha scritto:
 >
-> This series add a clock node of Milbeaut driver and clock phandles
-> to clock consumer nodes.
+> On Thu, Oct 28, 2021 at 1:18 PM Andrea Merello <andrea.merello@gmail.com> wrote:
+> >
+> > This is similar to find_closest() and find_closest_descending(), but, it
+> > doesn't make any assumption about the array being ordered.
+>
+> Macros in general are not so welcoming.
+> Why do you do it as a macro?
 
-Thank you for the submission!
+Honestly, I did that just because find_closest() and
+find_closest_descending() are macros (i.e. to be consistent wrt them).
+I see no drawbacks in making this a regular function indeed; just, do
+you have any advice about where should it live?
 
-The patches look good to me, but I don't take non-bugfix changes
-during the merge
-window. If there are no other objections, please send them to
-soc@kernel.org next
-week, and I'll pick them up through patchwork for v5.17.
+> ...
+>
+> > +#include <linux/math.h>
+>
+> Wondering if the current header misses other inclusions it's a direct user of.
 
-Can you also send a patch there to add yourself to the MAINTAINERS file?
+Looking at it, it seems that also __find_closest() actually needs
+math.h because it (apparently incorrectly[*]) uses
+DIV_ROUND_CLOSEST()..
 
-      Arnd
+[*]Indeed it seems there is another issue here about find_closest():
+for example it picks the 1st element while searching for "2" in an
+array like this: {1,2,..} ..This needs to be reported/fixed..
+
+
+
+> ...
+>
+> > +/**
+> > + * find_closest_unsorted - locate the closest element in a unsorted array
+>
+> an
+>
+> > + * @x: The reference value.
+> > + * @a: The array in which to look for the closest element.
+> > + * @as: Size of 'a'.
+> > + *
+> > + * Similar to find_closest() but 'a' has no requirement to being sorted
+> > + */
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
