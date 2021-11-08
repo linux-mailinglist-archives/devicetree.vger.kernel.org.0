@@ -2,111 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C396448077
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:45:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F1C448083
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:48:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240076AbhKHNrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 08:47:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240077AbhKHNrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 08:47:48 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C15EC061570
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 05:45:04 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id gn3so8147276pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:45:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=2SsoXlIEyA7M7oMepGUCAXbufcXq3sSqZoUCUyAHvCU=;
-        b=Rh/WDrUBEdWGDRXKQdDay5CItIX8kUAL6HHZo+Hww1b90kKjzsmnbBn76HYmrpHWdB
-         sTmCcBcsq0tOjjuXma4yCbzBK+JqFFi/kflvJ71ZFEsWf/RRN0WKrsyjzQxPZI2agQ41
-         xnt2De17E5PDNaAHT+M+rAeqd1ZQZ/lr0LDB8eLJ39p35sWpDZW2hM5Bfi28vzcesfuL
-         J3KKVqkhJd258VIX4cRJQoRDT5c1rN7OSev/PnHfGI/nFhuNeq5j2arRajVOUpj+KNq9
-         xwcH2edrXgALRMnjGlTHbqHPz5iKpEd5mCUjLYWMPLqnn7ZJLduC28Ia9R9pKh+EvgQW
-         gYcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=2SsoXlIEyA7M7oMepGUCAXbufcXq3sSqZoUCUyAHvCU=;
-        b=PEhdrRuO/XJWKyhsXA1us7yVqYczGhpUnVhSL/yu1WjneiRrMpD7pePQZLVfuSLo7v
-         NnFtKnmnTnXCfLB4yl5rs71FCYiEVmQXIcmm1wrrIpmyPcGQlRQonMyHs/XCHxtrTAXx
-         bvrGxrmFcMhfNhg2kKSXTT18vYKsAgQjI367eEA3CHZaXBSvtYK3wNRdW98qZ7EOpnk6
-         R1D7Tc2KO+z8m+D6V5u8Lq6iO/ECOXpOq83B/0fFNpjdzz6D4dVGfctDkjt1Mrle3bFW
-         4ilTUMxUg5C6MwLgVTNHHvgWmyO6oToJt70vemVi8lKEUK/NTL/rA0G/10TnrUTxPPqo
-         BRMQ==
-X-Gm-Message-State: AOAM533iVuKXoggOSqsbqFP36S0aW7uoLB8JX5Tym+d2nhv6ChZ+4BO0
-        jKNlk+PBmIVY/X1Et6VfzDVTqg==
-X-Google-Smtp-Source: ABdhPJzJ13KWDy70wNVqIrlae8ZGm1C9RGa6I9/T0uTLRxiD6Fvr7g3RJZ2By3Zvj3XwBsK3VgvibQ==
-X-Received: by 2002:a17:90a:db89:: with SMTP id h9mr51675447pjv.71.1636379103605;
-        Mon, 08 Nov 2021 05:45:03 -0800 (PST)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id m184sm3693974pga.61.2021.11.08.05.45.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 05:45:03 -0800 (PST)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 3/3] soc: qcom: rpmpd: Add QCM2290 support
-Date:   Mon,  8 Nov 2021 21:44:42 +0800
-Message-Id: <20211108134442.30051-4-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211108134442.30051-1-shawn.guo@linaro.org>
-References: <20211108134442.30051-1-shawn.guo@linaro.org>
+        id S238817AbhKHNvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 08:51:22 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:50612 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238013AbhKHNvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 08:51:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=wJ+KFiLWXSd9Yn9CEeNsZPzYPyPhxqpWIbv+1zHqmxk=; b=rj
+        G4BV9DFGE0jD9Fw+5Lc4bnd7zyJ2u1yBCjc7borAofsYd7g31Dv3BYCOw5MVBPQYf7UhQxnl5II06
+        ZFEKA8imfILSvCXPiLTS+U00pUlqDxkh/l9dSStH2iEEXLLOtRDgq4rCb7jeSsPpL0nyViV2kxAyQ
+        E+JgYaeHSpAJENc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mk50f-00Ctqr-DH; Mon, 08 Nov 2021 14:48:29 +0100
+Date:   Mon, 8 Nov 2021 14:48:29 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH 2/6] leds: permit to declare supported offload
+ triggers
+Message-ID: <YYkqrbenDPpck2yO@lunn.ch>
+References: <20211107175718.9151-1-ansuelsmth@gmail.com>
+ <20211107175718.9151-3-ansuelsmth@gmail.com>
+ <20211107230624.5251eccb@thinkpad>
+ <YYhUGNs1I0RWriln@Ansuel-xps.localdomain>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YYhUGNs1I0RWriln@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QCM2290 has the same RPM power domains as SM6115.  Add QCM2290
-support by reusing SM6115 power domains.
+On Sun, Nov 07, 2021 at 11:32:56PM +0100, Ansuel Smith wrote:
+> On Sun, Nov 07, 2021 at 11:06:24PM +0100, Marek Behún wrote:
+> > On Sun,  7 Nov 2021 18:57:14 +0100
+> > Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> > 
+> > > With LEDs that can be offload driven, permit to declare supported triggers
+> > > in the dts and add them to the cled struct to be used by the related
+> > > offload trigger. This is particurally useful for phy that have support
+> > > for HW blinking on tx/rx traffic or based on the speed link.
+> > > 
+> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > 
+> > NAK. The device-tree shouldn't define this, only the LED's function as
+> > designated by the manufacturer of the device.
+> > 
+> > Marek
+> 
+> Sure I will add a way to ask the led driver if the trigger is supported
+> and report it.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- drivers/soc/qcom/rpmpd.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Yes, you need some way for the PHY/MAC driver to enumerate what it can
+do.
 
-diff --git a/drivers/soc/qcom/rpmpd.c b/drivers/soc/qcom/rpmpd.c
-index 3e7905854eb9..36b2381039e6 100644
---- a/drivers/soc/qcom/rpmpd.c
-+++ b/drivers/soc/qcom/rpmpd.c
-@@ -395,6 +395,23 @@ static const struct rpmpd_desc sm6115_desc = {
- 	.max_state = RPM_SMD_LEVEL_TURBO_NO_CPR,
- };
- 
-+static struct rpmpd *qcm2290_rpmpds[] = {
-+	[QCM2290_VDDCX] = &sm6115_vddcx,
-+	[QCM2290_VDDCX_AO] = &sm6115_vddcx_ao,
-+	[QCM2290_VDDCX_VFL] = &sm6115_vddcx_vfl,
-+	[QCM2290_VDDMX] = &sm6115_vddmx,
-+	[QCM2290_VDDMX_AO] = &sm6115_vddmx_ao,
-+	[QCM2290_VDDMX_VFL] = &sm6115_vddmx_vfl,
-+	[QCM2290_VDD_LPI_CX] = &sm6115_vdd_lpi_cx,
-+	[QCM2290_VDD_LPI_MX] = &sm6115_vdd_lpi_mx,
-+};
-+
-+static const struct rpmpd_desc qcm2290_desc = {
-+	.rpmpds = qcm2290_rpmpds,
-+	.num_pds = ARRAY_SIZE(qcm2290_rpmpds),
-+	.max_state = RPM_SMD_LEVEL_TURBO_NO_CPR,
-+};
-+
- static const struct of_device_id rpmpd_match_table[] = {
- 	{ .compatible = "qcom,mdm9607-rpmpd", .data = &mdm9607_desc },
- 	{ .compatible = "qcom,msm8916-rpmpd", .data = &msm8916_desc },
-@@ -404,6 +421,7 @@ static const struct of_device_id rpmpd_match_table[] = {
- 	{ .compatible = "qcom,msm8994-rpmpd", .data = &msm8994_desc },
- 	{ .compatible = "qcom,msm8996-rpmpd", .data = &msm8996_desc },
- 	{ .compatible = "qcom,msm8998-rpmpd", .data = &msm8998_desc },
-+	{ .compatible = "qcom,qcm2290-rpmpd", .data = &qcm2290_desc },
- 	{ .compatible = "qcom,qcs404-rpmpd", .data = &qcs404_desc },
- 	{ .compatible = "qcom,sdm660-rpmpd", .data = &sdm660_desc },
- 	{ .compatible = "qcom,sm6115-rpmpd", .data = &sm6115_desc },
--- 
-2.17.1
+I've not looked at v2 yet...
 
+	Andrew
