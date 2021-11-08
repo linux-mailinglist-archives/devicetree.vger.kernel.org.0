@@ -2,119 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8D5B447F2B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:54:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D53D5447F70
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 13:21:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239341AbhKHL5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 06:57:01 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:17751 "EHLO mx1.tq-group.com"
+        id S238160AbhKHMYE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 07:24:04 -0500
+Received: from aposti.net ([89.234.176.197]:51830 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231401AbhKHL5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 06:57:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1636372456; x=1667908456;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=d8OFqm98/Srngga10IVEXbeAi/xIv5s/AW1zhNAJCLU=;
-  b=TegZhzDKPboPjaMJVqLCjXUmxTj/1n3JYsfWg8GJbe4Oh8dbZLQVP+4Y
-   SbN2pR8JpNTsPqQTk+JCIGSaGBmep5xHudMkJSD7QSF9OOGa3lG9eFMso
-   8Q1vPrd8O5HI6oVhOMX6gl1uxn17VQj/Sz84uGlnFc1TGAWb65Hr9n6RN
-   p0aAEY3ZFqyPM+MR3u1JCM8gO2vI1i6kqWp+2p0A759YYTF7GUjir1ZSK
-   DTxCCzM1dQgAcAB6LCvS/RF+wOkTiy4URHX7zWhScK4V3KSlcKhyntT0F
-   avAoOQBgrZsdUrk056iLQN4K4QcLsNz3lk223c2sdpHjQoyllwcQJI/5l
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.87,218,1631570400"; 
-   d="scan'208";a="20375001"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Nov 2021 12:54:14 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 08 Nov 2021 12:54:14 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 08 Nov 2021 12:54:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1636372454; x=1667908454;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=d8OFqm98/Srngga10IVEXbeAi/xIv5s/AW1zhNAJCLU=;
-  b=IqgtmPqCuGCfsdb1LM6klQgaAmkzzVaB7e6B4XmXunKSp4rUFkp51nDV
-   herm9BL/7KXpRpSKhFgvloHHNVd6/hCe7Zf/JAWSRP6OOwYwRvEetQoXX
-   2SoK5vkhbP4bbq7GFld7wRtB/BBpZLCAfX7aaui0JzGvW43N1ZGTqxzjH
-   tbrkwEWQ3/KeZYuM9pYyKWeSGirbCR5x/8BsvHhXE57KJD+BfBIzaR3dK
-   huoObU7OpQh7/QHwLMedReDpglk35DRJI3hwWvkokX3tEaL7SjpzEbmiS
-   I51oCdHiT1op7SWVEglwToE2GaEL+mvWGSKAoZ3TR0lILMbxi1tk3kaTm
-   w==;
-X-IronPort-AV: E=Sophos;i="5.87,218,1631570400"; 
-   d="scan'208";a="20375000"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Nov 2021 12:54:14 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 65EB8280065;
-        Mon,  8 Nov 2021 12:54:14 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8qm: Add fsl,imx7ulp-lpuart compatible to lpuart
-Date:   Mon,  8 Nov 2021 12:54:03 +0100
-Message-Id: <20211108115403.1770393-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+        id S237354AbhKHMYE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 07:24:04 -0500
+Date:   Mon, 08 Nov 2021 12:20:59 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Message-Id: <ZA692R.GHQL6RBCLFB12@crapouillou.net>
+In-Reply-To: <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+        <HQY82R.69JHJIC64HDO1@crapouillou.net>
+        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After commit b4b844930f27 ("tty: serial: fsl_lpuart: drop earlycon entry
-for i.MX8QXP") earlycon support was essentially removed from
-imx8qm/imx8qxp due to missing compatible.
-The commit message says "i.MX8QXP lpuart is compatible with i.MX7ULP" so
-adding a fallback compatible should be fine.
-With this change early is supported again on imx8qm/imx8qxp.
+Hi,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-I get the following lines in my 5.10 kernel (backported this change):
-[    0.000000] earlycon: lpuart32 at MMIO32 0x000000005a060000 (options '')                                                                                                                                                                                                    
-[    0.000000] printk: bootconsole [lpuart32] enabled
+Le lun., nov. 8 2021 at 11:52:20 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
+> 
+>>>  Am 08.11.2021 um 10:37 schrieb Paul Cercueil 
+>>> <paul@crapouillou.net>:
+>>> 
+>>>  Well, it was atomic: "add jz4780+hdmi functionality" or not. Now 
+>>> we separate into "preparation for adding jz4780" and "really 
+>>> adding". Yes, you can split atoms into quarks...
+>> 
+>>  And that's how it should be done. Lots of small atomic patches are 
+>> much easier to review than a few big patches.
+> 
+> I doubt that in this case especially as it has nothing to do with 
+> jz4780...
 
- arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+It has nothing to do with JZ4780 and that's exactly why it should be a 
+separate patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-index bbe5f5ecfb92..3486b99ab6eb 100644
---- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-@@ -19,19 +19,19 @@ uart4_lpcg: clock-controller@5a4a0000 {
- };
- 
- &lpuart0 {
--	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-+	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart", "fsl,imx7ulp-lpuart";
- };
- 
- &lpuart1 {
--	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-+	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart", "fsl,imx7ulp-lpuart";
- };
- 
- &lpuart2 {
--	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-+	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart", "fsl,imx7ulp-lpuart";
- };
- 
- &lpuart3 {
--	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-+	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart", "fsl,imx7ulp-lpuart";
- };
- 
- &i2c0 {
--- 
-2.25.1
+> But I have a proposal for a better solution at the end of this mail.
+> 
+>>>>  Note that you can do even better, set the .max_register field 
+>>>> according to the memory resource you get from DTS. Have a look at 
+>>>> the pinctrl driver which does exactly this.
+>>>  That is an interesting idea. Although I don't see where
+>>>  
+>>> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinctrl-ingenic.c#L4171
+>>>  does make use of the memory resource from DTS. It just reads two 
+>>> values from the ingenic_chip_info instead of one I do read from 
+>>> soc_info.
+>> 
+>>  It overrides the .max_register from a static regmap_config instance.
+> 
+> To be precise: it overrides .max_register of a copy of a static 
+> regmap_config instance (which has .max_register = 0).
+> 
+>>  You can do the same,
+> 
+> We already do the same...
+> 
+>>  calculating the .max_register from the memory resource you get from 
+>> DT.
+> 
+> I can't see any code in pinctrl-ingenic.c getting the memory resource 
+> that from DT. It calculates it from the ingenic_chip_info tables 
+> inside the driver code but not DT.
+> 
+>>  I'm sure you guys can figure it out.
+> 
+> Ah, we have to figure out. You are not sure yourself how to do it? 
+> And it is *not* exactly like the pinctrl driver (already) does? 
+> Please give precise directions in reviews and not vague research 
+> homework. Our time is also valuable. Sorry if I review your reviews...
+> 
+> Anyways I think you roughly intend (untested):
+> 
+> 	struct resource *r;
+> 
+> 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> 	regmap_config.max_register = r.end - r.start;
+
+Replace the "devm_platform_ioremap_resource" with 
+"devm_platform_get_and_ioremap_resource" to get a pointer to the 
+resource.
+
+Then the .max_register should be (r.end - r.start - 4) I think.
+
+And lose the aggressivity. It's not going to get you anywhere, 
+especially since I'm the one who decides whether or not I should merge 
+your patches. You want your code upstream, that's great, but it's your 
+responsability to get it to shape so that it's eventually accepted.
+
+> 
+> But I wonder how that could work at all (despite adding code 
+> execution time) with:
+
+Code execution time? ...
+
+> e.g. jz4770.dtsi:
+> 
+> 	lcd: lcd-controller@13050000 {
+> 		compatible = "ingenic,jz4770-lcd";
+> 		reg = <0x13050000 0x300>;
+> 
+> or jz4725b.dtsi:
+> 
+> 	lcd: lcd-controller@13050000 {
+> 		compatible = "ingenic,jz4725b-lcd";
+> 		reg = <0x13050000 0x1000>;
+> 
+> So max_register becomes 0x300 or 0x1000 but not
+> 
+> #define JZ_REG_LCD_SIZE1	0x12c
+> 	.max_reg = JZ_REG_LCD_SIZE1,
+> 
+> And therefore wastes a lot of regmap memory.
+
+"regmap memory"? ...
+
+> Do you want this? DTS should not be reduced (DTS should be kept as 
+> stable as possible), since the reg property describes address mapping 
+> - not how many bytes are really used by registers or how big a cache 
+> should be allocated (cache allocation size requirements are not 
+> hardware description).
+
+The DTS should list the address and size of the register area. If your 
+last register is at address 0x12c and there's nothing above, then the 
+size in DTS should be 0x130.
+
+> But here are good news:
+> 
+> I have a simpler and less invasive proposal. We keep the 
+> devm_regmap_init_mmio code as is and just increase its .max_register 
+> from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when introducing the jz4780. 
+> This wastes a handful bytes for all non-jz4780 chips but less than 
+> using the DTS memory region size. And is less code (no entry in 
+> soc_info tables, no modifyable copy) and faster code execution than 
+> all other proposals.
+> 
+> This is then just a single-line change when introducing the jz4780. 
+> And no "preparation for adding jz4780" patch is needed at all. No 
+> patch to split out for separate review.
+> 
+> Let's go this way to get it eventually finalized. Ok?
+
+No.
+
+Cheers,
+-Paul
+
 
