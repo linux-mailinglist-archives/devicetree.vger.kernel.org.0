@@ -2,103 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5E9449B07
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D356A449B14
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:50:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239296AbhKHRtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 12:49:23 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:51126 "EHLO vps0.lunn.ch"
+        id S235751AbhKHRwo convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 12:52:44 -0500
+Received: from aposti.net ([89.234.176.197]:46824 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239189AbhKHRtS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 12:49:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=O1qhXOH6kc7/rA2NaHAx4cfa7PFX3+bLtDAKGxMwjVE=; b=BVnA1qvy5AIx0qIjP99u6wX5sV
-        XJmRpdnOtI4hv6KrPBGcpIjDWtFACCwRsCirIDaq5weSFUCD2fKkjWwPxgjj43RKsRnHdBdnKOCBj
-        9+JRgcLRYCoWDGcfhGGWemXmvooyU9Fkhwq5n8DK/Gb9Kx6jFt90flGkiK3WSNoHXdFQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mk8iw-00Cv0v-MX; Mon, 08 Nov 2021 18:46:26 +0100
-Date:   Mon, 8 Nov 2021 18:46:26 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
- triggers
-Message-ID: <YYliclrZuxG/laIh@lunn.ch>
-References: <20211108002500.19115-1-ansuelsmth@gmail.com>
- <20211108002500.19115-2-ansuelsmth@gmail.com>
- <YYkuZwQi66slgfTZ@lunn.ch>
- <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
- <20211108171312.0318b960@thinkpad>
+        id S235575AbhKHRwo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 12:52:44 -0500
+Date:   Mon, 08 Nov 2021 17:49:39 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Message-Id: <RIL92R.MLAZ6CTO865E1@crapouillou.net>
+In-Reply-To: <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+        <HQY82R.69JHJIC64HDO1@crapouillou.net>
+        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+        <ZA692R.GHQL6RBCLFB12@crapouillou.net>
+        <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
+        <BVH92R.0VU3IKPQTLX9@crapouillou.net>
+        <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211108171312.0318b960@thinkpad>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Dear Ansuel,
-> 
-> what is the purpose of adding trigger_offload() methods to LED, if you
-> are not going to add support to offload the netdev trigger? That was
-> the entire purpose when I wrote that patch.
-> 
-> If you just want to create a new trigger that will make the PHY chip do
-> the blinking, there is no need at all for the offloading patch.
-> 
-> And you will also get a NACK from me and also Pavel (LED subsystem
-> maintainer).
-> 
-> The current plan is to:
-> - add support for offloading existing LED triggers to HW (LED
->   controllers (PHY chips, for example))
-> - make netdev trigger try offloading itself to HW via this new API (if
->   it fails, netdev trigger will blink the LED in SW as it does now)
-> - create LED classdevices in a PHY driver that have the offload()
->   methods implemented. The offload method looks at what trigger is
->   being enabled for the LED, and it if it is a netdev trigger with such
->   settings that are possible to offload, it will be offloaded.
-> 
->   This whole thing makes use of the existing sysfs ABI.
->   So for example if I do
->     cd /sys/class/net/eth0/phydev/leds/<LED>
->     echo netdev >trigger
->     echo eth0 >device_name
->     echo 1 >rx
->     echo 1 >tx
->   The netdev trigger is activated, and it calls the offload() method.
->   The offload() method is implemented in the PHY driver, and it checks
->   that it can offload these settings (blink on rx/tx), and will enable
->   this.
-> - extend netdev trigger to support more settings:
->   - indicate link for specific link modes only (for example 1g, 100m)
->   - ...
-> - extend PHY drivers to support offloading of these new settings
-> 
-> Marek
+Hi,
 
-Hi Marek
+Le lun., nov. 8 2021 at 18:22:58 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
+> 
+>>  Am 08.11.2021 um 17:30 schrieb Paul Cercueil <paul@crapouillou.net>:
+>> 
+>>  Hi,
+>> 
+>>  Le lun., nov. 8 2021 at 16:29:11 +0100, H. Nikolaus Schaller 
+>> <hns@goldelico.com> a écrit :
+>>>  Bnjour Paul,
+>>>>  Am 08.11.2021 um 13:20 schrieb Paul Cercueil 
+>>>> <paul@crapouillou.net>:
+>>>>  Hi,
+>>>>>  e.g. jz4770.dtsi:
+>>>>>  	lcd: lcd-controller@13050000 {
+>>>>>  		compatible = "ingenic,jz4770-lcd";
+>>>>>  		reg = <0x13050000 0x300>;
+>>>>>  or jz4725b.dtsi:
+>>>>>  	lcd: lcd-controller@13050000 {
+>>>>>  		compatible = "ingenic,jz4725b-lcd";
+>>>>>  		reg = <0x13050000 0x1000>;
+>>>>>  So max_register becomes 0x300 or 0x1000 but not
+>>>>>  #define JZ_REG_LCD_SIZE1	0x12c
+>>>>>  	.max_reg = JZ_REG_LCD_SIZE1,
+>>>>>  And therefore wastes a lot of regmap memory.
+>>>>  "regmap memory"? ...
+>>>  regmap allocates memory for its cache. Usually the total amount 
+>>> specified in the reg property.
+>> 
+>>  We are not using any register cache here.
+>> 
+>>>>>  Do you want this? DTS should not be reduced (DTS should be kept 
+>>>>> as stable as possible), since the reg property describes address 
+>>>>> mapping - not how many bytes are really used by registers or how 
+>>>>> big a cache should be allocated (cache allocation size 
+>>>>> requirements are not hardware description).
+>>>>  The DTS should list the address and size of the register area. If 
+>>>> your last register is at address 0x12c and there's nothing above, 
+>>>> then the size in DTS should be 0x130.
+>>>  If I look into some .dtsi it is sometimes that way but sometimes 
+>>> not. There seems to be no consistent rule.
+>>>  So does this mean you allow me to modify jz4740.dtsi, jz4770.dtsi 
+>>> and jz4725b.dtsi as well (as mentioned above: this is beyond the 
+>>> scope of my project)?
+>> 
+>>  You could update them if you wanted to, but there is no need to do 
+>> it here.
+> 
+> Hm. Then we are changing the .max_register initialization to a much 
+> bigger value.
+> 
+>> 
+>>>>>  But here are good news:
+>>>>>  I have a simpler and less invasive proposal. We keep the 
+>>>>> devm_regmap_init_mmio code as is and just increase its 
+>>>>> .max_register from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when 
+>>>>> introducing the jz4780. This wastes a handful bytes for all 
+>>>>> non-jz4780 chips but less than using the DTS memory region size. 
+>>>>> And is less code (no entry in soc_info tables, no modifyable 
+>>>>> copy) and faster code execution than all other proposals.
+>>>>>  This is then just a single-line change when introducing the 
+>>>>> jz4780. And no "preparation for adding jz4780" patch is needed at 
+>>>>> all. No patch to split out for separate review.
+>>>>>  Let's go this way to get it eventually finalized. Ok?
+>>>>  No.
+>>>  Look friend, if you explain your "no" and what is wrong with my 
+>>> arguments, it helps to understand your decisions and learn 
+>>> something from them. A plain "no" does not help anyone.
+>> 
+>>  I answered just "no" because I felt like I explained already what I 
+>> wanted to see in the previous email.
+>> 
+>>  By using a huge number as the .max_register, we do *not* waste 
+>> additional memory. Computing the value of the .max_register field 
+>> does not add any overhead, either.
+>> 
+>>  The .max_register is only used for boundary checking. To make sure 
+>> that you're not calling regmap_write() with an invalid register. 
+>> That's all there is to it.
+> 
+> Ah, now I understand our disconnect. So far I have used regmaps 
+> mainly for i2c devices and there is caching to avoid redundant i2c 
+> traffic...
+> 
+> So I just assumed wrongly that the regmap driver also allocates some 
+> buffer/cache here. Although it does not initialize .cache_type 
+> (default: REGCACHE_NONE).
+> 
+>> 
+>>>  So to summarize: if you prefer something which I consider worse, 
+>>> it is ok for me... In the end you are right - you are the 
+>>> maintainer, not me. So you have to live with your proposals.
+>>>  Therefore, I have prepared new variants so you can choose which 
+>>> one is easier to maintain for you.
+>>>  Note that they are both preparing for full jz4780-lcdc/hdmi 
+>>> support but in very different ways:
+>>>  Variant 1 already adds some jz4780 stuff while Variant 2 just 
+>>> prepares for it.
+>>>  Variant 2 is not tested (except to compile). So it needs some 
+>>> Tested-by: from someone with access to hardware. IMHO it is more 
+>>> invasive.
+>>>  And don't forget: DTB could be in ROM or be provided by a separate 
+>>> bootloader... So we should not change it too often (I had such 
+>>> discussions some years ago with maintainers when I thought it is 
+>>> easier to change DTS instead of code).
+>>>  Variant 3 would be to not separate this. As proposed in [PATCH v5 
+>>> 2/7].
+>>>  (Finally, a Variant 3b would be to combine the simple change from 
+>>> Variant 1 with Variant 3).
+>>>  So what is your choice?
+>> 
+>>  Variant 4: the variant #2 without the changes to the DTSI files.
+> 
+> Hm. If there is no cache and we can safely remove tight boundary 
+> checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing DTSI) 
+> why do we still need the max_register calculation from DTSI 
+> specifically for jz4780 and at all?
 
-The problem here is, you are not making much progress. People are
-giving up on you ever getting this done, and doing their own
-implementation. Ansuel code is not mature enough yet, it has problems,
-but he is responsive, he is dealing with comments, progress is being
-made. At some point, it is going to be good enough, and it will get
-merged, unless you actual get your code to a point it can be merged.
+It's better to have the .max_register actually set to the proper value. 
+Then reading the registers from debugfs (/sys/kernel/debug/regmap/) 
+will print the actual list of registers without bogus values. If 
+.max_register is set too high, it will end up reading outside the 
+registers area. On Ingenic SoCs such reads just return 0, but on some 
+other SoCs it can lock up the system.
 
-	Andrew
+So the best way forward is to have .max_register computed from the 
+register area's size, and fix the DTSI with the proper sizes. Since 
+your JZ4780 code needs to update .max_register anyway it's a good 
+moment to add this patch, and the DTSI files can be fixed later (by me 
+or whoever is up to the task).
+
+Fixing the DTS is not a problem in any way, btw. We just need to ensure 
+that the drivers still work with old DTB files, which will be the case 
+here.
+
+-Paul
+
+> So what about:
+> 
+> Variant 5: set .max_register = 0x1800, i.e. "big enough for everyone" 
+> (includes z4780 gamma and vee registers) + no DTSI changes (+ no 
+> jz4780 register constants like Variant 1)
+> 
+> + no DTSI changes
+> + no calculation from DTSI needed
+> + single separate patch to prepare for jz4780 but not included in 
+> jz4780 patch
+> 
+> BR and thanks,
+> Nikolaus
+> 
+> 
+
+
