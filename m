@@ -2,157 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE2E449A91
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:13:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D6D449AA0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:16:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240540AbhKHRQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 12:16:00 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:40885 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233057AbhKHRP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:15:59 -0500
-Received: by mail-ot1-f50.google.com with SMTP id q33-20020a056830442100b0055abeab1e9aso26604106otv.7;
-        Mon, 08 Nov 2021 09:13:15 -0800 (PST)
+        id S233642AbhKHRTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 12:19:12 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:38525 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229966AbhKHRTM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:19:12 -0500
+Received: by mail-oi1-f180.google.com with SMTP id r26so7401985oiw.5;
+        Mon, 08 Nov 2021 09:16:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Xxr8McGAyynQSWh0P1igKRzffu9RL4rBpIWrj/ipjgw=;
-        b=dQAXoNh8pVCuRGGYHBcZiZ76gfwUANimo2bDQLrH4UozRDEezNUEUIhOCV5+vhLT74
-         FR7b1hXEU1n6E0coLdNovnaUKg+uUfNveyJ+KoOly2AahiRh7Uq0wJGcBXBCC9Sn7Z3g
-         0GUB0QriYy9FDp5OYmDGYSgHRw0bb9atbQNluja3yZHuMIZWjYdVECgMVPZX21kYticA
-         4A4JB20KNhOCAxGWlIJWbzFwoXWgulBBhi1WYQZBYVLEibQNqk8n++os3ZeHTZoiXgyN
-         O/w7e60TjT3eESbbhJi/WL07iECEyCk9CZESrnw0K6+xQfKSyGhlaFfTv35QCx93Clq2
-         mTxA==
-X-Gm-Message-State: AOAM531vxCNvHUOmp3+yh1PodHA8x9e1aVg5zwMfLzsBDY8Wu/S8/oey
-        9e93xNQi0nppzTXiAMY3Mw==
-X-Google-Smtp-Source: ABdhPJwlWPM6xxIfag6CfK9K9abVFhl4cDR2cZ1GtROrTBJY40bGos6Qiaie0z6xY0CMohGpLhHhgg==
-X-Received: by 2002:a9d:5cc4:: with SMTP id r4mr451383oti.19.1636391594707;
-        Mon, 08 Nov 2021 09:13:14 -0800 (PST)
+        bh=vu4a84fjDFz0BFr7Vx+IRehX13Sklb9+xGncvU8UvU4=;
+        b=35RvfEnb7+oxDwDhshcsxa9Urqa2iztHKoTOfn8yScULIAIIZ/aw1cYupoD97VIQpq
+         kD9aRbo3uNjC1A5PrjaOfNBBiATH/wjRABI0zaZ2vY58MsjlDE1WtV/cV00AGW4TtLWJ
+         mB58uWsKchAJp0/7m+GzqJVd/xuAcQXR9bc+FYvXpEwnaDiuUT2BreG2p+CtjKroAskQ
+         RwwU+spHMPlFmLzdptGDL6bhJlpNQiuA1bPBUYDmNzviR/f+6FOh8X0Pi3TCrQ8UIoyu
+         0uKW4c2POaPeH7t2+pcH7e2SOALnM7wgyyuyANZb2EfAq2Iqa2wzM14EGuQodT0IkMXN
+         EoCw==
+X-Gm-Message-State: AOAM532vIxevaCZLqJqevIEJyY2RbEfKWPEt/IHZYGRT4b9LOx9btbap
+        3i8XilGmQHz5L3QTk8rA6Q==
+X-Google-Smtp-Source: ABdhPJxE+F7n7nlSYLvkc9SOKSaGosIc69vBin/edtQ2MTe+QJ4tYvuoUVF1jdDRPNuRz7F07U6JAQ==
+X-Received: by 2002:aca:1818:: with SMTP id h24mr38823599oih.76.1636391787109;
+        Mon, 08 Nov 2021 09:16:27 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o26sm1266165otj.14.2021.11.08.09.13.13
+        by smtp.gmail.com with ESMTPSA id x92sm6713239ota.46.2021.11.08.09.16.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 09:13:14 -0800 (PST)
-Received: (nullmailer pid 3568383 invoked by uid 1000);
-        Mon, 08 Nov 2021 17:13:13 -0000
-Date:   Mon, 8 Nov 2021 11:13:13 -0600
+        Mon, 08 Nov 2021 09:16:25 -0800 (PST)
+Received: (nullmailer pid 3601472 invoked by uid 1000);
+        Mon, 08 Nov 2021 17:16:25 -0000
+Date:   Mon, 8 Nov 2021 11:16:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, bjorn.andersson@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org
-Subject: Re: [PATCH v3 5/7] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
- schema
-Message-ID: <YYlaqTYhe4hbXhFf@robh.at.kernel.org>
-References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
- <20211105033558.1573552-6-bryan.odonoghue@linaro.org>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, wells.lu@sunplus.com,
+        Tony Huang <tony.huang@sunplus.com>
+Subject: Re: [PATCH 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
+Message-ID: <YYlbaTyAXYMw8A5O@robh.at.kernel.org>
+References: <1636208598-18234-1-git-send-email-tony.huang@sunplus.com>
+ <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211105033558.1573552-6-bryan.odonoghue@linaro.org>
+In-Reply-To: <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 05, 2021 at 03:35:56AM +0000, Bryan O'Donoghue wrote:
-> Add a YAML description for the pm8150b-tcpm driver. The pm8150b-tcpm
-> encapsulates a type-c block and a pdphy block into one block presented to
-> the tcpm Linux API.
-
-All Linux details that don't belong in binding description and design.
-
+On Sat, Nov 06, 2021 at 10:23:17PM +0800, Tony Huang wrote:
+> Add mmc yaml file for Sunplus SP7021
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Tony Huang <tony.huang@sunplus.com>
 > ---
->  .../bindings/usb/qcom,pmic-tcpm.yaml          | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
+>  .../devicetree/bindings/mmc/sunplus-mmc.yaml       | 64 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml b/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
+> diff --git a/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
 > new file mode 100644
-> index 0000000000000..29ab7e2d678e1
+> index 0000000..fc5a5f6
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/qcom,pmic-tcpm.yaml
-> @@ -0,0 +1,68 @@
+> +++ b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
+> @@ -0,0 +1,64 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Ltd. Co. 2021
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/usb/qcom,pmic-tcpm.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/mmc/sunplus-mmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm PMIC TCPM Driver
+> +title: sunplus MMC controller
+> +
+> +allOf:
+> +  - $ref: "mmc-controller.yaml"
 > +
 > +maintainers:
-> +  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> +
-> +description: |
-> +  Qualcomm PMIC Type-C Port Manager Driver
+> +  - tony.huang <tony.huang@sunplus.com>
+
+Please fix your name.
+
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - qcom,pm8150b-tcpm
+> +      - sunplus,sp7021-emmc
+> +      - sunplus,i143-emmc
+> +      - sunplus,q645-emmc
+
+blank line here.
+
+> +  reg:
+> +    maxItems: 1
 > +
-> +  pmic_tcpm_typec:
-
-Don't use '_' in property names and custom properties need a vendor 
-prefix.
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the typec port hardware driver.
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  pmic_tcpm_pdphy:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      A phandle to the type-c pdphy hardware driver.
-
-What is this binding a child of? Looks like the h/w is all part of a 
-PMIC, so it should be part of the PMIC binding and probably merged with 
-one of the nodes these phandles point to.
-
+> +  clocks:
+> +    minItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
 > +
 > +required:
 > +  - compatible
-> +  - pmic_tcpm_typec
-> +  - pmic_tcpm_pdphy
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
 > +
-> +additionalProperties: false
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
 > +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/usb/pd.h>
-> +    #include <dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h>
-> +    #include <dt-bindings/usb/typec/tcpm/qcom,pmic-usb-pdphy.h>
-> +
-> +    pm8150b_tcpm: pmic-tcpm {
-> +        compatible = "qcom,pm8150b-tcpm";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pmic_tcpm_typec = <&pm8150b_typec>;
-> +        pmic_tcpm_pdphy = <&pm8150b_pdphy>;
-> +
-> +        connector {
-> +            compatible = "usb-c-connector";
-> +
-> +            power-role = "source";
-> +            data-role = "dual";
-> +            self-powered;
-> +
-> +            source-pdos = <PDO_FIXED(5000, 3000,
-> +                           PDO_FIXED_DUAL_ROLE |
-> +                           PDO_FIXED_USB_COMM |
-> +                           PDO_FIXED_DATA_SWAP)>;
-> +
-> +        };
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/sp-sp7021.h>
+> +    #include <dt-bindings/reset/sp-sp7021.h>
+> +    mmc0: mmc@9c003b00 {
+> +        compatible = "sunplus,sp7021-emmc";
+> +        reg = <0x9c003b00 0x180>;
+> +        interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clkc CARD_CTL0>;
+> +        resets = <&rstc RST_CARD_CTL0>;
+> +        bus-width = <8>;
+> +        max-frequency = <52000000>;
+> +        non-removable;
+> +        disable-wp;
+> +        cap-mmc-highspeed;
+> +        mmc-ddr-3_3v;
+> +        no-sdio;
+> +        no-sd;
 > +    };
-> +
 > +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3b79fd4..179e60a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17945,6 +17945,11 @@ L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/net/ethernet/dlink/sundance.c
+>  
+> +SUNPLUS MMC DRIVER
+> +M:	Tony Huang <tony.huang@sunplus.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/mmc/sunplu-mmc.yaml
+> +
+>  SUPERH
+>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>  M:	Rich Felker <dalias@libc.org>
 > -- 
-> 2.33.0
+> 2.7.4
 > 
 > 
