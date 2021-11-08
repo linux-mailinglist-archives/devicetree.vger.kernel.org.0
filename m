@@ -2,89 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C725449745
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 15:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10141449759
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:01:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbhKHPAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 10:00:25 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39134 "EHLO mail.kernel.org"
+        id S240669AbhKHPEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 10:04:12 -0500
+Received: from phobos.denx.de ([85.214.62.61]:49126 "EHLO phobos.denx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229832AbhKHPAZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 10:00:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BC5AE6109D;
-        Mon,  8 Nov 2021 14:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636383460;
-        bh=YEqVhK4em1VFCO9boJxA+xqPNafwsUczWij0XIN6s3Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qRzecMXHO2vpQ8Ws6TwnnOLDA0KZRY4upe8aU47gM0FhW6/x5febm+AKH0tOArEXb
-         rHBn6ces4BB/igmPXZLN/VkQezsY9zuHRqnNjjK/5LOo81uiBCLoR/nRcSYatAJiLY
-         xDDc8ZrUQmZwIPi271n9J6wIwNbrUgLianwZDGJAxh1srSGJ1SvLBwTn1fZ8wRiwxK
-         RdLfyhak3DZiLNMYtDSP9id6SNZHuR4d4YD0tBuFTd39BW9ff+NDf50qCC8McDU1Ls
-         sRQ/SUkwhaGvIqc0IN+aar51ir/mRZ/hQIXLE4KX3j0WZMkvd7DD1f2AQD271PAIcW
-         2MLtUyBgNq9Nw==
-Received: by mail-ed1-f45.google.com with SMTP id v11so61122808edc.9;
-        Mon, 08 Nov 2021 06:57:40 -0800 (PST)
-X-Gm-Message-State: AOAM533A7vIcIOBrHCrSE5SFAbQWxK3XhdPR5fneNp/IMXdU+i8JJngJ
-        ERutbA+bFbUA9HjOnIeyPaEppLgFodIKs2ptVg==
-X-Google-Smtp-Source: ABdhPJz9Id4K2LgbUHCLbfG3HNDwvqjA3xrK6+NMRT0t8Qz4gZPY0IQSk/V/WkB/kt2+6AOQ9MKZ4NySBb3yC7Sk2U8=
-X-Received: by 2002:a17:907:7f25:: with SMTP id qf37mr494398ejc.147.1636383459216;
- Mon, 08 Nov 2021 06:57:39 -0800 (PST)
+        id S240664AbhKHPEM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 10:04:12 -0500
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 677C983176;
+        Mon,  8 Nov 2021 16:01:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1636383684;
+        bh=VW6XSQLYJ9hNWv0H95auB8+BwWLkGYH+tDrXB+ybyKk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=vInYaAnAqS5cbYJNtZgdZPtp5P83QrWlYfCvuEsLD3PjJwAtIfJVeYsrxT9ANR79z
+         ur2G8rf5k5qTnWXFgZBjoG4gSH91x57YG7p1ts49MDE1A10nhZJ4vK4WwUB99T7hf5
+         w0qJNd3NTZDTXT+0kzbO2mzJFbnqMs6tj8+aIsfBDE3er/Z7j3IGkTwY+NnkcLxzYE
+         ZQCMJuPwhQueMyQjlcammR2XPu/7wv6fsAh5oQHChAjP2M47QHcbmwGescBlDPskga
+         gkTSboRBZCfvYSc4T8JbLI4fTYO24e4nxdCBIbb/2YK0c0As3HkC4aiFsvdJUnKJhd
+         +BdbzeTIn3jKQ==
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: rohm,bd71847-pmic: Document
+ rohm,clock-output-is-critical property
+To:     Rob Herring <robh@kernel.org>
+Cc:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+References: <20211020084956.83041-1-marex@denx.de>
+ <263da45f-d648-3c65-aed3-e4ba41927911@fi.rohmeurope.com>
+ <4b3cc52c-a618-ea7d-6778-68060cfadf8e@denx.de>
+ <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <cd8b50cf-409f-20a4-ce5b-0e94701d9ab3@denx.de>
+Date:   Mon, 8 Nov 2021 16:01:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <YYG0KwuwSyH2uSqz@robh.at.kernel.org> <CAFr9PXnftX3k3C0sAt=qF4fgOS1apF_j4REqJXKk=wzCTVnBfw@mail.gmail.com>
-In-Reply-To: <CAFr9PXnftX3k3C0sAt=qF4fgOS1apF_j4REqJXKk=wzCTVnBfw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 8 Nov 2021 08:57:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+HDXdJL69ybGBM16Nm4giS62ZP+5k3_OGsharrRj-PiQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+HDXdJL69ybGBM16Nm4giS62ZP+5k3_OGsharrRj-PiQ@mail.gmail.com>
-Subject: Re: [GIT PULL] Devicetree updates for v5.16
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YXsVHRnzAWCFTPCo@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 8, 2021 at 7:13 AM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> Hi Rob,
->
-> On Wed, 3 Nov 2021 at 06:57, Rob Herring <robh@kernel.org> wrote:
-> > Rob Herring (22):
-> >       kbuild: Enable DT schema checks for %.dtb targets
->
-> Sorry for replying to a pull request. I couldn't find the original
-> patch email for this commit to reply.
+On 10/28/21 11:24 PM, Rob Herring wrote:
+> On Wed, Oct 20, 2021 at 01:06:13PM +0200, Marek Vasut wrote:
+>> On 10/20/21 12:14 PM, Vaittinen, Matti wrote:
+>> [...]
+>>
+>>> I wonder if this really is something specific to ROHM ICs? Do you think
+>>> this would warrant a generic, non vendor specific property? I am Ok with
+>>> the ROHM specific property too but it just seems to me this might not be
+>>> unique to ROHM IC(s).
+> 
+> I imagine we debated the need for a DT property when critical clocks was
+> added to the kernel.
 
-FYI, the link is in the commit and 'b4' makes it easy to get the mbox
-to reply to. It's quite nice to be able to reply to *anything*.
+Have you got some reference to this debate ?
 
-> Anyhow, the above commit makes buildroot unhappy.
-> I see this when trying to build any of my buildroot environments:
-> scripts/dtc/Makefile:23: *** dtc needs libyaml for DT schema
-> validation support. Install the necessary libyaml development
-> package..  Stop.
+I think something like clk-hog , similar to gpio-hog , would be useful, 
+since we could also configure the critical clock frequency in DT.
 
-If you fix this, then the next thing you will get is the dtschema
-python package is needed.
+>>> By the way, the very same clk driver where you implemented the property
+>>> reading (patch 2/2) is used by few other ROHM PMICs. At least by
+>>> BD71837, BD71828, BD71815, BD9576 and BD9573. So the code change here
+>>> adds support for this property to all of those PMICs. I wonder if the
+>>> property should be mentioned in all of the binding docs... That could be
+>>> another argument for making this a generic property and describing it in
+>>> clk yaml ;)
+>>>
+>>> Well, just my 10 Cents - I am ok with this change as you presented it
+>>> here if you don't think this should be generic one.
+>>
+>> I think we need something like gpio-hog, except for clock. Some clk-hog
+>> maybe ? That would be useful not only here, but also for things where some
+>> output generates clock for random stuff which cannot be described in the DT
+>> for whatever reason (like e.g. the SoC is used as a substitute for CPLD XTAL
+>> and the CPLD isn't connected to the SoC in any other way).
+> 
+> The justification given in this patch was for an SoC input which should
+> get described so that the clock is handled and kept enabled properly.
 
-> I think this is some mess with pkg-config from somewhere (the host
-> distro, the buildroot host side,..) saying libyaml is available but
-> when the build actually happens the header it wants isn't actually
-> where it thinks. I think this is a pre-existing problem with
-> buildroot.
-> buildroot takes a list of the dtbs that you want to build and keep in
-> it's config and calls make with that list in the kernel build. So this
-> commit causes this issue to trigger when buildroot tries to build the
-> configured dtbs.
->
-> Not sure what the fix is and I think it's probably a buildroot problem.
+This is the case I had here, yes. Although I've been running into 
+similar requirements repeatedly for almost a decade, I'm surprised 
+nobody implemented something like this yet.
 
-I suppose we can keep schema checks optional here, but my intention in
-this patch was moving towards the checks being required rather than a
-separate target. So we'd be kicking the problem down the road.
+> The CPLD case would be more interesting, but is there an actual need or
+> just a possible case?
 
-Rob
+This is an iMX53 board from 2012 or so, where they figured they don't 
+need an XTal for the CPLD because the SoC has this OSC_OUT and that can 
+be used to supply clock to the CPLD at just the frequency they need. So 
+the SoC is a clock source for the CPLD, and that's all there is to it.
+
+So far I hacked it in the clock driver to keep the clock running at 
+specific rate, but that hack has been a thorn in my side for long enough.
+
+> You could use the 'protected-clocks' property here. Maybe that's a bit
+> overloaded between can't access and don't turn off. But what it means is
+> really up the clock controller.
+
+This does not seem to describe what is needed here, protected-clock are 
+used to tell OS not to touch certain clock because they are protected by 
+e.g. firmware access restriction, it does not say anything about whether 
+the clock are critical. Also, it seems to be a non-generic property only 
+for some qualcomm clock driver.
+
+commit 48d7f160b10711f014bf07b574c73452646c9fdd
+[...]
+dt-bindings: clk: Introduce 'protected-clocks' property
+
+Add a generic clk property for clks which are not intended to be used by
+the OS due to security restrictions put in place by firmware. For
+example, on some Qualcomm firmwares reading or writing certain clk
+registers causes the entire system to reboot, but on other firmwares
+reading and writing those same registers is required to make devices
+like QSPI work. Rather than adding one-off properties each time a new
+set of clks appears to be protected, let's add a generic clk property to
+describe any set of clks that shouldn't be touched by the OS. This way
+we never need to register the clks or use them in certain firmware
+configurations.
