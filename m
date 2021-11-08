@@ -2,217 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A68B5449AB0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 516CE449ABC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:27:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238898AbhKHRZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 12:25:55 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:9001 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbhKHRZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:25:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636392180;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=hLLn26F9mTaGNLdtyqawJH4bhbe5n3y5jRn46lQtAaA=;
-    b=GBcL6JJrt8hFoPVhfbnuIX63D2IUHXw39LsbS6yusDVRmbTk7AaQtSysVKx1bY3Zfm
-    y2xrx8j+hyA5k5xg9uSvofFUzmbb8Rs63FXvp8ynsoUX9XiN/w00BZzNoRq9Qb5pZlhI
-    /ap0vOPlPQIwm0fCt6dyYWvCpnxceovCpXmsx6ZQpAzE8n/X0YgmggI8qSveSbwjkT1Q
-    SDMMbf9BEEb4fWde0e7yj8kXc8k8FW9OehCMMrb2VjJXR9Mx8lM3LN4e1YM3pnCDCPCr
-    4gSHK9e1gVow9vBT0Tkic7e8FKBLkMfnoIwpdKXhO09/9uLeCoGsB7OXlGRIRlIZ0ygO
-    NOGQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3gMZ+"
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.1 DYNA|AUTH)
-    with ESMTPSA id 902c63xA8HMxM5V
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Mon, 8 Nov 2021 18:22:59 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
- output
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <BVH92R.0VU3IKPQTLX9@crapouillou.net>
-Date:   Mon, 8 Nov 2021 18:22:58 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
- <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
- <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
- <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
- <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
- <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
- <HQY82R.69JHJIC64HDO1@crapouillou.net>
- <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
- <ZA692R.GHQL6RBCLFB12@crapouillou.net>
- <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
- <BVH92R.0VU3IKPQTLX9@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S240293AbhKHRab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 12:30:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240247AbhKHRaa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:30:30 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2C7DC061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 09:27:45 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id o18so37885034lfu.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 09:27:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DYDuAD6QjzlggLpTnY+4NCTz7rwvU+k2pOFw2vnJoQg=;
+        b=gZdmtDdET6KJkfr1o9JyaajLjAIxDfUneVgmjMUWVxtccdnR8KOTDCP/QcMfr1rT1c
+         KMv0hYzdHhxOcal7sXLxmN7AmvbVEZD/1rXPzxXlyVbgKE9hxbFk2p+l595O3FlnbHBU
+         YEUIctDzOvE4EblLCct+hYeQlkbW5JcqcpPDFY5hgy2C7Q3jy3d/o+JW8NgXdufKLWOl
+         TMvhoeks3yj+4UpAKs1Eq1znysr2cSBT/UuJdL+rKoJqlh/IqR3vStgf3CqF9R2NodT3
+         3B587i81UHEQIDFonvAbwazVHdQm3z9SUk6+c5aToj8bsSeUK9OllMdSDj4ADBKl9ZLX
+         wi7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DYDuAD6QjzlggLpTnY+4NCTz7rwvU+k2pOFw2vnJoQg=;
+        b=gBJrLtLNaEN3yxptjDj8NxFauPELGRFO4hVvG5ZxGmYuzhMtab2vek/8ey03To1vUZ
+         h/XFxVMM626GLs31ruAps0jE7cBF6TGIckBcsafdTmF/ejSQXYtBtJk6eGpKtRq6YwgD
+         nTGhfzSSbL6RO/8UuD1pGwWj/efE3e566jzF6OKM4TmShBfj2VMGB9orIxebHgmzQrfS
+         3MfL9IGjU/oSkE4gz94U0ywX6D06yZtfF+sdfypqSS2+9s1GjxzxYu7E4jJdU4uZUuPD
+         N8BocMAXJFJe7AOfbLfUmMpWqun2+gfyfOmFS9vwrsL59r/BoG4H+a0mhxpHzXwJcGi1
+         zkbw==
+X-Gm-Message-State: AOAM533LLgw+4Z2RgOA0v+TsEAsDEFJZQa3GpO0Q66wIF3/mOt5hp1T9
+        iowk6EYXXVP2bQI/q5GsjZEBgMCAI5TFCzonxIx8lw==
+X-Google-Smtp-Source: ABdhPJwPMBy21RwGfnSKmXaxDEIIDzdw2ubpg3s7yG3XcVkDzKpSnYYGbBLBHwTaZa0XexKAFw9FcGYiz8AyAu8fuKo=
+X-Received: by 2002:a19:ad4d:: with SMTP id s13mr813797lfd.373.1636392464046;
+ Mon, 08 Nov 2021 09:27:44 -0800 (PST)
+MIME-Version: 1.0
+References: <20210315132501.441681-1-Jerome.Pouiller@silabs.com>
+ <4503971.bAhddQ8uqO@pc-42> <CAPDyKFoXgV3m-rMKfjqRj91PNjOGaWg6odWG-EGdFKkL+dGWoA@mail.gmail.com>
+ <5713463.b6Cmjs1FeV@pc-42> <CAPDyKFrONrUvbVVVF9iy4P17jZ_Fq+1pGMmsqM6C1hOXOWQnBw@mail.gmail.com>
+ <87pmz6mhim.fsf@codeaurora.org> <CAPDyKFrgrSAz-B7wqNNPKk3kB8UqhGs=+bZ8RRhmqh8HuvhcEQ@mail.gmail.com>
+ <87fstlj58q.fsf@codeaurora.org>
+In-Reply-To: <87fstlj58q.fsf@codeaurora.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 8 Nov 2021 18:27:06 +0100
+Message-ID: <CAPDyKFqnbya3+Pvg4yNzFkHdhO9q-Nnj9n9iDVyBqY5ZL_XmaA@mail.gmail.com>
+Subject: Re: [PATCH v5 08/24] wfx: add bus_sdio.c
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <Jerome.Pouiller@silabs.com>,
+        linux-wireless <linux-wireless@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        DTML <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Fri, 1 Oct 2021 at 14:31, Kalle Valo <kvalo@codeaurora.org> wrote:
+>
+> Hi Ulf,
+>
+> sorry for the late reply, my Gnus tells me it took me 24 weeks to reply :)
+>
+> Ulf Hansson <ulf.hansson@linaro.org> writes:
+>
+> > On Wed, 7 Apr 2021 at 14:00, Kalle Valo <kvalo@codeaurora.org> wrote:
+> >>
+> >> Ulf Hansson <ulf.hansson@linaro.org> writes:
+> >>
+> >> >> If I follow what has been done in other drivers I would write something
+> >> >> like:
+> >> >>
+> >> >>   static int wfx_sdio_suspend(struct device *dev)
+> >> >>   {
+> >> >>           struct sdio_func *func = dev_to_sdio_func(dev);
+> >> >>           struct wfx_sdio_priv *bus = sdio_get_drvdata(func);
+> >> >>
+> >> >>           config_reg_write_bits(bus->core, CFG_IRQ_ENABLE_DATA, 0);
+> >> >>           // Necessary to keep device firmware in RAM
+> >> >>           return sdio_set_host_pm_flags(func, MMC_PM_KEEP_POWER);
+> >> >
+> >> > This will tell the mmc/sdio core to keep the SDIO card powered on
+> >> > during system suspend. Thus, it doesn't need to re-initialize it at
+> >> > system resume - and the firmware should not need to be re-programmed.
+> >> >
+> >> > On the other hand, if you don't plan to support system wakeups, it
+> >> > would probably be better to power off the card, to avoid wasting
+> >> > energy while the system is suspended. I assume that means you need to
+> >> > re-program the firmware as well. Normally, it's these kinds of things
+> >> > that need to be managed from a ->resume() callback.
+> >>
+> >> Many mac80211 drivers do so that the device is powered off during
+> >> interface down (ifconfig wlan0 down), and as mac80211 does interface
+> >> down automatically during suspend, suspend then works without extra
+> >> handlers.
+> >
+> > That sounds simple. :-)
+>
+> Indeed, I was omitting a lot of details :) My comment was more like a
+> general remark to all different bus techonologies, not just about SDIO.
+> And I'm not saying that all wireless drivers do that, but some of them
+> do. Though I don't have any numbers how many.
+>
+> > Would you mind elaborating on what is actually being powered off at
+> > interface down - and thus also I am curious what happens at a typical
+> > interface up?
+>
+> In general in the drivers that do we this the firmware is completely
+> turned off and all memory is reset during interface down. And firmware
+> is started from the scratch during interface up. Also one benefit from
+> this is that firmware state is reset, the wireless firmwares are
+> notarious being buggy.
+>
+> > Even if we don't want to use system wakeups (wake-on-lan), the SDIO
+> > core and the SDIO func driver still need to somewhat agree on how to
+> > manage the power for the card during system suspend, I think.
+> >
+> > For example, for a non-removable SDIO card, the SDIO/MMC core may
+> > decide to power off the card in system suspend. Then it needs to
+> > restore power to the card and re-initialize it at system resume, of
+> > course. This doesn't mean that the actual corresponding struct device
+> > for it, gets removed/re-added, thus the SDIO func driver isn't being
+> > re-probed after the system has resumed. Although, since the SDIO card
+> > was re-initialized, it's likely that the FW may need to be
+> > re-programmed after the system has been resumed.
+> >
+> > Are you saying that re-programming the FW is always happening at
+> > interface up, when there are none system suspend/resume callbacks
+> > assigned for the SDIO func driver?
+>
+> Yes, that's what I was trying to say. But take all this with grain of
+> salt, I'm not very familiar with SDIO! And funnily enough, I checked
+> what we do in ath10k_sdio driver during suspend has conflicting code and
+> documentation:
+>
+> /* Empty handlers so that mmc subsystem doesn't remove us entirely during
+>  * suspend. We instead follow cfg80211 suspend/resume handlers.
+>  */
+> static int ath10k_sdio_pm_suspend(struct device *device)
+> {
+>         struct sdio_func *func = dev_to_sdio_func(device);
+>         struct ath10k_sdio *ar_sdio = sdio_get_drvdata(func);
+>         struct ath10k *ar = ar_sdio->ar;
+>         mmc_pm_flag_t pm_flag, pm_caps;
+>         int ret;
+>
+>         if (!device_may_wakeup(ar->dev))
+>                 return 0;
+>
+>         ath10k_sdio_set_mbox_sleep(ar, true);
+>
+>         pm_flag = MMC_PM_KEEP_POWER;
+>
+>         ret = sdio_set_host_pm_flags(func, pm_flag);
+>         if (ret) {
+>                 pm_caps = sdio_get_host_pm_caps(func);
+>                 ath10k_warn(ar, "failed to set sdio host pm flags (0x%x, 0x%x): %d\n",
+>                             pm_flag, pm_caps, ret);
+>                 return ret;
+>         }
+>
+>         return ret;
 
-> Am 08.11.2021 um 17:30 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi,
->=20
-> Le lun., nov. 8 2021 at 16:29:11 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> Bnjour Paul,
->>> Am 08.11.2021 um 13:20 schrieb Paul Cercueil <paul@crapouillou.net>:
->>> Hi,
->>>> e.g. jz4770.dtsi:
->>>> 	lcd: lcd-controller@13050000 {
->>>> 		compatible =3D "ingenic,jz4770-lcd";
->>>> 		reg =3D <0x13050000 0x300>;
->>>> or jz4725b.dtsi:
->>>> 	lcd: lcd-controller@13050000 {
->>>> 		compatible =3D "ingenic,jz4725b-lcd";
->>>> 		reg =3D <0x13050000 0x1000>;
->>>> So max_register becomes 0x300 or 0x1000 but not
->>>> #define JZ_REG_LCD_SIZE1	0x12c
->>>> 	.max_reg =3D JZ_REG_LCD_SIZE1,
->>>> And therefore wastes a lot of regmap memory.
->>> "regmap memory"? ...
->> regmap allocates memory for its cache. Usually the total amount =
-specified in the reg property.
->=20
-> We are not using any register cache here.
->=20
->>>> Do you want this? DTS should not be reduced (DTS should be kept as =
-stable as possible), since the reg property describes address mapping - =
-not how many bytes are really used by registers or how big a cache =
-should be allocated (cache allocation size requirements are not hardware =
-description).
->>> The DTS should list the address and size of the register area. If =
-your last register is at address 0x12c and there's nothing above, then =
-the size in DTS should be 0x130.
->> If I look into some .dtsi it is sometimes that way but sometimes not. =
-There seems to be no consistent rule.
->> So does this mean you allow me to modify jz4740.dtsi, jz4770.dtsi and =
-jz4725b.dtsi as well (as mentioned above: this is beyond the scope of my =
-project)?
->=20
-> You could update them if you wanted to, but there is no need to do it =
-here.
+Just to confirm, the code looks reasonable to me, even if the comment
+above looks a bit odd/outdated. :-)
 
-Hm. Then we are changing the .max_register initialization to a much =
-bigger value.
+*) Because the SDIO driver's ->suspend|resume() callbacks have been
+assigned, the mmc core will not remove the corresponding SDIO
+func/card's struct device.
 
->=20
->>>> But here are good news:
->>>> I have a simpler and less invasive proposal. We keep the =
-devm_regmap_init_mmio code as is and just increase its .max_register =
-from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when introducing the jz4780. =
-This wastes a handful bytes for all non-jz4780 chips but less than using =
-the DTS memory region size. And is less code (no entry in soc_info =
-tables, no modifyable copy) and faster code execution than all other =
-proposals.
->>>> This is then just a single-line change when introducing the jz4780. =
-And no "preparation for adding jz4780" patch is needed at all. No patch =
-to split out for separate review.
->>>> Let's go this way to get it eventually finalized. Ok?
->>> No.
->> Look friend, if you explain your "no" and what is wrong with my =
-arguments, it helps to understand your decisions and learn something =
-from them. A plain "no" does not help anyone.
->=20
-> I answered just "no" because I felt like I explained already what I =
-wanted to see in the previous email.
->=20
-> By using a huge number as the .max_register, we do *not* waste =
-additional memory. Computing the value of the .max_register field does =
-not add any overhead, either.
->=20
-> The .max_register is only used for boundary checking. To make sure =
-that you're not calling regmap_write() with an invalid register. That's =
-all there is to it.
+**) If system wakeup *isn't* going to be enabled, the early return
+with 0, will allow the mmc core to power off the SDIO card/func device
+during system suspend. Vice versa, it will then restore power to it
+and re-initialize it during system resume.
 
-Ah, now I understand our disconnect. So far I have used regmaps mainly =
-for i2c devices and there is caching to avoid redundant i2c traffic...
+***) If system wakeup *is* going to be enabled, MMC_PM_KEEP_POWER flag
+will prevent the mmc core from powering off the SDIO card/func device
+during system suspend. Depending on if the wakeup irq is in-band or
+out-band, MMC_PM_WAKE_SDIO_IRQ could be set too.
 
-So I just assumed wrongly that the regmap driver also allocates some =
-buffer/cache here. Although it does not initialize .cache_type (default: =
-REGCACHE_NONE).
+That said, note that ->probe() of the SDIO func driver, will not be
+called for a non-removable SDIO func/card to re-program the FW after a
+system suspend/resume. That needs to be managed from the SDIO func
+driver's system resume callback - or deferring to upper common network
+layers (interface up?), which seems to be the case here.
 
->=20
->> So to summarize: if you prefer something which I consider worse, it =
-is ok for me... In the end you are right - you are the maintainer, not =
-me. So you have to live with your proposals.
->> Therefore, I have prepared new variants so you can choose which one =
-is easier to maintain for you.
->> Note that they are both preparing for full jz4780-lcdc/hdmi support =
-but in very different ways:
->> Variant 1 already adds some jz4780 stuff while Variant 2 just =
-prepares for it.
->> Variant 2 is not tested (except to compile). So it needs some =
-Tested-by: from someone with access to hardware. IMHO it is more =
-invasive.
->> And don't forget: DTB could be in ROM or be provided by a separate =
-bootloader... So we should not change it too often (I had such =
-discussions some years ago with maintainers when I thought it is easier =
-to change DTS instead of code).
->> Variant 3 would be to not separate this. As proposed in [PATCH v5 =
-2/7].
->> (Finally, a Variant 3b would be to combine the simple change from =
-Variant 1 with Variant 3).
->> So what is your choice?
->=20
-> Variant 4: the variant #2 without the changes to the DTSI files.
-
-Hm. If there is no cache and we can safely remove tight boundary =
-checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing DTSI) why =
-do we still need the max_register calculation from DTSI specifically for =
-jz4780 and at all?
-
-So what about:
-
-Variant 5: set .max_register =3D 0x1800, i.e. "big enough for everyone" =
-(includes z4780 gamma and vee registers) + no DTSI changes (+ no jz4780 =
-register constants like Variant 1)
-
-+ no DTSI changes
-+ no calculation from DTSI needed
-+ single separate patch to prepare for jz4780 but not included in jz4780 =
-patch
-
-BR and thanks,
-Nikolaus
-
-
+Kind regards
+Uffe
