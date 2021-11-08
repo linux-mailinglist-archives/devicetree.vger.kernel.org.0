@@ -2,245 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC481447CED
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 10:37:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDAB447CF2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 10:37:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232513AbhKHJkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 04:40:14 -0500
-Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:42222
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230413AbhKHJkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 04:40:13 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(53123:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Mon, 08 Nov 2021 17:37:14 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Mon, 8 Nov 2021 17:37:08 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 8 Nov 2021
- 17:37:08 +0800
-From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxfraAgAGf2kCAAU6CgIAE3RVA
-Date:   Mon, 8 Nov 2021 09:37:08 +0000
-Message-ID: <7c77f644b7a14402bad6dd6326ba85b1@sphcmbx02.sunplus.com.tw>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
- <YYK+EeCOu/BXBXDi@lunn.ch>
- <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
- <YYUzgyS6pfQOmKRk@lunn.ch>
-In-Reply-To: <YYUzgyS6pfQOmKRk@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S237591AbhKHJkd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 04:40:33 -0500
+Received: from aposti.net ([89.234.176.197]:37608 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237086AbhKHJka (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 04:40:30 -0500
+Date:   Mon, 08 Nov 2021 09:37:29 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Message-Id: <HQY82R.69JHJIC64HDO1@crapouillou.net>
+In-Reply-To: <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4gPiArY29uZmlnIE5FVF9WRU5ET1JfU1VOUExVUw0KPiA+ID4gPiArCXRyaXN0YXRlICJT
-dW5wbHVzIER1YWwgMTBNLzEwME0gRXRoZXJuZXQgKHdpdGggTDIgc3dpdGNoKSBkZXZpY2VzIg0K
-PiA+ID4NCj4gPiA+IFRoZSAid2l0aCBMMiBTd2l0Y2giIGlzIGNhdXNpbmcgbG90cyBvZiB3YXJu
-aW5nIGJlbGxzIHRvIHJpbmcgZm9yIG1lLg0KPiA+ID4NCj4gPiA+IEkgZG9uJ3Qgc2VlIGFueSBy
-ZWZlcmVuY2VzIHRvIHN3aXRjaGRldiBvciBEU0EgaW4gdGhpcyBkcml2ZXIuIEhvdw0KPiA+ID4g
-aXMgdGhlIHN3aXRjaCBtYW5hZ2VkPyBUaGVyZSBoYXZlIGJlZW4gYSBmZXcgZXhhbXBsZXMgaW4g
-dGhlIHBhc3Qgb2YNCj4gPiA+IHNpbWlsYXIgdHdvIHBvcnQgc3dpdGNoZXMgYmVpbmcgZmlyc3Qg
-c3VwcG9ydGVkIGluIER1YWwgTUFDIG1vZGUuDQo+ID4gPiBMYXRlciB0cnlpbmcgdG8gYWN0dWFs
-bHkgdXNlIHRoZSBzd2l0Y2ggaW4gdGhlIExpbnV4IHdhcyBhbHdheXMgcmFuDQo+ID4gPiBpbnRv
-IHByb2JsZW1zLCBhbmQgYmFzaWNhbGx5IG5lZWRlZCBhIG5ldyBkcml2ZXIuIFNvIGkgd2FudCB0
-byBtYWtlDQo+ID4gPiBzdXJlIHlvdSBkb24ndCBoYXZlIHRoaXMgcHJvYmxlbS4NCj4gPiA+DQo+
-ID4gPiBJbiB0aGUgTGludXggd29ybGQsIEV0aGVybmV0IHN3aXRjaGVzIGRlZmF1bHQgdG8gaGF2
-aW5nIHRoZXJlDQo+ID4gPiBwb3J0cy9pbnRlcmZhY2VzIHNlcGFyYXRlZC4gVGhpcyBlZmZlY3Rp
-dmVseSBnaXZlcyB5b3UgeW91ciBkdWFsIE1BQw0KPiA+ID4gbW9kZSBieSBkZWZhdWx0LiAgWW91
-IHRoZW4gY3JlYXRlIGEgTGludXggYnJpZGdlLCBhbmQgYWRkIHRoZQ0KPiA+ID4gcG9ydHMvaW50
-ZXJmYWNlcyB0byB0aGUgYnJpZGdlLiBzd2l0Y2hkZXYgaXMgdXNlZCB0byBvZmZsb2FkIHRoZQ0K
-PiA+ID4gYnJpZGdlLCB0ZWxsaW5nIHRoZSBoYXJkd2FyZSB0byBlbmFibGUgdGhlIEwyIHN3aXRj
-aCBiZXR3ZWVuIHRoZSBwb3J0cy4NCj4gPiA+DQo+ID4gPiBTbyB5b3UgZG9uJ3QgbmVlZCB0aGUg
-bW9kZSBwYXJhbWV0ZXIgaW4gRFQuIHN3aXRjaGRldiB0ZWxscyB5b3UgdGhpcy4NCj4gPiA+IFN3
-aXRjaGRldiBnaXZlcyB1c2VyIHNwYWNlIGFjY2VzcyB0byB0aGUgYWRkcmVzcyB0YWJsZSBldGMu
-DQo+ID4NCj4gPiBUaGUgTDIgc3dpdGNoIG9mIEV0aGVybmV0IG9mIFNQNzAyMSBpcyBub3QgdXNl
-ZCB0byBmb3J3YXJkIHBhY2tldHMNCj4gPiBiZXR3ZWVuIHR3byBuZXR3b3JrIGludGVyZmFjZXMu
-DQo+ID4NCj4gPiBTdW5wbHVzIER1YWwgRXRoZXJuZXQgZGV2aWNlcyBjb25zaXN0cyBvZiBvbmUg
-Q1BVIHBvcnQsIHR3byBMQU4gcG9ydHMsDQo+ID4gYW5kIGEgTDIgc3dpdGNoLiBMMiBzd2l0Y2gg
-aXMgYSBjaXJjdWl0cnkgd2hpY2ggcmVjZWl2ZXMgcGFja2V0cyBmcm9tDQo+ID4gQ1BVIG9yIExB
-TiBwb3J0cyBhbmQgdGhlbiBmb3J3YXJkcyB0aGVtIG90aGVyIHBvcnRzLiBSdWxlcyBvZg0KPiA+
-IGZvcndhcmRpbmcgcGFja2V0cyBhcmUgc2V0IGJ5IGRyaXZlci4NCj4gPg0KPiA+IEV0aGVybmV0
-IGRyaXZlciBvZiBTUDcwMjEgb2YgU3VucGx1cyBzdXBwb3J0cyAzIG9wZXJhdGlvbiBtb2RlczoN
-Cj4gPiAgIC0gRHVhbCBOSUMgbW9kZQ0KPiA+ICAgLSBBbiBOSUMgd2l0aCB0d28gTEFOIHBvcnRz
-IG1vZGUgKGRhaXN5LWNoYWluIG1vZGUpDQo+ID4gICAtIEFuIE5JQyB3aXRoIHR3byBMQU4gcG9y
-dHMgbW9kZSAyDQo+ID4NCj4gPiBEdWFsIE5JQyBtb2RlDQo+ID4gRXRoZXJuZXQgZHJpdmVyIGNy
-ZWF0ZXMgdHdvIG5ldC1kZXZpY2UgaW50ZXJmYWNlcyAoZWc6IGV0aDAgYW5kIGV0aDEpLg0KPiA+
-IEVhY2ggaGFzIGl0cyBkZWRpY2F0ZWQgTEFOIHBvcnQuIEZvciBleGFtcGxlLCBMQU4gcG9ydCAw
-IGlzIGZvcg0KPiA+IG5ldC1kZXZpY2UgaW50ZXJmYWNlIGV0aDAuIExBTiBwb3J0IDEgaXMgZm9y
-IG5ldC1kZXZpY2UgaW50ZXJmYWNlDQo+ID4gZXRoMS4gUGFja2V0cyBmcm9tIExBTiBwb3J0IDAg
-d2lsbCBiZSBhbHdheXMgZm9yd2FyZGVkIHRvIGV0aDAgYW5kDQo+ID4gdmljZSB2ZXJzYSBieSBM
-MiBzd2l0Y2guIFNpbWlsYXJseSwgcGFja2V0cyBmcm9tIExBTiBwb3J0IDEgd2lsbCBiZQ0KPiA+
-IGFsd2F5cyBmb3J3YXJkZWQgdG8gZXRoMSBhbmQgdmljZSB2ZXJzYSBieSBMMiBzd2l0Y2guIFBh
-Y2tldHMgd2lsbA0KPiA+IG5ldmVyIGJlIGZvcndhcmRlZCBiZXR3ZWVuIHR3byBMQU4gcG9ydHMs
-IG9yIGJldHdlZW4gZXRoMCBhbmQgTEFOIHBvcnQNCj4gPiAxLCBvciBiZXR3ZWVuIGV0aDEgYW5k
-IExBTiBwb3J0IDAuIFRoZSB0d28gbmV0d29yayBkZXZpY2VzIHdvcmsNCj4gPiBpbmRlcGVuZGVu
-dGx5Lg0KPiA+DQo+ID4gQW4gTklDIHdpdGggdHdvIExBTiBwb3J0cyBtb2RlIChkYWlzeS1jaGFp
-biBtb2RlKSBFdGhlcm5ldCBkcml2ZXINCj4gPiBjcmVhdGVzIG9uZSBuZXQtZGV2aWNlIGludGVy
-ZmFjZSAoZWc6IGV0aDApLCBidXQgdGhlIG5ldC1kZXZpY2UNCj4gPiBpbnRlcmZhY2UgaGFzIHR3
-byBMQU4gcG9ydHMuIEluIHRoaXMgbW9kZSwgYSBwYWNrZXQgZnJvbSBvbmUgTEFOIHBvcnQNCj4g
-PiB3aWxsIGJlIGVpdGhlciBmb3J3YXJkZWQgdG8gbmV0LWRldmljZSBpbnRlcmZhY2UgKGVodDAp
-IGlmIGl0cw0KPiA+IGRlc3RpbmF0aW9uIGFkZHJlc3MgbWF0Y2hlcyBNQUMgYWRkcmVzcyBvZiBu
-ZXQtZGV2aWNlIGludGVyZmFjZQ0KPiA+IChldGgwKSwgb3IgZm9yd2FyZGVkIHRvIG90aGVyIExB
-TiBwb3J0LiBBIHBhY2tldCBmcm9tIG5ldC1kZXZpY2UNCj4gPiBpbnRlcmZhY2UgKGV0aDApIHdp
-bGwgYmUgZm9yd2FyZGVkIHRvIGEgTEFOIHBvcnQgaWYgaXRzIGRlc3RpbmF0aW9uDQo+ID4gYWRk
-cmVzcyBpcyBsZWFybnQgYnkgTDIgc3dpdGNoLCBvciBmb3J3YXJkZWQgdG8gYm90aCBMQU4gcG9y
-dHMgaWYgaXRzDQo+ID4gZGVzdGluYXRpb24gaGFzIG5vdCBiZWVuIGxlYXJudCB5ZXQuDQo+ID4N
-Cj4gPiBBbiBOSUMgd2l0aCB0d28gTEFOIHBvcnRzIG1vZGUgMg0KPiA+IFRoaXMgbW9kZSBpcyBz
-aW1pbGFyIHRvIOKAnEFuIE5JQyB3aXRoIHR3byBMQU4gcG9ydHMgbW9kZeKAnS4gVGhlDQo+ID4g
-ZGlmZmVyZW5jZSBpcyB0aGF0IGEgcGFja2V0IGZyb20gbmV0LWRldmljZSBpbnRlcmZhY2UgKGV0
-aDApIHdpbGwgYmUNCj4gPiBhbHdheXMgZm9yd2FyZGVkIHRvIGJvdGggTEFOIHBvcnRzLiBMZWFy
-bmluZyBmdW5jdGlvbiBvZiBMMiBzd2l0Y2ggaXMNCj4gPiB0dXJuZWQgb2ZmIGluIHRoaXMgbW9k
-ZS4gVGhpcyBtZWFucyBMMiBzd2l0Y2ggd2lsbCBuZXZlciBsZWFybiB0aGUNCj4gPiBzb3VyY2Ug
-YWRkcmVzcyBvZiBhIHBhY2tldC4gU28sIGl0IGFsd2F5cyBmb3J3YXJkIHBhY2tldHMgdG8gYm90
-aCBMQU4NCj4gPiBwb3J0cy4gVGhpcyBtb2RlIHdvcmtzIGxpa2UgeW91IGhhdmUgMi1wb3J0IEV0
-aGVybmV0IGh1Yi4NCj4gDQo+IFNvIGhlcmUgeW91IGRlc2NyaWJlIGhvdyB0aGUgaGFyZHdhcmUg
-Y2FuIGJlIHVzZWQuIER1YWwgaXMgdHdvIGludGVyZmFjZXMuDQo+IERhaXN5LWNoYWluIGlzIHdo
-YXQgeW91IGdldCBieSB0YWtpbmcgdGhvc2UgdHdvIGludGVyZmFjZXMgYW5kIGFkZGluZyB0aGVt
-IHRvDQo+IGEgYnJpZGdlLiBUaGUgYnJpZGdlIHRoZW4gZm9yd2FyZHMgZnJhbWVzIGJldHdlZW4g
-dGhlIGludGVyZmFjZXMgYW5kIHRoZSBDUFUNCj4gYXMgbmVlZGVkLCBiYXNlZCBvbiBsZWFybmlu
-Zy4gQW5kIHlvdXIgdGhpcmQgbW9kZSBpcyB0aGUgYnJpZGdlIGFsd2F5cw0KPiBwZXJmb3JtcyBm
-bG9vZGluZy4NCj4gDQo+IEEgbGludXggZHJpdmVyIG11c3QgZm9sbG93IHRoZSBsaW51eCBuZXR3
-b3JraW5nIG1vZGVsLiBZb3UgY2Fubm90IG1ha2UgdXANCj4geW91ciBvd24gbW9kZWwuIEluIHRo
-ZSBsaW51eCB3b3JsZCwgeW91IG1vZGVsIHRoZSBleHRlcm5hbCBwb3J0cy4gVGhlDQo+IGhhcmR3
-YXJlIGFsd2F5cyBoYXMgdHdvIGV4dGVybmFsIHBvcnRzLCBzbyB5b3UgbmVlZCB0byBhbHdheXMg
-aGF2ZSB0d28NCj4gbmV0ZGV2IGludGVyZmFjZXMuIFRvIGJyaWRnZSBwYWNrZXRzIGJldHdlZW4g
-dGhvc2UgdHdvIGludGVyZmFjZXMsIHlvdSBjcmVhdGUNCj4gYSBicmlkZ2UgYW5kIHlvdSBhZGQg
-dGhlIGludGVyZmFjZXMgdG8gdGhlIGJyaWRnZS4gVGhhdCBpcyB0aGUgbW9kZWwgeW91IG5lZWQN
-Cj4gdG8gZm9sbG93LiBzd2l0Y2hkZXYgZ2l2ZXMgeW91IHRoZSBBUEkgY2FsbHMgeW91IG5lZWQg
-dG8gaW1wbGVtZW50IHRoaXMuDQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgZXhwbGFu
-YXRpb24uDQoNCkkgcmVhbGl6ZSB0aGF0IHdlIG5lZWQgdG8gZm9sbG93IHRoZSBMaW51eCBuZXR3
-b3JraW5nIG1vZGVsLg0KSSdsbCByZW1vdmUgYWxsIGRlc2NyaXB0aW9ucyBhYm91dCBMMiBzd2l0
-Y2ggb3IgZGFpc3ktY2hhaW4gbW9kZS4NCg0KSSdkIGxpa2UgdG8gbW9kaWZ5IFN1bnBsdXMgRXRo
-ZXJuZXQgZHJpdmVyIHRvIGZ1bGZpbGwgTGludXggbmV0d29ya2luZyBtb2RlbC4NCkhlcmUgaXMg
-bXkgcHJvcG9zYWw6DQoNClNQNzAyMSBFdGhlcm5ldCBzdXBwb3J0cyAzIG9wZXJhdGlvbiBtb2Rl
-czoNCiAtIER1YWwgRXRoZXJuZXQgbW9kZQ0KICAgSW4gdGhpcyBtb2RlLCBkcml2ZXIgY3JlYXRl
-cyB0d28gbmV0LWRldmljZSBpbnRlcmZhY2VzLiBFYWNoIGNvbm5lY3RzDQogICB0byBQSFkuIFRo
-ZXJlIGFyZSB0d28gTEFOIHBvcnRzIHRvdGFsbHkuDQogICBJIGFtIHNvcnJ5IHRoYXQgRU1BQyBv
-ZiBTUDcwMjEgY2Fubm90IHN1cHBvcnQgTDIgc3dpdGNoIGZ1bmN0aW9ucw0KICAgb2YgTGludXgg
-c3dpdGNoLWRldmljZSBtb2RlbCBiZWNhdXNlIGl0IG9ubHkgaGFzIHBhcnRpYWwgZnVuY3Rpb24g
-b2YgDQogICBzd2l0Y2guDQoNCiAtIE9uZSBFdGhlcm5ldCBtb2RlDQogICBJbiB0aGlzIG1vZGUs
-IGRyaXZlciBjcmVhdGVzIG9uZSBuZXQtZGV2aWNlIGludGVyZmFjZS4gSXQgY29ubmVjdHMgdG8N
-CiAgIHRvIGEgUEhZIChUaGVyZSBpcyBvbmx5IG9uZSBMQU4gcG9ydCkuDQogICBUaGUgTEFOIHBv
-cnQgaXMgdGhlbiBjb25uZWN0ZWQgdG8gYSAzLXBvcnQgRXRoZXJuZXQgaHViLg0KICAgVGhlIDMt
-cG9ydCBFdGhlcm5ldCBodWIgaXMgYSBoYXJkd2FyZSBjaXJjdWl0cnkuIEFsbCBvcGVyYXRpb25z
-IA0KICAgKHBhY2tldCBmb3J3YXJkaW5nKSBhcmUgZG9uZSBieSBoYXJkd2FyZS4gTm8gc29mdHdh
-cmUgDQogICBpbnRlcnZlbnRpb24gaXMgbmVlZGVkLiBBY3R1YWxseSwgZXZlbiBqdXN0IHBvd2Vy
-LW9uLCBubyBzb2Z0d2FyZSANCiAgIHJ1bm5pbmcsIHR3byBMQU4gcG9ydHMgb2YgU1A3MDIxIHdv
-cmsgd2VsbCBhcyAyLXBvcnQgaHViLg0KDQogLSBPbmUgRXRoZXJuZXQgbW9kZSAyDQogICBUaGlz
-IGlzIG1vZGUgaXMgc2ltaWxhciB0byBwcmV2aW91cyBtb2RlLCBidXQgYSBiaXQgZGlmZmVyZW50
-IHNldHRpbmdzDQogICB0byB0aGUgaHViLg0KDQpQbGVhc2Uga2luZGx5IGNvbW1lbnQgaWYgbXkg
-cHJvcG9zYWwgaXMgZmVhc2libGUgb3Igbm90DQoNCg0KPiA+ID4gPiArc3RydWN0IGwyc3dfY29t
-bW9uIHsNCj4gPiA+DQo+ID4gPiBQbGVhc2UgY2hhbmdlIHlvdXIgcHJlZml4LiBsMnN3IGlzIGEg
-Y29tbW9uIHByZWZpeCwgdGhlcmUgYXJlIG90aGVyDQo+ID4gPiBzaWxpY29uIHZlbmRvcnMgdXNp
-bmcgbDJzdy4gSSB3b3VsZCBzdWdnZXN0IHNwX2wyc3cgb3Igc3BsMnN3Lg0KPiA+DQo+ID4gT2ss
-IEknbGwgbW9kaWZ5IHR3byBzdHJ1Y3QgbmFtZXMgaW4gbmV4dCBwYXRjaCBhcyBzaG93biBiZWxv
-dzoNCj4gPiBsMnN3X2NvbW1vbiAtLT4gc3BfY29tbW9uDQo+ID4gbDJzd19tYWMgLS0+IHNwX21h
-Yw0KPiA+DQo+ID4gU2hvdWxkIEkgYWxzbyBtb2RpZnkgcHJlZml4IG9mIGZpbGUgbmFtZT8NCj4g
-DQo+IFlvdSBuZWVkIHRvIG1vZGlmeSB0aGUgcHJlZml4IGV2ZXJ5d2hlcmUgeW91IHVzZSBpdC4g
-IEZ1bmN0aW9uIG5hbWVzLA0KPiB2YXJpYWJsZSBuYW1lcywgYWxsIHN5bWJvbHMuIFNlYXJjaCBh
-bmQgcmVwbGFjZSB0aHJvdWdob3V0IHRoZSB3aG9sZSBjb2RlLg0KDQpZZXMsIEknbGwgZG8gaW4g
-bmV4dCBwYXRjaC4NCg0KDQo+ID4gPiA+ICsJCQlyZXR1cm4gLUVJTlZBTDsNCj4gPiA+ID4gKwkJ
-fQ0KPiA+ID4gPiArCX0NCj4gPiA+ID4gKw0KPiA+ID4gPiArCXN3aXRjaCAoY21kKSB7DQo+ID4g
-PiA+ICsJY2FzZSBTSU9DR01JSVBIWToNCj4gPiA+ID4gKwkJaWYgKGNvbW0tPmR1YWxfbmljICYm
-IChzdHJjbXAoaWZyLT5pZnJfaWZybi5pZnJuX25hbWUsICJldGgxIikNCj4gPiA+ID4gKz09DQo+
-ID4gPiA+ICswKSkNCj4gPiA+DQo+ID4gPiBZb3UgY2Fubm90IHJlbHkgb24gdGhlIG5hbWUsIHN5
-c3RlbWQgaGFzIHByb2JhYmx5IHJlbmFtZWQgaXQuIElmIHlvdQ0KPiA+ID4gaGF2ZSB1c2luZyBw
-aHlsaWIgY29ycmVjdGx5LCBuZXRfZGV2LT5waHlkZXYgaXMgd2hhdCB5b3Ugd2FudC4NCj4gPg0K
-PiA+IE9rLCBJJ2xsIHVzZSBuYW1lIG9mIHRoZSBzZWNvbmQgbmV0IGRldmljZSB0byBkbyBjb21w
-YXJlLCBpbnN0ZWFkIG9mDQo+ID4gdXNpbmcgZml4ZWQgc3RyaW5nICJldGgxIiwgaW4gbmV4dCBw
-YXRjaC4NCj4gDQo+IE5vLiBUaGVyZSBhcmUgYWx3YXlzIHR3byBpbnRlcmZhY2VzLiBZb3UgYWx3
-YXlzIGhhdmUgdHdvIG5ldGRldiBzdHJ1Y3R1cmVzLg0KPiBFYWNoIG5ldGRldiBzdHJ1Y3R1cmUg
-aGFzIGEgcGh5ZGV2LiBTbyB1c2UgbmV0ZGV2LT5waHlkZXYuDQoNClllcywgSSdsbCBtb2RpZnkg
-ZHJpdmVyIHRvIHVzZSAnbmV0ZGV2LT5waHlkZXYnLg0KDQoNCj4gVGhpcyBpcyBhbm90aGVyIGFk
-dmFudGFnZSBvZiB0aGUgTGludXggbW9kZWwuIEluIHlvdXIgZGFpc3kgY2hhaW4gbW9kZSwgaG93
-DQo+IGRvIGkgY29udHJvbCB0aGUgdHdvIFBIWXM/IEhvdyBkbyBpIHNlZSBvbmUgaXMgdXAgYW5k
-IG9uZSBpcyBkb3duPyBIb3cgZG8gaQ0KPiBjb25maWd1cmUgb25lIHRvIDEwSGFsZiBhbmQgdGhl
-IG90aGVyIDEwMEZ1bGw/DQoNCk5vIHNvZnR3YXJlIGludGVydmVudGlvbiBpcyBuZWVkZWQuDQpI
-YXJkd2FyZSBjaXJjdWl0cnkgb2YgRU1BQyBvZiBTdW5wbHVzIFNQNzAyMSBkb2VzIGl0IHdlbGwu
-DQpFTUFDIHdpbGwgY29tbXVuaWNhdGUgd2l0aCBQSFkgY2hpcHMgKHZpYSBNRElPIGJ1cykgYXV0
-b21hdGljYWxseS4NCkFjdHVhbGx5LCBqdXN0IGdpdmluZyBwb3dlciB0byBTUDcwMjEsIHRoZSB0
-d28gTEFOIHBvcnRzIGFjdCBhcyAyLXBvcnQgDQpFdGhlcm5ldCBodWIsIGZvcndhcmRpbmcgcGFj
-a2V0cyBiZXR3ZWVuIHBvcnRzLg0KDQoNCj4gPiA+ID4gK2ludCBwaHlfY2ZnKHN0cnVjdCBsMnN3
-X21hYyAqbWFjKSB7DQo+ID4gPiA+ICsJLy8gQnVnIHdvcmthcm91bmQ6DQo+ID4gPiA+ICsJLy8g
-Rmxvdy1jb250cm9sIG9mIHBoeSBzaG91bGQgYmUgZW5hYmxlZC4gTDJTVyBJUCBmbG93LWNvbnRy
-b2wgd2lsbA0KPiByZWZlcg0KPiA+ID4gPiArCS8vIHRvIHRoZSBiaXQgdG8gZGVjaWRlIHRvIGVu
-YWJsZSBvciBkaXNhYmxlIGZsb3ctY29udHJvbC4NCj4gPiA+ID4gKwltZGlvX3dyaXRlKG1hYy0+
-Y29tbS0+cGh5MV9hZGRyLCA0LA0KPiA+ID4gbWRpb19yZWFkKG1hYy0+Y29tbS0+cGh5MV9hZGRy
-LCA0KSB8ICgxIDw8IDEwKSk7DQo+ID4gPiA+ICsJbWRpb193cml0ZShtYWMtPmNvbW0tPnBoeTJf
-YWRkciwgNCwNCj4gPiA+IG1kaW9fcmVhZChtYWMtPmNvbW0tPnBoeTJfYWRkciwNCj4gPiA+ID4g
-KzQpIHwgKDEgPDwgMTApKTsNCj4gPiA+DQo+ID4gPiBUaGlzIHNob3VsZCBiZSBpbiB0aGUgUEhZ
-IGRyaXZlci4gVGhlIE1BQyBkcml2ZXIgc2hvdWxkIG5ldmVyIG5lZWQNCj4gPiA+IHRvIHRvdWNo
-IFBIWSByZWdpc3RlcnMuDQo+ID4NCj4gPiBTdW5wbHVzIEV0aGVybmV0IE1BQyBpbnRlZ3JhdGVz
-IE1ESU8gY29udHJvbGxlci4NCj4gPiBTbyBFdGhlcm5ldCBkcml2ZXIgaGFzIE1ESU8tIGFuZCBQ
-SFktcmVsYXRlZCBjb2RlLg0KPiA+IFRvIHdvcmstYXJvdW5kIGEgY2lyY3VpdHJ5IGJ1Zywgd2Ug
-bmVlZCB0byBlbmFibGUgYml0IDEwIG9mIHJlZ2lzdGVyIDQNCj4gPiBvZiBQSFkuDQo+ID4gV2hl
-cmUgc2hvdWxkIHdlIHBsYWNlIHRoZSBjb2RlPw0KPiANCj4gVGhlIHNpbGljb24gaXMgaW50ZWdy
-YXRlZCwgYnV0IGl0IGlzIHN0aWxsIGEgY29sbGVjdGlvbiBvZiBzdGFuZGFyZCBibG9ja3MuIExp
-bnV4DQo+IG1vZGVscyB0aG9zZSBibG9ja3MgaW5kZXBlbmRlbnRseS4gVGhlcmUgaXMgYSBzdWJz
-eXN0ZW0gZm9yIHRoZSBNQUMsIGENCj4gc3Vic3lzdGVtIGZvciB0aGUgTURJTyBidXMgbWFzdGVy
-IGFuZCBhIHN1YnN5c3RlbSBmb3IgdGhlIFBIWS4gWW91IHJlZ2lzdGVyDQo+IGEgZHJpdmVyIHdp
-dGggZWFjaCBvZiB0aGVzZSBzdWJzeXN0ZW1zLiBQSFkgZHJpdmVycyBsaXZlIGluIGRyaXZlcnMv
-bmV0L3BoeS4gUHV0DQo+IGEgUEhZIGRyaXZlciBpbiB0aGVyZSwgd2hpY2ggaW5jbHVkZXMgdGhp
-cyB3b3JrYXJvdW5kLg0KPiANCj4gPiA+ID4gK3N0YXRpYyB2b2lkIG1paV9saW5rY2hhbmdlKHN0
-cnVjdCBuZXRfZGV2aWNlICpuZXRkZXYpIHsgfQ0KPiA+ID4NCj4gPiA+IE5vdGhpbmcgdG8gZG8/
-IFNlZW1zIHZlcnkgb2RkLiBEb24ndCB5b3UgbmVlZCB0byB0ZWxsIHRoZSBNQUMgaXQNCj4gPiA+
-IHNob3VsZCBkbyAxME1icHMgb3IgMTAwTWJwcz8gV2hhdCBhYm91dCBwYXVzZT8NCj4gPg0KPiA+
-IE5vLCBoYXJkd2FyZSBkb2VzIGl0IGF1dG9tYXRpY2FsbHkuDQo+ID4gU3VucGx1cyBNQUMgaW50
-ZWdyYXRlcyBNRElPIGNvbnRyb2xsZXIuDQo+ID4gSXQgcmVhZHMgUEhZIHN0YXR1cyBhbmQgc2V0
-IE1BQyBhdXRvbWF0aWNhbGx5Lg0KPiANCj4gVGhlIFBIWSBpcyBleHRlcm5hbD8gU28geW91IGhh
-dmUgbm8gaWRlYSB3aGF0IFBIWSB0aGF0IGlzPyBJdCBjb3VsZCBiZSBhDQo+IE1hcnZlbGwgUEhZ
-LCBhIG1pY3JvY2hpcCBQSFksIGFuIEF0aGVyb3MgUEhZLiBPZnRlbiBQSFlzIGhhdmUgcGFnZXMu
-IEluIG9yZGVyDQo+IHRvIHJlYWQgdGhlIHRlbXBlcmF0dXJlIHNlbnNvciB5b3UgY2hhbmdlIHRo
-ZSBwYWdlLCByZWFkIGEgcmVnaXN0ZXIsIGFuZCB0aGVuDQo+IGhvcGVmdWxseSBjaGFuZ2UgdGhl
-IHBhZ2UgYmFjayBhZ2Fpbi4gSWYgdGhlIFBIWSBzdXBwb3J0cyBGaWJyZSBhcyB3ZWxsIGFzDQo+
-IGNvcHBlciwgaXQgY2FuIHB1dCB0aGUgZmlicmUgcmVnaXN0ZXJzIGluIGEgc2Vjb25kIHBhZ2Uu
-IFRoZSBQSFkgZHJpdmVyIGtub3dzDQo+IGFib3V0IHRoaXMsIGl0IHdpbGwgZmxpcCB0aGUgcGFn
-ZXMgYXMgbmVlZGVkLiBUaGUgcGh5bGliIGNvcmUgaGFzIGEgbXV0ZXgsIHNvIHRoYXQNCj4gb25s
-eSBvbmUgb3BlcmF0aW9uIGhhcHBlbnMgYXQgYSB0aW1lLiBTbyBhIHBhZ2UgZmxpcCBkb2VzIG5v
-dCBoYXBwZW4NCj4gdW5leHBlY3RlZGx5Lg0KPg0KPiBZb3VyIE1BQyBoYXJkd2FyZSBkb2VzIG5v
-dCB0YWtlIHRoaXMgbXV0ZXguIEl0IGhhcyBubyBpZGVhIHdoYXQgcGFnZSBpcw0KPiBzZWxlY3Rl
-ZCB3aGVuIGl0IHJlYWRzIHJlZ2lzdGVycy4gSW5zdGVhZCBvZiBnZXR0aW5nIHRoZSBiYXNpYyBt
-b2RlIHJlZ2lzdGVyLCBpdA0KPiBjb3VsZCBnZXQgdGhlIExFRCBjb250cm9sIHJlZ2lzdGVyLi4u
-DQo+IA0KPiBUaGUgTUFDIHNob3VsZCBuZXZlciBkaXJlY3RseSBhY2Nlc3MgdGhlIFBIWS4gUGxl
-YXNlIGRpc2FibGUgdGhpcyBoYXJkd2FyZSwNCj4gYW5kIHVzZSB0aGUgbWlpX2xpbmtjaGFuZ2Ug
-Y2FsbGJhY2sgdG8gY29uZmlndXJlIHRoZSBNQUMuDQoNClllcywgdGhlIFBIWXMgYXJlIGV4dGVy
-bmFsLiBTUDcwMjEgYXJlIGNvbm5lY3RlZCB0byB0d28gSUNQbHVzIElQMTAxIFBIWS4NCkVNQUMg
-b2YgU1A3MDIxIGNvbW11bmljYXRlcyB3aXRoIFBIWSB2aWEgTURJTyBidXMgYXV0b21hdGljYWxs
-eSBhZnRlciANCkl0IGlzIHNldHVwIGFuZCBlbmFibGVkLiBTb3JyeSB0aGF0IHRoZSBmdW5jdGlv
-biBjYW5ub3QgYmUgZGlzYWJsZWQuDQoNClRoZSBtZW50aW9uZWQgYnVnIGlzIG5vdCBhIGJ1ZyBv
-ZiBQSFksIGJ1dCBhIGhhcmR3YXJlIGJ1ZyBvZiBFTUFDLg0KU1A3MDIxIEVNQUMgd2lsbCByZWFk
-IGJpdCAxMCAocGF1c2UgYml0KSBvZiByZWdpc3RlciA0IG9mIFBIWSBhbmQgdGhlbiBzZXQNCnBh
-dXNlIG1vZGUgb2YgRU1BQyBpdHNlbGYuIEF0IGluaXRpYWwsIGJpdCAxMCBvZiByZWdpc3RlciA0
-IG9mIFBIWSBpcyAwLiBUaGlzDQpyZXN1bHRzIGluIHBhdXNlIG1vZGUgb2YgRU1BQyBiZSB0dXJu
-ZWQgb2ZmLiBEdWUgdG8gdGltaW5nIGlzc3VlLCBzZXR0aW5nIA0KYml0IDEwIG9uIFBIWSBkcml2
-ZXIgaXMgbm90IGZlYXNpYmxlLCB3ZSBuZWVkIHRvIHNldCBpdCBvbiBFTUFDIGRyaXZlciByaWdo
-dCANCmp1c3QgYWZ0ZXIgTUFDIGlzIGVuYWJsZWQuDQoNCg0KPiA+ID4gU28gdGhlIE1BQyBkb2Vz
-IG5vdCBzdXBwb3J0IHBhdXNlPyBJJ20gdGhlbiBjb25mdXNlZCBhYm91dCBwaHlfY2ZnKCkuDQo+
-IA0KPiA+IFllcywgTUFDIHN1cHBvcnRzIHBhdXNlLiBNQUMgKGhhcmR3YXJlKSB0YWtlcyBjYXJl
-IG9mIHBhdXNlDQo+ID4gYXV0b21hdGljYWxseS4NCj4gPg0KPiA+IFNob3VsZCBJIHJlbW92ZSB0
-aGUgdHdvIGxpbmVzPw0KPiANCj4gWWVzLg0KDQpZZXMsIEknbGwgcmVtb3ZlIHRoZW0gaW4gbmV4
-dCBwYXRjaC4NCg0KDQo+IEFuZCB5b3UgbmVlZCB0byBjb25maWd1cmUgdGhlIE1BQyBiYXNlZCBv
-biB0aGUgcmVzdWx0cyBvZiB0aGUgYXV0by1uZWcuDQo+IA0KPiAJQW5kcmV3DQoNCg0K
+Hi Nikolaus,
+
+Le dim., nov. 7 2021 at 21:25:38 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
+> 
+>>  Am 07.11.2021 um 20:01 schrieb Paul Cercueil <paul@crapouillou.net>:
+>> 
+>>  Hi Nikolaus,
+>> 
+>>  Le dim., nov. 7 2021 at 14:41:18 +0100, H. Nikolaus Schaller 
+>> <hns@goldelico.com> a écrit :
+>>>  Hi Paul,
+>>>  sorry for the delay in getting back to this, but I was distracted 
+>>> by more urgent topics.
+>>>>  Am 05.10.2021 um 22:22 schrieb Paul Cercueil 
+>>>> <paul@crapouillou.net>:
+>>>>  Hi Nikolaus,
+>>>>  Le mar., oct. 5 2021 at 14:29:14 +0200, H. Nikolaus Schaller 
+>>>> <hns@goldelico.com> a écrit :
+>>>>>  From: Paul Boddie <paul@boddie.org.uk>
+>>>>>  Add support for the LCD controller present on JZ4780 SoCs.
+>>>>>  This SoC uses 8-byte descriptors which extend the current
+>>>>>  4-byte descriptors used for other Ingenic SoCs.
+>>>>>  Tested on MIPS Creator CI20 board.
+>>>>>  Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+>>>>>  Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+>>>>>  Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>>>>  ---
+>>>>>  drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 85 
+>>>>> +++++++++++++++++++++--
+>>>>>  drivers/gpu/drm/ingenic/ingenic-drm.h     | 42 +++++++++++
+>>>>>  2 files changed, 122 insertions(+), 5 deletions(-)
+>>>>>  diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c 
+>>>>> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>>>>>  index f73522bdacaa..e2df4b085905 100644
+>>>>>  --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>>>>>  +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+>>>>>  @@ -6,6 +6,7 @@
+>>>>>  			case DRM_FORMAT_XRGB8888:
+>>>>>  +				hwdesc->cpos |= JZ_LCD_CPOS_BPP_18_24;
+>>>>>  +				break;
+>>>>>  +			}
+>>>>>  +			hwdesc->cpos |= JZ_LCD_CPOS_PREMULTIPLY_LCD |
+>>>>>  +					    (JZ_LCD_CPOS_COEFFICIENT_1_ALPHA1 <<
+>>>>>  +					     JZ_LCD_CPOS_COEFFICIENT_OFFSET);
+>>>>  Knowing that OSD mode doesn't really work with this patch, I 
+>>>> doubt you need to configure per-plane alpha blending.
+>>>  Well, we can not omit setting some CPOS_COEFFICIENT different from 
+>>> 0.
+>>>  This would mean to multiply all values with 0, i.e. gives a black 
+>>> screen.
+>>>  So at least we have to apply JZ_LCD_CPOS_COEFFICIENT_1.
+>>>  JZ_LCD_CPOS_PREMULTIPLY_LCD is not relevant in the non-alpha case.
+>> 
+>>  hwdesc->cpos = JZ_LCD_CPOS_COEFFICIENT_1 << 
+>> JZ_LCD_CPOS_COEFFICIENT_OFFSET;
+> 
+> Exactly what I wrote and did test.
+> 
+>> 
+>>  That's enough to get an image.
+> 
+> Fine that we can agree on that.
+> 
+>> 
+>>>  But then, why not do it right from the beginning?
+>> 
+>>  Because there's no way to test alpha blending without getting the 
+>> overlay plane to work first.
+>> 
+>>>>  	}
+>>>>  +	regmap_config = ingenic_drm_regmap_config;
+>>>>  +	regmap_config.max_register = soc_info->max_reg;
+>>>>  	priv->map = devm_regmap_init_mmio(dev, base,
+>>>>  -					  &ingenic_drm_regmap_config);
+>>>>  +					  &regmap_config);
+>>>>  I remember saying to split this change into its own patch :)
+>>>  Yes, I remember as well, but it does not make sense to me.
+>>>  A first patch would introduce regmap_config. This needs 
+>>> soc_info->max_reg
+>>>  to be defined as a struct component.
+>>>  This requires all soc_info to be updated for all SoC (w/o 
+>>> jz4780_soc_info
+>>>  in this first patch because it has not been added yet) to a 
+>>> constant (!)
+>>>  JZ_REG_LCD_SIZE1.
+>>>  And the second patch would then add jz4780_soc_info and set its 
+>>> max_reg to
+>>>  a different value.
+>> 
+>>  Correct, that's how it should be.
+> 
+> Well, if you prefer separating things that are deeply related into 
+> two commits...
+> 
+>> 
+>>  Note that you can do even better, set the .max_register field 
+>> according to the memory resource you get from DTS. Have a look at 
+>> the pinctrl driver which does exactly this.
+> 
+> That is an interesting idea. Although I don't see where
+> 
+> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinctrl-ingenic.c#L4171
+> 
+> does make use of the memory resource from DTS. It just reads two 
+> values from the ingenic_chip_info instead of one I do read from 
+> soc_info.
+
+It overrides the .max_register from a static regmap_config instance. 
+You can do the same, calculating the .max_register from the memory 
+resource you get from DT. I'm sure you guys can figure it out.
+
+> If you see it I'd prefer to leave this patch to you (as it is not 
+> jz4780 related except that jz4780 needs it to be in place) and then I 
+> can simply make use of it for adding jz4780+hdmi.
+> 
+>> 
+>>>  IMHO, such a separate first patch has no benefit independent from 
+>>> adding
+>>>  jz4780 support, as far as I can see.
+>>>  If your fear issues with bisectability:
+>>>  - code has been tested
+>>>  - if this fails, bisect will still point to this patch, where it 
+>>> is easy to locate
+>> 
+>>  It's not about bisectability. One functional change per patch, and 
+>> patches should be as atomic as possible.
+> 
+> Well, it was atomic: "add jz4780+hdmi functionality" or not. Now we 
+> separate into "preparation for adding jz4780" and "really adding". 
+> Yes, you can split atoms into quarks...
+
+And that's how it should be done. Lots of small atomic patches are much 
+easier to review than a few big patches.
+
+> BTW: without adding jz4780_soc_info there is not even a functional 
+> change. Just the constant is made dependent on the .compatible entry. 
+> And since it is initialized to the same constant value in all cases, 
+> it is still a constant. A very very clever compiler could find out 
+> that regmap_config.max_register = soc_info->max_reg is a NOOP and 
+> produce the same code as before by avoiding the copy operation of 
+> regmap_config = ingenic_drm_regmap_config.
+> 
+>> 
+>>>  So I leave it in v6 unsplitted.
+>>>>>  	if (IS_ERR(priv->map)) {
+>>>>>  		dev_err(dev, "Failed to create regmap\n");
+>>>>>  		return PTR_ERR(priv->map);
+>>>>>  @@ -1274,7 +1319,7 @@ static int ingenic_drm_bind(struct device 
+>>>>> *dev, bool has_components)
+>>>>>  	/* Enable OSD if available */
+>>>>>  	if (soc_info->has_osd)
+>>>>>  -		regmap_write(priv->map, JZ_REG_LCD_OSDC, JZ_LCD_OSDC_OSDEN);
+>>>>>  +		regmap_set_bits(priv->map, JZ_REG_LCD_OSDC, 
+>>>>> JZ_LCD_OSDC_OSDEN);
+>>>>  This change is unrelated to this patch, and I'm not even sure 
+>>>> it's a valid change. The driver shouldn't rely on previous 
+>>>> register values.
+>>>  I think I already commented that I think the driver should also 
+>>> not reset
+>>>  previous register values to zero.
+>> 
+>>  You did comment this, yes, but I don't agree. The driver *should* 
+>> reset the registers to zero. It should *not* have to rely on 
+>> whatever was configured before.
+>> 
+>>  Even if I did agree, this is a functional change unrelated to 
+>> JZ4780 support, so it would have to be splitted to its own patch.
+> 
+> Well it is in preparation of setting more bits that are only 
+> available for the jz4780.
+> 
+> But it will be splitted into its own patch for other reasons - if we 
+> ever make osd working...
+> 
+>> 
+>>>  If I counted correctly this register has 18 bits which seem to 
+>>> include
+>>>  some interrupt masks (which could be initialized somewhere else) 
+>>> and we
+>>>  write a constant 0x1.
+>>>  Of course most other bits are clearly OSD related (alpha blending),
+>>>  i.e. they can have any value (incl. 0) if OSD is disabled. But 
+>>> here we
+>>>  enable it. I think there may be missing some setting for the other 
+>>> bits.
+>>>  So are you sure, that we can unconditionally reset *all* bits
+>>>  except JZ_LCD_OSDC_OSDEN for the jz4780?
+>>>  Well I have no experience with OSD being enabled at all. I.e. I 
+>>> have no
+>>>  test scenario.
+>>>  So we can leave it out in v6.
+> 
+> So we agree as here well.
+> 
+>>>>> 
+>>>>>  +	}
+>>>>  As I said in your v4... You don't need to add this here. The 
+>>>> ingenic-dw-hdmi.c should take care of registering its driver.
+>>>  Well, I can not identify any difference in code structure to the 
+>>> IPU code.
+>>>  The Makefile (after our patch) looks like:
+>>>  obj-$(CONFIG_DRM_INGENIC) += ingenic-drm.o
+>>>  ingenic-drm-y = ingenic-drm-drv.o
+>>>  ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) += ingenic-ipu.o
+>>>  ingenic-drm-$(CONFIG_DRM_INGENIC_DW_HDMI) += ingenic-dw-hdmi.o
+>>>  which means that ingenic-dw-hdmi.o is also compiled into 
+>>> ingenic-drm,
+>>>  like ingenic-drm-drv.o and ingenic-ipu.o - if CONFIGured. If not, 
+>>> there
+>>>  are these IS_ENABLED() tests to guard against compiler errors.
+>>>  Is there any technical reason to request a driver structure and 
+>>> registration
+>>>  different from IPU here?
+>> 
+>>  There is no reason to have ingenic-dw-hdmi built into the 
+>> ingenic-drm module. It should be a separate module.
+>> 
+>>>  Why not having ingenic-ipu.c taking care of registering its driver 
+>>> as well?
+>> 
+>>  IIRC ingenic-ipu.c was built into the ingenic-drm at the beginning 
+>> because of circular dependencies between the IPU and main DRM 
+>> driver. I think ingenic-ipu.c could be its own module now. That's 
+>> something I will test soon.
+> 
+> Ok, that was the piece of information I was missing. I always thought 
+> that the way IPU is integrated is the best one and there is some 
+> special requirement. And it shows how we should do it.
+> 
+> So I'll wait until I see your proposal for IPU.
+
+Don't need to wait for me - just create a standard platform_driver 
+module for the HDMI code. Since it won't touch the ingenic-drm-drv.c 
+file, if I later patch the IPU code to be its own module, it won't 
+conflict.
+
+Cheers,
+-Paul
+
+>> 
+>>>  As soon as this is clarified, I can post a v6.
+>>>  Hm. I am not familiar with how ingenic_drm_crtc_atomic_check()
+>>>  would be notified about planes. Which configuration parameters
+>>>  should be checked for?
+>> 
+>>  You know that the &ingenic_drm->f0 plane cannot be used (right 
+>> now), so in ingenic_drm_plane_atomic_check() just:
+>> 
+>>  if (plane == &priv->f0 && crtc)
+>>    return -EINVAL;
+> 
+> Ok, that is simple to add. Prepared for v6.
+> 
+> So v6 is to be postponed by the patch for setting up 
+> regmap_config.max_register and the separation of the IPU driver so 
+> that it does not interfere.
+> 
+> BR and thanks for all comments,
+> Nikolaus
+> 
+
+
