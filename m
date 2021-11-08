@@ -2,522 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D594499E0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D3A24499F4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239981AbhKHQdt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 11:33:49 -0500
-Received: from aposti.net ([89.234.176.197]:57300 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232506AbhKHQds (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 11:33:48 -0500
-Date:   Mon, 08 Nov 2021 16:30:47 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
- output
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <BVH92R.0VU3IKPQTLX9@crapouillou.net>
-In-Reply-To: <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
-        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
-        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
-        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
-        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
-        <HQY82R.69JHJIC64HDO1@crapouillou.net>
-        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
-        <ZA692R.GHQL6RBCLFB12@crapouillou.net>
-        <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
+        id S238955AbhKHQg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:36:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238873AbhKHQg2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:36:28 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCED8C061570;
+        Mon,  8 Nov 2021 08:33:43 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id j21so64682130edt.11;
+        Mon, 08 Nov 2021 08:33:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=9Rxa4GOx2fwvlQZ2whnc/TnhfZE1p0pc42KpiRaylhs=;
+        b=n/8qnSZC3Cjp/oZ7CLEJ2X6v9P73IFL7f911sxu+p/MF2O04o5WsKr08m6/BfoPYl9
+         /GhDWWFwCRE3OQKw6skOR7QTvO9ys2RG48tJh+RAubTHvLvK6bnBuysJ+UK5s9cDoCpK
+         SHoCZPXZSgdBh8vCV+qGIHOUBDELv/pNmFqyr/oZUkYWYvV/pUeCPBbslHoP9LUWxHQS
+         pTvBRUAIhO1CLl7JzjS7d9jZSNkhIaSaD3mClEVQxA1WXxL3+2OwKmMT3u75VcBabHZX
+         uLwh/vHcYU10p/Z5fA7XHumMA60YmwaHkm0SMNnoI5lxJTkUvDdewY+SgYtJBF7/hHrO
+         xB5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9Rxa4GOx2fwvlQZ2whnc/TnhfZE1p0pc42KpiRaylhs=;
+        b=Tk1IcvH97atLRQnbz50J+bSgM2U8cFCDM/M5bHm7G2S+8deQYiJT7pu6e2wz8xbjup
+         Kz1UPxP8pzoq82Z/gPi2afKMhdQo+Smr5BNyooBrtO1m89VD6/7Z+VsYLDh4ZJqyAfCu
+         xCaMgyYPph+BHgQp01XJztdjI3174Bf6YOXX0YYFfNtgSviGbFloN+O1T/nD/XPpMPPw
+         jyD3yOs307l0RSsqQvNQhQlYfAWXogqowZ03OfJCN74LrWCZ8ehEjrVKH/YvO6tWcJ1v
+         AzkYt6tr468JUD2idKTkspQERALBLGfVOMFQa7EV9eO5XQ/83sR2DWgwnikB37FMSV+W
+         5SIA==
+X-Gm-Message-State: AOAM533KeKSthzygSeCWL+xJ9KyxmjFH0lXOCsKh2jDlhJScUgA0R2YJ
+        U4/wiS6Xv3QQ9B6sJmyoZKzHLjs7hYgccv/MnN4=
+X-Google-Smtp-Source: ABdhPJzUbBKXNcxWwqbBJXazNeHjGX+wrr3eBVTqDpa+ZR9NhtiVwzLUbkHmYS7g+jGomDrMzjw634dhURflNo53ues=
+X-Received: by 2002:a05:6402:3508:: with SMTP id b8mr448425edd.347.1636389220044;
+ Mon, 08 Nov 2021 08:33:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+In-Reply-To: <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 8 Nov 2021 10:33:28 -0600
+Message-ID: <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Nov 8, 2021 at 7:59 AM Nicolas Dufresne <nicolas@ndufresne.ca> wrot=
+e:
+>
+> Hi Adam,
+>
+> thanks for you work, I'll try and reply  about the GStreamer questions be=
+low, if
+> you have further question feel free to ask.
+>
+> Le samedi 06 novembre 2021 =C3=A0 13:37 -0500, Adam Ford a =C3=A9crit :
+> > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> > to be related to the video decoders used on the i.MX8MQ, but because of
+> > how the Mini handles the power domains, the VPU driver does not need to
+> > handle all the functions, so a new compatible flag is required.
+> >
+> > This is an RFC because I don't have functional video on my system yet,
+> > and I'm hoping there might be people who do and can help test this.
+> > I have only tested this far enough to see they enumerate and appear
+> > as /dev/videoX and /dev/mediaX devices.
+>
+> I will check the patchset, but you need in the mini-variant to disable th=
+e G1
+> post processor, because this block was fused out. We didn't make it optio=
+nal
 
-Le lun., nov. 8 2021 at 16:29:11 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Bnjour Paul,
-> 
-> 
->>  Am 08.11.2021 um 13:20 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->>  Hi,
->> 
->>  Le lun., nov. 8 2021 at 11:52:20 +0100, H. Nikolaus Schaller 
->> <hns@goldelico.com> a écrit :
->>>  Hi Paul,
->>>>>  Am 08.11.2021 um 10:37 schrieb Paul Cercueil 
->>>>> <paul@crapouillou.net>:
->>>>>  Well, it was atomic: "add jz4780+hdmi functionality" or not. Now 
->>>>> we separate into "preparation for adding jz4780" and "really 
->>>>> adding". Yes, you can split atoms into quarks...
->>>>  And that's how it should be done. Lots of small atomic patches 
->>>> are much easier to review than a few big patches.
->>>  I doubt that in this case especially as it has nothing to do with 
->>> jz4780...
->> 
->>  It has nothing to do with JZ4780 and that's exactly why it should 
->> be a separate patch.
-> 
-> Question is why *I* should then make this patch and not someone 
-> else...
-> 
-> I am not necessarily a volunteer to contribute to non-jz4780 code 
-> just because I want to upstream jz4780 code.
+Thanks for being willing to review this.
 
-The JZ4780 patch lies on top of the other one, so they are still 
-related. They just shouldn't be the same patch.
+> from the start as according to the V1 of the TRM it was there, but that e=
+rror
+> was corrected in V3.
 
->> 
->>>  But I have a proposal for a better solution at the end of this 
->>> mail.
->>>>>>  Note that you can do even better, set the .max_register field 
->>>>>> according to the memory resource you get from DTS. Have a look 
->>>>>> at the pinctrl driver which does exactly this.
->>>>>  That is an interesting idea. Although I don't see where
->>>>>  
->>>>> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinctrl-ingenic.c#L4171
->>>>>  does make use of the memory resource from DTS. It just reads two 
->>>>> values from the ingenic_chip_info instead of one I do read from 
->>>>> soc_info.
->>>>  It overrides the .max_register from a static regmap_config 
->>>> instance.
->>>  To be precise: it overrides .max_register of a copy of a static 
->>> regmap_config instance (which has .max_register = 0).
->>>>  You can do the same,
->>>  We already do the same...
->>>>  calculating the .max_register from the memory resource you get 
->>>> from DT.
->>>  I can't see any code in pinctrl-ingenic.c getting the memory 
->>> resource that from DT. It calculates it from the ingenic_chip_info 
->>> tables inside the driver code but not DT.
->>>>  I'm sure you guys can figure it out.
->>>  Ah, we have to figure out. You are not sure yourself how to do it? 
->>> And it is *not* exactly like the pinctrl driver (already) does? 
->>> Please give precise directions in reviews and not vague research 
->>> homework. Our time is also valuable. Sorry if I review your 
->>> reviews...
->>>  Anyways I think you roughly intend (untested):
->>>  	struct resource *r;
->>>  	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>>  	regmap_config.max_register = r.end - r.start;
->> 
->>  Replace the "devm_platform_ioremap_resource" with 
->> "devm_platform_get_and_ioremap_resource" to get a pointer to the 
->> resource.
->> 
->>  Then the .max_register should be (r.end - r.start - 4) I think.
->> 
->>  And lose the aggressivity. It's not going to get you anywhere, 
->> especially since I'm the one who decides whether or not I should 
->> merge your patches. You want your code upstream, that's great, but 
->> it's your responsability to get it to shape so that it's eventually 
->> accepted.
-> 
-> Well on the other side of the fence it is maintainers responsibility 
-> to give clear and understandable rules and guidance about what will 
-> be accepted and to enable us to bring it into the shape he/she has in 
-> mind.
-> 
-> But a fundamental problem is: "good shape" is very subjective. What 
-> would you recommend me to do, if I feel that my proposed code is in 
-> better shape than what the maintainer thinks or recommends?
-> 
->> 
->>>  But I wonder how that could work at all (despite adding code 
->>> execution time) with:
->> 
->>  Code execution time? ...
-> 
-> I reasoned about doing an additional platform_get_resource() call and 
-> doing a subtraction. This is additional execution time. Maybe not 
-> worth thinking about because it is in the probe function. And using 
-> devm_platform_get_and_ioremap_resource() is of course potentially 
-> better.
-> 
->> 
->>>  e.g. jz4770.dtsi:
->>>  	lcd: lcd-controller@13050000 {
->>>  		compatible = "ingenic,jz4770-lcd";
->>>  		reg = <0x13050000 0x300>;
->>>  or jz4725b.dtsi:
->>>  	lcd: lcd-controller@13050000 {
->>>  		compatible = "ingenic,jz4725b-lcd";
->>>  		reg = <0x13050000 0x1000>;
->>>  So max_register becomes 0x300 or 0x1000 but not
->>>  #define JZ_REG_LCD_SIZE1	0x12c
->>>  	.max_reg = JZ_REG_LCD_SIZE1,
->>>  And therefore wastes a lot of regmap memory.
->> 
->>  "regmap memory"? ...
-> 
-> regmap allocates memory for its cache. Usually the total amount 
-> specified in the reg property.
+Thanks for the clarification.  It wasn't obvious to me, because in
+some instances the PP looked like it was there and sometimes not
+there.  I'll remove the postproc stuff.
 
-We are not using any register cache here.
+>
+> >
+> > I am also curious to know if/what gstreamer plugins are necessary.  In
+> > NXP's custom kernel, there are IMX-specific plugins, and I was hoping t=
+here
+> > would be more generic plugins that I can use to test.  I am hoping some
+> > of the linux-media experts might chime in on how to best test.
+>
+> I will recommend using GStreamer 1.19.3 or main branch (GStreamer is now =
+a
+> single git repo). You will then be able to test Hantro G1 decoding of MPE=
+G2,
+> H264 and VP8. Remember that the related plugin depends on libgudev (a gli=
+b
+> binding of udev).
 
->> 
->>>  Do you want this? DTS should not be reduced (DTS should be kept as 
->>> stable as possible), since the reg property describes address 
->>> mapping - not how many bytes are really used by registers or how 
->>> big a cache should be allocated (cache allocation size requirements 
->>> are not hardware description).
->> 
->>  The DTS should list the address and size of the register area. If 
->> your last register is at address 0x12c and there's nothing above, 
->> then the size in DTS should be 0x130.
-> 
-> If I look into some .dtsi it is sometimes that way but sometimes not. 
-> There seems to be no consistent rule.
-> 
-> So does this mean you allow me to modify jz4740.dtsi, jz4770.dtsi and 
-> jz4725b.dtsi as well (as mentioned above: this is beyond the scope of 
-> my project)?
+Thanks for the tip.
 
-You could update them if you wanted to, but there is no need to do it 
-here.
+>
+> For the encoder, I believe only JPEG maybe supported, since this is all t=
+here is
+> mainline for RK3288 (and perhaps other RK). But this will need testing an=
+d
+> debugging as the G1 version is slightly newer on NXP SoC.
 
->> 
->>>  But here are good news:
->>>  I have a simpler and less invasive proposal. We keep the 
->>> devm_regmap_init_mmio code as is and just increase its 
->>> .max_register from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when 
->>> introducing the jz4780. This wastes a handful bytes for all 
->>> non-jz4780 chips but less than using the DTS memory region size. 
->>> And is less code (no entry in soc_info tables, no modifyable copy) 
->>> and faster code execution than all other proposals.
->>>  This is then just a single-line change when introducing the 
->>> jz4780. And no "preparation for adding jz4780" patch is needed at 
->>> all. No patch to split out for separate review.
->>>  Let's go this way to get it eventually finalized. Ok?
->> 
->>  No.
-> 
-> Look friend, if you explain your "no" and what is wrong with my 
-> arguments, it helps to understand your decisions and learn something 
-> from them. A plain "no" does not help anyone.
+For what it's worth the G1 seems to repond cleanly to the inquiries
+from v42-compliance.
+The G2 throws some splat when I run v4l2-compliance, but I am still
+investigating that.
 
-I answered just "no" because I felt like I explained already what I 
-wanted to see in the previous email.
+[  405.456979] ------------[ cut here ]------------
+[  405.464173] WARNING: CPU: 0 PID: 563 at mm/page_alloc.c:5344
+__alloc_pages+0x5a4/0xbe0
+[  405.472104] Modules linked in: 8021q garp mrp stp llc caam_jr
+caamhash_desc caamalg_desc crypto_engine rng_core authenc libdes
+imx7_media_csi(C) crct10dif_ce imx_media_common(C)
+snd_soc_fsl_asoc_card imx7_mipi_csis(C) snd_soc_imx_audmux
+snd_soc_simple_card_utils fsl_imx8_ddr_perf imx8m_ddrc brcmfmac
+brcmutil hantro_vpu(C) v4l2_h264 v4l2_mem2mem videobuf2_vmalloc
+videobuf2_dma_contig videobuf2_memops cfg80211 ov5640 videobuf2_v4l2
+v4l2_fwnode v4l2_async videobuf2_common videodev etnaviv gpu_sched
+hci_uart mc btqca btbcm snd_soc_wm8962 at24 spi_imx rtc_pcf85363
+rtc_snvs clk_bd718x7 spi_bitbang snvs_pwrkey snd_soc_fsl_sai
+imx_pcm_dma caam error bluetooth imx8mm_thermal ecdh_generic
+imx_cpufreq_dt ecc rfkill fuse drm ipv6
+[  405.535835] CPU: 0 PID: 563 Comm: v4l2-compliance Tainted: G      D
+ C        5.15.0-next-20211105-00010-g4bb8e8a25d3c-dirty #28
+[  405.547401] Hardware name: Beacon EmbeddedWorks i.MX8M Mini
+Development Kit (DT)
+[  405.554797] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=
+=3D--)
+[  405.561762] pc : __alloc_pages+0x5a4/0xbe0
+[  405.565861] lr : __dma_direct_alloc_pages+0x17c/0x1e0
+[  405.570917] sp : ffff800012443810
+[  405.574232] x29: ffff800012443810 x28: 0000000000000000 x27: ffff0000052=
+88220
+[  405.581375] x26: 0000000000000034 x25: 0000000000000000 x24: ffff0000002=
+59010
+[  405.588517] x23: ffff80001011ab7c x22: ffff000000259010 x21: 00000000fff=
+fffff
+[  405.595659] x20: 0000000000000cc1 x19: 0000000000000000 x18: 00000000000=
+00000
+[  405.602803] x17: 0000000000000000 x16: 0000000000000000 x15: 00000000000=
+00000
+[  405.609947] x14: 0000000000000001 x13: 0000000000000000 x12: 00000000000=
+00000
+[  405.617090] x11: ffff80001241d000 x10: ffff00000528833a x9 : ffff0000052=
+8832a
+[  405.624232] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 00000000000=
+00cc0
+[  405.631378] x5 : 00000000bfffffff x4 : ffff000009e30dc0 x3 : 00000000000=
+00000
+[  405.638520] x2 : 0000000000000000 x1 : 0000000000000001 x0 : 00000000000=
+00cc1
+[  405.645666] Call trace:
+[  405.648113]  __alloc_pages+0x5a4/0xbe0
+[  405.651862]  __dma_direct_alloc_pages+0x17c/0x1e0
+[  405.656569]  dma_direct_alloc+0x70/0x310
+[  405.660494]  dma_alloc_attrs+0x7c/0xe4
+[  405.664246]  hantro_hevc_get_ref_buf+0x15c/0x184 [hantro_vpu]
+[  405.670021]  hantro_g2_hevc_dec_run+0x3b8/0x1910 [hantro_vpu]
+[  405.675791]  device_run+0xac/0x110 [hantro_vpu]
+[  405.680345]  v4l2_m2m_try_run+0xac/0x1b0 [v4l2_mem2mem]
+[  405.685598]  v4l2_m2m_ioctl_streamon+0x84/0xa0 [v4l2_mem2mem]
+[  405.691366]  v4l_streamon+0x28/0x34 [videodev]
+[  405.695877]  __video_do_ioctl+0x178/0x3dc [videodev]
+[  405.700897]  video_usercopy+0x368/0x6dc [videodev]
+[  405.705745]  video_ioctl2+0x1c/0x30 [videodev]
+[  405.710246]  v4l2_ioctl+0x44/0x64 [videodev]
+[  405.714574]  __arm64_sys_ioctl+0xac/0xf0
+[  405.718502]  invoke_syscall+0x48/0x114
+[  405.722258]  el0_svc_common.constprop.0+0xd4/0xfc
+[  405.726969]  do_el0_svc+0x2c/0x94
+[  405.730286]  el0_svc+0x28/0x80
+[  405.733348]  el0t_64_sync_handler+0xa8/0x130
+[  405.737619]  el0t_64_sync+0x1a0/0x1a4
+[  405.741287] ---[ end trace 270ed4a899803006 ]---
 
-By using a huge number as the .max_register, we do *not* waste 
-additional memory. Computing the value of the .max_register field does 
-not add any overhead, either.
+The H1 encoder seems to hang the system when I run v4l2-compliance on
+it when H1 is set up as I submitted the patch.  I tried dropping all
+the encoder formats except the JPEG format, and it doesn't hang any
+more, but it also doesn't really do anything.
+The datasheet only references VPU_H1 as supporting VP8 and H.264, so I
+am not sure JPEG is even supported.
 
-The .max_register is only used for boundary checking. To make sure that 
-you're not calling regmap_write() with an invalid register. That's all 
-there is to it.
+The log from v4l2-compliance on the H1 with everything except the JPEG
+removed looks like:
 
-> So to summarize: if you prefer something which I consider worse, it 
-> is ok for me... In the end you are right - you are the maintainer, 
-> not me. So you have to live with your proposals.
-> 
-> Therefore, I have prepared new variants so you can choose which one 
-> is easier to maintain for you.
-> 
-> Note that they are both preparing for full jz4780-lcdc/hdmi support 
-> but in very different ways:
-> 
-> Variant 1 already adds some jz4780 stuff while Variant 2 just 
-> prepares for it.
-> 
-> Variant 2 is not tested (except to compile). So it needs some 
-> Tested-by: from someone with access to hardware. IMHO it is more 
-> invasive.
-> 
-> And don't forget: DTB could be in ROM or be provided by a separate 
-> bootloader... So we should not change it too often (I had such 
-> discussions some years ago with maintainers when I thought it is 
-> easier to change DTS instead of code).
-> 
-> Variant 3 would be to not separate this. As proposed in [PATCH v5 
-> 2/7].
-> (Finally, a Variant 3b would be to combine the simple change from 
-> Variant 1 with Variant 3).
-> 
-> So what is your choice?
+root@beacon-imx8mm-kit:~# v4l2-compliance -d2
+v4l2-compliance SHA: not available
+, 64 bits, 64-bit time_t
 
-Variant 4: the variant #2 without the changes to the DTSI files.
+Segmentation fault
+root@beacon-imx8mm-kit:~#
+Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
+: Internal error: Oops: 96000004 [#2] SMP
 
-Cheers,
--Paul
+Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
+: Code: 52800001 aa1403e0 d2801802 95c31ab9 (b9400aa1)
 
+I want to install Gstreamer, but I don't have functioning DSI video,
+so I am not entirely sure how I will go about testing the decoders
+except by using fakesink
 
-> BR and thanks,
-> Nikolaus
-> 
-> 
-> #### VARIANT 0001 ####
-> 
-> From c7afa925f6b53bb6cafa080b7dd582788c8eb2eb Mon Sep 17 00:00:00 2001
-> From: "H. Nikolaus Schaller" <hns@goldelico.com>
-> Date: Mon, 8 Nov 2021 15:38:21 +0100
-> Subject: [PATCH] RFC: drm/ingenic: Add register definitions for 
-> JZ4780 lcdc
-> 
-> JZ4780 has additional registers compared to the other
-> SoC of the JZ47xx series. So we add the constants for
-> registers and bits we make use of (there are even more
-> which can be added later).
-> 
-> And we increase the regmap max_register accordingly.
-> 
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c |  2 +-
->  drivers/gpu/drm/ingenic/ingenic-drm.h     | 39 
-> +++++++++++++++++++++++
->  2 files changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c 
-> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> index a5df1c8d34cde..1903e897d2299 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> @@ -122,7 +122,7 @@ static const struct regmap_config 
-> ingenic_drm_regmap_config = {
->  	.val_bits = 32,
->  	.reg_stride = 4,
-> 
-> -	.max_register = JZ_REG_LCD_SIZE1,
-> +	.max_register = JZ_REG_LCD_PCFG,
->  	.writeable_reg = ingenic_drm_writeable_reg,
->  };
-> 
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.h 
-> b/drivers/gpu/drm/ingenic/ingenic-drm.h
-> index 22654ac1dde1c..e7430c4af41f6 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm.h
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm.h
-> @@ -44,8 +44,11 @@
->  #define JZ_REG_LCD_XYP1				0x124
->  #define JZ_REG_LCD_SIZE0			0x128
->  #define JZ_REG_LCD_SIZE1			0x12c
-> +#define JZ_REG_LCD_PCFG				0x2c0
-> 
->  #define JZ_LCD_CFG_SLCD				BIT(31)
-> +#define JZ_LCD_CFG_DESCRIPTOR_8			BIT(28)
-> +#define JZ_LCD_CFG_RECOVER_FIFO_UNDERRUN	BIT(25)
->  #define JZ_LCD_CFG_PS_DISABLE			BIT(23)
->  #define JZ_LCD_CFG_CLS_DISABLE			BIT(22)
->  #define JZ_LCD_CFG_SPL_DISABLE			BIT(21)
-> @@ -63,6 +66,7 @@
->  #define JZ_LCD_CFG_DE_ACTIVE_LOW		BIT(9)
->  #define JZ_LCD_CFG_VSYNC_ACTIVE_LOW		BIT(8)
->  #define JZ_LCD_CFG_18_BIT			BIT(7)
-> +#define JZ_LCD_CFG_24_BIT			BIT(6)
->  #define JZ_LCD_CFG_PDW				(BIT(5) | BIT(4))
-> 
->  #define JZ_LCD_CFG_MODE_GENERIC_16BIT		0
-> @@ -132,6 +136,7 @@
->  #define JZ_LCD_CMD_SOF_IRQ			BIT(31)
->  #define JZ_LCD_CMD_EOF_IRQ			BIT(30)
->  #define JZ_LCD_CMD_ENABLE_PAL			BIT(28)
-> +#define JZ_LCD_CMD_FRM_ENABLE			BIT(26)
-> 
->  #define JZ_LCD_SYNC_MASK			0x3ff
-> 
-> @@ -153,6 +158,7 @@
->  #define JZ_LCD_RGBC_EVEN_BGR			(0x5 << 0)
-> 
->  #define JZ_LCD_OSDC_OSDEN			BIT(0)
-> +#define JZ_LCD_OSDC_ALPHAEN			BIT(2)
->  #define JZ_LCD_OSDC_F0EN			BIT(3)
->  #define JZ_LCD_OSDC_F1EN			BIT(4)
-> 
-> @@ -176,6 +182,39 @@
->  #define JZ_LCD_SIZE01_WIDTH_LSB			0
->  #define JZ_LCD_SIZE01_HEIGHT_LSB		16
-> 
-> +#define JZ_LCD_DESSIZE_ALPHA_OFFSET		24
-> +#define JZ_LCD_DESSIZE_HEIGHT_MASK		GENMASK(23, 12)
-> +#define JZ_LCD_DESSIZE_WIDTH_MASK		GENMASK(11, 0)
-> +
-> +/* TODO: 4,5 and 7 match the above BPP */
-> +#define JZ_LCD_CPOS_BPP_15_16			(4 << 27)
-> +#define JZ_LCD_CPOS_BPP_18_24			(5 << 27)
-> +#define JZ_LCD_CPOS_BPP_30			(7 << 27)
-> +#define JZ_LCD_CPOS_RGB555			BIT(30)
-> +#define JZ_LCD_CPOS_PREMULTIPLY_LCD		BIT(26)
-> +#define JZ_LCD_CPOS_COEFFICIENT_OFFSET		24
-> +#define JZ_LCD_CPOS_COEFFICIENT_0		0
-> +#define JZ_LCD_CPOS_COEFFICIENT_1		1
-> +#define JZ_LCD_CPOS_COEFFICIENT_ALPHA1		2
-> +#define JZ_LCD_CPOS_COEFFICIENT_1_ALPHA1	3
-> +
-> +#define JZ_LCD_RGBC_RGB_PADDING			BIT(15)
-> +#define JZ_LCD_RGBC_RGB_PADDING_FIRST		BIT(14)
-> +#define JZ_LCD_RGBC_422				BIT(8)
-> +#define JZ_LCD_RGBC_RGB_FORMAT_ENABLE		BIT(7)
-> +
-> +#define JZ_LCD_PCFG_PRI_MODE			BIT(31)
-> +#define JZ_LCD_PCFG_HP_BST_4			(0 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_8			(1 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_16			(2 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_32			(3 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_64			(4 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_16_CONT		(5 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_DISABLE		(7 << 28)
-> +#define JZ_LCD_PCFG_THRESHOLD2_OFFSET		18
-> +#define JZ_LCD_PCFG_THRESHOLD1_OFFSET		9
-> +#define JZ_LCD_PCFG_THRESHOLD0_OFFSET		0
-> +
->  struct device;
->  struct drm_plane;
->  struct drm_plane_state;
-> --
-> 2.33.0
-> 
-> 
-> #### VARIANT 0002 ####
-> 
-> From c4b5cfa2789493f02da91e385719bc97aefb6c6c Mon Sep 17 00:00:00 2001
-> From: "H. Nikolaus Schaller" <hns@goldelico.com>
-> Date: Mon, 8 Nov 2021 14:40:58 +0100
-> Subject: [PATCH] RFC: drm/ingenic: prepare ingenic drm for later 
-> addition of
->  JZ4780
-> 
-> This changes the way the regmap is allocated to prepare for the
-> later addition of the JZ4780 which has more registers and bits
-> than the others.
-> 
-> To make this work we have to change the device tree records of
-> all devices so that the reg property is limited to the physically
-> available registers.
-> 
-> The magic value 0x130 in the device tree is JZ_REG_LCD_SIZE1 + 4.
-> 
-> Note that it is not tested since I have no access to the hardware.
-> 
-> Suggested-by: Paul Cercueil <paul@crapouillou.net>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  arch/mips/boot/dts/ingenic/jz4725b.dtsi   | 2 +-
->  arch/mips/boot/dts/ingenic/jz4740.dtsi    | 2 +-
->  arch/mips/boot/dts/ingenic/jz4770.dtsi    | 2 +-
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 9 ++++++---
->  4 files changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi 
-> b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-> index a1f0b71c92237..c017b087c0e52 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-> @@ -321,7 +321,7 @@ udc: usb@13040000 {
-> 
->  	lcd: lcd-controller@13050000 {
->  		compatible = "ingenic,jz4725b-lcd";
-> -		reg = <0x13050000 0x1000>;
-> +		reg = <0x13050000 0x130>;
-> 
->  		interrupt-parent = <&intc>;
->  		interrupts = <31>;
-> diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi 
-> b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-> index c1afdfdaa8a38..ce3689e5015b5 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-> @@ -323,7 +323,7 @@ udc: usb@13040000 {
-> 
->  	lcd: lcd-controller@13050000 {
->  		compatible = "ingenic,jz4740-lcd";
-> -		reg = <0x13050000 0x1000>;
-> +		reg = <0x13050000 0x130>;
-> 
->  		interrupt-parent = <&intc>;
->  		interrupts = <30>;
-> diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi 
-> b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-> index 05c00b93088e9..0d1ee58d6c40b 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-> @@ -399,7 +399,7 @@ gpu: gpu@13040000 {
-> 
->  	lcd: lcd-controller@13050000 {
->  		compatible = "ingenic,jz4770-lcd";
-> -		reg = <0x13050000 0x300>;
-> +		reg = <0x13050000 0x130>;
-> 
->  		interrupt-parent = <&intc>;
->  		interrupts = <31>;
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c 
-> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> index a5df1c8d34cde..3c8e3c5a447bb 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> @@ -122,7 +122,6 @@ static const struct regmap_config 
-> ingenic_drm_regmap_config = {
->  	.val_bits = 32,
->  	.reg_stride = 4,
-> 
-> -	.max_register = JZ_REG_LCD_SIZE1,
->  	.writeable_reg = ingenic_drm_writeable_reg,
->  };
-> 
-> @@ -858,6 +857,8 @@ static int ingenic_drm_bind(struct device *dev, 
-> bool has_components)
->  	struct drm_encoder *encoder;
->  	struct drm_device *drm;
->  	void __iomem *base;
-> +	struct resource *res;
-> +	struct regmap_config regmap_config;
->  	long parent_rate;
->  	unsigned int i, clone_mask = 0;
->  	dma_addr_t dma_hwdesc_phys_f0, dma_hwdesc_phys_f1;
-> @@ -904,14 +905,16 @@ static int ingenic_drm_bind(struct device *dev, 
-> bool has_components)
->  	drm->mode_config.funcs = &ingenic_drm_mode_config_funcs;
->  	drm->mode_config.helper_private = &ingenic_drm_mode_config_helpers;
-> 
-> -	base = devm_platform_ioremap_resource(pdev, 0);
-> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->  	if (IS_ERR(base)) {
->  		dev_err(dev, "Failed to get memory resource\n");
->  		return PTR_ERR(base);
->  	}
-> 
-> +	regmap_config = ingenic_drm_regmap_config;
-> +	regmap_config.max_register = res->end - res->start - 4;
->  	priv->map = devm_regmap_init_mmio(dev, base,
-> -					  &ingenic_drm_regmap_config);
-> +					  &regmap_config);
->  	if (IS_ERR(priv->map)) {
->  		dev_err(dev, "Failed to create regmap\n");
->  		return PTR_ERR(priv->map);
-> --
-> 2.33.0
-> 
-> 
+If the G1 ends up working with some of the newer Gstreamer stuff, I
+might just submit a formal patch to just enable the G1 for now.
 
-
+adam
+>
+> >
+> > Lastly, I didn't update any device tree binding YAML files, because
+> > I know there have been some discussions about the power domains on the
+> > imx8mq, and I wasn't sure if the imx8mm should get a separate YAML file
+> > or if the existing one for te imx8mq should just be modified.
+> >
+> > This will likely require the following series in order to apply correct=
+ly:
+> > https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=3D57=
+6407
+> >
+> > Adam Ford (5):
+> >   media: hantro: Add support for i.MX8M Mini
+> >   arm64: dts: imx8mm:  Enable VPU-G1 and VPU-G2
+> >   media: hantro: Rename ROCKCHIP_VPU_ENC_FMT to HANTRO_VPU_ENC_FMT
+> >   media: hantro: Add H1 encoder support on i.MX8M Mini
+> >   arm64: dts: imx8mm:  Enable Hantro H1 Encoder
+> >
+> >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  61 ++++++++
+> >  drivers/staging/media/hantro/hantro_drv.c     |   3 +
+> >  drivers/staging/media/hantro/hantro_hw.h      |  19 ++-
+> >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 143 ++++++++++++++++++
+> >  .../staging/media/hantro/rockchip_vpu_hw.c    |  26 ++--
+> >  5 files changed, 231 insertions(+), 21 deletions(-)
+> >
+>
