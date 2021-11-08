@@ -2,125 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF765449C03
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:53:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2235E449C07
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:55:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236208AbhKHS42 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 13:56:28 -0500
-Received: from aposti.net ([89.234.176.197]:33428 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236093AbhKHS42 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 13:56:28 -0500
-Date:   Mon, 08 Nov 2021 18:53:24 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
- output
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <0HO92R.RF221XL59J3I1@crapouillou.net>
-In-Reply-To: <ACEFD0BB-1FCF-4EEB-A40F-1F2543A05BF4@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
-        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
-        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
-        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
-        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
-        <HQY82R.69JHJIC64HDO1@crapouillou.net>
-        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
-        <ZA692R.GHQL6RBCLFB12@crapouillou.net>
-        <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
-        <BVH92R.0VU3IKPQTLX9@crapouillou.net>
-        <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
-        <RIL92R.MLAZ6CTO865E1@crapouillou.net>
-        <ACEFD0BB-1FCF-4EEB-A40F-1F2543A05BF4@goldelico.com>
+        id S236093AbhKHS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 13:57:56 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:35496 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229837AbhKHS54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 13:57:56 -0500
+Received: by mail-ot1-f44.google.com with SMTP id p11-20020a9d4e0b000000b0055a5741bff7so27066114otf.2;
+        Mon, 08 Nov 2021 10:55:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rVRh1sxzpaMQeA+0p6EZeOg5M9eCwHLOcOw6O1U43pE=;
+        b=nUDngUCHlxvpMYYCuRtMAXBdXkdCUeQsDSmbDx3zJjO9/xIcwDePFpSH8kZdOuL+/w
+         Vxi4BNjua7+fHgnaCmGcvoKv1sLiiGSdhm1Umo+6L9r1gW2K7M16xlEwmklrTU61xNMC
+         v/3j1uQLDtrhMwxcnTPNBcpQ4j4tn1qPaB7wILCiHveVxydLPLE+abTi4qRsa/SXNTFQ
+         cXZP/wrdTLg6lw9w+reLFyqR2hYrug5Oqq2Zl5mIUbF0kBgMKN7R5Y4+7zEmaRbnnaOH
+         QlLwZBjRbvOTVv9bOTH8quh6SiAeJT0zsToScDc5pJFaKFli7bzOgPyF0UyeGmNWt7Vl
+         k40w==
+X-Gm-Message-State: AOAM5309H+sSP+Tb4eCFlveYPXjGDU2WQu/63B/g+BFCLBxtuyXg0dra
+        2ieSXCoGcSIMG8/H3sa7td7R9MAXPw==
+X-Google-Smtp-Source: ABdhPJyohxO+K12heylMLci20BfZuAXUmtzxjEv0ifKRtxwCkxt4R3ufjC0VuUmqblEHbDIynR9zVw==
+X-Received: by 2002:a9d:4d0f:: with SMTP id n15mr991993otf.127.1636397711483;
+        Mon, 08 Nov 2021 10:55:11 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id p62sm6243908oif.43.2021.11.08.10.55.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 10:55:10 -0800 (PST)
+Received: (nullmailer pid 4020110 invoked by uid 1000);
+        Mon, 08 Nov 2021 18:55:09 -0000
+Date:   Mon, 8 Nov 2021 12:55:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        patches@opensource.cirrus.com, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 3/3] ASoC: dt-bindings: cs42l42: Convert binding to yaml
+Message-ID: <YYlyjT9bB+EKYoGL@robh.at.kernel.org>
+References: <20211028140902.11786-1-rf@opensource.cirrus.com>
+ <20211028140902.11786-4-rf@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211028140902.11786-4-rf@opensource.cirrus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+On Thu, 28 Oct 2021 15:09:02 +0100, Richard Fitzgerald wrote:
+> Replace the old .txt binding with a new schema binding.
+> At the same time, some of the descriptions are updated to make them
+> clearer, fix errors, or just make them fit better into the style
+> of schema binding.
+> 
+> The cirrus,hs-bias-ramp-rate property was missing from the old .txt
+> binding and has been added to the yaml.
+> 
+> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+> ---
+>  .../devicetree/bindings/sound/cirrus,cs42l42.yaml  | 225 +++++++++++++++++++++
+>  .../devicetree/bindings/sound/cs42l42.txt          | 115 -----------
+>  MAINTAINERS                                        |   1 +
+>  3 files changed, 226 insertions(+), 115 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42l42.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/cs42l42.txt
+> 
 
-Le lun., nov. 8 2021 at 19:33:48 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Hi Paul,
-> 
->>  Am 08.11.2021 um 18:49 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->>>>  Variant 4: the variant #2 without the changes to the DTSI files.
->>>  Hm. If there is no cache and we can safely remove tight boundary 
->>> checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing 
->>> DTSI) why do we still need the max_register calculation from DTSI 
->>> specifically for jz4780 and at all?
->> 
->>  It's better to have the .max_register actually set to the proper 
->> value. Then reading the registers from debugfs 
->> (/sys/kernel/debug/regmap/) will print the actual list of registers 
->> without bogus values. If .max_register is set too high, it will end 
->> up reading outside the registers area.
-> 
-> Ok, that is a good reason to convince me.
-> 
->>  On Ingenic SoCs such reads just return 0, but on some other SoCs it 
->> can lock up the system.
-> 
-> Yes, I know some of these...
-> 
->>  So the best way forward is to have .max_register computed from the 
->> register area's size, and fix the DTSI with the proper sizes. Since 
->> your JZ4780 code needs to update .max_register anyway it's a good 
->> moment to add this patch, and the DTSI files can be fixed later (by 
->> me or whoever is up to the task).
-> 
-> Well, it would already be part of my Variant #2 (untested). So I 
-> could simply split it up further and you can test the pure dtsi 
-> changes and apply them later or modify if that makes problems. Saves 
-> you a little work. BTW: the jz4740 seems to have even less registers 
-> (last register seems to be LCDCMD1 @ 0x1305005C).
-
-Sure, if you want. Send the DTSI patch(es) separate from this patchset 
-then.
-
->> 
->>  Fixing the DTS is not a problem in any way, btw. We just need to 
->> ensure that the drivers still work with old DTB files, which will be 
->> the case here.
-> 
-> Yes, that is right since the new values are smaller than the 
-> originals.
-> 
-> Ok, then let's do it that way.
-
-Great. Waiting for your v6 then.
-
-Cheers,
--Paul
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
