@@ -2,118 +2,755 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9233844800B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:08:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E15CC448018
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235217AbhKHNLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 08:11:20 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47748
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235633AbhKHNLT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 08:11:19 -0500
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 284FF3F1A4
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 13:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636376907;
-        bh=/ySngP9TOMBOgvGkesTjnWFyMrTzkSO4ZS4YMXYfRzE=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=PLut7+oBVWX7CFMYanxq4SIVrK9D8kOKV5ibRsqKIcsrgKfQqfkVQoPlLRvoECt8A
-         TcoU49MF67F+w503HssJcJOTh510zVXriQnL80LIkji6fjNYmMNJW1yOty3GLgF2QY
-         2hrY4yc/JxUqZXnyHbNZx51KA8xBpsp2Gb06vVgDYDERSJwCg+GjlUZ20sXWvOonKF
-         +HkLcvdavDq/INy9du4sqq2R3RP9wOA9krf/wQ0ABn4s7fdcqa/JvjbXGi2KjGdAqG
-         beBxlGZqPRLK/dTF83dtzwAKPEfefsqEzynmf2RB7H9m8ky6xq+90C40L2p0Shif/i
-         CO7mLKnrH+L5Q==
-Received: by mail-lj1-f198.google.com with SMTP id e13-20020a2e9e0d000000b00216ace8e8e5so5243864ljk.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:08:27 -0800 (PST)
+        id S239843AbhKHNQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 08:16:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238803AbhKHNQV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 08:16:21 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CB76C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 05:13:37 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id v11so59716413edc.9
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:13:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bePx6SxYFOh419JeekAFU767LX7Fst9BPI+Fo1PFiQI=;
+        b=KMdOEsCJ7LZHNsR9gBa7H0xtdeI+ZlNhdqji1016u6+AdqBbUyaKynjNjOUfjmNxcZ
+         umXHlxaRIV2iXzMQTTATpg3tqqgCWXb0wUgTeS2ut3kqKr3QTdfEyYyhekt3/km0IWTw
+         7sOusm3epKmAC2XoHj3w4l8OJuQBlxfcGS+f55txASpLQHWysOipH2QVSTQhSVO9B3Jr
+         lb765aSQzeNs3Rl8otmA3lmNAU/5KAFQJzUgUqYXe3AuXD2PbP6zAx9GQFbnBXTtD28V
+         vErabHFyDa3UwCmDAWi+sKUHMfef5AC8t7fMXBvuDmCRgYpDGmP5J/tAw0iPJXp2snJx
+         mVaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=/ySngP9TOMBOgvGkesTjnWFyMrTzkSO4ZS4YMXYfRzE=;
-        b=Ie7pGg2lOJnYVnkMQQbwjI8iJq/ZAW4b6sMPlFYe0D6l4ZxK3v2AN3SPI9i6v5HQhU
-         J/K1GpJXw3Enm8jqd8c9LC0k6s2TPckc+ENK4QtY8iFcPZWYdTbdNfwPesw4aPSBKSDK
-         jgrSqYs9aCRGvjKM/lR6AtFoFcgf8nXmCarADWU3M1iguvQb5e8dIn+5vXNfckC6tc0+
-         Wrh9/BOdMK+BNLd+xfd+O+xH+ygqtRpUWC900ZqPTQIz1xSNtF44BaINyuEQfut/Vypn
-         +ry7NBS1EafuhZD5hDlul1dhSMMmda/mtjKeR7qag8RVJXJh9T38/s/G2DPw3fJYWNgo
-         SC3Q==
-X-Gm-Message-State: AOAM530OTtvps8uGXBB/8hgUL/uR0AllGynTNkvcEmgKCp3KBEuICSuL
-        YQqTLhH036zyX5pgV8rtQD25R5pL8dSZh44MNolWKP40yMOP+JatcncO+NeZ0H7HCUQwGxCedwo
-        YfYlnKskAkRM7k+xSTqHG9UAkOjui06UKqCduNVs=
-X-Received: by 2002:a19:7902:: with SMTP id u2mr51154116lfc.644.1636376906608;
-        Mon, 08 Nov 2021 05:08:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwHuzpnBktBqI6ilkx+6XnxlpOfg0UhbRIfSUF/hD5lAIIYjIFaiyVDsreV9FymtsbnDRMVoQ==
-X-Received: by 2002:a19:7902:: with SMTP id u2mr51154085lfc.644.1636376906335;
-        Mon, 08 Nov 2021 05:08:26 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id s4sm2011138lfi.180.2021.11.08.05.08.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 05:08:25 -0800 (PST)
-Message-ID: <806de5b0-a7ab-9d87-589e-9fc5e6f5a400@canonical.com>
-Date:   Mon, 8 Nov 2021 14:08:24 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bePx6SxYFOh419JeekAFU767LX7Fst9BPI+Fo1PFiQI=;
+        b=ClvXZRfpWFdPAPzP+MvtOl7dKGnyxcyU0JwLR6ImFAvsSCMR6NQJ+CuTFo8BJo0tTG
+         GQuzpmXwWmMB7j7OWvI9V8BWec8dyJZpRHUok3JLpATKfpM/ow4A5NRnZUPFSQULQhpB
+         f7YOeYMOGOtQsxtyB90h3Bb2BVkUYHqgcYywRrGzcTkIMZ7UkKoAzmUJbOm3RhjUM/pG
+         KjHaT2l98u8hgnXDVtVwOsWMj9T/pU3dpVlX5mPZDwJFHaVMDX0NoTPEFhMBaQ2UBL0B
+         anvkagNupOR0HakLYRTVk3FueFKGMy4zOngA/ELzXRGqFnBNPT9DPQAFqazDGURO1KsY
+         kIfg==
+X-Gm-Message-State: AOAM532M26ektHjEYxsMK6vu5fSq12KwOJE1A6I68te4BH7twTkKtrrY
+        FeqZw5VFOZeK3YsT/VS89sD+B5hD1icZE8OC/Uc=
+X-Google-Smtp-Source: ABdhPJzezjmlSRaENaIddpW9L7wKNToGBv2VBg99p7Wg2UxHiTXl+kwVJ0uHIoztKWZ63Lph4RF+hVS08dk8hmXF0/w=
+X-Received: by 2002:a17:907:160b:: with SMTP id hb11mr80653378ejc.336.1636377215477;
+ Mon, 08 Nov 2021 05:13:35 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH v3 02/12] dt-bindings: watchdog: Document Exynos850
- watchdog bindings
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211107202943.8859-1-semen.protsenko@linaro.org>
- <20211107202943.8859-3-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211107202943.8859-3-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20210910202640.980366-1-l.stach@pengutronix.de>
+ <20210910202640.980366-11-l.stach@pengutronix.de> <CAHCN7xK3zaEDuUkWO=hMWbxXwL7vEXWkbSGeez0HEvqpNoX7rg@mail.gmail.com>
+ <1715f4942419a53312fa1f0e0c878f784420b2bf.camel@pengutronix.de>
+In-Reply-To: <1715f4942419a53312fa1f0e0c878f784420b2bf.camel@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 8 Nov 2021 07:13:24 -0600
+Message-ID: <CAHCN7xJAnS9O=s9s7nPcTKv+aFphLBw2O0-tnbaoe1opSe6eCA@mail.gmail.com>
+Subject: Re: [PATCH v4 10/18] soc: imx: add i.MX8M blk-ctrl driver
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        Tim Harvey <tharvey@gateworks.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2021 21:29, Sam Protsenko wrote:
-> Exynos850 SoC has two CPU clusters:
->   - cluster 0: contains CPUs #0, #1, #2, #3
->   - cluster 1: contains CPUs #4, #5, #6, #7
-> 
-> Each cluster has its own dedicated watchdog timer. Those WDT instances
-> are controlled using different bits in PMU registers, new
-> "samsung,index" property is added to tell the driver which bits to use
-> for defined watchdog node.
-> 
-> Also on Exynos850 the peripheral clock and the source clock are two
-> different clocks. Provide a way to specify two clocks in watchdog device
-> tree node.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v3:
->   - Renamed "samsung,index" property to more descriptive
->     "samsung,cluster-index"
->   - Disabled "samsung,cluster-index" property for SoCs other than
->     Exynos850
-> 
-> Changes in v2:
->   - Stated explicitly that Exynos850 driver requires 2 clocks
->   - Used single compatible for Exynos850
->   - Added "index" property to specify CPU cluster index
->   - Fixed a typo in commit message: dedicater -> dedicated
-> 
->  .../bindings/watchdog/samsung-wdt.yaml        | 45 +++++++++++++++++--
->  1 file changed, 41 insertions(+), 4 deletions(-)
-> 
+On Mon, Nov 8, 2021 at 2:35 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Hi Adam,
+>
+> Am Sonntag, dem 07.11.2021 um 15:08 -0600 schrieb Adam Ford:
+> > On Fri, Sep 10, 2021 at 3:26 PM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > >
+> > > This adds a driver for the blk-ctrl blocks found in the i.MX8M* line of
+> > > SoCs. The blk-ctrl is a top-level peripheral located in the various *MIX
+> > > power domains and interacts with the GPC power controller to provide the
+> > > peripherals in the power domain access to the NoC and ensures that those
+> > > peripherals are properly reset when their respective power domain is
+> > > brought back to life.
+> > >
+> > > Software needs to do different things to make the bus handshake happen
+> > > after the GPC *MIX domain is powered up and before it is powered down.
+> > > As the requirements are quite different between the various blk-ctrls
+> > > there is a callback function provided to hook in the proper sequence.
+> > >
+> > > The peripheral domains are quite uniform, they handle the soft clock
+> > > enables and resets in the blk-ctrl address space and sequencing with the
+> > > upstream GPC power domains.
+> > >
+> > Sorry to resurrect an old thread, but I'm running into issues enabling
+> > new peripherals, and I think it's related to this, but I am not
+> > certain.
+> >
+> > I have attempted to enable the various VPU's, and in doing so, I
+> > referenced the vpu_blk_ctrl for the respective power-domains reference
+> > [1].
+> >
+> > The various VPU devices enumerate, and I can see the various VPU power
+> > domains turn on and off a boot.
+> >
+> > [    1.968565] genpd genpd:0:38330000.blk-ctrl: adding to PM domain vpumix
+> > [    1.981208] genpd genpd:1:38330000.blk-ctrl: adding to PM domain vpu-g1
+> > [    1.993838] genpd genpd:2:38330000.blk-ctrl: adding to PM domain vpu-g2
+> > [    2.006455] genpd genpd:3:38330000.blk-ctrl: adding to PM domain vpu-h1
+> > [    8.922661] hantro_vpu: module is from the staging directory, the
+> > quality is unknown, you have been warned.
+> > [    9.008147] hantro_vpu: module is from the staging directory, the
+> > quality is unknown, you have been warned.
+> > [    9.044041] hantro-vpu 38300000.video-codec: adding to PM domain vpublk-g1
+> > [    9.050959] hantro-vpu 38300000.video-codec: genpd_add_device()
+> > [    9.063349] PM: vpumix: Power-on latency exceeded, new value 50875 ns
+> > [    9.083437] PM: vpu-g1: Power-on latency exceeded, new value 26125 ns
+> > [    9.104778] PM: vpublk-g1: Power-on latency exceeded, new value 47819250 ns
+> > [    9.211988] hantro-vpu 38300000.video-codec: registered
+> > nxp,imx8mm-vpu-dec as /dev/video0
+> > [    9.259680] hantro-vpu 38300000.video-codec: genpd_runtime_resume()
+> > [    9.297395] hantro-vpu 38300000.video-codec: resume latency exceeded, 2750 ns
+> > [    9.307767] hantro-vpu 38310000.video-codec: adding to PM domain vpublk-g2
+> > [    9.316462] hantro-vpu 38310000.video-codec: genpd_add_device()
+> > [    9.328807] PM: vpu-g2: Power-on latency exceeded, new value 26625 ns
+> > [    9.342401] PM: vpublk-g2: Power-on latency exceeded, new value 19965125 ns
+> > [    9.430254] hantro-vpu 38300000.video-codec: genpd_runtime_suspend()
+> > [    9.436683] hantro-vpu 38300000.video-codec: suspend latency
+> > exceeded, 1625 ns
+> > [    9.443984] PM: vpublk-g1: Power-off latency exceeded, new value 16625 ns
+> > [    9.462361] hantro-vpu 38310000.video-codec: registered
+> > nxp,imx8mm-vpu-g2-dec as /dev/video2
+> > [    9.491848] PM: vpu-g1: Power-off latency exceeded, new value 17125 ns
+> > [    9.506353] hantro-vpu 38310000.video-codec: genpd_runtime_resume()
+> > [    9.512735] hantro-vpu 38310000.video-codec: resume latency exceeded, 2750 ns
+> > [    9.520306] hantro-vpu 38320000.video-codec: adding to PM domain vpublk-h1
+> > [    9.527268] hantro-vpu 38320000.video-codec: genpd_add_device()
+> > [    9.539632] PM: vpu-h1: Power-on latency exceeded, new value 27750 ns
+> > [    9.553358] PM: vpublk-h1: Power-on latency exceeded, new value 20112125 ns
+> > [    9.605800] hantro_vpu: module is from the staging directory, the
+> > quality is unknown, you have been warned.
+> > [    9.642194] hantro-vpu 38310000.video-codec: genpd_runtime_suspend()
+> > [    9.648634] hantro-vpu 38310000.video-codec: suspend latency
+> > exceeded, 1500 ns
+> > [    9.655974] PM: vpublk-g2: Power-off latency exceeded, new value 12625 ns
+> > [    9.703863] PM: vpu-g2: Power-off latency exceeded, new value 16750 ns
+> > [    9.754527] hantro-vpu 38320000.video-codec: registered
+> > nxp,imx8mm-vpu-h1-enc as /dev/video3
+> > [    9.785424] hantro-vpu 38320000.video-codec: genpd_runtime_resume()
+> > [    9.796034] hantro-vpu 38320000.video-codec: resume latency exceeded, 2000 ns
+> > [    9.934247] hantro-vpu 38320000.video-codec: genpd_runtime_suspend()
+> > [    9.940707] hantro-vpu 38320000.video-codec: suspend latency
+> > exceeded, 1500 ns
+> > [    9.948042] PM: vpublk-h1: Power-off latency exceeded, new value 18875 ns
+> > [    9.975951] PM: vpu-h1: Power-off latency exceeded, new value 17625 ns
+> > [    9.999970] PM: vpumix: Power-off latency exceeded, new value 25750 ns
+> >
+> > However, because the vpumix is disabled here, I think it might be
+> > what's causing a hang when I attempt to read the regmap registers with
+> >
+> > cat /sys/kernel/debug/regmap/38330000.blk-ctrl/registers
+>
+> That is expected, as regmap doesn't tie into the runtime PM and is the
+> same behavior as on other devices when you try to read the registers
+> via regmap while the peripheral clock is gated.
 
+Ok.  That makes sense. I think I was so focussed on getting the regmap
+working, I assumed something was wrong with the blk-ctrl.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>
+> >
+> > I was looking at the ATF code that NXP has, and it doesn't appear that
+> > the VPUMIX ever shuts down, and for that matter, I don't think the g1,
+> > g2, and h1 domains shutdown either.
+> >
+> > I think it makes sense to have the domains turned off when not in use,
+> > but I have a few comments / questions below....
+> >
+> > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > > Acked-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> > > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > > ---
+> > > This commit includes the full code to drive the VPUMIX domain on the
+> > > i.MX8MM, as the skeleton driver would probably be harder to review
+> > > without the context provided by one blk-ctrl implementation. Other
+> > > blk-ctrl implementations will follow, based on this overall structure.
+> > >
+> > > v4:
+> > > - fix commit message typos
+> > > - fix superfluous whitespace
+> > > - constify clk_names more
+> > > ---
+> > >  drivers/soc/imx/Makefile         |   1 +
+> > >  drivers/soc/imx/imx8m-blk-ctrl.c | 453 +++++++++++++++++++++++++++++++
+> > >  2 files changed, 454 insertions(+)
+> > >  create mode 100644 drivers/soc/imx/imx8m-blk-ctrl.c
+> > >
+> > > diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
+> > > index 078dc918f4f3..8a707077914c 100644
+> > > --- a/drivers/soc/imx/Makefile
+> > > +++ b/drivers/soc/imx/Makefile
+> > > @@ -5,3 +5,4 @@ endif
+> > >  obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
+> > >  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
+> > >  obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
+> > > +obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
+> > > diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > > new file mode 100644
+> > > index 000000000000..f2d74669d683
+> > > --- /dev/null
+> > > +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > > @@ -0,0 +1,453 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +
+> > > +/*
+> > > + * Copyright 2021 Pengutronix, Lucas Stach <kernel@pengutronix.de>
+> > > + */
+> > > +
+> > > +#include <linux/device.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/pm_domain.h>
+> > > +#include <linux/pm_runtime.h>
+> > > +#include <linux/regmap.h>
+> > > +#include <linux/clk.h>
+> > > +
+> > > +#include <dt-bindings/power/imx8mm-power.h>
+> > > +
+> > > +#define BLK_SFT_RSTN   0x0
+> > > +#define BLK_CLK_EN     0x4
+> > > +
+> > > +struct imx8m_blk_ctrl_domain;
+> > > +
+> > > +struct imx8m_blk_ctrl {
+> > > +       struct device *dev;
+> > > +       struct notifier_block power_nb;
+> > > +       struct device *bus_power_dev;
+> > > +       struct regmap *regmap;
+> > > +       struct imx8m_blk_ctrl_domain *domains;
+> > > +       struct genpd_onecell_data onecell_data;
+> > > +};
+> > > +
+> > > +struct imx8m_blk_ctrl_domain_data {
+> > > +       const char *name;
+> > > +       const char * const *clk_names;
+> > > +       int num_clks;
+> > > +       const char *gpc_name;
+> > > +       u32 rst_mask;
+> > > +       u32 clk_mask;
+> > > +};
+> > > +
+> > > +#define DOMAIN_MAX_CLKS 3
+> > > +
+> > > +struct imx8m_blk_ctrl_domain {
+> > > +       struct generic_pm_domain genpd;
+> > > +       const struct imx8m_blk_ctrl_domain_data *data;
+> > > +       struct clk_bulk_data clks[DOMAIN_MAX_CLKS];
+> > > +       struct device *power_dev;
+> > > +       struct imx8m_blk_ctrl *bc;
+> > > +};
+> > > +
+> > > +struct imx8m_blk_ctrl_data {
+> > > +       int max_reg;
+> > > +       notifier_fn_t power_notifier_fn;
+> > > +       const struct imx8m_blk_ctrl_domain_data *domains;
+> > > +       int num_domains;
+> > > +};
+> > > +
+> > > +static inline struct imx8m_blk_ctrl_domain *
+> > > +to_imx8m_blk_ctrl_domain(struct generic_pm_domain *genpd)
+> > > +{
+> > > +       return container_of(genpd, struct imx8m_blk_ctrl_domain, genpd);
+> > > +}
+> > > +
+> > > +static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> > > +{
+> > > +       struct imx8m_blk_ctrl_domain *domain = to_imx8m_blk_ctrl_domain(genpd);
+> > > +       const struct imx8m_blk_ctrl_domain_data *data = domain->data;
+> > > +       struct imx8m_blk_ctrl *bc = domain->bc;
+> > > +       int ret;
+> > > +
+> > > +       /* make sure bus domain is awake */
+> > > +       ret = pm_runtime_get_sync(bc->bus_power_dev);
+> > > +       if (ret < 0) {
+> > > +               pm_runtime_put_noidle(bc->bus_power_dev);
+> > > +               dev_err(bc->dev, "failed to power up bus domain\n");
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       /* put devices into reset */
+> > > +       regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > > +
+> > > +       /* enable upstream and blk-ctrl clocks to allow reset to propagate */
+> > > +       ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+> > > +       if (ret) {
+> > > +               dev_err(bc->dev, "failed to enable clocks\n");
+> > > +               goto bus_put;
+> > > +       }
+> > > +       regmap_set_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+> > > +
+> > > +       /* power up upstream GPC domain */
+> > > +       ret = pm_runtime_get_sync(domain->power_dev);
+> > > +       if (ret < 0) {
+> > > +               dev_err(bc->dev, "failed to power up peripheral domain\n");
+> > > +               goto clk_disable;
+> > > +       }
+> > > +
+> > > +       /* wait for reset to propagate */
+> > > +       udelay(5);
+> > > +
+> > > +       /* release reset */
+> > > +       regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > > +
+> > > +       /* disable upstream clocks */
+> > > +       clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> > > +
+> > > +       return 0;
+> > > +
+> > > +clk_disable:
+> > > +       clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> > > +bus_put:
+> > > +       pm_runtime_put(bc->bus_power_dev);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+> > > +{
+> > > +       struct imx8m_blk_ctrl_domain *domain = to_imx8m_blk_ctrl_domain(genpd);
+> > > +       const struct imx8m_blk_ctrl_domain_data *data = domain->data;
+> > > +       struct imx8m_blk_ctrl *bc = domain->bc;
+> > > +
+> > > +       /* put devices into reset and disable clocks */
+> > > +       regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > > +       regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+> > > +
+> > > +       /* power down upstream GPC domain */
+> > > +       pm_runtime_put(domain->power_dev);
+> > > +
+> > > +       /* allow bus domain to suspend */
+> > > +       pm_runtime_put(bc->bus_power_dev);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static struct generic_pm_domain *
+> > > +imx8m_blk_ctrl_xlate(struct of_phandle_args *args, void *data)
+> > > +{
+> > > +       struct genpd_onecell_data *onecell_data = data;
+> > > +       unsigned int index = args->args[0];
+> > > +
+> > > +       if (args->args_count != 1 ||
+> > > +           index > onecell_data->num_domains)
+> > > +               return ERR_PTR(-EINVAL);
+> > > +
+> > > +       return onecell_data->domains[index];
+> > > +}
+> > > +
+> > > +static struct lock_class_key blk_ctrl_genpd_lock_class;
+> > > +
+> > > +static int imx8m_blk_ctrl_probe(struct platform_device *pdev)
+> > > +{
+> > > +       const struct imx8m_blk_ctrl_data *bc_data;
+> > > +       struct device *dev = &pdev->dev;
+> > > +       struct imx8m_blk_ctrl *bc;
+> > > +       void __iomem *base;
+> > > +       int i, ret;
+> > > +
+> > > +       struct regmap_config regmap_config = {
+> > > +               .reg_bits       = 32,
+> > > +               .val_bits       = 32,
+> > > +               .reg_stride     = 4,
+> > > +       };
+> > > +
+> > > +       bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
+> > > +       if (!bc)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       bc->dev = dev;
+> > > +
+> > > +       bc_data = of_device_get_match_data(dev);
+> > > +
+> > > +       base = devm_platform_ioremap_resource(pdev, 0);
+> > > +       if (IS_ERR(base))
+> > > +               return PTR_ERR(base);
+> > > +
+> > > +       regmap_config.max_register = bc_data->max_reg;
+> > > +       bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
+> > > +       if (IS_ERR(bc->regmap))
+> > > +               return dev_err_probe(dev, PTR_ERR(bc->regmap),
+> > > +                                    "failed to init regmap\n");
+> > > +
+> > > +       bc->domains = devm_kcalloc(dev, bc_data->num_domains,
+> > > +                                  sizeof(struct imx8m_blk_ctrl_domain),
+> > > +                                  GFP_KERNEL);
+> > > +       if (!bc->domains)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       bc->onecell_data.num_domains = bc_data->num_domains;
+> > > +       bc->onecell_data.xlate = imx8m_blk_ctrl_xlate;
+> > > +       bc->onecell_data.domains =
+> > > +               devm_kcalloc(dev, bc_data->num_domains,
+> > > +                            sizeof(struct generic_pm_domain *), GFP_KERNEL);
+> > > +       if (!bc->onecell_data.domains)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       bc->bus_power_dev = genpd_dev_pm_attach_by_name(dev, "bus");
+> > > +       if (IS_ERR(bc->bus_power_dev))
+> > > +               return dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
+> > > +                                    "failed to attach power domain\n");
+> > > +
+> > > +       for (i = 0; i < bc_data->num_domains; i++) {
+> > > +               const struct imx8m_blk_ctrl_domain_data *data = &bc_data->domains[i];
+> > > +               struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+> > > +               int j;
+> > > +
+> > > +               domain->data = data;
+> > > +
+> > > +               for (j = 0; j < data->num_clks; j++)
+> > > +                       domain->clks[j].id = data->clk_names[j];
+> > > +
+> > > +               ret = devm_clk_bulk_get(dev, data->num_clks, domain->clks);
+> > > +               if (ret) {
+> > > +                       dev_err_probe(dev, ret, "failed to get clock\n");
+> > > +                       goto cleanup_pds;
+> > > +               }
+> > > +
+> > > +               domain->power_dev =
+> > > +                       dev_pm_domain_attach_by_name(dev, data->gpc_name);
+> > > +               if (IS_ERR(domain->power_dev)) {
+> > > +                       dev_err_probe(dev, PTR_ERR(domain->power_dev),
+> > > +                                     "failed to attach power domain\n");
+> > > +                       ret = PTR_ERR(domain->power_dev);
+> > > +                       goto cleanup_pds;
+> > > +               }
+> > > +
+> > > +               domain->genpd.name = data->name;
+> > > +               domain->genpd.power_on = imx8m_blk_ctrl_power_on;
+> > > +               domain->genpd.power_off = imx8m_blk_ctrl_power_off;
+> > > +               domain->bc = bc;
+> > > +
+> > > +               ret = pm_genpd_init(&domain->genpd, NULL, true);
+> > > +               if (ret) {
+> > > +                       dev_err_probe(dev, ret, "failed to init power domain\n");
+> > > +                       dev_pm_domain_detach(domain->power_dev, true);
+> > > +                       goto cleanup_pds;
+> > > +               }
+> > > +
+> > > +               /*
+> > > +                * We use runtime PM to trigger power on/off of the upstream GPC
+> > > +                * domain, as a strict hierarchical parent/child power domain
+> > > +                * setup doesn't allow us to meet the sequencing requirements.
+> > > +                * This means we have nested locking of genpd locks, without the
+> > > +                * nesting being visible at the genpd level, so we need a
+> > > +                * separate lock class to make lockdep aware of the fact that
+> > > +                * this are separate domain locks that can be nested without a
+> > > +                * self-deadlock.
+> > > +                */
+> > > +               lockdep_set_class(&domain->genpd.mlock,
+> > > +                                 &blk_ctrl_genpd_lock_class);
+> > > +
+> > > +               bc->onecell_data.domains[i] = &domain->genpd;
+> > > +       }
+> > > +
+> > > +       ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
+> > > +       if (ret) {
+> > > +               dev_err_probe(dev, ret, "failed to add power domain provider\n");
+> > > +               goto cleanup_pds;
+> > > +       }
+> > > +
+> > > +       bc->power_nb.notifier_call = bc_data->power_notifier_fn;
+> > > +       ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
+> > > +       if (ret) {
+> > > +               dev_err_probe(dev, ret, "failed to add power notifier\n");
+> > > +               goto cleanup_provider;
+> > > +       }
+> > > +
+> > > +       dev_set_drvdata(dev, bc);
+> > > +
+> > > +       return 0;
+> > > +
+> > > +cleanup_provider:
+> > > +       of_genpd_del_provider(dev->of_node);
+> > > +cleanup_pds:
+> > > +       for (i--; i >= 0; i--) {
+> > > +               pm_genpd_remove(&bc->domains[i].genpd);
+> > > +               dev_pm_domain_detach(bc->domains[i].power_dev, true);
+> > > +       }
+> > > +
+> > > +       dev_pm_domain_detach(bc->bus_power_dev, true);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int imx8m_blk_ctrl_remove(struct platform_device *pdev)
+> > > +{
+> > > +       struct imx8m_blk_ctrl *bc = dev_get_drvdata(&pdev->dev);
+> > > +       int i;
+> > > +
+> > > +       of_genpd_del_provider(pdev->dev.of_node);
+> > > +
+> > > +       for (i = 0; bc->onecell_data.num_domains; i++) {
+> > > +               struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+> > > +
+> > > +               pm_genpd_remove(&domain->genpd);
+> > > +               dev_pm_domain_detach(domain->power_dev, true);
+> > > +       }
+> > > +
+> > > +       dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+> > > +
+> > > +       dev_pm_domain_detach(bc->bus_power_dev, true);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +#ifdef CONFIG_PM_SLEEP
+> > > +static int imx8m_blk_ctrl_suspend(struct device *dev)
+> > > +{
+> > > +       struct imx8m_blk_ctrl *bc = dev_get_drvdata(dev);
+> > > +       int ret, i;
+> > > +
+> > > +       /*
+> > > +        * This may look strange, but is done so the generic PM_SLEEP code
+> > > +        * can power down our domains and more importantly power them up again
+> > > +        * after resume, without tripping over our usage of runtime PM to
+> > > +        * control the upstream GPC domains. Things happen in the right order
+> > > +        * in the system suspend/resume paths due to the device parent/child
+> > > +        * hierarchy.
+> > > +        */
+> > > +       ret = pm_runtime_get_sync(bc->bus_power_dev);
+> > > +       if (ret < 0) {
+> > > +               pm_runtime_put_noidle(bc->bus_power_dev);
+> > > +               return ret;
+> > > +       }
+> > > +
+> > > +       for (i = 0; i < bc->onecell_data.num_domains; i++) {
+> > > +               struct imx8m_blk_ctrl_domain *domain = &bc->domains[i];
+> > > +
+> > > +               ret = pm_runtime_get_sync(domain->power_dev);
+> > > +               if (ret < 0) {
+> > > +                       pm_runtime_put_noidle(domain->power_dev);
+> > > +                       goto out_fail;
+> > > +               }
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +
+> > > +out_fail:
+> > > +       for (i--; i >= 0; i--)
+> > > +               pm_runtime_put(bc->domains[i].power_dev);
+> > > +
+> > > +       pm_runtime_put(bc->bus_power_dev);
+> > > +
+> > > +       return ret;
+> > > +}
+> > > +
+> > > +static int imx8m_blk_ctrl_resume(struct device *dev)
+> > > +{
+> > > +       struct imx8m_blk_ctrl *bc = dev_get_drvdata(dev);
+> > > +       int i;
+> > > +
+> > > +       for (i = 0; i < bc->onecell_data.num_domains; i++)
+> > > +               pm_runtime_put(bc->domains[i].power_dev);
+> > > +
+> > > +       pm_runtime_put(bc->bus_power_dev);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +#endif
+> > > +
+> > > +static const struct dev_pm_ops imx8m_blk_ctrl_pm_ops = {
+> > > +       SET_SYSTEM_SLEEP_PM_OPS(imx8m_blk_ctrl_suspend, imx8m_blk_ctrl_resume)
+> > > +};
+> > > +
+> > > +static int imx8mm_vpu_power_notifier(struct notifier_block *nb,
+> > > +                                    unsigned long action, void *data)
+> > > +{
+> > > +       struct imx8m_blk_ctrl *bc = container_of(nb, struct imx8m_blk_ctrl,
+> > > +                                                power_nb);
+> > > +
+> > > +       if (action != GENPD_NOTIFY_ON && action != GENPD_NOTIFY_PRE_OFF)
+> > > +               return NOTIFY_OK;
+> > > +
+> > > +       /*
+> > > +        * The ADB in the VPUMIX domain has no separate reset and clock
+> > > +        * enable bits, but is ungated together with the VPU clocks. To
+> > > +        * allow the handshake with the GPC to progress we put the VPUs
+> > > +        * in reset and ungate the clocks.
+> > > +        */
+> >  > +       regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, BIT(0) | BIT(1)
+> > > BIT(2));
+> >
+> > > +       regmap_set_bits(bc->regmap, BLK_CLK_EN, BIT(0) | BIT(1) | BIT(2));
+> >
+> > The individual VPU's (IMX8MM_VPUBLK_PD_G1, G2, and H1) have clk_mask
+> > values that set these bits when used and clear them when disabled.  If
+> > the VPUMix needs them set, shouldn't the IMX8MM_VPUBLK_PD_xx leave
+> > them on until they are cleared by the VPUMIX?
+>
+> No, VPUMIX only need those clocks to be running for the ADB handshake
+> to work. The handshake is only executed when powering up/down a GPC
+> domain. So we can clockgate the individual Hantro cores when not in use
+> while the power domain is up.
 
+Ok, that makes sense.
 
-Best regards,
-Krzysztof
+>
+> >
+> > > +
+> > > +       if (action == GENPD_NOTIFY_ON) {
+> >
+> >
+> > > +               /*
+> > > +                * On power up we have no software backchannel to the GPC to
+> > > +                * wait for the ADB handshake to happen, so we just delay for a
+> > > +                * bit. On power down the GPC driver waits for the handshake.
+> > > +                */
+> > > +               udelay(5);
+> > > +
+> > > +               /* set "fuse" bits to enable the VPUs */
+> > > +               regmap_set_bits(bc->regmap, 0x8, 0xffffffff);
+> > > +               regmap_set_bits(bc->regmap, 0xc, 0xffffffff);
+> > > +               regmap_set_bits(bc->regmap, 0x10, 0xffffffff);
+> > > +               regmap_set_bits(bc->regmap, 0x14, 0xffffffff);
+> >
+> > Should these registers ever get turned off when we disable the VPUMIX?
+> > These registers don't have good descriptions in the TRM describing how
+> > they interact with the VPU's, and it's unclear to me what happens if
+> > they are set and the VPUMIX and various VPU's are disabled.
+> >
+> Those registers lose their state when the VPUMIX power collapses, thus
+> we need to re-initialize them when powering up the domain. As far as I
+> understand it those registers just carry some strap bits for the
+> decoders/encoder to let them know which features should be enabled.
+>
+> > I am
+> > curious to know if they should get enabled/disabled with their
+> > respective IMX8MM_VPUBLK_PD_xx domain.  The Example Code 5 in the TRM
+> > doesn't set these bits in their VPUMIX example, so it makes me think
+> > they're OK to leave with the individual IMX8MM_VPUBLK_PD_xx domains.
+> >
+> > I ask, because if I  run v4l2-compliance on the H1 encoder, it also
+> > appears to hang, but the power-domains appear to be attempting to
+> > start, and the vpumix is the last thing to start, and I would expect
+> > the pgc_vpu_h1 domain to follow, then end with the
+> > vpublk-h1 starting.
+> >
+> > # v4l2-compliance -d3
+> > [  271.001098] hantro-vpu 38320000.video-codec: genpd_runtime_resume()
+> > [  271.007447] genpd genpd:0:38330000.blk-ctrl: genpd_runtime_resume()
+> > [  271.013796] PM: vpumix: Power-on latency exceeded, new value 40623 ns
+> > [  271.020314] genpd genpd:3:38330000.blk-ctrl: genpd_runtime_resume()
+> >
+> This looks correct to me. genpd:0:38330000.blk-ctrl is the VPU blk-ctrl
+> bus domain, which should start the GPC vpumix domain,
+> genpd:3:38330000.blk-ctrl is the blk-ctrl H1 domain, which should in
+> turn power up the GPC h1 domain.
+>
+> Do you know where exactly things are hanging?
+
+I added more debugging and it appears to be hanging in the VPU code
+itself and not the power domain like I originally thought.
+
+I was focussed on the power domain because the regmap was hanging that
+I didn't even consider the possibility it was the VPU code itself.
+
+[  377.840195] hantro-vpu 38320000.video-codec: genpd_runtime_resume():
+[  377.846675] hantro-vpu 38320000.video-codec: vpublk-h1()
+[  377.852115] genpd genpd:0:38330000.blk-ctrl: genpd_runtime_resume():
+[  377.858581] genpd genpd:0:38330000.blk-ctrl: vpumix()
+[  377.863658] imx_pgc_power_up(): vpumix
+[  377.867468] imx_pgc_power_up(): Success
+[  377.871351] genpd genpd:3:38330000.blk-ctrl: genpd_runtime_resume():
+[  377.877810] genpd genpd:3:38330000.blk-ctrl: vpu-h1()
+[  377.882891] imx_pgc_power_up(): vpu-h1
+[  377.886679] imx_pgc_power_up(): Success
+[  377.890540] genpd genpd:3:38330000.blk-ctrl: resume latency exceeded, 750 ns
+[  377.897636] PM: vpublk-h1: Power-on latency exceeded, new value 45528719 ns
+[  377.904635] hantro_h1_jpeg_enc_run()
+
+Thanks for your help.  I think we're good.  I'll focus my work on the
+VPU encoder.
+Sorry for the noise.  I think I better understand the blk-ctrl now too.
+
+adam
+>
+> Regards,
+> Lucas
+>
+> > adam
+> >
+> > [1] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=576435
+> > > +       }
+> > > +
+> > > +       return NOTIFY_OK;
+> > > +}
+> > > +
+> > > +static const struct imx8m_blk_ctrl_domain_data imx8m_vpu_blk_ctl_domain_data[] = {
+> > > +       [IMX8MM_VPUBLK_PD_G1] = {
+> > > +               .name = "vpublk-g1",
+> > > +               .clk_names = (const char *[]){ "g1", },
+> > > +               .num_clks = 1,
+> > > +               .gpc_name = "g1",
+> > > +               .rst_mask = BIT(1),
+> > > +               .clk_mask = BIT(1),
+> > > +       },
+> > > +       [IMX8MM_VPUBLK_PD_G2] = {
+> > > +               .name = "vpublk-g2",
+> > > +               .clk_names = (const char *[]){ "g2", },
+> > > +               .num_clks = 1,
+> > > +               .gpc_name = "g2",
+> > > +               .rst_mask = BIT(0),
+> > > +               .clk_mask = BIT(0),
+> > > +       },
+> > > +       [IMX8MM_VPUBLK_PD_H1] = {
+> > > +               .name = "vpublk-h1",
+> > > +               .clk_names = (const char *[]){ "h1", },
+> > > +               .num_clks = 1,
+> > > +               .gpc_name = "h1",
+> > > +               .rst_mask = BIT(2),
+> > > +               .clk_mask = BIT(2),
+> > > +       },
+> > > +};
+> > > +
+> > > +static const struct imx8m_blk_ctrl_data imx8m_vpu_blk_ctl_dev_data = {
+> > > +       .max_reg = 0x18,
+> > > +       .power_notifier_fn = imx8mm_vpu_power_notifier,
+> > > +       .domains = imx8m_vpu_blk_ctl_domain_data,
+> > > +       .num_domains = ARRAY_SIZE(imx8m_vpu_blk_ctl_domain_data),
+> > > +};
+> > > +
+> > > +static const struct of_device_id imx8m_blk_ctrl_of_match[] = {
+> > > +       {
+> > > +               .compatible = "fsl,imx8mm-vpu-blk-ctrl",
+> > > +               .data = &imx8m_vpu_blk_ctl_dev_data
+> > > +       }, {
+> > > +               /* Sentinel */
+> > > +       }
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
+> > > +
+> > > +static struct platform_driver imx8m_blk_ctrl_driver = {
+> > > +       .probe = imx8m_blk_ctrl_probe,
+> > > +       .remove = imx8m_blk_ctrl_remove,
+> > > +       .driver = {
+> > > +               .name = "imx8m-blk-ctrl",
+> > > +               .pm = &imx8m_blk_ctrl_pm_ops,
+> > > +               .of_match_table = imx8m_blk_ctrl_of_match,
+> > > +       },
+> > > +};
+> > > +module_platform_driver(imx8m_blk_ctrl_driver);
+> > > --
+> > > 2.30.2
+> > >
+>
+>
