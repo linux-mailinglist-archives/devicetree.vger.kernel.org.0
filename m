@@ -2,58 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 668B8449ADA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:37:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F15D4449AFD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240692AbhKHRkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 12:40:06 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:51102 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240611AbhKHRkF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 12:40:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=I16W4tV7Z3BXv4EoVtNowix1nDv2eZoiNuOGWVOpLk8=; b=pdxjUu8vocfYIDlyRuTm61X+Vj
-        UCLYjfJq1r5zfQnz97jKq7u3iK+GIFf12e1CU/KvoVDGEWT97sjOpcnxoStSdKKDg9+zLkbD2MgQn
-        946Vew2kcTpI5uvW4Ia6Juh+Dx3HS0OTP7Vq6nTTJo/LXoSPj28YWhpRySIrdWEUDTVE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mk8a2-00Cuxt-OM; Mon, 08 Nov 2021 18:37:14 +0100
-Date:   Mon, 8 Nov 2021 18:37:14 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
- triggers
-Message-ID: <YYlgSpK5kwvW5PV2@lunn.ch>
-References: <20211108002500.19115-1-ansuelsmth@gmail.com>
- <20211108002500.19115-2-ansuelsmth@gmail.com>
- <YYkuZwQi66slgfTZ@lunn.ch>
- <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
+        id S237895AbhKHRso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 12:48:44 -0500
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:45659 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231401AbhKHRso (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:48:44 -0500
+Received: by mail-ot1-f44.google.com with SMTP id l7-20020a0568302b0700b0055ae988dcc8so23554490otv.12;
+        Mon, 08 Nov 2021 09:45:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jZu9bcvpFSuPChsd8AmgNZQmz9XHq12un/oglUoVUNc=;
+        b=BB4Iv/MWqF93t8YDggSYviOTYnSSZoGBpWvlwbbLsP9Jnng1Bv7YCXRokkTGYk44kp
+         MJ3KnBj97v2NzfIjHYwX+zrH5JpVHqKakLyKWl8oXCMlOlSNtmcZE4tx+dxWbSEW8nG8
+         cZWymCosZg6tu8GNuWrG+wmXzV/nI29aJ633B+Lb7ak+srHIO1GK1Sx53zaxgWlM86K9
+         2eQqzAI8FKnrZAFMbZ5TCbjUSfpt6D06tAXKg4ynZQcxf+rpEsBNDU/aDBbYHAkVETuN
+         GINw2aIeztZfumz6oRRq/Q4JY7X6sYPT7u7QQ26oqlysOwHqWBG0sytwxsSOw1llUzYv
+         RtEA==
+X-Gm-Message-State: AOAM530HCdlrZP48vL3mLagBt5CMVXSxBhc/ib/ogV1K1uxz2YzXesWk
+        zux1hvHwo8UBvYCpCHQ/2w==
+X-Google-Smtp-Source: ABdhPJzYXKOwKUPjtXy6Q03uk2L6xb4RUQ42qRyorNZQZ5+A37Oe0WkSfATgUVQQsgURKjZLnBFBxQ==
+X-Received: by 2002:a05:6830:448e:: with SMTP id r14mr611327otv.171.1636393559064;
+        Mon, 08 Nov 2021 09:45:59 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w29sm5157502ooe.25.2021.11.08.09.45.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 09:45:58 -0800 (PST)
+Received: (nullmailer pid 3814559 invoked by uid 1000);
+        Mon, 08 Nov 2021 17:45:57 -0000
+Date:   Mon, 8 Nov 2021 11:45:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org, arnd@arndb.de,
+        linux@armlinux.org.uk, p.zabel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, maz@kernel.org,
+        linux-clk@vger.kernel.org, broonie@kernel.org,
+        wells.lu@sunplus.com, mturquette@baylibre.com
+Subject: Re: [PATCH v4 01/10] dt-bindings: vendor-prefixes: Add Sunplus
+Message-ID: <YYliVZ/2vzUGXokY@robh.at.kernel.org>
+References: <cover.1635993377.git.qinjian@cqplus1.com>
+ <1a5f86dbfd1e4053cd2a69111fc7b277a49bc98a.1635993377.git.qinjian@cqplus1.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
+In-Reply-To: <1a5f86dbfd1e4053cd2a69111fc7b277a49bc98a.1635993377.git.qinjian@cqplus1.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> So we have PHYs that can only work in offload or off. Correct?
+On Thu, 04 Nov 2021 10:56:58 +0800, Qin Jian wrote:
+> Add vendor prefix for Sunplus Technology Co., Ltd. (http://www.sunplus.com)
+> 
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-No, they can only work in offload. There is no off. You just get to
-chose different offload settings.
 
-      Andrew
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
