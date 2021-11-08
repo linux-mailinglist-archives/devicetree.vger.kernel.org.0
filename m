@@ -2,119 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9290448046
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:25:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E122844806E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:44:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239953AbhKHN2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 08:28:07 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:48758
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239963AbhKHN14 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 08:27:56 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id EBFE43F1C7
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 13:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636377911;
-        bh=cQNVECNpHuXn3Gv40lUHf3vm0HMBLn3SO5kTNb9udHg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Xr0QgcLll4nIHDrkgRf1692DTjeVtsdoED8rrcLVJ4kYK0OJ5XqjDzkLap2O4pFKM
-         YwBtsox5xnn2CNqFlHkpimqmXLQqcGXIlC+5bSUiQuP65wKrBLGTzWuUg7EQYDuauB
-         D9PiFFyL5QaSnYnwOJqiAqQdazXnkZjVvqNZimcNZ02kAUzUgdeCPVEVLazmYWc8YW
-         v4miPdtaENhm3lYXZGRQyxhEL61yGTAq+qOfLL3WZiuse/ljO1CSpRWma2tEfQMl6n
-         FDEgavs8GneddPn0A/F6nXHJyUVA6gBKD1eHycJDWGsIj5yloMxt7r28YOfRaQTG4N
-         OF4bqYfSVK9tA==
-Received: by mail-lf1-f72.google.com with SMTP id f20-20020a0565123b1400b004035ad15d6eso3544454lfv.13
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:25:11 -0800 (PST)
+        id S240049AbhKHNrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 08:47:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58974 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237322AbhKHNrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 08:47:39 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D84C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 05:44:55 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id v20so15819422plo.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:44:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=BbJMl2HZLk1iyOtoDPVlVmqhPv2VnizONosZZ15nm1M=;
+        b=e5QPuMkMIlVkkV6Jpcot5D8YZdKHEc7nrFTmZov7A8gaIW/PrieQGAx7p44j+edsYd
+         G0LZNZopZb13mb3lhgEzkM0zmj1b3EcYoqo+jeYE7xzloyqPlgZOGjnj0NypXJD0kX6x
+         fRZaiN7RBVG8mqSKJbfrLatgyT3Kd5nSxEjJWqkSGFsvTeHdJcydqPVcMGxDJwnZrPIv
+         lpnpnE1XXSYWX5OX7vgv36cnaP012W5WniHjVwVmVKvYorqREum9VQ4bc1VyCzMyB6ta
+         Ibkq674akVP1oiMgHoj5GDkZ3kXNrkG0kOt9VHVgmdISaPZggHN6Nm/+uyJDZuEPKAys
+         EA5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cQNVECNpHuXn3Gv40lUHf3vm0HMBLn3SO5kTNb9udHg=;
-        b=XDLTE+N4AzdDXHEJ0hALVvdLfBen2vjk6c03Ozn3K1tq3SHiWh9TIsJHA9vtgQj+M/
-         24QftDKneWSQQSWExVjhiApwi8ywa63m9eUUHDLL/LY4X9FXz1gIRVXe7xI8RHTZF5El
-         GSQn+GF5eEfX1QOChMf03rDTc8w/1HF6Ijibd5R5cPUd6ffrbI6hgl5rIZTG50RBTFJ8
-         fQ+TtatkyFuD1A4wv/WAEY9xA1Yjy7iNRAJrhLstOMXgRiIG0hKYu+hrSvwdfzcqRYX+
-         VrcHXcJ23G24TzqtGWS90CaKyQVDy3l41+JX1Y5ARwvfiKQf5pdwDpdM9Xv/pLCcPlsS
-         96+A==
-X-Gm-Message-State: AOAM530u8yoqbaT1RcsRizRumuM8TIyWpZ5nXoD9eAp1AvLJFgu8YFgl
-        bELpG595TqWQpr91fQi3rjfPdBmEDjOUR3EcX/z838PBdCxZWOEvQJ/CljwCO1pWs289L9quHF4
-        akVubIpCZMOuq9KXnaae8B2v2797lDch0XnkFoP4=
-X-Received: by 2002:ac2:4f02:: with SMTP id k2mr74616242lfr.415.1636377910760;
-        Mon, 08 Nov 2021 05:25:10 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyVkWMjaG1ydKUi2N53zvF6W6a1WDL4riE4vI34E9xDpFmNKcciyZDkrjMVTWlTTUO5Qz090A==
-X-Received: by 2002:ac2:4f02:: with SMTP id k2mr74616212lfr.415.1636377910531;
-        Mon, 08 Nov 2021 05:25:10 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id c23sm1550726ljr.85.2021.11.08.05.25.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 05:25:10 -0800 (PST)
-Message-ID: <0bf73f1a-3be0-5135-747c-f31eb4007314@canonical.com>
-Date:   Mon, 8 Nov 2021 14:25:09 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH v3 12/12] watchdog: s3c2410: Add Exynos850 support
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211107202943.8859-1-semen.protsenko@linaro.org>
- <20211107202943.8859-13-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211107202943.8859-13-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=BbJMl2HZLk1iyOtoDPVlVmqhPv2VnizONosZZ15nm1M=;
+        b=FekgJqE1Ny2WYh5ZK98FwvQW2eAtw5+0ux6wXNofzJ53UEVrWrR1EBRiOcItHAY6lS
+         P+iUXGUoqQIaxxf/ZHlrr3MXHBahNU5qKGWy71epI66fyc7lB7URQ+gCVjcrGoaSY2AR
+         HJ6otgVxu0Xr9nM3Cd2NGDNvoADVyxBAbGTrtvBRCJs2qPOrccbeU0/G4WGp8k1I9fOI
+         A7+PE5o30IMHn/vOCi9iuSTxFjmEavaQGztn/6ZPBH0RFUwr7JOQpRmDEn7qMQwvcuvG
+         azAUJFOMtuaLsHCWJqnschRGgIoMZXjkFCQTPdycfq8tH0zv9grsp5EmzQ3PI7QA5jW1
+         mNNg==
+X-Gm-Message-State: AOAM532eVrmI+oLFmQZOpsopV8GitN23u43JQkoOFYL9lq1Qrk2And2I
+        wV+HrECNryewtdxSu49HeZdKCg==
+X-Google-Smtp-Source: ABdhPJxYcZYcfc+h2yHGVEXR50H8V8F020aV9K3REtKgGY9W4KE3G3G6ykmiYa7BCygZztngLLFlVw==
+X-Received: by 2002:a17:90a:6542:: with SMTP id f2mr51118384pjs.159.1636379094991;
+        Mon, 08 Nov 2021 05:44:54 -0800 (PST)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id m184sm3693974pga.61.2021.11.08.05.44.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 05:44:54 -0800 (PST)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH 0/3] Add QCM2290 RPM power domain support
+Date:   Mon,  8 Nov 2021 21:44:39 +0800
+Message-Id: <20211108134442.30051-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/11/2021 21:29, Sam Protsenko wrote:
-> Exynos850 is a bit different from SoCs already supported in WDT driver:
->   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
->     always 0; .disable_auto_reset callback is not set for that reason
->   - MASK_WDT_RESET_REQUEST register is replaced with
->     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
->     reset interrupt it's now enabled with the same value; .mask_reset
->     callback is reused for that functionality though
->   - To make WDT functional, WDT counter needs to be enabled in
->     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
->     callback
-> 
-> Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-> instance. Different PMU registers and bits are used for each cluster. So
-> driver data is now modified in probe, adding needed info depending on
-> cluster index passed from device tree.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v3:
->   - Renamed "samsung,index" property to more descriptive
->     "samsung,cluster-index"
->   - Used pre-defined and completely set driver data for cluster0 and
->     cluster1
-> 
-> Changes in v2:
->   - Used single compatible for Exynos850, populating missing driver data
->     in probe
->   - Added "index" property to specify CPU cluster index
-> 
->  drivers/watchdog/s3c2410_wdt.c | 62 +++++++++++++++++++++++++++++++++-
->  1 file changed, 61 insertions(+), 1 deletion(-)
-> 
+The first patch is a separate cleanup, and the rest two add RPM power
+domain support for QCM2290.
 
+Shawn Guo (3):
+  soc: qcom: rpmpd: Drop unused res_name from struct rpmpd
+  dt-bindings: power: rpmpd: Add QCM2290 support
+  soc: qcom: rpmpd: Add QCM2290 support
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
+ drivers/soc/qcom/rpmpd.c                      | 19 ++++++++++++++++++-
+ include/dt-bindings/power/qcom-rpmpd.h        | 10 ++++++++++
+ 3 files changed, 29 insertions(+), 1 deletion(-)
 
+-- 
+2.17.1
 
-Best regards,
-Krzysztof
