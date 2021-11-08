@@ -2,130 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7D5A44994C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:13:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F2044995D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:19:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238133AbhKHQQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 11:16:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57838 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238111AbhKHQQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 11:16:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D4E1461107;
-        Mon,  8 Nov 2021 16:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636387998;
-        bh=Ijsj68+ZcgX66on4xNvcnNeiQfAyxcdQcTHC4K5SOXI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=lG6VDp2Tre0jkggzgpKn9zvIrAhb/7shlfuxVMN99UOqioR2n7IB3e85NKwQI4CqE
-         4P5cUQQ3Kl9Cntyyla1RG7CZpkPTFZTkq7cKd8g8K2Sn+NjmqDkTOZLdotViKTJA0M
-         XxC8FX8X1cEy+Reb28kjQ/3VsEbZNzsIRS3aUl1cuPVQ2fQ6473y1oh0/WbFaqgLiO
-         z29jA75XqULm50+FN4uS8rLx2xqzVmnRs7dTetXDZAa2dsJGVD/YmDZfVjPfwyRfk3
-         AdV2zF03PBuqD4Eg1zKgsoP6EVcrX0vpx1FFQGa27vd1mibkfGag6kZhWyGN2TFJ1Y
-         rpaKnkC28UAgQ==
-Date:   Mon, 8 Nov 2021 17:13:12 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
- triggers
-Message-ID: <20211108171312.0318b960@thinkpad>
-In-Reply-To: <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
-References: <20211108002500.19115-1-ansuelsmth@gmail.com>
-        <20211108002500.19115-2-ansuelsmth@gmail.com>
-        <YYkuZwQi66slgfTZ@lunn.ch>
-        <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S236902AbhKHQW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:22:27 -0500
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:35494 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235479AbhKHQW1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:22:27 -0500
+Received: by mail-ua1-f47.google.com with SMTP id q13so32605515uaq.2;
+        Mon, 08 Nov 2021 08:19:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3kyMgy9kac8nf14MVpneIp9xZyW431ncVC+jJcYzE18=;
+        b=qzmJWWYA95h3ht1u8Hyx29Rnj8ovhY/kQeJ3ZM3JiDe5kkrd9eu5qHt0A+6HG7ndvg
+         k5gV+fvIjDK+wQCjeYZVWAe6Yut4yi/S6FDfS+NaUoCCu9rZmPLPL6tTgv5evmwHVjbC
+         26TckhWCPOpbfuGQmiyM9TfQX/Y2FRPXtbjYqMB9PXSg41jd0l85x/y0mSu5b/qNRyZO
+         kQlcT/amLgibzrzutmC8dXkjKMrK5Z97bZ5dMuSsM+e3hOUP8rxSTqGpxhgEg7NGOw2W
+         BwJ084khI9JEWE9F8/tBzHJLVmemi1ETuRpZ4npiA0bM0lTlZbZM5EDsGKZaRHqtLN79
+         14yA==
+X-Gm-Message-State: AOAM532fASv2Ud0fhtWoVmEo4dYJZWUYu0HAEq8QS4Jz/Ycd2XCH10Qe
+        iQlVfkVLqP0OfH9D0rCCLUO6HNxgZtGnYuHY
+X-Google-Smtp-Source: ABdhPJyShH2y4ybWehMmu2QRlKlTP5/9+S3SNi1450cx9i7LwdLz6RM5BJQW3RAyvu2FO4U+iuny+Q==
+X-Received: by 2002:a67:cb92:: with SMTP id h18mr234562vsl.7.1636388380283;
+        Mon, 08 Nov 2021 08:19:40 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id p69sm2891704uap.1.2021.11.08.08.19.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 08:19:39 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id o26so32563061uab.5;
+        Mon, 08 Nov 2021 08:19:39 -0800 (PST)
+X-Received: by 2002:a05:6102:e82:: with SMTP id l2mr776038vst.37.1636388379530;
+ Mon, 08 Nov 2021 08:19:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20211103173127.13701-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211103173127.13701-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211103173127.13701-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 8 Nov 2021 17:19:28 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXE9t5immi5WCVgPOe0dwioj3N_PGTk4Z_tWPaWtyQ6VQ@mail.gmail.com>
+Message-ID: <CAMuHMdXE9t5immi5WCVgPOe0dwioj3N_PGTk4Z_tWPaWtyQ6VQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: serial: renesas,sci: Document RZ/G2L SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Nov 2021 16:16:13 +0100
-Ansuel Smith <ansuelsmth@gmail.com> wrote:
+Hi Prabhakar,
 
-> On Mon, Nov 08, 2021 at 03:04:23PM +0100, Andrew Lunn wrote:
-> > > +static inline int led_trigger_offload(struct led_classdev *led_cdev)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	if (!led_cdev->trigger_offload)
-> > > +		return -EOPNOTSUPP;
-> > > +
-> > > +	ret = led_cdev->trigger_offload(led_cdev, true);
-> > > +	led_cdev->offloaded = !ret;
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static inline void led_trigger_offload_stop(struct led_classdev *led_cdev)
-> > > +{
-> > > +	if (!led_cdev->trigger_offload)
-> > > +		return;
-> > > +
-> > > +	if (led_cdev->offloaded) {
-> > > +		led_cdev->trigger_offload(led_cdev, false);
-> > > +		led_cdev->offloaded = false;
-> > > +	}
-> > > +}
-> > > +#endif  
-> > 
-> > I think there should be two calls into the cdev driver, not this
-> > true/false parameter. trigger_offload_start() and
-> > trigger_offload_stop().
-> >   
-> 
-> To not add too much function to the struct, can we introduce one
-> function that both enable and disable the hw mode?
+On Wed, Nov 3, 2021 at 6:31 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add SCI binding documentation for Renesas RZ/G2L SoC.
+>
+> Also update the example node with real world DT node.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Dear Ansuel,
+> --- a/Documentation/devicetree/bindings/serial/renesas,sci.yaml
+> +++ b/Documentation/devicetree/bindings/serial/renesas,sci.yaml
+> @@ -14,7 +14,11 @@ allOf:
+>
+>  properties:
+>    compatible:
+> -    const: renesas,sci
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g044-sci     # RZ/G2{L,LC}
+> +          - const: renesas,sci            # generic SCI compatible UART
 
-what is the purpose of adding trigger_offload() methods to LED, if you
-are not going to add support to offload the netdev trigger? That was
-the entire purpose when I wrote that patch.
+You added a oneOf, but forgot to keep the old single compatible
+value as used on H8/300?
 
-If you just want to create a new trigger that will make the PHY chip do
-the blinking, there is no need at all for the offloading patch.
+>
+>    reg:
+>      maxItems: 1
 
-And you will also get a NACK from me and also Pavel (LED subsystem
-maintainer).
+With the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-The current plan is to:
-- add support for offloading existing LED triggers to HW (LED
-  controllers (PHY chips, for example))
-- make netdev trigger try offloading itself to HW via this new API (if
-  it fails, netdev trigger will blink the LED in SW as it does now)
-- create LED classdevices in a PHY driver that have the offload()
-  methods implemented. The offload method looks at what trigger is
-  being enabled for the LED, and it if it is a netdev trigger with such
-  settings that are possible to offload, it will be offloaded.
+Gr{oetje,eeting}s,
 
-  This whole thing makes use of the existing sysfs ABI.
-  So for example if I do
-    cd /sys/class/net/eth0/phydev/leds/<LED>
-    echo netdev >trigger
-    echo eth0 >device_name
-    echo 1 >rx
-    echo 1 >tx
-  The netdev trigger is activated, and it calls the offload() method.
-  The offload() method is implemented in the PHY driver, and it checks
-  that it can offload these settings (blink on rx/tx), and will enable
-  this.
-- extend netdev trigger to support more settings:
-  - indicate link for specific link modes only (for example 1g, 100m)
-  - ...
-- extend PHY drivers to support offloading of these new settings
+                        Geert
 
-Marek
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
