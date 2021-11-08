@@ -2,80 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2F1C448083
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:48:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A5274480A9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:59:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238817AbhKHNvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 08:51:22 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:50612 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238013AbhKHNvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 08:51:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=wJ+KFiLWXSd9Yn9CEeNsZPzYPyPhxqpWIbv+1zHqmxk=; b=rj
-        G4BV9DFGE0jD9Fw+5Lc4bnd7zyJ2u1yBCjc7borAofsYd7g31Dv3BYCOw5MVBPQYf7UhQxnl5II06
-        ZFEKA8imfILSvCXPiLTS+U00pUlqDxkh/l9dSStH2iEEXLLOtRDgq4rCb7jeSsPpL0nyViV2kxAyQ
-        E+JgYaeHSpAJENc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mk50f-00Ctqr-DH; Mon, 08 Nov 2021 14:48:29 +0100
-Date:   Mon, 8 Nov 2021 14:48:29 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S238173AbhKHOB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 09:01:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235081AbhKHOB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 09:01:56 -0500
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48A5AC061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 05:59:12 -0800 (PST)
+Received: by mail-qk1-x732.google.com with SMTP id bm28so15473647qkb.9
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:59:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=JirAXSflDjIcMAeazdVpY/4xA41IlCAY04BXmE2ZYQM=;
+        b=HLXr25pRJ7+E8lT4ABwhuNFkxRYpRCgr7hswcSp5Lz4N+xi7/whjxmtqYGZ7KbEIEw
+         Fcup+X6OvBpYzpNUAh6zyT5/m3AeG+K+iHjJJKNEWzKsYf8PqPGhUHfyUuESlLkiSda6
+         rMA9QOjK3uybOhJ3DKPAODHNWZQv0Y4hHdUTqW3DB7U7vLEYxfmp1SYgVU0MraHxjcFz
+         46eeeNtdwLRH2bFiCb2W/gNK7T99wdZm8vPf/VunOX7XX9iHY9N5ju5ZC+DVLn0Ps7nO
+         jH1fVjmkejbUkdA4z95OSyqwjq127ae5Jja/zWqxhVrkP0wZUUrUATNA+nEQ352/GE/l
+         Ud3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=JirAXSflDjIcMAeazdVpY/4xA41IlCAY04BXmE2ZYQM=;
+        b=NypTwBaaRsnvegN/hzsmxe7i3IhuRVUjq+DEjqyWupsso9h0itCEuiz/QZnwZ0kq5k
+         VWRoivxW4xXM7yvJZy8pan8M+UWWAvylUqvlRWs5cwOivqcFx6K333xSOXPJunC3ZSFf
+         A6sUHatnvjOCLH9O+MOG9Qsg4cNExAVdBkMrz8ptLKHIAeTt8+CqHapUkruf60hhGs0q
+         XaVB8kNCmooNYHpVlRamzf2ESknCpcyqO5U2zNQrvQ1rT3swCVyNDDdeey5mJ+qNnSmU
+         RYxEsfKt9Nw1cFT/EDaW8lRxSDeV6Fo7CmEg7yc1h3AzCspUeQsvQGSG3ZGUBzQL+VdU
+         Y3kA==
+X-Gm-Message-State: AOAM532RdZmWYr98D1d9XEG1iwTD1Kmg4+/zMLWs5uRwqYSIryQn05kd
+        HKMI+/1Mgrk8TpCKNMboJR9Es5DAD3JGjvWP
+X-Google-Smtp-Source: ABdhPJwnQhLeO0Oq5jMtAfmA/8j65tIDSBH7CNZ4oKjXKDgjfz7o42nBFlklWsUQVUkMrnayVPVZCg==
+X-Received: by 2002:a05:620a:448b:: with SMTP id x11mr39558492qkp.286.1636379951308;
+        Mon, 08 Nov 2021 05:59:11 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id f7sm10082091qkp.107.2021.11.08.05.59.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 05:59:10 -0800 (PST)
+Message-ID: <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     tharvey@gateworks.com, frieder.schrempf@kontron.de,
+        marek.vasut@gmail.com, jagan@amarulasolutions.com,
+        aford@beaconembedded.com, cstevens@beaconembedded.com,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH 2/6] leds: permit to declare supported offload
- triggers
-Message-ID: <YYkqrbenDPpck2yO@lunn.ch>
-References: <20211107175718.9151-1-ansuelsmth@gmail.com>
- <20211107175718.9151-3-ansuelsmth@gmail.com>
- <20211107230624.5251eccb@thinkpad>
- <YYhUGNs1I0RWriln@Ansuel-xps.localdomain>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Date:   Mon, 08 Nov 2021 08:59:09 -0500
+In-Reply-To: <20211106183802.893285-1-aford173@gmail.com>
+References: <20211106183802.893285-1-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.0 (3.42.0-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YYhUGNs1I0RWriln@Ansuel-xps.localdomain>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 07, 2021 at 11:32:56PM +0100, Ansuel Smith wrote:
-> On Sun, Nov 07, 2021 at 11:06:24PM +0100, Marek Beh�n wrote:
-> > On Sun,  7 Nov 2021 18:57:14 +0100
-> > Ansuel Smith <ansuelsmth@gmail.com> wrote:
-> > 
-> > > With LEDs that can be offload driven, permit to declare supported triggers
-> > > in the dts and add them to the cled struct to be used by the related
-> > > offload trigger. This is particurally useful for phy that have support
-> > > for HW blinking on tx/rx traffic or based on the speed link.
-> > > 
-> > > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > 
-> > NAK. The device-tree shouldn't define this, only the LED's function as
-> > designated by the manufacturer of the device.
-> > 
-> > Marek
+Hi Adam,
+
+thanks for you work, I'll try and reply  about the GStreamer questions below, if
+you have further question feel free to ask.
+
+Le samedi 06 novembre 2021 à 13:37 -0500, Adam Ford a écrit :
+> The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> to be related to the video decoders used on the i.MX8MQ, but because of
+> how the Mini handles the power domains, the VPU driver does not need to
+> handle all the functions, so a new compatible flag is required.
 > 
-> Sure I will add a way to ask the led driver if the trigger is supported
-> and report it.
+> This is an RFC because I don't have functional video on my system yet,
+> and I'm hoping there might be people who do and can help test this.
+> I have only tested this far enough to see they enumerate and appear
+> as /dev/videoX and /dev/mediaX devices.
 
-Yes, you need some way for the PHY/MAC driver to enumerate what it can
-do.
+I will check the patchset, but you need in the mini-variant to disable the G1
+post processor, because this block was fused out. We didn't make it optional
+from the start as according to the V1 of the TRM it was there, but that error
+was corrected in V3.
 
-I've not looked at v2 yet...
+> 
+> I am also curious to know if/what gstreamer plugins are necessary.  In
+> NXP's custom kernel, there are IMX-specific plugins, and I was hoping there
+> would be more generic plugins that I can use to test.  I am hoping some
+> of the linux-media experts might chime in on how to best test.
 
-	Andrew
+I will recommend using GStreamer 1.19.3 or main branch (GStreamer is now a
+single git repo). You will then be able to test Hantro G1 decoding of MPEG2,
+H264 and VP8. Remember that the related plugin depends on libgudev (a glib
+binding of udev).
+
+For the encoder, I believe only JPEG maybe supported, since this is all there is
+mainline for RK3288 (and perhaps other RK). But this will need testing and
+debugging as the G1 version is slightly newer on NXP SoC.
+
+> 
+> Lastly, I didn't update any device tree binding YAML files, because
+> I know there have been some discussions about the power domains on the
+> imx8mq, and I wasn't sure if the imx8mm should get a separate YAML file
+> or if the existing one for te imx8mq should just be modified.
+> 
+> This will likely require the following series in order to apply correctly:
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=576407
+> 
+> Adam Ford (5):
+>   media: hantro: Add support for i.MX8M Mini
+>   arm64: dts: imx8mm:  Enable VPU-G1 and VPU-G2
+>   media: hantro: Rename ROCKCHIP_VPU_ENC_FMT to HANTRO_VPU_ENC_FMT
+>   media: hantro: Add H1 encoder support on i.MX8M Mini
+>   arm64: dts: imx8mm:  Enable Hantro H1 Encoder
+> 
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  61 ++++++++
+>  drivers/staging/media/hantro/hantro_drv.c     |   3 +
+>  drivers/staging/media/hantro/hantro_hw.h      |  19 ++-
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 143 ++++++++++++++++++
+>  .../staging/media/hantro/rockchip_vpu_hw.c    |  26 ++--
+>  5 files changed, 231 insertions(+), 21 deletions(-)
+> 
+
