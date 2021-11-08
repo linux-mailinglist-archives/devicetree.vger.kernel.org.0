@@ -2,194 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47607449BF7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF765449C03
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:53:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236064AbhKHSuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 13:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236059AbhKHSt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 13:49:59 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DC1C061764
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 10:47:13 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id bk14so6161812oib.7
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 10:47:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0vw8s287M6V5tUEsTJntxMeh19bFdVrXBNKNoghHXao=;
-        b=ywlYUfVasoalbTydcYohciaaAH8wfFvqWJ/gT+CCOCjU1tjYJY9d259VD/iG+WAxeX
-         UzBNkbA2iiR9m8NWFAMtNtDcOwUzOKyw02Nz+HbwkU4xOvYN6WYbrTknog4XZgC1gU6N
-         D6giWibXnftdvgv4qAuJRkcE14pOBcSCHyPlF9zx11QEMMaUohAOmZ6J/S0kBh+MWJxj
-         SgEuTOs8PuLKfdynmN/2WLZPXkgMwXWOJW39pQfCeub5zfek+jztC7kuTbhXq5pKXzOn
-         RFKgyqpnfnhXXmFJyWqAY2X+OMc/Pw/8yYj2Bz5hM+lwfTxbGv9N+/i3ZdYk51soUuGr
-         fWXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0vw8s287M6V5tUEsTJntxMeh19bFdVrXBNKNoghHXao=;
-        b=njqXTll2JeRd8ikCQB6rNyY5kwmfAaFDapmk9WXSwqs1w9B1I51uQbSRx3KGCVkfMi
-         u9cWqnGwDqqPXQt0/0woB4KSKgcJnImDraTZuft8IWbQf/fCUeT4CijUqEKZSuj5T8OQ
-         kIwtok633gaz7JkMxukMEZ6xBopDuzDNpOPDno17+7DKxQ57KkJ4SfbePRlKTGhs8+8S
-         logXKJhKr/ToUYLj9i44PwTHPLcPf/un+OZyV/QPEfWk4tqFK5fPamei/FpsPwY+5k2W
-         p5wPVRLuGpIFwCESdC7+QiOWmye7vahLnEn5KWmOMAM+rfBGe8QxQojENho18T2RVkRo
-         YuWw==
-X-Gm-Message-State: AOAM531MLkiumY6ay+D0NfWAicjsgUHqS6B5iWDS7tJbfLCy4k/ObTjL
-        WqYd8gbPqqNXLFxeLnj34PfGTTbXB+vqpQ==
-X-Google-Smtp-Source: ABdhPJwztpHYHCOdNId1sZbWWKDiOQRdMs7lgaadW6QKrlShBESNVaqndOmityyif7Tg18o9uOBktQ==
-X-Received: by 2002:a54:4401:: with SMTP id k1mr349239oiw.143.1636397232392;
-        Mon, 08 Nov 2021 10:47:12 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w29sm5245219ooe.25.2021.11.08.10.47.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 10:47:11 -0800 (PST)
-Date:   Mon, 8 Nov 2021 10:48:47 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jarrett Schultz <jaschultzms@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Jarrett Schultz <jaschultz@microsoft.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: platform: microsoft: Document
- surface xbl
-Message-ID: <YYlxD7TuNzFlWokq@ripper>
-References: <20211108164449.3036210-1-jaschultz@microsoft.com>
- <20211108164449.3036210-2-jaschultz@microsoft.com>
+        id S236208AbhKHS42 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 13:56:28 -0500
+Received: from aposti.net ([89.234.176.197]:33428 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236093AbhKHS42 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 13:56:28 -0500
+Date:   Mon, 08 Nov 2021 18:53:24 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Message-Id: <0HO92R.RF221XL59J3I1@crapouillou.net>
+In-Reply-To: <ACEFD0BB-1FCF-4EEB-A40F-1F2543A05BF4@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+        <HQY82R.69JHJIC64HDO1@crapouillou.net>
+        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+        <ZA692R.GHQL6RBCLFB12@crapouillou.net>
+        <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
+        <BVH92R.0VU3IKPQTLX9@crapouillou.net>
+        <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
+        <RIL92R.MLAZ6CTO865E1@crapouillou.net>
+        <ACEFD0BB-1FCF-4EEB-A40F-1F2543A05BF4@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211108164449.3036210-2-jaschultz@microsoft.com>
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 08 Nov 08:44 PST 2021, Jarrett Schultz wrote:
+Hi Nikolaus,
 
-> Introduce yaml for surface xbl driver.
+Le lun., nov. 8 2021 at 19:33:48 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> Hi Paul,
 > 
-> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+>>  Am 08.11.2021 um 18:49 schrieb Paul Cercueil <paul@crapouillou.net>:
+>> 
+>>>>  Variant 4: the variant #2 without the changes to the DTSI files.
+>>>  Hm. If there is no cache and we can safely remove tight boundary 
+>>> checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing 
+>>> DTSI) why do we still need the max_register calculation from DTSI 
+>>> specifically for jz4780 and at all?
+>> 
+>>  It's better to have the .max_register actually set to the proper 
+>> value. Then reading the registers from debugfs 
+>> (/sys/kernel/debug/regmap/) will print the actual list of registers 
+>> without bogus values. If .max_register is set too high, it will end 
+>> up reading outside the registers area.
 > 
-> ---
+> Ok, that is a good reason to convince me.
 > 
-> Changes in v2:
->  - Removed json-schema dependence
->  - Elaborated on description of driver
->  - Updated example
+>>  On Ingenic SoCs such reads just return 0, but on some other SoCs it 
+>> can lock up the system.
 > 
-> ---
+> Yes, I know some of these...
 > 
->  .../platform/microsoft/surface-xbl.yaml       | 57 +++++++++++++++++++
->  MAINTAINERS                                   |  7 +++
->  2 files changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+>>  So the best way forward is to have .max_register computed from the 
+>> register area's size, and fix the DTSI with the proper sizes. Since 
+>> your JZ4780 code needs to update .max_register anyway it's a good 
+>> moment to add this patch, and the DTSI files can be fixed later (by 
+>> me or whoever is up to the task).
 > 
-> diff --git a/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml b/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
-> new file mode 100644
-> index 000000000000..09f806f373bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/platform/microsoft/surface-xbl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Surface Extensible Bootloader for Microsoft Surface Duo
-> +
-> +maintainers:
-> +  - Jarrett Schultz <jaschultzMS@gmail.com>
-> +
-> +description: |
-> +  Exposes the following device information to user space via sysfs -
+> Well, it would already be part of my Variant #2 (untested). So I 
+> could simply split it up further and you can test the pure dtsi 
+> changes and apply them later or modify if that makes problems. Saves 
+> you a little work. BTW: the jz4740 seems to have even less registers 
+> (last register seems to be LCDCMD1 @ 0x1305005C).
 
-The devicetree should describe the hardware, or in this case the imem
-region. User space, sysfs etc are concepts of one possible consumer of
-this information and should not be part of the binding.
+Sure, if you want. Send the DTSI patch(es) separate from this patchset 
+then.
 
-It might make sense to update this description to still document what's
-to be found in the memory region though.
-
-> +    * board_id
-> +    * battery_present
-> +    * hw_init_retries
-> +    * is_customer_mode
-> +    * is_act_mode
-> +    * pmic_reset_reason
-> +    * touch_fw_version
-> +    * ocp_error_location
-> +  See sysfs documentation for more information.
-> +
-> +properties:
-> +  compatible:
-> +    const: microsoft,sm8150-surface-duo-xbl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-I believe interrupts is a leftover...
-
-> +
-> +examples:
-> +  - |
-> +    xbl@146bfa94 {
-> +      compatible = "microsoft,sm8150-surface-duo-xbl";
-> +      reg = <0x00 0x146bfa94 0x00 0x100>;
-
-The example is compiled with #address-cells == #size-cells = <1>, so
-you should omit the extra 0 in both address and size, in both examples.
-
-Regards,
-Bjorn
-
-> +    };
-> +  - |
-> +    imem@146bf000 {
-> +      compatible = "simple-mfd";
-> +      reg = <0x0 0x146bf000 0x0 0x1000>;
-> +      ranges = <0x0 0x0 0x146bf000 0x1000>;
-> +
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      xbl@a94 {
-> +        compatible = "microsoft,sm8150-surface-duo-xbl";
-> +        reg = <0xa94 0x100>;
-> +      };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index eeb4c70b3d5b..8643546f8fab 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12423,6 +12423,13 @@ F:	Documentation/driver-api/surface_aggregator/clients/dtx.rst
->  F:	drivers/platform/surface/surface_dtx.c
->  F:	include/uapi/linux/surface_aggregator/dtx.h
->  
-> +MICROSOFT SURFACE DUO XBL DRIVER
-> +M:	Jarrett Schultz <jaschultz@microsoft.com>
-> +L:	linux-arm-msm@vger.kernel.org
-> +L:	platform-driver-x86@vger.kernel.org
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
-> +
->  MICROSOFT SURFACE GPE LID SUPPORT DRIVER
->  M:	Maximilian Luz <luzmaximilian@gmail.com>
->  L:	platform-driver-x86@vger.kernel.org
-> -- 
-> 2.25.1
+>> 
+>>  Fixing the DTS is not a problem in any way, btw. We just need to 
+>> ensure that the drivers still work with old DTB files, which will be 
+>> the case here.
 > 
+> Yes, that is right since the new values are smaller than the 
+> originals.
+> 
+> Ok, then let's do it that way.
+
+Great. Waiting for your v6 then.
+
+Cheers,
+-Paul
+
+
