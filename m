@@ -2,120 +2,398 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB988447E74
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42551447EA1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238947AbhKHLIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 06:08:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50754 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238974AbhKHLI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:08:29 -0500
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26382C061714;
-        Mon,  8 Nov 2021 03:05:45 -0800 (PST)
-Received: by mail-ua1-x936.google.com with SMTP id p37so29516815uae.8;
-        Mon, 08 Nov 2021 03:05:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=teGM/aRfgsF+v1uRkOKwMF4DSOKKVhKqEf5p4Z5SiaU=;
-        b=ZFRoTUThOk+PwhJrD1Eag/Ir8bvPTzXitLWo7Qm9cG6hDuajRaS2ubnIpafa8hqelx
-         WL1fNfta5V2hrroNvZl7LbQpF7RKN5VCsa+xO7FSCsfSuNMAainm2YA5tikS3fTjEUPS
-         S7nUbti/rK0oZP1HtN/XSxIxymWHxiWgH+ZPUlRC52qAjrfBrS8Syo1prKFyQ6DlVzln
-         5LDkWXVj5zr7B1fhibrk9qbyr+E/YxYr9pPfgdbsos4R5YM1hocn1dMvKBm3IZjjBO2b
-         Yn8nOBvKre4xDiI1eLzRKslQWYixvbxMRJUOumfHVZk+aCAbdz5QT9hQoQMfG7unHNdL
-         DBpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=teGM/aRfgsF+v1uRkOKwMF4DSOKKVhKqEf5p4Z5SiaU=;
-        b=VYf44b+g8j7e+ZzLqU77Ss/6QSnpvrsaBVhAVibDU2Z2XdEJMVoJdy/ZpN1tzNQLtw
-         UpFcLQP3jvDbWO2icV9ufzoKPPeYrkvzN4ECQDFJuM0Im5O6Su0K+bQqfuVrkQ4Ps2tJ
-         +TcP0ntwom7+ECHliaE/SOxTa3QlWSH1/mNjlgbV+KyOMZ5jRQVcdabQHUCrU1O7RzO7
-         jHwfunHjebyesB25/oa3fWN1F5XTNVcuoqouuQkQj8q19IB0bCBgI0rEmAtzW5TtaVWT
-         /Q9CWCY3MU/OFjb2DHNghAetj6a219cb/A2mMIyGLvQHxbPqHw9ALZENOnRTYR5a6IMD
-         7LgQ==
-X-Gm-Message-State: AOAM532ZZK+5gDqfN3JyzdK1ONH1f5+5RFnUCrSOv5dcT8SFLG48ZL19
-        M4r3DYgSGP2AEJNHqUj+031Jd2AJczdJb1afi/s=
-X-Google-Smtp-Source: ABdhPJzVAd63faUQ9SQu882FRAjDvxBCJF8XbXAIW/sxogjQqNvAFil9hhvBomoaLzfx7bRe0gBj4+p/TaTuRNYF97E=
-X-Received: by 2002:a05:6102:3166:: with SMTP id l6mr16896002vsm.51.1636369544315;
- Mon, 08 Nov 2021 03:05:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
- <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-2-andrea.merello@gmail.com>
- <CAHp75VdPhNbr6Y7ethsmw_Bd7DZOi4cyFHubPpOxa1LXibkUCQ@mail.gmail.com>
-In-Reply-To: <CAHp75VdPhNbr6Y7ethsmw_Bd7DZOi4cyFHubPpOxa1LXibkUCQ@mail.gmail.com>
-Reply-To: andrea.merello@gmail.com
-From:   Andrea Merello <andrea.merello@gmail.com>
-Date:   Mon, 8 Nov 2021 12:05:33 +0100
-Message-ID: <CAN8YU5OAdrivQuLAaQ8FyGbmGSR_Heb2Vz44PHgeQ=rrYuQBLQ@mail.gmail.com>
-Subject: Re: [v2 01/10] utils_macro: introduce find_closest_unsorted()
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        id S239054AbhKHLQ2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 06:16:28 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:54401 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239228AbhKHLQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:16:07 -0500
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 8E881240004;
+        Mon,  8 Nov 2021 11:13:13 +0000 (UTC)
+Date:   Mon, 8 Nov 2021 12:13:12 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
-Content-Type: text/plain; charset="UTF-8"
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 2/6] dt-bindings: net: convert mscc,vsc7514-switch
+ bindings to yaml
+Message-ID: <20211108121312.2dd46ec8@fixe.home>
+In-Reply-To: <20211103104511.sgynsapyqlsamovi@skbuf>
+References: <20211103091943.3878621-1-clement.leger@bootlin.com>
+        <20211103091943.3878621-3-clement.leger@bootlin.com>
+        <20211103104511.sgynsapyqlsamovi@skbuf>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il giorno gio 28 ott 2021 alle ore 12:26 Andy Shevchenko
-<andy.shevchenko@gmail.com> ha scritto:
->
-> On Thu, Oct 28, 2021 at 1:18 PM Andrea Merello <andrea.merello@gmail.com> wrote:
-> >
-> > This is similar to find_closest() and find_closest_descending(), but, it
-> > doesn't make any assumption about the array being ordered.
->
-> Macros in general are not so welcoming.
-> Why do you do it as a macro?
+Le Wed, 3 Nov 2021 10:45:12 +0000,
+Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
 
-Honestly, I did that just because find_closest() and
-find_closest_descending() are macros (i.e. to be consistent wrt them).
-I see no drawbacks in making this a regular function indeed; just, do
-you have any advice about where should it live?
-
-> ...
+> On Wed, Nov 03, 2021 at 10:19:39AM +0100, Clément Léger wrote:
+> > Convert existing bindings to yaml format. In the same time, remove non
+> > exiting properties ("inj" interrupt) and add fdma.
+> > 
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > ---
+> >  .../bindings/net/mscc,vsc7514-switch.yaml     | 184 ++++++++++++++++++
+> >  .../devicetree/bindings/net/mscc-ocelot.txt   |  83 --------
+> >  2 files changed, 184 insertions(+), 83 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/net/mscc-ocelot.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> > new file mode 100644
+> > index 000000000000..0c96eabf9d2d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
+> > @@ -0,0 +1,184 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml
+> > +
+> > +title: Microchip VSC7514 Ethernet switch controller
+> > +
+> > +maintainers:
+> > +  - Vladimir Oltean <vladimir.oltean@nxp.com>
+> > +  - Claudiu Manoil <claudiu.manoil@nxp.com>
+> > +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > +
+> > +description: |
+> > +  The VSC7514 Industrial IoT Ethernet switch contains four integrated dual media
+> > +  10/100/1000BASE-T PHYs, two 1G SGMII/SerDes, two 1G/2.5G SGMII/SerDes, and an
+> > +  option for either a 1G/2.5G SGMII/SerDes Node Processor Interface (NPI) or a
+> > +  PCIe interface for external CPU connectivity. The NPI/PCIe can operate as a
+> > +  standard Ethernet port.  
+> 
+> Technically any port can serve as NPI, not just the SERDES ones. People
+> are even using internal PHY ports as NPI.
+> https://patchwork.kernel.org/project/netdevbpf/patch/20210814025003.2449143-11-colin.foster@in-advantage.com/#24381029
+> 
+> Honestly I would not bother talking about NPI, it is confusing to see it here.
+> Anything having to do with the NPI port is the realm of DSA.
+> 
+> Just say how the present driver expects to control the device, don't
+> just copy stuff from marketing slides. In this case PCIe is irrelevant
+> too, this driver is for a platform device, and it only runs on the
+> embedded processor as far as I can tell.
 >
-> > +#include <linux/math.h>
->
-> Wondering if the current header misses other inclusions it's a direct user of.
 
-Looking at it, it seems that also __find_closest() actually needs
-math.h because it (apparently incorrectly[*]) uses
-DIV_ROUND_CLOSEST()..
+Ack
+ 
+> > +
+> > +  The device provides a rich set of Industrial Ethernet switching features such
+> > +  as fast protection switching, 1588 precision time protocol, and synchronous
+> > +  Ethernet. Advanced TCAM-based VLAN and QoS processing enable delivery of
+> > +  differentiated services. Security is assured through frame processing using
+> > +  Microsemi’s TCAM-based Versatile Content Aware Processor.  
+> 
+> Above you say Microchip, and here you say Microsemi.
+> 
+> > +
+> > +  In addition, the device contains a powerful 500 MHz CPU enabling full
+> > +  management of the switch.  
+> 
+> ~powerful~
+> 
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^switch@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    const: mscc,vsc7514-switch
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: system target
+> > +      - description: rewriter target
+> > +      - description: qs target
+> > +      - description: PTP target
+> > +      - description: Port0 target
+> > +      - description: Port1 target
+> > +      - description: Port2 target
+> > +      - description: Port3 target
+> > +      - description: Port4 target
+> > +      - description: Port5 target
+> > +      - description: Port6 target
+> > +      - description: Port7 target
+> > +      - description: Port8 target
+> > +      - description: Port9 target
+> > +      - description: Port10 target
+> > +      - description: QSystem target
+> > +      - description: Analyzer target
+> > +      - description: S0 target
+> > +      - description: S1 target
+> > +      - description: S2 target
+> > +      - description: fdma target
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: sys
+> > +      - const: rew
+> > +      - const: qs
+> > +      - const: ptp
+> > +      - const: port0
+> > +      - const: port1
+> > +      - const: port2
+> > +      - const: port3
+> > +      - const: port4
+> > +      - const: port5
+> > +      - const: port6
+> > +      - const: port7
+> > +      - const: port8
+> > +      - const: port9
+> > +      - const: port10
+> > +      - const: qsys
+> > +      - const: ana
+> > +      - const: s0
+> > +      - const: s1
+> > +      - const: s2
+> > +      - const: fdma
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    items:
+> > +      - description: PTP ready
+> > +      - description: register based extraction
+> > +      - description: frame dma based extraction
+> > +
+> > +  interrupt-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: ptp_rdy
+> > +      - const: xtr
+> > +      - const: fdma
+> > +
+> > +  ethernet-ports:
+> > +    type: object
+> > +    patternProperties:
+> > +      "^port@[0-9a-f]+$":
+> > +        type: object
+> > +        description: Ethernet ports handled by the switch
+> > +
+> > +        allOf:
+> > +          - $ref: ethernet-controller.yaml#  
+> 
+> I'm pretty sure Rob will comment that this can be simplified to:
+> 
+>            $ref: ethernet-controller.yaml#
+> 
+> without the allOf: and "-".
 
-[*]Indeed it seems there is another issue here about find_closest():
-for example it picks the 1st element while searching for "2" in an
-array like this: {1,2,..} ..This needs to be reported/fixed..
+Ok
+
+> 
+> > +
+> > +        properties:
+> > +          '#address-cells':
+> > +            const: 1
+> > +          '#size-cells':
+> > +            const: 0
+> > +
+> > +          reg:
+> > +            description: Switch port number
+> > +
+> > +          phy-handle: true
+> > +
+> > +          mac-address: true
+> > +
+> > +        required:
+> > +          - reg
+> > +          - phy-handle  
+> 
+> Shouldn't there be additionalProperties: false for the port node as well?
+> 
+> And actually, phy-handle is not strictly required, if you have a
+> fixed-link. I think you should use oneOf.
+
+Ok
+
+> 
+> And you know what else is required? phy-mode. See commits e6e12df625f2
+> ("net: mscc: ocelot: convert to phylink") and eba54cbb92d2 ("MIPS: mscc:
+> ocelot: mark the phy-mode for internal PHY ports").
+
+Ok, so I guess the binding text file was not updated back then. I'll fix
+that.
+
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - ethernet-ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    switch@1010000 {
+> > +      compatible = "mscc,vsc7514-switch";
+> > +      reg = <0x1010000 0x10000>,
+> > +            <0x1030000 0x10000>,
+> > +            <0x1080000 0x100>,
+> > +            <0x10e0000 0x10000>,
+> > +            <0x11e0000 0x100>,
+> > +            <0x11f0000 0x100>,
+> > +            <0x1200000 0x100>,
+> > +            <0x1210000 0x100>,
+> > +            <0x1220000 0x100>,
+> > +            <0x1230000 0x100>,
+> > +            <0x1240000 0x100>,
+> > +            <0x1250000 0x100>,
+> > +            <0x1260000 0x100>,
+> > +            <0x1270000 0x100>,
+> > +            <0x1280000 0x100>,
+> > +            <0x1800000 0x80000>,
+> > +            <0x1880000 0x10000>,
+> > +            <0x1040000 0x10000>,
+> > +            <0x1050000 0x10000>,
+> > +            <0x1060000 0x10000>,
+> > +            <0x1a0 0x1c4>;
+> > +      reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
+> > +            "port2", "port3", "port4", "port5", "port6",
+> > +            "port7", "port8", "port9", "port10", "qsys",
+> > +            "ana", "s0", "s1", "s2", "fdma";
+> > +      interrupts = <18 21 16>;
+> > +      interrupt-names = "ptp_rdy", "xtr", "fdma";
+> > +
+> > +      ethernet-ports {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        port0: port@0 {
+> > +          reg = <0>;
+> > +          phy-handle = <&phy0>;
+> > +        };
+> > +        port1: port@1 {
+> > +          reg = <1>;
+> > +          phy-handle = <&phy1>;
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > +#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
+> > diff --git a/Documentation/devicetree/bindings/net/mscc-ocelot.txt b/Documentation/devicetree/bindings/net/mscc-ocelot.txt
+> > deleted file mode 100644
+> > index 3b6290b45ce5..000000000000
+> > --- a/Documentation/devicetree/bindings/net/mscc-ocelot.txt
+> > +++ /dev/null
+> > @@ -1,83 +0,0 @@
+> > -Microsemi Ocelot network Switch
+> > -===============================
+> > -
+> > -The Microsemi Ocelot network switch can be found on Microsemi SoCs (VSC7513,
+> > -VSC7514)
+> > -
+> > -Required properties:
+> > -- compatible: Should be "mscc,vsc7514-switch"
+> > -- reg: Must contain an (offset, length) pair of the register set for each
+> > -  entry in reg-names.
+> > -- reg-names: Must include the following entries:
+> > -  - "sys"
+> > -  - "rew"
+> > -  - "qs"
+> > -  - "ptp" (optional due to backward compatibility)
+> > -  - "qsys"
+> > -  - "ana"
+> > -  - "portX" with X from 0 to the number of last port index available on that
+> > -    switch
+> > -- interrupts: Should contain the switch interrupts for frame extraction,
+> > -  frame injection and PTP ready.
+> > -- interrupt-names: should contain the interrupt names: "xtr", "inj". Can contain
+> > -  "ptp_rdy" which is optional due to backward compatibility.
+> > -- ethernet-ports: A container for child nodes representing switch ports.
+> > -
+> > -The ethernet-ports container has the following properties
+> > -
+> > -Required properties:
+> > -
+> > -- #address-cells: Must be 1
+> > -- #size-cells: Must be 0
+> > -
+> > -Each port node must have the following mandatory properties:
+> > -- reg: Describes the port address in the switch
+> > -
+> > -Port nodes may also contain the following optional standardised
+> > -properties, described in binding documents:
+> > -
+> > -- phy-handle: Phandle to a PHY on an MDIO bus. See
+> > -  Documentation/devicetree/bindings/net/ethernet.txt for details.
+> > -
+> > -Example:
+> > -
+> > -	switch@1010000 {
+> > -		compatible = "mscc,vsc7514-switch";
+> > -		reg = <0x1010000 0x10000>,
+> > -		      <0x1030000 0x10000>,
+> > -		      <0x1080000 0x100>,
+> > -		      <0x10e0000 0x10000>,
+> > -		      <0x11e0000 0x100>,
+> > -		      <0x11f0000 0x100>,
+> > -		      <0x1200000 0x100>,
+> > -		      <0x1210000 0x100>,
+> > -		      <0x1220000 0x100>,
+> > -		      <0x1230000 0x100>,
+> > -		      <0x1240000 0x100>,
+> > -		      <0x1250000 0x100>,
+> > -		      <0x1260000 0x100>,
+> > -		      <0x1270000 0x100>,
+> > -		      <0x1280000 0x100>,
+> > -		      <0x1800000 0x80000>,
+> > -		      <0x1880000 0x10000>;
+> > -		reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
+> > -			    "port2", "port3", "port4", "port5", "port6",
+> > -			    "port7", "port8", "port9", "port10", "qsys",
+> > -			    "ana";
+> > -		interrupts = <18 21 22>;
+> > -		interrupt-names = "ptp_rdy", "xtr", "inj";
+> > -
+> > -		ethernet-ports {
+> > -			#address-cells = <1>;
+> > -			#size-cells = <0>;
+> > -
+> > -			port0: port@0 {
+> > -				reg = <0>;
+> > -				phy-handle = <&phy0>;
+> > -			};
+> > -			port1: port@1 {
+> > -				reg = <1>;
+> > -				phy-handle = <&phy1>;
+> > -			};
+> > -		};
+> > -	};
+> > -- 
+> > 2.33.0
+>   
 
 
 
-> ...
->
-> > +/**
-> > + * find_closest_unsorted - locate the closest element in a unsorted array
->
-> an
->
-> > + * @x: The reference value.
-> > + * @a: The array in which to look for the closest element.
-> > + * @as: Size of 'a'.
-> > + *
-> > + * Similar to find_closest() but 'a' has no requirement to being sorted
-> > + */
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+-- 
+Clément Léger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
