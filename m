@@ -2,112 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 512CF449897
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 16:40:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72724449909
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241057AbhKHPn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 10:43:29 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:33728 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236257AbhKHPnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 10:43:22 -0500
-Received: by mail-ua1-f51.google.com with SMTP id b17so32384244uas.0;
-        Mon, 08 Nov 2021 07:40:38 -0800 (PST)
+        id S236647AbhKHQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:07:42 -0500
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:34680 "EHLO
+        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232136AbhKHQHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:07:42 -0500
+Received: by mail-ua1-f50.google.com with SMTP id b3so32532853uam.1;
+        Mon, 08 Nov 2021 08:04:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=KBu6QKjGhdK2FHNHQPlkpimyM3UHlD5aoQZ6ixhgepo=;
-        b=Cm9nvqYCntDhemvOYiyiajW2tEgbI01bOPykF+skRxe37mSB15SBxtckAPsMukuMlS
-         p1Sp7crVluC2UV5UhPE8wju2HAAJTW1H8FkogFMYmUULk4lorloLHN2wJI9l+L7RqgmK
-         MkYffE5bzLANC5mbXhua3OlArQMT+g/usz96hXeRlcWsy7P6YU2VYqqXzqDKY6vrVS6g
-         CpvmlW6B76/BMB/baw2VK1PF4bn3P5ald9kz1qnhwCQ7BLGE8TADMYZff3CYI9B2dLyn
-         PIx2D4hftiQ2EAi1fhO6/z9bGvbuGKZZBgRVnjaLKT2pu9Z7sh6ABwmieow6crJWZ1PZ
-         83YQ==
-X-Gm-Message-State: AOAM531L+G72x5rVKb3o8GL2aA+Aj8L1TvYB7KagV5S+0WhUfO37u4tx
-        2L/rGIGE4bxjFgXLHW3cN4H+Xr//jTTu3NgK
-X-Google-Smtp-Source: ABdhPJz/jue8Z6GG1PErHB8O3XJFLfnkZOGUleG33LUu7RCd/up1lWI52QGkx2fTJzcEjWMDAl+vcA==
-X-Received: by 2002:ab0:6eca:: with SMTP id c10mr939380uav.118.1636386035571;
-        Mon, 08 Nov 2021 07:40:35 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id g187sm854639vsc.10.2021.11.08.07.40.35
+        bh=WNd0nRET2KFu0g+CQKlMmSIy/neES2dkVOIw/yi259I=;
+        b=KyOrxX9zyEgrC7OVKnHZCNtaxPbQKhxefVL2oG4MwFeYMNByeeg08fSONAF7ZGncoh
+         LTHtOs7PsgLvT+H/M1um85brZbl/4pDSkuDXXd0V8gWPBLnH6kna6ncW+S/fNKSeTd/C
+         rEPzqB0ayJOYMslb/S83qe2IyUQRmhcOtUZ3Xq4IGh4Fh3FQV90Eu+EEm7tP+8doxpNq
+         h/62SHJRhmp06x9yjgi55+8aDX/gpHQvoJ3QnPH1UOG4ZfuMcRYarsRJYCPpugblEzfY
+         OGap2OFBG4QZsCdfMUvp9rtBf36NlX48qKTtDkQ6HhM/POi0edyNe59RTVDcnUviuc7Q
+         cT8Q==
+X-Gm-Message-State: AOAM530boxuj1aGiH09/mTNYii+rnSBMJJiPI/kLpXdr/XezYJIPOyHm
+        iJUcfB0Tzdux1tbDjaSNWGw5BdDWIIB5eHBw
+X-Google-Smtp-Source: ABdhPJzQD1sGugsMPTNKgJKYcqnUU3GW59y2PdvGbaP0XOuHNTC4LAtQypGvHSBe6op6E77lFKt3qg==
+X-Received: by 2002:ab0:3097:: with SMTP id h23mr66450ual.107.1636387496858;
+        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id g187sm864396vsc.10.2021.11.08.08.04.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 07:40:35 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id l43so32302428uad.4;
-        Mon, 08 Nov 2021 07:40:35 -0800 (PST)
-X-Received: by 2002:ab0:15a1:: with SMTP id i30mr934716uae.122.1636386035060;
- Mon, 08 Nov 2021 07:40:35 -0800 (PST)
+        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
+Received: by mail-vk1-f179.google.com with SMTP id p22so6768754vke.7;
+        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
+X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr373301vko.7.1636387495375;
+ Mon, 08 Nov 2021 08:04:55 -0800 (PST)
 MIME-Version: 1.0
-References: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211029124437.20721-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20211029124437.20721-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20211104160858.15550-1-biju.das.jz@bp.renesas.com> <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 8 Nov 2021 16:40:24 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXwJ043PuJnNU=L9+oN05ExjU-Km9CWBoXO9zqAVizByg@mail.gmail.com>
-Message-ID: <CAMuHMdXwJ043PuJnNU=L9+oN05ExjU-Km9CWBoXO9zqAVizByg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] pinctrl: renesas: pinctrl-rzg2l: Add support to
- get/set drive-strength and output-impedance-ohms
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+Date:   Mon, 8 Nov 2021 17:04:44 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
+Message-ID: <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
+Subject: Re: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+Hi Biju,
 
-On Fri, Oct 29, 2021 at 2:45 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> RZ/G2L supports two groups of pins Group-A and Group-B. For Group-A
-> pins drive-strength can be configured and for Group-B output-impedance
-> can be configured.
+On Thu, Nov 4, 2021 at 5:09 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Describe the WDT hardware in the RZ/G2L series.
 >
-> This patch splits PIN_CFG_IOLH macro to PIN_CFG_IOLH_A/B and adds
-> support to get/set drive-strength and output-impedance-ohms for the
-> supported pins.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
 Thanks for your patch!
 
-> --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
 
-> @@ -501,7 +507,7 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
->         unsigned int arg = 0;
->         unsigned long flags;
->         void __iomem *addr;
-> -       u32 port = 0;
-> +       u32 port = 0, reg;
-
-"unsigned int index", for symmetry with rzg2l_pinctrl_pinconf_set()?
-
->         u32 cfg = 0;
->         u8 bit = 0;
+> @@ -75,17 +79,49 @@ required:
+>    - reg
+>    - clocks
 >
-> @@ -549,6 +555,24 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
->                 break;
->         }
->
-> +       case PIN_CONFIG_DRIVE_STRENGTH: {
-> +               if (!(cfg & PIN_CFG_IOLH_A))
-> +                       return -EINVAL;
+> -if:
+> -  not:
+> -    properties:
+> -      compatible:
+> -        contains:
+> -          enum:
+> -            - renesas,rza-wdt
+> -then:
+> -  required:
+> -    - power-domains
+> -    - resets
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
 > +
-> +               reg = rzg2l_read_pin_config(pctrl, port_pin, IOLH(port), bit, IOLH_MASK);
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - renesas,rza-wdt
+> +    then:
+> +      required:
+> +        - power-domains
+> +        - resets
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,rzg2l-wdt
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: wdt
+> +            - const: perrout
+> +        clocks:
+> +          items:
+> +            - description: Main clock
+> +            - description: Register access clock
+> +        clock-names:
+> +          items:
+> +            - const: oscclk
+> +            - const: pclk
 
-port_pin still under discussion, cfr. my comments for the other
-patches in this series.
+Usually we put the internal module clock first.
 
-The rest looks good to me, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Please add (at least the first one):
+
+     required:
+       - clock-names
+       - interrupt-names
+
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        clocks:
+> +          maxItems: 1
+>
+>  additionalProperties: false
 
 Gr{oetje,eeting}s,
 
