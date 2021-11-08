@@ -2,110 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48656449A20
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:45:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94974449A2A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:45:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241341AbhKHQrr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 11:47:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241352AbhKHQrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:47:46 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC001C061746;
-        Mon,  8 Nov 2021 08:45:01 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id s136so15648184pgs.4;
-        Mon, 08 Nov 2021 08:45:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xjWtduiNsj6Bi3f4t7JE2k4ZxRzVTBo3OlUblSXbUOA=;
-        b=HoPCsEWPsJzxSomLl9MtjTikV0eDo0q8QPURtJQYOXlWgsAvIEy+13YFZNXkW4M8hm
-         J1SqsoQzKg/E2u6E/3se8E0tqACqvD2LTKcRmKAb3YWC3nVMxKU1YRhFpVkCQfXQ472W
-         Nxo62AZQrFL2T/2jIW2TjlFd7fjLhrWsTUt9gjGzgGpnVwDhBYVOCiDLjZ/KuQO6lyM2
-         hiZ100h6zghGp0sMoat55L6Nk+WkN3egSpMvqYCaOH+lBbW4nuwILp1JxpARTlfg8J1U
-         NNNuZLLqhtplE3soC3nP8fYO0YjaDFOz4LDv6hmBka+3GGfrswnmrOX/R92rSI2Aglu1
-         WdNA==
+        id S241339AbhKHQsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:48:06 -0500
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:36684 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241404AbhKHQsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:48:02 -0500
+Received: by mail-ua1-f47.google.com with SMTP id e10so32774922uab.3;
+        Mon, 08 Nov 2021 08:45:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xjWtduiNsj6Bi3f4t7JE2k4ZxRzVTBo3OlUblSXbUOA=;
-        b=EzfEUjlScWDARgWER2I2Ql0khcjMVC6uhytnqOesWCAMWkZ9KImsR+M1oKm4paPW41
-         YxCwnmSBlFbjYKA+Qnv7yJTqIfgZCqJKprofbwMtbR0GV4etAzxbrC/9zMu4JBYebXuh
-         6MHYQ9rPrfpM/rhdgincyVAPgY3gRBR4DOP3xye2Ogf/VeLgHaSO9IStPTsYtUvGOXws
-         8Tcc72RDkfO0a1LwlDrIvAZtuJnP42BCsbbFPItVEapjbyLpvsZof/WuyEa3VtogJnth
-         k2atSpAmVSHPSsjrl+C/nb5PioErL7QTu70vH6wbNtbNFC7OSuoM3+bJdeZvfUxHsdyd
-         CowA==
-X-Gm-Message-State: AOAM530eHL/A4LNg7YZGf6PsZmI5Bmkz9Gs2r6+o5cXvevJ0zjOVsNLL
-        54hTTLJvTmSpIUnRR/i5ajc=
-X-Google-Smtp-Source: ABdhPJyUyh5neBvgx+NnI2a3lyvv0Lv4NVNDbeK6bOgb+eZ3Im9fbnJJ43E/RmvueSbvn+Q55HKu+A==
-X-Received: by 2002:a05:6a00:148c:b0:49f:e048:25dc with SMTP id v12-20020a056a00148c00b0049fe04825dcmr5470184pfu.12.1636389901393;
-        Mon, 08 Nov 2021 08:45:01 -0800 (PST)
-Received: from jaschultz-Thelio-Major.corp.microsoft.com ([2001:4898:80e8:36:87e1:381d:5b89:8aef])
-        by smtp.gmail.com with ESMTPSA id 145sm15980974pfx.87.2021.11.08.08.45.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 08:45:01 -0800 (PST)
-From:   Jarrett Schultz <jaschultzms@gmail.com>
-X-Google-Original-From: Jarrett Schultz <jaschultz@microsoft.com>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Felipe Balbi <balbi@kernel.org>,
-        Jarrett Schultz <jaschultzMS@gmail.com>,
-        Jarrett Schultz <jaschultz@microsoft.com>
-Subject: [PATCH v2 5/5] arm64: dts: qcom: surface-duo: Add surface xbl
-Date:   Mon,  8 Nov 2021 08:44:49 -0800
-Message-Id: <20211108164449.3036210-6-jaschultz@microsoft.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211108164449.3036210-1-jaschultz@microsoft.com>
-References: <20211108164449.3036210-1-jaschultz@microsoft.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cM16ccq56jKmEiW9Mc6XePx8TDSNH34IQxb9MWE7m6c=;
+        b=xyDqDp6uM3v5lhrFChw3nhJyoBHpu+SnbcAwrn7YiqCOXWR32CSr3UKp0bPyqI+WLj
+         9NL3re+NDRNNPZuaNzNW4dOdLI19snI4NqDoXJZPUorysImk7o/ZRXCO++1w67BxFho0
+         pr+UpcUgLYfo5PmyKsrQ6Oq+oVhxgPK6q20rJPMTiYozbyzhVRdGVFchUF+5h/jo5BOU
+         lLpFPXfIY9Gqm+ojQkBQxUMg9QsX1uofmQ6YL27Zp76tIittzznPX55rzKVhIRH2ci/g
+         9DCefckW5fEw2O+Nu70KPJuSE2w8JpqpBP64e4gZGRH5I2cc5TVsWDWmN7nleLT134ke
+         U5rw==
+X-Gm-Message-State: AOAM530v5Lx8Yo9RzuHOgHCqAkB6+js5BWF9Wwt9opymrZsBAKovZkyL
+        /6VDzXpYl1NZWTzJNGBmy00eAe2g9yus7wkL
+X-Google-Smtp-Source: ABdhPJyIlqX7vjkPNEp1GCnwPD8LI2Ud/NQTkuGA3QlKgu7D19zl1uTmk2i6tcPJy3pwuF0+fFOb2g==
+X-Received: by 2002:a05:6102:3709:: with SMTP id s9mr625143vst.10.1636389917002;
+        Mon, 08 Nov 2021 08:45:17 -0800 (PST)
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
+        by smtp.gmail.com with ESMTPSA id p69sm2903929uap.1.2021.11.08.08.45.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 08:45:16 -0800 (PST)
+Received: by mail-ua1-f48.google.com with SMTP id q13so32776112uaq.2;
+        Mon, 08 Nov 2021 08:45:16 -0800 (PST)
+X-Received: by 2002:a05:6102:2910:: with SMTP id cz16mr40232813vsb.9.1636389916397;
+ Mon, 08 Nov 2021 08:45:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211103195600.23964-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211103195600.23964-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211103195600.23964-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 8 Nov 2021 17:45:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUH+FC3SHxn3L9wxFt+8XJfyRZ_bP7F67Yoaco5QhickA@mail.gmail.com>
+Message-ID: <CAMuHMdUH+FC3SHxn3L9wxFt+8XJfyRZ_bP7F67Yoaco5QhickA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: r9a07g044: Add SCIF[1-4] nodes
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce device tree source for the surface xbl driver.
+On Wed, Nov 3, 2021 at 8:56 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add SCIF[1-4] nodes to r9a07g044 (RZ/G2L) SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.17.
 
----
+Gr{oetje,eeting}s,
 
-Changes in v2:
- - Updated to reference an offset inside of imem
+                        Geert
 
----
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
- .../boot/dts/qcom/sm8150-microsoft-surface-duo.dts     | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-index 736da9af44e0..25a4ee05ee2b 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-@@ -429,6 +429,16 @@ &i2c19 {
- 	/* MAX34417 @ 0x1e */
- };
- 
-+&imem {
-+	status = "okay";
-+
-+	xbl@a94 {
-+		compatible = "microsoft,sm8150-surface-duo-xbl";
-+		reg = <0xa94 0x100>;
-+		status = "okay";
-+	};
-+};
-+
- &pon {
- 	pwrkey {
- 		status = "okay";
--- 
-2.25.1
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
