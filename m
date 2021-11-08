@@ -2,137 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C03FD449D9A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 22:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FF0449DA5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 22:09:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239809AbhKHVIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 16:08:38 -0500
-Received: from mail-co1nam11on2066.outbound.protection.outlook.com ([40.107.220.66]:8353
-        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239758AbhKHVIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 16:08:32 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F97eEIov8syS+rvb001OD6KWZIVBNbPQji+VyrD67JqCLZBiUMdoTzPrrFdhxG7ngmGvAZnPjf5AWVXeEonxUPqny2N31iRRWEtIAinQAzRL4O1oGdFsSErhVIZgPQhgaZ5iybu7sP/4MxX+xK3NqMmQYY5+Yk+vAZtGSFSmSXmeDCG8e/gfa4UIP8tO0T7yyhSJIQas01BiyOt1ba6zWNY5QTLy8+xPwzWmDbCA8lzsCNYXXpY9vygHpdpYbKvlM0ca7u4UZzErDVlYa0A0lNWeqOK2b72SBdSaY3zp/rbs50/B/BE2CHpRSrkGSgUH0xas5J8X6Q334ZppX1T1tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P3PUW1DuRbUlyeth8cIQGVD+Ka3aIkAuacFplTu2g0E=;
- b=ZN2GvJ1p7p3jAlSGEy4KyeD5iCD8Rc2DHEdDhEM6cUCFsUIxsCExrmg54ZokfOUhfVDGBsuyhifFmxzBqDpFN9gyxoEqJNnhQcfD5pvuwHc1ggEcvSyHyRccz0+OxiK9PVvMwaoKLq9E8k91Qmo0YsfaIa+XGJn8dVC4DQ5m+drWnzKcRFvA50K0ipJ1R9IxvPsXndXSrSkZeXRr3LtPn0Nj46+gyTMWmLULI6xnlczlp4qp8IXdUWl72p0GGRh9XeBd/TXYBH7v90jGWZyhzgDRAypOmtbBrYEI+NN2CUdlGxZ1evEBbdwidLoCAMz/8Sy4hjt1s819Y/Sxb7x3Qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.80.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P3PUW1DuRbUlyeth8cIQGVD+Ka3aIkAuacFplTu2g0E=;
- b=R+GGHHiSyPnsH9wG0VD4V0SHIQMcX0OyGFsczRaikO0x91U1/p1kQ47jPOBs1/wxs7dH9v1GczHZDLruN4SEozCtfZR/soupfLYkrbqgUDR90GA8LuSdKPfC7LRyz9xhPPC2g5Q6nuNMGzwoEPwkRVk/dCEf2S0QSFOjztQmO2A=
-Received: from DM6PR03CA0089.namprd03.prod.outlook.com (2603:10b6:5:333::22)
- by BYAPR02MB4917.namprd02.prod.outlook.com (2603:10b6:a03:47::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.13; Mon, 8 Nov
- 2021 21:05:44 +0000
-Received: from DM3NAM02FT026.eop-nam02.prod.protection.outlook.com
- (2603:10b6:5:333:cafe::69) by DM6PR03CA0089.outlook.office365.com
- (2603:10b6:5:333::22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10 via Frontend
- Transport; Mon, 8 Nov 2021 21:05:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.80.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.80.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.80.198; helo=xir-pvapexch01.xlnx.xilinx.com;
-Received: from xir-pvapexch01.xlnx.xilinx.com (149.199.80.198) by
- DM3NAM02FT026.mail.protection.outlook.com (10.13.5.129) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4669.10 via Frontend Transport; Mon, 8 Nov 2021 21:05:44 +0000
-Received: from xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) by
- xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 8 Nov 2021 21:05:41 +0000
-Received: from smtp.xilinx.com (172.21.105.198) by
- xir-pvapexch01.xlnx.xilinx.com (172.21.17.15) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Mon, 8 Nov 2021 21:05:41 +0000
-Envelope-to: anand.ashok.dumbre@xilinx.com,
- git@xilinx.com,
- michal.simek@xilinx.com,
- linux-kernel@vger.kernel.org,
- jic23@kernel.org,
- lars@metafoo.de,
- linux-iio@vger.kernel.org,
- pmeerw@pmeerw.net,
- devicetree@vger.kernel.org
-Received: from [10.71.188.1] (port=52274 helo=xiranandash40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <anand.ashok.dumbre@xilinx.com>)
-        id 1mkBpl-0008LJ-2x; Mon, 08 Nov 2021 21:05:41 +0000
-From:   Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-To:     <linux-kernel@vger.kernel.org>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <linux-iio@vger.kernel.org>, <git@xilinx.com>,
-        <michal.simek@xilinx.com>, <pmeerw@pmeerw.net>,
-        <devicetree@vger.kernel.org>
-CC:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Subject: [PATCH v8 4/4] MAINTAINERS: Add maintainer for xilinx-ams
-Date:   Mon, 8 Nov 2021 21:05:09 +0000
-Message-ID: <20211108210509.29870-5-anand.ashok.dumbre@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211108210509.29870-1-anand.ashok.dumbre@xilinx.com>
-References: <20211108210509.29870-1-anand.ashok.dumbre@xilinx.com>
+        id S236597AbhKHVMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 16:12:13 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:56494
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231996AbhKHVMM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 16:12:12 -0500
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C2D493F1EF
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 21:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1636405766;
+        bh=Va/pwg0yU2yK/e7gM+AfCFIYpglqXBbYNHqGSFsajyo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=c+iPqrXy65aASkqXdMWjvhhmWe8umjFx6l67t1aO0QddA+YP6yBBke+5WlgEInaO9
+         WxBIIWg7HJdqDyEK1D/p3e5J/Nl6HtBZKgSS8xQil9FfKUCSt6H/pPLei9RZONTE0H
+         y3f1XXDQ1tzzZcj76NZE/oNYO6JJ2ylmICRmdwT68ycKVYLlg6AVyFRcFWg8CqV16Y
+         CuXW7+8NU0UzYCzmy2yumIEksfK3wwtnkFrSUOQxFpClgET5TNkYufk7rsM9GHQYpW
+         /DSEnicj5QMdMaFgMNQJFivIFd1ytnGsJDiTI0TfhxlvH/SEXF+m5p74JicxcvhKJY
+         XQuX+ZDNaCkpQ==
+Received: by mail-lf1-f69.google.com with SMTP id s18-20020ac25c52000000b004016bab6a12so6993857lfp.21
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 13:09:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Va/pwg0yU2yK/e7gM+AfCFIYpglqXBbYNHqGSFsajyo=;
+        b=TdEdkq7sKbRy74Kgfu2+0ihULZ2BSCzGHk/PYNbLLE01l+kvjJ7Gd+YXb4PcjdMYjy
+         YfB9SGUj4nmXlmTbKtBd4oybGuw6+hYtxrewHlR/UdxuXdDXp8l/XEaTbwnyAQ+JpvLl
+         Xg+o0h+sBHEVPj8CxvmCs139POswDVNohOHhf77EzvkIVxC8HJfz5Kl+FtxUOvFQoLQ7
+         6I8QQcB0Z1zWkYod23M9GJ6Zb2VBp7ndCjsQLsD5PwGs3G5CAYMtEeQn/2bvMsuwpFY6
+         JSoSwGk522yx+//PTaa7lbikEfaqf7Lp8rIn0ZP/kM53lBhJ7FAmmu6+UP6UOnZ/ePr2
+         m5fA==
+X-Gm-Message-State: AOAM530Wrnhq4pYnU03OkYc7SdtpHKi0BHLYyCqcJhMUv/VMY1Hu/S1x
+        bJh68KwP+xlQJ9VrgxcGsaEvqQ2r7JBgmtrNEvxFwB9wph/vVNdGTFy8Ke3hiMhzidqg0qf+lk1
+        3OWkR2DeyYTlybB6Vt8KxUCIbycjuOFlC8JEjQtM=
+X-Received: by 2002:a05:651c:11cf:: with SMTP id z15mr2048829ljo.30.1636405766043;
+        Mon, 08 Nov 2021 13:09:26 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJz5zuS8P1mHA/OLv+7/rIK0KelVh9uEKzH2K354xcsLSXE2l72piSekseZIEjgtyZT8qG201w==
+X-Received: by 2002:a05:651c:11cf:: with SMTP id z15mr2048814ljo.30.1636405765859;
+        Mon, 08 Nov 2021 13:09:25 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id p21sm1933204lfg.18.2021.11.08.13.09.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 13:09:25 -0800 (PST)
+Message-ID: <8a316610-c0f6-dadd-4745-bd3aff76372c@canonical.com>
+Date:   Mon, 8 Nov 2021 22:09:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5aa513c1-1dbf-405a-b769-08d9a2fb87c4
-X-MS-TrafficTypeDiagnostic: BYAPR02MB4917:
-X-Microsoft-Antispam-PRVS: <BYAPR02MB49179F547067D7A01F82EA18A9919@BYAPR02MB4917.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z9TRx63/09N+tTVTNgqeF3eG2oBaHfwNdJSL7h0mAq7Z5n510ySXd4AqIX5jKuJvVZ4SH5HfTSxCzKv1Ea06ri8oRkvTd4Y1wFWXX1aBFPqD6pxirliJxPwzuQOt9m7BfdW+mTOmj/YJKtDd1j4SPhpjSL4Iisdf3j8rwBSwTNi+ul4Rtu16hybPB2Zad+n6n0zKgI7DM4DFpIosnlxCPDU+1gjhKu/PIZSwBj2bJUti4yKZIXFYatRGjL35/e3DUXTPDPmxiIjyZA8iDYTSE/4fQjdAhNhyjiKwmVppozJUIQonbQJNVlvkGNRqKUYNS0EmG4RPV/wrYXD/92dJK0AZDo84p3PH8jnYR2dqNrQkWNPzrfonqNANANtV3Vyvu5j+42BXZxBnS/8+cLSdLeKVT36081PNo3lgUgnc7X4Kw54qg8uPv1Bo8MkgXoc58Uv9l5WQKfX4RCLarbpWshZD4rPJ+Q5XG7lJhcGmB00GVAwqyDhI7cqQ8l8f/JJLAHG98RfVZQ9J0EpQmUdUR7AB9BEQ9okOJ7avMbrUcNfUTuhwdfD3auCaMPGQul6FXPbN22rUa0zAzQ9zN34MyPnhlc+HyYsmgN9ng2jc0mAL/fg8XEVwbbpo4FcjPEXqOlC4Zxr300V/706RxWBuSrf8OXCxXoLw1RqdJjAiKMrp7uv92Cx71lAAyMdHRH816+N3BUaBjS+Axx9vOnDrDnpDHM8LVjWwym/zPW0WoKP2MEXEJRNKBFyrBrPRAKOd
-X-Forefront-Antispam-Report: CIP:149.199.80.198;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:xir-pvapexch01.xlnx.xilinx.com;PTR:unknown-80-198.xilinx.com;CAT:NONE;SFS:(36840700001)(46966006)(426003)(4744005)(336012)(1076003)(8676002)(36860700001)(8936002)(26005)(70206006)(186003)(70586007)(82310400003)(107886003)(103116003)(2616005)(6666004)(508600001)(110136005)(36756003)(4326008)(47076005)(36906005)(316002)(356005)(9786002)(2906002)(7696005)(5660300002)(7636003)(102446001)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2021 21:05:44.5104
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5aa513c1-1dbf-405a-b769-08d9a2fb87c4
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.80.198];Helo=[xir-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT026.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4917
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH 03/13] dt-bindings: soc/microchip: update sys ctrlr compat
+ string
+Content-Language: en-US
+To:     conor.dooley@microchip.com, linus.walleij@linaro.org,
+        bgolaszewski@baylibre.com, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        gregkh@linuxfoundation.org, lewis.hanly@microchip.com,
+        daire.mcnamara@microchip.com, atish.patra@wdc.com,
+        ivan.griffin@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
+Cc:     geert@linux-m68k.org, bin.meng@windriver.com
+References: <20211108150554.4457-1-conor.dooley@microchip.com>
+ <20211108150554.4457-4-conor.dooley@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211108150554.4457-4-conor.dooley@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintaner entry for xilinx-ams driver.
+On 08/11/2021 16:05, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Update 'compatible' strings for system controller drivers to the
+> approved Microchip name.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/mailbox/microchip,polarfire-soc-mailbox.yaml     | 4 +++-
+>  .../soc/microchip/microchip,polarfire-soc-sys-controller.yaml | 4 +++-
+>  drivers/mailbox/mailbox-mpfs.c                                | 1 +
+>  3 files changed, 7 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+> index bbb173ea483c..b08c8a158eea 100644
+> --- a/Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: microchip,polarfire-soc-mailbox
+> +    enum:
+> +      - microchip,polarfire-soc-mailbox
+> +      - microchip,mpfs-mailbox
+>  
+>    reg:
+>      items:
+> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+> index 2cd3bc6bd8d6..d6c953cd154b 100644
+> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+> @@ -19,7 +19,9 @@ properties:
+>      maxItems: 1
+>  
+>    compatible:
+> -    const: microchip,polarfire-soc-sys-controller
+> +    enum:
+> +      - microchip,polarfire-soc-sys-controller
+> +      - microchip,mpfs-sys-controller
+>  
+>  required:
+>    - compatible
+> diff --git a/drivers/mailbox/mailbox-mpfs.c b/drivers/mailbox/mailbox-mpfs.c
+> index 0d6e2231a2c7..9d5e558a6ee6 100644
+> --- a/drivers/mailbox/mailbox-mpfs.c
+> +++ b/drivers/mailbox/mailbox-mpfs.c
+> @@ -233,6 +233,7 @@ static int mpfs_mbox_probe(struct platform_device *pdev)
+>  
+>  static const struct of_device_id mpfs_mbox_of_match[] = {
+>  	{.compatible = "microchip,polarfire-soc-mailbox", },
+> +	{.compatible = "microchip,mpfs-mailbox", },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, mpfs_mbox_of_match);
 
-Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Please split the bindings from the code.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dcc1819ec84b..30de0ea64ac4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20640,6 +20640,13 @@ M:	Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
- S:	Maintained
- F:	drivers/net/ethernet/xilinx/xilinx_axienet*
- 
-+XILINX AMS DRIVER
-+M:	Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
-+F:	drivers/iio/adc/xilinx-ams.c
-+
- XILINX CAN DRIVER
- M:	Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
- R:	Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
--- 
-2.17.1
 
+Best regards,
+Krzysztof
