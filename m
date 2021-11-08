@@ -2,230 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1976449A33
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49AE449A44
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:48:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240221AbhKHQs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 11:48:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44300 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240182AbhKHQsx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:48:53 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92468C061570;
-        Mon,  8 Nov 2021 08:46:08 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id ee33so65378881edb.8;
-        Mon, 08 Nov 2021 08:46:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=xedSQEVlSyClwNPGq+vnoJrO6xwzphOPk9rShXZEipU=;
-        b=ajHDPEg4f5u74ihZizwSNQInMIJ7wQzjLf4dBOROK47Bklnhpa/jdiWQvZSZghjZtg
-         Sg1uOvnH5O4sIZ04kqELHq1f1v35SQG07qaCONeufU6koQy3pQavKwIN1q08VnvcH8Pb
-         F65NJPnOUE+PfLppm6cQ3xf9A6dkmVgTm8JC6ETUoCitH2zrGGTfeizTaSxNDHOxFWnS
-         WBHM21Eyk5Zzr5zgqHfXvzNWdkVUgzqeFqfhjwq/Tk4yzrG7RydXCFiFMO8TshYCs9xi
-         ToUO25dkHY5UYvfOxvqX7FdOOwNFuQMLXIYjyXnR6AsXjZ3qYHcesfc1hsv1gHEO93fh
-         0hcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=xedSQEVlSyClwNPGq+vnoJrO6xwzphOPk9rShXZEipU=;
-        b=enHixdh+i3CeoCiTo/V1Me2BZ0cysVcnU8Srt0+w+W3dzdNjWGIPl+QNgO8vTch1RZ
-         JIVYJiXbrqxc++CLrc1fMcx6zqUsVQPYdTdrTZAOsmF/2hybcJ9jizzVkVHldfUbE4rn
-         wyToHIyzqd3aYAxXMJZIKZjSU/H6RDNC6dZjL4vQPPvbbkSQkq8qvoEac049FaY2lMWt
-         9Xn6OyGdfz4t3usUT048ZHsP2e1TfUqrHEggjdN8d+z34JNXaNwkWHZu6tH44vCjAqeI
-         FyqsqgyBXCytakhGSl5e6GW+ioDwytSOwp2oDyA+hwJyCCIVAGIGLc0ElupYw1xCJnbe
-         wkGg==
-X-Gm-Message-State: AOAM5316pMnNarHsZAZQeS9Sv7H84PWIT+Jmi6ngU+Fav1PtoZ0ON/YD
-        JJqiEYAyL3RjywA3DdcPvpg=
-X-Google-Smtp-Source: ABdhPJxYa4lZ31Igbzz8yv6WdGm3jqWYy7AzbOgvc6oMlUHs2B+bclKC2TDV4MfEaPx9GD4gHJbWIw==
-X-Received: by 2002:a17:907:6da9:: with SMTP id sb41mr872569ejc.88.1636389966860;
-        Mon, 08 Nov 2021 08:46:06 -0800 (PST)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id hb36sm5993344ejc.73.2021.11.08.08.46.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 08:46:06 -0800 (PST)
-Date:   Mon, 8 Nov 2021 17:46:02 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
- triggers
-Message-ID: <YYlUSr586WiZxMn6@Ansuel-xps.localdomain>
-References: <20211108002500.19115-1-ansuelsmth@gmail.com>
- <20211108002500.19115-2-ansuelsmth@gmail.com>
- <YYkuZwQi66slgfTZ@lunn.ch>
- <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
- <20211108171312.0318b960@thinkpad>
+        id S240165AbhKHQue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:50:34 -0500
+Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:49192
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S240259AbhKHQud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:50:33 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(13482:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Tue, 09 Nov 2021 00:47:38 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Tue, 9 Nov 2021 00:47:33 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Tue, 9 Nov 2021
+ 00:47:34 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxfraAgAGf2kCAAU6CgIAE3RVA///T9oCAAJMwUP//h9mAgACMUqA=
+Date:   Mon, 8 Nov 2021 16:47:34 +0000
+Message-ID: <585e234fdb74499caafee3b43b5e5ab4@sphcmbx02.sunplus.com.tw>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <YYK+EeCOu/BXBXDi@lunn.ch>
+ <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
+ <YYUzgyS6pfQOmKRk@lunn.ch>
+ <7c77f644b7a14402bad6dd6326ba85b1@sphcmbx02.sunplus.com.tw>
+ <YYkjBdu64r2JF1bR@lunn.ch>
+ <4e663877558247048e9b04b027e555b8@sphcmbx02.sunplus.com.tw>
+ <YYk5s5fDuub7eBqu@lunn.ch>
+In-Reply-To: <YYk5s5fDuub7eBqu@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211108171312.0318b960@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 08, 2021 at 05:13:12PM +0100, Marek Behún wrote:
-> On Mon, 8 Nov 2021 16:16:13 +0100
-> Ansuel Smith <ansuelsmth@gmail.com> wrote:
-> 
-> > On Mon, Nov 08, 2021 at 03:04:23PM +0100, Andrew Lunn wrote:
-> > > > +static inline int led_trigger_offload(struct led_classdev *led_cdev)
-> > > > +{
-> > > > +	int ret;
-> > > > +
-> > > > +	if (!led_cdev->trigger_offload)
-> > > > +		return -EOPNOTSUPP;
-> > > > +
-> > > > +	ret = led_cdev->trigger_offload(led_cdev, true);
-> > > > +	led_cdev->offloaded = !ret;
-> > > > +
-> > > > +	return ret;
-> > > > +}
-> > > > +
-> > > > +static inline void led_trigger_offload_stop(struct led_classdev *led_cdev)
-> > > > +{
-> > > > +	if (!led_cdev->trigger_offload)
-> > > > +		return;
-> > > > +
-> > > > +	if (led_cdev->offloaded) {
-> > > > +		led_cdev->trigger_offload(led_cdev, false);
-> > > > +		led_cdev->offloaded = false;
-> > > > +	}
-> > > > +}
-> > > > +#endif  
-> > > 
-> > > I think there should be two calls into the cdev driver, not this
-> > > true/false parameter. trigger_offload_start() and
-> > > trigger_offload_stop().
-> > >   
-> > 
-> > To not add too much function to the struct, can we introduce one
-> > function that both enable and disable the hw mode?
-> 
-> Dear Ansuel,
->
-
-(just to make sure, I don't want to look rude, I just want this feature
-finally introduced and supported since AFAIK many tried to add support
-for LEDs in PHY but everyone failed. For a reason or another, too
-specific, not generic...)
-
-> what is the purpose of adding trigger_offload() methods to LED, if you
-> are not going to add support to offload the netdev trigger? That was
-> the entire purpose when I wrote that patch.
-
-But the final step was adding LEDs support for PHY. The idea was to find
-a clean way by passing the idea of offloading a trigger... But fact is
-that LEDs in PHY operate by themself so it would add overhead selecting
-a trigger that will use event/works just to then be ignored as the
-trigger is offloaded.
-Also I think we are missing the fact that most of PHY can operate in
-software or in hardware. NOT BOTH. So the entire concept of offloading
-some trigger won't work as we were not able to simulate with SW
-unsupported trigger. (not the case with netdev as it does only support
-link, rx/tx but that was to explain the concept that SW and HW mode are
-mutually exclusive.)
-
-> 
-> If you just want to create a new trigger that will make the PHY chip do
-> the blinking, there is no need at all for the offloading patch.
-> 
-
-Again the idea here is that a LED can offer a way to run by HW and then
-a trigger configure them and enables the mode. I see the offload and
-configure function needed anyway side from the implementation.
-
-> And you will also get a NACK from me and also Pavel (LED subsystem
-> maintainer).
-> 
-
-Can we try to find a common way to introduce this?
-
-> The current plan is to:
-> - add support for offloading existing LED triggers to HW (LED
->   controllers (PHY chips, for example))
-> - make netdev trigger try offloading itself to HW via this new API (if
->   it fails, netdev trigger will blink the LED in SW as it does now)
-
-Can't be done. If in HW mode, we should just declare a trigger not
-supported in SW if we really want to follow the netdev expanding path.
-But still that would mean filling the netdev trigger with extra code and
-condition that will only apply in HW mode. At this point just create a
-dedicated trigger.
-We can consider introducing the same sysfs used by netdev trigger but
-nothing else.
-
-> - create LED classdevices in a PHY driver that have the offload()
->   methods implemented. The offload method looks at what trigger is
->   being enabled for the LED, and it if it is a netdev trigger with such
->   settings that are possible to offload, it will be offloaded.
-> 
->   This whole thing makes use of the existing sysfs ABI.
->   So for example if I do
->     cd /sys/class/net/eth0/phydev/leds/<LED>
->     echo netdev >trigger
->     echo eth0 >device_name
-
-How would this work in HW mode? The PHY blink only with packet in his
-port. We can't tell the PHY to HW blink based on an interface.
-That is the main problem by using netdev for PHYs, netdev is flexible
-but an offload trigger is not and would work only based on some
-condition. We should hardcode the device_name in HW and again pollute
-the netdev trigger more.
-An idea would be add tons of check to netdev on every event to check the
-interface but that wouldn't go against any offload idea? The system will
-be loaded anyway with all these checks.
-
->     echo 1 >rx
->     echo 1 >tx
->   The netdev trigger is activated, and it calls the offload() method.
->   The offload() method is implemented in the PHY driver, and it checks
->   that it can offload these settings (blink on rx/tx), and will enable
->   this.
-> - extend netdev trigger to support more settings:
->   - indicate link for specific link modes only (for example 1g, 100m)
->   - ...
-> - extend PHY drivers to support offloading of these new settings
-> 
-> Marek
-
-The rest of the implementation is very similar. Except we just NOT use
-netdev. And to me it does seems the most sane way to handle offload for
-a LED. (considering the specific situation of a PHY)
-
-From what I can see we have 2 path:
-- Pollute netdev trigger to add entire different function for HW. (that
-  will end up in complex condition and more load/overhead)
-- Introduce a new way to entirely offload some triggers.
-
-Could be that here I'm just using the wrong word and I should use
-hardware instead offload. But considering we are offloading some trigger
-(example rx/tx/link) it's not that wrong.
-
-The thing is why trying to expand a trigger that will just remove some
-flexibility when we can solve the problem at the source with some
-additional API that currently we lack any support (leds can be
-configured to run by hw) and some dedicated trigger that will do the
-task in a cleaner way (and without adding extra load/overhead by really
-offloading the task) ?
-
-Again hope I didn't seem rude in this message but I just want to find a
-solution and proposing a new idea/explaining my concern.
-
--- 
-	Ansuel
+PiA+IFRoZSBzd2l0Y2ggd2lsbCBub3QgcmVjb2duaXplIHR5cGUgb2YgcGFja2V0cywgcmVnYXJk
+bGVzcyBCUERVLCBQVFAgb3INCj4gPiBhbnkgb3RoZXIgcGFja2V0cy4gSWYgdHVybmluZyBvZmYg
+c291cmNlLWFkZHJlc3MgbGVhcm5pbmcgZnVuY3Rpb24sIGl0DQo+ID4gd29ya3MgbGlrZSBhbiBF
+dGhlcm5ldCBwbHVzIGEgMi1wb3J0IGh1Yi4NCj4gDQo+IFNvIHdpdGhvdXQgU1RQLCB0aGVyZSBp
+cyBubyB3YXkgdG8gc3RvcCBhbiBsb29wLCBhbmQgYSBicm9hZGNhc3Qgc3Rvcm0gdGFraW5nDQo+
+IGRvd24geW91ciBuZXR3b3JrPw0KDQpEbyB5b3UgbWVhbiBjb25uZWN0aW5nIHR3byBQSFkgcG9y
+dHMgdG8gdGhlIHNhbWUgTEFOPyBXZSBuZXZlciANCmNvbm5lY3QgdHdvIFBIWSBwb3J0cyB0byB0
+aGUgc2FtZSBMQU4gKG9yIGh1YikuIEkgbmV2ZXIgdGhpbmsgb2YgdGhpcyANCmxvb3AgcHJvYmxl
+bS4gSSB0aG91Z2h0IG9ubHkgV0FOIGhhcyB0aGUgbG9vcCBwcm9ibGVtLg0KDQpUaGUgc3dpdGNo
+IGhhcyBzb21lIGtpbmRzIG9mIGZsb3cgY29udHJvbCwgcmVmZXIgdG8gMC4yICJGbG93IGNvbnRy
+b2wgdGhyZXNob2xkIg0KYW5kIDAuMyAiQ1BVIHBvcnQgZmxvdyBjb250cm9sIHRocmVzaG9sZCIu
+IEl0IHdpbGwgZHJvcCBleHRyYSBwYWNrZXRzLg0KSG93IGFuIEV0aGVybmV0IGh1YiB0YWtlIGNh
+cmUgb2YgdGhpcyBzaXR1YXRpb24/DQpJcyB0aGF0IHJlYXNvbmFibGUgdG8gY29ubmVjdCB0d28g
+cG9ydHMgb2YgYW4gRXRoZXJuZXQgaHViIHRvZ2V0aGVyPw0KDQoNCj4gTG9va2luZyBhdCB0aGUg
+VFggZGVzY3JpcHRvciwgdGhlcmUgYXJlIHR3byBiaXRzOg0KPiANCj4gICAgICAgICAgIFsxOF06
+IGZvcmNlIGZvcndhcmQgdG8gcG9ydCAwDQo+ICAgICAgICAgICBbMTldOiBmb3JjZSBmb3J3YXJk
+IHRvIHBvcnQgMQ0KPiANCj4gV2hlbiB0aGUgc3dpdGNoIGlzIGVuYWJsZWQsIGNhbiB0aGVzZSB0
+d28gYml0cyBiZSB1c2VkPw0KDQpZZXMsIGZvciBleGFtcGxlLCB3aGVuIGJpdCAxOSBvZiBUWCBk
+ZXNjcmlwdG9yIGlzIGVuYWJsZWQsIGEgcGFja2V0IGZyb20gQ1BVIA0KcG9ydCBpcyBmb3J3YXJk
+ZWQgdG8gTEFOIHBvcnQgMCBmb3JjaWJseS4NCg0KDQo+IEluIHRoZSBSWCBkZXNjcmlwdG9yIHRo
+ZXJlIGlzOg0KPiANCj4gcGt0X3NwOg0KPiAgICAgICAgICAgMDAwOiBmcm9tIHBvcnQwDQo+ICAg
+ICAgICAgICAwMDE6IGZyb20gcG9ydDENCj4gICAgICAgICAgIDExMDogc29jMCBsb29wYmFjaw0K
+PiAgICAgICAgICAgMTAxOiBzb2MxIGxvb3BiYWNrDQo+IA0KPiBBcmUgdGhlc2UgYml0cyB1c2Vk
+IHdoZW4gdGhlIHN3aXRjaCBpcyBlbmFibGVkPw0KDQpZZXMsIEUtIE1BQyBkcml2ZXIgdXNlcyB0
+aGVzZSBiaXRzIHRvIHRlbGwgd2hlcmUgYSBwYWNrZXQgY29tZXMgZnJvbS4NCk5vdGUgdGhhdCBz
+b2MxIHBvcnQgKENQVSBwb3J0KSBoYXMgYmVlbiByZW1vdmVkIGluIHRoaXMgY2hpcC4NCg0KDQo+
+IDAuMzEgcG9ydCBjb250cm9sIDEgKHBvcnQgY250bDEpIGJsb2NraW5nIHN0YXRlIHNlZW1zIHRv
+IGhhdmUgd2hhdCB5b3UgbmVlZCBmb3INCj4gU1RQLg0KDQpGcm9tIGRvY3VtZW50LCBpZiBiaXQg
+MTcgb3IgYml0IDE2IG9mIHBvcnRfY250bDEgcmVnaXN0ZXIgaXMgc2V0LCBvbmx5IFJNQyANCnBh
+Y2tldHMgd2lsbCBiZSBmb3J3YXJkZWQgdG8gb3RoZXIgTEFOIHBvcnQuIEkgYW0gbm90IHN1cmUg
+d2hldGhlciANCmVuYWJsaW5nIHRoZSBiaXRzIGhlbHBzIHRoZSBpc3N1ZS4gU2hvdWxkIEkgZW5h
+YmxlIHRoZSBiaXRzPw0KU29ycnksIEkgZG9uJ3Qga25vdyB3aGF0IGlzIGEgUk1DIHBhY2tldD8N
+CkNvdWxkIHlvdSBwbGVhc2UgdGVhY2ggbWU/DQoNCg0KPiAgICAgQW5kcmV3DQoNClRoYW5rIHlv
+dSBmb3IgcmV2aWV3Lg0KDQo=
