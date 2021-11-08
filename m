@@ -2,235 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0629B447D37
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 11:01:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70CC8447DE7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 11:26:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238537AbhKHKEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 05:04:08 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:17912 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238538AbhKHKEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 05:04:07 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1636365682; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=0l+Axwex3km/18zRKU/2t97iNvhS734FDSfeO1OvkLA=; b=IDJHg4mIjBFdtALcV8qhRwY4Gdo8twVFKBwqo7zXG0M33VxlNyp1Y69oi+jmGl+AjjBBXTv7
- QGhTqml7bps6xqQGmoxjST/Uogz7l7xLoKdScvgkiiLTecqnScILAUEEMMgVEmfKi7jzlyrS
- ozXNV535mhNK5AyO3o19zu/uC7o=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 6188f572facd20d7953610c8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 08 Nov 2021 10:01:22
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 28F97C4361B; Mon,  8 Nov 2021 10:01:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 73DEEC4360D;
-        Mon,  8 Nov 2021 10:01:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 73DEEC4360D
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v2 3/3] pinctrl: qcom: Add SC7280 lpass pin configuration
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1635342097-2726-1-git-send-email-srivasam@codeaurora.org>
- <1635342097-2726-4-git-send-email-srivasam@codeaurora.org>
- <3a05fc62-a060-3257-ad54-53e376763fe3@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <54ab2532-a0d5-a04f-0f8c-2ce11fdf973e@codeaurora.org>
-Date:   Mon, 8 Nov 2021 15:31:13 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S237469AbhKHK3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 05:29:09 -0500
+Received: from foss.arm.com ([217.140.110.172]:48408 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237572AbhKHK2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 05:28:48 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 257AB1FB;
+        Mon,  8 Nov 2021 02:26:01 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.58.140])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C89913F800;
+        Mon,  8 Nov 2021 02:25:58 -0800 (PST)
+Date:   Mon, 8 Nov 2021 10:25:52 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Brad Larson <brad@pensando.io>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 11/11] arm64: dts: Add Pensando Elba SoC support
+Message-ID: <YYj7MA4D1zCF39lh@FVFF77S0Q05N>
+References: <20211025015156.33133-1-brad@pensando.io>
+ <20211025015156.33133-12-brad@pensando.io>
+ <20211025091731.GA2001@C02TD0UTHF1T.local>
+ <CAK9rFnx7DgS3TYMmu5NBacV_6WC_UwJ=u7n3e_fGd0RpEcg3kA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <3a05fc62-a060-3257-ad54-53e376763fe3@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK9rFnx7DgS3TYMmu5NBacV_6WC_UwJ=u7n3e_fGd0RpEcg3kA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 04, 2021 at 03:53:13PM -0700, Brad Larson wrote:
+> On Mon, Oct 25, 2021 at 2:17 AM Mark Rutland <mark.rutland@arm.com> wrote:
+> > On Sun, Oct 24, 2021 at 06:51:56PM -0700, Brad Larson wrote:
+> > > +     timer {
+> > > +             compatible = "arm,armv8-timer";
+> > > +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) |
+> > > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > > +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) |
+> > > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > > +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(1) |
+> > > +                                     IRQ_TYPE_LEVEL_LOW)>,
+> > > +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(1) |
+> > > +                                     IRQ_TYPE_LEVEL_LOW)>;
+> > > +     };
+> >
+> > The GIC_CPU_MASK_SIMPLE() stuff is meant for GICv2, but as below you
+> > have GICv3, where this is not valid, so this should go.
+> >
+> > Also, beware that GIC_CPU_MASK_SIMPLE(1) means a single CPU, which
+> > doesn't mak sense for the 16 CPUs you have.
+> >
+> 
+> Thanks for pointing this out.  Elba SoC is a GICv3 implementation and looking
+> at other device tree files we should be using this:
+> 
+>         timer {
+>                 compatible = "arm,armv8-timer";
+>                 interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(16) |
+>                                         IRQ_TYPE_LEVEL_LOW)>,
+>                              <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(16) |
+>                                         IRQ_TYPE_LEVEL_LOW)>,
+>                              <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(16) |
+>                                         IRQ_TYPE_LEVEL_LOW)>,
+>                              <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(16) |
+>                                         IRQ_TYPE_LEVEL_LOW)>;
+>         };
 
-On 11/3/2021 4:52 PM, Srinivas Kandagatla wrote:
-Thanks Srini for your TIme!!!
-> Thanks Srinivasa for the patches.
->
-> On 27/10/2021 14:41, Srinivasa Rao Mandadapu wrote:
->> Update pin control support for SC7280 LPASS LPI.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> ---
->>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 40 
->> ++++++++++++++++++++++++++++++++
->>   1 file changed, 40 insertions(+)
->>
->> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c 
->> b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> index 0bd0c16..17a05a6 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> @@ -122,6 +122,7 @@ static const struct pinctrl_pin_desc 
->> lpass_lpi_pins[] = {
->>       PINCTRL_PIN(11, "gpio11"),
->>       PINCTRL_PIN(12, "gpio12"),
->>       PINCTRL_PIN(13, "gpio13"),
->> +    PINCTRL_PIN(14, "gpio14"),
->
-> I see your point in first patch making these names more generic, but 
-> this is not really going to work, as the above line just added new pin 
-> for sm8250 even though it really only has 0-13 pins.
->
-> I think it would be more clear if you could just make a dedicated 
-> structures for sc7280. Simillar comments apply for other changes too.
->
-> Other than that the patch looks good to me.
->
-> --srini
+No; as above, you should *not* use GIC_CPU_MASK_SIMPLE() at all for GICv3. i.e.
 
-Okay. agree to your point. As lpass_lpi_pins array is just declaration, 
-and it will be used in functions, I thought it won't impact as functions 
-are different for both architectures.
+>         timer {
+>                 compatible = "arm,armv8-timer";
+>                 interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+>                              <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+>                              <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+>                              <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+>         };
 
-With your feedback understood that it may not work existing archs. Will 
-change accordingly and re-post it.
+Please see the GICv3 binding documentation:
 
->
->>   };
->>     enum lpass_lpi_functions {
->> @@ -136,6 +137,7 @@ enum lpass_lpi_functions {
->>       LPI_MUX_i2s1_ws,
->>       LPI_MUX_i2s2_clk,
->>       LPI_MUX_i2s2_data,
->> +    LPI_MUX_sc7280_i2s2_data,
->>       LPI_MUX_i2s2_ws,
->>       LPI_MUX_qua_mi2s_data,
->>       LPI_MUX_qua_mi2s_sclk,
->> @@ -144,6 +146,7 @@ enum lpass_lpi_functions {
->>       LPI_MUX_swr_rx_data,
->>       LPI_MUX_swr_tx_clk,
->>       LPI_MUX_swr_tx_data,
->> +    LPI_MUX_sc7280_swr_tx_data,
->>       LPI_MUX_wsa_swr_clk,
->>       LPI_MUX_wsa_swr_data,
->>       LPI_MUX_gpio,
->> @@ -164,8 +167,11 @@ static const unsigned int gpio10_pins[] = { 10 };
->>   static const unsigned int gpio11_pins[] = { 11 };
->>   static const unsigned int gpio12_pins[] = { 12 };
->>   static const unsigned int gpio13_pins[] = { 13 };
->> +static const unsigned int gpio14_pins[] = { 14 };
->> +
->>   static const char * const swr_tx_clk_groups[] = { "gpio0" };
->>   static const char * const swr_tx_data_groups[] = { "gpio1", 
->> "gpio2", "gpio5" };
->> +static const char * const sc7280_swr_tx_data_groups[] = { "gpio1", 
->> "gpio2", "gpio14" };
->>   static const char * const swr_rx_clk_groups[] = { "gpio3" };
->>   static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
->>   static const char * const dmic1_clk_groups[] = { "gpio6" };
->> @@ -185,6 +191,7 @@ static const char * const i2s1_data_groups[] = { 
->> "gpio8", "gpio9" };
->>   static const char * const wsa_swr_clk_groups[] = { "gpio10" };
->>   static const char * const wsa_swr_data_groups[] = { "gpio11" };
->>   static const char * const i2s2_data_groups[] = { "gpio12", "gpio12" };
->> +static const char * const sc7280_i2s2_data_groups[] = { "gpio12", 
->> "gpio13" };
->>     static const struct lpi_pingroup sm8250_groups[] = {
->>       LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
->> @@ -203,6 +210,24 @@ static const struct lpi_pingroup sm8250_groups[] 
->> = {
->>       LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
->>   };
->>   +static const struct lpi_pingroup sc7280_groups[] = {
->> +    LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
->> +    LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
->> +    LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
->> +    LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
->> +    LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
->> +    LPI_PINGROUP(5, 12, swr_rx_data, _, _, _),
->> +    LPI_PINGROUP(6, NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
->> +    LPI_PINGROUP(7, NO_SLEW, dmic1_data, i2s1_ws, _, _),
->> +    LPI_PINGROUP(8, NO_SLEW, dmic2_clk, i2s1_data, _, _),
->> +    LPI_PINGROUP(9, NO_SLEW, dmic2_data, i2s1_data, _, _),
->> +    LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
->> +    LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
->> +    LPI_PINGROUP(12, NO_SLEW, dmic3_clk, sc7280_i2s2_data, _, _),
->> +    LPI_PINGROUP(13, NO_SLEW, dmic3_data, sc7280_i2s2_data, _, _),
->> +    LPI_PINGROUP(14, 6, sc7280_swr_tx_data, _, _, _),
->> +};
->> +
->>   static const struct lpi_function lpass_functions[] = {
->>       LPI_FUNCTION(dmic1_clk),
->>       LPI_FUNCTION(dmic1_data),
->> @@ -215,6 +240,7 @@ static const struct lpi_function 
->> lpass_functions[] = {
->>       LPI_FUNCTION(i2s1_ws),
->>       LPI_FUNCTION(i2s2_clk),
->>       LPI_FUNCTION(i2s2_data),
->> +    LPI_FUNCTION(sc7280_i2s2_data),
->>       LPI_FUNCTION(i2s2_ws),
->>       LPI_FUNCTION(qua_mi2s_data),
->>       LPI_FUNCTION(qua_mi2s_sclk),
->> @@ -223,6 +249,7 @@ static const struct lpi_function 
->> lpass_functions[] = {
->>       LPI_FUNCTION(swr_rx_data),
->>       LPI_FUNCTION(swr_tx_clk),
->>       LPI_FUNCTION(swr_tx_data),
->> +    LPI_FUNCTION(sc7280_swr_tx_data),
->>       LPI_FUNCTION(wsa_swr_clk),
->>       LPI_FUNCTION(wsa_swr_data),
->>   };
->> @@ -236,6 +263,15 @@ static struct lpi_pinctrl_variant_data 
->> sm8250_lpi_data = {
->>       .nfunctions = ARRAY_SIZE(lpass_functions),
->>   };
->>   +static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
->> +    .pins = lpass_lpi_pins,
->> +    .npins = ARRAY_SIZE(lpass_lpi_pins),
->> +    .groups = sc7280_groups,
->> +    .ngroups = ARRAY_SIZE(sc7280_groups),
->> +    .functions = lpass_functions,
->> +    .nfunctions = ARRAY_SIZE(lpass_functions),
->> +};
->> +
->>   static int lpi_gpio_read(struct lpi_pinctrl *state, unsigned int pin,
->>                unsigned int addr)
->>   {
->> @@ -677,6 +713,10 @@ static const struct of_device_id 
->> lpi_pinctrl_of_match[] = {
->>              .compatible = "qcom,sm8250-lpass-lpi-pinctrl",
->>              .data = &sm8250_lpi_data,
->>       },
->> +    {
->> +           .compatible = "qcom,sc7280-lpass-lpi-pinctrl",
->> +           .data = &sc7280_lpi_data,
->> +    },
->>       { }
->>   };
->>   MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
->>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+  Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
 
+... and note that it does not have the cpumask field as use by the binding for
+prior generations of GIC:
+
+  Documentation/devicetree/bindings/interrupt-controller/arm,gic.yaml
+
+
+If you've seen other dts files using GIC_CPU_MASK_SIMPLE() with GICv3, those
+are incorrect, and need to be fixed.
+
+Thanks,
+Mark.
