@@ -2,135 +2,511 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 317C5449BB2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20281449BBD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:38:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235644AbhKHSgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 13:36:44 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:26331 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235246AbhKHSgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 13:36:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636396431;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=V9Iis9hGWtZOgUPU1mqg1irQSYLApnWnzQFHO9gUfwI=;
-    b=D9aOeIJ1Ym/PITlBZv2L+vSVbh9zw/E080wuh9vTMvTh9wmswt66zbcUOlmdBLNLk6
-    fj3VraebsAAPkBFkGmd6F6xmARMCZVrsXHvqlCTFNhDi1NqAjATz5cevLLLtF1ipPd+F
-    c78Q1vM5EtEkQOJwwArjsYEtV7hIxwZ/ERKOt526VSm8aLnrmw8M9YRTUwDvOTdD7cP9
-    REICA5IcDu/oUTNE2vLiw/sbaxWDQgUuRUMeSdaYNWk/LIN+9lkh6sHTrkXC51DsCrHU
-    VajNNoLLmKZoJRiYuC2g9vhMlleoIBlhRj3p513oRFqvO+B5G5gTBSmX9vIje1J78IpA
-    B7oQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3gMZ+"
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.1 DYNA|AUTH)
-    with ESMTPSA id 902c63xA8IXnMN2
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Mon, 8 Nov 2021 19:33:49 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
- output
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <RIL92R.MLAZ6CTO865E1@crapouillou.net>
-Date:   Mon, 8 Nov 2021 19:33:48 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <ACEFD0BB-1FCF-4EEB-A40F-1F2543A05BF4@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
- <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
- <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
- <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
- <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
- <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
- <HQY82R.69JHJIC64HDO1@crapouillou.net>
- <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
- <ZA692R.GHQL6RBCLFB12@crapouillou.net>
- <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
- <BVH92R.0VU3IKPQTLX9@crapouillou.net>
- <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
- <RIL92R.MLAZ6CTO865E1@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S234579AbhKHSlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 13:41:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234013AbhKHSlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 13:41:02 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E57C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 10:38:17 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id o15-20020a9d410f000000b0055c942cc7a0so4301680ote.8
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 10:38:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=oFOCVJg48PXsaOa9qs21Ytm4lOZ+AbMX1m2HjC4wNiI=;
+        b=XMcc1G/e+c46meL8oOXh7c4r6du5TNP2yiyB3y4k4rlt7OTuljOUZKZWIqFgl4Yalp
+         Ou1QW0CAtCvNkBSDuPKTk151Vjoczm1WVMrGBhppQkK2kqVNnMWXTGTUFgMYcSzUNwBq
+         KeJ9NQyzkXeSfSMtc+a+Nhr6ATgUtOR1A3Ep3cYwPaf3Bx1FwMrGt2wmQVAwtYqROArw
+         rX/82vclzqZVjH7kxdxBTomh0sYNW+AIsCSfx3QN1SlLMa8E8vAtF8IRsNjTagdRRM29
+         DCRVU3lk9KD+db3KX20dC2iypS/WEjDNLcBUjOXX7m4R3uvse7XkMYW1ooK1o2tknuOF
+         b9Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oFOCVJg48PXsaOa9qs21Ytm4lOZ+AbMX1m2HjC4wNiI=;
+        b=eiePBUpZPqMAKBhLAp1pzvF8Wlkz3xuz1CEdZdrvAwwJkiZP0VeFfTTtSj+JnMIic1
+         nDKl8ALxjembsUFn1XaltCBpmGW3M2cFx6gl/fZTr9kzCJth5Cr7tw+dX1a4iBTB9hlJ
+         v+dmRPZMms1zmvufZMciWl2twDI6ddkgL/mY97Lb/tAiwaUPaHVICIXb5YA6WWGlm7uC
+         2VUwhoe0jiGfKiwVp2h/iR2Dah1xykfuFXYqwAc7xJmfYtqDP8zArZBTbq1P4QqGos0W
+         XKv4fLe9EEmHEsCsHaRu0WTLQh/8pfXI7lLhV7PTcm++3GBoyYUfW8WaDjvBgJYNBT2G
+         YHQg==
+X-Gm-Message-State: AOAM530A429atHKXwBwHh6i5RKNYSWub6FslsGAFIIQ1ptVUFmYr4A/n
+        CO8nQPm1kV9p4S+9yR4aOl3ExQ==
+X-Google-Smtp-Source: ABdhPJzVuLomTYC4UGUI/yvBR9Az/d+FvEi/dyXuvsfN5/brR7RHgDWVplKZGISh8abBFe03jsigPg==
+X-Received: by 2002:a9d:67c1:: with SMTP id c1mr910990otn.299.1636396696982;
+        Mon, 08 Nov 2021 10:38:16 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id i15sm6392308otu.67.2021.11.08.10.38.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 10:38:16 -0800 (PST)
+Date:   Mon, 8 Nov 2021 10:39:52 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jarrett Schultz <jaschultzms@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Jarrett Schultz <jaschultz@microsoft.com>
+Subject: Re: [PATCH v2 3/5] platform: surface: Add surface xbl
+Message-ID: <YYlu+HqTJ/ZY1C2+@ripper>
+References: <20211108164449.3036210-1-jaschultz@microsoft.com>
+ <20211108164449.3036210-4-jaschultz@microsoft.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211108164449.3036210-4-jaschultz@microsoft.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Mon 08 Nov 08:44 PST 2021, Jarrett Schultz wrote:
 
-> Am 08.11.2021 um 18:49 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
->>> Variant 4: the variant #2 without the changes to the DTSI files.
->> Hm. If there is no cache and we can safely remove tight boundary =
-checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing DTSI) why =
-do we still need the max_register calculation from DTSI specifically for =
-jz4780 and at all?
->=20
-> It's better to have the .max_register actually set to the proper =
-value. Then reading the registers from debugfs =
-(/sys/kernel/debug/regmap/) will print the actual list of registers =
-without bogus values. If .max_register is set too high, it will end up =
-reading outside the registers area.
+> Introduce support for the Extensible Boot Loader driver found on the
+> Surface Duo. Makes device information available to users via sysfs.
+> 
+> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+> 
+> ---
+> 
+> Changes in v2:
+>  - Added types.h inclusion and removed unused inclusions
+>  - Minor updates to code and acronym style
+>  - Remove __packed attribute on driver struct
+>  - Use .dev_groups for sysfs
+>  - Added more in-depth description of driver in Kconfig
+>  - Changed target KernelVersion in sysfs documentation
+> 
+> ---
+> 
+>  .../ABI/testing/sysfs-platform-surface-xbl    |  78 +++++++
+>  MAINTAINERS                                   |   2 +
+>  drivers/platform/surface/Kconfig              |  12 +
+>  drivers/platform/surface/Makefile             |   1 +
+>  drivers/platform/surface/surface-xbl.c        | 215 ++++++++++++++++++
+>  5 files changed, 308 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-platform-surface-xbl
+>  create mode 100644 drivers/platform/surface/surface-xbl.c
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-platform-surface-xbl b/Documentation/ABI/testing/sysfs-platform-surface-xbl
+> new file mode 100644
+> index 000000000000..2ae047b884d3
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-platform-surface-xbl
+> @@ -0,0 +1,78 @@
+> +What:		/sys/devices/platform/146bfa94.xbl/battery_present
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns whether the battery is present. Valid
+> +		values are:
+> +			0 - battery absent
+> +			1 - battery present
 
-Ok, that is a good reason to convince me.
+Would this information not be available from some battery driver, under
+/sys/class/power_supply?
 
-> On Ingenic SoCs such reads just return 0, but on some other SoCs it =
-can lock up the system.
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/board_id
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns the board id.
 
-Yes, I know some of these...
+Is this a Microsoft-specific board id, or does it relate to the Qualcomm
+socinfo property with the same name?
 
-> So the best way forward is to have .max_register computed from the =
-register area's size, and fix the DTSI with the proper sizes. Since your =
-JZ4780 code needs to update .max_register anyway it's a good moment to =
-add this patch, and the DTSI files can be fixed later (by me or whoever =
-is up to the task).
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/hw_init_retries
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns retries attempted to initialize the
+> +		discrete hardware circuit.
 
-Well, it would already be part of my Variant #2 (untested). So I could =
-simply split it up further and you can test the pure dtsi changes and =
-apply them later or modify if that makes problems. Saves you a little =
-work. BTW: the jz4740 seems to have even less registers (last register =
-seems to be LCDCMD1 @ 0x1305005C).
+Which description hardware circuit?
 
->=20
-> Fixing the DTS is not a problem in any way, btw. We just need to =
-ensure that the drivers still work with old DTB files, which will be the =
-case here.
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/is_act_mode
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns whether ACT mode is enabled. Valid values
+> +		are:
+> +			0 - ACT disabled
+> +			1 - ACT enabled
+> +
+> +		ACT mode is used to run checks and put the device to shipmode
+> +		at factory.
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/is_customer_mode
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns whether the device is in manufacturing
+> +		mode. Valid values are:
+> +			0 - Not in manufacturing mode
+> +			1 - In manufacturing mode
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/ocp_error_location
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns 0 or which power rail has the OCP error.
 
-Yes, that is right since the new values are smaller than the originals.
+Sounds like the reason is singular, so why is this a bitmask?
 
-Ok, then let's do it that way.
+> +		Valid values are:
+> +			Bit(s)		Meaning
+> +			15		More than one OCP error occurred
+> +			14-12		PMIC
+> +			11-7		SMPS
+> +			6-2		LDO
+> +			1-0		BOB
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/pmic_reset_reason
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns the reason for the reset. Valid values
+> +		are:
 
-BR and thanks,
-Nikolaus=
+Is this different from the PMIC reset reason that we read from the PMIC?
+Could we make sure to expose this generically for all Qualcomm PMICs?
+
+> +			0 - no reason lol
+> +			9 - Battery driver triggered
+> +
+> +What:		/sys/devices/platform/146bfa94.xbl/touch_fw_version
+> +Date:		October 2021
+> +KernelVersion:	5.16
+> +Contact:	jaschultz@microsoft.com
+> +Description:
+> +		Read only. It returns the version of the firmware.
+
+Why isn't this exposed by the touchscreen driver instead?
+
+
+Generally I wonder how you're consuming this information in userspace.
+Is it only for debugging purposes, i.e. would debugfs be a better place?
+
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 8643546f8fab..d08b68d626f6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12428,7 +12428,9 @@ M:	Jarrett Schultz <jaschultz@microsoft.com>
+>  L:	linux-arm-msm@vger.kernel.org
+>  L:	platform-driver-x86@vger.kernel.org
+>  S:	Supported
+> +F:	Documentation/ABI/testing/sysfs-platform-surface-xbl
+>  F:	Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+> +F:	drivers/platform/surface/surface-xbl.c
+>  
+>  MICROSOFT SURFACE GPE LID SUPPORT DRIVER
+>  M:	Maximilian Luz <luzmaximilian@gmail.com>
+> diff --git a/drivers/platform/surface/Kconfig b/drivers/platform/surface/Kconfig
+> index 0d3970e1d144..3a1ced269d96 100644
+> --- a/drivers/platform/surface/Kconfig
+> +++ b/drivers/platform/surface/Kconfig
+> @@ -190,6 +190,18 @@ config SURFACE_PRO3_BUTTON
+>  	help
+>  	  This driver handles the power/home/volume buttons on the Microsoft Surface Pro 3/4 tablet.
+>  
+> +config SURFACE_XBL
+> +        tristate "Surface XBL Driver"
+> +        depends on ARM64 || COMPILE_TEST
+> +        depends on OF
+> +        help
+> +          If you say 'Y' to this option, support will be included for the
+> +          Surface Extensible Boot Loader (XBL) Driver. This driver exposes
+> +          information about the device through sysfs.
+> +
+> +          This driver can also be built as a module.  If so, the module
+> +          will be called surface-xbl.
+> +
+>  source "drivers/platform/surface/aggregator/Kconfig"
+>  
+>  endif # SURFACE_PLATFORMS
+> diff --git a/drivers/platform/surface/Makefile b/drivers/platform/surface/Makefile
+> index 32889482de55..0946266a8a73 100644
+> --- a/drivers/platform/surface/Makefile
+> +++ b/drivers/platform/surface/Makefile
+> @@ -16,3 +16,4 @@ obj-$(CONFIG_SURFACE_GPE)		+= surface_gpe.o
+>  obj-$(CONFIG_SURFACE_HOTPLUG)		+= surface_hotplug.o
+>  obj-$(CONFIG_SURFACE_PLATFORM_PROFILE)	+= surface_platform_profile.o
+>  obj-$(CONFIG_SURFACE_PRO3_BUTTON)	+= surfacepro3_button.o
+> +obj-$(CONFIG_SURFACE_XBL)               += surface-xbl.o
+
+All other files in this directory are named with an underscore, would be
+nice to carry on with such convention.
+
+> diff --git a/drivers/platform/surface/surface-xbl.c b/drivers/platform/surface/surface-xbl.c
+> new file mode 100644
+> index 000000000000..9ecec4e55a4d
+> --- /dev/null
+> +++ b/drivers/platform/surface/surface-xbl.c
+> @@ -0,0 +1,215 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Surface eXtensible Boot Loader (XBL)
+> + *
+> + * Copyright (C) 2021 Microsoft Corporation
+> + * Author: Jarrett Schultz <jaschultz@microsoft.com>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/types.h>
+> +
+> +#define SURFACE_XBL_MAX_VERSION_LEN	16
+> +#define SURFACE_XBL_BOARD_ID		0
+> +#define SURFACE_XBL_BATTERY_PRESENT	1
+> +#define SURFACE_XBL_HW_INIT_RETRIES	2
+> +#define SURFACE_XBL_IS_CUSTOMER_MODE	3
+> +#define SURFACE_XBL_IS_ACT_MODE		4
+> +#define SURFACE_XBL_PMIC_RESET_REASON	5
+> +#define SURFACE_XBL_TOUCH_FW_VERSION	6
+> +#define SURFACE_XBL_OCP_ERROR_LOCATION		\
+> +		(SURFACE_XBL_TOUCH_FW_VERSION +	\
+> +		SURFACE_XBL_MAX_VERSION_LEN)
+> +
+> +struct surface_xbl {
+> +	struct device	*dev;
+> +	void __iomem	*regs;
+> +
+> +	u8		board_id;
+> +	u8		battery_present;
+> +	u8		hw_init_retries;
+> +	u8		is_customer_mode;
+> +	u8		is_act_mode;
+> +	u8		pmic_reset_reason;
+> +	char		touch_fw_version[SURFACE_XBL_MAX_VERSION_LEN];
+> +	u16		ocp_error_location;
+> +};
+> +
+> +static ssize_t
+> +board_id_show(struct device *dev, struct device_attribute *attr, char *buf)
+
+I think it would be nice to avoid some duplication by putting all these
+integer ones in a single show(), see e.g. soc_info_show()
+
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->board_id);
+> +}
+> +static DEVICE_ATTR_RO(board_id);
+> +
+> +static ssize_t
+> +battery_present_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->battery_present);
+> +}
+> +static DEVICE_ATTR_RO(battery_present);
+> +
+> +static ssize_t
+> +hw_init_retries_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->hw_init_retries);
+> +}
+> +static DEVICE_ATTR_RO(hw_init_retries);
+> +
+> +static ssize_t
+> +is_customer_mode_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->is_customer_mode);
+> +}
+> +static DEVICE_ATTR_RO(is_customer_mode);
+> +
+> +static ssize_t
+> +is_act_mode_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->is_act_mode);
+> +}
+> +static DEVICE_ATTR_RO(is_act_mode);
+> +
+> +static ssize_t
+> +pmic_reset_reason_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->pmic_reset_reason);
+> +}
+> +static DEVICE_ATTR_RO(pmic_reset_reason);
+> +
+> +static ssize_t
+> +touch_fw_version_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "0x%s\n", sxbl->touch_fw_version);
+> +}
+> +static DEVICE_ATTR_RO(touch_fw_version);
+> +
+> +static ssize_t
+> +ocp_error_location_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct surface_xbl	*sxbl = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%d\n", sxbl->ocp_error_location);
+> +}
+> +static DEVICE_ATTR_RO(ocp_error_location);
+> +
+> +static struct attribute *xbl_attrs[] = {
+> +	&dev_attr_board_id.attr,
+> +	&dev_attr_battery_present.attr,
+> +	&dev_attr_hw_init_retries.attr,
+> +	&dev_attr_is_customer_mode.attr,
+> +	&dev_attr_is_act_mode.attr,
+> +	&dev_attr_pmic_reset_reason.attr,
+> +	&dev_attr_touch_fw_version.attr,
+> +	&dev_attr_ocp_error_location.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group xbl_attr_group = {
+> +	.attrs = xbl_attrs,
+> +};
+> +
+> +const struct attribute_group *xbl_sysfs_groups[] = {
+> +	&xbl_attr_group,
+> +	NULL
+> +};
+> +
+> +static u8 surface_xbl_readb(void __iomem *base, u32 offset)
+> +{
+> +	return readb(base + offset);
+
+Instead of having these helpers I think you should just call readb(base
++ offset) directly below.
+
+The shorter function name (readb vs surface_xbl_readb) means that you
+don't even need to line wrap those lines.
+
+> +}
+> +
+> +static u16 surface_xbl_readw(void __iomem *base, u32 offset)
+> +{
+> +	return readw(base + offset);
+> +}
+> +
+> +static int surface_xbl_probe(struct platform_device *pdev)
+> +{
+> +	struct surface_xbl	*sxbl;
+> +	struct device		*dev;
+> +	void __iomem		*regs;
+> +	int			index;
+> +
+> +	dev = &pdev->dev;
+> +	sxbl = devm_kzalloc(dev, sizeof(*sxbl), GFP_KERNEL);
+
+This is the only use of &pdev->dev, so put that here and drop "dev" from
+sxbl (and the stack).
+
+> +	if (!sxbl)
+> +		return -ENOMEM;
+> +
+> +	sxbl->dev = dev;
+> +
+> +	regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(regs))
+> +		return PTR_ERR(regs);
+> +
+> +	sxbl->regs = regs;
+
+Seems only reason you stash "regs" in sxbl is so that you can pass
+sxbl->regs in below function calls. I.e. it's a local variable and you
+can omit it from struct surface_xbl...
+
+> +
+> +	platform_set_drvdata(pdev, sxbl);
+> +
+> +	sxbl->board_id = surface_xbl_readb(sxbl->regs,
+> +					   SURFACE_XBL_BOARD_ID);
+> +	sxbl->battery_present = surface_xbl_readb(sxbl->regs,
+> +						  SURFACE_XBL_BATTERY_PRESENT);
+> +	sxbl->hw_init_retries = surface_xbl_readb(sxbl->regs,
+> +						  SURFACE_XBL_HW_INIT_RETRIES);
+> +	sxbl->is_customer_mode = surface_xbl_readb(sxbl->regs,
+> +						   SURFACE_XBL_IS_CUSTOMER_MODE);
+> +	sxbl->is_act_mode = surface_xbl_readb(sxbl->regs,
+> +					      SURFACE_XBL_IS_ACT_MODE);
+> +	sxbl->pmic_reset_reason = surface_xbl_readb(sxbl->regs,
+> +						    SURFACE_XBL_PMIC_RESET_REASON);
+> +
+> +	for (index = 0; index < SURFACE_XBL_MAX_VERSION_LEN; index++)
+
+"i" is a good succinct variable name for an index.
+
+> +		sxbl->touch_fw_version[index] = surface_xbl_readb(sxbl->regs,
+> +							SURFACE_XBL_TOUCH_FW_VERSION + index);
+> +
+> +	sxbl->ocp_error_location = surface_xbl_readw(sxbl->regs,
+> +						     SURFACE_XBL_OCP_ERROR_LOCATION);
+> +
+> +	return 0;
+> +}
+> +
+> +static int surface_xbl_remove(struct platform_device *pdev)
+
+Your remove function is empty, simply omit it...
+
+Regards,
+Bjorn
+
+> +{
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id surface_xbl_of_match[] = {
+> +	{
+> +		.compatible = "microsoft,sm8150-surface-duo-xbl"
+> +	},
+> +	{  }
+> +};
+> +MODULE_DEVICE_TABLE(of, surface_xbl_of_match);
+> +
+> +static struct platform_driver surface_xbl_driver = {
+> +	.driver	= {
+> +		.name		= "surface-xbl",
+> +		.of_match_table = surface_xbl_of_match,
+> +		.dev_groups	= xbl_sysfs_groups
+> +	},
+> +	.probe		= surface_xbl_probe,
+> +	.remove		= surface_xbl_remove
+> +};
+> +module_platform_driver(surface_xbl_driver);
+> +
+> +MODULE_AUTHOR("Jarrett Schultz <jaschultz@microsoft.com>");
+> +MODULE_DESCRIPTION("Surface Extensible Bootloader");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.25.1
+> 
