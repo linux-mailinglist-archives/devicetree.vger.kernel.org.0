@@ -2,116 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7BF449DAD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 22:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B450B449DB7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 22:11:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239860AbhKHVNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 16:13:23 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:42612
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S239951AbhKHVNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 16:13:22 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 17FB93F1B2
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 21:10:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636405837;
-        bh=mwPFRn0AEGOneXePTnmoZQRi4asMCrfCLz0IrMjqCXA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=L06ce1S7CebcXKfk9w/1VnAZa7HKWSH/CDXoHgwnJNpRXbIA4LkMXXo/uLR2uZR+o
-         mTqQ6tqWADK91HZ09kylWKlDO5Z1hwD4Yr9FtemJNEeIzRbil2SFH5G88JgA6PPRVD
-         xpKS4o0LVdYFgyCpuXLezU6PF0IYNPyLvE3Yh+wcUfLP6u9qM4IzovYy8mgq1lJohv
-         TCQqJsyDaQ2c5P+yqkuJ1EU70gOgKKCyr9am8xb7cPC2vKSZXFtpe/EaaEvaT9fr/U
-         Z/9wEEblC1nOh8QAgN8Hlx//5ASWi6tKgJEmbNOu/YoYg805vuHU2UVWVU2zn32Qji
-         GMhCeEN0ITeYA==
-Received: by mail-lf1-f71.google.com with SMTP id i34-20020a0565123e2200b0040019ae61d5so6934567lfv.20
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 13:10:37 -0800 (PST)
+        id S239875AbhKHVOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 16:14:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239825AbhKHVOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 16:14:42 -0500
+Received: from mail-qk1-x744.google.com (mail-qk1-x744.google.com [IPv6:2607:f8b0:4864:20::744])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FD5C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 13:11:58 -0800 (PST)
+Received: by mail-qk1-x744.google.com with SMTP id r8so16851279qkp.4
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 13:11:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=1Bbi1dTodYSxYFvQyegx5oXbco/1YM4dBbouw8AdF18=;
+        b=S1ZgLB84xNU6HvQLfD2LwUVuCvedJK9fJlZLOzegiQzeKc7APWbNSgffGMc10qrCGy
+         HH/N02l2jFzHZPelly0e8/bOZT0oLUdhuZbHZFhi1PLGvKtiZxws80jSgPHv0Hok//l3
+         0m513jvJj3Qy8uyzFiPfcrNgF4JVoGkreieNZCUH4eXmcqku56GjL4Km13fY+WcWGX3a
+         Xan02lsKPCbi1kB5IbP1hb0QJiLl4hzkFi6HFIrKg5sIOmusGfMXd1Zpzv7qMwgbq1XV
+         lIh90lhFHTiCiUXJ1IEBjSUBR20onuN9PlhvROQ7BDgNdE11OHO3qKo8RrmeHEF6Zd2q
+         ez6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mwPFRn0AEGOneXePTnmoZQRi4asMCrfCLz0IrMjqCXA=;
-        b=OcPJRcqJy8xC/r82SzbQL6mLMY60HiocAU9qL16gm4K0ugbIwdS8fMfodvsePfu2ho
-         4gsbsglYkNqWzEhDeh+J+zYlj19ruPQlqivboMsBhp7XzF2+hxHdDGMNv/tI+3WDG0C0
-         DqCKfjYGoKlI5gnCyvQ2JV7rkHx+jZGARLBcBkQceWeOIpej3NdnyuJP8qfw8cmK45iB
-         rEvyI9XO0V70wwfP1pllkME+/JvDYkDIfKiWRX0M14u8Ba8n4piWsc885INSNnBR13Rg
-         2h8FK/4AQbmI21xBEC8S+Bb77ytICUbL0GwrfO3aeYyXfdyCSZU6YVyTjR9i6eM/tSar
-         Upuw==
-X-Gm-Message-State: AOAM532n4yCHXAln94DWa7HIjoHE1ZCbVTrG4xrZ8zrMshIZl0LiIeOF
-        4/o+zdq4cKkIbT+H3S3wheR5kQVSaTGj83uG9ERXUvZSWKt8QyUocSKLfOCDYvI9NXtxrpimgbb
-        3PioTuxbJ6d8fcTI+I5dForNDGGkk+eGNKIcl8VI=
-X-Received: by 2002:a05:651c:246:: with SMTP id x6mr2094943ljn.49.1636405836526;
-        Mon, 08 Nov 2021 13:10:36 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyZb4LKcW1A1+MA8CuLWPJQDB5phDB0potg5NQYQwGvOUd0o3C/EZkqT0mWfTObhT2/wWNBag==
-X-Received: by 2002:a05:651c:246:: with SMTP id x6mr2094920ljn.49.1636405836357;
-        Mon, 08 Nov 2021 13:10:36 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id a16sm1929374lfu.274.2021.11.08.13.10.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 13:10:36 -0800 (PST)
-Message-ID: <8343f11a-89e8-c043-6296-000f7ba3e3d2@canonical.com>
-Date:   Mon, 8 Nov 2021 22:10:34 +0100
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=1Bbi1dTodYSxYFvQyegx5oXbco/1YM4dBbouw8AdF18=;
+        b=NEwnHv1X0GuGLxGFbNjOwCM5KlW/n3vVqpdbr0/QAl96vn6nDUBiGOOh5JRaOExElk
+         2plUBmcSKsr/NwnfwWUjCU/jkS3tHcQZDLX7P1XNoVr+mpKSNlpf9py/t2xePejfEoOO
+         WjTRxSCdmjuAl8j7qo8tE7pnCO67OkQ1GAiS/do+Dl3jg8Jb8svTHyzR28PleLLnNrNV
+         8l4dG7ovyRCMTBljElTgaV3XLnu/r/X62jeq0dojzxURDs4+sDK/CTaH89GVeIRqadzg
+         SpAxjc65eCBTb9I2gr7jJm1ahg1Y8RYhRu2Y5leWePHlzfVnIcuxEDN/tPcY64frWsC7
+         AQwg==
+X-Gm-Message-State: AOAM530faeSVhek4SZupaA9KD0DbHk199IShK2l5BXlR7JV77bJgRhen
+        1SZRgarJ4hV01dLAsgE5xeAsDU0vUrqHy2/1rfIxtPMgptgTxj3zPApd3Q==
+X-Google-Smtp-Source: ABdhPJzmssLGALkuVTD5P7xK11cxRBGIvS2Ig+UAOydIvmiFQgYHIszHANg5JGB1s6DKA22C/G8fk4BSgTIdzUjovrY=
+X-Received: by 2002:a05:6638:2045:: with SMTP id t5mr1581205jaj.127.1636405906819;
+ Mon, 08 Nov 2021 13:11:46 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH 04/13] dt-bindings: riscv: update microchip polarfire
- binds
-Content-Language: en-US
-To:     conor.dooley@microchip.com, linus.walleij@linaro.org,
-        bgolaszewski@baylibre.com, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        gregkh@linuxfoundation.org, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, atish.patra@wdc.com,
-        ivan.griffin@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org
-Cc:     geert@linux-m68k.org, bin.meng@windriver.com
-References: <20211108150554.4457-1-conor.dooley@microchip.com>
- <20211108150554.4457-5-conor.dooley@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211108150554.4457-5-conor.dooley@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a05:6e02:1404:0:0:0:0 with HTTP; Mon, 8 Nov 2021 13:11:46
+ -0800 (PST)
+Reply-To: shanwhayden424@gmail.com
+From:   shawn hayden <romaricm89@gmail.com>
+Date:   Mon, 8 Nov 2021 21:11:46 +0000
+Message-ID: <CA+ifLv9=bTbwgNKh2JFf6H5OraBkadi-n-ba1i4EXeNLYr+Q2Q@mail.gmail.com>
+Subject: LOAN AND INVESTMENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/11/2021 16:05, conor.dooley@microchip.com wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Add mpfs-soc to clear undocumented binding warning
+Dear Sir,
 
-What warnings? There is no such compatible used.
+Aseel Islamic finance PJSC is private joint stock company that was
+established in 2006 and has built a leading market position for itself
+in the UAE's Islamic finance market which specializes in loan finance
+and investment activities in real estate, hospitality, industrial &
+sustainable technologies, strategic financial investments, specialized
+education, healthcare services, agriculture, manufacturing,
+mining,energy and additional environmentally sustainable projects.
 
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/riscv/microchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> index 3f981e897126..1ff7a5224bbc 100644
-> --- a/Documentation/devicetree/bindings/riscv/microchip.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - enum:
->            - microchip,mpfs-icicle-kit
->        - const: microchip,mpfs
-> +      - const: microchip,mpfs-soc
->  
->  additionalProperties: true
->  
-> 
+For further details,kindly indicate your interest.
 
+Best regards.
 
-Best regards,
-Krzysztof
+Mr. Ibn Ahmad Mustafa
+International Business Coordinator
+Aseel Islamic Finance PJSC
+Al Mankhool, Dubai C2 Tower,
+Ground floor,P.O 94669 Dubai, UAE
+Abu Dhabi - United Arab Emirates
+Email : ahmadmustafa.7800@gmail.com
