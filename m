@@ -2,154 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72724449909
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7D5A44994C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 17:13:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236647AbhKHQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 11:07:42 -0500
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:34680 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232136AbhKHQHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 11:07:42 -0500
-Received: by mail-ua1-f50.google.com with SMTP id b3so32532853uam.1;
-        Mon, 08 Nov 2021 08:04:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WNd0nRET2KFu0g+CQKlMmSIy/neES2dkVOIw/yi259I=;
-        b=KyOrxX9zyEgrC7OVKnHZCNtaxPbQKhxefVL2oG4MwFeYMNByeeg08fSONAF7ZGncoh
-         LTHtOs7PsgLvT+H/M1um85brZbl/4pDSkuDXXd0V8gWPBLnH6kna6ncW+S/fNKSeTd/C
-         rEPzqB0ayJOYMslb/S83qe2IyUQRmhcOtUZ3Xq4IGh4Fh3FQV90Eu+EEm7tP+8doxpNq
-         h/62SHJRhmp06x9yjgi55+8aDX/gpHQvoJ3QnPH1UOG4ZfuMcRYarsRJYCPpugblEzfY
-         OGap2OFBG4QZsCdfMUvp9rtBf36NlX48qKTtDkQ6HhM/POi0edyNe59RTVDcnUviuc7Q
-         cT8Q==
-X-Gm-Message-State: AOAM530boxuj1aGiH09/mTNYii+rnSBMJJiPI/kLpXdr/XezYJIPOyHm
-        iJUcfB0Tzdux1tbDjaSNWGw5BdDWIIB5eHBw
-X-Google-Smtp-Source: ABdhPJzQD1sGugsMPTNKgJKYcqnUU3GW59y2PdvGbaP0XOuHNTC4LAtQypGvHSBe6op6E77lFKt3qg==
-X-Received: by 2002:ab0:3097:: with SMTP id h23mr66450ual.107.1636387496858;
-        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
-        by smtp.gmail.com with ESMTPSA id g187sm864396vsc.10.2021.11.08.08.04.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
-Received: by mail-vk1-f179.google.com with SMTP id p22so6768754vke.7;
-        Mon, 08 Nov 2021 08:04:56 -0800 (PST)
-X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr373301vko.7.1636387495375;
- Mon, 08 Nov 2021 08:04:55 -0800 (PST)
-MIME-Version: 1.0
-References: <20211104160858.15550-1-biju.das.jz@bp.renesas.com> <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211104160858.15550-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 8 Nov 2021 17:04:44 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
-Message-ID: <CAMuHMdUj0Pd6ca3ma2c6C2n9t578KBRx+GdPEQnHPa3p9A0bvw@mail.gmail.com>
-Subject: Re: [RFC 2/4] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        id S238133AbhKHQQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 11:16:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57838 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238111AbhKHQQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 11:16:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D4E1461107;
+        Mon,  8 Nov 2021 16:13:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636387998;
+        bh=Ijsj68+ZcgX66on4xNvcnNeiQfAyxcdQcTHC4K5SOXI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=lG6VDp2Tre0jkggzgpKn9zvIrAhb/7shlfuxVMN99UOqioR2n7IB3e85NKwQI4CqE
+         4P5cUQQ3Kl9Cntyyla1RG7CZpkPTFZTkq7cKd8g8K2Sn+NjmqDkTOZLdotViKTJA0M
+         XxC8FX8X1cEy+Reb28kjQ/3VsEbZNzsIRS3aUl1cuPVQ2fQ6473y1oh0/WbFaqgLiO
+         z29jA75XqULm50+FN4uS8rLx2xqzVmnRs7dTetXDZAa2dsJGVD/YmDZfVjPfwyRfk3
+         AdV2zF03PBuqD4Eg1zKgsoP6EVcrX0vpx1FFQGa27vd1mibkfGag6kZhWyGN2TFJ1Y
+         rpaKnkC28UAgQ==
+Date:   Mon, 8 Nov 2021 17:13:12 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v2 1/5] leds: trigger: add API for HW offloading of
+ triggers
+Message-ID: <20211108171312.0318b960@thinkpad>
+In-Reply-To: <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
+References: <20211108002500.19115-1-ansuelsmth@gmail.com>
+        <20211108002500.19115-2-ansuelsmth@gmail.com>
+        <YYkuZwQi66slgfTZ@lunn.ch>
+        <YYk/Pbm9ZZ/Ikckg@Ansuel-xps.localdomain>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Mon, 8 Nov 2021 16:16:13 +0100
+Ansuel Smith <ansuelsmth@gmail.com> wrote:
 
-On Thu, Nov 4, 2021 at 5:09 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Describe the WDT hardware in the RZ/G2L series.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> On Mon, Nov 08, 2021 at 03:04:23PM +0100, Andrew Lunn wrote:
+> > > +static inline int led_trigger_offload(struct led_classdev *led_cdev)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	if (!led_cdev->trigger_offload)
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	ret = led_cdev->trigger_offload(led_cdev, true);
+> > > +	led_cdev->offloaded = !ret;
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static inline void led_trigger_offload_stop(struct led_classdev *led_cdev)
+> > > +{
+> > > +	if (!led_cdev->trigger_offload)
+> > > +		return;
+> > > +
+> > > +	if (led_cdev->offloaded) {
+> > > +		led_cdev->trigger_offload(led_cdev, false);
+> > > +		led_cdev->offloaded = false;
+> > > +	}
+> > > +}
+> > > +#endif  
+> > 
+> > I think there should be two calls into the cdev driver, not this
+> > true/false parameter. trigger_offload_start() and
+> > trigger_offload_stop().
+> >   
+> 
+> To not add too much function to the struct, can we introduce one
+> function that both enable and disable the hw mode?
 
-Thanks for your patch!
+Dear Ansuel,
 
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+what is the purpose of adding trigger_offload() methods to LED, if you
+are not going to add support to offload the netdev trigger? That was
+the entire purpose when I wrote that patch.
 
-> @@ -75,17 +79,49 @@ required:
->    - reg
->    - clocks
->
-> -if:
-> -  not:
-> -    properties:
-> -      compatible:
-> -        contains:
-> -          enum:
-> -            - renesas,rza-wdt
-> -then:
-> -  required:
-> -    - power-domains
-> -    - resets
-> +allOf:
-> +  - $ref: "watchdog.yaml#"
-> +
-> +  - if:
-> +      not:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              enum:
-> +                - renesas,rza-wdt
-> +    then:
-> +      required:
-> +        - power-domains
-> +        - resets
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,rzg2l-wdt
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +        interrupt-names:
-> +          items:
-> +            - const: wdt
-> +            - const: perrout
-> +        clocks:
-> +          items:
-> +            - description: Main clock
-> +            - description: Register access clock
-> +        clock-names:
-> +          items:
-> +            - const: oscclk
-> +            - const: pclk
+If you just want to create a new trigger that will make the PHY chip do
+the blinking, there is no need at all for the offloading patch.
 
-Usually we put the internal module clock first.
+And you will also get a NACK from me and also Pavel (LED subsystem
+maintainer).
 
-Please add (at least the first one):
+The current plan is to:
+- add support for offloading existing LED triggers to HW (LED
+  controllers (PHY chips, for example))
+- make netdev trigger try offloading itself to HW via this new API (if
+  it fails, netdev trigger will blink the LED in SW as it does now)
+- create LED classdevices in a PHY driver that have the offload()
+  methods implemented. The offload method looks at what trigger is
+  being enabled for the LED, and it if it is a netdev trigger with such
+  settings that are possible to offload, it will be offloaded.
 
-     required:
-       - clock-names
-       - interrupt-names
+  This whole thing makes use of the existing sysfs ABI.
+  So for example if I do
+    cd /sys/class/net/eth0/phydev/leds/<LED>
+    echo netdev >trigger
+    echo eth0 >device_name
+    echo 1 >rx
+    echo 1 >tx
+  The netdev trigger is activated, and it calls the offload() method.
+  The offload() method is implemented in the PHY driver, and it checks
+  that it can offload these settings (blink on rx/tx), and will enable
+  this.
+- extend netdev trigger to support more settings:
+  - indicate link for specific link modes only (for example 1g, 100m)
+  - ...
+- extend PHY drivers to support offloading of these new settings
 
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +        clocks:
-> +          maxItems: 1
->
->  additionalProperties: false
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Marek
