@@ -2,87 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2328444810D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 15:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62E1448135
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 15:17:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239018AbhKHOQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 09:16:17 -0500
-Received: from mail-vk1-f173.google.com ([209.85.221.173]:33689 "EHLO
-        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234532AbhKHOQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 09:16:16 -0500
-Received: by mail-vk1-f173.google.com with SMTP id d130so8289594vke.0;
-        Mon, 08 Nov 2021 06:13:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l47DyX7zT07Ftsepq+P26ZkT5gnhRsZgVIxOMImJuls=;
-        b=1D/YMS5J9wFckgE4pyemTZX7npsBbLLGByoX5AIHlCzcfN5VERfw/ORKFWCQQVKsIT
-         aFxb/IAbonJcjNJH71agikUOrlfLWxy4JYm/cs39x4SkbrSzYAolDGnM5sbWxG+nawXw
-         Ic92Z+3L4fpsXKzPAuEnWvsvXcA3UjTcN+H/FJL1iLnCJHqzQ07H3n0cSTgX/5kCQzy0
-         m++imdr6IlSpCEHPpxbUW0ZMIou9FidTXIxToDkEV23aSruJlg+W9nAazS+yPJjkjPnb
-         fUrpYgTp5kBU9aea4SNAIDOm9WmZ0Dvdfm6CUjuUIGnjL276an98fkNv6OjfwBeCds3T
-         BDXQ==
-X-Gm-Message-State: AOAM531pfZ+fHRrVP3h9t3EtSjEFdiY0ccMb5qZlGL0CTgK1uk15Totz
-        j26K2UNBlmoBTUCNV9mMiixrI57Lc5dYrDzX
-X-Google-Smtp-Source: ABdhPJyivZeljKXDxJCQtIxyZYyGnsHP69Ogaoz04J3MilG4pXl4Mvo2hy4SD1N+g5lAo6G0Z6XIYw==
-X-Received: by 2002:a05:6122:2015:: with SMTP id l21mr291031vkd.16.1636380811701;
-        Mon, 08 Nov 2021 06:13:31 -0800 (PST)
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
-        by smtp.gmail.com with ESMTPSA id o16sm3254094vss.29.2021.11.08.06.13.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Nov 2021 06:13:31 -0800 (PST)
-Received: by mail-vk1-f179.google.com with SMTP id d130so8289571vke.0;
-        Mon, 08 Nov 2021 06:13:31 -0800 (PST)
-X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr22172276vko.7.1636380811049;
- Mon, 08 Nov 2021 06:13:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211029124437.20721-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20211029124437.20721-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 8 Nov 2021 15:13:20 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVu49AC0nc0hgV=HsR8qEM0pQQuo8T-RRCwwTLvXgO2HQ@mail.gmail.com>
-Message-ID: <CAMuHMdVu49AC0nc0hgV=HsR8qEM0pQQuo8T-RRCwwTLvXgO2HQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/5] pinctrl: renesas: pinctrl-rzg2l: Rename PIN_CFG_*
- macros to match HW manual
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S240336AbhKHOU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 09:20:27 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:50680 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237965AbhKHOU0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 09:20:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=gmwJXUQZZysDMClQuXxVmi498zqenZAX/qkgrMBBZ50=; b=5sED2Qlu/i1e7c6vp1/BW3d4NP
+        nV8oRFSio//MRsYm1iWPcPRPCCTxYuR0syPTB4OUGLQscihcyflEkb9CrFuX6FsvZqPqrgdKzsH7j
+        GSLDwEYIVEJHzUpGvlzvMXbBWiiBs2hUYKZ4iUzlKxuBENDaFzQRb8Lq1Im5QcsjLHdQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mk5Sn-00Cu1S-Sq; Mon, 08 Nov 2021 15:17:33 +0100
+Date:   Mon, 8 Nov 2021 15:17:33 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v2 3/5] leds: trigger: add offload-phy-activity
+ trigger
+Message-ID: <YYkxfRrJ8ERaTr5x@lunn.ch>
+References: <20211108002500.19115-1-ansuelsmth@gmail.com>
+ <20211108002500.19115-4-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211108002500.19115-4-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 29, 2021 at 2:44 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Rename the below macros to match the HW manual (Rev.1.00):
-> PIN_CFG_IOLH_SD0 -> PIN_CFG_IO_VMC_SD0
-> PIN_CFG_IOLH_SD1 -> PIN_CFG_IO_VMC_SD1
-> PIN_CFG_IOLH_QSPI -> PIN_CFG_IO_VMC_QSPI
-> PIN_CFG_IOLH_ETH0 -> PIN_CFG_IO_VMC_ETH0
-> PIN_CFG_IOLH_ETH1 -> PIN_CFG_IO_VMC_ETH1
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Mon, Nov 08, 2021 at 01:24:58AM +0100, Ansuel Smith wrote:
+> Add Offload Trigger for PHY Activity. This special trigger is used to
+> configure and expose the different HW trigger that are provided by the
+> PHY. Each offload trigger can be configured by sysfs and on trigger
+> activation the offload mode is enabled.
+> 
+> This currently implement these hw triggers:
+>   - blink_tx: Blink LED on tx packet receive
+>   - blink_rx: Blink LED on rx packet receive
+>   - blink_collision: Blink LED on collision detection
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v5.17.
+When did you last see a collision? Do you really have a 1/2 duplex
+link? Just because the PHY can, does not mean we should support
+it. Lets restrict this to the most useful modes.
 
-Gr{oetje,eeting}s,
+>   - link_10m: Keep LED on with 10m link speed
+>   - link_100m: Keep LED on with 100m link speed
+>   - link_1000m: Keep LED on with 1000m link speed
+>   - half_duplex: Keep LED on with half duplex link
+>   - full_duplex: Keep LED on with full duplex link
+>   - linkup_over: Keep LED on with link speed and blink on rx/tx traffic
+>   - power_on_reset: Keep LED on with switch reset
 
-                        Geert
+>   - blink_2hz: Set blink speed at 2hz for every blink event
+>   - blink_4hz: Set blink speed at 4hz for every blink event
+>   - blink_8hz: Set blink speed at 8hz for every blink event
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+These seems like attributes, not blink modes. They need to be
+specified somehow differently, or not at all. Do we really need them?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>   - blink_auto: Set blink speed at 2hz for 10m link speed,
+>       4hz for 100m and 8hz for 1000m
+
+Another attribute, and one i've not seen any other PHY do.
+
+	Andrew
