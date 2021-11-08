@@ -2,161 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D6D449AA0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A68B5449AB0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 18:23:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233642AbhKHRTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 12:19:12 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:38525 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbhKHRTM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:19:12 -0500
-Received: by mail-oi1-f180.google.com with SMTP id r26so7401985oiw.5;
-        Mon, 08 Nov 2021 09:16:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vu4a84fjDFz0BFr7Vx+IRehX13Sklb9+xGncvU8UvU4=;
-        b=35RvfEnb7+oxDwDhshcsxa9Urqa2iztHKoTOfn8yScULIAIIZ/aw1cYupoD97VIQpq
-         kD9aRbo3uNjC1A5PrjaOfNBBiATH/wjRABI0zaZ2vY58MsjlDE1WtV/cV00AGW4TtLWJ
-         mB58uWsKchAJp0/7m+GzqJVd/xuAcQXR9bc+FYvXpEwnaDiuUT2BreG2p+CtjKroAskQ
-         RwwU+spHMPlFmLzdptGDL6bhJlpNQiuA1bPBUYDmNzviR/f+6FOh8X0Pi3TCrQ8UIoyu
-         0uKW4c2POaPeH7t2+pcH7e2SOALnM7wgyyuyANZb2EfAq2Iqa2wzM14EGuQodT0IkMXN
-         EoCw==
-X-Gm-Message-State: AOAM532vIxevaCZLqJqevIEJyY2RbEfKWPEt/IHZYGRT4b9LOx9btbap
-        3i8XilGmQHz5L3QTk8rA6Q==
-X-Google-Smtp-Source: ABdhPJxE+F7n7nlSYLvkc9SOKSaGosIc69vBin/edtQ2MTe+QJ4tYvuoUVF1jdDRPNuRz7F07U6JAQ==
-X-Received: by 2002:aca:1818:: with SMTP id h24mr38823599oih.76.1636391787109;
-        Mon, 08 Nov 2021 09:16:27 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x92sm6713239ota.46.2021.11.08.09.16.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 09:16:25 -0800 (PST)
-Received: (nullmailer pid 3601472 invoked by uid 1000);
-        Mon, 08 Nov 2021 17:16:25 -0000
-Date:   Mon, 8 Nov 2021 11:16:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, wells.lu@sunplus.com,
-        Tony Huang <tony.huang@sunplus.com>
-Subject: Re: [PATCH 1/2] dt-binding: mmc: Add mmc yaml file for Sunplus SP7021
-Message-ID: <YYlbaTyAXYMw8A5O@robh.at.kernel.org>
-References: <1636208598-18234-1-git-send-email-tony.huang@sunplus.com>
- <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1636208598-18234-2-git-send-email-tony.huang@sunplus.com>
+        id S238898AbhKHRZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 12:25:55 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:9001 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229627AbhKHRZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 12:25:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636392180;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=hLLn26F9mTaGNLdtyqawJH4bhbe5n3y5jRn46lQtAaA=;
+    b=GBcL6JJrt8hFoPVhfbnuIX63D2IUHXw39LsbS6yusDVRmbTk7AaQtSysVKx1bY3Zfm
+    y2xrx8j+hyA5k5xg9uSvofFUzmbb8Rs63FXvp8ynsoUX9XiN/w00BZzNoRq9Qb5pZlhI
+    /ap0vOPlPQIwm0fCt6dyYWvCpnxceovCpXmsx6ZQpAzE8n/X0YgmggI8qSveSbwjkT1Q
+    SDMMbf9BEEb4fWde0e7yj8kXc8k8FW9OehCMMrb2VjJXR9Mx8lM3LN4e1YM3pnCDCPCr
+    4gSHK9e1gVow9vBT0Tkic7e8FKBLkMfnoIwpdKXhO09/9uLeCoGsB7OXlGRIRlIZ0ygO
+    NOGQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3gMZ+"
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.1 DYNA|AUTH)
+    with ESMTPSA id 902c63xA8HMxM5V
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Mon, 8 Nov 2021 18:22:59 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <BVH92R.0VU3IKPQTLX9@crapouillou.net>
+Date:   Mon, 8 Nov 2021 18:22:58 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <2F8A88BC-2696-491B-9C01-7D07A3B3670A@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+ <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+ <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+ <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+ <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+ <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+ <HQY82R.69JHJIC64HDO1@crapouillou.net>
+ <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+ <ZA692R.GHQL6RBCLFB12@crapouillou.net>
+ <D0809E59-DCB5-46CE-BE5E-D2A5D2ECA6F0@goldelico.com>
+ <BVH92R.0VU3IKPQTLX9@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 06, 2021 at 10:23:17PM +0800, Tony Huang wrote:
-> Add mmc yaml file for Sunplus SP7021
-> 
-> Signed-off-by: Tony Huang <tony.huang@sunplus.com>
-> ---
->  .../devicetree/bindings/mmc/sunplus-mmc.yaml       | 64 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> new file mode 100644
-> index 0000000..fc5a5f6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/sunplus-mmc.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Ltd. Co. 2021
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/sunplus-mmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: sunplus MMC controller
-> +
-> +allOf:
-> +  - $ref: "mmc-controller.yaml"
-> +
-> +maintainers:
-> +  - tony.huang <tony.huang@sunplus.com>
+Hi Paul,
 
-Please fix your name.
+> Am 08.11.2021 um 17:30 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi,
+>=20
+> Le lun., nov. 8 2021 at 16:29:11 +0100, H. Nikolaus Schaller =
+<hns@goldelico.com> a =C3=A9crit :
+>> Bnjour Paul,
+>>> Am 08.11.2021 um 13:20 schrieb Paul Cercueil <paul@crapouillou.net>:
+>>> Hi,
+>>>> e.g. jz4770.dtsi:
+>>>> 	lcd: lcd-controller@13050000 {
+>>>> 		compatible =3D "ingenic,jz4770-lcd";
+>>>> 		reg =3D <0x13050000 0x300>;
+>>>> or jz4725b.dtsi:
+>>>> 	lcd: lcd-controller@13050000 {
+>>>> 		compatible =3D "ingenic,jz4725b-lcd";
+>>>> 		reg =3D <0x13050000 0x1000>;
+>>>> So max_register becomes 0x300 or 0x1000 but not
+>>>> #define JZ_REG_LCD_SIZE1	0x12c
+>>>> 	.max_reg =3D JZ_REG_LCD_SIZE1,
+>>>> And therefore wastes a lot of regmap memory.
+>>> "regmap memory"? ...
+>> regmap allocates memory for its cache. Usually the total amount =
+specified in the reg property.
+>=20
+> We are not using any register cache here.
+>=20
+>>>> Do you want this? DTS should not be reduced (DTS should be kept as =
+stable as possible), since the reg property describes address mapping - =
+not how many bytes are really used by registers or how big a cache =
+should be allocated (cache allocation size requirements are not hardware =
+description).
+>>> The DTS should list the address and size of the register area. If =
+your last register is at address 0x12c and there's nothing above, then =
+the size in DTS should be 0x130.
+>> If I look into some .dtsi it is sometimes that way but sometimes not. =
+There seems to be no consistent rule.
+>> So does this mean you allow me to modify jz4740.dtsi, jz4770.dtsi and =
+jz4725b.dtsi as well (as mentioned above: this is beyond the scope of my =
+project)?
+>=20
+> You could update them if you wanted to, but there is no need to do it =
+here.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sunplus,sp7021-emmc
-> +      - sunplus,i143-emmc
-> +      - sunplus,q645-emmc
+Hm. Then we are changing the .max_register initialization to a much =
+bigger value.
 
-blank line here.
+>=20
+>>>> But here are good news:
+>>>> I have a simpler and less invasive proposal. We keep the =
+devm_regmap_init_mmio code as is and just increase its .max_register =
+from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when introducing the jz4780. =
+This wastes a handful bytes for all non-jz4780 chips but less than using =
+the DTS memory region size. And is less code (no entry in soc_info =
+tables, no modifyable copy) and faster code execution than all other =
+proposals.
+>>>> This is then just a single-line change when introducing the jz4780. =
+And no "preparation for adding jz4780" patch is needed at all. No patch =
+to split out for separate review.
+>>>> Let's go this way to get it eventually finalized. Ok?
+>>> No.
+>> Look friend, if you explain your "no" and what is wrong with my =
+arguments, it helps to understand your decisions and learn something =
+from them. A plain "no" does not help anyone.
+>=20
+> I answered just "no" because I felt like I explained already what I =
+wanted to see in the previous email.
+>=20
+> By using a huge number as the .max_register, we do *not* waste =
+additional memory. Computing the value of the .max_register field does =
+not add any overhead, either.
+>=20
+> The .max_register is only used for boundary checking. To make sure =
+that you're not calling regmap_write() with an invalid register. That's =
+all there is to it.
 
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - resets
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/sp-sp7021.h>
-> +    #include <dt-bindings/reset/sp-sp7021.h>
-> +    mmc0: mmc@9c003b00 {
-> +        compatible = "sunplus,sp7021-emmc";
-> +        reg = <0x9c003b00 0x180>;
-> +        interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clkc CARD_CTL0>;
-> +        resets = <&rstc RST_CARD_CTL0>;
-> +        bus-width = <8>;
-> +        max-frequency = <52000000>;
-> +        non-removable;
-> +        disable-wp;
-> +        cap-mmc-highspeed;
-> +        mmc-ddr-3_3v;
-> +        no-sdio;
-> +        no-sd;
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3b79fd4..179e60a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17945,6 +17945,11 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/dlink/sundance.c
->  
-> +SUNPLUS MMC DRIVER
-> +M:	Tony Huang <tony.huang@sunplus.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/mmc/sunplu-mmc.yaml
-> +
->  SUPERH
->  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
->  M:	Rich Felker <dalias@libc.org>
-> -- 
-> 2.7.4
-> 
-> 
+Ah, now I understand our disconnect. So far I have used regmaps mainly =
+for i2c devices and there is caching to avoid redundant i2c traffic...
+
+So I just assumed wrongly that the regmap driver also allocates some =
+buffer/cache here. Although it does not initialize .cache_type (default: =
+REGCACHE_NONE).
+
+>=20
+>> So to summarize: if you prefer something which I consider worse, it =
+is ok for me... In the end you are right - you are the maintainer, not =
+me. So you have to live with your proposals.
+>> Therefore, I have prepared new variants so you can choose which one =
+is easier to maintain for you.
+>> Note that they are both preparing for full jz4780-lcdc/hdmi support =
+but in very different ways:
+>> Variant 1 already adds some jz4780 stuff while Variant 2 just =
+prepares for it.
+>> Variant 2 is not tested (except to compile). So it needs some =
+Tested-by: from someone with access to hardware. IMHO it is more =
+invasive.
+>> And don't forget: DTB could be in ROM or be provided by a separate =
+bootloader... So we should not change it too often (I had such =
+discussions some years ago with maintainers when I thought it is easier =
+to change DTS instead of code).
+>> Variant 3 would be to not separate this. As proposed in [PATCH v5 =
+2/7].
+>> (Finally, a Variant 3b would be to combine the simple change from =
+Variant 1 with Variant 3).
+>> So what is your choice?
+>=20
+> Variant 4: the variant #2 without the changes to the DTSI files.
+
+Hm. If there is no cache and we can safely remove tight boundary =
+checking (by JZ_REG_LCD_SIZE1) for jz4725/40/70 (by not fixing DTSI) why =
+do we still need the max_register calculation from DTSI specifically for =
+jz4780 and at all?
+
+So what about:
+
+Variant 5: set .max_register =3D 0x1800, i.e. "big enough for everyone" =
+(includes z4780 gamma and vee registers) + no DTSI changes (+ no jz4780 =
+register constants like Variant 1)
+
++ no DTSI changes
++ no calculation from DTSI needed
++ single separate patch to prepare for jz4780 but not included in jz4780 =
+patch
+
+BR and thanks,
+Nikolaus
+
+
