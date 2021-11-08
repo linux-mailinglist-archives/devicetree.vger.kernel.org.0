@@ -2,80 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E180449D56
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 21:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30A28449D8A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 22:04:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231502AbhKHVBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 16:01:36 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:45652 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230126AbhKHVBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 16:01:35 -0500
-Received: by mail-oi1-f178.google.com with SMTP id u2so29672755oiu.12;
-        Mon, 08 Nov 2021 12:58:51 -0800 (PST)
+        id S239676AbhKHVHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 16:07:33 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:34449 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239682AbhKHVHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 16:07:33 -0500
+Received: by mail-oi1-f177.google.com with SMTP id bg25so29065012oib.1;
+        Mon, 08 Nov 2021 13:04:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YHUlQJEbpQR7/Et+g9CB2ZvQCivHYZl6NXqndHZfd8s=;
-        b=6+bDnxsHxzhYGDq8Vt8aZfa9UZhhKej9bJo9+6akYxpwGIdARWwS7b4anQooVfZot6
-         OG37r3a7VK1mepdHTSnRIv+GS4QhZiQ+0CbOEQyHQtSmr8EArN4lVfjmhbxFrjlgL5QC
-         vqeu48gZAHAYalGpZVKavPF8/bq5u1h9FiNZY3Ot2yW6ajoH/WX8cCDIL47WbBIUyKQT
-         enS5IHn7NEzQJorn8QpSHkMB7mJQOwD3qX6fiEpIQpJnZ5byfplvd+yMaIeD8J9Ov9IT
-         xDzCMHsMKrL9tEe6XQnPd5SU447zLIQsAuhRb+2vm7WbCFBRhOGX0uGsUU2j4K/Aq3J6
-         1hsw==
-X-Gm-Message-State: AOAM532s55zjJAdByi53YsESol5BNvjFt/vRICmi55dwdOUGYdjyuQRl
-        qEqXItS3fA/E2Eg4YWqNkg==
-X-Google-Smtp-Source: ABdhPJzpVbSN7N8yQUVIe8sDz6+F3EA1l3t2ISD19ruRthAjwYLgenwLYRBJ40ulfAACC7UOlVLxfg==
-X-Received: by 2002:aca:1815:: with SMTP id h21mr1072267oih.35.1636405130617;
-        Mon, 08 Nov 2021 12:58:50 -0800 (PST)
+        bh=dLj06l1wmESDNcs8MD+tMJu6hG5JZ+huSjOUnPTWIms=;
+        b=nsC4eNwasN/o/nd7V/GXfwzU3jWWA4LQz5I3oczBwkZn8S+tCgTly+WA6yAlzA8G2z
+         rxf0oRPWgAVPEKGIFb3ZW8Jw8GkfCwrs4zlZKgrWEn5Y78t9EQw8w0y+MSr/m4bNHlRV
+         ezc8r7912r+rgWvkDPc2fQCklMI3MjJwZ9vV4Ec/u/2InyohIkE5zabsQTAqC3aqzgw6
+         XMk+NhDjJdNghz3sOmNUgy+t3jSpEGzOAfnHgfohQtf4VBNmqj5M8Hvg3Qi4tDUrv3+8
+         qheD/Ue48XzyBhzVFbi7oid7guukKdwMde3g23JW+mu3n/dJZsOV0KCpuiXdesjDagU/
+         xF4A==
+X-Gm-Message-State: AOAM533wCfX90g7pARZRnQ17yjPTXKlZxCZmbNQd7m0IkmyH0HJUzXrz
+        8ZRoWqBDo9hJt3zshvMyw91rLRyOaQ==
+X-Google-Smtp-Source: ABdhPJzgvZiyH3h067LzXWI0cQ4/N1FWjU0WpFR4uRRAaF0ibj9cAeUsZYzrHJXzWGQ7Y2Wdivex9Q==
+X-Received: by 2002:aca:3e86:: with SMTP id l128mr1169280oia.120.1636405487943;
+        Mon, 08 Nov 2021 13:04:47 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r184sm6237873oia.38.2021.11.08.12.58.49
+        by smtp.gmail.com with ESMTPSA id k4sm6359902oic.48.2021.11.08.13.04.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 12:58:49 -0800 (PST)
-Received: (nullmailer pid 7576 invoked by uid 1000);
-        Mon, 08 Nov 2021 20:58:48 -0000
-Date:   Mon, 8 Nov 2021 14:58:48 -0600
+        Mon, 08 Nov 2021 13:04:46 -0800 (PST)
+Received: (nullmailer pid 16501 invoked by uid 1000);
+        Mon, 08 Nov 2021 21:04:44 -0000
+Date:   Mon, 8 Nov 2021 15:04:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     David Heidelberg <david@ixit.cz>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-i2c@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>, ~okias/devicetree@lists.sr.ht
-Subject: Re: [PATCH] dt-bindings: i2c: imx: hardware do not restrict
- clock-frequency to only 100 and 400 kHz
-Message-ID: <YYmPiHXXqi1Nj8HY@robh.at.kernel.org>
-References: <20211029141134.66170-1-david@ixit.cz>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, - <kernel@puri.sm>,
+        ~okias/devicetree@lists.sr.ht, phone-devel@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: sound: gtm601: convert to YAML
+Message-ID: <YYmQ7OCIIb2AbnjY@robh.at.kernel.org>
+References: <20211030121753.50191-1-david@ixit.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211029141134.66170-1-david@ixit.cz>
+In-Reply-To: <20211030121753.50191-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 16:11:33 +0200, David Heidelberg wrote:
-> clock-frequency is only restricted by the upper limit of 400 kHz.
+On Sat, Oct 30, 2021 at 02:17:52PM +0200, David Heidelberg wrote:
+> Convert GTM601 binding to the YAML format.
 > 
-> Found with:
-> $ DT_SCHEMA_FILES=Documentation/devicetree/bindings/i2c/i2c-imx.yaml make dtbs_check
-> ...
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: i2c@30a20000: clock-frequency:0:0: 387000 is not one of [100000, 400000]
-> 	From schema: linux/Documentation/devicetree/bindings/i2c/i2c-imx.yaml
-> ...
-> 
-> Fixes: 4bdc44347299 ("dt-bindings: i2c: Convert imx i2c to json-schema")
 > Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-imx.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> v2:
+>  - add #sound-dai-cells
+>  - put kernel@puri.sm into maintainers
 > 
+>  .../devicetree/bindings/sound/gtm601.txt      | 19 ----------
+>  .../devicetree/bindings/sound/gtm601.yaml     | 36 +++++++++++++++++++
+>  2 files changed, 36 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/gtm601.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/gtm601.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/gtm601.txt b/Documentation/devicetree/bindings/sound/gtm601.txt
+> deleted file mode 100644
+> index efa32a486c4a..000000000000
+> --- a/Documentation/devicetree/bindings/sound/gtm601.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -GTM601 UMTS modem audio interface CODEC
+> -
+> -This device has no configuration interface. The sample rate and channels are
+> -based on the compatible string
+> -	"option,gtm601" = 8kHz mono
+> -	"broadmobi,bm818" = 48KHz stereo
+> -
+> -Required properties:
+> -
+> -  - compatible : one of
+> -	"option,gtm601"
+> -	"broadmobi,bm818"
+> -
+> -
+> -Example:
+> -
+> -codec: gtm601_codec {
+> -	compatible = "option,gtm601";
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/gtm601.yaml b/Documentation/devicetree/bindings/sound/gtm601.yaml
+> new file mode 100644
+> index 000000000000..e81a6aa75522
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/gtm601.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/gtm601.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GTM601 UMTS modem audio interface CODEC
+> +
+> +maintainers:
+> +  - kernel@puri.sm
+> +
+> +description: >
+> +  This device has no configuration interface. The sample rate and channels are
+> +  based on the compatible string
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: broadmobi,bm818
+> +          - const: option,gtm601
 
-Applied, thanks!
+This does not match what the binding originally said. And generally this 
+combined with the one below should never be valid.
+
+> +      - items:
+> +          - enum:
+> +              - broadmobi,bm818  # 48 kHz stereo
+> +              - option,gtm601  # 8 kHz mono
+> +
+> +  '#sound-dai-cells':
+> +    const: 0
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    gtm601_codec {
+> +        compatible = "option,gtm601";
+> +    };
+> -- 
+> 2.33.0
+> 
+> 
