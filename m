@@ -2,148 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A5274480A9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 14:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4F74480B2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 15:00:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238173AbhKHOB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 09:01:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235081AbhKHOB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 09:01:56 -0500
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48A5AC061570
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 05:59:12 -0800 (PST)
-Received: by mail-qk1-x732.google.com with SMTP id bm28so15473647qkb.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 05:59:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=JirAXSflDjIcMAeazdVpY/4xA41IlCAY04BXmE2ZYQM=;
-        b=HLXr25pRJ7+E8lT4ABwhuNFkxRYpRCgr7hswcSp5Lz4N+xi7/whjxmtqYGZ7KbEIEw
-         Fcup+X6OvBpYzpNUAh6zyT5/m3AeG+K+iHjJJKNEWzKsYf8PqPGhUHfyUuESlLkiSda6
-         rMA9QOjK3uybOhJ3DKPAODHNWZQv0Y4hHdUTqW3DB7U7vLEYxfmp1SYgVU0MraHxjcFz
-         46eeeNtdwLRH2bFiCb2W/gNK7T99wdZm8vPf/VunOX7XX9iHY9N5ju5ZC+DVLn0Ps7nO
-         jH1fVjmkejbUkdA4z95OSyqwjq127ae5Jja/zWqxhVrkP0wZUUrUATNA+nEQ352/GE/l
-         Ud3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=JirAXSflDjIcMAeazdVpY/4xA41IlCAY04BXmE2ZYQM=;
-        b=NypTwBaaRsnvegN/hzsmxe7i3IhuRVUjq+DEjqyWupsso9h0itCEuiz/QZnwZ0kq5k
-         VWRoivxW4xXM7yvJZy8pan8M+UWWAvylUqvlRWs5cwOivqcFx6K333xSOXPJunC3ZSFf
-         A6sUHatnvjOCLH9O+MOG9Qsg4cNExAVdBkMrz8ptLKHIAeTt8+CqHapUkruf60hhGs0q
-         XaVB8kNCmooNYHpVlRamzf2ESknCpcyqO5U2zNQrvQ1rT3swCVyNDDdeey5mJ+qNnSmU
-         RYxEsfKt9Nw1cFT/EDaW8lRxSDeV6Fo7CmEg7yc1h3AzCspUeQsvQGSG3ZGUBzQL+VdU
-         Y3kA==
-X-Gm-Message-State: AOAM532RdZmWYr98D1d9XEG1iwTD1Kmg4+/zMLWs5uRwqYSIryQn05kd
-        HKMI+/1Mgrk8TpCKNMboJR9Es5DAD3JGjvWP
-X-Google-Smtp-Source: ABdhPJwnQhLeO0Oq5jMtAfmA/8j65tIDSBH7CNZ4oKjXKDgjfz7o42nBFlklWsUQVUkMrnayVPVZCg==
-X-Received: by 2002:a05:620a:448b:: with SMTP id x11mr39558492qkp.286.1636379951308;
-        Mon, 08 Nov 2021 05:59:11 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id f7sm10082091qkp.107.2021.11.08.05.59.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 05:59:10 -0800 (PST)
-Message-ID: <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
-Cc:     tharvey@gateworks.com, frieder.schrempf@kontron.de,
-        marek.vasut@gmail.com, jagan@amarulasolutions.com,
-        aford@beaconembedded.com, cstevens@beaconembedded.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Mon, 08 Nov 2021 08:59:09 -0500
-In-Reply-To: <20211106183802.893285-1-aford173@gmail.com>
-References: <20211106183802.893285-1-aford173@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.0 (3.42.0-1.fc35) 
+        id S238272AbhKHODa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 09:03:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55560 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235902AbhKHOD3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 09:03:29 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3752A61361;
+        Mon,  8 Nov 2021 14:00:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636380045;
+        bh=izUyU11zdeMT/aRwDCiBBWYzJdGvltLhmfBSK2Tce+0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mEWEk1uA14JZDV8wdYpw/taS+kSP+ss3RukHOzmvdL3U3cnmDlLnR0NUm7oPUYrvv
+         QQMvYEAGyrJuqUW62s8r27UJBSVIuOtj22tcDqtNHvY7WqoLuyqY3x1i+0SoIYRAdo
+         VTNKNq5L+s/mK6mlNDX+0XOUcUkdPglUAwrbusN8bCZbCeGE3U9ZA97LMo1zy5LIe8
+         rt9zE6z8rm2CqSbe3iA4gqO64gyqdmFch1czd1RCJAtKdfMVp87gn0iFt8BpRLJJj8
+         YR9D3xq06mXyKN3qSFiyEM1g1hehhfjlcvIcMgjCxprX4Kt8wENKjZmfqTVa56tGnp
+         29EdGu0AqyVew==
+Received: by mail-ed1-f54.google.com with SMTP id o8so62775226edc.3;
+        Mon, 08 Nov 2021 06:00:45 -0800 (PST)
+X-Gm-Message-State: AOAM530k1bFzBSu9ogLVwBD7UJGOHpo7TQyP5jM9N4aAORvkat+tQBf7
+        nEjxZ59WwTI3xOiPDZagvuMkLSmGKYG31HHSHg==
+X-Google-Smtp-Source: ABdhPJz1YCKek/SoIOKWCmTzcAVXHyiGtNhZcHIUPo0/ukWjKFdSzT5KKPUakqks2jia4+yz0wIt1WJJDG5tCLUAVtA=
+X-Received: by 2002:a05:6402:350e:: with SMTP id b14mr55082191edd.271.1636380042836;
+ Mon, 08 Nov 2021 06:00:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1635519876-7112-1-git-send-email-srivasam@codeaurora.org>
+ <1635519876-7112-2-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n53ok5muZ8nhpsigsw3w_qx_TSxGSdm7pf9nbb+s4K+HiQ@mail.gmail.com>
+ <0cf52203-249a-2f6c-6106-888631ac85fa@codeaurora.org> <CAL_JsqLxJ4HYUEcdCu-5EiakXe9e3yueOdxRa24K2r04F1Zqeg@mail.gmail.com>
+ <b1f2280a-b349-6862-c6e1-f74a5584c9bc@codeaurora.org>
+In-Reply-To: <b1f2280a-b349-6862-c6e1-f74a5584c9bc@codeaurora.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 8 Nov 2021 08:00:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL--zFvm=TWN2b2f4XJC3VigNwRq9gyf2PcAAVoiM8A4A@mail.gmail.com>
+Message-ID: <CAL_JsqL--zFvm=TWN2b2f4XJC3VigNwRq9gyf2PcAAVoiM8A4A@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: Add sc7280-herobrine
+ machine bindings
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        "Gross, Andy" <agross@kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Patrick Lai <plai@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On Mon, Nov 8, 2021 at 1:35 AM Srinivasa Rao Mandadapu
+<srivasam@codeaurora.org> wrote:
+>
+>
+> On 11/6/2021 7:00 AM, Rob Herring wrote:
+> Thanks for Your time Rob!!!
+> > On Tue, Nov 2, 2021 at 5:57 AM Srinivasa Rao Mandadapu
+> > <srivasam@codeaurora.org> wrote:
+> >>
+> >> On 10/30/2021 12:37 AM, Stephen Boyd wrote:
+> >> Thanks for Your time Stephen!!!
+> >>> Quoting Srinivasa Rao Mandadapu (2021-10-29 08:04:35)
+> >>>> diff --git a/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> >>>> new file mode 100644
+> >>>> index 0000000..3a781c8
+> >>>> --- /dev/null
+> >>>> +++ b/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+> >>>> @@ -0,0 +1,170 @@
+> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>> +%YAML 1.2
+> >>>> +---
+> >>>> +$id: http://devicetree.org/schemas/sound/google,sc7280-herobrine.yaml#
+> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>> +
+> >>>> +title: Google SC7280-Herobrine ASoC sound card driver
+> >>>> +
+> >>>> +maintainers:
+> >>>> +  - Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> >>>> +  - Judy Hsiao <judyhsiao@chromium.org>
+> >>>> +
+> >>>> +description:
+> >>>> +  This binding describes the SC7280 sound card which uses LPASS for audio.
+> >>>> +
+> >>>> +properties:
+> >>>> +  compatible:
+> >>>> +    enum:
+> >>>> +      - google,sc7280-herobrine
+> >>>> +
+> >>>> +  audio-routing:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> >>>> +    description:
+> >>>> +      A list of the connections between audio components. Each entry is a
+> >>>> +      pair of strings, the first being the connection's sink, the second
+> >>>> +      being the connection's source.
+> >>>> +
+> >>>> +  model:
+> >>>> +    $ref: /schemas/types.yaml#/definitions/string
+> >>>> +    description: User specified audio sound card name
+> >>>> +
+> >>>> +  "#address-cells":
+> >>>> +    const: 1
+> >>>> +
+> >>>> +  "#size-cells":
+> >>>> +    const: 0
+> >>>> +
+> >>>> +patternProperties:
+> >>>> +  "^dai-link@[0-9a-f]$":
+> >>>> +    description:
+> >>>> +      Each subnode represents a dai link. Subnodes of each dai links would be
+> >>>> +      cpu/codec dais.
+> >>>> +
+> >>>> +    type: object
+> >>>> +
+> >>>> +    properties:
+> >>>> +      link-name:
+> >>>> +        description: Indicates dai-link name and PCM stream name.
+> >>>> +        $ref: /schemas/types.yaml#/definitions/string
+> >>>> +        maxItems: 1
+> >>>> +
+> >>>> +      reg:
+> >>>> +        maxItems: 1
+> >>>> +        description: dai link address.
+> >>>> +
+> >>>> +      cpu:
+> >>>> +        description: Holds subnode which indicates cpu dai.
+> >>>> +        type: object
+> >>>> +        properties:
+> >>>> +          sound-dai: true
+> >>> Is sound-dai required? And additionalProperties is false? I think we
+> >>> need that yet again.
+> >> Okay. Will mark additionalPropertiesas true.
+> > 'additiionalProperties: true' is almost never right. It's generally
+> > only correct for schemas that are incomplete collections of
+> > properties.
+> >
+> > Rob
+>
+> As per Stephen Suggestion. thought it's a solution.
+>
+> The sound-dai required here, and same is fallowed in SC7180 machine
+> driver bindings.
+>
+> Could You please suggest better approach on this?
 
-thanks for you work, I'll try and reply  about the GStreamer questions below, if
-you have further question feel free to ask.
+Exactly what Stephen said, add:
 
-Le samedi 06 novembre 2021 à 13:37 -0500, Adam Ford a écrit :
-> The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
-> to be related to the video decoders used on the i.MX8MQ, but because of
-> how the Mini handles the power domains, the VPU driver does not need to
-> handle all the functions, so a new compatible flag is required.
-> 
-> This is an RFC because I don't have functional video on my system yet,
-> and I'm hoping there might be people who do and can help test this.
-> I have only tested this far enough to see they enumerate and appear
-> as /dev/videoX and /dev/mediaX devices.
+required:
+  - sound-dai
 
-I will check the patchset, but you need in the mini-variant to disable the G1
-post processor, because this block was fused out. We didn't make it optional
-from the start as according to the V1 of the TRM it was there, but that error
-was corrected in V3.
-
-> 
-> I am also curious to know if/what gstreamer plugins are necessary.  In
-> NXP's custom kernel, there are IMX-specific plugins, and I was hoping there
-> would be more generic plugins that I can use to test.  I am hoping some
-> of the linux-media experts might chime in on how to best test.
-
-I will recommend using GStreamer 1.19.3 or main branch (GStreamer is now a
-single git repo). You will then be able to test Hantro G1 decoding of MPEG2,
-H264 and VP8. Remember that the related plugin depends on libgudev (a glib
-binding of udev).
-
-For the encoder, I believe only JPEG maybe supported, since this is all there is
-mainline for RK3288 (and perhaps other RK). But this will need testing and
-debugging as the G1 version is slightly newer on NXP SoC.
-
-> 
-> Lastly, I didn't update any device tree binding YAML files, because
-> I know there have been some discussions about the power domains on the
-> imx8mq, and I wasn't sure if the imx8mm should get a separate YAML file
-> or if the existing one for te imx8mq should just be modified.
-> 
-> This will likely require the following series in order to apply correctly:
-> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=576407
-> 
-> Adam Ford (5):
->   media: hantro: Add support for i.MX8M Mini
->   arm64: dts: imx8mm:  Enable VPU-G1 and VPU-G2
->   media: hantro: Rename ROCKCHIP_VPU_ENC_FMT to HANTRO_VPU_ENC_FMT
->   media: hantro: Add H1 encoder support on i.MX8M Mini
->   arm64: dts: imx8mm:  Enable Hantro H1 Encoder
-> 
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  61 ++++++++
->  drivers/staging/media/hantro/hantro_drv.c     |   3 +
->  drivers/staging/media/hantro/hantro_hw.h      |  19 ++-
->  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 143 ++++++++++++++++++
->  .../staging/media/hantro/rockchip_vpu_hw.c    |  26 ++--
->  5 files changed, 231 insertions(+), 21 deletions(-)
-> 
-
+additionalProperties: false
