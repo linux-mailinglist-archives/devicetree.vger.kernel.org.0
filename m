@@ -2,398 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42551447EA1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:13:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 90EA2447EBE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 12:19:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239054AbhKHLQ2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 06:16:28 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:54401 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239228AbhKHLQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:16:07 -0500
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 8E881240004;
-        Mon,  8 Nov 2021 11:13:13 +0000 (UTC)
-Date:   Mon, 8 Nov 2021 12:13:12 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 2/6] dt-bindings: net: convert mscc,vsc7514-switch
- bindings to yaml
-Message-ID: <20211108121312.2dd46ec8@fixe.home>
-In-Reply-To: <20211103104511.sgynsapyqlsamovi@skbuf>
-References: <20211103091943.3878621-1-clement.leger@bootlin.com>
-        <20211103091943.3878621-3-clement.leger@bootlin.com>
-        <20211103104511.sgynsapyqlsamovi@skbuf>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S239150AbhKHLWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 06:22:07 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:38323 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237148AbhKHLWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 06:22:06 -0500
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id B21B220000D;
+        Mon,  8 Nov 2021 11:19:18 +0000 (UTC)
+Date:   Mon, 8 Nov 2021 12:20:11 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen.Hristev@microchip.com
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        laurent.pinchart@ideasonboard.com, sakari.ailus@iki.fi,
+        robh+dt@kernel.org, Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH 11/21] media: atmel: atmel-isc-base: implement mbus_code
+ support in enumfmt
+Message-ID: <20211108112011.j4wi2z7hcibot6pz@uno.localdomain>
+References: <20211022075247.518880-1-eugen.hristev@microchip.com>
+ <20211022075247.518880-12-eugen.hristev@microchip.com>
+ <20211105092559.ce6pdm4hwvxkmutd@uno.localdomain>
+ <20211105095128.7tu4rm6mogwy2dz6@uno.localdomain>
+ <60f0d378-d998-464f-2d95-09db4e889b96@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <60f0d378-d998-464f-2d95-09db4e889b96@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Wed, 3 Nov 2021 10:45:12 +0000,
-Vladimir Oltean <vladimir.oltean@nxp.com> a écrit :
+Hi Eugen
 
-> On Wed, Nov 03, 2021 at 10:19:39AM +0100, Clément Léger wrote:
-> > Convert existing bindings to yaml format. In the same time, remove non
-> > exiting properties ("inj" interrupt) and add fdma.
-> > 
-> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
-> > ---
-> >  .../bindings/net/mscc,vsc7514-switch.yaml     | 184 ++++++++++++++++++
-> >  .../devicetree/bindings/net/mscc-ocelot.txt   |  83 --------
-> >  2 files changed, 184 insertions(+), 83 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/mscc-ocelot.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-> > new file mode 100644
-> > index 000000000000..0c96eabf9d2d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-> > @@ -0,0 +1,184 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml
-> > +
-> > +title: Microchip VSC7514 Ethernet switch controller
-> > +
-> > +maintainers:
-> > +  - Vladimir Oltean <vladimir.oltean@nxp.com>
-> > +  - Claudiu Manoil <claudiu.manoil@nxp.com>
-> > +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> > +
-> > +description: |
-> > +  The VSC7514 Industrial IoT Ethernet switch contains four integrated dual media
-> > +  10/100/1000BASE-T PHYs, two 1G SGMII/SerDes, two 1G/2.5G SGMII/SerDes, and an
-> > +  option for either a 1G/2.5G SGMII/SerDes Node Processor Interface (NPI) or a
-> > +  PCIe interface for external CPU connectivity. The NPI/PCIe can operate as a
-> > +  standard Ethernet port.  
-> 
-> Technically any port can serve as NPI, not just the SERDES ones. People
-> are even using internal PHY ports as NPI.
-> https://patchwork.kernel.org/project/netdevbpf/patch/20210814025003.2449143-11-colin.foster@in-advantage.com/#24381029
-> 
-> Honestly I would not bother talking about NPI, it is confusing to see it here.
-> Anything having to do with the NPI port is the realm of DSA.
-> 
-> Just say how the present driver expects to control the device, don't
-> just copy stuff from marketing slides. In this case PCIe is irrelevant
-> too, this driver is for a platform device, and it only runs on the
-> embedded processor as far as I can tell.
+On Fri, Nov 05, 2021 at 11:03:25AM +0000, Eugen.Hristev@microchip.com wrote:
+> On 11/5/21 11:51 AM, Jacopo Mondi wrote:
+> > Hi Eugen
+> >
+> > On Fri, Nov 05, 2021 at 10:25:59AM +0100, Jacopo Mondi wrote:
+> >> Hi Eugen,
+> >>
+> >> On Fri, Oct 22, 2021 at 10:52:37AM +0300, Eugen Hristev wrote:
+> >>> If enumfmt is called with an mbus_code, the enumfmt handler should only
+> >>> return the formats that are supported for this mbus_code.
+> >>> To make it more easy to understand the formats, changed the report order
+> >>> to report first the native formats, and after that the formats that the ISC
+> >>> can convert to.
+> >>>
+> >>> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> >>
+> >> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> >>
+> >
+> > Too soon! Sorry...
+> >
+> >> Thanks
+> >>     j
+> >>
+> >>> ---
+> >>>   drivers/media/platform/atmel/atmel-isc-base.c | 51 ++++++++++++++++---
+> >>>   1 file changed, 43 insertions(+), 8 deletions(-)
+> >>>
+> >>> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+> >>> index 2dd2511c7be1..1f7fbe5e4d79 100644
+> >>> --- a/drivers/media/platform/atmel/atmel-isc-base.c
+> >>> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
+> >>> @@ -499,21 +499,56 @@ static int isc_enum_fmt_vid_cap(struct file *file, void *priv,
+> >>>      u32 index = f->index;
+> >>>      u32 i, supported_index;
+> >>>
+> >>> -   if (index < isc->controller_formats_size) {
+> >>> -           f->pixelformat = isc->controller_formats[index].fourcc;
+> >>> -           return 0;
+> >>> +   supported_index = 0;
+> >>> +
+>
+> Hi Jacopo,
+>
+> This for loop below first iterates through the formats that were
+> identified as directly supported by the subdevice.
+> As we are able in the ISC to just dump what the subdevice can stream, we
+> advertise all these formats here.
+> (if the userspace requires one specific mbus code, we only advertise the
+> corresponding format)
+>
+> >>> +   for (i = 0; i < isc->formats_list_size; i++) {
+> >>> +           if (!isc->formats_list[i].sd_support)
+> >
+> >
+> >>> +                   continue;
+> >>> +           /*
+> >>> +            * If specific mbus_code is requested, provide only
+> >>> +            * supported formats with this mbus code
+> >>> +            */
+> >>> +           if (f->mbus_code && f->mbus_code !=
+> >>> +               isc->formats_list[i].mbus_code)
+> >>> +                   continue;
+> >>> +           if (supported_index == index) {
+> >>> +                   f->pixelformat = isc->formats_list[i].fourcc;
+> >>> +                   return 0;
+> >>> +           }
+> >>> +           supported_index++;
+> >>>      }
+> >>>
+> >>> -   index -= isc->controller_formats_size;
+> >>> +   /*
+> >>> +    * If the sensor does not support this mbus_code whatsoever,
+> >>> +    * there is no reason to advertise any of our output formats
+> >>> +    */
+> >>> +   if (supported_index == 0)
+> >>> +           return -EINVAL;
+> >
+> > Shouldn't you also return -EINVAL if index > supported_index ?
+>
+> No. If we could not find any format that the sensor can use
+> (supported_index == 0), and that our ISC can also use, then we don't
+> support anything, thus, return -EINVAL regardless of the index.
+>
+> >
+> > In that case, I'm not gettng what the rest of the function is for ?
+> >
+>
+> This is the case when we identified one supported format for both the
+> sensor and the ISC (case where supported_index found earlier is >= 1)
+>
+> >>> +
+> >>> +   /*
+> >>> +    * If the sensor uses a format that is not raw, then we cannot
+> >>> +    * convert it to any of the formats that we usually can with a
+> >>> +    * RAW sensor. Thus, do not advertise them.
+> >>> +    */
+> >>> +   if (!isc->config.sd_format ||
+> >>> +       !ISC_IS_FORMAT_RAW(isc->config.sd_format->mbus_code))
+> >>> +           return -EINVAL;
+> >>>
+>
+> Next, if the current format from the subdev is not raw, we are done.
+
+Ok, I think here it's were I disconnect.
+
+I don't think you should care about the -current- format on the
+subdev, as once you move to MC the ISC formats should be enumerated
+regardless of the how the remote subdev is configured. Rather, you
+should consider if IS_RAW(f->mbus_code) and from there enumerate the
+output formats you can generate from raw bayer (in addition to the
+ones that can be produced by dumping the sensor produced formats)
+
+> But, if it's raw, we can use it to convert to a plethora of other
+> formats. So we have to enumerate them below :
+>
+> With the previous checks, I am making sure that the ISC can really
+> convert to these formats, otherwise they are badly reported
+>
+> Hope this makes things more clear, but please ask if something looks strange
 >
 
-Ack
- 
-> > +
-> > +  The device provides a rich set of Industrial Ethernet switching features such
-> > +  as fast protection switching, 1588 precision time protocol, and synchronous
-> > +  Ethernet. Advanced TCAM-based VLAN and QoS processing enable delivery of
-> > +  differentiated services. Security is assured through frame processing using
-> > +  Microsemi’s TCAM-based Versatile Content Aware Processor.  
-> 
-> Above you say Microchip, and here you say Microsemi.
-> 
-> > +
-> > +  In addition, the device contains a powerful 500 MHz CPU enabling full
-> > +  management of the switch.  
-> 
-> ~powerful~
-> 
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^switch@[0-9a-f]+$"
-> > +
-> > +  compatible:
-> > +    const: mscc,vsc7514-switch
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: system target
-> > +      - description: rewriter target
-> > +      - description: qs target
-> > +      - description: PTP target
-> > +      - description: Port0 target
-> > +      - description: Port1 target
-> > +      - description: Port2 target
-> > +      - description: Port3 target
-> > +      - description: Port4 target
-> > +      - description: Port5 target
-> > +      - description: Port6 target
-> > +      - description: Port7 target
-> > +      - description: Port8 target
-> > +      - description: Port9 target
-> > +      - description: Port10 target
-> > +      - description: QSystem target
-> > +      - description: Analyzer target
-> > +      - description: S0 target
-> > +      - description: S1 target
-> > +      - description: S2 target
-> > +      - description: fdma target
-> > +
-> > +  reg-names:
-> > +    items:
-> > +      - const: sys
-> > +      - const: rew
-> > +      - const: qs
-> > +      - const: ptp
-> > +      - const: port0
-> > +      - const: port1
-> > +      - const: port2
-> > +      - const: port3
-> > +      - const: port4
-> > +      - const: port5
-> > +      - const: port6
-> > +      - const: port7
-> > +      - const: port8
-> > +      - const: port9
-> > +      - const: port10
-> > +      - const: qsys
-> > +      - const: ana
-> > +      - const: s0
-> > +      - const: s1
-> > +      - const: s2
-> > +      - const: fdma
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    items:
-> > +      - description: PTP ready
-> > +      - description: register based extraction
-> > +      - description: frame dma based extraction
-> > +
-> > +  interrupt-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: ptp_rdy
-> > +      - const: xtr
-> > +      - const: fdma
-> > +
-> > +  ethernet-ports:
-> > +    type: object
-> > +    patternProperties:
-> > +      "^port@[0-9a-f]+$":
-> > +        type: object
-> > +        description: Ethernet ports handled by the switch
-> > +
-> > +        allOf:
-> > +          - $ref: ethernet-controller.yaml#  
-> 
-> I'm pretty sure Rob will comment that this can be simplified to:
-> 
->            $ref: ethernet-controller.yaml#
-> 
-> without the allOf: and "-".
+I think our disconnection comes from the way the supported formats are
+defined in ISC and I think their definition could be reworkd to
+simplify the format selection logic.
 
-Ok
+The driver defines three lists of formats:
 
-> 
-> > +
-> > +        properties:
-> > +          '#address-cells':
-> > +            const: 1
-> > +          '#size-cells':
-> > +            const: 0
-> > +
-> > +          reg:
-> > +            description: Switch port number
-> > +
-> > +          phy-handle: true
-> > +
-> > +          mac-address: true
-> > +
-> > +        required:
-> > +          - reg
-> > +          - phy-handle  
-> 
-> Shouldn't there be additionalProperties: false for the port node as well?
-> 
-> And actually, phy-handle is not strictly required, if you have a
-> fixed-link. I think you should use oneOf.
+- isc->controller_formats
 
-Ok
+       static const struct isc_format sama7g5_controller_formats[] = {
+	{
+		.fourcc		= V4L2_PIX_FMT_ARGB444,
+	},
+	{
+		.fourcc		= V4L2_PIX_FMT_ARGB555,
+	},
+        ...
 
-> 
-> And you know what else is required? phy-mode. See commits e6e12df625f2
-> ("net: mscc: ocelot: convert to phylink") and eba54cbb92d2 ("MIPS: mscc:
-> ocelot: mark the phy-mode for internal PHY ports").
+        };
 
-Ok, so I guess the binding text file was not updated back then. I'll fix
-that.
+ These are listed with the output fourcc only, and if I get
+ try_configure_pipeline() right, they can be generated from any Bayer
+ RAW format. Is this right ?
 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - ethernet-ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    switch@1010000 {
-> > +      compatible = "mscc,vsc7514-switch";
-> > +      reg = <0x1010000 0x10000>,
-> > +            <0x1030000 0x10000>,
-> > +            <0x1080000 0x100>,
-> > +            <0x10e0000 0x10000>,
-> > +            <0x11e0000 0x100>,
-> > +            <0x11f0000 0x100>,
-> > +            <0x1200000 0x100>,
-> > +            <0x1210000 0x100>,
-> > +            <0x1220000 0x100>,
-> > +            <0x1230000 0x100>,
-> > +            <0x1240000 0x100>,
-> > +            <0x1250000 0x100>,
-> > +            <0x1260000 0x100>,
-> > +            <0x1270000 0x100>,
-> > +            <0x1280000 0x100>,
-> > +            <0x1800000 0x80000>,
-> > +            <0x1880000 0x10000>,
-> > +            <0x1040000 0x10000>,
-> > +            <0x1050000 0x10000>,
-> > +            <0x1060000 0x10000>,
-> > +            <0x1a0 0x1c4>;
-> > +      reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
-> > +            "port2", "port3", "port4", "port5", "port6",
-> > +            "port7", "port8", "port9", "port10", "qsys",
-> > +            "ana", "s0", "s1", "s2", "fdma";
-> > +      interrupts = <18 21 16>;
-> > +      interrupt-names = "ptp_rdy", "xtr", "fdma";
-> > +
-> > +      ethernet-ports {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        port0: port@0 {
-> > +          reg = <0>;
-> > +          phy-handle = <&phy0>;
-> > +        };
-> > +        port1: port@1 {
-> > +          reg = <1>;
-> > +          phy-handle = <&phy1>;
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +...
-> > +#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
-> > diff --git a/Documentation/devicetree/bindings/net/mscc-ocelot.txt b/Documentation/devicetree/bindings/net/mscc-ocelot.txt
-> > deleted file mode 100644
-> > index 3b6290b45ce5..000000000000
-> > --- a/Documentation/devicetree/bindings/net/mscc-ocelot.txt
-> > +++ /dev/null
-> > @@ -1,83 +0,0 @@
-> > -Microsemi Ocelot network Switch
-> > -===============================
-> > -
-> > -The Microsemi Ocelot network switch can be found on Microsemi SoCs (VSC7513,
-> > -VSC7514)
-> > -
-> > -Required properties:
-> > -- compatible: Should be "mscc,vsc7514-switch"
-> > -- reg: Must contain an (offset, length) pair of the register set for each
-> > -  entry in reg-names.
-> > -- reg-names: Must include the following entries:
-> > -  - "sys"
-> > -  - "rew"
-> > -  - "qs"
-> > -  - "ptp" (optional due to backward compatibility)
-> > -  - "qsys"
-> > -  - "ana"
-> > -  - "portX" with X from 0 to the number of last port index available on that
-> > -    switch
-> > -- interrupts: Should contain the switch interrupts for frame extraction,
-> > -  frame injection and PTP ready.
-> > -- interrupt-names: should contain the interrupt names: "xtr", "inj". Can contain
-> > -  "ptp_rdy" which is optional due to backward compatibility.
-> > -- ethernet-ports: A container for child nodes representing switch ports.
-> > -
-> > -The ethernet-ports container has the following properties
-> > -
-> > -Required properties:
-> > -
-> > -- #address-cells: Must be 1
-> > -- #size-cells: Must be 0
-> > -
-> > -Each port node must have the following mandatory properties:
-> > -- reg: Describes the port address in the switch
-> > -
-> > -Port nodes may also contain the following optional standardised
-> > -properties, described in binding documents:
-> > -
-> > -- phy-handle: Phandle to a PHY on an MDIO bus. See
-> > -  Documentation/devicetree/bindings/net/ethernet.txt for details.
-> > -
-> > -Example:
-> > -
-> > -	switch@1010000 {
-> > -		compatible = "mscc,vsc7514-switch";
-> > -		reg = <0x1010000 0x10000>,
-> > -		      <0x1030000 0x10000>,
-> > -		      <0x1080000 0x100>,
-> > -		      <0x10e0000 0x10000>,
-> > -		      <0x11e0000 0x100>,
-> > -		      <0x11f0000 0x100>,
-> > -		      <0x1200000 0x100>,
-> > -		      <0x1210000 0x100>,
-> > -		      <0x1220000 0x100>,
-> > -		      <0x1230000 0x100>,
-> > -		      <0x1240000 0x100>,
-> > -		      <0x1250000 0x100>,
-> > -		      <0x1260000 0x100>,
-> > -		      <0x1270000 0x100>,
-> > -		      <0x1280000 0x100>,
-> > -		      <0x1800000 0x80000>,
-> > -		      <0x1880000 0x10000>;
-> > -		reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
-> > -			    "port2", "port3", "port4", "port5", "port6",
-> > -			    "port7", "port8", "port9", "port10", "qsys",
-> > -			    "ana";
-> > -		interrupts = <18 21 22>;
-> > -		interrupt-names = "ptp_rdy", "xtr", "inj";
-> > -
-> > -		ethernet-ports {
-> > -			#address-cells = <1>;
-> > -			#size-cells = <0>;
-> > -
-> > -			port0: port@0 {
-> > -				reg = <0>;
-> > -				phy-handle = <&phy0>;
-> > -			};
-> > -			port1: port@1 {
-> > -				reg = <1>;
-> > -				phy-handle = <&phy1>;
-> > -			};
-> > -		};
-> > -	};
-> > -- 
-> > 2.33.0
->   
+- isc->formats_list
 
+        static struct isc_format sama7g5_formats_list[] = {
+                {
+                        .fourcc		= V4L2_PIX_FMT_SBGGR8,
+                        .mbus_code	= MEDIA_BUS_FMT_SBGGR8_1X8,
+                        .pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
+                        .cfa_baycfg	= ISC_BAY_CFG_BGBG,
+                },
+                {
+                        .fourcc		= V4L2_PIX_FMT_SGBRG8,
+                        .mbus_code	= MEDIA_BUS_FMT_SGBRG8_1X8,
+                        .pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
+                        .cfa_baycfg	= ISC_BAY_CFG_GBGB,
+                },
 
+         ...
 
--- 
-Clément Léger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+         };
+
+  These are formats the ISC can output by dumping the sensor output,
+  hence they require a specific format to be output from the sensor
+
+- isc->user_formats
+
+        static int isc_formats_init() {
+
+                ...
+
+                fmt = &isc->formats_list[0];
+                for (i = 0, j = 0; i < list_size; i++) {
+                        if (fmt->sd_support)
+                                isc->user_formats[j++] = fmt;
+                        fmt++;
+                }
+
+      }
+
+  this list is obtained at runtime by restricting the formats_list to
+  what the sensor can actually output. I think these, if you move to
+  MC should be removed but I'm not 100% sure it is possible with the
+  current implementation of set_fmt().
+
+Do you think controller_formats and formats_list should be unified ?
+
+If my understanding that all controller_formats can be generated from
+RAW Bayer formats you could model struct isc_format as
+
+        struct isc_format {
+                u32	fourcc;
+                bool    processed;
+                u32     mbus_codes
+                u32	cfa_baycfg;
+                u32	pfe_cfg0_bps;
+        };
+
+and have in example:
+
+	{
+		.fourcc		= V4L2_PIX_FMT_ARGB444,
+                .processed      = true,
+                .mbus_codes     = nullptr,
+                ....
+	},
+        {
+                .fourcc		= V4L2_PIX_FMT_SBGGR8,
+                .processed      = false,
+                .mbus_codes	= { MEDIA_BUS_FMT_SBGGR8_1X8 }
+                .pfe_cfg0_bps	= ISC_PFE_CFG0_BPS_EIGHT,
+                .cfa_baycfg	= ISC_BAY_CFG_BGBG,
+        },
+
+and when enumerating and configuring formats check that
+
+        if (isc_format[i].processed &&
+            (f->mbus_code && IS_RAW(f->mbus)code))
+
+or
+
+        if (!isc_format[i].processed &&
+            (f->mbus_code == isc_format[i].mbus_code
+
+if you have other restrictions as in example V4L2_PIX_FMT_YUV420
+requiring a packed YUV format, you can implement more complex
+validations to match processed formats, like you do in try_validate_formats()
+
+Also, and a bit unrelated to enum_fmt, if I got this right
+at format configuration time you match the ISC format with
+the sensor format. I think this should be moved to .link_validate() op time.
+
+The MC core calls .link_validate when streaming is started on each
+entity part of a pipeline, and there you could make sure that the ISC output format can be produced using
+the sensor format (and sizes). This will greatly simplify set_fmt() as
+there you will have just to make sure the supplied format is in the
+list of the ISC supported ones and that's it. If userspace fails to
+configure the pipeline correctly (in example by setting a non RAW
+Bayer sensor on the format and requesting a RAW Bayer format from ISC,
+you will fail at s_stream() time by returning an EPIPE.
+
+Hope all of this makes a bit of sense :)
+
+> >>> +   /*
+> >>> +    * Iterate again through the formats that we can convert to.
+> >>> +    * However, to avoid duplicates, skip the formats that
+> >>> +    * the sensor already supports directly
+> >>> +    */
+> >>> +   index -= supported_index;
+> >>>      supported_index = 0;
+> >>>
+> >>> -   for (i = 0; i < isc->formats_list_size; i++) {
+> >>> -           if (!ISC_IS_FORMAT_RAW(isc->formats_list[i].mbus_code) ||
+> >>> -               !isc->formats_list[i].sd_support)
+> >>> +   for (i = 0; i < isc->controller_formats_size; i++) {
+> >>> +           /* if this format is already supported by sensor, skip it */
+> >>> +           if (find_format_by_fourcc(isc, isc->controller_formats[i].fourcc))
+> >>>                      continue;
+> >>>              if (supported_index == index) {
+> >>> -                   f->pixelformat = isc->formats_list[i].fourcc;
+> >>> +                   f->pixelformat =
+> >>> +                           isc->controller_formats[i].fourcc;
+> >>>                      return 0;
+> >>>              }
+> >>>              supported_index++;
+> >>> --
+> >>> 2.25.1
+> >>>
+>
