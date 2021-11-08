@@ -2,95 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A523B449EA0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 23:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA45449EB7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 23:43:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbhKHWWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 17:22:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35122 "EHLO
+        id S240752AbhKHWpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 17:45:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbhKHWWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 17:22:12 -0500
-X-Greylist: delayed 1959 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 08 Nov 2021 14:19:27 PST
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD45C061570
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 14:19:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
-        Subject:Cc:To:From:Content-Type:From:Reply-To:Subject:Content-ID:
-        Content-Description:In-Reply-To:References:X-Debbugs-Cc;
-        bh=N66F6Wqb9JBCWGaFILjT7qMKPk0Bi6BRFQXkrAP8YSU=; b=dwCrZp+TvheeFG0rOfKtj6Cgrj
-        mpJOjbGl+DQxUnvjcW7D64bmBs7HfRok5/F0nnH+61uSek1zYGJzOUtA35/5zQSqMrwo2+x0zE8I6
-        kBa4xQwRpWUdlqUxlhsNxt1M81AgQhbCcNM4anrMu7xZLn32L4XiH1hwB6XH1icPEZUgLKvMYtmVu
-        qcVEH8tpQEk+PPvJqj3OLgdSfrear1yeN8TetRZYtyGW24zgS3wcP0E66HsLGIOGingiXAaeUNkXW
-        ySi3Z+nukH43ot6dubY++UEXguubrlxjjtfaj7u3wNGCKVVO9RVJVgfRwHuilxK/bMjh1KpeZjNr+
-        Nz/RfbQQ==;
-Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1mkCTT-0001NP-9d; Mon, 08 Nov 2021 22:46:43 +0100
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1mkCTS-007GI8-IX; Mon, 08 Nov 2021 22:46:42 +0100
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     Aurelien Jarno <aurelien@aurel32.net>,
+        with ESMTP id S229776AbhKHWpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 17:45:45 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CF6C061570;
+        Mon,  8 Nov 2021 14:43:00 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8950383381;
+        Mon,  8 Nov 2021 23:42:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1636411376;
+        bh=EvLma/u7gdWkEfsUrJnk07mqzvz6abhOMdeBQ27/A54=;
+        h=From:To:Cc:Subject:Date:From;
+        b=q+N/3O5yxOkw795DcE+XTVzyEpk508HdUiL5/noj2KMY0cEznM36O4JQaHsdp1dln
+         YneZoLBwxyJCMfJFbA20fYc2oJHa0EsfDsEwDYkyozt4n7UXrwxqVbVa++m8gMXQz2
+         z3OxZcaETJ5izeCBk2ojG7M/So+urQRmTmujxqNumEphv9nLJNDogVMX70xr1AGQef
+         k/F8XeKtegcnHA/3ycWUfQjc5dr5vyZ95A7jK+nEqzKXgbl+BRCSDQg8Qy2XM5LIY7
+         2EzkB7nTOUKKpekCcDsyDWCcFoX/6rQ2CLU5YUwdXWcxjqIYUBjU6jdpMZl2gaJBYP
+         vVWvSkobjCKgg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-riscv@lists.infradead.org (open list:RISC-V ARCHITECTURE)
-Subject: [PATCH] riscv: dts: enable more DA9063 functions for the SiFive HiFive Unmatched
-Date:   Mon,  8 Nov 2021 22:46:29 +0100
-Message-Id: <20211108214629.1730870-1-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.30.2
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: [PATCH] [RFC] dt-bindings: clk: Introduce 'critical-clocks' property
+Date:   Mon,  8 Nov 2021 23:42:42 +0100
+Message-Id: <20211108224242.278128-1-marex@denx.de>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DA9063 PMIC found on the SiFive HiFive Unmatched also provides an
-RTC, a watchdog and the power button input.
+NOTE: This is an RFC patch showing how this mechanism might be workable.
 
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
+Some platforms require clock to be always running, e.g. because those clock
+supply devices which are not otherwise attached to the system. One example
+is a system where the SoC serves as a crystal oscillator replacement for a
+programmable logic device. The critical-clock property of a clock controller
+allows listing clock which must never be turned off.
+
+The implementation here is similar to "protected-clock", except protected
+clock property is currently driver specific. This patch attempts to make
+a generic implementation of "critical-clock" instead.
+
+Unlike "assigned-clocks", the "critical-clock" must be parsed much earlier
+in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
+field. The parsing code obviously need to be cleaned up and factor out into
+separate function.
+
+The new match_clkspec() callback is used to determine whether struct clk_hw
+that is currently being registered matches the clock specifier in the DT
+"critical-clock" property, and if so, then the CLK_IS_CRITICAL is added to
+these newly registered clock. This callback is currently driver specific,
+although I suspect a common and/or generic version of the callback could
+be added. Also, this new callback could possibly be used to replace (*get)
+argument of of_clk_add_hw_provider() later on too.
+
+Thoughts (on the overall design, not code quality or patch splitting) ?
+
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-power@fi.rohmeurope.com
+To: linux-clk@vger.kernel.org
 ---
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../bindings/clock/clock-bindings.txt         | 16 ++++++++++++
+ drivers/clk/clk-bd718x7.c                     | 15 +++++++++++
+ drivers/clk/clk.c                             | 25 +++++++++++++++++++
+ include/linux/clk-provider.h                  |  2 ++
+ 4 files changed, 58 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index 2e4ea84f27e7..c357b48582f7 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -70,6 +70,10 @@ pmic@58 {
- 		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
+diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+index f2ea53832ac63..d9a783c35c5a1 100644
+--- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
++++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+@@ -169,6 +169,22 @@ a shared clock is forbidden.
+ Configuration of common clocks, which affect multiple consumer devices can
+ be similarly specified in the clock provider node.
  
-+		onkey {
-+			compatible = "dlg,da9063-onkey";
-+		};
++==Critical clocks==
 +
- 		regulators {
- 			vdd_bcore1: bcore1 {
- 				regulator-min-microvolt = <900000>;
-@@ -205,6 +209,14 @@ vdd_ldo11: ldo11 {
- 				regulator-always-on;
- 			};
- 		};
++Some platforms require clock to be always running, e.g. because those clock
++supply devices which are not otherwise attached to the system. One example
++is a system where the SoC serves as a crystal oscillator replacement for a
++programmable logic device. The critical-clock property of a clock controller
++allows listing clock which must never be turned off.
 +
-+		rtc {
-+			compatible = "dlg,da9063-rtc";
-+		};
++   clock-controller@a000f000 {
++        compatible = "vendor,clk95;
++        reg = <0xa000f000 0x1000>
++        #clocks-cells = <1>;
++        ...
++        critical-clocks = <UART3_CLK>, <SPI5_CLK>;
++   };
 +
-+		wdt {
-+			compatible = "dlg,da9063-watchdog";
-+		};
- 	};
+ ==Protected clocks==
+ 
+ Some platforms or firmwares may not fully expose all the clocks to the OS, such
+diff --git a/drivers/clk/clk-bd718x7.c b/drivers/clk/clk-bd718x7.c
+index a59bc57f13bc4..f40765e2860e4 100644
+--- a/drivers/clk/clk-bd718x7.c
++++ b/drivers/clk/clk-bd718x7.c
+@@ -70,10 +70,25 @@ static int bd71837_clk_is_enabled(struct clk_hw *hw)
+ 	return enabled & c->mask;
+ }
+ 
++static int bd71837_match_clkspec(struct clk_hw *hw, struct of_phandle_args *clkspec)
++{
++	struct bd718xx_clk *c = container_of(hw, struct bd718xx_clk, hw);
++
++	/*
++	 * if (clk_hw == clkspec)
++	 *   return 0;
++	 * else
++	 *   return 1;
++	 */
++
++	return 0;
++}
++
+ static const struct clk_ops bd71837_clk_ops = {
+ 	.prepare = &bd71837_clk_enable,
+ 	.unprepare = &bd71837_clk_disable,
+ 	.is_prepared = &bd71837_clk_is_enabled,
++	.match_clkspec = &bd71837_match_clkspec,
  };
  
+ static int bd71837_clk_probe(struct platform_device *pdev)
+diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+index f467d63bbf1ee..fa8e9ea446158 100644
+--- a/drivers/clk/clk.c
++++ b/drivers/clk/clk.c
+@@ -3849,6 +3849,31 @@ __clk_register(struct device *dev, struct device_node *np, struct clk_hw *hw)
+ 	core->max_rate = ULONG_MAX;
+ 	hw->core = core;
+ 
++	struct of_phandle_args clkspec;
++	u32 clksize, clktotal;
++	int i, index;
++
++	if (np && core->ops->match_clkspec && !of_property_read_u32(np, "#clock-cells", &clksize)) {
++		if (clksize == 0) {
++			if (of_property_read_bool(np, "critical-clocks"))
++				core->flags |= CLK_IS_CRITICAL;
++			clktotal = 0;
++		} else {
++			clkspec.np = np;
++			clktotal = of_property_count_u32_elems(np, "critical-clocks");
++			clktotal /= clksize;
++			for (index = 0; index < clktotal; index++) {
++				for (i = 0; i < clksize; i++) {
++					ret = of_property_read_u32_index(np, "critical-clocks",
++									 (index * clksize) + i,
++									 &(clkspec.args[i]));
++				}
++				if (!core->ops->match_clkspec(hw, &clkspec))
++					core->flags |= CLK_IS_CRITICAL;
++			}
++		}
++	}
++
+ 	ret = clk_core_populate_parent_map(core, init);
+ 	if (ret)
+ 		goto fail_parents;
+diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
+index f59c875271a0e..766e93efb23c5 100644
+--- a/include/linux/clk-provider.h
++++ b/include/linux/clk-provider.h
+@@ -205,6 +205,7 @@ struct clk_duty {
+  *		directory is provided as an argument.  Called with
+  *		prepare_lock held.  Returns 0 on success, -EERROR otherwise.
+  *
++ * @match_clkspec: Check whether clk_hw matches DT clock specifier
+  *
+  * The clk_enable/clk_disable and clk_prepare/clk_unprepare pairs allow
+  * implementations to split any work between atomic (enable) and sleepable
+@@ -252,6 +253,7 @@ struct clk_ops {
+ 	int		(*init)(struct clk_hw *hw);
+ 	void		(*terminate)(struct clk_hw *hw);
+ 	void		(*debug_init)(struct clk_hw *hw, struct dentry *dentry);
++	int		(*match_clkspec)(struct clk_hw *hw, struct of_phandle_args *clkspec);
+ };
+ 
+ /**
 -- 
-2.30.2
+2.33.0
 
