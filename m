@@ -2,133 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C335C447C3A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4C6447C60
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 09:56:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbhKHIvC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 03:51:02 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:23202 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238146AbhKHIvC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 03:51:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1636361298; x=1667897298;
-  h=from:to:cc:subject:date:message-id;
-  bh=dA0HAvdE9FeKiFecBhs2bqLE/d/A6Iscj2L+97uaEmQ=;
-  b=O2gAhSQEs673eFHISNhg/pGyPuysxsaMGnE2bCeutnWZc+yqupH/fMmu
-   8WKQ1RGXK6aiVazYuciIC5y0x1LWo3VEnhMMEARdORSASgKR0tmuE7Ml8
-   SYbHhTUh9+yvLR7iVIR69jzw+4xl73gljQK01EYzJ/AaJHJGypXoleYbi
-   AhqMc/Gt5aRygITXBYXHW2VQDKYKs9EyErniiI0oUHEFzZWF+vAX2E3zU
-   6Nua8TiD+uNaNPyaHfHIm2vp+6HwhWaswOyy9mdF2XKTBE4hZur4NL88V
-   QazAdxFCo9DL6vizNXoXs8PlOD1prdDzUD0Dz/OFBaiKfdgSKzeILvZw7
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.87,218,1631570400"; 
-   d="scan'208";a="20370682"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 08 Nov 2021 09:48:17 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 08 Nov 2021 09:48:17 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 08 Nov 2021 09:48:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1636361297; x=1667897297;
-  h=from:to:cc:subject:date:message-id;
-  bh=dA0HAvdE9FeKiFecBhs2bqLE/d/A6Iscj2L+97uaEmQ=;
-  b=JMinAEZ+JVQNGzwIMQ7rJShJUGTnx+uyVT5nc0c6fcE08lrjN/Qpa26I
-   7v2dxCTDpm+RdsDRGG6v8MpbyBpdykexEPYUT6sD3MwuoaGuwSMdhXnL+
-   /I6iQa0Oll0fe/q2aytQA8fQ4Kz00WdfuFAPXw7F9f+9xztBdpXjAtKyQ
-   PHbVm5BjLXdGpWxlUZah+QDVKcznub1E9ezUQW14cwSdBjELet1WJwFXO
-   aLoq9koNJHtn7L3y5nPx/JfEflij3FwEZqN2Wk3PhPp0ZrjCnvc/Yu3Cy
-   HyQQIk2i2w0jA+pL5+dIg85UdqBBSOUQKVJ/8sU10o/s/F5ZNnCo4VLVW
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.87,218,1631570400"; 
-   d="scan'208";a="20370680"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 08 Nov 2021 09:48:16 +0100
-Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id B2463280065;
-        Mon,  8 Nov 2021 09:48:16 +0100 (CET)
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH] of: base: Skip CPU nodes with non-"okay"/"disabled" status
-Date:   Mon,  8 Nov 2021 09:48:04 +0100
-Message-Id: <20211108084804.13474-1-matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.17.1
+        id S238225AbhKHI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 03:59:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238200AbhKHI7l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 03:59:41 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2FD1C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 00:56:57 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1mk0SK-0003eP-Uo; Mon, 08 Nov 2021 09:56:45 +0100
+Message-ID: <a77d867eb42649d63356a62309e93ca78394f82f.camel@pengutronix.de>
+Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     tharvey@gateworks.com, frieder.schrempf@kontron.de,
+        linux-media@vger.kernel.org, laurent.pinchart@ideasonboard.com,
+        aford@beaconembedded.com, cstevens@beaconembedded.com,
+        jagan@amarulasolutions.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Mon, 08 Nov 2021 09:56:40 +0100
+In-Reply-To: <20211106155427.753197-1-aford173@gmail.com>
+References: <20211106155427.753197-1-aford173@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow fully disabling CPU nodes using status = "fail". Having no status
-property at all is still interpreted as "okay" as usual.
+Am Samstag, dem 06.11.2021 um 10:54 -0500 schrieb Adam Ford:
+> Most of the blk-ctrl reset bits are found in one register, however
+> there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> out of reset or the MIPI_CSI hangs.
+> 
+> Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-This allows a bootloader to change the number of available CPUs (for
-example when a common DTS is used for SoC variants with different numbers
-of cores) without deleting the nodes altogether, which could require
-additional fixups to avoid dangling phandle references.
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
-References:
-- https://www.lkml.org/lkml/2020/8/26/1237
-- https://www.spinics.net/lists/devicetree-spec/msg01007.html
-- https://github.com/devicetree-org/dt-schema/pull/61
+> ---
+> 
+> V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
+>      Rename the new register to mipi_phy_rst_mask
+>      Encapsulate the edits to this register with an if-statement
+> 
+>  drivers/soc/imx/imx8m-blk-ctrl.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> index 519b3651d1d9..581eb4bc7f7d 100644
+> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> @@ -17,6 +17,7 @@
+>  
+>  #define BLK_SFT_RSTN	0x0
+>  #define BLK_CLK_EN	0x4
+> +#define BLK_MIPI_RESET_DIV	0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
+>  
+>  struct imx8m_blk_ctrl_domain;
+>  
+> @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
+>  	const char *gpc_name;
+>  	u32 rst_mask;
+>  	u32 clk_mask;
+> +
+> +	/*
+> +	 * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
+> +	 * which is used to control the reset for the MIPI Phy.
+> +	 * Since it's only present in certain circumstances,
+> +	 * an if-statement should be used before setting and clearing this
+> +	 * register.
+> +	 */
+> +	u32 mipi_phy_rst_mask;
+>  };
+>  
+>  #define DOMAIN_MAX_CLKS 3
+> @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+>  
+>  	/* put devices into reset */
+>  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+>  
+>  	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
+>  	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+> @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+>  
+>  	/* release reset */
+>  	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+>  
+>  	/* disable upstream clocks */
+>  	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+>  	struct imx8m_blk_ctrl *bc = domain->bc;
+>  
+>  	/* put devices into reset and disable clocks */
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> +
+>  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+>  	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+>  
+> @@ -488,6 +505,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+>  		.gpc_name = "mipi-csi",
+>  		.rst_mask = BIT(3) | BIT(4),
+>  		.clk_mask = BIT(10) | BIT(11),
+> +		.mipi_phy_rst_mask = BIT(16) | BIT(17),
+>  	},
+>  };
+>  
 
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
----
- drivers/of/base.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 61de453b885c..4e9973627c8d 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -650,6 +650,32 @@ bool of_device_is_available(const struct device_node *device)
- }
- EXPORT_SYMBOL(of_device_is_available);
- 
-+/**
-+ *  __of_device_is_disabled - check if a device has status "disabled"
-+ *
-+ *  @device: Node to check status for, with locks already held
-+ *
-+ *  Return: True if the status property is set to "disabled",
-+ *  false otherwise
-+ *
-+ *  Most callers should use __of_device_is_available() instead, this function
-+ *  only exists due to the special interpretation of the "disabled" status for
-+ *  CPU nodes.
-+ */
-+static bool __of_device_is_disabled(const struct device_node *device)
-+{
-+	const char *status;
-+
-+	if (!device)
-+		return false;
-+
-+	status = __of_get_property(device, "status", NULL);
-+	if (status == NULL)
-+		return false;
-+
-+	return !strcmp(status, "disabled");
-+}
-+
- /**
-  *  of_device_is_big_endian - check if a device has BE registers
-  *
-@@ -817,6 +843,9 @@ struct device_node *of_get_next_cpu_node(struct device_node *prev)
- 		of_node_put(node);
- 	}
- 	for (; next; next = next->sibling) {
-+		if (!__of_device_is_available(next) &&
-+		    !__of_device_is_disabled(next))
-+			continue;
- 		if (!(of_node_name_eq(next, "cpu") ||
- 		      __of_node_is_type(next, "cpu")))
- 			continue;
--- 
-2.17.1
 
