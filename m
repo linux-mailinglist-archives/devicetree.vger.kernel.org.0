@@ -2,61 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6B59447B36
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 08:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16C15447B69
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 08:55:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235565AbhKHHi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 02:38:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S237079AbhKHH6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 02:58:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235425AbhKHHi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 02:38:58 -0500
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF27C061570
-        for <devicetree@vger.kernel.org>; Sun,  7 Nov 2021 23:36:14 -0800 (PST)
-Received: by mail-ed1-x542.google.com with SMTP id b15so39362614edd.7
-        for <devicetree@vger.kernel.org>; Sun, 07 Nov 2021 23:36:14 -0800 (PST)
+        with ESMTP id S234532AbhKHH6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 02:58:01 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E798BC061570;
+        Sun,  7 Nov 2021 23:55:17 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id q126so10495921pgq.13;
+        Sun, 07 Nov 2021 23:55:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=gS+G2bXPLTc8QV9oSOsVFPfildfSifO+gabOlUjPn+8=;
-        b=fD0Bw3fRV4eYrDgSxFsI3hrOIOW5eHFOGjExJsHvKe1PJkTOA/Vd7hLKoQJHbDzpNl
-         EQatN33cW5tZoc3rrJW3xjXjEN90S/PF00O3BqENlw+c0A+FbO7eSaEU3AM7mNMZqw/L
-         PPQTfBk+oEtxTVxMgt0O1qYzqQgKzEydI4nr6y2IsrLy0Rf2AM5sSynqoQZHTM1GEWV7
-         16cElo5bql33yYmZIxteIKGK5CY/ImEtro9y7gFlZXJXqFIJjehtYWWpht+ww04Bh+OZ
-         TjLT1bAP0wgfciitD+ohAJXplu0Ud0y4hb2+S89AHxUp3HdVsl/l3apePqsUc0+8Dmk7
-         ZoxA==
+        h=from:to:cc:subject:date:message-id;
+        bh=pvqPSiHglh+tgwa09KnyvArHLxkBsvPOohaV0vHhBok=;
+        b=h6/TKkxNga6mtcYY//j82Dt4lsQKKe21TjiF6GaUA35aCV4sVHaMakk5jL95Tg/oP0
+         yFIBgpSaKtM92TJnZVTRbYirIF9ESjE4uvzDNmMUuOifOh4Id4VUsfTtvoiyOoOq1eU6
+         8ecGdCuQpx2Ux/QCwcl3OeJxz1jb1FmcAtUFAc1JwTEpOotlCLorCgYHxF1af88ejyWG
+         HmZTHLVqjoCFhmSKSqPHJn6vnkEx3ltoCT8B+hoMFlvU3d/L4KdsJsKv68y2cQOHay2D
+         /BoMqzChsg9ADDEFPAaTrJcSfw9jgOxxk7BZ5LYs98MrrdusQNZRIpbgf1epbBJvr/d7
+         LxWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=gS+G2bXPLTc8QV9oSOsVFPfildfSifO+gabOlUjPn+8=;
-        b=nmTKQL+goJVefenMol2/vFHbINOkPw2hiTf0IQxMPAzNPdgIjVc2AYq50D7sElhOdo
-         4kJh3a4cPXWEuNdq/i3JmKu4DLF9x8iBByXhP09hkCck43s3Wd3UagEJhzMcSg7aHk7V
-         i68jaZxtDvD9fQeyq/gy3o/ee3TM39157O6+KiNDUiKmCEl4E8zj2mmbTgx713448HxI
-         +sWM11/7JKZhervcML8KFOMwhwZOketdQgnlNVep9z42R+tOFn1Ag4jR6AU6IEQszkxo
-         rfHSGK0ZBJ3B/HYSpNY5yHSaJvlF79PVMJPHMFBA15Lg9nnBxo0DVJ6ZBi+UMslS9E4r
-         XGZg==
-X-Gm-Message-State: AOAM530kvZu44EqfV6ch3BxqT8ym0Hjt4zPbEQ41ob4EiIKsRfSYtBNe
-        saVrAWQ8Z8xSWY0pYhAkuuY7CDG9Vw6dwTgPaSs=
-X-Google-Smtp-Source: ABdhPJzy7lQA3Qt17kUNGJykbPHy1NnrMhPzc/xMAV3G0b9GHKXnLgS00/Mt3TTNFwRpHos9mBnH7CJHS81IynH2Ez0=
-X-Received: by 2002:a17:907:a414:: with SMTP id sg20mr58789895ejc.183.1636356973453;
- Sun, 07 Nov 2021 23:36:13 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a50:2501:0:0:0:0:0 with HTTP; Sun, 7 Nov 2021 23:36:13 -0800 (PST)
-Reply-To: mariaschaefler@gmx.com
-From:   Maria Schaefler <ziskoraa@gmail.com>
-Date:   Mon, 8 Nov 2021 07:36:13 +0000
-Message-ID: <CAJh0Fjg-6VfPFkQokpU5XxrEe2q501tY9=hfFi2YV1rhWp_MAQ@mail.gmail.com>
-Subject: MY HEART CHOOSE YOU.
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=pvqPSiHglh+tgwa09KnyvArHLxkBsvPOohaV0vHhBok=;
+        b=ntmVsKefovqMmuGEE04dVkyyp6ZzbQxr8h5LYq8mqEBbWsJMzndFSiiy2iNTugyUdq
+         Qp9BNvhcnuo/8He+Csd1Bbv60eY62h2ohsbIT/PgOw14kVnfvaoJeCnlA8vj6awdjTDM
+         TLwUX7dKXxORheurpeEkoVFfFO6kY1aWyUzKpRZ5MTLKwZu1nskzx89Hgt4I141r/ik1
+         IxxmNoQTPkDi+ga9G7CoQkGA7UCoJtB8f+gwTd4jesx3v1kENXZTxxKOKP3g5nZmocvz
+         kEPdg5LTqFUXlxw+XPJLRYKIefyUqi3RZc3GJh0vjL5HEB0aKcUnVbROcvjfxsGwmoqe
+         IB5g==
+X-Gm-Message-State: AOAM532aeW0x7QW3wRLqI8rMPaQUBVMtsozB1mxMzBS4NR9fKH4gv5Aw
+        Tws8xiBhbk7JFQrO3Q6qs1c=
+X-Google-Smtp-Source: ABdhPJy8sGQvw5pDbl7DBLK5/cfTt8Gxn7fjM1Zi0IEgcuCHUWSS//1foL3ovJG1Rh5ITi8dbyx/kg==
+X-Received: by 2002:a05:6a00:15ca:b0:49f:d22b:afff with SMTP id o10-20020a056a0015ca00b0049fd22bafffmr6612023pfu.35.1636358117543;
+        Sun, 07 Nov 2021 23:55:17 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id ep15sm1631150pjb.3.2021.11.07.23.55.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 07 Nov 2021 23:55:17 -0800 (PST)
+From:   Edwin chiu <edwinchiu0505tw@gmail.com>
+X-Google-Original-From: Edwin chiu <edwin.chiu@sunplus.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, linux-pm@vger.kernel.org
+Cc:     Edwin chiu <edwin.chiu@sunplus.com>
+Subject: [PATCH 0/2] Add cpuidle driver for Sunplus SP7021
+Date:   Mon,  8 Nov 2021 15:55:08 +0800
+Message-Id: <cover.1636356928.git.edwin.chiu@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Given my current state of health, I have decided to donate what I
-inherited from my late husband to you to help the poor and needy. I am
-Mrs Maria Schaefler,a 57years old dying woman. I was diagnosed for
-cancer about 2 years ago and I have few months to live according to
-medical experts. Email me for my directives
+This is a patch series for cpuidle driver for Sunplus SP7021 SoC.
+
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and 
+etc.) into a single chip. It is designed for industrial control.
+
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Edwin chiu (2):
+  dt-bingings:arm:sunplus:add sp7021 compatible string to
+    sunplus,idle-state.yaml
+  cpuidle:sunplus:create cpuidle driver for sunplus sp7021
+
+ .../bindings/arm/sunplus/sunplus,idle-state.yaml   |  55 ++++++
+ MAINTAINERS                                        |   9 +
+ drivers/cpuidle/Kconfig.arm                        |   7 +
+ drivers/cpuidle/Makefile                           |   1 +
+ drivers/cpuidle/cpuidle-sunplus.c                  | 185 +++++++++++++++++++++
+ include/linux/platform_data/cpuidle-sunplus.h      |  14 ++
+ 6 files changed, 271 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
+ create mode 100644 drivers/cpuidle/cpuidle-sunplus.c
+ create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
+
+-- 
+2.7.4
+
