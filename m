@@ -2,195 +2,423 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D53D5447F70
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 13:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEAE4447FCC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 13:49:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238160AbhKHMYE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 8 Nov 2021 07:24:04 -0500
-Received: from aposti.net ([89.234.176.197]:51830 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237354AbhKHMYE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Nov 2021 07:24:04 -0500
-Date:   Mon, 08 Nov 2021 12:20:59 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
- output
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <ZA692R.GHQL6RBCLFB12@crapouillou.net>
-In-Reply-To: <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
-        <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
-        <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
-        <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
-        <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
-        <HQY82R.69JHJIC64HDO1@crapouillou.net>
-        <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+        id S238474AbhKHMwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 07:52:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238465AbhKHMwF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 07:52:05 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04EE5C061208;
+        Mon,  8 Nov 2021 04:49:03 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id y26so35848656lfa.11;
+        Mon, 08 Nov 2021 04:49:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=ZjzcyKLUrWaAzgml4p3vsZZycwBdsP9HG4bHstAiJSU=;
+        b=nC6fsaZcUZct2cm5ewyU4ZkBrKLcqPOeEFjLMv8Ibm3IssHXWz92UwebP/Wx5kxy8O
+         CnVcOBM/e9ITEyRp3ZXJpknsXTMVOahL2rG+i/aZzZ03EBkSKt7gxOOSnuqJyQPLfIIZ
+         AXTHpi0B2bhGW+QtqhfPnxXG9aa2MaDNOHLqJpE0awcQ6ZM7ZW2VQzcC23Mo+V+YOmYs
+         JNMIsD0RAS1wZXWdXQLERD3/zc9WJ1W+mkKmKgeJb1XIvEQQEQM4u7pnggBf5KCk3/WZ
+         jmH4hhuAn1bAu09CzwyUUhebnTCtK3Jb4xDbEHOicZeusIhVDzlJsV0/pfonZcslZ5rv
+         zreA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ZjzcyKLUrWaAzgml4p3vsZZycwBdsP9HG4bHstAiJSU=;
+        b=A285/tN9lZLFf/mGDvO8LsO76bOkNm2YN/Qnk70WtmB6GBtElArKEZT89x6etx5Uc3
+         WK1LBTgCvJ3A/qIVQvSl2PW+i8OxS91DY46YK/Oc4LQqVS4ms/ywebnBbNXJXCcaPAb5
+         rBoWpxkG36jUq6UA6nrHsNMcJKm73/7mreQRlkRTKzLk2JF+w/B704IGnhkWbNTFDkqt
+         skvTVxOYWH6OO1AbJyjkjMWO4uooOjuxeHqrsKZYOvxbHBdoU4Q2cOxff/NrG3Hr1ztc
+         zYP3AhlGZquWv+XBQio0yVohgC80+qPdP8tVI9W7Fw8xVPfUjaOfzZ/g0vC7AQFWr2G4
+         WSGw==
+X-Gm-Message-State: AOAM531fAvsGHJMfJdP2SwlaEh4n+m1zrp7EfjgGmTdF/f9mUsMcYu43
+        QF6YrMfdtZrfBDzaIn2D2jouaSazcyQ=
+X-Google-Smtp-Source: ABdhPJxcGyI1k9uTyYdtyqZqelHPgwOMWS5Sqx6v8E4hR2ztU0tCWSfve6uEpopWJTlIfzhdIHU1PQ==
+X-Received: by 2002:a05:6512:401b:: with SMTP id br27mr5734991lfb.274.1636375741299;
+        Mon, 08 Nov 2021 04:49:01 -0800 (PST)
+Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl. [194.29.137.1])
+        by smtp.gmail.com with ESMTPSA id b27sm184275ljf.52.2021.11.08.04.49.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 04:49:01 -0800 (PST)
+Message-ID: <87d026dd-f7a1-36ac-2a6f-e9c7c65be77e@gmail.com>
+Date:   Mon, 8 Nov 2021 13:48:59 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.3.0
+Subject: Re: [PATCH v2 2/7] arm64: dts: qcom: sdm660-xiaomi-lavender: Add RPM
+ and fixed regulators
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, martin.botka@somainline.org,
+        marijn.suijten@somainline.org, paul.bouchara@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        Caleb Connolly <caleb@connolly.tech>
+References: <20211108050336.3404559-1-danct12@riseup.net>
+ <20211108050336.3404559-3-danct12@riseup.net>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+In-Reply-To: <20211108050336.3404559-3-danct12@riseup.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Le lun., nov. 8 2021 at 11:52:20 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Hi Paul,
-> 
->>>  Am 08.11.2021 um 10:37 schrieb Paul Cercueil 
->>> <paul@crapouillou.net>:
->>> 
->>>  Well, it was atomic: "add jz4780+hdmi functionality" or not. Now 
->>> we separate into "preparation for adding jz4780" and "really 
->>> adding". Yes, you can split atoms into quarks...
->> 
->>  And that's how it should be done. Lots of small atomic patches are 
->> much easier to review than a few big patches.
-> 
-> I doubt that in this case especially as it has nothing to do with 
-> jz4780...
+On 08/11/2021 06:03, Dang Huynh wrote:
+> Add most of the RPM PM660/PM660L regulators and the fixed ones,
+> defining the common electrical part of this platform.
+>
+> Reviewed-by: Caleb Connolly <caleb@connolly.tech>
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
+>   .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 294 ++++++++++++++++++
+>   1 file changed, 294 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> index 1edc53fd6941..365a03b56cde 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> @@ -1,11 +1,14 @@
+>   // SPDX-License-Identifier: GPL-2.0-only
+>   /*
+>    * Copyright (c) 2020, Alexey Minnekhanov <alexey.min@gmail.com>
+> + * Copyright (c) 2021, Dang Huynh <danct12@riseup.net>
+>    */
+>   
+>   /dts-v1/;
+>   
+>   #include "sdm660.dtsi"
+> +#include "pm660.dtsi"
+> +#include "pm660l.dtsi"
+>   
+>   / {
+>   	model = "Xiaomi Redmi Note 7";
+> @@ -20,6 +23,14 @@ chosen {
+>   		stdout-path = "serial0:115200n8";
+>   	};
+>   
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
 
-It has nothing to do with JZ4780 and that's exactly why it should be a 
-separate patch.
+You need to specify a voltage range for this regulator.
 
-> But I have a proposal for a better solution at the end of this mail.
-> 
->>>>  Note that you can do even better, set the .max_register field 
->>>> according to the memory resource you get from DTS. Have a look at 
->>>> the pinctrl driver which does exactly this.
->>>  That is an interesting idea. Although I don't see where
->>>  
->>> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinctrl-ingenic.c#L4171
->>>  does make use of the memory resource from DTS. It just reads two 
->>> values from the ingenic_chip_info instead of one I do read from 
->>> soc_info.
->> 
->>  It overrides the .max_register from a static regmap_config instance.
-> 
-> To be precise: it overrides .max_register of a copy of a static 
-> regmap_config instance (which has .max_register = 0).
-> 
->>  You can do the same,
-> 
-> We already do the same...
-> 
->>  calculating the .max_register from the memory resource you get from 
->> DT.
-> 
-> I can't see any code in pinctrl-ingenic.c getting the memory resource 
-> that from DT. It calculates it from the ingenic_chip_info tables 
-> inside the driver code but not DT.
-> 
->>  I'm sure you guys can figure it out.
-> 
-> Ah, we have to figure out. You are not sure yourself how to do it? 
-> And it is *not* exactly like the pinctrl driver (already) does? 
-> Please give precise directions in reviews and not vague research 
-> homework. Our time is also valuable. Sorry if I review your reviews...
-> 
-> Anyways I think you roughly intend (untested):
-> 
-> 	struct resource *r;
-> 
-> 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> 	regmap_config.max_register = r.end - r.start;
 
-Replace the "devm_platform_ioremap_resource" with 
-"devm_platform_get_and_ioremap_resource" to get a pointer to the 
-resource.
 
-Then the .max_register should be (r.end - r.start - 4) I think.
+> +
+>   	reserved-memory {
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+> @@ -40,6 +51,289 @@ &blsp1_uart2 {
+>   	status = "okay";
+>   };
+>   
+> +&rpm_requests {
+> +	pm660l-regulators {
+> +		compatible = "qcom,rpm-pm660l-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3_s4-supply = <&vph_pwr>;
+> +		vdd_s5-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +
+> +		vdd_l1_l9_l10-supply = <&vreg_s2b_1p05>;
+> +		vdd_l2-supply = <&vreg_bob>;
+> +		vdd_l3_l5_l7_l8-supply = <&vreg_bob>;
+> +		vdd_l4_l6-supply = <&vreg_bob>;
+> +		vdd_bob-supply = <&vph_pwr>;
+> +
+> +		vreg_s1b_1p125: s1 {
+> +			regulator-min-microvolt = <1125000>;
+> +			regulator-max-microvolt = <1125000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_s2b_1p05: s2 {
+> +			regulator-min-microvolt = <1050000>;
+> +			regulator-max-microvolt = <1050000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		/* LDOs */
+> +		vreg_l1b_0p925: l1 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <925000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		// SDHCI 3.3V signal doesn't seem to be supported.
 
-And lose the aggressivity. It's not going to get you anywhere, 
-especially since I'm the one who decides whether or not I should merge 
-your patches. You want your code upstream, that's great, but it's your 
-responsability to get it to shape so that it's eventually accepted.
+C-style comments, please.
 
-> 
-> But I wonder how that could work at all (despite adding code 
-> execution time) with:
 
-Code execution time? ...
 
-> e.g. jz4770.dtsi:
-> 
-> 	lcd: lcd-controller@13050000 {
-> 		compatible = "ingenic,jz4770-lcd";
-> 		reg = <0x13050000 0x300>;
-> 
-> or jz4725b.dtsi:
-> 
-> 	lcd: lcd-controller@13050000 {
-> 		compatible = "ingenic,jz4725b-lcd";
-> 		reg = <0x13050000 0x1000>;
-> 
-> So max_register becomes 0x300 or 0x1000 but not
-> 
-> #define JZ_REG_LCD_SIZE1	0x12c
-> 	.max_reg = JZ_REG_LCD_SIZE1,
-> 
-> And therefore wastes a lot of regmap memory.
+> +		vreg_l2b_2p95: l2 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <2696000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l3b_3p3: l3 {
+> +			regulator-min-microvolt = <1700000>;
+> +			regulator-max-microvolt = <3300000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l4b_2p95: l4 {
+> +			regulator-min-microvolt = <2944000>;
+> +			regulator-max-microvolt = <2952000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +
+> +			regulator-min-microamp = <200>;
+> +			regulator-max-microamp = <600000>;
+> +			regulator-system-load = <570000>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		/*
+> +		 * Downstream specifies a range of 1721-3600mV,
+> +		 * but the only assigned consumers are SDHCI2 VMMC
+> +		 * and Coresight QPDI that both request pinned 2.95V.
+> +		 * Tighten the range to 1.8-3.328 (closest to 3.3) to
+> +		 * make the mmc driver happy.
+> +		 */
+> +		vreg_l5b_2p95: l5 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <3328000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +			regulator-system-load = <800000>;
+> +		};
+> +
+> +		vreg_l7b_3p125: l7 {
+> +			regulator-min-microvolt = <2700000>;
+> +			regulator-max-microvolt = <3125000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l8b_3p3: l8 {
+> +			regulator-min-microvolt = <3200000>;
+> +			regulator-max-microvolt = <3400000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_bob: bob {
+> +			regulator-min-microvolt = <3300000>;
+> +			regulator-max-microvolt = <3600000>;
+> +			regulator-enable-ramp-delay = <500>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +	};
+> +
+> +	pm660-regulators {
+> +		compatible = "qcom,rpm-pm660-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3-supply = <&vph_pwr>;
+> +		vdd_s4-supply = <&vph_pwr>;
+> +		vdd_s5-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +
+> +		vdd_l1_l6_l7-supply = <&vreg_s5a_1p35>;
+> +		vdd_l2_l3-supply = <&vreg_s2b_1p05>;
+> +		vdd_l5-supply = <&vreg_s2b_1p05>;
+> +		vdd_l8_l9_l10_l11_l12_l13_l14-supply = <&vreg_s4a_2p04>;
+> +		vdd_l15_l16_l17_l18_l19-supply = <&vreg_bob>;
+> +
+> +		/*
+> +		 * S1A (FTAPC0), S2A (FTAPC1), S3A (HFAPC1) are managed
+> +		 * by the Core Power Reduction hardened (CPRh) and the
+> +		 * Operating State Manager (OSM) HW automatically.
+> +		 */
+> +
+> +		vreg_s4a_2p04: s4 {
+> +			regulator-min-microvolt = <1805000>;
+> +			regulator-max-microvolt = <2040000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vreg_s5a_1p35: s5 {
+> +			regulator-min-microvolt = <1224000>;
+> +			regulator-max-microvolt = <1350000>;
+> +			regulator-enable-ramp-delay = <200>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_s6a_0p87: s6 {
+> +			regulator-min-microvolt = <504000>;
+> +			regulator-max-microvolt = <992000>;
+> +			regulator-enable-ramp-delay = <150>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		/* LDOs */
+> +		vreg_l1a_1p225: l1 {
+> +			regulator-min-microvolt = <1150000>;
+> +			regulator-max-microvolt = <1250000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l2a_1p0: l2 {
+> +			regulator-min-microvolt = <950000>;
+> +			regulator-max-microvolt = <1010000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l3a_1p0: l3 {
+> +			regulator-min-microvolt = <950000>;
+> +			regulator-max-microvolt = <1010000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l5a_0p848: l5 {
+> +			regulator-min-microvolt = <525000>;
+> +			regulator-max-microvolt = <950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l6a_1p3: l6 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1370000>;
+> +			regulator-allow-set-load;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l7a_1p2: l7 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l8a_1p8: l8 {
+> +			regulator-min-microvolt = <1750000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-system-load = <325000>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l9a_1p8: l9 {
+> +			regulator-min-microvolt = <1750000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l10a_1p8: l10 {
+> +			regulator-min-microvolt = <1780000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +
+> +		vreg_l11a_1p8: l11 {
+> +			regulator-min-microvolt = <1780000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l12a_1p8: l12 {
+> +			regulator-min-microvolt = <1780000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		/* This gives power to the LPDDR4: never turn it off! */
+> +		vreg_l13a_1p8: l13 {
+> +			regulator-min-microvolt = <1780000>;
+> +			regulator-max-microvolt = <1950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-boot-on;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vreg_l14a_1p8: l14 {
+> +			regulator-min-microvolt = <1710000>;
+> +			regulator-max-microvolt = <1900000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l15a_1p8: l15 {
+> +			regulator-min-microvolt = <1650000>;
+> +			regulator-max-microvolt = <2950000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l16a_2p7: l16 {
+> +			regulator-min-microvolt = <2800000>;
+> +			regulator-max-microvolt = <2800000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-always-on;
+> +		};
+> +
+> +		vreg_l17a_1p8: l17 {
+> +			regulator-min-microvolt = <1648000>;
+> +			regulator-max-microvolt = <2952000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +		};
+> +
+> +		vreg_l19a_3p3: l19 {
+> +			regulator-min-microvolt = <3312000>;
+> +			regulator-max-microvolt = <3400000>;
+> +			regulator-enable-ramp-delay = <250>;
+> +			regulator-ramp-delay = <0>;
+> +			regulator-allow-set-load;
+> +		};
+> +	};
+> +};
+> +
+>   &tlmm {
+>   	gpio-reserved-ranges = <8 4>;
+>   };
 
-"regmap memory"? ...
 
-> Do you want this? DTS should not be reduced (DTS should be kept as 
-> stable as possible), since the reg property describes address mapping 
-> - not how many bytes are really used by registers or how big a cache 
-> should be allocated (cache allocation size requirements are not 
-> hardware description).
-
-The DTS should list the address and size of the register area. If your 
-last register is at address 0x12c and there's nothing above, then the 
-size in DTS should be 0x130.
-
-> But here are good news:
-> 
-> I have a simpler and less invasive proposal. We keep the 
-> devm_regmap_init_mmio code as is and just increase its .max_register 
-> from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when introducing the jz4780. 
-> This wastes a handful bytes for all non-jz4780 chips but less than 
-> using the DTS memory region size. And is less code (no entry in 
-> soc_info tables, no modifyable copy) and faster code execution than 
-> all other proposals.
-> 
-> This is then just a single-line change when introducing the jz4780. 
-> And no "preparation for adding jz4780" patch is needed at all. No 
-> patch to split out for separate review.
-> 
-> Let's go this way to get it eventually finalized. Ok?
-
-No.
-
-Cheers,
--Paul
-
+Konrad
 
