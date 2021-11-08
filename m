@@ -2,66 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AAF0449C0B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9A9F449C18
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 19:58:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236295AbhKHS6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 13:58:20 -0500
-Received: from mail-oi1-f170.google.com ([209.85.167.170]:34562 "EHLO
-        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbhKHS6T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 13:58:19 -0500
-Received: by mail-oi1-f170.google.com with SMTP id bg25so28456298oib.1;
-        Mon, 08 Nov 2021 10:55:35 -0800 (PST)
+        id S236428AbhKHTBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 14:01:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236385AbhKHTBb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 14:01:31 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9DC0C061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 10:58:46 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id b184-20020a1c1bc1000000b0033140bf8dd5so530464wmb.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 10:58:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mvanPmq6qXs9DzVRtgUSTOUmzu/gL8E/gxL2zjoZAoU=;
+        b=Jds43h1kcT0VaWp4h+zpSpszb21LxvCV1SXv0QtYW632/7pjGTHS9SNVSvTaAx2Q+G
+         DVWRLPvvmg9dwSKlglNJMzrZdEa1/yZxnkkdlKz8kw/mplyH57mAQjski9ge4ccQ+VIh
+         mGAd4Gns0D3nGK+YS5/5UJ71KHYvWXWVIi7BJ+46RdcW5+LCXVc76jDqKSiAYmYLxeXo
+         MmYhnrSc4wN+l04t54J9a8RSCb4OBeB+9upEeZZhV4FDslrK74tdEoGTtWJHkhvGSyjJ
+         yFzqN3I+KMUqiS4K+T0kliU37AgO3wwgAX/QgIJLqmkMZEJ60q98+txE/Z/JPyjhxIVU
+         g9Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2DWB0kKoYivJV1oeehdIpIIrx7+K+8Z44OtivzHAj5E=;
-        b=D3X/1n4b03idPnRX3bHay8UA24tSmDfDbg7LqfWIOz77pErgiLoNo4DkaSwWAEXMN2
-         3q882zqDP+GUTtFCSV9OzspHBZzClyZTlpkl/zdbxshhF6DWK5dO8DkcdbndiFs9FL31
-         QKUWrNtQ3BM3mfnnWqWEeHoVoWxztXRKSrSDMfKcqi4onJdCSCzAy31YVB2r3MZ+J0W9
-         mrJdHHb4Lr4OSnpEAmV8qfkYR9ZQT7x28Nr7zumD7VNNd/bUw9BbInTmj+cGZVR4VIze
-         jUuy+y4sswTU5huTCCpH0LSuzH4Inb/9Dvr0ac9naretlSALjqRXVLNZVRhSonYYAgMM
-         qZrg==
-X-Gm-Message-State: AOAM5306ffIFUybtSbifgnUf3PuMaBJGuZjoxu7XvbEwAWpqeupq3TjW
-        CQ06ZqTazncI1wqphIey4A==
-X-Google-Smtp-Source: ABdhPJxqNdVWRJ8PvfVAwRV2ZRqHbQKK2BKg35mESHevrhtZhoI8JZEi/wgeqZmv5eS0CfP63WfU2g==
-X-Received: by 2002:aca:3b89:: with SMTP id i131mr449070oia.102.1636397734731;
-        Mon, 08 Nov 2021 10:55:34 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bh12sm2950638oib.25.2021.11.08.10.55.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 10:55:34 -0800 (PST)
-Received: (nullmailer pid 4020796 invoked by uid 1000);
-        Mon, 08 Nov 2021 18:55:33 -0000
-Date:   Mon, 8 Nov 2021 12:55:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: samsung: pmu: Document Exynos850
-Message-ID: <YYlypWEWpUn+e7JE@robh.at.kernel.org>
-References: <20211028144313.9444-1-semen.protsenko@linaro.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=mvanPmq6qXs9DzVRtgUSTOUmzu/gL8E/gxL2zjoZAoU=;
+        b=DmLBo4bzrEXEM8K7JJ/7UNmTywZnLa69GNlYi4dL0qcNyC8y2HBlELC0STvpS522p6
+         NSM2A0O5czKmRZlEjsaLEbBe7vrBJris72OGLiD5ilZwb8fBMSM57z6qkA/+mvPdMReL
+         tO85Y9xVf5ratwwCcK/u2LZwftMypPGglgRNz/V6oWX7g0WZy5XDHeVqFwLWmRkD7oDo
+         2zkvyGlWIm/afWtk7lwf7BGV4VZufE+8cXc1uKWw7nfm+f1njUIBz1Vjf/05S4Y83jv7
+         sK6MyjTVrKlj75qEn8+rJJUMibuew0e0qeUEH/fW6JQ7HdNp+Ca0o7t83ISULbwif5O2
+         JC6w==
+X-Gm-Message-State: AOAM531HuJC2KTGT21RGc+5NYVU9k98sdqqfNFjaEvL86I1T+f40XStb
+        FMeP8tMh9Qnl4ivsI1m0u/Tn0Q==
+X-Google-Smtp-Source: ABdhPJy+WfzdWMT9C4MVN8FRQQCs9fEop+vwYbJy6qQ1Bg3YyCSw0l/qrHIAzGl8b7gPViVms8uv1w==
+X-Received: by 2002:a05:600c:1d01:: with SMTP id l1mr602978wms.44.1636397925431;
+        Mon, 08 Nov 2021 10:58:45 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id n184sm208627wme.2.2021.11.08.10.58.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 10:58:44 -0800 (PST)
+Message-ID: <60841bf0-f5ea-314f-34c6-822a8812000d@linaro.org>
+Date:   Mon, 8 Nov 2021 19:00:46 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211028144313.9444-1-semen.protsenko@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.1
+Subject: Re: [PATCH v3 5/7] dt-bindings: usb: Add Qualcomm PMIC TCPM YAML
+ schema
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, bjorn.andersson@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org
+References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
+ <20211105033558.1573552-6-bryan.odonoghue@linaro.org>
+ <YYlaqTYhe4hbXhFf@robh.at.kernel.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <YYlaqTYhe4hbXhFf@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 17:43:12 +0300, Sam Protsenko wrote:
-> Exynos850 SoC can reuse PMU driver functionality. Add corresponding
-> compatible string to PMU bindings documentation.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/samsung/pmu.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+On 08/11/2021 17:13, Rob Herring wrote:
+> Looks like the h/w is all part of a
+> PMIC, so it should be part of the PMIC binding and probably merged with
+> one of the nodes these phandles point to.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Not sure I really follow you here.
+
+The existing PMIC dts arch/arm64/boot/dts/qcom/pm8150b.dtsi has:
+
+pm8150b_gpios: gpio@c000 {
+     compatible = "qcom,pm8150b-gpio";
+}
+Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
+
+and
+
+pm8150b_adc_tm: adc-tm@3500 {
+     compatible = "qcom,spmi-adc-tm5";
+};
+Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+
+to which I'm adding :
+
+pm8150b_typec: typec@1500 {
+     compatible = "qcom,pm8150b-typec";
+};
+
+Documentation/devicetree/bindings/usb/qcom,pmic-typec.yaml
+
+pm8150b_pdphy: pdphy@1700 {
+     compatible = "qcom,pm8150b-pdphy";
+};
+
+Documentation/devicetree/bindings/usb/qcom,pmic-pdphy.yaml
