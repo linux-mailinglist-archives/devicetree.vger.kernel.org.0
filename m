@@ -2,143 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA949447E11
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 11:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93ADE447E4C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 11:52:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238266AbhKHKjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 05:39:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44222 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238180AbhKHKjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 05:39:44 -0500
-Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA6EC061570;
-        Mon,  8 Nov 2021 02:37:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-         s=20161220; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
-        MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=i/cmFLJWXjRGackmQbyW+VCsyR/4I0WIJ6EqrdSA6JY=; b=TgVDqLVO+s5RobZKj0e0tc5fNy
-        sQ7s4SFC8WtG6elM+NAEv4mjxfpoy7JVFvonGPrL7zQr/ez3Zy+k/cZUaqJiRecRCcNi2P7VbkE8F
-        ka3tcQvpeAovYzNEd+HkVHsCfpaMi0A8MmEWp93+1bfLdOoI1b6w4GoA214JujO2mNRUBzstQdeGa
-        bLpBKQN1PyJKDS+X8rDt5TmKrMO9LNSjG+242s85JwTjTX7Vrv0uE+3eFdT/Lgf1H4RdXtzWOLNPt
-        n83LDUWPlVc+rTMI2qPSbTvt1fc9jEFAk7Sd+yh6crFCPnwJUgWt/1tb+cKxoGcaWvVttLk2IRflv
-        xP/M3HYw==;
-Received: from dsl-hkibng22-54f986-236.dhcp.inet.fi ([84.249.134.236] helo=[192.168.1.10])
-        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <cyndis@kapsi.fi>)
-        id 1mk21D-0008PS-Od; Mon, 08 Nov 2021 12:36:51 +0200
-Subject: Re: [PATCH v2 0/8] Host1x context isolation support
-To:     Mikko Perttunen <mperttunen@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, joro@8bytes.org, will@kernel.org,
-        robh+dt@kernel.org, robin.murphy@arm.com
-Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210916143302.2024933-1-mperttunen@nvidia.com>
-From:   Mikko Perttunen <cyndis@kapsi.fi>
-Message-ID: <10de82cf-27a5-8890-93a5-0e58c74e5bcc@kapsi.fi>
-Date:   Mon, 8 Nov 2021 12:36:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <20210916143302.2024933-1-mperttunen@nvidia.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 84.249.134.236
-X-SA-Exim-Mail-From: cyndis@kapsi.fi
-X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
+        id S238760AbhKHKzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 05:55:16 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:22113 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238707AbhKHKzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 05:55:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636368743;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=f/r1eAU7KrXxztQXZTXHCi0ApvqFCqBOCfYtrmaL1xY=;
+    b=gUx3dm5ooAMb8mpK2BYmZ1D/Xx/Kr68W0ZyIxRU3Bu57OWOFSJYrTR4sXnH8oVcUVg
+    WxtwvZXZWeOvkqKpPRlzwivKorKgAd+PJvmoqo2tnWHbZYqngpjNq8CL61HT3rdyHDqd
+    dJ9eejg05X50GVv0CbQoy29+bkPil7ilDjep8GaT7xczllJ+hQXf57xPp0Ul970mc8T1
+    pB36IYsn67s2+b/NW81/1WWbL96pwp0bD5oJxiDpPRIQmrr3edPEb4G34D2jUATizhJe
+    9o3ULt4duFoaOAFo5/q46zerHy30M+hx63d0zfKcmkffcHjp+mqEjOva3dyQ25XCNxpz
+    kO2A==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3gMZ+"
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.1 DYNA|AUTH)
+    with ESMTPSA id 902c63xA8AqLIYt
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Mon, 8 Nov 2021 11:52:21 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v5 2/7] drm/ingenic: Add support for JZ4780 and HDMI
+ output
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <HQY82R.69JHJIC64HDO1@crapouillou.net>
+Date:   Mon, 8 Nov 2021 11:52:20 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <2E32F572-72D0-44E7-A700-AF8A2D37BFDA@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+ <2c7d0aa7d3ef480ebb996d37c27cbaa6f722728b.1633436959.git.hns@goldelico.com>
+ <FXTI0R.3FZIJZ7UYSNQ@crapouillou.net>
+ <7CEBB741-2218-40A7-9800-B3A154895274@goldelico.com>
+ <Q6U72R.9HY4TXLC6RWV2@crapouillou.net>
+ <229EBE4C-6555-41DE-962F-D82798AEC650@goldelico.com>
+ <HQY82R.69JHJIC64HDO1@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/16/21 5:32 PM, Mikko Perttunen wrote:
-> Hi all,
-> 
-> ***
-> New in v2:
-> 
-> Added support for Tegra194
-> Use standard iommu-map property instead of custom mechanism
-> ***
-> 
-> this series adds support for Host1x 'context isolation'. Since
-> when programming engines through Host1x, userspace can program in
-> any addresses it wants, we need some way to isolate the engines'
-> memory spaces. Traditionally this has either been done imperfectly
-> with a single shared IOMMU domain, or by copying and verifying the
-> programming command stream at submit time (Host1x firewall).
-> 
-> Since Tegra186 there is a privileged (only usable by kernel)
-> Host1x opcode that allows setting the stream ID sent by the engine
-> to the SMMU. So, by allocating a number of context banks and stream
-> IDs for this purpose, and using this opcode at the beginning of
-> each job, we can implement isolation. Due to the limited number of
-> context banks only each process gets its own context, and not
-> each channel.
-> 
-> This feature also allows sharing engines among multiple VMs when
-> used with Host1x's hardware virtualization support - up to 8 VMs
-> can be configured with a subset of allowed stream IDs, enforced
-> at hardware level.
-> 
-> To implement this, this series adds a new host1x context bus, which
-> will contain the 'struct device's corresponding to each context
-> bank / stream ID, changes to device tree and SMMU code to allow
-> registering the devices and using the bus, as well as the Host1x
-> stream ID programming code and support in TegraDRM.
-> 
-> Device tree bindings are not updated yet pending consensus that the
-> proposed changes make sense.
-> 
-> Thanks,
-> Mikko
-> 
-> Mikko Perttunen (8):
->    gpu: host1x: Add context bus
->    gpu: host1x: Add context device management code
->    gpu: host1x: Program context stream ID on submission
->    iommu/arm-smmu: Attach to host1x context device bus
->    arm64: tegra: Add Host1x context stream IDs on Tegra186+
->    drm/tegra: falcon: Set DMACTX field on DMA transactions
->    drm/tegra: vic: Implement get_streamid_offset
->    drm/tegra: Support context isolation
-> 
->   arch/arm64/boot/dts/nvidia/tegra186.dtsi  |  12 ++
->   arch/arm64/boot/dts/nvidia/tegra194.dtsi  |  12 ++
->   drivers/gpu/Makefile                      |   3 +-
->   drivers/gpu/drm/tegra/drm.h               |   2 +
->   drivers/gpu/drm/tegra/falcon.c            |   8 +
->   drivers/gpu/drm/tegra/falcon.h            |   1 +
->   drivers/gpu/drm/tegra/submit.c            |  13 ++
->   drivers/gpu/drm/tegra/uapi.c              |  34 ++++-
->   drivers/gpu/drm/tegra/vic.c               |  38 +++++
->   drivers/gpu/host1x/Kconfig                |   5 +
->   drivers/gpu/host1x/Makefile               |   2 +
->   drivers/gpu/host1x/context.c              | 174 ++++++++++++++++++++++
->   drivers/gpu/host1x/context.h              |  27 ++++
->   drivers/gpu/host1x/context_bus.c          |  31 ++++
->   drivers/gpu/host1x/dev.c                  |  12 +-
->   drivers/gpu/host1x/dev.h                  |   2 +
->   drivers/gpu/host1x/hw/channel_hw.c        |  52 ++++++-
->   drivers/gpu/host1x/hw/host1x06_hardware.h |  10 ++
->   drivers/gpu/host1x/hw/host1x07_hardware.h |  10 ++
->   drivers/iommu/arm/arm-smmu/arm-smmu.c     |  13 ++
->   include/linux/host1x.h                    |  21 +++
->   include/linux/host1x_context_bus.h        |  15 ++
->   22 files changed, 488 insertions(+), 9 deletions(-)
->   create mode 100644 drivers/gpu/host1x/context.c
->   create mode 100644 drivers/gpu/host1x/context.h
->   create mode 100644 drivers/gpu/host1x/context_bus.c
->   create mode 100644 include/linux/host1x_context_bus.h
-> 
+Hi Paul,
 
-IOMMU/DT folks, any thoughts about this approach? The patches that are 
-of interest outside of Host1x/TegraDRM specifics are patches 1, 2, 4, and 5.
+>> Am 08.11.2021 um 10:37 schrieb Paul Cercueil <paul@crapouillou.net>:
+>>=20
+>> Well, it was atomic: "add jz4780+hdmi functionality" or not. Now we =
+separate into "preparation for adding jz4780" and "really adding". Yes, =
+you can split atoms into quarks...
+>=20
+> And that's how it should be done. Lots of small atomic patches are =
+much easier to review than a few big patches.
 
-Thanks,
-Mikko
+I doubt that in this case especially as it has nothing to do with =
+jz4780...
+
+But I have a proposal for a better solution at the end of this mail.
+
+>>> Note that you can do even better, set the .max_register field =
+according to the memory resource you get from DTS. Have a look at the =
+pinctrl driver which does exactly this.
+>> That is an interesting idea. Although I don't see where
+>> =
+https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/pinctrl-ing=
+enic.c#L4171
+>> does make use of the memory resource from DTS. It just reads two =
+values from the ingenic_chip_info instead of one I do read from =
+soc_info.
+>=20
+> It overrides the .max_register from a static regmap_config instance.
+
+To be precise: it overrides .max_register of a copy of a static =
+regmap_config instance (which has .max_register =3D 0).
+
+> You can do the same,
+
+We already do the same...
+
+> calculating the .max_register from the memory resource you get from =
+DT.
+
+I can't see any code in pinctrl-ingenic.c getting the memory resource =
+that from DT. It calculates it from the ingenic_chip_info tables inside =
+the driver code but not DT.
+
+> I'm sure you guys can figure it out.
+
+Ah, we have to figure out. You are not sure yourself how to do it? And =
+it is *not* exactly like the pinctrl driver (already) does? Please give =
+precise directions in reviews and not vague research homework. Our time =
+is also valuable. Sorry if I review your reviews...
+
+Anyways I think you roughly intend (untested):
+
+	struct resource *r;
+
+	r =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+	regmap_config.max_register =3D r.end - r.start;
+
+But I wonder how that could work at all (despite adding code execution =
+time) with:
+
+e.g. jz4770.dtsi:
+
+	lcd: lcd-controller@13050000 {
+		compatible =3D "ingenic,jz4770-lcd";
+		reg =3D <0x13050000 0x300>;
+
+or jz4725b.dtsi:
+
+	lcd: lcd-controller@13050000 {
+		compatible =3D "ingenic,jz4725b-lcd";
+		reg =3D <0x13050000 0x1000>;
+
+So max_register becomes 0x300 or 0x1000 but not
+
+#define JZ_REG_LCD_SIZE1	0x12c
+	.max_reg =3D JZ_REG_LCD_SIZE1,
+
+And therefore wastes a lot of regmap memory.
+
+Do you want this? DTS should not be reduced (DTS should be kept as =
+stable as possible), since the reg property describes address mapping - =
+not how many bytes are really used by registers or how big a cache =
+should be allocated (cache allocation size requirements are not hardware =
+description).
+
+
+But here are good news:
+
+I have a simpler and less invasive proposal. We keep the =
+devm_regmap_init_mmio code as is and just increase its .max_register =
+from JZ_REG_LCD_SIZE1 to JZ_REG_LCD_PCFG when introducing the jz4780. =
+This wastes a handful bytes for all non-jz4780 chips but less than using =
+the DTS memory region size. And is less code (no entry in soc_info =
+tables, no modifyable copy) and faster code execution than all other =
+proposals.
+
+This is then just a single-line change when introducing the jz4780. And =
+no "preparation for adding jz4780" patch is needed at all. No patch to =
+split out for separate review.
+
+Let's go this way to get it eventually finalized. Ok?
+
+BR and thanks,
+Nikolaus
+
