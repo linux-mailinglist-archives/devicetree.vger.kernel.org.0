@@ -2,106 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 624AA44B2A8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 19:19:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0750144B2AE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 19:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242318AbhKISWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 13:22:36 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45356 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242321AbhKISWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 13:22:31 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1A9IJStP123394;
-        Tue, 9 Nov 2021 12:19:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1636481968;
-        bh=bNgxSpWcyBtnq7XC0L3A6Ob6weYYVTcirUbh0b7kL2s=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=aXRzuFpPka5DkvMwFrWfN2lhqsuPCucq9O5cNfbfOL4/vGV3GUZNehy8mafVz8IkM
-         AVJ3ltpRUtweFMUimcQjnMo3ViWp1VEaSqxTrHQ1MdOjjEQmzhVckIAzBGRum+uqun
-         chUKHzlp1LhKI5GKWNrDx+wj7PUouPSYW7WNDziA=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1A9IJSr5103683
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Nov 2021 12:19:28 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 9
- Nov 2021 12:19:28 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 9 Nov 2021 12:19:28 -0600
-Received: from pratyush-OptiPlex-790.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1A9IJC54017044;
-        Tue, 9 Nov 2021 12:19:25 -0600
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Pratyush Yadav <p.yadav@ti.com>, Mark Brown <broonie@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>
-Subject: [PATCH v3 3/3] dt-bindings: mtd: spi-nor: Add a reference to spi-peripheral-props.yaml
-Date:   Tue, 9 Nov 2021 23:49:11 +0530
-Message-ID: <20211109181911.2251-4-p.yadav@ti.com>
-X-Mailer: git-send-email 2.33.1.835.ge9e5ba39a7
-In-Reply-To: <20211109181911.2251-1-p.yadav@ti.com>
-References: <20211109181911.2251-1-p.yadav@ti.com>
+        id S242362AbhKISYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 13:24:42 -0500
+Received: from smtprelay0170.hostedemail.com ([216.40.44.170]:52236 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S242269AbhKISYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 13:24:39 -0500
+Received: from omf04.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay02.hostedemail.com (Postfix) with ESMTP id DA2FC7254D;
+        Tue,  9 Nov 2021 18:21:50 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf04.hostedemail.com (Postfix) with ESMTPA id ED2D9D1515;
+        Tue,  9 Nov 2021 18:21:47 +0000 (UTC)
+Message-ID: <80960e445c986408e4ae9a20ac42c5b66d4d8046.camel@perches.com>
+Subject: Re: [v2 10/10] iio: imu: add BNO055 I2C driver
+From:   Joe Perches <joe@perches.com>
+To:     Randy Dunlap <rdunlap@infradead.org>, andrea.merello@gmail.com,
+        Andi Kleen <ak@linux.intel.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Date:   Tue, 09 Nov 2021 10:21:46 -0800
+In-Reply-To: <021c6fe0-8131-a4f9-9cb0-2f4771d35da1@infradead.org>
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+         <20211028101840.24632-1-andrea.merello@gmail.com>
+         <20211028101840.24632-11-andrea.merello@gmail.com>
+         <85ef90ad-0d3a-6cb7-529f-667562b2ad71@infradead.org>
+         <CAN8YU5NiKz2JiNr-47OC4==N8L67HDshuH45BifnHBae+GUU-g@mail.gmail.com>
+         <021c6fe0-8131-a4f9-9cb0-2f4771d35da1@infradead.org>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.40.4-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: twcqu5gfawgudegsek9dxu71sby3ankr
+X-Rspamd-Server: rspamout01
+X-Rspamd-Queue-Id: ED2D9D1515
+X-Spam-Status: No, score=-3.40
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX19Z3362bnutoA4iFYG1yfO0L9S/2elaolI=
+X-HE-Tag: 1636482107-201099
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The spi-peripheral-props.yaml schema contains peripheral-specific
-properties for SPI controllers that should be present in the peripheral
-node. Add a reference to that so its constraints are followed.
+(cc'ing Andi Kleen, who wrote this code a decade ago)
 
-additionalProperties: false cannot be used since it marks the controller
-properties as unknown. Use unevaluatedProperties: false instead. This
-has the side effect of allowing extra properties that are not specified
-in the schema. The alternative is to list all the controller properties
-in this schema but that would mean every peripheral binding would have
-to repeat the same set of properties for each controller.
+On Tue, 2021-11-09 at 07:47 -0800, Randy Dunlap wrote:
+> On 11/9/21 3:56 AM, Andrea Merello wrote:
+> > Il giorno ven 29 ott 2021 alle ore 00:04 Randy Dunlap <rdunlap@infradead.org> ha scritto:
+> > > On 10/28/21 3:18 AM, Andrea Merello wrote:
+> > > > This path adds an I2C driver for communicating to a BNO055 IMU via I2C bus
+> > > > and it enables the BNO055 core driver to work in this scenario.
+> > > > 
+> > > > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+> > > > ---
+> > > >    drivers/iio/imu/bno055/Kconfig      |  6 ++++
+> > > >    drivers/iio/imu/bno055/Makefile     |  1 +
+[]
+> > > > diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
+[]
+> > > > @@ -7,3 +7,9 @@ config BOSH_BNO055_SERIAL
+> > > >        tristate "Bosh BNO055 attached via serial bus"
+> > > >        depends on SERIAL_DEV_BUS
+> > > >        select BOSH_BNO055_IIO
+> > > > +
+> > > > +config BOSH_BNO055_I2C
+> > > > +     tristate "Bosh BNO055 attached via I2C bus"
+> > > > +     depends on I2C
+> > > > +     select REGMAP_I2C
+> > > > +     select BOSH_BNO055_IIO
+[]
+> > > The config entries that have user prompt strings should also
+> > > have help text.  scripts/checkpatch.pl should have told you
+> > > about that...
+> > 
+> > I'll add it, thanks. But FYI checkpatch doesn't complain about that here.
+> 
+> Hm, thanks for adding it and telling me about that.
+> 
+> checkpatch.pl does have some code for checking that but I confirmed
+> that it does not catch this simple case.
+> 
+> Joe, can you identify why checkpatch does not detect missing Kconfig
+> help text is this simple case?
 
-Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+Original patch here: https://lore.kernel.org/all/20211028101840.24632-11-andrea.merello@gmail.com/raw
 
+checkpatch is counting the diff header lines that follow the config entry.
+Maybe this is clearer (better?) code:
 ---
+ scripts/checkpatch.pl | 28 +++++++++++++++-------------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
 
-Changes in v3:
-- s/slave/peripheral/g
+diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+index 1784921c645da..b3ce8e04d7df7 100755
+--- a/scripts/checkpatch.pl
++++ b/scripts/checkpatch.pl
+@@ -3483,20 +3483,22 @@ sub process {
+ 			my $cnt = $realcnt;
+ 			my $ln = $linenr + 1;
+ 			my $f;
+-			my $is_start = 0;
+-			my $is_end = 0;
++			my $needs_help = 0;
++			my $has_help = 0;
+ 			for (; $cnt > 0 && defined $lines[$ln - 1]; $ln++) {
+ 				$f = $lines[$ln - 1];
+-				$cnt-- if ($lines[$ln - 1] !~ /^-/);
+-				$is_end = $lines[$ln - 1] =~ /^\+/;
++				$cnt-- if ($f !~ /^-/);
+ 
+ 				next if ($f =~ /^-/);
+-				last if (!$file && $f =~ /^\@\@/);
++				last if (!$file && $f =~ /^(?:\@\@|diff )/);
+ 
+-				if ($lines[$ln - 1] =~ /^\+\s*(?:bool|tristate|prompt)\s*["']/) {
+-					$is_start = 1;
+-				} elsif ($lines[$ln - 1] =~ /^\+\s*(?:---)?help(?:---)?$/) {
+-					$length = -1;
++				if ($f =~ /^\+\s*(?:bool|tristate|prompt)\s*["']/) {
++					$needs_help = 1;
++					next;
++				} elsif ($f =~ /^\+\s*help\s*$/) {
++					$length = 0;
++					$has_help = 1;
++					next;
+ 				}
+ 
+ 				$f =~ s/^.//;
+@@ -3510,16 +3512,16 @@ sub process {
+ 				# common words in help texts
+ 				if ($f =~ /^\s*(?:config|menuconfig|choice|endchoice|
+ 						  if|endif|menu|endmenu|source)\b/x) {
+-					$is_end = 1;
+ 					last;
+ 				}
+-				$length++;
++				$length++ if ($has_help);
+ 			}
+-			if ($is_start && $is_end && $length < $min_conf_desc_length) {
++			if ($needs_help &&
++			    (!$has_help ||
++			     ($has_help && $length < $min_conf_desc_length))) {
+ 				WARN("CONFIG_DESCRIPTION",
+ 				     "please write a paragraph that describes the config symbol fully\n" . $herecurr);
+ 			}
+-			#print "is_start<$is_start> is_end<$is_end> length<$length>\n";
+ 		}
+ 
+ # check MAINTAINERS entries
 
- Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-index ed590d7c6e37..39421f7233e4 100644
---- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-+++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-@@ -11,6 +11,7 @@ maintainers:
- 
- allOf:
-   - $ref: "mtd.yaml#"
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-@@ -88,7 +89,7 @@ patternProperties:
-   "^otp(-[0-9]+)?$":
-     type: object
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.33.1.835.ge9e5ba39a7
 
