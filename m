@@ -2,157 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2C8744B1B9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 18:05:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 649E544B21A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 18:43:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240757AbhKIRId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 12:08:33 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:4078 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240925AbhKIRI2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 12:08:28 -0500
-Received: from fraeml711-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4HpZ4P24n3z67ts3;
-        Wed, 10 Nov 2021 01:00:53 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml711-chm.china.huawei.com (10.206.15.60) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.15; Tue, 9 Nov 2021 18:05:40 +0100
-Received: from localhost (10.202.226.41) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.15; Tue, 9 Nov
- 2021 17:05:39 +0000
-Date:   Tue, 9 Nov 2021 17:05:38 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Andrea Merello <andrea.merello@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Andy Shevchenko" <andy.shevchenko@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
-Subject: Re: [v2 04/10] iio: add modifiers for linear acceleration
-Message-ID: <20211109170538.0000446c@Huawei.com>
-In-Reply-To: <CAN8YU5M1-tqXaAokjzZJ5aLY_PwK7-3O3PtEFEQ+ONwTLcK44Q@mail.gmail.com>
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
-        <20211028101840.24632-1-andrea.merello@gmail.com>
-        <20211028101840.24632-5-andrea.merello@gmail.com>
-        <20211028114557.5b4db778@jic23-huawei>
-        <CAN8YU5M1-tqXaAokjzZJ5aLY_PwK7-3O3PtEFEQ+ONwTLcK44Q@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S240989AbhKIRqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 12:46:32 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:38823 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236368AbhKIRqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 12:46:31 -0500
+Received: by mail-oi1-f180.google.com with SMTP id r26so49025oiw.5;
+        Tue, 09 Nov 2021 09:43:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=glkbpFZ64hsjBoehP9NBMZRV0DOCh6wrOfQ/SiMCrhU=;
+        b=B/QDXLraPIJAGBRtaKfdFIHshHAR76AaXyX5SmhYVoPbGHXjDokisf4NaJSCExvL8N
+         8bsklXwzUifCkKkS+MAGP1UgkwQNYkh71Ny6SSiwm6c2njeKiqZbNVDWF1LEIB0tHx4X
+         qYwvnBk3D70dnq2u8/Pyf52orz94oV1ceR7YZWDwHx619xrC73lzeKsWWzE0VF3nNP1R
+         PWdiMV+EyMXTbvSqjIgMgaHobp03L6rjamSNepnCaiWG8W7gi0OPCa6HEeeP5YgZyVMj
+         Z+EYZOok8+VHyt2mrMBoDVqr9jMNedwWUXYSXKHkSLBCapUcnCTpHzbD5yZraIO8kwYQ
+         kxGA==
+X-Gm-Message-State: AOAM533GfbgCxSdFcxB5nFPFQDihgH9Wy1oiaxNRxNte9YwGrNovaTu+
+        uSLvEZByH+J0QESgoHXHqg==
+X-Google-Smtp-Source: ABdhPJxU4oV+8lwp0rYXCMUWKjd7BX9+2N+Jgwop8dtuEJ6dEY2c7KaI0A0OaOlINe6n3R6pdeSHTA==
+X-Received: by 2002:a05:6808:3027:: with SMTP id ay39mr7427095oib.39.1636479825226;
+        Tue, 09 Nov 2021 09:43:45 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y203sm7623790oia.1.2021.11.09.09.43.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Nov 2021 09:43:43 -0800 (PST)
+Received: (nullmailer pid 2328639 invoked by uid 1000);
+        Tue, 09 Nov 2021 17:43:43 -0000
+Date:   Tue, 9 Nov 2021 11:43:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-kernel@vger.kernel.org, list@opendingux.net,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Rename Ingenic CGU headers to
+ ingenic,*.h
+Message-ID: <YYqzT6ZjyQPMisXE@robh.at.kernel.org>
+References: <20211016133322.40771-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.202.226.41]
-X-ClientProxiedBy: lhreml704-chm.china.huawei.com (10.201.108.53) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211016133322.40771-1-paul@crapouillou.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 Nov 2021 10:58:19 +0100
-Andrea Merello <andrea.merello@gmail.com> wrote:
-
-> Il giorno gio 28 ott 2021 alle ore 12:41 Jonathan Cameron
-> <jic23@kernel.org> ha scritto:
-> >
-> > On Thu, 28 Oct 2021 12:18:34 +0200
-> > Andrea Merello <andrea.merello@gmail.com> wrote:
-> >  
-> > > This patch is preparatory for adding the Bosh BNO055 IMU driver.
-> > > The said IMU can report raw accelerations (among x, y and z axis)
-> > > as well as the so called "linear accelerations" (again, among x,
-> > > y and z axis) which is basically the acceleration after subtracting
-> > > gravity.
-> > >
-> > > This patch adds IIO_MOD_ACCEL_LINEAR_X, IIO_MOD_ACCEL_LINEAR_Y and
-> > > IIO_MOD_ACCEL_LINEAR_Z modifiers to te IIO core.
-> > >
-> > > Signed-off-by: Andrea Merello <andrea.merello@iit.it>  
-> >
-> > They sometimes get forgotten but we should also update
-> > tools/iio/iio_event_montitor.c to handle these new modifiers.  
+On Sat, 16 Oct 2021 14:33:21 +0100, Paul Cercueil wrote:
+> Tidy up a bit the tree, by prefixing all include/dt-bindings/clock/ files
+> related to Ingenic SoCs with 'ingenic,'.
 > 
-> I'm not so familiar with this tool, but it seems like it has to do
-> with IIO events, which the bno055 driver doesn't use. On the other
-> hand the modifiers I would add are not used by any other driver right
-> now.
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
 > 
-> So I would say that it would end up in adding things that I couldn't
-> test.. Or is there any test infrastructure for this? It seems trivial,
-> just a matter of a few defines, so it shouldn't be an issue indeed..
+> Notes:
+>     v2: Fix x1000-cgu.h and x1830-cgu.h incorrectly renamed to
+>         x1000.h / x1830.h
 > 
-> > That can be a separate patch, but also fine to do it in this one.
-> >  
-> > > ---
-> > >  drivers/iio/industrialio-core.c | 3 +++
-> > >  include/uapi/linux/iio/types.h  | 4 +++-
-> > >  2 files changed, 6 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> > > index 2dbb37e09b8c..a79cb32207e4 100644
-> > > --- a/drivers/iio/industrialio-core.c
-> > > +++ b/drivers/iio/industrialio-core.c
-> > > @@ -134,6 +134,9 @@ static const char * const iio_modifier_names[] = {
-> > >       [IIO_MOD_ETHANOL] = "ethanol",
-> > >       [IIO_MOD_H2] = "h2",
-> > >       [IIO_MOD_O2] = "o2",
-> > > +     [IIO_MOD_ACCEL_LINEAR_X] = "linear_x",
-> > > +     [IIO_MOD_ACCEL_LINEAR_Y] = "linear_y",
-> > > +     [IIO_MOD_ACCEL_LINEAR_Z] = "linear_z"
-> > >  };
-> > >
-> > >  /* relies on pairs of these shared then separate */
-> > > diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
-> > > index 48c13147c0a8..db00f7c45f48 100644
-> > > --- a/include/uapi/linux/iio/types.h
-> > > +++ b/include/uapi/linux/iio/types.h
-> > > @@ -95,6 +95,9 @@ enum iio_modifier {
-> > >       IIO_MOD_ETHANOL,
-> > >       IIO_MOD_H2,
-> > >       IIO_MOD_O2,
-> > > +     IIO_MOD_ACCEL_LINEAR_X,
-> > > +     IIO_MOD_ACCEL_LINEAR_Y,
-> > > +     IIO_MOD_ACCEL_LINEAR_Z,  
-> >
-> > It might be useful for other channel types, so probably drop the ACCEL
-> > part of the name.
-> >
-> > I'll admit I can't immediately think of what, but you never know.. :)  
+>  Documentation/devicetree/bindings/clock/ingenic,cgu.yaml      | 2 +-
+>  Documentation/devicetree/bindings/display/ingenic,ipu.yaml    | 2 +-
+>  Documentation/devicetree/bindings/display/ingenic,lcd.yaml    | 4 ++--
+>  Documentation/devicetree/bindings/dma/ingenic,dma.yaml        | 2 +-
+>  Documentation/devicetree/bindings/i2c/ingenic,i2c.yaml        | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/ingenic,adc.yaml    | 2 +-
+>  .../devicetree/bindings/memory-controllers/ingenic,nemc.yaml  | 2 +-
+>  .../devicetree/bindings/mips/ingenic/ingenic,cpu.yaml         | 2 +-
+>  Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml        | 2 +-
+>  Documentation/devicetree/bindings/mtd/ingenic,nand.yaml       | 2 +-
+>  Documentation/devicetree/bindings/net/ingenic,mac.yaml        | 2 +-
+>  .../devicetree/bindings/nvmem/ingenic,jz4780-efuse.yaml       | 2 +-
+>  Documentation/devicetree/bindings/phy/ingenic,phy-usb.yaml    | 2 +-
+>  Documentation/devicetree/bindings/remoteproc/ingenic,vpu.yaml | 2 +-
+>  Documentation/devicetree/bindings/rng/ingenic,trng.yaml       | 2 +-
+>  Documentation/devicetree/bindings/rtc/ingenic,rtc.yaml        | 2 +-
+>  Documentation/devicetree/bindings/serial/ingenic,uart.yaml    | 2 +-
+>  Documentation/devicetree/bindings/sound/ingenic,aic.yaml      | 2 +-
+>  Documentation/devicetree/bindings/sound/ingenic,codec.yaml    | 2 +-
+>  Documentation/devicetree/bindings/timer/ingenic,sysost.yaml   | 2 +-
+>  Documentation/devicetree/bindings/timer/ingenic,tcu.yaml      | 2 +-
+>  Documentation/devicetree/bindings/usb/ingenic,musb.yaml       | 2 +-
+>  arch/mips/boot/dts/ingenic/jz4725b.dtsi                       | 2 +-
+>  arch/mips/boot/dts/ingenic/jz4740.dtsi                        | 2 +-
+>  arch/mips/boot/dts/ingenic/jz4770.dtsi                        | 2 +-
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi                        | 2 +-
+>  arch/mips/boot/dts/ingenic/x1000.dtsi                         | 2 +-
+>  arch/mips/boot/dts/ingenic/x1830.dtsi                         | 2 +-
+>  drivers/clk/ingenic/jz4725b-cgu.c                             | 2 +-
+>  drivers/clk/ingenic/jz4740-cgu.c                              | 2 +-
+>  drivers/clk/ingenic/jz4760-cgu.c                              | 2 +-
+>  drivers/clk/ingenic/jz4770-cgu.c                              | 2 +-
+>  drivers/clk/ingenic/jz4780-cgu.c                              | 2 +-
+>  drivers/clk/ingenic/x1000-cgu.c                               | 2 +-
+>  drivers/clk/ingenic/x1830-cgu.c                               | 2 +-
+>  .../clock/{jz4725b-cgu.h => ingenic,jz4725b-cgu.h}            | 0
+>  .../dt-bindings/clock/{jz4740-cgu.h => ingenic,jz4740-cgu.h}  | 0
+>  .../dt-bindings/clock/{jz4760-cgu.h => ingenic,jz4760-cgu.h}  | 0
+>  .../dt-bindings/clock/{jz4770-cgu.h => ingenic,jz4770-cgu.h}  | 0
+>  .../dt-bindings/clock/{jz4780-cgu.h => ingenic,jz4780-cgu.h}  | 0
+>  .../dt-bindings/clock/{x1000-cgu.h => ingenic,x1000-cgu.h}    | 0
+>  .../dt-bindings/clock/{x1830-cgu.h => ingenic,x1830-cgu.h}    | 0
+>  42 files changed, 36 insertions(+), 36 deletions(-)
+>  rename include/dt-bindings/clock/{jz4725b-cgu.h => ingenic,jz4725b-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{jz4740-cgu.h => ingenic,jz4740-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{jz4760-cgu.h => ingenic,jz4760-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{jz4770-cgu.h => ingenic,jz4770-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{jz4780-cgu.h => ingenic,jz4780-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{x1000-cgu.h => ingenic,x1000-cgu.h} (100%)
+>  rename include/dt-bindings/clock/{x1830-cgu.h => ingenic,x1830-cgu.h} (100%)
 > 
-> But in this case what should I write in the ABI documentation? If I
-> state that this is something that makes the gravity not being included
-> then isn't it intrinsically tied to be an acceleration?  Or, I do
-> that, and if someone eventually finds another use, then she/he will
-> change the ABI doc?
 
-The ABI docs are only documenting the complete ABI, not separately
-the modifier so you will be documenting the same thing whatever
-we call the modifier inside the code.
+Applied, thanks!
 
-I'm just suggesting you call the enum entries the more generic
-IIO_MOD_LINEAR_X, etc, not a change to the resulting string.
+I'll let Stephen take patch 2 after rc1.
 
-Jonathan
-
-> 
-> > >  };
-> > >
-> > >  enum iio_event_type {
-> > > @@ -114,4 +117,3 @@ enum iio_event_direction {
-> > >  };
-> > >
-> > >  #endif /* _UAPI_IIO_TYPES_H_ */
-> > > -  
-> > ?
-> >
-> >  
-
+Rob
