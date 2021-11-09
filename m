@@ -2,255 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 746CC44AF9F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 15:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3B544AFA9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 15:39:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238059AbhKIOjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 09:39:42 -0500
-Received: from mail-mw2nam10on2065.outbound.protection.outlook.com ([40.107.94.65]:17281
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237689AbhKIOjk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 09:39:40 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hIroTVa/uOEslXj/kja0wmfPrYPX7LYWcv0UtSwlGC3Pk2xW/kxbSFmdCdwFFFJNGi6cIP1+OYV0cijXF9uTzNqsKyirb13a4xhf4nzgO7hHiOGFmi8euWBbDPKFZXu7+IdbjcBToAliUabLDrjHIvY82TZE1c8KTjdjd9ZMnSRdCbkJxzsKlO/ztvUJW6Ne5QSaAuZtp6veIUlp2J+m9pL5kpI1rtZz83J0zLuuSijlFaGLb5x0TZG5kQGUkzTvay9Tv1ZMsvSnyaY4Jnu5pa8z5JeynCbpqipqgzcRxHIKPQitHpGMWC0+FWUXSpe3e0xTd3C616lOlCJiISIDmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RxUTRP1liNDyjHVFnt3LTW8J+Co3Z9glzukOc0gNp1A=;
- b=I6CbMqCS2cXcl+DX6B47Uu9rOmkv6c6oaPrKMBOUsIGo0UYJOXL27lEm2s+it7lxiR1V1eq1ntgNNpyQj/kw1E0nPv07GDVTtV/jh/Au4zU8qhDcCLI1yMrA5B0iOz/QicHKl8ATzFJ7R5gcOBBrXNoXoBpnMkF/MEqwpmAWrvjWsloU4wKOrvKQLPvhXFzYHGSxV6/MCjxk0QbTNmVQBlAza8n0HOTEXaO74V3etcMOwesvaWRGOAN0MhZW+kWl2Bj8Nbg7nRO3SnURWZSqFdQ0gD90PWxQ8nN/T759qin4n47VBio0L2yZSbJFO4GiUgtzBP5KnHSQ6O9iZylXCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.35) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RxUTRP1liNDyjHVFnt3LTW8J+Co3Z9glzukOc0gNp1A=;
- b=mf5lV7AwuHYUlV8C8kaav3Tkhrq1kDSxhxyQTZoMhRfCRfzJH2WSGSAqi1NiDb6pfJtj2RP0qYS7cG0ovV5r7vMgQpRd0neKoxh3jKoYu/mnf+fcfS5n8qK2/10V9R5V3kC5GaiZm5g7jin0O9lhU3H9Q6/2VBwKB9qHPkOQ6g0fZbquUuaiS9nxgH9iWz7S92D/+ZEFZWr1hcVyRtEGfDqecHFxOVzE92hTm992HbeCmjbEe0g7Y6QbikqDHQXOVu9oy7Wu3mr1k1oLeyb/TWXJl5aoPGdA7AppMnqLGcv4/ilyXBtEtXGLftQP0nRtjP0PHoGfHDUl4j+S11JqNA==
-Received: from BN9PR03CA0372.namprd03.prod.outlook.com (2603:10b6:408:f7::17)
- by CY4PR12MB1127.namprd12.prod.outlook.com (2603:10b6:903:44::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.10; Tue, 9 Nov
- 2021 14:36:52 +0000
-Received: from BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:f7:cafe::50) by BN9PR03CA0372.outlook.office365.com
- (2603:10b6:408:f7::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15 via Frontend
- Transport; Tue, 9 Nov 2021 14:36:52 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.35)
- smtp.mailfrom=nvidia.com; kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.35 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.35; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.35) by
- BN8NAM11FT007.mail.protection.outlook.com (10.13.177.109) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4669.10 via Frontend Transport; Tue, 9 Nov 2021 14:36:51 +0000
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 9 Nov
- 2021 14:36:50 +0000
-Received: from kyarlagadda-linux.nvidia.com (172.20.187.6) by mail.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Tue, 9 Nov 2021 14:36:46 +0000
-From:   Akhil R <akhilrajeev@nvidia.com>
-To:     <akhilrajeev@nvidia.com>
-CC:     <dan.j.williams@intel.com>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <jonathanh@nvidia.com>,
-        <kyarlagadda@nvidia.com>, <ldewangan@nvidia.com>,
-        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <p.zabel@pengutronix.de>, <rgumasta@nvidia.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <vkoul@kernel.org>
-Subject: [PATCH v12 4/4] arm64: tegra: Add GPCDMA node for tegra186 and tegra194
-Date:   Tue, 9 Nov 2021 20:05:52 +0530
-Message-ID: <1636468552-1120-5-git-send-email-akhilrajeev@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1636468552-1120-1-git-send-email-akhilrajeev@nvidia.com>
-References: <1635427419-22478-1-git-send-email-akhilrajeev@nvidia.com>
- <1636468552-1120-1-git-send-email-akhilrajeev@nvidia.com>
-X-NVConfidentiality: public
+        id S238759AbhKIOmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 09:42:35 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:56046 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231136AbhKIOmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 09:42:35 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(25039:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Tue, 09 Nov 2021 22:39:38 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Tue, 9 Nov 2021 22:39:33 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Tue, 9 Nov 2021
+ 22:39:33 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: RE: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Index: AQHX0KKBcebTINBXKk6D/f7Frpi9sKvxfraAgAGf2kCAAU6CgIAE3RVA///T9oCAAJMwUP//h9mAgACMUqD//6B2AAA6wUXQ
+Date:   Tue, 9 Nov 2021 14:39:33 +0000
+Message-ID: <941aabfafa674999b2c0f4fc88025518@sphcmbx02.sunplus.com.tw>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+ <YYK+EeCOu/BXBXDi@lunn.ch>
+ <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
+ <YYUzgyS6pfQOmKRk@lunn.ch>
+ <7c77f644b7a14402bad6dd6326ba85b1@sphcmbx02.sunplus.com.tw>
+ <YYkjBdu64r2JF1bR@lunn.ch>
+ <4e663877558247048e9b04b027e555b8@sphcmbx02.sunplus.com.tw>
+ <YYk5s5fDuub7eBqu@lunn.ch>
+ <585e234fdb74499caafee3b43b5e5ab4@sphcmbx02.sunplus.com.tw>
+ <YYlfRB7updHplnLE@lunn.ch>
+In-Reply-To: <YYlfRB7updHplnLE@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3f2997d0-aa8c-4c25-34bb-08d9a38e5e76
-X-MS-TrafficTypeDiagnostic: CY4PR12MB1127:
-X-Microsoft-Antispam-PRVS: <CY4PR12MB1127B2621B2A65A86E97BE44C0929@CY4PR12MB1127.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1227;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gBVlm+vwqjoN1jYYNX4TdMOpRXAqTYMWLbuIgc+87n7eHCPU1AoVFWGPPWIVGiH0eS0cjNaccQbnT2BXeJfJLkgmhnsS9oxNdHm+lISV5eew0RawXC2ENCo9Pek4cCgfXTVIkYacIfY4i0hrNv9++HgM1BwQUhA9OOP/1Rw0tpSpT/zJ+bB/ypU8umyaKg4vffo1LwMDop+hRTSIKkvXtl3ULAG5FfdAAnNYHqEiDuYRehn2/MN7W+i93XJAY1PU89kOvtKGQOVoTt2uYWEI/XAG1bSf6PSlMVS2CLPCT877nAKfrmKdkLpvNluM5Xqwcs+3hKPJCmV+U5NpVAz07gz0j2/3H+DxkZo4/oVKsLbOg32RDtx7lQqY6JLn30PnfNP2EUBbCd5npmz3sg06nmZ1R0WjxsOA+ROaie3cW6S5ML55zrfVh17TUMNl0cJFdkpYl39dj6c64pWOuWC1S52DN0F5tqDkZPDrESd4eWyO4ncjq1hvvgNkd6KbuZWvljlV15qUCXjG373cnTN1IaEKtbpfgZ8xmdMzV5k7XJLkjOJMzOW/PFJ9Qp05kfTX86N3JSeTC9qNaCW3RsftVjYLKK0o1MkimHuVGBDDCgu+AXBEVNq4gdNe2AJwXTrQz7bEf+Bwnxhb6vCgdNPIrk9sj6RhsGRDef1KQTRz/xObmacLeSy5v6JgSC0yilSao0SNXGo/loEC2z8PjtqCUw==
-X-Forefront-Antispam-Report: CIP:216.228.112.35;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid04.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(36860700001)(26005)(426003)(8676002)(508600001)(2906002)(70586007)(70206006)(47076005)(7636003)(83380400001)(6666004)(186003)(4326008)(356005)(86362001)(36756003)(8936002)(2616005)(5660300002)(7049001)(6862004)(37006003)(6200100001)(336012)(82310400003)(54906003)(36906005)(316002)(7696005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2021 14:36:51.3605
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f2997d0-aa8c-4c25-34bb-08d9a38e5e76
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.35];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT007.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1127
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node for GPCDMA controller on Tegra186 target
-and Tegra194 target.
-
-Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi |  4 +++
- arch/arm64/boot/dts/nvidia/tegra186.dtsi       | 44 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi |  4 +++
- arch/arm64/boot/dts/nvidia/tegra194.dtsi       | 44 ++++++++++++++++++++++++++
- 4 files changed, 96 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-index fcd71bf..f5ef04d3 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi
-@@ -56,6 +56,10 @@
- 		};
- 	};
- 
-+	dma-controller@2600000 {
-+		status = "okay";
-+	};
-+
- 	memory-controller@2c00000 {
- 		status = "okay";
- 	};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index e94f8ad..355d53c 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -73,6 +73,50 @@
- 		snps,rxpbl = <8>;
- 	};
- 
-+	dma-controller@2600000 {
-+		compatible = "nvidia,tegra186-gpcdma";
-+		reg = <0x2600000 0x210000>;
-+		resets = <&bpmp TEGRA186_RESET_GPCDMA>;
-+		reset-names = "gpcdma";
-+		interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+		#dma-cells = <1>;
-+		iommus = <&smmu TEGRA186_SID_GPCDMA_0>;
-+		dma-coherent;
-+		status = "disabled";
-+	};
-+
- 	aconnect@2900000 {
- 		compatible = "nvidia,tegra186-aconnect",
- 			     "nvidia,tegra210-aconnect";
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-index c4058ee..5bc74af 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi
-@@ -49,6 +49,10 @@
- 			};
- 		};
- 
-+		dma-controller@2600000 {
-+			status = "okay";
-+		};
-+
- 		memory-controller@2c00000 {
- 			status = "okay";
- 		};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index c8250a3..94094f3 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -72,6 +72,50 @@
- 			snps,rxpbl = <8>;
- 		};
- 
-+		dma-controller@2600000 {
-+			compatible = "nvidia,tegra194-gpcdma";
-+			reg = <0x2600000 0x210000>;
-+			resets = <&bpmp TEGRA194_RESET_GPCDMA>;
-+			reset-names = "gpcdma";
-+			interrupts = <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 91 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+			#dma-cells = <1>;
-+			iommus = <&smmu TEGRA194_SID_GPCDMA_0>;
-+			dma-coherent;
-+			status = "disabled";
-+		};
-+
- 		aconnect@2900000 {
- 			compatible = "nvidia,tegra194-aconnect",
- 				     "nvidia,tegra210-aconnect";
--- 
-2.7.4
-
+PiBPbiBNb24sIE5vdiAwOCwgMjAyMSBhdCAwNDo0NzozNFBNICswMDAwLCBXZWxscyBMdSDlkYLo
+irPpqLAgd3JvdGU6DQo+ID4gPiA+IFRoZSBzd2l0Y2ggd2lsbCBub3QgcmVjb2duaXplIHR5cGUg
+b2YgcGFja2V0cywgcmVnYXJkbGVzcyBCUERVLA0KPiA+ID4gPiBQVFAgb3IgYW55IG90aGVyIHBh
+Y2tldHMuIElmIHR1cm5pbmcgb2ZmIHNvdXJjZS1hZGRyZXNzIGxlYXJuaW5nDQo+ID4gPiA+IGZ1
+bmN0aW9uLCBpdCB3b3JrcyBsaWtlIGFuIEV0aGVybmV0IHBsdXMgYSAyLXBvcnQgaHViLg0KPiA+
+ID4NCj4gPiA+IFNvIHdpdGhvdXQgU1RQLCB0aGVyZSBpcyBubyB3YXkgdG8gc3RvcCBhbiBsb29w
+LCBhbmQgYSBicm9hZGNhc3QNCj4gPiA+IHN0b3JtIHRha2luZyBkb3duIHlvdXIgbmV0d29yaz8N
+Cj4gPg0KPiA+IERvIHlvdSBtZWFuIGNvbm5lY3RpbmcgdHdvIFBIWSBwb3J0cyB0byB0aGUgc2Ft
+ZSBMQU4/IFdlIG5ldmVyIGNvbm5lY3QNCj4gPiB0d28gUEhZIHBvcnRzIHRvIHRoZSBzYW1lIExB
+TiAob3IgaHViKS4gSSBuZXZlciB0aGluayBvZiB0aGlzIGxvb3ANCj4gPiBwcm9ibGVtLiBJIHRo
+b3VnaHQgb25seSBXQU4gaGFzIHRoZSBsb29wIHByb2JsZW0uDQo+IA0KPiBBbnkgRXRoZXJuZXQg
+bmV0d29yayBjYW4gaGF2ZSBhIGxvb3AuIE9mdGVuIGxvb3BzIGEgZGVsaWJlcmF0ZSBiZWNhdXNl
+IHRoZXkNCj4gZ2l2ZSByZWR1bmRhbmN5LiBTVFAgd2lsbCBkZXRlY3QgdGhpcyBsb29wLCBhbmQg
+c29tZXdoZXJlIGluIHRoZSBuZXR3b3JrIG9uZQ0KPiBvZiB0aGUgc3dpdGNoZXMgd2lsbCBibG9j
+ayB0cmFmZmljIHRvIGJyZWFrIHRoZSBsb29wLiBCdXQgaWYgc29tZXRoaW5nIGluIHRoZQ0KPiBu
+ZXR3b3JrIGJyZWFrcywgdGhlIHBvcnQgY2FuIGJlIHVuYmxvY2tlZCB0byBhbGxvdyB0cmFmZmlj
+IHRvIGZsb3csIHJlZHVuZGFuY3kuDQo+IFdlbGwgYmVoYXZlZCBzd2l0Y2hlcyBzaG91bGQgYWx3
+YXlzIGltcGxlbWVudCBTVFAuDQoNCkkgZG9uJ3Qga25vdyBob3cgdG8gaW1wbGVtZW50IFNUUCBp
+biBMMiBzd2l0Y2ggbGlrZSBTUDcwMjEuDQpIb3cgYWJvdXQgb25lIE5JQyArIDItcG9ydCBzaW1w
+bGUgZnJhbWUtZmxvb2RpbmcgaHViPw0KU29tZW9uZSB0b2xkIG1lIHRoYXQgc29tZSBsb3ctY29z
+dCBFdGhlcm5ldCBodWIganVzdCBkb2VzIGZyYW1lLWZsb29kaW5nIA0KdG8gb3RoZXIgcG9ydHMu
+IExldCB1c2VycyB0YWtlIGNhcmUgb2YgdXNlLg0KSWYgdGhpcyBpcyBhY2NlcHRhYmxlLCBJJ2Qg
+bGlrZSB0byBoYXZlIEV0aGVybmV0IG9mIFNQNzAyMSBoYXZlIHR3byBvcGVyYXRpb24gDQptb2Rl
+czoNCiAtIER1YWwgTklDIG1vZGUNCiAtIFNpbmdsZSBOSUMgd2l0aCAyLXBvcnQgZnJhbWUtZmxv
+b2RpbmcgaHViIG1vZGUNCg0KSWYgdGhpcyBpcyBub3QgYWNjZXB0YWJsZSwgY2FuIEksIGluc3Rl
+YWQsIGltcGxlbWVudCB0aGUgdHdvIG9wZXJhdGlvbiBtb2RlczoNCiAtIER1YWwgTklDIG1vZGUN
+CiAtIFNpbmdsZSBOSUMgbW9kZQ0KDQpSTUlJIHBpbnMgb2YgUEhZIHBvcnRzIG9mIFNQNzAyMSBh
+cmUgbXVsdGlwbGV4YWJsZS4gSSdkIGxpa2UgdG8gc3dpdGNoIFJNSUkgDQpwaW5zIG9mIHRoZSBz
+ZWNvbmQgUEhZIGZvciBvdGhlciB1c2UgaWYgc2luZ2xlIE5JQyBtb2RlIGlzIHVzZWQuDQpJbiBm
+YWN0LCBzb21lIFNQNzAyMSBib2FyZHMgaGF2ZSBkdWFsIEV0aGVybmV0IGFuZCBzb21lIGhhdmUg
+b25seSBvbmUNCkV0aGVybmV0LiBXZSByZWFsbHkgbmVlZCB0aGUgdHdvIG9wZXJhdGlvbiBtb2Rl
+cy4NCg0KDQo+ID4gSG93IGFuIEV0aGVybmV0IGh1YiB0YWtlIGNhcmUgb2YgdGhpcyBzaXR1YXRp
+b24/DQo+IA0KPiBTVFAuIFJ1biB0Y3BkdW1wIG9uIHlvdXIgbmV0d29yay4gRGVwZW5kaW5nIG9u
+IGhvdyB5b3VyIG5ldHdvcmsgaXMNCj4gY29uZmlndXJlZCwgeW91IG1pZ2h0IHNlZSBCUERVIGZy
+b20geW91ciBidWlsZGluZyBzd2l0Y2hlcy4NCg0KVGhhbmtzIGEgbG90LiBJIHVuZGVyc3RhbmQu
+DQoNCj4gPiBJcyB0aGF0IHJlYXNvbmFibGUgdG8gY29ubmVjdCB0d28gcG9ydHMgb2YgYW4gRXRo
+ZXJuZXQgaHViIHRvZ2V0aGVyPw0KPiANCj4gSXQgaXMgbm90IGp1c3QgdG9nZXRoZXIuIFlvdSBj
+YW5ub3QgZ3VhcmFudGVlIGFueSBFdGhlcm5ldCBuZXR3b3JrIGlzIGEgdHJlZS4gWW91DQo+IGNv
+dWxkIGNvbm5lY3QgdGhlIHR3byBwb3J0cyB0byB0d28gZGlmZmVyZW50IGh1YnMsIGJ1dCB0aG9z
+ZSBodWJzIGFyZQ0KPiBjb25uZWN0ZWQgdG9nZXRoZXIsIGFuZCBzbyB5b3UgZ2V0IGEgbG9vcC4N
+Cg0KVGhhbmtzIGZvciBleHBsYW5hdGlvbi4gSSBnb3QgaXQuDQoNCj4gPiA+IExvb2tpbmcgYXQg
+dGhlIFRYIGRlc2NyaXB0b3IsIHRoZXJlIGFyZSB0d28gYml0czoNCj4gPiA+DQo+ID4gPiAgICAg
+ICAgICAgWzE4XTogZm9yY2UgZm9yd2FyZCB0byBwb3J0IDANCj4gPiA+ICAgICAgICAgICBbMTld
+OiBmb3JjZSBmb3J3YXJkIHRvIHBvcnQgMQ0KPiA+ID4NCj4gPiA+IFdoZW4gdGhlIHN3aXRjaCBp
+cyBlbmFibGVkLCBjYW4gdGhlc2UgdHdvIGJpdHMgYmUgdXNlZD8NCj4gPg0KPiA+IFllcywgZm9y
+IGV4YW1wbGUsIHdoZW4gYml0IDE5IG9mIFRYIGRlc2NyaXB0b3IgaXMgZW5hYmxlZCwgYSBwYWNr
+ZXQNCj4gPiBmcm9tIENQVSBwb3J0IGlzIGZvcndhcmRlZCB0byBMQU4gcG9ydCAwIGZvcmNpYmx5
+Lg0KPiA+DQo+ID4NCj4gPiA+IEluIHRoZSBSWCBkZXNjcmlwdG9yIHRoZXJlIGlzOg0KPiA+ID4N
+Cj4gPiA+IHBrdF9zcDoNCj4gPiA+ICAgICAgICAgICAwMDA6IGZyb20gcG9ydDANCj4gPiA+ICAg
+ICAgICAgICAwMDE6IGZyb20gcG9ydDENCj4gPiA+ICAgICAgICAgICAxMTA6IHNvYzAgbG9vcGJh
+Y2sNCj4gPiA+ICAgICAgICAgICAxMDE6IHNvYzEgbG9vcGJhY2sNCj4gPiA+DQo+ID4gPiBBcmUg
+dGhlc2UgYml0cyB1c2VkIHdoZW4gdGhlIHN3aXRjaCBpcyBlbmFibGVkPw0KPiA+DQo+ID4gWWVz
+LCBFLSBNQUMgZHJpdmVyIHVzZXMgdGhlc2UgYml0cyB0byB0ZWxsIHdoZXJlIGEgcGFja2V0IGNv
+bWVzIGZyb20uDQo+ID4gTm90ZSB0aGF0IHNvYzEgcG9ydCAoQ1BVIHBvcnQpIGhhcyBiZWVuIHJl
+bW92ZWQgaW4gdGhpcyBjaGlwLg0KPiANCj4gUmlnaHQuIFNvIHlvdSBjYW4gaGF2ZSB0d28gbmV0
+ZGV2IHdoZW4gaW4gTDIgc3dpdGNoIG1vZGUuDQo+IA0KPiBZb3UgbmVlZCB0byB0aGluayBhYm91
+dCB0aGUgTGludXggbW9kZWwgc29tZSBtb3JlLiBJbiBsaW51eCwgbmV0d29ya2luZw0KPiBoYXJk
+d2FyZSBpcyB0aGVyZSB0byBhY2NlbGVyYXRlIHdoYXQgdGhlIExpbnV4IHN0YWNrIGNhbiBkbyBp
+biBzb2Z0d2FyZS4gVGFrZQ0KPiBmb3IgZXhhbXBsZSBhIHNpbXBsZSBTb0Mgd2lsbCBoYXZlIHR3
+byBFdGhlcm5ldCBpbnRlcmZhY2VzLiBZb3UgY2FuIHBlcmZvcm0NCj4gc29mdHdhcmUgYnJpZGdp
+bmcgb24gdGhvc2UgdHdvIGludGVyZmFjZXM6DQo+IA0KPiBpcCBsaW5rIGFkZCBuYW1lIGJyMCB0
+eXBlIGJyaWRnZQ0KPiBpcCBsaW5rIHNldCBkZXYgYnIwIHVwDQo+IGlwIGxpbmsgc2V0IGRldiBl
+dGgwIG1hc3RlciBicjANCj4gaXAgbGluayBzZXQgZGV2IGV0aDEgbWFzdGVyIGJyMA0KPiANCj4g
+VGhlIHNvZnR3YXJlIGJyaWRnZSB3aWxsIGRlY2lkZWQgd2hpY2ggaW50ZXJmYWNlIHRvIHNlbmQg
+YSBwYWNrZXQgb3V0LiBUaGUNCj4gc29mdHdhcmUgd2lsbCBwZXJmb3JtIGxlYXJuaW5nIGV0Yy4N
+Cj4gDQo+IFlvdSBjYW4gdXNlIHlvdXIgZHVhbCBNQUMgc2V0dXAgZXhhY3RseSBsaWtlIHRoaXMu
+IEJ1dCB5b3UgY2FuIGFsc28gZ28gZnVydGhlci4NCj4gWW91IGNhbiB1c2UgdGhlIGhhcmR3YXJl
+IHRvIGFjY2VsZXJhdGUgc3dpdGNoaW5nIHBhY2tldHMgYmV0d2VlbiBldGgwIGFuZA0KPiBldGgx
+LiBCdXQgYWxzbyBMaW51eCBjYW4gc3RpbGwgc2VuZCBwYWNrZXRzIG91dCBzcGVjaWZpYyBwb3J0
+cyB1c2luZyB0aGVzZSBiaXRzLg0KPiBUaGUgc29mdHdhcmUgYnJpZGdlIGFuZCB0aGUgaGFyZHdh
+cmUgYnJpZGdlIHdvcmsgdG9nZXRoZXIuIFRoaXMgaXMgdGhlIGNvcnJlY3QNCj4gd2F5IHRvIGRv
+IHRoaXMgaW4gTGludXguDQoNClNvcnJ5LCBJIGFtIG5vdCBjYXBhYmxlIHRvIGRvIHRoYXQuDQpJ
+IG5lZWQgdG8gc3R1ZHkgbW9yZSBhYm91dCBMaW51eCBzd2l0Y2ggZGV2aWNlLCBMMiBzd2l0Y2gg
+b2YgU1A3MDIxLCBwcm9jb3RvbHMsLi4uDQpTbyB3aGF0IEkgY2FuIHVzZSBub3cgaXMgcHVyZSBz
+b2Z0d2FyZSBicmlkZ2UgZm9yIGR1YWwgRXRoZXJuZXQgY2FzZS4NCg0KPiA+IFNvcnJ5LCBJIGRv
+bid0IGtub3cgd2hhdCBpcyBhIFJNQyBwYWNrZXQ/DQo+DQo+IFNvcnJ5LCBpIGhhdmUgbm8gaWRl
+YS4NCg0KQWZ0ZXIgbG9va2luZyB1cCBzb21lIGRhdGEsIEkgZmluZCBSTUMgbWVhbnMgcmVzZXJ2
+ZWQgbXVsdGktY2FzdC4NClJNQyBwYWNrZXRzIG1lYW5zIHBhY2tldHMgd2l0aCBEQSA9IDB4MDE4
+MGMyMDAwMDAwLCAweDAxODBjMjAwMDAwMiB+IDB4MDE4MGMyMDAwMDBmLA0KZXhjZXB0IHRoZSBQ
+QVVTRSBwYWNrZXQgKERBID0gMHgwMTgwYzIwMDAwMDEpDQoNCg0KPiAgICAgICAgQW5kcmV3DQoN
+ClRoYW5rIHlvdSBmb3IgeW91ciByZXZpZXcuDQoNCg0K
