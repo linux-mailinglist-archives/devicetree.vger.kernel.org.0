@@ -2,88 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B50244B542
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:16:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86E8844B54A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:17:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245348AbhKIWTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:19:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39830 "EHLO mail.kernel.org"
+        id S245408AbhKIWTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:19:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40088 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245262AbhKIWTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:19:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4767461221;
-        Tue,  9 Nov 2021 22:16:45 +0000 (UTC)
+        id S245366AbhKIWTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:19:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CAE6C6121F;
+        Tue,  9 Nov 2021 22:16:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496206;
-        bh=kPxX8Ibz8j/DEU/LjYZR6lYgG89AyU+9mad55ZEPNCA=;
+        s=k20201202; t=1636496218;
+        bh=NWze0gFlrjnI7HEt+xI8OeJq0360NaeNAcNtYazfbbg=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=E/jFls9qUZYnd3IUTQpNwNd4YH6JDHVlkj4M688cr4tVgT9nlgrusgbOAG8YRl23g
-         ybeDYqbELeR1mLpb4Ct8h16AT6Y1AopDi9gZhb2yK+cahueuQxdQEMm0wTSlmzWkMH
-         Uw1x5N4154TY3j5XSZlGloVj9Lu/eB4AhoMO2DJe7pqmPpBCSI4nCQRYUNYkr7BfXC
-         Ev34Qq1U5YRCESZGva/AwviKe46aYmmAjUY2Fw4J0nTdUwy7DCkLZRzt3dlNmM9NXu
-         0Fq47Dzztmto6Ke78h6i1L+chFLLqi0QQ1waI1XiLF7ZAsjLLN/IlkcPCXcXXG/H8q
-         916Azc8eZulHA==
+        b=Yo8cz4pjxVDOJ7Z4SNx7XDfay4esfcEIheQZ/XE8yopf3aXhWfKZm0sgQeC4mjftR
+         GpItxe3QS+kM7cPRbQwoTF/r4Sg7R6m2arZbsmRfqT++zwEGbK8pKmaFroeTglstO6
+         oe/yeVlnrRL36p8pF3EzA7Gjz4t1hBA93sS6RpCxS2w5Gep856v3uHFru6cM+XoYOF
+         jg762164tFS6huxYKluh4fsQANq6v1EYnHvnSpfO3a3W/BNLioF5/l1VQTzrxI6xGa
+         V6833pVvzIho8pLcL1L+HWRMeONkc7g4ohI5j34Oefs/41rnbOxJMF4HVK1d41gc5C
+         ZHdTNRiVOqAIg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
+        linux@arm.linux.org.uk, maxime.ripard@free-electrons.com,
+        wens@csie.org, catalin.marinas@arm.com, will.deacon@arm.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 02/82] arm64: zynqmp: Fix serial compatible string
-Date:   Tue,  9 Nov 2021 17:15:20 -0500
-Message-Id: <20211109221641.1233217-2-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 04/82] ARM: dts: sunxi: Fix OPPs node name
+Date:   Tue,  9 Nov 2021 17:15:22 -0500
+Message-Id: <20211109221641.1233217-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109221641.1233217-1-sashal@kernel.org>
 References: <20211109221641.1233217-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michal Simek <michal.simek@xilinx.com>
+From: Maxime Ripard <maxime@cerno.tech>
 
-[ Upstream commit 812fa2f0e9d33564bd0131a69750e0d165f4c82a ]
+[ Upstream commit ffbe853a3f5a37fa0a511265b21abf097ffdbe45 ]
 
-Based on commit 65a2c14d4f00 ("dt-bindings: serial: convert Cadence UART
-bindings to YAML") compatible string should look like differently that's
-why fix it to be aligned with dt binding.
+The operating-points-v2 nodes are named inconsistently, but mostly
+either opp_table0 or gpu-opp-table.  However, the underscore is an
+invalid character for a node name and the thermal zone binding
+explicitly requires that zones are called opp-table-*. Let's fix it.
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Link: https://lore.kernel.org/r/89b36e0a6187cc6b05b27a035efdf79173bd4486.1628240307.git.michal.simek@xilinx.com
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Link: https://lore.kernel.org/r/20210901091852.479202-43-maxime@cerno.tech
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/sun8i-a33.dtsi                      | 4 ++--
+ arch/arm/boot/dts/sun8i-a83t.dtsi                     | 4 ++--
+ arch/arm/boot/dts/sun8i-h3.dtsi                       | 4 ++--
+ arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi | 2 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi  | 2 +-
+ arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi  | 2 +-
+ 6 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 28dccb891a535..8278876ad33fa 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -792,7 +792,7 @@
- 		};
+diff --git a/arch/arm/boot/dts/sun8i-a33.dtsi b/arch/arm/boot/dts/sun8i-a33.dtsi
+index 2beddbb3c5183..b3d1bdfb5118e 100644
+--- a/arch/arm/boot/dts/sun8i-a33.dtsi
++++ b/arch/arm/boot/dts/sun8i-a33.dtsi
+@@ -46,7 +46,7 @@
+ #include <dt-bindings/thermal/thermal.h>
  
- 		uart0: serial@ff000000 {
--			compatible = "cdns,uart-r1p12", "xlnx,xuartps";
-+			compatible = "xlnx,zynqmp-uart", "cdns,uart-r1p12";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 21 4>;
-@@ -802,7 +802,7 @@
- 		};
+ / {
+-	cpu0_opp_table: opp_table0 {
++	cpu0_opp_table: opp-table-cpu {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
  
- 		uart1: serial@ff010000 {
--			compatible = "cdns,uart-r1p12", "xlnx,xuartps";
-+			compatible = "xlnx,zynqmp-uart", "cdns,uart-r1p12";
- 			status = "disabled";
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 22 4>;
+@@ -164,7 +164,7 @@
+ 		io-channels = <&ths>;
+ 	};
+ 
+-	mali_opp_table: gpu-opp-table {
++	mali_opp_table: opp-table-gpu {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-144000000 {
+diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
+index ac97eac91349b..82fdb04122caa 100644
+--- a/arch/arm/boot/dts/sun8i-a83t.dtsi
++++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
+@@ -200,7 +200,7 @@
+ 		status = "disabled";
+ 	};
+ 
+-	cpu0_opp_table: opp_table0 {
++	cpu0_opp_table: opp-table-cluster0 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+@@ -253,7 +253,7 @@
+ 		};
+ 	};
+ 
+-	cpu1_opp_table: opp_table1 {
++	cpu1_opp_table: opp-table-cluster1 {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
+index 4e89701df91f8..ae4f933abb895 100644
+--- a/arch/arm/boot/dts/sun8i-h3.dtsi
++++ b/arch/arm/boot/dts/sun8i-h3.dtsi
+@@ -44,7 +44,7 @@
+ #include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+-	cpu0_opp_table: opp_table0 {
++	cpu0_opp_table: opp-table-cpu {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+@@ -112,7 +112,7 @@
+ 		};
+ 	};
+ 
+-	gpu_opp_table: gpu-opp-table {
++	gpu_opp_table: opp-table-gpu {
+ 		compatible = "operating-points-v2";
+ 
+ 		opp-120000000 {
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
+index 578c37490d901..e39db51eb4489 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
+@@ -4,7 +4,7 @@
+  */
+ 
+ / {
+-	cpu0_opp_table: opp_table0 {
++	cpu0_opp_table: opp-table-cpu {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
+index b2657201957eb..1afad8b437d72 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
+@@ -2,7 +2,7 @@
+ // Copyright (C) 2020 Chen-Yu Tsai <wens@csie.org>
+ 
+ / {
+-	cpu_opp_table: cpu-opp-table {
++	cpu_opp_table: opp-table-cpu {
+ 		compatible = "operating-points-v2";
+ 		opp-shared;
+ 
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
+index 8c6e8536b69fa..0baf0f8e4d272 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
+@@ -3,7 +3,7 @@
+ // Copyright (C) 2020 Clément Péron <peron.clem@gmail.com>
+ 
+ / {
+-	cpu_opp_table: cpu-opp-table {
++	cpu_opp_table: opp-table-cpu {
+ 		compatible = "allwinner,sun50i-h6-operating-points";
+ 		nvmem-cells = <&cpu_speed_grade>;
+ 		opp-shared;
 -- 
 2.33.0
 
