@@ -2,139 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C32444A5FF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 06:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0D744A64F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 06:33:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231758AbhKIFHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 00:07:01 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:17563 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231747AbhKIFHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 00:07:00 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1636434255; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=EktT4GpDSMg7u7QNcUdJTd4WqshYz7T+uzhoJXta5LM=;
- b=ZHCzHSPitDtDzKh7v/cIv/a9KxlHkdPrz2v/gjIQK7Rq5BaRf80jLkAKrbQP153mIAkeVJuH
- Fqc3SZgLcAXawhjV+veeTlF+WnQeglqAie5e0fxbS9PzMTi4008+3/kJlIJWvIvuFwzS+Fkf
- CEUTTBB6sYiZ0fTQKWvd7lIYUx0=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 618a013f6b778b5a19ff7d7b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 09 Nov 2021 05:03:59
- GMT
-Sender: akolli=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7F040C43617; Tue,  9 Nov 2021 05:03:59 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A80D4C4338F;
-        Tue,  9 Nov 2021 05:03:58 +0000 (UTC)
+        id S240333AbhKIFgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 00:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240300AbhKIFgY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 00:36:24 -0500
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBA9DC061766
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 21:33:38 -0800 (PST)
+Received: by mail-pl1-x636.google.com with SMTP id b13so18912413plg.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 21:33:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RLjicxNmNpYNSdlDLoBw1hRqse8yPujz3RAWyTpfEac=;
+        b=odKCJ6d7H5bH4EsvYJwQsBe08JB8jHarQYqDI5Kfwc2NLU+hySWtFgWDhQox7QAke/
+         9UTGnVcsxADRJFMy3iVKlsYAdiG/6ChqgO4Iqd/v2O91diGHSJajZrEL0t6N6N7373wQ
+         C59FjlO9LlxmwUN4zx8GIG6KKQPHA2yIrygYg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=RLjicxNmNpYNSdlDLoBw1hRqse8yPujz3RAWyTpfEac=;
+        b=vl8tasgZot5zgnpNdbK765qQgC47+CbkTIVmxHCNOaRfFuBjF+6IYzKjzscq/VETHU
+         5mcn1qEw5ZMwvY2C4XfYWu3VpOiLxGkf5oeXPu2oFZhCFR4xVYbf5+EGh4eH68q1mxxc
+         c7kMt5M0c7VJE8DAVrA9x1iMBXNzEYO2h0eCY7AXU1CglKo4BnWJWxn6+YbvLm3qPA8O
+         fmtEkU2kA/3ZmUIjQKuq/8Eh8Ta5I3WR3+xw/7zPO3gyPsaa9KoT39BsrrVLNMAU2krA
+         3sxgUrR6PYRn+npStikNbbqEsrXO54az280km16CJ2DuoSpQ2TsHzL7vjmgWjmmjHUrR
+         4wmQ==
+X-Gm-Message-State: AOAM531Vc6WiFv6KixX2L5J3JcRyiDAanop5u6wBVc2G16Zcgv0KFN9n
+        KbG27YnJBvyU0Qj5r0vVVX1FDm40hAio9w==
+X-Google-Smtp-Source: ABdhPJz7orF7lfNNUIyXu6Own8rdIu7+OsJ5fOjCVqxqThwEdRZ8ZBjzbGsTPGx6uq8/Cofpfn2h5g==
+X-Received: by 2002:a17:90b:1e0e:: with SMTP id pg14mr4240138pjb.143.1636436018094;
+        Mon, 08 Nov 2021 21:33:38 -0800 (PST)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:cc3e:b71b:e327:fb32])
+        by smtp.gmail.com with ESMTPSA id w5sm13741479pgp.79.2021.11.08.21.33.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 21:33:37 -0800 (PST)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/7] arm64: dts: mt8183: jacuzzi: remove unused ddc-i2c-bus
+Date:   Tue,  9 Nov 2021 13:33:28 +0800
+Message-Id: <20211109053334.1840273-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.34.0.rc0.344.g81b53c2807-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 09 Nov 2021 10:33:58 +0530
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>, manivannan.sadhasivam@linaro.org
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, mhi@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt: bindings: add new DT entry for ath11k PCI device
- support
-In-Reply-To: <YYBPd+Z/dA/pTReo@robh.at.kernel.org>
-References: <1635175648-23491-1-git-send-email-akolli@codeaurora.org>
- <YYBPd+Z/dA/pTReo@robh.at.kernel.org>
-Message-ID: <b142a4850d9cbc3bb451a78b488688cc@codeaurora.org>
-X-Sender: akolli@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-02 02:05, Rob Herring wrote:
-> On Mon, Oct 25, 2021 at 08:57:27PM +0530, Anilkumar Kolli wrote:
->> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
->> Ath11k firmware uses host DDR memory, DT entry is used to reserve
->> these host DDR memory regions, send these memory base
->> addresses using DT entries.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> ---
->>  .../bindings/net/wireless/qcom,ath11k.yaml         | 38 
->> ++++++++++++++++++++++
->>  1 file changed, 38 insertions(+)
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml 
->> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> index 5ac9616c9239..c7e6612e949c 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -19,6 +19,10 @@ description: |
->>    These devices use HOST DDR memory, HOST DDR memory can be reserved
->>    and send to ath11k driver from DT.
->> 
->> +  ATH11K supports PCI devices like QCA6390,QCN9074.
->> +  These devices use host DDR memory, host DDR memory can be reserved
->> +  and send to ath11k driver from DT.
->> +
->>  properties:
->>    compatible:
->>      enum:
->> @@ -177,6 +181,29 @@ properties:
->>      description:
->>        HOST DDR end address.
->> 
->> +  qcom,base-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Host DDR base address for firmware. QCN9074 firmware uses 45 MB 
->> of host
->> +      DDR memory in mode-0 and 15 MB of host DDR memory in mode-2.
->> +
->> +  qcom,caldb-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Host DDR address to store CALDB. CALDB is calibration data base
->> +      for WLAN channel and tx power.
->> +
-> 
-> Use /reserved-memory entries for these.
-> 
+EDID is read from bridge, so the ddc-i2c-bus is unused.
 
-Sure.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
->> +  qcom,start-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Host DDR start address. For example on x86 it is 0x0,
->> +      on IPQ8074 it is 0x41000000.
->> +
->> +  qcom,end-addr:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description:
->> +      Host DDR end address.
-> 
-> Nak. I don't know what you are doing with these 2, but it's wrong.
-> 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+index d8826c82bcda29..8f7bf33f607da2 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+@@ -9,7 +9,6 @@ / {
+ 	panel: panel {
+ 		compatible = "auo,b116xw03";
+ 		power-supply = <&pp3300_panel>;
+-		ddc-i2c-bus = <&i2c4>;
+ 		backlight = <&backlight_lcd0>;
+ 
+ 		port {
+-- 
+2.34.0.rc0.344.g81b53c2807-goog
 
-The DDR start address and end address are sent to MHI control bus,
-For x86 platform code snip in ath11k/mhi.c
-
-         mhi_ctrl->iova_start = 0;
-         mhi_ctrl->iova_stop = 0xffffffff;
-
-Similarly for ARM platfroms, send DDR addresses from DT entry.
-
-Thanks
-Anil
