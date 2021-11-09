@@ -2,41 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8106844B7D6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:35:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11BE744B7DB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:35:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345509AbhKIWhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:37:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56228 "EHLO mail.kernel.org"
+        id S1345537AbhKIWiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:38:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56512 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345333AbhKIWfy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:35:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B616F619E9;
-        Tue,  9 Nov 2021 22:22:29 +0000 (UTC)
+        id S234921AbhKIWgI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:36:08 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2ADD86128B;
+        Tue,  9 Nov 2021 22:22:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496551;
-        bh=waWzpIJdhFhYvusS3tLb5b8eJ4KDgs0tBUtmWZy/vLU=;
+        s=k20201202; t=1636496554;
+        bh=SW3AfNa2m26m5kKJJFR4cvK/BdY6E9zm3IxGoMaMi7k=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CygzTq5c/ps4U+03fIRdiF61flBeUTMXr9sdWGykdKhVa+TIgthDQ57jNDEBHZCCk
-         ZB0WeDpn0K0cIMfh7P8yYDf4+HtQkQqvMlK4D7QBcoOFcP32sTuHcsiFIHlHEmWDcA
-         H/szIc2Hnr5c63DiO6UYdWZLzaKbPNDekpiMAlYSX2XdwVRJ80l+t8K1cbkIpQS+3o
-         iywxFophCnwVMC1HfSaQl4qLw89r9K/A3jLgVCnvulTULt6wceIvhKzwmTrVUeqlak
-         UIBdpyVa5laSKqH1j3L5t08I+rehAvpypZWMfCQvHQfc0wO777eAhbF/QahkhWZE2V
-         2WSUXVdozrXNg==
+        b=j4ifpVpo0IE9Sq7vyIKOKPv7TuBlTSlyoBC/hOukASGB2eoMb2xYf6LqFHWtRAJnB
+         /MTbMYjbZyO2dtstTRzAT6H7SNVDkVI2OnUdOPbU1wCFbbdpWtbNaf/Q95bAqxpqqB
+         lvogiXYBKreWy5HZjS13w3pGbcZj3lmv1aQj/ECbRvFZ39uAVQAGvmyBjPohlnj2ve
+         lOUJkIzOKmeAMHdJ4SBs0jKJ39lfJj+Qs0zgWDHuUa3/pQKZMNTlIXi5bHQJhW5G9H
+         e8AAEwkb6UvsSRzJcp3U9Bg/Duv2DiY4330PHE1+OekSxJM7PYVEHKuHTwhjBCKPes
+         aUePGoTe+qSPA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Matthew Hagan <mnhagan88@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+Cc:     Michael Walle <michael@walle.cc>, Wei Xu <xuwei5@hisilicon.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, rjui@broadcom.com, sbranden@broadcom.com,
-        jonmason@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH AUTOSEL 5.4 03/30] ARM: dts: NSP: Fix mpcore, mmc node names
-Date:   Tue,  9 Nov 2021 17:21:57 -0500
-Message-Id: <20211109222224.1235388-3-sashal@kernel.org>
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 05/30] arm64: dts: hisilicon: fix arm,sp805 compatible string
+Date:   Tue,  9 Nov 2021 17:21:59 -0500
+Message-Id: <20211109222224.1235388-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222224.1235388-1-sashal@kernel.org>
 References: <20211109222224.1235388-1-sashal@kernel.org>
@@ -48,48 +45,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthew Hagan <mnhagan88@gmail.com>
+From: Michael Walle <michael@walle.cc>
 
-[ Upstream commit 15a563d008ef9d04df525f0c476cd7d7127bb883 ]
+[ Upstream commit 894d4f1f77d0e88f1f81af2e1e37333c1c41b631 ]
 
-Running dtbs_check yielded the issues with bcm-nsp.dtsi.
+According to Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
+the compatible is:
+  compatible = "arm,sp805", "arm,primecell";
 
-Firstly this patch fixes the following message by appending "-bus" to
-the mpcore node name:
-mpcore@19000000: $nodename:0: 'mpcore@19000000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+The current compatible string doesn't exist at all. Fix it.
 
-Secondly mmc node name. The label name can remain as is.
-sdhci@21000: $nodename:0: 'sdhci@21000' does not match '^mmc(@.*)?$'
-
-Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: Michael Walle <michael@walle.cc>
+Signed-off-by: Wei Xu <xuwei5@hisilicon.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/bcm-nsp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
+ arch/arm64/boot/dts/hisilicon/hi6220.dtsi | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/bcm-nsp.dtsi b/arch/arm/boot/dts/bcm-nsp.dtsi
-index 43ff85d31dc12..5a1352fd90d16 100644
---- a/arch/arm/boot/dts/bcm-nsp.dtsi
-+++ b/arch/arm/boot/dts/bcm-nsp.dtsi
-@@ -77,7 +77,7 @@
- 		interrupt-affinity = <&cpu0>, <&cpu1>;
- 	};
- 
--	mpcore@19000000 {
-+	mpcore-bus@19000000 {
- 		compatible = "simple-bus";
- 		ranges = <0x00000000 0x19000000 0x00023000>;
- 		#address-cells = <1>;
-@@ -217,7 +217,7 @@
- 			#dma-cells = <1>;
+diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+index 253cc345f143a..0c88b72094774 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
+@@ -1086,7 +1086,7 @@
  		};
  
--		sdio: sdhci@21000 {
-+		sdio: mmc@21000 {
- 			compatible = "brcm,sdhci-iproc-cygnus";
- 			reg = <0x21000 0x100>;
- 			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+ 		watchdog0: watchdog@e8a06000 {
+-			compatible = "arm,sp805-wdt", "arm,primecell";
++			compatible = "arm,sp805", "arm,primecell";
+ 			reg = <0x0 0xe8a06000 0x0 0x1000>;
+ 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&crg_ctrl HI3660_OSC32K>;
+@@ -1094,7 +1094,7 @@
+ 		};
+ 
+ 		watchdog1: watchdog@e8a07000 {
+-			compatible = "arm,sp805-wdt", "arm,primecell";
++			compatible = "arm,sp805", "arm,primecell";
+ 			reg = <0x0 0xe8a07000 0x0 0x1000>;
+ 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&crg_ctrl HI3660_OSC32K>;
+diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+index 108e2a4227f66..568faaba7ace9 100644
+--- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
++++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
+@@ -839,7 +839,7 @@
+ 		};
+ 
+ 		watchdog0: watchdog@f8005000 {
+-			compatible = "arm,sp805-wdt", "arm,primecell";
++			compatible = "arm,sp805", "arm,primecell";
+ 			reg = <0x0 0xf8005000 0x0 0x1000>;
+ 			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+ 			clocks = <&ao_ctrl HI6220_WDT0_PCLK>;
 -- 
 2.33.0
 
