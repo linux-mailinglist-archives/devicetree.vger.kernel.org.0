@@ -2,80 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03EB444B118
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 17:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3911344B163
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 17:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239487AbhKIQ10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 11:27:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52378 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238397AbhKIQ1Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 11:27:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F014A60FD8;
-        Tue,  9 Nov 2021 16:24:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636475079;
-        bh=S02AWkEYJNSoTOH6r1bp7lYVkK/1pCY/xooUDR9Z8YY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D29EStRlaFZuXf/ZKsGy2wvtW2tv3OQ6X9FxyEWxTolayz//ngdUFuGwGl7TaQC0S
-         F5pmBZNrzYlp1m/LUnrah3cILrV0JrFgZQIJnVzQbPfaJUncjTTPwVu/49ozn89NgF
-         vuNLw6gZ2TLf94CRDtpejr2z5/eegrZGe0jkewVBQt1ySWS16pNeT1/cSWsEqN2a0L
-         oYplSFy9K+eCRzCswU+cj8AafEefqlzGBQL5Q7BUWchbLGooxSFfjaJ369gcoCYSJ3
-         LPRNA+R+j/iqUdcseKQ5Jt+8cDeK9aVH7OdtmrV4rQrT+gzkEUf6ewYAjwi7VXob2G
-         ImBxYhg1VLmcA==
-Date:   Tue, 9 Nov 2021 16:24:33 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        George Cherian <gcherian@marvell.com>,
-        linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-spi@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Remove Netlogic bindings
-Message-ID: <YYqgwQVgjOwoaZZg@sirena.org.uk>
-References: <20211109161707.2209170-1-robh@kernel.org>
+        id S230210AbhKIQr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 11:47:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231167AbhKIQr1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 11:47:27 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA8BC061764
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 08:44:41 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id y26so45720756lfa.11
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 08:44:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gEScOF3/fw9hfeuyrd9ku7cHldjk9nIyGiDu/7seULA=;
+        b=MR++4vZ4vG4FCKdpRBfywjVFO5yNCXuVnyv1/SHgE9HW9k/XqOQwpFHl9QKRjiSEU2
+         woWqOTktxEX30PFTbvJooXG61MnKG8DZP3wwbe2mVbmYch9iWdD/j6enby+LlYeddg+W
+         lkxeOBGxiIIm8gDik8QWNiKoi/8drzHwjOHEucz2nMR0nKBkKnjgjUX0ZIz2wHPvJlo7
+         l0OJrJObWp4pjLN9/xT8SErv9qPt9O/TAAX/MuMSvrS5GiHl2oBqk4HV2gYcarHA9ze6
+         qMaU7SbGOUPgRq6WjRKbbqICd+oddVFAP3vJ+Btcbe/yQKcKmHVbdjOyFrcacQtwOeOl
+         Ef7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=gEScOF3/fw9hfeuyrd9ku7cHldjk9nIyGiDu/7seULA=;
+        b=EFfat+fD1EdTkAvoKXvDY+rgSEYUrybe7VU98SH2lLjVQ9lWAGrubVxI6PfxCf81WA
+         KMSWnkvrmhmO01pngBiIme/PtvIm5kKjqRJJimT/2PEhJyFINvg+/i93dowzJvRMQvVr
+         G0u0v4i8VqQ+h2h+bTWUTdRYBmMMj2eAO1wYjkgbGfx7FyvhO0yp+0FGHF2SMGPspz8X
+         wWGjRFT3ZylOLkAi65hnBnj4UZJAATdnjLJSY3HbdjhL4dICvQC0z9pTYRvPKMt/ep6C
+         6L9vF+3/1FOLvQ1j3O8iX0xSVCIq/ymI15eVfFKJmGPl3YWsH8xlw1ZLZDJ4xRmKRJQZ
+         h8Yg==
+X-Gm-Message-State: AOAM533+BWfhcJHPEt3J95KRBYrRJA3AbAJ4YXCZj89v4K+S+2DURDa+
+        d0VTlk4JALVkmvfhv2c96R5MXA==
+X-Google-Smtp-Source: ABdhPJxaqTeGSD5hAODwamYztqyOG/300aI6Te+SWZ1OufFDsvmu2hOQiEmiz8iRKsklyuQnYX/HNA==
+X-Received: by 2002:ac2:4313:: with SMTP id l19mr8161739lfh.132.1636476278151;
+        Tue, 09 Nov 2021 08:44:38 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id w40sm2189475lfu.48.2021.11.09.08.44.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Nov 2021 08:44:37 -0800 (PST)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/2] clk: samsung: exynos850: Implement CMU_CMGP
+Date:   Tue,  9 Nov 2021 18:44:34 +0200
+Message-Id: <20211109164436.11098-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2FnwxKPLYbn/7HKW"
-Content-Disposition: inline
-In-Reply-To: <20211109161707.2209170-1-robh@kernel.org>
-X-Cookie: Elevators smell different to midgets.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds CMU_CMGP clock domain to Exynos850 clock driver. In
+particular it needs to enable HSI2C (High-Speed I2C) nodes. This series
+depends on CMU_APM series [1].
 
---2FnwxKPLYbn/7HKW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Tested via /sys/kernel/debug/clk/clk_summary:
 
-On Tue, Nov 09, 2021 at 10:17:07AM -0600, Rob Herring wrote:
-> Support for Netlogic was removed in commit 95b8a5e0111a ("MIPS: Remove
-> NETLOGIC support"). Remove the now unused bindings.
->=20
-> The GPIO binding also includes "brcm,vulcan-gpio", but it appears to be
-> unused as well as Broadcom Vulkan became Cavium ThunderX2 which is ACPI
-> based.
+<<<<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                                 enable  prepare  protect
+   clock                          count    count    count        rate
+---------------------------------------------------------------------
 
-Acked-by: Mark Brown <broonie@kernel.org>
+clk_rco_cmgp                         0        0        0    49152000
+oscclk                               1        1        0    26000000
+    mout_cmgp_adc                    0        0        0    26000000
+...
+    gout_clkcmu_cmgp_bus             1        1        0   399750000
+       gout_cmgp_usi1_pclk           0        0        0   399750000
+       gout_cmgp_usi0_pclk           0        0        0   399750000
+       gout_gpio_cmgp_pclk           0        0        0   399750000
+       dout_cmgp_adc                 0        0        0    28553572
+       mout_cmgp_usi1                0        0        0   399750000
+          dout_cmgp_usi1             0        0        0   199875000
+             gout_cmgp_usi1_ipclk    0        0        0   199875000
+       mout_cmgp_usi0                0        0        0   399750000
+          dout_cmgp_usi0             0        0        0   199875000
+             gout_cmgp_usi0_ipclk    0        0        0   199875000
+<<<<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
---2FnwxKPLYbn/7HKW
-Content-Type: application/pgp-signature; name="signature.asc"
+[1] https://lkml.org/lkml/2021/10/22/979
 
------BEGIN PGP SIGNATURE-----
+Sam Protsenko (2):
+  dt-bindings: clock: samsung: Document Exynos850 CMU_CMGP
+  clk: samsung: exynos850: Implement CMU_CMGP domain
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGKoMAACgkQJNaLcl1U
-h9AoiAf/ekVKGxswprkfhL2xFb59W4S9TiOQAYT6SnP7lu202u3QcBy7W8oX4OjT
-dr8uo6NQ6jHwai3ZiP85QrmuN4sweJG8JDzh6ArgtWgRHcYknDH/RjYhDYoo3P8O
-S2fc1NtMu5mVXAMxJWjEuQKhoKkStNMMZOJCQh9SbXOUaF53JH4h92p4BOUSDoBh
-7EJ0JvqWX1tGTxi3TEKb8e+9JoamQpZaMp4NhMlXKjsOEan/8CJ+n0n6E+TzUwqn
-N+/sZ3uiuWQnrtsTBHPJ31T/iWMYt5ZpVhWN0kXRu1cKg0Xcs6zE4dsfjUnaRDP3
-EifXkzdJvgUNnGsl7M5QG6MHyFmMAw==
-=l4BV
------END PGP SIGNATURE-----
+ .../clock/samsung,exynos850-clock.yaml        |  19 ++++
+ drivers/clk/samsung/clk-exynos850.c           | 100 ++++++++++++++++++
+ include/dt-bindings/clock/exynos850.h         |  17 +++
+ 3 files changed, 136 insertions(+)
 
---2FnwxKPLYbn/7HKW--
+-- 
+2.30.2
+
