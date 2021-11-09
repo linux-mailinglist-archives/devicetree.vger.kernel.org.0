@@ -2,39 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B1F044B7FF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:37:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F01D044B80A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:37:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240578AbhKIWjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:39:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59706 "EHLO mail.kernel.org"
+        id S1344628AbhKIWkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:40:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59864 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345174AbhKIWhl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:37:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EEC1761B05;
-        Tue,  9 Nov 2021 22:22:51 +0000 (UTC)
+        id S1344922AbhKIWhu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:37:50 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A8EA661A02;
+        Tue,  9 Nov 2021 22:22:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496573;
-        bh=yRU2nC94K7wNrUtgKiFvZusWJJCgd3iynH7iUVZAMW8=;
+        s=k20201202; t=1636496576;
+        bh=Z32u477UJH7+XontE/nTr3QbELnlCVMPfLwiXNz1+DI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Qbqufija2uEMZPloDiWAS7EPt9+LFa70+cODi4YskRmG9/NgUWaSbnGAM4mYGuEhc
-         N9XZ6S0zzYQn+tCMpFlaLLWXVJfZc5B26aGIECF5e+g8ziDuL2Ye0tuRjZda9dTUf9
-         kRftam4TRCO5PPr3bzUXfCiAZg+phy+KyDwjyWam5M/lGcL7LZ4vx0fWsZQa7OEAOW
-         vwE4edZxJXE0yAUVL2YhjqnPteqFXKTDtZ02UkXjyBARdbwpdxSuLMIBfEQuwn546Q
-         M+ydTC31BB6K42/9+bepsHafPeORNqowZysD9PJlkWuzMlp9gSY4SB7FPWnygVGkA0
-         KpfuOeicVMeMg==
+        b=XDchVVvoVnsoZgAcL6W8v+PEHYisT/qfSr4jKEALRSuRdN1MceCg7lubvNsgZqHkW
+         DfQymcceijuD9mJrzo6aSmIC/08sk9Li3RICF/PoFzlIChkGB3FNnCaDQXsLP8PbS9
+         /f6KKD27ZHhALHxwJoMNcoTme8U+TLtNl4uLEy54QgMD5flAfpKpQ/9pHDGoXDMLLF
+         I4mDHKxY6hy0yF8opU7tPy3pQeL1oB+Erq1UZxI3peoux2NEz5hysfoxuwK3qhq3KT
+         9Ougo2MkMSnOo4BNlNfOxHf11VLqwsq+ucTU6QCXmTaJCY1Yut+8IW4MFlT+/+j9+t
+         +Mx1IU3bSDwyQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Roger Quadros <rogerq@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
-        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 18/30] ARM: dts: omap: fix gpmc,mux-add-data type
-Date:   Tue,  9 Nov 2021 17:22:12 -0500
-Message-Id: <20211109222224.1235388-18-sashal@kernel.org>
+        linux@arm.linux.org.uk, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 20/30] ARM: dts: ls1021a: move thermal-zones node out of soc/
+Date:   Tue,  9 Nov 2021 17:22:14 -0500
+Message-Id: <20211109222224.1235388-20-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222224.1235388-1-sashal@kernel.org>
 References: <20211109222224.1235388-1-sashal@kernel.org>
@@ -46,50 +45,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Roger Quadros <rogerq@kernel.org>
+From: Li Yang <leoyang.li@nxp.com>
 
-[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
+[ Upstream commit 1ee1500ef717eefb5d9bdaf97905cb81b4e69aa4 ]
 
-gpmc,mux-add-data is not boolean.
+This fixes dtbs-check error from simple-bus schema:
+soc: thermal-zones: {'type': 'object'} is not allowed for {'cpu-thermal': ..... }
+        From schema: /home/leo/.local/lib/python3.8/site-packages/dtschema/schemas/simple-bus.yaml
 
-Fixes the below errors flagged by dtbs_check.
-
-"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
-
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Li Yang <leoyang.li@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
- arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/ls1021a.dtsi | 66 +++++++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 33 deletions(-)
 
-diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-index 7f6aefd134514..e7534fe9c53cf 100644
---- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-+++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-@@ -29,7 +29,7 @@
- 		compatible = "smsc,lan9221","smsc,lan9115";
- 		bank-width = <2>;
+diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
+index c62fcca7b4263..aeb8a40b6b601 100644
+--- a/arch/arm/boot/dts/ls1021a.dtsi
++++ b/arch/arm/boot/dts/ls1021a.dtsi
+@@ -311,39 +311,6 @@
+ 			#thermal-sensor-cells = <1>;
+ 		};
  
--		gpmc,mux-add-data;
-+		gpmc,mux-add-data = <0>;
- 		gpmc,cs-on-ns = <0>;
- 		gpmc,cs-rd-off-ns = <42>;
- 		gpmc,cs-wr-off-ns = <36>;
-diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-index e5da3bc6f1050..218a10c0d8159 100644
---- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-+++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-@@ -22,7 +22,7 @@
- 		compatible = "smsc,lan9221","smsc,lan9115";
- 		bank-width = <2>;
+-		thermal-zones {
+-			cpu_thermal: cpu-thermal {
+-				polling-delay-passive = <1000>;
+-				polling-delay = <5000>;
+-
+-				thermal-sensors = <&tmu 0>;
+-
+-				trips {
+-					cpu_alert: cpu-alert {
+-						temperature = <85000>;
+-						hysteresis = <2000>;
+-						type = "passive";
+-					};
+-					cpu_crit: cpu-crit {
+-						temperature = <95000>;
+-						hysteresis = <2000>;
+-						type = "critical";
+-					};
+-				};
+-
+-				cooling-maps {
+-					map0 {
+-						trip = <&cpu_alert>;
+-						cooling-device =
+-							<&cpu0 THERMAL_NO_LIMIT
+-							THERMAL_NO_LIMIT>,
+-							<&cpu1 THERMAL_NO_LIMIT
+-							THERMAL_NO_LIMIT>;
+-					};
+-				};
+-			};
+-		};
+-
+ 		dspi0: spi@2100000 {
+ 			compatible = "fsl,ls1021a-v1.0-dspi";
+ 			#address-cells = <1>;
+@@ -984,4 +951,37 @@
+ 		};
  
--		gpmc,mux-add-data;
-+		gpmc,mux-add-data = <0>;
- 		gpmc,cs-on-ns = <0>;
- 		gpmc,cs-rd-off-ns = <42>;
- 		gpmc,cs-wr-off-ns = <36>;
+ 	};
++
++	thermal-zones {
++		cpu_thermal: cpu-thermal {
++			polling-delay-passive = <1000>;
++			polling-delay = <5000>;
++
++			thermal-sensors = <&tmu 0>;
++
++			trips {
++				cpu_alert: cpu-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++				cpu_crit: cpu-crit {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu_alert>;
++					cooling-device =
++						<&cpu0 THERMAL_NO_LIMIT
++						THERMAL_NO_LIMIT>,
++						<&cpu1 THERMAL_NO_LIMIT
++						THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
+ };
 -- 
 2.33.0
 
