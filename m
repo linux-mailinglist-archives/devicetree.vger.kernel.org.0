@@ -2,43 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E0344B56D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27E0244B57C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:18:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245417AbhKIWUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:20:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41022 "EHLO mail.kernel.org"
+        id S240222AbhKIWVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:21:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40432 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245529AbhKIWUZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:20:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B2A0E611BF;
-        Tue,  9 Nov 2021 22:17:20 +0000 (UTC)
+        id S245575AbhKIWUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:20:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 63EF56135E;
+        Tue,  9 Nov 2021 22:17:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496242;
-        bh=ZkBvY0/FGy1zslJ/8p6SQONClTFCw+k1PjFEb3t7NMY=;
+        s=k20201202; t=1636496250;
+        bh=cu/bqtw9RWtPNA9V8zfU73kT1TMaVL2UnCG56a5XWpE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=C5UvqCwlkEmDixq0KUCLbnrLTgl5z7U2HOPBCavCmgvn8VMcjP4qDmnAIP3P5eqsy
-         bE5sULcyWnJK9j7C5GdN1+/D7wz+6UwmU7K45EoZYLJLtUXO57HIsk1MgxAodeDry9
-         Ia9vBv26JksEs/OChNSUQjUPYIurnb0/KLktceIhI94Bhw8gaU0Mkufg6k5yA8Ti0W
-         +xKgcjJsOXqrL/z0rWLH3cga8RN5S8LrED8QJLamysjgSn4toJvUsN2SqpSeDG3GPl
-         NmLj6RLLIJuUgtMS9tgLvdoUWFVSnMwou0OLEjnLd7OqsHa5TjCjRDM92o5Lpw7o/l
-         XPcVviKILNO6w==
+        b=ZHyfI+uetEW3BCjDcMK8cZglEpieg+CizdUMyH0lp4B8RuKWvboaiopX7tvv11AXN
+         hY5UvM2xzgKbYnxYwy78UJBr0mr0lQhWxDxVMagKwWMGO29dWCzuG4Ibr+kWPpLOs0
+         Vtk+Vinc65JzgSXYThYhmJ+8yiT02ccTXYkS11mrudelA9vdNxgtvvmQ/hnOS0IJGY
+         /MzRjLAP4suPcapuyaZpN8bW9H+3yC0e3UyZTxkPXYK33nY0ArkT5Y9no2uX0Nvldv
+         5wn7xNcuGzGYH3HS/LyG49aEsVFd41cK14Stx6fkbz3UK1e5upNTM+fcMrgv/MRAm2
+         LI9JdXxNwUQiw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Brian Norris <briannorris@chromium.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 17/82] arm64: dts: rockchip: add Coresight debug range for RK3399
-Date:   Tue,  9 Nov 2021 17:15:35 -0500
-Message-Id: <20211109221641.1233217-17-sashal@kernel.org>
+        linux@arm.linux.org.uk, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.15 23/82] ARM: dts: ux500: Skomer regulator fixes
+Date:   Tue,  9 Nov 2021 17:15:41 -0500
+Message-Id: <20211109221641.1233217-23-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109221641.1233217-1-sashal@kernel.org>
 References: <20211109221641.1233217-1-sashal@kernel.org>
@@ -50,86 +45,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brian Norris <briannorris@chromium.org>
+From: Linus Walleij <linus.walleij@linaro.org>
 
-[ Upstream commit 75dccea503b8e176ad044175e891d7bb291b6ba0 ]
+[ Upstream commit 7aee0288beab72cdfa35af51f62e94373fca595d ]
 
-Per Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt.
+AUX2 has slightly wrong voltage and AUX5 doesn't need to be
+always on.
 
-This IP block can be used for sampling the PC of any given CPU, which is
-useful in certain panic scenarios where you can't get the CPU to stop
-cleanly (e.g., hard lockup).
-
-Reviewed-by: Leo Yan <leo.yan@linaro.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Brian Norris <briannorris@chromium.org>
-Link: https://lore.kernel.org/r/20210908111337.v2.3.Ibc87b4785709543c998cc852c1edaeb7a08edf5c@changeid
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 48 ++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ arch/arm/boot/dts/ste-ux500-samsung-skomer.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 3871c7fd83b00..c5fe2d4401149 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -361,6 +361,54 @@
- 		status = "disabled";
- 	};
+diff --git a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
+index 264f3e9b5fce5..86e83639fadc1 100644
+--- a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
++++ b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
+@@ -292,10 +292,10 @@
+ 					};
  
-+	debug@fe430000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe430000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l0>;
-+	};
-+
-+	debug@fe432000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe432000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l1>;
-+	};
-+
-+	debug@fe434000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe434000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l2>;
-+	};
-+
-+	debug@fe436000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe436000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l3>;
-+	};
-+
-+	debug@fe610000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe610000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b0>;
-+	};
-+
-+	debug@fe710000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe710000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b1>;
-+	};
-+
- 	usbdrd3_0: usb@fe800000 {
- 		compatible = "rockchip,rk3399-dwc3";
- 		#address-cells = <2>;
+ 					ab8500_ldo_aux2 {
+-						/* Supplies the Cypress TMA140 touchscreen only with 3.3V */
++						/* Supplies the Cypress TMA140 touchscreen only with 3.0V */
+ 						regulator-name = "AUX2";
+-						regulator-min-microvolt = <3300000>;
+-						regulator-max-microvolt = <3300000>;
++						regulator-min-microvolt = <3000000>;
++						regulator-max-microvolt = <3000000>;
+ 					};
+ 
+ 					ab8500_ldo_aux3 {
+@@ -314,9 +314,9 @@
+ 
+ 					ab8500_ldo_aux5 {
+ 						regulator-name = "AUX5";
++						/* Intended for 1V8 for touchscreen but actually left unused */
+ 						regulator-min-microvolt = <1050000>;
+ 						regulator-max-microvolt = <2790000>;
+-						regulator-always-on;
+ 					};
+ 
+ 					ab8500_ldo_aux6 {
 -- 
 2.33.0
 
