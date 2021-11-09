@@ -2,180 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54F9544AC01
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 11:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B28444AC3B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 12:03:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245479AbhKIK7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 05:59:20 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:44953 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245473AbhKIK7R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 05:59:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1636455392; x=1667991392;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=pUm76L9cWX0fCjs30ANxgKqDIsOEejTi7v/bICHw3YA=;
-  b=MW++jbgWfBLXf83Imx2QIhZGxKMFTyg2YCKboGAwgy2foEriobUJ6tZY
-   eOyXwdvb5qlC2+F9KRjsYPSvxY99Et52wQqGTLoDBJIzAZhYzbGpQ+MWw
-   Si81t/xQESmqhE+1GaJST3ItrkVs+wG5MpDbWbT7yA8wWxT3Y1un+B030
-   ZQGOxXrT9vanjU5sBHjfkN4NsZ5zkyDwrH3rDP1d9xTxebf5aOdko8GXS
-   dMgXmgAVnIHPpDGfsTz9nlyLgGj87XnvKaiTU6YY/0vyu4jajdRcyl41n
-   X0Zga8HBKmESOdSVImXacgWhV6vdAf+RAv6IgQjUyZ01K3AKIZvOvJGz6
-   g==;
-IronPort-SDR: rm4/z2emPzGe4oukIJsXOuXd2a2Fa6mQ9ZqDvdGTUqJyNjturNdFFtm7rzIIGsBo/d1RsLsK9t
- kg+VH4fbw8Wyx6Q5c0g2Jn36mQ1p/z9CfQpQJPkYhPqgio00ZwrO4NzTT05fpbd+Mj6hnp7O3y
- ld4UETXs96NAqtb3+U/9957R4aK5ooo8fXfQ4nz8zI5m/S2G1yqTy4i+8giVoIdFPy9YULy3S6
- 5QgyfJ4GIQL05u05cNgcY5b4ZwkorH7d7nIg71aFt1Zuh7c86HP3Vgfi4HhmhKVxJovjNcV7/0
- 62p2SlirtJDd9SkjzYdPnSbL
-X-IronPort-AV: E=Sophos;i="5.87,220,1631602800"; 
-   d="scan'208";a="142723382"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Nov 2021 03:56:29 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 9 Nov 2021 03:56:28 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14 via Frontend Transport; Tue, 9 Nov 2021 03:56:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WnlGmbtER8yYu5Q5QwZsnAHsKXwCQ2arZk+xOrL+ib33VkWJe3hMM6U8r2fqlSDc3YqWAb5KTZFThHPBrTX5Gqu/SeeLr0cXUyjWK/qZQKf4SSw9JKtbJkQC536QYcLHKr30cDpdbgwse76sqs8L9FzmnvGXzP1JgX0xDtZKosKqli0C4Ou/N3m997sQbi8RCPBNOU2IUgLnn07GIcp1nd/GCv7cVye1gGKriFBV7Y0Pb/o+neFofpC/eGjaqQZQYtVY3tr/Cqcq66HHBMKggFXU6C6xjdibHFWpTsPWD8nHKIU+nCc8lkz6Rblw1Fnl7m8M8wvUYvTzGq5uJFjLfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pUm76L9cWX0fCjs30ANxgKqDIsOEejTi7v/bICHw3YA=;
- b=BSg4K39+YCGat7bIO4ehEG7W4HvK4h59wkqOas7v/GvDVRC9unjsqUyRU2zrl0dCpiLWJtWlpiByeTAPEWOtyajXu9CEvsyyEoG3bc39pvgYo2nzDDMXfPt+1WmO/BFfnygM+NddhXuOQxQJk9ErXxp4QJlOM2HubfqFOlIlmsOfq7W0f2Ggto/6Foe7L7olRvvRt1M3RH1jR26VYkxmRF6y1yUFs1f/GTqXpmPBys2YDFA+OhDMeuS54J7kU+tZMqlAHK4Q3/5dCBK65niAUaZFVSxgmZvELIlLLaLAazi6c2gALOByBVMoRYG0L4AClhD27Nv4kldDt8bMXvhECA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S240965AbhKILG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 06:06:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237370AbhKILG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 06:06:28 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D820C061767
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 03:03:42 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so14260138otm.10
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 03:03:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pUm76L9cWX0fCjs30ANxgKqDIsOEejTi7v/bICHw3YA=;
- b=cM+J5AARgGBKpvRLYpGOWG8l06n1GyGTQdOmqkX7SOczWq7184pCKzM09+L7sNshC2Oe5+YfgKcl7CbwDRSb2TvHRrOBQCMF06HSemt18VD09C1PjHDis6CEOtT1co4BTpFSMY3W6NJICaNYPBrYvWBA7In8zRNK5DAoqLrGEBE=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:95::7)
- by MWHPR11MB2064.namprd11.prod.outlook.com (2603:10b6:300:27::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.11; Tue, 9 Nov
- 2021 10:56:21 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ccb6:6f5a:9841:266d]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ccb6:6f5a:9841:266d%8]) with mapi id 15.20.4690.015; Tue, 9 Nov 2021
- 10:56:21 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <geert@linux-m68k.org>
-CC:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
-        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
-        <aou@eecs.berkeley.edu>, <a.zummo@towertech.it>,
-        <alexandre.belloni@bootlin.com>, <broonie@kernel.org>,
-        <gregkh@linuxfoundation.org>, <Lewis.Hanly@microchip.com>,
-        <Daire.McNamara@microchip.com>, <atish.patra@wdc.com>,
-        <Ivan.Griffin@microchip.com>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-crypto@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <krzysztof.kozlowski@canonical.com>, <bin.meng@windriver.com>
-Subject: Re: [PATCH 10/13] dt-bindings: spi: add bindings for microchip mpfs
- spi
-Thread-Topic: [PATCH 10/13] dt-bindings: spi: add bindings for microchip mpfs
- spi
-Thread-Index: AQHX1LJfUqgSbOdkdUS8ce/NVnrEbqv64vgAgAAkrQA=
-Date:   Tue, 9 Nov 2021 10:56:21 +0000
-Message-ID: <461e6b4a-0e50-c218-0c22-89549f3b16d2@microchip.com>
-References: <20211108150554.4457-1-conor.dooley@microchip.com>
- <20211108150554.4457-11-conor.dooley@microchip.com>
- <CAMuHMdWQxz5eprDuqJcsXcp+cKPwxoV=+if_qvS9ah5qBO-shA@mail.gmail.com>
-In-Reply-To: <CAMuHMdWQxz5eprDuqJcsXcp+cKPwxoV=+if_qvS9ah5qBO-shA@mail.gmail.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none
- header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 49f99e48-da6d-45db-9863-08d9a36f90c3
-x-ms-traffictypediagnostic: MWHPR11MB2064:
-x-microsoft-antispam-prvs: <MWHPR11MB20643ED88A4F31232AA260FA98929@MWHPR11MB2064.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lpUhvh1G4kjVKfm7yvPPzL6dGnEpebJO9Ko3rBMcLFuz1cooaXeBen2OB/GIEhAFPxZB165M4vBSTmbUvAR7zIhCsfKsbKgT7N7OfFYsftEz/+XrArvipL+tWgcImvRfO7pcvH1R8k1vReifppkD39jnFvRXL2u6uYbGpba1YlPvoUj5U/DtLS6MQsoP3QGDjZdDtdBNaH7s2knrstLVa+MGgts4eEZyskKwLcZ9VxPMhsoKu7ncvTz9pXn+1ALT9B0HPKAcxB1O/3M1yUjO8RDzYoXIem4fdjgC2L1H35hjU0xj9AC2CR493MYq/colJarG6Km2uQKJQSoSnKFL7rHWeOePB6Bv8Q5alrx0muYTOHKmZB91OC+C+NmQlD3cB4tyPz4wKYIWxNHB3bgJccvptwpyW4gbeXQp1+ThcT0DflAhTOrPmHJimooi+MiB6MSUe0VXl75ymkPLAkNIr0CiwVyzGvigO5oyuhQTvvQZVoZRfVsGXeZJR/10r2YEIOsxEFofYKI+aXUawU87/3Vs0XJTE9xCBGkwPx8fi2ARrKlrUEAKenNsEsfW45vhuvSGswkQ2bIaJ9IF8Ixv7a1LJvT8UqHgokx1xf475XyLrvs4tbBucG/tLIoS24rG5hRt3NoTc7QdXYXRwjv7pxfUQC886UkVQgxcjOirJoXFBLZBJXRQbMmiiodU3k3EaFoTbLRaTvNUee6TbTKrjP3xWnuajq9QrFZUzdU/kw7/cNwIfDgnjyVyQiwZ1UZ0yUI2yYL+vMPGb7m5xLhU7A==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(6916009)(6506007)(86362001)(5660300002)(71200400001)(91956017)(26005)(4326008)(4744005)(31696002)(2616005)(36756003)(8676002)(66946007)(6512007)(186003)(6486002)(66476007)(66556008)(38070700005)(508600001)(66446008)(76116006)(64756008)(54906003)(8936002)(31686004)(38100700002)(122000001)(7416002)(316002)(2906002)(53546011)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N3dLa2gwOE0zQUZ6M2EwY0xLWGp3dnVGYmxtdWpHb01yNEpnd1dpbUpUbmZR?=
- =?utf-8?B?cHBvZWM0Q0cxSlQzdVBHVFVId0tNRkN2M3pUb1FmSUVvY3BLcTFJbTVzZ0lH?=
- =?utf-8?B?bDZDMEYrZGF6TzhaVThNY0x0NmlxVWtkaFFYaENmdlBmVVN4NzRoQUNVc0l6?=
- =?utf-8?B?VlJ0TkVXSjBDM3hmNmc1dk5aU3ZkRlB5SlpSSG1lSkhjODY1OGp0ajRNcWVa?=
- =?utf-8?B?Y0ZXd0FXdnI4bzdTeUhmY0RYMTVIbFNEOHJFc21wSmZLQ2xPLzVJWWhleXly?=
- =?utf-8?B?S2ltbGd4bytlNnVXc09rVW9lUW5XVUhaNWJxQ2lnWUxSZTFnZDJjSzE5eldl?=
- =?utf-8?B?U1FRbVVwdTQ3MWlueGRoT2dMcEJHOTEvTjgxYjF3ZC81TW1qanBkNFVzMlNv?=
- =?utf-8?B?ZlNlRWhqd3VzNUdOSDlQcWRyRzJsM1dZTTFxRmVjQ3IzWXAvOU9FaVgvckVv?=
- =?utf-8?B?MExoVXNuUnl0ZWZUYVgxRVdCUjUwOUJUeVZIWFhvdjNDUjZFbnhLckE1SWJw?=
- =?utf-8?B?WDhuMm1XSUczZmRLTlFuaWYwK1k2NW10bVFQbmQwd08rOHpoWUVBN1NSL0dM?=
- =?utf-8?B?ZUc1cHNaSnQyeDBCQ2J2bm04MVUrZlJ1blpEZmZ6ajRUYnhMdGI1T3RNdi9L?=
- =?utf-8?B?ODdKd0c3RTNaRkRXdFJFSTlOQzEwVWdIdDczZVQ1ZjE4NW1ESGRVSXYvMTAz?=
- =?utf-8?B?RU0wZlg4STVQVTV4K01SMEk0bnMraW9kZU0zM0d4Wi8vL01OcitQODZiVEo2?=
- =?utf-8?B?NzdVL2FEM2FtcWJ6VXVuMTg3KzFiZjRlZStQQU1ZRDBCYm5zTEt6dEo3Q0g2?=
- =?utf-8?B?TFlyOTh3UmNoRjVYa3hnM3dKcnlNZEZ1Z2dQN1MvcHhPdWN0RDhJUndsRVUy?=
- =?utf-8?B?NEFMZE9XT1JSZ2F1OEpGenNaU3p4bG13VlcybnFpSlRRb2xBZEFWNWNtaElE?=
- =?utf-8?B?eEpJSFZNUVRwMy9yb3B1WENoSERhQ2dsdml4ckxnUE53b2Zod0RoeEZkYWly?=
- =?utf-8?B?elNxNTBtZzAwZ2dtaFlLSnYvZXVMellNTDJnYzNHOCt5QVRnYjRTbTNyaFdx?=
- =?utf-8?B?ekJRTXpYYlRuUFFsWXNaUTh0UmhKeDFadldYQnM0UCtObGFpZTF1UHNoRkp2?=
- =?utf-8?B?YnA2b1FrYU42UU5zbTZmRXVueGE0bDZadmdvdlpnYUdCQkNWREp2bkIzQXFI?=
- =?utf-8?B?RHc2cDFZb0pOWWl0ZTNtMGVVa2tsODlFKzdiVkZ3aVo0c1ptaHRiVnRWOXRX?=
- =?utf-8?B?NDRCUkpQSzFkUWxHTThmM1ZuNDc5OGhjT3BOZ0FwWmFrblkxdUhQTHVZdG95?=
- =?utf-8?B?TDFubjNwLzdUa3ZxT3luKzk0MVAySk1jK1JuQ292SVJmOHVJbHBpYi9ERklw?=
- =?utf-8?B?ZVppbkQxNG42TTM0MW0zOXI3c0cwaVJ2NDY4ZzQ1Q2hiYzIzTDgxYU5WbHp6?=
- =?utf-8?B?ZitDTyt3M1JXb2J6dk1WS1lSaWFLQk5taXlMNVN6eWpucnlWNFZHRUowVk1Q?=
- =?utf-8?B?eWU4QXRJVlc0S0x4dFd1V3RiaElRbDhWdVZnbllhdVEzcHUxVS9vV3UyVVpk?=
- =?utf-8?B?MnFyT0gwNVFmN01nY0t4UTZxV085UlNzbEErd09FQmp6NWVtTjIvRk1IU20v?=
- =?utf-8?B?NW9zTVFrSUtkRWExMERGb2hJUHlHVFFXajBNU2VEQS9KQnZ6M1RNUC8rTTk4?=
- =?utf-8?B?RFRDSUV0UkxyYzFrckxiMjVMSW96M1BPZHF5RFNWZUV2dnh5ajhSZEZxeloz?=
- =?utf-8?B?TnhvVENXQmhFVC9ydE5FN0ZDVmdUOFlpOU51QjFlQkVHN3k2V0dhWHdiZnRi?=
- =?utf-8?B?M01YUkJxTFBTK2Y5SXJNN255dWdhSncxVHF1TnRzczltNUpvWkdZVHppeWtO?=
- =?utf-8?B?RkpSTlNFVHN4a0d2NnNtQTB4SzZYdWdoK1RqbUR4anhXMHhpZzZuMGhORG1u?=
- =?utf-8?B?ZndOQS9RaE1kZ1pjcFJFRmNMQTBWMnNLUEMrbEErU0kyZHh0TkFNN0x3d1oy?=
- =?utf-8?B?NXZqZUZuME4zTHVjVVV6TTc3VlhqaFZtcmduRnArcDF6dWl4K29jSVpzeDNC?=
- =?utf-8?B?czNtczNUcE44cTd6TWJyZWpSaHlDNG5GczZaeXhzOFNLdWdWV0JZM1REOGhk?=
- =?utf-8?B?MXhNTzR6RkpIYTNzaHNCbjIwbHZpNUcvd3pwaFhpRGpqeDRjc1N6NXRVdjlC?=
- =?utf-8?B?d1hZT3hpc3BFSGFLQjdjM3V2cy9PTVlLMCtNUkdDUnJUZ1BKKzgvdWdrVEt4?=
- =?utf-8?B?Wm5Qb1BMRDZXRFFCNVY3dnZkOFhRPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2A90CFD663E1CA4AB5B32604872BD907@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Cde9sTeLd0vmgQnDHFOawLma/945mJa1LBSD0r3d4s0=;
+        b=KUI62Pd4Hj8HYSVaTZVhn3KQ/1ACqdRRbXUCxDm7Cl8VDNJ30jya31vSmTFZoNbTqZ
+         alW0aZBNZ6y07fcs1h/IQ76exO8Tt+nUWG1WLdpjZXJzbv7JBbkb6Th0s6hutWHTMJul
+         zNpfutFxzNwYz5uCgG6ipTjXUBqGZwv0pPQhMTLUoHB/kgUresoM+UTy0SXno5zo4vnr
+         KpufGMJgF7Sk3SuTLYslA+Oa1Dq/gzdkM0jNnr/+O7z/76BsdwzbRGb2HJtr2gdPTcuG
+         GjbBl9U35n20sIBbapohjJXCfJYxQoczB9QGluiaDkmhQEyS+U9OT1rRoyV7/1LookLj
+         DINw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Cde9sTeLd0vmgQnDHFOawLma/945mJa1LBSD0r3d4s0=;
+        b=LxcBEs41g3ai9lMLcIkLKwet8+vUwKEUihz6uhnvbAgbQ9KmlJwyKEs6ztlTqg4qRY
+         jC8TkdpGlo52SNc/Vrn4fhmfAAfHlrDksokelkwcsUd/We8ZvFh4vV7rDAJznKLRRFVk
+         R2cb7ia3N1qcLMav9ad78PvKwqMEUdq2hx0OigWVZk1cDf2B9aVHeT/pAs+R3CQ1GE8s
+         sLPrBURShEaf0NY/9B8hduLtopzemn9sB+KdUQZIHQ1Wca6CHygCwSNqh0k2i1lCVpyK
+         z00EZpQZN87wEoW0LVLrvQubo2JZvlx0AwwVzlqgCMmEpV0Z13H/s/p6Lt1k2+R2xMn9
+         Q8IA==
+X-Gm-Message-State: AOAM533bzBusHtKcR89KHaOlNW2YcancpK+hiidSNXix/kcHwplc/RaI
+        CmSurnNqShP0nz8KxQ3QG0foCnUX4shaAD9JHaLb5A==
+X-Google-Smtp-Source: ABdhPJwQOh0weKMLmGhNanRSWouIAcQ21jLyTUZlfQlEatdYccM7AhIWTjH/d9ZVCzYfYnSdy1TMVoeQKsf8ytpQYFs=
+X-Received: by 2002:a05:6830:2809:: with SMTP id w9mr5110934otu.237.1636455821654;
+ Tue, 09 Nov 2021 03:03:41 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49f99e48-da6d-45db-9863-08d9a36f90c3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2021 10:56:21.2372
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3vMPAq0Ah8l4/WYeM9mg66Pxsp9+Cdwg4P6dSI/7/EQtNTz6ppUIvtlgoVa0MbQU3AAanpxolup0AHIGB/8NywYmNZeJxxi/h+fsWkJVcQc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB2064
+References: <20210921043936.468001-1-andrew@aj.id.au> <20210921043936.468001-2-andrew@aj.id.au>
+In-Reply-To: <20210921043936.468001-2-andrew@aj.id.au>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 9 Nov 2021 12:03:30 +0100
+Message-ID: <CACRpkdZRWzq_j_UsU+eZurv1wT7muB1V4ktui1-Q0mHV3xw58A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] leds: pca955x: Make the gpiochip always expose all pins
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org,
+        clg@kaod.org, robh+dt@kernel.org, joel@jms.id.au, pavel@ucw.cz,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        andy.shevchenko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDkvMTEvMjAyMSAwODo0NSwgR2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOg0KPiBFWFRFUk5B
-TCBFTUFJTDogRG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlv
-dSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUNCj4gDQo+IEhpIENvbm9yLA0KPiANCj4+ICsNCj4+
-ICtwcm9wZXJ0aWVzOg0KPj4gKyAgY29tcGF0aWJsZToNCj4+ICsgICAgZW51bToNCj4+ICsgICAg
-ICAtIG1pY3JvY2hpcCxtcGZzLXNwaQ0KPj4gKyAgICAgIC0gbWljcm9zZW1pLG1zLXBmLW1zcy1z
-cGkNCj4+ICsgICAgICAtIG1pY3JvY2hpcCxtcGZzLXFzcGkNCj4+ICsgICAgICAtIG1pY3Jvc2Vt
-aSxtcy1wZi1tc3MtcXNwaQ0KPiANCj4gU2FtZSBjb21tZW50IGFzIGJlZm9yZTogd2hhdCBhcmUg
-dGhlIG1zLXBmLW1zcyBlbnRyaWVzPw0KPiANCg0KaSB0aGluayBpIHdpbGwganVzdCBkcm9wIHRo
-ZSBtaWNyb3NlbWkgYmluZGluZ3MsIG9uIHJlZmxlY3Rpb24gaSBkb250IA0KdGhpbmsgdGhleXJl
-IHJlbGV2YW50IHRvIHRoaXMgdmVyc2lvbiBvZiB0aGUgZGV2aWNlIHRyZWUuDQo=
+On Tue, Sep 21, 2021 at 6:40 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+
+> The devicetree binding allows specifying which pins are GPIO vs LED.
+> Limiting the instantiated gpiochip to just these pins as the driver
+> currently does requires an arbitrary mapping between pins and GPIOs, but
+> such a mapping is not implemented by the driver. As a result,
+> specifying GPIOs in such a way that they don't map 1-to-1 to pin indexes
+> does not function as expected.
+>
+> Establishing such a mapping is more complex than not and even if we did,
+> doing so leads to a slightly hairy userspace experience as the behaviour
+> of the PCA955x gpiochip would depend on how the pins are assigned in the
+> devicetree. Instead, always expose all pins via the gpiochip to provide
+> a stable interface and track which pins are in use.
+>
+> Specifying a pin as `type = <PCA955X_TYPE_GPIO>;` in the devicetree
+> becomes a no-op.
+>
+> I've assessed the impact of this change by looking through all of the
+> affected devicetrees as of the tag leds-5.15-rc1:
+>
+> ```
+> $ git grep -l 'pca955[0123]' $(find . -name dts -type d)
+> arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+> arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+> arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
+> arch/arm/boot/dts/aspeed-bmc-opp-mowgli.dts
+> arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
+> ```
+>
+> These are all IBM-associated platforms. I've analysed both the
+> devicetrees and schematics where necessary to determine whether any
+> systems hit the hazard of the current broken behaviour. For the most
+> part, the systems specify the pins as either all LEDs or all GPIOs, or
+> at least do so in a way such that the broken behaviour isn't exposed.
+>
+> The main counter-point to this observation is the Everest system whose
+> devicetree describes a large number of PCA955x devices and in some cases
+> has pin assignments that hit the hazard. However, there does not seem to
+> be any use of the affected GPIOs in the userspace associated with
+> Everest.
+>
+> Regardless, any use of the hazardous GPIOs in Everest is already broken,
+> so let's fix the interface and then fix any already broken userspace
+> with it.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
