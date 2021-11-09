@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F137844B886
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E033C44B88A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:42:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345891AbhKIWox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:44:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34964 "EHLO mail.kernel.org"
+        id S1346350AbhKIWoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:44:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60122 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241405AbhKIWmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:42:13 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E90F961B3C;
-        Tue,  9 Nov 2021 22:24:08 +0000 (UTC)
+        id S1345744AbhKIWmP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:42:15 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D44C861221;
+        Tue,  9 Nov 2021 22:24:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496650;
-        bh=u/I56GRwtTcKSHg3nKUPUeSkPN08FMTItD1vbc3pHDA=;
+        s=k20201202; t=1636496653;
+        bh=MIv2PVE0hYJ/DibRIv6CQED5BS/nlyXUll2BwE/PMrk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WrEeZIh+AzbUxILdQMDZ3/IWD4V9xyUieYcEu1bEPJ7pjYbaSKgBNHxzRYXN57A/s
-         aPS6Ss+TIYTevlv+3sU4QzJL5NfFASSQguJm+IeHuhKd1tKjGiPZafp/wsUvgVxqt6
-         zF93qZJzpkue2+U8PIpsVL4szZc2b59W0k7j4851tzrFTy79wLtqrNmoLPLPtRhL0j
-         0Qd6IJoqbF//0Wt+ec0AM/ENT9xy9ifmJNuLgitaEY9Ctpyy0wvVaEbCSIAYGWWraD
-         vwyKEBgK7qKA1ftKIHElOOIXZ5FYarriqT42V76IkVcXXvJxn+iwPLXIPpLuGEP4dS
-         FL+ThU4c6iBvw==
+        b=Rc+R+nslKvY1K2e7nqJFIGF/ASA3NN+3VF3AiuTg6RFEkaDJ+GdKFuPF96ezpgwSg
+         7b+55ZX5JSkeeLkBcDIp3TPxlsvPzlwAhebbPa5sAWT1I2cT9f7yDn7uzTz1W5m2E4
+         3ps/BFeeagM8NjelacEWkiisJfSM9+HUVRaIN5kUyKKtvhjOka0fbpjjdZs7xH8rjl
+         N5ZX/hyWkxLkvwr+AerVTXS+ARBENM2s2vNvBzU9wN9Vk8zfGVoRRDTLBBSIQfmiVd
+         jbZ84fCQanVsoedTpKhGuAq1XdXUrlSlqDuSnCnuJW8GvCpiE2/aiwq25FZGCArrP8
+         ef+hiyLOMLprQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Roger Quadros <rogerq@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
+        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
+        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.9 03/13] arm64: dts: qcom: msm8916: Add unit name for /soc node
-Date:   Tue,  9 Nov 2021 17:23:54 -0500
-Message-Id: <20211109222405.1236040-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.9 05/13] ARM: dts: omap: fix gpmc,mux-add-data type
+Date:   Tue,  9 Nov 2021 17:23:56 -0500
+Message-Id: <20211109222405.1236040-5-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222405.1236040-1-sashal@kernel.org>
 References: <20211109222405.1236040-1-sashal@kernel.org>
@@ -47,36 +46,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephan Gerhold <stephan@gerhold.net>
+From: Roger Quadros <rogerq@kernel.org>
 
-[ Upstream commit 7a62bfebc8c94bdb6eb8f54f49889dc6b5b79601 ]
+[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
 
-This fixes the following warning when building with W=1:
-Warning (unit_address_vs_reg): /soc: node has a reg or ranges property,
-but no unit name
+gpmc,mux-add-data is not boolean.
 
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/20210921152120.6710-1-stephan@gerhold.net
+Fixes the below errors flagged by dtbs_check.
+
+"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
+ arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index c2557cf43b3dc..eb806e73d598b 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -243,7 +243,7 @@
- 		};
- 	};
+diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+index 73e272fadc202..58d288fddd9c2 100644
+--- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
++++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+@@ -28,7 +28,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
  
--	soc: soc {
-+	soc: soc@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		ranges = <0 0 0 0xffffffff>;
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
+diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+index 82e98ee3023ad..3dbeb7a6c569c 100644
+--- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
++++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+@@ -25,7 +25,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
+ 
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
 -- 
 2.33.0
 
