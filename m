@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5782B44B74F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:31:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E6944B750
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:31:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344584AbhKIWeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:34:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55748 "EHLO mail.kernel.org"
+        id S1344789AbhKIWei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:34:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55842 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343967AbhKIWbj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:31:39 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7424E61A88;
-        Tue,  9 Nov 2021 22:21:09 +0000 (UTC)
+        id S1344251AbhKIWcD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:32:03 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7FEB361A89;
+        Tue,  9 Nov 2021 22:21:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496471;
-        bh=I1NDbiP/OZcVSxcRizSJiaW68LTtAtJEcjCXt0+/oh8=;
+        s=k20201202; t=1636496472;
+        bh=OXA71uP9NRZyclYMUe01xxTp0HU8RDER5d0J8mQ1w9A=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mgX/FbMhziGDs7OgLI4iWHSZniwOfHt03bugqfOqJ3vu5IvPyOx3QehWNeRJVcTeN
-         apzsryjgfORzTWZ71FWC48tp26aN741LwVswgJ4TQ7unMfdPOrIlObS+m0/cmsthML
-         ej6+8R1rwIYR4Ma8GPE7gwQq+zwS5K3bq6x7NocK14l0PW5Ld5SUbLHg21O2RwTKDE
-         GINdxC+/6YjgjsZqPROmj6nkvJKWJDAwidlcve9S9ay7JEfp9m4KHGoZ+xK8pa44Ps
-         lpJC6BCNQbbSu4gAzFzPKhHEahsQPQhkca2sjIJvVKe0CC1bx6x4xcqzj0qDKy/evz
-         xASx/dXQfXnSw==
+        b=uz98yK4bzZsaGzuqyJ6hRGCP5S8I2BvqjtzXicXlPJPNpK5YkbPgb1Bz94xpD73IU
+         S8eN9QD+KSkZOqVejgKclvOaWkdmEbJpBqtcnkrLMylOVs/Q2zkB71OzIQ4je3+sh7
+         Zr5A279TDQAs5unW7vgHC+ELW5W7N9KBmgfwxIkNscClypEfSf5lFknIo4DDqbKI9p
+         SJy3jtiyRL7+EfewZgcQKAAYHF9Oip/5iupvosduThQj6qgmeJwLbelp8yQpBQHzAQ
+         b0k5Y70GWhAiysslCk/KHHbAbKvcMpBZ69Ib38eOaKQocu7JMAkmea5Y10oJUCVdAt
+         ISujAOr9Ep94g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Maxime Ripard <maxime@cerno.tech>,
@@ -30,19 +30,17 @@ Cc:     Maxime Ripard <maxime@cerno.tech>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, maxime.ripard@free-electrons.com,
-        wens@csie.org, catalin.marinas@arm.com, will.deacon@arm.com,
+        catalin.marinas@arm.com, will.deacon@arm.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 03/50] ARM: dts: sunxi: Fix OPPs node name
-Date:   Tue,  9 Nov 2021 17:20:16 -0500
-Message-Id: <20211109222103.1234885-3-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 04/50] arm64: dts: allwinner: h5: Fix GPU thermal zone node name
+Date:   Tue,  9 Nov 2021 17:20:17 -0500
+Message-Id: <20211109222103.1234885-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222103.1234885-1-sashal@kernel.org>
 References: <20211109222103.1234885-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -50,131 +48,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Maxime Ripard <maxime@cerno.tech>
 
-[ Upstream commit ffbe853a3f5a37fa0a511265b21abf097ffdbe45 ]
+[ Upstream commit 94a0f2b0e4e0953d8adf319c44244ef7a57de32c ]
 
-The operating-points-v2 nodes are named inconsistently, but mostly
-either opp_table0 or gpu-opp-table.  However, the underscore is an
-invalid character for a node name and the thermal zone binding
-explicitly requires that zones are called opp-table-*. Let's fix it.
+The GPU thermal zone is named gpu_thermal. However, the underscore is
+an invalid character for a node name and the thermal zone binding
+explicitly requires that zones are called *-thermal. Let's fix it.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Link: https://lore.kernel.org/r/20210901091852.479202-43-maxime@cerno.tech
+Link: https://lore.kernel.org/r/20210901091852.479202-48-maxime@cerno.tech
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/sun8i-a33.dtsi                      | 4 ++--
- arch/arm/boot/dts/sun8i-a83t.dtsi                     | 4 ++--
- arch/arm/boot/dts/sun8i-h3.dtsi                       | 4 ++--
- arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi  | 2 +-
- arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi  | 2 +-
- 6 files changed, 9 insertions(+), 9 deletions(-)
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/sun8i-a33.dtsi b/arch/arm/boot/dts/sun8i-a33.dtsi
-index c458f5fb124fb..46f4242e9f95d 100644
---- a/arch/arm/boot/dts/sun8i-a33.dtsi
-+++ b/arch/arm/boot/dts/sun8i-a33.dtsi
-@@ -46,7 +46,7 @@
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
--	cpu0_opp_table: opp_table0 {
-+	cpu0_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -164,7 +164,7 @@
- 		io-channels = <&ths>;
- 	};
- 
--	mali_opp_table: gpu-opp-table {
-+	mali_opp_table: opp-table-gpu {
- 		compatible = "operating-points-v2";
- 
- 		opp-144000000 {
-diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
-index c010b27fdb6a6..a746e449b0bae 100644
---- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-+++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-@@ -200,7 +200,7 @@
- 		status = "disabled";
- 	};
- 
--	cpu0_opp_table: opp_table0 {
-+	cpu0_opp_table: opp-table-cluster0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -253,7 +253,7 @@
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+index 10489e5086956..0ee8a5adf02b0 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi
+@@ -204,7 +204,7 @@
+ 			};
  		};
- 	};
  
--	cpu1_opp_table: opp_table1 {
-+	cpu1_opp_table: opp-table-cluster1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
-index 4e89701df91f8..ae4f933abb895 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -44,7 +44,7 @@
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
--	cpu0_opp_table: opp_table0 {
-+	cpu0_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -112,7 +112,7 @@
- 		};
- 	};
- 
--	gpu_opp_table: gpu-opp-table {
-+	gpu_opp_table: opp-table-gpu {
- 		compatible = "operating-points-v2";
- 
- 		opp-120000000 {
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-index 578c37490d901..e39db51eb4489 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-cpu-opp.dtsi
-@@ -4,7 +4,7 @@
-  */
- 
- / {
--	cpu0_opp_table: opp_table0 {
-+	cpu0_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
-index b2657201957eb..1afad8b437d72 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-cpu-opp.dtsi
-@@ -2,7 +2,7 @@
- // Copyright (C) 2020 Chen-Yu Tsai <wens@csie.org>
- 
- / {
--	cpu_opp_table: cpu-opp-table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-index 1a5eddc5a40f3..653452926d857 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-cpu-opp.dtsi
-@@ -3,7 +3,7 @@
- // Copyright (C) 2020 Clément Péron <peron.clem@gmail.com>
- 
- / {
--	cpu_opp_table: cpu-opp-table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "allwinner,sun50i-h6-operating-points";
- 		nvmem-cells = <&cpu_speed_grade>;
- 		opp-shared;
+-		gpu_thermal {
++		gpu-thermal {
+ 			polling-delay-passive = <0>;
+ 			polling-delay = <0>;
+ 			thermal-sensors = <&ths 1>;
 -- 
 2.33.0
 
