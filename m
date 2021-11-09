@@ -2,136 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E5044B415
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 21:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A0044B420
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 21:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244477AbhKIUjN convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 Nov 2021 15:39:13 -0500
-Received: from aposti.net ([89.234.176.197]:52358 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244036AbhKIUjN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 15:39:13 -0500
-Date:   Tue, 09 Nov 2021 20:36:06 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI
- driver and LCD controllers
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Boddie <paul@boddie.org.uk>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>, Jon as Karlman <jonas@kwiboo.se>,
-        dri-devel <dri-devel@lists.freedesktop.org>
-Message-Id: <6WNB2R.GJ2KT1BB7QOY1@crapouillou.net>
-In-Reply-To: <BF6CBFFA-E8AA-4CCE-A587-4D5D647DEC64@goldelico.com>
-References: <cover.1633436959.git.hns@goldelico.com>
-        <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
-        <O7VI0R.CRIG8R7O0OOI3@crapouillou.net> <3514743.EH6qe8WxYI@jason>
-        <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
-        <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
-        <BDU72R.SAKM4CQWCUKI2@crapouillou.net>
-        <BF6CBFFA-E8AA-4CCE-A587-4D5D647DEC64@goldelico.com>
+        id S244545AbhKIUno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 15:43:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56998 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242487AbhKIUnn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 15:43:43 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F471C061764;
+        Tue,  9 Nov 2021 12:40:57 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id d5so163675wrc.1;
+        Tue, 09 Nov 2021 12:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mg2e7z58lDe73VgrFciCdoCrTckxjsQdMH47LIpMlD8=;
+        b=Lvp6NHOPZwHxPj+fWGq2BvF2OdAqief2GwNbnsMaefDadOSWDKKRqm4nLRL+frEpyn
+         3KxZbtgCyg5WaAc7md7R3p0k2BKSjcdVrhP1UX8HyvvL8nEyjPsN5gIKQkVZMXEjuZht
+         B9boo/vxS4NoUxhzQF06GsGAvqR63F77yGlkWa3Av52PpHn0WQBXQPFK6NqjB0mukGUl
+         e1ecdTvzm6ZXzm5okWFnbpUUl8Xv52ZoFIygwJ/p/YnYDPpxmmamQBMbyVQf4Au0VQdK
+         8VbYtJ5KUNe1E3SBSIpZfqkYRK2o+H9ydDPeJFetb8HMFLUTDwG/1l64AiNY9Yyja5oh
+         ztLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mg2e7z58lDe73VgrFciCdoCrTckxjsQdMH47LIpMlD8=;
+        b=BMEf8quqlRyJnHb6GvhkduziGhNFEvDoqRpXO/Bc4I4n0pbvjsj/0+THCwEZfNHZ13
+         3VbetPCh7Xnnz8sWbBKVKrO9sg2IGP+uFk1qN2vRVOBthpPTqNnZJT5TTO9xET/Zx20E
+         Zlcq5xCirXYFVRbdmx0iOiqlhyCK96tXk+cN5tQ9sRZSszQqjtR7M8pa3IdQtTxX4blx
+         BZ+q2WFusV8mmGiLYe+BnaBS2uK7qNtrSF5Yb50ofLzCEmS54RlS8wTnztY+ucDikTiZ
+         9JRRwhEreoJh8SHabCERmtzNVwakcq3xsXlPAtV2LqOSsjOE09kjQxLNIbfz1PMczO15
+         v2/Q==
+X-Gm-Message-State: AOAM531920aB0Ti7Xtu0tl5iptidCk4AAcsdVmslkpF2KmXfavq3/KWE
+        RTKWddZv0gRpbZI54oLj1VKFaBhd6WU=
+X-Google-Smtp-Source: ABdhPJwHsR1gf29UiIqSs41HqAedueBMeaFCg5gVeoGSnC2EYmMxGiaTJQFQe7hvoJXGYs2R4Sx2Nw==
+X-Received: by 2002:a05:6000:23a:: with SMTP id l26mr12861034wrz.215.1636490455780;
+        Tue, 09 Nov 2021 12:40:55 -0800 (PST)
+Received: from Ansuel-xps.localdomain ([5.171.121.77])
+        by smtp.gmail.com with ESMTPSA id i17sm3675547wmq.48.2021.11.09.12.40.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Nov 2021 12:40:55 -0800 (PST)
+Date:   Tue, 9 Nov 2021 21:40:53 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [RFC PATCH v3 1/8] leds: add support for hardware driven LEDs
+Message-ID: <YYrc1UfhVLEO/Nth@Ansuel-xps.localdomain>
+References: <20211109022608.11109-1-ansuelsmth@gmail.com>
+ <20211109022608.11109-2-ansuelsmth@gmail.com>
+ <YYrbT6pMGXqA2EVn@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YYrbT6pMGXqA2EVn@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+On Tue, Nov 09, 2021 at 09:34:23PM +0100, Andrew Lunn wrote:
+> On Tue, Nov 09, 2021 at 03:26:01AM +0100, Ansuel Smith wrote:
+> > Some LEDs can be driven by hardware (for example a LED connected to
+> > an ethernet PHY or an ethernet switch can be configured to blink on
+> > activity on the network, which in software is done by the netdev trigger).
+> > 
+> > To do such offloading, LED driver must support this and a supported
+> > trigger must be used.
+> > 
+> > LED driver should declare the correct blink_mode supported and should set
+> > the blink_mode parameter to one of HARDWARE_CONTROLLED or
+> > SOFTWARE_HARDWARE_CONTROLLED.
+> > The trigger will check this option and fail to activate if the blink_mode
+> > is not supported. By default if a LED driver doesn't declare blink_mode,
+> > SOFTWARE_CONTROLLED is assumed.
+> > 
+> > The LED must implement 3 main API:
+> > - trigger_offload_status(): This asks the LED driver if offload mode is
+> >     enabled or not.
+> >     Triggers will check if the offload mode is supported and will be
+> >     activated accordingly. If the trigger can't run in software mode,
+> >     return -EOPNOTSUPP as the blinking can't be simulated by software.
+> 
+> I don't understand this last part. The LED controller is not
+> implementing software mode, other than providing a method to manually
+> turn the LED on and off. And there is a well defined call for that. If
+> that call is a NULL, it is clear it is not implemented. There is no
+> need to ask the driver.
+> 
+>      Andrew
 
-Le mar., nov. 9 2021 at 21:19:17 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> Hi Paul,
-> 
->>  Am 07.11.2021 um 20:05 schrieb Paul Cercueil <paul@crapouillou.net>:
->> 
->>>  6. Therefore I think it *may* work overclocked with 48MHz
->>>  but is not guaranteed or reliable above 27 MHz.
->>>  So everything is ok here.
->> 
->>  One thing though - the "assigned-clocks" and 
->> "assigned-clock-rates", while it works here, should be moved to the 
->> CGU node, to respect the YAML schemas.
-> 
-> Trying to do this seems to break boot.
-> 
-> I can boot up to
-> 
-> [    8.312926] dw-hdmi-ingenic 10180000.hdmi: registered DesignWare 
-> HDMI I2C bus driver
-> 
-> and
-> 
-> [   11.366899] [drm] Initialized ingenic-drm 1.1.0 20200716 for 
-> 13050000.lcdc0 on minor 0
-> 
-> but then the boot process becomes slow and hangs. Last sign of 
-> activity is
-> 
-> [   19.347659] hub 1-0:1.0: USB hub found
-> [   19.353478] hub 1-0:1.0: 1 port detected
-> [   32.321760] wlan0_power: disabling
-> 
-> What I did was to just move
-> 
-> 		assigned-clocks = <&cgu JZ4780_CLK_HDMI>;
-> 		assigned-clock-rates = <27000000>;
-> 
-> from
-> 
-> 	hdmi: hdmi@10180000 {
-> 
-> to
-> 
-> 	cgu: jz4780-cgu@10000000 {
-> 
-> Does this mean the clock is assigned too early or too late?
-> 
-> Do you have any suggestions since I don't know the details of CGU.
+You are right I have to remove the last part as it doesn't make sense.
+We already use blink_mode. Will remove in v4.
 
-These properties are already set for the CGU node in ci20.dts:
-
-&cgu {
-	/*
-	 * Use the 32.768 kHz oscillator as the parent of the RTC for a higher
-	 * precision.
-	 */
-	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>;
-	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>;
-	assigned-clock-rates = <48000000>;
-};
-
-So you want to update these properties to add the HDMI clock setting, 
-like this:
-
-	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>, 
-<&cgu JZ4780_CLK_HDMI>;
-	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>;
-	assigned-clock-rates = <48000000>, <0>, <27000000>;
-
-Cheers,
--Paul
-
-
+-- 
+	Ansuel
