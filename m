@@ -2,95 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E85944A65B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 06:34:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D1344A68D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 07:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243092AbhKIFgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 00:36:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48082 "EHLO
+        id S242926AbhKIGFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 01:05:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242935AbhKIFgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 00:36:33 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05EBEC0613B9
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 21:33:48 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id b4so17422042pgh.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 21:33:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aGs0imFfCIIi9peSh9xMQNmQGGyfoBu+v5r5spN7t4c=;
-        b=lGYZsguWD/fWmd5YVWbJ3Zxt0D/hj/dfFX0T7usV/K5o2FILCYKmQ88Mn5/Jo8TyML
-         dWdCl+lyiWNBQPgXnNDvl8q/9Ov0uThCcB7f6MtsHQa9sGukSu+nIfw2LnJU+86tuihK
-         W+aIQXWYJne1d1qrMnmH7ECSv5ceb1hlXITHE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aGs0imFfCIIi9peSh9xMQNmQGGyfoBu+v5r5spN7t4c=;
-        b=zAd0sVld+H90EkD99JjkCgrbZcW4uyIU0MpcjunzMy20mpDklFmOZxzsI0imwUVk5V
-         NQcdUgESoyIz9A71bx9zqIO3iWHnzMNo5Ff4CHZGpMLmB33HAZAEOgW5Ch7vO1PIY6Y0
-         zTbL/iMTIRebhxiHzFDGKjDi+6G32v+eWdaj5ocxV5HhXb1IRI9QFFf0suaSsApTjHIh
-         VpqMT5yC+f7UJrUymfAD+ZE4cHGjlscmADSX1RWt/wP4m/lCfyDPtoA+mR4DkNZhUfsV
-         JYWqXYhUsD67oRGnSPK2+01VWZSsGb0NW+FRkx4kmxIkdumSWJZ/8KXXxB5q49RSeT3z
-         9N2g==
-X-Gm-Message-State: AOAM532+ktIBoBwBr8/DI9JXwrS9zLjoj5fD8ADRavVpw2S+Gsmrp5Qd
-        vj4bltFv54y5+PtAsgNsf3K4cw==
-X-Google-Smtp-Source: ABdhPJx7+9wnj4bEO+9tMDgaq7DvX6hC009rYk+EmfpDn1fmzbk4HRcpfqzml/7z5oKx+zl+3YrB+Q==
-X-Received: by 2002:a05:6a00:174e:b0:47b:d4d6:3b9e with SMTP id j14-20020a056a00174e00b0047bd4d63b9emr5136764pfc.21.1636436027528;
-        Mon, 08 Nov 2021 21:33:47 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:cc3e:b71b:e327:fb32])
-        by smtp.gmail.com with ESMTPSA id w5sm13741479pgp.79.2021.11.08.21.33.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 21:33:47 -0800 (PST)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 7/7] dt-bindings: arm64: dts: mediatek: Add sku22 for mt8183 kakadu board
-Date:   Tue,  9 Nov 2021 13:33:34 +0800
-Message-Id: <20211109053334.1840273-7-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.34.0.rc0.344.g81b53c2807-goog
-In-Reply-To: <20211109053334.1840273-1-hsinyi@chromium.org>
-References: <20211109053334.1840273-1-hsinyi@chromium.org>
+        with ESMTP id S240251AbhKIGFR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 01:05:17 -0500
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11CBFC061764;
+        Mon,  8 Nov 2021 22:02:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:Subject:Sender:
+        Reply-To:Cc:Content-ID:Content-Description;
+        bh=wcCiGrIoiCHb/FUDi9mir5h93KXm+BbzPHesuj2IQdg=; b=KsCJgHsM4+w+SdE5iznn+kVlLL
+        Xvpvm41MUpzcrT+ayNkp1kfETAi4/4w1dy1gx0TiarkXP+nYkFwH0vz0ZqLi28v8BzeXH2E0qNk5z
+        JzK43OYGJxLi7t8awMzvy3qlZz21g6uFZFIxVs2uzYrSUwY54C+kkQH9NjZubBNK2vYtlHsKmlDgL
+        vX4vclswy8Pp61UFyD7UdiVbypKnzFkFpcFDmlw1GmvouOCNEeFJw8NPmpU3e/M/HEBjml1Ionct8
+        4MJwFHAXPvop62DqJnp0W2Fw3ZxcBSXePV3tpga5s+NRgseqT7G0eAqTSDGfzFdexHPbzin3LYP6m
+        aHRkJV3w==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by merlin.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mkKDE-008ljd-9h; Tue, 09 Nov 2021 06:02:28 +0000
+Subject: Re: [RFC PATCH v3 6/8] leds: trigger: add hardware-phy-activity
+ trigger
+To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+References: <20211109022608.11109-1-ansuelsmth@gmail.com>
+ <20211109022608.11109-7-ansuelsmth@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <28048612-a7d2-19e0-a632-a5ae061819cd@infradead.org>
+Date:   Mon, 8 Nov 2021 22:02:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211109022608.11109-7-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sku22 which uses different audio codec than previous kakadu board.
+On 11/8/21 6:26 PM, Ansuel Smith wrote:
+> diff --git a/drivers/leds/trigger/Kconfig b/drivers/leds/trigger/Kconfig
+> index dc6816d36d06..b947b238be3f 100644
+> --- a/drivers/leds/trigger/Kconfig
+> +++ b/drivers/leds/trigger/Kconfig
+> @@ -154,4 +154,32 @@ config LEDS_TRIGGER_TTY
+>   
+>   	  When build as a module this driver will be called ledtrig-tty.
+>   
+> +config LEDS_TRIGGER_HARDWARE_PHY_ACTIVITY
+> +	tristate "LED Trigger for PHY Activity for Hardware Controlled LED"
+> +	depends on LEDS_HARDWARE_CONTROL
+> +	help
+> +	  This allows LEDs to be configured to run by hardware and offloaded
+> +	  based on some rules. The LED will blink or be on based on the PHY
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
-v2: fix compatible items matching
----
- Documentation/devicetree/bindings/arm/mediatek.yaml | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+	                                          or be "on" based on the PHY
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 99e7f8e294cd03..d08f0fcbbe12ae 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -161,8 +161,13 @@ properties:
-           - const: mediatek,mt8183
-       - description: Google Kakadu (ASUS Chromebook Detachable CM3)
-         items:
--          - const: google,kakadu-rev3
--          - const: google,kakadu-rev2
-+          - oneOf:
-+              - items:
-+                  - const: google,kakadu-rev3-sku22
-+                  - const: google,kakadu-rev2-sku22
-+              - items:
-+                  - const: google,kakadu-rev3
-+                  - const: google,kakadu-rev2
-           - const: google,kakadu
-           - const: mediatek,mt8183
-       - description: Google Kappa (HP Chromebook 11a)
+> +	  Activity for example on packet receive or based on the link speed.
+
+	  activity
+
+> +
+> +	  The current supported offload triggers are:
+> +	  - blink_tx: Blink LED on tx packet receive
+> +	  - blink_rx: Blink LED on rx packet receive
+> +	  - keep_link_10m: Keep LED on with 10m link speed
+> +	  - keep_link_100m: Keep LED on with 100m link speed
+> +	  - keep_link_1000m: Keep LED on with 1000m link speed
+> +	  - keep_half_duplex: Keep LED on with half duplex link
+> +	  - keep_full_duplex: Keep LED on with full duplex link
+> +	  - option_linkup_over: Blink rules are ignored with absent link
+> +	  - option_power_on_reset: Power ON Led on Switch/PHY reset
+> +	  - option_blink_2hz: Set blink speed at 2hz for every blink event
+> +	  - option_blink_4hz: Set blink speed at 4hz for every blink event
+> +	  - option_blink_8hz: Set blink speed at 8hz for every blink event
+> +
+> +	  These blink modes are present in the LED sysfs dir under
+> +	  hardware-phy-activity if supported by the LED driver.
+> +
+> +	  This trigger can be used only by LEDs that supports Hardware mode
+
+	                                             support Hardware mode.
+
+
+Ansuel, do you read and consider these comments?
+It's difficult to tell if you do or not.
+
+thanks.
 -- 
-2.34.0.rc0.344.g81b53c2807-goog
-
+~Randy
