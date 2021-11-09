@@ -2,42 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1192E44B72A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC13844B732
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:30:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344618AbhKIWcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:32:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51090 "EHLO mail.kernel.org"
+        id S1344757AbhKIWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:32:51 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51472 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344686AbhKIWad (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:30:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ACB4A6134F;
-        Tue,  9 Nov 2021 22:20:52 +0000 (UTC)
+        id S1344819AbhKIWat (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:30:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6F1EA61A86;
+        Tue,  9 Nov 2021 22:21:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496453;
-        bh=YnSUH4i92y3wsbYvZQr2aBVb4zHiBKZF4DdXLYi017w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=d+vjipqVsD9N7wdmWuvanQOYF0YfqjQVDUIIwcHtbry9e3V9Ji/uuK4Jv0m8QAud/
-         nsbjRJONAU0SOibp/Xy7wUev3Io7UT/TrRIgV2xl9663w7fnRyTxBlb+ZNKi5m2lLv
-         /vlKywS0wPrRFYt80ILH8Zf95kDOkWg7t3olmq/cnKNF8BACQbpP5gpISGMlLjAASt
-         t4ndupDZKbmnm2CNaIoZLmRYQ6BzVsvr73ovifq/bCcmji99a0c1x3Xu+QrXI8ebYZ
-         KiF9YzOElo7KAJbGZuzUGYcb1GznI3ToMenyM+fPLIGxzcWfnbkgoMG80wPByDsO45
-         uxiHzfT+Nj/Rg==
+        s=k20201202; t=1636496466;
+        bh=iTIe+tzwDMl8swDkHkd8BHWOqtn7QkfBKkFbiUzNYLA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Lly26C0DmjfPgn/YFL0zdCQWX2AFaIPO+ufS+/oaaoYNah2HGtHpeVJE3rqhYXRpa
+         HkyE+SOHpHohWs7n8MADHy5TFq2mWyMeNfF/qFDl8ZHrYztNc/OCQJE9zXqHP165fG
+         wIxJt44yqknQ7GsQDNQcFSpqWOSILDJAL7yT5H/yldizxX5EmecgayKkKfhtsCkB5/
+         x3CIG91aJlP24O4J3TkA+MKwuc+2F5iZHi3PFiyLX6Y3Anhtu0+daO8zSy2urV2WoS
+         XhREoIn7EKDZk9k+704q82II7udpAMQ6WvCO7KKN1z2EnME0UR/xVuIT5KSiAnq53E
+         AqElNWKtfRWig==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.14 69/75] ARM: dts: qcom: fix memory and mdio nodes naming for RB3011
-Date:   Tue,  9 Nov 2021 17:18:59 -0500
-Message-Id: <20211109221905.1234094-69-sashal@kernel.org>
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.10 01/50] arm64: zynqmp: Do not duplicate flash partition label property
+Date:   Tue,  9 Nov 2021 17:20:14 -0500
+Message-Id: <20211109222103.1234885-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211109221905.1234094-1-sashal@kernel.org>
-References: <20211109221905.1234094-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -46,49 +44,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Heidelberg <david@ixit.cz>
+From: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
 
-[ Upstream commit 14a1f6c9d8017ffbf388e82e1a1f023196d98612 ]
+[ Upstream commit 167721a5909f867f8c18c8e78ea58e705ad9bbd4 ]
 
-Fixes warnings regarding to memory and mdio nodes and
-apply new naming following dt-schema.
+In kernel 5.4, support has been added for reading MTD devices via the nvmem
+API.
+For this the mtd devices are registered as read-only NVMEM providers under
+sysfs with the same name as the flash partition label property.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/20211020214741.261509-1-david@ixit.cz
+So if flash partition label property of multiple flash devices are
+identical then the second mtd device fails to get registered as a NVMEM
+provider.
+
+This patch fixes the issue by having different label property for different
+flashes.
+
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+Link: https://lore.kernel.org/r/6c4b9b9232b93d9e316a63c086540fd5bf6b8687.1623684253.git.michal.simek@xilinx.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-index f7ea2e5dd1914..971d2e2292600 100644
---- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-@@ -19,12 +19,12 @@
- 		stdout-path = "serial0:115200n8";
- 	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+index 4a86efa32d687..f7124e15f0ff6 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+@@ -131,7 +131,7 @@
+ 		reg = <0>;
  
--	memory@0 {
-+	memory@42000000 {
- 		reg = <0x42000000 0x3e000000>;
- 		device_type = "memory";
- 	};
- 
--	mdio0: mdio@0 {
-+	mdio0: mdio-0 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 1 GPIO_ACTIVE_HIGH>,
-@@ -91,7 +91,7 @@
+ 		partition@0 {
+-			label = "data";
++			label = "spi0-data";
+ 			reg = <0x0 0x100000>;
  		};
  	};
+@@ -149,7 +149,7 @@
+ 		reg = <0>;
  
--	mdio1: mdio@1 {
-+	mdio1: mdio-1 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 11 GPIO_ACTIVE_HIGH>,
+ 		partition@0 {
+-			label = "data";
++			label = "spi1-data";
+ 			reg = <0x0 0x84000>;
+ 		};
+ 	};
 -- 
 2.33.0
 
