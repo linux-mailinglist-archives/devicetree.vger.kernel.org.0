@@ -2,184 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB6644A7FE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 08:58:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A4F244A80F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243852AbhKIIBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 03:01:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51908 "EHLO
+        id S243906AbhKIIDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 03:03:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235038AbhKIIBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:01:20 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8A7C061766;
-        Mon,  8 Nov 2021 23:58:34 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id k4so19456275plx.8;
-        Mon, 08 Nov 2021 23:58:34 -0800 (PST)
+        with ESMTP id S243911AbhKIIDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:03:07 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FEBEC061767;
+        Tue,  9 Nov 2021 00:00:21 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id v3so36760122uam.10;
+        Tue, 09 Nov 2021 00:00:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=uCWSz4QN3WNzVVvhSoXQuOy9tk7Eeg6f5rpYUbhU+Sw=;
-        b=DBrSpNRZui658QX2wb4IEHP5iK1zjxcAO0g7Y3RoaCj1GFyOQGya3cUlXXIyUmGph5
-         qmcE5Ub2kKW5kJiQkecKkaIdC04xuigspIdOt1d+W0AixKYEvJKhv2SANJC6jjG0D0Pd
-         yy6LggETX34ZCtb7Mwg/X/owBP19sSszs2Cf2QH6lfr0x0lXEdVdSgR3jwW8k4U1U7gP
-         9BRqOLxejYmlnX+DN22o3hFQirRZ84+UT/uANyjBSaopWywVNv/BVNy8Z6cP8CgEBEEQ
-         Zm61AGbzRua3zOxPxoBpQAqoRG4rnNl530FZKKeAPss0qQqDYIUsafOYfzW4Gjdn+g6s
-         FiOQ==
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=jJRf2QoVELE16P7cEB6PznntzKV1Qjbgm15LTcUsRVc=;
+        b=gePWEHOSGecvEl7HJk8CquvjcxB88pnyrkGCaFJpCUh4S1dghmG7/dMru5orqE7XT2
+         nt/qRrfPaUPnmctmGZ/Dr1h47Z31ODwM+xwpl7cP4NYlcNiW8zpum+XarWZGbRno+Cqh
+         SteCW+khATmPvJsHO43ZUUOKW7X9UxgPRhxPiE+pduHEsilaICggfbpETpT3wRNwJPUu
+         UkYaboRaaj1UFiCNng++tcT5e2XmO5/aw2xrpnJG9/64B+005FELBQhMsd/GZFkwrpjm
+         XlEJA9UX3xorXGAjTFncWl4WQW2xd7HgCi3MBDqJTl1YS+qwxz42xC1VIyCEubXM54rI
+         IVvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=uCWSz4QN3WNzVVvhSoXQuOy9tk7Eeg6f5rpYUbhU+Sw=;
-        b=iXUozd2Y18agTZ5YgaWLyMfxi7+hm44ESWcKWklDq+oAjpImJD0iojWU3xHX1j+ERF
-         dMRps2eCtVKYL/ROYu2bTJ3mhkJJBEMlOKgvQ6cCIigoYhnnSbp/cjyYP++FUtzT/7HZ
-         5w50CvnCDY1gbh4cQd1ZOI1JZRUHMC4rjhKFYN3xlw3kLlv3RgHylEQ4tuhsMj7dOhoV
-         rT4BcyD8gS1GfxsdrnScjf11myA3xVsuIWmdCAusotG84kuTAD3STLVK2BhUGWcHPt7w
-         fL7qCvAQEKpPjG+4FfAiqSGwfAUpSToLZUB6LnodcLBSzjx1YW8Plxw/8ho6kR0oAcoR
-         wzIQ==
-X-Gm-Message-State: AOAM531KSflc+PFv2FDpmtP3Ay6pEwAXfc5jMvbbOc/jRhvbQu3BbWG8
-        2shN7XGvHWqzjnVcXAidB4gkhJ7F9h3BbQLk
-X-Google-Smtp-Source: ABdhPJy/sbQq5gMbTr4cjg5ZLeREC9ECvRUxYiHBZgaXlFBTMePM/i9+eC6lGga+fOGw/5+KNISwBA==
-X-Received: by 2002:a17:90a:4306:: with SMTP id q6mr5051261pjg.202.1636444714335;
-        Mon, 08 Nov 2021 23:58:34 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id x135sm10635714pfd.78.2021.11.08.23.58.32
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Nov 2021 23:58:34 -0800 (PST)
-From:   "LH.Kuo" <lhjeff911@gmail.com>
-X-Google-Original-From: "LH.Kuo" <lh.kuo@sunplus.com>
-To:     p.zabel@pengutronix.de, daniel.thompson@linaro.org,
-        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
-        ulf.hansson@linaro.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     qinjian@cqplus1.com, wells.lu@sunplus.com,
-        "LH.Kuo" <lh.kuo@sunplus.com>
-Subject: [PATCH v2 2/2] devicetree bindings mmc Add bindings doc for Sunplus SP7021
-Date:   Tue,  9 Nov 2021 15:58:25 +0800
-Message-Id: <1636444705-17883-3-git-send-email-lh.kuo@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1636444705-17883-1-git-send-email-lh.kuo@sunplus.com>
-References: <1635487055-18494-1-git-send-email-lh.kuo@sunplus.com>
- <1636444705-17883-1-git-send-email-lh.kuo@sunplus.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=jJRf2QoVELE16P7cEB6PznntzKV1Qjbgm15LTcUsRVc=;
+        b=3UfAsmz4AwiZ9Ae65Hcm9BY6j33PcydpVUyeX4nSuWQ8/pr+SukXE/i3KCGAjjVK0f
+         FV+yCXA/uRBLclSKuvTTGsXvtGnU4AGrYbMcJFFc416GwE7F4hOfeR8mnh9oDg5BArIO
+         Kvxf7MP2ulKl1/hTHsc+9AlqAF5xZlvUKkJqf31bvPLR1y55sWi1mv8V/RPnta5qxo+5
+         7PYBuyy7UaA4sdRtiBLmBxmYwigADE3DDLRlxs2d01Mq/Ky232wVkAHgXL+5xeLUNbys
+         +d35HcLLWBFB5xi1bd/I+ORsw5wZMB+wkek/E5W7CQEda3CAvDGds3+viPIqs4i9HSlx
+         5mSg==
+X-Gm-Message-State: AOAM532pA7MEr2d0SlAh4mj7Rx8IPo6A4TjR7vodZf34SEew5yyUD32g
+        bTA2uzpG+qxthH02KesYmC39WONCAv0s/mdYQOg=
+X-Google-Smtp-Source: ABdhPJycfRS0jKa6T58TKm+pjxAElkNmAt4iCLFdenRg55Hmth20wKyVn6TBCPo2asd0ozf+/bas1/ZpTV2PDSGl7ak=
+X-Received: by 2002:a67:cc19:: with SMTP id q25mr8568763vsl.47.1636444820743;
+ Tue, 09 Nov 2021 00:00:20 -0800 (PST)
+MIME-Version: 1.0
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-3-andrea.merello@gmail.com>
+ <20211028114008.0c2abf06@jic23-huawei>
+In-Reply-To: <20211028114008.0c2abf06@jic23-huawei>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Tue, 9 Nov 2021 09:00:09 +0100
+Message-ID: <CAN8YU5O=rUMQNvu5TmRphYb9gqzNAS=Aai9TYf4bywi3QNXV6w@mail.gmail.com>
+Subject: Re: [v2 02/10] iio: document linear acceleration modifiers
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings mmc Add bindings doc for Sunplus SP7021
+Il giorno gio 28 ott 2021 alle ore 12:35 Jonathan Cameron
+<jic23@kernel.org> ha scritto:
+>
+> On Thu, 28 Oct 2021 12:18:32 +0200
+> Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> > This patch introduces ABI documentation for new iio modifiers used for
+> > reporting "linear acceleration" measures.
+> >
+> > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+> > ---
+> >  Documentation/ABI/testing/sysfs-bus-iio | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> > index 6ad47a67521c..5147a00bf24a 100644
+> > --- a/Documentation/ABI/testing/sysfs-bus-iio
+> > +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> > @@ -1957,3 +1957,11 @@ Description:
+> >               Specify the percent for light sensor relative to the channel
+> >               absolute value that a data field should change before an event
+> >               is generated. Units are a percentage of the prior reading.
+> > +
+> > +What:                /sys/bus/iio/devices/iio:deviceX/in_accel_linear_x_raw
+> > +What:                /sys/bus/iio/devices/iio:deviceX/in_accel_linear_y_raw
+> > +What:                /sys/bus/iio/devices/iio:deviceX/in_accel_linear_z_raw
+> > +KernelVersion:       5.15
+> > +Contact:     linux-iio@vger.kernel.org
+> > +Description:
+> > +             Raw (unscaled) linear acceleration readings.
+>
+> Probably need more information that this.   What element is being 'removed' from
+> a normal acceleration measurement? What are units after application of offset and
+> scale?  Can cross refer to the in_accel_x_raw for that info if you like.
 
-Signed-off-by: LH.Kuo <lh.kuo@sunplus.com>
----
-Changes in v2:
- - Addressed all comments from Mr. Philipp Zabel
- - Modified the structure and register access method.
- - Modifiedthe path about MAINTAINERS. ( wrong messages PATH in v1).
+OK.  So, may I just state something like "As per in_accel_X_raw
+attributes, but minus the gravity acceleration"  ?
 
- .../devicetree/bindings/mmc/sunplus-sd2.yaml       | 82 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
+> Also, but them immediately after the block with the in_accel_x_raw etc
 
-diff --git a/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml b/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
-new file mode 100644
-index 0000000..95dc0bb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mmc/sunplus-sd2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SD/SDIO controller
-+
-+maintainers:
-+  - lh.kuo <lh.kuo@sunplus.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-card1
-+      - sunplus,sp7021-sdio
-+
-+  reg:
-+    items:
-+      - description: Base address and length of the SD/SDIO registers
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  pinctrl-names:
-+    description:
-+      A pinctrl state named "default" must be defined.
-+    const: default
-+
-+  pinctrl-0:
-+    description:
-+      A phandle to the default pinctrl state.
-+
-+  max-frequency: true
-+
-+allOf:
-+  - $ref: "mmc-controller.yaml"
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+  - pinctrl-names
-+  - pinctrl-0
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    mmc1: mmc@9C003e80 {
-+       compatible = "sunplus,sp7021-card1";
-+       reg = <0x9c003e80 0x280>;
-+       interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
-+       clocks = <&clkc CARD_CTL1>;
-+       resets = <&rstc RST_CARD_CTL1>;
-+       pinctrl-names = "default";
-+       pinctrl-0 = <&mmc1_mux &mmc1_mux_cd>;
-+       max-frequency = <52000000>;
-+    };
-+    sdio: mmc@9C008400 {
-+       compatible = "sunplus,sp7021-sdio";
-+       reg = <0x9c008400 0x280>;
-+       interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
-+       clocks = <&clkc CARD_CTL1>;
-+       resets = <&rstc RST_CARD_CTL1>;
-+       pinctrl-names = "default";
-+       pinctrl-0 = <&pins_sdio>;
-+       max-frequency = <52000000>;
-+    };   
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2746084..e653a1d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18193,6 +18193,7 @@ SUNPLUS SD/SDIO HOST CONTROLLER INTERFACE DRIVER
- M:	LH Kuo <lh.kuo@sunplus.com>
- L:	linux-mmc@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/mmc/sunplus-sd2.yaml
- F:	drivers/mmc/host/sunplus_sd2.*
- 
- SUPERH
--- 
-2.7.4
+OK
 
+> The organization fo that file needs a rethink but let us try to avoid making
+> it worse in the meeantime!
+>
+> Jonathan
+>
+>
