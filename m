@@ -2,213 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30BFE44AACD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:47:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A15D044AB10
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:58:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240225AbhKIJud convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 Nov 2021 04:50:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
+        id S245041AbhKIKBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 05:01:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243626AbhKIJuc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 04:50:32 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EBBC061764
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 01:47:46 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkNj9-0001XH-6x; Tue, 09 Nov 2021 10:47:39 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkNj5-000VTx-Fl; Tue, 09 Nov 2021 10:47:35 +0100
-Message-ID: <6d87acc51ed6fea6a93b92dbcc65f46a3c05ac35.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] I2C: Add I2C driver for Sunplus SP7021
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     "LH.Kuo" <lhjeff911@gmail.com>, daniel.thompson@linaro.org,
-        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     qinjian@cqplus1.com, wells.lu@sunplus.com,
-        "LH.Kuo" <lh.kuo@sunplus.com>
-Date:   Tue, 09 Nov 2021 10:47:35 +0100
-In-Reply-To: <1636441166-8127-2-git-send-email-lh.kuo@sunplus.com>
-References: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
-         <1636441166-8127-1-git-send-email-lh.kuo@sunplus.com>
-         <1636441166-8127-2-git-send-email-lh.kuo@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S243012AbhKIKBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 05:01:17 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AEF0C061764;
+        Tue,  9 Nov 2021 01:58:31 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id az37so37393607uab.13;
+        Tue, 09 Nov 2021 01:58:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc;
+        bh=6SCzafxlbGRyr2tFR/3yTcdmhOfLXB8smhgQj+VN/mM=;
+        b=VTkNp8JKdqfJwZbB9WiYq3hzv1C+MVgoeu4f0AgfS8nd/lX5XzvaAaAjoI4q22YWzH
+         34bUQWvpyuzmpqKNimm1GWvRZantxOdacjMp2MPvjLnUplnodIVlIY64ixYqBZ3B75at
+         b251cXbXFjz9C9QNRTzyBhD714W4Jl1AqEavwNYezSpJVU7R52lFrIH66Rds/f7HiwlI
+         38xUkNU/Z39tPL83FPYFATJtgL4H6Evr3txKrDkRceOhOU/ImoeuCrqpx7iYX411ZIDP
+         D5hY8C2nv4j7BSSrXvJk3XrvHquH0FshVs1A4FEIYL+Zbt4Ieo6DuYL+iulYixT+S6BJ
+         edVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=6SCzafxlbGRyr2tFR/3yTcdmhOfLXB8smhgQj+VN/mM=;
+        b=iKUDkpqj4tQxRRDS37SohRR6C2V+ZHgDbzM4IJl7phNyWQz5Egl2p+Mo6EPdUvM19q
+         V7gGj4a4un44PfPCRaCTa4VsquGTr165fG7xn8nd40nKI+sL9VrYq/phYs1jI7Ga9mfq
+         D2nuNQl+ojw3pYyQEp2Sjr6aESnViv4A7pmgWRoK27teY3jAm4pkf4bZBphAdomL5iwa
+         fsQ0QxRNX0Ito7r941KhU41OHVpPreDry9zC6GrbP6A5HFOsJPiZvuLvE9NQ/wRqcFQl
+         SKOKjuFEzNHCosl6MFUM0IybT7tkHnGNyDu/y+HJ/TICKUsfuWqEt3WXvgn/+1q9+yxI
+         zCbg==
+X-Gm-Message-State: AOAM532gF8c3RQpWXxFbcPNncvibdumaUcsiBfyPEHU9NJ+2YvhCqc40
+        CqFqi3zcSyzLKTcwHgAfqi1mCco4nR93EPXYowODQL7ErvM=
+X-Google-Smtp-Source: ABdhPJzlS1Ynl/Lq56tV64dzEqzYvWPv4HJJLkXeWWxceP6vLUbok+OHObpb4urfoRG72McMdMg8hg0yrJ5LOHnHO30=
+X-Received: by 2002:a9f:3d85:: with SMTP id c5mr8509886uai.12.1636451910511;
+ Tue, 09 Nov 2021 01:58:30 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-5-andrea.merello@gmail.com>
+ <20211028114557.5b4db778@jic23-huawei>
+In-Reply-To: <20211028114557.5b4db778@jic23-huawei>
+Reply-To: andrea.merello@gmail.com
+From:   Andrea Merello <andrea.merello@gmail.com>
+Date:   Tue, 9 Nov 2021 10:58:19 +0100
+Message-ID: <CAN8YU5M1-tqXaAokjzZJ5aLY_PwK7-3O3PtEFEQ+ONwTLcK44Q@mail.gmail.com>
+Subject: Re: [v2 04/10] iio: add modifiers for linear acceleration
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2021-11-09 at 14:59 +0800, LH.Kuo wrote:
-[...]
-> +static int sp_i2c_probe(struct platform_device *pdev)
-> +{
-> +	struct sp_i2c_dev *sp_i2c_dev_info;
-> +	struct i2c_adapter *p_adap;
-> +	unsigned int i2c_clk_freq;
-> +	int device_id = 0;
-> +	int ret = I2C_SUCCESS;
-> +	struct device *dev = &pdev->dev;
-> +	const struct i2c_compatible *dev_mode;
-> +
-> +	if (pdev->dev.of_node) {
-> +		pdev->id = of_alias_get_id(pdev->dev.of_node, "i2c");
-> +		dev_err(&pdev->dev, "pdev->id=%d\n", pdev->id);
-> +		device_id = pdev->id;
-> +	}
-> +
-> +	sp_i2c_dev_info = devm_kzalloc(&pdev->dev, sizeof(*sp_i2c_dev_info), GFP_KERNEL);
-> +	if (!sp_i2c_dev_info)
-> +		return -ENOMEM;
-> +
-> +	if (!of_property_read_u32(pdev->dev.of_node, "clock-frequency", &i2c_clk_freq)) {
-> +		dev_err(&pdev->dev, "clk_freq %d\n", i2c_clk_freq);
-> +		sp_i2c_dev_info->i2c_clk_freq = i2c_clk_freq;
-> +	} else {
-> +		sp_i2c_dev_info->i2c_clk_freq = SP_I2C_FREQ*1000;
-> +	}
-> +
-> +	sp_i2c_dev_info->dev = &pdev->dev;
-> +
-> +	ret = _sp_i2cm_get_resources(pdev, sp_i2c_dev_info);
-> +	if (ret != I2C_SUCCESS) {
-> +		dev_err(&pdev->dev, " get resources fail !\n");
-> +		return ret;
-> +	}
-> +
-> +	/* dma alloc*/
-> +	sp_i2c_dev_info->dma_vir_base = dma_alloc_coherent(&pdev->dev, SP_BUFFER_SIZE,
-> +					&sp_i2c_dev_info->dma_phy_base, GFP_ATOMIC);
-> +	if (!sp_i2c_dev_info->dma_vir_base)
-> +		goto free_dma;
+Il giorno gio 28 ott 2021 alle ore 12:41 Jonathan Cameron
+<jic23@kernel.org> ha scritto:
+>
+> On Thu, 28 Oct 2021 12:18:34 +0200
+> Andrea Merello <andrea.merello@gmail.com> wrote:
+>
+> > This patch is preparatory for adding the Bosh BNO055 IMU driver.
+> > The said IMU can report raw accelerations (among x, y and z axis)
+> > as well as the so called "linear accelerations" (again, among x,
+> > y and z axis) which is basically the acceleration after subtracting
+> > gravity.
+> >
+> > This patch adds IIO_MOD_ACCEL_LINEAR_X, IIO_MOD_ACCEL_LINEAR_Y and
+> > IIO_MOD_ACCEL_LINEAR_Z modifiers to te IIO core.
+> >
+> > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+>
+> They sometimes get forgotten but we should also update
+> tools/iio/iio_event_montitor.c to handle these new modifiers.
 
-Please fix your error paths, the driver shouldn't try to revert the
-action that just failed.
+I'm not so familiar with this tool, but it seems like it has to do
+with IIO events, which the bno055 driver doesn't use. On the other
+hand the modifiers I would add are not used by any other driver right
+now.
 
-Here you can use dmam_alloc_coherent() and just return -ENOMEM on error.
+So I would say that it would end up in adding things that I couldn't
+test.. Or is there any test infrastructure for this? It seems trivial,
+just a matter of a few defines, so it shouldn't be an issue indeed..
 
-> +
-> +	sp_i2c_dev_info->clk = devm_clk_get(dev, NULL);
-> +
-> +	if (IS_ERR(sp_i2c_dev_info->clk)) {
-> +		ret = PTR_ERR(sp_i2c_dev_info->clk);
-> +		dev_err(&pdev->dev, "failed to retrieve clk: %d\n", ret);
-> +		goto err_clk_disable;
+> That can be a separate patch, but also fine to do it in this one.
+>
+> > ---
+> >  drivers/iio/industrialio-core.c | 3 +++
+> >  include/uapi/linux/iio/types.h  | 4 +++-
+> >  2 files changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> > index 2dbb37e09b8c..a79cb32207e4 100644
+> > --- a/drivers/iio/industrialio-core.c
+> > +++ b/drivers/iio/industrialio-core.c
+> > @@ -134,6 +134,9 @@ static const char * const iio_modifier_names[] = {
+> >       [IIO_MOD_ETHANOL] = "ethanol",
+> >       [IIO_MOD_H2] = "h2",
+> >       [IIO_MOD_O2] = "o2",
+> > +     [IIO_MOD_ACCEL_LINEAR_X] = "linear_x",
+> > +     [IIO_MOD_ACCEL_LINEAR_Y] = "linear_y",
+> > +     [IIO_MOD_ACCEL_LINEAR_Z] = "linear_z"
+> >  };
+> >
+> >  /* relies on pairs of these shared then separate */
+> > diff --git a/include/uapi/linux/iio/types.h b/include/uapi/linux/iio/types.h
+> > index 48c13147c0a8..db00f7c45f48 100644
+> > --- a/include/uapi/linux/iio/types.h
+> > +++ b/include/uapi/linux/iio/types.h
+> > @@ -95,6 +95,9 @@ enum iio_modifier {
+> >       IIO_MOD_ETHANOL,
+> >       IIO_MOD_H2,
+> >       IIO_MOD_O2,
+> > +     IIO_MOD_ACCEL_LINEAR_X,
+> > +     IIO_MOD_ACCEL_LINEAR_Y,
+> > +     IIO_MOD_ACCEL_LINEAR_Z,
+>
+> It might be useful for other channel types, so probably drop the ACCEL
+> part of the name.
+>
+> I'll admit I can't immediately think of what, but you never know.. :)
 
-Then this could
+But in this case what should I write in the ABI documentation? If I
+state that this is something that makes the gravity not being included
+then isn't it intrinsically tied to be an acceleration?  Or, I do
+that, and if someone eventually finds another use, then she/he will
+change the ABI doc?
 
-		return ret;
-
-Better, use return dev_err_probe().
-
-> +	}
-> +
-> +	sp_i2c_dev_info->rstc = devm_reset_control_get_exclusive(dev, NULL);
-> +
-> +	if (IS_ERR(sp_i2c_dev_info->rstc)) {
-> +		ret = PTR_ERR(sp_i2c_dev_info->rstc);
-> +		dev_err(&pdev->dev, "failed to retrieve reset controller: %d\n", ret);
-> +		goto err_clk_disable;
-
-Same as above.
-
-> +	}
-> +
-> +	ret = clk_prepare_enable(sp_i2c_dev_info->clk);
-> +
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to enable clk: %d\n", ret);
-
-Consider using "%pe" and ERR_PTR(ret) to print the error name instead of
-a number [1].
-
-[1] https://www.kernel.org/doc/html/latest/core-api/printk-formats.html?#error-pointers
-
-> +		goto err_clk_disable;
-
-		return ret;
-
-> +	}
-> +
-> +	ret = reset_control_deassert(sp_i2c_dev_info->rstc);
-> +
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to deassert reset line: %d\n", ret);
-> +		goto err_reset_assert;
-
-		goto err_clk_disable;
-
-> +	}
-> +
-> +	init_waitqueue_head(&sp_i2c_dev_info->wait);
-> +
-> +	dev_mode = of_device_get_match_data(&pdev->dev);
-> +	sp_i2c_dev_info->mode = dev_mode->mode;
-> +	sp_i2c_dev_info->total_port = dev_mode->total_port;
-> +	p_adap = &sp_i2c_dev_info->adap;
-> +	sprintf(p_adap->name, "%s%d", SP_DEVICE_NAME, device_id);
-> +	p_adap->algo = &sp_algorithm;
-> +	p_adap->algo_data = sp_i2c_dev_info;
-> +	p_adap->nr = device_id;
-> +	p_adap->class = 0;
-> +	p_adap->retries = 5;
-> +	p_adap->dev.parent = &pdev->dev;
-> +	p_adap->dev.of_node = pdev->dev.of_node;
-> +
-> +	ret = i2c_add_numbered_adapter(p_adap);
-> +
-> +	ret = _sp_i2cm_init(device_id, sp_i2c_dev_info);
-> +	if (ret != 0) {
-> +		dev_err(&pdev->dev, "i2c master %d init error\n", device_id);
-> +		goto err_reset_assert;
-
-This one is correct, but I'd also print ret.
-
-> +	}
-> +
-> +	if (ret < 0)
-> +		goto err_reset_assert;
-> +	else
-> +		platform_set_drvdata(pdev, sp_i2c_dev_info);
-> +
-> +	ret = request_irq(sp_i2c_dev_info->irq, _sp_i2cm_irqevent_handler, IRQF_TRIGGER_HIGH,
-> +				p_adap->name, sp_i2c_dev_info);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "request irq fail !!\n");
-> +		return I2C_ERR_REQUESET_IRQ;
-
-Don't return non-standard error codes. This should return ret instead,
-but not before going through the error cleanup path below. Also,
-consider using devm_request_irq().
-
-> +	}
-> +
-> +	pm_runtime_set_autosuspend_delay(&pdev->dev, 5000);
-> +	pm_runtime_use_autosuspend(&pdev->dev);
-> +	pm_runtime_set_active(&pdev->dev);
-> +	pm_runtime_enable(&pdev->dev);
-> +
-> +	return ret;
-> +
-> +err_reset_assert:
-> +	reset_control_assert(sp_i2c_dev_info->rstc);
-> +err_clk_disable:
-> +	clk_disable_unprepare(sp_i2c_dev_info->clk);
-> +free_dma:
-> +	dma_free_coherent(&pdev->dev, SP_BUFFER_SIZE,
-> +			sp_i2c_dev_info->dma_vir_base, sp_i2c_dev_info->dma_phy_base);
-> +
-> +	return ret;
-> +}
-
-regards
-Philipp
+> >  };
+> >
+> >  enum iio_event_type {
+> > @@ -114,4 +117,3 @@ enum iio_event_direction {
+> >  };
+> >
+> >  #endif /* _UAPI_IIO_TYPES_H_ */
+> > -
+> ?
+>
+>
