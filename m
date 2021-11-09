@@ -2,43 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B965644B7DF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC3844B7F1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:36:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344384AbhKIWiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:38:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58684 "EHLO mail.kernel.org"
+        id S245582AbhKIWjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:39:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56628 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245733AbhKIWgJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:36:09 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E6D2B61AF0;
-        Tue,  9 Nov 2021 22:22:34 +0000 (UTC)
+        id S239741AbhKIWgM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:36:12 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7DD34611C9;
+        Tue,  9 Nov 2021 22:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496556;
-        bh=rDbHEjuvXOYY3Wjuu4ouvGZnXTueKZNWfPv+fX5LIL0=;
+        s=k20201202; t=1636496561;
+        bh=OUiFxJpxj+/5MpLORH9DKyxWdGQ9Uj4/WrY6UX+GzxM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CCNyUweV32HiyyEZRK5lN/0t7n9F+mRedEi0da/6kJh+68rjxMXpX4TsjQVZY2zzG
-         knyM76duXEfNtlrWqSb1saEJjc2/vkNvHgv0TZvJBcTT0ysZZcrN40A9OQ7FgMD5YG
-         niL6z0HI9lBO1OmfbvQjUB9JHG98HeMD2YYRwmK8QClAMmZd0UIFK6A9kwGChJVdm6
-         US1OhlhPBMDNFljwvy1C/osHy8WQh9h8MLY2Tk4KSOXVjbrgmKM3UPO9iBsYJQlDom
-         +JV7ZuGzAyWAejELwfphllJEPlAYaSeXkZ/BRwM6s8nUyW5Z1C+Ch09fNSnTQmFL3/
-         7nqbHYhyRamRw==
+        b=QZ9ewf0uZkB3AJ4+zvZPhdf5kScZB1JoKC09KO1yk7sRs89xsKDKVAMCmvM9AHpb5
+         10+KM+PJD1G325m2E8+jU9T3ZfO0fp0wILDgA0KY28HXojXAyZYYVAbJEoPMtHfVHg
+         yTdV/8Z4NPyiAqnYdXqdNY/jht0jpkpF+Fw6cMEYHd1DrHujLxK+YUnGidXn03VzUl
+         /ZNNtNMI7awM4fWSGPqyV+9fkDra30NtUC2+zoqK6SUat595bz42vAcP+UEqT3pbcW
+         xAMTFjpZXdI7h9FX0Fcluhqd3HqcfRKSYOLzNW6y5y7BatT+UAvSw7Jnq35LkCZlrj
+         Ka8hirj5qeqog==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Brian Norris <briannorris@chromium.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
         catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.4 06/30] arm64: dts: rockchip: add Coresight debug range for RK3399
-Date:   Tue,  9 Nov 2021 17:22:00 -0500
-Message-Id: <20211109222224.1235388-6-sashal@kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.4 10/30] arm64: dts: qcom: msm8998: Fix CPU/L2 idle state latency and residency
+Date:   Tue,  9 Nov 2021 17:22:04 -0500
+Message-Id: <20211109222224.1235388-10-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222224.1235388-1-sashal@kernel.org>
 References: <20211109222224.1235388-1-sashal@kernel.org>
@@ -50,86 +47,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brian Norris <briannorris@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-[ Upstream commit 75dccea503b8e176ad044175e891d7bb291b6ba0 ]
+[ Upstream commit 3f1dcaff642e75c1d2ad03f783fa8a3b1f56dd50 ]
 
-Per Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt.
+The entry/exit latency and minimum residency in state for the idle
+states of MSM8998 were ..bad: first of all, for all of them the
+timings were written for CPU sleep but the min-residency-us param
+was miscalculated (supposedly, while porting this from downstream);
+Then, the power collapse states are setting PC on both the CPU
+cluster *and* the L2 cache, which have different timings: in the
+specific case of L2 the times are higher so these ones should be
+taken into account instead of the CPU ones.
 
-This IP block can be used for sampling the PC of any given CPU, which is
-useful in certain panic scenarios where you can't get the CPU to stop
-cleanly (e.g., hard lockup).
+This parameter misconfiguration was not giving particular issues
+because on MSM8998 there was no CPU scaling at all, so cluster/L2
+power collapse was rarely (if ever) hit.
+When CPU scaling is enabled, though, the wrong timings will produce
+SoC unstability shown to the user as random, apparently error-less,
+sudden reboots and/or lockups.
 
-Reviewed-by: Leo Yan <leo.yan@linaro.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Brian Norris <briannorris@chromium.org>
-Link: https://lore.kernel.org/r/20210908111337.v2.3.Ibc87b4785709543c998cc852c1edaeb7a08edf5c@changeid
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+This set of parameters are stabilizing the SoC when CPU scaling is
+ON and when power collapse is frequently hit.
+
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/20210901183123.1087392-3-angelogioacchino.delregno@somainline.org
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 48 ++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8998.dtsi | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 750dad0d17400..26c9c9317a642 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -398,6 +398,54 @@
- 		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+index ccd535edbf4e1..dcb79003ca0e6 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+@@ -246,38 +246,42 @@
+ 			LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
+ 				compatible = "arm,idle-state";
+ 				idle-state-name = "little-retention";
++				/* CPU Retention (C2D), L2 Active */
+ 				arm,psci-suspend-param = <0x00000002>;
+ 				entry-latency-us = <81>;
+ 				exit-latency-us = <86>;
+-				min-residency-us = <200>;
++				min-residency-us = <504>;
+ 			};
  
-+	debug@fe430000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe430000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l0>;
-+	};
-+
-+	debug@fe432000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe432000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l1>;
-+	};
-+
-+	debug@fe434000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe434000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l2>;
-+	};
-+
-+	debug@fe436000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe436000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l3>;
-+	};
-+
-+	debug@fe610000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe610000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b0>;
-+	};
-+
-+	debug@fe710000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe710000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b1>;
-+	};
-+
- 	usbdrd3_0: usb@fe800000 {
- 		compatible = "rockchip,rk3399-dwc3";
- 		#address-cells = <2>;
+ 			LITTLE_CPU_SLEEP_1: cpu-sleep-0-1 {
+ 				compatible = "arm,idle-state";
+ 				idle-state-name = "little-power-collapse";
++				/* CPU + L2 Power Collapse (C3, D4) */
+ 				arm,psci-suspend-param = <0x40000003>;
+-				entry-latency-us = <273>;
+-				exit-latency-us = <612>;
+-				min-residency-us = <1000>;
++				entry-latency-us = <814>;
++				exit-latency-us = <4562>;
++				min-residency-us = <9183>;
+ 				local-timer-stop;
+ 			};
+ 
+ 			BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
+ 				compatible = "arm,idle-state";
+ 				idle-state-name = "big-retention";
++				/* CPU Retention (C2D), L2 Active */
+ 				arm,psci-suspend-param = <0x00000002>;
+ 				entry-latency-us = <79>;
+ 				exit-latency-us = <82>;
+-				min-residency-us = <200>;
++				min-residency-us = <1302>;
+ 			};
+ 
+ 			BIG_CPU_SLEEP_1: cpu-sleep-1-1 {
+ 				compatible = "arm,idle-state";
+ 				idle-state-name = "big-power-collapse";
++				/* CPU + L2 Power Collapse (C3, D4) */
+ 				arm,psci-suspend-param = <0x40000003>;
+-				entry-latency-us = <336>;
+-				exit-latency-us = <525>;
+-				min-residency-us = <1000>;
++				entry-latency-us = <724>;
++				exit-latency-us = <2027>;
++				min-residency-us = <9419>;
+ 				local-timer-stop;
+ 			};
+ 		};
 -- 
 2.33.0
 
