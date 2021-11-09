@@ -2,42 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1CCD44B6B0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:26:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 118BC44B691
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:26:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344113AbhKIW3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:29:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50428 "EHLO mail.kernel.org"
+        id S245504AbhKIW2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:28:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50850 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344415AbhKIW01 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:26:27 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EDA9661A53;
-        Tue,  9 Nov 2021 22:19:43 +0000 (UTC)
+        id S1344473AbhKIW0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:26:48 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5910E619F9;
+        Tue,  9 Nov 2021 22:19:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496385;
-        bh=nE358nGDGr7KcK43TlL/FW4cfCEKyXOcwBJem4GhvV0=;
+        s=k20201202; t=1636496389;
+        bh=M6aKZ9T5FKtso8ltx5RT1jq4WgxJaF4uumo4QS7copU=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fbsqDSsti6W6UrMHyomg/zd6qSU5MhaY/m5XigvQ5KAAqIsmG2s6TZPOb9rkfAnS5
-         Jo3SteIA5MOYAChKd6vEaVZa5SsMvFI3lypqclL7LAejxGOMekkgj+5LmX8SdNayR+
-         e6HhzojhI5zoNawQC+inggLycszsyCldk7wwXgtLpuGaroG6J61PTkKA7mnSotgIHt
-         ISbOlKofafNwytN20R2ybBGtzTsGvN0v/qmLtH1rKcJaI5rEMGS4fwV2sDbYkXC7gP
-         v7HdKJ/IzGR2NOEtaQB1UZGwIp+lbSKivg2fKNlo4Tbdu5IVYVTaEe6KDeJiCIG0ew
-         5qYVkJ/c6Z38w==
+        b=CHIkN7e3FSx8l/Bq3YuN4vU0d8GchyUF7C7hSF6MJiT33AJxKlc+uejVb9G5XgWdc
+         Mxq6QG0V300HIgtTFWN20RRJVgOd2iToIOKHZQn2PNE4lS1W8jVRoKc1XYdMxXK6oO
+         sTQAZHBf1nEZAmhMjPOleRRCWBb0bNcgHhrcmpmVaaujTd7L1dHyKihOMoiRq1Udmc
+         nDd5NukIP37aDRp986wUI1BDMoYcnBxwMjauG+XjEHiEEIdR7n4D3C0fXMpxQKsQ85
+         hTeSwidnIswDDCmVxDmkK6HkZJr/jZm/xC4srAUqzTMViNvdqWohzF7x+sDpuPyLZs
+         4PmdnHJQjnEbw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+Cc:     Christian Lamparter <chunkeey@gmail.com>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
         linux@arm.linux.org.uk, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.14 22/75] ARM: dts: ux500: Skomer regulator fixes
-Date:   Tue,  9 Nov 2021 17:18:12 -0500
-Message-Id: <20211109221905.1234094-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.14 25/75] ARM: BCM53016: Specify switch ports for Meraki MR32
+Date:   Tue,  9 Nov 2021 17:18:15 -0500
+Message-Id: <20211109221905.1234094-25-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109221905.1234094-1-sashal@kernel.org>
 References: <20211109221905.1234094-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -45,48 +48,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Linus Walleij <linus.walleij@linaro.org>
+From: Christian Lamparter <chunkeey@gmail.com>
 
-[ Upstream commit 7aee0288beab72cdfa35af51f62e94373fca595d ]
+[ Upstream commit 6abc4ca5a28070945e0d68cb4160b309bfbf4b8b ]
 
-AUX2 has slightly wrong voltage and AUX5 doesn't need to be
-always on.
+the switch identifies itself as a BCM53012 (rev 5)...
+This patch has been tested & verified on OpenWrt's
+snapshot with Linux 5.10 (didn't test any older kernels).
+The MR32 is able to "talk to the network" as before with
+OpenWrt's SWITCHDEV b53 driver.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+| b53-srab-switch 18007000.ethernet-switch: found switch: BCM53012, rev 5
+| libphy: dsa slave smi: probed
+| b53-srab-switch 18007000.ethernet-switch poe (uninitialized):
+|	PHY [dsa-0.0:00] driver [Generic PHY] (irq=POLL)
+| b53-srab-switch 18007000.ethernet-switch: Using legacy PHYLIB callbacks.
+|	Please migrate to PHYLINK!
+| DSA: tree 0 setup
+
+Reported-by: Rafał Miłecki <zajec5@gmail.com>
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/ste-ux500-samsung-skomer.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/bcm53016-meraki-mr32.dts | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-index 94afd7a0fe1f0..9a90e7bbb4673 100644
---- a/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-+++ b/arch/arm/boot/dts/ste-ux500-samsung-skomer.dts
-@@ -290,10 +290,10 @@
- 					};
- 
- 					ab8500_ldo_aux2 {
--						/* Supplies the Cypress TMA140 touchscreen only with 3.3V */
-+						/* Supplies the Cypress TMA140 touchscreen only with 3.0V */
- 						regulator-name = "AUX2";
--						regulator-min-microvolt = <3300000>;
--						regulator-max-microvolt = <3300000>;
-+						regulator-min-microvolt = <3000000>;
-+						regulator-max-microvolt = <3000000>;
- 					};
- 
- 					ab8500_ldo_aux3 {
-@@ -312,9 +312,9 @@
- 
- 					ab8500_ldo_aux5 {
- 						regulator-name = "AUX5";
-+						/* Intended for 1V8 for touchscreen but actually left unused */
- 						regulator-min-microvolt = <1050000>;
- 						regulator-max-microvolt = <2790000>;
--						regulator-always-on;
- 					};
- 
- 					ab8500_ldo_aux6 {
+diff --git a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+index 3b978dc8997a4..1dbfa05b65015 100644
+--- a/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
++++ b/arch/arm/boot/dts/bcm53016-meraki-mr32.dts
+@@ -195,3 +195,25 @@
+ 		};
+ 	};
+ };
++
++&srab {
++	status = "okay";
++
++	ports {
++		port@0 {
++			reg = <0>;
++			label = "poe";
++		};
++
++		port@5 {
++			reg = <5>;
++			label = "cpu";
++			ethernet = <&gmac0>;
++
++			fixed-link {
++				speed = <1000>;
++				duplex-full;
++			};
++		};
++	};
++};
 -- 
 2.33.0
 
