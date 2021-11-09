@@ -2,116 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B28444AC3B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 12:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DABED44AC67
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 12:17:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240965AbhKILG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 06:06:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38356 "EHLO
+        id S245648AbhKILUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 06:20:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237370AbhKILG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 06:06:28 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D820C061767
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 03:03:42 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so14260138otm.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 03:03:42 -0800 (PST)
+        with ESMTP id S245645AbhKILUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 06:20:42 -0500
+Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDEC8C061764
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 03:17:56 -0800 (PST)
+Received: by mail-io1-xd29.google.com with SMTP id y16so4871850ioc.8
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 03:17:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Cde9sTeLd0vmgQnDHFOawLma/945mJa1LBSD0r3d4s0=;
-        b=KUI62Pd4Hj8HYSVaTZVhn3KQ/1ACqdRRbXUCxDm7Cl8VDNJ30jya31vSmTFZoNbTqZ
-         alW0aZBNZ6y07fcs1h/IQ76exO8Tt+nUWG1WLdpjZXJzbv7JBbkb6Th0s6hutWHTMJul
-         zNpfutFxzNwYz5uCgG6ipTjXUBqGZwv0pPQhMTLUoHB/kgUresoM+UTy0SXno5zo4vnr
-         KpufGMJgF7Sk3SuTLYslA+Oa1Dq/gzdkM0jNnr/+O7z/76BsdwzbRGb2HJtr2gdPTcuG
-         GjbBl9U35n20sIBbapohjJXCfJYxQoczB9QGluiaDkmhQEyS+U9OT1rRoyV7/1LookLj
-         DINw==
+        bh=zOIK0pY0+erpcI8zPo6QJaQ+g1dAYFq2ZtgG2KTZtWE=;
+        b=UDUz7sHZPURLvom+Kh2cDDrlO5XWNfmQNNIvqvsuWObekW/AyjTQPRwCAGRZEdsbU1
+         m+R+wFppRZml5QBTMSG+Mc0a2nHnjkC3XCqs1g8ZtmxAR3onKHek0b0+wML77fXBR+FZ
+         qn019oc4sNY9FrbNyeD9tZegmL+TtUnVQoUUihme7zc1PTs8ORVdbgM8lOijUYZTXXUh
+         m+6Wjz2ZNzWoJD3UDKiOQA+lzqGcYoUnVKe83h99xwP/xXxffcKicLx/xeztcnBWZXuq
+         hMkO3iFOnT3Y/WAMa3elQP+IkZkye4rbazx0vm8SowYecVRoLjckBgGGaVx/pKW4LIYQ
+         SKgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Cde9sTeLd0vmgQnDHFOawLma/945mJa1LBSD0r3d4s0=;
-        b=LxcBEs41g3ai9lMLcIkLKwet8+vUwKEUihz6uhnvbAgbQ9KmlJwyKEs6ztlTqg4qRY
-         jC8TkdpGlo52SNc/Vrn4fhmfAAfHlrDksokelkwcsUd/We8ZvFh4vV7rDAJznKLRRFVk
-         R2cb7ia3N1qcLMav9ad78PvKwqMEUdq2hx0OigWVZk1cDf2B9aVHeT/pAs+R3CQ1GE8s
-         sLPrBURShEaf0NY/9B8hduLtopzemn9sB+KdUQZIHQ1Wca6CHygCwSNqh0k2i1lCVpyK
-         z00EZpQZN87wEoW0LVLrvQubo2JZvlx0AwwVzlqgCMmEpV0Z13H/s/p6Lt1k2+R2xMn9
-         Q8IA==
-X-Gm-Message-State: AOAM533bzBusHtKcR89KHaOlNW2YcancpK+hiidSNXix/kcHwplc/RaI
-        CmSurnNqShP0nz8KxQ3QG0foCnUX4shaAD9JHaLb5A==
-X-Google-Smtp-Source: ABdhPJwQOh0weKMLmGhNanRSWouIAcQ21jLyTUZlfQlEatdYccM7AhIWTjH/d9ZVCzYfYnSdy1TMVoeQKsf8ytpQYFs=
-X-Received: by 2002:a05:6830:2809:: with SMTP id w9mr5110934otu.237.1636455821654;
- Tue, 09 Nov 2021 03:03:41 -0800 (PST)
+        bh=zOIK0pY0+erpcI8zPo6QJaQ+g1dAYFq2ZtgG2KTZtWE=;
+        b=FcFH+4uJ3s9vEkkR90p+kVFs2wpmWpCLuv278srnqaDuGkcWuqmiN+eQNBF9fyE1Fo
+         efzawZIc5ygGHjDkpqoTdSQdli8Ul+oj3eOKgKA2Z8JNNjRMKNKDOOp0ALJ4pHfAzNO3
+         1niBobV8QVjNOTqngSQIXyEctvv8p317QECeLkgtj96zfAjtQKuPXCJlGgP88NAX/fLS
+         mOmOLZJxtBJb9i8kd6SWZ7Gk+UYsjqRCJXni9Ck4TzInW5IqM+uJ0BDQp28uQoMmf4nn
+         DmAwynkmPi2IkFCtMHOoB9jgRsMgnlsnIayMmEOwjuF1dErHNoXByRezX47T2XwtLjhk
+         hAIg==
+X-Gm-Message-State: AOAM5315UfF/n0pDrwaNInUuCODxuh+PTZRIWdsqx8LceHRe/YKuiXfr
+        IBMVpIfWKvu7At6/0ASTDyMr+2R/sSPoqyzL0aj1oQ==
+X-Google-Smtp-Source: ABdhPJxkewbkxk0UMJv01soJvj4cYeO1lJGXlHNahvj8mE/OiHUmUvXCfoRZtv+grdjLzbRct3hoET8+Xr23RlmiTq0=
+X-Received: by 2002:a05:6638:1607:: with SMTP id x7mr4962927jas.27.1636456676433;
+ Tue, 09 Nov 2021 03:17:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20210921043936.468001-1-andrew@aj.id.au> <20210921043936.468001-2-andrew@aj.id.au>
-In-Reply-To: <20210921043936.468001-2-andrew@aj.id.au>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 9 Nov 2021 12:03:30 +0100
-Message-ID: <CACRpkdZRWzq_j_UsU+eZurv1wT7muB1V4ktui1-Q0mHV3xw58A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] leds: pca955x: Make the gpiochip always expose all pins
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-leds@vger.kernel.org, linux-gpio@vger.kernel.org,
-        clg@kaod.org, robh+dt@kernel.org, joel@jms.id.au, pavel@ucw.cz,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        andy.shevchenko@gmail.com
+References: <20211102165657.3428995-1-robert.marko@sartura.hr>
+ <20211102165657.3428995-2-robert.marko@sartura.hr> <CAHp75VdnQq76f5Xeo5LCq83sr4TbcXY_mtZ4x_rFzUkS01BYZg@mail.gmail.com>
+ <CA+HBbNEEPHLbJSdWPdxWb5gASha_NavJrEBBRkbvzEW2aDSjmQ@mail.gmail.com> <cd0b876b5a043de21179eea01ca0344c@walle.cc>
+In-Reply-To: <cd0b876b5a043de21179eea01ca0344c@walle.cc>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Tue, 9 Nov 2021 12:17:45 +0100
+Message-ID: <CA+HBbNEcHi_tmat28RRNvw6dppv_zKLY3+gC1uELE9STaNqQ6w@mail.gmail.com>
+Subject: Re: [PATCH v7 2/6] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Michael Walle <michael@walle.cc>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 21, 2021 at 6:40 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+On Sat, Nov 6, 2021 at 12:19 AM Michael Walle <michael@walle.cc> wrote:
+>
+> Am 2021-11-05 12:34, schrieb Robert Marko:
+> > On Tue, Nov 2, 2021 at 8:28 PM Andy Shevchenko
+> > <andy.shevchenko@gmail.com> wrote:
+> >>
+> >> On Tue, Nov 2, 2021 at 6:57 PM Robert Marko <robert.marko@sartura.hr>
+> >> wrote:
+> >> >
+> >> > Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
+> >> > expander.
+> >> >
+> >> > The CPLD provides 12 pins in total on the TN48M, but on more advanced
+> >> > switch models it provides up to 192 pins, so the driver is extendable
+> >> > to support more switches.
+> >>
+> >> ...
+> >>
+> >> > +static int tn48m_gpio_probe(struct platform_device *pdev)
+> >> > +{
+> >>
+> >> > +       const struct tn48m_gpio_config *gpio_config = NULL;
+> >> > +       struct gpio_regmap_config config = {0};
+> >>
+> >> I don't see a point in assigning these variables.
+> >
+> > Hi,
+> > The NULL one isn't required, but the regmap one is, otherwise the
+> > devm_gpio_regmap_register call will
+> > return -EINVAL.
+> >
+> > It will fail here:
+> > https://elixir.bootlin.com/linux/latest/source/drivers/gpio/gpio-regmap.c#L209
+> >
+> > I see that Michael Walle who did the GPIO regmap uses it as well in
+> > the Kontron CPLD driver.
+> > Michael, can you shed some light on this?
+>
+> I guess this was already clarified? Because you don't set
+> all the properties of the config you have to initialize it.
+> Otherwise anything could happen.
 
-> The devicetree binding allows specifying which pins are GPIO vs LED.
-> Limiting the instantiated gpiochip to just these pins as the driver
-> currently does requires an arbitrary mapping between pins and GPIOs, but
-> such a mapping is not implemented by the driver. As a result,
-> specifying GPIOs in such a way that they don't map 1-to-1 to pin indexes
-> does not function as expected.
+Yeah, I think it's clear now.
+Thanks,
+Robert
 >
-> Establishing such a mapping is more complex than not and even if we did,
-> doing so leads to a slightly hairy userspace experience as the behaviour
-> of the PCA955x gpiochip would depend on how the pins are assigned in the
-> devicetree. Instead, always expose all pins via the gpiochip to provide
-> a stable interface and track which pins are in use.
->
-> Specifying a pin as `type = <PCA955X_TYPE_GPIO>;` in the devicetree
-> becomes a no-op.
->
-> I've assessed the impact of this change by looking through all of the
-> affected devicetrees as of the tag leds-5.15-rc1:
->
-> ```
-> $ git grep -l 'pca955[0123]' $(find . -name dts -type d)
-> arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
-> arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
-> arch/arm/boot/dts/aspeed-bmc-opp-mowgli.dts
-> arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
-> arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-> arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
-> ```
->
-> These are all IBM-associated platforms. I've analysed both the
-> devicetrees and schematics where necessary to determine whether any
-> systems hit the hazard of the current broken behaviour. For the most
-> part, the systems specify the pins as either all LEDs or all GPIOs, or
-> at least do so in a way such that the broken behaviour isn't exposed.
->
-> The main counter-point to this observation is the Everest system whose
-> devicetree describes a large number of PCA955x devices and in some cases
-> has pin assignments that hit the hazard. However, there does not seem to
-> be any use of the affected GPIOs in the userspace associated with
-> Everest.
->
-> Regardless, any use of the hazardous GPIOs in Everest is already broken,
-> so let's fix the interface and then fix any already broken userspace
-> with it.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> -michael
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-Yours,
-Linus Walleij
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
