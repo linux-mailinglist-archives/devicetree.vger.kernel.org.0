@@ -2,121 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 500E544AB89
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 11:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D1944ABA7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 11:38:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245357AbhKIKeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 05:34:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59154 "EHLO
+        id S242122AbhKIKlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 05:41:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245348AbhKIKeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 05:34:12 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490CFC061767
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 02:31:26 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 71so15362473wma.4
-        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 02:31:26 -0800 (PST)
+        with ESMTP id S239413AbhKIKlU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 05:41:20 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47684C061764;
+        Tue,  9 Nov 2021 02:38:34 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id 207so17195094ljf.10;
+        Tue, 09 Nov 2021 02:38:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+euuTZvhkOnDgMjmppHViulHDx6zSAfM+VRF7TWz+pU=;
-        b=6vlRBXlYnB1c6bx4RKXZbqt8HKPSAqnWbj2TvKybRcWeUXa7/oN8cYlRkihwHE+4Ip
-         x7AzQ/JOkZviajlspvGZkRNtwiU+cFZAGVjdqG+GGLwlu9jCQ8eeX1Gvo9XNd2BaOgDi
-         uKaNyKNfy2DyuKFZjQyspVA5GOJ5SfgIZRgADH5VYaU2n7yCJkw0QsuFI72lPUqMvRCC
-         oTmy1LmoV0onweWoq33Nv/e4y8lFcorin8OV3+snScnXG2+xsrFCHTaBuGjlYXdcoben
-         wFx2/TrUQqs74hWSMG85fQAiGmICurTz6o7IDwfCbpDnucI4edvVjI0OvrWqjfcyEvtF
-         ExjQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=le8Bh1sXQkFqRDvAznIIoxJrnDHClOIi7rOb+080txQ=;
+        b=ppPXFb1iqSEWjPKHr/gHT/wFMi8GXgxkURaFBfEY/+DV0cx6Uz+gyi5VNjuJqhK9vM
+         YLjboE5Iw9cJUHqikakQ2aUv/YAGydszKCeXLvPKebMBgP9j+K4XFRy22FFQAESdnlXF
+         zweRCveRqS6n8f52xCSoK/0kj39AhhzdoUFaG3dgfYEAtrLdlV41M6h8+pce36LkLJc9
+         GeH2TGGjxcS+Jv+tI2Vr4a1P3AOFEdIGQyh/WevQpxxmndaT6wXQ8arGq/iqPrFK6iFL
+         2+R2TxpAmebzh1J//7w49qr9LNbUNru8vWZtL1q8azqecBsYSo2l4HP+HWoQ/Wr7ztOE
+         KPpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+euuTZvhkOnDgMjmppHViulHDx6zSAfM+VRF7TWz+pU=;
-        b=HU873jEI+xIsBGAERdubrPg3g00yzrIA5jWB+gJYyXtWyF5cNt4oCSKYwS1k6WIYaU
-         +GOwHcgnRAPFHtR2TvpqaxTEPQytOmfdmrSlZmwNOuOL+qIhhvC0ja+6wc2ODMhw3MIw
-         z2IByUziI/JLmKRv2xQUJ7SkRRFSr3rXlE16piDj6i4rWlId6F032YqoU9qx29pnueqv
-         yzvlFIPL9nXkkjvidq8qQyMepBRsBWc+f8ny61Dm7j8tdFKNVJ0xzxnj5ZVS/7mUnNqm
-         IWpK0V4at/zp4VekjB4+AvFs0xp6XpwhB4Ji3Kg5EKha4MgqzNNEbSO1jkuIjxrPQJ8N
-         n+xg==
-X-Gm-Message-State: AOAM532s58A3ZIk/BhEj+EPFQkNF3NYGgsx3VbAeuoc5SNZ99t0x9VjO
-        1oAhW7YmOVx85Gq2ozsF9Du73Q==
-X-Google-Smtp-Source: ABdhPJyV47u02wpkyTo3KrS7mQ6sP8YiFdmifCrPzyDUmffqXQuzEvPPEmuR6tyPfSh8+G5RVTJTWw==
-X-Received: by 2002:a1c:1d42:: with SMTP id d63mr5861721wmd.184.1636453884902;
-        Tue, 09 Nov 2021 02:31:24 -0800 (PST)
-Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
-        by smtp.googlemail.com with ESMTPSA id t11sm19381936wrz.97.2021.11.09.02.31.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 02:31:24 -0800 (PST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Subject: [PATCH] dt-bindings: thermal: Fix definition of cooling-maps contribution property
-Date:   Tue,  9 Nov 2021 11:30:45 +0100
-Message-Id: <20211109103045.1403686-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.33.1
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=le8Bh1sXQkFqRDvAznIIoxJrnDHClOIi7rOb+080txQ=;
+        b=Sx6I2tnvfCTQt5b0cSqKahC7aYEggeNCO+p/A5QGv8t7rJXj8iYPVviHHUsJ02xAOl
+         H7fmSpRkwqWlENz2KVt/hFHnLaGwPzfQROiftm7Zjqhgl4Y3ZvCs8O/CIvJVd+f9Z8HN
+         o2Lv7QQ8os2d9o1w75O+8BEBx2q2v3+C0e3P9BITzHJEdNEpEeWO83IALCq9OJ1MxrBD
+         71+f5xfmjF04A1iRZEXgruOXyxJ3XRw6Gb3OFrT33TrkPD/eHwOQHZinyPVqeawzxcL7
+         Z79FcwDLkmhdh7dpI2183888onT19pWjEPq7ptLH1YOSlG6B3ePqOZGdWNsHqM3vDJTS
+         QSMw==
+X-Gm-Message-State: AOAM5314mLTdcd/1N+ZTGxpusGg7HSxGZwOGDPUHyG/1lFBlnuEgajHh
+        qXet4NSjItAsjpwLbx2boSQ=
+X-Google-Smtp-Source: ABdhPJwE1WI990S6Ueb49S9xNyRSmAfn1H7xZQmhZKQjOaqo9eRhz7hSLiSIILni0afJlrjbbeh+AA==
+X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr6565829lje.483.1636454312587;
+        Tue, 09 Nov 2021 02:38:32 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id k23sm673836ljg.139.2021.11.09.02.38.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Nov 2021 02:38:32 -0800 (PST)
+Message-ID: <f54640c8-941a-d4c2-822b-9b21bc134811@gmail.com>
+Date:   Tue, 9 Nov 2021 11:38:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH v4 5/7] watchdog: bcm7038_wdt: Add platform device id for
+ bcm63xx-wdt
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "maintainer:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        "open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "moderated list:BROADCOM BCM63XX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211105154208.614260-1-f.fainelli@gmail.com>
+ <20211105154208.614260-6-f.fainelli@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20211105154208.614260-6-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When converting the thermal-zones bindings to yaml the definition of the
-contribution property changed. The intention is the same, an integer
-value expressing a ratio of a sum on how much cooling is provided by the
-device to the zone. But after the conversion the integer value is
-limited to the range 0 to 100 and expressed as a percentage.
+On 05.11.2021 16:42, Florian Fainelli wrote:
+> In order to phase out bcm63xx_wdt and use bcm7038_wdt instead, introduce
+> a platform_device_id table that allows both names to be matched.
+> 
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>   drivers/watchdog/bcm7038_wdt.c | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/drivers/watchdog/bcm7038_wdt.c b/drivers/watchdog/bcm7038_wdt.c
+> index 506cd7ef9c77..a8a0e8485125 100644
+> --- a/drivers/watchdog/bcm7038_wdt.c
+> +++ b/drivers/watchdog/bcm7038_wdt.c
+> @@ -223,8 +223,16 @@ static const struct of_device_id bcm7038_wdt_match[] = {
+>   };
+>   MODULE_DEVICE_TABLE(of, bcm7038_wdt_match);
+>   
+> +static const struct platform_device_id bcm7038_wdt_devtype[] = {
+> +	{ .name = "bcm7038-wdt" },
+> +	{ .name = "bcm63xx-wdt" },
+> +	{ /* sentinel */ },
+> +};
 
-This is problematic for two reasons.
-
-- This do not match how the binding is used. Out of the 18 files that
-  make use of the property only two (ste-dbx5x0.dtsi and
-  ste-hrefv60plus.dtsi) sets it at a value that satisfy the binding,
-  100. The remaining 16 files set the value higher and fail to validate.
-
-- Expressing the value as a percentage instead of a ratio of the sum is
-  confusing as there is nothing to enforce the sum in the zone is not
-  greater then 100.
-
-This patch restore the pre yaml conversion description and removes the
-value limitation allowing the usage of the bindings to validate.
-
-Fixes: 1202a442a31fd2e5 ("dt-bindings: thermal: Add yaml bindings for thermal zones")
-Reported-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-index a07de5ed0ca6ae2d..2d34f3ccb2572ddb 100644
---- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-+++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-@@ -199,12 +199,11 @@ patternProperties:
- 
-               contribution:
-                 $ref: /schemas/types.yaml#/definitions/uint32
--                minimum: 0
--                maximum: 100
-                 description:
--                  The percentage contribution of the cooling devices at the
--                  specific trip temperature referenced in this map
--                  to this thermal zone
-+                  The cooling contribution to the thermal zone of the referred
-+                  cooling device at the referred trip point. The contribution is
-+                  a ratio of the sum of all cooling contributions within a
-+                  thermal zone.
- 
-             required:
-               - trip
--- 
-2.33.1
-
+I don't think I received answer on this: do we really need or want
+"bcm7038-wdt" there? BCM7038 uses DT so it should never use a platform
+devices created by arch code.
