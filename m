@@ -2,111 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 961D344A92E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B1E44A99F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:46:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239065AbhKIIh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 03:37:59 -0500
-Received: from mail-ua1-f47.google.com ([209.85.222.47]:34468 "EHLO
-        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244280AbhKIIhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:37:36 -0500
-Received: by mail-ua1-f47.google.com with SMTP id b3so37086347uam.1;
-        Tue, 09 Nov 2021 00:34:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AeQsRqY/GskMz/vOm4ldxuS7JHiWlKXTjA+Am1FlP0g=;
-        b=5r7uvOhw7ynCk9Af+p6Mek1PwSJ53TQ2RWapaDY4UfTPNdB/UuxNSVRvZ+QrLxnHzE
-         kArpQlzv1vM9eX3gFCT683DrheD2AU3GtdIy2f71BA59DA5FxaQu7VvVcPOmnD3ch4+d
-         dmrhIJDJwA1F0fi3dPULvCHo8HK7FHtUGxwbSmrQMwnWBtDs8NpkWBzWcmKwfTk2ocpX
-         Y8iFF5fWSFtJ8PF1K81VmxkP7IARFB9a7sf5ClUE4WpXgNNafowPbLTUphsjVpf2ALsG
-         pDpDC6OvhbLuoLz1VTSFu0jtNyXzFKfyQvSu/atdMFvLYdKvtREXTb417r8Bg2Po96Ur
-         lDDg==
-X-Gm-Message-State: AOAM533YHVNpX3xKC2R3FC38oYiEFNevOQvMRUpyvgETqWfjG7S3349n
-        FknGjDx7Ty2EqWjWv4jXZ9j9F6hm4PNNghw9
-X-Google-Smtp-Source: ABdhPJwa1j6nX5jloLYtG9RuU90/Sh9fPVM9brTspVa1+XS29skV/GXmtqcLaiUDjzoIxZ5qEBA8dQ==
-X-Received: by 2002:ab0:6942:: with SMTP id c2mr7733560uas.92.1636446889902;
-        Tue, 09 Nov 2021 00:34:49 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id f7sm2310878vkm.31.2021.11.09.00.34.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Nov 2021 00:34:49 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id b17so37082452uas.0;
-        Tue, 09 Nov 2021 00:34:49 -0800 (PST)
-X-Received: by 2002:a9f:2584:: with SMTP id 4mr7741221uaf.114.1636446888895;
- Tue, 09 Nov 2021 00:34:48 -0800 (PST)
+        id S242816AbhKIItJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 03:49:09 -0500
+Received: from mail.24vie.pl ([217.61.120.50]:56778 "EHLO mail.24vie.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242797AbhKIItJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 03:49:09 -0500
+X-Greylist: delayed 588 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Nov 2021 03:49:08 EST
+Received: by mail.24vie.pl (Postfix, from userid 1001)
+        id 63616A1DD6; Tue,  9 Nov 2021 08:36:23 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=24vie.pl; s=mail;
+        t=1636446994; bh=FDuFY3XQoq0gMX1b2gxgT7Py2p4Sxl0PJZYZ4NVaPho=;
+        h=Date:From:To:Subject:From;
+        b=E0b5HT7NlJ3T3un4F4HMaUvYuNj1ny0m/cpQuCte/1RBl3/++6vkRLM8Mp3nugQUL
+         BVAGlNdEzLEucsL/v8Ex3yI1cFmxXcc0NpD5antebi5vg8pS2/sueYDfusUTWjh3Fr
+         h0egfGLE9ghtvknMXvqW0UjhAJ76c8KziELu9c0IM6itzQH6gR2LFazN7Om8dmGHZR
+         PNLgjODvjQZtD2PhMvVLtn4B3i7RmtztwtBVmfa8o4YbLkJt6ICk7tlRdrBikoCENj
+         I7PKs0LIvr0dCiB1gKcAScKuoHEvnaL4Mf3I7f+oWg3Ba8KGiYxFJI4ka3f9Ab/rqD
+         Ncc50wtUwOaCQ==
+Received: by mail.24vie.pl for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 08:36:14 GMT
+Message-ID: <20211109074500-0.1.2q.6nsy.0.8mpzumb18e@24vie.pl>
+Date:   Tue,  9 Nov 2021 08:36:14 GMT
+From:   =?UTF-8?Q? "Przemys=C5=82aw_Wr=C3=B3blewski" ?= 
+        <przemyslaw.wroblewski@24vie.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Wycena paneli fotowoltaicznych
+X-Mailer: mail.24vie.pl
 MIME-Version: 1.0
-References: <20211108150554.4457-1-conor.dooley@microchip.com> <20211108150554.4457-5-conor.dooley@microchip.com>
-In-Reply-To: <20211108150554.4457-5-conor.dooley@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 9 Nov 2021 09:34:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX1Xm9CP2hSpkD4ApVJ8gC_ZAE1L5CT0zjF+b5An4kmqw@mail.gmail.com>
-Message-ID: <CAMuHMdX1Xm9CP2hSpkD4ApVJ8gC_ZAE1L5CT0zjF+b5An4kmqw@mail.gmail.com>
-Subject: Re: [PATCH 04/13] dt-bindings: riscv: update microchip polarfire binds
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        daire.mcnamara@microchip.com, Atish Patra <atish.patra@wdc.com>,
-        ivan.griffin@microchip.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bin Meng <bin.meng@windriver.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Dzie=C5=84 dobry,
 
-On Mon, Nov 8, 2021 at 4:06 PM <conor.dooley@microchip.com> wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Add mpfs-soc to clear undocumented binding warning
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  Documentation/devicetree/bindings/riscv/microchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/riscv/microchip.yaml b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> index 3f981e897126..1ff7a5224bbc 100644
-> --- a/Documentation/devicetree/bindings/riscv/microchip.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/microchip.yaml
-> @@ -21,6 +21,7 @@ properties:
->        - enum:
->            - microchip,mpfs-icicle-kit
->        - const: microchip,mpfs
-> +      - const: microchip,mpfs-soc
+dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
+irm=C4=85.
 
-Doesn't the "s" in "mpfs" already stand for "soc"?
+=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
+ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
 
-Gr{oetje,eeting}s,
+Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
+ropozycji?
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Pozdrawiam,
+Przemys=C5=82aw Wr=C3=B3blewski
