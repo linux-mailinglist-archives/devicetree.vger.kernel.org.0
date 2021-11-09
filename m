@@ -2,176 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D65A144AA5C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:13:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B195044AA7E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:21:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242830AbhKIJQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 04:16:14 -0500
-Received: from mail-vi1eur05on2068.outbound.protection.outlook.com ([40.107.21.68]:14336
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S243013AbhKIJQN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 04:16:13 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LEEUcJr/CY6tgk45UM7bMkF2Wh8mnmzX2HpKDfahsbQZbqNhX620XJPU16jioGUjHHVuGeCSGS6/5ME0jLWCdSuKiwGF1eO1JnVEdY9xshq6umxz9dE8z+e8Obvh/es+NxXH7UvG6MlBmTbJ47qmkd47WXydl5mLENfAHNmbmYzoH2XxH4UQF7adTIlvlnYSofpn4usA0GZ7PBCUc0/K3rwFdV2oNVnS+J0hFWF8Jgx7gbw1ABluRUxljLalQxRlzp+7ulM2nNLA33YK+kcE5oQ+hKDkfki5hS6dE+FcMyRoE7NEPTVEBhtAM1bB/eoqR5lKX8aEKb90zDF4cVxdhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nlx5g2t6qd03ekD67wgmvCJcfrebCibNitMGgI+Yyxo=;
- b=I7fLz5Yg4AKQvEfQYDNPD/lKFi3Z5AwNyG5rYwgWbhY/Guv8eJZLNzBQJu5yojIT98F+u9z2BKrd8hrmMTCy4KVRJYXeMtnQpc+y4WIDHS03rwuM6BrUshKRfafKw26+3gge79HBkFUw082i5e7MVdq9FHICLjjpDMMf91K9BGdFDaN0BsMB9LEaQ2n0dCWEV1VdiCJ1jPEc9fcjOtlc8eE54rRpkmWLA2Wov1cMQn1mpFjMmaPxqF6iVCMPuU9qfN8KoMwhJhvPrjfiRy36imtHj3oUTwxVI/FxbvgJV+3WYSaLMOkQeZib66AwyxK02KdGH3wGKDT/NZEuAZJlng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nlx5g2t6qd03ekD67wgmvCJcfrebCibNitMGgI+Yyxo=;
- b=XYZQd1ZMetHdudTvcak1CK7yyBN1LCcQw/H4zD9AAkcU/Dg1Ydhzooq1qy0flh01KujrnoDaS2tuwHhCFhxHMt79Ukmb3UY2L/hPA1oMYmBmNl9FVtTDfHygfShdYXY6PUWRcOOyPuTsAOhDZxsBkuhEAR1yakrsWzAOPWQsKyw=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by DB9PR04MB9257.eurprd04.prod.outlook.com (2603:10a6:10:373::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4669.13; Tue, 9 Nov
- 2021 09:13:26 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::82e:6ad2:dd1d:df43]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::82e:6ad2:dd1d:df43%9]) with mapi id 15.20.4669.016; Tue, 9 Nov 2021
- 09:13:26 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 1/1] arm64: dts: imx8qm: Add fsl,imx7ulp-lpuart compatible
- to lpuart
-Thread-Topic: [PATCH 1/1] arm64: dts: imx8qm: Add fsl,imx7ulp-lpuart
- compatible to lpuart
-Thread-Index: AQHX1JdcZ0jYaYDwbEKqxXS/yJFD76v66s3w
-Date:   Tue, 9 Nov 2021 09:13:26 +0000
-Message-ID: <DU0PR04MB941726009D1B6E22AA36402288929@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20211108115403.1770393-1-alexander.stein@ew.tq-group.com>
-In-Reply-To: <20211108115403.1770393-1-alexander.stein@ew.tq-group.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 290bb117-d83f-4b87-946c-08d9a3612fed
-x-ms-traffictypediagnostic: DB9PR04MB9257:
-x-microsoft-antispam-prvs: <DB9PR04MB9257CB0C7418B31CF41F109588929@DB9PR04MB9257.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:751;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wTccJT0NbxSsntOL1EKRo+Fhs8YsSQWotLNT7fhFx/T0KbXWO1d7B8etij3tQyTgh9h5yWI0jbLkChOX/WPW5cVagn9jHIRpRBzdQ5BcO7pDTmD5UTeqLqtkcbQxY6n2T0enW2OGujWprlBkweP6Bv1nROYPR5DevcY7wVwgoFpCxVs7AQY0QDtN+rxivD0T2b9Y9QsFfFm4Zu+2nxYrqGLFr9ioL/jI0e4ccMkSi0dhaYlNE+8M48PxvfeSiD+MSEVgAQsgbYNzDjMrQjVm6BfZsdF5XNovocG1qey+lHo9ndDO1UIZjpxEu15fqI1vp6FrTaWTj5Wlq94VSV21NlHw5ia9HEgB7XVtQyHecEqFl9W2IXjGv96XUYQmS7lWwzKKYM9TFVyMUILN1Zz+D3vqwRxuet8MCKPlSQM/fI9Aoh+zm7SxU3+wV99SghjagHnpc221UI8u5jvHNjttGJiRUqJ/NvirZdSfvLF+zF5HLkbUQz4MjXdY3iUdw12ofTatImisCitYNYHx3aZHdxJuJfWhvzJZLw/q6XYtXuQLchnxicrKH16h9DTjndgmdn07UlTLx/r6dyKjaYPp0xsbIRkxINtBZmh6aphuvs3lWCejwvgHq2HR1fufSbYdPqXN2p9z49hYzRBaL3ZD0mWr0I/osYsKKX4sWbxPmEehjavUGEIMinlcIpcFX7AUCOhrDZ1PR4KfzshiR3bfCchZKWXOquG7shRV4TUcZ40=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(38100700002)(54906003)(26005)(66946007)(122000001)(110136005)(86362001)(316002)(38070700005)(186003)(76116006)(44832011)(5660300002)(9686003)(52536014)(66446008)(508600001)(4326008)(64756008)(66556008)(83380400001)(66476007)(7696005)(6506007)(8936002)(2906002)(71200400001)(55016002)(8676002)(33656002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?F0L8JY6st/aXCLH7I/BCoBT/+nwi7EuZwUsOe5ZZcstKPuZS8Cb8xX0saYuj?=
- =?us-ascii?Q?DJdvQVYMuQj1F61n3Fog82ZQlEVlVdos4zUL1zkk0kXegdHSm1JXhfTrApHR?=
- =?us-ascii?Q?SfY0dw1drBxsHRtGRJn3lQQBrNVIsmgkRykjuFcId4TzxgfPgOpuxxj665uu?=
- =?us-ascii?Q?cL8d8tC/jZDc3hdzC95KgcjvMdDoRaHoZyRZxZFo1iz0PWHcFwxRIG1IEa41?=
- =?us-ascii?Q?QRnK6AoL9Z2a7s5JKkcQ2/t0hMKmWxVtoxQBXDWg41+AsNYeIjHdDN/WCjtM?=
- =?us-ascii?Q?hMHRlNFzfxJrFG6xoSGcE6gm0UmdlphlANbwH2Bxz4C94WxRVskIHVSnwChK?=
- =?us-ascii?Q?yN7YyBrlXDSNt6nkHkAJmFXAqRR86igymBeI7UIJriPoMreZksOskLoT4+Gx?=
- =?us-ascii?Q?062wxzaAxDkpP7xmgg+WQPv55Rx37ymzlNSgtxz6NNoMneehRmioLu5L2Rh6?=
- =?us-ascii?Q?O0NY/1RvEEgC/fgSwGO7evFGb3VuoEQRUg+EZY9KuCCQIp0KHmIsjd/VFgUy?=
- =?us-ascii?Q?Mjq+iCUkb4KJ1jt4d+DFNpUVu79p69hjhEJ+DBTZvruXRNOJa4sXLhPfXOr2?=
- =?us-ascii?Q?Ny4RqVLLc0swol9fT4ud3BnySPus2TuA8GP0FpBUxGeWWm/Hu542OYn4NAKO?=
- =?us-ascii?Q?A2udKMDM0o1vskDCTvKF9dWHFBtsDx8039yeqp4qBkeZslwhqT6Kx4Cf50ib?=
- =?us-ascii?Q?+g96KVT9ps58Y83rxsarWsoCJLjEVq+S1HXeUVclcJYAVovvwltfIPfpIDO/?=
- =?us-ascii?Q?xGlc5O2kUQIn2/rriksYYbbaxz2l/qnPboUCC4Y+MhkaXeE/aKNlhRXLvJhq?=
- =?us-ascii?Q?r1WjfYMS4YbOyE+dUU3P0D98GnF7B37gf2+IwTHb+e/RPNLJpB3XpOiStpf/?=
- =?us-ascii?Q?bI2VvsJK5q532peSXz8KNrlQteMvIQMc8saI7GuJND8tsBKdY6v8N5mPud3z?=
- =?us-ascii?Q?g8U2/2OE8s7gKHxvsoxpw5K8nQFScQD1CWJfBQO8jHRI6PgLx/H/hhArmI9x?=
- =?us-ascii?Q?s9P3ip2vjEd5kSsTT9ozw7LAhfwdWK2A2BrlPFC4XUXEfDSyKfZFhYEa7RpY?=
- =?us-ascii?Q?H+Bj12oZ1NM6y696iYLeoIg9UK7MPT5lG7wcOlPkvt/bCu2JmQUvoa1JZ6vz?=
- =?us-ascii?Q?04sZ5SupJzDBvPJKUBzDzoJ3oq9LTPDeBqIvOEJWGIeVzqJ1w4/fYaqTBvbc?=
- =?us-ascii?Q?mMDIkKcDFw1IzYnWa+wfKRkWE2MXoqUXsj8bjn4iMp0g+kQBGSBjPnaYWpV1?=
- =?us-ascii?Q?zlYfS9C1e4+UCuc96+lZZjZ6Y2pWJJnM7SxkcOI/fM/hUdzay+zAOn4IHjH7?=
- =?us-ascii?Q?K9Uyj3kAdd/UhcFEdVEDxddwaQ5bqPmW66pD73D0y+nxdWjngwPf0LQJN4vt?=
- =?us-ascii?Q?VilnqbtsO+y4rn0dLnJzbshR4X16BMcaHDhO66rRd8UU2ZyS++m2X4o3nh8G?=
- =?us-ascii?Q?AXd/26Z3hyYFON3D0TyVMh8C+CDLHgxCaq05rYccLmtldHqQJWfIiyyvLDgD?=
- =?us-ascii?Q?jWwnM5mxxEQzjkkX5J+DtRYB2No6M4Gk2/IHjF3tFkfGVUIku1lOzE2roMeH?=
- =?us-ascii?Q?dTZ5Kz0UA0ybEgoLTWJTdycc96xkhEnXaPTZ5xyFPTkxjaSYOvO0H89/TS6/?=
- =?us-ascii?Q?Ag=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S244812AbhKIJYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 04:24:21 -0500
+Received: from mail-pl1-f179.google.com ([209.85.214.179]:37465 "EHLO
+        mail-pl1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244806AbhKIJYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 04:24:19 -0500
+Received: by mail-pl1-f179.google.com with SMTP id n8so19825754plf.4;
+        Tue, 09 Nov 2021 01:21:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vCxzbvDJEmmS0S1dn6IErGyixaEwc//p9ymy/wdvxtw=;
+        b=jRTqA9CjNbMIaAbN2vA83XYv+AFhETkDyDbVjnWvwsHOo2s86fzQ1SraY29Dozzz1U
+         +OeKQjVl2IAeHxhsyd80SK7Qmb0yr7mHowW1KwwnbjCg6t0hyqrIdzZ6aEKUSjuxCe1b
+         fAPfSqIkrPglwsJEE1JFvdbV7Z1AgDXDuNgZapsMHDiqS9QhdYCf0aCWhen8Fkr5Ni2L
+         rhKbEVzM74q3F6nH482PO/m6u322gY57tMyEyucMF6+liCuLnNxoHma0h31R3/O543+r
+         68IPjwx1vLRBYjfK/Be6/TNSq9C9UwuMUZxLlGKfRwfnwtNc3xJ2U2a5cFbQ1J4yeY0z
+         1tTA==
+X-Gm-Message-State: AOAM531tzjR+rIZRVBb943hg/e06zflSN37cQ1lc4883icJFOnpfrBIi
+        OjXtBj8lkygYkYaWnEGM3VGCwY/ddOT7pUV7CC4=
+X-Google-Smtp-Source: ABdhPJxeU3ygXo8r/E5kP4Zn/e69OhIOKZcjPawrK0dUmlnrErW2Q4cDHdP743SYHawatA0U/RlEabrMniGDI/paKZs=
+X-Received: by 2002:a17:903:11c5:b0:13f:ef40:e319 with SMTP id
+ q5-20020a17090311c500b0013fef40e319mr5828558plh.33.1636449693539; Tue, 09 Nov
+ 2021 01:21:33 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 290bb117-d83f-4b87-946c-08d9a3612fed
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2021 09:13:26.0292
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 41avRK2hFeoPezhUYPIaZajBDrbvd/bpci5Nd6/TwaFUQ2rn769FNqBHpRxnu3avMH77jAd3FzHaxG6Fgyzd8A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9257
+References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-13-kernel@esmil.dk>
+ <CAHp75VdmnnrisuP00W0KYta0KgmC+fu3WMxm959dt5X1kpiKTw@mail.gmail.com>
+ <CAHp75VcuGdaq_TjjRS0S8R5y-nryLABZSp7ehrXz-fUS2W3vfA@mail.gmail.com> <CACRpkdYe-tW2K2eOQa+FYb-ZXzrA95+pPc6kkLB8ZJLAT8G_eA@mail.gmail.com>
+In-Reply-To: <CACRpkdYe-tW2K2eOQa+FYb-ZXzrA95+pPc6kkLB8ZJLAT8G_eA@mail.gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Tue, 9 Nov 2021 10:21:22 +0100
+Message-ID: <CANBLGcyo3YjygkjDmdjt4C_H=MZdHQwqumsxnatuObeP2LADAg@mail.gmail.com>
+Subject: Re: [PATCH v3 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: [PATCH 1/1] arm64: dts: imx8qm: Add fsl,imx7ulp-lpuart compatibl=
-e
-> to lpuart
->=20
-> After commit b4b844930f27 ("tty: serial: fsl_lpuart: drop earlycon entry =
-for
-> i.MX8QXP") earlycon support was essentially removed from imx8qm/imx8qxp
-> due to missing compatible.
-> The commit message says "i.MX8QXP lpuart is compatible with i.MX7ULP" so
-> adding a fallback compatible should be fine.
-> With this change early is supported again on imx8qm/imx8qxp.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Tue, 9 Nov 2021 at 02:01, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Tue, Nov 2, 2021 at 9:08 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> (...)
+> > > On Tue, Nov 2, 2021 at 6:50 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> >
+> > ...
+> >
+> > > > +static int starfive_pinconf_group_set(struct pinctrl_dev *pctldev,
+> > > > +                                     unsigned int gsel,
+> > > > +                                     unsigned long *configs,
+> > > > +                                     unsigned int num_configs)
+> > > > +{
+> > > > +       struct starfive_pinctrl *sfp = pinctrl_dev_get_drvdata(pctldev);
+> > > > +       const struct group_desc *group;
+> > > > +       u16 mask, value;
+> > > > +       int i;
+> > > > +
+> > > > +       group = pinctrl_generic_get_group(pctldev, gsel);
+> > > > +       if (!group)
+> > > > +               return -EINVAL;
+> > > > +
+> > > > +       mask = 0;
+> > > > +       value = 0;
+> > > > +       for (i = 0; i < num_configs; i++) {
+> > > > +               int param = pinconf_to_config_param(configs[i]);
+> > > > +               u32 arg = pinconf_to_config_argument(configs[i]);
+> > > > +
+> > > > +               switch (param) {
+> > > > +               case PIN_CONFIG_BIAS_DISABLE:
+> > > > +                       mask |= PAD_BIAS_MASK;
+> > > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_DISABLE;
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_BIAS_PULL_DOWN:
+> > > > +                       if (arg == 0)
+> > > > +                               return -ENOTSUPP;
+> > > > +                       mask |= PAD_BIAS_MASK;
+> > > > +                       value = (value & ~PAD_BIAS_MASK) | PAD_BIAS_PULL_DOWN;
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_BIAS_PULL_UP:
+> > > > +                       if (arg == 0)
+> > > > +                               return -ENOTSUPP;
+> > > > +                       mask |= PAD_BIAS_MASK;
+> > > > +                       value = value & ~PAD_BIAS_MASK;
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_DRIVE_STRENGTH:
+> > > > +                       mask |= PAD_DRIVE_STRENGTH_MASK;
+> > > > +                       value = (value & ~PAD_DRIVE_STRENGTH_MASK) |
+> > > > +                               starfive_drive_strength_from_max_mA(arg);
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_INPUT_ENABLE:
+> > > > +                       mask |= PAD_INPUT_ENABLE;
+> > > > +                       if (arg)
+> > > > +                               value |= PAD_INPUT_ENABLE;
+> > > > +                       else
+> > > > +                               value &= ~PAD_INPUT_ENABLE;
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
+> > > > +                       mask |= PAD_INPUT_SCHMITT_ENABLE;
+> > > > +                       if (arg)
+> > > > +                               value |= PAD_INPUT_SCHMITT_ENABLE;
+> > > > +                       else
+> > > > +                               value &= ~PAD_INPUT_SCHMITT_ENABLE;
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_SLEW_RATE:
+> > > > +                       mask |= PAD_SLEW_RATE_MASK;
+> > > > +                       value = (value & ~PAD_SLEW_RATE_MASK) |
+> > > > +                               ((arg << PAD_SLEW_RATE_POS) & PAD_SLEW_RATE_MASK);
+> > > > +                       break;
+> > > > +               case PIN_CONFIG_STARFIVE_STRONG_PULL_UP:
+> > > > +                       if (arg) {
+> > > > +                               mask |= PAD_BIAS_MASK;
+> > > > +                               value = (value & ~PAD_BIAS_MASK) |
+> > > > +                                       PAD_BIAS_STRONG_PULL_UP;
+> > > > +                       } else {
+> > > > +                               mask |= PAD_BIAS_STRONG_PULL_UP;
+> > > > +                               value = value & ~PAD_BIAS_STRONG_PULL_UP;
+> > > > +                       }
+> > > > +                       break;
+> > > > +               default:
+> > > > +                       return -ENOTSUPP;
+> > > > +               }
+> > > > +       }
+> > > > +
+> > > > +       for (i = 0; i < group->num_pins; i++)
+> > > > +               starfive_padctl_rmw(sfp, group->pins[i], mask, value);
+> > > > +
+> > > > +       return 0;
+> > > > +}
+> >
+> > Linus any comments on this code (sorry if I missed your reply)? The
+> > idea behind above is to skip all settings from the same category and
+> > apply only the last one, e.g. if we have "bias set to X", ..., "bias
+> > disable", ..., "bias set to Y", the hardware will see only the last
+> > operation, i.e. "bias set to Y". I think it may not be the best
+> > approach (theoretically?) since the hardware definitely may behave
+> > differently on the other side in case of such series of the
+> > configurations (yes, I have seen some interesting implementations of
+> > the touchpad / touchscreen GPIOs that may be affected).
+>
+> That sounds weird. I think we need to look at how other drivers
+> deal with this.
+>
+> To me it seems more natural that
+> starfive_padctl_rmw(sfp, group->pins[i], mask, value);
+> would get called at the end of each iteration of the
+> for (i = 0; i < num_configs; i++) loop.
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
+That would work, but when the loop is done the end result would be
+exactly the same. The only difference is that the above would rapidly
+"blink" the different states during the loop until it arrives at the
+result. This would certainly be different, but it can never be the
+intended behaviour and only a side-effect on how the pinctrl framework
+works. The order the different states are blinked depends entirely on
+how the pinctrl framework parses the device tree. I still think it
+would be more natural to cleanly go to the end result without this
+blinking.
 
-> ---
-> I get the following lines in my 5.10 kernel (backported this change):
-> [    0.000000] earlycon: lpuart32 at MMIO32 0x000000005a060000
-> (options '')
-> [    0.000000] printk: bootconsole [lpuart32] enabled
->=20
->  arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> index bbe5f5ecfb92..3486b99ab6eb 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> @@ -19,19 +19,19 @@ uart4_lpcg: clock-controller@5a4a0000 {  };
->=20
->  &lpuart0 {
-> -	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> +	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart",
-> +"fsl,imx7ulp-lpuart";
->  };
->=20
->  &lpuart1 {
-> -	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> +	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart",
-> +"fsl,imx7ulp-lpuart";
->  };
->=20
->  &lpuart2 {
-> -	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> +	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart",
-> +"fsl,imx7ulp-lpuart";
->  };
->=20
->  &lpuart3 {
-> -	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> +	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart",
-> +"fsl,imx7ulp-lpuart";
->  };
->=20
->  &i2c0 {
-> --
-> 2.25.1
-
+/Emil
