@@ -2,529 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF4744B096
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 16:46:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B54244B0A5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 16:48:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235030AbhKIPs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 10:48:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46204 "EHLO
+        id S236548AbhKIPuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 10:50:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234837AbhKIPs4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 10:48:56 -0500
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C452FC061764
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 07:46:10 -0800 (PST)
-Received: by mail-il1-x131.google.com with SMTP id l8so21071799ilv.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 07:46:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=YFVxeHJ9oDbgrivhdoOLsAuj3xGTk3Ua39KENf+lJ90=;
-        b=2RSqc4EkX3rEiyq5D7gpTX8QSB3RHVumOiJXJ74MYHqQfWzHcagCV6z4cqDkCJP50o
-         hgiQYD15vi2+Q6Nzm052syIQeKyJG5Gb4EPGF8WtaLF7NwKNoEALPBOGwKLISR6SUTZZ
-         jUVX+RchbQ4aaE3NiosEg85j9R8aW5n3XO7Qd0MumKfDyjHeOY90RII4osBeTDCpfXpf
-         sKUphJ89XqOtKe2D6BYgEuEZc48I8B+5tsj0ub7YYDmOjhaX6HZ8cY+j9apY/DFfsNMc
-         zripLamXpffmaeNX5NGgab3D+e5im3pdo/tYUeSZ3HOvqHfQC3gxtyGilLzBYa2kYqNL
-         okfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=YFVxeHJ9oDbgrivhdoOLsAuj3xGTk3Ua39KENf+lJ90=;
-        b=Kw1jeH01p3PmPsePzfemOuUb7JV/BCWkwCptqLJiQb1aANxs0Y4mKr0UXOa4XiQOjE
-         Mtrw90Q/+KqlQliS/eUTo0p6G/4VvJpTlQgLPqLnOK9G2OI+Eg2f8zNYyLJcGwQKBqdS
-         dIczPzOK/hmxxco1bnSUznTxgURfnLMrCaXQDuGi/2klxKN2ySNBamjwGCQYVKo6l7Xg
-         JatU6t/Au8Rnn/bUirn5/9VFnaaWvlXVQwzE2POK15FGhupxivoQFhmHdxmLGYJRQEJY
-         KSO6s5VkCFDcy2OXPIKCoeOOrRBrZj7cp54cDMiHRViA5k+39xJ3t6FyNcwuYMYr6wB1
-         TmUQ==
-X-Gm-Message-State: AOAM531+Go/9yfi8AroCuheaQQbKRpM43hCHuKUQy6nRwnVxBQbDDZvX
-        ISt1vTcOBl41J+n0X5jy4NOJkQ==
-X-Google-Smtp-Source: ABdhPJzjRrehIK7PUw6c8y6GDy7ekW4o27i4mb8dEfUBUe9Ng1I6FzHMhA8nuTboy998wUygi4SKUw==
-X-Received: by 2002:a92:d03:: with SMTP id 3mr5950460iln.216.1636472770151;
-        Tue, 09 Nov 2021 07:46:10 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id l4sm12241137ilv.46.2021.11.09.07.46.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 07:46:09 -0800 (PST)
-Message-ID: <ee14613da52c40f16a239c1216068aa44c9caa58.camel@ndufresne.ca>
-Subject: Re: [PATCH v12 00/13] amphion video decoder/encoder driver
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Tue, 09 Nov 2021 10:46:08 -0500
-In-Reply-To: <cover.1636445575.git.ming.qian@nxp.com>
-References: <cover.1636445575.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+        with ESMTP id S236482AbhKIPuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 10:50:55 -0500
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62578C061764;
+        Tue,  9 Nov 2021 07:48:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=mSVVJsEPHfSX6uPc9s53Oo/i0doUlHhdoN2OWqWwSK0=; b=JgwTX63ZqgXw6GuYY967TBSZ9z
+        cDRqSZQWrf1zi86tdd+G+5tfJner6dwxITwfHdp154USoM2VVC//P+ese5y0gV4LIsjjtW823f6uZ
+        2TCUkaVZzfF+fuPlNWkZLbN7bNnhnCmhlEGSOQUQHMO6hMHVEgduhGaTzgcbAuAUsC2m0AMH7LwaG
+        3iRUgPLPkut6Op2Qnb8rM7ncxPHqzz5eWQ03c2vAb+NCQMU0O6dCMpQhwvYep0jMLM7EWKGDP3nD8
+        ijOzZvbVQWi/NaOVT6vSiEQ1PnPJR/M4Od/pTDeua0NLzQIAhwsozEeDtY7xzSvrWFsyhd8H5jbgi
+        lEOS28OQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by merlin.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mkTLk-008nwL-E2; Tue, 09 Nov 2021 15:47:52 +0000
+Subject: Re: [v2 10/10] iio: imu: add BNO055 I2C driver
+To:     andrea.merello@gmail.com, "joe@perches.com" <joe@perches.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Alexandru Ardelean <ardeleanalex@gmail.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Andrea Merello <andrea.merello@iit.it>
+References: <20210715141742.15072-1-andrea.merello@gmail.com>
+ <20211028101840.24632-1-andrea.merello@gmail.com>
+ <20211028101840.24632-11-andrea.merello@gmail.com>
+ <85ef90ad-0d3a-6cb7-529f-667562b2ad71@infradead.org>
+ <CAN8YU5NiKz2JiNr-47OC4==N8L67HDshuH45BifnHBae+GUU-g@mail.gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <021c6fe0-8131-a4f9-9cb0-2f4771d35da1@infradead.org>
+Date:   Tue, 9 Nov 2021 07:47:45 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAN8YU5NiKz2JiNr-47OC4==N8L67HDshuH45BifnHBae+GUU-g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mardi 09 novembre 2021 à 17:08 +0800, Ming Qian a écrit :
-> Hi all,
+On 11/9/21 3:56 AM, Andrea Merello wrote:
+> Il giorno ven 29 ott 2021 alle ore 00:04 Randy Dunlap
+> <rdunlap@infradead.org> ha scritto:
+>>
+>> On 10/28/21 3:18 AM, Andrea Merello wrote:
+>>> This path adds an I2C driver for communicating to a BNO055 IMU via I2C bus
+>>> and it enables the BNO055 core driver to work in this scenario.
+>>>
+>>> Signed-off-by: Andrea Merello <andrea.merello@iit.it>
+>>> ---
+>>>    drivers/iio/imu/bno055/Kconfig      |  6 ++++
+>>>    drivers/iio/imu/bno055/Makefile     |  1 +
+>>>    drivers/iio/imu/bno055/bno055_i2c.c | 54 +++++++++++++++++++++++++++++
+>>>    3 files changed, 61 insertions(+)
+>>>    create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
+>>>
+>>> diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
+>>> index 941e43f0368d..87200787d548 100644
+>>> --- a/drivers/iio/imu/bno055/Kconfig
+>>> +++ b/drivers/iio/imu/bno055/Kconfig
+>>> @@ -7,3 +7,9 @@ config BOSH_BNO055_SERIAL
+>>>        tristate "Bosh BNO055 attached via serial bus"
+>>>        depends on SERIAL_DEV_BUS
+>>>        select BOSH_BNO055_IIO
+>>> +
+>>> +config BOSH_BNO055_I2C
+>>> +     tristate "Bosh BNO055 attached via I2C bus"
+>>> +     depends on I2C
+>>> +     select REGMAP_I2C
+>>> +     select BOSH_BNO055_IIO
+>>
+>> Hi,
+>>
+>> The config entries that have user prompt strings should also
+>> have help text.  scripts/checkpatch.pl should have told you
+>> about that...
 > 
-> This patch series adds support for
-> the amphion video encoder and decoder
-> via the VPU block present in imx8q platforms.
-> Currently, support for IMX8QXP and IMX8QM is included.
-> 
-> It features decoding for the following formats:
-> - H.264
-> - HEVC
-> - MPEG4
-> - MPEG2
-> - VC1
-> - VP8
-> 
-> It features encoding for the following formats:
-> - H.264
-> 
-> The driver creates a separate device node for the encoder and decoder.
-> 
-> This driver is dependent on vpu firmwares.
-> The firmwares have been submitted to linux-firmware.
-> The firmware patch is since commit
-> b563148fd28623f6b6ce68bb06c3dd3bd138b058:
-> linux-firmware: Update firmware file for Intel Bluetooth 9462
-> (Fri Oct 8 16:30:14 2021 +0530)
-> 
-> and it's available in the git repository at:
->     https://github.com/mingqian-0/linux-firmware.git
-> 
-> for you to fetch changes up to bb3eee4f99589d4910dee4c053a3a685546b5dbb:
-> amphion: add VPU firmwares for NXP i.MX8Q SoCs
-> (Tue Oct 12 15:09:57 2021 +0800)
-> 
-> encoder is tested with gstreamer
-> decoder is tested with gstreamer, but the following patches are required:
-> https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/merge_requests/1252
-> https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/merge_requests/1098
-> https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/merge_requests/1099
+> I'll add it, thanks. But FYI checkpatch doesn't complain about that here.
 
-Just wanted to acknowledge that all these changes are valid and will make their
-way upstream when the development window re-open.
+Hm, thanks for adding it and telling me about that.
 
-p.s. still hope to give this another round of testing soon, sorry for the delays
-lately.
+checkpatch.pl does have some code for checking that but I confirmed
+that it does not catch this simple case.
 
-> 
-> 
-> Changelog:
-> 
-> v12
-> - support reset decoder when starting a new stream
-> - don't append an empty last buffer, set last_buffer_dequeued
-> - improve the resolution change flow
-> - return all buffers if start_streaming fail
-> - fill encoder capture buffer's filed to none
-> - fix a bug in calculating bytesperline
-> 
-> v11
-> - fix dt_binding_check error after upgrade dtschema
-> - remove "default y"
-> - add media device
-> 
-> v10
-> - refine vpu log, remove custom logging infrastructure
-> - support non contiguous planes format nv12m instead of nv12
-> - rename V4L2_PIX_FMT_NV12_8L128 to V4L2_PIX_FMT_NV12MT_8L128
-> - rename V4L2_PIX_FMT_NV12_10BE_8L128 to V4L2_PIX_FMT_NV12MT_10BE_8L128
-> - merge two module into one
-> - fix kernel panic in rmmod
-> 
-> v9
-> - drop V4L2_BUF_FLAG_CODECCONFIG
-> - drop V4L2_EVENT_CODEC_ERROR
-> - drop V4L2_EVENT_SKIP - use the v4l2_buffer.sequence counter
-> - fix some build warnings with W=1 reported by kernel test robot
-> 
-> v8
-> - move driver from driver/media/platform/imx/vpu-8q to
->   driver/media/platform/amphion
-> - rename driver name to amphion
-> - remove imx_vpu.h
-> - move the definition of V4L2_EVENT_CODEC_ERROR to videodev2.h
-> - move the definition of V4L2_EVENT_SKIP to videodev2.h
-> 
-> v7
-> - fix build warnings with W=1 reported by kernel test robot
-> 
-> v6:
-> - rename V4L2_PIX_FMT_NT8 to V4L2_PIX_FMT_NV12_8L128
-> - rename V4L2_PIX_FMT_NT10 to V4L2_PIX_FMT_NV12_10BE_8L128
-> 
-> v5:
-> - move some definition from imx_vph.h to videodev2.h
-> - remove some unnecessary content
-> - add some documentation descriptions
-> - pass the lateset v4l2-compliance test
-> 
-> v4:
-> - redefine the memory-region in devicetree bindings documentation
-> - use v4l2's mechanism to implement synchronize queuing ioctl
-> - remove the unnecessary mutex ioctl_sync
-> - don't notify source change event if the parameters are same as previously established
-> - add flag V4L2_FMT_FLAG_DYN_RESOLUTION to decoder's capture format
-> 
-> v3:
-> - don't make vpu device node a simple-bus
-> - trigger probing vpu core in the driver
-> - remove unnecessary vpu core index property
-> 
-> v2:
-> - fix dt bindings build error
-> - split driver patch into several parts to avoid exceeding bytes limit
-> 
-> Compliance
-> ==========
-> # v4l2-compliance -d /dev/video0
-> v4l2-compliance 1.21.0-4859, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 493af03f3c57 2021-10-08 17:23:11
-> 
-> Compliance test for amphion-vpu device /dev/video0:
-> 
-> Driver Info:
-> 	Driver name      : amphion-vpu
-> 	Card type        : amphion vpu decoder
-> 	Bus info         : platform: amphion-vpu
-> 	Driver version   : 5.15.0
-> 	Capabilities     : 0x84204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 		Device Capabilities
-> 	Device Caps      : 0x04204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 	Detected Stateful Decoder
-> Media Driver Info:
-> 	Driver name      : amphion-vpu
-> 	Model            : amphion-vpu
-> 	Serial           :
-> 	Bus info         : platform: amphion-vpu
-> 	Media version    : 5.15.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 5.15.0
-> Interface Info:
-> 	ID               : 0x0300000c
-> 	Type             : V4L Video
-> Entity Info:
-> 	ID               : 0x00000001 (1)
-> 	Name             : amphion-vpu-decoder-source
-> 	Function         : V4L2 I/O
-> 	Pad 0x01000002   : 0: Source
-> 	  Link 0x02000008: to remote pad 0x1000004 of entity 'amphion-vpu-decoder-proc' (Video Decoder): Data, Enabled, Immutable
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/video0 open: OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test VIDIOC_G/S_PRIORITY: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-> 	test VIDIOC_QUERYCTRL: OK
-> 	test VIDIOC_G/S_CTRL: OK
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 3 Private Controls: 0
-> 
-> Format ioctls:
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> 	test VIDIOC_G/S_PARM: OK (Not Supported)
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK
-> 	test VIDIOC_TRY_FMT: OK
-> 	test VIDIOC_S_FMT: OK
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK (Not Supported)
-> 	test Composing: OK
-> 	test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK
-> 
-> Buffer ioctls:
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> 	test VIDIOC_EXPBUF: OK
-> 	test Requests: OK (Not Supported)
-> 
-> Total for amphion-vpu device /dev/video0: 46, Succeeded: 46, Failed: 0, Warnings: 0
-> 
-> # v4l2-compliance -d /dev/video1
-> v4l2-compliance 1.21.0-4859, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 493af03f3c57 2021-10-08 17:23:11
-> 
-> Compliance test for amphion-vpu device /dev/video1:
-> 
-> Driver Info:
-> 	Driver name      : amphion-vpu
-> 	Card type        : amphion vpu encoder
-> 	Bus info         : platform: amphion-vpu
-> 	Driver version   : 5.15.0
-> 	Capabilities     : 0x84204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 		Device Capabilities
-> 	Device Caps      : 0x04204000
-> 		Video Memory-to-Memory Multiplanar
-> 		Streaming
-> 		Extended Pix Format
-> 	Detected Stateful Encoder
-> Media Driver Info:
-> 	Driver name      : amphion-vpu
-> 	Model            : amphion-vpu
-> 	Serial           :
-> 	Bus info         : platform: amphion-vpu
-> 	Media version    : 5.15.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 5.15.0
-> Interface Info:
-> 	ID               : 0x0300001a
-> 	Type             : V4L Video
-> Entity Info:
-> 	ID               : 0x0000000f (15)
-> 	Name             : amphion-vpu-encoder-source
-> 	Function         : V4L2 I/O
-> 	Pad 0x01000010   : 0: Source
-> 	  Link 0x02000016: to remote pad 0x1000012 of entity 'amphion-vpu-encoder-proc' (Video Encoder): Data, Enabled, Immutable
-> 
-> Required ioctls:
-> 	test MC information (see 'Media Driver Info' above): OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/video1 open: OK
-> 	test VIDIOC_QUERYCAP: OK
-> 	test VIDIOC_G/S_PRIORITY: OK
-> 	test for unlimited opens: OK
-> 
-> Debug ioctls:
-> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
-> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
-> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
-> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
-> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
-> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
-> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
-> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
-> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
-> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
-> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
-> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
-> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
-> 	test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
-> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
-> 	test VIDIOC_QUERYCTRL: OK
-> 	test VIDIOC_G/S_CTRL: OK
-> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
-> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
-> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
-> 	Standard Controls: 20 Private Controls: 0
-> 
-> Format ioctls:
-> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
-> 	test VIDIOC_G/S_PARM: OK
-> 	test VIDIOC_G_FBUF: OK (Not Supported)
-> 	test VIDIOC_G_FMT: OK
-> 	test VIDIOC_TRY_FMT: OK
-> 	test VIDIOC_S_FMT: OK
-> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
-> 	test Cropping: OK
-> 	test Composing: OK (Not Supported)
-> 	test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
-> 	test VIDIOC_(TRY_)ENCODER_CMD: OK
-> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls:
-> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
-> 	test VIDIOC_EXPBUF: OK
-> 	test Requests: OK (Not Supported)
-> 
-> Total for amphion-vpu device /dev/video1: 46, Succeeded: 46, Failed: 0, Warnings: 0
-> 
-> # v4l2-compliance -d /dev/media0
-> v4l2-compliance 1.21.0-4859, 64 bits, 64-bit time_t
-> v4l2-compliance SHA: 493af03f3c57 2021-10-08 17:23:11
-> 
-> Compliance test for amphion-vpu device /dev/media0:
-> 
-> Media Driver Info:
-> 	Driver name      : amphion-vpu
-> 	Model            : amphion-vpu
-> 	Serial           :
-> 	Bus info         : platform: amphion-vpu
-> 	Media version    : 5.15.0
-> 	Hardware revision: 0x00000000 (0)
-> 	Driver version   : 5.15.0
-> 
-> Required ioctls:
-> 	test MEDIA_IOC_DEVICE_INFO: OK
-> 	test invalid ioctls: OK
-> 
-> Allow for multiple opens:
-> 	test second /dev/media0 open: OK
-> 	test MEDIA_IOC_DEVICE_INFO: OK
-> 	test for unlimited opens: OK
-> 
-> Media Controller ioctls:
-> 	test MEDIA_IOC_G_TOPOLOGY: OK
-> 	Entities: 6 Interfaces: 2 Pads: 8 Links: 8
-> 	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
-> 	test MEDIA_IOC_SETUP_LINK: OK
-> 
-> Total for amphion-vpu device /dev/media0: 8, Succeeded: 8, Failed: 0, Warnings: 0
-> 
-> Ming Qian (13):
->   dt-bindings: media: amphion: add amphion video codec bindings
->   media:Add nv12mt_8l128 and nv12mt_10be_8l128 video format.
->   media: amphion: add amphion vpu device driver
->   media: amphion: add vpu core driver
->   media: amphion: implement vpu core communication based on mailbox
->   media: amphion: add vpu v4l2 m2m support
->   media: amphion: add v4l2 m2m vpu encoder stateful driver
->   media: amphion: add v4l2 m2m vpu decoder stateful driver
->   media: amphion: implement windsor encoder rpc interface
->   media: amphion: implement malone decoder rpc interface
->   ARM64: dts: freescale: imx8q: add imx vpu codec entries
->   firmware: imx: scu-pd: imx8q: add vpu mu resources
->   MAINTAINERS: add AMPHION VPU CODEC V4L2 driver entry
-> 
->  .../bindings/media/amphion,vpu.yaml           |  180 ++
->  .../media/v4l/pixfmt-yuv-planar.rst           |   15 +
->  MAINTAINERS                                   |    9 +
->  .../arm64/boot/dts/freescale/imx8-ss-vpu.dtsi |   72 +
->  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |   17 +
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   24 +
->  arch/arm64/configs/defconfig                  |    1 +
->  drivers/firmware/imx/scu-pd.c                 |    4 +
->  drivers/media/platform/Kconfig                |   19 +
->  drivers/media/platform/Makefile               |    2 +
->  drivers/media/platform/amphion/Makefile       |   20 +
->  drivers/media/platform/amphion/vdec.c         | 1680 +++++++++++++++++
->  drivers/media/platform/amphion/venc.c         | 1351 +++++++++++++
->  drivers/media/platform/amphion/vpu.h          |  357 ++++
->  drivers/media/platform/amphion/vpu_cmds.c     |  431 +++++
->  drivers/media/platform/amphion/vpu_cmds.h     |   25 +
->  drivers/media/platform/amphion/vpu_codec.h    |   67 +
->  drivers/media/platform/amphion/vpu_color.c    |  190 ++
->  drivers/media/platform/amphion/vpu_core.c     |  906 +++++++++
->  drivers/media/platform/amphion/vpu_core.h     |   15 +
->  drivers/media/platform/amphion/vpu_dbg.c      |  495 +++++
->  drivers/media/platform/amphion/vpu_defs.h     |  186 ++
->  drivers/media/platform/amphion/vpu_drv.c      |  265 +++
->  drivers/media/platform/amphion/vpu_helpers.c  |  436 +++++
->  drivers/media/platform/amphion/vpu_helpers.h  |   71 +
->  drivers/media/platform/amphion/vpu_imx8q.c    |  271 +++
->  drivers/media/platform/amphion/vpu_imx8q.h    |  116 ++
->  drivers/media/platform/amphion/vpu_malone.c   | 1679 ++++++++++++++++
->  drivers/media/platform/amphion/vpu_malone.h   |   42 +
->  drivers/media/platform/amphion/vpu_mbox.c     |  124 ++
->  drivers/media/platform/amphion/vpu_mbox.h     |   16 +
->  drivers/media/platform/amphion/vpu_msgs.c     |  413 ++++
->  drivers/media/platform/amphion/vpu_msgs.h     |   14 +
->  drivers/media/platform/amphion/vpu_rpc.c      |  279 +++
->  drivers/media/platform/amphion/vpu_rpc.h      |  464 +++++
->  drivers/media/platform/amphion/vpu_v4l2.c     |  702 +++++++
->  drivers/media/platform/amphion/vpu_v4l2.h     |   54 +
->  drivers/media/platform/amphion/vpu_windsor.c  | 1222 ++++++++++++
->  drivers/media/platform/amphion/vpu_windsor.h  |   39 +
->  drivers/media/v4l2-core/v4l2-ioctl.c          |    2 +
->  include/uapi/linux/videodev2.h                |    2 +
->  41 files changed, 12277 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/amphion,vpu.yaml
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-vpu.dtsi
->  create mode 100644 drivers/media/platform/amphion/Makefile
->  create mode 100644 drivers/media/platform/amphion/vdec.c
->  create mode 100644 drivers/media/platform/amphion/venc.c
->  create mode 100644 drivers/media/platform/amphion/vpu.h
->  create mode 100644 drivers/media/platform/amphion/vpu_cmds.c
->  create mode 100644 drivers/media/platform/amphion/vpu_cmds.h
->  create mode 100644 drivers/media/platform/amphion/vpu_codec.h
->  create mode 100644 drivers/media/platform/amphion/vpu_color.c
->  create mode 100644 drivers/media/platform/amphion/vpu_core.c
->  create mode 100644 drivers/media/platform/amphion/vpu_core.h
->  create mode 100644 drivers/media/platform/amphion/vpu_dbg.c
->  create mode 100644 drivers/media/platform/amphion/vpu_defs.h
->  create mode 100644 drivers/media/platform/amphion/vpu_drv.c
->  create mode 100644 drivers/media/platform/amphion/vpu_helpers.c
->  create mode 100644 drivers/media/platform/amphion/vpu_helpers.h
->  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.c
->  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.h
->  create mode 100644 drivers/media/platform/amphion/vpu_malone.c
->  create mode 100644 drivers/media/platform/amphion/vpu_malone.h
->  create mode 100644 drivers/media/platform/amphion/vpu_mbox.c
->  create mode 100644 drivers/media/platform/amphion/vpu_mbox.h
->  create mode 100644 drivers/media/platform/amphion/vpu_msgs.c
->  create mode 100644 drivers/media/platform/amphion/vpu_msgs.h
->  create mode 100644 drivers/media/platform/amphion/vpu_rpc.c
->  create mode 100644 drivers/media/platform/amphion/vpu_rpc.h
->  create mode 100644 drivers/media/platform/amphion/vpu_v4l2.c
->  create mode 100644 drivers/media/platform/amphion/vpu_v4l2.h
->  create mode 100644 drivers/media/platform/amphion/vpu_windsor.c
->  create mode 100644 drivers/media/platform/amphion/vpu_windsor.h
-> 
-> 
-> base-commit: 57c3b9f55ba875a6f6295fa59f0bdc0a01c544f8
+Joe, can you identify why checkpatch does not detect missing Kconfig
+help text is this simple case?
 
+Thanks.
+-- 
+~Randy
