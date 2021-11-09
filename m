@@ -2,130 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10CD544AAAC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:40:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30BFE44AACD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 10:47:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241092AbhKIJnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 04:43:03 -0500
-Received: from mail-pl1-f179.google.com ([209.85.214.179]:34764 "EHLO
-        mail-pl1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbhKIJnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 04:43:02 -0500
-Received: by mail-pl1-f179.google.com with SMTP id r5so19927556pls.1;
-        Tue, 09 Nov 2021 01:40:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Bi+4EcCOJ07EIdzMMOuINB1xKKX7YpFZJOF2Giniox8=;
-        b=Q55Gv9AZ1Ugbxj4x5W4sh7u9Joz9zFr3LMOdPK0nMvb5VE5pbjemU8jCTkXm9pOwWj
-         OLCrLLgH9sCsCKYpnj6bFX8Ud5Bm8Ga6TAmMlOeZekokmTc2eYo18PCBaVaEAhJrEFQS
-         a/i4TUPm+e3GiYF6q+3Mw/Hk4ygumLMtC+9rGL/5dPTLMKSmPRcpD1r6tLG/0BxoUwSG
-         C/ftZn4iDEQnZ56fxHr9/lksupY1emkwE5Og7NKd3t3f2s3npabO7Si9VYjoY1kbGiz8
-         rdfN96iigTo33bhhJmoeb4NOCmp6liDdHKufAYLJrMeDtLY2gM/wTJCE8OTR4NVWoPZQ
-         rMoQ==
-X-Gm-Message-State: AOAM530VoiI9qefsOqeF34Z09oWvJy6Re5G4E2wQoqtufM6bREFJoMwR
-        sCzF+BMX2L0VNLEc7/L/+Xt2hq+IlbCu72VyAxs=
-X-Google-Smtp-Source: ABdhPJwVbz77xeGB/DO7Z/uALHz4oERmvzBmgKOdVHHAT5yOLcAGrWV4NruNJN0Ckdd1t2k8MomEyPTsH64A2B+ZHeA=
-X-Received: by 2002:a17:90b:4b0e:: with SMTP id lx14mr4174899pjb.160.1636450816945;
- Tue, 09 Nov 2021 01:40:16 -0800 (PST)
-MIME-Version: 1.0
-References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-13-kernel@esmil.dk>
- <CAHp75VdmnnrisuP00W0KYta0KgmC+fu3WMxm959dt5X1kpiKTw@mail.gmail.com>
- <CAHp75VcuGdaq_TjjRS0S8R5y-nryLABZSp7ehrXz-fUS2W3vfA@mail.gmail.com>
- <CACRpkdYe-tW2K2eOQa+FYb-ZXzrA95+pPc6kkLB8ZJLAT8G_eA@mail.gmail.com>
- <CANBLGcyo3YjygkjDmdjt4C_H=MZdHQwqumsxnatuObeP2LADAg@mail.gmail.com> <CAHp75VdBaKZVeA7dasHWP4E3c8F2phaGz-90FErj3bB8FJOS9w@mail.gmail.com>
-In-Reply-To: <CAHp75VdBaKZVeA7dasHWP4E3c8F2phaGz-90FErj3bB8FJOS9w@mail.gmail.com>
-From:   Emil Renner Berthing <kernel@esmil.dk>
-Date:   Tue, 9 Nov 2021 10:40:05 +0100
-Message-ID: <CANBLGcw7X9SY3_=A7ZXW60646vconjCbYBsvb=D2a0BPcyn75A@mail.gmail.com>
-Subject: Re: [PATCH v3 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Huan Feng <huan.feng@starfivetech.com>
+        id S240225AbhKIJud convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 Nov 2021 04:50:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243626AbhKIJuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 04:50:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EBBC061764
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 01:47:46 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mkNj9-0001XH-6x; Tue, 09 Nov 2021 10:47:39 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mkNj5-000VTx-Fl; Tue, 09 Nov 2021 10:47:35 +0100
+Message-ID: <6d87acc51ed6fea6a93b92dbcc65f46a3c05ac35.camel@pengutronix.de>
+Subject: Re: [PATCH v2 1/2] I2C: Add I2C driver for Sunplus SP7021
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     "LH.Kuo" <lhjeff911@gmail.com>, daniel.thompson@linaro.org,
+        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
+Date:   Tue, 09 Nov 2021 10:47:35 +0100
+In-Reply-To: <1636441166-8127-2-git-send-email-lh.kuo@sunplus.com>
+References: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
+         <1636441166-8127-1-git-send-email-lh.kuo@sunplus.com>
+         <1636441166-8127-2-git-send-email-lh.kuo@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 Nov 2021 at 10:34, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> On Tue, Nov 9, 2021 at 11:21 AM Emil Renner Berthing <kernel@esmil.dk> wrote:
-> > On Tue, 9 Nov 2021 at 02:01, Linus Walleij <linus.walleij@linaro.org> wrote:
-> > > On Tue, Nov 2, 2021 at 9:08 PM Andy Shevchenko
-> > > <andy.shevchenko@gmail.com> wrote:
->
-> ...
->
-> > > > Linus any comments on this code (sorry if I missed your reply)? The
-> > > > idea behind above is to skip all settings from the same category and
-> > > > apply only the last one, e.g. if we have "bias set to X", ..., "bias
-> > > > disable", ..., "bias set to Y", the hardware will see only the last
-> > > > operation, i.e. "bias set to Y". I think it may not be the best
-> > > > approach (theoretically?) since the hardware definitely may behave
-> > > > differently on the other side in case of such series of the
-> > > > configurations (yes, I have seen some interesting implementations of
-> > > > the touchpad / touchscreen GPIOs that may be affected).
-> > >
-> > > That sounds weird. I think we need to look at how other drivers
-> > > deal with this.
-> > >
-> > > To me it seems more natural that
-> > > starfive_padctl_rmw(sfp, group->pins[i], mask, value);
-> > > would get called at the end of each iteration of the
-> > > for (i = 0; i < num_configs; i++) loop.
-> >
-> > That would work, but when the loop is done the end result would be
-> > exactly the same.
->
-> It seems we interpret the term "result" differently. The result when
-> we talking about GPIOs is the series of pin state changes incl.
-> configuration. This is how it should be recognized when programming
-> hardware.
->
-> >  The only difference is that the above would rapidly
-> > "blink" the different states during the loop until it arrives at the
-> > result. This would certainly be different, but it can never be the
-> > intended behaviour and only a side-effect on how the pinctrl framework
-> > works.
->
-> Is it? That's what I'm trying to get an answer to. If you may
-> guarantee this (the keywords "intended behaviour" and "side effect"),
-> I wouldn't object.
->
-> > The order the different states are blinked depends entirely on
-> > how the pinctrl framework parses the device tree. I still think it
-> > would be more natural to cleanly go to the end result without this
-> > blinking.
+On Tue, 2021-11-09 at 14:59 +0800, LH.Kuo wrote:
+[...]
+> +static int sp_i2c_probe(struct platform_device *pdev)
+> +{
+> +	struct sp_i2c_dev *sp_i2c_dev_info;
+> +	struct i2c_adapter *p_adap;
+> +	unsigned int i2c_clk_freq;
+> +	int device_id = 0;
+> +	int ret = I2C_SUCCESS;
+> +	struct device *dev = &pdev->dev;
+> +	const struct i2c_compatible *dev_mode;
+> +
+> +	if (pdev->dev.of_node) {
+> +		pdev->id = of_alias_get_id(pdev->dev.of_node, "i2c");
+> +		dev_err(&pdev->dev, "pdev->id=%d\n", pdev->id);
+> +		device_id = pdev->id;
+> +	}
+> +
+> +	sp_i2c_dev_info = devm_kzalloc(&pdev->dev, sizeof(*sp_i2c_dev_info), GFP_KERNEL);
+> +	if (!sp_i2c_dev_info)
+> +		return -ENOMEM;
+> +
+> +	if (!of_property_read_u32(pdev->dev.of_node, "clock-frequency", &i2c_clk_freq)) {
+> +		dev_err(&pdev->dev, "clk_freq %d\n", i2c_clk_freq);
+> +		sp_i2c_dev_info->i2c_clk_freq = i2c_clk_freq;
+> +	} else {
+> +		sp_i2c_dev_info->i2c_clk_freq = SP_I2C_FREQ*1000;
+> +	}
+> +
+> +	sp_i2c_dev_info->dev = &pdev->dev;
+> +
+> +	ret = _sp_i2cm_get_resources(pdev, sp_i2c_dev_info);
+> +	if (ret != I2C_SUCCESS) {
+> +		dev_err(&pdev->dev, " get resources fail !\n");
+> +		return ret;
+> +	}
+> +
+> +	/* dma alloc*/
+> +	sp_i2c_dev_info->dma_vir_base = dma_alloc_coherent(&pdev->dev, SP_BUFFER_SIZE,
+> +					&sp_i2c_dev_info->dma_phy_base, GFP_ATOMIC);
+> +	if (!sp_i2c_dev_info->dma_vir_base)
+> +		goto free_dma;
 
-Hmm.. but if going through the different states is what you want, then
-wouldn't you need the device tree to have an ordered list of the
-states rather than just a single node and also a way to tune how long
-time the different states are blinked?
+Please fix your error paths, the driver shouldn't try to revert the
+action that just failed.
+
+Here you can use dmam_alloc_coherent() and just return -ENOMEM on error.
+
+> +
+> +	sp_i2c_dev_info->clk = devm_clk_get(dev, NULL);
+> +
+> +	if (IS_ERR(sp_i2c_dev_info->clk)) {
+> +		ret = PTR_ERR(sp_i2c_dev_info->clk);
+> +		dev_err(&pdev->dev, "failed to retrieve clk: %d\n", ret);
+> +		goto err_clk_disable;
+
+Then this could
+
+		return ret;
+
+Better, use return dev_err_probe().
+
+> +	}
+> +
+> +	sp_i2c_dev_info->rstc = devm_reset_control_get_exclusive(dev, NULL);
+> +
+> +	if (IS_ERR(sp_i2c_dev_info->rstc)) {
+> +		ret = PTR_ERR(sp_i2c_dev_info->rstc);
+> +		dev_err(&pdev->dev, "failed to retrieve reset controller: %d\n", ret);
+> +		goto err_clk_disable;
+
+Same as above.
+
+> +	}
+> +
+> +	ret = clk_prepare_enable(sp_i2c_dev_info->clk);
+> +
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to enable clk: %d\n", ret);
+
+Consider using "%pe" and ERR_PTR(ret) to print the error name instead of
+a number [1].
+
+[1] https://www.kernel.org/doc/html/latest/core-api/printk-formats.html?#error-pointers
+
+> +		goto err_clk_disable;
+
+		return ret;
+
+> +	}
+> +
+> +	ret = reset_control_deassert(sp_i2c_dev_info->rstc);
+> +
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to deassert reset line: %d\n", ret);
+> +		goto err_reset_assert;
+
+		goto err_clk_disable;
+
+> +	}
+> +
+> +	init_waitqueue_head(&sp_i2c_dev_info->wait);
+> +
+> +	dev_mode = of_device_get_match_data(&pdev->dev);
+> +	sp_i2c_dev_info->mode = dev_mode->mode;
+> +	sp_i2c_dev_info->total_port = dev_mode->total_port;
+> +	p_adap = &sp_i2c_dev_info->adap;
+> +	sprintf(p_adap->name, "%s%d", SP_DEVICE_NAME, device_id);
+> +	p_adap->algo = &sp_algorithm;
+> +	p_adap->algo_data = sp_i2c_dev_info;
+> +	p_adap->nr = device_id;
+> +	p_adap->class = 0;
+> +	p_adap->retries = 5;
+> +	p_adap->dev.parent = &pdev->dev;
+> +	p_adap->dev.of_node = pdev->dev.of_node;
+> +
+> +	ret = i2c_add_numbered_adapter(p_adap);
+> +
+> +	ret = _sp_i2cm_init(device_id, sp_i2c_dev_info);
+> +	if (ret != 0) {
+> +		dev_err(&pdev->dev, "i2c master %d init error\n", device_id);
+> +		goto err_reset_assert;
+
+This one is correct, but I'd also print ret.
+
+> +	}
+> +
+> +	if (ret < 0)
+> +		goto err_reset_assert;
+> +	else
+> +		platform_set_drvdata(pdev, sp_i2c_dev_info);
+> +
+> +	ret = request_irq(sp_i2c_dev_info->irq, _sp_i2cm_irqevent_handler, IRQF_TRIGGER_HIGH,
+> +				p_adap->name, sp_i2c_dev_info);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "request irq fail !!\n");
+> +		return I2C_ERR_REQUESET_IRQ;
+
+Don't return non-standard error codes. This should return ret instead,
+but not before going through the error cleanup path below. Also,
+consider using devm_request_irq().
+
+> +	}
+> +
+> +	pm_runtime_set_autosuspend_delay(&pdev->dev, 5000);
+> +	pm_runtime_use_autosuspend(&pdev->dev);
+> +	pm_runtime_set_active(&pdev->dev);
+> +	pm_runtime_enable(&pdev->dev);
+> +
+> +	return ret;
+> +
+> +err_reset_assert:
+> +	reset_control_assert(sp_i2c_dev_info->rstc);
+> +err_clk_disable:
+> +	clk_disable_unprepare(sp_i2c_dev_info->clk);
+> +free_dma:
+> +	dma_free_coherent(&pdev->dev, SP_BUFFER_SIZE,
+> +			sp_i2c_dev_info->dma_vir_base, sp_i2c_dev_info->dma_phy_base);
+> +
+> +	return ret;
+> +}
+
+regards
+Philipp
