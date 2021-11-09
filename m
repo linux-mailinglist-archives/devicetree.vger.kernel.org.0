@@ -2,126 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3198044B375
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 20:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A142244B3D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 21:19:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243859AbhKITqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 14:46:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237907AbhKITqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 14:46:30 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE01C061764;
-        Tue,  9 Nov 2021 11:43:44 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id v40-20020a056830092800b0055591caa9c6so335492ott.4;
-        Tue, 09 Nov 2021 11:43:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=Hn1N4S+EOUFMYFm5rM50RY8TSGpVs4TLCixBeC9QDjs=;
-        b=C199LwFa+kMPYkHTv+iloNSgczkEpRhH4WphKQX/xcrngTFoXndmt4ZgBxTIECHr7G
-         JBwN42XTTP2qjNSNL++ITZjGGlQMzV4xil0X/P/1D7Aw9oz0uQE31yT/5hvToKzeDcFU
-         a59z5RBfzXtzpqAF+AtBcxZ1C+2qptZ+iiXkslvhizS7hnGebS0sxL7Sx2MDn9e8+C62
-         jQZLZVbZhxO0Stn34u9o4ZupEYO4toPbrBRMZVkDuJxhmFyw0qYB96d1WwbkOsDlR9r6
-         ivVdjPYDmN/uHFStFsEWjvmyCjV25M4iza4swXc3Lmn6EMHyOcYL85qfCD3cAup6NvLp
-         AOMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :mime-version:content-disposition;
-        bh=Hn1N4S+EOUFMYFm5rM50RY8TSGpVs4TLCixBeC9QDjs=;
-        b=u3O8If/Fr75Lu9mr1e0bf8MIUqy9Gsa5Y5wqMF/9THiYSqwdA2OZ1Z4DxSEWrerago
-         001g6UvhtnznprG/TaF4CGnwzLBu3coZDoQhHFZthsg3ir0hrzp6SairknoT9Bzx8uJO
-         iYB8EJlxQQjs18LWyJ1oeMIVNQYZMMC6I8lx/Ywm94qo1jgbmymU5s6vNbkF4UuYu31O
-         aiMpZPkafAfm35KCDVw9dj1LAQ24Ar2LiAERbVOm0zFRMnRDAiHDgidEi3OUYKXf/Hlj
-         xckoyVRMHt12eVBHykxI+b1Aowbd8X75CqRy21L8UV4nLQZBGjAPn/LlbccErsalEpci
-         9Thw==
-X-Gm-Message-State: AOAM533GsTUVCqzy4Z8amvx7WDdroSLFk1HbkM1vXUnu7vTcXhz81dhN
-        fklp+JiLa1MU7zC5CBPAa6o=
-X-Google-Smtp-Source: ABdhPJx3+rPyg7q/ZQLHOXOcuB1lPuFMF9z3rf7bbuzpwG1UfPSr7pVuXCafh/+AVhZEyERZ6CxIrQ==
-X-Received: by 2002:a05:6830:1cc:: with SMTP id r12mr8159931ota.76.1636487023958;
-        Tue, 09 Nov 2021 11:43:43 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s20sm8311620oiw.53.2021.11.09.11.43.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 11:43:43 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 9 Nov 2021 11:43:42 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH 2/2] clk: versatile: clk-icst: Ensure clock names are
- unique
-Message-ID: <20211109194342.GA3689749@roeck-us.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+        id S232138AbhKIUWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 15:22:30 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:24398 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231872AbhKIUWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 15:22:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636489159;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=JxqM8I/z35C5+6J2ZygkF2pjyw7aqUpyOwISg707hYI=;
+    b=P4Q/O7R+6NMMrAlpZFc7SF8DTNcYUMrpfKvHu32CezOknO1/Yo3Iu2tZJRnS+B6797
+    76Ib13MWNlnm3EMFJNL6+52AE4zRb0dQk3vI7FuUH7PpE4G/5iJKdR1zgUmly5toHPYt
+    WpTZh+y/F854ldxMHS1w1pphUwbZrRs7lxq5KjUdeBq9uoS8gv6VuMH1QzTQ0Up9B/tb
+    LsO+WBhZEYSz7IMIuHEkewh4vZVYNysaKyWP3OB4cZtp84qHRbfXjv1lFEbB4oTyP37T
+    dpbgYNVlCNj/DN1H9+nsVOQ4piaKfjU+96mmNhQLO4J9q35XkcpvMewwjw4HOZjPA5LZ
+    EzEQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3i8cT6Q=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.5 DYNA|AUTH)
+    with ESMTPSA id Y02aa4xA9KJI0YI
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 9 Nov 2021 21:19:18 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v5 5/7] MIPS: DTS: jz4780: Account for Synopsys HDMI
+ driver and LCD controllers
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <BDU72R.SAKM4CQWCUKI2@crapouillou.net>
+Date:   Tue, 9 Nov 2021 21:19:17 +0100
+Cc:     Paul Boddie <paul@boddie.org.uk>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Jon as Karlman <jonas@kwiboo.se>,
+        dri-devel <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <BF6CBFFA-E8AA-4CCE-A587-4D5D647DEC64@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+ <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
+ <O7VI0R.CRIG8R7O0OOI3@crapouillou.net> <3514743.EH6qe8WxYI@jason>
+ <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
+ <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
+ <BDU72R.SAKM4CQWCUKI2@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 09, 2021 at 10:46:50AM -0600, Rob Herring wrote:
-> Commit 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and
-> node names") moved to using generic node names. That results in trying
-> to register multiple clocks with the same name. Fix this by including
-> the unit-address in the clock name.
-> 
-> Fixes: 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and node names")
-> Cc: stable@vger.kernel.org
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hi Paul,
 
-Tested-by: Guenter Roeck <linux@roeck-us.net>
+> Am 07.11.2021 um 20:05 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+>> 6. Therefore I think it *may* work overclocked with 48MHz
+>> but is not guaranteed or reliable above 27 MHz.
+>> So everything is ok here.
+>=20
+> One thing though - the "assigned-clocks" and "assigned-clock-rates", =
+while it works here, should be moved to the CGU node, to respect the =
+YAML schemas.
 
-> ---
-> This should be applied to stable to minimize DT ABI breakage.
-> ---
->  drivers/clk/versatile/clk-icst.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/versatile/clk-icst.c b/drivers/clk/versatile/clk-icst.c
-> index 77fd0ecaf155..d52f976dc875 100644
-> --- a/drivers/clk/versatile/clk-icst.c
-> +++ b/drivers/clk/versatile/clk-icst.c
-> @@ -484,7 +484,7 @@ static void __init of_syscon_icst_setup(struct device_node *np)
->  	struct device_node *parent;
->  	struct regmap *map;
->  	struct clk_icst_desc icst_desc;
-> -	const char *name = np->name;
-> +	const char *name;
->  	const char *parent_name;
->  	struct clk *regclk;
->  	enum icst_control_type ctype;
-> @@ -533,15 +533,17 @@ static void __init of_syscon_icst_setup(struct device_node *np)
->  		icst_desc.params = &icst525_apcp_cm_params;
->  		ctype = ICST_INTEGRATOR_CP_CM_MEM;
->  	} else {
-> -		pr_err("unknown ICST clock %s\n", name);
-> +		pr_err("unknown ICST clock %pOF\n", np);
->  		return;
->  	}
->  
->  	/* Parent clock name is not the same as node parent */
->  	parent_name = of_clk_get_parent_name(np, 0);
-> +	name = kasprintf(GFP_KERNEL, "%pOFP", np);
->  
->  	regclk = icst_clk_setup(NULL, &icst_desc, name, parent_name, map, ctype);
->  	if (IS_ERR(regclk)) {
-> +		kfree(name);
->  		pr_err("error setting up syscon ICST clock %s\n", name);
->  		return;
->  	}
-> -- 
-> 2.32.0
-> 
+Trying to do this seems to break boot.
+
+I can boot up to=20
+
+[    8.312926] dw-hdmi-ingenic 10180000.hdmi: registered DesignWare HDMI =
+I2C bus driver
+
+and
+
+[   11.366899] [drm] Initialized ingenic-drm 1.1.0 20200716 for =
+13050000.lcdc0 on minor 0
+
+but then the boot process becomes slow and hangs. Last sign of activity =
+is
+
+[   19.347659] hub 1-0:1.0: USB hub found
+[   19.353478] hub 1-0:1.0: 1 port detected
+[   32.321760] wlan0_power: disabling
+
+What I did was to just move
+
+		assigned-clocks =3D <&cgu JZ4780_CLK_HDMI>;
+		assigned-clock-rates =3D <27000000>;
+
+from
+
+	hdmi: hdmi@10180000 {
+
+to
+
+	cgu: jz4780-cgu@10000000 {
+
+Does this mean the clock is assigned too early or too late?
+
+Do you have any suggestions since I don't know the details of CGU.
+
+BR and thanks,
+Nikolaus
+
