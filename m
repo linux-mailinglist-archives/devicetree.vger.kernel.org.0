@@ -2,85 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C44344A000
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 01:53:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7862344A006
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 01:54:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236046AbhKIAz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 19:55:56 -0500
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:44733 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236043AbhKIAz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 19:55:56 -0500
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id F34F980719;
-        Tue,  9 Nov 2021 13:53:08 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1636419188;
-        bh=MbEImmMvNRigKskabLb75rlla0bXlUamTdNYdy6SOJM=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=GGDmvhgLup1dhq+FreEyZuIdJ/ka1sSiHUsV1v6/0CEEBGQRN8udXjtPGM5CIy5Pn
-         jbJ7kxdBPfovdy2A6LNQz9rat82DIytOhV7ELd85ICn79DAN55H4IKUiNNlLtuh1nT
-         Mqxwz25ZyF0VxJaxJjQ+2vF2/jeoDe0Uv5r+hratJLk0YZQiKCrlxMbpM5OjWayAhu
-         TSxXIk1UDg91vMDfwam5YMG0PytKUd7hIz4feq+9fo+QSwC0fYcwDf1uirL2nASqzL
-         scq9aaqC8+YHreSFSxtZRrkentHQ+jBONutYifzQz2HHySqaaZPpayC5NFHz7v6E9a
-         GiELd2FYNeYUQ==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6189c6740001>; Tue, 09 Nov 2021 13:53:08 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.24; Tue, 9 Nov 2021 13:53:08 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.024; Tue, 9 Nov 2021 13:53:08 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] arm/arm64: dts: Enable more network hardware
-Thread-Topic: [PATCH v2 0/2] arm/arm64: dts: Enable more network hardware
-Thread-Index: AQHXw70vJ5ycklHEVU65gyB9DuI/yqv5pumA
-Date:   Tue, 9 Nov 2021 00:53:07 +0000
-Message-ID: <c3090ad7-3427-8e97-9536-caaa1f04b84c@alliedtelesis.co.nz>
-References: <20211018011211.3836590-1-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20211018011211.3836590-1-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C549275BD148C04B8F970386AB7FBB79@atlnz.lc>
-Content-Transfer-Encoding: base64
+        id S236360AbhKIA5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 19:57:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236043AbhKIA5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 19:57:24 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393BCC061570
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 16:54:39 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id o15-20020a9d410f000000b0055c942cc7a0so5683574ote.8
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 16:54:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y/5wawZ4iCQr7l/M8N9c7Pm/2uOFf0V7hWRrRXV1YxY=;
+        b=n+jlur+tkjDc+lvzvnxzvjuMCuPiLormrOIgFn5OjIIJDPQHrK7TYPu8WkNQsELu1e
+         xa6Ms7ysitAQJllZkoG9r+FsT1x/JJVXiQQTYvYlfe4V1HuBUazR6CzD+341b1DQvMwR
+         ehKV26SEHzwLQUzAYiT6S9szxr+CZ+pug1+BngZBPtdxAohv7pweOteMw11Opm0tNZ4J
+         utDUZzCR8NkxuTy37qDOPhHzRcf/oMHy8/p3KMsuKzwOtzG+SS+L98bqykJsd9/3eYCg
+         e3N1zFEeyPwFmtROdKHMB5ZaAzoSn4g+NXJpbsKNunzO9Vaq/DN+cgYhOlkQyymcldrh
+         aR1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y/5wawZ4iCQr7l/M8N9c7Pm/2uOFf0V7hWRrRXV1YxY=;
+        b=uXboFXVtvayU4PUmXiwOA4a6w8iBCAakGHkCHGUKmuTFsdOC65Vv9oglT8IwX4OMUV
+         97wEnqnKNnqlLgJxGmdegU1pLqJTr6E1E3HCFgokLXIaAVEkzZjQWAaFHrySjfYyvG8J
+         E145B6kkPke8tPB9I5q/c0oPOg4lhdxOXl+fM6YHC3qHNBrnM9QxzbBa69gyhrsRAcNx
+         tfdtuwfwg9dgYKc9IhK9XC7dVRXhAZGAk2WhwOypBepUawRhmSWEZYDxyiB2J//XEu8W
+         SuN7ZPsCaV5eraavP7lfMCcIElB/YJwgS4tsy+jrV7/FTecq5YaYURN+lpez1HSA9Ufn
+         OeUw==
+X-Gm-Message-State: AOAM532rHpmxw8qmPYzOwRUYn6o73NIKKlu6TttxqpTSJfrLqU6sRHEg
+        wT9LHyTkvG/APZCORLu9a7s/9/67ulkNfwp06Z2JRw==
+X-Google-Smtp-Source: ABdhPJx6ntF9Ij4ABUlVfspt/BrE1AagUV5HYqW4lumhYW9HaJk/bpBVv2CAh2o/6TEPXu1pygB6104B8pbDewZcMzA=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr2614070otj.35.1636419278616;
+ Mon, 08 Nov 2021 16:54:38 -0800 (PST)
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=eIJtc0h1 c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=vIxV3rELxO4A:10 a=jYDJZq7GXZI51NWTFi0A:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+References: <20211102161125.1144023-1-kernel@esmil.dk> <20211102161125.1144023-13-kernel@esmil.dk>
+ <CAHp75VdmnnrisuP00W0KYta0KgmC+fu3WMxm959dt5X1kpiKTw@mail.gmail.com>
+In-Reply-To: <CAHp75VdmnnrisuP00W0KYta0KgmC+fu3WMxm959dt5X1kpiKTw@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 9 Nov 2021 01:54:26 +0100
+Message-ID: <CACRpkdZOpXC0GvoyS8KexgjxL17rjyNkPuA0KGOvesZMDLvyJg@mail.gmail.com>
+Subject: Re: [PATCH v3 12/16] pinctrl: starfive: Add pinctrl driver for
+ StarFive SoCs
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWxsLA0KDQpPbiAxOC8xMC8yMSAyOjEyIHBtLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPiBU
-aGlzIHNlcmllcyBlbmFibGVzIHRoZSBTd2l0Y2ggYW5kIDIuNUcgRXRoZXJuZXQgcG9ydCBvbiB0
-aGUgQ045MTMwLUNSQi4gVGhlDQo+IGNoYW5nZXMgYXJlIGJhc2VkIG9uIHRoZSBNYXJ2ZWxsIFNE
-Sy4NCj4NCj4gTm90ZSBHcmVnb3J5IGhhcyBhbHJlYWR5IHBpY2tlZCB1cCB0aGUgMi41RyBFdGhl
-cm5ldCBwYXRjaCBmcm9tIHYxIHNvIEkndmUgbm90DQo+IGluY2x1ZGVkIGl0IGluIHYyIG9mIHRo
-aXMgc2VyaWVzLg0KPg0KPiBBbHNvIG5vdGUgdGhhdCBpZiBhbnlvbmUgdHJpZXMgb3V0IHRoZSBT
-RlArIHBvcnQgb24gYSBjb21wbGV0ZSBDUkIgc2hpcHBlZCBmcm9tDQo+IE1hcnZlbGwgdGhlIGNo
-YXNzaXMgcHJldmVudHMgdGhlIGVqZWN0b3IgZnJvbSB3b3JraW5nIHNvIHRoZSBTRlAgd2lsbCBn
-ZXQNCj4gc3R1Y2suIFRha2luZyB0aGUgYm9hcmQgb3V0IG9mIHRoZSBjaGFzc2lzIGFsbG93cyB0
-aGUgU0ZQIHRvIGJlDQo+IGluc3RlcnRlZC9yZW1vdmVkLg0KR2VudGxlIHBpbmcgb24gdGhpcyBz
-ZXJpZXMuIEkndmUgaGFkIGEgcmV2aWV3IGZyb20gQW5kcmV3IGZvciBwYXRjaCAyIA0KYnV0IGhh
-dmVuJ3QgaGVhcmQgYW55dGhpbmcgZWxzZS4NCj4gQ2hyaXMgUGFja2hhbSAoMik6DQo+ICAgIGFy
-bS9hcm02NDogZHRzOiBFbmFibGUgQ1AwIEdQSU9zIGZvciBDTjkxMzAtQ1JCDQo+ICAgIGFybS9h
-cm02NDogZHRzOiBBZGQgTVY4OEU2MzkzWCB0byBDTjkxMzAtQ1JCIGRldmljZSB0cmVlDQo+DQo+
-ICAgYXJjaC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2NuOTEzMC1jcmIuZHRzaSB8IDEzOSArKysr
-KysrKysrKysrKysrKysrKw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMzkgaW5zZXJ0aW9ucygrKQ0K
-Pg==
+On Tue, Nov 2, 2021 at 9:02 PM Andy Shevchenko
+<andy.shevchenko@gmail.com> wrote:
+
+> > +       depends on OF
+>
+> So this descreases test coverage.
+> Linus, can we provide a necessary stub so we may drop this dependency?
+
+Hm it further selects OF_GPIO which depends on OF
+so I don't know how that would work.
+
+But does it decrease compile coverage a lot, even x86 has
+optional OF support so I imagine it appears in x86
+allyesconfig I suppose? Or am I wrong?
+
+Yours,
+Linus Walleij
