@@ -2,91 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF1CA44A7D2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 08:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CBEF44A84C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:26:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243729AbhKIHvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 02:51:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49534 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243727AbhKIHu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 02:50:59 -0500
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C407DC061764;
-        Mon,  8 Nov 2021 23:48:13 -0800 (PST)
-Received: by mail-ua1-x933.google.com with SMTP id p37so35676114uae.8;
-        Mon, 08 Nov 2021 23:48:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=/QUEnlz9pnTv5dACFw29fj1vZqzy6D8L2Zl3G7etHJI=;
-        b=DpS92VDr3SpzB2I8Png0q/ldI3iVnAh/bbRvssTSlyDttzU9kJgHIPZpbHKuVbg8t0
-         9zS6nNghulnmtybgfdWV6fWXWJPikaZenGBuDaAJTtcJ7PFPPzqwDbI+tZBg16K2bftC
-         1D50ZOiJpMt7miq6u+TZqq8o05D1gjv6qNR6P28Arsk2wqAUaQi5rGK3ecfmACKSEnVv
-         2jYtFEQbTSqWq2w0nMmIm5ePzI6r9VeCOss+X8dqJq3AghTHOsfQsgAxiAWrytJZKtiK
-         gwgRCEZVaSQN0sy0nrRLgxAJD/n2OzPJeGhFicjgp/bKCEdlpSIwsDb4gFCKCA3K4tKh
-         Bn6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=/QUEnlz9pnTv5dACFw29fj1vZqzy6D8L2Zl3G7etHJI=;
-        b=pNlWssPMvByrm4iQ/rj8qk+KJJ7AT3fEgCbbg5GUOoBBeV8y2iuqtHaiuKLzUil7Dt
-         P274wozfmKB3xEsNdx8o3xDRe43C3FAbJJrBSdWQghaBiWXVHFz41ANus+Z9RhfGYmFn
-         dLYGC+SlEitlFNnvuqaw2glQjXnyVwTPspn3gsWxwk+/49P2Vtb8Hu6PbzNc+AJKTHLm
-         fSrujnYUS97M+zs2kF81z6h7bEv2a8DLdbxrBQcrXeMn379dpF6lXI+nhOgEt3Y71m4q
-         9q2U6ntoRKKAtdAVjLUPxq4tyhLuoMYxtgpunSk6RaKnfhtrlHhgO+DJRQJ3PAp/JRM0
-         YgHQ==
-X-Gm-Message-State: AOAM5325Rht2JTQkPuJYm5RAcAe6F/mITVfDP9/3aGvNWcQ0LS70WDzF
-        C40+H/jNXSokUZetgVB2RTG2fhWyIh/DegzybgI=
-X-Google-Smtp-Source: ABdhPJyln6kAbCxuptY5D50Rsgr0Hfun9PuAxCl69DwrLLLnJ3ocMWCToG1ec0gNaUCvtXdPAXlAN7P6jeqC3RzLepo=
-X-Received: by 2002:a05:6102:3166:: with SMTP id l6mr27912064vsm.51.1636444092898;
- Mon, 08 Nov 2021 23:48:12 -0800 (PST)
+        id S244041AbhKII2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 03:28:47 -0500
+Received: from 17.mo561.mail-out.ovh.net ([87.98.178.58]:34479 "EHLO
+        17.mo561.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239099AbhKII2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:28:46 -0500
+X-Greylist: delayed 1799 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Nov 2021 03:28:46 EST
+Received: from player750.ha.ovh.net (unknown [10.109.146.143])
+        by mo561.mail-out.ovh.net (Postfix) with ESMTP id 572F32422C
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 07:49:50 +0000 (UTC)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player750.ha.ovh.net (Postfix) with ESMTPSA id 6F7A52400E93F;
+        Tue,  9 Nov 2021 07:49:37 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-102R004b5d7a376-507d-4bf9-be5d-6ccd0cb549da,
+                    59B56381F1A9F0D5248293F13F2B328DA5DD2F9D) smtp.auth=rafal@milecki.pl
+X-OVh-ClientIp: 194.187.74.233
+Message-ID: <48cb0c8c-c752-0832-1e1a-836303926ed3@milecki.pl>
+Date:   Tue, 9 Nov 2021 08:49:36 +0100
 MIME-Version: 1.0
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
- <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-3-andrea.merello@gmail.com>
- <CAHp75VeYRBe_-uMRTwM1_MYYHYBTZeZ21SxAyCeeWu6pgJy5BA@mail.gmail.com>
-In-Reply-To: <CAHp75VeYRBe_-uMRTwM1_MYYHYBTZeZ21SxAyCeeWu6pgJy5BA@mail.gmail.com>
-Reply-To: andrea.merello@gmail.com
-From:   Andrea Merello <andrea.merello@gmail.com>
-Date:   Tue, 9 Nov 2021 08:48:01 +0100
-Message-ID: <CAN8YU5ORN1=smUvNcWHpqE1e12n3+T2gaHAEbW9RHnarXKqsOw@mail.gmail.com>
-Subject: Re: [v2 02/10] iio: document linear acceleration modifiers
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: brcmnand: add "no-wp" property
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        jmondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
-Content-Type: text/plain; charset="UTF-8"
+        Brian Norris <computersforpeace@gmail.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20211103151117.18690-1-zajec5@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+In-Reply-To: <20211103151117.18690-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 2890748011998849882
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvuddrudefgddutdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepjeetledugeejtdevheetieduhefgtedvgefftddvfedvieevjeegleffleegtdeunecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeehtddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il giorno gio 28 ott 2021 alle ore 12:32 Andy Shevchenko
-<andy.shevchenko@gmail.com> ha scritto:
->
-> On Thu, Oct 28, 2021 at 1:18 PM Andrea Merello <andrea.merello@gmail.com> wrote:
-> >
-> > This patch introduces ABI documentation for new iio modifiers used for
-> > reporting "linear acceleration" measures.
->
-> Because of ordering and absence of Fixes tag I haven't clearly got if
-> this is an existing set of attributes or that that will be added by
-> the series. If the former, use a Fixes tag and place it first in the
-> series. If the latter, move it after the actual addition of the
-> attributes in the code.
+On 03.11.2021 16:11, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It's required to properly describe boards without connected WP pin (e.g.
+> Asus GT-AC5300).
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>   Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> index dd5a64969e37..49c7860c0dad 100644
+> --- a/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/brcm,brcmnand.yaml
+> @@ -111,6 +111,11 @@ properties:
+>         earlier versions of this core that include WP
+>       type: boolean
+>   
+> +  no-wp:
+> +    description:
+> +      This property marks boards with WP pin not connected to the NAND chip.
+> +    type: boolean
 
-The latter. Will move in V3.
-Thanks
-
-> --
-> With Best Regards,
-> Andy Shevchenko
+I started rethinking this. Since we already hav "brcm,nand-has-wp"
+(boolean), would makes more sense:
+1. Add "no-wp" boolean (as proposed in this patch)
+2. Add "wp" (or similar) with [0, 1] and deprecate "brcm,nand-has-wp"
