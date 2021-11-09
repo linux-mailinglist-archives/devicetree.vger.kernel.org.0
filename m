@@ -2,258 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 773B144A56B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 05:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C26C844A587
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 05:06:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240751AbhKIECr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 23:02:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240745AbhKIECq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 23:02:46 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28BF0C061767
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 20:00:01 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id l7-20020a0568302b0700b0055ae988dcc8so25757785otv.12
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 20:00:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eukiySQcktnrCgOs1xDT7v0DSF/3D+JwoCXCinBpii8=;
-        b=gSWIbfoKiBJg0LOKG01sJ4sPbPVyubMqUKHRLk4Tp+ZtpVhT7P8nYeQ4sw4Hfq9zMU
-         8L6qItibnw49BOIrIhVKjkw6R8uTDgeAgUxy+iEVu5OVj7RUbijhlJYtyY4aZSICSLz/
-         VAp3+/r+HRYJ2lzJNDVVZmpXwC14GZjnKovfWUBhWgd96ViSZpcNZAJ36HPrOrYfeONj
-         L5ugc6nQ1bJBIRXeybYrwCX7fOo/jzdELhJn9omL5T62TiXE26i3WH9C5sNpS9SWndOi
-         p7hQAHMPYtu1YRyUVgcxMbt6nsEpUiNkD+skrln7PeFqtg4O2Bjv4YyxkfpiOlc/J+V2
-         sQNQ==
+        id S242578AbhKIEJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 23:09:28 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:45959 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242505AbhKIEJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 23:09:22 -0500
+Received: by mail-ot1-f47.google.com with SMTP id l7-20020a0568302b0700b0055ae988dcc8so25778635otv.12;
+        Mon, 08 Nov 2021 20:06:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eukiySQcktnrCgOs1xDT7v0DSF/3D+JwoCXCinBpii8=;
-        b=cx6HaYX7K1PsXGZJ10GcZpdjoINxni7J+RhVfVLe/6Fhjo8/t3a1Jqa13fi5IjizrO
-         6K95MA58UHV70ILQs34rRERApB98KBbBuNftVrjd6ZwhcYVmhX40uAX6lkX5OHnOw2Hn
-         pTU5TtvO98k0g4togc7bTdjRshwMmX9CKyd+zC8gWFdDgLg6FwKq3mogahj8g7YqIibW
-         0CYMpTFX8sUPmeKOLDHMaNfnW3Tlban7KsOOkzIJO2HADq3tgEfo/jv6OqFxSkI6s2d6
-         xwJmGrIP9cOJb+Z3VzfQQy2WvnqvJEN9MOca8ZGOkRA/s3jNjFf+QsNWnL07ITvVSz1I
-         pGrA==
-X-Gm-Message-State: AOAM531BucRnOh6niUWiX0awIB0DwQHQK0AvCbrfEC/cJZfAgXDSszMs
-        hVfSVO3EBOoe+swt54Wes2lkXSNymB3tGJJdkfFdDn0u0XNU2Q==
-X-Google-Smtp-Source: ABdhPJylbstTrfbzBS3XeO4qBW1r5kHdhaSGvCxdMCtJf3Q5h1gVclMDEWUuzgC+APiSWQ5qCmq2IfFSufVNsHBmB14=
-X-Received: by 2002:a9d:ed6:: with SMTP id 80mr3352500otj.35.1636430400332;
- Mon, 08 Nov 2021 20:00:00 -0800 (PST)
-MIME-Version: 1.0
-References: <1635324926-22319-1-git-send-email-wells.lu@sunplus.com> <1635324926-22319-4-git-send-email-wells.lu@sunplus.com>
-In-Reply-To: <1635324926-22319-4-git-send-email-wells.lu@sunplus.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 9 Nov 2021 04:59:48 +0100
-Message-ID: <CACRpkdaqAtP0rykP2Q25wc+t1Uk2xXYFvcrCdBXyWVRnHNGtGA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] devicetree: bindings: pinctrl: Add bindings doc for
- Sunplus SP7021.
-To:     Wells Lu <wellslutw@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        qinjian@cqplus1.com, dvorkin@tibbo.com,
-        Wells Lu <wells.lu@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Oge0EnfKNFQBUdGv4kRxUqctp7bsGqv2hp5zFLIPTz0=;
+        b=OBzP46CGBuNrhPGDSco7YUVITLLFjZ0LwtS/xz8d8cZsfn3uRvmWGXZOZ6nTcvnp+w
+         W7sOHBSNL4b94R2wRvjcBUn6AfJPlMoDCwaJZDU4HrusgB+bSOETXgob436JZCupNnZM
+         S2CzJH/w8zYCWqXpGlTur+pdkheo9pulSULoYRXWbYUC1jEPZ05v04yeqIQlW1dD9Pya
+         RsBJtNDVHmAGyyiSLpgLKzcHE7Lu4YwaHNdKZj8MEEzZ3M6KUuUFWBxC+93N+iSpz5qd
+         L8VzqUjpqufm5PqE4eDQLchKwwr1EZC6nXyhRsdv5iqR4K3HE5vYlrO6aV3JS9HCYeXQ
+         2lFw==
+X-Gm-Message-State: AOAM533+eGf28ix5Tk21cKAjuTll4iPPI/VTQLT/TuH4mirTNZeIn+V9
+        0WHa5P3E88Ei1CKuLlxNtw==
+X-Google-Smtp-Source: ABdhPJyr28faBwelObCcuw2f/7Ua5w6R6abaMd8+HrGQ+LM8ItIlWJVTwTBhSGG0onP7IPs6JktBMg==
+X-Received: by 2002:a05:6830:4cf:: with SMTP id s15mr2725457otd.219.1636430795994;
+        Mon, 08 Nov 2021 20:06:35 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id f25sm5222567oog.44.2021.11.08.20.06.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Nov 2021 20:06:35 -0800 (PST)
+Received: (nullmailer pid 743045 invoked by uid 1000);
+        Tue, 09 Nov 2021 04:06:29 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     conor.dooley@microchip.com
+Cc:     ivan.griffin@microchip.com, jassisinghbrar@gmail.com,
+        geert@linux-m68k.org, lewis.hanly@microchip.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        aou@eecs.berkeley.edu, paul.walmsley@sifive.com,
+        broonie@kernel.org, atish.patra@wdc.com,
+        linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org,
+        palmer@dabbelt.com, gregkh@linuxfoundation.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        bin.meng@windriver.com, robh+dt@kernel.org,
+        linux-crypto@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-gpio@vger.kernel.org, bgolaszewski@baylibre.com,
+        a.zummo@towertech.it, linus.walleij@linaro.org,
+        daire.mcnamara@microchip.com, alexandre.belloni@bootlin.com,
+        krzysztof.kozlowski@canonical.com
+In-Reply-To: <20211108150554.4457-12-conor.dooley@microchip.com>
+References: <20211108150554.4457-1-conor.dooley@microchip.com> <20211108150554.4457-12-conor.dooley@microchip.com>
+Subject: Re: [PATCH 11/13] dt-bindings: usb: add bindings for microchip mpfs musb
+Date:   Mon, 08 Nov 2021 22:06:29 -0600
+Message-Id: <1636430789.946637.743044.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wells Lu,
+On Mon, 08 Nov 2021 15:05:52 +0000, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Add device tree bindings for the usb controller on
+> the Microchip PolarFire SoC.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../bindings/usb/microchip,mpfs-usb-host.yaml | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.yaml
+> 
 
-thanks for your patch!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Wed, Oct 27, 2021 at 10:55 AM Wells Lu <wellslutw@gmail.com> wrote:
+yamllint warnings/errors:
 
-> +      properties:
-> +        pins:
-> +          description: |
-> +            Define pins which are used by pinctrl node's client device.
-> +
-> +            It consists of one or more integers which represents the config
-> +            setting for corresponding pin. Please use macro SPPCTL_IOPAD to
-> +            define the integers for pins.
-> +
-> +            The first argument of the macro is pin number, the second is pin
-> +            type, the third is type of GPIO, the last is default output state
-> +            of GPIO.
-> +          $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-> +        function:
-> +          description: |
-> +            Define pin-function which is used by pinctrl node's client device.
-> +            The name should be one of string in the following enumeration.
-> +          $ref: "/schemas/types.yaml#/definitions/string"
-> +          enum: [ SPI_FLASH, SPI_FLASH_4BIT, SPI_NAND, CARD0_EMMC, SD_CARD,
-> +                  UA0, FPGA_IFX, HDMI_TX, LCDIF, USB0_OTG, USB1_OTG ]
-> +
-> +        groups:
-> +          description: |
-> +            Define pin-group in a specified pin-function.
-> +            The name should be one of string in the following enumeration.
-> +          $ref: "/schemas/types.yaml#/definitions/string"
-> +          enum: [ SPI_FLASH1, SPI_FLASH2, SPI_FLASH_4BIT1, SPI_FLASH_4BIT2,
-> +                  SPI_NAND, CARD0_EMMC, SD_CARD, UA0, FPGA_IFX, HDMI_TX1,
-> +                  HDMI_TX2, HDMI_TX3, LCDIF, USB0_OTG, USB1_OTG ]
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.yaml: properties:interrupt-names: 'oneOf' conditional failed, one must be fixed:
+	[{'const': 'dma'}, {'const': 'mc'}] is too long
+	[{'const': 'dma'}, {'const': 'mc'}] is too short
+	False schema does not allow 2
+	1 was expected
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.yaml: ignoring, error in schema: properties: interrupt-names
+warning: no schema found in file: ./Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.yaml
+Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.example.dts:19:18: fatal error: dt-bindings/clock/microchip,mpfs-clock.h: No such file or directory
+   19 |         #include "dt-bindings/clock/microchip,mpfs-clock.h"
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/usb/microchip,mpfs-usb-host.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1441: dt_binding_check] Error 2
 
-Is it possible to use
-Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
-for this like other drivers do?
+doc reference errors (make refcheckdocs):
 
-> +        zero_func:
-> +          description: |
-> +            Disabled pins which are not used by pinctrl node's client device.
-> +          $ref: /schemas/types.yaml#/definitions/uint32-array
+See https://patchwork.ozlabs.org/patch/1552389
 
-I have never seen this before. Can't you just use pin control hogs
-for this so the pin controller just take care of these pins?
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> +      allOf:
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - SPI_FLASH
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - SPI_FLASH1
-> +                  - SPI_FLASH2
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - SPI_FLASH_4BIT
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - SPI_FLASH_4BIT1
-> +                  - SPI_FLASH_4BIT2
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - SPI_NAND
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - SPI_NAND
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - CARD0_EMMC
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - CARD0_EMMC
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - SD_CARD
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - SD_CARD
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - UA0
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - UA0
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - FPGA_IFX
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - FPGA_IFX
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - HDMI_TX
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - HDMI_TX1
-> +                  - HDMI_TX2
-> +                  - HDMI_TX3
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - LCDIF
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - LCDIF
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - USB0_OTG
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - USB0_OTG
-> +        - if:
-> +            properties:
-> +              function:
-> +                enum:
-> +                  - USB1_OTG
-> +          then:
-> +            properties:
-> +              groups:
-> +                enum:
-> +                  - USB1_OTG
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-This looks complex to me, I need feedback from bindings people
-on this.
+pip3 install dtschema --upgrade
 
-> +        pins_uart0: pins_uart0 {
-> +            function = "UA0";
-> +            groups = "UA0";
-> +        };
-> +
-> +        pins_uart1: pins_uart1 {
-> +            pins = <
-> +                SPPCTL_IOPAD(11,SPPCTL_PCTL_G_PMUX,MUXF_UA1_TX,0)
-> +                SPPCTL_IOPAD(10,SPPCTL_PCTL_G_PMUX,MUXF_UA1_RX,0)
-> +                SPPCTL_IOPAD(7,SPPCTL_PCTL_G_GPIO,0,SPPCTL_PCTL_L_OUT)
-> +            >;
-> +        };
+Please check and re-submit.
 
-This first looks like two ways to do the same thing?
-UART0 uses strings for group + function and uart1 control
-individual pins.
-
-Is it possible to just do it one way?
-
-I think the pins = <...> scheme includes also multiplexing settings
-and then it should be named pinmux = <...>:
-
-Please read
-Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
-closely.
-
-Yours,
-Linus Walleij
