@@ -2,184 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E9744A724
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 07:59:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AB2744A790
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 08:24:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243354AbhKIHCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 02:02:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243362AbhKIHCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 02:02:18 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67128C061767;
-        Mon,  8 Nov 2021 22:59:33 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id q17so7143482plr.11;
-        Mon, 08 Nov 2021 22:59:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=O5DLywLCIt3WEr8AzqOeWM2ZVJBih1TyS5Wn3VxhmrA=;
-        b=ksxPpsU2yMxE4m2k+HwNsmRofXABRujyAEP8Jj3awk/1y1nIpB1x7Eeqg4cnHKYuxF
-         wzdOvc6Ly4mZ51HFcfs0J6mq2Ch2kR8OeRFXhdFVcYcGE+AJ9/SXYUCLAzDI76dJXTZT
-         j8PiTEITel0hZ7aw8EgAm6l4nedcBvbi4CAW8V4cFUM1zRFNpI9FbDupWo3cFpPeKIfL
-         dcZSAGm2t/WCMk1w3Yck7i0LMEa8628/4w9FuG+yq5jCBtYY0fG4mwrEpMYysR2VvvqJ
-         EVM+Vbc4nSH/6uPm0aN6UEGPQ6TLy52va+fpLM2UZGCBZX3K1VQdZN5QNdTX/MX0DDKT
-         Mvag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=O5DLywLCIt3WEr8AzqOeWM2ZVJBih1TyS5Wn3VxhmrA=;
-        b=uwyDPgQi1TY4uxmgOoaBRvBhtznBY8KpzMmahEyamgBaxpmopgKof+nbuzERQffFX/
-         7hc0Ns+PrYDbTQd8vZEoZn1Htpf8CP3c/2xODbmb4CQW2JCkq6ge/gKUcsJaIItkL8qU
-         IDqDn3wpP57Mw00c277uGRcmJ3uO3JH4d74W1Xk9jF2zHlTNrnkGHfSs/vxx3XmvY/nI
-         VUrtEN9ALwLTKgf+CWL2ZGdEQMXbesQZUajwZToPyuRwissrcrphC8sHl1B2OaX/qFWn
-         IVzyspd1HkpvyQPgFzDsOG17wloJKiAd89NOG3fHX7w4eIut/gSpoxY8g+8eykRhhEps
-         7fhw==
-X-Gm-Message-State: AOAM531yuktqQgzhn4Vq7SEvULl74zwCg3XmiRvB+2JT7fvidwp0UR3C
-        i3iYqC5HW5YWNg3E9xuzpuU=
-X-Google-Smtp-Source: ABdhPJxmmfk+rHcVGIoKV3fGudcyp2Tv6+HTR3bPSnqr2vc1KiG8k2/eF4b0/9qPrFKpOdTPOFk8Dg==
-X-Received: by 2002:a17:90b:155:: with SMTP id em21mr4900082pjb.12.1636441172848;
-        Mon, 08 Nov 2021 22:59:32 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id ep15sm1929586pjb.3.2021.11.08.22.59.30
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Nov 2021 22:59:32 -0800 (PST)
-From:   "LH.Kuo" <lhjeff911@gmail.com>
-X-Google-Original-From: "LH.Kuo" <lh.kuo@sunplus.com>
-To:     p.zabel@pengutronix.de, daniel.thompson@linaro.org,
-        lee.jones@linaro.org, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     qinjian@cqplus1.com, wells.lu@sunplus.com,
-        "LH.Kuo" <lh.kuo@sunplus.com>
-Subject: [PATCH v2 2/2] devicetree bindings I2C Add bindings doc for Sunplus SP7021
-Date:   Tue,  9 Nov 2021 14:59:26 +0800
-Message-Id: <1636441166-8127-3-git-send-email-lh.kuo@sunplus.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1636441166-8127-1-git-send-email-lh.kuo@sunplus.com>
-References: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
- <1636441166-8127-1-git-send-email-lh.kuo@sunplus.com>
+        id S243638AbhKIH1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 02:27:07 -0500
+Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:55390
+        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S243606AbhKIH1H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 02:27:07 -0500
+X-Greylist: delayed 1553 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Nov 2021 02:27:05 EST
+X-MailGates: (compute_score:DELIVER,40,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(25032:0:AUTH_RELAY)
+        (envelope-from <edwin.chiu@sunplus.com>); Tue, 09 Nov 2021 14:58:29 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Tue, 9 Nov 2021 14:58:24 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Tue, 9 Nov 2021
+ 14:58:24 +0800
+From:   =?big5?B?RWR3aW4gQ2hpdSCq9KurrnA=?= <edwin.chiu@sunplus.com>
+To:     Rob Herring <robh@kernel.org>,
+        Edwin chiu <edwinchiu0505tw@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: RE: [PATCH 1/2] dt-bingings:arm:sunplus:add sp7021 compatible string
+ to sunplus,idle-state.yaml
+Thread-Topic: [PATCH 1/2] dt-bingings:arm:sunplus:add sp7021 compatible string
+ to sunplus,idle-state.yaml
+Thread-Index: AQHX1HPZglWXpubb1Eu7jaA7xfrmEqv5EugAgAGt1mA=
+Date:   Tue, 9 Nov 2021 06:58:24 +0000
+Message-ID: <d2e1fc4e7913459fbc96d845eb73b87b@sphcmbx02.sunplus.com.tw>
+References: <cover.1636356928.git.edwin.chiu@sunplus.com>
+ <5d2231d33d647d24d2b95c9f652687f7f1dccd2d.1636356928.git.edwin.chiu@sunplus.com>
+ <1636376582.101053.3181499.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1636376582.101053.3181499.nullmailer@robh.at.kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.40]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings I2C Add bindings doc for Sunplus SP7021
-
-Signed-off-by: LH.Kuo <lh.kuo@sunplus.com>
----
-Changes in v2:
- - Addressed all comments from Mr. Rob Herring.
- - Modified the structure and register access method.
- - Modifiedthe path about MAINTAINERS. ( wrong messages PATH in v1).
- - Modifiedthe the YAML file.
-
- .../devicetree/bindings/i2c/i2c-sunplus.yaml       | 82 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 83 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml b/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
-new file mode 100644
-index 0000000..af860ee
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
-@@ -0,0 +1,82 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/i2c-sunplus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus's I2C controller
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+maintainers:
-+  - lh.kuo <lh.kuo@sunplus.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sunplus,sp7021-i2cm
-+      - sunplus,q645-i2cm
-+
-+  reg:
-+    items:
-+      - description: Base address and length of the I2C registers
-+      - description: Base address and length of the I2C DMA registers
-+
-+  reg-names:
-+    items:
-+      - const: i2cm
-+      - const: i2cmdma
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000 ]
-+
-+  pinctrl-names:
-+    description:
-+      A pinctrl state named "default" must be defined.
-+    const: default
-+
-+  pinctrl-0:
-+    description:
-+      A phandle to the default pinctrl state.
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - resets
-+  - pinctrl-names
-+  - pinctrl-0
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sp-sp7021.h>
-+    #include <dt-bindings/reset/sp-sp7021.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c@9C004600 {
-+        compatible = "sunplus,sp7021-i2cm";
-+        reg = <0x9c004600 0x80>, <0x9c004680 0x80>;
-+        reg-names = "i2cm", "i2cmdma";
-+        interrupt-parent = <&intc>;
-+        interrupts = <174 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&clkc I2CM0>;
-+        resets = <&rstc RST_I2CM0>;
-+        clock-frequency = <100000>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&i2cm0_pins>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5b7a8a2..575a8e0 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18193,6 +18193,7 @@ SUNPLUS I2C CONTROLLER INTERFACE DRIVER
- M:	LH Kuo <lh.kuo@sunplus.com>
- L:	linux-i2c@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/i2c/i2c-sunplus.yaml
- F:	drivers/i2c/busses/i2c-sunplus.c
- 
- SUPERH
--- 
-2.7.4
-
+SGkgUm9iOg0KDQpMb29rIGludG8gdGhlIGZ1bGwgbG9nLCBpdCBzaG93IHlvdSBjaGVjayAzIHBy
+b2dyYW1zDQp+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+DQpDb250ZXh0CUNoZWNrCURl
+c2NyaXB0aW9uDQpyb2JoL2NoZWNrcGF0Y2gJd2FybmluZwl0b3RhbDogMCBlcnJvcnMsIDEgd2Fy
+bmluZ3MsIDY3IGxpbmVzIGNoZWNrZWQNCnJvYmgvZHQtbWV0YS1zY2hlbWEJc3VjY2VzcwkNCnJv
+YmgvZHRicy1jaGVjawlmYWlsCWJ1aWxkIGxvZw0Kfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn4NCg0KMSkgVGhlIGNoZWNrcGF0Y2ggd2FybmluZyBpcyBXQVJOSU5HOiBGcm9tOi9TaWdu
+ZWQtb2ZmLWJ5OiBlbWFpbCBhZGRyZXNzIG1pc21hdGNoOiAnRnJvbTogRWR3aW4gY2hpdSA8ZWR3
+aW5jaGl1MDUwNXR3QGdtYWlsLmNvbT4nICE9ICdTaWduZWQtb2ZmLWJ5OiBFZHdpbiBjaGl1IDxl
+ZHdpbi5jaGl1QHN1bnBsdXMuY29tPicNCj09PiBJIHdhbnQgZXhwbGFpbiB0byB5b3UgdGhhdCA8
+ZWR3aW4uY2hpdUBzdW5wbHVzLmNvbT4gaXMgbXkgZW1haWwgaW4gdGhlIGNvbXBhbnksIGJ1dCBp
+dCBkaXNhZ3JlZSBvcGVyYXRlIGJ5ICJnaXQgc2VuZC1lbWFpbCIuDQogICAgU28gSSB1c2VkIDxl
+ZHdpbmNoaXUwNTA1dHdAZ21haWwuY29tPiBpbiBteSBsaW51eCBzeXN0ZW0gdG8gb3BlcmF0ZSB3
+aXRoICJnaXQgc2VuZC1lbWFpbCIuDQogICBBY3R1YWxseSBJIGNoZWNrcGF0Y2ggaW4gbXkgc2lk
+ZSB3YXMgMCBlcnJvciAwIHdhcm5pbmcuDQoNCjIpIFJlZ2FyZGluZyB0byBkdGJzLWNoZWNrIGlz
+c3VlLCB5b3VyIGxpc3Qgd2FybmluZ3MgcmVsYXRlZCB0byBvdGhlcnMgY29tcGFueSdzIHlhbWwg
+ZmlsZSwgaXQgbm90IG15IHlhbWwgZmlsZSBjYXNlLiANCiAgIFdoYXQgaXMgdGhlIHB1cnBvc2Ug
+eW91IHdhbnQ/IE9yIHdoYXQgc2hvdWxkIEkgZG8/DQoNCjMpIEV4ZWN1dGU9Pm1ha2UgZHRic19j
+aGVjayBEVF9TQ0hFTUFfRklMRVM9RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Fy
+bS9zdW5wbHVzL3N1bnBsdXMsaWRsZS1zdGF0ZS55YW1sDQpUaGVyZSBhcmUgbWFueSBjb25maWcg
+c2VsZWN0IGl0ZW1zoUsuLkkgZG9uJ3Qga25vdyBob3cgdG8gc2VsZWN0IHRoZW0uDQooSSBleGVj
+dXRlICJtYWtlIGNvbmZpZyAiIGFuZCAibWFrZSBhbGwiIHdlcmUgcGFzcykNCkNhbiB5b3UgdGVh
+Y2ggbWUgaG93IHRvIGRvICJtYWtlIGR0YnNfY2hlY2siPw0KDQqq9KurrnAgRWR3aW5DaGl1DQq0
+vK/guUK64rFNrtcNClQ6ICs4ODYtMy01Nzg2MDA1IGV4dC4yNTkwDQplZHdpbi5jaGl1QHN1bnBs
+dXMuY29tDQozMDAgt3Omy6zsvse26bDPs9C3c6RAuPQxObi5DQoNCi0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQpGcm9tOiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPiANClNlbnQ6IE1v
+bmRheSwgTm92ZW1iZXIgOCwgMjAyMSA5OjAzIFBNDQpUbzogRWR3aW4gY2hpdSA8ZWR3aW5jaGl1
+MDUwNXR3QGdtYWlsLmNvbT4NCkNjOiByb2JoK2R0QGtlcm5lbC5vcmc7IGRhbmllbC5sZXpjYW5v
+QGxpbmFyby5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdl
+ci5rZXJuZWwub3JnOyByYWZhZWxAa2VybmVsLm9yZzsgbGludXgtcG1Admdlci5rZXJuZWwub3Jn
+OyBFZHdpbiBDaGl1IKr0q6uucCA8ZWR3aW4uY2hpdUBzdW5wbHVzLmNvbT4NClN1YmplY3Q6IFJl
+OiBbUEFUQ0ggMS8yXSBkdC1iaW5naW5nczphcm06c3VucGx1czphZGQgc3A3MDIxIGNvbXBhdGli
+bGUgc3RyaW5nIHRvIHN1bnBsdXMsaWRsZS1zdGF0ZS55YW1sDQoNCk9uIE1vbiwgMDggTm92IDIw
+MjEgMTU6NTU6MDkgKzA4MDAsIEVkd2luIGNoaXUgd3JvdGU6DQo+IEFkZCB0aGUgY29tcGF0aWJs
+ZSBzdHJpbmcgZm9yIGNwdWlkbGUgc3RhdGUgb24gc3A3MDIxDQo+IA0KPiBTaWduZWQtb2ZmLWJ5
+OiBFZHdpbiBjaGl1IDxlZHdpbi5jaGl1QHN1bnBsdXMuY29tPg0KPiAtLS0NCj4gIC4uLi9iaW5k
+aW5ncy9hcm0vc3VucGx1cy9zdW5wbHVzLGlkbGUtc3RhdGUueWFtbCAgIHwgNTUgKysrKysrKysr
+KysrKysrKysrKysrKw0KPiAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfCAgNiArKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgNjEgaW5zZXJ0aW9ucygr
+KQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IA0KPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvYXJtL3N1bnBsdXMvc3VucGx1cyxpZGxlLXN0YXRlLnlhbWwNCj4gDQoNClJ1bm5pbmcg
+J21ha2UgZHRic19jaGVjaycgd2l0aCB0aGUgc2NoZW1hIGluIHRoaXMgcGF0Y2ggZ2l2ZXMgdGhl
+IGZvbGxvd2luZyB3YXJuaW5ncy4gQ29uc2lkZXIgaWYgdGhleSBhcmUgZXhwZWN0ZWQgb3IgdGhl
+IHNjaGVtYSBpcyBpbmNvcnJlY3QuIFRoZXNlIG1heSBub3QgYmUgbmV3IHdhcm5pbmdzLg0KDQpO
+b3RlIHRoYXQgaXQgaXMgbm90IHlldCBhIHJlcXVpcmVtZW50IHRvIGhhdmUgMCB3YXJuaW5ncyBm
+b3IgZHRic19jaGVjay4NClRoaXMgd2lsbCBjaGFuZ2UgaW4gdGhlIGZ1dHVyZS4NCg0KRnVsbCBs
+b2cgaXMgYXZhaWxhYmxlIGhlcmU6IGh0dHBzOi8vcGF0Y2h3b3JrLm96bGFicy5vcmcvcGF0Y2gv
+MTU1MjIyOA0KDQoNCnNwYzogY29tcGF0aWJsZTowOiAnYXJtLGlkbGUtc3RhdGUnIHdhcyBleHBl
+Y3RlZA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tYXBxODA2NC1hc3VzLW5leHVzNy1mbG8uZHQu
+eWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tYXBxODA2NC1jbS1xczYwMC5kdC55YW1sDQoJ
+YXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1hcHE4MDY0LWlmYzY0MTAuZHQueWFtbA0KCWFyY2gvYXJt
+L2Jvb3QvZHRzL3Fjb20tYXBxODA2NC1zb255LXhwZXJpYS15dWdhLmR0LnlhbWwNCglhcmNoL2Fy
+bS9ib290L2R0cy9xY29tLWFwcTgwNzQtZHJhZ29uYm9hcmQuZHQueWFtbA0KCWFyY2gvYXJtL2Jv
+b3QvZHRzL3Fjb20tYXBxODA4NC1pZmM2NTQwLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9x
+Y29tLWFwcTgwODQtbXRwLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9xY29tLW1zbTg5NzQt
+ZmFpcnBob25lLWZwMi5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0LWxn
+ZS1uZXh1czUtaGFtbWVyaGVhZC5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204
+OTc0LXNhbXN1bmcta2x0ZS5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0
+LXNvbnkteHBlcmlhLWFtYW1pLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9xY29tLW1zbTg5
+NzQtc29ueS14cGVyaWEtY2FzdG9yLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9xY29tLW1z
+bTg5NzQtc29ueS14cGVyaWEtaG9uYW1pLmR0LnlhbWwNCg0Kc3BjOiBjb21wYXRpYmxlOiBBZGRp
+dGlvbmFsIGl0ZW1zIGFyZSBub3QgYWxsb3dlZCAoJ2FybSxpZGxlLXN0YXRlJyB3YXMgdW5leHBl
+Y3RlZCkNCglhcmNoL2FybS9ib290L2R0cy9xY29tLWFwcTgwNjQtYXN1cy1uZXh1czctZmxvLmR0
+LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9xY29tLWFwcTgwNjQtY20tcXM2MDAuZHQueWFtbA0K
+CWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tYXBxODA2NC1pZmM2NDEwLmR0LnlhbWwNCglhcmNoL2Fy
+bS9ib290L2R0cy9xY29tLWFwcTgwNjQtc29ueS14cGVyaWEteXVnYS5kdC55YW1sDQoJYXJjaC9h
+cm0vYm9vdC9kdHMvcWNvbS1hcHE4MDc0LWRyYWdvbmJvYXJkLmR0LnlhbWwNCglhcmNoL2FybS9i
+b290L2R0cy9xY29tLWFwcTgwODQtaWZjNjU0MC5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMv
+cWNvbS1hcHE4MDg0LW10cC5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0
+LWZhaXJwaG9uZS1mcDIuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNtODk3NC1s
+Z2UtbmV4dXM1LWhhbW1lcmhlYWQuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNt
+ODk3NC1zYW1zdW5nLWtsdGUuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNtODk3
+NC1zb255LXhwZXJpYS1hbWFtaS5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204
+OTc0LXNvbnkteHBlcmlhLWNhc3Rvci5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1t
+c204OTc0LXNvbnkteHBlcmlhLWhvbmFtaS5kdC55YW1sDQoNCnNwYzogY29tcGF0aWJsZTogWydx
+Y29tLGlkbGUtc3RhdGUtc3BjJywgJ2FybSxpZGxlLXN0YXRlJ10gaXMgdG9vIGxvbmcNCglhcmNo
+L2FybS9ib290L2R0cy9xY29tLWFwcTgwNjQtYXN1cy1uZXh1czctZmxvLmR0LnlhbWwNCglhcmNo
+L2FybS9ib290L2R0cy9xY29tLWFwcTgwNjQtY20tcXM2MDAuZHQueWFtbA0KCWFyY2gvYXJtL2Jv
+b3QvZHRzL3Fjb20tYXBxODA2NC1pZmM2NDEwLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9x
+Y29tLWFwcTgwNjQtc29ueS14cGVyaWEteXVnYS5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMv
+cWNvbS1hcHE4MDc0LWRyYWdvbmJvYXJkLmR0LnlhbWwNCglhcmNoL2FybS9ib290L2R0cy9xY29t
+LWFwcTgwODQtaWZjNjU0MC5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1hcHE4MDg0
+LW10cC5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0LWZhaXJwaG9uZS1m
+cDIuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNtODk3NC1sZ2UtbmV4dXM1LWhh
+bW1lcmhlYWQuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNtODk3NC1zYW1zdW5n
+LWtsdGUuZHQueWFtbA0KCWFyY2gvYXJtL2Jvb3QvZHRzL3Fjb20tbXNtODk3NC1zb255LXhwZXJp
+YS1hbWFtaS5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0LXNvbnkteHBl
+cmlhLWNhc3Rvci5kdC55YW1sDQoJYXJjaC9hcm0vYm9vdC9kdHMvcWNvbS1tc204OTc0LXNvbnkt
+eHBlcmlhLWhvbmFtaS5kdC55YW1sDQoNCg==
