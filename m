@@ -2,78 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CDBA44AFE3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 15:59:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6817644AFE9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 16:00:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234183AbhKIPCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 10:02:39 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33082 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230007AbhKIPCi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 10:02:38 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 69F5560F6E;
-        Tue,  9 Nov 2021 14:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636469992;
-        bh=dWKdK73IMyUlKNgSZ++V+JORAEH3nUi3kyZlKRW+Qnw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jJ+coPXCLbzyS8S7CZVjaRZs6fcKILsvBJ0wqUzxgy60v12Hrc3E1dnSl8oxZHohk
-         iD1XpPzGN1EIdSaY3iPLrqrGECSW2+9dAMVUoo5USrwktGOVMwYsaOow20fMboIwKG
-         0eFL/kabqGVwZvmpbQg0Y4QD16TG15IQDAlJmHKYO8O7Rb33ppSRON0UKPD8cfIL0n
-         Jk11jlG9L22JN5yHKKFk3YvZcWL7lI7bjDGWsfS5FrNOYsXT64yIjwZXFyXGfqsOi/
-         vebhJsWm/BCA5/+VsWi5nCUcfoh04t+Wsq77LCaEz0XjuhclP4cQs97ngGCeFRbQ/N
-         PSHSf5000HTFA==
-Date:   Tue, 9 Nov 2021 14:59:47 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        - <patches@opensource.cirrus.com>, ~okias/devicetree@lists.sr.ht,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: sound: wlf,wm8903: Convert txt bindings
- to yaml
-Message-ID: <YYqM48HTtoz0XeR9@sirena.org.uk>
-References: <20211028124639.38420-1-david@ixit.cz>
+        id S234127AbhKIPDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 10:03:05 -0500
+Received: from mail-yb1-f171.google.com ([209.85.219.171]:46711 "EHLO
+        mail-yb1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234372AbhKIPDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 10:03:04 -0500
+Received: by mail-yb1-f171.google.com with SMTP id g17so29393316ybe.13;
+        Tue, 09 Nov 2021 07:00:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pQs8NuOusvW43yJdvPU7h2JJb+2dPvnVfEafUayKssc=;
+        b=gpWIoweDEN0RA7TUcMLj4dcr5fKLGVbCWEnrXW7IJGXr1eJE1TE85vSA8JrGLutgJI
+         eks+k1Os/wOmMyJLryWRleXLY89JJ3lFWxAPFDtnorjKCTItvV4ZgGyJRNoKAYnn3M8B
+         zW3uqEBhnCdTmOKz/KpfYuMjjM+bIprjMeKHk7Wq+zDC2dvzUzx24lJRB/MnRE6pWdha
+         EQkuu8LQbak4brhKL2fpJ4pAyArJ4X17N9jOVUrY8aEBBNnLX1jQjdtoZ3hQX1HQZaEs
+         Pox3gClxE4RP6BbjJlcRixg83szqTsmJI17sUlM5e4BSmSYSjWjx2Q1NdIucmkYzd5pK
+         ANKA==
+X-Gm-Message-State: AOAM530PHEKeBlT/tYdQyttsvgvQAoDCyJi1Ajy+RNaAmKiqecAgcm8X
+        Zsxc+W258btGeXkus9vjjo8qR3go2FI7jg==
+X-Google-Smtp-Source: ABdhPJwgTs2Eya/VzxmbZ9CRrEiumTi5lozMWnUeYSgdykvLIO6bcFn8FReAafEa3EDFCJFZo2KHpg==
+X-Received: by 2002:a25:5003:: with SMTP id e3mr9059823ybb.482.1636470015719;
+        Tue, 09 Nov 2021 07:00:15 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id 23sm698191vkk.17.2021.11.09.07.00.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Nov 2021 07:00:15 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id ay21so39000215uab.12;
+        Tue, 09 Nov 2021 07:00:15 -0800 (PST)
+X-Received: by 2002:a05:6102:1354:: with SMTP id j20mr42333682vsl.41.1636470014854;
+ Tue, 09 Nov 2021 07:00:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xGLz+eQnaXl9JzSJ"
-Content-Disposition: inline
-In-Reply-To: <20211028124639.38420-1-david@ixit.cz>
-X-Cookie: Elevators smell different to midgets.
+References: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211029124437.20721-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdV+716v3SOLM4Sf6arK5jEPgtc0NSOU6nZXQGXUT+-+3Q@mail.gmail.com> <CA+V-a8t2KZNqCHJQP_bj9+-RKVBBJpz=pnBXzpyy4tjbUe14EA@mail.gmail.com>
+In-Reply-To: <CA+V-a8t2KZNqCHJQP_bj9+-RKVBBJpz=pnBXzpyy4tjbUe14EA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 9 Nov 2021 16:00:03 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW8NeSpv35a7Eq_+NMAE5Uamm_pD+Dp+OeHvCMqd3f2Xw@mail.gmail.com>
+Message-ID: <CAMuHMdW8NeSpv35a7Eq_+NMAE5Uamm_pD+Dp+OeHvCMqd3f2Xw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] pinctrl: renesas: pinctrl-rzg2l: Add support to
+ get/set pin config for GPIO port pins
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
---xGLz+eQnaXl9JzSJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Tue, Nov 9, 2021 at 3:31 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Mon, Nov 8, 2021 at 3:36 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Fri, Oct 29, 2021 at 2:44 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > Add support to get/set pin config for GPIO port pins.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> >
+> > > @@ -495,6 +512,14 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
+> > >                 port = RZG2L_SINGLE_PIN_GET_PORT(*pin_data);
+> > >                 cfg = RZG2L_SINGLE_PIN_GET_CFGS(*pin_data);
+> > >                 bit = RZG2L_SINGLE_PIN_GET_BIT(*pin_data);
+> > > +       } else {
+> > > +               cfg = RZG2L_GPIO_PORT_GET_CFGS(*pin_data);
+> > > +               port = RZG2L_PIN_ID_TO_PORT(_pin);
+> > > +               bit = RZG2L_PIN_ID_TO_PIN(_pin);
+> > > +               port_pin = true;
+> >
+> > Instead of setting this flag, perhaps port should be adjusted?
+>
+> Something like below?
+>
+> #define RZG2L_PORT_START_OFFSET 0x10
+>
+> port = RZG2L_PIN_ID_TO_PORT_pin) + RZG2L_PORT_START_OFFSET;
+> rzg2l_validate_gpio_pin(pctrl, *pin_data, port - RZG2L_PORT_START_OFFSET, bit)
 
-On Thu, Oct 28, 2021 at 02:46:38PM +0200, David Heidelberg wrote:
-> Convert the Wolfson WM8903 Ultra-Low Power Stereo CODEC Device Tree
-> binding documentation to json-schema.
+Or adjust port after the call to rzg2l_validate_gpio_pin(), to avoid adding
+the offset first, and subtracting it again for calling the latter?
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+> and rename port -> port_offset in rzg2l_pinctrl_pinconf_get/set
 
---xGLz+eQnaXl9JzSJ
-Content-Type: application/pgp-signature; name="signature.asc"
+That makes sense.  Currently "port" has two meanings: it can mean
+either the GPIO port index, or the global register index covering both
+single function pin groups and GPIO port indices.
+RZG2L_SINGLE_PIN_GET_PORT() returns the latter.
+RZG2L_PIN_ID_TO_PORT() returns the former, thus needing an extra offset
+to convert to the global register index.
 
------BEGIN PGP SIGNATURE-----
+> Or
+> would you prefer to change the RZG2L_PIN_ID_TO_PORT macro and adjust
+> the entire file?
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGKjOIACgkQJNaLcl1U
-h9A9/gf9GFEmiu9kGC1QseVVmf0pGCj+z4nAP/giOgiIeD3dlFfdJjOu68/djoRO
-pr8bKXnnEk1Dni8yYOk/E44HS8oINhAyxyH4/o2QktLeydfkXZHrFQH8H8Xen2ry
-doYd1Y8GBaWd92niZTkkB3srdBXW7ASvaalP35UfMdwclQAsiwRp1wrN/8nyEXLe
-g1XTkPeV6YLvopI97p0kgMepcwaMBv1kyn4O6ZTZZER3tgQwBz8VBm5/s5Gxvd96
-f8jOKdh00qYyLANI1mNp/2WRNnw/AgHLom2flRap6+y37zp7N+cFAFQtpn/V40C1
-UtDArKO5n+/iw9HMFNejXZ0X9+9PiQ==
-=ll7b
------END PGP SIGNATURE-----
+Changing RZG2L_PIN_ID_TO_PORT() would imply changing all macros
+accessing GPIO registers, and is thus quite intrusive.
 
---xGLz+eQnaXl9JzSJ--
+> > Then rzg2l_r{ead,mw}_pin_config() don't have to care about that
+> > anymore.
+> >
+> Agreed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
