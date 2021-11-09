@@ -2,43 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 796F544B89E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B1444B885
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:42:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241791AbhKIWpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:45:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59460 "EHLO mail.kernel.org"
+        id S240899AbhKIWow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:44:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59696 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240523AbhKIWl3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:41:29 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 40DD261A09;
-        Tue,  9 Nov 2021 22:23:48 +0000 (UTC)
+        id S1344383AbhKIWln (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:41:43 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 768A861B30;
+        Tue,  9 Nov 2021 22:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496629;
-        bh=/RhO3cc31Q2lvSql6+/05yAwJFD5udIYx0uH6CwOs3E=;
+        s=k20201202; t=1636496633;
+        bh=4FLFo4QtKGgZSNkxhZDuAi2pcLRTmHCDtelC4gPDTQ4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Tlo10SaM1b6DJPa1ZSbn4ZmNJQwhVdbtXV5XnFgldmcVwoV6JiUMTSYIEOBa2LFZN
-         9kG0bEKnjsYHB5G1pUJVKRwAvSetMpDniEViu5MlmrXbO9lqgAefNHaDRyOH5eYhnO
-         5zmlQEyMbqThC/xU3O1Ukloqt/GsZE5itfYN84uflfilmrFHEir60Q/NWYDzWfjCec
-         YXXuGRuLrrXT+/qefuKhu++b6cDjZzsnkvzAgaoMhQ9ojW4wFTLP6NWql0PLDsGoZu
-         BdYgcvfRQ40vvp6mv4rY/qsMHTSH0weiFX4WYuESkkr24LJrjqj+1ESg/NuXS6UF0B
-         15YfJikDmXLvA==
+        b=bpylxXuEbXp/Z6qdZHcguk7lkqWFpoD3vDwmInYKZQww0SpTyyqcIss4MmqwzIitY
+         pqZZSA1Dk+FzwQ7gyyRZeOFKLb4jUmyChBMJUJbux8uOR2Douby8tO6mEnRD0mJGQG
+         /CN8Cm3qsTjEsU+COud36C3KACD25O8UzlV5LvgRhxC+DGtgTdM3WX4KzJVumIH5i7
+         yNzlSD23XL5DzMMXMozA5iXRkfRc8UQ2t59BAqa+oniSxBr0rNJzOukU6Pyaiy8BA1
+         g+c5Iai1FY6B9CEXT6m2z60ds/RLX5jb/TSdFdDaws2852R2c3nnsIk5asXIVnOeyP
+         Wi440F4Wg4bBg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Brian Norris <briannorris@chromium.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Roger Quadros <rogerq@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
+        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.14 03/14] arm64: dts: rockchip: add Coresight debug range for RK3399
-Date:   Tue,  9 Nov 2021 17:23:32 -0500
-Message-Id: <20211109222343.1235902-3-sashal@kernel.org>
+        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 06/14] ARM: dts: omap: fix gpmc,mux-add-data type
+Date:   Tue,  9 Nov 2021 17:23:35 -0500
+Message-Id: <20211109222343.1235902-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222343.1235902-1-sashal@kernel.org>
 References: <20211109222343.1235902-1-sashal@kernel.org>
@@ -50,86 +46,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brian Norris <briannorris@chromium.org>
+From: Roger Quadros <rogerq@kernel.org>
 
-[ Upstream commit 75dccea503b8e176ad044175e891d7bb291b6ba0 ]
+[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
 
-Per Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt.
+gpmc,mux-add-data is not boolean.
 
-This IP block can be used for sampling the PC of any given CPU, which is
-useful in certain panic scenarios where you can't get the CPU to stop
-cleanly (e.g., hard lockup).
+Fixes the below errors flagged by dtbs_check.
 
-Reviewed-by: Leo Yan <leo.yan@linaro.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Brian Norris <briannorris@chromium.org>
-Link: https://lore.kernel.org/r/20210908111337.v2.3.Ibc87b4785709543c998cc852c1edaeb7a08edf5c@changeid
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 48 ++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
+ arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 029d4578bca3c..0b0b19618c1ea 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -394,6 +394,54 @@
- 		status = "disabled";
- 	};
+diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+index 7f6aefd134514..e7534fe9c53cf 100644
+--- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
++++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+@@ -29,7 +29,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
  
-+	debug@fe430000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe430000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l0>;
-+	};
-+
-+	debug@fe432000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe432000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l1>;
-+	};
-+
-+	debug@fe434000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe434000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l2>;
-+	};
-+
-+	debug@fe436000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe436000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_L>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_l3>;
-+	};
-+
-+	debug@fe610000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe610000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b0>;
-+	};
-+
-+	debug@fe710000 {
-+		compatible = "arm,coresight-cpu-debug", "arm,primecell";
-+		reg = <0 0xfe710000 0 0x1000>;
-+		clocks = <&cru PCLK_COREDBG_B>;
-+		clock-names = "apb_pclk";
-+		cpu = <&cpu_b1>;
-+	};
-+
- 	usbdrd3_0: usb@fe800000 {
- 		compatible = "rockchip,rk3399-dwc3";
- 		#address-cells = <2>;
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
+diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+index 82e98ee3023ad..3dbeb7a6c569c 100644
+--- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
++++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+@@ -25,7 +25,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
+ 
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
 -- 
 2.33.0
 
