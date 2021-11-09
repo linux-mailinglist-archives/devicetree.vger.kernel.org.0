@@ -2,108 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 499FB44B17E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 17:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF0E44B190
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 17:51:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238174AbhKIQtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 11:49:43 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:36847 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240354AbhKIQtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 11:49:41 -0500
-Received: by mail-ot1-f50.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so3355055otl.3;
-        Tue, 09 Nov 2021 08:46:55 -0800 (PST)
+        id S231895AbhKIQyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 11:54:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240354AbhKIQyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 11:54:16 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE80C061764
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 08:51:30 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id b15so59818380edd.7
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 08:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=11NI8rJSPz43D1gV7A+JL1F9+LdB46OYj4gEDUOX0Xg=;
+        b=kIW6TiaEEMana7WX1bLHhZJfUK0l9tvt3vj8Yl1zG911OOxvpjbSt5E8IMHaJhiU0K
+         sTA7wYbLVfmphp4cqeaUvoq8rOPdBzU7F1pZKWXYSPj2OhcB3OJR4PZFy/oZ0YbLImPQ
+         4dfxR+/RrINoTStH9fFI2YFoxveEee8D5R8bs0Ne6GLLEsfxc012etxsdJcQSK6pmpQW
+         X2A7C5brb0PYyjKTvWexZnhLPJnUPCLaOH9jJ+0G9UEalzJww191fybrSJeUWYopOWw2
+         mh7fl4h2VQ9Fay3fXt1tNtaHnnYtK2hsXAUwO3B3CEUdgPPlICF84vBJOFYF5Czs7DSf
+         /gPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=QCdrW6y17rvAkzqtUwRB26cgRdpTc9nbRuh6smuG2g4=;
-        b=h/iKgqB32rzFr7IgFCye1ql4O36+fY6og0lygCiAYTZNs5YEfVEPTEPmvOHICVVQC4
-         7WGG0pxv8VIxR712zXkBZgmmAW2oDdACX9vET4Hka6+rgNqB0kSsCwylSAjBfH7OY6HY
-         d2EdNIp94bW9q5bujVhVDGTD5OdKvxEdlam9Y8RDKLtMrMmTxPQxSX+EMhwdySCYqxfs
-         +tNlAibcwlObBriUU6lN+h13JAb0FDMxVYzdvidfqDWIfiB0FQlxNpsRPAeXGP/tesBM
-         rQKeAsqVWR6pLgmLk74CTCITGxaJZTX0/GPmE0SPRMXtSyX9faV444H6mrBi0fsZdB7/
-         +g/w==
-X-Gm-Message-State: AOAM532oY6c+UvrSZAtFIk2VigqneP6d1fx+AeWsAPiO3eH1FERuoxxZ
-        LfO60p458s43Dsc73pjlyftljrB3qQ==
-X-Google-Smtp-Source: ABdhPJxSAu+FQ6ljH9p3Bj1Mz+tnr8g+QT2ZzHNPysDfdOzlazvbmApXPmhaR1GAB/4u0MlYuICJmQ==
-X-Received: by 2002:a9d:a2b:: with SMTP id 40mr7366147otg.100.1636476414810;
-        Tue, 09 Nov 2021 08:46:54 -0800 (PST)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id w22sm7514338otp.50.2021.11.09.08.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 08:46:54 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: [PATCH 2/2] clk: versatile: clk-icst: Ensure clock names are unique
-Date:   Tue,  9 Nov 2021 10:46:50 -0600
-Message-Id: <20211109164650.2233507-3-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211109164650.2233507-1-robh@kernel.org>
-References: <20211109164650.2233507-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=11NI8rJSPz43D1gV7A+JL1F9+LdB46OYj4gEDUOX0Xg=;
+        b=LYDhewnfQm+PoW4r2PM0wb2AgrxBrfwTc3QgvFnrcMnmsKQ+ngk3iApJroDGjEXNA5
+         FzyfD9t5Q0OPMWNeSEFxRlnCZ3Yo6qv07go0FfCEb9+P8RHuVwtsot47+EV+8Uoszsb2
+         u+5Z8+/SVXR///kVIUkS4+22e6claNS23mKydkwdSkRuSNIMVc7J9pruoSiw8eCm0sa+
+         zIU/iTYkYeeM3Tjz5FJ2mgaxi3uWPErBBty2tCc3S8yWrHvt48k7eX/nkVwBoP3GDuYd
+         11KQW1F1Shjw4/Ic+34AM6rlZ0eyz5eeGX/TcCA3Lh7Xbq6nMKHnUR+CdBPNG0vbb9QT
+         i7yQ==
+X-Gm-Message-State: AOAM530Mv+O6gaobe7lDP0WhuAQqOF62QgctXHnaD8HjAxgbIr3fiRHO
+        fDsGXBfJ6IKPtaGutk4EHdp80dzCEPZamAF4WjQ=
+X-Google-Smtp-Source: ABdhPJwtfc+tnYbgUnCn9y0J/V2XQtuu+qaP7lSWFLhl153ZZSuF6necd0t7xlSNnzsZUqYFTat4tPeRqCPq0QHuJZ4=
+X-Received: by 2002:a05:6402:6c8:: with SMTP id n8mr12430808edy.38.1636476688916;
+ Tue, 09 Nov 2021 08:51:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a54:3650:0:0:0:0:0 with HTTP; Tue, 9 Nov 2021 08:51:28 -0800 (PST)
+Reply-To: lisshuuu1@gmail.com
+From:   MS LISA HUGH <olivier.folly0@gmail.com>
+Date:   Tue, 9 Nov 2021 17:51:28 +0100
+Message-ID: <CAG_GOAvyQux9WkjUjWQXokO4_pehtzoBbbEhtkuCp4Ht0gGW6g@mail.gmail.com>
+Subject: YOU UNDERSTAND MY EMAIL ?.($4.5M.US.D)
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and
-node names") moved to using generic node names. That results in trying
-to register multiple clocks with the same name. Fix this by including
-the unit-address in the clock name.
+Dear Friend,
 
-Fixes: 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and node names")
-Cc: stable@vger.kernel.org
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-clk@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-This should be applied to stable to minimize DT ABI breakage.
----
- drivers/clk/versatile/clk-icst.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+I am Ms Lisa Hugh accountant and files keeping by profession with the bank.
 
-diff --git a/drivers/clk/versatile/clk-icst.c b/drivers/clk/versatile/clk-icst.c
-index 77fd0ecaf155..d52f976dc875 100644
---- a/drivers/clk/versatile/clk-icst.c
-+++ b/drivers/clk/versatile/clk-icst.c
-@@ -484,7 +484,7 @@ static void __init of_syscon_icst_setup(struct device_node *np)
- 	struct device_node *parent;
- 	struct regmap *map;
- 	struct clk_icst_desc icst_desc;
--	const char *name = np->name;
-+	const char *name;
- 	const char *parent_name;
- 	struct clk *regclk;
- 	enum icst_control_type ctype;
-@@ -533,15 +533,17 @@ static void __init of_syscon_icst_setup(struct device_node *np)
- 		icst_desc.params = &icst525_apcp_cm_params;
- 		ctype = ICST_INTEGRATOR_CP_CM_MEM;
- 	} else {
--		pr_err("unknown ICST clock %s\n", name);
-+		pr_err("unknown ICST clock %pOF\n", np);
- 		return;
- 	}
- 
- 	/* Parent clock name is not the same as node parent */
- 	parent_name = of_clk_get_parent_name(np, 0);
-+	name = kasprintf(GFP_KERNEL, "%pOFP", np);
- 
- 	regclk = icst_clk_setup(NULL, &icst_desc, name, parent_name, map, ctype);
- 	if (IS_ERR(regclk)) {
-+		kfree(name);
- 		pr_err("error setting up syscon ICST clock %s\n", name);
- 		return;
- 	}
--- 
-2.32.0
+I need Your help for this transfer($4,500,000,00 ,U.S.DOLLARS)to your
+bank account with your co-operation for both of us benefit.
 
+Please send the follow below,
+1)AGE....2)TELEPHONE NUMBER,,,,,...,3)COUNTRY.....4)OCCUPATION......
+Thanks.
+Ms Lisa Hugh
