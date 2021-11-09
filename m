@@ -2,207 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CD744AE73
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 14:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA2944AE88
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 14:11:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhKINKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 08:10:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbhKINKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 08:10:31 -0500
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EE4C061764;
-        Tue,  9 Nov 2021 05:07:46 -0800 (PST)
-Received: by mail-yb1-xb34.google.com with SMTP id a129so52769512yba.10;
-        Tue, 09 Nov 2021 05:07:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Vx8ACzzR7ClOZiFbVt6NTdwPz8XSyKvvQycpeMv1yu4=;
-        b=FXkyq7Qt4Du6/Jg1yT/OpZ68vb86FuM4kkBB5KI7rdNfHLIiExYnXMRsMuVTaeEzyS
-         WJzrmRtpAjNpyMg+1wxs2LhOmrK4QNbBxKvZePJD+pVa3kP2EyrLUXCN/DWmZDOOVtQw
-         80qYWtHz6DnP2D2AyhYcY7yTt+1VN8g/Z3sh9s+OROsbRCE5xklP18Gu2R5UU41Gy+vv
-         OQ2PmvDtLyWP/wFEx3H1/JbBrlSwpvjc+qF5MpuxWsLbUbLsKqla50oOG9qc6fdqtZ8k
-         n4UE9ZeaUJFnG0EVadNK1JZdt6g/QdMJ1YdybXzyJADgq9YKPGgj1v/pEylUVwlxDiSH
-         Eksg==
+        id S234709AbhKINNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 08:13:42 -0500
+Received: from mail-lj1-f182.google.com ([209.85.208.182]:38449 "EHLO
+        mail-lj1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234686AbhKINNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 08:13:41 -0500
+Received: by mail-lj1-f182.google.com with SMTP id e9so15684307ljl.5;
+        Tue, 09 Nov 2021 05:10:55 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vx8ACzzR7ClOZiFbVt6NTdwPz8XSyKvvQycpeMv1yu4=;
-        b=YWG4k9vwhyvlh4Y0RkWm/CZaGptlIXKx2HSkj7W6+bgc1Ir+Xgr6NHSU6y6d3ajZxg
-         VBHZUAhyvEx9hfhhlOmhXGrJ0itpv2mqQ83NYlxZV3wciyWKB4skvgTFVVhNiVYVYLPe
-         OWZzaM9diV1+4XQN7ZkD/JxpQqmZSYKDc3xiBLKeci8oZQe4ZYYOCsq1c/OryiLVYauE
-         Ohg6TdwnZyUC+PUeVNYjdp9SgoxPBu2I7d87tnhBA+qoZXgqHzYv3WE6CMtglB1v/mdt
-         vnJy0CXaa/azjss/2+e4Hmck/tR2KCPWsyAo7rh1fKSUNOkPdhw8HsrCEsjgGwVpArP5
-         P1xA==
-X-Gm-Message-State: AOAM531bGsLv7BNoPMTpdGe1MkltFin/0fdM5uRxNeJfgZp3BNuq7c5i
-        8YIHmFJAz2iBEf0k+gxtuupwf4zIiC8y3kj+mkw=
-X-Google-Smtp-Source: ABdhPJxPF7bznx3Iq5w5DGo3ahtGklJaTLgR+RgnfIWFMmHgwtOpFhicepqYpjMaeWyH3BuKscGFh7EI7nhmMZtJih8=
-X-Received: by 2002:a25:c792:: with SMTP id w140mr8229629ybe.131.1636463265288;
- Tue, 09 Nov 2021 05:07:45 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=sffqGSBwNCDIhRwsUWTxOGjcxPuiCUueCgTIxVPnjaw=;
+        b=nqsYEGOlFIuHw/lrmcVabQN5KQlidFnxPM97JUtQ+OlJyZM6C8ucjIQvWEpzqXIGVR
+         mHCofS6p7y576w9S2AeRlERVwlzIfUax1XgY10pNjqrcsOqGruyUYm4LnGCOKrVnBkbd
+         dEl8aFNo/K1gFjJrdFaz9nkhrTsZqSSAU7AD05/3mgxZ7G9cOnV5Wydi16AcH7SljQ5b
+         H1o4rFQ+/lRw7F17LinnTm/6VLcUXqKpGit83QYXFCSKD89Ypu/A8VZjDJrXALqL46Eg
+         dpXZujlCPrUjsjfwtGSjcr8xj8DKHaCzCpoh3HcQUWqbHavnv8peB0lNzPiEXrbl3AUF
+         sKuw==
+X-Gm-Message-State: AOAM531Aod6Z3zA0hyZ2BME7RleZMd5N6KOzpd/HKAhW1YplRI4wqmn8
+        rTp853Hje4BjPRmAJRTJSjOu9GL7UoQ=
+X-Google-Smtp-Source: ABdhPJwI7CpXfXTR+/LrzqLFzQJ2conFMadoEArtroeQlJPJEG4ItG/KBholgkNXmA54ZH3HzzHgPQ==
+X-Received: by 2002:a2e:9a41:: with SMTP id k1mr7345323ljj.147.1636463454654;
+        Tue, 09 Nov 2021 05:10:54 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.googlemail.com with ESMTPSA id d16sm819044ljj.87.2021.11.09.05.10.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Nov 2021 05:10:53 -0800 (PST)
+Message-ID: <488b7821-674f-61ff-a960-ba3f650d3a78@kernel.org>
+Date:   Tue, 9 Nov 2021 14:10:52 +0100
 MIME-Version: 1.0
-References: <20211109121631.26687-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211109121631.26687-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXAhQMOzbQHyymJrq0So11-uLC5nPT0gU7qj+MH8GmApw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXAhQMOzbQHyymJrq0So11-uLC5nPT0gU7qj+MH8GmApw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 9 Nov 2021 13:07:19 +0000
-Message-ID: <CA+V-a8tYFA_jgt+yE5En0OhUYibb38=uR=Y0hmDs+gggqF8R+A@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] serial: sh-sci: Add support to deassert/assert
- reset line
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH v5 2/2 resend] clk: microchip: Add driver for Microchip
+ PolarFire SoC
+Content-Language: en-US
+To:     Palmer Dabbelt <palmer@dabbelt.com>, daire.mcnamara@microchip.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, cyril.jean@microchip.com,
+        conor.dooley@microchip.com, david.abdurachmanov@gmail.com
+References: <mhng-2e959dbf-7344-4ddc-b133-06ef3c5abccf@palmerdabbelt-glaptop>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <mhng-2e959dbf-7344-4ddc-b133-06ef3c5abccf@palmerdabbelt-glaptop>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 18/08/2021 23:09, Palmer Dabbelt wrote:
+> On Wed, 18 Aug 2021 07:11:02 PDT (-0700), daire.mcnamara@microchip.com wrote:
+>> From: Daire McNamara <daire.mcnamara@microchip.com>
+>>
+>> Add support for clock configuration on Microchip PolarFire SoC
+>>
+>> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+>> ---
+>>  drivers/clk/Kconfig              |   1 +
+>>  drivers/clk/Makefile             |   2 +-
+>>  drivers/clk/microchip/Kconfig    |   7 +
+>>  drivers/clk/microchip/Makefile   |   6 +-
+>>  drivers/clk/microchip/clk-mpfs.c | 444 +++++++++++++++++++++++++++++++
+>>  5 files changed, 457 insertions(+), 3 deletions(-)
+>>  create mode 100644 drivers/clk/microchip/Kconfig
+>>  create mode 100644 drivers/clk/microchip/clk-mpfs.c
+>>
+>> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+>> index a588d56502d4..ab604dd02acf 100644
+>> --- a/drivers/clk/Kconfig
+>> +++ b/drivers/clk/Kconfig
+>> @@ -388,6 +388,7 @@ source "drivers/clk/keystone/Kconfig"
+>>  source "drivers/clk/mediatek/Kconfig"
+>>  source "drivers/clk/meson/Kconfig"
+>>  source "drivers/clk/mstar/Kconfig"
+>> +source "drivers/clk/microchip/Kconfig"
+>>  source "drivers/clk/mvebu/Kconfig"
+>>  source "drivers/clk/qcom/Kconfig"
+>>  source "drivers/clk/renesas/Kconfig"
+>> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+>> index b22ae4f81e0b..fb87a18ae8ec 100644
+>> --- a/drivers/clk/Makefile
+>> +++ b/drivers/clk/Makefile
+>> @@ -89,7 +89,7 @@ obj-$(CONFIG_ARCH_KEYSTONE)		+= keystone/
+>>  obj-$(CONFIG_MACH_LOONGSON32)		+= loongson1/
+>>  obj-y					+= mediatek/
+>>  obj-$(CONFIG_ARCH_MESON)		+= meson/
+>> -obj-$(CONFIG_MACH_PIC32)		+= microchip/
+>> +obj-y					+= microchip/
+>>  ifeq ($(CONFIG_COMMON_CLK), y)
+>>  obj-$(CONFIG_ARCH_MMP)			+= mmp/
+>>  endif
+>> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
+>> new file mode 100644
+>> index 000000000000..f5edc7b3c07c
+>> --- /dev/null
+>> +++ b/drivers/clk/microchip/Kconfig
+>> @@ -0,0 +1,7 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +
+>> +config MCHP_CLK_MPFS
+>> +	bool "Clk driver for PolarFire SoC"
+>> +	depends on (RISCV && SOC_MICROCHIP_POLARFIRE) || COMPILE_TEST
+> 
+> This shouldn't depend on the SOC config.  Those were meant to just 
+> enable a set of drivers, not restrict what can be enabled. 
 
-Thank you for the review.
+The kernel config is overwhelmed with amount of choices of drivers, so
+it is quite common to restrict the choices of subarch-specific drivers
+to these sub-architectures. That's how many, if not most, of ARM v7 and
+ARMv8 drivers are restricted. Some other RISC-V drivers follow this
+concept (git grep SOC_CANAAN, git grep SOC_SIFIVE) because it is
+friendly for people configuring kernels. Why making configuration choice
+more difficult and show the SoC-specific clock driver to every other
+platform (when this SoC is not used)?
 
-On Tue, Nov 9, 2021 at 12:58 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Nov 9, 2021 at 1:17 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > On RZ/G2L SoC we need to explicitly deassert the reset line
-> > for the device to work, use this opportunity to deassert/assert
-> > reset line in sh-sci driver.
-> >
-> > This patch adds support to read the "resets" property (if available)
-> > from DT and perform deassert/assert when required.
-> >
-> > Also, propagate the error to the caller of sci_parse_dt() instead of
-> > returning NULL in case of failure.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> > v1->v2
-> > * deassert/assert reset line if available on all SoC's
-> > * Updated commit message
->
-> Thanks for the update!
->
-> > --- a/drivers/tty/serial/sh-sci.c
-> > +++ b/drivers/tty/serial/sh-sci.c
-> > @@ -37,6 +37,7 @@
-> >  #include <linux/of_device.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/pm_runtime.h>
-> > +#include <linux/reset.h>
-> >  #include <linux/scatterlist.h>
-> >  #include <linux/serial.h>
-> >  #include <linux/serial_sci.h>
-> > @@ -3203,23 +3204,53 @@ static const struct of_device_id of_sci_match[] = {
-> >  };
-> >  MODULE_DEVICE_TABLE(of, of_sci_match);
-> >
-> > +static void sci_reset_control_assert(void *data)
-> > +{
-> > +       reset_control_assert(data);
-> > +}
-> > +
-> >  static struct plat_sci_port *sci_parse_dt(struct platform_device *pdev,
-> >                                           unsigned int *dev_id)
-> >  {
-> >         struct device_node *np = pdev->dev.of_node;
-> > +       const struct of_device_id *of_id;
->
-> Not needed.
->
-Agreed.
-
-> > +       struct reset_control *rstc;
-> >         struct plat_sci_port *p;
-> >         struct sci_port *sp;
-> >         const void *data;
-> > -       int id;
-> > +       int id, ret;
-> >
-> >         if (!IS_ENABLED(CONFIG_OF) || !np)
-> > -               return NULL;
-> > +               return ERR_PTR(-EINVAL);
-> > +
-> > +       of_id = of_match_device(of_sci_match, &pdev->dev);
-> > +       if (!of_id)
-> > +               return ERR_PTR(-EINVAL);
-> >
-> > -       data = of_device_get_match_data(&pdev->dev);
->
-> Please keep the old construct using of_device_get_match_data().
->
-OK.
-
-> > +       rstc = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
-> > +       if (IS_ERR(rstc)) {
-> > +               dev_err(&pdev->dev, "failed to get reset ctrl %ld\n", PTR_ERR(rstc));
-> > +               return ERR_PTR(PTR_ERR(rstc));
->
-> The error might be -EPROBE_DEFER, so please use
-> "return ERR_PTR(dev_err_probe(...))", to avoid printing the message
-> in case of probe deferral.
->
-Agreed, will use dev_err_probe().
-
-> BTW, ERR_CAST() is a shorthand for ERR_PTR(PTR_ERR()).
->
-Thanks for the pointer.
-
-> > +       }
-> > +
-> > +       ret = reset_control_deassert(rstc);
-> > +       if (ret) {
-> > +               dev_err(&pdev->dev, "failed to deassert reset %d\n", ret);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       ret = devm_add_action_or_reset(&pdev->dev, sci_reset_control_assert, rstc);
-> > +       if (ret) {
-> > +               dev_err(&pdev->dev, "failed to register assert devm action, %d\n",
-> > +                       ret);
-> > +               return ERR_PTR(ret);
-> > +       }
-> > +
-> > +       data = of_id->data;
-> >
-> >         p = devm_kzalloc(&pdev->dev, sizeof(struct plat_sci_port), GFP_KERNEL);
-> >         if (!p)
-> > -               return NULL;
-> > +               return ERR_PTR(-ENOMEM);
-> >
-> >         /* Get the line number from the aliases node. */
-> >         id = of_alias_get_id(np, "serial");
->
-> I gave this a try on Salvator-XS, and noticed no regressions.
-> I will test this on more SCIF variants later.
->
-Thanks, I will re-spin a v3 just for this lone patch. I hope that's OK.
-
-Cheers,
-Prabhakar
-
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Best regards,
+Krzysztof
