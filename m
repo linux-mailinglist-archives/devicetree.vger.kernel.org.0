@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF09544B5C1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:19:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 901AD44B5DD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344086AbhKIWWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:22:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41388 "EHLO mail.kernel.org"
+        id S245614AbhKIWXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:23:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40916 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343621AbhKIWVH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:21:07 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D581661241;
-        Tue,  9 Nov 2021 22:18:04 +0000 (UTC)
+        id S1343940AbhKIWWB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:22:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 27FC6613B3;
+        Tue,  9 Nov 2021 22:18:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496286;
-        bh=dTPb2kXkqqZHHUU/5EsT1jSVWNxZwUWDpuzJjesggv4=;
+        s=k20201202; t=1636496298;
+        bh=yRU2nC94K7wNrUtgKiFvZusWJJCgd3iynH7iUVZAMW8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=D2GsNNO4McAiDKEGS9M/3CbPCYKX+FQBcJaS/Yb+gaUsOW2W0kmglNU3G9cOI+NN3
-         4XDRS41pZIDIv+uUSde420Yb6PQ5jl8SUQZGJm5CiHtAvCHFkVSCsYtfW3fNoBByLd
-         LgUGldAscjRUuQAZ3XTka5CI0i8yvtcwq2GPgoyBlxdGKhK5954VbrxB04FeSlor0Q
-         3Di6X9vME4wAXQYtqj+NtQNh6S6THgs2HxZ+3POv/k8QBEMbKRryoyZPczKdH276qw
-         7ph3CPaAQMFpzUEsIiFI5jpf6jnrxhR31udmRaTmZDBNP93k8gpLPXo8f1sHdOO/1p
-         S2Bf/7BeVrd8g==
+        b=IfuzkhP4jwBc9fM4hSApgywrCY0Yctz8lxuhOqOpqSIaTaqGXaRdPcyhlT4QwD0FD
+         a6KXns0druWYYQ3WjixvGMb+Y9L5j4S44HJdC8K7Z1fCBa04hfyYyTmphBBYnPMN+w
+         XYnVPkaq9IfmzId37eW6TiQCLah89y5bOe+k/b8bABpHdwX9M8Vi/O9WQR7h2OIRXs
+         s/2UvTjHFDIneeMGKK1F6z89wO/eiQN+7vZiRS5tbnekWWKmo278Cha7rKTozn6Ptj
+         43yk0biOxpe51tGZNM6QvFuZnvvg2epiajOuibwLWLxFYihF4JbcyKIvkFcyWEPH8V
+         Fa0xaSzyBE8Jw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Heiko Thiery <heiko.thiery@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Roger Quadros <rogerq@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
+        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
+        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 45/82] arm64: dts: imx8mm-kontron: Fix reset delays for ethernet PHY
-Date:   Tue,  9 Nov 2021 17:16:03 -0500
-Message-Id: <20211109221641.1233217-45-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 53/82] ARM: dts: omap: fix gpmc,mux-add-data type
+Date:   Tue,  9 Nov 2021 17:16:11 -0500
+Message-Id: <20211109221641.1233217-53-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109221641.1233217-1-sashal@kernel.org>
 References: <20211109221641.1233217-1-sashal@kernel.org>
@@ -47,37 +46,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
+From: Roger Quadros <rogerq@kernel.org>
 
-[ Upstream commit 315e7b884190a6c9c28e95ad3b724dde9e922b99 ]
+[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
 
-According to the datasheet the VSC8531 PHY expects a reset pulse of 100 ns
-and a delay of 15 ms after the reset has been deasserted. Set the matching
-values in the devicetree.
+gpmc,mux-add-data is not boolean.
 
-Reported-by: Heiko Thiery <heiko.thiery@gmail.com>
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Fixes the below errors flagged by dtbs_check.
+
+"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
+ arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-index e99e7644ff392..49d7470812eef 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-kontron-n801x-s.dts
-@@ -123,8 +123,8 @@
+diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+index 7f6aefd134514..e7534fe9c53cf 100644
+--- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
++++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+@@ -29,7 +29,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
  
- 		ethphy: ethernet-phy@0 {
- 			reg = <0>;
--			reset-assert-us = <100>;
--			reset-deassert-us = <100>;
-+			reset-assert-us = <1>;
-+			reset-deassert-us = <15000>;
- 			reset-gpios = <&gpio4 27 GPIO_ACTIVE_LOW>;
- 		};
- 	};
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
+diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+index e5da3bc6f1050..218a10c0d8159 100644
+--- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
++++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+@@ -22,7 +22,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
+ 
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
 -- 
 2.33.0
 
