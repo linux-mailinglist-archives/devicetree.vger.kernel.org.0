@@ -2,93 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C41544B7CC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F0744B8F5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:48:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344847AbhKIWhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:37:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55954 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344805AbhKIWfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:35:40 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B19F16103C;
-        Tue,  9 Nov 2021 22:22:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496538;
-        bh=m49XzIzx/Jk3TbBc9EgjateyyuJWPMBrWon/YnhATGE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SCwejiNZ63b2SzjjgJPdG3SQ3IBH1tyg6ryrHyliZCkNeisdIIzzSZYxqxLsfEP4W
-         bnIyGjpBhdftWIvNXM0m/jXGei0dDUDDEiTa2UTTRNQyY9wl88bhft+VtuJR6oRAt7
-         dUgh0X2k16QSkMl8wM+/Nt70uy1FbUiVCMJGra5OlnbN6dsE9h6zg+YmUbmGY91U/0
-         j/6iHWHHyRynOXS2XoKD6jOce83YuBC9yyPnI5ABKA9bQ2q3l6UU5kO7L+bdKVSvyS
-         9f2FDLVOvV+zGRpunVLETw/AUJ6lA5W7miQWQAVcgtk+OdI9JEZmCJTNvOz8rJDDV5
-         8G/gbEnh8kACQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Heidelberg <david@ixit.cz>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        pawel.moll@arm.com, mark.rutland@arm.com,
-        ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 47/50] ARM: dts: qcom: fix memory and mdio nodes naming for RB3011
-Date:   Tue,  9 Nov 2021 17:21:00 -0500
-Message-Id: <20211109222103.1234885-47-sashal@kernel.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211109222103.1234885-1-sashal@kernel.org>
-References: <20211109222103.1234885-1-sashal@kernel.org>
+        id S243267AbhKIWu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:50:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57126 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345039AbhKIWuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 17:50:04 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DABAC00EB3D
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 14:21:24 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id z2-20020a9d71c2000000b0055c6a7d08b8so912319otj.5
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 14:21:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qLsRex488etMkJyCCFaXLtgPzZ6BB/J9dKWw8UO3KF8=;
+        b=HiVLib1yZobRnuW7sMIDMYgEiV7yhcNYV53azWFi6aSYW4Hu++8xN0MqgT9ZBTBPe1
+         tHfuZJW+x3zpArXVhEztoQURqBgNNAqvkhrpdok2c1CYScgbTEkk3toWbsXGaEsMPhBc
+         pobpQ2rMClAZp0i0TvDBo0SZAGTrza1mdUUSgjugkU2oA7tzpHVZSIZWY2OOOlvRabpj
+         xPBPjmrQZd9Z6fxEVq7BWnagN67ohxQ3kkVDeE0cZHQkykxoJzisjtym0erskVnhIOYl
+         BxQABSwHk0vmOC8j2uq7gypLmELd9QUegVybgm3hF2dKB/JaBQMP0LD29ohzDV3YG8Wz
+         hM9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qLsRex488etMkJyCCFaXLtgPzZ6BB/J9dKWw8UO3KF8=;
+        b=YBOfNelm74v7U9+8F38IPfmwTSjwoQs4JjNf5fHOdnLgaLy/CK4g8tLYErc979bZHH
+         RGpXFPp1h65LAGYJLaFVvLOAeoMbagXfb8B8wLxHJeeAsLHqJ73dBJ13nEHXPBK+zAyH
+         brAQsZCjr+oXlpQKVam0+byqs/6jkOTgNLw8cL3mq9srsU/FSxpkos7ynsmkKX8jaeXw
+         bHLoUKXzBOkEmMV/ylnK1TNsyfCmGgQywP+s8fgf4BUByxvFog5PzosvYWHXQ+oUB23T
+         KvrKCNdARPE+bDK/J9XNiLnwFq3n5kde0Ly2Af5sMl7Kup2R3ku91o30uth9AyKTqff4
+         Lviw==
+X-Gm-Message-State: AOAM53399MFCapk4oziCfdHnNuwwhYuBFAIZQ3djhBX+PWvt6Pi1sLtl
+        g16+Z1ywXafo/TjEjF6Jo2FlMettyigPObXXEGwKFWRX5JVufw==
+X-Google-Smtp-Source: ABdhPJxnGCMwPBzOn0vDnUGZChUhsq9PbhUnrHTyTVpdBpkdT5/1fxR/EpRTVr/sEUcMpLzruQlZhgh3IK5H9XIVdOU=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr8689832otj.35.1636496484311;
+ Tue, 09 Nov 2021 14:21:24 -0800 (PST)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20211109164650.2233507-1-robh@kernel.org> <20211109164650.2233507-3-robh@kernel.org>
+In-Reply-To: <20211109164650.2233507-3-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 9 Nov 2021 23:21:12 +0100
+Message-ID: <CACRpkdaY9VQcUCNe4ZFKFyRd7HSFh1FX8yOT-AFqjJ6wc56Ehw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] clk: versatile: clk-icst: Ensure clock names are unique
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Sudeep Holla <Sudeep.Holla@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Heidelberg <david@ixit.cz>
+On Tue, Nov 9, 2021 at 5:46 PM Rob Herring <robh@kernel.org> wrote:
 
-[ Upstream commit 14a1f6c9d8017ffbf388e82e1a1f023196d98612 ]
+> Commit 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and
+> node names") moved to using generic node names. That results in trying
+> to register multiple clocks with the same name. Fix this by including
+> the unit-address in the clock name.
+>
+> Fixes: 2d3de197a818 ("ARM: dts: arm: Update ICST clock nodes 'reg' and node names")
+> Cc: stable@vger.kernel.org
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-clk@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Fixes warnings regarding to memory and mdio nodes and
-apply new naming following dt-schema.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Link: https://lore.kernel.org/r/20211020214741.261509-1-david@ixit.cz
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/qcom-ipq8064-rb3011.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-index 282b89ce3d451..33545cf40f3ab 100644
---- a/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-+++ b/arch/arm/boot/dts/qcom-ipq8064-rb3011.dts
-@@ -19,12 +19,12 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	memory@0 {
-+	memory@42000000 {
- 		reg = <0x42000000 0x3e000000>;
- 		device_type = "memory";
- 	};
- 
--	mdio0: mdio@0 {
-+	mdio0: mdio-0 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 1 GPIO_ACTIVE_HIGH>,
-@@ -91,7 +91,7 @@
- 		};
- 	};
- 
--	mdio1: mdio@1 {
-+	mdio1: mdio-1 {
- 		status = "okay";
- 		compatible = "virtual,mdio-gpio";
- 		gpios = <&qcom_pinmux 11 GPIO_ACTIVE_HIGH>,
--- 
-2.33.0
-
+Yours,
+Linus Walleij
