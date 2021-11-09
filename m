@@ -2,85 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F41044B476
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 22:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 174C544B486
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 22:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbhKIVMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 16:12:33 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53414 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237584AbhKIVMc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 16:12:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=fqMfvevUL4ukmxtHDYzE4N3EIZqfBJykGBfoMdASPoc=; b=EdA5Rkfs5/ZsHFfhINZIQ6inmE
-        xr1hE5zxYp/zcr/mb/MlKKxMvBKAMm70zb3zyoSaTLgp9SOqvO0KpwXMF0UY/0RRJESp2k7eXNYkj
-        AyX/Zjkebe7biSqDhYgH9WnC07Rmh9jiajIC5nKERkr+8B2iqgTypBC6Tv5PekdX7bnE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mkYNA-00D1Wk-AZ; Tue, 09 Nov 2021 22:09:40 +0100
-Date:   Tue, 9 Nov 2021 22:09:40 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S243303AbhKIVR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 16:17:58 -0500
+Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.102]:36355 "EHLO
+        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231961AbhKIVR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 16:17:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636492464;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=quLu7mS7NCzSVjkHuzT3rgqoZ7lnZyxc90gs5rG1UFg=;
+    b=D2LLh5em7bNfkxFpNKYI4ke/zCaEhrT46dLU/hyC0OcN3rA7mgQ6GyXpv6LNY6VS9V
+    STjYbaos7o1qS7xUrW/YXncEKOC6xz16tJKAbPWFMvdVAxxAswHkGbmb2BgQvnj49Ur8
+    av1ht+6HJm/hzQXERImagp2t4MFWoW9ETljOmXXNlHePeCvDzW6atF/BnJ/WTj++eQs7
+    Ple58DB0NYkekyj/TB3pbeysVqiIj7DCLSxNfFMeasMX49Ra9tEi7VhEP8aeHnHHKll8
+    8m/rOOaNZgBj3ZOEVgUDdrILc76NNLgR1CVuUU2AhPeFwjQtBeCwa3Vk5WEH4LNTj9bv
+    Lm+g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3i8cT6Q=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.5 DYNA|AUTH)
+    with ESMTPSA id Y02aa4xA9LEN0iJ
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 9 Nov 2021 22:14:23 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [Letux-kernel] [PATCH v5 5/7] MIPS: DTS: jz4780: Account for
+ Synopsys HDMI driver and LCD controllers
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <4DCFE008-A619-465F-9124-F58AC36A2B08@goldelico.com>
+Date:   Tue, 9 Nov 2021 22:14:22 +0100
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>, Kees Cook <keescook@chromium.org>,
+        Jon as Karlman <jonas@kwiboo.se>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v3 6/8] leds: trigger: add hardware-phy-activity
- trigger
-Message-ID: <YYrjlHz/UgTUwQAm@lunn.ch>
-References: <20211109022608.11109-1-ansuelsmth@gmail.com>
- <20211109022608.11109-7-ansuelsmth@gmail.com>
- <20211109042517.03baa809@thinkpad>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211109042517.03baa809@thinkpad>
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <108FD13E-F623-493D-8091-1E0D73479A4D@goldelico.com>
+References: <cover.1633436959.git.hns@goldelico.com>
+ <c243176cb5e5a3ab5df1fe77f9246b6d5ec4f88e.1633436959.git.hns@goldelico.com>
+ <O7VI0R.CRIG8R7O0OOI3@crapouillou.net> <3514743.EH6qe8WxYI@jason>
+ <N3YI0R.7ZLKK5JTBXW63@crapouillou.net>
+ <95D1DE70-DDF4-419B-8F0C-E9A6E0995D1F@goldelico.com>
+ <BDU72R.SAKM4CQWCUKI2@crapouillou.net>
+ <BF6CBFFA-E8AA-4CCE-A587-4D5D647DEC64@goldelico.com>
+ <6WNB2R.GJ2KT1BB7QOY1@crapouillou.net>
+ <4DCFE008-A619-465F-9124-F58AC36A2B08@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +/* Expose sysfs for every blink to be configurable from userspace */
-> > +DEFINE_OFFLOAD_TRIGGER(blink_tx, BLINK_TX);
-> > +DEFINE_OFFLOAD_TRIGGER(blink_rx, BLINK_RX);
-> > +DEFINE_OFFLOAD_TRIGGER(keep_link_10m, KEEP_LINK_10M);
-> > +DEFINE_OFFLOAD_TRIGGER(keep_link_100m, KEEP_LINK_100M);
-> > +DEFINE_OFFLOAD_TRIGGER(keep_link_1000m, KEEP_LINK_1000M);
 
-You might get warnings about CamelCase, but i suggest keep_link_10M,
-keep_link_100M and keep_link_1000M. These are megabits, not millibits.
 
-> > +DEFINE_OFFLOAD_TRIGGER(keep_half_duplex, KEEP_HALF_DUPLEX);
-> > +DEFINE_OFFLOAD_TRIGGER(keep_full_duplex, KEEP_FULL_DUPLEX);
+> Am 09.11.2021 um 21:42 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>=20
+>> So you want to update these properties to add the HDMI clock setting, =
+like this:
+>>=20
+>> 	assigned-clocks =3D <&cgu JZ4780_CLK_OTGPHY>, <&cgu =
+JZ4780_CLK_RTC>, <&cgu JZ4780_CLK_HDMI>;
+>> 	assigned-clock-parents =3D <0>, <&cgu JZ4780_CLK_RTCLK>;
+>> 	assigned-clock-rates =3D <48000000>, <0>, <27000000>;
+>=20
+> Will give it a try.
 
-What does keep mean in this context?
+Yes, works. So v6 is not far away.
 
-> > +DEFINE_OFFLOAD_TRIGGER(option_linkup_over, OPTION_LINKUP_OVER);
-> > +DEFINE_OFFLOAD_TRIGGER(option_power_on_reset, OPTION_POWER_ON_RESET);
-> > +DEFINE_OFFLOAD_TRIGGER(option_blink_2hz, OPTION_BLINK_2HZ);
-> > +DEFINE_OFFLOAD_TRIGGER(option_blink_4hz, OPTION_BLINK_4HZ);
-> > +DEFINE_OFFLOAD_TRIGGER(option_blink_8hz, OPTION_BLINK_8HZ);
-> 
-> This is very strange. Is option_blink_2hz a trigger on itself? Or just
-> an option for another trigger? It seems that it is an option, so that I
-> can set something like
->   blink_tx,option_blink_2hz
-> and the LED will blink on tx activity with frequency 2 Hz... If that is
-> so, I think you are misnaming your macros or something, since you are
-> defining option_blink_2hz as a trigger with
->  DEFINE_OFFLOAD_TRIGGER
+BR,
+Nikolaus
 
-Yes, i already said this needs handling differently. The 2Hz, 4Hz and
-8Hz naturally fit the delay_on, delay_of sysfs attributes.
-
-    Andrew
