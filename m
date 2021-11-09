@@ -2,39 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A85A44B751
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CA6B44B753
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:31:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344926AbhKIWej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1344949AbhKIWej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 9 Nov 2021 17:34:39 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55866 "EHLO mail.kernel.org"
+Received: from mail.kernel.org ([198.145.29.99]:55954 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1344399AbhKIWcF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:32:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 60A4561A82;
-        Tue,  9 Nov 2021 22:21:13 +0000 (UTC)
+        id S1344448AbhKIWcI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:32:08 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 58B1A61A8E;
+        Tue,  9 Nov 2021 22:21:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496474;
-        bh=ZqJljDphuKdeHOn5RS+GpUkZPitLaXlIykVrdPvKGsg=;
+        s=k20201202; t=1636496477;
+        bh=s5d3xTZ4wPKJc4vp6TTuDBExFdW+10gH8wVS9+oMBqQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RhB7qDzhgNC+veAOPmIdKaM9XChP0cCuXc2rb0oM8wwzV+GRMu3ODlAXYa95tki92
-         11yr/IR6eD7CUbmSR18KOMesOqnTUkhm9367cRp+RKu62AA6Ot42UVXr9Gi+ZYoAjc
-         OS+R0+37D8UZdtBAoyHeEJKEH852Yn77hsOeq8Tpsm3XHlilFdqV5otr324jv3fNE4
-         a4mI6AepWPtG2HKP6XaGaTocA7FrGQek6UVhDy7gZU1bc2d4qkkEcFkOvGoQwzTa8O
-         0TY5pTeB5l9bY8hN4M0s11rTjd+SLBQ+2QE3pQLIdBTnFS2MOt21jhbJpoMpRY3bGX
-         PNI/iNRFnncVA==
+        b=lSAv4oQUTu7/rvrgZAOQ9b6j1UvJwb2vmueNRM5K5fwgz1oYbllo3Fb+BkipLRGVQ
+         EHHpR7/xdSU/Euvcy1jEb4m+jviKwfEz86SMJeAPrBxav3DAJ/iyW1C0z48seNuZjD
+         YzglsxIMMouwtKu32F2Zrch6XbCDv8Vy0qtUt3az/UWL1aygLu5QWC0NxBl7/mEMeI
+         tDyOm2T6Di9Qh0/C6KiqH0jAlokhB+HfvwrfgO0gHXhzEo3gjKAL2tNP77fIBhJ/oy
+         HdxTEz7o0Y0XLrsOBrpkKZ+QB4UMx4ntYD3a+IqYfTdDihgmut7q8MvRYor3xw+f3G
+         zZpr2GH85hFsQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+Cc:     Matthew Hagan <mnhagan88@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 05/50] arm64: dts: allwinner: a100: Fix thermal zone node name
-Date:   Tue,  9 Nov 2021 17:20:18 -0500
-Message-Id: <20211109222103.1234885-5-sashal@kernel.org>
+        linux@arm.linux.org.uk, rjui@broadcom.com, sbranden@broadcom.com,
+        jonmason@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: [PATCH AUTOSEL 5.10 07/50] ARM: dts: NSP: Fix mpcore, mmc node names
+Date:   Tue,  9 Nov 2021 17:20:20 -0500
+Message-Id: <20211109222103.1234885-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222103.1234885-1-sashal@kernel.org>
 References: <20211109222103.1234885-1-sashal@kernel.org>
@@ -46,50 +48,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxime Ripard <maxime@cerno.tech>
+From: Matthew Hagan <mnhagan88@gmail.com>
 
-[ Upstream commit 5c34c4e46e601554bfa370b23c8ae3c3c734e9f7 ]
+[ Upstream commit 15a563d008ef9d04df525f0c476cd7d7127bb883 ]
 
-The thermal zones one the A100 are called $device-thermal-zone.
+Running dtbs_check yielded the issues with bcm-nsp.dtsi.
 
-However, the thermal zone binding explicitly requires that zones are
-called *-thermal. Let's fix it.
+Firstly this patch fixes the following message by appending "-bus" to
+the mpcore node name:
+mpcore@19000000: $nodename:0: 'mpcore@19000000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Link: https://lore.kernel.org/r/20210901091852.479202-50-maxime@cerno.tech
+Secondly mmc node name. The label name can remain as is.
+sdhci@21000: $nodename:0: 'sdhci@21000' does not match '^mmc(@.*)?$'
+
+Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/bcm-nsp.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index cc321c04f1219..f6d7d7f7fdabe 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -343,19 +343,19 @@
+diff --git a/arch/arm/boot/dts/bcm-nsp.dtsi b/arch/arm/boot/dts/bcm-nsp.dtsi
+index 605b6d2f4a569..1dae02bb82c2d 100644
+--- a/arch/arm/boot/dts/bcm-nsp.dtsi
++++ b/arch/arm/boot/dts/bcm-nsp.dtsi
+@@ -77,7 +77,7 @@
+ 		interrupt-affinity = <&cpu0>, <&cpu1>;
  	};
  
- 	thermal-zones {
--		cpu-thermal-zone {
-+		cpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 0>;
+-	mpcore@19000000 {
++	mpcore-bus@19000000 {
+ 		compatible = "simple-bus";
+ 		ranges = <0x00000000 0x19000000 0x00023000>;
+ 		#address-cells = <1>;
+@@ -219,7 +219,7 @@
+ 			status = "disabled";
  		};
  
--		ddr-thermal-zone {
-+		ddr-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 2>;
- 		};
- 
--		gpu-thermal-zone {
-+		gpu-thermal {
- 			polling-delay-passive = <0>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&ths 1>;
+-		sdio: sdhci@21000 {
++		sdio: mmc@21000 {
+ 			compatible = "brcm,sdhci-iproc-cygnus";
+ 			reg = <0x21000 0x100>;
+ 			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.33.0
 
