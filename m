@@ -2,133 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C6D244B405
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 21:32:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD6844B411
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 21:34:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230151AbhKIUfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 15:35:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbhKIUfF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 15:35:05 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B95BC061764;
-        Tue,  9 Nov 2021 12:32:19 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id m6so960923oim.2;
-        Tue, 09 Nov 2021 12:32:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=51wtgkIuQxPGEgby/XEIn59LztIHPWFiQyA5sYNuT0A=;
-        b=QfIxpjbmpnXM6n7kMOJP0SicLxwqS5wthZZ/ISnZoxMxezXZa+bk8MpK/+Z+dHDYoq
-         Ks0CRG/oTScuh9LdfMdbnFqwtKQasPAA/L5Cneunkm67u8alDN01qs9VbQ0X/Nn1sLRL
-         1v+IZPRi0Nu3ZmWNaJ3h7tFKHbtYTREWFIWOefpH5cRelyAeS5GHVexQGgXKP/oQl9BK
-         0F+q8PmKtT2GTrQY3KGbV2OlwDZ9C+U6DTs9C1KOdybiMrVnoShSh9gJaabm/iCYjraS
-         nqFlmgHhR8mk/+VPy4p/pKrCvZ04vZjtn4oapdQtP/Zq2pG0Nfy7FvxAr7ZC/3C0tuoM
-         B2+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=51wtgkIuQxPGEgby/XEIn59LztIHPWFiQyA5sYNuT0A=;
-        b=gD/UaYIPoCoJqfyUYEDv7ObO1NiUKlN6GulR8pl12istjAh4U9PeipkUTE98xsuD9W
-         3Svqk91zum1SSznFNi/EmoGzRndFH1szd8XWx36f5M3Uu+mOFMGXooTiPFBujzG5hP81
-         WI4tUdI2gamy1et5FdosVmsTGRohTwZ/+quFrjxcw9603XjWK+Ytnsfm3gi1hBtndAhc
-         QuXKYoGB4bfFa0ibzk+J7TttOlichjsjQVlCpZVuZG7HFoOgHfr7/MhCayDB9IGkJm55
-         SYL9BGT9DnV0uxvy8iNJa1sRomx84jsFw/2ChX7qsxiC4UZ1ekpMJ9+kfY7iPKjcN0LQ
-         bzFQ==
-X-Gm-Message-State: AOAM5316sNgGaTa60Ry8D7yTVUnjuyfrn4yZW+WKKPfPoaYwy19WpIPY
-        qvYM4vKcoLHmV8wWSqNkKV4=
-X-Google-Smtp-Source: ABdhPJwKAfV0+TLZmOT52lT5nCa9ZAa1omp30qLKt6g55D2X13ROzMrti90yVMCkViHkpqnqtFj3ig==
-X-Received: by 2002:a05:6808:1305:: with SMTP id y5mr5007636oiv.83.1636489938376;
-        Tue, 09 Nov 2021 12:32:18 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id r16sm2173454oop.8.2021.11.09.12.32.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 12:32:17 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 9 Nov 2021 12:32:16 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Nathan Rossi <nathan@nathanrossi.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nathan Rossi <nathan.rossi@digi.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: hwmon: ti,ina2xx: Add ti,shunt-gain
- property
-Message-ID: <20211109203216.GA3693367@roeck-us.net>
-References: <20211102052754.817220-0-nathan@nathanrossi.com>
- <20211102052754.817220-2-nathan@nathanrossi.com>
+        id S243578AbhKIUhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 15:37:22 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:53314 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239648AbhKIUhV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 15:37:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=NZmg3j0EAUz6SRjH0lLT+qY9ZFf2Fx+/cHi7xXQ221k=; b=minbOTZiNi6GoEgekr24PBPWFW
+        wJdqcet8470M6FxSH98y41OHosHueu8nRrp7A33FuPRnuK9jz/RbQNJFODaSQwxBcTWCfOnfBOjbl
+        wMn1MwCJ+vFP7DxKXM9aCplqrnyoMrzxgqKb+MRLoKdCjkz8fjGaZnS58tPhqRSs+KZw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mkXp1-00D1Mt-Pd; Tue, 09 Nov 2021 21:34:23 +0100
+Date:   Tue, 9 Nov 2021 21:34:23 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Subject: Re: [RFC PATCH v3 1/8] leds: add support for hardware driven LEDs
+Message-ID: <YYrbT6pMGXqA2EVn@lunn.ch>
+References: <20211109022608.11109-1-ansuelsmth@gmail.com>
+ <20211109022608.11109-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211102052754.817220-2-nathan@nathanrossi.com>
+In-Reply-To: <20211109022608.11109-2-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 02, 2021 at 05:27:54AM +0000, Nathan Rossi wrote:
-> From: Nathan Rossi <nathan.rossi@digi.com>
+On Tue, Nov 09, 2021 at 03:26:01AM +0100, Ansuel Smith wrote:
+> Some LEDs can be driven by hardware (for example a LED connected to
+> an ethernet PHY or an ethernet switch can be configured to blink on
+> activity on the network, which in software is done by the netdev trigger).
 > 
-> Add a property to the binding to define the selected shunt voltage gain.
-> This specifies the range and accuracy that applies to the shunt circuit.
-> This property only applies to devices that have a selectable shunt
-> voltage range via PGA or ADCRANGE register configuration.
+> To do such offloading, LED driver must support this and a supported
+> trigger must be used.
 > 
-> Signed-off-by: Nathan Rossi <nathan.rossi@digi.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> LED driver should declare the correct blink_mode supported and should set
+> the blink_mode parameter to one of HARDWARE_CONTROLLED or
+> SOFTWARE_HARDWARE_CONTROLLED.
+> The trigger will check this option and fail to activate if the blink_mode
+> is not supported. By default if a LED driver doesn't declare blink_mode,
+> SOFTWARE_CONTROLLED is assumed.
+> 
+> The LED must implement 3 main API:
+> - trigger_offload_status(): This asks the LED driver if offload mode is
+>     enabled or not.
+>     Triggers will check if the offload mode is supported and will be
+>     activated accordingly. If the trigger can't run in software mode,
+>     return -EOPNOTSUPP as the blinking can't be simulated by software.
 
-Applied to hwmon-next.
+I don't understand this last part. The LED controller is not
+implementing software mode, other than providing a method to manually
+turn the LED on and off. And there is a well defined call for that. If
+that call is a NULL, it is clear it is not implemented. There is no
+need to ask the driver.
 
-Thanks,
-Guenter
-
-> ---
-> Changes in v2:
-> - Added binding for shunt-gain
-> 
-> Changes in v3:
-> - Fix schema error, setting $ref to uint32
-> - Improve the description to detail exactly how to define the property
->   and how the property affects initial device configuration and
->   calculation of values
-> ---
->  .../devicetree/bindings/hwmon/ti,ina2xx.yaml        | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> ---
-> 2.33.0
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> index 180573f26c..47af97bb4c 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> @@ -36,6 +36,27 @@ properties:
->        Shunt resistor value in micro-Ohm.
->      $ref: /schemas/types.yaml#/definitions/uint32
->  
-> +  ti,shunt-gain:
-> +    description: |
-> +      Programmable gain divisor for the shunt voltage accuracy and range. This
-> +      property only applies to devices that have configurable PGA/ADCRANGE. The
-> +      gain value is used configure the gain and to convert the shunt voltage,
-> +      current and power register values when reading measurements from the
-> +      device.
-> +
-> +      For devices that have a configurable PGA (e.g. INA209, INA219, INA220),
-> +      the gain value maps directly with the PG bits of the config register.
-> +
-> +      For devices that have ADCRANGE configuration (e.g. INA238) a shunt-gain
-> +      value of 1 maps to ADCRANGE=1 where no gain divisor is applied to the
-> +      shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
-> +      voltage range is used.
-> +
-> +      The default value is device dependent, and is defined by the reset value
-> +      of PGA/ADCRANGE in the respective configuration registers.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 8]
-> +
->  required:
->    - compatible
->    - reg
+     Andrew
