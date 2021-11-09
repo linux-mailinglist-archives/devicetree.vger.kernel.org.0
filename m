@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3799444B852
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB49844B85E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:39:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345080AbhKIWmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:42:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59904 "EHLO mail.kernel.org"
+        id S1345772AbhKIWmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:42:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60086 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345279AbhKIWjw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:39:52 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 775AB61B28;
-        Tue,  9 Nov 2021 22:23:29 +0000 (UTC)
+        id S238112AbhKIWkN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:40:13 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 083AE61A08;
+        Tue,  9 Nov 2021 22:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496610;
-        bh=4FLFo4QtKGgZSNkxhZDuAi2pcLRTmHCDtelC4gPDTQ4=;
+        s=k20201202; t=1636496620;
+        bh=xWOBmJ3gAX1c3SABa7g4c2s2TLjb175WWtE/3krY5mI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Hpim0EKx77TAlKhCz+JE3rK3vqcuF7Z9I3gqd4vQkVNy48f6y/30OWabdbmDZ4zS0
-         amk0VF67AN9JpIotmgMWR8z1k9Y1tEvy0Ial0CCoYlaJVzfWdxXsZkp0aF6OlzbJIr
-         8qnASOAL5dva2gKXWg3jR2Juu5fzVYvk48ATr31ikzFLAi2RD9T+Q/5AVsntWGPLE0
-         0dG7mJGAg4sugYvKlFYQggF0Lu1yiIL6ojRO/0WA+uO3piTI1p3W4m6QDfyqbkXPg8
-         LekPFP/Fw+0cyYTZN9y1R4dIviisIdp12EgMl4/05g7fH2+8wZMrXW6VINXOruMY6e
-         7cHG0tzi7lLjg==
+        b=R2/+kZ8u66Su+KhYopHIMVHPoC6hvz77pwEZ1rZ4riHFqi3rawP/V+1yejaOJpeFM
+         +EAEtq+yO+XRM21Dk+v5JN6uC+mQ4dWEDdfhXEsge2RA8YAUsgPYHCagijvIi7GnlM
+         44MQMkOYQNV7tXruEI/ii63b10hG4EPW3kTLDZmJhqHoVWodHrdWidmuMASGXhvJpo
+         dWwAOhX1Kcy4HQxjTi9KA20l1FUudeYezaOpqxH9CT5n/dWn5HF76FM2neT+++Yslz
+         +0es0yJ4Q6WtZyIZ4o2ih3vYA0iTcNOdWv1sQ/o2flZP2V+UgrCrRZXZhHuA77aYjn
+         rzJuG6IM2t52A==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Roger Quadros <rogerq@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
-        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Anatolij Gustschin <agust@denx.de>, Rob Herring <robh@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 12/21] ARM: dts: omap: fix gpmc,mux-add-data type
-Date:   Tue,  9 Nov 2021 17:23:01 -0500
-Message-Id: <20211109222311.1235686-12-sashal@kernel.org>
+        benh@kernel.crashing.org, paulus@samba.org,
+        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH AUTOSEL 4.19 19/21] powerpc/5200: dts: fix memory node unit name
+Date:   Tue,  9 Nov 2021 17:23:08 -0500
+Message-Id: <20211109222311.1235686-19-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222311.1235686-1-sashal@kernel.org>
 References: <20211109222311.1235686-1-sashal@kernel.org>
@@ -46,50 +46,189 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Roger Quadros <rogerq@kernel.org>
+From: Anatolij Gustschin <agust@denx.de>
 
-[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
+[ Upstream commit aed2886a5e9ffc8269a4220bff1e9e030d3d2eb1 ]
 
-gpmc,mux-add-data is not boolean.
+Fixes build warnings:
+Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
 
-Fixes the below errors flagged by dtbs_check.
-
-"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
-
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: Tony Lindgren <tony@atomide.com>
+Signed-off-by: Anatolij Gustschin <agust@denx.de>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+Link: https://lore.kernel.org/r/20211013220532.24759-4-agust@denx.de
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
- arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/powerpc/boot/dts/charon.dts    | 2 +-
+ arch/powerpc/boot/dts/digsy_mtc.dts | 2 +-
+ arch/powerpc/boot/dts/lite5200.dts  | 2 +-
+ arch/powerpc/boot/dts/lite5200b.dts | 2 +-
+ arch/powerpc/boot/dts/media5200.dts | 2 +-
+ arch/powerpc/boot/dts/mpc5200b.dtsi | 2 +-
+ arch/powerpc/boot/dts/o2d.dts       | 2 +-
+ arch/powerpc/boot/dts/o2d.dtsi      | 2 +-
+ arch/powerpc/boot/dts/o2dnt2.dts    | 2 +-
+ arch/powerpc/boot/dts/o3dnt.dts     | 2 +-
+ arch/powerpc/boot/dts/pcm032.dts    | 2 +-
+ arch/powerpc/boot/dts/tqm5200.dts   | 2 +-
+ 12 files changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-index 7f6aefd134514..e7534fe9c53cf 100644
---- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-+++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
-@@ -29,7 +29,7 @@
- 		compatible = "smsc,lan9221","smsc,lan9115";
- 		bank-width = <2>;
+diff --git a/arch/powerpc/boot/dts/charon.dts b/arch/powerpc/boot/dts/charon.dts
+index 0e00e508eaa6a..1c8fe20752e6a 100644
+--- a/arch/powerpc/boot/dts/charon.dts
++++ b/arch/powerpc/boot/dts/charon.dts
+@@ -39,7 +39,7 @@
+ 		};
+ 	};
  
--		gpmc,mux-add-data;
-+		gpmc,mux-add-data = <0>;
- 		gpmc,cs-on-ns = <0>;
- 		gpmc,cs-rd-off-ns = <42>;
- 		gpmc,cs-wr-off-ns = <36>;
-diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-index 82e98ee3023ad..3dbeb7a6c569c 100644
---- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-+++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
-@@ -25,7 +25,7 @@
- 		compatible = "smsc,lan9221","smsc,lan9115";
- 		bank-width = <2>;
+-	memory {
++	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x00000000 0x08000000>;	// 128MB
+ 	};
+diff --git a/arch/powerpc/boot/dts/digsy_mtc.dts b/arch/powerpc/boot/dts/digsy_mtc.dts
+index c3922fc03e0b1..1a002cc487d57 100644
+--- a/arch/powerpc/boot/dts/digsy_mtc.dts
++++ b/arch/powerpc/boot/dts/digsy_mtc.dts
+@@ -20,7 +20,7 @@
+ 	model = "intercontrol,digsy-mtc";
+ 	compatible = "intercontrol,digsy-mtc";
  
--		gpmc,mux-add-data;
-+		gpmc,mux-add-data = <0>;
- 		gpmc,cs-on-ns = <0>;
- 		gpmc,cs-rd-off-ns = <42>;
- 		gpmc,cs-wr-off-ns = <36>;
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x02000000>;	// 32MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/lite5200.dts b/arch/powerpc/boot/dts/lite5200.dts
+index 179a1785d6454..18d137a3393f0 100644
+--- a/arch/powerpc/boot/dts/lite5200.dts
++++ b/arch/powerpc/boot/dts/lite5200.dts
+@@ -36,7 +36,7 @@
+ 		};
+ 	};
+ 
+-	memory {
++	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x00000000 0x04000000>;	// 64MB
+ 	};
+diff --git a/arch/powerpc/boot/dts/lite5200b.dts b/arch/powerpc/boot/dts/lite5200b.dts
+index 5abb46c5cc951..29419cf81e044 100644
+--- a/arch/powerpc/boot/dts/lite5200b.dts
++++ b/arch/powerpc/boot/dts/lite5200b.dts
+@@ -35,7 +35,7 @@
+ 		led4 { gpios = <&gpio_simple 2 1>; };
+ 	};
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x10000000>;	// 256MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/media5200.dts b/arch/powerpc/boot/dts/media5200.dts
+index 843f156a49c46..3ae4432165f75 100644
+--- a/arch/powerpc/boot/dts/media5200.dts
++++ b/arch/powerpc/boot/dts/media5200.dts
+@@ -36,7 +36,7 @@
+ 		};
+ 	};
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x08000000>;	// 128MB RAM
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/mpc5200b.dtsi b/arch/powerpc/boot/dts/mpc5200b.dtsi
+index 969b2200b2f97..ecfba675b5611 100644
+--- a/arch/powerpc/boot/dts/mpc5200b.dtsi
++++ b/arch/powerpc/boot/dts/mpc5200b.dtsi
+@@ -37,7 +37,7 @@
+ 		};
+ 	};
+ 
+-	memory: memory {
++	memory: memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x00000000 0x04000000>;	// 64MB
+ 	};
+diff --git a/arch/powerpc/boot/dts/o2d.dts b/arch/powerpc/boot/dts/o2d.dts
+index 9f6dd4d889b32..5a676e8141caf 100644
+--- a/arch/powerpc/boot/dts/o2d.dts
++++ b/arch/powerpc/boot/dts/o2d.dts
+@@ -16,7 +16,7 @@
+ 	model = "ifm,o2d";
+ 	compatible = "ifm,o2d";
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x08000000>;  // 128MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/o2d.dtsi b/arch/powerpc/boot/dts/o2d.dtsi
+index cf073e693f24d..1b4df5f64b580 100644
+--- a/arch/powerpc/boot/dts/o2d.dtsi
++++ b/arch/powerpc/boot/dts/o2d.dtsi
+@@ -23,7 +23,7 @@
+ 	model = "ifm,o2d";
+ 	compatible = "ifm,o2d";
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x04000000>;	// 64MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/o2dnt2.dts b/arch/powerpc/boot/dts/o2dnt2.dts
+index a0f5b97a4f06e..5184c461a205f 100644
+--- a/arch/powerpc/boot/dts/o2dnt2.dts
++++ b/arch/powerpc/boot/dts/o2dnt2.dts
+@@ -16,7 +16,7 @@
+ 	model = "ifm,o2dnt2";
+ 	compatible = "ifm,o2d";
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x08000000>;  // 128MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/o3dnt.dts b/arch/powerpc/boot/dts/o3dnt.dts
+index acce49326491b..045b901719245 100644
+--- a/arch/powerpc/boot/dts/o3dnt.dts
++++ b/arch/powerpc/boot/dts/o3dnt.dts
+@@ -16,7 +16,7 @@
+ 	model = "ifm,o3dnt";
+ 	compatible = "ifm,o2d";
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x04000000>;  // 64MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/pcm032.dts b/arch/powerpc/boot/dts/pcm032.dts
+index 576249bf2fb91..637e14286dde5 100644
+--- a/arch/powerpc/boot/dts/pcm032.dts
++++ b/arch/powerpc/boot/dts/pcm032.dts
+@@ -26,7 +26,7 @@
+ 	model = "phytec,pcm032";
+ 	compatible = "phytec,pcm032";
+ 
+-	memory {
++	memory@0 {
+ 		reg = <0x00000000 0x08000000>;	// 128MB
+ 	};
+ 
+diff --git a/arch/powerpc/boot/dts/tqm5200.dts b/arch/powerpc/boot/dts/tqm5200.dts
+index 1db07f6cf133c..68b9e8240fb5b 100644
+--- a/arch/powerpc/boot/dts/tqm5200.dts
++++ b/arch/powerpc/boot/dts/tqm5200.dts
+@@ -36,7 +36,7 @@
+ 		};
+ 	};
+ 
+-	memory {
++	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x00000000 0x04000000>;	// 64MB
+ 	};
 -- 
 2.33.0
 
