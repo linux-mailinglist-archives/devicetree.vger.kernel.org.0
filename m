@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E82144A5D6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 05:39:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 751D044A5D8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 05:41:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237416AbhKIEm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 23:42:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
+        id S242744AbhKIEon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 23:44:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242606AbhKIEm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 23:42:27 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3BE7C0613F5
-        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 20:39:41 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id t19so1277853oij.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 20:39:41 -0800 (PST)
+        with ESMTP id S240672AbhKIEom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 23:44:42 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D989AC061764
+        for <devicetree@vger.kernel.org>; Mon,  8 Nov 2021 20:41:56 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id o83so31604413oif.4
+        for <devicetree@vger.kernel.org>; Mon, 08 Nov 2021 20:41:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+Pz92NevhlQIIHyCP8oFIg+pYIGx0bc+HYq2+R7qC0s=;
-        b=VXV3qFd6feUoGA0Dj9phwKZpS6bnzrgOGgkh4jB6zxhBHGrJWiE6ZPWQgiOL0hf+4y
-         qPFNTS07kLxXPEKjgkJZzla9vgUarIHavmn1Ebk5vhwk+FFIBNaaOlm6pzP9GD2NL2Ao
-         C0CyaC3M/FdxyahUSp/7HVE4/xD8h5YPBFjhow+/rSFRhtkFwEb84oV98XeX7HDzDfJU
-         dxozTPS9XosCvtTuDh4cAldDz0QIS5FIGEnB1k0U2Hj1fzrgwxhka4ppO18Pujf+CBPR
-         yZzAQaLyzeGmKVuwpo731edvn++wOhyMWouW06nGXaBFbnfau+FdLMn5PFgKordxB1wv
-         0eIA==
+        bh=OSA7N9mCLquT1rd2wImQ3Ami6xqCzBhYDYxbfoazN4k=;
+        b=Y9gyFDzcL9BP1DFZxJI+XpovLOx5lPURxi5EvHj8XntBd5CfTCfGFPnKETmHqHJvsE
+         1qasAijOOo0MAzsLcdhx+uyaoSgidb9FHy8Hm+lhm9HGRqf+YySiPULFw60CfAhXamc8
+         /Qm7bZSGVcSMuxp+eVRoa1g1Eb3JCuus4RNx9FHetRRhXHiuG34spSb3D0P/aAElH/ZE
+         OhwCpI9ss9uoDf3FH4LE+++3g4FeBJ5uul7TayckUQk9Hv2VONcyxUZqeSVhPVFfl4vu
+         Q22MPO5PkKbFoSxuBE8VeagXLPknXtmLmnxju71dTgfbHFvu0GSIwUa2CWCElyOFhpZS
+         W9YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+Pz92NevhlQIIHyCP8oFIg+pYIGx0bc+HYq2+R7qC0s=;
-        b=O0bREIwcG0GLjFubaGQW2g3AmZ9uDocTKYqtaKONWBWGSJe0BA0d3dPWFDNnGtswFi
-         ZlQ8lP/H/6gGgBMkbs3eCQmW6FayEgX4B8XsuKLZWIHRSi1h02tO+HgBVa79+vHBseie
-         SXjUEo+XQc7nRM02h7fZ/o2lg8ksaWipQ4PmETNvDfEbHUSX7GXtNxtg3p8BgnaYvW/b
-         SZ7IMHonqS/ImsGSXbHPoMkMivCZKZ5nL8sH1FaAHyCadIrBUXkvCEdDTuvDkFTTKFyg
-         uibviWubqrIpb/AMbVg+DprRfiH4VqgweAvDWNWE+p1E/8Pal1SjjUVW7FmEvYyctT2Z
-         9FOQ==
-X-Gm-Message-State: AOAM5339KKB9bDvR6aiD0eQwiaVg7Amb+U6kIm1Wg31H6e0Y9sQNx+DV
-        o3nuxmkAV6R6NB6vPVYEwAhMNK3QN+goPGnyOMRCng==
-X-Google-Smtp-Source: ABdhPJx4wXgHEOdy5PVg8KK2lc3tL/e4WuUSdMvP/hxe2OguXf8K6B7xBS6H6P73oUEw7ixFmlMFF5XtvO0seM32+74=
-X-Received: by 2002:aca:120f:: with SMTP id 15mr3108464ois.132.1636432780940;
- Mon, 08 Nov 2021 20:39:40 -0800 (PST)
+        bh=OSA7N9mCLquT1rd2wImQ3Ami6xqCzBhYDYxbfoazN4k=;
+        b=M3iGZ7EeQO/zDaFVA2VoDS+JHygoOby/3h8y6uCR5MmFdxLlrJBtGMX8lZhgRZDXui
+         CGkqU8u6sK0enl07pH7p50PSKH3fHbMJ0jIONQJeXzwf9NupTUGEJqrjbYxoYa8i0uOM
+         hDML7OA2kihkZLzL+VKLZDLry8lHx1U4QZMOaXw/tjfxWSk8/0/Nm9CSwfVM67XU9W63
+         VNpg8CkROQkLvfUGZ+q+KymZ5F6mmCzW78AlWajLR3L1aaCYxGcOH2h4TXAXJgGa7S2j
+         Z17uxfldc/lZoMawTXPGDfMEEXgvQBtz0UPB/x7ss2njwlvtwQXQrVSytFoY3JiLw+JQ
+         trKw==
+X-Gm-Message-State: AOAM533oQPwJQmc2+lVLWGTfAAZ8+70eql33cqV4AwPPOxpk19c6LgVK
+        Am+FdY8h78ssB5nAMoQbOdJt5Zcta6CWF6lLT++rTQ==
+X-Google-Smtp-Source: ABdhPJzvkyEHDjEXckfkD+M8/nBngNkvmoi95rRujcZk7+h5VicjnIaF5ti9YLbEY8bDbU7657FdlwK3LXVVQP4CYt0=
+X-Received: by 2002:aca:120f:: with SMTP id 15mr3116254ois.132.1636432916285;
+ Mon, 08 Nov 2021 20:41:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20211027181350.91630-1-nikita@trvn.ru> <20211027181350.91630-3-nikita@trvn.ru>
-In-Reply-To: <20211027181350.91630-3-nikita@trvn.ru>
+References: <20211027181350.91630-1-nikita@trvn.ru> <20211027181350.91630-5-nikita@trvn.ru>
+In-Reply-To: <20211027181350.91630-5-nikita@trvn.ru>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 9 Nov 2021 05:39:29 +0100
-Message-ID: <CACRpkdb1LJkKd8L6XtbDbvenV7=nSLPBqKYkfiVH4UNO64c=Hw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: input/ts/zinitix: Convert to YAML, fix
- and extend
+Date:   Tue, 9 Nov 2021 05:41:44 +0100
+Message-ID: <CACRpkdZOPz1uCCnLMKJmivVFXW4YLbFF0PXe=LhyCTtXGtf9hQ@mail.gmail.com>
+Subject: Re: [PATCH 4/6] input: touchscreen: zinitix: Add compatible for bt532
 To:     Nikita Travkin <nikita@trvn.ru>
 Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
         Michael.Srba@seznam.cz, broonie@kernel.org,
@@ -64,14 +63,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, Oct 27, 2021 at 8:15 PM Nikita Travkin <nikita@trvn.ru> wrote:
 
-> This patch was previously submited here:
-> https://lore.kernel.org/linux-input/20210625113435.2539282-1-linus.walleij@linaro.org/
+> Zinitix BT532 is another touch controller that seem to implement the
+> same interface as an already supported BT541. Add it to the driver.
 >
-> Changes since the original patch:
->  - Use enum for compatible list instead of oneOf + const
+> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
 
-Thanks for picking this up. I was meaning to get back to fixing up the
-Zinitix driver but haven't had time.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
