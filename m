@@ -2,233 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E05A044B8D2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:43:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6BC444B957
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 00:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345467AbhKIWqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:46:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34964 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1346249AbhKIWoI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:44:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E731261B3E;
-        Tue,  9 Nov 2021 22:24:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496683;
-        bh=uhUFfBpuoDu4WC0xjH4CkbA2dKcnwk3j6VeoLLPXras=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SIhLSszWg2wmzVYbg4mh04dvr8Xg3tB3w8prG/EBz0AQ9WOsDilrcTlTyZkMFZy8j
-         0JAJq/F9v3a5V9ckl1XcD/XT1PI0u1jiiVJjzY1L8AYK8W4u3GdogQkvy2g7RDdwN9
-         6A9l3xn+tabEPmTB0m/CFbDHaKDymhsenClcWxPreYSr9/3/cxIHnMJ6p0rswAzq+A
-         CE8PqARRR2oCIREMsHQnTryXjjPucrYMceT1YLxguRtDpmZbCFDdaa0wBTBjKg9IAu
-         9BthPbw+F75/K+93lanw2+S8lupnMcdPy05uuNo9Dx1rvdLjMOap6reOQjCHjnxxGb
-         uDbZH1VnKZTnw==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Anatolij Gustschin <agust@denx.de>, Rob Herring <robh@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        id S231845AbhKIX2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 18:28:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37748 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231805AbhKIX2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 18:28:44 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AD1C061764
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 15:25:57 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso1111885ots.6
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 15:25:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nL261LfEnE+lH5hQroZYFitjsNXa1tK6YPPcrVYv6c4=;
+        b=N1HvdV99468q9bEv5q7ellPorYQd/W8mpCPrWLqn8S4ksJv0XInlTz/z79o91irx8F
+         IBinuVJR+3dv3ohTcMOjoLOjds8IlTm/Ay2TbcpMEIQb7TPl2tCqAAaonqYywCgsr4kN
+         ZCEWZuQ1MSmhqlppYjbvItwe0X/k2DasKrpK8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nL261LfEnE+lH5hQroZYFitjsNXa1tK6YPPcrVYv6c4=;
+        b=qKtj3480AhyikVOvoo+Cv+KPwzR0PmYOaaShQ9bK6bscwtYkowXbbeHBr9ztnCZGVy
+         +0BQTxXncijbgkrxX8ahQcBvcG0KtxAfDGMZB4vaLwx/O70uqluaX9SMF0oTLZQvWUEI
+         0BlJo7SgcDm1NFb7YLO4MUVil+EfSlwlT7bayYca/56PMVWXrG7HE27ooJNnXJ9u54y+
+         78IWYzKh0CHEaRA/ysfH+s87UEcaBDrKkRP3X6uL5eczdNfCz31Yyn0JyNbu8jpe/zBe
+         MyIAjBxrW29zy8ImDlV4+cmuKlpODxub8sAcaqt2YjiRU6aim/i4i8S7HkUcJhbEyGoF
+         Wlkg==
+X-Gm-Message-State: AOAM531BK5O8VOqn7gt3XpMN9q+6k/c4roTq0IMX7lv5mno4zPySRZVz
+        nN9X8TqLlXhmEQLEteF8CmwaEmwddCqQHQ==
+X-Google-Smtp-Source: ABdhPJy3VW4GsylusRYc181Be1xrszMDp6v+XRqV44KL04N03vP3nQCbZvaNRoFwbnVApfU3kZY4Bg==
+X-Received: by 2002:a9d:2923:: with SMTP id d32mr8858303otb.149.1636500356622;
+        Tue, 09 Nov 2021 15:25:56 -0800 (PST)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com. [209.85.210.51])
+        by smtp.gmail.com with ESMTPSA id r36sm1085617otv.68.2021.11.09.15.25.55
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Nov 2021 15:25:55 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id h12-20020a056830034c00b0055c8458126fso1201217ote.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 15:25:55 -0800 (PST)
+X-Received: by 2002:a9d:734a:: with SMTP id l10mr9337755otk.3.1636500354735;
+ Tue, 09 Nov 2021 15:25:54 -0800 (PST)
+MIME-Version: 1.0
+References: <20211109221641.1233217-1-sashal@kernel.org> <20211109221641.1233217-17-sashal@kernel.org>
+In-Reply-To: <20211109221641.1233217-17-sashal@kernel.org>
+From:   Brian Norris <briannorris@chromium.org>
+Date:   Tue, 9 Nov 2021 15:25:39 -0800
+X-Gmail-Original-Message-ID: <CA+ASDXNcC4_MpURRjbeXsyXsQ9Qte_YgoXFCJUKtrSWpZsHn-g@mail.gmail.com>
+Message-ID: <CA+ASDXNcC4_MpURRjbeXsyXsQ9Qte_YgoXFCJUKtrSWpZsHn-g@mail.gmail.com>
+Subject: Re: [PATCH AUTOSEL 5.15 17/82] arm64: dts: rockchip: add Coresight
+ debug range for RK3399
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Leo Yan <leo.yan@linaro.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        benh@kernel.crashing.org, paulus@samba.org,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: [PATCH AUTOSEL 4.4 10/12] powerpc/5200: dts: fix memory node unit name
-Date:   Tue,  9 Nov 2021 17:24:24 -0500
-Message-Id: <20211109222426.1236575-10-sashal@kernel.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211109222426.1236575-1-sashal@kernel.org>
-References: <20211109222426.1236575-1-sashal@kernel.org>
-MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anatolij Gustschin <agust@denx.de>
+On Tue, Nov 9, 2021 at 2:17 PM Sasha Levin <sashal@kernel.org> wrote:
+>
+> From: Brian Norris <briannorris@chromium.org>
+>
+> [ Upstream commit 75dccea503b8e176ad044175e891d7bb291b6ba0 ]
+>
+> Per Documentation/devicetree/bindings/arm/coresight-cpu-debug.txt.
+>
+> This IP block can be used for sampling the PC of any given CPU, which is
+> useful in certain panic scenarios where you can't get the CPU to stop
+> cleanly (e.g., hard lockup).
 
-[ Upstream commit aed2886a5e9ffc8269a4220bff1e9e030d3d2eb1 ]
+I don't understand why this is being backported to -stable. First of
+all, it won't work because it's missing dependencies (specifically,
+around the RK3399 clock driver). But even if it did, I don't see how
+this is a candidate for -stable.
 
-Fixes build warnings:
-Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
+Methinks the AI has gone too far again.
 
-Signed-off-by: Anatolij Gustschin <agust@denx.de>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
-Link: https://lore.kernel.org/r/20211013220532.24759-4-agust@denx.de
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/powerpc/boot/dts/charon.dts    | 2 +-
- arch/powerpc/boot/dts/digsy_mtc.dts | 2 +-
- arch/powerpc/boot/dts/lite5200.dts  | 2 +-
- arch/powerpc/boot/dts/lite5200b.dts | 2 +-
- arch/powerpc/boot/dts/media5200.dts | 2 +-
- arch/powerpc/boot/dts/mpc5200b.dtsi | 2 +-
- arch/powerpc/boot/dts/o2d.dts       | 2 +-
- arch/powerpc/boot/dts/o2d.dtsi      | 2 +-
- arch/powerpc/boot/dts/o2dnt2.dts    | 2 +-
- arch/powerpc/boot/dts/o3dnt.dts     | 2 +-
- arch/powerpc/boot/dts/pcm032.dts    | 2 +-
- arch/powerpc/boot/dts/tqm5200.dts   | 2 +-
- 12 files changed, 12 insertions(+), 12 deletions(-)
-
-diff --git a/arch/powerpc/boot/dts/charon.dts b/arch/powerpc/boot/dts/charon.dts
-index 0e00e508eaa6a..1c8fe20752e6a 100644
---- a/arch/powerpc/boot/dts/charon.dts
-+++ b/arch/powerpc/boot/dts/charon.dts
-@@ -39,7 +39,7 @@
- 		};
- 	};
- 
--	memory {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x08000000>;	// 128MB
- 	};
-diff --git a/arch/powerpc/boot/dts/digsy_mtc.dts b/arch/powerpc/boot/dts/digsy_mtc.dts
-index 955bff629df3c..bf511255f3ae8 100644
---- a/arch/powerpc/boot/dts/digsy_mtc.dts
-+++ b/arch/powerpc/boot/dts/digsy_mtc.dts
-@@ -20,7 +20,7 @@
- 	model = "intercontrol,digsy-mtc";
- 	compatible = "intercontrol,digsy-mtc";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x02000000>;	// 32MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/lite5200.dts b/arch/powerpc/boot/dts/lite5200.dts
-index 179a1785d6454..18d137a3393f0 100644
---- a/arch/powerpc/boot/dts/lite5200.dts
-+++ b/arch/powerpc/boot/dts/lite5200.dts
-@@ -36,7 +36,7 @@
- 		};
- 	};
- 
--	memory {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x04000000>;	// 64MB
- 	};
-diff --git a/arch/powerpc/boot/dts/lite5200b.dts b/arch/powerpc/boot/dts/lite5200b.dts
-index 5abb46c5cc951..29419cf81e044 100644
---- a/arch/powerpc/boot/dts/lite5200b.dts
-+++ b/arch/powerpc/boot/dts/lite5200b.dts
-@@ -35,7 +35,7 @@
- 		led4 { gpios = <&gpio_simple 2 1>; };
- 	};
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x10000000>;	// 256MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/media5200.dts b/arch/powerpc/boot/dts/media5200.dts
-index b5413cb85f134..3d57463bc49da 100644
---- a/arch/powerpc/boot/dts/media5200.dts
-+++ b/arch/powerpc/boot/dts/media5200.dts
-@@ -36,7 +36,7 @@
- 		};
- 	};
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x08000000>;	// 128MB RAM
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/mpc5200b.dtsi b/arch/powerpc/boot/dts/mpc5200b.dtsi
-index 969b2200b2f97..ecfba675b5611 100644
---- a/arch/powerpc/boot/dts/mpc5200b.dtsi
-+++ b/arch/powerpc/boot/dts/mpc5200b.dtsi
-@@ -37,7 +37,7 @@
- 		};
- 	};
- 
--	memory: memory {
-+	memory: memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x04000000>;	// 64MB
- 	};
-diff --git a/arch/powerpc/boot/dts/o2d.dts b/arch/powerpc/boot/dts/o2d.dts
-index 9f6dd4d889b32..5a676e8141caf 100644
---- a/arch/powerpc/boot/dts/o2d.dts
-+++ b/arch/powerpc/boot/dts/o2d.dts
-@@ -16,7 +16,7 @@
- 	model = "ifm,o2d";
- 	compatible = "ifm,o2d";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x08000000>;  // 128MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/o2d.dtsi b/arch/powerpc/boot/dts/o2d.dtsi
-index cf073e693f24d..1b4df5f64b580 100644
---- a/arch/powerpc/boot/dts/o2d.dtsi
-+++ b/arch/powerpc/boot/dts/o2d.dtsi
-@@ -23,7 +23,7 @@
- 	model = "ifm,o2d";
- 	compatible = "ifm,o2d";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x04000000>;	// 64MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/o2dnt2.dts b/arch/powerpc/boot/dts/o2dnt2.dts
-index a0f5b97a4f06e..5184c461a205f 100644
---- a/arch/powerpc/boot/dts/o2dnt2.dts
-+++ b/arch/powerpc/boot/dts/o2dnt2.dts
-@@ -16,7 +16,7 @@
- 	model = "ifm,o2dnt2";
- 	compatible = "ifm,o2d";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x08000000>;  // 128MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/o3dnt.dts b/arch/powerpc/boot/dts/o3dnt.dts
-index acce49326491b..045b901719245 100644
---- a/arch/powerpc/boot/dts/o3dnt.dts
-+++ b/arch/powerpc/boot/dts/o3dnt.dts
-@@ -16,7 +16,7 @@
- 	model = "ifm,o3dnt";
- 	compatible = "ifm,o2d";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x04000000>;  // 64MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/pcm032.dts b/arch/powerpc/boot/dts/pcm032.dts
-index 96b139bf50e9c..ac3f53c1a1f5b 100644
---- a/arch/powerpc/boot/dts/pcm032.dts
-+++ b/arch/powerpc/boot/dts/pcm032.dts
-@@ -26,7 +26,7 @@
- 	model = "phytec,pcm032";
- 	compatible = "phytec,pcm032";
- 
--	memory {
-+	memory@0 {
- 		reg = <0x00000000 0x08000000>;	// 128MB
- 	};
- 
-diff --git a/arch/powerpc/boot/dts/tqm5200.dts b/arch/powerpc/boot/dts/tqm5200.dts
-index 1db07f6cf133c..68b9e8240fb5b 100644
---- a/arch/powerpc/boot/dts/tqm5200.dts
-+++ b/arch/powerpc/boot/dts/tqm5200.dts
-@@ -36,7 +36,7 @@
- 		};
- 	};
- 
--	memory {
-+	memory@0 {
- 		device_type = "memory";
- 		reg = <0x00000000 0x04000000>;	// 64MB
- 	};
--- 
-2.33.0
-
+Brian
