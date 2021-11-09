@@ -2,162 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9152C44B04D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 16:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 942E144B070
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 16:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235793AbhKIP2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 10:28:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41386 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235782AbhKIP2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 10:28:01 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20FCC061764;
-        Tue,  9 Nov 2021 07:25:14 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id 131so53835335ybc.7;
-        Tue, 09 Nov 2021 07:25:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1YtPKMAKhh4yr7fG5V9nmBRI32AwNngOJNQ80JUITj4=;
-        b=c7paMbIK2hqj6wQ/mm5GGvSBbBPqXannMb3ctv68OXdJsWNoG39Na33zL9sKXHa6aV
-         7wEwsjzCULgVq2m+aITEDLuoilL4uN8hPuG9nN4lvN7p4vigwPwk5m3V89ON+CjBCw9/
-         MUiikHB93jM4FhWuDcIDkpXYBbIbwszcGJ1D3jpbUR764AQ3V+LLL8kCyx6SZ18BM52G
-         vDGY0dUx0hCviLLzfpMOUC+8PpnFmlrMjcVPJ+cvnSM9SvdrYof+EzGSwP/fVPs3UfpP
-         v3+QAkN7F7TdEcXRZ3TLnRJeY/ugOlrRJbp/Q0ofpyL5XnksiWaQrZHYTmfNgIMid7QP
-         3CKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1YtPKMAKhh4yr7fG5V9nmBRI32AwNngOJNQ80JUITj4=;
-        b=TMXAlaBg7IUmNI5WjPfJt2OXMIE3WcM/d0aunaG9Udy7n4+1l5xrDoBTjgxkFGuYP/
-         FXe2pklolLU0SIHER+njWQEVS10c0VH7tn9pD98LlsjRYtP5u/Tr77RLtaeEgK+2SMaJ
-         DvJlf7Fy7N9WTLLO10G5bNP+RWZJq+JQdoqnzvZWZ2MagAHp7REKTwINCZi+GTLDMyHa
-         /SszQ0ys9UWjvCiFth4XkWyES0xXHp+54bXZFDPePLfJF88XzEKyAFvz1j+Ut7kkCp8w
-         bE1H5qJ/U6Ohk+yCTokEuRvkJeYT96S/+XUEoCM+UiOIO5qSG6xzbd6mUanqQ4UknDAn
-         Uxjg==
-X-Gm-Message-State: AOAM530oqT6JJ4NkqAnuuS1xJ0v7VUHAlCP9KtyEWQmT38/TN84C0kAP
-        AbADmZ6VBQo5JF93jRj9ewZ/o3gZVfdkkF0f9/2l2PS37llN1Q==
-X-Google-Smtp-Source: ABdhPJxpUVbqgyBdPsEoi4i0MlIUmaqMD/K28fOWDIkFYJCv0Xr5XcsO29RbRFKS988n3+xgJVhnsbZ5Ld7mA5yyA/c=
-X-Received: by 2002:a5b:783:: with SMTP id b3mr8787410ybq.328.1636471514166;
- Tue, 09 Nov 2021 07:25:14 -0800 (PST)
+        id S234056AbhKIPfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 10:35:36 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:52930 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233987AbhKIPfg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 10:35:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=gc/ud1DvYL5gIxV7YHBk4aq5ZHgPt+idI1bn/7jShjI=; b=L888NJE7qilE2+fC99dGVwEPNT
+        fttKbINgOIy30FQChempp1MA75PdDyhR9TjJQd7a0kWuEHX4vOdx3iBvDdftHCYPJg/mWLD7UA5V8
+        kbk8UE0VzPiMMpsagNXRFYbqnbMLDrneLKH5KQQqWoCKpPEOF0rZtmlSdnddRm6dNs8o=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mkT6v-00D0Ji-8K; Tue, 09 Nov 2021 16:32:33 +0100
+Date:   Tue, 9 Nov 2021 16:32:33 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Cc:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YYqUkfepXZzGpR3w@lunn.ch>
+References: <YYK+EeCOu/BXBXDi@lunn.ch>
+ <64626e48052c4fba9057369060bfbc84@sphcmbx02.sunplus.com.tw>
+ <YYUzgyS6pfQOmKRk@lunn.ch>
+ <7c77f644b7a14402bad6dd6326ba85b1@sphcmbx02.sunplus.com.tw>
+ <YYkjBdu64r2JF1bR@lunn.ch>
+ <4e663877558247048e9b04b027e555b8@sphcmbx02.sunplus.com.tw>
+ <YYk5s5fDuub7eBqu@lunn.ch>
+ <585e234fdb74499caafee3b43b5e5ab4@sphcmbx02.sunplus.com.tw>
+ <YYlfRB7updHplnLE@lunn.ch>
+ <941aabfafa674999b2c0f4fc88025518@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-References: <20211029124437.20721-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211029124437.20721-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdV+716v3SOLM4Sf6arK5jEPgtc0NSOU6nZXQGXUT+-+3Q@mail.gmail.com>
- <CA+V-a8t2KZNqCHJQP_bj9+-RKVBBJpz=pnBXzpyy4tjbUe14EA@mail.gmail.com> <CAMuHMdW8NeSpv35a7Eq_+NMAE5Uamm_pD+Dp+OeHvCMqd3f2Xw@mail.gmail.com>
-In-Reply-To: <CAMuHMdW8NeSpv35a7Eq_+NMAE5Uamm_pD+Dp+OeHvCMqd3f2Xw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 9 Nov 2021 15:24:48 +0000
-Message-ID: <CA+V-a8u0CMhoYJB8buZugG4Kd4BEkviv_WpBTgmJr6y2+gb-sg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] pinctrl: renesas: pinctrl-rzg2l: Add support to
- get/set pin config for GPIO port pins
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <941aabfafa674999b2c0f4fc88025518@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+> I don't know how to implement STP in L2 switch like SP7021.
 
-On Tue, Nov 9, 2021 at 3:00 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Tue, Nov 9, 2021 at 3:31 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Mon, Nov 8, 2021 at 3:36 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > On Fri, Oct 29, 2021 at 2:44 PM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > Add support to get/set pin config for GPIO port pins.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > >
-> > > > @@ -495,6 +512,14 @@ static int rzg2l_pinctrl_pinconf_get(struct pinctrl_dev *pctldev,
-> > > >                 port = RZG2L_SINGLE_PIN_GET_PORT(*pin_data);
-> > > >                 cfg = RZG2L_SINGLE_PIN_GET_CFGS(*pin_data);
-> > > >                 bit = RZG2L_SINGLE_PIN_GET_BIT(*pin_data);
-> > > > +       } else {
-> > > > +               cfg = RZG2L_GPIO_PORT_GET_CFGS(*pin_data);
-> > > > +               port = RZG2L_PIN_ID_TO_PORT(_pin);
-> > > > +               bit = RZG2L_PIN_ID_TO_PIN(_pin);
-> > > > +               port_pin = true;
-> > >
-> > > Instead of setting this flag, perhaps port should be adjusted?
-> >
-> > Something like below?
-> >
-> > #define RZG2L_PORT_START_OFFSET 0x10
-> >
-> > port = RZG2L_PIN_ID_TO_PORT_pin) + RZG2L_PORT_START_OFFSET;
-> > rzg2l_validate_gpio_pin(pctrl, *pin_data, port - RZG2L_PORT_START_OFFSET, bit)
->
-> Or adjust port after the call to rzg2l_validate_gpio_pin(), to avoid adding
-> the offset first, and subtracting it again for calling the latter?
->
-> > and rename port -> port_offset in rzg2l_pinctrl_pinconf_get/set
->
-> That makes sense.  Currently "port" has two meanings: it can mean
-> either the GPIO port index, or the global register index covering both
-> single function pin groups and GPIO port indices.
-> RZG2L_SINGLE_PIN_GET_PORT() returns the latter.
-> RZG2L_PIN_ID_TO_PORT() returns the former, thus needing an extra offset
-> to convert to the global register index.
->
-for symmetry will rename the below:
-RZG2L_SINGLE_PIN_GET_PORT -> RZG2L_SINGLE_PIN_GET_PORT_OFFSET
+That is the nice thing about using Linux. It already knows how to
+implement STP. The bridge will do it for you. You just need to add the
+callbacks in the driver which are needed. Please take a look at other
+switchdev drivers.
 
-Introduce a new macros:
-#define RZG2L_PORT_START_OFFSET 0x10
-#define RZG2L_PIN_ID_TO_PORT_OFFSET(id) (((id) / RZG2L_PINS_PER_PORT)
-+ RZG2L_PORT_START_OFFSET)
+> If this is acceptable, I'd like to have Ethernet of SP7021 have two operation 
+> modes:
+>  - Dual NIC mode
+>  - Single NIC with 2-port frame-flooding hub mode
 
-And use the above two in rzg2l_pinctrl_pinconf_get/set along with
-renaming  port -> port_offset
+No, sorry. Do it correctly, or do not do it. Please start with a clean
+driver doing Dual NIC mode. You can add L2 support later, once you
+have done the research to understand switchdev, etc.
 
-And for rzg2l_validate_gpio_pin() will use below instead:
-rzg2l_validate_gpio_pin(pctrl, *pin_data, RZG2L_PIN_ID_TO_PORT(_pin), bit);
+> RMII pins of PHY ports of SP7021 are multiplexable. I'd like to switch RMII 
+> pins of the second PHY for other use if single NIC mode is used.
+> In fact, some SP7021 boards have dual Ethernet and some have only one
+> Ethernet. We really need the two operation modes.
 
-> > Or
-> > would you prefer to change the RZG2L_PIN_ID_TO_PORT macro and adjust
-> > the entire file?
->
-> Changing RZG2L_PIN_ID_TO_PORT() would imply changing all macros
-> accessing GPIO registers, and is thus quite intrusive.
->
-Agreed, I will drop this option.
+Only using a subset of ports in a switch is common. The common binding
+for DSA switches is described in:
 
-Cheers,
-Prabhakar
-> > > Then rzg2l_r{ead,mw}_pin_config() don't have to care about that
-> > > anymore.
-> > >
-> > Agreed.
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Documentation/devicetree/bindings/net/dsa/dsa.yaml and for example
+Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml is
+a memory mapped switch. Notice the reg numbers:
+
+           ethernet-ports {
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                port@0 {
+                    reg = <0>;
+                    label = "cpu";
+                    ethernet = <&gmac0>;
+                };
+
+                port@2 {
+                    reg = <2>;
+                    label = "lan0";
+                    phy-handle = <&phy1>;
+                };
+
+reg = <1> is missing in this example. Port 1 of the switch is not
+used. You can do the same with a 2 port switch, when you don't want to
+make use of a port. Just don't list it in DT.
+
+> After looking up some data, I find RMC means reserved multi-cast.
+> RMC packets means packets with DA = 0x0180c2000000, 0x0180c2000002 ~ 0x0180c200000f,
+> except the PAUSE packet (DA = 0x0180c2000001)
+
+Ah, good. BPDUs use 01:80:C2:00:00:00. So they will be passed when the
+port is in blocking mode. PTP uses 01:80:C2:00:00:0E. So the hardware
+designers appear to of designed a proper L2 switch with everything you
+need for a managed switch. What is missing is software. The more i
+learn about this hardware, the more i've convinced you need to write
+proper Linux support for it, not your mode hacks.
+
+    Andrew
