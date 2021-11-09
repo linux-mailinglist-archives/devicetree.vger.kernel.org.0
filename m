@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CF244B846
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3799444B852
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:39:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345256AbhKIWlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:41:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59706 "EHLO mail.kernel.org"
+        id S1345080AbhKIWmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:42:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59904 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345354AbhKIWjn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:39:43 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 38E5861B20;
-        Tue,  9 Nov 2021 22:23:24 +0000 (UTC)
+        id S1345279AbhKIWjw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:39:52 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 775AB61B28;
+        Tue,  9 Nov 2021 22:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496605;
-        bh=Y7UHtO8zCz13xTp4KkbbSEpOtFB7rZqowaLKNnNNkjg=;
+        s=k20201202; t=1636496610;
+        bh=4FLFo4QtKGgZSNkxhZDuAi2pcLRTmHCDtelC4gPDTQ4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gXlb/EKW55xxGKj+JmJK1HxmvcEzly0lLDMGGnQb9TKOjsSBnLoNkPVW9C1DlMPlb
-         mYh2Cbz0ZSoGt0r0BPYF/hDMH6l70IOJSaMS3hIjzv1cOH1rvDN0elGL76d1EqN3Ez
-         6dicHePgbJN3KA4iXqK5wwZ6h0BiOWwqyd0vGJIYYfSEC/FAmWYttXjVNVO0s5igdr
-         qhzuTDH6qb2PLjLZyKGiUmfhevW9ySHfmbtTcDFVRsP6v5X/lrkdNddRWvkBQHNtE8
-         LjN9O4DRw1jCSlV9gi9EJQttz3VeSqB68cxZuiY+8KaYh40vCEWJ+NuQmTxdFNsmIL
-         KniesEjqSs8fw==
+        b=Hpim0EKx77TAlKhCz+JE3rK3vqcuF7Z9I3gqd4vQkVNy48f6y/30OWabdbmDZ4zS0
+         amk0VF67AN9JpIotmgMWR8z1k9Y1tEvy0Ial0CCoYlaJVzfWdxXsZkp0aF6OlzbJIr
+         8qnASOAL5dva2gKXWg3jR2Juu5fzVYvk48ATr31ikzFLAi2RD9T+Q/5AVsntWGPLE0
+         0dG7mJGAg4sugYvKlFYQggF0Lu1yiIL6ojRO/0WA+uO3piTI1p3W4m6QDfyqbkXPg8
+         LekPFP/Fw+0cyYTZN9y1R4dIviisIdp12EgMl4/05g7fH2+8wZMrXW6VINXOruMY6e
+         7cHG0tzi7lLjg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Michael Walle <michael@walle.cc>, Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        pawel.moll@arm.com, mark.rutland@arm.com,
+Cc:     Roger Quadros <rogerq@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Sasha Levin <sashal@kernel.org>, bcousson@baylibre.com,
+        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
+        linux@arm.linux.org.uk, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 08/21] arm64: dts: freescale: fix arm,sp805 compatible string
-Date:   Tue,  9 Nov 2021 17:22:57 -0500
-Message-Id: <20211109222311.1235686-8-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 12/21] ARM: dts: omap: fix gpmc,mux-add-data type
+Date:   Tue,  9 Nov 2021 17:23:01 -0500
+Message-Id: <20211109222311.1235686-12-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109222311.1235686-1-sashal@kernel.org>
 References: <20211109222311.1235686-1-sashal@kernel.org>
@@ -45,162 +46,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Walle <michael@walle.cc>
+From: Roger Quadros <rogerq@kernel.org>
 
-[ Upstream commit 99a7cacc66cae92db40139b57689be2af75fc6b8 ]
+[ Upstream commit 51b9e22ffd3c4c56cbb7caae9750f70e55ffa603 ]
 
-According to Documentation/devicetree/bindings/watchdog/arm,sp805.yaml
-the compatible is:
-  compatible = "arm,sp805", "arm,primecell";
+gpmc,mux-add-data is not boolean.
 
-The current compatible string doesn't exist at all. Fix it.
+Fixes the below errors flagged by dtbs_check.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+"ethernet@4,0:gpmc,mux-add-data: True is not of type 'array'"
+
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 16 ++++++++--------
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 16 ++++++++--------
- 2 files changed, 16 insertions(+), 16 deletions(-)
+ arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi         | 2 +-
+ arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index a07f612ab56b7..b3b87c4c738e6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -584,56 +584,56 @@
- 		};
+diff --git a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+index 7f6aefd134514..e7534fe9c53cf 100644
+--- a/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
++++ b/arch/arm/boot/dts/omap-gpmc-smsc9221.dtsi
+@@ -29,7 +29,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
  
- 		cluster1_core0_watchdog: wdt@c000000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc000000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
+diff --git a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+index 82e98ee3023ad..3dbeb7a6c569c 100644
+--- a/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
++++ b/arch/arm/boot/dts/omap3-overo-tobiduo-common.dtsi
+@@ -25,7 +25,7 @@
+ 		compatible = "smsc,lan9221","smsc,lan9115";
+ 		bank-width = <2>;
  
- 		cluster1_core1_watchdog: wdt@c010000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc010000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster1_core2_watchdog: wdt@c020000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc020000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster1_core3_watchdog: wdt@c030000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc030000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core0_watchdog: wdt@c100000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc100000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core1_watchdog: wdt@c110000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc110000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core2_watchdog: wdt@c120000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc120000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core3_watchdog: wdt@c130000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc130000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 8c22ce904e655..73a60fd516e06 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -222,56 +222,56 @@
- 		};
- 
- 		cluster1_core0_watchdog: wdt@c000000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc000000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster1_core1_watchdog: wdt@c010000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc010000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core0_watchdog: wdt@c100000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc100000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core1_watchdog: wdt@c110000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc110000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster3_core0_watchdog: wdt@c200000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc200000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster3_core1_watchdog: wdt@c210000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc210000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster4_core0_watchdog: wdt@c300000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc300000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster4_core1_watchdog: wdt@c310000 {
--			compatible = "arm,sp805-wdt", "arm,primecell";
-+			compatible = "arm,sp805", "arm,primecell";
- 			reg = <0x0 0xc310000 0x0 0x1000>;
- 			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
- 			clock-names = "apb_pclk", "wdog_clk";
+-		gpmc,mux-add-data;
++		gpmc,mux-add-data = <0>;
+ 		gpmc,cs-on-ns = <0>;
+ 		gpmc,cs-rd-off-ns = <42>;
+ 		gpmc,cs-wr-off-ns = <36>;
 -- 
 2.33.0
 
