@@ -2,124 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0009F44A4C0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 03:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9963B44A516
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 03:59:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242152AbhKIC3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 21:29:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34968 "EHLO
+        id S242225AbhKIDB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 22:01:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241602AbhKIC3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 21:29:10 -0500
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC83EC061224;
-        Mon,  8 Nov 2021 18:26:24 -0800 (PST)
-Received: by mail-ed1-x52c.google.com with SMTP id g14so69814924edz.2;
-        Mon, 08 Nov 2021 18:26:24 -0800 (PST)
+        with ESMTP id S236778AbhKIDBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 22:01:55 -0500
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A47A7C061570;
+        Mon,  8 Nov 2021 18:59:10 -0800 (PST)
+Received: by mail-qt1-x82a.google.com with SMTP id j17so3608491qtx.2;
+        Mon, 08 Nov 2021 18:59:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=mrT39HXhsvQIv884aQ7FKStKCV5fQEcK++rSuH4MPzo=;
-        b=TtLZw0cKGccSEVuFq/ci2LfNq61NfHPpsdi/btVt0vocMNp7RvPxb1NweLVfLV26qu
-         AP1dascAnKp9lbt4R7Lkz2Uiqv67q7bU+k+H9J7WTMWHLuIIwbWrlP2DgbgzOit+8Yb2
-         pnqbOLAXRr6rcSjACgmU6Vc8HlH/aSn8X8qozTBsW0tFkm0Q+rQUL4RG9yM0D7FWhrJQ
-         dngdZ+DovbJaoWEUfteVxHajaJpTewt+84q+M183xwZZ3T4HI6jKNsUhmOvlKg3edc4F
-         1isyB0HZ1fWlade98AGS+W5R6icPtavNZ38ACxoooRTHLTReUoiIGUDS+VT2o45BWugg
-         /p8w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KTb+7uV/W+NPaaM9VZAqKHX3rqV7nBXAeF1f2Hw+bI4=;
+        b=ij+A9vEaG/2b35tGtQspRFkQMmic+mzirQ6ss4f/MwfoH4dzDnv59zb8J+Z+6X+kh7
+         4yjzK5yktnBWaipNbGhofbMEcLokPg7SctncpMsolsWZCuvWq7gJSy7Gai6sWstsXsrb
+         CMf6vZW/0s4TevvgP7k2kMqwgi89Tcvt0JJJVRhUtQUSKEbx4eO1+RaNnHexPy6SE4F8
+         wCVdqB0/ghtqKkXCYW4O7akYJrWwXwCCzvIW8M4H3/qOhLvf4PJmRjuIgDD5YfkSCr5y
+         4rP3pBXOd0s5VfWM3hWx75mee76G+majcCOiD/sB3Tw/sUYZt3TVVz/bhAQAMicr6/ta
+         WsAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mrT39HXhsvQIv884aQ7FKStKCV5fQEcK++rSuH4MPzo=;
-        b=yvOCdV1XBeGUQEXINSs5VQwA9Lr6Q80CTYmz5wh2d1ikTIhZY10IyZXTQPlx85bb3X
-         wca4nFVq2Sbt9KiQb7ezVWyUOGsez7vbwhk+ff9Z3UkpNXgqFe7i8G+BNGp+atxIKZFa
-         7bkKspZsEjcLdYmz75i6F901k5cvsY6zLHUN2EEqDaReGntZrvg/N8XZfL50XEC4IPad
-         UCWzvX68tJMrU+mdvtWat6wuo+0LIjAKx5tgbJANIyLUlOLPIogz9iVwOrNOGbV1msR+
-         1HDXm8z83KH9jljyI8SZ0Y0ST7BzA774L4yw53cKxuDhUTYkQackopFRVtJyL38uYfT0
-         mQ1A==
-X-Gm-Message-State: AOAM532D2S/g2W8ym/XddbfNQrwp+XQ6YmjVcH7zaIG1VFqdAOyZkRVo
-        ZQOQcwZ4QpZZR69KFRv9sMBuHPzU7sU=
-X-Google-Smtp-Source: ABdhPJy24NOHPnnqMkGHRYS1LShCI3ybVPcsuMyTgHDUGnU+w1NX7iXPyWo4o9kEi+eNCaeTd6rVWg==
-X-Received: by 2002:a50:d4cd:: with SMTP id e13mr5213578edj.29.1636424783388;
-        Mon, 08 Nov 2021 18:26:23 -0800 (PST)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.googlemail.com with ESMTPSA id m5sm8760900ejc.62.2021.11.08.18.26.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Nov 2021 18:26:23 -0800 (PST)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [RFC PATCH v3 8/8] dt-bindings: net: dsa: qca8k: add LEDs definition example
-Date:   Tue,  9 Nov 2021 03:26:08 +0100
-Message-Id: <20211109022608.11109-9-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211109022608.11109-1-ansuelsmth@gmail.com>
-References: <20211109022608.11109-1-ansuelsmth@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KTb+7uV/W+NPaaM9VZAqKHX3rqV7nBXAeF1f2Hw+bI4=;
+        b=jhlQz4jW0G5/fuenasVSbO62E9MQXQqHKPmCypm54ja7hWNS/9G6or/PEhjk5yDayI
+         CQVoBnqMJzOcFUQvhAo/+CMA4lHY4guucDQOjPsIw4BBH+B+C1SICYk2uXK9hIXS/UAd
+         Du4yhg+RWpkI/VMA9hxFmUXISLD7pRgfavCOzvGLxGcx78yUqOfwZWsRyFj0kWpqiFGK
+         q4iEQQTMfxXVCUr4zxmcVy9QQCZaJ9f2BibFvQqIkrZD2QmMxG6rwaX4GHsgu0DTnWOd
+         NLgUK619pL8kfeTDsvJzDo7ylkE4kOsAcedShZ5OkCjiOw9t8Ub4l5lSXhDS2ywtxGnO
+         qfXw==
+X-Gm-Message-State: AOAM530mQH1aeYXMFVbxw91XhH3R6C3Wc/ahQrIT0xKB/uz7dA6zk+SK
+        YXDx0/3AEZeb8ll3rpula00=
+X-Google-Smtp-Source: ABdhPJwFKM3gy/6Cpe0SzF+P+k3n+KU7EeM7tmAMCtcmrYQX7XtMBHopzbqmIn4FtK1sLFxDRdNQ6g==
+X-Received: by 2002:a05:622a:2d6:: with SMTP id a22mr4824094qtx.220.1636426749863;
+        Mon, 08 Nov 2021 18:59:09 -0800 (PST)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id g13sm11137437qko.103.2021.11.08.18.59.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Nov 2021 18:59:09 -0800 (PST)
+Message-ID: <7a96b7aa-b7f7-ac9d-89e9-4843104f4254@gmail.com>
+Date:   Mon, 8 Nov 2021 21:59:07 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH v2 02/13] dt-bindings: pinctrl: add i.MXRT1050 pinctrl
+ binding doc
+Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, mturquette@baylibre.com,
+        aisheng.dong@nxp.com, linux@armlinux.org.uk,
+        s.hauer@pengutronix.de, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, adrian.hunter@intel.com,
+        linux-mmc@vger.kernel.org, kernel@pengutronix.de,
+        shawnguo@kernel.org, linux-serial@vger.kernel.org,
+        jirislaby@kernel.org, robh+dt@kernel.org, abel.vesa@nxp.com,
+        festevam@gmail.com, ulf.hansson@linaro.org,
+        linux-kernel@vger.kernel.org, stefan@agner.ch, olof@lixom.net,
+        sboyd@kernel.org, nobuhiro1.iwamatsu@toshiba.co.jp,
+        linux-clk@vger.kernel.org, arnd@arndb.de,
+        devicetree@vger.kernel.org, linux-imx@nxp.com, soc@kernel.org,
+        gregkh@linuxfoundation.org, giulio.benetti@benettiengineering.com
+References: <20211102225701.98944-1-Mr.Bossman075@gmail.com>
+ <20211102225701.98944-3-Mr.Bossman075@gmail.com>
+ <1635902437.626178.3880384.nullmailer@robh.at.kernel.org>
+ <c97c45ac-d9d6-a21b-9c43-69f58b07f265@gmail.com>
+ <CACRpkda9e8FtjR3XB97Lu8X5=yeApk==4+zSqo3Qp6bWxgJAcw@mail.gmail.com>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <CACRpkda9e8FtjR3XB97Lu8X5=yeApk==4+zSqo3Qp6bWxgJAcw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LEDs definition example for qca8k using the offload trigger as the
-default trigger and add all the supported offload triggers by the
-switch.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../devicetree/bindings/net/dsa/qca8k.yaml    | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-index 48de0ace265d..106d95adc1e8 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-@@ -64,6 +64,8 @@ properties:
-                  internal mdio access is used.
-                  With the legacy mapping the reg corresponding to the internal
-                  mdio is the switch reg with an offset of -1.
-+                 Each phy have at least 3 LEDs connected and can be declared
-+                 using the standard LEDs structure.
- 
-     properties:
-       '#address-cells':
-@@ -340,6 +342,24 @@ examples:
- 
-                 internal_phy_port1: ethernet-phy@0 {
-                     reg = <0>;
-+
-+                    leds {
-+                        led@0 {
-+                            reg = <0>;
-+                            color = <LED_COLOR_ID_WHITE>;
-+                            function = LED_FUNCTION_LAN;
-+                            function-enumerator = <1>;
-+                            linux,default-trigger = "offload-phy-activity";
-+                        };
-+
-+                        led@1 {
-+                            reg = <1>;
-+                            color = <LED_COLOR_ID_AMBER>;
-+                            function = LED_FUNCTION_LAN;
-+                            function-enumerator = <1>;
-+                            linux,default-trigger = "offload-phy-activity";
-+                        };
-+                    };
-                 };
- 
-                 internal_phy_port2: ethernet-phy@1 {
--- 
-2.32.0
-
+On 11/8/21 20:07, Linus Walleij wrote:
+> On Wed, Nov 3, 2021 at 2:38 AM Jesse Taube <mr.bossman075@gmail.com> wrote:
+> 
+>> Ah I thought it would stop make at error i see it now, is there a way to
+>> do one file.
+> 
+> Yes:
+> 
+> make dt_binding_check DT_SCHEMA_FILES=Documentation/...
+Thank you :). I'm sorry about the lack of activity recently but Giulio 
+has his work and i have school, but don't worry we are making progress. 
+Thanks so much for everyone's help with this, and dealing with my 
+newbieness.
+> Yours,
+> Linus Walleij
+> 
