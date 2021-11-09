@@ -2,73 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E901449ECF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Nov 2021 23:55:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7FE449F53
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 01:11:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240827AbhKHW6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Nov 2021 17:58:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240822AbhKHW6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Nov 2021 17:58:16 -0500
-Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35654C061570;
-        Mon,  8 Nov 2021 14:55:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description;
-        bh=bHrIX9cB0So6z8v8dpE1wVEf+y8GwLRTo4Q7rtYefjY=; b=cs8IIcZXWaLgUzbYR7jhvU1yMU
-        Ce3ATRipt2+n1ZQPa2smT2RW/1jbgN5jn8o6Y4QBTcJ4FaWDbErV76r0WGskdHtL6PrBQFQJibCj8
-        PWvSo0VoAcbnm0Mk0Fjg/OV4i06PUrGGIOCFRzPAZ/VVdB/GGNOlammnV0CFqLEskuGZaEx8LNqBY
-        TVfNazOQ72GRtuDJocBLXf4gqUbD9rXafHwxI8+Qv450qjsMXiDihKLwQrrK9sztm7shoqh1N7koP
-        GwDveOp+DB7fz+ozCx6UzMQIeKkR/AsQWIJWBRi7/1CeYDZUAG9bEhj0A2HDvzqB5VYM+V96o2aVx
-        ShbEWTLg==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by merlin.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mkDXz-008jrU-Pg; Mon, 08 Nov 2021 22:55:28 +0000
-Subject: Re: [PATCH v8 2/4] iio: adc: Add Xilinx AMS driver
-To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>,
-        linux-kernel@vger.kernel.org, jic23@kernel.org, lars@metafoo.de,
-        linux-iio@vger.kernel.org, git@xilinx.com, michal.simek@xilinx.com,
-        pmeerw@pmeerw.net, devicetree@vger.kernel.org
-Cc:     Manish Narani <manish.narani@xilinx.com>
-References: <20211108210509.29870-1-anand.ashok.dumbre@xilinx.com>
- <20211108210509.29870-3-anand.ashok.dumbre@xilinx.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <f81d00b2-8df1-8866-da4e-bedba13c34a2@infradead.org>
-Date:   Mon, 8 Nov 2021 14:55:22 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211108210509.29870-3-anand.ashok.dumbre@xilinx.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S241118AbhKIAOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Nov 2021 19:14:32 -0500
+Received: from mx.socionext.com ([202.248.49.38]:51142 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229618AbhKIAOc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Nov 2021 19:14:32 -0500
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 09 Nov 2021 09:11:46 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 9C49D206E701;
+        Tue,  9 Nov 2021 09:11:46 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 9 Nov 2021 09:11:46 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 62D7FB62AC;
+        Tue,  9 Nov 2021 09:11:46 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH v3] dt-bindings: pinctrl: uniphier: Add child node definitions to describe pin mux and configuration
+Date:   Tue,  9 Nov 2021 09:11:39 +0900
+Message-Id: <1636416699-21033-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/8/21 1:05 PM, Anand Ashok Dumbre wrote:
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index af168e1c9fdb..6d711f401326 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1278,4 +1278,19 @@ config XILINX_XADC
->   	  The driver can also be build as a module. If so, the module will be called
->   	  xilinx-xadc.
->   
-> +config XILINX_AMS
-> +	tristate "Xilinx AMS driver"
-> +	depends on ARCH_ZYNQMP || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	help
-> +	  Say yes here to have support for the Xilinx AMS for Ultrascale/Ultrascale+
-> +	  System Monitor. With this you can measure and monitor the Voltages and
-> +          Temperature values on the SOC.
+In arch/arm/boot/dts/uniphier-pinctrl.dtsi, there are child nodes of
+pinctrl that defines pinmux and pincfg, however, there are no rules about
+that in dt-bindings.
 
-That last line above should be indented with one tab + 2 spaces
-instead of all spaces.
+'make dtbs_check' results an error with the following message:
 
+   pinctrl: 'ain1', 'ain2', 'ainiec1', 'aout', 'aout1', 'aout2', ...
+   ... 'usb2', 'usb3' do not match any of the regexes: 'pinctrl-[0-9]+'
+
+To avoid the issue, add the rules of pinmux and pincfg in each child node
+and grandchild node.
+
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+---
+Changes since v2:
+- Describe additionalProperties directly instead of patternProperties
+- Remove unnecessary unevaluatedProperties
+
+Changes since v1:
+- Replace additionalProperties with unevaluatedProperties
+- Add additionalProperties for child and grandchild nodes
+
+.../pinctrl/socionext,uniphier-pinctrl.yaml        | 38 ++++++++++++++++++++--
+ 1 file changed, 36 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
+index a804d9bc1602..27c5762b9cf8 100644
+--- a/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/socionext,uniphier-pinctrl.yaml
+@@ -26,11 +26,45 @@ properties:
+       - socionext,uniphier-pxs3-pinctrl
+       - socionext,uniphier-nx1-pinctrl
+ 
++additionalProperties:
++  type: object
++
++  allOf:
++    - $ref: pincfg-node.yaml#
++    - $ref: pinmux-node.yaml#
++
++  properties:
++    phandle: true
++    function: true
++    groups: true
++    pins: true
++    bias-pull-up: true
++    bias-pull-down: true
++    bias-pull-pin-default: true
++    drive-strength: true
++
++  additionalProperties:
++    type: object
++
++    allOf:
++      - $ref: pincfg-node.yaml#
++      - $ref: pinmux-node.yaml#
++
++    properties:
++      phandle: true
++      function: true
++      groups: true
++      pins: true
++      bias-pull-up: true
++      bias-pull-down: true
++      bias-pull-pin-default: true
++      drive-strength: true
++
++    unevaluatedProperties: false
++
+ required:
+   - compatible
+ 
+-additionalProperties: false
+-
+ examples:
+   - |
+     // The UniPhier pinctrl should be a subnode of a "syscon" compatible node.
 -- 
-~Randy
+2.7.4
+
