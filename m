@@ -2,228 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651B944A98A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B642544A995
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 09:43:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244434AbhKIIqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 03:46:09 -0500
-Received: from mail-ua1-f44.google.com ([209.85.222.44]:37621 "EHLO
-        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238085AbhKIIqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:46:07 -0500
-Received: by mail-ua1-f44.google.com with SMTP id l43so37050316uad.4;
-        Tue, 09 Nov 2021 00:43:21 -0800 (PST)
+        id S244466AbhKIIqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 03:46:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244475AbhKIIq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 03:46:26 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E15C06120C
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 00:43:36 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id d11so13639611ljg.8
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 00:43:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UbIICAMlLKgGbZxE5t5FiNaR0uUnSWbFWBMze1UqKbU=;
+        b=ZvTEl+KhNytMLoId74/PtYyQAWwDPoqCG/DrJ7UNZ6GoD2jWsQ7xMZTdqLOmobRWpD
+         i+U1KN25ShrE0J42n0cJ5pwlD9Y0aQdylwnlm8lcnw8ZPjlwuS1zKsaUGMM2z1kgVHL4
+         NxA9MH6R3d0ILPz6RCq7TBBhR2YrRJgBwY+20WUQArVDpfbrh8KhWOCiG17IkUeQaV5s
+         3+rJJaxl49S8JpN6sy1w4lWbV8JdUGtwc+MH1BiyIHTWKpCHl6IgJtPWT1IM/H4oY+ki
+         lDdauMsY6wkZ2Zu6dzCRlabKwpxD79pGkDcN8sGqYDaALiHqB3s7UslDo2WQlS4VBv1g
+         LsqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SKaAwaDUF8hgJ7xnatzckTO00J9HAeQbGqYqskKTjGY=;
-        b=FAY1Wpn0OyCTyGJ3tBzNZO/EoRytfhdPMAMJgBEC8u6z5Od3he1hZ1nytEyqctvK2w
-         sXasIkRqGQQ5PXHtRLzu7ud9dS+d1OJJpaDedgV1iPbUJdOJHK8pkcOBaaK+eRM9SmxS
-         uJHX6sMlrSncxPlrQu5f7482T2N5XAnKf1lBK6FAV0fZCijRjDuDz+wPfyifLU9IV9nu
-         vfTD+WLBnl5MXMQY0vGpXistxpEIxWE93Zpml9e8+vWM3wsNOwAR8MZJb476jRwXZMD9
-         QvZm5kcwKodSQprBNTjsTqZ07vdmjRPyGiUK3cKmxsJXwOimrSHG1iFw4e9/jhvjS01h
-         Lh1A==
-X-Gm-Message-State: AOAM531R7hiO8Jzg5nOc3YlqlGcBfpqd/jE+Z0h7njoCFkRsz5sGosUd
-        IJte5DOV4LMRrcnM0KW/YZnNB/cSsWPp8+uY
-X-Google-Smtp-Source: ABdhPJy0ZS3OG3q8mnvej06NQRd9imNTJ8MMZys+9P5Oz8GwyO7tmUaoPKrnG8ApUfvuo7d5GrLxwQ==
-X-Received: by 2002:a67:a60b:: with SMTP id p11mr115778874vse.34.1636447400247;
-        Tue, 09 Nov 2021 00:43:20 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id u11sm37284vkl.53.2021.11.09.00.43.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Nov 2021 00:43:19 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id e2so37040010uax.7;
-        Tue, 09 Nov 2021 00:43:19 -0800 (PST)
-X-Received: by 2002:a05:6102:3a07:: with SMTP id b7mr84616404vsu.35.1636447398871;
- Tue, 09 Nov 2021 00:43:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20211108150554.4457-1-conor.dooley@microchip.com> <20211108150554.4457-10-conor.dooley@microchip.com>
-In-Reply-To: <20211108150554.4457-10-conor.dooley@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 9 Nov 2021 09:43:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUpGjyN-+u+THiNJ-Ouzp8vRTeg6u23P1BoF8Gi4aSnWQ@mail.gmail.com>
-Message-ID: <CAMuHMdUpGjyN-+u+THiNJ-Ouzp8vRTeg6u23P1BoF8Gi4aSnWQ@mail.gmail.com>
-Subject: Re: [PATCH 09/13] dt-bindings: gpio: add bindings for microchip mpfs gpio
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lewis Hanly <lewis.hanly@microchip.com>,
-        daire.mcnamara@microchip.com, Atish Patra <atish.patra@wdc.com>,
-        ivan.griffin@microchip.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=UbIICAMlLKgGbZxE5t5FiNaR0uUnSWbFWBMze1UqKbU=;
+        b=Y8HKNCRuwIWbIU1dPHg2j5d6PXT5XEOx/2C818EBhjwjAqHN/EwKc8u7SwTMH0Azsl
+         pNBlp1ChEef1aIboVC7DGHq0RaLuGEHaQN2WHzF8IlG8f4xMsbs3ZwxrevO9uuPgzaKY
+         qxr/vYvLKhcEiGKJqD7RVZf+5USXj1cdWViVtygn34+0z3zY/vYnOHb+4cT4Vt6RsGzO
+         qMy/+217UJ7CIerzVZ1TkaKjHZX+HUgBOeN+6Yh0NQbS0wtXhwqCpIUUWZQPbonmnsrc
+         snzRcbpkyMlo9HQb34xUivRnN0VSYAvC/5IJBgekgNsUi+ne5o5mcmKwsI554lSkhOVu
+         9Leg==
+X-Gm-Message-State: AOAM531ioQQfjjJslqyebXWkBdl26eWkwLxn3xD3q7swhbPRK2pMbHFS
+        aBegXrzWGej1kSmq/5ULbnnYWOUlp0mfN8sa
+X-Google-Smtp-Source: ABdhPJy89nC4+cwHu1qMOe9P48aCHVErD+JA9oP7lBxpaP6qglqN3kI+gSlmZauWxtrSWDbclIqUwQ==
+X-Received: by 2002:a2e:b0c5:: with SMTP id g5mr5549849ljl.381.1636447413290;
+        Tue, 09 Nov 2021 00:43:33 -0800 (PST)
+Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
+        by smtp.gmail.com with ESMTPSA id i8sm2071131lfb.227.2021.11.09.00.43.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Nov 2021 00:43:32 -0800 (PST)
+Date:   Tue, 9 Nov 2021 09:43:31 +0100
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        linux-rtc@vger.kernel.org, linux-spi <linux-spi@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bin Meng <bin.meng@windriver.com>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 0/9] arm64: dts: renesas: Thermal binding validation
+Message-ID: <YYo0syH9m/CYlB2d@oden.dyn.berto.se>
+References: <20211104224033.3997504-1-kieran.bingham+renesas@ideasonboard.com>
+ <CAMuHMdXVBj58ZM3LqCN3cudsE3VJV8AQC5OCOJP96RaqYf4NDQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdXVBj58ZM3LqCN3cudsE3VJV8AQC5OCOJP96RaqYf4NDQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Hello,
 
-On Mon, Nov 8, 2021 at 4:07 PM <conor.dooley@microchip.com> wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Add device tree bindings for the gpio controller on
-> the Microchip PolarFire SoC.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On 2021-11-09 09:29:01 +0100, Geert Uytterhoeven wrote:
+> Hi Kieran,
+> 
+> On Thu, Nov 4, 2021 at 11:40 PM Kieran Bingham
+> <kieran.bingham+renesas@ideasonboard.com> wrote:
+> > The thermal sensor bindings were not matched correctly against the
+> > expected naming scheme.
+> >
+> > r8a77980.dtsi also used a different naming scheme compared to the other
+> > related platforms.
+> 
+> It lacked the labels, which you added for consistency.
+> Is there any point in providing them, as there are no users? Or should
+> they be removed instead?
+> 
+> > This series cleans up the dtsi files for the CPU target thermal sensors,
+> > allowing the validation to run.
+> >
+> > Enabling this validation shows up a new validation failure:
+> >
+> > linux/arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dt.yaml: thermal-zones: sensor3-thermal:cooling-maps:map0:contribution:0:0: 1024 is greater than the maximum of 100
+> >         From schema: Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> >
+> > This validation error appears to be pervasive across all of these
+> > bindings, but changing that will be more invasive and require someone to
+> > perform dedicated testing with the thermal drivers to ensure that the
+> > updates to the ranges do not cause unexpected side effects.
+> 
+> Niklas?
 
-Thanks for your patch!
+I will have a look. The thermal driver is the one driver where I have 
+automated CI test running.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/microchip,mpfs-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip MPFS GPIO Controller Device Tree Bindings
-> +
-> +maintainers:
-> +  - Conor Dooley <conor.dooley@microchip.com>
-> +
-> +description: |
-> +  This GPIO controller is found on the Microchip PolarFire SoC.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - microchip,mpfs-gpio
-> +          - microsemi,ms-pf-mss-gpio
+> 
+> > Kieran Bingham (9):
+> >   arm64: dts: renesas: r8a774a1: Fix thermal bindings
+> >   arm64: dts: renesas: r8a774b1: Fix thermal bindings
+> >   arm64: dts: renesas: r8a774e1: Fix thermal bindings
+> >   arm64: dts: renesas: r8a77951: Fix thermal bindings
+> >   arm64: dts: renesas: r8a77960: Fix thermal bindings
+> >   arm64: dts: renesas: r8a77961: Fix thermal bindings
+> >   arm64: dts: renesas: r8a77965: Fix thermal bindings
+> >   arm64: dts: renesas: r8a77980: Fix thermal bindings
+> >   arm64: dts: renesas: r8a779a0: Fix thermal bindings
+> 
+> For the whole series:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-What's the difference between these two?
-If there is a difference, please add a comment "# <explanation>"
-to each entry.
-If there is no difference, please drop the second one.
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt mapping, one per GPIO. Maximum 32 GPIOs.
-> +    minItems: 1
-> +    maxItems: 32
-> +
-> +  interrupt-controller: true
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  ngpios:
-> +    description:
-> +      The number of GPIOs available.
-> +    minimum: 1
-> +    maximum: 32
-> +    default: 32
-> +
-> +  gpio-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - "#interrupt-cells"
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +  - clocks
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
 
-Any specific reason interrupt-controller is not required?
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include "dt-bindings/clock/microchip,mpfs-clock.h"
-> +    #include "dt-bindings/interrupt-controller/microchip,mpfs-plic.h"
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-
-Just drop these two...
-
-> +      gpio2: gpio@20122000 {
-> +        compatible = "microchip,mpfs-gpio";
-> +        reg = <0x0 0x20122000 0x0 0x1000>;
-
-... and the zeros here.
-
-> +        clocks = <&clkcfg CLK_GPIO2>;
-> +        interrupt-parent = <&plic>;
-> +        interrupts = <PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT
-> +          PLIC_INT_GPIO2_NON_DIRECT>;
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        status = "disabled";
-
-Please drop this.
-
-> +      };
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Kind Regards,
+Niklas Söderlund
