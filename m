@@ -2,44 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A8A944B55E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02CE244B571
+	for <lists+devicetree@lfdr.de>; Tue,  9 Nov 2021 23:18:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245386AbhKIWUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 17:20:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40432 "EHLO mail.kernel.org"
+        id S1343496AbhKIWUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 17:20:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40914 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245437AbhKIWT5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Nov 2021 17:19:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AFCB61038;
-        Tue,  9 Nov 2021 22:17:10 +0000 (UTC)
+        id S245500AbhKIWUV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Nov 2021 17:20:21 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 998FA61207;
+        Tue,  9 Nov 2021 22:17:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636496231;
-        bh=NG62fGXEuGcBhXpyle96CLm80C3YfEagyN/tl5HDwLk=;
+        s=k20201202; t=1636496238;
+        bh=qR8ttzQ+HcT95TOU3T643QpXnqN44D8DenWBQhzqmzI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=GzifxJutSRT5ciZQDqVNdFD5E07B+biuyl4pOrH3RmLmq+XIyvA2Z4eLRjHHwLhpC
-         AyHbKH3OzRTql53nFj18mwwQLavtLbDTxt7YS6ogvRkalBc5KUF5YDHLBnl6X4V8r1
-         pjTn5dReB2dkloqiEXuSpl2A9YHiSlof7+jXlJcqvR/bQQpHLBBD/E3op6BilZooib
-         tza4Lz1RrTmd+/B9j0XgT7DkmSLCJWPcrym9p9L3VYuYbu2LxAjVe0m35rBUrDn8TN
-         6i7IegAxNshy0CnZQzR8G7SzW+oqU+m6/pOziZ00xYJK4CGiFp4DwTGL6CJEHC+G0G
-         maqSU51Vseayw==
+        b=e0kReMqfTAurzCI3vJbOIlsjW4xUcDCzVsksF7gqJiCQ96f1RHx1w6AJfC6CAIt0v
+         2fDFOGkwLf+fANQvunWAXIXWi7g32+CCh0ar+Xzl/MSNcjR9kTUf9CV2orFQcNkFCQ
+         iXMwfHc3pbfdcQhemN8LCjcvpSRdNsdgEHLSOQ2T5nhbURuTFZmyoqxfek2IgrU86c
+         MteIUTuLOFm+PZt2LjQNekDsWooSrrhDe8t5p4/3grs+liF11uUut9QCtw7Q2MBFbK
+         1lnpqN1ECCVvPO8QzDg0NSgIRZf1zrMZUhYP5LeRxuYODpXF9brGRX6/G/GUGHaxpZ
+         C6GUlFryBMZ9w==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+Cc:     Matthias Brugger <mbrugger@suse.com>,
+        Guillaume Gardet <guillaume.gardet@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
         pawel.moll@arm.com, mark.rutland@arm.com,
         ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
         catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 11/82] arm64: dts: broadcom: bcm4908: Move reboot syscon out of bus
-Date:   Tue,  9 Nov 2021 17:15:29 -0500
-Message-Id: <20211109221641.1233217-11-sashal@kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.15 15/82] arm64: dts: rockchip: Disable CDN DP on Pinebook Pro
+Date:   Tue,  9 Nov 2021 17:15:33 -0500
+Message-Id: <20211109221641.1233217-15-sashal@kernel.org>
 X-Mailer: git-send-email 2.33.0
 In-Reply-To: <20211109221641.1233217-1-sashal@kernel.org>
 References: <20211109221641.1233217-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -47,42 +48,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+From: Matthias Brugger <mbrugger@suse.com>
 
-[ Upstream commit 6cf9f70255b90b540b9cbde062f18fea29024a75 ]
+[ Upstream commit 2513fa5c25d42f55ca5f0f0ab247af7c9fbfa3b1 ]
 
-This fixes following error for every bcm4908 DTS file:
-bus@ff800000: reboot: {'type': 'object'} is not allowed for {'compatible': ['syscon-reboot'], 'regmap': [[15]], 'offset': [[52]], 'mask': [[1]]}
+The CDN DP needs a PHY and a extcon to work correctly. But no extcon is
+provided by the device-tree, which leads to an error:
+cdn-dp fec00000.dp: [drm:cdn_dp_probe [rockchipdrm]] *ERROR* missing extcon or phy
+cdn-dp: probe of fec00000.dp failed with error -22
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+Disable the CDN DP to make graphic work on the Pinebook Pro.
+
+Reported-by: Guillaume Gardet <guillaume.gardet@arm.com>
+Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+Link: https://lore.kernel.org/r/20210715164101.11486-1-matthias.bgg@kernel.org
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-index a5a64d17d9ea6..4736416317531 100644
---- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-@@ -326,12 +326,12 @@
- 				#reset-cells = <1>;
- 			};
- 		};
-+	};
- 
--		reboot {
--			compatible = "syscon-reboot";
--			regmap = <&timer>;
--			offset = <0x34>;
--			mask = <1>;
--		};
-+	reboot {
-+		compatible = "syscon-reboot";
-+		regmap = <&timer>;
-+		offset = <0x34>;
-+		mask = <1>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+index 2b5f001ff4a61..9e5d07f5712e6 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
+@@ -385,10 +385,6 @@
  	};
+ };
+ 
+-&cdn_dp {
+-	status = "okay";
+-};
+-
+ &cpu_b0 {
+ 	cpu-supply = <&vdd_cpu_b>;
  };
 -- 
 2.33.0
