@@ -2,71 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A643E44BCE9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:32:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6C544BD00
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:40:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbhKJIeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 03:34:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230117AbhKJIeq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 03:34:46 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0E8FC061764
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 00:31:58 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id t19so3945835oij.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 00:31:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=zLqvkJgCAjTpG7osjAd/FkvEnqLbJcOnM2H/5l4Vzaw=;
-        b=mZqGi79Yc2keMvXJhJAiGIl0oeFtrCDiO0WC8/DCLDoQM2aDERPH4ORYW9OuwjeqFW
-         1lBkH9l2f8S34zLK3q+ULafokRdXwDBx270L0tBOj0s8HOVkMcBHh0IonP5KSbjEd7/Z
-         6TSvdCtIToKTlaPoCDPlLpwkZXRpjlIna1kSIamxsdQnr3cMHoxoFrEzrbZfXPRbQqfT
-         A8P+eu2gi831hRUpJonFjWcsC668YRnH+eipbcZuzt8ZGw9wvZqkEZHhE6ABfufUijNl
-         h63gMoWwQdq6/ZBXmXv0wZCuFbxfQLypgUGx49hoBLydOY5uwFDIrBKt7xg8E8dGga3P
-         lIwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=zLqvkJgCAjTpG7osjAd/FkvEnqLbJcOnM2H/5l4Vzaw=;
-        b=RJLjo8aQTEQuje0wzWRp1cHwODTp9uOWZevDBAvduhdgJeGyRK8la6UJ7SMBF8/ImT
-         UlrflNGysHgtXYW9m6pRDPgAqypKwQJIrNNCEYDuaZ9W5vz31MiTHTeGYEaohPbRQKBI
-         lCMDBwgESiWXXj5nVvU53B0U8J23CH+Dt8GwTJUKCKIxkoCeI8eOjtxnXDQwEMHFNof3
-         4ql31JBTvoD8CNfYZI3EFoC3uaykAiXu+imI8aXmRxEz1/opPAqp+8bTFx2oB9yXL4M7
-         56UyuyfcVXLdtsfN8ygPz6g2s1JLnAaGERQz1U/lMxj7GPg0h9/G+sjlWLGHRY2afSEp
-         QdTA==
-X-Gm-Message-State: AOAM530/j/VDlo2RCNRKIcp6H5BOnj1vIK+knYDieXHbhrLaiki9R054
-        LP4HC7ldbjq+bnqxyFkL9SRlBSbHopGZV8J/Hu4=
-X-Google-Smtp-Source: ABdhPJw9Ea6uipjCYszoBHbVu0JOC76IvOJRI+kOsrhgC6pXjaNXYZZd87wIXtv6Gc4Iv7HUOZgwIuPll6ccqF28sZQ=
-X-Received: by 2002:a05:6808:f92:: with SMTP id o18mr11301305oiw.46.1636533118144;
- Wed, 10 Nov 2021 00:31:58 -0800 (PST)
+        id S230215AbhKJIm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 03:42:56 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49108 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229653AbhKJIm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 03:42:56 -0500
+X-UUID: 605f5c25076d4934906011bd96077482-20211110
+X-UUID: 605f5c25076d4934906011bd96077482-20211110
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 861002986; Wed, 10 Nov 2021 16:40:07 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 10 Nov 2021 16:40:06 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Wed, 10 Nov 2021 16:40:05 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>
+Subject: [PATCH 0/5] MediaTek Ethernet Patches on MT8195
+Date:   Wed, 10 Nov 2021 16:39:43 +0800
+Message-ID: <20211110083948.6082-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: by 2002:a4a:df49:0:0:0:0:0 with HTTP; Wed, 10 Nov 2021 00:31:57
- -0800 (PST)
-Reply-To: mrs.helenfavour1@gmail.com
-From:   "Mrs.Helen Favour" <coolrtsss@gmail.com>
-Date:   Wed, 10 Nov 2021 09:31:57 +0100
-Message-ID: <CAOwE4EMaAaPX1tZsE1=mKYn3UT7GCzf-xpPhgxwBQEELOOGRmw@mail.gmail.com>
-Subject: Thanks and God bless you
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-My Dearest..
+This series include 5 patches:
+1. add platform level clocks management for dwmac-mediatek
+2. resue more common features defined in stmmac_platform.c
+3. add ethernet entry for mt8195
+4. convert mediatek-dwmac.txt to mediatek-dwmac.yaml
+5. add ethernet device node for mt8195
 
-May the peace of the Lord be unto you and your household Amen? I am
-Mrs.Helen Favour, I am writing you now from the Hospital due to my
-cancer sickness,Please I have a fund I inherited from my late husband
-Mr. Gabriel Favour the sum of ($3,400,000.00 USD) and I want to donate
-it in your name to help the less privilege, widows and motherless home
-in your country,
+Biao Huang (5):
+  net: stmmac: dwmac-mediatek: add platform level clocks management
+  net: stmmac: dwmac-mediatek: Reuse more common features
+  net: stmmac: dwmac-mediatek: add support for mt8195
+  dt-bindings: net: dwmac: Convert mediatek-dwmac to DT schema
+  arm64: dts: mt8195: add ethernet device node
 
-I will be happy to hear from you soon.
+ .../bindings/net/mediatek-dwmac.txt           |  91 -----
+ .../bindings/net/mediatek-dwmac.yaml          | 179 ++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  92 +++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  70 ++++
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 313 ++++++++++++++++--
+ 5 files changed, 632 insertions(+), 113 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 
-Thanks and God bless you
+--
+2.18.0
 
-Yours faithful Sister.
+
