@@ -2,126 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D05A44BA42
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 03:20:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B3CF44BA57
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 03:33:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbhKJCXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 21:23:24 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53886 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229630AbhKJCXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 21:23:24 -0500
-X-UUID: 856a6dbc4c6341eca4ca1e898b447dc0-20211110
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=h6o8crzH0QQXPSjg4BmL9i5l114/7v3dfLGSUMXg6lQ=;
-        b=pu1+LqOeJ5IzE1w+yl088gqqRaOXP3f1DjYslC7BeDPQLvV02UHhhWX3FbEr7CzoXmGI43dLpsXURFoD1IDGNJ6RqruW9vUOlSpnkzvCNKO/RoBDtqkEy74B5vLQFaXSDCnNh4pnaBxZzWAjFrLR9eVJADb3igUhQPtjAJKAbm8=;
-X-UUID: 856a6dbc4c6341eca4ca1e898b447dc0-20211110
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1352684706; Wed, 10 Nov 2021 10:20:35 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 10 Nov 2021 10:20:33 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Wed, 10 Nov 2021 10:20:32 +0800
-Message-ID: <5c4dd67ae7c81721d8cfd2c3b23b7c6df493cb5a.camel@mediatek.com>
-Subject: Re: [PATCH v3 12/33] iommu/mediatek: Always tlb_flush_all when each
- PM resume
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
-        <anan.sun@mediatek.com>, <yen-chang.chen@mediatek.com>,
-        "AngeloGioacchino Del Regno" 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        <sebastian.reichel@collabora.com>,
-        "Collabora Kernel ML" <kernel@collabora.com>
-Date:   Wed, 10 Nov 2021 10:20:32 +0800
-In-Reply-To: <c4be1a14-c257-81b7-4a2b-f7e68c32de88@collabora.com>
-References: <20210923115840.17813-1-yong.wu@mediatek.com>
-         <20210923115840.17813-13-yong.wu@mediatek.com>
-         <c4be1a14-c257-81b7-4a2b-f7e68c32de88@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S229869AbhKJCgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 21:36:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50674 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229717AbhKJCgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 21:36:12 -0500
+Received: from merlin.infradead.org (merlin.infradead.org [IPv6:2001:8b0:10b:1234::107])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1405CC061764;
+        Tue,  9 Nov 2021 18:33:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=merlin.20170209; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description;
+        bh=vaMquRSSr3aFa23drkfuWw9iKepZuzFpwndhUSYbvRQ=; b=1goCbOPQEKW0bXEYR63uiqnNqR
+        E/LwK+maT7sKLA6Kv/7JPMbQDpfHtaMWPIfk5/H0ka+DFU5EbhoMU4Y5i4+WFfazUE9zWOOT7s5d6
+        2htpB+yfojgD5V174QRt1byC53pjXio9RmJAAbrNBR7+JDf2Ml9wnV+36ty/xnt70gg9RoD0E5OEG
+        QZYcVcDf2pTA9d6QGWXDnrF57BXsVpr65MbYViE6mOP7UWizl+C6mkLMPFk+aH4OQFvUEL0Ax2gKp
+        WBF6hjn8FkqLsqj08exjt136gkFyB4ZvfGVapAcY/s05KDvxfzUpGXPzbQgkhpiZgH+yD3YhQ40J0
+        LUyc2nVw==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by merlin.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mkdQF-008qUm-In; Wed, 10 Nov 2021 02:33:12 +0000
+Subject: Re: [PATCH v2 1/2] mmc: Add SD/SDIO driver for Sunplus SP7021
+To:     "LH.Kuo" <lhjeff911@gmail.com>, p.zabel@pengutronix.de,
+        daniel.thompson@linaro.org, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
+References: <1635487055-18494-1-git-send-email-lh.kuo@sunplus.com>
+ <1636444705-17883-1-git-send-email-lh.kuo@sunplus.com>
+ <1636444705-17883-2-git-send-email-lh.kuo@sunplus.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <6c5c6e83-8176-8b4a-9c2c-f01a262de5de@infradead.org>
+Date:   Tue, 9 Nov 2021 18:33:05 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <1636444705-17883-2-git-send-email-lh.kuo@sunplus.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTExLTA5IGF0IDE0OjIxICswMjAwLCBEYWZuYSBIaXJzY2hmZWxkIHdyb3Rl
-Og0KPiBIaQ0KPiBUaGlzIHBhdGNoIGlzIG5lZWRlZCBpbiBvcmRlciB0byB1cGRhdGUgdGhlIHRs
-YiB3aGVuIGEgZGV2aWNlIGlzDQo+IHBvd2VyZWQgb24uDQo+IENvdWxkIHlvdSBzZW5kIHRoaXMg
-cGF0Y2ggYWxvbmUgd2l0aG91dCB0aGUgd2hvbGUgc2VyaWVzIHNvIGl0IGdldA0KPiBhY2NlcHRl
-ZCBlYXNpZXI/DQoNCldoaWNoIFNvQyBhcmUgeW91IHRlc3Rpbmcgb24/IEluIHByZXZpb3VzIFNv
-QywgdGhlIElPTU1VIEhXIGRvbid0IGhhdmUNCnBvd2VyLWRvbWFpbiwgYW5kIHdlIGhhdmUgYSAi
-aGFzX3BtIlsxXSBpbiB0aGUgdGxiIGZ1bmN0aW9uIGZvciB0aGF0DQpjYXNlLiBUaGUgImhhc19w
-bSIgc2hvdWxkIGJlIGFsd2F5cyAwIGZvciB0aGUgcHJldmlvdXMgU29DIGxpa2UgbXQ4MTczLA0K
-aXQgc2hvdWxkIGFsd2F5cyB0bGIgc3luY2hyb25pemUuDQoNCnRodXMsIENvdWxkIHlvdSBoZWxw
-IHNoYXJlIG1vcmUgYWJvdXQgeW91ciBpc3N1ZT8gSW4gd2hpY2ggY2FzZSBpdCBsYWNrDQp0aGUg
-bmVjZXNzYXJ5IHRsYiBvcGVyYXRpb24uIEF0IGxlYXN0LCBXZSBuZWVkIGNvbmZpcm0gaWYgaXQg
-bmVlZHMgYQ0KIkZpeGVzIiB0YWdzIGlmIHNlbmRpbmcgdGhpcyBwYXRjaCBhbG9uZS4NCg0KVGhh
-bmtzLg0KDQpbMV0gDQpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92NS4xNS9zb3Vy
-Y2UvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYyNMMjM2DQoNCj4gSSBjYW4gcmVzZW5kIHRoZSBw
-YXRjaCBvbiB5b3VyIGJlaGFsZiBpZiB5b3Ugd2FudC4NCj4gDQo+IFRoYW5rcywNCj4gRGFmbmEN
-Cj4gDQo+IE9uIDIzLjA5LjIxIDE0OjU4LCBZb25nIFd1IHdyb3RlOg0KPiA+IFByZXBhcmUgZm9y
-IDIgSFdzIHRoYXQgc2hhcmluZyBwZ3RhYmxlIGluIGRpZmZlcmVudCBwb3dlci1kb21haW5zLg0K
-PiA+IA0KPiA+IFdoZW4gdGhlcmUgYXJlIDIgTTRVIEhXcywgaXQgbWF5IGhhcyBwcm9ibGVtIGlu
-IHRoZSBmbHVzaF9yYW5nZSBpbg0KPiA+IHdoaWNoDQo+ID4gd2UgZ2V0IHRoZSBwbV9zdGF0dXMg
-dmlhIHRoZSBtNHUgZGV2LCBCVVQgdGhhdCBmdW5jdGlvbiBkb24ndA0KPiA+IHJlZmxlY3QgdGhl
-DQo+ID4gcmVhbCBwb3dlci1kb21haW4gc3RhdHVzIG9mIHRoZSBIVyBzaW5jZSB0aGVyZSBtYXkg
-YmUgb3RoZXIgSFcgYWxzbw0KPiA+IHVzZQ0KPiA+IHRoYXQgcG93ZXItZG9tYWluLg0KPiA+IA0K
-PiA+IFRoZSBmdW5jdGlvbiBkbWFfYWxsb2NfYXR0cnMgaGVscCBhbGxvY2F0ZSB0aGUgaW9tbXUg
-YnVmZmVyIHdoaWNoDQo+ID4gbmVlZCB0aGUgY29ycmVzcG9uZGluZyBwb3dlciBkb21haW4gc2lu
-Y2UgdGxiIGZsdXNoIGlzIG5lZWRlZCB3aGVuDQo+ID4gcHJlcGFyaW5nIGlvdmEuIEJVVCB0aGlz
-IGZ1bmN0aW9uIG9ubHkgaXMgZm9yIGFsbG9jYXRpbmcgYnVmZmVyLA0KPiA+IHdlIGhhdmUgbm8g
-Z29vZCByZWFzb24gdG8gcmVxdWVzdCB0aGUgdXNlciBhbHdheXMgY2FsbA0KPiA+IHBtX3J1bnRp
-bWVfZ2V0DQo+ID4gYmVmb3JlIGNhbGxpbmcgZG1hX2FsbG9jX3h4eC4gVGhlcmVmb3JlLCB3ZSBh
-ZGQgYSB0bGJfZmx1c2hfYWxsDQo+ID4gaW4gdGhlIHBtX3J1bnRpbWVfcmVzdW1lIHRvIG1ha2Ug
-c3VyZSB0aGUgdGxiIGFsd2F5cyBpcyBjbGVhbi4NCj4gPiANCj4gPiBBbm90aGVyIHNvbHV0aW9u
-IGlzIGFsd2F5cyBjYWxsIHBtX3J1bnRpbWVfZ2V0IGluIHRoZQ0KPiA+IHRsYl9mbHVzaF9yYW5n
-ZS4NCj4gPiBUaGlzIHdpbGwgdHJpZ2dlciBwbSBydW50aW1lIHJlc3VtZS9iYWNrdXAgc28gb2Z0
-ZW4gd2hlbiB0aGUgaW9tbXUNCj4gPiBwb3dlciBpcyBub3QgYWN0aXZlIGF0IHNvbWUgdGltZSht
-ZWFucyB1c2VyIGRvbid0IGNhbGwNCj4gPiBwbV9ydW50aW1lX2dldA0KPiA+IGJlZm9yZSBjYWxs
-aW5nIGRtYV9hbGxvY194eHgpLCBUaGlzIG1heSBjYXVzZSB0aGUgcGVyZm9ybWFuY2UgZHJvcC4N
-Cj4gPiB0aHVzIHdlIGRvbid0IHVzZSB0aGlzLg0KPiA+IA0KPiA+IEluIG90aGVyIGNhc2UsIHRo
-ZSBpb21tdSdzIHBvd2VyIHNob3VsZCBhbHdheXMgYmUgYWN0aXZlIHZpYSBkZXZpY2UNCj4gPiBs
-aW5rIHdpdGggc21pLg0KPiA+IA0KPiA+IFRoZSBwcmV2aW91cyBTb0MgZG9uJ3QgaGF2ZSBQTSBl
-eGNlcHQgbXQ4MTkyLiB0aGUgbXQ4MTkyIElPTU1VIGlzDQo+ID4gZGlzcGxheSdzDQo+ID4gcG93
-ZXItZG9tYWluIHdoaWNoIG5lYXJseSBhbHdheXMgaXMgZW5hYmxlZC4gdGh1cyBubyBuZWVkIGZp
-eCB0YWdzDQo+ID4gaGVyZS4NCj4gPiBQcmVwYXJlIGZvciBtdDgxOTUuDQo+ID4gDQo+ID4gU2ln
-bmVkLW9mZi1ieTogWW9uZyBXdSA8eW9uZy53dUBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-ICBkcml2ZXJzL2lvbW11L210a19pb21tdS5jIHwgMTEgKysrKysrKysrKysNCj4gPiAgIDEgZmls
-ZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvaW9tbXUvbXRrX2lvbW11LmMgYi9kcml2ZXJzL2lvbW11L210a19pb21tdS5jDQo+ID4gaW5k
-ZXggNDRjZjU1NDdkMDg0Li5lOWU5NDk0NGVkOTEgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9p
-b21tdS9tdGtfaW9tbXUuYw0KPiA+ICsrKyBiL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmMNCj4g
-PiBAQCAtOTg0LDYgKzk4NCwxNyBAQCBzdGF0aWMgaW50IF9fbWF5YmVfdW51c2VkDQo+ID4gbXRr
-X2lvbW11X3J1bnRpbWVfcmVzdW1lKHN0cnVjdCBkZXZpY2UgKmRldikNCj4gPiAgIAkJcmV0dXJu
-IHJldDsNCj4gPiAgIAl9DQo+ID4gICANCj4gPiArCS8qDQo+ID4gKwkgKiBVc2VycyBtYXkgYWxs
-b2NhdGUgZG1hIGJ1ZmZlciBiZWZvcmUgdGhleSBjYWxsDQo+ID4gcG1fcnVudGltZV9nZXQsIHRo
-ZW4NCj4gPiArCSAqIGl0IHdpbGwgbGFjayB0aGUgbmVjZXNzYXJ5IHRsYiBmbHVzaC4NCj4gPiAr
-CSAqDQo+ID4gKwkgKiBXZSBoYXZlIG5vIGdvb2QgcmVhc29uIHRvIHJlcXVlc3QgdGhlIHVzZXJz
-IGFsd2F5cyBjYWxsDQo+ID4gZG1hX2FsbG9jX3h4DQo+ID4gKwkgKiBhZnRlciBwbV9ydW50aW1l
-X2dldF9zeW5jLg0KPiA+ICsJICoNCj4gPiArCSAqIFRodXMsIE1ha2Ugc3VyZSB0aGUgdGxiIGFs
-d2F5cyBpcyBjbGVhbiBhZnRlciBlYWNoIFBNDQo+ID4gcmVzdW1lLg0KPiA+ICsJICovDQo+ID4g
-KwltdGtfaW9tbXVfdGxiX2RvX2ZsdXNoX2FsbChkYXRhKTsNCj4gPiArDQo+ID4gICAJLyoNCj4g
-PiAgIAkgKiBVcHBvbiBmaXJzdCByZXN1bWUsIG9ubHkgZW5hYmxlIHRoZSBjbGsgYW5kIHJldHVy
-biwgc2luY2UNCj4gPiB0aGUgdmFsdWVzIG9mIHRoZQ0KPiA+ICAgCSAqIHJlZ2lzdGVycyBhcmUg
-bm90IHlldCBzZXQuDQo+ID4gDQo=
+Hi--
 
+On 11/8/21 11:58 PM, LH.Kuo wrote:
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 5af8494..2aba9eb 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -1091,5 +1091,15 @@ config MMC_OWL
+>   	  This selects support for the SD/MMC Host Controller on
+>   	  Actions Semi Owl SoCs.
+>   
+> +config MMC_SP_SDV2
+> +	tristate "Sunplus SP7021 SD/SDIO Controller"
+> +	depends on SOC_SP7021
+> +	help
+> +		If you say yes here, you will get support for SD/SDIO host interface
+> +		on sunplus Socs.
+
+		   Sunplus SoCs.
+
+> +		If you have a controller with this interface, say Y or M here.
+> +		If unsure, say N.
+
+All 4 lines of help text should be indented only with one tab + 2 spaces,
+not 2 tabs, per coding-style.rst.
+
+
+> +                Sunplus  SD/SDIO Host Controller support"
+
+I am thinking that this last line should not be here at all... ???
+
+
+thanks.
+-- 
+~Randy
