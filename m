@@ -2,293 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A70C44BEAD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 11:30:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EADD844BF5D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 11:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbhKJKd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 05:33:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43436 "EHLO
+        id S231294AbhKJLC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 06:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbhKJKdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 05:33:25 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D671C061766
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:30:38 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id m14so2256651pfc.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:30:38 -0800 (PST)
+        with ESMTP id S231148AbhKJLC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 06:02:28 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D66EC061764
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:59:41 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id gb13-20020a17090b060d00b001a674e2c4a8so1337288pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:59:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=r5DQX2VbHiiinpBFvGUn9gkRcEjjrEuvSqSjaWfXcDI=;
-        b=cy/1KPVoDrOt4yjIxt1Buip+V8mWgNg6UYmtGHHJ08/DKQEPhwaYkgH2lsyQyAln8/
-         R8GzPx7X8b2yG5twg9UIjYkDsDTwEQEEADIN1kg/Ah5oK+dFzF3R9/S2UAdl7RbbyFDU
-         6MERQjvvntRYiXZoMQDWLQPPCf4BU+6LB2Cp61t9N7538FW3qkal5Dm+9kF681JbqjU+
-         JWhcuXUT8RXNemHk5gN/Op5Lm0JoIL2A418gG3D3qUH250dSGLbCF/rVRFZ1XUmKVmrt
-         LLoi8vFEeipVLd3+GIwBPfDiMw9XNbfJ/vkKCvkgqpmCnYjC7hbqgA6gqXJ7Qr2og0DJ
-         PEpw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ivExlr+ZHhxGz2pIDkKmpQf/RoryVkuEzBBKkgF+HMs=;
+        b=Bzpbn7SceepRLuLkqFR40e4H7SzQYDpC2iTZW/f6OsKuLqbGRr/Icwcc9pFwTc/WT8
+         uGgbohpoRCOLORBjk2npB9BKxT/kq9vqqRaeJ6+mtUT53PXp4M09cQyEyX7RH7X42MhC
+         LkK2FD5FH4CSwJncopb5dwDg1JtPZKdO+oIpRESwg33CUyRaThkAXqcIpQ2nVzbnsI3o
+         VtzUuHoZ7kBNvcYXbtML1r9zw2yWkvApbNVCjzAvi3Ggm9dHOES+NJbaOLibF+WtXBXB
+         7AH0yD47BYRAZh9HF0cShXwIpCNuiljGo7TeCH94WbuzdynSto+gLNusP94mTJ6+2F87
+         OSAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r5DQX2VbHiiinpBFvGUn9gkRcEjjrEuvSqSjaWfXcDI=;
-        b=v12DFdeouW63LDW46wzlYwuG+Yu55tUmH5/1QHh3GOvD39pGsRgEpTY4kyBGxYSRRq
-         x2CuaGEpWONGoxt3uIiwn9iMNCiExA3rC9gbWsdwGDGH94v37u0Kv9qSOt5rVGltfcwr
-         jtA2BEKHwBbTMD/I/jmnVhNTdyR8rhTYuMExEzlhriqXNdf8y75mI0CDzEh0U8ybv6Fm
-         2SwGAMAyvRFHxEvnrJ4mgG28MAlgDrJiEPs//zOlo9ImTGcJz34n7GWVLWbtHsxw4CZF
-         F3hVY7QmFW2nSjBrLRGD0f8yFQGTUahS9zxNEB3pumKJ/gVRPX3qyCkFr1PZONxD+vO/
-         QiLQ==
-X-Gm-Message-State: AOAM530U5UaFVaTI298J6WVpdlNg914e8W2u1C5Uvy2uAsfCFb5nFoNT
-        faxfpqMS6/0RojeV8sRI/fPCVsZvKlxIVAcEN5fwaw==
-X-Google-Smtp-Source: ABdhPJykmPLJ6N71IANWCRh+gpwVTmAkjoBw+f7+zlBkb5XKdRfh/Qb9D78+HxTdnDoFhcUKj8MzfOQAbs+Oli9R2pw=
-X-Received: by 2002:a05:6a00:2387:b0:49f:af00:d5d0 with SMTP id
- f7-20020a056a00238700b0049faf00d5d0mr14945380pfc.1.1636540237554; Wed, 10 Nov
- 2021 02:30:37 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ivExlr+ZHhxGz2pIDkKmpQf/RoryVkuEzBBKkgF+HMs=;
+        b=ksf2muvFbs8clgUNAE3MRxJiBEZxm2h0tYkCs59njXjrVpBGsu43MvjLsWVLy1pNHT
+         orvPelAE/YzUgvXhafHjT9EsVJzoPYMixWGo4HIsiiTR6Y/2F51cCvQmcJjZc4j0pNFa
+         z+5bVRyHmCmoOCps6TnwJuw7AkGVgBsuxtlzAx7eg1r+rLwBkplzgqiB8XJv01qtrmXy
+         yxPescYRbSgkbCV9IHY66KBvnt9tlmKeshAAGFVsWlxi2A3nw982zp9292aaUOm/gH8N
+         MT4lIK0eQxk0sC+APBvEUDwxZkKnu1+ibrCRvOkPrn9/KWcVH9bpMjBPskfQBN6PWN9H
+         VIuQ==
+X-Gm-Message-State: AOAM5324XgyRRnYBk3JM1byM/ONWD6PuUpAQ2Dr03V/7spXOebqipcBv
+        udoJYMcePm4MHfTfeVoSL2Zt+g==
+X-Google-Smtp-Source: ABdhPJwuI+oenFLr4BXNTSV5M4QNJx3LAHgpyNPB06rLVvtQV+UOG5/waLJlMmb9jM8QQREIjcRinQ==
+X-Received: by 2002:a17:90a:d3c3:: with SMTP id d3mr15771831pjw.209.1636541981059;
+        Wed, 10 Nov 2021 02:59:41 -0800 (PST)
+Received: from localhost.name ([122.161.52.143])
+        by smtp.gmail.com with ESMTPSA id e11sm5585282pjl.20.2021.11.10.02.59.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Nov 2021 02:59:40 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, herbert@gondor.apana.org.au,
+        davem@davemloft.net, stephan@gerhold.net,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH v5 00/22] Enable Qualcomm Crypto Engine on sm8150 & sm8250
+Date:   Wed, 10 Nov 2021 16:29:00 +0530
+Message-Id: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211109125030.26299-1-yunfei.dong@mediatek.com> <20211109125030.26299-7-yunfei.dong@mediatek.com>
-In-Reply-To: <20211109125030.26299-7-yunfei.dong@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Wed, 10 Nov 2021 18:30:26 +0800
-Message-ID: <CA+Px+wXSFkK1o__7YWntGwFXtfWKH65VoSq=783fEPoEH-MwGw@mail.gmail.com>
-Subject: Re: [PATCH v9, 06/19] media: mtk-vcodec: Manage multi hardware information
-To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 09, 2021 at 08:50:17PM +0800, Yunfei Dong wrote:
-> Manage each hardware information which includes irq/power/clk.
-> The hardware includes LAT0, LAT1 and CORE.
+Changes since v4:
+=================
+- v4 for sm8250 can be seen here: https://lore.kernel.org/linux-arm-msm/20211013105541.68045-1-bhupesh.sharma@linaro.org/
+- v1 for sm8150 qce enablement can be seen here: https://lore.kernel.org/linux-arm-msm/20211013165823.88123-1-bhupesh.sharma@linaro.org/
+- Merged the sm8150 and sm8250 enablement patches in the same patchset,
+  as per suggestions from Bjorn.
+- Dropped a couple of patches from v4, as these have been picked by
+  Bjorn already via his tree.
+- Addressed review comments from Vladimir, Thara and Rob.
+- Collect Reviewed-by from Rob and Thara on some of the patches from the
+  v4 patchset.
 
-The commit message doesn't explain the code.  Could you provide some
-explanations about how the async mechanism works?  (e.g. A bitmap for
-all sub-devices' readiness ...)
+Changes since v3:
+=================
+- v3 can be seen here: https://lore.kernel.org/linux-arm-msm/20210519143700.27392-1-bhupesh.sharma@linaro.org/
+- Dropped a couple of patches from v3, on basis of the review comments:
+   ~ [PATCH 13/17] crypto: qce: core: Make clocks optional
+   ~ [PATCH 15/17] crypto: qce: Convert the device found dev_dbg() to dev_info()
+- Addressed review comments from Thara, Rob and Stephan Gerhold.
+- Collect Reviewed-by from Rob and Thara on some of the patches from the
+  v3 patchset.
 
-> Reported-by: kernel test robot <lkp@intel.com>
+Changes since v2:
+=================
+- v2 can be seen here: https://lore.kernel.org/dmaengine/20210505213731.538612-1-bhupesh.sharma@linaro.org/
+- Drop a couple of patches from v1, which tried to address the defered
+  probing of qce driver in case bam dma driver is not yet probed.
+  Replace it instead with a single (simpler) patch [PATCH 16/17].
+- Convert bam dma and qce crypto dt-bindings to YAML.
+- Addressed review comments from Thara, Bjorn, Vinod and Rob.
 
-Apparently wrong tag.
+Changes since v1:
+=================
+- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210310052503.3618486-1-bhupesh.sharma@linaro.org/ 
+- v1 did not work well as reported earlier by Dmitry, so v2 contains the following
+  changes/fixes:
+  ~ Enable the interconnect path b/w BAM DMA and main memory first
+    before trying to access the BAM DMA registers.
+  ~ Enable the interconnect path b/w qce crytpo and main memory first
+    before trying to access the qce crypto registers.
+  ~ Make sure to document the required and optional properties for both
+    BAM DMA and qce crypto drivers.
+  ~ Add a few debug related print messages in case the qce crypto driver
+    passes or fails to probe.
+  ~ Convert the qce crypto driver probe to a defered one in case the BAM DMA
+    or the interconnect driver(s) (needed on specific Qualcomm parts) are not
+    yet probed.
 
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> index b7a51e96d4ba..eb2af42aa102 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> @@ -18,19 +18,49 @@
->
->  #include "mtk_vcodec_drv.h"
->  #include "mtk_vcodec_dec.h"
-> +#include "mtk_vcodec_dec_hw.h"
->  #include "mtk_vcodec_dec_pm.h"
->  #include "mtk_vcodec_intr.h"
-> -#include "mtk_vcodec_util.h"
+Qualcomm crypto engine is also available on sm8150 and sm8250 SoCs.
+The qce block supports hardware accelerated algorithms for encryption
+and authentication. It also provides support for aes, des, 3des
+encryption algorithms and sha1, sha256, hmac(sha1), hmac(sha256)
+authentication algorithms.
 
-Why does mtk_vcodec_util.h need to remove?
+Tested the enabled crypto algorithms with cryptsetup test utilities
+on sm8150-mtp, sa8155p-adp, sm8250-mtp and RB5 boards (see [1]) and
+also with crypto self-tests, including the fuzz tests
+ (CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y).
 
-> +static int mtk_vcodec_subdev_device_check(struct mtk_vcodec_ctx *ctx)
-> + {
+[1]. https://linux.die.net/man/8/cryptsetup
 
-Remove the extra space.
+Cc: Thara Gopinath <thara.gopinath@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
 
-> +     struct mtk_vcodec_dev *vdec_dev = ctx->dev;
-> +     struct platform_device *pdev = vdec_dev->plat_dev;
-> +     struct device_node *subdev_node;
-> +     enum mtk_vdec_hw_id hw_idx;
-> +     const struct of_device_id *of_id;
-> +     int i;
-> +
-> +     for (i = 0; i < ARRAY_SIZE(mtk_vdec_hw_match); i++) {
-> +             of_id = &mtk_vdec_hw_match[i];
-> +             subdev_node = of_find_compatible_node(NULL, NULL,
-> +                     of_id->compatible);
-> +             if (!subdev_node)
-> +                     continue;
-> +
-> +             if (!of_device_is_available(subdev_node)) {
-> +                     of_node_put(subdev_node);
-> +                     dev_err(&pdev->dev, "Fail to get MMSYS node\n");
+Bhupesh Sharma (19):
+  arm64: dts: qcom: msm8996: Fix qcom,controlled-remotely property
+  arm64: dts: qcom: msm8996: Fix 'dma' nodes in dts
+  dt-bindings: qcom-bam: Convert binding to YAML
+  dt-bindings: qcom-bam: Add 'interconnects' & 'interconnect-names' to
+    optional properties
+  dt-bindings: qcom-bam: Add 'iommus' to optional properties
+  dt-bindings: qcom-bam: Add "powered remotely" mode
+  dt-bindings: qcom-qce: Convert bindings to yaml
+  dt-bindings: qcom-qce: Add 'interconnects' and 'interconnect-names'
+  dt-bindings: qcom-qce: Move 'clocks' to optional properties
+  dt-bindings: qcom-qce: Add 'iommus' to optional properties
+  dt-bindings: crypto : Add new compatible strings for qcom-qce
+  arm64/dts: qcom: Use new compatibles for crypto nodes
+  crypto: qce: Add new compatibles for qce crypto driver
+  crypto: qce: Print a failure msg in case probe() fails
+  crypto: qce: Defer probing if BAM dma channel is not yet initialized
+  crypto: qce: Add 'sm8250-qce' compatible string check
+  crypto: qce: Add 'sm8150-qce' compatible string check
+  arm64/dts: qcom: sm8250: Add dt entries to support crypto engine.
+  arm64/dts: qcom: sm8150: Add dt entries to support crypto engine.
 
-I am not sure if the error message makes sense about mentioning MMSYS here.
+Thara Gopinath (3):
+  dma: qcom: bam_dma: Add support to initialize interconnect path
+  crypto: qce: core: Add support to initialize interconnect path
+  crypto: qce: core: Make clocks optional
 
-> +                     continue;
-> +             }
-> +
-> +             hw_idx = (enum mtk_vdec_hw_id)(uintptr_t)of_id->data;
+ .../devicetree/bindings/crypto/qcom-qce.txt   |  25 ----
+ .../devicetree/bindings/crypto/qcom-qce.yaml  |  90 ++++++++++++++
+ .../devicetree/bindings/dma/qcom_bam_dma.txt  |  50 --------
+ .../devicetree/bindings/dma/qcom_bam_dma.yaml | 115 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |   2 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |   4 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |   2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  28 +++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  28 +++++
+ drivers/crypto/qce/core.c                     |  66 +++++++---
+ drivers/crypto/qce/core.h                     |   1 +
+ drivers/dma/qcom/bam_dma.c                    |  11 ++
+ 12 files changed, 326 insertions(+), 96 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.txt
+ create mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
 
-Does it really need to cast twice?
+-- 
+2.31.1
 
-> +             vdec_dev->subdev_node[hw_idx] = subdev_node;
-> +
-> +             if (!test_bit(hw_idx, vdec_dev->hardware_bitmap)) {
-> +                     dev_err(&pdev->dev, "Vdec hw_idx is not ready %d.",
-> +                             hw_idx);
-
-I would prefer "Vdec %d is not ready\n".
-
-> +                     return -EINVAL;
-
--EAGAIN makes more sense.
-
-> +             }
-> +     }
-> +
-> +     return 0;
-> +}
-
-Would it need to call of_node_put() in the error handling path?
-
-> +static int mtk_vcodec_init_dec_params(struct mtk_vcodec_dev *dev)
-> +{
-
-I would rather not call them "params".  They are more like "resources".
-
-> +     struct platform_device *pdev = dev->plat_dev;
-> +     int ret;
-> +
-> +     ret = mtk_vcodec_get_reg_bases(dev);
-> +     if (ret)
-> +             return ret;
-> +
-> +     if (!dev->vdec_pdata->is_subdev_supported) {
-> +             dev->dec_irq = platform_get_irq(pdev, 0);
-> +             if (dev->dec_irq < 0) {
-> +                     dev_err(&pdev->dev, "failed to get irq number");
-> +                     return dev->dec_irq;
-> +             }
-> +
-> +             irq_set_status_flags(dev->dec_irq, IRQ_NOAUTOEN);
-> +             ret = devm_request_irq(&pdev->dev, dev->dec_irq,
-> +                     mtk_vcodec_dec_irq_handler, 0, pdev->name, dev);
-> +             if (ret) {
-> +                     dev_err(&pdev->dev, "failed to install dev->dec_irq %d (%d)",
-> +                             dev->dec_irq, ret);
-> +                     return ret;
-> +             }
-> +
-> +             ret = mtk_vcodec_init_dec_pm(pdev, &dev->pm);
-> +             if (ret < 0) {
-> +                     dev_err(&pdev->dev, "failed to get mt vcodec clock source");
-> +                     return ret;
-> +             }
-> +     }
-
-I would prefer:
-
-if (dev->vdec_pdata->is_subdev_supported)
-    return 0;
-
-And decrease the indent level by 1 for the following blocks.
-
-> @@ -329,6 +377,13 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
->               goto err_event_workq;
->       }
->
-> +     ret = of_platform_populate(pdev->dev.of_node, NULL, NULL,
-> +             &pdev->dev);
-> +     if (ret) {
-> +             mtk_v4l2_err("Master device of_platform_populate failed.");
-
-s/Master/Main/
-
-Doesn't it need to reference `is_subdev_supported` before populating?
-
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c
-> new file mode 100644
-> index 000000000000..745be12548ef
-[...]
-> +const struct of_device_id mtk_vdec_hw_match[] = {
-> +     {
-> +             .compatible = "mediatek,mtk-vcodec-lat",
-> +             .data = (void *)MTK_VDEC_LAT0,
-> +     },
-> +     {
-> +             .compatible = "mediatek,mtk-vcodec-core",
-> +             .data = (void *)MTK_VDEC_CORE,
-> +     },
-> +     {},
-> +};
-> +EXPORT_SYMBOL_GPL(mtk_vdec_hw_match);
-
-Introducing new compatible strings.  Need a dt-bindings patch for them.
-
-> +static int mtk_vdec_hw_probe(struct platform_device *pdev)
-> +{
-[...]
-> +     subdev_dev->reg_base[VDEC_HW_MISC] =
-> +             devm_platform_ioremap_resource_byname(pdev, "misc");
-> +     if (IS_ERR((__force void *)subdev_dev->reg_base[VDEC_HW_MISC])) {
-> +             ret = PTR_ERR((__force void *)subdev_dev->reg_base[VDEC_HW_MISC]);
-> +             goto err;
-> +     }
-
-Resource "misc" needs a dt-bindings patch to explain how to use/specify it.
-
-> +     hw_idx = (enum mtk_vdec_hw_id)(uintptr_t)of_id->data;
-
-Does it really need to cast twice?
-
-> +     if (hw_idx < MTK_VDEC_HW_MAX) {
-> +             main_dev->subdev_dev[hw_idx] = subdev_dev;
-> +             subdev_dev->hw_idx = hw_idx;
-> +             subdev_dev->main_dev = main_dev;
-> +             subdev_dev->reg_base[VDEC_HW_SYS] =
-> +                     main_dev->reg_base[VDEC_HW_SYS];
-> +             set_bit(subdev_dev->hw_idx, main_dev->hardware_bitmap);
-> +     }
-
-mtk_vcodec_subdev_device_check() doesn't check the value of
-of_id->data.  Does it make more sense to align the implementation?  If
-hw_idx is equal to or bigger than MTK_VDEC_HW_MAX, shall it print
-warning messages for example.
-
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h
-[...]
-> +#define VDEC_HW_ACTIVE 0x10
-> +#define VDEC_IRQ_CFG 0x11
-> +#define VDEC_IRQ_CLR 0x10
-> +#define VDEC_IRQ_CFG_REG 0xa4
-
-If only mtk_vcodec_dec_hw.c uses them, could they move to the file?
-
-> @@ -423,6 +436,11 @@ struct mtk_vcodec_enc_pdata {
->   * @pm: power management control
->   * @dec_capability: used to identify decode capability, ex: 4k
->   * @enc_capability: used to identify encode capability
-> + *
-> + * @subdev_dev: subdev hardware device
-> + * @subdev_node: subdev node
-> + *
-> + * @hardware_bitmap: used to record hardware is ready or not
->   */
->  struct mtk_vcodec_dev {
->       struct v4l2_device v4l2_dev;
-> @@ -460,6 +478,11 @@ struct mtk_vcodec_dev {
->       struct mtk_vcodec_pm pm;
->       unsigned int dec_capability;
->       unsigned int enc_capability;
-> +
-> +     void *subdev_dev[MTK_VDEC_HW_MAX];
-> +     struct device_node *subdev_node[MTK_VDEC_HW_MAX];
-> +
-> +     DECLARE_BITMAP(hardware_bitmap, MTK_VDEC_HW_MAX);
-
-I would prefer to use name `subdev_bitmap`.
