@@ -2,124 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B47FB44CC5C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 23:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D79844CC83
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 23:22:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233668AbhKJWU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 17:20:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233558AbhKJWUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 17:20:25 -0500
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B961CC061766;
-        Wed, 10 Nov 2021 14:15:10 -0800 (PST)
-Received: by mail-pl1-x630.google.com with SMTP id y1so4128249plk.10;
-        Wed, 10 Nov 2021 14:15:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=XxDFU6zngH2MiSJPUrDOxFHmK942PXrD/2AGczC8Ul8=;
-        b=U8PlSZUXO2Nb4DgwDzXO5TM4bgwclJ59oz8A1dNV72ro2GUKVOZamS+TfYHezB0BRI
-         lLsDAlIR1FnilVZhJS+/iTxU0OukeihbJETdBWX6hUCaQu1V8mc40VolvrSyA48W+rUo
-         6+hT2xHS6T2TCsDVd3r8kyKFTGkWR/V6vxnrjdrI7nPhCgzhP/5e5CpfomOmm4goBIik
-         u6VOhjkM2+vgnNLYqef/XjL0cVjCvPwzMB3Kjrg0LXbblonBBFCTHorkf8BNKLQ7P2ub
-         Z8/D68ZyWdzwtoEciXUiOudqGCZFQTUluBVdHv/60GjdOppChbBDvJWYVxakr100NC20
-         Tv7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=XxDFU6zngH2MiSJPUrDOxFHmK942PXrD/2AGczC8Ul8=;
-        b=vxBsrPXtFbpUQI73SKpRIHqEn3auNQho8QT4k2bba0SuIbq4YAZgiJ0k9pll+69UbX
-         rn+YEU8mwQQWFZu1ZbqbuUfCAk4R7Ns3iPCcRXqe0LtGaUE7xU94Z6zvP0oMLy/2PxoP
-         BNwyb4d4hQMbo8HDOrjIofaRNMRQSFC1ODcxLm/ly5yrSSgd3r1uKnFdelIBLsGmmeux
-         PChsGLP+HGde2mVYjUCVVbRgqw5wiK8acXe/OuPNCsF71gNXd8RO83S7zpK27ttzywh6
-         kz5zjyv3JXochtc7I/NDWPIVEGtxcVqEpPuf0dCLax9ZElYUSEdQlg9hZPFy1ARD1Kap
-         Pe8Q==
-X-Gm-Message-State: AOAM53116kpHdjK8g3fF31wpSevLSFVdkiGSzdl8sBNRQDGzRrAfvHaW
-        SPG37JDYTysUM8CL/VRbwBDdpbw4Jb5hLQ==
-X-Google-Smtp-Source: ABdhPJz69xPfkDk7VZal+/vPVQLGzVtHQBOzwHeh1QSi55XAjMhcdOd99CHjXEDMq8GdsaYaog0big==
-X-Received: by 2002:a17:902:7001:b0:141:67d3:adc6 with SMTP id y1-20020a170902700100b0014167d3adc6mr2207600plk.65.1636582510038;
-        Wed, 10 Nov 2021 14:15:10 -0800 (PST)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.11.250])
-        by smtp.gmail.com with ESMTPSA id q11sm611774pfk.192.2021.11.10.14.15.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 14:15:09 -0800 (PST)
-From:   Jim Quinlan <jim2101024@gmail.com>
-To:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, jim2101024@gmail.com,
-        james.quinlan@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v8 3/8] dt-bindings: PCI: Add bindings for Brcmstb EP voltage regulators
-Date:   Wed, 10 Nov 2021 17:14:43 -0500
-Message-Id: <20211110221456.11977-4-jim2101024@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211110221456.11977-1-jim2101024@gmail.com>
-References: <20211110221456.11977-1-jim2101024@gmail.com>
+        id S233537AbhKJWZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 17:25:24 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:36158 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229634AbhKJWZX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 17:25:23 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3FB151A08E2;
+        Wed, 10 Nov 2021 23:22:34 +0100 (CET)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0455E1A1196;
+        Wed, 10 Nov 2021 23:22:34 +0100 (CET)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.142])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 1E45C40BCF;
+        Wed, 10 Nov 2021 15:22:33 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH 00/11] lx216x DTS updates
+Date:   Wed, 10 Nov 2021 16:21:49 -0600
+Message-Id: <20211110222200.6780-1-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-allows optional regulators to be attached and controlled by the PCIe RC
-driver.  That being said, this driver searches in the DT subnode (the EP
-node, eg pci-ep@0,0) for the regulator property.
+Some accumulated updates for lx2160/lx2162 SoC and boards with two
+missing binding updates being used already.
 
-The use of a regulator property in the pcie EP subnode such as
-"vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-file at
+Ioana Radulescu (1):
+  arm64: dts: lx2160a-rdb: Add Inphi PHY node
 
-https://github.com/devicetree-org/dt-schema/pull/63
+Li Yang (3):
+  dt-bindings: qoriq-clock: add missing compatible for lx2160a
+  dt-bindings: fsl,layerscape-dcfg: add missing compatible for lx2160a
+  arm64: dts: lx2160a: update PCIe nodes to match rev2 silicon
 
-Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
----
- .../bindings/pci/brcm,stb-pcie.yaml           | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Pankaj Bansal (1):
+  arm64: dts: lx2160aqds: Add mdio mux nodes
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 508e5dce1282..ef2427320b7d 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -158,5 +158,28 @@ examples:
-                                  <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-                     brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-+
-+                    /* PCIe bridge */
-+                    pci@0,0 {
-+                            #address-cells = <3>;
-+                            #size-cells = <2>;
-+                            reg = <0x0 0x0 0x0 0x0 0x0>;
-+                            compatible = "pciclass,0604";
-+                            device_type = "pci";
-+                            vpcie3v3-supply = <&vreg7>;
-+                            ranges;
-+
-+                            /* PCIe endpoint */
-+                            pci-ep@0,0 {
-+                                    assigned-addresses =
-+                                        <0x82010000 0x0 0xf8000000 0x6 0x00000000 0x0 0x2000>;
-+                                    reg = <0x0 0x0 0x0 0x0 0x0>;
-+                                    compatible = "pci14e4,1688";
-+                                    #address-cells = <3>;
-+                                    #size-cells = <2>;
-+
-+                                    ranges;
-+                            };
-+                    };
-             };
-     };
+Pankaj Gupta (1):
+  arm64: dts: lx2160a: add optee-tz node
+
+Peng Ma (1):
+  arm64: dts: lx2160a-qds: enable sata nodes
+
+Ran Wang (1):
+  arm64: dts: lx2160a: enable usb3-lpm-capable for usb3 nodes
+
+Xiaowei Bao (1):
+  arm64: dts: lx2160a: add pcie EP mode nodes
+
+Yangbo Lu (1):
+  arm64: dts: lx2162aqds: support SD UHS-I and eMMC HS400 modes
+
+Zhang Ying-22455 (1):
+  arm64: dts: lx2160a: fix scl-gpios property name
+
+ .../arm/freescale/fsl,layerscape-dcfg.txt     |   2 +-
+ .../devicetree/bindings/clock/qoriq-clock.txt |   1 +
+ .../boot/dts/freescale/fsl-lx2160a-qds.dts    | 165 +++++++++++++++++
+ .../boot/dts/freescale/fsl-lx2160a-rdb.dts    |  21 +++
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 170 ++++++++++++------
+ .../boot/dts/freescale/fsl-lx2162a-qds.dts    |   7 +
+ 6 files changed, 315 insertions(+), 51 deletions(-)
+
 -- 
-2.17.1
+2.25.1
 
