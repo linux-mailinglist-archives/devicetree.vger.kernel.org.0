@@ -2,193 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DED44C158
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 13:31:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BB2144C1C3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 14:00:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231918AbhKJMdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 07:33:44 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37525 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231716AbhKJMdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 07:33:36 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 4650F580867;
-        Wed, 10 Nov 2021 07:30:48 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Wed, 10 Nov 2021 07:30:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=2aOAXpeIPQR2x
-        ghpp4OMQNId//edXUxPmx/LpQURmRg=; b=rN0GozkZomARTM3Ae7lYEh5VRQjGq
-        VhAWKWxdRL1/ppwHKv5zyJ8AYqu6Q5uC/d7/R8X1xfIGgKaacOnRf/gopaMgYsOR
-        TE2LyW/gPulPE84/UCbJJIid0prt2OLQycvVrczeVlWjsxkyki/sm/zHfMTueyKc
-        CN7UlgoUXi5zscfPn/cZJ0IpVwG6qVWNzbhHDwXzXOwUDN4AKh1keMOZL5LKLeq2
-        Sq/PR8p37TEv0g75x6qHgSXny/NNiNmMBfp608ZHcATSpYH7inGm5tyaFXKSujLD
-        7afc/dv8TOF4uZjsqc1XOvPcJv6DOp+w1dKQBXzL8ssqD0sPdoh+g/woQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=2aOAXpeIPQR2xghpp4OMQNId//edXUxPmx/LpQURmRg=; b=OmiOOc57
-        ZlacV5k9CDJH0jgZQ1uMTsazfKBe3x7dBXHDJlJjPmaqXdl9SWUo5eJCfw3HxdV7
-        2Eby8kW85EFSx18kZF9lVy2Ahb8jUEWvlgpoy+779IO7OC/jsAqgSL6UVBUKeJgz
-        CA7HMLO0zmbDp1sxvO6Zyd1uq1BrbLmVehy2Xqlaj0Gi14R/NvNIGgri2GMtsV4z
-        eHM4hnWFH03HqnIRa62L2PjxoR4s8ygwluLYn6HlPx0EHPzT6/e9ENuW9cVMy85a
-        rn4c6sC2I/W7kR5bvLH+YVIZz39jGcYgGgLqafDSjssuA00DPTO36o671wXRcg8s
-        QT4r3QAdW64tGw==
-X-ME-Sender: <xms:d7uLYbI1oO6xLDX0cu2C85Gr59DoKX_pry_YXGCVkX2RK3Fx01hrNA>
-    <xme:d7uLYfLkgq7BXeLd0RO5F1whybIDe5kt4YiHmbQyK2yftGN0WH9kRbpYLdVgADAOI
-    5uUB3KRDuWri6HfjUQ>
-X-ME-Received: <xmr:d7uLYTs_5cmtJkOb7K6boKPHcUC9BfduU3CPHulFemUWuDZxfEa7Wt_PpoQW3ATd_RPg2ZaSwJ8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrudejgdegtdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgeegtdetjeekge
-    eguefgheeuvedugedvteejveeiudegvddtkeffkeehtdetudfhnecuvehluhhsthgvrhfu
-    ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
-    htrghirhdvfedrmhgv
-X-ME-Proxy: <xmx:d7uLYUZasqafo7JQWwDKUFgjUNRs9kv6cnNEvNLg-6fbZZxNjDji9A>
-    <xmx:d7uLYSYY11_zXgxOfQhYNZlvretdIjEkkZHj7gj-UJJGlJRk4TIJog>
-    <xmx:d7uLYYAINsYQHcK_W6deKJeM7MGgq0ch7b3dz6xQzfSZDMH9ZjbQQg>
-    <xmx:eLuLYSLE5uIHQ1g-H0VJG09c2t_q8Ji1nBMp58Btf-n9Fw-kJnPEpQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 10 Nov 2021 07:30:42 -0500 (EST)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     lee.jones@linaro.org, broonie@kernel.org, kernel@pengutronix.de,
-        lgirdwood@gmail.com, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, rui.zhang@intel.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, linux-hwmon@vger.kernel.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org, linux-imx@nxp.com,
-        alistair23@gmail.com, andreas@kemnade.info, shawnguo@kernel.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v15 8/8] ARM: dts: imx7d: remarkable2: Enable lcdif
-Date:   Wed, 10 Nov 2021 22:29:48 +1000
-Message-Id: <20211110122948.188683-9-alistair@alistair23.me>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211110122948.188683-1-alistair@alistair23.me>
-References: <20211110122948.188683-1-alistair@alistair23.me>
+        id S231964AbhKJNDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 08:03:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231961AbhKJNDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 08:03:04 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47340C061764;
+        Wed, 10 Nov 2021 05:00:17 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id w22so2688709ioa.1;
+        Wed, 10 Nov 2021 05:00:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wk14CvCRD5wDRSFmMDX8Rujf1hpEFY6t5q8q0VPuXQw=;
+        b=DVuG7DCVMgbdWe8NxKDgqV3bXSD3QekZRG5JCfEoefgBcFcGci2oH8tgKE7jpgETiY
+         gltv3sKX9jZ4X6paGeysgRSeJt/wGEuafMpWOxAvZqH9J/szcJh350JZsS5D542DuU/r
+         z8Nv49mPMzB3Z76/LJLWfyeBD6nzzPoCsZH5AkgS8WfTWKgejiOnUSIZxww/GtThiqZU
+         B63il2ArOCVIYnln7zE7J8qn4gSKgYAaKpZw80SX5EnLSklJ/2vK0qTmEFbbWJahTQ21
+         LOJDDNPhEVfZTJ/E8ccZCpHCkpCbGaXa91b6ndP7os0SigPEurQ9O11JjumkupbTbtuq
+         D9BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wk14CvCRD5wDRSFmMDX8Rujf1hpEFY6t5q8q0VPuXQw=;
+        b=gFJIhOH8RKKVbPpYQm5jEw3IKkmqRIWuG8/Sv9Kt3Zz9h/pEQkx/ih/B2k0cvKQXC9
+         88lls56Q4CQicHwNT0YEnkV1NvnIq6fW+83GRsS+6jFDd7ar6bj4EgipJo8hztUw75vF
+         l7xUidLsDJbbhe8bTLhUDkMGtby+hpkBJ8brq+Ds3peRkIp/MwfEceBPPpmZctVtm8qz
+         RQPS7PNKyNxII6AROSNlasMYdtg3weqdtmNas+RoRpkPLLeTTWFxVDMqqFOTsX6UU91Y
+         0v3BjhDzrUfMGDbvPa+dulL47sBPzurx3zFqrxIxDBC1HJ7HSMh2WyzJssTxLM0nfriR
+         +MKw==
+X-Gm-Message-State: AOAM531hhnmAqwvzQMchrdhVFLKqfV5oL1JCY2xVfK0eSmY+eCiGt0uW
+        PuomWX24EGU6GNbrvsgrWkjs2xTJsET64Tfv/sU=
+X-Google-Smtp-Source: ABdhPJyMOxEKjm1uw8eykt3TpXUp/8kGYf6hb77e011/H12fVsOs1tyBAVpkQHKMJLKvhaZYhh+fbpmlFIksvyNzBMM=
+X-Received: by 2002:a05:6638:d16:: with SMTP id q22mr12179378jaj.35.1636549216748;
+ Wed, 10 Nov 2021 05:00:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211103114830.62711-1-alistair@alistair23.me>
+ <20211103114830.62711-3-alistair@alistair23.me> <20211105152154.20f5cbd1@aktux>
+In-Reply-To: <20211105152154.20f5cbd1@aktux>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Wed, 10 Nov 2021 22:59:50 +1000
+Message-ID: <CAKmqyKNx00ecsAyOjtLk8i6r75WD0uw=nd=fd9z44yBuau+Vdw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add
+ documentation for cyttsp5
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mylene Josserand <mylene.josserand@free-electrons.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Connect the dispaly on the reMarkable2.
+On Sat, Nov 6, 2021 at 12:22 AM Andreas Kemnade <andreas@kemnade.info> wrote:
+>
+> Hi,
+>
+> I finally found time to test this.
+>
+> On Wed,  3 Nov 2021 21:48:28 +1000
+> Alistair Francis <alistair@alistair23.me> wrote:
+>
+> [...]
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        touchscreen@24 {
+> > +            compatible = "cypress,tt2100";
+> > +            reg = <0x24>;
+> > +            pinctrl-names = "default";
+> > +            pinctrl-0 = <&tp_reset_ds203>;
+> > +            interrupt-parent = <&pio>;
+> > +            interrupts = <1 5 IRQ_TYPE_LEVEL_LOW>;
+> hmm, in the code is IRQ_TRIGGER_FALLING but here is LEVEL_LOW, hmm what
+> it is really?
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/imx7d-remarkable2.dts | 74 +++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+The reMarkable uses IRQ_TYPE_EDGE_FALLING, but this example isn't
+based on that. It' based on the original documentation from the patch
+series.
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index b66d28b30d75..fe68f6eaa2ec 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -55,6 +55,16 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <150>;
- 	};
- 
-+	reg_sdoe: regulator-sdoe {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SDOE";
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pinctrl_sdoe_reg>;
-+		pinctrl-1 = <&pinctrl_sdoe_reg>;
-+		gpio = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		pinctrl-names = "default";
-@@ -63,6 +73,16 @@ wifi_pwrseq: wifi_pwrseq {
- 		clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
- 		clock-names = "ext_clock";
- 	};
-+
-+	panel {
-+		compatible = "eink,vb3300-kca";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
- };
- 
- &clks {
-@@ -99,6 +119,20 @@ reg_epdpmic: vcom {
- 	};
- };
- 
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lcdif>;
-+	lcd-supply = <&reg_epdpmic>;
-+	lcd2-supply = <&reg_sdoe>;
-+	status = "okay";
-+
-+	port {
-+		display_out: endpoint {
-+			remote-endpoint = <&panel_in>;
-+		};
-+	};
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -187,6 +221,46 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL		0x4000007f
- 		>;
- 	};
- 
-+	pinctrl_lcdif: lcdifgrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA00__LCD_DATA0		0x79
-+			MX7D_PAD_LCD_DATA01__LCD_DATA1		0x79
-+			MX7D_PAD_LCD_DATA02__LCD_DATA2		0x79
-+			MX7D_PAD_LCD_DATA03__LCD_DATA3		0x79
-+			MX7D_PAD_LCD_DATA04__LCD_DATA4		0x79
-+			MX7D_PAD_LCD_DATA05__LCD_DATA5		0x79
-+			MX7D_PAD_LCD_DATA06__LCD_DATA6		0x79
-+			MX7D_PAD_LCD_DATA07__LCD_DATA7		0x79
-+			MX7D_PAD_LCD_DATA08__LCD_DATA8		0x79
-+			MX7D_PAD_LCD_DATA09__LCD_DATA9		0x79
-+			MX7D_PAD_LCD_DATA10__LCD_DATA10		0x79
-+			MX7D_PAD_LCD_DATA11__LCD_DATA11		0x79
-+			MX7D_PAD_LCD_DATA12__LCD_DATA12		0x79
-+			MX7D_PAD_LCD_DATA13__LCD_DATA13		0x79
-+			MX7D_PAD_LCD_DATA14__LCD_DATA14		0x79
-+			MX7D_PAD_LCD_DATA15__LCD_DATA15		0x79
-+
-+			MX7D_PAD_LCD_DATA17__LCD_DATA17		0x79
-+			MX7D_PAD_LCD_DATA18__LCD_DATA18		0x79
-+			MX7D_PAD_LCD_DATA19__LCD_DATA19		0x79
-+			MX7D_PAD_LCD_DATA20__LCD_DATA20		0x79
-+			MX7D_PAD_LCD_DATA21__LCD_DATA21		0x79
-+
-+			MX7D_PAD_LCD_DATA23__LCD_DATA23		0x79
-+			MX7D_PAD_LCD_CLK__LCD_CLK		0x79
-+			MX7D_PAD_LCD_ENABLE__LCD_ENABLE		0x79
-+			MX7D_PAD_LCD_VSYNC__LCD_VSYNC		0x79
-+			MX7D_PAD_LCD_HSYNC__LCD_HSYNC		0x79
-+			MX7D_PAD_LCD_RESET__LCD_RESET		0x79
-+		>;
-+	};
-+
-+	pinctrl_sdoe_reg: sdoereggrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA22__GPIO3_IO27		0x74
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
--- 
-2.31.1
+>
+> > +            reset-gpios = <&pio 7 1 GPIO_ACTIVE_HIGH>;
+>
+> hmm, if the reset gpio at the chip is active low (I guess it is) that
+> would indicate an inverter between SoC and gpio. So a nonstandard setup
+> as an example, probably not a good idea.
 
+It seems to be common for the cypress,tt2100, as the original
+documentation and the rM2 both do this. Does the Kobo not do this?
+
+Alistair
+
+>
+> Regards,
+> Andreas
