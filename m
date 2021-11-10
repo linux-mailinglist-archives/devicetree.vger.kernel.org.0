@@ -2,223 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD90244BE4E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 11:12:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDE044BE9D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 11:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231147AbhKJKPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 05:15:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
+        id S231172AbhKJKcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 05:32:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbhKJKPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 05:15:21 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF80C061766
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:12:33 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id j21so8299185edt.11
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:12:33 -0800 (PST)
+        with ESMTP id S231169AbhKJKcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 05:32:45 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBBD9C061764
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:29:57 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id u11so2651955plf.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:29:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iwrQkGdUPhk+QMSVvZiSAulM37+6icUvxRn7kPKP+hw=;
-        b=uP3euyDDsU9oS9V9jaeqz+9kbCdTk2b/bFUScZCBdkhwnGVOlDfYzb9X/NVGZbY5Wl
-         dzsUhlwUCbR0xRdiDe5bVaBSGfoOxxxYmuZgoMofeTGxL8EkJWBqm/Y6ZgyZ4y0xzrWQ
-         aYoBHmP0/93iceTpdPCoh04IMRytqrdWYPkLs5T/5pPvyCuTAxF3Um+SuZd9l6c8NdBb
-         kA4xuXl3TnWRmCEnL9IcJZssNfTE0uACotqi4UmIe0/vkjDwxs9QnLMGRFNssKy+2t8A
-         Z8X33Y5Wlam0kkD7Q9H8rHYgCxy5imrrxEbBI5rwbH/8QNA3JIHG8ne0wDSj8igRMWLp
-         al1A==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gSFvUJLaZR+mAVPFBcPx1oudAViqkL4IwyGNB8LdK80=;
+        b=eZ9Whpt501+2K7l26U4wtjldeo6V0MKg+IPh8nJFxzg+klzAvlhvUlX5uL9FGT/dEK
+         ojkFp0NnQHczMBoADFUXVAU/qQyUOXo+5+KLWMv8gABEsMPWVDyurFkliVDOH9YEvoc9
+         4QebnxuMUulAfKSS2P7FsdGLV2EGOTowxGCKkcDVKp76t0Hu0boOwos3GlvDg48jOxzC
+         cbtKSl55U8seclKFJsrrZiKepcOuv2XvwmCmExMnFSekL4Ejhh0VN6fddzdRVLdxzJJC
+         zEScDfB9Uwz7QGYIXR5l60zIehXlOZNSan/aU1SZpgLVK3zo/GK1e31s8jAjTxx449DX
+         1XTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iwrQkGdUPhk+QMSVvZiSAulM37+6icUvxRn7kPKP+hw=;
-        b=HtmnX+jx6+ZD/RYqWsf1oEpyn3FlWwXzsqXkzOvEf+r+UfQSdWBaIRNZv30sTiZ/KM
-         HOAiBOjfTVYaWRLmd4DkiSM9TKFOKyGoDBCzy5hSsjuEAmHnucxk1+z/95+HM2tibwPP
-         R2OoQAMroCzr4znQ647gI2R0WW1PSA4Sp1TU0A06sd29htNF10Eu3nTrKWKUJ6dt/8/o
-         7BH7VhDmYS8OkJ8wZXqPeH9HyOVomUqe2Vzxj1+KvOUq7Q9GlKj/RqJhlwahxqRkXglp
-         dfb/JI56q9MlB8mTzjhvfE/q+mELzoyxDHWDGmYYwop4l9WeutXVaBqr3LKh46qR+ZSW
-         9ByA==
-X-Gm-Message-State: AOAM532zRpkdml4v+7pJRY7BYsVQuNkKfMUf9j9aDr00Sz0khMLE1ibU
-        Vqxv08Mx+IP8/FKYuVoOZcMAaA==
-X-Google-Smtp-Source: ABdhPJyFMAADT0iNvQneqnoq3jXcfQ9exfItDCCBzjODGF6El21zfS6VYYeAkF3SXF3XSP6ZcoJNwg==
-X-Received: by 2002:a05:6402:42c8:: with SMTP id i8mr20478536edc.60.1636539152289;
-        Wed, 10 Nov 2021 02:12:32 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id r19sm12287575edt.54.2021.11.10.02.12.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Nov 2021 02:12:31 -0800 (PST)
-Subject: Re: [PATCH] ASoC: codecs: MBHC: Add support for special headset
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <8422a82f-5aa7-2458-8080-87f330fa63ea@linaro.org>
-Date:   Wed, 10 Nov 2021 10:12:30 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gSFvUJLaZR+mAVPFBcPx1oudAViqkL4IwyGNB8LdK80=;
+        b=jIvPIzhkWL9hqmzfNIwa01W2CkiJMfVU6Yh/6TWtRZzWZZA2CkQ8mVCHl/cm2LZU7P
+         wlrUUqvoyf73frdspaD5QLn/t5wbKa9CZ+I1gc5aUz8tlix1kfnfjXVz1Una9QvoT5Li
+         XGOMQfrnrlTUmtHJYZYVi2t7vseHDid3Pzw+gdbffgHeP+XVSRB8q3XMnHlkr1IcZFwH
+         XIVOHHCwRhfeQWFAzGyXicVSlwsisz4cvWI/8npl+YZV5JYnzPz9BfDAIJjEUhg4X+ZD
+         TXlAMwZwTpFC6gvOCUQuYsdXx1LnzxOX/F1Q5P+1shtmZ4xuD5PgIrBB8Wb5QttgirYc
+         nh4A==
+X-Gm-Message-State: AOAM530nyut6NxAaW3Ugn+3ZAo5zGE2/dxu2oTTFtk22pVxw7K2PGpnw
+        PZ7AQSe46BWht/pXsQ3xd5c1DX/31Len0nje4fw/Dg==
+X-Google-Smtp-Source: ABdhPJx+7Gq0bm/h5nRmAWFRad83G/chU5WO/BoJHnti7WjK4AP/ZWkCcRzV6CRZ8T8FumyHzs27HMxGy7nk1YEJlzM=
+X-Received: by 2002:a17:902:7289:b0:142:805f:e2c with SMTP id
+ d9-20020a170902728900b00142805f0e2cmr14239605pll.42.1636540196956; Wed, 10
+ Nov 2021 02:29:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211109125030.26299-1-yunfei.dong@mediatek.com> <20211109125030.26299-3-yunfei.dong@mediatek.com>
+In-Reply-To: <20211109125030.26299-3-yunfei.dong@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Wed, 10 Nov 2021 18:29:45 +0800
+Message-ID: <CA+Px+wWNg060xNcBSnu696OHPcp5Mqy=ovbAW_dtBTnoVXLMmg@mail.gmail.com>
+Subject: Re: [PATCH v9, 02/19] media: mtk-vcodec: Align vcodec wake up
+ interrupt interface
+To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for adding this support.
+On Tue, Nov 09, 2021 at 08:50:13PM +0800, Yunfei Dong wrote:
+> Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-few minor nits,
+s/B/b/, the suggested tag name is "Reviewed-by"[1].
 
-On 03/11/2021 11:18, Srinivasa Rao Mandadapu wrote:
-> Update MBHC driver to support special headset such as apple
-> and huwawei headsets.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> ---
->   sound/soc/codecs/wcd-mbhc-v2.c | 78 +++++++++++++++++++++++++++++++++++++++---
->   1 file changed, 74 insertions(+), 4 deletions(-)
-> 
-> diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
-> index 405128c..3b4cd39 100644
-> --- a/sound/soc/codecs/wcd-mbhc-v2.c
-> +++ b/sound/soc/codecs/wcd-mbhc-v2.c
-> @@ -1022,6 +1022,57 @@ static int wcd_mbhc_get_plug_from_adc(struct wcd_mbhc *mbhc, int adc_result)
->   	return plug_type;
->   }
->   
-> +static int wcd_mbhc_get_spl_hs_thres(struct wcd_mbhc *mbhc)
-> +{
-> +	int hs_threshold, micbias_mv;
-> +
-> +	micbias_mv = wcd_mbhc_get_micbias(mbhc);
-> +	if (mbhc->cfg->hs_thr && mbhc->cfg->micb_mv != WCD_MBHC_ADC_MICBIAS_MV) {
-> +		if (mbhc->cfg->micb_mv == micbias_mv)
-> +			hs_threshold = mbhc->cfg->hs_thr;
-> +		else
-> +			hs_threshold = (mbhc->cfg->hs_thr * micbias_mv) /
-> +								mbhc->cfg->micb_mv;
-
-You should consider using 100 chars per line, so that reading is much easy.
-
-> +	} else {
-> +		hs_threshold = ((WCD_MBHC_ADC_HS_THRESHOLD_MV * micbias_mv) /
-> +							WCD_MBHC_ADC_MICBIAS_MV);
-> +	}
-> +	return hs_threshold;
-> +}
-> +
-> +static bool wcd_mbhc_check_for_spl_headset(struct wcd_mbhc *mbhc)
-> +{
-> +	bool is_spl_hs = false;
-> +	int output_mv, hs_threshold, hph_threshold;
-> +
-> +	if (!mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic)
-> +		return false;
-> +
-> +	/* Bump up MIC_BIAS2 to 2.7V */
-> +	mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, true);
-> +	usleep_range(10000, 10100);
-> +
-> +	output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
-> +	hs_threshold = wcd_mbhc_get_spl_hs_thres(mbhc);
-> +	hph_threshold = wcd_mbhc_adc_get_hph_thres(mbhc);
-> +
-> +	if (output_mv > hs_threshold || output_mv < hph_threshold) {
-> +		if (mbhc->force_linein == true)
-> +			is_spl_hs = false;
-> +	} else {
-> +		is_spl_hs = true;
-> +	}
-> +
-> +	/* Back MIC_BIAS2 to 1.8v if the type is not special headset */
-> +	if (!is_spl_hs) {
-> +		mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, false);
-> +		/* Add 10ms delay for micbias to settle */
-> +		usleep_range(10000, 10100);
-> +	}
-> +
-> +	return is_spl_hs;
-> +}
-> +
->   static void wcd_correct_swch_plug(struct work_struct *work)
->   {
->   	struct wcd_mbhc *mbhc;
-> @@ -1029,12 +1080,14 @@ static void wcd_correct_swch_plug(struct work_struct *work)
->   	enum wcd_mbhc_plug_type plug_type = MBHC_PLUG_TYPE_INVALID;
->   	unsigned long timeout;
->   	int pt_gnd_mic_swap_cnt = 0;
-> -	int output_mv, cross_conn, hs_threshold, try = 0;
-> +	int output_mv, cross_conn, hs_threshold, try = 0, micbias_mv;
-> +	bool is_spl_hs = false;
->   	bool is_pa_on;
->   
->   	mbhc = container_of(work, struct wcd_mbhc, correct_plug_swch);
->   	component = mbhc->component;
->   
-> +	micbias_mv = wcd_mbhc_get_micbias(mbhc);
->   	hs_threshold = wcd_mbhc_adc_get_hs_thres(mbhc);
->   
->   	/* Mask ADC COMPLETE interrupt */
-> @@ -1097,6 +1150,18 @@ static void wcd_correct_swch_plug(struct work_struct *work)
->   		plug_type = wcd_mbhc_get_plug_from_adc(mbhc, output_mv);
->   		is_pa_on = wcd_mbhc_read_field(mbhc, WCD_MBHC_HPH_PA_EN);
->   
-> +
-unnecessary extra new line here.
-
-> +		if ((output_mv > hs_threshold) &&
-> +		    (!is_spl_hs)) {
-wrap to 100 chars and unneccessary brackets around the conditions.
-
-With those fixed
-
-
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
---srini
-
-> +			is_spl_hs = wcd_mbhc_check_for_spl_headset(mbhc);
-> +			output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
-> +
-> +			if (is_spl_hs) {
-> +				hs_threshold = (hs_threshold * wcd_mbhc_get_micbias(mbhc)) /
-> +									micbias_mv; > +			}
-> +		}
-> +
->   		if ((output_mv <= hs_threshold) && !is_pa_on) {
->   			/* Check for cross connection*/
->   			cross_conn = wcd_check_cross_conn(mbhc);
-> @@ -1122,14 +1187,19 @@ static void wcd_correct_swch_plug(struct work_struct *work)
->   			}
->   		}
->   
-> -		if (output_mv > hs_threshold) /* cable is extension cable */
-> +		/* cable is extension cable */
-> +		if (output_mv > hs_threshold || mbhc->force_linein == true)
->   			plug_type = MBHC_PLUG_TYPE_HIGH_HPH;
->   	}
->   
->   	wcd_mbhc_bcs_enable(mbhc, plug_type, true);
->   
-> -	if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH)
-> -		wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
-> +	if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH) {
-> +		if (is_spl_hs)
-> +			plug_type = MBHC_PLUG_TYPE_HEADSET;
-> +		else
-> +			wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
-> +	}
->   
->   	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_MODE, 0);
->   	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_EN, 0);
-> 
+[1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes
