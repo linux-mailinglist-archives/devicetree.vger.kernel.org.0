@@ -2,75 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E1044C31C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 15:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8D944C337
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 15:43:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232242AbhKJOmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 09:42:49 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40590 "EHLO mail.kernel.org"
+        id S231766AbhKJOpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 09:45:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41592 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232197AbhKJOms (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 09:42:48 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1378B61106;
-        Wed, 10 Nov 2021 14:39:57 +0000 (UTC)
+        id S231683AbhKJOpb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 09:45:31 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A0F376103D;
+        Wed, 10 Nov 2021 14:42:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636555201;
-        bh=xqZi6iTYc50vjoO0XtxsyimzxbnA+3z6Sn+/RRjZgtk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XXVWX7fuRz9fJ47j8xk7hCkr3Lt0XQmfYcrFDGwOaNHgVd1OrZS7Y51zxZeK6N6cQ
-         mzcdnC/kngo0vr7stFva55y6D13ypLXGNr+vc7wG6zkAcyIApK5YI42TE74y1ALbWg
-         92WS+Df4Z2/OuJ9kMdPshfQubomOWn+g+jLab5Ef/+jsxBdhwvMx+NsuUqXyJ2aQsS
-         WCFR6OrsJ+l7TECGzjw2viaFBT4lcWKTev/AIhMb7kqOhqBD6bHJnGLSeUpxdgmDP5
-         xpsyLPHjbrOnT+isXgBhRw/InkgCtvYXNwCWP3uccmRp3s4hygKYCRWy9SNnpwjcYj
-         s8BMumMnSIeow==
-Date:   Wed, 10 Nov 2021 14:39:54 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     lee.jones@linaro.org, kernel@pengutronix.de, lgirdwood@gmail.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        rui.zhang@intel.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, s.hauer@pengutronix.de,
-        linux-hwmon@vger.kernel.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, linux-imx@nxp.com, alistair23@gmail.com,
-        andreas@kemnade.info, shawnguo@kernel.org
-Subject: Re: [PATCH v15 4/8] regulator: sy7636a: Remove requirement on
- sy7636a mfd
-Message-ID: <YYvZuo+VWhe23fgN@sirena.org.uk>
-References: <20211110122948.188683-1-alistair@alistair23.me>
- <20211110122948.188683-5-alistair@alistair23.me>
+        s=k20201202; t=1636555363;
+        bh=XYdiLWchdJHKWuBjP3QQLDifU/rw0RDVF3t8aLiYi50=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NHsGzBMCMSNdC05B6S/nWxh7cwu2Q/g8PeubLKxyegJzmnH3ZK5ttUX+CYXJhFQvo
+         eoO/3O/U288+Ozx8P43rOcN1atMBCyqVnqZK9SfSAh4NAIKgzNh+Kr/MH9FYdWAvFU
+         2JClCvotiAu1TB8btY6lC4a2OC0nlVPU2h2OOohPelqTE35FiEPtdG9ZNmdh45X6is
+         39ZFwSrp73mvedlCZpgNAD5IsYOfp/FgIM2A8gIP6FsVV+gNNEHft+hWo1+dMmstwD
+         k1yrpbNfohWlCXEm4wsUHoPa98Pd8mOrCQBemtMCbIv7givzy+CUnKhErwZa0wpA/y
+         PoRGLfiHH9pmQ==
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     lorenzo.bianconi@redhat.com, linux-iio@vger.kernel.org,
+        mario.tesi@st.com, devicetree@vger.kernel.org
+Subject: [PATCH 0/2] add the capability to disable st_lsm6dsx sensor-hub
+Date:   Wed, 10 Nov 2021 15:42:31 +0100
+Message-Id: <cover.1636552075.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mSiTZPc7Z0AF7E/8"
-Content-Disposition: inline
-In-Reply-To: <20211110122948.188683-5-alistair@alistair23.me>
-X-Cookie: You have junk mail.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Introduce the capability to disable sensorhub through a device-tree property
+since since there are some configurations where users want to
+explicitly disable sensor-hub auto-probing at bootstrap.
+A typical configuration is when the sensorhub clock/data lines are connected
+to a pull-up resistor since no slave sensors are connected to the i2c master.
+If SDO/SA0 line is connected to the same pull-up resistor, when the driver
+tries to probe slave devices connected on sensor-hub, it will force SDO/SA0
+line to low, modifying the device i2c address.
 
---mSiTZPc7Z0AF7E/8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Lorenzo Bianconi (2):
+  iio: imu: st_lsm6dsx: add dts property to disable sensor-hub
+  Documentation: dt: iio: st_lsm6dsx: add disable-shub property
 
-On Wed, Nov 10, 2021 at 10:29:44PM +1000, Alistair Francis wrote:
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+ Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 4 ++++
+ drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c              | 4 +++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-Acked-by: Mark Brown <broonie@kernel.org>
+-- 
+2.31.1
 
---mSiTZPc7Z0AF7E/8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGL2boACgkQJNaLcl1U
-h9Bx3gf/XHLIMEoOui17lfMQpG17TCnihVcc6BYCq5EZQlOOwi5yLEqwMqwFDKc2
-TnbR6hpDO7wm7eUevhDb9E9FRY8vyGXoV/bZE07XaKlJh7C9h7qiJCzdXroJvZVl
-ClLrBTcMBLKRJGVU4Ff8bvohEigK6iH8Oq2b5whh2mZfA9s8ne5A8K+7edsqwl/u
-FWeYyAwXEYFhaRHJ6wkN5iFwX1XftgkTxUMS4jUBypFM68t9qtCrHNo6nNsArfPU
-6gefYO8LS8FvnJtf84F+oWqiiPalOcGJGw30tYGoyjCJwKSn4ilS8Y5Fj+1MUI14
-oUkyet/xZzRwfpGdbO1ZE8k3KHonyA==
-=QAPF
------END PGP SIGNATURE-----
-
---mSiTZPc7Z0AF7E/8--
