@@ -2,91 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E6444BD18
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD8C844BD2F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:42:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230428AbhKJIng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 03:43:36 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.166]:18688 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230340AbhKJIne (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 03:43:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1636533623;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=EoxcSaG1zS8onhMLinZTy9RSATOglCLjfc+GAPA1hs4=;
-    b=QsEw7VZu85INtby5O1t1mYNCFSg21OBHBj7ipeYdOBesZ5OdeloR3chtnr/TgorEtu
-    RZdP8SOTcvmcPsajfcaFu3ucQOs2bizqOWV6OreIaLMh9wSFjWB8aJL5A3jZv+Hkabcg
-    92uhU+tXBgn2TGR3BlDGAzkaMFrh+DE9qx1WgBQVj2s3rOBufkCX6uuMUCPYT/Fk+iT/
-    C6BLJnDRNboNkLAdVJqszS/7ccs6LOFiDVL/BIt+ZEzfiZQX4ncUh4/IWnzda52kjqhn
-    vpT0bTgTo+sxB4vXpak56IsfrjoSWxGyvdbRR8qV334zY6P53Jf6hG767bVZhy2TIti3
-    vNgg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK8+86Y="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.34.5 AUTH)
-    with ESMTPSA id j05669xAA8eM2gU
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 10 Nov 2021 09:40:22 +0100 (CET)
-Date:   Wed, 10 Nov 2021 09:40:16 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Sasha Levin <sashal@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
-        ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
-        catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH AUTOSEL 5.15 73/82] arm64: dts: qcom: msm8916: Add CPU
- ACC and SAW/SPM
-Message-ID: <YYuFcOrEXL0b8UEo@gerhold.net>
-References: <20211109221641.1233217-1-sashal@kernel.org>
- <20211109221641.1233217-73-sashal@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211109221641.1233217-73-sashal@kernel.org>
+        id S230031AbhKJIpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 03:45:25 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:47787 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230258AbhKJIpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 03:45:25 -0500
+X-IronPort-AV: E=Sophos;i="5.87,223,1631545200"; 
+   d="scan'208";a="100086081"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 10 Nov 2021 17:42:37 +0900
+Received: from localhost.localdomain (unknown [10.226.92.40])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2AB6C42412BE;
+        Wed, 10 Nov 2021 17:42:34 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] Enable RZ/G2L OSTM support
+Date:   Wed, 10 Nov 2021 08:42:29 +0000
+Message-Id: <20211110084232.652-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sasha,
+This patch series aims to enable Generic Timer Module (a.k.a OSTM) support
+for RZ/G2L SMARC platform.
 
-On Tue, Nov 09, 2021 at 05:16:31PM -0500, Sasha Levin wrote:
-> From: Stephan Gerhold <stephan@gerhold.net>
-> 
-> [ Upstream commit a22f9a766e1dc61f8f6ee2edfe83d4d23d78e059 ]
-> 
-> Add the device tree nodes necessary for SMP bring-up and cpuidle
-> without PSCI on ARM32. The hardware is typically controlled by the
-> PSCI implementation in the TrustZone firmware and is therefore marked
-> as status = "reserved" by default (from the device tree specification):
-> 
->   "Indicates that the device is operational, but should not be used.
->    Typically this is used for devices that are controlled by another
->    software component, such as platform firmware."
-> 
-> Since this is part of the MSM8916 SoC it should be added to msm8916.dtsi
-> but in practice these nodes should only get enabled via an extra include
-> on ARM32.
-> 
-> This is necessary for some devices with signed firmware which is missing
-> both ARM64 and PSCI support and can therefore only boot ARM32 kernels.
-> 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Link: https://lore.kernel.org/r/20211004204955.21077-13-stephan@gerhold.net
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-> 
+This patch series is depend upon [1]
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=577857
 
-This patch is not useful without other changes that landed in 5.16
-(in particular, the new device actually making use of these nodes).
+Biju Das (3):
+  drivers: soc: renesas: Enable RENESAS_OSTM
+  arm64: dts: renesas: r9a07g044: Add OSTM nodes
+  arm64: dts: renesas: rzg2l-smarc-som: Enable OSTM
 
-Can you drop this patch?
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 33 +++++++++++++++++++
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     |  8 +++++
+ drivers/soc/renesas/Kconfig                   |  1 +
+ 3 files changed, 42 insertions(+)
 
-Thanks,
-Stephan
+-- 
+2.17.1
+
