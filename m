@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855A844BBBA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 07:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3DC44BBBD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 07:31:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbhKJGeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 01:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46002 "EHLO
+        id S230457AbhKJGec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 01:34:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbhKJGeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 01:34:14 -0500
-Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29B9C061767
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 22:31:27 -0800 (PST)
-Received: by mail-pg1-x52c.google.com with SMTP id g28so1364688pgg.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 22:31:27 -0800 (PST)
+        with ESMTP id S230373AbhKJGeR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 01:34:17 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66DD1C06120A
+        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 22:31:29 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id b68so1723056pfg.11
+        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 22:31:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=mMyybJ8cedWreU7hFIqGdeFr06iYH5ttCqNwsXNo+Ug=;
-        b=Xfh67WRUFpuEiMGHc6R5yQLMQwvFdUao71R4RM1Qi2gB5GuleJrfsclBEBIT/nccr1
-         HDuFYeoRsH+f6bjVcA4EbxoeAkZCznpDxEWmHIdih0HVy2B2SyPGiSjSpa6yScAXiynG
-         yD4EqnWbXEBnC8QwQAbh9dvl5ZIKawX+Ld7zE=
+        bh=86/08aG+p6XRAME724Hp/6Odjw/P8UK3rjLz7Rko9pk=;
+        b=XHheJmSpYLVQSr3R4rxKaf5taYQBD0bYs1rjkecMNt0qVAN0Ew+VJCgsfYBLeFjOT1
+         zAfcGf9/NzWjxww35M5fSyXsEcQnYuxh+qgmuOhSUYBSrnZ7LPT9GLQXZW1g6Z5xjQa7
+         zsc0h9a1O+7zMrHQQwlL29Hd+5YPCxouHsz+8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=mMyybJ8cedWreU7hFIqGdeFr06iYH5ttCqNwsXNo+Ug=;
-        b=zBqZkkXzVQZV2TsMGy+F2wEcovehP8hbQSE0EUBjZ1Rdi1hh81vtq9IM6hZvbC5sLs
-         3BY5uK2FgweyKMFBSub9ZCrwXsZzGsKJHWp8fIoUQPuCRvpG38tMKO3KMwzSrJMs+o2Y
-         kougAv4K6mo25O1o1jKC8YfDmMbPivpunKTrQTOSR+b7arlpVNZdxuu/bp6Z9+zQxQxy
-         EO1t129o5rSGAbqBUMVMJcsBFO49uCxu7B6FCaXDPvxri31ubtPfLVPQxh4N074Iltj6
-         RQyt4a/8BcIyldikpR8bfzng3tNP7wrGf2alnctN1iDlwNAjcHpD8lFNN/fUD5PIsc9W
-         wwXw==
-X-Gm-Message-State: AOAM531orXWHQm15MrpnkLHDJipu/hv7/PWrLAHLJOXYx1ON3E0+eWhd
-        2OfFohiqZA4XUWi2VWcIA212CA==
-X-Google-Smtp-Source: ABdhPJwT/v9hqHouIhilRw0nFlWsVjSmmsKqi0raR1k8tjSjxHRTocD5RP0muTz06L7okNlC1JWPvQ==
-X-Received: by 2002:a63:2f44:: with SMTP id v65mr10408926pgv.281.1636525887374;
-        Tue, 09 Nov 2021 22:31:27 -0800 (PST)
+        bh=86/08aG+p6XRAME724Hp/6Odjw/P8UK3rjLz7Rko9pk=;
+        b=6T6b3cKmrYTjEkYZxiBaToM+6nWIU+lEu0fc84gAIauDZmOTeYbvaIvaYt80KSd5EZ
+         IEHKodpPhTWfapZ8kJWF0SLfj9NT1y+qeKdSpVxqb901Ja68qHlkE5HRSWg4fqEtDWGS
+         /6ZVe0mSBw0FJ+WcbDCPXjDOAtpIp6DbblXDgNProdh4E1SDX45cOV8AmL2cZqPJccvD
+         h5/cdgLnknb2S3AjaLAOBXL2RuFBaXYMzVkJ3E/v7jF/CZM76Uj9evR8VVJ+b44Bp2ok
+         Vn7bIrscw9YDXkWUYojI3hwCgOaVeJn+MwZgTGHv2rYjaK/5NhCw+fCIi90G0Tob7FGy
+         B9yg==
+X-Gm-Message-State: AOAM531Zy+I6JypiCbK4HHi/JysAlDpu63rBKjftoBneAMHnNvb7gJZ4
+        vGxuPy8bpwdAk95DIX7C+nNuLQ==
+X-Google-Smtp-Source: ABdhPJyGjFC2Sh8vaHJGhq+5Jw4jMiG6OxOmugcVKfn7mui/GLCO5k7lMCWwoeNTqLpMdAptVvaqRQ==
+X-Received: by 2002:a63:dc0d:: with SMTP id s13mr10597486pgg.254.1636525888877;
+        Tue, 09 Nov 2021 22:31:28 -0800 (PST)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:6886:f712:1a79:e3d9])
-        by smtp.gmail.com with ESMTPSA id w1sm15623959pgb.50.2021.11.09.22.31.25
+        by smtp.gmail.com with ESMTPSA id w1sm15623959pgb.50.2021.11.09.22.31.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 22:31:27 -0800 (PST)
+        Tue, 09 Nov 2021 22:31:28 -0800 (PST)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/7] arm64: dts: mt8183: Add kakadu sku22
-Date:   Wed, 10 Nov 2021 14:31:15 +0800
-Message-Id: <20211110063118.3412564-4-hsinyi@chromium.org>
+Subject: [PATCH v3 5/7] dt-bindings: arm64: dts: mediatek: Add mt8183-kukui-jacuzzi-cozmo
+Date:   Wed, 10 Nov 2021 14:31:16 +0800
+Message-Id: <20211110063118.3412564-5-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.34.0.rc0.344.g81b53c2807-goog
 In-Reply-To: <20211110063118.3412564-1-hsinyi@chromium.org>
 References: <20211110063118.3412564-1-hsinyi@chromium.org>
@@ -62,52 +62,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kakadu sku22 is using mediatek,mt8183_mt6358_ts3a227_rt1015p audio codec
+Cozmo is known as Acer Chromebook 314 (CB314-2H/CB314-2HT) Chromebook.
 
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/Makefile         |  1 +
- .../mediatek/mt8183-kukui-kakadu-sku22.dts    | 19 +++++++++++++++++++
- 2 files changed, 20 insertions(+)
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 9834bd659d1530..1613259b686576 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kenzo.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu-sku22.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku288.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
-new file mode 100644
-index 00000000000000..3a724e6f915cd5
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu-sku22.dts
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright 2021 Google LLC
-+ */
-+
-+/dts-v1/;
-+#include "mt8183-kukui-kakadu.dtsi"
-+#include "mt8183-kukui-audio-rt1015p.dtsi"
-+
-+/ {
-+	model = "MediaTek kakadu board sku22";
-+	compatible = "google,kakadu-rev3-sku22", "google,kakadu-rev2-sku22",
-+		     "google,kakadu", "mediatek,mt8183";
-+};
-+
-+&sound {
-+	compatible = "mediatek,mt8183_mt6358_ts3a227_rt1015p";
-+};
-+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index 0fa55497b96fd2..7cf0c76cd31006 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -134,6 +134,10 @@ properties:
+               - google,krane-sku176
+           - const: google,krane
+           - const: mediatek,mt8183
++      - description: Google Cozmo (Acer Chromebook 314)
++        items:
++          - const: google,cozmo
++          - const: mediatek,mt8183
+       - description: Google Damu (ASUS Chromebook Flip CM3)
+         items:
+           - const: google,damu
 -- 
 2.34.0.rc0.344.g81b53c2807-goog
 
