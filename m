@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CC444C53A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 17:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C14144C553
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 17:47:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229810AbhKJQo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 11:44:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44318 "EHLO
+        id S229785AbhKJQuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 11:50:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbhKJQo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 11:44:59 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70B30C061764;
-        Wed, 10 Nov 2021 08:42:11 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id b15so12809945edd.7;
-        Wed, 10 Nov 2021 08:42:11 -0800 (PST)
+        with ESMTP id S229602AbhKJQuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 11:50:05 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3A6C061764;
+        Wed, 10 Nov 2021 08:47:17 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id v11so13057833edc.9;
+        Wed, 10 Nov 2021 08:47:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=IfRD0rz25tMThx/BwiIkkgEd/KlpJso7Ze4Lvb9GtgQ=;
-        b=PkWEKBIvugLM4cOygl+bQAGLktwfu5jSga5kGzZMwzdOW7UFUYOiYW3u37a/nLdqJv
-         anVnS9C4UD7MBkUVk3tS34zLlxbf7MLGKj9fJiAb6GA67FlOKCVVZln3+utfSPNZJYzr
-         Bzff+hYGIYugu8WN4bHKzr+og98fLBZcf8f3ZJtdL5kB830JIP7Cf+MZ4FIkQts4Gifa
-         DKb9vpsCVYfngmfDJEMcGLdUkPBsEGNbLfryiRDe68zvtoqmcTJ9jzED9kv4VbNzpRD9
-         EqJ8EF2bYYVJ6PEX4GRYlEwhFKPPN9uM+N2xL8m0preGEK9rO2P6gmgp1Tq9qtAgfgWV
-         GeMw==
+        bh=Vru0Z1VrDog7j7N8movCWVgL2QBStAjcA++1TbbK3Ws=;
+        b=hLAWi3NLFdpddsqhJQnfcBxnVXJxfw8j+qp+qYxdxPpJjgBid5lYb/g45aUKsEYBit
+         +cxqJdBf7T7a+QtZ43rLTzo5m34o5DzXXWg1ynBAJk0yWuORMhbir5oRTs5A65qM0izC
+         UVaU/1PXPHytbI0mkPN15v1bVNzu924OpM0PhC+pcBi7HWFgnrYEyC1cguwm6p+1a3rZ
+         Wo1jzLGGaV+jeg2jVOATYWREYVhsrfKz4P2iO9clkYidAICwH1DVCrOYgFwlL25yOwlZ
+         YRkiGb+UCl4D0i7LMdGunIq3kYi/wJBu/iaXTqKR5EMvBsqf//px2EozZuPkWTIwfWsy
+         QkpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=IfRD0rz25tMThx/BwiIkkgEd/KlpJso7Ze4Lvb9GtgQ=;
-        b=fIyoX4ZrK2K/G586KY9Gba9Kyqf37zI0+mfF53OgQ4yeVQe7ZN33Q729E9vMehmRkA
-         IV4ER8LWpXzoSOe+5ieW28OtJsIEqxqC66RE+ZAiuxQ83G6gOYuX3vH6Wt9q4/2WmkXE
-         eAQCDiKzvwcTKOXua1jVD4vc+Ej92B5tVHaCbjoe+CvYcNPSriQW0EEpdQxFi1OgMDLq
-         xUThnUIp0CGvh6SJ+2MVa5qZ0Vx4UZ3HN7EtOEi8XeXOQbej302lgZYwjjNyTi4VKuOO
-         C0g6q+n3u6sA1+BBp9Rt24awtBB06yZokdOn/p6+0t2ejBqGgoHxzpvQOq4j6CR4vqzL
-         YR1A==
-X-Gm-Message-State: AOAM530qBUi38Kg8am/AH9jmwRy4mjq3cVR4ljwDFKEsXcg3b+AK576I
-        iGBhGN7eC73vzpfTZGobXNufoqdNtA0dmA/oN5amqy3FsmE=
-X-Google-Smtp-Source: ABdhPJxQesTiSTH7GZ8mP0J33LzdzX8/yrJFXEljr74ODZBbPHN39U6V3MJQDQ2I/pvhOpUuiyqeev71xPSK6tmJSlw=
-X-Received: by 2002:aa7:cb09:: with SMTP id s9mr303311edt.359.1636562529816;
- Wed, 10 Nov 2021 08:42:09 -0800 (PST)
+        bh=Vru0Z1VrDog7j7N8movCWVgL2QBStAjcA++1TbbK3Ws=;
+        b=ISEey+FAVxJafZxo2I7BZO+zJ0eCihItpONDBRolR799Vigk9/Y/GR3+Zj4WyKPx5N
+         jH9DHZLE3HancjTFRJAWS3bvZfRU/U3mHqNeynUFjO1qW4uZQmUIM1NNU5c4gBC8LCrU
+         lReFFOJGS2QZ3m4HSjBemjdOj0kUUUUVhUYb6zbWw5ekAPp00DBtk6bmgXJSdPnG8dAf
+         WQw47rLlVcQXSLgvPk0dS0bwSPe6jVfI1Csf3AIuss2WbWiWJLh2LI5i07XPjbpFGj7c
+         K9vBQW2bue/dhBngKuAHg+4LYHGFVtzPcHq78hbSewyxjiWd433OYfGHbENn0gvhdBeV
+         krew==
+X-Gm-Message-State: AOAM531AZM9wGGq2DX5+oT6nJlB32e7FbQm4/Lip4JR41d1REP72m/Zh
+        Ntrz5XtjX3arLcY6gPcCRhYn5aiSyYWkUBI8iZg0DYJ+ClA=
+X-Google-Smtp-Source: ABdhPJxLf5keCKcm+dAd5nvFtmq/fP7/gtO3OhClVpuYrBJE5blq1MssoJQ7RLvM78SIFB1iXzvAjP/WWLNAxH8DHDU=
+X-Received: by 2002:a17:907:869e:: with SMTP id qa30mr601056ejc.356.1636562836351;
+ Wed, 10 Nov 2021 08:47:16 -0800 (PST)
 MIME-Version: 1.0
-References: <1635752903-14968-1-git-send-email-hammer.hsieh@sunplus.com> <1636530670-6995-1-git-send-email-hammer.hsieh@sunplus.com>
-In-Reply-To: <1636530670-6995-1-git-send-email-hammer.hsieh@sunplus.com>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <1635747525-31243-2-git-send-email-lh.kuo@sunplus.com> <YYAzrDuLYQt4U06J@sirena.org.uk>
+In-Reply-To: <YYAzrDuLYQt4U06J@sirena.org.uk>
 From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 10 Nov 2021 18:41:25 +0200
-Message-ID: <CAHp75VcZuN0-zJjQUk5Afgqd-ON5PjVzMSjfM2Mouiq-EXjcWw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add UART driver for Suplus SP7021 SoC
-To:     Hammer Hsieh <hammerh0314@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Date:   Wed, 10 Nov 2021 18:46:31 +0200
+Message-ID: <CAHp75Vc8DUyHxhTm2RrdoSmcx9EXjDJvm3FDBRD7Lm4WA5sQ+A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] SPI: Add SPI driver for Sunplus SP7021
+To:     Mark Brown <broonie@kernel.org>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, tony.huang@sunplus.com,
-        wells.lu@sunplus.com, Hammer Hsieh <hammer.hsieh@sunplus.com>
+        dvorkin@tibbo.com, qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 9:51 AM Hammer Hsieh <hammerh0314@gmail.com> wrote:
+On Mon, Nov 1, 2021 at 8:37 PM Mark Brown <broonie@kernel.org> wrote:
+> On Mon, Nov 01, 2021 at 02:18:44PM +0800, LH.Kuo wrote:
 >
-> This is a patch series for UART driver for Suplus SP7021 SoC.
+> > Add SPI driver for Sunplus SP7021.
 >
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
-> etc.) into a single chip. It is designed for industrial control.
->
-> Refer to:
-> https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
-> https://tibbo.com/store/plus1.html
+> In general it looks like this needs quite a bit of a refresh for
+> mainline - a lot of it looks to be a combination of minor, easily
+> fixable things and stylistic issues which make things hard to follow but
+> I think there are some more substantial things going on here as well.
 
-...
+Just looked at their UART driver submission with the similar idea in mind.
+Asked them to shrink the size 1.5-2x times. I believe this is possible
+(and yes, I already saw a new version which is better, but can be
+cleaned up more).
 
->  drivers/tty/serial/sunplus-uart.c                  | 1591 ++++++++++++++++++++
->  include/soc/sunplus/sp_uart.h                      |  147 ++
-
-Sorry, but I do not believe this driver requires so many LOCs. Please,
-try to get it under 1000, I am pretty sure it's possible and
-achievable.
+Folks, try again for all your drivers for this SoC.
 
 -- 
 With Best Regards,
