@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD8C844BD2F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5891744BD32
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:42:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhKJIpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 03:45:25 -0500
+        id S230370AbhKJIpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 03:45:30 -0500
 Received: from relmlor2.renesas.com ([210.160.252.172]:47787 "EHLO
         relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230258AbhKJIpZ (ORCPT
+        by vger.kernel.org with ESMTP id S230053AbhKJIp3 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 03:45:25 -0500
+        Wed, 10 Nov 2021 03:45:29 -0500
 X-IronPort-AV: E=Sophos;i="5.87,223,1631545200"; 
-   d="scan'208";a="100086081"
+   d="scan'208";a="100086092"
 Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 10 Nov 2021 17:42:37 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 10 Nov 2021 17:42:41 +0900
 Received: from localhost.localdomain (unknown [10.226.92.40])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 2AB6C42412BE;
-        Wed, 10 Nov 2021 17:42:34 +0900 (JST)
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7E840424103D;
+        Wed, 10 Nov 2021 17:42:39 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
@@ -28,30 +28,68 @@ Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
         Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 0/3] Enable RZ/G2L OSTM support
-Date:   Wed, 10 Nov 2021 08:42:29 +0000
-Message-Id: <20211110084232.652-1-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 2/3] arm64: dts: renesas: r9a07g044: Add OSTM nodes
+Date:   Wed, 10 Nov 2021 08:42:31 +0000
+Message-Id: <20211110084232.652-3-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211110084232.652-1-biju.das.jz@bp.renesas.com>
+References: <20211110084232.652-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series aims to enable Generic Timer Module (a.k.a OSTM) support
-for RZ/G2L SMARC platform.
+Add OSTM{0,1,2} nodes to RZ/G2L SoC DTSI.
 
-This patch series is depend upon [1]
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=577857
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 33 ++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
-Biju Das (3):
-  drivers: soc: renesas: Enable RENESAS_OSTM
-  arm64: dts: renesas: r9a07g044: Add OSTM nodes
-  arm64: dts: renesas: rzg2l-smarc-som: Enable OSTM
-
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 33 +++++++++++++++++++
- .../boot/dts/renesas/rzg2l-smarc-som.dtsi     |  8 +++++
- drivers/soc/renesas/Kconfig                   |  1 +
- 3 files changed, 42 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 485ef5f0fea1..ba149fd41cb6 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -641,6 +641,39 @@
+ 			power-domains = <&cpg>;
+ 			status = "disabled";
+ 		};
++
++		ostm0: timer@12801000 {
++			compatible = "renesas,r9a07g044-ostm",
++				     "renesas,rzg2l-ostm";
++			reg = <0x0 0x12801000 0x0 0x400>;
++			interrupts = <GIC_SPI 46 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&cpg CPG_MOD R9A07G044_OSTM0_PCLK>;
++			resets = <&cpg R9A07G044_OSTM0_PRESETZ>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		ostm1: timer@12801400 {
++			compatible = "renesas,r9a07g044-ostm",
++				     "renesas,rzg2l-ostm";
++			reg = <0x0 0x12801400 0x0 0x400>;
++			interrupts = <GIC_SPI 47 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&cpg CPG_MOD R9A07G044_OSTM1_PCLK>;
++			resets = <&cpg R9A07G044_OSTM1_PRESETZ>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
++
++		ostm2: timer@12801800 {
++			compatible = "renesas,r9a07g044-ostm",
++				     "renesas,rzg2l-ostm";
++			reg = <0x0 0x12801800 0x0 0x400>;
++			interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>;
++			clocks = <&cpg CPG_MOD R9A07G044_OSTM2_PCLK>;
++			resets = <&cpg R9A07G044_OSTM2_PRESETZ>;
++			power-domains = <&cpg>;
++			status = "disabled";
++		};
+ 	};
+ 
+ 	timer {
 -- 
 2.17.1
 
